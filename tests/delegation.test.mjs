@@ -9,6 +9,11 @@ import {
   verifyDelegationSignature,
 } from "../packages/domain/delegation.mjs";
 import { canonicalJson } from "../packages/protocol/canonical-json.mjs";
+import {
+  personKeyProofChallengePayloadHash,
+  personKeyProofChallengeSigningPayload,
+  verifyPersonKeyProofChallengeSignature,
+} from "../packages/protocol/person-key-proof.mjs";
 
 const start = "2026-07-13T00:00:00Z";
 const end = "2027-07-13T00:00:00Z";
@@ -45,6 +50,38 @@ test("delegation signatures verify against the owner's public key", async () => 
     }),
     true,
   );
+});
+
+test("a one-time Person key challenge binds the key, nonce, and expiry into its signature", async () => {
+  const pair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
+  const publicKey = base64Url(await crypto.subtle.exportKey("raw", pair.publicKey));
+  const challenge = {
+    protocolVersion: "pw-person-key-proof-challenge-v1",
+    id: "person-key-proof-challenge:alice-01",
+    personId: "person:alice",
+    personKeyId: "person-key:alice",
+    personPublicKey: publicKey,
+    nonce: base64Url(crypto.getRandomValues(new Uint8Array(32))),
+    issuedAt: "2026-07-13T00:00:00Z",
+    expiresAt: "2026-07-13T00:05:00Z",
+  };
+  const signature = base64Url(await crypto.subtle.sign(
+    "Ed25519",
+    pair.privateKey,
+    new TextEncoder().encode(canonicalJson(personKeyProofChallengeSigningPayload(challenge))),
+  ));
+
+  assert.equal(await verifyPersonKeyProofChallengeSignature({
+    challenge,
+    personPublicKey: publicKey,
+    personSignature: signature,
+  }), true);
+  assert.match(await personKeyProofChallengePayloadHash(challenge), /^sha256:[a-f0-9]{64}$/);
+  assert.equal(await verifyPersonKeyProofChallengeSignature({
+    challenge: { ...challenge, nonce: base64Url(crypto.getRandomValues(new Uint8Array(32))) },
+    personPublicKey: publicKey,
+    personSignature: signature,
+  }), false);
 });
 
 test("a certificate is valid only during its interval and before revocation", () => {

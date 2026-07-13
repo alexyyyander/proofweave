@@ -2,6 +2,7 @@ import { normalizeLeanRunnerResult } from "../protocol/lean-runner.mjs";
 
 export const runStates = [
   "queued",
+  "preparing",
   "running",
   "cancel_requested",
   "succeeded",
@@ -45,6 +46,7 @@ export function createQueuedRun(input) {
     artifactBundleHash: input.artifactBundleHash,
     state: "queued",
     queuedAt: input.queuedAt,
+    preparingAt: null,
     startedAt: null,
     cancelRequestedAt: null,
     finishedAt: null,
@@ -52,11 +54,20 @@ export function createQueuedRun(input) {
   });
 }
 
+/** Reserve a queued Run for idempotent private workspace preparation. */
+export function markRunPreparing(run, preparingAt) {
+  const normalized = normalizeRun(run);
+  assertState(normalized, "queued", "begin workspace preparation");
+  requireUtcInstant(preparingAt, "Run preparingAt");
+  assertAtOrAfter(preparingAt, normalized.queuedAt, "Run preparingAt");
+  return freezeRun({ ...normalized, state: "preparing", preparingAt });
+}
+
 export function markRunStarted(run, startedAt) {
   const normalized = normalizeRun(run);
-  assertState(normalized, "queued", "start");
+  assertState(normalized, "preparing", "start");
   requireUtcInstant(startedAt, "Run startedAt");
-  assertAtOrAfter(startedAt, normalized.queuedAt, "Run startedAt");
+  assertAtOrAfter(startedAt, normalized.preparingAt, "Run startedAt");
   return freezeRun({ ...normalized, state: "running", startedAt });
 }
 
@@ -70,9 +81,9 @@ export function requestRunCancellation(run, requestedAt) {
     throw new RunStateError(`Run cannot be cancelled from ${normalized.state}.`);
   }
   requireUtcInstant(requestedAt, "Run cancellation requestedAt");
-  assertAtOrAfter(requestedAt, normalized.startedAt ?? normalized.queuedAt, "Run cancellation requestedAt");
+  assertAtOrAfter(requestedAt, normalized.startedAt ?? normalized.preparingAt ?? normalized.queuedAt, "Run cancellation requestedAt");
 
-  if (normalized.state === "queued") {
+  if (["queued", "preparing"].includes(normalized.state)) {
     return freezeRun({ ...normalized, state: "cancelled", cancelRequestedAt: requestedAt, finishedAt: requestedAt });
   }
   return freezeRun({ ...normalized, state: "cancel_requested", cancelRequestedAt: requestedAt });
@@ -111,7 +122,7 @@ export function isTerminalRunState(state) {
 
 function normalizeRun(run) {
   requireRecord(run, "Run");
-  rejectExtraKeys(run, ["id", "attemptId", "idempotencyKey", "requestHash", "artifactBundleHash", "state", "queuedAt", "startedAt", "cancelRequestedAt", "finishedAt", "runnerResultHash"], "Run");
+  rejectExtraKeys(run, ["id", "attemptId", "idempotencyKey", "requestHash", "artifactBundleHash", "state", "queuedAt", "preparingAt", "startedAt", "cancelRequestedAt", "finishedAt", "runnerResultHash"], "Run");
   requireIdentifier(run.id, "Run id");
   requireIdentifier(run.attemptId, "Run attemptId");
   requireIdentifier(run.idempotencyKey, "Run idempotencyKey");
@@ -119,15 +130,19 @@ function normalizeRun(run) {
   requireSha256(run.artifactBundleHash, "Run artifactBundleHash");
   if (!runStates.includes(run.state)) throw new RunStateError("Run state is invalid.");
   requireUtcInstant(run.queuedAt, "Run queuedAt");
+  requireNullableInstant(run.preparingAt, "Run preparingAt");
   requireNullableInstant(run.startedAt, "Run startedAt");
   requireNullableInstant(run.cancelRequestedAt, "Run cancelRequestedAt");
   requireNullableInstant(run.finishedAt, "Run finishedAt");
   requireNullableSha256(run.runnerResultHash, "Run runnerResultHash");
 
-  if (run.state === "queued" && (run.startedAt || run.cancelRequestedAt || run.finishedAt || run.runnerResultHash)) {
+  if (run.state === "queued" && (run.preparingAt || run.startedAt || run.cancelRequestedAt || run.finishedAt || run.runnerResultHash)) {
     throw new RunStateError("A queued Run cannot contain execution state.");
   }
-  if (["running", "cancel_requested"].includes(run.state) && (!run.startedAt || run.finishedAt || run.runnerResultHash)) {
+  if (run.state === "preparing" && (!run.preparingAt || run.startedAt || run.cancelRequestedAt || run.finishedAt || run.runnerResultHash)) {
+    throw new RunStateError("A preparing Run must reserve a workspace and cannot contain execution state.");
+  }
+  if (["running", "cancel_requested"].includes(run.state) && (!run.preparingAt || !run.startedAt || run.finishedAt || run.runnerResultHash)) {
     throw new RunStateError("An active Run must have started and cannot contain a terminal result.");
   }
   if (run.state === "cancel_requested" && !run.cancelRequestedAt) {
@@ -142,6 +157,9 @@ function normalizeRun(run) {
     }
   } else if (isTerminalRunState(run.state) && !run.runnerResultHash) {
     throw new RunStateError("A runner-completed Run must retain its result hash.");
+  }
+  if (isTerminalRunState(run.state) && run.state !== "cancelled" && (!run.preparingAt || !run.startedAt)) {
+    throw new RunStateError("A runner-completed Run must retain preparation and start times.");
   }
 
   return freezeRun({ ...run });

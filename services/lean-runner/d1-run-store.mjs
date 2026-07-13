@@ -1,5 +1,6 @@
 import {
   createQueuedRun,
+  markRunPreparing,
   markRunStarted,
   recordRunnerResult,
   requestRunCancellation,
@@ -131,6 +132,21 @@ export class D1RunStore {
     return next;
   }
 
+  async prepare(runId, preparingAt) {
+    const current = await this.requireRun(runId);
+    if (current.state === "preparing" && current.preparingAt === preparingAt) return current;
+    const next = markRunPreparing(current, preparingAt);
+    await this.writeProjection(current, next, preparingAt);
+    await this.appendEvent({
+      id: `run-event:${runId}:workspace-preparing`,
+      run: next,
+      eventType: "workspace_preparation_started",
+      occurredAt: preparingAt,
+      payload: { requestHash: next.requestHash, artifactBundleHash: next.artifactBundleHash },
+    });
+    return next;
+  }
+
   async requestCancellation(runId, requestedAt) {
     const current = await this.requireRun(runId);
     if (
@@ -156,6 +172,7 @@ export class D1RunStore {
     const current = await this.requireRun(runId);
     const normalizedResult = normalizeLeanRunnerResult(result);
     await this.assertTrustedRunnerSignature(normalizedResult);
+    await this.assertStoredOutputArtifacts(runId, normalizedResult);
     const resultHash = await sha256Canonical(normalizedResult);
     const existing = await this.database
       .prepare("SELECT result_hash FROM run_results WHERE run_id = ?")
@@ -207,16 +224,32 @@ export class D1RunStore {
     }
   }
 
+  async assertStoredOutputArtifacts(runId, result) {
+    const rows = await this.database
+      .prepare("SELECT role, content_hash FROM runner_output_artifacts WHERE run_id = ?")
+      .bind(runId)
+      .all();
+    const hashes = new Map((rows.results ?? []).map((row) => [row.role, row.content_hash]));
+    if (
+      hashes.get("stdout") !== result.artifacts.stdoutHash ||
+      hashes.get("stderr") !== result.artifacts.stderrHash ||
+      hashes.size !== 2
+    ) {
+      throw new RunStoreConflictError("Runner result output hashes are not backed by immutable Runner output artifacts.");
+    }
+  }
+
   async writeProjection(current, next, updatedAt) {
     const changed = await this.database
       .prepare(
         `UPDATE runs
-         SET state = ?, started_at = ?, cancel_requested_at = ?, finished_at = ?,
+         SET state = ?, preparing_at = ?, started_at = ?, cancel_requested_at = ?, finished_at = ?,
              runner_result_hash = ?, updated_at = ?
          WHERE id = ? AND state = ?`,
       )
       .bind(
         next.state,
+        next.preparingAt,
         next.startedAt,
         next.cancelRequestedAt,
         next.finishedAt,
@@ -258,6 +291,7 @@ function toRun(row) {
     idempotencyKey: row.idempotency_key,
     state: row.state,
     queuedAt: row.queued_at,
+    preparingAt: row.preparing_at,
     startedAt: row.started_at,
     cancelRequestedAt: row.cancel_requested_at,
     finishedAt: row.finished_at,

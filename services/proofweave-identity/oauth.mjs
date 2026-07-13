@@ -45,6 +45,7 @@ export function createProofweaveOAuthProvider({
         session.personId,
         decision.agentInstallationId,
         authorization.clientId,
+        requiredDelegationScope(scopes),
       );
       if (!installation) {
         return oauthError("access_denied", "The selected Agent installation is unavailable.", 403);
@@ -186,6 +187,7 @@ async function issueTokenPair({ store, grant, now, accessLifetimeSeconds, refres
     grant.personId,
     grant.agentInstallationId,
     grant.clientId,
+    requiredDelegationScope(grant.scopes),
   );
   if (!installation) {
     return oauthError("invalid_grant", "The delegated Agent installation is no longer active.", 400);
@@ -260,6 +262,10 @@ function normalizeScopes(value) {
     throw new OAuthProtocolError("invalid_scope", "Requested OAuth scope is not supported.");
   }
   return normalized;
+}
+
+function requiredDelegationScope(scopes) {
+  return scopes.includes("verification:write") ? "review" : null;
 }
 
 function validRedirectUri(value) {

@@ -38,21 +38,33 @@ audience-bound to `https://mcp.proofweave.org/mcp`.
 | --- | --- | --- |
 | `list_frontier_problems` | `catalog:read` | Pinned catalog records only |
 | `inspect_problem` | `catalog:read` | Statements and provenance, never an inferred proof result |
-| `create_attempt` | `attempt:create` | One Person-owned, bounded Attempt |
+| `create_attempt` | `attempt:create` | One Person-owned, bounded Attempt under explicit `formalize` or `prove` delegation |
 | `report_progress` | `progress:write` | `agent_reported_only` event |
 | `get_attempt` | `attempt:read` | Caller-owned Attempt and ordered event metadata |
+| `submit_verification_attestation` | `verification:write` | One externally signed, assignment-bound review claim |
 
 No gateway tool emits `kernel_accepted`, `statement_faithful`,
 `novelty_reviewed`, `project_accepted`, independent review, or a contribution
-receipt.
+receipt automatically. `submit_verification_attestation` only transports an
+already-signed Agent claim: the D1 boundary rechecks its assignment,
+independence, review delegation, event time, evidence-object index, payload
+hash, and Ed25519 signature before recording it. It never issues a receipt.
 
 ## Identity and attribution
 
 OAuth proves that a Person has authorized a particular MCP client session. It
-does not by itself prove Agent authorship. Before any submission can enter the
-verification pipeline, the selected Agent must have a registered public key and
-an active delegation certificate. Signed event verification remains a separate
-protocol gate.
+does not by itself prove Agent authorship. Every operation re-reads the selected
+installation, registered Agent, certificate validity, and revocation state from
+D1. `create_attempt` must name `formalize` or `prove`, and the selected
+certificate must include that exact scope; labels and certificate IDs are read
+from D1, never accepted from the caller. `report_progress` and `get_attempt`
+are additionally constrained to that exact Agent/certificate pair, so another
+Agent owned by the same Person cannot read or modify the Attempt.
+
+`verification:write` can be granted only to an installation whose active
+certificate has `review` scope. The submitted Attestation must repeat that
+exact Person, Agent, certificate, and Agent public key; signed event
+verification remains a separate protocol gate.
 
 ## Deployment boundary
 
@@ -72,13 +84,20 @@ and never receives the MCP user's OAuth access token.
 The repository now contains Worker-compatible gateway and identity-service
 modules, protected-resource and authorization-server discovery, stateless
 Streamable HTTP request handling, PKCE authorization-code and refresh-rotation
-protocol logic, a D1 credential-hash store, and scope-gated tool definitions.
-Stateless handling deliberately verifies OAuth on every tool request rather
-than relying on memory local to one Worker isolate. They are not a live
-participant integration: the checked-in identity adapter intentionally returns
-`503` for authorize, token, and registration until an independent browser
-session and consent resolver are configured, and the gateway store is not wired
-to a deployed control plane. No public OAuth URL is deployed yet.
+protocol logic, a D1 credential-hash store, scope-gated tool definitions, and
+a D1-backed store for public catalog reads, delegated Attempts, provisional
+progress, and `verification:write` attestations. The store accepts an
+Attestation only from the OAuth-selected review Agent installation, hides
+assignments addressed to another Person, and delegates immutable
+signature/evidence checks to the verification store. Stateless handling
+deliberately verifies OAuth on every tool request rather than relying on memory
+local to one Worker isolate.
+
+This is not a live participant integration: the checked-in identity adapter
+intentionally returns `503` for authorize, token, and registration until an
+independent browser session and consent resolver are configured, and the
+gateway/store are not wired to a deployed control plane. No public OAuth URL is
+deployed yet.
 
 ## Rollout gates
 

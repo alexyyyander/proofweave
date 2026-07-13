@@ -17,17 +17,20 @@ export class D1ProofweaveOAuthStore {
     return { id: row.id, clientName: row.client_name };
   }
 
-  async findAgentInstallation(personId, installationId, clientId) {
+  async findAgentInstallation(personId, installationId, clientId, requiredScope = null) {
+    if (requiredScope !== null && requiredScope !== "review") return null;
     const now = new Date().toISOString();
     const row = await this.database
       .prepare(
-        `SELECT installation.id
+        `SELECT installation.id, certificate.scopes_json
          FROM agent_installations AS installation
          INNER JOIN agents AS agent ON agent.id = installation.agent_id
          INNER JOIN delegation_certificates AS certificate
            ON certificate.id = installation.delegation_certificate_id
          LEFT JOIN delegation_revocations AS revocation
            ON revocation.delegation_certificate_id = certificate.id
+         INNER JOIN person_keys AS signer ON signer.id = certificate.person_key_id
+         LEFT JOIN person_key_revocations AS key_revocation ON key_revocation.person_key_id = signer.id
          WHERE installation.id = ?
            AND installation.person_id = ?
            AND installation.client_id = ?
@@ -40,11 +43,14 @@ export class D1ProofweaveOAuthStore {
            AND certificate.agent_id = installation.agent_id
            AND certificate.valid_from <= ?
            AND certificate.valid_until > ?
-           AND revocation.id IS NULL`,
+           AND revocation.id IS NULL
+           AND COALESCE(key_revocation.revoked_at, signer.revoked_at) IS NULL`,
       )
       .bind(installationId, personId, clientId, now, now)
       .first();
-    return row ? { id: row.id } : null;
+    const scopes = row && parseStringArray(row.scopes_json);
+    if (!row || (requiredScope && !scopes?.includes(requiredScope))) return null;
+    return { id: row.id };
   }
 
   async issueAuthorizationCode(record) {
@@ -147,6 +153,7 @@ export class D1ProofweaveOAuthStore {
       .prepare(
         `SELECT token.client_id, token.resource, token.person_id,
                 token.agent_installation_id, token.scopes_json, token.expires_at,
+                certificate.scopes_json AS certificate_scopes_json,
                 CASE WHEN installation.status = 'active'
                        AND installation.revoked_at IS NULL
                        AND agent.owner_person_id = installation.person_id
@@ -157,6 +164,7 @@ export class D1ProofweaveOAuthStore {
                        AND certificate.valid_from <= ?
                        AND certificate.valid_until > ?
                        AND revocation.id IS NULL
+                       AND COALESCE(key_revocation.revoked_at, signer.revoked_at) IS NULL
                      THEN 1 ELSE 0 END AS installation_active
          FROM oauth_access_tokens AS token
          INNER JOIN agent_installations AS installation
@@ -166,6 +174,8 @@ export class D1ProofweaveOAuthStore {
            ON certificate.id = installation.delegation_certificate_id
          LEFT JOIN delegation_revocations AS revocation
            ON revocation.delegation_certificate_id = certificate.id
+         INNER JOIN person_keys AS signer ON signer.id = certificate.person_key_id
+         LEFT JOIN person_key_revocations AS key_revocation ON key_revocation.person_key_id = signer.id
          WHERE token.token_hash = ?
            AND token.resource = ?
            AND token.expires_at > ?
@@ -174,6 +184,7 @@ export class D1ProofweaveOAuthStore {
       .bind(now, now, tokenHash, resource, now)
       .first();
     const scopes = row && parseStringArray(row.scopes_json);
+    const certificateScopes = row && parseStringArray(row.certificate_scopes_json);
     return row && scopes
       ? {
           clientId: row.client_id,
@@ -182,7 +193,8 @@ export class D1ProofweaveOAuthStore {
           agentInstallationId: row.agent_installation_id,
           scopes,
           expiresAt: row.expires_at,
-          installationActive: row.installation_active === 1,
+          installationActive: row.installation_active === 1 &&
+            (!scopes.includes("verification:write") || certificateScopes?.includes("review") === true),
         }
       : null;
   }

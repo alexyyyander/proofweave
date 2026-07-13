@@ -45,16 +45,18 @@ An implementation must reconstruct a v2 workspace in this exact order:
    traversal paths, duplicate paths, symlinks, hard links, devices, FIFOs, and
    all non-regular files. Enforce the manifest's expanded-byte and file-count
    limits while extracting.
-2. Apply `normalized.patch` once with `patch --batch --forward --fuzz=0 -p1`.
-   Reject a patch that escapes the workspace, is reversed, or needs fuzz.
+2. Apply the Git-style `normalized.patch` once with
+   `patch --batch --forward --fuzz=0 -p1`. Reject a patch that escapes the
+   workspace, uses a non-content operation, is reversed, or needs fuzz.
 3. Replace the root `lake-manifest.json` with the referenced immutable object.
 4. Recompute the final `pw-tree-v1` hash and require an exact match before the
    supplied argument-array entry command may run.
 
 The Run's disk allowance must be at least the Bundle's declared maximum
 expanded workspace size. The current resolver enforces this before a Run moves
-from `queued` to `running`; the future transfer/executor must enforce the same
-limit during extraction.
+from `queued` to retryable `preparing`; only a verified private workspace
+handoff may subsequently move it to `running`. The transfer/executor must
+enforce the same limit during extraction.
 
 ## `pw-tree-v1`
 

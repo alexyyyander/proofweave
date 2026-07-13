@@ -10,9 +10,21 @@ disk/output limits, and disabled network. [`queue.mjs`](queue.mjs) defines the
 provider-neutral `RunnerQueue` delivery contract and includes a deterministic
 in-memory reference adapter for tests. Queue envelopes are Ed25519-signed by a
 control-plane deployment key, and the runner-side authenticator accepts only
-operator-provisioned public issuer keys. It does not yet contain a container
-image, deployed Worker, source-transfer implementation, or executable
-user-code service.
+operator-provisioned public issuer keys. It does not yet contain an approved
+container image or deployed Worker. It does contain a source-only,
+digest-required Docker assembly recipe in [`Dockerfile`](Dockerfile); without
+an independently inspected base image and a recorded final digest, it cannot
+become a Runner image. The build and inspection contract is in
+[`docs/runner-container-image.md`](../../docs/runner-container-image.md). It
+also contains a source-level Cloudflare Queue consumer in
+[`cloudflare-worker.mjs`](cloudflare-worker.mjs): it composes authenticated
+preflight, exact named-Container transfer, private execution, immutable output
+persistence, Worker-held signing, and D1 result recording. The core
+[`worker.mjs`](worker.mjs) remains platform-import-free for Node tests; the
+thin Cloudflare entrypoint exports the Container Durable Object class. It is
+not a live Runner Worker. This directory also contains source-only R2 transfer, private
+Node HTTP ingress, and fixed Lean execution code; those paths cannot start
+until an isolated deployment explicitly supplies the required resource limits.
 
 [`orchestrator.mjs`](orchestrator.mjs) is the control-plane handoff: it creates
 the immutable D1 Run projection before delivering the signed queue envelope.
@@ -41,8 +53,9 @@ service.
 For the closed-alpha hosting target, [`cloudflare-queues.mjs`](cloudflare-queues.mjs)
 implements a Cloudflare Queue producer plus authenticated per-message consumer
 handling. [`cloudflare-runner-container.mjs`](cloudflare-runner-container.mjs)
-is the deployment-side Container class with Internet disabled; it is not an
-execution implementation. `d1-r2-runner-bundle-resolver.mjs` rechecks the
+is the deployment-side Container class with Internet disabled, a private
+port/readiness probe, and one-Run path binding; it starts the checked-in Node
+process only in a future pinned image. `d1-r2-runner-bundle-resolver.mjs` rechecks the
 immutable D1/R2 Bundle before source transfer, `runner-job-preflight.mjs`
 claims exactly one persisted queued Run after that check, and
 `runner-image-policy.mjs` binds an approved image digest to exact Lean/Mathlib
@@ -54,6 +67,30 @@ Container ingress will verify before execution.
 `container-workspace-ingress.mjs` provides the matching state machine for that
 image service: every expected hash/length is frozen before bytes arrive, and
 the archive, patch, and Lake manifest must be verified in order.
+`container-workspace-runtime.mjs` is the source-only Node process for that
+private ingress: it re-hashes streams, safely reconstructs the v2 workspace,
+and verifies its final tree before Lean can start.
+`container-http-server.mjs` now starts that private handler on the Container
+port, rejects broad listeners, exposes only `/ready` outside the private API,
+and fails closed without external isolation assertions.
+`container-lean-executor.mjs` is the next source-only boundary: under an
+explicitly network-isolated and resource-limited image, it runs the fixed Lean
+command, performs `sorry` and target-axiom audits, and returns unsigned output
+evidence for the Worker—not a signing key or receipt claim.
+`runner-execution-result-signer.mjs` is the Worker-side counterpart: it
+re-hashes that output, binds it to the active Run, and applies the
+operator-held signature before the existing D1 result store can accept it.
+`runner-container-execution-client.mjs` invokes the private execution endpoint
+and retrieves its hash-bound output; it remains behind the Worker/Container
+boundary and never becomes a browser API.
+`d1-r2-runner-output-store.mjs` stores those exact bytes as immutable R2/D1
+evidence before `runner-execution-finalizer.mjs` signs and records the result.
+Deployment of this source-only Container route and provisioned Worker/R2
+bindings remains work. `RUNNER_RESULT_PRIVATE_KEY_JWK` must be provisioned as a
+Worker secret; the Container never receives it.
+`runner-workspace-stager.mjs` connects authenticated preflight, private
+workspace transfer, and the D1 `preparing -> running` transition so an
+interrupted transfer is retryable rather than a stuck running Run.
 The selected hosting boundary, non-deployable config template, and remaining
 gates are documented in
 [`docs/runner-cloudflare-deployment.md`](../../docs/runner-cloudflare-deployment.md).

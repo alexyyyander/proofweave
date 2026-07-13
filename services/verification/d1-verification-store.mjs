@@ -27,7 +27,10 @@ export class VerificationStoreNotFoundError extends Error {
   }
 }
 
-/** Internal control-plane store; no participant-facing review routes exist yet. */
+/**
+ * Internal persistence adapter. Participant routes are mediated by a separate
+ * owner-scoped repository; this store never receives a browser identity.
+ */
 export class D1VerificationStore {
   constructor(database) {
     this.database = database;
@@ -238,11 +241,14 @@ export class D1VerificationStore {
           certificate.agent_id AS certificate_agent_id,
           certificate.agent_public_key AS certificate_agent_public_key,
           certificate.scopes_json, certificate.valid_from, certificate.valid_until,
-          revocation.revoked_at
+          revocation.revoked_at,
+          COALESCE(key_revocation.revoked_at, signer.revoked_at) AS signer_key_revoked_at
          FROM agents AS agent
          INNER JOIN delegation_certificates AS certificate ON certificate.id = ?
          LEFT JOIN delegation_revocations AS revocation
            ON revocation.delegation_certificate_id = certificate.id
+         INNER JOIN person_keys AS signer ON signer.id = certificate.person_key_id
+         LEFT JOIN person_key_revocations AS key_revocation ON key_revocation.person_key_id = signer.id
          WHERE agent.id = ?`,
       )
       .bind(attestation.delegationCertificateId, attestation.verifierAgentId)
@@ -266,7 +272,8 @@ export class D1VerificationStore {
     if (
       !Array.isArray(scopes) || !scopes.includes("review") ||
       eventTime < Date.parse(row.valid_from) || eventTime >= Date.parse(row.valid_until) ||
-      (row.revoked_at && eventTime >= Date.parse(row.revoked_at))
+      (row.revoked_at && eventTime >= Date.parse(row.revoked_at)) ||
+      (row.signer_key_revoked_at && eventTime >= Date.parse(row.signer_key_revoked_at))
     ) {
       throw new VerificationStoreValidationError("Verification attestation occurred outside valid review delegation authority.");
     }

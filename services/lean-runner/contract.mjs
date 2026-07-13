@@ -63,6 +63,34 @@ export {
 } from "./container-workspace-ingress.mjs";
 
 export {
+  RunnerWorkspaceStager,
+  RunnerWorkspaceStagerError,
+} from "./runner-workspace-stager.mjs";
+
+export {
+  RunnerExecutionResultSigner,
+  RunnerExecutionResultSignerError,
+} from "./runner-execution-result-signer.mjs";
+
+export {
+  RunnerContainerExecutionClient,
+  RunnerContainerExecutionClientError,
+} from "./runner-container-execution-client.mjs";
+
+export {
+  D1R2RunnerOutputStore,
+  RunnerOutputStoreConflictError,
+  RunnerOutputStoreValidationError,
+  maxRunnerOutputBytes,
+  runnerOutputContentType,
+} from "./d1-r2-runner-output-store.mjs";
+
+export {
+  RunnerExecutionFinalizer,
+  RunnerExecutionFinalizerError,
+} from "./runner-execution-finalizer.mjs";
+
+export {
   RunnerDispatchError,
   RunnerOrchestrator,
 } from "./orchestrator.mjs";

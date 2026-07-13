@@ -40,6 +40,15 @@ test("D1 OAuth store atomically consumes credentials and invalidates an installa
     ),
     { id: "installation:oauth-test" },
   );
+  assert.equal(
+    await store.findAgentInstallation(
+      "person:oauth-test",
+      "installation:oauth-test",
+      "codex-test",
+      "review",
+    ),
+    null,
+  );
 
   await store.issueAuthorizationCode({
     codeHash: "code-hash-1",
@@ -82,8 +91,45 @@ test("D1 OAuth store atomically consumes credentials and invalidates an installa
     (await store.findAccessToken("access-hash-1", "https://mcp.example.test/mcp", now))?.installationActive,
     true,
   );
+  await store.issueTokenPair({
+    accessTokenHash: "access-hash-review-1",
+    refreshTokenHash: "refresh-hash-review-1",
+    clientId: "codex-test",
+    resource: "https://mcp.example.test/mcp",
+    personId: "person:oauth-test",
+    agentInstallationId: "installation:oauth-test",
+    scopes: ["verification:write"],
+    issuedAt: now,
+    accessExpiresAt: "2026-07-13T13:00:00Z",
+    refreshExpiresAt: "2026-08-13T12:00:00Z",
+  });
+  assert.equal(
+    (await store.findAccessToken("access-hash-review-1", "https://mcp.example.test/mcp", now))?.installationActive,
+    false,
+  );
   assert.equal((await store.consumeRefreshToken("refresh-hash-1", now))?.clientId, "codex-test");
   assert.equal(await store.consumeRefreshToken("refresh-hash-1", now), null);
+
+  await database
+    .prepare(
+      "INSERT INTO person_key_revocations (id, person_key_id, owner_person_id, revoked_at, reason) VALUES (?, ?, ?, ?, ?)",
+    )
+    .bind(
+      "person-key-revocation:oauth-test",
+      "person-key:oauth-test",
+      "person:oauth-test",
+      now,
+      "Device replaced.",
+    )
+    .run();
+  assert.equal(
+    await store.findAgentInstallation("person:oauth-test", "installation:oauth-test", "codex-test"),
+    null,
+  );
+  assert.equal(
+    (await store.findAccessToken("access-hash-1", "https://mcp.example.test/mcp", now))?.installationActive,
+    false,
+  );
 
   await database
     .prepare(

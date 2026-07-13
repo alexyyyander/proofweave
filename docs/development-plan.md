@@ -65,35 +65,48 @@ reusable contribution with evidence that an external maintainer can reproduce.
   and a no-Internet Cloudflare Container deployment policy for closed alpha;
 - D1/R2 Runner Bundle resolver that re-hashes the canonical manifest and
   re-checks request-to-bundle/object binding before source transfer;
-- Runner preflight that binds an authenticated Queue delivery to exactly one
-  persisted Run before it can transition to `running`;
+- Runner preflight and stager that bind an authenticated Queue delivery to
+  exactly one persisted Run, then use retryable workspace preparation before a
+  verified private handoff can transition it to `running`;
 - deployment-owned pinned-image registry that binds image digests to exact
   Lean and Mathlib environments before a Run can be claimed;
 - operator-managed runner-key allowlist with signed-result verification before
   immutable Run evidence is accepted;
 - independent Person-level review assignments and review-delegated Agent
-  attestations with immutable D1 audit events;
+  attestations with immutable D1 audit events, plus an owner-scoped
+  closed-alpha review queue for accept/decline decisions;
 - a canonical signed Contribution Receipt protocol and conservative issuance
-  policy plus internal immutable D1 issuance and read-only verified lookup,
-  without public issuance;
+  policy plus internal immutable D1 issuance, dependency-edge projection, and
+  signed append-only lifecycle events with read-only verified
+  receipt/dependency/lifecycle lookup, without public issuance;
 - a repository-versioned research skill, retired local MCP prototype, and
-  Worker-compatible remote MCP/identity protocol scaffolding;
+  Worker-compatible remote MCP/identity protocol scaffolding, including a
+  D1-backed public catalog/Attempt/progress store and review-scope-bound remote
+  Agent attestation-admission adapter;
 - logical D1 (`DB`) and R2 (`ARTIFACTS`) bindings declared for Sites;
 - responsive desktop and mobile presentation.
 
 ### Missing
 
-- the workbench identity and delegation display are still preview data;
-- no public identity, key proof-of-possession challenge, or participant-facing
-  delegation UI exists;
+- the research branch, source diagnostics, event list, and bundle submission in
+  the workbench remain clearly labeled local previews; they are not a live
+  Agent execution or submission flow;
+- no public identity, account recovery, cross-device key-rotation policy, or
+  participant-ready delegation service exists; closed-alpha browser-held keys
+  now have proof-of-possession and append-only revoke/replace controls, but
+  this is not a public identity or recovery system;
 - no production browser-session/consent adapter, deployed OAuth identity
-  service, deployed D1-backed MCP gateway store, bounded-run, artifact,
+  service, deployed MCP gateway control plane, bounded-run, artifact,
   verification, or receipt API exists;
 - no Lean execution service exists;
-- no participant-facing independent-review assignment or fresh runner replay
+- no participant-facing fresh runner replay exists. Closed-alpha owners and
+  assigned reviewers can inspect a controlled Bundle/Run metadata view and
+  download D1-index-checked private R2 artifacts, but that inspection is not a
+  fresh replay or a verification claim. The source has a remote Agent
+  attestation-admission path, but it remains unavailable until the separate
+  identity and MCP gateway control plane are deployed;
+- no public contribution-receipt issuance endpoint or issuer-key rotation model
   exists;
-- no public contribution-receipt issuance endpoint or receipt index,
-  dependency-edge, correction, or retraction model exists;
 - no active remote CI provider or production observability exists.
 
 ### Sprint 0 progress
@@ -145,10 +158,12 @@ existing prototype token and token issuance now returns `410 Gone`.
 
 The replacement is a remote Streamable HTTP MCP gateway with Proofweave OAuth.
 The source now includes separated Worker-compatible gateway and identity
-services, standard discovery metadata, stateless MCP request handling, and
-scope-gated tool definitions. It remains deliberately non-deployable for participants
-until independent identity, consent, D1 store, token validation, revocation,
-and observability exist. The product contract is in
+services, standard discovery metadata, stateless MCP request handling,
+scope-gated tool definitions, and a D1-backed gateway store for source-pinned
+catalog reads, delegated Attempt/progress writes, and signed review
+attestations. It remains deliberately non-deployable for participants until
+independent identity, consent, gateway control-plane provisioning, token
+validation, revocation, and observability exist. The product contract is in
 [`docs/remote-mcp-gateway.md`](remote-mcp-gateway.md) and the architectural
 decision is ADR 0005.
 
@@ -163,6 +178,10 @@ Implemented locally on 2026-07-13:
   can be issued or accepted by the resource server;
 - D1 tables and adapter that store only hashes of authorization codes, access
   tokens, and refresh tokens, with atomic consumption in D1 integration tests.
+- D1 remote-MCP store that rechecks the selected installation on every
+  operation, derives Agent attribution from D1 rather than tool input, limits
+  Attempt reads/progress to the exact Agent/certificate pair, and is covered by
+  actual OAuth-token-to-MCP-to-D1 integration tests.
 
 The default identity Worker is intentionally still unavailable: choosing and
 configuring independent login/session recovery plus a user-facing consent
@@ -178,16 +197,37 @@ Implemented locally on 2026-07-13:
   delegation certificates, and append-only revocations;
 - closed-alpha authenticated APIs to inspect a Person profile, register a key
   and Agent, issue a signed delegation, and revoke it;
+- a one-time five-minute Person-key proof-of-possession challenge, canonical
+  signature verification, immutable D1 challenge/proof evidence, and an
+  issuance guard that requires an intact proof before a key can delegate;
+- immutable Person-key revocation events with a safe replacement guard (or an
+  explicit emergency path), browser-private-key removal after success, public
+  signer-key status, and effective invalidation of later Agent events signed
+  under certificates issued by the revoked key;
 - integration tests proving the full key/Agent/sign/revoke sequence plus D1
   immutability triggers;
+- a read-only certificate route and human-readable record that rechecks the
+  canonical payload hash and Person signature before exposing public signing
+  evidence or an append-only revocation; it omits provider identities, display
+  names, private keys, credentials, and private Agent reasoning;
 - new provisional Attempts bind their Agent, certificate, and delegated scope;
   later progress is rejected after certificate expiry or revocation.
 
 The workbench now reads an authenticated Person's persisted key, Agent, and
 active-delegation status while preserving its existing preview research branch.
-It still needs a safe Person-key lifecycle and real Agent setup flow before the
-preview branch can submit work. The API contract and current limitation are
-documented in [`docs/agent-delegation-api.md`](agent-delegation-api.md).
+It now has a closed-alpha setup flow that creates a non-exported browser
+WebCrypto Person key, records only its public half, proves possession with a
+one-time server challenge, registers an Agent public key, signs a scoped
+delegation locally, and offers explicit delegation and key revocation actions.
+The Agent private key is never created or copied through the web app. The
+preview branch still cannot submit work: account recovery, public cross-device
+rotation policy, independent public identity, and the remote Agent connection
+remain required before participant access. The API contract and current
+limitation are documented in
+[`docs/agent-delegation-api.md`](agent-delegation-api.md).
+The new read-only record representation is part of the Sprint 2 inspection
+surface, not public participant onboarding: the current Sites deployment still
+has an owner-only access policy.
 
 ### Sprint 3 protocol progress
 
@@ -244,11 +284,50 @@ safe workspace reconstruction semantics.
 
 `RunnerWorkspaceTransfer` now defines the trusted Worker-to-private-Container
 handoff for v2: a fixed workspace declaration and three R2 streams carrying
-immutable hash/length metadata. The Container ingress, extraction, Lean image,
-process execution, and result persistence remain undeployed. A checked-in
-`RunnerWorkspaceIngress` state machine already validates the private
-declaration and the fixed artifact order; it still needs to be wrapped by the
-Container image's byte-stream, extraction, and process service.
+immutable hash/length metadata. `ContainerWorkspaceRuntime` is the
+source-only private process implementation: it re-hashes streamed artifacts,
+rejects links/traversal and unsafe patches, reconstructs the workspace under
+the declared limits, replaces the Lake manifest, and verifies the final tree
+hash before it returns an entry command. `container-http-server.mjs` now binds
+that Fetch handler to the private Container port, exposes only a readiness
+probe outside the internal Run routes, performs shutdown cleanup, and refuses
+to start the executor unless the deployment asserts both no egress and external
+CPU/memory/disk/process limits. The ingress HTTP source and its real `tar.zst`
+tests are checked in, but there is still no approved Container image, deployed
+Worker-to-Container binding, result persistence deployment, or production Lean
+process. `ContainerLeanExecutor` now supplies source-only process logic
+for the final boundary: it accepts only a matching finalized workspace and
+fixed `lake env lean` request, bounds output/time, audits `sorry`, checks the
+declared theorem's axioms, and returns unsigned evidence. It refuses to run
+unless outer network and resource isolation are explicitly provided, and it
+has been exercised locally with success, `sorry`, and compiler-error fixtures.
+`npm run runner:e2e:check` additionally reconstructs an actual v2 `tar.zst`
+fixture and carries it through the private runtime, Lean executor, Worker
+result client, and signing gate to kernel-accepted signed evidence.
+`RunnerExecutionResultSigner` is the Worker-side source gate that re-hashes
+returned output and binds it to the active Run before applying the existing
+operator Ed25519 result signature. `D1R2RunnerOutputStore` now writes exact
+stdout/stderr bytes to separate immutable R2 objects and D1 rows; D1 refuses a
+signed terminal result whose output hashes lack those rows.
+`RunnerExecutionFinalizer` fixes that persistence → signing → D1 ordering.
+`cloudflare-worker.mjs` now composes the source-level Queue consumer:
+authenticated message, D1 preflight, named private-Container staging,
+execution, R2 output persistence, Worker-held signing, then D1 finalization.
+It has no public execution route and retries a running Run without recreating
+it. A deployed Worker/Container result round trip, provisioned R2 binding,
+cancellation forwarding, and an approved image are still required.
+
+The source now includes a digest-required Docker final-assembly recipe that
+copies only the protocol and private Container runtime, starts as a non-root
+user, rejects mutable base references, and has no dependency-download command.
+It requires a separately inspected base image plus an offline build, final
+image scan, and recorded digest before it can represent a deployed Lean Runner.
+
+Run lifecycle now records a retryable `preparing` state before private
+workspace transfer. Only `RunnerWorkspaceStager` may move a successfully
+finalized workspace into `running`; an interrupted R2 transfer remains
+preparing and is safe for Queue retry instead of becoming a permanently false
+running execution.
 
 ### Run lifecycle progress
 
@@ -270,9 +349,21 @@ The internal verification store now snapshots an Attempt owner's Person ID when
 assigning a staged bundle, rejects same-owner review, and records acceptance,
 decline, and Agent-signed Attestation events immutably. Completing an
 Attestation requires a different owner's active `review` delegation, exact
-assignment/claim/evidence match, and Ed25519 verification. This is a policy and
-audit layer only: no participant review API or fresh runner replay exists yet.
-See [`docs/verification-contract.md`](verification-contract.md).
+assignment/claim/evidence match, and Ed25519 verification. `/reviews` now
+gives a signed-in closed-alpha reviewer an owner-scoped task queue and immutable
+accept/decline actions; it never exposes the Attempt owner, fabricates an
+Agent signature, or labels acceptance as verification. `/evidence` now lets an
+Attempt owner or independently assigned reviewer inspect the exact canonical
+Bundle, indexed source/patch/Lake artifacts, recorded Run result metadata, and
+Runner logs. Artifact bytes are returned only after the D1 object index and R2
+metadata agree; reviewer views retain the owner-identity boundary. This is an
+inspection/download surface only: it does not perform a fresh runner replay or
+create an attestation. The remote MCP source now accepts an already-signed
+Attestation only through a `verification:write` OAuth installation with an
+active `review` delegation, exact installation identity binding, and the same
+immutable D1 verification checks; it remains non-deployed until independent
+identity/consent and the gateway control plane are provisioned. See
+[`docs/verification-contract.md`](verification-contract.md).
 
 ### Contribution Receipt protocol progress
 
@@ -285,11 +376,21 @@ Attempt owner. A verification receipt can only credit the independent review
 Agent that actually attested. `D1ContributionReceiptStore` rebuilds receipt
 evidence from immutable staged Bundle, Run/result, and Attestation rows before
 signing and append-only persistence; idempotent retries return the existing
-receipt. The public read-only `GET /api/receipts/:id` lookup and receipt page
-re-parse the canonical payload, recompute its stored hash, and verify its
-embedded issuer signature before display; they cannot issue receipts. There is
-still no public issuance endpoint, receipt index, dependency edge, correction,
-or retraction. See
+receipt. At issuance, every Bundle-declared upstream receipt is rechecked by
+exact hash, issuer signature, policy, and time ordering, then written with the
+downstream receipt as an immutable D1 dependency edge. The public read-only
+`GET /api/receipts/:id` lookup and receipt page re-parse the canonical payload,
+recompute its stored hash, and verify its embedded issuer signature before
+display; `GET /api/receipts/:id/dependencies` and the receipt page revalidate
+the dependency projection before exposing the upstream trace. A separate
+`pw-contribution-receipt-lifecycle-event-v1` now captures issuer-signed,
+append-only corrections, supersessions, and retractions: it preserves the
+original receipt, constrains replacement identity/timing/cycles, and exposes a
+verified history through `GET /api/receipts/:id/lifecycle` and the receipt
+page. The bounded, newest-first `GET /api/receipts` and `/receipts` index
+includes only receipts that pass the same canonical/hash/signature checks and
+reports their latest signed lifecycle status. There is still no public issuance
+endpoint or issuer-key rotation. See
 [`docs/contribution-receipt-contract.md`](contribution-receipt-contract.md).
 
 ## 3. Architecture boundary
@@ -478,6 +579,7 @@ Deliverables:
 - protect personal workspace and write actions with authenticated identity;
 - create Person records from the closed-alpha identity provider;
 - register Agent IDs and public keys;
+- require an immutable proof of possession before a Person key can delegate;
 - create, select, expire, and revoke delegation certificates;
 - implement scope enforcement for `formalize`, `prove`, and `review`;
 - add a public human-readable delegation view and machine JSON representation;

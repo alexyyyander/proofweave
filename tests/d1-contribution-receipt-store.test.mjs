@@ -3,7 +3,12 @@ import { after, before, test } from "node:test";
 import { readFile, readdir } from "node:fs/promises";
 import { Miniflare } from "miniflare";
 import { canonicalJson } from "../packages/protocol/canonical-json.mjs";
-import { verifyContributionReceiptSignature } from "../packages/protocol/contribution-receipt.mjs";
+import {
+  contributionReceiptHash,
+  createContributionReceipt,
+  verifyContributionReceiptSignature,
+} from "../packages/protocol/contribution-receipt.mjs";
+import { verifyContributionReceiptLifecycleEventSignature } from "../packages/protocol/contribution-receipt-lifecycle.mjs";
 import { D1ContributionReceiptStore } from "../services/receipts/d1-contribution-receipt-store.mjs";
 
 const migrationsRoot = new URL("../drizzle/", import.meta.url);
@@ -14,6 +19,8 @@ let miniflare;
 let database;
 let issuerPair;
 let issuerPublicKey;
+let upstreamReceipt;
+let upstreamReceiptHash;
 
 before(async () => {
   issuerPair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
@@ -46,6 +53,23 @@ test("D1 Receipt store derives, signs, retries, and freezes a certified contribu
   assert.equal(await verifyContributionReceiptSignature(first.receipt), true);
   assert.deepEqual(await store.get("receipt:alice-lemma"), first.receipt);
 
+  const edges = await database
+    .prepare(
+      `SELECT downstream_receipt_id, upstream_receipt_id, upstream_receipt_hash,
+              declared_by_bundle_manifest_hash, recorded_at
+       FROM contribution_receipt_dependency_edges
+       WHERE downstream_receipt_id = ?`,
+    )
+    .bind("receipt:alice-lemma")
+    .all();
+  assert.deepEqual(edges.results, [{
+    downstream_receipt_id: "receipt:alice-lemma",
+    upstream_receipt_id: upstreamReceipt.id,
+    upstream_receipt_hash: upstreamReceiptHash,
+    declared_by_bundle_manifest_hash: bundleHash,
+    recorded_at: "2026-07-13T00:01:00Z",
+  }]);
+
   await assert.rejects(
     database.prepare("UPDATE contribution_receipts SET kind = ? WHERE id = ?").bind("formalization", "receipt:alice-lemma").run(),
     /contribution receipts are immutable/,
@@ -53,6 +77,128 @@ test("D1 Receipt store derives, signs, retries, and freezes a certified contribu
   await assert.rejects(
     database.prepare("DELETE FROM contribution_receipts WHERE id = ?").bind("receipt:alice-lemma").run(),
     /contribution receipts cannot be deleted/,
+  );
+  await assert.rejects(
+    database.prepare("UPDATE contribution_receipt_dependency_edges SET recorded_at = ? WHERE downstream_receipt_id = ?").bind("2026-07-14T00:00:00Z", "receipt:alice-lemma").run(),
+    /contribution receipt dependency edges are immutable/,
+  );
+  await assert.rejects(
+    database.prepare("DELETE FROM contribution_receipt_dependency_edges WHERE downstream_receipt_id = ?").bind("receipt:alice-lemma").run(),
+    /contribution receipt dependency edges cannot be deleted/,
+  );
+  await assert.rejects(
+    store.loadDependencyEvidence({
+      downstreamReceiptId: "receipt:missing-upstream-check",
+      artifactBundleManifestHash: bundleHash,
+      issuedAt: "2026-07-13T00:01:00Z",
+      declaredDependencies: [{ receiptId: "receipt:not-issued", receiptHash: sha("0") }],
+    }),
+    /was not found/,
+  );
+  await assert.rejects(
+    store.loadDependencyEvidence({
+      downstreamReceiptId: "receipt:wrong-hash-check",
+      artifactBundleManifestHash: bundleHash,
+      issuedAt: "2026-07-13T00:01:00Z",
+      declaredDependencies: [{ receiptId: upstreamReceipt.id, receiptHash: sha("0") }],
+    }),
+    /did not pass hash, signature, and policy verification/,
+  );
+  await assert.rejects(
+    store.loadDependencyEvidence({
+      downstreamReceiptId: upstreamReceipt.id,
+      artifactBundleManifestHash: bundleHash,
+      issuedAt: "2026-07-13T00:01:00Z",
+      declaredDependencies: [{ receiptId: upstreamReceipt.id, receiptHash: upstreamReceiptHash }],
+    }),
+    /cannot declare itself/,
+  );
+
+  const replacement = await store.issue(receiptInput({
+    id: "receipt:alice-lemma-correction",
+    kind: "proof_patch",
+    issuedAt: "2026-07-13T00:02:00Z",
+  }));
+  const correction = await store.recordLifecycleEvent({
+    id: "receipt-event:alice-lemma-corrected",
+    receiptId: first.receipt.id,
+    eventType: "corrected",
+    replacementReceiptId: replacement.receipt.id,
+    reasonHash: sha("b"),
+    occurredAt: "2026-07-13T00:03:00Z",
+    issuerKeyId: "issuer:closed-alpha-1",
+    issuerPublicKey,
+    issuerPrivateKey: issuerPair.privateKey,
+  });
+  const correctionRetry = await store.recordLifecycleEvent({
+    id: "receipt-event:alice-lemma-corrected",
+    receiptId: first.receipt.id,
+    eventType: "corrected",
+    replacementReceiptId: replacement.receipt.id,
+    reasonHash: sha("b"),
+    occurredAt: "2026-07-13T00:03:00Z",
+    issuerKeyId: "issuer:closed-alpha-1",
+    issuerPublicKey,
+    issuerPrivateKey: issuerPair.privateKey,
+  });
+  assert.equal(correction.created, true);
+  assert.equal(correctionRetry.created, false);
+  assert.equal(await verifyContributionReceiptLifecycleEventSignature(correction.event), true);
+  const rogueIssuer = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
+  await assert.rejects(
+    store.recordLifecycleEvent({
+      id: "receipt-event:replacement-wrong-issuer",
+      receiptId: replacement.receipt.id,
+      eventType: "retracted",
+      reasonHash: sha("c"),
+      occurredAt: "2026-07-13T00:03:00Z",
+      issuerKeyId: "issuer:rogue",
+      issuerPublicKey: base64Url(await crypto.subtle.exportKey("raw", rogueIssuer.publicKey)),
+      issuerPrivateKey: rogueIssuer.privateKey,
+    }),
+    /original receipt issuer key/,
+  );
+
+  const retraction = await store.recordLifecycleEvent({
+    id: "receipt-event:alice-lemma-retracted",
+    receiptId: first.receipt.id,
+    eventType: "retracted",
+    reasonHash: sha("c"),
+    occurredAt: "2026-07-13T00:04:00Z",
+    issuerKeyId: "issuer:closed-alpha-1",
+    issuerPublicKey,
+    issuerPrivateKey: issuerPair.privateKey,
+  });
+  assert.equal(retraction.event.replacementReceiptId, null);
+  const lifecycleRows = await database
+    .prepare("SELECT event_type, replacement_receipt_id FROM contribution_receipt_lifecycle_events WHERE receipt_id = ? ORDER BY occurred_at")
+    .bind(first.receipt.id)
+    .all();
+  assert.deepEqual(lifecycleRows.results, [
+    { event_type: "corrected", replacement_receipt_id: replacement.receipt.id },
+    { event_type: "retracted", replacement_receipt_id: null },
+  ]);
+  await assert.rejects(
+    store.recordLifecycleEvent({
+      id: "receipt-event:alice-lemma-late-correction",
+      receiptId: first.receipt.id,
+      eventType: "corrected",
+      replacementReceiptId: replacement.receipt.id,
+      reasonHash: sha("d"),
+      occurredAt: "2026-07-13T00:05:00Z",
+      issuerKeyId: "issuer:closed-alpha-1",
+      issuerPublicKey,
+      issuerPrivateKey: issuerPair.privateKey,
+    }),
+    /cannot receive another lifecycle event/,
+  );
+  await assert.rejects(
+    database.prepare("UPDATE contribution_receipt_lifecycle_events SET event_type = ? WHERE id = ?").bind("superseded", correction.event.id).run(),
+    /contribution receipt lifecycle events are immutable/,
+  );
+  await assert.rejects(
+    database.prepare("DELETE FROM contribution_receipt_lifecycle_events WHERE id = ?").bind(correction.event.id).run(),
+    /contribution receipt lifecycle events cannot be deleted/,
   );
 });
 
@@ -82,13 +228,13 @@ test("verification receipt credits the review Agent present in immutable attesta
   );
 });
 
-function receiptInput({ id, kind }) {
+function receiptInput({ id, kind, issuedAt = "2026-07-13T00:01:00Z" }) {
   return {
     id,
     kind,
     artifactBundleManifestHash: bundleHash,
     runId: "run:receipt-fixture",
-    issuedAt: "2026-07-13T00:01:00Z",
+    issuedAt,
     issuerKeyId: "issuer:closed-alpha-1",
     issuerPublicKey,
     issuerPrivateKey: issuerPair.privateKey,
@@ -101,7 +247,12 @@ async function seedReceiptEvidence(d1) {
     bob: fixturePublicKey(2),
     carol: fixturePublicKey(3),
   };
-  const manifest = fixtureBundle(publicKeys.alice);
+  upstreamReceipt = await fixtureUpstreamReceipt();
+  upstreamReceiptHash = await contributionReceiptHash(upstreamReceipt);
+  const manifest = fixtureBundle(publicKeys.alice, {
+    receiptId: upstreamReceipt.id,
+    receiptHash: upstreamReceiptHash,
+  });
   const runnerResult = fixtureRunnerResult();
   const statements = [
     ["INSERT INTO persons (id, identity_provider, provider_subject, display_name, updated_at) VALUES (?, ?, ?, ?, ?)", ["person:alice", "proofweave", "alice", "Alice", "2026-07-13T00:00:00Z"]],
@@ -146,6 +297,25 @@ async function seedReceiptEvidence(d1) {
     ...assignmentAndAttestationStatements(bundleHash, publicKeys),
   ];
   for (const [statement, values] of statements) await d1.prepare(statement).bind(...values).run();
+  await d1
+    .prepare(
+      `INSERT INTO contribution_receipts (
+        id, kind, beneficiary_person_id, beneficiary_agent_id,
+        beneficiary_delegation_certificate_id, attempt_id, problem_revision_id,
+        artifact_bundle_manifest_hash, run_id, receipt_hash, canonical_receipt,
+        payload_hash, issuer_key_id, issuer_public_key, issuer_signature, issued_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    )
+    .bind(
+      upstreamReceipt.id, upstreamReceipt.kind, upstreamReceipt.beneficiary.personId,
+      upstreamReceipt.beneficiary.agentId, upstreamReceipt.beneficiary.delegationCertificateId,
+      upstreamReceipt.attempt.id, upstreamReceipt.attempt.problemRevisionId,
+      upstreamReceipt.artifactBundleHash, upstreamReceipt.run.id, upstreamReceiptHash,
+      canonicalJson(upstreamReceipt), upstreamReceipt.payloadHash,
+      upstreamReceipt.issuerKeyId, upstreamReceipt.issuerPublicKey,
+      upstreamReceipt.issuerSignature, upstreamReceipt.issuedAt,
+    )
+    .run();
 }
 
 function delegationStatements(publicKeys) {
@@ -186,7 +356,7 @@ function assignmentAndAttestationStatements(manifestHash, publicKeys) {
   });
 }
 
-function fixtureBundle(publicKey) {
+function fixtureBundle(publicKey, dependencyReceipt) {
   return {
     protocolVersion: "pw-artifact-bundle-v1",
     id: "bundle:receipt",
@@ -202,9 +372,66 @@ function fixtureBundle(publicKey) {
       lakeManifestHash: sha("4"), mathlibRevision: "a3a10db0e9d6",
     },
     entryCommand: ["lake", "env", "lean", "Proofweave/Receipt.lean"],
-    dependencyReceipts: [{ receiptId: "receipt:upstream", receiptHash: sha("5") }],
+    dependencyReceipts: [dependencyReceipt],
     agentEvent: { eventId: "agent-event:receipt", occurredAt: "2026-07-13T00:00:00Z", payloadHash: sha("6"), agentPublicKey: publicKey, signature: base64Url(new Uint8Array(64)) },
     policy: { requireNoSorry: true, allowedAxioms: [] },
+  };
+}
+
+async function fixtureUpstreamReceipt() {
+  return createContributionReceipt({
+    receipt: {
+      protocolVersion: "pw-contribution-receipt-v1",
+      id: "receipt:upstream",
+      kind: "formalization",
+      beneficiary: {
+        personId: "person:alice",
+        agentId: "agent:alice-prover",
+        delegationCertificateId: "delegation:alice-prover",
+      },
+      attempt: {
+        id: "attempt:receipt",
+        personId: "person:alice",
+        agentId: "agent:alice-prover",
+        delegationCertificateId: "delegation:alice-prover",
+        problemRevisionId: "revision:receipt",
+      },
+      target: { declaration: "Proofweave.Receipt.target", statementHash: sha("0") },
+      artifactBundleHash: bundleHash,
+      bundle: { manifestHash: bundleHash, dependencyReceipts: [] },
+      run: {
+        id: "run:receipt-fixture",
+        requestHash: runRequestHash,
+        resultHash: runResultHash,
+        status: "succeeded",
+        kernelStatus: "accepted",
+      },
+      claims: [
+        fixtureReceiptClaim("bundle_reproducible", "bob"),
+        fixtureReceiptClaim("kernel_accepted", "bob"),
+        fixtureReceiptClaim("project_accepted", "carol"),
+      ],
+      issuedAt: "2026-07-13T00:00:00Z",
+      policyVersion: "pw-receipt-policy-v1",
+      issuerKeyId: "issuer:closed-alpha-1",
+      issuerPublicKey,
+    },
+    issuerPrivateKey: issuerPair.privateKey,
+  });
+}
+
+function fixtureReceiptClaim(claimType, reviewer) {
+  const agent = reviewer === "bob" ? "agent:bob-reviewer" : "agent:carol-curator";
+  const delegation = reviewer === "bob" ? "delegation:bob-reviewer" : "delegation:carol-curator";
+  return {
+    claimType,
+    verificationAttestationId: `attestation:${claimType}`,
+    verificationAttestationHash: sha(claimType === "bundle_reproducible" ? "d" : claimType === "kernel_accepted" ? "e" : "f"),
+    artifactBundleHash: bundleHash,
+    reviewerPersonId: `person:${reviewer}`,
+    reviewerAgentId: agent,
+    reviewerDelegationCertificateId: delegation,
+    decision: "attested",
   };
 }
 

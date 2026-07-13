@@ -7,6 +7,7 @@ export const remoteMcpScopes = [
   "attempt:create",
   "attempt:read",
   "progress:write",
+  "verification:write",
 ];
 
 /**
@@ -94,6 +95,10 @@ export class UnconfiguredGatewayStore {
   }
 
   async getAttempt() {
+    throw new Error("The Proofweave remote control plane is not configured.");
+  }
+
+  async submitVerificationAttestation() {
     throw new Error("The Proofweave remote control plane is not configured.");
   }
 }
@@ -187,6 +192,7 @@ function createMcpServer(principal, store) {
       description: "Create a Person-owned provisional Attempt. This does not create a verification claim or receipt.",
       inputSchema: {
         problemSlug: z.string().min(1).max(120),
+        delegationScope: z.enum(["formalize", "prove"]),
         idempotencyKey: z.string().min(1).max(160),
       },
       annotations: { readOnlyHint: false, destructiveHint: false },
@@ -219,6 +225,38 @@ function createMcpServer(principal, store) {
       annotations: { readOnlyHint: true, destructiveHint: false },
     },
     async ({ attemptId }) => toolResult(await withScope(principal, "attempt:read", () => store.getAttempt(principal, attemptId))),
+  );
+
+  server.registerTool(
+    "submit_verification_attestation",
+    {
+      title: "Submit a signed verification attestation",
+      description: "Submit an externally signed review-Agent attestation for an assigned Bundle. It is one explicit claim, never a contribution receipt.",
+      inputSchema: {
+        attestation: z.object({
+          protocolVersion: z.literal("pw-verification-attestation-v1"),
+          id: z.string().min(1).max(240),
+          assignmentId: z.string().min(1).max(240),
+          artifactBundleHash: z.string().regex(/^sha256:[a-f0-9]{64}$/),
+          claimType: z.enum(["bundle_reproducible", "kernel_accepted", "statement_faithful", "novelty_reviewed", "project_accepted"]),
+          verifierPersonId: z.string().min(1).max(240),
+          verifierAgentId: z.string().min(1).max(240),
+          delegationCertificateId: z.string().min(1).max(240),
+          verifierAgentPublicKey: z.string().min(1).max(256),
+          decision: z.enum(["attested", "rejected", "request_changes"]),
+          evidenceHash: z.string().regex(/^sha256:[a-f0-9]{64}$/),
+          attestedAt: z.string().min(1).max(64),
+          payloadHash: z.string().regex(/^sha256:[a-f0-9]{64}$/),
+          signature: z.string().min(1).max(256),
+        }).strict(),
+      },
+      annotations: { readOnlyHint: false, destructiveHint: false },
+    },
+    async ({ attestation }) => toolResult(await withScope(
+      principal,
+      "verification:write",
+      () => store.submitVerificationAttestation(principal, attestation),
+    )),
   );
 
   return server;

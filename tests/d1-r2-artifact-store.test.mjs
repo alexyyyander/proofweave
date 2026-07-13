@@ -83,6 +83,7 @@ test("stages a signed Artifact Bundle only after immutable R2/D1 evidence is pre
     database.prepare("UPDATE artifact_bundles SET canonical_manifest = ? WHERE id = ?").bind("{}", bundle.id).run(),
     /artifact bundles are immutable/,
   );
+
 });
 
 test("stages a signed v2 workspace manifest through the same immutable object gate", async () => {
@@ -107,6 +108,36 @@ test("stages a signed v2 workspace manifest through the same immutable object ga
   const staged = await store.stageBundle(bundle);
   assert.equal(staged.created, true);
   assert.equal((await store.findBundle(staged.bundle.manifestHash)).id, bundle.id);
+});
+
+test("rejects an Artifact Bundle event after its signer key is revoked", async () => {
+  const store = new D1R2ArtifactStore({ database, bucket });
+  const archive = await store.putObject({ bytes: "source archive after revocation", filename: "source.tar.zst", contentType: "application/zstd" });
+  const patch = await store.putObject({ bytes: "normalized patch after revocation", filename: "normalized.patch", contentType: "text/plain" });
+  const lakeManifest = await store.putObject({ bytes: '{"packages":[]}', filename: "lake-manifest.json", contentType: "application/json" });
+  await database
+    .prepare("INSERT INTO person_key_revocations (id, person_key_id, owner_person_id, revoked_at, reason) VALUES (?, ?, ?, ?, ?)")
+    .bind(
+      "person-key-revocation:artifact-store-test",
+      "person-key:artifact-store-test",
+      "person:artifact-store-test",
+      "2026-07-13T00:00:00Z",
+      "Device replaced.",
+    )
+    .run();
+  const bundle = await signedBundleV2({ archive, patch, lakeManifest });
+  bundle.id = "bundle:artifact-store-after-key-revocation";
+  bundle.agentEvent.eventId = "agent-event:artifact-store-after-key-revocation";
+  bundle.agentEvent.occurredAt = "2026-07-13T00:00:01Z";
+  bundle.agentEvent.payloadHash = await artifactBundleSigningPayloadHash(bundle);
+  bundle.agentEvent.signature = base64Url(
+    await crypto.subtle.sign(
+      "Ed25519",
+      agentKeyPair.privateKey,
+      new TextEncoder().encode(canonicalJson(artifactBundleSigningPayload(bundle))),
+    ),
+  );
+  await assert.rejects(store.stageBundle(bundle), /outside its valid delegation period/);
 });
 
 async function signedBundle({ archive, patch, lakeManifest }) {

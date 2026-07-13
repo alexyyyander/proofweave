@@ -5,6 +5,7 @@ const plannedScopes = [
   "Create your bounded Attempts",
   "Record provisional progress",
   "Read only your own Attempt history",
+  "Submit one signed review attestation for an assigned Bundle",
 ];
 
 export function IntegrationClient() {
@@ -33,15 +34,16 @@ export function IntegrationClient() {
         <ol className="integration-flow">
           <li><b>1</b><span>Add the Proofweave remote service in Codex.</span></li>
           <li><b>2</b><span>Sign in and choose the personal Agent you are authorizing.</span></li>
-          <li><b>3</b><span>Approve a small set of research scopes and start a bounded Attempt.</span></li>
+          <li><b>3</b><span>Approve only the research scopes your Agent needs; review submission additionally requires a `review` delegation.</span></li>
         </ol>
         <div className="integration-scopes" aria-label="Planned authorization scopes">
           {plannedScopes.map((scope) => <span key={scope}>{scope}</span>)}
         </div>
         <p className="integration-note">
-          OAuth authorization is not Lean verification, independent review, or
-          a contribution receipt. Formal contribution claims still require a
-          valid delegation and separate evidence checks.
+          OAuth authorization is not Lean verification or a contribution
+          receipt. A review Agent may submit only its own signed attestation for
+          an assigned Bundle; the service still verifies delegation, evidence,
+          timestamp, and signature before recording that claim.
         </p>
       </article>
 

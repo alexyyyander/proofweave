@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { index, integer, sqliteTable, text, uniqueIndex } from "drizzle-orm/sqlite-core";
+import { index, integer, primaryKey, sqliteTable, text, uniqueIndex } from "drizzle-orm/sqlite-core";
 
 const createdAt = text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`);
 
@@ -207,6 +207,79 @@ export const personKeys = sqliteTable(
     uniqueIndex("person_keys_public_key_idx").on(table.publicKey),
     uniqueIndex("person_keys_fingerprint_idx").on(table.fingerprint),
     index("person_keys_person_active_idx").on(table.personId, table.revokedAt),
+  ],
+);
+
+// The server issues a short-lived, one-time signing challenge after a Person
+// registers a browser-held public key. The response and its verification are
+// append-only evidence; neither is a substitute for public key recovery or
+// revocation policy.
+export const personKeyProofChallenges = sqliteTable(
+  "person_key_proof_challenges",
+  {
+    id: text("id").primaryKey(),
+    personId: text("person_id")
+      .notNull()
+      .references(() => persons.id, { onDelete: "restrict" }),
+    personKeyId: text("person_key_id")
+      .notNull()
+      .references(() => personKeys.id, { onDelete: "restrict" }),
+    nonce: text("nonce").notNull(),
+    issuedAt: text("issued_at").notNull(),
+    expiresAt: text("expires_at").notNull(),
+    canonicalPayload: text("canonical_payload").notNull(),
+    payloadHash: text("payload_hash").notNull(),
+    createdAt,
+  },
+  (table) => [index("person_key_proof_challenges_person_key_expiry_idx").on(table.personId, table.personKeyId, table.expiresAt)],
+);
+
+export const personKeyProofEvents = sqliteTable(
+  "person_key_proof_events",
+  {
+    id: text("id").primaryKey(),
+    challengeId: text("challenge_id")
+      .notNull()
+      .references(() => personKeyProofChallenges.id, { onDelete: "restrict" }),
+    personId: text("person_id")
+      .notNull()
+      .references(() => persons.id, { onDelete: "restrict" }),
+    personKeyId: text("person_key_id")
+      .notNull()
+      .references(() => personKeys.id, { onDelete: "restrict" }),
+    protocolVersion: text("protocol_version").notNull(),
+    canonicalPayload: text("canonical_payload").notNull(),
+    payloadHash: text("payload_hash").notNull(),
+    personSignature: text("person_signature").notNull(),
+    verifiedAt: text("verified_at").notNull(),
+    createdAt,
+  },
+  (table) => [
+    uniqueIndex("person_key_proof_events_challenge_idx").on(table.challengeId),
+    index("person_key_proof_events_key_verified_idx").on(table.personKeyId, table.verifiedAt),
+  ],
+);
+
+// Revocation is an append-only owner decision. The legacy nullable column on
+// person_keys remains for historical compatibility; all new control-plane
+// reads use this immutable event as the authoritative key state.
+export const personKeyRevocations = sqliteTable(
+  "person_key_revocations",
+  {
+    id: text("id").primaryKey(),
+    personKeyId: text("person_key_id")
+      .notNull()
+      .references(() => personKeys.id, { onDelete: "restrict" }),
+    ownerPersonId: text("owner_person_id")
+      .notNull()
+      .references(() => persons.id, { onDelete: "restrict" }),
+    revokedAt: text("revoked_at").notNull(),
+    reason: text("reason").notNull(),
+    createdAt,
+  },
+  (table) => [
+    uniqueIndex("person_key_revocations_key_idx").on(table.personKeyId),
+    index("person_key_revocations_owner_idx").on(table.ownerPersonId, table.revokedAt),
   ],
 );
 
@@ -536,6 +609,7 @@ export const runs = sqliteTable(
     state: text("state", {
       enum: [
         "queued",
+        "preparing",
         "running",
         "cancel_requested",
         "succeeded",
@@ -548,6 +622,7 @@ export const runs = sqliteTable(
       .notNull()
       .default("queued"),
     queuedAt: text("queued_at").notNull(),
+    preparingAt: text("preparing_at"),
     startedAt: text("started_at"),
     cancelRequestedAt: text("cancel_requested_at"),
     finishedAt: text("finished_at"),
@@ -558,6 +633,7 @@ export const runs = sqliteTable(
   (table) => [
     uniqueIndex("runs_attempt_idempotency_idx").on(table.attemptId, table.idempotencyKey),
     index("runs_state_queued_idx").on(table.state, table.queuedAt),
+    index("runs_state_preparing_idx").on(table.state, table.preparingAt),
     index("runs_attempt_updated_idx").on(table.attemptId, table.updatedAt),
   ],
 );
@@ -656,6 +732,29 @@ export const artifactBundles = sqliteTable(
   (table) => [
     index("artifact_bundles_attempt_created_idx").on(table.attemptId, table.createdAt),
     index("artifact_bundles_revision_created_idx").on(table.problemRevisionId, table.createdAt),
+  ],
+);
+
+// Runner stdout/stderr are signed infrastructure evidence, not Agent-owned
+// Bundle objects. Both bytes must be immutable and present before a terminal
+// signed Run result may reference their hashes.
+export const runnerOutputArtifacts = sqliteTable(
+  "runner_output_artifacts",
+  {
+    id: text("id").primaryKey(),
+    runId: text("run_id")
+      .notNull()
+      .references(() => runs.id, { onDelete: "restrict" }),
+    role: text("role", { enum: ["stdout", "stderr"] }).notNull(),
+    contentHash: text("content_hash").notNull(),
+    objectKey: text("object_key").notNull(),
+    byteLength: integer("byte_length").notNull(),
+    contentType: text("content_type").notNull(),
+    createdAt,
+  },
+  (table) => [
+    uniqueIndex("runner_output_artifacts_run_role_idx").on(table.runId, table.role),
+    index("runner_output_artifacts_hash_idx").on(table.contentHash),
   ],
 );
 
@@ -818,5 +917,63 @@ export const contributionReceipts = sqliteTable(
     ),
     index("contribution_receipts_person_issued_idx").on(table.beneficiaryPersonId, table.issuedAt),
     index("contribution_receipts_attempt_idx").on(table.attemptId),
+  ],
+);
+
+// An immutable query projection of dependencyReceipts inside the signed
+// canonical receipt. The receipt store inserts this only after it verifies the
+// referenced upstream receipt hash and issuer signature.
+export const contributionReceiptDependencyEdges = sqliteTable(
+  "contribution_receipt_dependency_edges",
+  {
+    downstreamReceiptId: text("downstream_receipt_id")
+      .notNull()
+      .references(() => contributionReceipts.id, { onDelete: "restrict" }),
+    upstreamReceiptId: text("upstream_receipt_id")
+      .notNull()
+      .references(() => contributionReceipts.id, { onDelete: "restrict" }),
+    upstreamReceiptHash: text("upstream_receipt_hash").notNull(),
+    declaredByBundleManifestHash: text("declared_by_bundle_manifest_hash")
+      .notNull()
+      .references(() => artifactBundles.manifestHash, { onDelete: "restrict" }),
+    recordedAt: text("recorded_at").notNull(),
+  },
+  (table) => [
+    primaryKey({ columns: [table.downstreamReceiptId, table.upstreamReceiptId] }),
+    index("contribution_receipt_dependency_edges_upstream_idx").on(
+      table.upstreamReceiptId,
+      table.recordedAt,
+    ),
+  ],
+);
+
+// Corrections, supersessions, and retractions are signed append-only evidence;
+// no receipt status is ever updated in place.
+export const contributionReceiptLifecycleEvents = sqliteTable(
+  "contribution_receipt_lifecycle_events",
+  {
+    id: text("id").primaryKey(),
+    receiptId: text("receipt_id")
+      .notNull()
+      .references(() => contributionReceipts.id, { onDelete: "restrict" }),
+    eventType: text("event_type", { enum: ["corrected", "superseded", "retracted"] }).notNull(),
+    replacementReceiptId: text("replacement_receipt_id")
+      .references(() => contributionReceipts.id, { onDelete: "restrict" }),
+    reasonHash: text("reason_hash").notNull(),
+    occurredAt: text("occurred_at").notNull(),
+    issuerKeyId: text("issuer_key_id").notNull(),
+    issuerPublicKey: text("issuer_public_key").notNull(),
+    canonicalPayload: text("canonical_payload").notNull(),
+    payloadHash: text("payload_hash").notNull(),
+    issuerSignature: text("issuer_signature").notNull(),
+    createdAt,
+  },
+  (table) => [
+    index("contribution_receipt_lifecycle_events_receipt_idx").on(
+      table.receiptId,
+      table.occurredAt,
+      table.id,
+    ),
+    index("contribution_receipt_lifecycle_events_replacement_idx").on(table.replacementReceiptId),
   ],
 );

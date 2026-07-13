@@ -39,6 +39,8 @@ export class RunnerWorkspaceTransfer {
         protocolVersion: runnerWorkspaceTransferProtocolVersion,
         jobId: run.id,
         requestHash: run.requestHash,
+        target: resolvedBundle.bundle.target,
+        policy: resolvedBundle.request.policy,
         workspace,
         entryCommand: resolvedBundle.request.bundle.entryCommand,
         artifacts: Object.fromEntries(transfers.map((transfer) => [transfer.id, {
@@ -92,7 +94,7 @@ async function assertRunAndResolvedBundle(run, resolvedBundle) {
     throw new RunnerWorkspaceTransferError("Runner workspace transfer requires a resolved Artifact Bundle.");
   }
   if (
-    run.state !== "running" ||
+    run.state !== "preparing" ||
     run.id !== resolvedBundle.request.jobId ||
     run.attemptId !== resolvedBundle.request.attemptId ||
     run.artifactBundleHash !== resolvedBundle.manifest?.contentHash ||

@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   createQueuedRun,
+  markRunPreparing,
   markRunStarted,
   recordRunnerResult,
   requestRunCancellation,
@@ -9,7 +10,8 @@ import {
 
 test("a queued Run only reaches a terminal state through the allowed lifecycle", () => {
   const queued = fixtureRun();
-  const running = markRunStarted(queued, "2026-07-13T00:00:01Z");
+  const preparing = markRunPreparing(queued, "2026-07-13T00:00:01Z");
+  const running = markRunStarted(preparing, "2026-07-13T00:00:02Z");
   const completed = recordRunnerResult(running, fixtureResult(), sha("e"));
 
   assert.equal(completed.state, "succeeded");
@@ -18,8 +20,8 @@ test("a queued Run only reaches a terminal state through the allowed lifecycle",
 });
 
 test("a running cancellation remains pending until the runner acknowledges it", () => {
-  const running = markRunStarted(fixtureRun(), "2026-07-13T00:00:01Z");
-  const cancelling = requestRunCancellation(running, "2026-07-13T00:00:02Z");
+  const running = startedFixtureRun();
+  const cancelling = requestRunCancellation(running, "2026-07-13T00:00:03Z");
   const cancelled = recordRunnerResult(cancelling, fixtureResult({ status: "cancelled", kernelStatus: "not_run", exitCode: 137, checks: { network: "passed", noSorry: "not_run", allowedAxioms: "not_run", leanBuild: "not_run" } }), sha("e"));
 
   assert.equal(cancelling.state, "cancel_requested");
@@ -27,8 +29,19 @@ test("a running cancellation remains pending until the runner acknowledges it", 
   assert.throws(() => recordRunnerResult(running, fixtureResult({ status: "cancelled", kernelStatus: "not_run", exitCode: 137, checks: { network: "passed", noSorry: "not_run", allowedAxioms: "not_run", leanBuild: "not_run" } }), sha("e")), /only after a control-plane cancellation/);
 });
 
+test("a preparing Run may be cancelled without ever becoming a Lean execution", () => {
+  const preparing = markRunPreparing(fixtureRun(), "2026-07-13T00:00:01Z");
+  const cancelled = requestRunCancellation(preparing, "2026-07-13T00:00:02Z");
+
+  assert.equal(cancelled.state, "cancelled");
+  assert.equal(cancelled.preparingAt, "2026-07-13T00:00:01Z");
+  assert.equal(cancelled.startedAt, null);
+  assert.equal(cancelled.runnerResultHash, null);
+  assert.throws(() => markRunStarted(fixtureRun(), "2026-07-13T00:00:01Z"), /cannot start/);
+});
+
 test("runner results cannot be replayed across Runs or request hashes", () => {
-  const running = markRunStarted(fixtureRun(), "2026-07-13T00:00:01Z");
+  const running = startedFixtureRun();
   assert.throws(() => recordRunnerResult(running, fixtureResult({ requestHash: sha("0") }), sha("e")), /does not cover this Run request hash/);
   assert.throws(() => recordRunnerResult(running, fixtureResult({ jobId: "run:other" }), sha("e")), /does not belong to this Run/);
 });
@@ -44,6 +57,10 @@ function fixtureRun() {
   });
 }
 
+function startedFixtureRun() {
+  return markRunStarted(markRunPreparing(fixtureRun(), "2026-07-13T00:00:01Z"), "2026-07-13T00:00:02Z");
+}
+
 function fixtureResult(overrides = {}) {
   return {
     protocolVersion: "pw-lean-runner-v1",
@@ -54,7 +71,7 @@ function fixtureResult(overrides = {}) {
     runnerSignature: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
     status: "succeeded",
     exitCode: 0,
-    startedAt: "2026-07-13T00:00:01Z",
+    startedAt: "2026-07-13T00:00:02Z",
     finishedAt: "2026-07-13T00:00:03Z",
     kernelStatus: "accepted",
     checks: { network: "passed", noSorry: "passed", allowedAxioms: "passed", leanBuild: "passed" },

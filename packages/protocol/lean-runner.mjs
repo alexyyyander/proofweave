@@ -277,7 +277,7 @@ export function canonicalLeanRunnerRequest(request) {
 }
 
 function normalizeCommand(command) {
-  if (!Array.isArray(command) || command.length < 3 || command.length > 32 || command.some((part) => typeof part !== "string" || part.length === 0 || part.length > 512)) {
+  if (!Array.isArray(command) || command.some((part) => typeof part !== "string" || part.length === 0 || part.length > 512)) {
     throw new LeanRunnerProtocolError("bundle.entryCommand must be a bounded argument array.");
   }
   if (command[0] !== "lake" || command[1] !== "env" || command[2] !== "lean") {
@@ -286,7 +286,21 @@ function normalizeCommand(command) {
   if (command.some((part) => /[;|&><`$\n\r]/.test(part))) {
     throw new LeanRunnerProtocolError("bundle.entryCommand must not contain shell syntax.");
   }
+  if (command.length !== 4) {
+    throw new LeanRunnerProtocolError("bundle.entryCommand must be exactly lake env lean plus one source file.");
+  }
+  requireLeanSourcePath(command[3], "bundle.entryCommand source file");
   return [...command];
+}
+
+function requireLeanSourcePath(value, label) {
+  if (typeof value !== "string" || !value.endsWith(".lean") || value.length > 1_024 || value.startsWith("/") || value.includes("\\") || value.includes("\0")) {
+    throw new LeanRunnerProtocolError(`${label} must be a relative .lean source path.`);
+  }
+  const segments = value.slice(0, -".lean".length).split("/");
+  if (segments.some((segment) => !/^[A-Za-z_][A-Za-z0-9_']*$/.test(segment))) {
+    throw new LeanRunnerProtocolError(`${label} contains an unsafe Lean module path.`);
+  }
 }
 
 function requireBundleKey(value, hash) {

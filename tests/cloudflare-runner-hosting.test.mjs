@@ -50,6 +50,12 @@ test("Cloudflare Queue consumer authenticates before durable execution and retri
 test("closed-alpha Container policy disables Internet and rejects unpinned images", () => {
   assert.equal(cloudflareLeanContainerPolicy.enableInternet, false);
   assert.equal(cloudflareLeanContainerPolicy.maxInstances, 1);
+  assert.equal(cloudflareLeanContainerPolicy.port, 8080);
+  assert.equal(cloudflareLeanContainerPolicy.pingEndpoint, "localhost/ready");
+  assert.deepEqual(cloudflareLeanContainerPolicy.entrypoint, [
+    "node",
+    "/opt/proofweave/services/lean-runner/container-http-server.mjs",
+  ]);
   assert.equal(
     assertPinnedRunnerImage(`registry.cloudflare.com/example/lean-runner@sha256:${"a".repeat(64)}`),
     `registry.cloudflare.com/example/lean-runner@sha256:${"a".repeat(64)}`,

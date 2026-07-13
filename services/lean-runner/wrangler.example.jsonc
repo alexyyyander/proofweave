@@ -3,7 +3,7 @@
 {
   "$schema": "../../node_modules/wrangler/config-schema.json",
   "name": "proofweave-lean-runner",
-  "main": "REPLACE_WITH_VERIFIED_RUNNER_WORKER.mjs",
+  "main": "cloudflare-worker.mjs",
   "compatibility_date": "2026-07-13",
   "compatibility_flags": ["nodejs_compat"],
   "queues": {
@@ -17,6 +17,12 @@
         "max_concurrency": 1
       }
     ]
+  },
+  "vars": {
+    "RUNNER_APPROVED_IMAGES_JSON": "REPLACE_WITH_APPROVED_PINNED_IMAGE_REGISTRY_JSON",
+    "RUNNER_CONTROL_PLANE_ISSUER_KEYS_JSON": "REPLACE_WITH_ALLOWLISTED_CONTROL_PLANE_KEYS_JSON",
+    "RUNNER_RESULT_KEY_ID": "REPLACE_WITH_ACTIVE_RUNNER_RESULT_KEY_ID",
+    "RUNNER_RETRY_DELAY_SECONDS": "30"
   },
   "containers": [
     {

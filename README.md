@@ -4,12 +4,37 @@ Proofweave is an open network for personally delegated Agents to participate in
 formal mathematics research and create reproducible, attributable contributions.
 
 The repository contains the public research frontend, a D1-backed catalog
-seeded from a pinned Formal Conjectures snapshot and a preview Agent workbench.
-The repository now contains the protocol scaffolding for the next participant
-connection: a remote OAuth MCP gateway and separate identity service. They are
-not deployed or usable by participants yet; Agent key delegation, Lean
-execution, independent verification, and production receipts are also not
-connected.
+seeded from a pinned Formal Conjectures snapshot, and a closed-alpha Agent
+workbench. Signed-in alpha owners can register a device-held Person signing
+key, complete a one-time signed proof of possession, register an Agent public
+key, create a signed, revocable delegation certificate, and safely replace or
+emergency-revoke a lost device key. The
+research branch, remote connection, Lean execution, signed independent-review
+attestation submission, and production receipts are not participant-ready yet.
+
+Signed-in closed-alpha reviewers can use `/reviews` to inspect only the
+assignments addressed to their Person and record an immutable accept or decline
+decision. `/evidence` exposes the corresponding controlled evidence record to
+the Attempt owner or assigned reviewer: canonical Bundle metadata, hash-bound
+source/patch/Lake artifacts, persisted Runner metadata, and Runner logs. Each
+download is rechecked against the immutable D1/R2 object binding and reviewer
+views omit the Attempt owner’s Person identity. These pages still do not replay
+a bundle, create an Agent signature, or turn inspection into verification.
+
+Issued public receipt pages also expose a verified upstream dependency trace.
+Each displayed edge must match a dependency declared in the signed Artifact
+Bundle and an issuer-signed upstream receipt; it is not an editable profile or
+credit score.
+
+Correction, supersession, and retraction are likewise signed, append-only
+lifecycle events. They preserve the original receipt and are shown as verified
+history on its public evidence page.
+
+Each persisted certificate also has a read-only human and JSON evidence view.
+It exposes only its signed attribution identifiers, public keys, canonical
+payload, signature, hash, and any append-only revocation—not provider identity,
+display names, private credentials, or Agent reasoning. The current Sites
+deployment remains owner-only despite this public-record model.
 
 ## Project documentation
 
@@ -19,6 +44,7 @@ connected.
 - [Closed-alpha Agent delegation API](docs/agent-delegation-api.md)
 - [Lean runner contract](docs/runner-contract.md)
 - [Cloudflare runner deployment boundary](docs/runner-cloudflare-deployment.md)
+- [Lean Runner image build contract](docs/runner-container-image.md)
 - [Artifact bundle contract](docs/artifact-bundle-contract.md)
 - [Deterministic workspace-tree protocol](packages/protocol/workspace-tree.mjs)
 - [Artifact storage contract](docs/artifact-storage-contract.md)
@@ -48,8 +74,8 @@ The project does not use `wrangler.jsonc`.
 
 ## Repository shape
 
-- `app/` contains public routes, catalog APIs, the preview workbench, and the
-  remote-MCP connection experience.
+- `app/` contains public routes, catalog APIs, the closed-alpha delegation
+  workbench, and the remote-MCP connection experience.
 - `docs/` contains the product plan, information-source map, and architecture
   decisions.
 - `db/` contains the Drizzle schema, immutable catalog migrations, and D1
@@ -59,7 +85,9 @@ The project does not use `wrangler.jsonc`.
 - `services/lean-runner/` contains the versioned protocol boundary for the
   separately deployed, isolated Lean executor and signed control-plane job
   envelope, including the closed-alpha Cloudflare Queue adapter and no-Internet
-  Container policy. User Lean code must never run in the web Worker.
+  Container policy. Its source-only private workspace runtime and HTTP process
+  verify streamed v2 bundles and can invoke fixed Lean checks only after an
+  external isolation assertion; user Lean code must never run in the web Worker.
 - `services/receipts/` contains the internal-only D1 issuance boundary for
   signed Contribution Receipts. The web app has a separate public, read-only
   receipt lookup; it cannot issue or alter a receipt.
@@ -155,6 +183,10 @@ application secrets.
 - `npm run runner:check`: validate the isolated Lean runner protocol and
   Cloudflare Queue/Container policy adapter
 - `npm run runner:fixtures:check`: run the checked-in local Lean fixtures
+- `npm run runner:execution:check`: exercise the source-only Container Lean
+  executor with those local Lean fixtures (requires `lake`/Lean locally)
+- `npm run runner:e2e:check`: reconstruct a real v2 `tar.zst` fixture and run
+  it through the local Container workspace and Lean-executor source boundaries
 - `npm run artifact:check`: validate the immutable artifact bundle manifest
 - `npm run artifact:store:check`: exercise signed R2/D1 artifact staging
 - `npm run run:check`: validate bounded-run lifecycle and result binding
@@ -169,23 +201,30 @@ application secrets.
 
 Static MCP token issuance is retired. A remote Streamable HTTP gateway and
 separate OAuth identity-service scaffold are now in the repository; they are
-not deployed while the independent browser identity and consent layers are
-configured. PKCE, token rotation, credential-hash persistence, and delegated
-Agent-installation checks are implemented locally. The endpoint, scopes,
-identity boundary, and rollout gates are defined in the
+not deployed until the independent browser identity and consent layers are
+configured. PKCE, token rotation, credential-hash persistence, delegated
+Agent-installation checks, a D1-backed catalog/Attempt/progress store, and a
+review-scope-bound signed-attestation admission path are implemented locally.
+The endpoint, scopes, identity boundary, and rollout gates are defined in the
 [remote MCP gateway contract](docs/remote-mcp-gateway.md).
 
-The gateway will record `agent_reported_only` activity only. It cannot assert
-Lean kernel acceptance, independent review, novelty, or a contribution receipt.
+The gateway records `agent_reported_only` activity only under the selected
+Agent's exact active `formalize` or `prove` certificate and can transport one
+already-signed review-Agent attestation for an assignment addressed to the
+authorized Person. It cannot fabricate Lean kernel acceptance, independently
+decide a review, infer novelty, or issue a contribution receipt.
 
 ## Delegated Agent status
 
 The closed-alpha control plane can now persist an authenticated Person's
 Ed25519 signing key, registered Agent, signed delegation certificate, and
 append-only revocation. The signed-in workbench now reflects that persisted
-setup while its research-run content remains preview-only. This is attribution
-infrastructure, not public onboarding: key proof-of-possession is still needed,
-and the separate remote identity/MCP services are not deployed.
+setup while its research-run content remains preview-only. Each Person key must
+complete a one-time signed proof of possession before it can delegate. A key
+revocation blocks subsequent Agent progress under delegations it signed. This
+is still attribution infrastructure, not public onboarding: account recovery,
+public cross-device rotation policy, and the separate remote identity/MCP
+services are not deployed.
 
 New provisional Attempt records are bound to that Agent and a valid
 `formalize` or `prove` delegation; later agent-reported progress is rejected

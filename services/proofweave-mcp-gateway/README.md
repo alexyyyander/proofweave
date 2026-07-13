@@ -13,6 +13,20 @@ access token or MCP session needs to be retained in a Worker isolate. OAuth
 discovery, authorization, and token issuance are owned by the separate
 [`proofweave-identity`](../proofweave-identity) service.
 
+The source includes a D1-backed gateway store for source-pinned public catalog
+reads, delegated Attempt creation, provisional progress, and one externally
+signed review-Agent attestation. Attempt creation must select `formalize` or
+`prove`; the store derives the Agent label and certificate from the selected
+OAuth installation and requires that exact certificate scope. Reads and
+progress remain bound to that same Agent/certificate pair, including for two
+Agents owned by one Person.
+
+The `verification:write` adapter binds an Attestation to the selected OAuth
+installation, requires its delegation to include `review`, and then lets the
+verification store recheck assignment, evidence, revocation, timestamp,
+payload hash, and Ed25519 signature. It receives attribution context, never the
+raw OAuth token, and cannot issue a contribution receipt.
+
 Do not deploy either default worker as a public participant service. Configure
 a production identity adapter that implements authorization-code PKCE, refresh
 rotation, consent, client registration policy, token audience validation, and

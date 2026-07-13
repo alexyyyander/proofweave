@@ -316,13 +316,27 @@ function normalizePolicy(value) {
 }
 
 function normalizeEntryCommand(value) {
-  if (!Array.isArray(value) || value.length < 3 || value.length > 32 || value.some((part) => typeof part !== "string" || part.length === 0 || part.length > 512)) {
+  if (!Array.isArray(value) || value.some((part) => typeof part !== "string" || part.length === 0 || part.length > 512)) {
     throw new ArtifactBundleProtocolError("bundle entryCommand must be a bounded argument array.");
   }
   if (value[0] !== "lake" || value[1] !== "env" || value[2] !== "lean" || value.some((part) => /[;|&><`$\n\r]/.test(part))) {
     throw new ArtifactBundleProtocolError("bundle entryCommand must be a shell-free lake env lean command.");
   }
+  if (value.length !== 4) {
+    throw new ArtifactBundleProtocolError("bundle entryCommand must be exactly lake env lean plus one source file.");
+  }
+  requireLeanSourcePath(value[3], "bundle entryCommand source file");
   return [...value];
+}
+
+function requireLeanSourcePath(value, label) {
+  if (typeof value !== "string" || !value.endsWith(".lean") || value.length > 1_024 || value.startsWith("/") || value.includes("\\") || value.includes("\0")) {
+    throw new ArtifactBundleProtocolError(`${label} must be a relative .lean source path.`);
+  }
+  const segments = value.slice(0, -".lean".length).split("/");
+  if (segments.some((segment) => !/^[A-Za-z_][A-Za-z0-9_']*$/.test(segment))) {
+    throw new ArtifactBundleProtocolError(`${label} contains an unsafe Lean module path.`);
+  }
 }
 
 function rejectExtraKeys(value, allowed, label) {

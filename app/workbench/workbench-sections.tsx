@@ -8,20 +8,21 @@ function GateRow({ state, label, detail }: { state: GateState; label: string; de
   return <li className={`gate-row gate-${state}`}><span className="gate-icon" aria-hidden="true">{symbol}</span><span><strong>{label}</strong><small>{detail}</small></span><em>{stateText}</em></li>;
 }
 
-export function WorkbenchHero({ isRunning, profile }: { isRunning: boolean; profile: DelegationProfile | null }) {
+export function WorkbenchHero({ isRunning, profile, isAuthenticated, storageAvailable }: { isRunning: boolean; profile: DelegationProfile | null; isAuthenticated: boolean; storageAvailable: boolean }) {
   const active = activeDelegation(profile);
   const agent = active && profile?.agents.find((candidate) => candidate.id === active.agentId);
   const agentName = agent?.label ?? delegation.agentName;
   const agentId = agent?.id ?? delegation.agentId;
   const ownerId = profile?.person.id ?? delegation.ownerId;
-  const status = active ? "Delegation active" : profile ? "Agent setup required" : "Delegation preview";
+  const status = active ? "Delegation active" : profile ? "Agent setup required" : isAuthenticated ? "Delegation unavailable" : "Delegation preview";
   const activityLabel = active
     ? isRunning ? "Ready for a bounded step" : "Agent paused"
-    : profile ? "No active delegation" : "Preview workspace";
+    : profile ? "No active delegation" : isAuthenticated && !storageAvailable ? "Control plane unavailable" : "Preview workspace";
+  const marker = profile ? "Account connected" : isAuthenticated ? "Connection unavailable" : "Local preview";
 
   return <section className="workbench-hero" aria-labelledby="workbench-title">
     <div>
-      <p className="eyebrow">Personal workspace <span className="preview-marker">{profile ? "Account connected" : "Local preview"}</span></p>
+      <p className="eyebrow">Personal workspace <span className="preview-marker">{marker}</span></p>
       <h1 id="workbench-title">Your research agent</h1>
       <p>One focused proof branch, its evidence, and the next action required to move it forward.</p>
     </div>
@@ -44,18 +45,30 @@ export function DelegationSummary({ profile }: { profile: DelegationProfile | nu
   const expiration = active ? new Date(active.validUntil).toLocaleDateString(undefined, { day: "2-digit", month: "short", year: "numeric" }) : delegation.expires;
 
   return <section className="delegation-summary" aria-label="Delegation certificate">
-    <div className="delegation-title"><span className="micro-label">{active ? "Active delegation" : profile ? "Delegation setup" : "Preview delegation"}</span><strong>{certificate}</strong><small>Key fingerprint · {fingerprint}</small></div>
+    <div className="delegation-title"><span className="micro-label">{active ? "Active delegation" : profile ? "Delegation setup" : "Preview delegation"}</span>{active ? <Link className="delegation-certificate-link" href={`/delegations/${encodeURIComponent(active.id)}`}>{certificate}</Link> : <strong>{certificate}</strong>}<small>Key fingerprint · {fingerprint}</small></div>
     <div><span className="micro-label">Allowed work</span><p className="scope-list">{scopes.map((scope) => <b key={scope}>{scope}</b>)}</p></div>
     <div><span className="micro-label">{active ? "Valid until" : "Setup status"}</span><strong>{active ? expiration : profile ? `${profile.signingKeys.length} key · ${profile.agents.length} Agent` : expiration}</strong><small>{active ? "Revocable by owner" : "Create a signed delegation before reporting work"}</small></div>
     <div className="delegation-note"><span className="micro-label">Credit rule</span><small>{agent && active ? "This signed authority credits its owner; same-owner Agents cannot independently verify it." : "Same-owner Agents cannot independently verify this branch."}</small></div>
   </section>;
 }
 
-export function FocusAction({ isRunning, hasRunStep, onRun, onToggleAgent }: { isRunning: boolean; hasRunStep: boolean; onRun: () => void; onToggleAgent: () => void }) {
-  const primaryLabel = hasRunStep ? "Bounded step recorded" : isRunning ? "Run next bounded step" : "Agent is paused";
+export function FocusAction({ isRunning, hasRunStep, hasActiveDelegation, accountRequiresSetup, onRun, onToggleAgent }: { isRunning: boolean; hasRunStep: boolean; hasActiveDelegation: boolean; accountRequiresSetup: boolean; onRun: () => void; onToggleAgent: () => void }) {
+  const needsSetup = accountRequiresSetup && !hasActiveDelegation;
+  const primaryLabel = needsSetup ? "Set up delegation" : hasRunStep ? "Bounded step recorded" : isRunning ? "Run next bounded step" : "Agent is paused";
+  const primaryHelp = needsSetup
+    ? "Your signed-in account needs an active, scoped delegation before this workspace can represent Agent activity."
+    : hasRunStep
+      ? "The preview event is ready; the bundle checklist below now has its local prerequisite."
+      : "This creates a local preview event only. It does not run Lean or submit work to the network.";
   return <section className="focus-layout" aria-label="Current focus and next action">
-    <div className="focus-summary"><span className="micro-label">Current focus</span><h2>{workbenchTarget.title}</h2><p>Branch B-07 · finite-density reduction</p><div className="toolbar-links"><Link className="text-link" href={`/explore/${workbenchTarget.slug}`}>Inspect target <span>→</span></Link><Link className="text-link" href="/integrations">Connect Codex <span>→</span></Link><Link className="text-link" href="/how-it-works">Review receipt requirements <span>→</span></Link></div></div>
-    <div className="next-action-card"><span className="micro-label">Recommended next action</span><strong>{hasRunStep ? "Inspect the staged event below" : "Record one bounded exploration step"}</strong><p id="next-action-help">{hasRunStep ? "The preview event is ready; the bundle checklist below now has its local prerequisite." : "This creates a local preview event only. It does not run Lean or submit work to the network."}</p><div className="next-action-controls"><button className="button button-primary focus-primary" type="button" disabled={!isRunning || hasRunStep} onClick={onRun}>{primaryLabel}</button><button className="workspace-pause-button" type="button" onClick={onToggleAgent}>{isRunning ? "Pause agent" : "Resume agent"}</button></div></div>
+    <div className="focus-summary"><span className="micro-label">Current focus</span><h2>{workbenchTarget.title}</h2><p>Branch B-07 · finite-density reduction</p><div className="toolbar-links"><Link className="text-link" href={`/explore/${workbenchTarget.slug}`}>Inspect target <span>→</span></Link><Link className="text-link" href="/evidence">Evidence records <span>→</span></Link><Link className="text-link" href="/reviews">Review queue <span>→</span></Link><Link className="text-link" href="/integrations">Connect Codex <span>→</span></Link></div></div>
+    <div className="next-action-card"><span className="micro-label">Recommended next action</span><strong>{needsSetup ? "Create the authority before any work can be attributed." : hasRunStep ? "Inspect the staged event below" : "Record one bounded exploration step"}</strong><p id="next-action-help">{primaryHelp}</p><div className="next-action-controls"><button className="button button-primary focus-primary" type="button" disabled={needsSetup ? false : !isRunning || hasRunStep} onClick={() => {
+      if (needsSetup) {
+        document.getElementById("delegation-setup")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+      onRun();
+    }}>{primaryLabel}</button><button className="workspace-pause-button" type="button" onClick={onToggleAgent}>{isRunning ? "Pause agent" : "Resume agent"}</button></div></div>
   </section>;
 }
 

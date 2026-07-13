@@ -6,6 +6,9 @@
 export const cloudflareLeanContainerPolicy = Object.freeze({
   enableInternet: false,
   sleepAfter: "30s",
+  port: 8080,
+  pingEndpoint: "localhost/ready",
+  entrypoint: Object.freeze(["node", "/opt/proofweave/services/lean-runner/container-http-server.mjs"]),
   instanceType: "standard-1",
   maxInstances: 1,
 });

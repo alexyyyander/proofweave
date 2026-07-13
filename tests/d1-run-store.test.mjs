@@ -3,14 +3,20 @@ import { after, before, test } from "node:test";
 import { readFile, readdir } from "node:fs/promises";
 import { Miniflare } from "miniflare";
 import { D1RunStore } from "../services/lean-runner/d1-run-store.mjs";
+import { D1R2RunnerOutputStore } from "../services/lean-runner/d1-r2-runner-output-store.mjs";
 import { runnerResultSigningPayload } from "../packages/protocol/lean-runner.mjs";
 import { canonicalJson } from "../packages/protocol/canonical-json.mjs";
 
 const migrationsRoot = new URL("../drizzle/", import.meta.url);
 let miniflare;
 let database;
+let bucket;
 let runnerKeyPair;
 let runnerPublicKey;
+let runnerStdout;
+let runnerStderr;
+let runnerStdoutHash;
+let runnerStderrHash;
 
 before(async () => {
   runnerKeyPair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
@@ -20,8 +26,14 @@ before(async () => {
     script: "export default { fetch() { return new Response('ok'); } }",
     compatibilityDate: "2026-05-22",
     d1Databases: ["DB"],
+    r2Buckets: ["ARTIFACTS"],
   });
   database = await miniflare.getD1Database("DB");
+  bucket = await miniflare.getR2Bucket("ARTIFACTS");
+  runnerStdout = new TextEncoder().encode("Lean fixture output\n");
+  runnerStderr = new Uint8Array();
+  runnerStdoutHash = await sha256Bytes(runnerStdout);
+  runnerStderrHash = await sha256Bytes(runnerStderr);
   await applyMigrations(database);
   await seedAttempt(database, runnerPublicKey);
 });
@@ -42,9 +54,11 @@ test("D1 Run store persists an idempotent lifecycle with immutable evidence", as
     "run:fixture-1",
   );
 
-  const running = await store.start("run:fixture-1", "2026-07-13T00:00:01Z");
-  const cancelling = await store.requestCancellation("run:fixture-1", "2026-07-13T00:00:02Z");
-  assert.equal((await store.requestCancellation("run:fixture-1", "2026-07-13T00:00:02Z")).state, "cancel_requested");
+  const preparing = await store.prepare("run:fixture-1", "2026-07-13T00:00:01Z");
+  const running = await store.start("run:fixture-1", "2026-07-13T00:00:02Z");
+  const outputStore = new D1R2RunnerOutputStore({ database, bucket });
+  const cancelling = await store.requestCancellation("run:fixture-1", "2026-07-13T00:00:03Z");
+  assert.equal((await store.requestCancellation("run:fixture-1", "2026-07-13T00:00:03Z")).state, "cancel_requested");
   const invalidResult = await fixtureResult();
   invalidResult.runnerSignature = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
   await assert.rejects(
@@ -52,12 +66,30 @@ test("D1 Run store persists an idempotent lifecycle with immutable evidence", as
     /Runner result signature is invalid/,
   );
   const result = await fixtureResult();
+  await assert.rejects(
+    store.recordResult("run:fixture-1", result, "2026-07-13T00:00:04Z"),
+    /not backed by immutable Runner output artifacts/,
+  );
+  const unsignedResult = { ...result };
+  delete unsignedResult.runnerKeyId;
+  delete unsignedResult.runnerSignature;
+  const persistedOutput = await outputStore.persist({
+    run: cancelling,
+    execution: { result: unsignedResult, stdout: runnerStdout, stderr: runnerStderr },
+  });
+  assert.equal(persistedOutput.stdout.created, true);
+  assert.equal((await outputStore.persist({
+    run: cancelling,
+    execution: { result: unsignedResult, stdout: runnerStdout, stderr: runnerStderr },
+  })).stdout.created, false);
+  assert.equal((await bucket.get(persistedOutput.stdout.objectKey)).customMetadata.sha256, runnerStdoutHash);
   const cancelled = await store.recordResult(
     "run:fixture-1",
     result,
     "2026-07-13T00:00:04Z",
   );
 
+  assert.equal(preparing.state, "preparing");
   assert.equal(running.state, "running");
   assert.equal(cancelling.state, "cancel_requested");
   assert.equal(cancelled.state, "cancelled");
@@ -67,6 +99,7 @@ test("D1 Run store persists an idempotent lifecycle with immutable evidence", as
   const events = await store.listEvents("run:fixture-1");
   assert.deepEqual(events.map((event) => event.eventType), [
     "run_queued",
+    "workspace_preparation_started",
     "run_started",
     "cancellation_requested",
     "runner_result_recorded",
@@ -84,6 +117,10 @@ test("D1 Run store persists an idempotent lifecycle with immutable evidence", as
   await assert.rejects(
     database.prepare("UPDATE run_results SET received_at = ? WHERE run_id = ?").bind("2026-07-14T00:00:00Z", "run:fixture-1").run(),
     /run results are immutable/,
+  );
+  await assert.rejects(
+    database.prepare("UPDATE runner_output_artifacts SET content_hash = ? WHERE run_id = ? AND role = ?").bind(sha("0"), "run:fixture-1", "stdout").run(),
+    /runner output artifacts are immutable/,
   );
 });
 
@@ -108,11 +145,11 @@ async function fixtureResult() {
     runnerSignature: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
     status: "cancelled",
     exitCode: 137,
-    startedAt: "2026-07-13T00:00:01Z",
+    startedAt: "2026-07-13T00:00:02Z",
     finishedAt: "2026-07-13T00:00:03Z",
     kernelStatus: "not_run",
     checks: { network: "passed", noSorry: "not_run", allowedAxioms: "not_run", leanBuild: "not_run" },
-    artifacts: { manifestHash: sha("b"), stdoutHash: sha("c"), stderrHash: sha("d") },
+    artifacts: { manifestHash: sha("b"), stdoutHash: runnerStdoutHash, stderrHash: runnerStderrHash },
   };
   result.runnerSignature = base64Url(
     await crypto.subtle.sign(
@@ -179,6 +216,11 @@ async function seedAttempt(d1, publicKey) {
   for (const [statement, values] of statements) {
     await d1.prepare(statement).bind(...values).run();
   }
+}
+
+async function sha256Bytes(value) {
+  const digest = await crypto.subtle.digest("SHA-256", value);
+  return `sha256:${[...new Uint8Array(digest)].map((byte) => byte.toString(16).padStart(2, "0")).join("")}`;
 }
 
 async function applyMigrations(d1) {

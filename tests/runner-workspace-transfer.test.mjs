@@ -29,7 +29,10 @@ test("trusted Worker stages v2 workspace objects in a fixed private Container se
   ]);
   assert.equal(container.requests[1].headers.get("x-proofweave-content-sha256"), objects.sourceArchive.contentHash);
   assert.equal(container.requests[3].body, "lake manifest");
-  assert.equal(container.requests[0].body.includes("after_patch_and_lake_manifest"), true);
+  const declaration = JSON.parse(container.requests[0].body);
+  assert.equal(declaration.workspace.tree.state, "after_patch_and_lake_manifest");
+  assert.deepEqual(declaration.target, resolvedBundle.bundle.target);
+  assert.deepEqual(declaration.policy, resolvedBundle.request.policy);
 });
 
 test("transfer fails closed when R2 metadata changes after Bundle resolution", async () => {
@@ -86,7 +89,7 @@ async function fixtureRun(resolvedBundle) {
     attemptId: "attempt:workspace-transfer",
     artifactBundleHash: sha("b"),
     requestHash: await leanRunnerRequestHash(resolvedBundle.request),
-    state: "running",
+    state: "preparing",
   };
 }
 
@@ -114,6 +117,7 @@ function fixtureResolvedBundle(objects) {
     },
     bundle: {
       protocolVersion: "pw-artifact-bundle-v2",
+      target: { declaration: "Proofweave.Main", statementHash: sha("a") },
       workspace: {
         archive: { maxExpandedBytes: 64 * 1024 * 1024 },
         patch: { strip: 1, allowFuzz: false },

@@ -76,20 +76,56 @@ test("D1 Verification store enforces different-owner review and persists signed 
   );
 });
 
-async function signedAttestation() {
+test("rejects a review attestation after its Person signing key is revoked", async () => {
+  const store = new D1VerificationStore(database);
+  await store.assign({
+    id: "assignment:bob-after-key-revocation",
+    artifactBundleManifestHash: sha("a"),
+    claimType: "novelty_reviewed",
+    verifierPersonId: "person:bob",
+    assignedAt: "2026-07-13T00:00:04Z",
+  });
+  await store.accept("assignment:bob-after-key-revocation", "person:bob", "2026-07-13T00:00:05Z");
+  await database
+    .prepare("INSERT INTO person_key_revocations (id, person_key_id, owner_person_id, revoked_at, reason) VALUES (?, ?, ?, ?, ?)")
+    .bind(
+      "person-key-revocation:bob-reviewer",
+      "person-key:bob",
+      "person:bob",
+      "2026-07-13T00:00:06Z",
+      "Device replaced.",
+    )
+    .run();
+  await assert.rejects(
+    store.recordAttestation(await signedAttestation({
+      id: "attestation:bob-after-key-revocation",
+      assignmentId: "assignment:bob-after-key-revocation",
+      claimType: "novelty_reviewed",
+      attestedAt: "2026-07-13T00:00:07Z",
+    })),
+    /outside valid review delegation authority/,
+  );
+});
+
+async function signedAttestation({
+  id = "attestation:bob-review",
+  assignmentId = "assignment:bob-review",
+  claimType = "kernel_accepted",
+  attestedAt = "2026-07-13T00:00:03Z",
+} = {}) {
   const attestation = {
     protocolVersion: "pw-verification-attestation-v1",
-    id: "attestation:bob-review",
-    assignmentId: "assignment:bob-review",
+    id,
+    assignmentId,
     artifactBundleHash: sha("a"),
-    claimType: "kernel_accepted",
+    claimType,
     verifierPersonId: "person:bob",
     verifierAgentId: "agent:bob-reviewer",
     delegationCertificateId: "delegation:bob-reviewer",
     verifierAgentPublicKey: reviewerPublicKey,
     decision: "attested",
     evidenceHash: sha("b"),
-    attestedAt: "2026-07-13T00:00:03Z",
+    attestedAt,
     payloadHash: sha("0"),
     signature: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
   };

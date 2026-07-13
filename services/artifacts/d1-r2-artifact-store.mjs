@@ -190,13 +190,16 @@ export class D1R2ArtifactStore {
           certificate.agent_id AS certificate_agent_id,
           certificate.agent_public_key AS certificate_agent_public_key,
           certificate.scopes_json, certificate.valid_from, certificate.valid_until,
-          revocation.revoked_at
+          revocation.revoked_at,
+          COALESCE(key_revocation.revoked_at, signer.revoked_at) AS signer_key_revoked_at
          FROM agent_attempts AS attempt
          LEFT JOIN agents AS agent ON agent.id = attempt.agent_id
          LEFT JOIN delegation_certificates AS certificate
            ON certificate.id = attempt.delegation_certificate_id
          LEFT JOIN delegation_revocations AS revocation
            ON revocation.delegation_certificate_id = certificate.id
+         LEFT JOIN person_keys AS signer ON signer.id = certificate.person_key_id
+         LEFT JOIN person_key_revocations AS key_revocation ON key_revocation.person_key_id = signer.id
          WHERE attempt.id = ?`,
       )
       .bind(bundle.attemptId)
@@ -225,7 +228,8 @@ export class D1R2ArtifactStore {
     const eventTime = Date.parse(bundle.agentEvent.occurredAt);
     if (
       eventTime < Date.parse(row.valid_from) || eventTime >= Date.parse(row.valid_until) ||
-      (row.revoked_at && eventTime >= Date.parse(row.revoked_at))
+      (row.revoked_at && eventTime >= Date.parse(row.revoked_at)) ||
+      (row.signer_key_revoked_at && eventTime >= Date.parse(row.signer_key_revoked_at))
     ) {
       throw new ArtifactStoreValidationError("Artifact Bundle Agent event occurred outside its valid delegation period.");
     }

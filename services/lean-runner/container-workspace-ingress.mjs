@@ -47,6 +47,8 @@ export class RunnerWorkspaceIngress {
       protocolVersion: runnerWorkspaceIngressProtocolVersion,
       jobId: this.declaration.jobId,
       requestHash: this.declaration.requestHash,
+      target: this.declaration.target,
+      policy: this.declaration.policy,
       bundleProtocolVersion: artifactBundleV2ProtocolVersion,
       workspace: this.declaration.workspace,
       entryCommand: this.declaration.entryCommand,
@@ -57,12 +59,14 @@ export class RunnerWorkspaceIngress {
 
 export function normalizeRunnerWorkspaceIngressDeclaration(value) {
   requireRecord(value, "Runner workspace declaration");
-  rejectExtraKeys(value, ["protocolVersion", "jobId", "requestHash", "workspace", "entryCommand", "artifacts"], "Runner workspace declaration");
+  rejectExtraKeys(value, ["protocolVersion", "jobId", "requestHash", "target", "policy", "workspace", "entryCommand", "artifacts"], "Runner workspace declaration");
   if (value.protocolVersion !== runnerWorkspaceIngressProtocolVersion) {
     throw new RunnerWorkspaceIngressError("Unsupported Runner workspace ingress protocol version.");
   }
   requireIdentifier(value.jobId, "Runner workspace jobId");
   requireSha256(value.requestHash, "Runner workspace requestHash");
+  const target = normalizeTarget(value.target);
+  const policy = normalizePolicy(value.policy);
   const workspace = normalizeArtifactBundleV2Workspace(value.workspace);
   const entryCommand = normalizeEntryCommand(value.entryCommand);
   const artifacts = normalizeArtifacts(value.artifacts, workspace);
@@ -70,10 +74,29 @@ export function normalizeRunnerWorkspaceIngressDeclaration(value) {
     protocolVersion: runnerWorkspaceIngressProtocolVersion,
     jobId: value.jobId,
     requestHash: value.requestHash,
+    target,
+    policy,
     workspace,
     entryCommand: Object.freeze(entryCommand),
     artifacts,
   });
+}
+
+function normalizeTarget(value) {
+  requireRecord(value, "Runner workspace target");
+  rejectExtraKeys(value, ["declaration", "statementHash"], "Runner workspace target");
+  requireQualifiedName(value.declaration, "Runner workspace target declaration");
+  requireSha256(value.statementHash, "Runner workspace target statementHash");
+  return Object.freeze({ declaration: value.declaration, statementHash: value.statementHash });
+}
+
+function normalizePolicy(value) {
+  requireRecord(value, "Runner workspace policy");
+  rejectExtraKeys(value, ["requireNoSorry", "allowedAxioms"], "Runner workspace policy");
+  if (value.requireNoSorry !== true || !Array.isArray(value.allowedAxioms) || !value.allowedAxioms.every((axiom) => typeof axiom === "string" && /^[A-Za-z_][A-Za-z0-9_'.]*(?:\.[A-Za-z_][A-Za-z0-9_'.]*)*$/.test(axiom))) {
+    throw new RunnerWorkspaceIngressError("Runner workspace policy must require a sorry audit and qualified allowed axioms.");
+  }
+  return Object.freeze({ requireNoSorry: true, allowedAxioms: Object.freeze([...new Set(value.allowedAxioms)].sort()) });
 }
 
 const artifactOrder = Object.freeze(["sourceArchive", "sourcePatch", "lakeManifest"]);
@@ -107,13 +130,27 @@ function normalizeArtifacts(value, workspace) {
 }
 
 function normalizeEntryCommand(value) {
-  if (!Array.isArray(value) || value.length < 3 || value.length > 32 || value.some((part) => typeof part !== "string" || part.length === 0 || part.length > 512)) {
+  if (!Array.isArray(value) || value.some((part) => typeof part !== "string" || part.length === 0 || part.length > 512)) {
     throw new RunnerWorkspaceIngressError("Runner workspace entryCommand must be a bounded argument array.");
   }
   if (value[0] !== "lake" || value[1] !== "env" || value[2] !== "lean" || value.some((part) => /[;|&><`$\n\r]/.test(part))) {
     throw new RunnerWorkspaceIngressError("Runner workspace entryCommand must be shell-free lake env lean.");
   }
+  if (value.length !== 4) {
+    throw new RunnerWorkspaceIngressError("Runner workspace entryCommand must be exactly lake env lean plus one source file.");
+  }
+  requireLeanSourcePath(value[3], "Runner workspace entryCommand source file");
   return [...value];
+}
+
+function requireLeanSourcePath(value, label) {
+  if (typeof value !== "string" || !value.endsWith(".lean") || value.length > 1_024 || value.startsWith("/") || value.includes("\\") || value.includes("\0")) {
+    throw new RunnerWorkspaceIngressError(`${label} must be a relative .lean source path.`);
+  }
+  const segments = value.slice(0, -".lean".length).split("/");
+  if (segments.some((segment) => !/^[A-Za-z_][A-Za-z0-9_']*$/.test(segment))) {
+    throw new RunnerWorkspaceIngressError(`${label} contains an unsafe Lean module path.`);
+  }
 }
 
 function rejectExtraKeys(value, allowed, label) {
@@ -136,5 +173,11 @@ function requireIdentifier(value, label) {
 function requireSha256(value, label) {
   if (typeof value !== "string" || !/^sha256:[a-f0-9]{64}$/.test(value)) {
     throw new RunnerWorkspaceIngressError(`${label} must be sha256:<hex>.`);
+  }
+}
+
+function requireQualifiedName(value, label) {
+  if (typeof value !== "string" || !/^[A-Za-z_][A-Za-z0-9_'.]*(?:\.[A-Za-z_][A-Za-z0-9_'.]*)*$/.test(value)) {
+    throw new RunnerWorkspaceIngressError(`${label} must be a qualified Lean declaration name.`);
   }
 }

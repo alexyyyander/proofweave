@@ -43,9 +43,9 @@ and review delegation are named on one of the covered non-project review
 attestations.
 
 The policy function is a protocol guard, not a database lookup. Before an
-issuer signs a receipt, the future D1 adapter must resolve every ID/hash to
-immutable Bundle, Run, and Attestation records and apply any curator or
-retraction policy in force at issuance.
+issuer signs a receipt, the D1 adapter resolves every ID/hash to immutable
+Bundle, Run, and Attestation records and applies any curator or retraction
+policy in force at issuance.
 
 ## External verification
 
@@ -64,11 +64,44 @@ persists the resulting canonical receipt in an immutable D1 row. Retrying the
 same receipt/evidence identity returns the stored receipt rather than issuing a
 duplicate.
 
-There is no participant-facing issuance route. The web application does expose
-read-only `GET /api/receipts/:id` JSON and `/receipt/:id` display routes when a
-D1 binding is configured. Each route re-parses the stored canonical payload,
-recomputes the stored receipt hash, and verifies the embedded issuer signature
-before returning or rendering it; an unknown identifier returns no receipt.
-Neither route can issue or alter evidence. Dependency edges, supersession,
-correction, retraction, and issuer-key rotation remain append-only work, not
-mutable fields on this v1 receipt.
+## Dependency DAG projection
+
+Before issuing a downstream receipt, the store resolves every
+`bundle.dependencyReceipts` entry against an existing receipt. Its declared ID
+and hash must match an issuer-signed, policy-valid upstream receipt; a receipt
+cannot name itself, and an upstream issuance time cannot be after the
+downstream issuance time. The receipt and its
+`contribution_receipt_dependency_edges` rows are then inserted in one D1 batch.
+The edge is therefore a query projection of signed bundle evidence, not a
+separately editable claim. Both the receipt and every edge reject update and
+delete operations.
+
+## Append-only lifecycle evidence
+
+`pw-contribution-receipt-lifecycle-event-v1` records exactly one of three
+issuer-signed events against the original receipt:
+
+- `corrected` links one later receipt covering the same Attempt and target;
+- `superseded` links one later receipt covering the same Attempt and target;
+- `retracted` records no replacement and never removes the original receipt.
+
+Each event commits a reason hash, time, original issuer key ID/public key,
+canonical payload hash, and detached Ed25519 signature. The initial policy
+requires the same issuer key as the original receipt, an event time no earlier
+than issuance, and (where applicable) a replacement issued after the original
+and no later than the event. Replacement cycles, duplicate corrections, and
+any event after a supersession or retraction are rejected. The event table is
+append-only; it never updates an original receipt or an earlier event.
+
+The web application exposes read-only `GET /api/receipts/:id` JSON,
+`GET /api/receipts/:id/dependencies` edge JSON, and `/receipt/:id` display
+routes when a D1 binding is configured. Each read re-parses canonical payloads,
+recomputes hashes, verifies issuer signatures, and requires the edge projection
+to exactly match the downstream receipt's declared dependencies before returning
+or rendering it. An unknown identifier returns no receipt. No route can issue
+or alter evidence. `GET /api/receipts/:id/lifecycle` and the receipt page also
+verify each lifecycle signature and its replacement relationship before showing
+the append-only history. `GET /api/receipts` and `/receipts` expose a bounded,
+newest-first public index only after each listed receipt and its lifecycle
+status have passed the same verification. Issuer-key rotation remains future
+work, not a mutable field on this v1 receipt.

@@ -26,6 +26,7 @@ function fixtureStore() {
     async createAttempt(_principal, input) { return { id: "attempt:test", ...input }; },
     async reportProgress(_principal, input) { return { id: "event:test", ...input }; },
     async getAttempt(_principal, attemptId) { return { id: attemptId }; },
+    async submitVerificationAttestation(_principal, attestation) { return { id: attestation.id, created: true }; },
   };
 }
 
@@ -232,6 +233,7 @@ test("handles sequential authenticated MCP requests without retaining a session"
   assert.equal(tools.status, 200);
   const payload = await tools.json();
   assert.ok(payload.result.tools.some((tool) => tool.name === "create_attempt"));
+  assert.ok(payload.result.tools.some((tool) => tool.name === "submit_verification_attestation"));
 });
 
 test("passes only attribution context to the store and blocks an ungranted write scope", async () => {
@@ -281,7 +283,7 @@ test("passes only attribution context to the store and blocks an ungranted write
   const attempted = await gateway.fetch(
     mcpToolRequest(
       "create_attempt",
-      { problemSlug: "erdos-865", idempotencyKey: "attempt-1" },
+      { problemSlug: "erdos-865", delegationScope: "prove", idempotencyKey: "attempt-1" },
       headers,
     ),
   );
@@ -290,6 +292,78 @@ test("passes only attribution context to the store and blocks an ungranted write
   assert.equal(payload.result.isError, true);
   assert.match(payload.result.content[0].text, /Missing OAuth scope: attempt:create/);
   assert.equal(attemptedWrite, false);
+});
+
+test("requires verification:write and passes only bound attribution context to the attestation store", async () => {
+  let submitted = null;
+  const gateway = gatewayWith(
+    {
+      async authenticate() {
+        return {
+          accessToken: "secret-token-that-must-not-reach-the-store",
+          clientId: "https://codex.example.test/client.json",
+          personId: "did:proofweave:alice",
+          agentInstallationId: "agent-installation:alice-codex",
+          scopes: ["verification:write"],
+        };
+      },
+      ...unavailableIdentity(),
+    },
+    {
+      ...fixtureStore(),
+      async submitVerificationAttestation(principal, attestation) {
+        submitted = { principal, attestation };
+        return { id: attestation.id, created: true };
+      },
+    },
+  );
+  const headers = {
+    Accept: "application/json, text/event-stream",
+    "Content-Type": "application/json",
+  };
+  const response = await gateway.fetch(mcpToolRequest(
+    "submit_verification_attestation",
+    { attestation: remoteAttestationInput() },
+    headers,
+  ));
+  assert.equal(response.status, 200);
+  assert.deepEqual(submitted.principal, {
+    clientId: "https://codex.example.test/client.json",
+    personId: "did:proofweave:alice",
+    agentInstallationId: "agent-installation:alice-codex",
+    scopes: ["verification:write"],
+  });
+  assert.equal(submitted.attestation.id, "attestation:mcp-test");
+
+  const ungrantedGateway = gatewayWith(
+    {
+      async authenticate() {
+        return {
+          accessToken: "different-secret-token",
+          clientId: "https://codex.example.test/client.json",
+          personId: "did:proofweave:alice",
+          agentInstallationId: "agent-installation:alice-codex",
+          scopes: ["catalog:read"],
+        };
+      },
+      ...unavailableIdentity(),
+    },
+    {
+      ...fixtureStore(),
+      async submitVerificationAttestation() {
+        throw new Error("The store must not receive an ungranted write.");
+      },
+    },
+  );
+  const blocked = await ungrantedGateway.fetch(mcpToolRequest(
+    "submit_verification_attestation",
+    { attestation: remoteAttestationInput() },
+    headers,
+  ));
+  assert.equal(blocked.status, 200);
+  const blockedPayload = await blocked.json();
+  assert.equal(blockedPayload.result.isError, true);
+  assert.match(blockedPayload.result.content[0].text, /Missing OAuth scope: verification:write/);
 });
 
 function unauthenticatedIdentity() {
@@ -397,4 +471,24 @@ function mcpToolRequest(name, args, headers) {
       params: { name, arguments: args },
     }),
   });
+}
+
+function remoteAttestationInput() {
+  const hash = (character) => `sha256:${character.repeat(64)}`;
+  return {
+    protocolVersion: "pw-verification-attestation-v1",
+    id: "attestation:mcp-test",
+    assignmentId: "assignment:mcp-test",
+    artifactBundleHash: hash("a"),
+    claimType: "kernel_accepted",
+    verifierPersonId: "did:proofweave:alice",
+    verifierAgentId: "agent:mcp-test",
+    delegationCertificateId: "delegation:mcp-test",
+    verifierAgentPublicKey: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    decision: "attested",
+    evidenceHash: hash("b"),
+    attestedAt: "2026-07-13T00:00:00Z",
+    payloadHash: hash("c"),
+    signature: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+  };
 }

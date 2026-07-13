@@ -8,6 +8,13 @@ protocol package to apply its conservative policy and sign the receipt.
 The store has no route, browser action, or participant-supplied receipt JSON
 input. The issuer private key is passed only by a future control-plane secret
 provider; it is never written to D1. `contribution_receipts` rows are append
-only and have immutable evidence identity. Dependency edges, correction,
-retraction, key rotation, JSON downloads, and public receipt pages are separate
-future work.
+only and have immutable evidence identity. Before issuing a receipt, the store
+requires every declared upstream receipt to exist with the exact hash, a valid
+issuer signature, and passing policy evidence; it atomically projects those
+declarations into immutable `contribution_receipt_dependency_edges` rows.
+
+The separate web reader exposes verified receipt and dependency JSON plus a
+human-readable receipt page. It also exposes a separately signed, append-only
+correction, supersession, or retraction history: an original receipt is never
+modified or deleted. The reader cannot issue or alter receipts. Issuer-key
+rotation remains future work.

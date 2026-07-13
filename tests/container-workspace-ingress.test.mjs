@@ -16,6 +16,8 @@ test("Container ingress accepts only verified workspace artifacts in fixed order
   ingress.recordArtifact({ id: "lakeManifest", contentHash: sha("c"), byteLength: 16 });
   const finalized = ingress.finalize();
   assert.equal(finalized.workspace.tree.state, "after_patch_and_lake_manifest");
+  assert.equal(finalized.target.declaration, "Proofweave.Main");
+  assert.deepEqual(finalized.policy, { requireNoSorry: true, allowedAxioms: [] });
   assert.deepEqual(Object.keys(finalized.artifacts), ["sourceArchive", "sourcePatch", "lakeManifest"]);
 });
 
@@ -40,6 +42,8 @@ function fixtureDeclaration() {
     protocolVersion: "pw-runner-workspace-transfer-v1",
     jobId: "run:container-ingress",
     requestHash: sha("0"),
+    target: { declaration: "Proofweave.Main", statementHash: sha("e") },
+    policy: { requireNoSorry: true, allowedAxioms: [] },
     workspace: {
       archive: {
         objectKey: `bundles/sha256/${"a".repeat(64)}/source.tar.zst`, contentHash: sha("a"),
