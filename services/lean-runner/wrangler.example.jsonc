@@ -1,0 +1,47 @@
+// Copy to wrangler.jsonc only when every REPLACE_* value is provisioned.
+// This template is intentionally not deployable as-is and creates no resource.
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "proofweave-lean-runner",
+  "main": "REPLACE_WITH_VERIFIED_RUNNER_WORKER.mjs",
+  "compatibility_date": "2026-07-13",
+  "compatibility_flags": ["nodejs_compat"],
+  "queues": {
+    "consumers": [
+      {
+        "queue": "proofweave-runner-jobs-alpha",
+        "max_batch_size": 1,
+        "max_batch_timeout": 5,
+        "max_retries": 5,
+        "dead_letter_queue": "proofweave-runner-jobs-alpha-dlq",
+        "max_concurrency": 1
+      }
+    ]
+  },
+  "containers": [
+    {
+      "class_name": "LeanRunnerContainer",
+      "image": "registry.cloudflare.com/REPLACE_ACCOUNT_ID/proofweave-lean-runner@sha256:REPLACE_WITH_PINNED_IMAGE_DIGEST",
+      "max_instances": 1,
+      "instance_type": "standard-1"
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      { "name": "LEAN_RUNNER_CONTAINER", "class_name": "LeanRunnerContainer" }
+    ]
+  },
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["LeanRunnerContainer"] }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "REPLACE_WITH_PROOFWEAVE_D1_NAME",
+      "database_id": "REPLACE_WITH_PROOFWEAVE_D1_ID"
+    }
+  ],
+  "r2_buckets": [
+    { "binding": "ARTIFACTS", "bucket_name": "REPLACE_WITH_PROOFWEAVE_ARTIFACTS_BUCKET" }
+  ]
+}

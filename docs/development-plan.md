@@ -60,6 +60,8 @@ reusable contribution with evidence that an external maintainer can reproduce.
   cancellation acknowledgement semantics;
 - signed RunnerQueue envelopes plus runner-side issuer-key allowlist
   verification for control-plane job authentication;
+- Cloudflare Queue producer/consumer adapter, queued-job retry/DLQ template,
+  and a no-Internet Cloudflare Container deployment policy for closed alpha;
 - operator-managed runner-key allowlist with signed-result verification before
   immutable Run evidence is accepted;
 - independent Person-level review assignments and review-delegated Agent
@@ -295,10 +297,12 @@ from the infrastructure runner.
 - Metadata: use D1 for closed alpha, behind repository interfaces so storage is
   portable if later moved to PostgreSQL.
 - Artifacts: use R2 with immutable content-addressed object keys.
-- Runner: containerized service in the same monorepo but deployed separately.
-- Queue: provider-neutral `RunnerQueue` contract plus deterministic in-memory
-  reference adapter are checked in; choose the concrete hosted queue in an
-  architecture decision before any execution is enabled.
+- Runner: separately deployed Cloudflare Container, one fresh instance per
+  Run, with public Internet disabled and no Container credentials.
+- Queue: Cloudflare Queues for closed alpha, with a provider-neutral
+  `RunnerQueue` contract retained for future portability. The checked-in
+  adapter authenticates before execution, but no Queue, Runner Worker, image,
+  or Container is deployed yet.
 - Authentication: use the existing Sites/ChatGPT identity for the closed alpha;
   introduce independent passkey/email authentication before public beta so a
   ChatGPT account is not a global participation requirement.

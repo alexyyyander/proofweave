@@ -47,11 +47,12 @@ use at-least-once delivery; the runner and control plane use the request
 hash/idempotency key to make duplicate delivery safe.
 
 The reference in-memory adapter only tests delivery semantics. It does not
-provide durability, network isolation, or Lean execution. The runner-side
-`RunnerJobAuthenticator` verifies the issuer signature; a hosted adapter must
-also authenticate publisher and consumer transport, support removing a queued
-job, and leave a leased/running cancellation to the runner lifecycle. See
-[`services/lean-runner/queue.mjs`](../services/lean-runner/queue.mjs).
+provide durability, network isolation, or Lean execution. Closed alpha selects
+Cloudflare Queues for the hosted transport: `CloudflareRunnerQueue` uses a
+trusted producer binding, and `consumeCloudflareRunnerBatch` authenticates
+each envelope before a durable executor callback can see it. The Queue/DLQ and
+Container boundary are described in
+[`docs/runner-cloudflare-deployment.md`](runner-cloudflare-deployment.md).
 
 `RunnerOrchestrator` records the immutable Run projection before queue
 delivery. A transient queue-provider failure therefore leaves a queued Run that
@@ -74,7 +75,8 @@ acceptance, or a contribution receipt. Those remain separate attestations.
 ## Still required before execution
 
 - non-root container image with pinned Lean and Mathlib;
-- hosted queue adapter and control-plane signing-key deployment/rotation;
+- verified Runner Worker bundle transfer, result persistence, cancellation,
+  cleanup, and signing-key deployment/rotation;
 - no-network enforcement, archive limits, cgroup limits, cancellation, cleanup;
 - R2 bundle retrieval/upload and signed immutable result manifest;
 - production logging, quotas, abuse response, and external security review.

@@ -21,6 +21,19 @@ export {
 } from "./queue.mjs";
 
 export {
+  CloudflareRunnerQueue,
+  CloudflareRunnerQueueError,
+  cloudflareRunnerQueueMaxMessageBytes,
+  consumeCloudflareRunnerBatch,
+  isRunnerQueueMessageError,
+} from "./cloudflare-queues.mjs";
+
+export {
+  assertPinnedRunnerImage,
+  cloudflareLeanContainerPolicy,
+} from "./cloudflare-container-policy.mjs";
+
+export {
   RunnerDispatchError,
   RunnerOrchestrator,
 } from "./orchestrator.mjs";

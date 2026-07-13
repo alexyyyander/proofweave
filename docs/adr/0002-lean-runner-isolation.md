@@ -21,7 +21,8 @@ mathematical acceptance.
 ## Consequences
 
 - No web route, Worker, or browser process may invoke user-provided Lean code.
-- The queue/provider choice remains a Sprint 3 decision behind a
-  `RunnerQueue` interface.
+- Closed alpha uses Cloudflare Queues plus a separate Cloudflare Container
+  boundary; the provider-neutral `RunnerQueue` protocol is retained. See ADR
+  0006 for the deployment decision and remaining gates.
 - Runner images, fixtures, limits, cancellation, orphan cleanup, and emergency
   shutdown are security-critical work before public execution.

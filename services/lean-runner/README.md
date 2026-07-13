@@ -36,3 +36,11 @@ and terminal-result records. It verifies each result against an active,
 operator-provisioned `runner_keys` entry. It is an internal adapter only: no
 web route calls it yet, and it does not execute Lean or authenticate a runner
 service.
+
+For the closed-alpha hosting target, [`cloudflare-queues.mjs`](cloudflare-queues.mjs)
+implements a Cloudflare Queue producer plus authenticated per-message consumer
+handling. [`cloudflare-runner-container.mjs`](cloudflare-runner-container.mjs)
+is the deployment-side Container class with Internet disabled; it is not an
+execution implementation. The selected hosting boundary, non-deployable config
+template, and remaining gates are documented in
+[`docs/runner-cloudflare-deployment.md`](../../docs/runner-cloudflare-deployment.md).

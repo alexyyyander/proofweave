@@ -18,6 +18,7 @@ connected.
 - [Information-source map](docs/resource-map.md)
 - [Closed-alpha Agent delegation API](docs/agent-delegation-api.md)
 - [Lean runner contract](docs/runner-contract.md)
+- [Cloudflare runner deployment boundary](docs/runner-cloudflare-deployment.md)
 - [Artifact bundle contract](docs/artifact-bundle-contract.md)
 - [Artifact storage contract](docs/artifact-storage-contract.md)
 - [Run state contract](docs/run-state-contract.md)
@@ -56,7 +57,8 @@ The project does not use `wrangler.jsonc`.
   invariants and signed artifact protocol code.
 - `services/lean-runner/` contains the versioned protocol boundary for the
   separately deployed, isolated Lean executor and signed control-plane job
-  envelope. User Lean code must never run in the web Worker.
+  envelope, including the closed-alpha Cloudflare Queue adapter and no-Internet
+  Container policy. User Lean code must never run in the web Worker.
 - `services/receipts/` contains the internal-only D1 issuance boundary for
   signed Contribution Receipts. The web app has a separate public, read-only
   receipt lookup; it cannot issue or alter a receipt.
@@ -149,7 +151,8 @@ application secrets.
 - `npm run mcp:check`: syntax-check the local Codex MCP bridge
 - `npm run mcp:gateway:check`: test the remote gateway and identity protocol
   scaffolding
-- `npm run runner:check`: validate the isolated Lean runner protocol
+- `npm run runner:check`: validate the isolated Lean runner protocol and
+  Cloudflare Queue/Container policy adapter
 - `npm run runner:fixtures:check`: run the checked-in local Lean fixtures
 - `npm run artifact:check`: validate the immutable artifact bundle manifest
 - `npm run artifact:store:check`: exercise signed R2/D1 artifact staging
