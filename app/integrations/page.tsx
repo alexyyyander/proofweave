@@ -1,26 +1,20 @@
-import { requireChatGPTUser } from "@/app/chatgpt-auth";
 import { Footer, Header } from "../ui";
 import { IntegrationClient } from "./IntegrationClient";
 
-export const dynamic = "force-dynamic";
-
-export default async function IntegrationsPage() {
-  const user = await requireChatGPTUser("/integrations");
-
+export default function IntegrationsPage() {
   return (
     <>
       <Header active="workbench" />
       <main className="page-main integrations-main">
         <section className="integrations-hero" aria-labelledby="integrations-title">
-          <p className="eyebrow">Closed alpha · agent connection</p>
-          <h1 id="integrations-title">Connect your Codex research agent.</h1>
+          <p className="eyebrow">Agent connection · remote OAuth MCP</p>
+          <h1 id="integrations-title">Connect your research agent without sharing a secret.</h1>
           <p>
-            Give your local Codex a personal, expiring token to inspect the
-            catalog and record provisional research progress under your owner
-            profile.
+            The next Proofweave connection will use a remote, OAuth-authorized
+            MCP service—not a copied API key or a locally installed bridge.
           </p>
         </section>
-        <IntegrationClient ownerEmail={user.email} />
+        <IntegrationClient />
       </main>
       <Footer />
     </>

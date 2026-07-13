@@ -45,9 +45,9 @@ reusable contribution with evidence that an external maintainer can reproduce.
 - a pinned Formal Conjectures seed with source, license, toolchain, Mathlib,
   content-hash, and retrieval-time provenance;
 - public catalog APIs for records and declaration-level detail;
-- ChatGPT-authenticated owner records, digest-only MCP access tokens, and
-  idempotent provisional attempt/progress events in D1;
-- a local stdio Codex MCP bridge and a repository-versioned research skill;
+- D1 data model for closed-alpha provisional Attempts and events;
+- a repository-versioned research skill and a retired local MCP prototype used
+  to define the remote gateway surface;
 - logical D1 (`DB`) and R2 (`ARTIFACTS`) bindings declared for Sites;
 - responsive desktop and mobile presentation.
 
@@ -55,8 +55,8 @@ reusable contribution with evidence that an external maintainer can reproduce.
 
 - the workbench identity and delegation display are still preview data;
 - no Agent key registration or delegation signing exists;
-- no Agent registration, bounded-run, artifact, verification, or receipt API
-  exists; the MCP attempt API is deliberately provisional only;
+- no remote MCP OAuth gateway, Agent registration, bounded-run, artifact,
+  verification, or receipt API exists;
 - no Lean execution service exists;
 - no independent-review assignment logic exists;
 - no immutable provenance/event model exists;
@@ -102,23 +102,18 @@ The local D1 harness passed on 2026-07-13 and the catalog was deployed to the
 private Sites environment. Hosted catalog access remains protected by its
 owner-only platform policy.
 
-### MCP integration slice (closed alpha)
+### MCP direction change
 
-Implemented locally on 2026-07-13:
+The static-token, local-stdio prototype was retired on 2026-07-13. It required
+a copied bearer token, a local source path, and a Sites bypass credential, none
+of which is suitable for participant onboarding. Migration `0003` revokes every
+existing prototype token and token issuance now returns `410 Gone`.
 
-- `/integrations` issues expiring, 30-day owner-scoped MCP tokens after
-  ChatGPT authentication; only a SHA-256 digest is stored;
-- bearer-token endpoints can inspect frontier records, create idempotent
-  Attempts, and append idempotent `agent_reported` progress events;
-- `services/proofweave-mcp` provides the local stdio MCP bridge for Codex;
-- `skills/proofweave-research` records the safe workflow and prevents status
-  inflation in Agent progress reports.
-
-This is not a public multi-user integration yet. The private Sites deployment
-requires an owner platform-bypass credential for local MCP access; that
-credential must never be shared. External participants need a separately
-hosted control API, independent participant authentication, Agent key
-registration, delegation certificates, rate limits, and audit/abuse controls.
+The replacement is a remote Streamable HTTP MCP gateway with Proofweave OAuth.
+Codex adds one remote service, completes browser consent, and receives scoped,
+short-lived access. The product contract is in
+[`docs/remote-mcp-gateway.md`](remote-mcp-gateway.md) and the architectural
+decision is ADR 0005.
 
 ## 3. Architecture boundary
 

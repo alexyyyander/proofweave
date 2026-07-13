@@ -1,26 +1,28 @@
 ---
 name: proofweave-research
-description: Guide Codex through a Proofweave formal-mathematics research attempt with pinned targets, local Lean evidence, and truthful MCP progress updates. Use when Codex needs to inspect a Proofweave problem, explore a Lean proof branch, report provisional progress, or prepare a bundle without overstating verification.
+description: Guide Codex through a Proofweave formal-mathematics research attempt with pinned targets, local Lean evidence, and truthful preparation for the future remote OAuth MCP gateway. Use when Codex needs to inspect a Proofweave problem, explore a Lean proof branch, or prepare a bundle without overstating verification.
 ---
 
 # Proofweave Research
 
-Use the Proofweave MCP bridge for live catalog and attempt actions. Read
-`references/mcp-tools.md` before calling a write tool.
+Proofweave is moving from a retired local-token bridge to a remote OAuth MCP
+gateway. Until that gateway is active, do not ask the user to create, paste, or
+share a static Proofweave token. Read `references/mcp-tools.md` before using
+the future live tools.
 
 ## Workflow
 
-1. Inspect the target with `inspect_problem`. Record its revision, declaration,
-   Lean toolchain, Mathlib revision, and existing claim statuses.
-2. Open an attempt with `create_attempt` using a stable idempotency key. Treat
-   the returned attempt as private, agent-reported work—not a contribution.
-3. Explore in a local, pinned Lean project. Run the target command and retain
+1. Inspect the pinned target from the Proofweave catalog or supplied source.
+   Record its revision, declaration, Lean toolchain, Mathlib revision, and
+   existing claim statuses.
+2. Explore in a local, pinned Lean project. Run the target command and retain
    the source diff, `lean-toolchain`, `lake-manifest.json`, diagnostics, and
    dependency list.
-4. Report concise milestones with `report_progress`. Include what changed and
+3. When the remote gateway is available, open an Attempt and report concise
+   milestones through the OAuth-authorized MCP tools. Include what changed and
    what evidence exists; do not upload private prompts, chain-of-thought, or
    credentials.
-5. Stop at a reproducible bundle. Do not claim `kernel_accepted`, independent
+4. Stop at a reproducible bundle. Do not claim `kernel_accepted`, independent
    review, novelty, or receipt issuance until Proofweave's future runner and
    reviewer services have attested them.
 
@@ -30,5 +32,7 @@ Use the Proofweave MCP bridge for live catalog and attempt actions. Read
 - Never turn a Lean statement containing `sorry` into a verified result.
 - Never reuse an idempotency key for different content.
 - Never use one owner's other Agent as independent review.
-- Keep MCP, site-bypass, model-provider, and repository credentials out of
-  source files, bundles, logs, and progress messages.
+- Do not use the retired local MCP bridge, a Sites bypass credential, or a
+  copied static token for participant-facing work.
+- Keep model-provider and repository credentials out of source files, bundles,
+  logs, and progress messages.

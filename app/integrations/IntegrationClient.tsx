@@ -1,115 +1,60 @@
-"use client";
+import Link from "next/link";
 
-import { useMemo, useState } from "react";
+const plannedScopes = [
+  "Read the frontier catalog",
+  "Create your bounded Attempts",
+  "Record provisional progress",
+  "Read only your own Attempt history",
+];
 
-type IssuedToken = {
-  expiresAt: string;
-  name: string;
-  token: string;
-  tokenPrefix: string;
-};
-
-export function IntegrationClient({ ownerEmail }: { ownerEmail: string }) {
-  const [name, setName] = useState("Codex on this device");
-  const [issued, setIssued] = useState<IssuedToken | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const config = useMemo(() => {
-    if (!issued || typeof window === "undefined") return "";
-
-    return JSON.stringify(
-      {
-        mcpServers: {
-          proofweave: {
-            command: "node",
-            args: ["/absolute/path/to/proofweave/services/proofweave-mcp/index.mjs"],
-            env: {
-              PROOFWEAVE_BASE_URL: window.location.origin,
-              PROOFWEAVE_API_TOKEN: issued.token,
-            },
-          },
-        },
-      },
-      null,
-      2,
-    );
-  }, [issued]);
-
-  async function issueToken() {
-    setError(null);
-    setIsSubmitting(true);
-
-    try {
-      const response = await fetch("/api/v1/mcp/tokens", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ name, expiresInDays: 30 }),
-      });
-      const body = (await response.json()) as {
-        error?: { message?: string };
-        token?: IssuedToken;
-      };
-
-      if (!response.ok || !body.token) {
-        throw new Error(body.error?.message ?? "Could not issue an MCP token.");
-      }
-
-      setIssued(body.token);
-    } catch (cause) {
-      setError(cause instanceof Error ? cause.message : "Could not issue an MCP token.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  }
-
+export function IntegrationClient() {
   return (
-    <section className="integration-grid" aria-label="Codex MCP connection">
+    <section className="integration-grid" aria-label="Remote Codex connection">
       <article className="integration-card">
-        <span className="micro-label">01 / Personal access</span>
-        <h2>Issue a scoped token</h2>
+        <span className="micro-label">01 / Remote MCP</span>
+        <h2>Connect once. Authorize in your browser.</h2>
         <p>
-          This token belongs to <code>{ownerEmail}</code>. It can read the
-          public frontier catalog and write only your own provisional attempt
-          events.
+          Proofweave is moving to a remote MCP gateway. You will add one
+          service URL in Codex, then sign in to Proofweave and approve a
+          scoped connection—without copying a long-lived secret.
         </p>
-        <label className="integration-field">
-          <span>Connection name</span>
-          <input
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-            maxLength={64}
-            required
-          />
-        </label>
-        <button
-          className="button button-primary"
-          type="button"
-          onClick={issueToken}
-          disabled={isSubmitting || name.trim().length === 0}
-        >
-          {isSubmitting ? "Issuing token…" : "Create 30-day token"}
-        </button>
-        {error ? <p className="integration-error" role="alert">{error}</p> : null}
+        <div className="integration-endpoint">
+          <span>Planned service URL</span>
+          <code>https://mcp.proofweave.org/mcp</code>
+        </div>
+        <div className="integration-status">
+          <i aria-hidden="true" />Remote OAuth gateway in preparation
+        </div>
       </article>
 
       <article className="integration-card integration-card-dark">
-        <span className="micro-label">02 / Local Codex config</span>
-        <h2>Keep the token on your machine.</h2>
-        {issued ? (
-          <>
-            <p className="integration-success">Token created for {issued.name}. It expires {new Date(issued.expiresAt).toLocaleDateString()} and will not be displayed again after you leave this page.</p>
-            <pre className="integration-config"><code>{config}</code></pre>
-          </>
-        ) : (
-          <p>After creating a token, copy the generated configuration into your local Codex MCP settings. The bridge is included in this repository under <code>services/proofweave-mcp</code>.</p>
-        )}
+        <span className="micro-label">02 / Your authorization</span>
+        <h2>Your Agent gets only the work it needs.</h2>
+        <ol className="integration-flow">
+          <li><b>1</b><span>Add the Proofweave remote service in Codex.</span></li>
+          <li><b>2</b><span>Sign in and choose the personal Agent you are authorizing.</span></li>
+          <li><b>3</b><span>Approve a small set of research scopes and start a bounded Attempt.</span></li>
+        </ol>
+        <div className="integration-scopes" aria-label="Planned authorization scopes">
+          {plannedScopes.map((scope) => <span key={scope}>{scope}</span>)}
+        </div>
         <p className="integration-note">
-          Agent-reported progress is not Lean verification, an independent
-          review, or a contribution receipt. The current private hosted alpha
-          is owner-only; wider participant access needs a separate control API
-          deployment.
+          OAuth authorization is not Lean verification, independent review, or
+          a contribution receipt. Formal contribution claims still require a
+          valid delegation and separate evidence checks.
         </p>
+      </article>
+
+      <article className="integration-card integration-card-wide">
+        <span className="micro-label">Why this is changing</span>
+        <h2>Personal access should be revocable, scoped, and free of copied secrets.</h2>
+        <p>
+          The earlier local-token prototype has been retired. Existing temporary
+          tokens are invalidated in the next control-plane migration; the local
+          bridge remains an internal development reference while the remote
+          gateway is built.
+        </p>
+        <Link className="text-link" href="/how-it-works">See the verification model <span>→</span></Link>
       </article>
     </section>
   );

@@ -1,37 +1,19 @@
-# Proofweave MCP bridge
+# Proofweave local MCP bridge (retired prototype)
 
-This stdio MCP server lets a locally running Codex instance read Proofweave
-frontier targets and write provisional, owner-scoped research progress.
+This stdio bridge is retained as an internal development reference for the
+closed-alpha API shape. It is not a participant-facing integration and no new
+static bearer tokens can be issued.
 
 It does not run Lean, issue a verification claim, or issue a contribution
 receipt. Those actions remain reserved for the future isolated runner and
 independent review pipeline.
 
-## Configure Codex
+## Replacement
 
-Create an MCP token in the Proofweave integrations page, then configure a local
-MCP server with the following environment values:
-
-```json
-{
-  "mcpServers": {
-    "proofweave": {
-      "command": "node",
-      "args": ["/absolute/path/to/proofweave/services/proofweave-mcp/index.mjs"],
-      "env": {
-        "PROOFWEAVE_BASE_URL": "https://your-proofweave-control-api.example",
-        "PROOFWEAVE_API_TOKEN": "pw_mcp_…"
-      }
-    }
-  }
-}
-```
-
-The current private Sites deployment also needs a platform bypass token for a
-local owner integration. Set that token only in the owner's local environment
-as `PROOFWEAVE_SITE_BYPASS_TOKEN`; never share it with another participant.
-External participants require the planned separately hosted control API rather
-than a bypass credential.
+The participant-facing path is a remote Streamable HTTP server at the planned
+`https://mcp.proofweave.org/mcp` endpoint. Codex will authenticate through
+Proofweave OAuth, so users never handle a raw API token, local Node path, or
+Sites bypass credential. See [the remote gateway contract](../../docs/remote-mcp-gateway.md).
 
 ## Available tools
 
