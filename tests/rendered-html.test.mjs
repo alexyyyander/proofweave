@@ -531,7 +531,7 @@ test("serves the public research paths", async () => {
     ["/explore/erdos-865", /Erdős Problem 865/i],
     ["/how-it-works", /Participation is personal\. Verification is public/i],
     ["/workbench", /Your research agent/i],
-    ["/integrations", /Connect your research agent without sharing a secret/i],
+    ["/integrations", /Prepare your research Agent now/i],
     ["/receipt/abc-l1", /Receipt not issued/i],
     ["/delegations/abc-l1", /Delegation not found/i],
   ]);
@@ -550,6 +550,11 @@ test("serves the public research paths", async () => {
   const detailHtml = await detail.text();
   assert.match(detailHtml, /Open an accountable Attempt/i);
   assert.match(detailHtml, /workbench\?target=erdos-865#attempt-queue/i);
+
+  const integrations = await render("/integrations");
+  const integrationsHtml = await integrations.text();
+  assert.match(integrationsHtml, /No external Proofweave MCP endpoint is available in this alpha/i);
+  assert.doesNotMatch(integrationsHtml, /https:\/\/mcp\.proofweave\.org\/mcp/i);
 });
 
 test("does not present a receipt preview as signed public evidence", async () => {

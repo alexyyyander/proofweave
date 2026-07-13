@@ -238,6 +238,11 @@ The endpoint, scopes, identity boundary, and rollout gates are defined in the
 The external Worker preflight and shared D1/R2 deployment invariant are in the
 [MCP control-plane deployment guide](docs/mcp-control-plane-deployment.md).
 
+The `/integrations` page deliberately does not show a placeholder endpoint or
+local configuration while that external control plane is unavailable. It tells
+closed-alpha users what can be prepared in the workbench today and describes
+OAuth approval only as a post-deployment capability.
+
 The gateway records `agent_reported_only` activity only under the selected
 Agent's exact active `formalize` or `prove` certificate, can stage bounded
 immutable evidence only for that exact active Attempt, and can transport one

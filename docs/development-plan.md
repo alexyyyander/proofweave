@@ -109,6 +109,10 @@ reusable contribution with evidence that an external maintainer can reproduce.
   OAuth authorization for an already-created Person and selected delegated
   Agent; no independent participant identity, deployed MCP gateway control
   plane, bounded-run, artifact, verification, or receipt API exists;
+- the closed-alpha Agent connection page now reports that no external endpoint
+  is available rather than exposing a placeholder URL or configuration. It
+  directs users to the durable Person/Agent/delegation setup that is available
+  now and describes the scoped OAuth flow only as a post-deployment capability;
 - no Lean execution service exists;
 - no participant-facing fresh runner replay exists. Closed-alpha owners and
   assigned reviewers can inspect a controlled Bundle/Run metadata view and
