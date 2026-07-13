@@ -245,7 +245,10 @@ safe workspace reconstruction semantics.
 `RunnerWorkspaceTransfer` now defines the trusted Worker-to-private-Container
 handoff for v2: a fixed workspace declaration and three R2 streams carrying
 immutable hash/length metadata. The Container ingress, extraction, Lean image,
-process execution, and result persistence remain unimplemented and undeployed.
+process execution, and result persistence remain undeployed. A checked-in
+`RunnerWorkspaceIngress` state machine already validates the private
+declaration and the fixed artifact order; it still needs to be wrapped by the
+Container image's byte-stream, extraction, and process service.
 
 ### Run lifecycle progress
 

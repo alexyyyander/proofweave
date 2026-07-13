@@ -64,6 +64,11 @@ export function artifactBundleObjectReferences(bundle) {
   ]);
 }
 
+/** Normalize v2 workspace semantics for a private Runner Container ingress. */
+export function normalizeArtifactBundleV2Workspace(workspace) {
+  return normalizeWorkspace(workspace);
+}
+
 /**
  * The Agent signs this payload, not the full manifest: its signature and
  * payloadHash fields are deliberately excluded to avoid a circular hash.

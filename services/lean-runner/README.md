@@ -51,6 +51,9 @@ safe archive extraction, patch application, Lake manifest replacement, and the
 final workspace-tree hash. `runner-workspace-transfer.mjs` now provides the
 trusted Worker-side fixed-order R2 stream handoff that a future private
 Container ingress will verify before execution.
+`container-workspace-ingress.mjs` provides the matching state machine for that
+image service: every expected hash/length is frozen before bytes arrive, and
+the archive, patch, and Lake manifest must be verified in order.
 The selected hosting boundary, non-deployable config template, and remaining
 gates are documented in
 [`docs/runner-cloudflare-deployment.md`](../../docs/runner-cloudflare-deployment.md).

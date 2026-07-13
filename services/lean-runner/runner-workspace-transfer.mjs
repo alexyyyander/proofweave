@@ -1,7 +1,8 @@
 import { artifactBundleV2ProtocolVersion } from "../../packages/protocol/artifact-bundle.mjs";
 import { leanRunnerRequestHash } from "../../packages/protocol/lean-runner.mjs";
+import { runnerWorkspaceIngressProtocolVersion } from "./container-workspace-ingress.mjs";
 
-export const runnerWorkspaceTransferProtocolVersion = "pw-runner-workspace-transfer-v1";
+export const runnerWorkspaceTransferProtocolVersion = runnerWorkspaceIngressProtocolVersion;
 
 export class RunnerWorkspaceTransferError extends Error {
   constructor(message, options) {
@@ -32,6 +33,7 @@ export class RunnerWorkspaceTransfer {
 
     const baseUrl = `https://proofweave-runner.internal/v1/runs/${encodeURIComponent(run.id)}`;
     const workspace = resolvedBundle.bundle.workspace;
+    const transfers = transfersFor(resolvedBundle.objects);
     await expectAccepted(
       await container.fetch(jsonRequest(`${baseUrl}/workspace`, {
         protocolVersion: runnerWorkspaceTransferProtocolVersion,
@@ -39,12 +41,17 @@ export class RunnerWorkspaceTransfer {
         requestHash: run.requestHash,
         workspace,
         entryCommand: resolvedBundle.request.bundle.entryCommand,
+        artifacts: Object.fromEntries(transfers.map((transfer) => [transfer.id, {
+          contentHash: transfer.object.contentHash,
+          byteLength: transfer.object.byteLength,
+          contentType: transfer.object.contentType,
+        }])),
       })),
       "workspace declaration",
     );
 
     const uploaded = [];
-    for (const transfer of transfersFor(resolvedBundle.objects)) {
+    for (const transfer of transfers) {
       const object = await this.bucket.get(transfer.object.objectKey);
       if (!object) {
         throw new RunnerWorkspaceTransferError(`Runner workspace ${transfer.label} is missing from R2 at transfer time.`);

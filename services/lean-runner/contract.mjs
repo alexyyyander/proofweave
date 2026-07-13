@@ -57,6 +57,12 @@ export {
 } from "./runner-workspace-transfer.mjs";
 
 export {
+  RunnerWorkspaceIngress,
+  RunnerWorkspaceIngressError,
+  normalizeRunnerWorkspaceIngressDeclaration,
+} from "./container-workspace-ingress.mjs";
+
+export {
   RunnerDispatchError,
   RunnerOrchestrator,
 } from "./orchestrator.mjs";

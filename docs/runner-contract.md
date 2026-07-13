@@ -51,6 +51,13 @@ Container holds no D1, R2, or signing credentials and must make those private
 ingress steps idempotent, re-hash every stream, enforce v2 extraction/patch/tree
 rules, and reject any mismatch before Lean can run.
 
+`RunnerWorkspaceIngress` is the checked-in Container-side protocol state
+machine. It validates the declaration, freezes each role's expected hash and
+length, permits exactly `sourceArchive -> sourcePatch -> lakeManifest`, and
+refuses finalization until all three observed byte streams match. A future
+image HTTP service must use this state machine around actual streaming writes,
+safe extraction, and Lean invocation; no such image service is deployed yet.
+
 `createLeanRunnerRequest` derives command, Lean version, Mathlib revision,
 policy, and canonical `bundle.json` key from that manifest. The control plane
 cannot change those inputs after the manifest hash is fixed, and it rejects an
