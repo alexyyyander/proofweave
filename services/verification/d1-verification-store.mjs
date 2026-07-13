@@ -212,7 +212,10 @@ export class D1VerificationStore {
     }
     const evidence = await this.database.prepare("SELECT content_hash FROM artifact_objects WHERE content_hash = ?").bind(normalized.evidenceHash).first();
     if (!evidence) throw new VerificationStoreValidationError("Verification attestation evidence is not in the immutable artifact index.");
-    if (normalized.claimType === "bundle_reproducible") {
+    // A positive reproducibility claim needs this review Agent's terminal
+    // isolated replay. A conflict declaration or integrity flag must be
+    // recordable before execution so it can stop a misleading positive claim.
+    if (normalized.claimType === "bundle_reproducible" && normalized.decision === "attested") {
       await this.assertFreshReplayEvidence(assignment, normalized);
     }
 

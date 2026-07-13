@@ -107,7 +107,7 @@ function ReviewCard({ assignment, auditEvents, busy, canAttest, isAuditOpen, onT
         {assignment.status === "assigned" && <div className="review-action-buttons"><button className="button button-primary review-accept" type="button" disabled={busy} onClick={() => onTransition(assignment, "accept")}>{busy ? "Updating…" : "Accept review"}</button><button className="quiet-action" type="button" disabled={busy} onClick={() => onTransition(assignment, "decline")}>Decline</button></div>}
       </div>
     </div>
-    {assignment.status === "accepted" && <aside className="review-replay-guide"><div><span className="micro-label">Fresh replay · Agent action</span><strong>{assignment.freshReplayEvidenceCount > 0 ? `${assignment.freshReplayEvidenceCount} terminal replay evidence ${assignment.freshReplayEvidenceCount === 1 ? "object is" : "objects are"} ready` : assignment.freshReplayCount > 0 ? "Replay is running or awaiting terminal evidence" : "No fresh workspace replay yet"}</strong><p>In the connected review Agent, call <code>request_verification_replay</code> with this assignment ID and a new idempotency key, then poll <code>get_verification_replay</code>. After a terminal result, it returns the exact evidence hash required for a <code>bundle_reproducible</code> attestation; it never submits that attestation for you.</p></div><code>{assignment.id}</code></aside>}
+    {assignment.status === "accepted" && <aside className="review-replay-guide"><div><span className="micro-label">Fresh replay · Agent action</span><strong>{assignment.freshReplayEvidenceCount > 0 ? `${assignment.freshReplayEvidenceCount} terminal replay evidence ${assignment.freshReplayEvidenceCount === 1 ? "object is" : "objects are"} ready` : assignment.freshReplayCount > 0 ? "Replay is running or awaiting terminal evidence" : "No fresh workspace replay yet"}</strong><p>In the connected review Agent, call <code>request_verification_replay</code> with this assignment ID and a new idempotency key, then poll <code>get_verification_replay</code>. A positive <code>bundle_reproducible</code> attestation needs its terminal evidence hash. The Agent may instead submit an evidence-linked conflict declaration or integrity flag; neither is a positive verification or a receipt gate.</p></div><code>{assignment.id}</code></aside>}
     {isAuditOpen && <ol className="review-audit-trail" aria-label="Immutable review history">{(auditEvents ?? []).map((event) => <li key={event.id}><span>{event.sequence}</span><div><strong>{eventLabel(event.eventType)}</strong><small>{event.occurredAt}</small></div><code>{event.payloadHash}</code></li>)}</ol>}
   </article>;
 }
@@ -165,6 +165,18 @@ function completedStatusDetail(assignment: ReviewAssignmentSummary) {
     title: "A signed request for changes is recorded.",
     detail: `The review closed at ${completedAt} without attesting this claim. A revised Bundle requires a new immutable review assignment.`,
   };
+  if (decision === "conflict_declared") return {
+    label: "Conflict declared",
+    tone: "rejected",
+    title: "A signed conflict declaration is recorded.",
+    detail: `The reviewer declared a conflict at ${completedAt}. This assignment is closed and cannot satisfy a receipt gate; route any replacement review to another Person.`,
+  };
+  if (decision === "integrity_flagged") return {
+    label: "Integrity flag",
+    tone: "rejected",
+    title: "A signed evidence-integrity flag is recorded.",
+    detail: `The reviewer flagged the covered evidence at ${completedAt}. It is not a mathematical conclusion or an automatic retraction, but this assignment cannot satisfy a receipt gate and needs curator follow-up.`,
+  };
   return {
     label: "Decision unavailable",
     tone: "declined",
@@ -178,6 +190,8 @@ function decisionLabel(value: NonNullable<ReviewAssignmentSummary["attestation"]
     attested: "Attested",
     rejected: "Rejected",
     request_changes: "Changes requested",
+    conflict_declared: "Conflict declared",
+    integrity_flagged: "Integrity flag",
   }[value];
 }
 

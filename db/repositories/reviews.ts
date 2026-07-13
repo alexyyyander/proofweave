@@ -8,7 +8,12 @@ import {
 } from "@/services/verification/d1-verification-store.mjs";
 
 export type ReviewAssignmentStatus = "assigned" | "accepted" | "declined" | "completed";
-export type ReviewAttestationDecision = "attested" | "rejected" | "request_changes";
+export type ReviewAttestationDecision =
+  | "attested"
+  | "rejected"
+  | "request_changes"
+  | "conflict_declared"
+  | "integrity_flagged";
 
 export type ReviewAssignmentAttestation = Readonly<{
   id: string;

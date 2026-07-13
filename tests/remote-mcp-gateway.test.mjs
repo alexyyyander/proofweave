@@ -586,7 +586,7 @@ test("requires verification:write and passes only bound attribution context to t
   };
   const response = await gateway.fetch(mcpToolRequest(
     "submit_verification_attestation",
-    { attestation: remoteAttestationInput() },
+    { attestation: remoteAttestationInput({ decision: "integrity_flagged" }) },
     headers,
   ));
   assert.equal(response.status, 200);
@@ -597,6 +597,7 @@ test("requires verification:write and passes only bound attribution context to t
     scopes: ["verification:write"],
   });
   assert.equal(submitted.attestation.id, "attestation:mcp-test");
+  assert.equal(submitted.attestation.decision, "integrity_flagged");
 
   const ungrantedGateway = gatewayWith(
     {
@@ -744,7 +745,7 @@ function mcpToolRequest(name, args, headers) {
   });
 }
 
-function remoteAttestationInput() {
+function remoteAttestationInput(overrides = {}) {
   const hash = (character) => `sha256:${character.repeat(64)}`;
   return {
     protocolVersion: "pw-verification-attestation-v1",
@@ -761,5 +762,6 @@ function remoteAttestationInput() {
     attestedAt: "2026-07-13T00:00:00Z",
     payloadHash: hash("c"),
     signature: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    ...overrides,
   };
 }

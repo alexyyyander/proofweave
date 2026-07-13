@@ -1050,7 +1050,9 @@ export const verificationAttestations = sqliteTable(
       .notNull()
       .references(() => delegationCertificates.id, { onDelete: "restrict" }),
     verifierAgentPublicKey: text("verifier_agent_public_key").notNull(),
-    decision: text("decision", { enum: ["attested", "rejected", "request_changes"] }).notNull(),
+    decision: text("decision", {
+      enum: ["attested", "rejected", "request_changes", "conflict_declared", "integrity_flagged"],
+    }).notNull(),
     evidenceHash: text("evidence_hash")
       .notNull()
       .references(() => artifactObjects.contentHash, { onDelete: "restrict" }),

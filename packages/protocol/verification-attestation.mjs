@@ -8,7 +8,15 @@ export const verificationClaimTypes = [
   "project_accepted",
 ];
 
-export const verificationDecisions = ["attested", "rejected", "request_changes"];
+// Only `attested` is positive evidence for a receipt policy. Every other
+// signed decision closes the assignment without upgrading the covered claim.
+export const verificationDecisions = [
+  "attested",
+  "rejected",
+  "request_changes",
+  "conflict_declared",
+  "integrity_flagged",
+];
 export const verificationAttestationProtocolVersion = "pw-verification-attestation-v1";
 
 export class VerificationAttestationProtocolError extends Error {

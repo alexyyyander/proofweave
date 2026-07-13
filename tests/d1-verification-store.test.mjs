@@ -88,6 +88,60 @@ test("D1 Verification store enforces different-owner review and persists signed 
     .first();
   assert.equal(storedRequestChanges?.decision, "request_changes");
 
+  await store.assign({
+    id: "assignment:bob-integrity-flag",
+    artifactBundleManifestHash: sha("a"),
+    claimType: "bundle_reproducible",
+    verifierPersonId: "person:bob",
+    assignedAt: "2026-07-13T00:00:07Z",
+  });
+  await store.accept("assignment:bob-integrity-flag", "person:bob", "2026-07-13T00:00:08Z");
+  const integrityFlag = await store.recordAttestation(await signedAttestation({
+    id: "attestation:bob-integrity-flag",
+    assignmentId: "assignment:bob-integrity-flag",
+    claimType: "bundle_reproducible",
+    decision: "integrity_flagged",
+    attestedAt: "2026-07-13T00:00:09Z",
+  }));
+  assert.equal(integrityFlag.attestation.decision, "integrity_flagged");
+  assert.equal((await store.requireAssignment("assignment:bob-integrity-flag")).status, "completed");
+
+  await database.batch([
+    database
+      .prepare("INSERT INTO artifact_objects (content_hash, object_key, byte_length, content_type) VALUES (?, ?, ?, ?)")
+      .bind(sha("c"), `bundles/sha256/${"c".repeat(64)}/bundle.json`, 2, "application/json"),
+    database
+      .prepare(
+        `INSERT INTO artifact_bundles (
+          id, attempt_id, problem_revision_id, manifest_hash, manifest_key,
+          canonical_manifest, agent_event_id, agent_event_payload_hash
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      )
+      .bind(
+        "bundle:verification-positive-replay-required", "attempt:verification", "revision:verification", sha("c"),
+        `bundles/sha256/${"c".repeat(64)}/bundle.json`, "{}", "agent-event:verification-positive-replay-required", sha("d"),
+      ),
+  ]);
+  await store.assign({
+    id: "assignment:bob-positive-replay-required",
+    artifactBundleManifestHash: sha("c"),
+    claimType: "bundle_reproducible",
+    verifierPersonId: "person:bob",
+    assignedAt: "2026-07-13T00:00:10Z",
+  });
+  await store.accept("assignment:bob-positive-replay-required", "person:bob", "2026-07-13T00:00:11Z");
+  await assert.rejects(
+    store.recordAttestation(await signedAttestation({
+      id: "attestation:bob-positive-replay-required",
+      assignmentId: "assignment:bob-positive-replay-required",
+      claimType: "bundle_reproducible",
+      artifactBundleHash: sha("c"),
+      decision: "attested",
+      attestedAt: "2026-07-13T00:00:12Z",
+    })),
+    /bundle_reproducible requires terminal fresh replay evidence/,
+  );
+
   const events = await store.listEvents("assignment:bob-review");
   assert.deepEqual(events.map((event) => event.eventType), [
     "assignment_created",
@@ -215,6 +269,7 @@ test("D1 review capacity is shared by every review Agent owned by the same Perso
 async function signedAttestation({
   id = "attestation:bob-review",
   assignmentId = "assignment:bob-review",
+  artifactBundleHash = sha("a"),
   claimType = "kernel_accepted",
   decision = "attested",
   attestedAt = "2026-07-13T00:00:03Z",
@@ -223,7 +278,7 @@ async function signedAttestation({
     protocolVersion: "pw-verification-attestation-v1",
     id,
     assignmentId,
-    artifactBundleHash: sha("a"),
+    artifactBundleHash,
     claimType,
     verifierPersonId: "person:bob",
     verifierAgentId: "agent:bob-reviewer",

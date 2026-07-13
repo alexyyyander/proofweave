@@ -25,6 +25,17 @@ test("a review Agent attestation signs its complete evidence payload", async () 
     ...attestation,
     decision: "rejected",
   }), false);
+
+  const integrityFlag = { ...attestation, id: "attestation:fixture-integrity", decision: "integrity_flagged" };
+  integrityFlag.payloadHash = await verificationAttestationPayloadHash(integrityFlag);
+  integrityFlag.signature = base64Url(
+    await crypto.subtle.sign(
+      "Ed25519",
+      pair.privateKey,
+      new TextEncoder().encode(canonicalJson(verificationAttestationSigningPayload(integrityFlag))),
+    ),
+  );
+  assert.equal(await verifyVerificationAttestationSignature(integrityFlag), true);
 });
 
 test("same-owner verification is never independent", () => {

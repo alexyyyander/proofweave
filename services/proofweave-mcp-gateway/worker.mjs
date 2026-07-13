@@ -434,7 +434,7 @@ function createMcpServer(principal, store, rateLimiter) {
           verifierAgentId: z.string().min(1).max(240),
           delegationCertificateId: z.string().min(1).max(240),
           verifierAgentPublicKey: z.string().min(1).max(256),
-          decision: z.enum(["attested", "rejected", "request_changes"]),
+          decision: z.enum(["attested", "rejected", "request_changes", "conflict_declared", "integrity_flagged"]),
           evidenceHash: z.string().regex(/^sha256:[a-f0-9]{64}$/),
           attestedAt: z.string().min(1).max(64),
           payloadHash: z.string().regex(/^sha256:[a-f0-9]{64}$/),

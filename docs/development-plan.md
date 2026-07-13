@@ -91,7 +91,9 @@ reusable contribution with evidence that an external maintainer can reproduce.
   closed-alpha review queue for accept/decline decisions and assignment-bound
   fresh Runner replay provenance; a reviewer Agent can queue and inspect only
   its own fresh workspace replay of an accepted assignment, never the
-  submitter Agent's ordinary Run;
+  submitter Agent's ordinary Run; review Agents can also record an immutable,
+  evidence-linked conflict declaration or integrity flag that closes the task
+  without being treated as positive verification;
 - a canonical signed Contribution Receipt protocol and conservative issuance
   policy plus internal immutable D1 issuance, dependency-edge projection, and
   signed append-only lifecycle events with read-only verified
