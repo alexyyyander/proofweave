@@ -374,8 +374,12 @@ signed terminal result whose output hashes lack those rows.
 authenticated message, D1 preflight, named private-Container staging,
 execution, R2 output persistence, Worker-held signing, then D1 finalization.
 It has no public execution route and retries a running Run without recreating
-it. A deployed Worker/Container result round trip, provisioned R2 binding,
-cancellation forwarding, and an approved image are still required.
+it. While execution is in flight, it polls D1's durable cancellation state and
+forwards a cancellation only to the same named private Container; the
+Container converts it into Lean-process cancellation before the normal
+output/signing/D1 terminal path. A deployed Worker/Container result round
+trip, provisioned R2 binding, non-production cancellation lifecycle test, and
+an approved image are still required.
 
 The source now includes a digest-required Docker final-assembly recipe that
 copies only the protocol and private Container runtime, starts as a non-root

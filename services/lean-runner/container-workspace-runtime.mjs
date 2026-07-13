@@ -198,14 +198,21 @@ export function createContainerWorkspaceHttpHandler({ executor = null, ...runtim
       const route = parseIngressRoute(request);
       if (!route) return new Response("Not found", { status: 404 });
       if (route.kind === "declare") {
-        if (request.method !== "POST") return methodNotAllowed();
+        if (request.method !== "POST") return methodNotAllowed("POST");
         const value = JSON.parse(await readBoundedText(request.body, maxDeclarationBytes));
         if (!value || value.jobId !== route.runId) {
           throw new ContainerWorkspaceRuntimeError("Workspace declaration Run identity does not match its private URL.");
         }
         let session = sessions.get(route.runId);
         if (!session) {
-          session = { runtime: new ContainerWorkspaceRuntime(runtimeOptions), execution: null };
+          session = {
+            runtime: new ContainerWorkspaceRuntime(runtimeOptions),
+            execution: null,
+            executionRequestHash: null,
+            executionController: null,
+            cancellationRequested: false,
+            cleaned: false,
+          };
           sessions.set(route.runId, session);
         }
         await session.runtime.declare(value);
@@ -216,7 +223,7 @@ export function createContainerWorkspaceHttpHandler({ executor = null, ...runtim
         throw new ContainerWorkspaceRuntimeError("Container workspace declaration has not been accepted for this Run.");
       }
       if (route.kind === "artifact") {
-        if (request.method !== "PUT") return methodNotAllowed();
+        if (request.method !== "PUT") return methodNotAllowed("PUT");
         await session.runtime.receiveArtifact(route.artifactId, request.body, {
           role: request.headers.get("x-proofweave-artifact-role"),
           contentHash: request.headers.get("x-proofweave-content-sha256"),
@@ -226,7 +233,7 @@ export function createContainerWorkspaceHttpHandler({ executor = null, ...runtim
         return new Response(null, { status: 204 });
       }
       if (route.kind === "finalize") {
-        if (request.method !== "POST") return methodNotAllowed();
+        if (request.method !== "POST") return methodNotAllowed("POST");
         const finalized = await session.runtime.finalize();
         return jsonResponse({
           jobId: finalized.jobId,
@@ -236,44 +243,63 @@ export function createContainerWorkspaceHttpHandler({ executor = null, ...runtim
         });
       }
       if (route.kind === "execute") {
-        if (request.method !== "POST") return methodNotAllowed();
+        if (request.method !== "POST") return methodNotAllowed("POST");
         if (!executor || typeof executor.execute !== "function") {
           throw new ContainerWorkspaceRuntimeError("Container image has no configured Lean executor.");
         }
         const runnerRequest = JSON.parse(await readBoundedText(request.body, maxDeclarationBytes));
         const requestHash = await leanRunnerRequestHash(runnerRequest);
         if (session.execution) {
-          if (session.execution.result.requestHash !== requestHash) {
+          if (session.executionRequestHash !== requestHash) {
             throw new ContainerWorkspaceRuntimeError("Container Run cannot execute a different Runner request.");
           }
-          return executionResponse(session.execution);
+          return executionResponse(await session.execution);
         }
         const workspace = await session.runtime.finalize();
         if (workspace.requestHash !== requestHash) {
           throw new ContainerWorkspaceRuntimeError("Container Run request does not match its finalized private workspace.");
         }
-        session.execution = await executor.execute({ request: runnerRequest, workspace });
-        return executionResponse(session.execution);
+        const controller = new AbortController();
+        if (session.cancellationRequested) controller.abort();
+        session.executionController = controller;
+        session.executionRequestHash = requestHash;
+        session.execution = Promise.resolve(executor.execute({
+          request: runnerRequest,
+          workspace,
+          signal: controller.signal,
+        })).finally(() => { session.executionController = null; });
+        return executionResponse(await session.execution);
+      }
+      if (route.kind === "cancel") {
+        if (request.method !== "POST") return methodNotAllowed("POST");
+        // Cancellation is idempotent. If execution has not begun yet, the next
+        // execute call receives an already-aborted signal and produces the
+        // normal signed cancellation evidence without starting Lean.
+        session.cancellationRequested = true;
+        session.executionController?.abort();
+        return new Response(null, { status: 204 });
       }
       if (route.kind === "complete") {
-        if (request.method !== "POST") return methodNotAllowed();
+        if (request.method !== "POST") return methodNotAllowed("POST");
         if (!session.execution) {
           throw new ContainerWorkspaceRuntimeError("Container Run cannot complete before private execution evidence exists.");
         }
+        await session.execution;
         if (!session.cleaned) {
           await session.runtime.cleanup();
           session.cleaned = true;
         }
         return new Response(null, { status: 204 });
       }
-      if (request.method !== "GET") return methodNotAllowed();
+      if (request.method !== "GET") return methodNotAllowed("GET");
       if (!session.execution) {
         throw new ContainerWorkspaceRuntimeError("Container Run has no completed private execution result.");
       }
-      const bytes = route.kind === "stdout" ? session.execution.stdout : session.execution.stderr;
+      const execution = await session.execution;
+      const bytes = route.kind === "stdout" ? execution.stdout : execution.stderr;
       const contentHash = route.kind === "stdout"
-        ? session.execution.result.artifacts.stdoutHash
-        : session.execution.result.artifacts.stderrHash;
+        ? execution.result.artifacts.stdoutHash
+        : execution.result.artifacts.stderrHash;
       return new Response(bytes, {
         status: 200,
         headers: {
@@ -771,7 +797,7 @@ function assertArtifactMetadata(id, metadata, expected) {
 
 function parseIngressRoute(request) {
   const pathname = new URL(request.url).pathname;
-  const match = /^\/v1\/runs\/([^/]+)\/workspace(?:\/artifacts\/(source-archive|source-patch|lake-manifest)|\/(finalize|execute|complete)|\/result\/(stdout|stderr))?$/.exec(pathname);
+  const match = /^\/v1\/runs\/([^/]+)\/workspace(?:\/artifacts\/(source-archive|source-patch|lake-manifest)|\/(finalize|execute|cancel|complete)|\/result\/(stdout|stderr))?$/.exec(pathname);
   if (!match) return null;
   let runId;
   try {
@@ -824,8 +850,8 @@ function jsonResponse(value, status = 200) {
   });
 }
 
-function methodNotAllowed() {
-  return new Response(null, { status: 405, headers: { allow: "POST, PUT" } });
+function methodNotAllowed(allow) {
+  return new Response(null, { status: 405, headers: { allow } });
 }
 
 function workspaceChild(root, path) {

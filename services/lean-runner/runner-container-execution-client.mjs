@@ -64,6 +64,23 @@ export class RunnerContainerExecutionClient {
     }
     return bytes;
   }
+
+  /**
+   * Forward an already-durable control-plane cancellation to the named private
+   * Container. This never changes D1 state itself and cannot target another
+   * Run because the private URL is derived solely from the persisted Run id.
+   */
+  async cancel({ container, run }) {
+    if (!container || typeof container.fetch !== "function") {
+      throw new TypeError("RunnerContainerExecutionClient requires a private Container fetch stub.");
+    }
+    assertActiveRun(run);
+    const baseUrl = `https://proofweave-runner.internal/v1/runs/${encodeURIComponent(run.id)}`;
+    await expectSuccess(
+      await container.fetch(new Request(`${baseUrl}/workspace/cancel`, { method: "POST" })),
+      "Lean cancellation request",
+    );
+  }
 }
 
 async function expectSuccess(response, label) {
@@ -108,9 +125,7 @@ function normalizeExecutionPayload(value) {
 }
 
 function assertRunMatchesRequest(run, request, requestHash) {
-  if (!run || typeof run !== "object" || !["running", "cancel_requested"].includes(run.state)) {
-    throw new RunnerContainerExecutionClientError("Only an active persisted Run may invoke a private Container execution.");
-  }
+  assertActiveRun(run);
   if (
     run.id !== request.jobId ||
     run.attemptId !== request.attemptId ||
@@ -118,6 +133,15 @@ function assertRunMatchesRequest(run, request, requestHash) {
     run.artifactBundleHash !== request.bundle.manifestHash
   ) {
     throw new RunnerContainerExecutionClientError("Persisted Run does not match the immutable Runner request.");
+  }
+}
+
+function assertActiveRun(run) {
+  if (!run || typeof run !== "object" || !["running", "cancel_requested"].includes(run.state)) {
+    throw new RunnerContainerExecutionClientError("Only an active persisted Run may invoke a private Container execution.");
+  }
+  if (typeof run.id !== "string" || run.id.length === 0 || run.id.length > 240) {
+    throw new RunnerContainerExecutionClientError("Private Container execution requires a bounded Run id.");
   }
 }
 

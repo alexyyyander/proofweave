@@ -59,9 +59,11 @@ per-Run wall-time, output, archive, axiom, or cleanup enforcement.
    The checked-in Worker source wires authenticated Queue consumption,
    D1 preflight, exact named-Container staging, private execution, immutable
    stdout/stderr R2 persistence, Worker-held result signing, and D1 result
-   recording. Cancellation forwarding and non-production lifecycle testing
-   still remain deployment gates. Source-only runtime tests are not a deployed
-   Container service.
+   recording. It also polls the durable `cancel_requested` projection while an
+   execution is in flight and forwards that request to the same private
+   Container, which aborts Lean and returns normal cancellation evidence.
+   Non-production lifecycle testing of that delivery path remains a deployment
+   gate. Source-only runtime tests are not a deployed Container service.
 3. Provision the Queue, DLQ, D1/R2 bindings, control-plane signing secret, and
    Runner public issuer-key allowlist. The Container receives none of these
    secrets.
@@ -97,5 +99,8 @@ not in `wrangler.jsonc` or source control.
 Each delivery is authenticated before preflight. If a retry sees a Run already
 in `running`, the Worker resumes only its private execution/finalization phase
 against the same named Container; terminal and cancellation-requested Runs are
-not restarted. This is not cancellation forwarding: that endpoint and its
-non-production tests must be added before participant execution.
+not restarted. For an execution already in flight, the Worker polls its D1 Run
+projection and forwards a durable cancellation to that named Container only;
+the Container has no public cancellation endpoint. A deployed non-production
+test of cancellation delivery and process termination remains mandatory before
+participant execution.

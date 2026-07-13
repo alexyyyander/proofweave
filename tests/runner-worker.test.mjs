@@ -52,6 +52,7 @@ test("Runner queue execution stages once, executes in the named private Containe
         calls.push(["execute", input]);
         return { result: { jobId: running.id } };
       },
+      async cancel() { calls.push(["cancel"]); },
     },
     finalizer: {
       async finalize(input) {
@@ -84,7 +85,10 @@ test("Runner queue retry resumes a running Run but never restarts a cancellation
     },
     imageRegistry: { resolve(request) { imageCalls += 1; assert.equal(request, message.request); } },
     async getContainerForRun() { return { fetch() {} }; },
-    executionClient: { async execute() { executionCalls += 1; return { result: {} }; } },
+    executionClient: {
+      async execute() { executionCalls += 1; return { result: {} }; },
+      async cancel() { throw new Error("A non-cancelled retry must not forward cancellation."); },
+    },
     finalizer: { async finalize() { return { finalized: true }; } },
     now: () => new Date("2026-07-13T00:00:00Z"),
   });
@@ -102,6 +106,56 @@ test("Runner queue retry resumes a running Run but never restarts a cancellation
   await execute(message);
   assert.equal(imageCalls, 1);
   assert.equal(executionCalls, 1);
+});
+
+test("Runner forwards a durable cancellation exactly once to its named private Container", async () => {
+  const calls = [];
+  const privateContainer = { fetch() {} };
+  let releaseExecution;
+  const cancellationForwarded = new Promise((resolve) => { releaseExecution = resolve; });
+  const execute = createRunnerQueueExecution({
+    workspaceStager: {
+      async executeAuthenticatedMessage() {
+        return { action: "execute", run: running, message };
+      },
+    },
+    imageRegistry: { resolve() {} },
+    async getContainerForRun(runId) {
+      calls.push(["container", runId]);
+      return privateContainer;
+    },
+    executionClient: {
+      async execute(input) {
+        calls.push(["execute", input]);
+        await cancellationForwarded;
+        return { result: { jobId: running.id, status: "cancelled" } };
+      },
+      async cancel(input) {
+        calls.push(["cancel", input]);
+        releaseExecution();
+      },
+    },
+    finalizer: {
+      async finalize(input) {
+        calls.push(["finalize", input]);
+        return { run: { ...running, state: "cancelled" } };
+      },
+    },
+    isCancellationRequested: async (runId) => {
+      calls.push(["poll", runId]);
+      return true;
+    },
+    cancellationPollMilliseconds: 50,
+    sleep: async () => { throw new Error("Cancellation should be observed before sleeping."); },
+    now: () => new Date("2026-07-13T00:00:00Z"),
+  });
+
+  assert.deepEqual(await execute(message), { run: { ...running, state: "cancelled" } });
+  assert.deepEqual(calls.map(([name]) => name), ["container", "poll", "execute", "cancel", "finalize"]);
+  assert.equal(calls[3][1].run, running);
+  assert.equal(calls[3][1].container, privateContainer);
+  assert.equal(calls.filter(([name]) => name === "cancel").length, 1);
+  assert.equal(calls[4][1].runId, running.id);
 });
 
 test("Runner Worker rejects incomplete deployment configuration before touching a queue", async () => {

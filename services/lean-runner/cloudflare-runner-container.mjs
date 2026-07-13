@@ -31,7 +31,7 @@ export class LeanRunnerContainer extends Container {
 }
 
 function runIdFromPrivatePath(path) {
-  const match = /^\/v1\/runs\/([^/]+)\/workspace(?:\/artifacts\/(?:source-archive|source-patch|lake-manifest)|\/(?:finalize|execute|complete)|\/result\/(?:stdout|stderr))?$/.exec(path);
+  const match = /^\/v1\/runs\/([^/]+)\/workspace(?:\/artifacts\/(?:source-archive|source-patch|lake-manifest)|\/(?:finalize|execute|cancel|complete)|\/result\/(?:stdout|stderr))?$/.exec(path);
   if (!match) return null;
   try {
     const runId = decodeURIComponent(match[1]);

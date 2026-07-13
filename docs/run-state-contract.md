@@ -23,6 +23,16 @@ Every terminal runner-completed state retains a result hash. The state machine
 does not turn any terminal result into `kernel_accepted`, independent review,
 or a contribution receipt; those claims remain separate policy gates.
 
+For an active hosted Run, cancellation is a durable control-plane event first.
+While the named private Container is executing, the Queue Worker polls only
+that Run's D1 projection; on `cancel_requested` it sends one private
+`POST /workspace/cancel` request to the same named Container. The Container
+turns that request into an `AbortSignal` for its fixed Lean subprocess and
+returns ordinary unsigned `cancelled` evidence. The Worker then follows the
+normal immutable output persistence, signing, and D1 finalization order. No
+browser route, public Container route, or Container-held signing key exists in
+this path.
+
 Before a result reaches that state, the D1 store resolves its `runnerKeyId`
 against an active operator allowlist and verifies its detached Ed25519
 signature. The pure domain transition remains cryptography-agnostic so it can

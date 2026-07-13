@@ -89,6 +89,45 @@ test("Container Lean executor refuses to run without deployment-enforced isolati
   );
 });
 
+test("Container Lean executor returns normal unsigned cancellation evidence for an aborted private request", async () => {
+  const workspaceDirectory = await mkdtemp(join(tmpdir(), "proofweave-lean-cancel-"));
+  try {
+    await cp(fileURLToPath(new URL("core-success/", fixturesRoot)), workspaceDirectory, { recursive: true });
+    const request = fixtureRequest({ id: "core-cancelled" });
+    const controller = new AbortController();
+    controller.abort();
+    const execution = await new ContainerLeanExecutor({
+      networkIsolated: true,
+      resourceLimitsEnforced: true,
+    }).execute({
+      request,
+      workspace: {
+        jobId: request.jobId,
+        requestHash: await leanRunnerRequestHash(request),
+        workspaceDirectory,
+        treeHash: sha("f"),
+        entries: [{ path: "ProofweaveFixture.lean", mode: 0o644, contentHash: sha("e") }],
+        target: { declaration: "ProofweaveFixture.true_is_inhabited", statementHash: sha("d") },
+        policy: request.policy,
+        entryCommand: request.bundle.entryCommand,
+      },
+      signal: controller.signal,
+    });
+
+    assert.equal(execution.result.status, "cancelled");
+    assert.equal(execution.result.exitCode, 137);
+    assert.equal(execution.result.kernelStatus, "not_run");
+    assert.deepEqual(execution.result.checks, {
+      network: "passed",
+      noSorry: "passed",
+      allowedAxioms: "not_run",
+      leanBuild: "not_run",
+    });
+  } finally {
+    await rm(workspaceDirectory, { recursive: true, force: true });
+  }
+});
+
 function fixtureRequest({ id }) {
   return {
     protocolVersion: "pw-lean-runner-v1",

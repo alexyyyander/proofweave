@@ -94,6 +94,29 @@ test("Container workspace HTTP handler verifies private headers and reconstructs
   }
 });
 
+test("Container workspace HTTP handler accepts an idempotent private cancellation after declaration", async () => {
+  const root = await mkdtemp(join(tmpdir(), "proofweave-container-cancel-"));
+  try {
+    const fixture = await validWorkspaceFixture();
+    const handler = createContainerWorkspaceHttpHandler({
+      stagingRoot: join(root, "staging"),
+      workspaceRoot: join(root, "workspaces"),
+    });
+    const base = `https://proofweave-runner.internal/v1/runs/${encodeURIComponent(fixture.declaration.jobId)}`;
+    assert.equal((await handler(new Request(`${base}/workspace`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(fixture.declaration),
+    }))).status, 204);
+    assert.equal((await handler(new Request(`${base}/workspace/cancel`, { method: "POST" }))).status, 204);
+    assert.equal((await handler(new Request(`${base}/workspace/cancel`, { method: "POST" }))).status, 204);
+    assert.equal((await handler(new Request(`${base}/workspace/cancel`, { method: "GET" }))).status, 405);
+    await handler.cleanup();
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
 test("Container workspace runtime rejects archive links and patch paths before Lean can see a workspace", { skip: !hasNativeZstd }, async () => {
   const root = await mkdtemp(join(tmpdir(), "proofweave-container-reject-"));
   try {

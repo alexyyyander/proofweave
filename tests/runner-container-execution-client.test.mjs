@@ -65,6 +65,27 @@ test("Worker execution client rejects a substituted private output stream", asyn
   );
 });
 
+test("Worker cancellation client can target only the active Run's private Container route", async () => {
+  const calls = [];
+  const container = {
+    async fetch(requestObject) {
+      calls.push(`${requestObject.method} ${new URL(requestObject.url).pathname}`);
+      return new Response(null, { status: 204 });
+    },
+  };
+
+  await new RunnerContainerExecutionClient().cancel({
+    container,
+    run: fixtureRun(sha("c")),
+  });
+
+  assert.deepEqual(calls, ["POST /v1/runs/run%3Acontainer-client/workspace/cancel"]);
+  await assert.rejects(
+    new RunnerContainerExecutionClient().cancel({ container, run: { ...fixtureRun(sha("c")), state: "succeeded" } }),
+    RunnerContainerExecutionClientError,
+  );
+});
+
 function fixtureRequest() {
   return {
     protocolVersion: "pw-lean-runner-v1",

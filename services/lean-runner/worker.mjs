@@ -91,6 +91,7 @@ export async function createRunnerRuntime({
       getContainerForRun,
       executionClient: new RunnerContainerExecutionClient(),
       finalizer,
+      isCancellationRequested: async (runId) => (await runStore.find(runId))?.state === "cancel_requested",
       now,
     }),
   });
@@ -100,8 +101,9 @@ export async function createRunnerRuntime({
  * Complete one authenticated queue message. A retry that arrives after the
  * workspace has already reached `running` resumes only the private execution
  * and finalization phase; it never creates a second Run or replays a terminal
- * result. Cancellation forwarding remains an explicit future deployment gate,
- * so a cancel-requested Run is not started or resumed here.
+ * result. While a private execution is active, the Worker polls its durable
+ * control-plane state and forwards a cancellation request only to that same
+ * named Container. A cancel-requested Run is never restarted by a retry.
  */
 export function createRunnerQueueExecution({
   workspaceStager,
@@ -109,6 +111,9 @@ export function createRunnerQueueExecution({
   getContainerForRun,
   executionClient,
   finalizer,
+  isCancellationRequested = async () => false,
+  cancellationPollMilliseconds = 1_000,
+  sleep = wait,
   now = () => new Date(),
 }) {
   if (!workspaceStager || typeof workspaceStager.executeAuthenticatedMessage !== "function") {
@@ -120,12 +125,19 @@ export function createRunnerQueueExecution({
   if (typeof getContainerForRun !== "function") {
     throw new TypeError("Runner queue execution requires a private Container resolver.");
   }
-  if (!executionClient || typeof executionClient.execute !== "function") {
+  if (!executionClient || typeof executionClient.execute !== "function" || typeof executionClient.cancel !== "function") {
     throw new TypeError("Runner queue execution requires a private execution client.");
   }
   if (!finalizer || typeof finalizer.finalize !== "function") {
     throw new TypeError("Runner queue execution requires a result finalizer.");
   }
+  if (typeof isCancellationRequested !== "function") {
+    throw new TypeError("Runner queue execution requires a durable cancellation-state reader.");
+  }
+  if (!Number.isInteger(cancellationPollMilliseconds) || cancellationPollMilliseconds < 50 || cancellationPollMilliseconds > 60_000) {
+    throw new TypeError("Runner cancellation polling must be an integer between 50 and 60000 milliseconds.");
+  }
+  if (typeof sleep !== "function") throw new TypeError("Runner queue execution requires a sleep function.");
   if (typeof now !== "function") throw new TypeError("Runner queue execution requires a clock function.");
 
   return async function executeAuthenticatedMessage(message) {
@@ -141,22 +153,101 @@ export function createRunnerQueueExecution({
       // durably finalize. Re-validate the current image allowlist before using
       // the same named private Container to resume that one Run.
       imageRegistry.resolve(message.request);
-      return executeAndFinalize({ run: staged.run, message, getContainerForRun, executionClient, finalizer, now });
+      return executeAndFinalize({
+        run: staged.run,
+        message,
+        getContainerForRun,
+        executionClient,
+        finalizer,
+        isCancellationRequested,
+        cancellationPollMilliseconds,
+        sleep,
+        now,
+      });
     }
     if (staged.action !== "execute") {
       throw new RunnerWorkerConfigurationError("Runner workspace stager returned an unsupported action.");
     }
-    return executeAndFinalize({ run: staged.run, message: staged.message, getContainerForRun, executionClient, finalizer, now });
+    return executeAndFinalize({
+      run: staged.run,
+      message: staged.message,
+      getContainerForRun,
+      executionClient,
+      finalizer,
+      isCancellationRequested,
+      cancellationPollMilliseconds,
+      sleep,
+      now,
+    });
   };
 }
 
-async function executeAndFinalize({ run, message, getContainerForRun, executionClient, finalizer, now }) {
+async function executeAndFinalize({
+  run,
+  message,
+  getContainerForRun,
+  executionClient,
+  finalizer,
+  isCancellationRequested,
+  cancellationPollMilliseconds,
+  sleep,
+  now,
+}) {
   const container = await getContainerForRun(run.id);
   if (!container || typeof container.fetch !== "function") {
     throw new RunnerWorkerConfigurationError("Runner Container resolver returned no private fetch stub.");
   }
-  const execution = await executionClient.execute({ container, run, request: message.request });
+  const cancellation = createCancellationForwarder({
+    runId: run.id,
+    isCancellationRequested,
+    forward: () => executionClient.cancel({ container, run }),
+    pollMilliseconds: cancellationPollMilliseconds,
+    sleep,
+  });
+  let execution;
+  try {
+    execution = await executionClient.execute({ container, run, request: message.request });
+  } catch (cause) {
+    // Preserve the primary execution error. The Queue will retry it; an
+    // incidental failure while stopping the background state poll must not
+    // replace the evidence/transport failure that triggered the retry.
+    await cancellation.stop().catch(() => {});
+    throw cause;
+  }
+  // Surface a control-plane or private-cancel failure before finalizing a
+  // result. This leaves the Run active and makes Queue retry semantics safe.
+  await cancellation.stop();
   return finalizer.finalize({ runId: run.id, execution, receivedAt: timestamp(now) });
+}
+
+/**
+ * Poll D1 only while a Container execution is in flight. `stop()` interrupts
+ * the wait rather than delaying result finalization by one poll interval.
+ */
+function createCancellationForwarder({ runId, isCancellationRequested, forward, pollMilliseconds, sleep }) {
+  let stopped = false;
+  let wake;
+  const wakeSignal = new Promise((resolve) => { wake = resolve; });
+  const forwarding = (async () => {
+    while (!stopped) {
+      if (await isCancellationRequested(runId)) {
+        if (!stopped) await forward();
+        return;
+      }
+      await Promise.race([sleep(pollMilliseconds), wakeSignal]);
+    }
+  })();
+  return Object.freeze({
+    async stop() {
+      stopped = true;
+      wake();
+      await forwarding;
+    },
+  });
+}
+
+function wait(milliseconds) {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
 
 function getNamedContainer(env, runId) {
