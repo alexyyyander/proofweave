@@ -421,9 +421,12 @@ It has no public execution route and retries a running Run without recreating
 it. While execution is in flight, it polls D1's durable cancellation state and
 forwards a cancellation only to the same named private Container; the
 Container converts it into Lean-process cancellation before the normal
-output/signing/D1 terminal path. A deployed Worker/Container result round
-trip, provisioned R2 binding, non-production cancellation lifecycle test, and
-an approved image are still required.
+output/signing/D1 terminal path. `RUNNER_EXECUTION_ENABLED` is an explicit,
+default-disabled deployment gate: without the exact value `true`, the Worker
+fails before resolving a Bundle, staging a workspace, or starting a Container.
+A deployed Worker/Container result round trip, provisioned R2 binding,
+non-production cancellation lifecycle test, an approved image, and an
+operator-tested Queue/kill-switch procedure are still required.
 
 The source now includes a digest-required Docker final-assembly recipe that
 copies only the protocol and private Container runtime, starts as a non-root

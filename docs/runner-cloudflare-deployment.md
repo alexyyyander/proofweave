@@ -72,7 +72,13 @@ per-Run wall-time, output, archive, axiom, or cleanup enforcement.
 3. Provision the Queue, DLQ, D1/R2 bindings, control-plane signing secret, and
    Runner public issuer-key allowlist. The Container receives none of these
    secrets.
-4. Exercise duplicate delivery, process timeout, Container termination,
+4. Keep `RUNNER_EXECUTION_ENABLED` set to `false` until the non-production
+   exercises have passed. The Runner Worker fails closed before it reads a
+   Bundle, stages a workspace, or starts a Container unless that deployment
+   variable is exactly `true`. For an emergency stop, set it back to `false`
+   and disable the Queue consumer; investigate and reconcile the retained
+   Queue backlog before re-enabling it.
+5. Exercise duplicate delivery, process timeout, Container termination,
    cancellation, Queue retry/DLQ, output-limit, and no-network tests in a
    non-production account. Then obtain an external security review.
 
@@ -95,6 +101,7 @@ not in `wrangler.jsonc` or source control.
 
 | Value | Purpose |
 | --- | --- |
+| `RUNNER_EXECUTION_ENABLED` | Explicit deployment kill switch. It must be exactly `true` before any Queue delivery can reach a Container; keep it `false` until the deployment gates pass. |
 | `RUNNER_APPROVED_IMAGES_JSON` | Array of immutable image digest, Lean toolchain, and Mathlib revision entries accepted by `PinnedRunnerImageRegistry`. |
 | `RUNNER_CONTROL_PLANE_ISSUER_KEYS_JSON` | Array of active public Ed25519 keys allowed to sign `pw-runner-queue-v1` messages. |
 | `RUNNER_RESULT_KEY_ID` | Active D1-allowlisted Runner result-signing key ID. |

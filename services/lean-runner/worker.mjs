@@ -68,6 +68,7 @@ export async function createRunnerRuntime({
   now = () => new Date(),
   getContainerForRun = (runId) => getNamedContainer(env, runId),
 }) {
+  requireExecutionEnabled(env);
   requireEnvironment(env);
   if (typeof now !== "function") throw new TypeError("Lean Runner runtime requires a clock function.");
   if (typeof getContainerForRun !== "function") throw new TypeError("Lean Runner runtime requires a Container resolver.");
@@ -292,6 +293,16 @@ async function importRunnerPrivateKey(serialized) {
 function requireEnvironment(env) {
   if (!env || typeof env !== "object" || !env.DB || !env.ARTIFACTS || !env.LEAN_RUNNER_CONTAINER) {
     throw new RunnerWorkerConfigurationError("Runner Worker requires DB, ARTIFACTS, and LEAN_RUNNER_CONTAINER bindings.");
+  }
+}
+
+/**
+ * Deployment-owned kill switch. A valid Queue message and all other runtime
+ * bindings are insufficient until an operator explicitly enables execution.
+ */
+function requireExecutionEnabled(env) {
+  if (env?.RUNNER_EXECUTION_ENABLED !== "true") {
+    throw new RunnerWorkerConfigurationError("Runner Worker requires RUNNER_EXECUTION_ENABLED=true before it can execute Queue deliveries.");
   }
 }
 

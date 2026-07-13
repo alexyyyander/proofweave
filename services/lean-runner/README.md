@@ -3,6 +3,10 @@
 This directory is the deployment boundary for the future isolated Lean
 executor. It must run outside Sites and outside the MCP/identity Workers.
 
+`RUNNER_EXECUTION_ENABLED` is a deployment-owned emergency gate. It defaults
+to disabled in the Wrangler template and must be exactly `true` before the
+Worker can read a Queue delivery, resolve a Bundle, or start a Container.
+
 The checked-in implementation freezes the request/result protocol in
 [`contract.mjs`](contract.mjs). It accepts only content-addressed R2 bundles,
 a pinned image digest, `lake env lean` argument arrays, explicit CPU/memory/

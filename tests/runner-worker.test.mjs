@@ -3,7 +3,7 @@ import test from "node:test";
 import {
   createLeanRunnerWorker,
   createRunnerQueueExecution,
-  RunnerWorkerConfigurationError,
+  createRunnerRuntime,
 } from "../services/lean-runner/worker.mjs";
 
 const message = Object.freeze({
@@ -183,9 +183,23 @@ test("Runner forwards a durable cancellation exactly once to its named private C
 
 test("Runner Worker rejects incomplete deployment configuration before touching a queue", async () => {
   const worker = createLeanRunnerWorker();
+  const delivery = deliveryFor(message);
   await assert.rejects(
-    worker.queue({ messages: [] }, {}),
-    RunnerWorkerConfigurationError,
+    worker.queue({ messages: [delivery] }, { RUNNER_EXECUTION_ENABLED: "false" }),
+    /RUNNER_EXECUTION_ENABLED=true/,
+  );
+  assert.equal(delivery.acknowledged, false);
+  assert.equal(delivery.retryDelay, null);
+});
+
+test("Runner execution remains disabled until the deployment kill switch is explicitly enabled", async () => {
+  await assert.rejects(
+    createRunnerRuntime({ env: { RUNNER_EXECUTION_ENABLED: "false" } }),
+    /RUNNER_EXECUTION_ENABLED=true/,
+  );
+  await assert.rejects(
+    createRunnerRuntime({ env: { RUNNER_EXECUTION_ENABLED: "true" } }),
+    /requires DB, ARTIFACTS, and LEAN_RUNNER_CONTAINER bindings/,
   );
 });
 
