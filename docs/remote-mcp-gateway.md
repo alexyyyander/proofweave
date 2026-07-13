@@ -71,12 +71,14 @@ and never receives the MCP user's OAuth access token.
 
 The repository now contains Worker-compatible gateway and identity-service
 modules, protected-resource and authorization-server discovery, stateless
-Streamable HTTP request handling, and scope-gated tool definitions. Stateless
-handling deliberately verifies OAuth on every tool request rather than relying
-on memory local to one Worker isolate. They are protocol scaffolding, not a live
-participant integration: the checked-in identity
-adapter intentionally returns `503` for authorize, token, and registration,
-and the gateway store is unconfigured. No public OAuth URL is deployed yet.
+Streamable HTTP request handling, PKCE authorization-code and refresh-rotation
+protocol logic, a D1 credential-hash store, and scope-gated tool definitions.
+Stateless handling deliberately verifies OAuth on every tool request rather
+than relying on memory local to one Worker isolate. They are not a live
+participant integration: the checked-in identity adapter intentionally returns
+`503` for authorize, token, and registration until an independent browser
+session and consent resolver are configured, and the gateway store is not wired
+to a deployed control plane. No public OAuth URL is deployed yet.
 
 ## Rollout gates
 

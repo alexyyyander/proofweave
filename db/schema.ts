@@ -301,6 +301,132 @@ export const delegationRevocations = sqliteTable(
   ],
 );
 
+// An installation identifies the selected delegated Agent for one OAuth
+// client. The OAuth service checks the linked certificate on every grant and
+// resource request; a revoked certificate makes the installation unusable.
+export const agentInstallations = sqliteTable(
+  "agent_installations",
+  {
+    id: text("id").primaryKey(),
+    personId: text("person_id")
+      .notNull()
+      .references(() => persons.id, { onDelete: "restrict" }),
+    agentId: text("agent_id")
+      .notNull()
+      .references(() => agents.id, { onDelete: "restrict" }),
+    delegationCertificateId: text("delegation_certificate_id")
+      .notNull()
+      .references(() => delegationCertificates.id, { onDelete: "restrict" }),
+    clientId: text("client_id").notNull(),
+    label: text("label").notNull(),
+    status: text("status", { enum: ["active", "revoked"] })
+      .notNull()
+      .default("active"),
+    revokedAt: text("revoked_at"),
+    createdAt,
+  },
+  (table) => [
+    uniqueIndex("agent_installations_agent_client_certificate_idx").on(
+      table.agentId,
+      table.clientId,
+      table.delegationCertificateId,
+    ),
+    index("agent_installations_person_client_idx").on(table.personId, table.clientId),
+  ],
+);
+
+export const oauthClients = sqliteTable(
+  "oauth_clients",
+  {
+    id: text("id").primaryKey(),
+    clientName: text("client_name").notNull(),
+    redirectUrisJson: text("redirect_uris_json").notNull(),
+    tokenEndpointAuthMethod: text("token_endpoint_auth_method")
+      .notNull()
+      .default("none"),
+    createdAt,
+    revokedAt: text("revoked_at"),
+  },
+  (table) => [index("oauth_clients_active_idx").on(table.revokedAt)],
+);
+
+// OAuth credential tables keep only SHA-256 hashes. Codes and refresh tokens
+// are atomically consumed; access tokens can be explicitly revoked later.
+export const oauthAuthorizationCodes = sqliteTable(
+  "oauth_authorization_codes",
+  {
+    codeHash: text("code_hash").primaryKey(),
+    clientId: text("client_id")
+      .notNull()
+      .references(() => oauthClients.id, { onDelete: "restrict" }),
+    redirectUri: text("redirect_uri").notNull(),
+    resource: text("resource").notNull(),
+    personId: text("person_id")
+      .notNull()
+      .references(() => persons.id, { onDelete: "restrict" }),
+    agentInstallationId: text("agent_installation_id")
+      .notNull()
+      .references(() => agentInstallations.id, { onDelete: "restrict" }),
+    scopesJson: text("scopes_json").notNull(),
+    codeChallenge: text("code_challenge").notNull(),
+    issuedAt: text("issued_at").notNull(),
+    expiresAt: text("expires_at").notNull(),
+    consumedAt: text("consumed_at"),
+  },
+  (table) => [index("oauth_authorization_codes_expiry_idx").on(table.expiresAt)],
+);
+
+export const oauthAccessTokens = sqliteTable(
+  "oauth_access_tokens",
+  {
+    tokenHash: text("token_hash").primaryKey(),
+    clientId: text("client_id")
+      .notNull()
+      .references(() => oauthClients.id, { onDelete: "restrict" }),
+    resource: text("resource").notNull(),
+    personId: text("person_id")
+      .notNull()
+      .references(() => persons.id, { onDelete: "restrict" }),
+    agentInstallationId: text("agent_installation_id")
+      .notNull()
+      .references(() => agentInstallations.id, { onDelete: "restrict" }),
+    scopesJson: text("scopes_json").notNull(),
+    issuedAt: text("issued_at").notNull(),
+    expiresAt: text("expires_at").notNull(),
+    revokedAt: text("revoked_at"),
+  },
+  (table) => [
+    index("oauth_access_tokens_expiry_idx").on(table.expiresAt),
+    index("oauth_access_tokens_installation_idx").on(table.agentInstallationId, table.revokedAt),
+  ],
+);
+
+export const oauthRefreshTokens = sqliteTable(
+  "oauth_refresh_tokens",
+  {
+    tokenHash: text("token_hash").primaryKey(),
+    clientId: text("client_id")
+      .notNull()
+      .references(() => oauthClients.id, { onDelete: "restrict" }),
+    resource: text("resource").notNull(),
+    personId: text("person_id")
+      .notNull()
+      .references(() => persons.id, { onDelete: "restrict" }),
+    agentInstallationId: text("agent_installation_id")
+      .notNull()
+      .references(() => agentInstallations.id, { onDelete: "restrict" }),
+    scopesJson: text("scopes_json").notNull(),
+    issuedAt: text("issued_at").notNull(),
+    expiresAt: text("expires_at").notNull(),
+    consumedAt: text("consumed_at"),
+    revokedAt: text("revoked_at"),
+  },
+  (table) => [
+    index("oauth_refresh_tokens_expiry_idx").on(table.expiresAt),
+    index("oauth_refresh_tokens_installation_idx").on(table.agentInstallationId, table.revokedAt),
+  ],
+);
+
 // Raw MCP tokens never reach D1. Store only a SHA-256 digest and a short
 // non-secret prefix that lets an owner distinguish tokens in a future UI.
 export const mcpAccessTokens = sqliteTable(

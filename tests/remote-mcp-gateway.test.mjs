@@ -1,6 +1,10 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { createProofweaveIdentityService } from "../services/proofweave-identity/worker.mjs";
+import {
+  createOAuthAccessTokenAuthenticator,
+  createProofweaveOAuthProvider,
+} from "../services/proofweave-identity/oauth.mjs";
 import { createRemoteMcpGateway, remoteMcpScopes } from "../services/proofweave-mcp-gateway/worker.mjs";
 
 const resource = "https://mcp.example.test/mcp";
@@ -75,6 +79,111 @@ test("keeps identity endpoints unavailable until an identity adapter is connecte
   );
   assert.equal(response.status, 503);
   assert.equal((await response.json()).error, "temporarily_unavailable");
+});
+
+test("issues PKCE-bound OAuth tokens for one authorized Agent installation and rotates refresh tokens", async () => {
+  const store = new InMemoryOAuthStore();
+  const verifier = "proofweave-pkce-verifier-with-enough-entropy-1234567890";
+  const provider = createProofweaveOAuthProvider({
+    issuer,
+    resource,
+    store,
+    sessionResolver: {
+      async currentSession() { return { personId: "did:proofweave:alice" }; },
+      authorizationRequired() { return new Response("Sign in", { status: 401 }); },
+    },
+    consentResolver: {
+      async resolve() {
+        return {
+          approved: true,
+          agentInstallationId: "installation:alice-codex",
+          grantedScopes: ["catalog:read", "attempt:create"],
+        };
+      },
+    },
+  });
+  const identity = createProofweaveIdentityService({ issuer, identityProvider: provider });
+  const authorizeResponse = await identity.fetch(
+    new Request(
+      `${issuer}/authorize?response_type=code&client_id=codex-test&redirect_uri=${encodeURIComponent("https://codex.example.test/callback")}&resource=${encodeURIComponent(resource)}&scope=catalog%3Aread%20attempt%3Acreate&state=state-123&code_challenge=${await pkceChallenge(verifier)}&code_challenge_method=S256`,
+    ),
+  );
+  assert.equal(authorizeResponse.status, 302);
+  const callback = new URL(authorizeResponse.headers.get("location"));
+  assert.equal(callback.origin, "https://codex.example.test");
+  assert.equal(callback.searchParams.get("state"), "state-123");
+
+  const tokenResponse = await identity.fetch(tokenRequest({
+    grant_type: "authorization_code",
+    code: callback.searchParams.get("code"),
+    client_id: "codex-test",
+    redirect_uri: "https://codex.example.test/callback",
+    code_verifier: verifier,
+  }));
+  assert.equal(tokenResponse.status, 200);
+  const tokens = await tokenResponse.json();
+  assert.equal(tokens.token_type, "Bearer");
+  assert.equal(tokens.scope, "attempt:create catalog:read");
+
+  const principal = await createOAuthAccessTokenAuthenticator({ store, resource }).authenticate(
+    new Request(resource, { headers: { authorization: `Bearer ${tokens.access_token}` } }),
+  );
+  assert.deepEqual(principal, {
+    accessToken: tokens.access_token,
+    clientId: "codex-test",
+    personId: "did:proofweave:alice",
+    agentInstallationId: "installation:alice-codex",
+    scopes: ["attempt:create", "catalog:read"],
+    expiresAt: principal.expiresAt,
+  });
+
+  const refreshed = await identity.fetch(tokenRequest({
+    grant_type: "refresh_token",
+    refresh_token: tokens.refresh_token,
+    client_id: "codex-test",
+  }));
+  assert.equal(refreshed.status, 200);
+  const refreshedTokens = await refreshed.json();
+  assert.notEqual(refreshedTokens.refresh_token, tokens.refresh_token);
+
+  const replayedRefresh = await identity.fetch(tokenRequest({
+    grant_type: "refresh_token",
+    refresh_token: tokens.refresh_token,
+    client_id: "codex-test",
+  }));
+  assert.equal(replayedRefresh.status, 400);
+  assert.equal((await replayedRefresh.json()).error, "invalid_grant");
+});
+
+test("rejects an authorization code when its PKCE verifier is wrong", async () => {
+  const store = new InMemoryOAuthStore();
+  const provider = createProofweaveOAuthProvider({
+    issuer,
+    resource,
+    store,
+    sessionResolver: {
+      async currentSession() { return { personId: "did:proofweave:alice" }; },
+      authorizationRequired() { return new Response("Sign in", { status: 401 }); },
+    },
+    consentResolver: {
+      async resolve() { return { approved: true, agentInstallationId: "installation:alice-codex" }; },
+    },
+  });
+  const identity = createProofweaveIdentityService({ issuer, identityProvider: provider });
+  const verifier = "correct-verifier-1234567890";
+  const authorize = await identity.fetch(
+    new Request(`${issuer}/authorize?response_type=code&client_id=codex-test&redirect_uri=${encodeURIComponent("https://codex.example.test/callback")}&code_challenge=${await pkceChallenge(verifier)}&code_challenge_method=S256`),
+  );
+  const code = new URL(authorize.headers.get("location")).searchParams.get("code");
+  const response = await identity.fetch(tokenRequest({
+    grant_type: "authorization_code",
+    code,
+    client_id: "codex-test",
+    redirect_uri: "https://codex.example.test/callback",
+    code_verifier: "wrong-verifier-1234567890",
+  }));
+  assert.equal(response.status, 400);
+  assert.equal((await response.json()).error, "invalid_grant");
 });
 
 test("handles sequential authenticated MCP requests without retaining a session", async () => {
@@ -200,6 +309,81 @@ function unavailableIdentity() {
 
 function unavailable() {
   return Response.json({ error: "temporarily_unavailable" }, { status: 503 });
+}
+
+function tokenRequest(fields) {
+  return new Request(`${issuer}/token`, {
+    method: "POST",
+    body: new URLSearchParams(fields),
+  });
+}
+
+class InMemoryOAuthStore {
+  constructor() {
+    this.codes = new Map();
+    this.accessTokens = new Map();
+    this.refreshTokens = new Map();
+  }
+
+  async findClient(clientId, redirectUri) {
+    return clientId === "codex-test" && redirectUri === "https://codex.example.test/callback"
+      ? { id: clientId }
+      : null;
+  }
+
+  async findAgentInstallation(personId, installationId) {
+    return personId === "did:proofweave:alice" && installationId === "installation:alice-codex"
+      ? { id: installationId }
+      : null;
+  }
+
+  async issueAuthorizationCode(record) {
+    this.codes.set(record.codeHash, record);
+  }
+
+  async consumeAuthorizationCode(hash, now) {
+    const record = this.codes.get(hash);
+    this.codes.delete(hash);
+    return record && record.expiresAt > now ? record : null;
+  }
+
+  async issueTokenPair(record) {
+    const shared = {
+      clientId: record.clientId,
+      resource: record.resource,
+      personId: record.personId,
+      agentInstallationId: record.agentInstallationId,
+      scopes: record.scopes,
+      expiresAt: record.accessExpiresAt,
+      installationActive: true,
+    };
+    this.accessTokens.set(record.accessTokenHash, shared);
+    this.refreshTokens.set(record.refreshTokenHash, {
+      ...shared,
+      expiresAt: record.refreshExpiresAt,
+    });
+  }
+
+  async findAccessToken(hash, expectedResource, now) {
+    const record = this.accessTokens.get(hash);
+    return record && record.resource === expectedResource && record.expiresAt > now ? record : null;
+  }
+
+  async consumeRefreshToken(hash, now) {
+    const record = this.refreshTokens.get(hash);
+    this.refreshTokens.delete(hash);
+    return record && record.expiresAt > now ? record : null;
+  }
+
+  async registerClient(metadata) {
+    return { client_id: "registered-test-client", ...metadata };
+  }
+}
+
+async function pkceChallenge(verifier) {
+  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(verifier));
+  const binary = String.fromCharCode(...new Uint8Array(digest));
+  return btoa(binary).replaceAll("+", "-").replaceAll("/", "_").replaceAll("=", "");
 }
 
 function mcpToolRequest(name, args, headers) {

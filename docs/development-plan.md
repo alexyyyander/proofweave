@@ -48,6 +48,8 @@ reusable contribution with evidence that an external maintainer can reproduce.
 - D1 data model for closed-alpha provisional Attempts and events;
 - Ed25519 delegation protocol, immutable D1 records for Person keys, Agents,
   certificates, and revocations, plus closed-alpha owner APIs;
+- OAuth PKCE/token-rotation protocol and D1 credential-hash persistence for
+  Agent installations, authorization codes, access tokens, and refresh tokens;
 - a repository-versioned research skill, retired local MCP prototype, and
   Worker-compatible remote MCP/identity protocol scaffolding;
 - logical D1 (`DB`) and R2 (`ARTIFACTS`) bindings declared for Sites;
@@ -58,8 +60,9 @@ reusable contribution with evidence that an external maintainer can reproduce.
 - the workbench identity and delegation display are still preview data;
 - no public identity, key proof-of-possession challenge, or participant-facing
   delegation UI exists;
-- no production OAuth identity adapter, D1-backed MCP gateway store, Agent
-  registration, bounded-run, artifact, verification, or receipt API exists;
+- no production browser-session/consent adapter, deployed OAuth identity
+  service, deployed D1-backed MCP gateway store, bounded-run, artifact,
+  verification, or receipt API exists;
 - no Lean execution service exists;
 - no independent-review assignment logic exists;
 - no immutable provenance/event model exists;
@@ -120,6 +123,22 @@ until independent identity, consent, D1 store, token validation, revocation,
 and observability exist. The product contract is in
 [`docs/remote-mcp-gateway.md`](remote-mcp-gateway.md) and the architectural
 decision is ADR 0005.
+
+### OAuth control-plane progress
+
+Implemented locally on 2026-07-13:
+
+- OAuth authorization-code PKCE validation, redirect URI validation, code
+  single-use, resource-bound access tokens, and refresh-token rotation;
+- explicit Agent-installation lookup in each grant; the underlying owner,
+  Agent status, certificate validity, and revocation are checked before a token
+  can be issued or accepted by the resource server;
+- D1 tables and adapter that store only hashes of authorization codes, access
+  tokens, and refresh tokens, with atomic consumption in D1 integration tests.
+
+The default identity Worker is intentionally still unavailable: choosing and
+configuring independent login/session recovery plus a user-facing consent
+screen is a deployment decision, not something Sites can safely infer.
 
 ### Sprint 2 progress
 

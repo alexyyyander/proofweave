@@ -34,9 +34,9 @@ export function createProofweaveIdentityService({ issuer, identityProvider }) {
         });
       }
 
-      if (url.pathname === "/authorize") return identityProvider.authorize(request);
-      if (url.pathname === "/token") return identityProvider.token(request);
-      if (url.pathname === "/register") return identityProvider.register(request);
+      if (url.pathname === "/authorize") return oauthEndpoint(() => identityProvider.authorize(request));
+      if (url.pathname === "/token") return oauthEndpoint(() => identityProvider.token(request));
+      if (url.pathname === "/register") return oauthEndpoint(() => identityProvider.register(request));
 
       return new Response("Not found", { status: 404 });
     },
@@ -48,6 +48,23 @@ function json(value, status = 200, headers = {}) {
     status,
     headers: { "Cache-Control": "no-store", ...headers },
   });
+}
+
+async function oauthEndpoint(handler) {
+  try {
+    return await handler();
+  } catch (error) {
+    if (error && typeof error === "object" && "code" in error && "message" in error) {
+      return json(
+        { error: error.code, error_description: error.message },
+        400,
+      );
+    }
+    return json(
+      { error: "server_error", error_description: "Proofweave Identity could not complete the request." },
+      500,
+    );
+  }
 }
 
 export default createProofweaveIdentityService({

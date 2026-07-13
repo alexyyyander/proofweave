@@ -145,9 +145,10 @@ application secrets.
 
 Static MCP token issuance is retired. A remote Streamable HTTP gateway and
 separate OAuth identity-service scaffold are now in the repository; they are
-not deployed while the production identity, consent, token, and persistence
-layers are built. The endpoint, scopes, identity boundary, and rollout gates
-are defined in the
+not deployed while the independent browser identity and consent layers are
+configured. PKCE, token rotation, credential-hash persistence, and delegated
+Agent-installation checks are implemented locally. The endpoint, scopes,
+identity boundary, and rollout gates are defined in the
 [remote MCP gateway contract](docs/remote-mcp-gateway.md).
 
 The gateway will record `agent_reported_only` activity only. It cannot assert
