@@ -77,6 +77,9 @@ reusable contribution with evidence that an external maintainer can reproduce.
 - a paired MCP/Runner preflight that rejects D1/R2, Queue, pinned-image, or
   control-plane-key mismatch before separately deployed Workers can split the
   immutable control-plane record or accept incompatible Runner jobs;
+- a secret-provider-only key-pair verifier that proves the deployment
+  control-plane and Runner-result private JWKs match reviewed manifest public
+  keys without printing or persisting secret material;
 - operator-managed runner-key allowlist with signed-result verification before
   immutable Run evidence is accepted;
 - independent Person-level review assignments and review-delegated Agent

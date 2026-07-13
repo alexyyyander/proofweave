@@ -52,6 +52,21 @@ gateway-secret-provider responsibility. The pairwise check rejects any D1/R2,
 Queue, image, or control-plane key-ID mismatch. It does not create resources,
 enable Runner execution, or prove provider-level Container isolation.
 
+From the secret-provider execution environment only, run the additional
+private-key pairing check before deployment:
+
+```bash
+npm run alpha:deploy:keys:verify -- /secure/path/proofweave-mcp-alpha.json /secure/path/proofweave-runner-alpha.json
+```
+
+It requires `PROOFWEAVE_RUNNER_CONTROL_PLANE_PRIVATE_KEY_JWK` and
+`PROOFWEAVE_RUNNER_RESULT_PRIVATE_KEY_JWK` in that process environment. It
+signs fixed challenge payloads and verifies them against the manifest public
+keys, returning only their key IDs. It never accepts a key on the command line,
+writes a key to disk, or prints a JWK. This proves secret/manifest pairing, not
+that a result public key is already active in the externally provisioned D1
+`runner_keys` registry.
+
 After a deployment is reachable, run the credential-free live check against
 that same manifest:
 

@@ -21,7 +21,7 @@ export function validateLeanRunnerDeploymentManifest(value) {
   rejectExtraKeys(controlPlane, ["d1_database_name", "d1_database_id", "r2_bucket_name"], "control_plane");
   rejectExtraKeys(queue, ["name", "dead_letter_queue", "max_batch_size", "max_batch_timeout_seconds", "max_retries", "max_concurrency"], "queue");
   rejectExtraKeys(runner, ["worker_name", "container_class", "image", "retry_delay_seconds"], "runner");
-  rejectExtraKeys(keys, ["control_plane_issuer", "runner_result_key_id"], "keys");
+  rejectExtraKeys(keys, ["control_plane_issuer", "runner_result"], "keys");
 
   const normalizedControlPlane = Object.freeze({
     databaseName: requiredName(controlPlane.d1_database_name, "control_plane.d1_database_name"),
@@ -66,9 +66,15 @@ export function validateLeanRunnerDeploymentManifest(value) {
   // This validates the same identifier/public-key restrictions used before a
   // Queue delivery can be accepted by the Runner Worker.
   new RunnerJobAuthenticator({ issuerKeys: [normalizedIssuer] });
+  const runnerResult = object(keys.runner_result, "keys.runner_result");
+  rejectExtraKeys(runnerResult, ["id", "public_key"], "keys.runner_result");
+  const normalizedRunnerResult = Object.freeze({
+    id: requiredIdentifier(runnerResult.id, "keys.runner_result.id"),
+    publicKey: requiredPublicKey(runnerResult.public_key, "keys.runner_result.public_key"),
+  });
   const normalizedKeys = Object.freeze({
     controlPlaneIssuer: normalizedIssuer,
-    runnerResultKeyId: requiredIdentifier(keys.runner_result_key_id, "keys.runner_result_key_id"),
+    runnerResult: normalizedRunnerResult,
   });
 
   return Object.freeze({
@@ -102,7 +108,7 @@ export function renderLeanRunnerWranglerConfig(manifest) {
       RUNNER_EXECUTION_ENABLED: "false",
       RUNNER_APPROVED_IMAGES_JSON: JSON.stringify([config.runner.image]),
       RUNNER_CONTROL_PLANE_ISSUER_KEYS_JSON: JSON.stringify([config.keys.controlPlaneIssuer]),
-      RUNNER_RESULT_KEY_ID: config.keys.runnerResultKeyId,
+      RUNNER_RESULT_KEY_ID: config.keys.runnerResult.id,
       RUNNER_RETRY_DELAY_SECONDS: String(config.runner.retryDelaySeconds),
     },
     containers: [{

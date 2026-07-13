@@ -40,6 +40,14 @@ bucket name, plus the same Queue, one pinned Lean/Mathlib image, and
 control-plane key ID. It prevents independently valid Workers from splitting
 the immutable control-plane record or accepting incompatible Runner jobs.
 
+The Runner manifest also records the public key for the result-signing key ID.
+Run `alpha:deploy:keys:verify` from a secret-provider environment after the
+pairwise preflight. It cryptographically verifies both the gateway
+control-plane and Runner-result private JWKs against those reviewed public
+keys, without logging them. Separately verify that the exact result public key
+is active in the external D1 `runner_keys` registry; this repository cannot
+infer that deployed database state from a manifest.
+
 ## Required evidence before activation
 
 An operator must record all of the following in the deployment change record

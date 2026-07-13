@@ -50,7 +50,10 @@ const runnerManifest = {
       id: "control-plane:closed-alpha",
       public_key: "BAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ",
     },
-    runner_result_key_id: "runner:closed-alpha",
+    runner_result: {
+      id: "runner:closed-alpha",
+      public_key: "CAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg",
+    },
   },
 };
 

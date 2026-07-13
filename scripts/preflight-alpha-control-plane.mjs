@@ -34,7 +34,7 @@ export function validateAlphaControlPlaneTopology({ mcpManifest, runnerManifest 
       deadLetterQueue: runner.queue.deadLetterQueue,
       image: Object.freeze({ ...runner.runner.image }),
       controlPlaneKeyId: runner.keys.controlPlaneIssuer.id,
-      runnerResultKeyId: runner.keys.runnerResultKeyId,
+      runnerResultKeyId: runner.keys.runnerResult.id,
       defaultLimits: Object.freeze({ ...mcp.runner.defaultLimits }),
       executionEnabled: false,
     }),
