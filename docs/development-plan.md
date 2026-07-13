@@ -88,9 +88,11 @@ reusable contribution with evidence that an external maintainer can reproduce.
 
 ### Missing
 
-- the research branch, source diagnostics, event list, and bundle submission in
-  the workbench remain clearly labeled local previews; they are not a live
-  Agent execution or submission flow;
+- the research branch source diagnostics, progress event list, and bundle
+  submission in the workbench remain clearly labeled local previews. An
+  authenticated closed-alpha owner can now open a persistent provisional
+  Attempt under a valid delegated Agent authority, but that is neither an
+  Agent work event nor a submission flow;
 - no public identity, account recovery, cross-device key-rotation policy, or
   participant-ready delegation service exists; closed-alpha browser-held keys
   now have proof-of-possession and append-only revoke/replace controls, but
@@ -107,7 +109,10 @@ reusable contribution with evidence that an external maintainer can reproduce.
   identity and MCP gateway control plane are deployed;
 - no public contribution-receipt issuance endpoint or issuer-key rotation model
   exists;
-- no active remote CI provider or production observability exists.
+- no production observability exists. GitHub Actions now runs the complete
+  `npm run check` workflow for every push and pull request, but an enforced
+  required-check branch policy remains a repository/account administration
+  decision and is not asserted by this source repository.
 
 ### Sprint 0 progress
 
@@ -123,10 +128,11 @@ Implemented locally on 2026-07-13:
 - upgraded the welcome image to the platform image component to keep the lint
   baseline clean.
 
-The workflow is ready for a GitHub-connected mirror. The current
-Sites-controlled source repository does not execute GitHub Actions, so connect a
-GitHub remote or equivalent CI provider before marking the “CI blocks a broken
-build” exit criterion as achieved.
+The GitHub remote is connected and the `Check` workflow now runs `npm run
+check` for pushes and pull requests; the main-branch run for commit `04cf45f`
+passed on 2026-07-13. This proves remote CI execution, not that GitHub will
+reject a merge: making that workflow a required branch check remains a
+repository/account policy to configure separately.
 
 ### Sprint 1 progress
 
@@ -229,6 +235,14 @@ The new read-only record representation is part of the Sprint 2 inspection
 surface, not public participant onboarding: the current Sites deployment still
 has an owner-only access policy.
 
+The same closed-alpha workbench now has a D1-backed owner work queue. It
+derives the registered Agent and certificate binding server-side from an active
+`formalize` or `prove` delegation, and persists a bounded owner-created
+provisional Attempt for the selected public frontier target. It does not append
+research progress, accept an Agent signature, submit a Bundle, or award a
+verification or receipt; those actions remain on their separate authorization
+and evidence paths.
+
 ### Sprint 3 protocol progress
 
 Implemented locally on 2026-07-13:
@@ -244,10 +258,10 @@ Implemented locally on 2026-07-13:
 - an internal orchestrator that persists a single idempotent Run before queue
   delivery and preserves safe retry after a queue-provider failure.
 
-No Lean container, Runner Worker, source-transfer path, or user-code executor
-has been deployed. The Queue consumer adapter and D1/R2 resolver are control-
-plane gates, deliberately a prerequisite to—not a substitute for—the isolated
-runner described in
+No Lean container, Queue, source-transfer path, Runner Worker, or user-code
+executor has been deployed. The checked-in Queue consumer, D1/R2 resolver, and
+private Container composition are source-level control-plane gates, deliberately
+a prerequisite to—not a substitute for—the isolated runner described in
 [`docs/runner-contract.md`](runner-contract.md).
 
 ### Artifact bundle progress

@@ -112,6 +112,7 @@ export interface McpRepository {
       delegationCertificateId: string;
       delegationScope: "formalize" | "prove";
       idempotencyKey: string;
+      openedBy?: "agent" | "owner";
     },
   ): Promise<IdempotentResult<McpAttempt>>;
   appendProgress(
@@ -119,6 +120,7 @@ export interface McpRepository {
     input: { attemptId: string; message: string; progressPercent: number; idempotencyKey: string },
   ): Promise<IdempotentResult<McpAttemptEvent> | null>;
   findAttempt(personId: string, attemptId: string): Promise<McpAttempt | null>;
+  listAttempts(personId: string): Promise<McpAttempt[]>;
 }
 
 class D1McpRepository implements McpRepository {
@@ -181,6 +183,7 @@ class D1McpRepository implements McpRepository {
       delegationCertificateId: string;
       delegationScope: "formalize" | "prove";
       idempotencyKey: string;
+      openedBy?: "agent" | "owner";
     },
   ): Promise<IdempotentResult<McpAttempt>> {
     const now = new Date().toISOString();
@@ -250,7 +253,9 @@ class D1McpRepository implements McpRepository {
       .bind(
         `attempt-created:${row.id}`,
         row.id,
-        `Attempt opened by ${input.agentLabel} under delegated ${input.delegationScope} authority. This is agent-reported activity, not verification.`,
+        input.openedBy === "owner"
+          ? `Attempt opened by its owner for ${input.agentLabel} under delegated ${input.delegationScope} authority. This allocates a provisional workspace; it is not an Agent work event, Lean verification, or a contribution receipt.`
+          : `Attempt opened by ${input.agentLabel} under delegated ${input.delegationScope} authority. This is agent-reported activity, not verification.`,
         `attempt-created:${input.idempotencyKey}`,
         now,
       )
@@ -370,6 +375,19 @@ class D1McpRepository implements McpRepository {
       events: (events.results ?? []).map(toEvent),
       verificationState: agentReportedOnly,
     };
+  }
+
+  async listAttempts(personId: string): Promise<McpAttempt[]> {
+    const rows = await getD1()
+      .prepare(
+        `${attemptSelect}
+         WHERE attempt.person_id = ?
+         ORDER BY attempt.updated_at DESC, attempt.created_at DESC`,
+      )
+      .bind(personId)
+      .all<AttemptRow>();
+    const attempts = await Promise.all((rows.results ?? []).map((row: AttemptRow) => this.findAttempt(personId, row.id)));
+    return attempts.filter((attempt: McpAttempt | null): attempt is McpAttempt => attempt !== null);
   }
 
   private async upsertPerson(identity: McpIdentity): Promise<PersonRow> {

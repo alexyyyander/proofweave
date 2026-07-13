@@ -9,8 +9,11 @@ workbench. Signed-in alpha owners can register a device-held Person signing
 key, complete a one-time signed proof of possession, register an Agent public
 key, create a signed, revocable delegation certificate, and safely replace or
 emergency-revoke a lost device key. The
-research branch, remote connection, Lean execution, signed independent-review
-attestation submission, and production receipts are not participant-ready yet.
+workbench can also open an owner-created, D1-persisted provisional Attempt for
+an active `formalize` or `prove` delegation. That does not impersonate an Agent
+event or create a mathematical claim: the research branch's progress controls,
+remote connection, Lean execution, signed independent-review attestation
+submission, and production receipts are not participant-ready yet.
 
 Signed-in closed-alpha reviewers can use `/reviews` to inspect only the
 assignments addressed to their Person and record an immutable accept or decline
@@ -74,8 +77,8 @@ The project does not use `wrangler.jsonc`.
 
 ## Repository shape
 
-- `app/` contains public routes, catalog APIs, the closed-alpha delegation
-  workbench, and the remote-MCP connection experience.
+- `app/` contains public routes, catalog APIs, the closed-alpha delegation and
+  durable-Attempt workbench, and the remote-MCP connection experience.
 - `docs/` contains the product plan, information-source map, and architecture
   decisions.
 - `db/` contains the Drizzle schema, immutable catalog migrations, and D1

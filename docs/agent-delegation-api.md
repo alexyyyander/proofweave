@@ -82,6 +82,35 @@ created in another browser profile or on another device. An owner may register
 a new device key when needed; key rotation and recovery policy remain a public
 beta requirement.
 
+## Owner-created provisional Attempts
+
+`GET /api/me/attempts` returns only the signed-in Person's durable Attempt
+records. `POST /api/me/attempts` opens a bounded provisional workspace for a
+public frontier target. Its body is deliberately small:
+
+```json
+{
+  "problemSlug": "erdos-865",
+  "delegationCertificateId": "delegation-id",
+  "delegationScope": "formalize",
+  "idempotencyKey": "caller-generated-stable-key"
+}
+```
+
+The server derives the Person, registered active Agent, Agent label, and exact
+certificate binding; a caller cannot name another Person's Agent or turn a
+review-only delegation into work authority. The certificate must be currently
+valid and grant either `formalize` or `prove`. The target must be a record from
+the public frontier catalog.
+
+The resulting immutable creation event says that the **owner** opened the
+workspace. It is intentionally not an Agent-signed work event, Agent-reported
+progress, Lean result, independent review, Bundle submission, or Contribution
+Receipt. Later Agent progress must enter through the separately authorized
+remote Agent path and is checked again at event time. The closed-alpha
+`/workbench` renders this queue alongside its existing local previews; it does
+not turn those preview controls into a live research execution flow.
+
 ## Controlled evidence records
 
 `/evidence` is a separate, read-only closed-alpha inspection surface. It lists

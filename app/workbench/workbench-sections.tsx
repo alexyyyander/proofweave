@@ -8,7 +8,7 @@ function GateRow({ state, label, detail }: { state: GateState; label: string; de
   return <li className={`gate-row gate-${state}`}><span className="gate-icon" aria-hidden="true">{symbol}</span><span><strong>{label}</strong><small>{detail}</small></span><em>{stateText}</em></li>;
 }
 
-export function WorkbenchHero({ isRunning, profile, isAuthenticated, storageAvailable }: { isRunning: boolean; profile: DelegationProfile | null; isAuthenticated: boolean; storageAvailable: boolean }) {
+export function WorkbenchHero({ isRunning, profile, isAuthenticated, storageAvailable, attemptCount }: { isRunning: boolean; profile: DelegationProfile | null; isAuthenticated: boolean; storageAvailable: boolean; attemptCount: number }) {
   const active = activeDelegation(profile);
   const agent = active && profile?.agents.find((candidate) => candidate.id === active.agentId);
   const agentName = agent?.label ?? delegation.agentName;
@@ -16,7 +16,7 @@ export function WorkbenchHero({ isRunning, profile, isAuthenticated, storageAvai
   const ownerId = profile?.person.id ?? delegation.ownerId;
   const status = active ? "Delegation active" : profile ? "Agent setup required" : isAuthenticated ? "Delegation unavailable" : "Delegation preview";
   const activityLabel = active
-    ? isRunning ? "Ready for a bounded step" : "Agent paused"
+    ? attemptCount > 0 ? `${attemptCount} durable Attempt${attemptCount === 1 ? "" : "s"} open` : isRunning ? "Ready for a bounded step" : "Agent paused"
     : profile ? "No active delegation" : isAuthenticated && !storageAvailable ? "Control plane unavailable" : "Preview workspace";
   const marker = profile ? "Account connected" : isAuthenticated ? "Connection unavailable" : "Local preview";
 

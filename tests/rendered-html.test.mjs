@@ -1116,6 +1116,41 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
   assert.equal(attempt.delegationCertificateId, certificate.id);
   assert.equal(attempt.delegationScope, "prove");
 
+  const ownerAttemptResponse = await render("/api/me/attempts", {
+    method: "POST",
+    headers: { ...authHeaders, "content-type": "application/json" },
+    body: JSON.stringify({
+      problemSlug: "erdos-865",
+      delegationCertificateId: certificate.id,
+      delegationScope: "formalize",
+      idempotencyKey: "owner-opened-attempt-1",
+    }),
+  });
+  assert.equal(ownerAttemptResponse.status, 201);
+  const { attempt: ownerAttempt, note: ownerAttemptNote } = await ownerAttemptResponse.json();
+  assert.equal(ownerAttempt.agentId, "urn:pw:agent:delegation-test");
+  assert.equal(ownerAttempt.delegationScope, "formalize");
+  assert.match(ownerAttempt.events[0].message, /opened by its owner/i);
+  assert.match(ownerAttemptNote, /not an Agent-signed event/i);
+
+  const ownerAttemptsResponse = await render("/api/me/attempts", { headers: authHeaders });
+  assert.equal(ownerAttemptsResponse.status, 200);
+  const { attempts: ownerAttempts } = await ownerAttemptsResponse.json();
+  assert.equal(ownerAttempts.some((candidate) => candidate.id === ownerAttempt.id), true);
+  assert.equal(ownerAttempts.some((candidate) => candidate.id === attempt.id), true);
+
+  const otherAttemptsResponse = await render("/api/me/attempts", {
+    headers: { "oai-authenticated-user-email": "other-owner@example.test" },
+  });
+  assert.equal(otherAttemptsResponse.status, 200);
+  assert.deepEqual((await otherAttemptsResponse.json()).attempts, []);
+
+  const ownerWorkbench = await render("/workbench", { headers: authHeaders });
+  assert.equal(ownerWorkbench.status, 200);
+  const ownerWorkbenchHtml = await ownerWorkbench.text();
+  assert.match(ownerWorkbenchHtml, /Open a durable research Attempt/i);
+  assert.match(ownerWorkbenchHtml, /Attempt opened by its owner/i);
+
   const guardedKeyRevocation = await render(`/api/me/keys/${encodeURIComponent(key.id)}/revoke`, {
     method: "POST",
     headers: { ...authHeaders, "content-type": "application/json" },
