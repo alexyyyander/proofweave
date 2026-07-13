@@ -118,6 +118,15 @@ exception text. The console sink is non-blocking: logging failures cannot alter
 an MCP response. This is source-level audit instrumentation only, not a
 deployed retention, metrics, tracing, or alerting service.
 
+The deployable runtime also applies D1-atomic fixed-window request limits
+before each authorized tool operation. Limits are aggregated by Person rather
+than Agent installation, so creating extra Agents cannot increase an owner's
+transport capacity. The rate-limit table stores only a SHA-256 bucket digest,
+window, count, and update time; it never stores bearer tokens, raw Person IDs,
+Agent IDs, MCP arguments, or mathematical evidence. Counters are trimmed after
+the short closed-alpha retention window. This remains source-level protection
+until load-tested and paired with deployed abuse response and operator policy.
+
 The separate identity Worker remains deliberately unavailable by default. The
 private Sites alpha now has an alternative Worker-mounted authorization adapter:
 it uses the existing signed-in Sites session to locate the already-created
@@ -137,11 +146,11 @@ boundary.
 ## Rollout gates
 
 - independent email/passkey identity, account linking, and recovery;
-- production rate limits, consent/audit retention policy, and dynamic-client
-  registration policy;
+- load validation for the source-level quotas, consent/audit retention policy,
+  abuse response, and dynamic-client registration policy;
 - token audience and scope enforcement at the HTTP boundary;
 - Agent registration and delegation selection in the consent screen;
-- rate limits, deployed audit-log retention, revocation, abuse reporting,
-  metrics/tracing, and alerting;
+- rate-limit load/abuse validation, deployed audit-log retention, revocation,
+  abuse reporting, metrics/tracing, and alerting;
 - protocol fixtures for authorization failures, cross-owner access, and scope
   escalation.

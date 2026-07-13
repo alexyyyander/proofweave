@@ -41,7 +41,8 @@ configuration after validation. It does not deploy or create a resource.
 Only after the manifest passes and the following are true may an operator run
 Wrangler deployment commands:
 
-1. The same D1 has all repository migrations and the required owner records.
+1. The same D1 has all repository migrations (including the opaque remote-MCP
+   rate-limit buckets) and the required owner records.
 2. The R2 bucket is private and contains only content-addressed evidence.
 3. The external identity origin has a real browser session, consent, recovery,
    and audit policy; the current Sites bridge remains closed-alpha only.

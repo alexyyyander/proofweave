@@ -1,6 +1,7 @@
 import { D1ProofweaveOAuthStore } from "../proofweave-identity/d1-oauth-store.mjs";
 import { createOAuthAccessTokenAuthenticator } from "../proofweave-identity/oauth.mjs";
 import { D1RemoteMcpGatewayStore } from "./d1-gateway-store.mjs";
+import { D1RemoteMcpRateLimiter } from "./d1-rate-limiter.mjs";
 import { createRemoteMcpGateway } from "./worker.mjs";
 
 export class RemoteMcpRuntimeConfigurationError extends Error {
@@ -32,6 +33,7 @@ export function createD1RemoteMcpGatewayRuntime({ database, bucket, resource, is
     issuer,
     identityProvider: createOAuthAccessTokenAuthenticator({ store: oauthStore, resource }),
     store: new D1RemoteMcpGatewayStore({ database, bucket }),
+    rateLimiter: new D1RemoteMcpRateLimiter({ database }),
   });
 }
 

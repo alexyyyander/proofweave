@@ -2,6 +2,7 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
 import { z } from "zod";
 import { remoteMcpScopes } from "../../packages/protocol/remote-mcp-scopes.mjs";
+import { allowAllRemoteMcpRateLimiter } from "./d1-rate-limiter.mjs";
 
 export { remoteMcpScopes };
 
@@ -15,7 +16,11 @@ export function createRemoteMcpGateway({
   issuer,
   identityProvider,
   store,
+  rateLimiter = allowAllRemoteMcpRateLimiter,
 }) {
+  if (!rateLimiter || typeof rateLimiter.enforce !== "function") {
+    throw new TypeError("Proofweave MCP gateway requires a rate limiter with enforce().");
+  }
   const resourceUrl = new URL(resource);
   const resourceMetadataUrl = new URL(
     "/.well-known/oauth-protected-resource",
@@ -46,7 +51,7 @@ export function createRemoteMcpGateway({
           return unauthorized(resourceMetadataUrl);
         }
         if (!validPrincipal(principal)) return unauthorized(resourceMetadataUrl);
-        return handleMcpRequest(request, principal, store, resource);
+        return handleMcpRequest(request, principal, store, resource, rateLimiter);
       }
 
       return new Response("Not found", { status: 404 });
@@ -110,8 +115,8 @@ export class UnconfiguredGatewayStore {
   }
 }
 
-async function handleMcpRequest(request, principal, store, resource) {
-  const server = createMcpServer(operationPrincipal(principal), store);
+async function handleMcpRequest(request, principal, store, resource, rateLimiter) {
+  const server = createMcpServer(operationPrincipal(principal), store, rateLimiter);
   const transport = new WebStandardStreamableHTTPServerTransport({
     enableJsonResponse: true,
     sessionIdGenerator: undefined,
@@ -162,7 +167,7 @@ function nonEmptyString(value) {
   return typeof value === "string" && value.length > 0;
 }
 
-function createMcpServer(principal, store) {
+function createMcpServer(principal, store, rateLimiter) {
   const server = new McpServer(
     { name: "proofweave-mcp", version: "0.2.0" },
     {
@@ -178,7 +183,7 @@ function createMcpServer(principal, store) {
       description: "List source-pinned frontier records.",
       annotations: { readOnlyHint: true, destructiveHint: false },
     },
-    async () => toolResult(await withScope(principal, "catalog:read", () => store.listFrontier(principal))),
+    async () => toolResult(await withScope(principal, "catalog:read", "list_frontier_problems", rateLimiter, () => store.listFrontier(principal))),
   );
 
   server.registerTool(
@@ -189,7 +194,7 @@ function createMcpServer(principal, store) {
       inputSchema: { slug: z.string().min(1).max(120) },
       annotations: { readOnlyHint: true, destructiveHint: false },
     },
-    async ({ slug }) => toolResult(await withScope(principal, "catalog:read", () => store.inspectProblem(principal, slug))),
+    async ({ slug }) => toolResult(await withScope(principal, "catalog:read", "inspect_problem", rateLimiter, () => store.inspectProblem(principal, slug))),
   );
 
   server.registerTool(
@@ -204,7 +209,7 @@ function createMcpServer(principal, store) {
       },
       annotations: { readOnlyHint: false, destructiveHint: false },
     },
-    async (input) => toolResult(await withScope(principal, "attempt:create", () => store.createAttempt(principal, input))),
+    async (input) => toolResult(await withScope(principal, "attempt:create", "create_attempt", rateLimiter, () => store.createAttempt(principal, input))),
   );
 
   server.registerTool(
@@ -220,7 +225,7 @@ function createMcpServer(principal, store) {
       },
       annotations: { readOnlyHint: false, destructiveHint: false },
     },
-    async ({ attemptId, ...input }) => toolResult(await withScope(principal, "progress:write", () => store.reportProgress(principal, { attemptId, ...input }))),
+    async ({ attemptId, ...input }) => toolResult(await withScope(principal, "progress:write", "report_progress", rateLimiter, () => store.reportProgress(principal, { attemptId, ...input }))),
   );
 
   server.registerTool(
@@ -234,6 +239,8 @@ function createMcpServer(principal, store) {
     async ({ limit }) => toolResult(await withScope(
       principal,
       "attempt:read",
+      "list_attempts",
+      rateLimiter,
       () => store.listAttempts(principal, { limit }),
     )),
   );
@@ -246,7 +253,7 @@ function createMcpServer(principal, store) {
       inputSchema: { attemptId: z.string().min(1).max(160) },
       annotations: { readOnlyHint: true, destructiveHint: false },
     },
-    async ({ attemptId }) => toolResult(await withScope(principal, "attempt:read", () => store.getAttempt(principal, attemptId))),
+    async ({ attemptId }) => toolResult(await withScope(principal, "attempt:read", "get_attempt", rateLimiter, () => store.getAttempt(principal, attemptId))),
   );
 
   server.registerTool(
@@ -265,6 +272,8 @@ function createMcpServer(principal, store) {
     async (input) => toolResult(await withScope(
       principal,
       "artifact:write",
+      "put_artifact_object",
+      rateLimiter,
       () => store.putArtifactObject(principal, input),
     )),
   );
@@ -282,6 +291,8 @@ function createMcpServer(principal, store) {
     async ({ bundle }) => toolResult(await withScope(
       principal,
       "artifact:write",
+      "stage_artifact_bundle",
+      rateLimiter,
       () => store.stageArtifactBundle(principal, bundle),
     )),
   );
@@ -314,6 +325,8 @@ function createMcpServer(principal, store) {
     async ({ attestation }) => toolResult(await withScope(
       principal,
       "verification:write",
+      "submit_verification_attestation",
+      rateLimiter,
       () => store.submitVerificationAttestation(principal, attestation),
     )),
   );
@@ -321,12 +334,13 @@ function createMcpServer(principal, store) {
   return server;
 }
 
-async function withScope(principal, scope, action) {
+async function withScope(principal, scope, operation, rateLimiter, action) {
   if (!principal.scopes.includes(scope)) {
     return { error: `Missing OAuth scope: ${scope}.` };
   }
 
   try {
+    await rateLimiter.enforce(principal, operation);
     return { value: await action() };
   } catch (error) {
     return {

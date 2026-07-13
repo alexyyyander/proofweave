@@ -11,12 +11,13 @@ import { createRemoteMcpGateway, remoteMcpScopes } from "../services/proofweave-
 const resource = "https://mcp.example.test/mcp";
 const issuer = "https://auth.example.test";
 
-function gatewayWith(identityProvider, store = fixtureStore()) {
+function gatewayWith(identityProvider, store = fixtureStore(), { rateLimiter } = {}) {
   return createRemoteMcpGateway({
     resource,
     issuer,
     identityProvider,
     store,
+    ...(rateLimiter ? { rateLimiter } : {}),
   });
 }
 
@@ -313,6 +314,57 @@ test("passes only attribution context to the store and blocks an ungranted write
   const attemptedReadPayload = await attemptedRead.json();
   assert.equal(attemptedReadPayload.result.isError, true);
   assert.match(attemptedReadPayload.result.content[0].text, /Missing OAuth scope: attempt:read/);
+});
+
+test("applies request quotas only after OAuth scope authorization", async () => {
+  const operations = [];
+  const gateway = gatewayWith(
+    {
+      async authenticate() {
+        return {
+          accessToken: "secret-token-that-must-not-reach-the-limiter",
+          clientId: "https://codex.example.test/client.json",
+          personId: "did:proofweave:alice",
+          agentInstallationId: "agent-installation:alice-codex",
+          scopes: ["catalog:read"],
+        };
+      },
+      ...unavailableIdentity(),
+    },
+    fixtureStore(),
+    {
+      rateLimiter: {
+        async enforce(principal, operation) {
+          operations.push({ principal, operation });
+        },
+      },
+    },
+  );
+  const headers = {
+    Accept: "application/json, text/event-stream",
+    "Content-Type": "application/json",
+  };
+
+  const listed = await gateway.fetch(mcpToolRequest("list_frontier_problems", {}, headers));
+  assert.equal(listed.status, 200);
+  assert.deepEqual(operations, [{
+    principal: {
+      clientId: "https://codex.example.test/client.json",
+      personId: "did:proofweave:alice",
+      agentInstallationId: "agent-installation:alice-codex",
+      scopes: ["catalog:read"],
+    },
+    operation: "list_frontier_problems",
+  }]);
+
+  const blocked = await gateway.fetch(mcpToolRequest(
+    "create_attempt",
+    { problemSlug: "erdos-865", delegationScope: "prove", idempotencyKey: "attempt-rate-limit" },
+    headers,
+  ));
+  assert.equal(blocked.status, 200);
+  assert.equal((await blocked.json()).result.isError, true);
+  assert.equal(operations.length, 1);
 });
 
 test("requires verification:write and passes only bound attribution context to the attestation store", async () => {

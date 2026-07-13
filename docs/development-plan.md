@@ -86,6 +86,9 @@ reusable contribution with evidence that an external maintainer can reproduce.
   D1/R2-backed public catalog/Attempt/progress and immutable Bundle-staging
   store, review-scope-bound remote Agent attestation-admission adapter, and a
   fail-closed gateway deployment entrypoint;
+- D1-atomic remote-MCP transport quotas that aggregate every Agent
+  installation under its owner Person, retain only opaque, short-lived bucket
+  counters, and cover catalog, Attempt, progress, artifact, and review tools;
 - privacy-minimal structured audit boundaries for the external MCP Worker and
   Lean Runner Queue Worker: request path/status/duration and aggregate Queue
   delivery totals only, with no headers, query strings, tokens, bodies,
@@ -227,6 +230,10 @@ Implemented locally on 2026-07-13:
   and Lean Runner Queue batch. It generates an opaque correlation ID plus only path,
   method, status, duration, and aggregate delivery totals; the log sink cannot
   affect execution. This is not a deployed telemetry or alerting service; and
+- D1-atomic remote-MCP rate-limit buckets keyed by an opaque Person/operation
+  digest. A second Agent installation for the same Person cannot bypass a
+  quota; only ephemeral transport counters are retained. Load validation,
+  deployed retention, and an abuse-response process remain rollout work; and
 - a private Sites OAuth adapter with one-use D1 consent challenges, HttpOnly
   CSRF binding, capability-filtered Agent selection, and automatic revocable
   Agent-installation creation for a browser-approved MCP client; and

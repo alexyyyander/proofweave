@@ -561,6 +561,23 @@ export const oauthRefreshTokens = sqliteTable(
   ],
 );
 
+// Short-lived, opaque operational counters for the remote MCP resource. The
+// bucket key is a server-side SHA-256 digest of a Person and operation, never
+// a bearer credential or mathematical contribution record.
+export const remoteMcpRateLimitBuckets = sqliteTable(
+  "remote_mcp_rate_limit_buckets",
+  {
+    bucketKey: text("bucket_key").notNull(),
+    windowStartedAt: text("window_started_at").notNull(),
+    requestCount: integer("request_count").notNull(),
+    updatedAt: text("updated_at").notNull(),
+  },
+  (table) => [
+    primaryKey({ columns: [table.bucketKey, table.windowStartedAt] }),
+    index("remote_mcp_rate_limit_buckets_retention_idx").on(table.windowStartedAt),
+  ],
+);
+
 // Raw MCP tokens never reach D1. Store only a SHA-256 digest and a short
 // non-secret prefix that lets an owner distinguish tokens in a future UI.
 export const mcpAccessTokens = sqliteTable(

@@ -18,6 +18,12 @@ an Agent event or creates a mathematical claim: Lean execution, signed
 independent-review attestation submission, and production receipts are not
 participant-ready yet.
 
+The remote MCP runtime also has source-level D1-atomic request quotas. They
+aggregate by Person rather than Agent installation and retain only short-lived,
+opaque counter buckets, so multiplying Agents cannot increase a participant's
+transport capacity. They are abuse controls, not contribution scoring or a
+deployed public-service guarantee.
+
 The workbench presents durable Attempt records and their immutable activity
 timeline only. It never substitutes sample Lean source, local progress, or a
 fictional compiler result for Agent-supplied evidence. An authenticated owner
@@ -232,6 +238,8 @@ scopes without copying a secret or local config. PKCE, token rotation,
 credential-hash persistence, delegated Agent-installation checks, a D1-backed
 catalog/Attempt/progress store, bounded R2/D1 artifact-Bundle staging, and a
 review-scope-bound signed-attestation admission path are implemented locally.
+The deployable resource-server source additionally enforces Person-aggregated,
+opaque D1 request quotas before each authorized MCP tool operation.
 The workbench also lists each approved Agent/client connection and lets its
 owner revoke it; revocation immediately invalidates the installation at the
 resource-server boundary.

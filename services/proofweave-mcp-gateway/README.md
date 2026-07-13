@@ -34,6 +34,14 @@ store, D1/R2 gateway store, and stateless resource server from `DB`,
 invalid bindings fail closed with `503`; it never silently falls back to an
 in-memory store.
 
+The deployed runtime also uses a D1-atomic fixed-window limiter before every
+authorized tool operation. Its quotas aggregate on the Person root rather than
+on an Agent installation, so parallel Agents cannot multiply a participant's
+transport capacity. It stores only short-lived SHA-256 Person/operation bucket
+digests and counters—not bearer tokens, raw identities, MCP arguments, or
+contribution evidence. Load validation and abuse-response operations remain
+pre-deployment gates.
+
 Do not deploy this as a public participant service until a production identity
 adapter implements browser session handling, authorization-code PKCE, refresh
 rotation, consent, client registration policy, token audience validation, and
