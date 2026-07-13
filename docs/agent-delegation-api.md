@@ -108,8 +108,9 @@ workspace. It is intentionally not an Agent-signed work event, Agent-reported
 progress, Lean result, independent review, Bundle submission, or Contribution
 Receipt. Later Agent progress must enter through the separately authorized
 remote Agent path and is checked again at event time. The closed-alpha
-`/workbench` renders this queue alongside its existing local previews; it does
-not turn those preview controls into a live research execution flow.
+`/workbench` renders the queue from the same public catalog and accepts
+`/workbench?target=<slug>#attempt-queue` links from a problem-detail page; it
+does not turn those preview controls into a live research execution flow.
 
 ## Controlled evidence records
 

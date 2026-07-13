@@ -235,13 +235,14 @@ The new read-only record representation is part of the Sprint 2 inspection
 surface, not public participant onboarding: the current Sites deployment still
 has an owner-only access policy.
 
-The same closed-alpha workbench now has a D1-backed owner work queue. It
-derives the registered Agent and certificate binding server-side from an active
-`formalize` or `prove` delegation, and persists a bounded owner-created
-provisional Attempt for the selected public frontier target. It does not append
-research progress, accept an Agent signature, submit a Bundle, or award a
-verification or receipt; those actions remain on their separate authorization
-and evidence paths.
+The same closed-alpha workbench now has a D1-backed owner work queue. It lists
+only public, source-pinned frontier records, accepts a selected target from a
+problem-detail handoff, and derives the registered Agent and certificate
+binding server-side from an active `formalize` or `prove` delegation. It then
+persists a bounded owner-created provisional Attempt for that exact catalog
+revision. It does not append research progress, accept an Agent signature,
+submit a Bundle, or award a verification or receipt; those actions remain on
+their separate authorization and evidence paths.
 
 ### Sprint 3 protocol progress
 

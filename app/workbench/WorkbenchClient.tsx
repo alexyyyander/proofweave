@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { DelegationProfile } from "@/db/repositories/delegation";
+import type { CatalogProblem } from "@/packages/domain/catalog";
 import type { McpAttempt } from "@/packages/domain/mcp";
 import { boundedStepPreview, initialEvents } from "./workbench-data";
 import { DelegationSummary, FocusAction, ResearchWorkstation, SubmissionReadiness, WorkbenchHero } from "./workbench-sections";
@@ -11,12 +12,16 @@ import { AttemptQueue } from "./AttemptQueue";
 export function WorkbenchClient({
   profile,
   initialAttempts,
+  catalogTargets,
+  initialTargetSlug,
   isAuthenticated,
   signInPath,
   storageAvailable,
 }: {
   profile: DelegationProfile | null;
   initialAttempts: readonly McpAttempt[];
+  catalogTargets: readonly CatalogProblem[];
+  initialTargetSlug: string | null;
   isAuthenticated: boolean;
   signInPath: string;
   storageAvailable: boolean;
@@ -38,7 +43,7 @@ export function WorkbenchClient({
     <WorkbenchHero isRunning={isRunning} profile={profile} isAuthenticated={isAuthenticated} storageAvailable={storageAvailable} attemptCount={attempts.length} />
     <DelegationSummary profile={profile} />
     <DelegationSetup profile={profile} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} />
-    <AttemptQueue profile={profile} attempts={attempts} onAttemptCreated={(attempt) => setAttempts((current) => [attempt, ...current.filter((candidate) => candidate.id !== attempt.id)])} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} />
+    <AttemptQueue profile={profile} attempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={initialTargetSlug} onAttemptCreated={(attempt) => setAttempts((current) => [attempt, ...current.filter((candidate) => candidate.id !== attempt.id)])} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} />
     <FocusAction isRunning={isRunning} hasRunStep={hasRunStep} hasActiveDelegation={hasActiveDelegation} accountRequiresSetup={Boolean(profile && !hasActiveDelegation)} onRun={runBoundedStep} onToggleAgent={() => setIsRunning((value) => !value)} />
     <ResearchWorkstation events={events} />
     <SubmissionReadiness hasRunStep={hasRunStep} bundleStaged={bundleStaged} onStageBundle={() => setBundleStaged(true)} />

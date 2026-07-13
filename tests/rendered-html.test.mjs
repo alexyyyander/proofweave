@@ -544,6 +544,11 @@ test("serves the public research paths", async () => {
       `${pathname} should render its heading`,
     );
   }
+
+  const detail = await render("/explore/erdos-865");
+  const detailHtml = await detail.text();
+  assert.match(detailHtml, /Open an accountable Attempt/i);
+  assert.match(detailHtml, /workbench\?target=erdos-865#attempt-queue/i);
 });
 
 test("does not present a receipt preview as signed public evidence", async () => {
@@ -1133,6 +1138,21 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
   assert.match(ownerAttempt.events[0].message, /opened by its owner/i);
   assert.match(ownerAttemptNote, /not an Agent-signed event/i);
 
+  const selectedTargetAttemptResponse = await render("/api/me/attempts", {
+    method: "POST",
+    headers: { ...authHeaders, "content-type": "application/json" },
+    body: JSON.stringify({
+      problemSlug: "erdos-865-k2",
+      delegationCertificateId: certificate.id,
+      delegationScope: "prove",
+      idempotencyKey: "owner-opened-selected-target-attempt-1",
+    }),
+  });
+  assert.equal(selectedTargetAttemptResponse.status, 201);
+  const { attempt: selectedTargetAttempt } = await selectedTargetAttemptResponse.json();
+  assert.equal(selectedTargetAttempt.problemSlug, "erdos-865-k2");
+  assert.match(selectedTargetAttempt.problemTitle, /k = 2 variant/i);
+
   const ownerAttemptsResponse = await render("/api/me/attempts", { headers: authHeaders });
   assert.equal(ownerAttemptsResponse.status, 200);
   const { attempts: ownerAttempts } = await ownerAttemptsResponse.json();
@@ -1145,10 +1165,12 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
   assert.equal(otherAttemptsResponse.status, 200);
   assert.deepEqual((await otherAttemptsResponse.json()).attempts, []);
 
-  const ownerWorkbench = await render("/workbench", { headers: authHeaders });
+  const ownerWorkbench = await render("/workbench?target=erdos-865-k2", { headers: authHeaders });
   assert.equal(ownerWorkbench.status, 200);
   const ownerWorkbenchHtml = await ownerWorkbench.text();
   assert.match(ownerWorkbenchHtml, /Open a durable research Attempt/i);
+  assert.match(ownerWorkbenchHtml, /Selected catalog target/i);
+  assert.match(ownerWorkbenchHtml, /Erdős Problem 865: k = 2 variant/i);
   assert.match(ownerWorkbenchHtml, /Attempt opened by its owner/i);
 
   const guardedKeyRevocation = await render(`/api/me/keys/${encodeURIComponent(key.id)}/revoke`, {

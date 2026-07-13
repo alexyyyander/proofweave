@@ -3,14 +3,16 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import type { DelegationProfile, StoredDelegation } from "@/db/repositories/delegation";
+import type { CatalogProblem } from "@/packages/domain/catalog";
 import type { McpAttempt } from "@/packages/domain/mcp";
-import { workbenchTarget } from "./workbench-data";
 
 type AttemptScope = "formalize" | "prove";
 
 export function AttemptQueue({
   profile,
   attempts,
+  catalogTargets,
+  initialTargetSlug,
   onAttemptCreated,
   isAuthenticated,
   signInPath,
@@ -18,6 +20,8 @@ export function AttemptQueue({
 }: {
   profile: DelegationProfile | null;
   attempts: readonly McpAttempt[];
+  catalogTargets: readonly CatalogProblem[];
+  initialTargetSlug: string | null;
   onAttemptCreated: (attempt: McpAttempt) => void;
   isAuthenticated: boolean;
   signInPath: string;
@@ -25,17 +29,19 @@ export function AttemptQueue({
 }) {
   const eligibleDelegations = useMemo(() => activeWorkDelegations(profile), [profile]);
   const [requestedDelegationId, setRequestedDelegationId] = useState("");
+  const [requestedTargetSlug, setRequestedTargetSlug] = useState(initialTargetSlug ?? "");
   const [requestedScope, setRequestedScope] = useState<AttemptScope>("prove");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [notice, setNotice] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const selectedDelegation = eligibleDelegations.find((candidate) => candidate.id === requestedDelegationId) ?? eligibleDelegations[0] ?? null;
+  const selectedTarget = catalogTargets.find((candidate) => candidate.slug === requestedTargetSlug) ?? catalogTargets[0] ?? null;
   const allowedScopes = selectedDelegation ? workScopes(selectedDelegation) : [];
   const scope = allowedScopes.includes(requestedScope) ? requestedScope : allowedScopes[0] ?? "prove";
 
   const openAttempt = async () => {
-    if (!selectedDelegation || !allowedScopes.includes(scope) || isSubmitting) return;
+    if (!selectedDelegation || !selectedTarget || !allowedScopes.includes(scope) || isSubmitting) return;
     setIsSubmitting(true);
     setError(null);
     setNotice(null);
@@ -44,7 +50,7 @@ export function AttemptQueue({
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
-          problemSlug: workbenchTarget.slug,
+          problemSlug: selectedTarget.slug,
           delegationCertificateId: selectedDelegation.id,
           delegationScope: scope,
           idempotencyKey: `workbench-attempt:${crypto.randomUUID()}`,
@@ -69,7 +75,7 @@ export function AttemptQueue({
       <div>
         <p className="eyebrow">Closed-alpha work queue</p>
         <h2 id="attempt-queue-title">Open a durable research Attempt.</h2>
-        <p>Choose an active delegated Agent authority for the pinned target. This records only an owner-created workspace; subsequent Agent progress must arrive through a separately authorized Agent path.</p>
+        <p>Choose a source-pinned frontier target and active delegated Agent authority. This records only an owner-created workspace; subsequent Agent progress must arrive through a separately authorized Agent path.</p>
       </div>
       <span className="record-chip">Provisional only</span>
     </div>
@@ -81,13 +87,22 @@ export function AttemptQueue({
     </div> : !storageAvailable ? <div className="attempt-queue-empty">
       <strong>Work queue temporarily unavailable.</strong>
       <p>Delegated Attempt records require the closed-alpha D1 control plane. No local fallback is used for accountable work.</p>
+    </div> : catalogTargets.length === 0 ? <div className="attempt-queue-empty">
+      <strong>Frontier catalog temporarily unavailable.</strong>
+      <p>No durable Attempt can be opened until a source-pinned public frontier target is available. Proofweave does not fall back to preview data for accountable work.</p>
+      <Link className="quiet-action" href="/explore">Browse the public catalog</Link>
     </div> : eligibleDelegations.length === 0 ? <div className="attempt-queue-empty">
       <strong>Add a `formalize` or `prove` delegation first.</strong>
       <p>The preview workstation stays available, but Proofweave will not attribute a durable Attempt without active scoped authority.</p>
       <button className="quiet-action" type="button" onClick={() => document.getElementById("delegation-setup")?.scrollIntoView({ behavior: "smooth", block: "start" })}>Go to delegation setup</button>
     </div> : <div className="attempt-queue-grid">
       <form className="attempt-open-form" onSubmit={(event) => { event.preventDefault(); void openAttempt(); }}>
-        <div className="attempt-target"><span className="micro-label">Pinned target</span><strong>{workbenchTarget.title}</strong><code>{workbenchTarget.slug}</code><Link className="text-link" href={`/explore/${workbenchTarget.slug}`}>Inspect source target <span>→</span></Link></div>
+        <label>Public frontier target
+          <select value={selectedTarget?.slug ?? ""} onChange={(event) => { setRequestedTargetSlug(event.target.value); setNotice(null); setError(null); }} disabled={isSubmitting}>
+            {catalogTargets.map((candidate) => <option value={candidate.slug} key={candidate.id}>{candidate.title} · {candidate.domain}</option>)}
+          </select>
+        </label>
+        {selectedTarget && <div className="attempt-target"><span className="micro-label">Selected catalog target</span><strong>{selectedTarget.title}</strong><code>{selectedTarget.slug} · {selectedTarget.source.revisionTag} · {selectedTarget.source.leanToolchain}</code><p>{selectedTarget.informalStatement}</p><Link className="text-link" href={`/explore/${selectedTarget.slug}`}>Inspect pinned source target <span>→</span></Link></div>}
         <label>Delegated Agent authority
           <select value={selectedDelegation?.id ?? ""} onChange={(event) => setRequestedDelegationId(event.target.value)} disabled={isSubmitting}>
             {eligibleDelegations.map((candidate) => <option value={candidate.id} key={candidate.id}>{candidate.agentId} · {candidate.scopes.filter(isWorkScope).join(", ")}</option>)}
