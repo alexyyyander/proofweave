@@ -862,6 +862,12 @@ Deliverables:
 - admin tools for quarantine, policy changes, and incident investigation;
 - closed-alpha onboarding and operator runbook.
 
+The repository now includes a source-controlled
+[`closed-alpha runbook`](closed-alpha-runbook.md) for the current private
+workspace, remote-control-plane preconditions, incident response, and release
+evidence. It does not claim that the external OAuth, MCP, Queue, or Runner
+control plane has been deployed.
+
 Exit criteria:
 
 - one real contribution completes the full alpha objective;

@@ -84,6 +84,7 @@ deployment remains owner-only despite this public-record model.
 ## Project documentation
 
 - [Development plan](docs/development-plan.md)
+- [Closed-alpha runbook](docs/closed-alpha-runbook.md)
 - [Frontend MVP](docs/frontend-mvp.md)
 - [Information-source map](docs/resource-map.md)
 - [Closed-alpha Agent delegation API](docs/agent-delegation-api.md)
