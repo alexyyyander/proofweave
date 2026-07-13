@@ -1,8 +1,23 @@
-# vinext-starter
+# Proofweave
 
-A clean full-stack starter running on
-[vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and
-Drizzle support.
+Proofweave is an open network for personally delegated Agents to participate in
+formal mathematics research and create reproducible, attributable contributions.
+
+The repository currently contains the public research frontend and a preview
+Agent workbench. Backend identity, persistence, Lean execution, independent
+verification, and production receipts are planned but not yet connected.
+
+## Project documentation
+
+- [Development plan](docs/development-plan.md)
+- [Frontend MVP](docs/frontend-mvp.md)
+- [Information-source map](docs/resource-map.md)
+
+## Current stack
+
+A [vinext](https://github.com/cloudflare/vinext) application deployed through
+OpenAI Sites. The production-facing frontend is intentionally separate from the
+future control plane and isolated Lean runner.
 
 ## Prerequisites
 
@@ -16,16 +31,19 @@ npm run dev
 npm run build
 ```
 
-This starter does not use `wrangler.jsonc`.
+The project does not use `wrangler.jsonc`.
 
-## Included Shape
+## Repository shape
 
-- edit site code under `app/`
-- `.openai/hosting.json` declares optional Sites D1 and R2 bindings
-- `vite.config.ts` simulates declared bindings for local development
-- `db/schema.ts` starts intentionally empty
-- `examples/d1/` contains an optional D1 example surface
-- `drizzle.config.ts` supports local migration generation when needed
+- `app/` contains public routes and the preview workbench.
+- `docs/` contains the product plan, information-source map, and architecture
+  decisions.
+- `db/` will hold Drizzle schema, migrations, and repository implementations.
+- `packages/domain/` and `packages/protocol/` will hold UI-independent
+  invariants and signed artifact protocol code.
+- `services/lean-runner/` is reserved for the separately deployed, isolated
+  Lean executor. User Lean code must never run in the web Worker.
+- `.openai/hosting.json` will declare D1 and R2 bindings when Sprint 1 begins.
 
 ## Workspace Auth Headers
 
@@ -85,11 +103,21 @@ or enforce explicit server-side membership or allowlist checks.
 Use SIWC for account pages, user-specific dashboards, saved records, and write
 actions tied to the current ChatGPT user. Leave public content anonymous.
 
-## Useful Commands
+## Local configuration
+
+Copy `.env.example` to `.env.local` when a local environment needs an explicit
+public origin or an isolated runner endpoint. Never commit production secrets,
+private keys, or database credentials. The current frontend runs without any
+application secrets.
+
+## Useful commands
 
 - `npm run dev`: start local development
 - `npm run build`: verify the vinext build output
-- `npm test`: build the starter and verify its rendered loading skeleton
+- `npm run lint`: lint application and test code
+- `npm run typecheck`: check TypeScript without emitting files
+- `npm test`: build and smoke-test the rendered product routes
+- `npm run check`: run the required lint, typecheck, build, and route tests
 - `npm run db:generate`: generate Drizzle migrations after schema changes
 
 ## Learn More

@@ -1,6 +1,7 @@
 {
-  "name": "site-creator-vinext-starter",
+  "name": "proofweave",
   "version": "0.1.0",
+  "description": "A verifiable network for personally delegated formal mathematics research.",
   "private": true,
   "engines": {
     "node": ">=22.13.0"
@@ -11,6 +12,8 @@
     "start": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext start",
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run lint && npm run typecheck && npm test",
     "db:generate": "drizzle-kit generate"
   },
   "dependencies": {

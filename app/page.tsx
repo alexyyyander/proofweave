@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { projects } from "./lib/content";
 import { Footer, Header, StatusStack } from "./ui";
@@ -21,7 +22,14 @@ export default function Home() {
             </div>
           </div>
           <div className="hero-visual" aria-label="Delegation to verification chain">
-            <img src="/og.png" alt="A person delegates an agent that produces a verified mathematical contribution" />
+            <Image
+              src="/og.png"
+              alt="A person delegates an agent that produces a verified mathematical contribution"
+              width={1672}
+              height={941}
+              sizes="(max-width: 900px) 100vw, 50vw"
+              priority
+            />
             <div className="visual-caption">A contribution must carry its evidence.</div>
           </div>
         </section>
