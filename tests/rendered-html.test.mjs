@@ -20,6 +20,7 @@ import {
   contributionReceiptVerificationBundleHash,
   verifyContributionReceiptVerificationBundle,
 } from "../packages/protocol/contribution-receipt-verification-bundle.mjs";
+import { signLeanRunnerResult } from "../packages/protocol/lean-runner.mjs";
 import { D1VerificationStore } from "../services/verification/d1-verification-store.mjs";
 import { closedAlphaAttemptLimits } from "../packages/domain/attempt-policy.mjs";
 
@@ -1515,27 +1516,36 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
 
   // The owner workbench receives only a normalized, hash-bound Runner summary.
   // It must never receive the canonical signed-result payload or logs directly.
-  const runnerResult = {
-    protocolVersion: "pw-lean-runner-v1",
-    jobId: "run:workbench-owner-summary",
-    attemptId: ownerAttempt.id,
-    requestHash: `sha256:${"3".repeat(64)}`,
-    runnerKeyId: "runner-key:workbench-summary",
-    runnerSignature: base64Url(crypto.getRandomValues(new Uint8Array(64))),
-    status: "succeeded",
-    exitCode: 0,
-    startedAt: "2026-07-14T00:00:00Z",
-    finishedAt: "2026-07-14T00:00:01Z",
-    kernelStatus: "accepted",
-    checks: { network: "passed", noSorry: "passed", allowedAxioms: "passed", leanBuild: "passed" },
-    artifacts: {
-      manifestHash: provisionalManifestHash,
-      stdoutHash: `sha256:${"4".repeat(64)}`,
-      stderrHash: `sha256:${"5".repeat(64)}`,
+  const runnerKeys = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
+  const runnerPublicKey = base64Url(await crypto.subtle.exportKey("raw", runnerKeys.publicKey));
+  const runnerResult = await signLeanRunnerResult({
+    result: {
+      protocolVersion: "pw-lean-runner-v1",
+      jobId: "run:workbench-owner-summary",
+      attemptId: ownerAttempt.id,
+      requestHash: `sha256:${"3".repeat(64)}`,
+      runnerKeyId: "runner-key:workbench-summary",
+      status: "succeeded",
+      exitCode: 0,
+      startedAt: "2026-07-14T00:00:00Z",
+      finishedAt: "2026-07-14T00:00:01Z",
+      kernelStatus: "accepted",
+      checks: { network: "passed", noSorry: "passed", allowedAxioms: "passed", leanBuild: "passed" },
+      artifacts: {
+        manifestHash: provisionalManifestHash,
+        stdoutHash: `sha256:${"4".repeat(64)}`,
+        stderrHash: `sha256:${"5".repeat(64)}`,
+      },
     },
-  };
+    runnerPrivateKey: runnerKeys.privateKey,
+  });
   const runnerResultHash = await sha256Canonical(runnerResult);
   await database.batch([
+    database.prepare("INSERT INTO runner_keys (id, public_key, fingerprint) VALUES (?, ?, ?)").bind(
+      runnerResult.runnerKeyId,
+      runnerPublicKey,
+      `sha256:${"8".repeat(64)}`,
+    ),
     database.prepare(
       `INSERT INTO agent_attempt_events (
         id, attempt_id, sequence, event_type, message, idempotency_key, occurred_at

@@ -10,7 +10,10 @@ import {
 } from "@/packages/domain/mcp";
 import { closedAlphaAttemptLimits } from "@/packages/domain/attempt-policy.mjs";
 import { canonicalJson, sha256Canonical } from "@/packages/protocol/canonical-json.mjs";
-import { normalizeLeanRunnerResult } from "@/packages/protocol/lean-runner.mjs";
+import {
+  normalizeLeanRunnerResult,
+  verifyLeanRunnerResultSignature,
+} from "@/packages/protocol/lean-runner.mjs";
 import {
   DelegationAuthorizationError,
   DelegationNotFoundError,
@@ -110,6 +113,7 @@ type RunSummaryRow = {
   canonical_result: string | null;
   received_at: string | null;
 };
+type RunnerKeyRow = { public_key: string };
 
 const attemptSelect = `
   SELECT
@@ -546,6 +550,19 @@ async function toRunSummary(row: RunSummaryRow): Promise<McpRunSummary> {
       normalized.finishedAt !== row.finished_at
     ) {
       throw new Error("Runner summary projection mismatch");
+    }
+    const runnerKey = await getD1()
+      .prepare("SELECT public_key FROM runner_keys WHERE id = ?")
+      .bind(normalized.runnerKeyId)
+      .first<RunnerKeyRow>();
+    const signatureValid = runnerKey
+      ? await verifyLeanRunnerResultSignature({
+        result: normalized,
+        runnerPublicKey: runnerKey.public_key,
+      })
+      : false;
+    if (!signatureValid) {
+      throw new Error("Runner summary signature was not verifiable");
     }
     return Object.freeze({
       ...base,
