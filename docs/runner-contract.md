@@ -1,0 +1,38 @@
+# Lean runner contract v1
+
+The Lean runner is a hostile-code boundary. The web application and remote MCP
+Gateway submit a content-addressed bundle reference; neither executes supplied
+Lean code directly.
+
+## Request
+
+`pw-lean-runner-v1` requests include:
+
+- one Attempt and idempotency key;
+- R2 bundle key plus bundle and manifest SHA-256 hashes;
+- an argument-array entrypoint beginning `lake env lean` (never a shell string);
+- a pinned container image digest, Lean toolchain, and Mathlib revision;
+- explicit CPU, wall-time, memory, disk, and output limits;
+- `network: "disabled"`, a mandatory `sorry` audit, and an explicit axiom allowlist.
+
+The canonical request hash is the idempotency/evidence binding. A worker must
+reject traversal keys, shell metacharacters, unpinned images, or a request that
+enables network access.
+
+## Result
+
+Results record bounded infrastructure evidence only: outcome, exit code, timing,
+network/no-`sorry`/axiom/build checks, kernel status, and content hashes for the
+manifest, stdout, and stderr. A `succeeded` result requires zero exit code,
+accepted kernel status, and every check passed.
+
+A runner result is still not statement-fidelity review, novelty review, project
+acceptance, or a contribution receipt. Those remain separate attestations.
+
+## Still required before execution
+
+- non-root container image with pinned Lean and Mathlib;
+- isolated queue and signed job authentication;
+- no-network enforcement, archive limits, cgroup limits, cancellation, cleanup;
+- R2 bundle retrieval/upload and signed immutable result manifest;
+- production logging, quotas, abuse response, and external security review.

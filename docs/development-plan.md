@@ -50,6 +50,8 @@ reusable contribution with evidence that an external maintainer can reproduce.
   certificates, and revocations, plus closed-alpha owner APIs;
 - OAuth PKCE/token-rotation protocol and D1 credential-hash persistence for
   Agent installations, authorization codes, access tokens, and refresh tokens;
+- Lean runner v1 protocol for content-addressed bundles, pinned environments,
+  resource limits, disabled networking, and evidence-bound results;
 - a repository-versioned research skill, retired local MCP prototype, and
   Worker-compatible remote MCP/identity protocol scaffolding;
 - logical D1 (`DB`) and R2 (`ARTIFACTS`) bindings declared for Sites;
@@ -160,6 +162,22 @@ active-delegation status while preserving its existing preview research branch.
 It still needs a safe Person-key lifecycle and real Agent setup flow before the
 preview branch can submit work. The API contract and current limitation are
 documented in [`docs/agent-delegation-api.md`](agent-delegation-api.md).
+
+### Sprint 3 protocol progress
+
+Implemented locally on 2026-07-13:
+
+- versioned Lean runner request/result schemas and canonical request hashes;
+- enforced content-addressed bundle keys, pinned image digests, `lake env lean`
+  argument arrays, disabled networking, bounded resources, `sorry` audit, and
+  axiom policy;
+- result invariants that distinguish runner/kernel evidence from human
+  statement, novelty, project, and receipt claims.
+
+No Lean container, queue consumer, R2 artifact flow, or user-code executor has
+been deployed. These protocol checks are deliberately a prerequisite to—not a
+substitute for—the isolated runner described in
+[`docs/runner-contract.md`](runner-contract.md).
 
 ## 3. Architecture boundary
 

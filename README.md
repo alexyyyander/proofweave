@@ -17,6 +17,7 @@ connected.
 - [Frontend MVP](docs/frontend-mvp.md)
 - [Information-source map](docs/resource-map.md)
 - [Closed-alpha Agent delegation API](docs/agent-delegation-api.md)
+- [Lean runner contract](docs/runner-contract.md)
 
 ## Current stack
 
@@ -48,8 +49,9 @@ The project does not use `wrangler.jsonc`.
   repositories, including the delegated-Agent attribution records.
 - `packages/domain/` and `packages/protocol/` will hold UI-independent
   invariants and signed artifact protocol code.
-- `services/lean-runner/` is reserved for the separately deployed, isolated
-  Lean executor. User Lean code must never run in the web Worker.
+- `services/lean-runner/` contains the versioned protocol boundary for the
+  separately deployed, isolated Lean executor. User Lean code must never run
+  in the web Worker.
 - `services/proofweave-mcp/` preserves the retired local stdio prototype for
   internal reference; `services/proofweave-mcp-gateway/` and
   `services/proofweave-identity/` contain the separate remote MCP resource and
@@ -139,6 +141,7 @@ application secrets.
 - `npm run mcp:check`: syntax-check the local Codex MCP bridge
 - `npm run mcp:gateway:check`: test the remote gateway and identity protocol
   scaffolding
+- `npm run runner:check`: validate the isolated Lean runner protocol
 - `npm run mcp`: start the local MCP bridge after setting its environment
 
 ## Codex MCP direction
