@@ -1,0 +1,32 @@
+{
+  "control_plane": {
+    "d1_database_name": "proofweave-control-alpha",
+    "d1_database_id": "REPLACE_WITH_SHARED_D1_DATABASE_UUID",
+    "r2_bucket_name": "proofweave-control-artifacts-alpha"
+  },
+  "queue": {
+    "name": "proofweave-runner-jobs-alpha",
+    "dead_letter_queue": "proofweave-runner-jobs-alpha-dlq",
+    "max_batch_size": 1,
+    "max_batch_timeout_seconds": 5,
+    "max_retries": 5,
+    "max_concurrency": 1
+  },
+  "runner": {
+    "worker_name": "proofweave-lean-runner-alpha",
+    "container_class": "LeanRunnerContainer",
+    "image": {
+      "image_digest": "registry.cloudflare.com/REPLACE_ACCOUNT_ID/proofweave-lean-runner@sha256:REPLACE_WITH_APPROVED_IMAGE_DIGEST",
+      "lean_toolchain": "REPLACE_WITH_PINNED_LEAN_TOOLCHAIN",
+      "mathlib_revision": "REPLACE_WITH_PINNED_MATHLIB_REVISION"
+    },
+    "retry_delay_seconds": 30
+  },
+  "keys": {
+    "control_plane_issuer": {
+      "id": "control-plane:closed-alpha",
+      "public_key": "REPLACE_WITH_CONTROL_PLANE_ED25519_PUBLIC_KEY"
+    },
+    "runner_result_key_id": "runner:closed-alpha"
+  }
+}

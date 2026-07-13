@@ -70,6 +70,10 @@ reusable contribution with evidence that an external maintainer can reproduce.
   verified private handoff can transition it to `running`;
 - deployment-owned pinned-image registry that binds image digests to exact
   Lean and Mathlib environments before a Run can be claimed;
+- a non-secret Lean Runner deployment manifest preflight that reuses runtime
+  image/key validation, renders an execution-disabled Worker configuration,
+  and has an explicit activation, rollback, backup, observability, and
+  incident procedure;
 - operator-managed runner-key allowlist with signed-result verification before
   immutable Run evidence is accepted;
 - independent Person-level review assignments and review-delegated Agent
@@ -429,7 +433,10 @@ default-disabled deployment gate: without the exact value `true`, the Worker
 fails before resolving a Bundle, staging a workspace, or starting a Container.
 A deployed Worker/Container result round trip, provisioned R2 binding,
 non-production cancellation lifecycle test, an approved image, and an
-operator-tested Queue/kill-switch procedure are still required.
+operator-tested Queue/kill-switch procedure are still required. The checked-in
+Runner deployment preflight can now validate one non-secret topology and only
+renders the kill switch as disabled; it does not prove provider isolation or
+authorize activation.
 
 The source now includes a digest-required Docker final-assembly recipe that
 copies only the protocol and private Container runtime, starts as a non-root

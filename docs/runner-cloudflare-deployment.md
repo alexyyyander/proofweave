@@ -1,11 +1,27 @@
 # Cloudflare Runner deployment boundary
 
-This document describes the selected closed-alpha hosting target. It is not a
-deployment runbook yet: this repository has no approved Lean Runner image,
-no image digest, and no live Queue or Runner Worker deployment. The repository
-does contain a source-level Worker entrypoint, but it is deliberately
-non-deployable until every gate below is complete. Do not deploy
+This document describes the selected closed-alpha hosting target. There is no
+approved Lean Runner image, image digest, live Queue, or Runner Worker yet.
+The repository therefore provides a non-secret deployment preflight, not a
+permission to deploy: it renders a configuration with execution disabled and
+cannot supply a result-signing secret. The source-level Worker remains
+deliberately non-deployable until every gate below is complete. Do not deploy
 `services/lean-runner/wrangler.example.jsonc` as-is.
+
+Before any Wrangler command, copy
+`services/lean-runner/deployment-manifest.example.json` outside the repository,
+replace every value with provisioned resources, and run:
+
+```bash
+npm run runner:deploy:preflight -- /secure/path/proofweave-runner-alpha.json
+```
+
+The preflight rejects placeholders, mutable images, mismatched Queue/DLQ
+topology, non-singleton concurrency, unsafe queue batching, invalid public
+issuer keys, and unpinned Lean/Mathlib image metadata. It emits only
+non-secret Worker configuration, always with `RUNNER_EXECUTION_ENABLED=false`.
+The full activation and rollback sequence is in
+[`runner-deployment-preflight.md`](runner-deployment-preflight.md).
 
 ## Selected topology
 

@@ -241,6 +241,9 @@ application secrets.
   executor with those local Lean fixtures (requires `lake`/Lean locally)
 - `npm run runner:e2e:check`: reconstruct a real v2 `tar.zst` fixture and run
   it through the local Container workspace and Lean-executor source boundaries
+- `npm run runner:deploy:preflight -- /secure/path/runner-alpha.json`: validate
+  the non-secret shared D1/R2, Queue/DLQ, pinned image, and Runner-key topology
+  before generating a disabled-by-default Worker configuration
 - `npm run artifact:check`: validate the immutable artifact bundle manifest
 - `npm run artifact:store:check`: exercise signed R2/D1 artifact staging
 - `npm run run:check`: validate bounded-run lifecycle and result binding
@@ -309,6 +312,8 @@ The endpoint, scopes, identity boundary, and rollout gates are defined in the
 [remote MCP gateway contract](docs/remote-mcp-gateway.md).
 The external Worker preflight and shared D1/R2 deployment invariant are in the
 [MCP control-plane deployment guide](docs/mcp-control-plane-deployment.md).
+The parallel Runner deployment guard is in the
+[Runner deployment preflight guide](docs/runner-deployment-preflight.md).
 
 The `/integrations` page deliberately does not show a placeholder endpoint or
 local configuration while that external control plane is unavailable. It tells
