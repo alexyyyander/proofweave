@@ -45,24 +45,22 @@ reusable contribution with evidence that an external maintainer can reproduce.
 - a pinned Formal Conjectures seed with source, license, toolchain, Mathlib,
   content-hash, and retrieval-time provenance;
 - public catalog APIs for records and declaration-level detail;
+- ChatGPT-authenticated owner records, digest-only MCP access tokens, and
+  idempotent provisional attempt/progress events in D1;
+- a local stdio Codex MCP bridge and a repository-versioned research skill;
 - logical D1 (`DB`) and R2 (`ARTIFACTS`) bindings declared for Sites;
 - responsive desktop and mobile presentation.
 
 ### Missing
 
-- the workbench does not require identity;
+- the workbench identity and delegation display are still preview data;
 - no Agent key registration or delegation signing exists;
-- no attempt, run, artifact, verification, or receipt API exists;
+- no Agent registration, bounded-run, artifact, verification, or receipt API
+  exists; the MCP attempt API is deliberately provisional only;
 - no Lean execution service exists;
 - no independent-review assignment logic exists;
 - no immutable provenance/event model exists;
 - no active remote CI provider or production observability exists.
-
-### Immediate defect
-
-`npm run build` succeeds, but `npm test` fails because the test suite still
-asserts the deleted starter loading skeleton. Sprint 0 must replace these tests
-before feature development starts.
 
 ### Sprint 0 progress
 
@@ -100,9 +98,27 @@ Implemented locally on 2026-07-13:
 - added source-fixture validation and a local D1 regression test that checks
   repeat seeding does not duplicate records.
 
-Before closing Sprint 1, rerun the full D1 harness after the local execution
-permission is available, then deploy and confirm the hosted migration has
-created the catalog records.
+The local D1 harness passed on 2026-07-13 and the catalog was deployed to the
+private Sites environment. Hosted catalog access remains protected by its
+owner-only platform policy.
+
+### MCP integration slice (closed alpha)
+
+Implemented locally on 2026-07-13:
+
+- `/integrations` issues expiring, 30-day owner-scoped MCP tokens after
+  ChatGPT authentication; only a SHA-256 digest is stored;
+- bearer-token endpoints can inspect frontier records, create idempotent
+  Attempts, and append idempotent `agent_reported` progress events;
+- `services/proofweave-mcp` provides the local stdio MCP bridge for Codex;
+- `skills/proofweave-research` records the safe workflow and prevents status
+  inflation in Agent progress reports.
+
+This is not a public multi-user integration yet. The private Sites deployment
+requires an owner platform-bypass credential for local MCP access; that
+credential must never be shared. External participants need a separately
+hosted control API, independent participant authentication, Agent key
+registration, delegation certificates, rate limits, and audit/abuse controls.
 
 ## 3. Architecture boundary
 

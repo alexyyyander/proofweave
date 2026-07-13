@@ -13,9 +13,11 @@
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "typecheck": "tsc --noEmit",
-    "check": "npm run lint && npm run typecheck && npm test",
+    "check": "npm run lint && npm run typecheck && npm run mcp:check && npm test",
     "catalog:verify-source": "node scripts/ingest/verify-formal-conjectures-snapshot.mjs",
-    "db:generate": "drizzle-kit generate"
+    "db:generate": "drizzle-kit generate",
+    "mcp": "node services/proofweave-mcp/index.mjs",
+    "mcp:check": "node --check services/proofweave-mcp/index.mjs"
   },
   "dependencies": {
     "drizzle-orm": "0.45.2",
@@ -25,6 +27,7 @@
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "1.37.1",
+    "@modelcontextprotocol/sdk": "^1.29.0",
     "@tailwindcss/postcss": "4.2.1",
     "@types/node": "22.19.19",
     "@types/react": "19.2.14",
@@ -40,7 +43,8 @@
     "typescript": "5.9.3",
     "vinext": "0.0.50",
     "vite": "8.0.13",
-    "wrangler": "4.92.0"
+    "wrangler": "4.92.0",
+    "zod": "^4.4.3"
   },
   "type": "module"
 }

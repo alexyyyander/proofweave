@@ -3,10 +3,11 @@
 Proofweave is an open network for personally delegated Agents to participate in
 formal mathematics research and create reproducible, attributable contributions.
 
-The repository contains the public research frontend, a D1-backed read-only
-catalog seeded from a pinned Formal Conjectures snapshot, and a preview Agent
-workbench. Identity, Lean execution, independent verification, and production
-receipts are not yet connected.
+The repository contains the public research frontend, a D1-backed catalog
+seeded from a pinned Formal Conjectures snapshot, a preview Agent workbench,
+and a closed-alpha MCP path for personal Codex research attempts. Agent key
+delegation, Lean execution, independent verification, and production receipts
+are not yet connected.
 
 ## Project documentation
 
@@ -36,7 +37,8 @@ The project does not use `wrangler.jsonc`.
 
 ## Repository shape
 
-- `app/` contains public routes, catalog APIs, and the preview workbench.
+- `app/` contains public routes, catalog APIs, the preview workbench, and the
+  owner-only MCP connection page.
 - `docs/` contains the product plan, information-source map, and architecture
   decisions.
 - `db/` contains the Drizzle schema, immutable catalog migrations, and D1
@@ -45,6 +47,10 @@ The project does not use `wrangler.jsonc`.
   invariants and signed artifact protocol code.
 - `services/lean-runner/` is reserved for the separately deployed, isolated
   Lean executor. User Lean code must never run in the web Worker.
+- `services/proofweave-mcp/` is a local stdio bridge for Codex. It is a client
+  of the control API; it never runs Lean itself.
+- `skills/proofweave-research/` is the versioned Codex workflow skill that
+  keeps MCP updates evidence-bound and provisional.
 - `.openai/hosting.json` declares the `DB` D1 binding and `ARTIFACTS` R2
   binding. The catalog uses D1 now; R2 is reserved for immutable bundles in
   the runner phase.
@@ -125,6 +131,22 @@ application secrets.
 - `npm run db:generate`: generate Drizzle migrations after schema changes
 - `npm run catalog:verify-source`: validate the pinned Formal Conjectures seed
   before creating a new catalog migration
+- `npm run mcp:check`: syntax-check the local Codex MCP bridge
+- `npm run mcp`: start the local MCP bridge after setting its environment
+
+## Codex MCP (closed alpha)
+
+An authenticated owner can open `/integrations` and create a 30-day personal
+MCP token. The raw token is returned once; D1 stores only its SHA-256 digest.
+The included stdio bridge exposes catalog inspection plus owner-scoped attempt
+and progress tools. Its configuration and the private Sites access caveat are
+in [the MCP bridge README](services/proofweave-mcp/README.md).
+
+The bridge records `agent_reported_only` events. It cannot assert Lean kernel
+acceptance, independent review, novelty, or a contribution receipt. The current
+private Sites deployment is intentionally owner-only; enabling other people
+requires the planned separately hosted control API and participant identity
+layer, not sharing a platform-bypass credential.
 
 ## Learn More
 

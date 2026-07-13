@@ -38,10 +38,13 @@ after(async () => {
   await miniflare?.dispose();
 });
 
-async function render(pathname = "/") {
+async function render(pathname = "/", init = {}) {
   return miniflare.dispatchFetch(
     `http://localhost${pathname}`,
-    { headers: { accept: "text/html" } },
+    {
+      ...init,
+      headers: { accept: "text/html", ...(init.headers ?? {}) },
+    },
   );
 }
 
@@ -140,6 +143,105 @@ test("imports the pinned catalog idempotently and serves provenance through the 
   const { record } = await recordResponse.json();
   assert.equal(record.declaration.qualifiedName, "Erdos865.erdos_865");
   assert.match(record.declaration.sourceContentHash, /^sha256:[a-f0-9]{64}$/);
+});
+
+test("issues owner-scoped MCP tokens and records idempotent provisional progress", async () => {
+  const ownerHeaders = {
+    "content-type": "application/json",
+    "oai-authenticated-user-email": "mathematician@example.test",
+    "oai-authenticated-user-full-name": encodeURIComponent("Test Mathematician"),
+    "oai-authenticated-user-full-name-encoding": "percent-encoded-utf-8",
+  };
+  const issueResponse = await render("/api/v1/mcp/tokens", {
+    method: "POST",
+    headers: ownerHeaders,
+    body: JSON.stringify({ name: "Codex integration test", expiresInDays: 30 }),
+  });
+  assert.equal(issueResponse.status, 201);
+  const { token: issued } = await issueResponse.json();
+  assert.match(issued.token, /^pw_mcp_[a-f0-9]{64}$/);
+  assert.equal(issued.name, "Codex integration test");
+
+  const storedToken = await database
+    .prepare("SELECT token_hash FROM mcp_access_tokens WHERE id = ?")
+    .bind(issued.id)
+    .first();
+  assert.match(storedToken.token_hash, /^[a-f0-9]{64}$/);
+  assert.notEqual(storedToken.token_hash, issued.token);
+
+  const authHeaders = { authorization: `Bearer ${issued.token}` };
+  const listResponse = await render("/api/v1/mcp/problems", {
+    headers: authHeaders,
+  });
+  assert.equal(listResponse.status, 200);
+  const { records } = await listResponse.json();
+  assert.equal(records.length, 4);
+  assert.equal(records[0].slug, "erdos-865");
+
+  const attemptPayload = {
+    problemSlug: "erdos-865",
+    agentLabel: "codex-integration-test",
+    idempotencyKey: "attempt-integration-test-001",
+  };
+  const createResponse = await render("/api/v1/mcp/attempts", {
+    method: "POST",
+    headers: { ...authHeaders, "content-type": "application/json" },
+    body: JSON.stringify(attemptPayload),
+  });
+  assert.equal(createResponse.status, 201);
+  const { attempt: createdAttempt } = await createResponse.json();
+  assert.equal(createdAttempt.verificationState, "agent_reported_only");
+  assert.equal(createdAttempt.events.length, 1);
+  assert.equal(createdAttempt.events[0].type, "attempt_created");
+
+  const replayCreateResponse = await render("/api/v1/mcp/attempts", {
+    method: "POST",
+    headers: { ...authHeaders, "content-type": "application/json" },
+    body: JSON.stringify(attemptPayload),
+  });
+  assert.equal(replayCreateResponse.status, 200);
+  assert.equal((await replayCreateResponse.json()).idempotentReplay, true);
+
+  const progressPayload = {
+    message: "Reduced the finite case to one bounded lemma.",
+    progressPercent: 35,
+    idempotencyKey: "progress-integration-test-001",
+  };
+  const progressResponse = await render(
+    `/api/v1/mcp/attempts/${createdAttempt.id}/events`,
+    {
+      method: "POST",
+      headers: { ...authHeaders, "content-type": "application/json" },
+      body: JSON.stringify(progressPayload),
+    },
+  );
+  assert.equal(progressResponse.status, 201);
+  const { event } = await progressResponse.json();
+  assert.equal(event.type, "agent_reported");
+  assert.equal(event.sequence, 2);
+
+  const replayProgressResponse = await render(
+    `/api/v1/mcp/attempts/${createdAttempt.id}/events`,
+    {
+      method: "POST",
+      headers: { ...authHeaders, "content-type": "application/json" },
+      body: JSON.stringify(progressPayload),
+    },
+  );
+  assert.equal(replayProgressResponse.status, 200);
+  assert.equal((await replayProgressResponse.json()).idempotentReplay, true);
+
+  const attemptResponse = await render(
+    `/api/v1/mcp/attempts/${createdAttempt.id}`,
+    { headers: authHeaders },
+  );
+  assert.equal(attemptResponse.status, 200);
+  const { attempt } = await attemptResponse.json();
+  assert.equal(attempt.lastProgressPercent, 35);
+  assert.equal(attempt.events.length, 2);
+  assert.equal(attempt.events[1].message, progressPayload.message);
+
+  assert.equal((await render("/api/v1/mcp/problems")).status, 401);
 });
 
 test("keeps the production frontend free of the deleted starter preview", async () => {

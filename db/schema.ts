@@ -161,3 +161,111 @@ export const catalogImports = sqliteTable(
     uniqueIndex("catalog_imports_snapshot_idx").on(table.sourceSnapshotId),
   ],
 );
+
+// A Person is the attribution root for an authenticated participant. This
+// closed-alpha mapping intentionally uses the identity currently supplied by
+// Sites; public beta will replace it with provider-neutral identities.
+export const persons = sqliteTable(
+  "persons",
+  {
+    id: text("id").primaryKey(),
+    identityProvider: text("identity_provider", {
+      enum: ["chatgpt"],
+    }).notNull(),
+    providerSubject: text("provider_subject").notNull(),
+    displayName: text("display_name").notNull(),
+    createdAt,
+    updatedAt: text("updated_at").notNull(),
+  },
+  (table) => [
+    uniqueIndex("persons_provider_subject_idx").on(
+      table.identityProvider,
+      table.providerSubject,
+    ),
+  ],
+);
+
+// Raw MCP tokens never reach D1. Store only a SHA-256 digest and a short
+// non-secret prefix that lets an owner distinguish tokens in a future UI.
+export const mcpAccessTokens = sqliteTable(
+  "mcp_access_tokens",
+  {
+    id: text("id").primaryKey(),
+    personId: text("person_id")
+      .notNull()
+      .references(() => persons.id, { onDelete: "cascade" }),
+    name: text("name").notNull(),
+    tokenHash: text("token_hash").notNull(),
+    tokenPrefix: text("token_prefix").notNull(),
+    expiresAt: text("expires_at").notNull(),
+    lastUsedAt: text("last_used_at"),
+    revokedAt: text("revoked_at"),
+    createdAt,
+  },
+  (table) => [
+    uniqueIndex("mcp_access_tokens_hash_idx").on(table.tokenHash),
+    index("mcp_access_tokens_person_idx").on(table.personId, table.revokedAt),
+  ],
+);
+
+// Attempts record agent-reported activity only. They cannot represent kernel
+// acceptance, independent review, or a contribution receipt.
+export const agentAttempts = sqliteTable(
+  "agent_attempts",
+  {
+    id: text("id").primaryKey(),
+    personId: text("person_id")
+      .notNull()
+      .references(() => persons.id, { onDelete: "cascade" }),
+    problemRevisionId: text("problem_revision_id")
+      .notNull()
+      .references(() => problemRevisions.id, { onDelete: "restrict" }),
+    agentLabel: text("agent_label").notNull(),
+    status: text("status", {
+      enum: ["active", "submitted", "cancelled"],
+    })
+      .notNull()
+      .default("active"),
+    idempotencyKey: text("idempotency_key").notNull(),
+    lastProgressPercent: integer("last_progress_percent"),
+    createdAt,
+    updatedAt: text("updated_at").notNull(),
+  },
+  (table) => [
+    uniqueIndex("agent_attempts_person_idempotency_idx").on(
+      table.personId,
+      table.idempotencyKey,
+    ),
+    index("agent_attempts_person_updated_idx").on(table.personId, table.updatedAt),
+    index("agent_attempts_revision_idx").on(table.problemRevisionId),
+  ],
+);
+
+export const agentAttemptEvents = sqliteTable(
+  "agent_attempt_events",
+  {
+    id: text("id").primaryKey(),
+    attemptId: text("attempt_id")
+      .notNull()
+      .references(() => agentAttempts.id, { onDelete: "cascade" }),
+    sequence: integer("sequence").notNull(),
+    eventType: text("event_type", {
+      enum: ["attempt_created", "agent_reported", "bundle_staged"],
+    }).notNull(),
+    message: text("message").notNull(),
+    progressPercent: integer("progress_percent"),
+    idempotencyKey: text("idempotency_key").notNull(),
+    occurredAt: text("occurred_at").notNull(),
+    createdAt,
+  },
+  (table) => [
+    uniqueIndex("agent_attempt_events_sequence_idx").on(
+      table.attemptId,
+      table.sequence,
+    ),
+    uniqueIndex("agent_attempt_events_idempotency_idx").on(
+      table.attemptId,
+      table.idempotencyKey,
+    ),
+  ],
+);
