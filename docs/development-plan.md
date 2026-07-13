@@ -89,11 +89,12 @@ reusable contribution with evidence that an external maintainer can reproduce.
 
 ### Missing
 
-- the research branch source diagnostics, progress event list, and bundle
-  submission in the workbench remain clearly labeled local previews. An
-  authenticated closed-alpha owner can now open a persistent provisional
-  Attempt under a valid delegated Agent authority, but that is neither an
-  Agent work event nor a submission flow;
+- the workbench now renders only persisted provisional Attempt events and
+  explicit evidence gates; it does not simulate a proof branch, compiler
+  output, Agent progress, or bundle submission. An authenticated closed-alpha
+  owner can open a persistent provisional Attempt under a valid delegated
+  Agent authority, but subsequent Agent work and bundle staging require the
+  separately deployed remote control plane;
 - no public identity, account recovery, cross-device key-rotation policy, or
   participant-ready delegation service exists; closed-alpha browser-held keys
   now have proof-of-possession and append-only revoke/replace controls, but
@@ -250,15 +251,16 @@ Implemented locally on 2026-07-13:
   later progress is rejected after certificate expiry or revocation.
 
 The workbench now reads an authenticated Person's persisted key, Agent, and
-active-delegation status while preserving its existing preview research branch.
-It now has a closed-alpha setup flow that creates a non-exported browser
+active-delegation status, and renders only durable Attempt events and explicit
+evidence gates rather than simulated proof work. It has a closed-alpha setup
+flow that creates a non-exported browser
 WebCrypto Person key, records only its public half, proves possession with a
 one-time server challenge, registers an Agent public key, signs a scoped
 delegation locally, and offers explicit delegation and key revocation actions.
 The Agent private key is never created or copied through the web app. The
-preview branch still cannot submit work: account recovery, public cross-device
-rotation policy, independent public identity, and the remote Agent connection
-remain required before participant access. The API contract and current
+workbench still cannot submit Agent work itself: account recovery, public
+cross-device rotation policy, independent public identity, and the remote
+Agent connection remain required before participant access. The API contract and current
 limitation are documented in
 [`docs/agent-delegation-api.md`](agent-delegation-api.md).
 The new read-only record representation is part of the Sprint 2 inspection

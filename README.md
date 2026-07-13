@@ -18,6 +18,10 @@ an Agent event or creates a mathematical claim: Lean execution, signed
 independent-review attestation submission, and production receipts are not
 participant-ready yet.
 
+The workbench presents durable Attempt records and their immutable activity
+timeline only. It never substitutes sample Lean source, local progress, or a
+fictional compiler result for Agent-supplied evidence.
+
 Signed-in closed-alpha reviewers can use `/reviews` to inspect only the
 assignments addressed to their Person and record an immutable accept or decline
 decision. `/evidence` exposes the corresponding controlled evidence record to
@@ -243,7 +247,7 @@ or touch another Agent's Attempts even when both Agents have the same owner.
 The closed-alpha control plane can now persist an authenticated Person's
 Ed25519 signing key, registered Agent, signed delegation certificate, and
 append-only revocation. The signed-in workbench now reflects that persisted
-setup while its research-run content remains preview-only. Each Person key must
+setup and renders only durable Attempt records and explicit evidence gates. Each Person key must
 complete a one-time signed proof of possession before it can delegate. A key
 revocation blocks subsequent Agent progress under delegations it signed. This
 is still attribution infrastructure, not public onboarding: account recovery,

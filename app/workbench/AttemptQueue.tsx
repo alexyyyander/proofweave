@@ -93,7 +93,7 @@ export function AttemptQueue({
       <Link className="quiet-action" href="/explore">Browse the public catalog</Link>
     </div> : eligibleDelegations.length === 0 ? <div className="attempt-queue-empty">
       <strong>Add a `formalize` or `prove` delegation first.</strong>
-      <p>The preview workstation stays available, but Proofweave will not attribute a durable Attempt without active scoped authority.</p>
+      <p>Proofweave will not attribute a durable Attempt without active scoped authority.</p>
       <button className="quiet-action" type="button" onClick={() => document.getElementById("delegation-setup")?.scrollIntoView({ behavior: "smooth", block: "start" })}>Go to delegation setup</button>
     </div> : <div className="attempt-queue-grid">
       <form className="attempt-open-form" onSubmit={(event) => { event.preventDefault(); void openAttempt(); }}>
@@ -120,7 +120,7 @@ export function AttemptQueue({
       </form>
       <div className="attempt-list-panel">
         <div className="attempt-list-heading"><span className="micro-label">Your durable Attempts</span><span>{attempts.length === 0 ? "None yet" : `${attempts.length} recorded`}</span></div>
-        {attempts.length === 0 ? <p className="attempt-list-empty">No durable Attempt has been opened for this Person. Preview events below remain device-local illustrations.</p> : <ol className="attempt-list">
+        {attempts.length === 0 ? <p className="attempt-list-empty">No durable Attempt has been opened for this Person. Open one to create the first accountable activity record.</p> : <ol className="attempt-list">
           {attempts.slice(0, 6).map((attempt) => <li key={attempt.id}>
             <div><strong>{attempt.problemTitle}</strong><code>{attempt.id}</code></div>
             <div className="attempt-metadata"><span>{attempt.agentLabel}</span><span>{attempt.delegationScope ?? "legacy authority"}</span><span>{attempt.lastProgressPercent === null ? "No Agent-reported progress" : `${attempt.lastProgressPercent}% agent-reported`}</span></div>
@@ -139,6 +139,7 @@ function activeWorkDelegations(profile: DelegationProfile | null): StoredDelegat
   return (profile?.delegations ?? []).filter((candidate) =>
     candidate.revokedAt === null &&
     candidate.signerKeyRevokedAt === null &&
+    profile?.agents.some((agent) => agent.id === candidate.agentId && agent.status === "active" && agent.revokedAt === null) &&
     Date.parse(candidate.validFrom) <= now &&
     now < Date.parse(candidate.validUntil) &&
     workScopes(candidate).length > 0,

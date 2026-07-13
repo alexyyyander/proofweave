@@ -182,3 +182,18 @@ h1, h2, h3, p { margin-top: 0; }
 
 @media (max-width: 900px) { .evidence-detail-grid { grid-template-columns: 1fr; }.evidence-index-card dl { grid-template-columns: 1fr 1fr; }.evidence-index-card dl > div:last-child { grid-column: 1 / -1; } }
 @media (max-width: 620px) { .evidence-index-card { margin-left: -18px; margin-right: -18px; padding: 20px 18px; }.evidence-index-card dl { grid-template-columns: 1fr; }.evidence-index-card dl > div:last-child { grid-column: auto; }.evidence-detail-grid { margin-left: -18px; margin-right: -18px; }.evidence-panel, .evidence-runs { padding: 20px 18px; }.evidence-artifact-list li { align-items: start; grid-template-columns: 1fr; }.evidence-artifact-list .quiet-action { justify-self: start; } }
+
+/* The workbench shows only durable records. These states intentionally avoid
+   mimicking a Lean editor or a successful compiler result. */
+.source-waiting { align-items: center; color: #f3d48b; display: inline-flex; font-size: 10px; font-weight: 500; gap: 6px; }
+.source-waiting::before { background: currentColor; border-radius: 50%; content: ""; height: 5px; width: 5px; }
+.source-state { color: #d4def2; display: grid; gap: 12px; margin: 52px 0 auto; }
+.source-state strong { font-family: Georgia, "Times New Roman", serif; font-size: 26px; font-weight: 400; letter-spacing: -.035em; line-height: 1.08; }
+.source-state p { color: #b9c8e4; font-size: 12px; line-height: 1.6; margin: 0; }
+.source-panel .source-link { color: #c7d7ff; font-size: 11px; }
+.check-dot.is-waiting { background: #f3d48b; }
+.check-dot.is-pending { background: #7890c8; }
+.event-list li { grid-template-columns: 42px 7px 1fr; }
+.event-list small { color: var(--ink-faint); display: block; font-size: 9px; margin-top: 5px; }
+.event-empty { color: var(--ink-soft); font-size: 12px; line-height: 1.55; margin: 0; }
+#attempt-activity { scroll-margin-top: 24px; }

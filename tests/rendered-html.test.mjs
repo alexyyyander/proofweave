@@ -1288,9 +1288,10 @@ test("keeps the production frontend free of the deleted starter preview", async 
   assert.doesNotMatch(page, /SkeletonPreview|codex-preview|react-loading-skeleton/i);
   assert.doesNotMatch(layout, /codex-preview|_sites-preview/i);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/i);
-  assert.match(workbench, /Local preview/);
-  assert.match(workbench, /Illustrative only/);
+  assert.match(workbench, /No simulated Agent work is created in this workspace/);
+  assert.match(workbench, /Proofweave does not render a sample source file or a fictional compiler result/);
   assert.match(workbench, /Independent review/);
+  assert.doesNotMatch(workbench, /Run next bounded step|Illustrative only|Example check result|Local preview/);
   assert.match(delegationSetup, /Set up an accountable research Agent/);
   assert.match(delegationSetup, /Agent private key must stay where the Agent runs/);
   assert.match(delegationSetup, /Replace or revoke key/);
