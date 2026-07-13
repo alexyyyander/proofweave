@@ -93,6 +93,9 @@ manifest, stdout, and stderr. Each result names an operator-provisioned runner
 key and carries an Ed25519 detached signature over all of that evidence. The D1
 Run store accepts it only when that key is active in its allowlist. A `succeeded`
 result requires zero exit code, accepted kernel status, and every check passed.
+`signLeanRunnerResult` creates that detached signature only from unsigned
+evidence and a trusted Worker-held Ed25519 private key; the Container never
+receives that key.
 
 A runner result is still not statement-fidelity review, novelty review, project
 acceptance, or a contribution receipt. Those remain separate attestations.

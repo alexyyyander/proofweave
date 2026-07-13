@@ -11,7 +11,8 @@ provider-neutral `RunnerQueue` delivery contract and includes a deterministic
 in-memory reference adapter for tests. Queue envelopes are Ed25519-signed by a
 control-plane deployment key, and the runner-side authenticator accepts only
 operator-provisioned public issuer keys. It does not yet contain a container
-image, hosted queue adapter, queue consumer, or executable user-code service.
+image, deployed Worker, source-transfer implementation, or executable
+user-code service.
 
 [`orchestrator.mjs`](orchestrator.mjs) is the control-plane handoff: it creates
 the immutable D1 Run projection before delivering the signed queue envelope.
@@ -41,6 +42,10 @@ For the closed-alpha hosting target, [`cloudflare-queues.mjs`](cloudflare-queues
 implements a Cloudflare Queue producer plus authenticated per-message consumer
 handling. [`cloudflare-runner-container.mjs`](cloudflare-runner-container.mjs)
 is the deployment-side Container class with Internet disabled; it is not an
-execution implementation. The selected hosting boundary, non-deployable config
-template, and remaining gates are documented in
+execution implementation. `d1-r2-runner-bundle-resolver.mjs` rechecks the
+immutable D1/R2 Bundle before source transfer, `runner-job-preflight.mjs`
+claims exactly one persisted queued Run after that check, and
+`runner-image-policy.mjs` binds an approved image digest to exact Lean/Mathlib
+versions. The selected hosting boundary, non-deployable config template, and
+remaining gates are documented in
 [`docs/runner-cloudflare-deployment.md`](../../docs/runner-cloudflare-deployment.md).

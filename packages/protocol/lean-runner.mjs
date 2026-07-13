@@ -222,6 +222,33 @@ export function runnerResultSigningPayload(result) {
   };
 }
 
+/**
+ * Sign normalized Runner evidence with an operator-held Ed25519 key. The
+ * private key belongs only in the trusted Runner Worker; Containers and queue
+ * messages receive neither it nor a caller-supplied signature.
+ */
+export async function signLeanRunnerResult({ result, runnerPrivateKey }) {
+  requireRecord(result, "Unsigned runner result");
+  if (Object.hasOwn(result, "runnerSignature")) {
+    throw new LeanRunnerProtocolError("Unsigned runner result must not include runnerSignature.");
+  }
+  const unsigned = normalizeLeanRunnerResult({
+    ...result,
+    runnerSignature: emptyEd25519Signature,
+  });
+  let signature;
+  try {
+    signature = toBase64Url(await crypto.subtle.sign(
+      "Ed25519",
+      runnerPrivateKey,
+      canonicalUtf8(runnerResultSigningPayload(unsigned)),
+    ));
+  } catch {
+    throw new LeanRunnerProtocolError("runnerPrivateKey must be an Ed25519 signing key.");
+  }
+  return normalizeLeanRunnerResult({ ...unsigned, runnerSignature: signature });
+}
+
 /** Verify a result against a key selected from the control-plane allowlist. */
 export async function verifyLeanRunnerResultSignature({ result, runnerPublicKey }) {
   const normalized = normalizeLeanRunnerResult(result);
@@ -337,3 +364,10 @@ function fromBase64Url(value) {
   const binary = atob(padded);
   return Uint8Array.from(binary, (character) => character.charCodeAt(0));
 }
+
+function toBase64Url(value) {
+  const binary = String.fromCharCode(...new Uint8Array(value));
+  return btoa(binary).replaceAll("+", "-").replaceAll("/", "_").replaceAll("=", "");
+}
+
+const emptyEd25519Signature = "A".repeat(86);

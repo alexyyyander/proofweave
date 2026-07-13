@@ -5,6 +5,7 @@ export {
   leanRunnerRequestHash,
   normalizeLeanRunnerRequest,
   normalizeLeanRunnerResult,
+  signLeanRunnerResult,
 } from "../../packages/protocol/lean-runner.mjs";
 
 export {

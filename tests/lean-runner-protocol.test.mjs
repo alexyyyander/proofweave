@@ -6,7 +6,7 @@ import {
   leanRunnerRequestHash,
   normalizeLeanRunnerRequest,
   normalizeLeanRunnerResult,
-  runnerResultSigningPayload,
+  signLeanRunnerResult,
   verifyLeanRunnerResultSignature,
 } from "../packages/protocol/lean-runner.mjs";
 import {
@@ -69,19 +69,19 @@ test("runner results are signed by a selected runner key", async () => {
   const pair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
   const publicKey = base64Url(await crypto.subtle.exportKey("raw", pair.publicKey));
   const result = fixtureResult();
-  result.runnerSignature = base64Url(
-    await crypto.subtle.sign(
-      "Ed25519",
-      pair.privateKey,
-      new TextEncoder().encode(canonicalJson(runnerResultSigningPayload(result))),
-    ),
-  );
+  const unsignedResult = { ...result };
+  delete unsignedResult.runnerSignature;
+  const signed = await signLeanRunnerResult({ result: unsignedResult, runnerPrivateKey: pair.privateKey });
 
-  assert.equal(await verifyLeanRunnerResultSignature({ result, runnerPublicKey: publicKey }), true);
+  assert.equal(await verifyLeanRunnerResultSignature({ result: signed, runnerPublicKey: publicKey }), true);
   assert.equal(await verifyLeanRunnerResultSignature({
-    result: { ...result, artifacts: { ...result.artifacts, stdoutHash: `sha256:${"0".repeat(64)}` } },
+    result: { ...signed, artifacts: { ...signed.artifacts, stdoutHash: `sha256:${"0".repeat(64)}` } },
     runnerPublicKey: publicKey,
   }), false);
+  await assert.rejects(
+    signLeanRunnerResult({ result, runnerPrivateKey: pair.privateKey }),
+    /must not include runnerSignature/,
+  );
 });
 
 function fixtureRequest() {
