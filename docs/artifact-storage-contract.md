@@ -23,10 +23,17 @@ following:
 - its canonical `bundle.json` is itself written as a content-addressed object.
 
 The final D1 `artifact_bundles` row stores the canonical manifest and cannot be
-updated or deleted. A successful first stage appends one idempotent
-`bundle_staged` Attempt event and refreshes the Attempt's activity timestamp.
-This is a storage/provenance gate only: it does not start a container, accept a
-Lean proof, create a review, or issue a contribution receipt.
+updated or deleted. A successful first stage also derives one immutable,
+owner-visible `provisional_contributions` evidence record from the bound
+Attempt and delegation, then appends one idempotent `bundle_staged` Attempt
+event and refreshes the Attempt's activity timestamp. The immediate record is
+strictly `evidence_bundle` / `bundle_staged`: it does not label the Bundle a
+lemma, proof patch, counterexample, or final author contribution. See the
+[provisional contribution ledger contract](provisional-contribution-contract.md).
+
+This remains a storage/provenance gate only: it does not start a container,
+accept a Lean proof, create a review, establish novelty, or issue a
+Contribution Receipt.
 
 The remote MCP control-plane ingress accepts one unpadded-base64url object at a
 time under `artifact:write`, and has the same 32 MiB decoded in-memory limit.

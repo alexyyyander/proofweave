@@ -7,6 +7,11 @@ import { getCatalogRepository } from "@/db/repositories/catalog";
 import type { CatalogProblem } from "@/packages/domain/catalog";
 import type { McpAttempt } from "@/packages/domain/mcp";
 import { MissingDatabaseBindingError } from "@/db";
+import {
+  getProvisionalContributionRepository,
+  ProvisionalContributionSchemaUnavailableError,
+  type ProvisionalContribution,
+} from "@/db/repositories/provisional-contributions";
 
 export const dynamic = "force-dynamic";
 
@@ -17,7 +22,7 @@ export default async function WorkbenchPage({
 }) {
   const user = await getChatGPTUser();
   const targetSlug = requestedTargetSlug(await searchParams);
-  const { profile, attempts, storageAvailable } = await loadWorkbench(user);
+  const { profile, attempts, provisionalContributions, provisionalLedgerAvailable, storageAvailable } = await loadWorkbench(user);
   const catalogTargets = await loadCatalogTargets();
   const returnTo = targetSlug ? `/workbench?target=${encodeURIComponent(targetSlug)}#attempt-queue` : "/workbench";
 
@@ -25,15 +30,21 @@ export default async function WorkbenchPage({
     <div className="site-shell app-shell">
       <Header active="workbench" />
       <main className="workbench-main">
-        <WorkbenchClient profile={profile} initialAttempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={targetSlug} isAuthenticated={Boolean(user)} signInPath={chatGPTSignInPath(returnTo)} storageAvailable={storageAvailable} />
+        <WorkbenchClient profile={profile} initialAttempts={attempts} initialProvisionalContributions={provisionalContributions} provisionalLedgerAvailable={provisionalLedgerAvailable} catalogTargets={catalogTargets} initialTargetSlug={targetSlug} isAuthenticated={Boolean(user)} signInPath={chatGPTSignInPath(returnTo)} storageAvailable={storageAvailable} />
       </main>
       <Footer />
     </div>
   );
 }
 
-async function loadWorkbench(user: ChatGPTUser | null): Promise<{ profile: DelegationProfile | null; attempts: readonly McpAttempt[]; storageAvailable: boolean }> {
-  if (!user) return { profile: null, attempts: [], storageAvailable: true };
+async function loadWorkbench(user: ChatGPTUser | null): Promise<{
+  profile: DelegationProfile | null;
+  attempts: readonly McpAttempt[];
+  provisionalContributions: readonly ProvisionalContribution[];
+  provisionalLedgerAvailable: boolean;
+  storageAvailable: boolean;
+}> {
+  if (!user) return { profile: null, attempts: [], provisionalContributions: [], provisionalLedgerAvailable: true, storageAvailable: true };
 
   try {
     const profile = await getDelegationRepository().getProfile({
@@ -41,13 +52,25 @@ async function loadWorkbench(user: ChatGPTUser | null): Promise<{ profile: Deleg
       subject: user.email,
       displayName: user.displayName,
     });
-    return {
-      profile,
-      attempts: await getMcpRepository().listAttempts(profile.person.id),
-      storageAvailable: true,
-    };
+    const attempts = await getMcpRepository().listAttempts(profile.person.id);
+    try {
+      return {
+        profile,
+        attempts,
+        provisionalContributions: await getProvisionalContributionRepository().listForPerson(profile.person.id),
+        provisionalLedgerAvailable: true,
+        storageAvailable: true,
+      };
+    } catch (error) {
+      if (error instanceof ProvisionalContributionSchemaUnavailableError) {
+        return { profile, attempts, provisionalContributions: [], provisionalLedgerAvailable: false, storageAvailable: true };
+      }
+      throw error;
+    }
   } catch (error) {
-    if (error instanceof MissingDatabaseBindingError) return { profile: null, attempts: [], storageAvailable: false };
+    if (error instanceof MissingDatabaseBindingError) {
+      return { profile: null, attempts: [], provisionalContributions: [], provisionalLedgerAvailable: false, storageAvailable: false };
+    }
     throw error;
   }
 }

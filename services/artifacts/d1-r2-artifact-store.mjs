@@ -93,7 +93,7 @@ export class D1R2ArtifactStore {
     if (!await verifyArtifactBundleAgentSignature(normalized)) {
       throw new ArtifactStoreValidationError("Artifact Bundle Agent signature or payload hash is invalid.");
     }
-    await this.assertAttemptAuthority(normalized);
+    const authority = await this.assertAttemptAuthority(normalized);
     await Promise.all(artifactBundleObjectReferences(normalized).map((reference) =>
       this.assertObjectPresent({ contentHash: reference.contentHash, objectKey: reference.objectKey }),
     ));
@@ -115,6 +115,7 @@ export class D1R2ArtifactStore {
       .first();
     if (existing) {
       assertSameBundle(existing, { normalized, manifestHash, manifestKey: manifestObject.objectKey, canonicalManifest });
+      await this.recordProvisionalContribution(normalized, manifestHash, authority);
       await this.recordBundleStagedEvent(normalized, manifestHash);
       return { bundle: toStoredBundle(existing), created: false };
     }
@@ -145,6 +146,7 @@ export class D1R2ArtifactStore {
         normalized.agentEvent.payloadHash,
       )
       .run();
+    await this.recordProvisionalContribution(normalized, manifestHash, authority);
     await this.recordBundleStagedEvent(normalized, manifestHash);
     return {
       bundle: {
@@ -280,6 +282,11 @@ export class D1R2ArtifactStore {
     ) {
       throw new ArtifactStoreValidationError("Artifact Bundle Agent event occurred outside its valid delegation period.");
     }
+    return Object.freeze({
+      personId: row.person_id,
+      agentId: row.agent_id,
+      delegationCertificateId: row.delegation_certificate_id,
+    });
   }
 
   async recordBundleStagedEvent(bundle, manifestHash) {
@@ -308,6 +315,90 @@ export class D1R2ArtifactStore {
         .prepare("UPDATE agent_attempts SET updated_at = ? WHERE id = ?")
         .bind(now, bundle.attemptId)
         .run();
+    }
+  }
+
+  /**
+   * Stage-time accounting is an immutable projection of an already verified
+   * Bundle and Attempt. It intentionally records only that the delegated
+   * Agent supplied hash-bound evidence; it is never a mathematical claim,
+   * Lean result, independent review, or Contribution Receipt.
+   */
+  async recordProvisionalContribution(bundle, manifestHash, authority) {
+    const id = `provisional-evidence:${manifestHash}`;
+    const recordedAt = new Date().toISOString();
+    await this.database
+      .prepare(
+        `INSERT OR IGNORE INTO provisional_contributions (
+          id, kind, state,
+          beneficiary_person_id, beneficiary_agent_id,
+          beneficiary_delegation_certificate_id,
+          attempt_id, problem_revision_id, artifact_bundle_manifest_hash,
+          agent_event_id, agent_event_occurred_at, recorded_at
+        )
+        SELECT
+          ?, 'evidence_bundle', 'bundle_staged',
+          attempt.person_id, attempt.agent_id, attempt.delegation_certificate_id,
+          attempt.id, attempt.problem_revision_id, bundle.manifest_hash,
+          bundle.agent_event_id, ?, ?
+        FROM artifact_bundles AS bundle
+        INNER JOIN agent_attempts AS attempt ON attempt.id = bundle.attempt_id
+        INNER JOIN delegation_certificates AS certificate
+          ON certificate.id = attempt.delegation_certificate_id
+        WHERE bundle.manifest_hash = ?
+          AND bundle.id = ?
+          AND bundle.attempt_id = ?
+          AND bundle.problem_revision_id = ?
+          AND bundle.agent_event_id = ?
+          AND attempt.agent_id IS NOT NULL
+          AND attempt.delegation_certificate_id IS NOT NULL
+          AND certificate.owner_person_id = attempt.person_id
+          AND certificate.agent_id = attempt.agent_id`,
+      )
+      .bind(
+        id,
+        bundle.agentEvent.occurredAt,
+        recordedAt,
+        manifestHash,
+        bundle.id,
+        bundle.attemptId,
+        bundle.problemRevisionId,
+        bundle.agentEvent.eventId,
+      )
+      .run();
+
+    const row = await this.database
+      .prepare(
+        `SELECT id, kind, state,
+                beneficiary_person_id, beneficiary_agent_id,
+                beneficiary_delegation_certificate_id,
+                attempt_id, problem_revision_id, artifact_bundle_manifest_hash,
+                agent_event_id, agent_event_occurred_at
+         FROM provisional_contributions
+         WHERE artifact_bundle_manifest_hash = ?`,
+      )
+      .bind(manifestHash)
+      .first();
+    if (!row) {
+      throw new ArtifactStoreConflictError("A staged Artifact Bundle could not be projected into the provisional evidence ledger.");
+    }
+    if (
+      row.id !== id ||
+      row.kind !== "evidence_bundle" ||
+      row.state !== "bundle_staged" ||
+      row.beneficiary_person_id !== authority.personId ||
+      row.beneficiary_agent_id !== authority.agentId ||
+      row.beneficiary_delegation_certificate_id !== authority.delegationCertificateId ||
+      row.attempt_id !== bundle.attemptId ||
+      row.problem_revision_id !== bundle.problemRevisionId ||
+      row.artifact_bundle_manifest_hash !== manifestHash ||
+      row.agent_event_id !== bundle.agentEvent.eventId ||
+      row.agent_event_occurred_at !== bundle.agentEvent.occurredAt ||
+      !row.beneficiary_person_id ||
+      !row.beneficiary_agent_id ||
+      !row.beneficiary_delegation_certificate_id
+    ) {
+      throw new ArtifactStoreConflictError("A staged Artifact Bundle already has conflicting provisional evidence attribution.");
     }
   }
 }

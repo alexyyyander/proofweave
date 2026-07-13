@@ -813,6 +813,46 @@ export const artifactBundles = sqliteTable(
   ],
 );
 
+// A staged Bundle earns one immediate, owner-visible evidence record. This is
+// deliberately not a mathematical claim or a Contribution Receipt: it records
+// that a valid delegated Agent supplied a complete signed Bundle, while Lean,
+// independent review, novelty, and project acceptance remain separate gates.
+export const provisionalContributions = sqliteTable(
+  "provisional_contributions",
+  {
+    id: text("id").primaryKey(),
+    kind: text("kind", { enum: ["evidence_bundle"] }).notNull(),
+    state: text("state", { enum: ["bundle_staged"] }).notNull(),
+    beneficiaryPersonId: text("beneficiary_person_id")
+      .notNull()
+      .references(() => persons.id, { onDelete: "restrict" }),
+    beneficiaryAgentId: text("beneficiary_agent_id")
+      .notNull()
+      .references(() => agents.id, { onDelete: "restrict" }),
+    beneficiaryDelegationCertificateId: text("beneficiary_delegation_certificate_id")
+      .notNull()
+      .references(() => delegationCertificates.id, { onDelete: "restrict" }),
+    attemptId: text("attempt_id")
+      .notNull()
+      .references(() => agentAttempts.id, { onDelete: "restrict" }),
+    problemRevisionId: text("problem_revision_id")
+      .notNull()
+      .references(() => problemRevisions.id, { onDelete: "restrict" }),
+    artifactBundleManifestHash: text("artifact_bundle_manifest_hash")
+      .notNull()
+      .unique()
+      .references(() => artifactBundles.manifestHash, { onDelete: "restrict" }),
+    agentEventId: text("agent_event_id").notNull().unique(),
+    agentEventOccurredAt: text("agent_event_occurred_at").notNull(),
+    recordedAt: text("recorded_at").notNull(),
+    createdAt,
+  },
+  (table) => [
+    index("provisional_contributions_person_recorded_idx").on(table.beneficiaryPersonId, table.recordedAt),
+    index("provisional_contributions_attempt_idx").on(table.attemptId),
+  ],
+);
+
 // Runner stdout/stderr are signed infrastructure evidence, not Agent-owned
 // Bundle objects. Both bytes must be immutable and present before a terminal
 // signed Run result may reference their hashes.

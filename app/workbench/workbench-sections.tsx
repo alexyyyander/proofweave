@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { DelegationProfile } from "@/db/repositories/delegation";
 import type { McpAttempt, McpAttemptEvent } from "@/packages/domain/mcp";
+import type { ProvisionalContribution } from "@/db/repositories/provisional-contributions";
 
 type GateState = "passed" | "waiting" | "required";
 
@@ -113,6 +114,7 @@ export function FocusAction({
       <p>{focusDetail}</p>
       <div className="toolbar-links">
         {latestAttempt && <Link className="text-link" href={`/explore/${latestAttempt.problemSlug}`}>Inspect target <span>→</span></Link>}
+        <Link className="text-link" href="#provisional-ledger">Provisional ledger <span>→</span></Link>
         <Link className="text-link" href="/evidence">Evidence records <span>→</span></Link>
         <Link className="text-link" href="/reviews">Review queue <span>→</span></Link>
         <Link className="text-link" href="/integrations">Connection status <span>→</span></Link>
@@ -130,6 +132,43 @@ export function FocusAction({
       {refreshedAt && <p className="activity-refresh-status" role="status">Records refreshed {formatTimestamp(refreshedAt)}.</p>}
       {refreshError && <p className="activity-refresh-error" role="alert">{refreshError}</p>}
     </div>
+  </section>;
+}
+
+export function ProvisionalContributionLedger({
+  profile,
+  contributions,
+  isAuthenticated,
+  ledgerAvailable,
+}: {
+  profile: DelegationProfile | null;
+  contributions: readonly ProvisionalContribution[];
+  isAuthenticated: boolean;
+  ledgerAvailable: boolean;
+}) {
+  const emptyTitle = !isAuthenticated
+    ? "Sign in to view your personal evidence ledger."
+    : !profile
+      ? "Your contribution profile is not available yet."
+      : "No signed Artifact Bundle has been staged yet.";
+  const emptyDetail = !isAuthenticated
+    ? "The ledger is private to the Person who delegated the Agent."
+    : !profile
+      ? "No local or sample contribution record is shown while the control plane is unavailable."
+      : "When an authorized Agent stages a complete signed Bundle, Proofweave creates one immutable provisional evidence record here.";
+
+  return <section className="provisional-ledger" id="provisional-ledger" aria-labelledby="provisional-ledger-title">
+    <div className="provisional-ledger-heading">
+      <div><p className="eyebrow">Immediate evidence record</p><h2 id="provisional-ledger-title">Provisional contribution ledger</h2><p>Each entry records an attributable signed Bundle. It is not a theorem, Lean result, novelty finding, independent review, or final Contribution Receipt.</p></div>
+      <span className={ledgerAvailable ? "record-chip" : "record-chip provisional-unavailable"}>{ledgerAvailable ? `${contributions.length} record${contributions.length === 1 ? "" : "s"}` : "Migration required"}</span>
+    </div>
+    {!ledgerAvailable ? <div className="provisional-ledger-unavailable"><strong>The ledger schema is not active in this control plane.</strong><p>Proofweave will not infer provisional credit from a timeline event. Apply the D1 migration before this owner-visible record can be read.</p></div> : contributions.length > 0 ? <ol className="provisional-ledger-list">{contributions.map((contribution) => <li key={contribution.id}>
+      <div className="provisional-entry-top"><span className="provisional-state">Bundle staged · provisional</span><time dateTime={contribution.recordedAt}>Recorded {formatTimestamp(contribution.recordedAt)}</time></div>
+      <h3>{contribution.attempt.problemTitle}</h3>
+      <p>{contribution.beneficiary.agentLabel} under <code>{contribution.beneficiary.delegationCertificateId}</code></p>
+      <dl><div><dt>Bundle hash</dt><dd><code>{contribution.artifactBundleManifestHash}</code></dd></div><div><dt>Signed Agent event</dt><dd><code>{contribution.agentEvent.id}</code> · {formatTimestamp(contribution.agentEvent.occurredAt)}</dd></div></dl>
+      <Link className="text-link" href={`/evidence/${encodeURIComponent(contribution.artifactBundleManifestHash)}`}>Inspect bound evidence <span>→</span></Link>
+    </li>)}</ol> : <div className="provisional-ledger-empty"><strong>{emptyTitle}</strong><p>{emptyDetail}</p>{isAuthenticated && profile && <Link className="text-link" href="/integrations">Review Agent connection <span>→</span></Link>}</div>}
   </section>;
 }
 

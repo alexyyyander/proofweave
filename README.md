@@ -33,13 +33,17 @@ opaque counter buckets, so multiplying Agents cannot increase a participant's
 transport capacity. They are abuse controls, not contribution scoring or a
 deployed public-service guarantee.
 
-The workbench presents durable Attempt records and their immutable activity
-timeline only. It never substitutes sample Lean source, local progress, or a
-fictional compiler result for Agent-supplied evidence. An authenticated owner
-can refresh that owner-scoped record after a remote Agent reports new work.
-Closed alpha also limits concurrent provisional Attempts per Person, regardless
-of how many delegated Agents that Person operates; this is an abuse-control
-limit, not a measure of mathematical contribution.
+The workbench presents durable Attempt records, their immutable activity
+timeline, and an owner-only provisional contribution ledger. A ledger entry is
+created exactly once when a validly delegated Agent stages a complete signed
+Artifact Bundle; it records attributable evidence, not a theorem, Lean result,
+novelty finding, review, or final Receipt. The workbench never substitutes
+sample Lean source, local progress, or a fictional compiler result for
+Agent-supplied evidence. An authenticated owner can refresh those owner-scoped
+records after a remote Agent reports new work. Closed alpha also limits
+concurrent provisional Attempts per Person, regardless of how many delegated
+Agents that Person operates; this is an abuse-control limit, not a measure of
+mathematical contribution.
 Independent-review assignments receive the same Person-level protection: only
 a bounded number of assigned or accepted reviews may be active for one Person,
 regardless of that Person's review Agents.
@@ -88,6 +92,7 @@ deployment remains owner-only despite this public-record model.
 - [Artifact storage contract](docs/artifact-storage-contract.md)
 - [Run state contract](docs/run-state-contract.md)
 - [Independent verification contract](docs/verification-contract.md)
+- [Provisional contribution ledger contract](docs/provisional-contribution-contract.md)
 - [Contribution Receipt contract](docs/contribution-receipt-contract.md)
 
 ## Current stack

@@ -67,6 +67,50 @@ test("stages a signed Artifact Bundle only after immutable R2/D1 evidence is pre
   assert.match(staged.bundle.manifestHash, /^sha256:[a-f0-9]{64}$/);
   assert.equal((await bucket.get(staged.bundle.manifestKey)).customMetadata.sha256, staged.bundle.manifestHash);
   assert.equal((await store.findBundle(staged.bundle.manifestHash)).agentEventId, "agent-event:artifact-store-test");
+  const provisional = await database
+    .prepare(
+      `SELECT id, kind, state, beneficiary_person_id, beneficiary_agent_id,
+              beneficiary_delegation_certificate_id, attempt_id,
+              problem_revision_id, artifact_bundle_manifest_hash, agent_event_id,
+              agent_event_occurred_at, recorded_at
+       FROM provisional_contributions
+       WHERE artifact_bundle_manifest_hash = ?`,
+    )
+    .bind(staged.bundle.manifestHash)
+    .first();
+  assert.deepEqual(
+    {
+      id: provisional.id,
+      kind: provisional.kind,
+      state: provisional.state,
+      personId: provisional.beneficiary_person_id,
+      agentId: provisional.beneficiary_agent_id,
+      certificateId: provisional.beneficiary_delegation_certificate_id,
+      attemptId: provisional.attempt_id,
+      revisionId: provisional.problem_revision_id,
+      manifestHash: provisional.artifact_bundle_manifest_hash,
+      eventId: provisional.agent_event_id,
+      eventOccurredAt: provisional.agent_event_occurred_at,
+    },
+    {
+      id: `provisional-evidence:${staged.bundle.manifestHash}`,
+      kind: "evidence_bundle",
+      state: "bundle_staged",
+      personId: "person:artifact-store-test",
+      agentId: "agent:artifact-store-test",
+      certificateId: "delegation:artifact-store-test",
+      attemptId: bundle.attemptId,
+      revisionId: bundle.problemRevisionId,
+      manifestHash: staged.bundle.manifestHash,
+      eventId: bundle.agentEvent.eventId,
+      eventOccurredAt: bundle.agentEvent.occurredAt,
+    },
+  );
+  assert.ok(Date.parse(provisional.recorded_at));
+  assert.equal(
+    (await database.prepare("SELECT COUNT(*) AS count FROM provisional_contributions WHERE artifact_bundle_manifest_hash = ?").bind(staged.bundle.manifestHash).first()).count,
+    1,
+  );
 
   await assert.rejects(
     store.stageBundle({
@@ -82,6 +126,14 @@ test("stages a signed Artifact Bundle only after immutable R2/D1 evidence is pre
   await assert.rejects(
     database.prepare("UPDATE artifact_bundles SET canonical_manifest = ? WHERE id = ?").bind("{}", bundle.id).run(),
     /artifact bundles are immutable/,
+  );
+  await assert.rejects(
+    database.prepare("UPDATE provisional_contributions SET state = ? WHERE id = ?").bind("bundle_staged", provisional.id).run(),
+    /provisional contributions are immutable/,
+  );
+  await assert.rejects(
+    database.prepare("DELETE FROM provisional_contributions WHERE id = ?").bind(provisional.id).run(),
+    /provisional contributions cannot be deleted/,
   );
 
 });

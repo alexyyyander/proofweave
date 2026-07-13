@@ -1247,6 +1247,64 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
   assert.match(ownerAttempt.events[0].message, /opened by its owner/i);
   assert.match(ownerAttemptNote, /not an Agent-signed event/i);
 
+  // The stage path is separately covered with a real Agent signature in the
+  // Artifact Store test. This fixture exercises the owner-only read projection
+  // and workbench rendering with its fully bound immutable row.
+  const provisionalManifestHash = `sha256:${"1".repeat(64)}`;
+  await database
+    .prepare("INSERT INTO artifact_objects (content_hash, object_key, byte_length, content_type) VALUES (?, ?, ?, ?)")
+    .bind(provisionalManifestHash, "bundles/sha256/provisional-fixture/bundle.json", 2, "application/json")
+    .run();
+  await database
+    .prepare(
+      `INSERT INTO artifact_bundles (
+        id, attempt_id, problem_revision_id, manifest_hash, manifest_key,
+        canonical_manifest, agent_event_id, agent_event_payload_hash
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+    )
+    .bind(
+      "bundle:provisional-ledger-fixture",
+      ownerAttempt.id,
+      ownerAttempt.problemRevisionId,
+      provisionalManifestHash,
+      "bundles/sha256/provisional-fixture/bundle.json",
+      "{}",
+      "agent-event:provisional-ledger-fixture",
+      `sha256:${"2".repeat(64)}`,
+    )
+    .run();
+  await database
+    .prepare(
+      `INSERT INTO provisional_contributions (
+        id, kind, state, beneficiary_person_id, beneficiary_agent_id,
+        beneficiary_delegation_certificate_id, attempt_id, problem_revision_id,
+        artifact_bundle_manifest_hash, agent_event_id, agent_event_occurred_at,
+        recorded_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    )
+    .bind(
+      `provisional-evidence:${provisionalManifestHash}`,
+      "evidence_bundle",
+      "bundle_staged",
+      profile.person.id,
+      ownerAttempt.agentId,
+      certificate.id,
+      ownerAttempt.id,
+      ownerAttempt.problemRevisionId,
+      provisionalManifestHash,
+      "agent-event:provisional-ledger-fixture",
+      "2026-07-13T00:00:00Z",
+      "2026-07-13T00:00:01Z",
+    )
+    .run();
+  const provisionalResponse = await render("/api/me/provisional-contributions", { headers: authHeaders });
+  assert.equal(provisionalResponse.status, 200);
+  const { contributions: provisionalContributions, note: provisionalNote } = await provisionalResponse.json();
+  assert.equal(provisionalContributions.length, 1);
+  assert.equal(provisionalContributions[0].artifactBundleManifestHash, provisionalManifestHash);
+  assert.equal(provisionalContributions[0].beneficiary.agentId, ownerAttempt.agentId);
+  assert.match(provisionalNote, /not assert mathematical correctness/i);
+
   const selectedTargetAttemptResponse = await render("/api/me/attempts", {
     method: "POST",
     headers: { ...authHeaders, "content-type": "application/json" },
@@ -1273,6 +1331,11 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
   });
   assert.equal(otherAttemptsResponse.status, 200);
   assert.deepEqual((await otherAttemptsResponse.json()).attempts, []);
+  const otherProvisionalResponse = await render("/api/me/provisional-contributions", {
+    headers: { "oai-authenticated-user-email": "other-owner@example.test" },
+  });
+  assert.equal(otherProvisionalResponse.status, 200);
+  assert.deepEqual((await otherProvisionalResponse.json()).contributions, []);
 
   const ownerWorkbench = await render("/workbench?target=erdos-865-k2", { headers: authHeaders });
   assert.equal(ownerWorkbench.status, 200);
@@ -1282,6 +1345,9 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
   assert.match(ownerWorkbenchHtml, /Erdős Problem 865: k = 2 variant/i);
   assert.match(ownerWorkbenchHtml, /Attempt opened by its owner/i);
   assert.match(ownerWorkbenchHtml, /Refresh records/i);
+  assert.match(ownerWorkbenchHtml, /Provisional contribution ledger/i);
+  assert.match(ownerWorkbenchHtml, /Bundle staged · provisional/i);
+  assert.match(ownerWorkbenchHtml, /not a theorem, Lean result, novelty finding, independent review, or final Contribution Receipt/i);
 
   const activeAttemptCount = ownerAttempts.filter((candidate) => candidate.status === "active").length;
   for (let index = activeAttemptCount; index < closedAlphaAttemptLimits.maximumActiveAttemptsPerPerson; index += 1) {

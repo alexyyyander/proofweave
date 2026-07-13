@@ -4,7 +4,8 @@ import { useState } from "react";
 import type { DelegationProfile } from "@/db/repositories/delegation";
 import type { CatalogProblem } from "@/packages/domain/catalog";
 import type { McpAttempt } from "@/packages/domain/mcp";
-import { DelegationSummary, FocusAction, ResearchWorkstation, SubmissionReadiness, WorkbenchHero } from "./workbench-sections";
+import type { ProvisionalContribution } from "@/db/repositories/provisional-contributions";
+import { DelegationSummary, FocusAction, ProvisionalContributionLedger, ResearchWorkstation, SubmissionReadiness, WorkbenchHero } from "./workbench-sections";
 import { DelegationSetup } from "./DelegationSetup";
 import { AttemptQueue } from "./AttemptQueue";
 import { AgentConnections } from "./AgentConnections";
@@ -12,6 +13,8 @@ import { AgentConnections } from "./AgentConnections";
 export function WorkbenchClient({
   profile,
   initialAttempts,
+  initialProvisionalContributions,
+  provisionalLedgerAvailable,
   catalogTargets,
   initialTargetSlug,
   isAuthenticated,
@@ -20,6 +23,8 @@ export function WorkbenchClient({
 }: {
   profile: DelegationProfile | null;
   initialAttempts: readonly McpAttempt[];
+  initialProvisionalContributions: readonly ProvisionalContribution[];
+  provisionalLedgerAvailable: boolean;
   catalogTargets: readonly CatalogProblem[];
   initialTargetSlug: string | null;
   isAuthenticated: boolean;
@@ -27,6 +32,8 @@ export function WorkbenchClient({
   storageAvailable: boolean;
 }) {
   const [attempts, setAttempts] = useState<readonly McpAttempt[]>(initialAttempts);
+  const [provisionalContributions, setProvisionalContributions] = useState<readonly ProvisionalContribution[]>(initialProvisionalContributions);
+  const [isProvisionalLedgerAvailable, setIsProvisionalLedgerAvailable] = useState(provisionalLedgerAvailable);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [refreshError, setRefreshError] = useState<string | null>(null);
   const [refreshedAt, setRefreshedAt] = useState<string | null>(null);
@@ -36,12 +43,27 @@ export function WorkbenchClient({
     setIsRefreshing(true);
     setRefreshError(null);
     try {
-      const response = await fetch("/api/me/attempts", { headers: { accept: "application/json" } });
-      const payload = await response.json().catch(() => null);
-      if (!response.ok || !Array.isArray(payload?.attempts)) {
-        throw new Error(payload?.error?.message ?? "Proofweave could not refresh the durable Attempt records.");
+      const [attemptResponse, contributionResponse] = await Promise.all([
+        fetch("/api/me/attempts", { headers: { accept: "application/json" } }),
+        isProvisionalLedgerAvailable
+          ? fetch("/api/me/provisional-contributions", { headers: { accept: "application/json" } })
+          : Promise.resolve(null),
+      ]);
+      const attemptPayload = await attemptResponse.json().catch(() => null);
+      if (!attemptResponse.ok || !Array.isArray(attemptPayload?.attempts)) {
+        throw new Error(attemptPayload?.error?.message ?? "Proofweave could not refresh the durable Attempt records.");
       }
-      setAttempts(payload.attempts as McpAttempt[]);
+      setAttempts(attemptPayload.attempts as McpAttempt[]);
+      if (contributionResponse) {
+        const contributionPayload = await contributionResponse.json().catch(() => null);
+        if (contributionResponse.ok && Array.isArray(contributionPayload?.contributions)) {
+          setProvisionalContributions(contributionPayload.contributions as ProvisionalContribution[]);
+        } else if (contributionResponse.status === 503 && contributionPayload?.error?.code === "unavailable") {
+          setIsProvisionalLedgerAvailable(false);
+        } else {
+          throw new Error(contributionPayload?.error?.message ?? "Proofweave could not refresh the provisional evidence ledger.");
+        }
+      }
       setRefreshedAt(new Date().toISOString());
     } catch (error) {
       setRefreshError(error instanceof Error ? error.message : "Proofweave could not refresh the durable Attempt records.");
@@ -58,6 +80,7 @@ export function WorkbenchClient({
     <AttemptQueue profile={profile} attempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={initialTargetSlug} onAttemptCreated={(attempt) => { setAttempts((current) => [attempt, ...current.filter((candidate) => candidate.id !== attempt.id)]); setRefreshError(null); }} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} />
     <FocusAction profile={profile} attempts={attempts} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} isRefreshing={isRefreshing} refreshError={refreshError} refreshedAt={refreshedAt} onRefresh={() => { void refreshAttempts(); }} />
     <ResearchWorkstation attempt={attempts[0] ?? null} />
+    <ProvisionalContributionLedger profile={profile} contributions={provisionalContributions} isAuthenticated={isAuthenticated} ledgerAvailable={isProvisionalLedgerAvailable} />
     <SubmissionReadiness attempt={attempts[0] ?? null} profile={profile} />
   </>;
 }

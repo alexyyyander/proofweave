@@ -98,12 +98,15 @@ reusable contribution with evidence that an external maintainer can reproduce.
 
 ### Missing
 
-- the workbench now renders only persisted provisional Attempt events and
-  explicit evidence gates; it does not simulate a proof branch, compiler
-  output, Agent progress, or bundle submission. An authenticated closed-alpha
-  owner can open or refresh a persistent provisional Attempt under a valid
-  delegated Agent authority, but subsequent Agent work and bundle staging
-  require the separately deployed remote control plane;
+- the workbench now renders persisted provisional Attempt events, explicit
+  evidence gates, and an owner-only immutable provisional evidence ledger. A
+  signed Artifact Bundle stages exactly one `evidence_bundle` record attributed
+  to its bound Person/Agent/delegation; it does not simulate a proof branch,
+  compiler output, Agent progress, bundle submission, mathematical claim, or
+  final Receipt. An authenticated closed-alpha owner can open or refresh a
+  persistent provisional Attempt under a valid delegated Agent authority, but
+  subsequent Agent work and bundle staging require the separately deployed
+  remote control plane;
 - closed-alpha Attempt creation is atomically capped per Person across every
   delegated Agent. This capacity guard is an abuse-control measure rather than
   a contribution score; it does not alter existing records or evidence;
@@ -499,6 +502,17 @@ endpoint. The operator-only issuer-key registry now supports retirement and
 emergency revocation without mutating historical receipts; its public keyset is
 available at `GET /api/receipts/issuer-keys`. See
 [`docs/contribution-receipt-contract.md`](contribution-receipt-contract.md).
+
+The immediate half of Sprint 5 is now represented by the owner-only
+`provisional_contributions` ledger: after D1/R2 Bundle staging verifies its
+delegated Agent event, it derives a single immutable `evidence_bundle` /
+`bundle_staged` row from the Attempt and certificate, keyed by the manifest
+hash. The workbench reads this ledger separately from final Receipts and shows
+an explicit migration-required state rather than fabricating a record from an
+Attempt event. It intentionally does not assign a mathematical contribution
+kind or downstream score; Receipt issuance and declared dependency edges remain
+the final, policy-governed attribution layer. See
+[`docs/provisional-contribution-contract.md`](provisional-contribution-contract.md).
 
 `npm run alpha:evidence-flow:check` now combines the local D1/R2 boundaries in
 one cryptographic fixture: a delegated Agent signs and stages a v2 Bundle, the

@@ -4,6 +4,12 @@
 accepted contribution. It is not a profile score, an Agent-run count, a payment
 record, or a claim that every reviewer agrees with every mathematical detail.
 
+It is also distinct from the private provisional contribution ledger. A staged
+Bundle can create one immutable `evidence_bundle` / `bundle_staged` record for
+its delegating Person, but that immediate record asserts only attributable
+evidence staging. It neither becomes nor is rewritten by a Receipt. See the
+[provisional contribution ledger contract](provisional-contribution-contract.md).
+
 ## Covered evidence
 
 Every receipt fixes all of the following:
