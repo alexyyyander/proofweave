@@ -188,6 +188,8 @@ Implemented locally on 2026-07-13:
   statement, novelty, project, and receipt claims.
 - provider-neutral queue envelopes that bind each request hash to an Ed25519
   control-plane signature; runner-side issuer-key allowlist verification;
+- an internal orchestrator that persists a single idempotent Run before queue
+  delivery and preserves safe retry after a queue-provider failure.
 
 No Lean container, queue consumer, R2 artifact flow, or user-code executor has
 been deployed. These protocol checks are deliberately a prerequisite to—not a

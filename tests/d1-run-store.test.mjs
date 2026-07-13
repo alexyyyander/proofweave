@@ -37,6 +37,10 @@ test("D1 Run store persists an idempotent lifecycle with immutable evidence", as
   assert.equal(queued.created, true);
   assert.equal(retried.created, false);
   assert.equal(retried.run.id, "run:fixture-1");
+  assert.equal(
+    (await store.findByAttemptIdempotency("attempt:run-test", "run-idempotency-1"))?.id,
+    "run:fixture-1",
+  );
 
   const running = await store.start("run:fixture-1", "2026-07-13T00:00:01Z");
   const cancelling = await store.requestCancellation("run:fixture-1", "2026-07-13T00:00:02Z");

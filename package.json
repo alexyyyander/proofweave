@@ -21,7 +21,7 @@
     "mcp:gateway:check": "node --check services/proofweave-mcp-gateway/worker.mjs && node --check services/proofweave-identity/worker.mjs && node --test tests/remote-mcp-gateway.test.mjs",
     "delegation:check": "node --test tests/delegation.test.mjs",
     "identity:store:check": "node --check services/proofweave-identity/d1-oauth-store.mjs && node --test tests/d1-oauth-store.test.mjs",
-    "runner:check": "node --check packages/protocol/lean-runner.mjs && node --check services/lean-runner/contract.mjs && node --check services/lean-runner/queue.mjs && node --test tests/lean-runner-protocol.test.mjs tests/runner-queue.test.mjs",
+    "runner:check": "node --check packages/protocol/lean-runner.mjs && node --check services/lean-runner/contract.mjs && node --check services/lean-runner/queue.mjs && node --check services/lean-runner/orchestrator.mjs && node --check services/lean-runner/d1-run-store.mjs && node --test tests/lean-runner-protocol.test.mjs tests/runner-queue.test.mjs tests/runner-orchestrator.test.mjs",
     "runner:fixtures:check": "node scripts/check-lean-fixtures.mjs",
     "artifact:check": "node --check packages/protocol/artifact-bundle.mjs && node --test tests/artifact-bundle.test.mjs",
     "run:check": "node --check packages/domain/run.mjs && node --test tests/run-state.test.mjs",

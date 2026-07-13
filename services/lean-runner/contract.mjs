@@ -19,3 +19,8 @@ export {
   RunnerQueueProtocolError,
   verifyRunnerQueueMessageSignature,
 } from "./queue.mjs";
+
+export {
+  RunnerDispatchError,
+  RunnerOrchestrator,
+} from "./orchestrator.mjs";

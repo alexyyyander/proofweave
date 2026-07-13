@@ -92,6 +92,14 @@ export class D1RunStore {
     return row ? toRun(row) : null;
   }
 
+  async findByAttemptIdempotency(attemptId, idempotencyKey) {
+    const row = await this.database
+      .prepare("SELECT * FROM runs WHERE attempt_id = ? AND idempotency_key = ?")
+      .bind(attemptId, idempotencyKey)
+      .first();
+    return row ? toRun(row) : null;
+  }
+
   async listEvents(runId) {
     const rows = await this.database
       .prepare("SELECT * FROM run_events WHERE run_id = ? ORDER BY sequence ASC")

@@ -53,6 +53,12 @@ also authenticate publisher and consumer transport, support removing a queued
 job, and leave a leased/running cancellation to the runner lifecycle. See
 [`services/lean-runner/queue.mjs`](../services/lean-runner/queue.mjs).
 
+`RunnerOrchestrator` records the immutable Run projection before queue
+delivery. A transient queue-provider failure therefore leaves a queued Run that
+can be retried with the same Attempt/idempotency key; it never creates a second
+execution identity. This control-plane handoff is internal-only and does not
+make an HTTP execution API available.
+
 ## Result
 
 Results record bounded infrastructure evidence only: outcome, exit code, timing,

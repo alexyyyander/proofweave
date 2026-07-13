@@ -13,6 +13,12 @@ control-plane deployment key, and the runner-side authenticator accepts only
 operator-provisioned public issuer keys. It does not yet contain a container
 image, hosted queue adapter, queue consumer, or executable user-code service.
 
+[`orchestrator.mjs`](orchestrator.mjs) is the control-plane handoff: it creates
+the immutable D1 Run projection before delivering the signed queue envelope.
+If a queue provider fails, a retry with the same Attempt/idempotency key reuses
+the recorded Run rather than creating a second execution identity. It still
+does not invoke Lean, download source, or expose an HTTP route.
+
 See [the runner contract](../../docs/runner-contract.md) for the non-negotiable
 security and evidence boundaries, and [the Run state contract](../../docs/run-state-contract.md)
 for queue/start/cancellation result semantics.
