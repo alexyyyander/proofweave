@@ -8,6 +8,7 @@ import { UnconfiguredIdentityProvider } from "../proofweave-mcp-gateway/worker.m
  */
 export function createProofweaveIdentityService({ issuer, identityProvider }) {
   const issuerUrl = new URL(issuer);
+  const registrationEndpointEnabled = identityProvider?.registrationEndpointEnabled === true;
 
   return {
     async fetch(request) {
@@ -22,7 +23,9 @@ export function createProofweaveIdentityService({ issuer, identityProvider }) {
           issuer,
           authorization_endpoint: new URL("/authorize", issuerUrl).toString(),
           token_endpoint: new URL("/token", issuerUrl).toString(),
-          registration_endpoint: new URL("/register", issuerUrl).toString(),
+          ...(registrationEndpointEnabled
+            ? { registration_endpoint: new URL("/register", issuerUrl).toString() }
+            : {}),
           response_types_supported: ["code"],
           grant_types_supported: ["authorization_code", "refresh_token"],
           token_endpoint_auth_methods_supported: ["none"],
@@ -34,7 +37,7 @@ export function createProofweaveIdentityService({ issuer, identityProvider }) {
 
       if (url.pathname === "/authorize") return oauthEndpoint(() => identityProvider.authorize(request));
       if (url.pathname === "/token") return oauthEndpoint(() => identityProvider.token(request));
-      if (url.pathname === "/register") return oauthEndpoint(() => identityProvider.register(request));
+      if (url.pathname === "/register" && registrationEndpointEnabled) return oauthEndpoint(() => identityProvider.register(request));
 
       return new Response("Not found", { status: 404 });
     },

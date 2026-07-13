@@ -3,6 +3,7 @@ import test from "node:test";
 import { createProofweaveIdentityService } from "../services/proofweave-identity/worker.mjs";
 import cloudflareGatewayWorker from "../services/proofweave-mcp-gateway/cloudflare-worker.mjs";
 import {
+  createAllowlistedClientRegistrationPolicy,
   createOAuthAccessTokenAuthenticator,
   createProofweaveOAuthProvider,
 } from "../services/proofweave-identity/oauth.mjs";
@@ -93,6 +94,66 @@ test("keeps identity endpoints unavailable until an identity adapter is connecte
   );
   assert.equal(response.status, 503);
   assert.equal((await response.json()).error, "temporarily_unavailable");
+});
+
+test("keeps dynamic OAuth client registration closed unless a fixed allowlist enables it", async () => {
+  const registrations = [];
+  const store = {
+    async registerClient(metadata) {
+      registrations.push(metadata);
+      return {
+        client_id: `approved-${registrations.length}`,
+        client_name: metadata.clientName,
+        redirect_uris: metadata.redirectUris,
+        token_endpoint_auth_method: metadata.tokenEndpointAuthMethod,
+      };
+    },
+  };
+  const common = {
+    resource,
+    store,
+    sessionResolver: { async currentSession() { return null; }, authorizationRequired() { return new Response("Sign in", { status: 401 }); } },
+    consentResolver: { async resolve() { return { approved: false }; } },
+  };
+  const closed = createProofweaveIdentityService({
+    issuer,
+    identityProvider: createProofweaveOAuthProvider(common),
+  });
+  const closedMetadata = await (await closed.fetch(new Request(`${issuer}/.well-known/oauth-authorization-server`))).json();
+  assert.equal(Object.hasOwn(closedMetadata, "registration_endpoint"), false);
+  assert.equal((await closed.fetch(clientRegistrationRequest({
+    client_name: "Approved Codex",
+    redirect_uris: ["https://codex.example.test/callback"],
+  }))).status, 404);
+  assert.equal(registrations.length, 0);
+
+  const enabled = createProofweaveIdentityService({
+    issuer,
+    identityProvider: createProofweaveOAuthProvider({
+      ...common,
+      clientRegistrationPolicy: createAllowlistedClientRegistrationPolicy({
+        clients: [{
+          client_name: "Approved Codex",
+          redirect_uris: ["https://codex.example.test/callback"],
+        }],
+      }),
+    }),
+  });
+  const enabledMetadata = await (await enabled.fetch(new Request(`${issuer}/.well-known/oauth-authorization-server`))).json();
+  assert.equal(enabledMetadata.registration_endpoint, `${issuer}/register`);
+  const approved = await enabled.fetch(clientRegistrationRequest({
+    client_name: " Approved Codex ",
+    redirect_uris: ["https://codex.example.test/callback"],
+  }));
+  assert.equal(approved.status, 201);
+  assert.deepEqual((await approved.json()).redirect_uris, ["https://codex.example.test/callback"]);
+  const rejected = await enabled.fetch(clientRegistrationRequest({
+    client_name: "Unapproved redirect",
+    redirect_uris: ["https://attacker.example.test/callback"],
+  }));
+  assert.equal(rejected.status, 403);
+  assert.equal((await rejected.json()).error, "access_denied");
+  assert.equal(registrations.length, 1);
 });
 
 test("issues PKCE-bound OAuth tokens for one authorized Agent installation and rotates refresh tokens", async () => {
@@ -462,6 +523,14 @@ function tokenRequest(fields) {
   return new Request(`${issuer}/token`, {
     method: "POST",
     body: new URLSearchParams(fields),
+  });
+}
+
+function clientRegistrationRequest(metadata) {
+  return new Request(`${issuer}/register`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(metadata),
   });
 }
 

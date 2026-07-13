@@ -26,7 +26,7 @@ Proofweave Sites origin (closed alpha)
 GET  /.well-known/oauth-authorization-server Authorization-server metadata
 GET  /authorize                             Person sign-in and consent
 POST /token                                 OAuth code and refresh exchange
-POST /register                              Optional dynamic client registration
+POST /register                              Optional; only for an operator allowlist
 ```
 
 Unauthenticated MCP requests return `401` with a `WWW-Authenticate` header
@@ -127,6 +127,13 @@ Agent IDs, MCP arguments, or mathematical evidence. Counters are trimmed after
 the short closed-alpha retention window. This remains source-level protection
 until load-tested and paired with deployed abuse response and operator policy.
 
+Dynamic client registration is closed by default. The authorization-server
+metadata omits `/register` unless deployment configuration supplies a finite,
+operator-reviewed allowlist of exact client names and redirect URIs. An enabled
+allowlist gives repeated registration of identical metadata one deterministic
+D1 client ID rather than minting unbounded client records. This avoids treating
+an arbitrary redirect URI posted by a remote client as enrollment authority.
+
 The separate identity Worker remains deliberately unavailable by default. The
 private Sites alpha now has an alternative Worker-mounted authorization adapter:
 it uses the existing signed-in Sites session to locate the already-created
@@ -147,7 +154,7 @@ boundary.
 
 - independent email/passkey identity, account linking, and recovery;
 - load validation for the source-level quotas, consent/audit retention policy,
-  abuse response, and dynamic-client registration policy;
+  abuse response, and an operator-managed dynamic-client allowlist;
 - token audience and scope enforcement at the HTTP boundary;
 - Agent registration and delegation selection in the consent screen;
 - rate-limit load/abuse validation, deployed audit-log retention, revocation,

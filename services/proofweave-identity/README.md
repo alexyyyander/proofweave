@@ -19,3 +19,9 @@ bound confirmation page, filters to active delegations capable of the requested
 OAuth scopes, and creates or reuses one installation only after approval.
 `d1-oauth-store.mjs` stores credential and consent-token hashes; it invalidates
 an installation whenever its underlying Agent delegation is no longer active.
+
+Dynamic client registration is intentionally closed by default. A future
+deployment must pass an explicit finite allowlist of exact client metadata to
+`createAllowlistedClientRegistrationPolicy`; only then does discovery advertise
+`/register`. The D1 store derives a stable client ID for identical approved
+metadata, preventing re-registration from creating an unbounded client table.

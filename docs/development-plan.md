@@ -234,6 +234,9 @@ Implemented locally on 2026-07-13:
   digest. A second Agent installation for the same Person cannot bypass a
   quota; only ephemeral transport counters are retained. Load validation,
   deployed retention, and an abuse-response process remain rollout work; and
+- dynamic OAuth client registration closed by default, with discovery exposing
+  it only for a finite operator-reviewed metadata allowlist and D1 assigning
+  idempotent client IDs to identical approved registrations; and
 - a private Sites OAuth adapter with one-use D1 consent challenges, HttpOnly
   CSRF binding, capability-filtered Agent selection, and automatic revocable
   Agent-installation creation for a browser-approved MCP client; and

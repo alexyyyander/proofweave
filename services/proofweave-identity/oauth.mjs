@@ -3,6 +3,10 @@ import { delegationAllowsOAuthScopes } from "./delegation-scope-policy.mjs";
 
 const defaultAccessLifetimeSeconds = 60 * 60;
 const defaultRefreshLifetimeSeconds = 30 * 24 * 60 * 60;
+const disabledClientRegistrationPolicy = Object.freeze({
+  registrationEndpointEnabled: false,
+  async authorize() { return false; },
+});
 
 /**
  * OAuth 2.1 authorization-code provider for Proofweave. Login, consent and
@@ -18,8 +22,11 @@ export function createProofweaveOAuthProvider({
   now = () => new Date(),
   accessLifetimeSeconds = defaultAccessLifetimeSeconds,
   refreshLifetimeSeconds = defaultRefreshLifetimeSeconds,
+  clientRegistrationPolicy = disabledClientRegistrationPolicy,
 }) {
+  requireClientRegistrationPolicy(clientRegistrationPolicy);
   return {
+    registrationEndpointEnabled: clientRegistrationPolicy.registrationEndpointEnabled,
     async authorize(request) {
       const session = await sessionResolver.currentSession(request);
       if (request.method === "POST") {
@@ -90,6 +97,7 @@ export function createProofweaveOAuthProvider({
 
     async register(request) {
       if (request.method !== "POST") return methodNotAllowed("POST");
+      if (!clientRegistrationPolicy.registrationEndpointEnabled) return notFound();
       let metadata;
       try {
         metadata = await request.json();
@@ -97,10 +105,31 @@ export function createProofweaveOAuthProvider({
         return oauthError("invalid_client_metadata", "Client metadata must be JSON.", 400);
       }
       const validated = validateClientMetadata(metadata);
+      if (!await clientRegistrationPolicy.authorize(validated)) {
+        return oauthError("access_denied", "This OAuth client metadata is not approved for registration.", 403);
+      }
       const client = await store.registerClient(validated);
       return json(client, 201);
     },
   };
+}
+
+/**
+ * Dynamic client registration stays closed by default. A deployment that
+ * needs it must provide a finite, operator-reviewed metadata allowlist; an
+ * arbitrary caller can never register a new redirect URI merely by posting it.
+ */
+export function createAllowlistedClientRegistrationPolicy({ clients } = {}) {
+  if (!Array.isArray(clients) || clients.length === 0 || clients.length > 100) {
+    throw new TypeError("Client-registration allowlist requires one to 100 approved clients.");
+  }
+  const approved = new Set(clients.map((metadata) => clientMetadataKey(validateClientMetadata(metadata))));
+  return Object.freeze({
+    registrationEndpointEnabled: true,
+    async authorize(metadata) {
+      return approved.has(clientMetadataKey(metadata));
+    },
+  });
 }
 
 /** Build the resource-server adapter consumed by the MCP gateway. */
@@ -238,14 +267,36 @@ function validateClientMetadata(metadata) {
     throw new OAuthProtocolError("invalid_client_metadata", "Client metadata must be an object.");
   }
   const redirectUris = metadata.redirect_uris;
-  if (!Array.isArray(redirectUris) || redirectUris.length === 0) {
+  if (!Array.isArray(redirectUris) || redirectUris.length === 0 || redirectUris.length > 8) {
     throw new OAuthProtocolError("invalid_client_metadata", "redirect_uris is required.");
   }
+  const normalizedRedirectUris = redirectUris.map(validRedirectUri).sort();
+  if (new Set(normalizedRedirectUris).size !== normalizedRedirectUris.length) {
+    throw new OAuthProtocolError("invalid_client_metadata", "redirect_uris must not contain duplicates.");
+  }
+  const suppliedName = typeof metadata.client_name === "string" ? metadata.client_name.trim() : "";
+  if (suppliedName.length > 160) {
+    throw new OAuthProtocolError("invalid_client_metadata", "client_name must be at most 160 characters.");
+  }
   return {
-    clientName: typeof metadata.client_name === "string" ? metadata.client_name.slice(0, 160) : "Proofweave MCP client",
-    redirectUris: redirectUris.map(validRedirectUri),
+    clientName: suppliedName || "Proofweave MCP client",
+    redirectUris: normalizedRedirectUris,
     tokenEndpointAuthMethod: "none",
   };
+}
+
+function requireClientRegistrationPolicy(value) {
+  if (!value || typeof value !== "object" || typeof value.registrationEndpointEnabled !== "boolean" || typeof value.authorize !== "function") {
+    throw new TypeError("OAuth provider requires a client-registration policy.");
+  }
+}
+
+function clientMetadataKey(metadata) {
+  return JSON.stringify({
+    clientName: metadata.clientName,
+    redirectUris: metadata.redirectUris,
+    tokenEndpointAuthMethod: metadata.tokenEndpointAuthMethod,
+  });
 }
 
 function normalizeScopes(value) {
@@ -336,6 +387,10 @@ function oauthError(error, errorDescription, status) {
 
 function methodNotAllowed(method) {
   return new Response(null, { status: 405, headers: { Allow: method } });
+}
+
+function notFound() {
+  return new Response("Not found", { status: 404 });
 }
 
 function json(value, status = 200) {

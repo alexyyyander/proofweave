@@ -174,6 +174,31 @@ test("D1 OAuth store atomically consumes credentials and invalidates an installa
   );
 });
 
+test("D1 OAuth client registration is idempotent for exactly one approved metadata record", async () => {
+  const store = new D1ProofweaveOAuthStore(database);
+  const metadata = {
+    clientName: "Approved Codex",
+    redirectUris: ["https://codex.example.test/callback"],
+    tokenEndpointAuthMethod: "none",
+  };
+  const first = await store.registerClient(metadata);
+  const replay = await store.registerClient({
+    ...metadata,
+    redirectUris: [...metadata.redirectUris],
+  });
+  assert.equal(first.client_id, replay.client_id);
+  assert.match(first.client_id, /^pw_client:[a-f0-9]{64}$/);
+  assert.deepEqual(
+    await store.findClient(first.client_id, "https://codex.example.test/callback"),
+    { id: first.client_id, clientName: "Approved Codex" },
+  );
+  const rows = await database
+    .prepare("SELECT COUNT(*) AS count FROM oauth_clients WHERE id = ?")
+    .bind(first.client_id)
+    .first();
+  assert.equal(rows.count, 1);
+});
+
 async function seedIdentityRows(d1) {
   const statements = [
     [

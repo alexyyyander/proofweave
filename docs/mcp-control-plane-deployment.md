@@ -45,7 +45,9 @@ Wrangler deployment commands:
    rate-limit buckets) and the required owner records.
 2. The R2 bucket is private and contains only content-addressed evidence.
 3. The external identity origin has a real browser session, consent, recovery,
-   and audit policy; the current Sites bridge remains closed-alpha only.
+   and audit policy; dynamic registration remains disabled unless a finite,
+   operator-reviewed client metadata allowlist is configured. The current Sites
+   bridge remains closed-alpha only.
 4. `MCP_RESOURCE_URL` and `OAUTH_ISSUER_URL` match public HTTPS origins.
 5. A fresh unauthenticated `POST /mcp` returns the protected-resource challenge,
    and an OAuth browser flow creates a revocable Agent installation.

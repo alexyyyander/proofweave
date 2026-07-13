@@ -398,10 +398,12 @@ export class D1ProofweaveOAuthStore {
   }
 
   async registerClient(metadata) {
-    const clientId = `pw_client:${crypto.randomUUID()}`;
+    const clientId = `pw_client:${await clientRegistrationFingerprint(metadata)}`;
     await this.database
       .prepare(
-        "INSERT INTO oauth_clients (id, client_name, redirect_uris_json, token_endpoint_auth_method) VALUES (?, ?, ?, ?)",
+        `INSERT INTO oauth_clients (id, client_name, redirect_uris_json, token_endpoint_auth_method)
+         VALUES (?, ?, ?, ?)
+         ON CONFLICT(id) DO NOTHING`,
       )
       .bind(clientId, metadata.clientName, JSON.stringify(metadata.redirectUris), metadata.tokenEndpointAuthMethod)
       .run();
@@ -412,6 +414,16 @@ export class D1ProofweaveOAuthStore {
       token_endpoint_auth_method: metadata.tokenEndpointAuthMethod,
     };
   }
+}
+
+async function clientRegistrationFingerprint(metadata) {
+  const payload = JSON.stringify({
+    clientName: metadata.clientName,
+    redirectUris: [...metadata.redirectUris].sort(),
+    tokenEndpointAuthMethod: metadata.tokenEndpointAuthMethod,
+  });
+  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(payload));
+  return [...new Uint8Array(digest)].map((byte) => byte.toString(16).padStart(2, "0")).join("");
 }
 
 function parseStringArray(value) {
