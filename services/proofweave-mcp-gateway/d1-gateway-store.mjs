@@ -6,6 +6,7 @@ import {
   VerificationStoreValidationError,
 } from "../verification/d1-verification-store.mjs";
 import { D1R2ArtifactStore, maxArtifactObjectBytes } from "../artifacts/d1-r2-artifact-store.mjs";
+import { closedAlphaAttemptLimits } from "../../packages/domain/attempt-policy.mjs";
 
 export class GatewayStoreAuthorizationError extends Error {
   constructor(message) {
@@ -32,6 +33,14 @@ export class GatewayStoreConflictError extends Error {
   constructor(message) {
     super(message);
     this.name = "GatewayStoreConflictError";
+  }
+}
+
+export class GatewayStoreRateLimitError extends Error {
+  constructor(limit = closedAlphaAttemptLimits.maximumActiveAttemptsPerPerson) {
+    super(`This Person already has the closed-alpha limit of ${limit} active Attempts. Existing work must become terminal before another provisional Attempt can open.`);
+    this.name = "GatewayStoreRateLimitError";
+    this.limit = limit;
   }
 }
 
@@ -88,7 +97,13 @@ export class D1RemoteMcpGatewayStore {
         `INSERT OR IGNORE INTO agent_attempts (
           id, person_id, problem_revision_id, agent_id, agent_label,
           delegation_certificate_id, delegation_scope, idempotency_key, updated_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        )
+        SELECT ?, ?, ?, ?, ?, ?, ?, ?, ?
+        WHERE (
+          SELECT COUNT(*)
+          FROM agent_attempts
+          WHERE person_id = ? AND status = 'active'
+        ) < ?`,
       )
       .bind(
         generatedId,
@@ -100,13 +115,15 @@ export class D1RemoteMcpGatewayStore {
         input.delegationScope,
         input.idempotencyKey,
         now,
+        principal.personId,
+        closedAlphaAttemptLimits.maximumActiveAttemptsPerPerson,
       )
       .run();
     const row = await this.database
       .prepare(`${attemptSelect} WHERE attempt.person_id = ? AND attempt.idempotency_key = ?`)
       .bind(principal.personId, input.idempotencyKey)
       .first();
-    if (!row) throw new Error("Attempt insert did not produce a readable record.");
+    if (!row) throw new GatewayStoreRateLimitError();
     if (
       row.problem_revision_id !== problem.id || row.agent_id !== installation.agentId ||
       row.agent_label !== installation.agentLabel ||

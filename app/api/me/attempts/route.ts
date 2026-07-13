@@ -7,6 +7,7 @@ import {
 import {
   getMcpRepository,
   McpAttemptNotActiveError,
+  McpAttemptQuotaExceededError,
   McpDelegationRequiredError,
   McpIdempotencyConflictError,
 } from "@/db/repositories/mcp";
@@ -104,6 +105,7 @@ function attemptFailure(error: unknown): Response {
   if (
     error instanceof McpIdempotencyConflictError ||
     error instanceof McpAttemptNotActiveError ||
+    error instanceof McpAttemptQuotaExceededError ||
     error instanceof McpDelegationRequiredError
   ) {
     return mcpFailure(error);

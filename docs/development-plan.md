@@ -95,6 +95,9 @@ reusable contribution with evidence that an external maintainer can reproduce.
   owner can open or refresh a persistent provisional Attempt under a valid
   delegated Agent authority, but subsequent Agent work and bundle staging
   require the separately deployed remote control plane;
+- closed-alpha Attempt creation is atomically capped per Person across every
+  delegated Agent. This capacity guard is an abuse-control measure rather than
+  a contribution score; it does not alter existing records or evidence;
 - no public identity, account recovery, cross-device key-rotation policy, or
   participant-ready delegation service exists; closed-alpha browser-held keys
   now have proof-of-possession and append-only revoke/replace controls, but

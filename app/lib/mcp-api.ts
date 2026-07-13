@@ -2,6 +2,7 @@ import { MissingDatabaseBindingError } from "@/db";
 import {
   getMcpRepository,
   McpAttemptNotActiveError,
+  McpAttemptQuotaExceededError,
   McpDelegationRequiredError,
   McpIdempotencyConflictError,
   type McpPrincipal,
@@ -63,6 +64,9 @@ export function mcpFailure(error: unknown): Response {
   }
   if (error instanceof McpAttemptNotActiveError) {
     return apiError("precondition_failed", error.message, 412);
+  }
+  if (error instanceof McpAttemptQuotaExceededError) {
+    return apiError("rate_limited", error.message, 429, { active_attempt_limit: String(error.limit) });
   }
   if (error instanceof McpDelegationRequiredError) {
     return apiError("precondition_failed", error.message, 412);

@@ -16,6 +16,7 @@ import {
 } from "../packages/protocol/contribution-receipt.mjs";
 import { createContributionReceiptLifecycleEvent } from "../packages/protocol/contribution-receipt-lifecycle.mjs";
 import { D1VerificationStore } from "../services/verification/d1-verification-store.mjs";
+import { closedAlphaAttemptLimits } from "../packages/domain/attempt-policy.mjs";
 
 const repositoryRoot = new URL("../", import.meta.url);
 const migrationsRoot = new URL("../drizzle/", import.meta.url);
@@ -1173,6 +1174,33 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
   assert.match(ownerWorkbenchHtml, /Erdős Problem 865: k = 2 variant/i);
   assert.match(ownerWorkbenchHtml, /Attempt opened by its owner/i);
   assert.match(ownerWorkbenchHtml, /Refresh records/i);
+
+  const activeAttemptCount = ownerAttempts.filter((candidate) => candidate.status === "active").length;
+  for (let index = activeAttemptCount; index < closedAlphaAttemptLimits.maximumActiveAttemptsPerPerson; index += 1) {
+    const capacityResponse = await render("/api/me/attempts", {
+      method: "POST",
+      headers: { ...authHeaders, "content-type": "application/json" },
+      body: JSON.stringify({
+        problemSlug: "erdos-865-k2",
+        delegationCertificateId: certificate.id,
+        delegationScope: "prove",
+        idempotencyKey: `owner-attempt-capacity-${index}`,
+      }),
+    });
+    assert.equal(capacityResponse.status, 201);
+  }
+  const exhaustedAttemptResponse = await render("/api/me/attempts", {
+    method: "POST",
+    headers: { ...authHeaders, "content-type": "application/json" },
+    body: JSON.stringify({
+      problemSlug: "erdos-865-k2",
+      delegationCertificateId: certificate.id,
+      delegationScope: "prove",
+      idempotencyKey: "owner-attempt-capacity-exhausted",
+    }),
+  });
+  assert.equal(exhaustedAttemptResponse.status, 429);
+  assert.equal((await exhaustedAttemptResponse.json()).error.code, "rate_limited");
 
   const guardedKeyRevocation = await render(`/api/me/keys/${encodeURIComponent(key.id)}/revoke`, {
     method: "POST",

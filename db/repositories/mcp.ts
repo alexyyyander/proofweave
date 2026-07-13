@@ -5,6 +5,7 @@ import {
   type McpAttemptEvent,
   type McpAttemptStatus,
 } from "@/packages/domain/mcp";
+import { closedAlphaAttemptLimits } from "@/packages/domain/attempt-policy.mjs";
 import {
   DelegationAuthorizationError,
   DelegationNotFoundError,
@@ -51,6 +52,16 @@ export class McpDelegationRequiredError extends Error {
   constructor(message = "A valid delegated Agent authority is required for this Attempt.") {
     super(message);
     this.name = "McpDelegationRequiredError";
+  }
+}
+
+export class McpAttemptQuotaExceededError extends Error {
+  readonly limit: number;
+
+  constructor(limit = closedAlphaAttemptLimits.maximumActiveAttemptsPerPerson) {
+    super(`This Person already has the closed-alpha limit of ${limit} active Attempts. Existing work must become terminal before another provisional Attempt can open.`);
+    this.name = "McpAttemptQuotaExceededError";
+    this.limit = limit;
   }
 }
 
@@ -210,7 +221,13 @@ class D1McpRepository implements McpRepository {
         `INSERT OR IGNORE INTO agent_attempts (
           id, person_id, problem_revision_id, agent_id, agent_label,
           delegation_certificate_id, delegation_scope, idempotency_key, updated_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        )
+        SELECT ?, ?, ?, ?, ?, ?, ?, ?, ?
+        WHERE (
+          SELECT COUNT(*)
+          FROM agent_attempts
+          WHERE person_id = ? AND status = 'active'
+        ) < ?`,
       )
       .bind(
         generatedId,
@@ -222,6 +239,8 @@ class D1McpRepository implements McpRepository {
         input.delegationScope,
         input.idempotencyKey,
         now,
+        personId,
+        closedAlphaAttemptLimits.maximumActiveAttemptsPerPerson,
       )
       .run();
 
@@ -233,7 +252,9 @@ class D1McpRepository implements McpRepository {
       .bind(personId, input.idempotencyKey)
       .first<AttemptRow>();
 
-    if (!row) throw new Error("Attempt insert did not produce a readable record.");
+    if (!row) {
+      throw new McpAttemptQuotaExceededError();
+    }
     if (
       row.problem_revision_id !== input.problemRevisionId ||
       row.agent_id !== input.agentId ||

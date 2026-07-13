@@ -5,6 +5,7 @@ import { useMemo, useState } from "react";
 import type { DelegationProfile, StoredDelegation } from "@/db/repositories/delegation";
 import type { CatalogProblem } from "@/packages/domain/catalog";
 import type { McpAttempt } from "@/packages/domain/mcp";
+import { closedAlphaAttemptLimits } from "@/packages/domain/attempt-policy.mjs";
 
 type AttemptScope = "formalize" | "prove";
 
@@ -39,9 +40,11 @@ export function AttemptQueue({
   const selectedTarget = catalogTargets.find((candidate) => candidate.slug === requestedTargetSlug) ?? catalogTargets[0] ?? null;
   const allowedScopes = selectedDelegation ? workScopes(selectedDelegation) : [];
   const scope = allowedScopes.includes(requestedScope) ? requestedScope : allowedScopes[0] ?? "prove";
+  const activeAttemptCount = attempts.filter((candidate) => candidate.status === "active").length;
+  const atAttemptCapacity = activeAttemptCount >= closedAlphaAttemptLimits.maximumActiveAttemptsPerPerson;
 
   const openAttempt = async () => {
-    if (!selectedDelegation || !selectedTarget || !allowedScopes.includes(scope) || isSubmitting) return;
+    if (!selectedDelegation || !selectedTarget || !allowedScopes.includes(scope) || isSubmitting || atAttemptCapacity) return;
     setIsSubmitting(true);
     setError(null);
     setNotice(null);
@@ -113,13 +116,14 @@ export function AttemptQueue({
             {allowedScopes.map((candidate) => <option value={candidate} key={candidate}>{candidate}</option>)}
           </select>
         </label>
-        <p className="attempt-form-note">Agent label and certificate binding are derived server-side. Opening work does not report mathematical progress.</p>
-        <button className="button button-primary" type="submit" disabled={isSubmitting}>{isSubmitting ? "Opening Attempt…" : "Open durable Attempt"}</button>
+        <p className="attempt-form-note">Agent label and certificate binding are derived server-side. Opening work does not report mathematical progress. Closed alpha permits at most {closedAlphaAttemptLimits.maximumActiveAttemptsPerPerson} active Attempts per Person, regardless of Agent count.</p>
+        <button className="button button-primary" type="submit" disabled={isSubmitting || atAttemptCapacity}>{isSubmitting ? "Opening Attempt…" : atAttemptCapacity ? "Active Attempt capacity reached" : "Open durable Attempt"}</button>
+        {atAttemptCapacity && <p className="attempt-message attempt-message-error" role="alert">This Person has reached the closed-alpha active Attempt capacity. Existing work must become terminal before another Attempt can open.</p>}
         {notice && <p className="attempt-message attempt-message-success" role="status">{notice}</p>}
         {error && <p className="attempt-message attempt-message-error" role="alert">{error}</p>}
       </form>
       <div className="attempt-list-panel">
-        <div className="attempt-list-heading"><span className="micro-label">Your durable Attempts</span><span>{attempts.length === 0 ? "None yet" : `${attempts.length} recorded`}</span></div>
+        <div className="attempt-list-heading"><span className="micro-label">Your durable Attempts</span><span>{attempts.length === 0 ? "None yet" : `${activeAttemptCount}/${closedAlphaAttemptLimits.maximumActiveAttemptsPerPerson} active`}</span></div>
         {attempts.length === 0 ? <p className="attempt-list-empty">No durable Attempt has been opened for this Person. Open one to create the first accountable activity record.</p> : <ol className="attempt-list">
           {attempts.slice(0, 6).map((attempt) => <li key={attempt.id}>
             <div><strong>{attempt.problemTitle}</strong><code>{attempt.id}</code></div>

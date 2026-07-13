@@ -6,7 +6,9 @@ import {
   D1RemoteMcpGatewayStore,
   GatewayStoreAuthorizationError,
   GatewayStoreNotFoundError,
+  GatewayStoreRateLimitError,
 } from "../services/proofweave-mcp-gateway/d1-gateway-store.mjs";
+import { closedAlphaAttemptLimits } from "../packages/domain/attempt-policy.mjs";
 import { createD1RemoteMcpGatewayRuntime } from "../services/proofweave-mcp-gateway/runtime.mjs";
 import cloudflareGatewayWorker from "../services/proofweave-mcp-gateway/cloudflare-worker.mjs";
 import { D1ProofweaveOAuthStore } from "../services/proofweave-identity/d1-oauth-store.mjs";
@@ -345,6 +347,51 @@ test("a prove-delegated OAuth Agent stages immutable objects and a signed v2 Bun
   }, attemptId);
   assert.equal(loaded.attempt.events.filter((event) => event.type === "bundle_staged").length, 1);
   assert.match(loaded.attempt.events.at(-1)?.message ?? "", /awaits a separate isolated runner and review/);
+});
+
+test("remote MCP capacity is shared by every Agent owned by the same Person", async () => {
+  const active = await database
+    .prepare("SELECT COUNT(*) AS count FROM agent_attempts WHERE person_id = ? AND status = 'active'")
+    .bind("person:gateway-reviewer")
+    .first();
+  const remaining = Math.max(0, closedAlphaAttemptLimits.maximumActiveAttemptsPerPerson - Number(active?.count ?? 0));
+  for (let index = 0; index < remaining; index += 1) {
+    await database
+      .prepare(
+        `INSERT INTO agent_attempts (
+          id, person_id, problem_revision_id, agent_id, agent_label,
+          delegation_certificate_id, delegation_scope, idempotency_key, updated_at
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      )
+      .bind(
+        `attempt:gateway-capacity-${index}`,
+        "person:gateway-reviewer",
+        "revision:gateway",
+        "agent:gateway-prover",
+        "Gateway prover Agent",
+        "delegation:gateway-prover",
+        "prove",
+        `gateway-capacity-${index}`,
+        "2026-07-13T00:00:00Z",
+      )
+      .run();
+  }
+
+  const store = new D1RemoteMcpGatewayStore(database);
+  const principal = {
+    clientId: "client:gateway-codex",
+    personId: "person:gateway-reviewer",
+    agentInstallationId: "installation:gateway-prover",
+    scopes: ["attempt:create"],
+  };
+  await assert.rejects(
+    store.createAttempt(principal, {
+      problemSlug: "gateway-target",
+      delegationScope: "prove",
+      idempotencyKey: "gateway-capacity-exhausted",
+    }),
+    GatewayStoreRateLimitError,
+  );
 });
 
 async function signedAttestation({

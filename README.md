@@ -22,6 +22,9 @@ The workbench presents durable Attempt records and their immutable activity
 timeline only. It never substitutes sample Lean source, local progress, or a
 fictional compiler result for Agent-supplied evidence. An authenticated owner
 can refresh that owner-scoped record after a remote Agent reports new work.
+Closed alpha also limits concurrent provisional Attempts per Person, regardless
+of how many delegated Agents that Person operates; this is an abuse-control
+limit, not a measure of mathematical contribution.
 
 Signed-in closed-alpha reviewers can use `/reviews` to inspect only the
 assignments addressed to their Person and record an immutable accept or decline
