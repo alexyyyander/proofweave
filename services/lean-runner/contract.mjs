@@ -51,6 +51,12 @@ export {
 } from "./runner-image-policy.mjs";
 
 export {
+  RunnerWorkspaceTransfer,
+  RunnerWorkspaceTransferError,
+  runnerWorkspaceTransferProtocolVersion,
+} from "./runner-workspace-transfer.mjs";
+
+export {
   RunnerDispatchError,
   RunnerOrchestrator,
 } from "./orchestrator.mjs";

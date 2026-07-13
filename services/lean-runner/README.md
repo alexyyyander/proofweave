@@ -48,7 +48,9 @@ claims exactly one persisted queued Run after that check, and
 `runner-image-policy.mjs` binds an approved image digest to exact Lean/Mathlib
 versions. Only `pw-artifact-bundle-v2` can be claimed for execution: it fixes
 safe archive extraction, patch application, Lake manifest replacement, and the
-final workspace-tree hash before a future transfer implementation can start.
+final workspace-tree hash. `runner-workspace-transfer.mjs` now provides the
+trusted Worker-side fixed-order R2 stream handoff that a future private
+Container ingress will verify before execution.
 The selected hosting boundary, non-deployable config template, and remaining
 gates are documented in
 [`docs/runner-cloudflare-deployment.md`](../../docs/runner-cloudflare-deployment.md).

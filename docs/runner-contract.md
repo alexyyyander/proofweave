@@ -43,6 +43,14 @@ and Lake manifest are still present in the D1/R2 immutable object index. This
 resolver intentionally does not fetch source archives; a later transfer layer
 must stream and limit them without trusting a user-provided path or hash.
 
+`RunnerWorkspaceTransfer` is that trusted Worker-side transfer layer. After
+preflight has claimed a v2 Run, it sends the private Container a fixed workspace
+declaration followed by three R2 streams in fixed archive/patch/Lake-manifest
+order. Every stream carries its expected immutable hash and byte length. The
+Container holds no D1, R2, or signing credentials and must make those private
+ingress steps idempotent, re-hash every stream, enforce v2 extraction/patch/tree
+rules, and reject any mismatch before Lean can run.
+
 `createLeanRunnerRequest` derives command, Lean version, Mathlib revision,
 policy, and canonical `bundle.json` key from that manifest. The control plane
 cannot change those inputs after the manifest hash is fixed, and it rejects an

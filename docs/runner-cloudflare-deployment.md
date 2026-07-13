@@ -42,10 +42,10 @@ per-Run wall-time, output, archive, axiom, or cleanup enforcement.
    immutable `@sha256:` digest and the exact bundled Lean/Mathlib revisions in
    the Runner image registry. Each request must match that registry.
 2. Complete the Runner Worker after its verified D1/R2 bundle resolution:
-   streaming v2 source transfer, clean workspace creation, verified no-link
-   extraction/no-fuzz patch/final-tree reconstruction, explicit process
-   timeout/resource controls, result signing, D1 result persistence,
-   cancellation, and deterministic cleanup.
+   connect the checked-in private v2 stream transfer to a Container ingress,
+   clean workspace creation, verified no-link extraction/no-fuzz patch/final-
+   tree reconstruction, explicit process timeout/resource controls, result
+   signing, D1 result persistence, cancellation, and deterministic cleanup.
 3. Provision the Queue, DLQ, D1/R2 bindings, control-plane signing secret, and
    Runner public issuer-key allowlist. The Container receives none of these
    secrets.

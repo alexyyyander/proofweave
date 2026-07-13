@@ -242,6 +242,11 @@ yet transfer or execute those files. Historical v1 Bundles can be resolved for
 audit but cannot create a Runner request or advance a queued Run; only v2 has
 safe workspace reconstruction semantics.
 
+`RunnerWorkspaceTransfer` now defines the trusted Worker-to-private-Container
+handoff for v2: a fixed workspace declaration and three R2 streams carrying
+immutable hash/length metadata. The Container ingress, extraction, Lean image,
+process execution, and result persistence remain unimplemented and undeployed.
+
 ### Run lifecycle progress
 
 The control plane now has a tested Run projection and D1 store for queueing,
