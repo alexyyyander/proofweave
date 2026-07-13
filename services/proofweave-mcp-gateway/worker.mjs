@@ -98,6 +98,10 @@ export class UnconfiguredGatewayStore {
     throw new Error("The Proofweave remote control plane is not configured.");
   }
 
+  async listAttempts() {
+    throw new Error("The Proofweave remote control plane is not configured.");
+  }
+
   async submitVerificationAttestation() {
     throw new Error("The Proofweave remote control plane is not configured.");
   }
@@ -214,6 +218,21 @@ function createMcpServer(principal, store) {
       annotations: { readOnlyHint: false, destructiveHint: false },
     },
     async ({ attemptId, ...input }) => toolResult(await withScope(principal, "progress:write", () => store.reportProgress(principal, { attemptId, ...input }))),
+  );
+
+  server.registerTool(
+    "list_attempts",
+    {
+      title: "List authorized Attempts",
+      description: "List recently updated Attempts bound to the selected Agent installation and delegation certificate only.",
+      inputSchema: { limit: z.number().int().min(1).max(100).optional() },
+      annotations: { readOnlyHint: true, destructiveHint: false },
+    },
+    async ({ limit }) => toolResult(await withScope(
+      principal,
+      "attempt:read",
+      () => store.listAttempts(principal, { limit }),
+    )),
   );
 
   server.registerTool(

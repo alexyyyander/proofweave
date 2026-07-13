@@ -186,8 +186,8 @@ Implemented locally on 2026-07-13:
   tokens, and refresh tokens, with atomic consumption in D1 integration tests.
 - D1 remote-MCP store that rechecks the selected installation on every
   operation, derives Agent attribution from D1 rather than tool input, limits
-  Attempt reads/progress to the exact Agent/certificate pair, and is covered by
-  actual OAuth-token-to-MCP-to-D1 integration tests.
+  Attempt discovery, reads, and progress to the exact Agent/certificate pair,
+  and is covered by actual OAuth-token-to-MCP-to-D1 integration tests.
 
 The default identity Worker is intentionally still unavailable: choosing and
 configuring independent login/session recovery plus a user-facing consent

@@ -25,6 +25,7 @@ function fixtureStore() {
     async inspectProblem(_principal, slug) { return { slug }; },
     async createAttempt(_principal, input) { return { id: "attempt:test", ...input }; },
     async reportProgress(_principal, input) { return { id: "event:test", ...input }; },
+    async listAttempts() { return { attempts: [{ id: "attempt:test" }], verificationState: "agent_reported_only" }; },
     async getAttempt(_principal, attemptId) { return { id: attemptId }; },
     async submitVerificationAttestation(_principal, attestation) { return { id: attestation.id, created: true }; },
   };
@@ -233,6 +234,7 @@ test("handles sequential authenticated MCP requests without retaining a session"
   assert.equal(tools.status, 200);
   const payload = await tools.json();
   assert.ok(payload.result.tools.some((tool) => tool.name === "create_attempt"));
+  assert.ok(payload.result.tools.some((tool) => tool.name === "list_attempts"));
   assert.ok(payload.result.tools.some((tool) => tool.name === "submit_verification_attestation"));
 });
 
@@ -292,6 +294,12 @@ test("passes only attribution context to the store and blocks an ungranted write
   assert.equal(payload.result.isError, true);
   assert.match(payload.result.content[0].text, /Missing OAuth scope: attempt:create/);
   assert.equal(attemptedWrite, false);
+
+  const attemptedRead = await gateway.fetch(mcpToolRequest("list_attempts", {}, headers));
+  assert.equal(attemptedRead.status, 200);
+  const attemptedReadPayload = await attemptedRead.json();
+  assert.equal(attemptedReadPayload.result.isError, true);
+  assert.match(attemptedReadPayload.result.content[0].text, /Missing OAuth scope: attempt:read/);
 });
 
 test("requires verification:write and passes only bound attribution context to the attestation store", async () => {

@@ -137,6 +137,15 @@ test("remote MCP D1 store pins catalog and Attempt work to the selected delegate
     idempotencyKey: "gateway-prover-attempt",
   })).idempotentReplay, true);
 
+  const authorizedAttempts = await store.listAttempts(principal, { limit: 10 });
+  assert.deepEqual(authorizedAttempts.attempts.map((attempt) => attempt.id), [created.attempt.id]);
+  assert.equal(authorizedAttempts.verificationState, "agent_reported_only");
+  const otherAgentAttempts = await store.listAttempts(
+    { ...principal, agentInstallationId: "installation:gateway-reviewer", scopes: ["attempt:read"] },
+    { limit: 10 },
+  );
+  assert.deepEqual(otherAgentAttempts.attempts, []);
+
   const progress = await store.reportProgress(principal, {
     attemptId: created.attempt.id,
     message: "Pinned the normalized goal state.",
@@ -248,6 +257,13 @@ test("a verified OAuth token reaches catalog and Attempt D1 boundaries through M
   });
   assert.equal(created.result.isError, undefined);
   const attemptId = JSON.parse(created.result.content[0].text).attempt.id;
+
+  const listedAttempts = await callGatewayTool(gateway, resource, accessToken, "list_attempts", { limit: 10 });
+  assert.equal(listedAttempts.result.isError, undefined);
+  assert.equal(
+    JSON.parse(listedAttempts.result.content[0].text).attempts.some((attempt) => attempt.id === attemptId),
+    true,
+  );
 
   const progress = await callGatewayTool(gateway, resource, accessToken, "report_progress", {
     attemptId,

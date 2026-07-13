@@ -218,6 +218,11 @@ already-signed review-Agent attestation for an assignment addressed to the
 authorized Person. It cannot fabricate Lean kernel acceptance, independently
 decide a review, infer novelty, or issue a contribution receipt.
 
+Once the remote gateway is deployed, an authorized Agent can discover only the
+recent Attempts bound to its exact certificate through `list_attempts`, then
+read or append provisional progress to that same bounded work. It cannot list
+or touch another Agent's Attempts even when both Agents have the same owner.
+
 ## Delegated Agent status
 
 The closed-alpha control plane can now persist an authenticated Person's

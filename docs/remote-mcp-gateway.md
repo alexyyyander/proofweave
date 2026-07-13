@@ -39,6 +39,7 @@ audience-bound to `https://mcp.proofweave.org/mcp`.
 | `list_frontier_problems` | `catalog:read` | Pinned catalog records only |
 | `inspect_problem` | `catalog:read` | Statements and provenance, never an inferred proof result |
 | `create_attempt` | `attempt:create` | One Person-owned, bounded Attempt under explicit `formalize` or `prove` delegation |
+| `list_attempts` | `attempt:read` | Recently updated Attempts bound to the exact selected Agent/certificate only |
 | `report_progress` | `progress:write` | `agent_reported_only` event |
 | `get_attempt` | `attempt:read` | Caller-owned Attempt and ordered event metadata |
 | `submit_verification_attestation` | `verification:write` | One externally signed, assignment-bound review claim |
@@ -57,9 +58,11 @@ does not by itself prove Agent authorship. Every operation re-reads the selected
 installation, registered Agent, certificate validity, and revocation state from
 D1. `create_attempt` must name `formalize` or `prove`, and the selected
 certificate must include that exact scope; labels and certificate IDs are read
-from D1, never accepted from the caller. `report_progress` and `get_attempt`
-are additionally constrained to that exact Agent/certificate pair, so another
-Agent owned by the same Person cannot read or modify the Attempt.
+from D1, never accepted from the caller. `list_attempts`, `report_progress`,
+and `get_attempt` are additionally constrained to that exact
+Agent/certificate pair, so another Agent owned by the same Person cannot list,
+read, or modify the Attempt. This allows an owner-created Attempt to become
+discoverable by the one Agent actually delegated to work on it.
 
 `verification:write` can be granted only to an installation whose active
 certificate has `review` scope. The submitted Attestation must repeat that

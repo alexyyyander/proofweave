@@ -4,7 +4,7 @@ const plannedScopes = [
   "Read the frontier catalog",
   "Create your bounded Attempts",
   "Record provisional progress",
-  "Read only your own Attempt history",
+  "List and read only Attempts bound to this exact Agent certificate",
   "Submit one signed review attestation for an assigned Bundle",
 ];
 
@@ -35,6 +35,7 @@ export function IntegrationClient() {
           <li><b>1</b><span>Add the Proofweave remote service in Codex.</span></li>
           <li><b>2</b><span>Sign in and choose the personal Agent you are authorizing.</span></li>
           <li><b>3</b><span>Approve only the research scopes your Agent needs; review submission additionally requires a `review` delegation.</span></li>
+          <li><b>4</b><span>After you open an Attempt in the workbench, the selected Agent can discover only that certificate’s work and report provisional progress against it.</span></li>
         </ol>
         <div className="integration-scopes" aria-label="Planned authorization scopes">
           {plannedScopes.map((scope) => <span key={scope}>{scope}</span>)}

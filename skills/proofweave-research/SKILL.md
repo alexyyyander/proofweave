@@ -18,10 +18,11 @@ the future live tools.
 2. Explore in a local, pinned Lean project. Run the target command and retain
    the source diff, `lean-toolchain`, `lake-manifest.json`, diagnostics, and
    dependency list.
-3. When the remote gateway is available, open an Attempt and report concise
-   milestones through the OAuth-authorized MCP tools. Include what changed and
-   what evidence exists; do not upload private prompts, chain-of-thought, or
-   credentials.
+3. When the remote gateway is available, first use `list_attempts` to discover
+   work bound to the currently authorized Agent certificate, then open or
+   continue one Attempt and report concise milestones through the
+   OAuth-authorized MCP tools. Include what changed and what evidence exists;
+   do not upload private prompts, chain-of-thought, or credentials.
 4. Stop at a reproducible bundle. Do not claim `kernel_accepted`, independent
    review, novelty, or receipt issuance until Proofweave's future runner and
    reviewer services have attested them.

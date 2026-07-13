@@ -188,6 +188,34 @@ export class D1RemoteMcpGatewayStore {
     return Object.freeze({ attempt });
   }
 
+  async listAttempts(principal, input = {}) {
+    assertPrincipalScope(principal, "attempt:read");
+    const limit = attemptListLimit(input.limit);
+    const installation = await this.requireInstallation(principal);
+    const rows = await this.database
+      .prepare(
+        `${attemptSelect}
+         WHERE attempt.person_id = ? AND attempt.agent_id = ?
+           AND attempt.delegation_certificate_id = ?
+         ORDER BY attempt.updated_at DESC, attempt.created_at DESC
+         LIMIT ?`,
+      )
+      .bind(
+        principal.personId,
+        installation.agentId,
+        installation.delegationCertificateId,
+        limit,
+      )
+      .all();
+    const attempts = await Promise.all((rows.results ?? []).map((row) =>
+      this.findAttemptForInstallation(principal, installation, row.id),
+    ));
+    return Object.freeze({
+      attempts: Object.freeze(attempts.filter(Boolean)),
+      verificationState: "agent_reported_only",
+    });
+  }
+
   async submitVerificationAttestation(principal, attestation) {
     assertVerificationPrincipal(principal);
     let normalized;
@@ -436,6 +464,14 @@ function requireProgressInput(input) {
   if (!Number.isInteger(input.progressPercent) || input.progressPercent < 0 || input.progressPercent > 100) {
     throw new GatewayStoreValidationError("Progress percent must be an integer between 0 and 100.");
   }
+}
+
+function attemptListLimit(value) {
+  if (value === undefined) return 25;
+  if (!Number.isInteger(value) || value < 1 || value > 100) {
+    throw new GatewayStoreValidationError("Attempt list limit must be an integer from 1 to 100.");
+  }
+  return value;
 }
 
 function requireSlug(value) {
