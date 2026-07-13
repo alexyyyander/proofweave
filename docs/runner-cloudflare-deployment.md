@@ -86,8 +86,10 @@ per-Run wall-time, output, archive, axiom, or cleanup enforcement.
    Non-production lifecycle testing of that delivery path remains a deployment
    gate. Source-only runtime tests are not a deployed Container service.
 3. Provision the Queue, DLQ, D1/R2 bindings, control-plane signing secret, and
-   Runner public issuer-key allowlist. The Container receives none of these
-   secrets.
+   Runner public issuer-key allowlist. Before any result can be accepted, use
+   `runner:deploy:key-enrollment` with the reviewed Runner manifest and apply
+   its collision-checked, parameterized D1 `runner_keys` plan through the
+   audited operator channel. The Container receives none of these secrets.
 4. Keep `RUNNER_EXECUTION_ENABLED` set to `false` until the non-production
    exercises have passed. The Runner Worker fails closed before it reads a
    Bundle, stages a workspace, or starts a Container unless that deployment

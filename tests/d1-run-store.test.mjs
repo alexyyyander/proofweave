@@ -6,6 +6,7 @@ import { D1RunStore } from "../services/lean-runner/d1-run-store.mjs";
 import { D1R2RunnerOutputStore } from "../services/lean-runner/d1-r2-runner-output-store.mjs";
 import { runnerResultSigningPayload } from "../packages/protocol/lean-runner.mjs";
 import { canonicalJson } from "../packages/protocol/canonical-json.mjs";
+import { runnerKeyFingerprint } from "../packages/protocol/runner-key-registry.mjs";
 
 const migrationsRoot = new URL("../drizzle/", import.meta.url);
 let miniflare;
@@ -72,6 +73,12 @@ test("D1 Run store persists an idempotent lifecycle with immutable evidence", as
     store.recordResult("run:fixture-1", result, "2026-07-13T00:00:04Z"),
     /not backed by immutable Runner output artifacts/,
   );
+  await database.prepare("UPDATE runner_keys SET fingerprint = ? WHERE id = ?").bind(sha("6"), "runner-key:run-test").run();
+  await assert.rejects(
+    store.recordResult("run:fixture-1", result, "2026-07-13T00:00:04Z"),
+    /fingerprint does not match/,
+  );
+  await database.prepare("UPDATE runner_keys SET fingerprint = ? WHERE id = ?").bind(await runnerKeyFingerprint(runnerPublicKey), "runner-key:run-test").run();
   const unsignedResult = { ...result };
   delete unsignedResult.runnerKeyId;
   delete unsignedResult.runnerSignature;
@@ -211,7 +218,7 @@ async function seedAttempt(d1, publicKey) {
     ],
     [
       "INSERT INTO runner_keys (id, public_key, fingerprint) VALUES (?, ?, ?)",
-      ["runner-key:run-test", publicKey, sha("6")],
+      ["runner-key:run-test", publicKey, await runnerKeyFingerprint(publicKey)],
     ],
   ];
 

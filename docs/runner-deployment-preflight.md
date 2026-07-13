@@ -48,6 +48,23 @@ keys, without logging them. Separately verify that the exact result public key
 is active in the external D1 `runner_keys` registry; this repository cannot
 infer that deployed database state from a manifest.
 
+To make that external D1 step reviewable without placing a provider credential
+or private key in source control, render the parameterized enrollment plan:
+
+```bash
+npm run runner:deploy:key-enrollment -- /secure/path/proofweave-runner-alpha.json
+```
+
+The plan contains only the reviewed result key ID, public key, its SHA-256
+fingerprint over the decoded 32-byte key, and three parameterized statements:
+a collision precondition, a one-time insert, and an exact active-row query.
+The audited D1 operator channel must run the precondition, apply the insert
+only when it returns zero rows, and preserve the verification result in the
+deployment change record. The command never contacts D1, reactivates an old
+key, enables execution, or handles a private JWK. At runtime the D1 Run store
+recomputes this fingerprint before accepting a result signature, so a malformed
+or mismatched `runner_keys` row fails closed.
+
 ## Required evidence before activation
 
 An operator must record all of the following in the deployment change record
@@ -67,8 +84,9 @@ before changing the deployed kill switch to `true`:
    `PROOFWEAVE_NETWORK_ISOLATED` assertion.
 4. The Queue producer uses the paired control-plane private key; the Runner
    receives only its public allowlist. The Worker-only result-signing private
-   key has a matching active D1 `runner_keys` record. Neither private key is in
-   Wrangler config, D1, R2, a Container, a queue payload, or source control.
+   key has a matching active D1 `runner_keys` record with the rendered
+   fingerprint. Neither private key is in Wrangler config, D1, R2, a
+   Container, a queue payload, or source control.
 5. Retained, access-controlled logs and alerts exist for Queue retries/DLQ,
    Worker failures, Container crashes, D1/R2 errors, and kill-switch changes.
    Audit events may remain privacy-minimal but must be available to the

@@ -27,6 +27,7 @@ import {
 } from "../packages/protocol/artifact-bundle.mjs";
 import { canonicalJson } from "../packages/protocol/canonical-json.mjs";
 import { createLeanRunnerRequest, leanRunnerRequestHash } from "../packages/protocol/lean-runner.mjs";
+import { runnerKeyFingerprint } from "../packages/protocol/runner-key-registry.mjs";
 import {
   verificationAttestationPayloadHash,
   verificationAttestationSigningPayload,
@@ -610,7 +611,7 @@ async function seedDelegatedPeopleAndAttempt(d1, fixtureKeys) {
       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       ["attempt:closed-alpha", "person:alice", "revision:closed-alpha", "agent:alice-prover", "delegation:alice-prover", "prove", "Alice prover", "closed-alpha-attempt", "2026-07-13T00:00:00Z"],
     ],
-    ["INSERT INTO runner_keys (id, public_key, fingerprint) VALUES (?, ?, ?)", ["runner-key:closed-alpha", fixtureKeys.runner.publicKey, sha("9")]],
+    ["INSERT INTO runner_keys (id, public_key, fingerprint) VALUES (?, ?, ?)", ["runner-key:closed-alpha", fixtureKeys.runner.publicKey, await runnerKeyFingerprint(fixtureKeys.runner.publicKey)]],
   ];
   for (const [statement, values] of statements) await d1.prepare(statement).bind(...values).run();
 }

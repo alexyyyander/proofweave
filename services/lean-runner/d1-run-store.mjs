@@ -10,6 +10,7 @@ import {
   normalizeLeanRunnerResult,
   verifyLeanRunnerResultSignature,
 } from "../../packages/protocol/lean-runner.mjs";
+import { runnerKeyFingerprint } from "../../packages/protocol/runner-key-registry.mjs";
 
 export class RunStoreConflictError extends Error {
   constructor(message) {
@@ -212,12 +213,21 @@ export class D1RunStore {
   async assertTrustedRunnerSignature(result) {
     const key = await this.database
       .prepare(
-        "SELECT public_key FROM runner_keys WHERE id = ? AND status = 'active' AND revoked_at IS NULL",
+        "SELECT public_key, fingerprint FROM runner_keys WHERE id = ? AND status = 'active' AND revoked_at IS NULL",
       )
       .bind(result.runnerKeyId)
       .first();
     if (!key) {
       throw new RunStoreAuthenticationError("Runner result key is not an active allowlisted key.");
+    }
+    let expectedFingerprint;
+    try {
+      expectedFingerprint = await runnerKeyFingerprint(key.public_key);
+    } catch {
+      throw new RunStoreAuthenticationError("Runner result key record contains an invalid public key.");
+    }
+    if (key.fingerprint !== expectedFingerprint) {
+      throw new RunStoreAuthenticationError("Runner result key fingerprint does not match its public key.");
     }
     if (!await verifyLeanRunnerResultSignature({ result, runnerPublicKey: key.public_key })) {
       throw new RunStoreAuthenticationError("Runner result signature is invalid.");

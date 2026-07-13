@@ -80,6 +80,10 @@ reusable contribution with evidence that an external maintainer can reproduce.
 - a secret-provider-only key-pair verifier that proves the deployment
   control-plane and Runner-result private JWKs match reviewed manifest public
   keys without printing or persisting secret material;
+- a public-key-only, parameterized Runner-key enrollment plan that derives a
+  deterministic fingerprint from the reviewed result key; terminal-result
+  persistence now rejects an active D1 key whose fingerprint does not match
+  its stored public key;
 - operator-managed runner-key allowlist with signed-result verification before
   immutable Run evidence is accepted;
 - independent Person-level review assignments and review-delegated Agent
