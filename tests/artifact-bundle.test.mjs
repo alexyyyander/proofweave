@@ -2,9 +2,13 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   artifactBundleHash,
+  artifactBundleSigningPayload,
+  artifactBundleSigningPayloadHash,
   canonicalArtifactBundle,
   normalizeArtifactBundle,
+  verifyArtifactBundleAgentSignature,
 } from "../packages/protocol/artifact-bundle.mjs";
+import { canonicalJson } from "../packages/protocol/canonical-json.mjs";
 
 test("canonical artifact bundles are complete and order-independent", async () => {
   const bundle = fixtureBundle();
@@ -30,6 +34,27 @@ test("artifact bundle rejects shell entrypoints, traversal, and private extra fi
     () => normalizeArtifactBundle({ ...fixtureBundle(), privatePrompt: "do not publish" }),
     /unsupported field privatePrompt/,
   );
+});
+
+test("an Artifact Bundle binds a valid Agent signature to the full evidence payload", async () => {
+  const pair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
+  const publicKey = base64Url(await crypto.subtle.exportKey("raw", pair.publicKey));
+  const bundle = fixtureBundle();
+  bundle.agentEvent.agentPublicKey = publicKey;
+  bundle.agentEvent.payloadHash = await artifactBundleSigningPayloadHash(bundle);
+  bundle.agentEvent.signature = base64Url(
+    await crypto.subtle.sign(
+      "Ed25519",
+      pair.privateKey,
+      new TextEncoder().encode(canonicalJson(artifactBundleSigningPayload(bundle))),
+    ),
+  );
+
+  assert.equal(await verifyArtifactBundleAgentSignature(bundle), true);
+  assert.equal(await verifyArtifactBundleAgentSignature({
+    ...bundle,
+    target: { ...bundle.target, declaration: "Proofweave.Fixture.tampered" },
+  }), false);
 });
 
 function fixtureBundle() {
@@ -66,4 +91,9 @@ function fixtureBundle() {
     },
     policy: { requireNoSorry: true, allowedAxioms: [] },
   };
+}
+
+function base64Url(buffer) {
+  const binary = String.fromCharCode(...new Uint8Array(buffer));
+  return btoa(binary).replaceAll("+", "-").replaceAll("/", "_").replaceAll("=", "");
 }

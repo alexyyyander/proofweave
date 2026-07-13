@@ -7,6 +7,11 @@ import {
   normalizeLeanRunnerRequest,
   normalizeLeanRunnerResult,
 } from "../packages/protocol/lean-runner.mjs";
+import {
+  artifactBundleSigningPayload,
+  artifactBundleSigningPayloadHash,
+} from "../packages/protocol/artifact-bundle.mjs";
+import { canonicalJson } from "../packages/protocol/canonical-json.mjs";
 
 test("normalizes a deterministic network-isolated Lean runner request", async () => {
   const request = fixtureRequest();
@@ -19,7 +24,7 @@ test("creates a runner request only from the canonical artifact bundle", async (
   const request = await createLeanRunnerRequest({
     jobId: "run:fixture-1",
     idempotencyKey: "runner-fixture-1",
-    artifactBundle: fixtureArtifactBundle(),
+    artifactBundle: await fixtureArtifactBundle(),
     imageDigest: `ghcr.io/proofweave/lean-runner@sha256:${"c".repeat(64)}`,
     limits: fixtureRequest().limits,
   });
@@ -81,8 +86,9 @@ function fixtureRequest() {
   };
 }
 
-function fixtureArtifactBundle() {
-  return {
+async function fixtureArtifactBundle() {
+  const pair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
+  const bundle = {
     protocolVersion: "pw-artifact-bundle-v1",
     id: "bundle:fixture-1",
     attemptId: "attempt:fixture-1",
@@ -107,11 +113,25 @@ function fixtureArtifactBundle() {
       eventId: "agent-event:fixture-1",
       occurredAt: "2026-07-13T00:00:00Z",
       payloadHash: `sha256:${"f".repeat(64)}`,
-      agentPublicKey: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      agentPublicKey: base64Url(await crypto.subtle.exportKey("raw", pair.publicKey)),
       signature: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
     },
     policy: { requireNoSorry: true, allowedAxioms: [] },
   };
+  bundle.agentEvent.payloadHash = await artifactBundleSigningPayloadHash(bundle);
+  bundle.agentEvent.signature = base64Url(
+    await crypto.subtle.sign(
+      "Ed25519",
+      pair.privateKey,
+      new TextEncoder().encode(canonicalJson(artifactBundleSigningPayload(bundle))),
+    ),
+  );
+  return bundle;
+}
+
+function base64Url(buffer) {
+  const binary = String.fromCharCode(...new Uint8Array(buffer));
+  return btoa(binary).replaceAll("+", "-").replaceAll("/", "_").replaceAll("=", "");
 }
 
 function fixtureResult() {

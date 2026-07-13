@@ -1,4 +1,4 @@
-import { canonicalJson, sha256Canonical } from "./canonical-json.mjs";
+import { canonicalJson, canonicalUtf8, sha256Canonical } from "./canonical-json.mjs";
 
 export const artifactBundleProtocolVersion = "pw-artifact-bundle-v1";
 
@@ -70,6 +70,56 @@ export function canonicalArtifactBundle(bundle) {
 
 export async function artifactBundleHash(bundle) {
   return sha256Canonical(normalizeArtifactBundle(bundle));
+}
+
+/**
+ * The Agent signs this payload, not the full manifest: its signature and
+ * payloadHash fields are deliberately excluded to avoid a circular hash.
+ */
+export function artifactBundleSigningPayload(bundle) {
+  const normalized = normalizeArtifactBundle(bundle);
+  return {
+    protocolVersion: normalized.protocolVersion,
+    id: normalized.id,
+    attemptId: normalized.attemptId,
+    problemRevisionId: normalized.problemRevisionId,
+    target: normalized.target,
+    source: normalized.source,
+    environment: normalized.environment,
+    entryCommand: normalized.entryCommand,
+    dependencyReceipts: normalized.dependencyReceipts,
+    agentEvent: {
+      eventId: normalized.agentEvent.eventId,
+      occurredAt: normalized.agentEvent.occurredAt,
+      agentPublicKey: normalized.agentEvent.agentPublicKey,
+    },
+    policy: normalized.policy,
+  };
+}
+
+export async function artifactBundleSigningPayloadHash(bundle) {
+  return sha256Canonical(artifactBundleSigningPayload(bundle));
+}
+
+/** Verify that the declared Agent key actually signed the complete evidence payload. */
+export async function verifyArtifactBundleAgentSignature(bundle) {
+  const normalized = normalizeArtifactBundle(bundle);
+  if (normalized.agentEvent.payloadHash !== await artifactBundleSigningPayloadHash(normalized)) {
+    return false;
+  }
+  const key = await crypto.subtle.importKey(
+    "raw",
+    fromBase64Url(normalized.agentEvent.agentPublicKey),
+    { name: "Ed25519" },
+    false,
+    ["verify"],
+  );
+  return crypto.subtle.verify(
+    "Ed25519",
+    key,
+    fromBase64Url(normalized.agentEvent.signature),
+    canonicalUtf8(artifactBundleSigningPayload(normalized)),
+  );
 }
 
 function normalizeDependencyReceipts(value) {
@@ -183,4 +233,13 @@ function requireRecord(value, label) {
   if (!value || typeof value !== "object" || Array.isArray(value)) {
     throw new ArtifactBundleProtocolError(`${label} must be an object.`);
   }
+}
+
+function fromBase64Url(value) {
+  const padded = value.replace(/-/g, "+").replace(/_/g, "/").padEnd(
+    Math.ceil(value.length / 4) * 4,
+    "=",
+  );
+  const binary = atob(padded);
+  return Uint8Array.from(binary, (character) => character.charCodeAt(0));
 }

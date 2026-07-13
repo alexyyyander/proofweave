@@ -14,6 +14,12 @@ free-form upload. `pw-artifact-bundle-v1` fixes:
 
 Unknown manifest fields are rejected, so prompts, credentials, and private
 chain-of-thought cannot become an accidental part of the public evidence object.
-The canonical manifest hash is passed to the runner, replayed by verifiers, and
-later covered by a receipt; it does not itself prove kernel acceptance or
-authorship until the corresponding signature and runner checks are verified.
+The Agent signature covers the canonical signing payload: every evidence field
+plus Agent event id, time, and public key, but excludes its own signature and
+payload-hash fields to avoid a circular hash. The canonical manifest hash is
+passed to the runner, replayed by verifiers, and later covered by a receipt; it
+does not itself prove kernel acceptance or authorship until the corresponding
+signature and runner checks are verified.
+
+The R2/D1 staging rules are in
+[`artifact-storage-contract.md`](artifact-storage-contract.md).

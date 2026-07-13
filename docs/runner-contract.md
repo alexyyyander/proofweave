@@ -25,7 +25,8 @@ uses its hashes rather than an unpinned working tree.
 
 `createLeanRunnerRequest` derives command, Lean version, Mathlib revision,
 policy, and canonical `bundle.json` key from that manifest. The control plane
-cannot change those inputs after the manifest hash is fixed. Its lifecycle is
+cannot change those inputs after the manifest hash is fixed, and it rejects an
+Artifact Bundle whose Agent signature does not verify. Its lifecycle is
 separately constrained by the [`Run state contract`](run-state-contract.md).
 
 ## Result

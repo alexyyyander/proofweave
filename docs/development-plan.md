@@ -54,6 +54,8 @@ reusable contribution with evidence that an external maintainer can reproduce.
   resource limits, disabled networking, and evidence-bound results;
 - artifact bundle v1 manifest that fixes source, Lean environment, target,
   dependency receipts, Agent event signature, and axiom/sorry policy;
+- immutable R2/D1 artifact store that verifies Agent signatures, delegation
+  timing, referenced object hashes, and canonical bundle manifests;
 - bounded Run state machine with idempotent request/result binding and
   cancellation acknowledgement semantics;
 - a repository-versioned research skill, retired local MCP prototype, and
@@ -190,6 +192,16 @@ and incomplete evidence while producing a canonical SHA-256 manifest hash. It
 is the single evidence object intended to move between R2, the runner,
 independent replay, and receipts. See
 [`docs/artifact-bundle-contract.md`](artifact-bundle-contract.md).
+
+### Artifact storage progress
+
+The internal artifact store now conditionally writes content-addressed R2
+objects and keeps immutable D1 indexes for objects and staged bundle manifests.
+It validates the Agent signature and event timing against the Attempt's
+delegation, then requires every referenced source, patch, and Lake object to be
+present with its declared hash. The in-memory control-plane method is bounded
+to 32 MiB and is not a participant upload or execution API. See
+[`docs/artifact-storage-contract.md`](artifact-storage-contract.md).
 
 ### Run lifecycle progress
 

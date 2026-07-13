@@ -2,6 +2,7 @@ import { canonicalJson, sha256Canonical } from "./canonical-json.mjs";
 import {
   artifactBundleHash,
   normalizeArtifactBundle,
+  verifyArtifactBundleAgentSignature,
 } from "./artifact-bundle.mjs";
 
 export const leanRunnerProtocolVersion = "pw-lean-runner-v1";
@@ -101,6 +102,9 @@ export async function createLeanRunnerRequest({
   limits,
 }) {
   const normalizedBundle = normalizeArtifactBundle(artifactBundle);
+  if (!await verifyArtifactBundleAgentSignature(normalizedBundle)) {
+    throw new LeanRunnerProtocolError("Runner requests require a valid Artifact Bundle Agent signature.");
+  }
   const manifestHash = await artifactBundleHash(normalizedBundle);
   const hashHex = manifestHash.slice("sha256:".length);
 

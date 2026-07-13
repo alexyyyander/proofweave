@@ -13,6 +13,9 @@ See [the runner contract](../../docs/runner-contract.md) for the non-negotiable
 security and evidence boundaries, and [the Run state contract](../../docs/run-state-contract.md)
 for queue/start/cancellation result semantics.
 
+The internal [artifact store](../../docs/artifact-storage-contract.md) must
+stage and hash a bundle before this boundary can derive a runner request.
+
 `d1-run-store.mjs` persists the control-plane projection plus immutable event
 and terminal-result records. It is an internal adapter only: no web route calls
 it yet, and it does not execute Lean or authenticate a runner service.

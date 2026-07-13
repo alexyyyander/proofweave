@@ -13,7 +13,7 @@
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "typecheck": "tsc --noEmit",
-    "check": "npm run lint && npm run typecheck && npm run delegation:check && npm run identity:store:check && npm run artifact:check && npm run runner:check && npm run run:check && npm run run:store:check && npm run mcp:check && npm run mcp:gateway:check && npm test",
+    "check": "npm run lint && npm run typecheck && npm run delegation:check && npm run identity:store:check && npm run artifact:check && npm run artifact:store:check && npm run runner:check && npm run run:check && npm run run:store:check && npm run mcp:check && npm run mcp:gateway:check && npm test",
     "catalog:verify-source": "node scripts/ingest/verify-formal-conjectures-snapshot.mjs",
     "db:generate": "drizzle-kit generate",
     "mcp": "node services/proofweave-mcp/index.mjs",
@@ -24,7 +24,8 @@
     "runner:check": "node --check packages/protocol/lean-runner.mjs && node --check services/lean-runner/contract.mjs && node --test tests/lean-runner-protocol.test.mjs",
     "artifact:check": "node --check packages/protocol/artifact-bundle.mjs && node --test tests/artifact-bundle.test.mjs",
     "run:check": "node --check packages/domain/run.mjs && node --test tests/run-state.test.mjs",
-    "run:store:check": "node --check services/lean-runner/d1-run-store.mjs && node --test tests/d1-run-store.test.mjs"
+    "run:store:check": "node --check services/lean-runner/d1-run-store.mjs && node --test tests/d1-run-store.test.mjs",
+    "artifact:store:check": "node --check services/artifacts/d1-r2-artifact-store.mjs && node --test tests/d1-r2-artifact-store.test.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",

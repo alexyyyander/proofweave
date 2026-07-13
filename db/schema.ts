@@ -604,3 +604,42 @@ export const runResults = sqliteTable(
     createdAt,
   },
 );
+
+// R2 holds bytes; this immutable D1 index binds every content hash to exactly
+// one canonical object key and records which signed manifests reference it.
+export const artifactObjects = sqliteTable(
+  "artifact_objects",
+  {
+    contentHash: text("content_hash").primaryKey(),
+    objectKey: text("object_key").notNull().unique(),
+    byteLength: integer("byte_length").notNull(),
+    contentType: text("content_type").notNull(),
+    createdAt,
+  },
+);
+
+export const artifactBundles = sqliteTable(
+  "artifact_bundles",
+  {
+    id: text("id").primaryKey(),
+    attemptId: text("attempt_id")
+      .notNull()
+      .references(() => agentAttempts.id, { onDelete: "restrict" }),
+    problemRevisionId: text("problem_revision_id")
+      .notNull()
+      .references(() => problemRevisions.id, { onDelete: "restrict" }),
+    manifestHash: text("manifest_hash")
+      .notNull()
+      .unique()
+      .references(() => artifactObjects.contentHash, { onDelete: "restrict" }),
+    manifestKey: text("manifest_key").notNull().unique(),
+    canonicalManifest: text("canonical_manifest").notNull(),
+    agentEventId: text("agent_event_id").notNull().unique(),
+    agentEventPayloadHash: text("agent_event_payload_hash").notNull(),
+    createdAt,
+  },
+  (table) => [
+    index("artifact_bundles_attempt_created_idx").on(table.attemptId, table.createdAt),
+    index("artifact_bundles_revision_created_idx").on(table.problemRevisionId, table.createdAt),
+  ],
+);
