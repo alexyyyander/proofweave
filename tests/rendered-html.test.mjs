@@ -256,7 +256,7 @@ async function insertControlledEvidenceFixture() {
   const replayRunnerResultHash = await sha256Canonical(replayRunnerResult);
   const replayEvidence = {
     protocolVersion: "pw-verification-replay-evidence-v1",
-    id: "verification-replay-evidence:controlled-evidence",
+    id: "verification-replay-evidence:verification-replay:controlled-evidence",
     replayId: "verification-replay:controlled-evidence",
     assignmentId: "assignment:controlled-evidence-replay",
     runId: replayRunnerResult.jobId,
@@ -337,6 +337,20 @@ async function insertControlledEvidenceFixture() {
     ["INSERT INTO oauth_clients (id, client_name, redirect_uris_json) VALUES (?, ?, ?)", ["client:controlled-evidence-reviewer", "Controlled evidence reviewer", '["https://codex.example.test/callback"]']],
     ["INSERT INTO agent_installations (id, person_id, agent_id, delegation_certificate_id, client_id, label) VALUES (?, ?, ?, ?, ?, ?)", ["installation:controlled-evidence-reviewer", reviewer.person.id, "agent:controlled-evidence-reviewer", "delegation:controlled-evidence-reviewer", "client:controlled-evidence-reviewer", "Controlled evidence reviewer"]],
     [
+      `INSERT INTO verification_attestations (
+        id, assignment_id, artifact_bundle_manifest_hash, claim_type,
+        verifier_person_id, verifier_agent_id, delegation_certificate_id,
+        verifier_agent_public_key, decision, evidence_hash, canonical_payload,
+        payload_hash, signature, attested_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        "attestation:controlled-evidence-integrity", "assignment:controlled-evidence", manifest.contentHash, "kernel_accepted",
+        reviewer.person.id, "agent:controlled-evidence-reviewer", "delegation:controlled-evidence-reviewer",
+        reviewerReplayPublicKey, "integrity_flagged", patch.contentHash, '{"decision":"integrity_flagged"}', hash("5"), "fixture-signature", now,
+      ],
+    ],
+    ["UPDATE verification_assignments SET status = ?, completed_at = ?, updated_at = ? WHERE id = ?", ["completed", now, now, "assignment:controlled-evidence"]],
+    [
       `INSERT INTO verification_assignments (
         id, artifact_bundle_manifest_hash, claim_type, attempt_owner_person_id,
         verifier_person_id, status, assigned_at, accepted_at, updated_at
@@ -379,6 +393,7 @@ async function insertControlledEvidenceFixture() {
     ownerHeaders, reviewerHeaders, owner, reviewer,
     attemptId: bundle.attemptId,
     manifestHash: manifest.contentHash,
+    integrityFlagEvidenceHash: patch.contentHash,
     replayEvidenceHash: replayEvidenceObject.contentHash,
     replayArtifactId: `replay:${replayEvidence.replayId}:evidence`,
   };
@@ -972,11 +987,24 @@ test("limits Bundle and Runner evidence to the Attempt owner or assigned reviewe
     "run:run:controlled-evidence:stdout",
   ]);
   assert.equal(ownerEvidence.replays.length, 0);
+  assert.deepEqual(ownerEvidence.reviewOutcomes, [{
+    assignmentId: "assignment:controlled-evidence",
+    claimType: "kernel_accepted",
+    decision: "integrity_flagged",
+    evidenceHash: fixture.integrityFlagEvidenceHash,
+    attestedAt: "2026-07-13T02:00:00Z",
+  }]);
   assert.doesNotMatch(JSON.stringify(ownerEvidence), new RegExp(fixture.owner.person.id));
 
   const ownerIndex = await render("/evidence", { headers: fixture.ownerHeaders });
   assert.equal(ownerIndex.status, 200);
   assert.match(await ownerIndex.text(), /Your Attempt/i);
+  const ownerPage = await render(`/evidence/${encodeURIComponent(fixture.manifestHash)}`, { headers: fixture.ownerHeaders });
+  assert.equal(ownerPage.status, 200);
+  const ownerHtml = await ownerPage.text();
+  assert.match(ownerHtml, /Independent review outcomes/i);
+  assert.match(ownerHtml, /Integrity flag/i);
+  assert.doesNotMatch(ownerHtml, /Controlled evidence reviewer/i);
 
   const ownerPatch = await render(`/api/me/evidence/bundles/${encodeURIComponent(fixture.manifestHash)}/artifacts/sourcePatch`, { headers: fixture.ownerHeaders });
   assert.equal(ownerPatch.status, 200);
@@ -989,6 +1017,7 @@ test("limits Bundle and Runner evidence to the Attempt owner or assigned reviewe
   const { evidence: reviewerEvidence } = await reviewerRecord.json();
   assert.equal(reviewerEvidence.summary.accessRole, "assigned_reviewer");
   assert.equal(reviewerEvidence.replays.length, 1);
+  assert.deepEqual(reviewerEvidence.reviewOutcomes, []);
   assert.equal(reviewerEvidence.replays[0].evidenceHash, fixture.replayEvidenceHash);
   assert.equal(reviewerEvidence.replays[0].artifact.id, fixture.replayArtifactId);
   const freshRunnerResult = reviewerEvidence.runs.find((run) => run.id === "run:controlled-fresh-replay")?.result?.summary;
@@ -1034,6 +1063,7 @@ test("limits Bundle and Runner evidence to the Attempt owner or assigned reviewe
   assert.match(reviewerHtml, /Lean toolchain/i);
   assert.match(reviewerHtml, /Build status/i);
   assert.match(reviewerHtml, /Kernel/i);
+  assert.doesNotMatch(reviewerHtml, /Independent review outcomes/i);
   assert.doesNotMatch(reviewerHtml, new RegExp(fixture.owner.person.id));
   assert.doesNotMatch(reviewerHtml, /Evidence Owner/i);
 

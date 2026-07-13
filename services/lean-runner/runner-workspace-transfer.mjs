@@ -63,7 +63,7 @@ export class RunnerWorkspaceTransfer {
         throw new RunnerWorkspaceTransferError(`Runner workspace ${transfer.label} has no readable R2 body.`);
       }
       await expectAccepted(
-        await container.fetch(streamRequest(`${baseUrl}/artifacts/${transfer.endpoint}`, object.body, {
+        await container.fetch(streamRequest(`${baseUrl}/workspace/artifacts/${transfer.endpoint}`, object.body, {
           "content-type": transfer.object.contentType,
           "content-length": String(transfer.object.byteLength),
           "x-proofweave-artifact-role": transfer.id,

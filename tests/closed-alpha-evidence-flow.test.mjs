@@ -428,6 +428,7 @@ test("a local Lean fixture binds actual execution evidence into the signed recei
       imageDigest,
       limits: request.limits,
     });
+    const resolvedReplayBundle = await new D1R2RunnerBundleResolver({ database, bucket }).resolve(replayRequest);
     const replayQueued = await runStore.queue({
       id: replayRequest.jobId,
       attemptId: replayRequest.attemptId,
@@ -463,7 +464,7 @@ test("a local Lean fixture binds actual execution evidence into the signed recei
     });
     await new RunnerWorkspaceTransfer({ bucket }).stage({
       run: replayPreparing,
-      resolvedBundle,
+      resolvedBundle: resolvedReplayBundle,
       container: { fetch: replayHandler },
     });
     const replayRunning = await runStore.start(replayQueued.run.id, "2026-07-13T00:00:11Z");

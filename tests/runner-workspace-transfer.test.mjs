@@ -22,9 +22,9 @@ test("trusted Worker stages v2 workspace objects in a fixed private Container se
   assert.deepEqual(result.uploaded, ["sourceArchive", "sourcePatch", "lakeManifest"]);
   assert.deepEqual(container.requests.map((request) => request.pathname), [
     "/v1/runs/run%3Aworkspace-transfer/workspace",
-    "/v1/runs/run%3Aworkspace-transfer/artifacts/source-archive",
-    "/v1/runs/run%3Aworkspace-transfer/artifacts/source-patch",
-    "/v1/runs/run%3Aworkspace-transfer/artifacts/lake-manifest",
+    "/v1/runs/run%3Aworkspace-transfer/workspace/artifacts/source-archive",
+    "/v1/runs/run%3Aworkspace-transfer/workspace/artifacts/source-patch",
+    "/v1/runs/run%3Aworkspace-transfer/workspace/artifacts/lake-manifest",
     "/v1/runs/run%3Aworkspace-transfer/workspace/finalize",
   ]);
   assert.equal(container.requests[1].headers.get("x-proofweave-content-sha256"), objects.sourceArchive.contentHash);

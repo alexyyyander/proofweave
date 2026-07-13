@@ -4,7 +4,7 @@ import { chatGPTSignInPath, getChatGPTUser } from "@/app/chatgpt-auth";
 import { Footer, Header } from "@/app/ui";
 import { MissingDatabaseBindingError } from "@/db";
 import { getDelegationRepository } from "@/db/repositories/delegation";
-import { getEvidenceRepository, type AttemptEvidence, type EvidenceArtifact, type EvidenceReplay, type EvidenceRunnerResultSummary } from "@/db/repositories/evidence";
+import { getEvidenceRepository, type AttemptEvidence, type EvidenceArtifact, type EvidenceReplay, type EvidenceReviewOutcome, type EvidenceRunnerResultSummary } from "@/db/repositories/evidence";
 import { SourceDiffPreview } from "@/app/evidence/SourceDiffPreview";
 
 export const dynamic = "force-dynamic";
@@ -32,6 +32,9 @@ async function loadEvidenceDetail(user: Awaited<ReturnType<typeof getChatGPTUser
 
 function EvidenceDetail({ evidence }: { evidence: AttemptEvidence }) {
   const bundleManifestHash = evidence.bundle.manifestHash;
+  const replayEmptyMessage = evidence.summary.accessRole === "attempt_owner"
+    ? "Fresh replay artifacts remain private to their independent review Agent. A replay becomes relevant to your record only when that Agent separately signs a review decision."
+    : "No terminal replay evidence is addressed to your review Agent. A queued replay is not evidence, and another reviewer’s replay stays private to that reviewer.";
   return <div className="site-shell app-shell">
     <Header active="workbench" />
     <main className="page-main evidence-main">
@@ -44,7 +47,8 @@ function EvidenceDetail({ evidence }: { evidence: AttemptEvidence }) {
       </section>
       <section className="evidence-runs" aria-label="Runner records"><div className="panel-heading"><span>03 / Runner records</span><span>{evidence.runs.length} recorded</span></div>{evidence.runs.length === 0 ? <p className="evidence-empty">No Runner record is stored for this Bundle. That absence is not a failed verification or a fresh-replay option.</p> : evidence.runs.map((run) => <article className="evidence-run" key={run.id}><div><strong>{run.state}</strong><span><code>{run.id}</code></span></div><dl className="evidence-metadata"><div><dt>Request hash</dt><dd><code>{run.requestHash}</code></dd></div><div><dt>Result hash</dt><dd><code>{run.runnerResultHash ?? "Not recorded"}</code></dd></div><div><dt>Queued</dt><dd>{run.queuedAt}</dd></div><div><dt>Finished</dt><dd>{run.finishedAt ?? "Not finished"}</dd></div></dl>{run.result?.summary && <RunnerResultSummary summary={run.result.summary} />}{run.outputs.length > 0 && <ArtifactList bundleManifestHash={bundleManifestHash} artifacts={run.outputs} />}{run.result && <details className="evidence-result"><summary>View canonical signed-result payload</summary><pre><code>{run.result.canonicalResult}</code></pre></details>}</article>)}</section>
       <section className="evidence-runs evidence-manifest" aria-label="Canonical manifest"><div className="panel-heading"><span>04 / Canonical manifest</span><a className="text-link" href={artifactHref(bundleManifestHash, "bundle-manifest")}>Download JSON <span>→</span></a></div><pre><code>{evidence.bundle.canonicalManifest}</code></pre></section>
-      <section className="evidence-runs evidence-replays" aria-label="Fresh review replay evidence"><div className="panel-heading"><span>05 / Fresh review replay evidence</span><span>{evidence.replays.length} available to you</span></div>{evidence.replays.length === 0 ? <p className="evidence-empty">No terminal replay evidence is addressed to your review Agent. A queued replay is not evidence, and another reviewer’s replay stays private to that reviewer.</p> : evidence.replays.map((replay) => <ReplayEvidence bundleManifestHash={bundleManifestHash} replay={replay} key={replay.id} />)}</section>
+      {evidence.summary.accessRole === "attempt_owner" && <ReviewOutcomes outcomes={evidence.reviewOutcomes} />}
+      <section className="evidence-runs evidence-replays" aria-label="Fresh review replay evidence"><div className="panel-heading"><span>{evidence.summary.accessRole === "attempt_owner" ? "06" : "05"} / Fresh review replay evidence</span><span>{evidence.replays.length} available to you</span></div>{evidence.replays.length === 0 ? <p className="evidence-empty">{replayEmptyMessage}</p> : evidence.replays.map((replay) => <ReplayEvidence bundleManifestHash={bundleManifestHash} replay={replay} key={replay.id} />)}</section>
     </main>
     <Footer />
   </div>;
@@ -61,6 +65,37 @@ function ReplayEvidence({ bundleManifestHash, replay }: { bundleManifestHash: st
     <ArtifactList bundleManifestHash={bundleManifestHash} artifacts={[replay.artifact]} />
     <details className="evidence-result"><summary>View canonical replay-evidence payload</summary><pre><code>{replay.canonicalEvidence}</code></pre></details>
   </article>;
+}
+
+function ReviewOutcomes({ outcomes }: { outcomes: readonly EvidenceReviewOutcome[] }) {
+  return <section className="evidence-runs evidence-review-outcomes" aria-label="Independent review outcomes">
+    <div className="panel-heading"><span>05 / Independent review outcomes</span><span>{outcomes.length} signed</span></div>
+    {outcomes.length === 0
+      ? <p className="evidence-empty">No signed independent review outcome is recorded for this Bundle. Assigned and accepted tasks are not shown as decisions.</p>
+      : outcomes.map((outcome) => <article className="evidence-run evidence-review-outcome" key={outcome.assignmentId}>
+        <div><strong>{reviewDecisionLabel(outcome.decision)}</strong><span><code>{outcome.claimType}</code></span></div>
+        <dl className="evidence-metadata"><div><dt>Assignment</dt><dd><code>{outcome.assignmentId}</code></dd></div><div><dt>Evidence hash</dt><dd><code>{outcome.evidenceHash}</code></dd></div><div><dt>Recorded</dt><dd>{outcome.attestedAt}</dd></div></dl>
+        <p className="evidence-empty">{reviewDecisionDetail(outcome.decision)}</p>
+      </article>)}
+  </section>;
+}
+
+function reviewDecisionLabel(decision: EvidenceReviewOutcome["decision"]) {
+  return {
+    attested: "Attested",
+    rejected: "Rejected",
+    request_changes: "Changes requested",
+    conflict_declared: "Conflict declared",
+    integrity_flagged: "Integrity flag",
+  }[decision];
+}
+
+function reviewDecisionDetail(decision: EvidenceReviewOutcome["decision"]) {
+  if (decision === "attested") return "This is a signed review claim. Receipt eligibility remains subject to the contribution policy and all other required evidence.";
+  if (decision === "conflict_declared") return "This review is closed because of a signed conflict declaration. A different Person must perform any replacement review.";
+  if (decision === "integrity_flagged") return "This signed evidence-integrity concern blocks this assignment from satisfying a receipt gate. It is not a mathematical conclusion or an automatic retraction.";
+  if (decision === "request_changes") return "This review is closed without a positive verification. A revised Bundle needs a new immutable review assignment.";
+  return "This review is closed without a positive verification or receipt gate.";
 }
 
 function RunnerResultSummary({ summary }: { summary: EvidenceRunnerResultSummary }) {

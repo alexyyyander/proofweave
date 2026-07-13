@@ -109,7 +109,7 @@ test("D1 Verification store enforces different-owner review and persists signed 
   await database.batch([
     database
       .prepare("INSERT INTO artifact_objects (content_hash, object_key, byte_length, content_type) VALUES (?, ?, ?, ?)")
-      .bind(sha("c"), `bundles/sha256/${"c".repeat(64)}/bundle.json`, 2, "application/json"),
+      .bind(sha("6"), `bundles/sha256/${"6".repeat(64)}/bundle.json`, 2, "application/json"),
     database
       .prepare(
         `INSERT INTO artifact_bundles (
@@ -118,13 +118,13 @@ test("D1 Verification store enforces different-owner review and persists signed 
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
       )
       .bind(
-        "bundle:verification-positive-replay-required", "attempt:verification", "revision:verification", sha("c"),
-        `bundles/sha256/${"c".repeat(64)}/bundle.json`, "{}", "agent-event:verification-positive-replay-required", sha("d"),
+        "bundle:verification-positive-replay-required", "attempt:verification", "revision:verification", sha("6"),
+        `bundles/sha256/${"6".repeat(64)}/bundle.json`, "{}", "agent-event:verification-positive-replay-required", sha("d"),
       ),
   ]);
   await store.assign({
     id: "assignment:bob-positive-replay-required",
-    artifactBundleManifestHash: sha("c"),
+    artifactBundleManifestHash: sha("6"),
     claimType: "bundle_reproducible",
     verifierPersonId: "person:bob",
     assignedAt: "2026-07-13T00:00:10Z",
@@ -135,7 +135,7 @@ test("D1 Verification store enforces different-owner review and persists signed 
       id: "attestation:bob-positive-replay-required",
       assignmentId: "assignment:bob-positive-replay-required",
       claimType: "bundle_reproducible",
-      artifactBundleHash: sha("c"),
+      artifactBundleHash: sha("6"),
       decision: "attested",
       attestedAt: "2026-07-13T00:00:12Z",
     })),

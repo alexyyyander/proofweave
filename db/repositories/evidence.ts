@@ -11,6 +11,7 @@ import {
 } from "@/packages/protocol/verification-replay-evidence.mjs";
 import { canonicalJson } from "@/packages/protocol/canonical-json.mjs";
 import { normalizeLeanRunnerResult } from "@/packages/protocol/lean-runner.mjs";
+import type { ReviewAttestationDecision } from "@/db/repositories/reviews";
 
 export type EvidenceAccessRole = "attempt_owner" | "assigned_reviewer";
 export type EvidenceArtifactId =
@@ -86,6 +87,18 @@ export type EvidenceReplay = Readonly<{
   artifact: EvidenceArtifact;
 }>;
 
+/**
+ * Terminal review metadata that the Attempt owner can inspect. It deliberately
+ * omits the reviewer identity and any private fresh-replay object.
+ */
+export type EvidenceReviewOutcome = Readonly<{
+  assignmentId: string;
+  claimType: string;
+  decision: ReviewAttestationDecision;
+  evidenceHash: string;
+  attestedAt: string;
+}>;
+
 export type AttemptEvidenceSummary = Readonly<{
   attemptId: string;
   accessRole: EvidenceAccessRole;
@@ -115,6 +128,7 @@ export type AttemptEvidence = Readonly<{
   }>;
   runs: readonly EvidenceRun[];
   replays: readonly EvidenceReplay[];
+  reviewOutcomes: readonly EvidenceReviewOutcome[];
 }>;
 
 type BaseRow = {
@@ -187,6 +201,14 @@ type ReplayRow = {
   content_type: string;
 };
 
+type ReviewOutcomeRow = {
+  assignment_id: string;
+  claim_type: string;
+  decision: ReviewAttestationDecision;
+  evidence_hash: string;
+  attested_at: string;
+};
+
 type PrivateEvidenceArtifact = EvidenceArtifact & Readonly<{
   objectKey: string;
   filename: string;
@@ -229,6 +251,7 @@ class D1EvidenceRepository implements EvidenceRepository {
     const review = await this.reviewFactsFor(base);
     const runs = await this.runsFor(base.attempt_id);
     const replays = await this.replaysFor(personId, base);
+    const reviewOutcomes = await this.reviewOutcomesFor(base);
     return Object.freeze({
       summary: summaryFrom(base, runs[0]?.state ?? null),
       bundle: Object.freeze({
@@ -249,6 +272,7 @@ class D1EvidenceRepository implements EvidenceRepository {
         ...replay,
         artifact: publicArtifact(replay.artifact),
       }))),
+      reviewOutcomes,
     });
   }
 
@@ -470,6 +494,41 @@ class D1EvidenceRepository implements EvidenceRepository {
         if (error instanceof EvidenceIntegrityError) throw error;
         throw new EvidenceIntegrityError();
       }
+    })));
+  }
+
+  /**
+   * The submitter may learn a completed signed decision, including a conflict
+   * or integrity flag, so they are not left unaware of a blocked receipt path.
+   * Other reviewers do not receive this cross-review metadata; replay bytes
+   * remain private even for the Attempt owner.
+   */
+  private async reviewOutcomesFor(base: BaseRow): Promise<readonly EvidenceReviewOutcome[]> {
+    if (base.access_role !== "attempt_owner") return Object.freeze([]);
+    const rows = await getD1()
+      .prepare(
+        `SELECT assignment.id AS assignment_id, assignment.claim_type,
+                attestation.decision, attestation.evidence_hash, attestation.attested_at
+         FROM verification_assignments AS assignment
+         INNER JOIN verification_attestations AS attestation
+           ON attestation.assignment_id = assignment.id
+         INNER JOIN artifact_bundles AS bundle
+           ON bundle.manifest_hash = assignment.artifact_bundle_manifest_hash
+         INNER JOIN agent_attempts AS attempt ON attempt.id = bundle.attempt_id
+         WHERE assignment.artifact_bundle_manifest_hash = ?
+           AND assignment.status = 'completed'
+           AND assignment.attempt_owner_person_id = attempt.person_id
+           AND attestation.artifact_bundle_manifest_hash = assignment.artifact_bundle_manifest_hash
+         ORDER BY attestation.attested_at DESC, attestation.id ASC`,
+      )
+      .bind(base.manifest_hash)
+      .all<ReviewOutcomeRow>();
+    return Object.freeze((rows.results ?? []).map((row: ReviewOutcomeRow) => Object.freeze({
+      assignmentId: row.assignment_id,
+      claimType: row.claim_type,
+      decision: row.decision,
+      evidenceHash: row.evidence_hash,
+      attestedAt: row.attested_at,
     })));
   }
 

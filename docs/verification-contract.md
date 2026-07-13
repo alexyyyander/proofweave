@@ -82,7 +82,10 @@ declared conflict, and integrity flags close the assignment for capacity
 purposes without becoming positive verification. A conflict declaration means
 the assignment needs another Person; an integrity flag preserves a signed,
 evidence-linked concern for curator follow-up but is neither a mathematical
-conclusion nor an automatic retraction. The queue shows the assignment ID and count of recorded
+conclusion nor an automatic retraction. The Attempt owner can inspect only the
+terminal decision, claim type, and evidence hash on their controlled evidence
+record; the reviewer identity and fresh replay artifacts remain private. The
+queue shows the assignment ID and count of recorded
 fresh replays so a review Agent can start the assignment-bound replay through
 the separately deployed remote connection. Once it reaches a terminal result,
 the Agent receives the exact replay evidence hash it must use when preparing a
