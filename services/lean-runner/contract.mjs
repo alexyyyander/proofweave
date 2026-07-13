@@ -40,6 +40,11 @@ export {
 } from "./d1-r2-runner-bundle-resolver.mjs";
 
 export {
+  RunnerJobPreflight,
+  RunnerJobPreflightError,
+} from "./runner-job-preflight.mjs";
+
+export {
   RunnerDispatchError,
   RunnerOrchestrator,
 } from "./orchestrator.mjs";

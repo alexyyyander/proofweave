@@ -64,6 +64,8 @@ reusable contribution with evidence that an external maintainer can reproduce.
   and a no-Internet Cloudflare Container deployment policy for closed alpha;
 - D1/R2 Runner Bundle resolver that re-hashes the canonical manifest and
   re-checks request-to-bundle/object binding before source transfer;
+- Runner preflight that binds an authenticated Queue delivery to exactly one
+  persisted Run before it can transition to `running`;
 - operator-managed runner-key allowlist with signed-result verification before
   immutable Run evidence is accepted;
 - independent Person-level review assignments and review-delegated Agent

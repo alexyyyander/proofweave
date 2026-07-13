@@ -49,6 +49,13 @@ signature covers every other envelope field. A runner accepts a job only after
 the key ID resolves to its operator-provisioned issuer allowlist and that
 signature verifies.
 
+After authentication, `RunnerJobPreflight` compares the queue request hash,
+Attempt, and Bundle hash with the single persisted D1 Run. It resolves the
+immutable Bundle before atomically changing that Run from `queued` to
+`running`; duplicate, already-running, cancelled, or terminal deliveries are
+acknowledged as no-ops rather than starting another Container. A storage or
+identity failure does not claim the Run and must be retried or sent to the DLQ.
+
 The matching private key is a control-plane deployment secret, never a D1
 value, Artifact Bundle field, queue message field, browser value, or repository
 file. Runner deployments receive only public issuer keys. Queue adapters must

@@ -29,3 +29,9 @@ The closed-alpha D1 adapter stores the status projection separately from
 immutable canonical transition events and the terminal result. It is not a
 public execution API and cannot be used to run Lean until the isolated runner,
 R2 bundle flow, and authenticated runner channel exist.
+
+For hosted Queue consumption, `RunnerJobPreflight` accepts only an already
+authenticated envelope. It checks the envelope's request hash, Attempt, and
+Bundle hash against the persisted Run, resolves the immutable D1/R2 Bundle,
+then claims `queued -> running`. A duplicate delivery that sees a non-queued
+Run is a no-op; it cannot cause a second Container execution.
