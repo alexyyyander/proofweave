@@ -33,8 +33,10 @@ separately constrained by the [`Run state contract`](run-state-contract.md).
 
 Results record bounded infrastructure evidence only: outcome, exit code, timing,
 network/no-`sorry`/axiom/build checks, kernel status, and content hashes for the
-manifest, stdout, and stderr. A `succeeded` result requires zero exit code,
-accepted kernel status, and every check passed.
+manifest, stdout, and stderr. Each result names an operator-provisioned runner
+key and carries an Ed25519 detached signature over all of that evidence. The D1
+Run store accepts it only when that key is active in its allowlist. A `succeeded`
+result requires zero exit code, accepted kernel status, and every check passed.
 
 A runner result is still not statement-fidelity review, novelty review, project
 acceptance, or a contribution receipt. Those remain separate attestations.

@@ -5,7 +5,10 @@ import {
   requestRunCancellation,
 } from "../../packages/domain/run.mjs";
 import { canonicalJson, sha256Canonical } from "../../packages/protocol/canonical-json.mjs";
-import { normalizeLeanRunnerResult } from "../../packages/protocol/lean-runner.mjs";
+import {
+  normalizeLeanRunnerResult,
+  verifyLeanRunnerResultSignature,
+} from "../../packages/protocol/lean-runner.mjs";
 
 export class RunStoreConflictError extends Error {
   constructor(message) {
@@ -18,6 +21,13 @@ export class RunStoreNotFoundError extends Error {
   constructor(runId) {
     super(`Run ${runId} was not found.`);
     this.name = "RunStoreNotFoundError";
+  }
+}
+
+export class RunStoreAuthenticationError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "RunStoreAuthenticationError";
   }
 }
 
@@ -137,6 +147,7 @@ export class D1RunStore {
     requireUtcInstant(receivedAt, "receivedAt");
     const current = await this.requireRun(runId);
     const normalizedResult = normalizeLeanRunnerResult(result);
+    await this.assertTrustedRunnerSignature(normalizedResult);
     const resultHash = await sha256Canonical(normalizedResult);
     const existing = await this.database
       .prepare("SELECT result_hash FROM run_results WHERE run_id = ?")
@@ -171,6 +182,21 @@ export class D1RunStore {
     const run = await this.find(runId);
     if (!run) throw new RunStoreNotFoundError(runId);
     return run;
+  }
+
+  async assertTrustedRunnerSignature(result) {
+    const key = await this.database
+      .prepare(
+        "SELECT public_key FROM runner_keys WHERE id = ? AND status = 'active' AND revoked_at IS NULL",
+      )
+      .bind(result.runnerKeyId)
+      .first();
+    if (!key) {
+      throw new RunStoreAuthenticationError("Runner result key is not an active allowlisted key.");
+    }
+    if (!await verifyLeanRunnerResultSignature({ result, runnerPublicKey: key.public_key })) {
+      throw new RunStoreAuthenticationError("Runner result signature is invalid.");
+    }
   }
 
   async writeProjection(current, next, updatedAt) {

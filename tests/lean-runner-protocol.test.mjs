@@ -6,6 +6,8 @@ import {
   leanRunnerRequestHash,
   normalizeLeanRunnerRequest,
   normalizeLeanRunnerResult,
+  runnerResultSigningPayload,
+  verifyLeanRunnerResultSignature,
 } from "../packages/protocol/lean-runner.mjs";
 import {
   artifactBundleSigningPayload,
@@ -61,6 +63,25 @@ test("requires complete evidence before a runner can report success", () => {
     () => normalizeLeanRunnerResult({ ...result, checks: { ...result.checks, network: "not_run" } }),
     /succeeded runner result requires clean accepted checks/,
   );
+});
+
+test("runner results are signed by a selected runner key", async () => {
+  const pair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
+  const publicKey = base64Url(await crypto.subtle.exportKey("raw", pair.publicKey));
+  const result = fixtureResult();
+  result.runnerSignature = base64Url(
+    await crypto.subtle.sign(
+      "Ed25519",
+      pair.privateKey,
+      new TextEncoder().encode(canonicalJson(runnerResultSigningPayload(result))),
+    ),
+  );
+
+  assert.equal(await verifyLeanRunnerResultSignature({ result, runnerPublicKey: publicKey }), true);
+  assert.equal(await verifyLeanRunnerResultSignature({
+    result: { ...result, artifacts: { ...result.artifacts, stdoutHash: `sha256:${"0".repeat(64)}` } },
+    runnerPublicKey: publicKey,
+  }), false);
 });
 
 function fixtureRequest() {
@@ -140,6 +161,8 @@ function fixtureResult() {
     jobId: "run:fixture-1",
     attemptId: "attempt:fixture-1",
     requestHash: `sha256:${"d".repeat(64)}`,
+    runnerKeyId: "runner-key:fixture-1",
+    runnerSignature: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
     status: "succeeded",
     exitCode: 0,
     startedAt: "2026-07-13T00:00:00Z",

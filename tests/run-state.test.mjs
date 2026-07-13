@@ -50,6 +50,8 @@ function fixtureResult(overrides = {}) {
     jobId: "run:fixture-1",
     attemptId: "attempt:fixture-1",
     requestHash: sha("a"),
+    runnerKeyId: "runner-key:fixture-1",
+    runnerSignature: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
     status: "succeeded",
     exitCode: 0,
     startedAt: "2026-07-13T00:00:01Z",

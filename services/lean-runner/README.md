@@ -17,5 +17,7 @@ The internal [artifact store](../../docs/artifact-storage-contract.md) must
 stage and hash a bundle before this boundary can derive a runner request.
 
 `d1-run-store.mjs` persists the control-plane projection plus immutable event
-and terminal-result records. It is an internal adapter only: no web route calls
-it yet, and it does not execute Lean or authenticate a runner service.
+and terminal-result records. It verifies each result against an active,
+operator-provisioned `runner_keys` entry. It is an internal adapter only: no
+web route calls it yet, and it does not execute Lean or authenticate a runner
+service.

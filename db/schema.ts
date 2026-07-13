@@ -605,6 +605,21 @@ export const runResults = sqliteTable(
   },
 );
 
+// Runner keys are provisioned by operators, never by a participant-facing
+// route. A terminal result is accepted only when its key is currently active.
+export const runnerKeys = sqliteTable(
+  "runner_keys",
+  {
+    id: text("id").primaryKey(),
+    publicKey: text("public_key").notNull().unique(),
+    fingerprint: text("fingerprint").notNull().unique(),
+    status: text("status", { enum: ["active", "revoked"] }).notNull().default("active"),
+    revokedAt: text("revoked_at"),
+    createdAt,
+  },
+  (table) => [index("runner_keys_active_idx").on(table.status, table.revokedAt)],
+);
+
 // R2 holds bytes; this immutable D1 index binds every content hash to exactly
 // one canonical object key and records which signed manifests reference it.
 export const artifactObjects = sqliteTable(

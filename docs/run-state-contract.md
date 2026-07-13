@@ -20,6 +20,11 @@ Every terminal runner-completed state retains a result hash. The state machine
 does not turn any terminal result into `kernel_accepted`, independent review,
 or a contribution receipt; those claims remain separate policy gates.
 
+Before a result reaches that state, the D1 store resolves its `runnerKeyId`
+against an active operator allowlist and verifies its detached Ed25519
+signature. The pure domain transition remains cryptography-agnostic so it can
+be replayed independently; the persistence boundary supplies the trust check.
+
 The closed-alpha D1 adapter stores the status projection separately from
 immutable canonical transition events and the terminal result. It is not a
 public execution API and cannot be used to run Lean until the isolated runner,

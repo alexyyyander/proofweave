@@ -58,6 +58,8 @@ reusable contribution with evidence that an external maintainer can reproduce.
   timing, referenced object hashes, and canonical bundle manifests;
 - bounded Run state machine with idempotent request/result binding and
   cancellation acknowledgement semantics;
+- operator-managed runner-key allowlist with signed-result verification before
+  immutable Run evidence is accepted;
 - a repository-versioned research skill, retired local MCP prototype, and
   Worker-compatible remote MCP/identity protocol scaffolding;
 - logical D1 (`DB`) and R2 (`ARTIFACTS`) bindings declared for Sites;
@@ -210,9 +212,11 @@ start, cancellation request, and terminal runner evidence. Its identity fields
 are immutable; every transition and terminal result has immutable, canonical
 evidence. A runner request can only be constructed from a canonical artifact
 bundle, so its command, environment, and policy cannot drift after submission.
-Lean jobs intentionally support cancellation—not fake pause/resume—because a
-reproducible checkpoint format does not exist yet. The store remains internal:
-no public run-creation or execution route exists. See
+Terminal runner results must be signed by an active, operator-provisioned runner
+key before the store accepts them. Lean jobs intentionally support
+cancellation—not fake pause/resume—because a reproducible checkpoint format
+does not exist yet. The store remains internal: no public run-creation or
+execution route exists. See
 [`docs/run-state-contract.md`](run-state-contract.md).
 
 ## 3. Architecture boundary

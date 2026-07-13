@@ -3,12 +3,18 @@ import { after, before, test } from "node:test";
 import { readFile, readdir } from "node:fs/promises";
 import { Miniflare } from "miniflare";
 import { D1RunStore } from "../services/lean-runner/d1-run-store.mjs";
+import { runnerResultSigningPayload } from "../packages/protocol/lean-runner.mjs";
+import { canonicalJson } from "../packages/protocol/canonical-json.mjs";
 
 const migrationsRoot = new URL("../drizzle/", import.meta.url);
 let miniflare;
 let database;
+let runnerKeyPair;
+let runnerPublicKey;
 
 before(async () => {
+  runnerKeyPair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
+  runnerPublicKey = base64Url(await crypto.subtle.exportKey("raw", runnerKeyPair.publicKey));
   miniflare = new Miniflare({
     modules: true,
     script: "export default { fetch() { return new Response('ok'); } }",
@@ -17,7 +23,7 @@ before(async () => {
   });
   database = await miniflare.getD1Database("DB");
   await applyMigrations(database);
-  await seedAttempt(database);
+  await seedAttempt(database, runnerPublicKey);
 });
 
 after(async () => {
@@ -35,9 +41,16 @@ test("D1 Run store persists an idempotent lifecycle with immutable evidence", as
   const running = await store.start("run:fixture-1", "2026-07-13T00:00:01Z");
   const cancelling = await store.requestCancellation("run:fixture-1", "2026-07-13T00:00:02Z");
   assert.equal((await store.requestCancellation("run:fixture-1", "2026-07-13T00:00:02Z")).state, "cancel_requested");
+  const invalidResult = await fixtureResult();
+  invalidResult.runnerSignature = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+  await assert.rejects(
+    store.recordResult("run:fixture-1", invalidResult, "2026-07-13T00:00:04Z"),
+    /Runner result signature is invalid/,
+  );
+  const result = await fixtureResult();
   const cancelled = await store.recordResult(
     "run:fixture-1",
-    fixtureResult(),
+    result,
     "2026-07-13T00:00:04Z",
   );
 
@@ -45,7 +58,7 @@ test("D1 Run store persists an idempotent lifecycle with immutable evidence", as
   assert.equal(cancelling.state, "cancel_requested");
   assert.equal(cancelled.state, "cancelled");
   assert.match(cancelled.runnerResultHash, /^sha256:[a-f0-9]{64}$/);
-  assert.equal((await store.recordResult("run:fixture-1", fixtureResult(), "2026-07-13T00:00:04Z")).state, "cancelled");
+  assert.equal((await store.recordResult("run:fixture-1", result, "2026-07-13T00:00:04Z")).state, "cancelled");
 
   const events = await store.listEvents("run:fixture-1");
   assert.deepEqual(events.map((event) => event.eventType), [
@@ -81,12 +94,14 @@ function fixtureRun() {
   };
 }
 
-function fixtureResult() {
-  return {
+async function fixtureResult() {
+  const result = {
     protocolVersion: "pw-lean-runner-v1",
     jobId: "run:fixture-1",
     attemptId: "attempt:run-test",
     requestHash: sha("a"),
+    runnerKeyId: "runner-key:run-test",
+    runnerSignature: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
     status: "cancelled",
     exitCode: 137,
     startedAt: "2026-07-13T00:00:01Z",
@@ -95,13 +110,26 @@ function fixtureResult() {
     checks: { network: "passed", noSorry: "not_run", allowedAxioms: "not_run", leanBuild: "not_run" },
     artifacts: { manifestHash: sha("b"), stdoutHash: sha("c"), stderrHash: sha("d") },
   };
+  result.runnerSignature = base64Url(
+    await crypto.subtle.sign(
+      "Ed25519",
+      runnerKeyPair.privateKey,
+      new TextEncoder().encode(canonicalJson(runnerResultSigningPayload(result))),
+    ),
+  );
+  return result;
 }
 
 function sha(character) {
   return `sha256:${character.repeat(64)}`;
 }
 
-async function seedAttempt(d1) {
+function base64Url(buffer) {
+  const binary = String.fromCharCode(...new Uint8Array(buffer));
+  return btoa(binary).replaceAll("+", "-").replaceAll("/", "_").replaceAll("=", "");
+}
+
+async function seedAttempt(d1, publicKey) {
   const statements = [
     [
       `INSERT INTO persons (id, identity_provider, provider_subject, display_name, updated_at)
@@ -137,6 +165,10 @@ async function seedAttempt(d1) {
         id, person_id, problem_revision_id, agent_label, idempotency_key, updated_at
       ) VALUES (?, ?, ?, ?, ?, ?)`,
       ["attempt:run-test", "person:run-test", "revision:run-test", "Run Agent", "attempt-run-test", "2026-07-13T00:00:00Z"],
+    ],
+    [
+      "INSERT INTO runner_keys (id, public_key, fingerprint) VALUES (?, ?, ?)",
+      ["runner-key:run-test", publicKey, sha("6")],
     ],
   ];
 

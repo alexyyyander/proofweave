@@ -1,4 +1,4 @@
-import { canonicalJson, sha256Canonical } from "./canonical-json.mjs";
+import { canonicalJson, canonicalUtf8, sha256Canonical } from "./canonical-json.mjs";
 import {
   artifactBundleHash,
   normalizeArtifactBundle,
@@ -143,6 +143,8 @@ export function normalizeLeanRunnerResult(result) {
   requireIdentifier(result.jobId, "result jobId");
   requireIdentifier(result.attemptId, "result attemptId");
   requireSha256(result.requestHash, "result requestHash");
+  requireIdentifier(result.runnerKeyId, "result runnerKeyId");
+  requireBase64Url(result.runnerSignature, 64, "result runnerSignature");
   if (!["succeeded", "failed", "timed_out", "rejected", "cancelled"].includes(result.status)) {
     throw new LeanRunnerProtocolError("Runner result status is invalid.");
   }
@@ -189,6 +191,8 @@ export function normalizeLeanRunnerResult(result) {
     jobId: result.jobId,
     attemptId: result.attemptId,
     requestHash: result.requestHash,
+    runnerKeyId: result.runnerKeyId,
+    runnerSignature: result.runnerSignature,
     status: result.status,
     exitCode: result.exitCode,
     startedAt: result.startedAt,
@@ -197,6 +201,44 @@ export function normalizeLeanRunnerResult(result) {
     checks: Object.freeze(checks),
     artifacts: Object.freeze({ ...result.artifacts }),
   });
+}
+
+/** The runner signs all result evidence except its own detached signature. */
+export function runnerResultSigningPayload(result) {
+  const normalized = normalizeLeanRunnerResult(result);
+  return {
+    protocolVersion: normalized.protocolVersion,
+    jobId: normalized.jobId,
+    attemptId: normalized.attemptId,
+    requestHash: normalized.requestHash,
+    runnerKeyId: normalized.runnerKeyId,
+    status: normalized.status,
+    exitCode: normalized.exitCode,
+    startedAt: normalized.startedAt,
+    finishedAt: normalized.finishedAt,
+    kernelStatus: normalized.kernelStatus,
+    checks: normalized.checks,
+    artifacts: normalized.artifacts,
+  };
+}
+
+/** Verify a result against a key selected from the control-plane allowlist. */
+export async function verifyLeanRunnerResultSignature({ result, runnerPublicKey }) {
+  const normalized = normalizeLeanRunnerResult(result);
+  requireBase64Url(runnerPublicKey, 32, "runner public key");
+  const key = await crypto.subtle.importKey(
+    "raw",
+    fromBase64Url(runnerPublicKey),
+    { name: "Ed25519" },
+    false,
+    ["verify"],
+  );
+  return crypto.subtle.verify(
+    "Ed25519",
+    key,
+    fromBase64Url(normalized.runnerSignature),
+    canonicalUtf8(runnerResultSigningPayload(normalized)),
+  );
 }
 
 export function canonicalLeanRunnerRequest(request) {
@@ -233,6 +275,16 @@ function requireSha256(value, label) {
 function requireSha256Digest(value, label) {
   if (typeof value !== "string" || !/^sha256:[a-f0-9]{64}$/.test(value.replace(/^.*@/, ""))) {
     throw new LeanRunnerProtocolError(`${label} must include a pinned sha256 image digest.`);
+  }
+}
+
+function requireBase64Url(value, length, label) {
+  requireString(value, label, 256);
+  if (!/^[A-Za-z0-9_-]+$/.test(value)) {
+    throw new LeanRunnerProtocolError(`${label} must be unpadded base64url.`);
+  }
+  if (fromBase64Url(value).byteLength !== length) {
+    throw new LeanRunnerProtocolError(`${label} has an invalid length.`);
   }
 }
 
@@ -275,4 +327,13 @@ function requireString(value, label, maxLength) {
 
 function isQualifiedName(value) {
   return typeof value === "string" && /^[A-Za-z_][A-Za-z0-9_'.]*(?:\.[A-Za-z_][A-Za-z0-9_'.]*)*$/.test(value);
+}
+
+function fromBase64Url(value) {
+  const padded = value.replace(/-/g, "+").replace(/_/g, "/").padEnd(
+    Math.ceil(value.length / 4) * 4,
+    "=",
+  );
+  const binary = atob(padded);
+  return Uint8Array.from(binary, (character) => character.charCodeAt(0));
 }
