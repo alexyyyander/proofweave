@@ -1,6 +1,7 @@
 import { getD1 } from "@/db";
 import {
   D1VerificationStore,
+  VerificationStoreCapacityError,
   VerificationStoreConflictError,
   VerificationStoreNotFoundError,
   VerificationStoreValidationError,
@@ -192,6 +193,7 @@ export function getReviewAssignmentRepository(): ReviewAssignmentRepository {
 export function isReviewAssignmentFailure(error: unknown): boolean {
   return error instanceof ReviewAssignmentNotFoundError ||
     error instanceof ReviewAssignmentConflictError ||
+    error instanceof VerificationStoreCapacityError ||
     error instanceof VerificationStoreConflictError ||
     error instanceof VerificationStoreNotFoundError ||
     error instanceof VerificationStoreValidationError;

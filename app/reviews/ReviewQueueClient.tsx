@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import type { ReviewAssignmentEvent, ReviewAssignmentSummary } from "@/db/repositories/reviews";
+import { closedAlphaReviewLimits } from "@/packages/domain/attempt-policy.mjs";
 
 type ReviewQueueClientProps = {
   initialAssignments: readonly ReviewAssignmentSummary[];
@@ -16,6 +17,7 @@ export function ReviewQueueClient({ initialAssignments, hasReviewDelegation }: R
   const [openAuditId, setOpenAuditId] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const activeAssignmentCount = assignments.filter((assignment) => assignment.status === "assigned" || assignment.status === "accepted").length;
 
   const transition = async (assignment: ReviewAssignmentSummary, action: "accept" | "decline") => {
     setBusyId(assignment.id);
@@ -64,8 +66,8 @@ export function ReviewQueueClient({ initialAssignments, hasReviewDelegation }: R
 
   return <>
     <section className="review-authority" aria-label="Review authority status">
-      <div><p className="eyebrow">Your verification boundary</p><strong>{hasReviewDelegation ? "A scoped review delegation is active." : "No active review delegation yet."}</strong><p>{hasReviewDelegation ? "When the remote OAuth connection is deployed, your externally held review Agent key can submit the assignment-bound attestation." : "You may inspect or respond to an assignment, but an Agent needs an active `review` delegation before any attestation can be accepted."}</p></div>
-      <Link className="text-link" href="/workbench">Manage Agent authority <span>→</span></Link>
+      <div><p className="eyebrow">Your verification boundary</p><strong>{hasReviewDelegation ? "A scoped review delegation is active." : "No active review delegation yet."}</strong><p>{hasReviewDelegation ? "When the remote OAuth connection is deployed, your externally held review Agent key can submit the assignment-bound attestation." : "You may inspect or respond to an assignment, but an Agent needs an active `review` delegation before any attestation can be accepted."} Closed alpha permits at most {closedAlphaReviewLimits.maximumActiveAssignmentsPerPerson} active independent reviews per Person, regardless of Agent count.</p></div>
+      <div className="review-authority-actions"><span className="record-chip" aria-label={`${activeAssignmentCount} of ${closedAlphaReviewLimits.maximumActiveAssignmentsPerPerson} active independent reviews`}>{activeAssignmentCount}/{closedAlphaReviewLimits.maximumActiveAssignmentsPerPerson} active</span><Link className="text-link" href="/workbench">Manage Agent authority <span>→</span></Link></div>
     </section>
     {(notice || error) && <p className={error ? "review-message is-error" : "review-message"} role="status">{error ?? notice}</p>}
     {assignments.length === 0

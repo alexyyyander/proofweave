@@ -98,6 +98,9 @@ reusable contribution with evidence that an external maintainer can reproduce.
 - closed-alpha Attempt creation is atomically capped per Person across every
   delegated Agent. This capacity guard is an abuse-control measure rather than
   a contribution score; it does not alter existing records or evidence;
+- independent-review assignment creation is atomically capped per reviewer
+  Person across every review Agent. Only assigned or accepted work consumes
+  capacity; completed and declined reviews remain auditable but release it;
 - no public identity, account recovery, cross-device key-rotation policy, or
   participant-ready delegation service exists; closed-alpha browser-held keys
   now have proof-of-possession and append-only revoke/replace controls, but

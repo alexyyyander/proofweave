@@ -2,6 +2,7 @@ import Link from "next/link";
 import { MissingDatabaseBindingError } from "@/db";
 import { getDelegationRepository, type DelegationProfile } from "@/db/repositories/delegation";
 import { getReviewAssignmentRepository, type ReviewAssignmentSummary } from "@/db/repositories/reviews";
+import { closedAlphaReviewLimits } from "@/packages/domain/attempt-policy.mjs";
 import { chatGPTSignInPath, getChatGPTUser, type ChatGPTUser } from "../chatgpt-auth";
 import { Footer, Header } from "../ui";
 import { ReviewQueueClient } from "./ReviewQueueClient";
@@ -14,11 +15,12 @@ export default async function ReviewsPage() {
   if (!user) return <ReviewMessage unauthenticated />;
   if (!result.storageAvailable) return <ReviewMessage unavailable />;
 
+  const activeAssignments = result.assignments.filter((assignment) => assignment.status === "assigned" || assignment.status === "accepted").length;
   return <div className="site-shell app-shell">
     <Header active="review" />
     <main className="page-main review-main">
       <div className="breadcrumb"><Link href="/workbench">Workbench</Link><span> / </span><span>Independent review</span></div>
-      <section className="review-heading"><div><p className="eyebrow">Verification queue · closed alpha</p><h1>Review another person’s evidence.</h1><p>Assignments are addressed to a Person. A different owner’s review-scoped Agent must supply the signed attestation through the separately deployed remote connection; accepting a task alone never verifies a theorem.</p></div><span className="record-chip">{result.assignments.length} assigned</span></section>
+      <section className="review-heading"><div><p className="eyebrow">Verification queue · closed alpha</p><h1>Review another person’s evidence.</h1><p>Assignments are addressed to a Person. A different owner’s review-scoped Agent must supply the signed attestation through the separately deployed remote connection; accepting a task alone never verifies a theorem.</p></div><span className="record-chip">{activeAssignments}/{closedAlphaReviewLimits.maximumActiveAssignmentsPerPerson} active</span></section>
       <ReviewQueueClient initialAssignments={result.assignments} hasReviewDelegation={hasActiveReviewDelegation(result.profile)} />
     </main>
     <Footer />

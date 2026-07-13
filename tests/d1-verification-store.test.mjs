@@ -2,7 +2,11 @@ import assert from "node:assert/strict";
 import { after, before, test } from "node:test";
 import { readFile, readdir } from "node:fs/promises";
 import { Miniflare } from "miniflare";
-import { D1VerificationStore } from "../services/verification/d1-verification-store.mjs";
+import {
+  D1VerificationStore,
+  VerificationStoreCapacityError,
+} from "../services/verification/d1-verification-store.mjs";
+import { closedAlphaReviewLimits } from "../packages/domain/attempt-policy.mjs";
 import {
   verificationAttestationPayloadHash,
   verificationAttestationSigningPayload,
@@ -105,6 +109,83 @@ test("rejects a review attestation after its Person signing key is revoked", asy
     })),
     /outside valid review delegation authority/,
   );
+});
+
+test("D1 review capacity is shared by every review Agent owned by the same Person", async () => {
+  const store = new D1VerificationStore(database);
+  await database
+    .prepare("INSERT INTO persons (id, identity_provider, provider_subject, display_name, updated_at) VALUES (?, ?, ?, ?, ?)")
+    .bind("person:capacity-reviewer", "proofweave", "capacity-reviewer", "Capacity reviewer", "2026-07-13T00:00:00Z")
+    .run();
+
+  const bundleHashes = ["c", "d", "e", "f", "0", "1", "2", "3", "4"].map(sha);
+  for (const [index, manifestHash] of bundleHashes.entries()) {
+    await database.batch([
+      database
+        .prepare("INSERT INTO artifact_objects (content_hash, object_key, byte_length, content_type) VALUES (?, ?, ?, ?)")
+        .bind(manifestHash, `bundles/sha256/${manifestHash.slice("sha256:".length)}/bundle.json`, 2, "application/json"),
+      database
+        .prepare(
+          `INSERT INTO artifact_bundles (
+            id, attempt_id, problem_revision_id, manifest_hash, manifest_key,
+            canonical_manifest, agent_event_id, agent_event_payload_hash
+          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+        )
+        .bind(
+          `bundle:capacity-${index}`, "attempt:verification", "revision:verification", manifestHash,
+          `bundles/sha256/${manifestHash.slice("sha256:".length)}/bundle.json`, "{}",
+          `agent-event:capacity-${index}`, sha("9"),
+        ),
+    ]);
+  }
+
+  for (let index = 0; index < closedAlphaReviewLimits.maximumActiveAssignmentsPerPerson; index += 1) {
+    const result = await store.assign({
+      id: `assignment:capacity-${index}`,
+      artifactBundleManifestHash: bundleHashes[index],
+      claimType: "kernel_accepted",
+      verifierPersonId: "person:capacity-reviewer",
+      assignedAt: `2026-07-13T00:0${index}:00Z`,
+    });
+    assert.equal(result.created, true);
+  }
+
+  await assert.rejects(
+    store.assign({
+      id: "assignment:capacity-exhausted",
+      artifactBundleManifestHash: bundleHashes.at(-1),
+      claimType: "kernel_accepted",
+      verifierPersonId: "person:capacity-reviewer",
+      assignedAt: "2026-07-13T00:09:00Z",
+    }),
+    VerificationStoreCapacityError,
+  );
+
+  const declined = await store.decline(
+    "assignment:capacity-0",
+    "person:capacity-reviewer",
+    "2026-07-13T00:10:00Z",
+  );
+  assert.equal(declined.status, "declined");
+  const released = await store.assign({
+    id: "assignment:capacity-released",
+    artifactBundleManifestHash: bundleHashes.at(-1),
+    claimType: "kernel_accepted",
+    verifierPersonId: "person:capacity-reviewer",
+    assignedAt: "2026-07-13T00:11:00Z",
+  });
+  assert.equal(released.created, true);
+
+  const active = await database
+    .prepare("SELECT COUNT(*) AS count FROM verification_assignments WHERE verifier_person_id = ? AND status IN ('assigned', 'accepted')")
+    .bind("person:capacity-reviewer")
+    .first();
+  assert.equal(Number(active?.count), closedAlphaReviewLimits.maximumActiveAssignmentsPerPerson);
+  const rejectedEvents = await database
+    .prepare("SELECT COUNT(*) AS count FROM verification_assignment_events WHERE assignment_id = ?")
+    .bind("assignment:capacity-exhausted")
+    .first();
+  assert.equal(Number(rejectedEvents?.count), 0);
 });
 
 async function signedAttestation({

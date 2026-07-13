@@ -5,6 +5,7 @@ import {
   verificationClaimTypes,
   verifyVerificationAttestationSignature,
 } from "../../packages/protocol/verification-attestation.mjs";
+import { closedAlphaReviewLimits } from "../../packages/domain/attempt-policy.mjs";
 
 export class VerificationStoreConflictError extends Error {
   constructor(message) {
@@ -24,6 +25,14 @@ export class VerificationStoreNotFoundError extends Error {
   constructor(id) {
     super(`Verification assignment ${id} was not found.`);
     this.name = "VerificationStoreNotFoundError";
+  }
+}
+
+export class VerificationStoreCapacityError extends Error {
+  constructor(limit = closedAlphaReviewLimits.maximumActiveAssignmentsPerPerson) {
+    super(`This Person already has the closed-alpha limit of ${limit} active independent reviews. Existing work must be completed or declined before another review can be assigned.`);
+    this.name = "VerificationStoreCapacityError";
+    this.limit = limit;
   }
 }
 
@@ -66,6 +75,13 @@ export class D1VerificationStore {
       .bind(artifactBundleManifestHash, claimType, verifierPersonId)
       .first();
     if (existing) return { assignment: toAssignment(existing), created: false };
+    const existingId = await this.database
+      .prepare("SELECT id FROM verification_assignments WHERE id = ?")
+      .bind(id)
+      .first();
+    if (existingId) {
+      throw new VerificationStoreConflictError("Verification assignment id is already bound to different immutable work.");
+    }
 
     const assignment = {
       id,
@@ -87,18 +103,39 @@ export class D1VerificationStore {
       occurredAt: assignedAt,
       payload: { artifactBundleManifestHash, claimType, verifierPersonId },
     });
-    await this.database.batch([
+    const results = await this.database.batch([
       this.database
         .prepare(
           `INSERT INTO verification_assignments (
             id, artifact_bundle_manifest_hash, claim_type, attempt_owner_person_id,
             verifier_person_id, status, assigned_at, updated_at
-          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+          )
+          SELECT ?, ?, ?, ?, ?, ?, ?, ?
+          WHERE (
+            SELECT COUNT(*)
+            FROM verification_assignments
+            WHERE verifier_person_id = ? AND status IN ('assigned', 'accepted')
+          ) < ?`,
         )
-        .bind(id, artifactBundleManifestHash, claimType, bundle.attempt_owner_person_id, verifierPersonId, "assigned", assignedAt, assignedAt),
-      insertEventStatement(this.database, event),
+        .bind(
+          id, artifactBundleManifestHash, claimType, bundle.attempt_owner_person_id,
+          verifierPersonId, "assigned", assignedAt, assignedAt,
+          verifierPersonId, closedAlphaReviewLimits.maximumActiveAssignmentsPerPerson,
+        ),
+      insertAssignmentCreatedEventStatement(this.database, event, id),
     ]);
-    return { assignment: Object.freeze(assignment), created: true };
+    const stored = await this.database
+      .prepare(
+        `SELECT * FROM verification_assignments
+         WHERE artifact_bundle_manifest_hash = ? AND claim_type = ? AND verifier_person_id = ?`,
+      )
+      .bind(artifactBundleManifestHash, claimType, verifierPersonId)
+      .first();
+    if (!stored) throw new VerificationStoreCapacityError();
+    return {
+      assignment: toAssignment(stored),
+      created: Number(results[0]?.meta?.changes ?? 0) === 1,
+    };
   }
 
   async accept(assignmentId, verifierPersonId, acceptedAt) {
@@ -375,6 +412,21 @@ function insertEventStatement(database, event) {
       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
     )
     .bind(event.id, event.assignmentId, event.sequence, event.eventType, event.status, event.payloadHash, event.canonicalPayload, event.occurredAt);
+}
+
+function insertAssignmentCreatedEventStatement(database, event, assignmentId) {
+  return database
+    .prepare(
+      `INSERT INTO verification_assignment_events (
+        id, assignment_id, sequence, event_type, status, payload_hash, canonical_payload, occurred_at
+      )
+      SELECT ?, ?, ?, ?, ?, ?, ?, ?
+      WHERE EXISTS (SELECT 1 FROM verification_assignments WHERE id = ?)`,
+    )
+    .bind(
+      event.id, event.assignmentId, event.sequence, event.eventType, event.status,
+      event.payloadHash, event.canonicalPayload, event.occurredAt, assignmentId,
+    );
 }
 
 function requireIdentifier(value, label) {
