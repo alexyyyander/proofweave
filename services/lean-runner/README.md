@@ -8,7 +8,9 @@ The checked-in implementation freezes the request/result protocol in
 a pinned image digest, `lake env lean` argument arrays, explicit CPU/memory/
 disk/output limits, and disabled network. [`queue.mjs`](queue.mjs) defines the
 provider-neutral `RunnerQueue` delivery contract and includes a deterministic
-in-memory reference adapter for tests. It does not yet contain a container
+in-memory reference adapter for tests. Queue envelopes are Ed25519-signed by a
+control-plane deployment key, and the runner-side authenticator accepts only
+operator-provisioned public issuer keys. It does not yet contain a container
 image, hosted queue adapter, queue consumer, or executable user-code service.
 
 See [the runner contract](../../docs/runner-contract.md) for the non-negotiable

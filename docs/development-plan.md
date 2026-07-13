@@ -58,6 +58,8 @@ reusable contribution with evidence that an external maintainer can reproduce.
   timing, referenced object hashes, and canonical bundle manifests;
 - bounded Run state machine with idempotent request/result binding and
   cancellation acknowledgement semantics;
+- signed RunnerQueue envelopes plus runner-side issuer-key allowlist
+  verification for control-plane job authentication;
 - operator-managed runner-key allowlist with signed-result verification before
   immutable Run evidence is accepted;
 - independent Person-level review assignments and review-delegated Agent
@@ -76,8 +78,9 @@ reusable contribution with evidence that an external maintainer can reproduce.
   service, deployed D1-backed MCP gateway store, bounded-run, artifact,
   verification, or receipt API exists;
 - no Lean execution service exists;
-- no independent-review assignment logic exists;
-- no immutable provenance/event model exists;
+- no participant-facing independent-review assignment or fresh runner replay
+  exists;
+- no immutable contribution-receipt or dependency-edge model exists;
 - no active remote CI provider or production observability exists.
 
 ### Sprint 0 progress
@@ -183,6 +186,8 @@ Implemented locally on 2026-07-13:
   axiom policy;
 - result invariants that distinguish runner/kernel evidence from human
   statement, novelty, project, and receipt claims.
+- provider-neutral queue envelopes that bind each request hash to an Ed25519
+  control-plane signature; runner-side issuer-key allowlist verification;
 
 No Lean container, queue consumer, R2 artifact flow, or user-code executor has
 been deployed. These protocol checks are deliberately a prerequisite to—not a

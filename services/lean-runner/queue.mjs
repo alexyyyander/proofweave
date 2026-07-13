@@ -2,6 +2,7 @@ import {
   leanRunnerRequestHash,
   normalizeLeanRunnerRequest,
 } from "../../packages/protocol/lean-runner.mjs";
+import { canonicalUtf8 } from "../../packages/protocol/canonical-json.mjs";
 
 export const runnerQueueProtocolVersion = "pw-runner-queue-v1";
 
@@ -12,14 +13,48 @@ export class RunnerQueueProtocolError extends Error {
   }
 }
 
+export class RunnerJobAuthenticationError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "RunnerJobAuthenticationError";
+  }
+}
+
 /**
  * Build the only payload a control plane may put on a runner queue. It carries
  * a validated, source-free runner request and its canonical hash; it never
  * carries source bytes, environment secrets, or a shell command.
  */
-export async function createRunnerQueueMessage({ runId, request, enqueuedAt }) {
+export async function createRunnerQueueMessage({
+  runId,
+  request,
+  enqueuedAt,
+  controlPlaneKeyId,
+  controlPlanePrivateKey,
+}) {
+  const unsigned = await createUnsignedRunnerQueueMessage({
+    runId,
+    request,
+    enqueuedAt,
+    controlPlaneKeyId,
+  });
+  let controlPlaneSignature;
+  try {
+    controlPlaneSignature = toBase64Url(await crypto.subtle.sign(
+      "Ed25519",
+      controlPlanePrivateKey,
+      canonicalUtf8(runnerQueueSigningPayload(unsigned)),
+    ));
+  } catch {
+    throw new RunnerQueueProtocolError("controlPlanePrivateKey must be an Ed25519 signing key.");
+  }
+  return normalizeRunnerQueueMessage({ ...unsigned, controlPlaneSignature });
+}
+
+async function createUnsignedRunnerQueueMessage({ runId, request, enqueuedAt, controlPlaneKeyId }) {
   requireIdentifier(runId, "runId");
   requireUtcInstant(enqueuedAt, "enqueuedAt");
+  requireIdentifier(controlPlaneKeyId, "controlPlaneKeyId");
   const normalizedRequest = normalizeLeanRunnerRequest(request);
   if (normalizedRequest.jobId !== runId) {
     throw new RunnerQueueProtocolError("Queue runId must equal the runner request jobId.");
@@ -31,31 +66,104 @@ export async function createRunnerQueueMessage({ runId, request, enqueuedAt }) {
     requestHash: await leanRunnerRequestHash(normalizedRequest),
     request: normalizedRequest,
     enqueuedAt,
+    controlPlaneKeyId,
   });
 }
 
 /** Re-derive the request hash rather than trusting a queue-provider payload. */
 export async function normalizeRunnerQueueMessage(message) {
   requireRecord(message, "Runner queue message");
-  rejectExtraKeys(message, ["protocolVersion", "runId", "requestHash", "request", "enqueuedAt"], "Runner queue message");
+  rejectExtraKeys(message, [
+    "protocolVersion", "runId", "requestHash", "request", "enqueuedAt",
+    "controlPlaneKeyId", "controlPlaneSignature",
+  ], "Runner queue message");
   if (message.protocolVersion !== runnerQueueProtocolVersion) {
     throw new RunnerQueueProtocolError("Unsupported RunnerQueue protocol version.");
   }
   requireSha256(message.requestHash, "Runner queue requestHash");
-  const normalized = await createRunnerQueueMessage(message);
+  requireIdentifier(message.controlPlaneKeyId, "controlPlaneKeyId");
+  requireBase64Url(message.controlPlaneSignature, 64, "controlPlaneSignature");
+  const normalized = await createUnsignedRunnerQueueMessage(message);
   if (normalized.requestHash !== message.requestHash) {
     throw new RunnerQueueProtocolError("Runner queue requestHash does not match the canonical request.");
   }
-  return normalized;
+  return Object.freeze({ ...normalized, controlPlaneSignature: message.controlPlaneSignature });
+}
+
+/** The control plane signs every immutable queue field except its own signature. */
+export function runnerQueueSigningPayload(message) {
+  requireRecord(message, "Runner queue message");
+  return {
+    protocolVersion: message.protocolVersion,
+    runId: message.runId,
+    requestHash: message.requestHash,
+    request: message.request,
+    enqueuedAt: message.enqueuedAt,
+    controlPlaneKeyId: message.controlPlaneKeyId,
+  };
+}
+
+/** Verify a queue message against one operator-provisioned control-plane key. */
+export async function verifyRunnerQueueMessageSignature({ message, controlPlanePublicKey }) {
+  const normalized = await normalizeRunnerQueueMessage(message);
+  requireBase64Url(controlPlanePublicKey, 32, "controlPlanePublicKey");
+  const key = await crypto.subtle.importKey(
+    "raw",
+    fromBase64Url(controlPlanePublicKey),
+    { name: "Ed25519" },
+    false,
+    ["verify"],
+  );
+  return crypto.subtle.verify(
+    "Ed25519",
+    key,
+    fromBase64Url(normalized.controlPlaneSignature),
+    canonicalUtf8(runnerQueueSigningPayload(normalized)),
+  );
+}
+
+/**
+ * Runner-side key allowlist. Container deployments receive only public issuer
+ * keys; the matching signing key stays in the control-plane secret store.
+ */
+export class RunnerJobAuthenticator {
+  constructor({ issuerKeys }) {
+    if (!Array.isArray(issuerKeys) || issuerKeys.length === 0) {
+      throw new RunnerJobAuthenticationError("RunnerJobAuthenticator requires at least one issuer key.");
+    }
+    this.issuerKeys = new Map();
+    for (const issuer of issuerKeys) {
+      requireRecord(issuer, "Runner job issuer key");
+      rejectExtraKeys(issuer, ["id", "publicKey"], "Runner job issuer key");
+      requireIdentifier(issuer.id, "Runner job issuer key id");
+      requireBase64Url(issuer.publicKey, 32, "Runner job issuer publicKey");
+      if (this.issuerKeys.has(issuer.id)) {
+        throw new RunnerJobAuthenticationError("Runner job issuer key ids must be unique.");
+      }
+      this.issuerKeys.set(issuer.id, issuer.publicKey);
+    }
+  }
+
+  async authenticate(message) {
+    const normalized = await normalizeRunnerQueueMessage(message);
+    const publicKey = this.issuerKeys.get(normalized.controlPlaneKeyId);
+    if (!publicKey) {
+      throw new RunnerJobAuthenticationError("Runner queue message issuer key is not allowlisted.");
+    }
+    if (!await verifyRunnerQueueMessageSignature({ message: normalized, controlPlanePublicKey: publicKey })) {
+      throw new RunnerJobAuthenticationError("Runner queue message control-plane signature is invalid.");
+    }
+    return normalized;
+  }
 }
 
 /**
  * Provider-neutral queue interface.
  *
  * A production adapter must implement these asynchronous operations with
- * at-least-once delivery. It must authenticate the control-plane publisher
- * and runner consumer outside this interface. Run lifecycle state remains in
- * D1RunStore; this interface transports an immutable request only.
+ * at-least-once delivery. A runner must authenticate every message with
+ * RunnerJobAuthenticator before it uses the request. Run lifecycle state
+ * remains in D1RunStore; this interface transports an immutable request only.
  */
 export const runnerQueueInterface = Object.freeze({
   enqueue: "enqueue(message) -> { message, created, deliveryState }",
@@ -193,8 +301,31 @@ function requireSha256(value, label) {
   }
 }
 
+function requireBase64Url(value, expectedByteLength, label) {
+  if (typeof value !== "string" || !/^[A-Za-z0-9_-]+$/.test(value)) {
+    throw new RunnerQueueProtocolError(`${label} must be unpadded base64url.`);
+  }
+  if (fromBase64Url(value).byteLength !== expectedByteLength) {
+    throw new RunnerQueueProtocolError(`${label} has an invalid length.`);
+  }
+}
+
 function requireUtcInstant(value, label) {
   if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{3})?Z$/.test(value) || !Number.isFinite(Date.parse(value))) {
     throw new RunnerQueueProtocolError(`${label} must be an ISO-8601 UTC instant.`);
   }
+}
+
+function fromBase64Url(value) {
+  const padded = value.replace(/-/g, "+").replace(/_/g, "/").padEnd(
+    Math.ceil(value.length / 4) * 4,
+    "=",
+  );
+  const binary = atob(padded);
+  return Uint8Array.from(binary, (character) => character.charCodeAt(0));
+}
+
+function toBase64Url(buffer) {
+  const binary = String.fromCharCode(...new Uint8Array(buffer));
+  return btoa(binary).replaceAll("+", "-").replaceAll("/", "_").replaceAll("=", "");
 }

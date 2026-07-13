@@ -34,16 +34,24 @@ separately constrained by the [`Run state contract`](run-state-contract.md).
 `pw-runner-queue-v1` is the provider-neutral envelope between the control
 plane and a separately hosted runner. Its payload contains the immutable
 `pw-lean-runner-v1` request plus a re-derived request hash, a run ID equal to
-the request job ID, and enqueue time. It contains no source bytes, credentials,
-or shell string. Queue adapters must use at-least-once delivery; the runner and
-control plane use the request hash/idempotency key to make duplicate delivery
-safe.
+the request job ID, enqueue time, control-plane key ID, and detached Ed25519
+signature. It contains no source bytes, credentials, or shell string. The
+signature covers every other envelope field. A runner accepts a job only after
+the key ID resolves to its operator-provisioned issuer allowlist and that
+signature verifies.
 
-The reference in-memory adapter only tests that contract. It does not provide
-durability, authentication, network isolation, or Lean execution. A hosted
-adapter must authenticate both publisher and consumer, support removing a
-queued job, and leave a leased/running cancellation to the runner lifecycle.
-See [`services/lean-runner/queue.mjs`](../services/lean-runner/queue.mjs).
+The matching private key is a control-plane deployment secret, never a D1
+value, Artifact Bundle field, queue message field, browser value, or repository
+file. Runner deployments receive only public issuer keys. Queue adapters must
+use at-least-once delivery; the runner and control plane use the request
+hash/idempotency key to make duplicate delivery safe.
+
+The reference in-memory adapter only tests delivery semantics. It does not
+provide durability, network isolation, or Lean execution. The runner-side
+`RunnerJobAuthenticator` verifies the issuer signature; a hosted adapter must
+also authenticate publisher and consumer transport, support removing a queued
+job, and leave a leased/running cancellation to the runner lifecycle. See
+[`services/lean-runner/queue.mjs`](../services/lean-runner/queue.mjs).
 
 ## Result
 
@@ -60,7 +68,7 @@ acceptance, or a contribution receipt. Those remain separate attestations.
 ## Still required before execution
 
 - non-root container image with pinned Lean and Mathlib;
-- hosted queue adapter and signed control-plane-to-runner job authentication;
+- hosted queue adapter and control-plane signing-key deployment/rotation;
 - no-network enforcement, archive limits, cgroup limits, cancellation, cleanup;
 - R2 bundle retrieval/upload and signed immutable result manifest;
 - production logging, quotas, abuse response, and external security review.

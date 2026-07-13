@@ -11,7 +11,11 @@ export {
   createRunnerQueueMessage,
   InMemoryRunnerQueue,
   normalizeRunnerQueueMessage,
+  RunnerJobAuthenticator,
+  RunnerJobAuthenticationError,
   runnerQueueInterface,
   runnerQueueProtocolVersion,
+  runnerQueueSigningPayload,
   RunnerQueueProtocolError,
+  verifyRunnerQueueMessageSignature,
 } from "./queue.mjs";

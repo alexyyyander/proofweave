@@ -11,10 +11,12 @@ The web application is a control plane, not a hostile-code execution sandbox.
 
 Run Lean only in a separately deployed containerized runner. Each job receives
 a clean workspace, a pinned toolchain/image, a bounded input bundle, and a
-signed idempotent request. Jobs run without network access and with explicit
-CPU, memory, disk, wall-time, output, and concurrency limits. The runner emits
-a signed result manifest and artifact hashes; it never decides mathematical
-acceptance.
+signed idempotent request. The control plane signs each queue envelope with a
+deployment key; the runner verifies it against an operator-provisioned public
+issuer-key allowlist before using the request. Jobs run without network access
+and with explicit CPU, memory, disk, wall-time, output, and concurrency limits.
+The runner emits a signed result manifest and artifact hashes; it never decides
+mathematical acceptance.
 
 ## Consequences
 

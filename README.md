@@ -54,8 +54,8 @@ The project does not use `wrangler.jsonc`.
 - `packages/domain/` and `packages/protocol/` will hold UI-independent
   invariants and signed artifact protocol code.
 - `services/lean-runner/` contains the versioned protocol boundary for the
-  separately deployed, isolated Lean executor. User Lean code must never run
-  in the web Worker.
+  separately deployed, isolated Lean executor and signed control-plane job
+  envelope. User Lean code must never run in the web Worker.
 - `services/proofweave-mcp/` preserves the retired local stdio prototype for
   internal reference; `services/proofweave-mcp-gateway/` and
   `services/proofweave-identity/` contain the separate remote MCP resource and
