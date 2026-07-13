@@ -46,6 +46,8 @@ reusable contribution with evidence that an external maintainer can reproduce.
   content-hash, and retrieval-time provenance;
 - public catalog APIs for records and declaration-level detail;
 - D1 data model for closed-alpha provisional Attempts and events;
+- Ed25519 delegation protocol, immutable D1 records for Person keys, Agents,
+  certificates, and revocations, plus closed-alpha owner APIs;
 - a repository-versioned research skill, retired local MCP prototype, and
   Worker-compatible remote MCP/identity protocol scaffolding;
 - logical D1 (`DB`) and R2 (`ARTIFACTS`) bindings declared for Sites;
@@ -54,7 +56,8 @@ reusable contribution with evidence that an external maintainer can reproduce.
 ### Missing
 
 - the workbench identity and delegation display are still preview data;
-- no Agent key registration or delegation signing exists;
+- no public identity, key proof-of-possession challenge, or participant-facing
+  delegation UI exists;
 - no production OAuth identity adapter, D1-backed MCP gateway store, Agent
   registration, bounded-run, artifact, verification, or receipt API exists;
 - no Lean execution service exists;
@@ -117,6 +120,23 @@ until independent identity, consent, D1 store, token validation, revocation,
 and observability exist. The product contract is in
 [`docs/remote-mcp-gateway.md`](remote-mcp-gateway.md) and the architectural
 decision is ADR 0005.
+
+### Sprint 2 progress
+
+Implemented locally on 2026-07-13:
+
+- canonical JSON, payload hashing, Ed25519 signature verification, scope,
+  validity-window, beneficiary, and revocation checks for delegation v1;
+- D1 persistence for Person signing keys, stable one-owner Agents, immutable
+  delegation certificates, and append-only revocations;
+- closed-alpha authenticated APIs to inspect a Person profile, register a key
+  and Agent, issue a signed delegation, and revoke it;
+- integration tests proving the full key/Agent/sign/revoke sequence plus D1
+  immutability triggers.
+
+The workbench remains preview data until it has a safe Person-key lifecycle and
+real Agent setup flow. The API contract and current limitation are documented
+in [`docs/agent-delegation-api.md`](agent-delegation-api.md).
 
 ## 3. Architecture boundary
 

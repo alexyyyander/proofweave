@@ -3,6 +3,8 @@ import { access, readFile, readdir } from "node:fs/promises";
 import { after, before, test } from "node:test";
 import { fileURLToPath } from "node:url";
 import { Miniflare } from "miniflare";
+import { delegationSigningPayload } from "../packages/domain/delegation.mjs";
+import { canonicalJson } from "../packages/protocol/canonical-json.mjs";
 
 const repositoryRoot = new URL("../", import.meta.url);
 const migrationsRoot = new URL("../drizzle/", import.meta.url);
@@ -164,6 +166,177 @@ test("retires static MCP tokens before moving to remote OAuth", async () => {
   assert.equal((await render("/api/v1/mcp/problems")).status, 401);
 });
 
+test("persists immutable delegated-agent attribution records", async () => {
+  const tables = await database
+    .prepare(
+      "SELECT name FROM sqlite_master WHERE type = 'table' AND name IN ('person_keys', 'agents', 'delegation_certificates', 'delegation_revocations') ORDER BY name",
+    )
+    .all();
+  assert.deepEqual(
+    tables.results.map((row) => row.name),
+    ["agents", "delegation_certificates", "delegation_revocations", "person_keys"],
+  );
+
+  const now = "2026-07-13T00:00:00Z";
+  await database
+    .prepare(
+      "INSERT INTO persons (id, identity_provider, provider_subject, display_name, updated_at) VALUES (?, ?, ?, ?, ?)",
+    )
+    .bind("person:delegation-test", "proofweave", "delegation-test", "Delegation Test", now)
+    .run();
+  await database
+    .prepare(
+      "INSERT INTO person_keys (id, person_id, public_key, fingerprint) VALUES (?, ?, ?, ?)",
+    )
+    .bind("person-key:delegation-test", "person:delegation-test", "person-key", "sha256:person-key")
+    .run();
+  await database
+    .prepare(
+      "INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint) VALUES (?, ?, ?, ?, ?)",
+    )
+    .bind("agent:delegation-test", "person:delegation-test", "test-agent", "agent-key", "sha256:agent-key")
+    .run();
+  await database
+    .prepare(
+      `INSERT INTO delegation_certificates (
+        id, owner_person_id, agent_id, person_key_id, agent_public_key,
+        scopes_json, valid_from, valid_until, beneficiary_person_id,
+        protocol_version, payload_hash, canonical_payload, person_signature
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    )
+    .bind(
+      "delegation:immutable-test",
+      "person:delegation-test",
+      "agent:delegation-test",
+      "person-key:delegation-test",
+      "agent-key",
+      '["formalize"]',
+      now,
+      "2027-07-13T00:00:00Z",
+      "person:delegation-test",
+      "pw-delegation-v1",
+      "sha256:delegation-test",
+      "{}",
+      "signature",
+    )
+    .run();
+  await assert.rejects(
+    database
+      .prepare("UPDATE delegation_certificates SET valid_until = ? WHERE id = ?")
+      .bind("2028-07-13T00:00:00Z", "delegation:immutable-test")
+      .run(),
+    /delegation certificates are immutable/,
+  );
+  await assert.rejects(
+    database
+      .prepare("UPDATE agents SET owner_person_id = ? WHERE id = ?")
+      .bind("person:catalog-test", "agent:delegation-test")
+      .run(),
+    /agent owner cannot be changed/,
+  );
+
+  await database
+    .prepare(
+      "INSERT INTO delegation_revocations (id, delegation_certificate_id, owner_person_id, revoked_at, reason) VALUES (?, ?, ?, ?, ?)",
+    )
+    .bind(
+      "delegation-revocation:immutable-test",
+      "delegation:immutable-test",
+      "person:delegation-test",
+      "2026-08-01T00:00:00Z",
+      "Owner requested revocation.",
+    )
+    .run();
+  await assert.rejects(
+    database
+      .prepare("UPDATE delegation_revocations SET reason = ? WHERE id = ?")
+      .bind("changed", "delegation-revocation:immutable-test")
+      .run(),
+    /delegation revocations are immutable/,
+  );
+});
+
+test("registers, signs, and revokes a Person-owned Agent delegation through authenticated APIs", async () => {
+  const authHeaders = {
+    "oai-authenticated-user-email": "delegation-owner@example.test",
+    "oai-authenticated-user-full-name": "Delegation%20Owner",
+    "oai-authenticated-user-full-name-encoding": "percent-encoded-utf-8",
+  };
+  assert.equal((await render("/api/me/delegation")).status, 401);
+
+  const profileResponse = await render("/api/me/delegation", { headers: authHeaders });
+  assert.equal(profileResponse.status, 200);
+  const { profile } = await profileResponse.json();
+  assert.equal(profile.person.displayName, "Delegation Owner");
+
+  const ownerKeys = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
+  const ownerPublicKey = base64Url(await crypto.subtle.exportKey("raw", ownerKeys.publicKey));
+  const keyResponse = await render("/api/me/keys", {
+    method: "POST",
+    headers: { ...authHeaders, "content-type": "application/json" },
+    body: JSON.stringify({ publicKey: ownerPublicKey }),
+  });
+  assert.equal(keyResponse.status, 201);
+  const { key } = await keyResponse.json();
+
+  const agentPublicKey = base64Url(crypto.getRandomValues(new Uint8Array(32)));
+  const agentResponse = await render("/api/me/agents", {
+    method: "POST",
+    headers: { ...authHeaders, "content-type": "application/json" },
+    body: JSON.stringify({
+      agentId: "urn:pw:agent:delegation-test",
+      label: "Delegation test agent",
+      publicKey: agentPublicKey,
+    }),
+  });
+  assert.equal(agentResponse.status, 201);
+
+  const certificate = {
+    id: "pw:delegation:api-test",
+    ownerPersonId: profile.person.id,
+    agentId: "urn:pw:agent:delegation-test",
+    agentPublicKey,
+    scopes: ["formalize", "prove"],
+    validFrom: "2026-07-13T00:00:00Z",
+    validUntil: "2027-07-13T00:00:00Z",
+    attributionPolicy: {
+      beneficiaryPersonId: profile.person.id,
+      mode: "agent_delegated",
+    },
+  };
+  const signature = base64Url(
+    await crypto.subtle.sign(
+      "Ed25519",
+      ownerKeys.privateKey,
+      new TextEncoder().encode(canonicalJson(delegationSigningPayload(certificate))),
+    ),
+  );
+  const delegationResponse = await render("/api/me/delegations", {
+    method: "POST",
+    headers: { ...authHeaders, "content-type": "application/json" },
+    body: JSON.stringify({
+      personKeyId: key.id,
+      certificate,
+      personSignature: signature,
+    }),
+  });
+  assert.equal(delegationResponse.status, 201);
+  const { delegation } = await delegationResponse.json();
+  assert.equal(delegation.revokedAt, null);
+  assert.deepEqual(delegation.scopes, ["formalize", "prove"]);
+
+  const revokedResponse = await render("/api/me/delegations/pw:delegation:api-test/revoke", {
+    method: "POST",
+    headers: { ...authHeaders, "content-type": "application/json" },
+    body: JSON.stringify({
+      reason: "Agent key rotated.",
+      revokedAt: "2026-08-01T00:00:00Z",
+    }),
+  });
+  assert.equal(revokedResponse.status, 200);
+  assert.equal((await revokedResponse.json()).delegation.revokedAt, "2026-08-01T00:00:00Z");
+});
+
 test("keeps the production frontend free of the deleted starter preview", async () => {
   const [page, layout, packageJson, workbench, legacyContent] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
@@ -195,3 +368,8 @@ test("keeps the production frontend free of the deleted starter preview", async 
     access(new URL("public/_sites-preview/SkeletonPreview.tsx", repositoryRoot)),
   );
 });
+
+function base64Url(buffer) {
+  const binary = String.fromCharCode(...new Uint8Array(buffer));
+  return btoa(binary).replaceAll("+", "-").replaceAll("/", "_").replaceAll("=", "");
+}

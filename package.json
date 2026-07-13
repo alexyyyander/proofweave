@@ -13,12 +13,13 @@
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "typecheck": "tsc --noEmit",
-    "check": "npm run lint && npm run typecheck && npm run mcp:check && npm run mcp:gateway:check && npm test",
+    "check": "npm run lint && npm run typecheck && npm run delegation:check && npm run mcp:check && npm run mcp:gateway:check && npm test",
     "catalog:verify-source": "node scripts/ingest/verify-formal-conjectures-snapshot.mjs",
     "db:generate": "drizzle-kit generate",
     "mcp": "node services/proofweave-mcp/index.mjs",
     "mcp:check": "node --check services/proofweave-mcp/index.mjs",
-    "mcp:gateway:check": "node --check services/proofweave-mcp-gateway/worker.mjs && node --check services/proofweave-identity/worker.mjs && node --test tests/remote-mcp-gateway.test.mjs"
+    "mcp:gateway:check": "node --check services/proofweave-mcp-gateway/worker.mjs && node --check services/proofweave-identity/worker.mjs && node --test tests/remote-mcp-gateway.test.mjs",
+    "delegation:check": "node --test tests/delegation.test.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",

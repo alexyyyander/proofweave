@@ -170,7 +170,7 @@ export const persons = sqliteTable(
   {
     id: text("id").primaryKey(),
     identityProvider: text("identity_provider", {
-      enum: ["chatgpt"],
+      enum: ["chatgpt", "proofweave"],
     }).notNull(),
     providerSubject: text("provider_subject").notNull(),
     displayName: text("display_name").notNull(),
@@ -182,6 +182,122 @@ export const persons = sqliteTable(
       table.identityProvider,
       table.providerSubject,
     ),
+  ],
+);
+
+// A Person can have several public signing keys over time. Revocation lives on
+// the key record so a historical delegation remains inspectable with the key
+// material that signed it.
+export const personKeys = sqliteTable(
+  "person_keys",
+  {
+    id: text("id").primaryKey(),
+    personId: text("person_id")
+      .notNull()
+      .references(() => persons.id, { onDelete: "restrict" }),
+    algorithm: text("algorithm", { enum: ["ed25519"] })
+      .notNull()
+      .default("ed25519"),
+    publicKey: text("public_key").notNull(),
+    fingerprint: text("fingerprint").notNull(),
+    revokedAt: text("revoked_at"),
+    createdAt,
+  },
+  (table) => [
+    uniqueIndex("person_keys_public_key_idx").on(table.publicKey),
+    uniqueIndex("person_keys_fingerprint_idx").on(table.fingerprint),
+    index("person_keys_person_active_idx").on(table.personId, table.revokedAt),
+  ],
+);
+
+// An Agent remains rooted in exactly one Person. It is never transferred by
+// mutation: a future transfer must create an auditable successor relationship.
+export const agents = sqliteTable(
+  "agents",
+  {
+    id: text("id").primaryKey(),
+    ownerPersonId: text("owner_person_id")
+      .notNull()
+      .references(() => persons.id, { onDelete: "restrict" }),
+    label: text("label").notNull(),
+    publicKey: text("public_key").notNull(),
+    keyFingerprint: text("key_fingerprint").notNull(),
+    status: text("status", { enum: ["active", "revoked"] })
+      .notNull()
+      .default("active"),
+    revokedAt: text("revoked_at"),
+    createdAt,
+  },
+  (table) => [
+    uniqueIndex("agents_public_key_idx").on(table.publicKey),
+    uniqueIndex("agents_key_fingerprint_idx").on(table.keyFingerprint),
+    index("agents_owner_status_idx").on(table.ownerPersonId, table.status),
+  ],
+);
+
+// The signed certificate is immutable. A revocation is represented by an
+// append-only row in delegation_revocations rather than a field update here.
+export const delegationCertificates = sqliteTable(
+  "delegation_certificates",
+  {
+    id: text("id").primaryKey(),
+    ownerPersonId: text("owner_person_id")
+      .notNull()
+      .references(() => persons.id, { onDelete: "restrict" }),
+    agentId: text("agent_id")
+      .notNull()
+      .references(() => agents.id, { onDelete: "restrict" }),
+    personKeyId: text("person_key_id")
+      .notNull()
+      .references(() => personKeys.id, { onDelete: "restrict" }),
+    agentPublicKey: text("agent_public_key").notNull(),
+    scopesJson: text("scopes_json").notNull(),
+    validFrom: text("valid_from").notNull(),
+    validUntil: text("valid_until").notNull(),
+    beneficiaryPersonId: text("beneficiary_person_id")
+      .notNull()
+      .references(() => persons.id, { onDelete: "restrict" }),
+    attributionMode: text("attribution_mode", { enum: ["agent_delegated"] })
+      .notNull()
+      .default("agent_delegated"),
+    protocolVersion: text("protocol_version").notNull(),
+    payloadHash: text("payload_hash").notNull(),
+    canonicalPayload: text("canonical_payload").notNull(),
+    personSignature: text("person_signature").notNull(),
+    createdAt,
+  },
+  (table) => [
+    uniqueIndex("delegation_certificates_payload_hash_idx").on(table.payloadHash),
+    index("delegation_certificates_owner_validity_idx").on(
+      table.ownerPersonId,
+      table.validUntil,
+    ),
+    index("delegation_certificates_agent_validity_idx").on(
+      table.agentId,
+      table.validUntil,
+    ),
+  ],
+);
+
+export const delegationRevocations = sqliteTable(
+  "delegation_revocations",
+  {
+    id: text("id").primaryKey(),
+    delegationCertificateId: text("delegation_certificate_id")
+      .notNull()
+      .references(() => delegationCertificates.id, { onDelete: "restrict" }),
+    ownerPersonId: text("owner_person_id")
+      .notNull()
+      .references(() => persons.id, { onDelete: "restrict" }),
+    revokedAt: text("revoked_at").notNull(),
+    reason: text("reason").notNull(),
+    createdAt,
+  },
+  (table) => [
+    uniqueIndex("delegation_revocations_certificate_idx").on(
+      table.delegationCertificateId,
+    ),
+    index("delegation_revocations_owner_idx").on(table.ownerPersonId, table.revokedAt),
   ],
 );
 
@@ -220,6 +336,11 @@ export const agentAttempts = sqliteTable(
     problemRevisionId: text("problem_revision_id")
       .notNull()
       .references(() => problemRevisions.id, { onDelete: "restrict" }),
+    agentId: text("agent_id").references(() => agents.id, { onDelete: "restrict" }),
+    delegationCertificateId: text("delegation_certificate_id").references(
+      () => delegationCertificates.id,
+      { onDelete: "restrict" },
+    ),
     agentLabel: text("agent_label").notNull(),
     status: text("status", {
       enum: ["active", "submitted", "cancelled"],
@@ -238,6 +359,7 @@ export const agentAttempts = sqliteTable(
     ),
     index("agent_attempts_person_updated_idx").on(table.personId, table.updatedAt),
     index("agent_attempts_revision_idx").on(table.problemRevisionId),
+    index("agent_attempts_delegation_idx").on(table.delegationCertificateId),
   ],
 );
 

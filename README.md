@@ -16,6 +16,7 @@ connected.
 - [Development plan](docs/development-plan.md)
 - [Frontend MVP](docs/frontend-mvp.md)
 - [Information-source map](docs/resource-map.md)
+- [Closed-alpha Agent delegation API](docs/agent-delegation-api.md)
 
 ## Current stack
 
@@ -44,7 +45,7 @@ The project does not use `wrangler.jsonc`.
 - `docs/` contains the product plan, information-source map, and architecture
   decisions.
 - `db/` contains the Drizzle schema, immutable catalog migrations, and D1
-  repositories.
+  repositories, including the delegated-Agent attribution records.
 - `packages/domain/` and `packages/protocol/` will hold UI-independent
   invariants and signed artifact protocol code.
 - `services/lean-runner/` is reserved for the separately deployed, isolated
@@ -151,6 +152,14 @@ are defined in the
 
 The gateway will record `agent_reported_only` activity only. It cannot assert
 Lean kernel acceptance, independent review, novelty, or a contribution receipt.
+
+## Delegated Agent status
+
+The closed-alpha control plane can now persist an authenticated Person's
+Ed25519 signing key, registered Agent, signed delegation certificate, and
+append-only revocation. This is attribution infrastructure, not public
+onboarding: the UI remains a preview, key proof-of-possession is still needed,
+and the separate remote identity/MCP services are not deployed.
 
 ## Learn More
 
