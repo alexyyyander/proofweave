@@ -4,6 +4,7 @@ import {
   canonicalLeanRunnerRequest,
   createLeanRunnerRequest,
   leanRunnerRequestHash,
+  normalizeLeanRunnerLimits,
   normalizeLeanRunnerRequest,
   normalizeLeanRunnerResult,
   signLeanRunnerResult,
@@ -59,6 +60,18 @@ test("rejects runner requests that could widen execution authority", () => {
   assert.throws(
     () => normalizeLeanRunnerRequest({ ...fixtureRequest(), bundle: { ...fixtureRequest().bundle, objectKey: "bundles/sha256/../escape" } }),
     /matching canonical bundle hash/,
+  );
+});
+
+test("normalizes deployment-owned Runner limits before dispatch", () => {
+  assert.deepEqual(normalizeLeanRunnerLimits(fixtureRequest().limits), fixtureRequest().limits);
+  assert.throws(
+    () => normalizeLeanRunnerLimits({ ...fixtureRequest().limits, wallSeconds: 10 }),
+    /wallSeconds cannot be lower/,
+  );
+  assert.throws(
+    () => normalizeLeanRunnerLimits({ ...fixtureRequest().limits, outputBytes: 20_000_001 }),
+    /outputBytes must be an integer/,
   );
 });
 

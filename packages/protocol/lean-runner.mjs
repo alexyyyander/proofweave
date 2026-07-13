@@ -45,17 +45,7 @@ export function normalizeLeanRunnerRequest(request) {
     throw new LeanRunnerProtocolError("Lean runner network must be disabled.");
   }
 
-  requireRecord(request.limits, "limits");
-  const limits = {
-    cpuSeconds: boundedInteger(request.limits.cpuSeconds, "limits.cpuSeconds", 1, 900),
-    wallSeconds: boundedInteger(request.limits.wallSeconds, "limits.wallSeconds", 1, 1_200),
-    memoryMiB: boundedInteger(request.limits.memoryMiB, "limits.memoryMiB", 128, 16_384),
-    diskMiB: boundedInteger(request.limits.diskMiB, "limits.diskMiB", 128, 16_384),
-    outputBytes: boundedInteger(request.limits.outputBytes, "limits.outputBytes", 1_024, 20_000_000),
-  };
-  if (limits.wallSeconds < limits.cpuSeconds) {
-    throw new LeanRunnerProtocolError("wallSeconds cannot be lower than cpuSeconds.");
-  }
+  const limits = normalizeLeanRunnerLimits(request.limits);
 
   requireRecord(request.policy, "policy");
   if (request.policy.requireNoSorry !== true) {
@@ -88,6 +78,22 @@ export function normalizeLeanRunnerRequest(request) {
       allowedAxioms: Object.freeze([...request.policy.allowedAxioms].sort()),
     }),
   });
+}
+
+/** Validate deployment-owned Runner limits before they can enter a request. */
+export function normalizeLeanRunnerLimits(value) {
+  requireRecord(value, "limits");
+  const limits = {
+    cpuSeconds: boundedInteger(value.cpuSeconds, "limits.cpuSeconds", 1, 900),
+    wallSeconds: boundedInteger(value.wallSeconds, "limits.wallSeconds", 1, 1_200),
+    memoryMiB: boundedInteger(value.memoryMiB, "limits.memoryMiB", 128, 16_384),
+    diskMiB: boundedInteger(value.diskMiB, "limits.diskMiB", 128, 16_384),
+    outputBytes: boundedInteger(value.outputBytes, "limits.outputBytes", 1_024, 20_000_000),
+  };
+  if (limits.wallSeconds < limits.cpuSeconds) {
+    throw new LeanRunnerProtocolError("wallSeconds cannot be lower than cpuSeconds.");
+  }
+  return Object.freeze(limits);
 }
 
 /**

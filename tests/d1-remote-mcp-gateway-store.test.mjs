@@ -9,7 +9,10 @@ import {
   GatewayStoreRateLimitError,
 } from "../services/proofweave-mcp-gateway/d1-gateway-store.mjs";
 import { closedAlphaAttemptLimits } from "../packages/domain/attempt-policy.mjs";
-import { createD1RemoteMcpGatewayRuntime } from "../services/proofweave-mcp-gateway/runtime.mjs";
+import {
+  createD1RemoteMcpGatewayRuntime,
+  RemoteMcpRuntimeConfigurationError,
+} from "../services/proofweave-mcp-gateway/runtime.mjs";
 import cloudflareGatewayWorker from "../services/proofweave-mcp-gateway/cloudflare-worker.mjs";
 import { D1ProofweaveOAuthStore } from "../services/proofweave-identity/d1-oauth-store.mjs";
 import { D1VerificationStore } from "../services/verification/d1-verification-store.mjs";
@@ -31,12 +34,15 @@ let reviewerPublicKey;
 let proverKeyPair;
 let proverPublicKey;
 let artifactBucket;
+let controlPlanePrivateKeyJwkJson;
 
 before(async () => {
   reviewerKeyPair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
   reviewerPublicKey = base64Url(await crypto.subtle.exportKey("raw", reviewerKeyPair.publicKey));
   proverKeyPair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
   proverPublicKey = base64Url(await crypto.subtle.exportKey("raw", proverKeyPair.publicKey));
+  const controlPlaneKeyPair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
+  controlPlanePrivateKeyJwkJson = JSON.stringify(await crypto.subtle.exportKey("jwk", controlPlaneKeyPair.privateKey));
   miniflare = new Miniflare({
     modules: true,
     script: "export default { fetch() { return new Response('ok'); } }",
@@ -52,6 +58,43 @@ before(async () => {
 
 after(async () => {
   await miniflare?.dispose();
+});
+
+test("partial Runner dispatch configuration fails closed before serving MCP", () => {
+  assert.throws(
+    () => createD1RemoteMcpGatewayRuntime({
+      resource: "https://mcp.gateway.example.test/mcp",
+      issuer: "https://auth.gateway.example.test",
+      database,
+      bucket: artifactBucket,
+      runnerApprovedImagesJson: "[]",
+    }),
+    RemoteMcpRuntimeConfigurationError,
+  );
+  assert.throws(
+    () => createD1RemoteMcpGatewayRuntime({
+      resource: "https://mcp.gateway.example.test/mcp",
+      issuer: "https://auth.gateway.example.test",
+      database,
+      bucket: artifactBucket,
+      runnerQueue: { async send() {} },
+      runnerApprovedImagesJson: JSON.stringify([{
+        imageDigest: `registry.example.test/proofweave/lean@sha256:${"f".repeat(64)}`,
+        leanToolchain: "leanprover/lean4:v4.27.0",
+        mathlibRevision: "gateway-fixture",
+      }]),
+      runnerControlPlaneKeyId: "runner-control:gateway",
+      runnerControlPlanePrivateKeyJwkJson: "{}",
+      runnerDefaultLimitsJson: JSON.stringify({
+        cpuSeconds: 60,
+        wallSeconds: 120,
+        memoryMiB: 2_048,
+        diskMiB: 2_048,
+        outputBytes: 1_000_000,
+      }),
+    }),
+    RemoteMcpRuntimeConfigurationError,
+  );
 });
 
 test("remote MCP gateway store binds a signed review attestation to its OAuth installation", async () => {
@@ -284,7 +327,7 @@ test("a verified OAuth token reaches catalog and Attempt D1 boundaries through M
   assert.equal(JSON.parse(loaded.result.content[0].text).attempt.events.length, 2);
 });
 
-test("a prove-delegated OAuth Agent stages immutable objects and a signed v2 Bundle through MCP", async () => {
+test("a prove-delegated OAuth Agent stages a signed v2 Bundle and requests one idempotent Runner Queue Run through MCP", async () => {
   const resource = "https://mcp.gateway.example.test/mcp";
   const accessToken = "pw_at_gateway_artifact_fixture";
   const oauthStore = new D1ProofweaveOAuthStore(database);
@@ -295,16 +338,35 @@ test("a prove-delegated OAuth Agent stages immutable objects and a signed v2 Bun
     resource,
     personId: "person:gateway-reviewer",
     agentInstallationId: "installation:gateway-prover",
-    scopes: ["attempt:create", "artifact:write"],
+    scopes: ["attempt:create", "artifact:write", "run:request"],
     issuedAt: "2026-07-13T00:00:00Z",
     accessExpiresAt: "2027-07-13T00:00:00Z",
     refreshExpiresAt: "2027-08-13T00:00:00Z",
   });
+  const runnerQueue = {
+    messages: [],
+    async send(message) { this.messages.push(message); },
+  };
   const gateway = createD1RemoteMcpGatewayRuntime({
     resource,
     issuer: "https://auth.gateway.example.test",
     database,
     bucket: artifactBucket,
+    runnerQueue,
+    runnerApprovedImagesJson: JSON.stringify([{
+      imageDigest: `registry.example.test/proofweave/lean@sha256:${"f".repeat(64)}`,
+      leanToolchain: "leanprover/lean4:v4.27.0",
+      mathlibRevision: "gateway-fixture",
+    }]),
+    runnerControlPlaneKeyId: "runner-control:gateway",
+    runnerControlPlanePrivateKeyJwkJson: controlPlanePrivateKeyJwkJson,
+    runnerDefaultLimitsJson: JSON.stringify({
+      cpuSeconds: 60,
+      wallSeconds: 120,
+      memoryMiB: 2_048,
+      diskMiB: 2_048,
+      outputBytes: 1_000_000,
+    }),
   });
   const created = await callGatewayTool(gateway, resource, accessToken, "create_attempt", {
     problemSlug: "gateway-target",
@@ -336,8 +398,8 @@ test("a prove-delegated OAuth Agent stages immutable objects and a signed v2 Bun
   assert.equal(first.storageState, "bundle_staged_only");
   assert.equal(first.verificationState, "not_verified");
 
-  const replay = await callGatewayTool(gateway, resource, accessToken, "stage_artifact_bundle", { bundle });
-  const second = JSON.parse(replay.result.content[0].text);
+  const stageReplay = await callGatewayTool(gateway, resource, accessToken, "stage_artifact_bundle", { bundle });
+  const second = JSON.parse(stageReplay.result.content[0].text);
   assert.equal(second.created, false);
   const loaded = await new D1RemoteMcpGatewayStore({ database, bucket: artifactBucket }).getAttempt({
     clientId: "client:gateway-codex",
@@ -347,6 +409,45 @@ test("a prove-delegated OAuth Agent stages immutable objects and a signed v2 Bun
   }, attemptId);
   assert.equal(loaded.attempt.events.filter((event) => event.type === "bundle_staged").length, 1);
   assert.match(loaded.attempt.events.at(-1)?.message ?? "", /awaits a separate isolated runner and review/);
+
+  const withoutRunner = createD1RemoteMcpGatewayRuntime({
+    resource,
+    issuer: "https://auth.gateway.example.test",
+    database,
+    bucket: artifactBucket,
+  });
+  const unavailable = await callGatewayTool(withoutRunner, resource, accessToken, "request_runner_run", {
+    attemptId,
+    artifactBundleHash: first.bundle.manifestHash,
+    idempotencyKey: "gateway-artifact-run-unconfigured",
+  });
+  assert.equal(unavailable.result.isError, true);
+  assert.match(unavailable.result.content[0].text, /isolated Lean Runner dispatch is not configured/);
+
+  const dispatched = await callGatewayTool(gateway, resource, accessToken, "request_runner_run", {
+    attemptId,
+    artifactBundleHash: first.bundle.manifestHash,
+    idempotencyKey: "gateway-artifact-run",
+  });
+  assert.equal(dispatched.result.isError, undefined);
+  const run = JSON.parse(dispatched.result.content[0].text);
+  assert.equal(run.runCreated, true);
+  assert.equal(run.run.state, "queued");
+  assert.equal(run.queueDeliveryState, "queued");
+  assert.equal(run.verificationState, "not_verified");
+  assert.equal(runnerQueue.messages.length, 1);
+  assert.equal(runnerQueue.messages[0].request.attemptId, attemptId);
+  assert.equal(runnerQueue.messages[0].request.bundle.manifestHash, first.bundle.manifestHash);
+
+  const replay = await callGatewayTool(gateway, resource, accessToken, "request_runner_run", {
+    attemptId,
+    artifactBundleHash: first.bundle.manifestHash,
+    idempotencyKey: "gateway-artifact-run",
+  });
+  const replayRun = JSON.parse(replay.result.content[0].text);
+  assert.equal(replayRun.runCreated, false);
+  assert.equal(replayRun.run.id, run.run.id);
+  assert.equal(runnerQueue.messages.length, 2);
 });
 
 test("remote MCP capacity is shared by every Agent owned by the same Person", async () => {

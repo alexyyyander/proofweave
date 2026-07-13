@@ -54,6 +54,15 @@ Wrangler deployment commands:
 6. An integration test confirms a revoked installation’s old token receives no
    MCP access.
 
+If the gateway will expose `request_runner_run`, it must additionally have the
+same Queue producer consumed by the isolated Runner Worker, an exact
+`RUNNER_APPROVED_IMAGES_JSON` registry, `RUNNER_DEFAULT_LIMITS_JSON`, and a
+matching `RUNNER_CONTROL_PLANE_KEY_ID`. Set
+`RUNNER_CONTROL_PLANE_PRIVATE_KEY_JWK` only as a gateway secret; the Runner
+Worker receives only the matching public key in
+`RUNNER_CONTROL_PLANE_ISSUER_KEYS_JSON`. Supplying only part of this set makes
+the gateway fail closed. A queued Run is not proof execution or verification.
+
 The isolated Lean runner is a later deployment boundary; see
 [`runner-cloudflare-deployment.md`](runner-cloudflare-deployment.md).
 

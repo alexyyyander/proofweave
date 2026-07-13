@@ -53,13 +53,14 @@ export class GatewayStoreRateLimitError extends Error {
  */
 export class D1RemoteMcpGatewayStore {
   constructor(databaseOrOptions) {
-    const { database, bucket } = normalizeGatewayBindings(databaseOrOptions);
+    const { database, bucket, runnerDispatcher } = normalizeGatewayBindings(databaseOrOptions);
     if (!database || typeof database.prepare !== "function") {
       throw new TypeError("D1RemoteMcpGatewayStore requires a D1 database binding.");
     }
     this.database = database;
     this.verificationStore = new D1VerificationStore(database);
     this.artifactStore = bucket ? new D1R2ArtifactStore({ database, bucket }) : null;
+    this.runnerDispatcher = runnerDispatcher;
   }
 
   async listFrontier(principal) {
@@ -264,6 +265,28 @@ export class D1RemoteMcpGatewayStore {
     return Object.freeze({
       ...staged,
       storageState: "bundle_staged_only",
+      verificationState: "not_verified",
+    });
+  }
+
+  async requestRunnerRun(principal, input) {
+    assertPrincipalScope(principal, "run:request");
+    requireRunnerRequestInput(input);
+    const installation = await this.requireInstallation(principal);
+    const attempt = await this.requireArtifactAttempt(principal, installation, input.attemptId);
+    await this.requireInstallation(principal, attempt.delegationScope);
+    if (!this.runnerDispatcher || typeof this.runnerDispatcher.queueBundle !== "function") {
+      throw new GatewayStoreValidationError("The isolated Lean Runner dispatch is not configured for this remote gateway.");
+    }
+    const queued = await this.runnerDispatcher.queueBundle({
+      attempt,
+      artifactBundleHash: input.artifactBundleHash,
+      idempotencyKey: input.idempotencyKey,
+    });
+    return Object.freeze({
+      run: queued.run,
+      runCreated: queued.runCreated,
+      queueDeliveryState: queued.delivery?.deliveryState ?? null,
       verificationState: "not_verified",
     });
   }
@@ -566,6 +589,17 @@ function requireArtifactBundleInput(bundle) {
   requireIdentifier(bundle.attemptId, "Artifact Bundle attemptId", 160);
 }
 
+function requireRunnerRequestInput(input) {
+  if (!input || typeof input !== "object" || Array.isArray(input)) {
+    throw new GatewayStoreValidationError("Runner request input is required.");
+  }
+  requireIdentifier(input.attemptId, "Attempt id", 160);
+  requireIdentifier(input.idempotencyKey, "Runner idempotency key", 160);
+  if (typeof input.artifactBundleHash !== "string" || !/^sha256:[a-f0-9]{64}$/.test(input.artifactBundleHash)) {
+    throw new GatewayStoreValidationError("Artifact Bundle hash must be a sha256:<hex> value.");
+  }
+}
+
 function decodeBase64Url(value) {
   try {
     const padded = `${value}${"=".repeat((4 - (value.length % 4)) % 4)}`;
@@ -588,9 +622,13 @@ function base64UrlCharactersFor(bytes) {
 
 function normalizeGatewayBindings(value) {
   if (value && typeof value === "object" && typeof value.database?.prepare === "function") {
-    return { database: value.database, bucket: value.bucket ?? null };
+    return {
+      database: value.database,
+      bucket: value.bucket ?? null,
+      runnerDispatcher: value.runnerDispatcher ?? null,
+    };
   }
-  return { database: value, bucket: null };
+  return { database: value, bucket: null, runnerDispatcher: null };
 }
 
 function attemptListLimit(value) {

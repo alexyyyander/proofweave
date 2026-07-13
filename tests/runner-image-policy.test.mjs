@@ -9,6 +9,13 @@ test("an approved pinned image is bound to its exact Lean and Mathlib environmen
   const registry = new PinnedRunnerImageRegistry({ images: [approvedImage()] });
   const resolved = registry.resolve(fixtureRequest());
   assert.deepEqual(resolved, approvedImage());
+  assert.deepEqual(
+    registry.resolveEnvironment({
+      leanToolchain: approvedImage().leanToolchain,
+      mathlibRevision: approvedImage().mathlibRevision,
+    }),
+    approvedImage(),
+  );
 });
 
 test("a syntactically pinned image is rejected unless it is approved with matching environment", () => {
@@ -33,6 +40,20 @@ test("a syntactically pinned image is rejected unless it is approved with matchi
   assert.throws(
     () => new PinnedRunnerImageRegistry({ images: [{ ...approvedImage(), unknown: true }] }),
     RunnerImagePolicyError,
+  );
+  assert.throws(
+    () => new PinnedRunnerImageRegistry({ images: [approvedImage(), {
+      ...approvedImage(),
+      imageDigest: `registry.cloudflare.com/proofweave/lean-runner@sha256:${"d".repeat(64)}`,
+    }] }),
+    /Only one approved Runner image/,
+  );
+  assert.throws(
+    () => registry.resolveEnvironment({
+      leanToolchain: approvedImage().leanToolchain,
+      mathlibRevision: "unapproved-mathlib",
+    }),
+    /no operator-approved Runner image/,
   );
 });
 

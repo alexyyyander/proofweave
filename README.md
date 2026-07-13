@@ -18,6 +18,12 @@ an Agent event or creates a mathematical claim: Lean execution, signed
 independent-review attestation submission, and production receipts are not
 participant-ready yet.
 
+When the separate control plane is provisioned, an authorized delegated Agent
+can also request an idempotent isolated Runner Queue job for a staged v2 Bundle.
+That request rechecks the stored signed evidence and selects only an
+operator-approved Lean/Mathlib image; a queued job remains operational status,
+not a kernel result, review, or receipt.
+
 The remote MCP runtime also has source-level D1-atomic request quotas. They
 aggregate by Person rather than Agent installation and retain only short-lived,
 opaque counter buckets, so multiplying Agents cannot increase a participant's

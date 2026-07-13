@@ -113,6 +113,10 @@ export class UnconfiguredGatewayStore {
   async stageArtifactBundle() {
     throw new Error("The Proofweave remote control plane is not configured.");
   }
+
+  async requestRunnerRun() {
+    throw new Error("The Proofweave remote control plane is not configured.");
+  }
 }
 
 async function handleMcpRequest(request, principal, store, resource, rateLimiter) {
@@ -294,6 +298,27 @@ function createMcpServer(principal, store, rateLimiter) {
       "stage_artifact_bundle",
       rateLimiter,
       () => store.stageArtifactBundle(principal, bundle),
+    )),
+  );
+
+  server.registerTool(
+    "request_runner_run",
+    {
+      title: "Request an isolated Lean Run",
+      description: "Queue one staged v2 Artifact Bundle for the isolated Lean Runner. This is not kernel acceptance, independent review, or a receipt.",
+      inputSchema: {
+        attemptId: z.string().min(1).max(160),
+        artifactBundleHash: z.string().regex(/^sha256:[a-f0-9]{64}$/),
+        idempotencyKey: z.string().min(1).max(160),
+      },
+      annotations: { readOnlyHint: false, destructiveHint: false },
+    },
+    async (input) => toolResult(await withScope(
+      principal,
+      "run:request",
+      "request_runner_run",
+      rateLimiter,
+      () => store.requestRunnerRun(principal, input),
     )),
   );
 

@@ -168,6 +168,51 @@ export class D1R2ArtifactStore {
     return row ? toStoredBundle(row) : null;
   }
 
+  /**
+   * Rebuild a staged Bundle from immutable D1/R2 evidence before trusted
+   * runner dispatch. The canonical manifest is re-hashed and its Agent
+   * signature is rechecked; a staged row is not trusted merely because it has
+   * an index entry.
+   */
+  async loadBundleForDispatch(manifestHash) {
+    const row = await this.database
+      .prepare("SELECT * FROM artifact_bundles WHERE manifest_hash = ?")
+      .bind(manifestHash)
+      .first();
+    if (!row) return null;
+    await this.assertObjectPresent({ contentHash: row.manifest_hash, objectKey: row.manifest_key });
+
+    let manifest;
+    try {
+      manifest = JSON.parse(row.canonical_manifest);
+    } catch {
+      throw new ArtifactStoreValidationError("Stored Artifact Bundle manifest is not valid JSON.");
+    }
+    let bundle;
+    try {
+      bundle = normalizeArtifactBundle(manifest);
+    } catch (error) {
+      throw new ArtifactStoreValidationError(
+        error instanceof Error ? `Stored Artifact Bundle manifest is invalid: ${error.message}` : "Stored Artifact Bundle manifest is invalid.",
+      );
+    }
+    await Promise.all(artifactBundleObjectReferences(bundle).map((reference) =>
+      this.assertObjectPresent({ contentHash: reference.contentHash, objectKey: reference.objectKey }),
+    ));
+    await this.assertAttemptAuthority(bundle);
+    const [computedHash, signatureValid] = await Promise.all([
+      artifactBundleHash(bundle),
+      verifyArtifactBundleAgentSignature(bundle),
+    ]);
+    if (computedHash !== row.manifest_hash || canonicalArtifactBundle(bundle) !== row.canonical_manifest) {
+      throw new ArtifactStoreConflictError("Stored Artifact Bundle manifest does not match its immutable D1 hash evidence.");
+    }
+    if (!signatureValid) {
+      throw new ArtifactStoreValidationError("Stored Artifact Bundle Agent signature is invalid.");
+    }
+    return Object.freeze({ bundle, stored: toStoredBundle(row) });
+  }
+
   async assertObjectPresent({ contentHash, objectKey }) {
     const indexed = await this.database
       .prepare("SELECT content_hash, object_key, byte_length, content_type FROM artifact_objects WHERE content_hash = ?")

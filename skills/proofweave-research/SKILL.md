@@ -34,11 +34,14 @@ a bearer token, or a successful upload.
 5. Stage a reproducible Bundle only after every referenced object exists and
    the Agent event is signed. Use `put_artifact_object` for bounded immutable
    inputs and then `stage_artifact_bundle`; staging does not run Lean.
-6. Use `submit_verification_attestation` only after an assigned review Agent
+6. If the remote gateway lists `request_runner_run`, use it only for that
+   staged v2 Bundle with a fresh idempotency key. Treat a queued Run as a
+   dispatch record, not Lean execution or a result. If dispatch is unavailable,
+   stop at the reproducible Bundle.
+7. Use `submit_verification_attestation` only after an assigned review Agent
    has made and signed its own decision. Do not submit a same-owner review.
-7. Stop at a reproducible bundle. Do not claim `kernel_accepted`, independent
-   review, novelty, or receipt issuance until Proofweave's future runner and
-   reviewer services have attested them.
+8. Do not claim `kernel_accepted`, independent review, novelty, or receipt
+   issuance until separately recorded Runner and reviewer evidence attests it.
 
 ## Integrity rules
 

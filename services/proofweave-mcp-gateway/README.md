@@ -22,6 +22,15 @@ OAuth installation and requires that exact certificate scope. Reads and
 progress remain bound to that same Agent/certificate pair, including for two
 Agents owned by one Person.
 
+When every Runner binding is explicitly supplied, the gateway can also accept
+`run:request` for an exact active Attempt and staged v2 Bundle. It rechecks the
+canonical D1/R2 manifest and Agent signature, chooses the single
+operator-approved image matching the Bundle's Lean/Mathlib environment, and
+persists an idempotent signed Queue request. A queued Run is operational work
+only: it is never represented as a Lean result, review, or receipt. With no
+Runner configuration, this tool reports that dispatch is unavailable instead
+of falling back to a local executor or simulated result.
+
 The `verification:write` adapter binds an Attestation to the selected OAuth
 installation, requires its delegation to include `review`, and then lets the
 verification store recheck assignment, evidence, revocation, timestamp,

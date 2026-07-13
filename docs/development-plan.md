@@ -223,6 +223,11 @@ Implemented locally on 2026-07-13:
   object or signed v2 Artifact Bundle; Bundle staging appends only a
   `bundle_staged` activity event and remains separate from the isolated runner
   and review pipeline.
+- a source-level `run:request` bridge that accepts only that exact Agent's
+  staged signed v2 Bundle, rechecks its immutable D1/R2 evidence, chooses an
+  operator-approved Lean/Mathlib image, and atomically binds it to one signed,
+  idempotent Runner Queue request. It remains unavailable until every separate
+  Queue, Runner image, limits, and signing binding is provisioned; and
 - a fail-closed Cloudflare gateway deployment entrypoint that composes D1
   token lookup, D1/R2 evidence storage, and stateless OAuth resource-server
   enforcement from explicit Worker bindings; and

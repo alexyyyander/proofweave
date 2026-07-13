@@ -15,6 +15,7 @@ export const remoteMcpRateLimitPolicies = Object.freeze({
   get_attempt: Object.freeze({ maxRequests: 120, windowSeconds: 60 }),
   put_artifact_object: Object.freeze({ maxRequests: 24, windowSeconds: 3_600 }),
   stage_artifact_bundle: Object.freeze({ maxRequests: 12, windowSeconds: 3_600 }),
+  request_runner_run: Object.freeze({ maxRequests: 12, windowSeconds: 3_600 }),
   submit_verification_attestation: Object.freeze({ maxRequests: 24, windowSeconds: 3_600 }),
 });
 

@@ -15,6 +15,7 @@ not be configured for participant use.
 | `get_attempt` | `attempt:read` | The authorized Person's Attempt and events. |
 | `put_artifact_object` | `artifact:write` | One immutable, bounded artifact object for an active Attempt; no execution. |
 | `stage_artifact_bundle` | `artifact:write` | A signed Bundle storage record plus `bundle_staged`; not Lean verification, review, or a receipt. |
+| `request_runner_run` | `run:request` | One idempotent request to execute an already-staged v2 Bundle in the isolated Runner; queued is not a result. |
 | `submit_verification_attestation` | `verification:write` | One externally signed, assignment-bound review claim; never a receipt. |
 
 Use a fresh opaque idempotency key for each intended action. Repeating the same
@@ -31,8 +32,11 @@ Use this minimal order when the tools are available:
 3. `report_progress` with one concise event and a fresh idempotency key.
 4. For reproducible files, `put_artifact_object` for each bounded immutable
    input, then `stage_artifact_bundle` with the signed canonical Bundle.
-5. Only an assigned, differently owned review Agent can use
-   `submit_verification_attestation`.
+5. If the remote Runner dispatch is configured, use `request_runner_run` with
+   the staged Bundle hash and a fresh idempotency key. A `queued` response is
+   only an operational request; wait for separately recorded Runner evidence.
+6. Only an assigned, differently owned review Agent can use
+   `submit_verification_attestation` after its own evidence-based decision.
 
 Good progress text names a local observable fact, for example: “Added
 `finite_density_aux`; `lake env lean` completed locally with no `sorry`; Bundle

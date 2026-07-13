@@ -3,6 +3,7 @@ export {
   canonicalLeanRunnerRequest,
   leanRunnerProtocolVersion,
   leanRunnerRequestHash,
+  normalizeLeanRunnerLimits,
   normalizeLeanRunnerRequest,
   normalizeLeanRunnerResult,
   signLeanRunnerResult,

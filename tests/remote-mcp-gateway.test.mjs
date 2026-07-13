@@ -32,6 +32,7 @@ function fixtureStore() {
     async getAttempt(_principal, attemptId) { return { id: attemptId }; },
     async putArtifactObject(_principal, input) { return { object: input, storageState: "object_staged_only" }; },
     async stageArtifactBundle(_principal, bundle) { return { bundle, storageState: "bundle_staged_only" }; },
+    async requestRunnerRun(_principal, input) { return { run: { id: "run:test", ...input, state: "queued" }, verificationState: "not_verified" }; },
     async submitVerificationAttestation(_principal, attestation) { return { id: attestation.id, created: true }; },
   };
 }
@@ -74,6 +75,45 @@ test("challenges unauthenticated MCP requests with protected-resource metadata",
     response.headers.get("www-authenticate") ?? "",
     /resource_metadata="https:\/\/mcp\.example\.test\/\.well-known\/oauth-protected-resource"/,
   );
+});
+
+test("requires run:request before an Agent can queue a staged Bundle", async () => {
+  const gateway = gatewayWith({
+    async authenticate() {
+      return {
+        accessToken: "access-test-token",
+        clientId: "client:test",
+        personId: "person:test",
+        agentInstallationId: "installation:test",
+        scopes: ["artifact:write"],
+      };
+    },
+  });
+  const response = await gateway.fetch(new Request(resource, {
+    method: "POST",
+    headers: {
+      authorization: "Bearer access-test-token",
+      Accept: "application/json, text/event-stream",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      jsonrpc: "2.0",
+      id: 1,
+      method: "tools/call",
+      params: {
+        name: "request_runner_run",
+        arguments: {
+          attemptId: "attempt:test",
+          artifactBundleHash: `sha256:${"a".repeat(64)}`,
+          idempotencyKey: "run-test",
+        },
+      },
+    }),
+  }));
+  assert.equal(response.status, 200);
+  const payload = await response.json();
+  assert.equal(payload.result.isError, true);
+  assert.match(payload.result.content[0].text, /Missing OAuth scope: run:request/);
 });
 
 test("the Cloudflare gateway entrypoint fails closed without its control-plane bindings", async () => {

@@ -45,6 +45,7 @@ audience-bound to `https://mcp.proofweave.org/mcp`.
 | `get_attempt` | `attempt:read` | Caller-owned Attempt and ordered event metadata |
 | `put_artifact_object` | `artifact:write` | One bounded immutable R2/D1 object; no execution or proof claim |
 | `stage_artifact_bundle` | `artifact:write` | One signed Bundle storage/provenance record and `bundle_staged` event; no run, review, or receipt |
+| `request_runner_run` | `run:request` | One idempotent Queue request for a staged v2 Bundle; queued is not a Lean result |
 | `submit_verification_attestation` | `verification:write` | One externally signed, assignment-bound review claim |
 
 No gateway tool emits `kernel_accepted`, `statement_faithful`,
@@ -75,6 +76,15 @@ historical delegation time, revocation state, and every referenced immutable
 object. The limited base64url object tool is not a resumable upload protocol
 and never starts an execution.
 
+`run:request` needs the same exact active `formalize` or `prove` installation
+and Attempt binding as artifact staging. It accepts only the hash of an
+already-staged signed v2 Bundle, re-hashes the canonical D1/R2 evidence, and
+selects an image only from the deployment-owned Lean/Mathlib allowlist. The
+idempotency key binds one Attempt to one immutable Runner request; a Queue
+retry can resend that request but cannot create a different Run. A queued Run
+does not imply a Container start, kernel acceptance, independent review, or a
+receipt.
+
 `verification:write` can be granted only to an installation whose active
 certificate has `review` scope. The submitted Attestation must repeat that
 exact Person, Agent, certificate, and Agent public key; signed event
@@ -101,9 +111,12 @@ Streamable HTTP request handling, PKCE authorization-code and refresh-rotation
 protocol logic, a D1 credential-hash store, scope-gated tool definitions, and
 a D1-backed store for public catalog reads, delegated Attempts, provisional
 progress, bounded immutable artifact/Bundles staging, and `verification:write`
-attestations. Its Cloudflare deployment entrypoint now requires explicit `DB`,
-`ARTIFACTS`, `MCP_RESOURCE_URL`, and `OAUTH_ISSUER_URL` bindings and fails
-closed when any are absent. The store accepts an
+attestations. It can also turn a staged v2 Bundle into an idempotent signed
+Runner Queue message, but only when the Runner Queue, image registry, fixed
+limits, and control-plane signing key are all explicitly configured. Its
+Cloudflare deployment entrypoint requires explicit `DB`, `ARTIFACTS`,
+`MCP_RESOURCE_URL`, and `OAUTH_ISSUER_URL` bindings and fails closed when any
+are absent. The store accepts an
 Attestation only from the OAuth-selected review Agent installation, hides
 assignments addressed to another Person, and delegates immutable
 signature/evidence checks to the verification store. Stateless handling
@@ -159,6 +172,9 @@ boundary.
 - load validation for the source-level quotas, consent/audit retention policy,
   abuse response, and an operator-managed dynamic-client allowlist;
 - token audience and scope enforcement at the HTTP boundary;
+- a shared Queue producer/consumer, approved Runner image registry, fixed
+  Runner limits, and matching public/private control-plane signing keys before
+  `request_runner_run` is enabled;
 - Agent registration and delegation selection in the consent screen;
 - rate-limit load/abuse validation, deployed audit-log retention, revocation,
   abuse reporting, metrics/tracing, and alerting;
