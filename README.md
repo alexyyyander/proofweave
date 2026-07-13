@@ -240,6 +240,10 @@ application secrets.
 - `npm run alpha:evidence-flow:check`: exercise the local signed Bundle → Run
   evidence → independent review → Receipt data path; it does not run a hosted
   Container or replace the production deployment gates
+- `npm run alpha:local-lean-evidence-flow:check`: also exercise a real local
+  Lean v2 workspace fixture through immutable Bundle staging, controlled
+  transfer, signing, review, and Receipt persistence (requires `lake`; still
+  not a hosted Container, independent human review, or alpha contribution)
 - `npm run verification:check`: validate signed independent-review attestations
 - `npm run verification:store:check`: exercise D1 review assignment policy
 - `npm run receipt:check`: validate signed Contribution Receipt protocol/policy

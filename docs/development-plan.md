@@ -507,6 +507,16 @@ compatibility only: it uses fixture execution evidence and does not start a
 Container, prove a theorem, deploy the control plane, or count as the alpha's
 required real contribution.
 
+Where `lake` is available, `npm run alpha:local-lean-evidence-flow:check`
+adds a stricter local fixture: it reconstructs a real v2 `tar.zst` Lean
+workspace from an Agent-signed staged Bundle, re-hashes the D1/R2 records as a
+Runner would, transfers the declared bytes to the private-runtime source
+boundary, executes Lean, persists and signs its exact output, then proceeds
+through independent Person review assignments and Receipt issuance. The
+fixture still asserts source-level isolation flags rather than running a
+deployed Container, and its reviewer attestations are test data—not a real
+independent review or an alpha contribution.
+
 ## 3. Architecture boundary
 
 Lean execution must not run inside the web Worker. It requires a separately

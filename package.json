@@ -33,6 +33,7 @@
     "run:check": "node --check packages/domain/run.mjs && node --test tests/run-state.test.mjs",
     "run:store:check": "node --check services/lean-runner/d1-run-store.mjs && node --test tests/d1-run-store.test.mjs",
     "alpha:evidence-flow:check": "node --test tests/closed-alpha-evidence-flow.test.mjs",
+    "alpha:local-lean-evidence-flow:check": "PROOFWEAVE_REQUIRE_LOCAL_LEAN=1 node --test tests/closed-alpha-evidence-flow.test.mjs",
     "artifact:store:check": "node --check services/artifacts/d1-r2-artifact-store.mjs && node --test tests/d1-r2-artifact-store.test.mjs",
     "verification:check": "node --check packages/protocol/verification-attestation.mjs && node --test tests/verification-attestation.test.mjs",
     "verification:store:check": "node --check services/verification/d1-verification-store.mjs && node --test tests/d1-verification-store.test.mjs",
