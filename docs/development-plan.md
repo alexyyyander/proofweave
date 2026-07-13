@@ -454,8 +454,10 @@ decline, and Agent-signed Attestation events immutably. Completing an
 Attestation requires a different owner's active `review` delegation, exact
 assignment/claim/evidence match, and Ed25519 verification. `/reviews` now
 gives a signed-in closed-alpha reviewer an owner-scoped task queue and immutable
-accept/decline actions; it never exposes the Attempt owner, fabricates an
-Agent signature, or labels acceptance as verification. `/evidence` now lets an
+accept/decline actions, and displays the signed final decision as attested,
+rejected, or request-changes rather than collapsing every completed review into
+positive verification. It never exposes the Attempt owner, fabricates an Agent
+signature, or labels acceptance as verification. `/evidence` now lets an
 Attempt owner or independently assigned reviewer inspect the exact canonical
 Bundle, indexed source/patch/Lake artifacts, recorded Run result metadata, and
 Runner logs. Artifact bytes are returned only after the D1 object index and R2

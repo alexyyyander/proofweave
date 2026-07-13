@@ -8,6 +8,14 @@ import {
 } from "@/services/verification/d1-verification-store.mjs";
 
 export type ReviewAssignmentStatus = "assigned" | "accepted" | "declined" | "completed";
+export type ReviewAttestationDecision = "attested" | "rejected" | "request_changes";
+
+export type ReviewAssignmentAttestation = Readonly<{
+  id: string;
+  decision: ReviewAttestationDecision;
+  evidenceHash: string;
+  attestedAt: string;
+}>;
 
 export type ReviewAssignmentSummary = Readonly<{
   id: string;
@@ -18,6 +26,7 @@ export type ReviewAssignmentSummary = Readonly<{
   acceptedAt: string | null;
   declinedAt: string | null;
   completedAt: string | null;
+  attestation: ReviewAssignmentAttestation | null;
   attempt: Readonly<{
     id: string;
     agentId: string | null;
@@ -75,6 +84,10 @@ type AssignmentRow = {
   project_slug: string;
   problem_title: string;
   target_key: string;
+  attestation_id: string | null;
+  attestation_decision: ReviewAttestationDecision | null;
+  attestation_evidence_hash: string | null;
+  attestation_attested_at: string | null;
 };
 
 type EventRow = {
@@ -178,13 +191,17 @@ const assignmentSelect = `SELECT
   assignment.declined_at, assignment.completed_at, bundle.attempt_id,
   attempt.agent_id, attempt.agent_label, revision.slug AS problem_slug,
   project.slug AS project_slug, revision.title AS problem_title,
-  revision.target_key
+  revision.target_key, attestation.id AS attestation_id,
+  attestation.decision AS attestation_decision,
+  attestation.evidence_hash AS attestation_evidence_hash,
+  attestation.attested_at AS attestation_attested_at
  FROM verification_assignments AS assignment
  INNER JOIN artifact_bundles AS bundle
    ON bundle.manifest_hash = assignment.artifact_bundle_manifest_hash
  INNER JOIN agent_attempts AS attempt ON attempt.id = bundle.attempt_id
  INNER JOIN problem_revisions AS revision ON revision.id = bundle.problem_revision_id
- INNER JOIN projects AS project ON project.id = revision.project_id`;
+ INNER JOIN projects AS project ON project.id = revision.project_id
+ LEFT JOIN verification_attestations AS attestation ON attestation.assignment_id = assignment.id`;
 
 export function getReviewAssignmentRepository(): ReviewAssignmentRepository {
   return new D1ReviewAssignmentRepository();
@@ -209,6 +226,7 @@ function toAssignment(row: AssignmentRow): ReviewAssignmentSummary {
     acceptedAt: row.accepted_at,
     declinedAt: row.declined_at,
     completedAt: row.completed_at,
+    attestation: toAttestation(row),
     attempt: Object.freeze({
       id: row.attempt_id,
       agentId: row.agent_id,
@@ -220,6 +238,19 @@ function toAssignment(row: AssignmentRow): ReviewAssignmentSummary {
       title: row.problem_title,
       declaration: row.target_key,
     }),
+  });
+}
+
+function toAttestation(row: AssignmentRow): ReviewAssignmentAttestation | null {
+  if (
+    row.attestation_id === null || row.attestation_decision === null ||
+    row.attestation_evidence_hash === null || row.attestation_attested_at === null
+  ) return null;
+  return Object.freeze({
+    id: row.attestation_id,
+    decision: row.attestation_decision,
+    evidenceHash: row.attestation_evidence_hash,
+    attestedAt: row.attestation_attested_at,
   });
 }
 

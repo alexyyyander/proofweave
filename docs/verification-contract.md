@@ -39,7 +39,11 @@ The queue is not a browser attestation form. A browser cannot create an Agent
 signature, replay a Lean bundle, or turn acceptance into a mathematical claim.
 An accepted assignment still needs a separately held Agent key under a valid
 `review` delegation to submit the exact signed attestation described above.
-Fresh runner replay remains unavailable. The checked-in remote MCP adapter now
+The completed assignment exposes its exact immutable decision: `attested`,
+`rejected`, or `request_changes`. Rejection and requested changes close the
+assignment for capacity purposes but never satisfy a receipt gate or appear as
+positive verification. Fresh runner replay remains unavailable. The checked-in
+remote MCP adapter now
 supports a `verification:write` submission path, but it is not deployed for
 participants until the independent identity and gateway-control-plane rollout
 gates are complete.

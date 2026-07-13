@@ -87,13 +87,14 @@ function ReviewCard({ assignment, auditEvents, busy, canAttest, isAuditOpen, onT
 }) {
   const state = statusDetail(assignment, canAttest);
   return <article className="review-card">
-    <div className="review-card-top"><span className="micro-label">Independent review · {claimLabel(assignment.claimType)}</span><span className={`review-status is-${assignment.status}`}>{state.label}</span></div>
+    <div className="review-card-top"><span className="micro-label">Independent review · {claimLabel(assignment.claimType)}</span><span className={`review-status is-${state.tone}`}>{state.label}</span></div>
     <div className="review-card-copy"><h2>{assignment.target.title}</h2><p><code>{assignment.target.declaration}</code></p></div>
     <dl className="review-metadata">
       <div><dt>Project</dt><dd>{assignment.target.projectSlug}</dd></div>
       <div><dt>Assigned</dt><dd>{assignment.assignedAt}</dd></div>
       <div><dt>Submitting Agent</dt><dd>{assignment.attempt.agentLabel ?? assignment.attempt.agentId ?? "Agent record unavailable"}</dd></div>
       <div><dt>Evidence bundle</dt><dd><code>{assignment.artifactBundleManifestHash}</code></dd></div>
+      {assignment.attestation && <><div><dt>Signed decision</dt><dd>{decisionLabel(assignment.attestation.decision)}</dd></div><div><dt>Decision evidence</dt><dd><code>{assignment.attestation.evidenceHash}</code></dd></div></>}
     </dl>
     <div className="review-card-footer">
       <div><strong>{state.title}</strong><p>{state.detail}</p></div>
@@ -121,24 +122,60 @@ function claimLabel(value: string) {
 function statusDetail(assignment: ReviewAssignmentSummary, canAttest: boolean) {
   if (assignment.status === "assigned") return {
     label: "Awaiting response",
+    tone: "assigned",
     title: "Decide whether to take this review.",
     detail: "Acceptance and decline are immutable review events. Neither action creates a mathematical claim.",
   };
   if (assignment.status === "accepted") return {
     label: "Accepted",
+    tone: "accepted",
     title: canAttest ? "Prepare signed Agent evidence outside the browser." : "Set up a review-scoped Agent before attesting.",
     detail: canAttest ? "The deployed remote Agent connection can submit one signed attestation against this exact Bundle hash. This private alpha queue does not transmit the Agent key." : "This queue never fabricates an Agent signature or lets a Person attest with a non-review authority.",
   };
-  if (assignment.status === "completed") return {
-    label: "Attested",
-    title: "A signed attestation is already recorded.",
-    detail: `Completed at ${assignment.completedAt ?? "the recorded attestation time"}. The certificate and evidence stay immutable.`,
-  };
+  if (assignment.status === "completed") return completedStatusDetail(assignment);
   return {
     label: "Declined",
+    tone: "declined",
     title: "This review was not taken.",
     detail: `Declined at ${assignment.declinedAt ?? "the recorded time"}. The assignment remains in the audit history.`,
   };
+}
+
+function completedStatusDetail(assignment: ReviewAssignmentSummary) {
+  const decision = assignment.attestation?.decision;
+  const completedAt = assignment.attestation?.attestedAt ?? assignment.completedAt ?? "the recorded attestation time";
+  if (decision === "attested") return {
+    label: "Attested",
+    tone: "completed",
+    title: "A signed attestation is recorded.",
+    detail: `The exact claim was attested at ${completedAt}. Its certificate and evidence stay immutable.`,
+  };
+  if (decision === "rejected") return {
+    label: "Rejected",
+    tone: "rejected",
+    title: "A signed rejection is recorded.",
+    detail: `This claim was rejected at ${completedAt}; it cannot satisfy a receipt gate. The evidence remains available for audit.`,
+  };
+  if (decision === "request_changes") return {
+    label: "Changes requested",
+    tone: "request-changes",
+    title: "A signed request for changes is recorded.",
+    detail: `The review closed at ${completedAt} without attesting this claim. A revised Bundle requires a new immutable review assignment.`,
+  };
+  return {
+    label: "Decision unavailable",
+    tone: "declined",
+    title: "The completed review has no readable signed decision.",
+    detail: "This record cannot be treated as an attestation or a receipt gate until its immutable evidence is available.",
+  };
+}
+
+function decisionLabel(value: NonNullable<ReviewAssignmentSummary["attestation"]>["decision"]) {
+  return {
+    attested: "Attested",
+    rejected: "Rejected",
+    request_changes: "Changes requested",
+  }[value];
 }
 
 function eventLabel(value: ReviewAssignmentEvent["eventType"]) {

@@ -64,6 +64,30 @@ test("D1 Verification store enforces different-owner review and persists signed 
   assert.equal(recorded.created, true);
   assert.equal((await store.recordAttestation(attestation)).created, false);
 
+  await store.assign({
+    id: "assignment:bob-request-changes",
+    artifactBundleManifestHash: sha("a"),
+    claimType: "statement_faithful",
+    verifierPersonId: "person:bob",
+    assignedAt: "2026-07-13T00:00:04Z",
+  });
+  await store.accept("assignment:bob-request-changes", "person:bob", "2026-07-13T00:00:05Z");
+  const requestedChanges = await store.recordAttestation(await signedAttestation({
+    id: "attestation:bob-request-changes",
+    assignmentId: "assignment:bob-request-changes",
+    claimType: "statement_faithful",
+    decision: "request_changes",
+    attestedAt: "2026-07-13T00:00:06Z",
+  }));
+  assert.equal(requestedChanges.created, true);
+  assert.equal(requestedChanges.attestation.decision, "request_changes");
+  assert.equal((await store.requireAssignment("assignment:bob-request-changes")).status, "completed");
+  const storedRequestChanges = await database
+    .prepare("SELECT decision FROM verification_attestations WHERE id = ?")
+    .bind("attestation:bob-request-changes")
+    .first();
+  assert.equal(storedRequestChanges?.decision, "request_changes");
+
   const events = await store.listEvents("assignment:bob-review");
   assert.deepEqual(events.map((event) => event.eventType), [
     "assignment_created",
@@ -192,6 +216,7 @@ async function signedAttestation({
   id = "attestation:bob-review",
   assignmentId = "assignment:bob-review",
   claimType = "kernel_accepted",
+  decision = "attested",
   attestedAt = "2026-07-13T00:00:03Z",
 } = {}) {
   const attestation = {
@@ -204,7 +229,7 @@ async function signedAttestation({
     verifierAgentId: "agent:bob-reviewer",
     delegationCertificateId: "delegation:bob-reviewer",
     verifierAgentPublicKey: reviewerPublicKey,
-    decision: "attested",
+    decision,
     evidenceHash: sha("b"),
     attestedAt,
     payloadHash: sha("0"),

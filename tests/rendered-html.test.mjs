@@ -749,12 +749,86 @@ test("scopes closed-alpha review assignments to the assigned Person and preserve
   });
   assert.equal(declineAfterAccept.status, 409);
 
+  const signedDecision = await completeRenderedReviewWithRequestChanges({
+    assignmentId: "assignment:rendered-review",
+    personId: profile.person.id,
+    artifactBundleHash: receipt.artifactBundleHash,
+  });
+  const completedResponse = await render("/api/me/review-assignments/assignment:rendered-review", { headers: reviewerHeaders });
+  assert.equal(completedResponse.status, 200);
+  const { review: completed } = await completedResponse.json();
+  assert.equal(completed.assignment.status, "completed");
+  assert.deepEqual(completed.assignment.attestation, signedDecision);
+  assert.deepEqual(completed.events.map((event) => event.eventType), [
+    "assignment_created",
+    "assignment_accepted",
+    "attestation_recorded",
+  ]);
+  const completedPage = await render("/reviews", { headers: reviewerHeaders });
+  assert.equal(completedPage.status, 200);
+  const completedHtml = await completedPage.text();
+  assert.match(completedHtml, /Changes requested/i);
+  assert.match(completedHtml, /Signed decision/i);
+  assert.doesNotMatch(completedHtml, /A signed attestation is already recorded/i);
+
   const otherPersonHeaders = {
     "oai-authenticated-user-email": "other-reviewer@example.test",
   };
   const hiddenFromOtherPerson = await render("/api/me/review-assignments/assignment:rendered-review", { headers: otherPersonHeaders });
   assert.equal(hiddenFromOtherPerson.status, 404);
 });
+
+async function completeRenderedReviewWithRequestChanges({ assignmentId, personId, artifactBundleHash }) {
+  const agentId = "agent:rendered-review-decision";
+  const personKeyId = "person-key:rendered-review-decision";
+  const delegationId = "delegation:rendered-review-decision";
+  const attestationId = "attestation:rendered-review-request-changes";
+  const evidenceHash = await sha256Bytes(new TextEncoder().encode("request changes evidence fixture"));
+  const eventPayloadHash = await sha256Bytes(new TextEncoder().encode("request changes event fixture"));
+  const publicKey = base64Url(crypto.getRandomValues(new Uint8Array(32)));
+  const attestedAt = "2026-07-13T00:00:02Z";
+  const objectKey = `bundles/sha256/${evidenceHash.slice("sha256:".length)}/request-changes.txt`;
+  await database.batch([
+    database.prepare("INSERT INTO artifact_objects (content_hash, object_key, byte_length, content_type) VALUES (?, ?, ?, ?)")
+      .bind(evidenceHash, objectKey, 32, "text/plain"),
+    database.prepare("INSERT INTO person_keys (id, person_id, public_key, fingerprint) VALUES (?, ?, ?, ?)")
+      .bind(personKeyId, personId, publicKey, await sha256Bytes(new TextEncoder().encode(personKeyId))),
+    database.prepare("INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint) VALUES (?, ?, ?, ?, ?)")
+      .bind(agentId, personId, "Rendered review Agent", publicKey, await sha256Bytes(new TextEncoder().encode(agentId))),
+    database.prepare(`INSERT INTO delegation_certificates (
+      id, owner_person_id, agent_id, person_key_id, agent_public_key, scopes_json,
+      valid_from, valid_until, beneficiary_person_id, protocol_version,
+      payload_hash, canonical_payload, person_signature
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`)
+      .bind(
+        delegationId, personId, agentId, personKeyId, publicKey, '["review"]',
+        "2026-07-01T00:00:00Z", "2027-07-01T00:00:00Z", personId,
+        "pw-delegation-v1", await sha256Bytes(new TextEncoder().encode(delegationId)), "{}", "fixture-signature",
+      ),
+    database.prepare(`INSERT INTO verification_attestations (
+      id, assignment_id, artifact_bundle_manifest_hash, claim_type,
+      verifier_person_id, verifier_agent_id, delegation_certificate_id,
+      verifier_agent_public_key, decision, evidence_hash, canonical_payload,
+      payload_hash, signature, attested_at
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`)
+      .bind(
+        attestationId, assignmentId, artifactBundleHash, "kernel_accepted",
+        personId, agentId, delegationId, publicKey, "request_changes", evidenceHash,
+        '{"decision":"request_changes"}', await sha256Bytes(new TextEncoder().encode(attestationId)), "fixture-signature", attestedAt,
+      ),
+    database.prepare("UPDATE verification_assignments SET status = ?, completed_at = ?, updated_at = ? WHERE id = ?")
+      .bind("completed", attestedAt, attestedAt, assignmentId),
+    database.prepare(`INSERT INTO verification_assignment_events (
+      id, assignment_id, sequence, event_type, status, payload_hash, canonical_payload, occurred_at
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`)
+      .bind(
+        "verification-event:rendered-review:request-changes", assignmentId, 3,
+        "attestation_recorded", "completed", eventPayloadHash,
+        '{"decision":"request_changes"}', attestedAt,
+      ),
+  ]);
+  return { id: attestationId, decision: "request_changes", evidenceHash, attestedAt };
+}
 
 test("limits Bundle and Runner evidence to the Attempt owner or assigned reviewer", async () => {
   const fixture = await getControlledEvidenceFixture();
