@@ -494,6 +494,15 @@ emergency revocation without mutating historical receipts; its public keyset is
 available at `GET /api/receipts/issuer-keys`. See
 [`docs/contribution-receipt-contract.md`](contribution-receipt-contract.md).
 
+`npm run alpha:evidence-flow:check` now combines the local D1/R2 boundaries in
+one cryptographic fixture: a delegated Agent signs and stages a v2 Bundle, the
+trusted Runner boundary persists and signs a kernel-accepted result, different
+Persons submit three signed review claims, and the issuer creates an
+idempotent Receipt. This is a regression gate for cross-module evidence
+compatibility only: it uses fixture execution evidence and does not start a
+Container, prove a theorem, deploy the control plane, or count as the alpha's
+required real contribution.
+
 ## 3. Architecture boundary
 
 Lean execution must not run inside the web Worker. It requires a separately

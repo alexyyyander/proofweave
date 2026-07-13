@@ -231,6 +231,9 @@ application secrets.
 - `npm run artifact:store:check`: exercise signed R2/D1 artifact staging
 - `npm run run:check`: validate bounded-run lifecycle and result binding
 - `npm run run:store:check`: exercise D1 Run lifecycle and immutable evidence
+- `npm run alpha:evidence-flow:check`: exercise the local signed Bundle → Run
+  evidence → independent review → Receipt data path; it does not run a hosted
+  Container or replace the production deployment gates
 - `npm run verification:check`: validate signed independent-review attestations
 - `npm run verification:store:check`: exercise D1 review assignment policy
 - `npm run receipt:check`: validate signed Contribution Receipt protocol/policy
