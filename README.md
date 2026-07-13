@@ -257,6 +257,8 @@ application secrets.
 - `npm run receipt:check`: validate signed Contribution Receipt protocol/policy
 - `npm run receipt:bundle:check`: validate portable Receipt evidence-closure
   exports and offline signature/dependency verification
+- `npm run receipt:bundle:verify -- /path/to/bundle.json`: independently verify
+  a downloaded Receipt bundle and print its canonical bundle hash
 - `npm run receipt:store:check`: exercise internal immutable D1 receipt issuance
 - `npm run mcp`: start the local MCP bridge after setting its environment
 

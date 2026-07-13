@@ -91,6 +91,18 @@ obtaining a newer `/api/receipts/issuer-keys` response when checking later
 revocations. The export never contains Agent private keys, issuer private keys,
 private artifact bytes, or hidden review material.
 
+An external maintainer can verify a downloaded file without running the web
+application:
+
+```bash
+npm run receipt:bundle:verify -- /path/to/verification-bundle.json
+```
+
+The command exits nonzero on any malformed field, signature/hash mismatch,
+missing dependency, invalid lifecycle relationship, issuer-key failure, or
+graph-cycle detection, and prints the canonical verification-bundle hash only
+after the full closure passes.
+
 ## Internal issuance boundary
 
 `D1ContributionReceiptStore` rebuilds a draft only from staged immutable

@@ -1,5 +1,10 @@
 import assert from "node:assert/strict";
+import { execFile } from "node:child_process";
+import { mkdtemp, rm, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { test } from "node:test";
+import { promisify } from "node:util";
 import {
   ContributionReceiptVerificationBundleProtocolError,
   canonicalContributionReceiptVerificationBundle,
@@ -11,6 +16,8 @@ import {
   createContributionReceipt,
 } from "../packages/protocol/contribution-receipt.mjs";
 import { createContributionReceiptLifecycleEvent } from "../packages/protocol/contribution-receipt-lifecycle.mjs";
+
+const execFileAsync = promisify(execFile);
 
 test("verifies a portable Receipt closure with dependencies, issuer keys, and lifecycle evidence", async () => {
   const fixture = await verificationBundleFixture();
@@ -53,6 +60,32 @@ test("rejects tampered hashes, missing dependency evidence, and unrelated record
     }),
     ContributionReceiptVerificationBundleProtocolError,
   );
+});
+
+test("the standalone CLI verifies a downloaded Bundle and prints canonical metadata", async () => {
+  const fixture = await verificationBundleFixture();
+  const directory = await mkdtemp(join(tmpdir(), "proofweave-receipt-bundle-"));
+  const filePath = join(directory, "verification-bundle.json");
+  await writeFile(filePath, JSON.stringify(fixture.bundle), "utf8");
+
+  try {
+    const { stdout, stderr } = await execFileAsync(process.execPath, [
+      "scripts/verify-receipt-bundle.mjs",
+      filePath,
+    ], { cwd: process.cwd() });
+
+    assert.equal(stderr, "");
+    assert.deepEqual(JSON.parse(stdout), {
+      verified: true,
+      protocolVersion: "pw-contribution-receipt-verification-bundle-v1",
+      rootReceiptId: fixture.root.id,
+      receiptCount: 3,
+      issuerKeyCount: 1,
+      bundleHash: await contributionReceiptVerificationBundleHash(fixture.bundle),
+    });
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
 });
 
 async function verificationBundleFixture() {
