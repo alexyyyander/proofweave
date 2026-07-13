@@ -325,16 +325,62 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
   assert.equal(delegation.revokedAt, null);
   assert.deepEqual(delegation.scopes, ["formalize", "prove"]);
 
+  // Static token issuance is retired in production. This direct fixture models
+  // an already-authenticated control-plane principal so the Attempt repository
+  // can prove it binds the persisted delegation rather than an Agent label.
+  const testToken = "pw_mcp_delegation_integration_test";
+  await database
+    .prepare(
+      "INSERT INTO mcp_access_tokens (id, person_id, name, token_hash, token_prefix, expires_at) VALUES (?, ?, ?, ?, ?, ?)",
+    )
+    .bind(
+      "mcp-token:delegation-integration-test",
+      profile.person.id,
+      "Integration fixture",
+      await sha256(testToken),
+      "pw_mcp_delegation",
+      "2027-07-13T00:00:00Z",
+    )
+    .run();
+  const attemptResponse = await render("/api/v1/mcp/attempts", {
+    method: "POST",
+    headers: { authorization: `Bearer ${testToken}`, "content-type": "application/json" },
+    body: JSON.stringify({
+      problemSlug: "erdos-865",
+      agentId: "urn:pw:agent:delegation-test",
+      agentLabel: "Delegation test agent",
+      delegationCertificateId: certificate.id,
+      delegationScope: "prove",
+      idempotencyKey: "delegation-attempt-1",
+    }),
+  });
+  assert.equal(attemptResponse.status, 201);
+  const { attempt } = await attemptResponse.json();
+  assert.equal(attempt.agentId, "urn:pw:agent:delegation-test");
+  assert.equal(attempt.delegationCertificateId, certificate.id);
+  assert.equal(attempt.delegationScope, "prove");
+
   const revokedResponse = await render("/api/me/delegations/pw:delegation:api-test/revoke", {
     method: "POST",
     headers: { ...authHeaders, "content-type": "application/json" },
     body: JSON.stringify({
       reason: "Agent key rotated.",
-      revokedAt: "2026-08-01T00:00:00Z",
+      revokedAt: new Date().toISOString(),
     }),
   });
   assert.equal(revokedResponse.status, 200);
-  assert.equal((await revokedResponse.json()).delegation.revokedAt, "2026-08-01T00:00:00Z");
+  assert.equal((await revokedResponse.json()).delegation.revokedAt.length > 0, true);
+
+  const progressResponse = await render(`/api/v1/mcp/attempts/${attempt.id}/events`, {
+    method: "POST",
+    headers: { authorization: `Bearer ${testToken}`, "content-type": "application/json" },
+    body: JSON.stringify({
+      message: "This must not be recorded after revocation.",
+      progressPercent: 1,
+      idempotencyKey: "delegation-progress-after-revocation",
+    }),
+  });
+  assert.equal(progressResponse.status, 412);
 });
 
 test("keeps the production frontend free of the deleted starter preview", async () => {
@@ -372,4 +418,11 @@ test("keeps the production frontend free of the deleted starter preview", async 
 function base64Url(buffer) {
   const binary = String.fromCharCode(...new Uint8Array(buffer));
   return btoa(binary).replaceAll("+", "-").replaceAll("/", "_").replaceAll("=", "");
+}
+
+async function sha256(value) {
+  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(value));
+  return [...new Uint8Array(digest)]
+    .map((byte) => byte.toString(16).padStart(2, "0"))
+    .join("");
 }

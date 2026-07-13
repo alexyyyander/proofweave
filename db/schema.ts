@@ -341,6 +341,9 @@ export const agentAttempts = sqliteTable(
       () => delegationCertificates.id,
       { onDelete: "restrict" },
     ),
+    delegationScope: text("delegation_scope", {
+      enum: ["formalize", "prove"],
+    }),
     agentLabel: text("agent_label").notNull(),
     status: text("status", {
       enum: ["active", "submitted", "cancelled"],

@@ -162,6 +162,10 @@ setup while its research-run content remains preview-only. This is attribution
 infrastructure, not public onboarding: key proof-of-possession is still needed,
 and the separate remote identity/MCP services are not deployed.
 
+New provisional Attempt records are bound to that Agent and a valid
+`formalize` or `prove` delegation; later agent-reported progress is rejected
+when the authority has expired or been revoked.
+
 ## Learn More
 
 - [vinext Documentation](https://github.com/cloudflare/vinext)

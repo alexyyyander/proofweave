@@ -21,7 +21,10 @@ export type McpAttempt = Readonly<{
   problemRevisionId: string;
   problemSlug: string;
   problemTitle: string;
+  agentId: string | null;
   agentLabel: string;
+  delegationCertificateId: string | null;
+  delegationScope: "formalize" | "prove" | null;
   status: McpAttemptStatus;
   lastProgressPercent: number | null;
   createdAt: string;

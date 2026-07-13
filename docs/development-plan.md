@@ -132,7 +132,9 @@ Implemented locally on 2026-07-13:
 - closed-alpha authenticated APIs to inspect a Person profile, register a key
   and Agent, issue a signed delegation, and revoke it;
 - integration tests proving the full key/Agent/sign/revoke sequence plus D1
-  immutability triggers.
+  immutability triggers;
+- new provisional Attempts bind their Agent, certificate, and delegated scope;
+  later progress is rejected after certificate expiry or revocation.
 
 The workbench now reads an authenticated Person's persisted key, Agent, and
 active-delegation status while preserving its existing preview research branch.

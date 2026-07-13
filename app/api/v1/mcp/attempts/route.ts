@@ -18,12 +18,18 @@ export async function POST(request: Request) {
 
     const input = record(await requestJson(request));
     const problemSlug = input ? requiredString(input, "problemSlug", 120) : null;
+    const agentId = input ? requiredString(input, "agentId", 240) : null;
     const agentLabel = input ? requiredString(input, "agentLabel", 120) : null;
+    const delegationCertificateId = input ? requiredString(input, "delegationCertificateId", 240) : null;
+    const delegationScope = input?.delegationScope;
     const idempotencyKey = input ? requiredString(input, "idempotencyKey", 160) : null;
-    if (!problemSlug || !agentLabel || !idempotencyKey) {
+    if (
+      !problemSlug || !agentId || !agentLabel || !delegationCertificateId || !idempotencyKey ||
+      (delegationScope !== "formalize" && delegationScope !== "prove")
+    ) {
       return apiError(
         "invalid_input",
-        "problemSlug, agentLabel, and idempotencyKey are required strings.",
+        "problemSlug, agentId, agentLabel, delegationCertificateId, delegationScope (formalize or prove), and idempotencyKey are required.",
         400,
       );
     }
@@ -35,7 +41,10 @@ export async function POST(request: Request) {
 
     const result = await getMcpRepository().createAttempt(authentication.principal.personId, {
       problemRevisionId: problem.id,
+      agentId,
       agentLabel,
+      delegationCertificateId,
+      delegationScope,
       idempotencyKey,
     });
     return Response.json(

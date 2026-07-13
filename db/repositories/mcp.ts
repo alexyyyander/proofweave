@@ -5,6 +5,12 @@ import {
   type McpAttemptEvent,
   type McpAttemptStatus,
 } from "@/packages/domain/mcp";
+import {
+  DelegationAuthorizationError,
+  DelegationNotFoundError,
+  getDelegationRepository,
+} from "@/db/repositories/delegation";
+import { DelegationValidationError } from "@/packages/domain/delegation.mjs";
 
 export type McpIdentity = Readonly<{
   providerSubject: string;
@@ -41,6 +47,13 @@ export class McpAttemptNotActiveError extends Error {
   }
 }
 
+export class McpDelegationRequiredError extends Error {
+  constructor(message = "A valid delegated Agent authority is required for this Attempt.") {
+    super(message);
+    this.name = "McpDelegationRequiredError";
+  }
+}
+
 type PersonRow = { id: string; display_name: string };
 type TokenRow = { token_id: string; person_id: string; display_name: string };
 type AttemptRow = {
@@ -49,7 +62,10 @@ type AttemptRow = {
   problem_revision_id: string;
   problem_slug: string;
   problem_title: string;
+  agent_id: string | null;
   agent_label: string;
+  delegation_certificate_id: string | null;
+  delegation_scope: "formalize" | "prove" | null;
   status: McpAttemptStatus;
   last_progress_percent: number | null;
   created_at: string;
@@ -72,7 +88,10 @@ const attemptSelect = `
     attempt.problem_revision_id,
     revision.slug AS problem_slug,
     revision.title AS problem_title,
+    attempt.agent_id,
     attempt.agent_label,
+    attempt.delegation_certificate_id,
+    attempt.delegation_scope,
     attempt.status,
     attempt.last_progress_percent,
     attempt.created_at,
@@ -86,7 +105,14 @@ export interface McpRepository {
   authenticate(token: string): Promise<McpPrincipal | null>;
   createAttempt(
     personId: string,
-    input: { problemRevisionId: string; agentLabel: string; idempotencyKey: string },
+    input: {
+      problemRevisionId: string;
+      agentId: string;
+      agentLabel: string;
+      delegationCertificateId: string;
+      delegationScope: "formalize" | "prove";
+      idempotencyKey: string;
+    },
   ): Promise<IdempotentResult<McpAttempt>>;
   appendProgress(
     personId: string,
@@ -148,21 +174,49 @@ class D1McpRepository implements McpRepository {
 
   async createAttempt(
     personId: string,
-    input: { problemRevisionId: string; agentLabel: string; idempotencyKey: string },
+    input: {
+      problemRevisionId: string;
+      agentId: string;
+      agentLabel: string;
+      delegationCertificateId: string;
+      delegationScope: "formalize" | "prove";
+      idempotencyKey: string;
+    },
   ): Promise<IdempotentResult<McpAttempt>> {
     const now = new Date().toISOString();
+    let delegated;
+    try {
+      delegated = await getDelegationRepository().assertAuthorizedDelegation(
+        personId,
+        input.delegationCertificateId,
+        input.delegationScope,
+        now,
+      );
+    } catch (error) {
+      if (isDelegationFailure(error)) {
+        throw new McpDelegationRequiredError(error.message);
+      }
+      throw error;
+    }
+    if (delegated.agentId !== input.agentId) {
+      throw new McpDelegationRequiredError("The delegation certificate does not authorize the requested Agent.");
+    }
     const generatedId = newId("attempt");
     const inserted = await getD1()
       .prepare(
         `INSERT OR IGNORE INTO agent_attempts (
-          id, person_id, problem_revision_id, agent_label, idempotency_key, updated_at
-        ) VALUES (?, ?, ?, ?, ?, ?)`,
+          id, person_id, problem_revision_id, agent_id, agent_label,
+          delegation_certificate_id, delegation_scope, idempotency_key, updated_at
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       )
       .bind(
         generatedId,
         personId,
         input.problemRevisionId,
+        input.agentId,
         input.agentLabel,
+        input.delegationCertificateId,
+        input.delegationScope,
         input.idempotencyKey,
         now,
       )
@@ -179,7 +233,10 @@ class D1McpRepository implements McpRepository {
     if (!row) throw new Error("Attempt insert did not produce a readable record.");
     if (
       row.problem_revision_id !== input.problemRevisionId ||
-      row.agent_label !== input.agentLabel
+      row.agent_id !== input.agentId ||
+      row.agent_label !== input.agentLabel ||
+      row.delegation_certificate_id !== input.delegationCertificateId ||
+      row.delegation_scope !== input.delegationScope
     ) {
       throw new McpIdempotencyConflictError();
     }
@@ -193,7 +250,7 @@ class D1McpRepository implements McpRepository {
       .bind(
         `attempt-created:${row.id}`,
         row.id,
-        `Attempt opened by ${input.agentLabel}. This is agent-reported activity, not verification.`,
+        `Attempt opened by ${input.agentLabel} under delegated ${input.delegationScope} authority. This is agent-reported activity, not verification.`,
         `attempt-created:${input.idempotencyKey}`,
         now,
       )
@@ -212,6 +269,22 @@ class D1McpRepository implements McpRepository {
     if (!attempt) return null;
     if (attempt.status !== "active") {
       throw new McpAttemptNotActiveError();
+    }
+    if (!attempt.agentId || !attempt.delegationCertificateId || !attempt.delegationScope) {
+      throw new McpDelegationRequiredError();
+    }
+    try {
+      await getDelegationRepository().assertAuthorizedDelegation(
+        personId,
+        attempt.delegationCertificateId,
+        attempt.delegationScope,
+        new Date().toISOString(),
+      );
+    } catch (error) {
+      if (isDelegationFailure(error)) {
+        throw new McpDelegationRequiredError(error.message);
+      }
+      throw error;
     }
 
     const existing = await this.findEvent(input.attemptId, input.idempotencyKey);
@@ -286,7 +359,10 @@ class D1McpRepository implements McpRepository {
       problemRevisionId: row.problem_revision_id,
       problemSlug: row.problem_slug,
       problemTitle: row.problem_title,
+      agentId: row.agent_id,
       agentLabel: row.agent_label,
+      delegationCertificateId: row.delegation_certificate_id,
+      delegationScope: row.delegation_scope,
       status: row.status,
       lastProgressPercent: row.last_progress_percent,
       createdAt: row.created_at,
@@ -351,6 +427,14 @@ function toEvent(row: EventRow): McpAttemptEvent {
 
 function newId(prefix: string): string {
   return `${prefix}:${crypto.randomUUID()}`;
+}
+
+function isDelegationFailure(error: unknown): error is Error {
+  return (
+    error instanceof DelegationAuthorizationError ||
+    error instanceof DelegationNotFoundError ||
+    error instanceof DelegationValidationError
+  );
 }
 
 function newToken(): string {

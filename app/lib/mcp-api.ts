@@ -2,6 +2,7 @@ import { MissingDatabaseBindingError } from "@/db";
 import {
   getMcpRepository,
   McpAttemptNotActiveError,
+  McpDelegationRequiredError,
   McpIdempotencyConflictError,
   type McpPrincipal,
 } from "@/db/repositories/mcp";
@@ -61,6 +62,9 @@ export function mcpFailure(error: unknown): Response {
     return apiError("conflict", error.message, 409);
   }
   if (error instanceof McpAttemptNotActiveError) {
+    return apiError("precondition_failed", error.message, 412);
+  }
+  if (error instanceof McpDelegationRequiredError) {
     return apiError("precondition_failed", error.message, 412);
   }
   return apiError("internal", "The Proofweave control plane could not complete the request.", 500);

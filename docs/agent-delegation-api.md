@@ -44,6 +44,11 @@ The certificate and its revocation record are immutable at the D1 layer. An
 Agent's owner cannot be changed in place. This intentionally preserves the
 history necessary for later contribution receipts and independent review.
 
+New provisional Attempts also store the registered Agent id, delegation
+certificate id, and delegated `formalize` or `prove` scope. Progress events
+re-check the certificate at event time, so a later revocation prevents further
+Agent-reported progress while leaving the earlier immutable history visible.
+
 ## Current limitation
 
 The key registration endpoint does not yet use a separate proof-of-possession
