@@ -23,6 +23,15 @@ The request's bundle reference must be a valid
 [`pw-artifact-bundle-v1`](artifact-bundle-contract.md) manifest; the runner
 uses its hashes rather than an unpinned working tree.
 
+Before a Container can receive any source bytes, `D1R2RunnerBundleResolver`
+re-fetches the canonical manifest from R2, re-hashes it, compares it with the
+immutable D1 manifest record, re-verifies the Agent signature, and checks the
+request's Attempt, command, Lean environment, Mathlib revision, and policy
+against that manifest. It also confirms the source archive, normalized patch,
+and Lake manifest are still present in the D1/R2 immutable object index. This
+resolver intentionally does not fetch source archives; a later transfer layer
+must stream and limit them without trusting a user-provided path or hash.
+
 `createLeanRunnerRequest` derives command, Lean version, Mathlib revision,
 policy, and canonical `bundle.json` key from that manifest. The control plane
 cannot change those inputs after the manifest hash is fixed, and it rejects an
@@ -75,7 +84,7 @@ acceptance, or a contribution receipt. Those remain separate attestations.
 ## Still required before execution
 
 - non-root container image with pinned Lean and Mathlib;
-- verified Runner Worker bundle transfer, result persistence, cancellation,
+- streaming Runner Worker bundle transfer, result persistence, cancellation,
   cleanup, and signing-key deployment/rotation;
 - no-network enforcement, archive limits, cgroup limits, cancellation, cleanup;
 - R2 bundle retrieval/upload and signed immutable result manifest;

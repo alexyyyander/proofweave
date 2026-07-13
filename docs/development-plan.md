@@ -62,6 +62,8 @@ reusable contribution with evidence that an external maintainer can reproduce.
   verification for control-plane job authentication;
 - Cloudflare Queue producer/consumer adapter, queued-job retry/DLQ template,
   and a no-Internet Cloudflare Container deployment policy for closed alpha;
+- D1/R2 Runner Bundle resolver that re-hashes the canonical manifest and
+  re-checks request-to-bundle/object binding before source transfer;
 - operator-managed runner-key allowlist with signed-result verification before
   immutable Run evidence is accepted;
 - independent Person-level review assignments and review-delegated Agent
@@ -197,9 +199,10 @@ Implemented locally on 2026-07-13:
 - an internal orchestrator that persists a single idempotent Run before queue
   delivery and preserves safe retry after a queue-provider failure.
 
-No Lean container, queue consumer, R2 artifact flow, or user-code executor has
-been deployed. These protocol checks are deliberately a prerequisite to—not a
-substitute for—the isolated runner described in
+No Lean container, Runner Worker, source-transfer path, or user-code executor
+has been deployed. The Queue consumer adapter and D1/R2 resolver are control-
+plane gates, deliberately a prerequisite to—not a substitute for—the isolated
+runner described in
 [`docs/runner-contract.md`](runner-contract.md).
 
 ### Artifact bundle progress
@@ -219,6 +222,13 @@ delegation, then requires every referenced source, patch, and Lake object to be
 present with its declared hash. The in-memory control-plane method is bounded
 to 32 MiB and is not a participant upload or execution API. See
 [`docs/artifact-storage-contract.md`](artifact-storage-contract.md).
+
+The Runner's D1/R2 resolver independently reads and SHA-256 re-checks the
+small canonical manifest before resolving it, then compares the request's
+Attempt, command, pinned Lean environment, Mathlib revision, and policy to the
+signed manifest. It only returns metadata for the referenced archive, patch,
+and Lake files after their immutable D1/R2 index records agree; it does not
+yet transfer or execute those files.
 
 ### Run lifecycle progress
 

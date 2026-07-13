@@ -34,6 +34,12 @@ export {
 } from "./cloudflare-container-policy.mjs";
 
 export {
+  D1R2RunnerBundleResolver,
+  maxRunnerManifestBytes,
+  RunnerBundleResolutionError,
+} from "./d1-r2-runner-bundle-resolver.mjs";
+
+export {
   RunnerDispatchError,
   RunnerOrchestrator,
 } from "./orchestrator.mjs";

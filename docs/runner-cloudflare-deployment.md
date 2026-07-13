@@ -41,9 +41,10 @@ per-Run wall-time, output, archive, axiom, or cleanup enforcement.
 1. Build and independently inspect a Linux `amd64` Lean image, then record its
    immutable `@sha256:` digest in both the Runner deployment config and each
    Runner request policy.
-2. Implement the Runner Worker's verified R2 bundle transfer, clean
-   workspace creation, explicit process timeout/resource controls, result
-   signing, D1 result persistence, cancellation, and deterministic cleanup.
+2. Complete the Runner Worker after its verified D1/R2 bundle resolution:
+   streaming source transfer, clean workspace creation, explicit process
+   timeout/resource controls, result signing, D1 result persistence,
+   cancellation, and deterministic cleanup.
 3. Provision the Queue, DLQ, D1/R2 bindings, control-plane signing secret, and
    Runner public issuer-key allowlist. The Container receives none of these
    secrets.
