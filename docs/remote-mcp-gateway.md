@@ -110,6 +110,14 @@ signature/evidence checks to the verification store. Stateless handling
 deliberately verifies OAuth on every tool request rather than relying on memory
 local to one Worker isolate.
 
+The deployment entrypoint also emits one privacy-minimal structured event per
+HTTP boundary. It includes a generated opaque correlation ID, method,
+path, status, duration, and outcome; it deliberately excludes query strings,
+headers, bearer tokens, MCP arguments, identities, artifact bytes, and
+exception text. The console sink is non-blocking: logging failures cannot alter
+an MCP response. This is source-level audit instrumentation only, not a
+deployed retention, metrics, tracing, or alerting service.
+
 The separate identity Worker remains deliberately unavailable by default. The
 private Sites alpha now has an alternative Worker-mounted authorization adapter:
 it uses the existing signed-in Sites session to locate the already-created
@@ -133,6 +141,7 @@ boundary.
   registration policy;
 - token audience and scope enforcement at the HTTP boundary;
 - Agent registration and delegation selection in the consent screen;
-- rate limits, audit logs, revocation, abuse reporting, and observability;
+- rate limits, deployed audit-log retention, revocation, abuse reporting,
+  metrics/tracing, and alerting;
 - protocol fixtures for authorization failures, cross-owner access, and scope
   escalation.

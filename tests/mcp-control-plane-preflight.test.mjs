@@ -4,6 +4,7 @@ import {
   renderGatewayWranglerConfig,
   validateMcpControlPlaneManifest,
 } from "../scripts/preflight-mcp-control-plane.mjs";
+import { createCloudflareGatewayWorker } from "../services/proofweave-mcp-gateway/cloudflare-worker.mjs";
 
 const manifest = {
   control_plane: {
@@ -53,4 +54,21 @@ test("MCP control-plane preflight rejects placeholders and a same-origin authori
     }),
     /separate origins/,
   );
+});
+
+test("MCP gateway runs every request through its structured audit boundary", async () => {
+  const calls = [];
+  const worker = createCloudflareGatewayWorker({
+    audit: {
+      async handle(request, handler) {
+        calls.push(request);
+        return handler({ requestId: "pw-test-request" });
+      },
+    },
+  });
+
+  const response = await worker.fetch(new Request("https://mcp.example.test/mcp"), {});
+  assert.equal(response.status, 503);
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0].url, "https://mcp.example.test/mcp");
 });

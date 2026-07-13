@@ -10,6 +10,10 @@ import { RunnerWorkspaceStager } from "./runner-workspace-stager.mjs";
 import { RunnerWorkspaceTransfer } from "./runner-workspace-transfer.mjs";
 import { consumeCloudflareRunnerBatch } from "./cloudflare-queues.mjs";
 import { RunnerJobAuthenticator } from "./queue.mjs";
+import {
+  createStructuredQueueAudit,
+  emitStructuredConsole,
+} from "../../packages/observability/structured-audit.mjs";
 
 export class RunnerWorkerConfigurationError extends Error {
   constructor(message, options) {
@@ -28,20 +32,31 @@ export class RunnerWorkerConfigurationError extends Error {
 export function createLeanRunnerWorker({
   now = () => new Date(),
   createRuntime = createRunnerRuntime,
+  audit = null,
 } = {}) {
   if (typeof now !== "function") throw new TypeError("Lean Runner Worker requires a clock function.");
   if (typeof createRuntime !== "function") throw new TypeError("Lean Runner Worker requires a runtime factory.");
+  if (audit !== null && typeof audit.handle !== "function") {
+    throw new TypeError("Lean Runner Worker audit boundary must expose handle().");
+  }
   return Object.freeze({
     async fetch() {
       return new Response("Not found", { status: 404 });
     },
     async queue(batch, env) {
-      const runtime = await createRuntime({ env, now });
-      return consumeCloudflareRunnerBatch({
-        batch,
-        authenticator: runtime.authenticator,
-        execute: runtime.execute,
-        retryDelaySeconds: runtime.retryDelaySeconds,
+      const executeBatch = async () => {
+        const runtime = await createRuntime({ env, now });
+        return consumeCloudflareRunnerBatch({
+          batch,
+          authenticator: runtime.authenticator,
+          execute: runtime.execute,
+          retryDelaySeconds: runtime.retryDelaySeconds,
+        });
+      };
+      if (!audit) return executeBatch();
+      return audit.handle({
+        delivered: Array.isArray(batch?.messages) ? batch.messages.length : 0,
+        handler: executeBatch,
       });
     },
   });
@@ -316,4 +331,9 @@ function timestamp(now) {
   return instant.toISOString();
 }
 
-export default createLeanRunnerWorker();
+export default createLeanRunnerWorker({
+  audit: createStructuredQueueAudit({
+    component: "lean_runner_queue",
+    emit: emitStructuredConsole,
+  }),
+});

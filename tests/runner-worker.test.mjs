@@ -33,6 +33,29 @@ test("Runner Worker has no public control route and only acknowledges durable qu
   assert.equal(delivery.retryDelay, null);
 });
 
+test("Runner Worker sends only a Queue delivery count through its audit boundary", async () => {
+  let auditInput;
+  const worker = createLeanRunnerWorker({
+    audit: {
+      async handle(input) {
+        auditInput = input;
+        return input.handler();
+      },
+    },
+    createRuntime: async () => ({
+      retryDelaySeconds: 42,
+      authenticator: { async authenticate(value) { return value; } },
+      async execute() {},
+    }),
+  });
+
+  const delivery = deliveryFor(message);
+  assert.deepEqual(await worker.queue({ messages: [delivery] }, {}), { acknowledged: 1, retried: 0 });
+  assert.equal(auditInput.delivered, 1);
+  assert.deepEqual(Object.keys(auditInput).sort(), ["delivered", "handler"]);
+  assert.equal(typeof auditInput.handler, "function");
+});
+
 test("Runner queue execution stages once, executes in the named private Container, then finalizes", async () => {
   const calls = [];
   const execute = createRunnerQueueExecution({

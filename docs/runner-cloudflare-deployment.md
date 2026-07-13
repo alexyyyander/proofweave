@@ -62,6 +62,11 @@ per-Run wall-time, output, archive, axiom, or cleanup enforcement.
    recording. It also polls the durable `cancel_requested` projection while an
    execution is in flight and forwards that request to the same private
    Container, which aborts Lean and returns normal cancellation evidence.
+   It emits only one privacy-minimal aggregate structured audit event per Queue
+   batch (delivery/acknowledgement/retry totals and duration); it never logs a
+   Run ID, signed envelope, Agent, Bundle, token, source, or output. This
+   source-level console instrumentation needs deployed retention and alerting
+   before it can count as production observability.
    Non-production lifecycle testing of that delivery path remains a deployment
    gate. Source-only runtime tests are not a deployed Container service.
 3. Provision the Queue, DLQ, D1/R2 bindings, control-plane signing secret, and
@@ -104,3 +109,10 @@ projection and forwards a durable cancellation to that named Container only;
 the Container has no public cancellation endpoint. A deployed non-production
 test of cancellation delivery and process termination remains mandatory before
 participant execution.
+
+The default Worker wraps Queue batches in the shared structured-audit boundary.
+The resulting event intentionally contains only `delivered`, `acknowledged`,
+`retried`, duration, and outcome. It is suitable for a platform console and
+correlation with deployment logs, but must not be treated as an evidence record
+or as production observability until retention, access control, alerting, and
+an incident procedure are provisioned.

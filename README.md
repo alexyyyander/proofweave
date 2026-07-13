@@ -202,6 +202,7 @@ application secrets.
 - `npm run catalog:verify-source`: validate the pinned Formal Conjectures seed
   before creating a new catalog migration
 - `npm run mcp:check`: syntax-check the local Codex MCP bridge
+- `npm run observability:check`: validate privacy-minimal Worker audit records
 - `npm run mcp:gateway:check`: test the remote gateway and identity protocol
   scaffolding
 - `npm run runner:check`: validate the isolated Lean runner protocol and

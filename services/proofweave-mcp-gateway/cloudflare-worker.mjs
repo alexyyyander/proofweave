@@ -2,6 +2,10 @@ import {
   RemoteMcpRuntimeConfigurationError,
   createD1RemoteMcpGatewayRuntime,
 } from "./runtime.mjs";
+import {
+  createStructuredHttpAudit,
+  emitStructuredConsole,
+} from "../../packages/observability/structured-audit.mjs";
 
 /**
  * Deployment entrypoint. It deliberately has no authorization-code or
@@ -9,28 +13,42 @@ import {
  * gateway can nevertheless validate that service's opaque D1-backed tokens
  * and enforce its own D1/R2 attribution boundary once bindings are supplied.
  */
-const cloudflareGatewayWorker = {
-  async fetch(request, env) {
-    try {
-      return await createD1RemoteMcpGatewayRuntime({
-        database: env.DB,
-        bucket: env.ARTIFACTS,
-        resource: env.MCP_RESOURCE_URL,
-        issuer: env.OAUTH_ISSUER_URL,
-      }).fetch(request);
-    } catch (error) {
-      if (error instanceof RemoteMcpRuntimeConfigurationError) {
-        return Response.json(
-          {
-            error: "temporarily_unavailable",
-            error_description: "Proofweave MCP is not configured with its required control-plane bindings.",
-          },
-          { status: 503, headers: { "Cache-Control": "no-store" } },
-        );
-      }
-      throw error;
-    }
-  },
-};
+export function createCloudflareGatewayWorker({ audit = defaultAudit() } = {}) {
+  if (!audit || typeof audit.handle !== "function") {
+    throw new TypeError("Cloudflare MCP gateway requires a structured HTTP audit boundary.");
+  }
+  return Object.freeze({
+    async fetch(request, env) {
+      return audit.handle(request, async () => {
+        try {
+          return await createD1RemoteMcpGatewayRuntime({
+            database: env.DB,
+            bucket: env.ARTIFACTS,
+            resource: env.MCP_RESOURCE_URL,
+            issuer: env.OAUTH_ISSUER_URL,
+          }).fetch(request);
+        } catch (error) {
+          if (error instanceof RemoteMcpRuntimeConfigurationError) {
+            return Response.json(
+              {
+                error: "temporarily_unavailable",
+                error_description: "Proofweave MCP is not configured with its required control-plane bindings.",
+              },
+              { status: 503, headers: { "Cache-Control": "no-store" } },
+            );
+          }
+          throw error;
+        }
+      });
+    },
+  });
+}
 
-export default cloudflareGatewayWorker;
+function defaultAudit() {
+  return createStructuredHttpAudit({
+    component: "remote_mcp_gateway",
+    emit: emitStructuredConsole,
+  });
+}
+
+export default createCloudflareGatewayWorker();

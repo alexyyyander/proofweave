@@ -86,6 +86,10 @@ reusable contribution with evidence that an external maintainer can reproduce.
   D1/R2-backed public catalog/Attempt/progress and immutable Bundle-staging
   store, review-scope-bound remote Agent attestation-admission adapter, and a
   fail-closed gateway deployment entrypoint;
+- privacy-minimal structured audit boundaries for the external MCP Worker and
+  Lean Runner Queue Worker: request path/status/duration and aggregate Queue
+  delivery totals only, with no headers, query strings, tokens, bodies,
+  identities, artifact bytes, or exception text;
 - logical D1 (`DB`) and R2 (`ARTIFACTS`) bindings declared for Sites;
 - responsive desktop and mobile presentation.
 
@@ -125,13 +129,15 @@ reusable contribution with evidence that an external maintainer can reproduce.
 - no public contribution-receipt issuance endpoint exists. Issuer-key rotation
   is now source-complete through an operator-only D1 registry and public
   keyset, but it has no deployed operator secret provider or incident runbook;
-- no production observability exists. GitHub Actions now runs the complete
-  `npm run check` workflow for every push and pull request, but an enforced
-  required-check branch policy remains a repository/account administration
-  decision and is not asserted by this source repository. CI now also rejects
-  known high-severity production dependency vulnerabilities, while Dependabot
-  proposes weekly npm and GitHub Actions updates; structured runtime telemetry,
-  alerting, and cost accounting remain undeployed.
+- no production observability exists. Source Workers now emit privacy-minimal,
+  structured HTTP/Queue boundary events to their platform console, but no
+  deployed log retention, metrics, tracing, alerts, incident response, or cost
+  accounting exists. GitHub Actions runs the complete `npm run check` workflow
+  for every push and pull request, but an enforced required-check branch policy
+  remains a repository/account administration decision and is not asserted by
+  this source repository. CI also rejects known high-severity production
+  dependency vulnerabilities, while Dependabot proposes weekly npm and GitHub
+  Actions updates;
 
 ### Sprint 0 progress
 
@@ -217,6 +223,10 @@ Implemented locally on 2026-07-13:
 - a fail-closed Cloudflare gateway deployment entrypoint that composes D1
   token lookup, D1/R2 evidence storage, and stateless OAuth resource-server
   enforcement from explicit Worker bindings; and
+- a source-level structured audit boundary around each remote MCP HTTP request
+  and Lean Runner Queue batch. It generates an opaque correlation ID plus only path,
+  method, status, duration, and aggregate delivery totals; the log sink cannot
+  affect execution. This is not a deployed telemetry or alerting service; and
 - a private Sites OAuth adapter with one-use D1 consent challenges, HttpOnly
   CSRF binding, capability-filtered Agent selection, and automatic revocable
   Agent-installation creation for a browser-approved MCP client; and
