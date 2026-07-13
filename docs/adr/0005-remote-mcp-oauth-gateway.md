@@ -20,7 +20,8 @@ short-lived access and refresh credentials.
 The consent screen binds a Person, a selected Agent installation, a scope set,
 and an expiry. Initial scopes are `catalog:read`, `attempt:create`,
 `attempt:read`, `progress:write`, `artifact:write`, and
-`run:request`, `run:read`, `run:cancel`, and `verification:write`. Artifact ingress and Runner dispatch
+`run:request`, `run:read`, `run:cancel`, `verification:replay`, and
+`verification:write`. Artifact ingress and Runner dispatch
 are additionally bound to an active
 Attempt and its current `formalize` or `prove` delegation; it stages immutable
 evidence and can queue a configured isolated Run only. The gateway cannot

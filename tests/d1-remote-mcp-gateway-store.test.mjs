@@ -16,6 +16,7 @@ import {
 import cloudflareGatewayWorker from "../services/proofweave-mcp-gateway/cloudflare-worker.mjs";
 import { D1ProofweaveOAuthStore } from "../services/proofweave-identity/d1-oauth-store.mjs";
 import { D1VerificationStore } from "../services/verification/d1-verification-store.mjs";
+import { D1R2ArtifactStore } from "../services/artifacts/d1-r2-artifact-store.mjs";
 import {
   verificationAttestationPayloadHash,
   verificationAttestationSigningPayload,
@@ -33,6 +34,8 @@ let reviewerKeyPair;
 let reviewerPublicKey;
 let proverKeyPair;
 let proverPublicKey;
+let ownerProverKeyPair;
+let ownerProverPublicKey;
 let alternateProverPublicKey;
 let artifactBucket;
 let controlPlanePrivateKeyJwkJson;
@@ -42,6 +45,8 @@ before(async () => {
   reviewerPublicKey = base64Url(await crypto.subtle.exportKey("raw", reviewerKeyPair.publicKey));
   proverKeyPair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
   proverPublicKey = base64Url(await crypto.subtle.exportKey("raw", proverKeyPair.publicKey));
+  ownerProverKeyPair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
+  ownerProverPublicKey = base64Url(await crypto.subtle.exportKey("raw", ownerProverKeyPair.publicKey));
   const alternateProverKeyPair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
   alternateProverPublicKey = base64Url(await crypto.subtle.exportKey("raw", alternateProverKeyPair.publicKey));
   const controlPlaneKeyPair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
@@ -56,7 +61,7 @@ before(async () => {
   database = await miniflare.getD1Database("DB");
   artifactBucket = await miniflare.getR2Bucket("ARTIFACTS");
   await applyMigrations(database);
-  await seedGatewayFixture(database, { reviewerPublicKey, proverPublicKey, alternateProverPublicKey });
+  await seedGatewayFixture(database, { reviewerPublicKey, proverPublicKey, ownerProverPublicKey, alternateProverPublicKey });
 });
 
 after(async () => {
@@ -510,6 +515,118 @@ test("a prove-delegated OAuth Agent stages a signed v2 Bundle and requests one i
   assert.deepEqual(afterCancellationRun.events.map((event) => event.eventType), ["run_queued", "run_cancelled"]);
 });
 
+test("an accepted independent reviewer can queue and read only a fresh replay of the assigned Bundle", async () => {
+  const artifacts = new D1R2ArtifactStore({ database, bucket: artifactBucket });
+  const [archive, patch, lakeManifest] = await Promise.all([
+    artifacts.putObject({ bytes: "replay fixture archive", filename: "source.tar.zst", contentType: "application/zstd" }),
+    artifacts.putObject({ bytes: "diff --git a/Proofweave/Replay.lean b/Proofweave/Replay.lean\n", filename: "normalized.patch", contentType: "text/x-diff" }),
+    artifacts.putObject({ bytes: "{\"packages\":[]}", filename: "lake-manifest.json", contentType: "application/json" }),
+  ]);
+  const bundle = await signedBundleV2({
+    attemptId: "attempt:gateway-owner-replay",
+    archive,
+    patch,
+    lakeManifest,
+    agentPublicKey: ownerProverPublicKey,
+    agentPrivateKey: ownerProverKeyPair.privateKey,
+  });
+  const staged = await artifacts.stageBundle(bundle);
+  const verification = new D1VerificationStore(database);
+  await verification.assign({
+    id: "assignment:gateway-fresh-replay",
+    artifactBundleManifestHash: staged.bundle.manifestHash,
+    claimType: "bundle_reproducible",
+    verifierPersonId: "person:gateway-reviewer",
+    assignedAt: "2026-07-13T00:00:20Z",
+  });
+  await verification.accept(
+    "assignment:gateway-fresh-replay",
+    "person:gateway-reviewer",
+    "2026-07-13T00:00:21Z",
+  );
+
+  const resource = "https://mcp.gateway.example.test/mcp";
+  const accessToken = "pw_at_gateway_verification_replay_fixture";
+  const oauthStore = new D1ProofweaveOAuthStore(database);
+  await oauthStore.issueTokenPair({
+    accessTokenHash: await tokenHash(accessToken),
+    refreshTokenHash: await tokenHash("pw_rt_gateway_verification_replay_fixture"),
+    clientId: "client:gateway-codex",
+    resource,
+    personId: "person:gateway-reviewer",
+    agentInstallationId: "installation:gateway-reviewer",
+    scopes: ["verification:replay"],
+    issuedAt: "2026-07-13T00:00:00Z",
+    accessExpiresAt: "2027-07-13T00:00:00Z",
+    refreshExpiresAt: "2027-08-13T00:00:00Z",
+  });
+  const runnerQueue = { messages: [], async send(message) { this.messages.push(message); } };
+  const gateway = createD1RemoteMcpGatewayRuntime({
+    resource,
+    issuer: "https://auth.gateway.example.test",
+    database,
+    bucket: artifactBucket,
+    runnerQueue,
+    runnerApprovedImagesJson: JSON.stringify([{
+      imageDigest: `registry.example.test/proofweave/lean@sha256:${"f".repeat(64)}`,
+      leanToolchain: "leanprover/lean4:v4.27.0",
+      mathlibRevision: "gateway-fixture",
+    }]),
+    runnerControlPlaneKeyId: "runner-control:gateway",
+    runnerControlPlanePrivateKeyJwkJson: controlPlanePrivateKeyJwkJson,
+    runnerDefaultLimitsJson: JSON.stringify({
+      cpuSeconds: 60,
+      wallSeconds: 120,
+      memoryMiB: 2_048,
+      diskMiB: 2_048,
+      outputBytes: 1_000_000,
+    }),
+  });
+
+  const ownerRunAttempt = await callGatewayTool(gateway, resource, accessToken, "request_runner_run", {
+    attemptId: bundle.attemptId,
+    artifactBundleHash: staged.bundle.manifestHash,
+    idempotencyKey: "must-not-be-authorized",
+  });
+  assert.equal(ownerRunAttempt.result.isError, true);
+  assert.match(ownerRunAttempt.result.content[0].text, /Missing OAuth scope: run:request/);
+
+  const first = await callGatewayTool(gateway, resource, accessToken, "request_verification_replay", {
+    assignmentId: "assignment:gateway-fresh-replay",
+    idempotencyKey: "reviewer-fresh-workspace-1",
+  });
+  assert.equal(first.result.isError, undefined);
+  const firstReplay = JSON.parse(first.result.content[0].text);
+  assert.equal(firstReplay.runCreated, true);
+  assert.equal(firstReplay.run.attemptId, bundle.attemptId);
+  assert.equal(firstReplay.replay.assignmentId, "assignment:gateway-fresh-replay");
+  assert.equal(firstReplay.replay.requesterPersonId, "person:gateway-reviewer");
+  assert.equal(firstReplay.replay.requesterAgentId, "agent:gateway-reviewer");
+  assert.equal(firstReplay.replay.artifactBundleManifestHash, staged.bundle.manifestHash);
+  assert.equal(firstReplay.verificationState, "fresh_replay_recorded");
+  assert.equal(runnerQueue.messages.length, 1);
+  assert.equal(runnerQueue.messages[0].request.attemptId, bundle.attemptId);
+  assert.equal(runnerQueue.messages[0].request.bundle.manifestHash, staged.bundle.manifestHash);
+
+  const duplicate = await callGatewayTool(gateway, resource, accessToken, "request_verification_replay", {
+    assignmentId: "assignment:gateway-fresh-replay",
+    idempotencyKey: "reviewer-fresh-workspace-1",
+  });
+  const duplicateReplay = JSON.parse(duplicate.result.content[0].text);
+  assert.equal(duplicateReplay.runCreated, false);
+  assert.equal(duplicateReplay.run.id, firstReplay.run.id);
+  assert.equal(runnerQueue.messages.length, 1);
+
+  const visible = await callGatewayTool(gateway, resource, accessToken, "get_verification_replay", {
+    assignmentId: "assignment:gateway-fresh-replay",
+    idempotencyKey: "reviewer-fresh-workspace-1",
+  });
+  assert.equal(visible.result.isError, undefined);
+  const visibleReplay = JSON.parse(visible.result.content[0].text);
+  assert.equal(visibleReplay.run.id, firstReplay.run.id);
+  assert.deepEqual(visibleReplay.events.map((event) => event.eventType), ["run_queued"]);
+});
+
 test("remote MCP capacity is shared by every Agent owned by the same Person", async () => {
   const active = await database
     .prepare("SELECT COUNT(*) AS count FROM agent_attempts WHERE person_id = ? AND status = 'active'")
@@ -586,7 +703,7 @@ async function signedAttestation({
   return attestation;
 }
 
-async function seedGatewayFixture(d1, { reviewerPublicKey, proverPublicKey, alternateProverPublicKey }) {
+async function seedGatewayFixture(d1, { reviewerPublicKey, proverPublicKey, ownerProverPublicKey, alternateProverPublicKey }) {
   const statements = [
     ["INSERT INTO persons (id, identity_provider, provider_subject, display_name, updated_at) VALUES (?, ?, ?, ?, ?)", ["person:gateway-owner", "proofweave", "gateway-owner", "Gateway owner", "2026-07-01T00:00:00Z"]],
     ["INSERT INTO persons (id, identity_provider, provider_subject, display_name, updated_at) VALUES (?, ?, ?, ?, ?)", ["person:gateway-reviewer", "proofweave", "gateway-reviewer", "Gateway reviewer", "2026-07-01T00:00:00Z"]],
@@ -610,13 +727,27 @@ async function seedGatewayFixture(d1, { reviewerPublicKey, proverPublicKey, alte
       ["bundle:gateway", "attempt:gateway", "revision:gateway", sha("a"), `bundles/sha256/${"a".repeat(64)}/bundle.json`, "{}", "agent-event:gateway", sha("3")],
     ],
     ["INSERT INTO person_keys (id, person_id, public_key, fingerprint) VALUES (?, ?, ?, ?)", ["person-key:gateway-reviewer", "person:gateway-reviewer", "person-key", sha("4")]],
+    ["INSERT INTO person_keys (id, person_id, public_key, fingerprint) VALUES (?, ?, ?, ?)", ["person-key:gateway-owner", "person:gateway-owner", ownerProverPublicKey, sha("e")]],
     ["INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint) VALUES (?, ?, ?, ?, ?)", ["agent:gateway-reviewer", "person:gateway-reviewer", "Gateway reviewer Agent", reviewerPublicKey, sha("5")]],
+    ["INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint) VALUES (?, ?, ?, ?, ?)", ["agent:gateway-owner-prover", "person:gateway-owner", "Gateway owner prover Agent", ownerProverPublicKey, sha("6")]],
     ["INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint) VALUES (?, ?, ?, ?, ?)", ["agent:gateway-prover", "person:gateway-reviewer", "Gateway prover Agent", proverPublicKey, sha("7")]],
     ["INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint) VALUES (?, ?, ?, ?, ?)", ["agent:gateway-prover-alt", "person:gateway-reviewer", "Gateway alternate prover Agent", alternateProverPublicKey, sha("9")]],
     [
       `INSERT INTO delegation_certificates (id, owner_person_id, agent_id, person_key_id, agent_public_key, scopes_json, valid_from, valid_until, beneficiary_person_id, protocol_version, payload_hash, canonical_payload, person_signature)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      ["delegation:gateway-owner-prover", "person:gateway-owner", "agent:gateway-owner-prover", "person-key:gateway-owner", ownerProverPublicKey, '["formalize","prove"]', "2026-07-01T00:00:00Z", "2027-07-01T00:00:00Z", "person:gateway-owner", "pw-delegation-v1", sha("b"), "{}", "signature"],
+    ],
+    [
+      `INSERT INTO delegation_certificates (id, owner_person_id, agent_id, person_key_id, agent_public_key, scopes_json, valid_from, valid_until, beneficiary_person_id, protocol_version, payload_hash, canonical_payload, person_signature)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       ["delegation:gateway-reviewer", "person:gateway-reviewer", "agent:gateway-reviewer", "person-key:gateway-reviewer", reviewerPublicKey, '["review"]', "2026-07-01T00:00:00Z", "2027-07-01T00:00:00Z", "person:gateway-reviewer", "pw-delegation-v1", sha("6"), "{}", "signature"],
+    ],
+    [
+      `INSERT INTO agent_attempts (
+        id, person_id, problem_revision_id, agent_id, agent_label,
+        delegation_certificate_id, delegation_scope, idempotency_key, updated_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      ["attempt:gateway-owner-replay", "person:gateway-owner", "revision:gateway", "agent:gateway-owner-prover", "Gateway owner prover Agent", "delegation:gateway-owner-prover", "prove", "gateway-owner-replay", "2026-07-01T00:00:00Z"],
     ],
     [
       `INSERT INTO delegation_certificates (id, owner_person_id, agent_id, person_key_id, agent_public_key, scopes_json, valid_from, valid_until, beneficiary_person_id, protocol_version, payload_hash, canonical_payload, person_signature)
@@ -717,7 +848,7 @@ async function stageArtifactObject(gateway, resource, accessToken, attemptId, { 
   return result.object;
 }
 
-async function signedBundleV2({ attemptId, archive, patch, lakeManifest }) {
+async function signedBundleV2({ attemptId, archive, patch, lakeManifest, agentPublicKey = proverPublicKey, agentPrivateKey = proverKeyPair.privateKey }) {
   const bundle = {
     protocolVersion: "pw-artifact-bundle-v2",
     id: `bundle:gateway-artifact-${attemptId.slice("attempt:".length)}`,
@@ -761,7 +892,7 @@ async function signedBundleV2({ attemptId, archive, patch, lakeManifest }) {
       eventId: `agent-event:gateway-artifact-${attemptId.slice("attempt:".length)}`,
       occurredAt: "2026-07-13T00:00:00Z",
       payloadHash: sha("0"),
-      agentPublicKey: proverPublicKey,
+      agentPublicKey,
       signature: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
     },
     policy: { requireNoSorry: true, allowedAxioms: [] },
@@ -769,7 +900,7 @@ async function signedBundleV2({ attemptId, archive, patch, lakeManifest }) {
   bundle.agentEvent.payloadHash = await artifactBundleSigningPayloadHash(bundle);
   bundle.agentEvent.signature = base64Url(await crypto.subtle.sign(
     "Ed25519",
-    proverKeyPair.privateKey,
+    agentPrivateKey,
     new TextEncoder().encode(canonicalJson(artifactBundleSigningPayload(bundle))),
   ));
   return bundle;

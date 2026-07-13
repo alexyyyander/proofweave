@@ -118,6 +118,14 @@ export class UnconfiguredGatewayStore {
     throw new Error("The Proofweave remote control plane is not configured.");
   }
 
+  async requestVerificationReplay() {
+    throw new Error("The Proofweave remote control plane is not configured.");
+  }
+
+  async getVerificationReplay() {
+    throw new Error("The Proofweave remote control plane is not configured.");
+  }
+
   async getRunnerRun() {
     throw new Error("The Proofweave remote control plane is not configured.");
   }
@@ -327,6 +335,46 @@ function createMcpServer(principal, store, rateLimiter) {
       "request_runner_run",
       rateLimiter,
       () => store.requestRunnerRun(principal, input),
+    )),
+  );
+
+  server.registerTool(
+    "request_verification_replay",
+    {
+      title: "Replay an assigned Bundle in a fresh workspace",
+      description: "Queue a new isolated Lean workspace only for an accepted independent-review assignment. This records reproducibility evidence, not an attestation, theorem verification, or receipt.",
+      inputSchema: {
+        assignmentId: z.string().min(1).max(240),
+        idempotencyKey: z.string().min(1).max(160),
+      },
+      annotations: { readOnlyHint: false, destructiveHint: false },
+    },
+    async (input) => toolResult(await withScope(
+      principal,
+      "verification:replay",
+      "request_verification_replay",
+      rateLimiter,
+      () => store.requestVerificationReplay(principal, input),
+    )),
+  );
+
+  server.registerTool(
+    "get_verification_replay",
+    {
+      title: "Read a fresh verification replay",
+      description: "Read one review Agent's own replay Run and immutable event hashes. Its result is infrastructure evidence; the reviewer must still issue a separate signed attestation.",
+      inputSchema: {
+        assignmentId: z.string().min(1).max(240),
+        idempotencyKey: z.string().min(1).max(160),
+      },
+      annotations: { readOnlyHint: true, destructiveHint: false },
+    },
+    async (input) => toolResult(await withScope(
+      principal,
+      "verification:replay",
+      "get_verification_replay",
+      rateLimiter,
+      () => store.getVerificationReplay(principal, input),
     )),
   );
 

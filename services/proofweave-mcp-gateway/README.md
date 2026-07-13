@@ -40,6 +40,18 @@ a running Run records a cancellation request until its isolated runner returns
 signed terminal evidence. Neither tool creates verification, review, or a
 receipt.
 
+For an accepted assignment addressed to the OAuth Person, a review-scoped
+installation may instead use `verification:replay`. The
+`request_verification_replay` tool maps the assignment's immutable v2 Bundle
+to one new isolated Run and records immutable replay provenance containing the
+assignment, reviewer Person/Agent/certificate/installation, Bundle, Run, and
+idempotency key. The resulting fresh workspace is not the submitting Agent's
+Run and does not give the reviewer `run:*` authority over that Attempt.
+`get_verification_replay` is likewise limited to the exact review Agent
+installation. A replay result is reproducibility infrastructure evidence only;
+it never completes the assignment or replaces the separately signed
+`verification:write` attestation.
+
 The `verification:write` adapter binds an Attestation to the selected OAuth
 installation, requires its delegation to include `review`, and then lets the
 verification store recheck assignment, evidence, revocation, timestamp,

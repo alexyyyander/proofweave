@@ -923,6 +923,52 @@ export const verificationAssignments = sqliteTable(
   ],
 );
 
+// A replay is not a review decision. It is the immutable provenance link
+// between an accepted independent-review assignment and a new, isolated Run
+// of the exact staged Bundle. The reviewer Agent never receives the
+// submitter's Attempt-level Run authority.
+export const verificationReplays = sqliteTable(
+  "verification_replays",
+  {
+    id: text("id").primaryKey(),
+    assignmentId: text("assignment_id")
+      .notNull()
+      .references(() => verificationAssignments.id, { onDelete: "restrict" }),
+    runId: text("run_id")
+      .notNull()
+      .unique()
+      .references(() => runs.id, { onDelete: "restrict" }),
+    artifactBundleManifestHash: text("artifact_bundle_manifest_hash")
+      .notNull()
+      .references(() => artifactBundles.manifestHash, { onDelete: "restrict" }),
+    requesterPersonId: text("requester_person_id")
+      .notNull()
+      .references(() => persons.id, { onDelete: "restrict" }),
+    requesterAgentId: text("requester_agent_id")
+      .notNull()
+      .references(() => agents.id, { onDelete: "restrict" }),
+    delegationCertificateId: text("delegation_certificate_id")
+      .notNull()
+      .references(() => delegationCertificates.id, { onDelete: "restrict" }),
+    agentInstallationId: text("agent_installation_id")
+      .notNull()
+      .references(() => agentInstallations.id, { onDelete: "restrict" }),
+    idempotencyKey: text("idempotency_key").notNull(),
+    requestedAt: text("requested_at").notNull(),
+    createdAt,
+  },
+  (table) => [
+    uniqueIndex("verification_replays_assignment_actor_idempotency_idx").on(
+      table.assignmentId,
+      table.requesterAgentId,
+      table.delegationCertificateId,
+      table.idempotencyKey,
+    ),
+    index("verification_replays_assignment_requested_idx").on(table.assignmentId, table.requestedAt),
+    index("verification_replays_run_idx").on(table.runId),
+  ],
+);
+
 export const verificationAssignmentEvents = sqliteTable(
   "verification_assignment_events",
   {

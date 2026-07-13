@@ -26,6 +26,7 @@ export type ReviewAssignmentSummary = Readonly<{
   acceptedAt: string | null;
   declinedAt: string | null;
   completedAt: string | null;
+  freshReplayCount: number;
   attestation: ReviewAssignmentAttestation | null;
   attempt: Readonly<{
     id: string;
@@ -88,6 +89,7 @@ type AssignmentRow = {
   attestation_decision: ReviewAttestationDecision | null;
   attestation_evidence_hash: string | null;
   attestation_attested_at: string | null;
+  fresh_replay_count: number;
 };
 
 type EventRow = {
@@ -194,7 +196,9 @@ const assignmentSelect = `SELECT
   revision.target_key, attestation.id AS attestation_id,
   attestation.decision AS attestation_decision,
   attestation.evidence_hash AS attestation_evidence_hash,
-  attestation.attested_at AS attestation_attested_at
+  attestation.attested_at AS attestation_attested_at,
+  (SELECT COUNT(*) FROM verification_replays AS replay
+   WHERE replay.assignment_id = assignment.id) AS fresh_replay_count
  FROM verification_assignments AS assignment
  INNER JOIN artifact_bundles AS bundle
    ON bundle.manifest_hash = assignment.artifact_bundle_manifest_hash
@@ -226,6 +230,7 @@ function toAssignment(row: AssignmentRow): ReviewAssignmentSummary {
     acceptedAt: row.accepted_at,
     declinedAt: row.declined_at,
     completedAt: row.completed_at,
+    freshReplayCount: Number(row.fresh_replay_count),
     attestation: toAttestation(row),
     attempt: Object.freeze({
       id: row.attempt_id,

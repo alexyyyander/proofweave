@@ -236,3 +236,5 @@ h1, h2, h3, p { margin-top: 0; }
 
 .review-status.is-rejected { background: #fff0ee; border-color: #e7c2bd; color: #94332d; }
 .review-status.is-request-changes { background: var(--amber-soft); border-color: #e5d18b; color: var(--amber); }
+.review-replay-guide { align-items: end; background: #f2f4fa; border-left: 2px solid var(--indigo); display: grid; gap: 20px; grid-template-columns: minmax(0, 1fr) minmax(180px, .6fr); margin-top: 18px; padding: 14px; }.review-replay-guide .micro-label { color: #4055af; display: block; margin-bottom: 6px; }.review-replay-guide strong { display: block; font-size: 12px; }.review-replay-guide p { color: var(--ink-soft); font-size: 11px; line-height: 1.55; margin: 6px 0 0; max-width: 650px; }.review-replay-guide > code { color: #4055af; font-size: 10px; overflow-wrap: anywhere; text-align: right; }
+@media (max-width: 620px) { .review-replay-guide { align-items: start; grid-template-columns: 1fr; }.review-replay-guide > code { text-align: left; } }

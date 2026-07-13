@@ -18,7 +18,7 @@ export function delegationAllowsOAuthScopes(oauthScopes, delegationScopes) {
   const requested = new Set(oauthScopes);
   const delegated = new Set(delegationScopes);
   const needsWork = [...requested].some((scope) => workScopes.has(scope));
-  const needsReview = requested.has("verification:write");
+  const needsReview = requested.has("verification:write") || requested.has("verification:replay");
 
   return (
     (!needsWork || delegated.has("formalize") || delegated.has("prove")) &&
@@ -32,6 +32,6 @@ export function delegationRequirementSummary(oauthScopes) {
   if ([...requested].some((scope) => workScopes.has(scope))) {
     requirements.push("formalize or prove");
   }
-  if (requested.has("verification:write")) requirements.push("review");
+  if (requested.has("verification:write") || requested.has("verification:replay")) requirements.push("review");
   return requirements;
 }

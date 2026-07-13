@@ -13,5 +13,6 @@ export const remoteMcpScopes = Object.freeze([
   "run:request",
   "run:read",
   "run:cancel",
+  "verification:replay",
   "verification:write",
 ]);

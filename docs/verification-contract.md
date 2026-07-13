@@ -25,6 +25,27 @@ An Attestation is still not a contribution receipt. In particular,
 compress reproducibility, mathematical review, novelty, or project acceptance
 into a single boolean.
 
+## Fresh reviewer replay
+
+An accepted review assignment can now authorize a separate
+`pw-verification-replay-v1` record through the remote MCP control plane. The
+review Agent calls `request_verification_replay` under the OAuth
+`verification:replay` scope, with the assignment ID and an idempotency key.
+The gateway requires the assignment to be addressed to the OAuth Person and
+currently `accepted`, the selected installation to have an active `review`
+delegation, and the assignment's immutable Bundle to resolve to the original
+Attempt and its pinned executable v2 environment.
+
+The replay record immutably binds the assignment, reviewer
+Person/Agent/certificate/installation, Bundle hash, idempotency key, and a new
+Run. That Run uses the original Bundle but a new deterministic identity, so the
+Runner creates a new isolated workspace. It does not grant the review Agent
+`run:request`, `run:read`, or `run:cancel` on the submitting Agent's Attempt.
+`get_verification_replay` is limited to the same review Agent installation and
+returns only its replay Run projection and immutable event hashes. A replay
+result is infrastructure evidence, not an attestation or a receipt; the
+reviewer must still make one separately signed explicit claim.
+
 ## Closed-alpha review queue
 
 `/reviews` and `/api/me/review-assignments` provide an owner-scoped
@@ -42,11 +63,12 @@ An accepted assignment still needs a separately held Agent key under a valid
 The completed assignment exposes its exact immutable decision: `attested`,
 `rejected`, or `request_changes`. Rejection and requested changes close the
 assignment for capacity purposes but never satisfy a receipt gate or appear as
-positive verification. Fresh runner replay remains unavailable. The checked-in
-remote MCP adapter now
-supports a `verification:write` submission path, but it is not deployed for
-participants until the independent identity and gateway-control-plane rollout
-gates are complete.
+positive verification. The queue shows the assignment ID and count of recorded
+fresh replays so a review Agent can start the assignment-bound replay through
+the separately deployed remote connection. The checked-in remote MCP adapter
+now supports both `verification:replay` and `verification:write`, but neither
+is deployed for participants until the independent identity and
+gateway-control-plane rollout gates are complete.
 
 ## Controlled evidence inspection
 

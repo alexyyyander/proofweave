@@ -74,7 +74,10 @@ reusable contribution with evidence that an external maintainer can reproduce.
   immutable Run evidence is accepted;
 - independent Person-level review assignments and review-delegated Agent
   attestations with immutable D1 audit events, plus an owner-scoped
-  closed-alpha review queue for accept/decline decisions;
+  closed-alpha review queue for accept/decline decisions and assignment-bound
+  fresh Runner replay provenance; a reviewer Agent can queue and inspect only
+  its own fresh workspace replay of an accepted assignment, never the
+  submitter Agent's ordinary Run;
 - a canonical signed Contribution Receipt protocol and conservative issuance
   policy plus internal immutable D1 issuance, dependency-edge projection, and
   signed append-only lifecycle events with read-only verified
@@ -126,12 +129,12 @@ reusable contribution with evidence that an external maintainer can reproduce.
   directs users to the durable Person/Agent/delegation setup that is available
   now and describes the scoped OAuth flow only as a post-deployment capability;
 - no Lean execution service exists;
-- no participant-facing fresh runner replay exists. Closed-alpha owners and
-  assigned reviewers can inspect a controlled Bundle/Run metadata view and
-  download D1-index-checked private R2 artifacts, but that inspection is not a
-  fresh replay or a verification claim. The source has a remote Agent
-  attestation-admission path, but it remains unavailable until the separate
-  identity and MCP gateway control plane are deployed;
+- no participant-facing fresh runner replay exists. The source now has an
+  assignment-bound remote Agent replay path that creates a new isolated Run
+  only for an accepted reviewer task, but its result remains infrastructure
+  evidence rather than a verification claim and it remains unavailable until
+  the separate identity, gateway, Queue, and Runner control planes are
+  deployed;
 - no public contribution-receipt issuance endpoint exists. Issuer-key rotation
   is now source-complete through an operator-only D1 registry and public
   keyset, but it has no deployed operator secret provider or incident runbook;
@@ -476,8 +479,11 @@ inspection/download surface only: it does not perform a fresh runner replay or
 create an attestation. The remote MCP source now accepts an already-signed
 Attestation only through a `verification:write` OAuth installation with an
 active `review` delegation, exact installation identity binding, and the same
-immutable D1 verification checks; it remains non-deployed until independent
-identity/consent and the gateway control plane are provisioned. See
+immutable D1 verification checks. It can also request and inspect a newly
+isolated replay of an accepted assignment through `verification:replay`, while
+preserving the submitter Agent's Run boundary. Both paths remain non-deployed
+until independent identity/consent and the gateway, Queue, and Runner control
+planes are provisioned. See
 [`docs/verification-contract.md`](verification-contract.md).
 
 ### Contribution Receipt protocol progress

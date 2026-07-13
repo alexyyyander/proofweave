@@ -107,6 +107,22 @@ test("D1 OAuth store atomically consumes credentials and invalidates an installa
     (await store.findAccessToken("access-hash-review-1", "https://mcp.example.test/mcp", now))?.installationActive,
     false,
   );
+  await store.issueTokenPair({
+    accessTokenHash: "access-hash-replay-1",
+    refreshTokenHash: "refresh-hash-replay-1",
+    clientId: "codex-test",
+    resource: "https://mcp.example.test/mcp",
+    personId: "person:oauth-test",
+    agentInstallationId: "installation:oauth-test",
+    scopes: ["verification:replay"],
+    issuedAt: now,
+    accessExpiresAt: "2026-07-13T13:00:00Z",
+    refreshExpiresAt: "2026-08-13T12:00:00Z",
+  });
+  assert.equal(
+    (await store.findAccessToken("access-hash-replay-1", "https://mcp.example.test/mcp", now))?.installationActive,
+    false,
+  );
   assert.equal((await store.consumeRefreshToken("refresh-hash-1", now))?.clientId, "codex-test");
   assert.equal(await store.consumeRefreshToken("refresh-hash-1", now), null);
 

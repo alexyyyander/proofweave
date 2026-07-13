@@ -1,4 +1,5 @@
 import { normalizeVerificationAttestation } from "../../packages/protocol/verification-attestation.mjs";
+import { sha256Canonical } from "../../packages/protocol/canonical-json.mjs";
 import {
   D1VerificationStore,
   VerificationStoreConflictError,
@@ -293,6 +294,93 @@ export class D1RemoteMcpGatewayStore {
     });
   }
 
+  /**
+   * Queue a new workspace only for the Person addressed by an accepted review
+   * assignment. This intentionally does not look up the submitter's Attempt
+   * through the caller's installation, so `run:request` remains owner-only.
+   */
+  async requestVerificationReplay(principal, input) {
+    assertPrincipalScope(principal, "verification:replay");
+    requireVerificationReplayRequestInput(input);
+    const installation = await this.requireInstallation(principal, "review");
+    const assignment = await this.requireAcceptedReplayAssignment(input.assignmentId, principal.personId);
+    const existing = await this.findVerificationReplay({
+      assignmentId: assignment.id,
+      requesterAgentId: installation.agentId,
+      delegationCertificateId: installation.delegationCertificateId,
+      idempotencyKey: input.idempotencyKey,
+    });
+    if (existing) {
+      const run = await this.requireRunForAttempt(existing.runId, assignment.attempt.id);
+      return Object.freeze({
+        replay: existing,
+        run,
+        runCreated: false,
+        queueDeliveryState: null,
+        verificationState: "fresh_replay_recorded",
+      });
+    }
+    if (!this.runnerDispatcher || typeof this.runnerDispatcher.queueBundle !== "function") {
+      throw new GatewayStoreValidationError("The isolated Lean Runner dispatch is not configured for this remote gateway.");
+    }
+
+    const identity = await verificationReplayIdentity({
+      assignmentId: assignment.id,
+      requesterAgentId: installation.agentId,
+      delegationCertificateId: installation.delegationCertificateId,
+      idempotencyKey: input.idempotencyKey,
+    });
+    const queued = await this.runnerDispatcher.queueBundle({
+      attempt: assignment.attempt,
+      artifactBundleHash: assignment.artifactBundleManifestHash,
+      idempotencyKey: identity.runnerIdempotencyKey,
+      runId: identity.runId,
+      beforeDispatch: async (run) => this.recordVerificationReplay({
+        id: identity.id,
+        assignment,
+        installation,
+        principal,
+        idempotencyKey: input.idempotencyKey,
+        run,
+      }),
+    });
+    const replay = await this.findVerificationReplay({
+      assignmentId: assignment.id,
+      requesterAgentId: installation.agentId,
+      delegationCertificateId: installation.delegationCertificateId,
+      idempotencyKey: input.idempotencyKey,
+    });
+    if (!replay) throw new Error("Verification replay was queued without immutable replay provenance.");
+    return Object.freeze({
+      replay,
+      run: queued.run,
+      runCreated: queued.runCreated,
+      queueDeliveryState: queued.delivery?.deliveryState ?? null,
+      verificationState: "fresh_replay_recorded",
+    });
+  }
+
+  async getVerificationReplay(principal, input) {
+    assertPrincipalScope(principal, "verification:replay");
+    requireVerificationReplayLookupInput(input);
+    const installation = await this.requireInstallation(principal, "review");
+    const assignment = await this.requireReplayAssignmentForPerson(input.assignmentId, principal.personId);
+    const replay = await this.findVerificationReplay({
+      assignmentId: assignment.id,
+      requesterAgentId: installation.agentId,
+      delegationCertificateId: installation.delegationCertificateId,
+      idempotencyKey: input.idempotencyKey,
+    });
+    if (!replay) throw new GatewayStoreNotFoundError("Verification replay not found.");
+    const run = await this.requireRunForAttempt(replay.runId, assignment.attempt.id);
+    return Object.freeze({
+      replay,
+      run,
+      events: Object.freeze(await this.runStore.listEvents(run.id)),
+      verificationState: run.runnerResultHash ? "fresh_replay_evidence_recorded" : "fresh_replay_recorded",
+    });
+  }
+
   async getRunnerRun(principal, input) {
     assertPrincipalScope(principal, "run:read");
     requireRunnerLookupInput(input);
@@ -410,6 +498,98 @@ export class D1RemoteMcpGatewayStore {
     if (!assignment || assignment.verifier_person_id !== personId) {
       throw new GatewayStoreAuthorizationError("The requested verification assignment is not addressed to this Person.");
     }
+  }
+
+  async requireAcceptedReplayAssignment(assignmentId, personId) {
+    const assignment = await this.requireReplayAssignmentForPerson(assignmentId, personId);
+    if (assignment.status !== "accepted") {
+      throw new GatewayStoreConflictError(`Verification replay can only be requested from an accepted assignment, not ${assignment.status}.`);
+    }
+    return assignment;
+  }
+
+  async requireReplayAssignmentForPerson(assignmentId, personId) {
+    requireIdentifier(assignmentId, "Verification assignment id", 240);
+    const row = await this.database
+      .prepare(
+        `SELECT assignment.id, assignment.status, assignment.artifact_bundle_manifest_hash,
+                bundle.attempt_id, bundle.problem_revision_id
+         FROM verification_assignments AS assignment
+         INNER JOIN artifact_bundles AS bundle
+           ON bundle.manifest_hash = assignment.artifact_bundle_manifest_hash
+         WHERE assignment.id = ? AND assignment.verifier_person_id = ?`,
+      )
+      .bind(assignmentId, personId)
+      .first();
+    if (!row) throw new GatewayStoreNotFoundError("Verification assignment not found.");
+    return Object.freeze({
+      id: row.id,
+      status: row.status,
+      artifactBundleManifestHash: row.artifact_bundle_manifest_hash,
+      attempt: Object.freeze({
+        id: row.attempt_id,
+        problemRevisionId: row.problem_revision_id,
+      }),
+    });
+  }
+
+  async recordVerificationReplay({ id, assignment, installation, principal, idempotencyKey, run }) {
+    const existing = await this.findVerificationReplay({
+      assignmentId: assignment.id,
+      requesterAgentId: installation.agentId,
+      delegationCertificateId: installation.delegationCertificateId,
+      idempotencyKey,
+    });
+    if (existing) {
+      assertSameVerificationReplay(existing, { id, assignment, installation, principal, idempotencyKey, run });
+      return existing;
+    }
+    const requestedAt = new Date().toISOString();
+    await this.database
+      .prepare(
+        `INSERT OR IGNORE INTO verification_replays (
+          id, assignment_id, run_id, artifact_bundle_manifest_hash,
+          requester_person_id, requester_agent_id, delegation_certificate_id,
+          agent_installation_id, idempotency_key, requested_at
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      )
+      .bind(
+        id,
+        assignment.id,
+        run.id,
+        assignment.artifactBundleManifestHash,
+        principal.personId,
+        installation.agentId,
+        installation.delegationCertificateId,
+        principal.agentInstallationId,
+        idempotencyKey,
+        requestedAt,
+      )
+      .run();
+    const stored = await this.findVerificationReplay({
+      assignmentId: assignment.id,
+      requesterAgentId: installation.agentId,
+      delegationCertificateId: installation.delegationCertificateId,
+      idempotencyKey,
+    });
+    if (!stored) throw new GatewayStoreConflictError("Verification replay provenance could not be recorded.");
+    assertSameVerificationReplay(stored, { id, assignment, installation, principal, idempotencyKey, run });
+    return stored;
+  }
+
+  async findVerificationReplay({ assignmentId, requesterAgentId, delegationCertificateId, idempotencyKey }) {
+    const row = await this.database
+      .prepare(
+        `SELECT id, assignment_id, run_id, artifact_bundle_manifest_hash,
+                requester_person_id, requester_agent_id, delegation_certificate_id,
+                agent_installation_id, idempotency_key, requested_at
+         FROM verification_replays
+         WHERE assignment_id = ? AND requester_agent_id = ?
+           AND delegation_certificate_id = ? AND idempotency_key = ?`,
+      )
+      .bind(assignmentId, requesterAgentId, delegationCertificateId, idempotencyKey)
+      .first();
+    return row ? toVerificationReplay(row) : null;
   }
 
   requireArtifactStore() {
@@ -640,6 +820,22 @@ function requireRunnerRequestInput(input) {
   }
 }
 
+function requireVerificationReplayRequestInput(input) {
+  if (!input || typeof input !== "object" || Array.isArray(input)) {
+    throw new GatewayStoreValidationError("Verification replay request input is required.");
+  }
+  requireIdentifier(input.assignmentId, "Verification assignment id", 240);
+  requireIdentifier(input.idempotencyKey, "Verification replay idempotency key", 160);
+}
+
+function requireVerificationReplayLookupInput(input) {
+  if (!input || typeof input !== "object" || Array.isArray(input)) {
+    throw new GatewayStoreValidationError("Verification replay lookup input is required.");
+  }
+  requireIdentifier(input.assignmentId, "Verification assignment id", 240);
+  requireIdentifier(input.idempotencyKey, "Verification replay idempotency key", 160);
+}
+
 function requireRunnerLookupInput(input) {
   if (!input || typeof input !== "object" || Array.isArray(input)) {
     throw new GatewayStoreValidationError("Run lookup input is required.");
@@ -677,6 +873,52 @@ function normalizeGatewayBindings(value) {
     };
   }
   return { database: value, bucket: null, runnerDispatcher: null };
+}
+
+async function verificationReplayIdentity({ assignmentId, requesterAgentId, delegationCertificateId, idempotencyKey }) {
+  const hash = await sha256Canonical({
+    protocolVersion: "pw-verification-replay-v1",
+    assignmentId,
+    requesterAgentId,
+    delegationCertificateId,
+    idempotencyKey,
+  });
+  const suffix = hash.slice("sha256:".length);
+  return Object.freeze({
+    id: `verification-replay:${suffix}`,
+    runId: `run:verification-replay:${suffix}`,
+    runnerIdempotencyKey: `verification-replay:${suffix}`,
+  });
+}
+
+function toVerificationReplay(row) {
+  return Object.freeze({
+    id: row.id,
+    assignmentId: row.assignment_id,
+    runId: row.run_id,
+    artifactBundleManifestHash: row.artifact_bundle_manifest_hash,
+    requesterPersonId: row.requester_person_id,
+    requesterAgentId: row.requester_agent_id,
+    delegationCertificateId: row.delegation_certificate_id,
+    agentInstallationId: row.agent_installation_id,
+    idempotencyKey: row.idempotency_key,
+    requestedAt: row.requested_at,
+  });
+}
+
+function assertSameVerificationReplay(existing, { id, assignment, installation, principal, idempotencyKey, run }) {
+  if (
+    existing.id !== id ||
+    existing.runId !== run.id ||
+    existing.artifactBundleManifestHash !== assignment.artifactBundleManifestHash ||
+    existing.requesterPersonId !== principal.personId ||
+    existing.requesterAgentId !== installation.agentId ||
+    existing.delegationCertificateId !== installation.delegationCertificateId ||
+    existing.agentInstallationId !== principal.agentInstallationId ||
+    existing.idempotencyKey !== idempotencyKey
+  ) {
+    throw new GatewayStoreConflictError("A verification replay idempotency key cannot be reused for different immutable evidence.");
+  }
 }
 
 function attemptListLimit(value) {

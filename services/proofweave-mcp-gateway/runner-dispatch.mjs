@@ -66,7 +66,7 @@ export class D1RemoteMcpRunnerDispatcher {
     this.controlPlanePrivateKeyPromise = null;
   }
 
-  async queueBundle({ attempt, artifactBundleHash, idempotencyKey }) {
+  async queueBundle({ attempt, artifactBundleHash, idempotencyKey, runId = `run:${crypto.randomUUID()}`, beforeDispatch = null }) {
     requireAttempt(attempt);
     requireSha256(artifactBundleHash, "Artifact Bundle hash");
     requireIdentifier(idempotencyKey, "Runner idempotency key", 160);
@@ -95,10 +95,11 @@ export class D1RemoteMcpRunnerDispatcher {
       controlPlanePrivateKey: await this.controlPlanePrivateKey(),
     });
     return orchestrator.queueArtifactBundle({
-      runId: `run:${crypto.randomUUID()}`,
+      runId,
       idempotencyKey,
       artifactBundle: loaded.bundle,
       queuedAt: isoInstant(this.now()),
+      beforeDispatch,
     });
   }
 

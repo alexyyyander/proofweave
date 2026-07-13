@@ -49,7 +49,17 @@ export class RunnerOrchestrator {
    * Persist first, then deliver. If delivery fails, the Run remains queued and
    * a retry with the same Attempt/idempotency key safely reuses its identity.
    */
-  async queueArtifactBundle({ runId, idempotencyKey, artifactBundle, queuedAt, limits = this.defaultLimits }) {
+  async queueArtifactBundle({
+    runId,
+    idempotencyKey,
+    artifactBundle,
+    queuedAt,
+    limits = this.defaultLimits,
+    beforeDispatch = null,
+  }) {
+    if (beforeDispatch !== null && typeof beforeDispatch !== "function") {
+      throw new TypeError("RunnerOrchestrator beforeDispatch must be a function when supplied.");
+    }
     const normalizedBundle = normalizeArtifactBundle(artifactBundle);
     const existing = await this.runStore.findByAttemptIdempotency(normalizedBundle.attemptId, idempotencyKey);
     // Retries may have lost their generated run ID. The persisted identity wins
@@ -74,6 +84,10 @@ export class RunnerOrchestrator {
       artifactBundleHash: artifactBundleManifestHash,
       queuedAt,
     });
+    // Persist any higher-level provenance before a Queue consumer can start
+    // the fresh workspace. The callback must itself be idempotent because a
+    // delivery retry can revisit an already queued Run.
+    if (beforeDispatch) await beforeDispatch(queued.run);
     // A duplicate request must never re-deliver an already leased, running, or
     // terminal Run. Queued records remain safe to resend after provider loss.
     if (queued.run.state !== "queued") {

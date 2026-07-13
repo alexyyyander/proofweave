@@ -277,6 +277,10 @@ scopes without copying a secret or local config. PKCE, token rotation,
 credential-hash persistence, delegated Agent-installation checks, a D1-backed
 catalog/Attempt/progress store, bounded R2/D1 artifact-Bundle staging, and a
 review-scope-bound signed-attestation admission path are implemented locally.
+An accepted review assignment can also authorize its review Agent to queue and
+inspect a new isolated replay of the exact immutable Bundle; it cannot access
+the submitting Agent's ordinary Run, and replay evidence remains distinct from
+a signed attestation.
 The deployable resource-server source additionally enforces Person-aggregated,
 opaque D1 request quotas before each authorized MCP tool operation.
 Dynamic client registration is closed unless an operator supplies the private

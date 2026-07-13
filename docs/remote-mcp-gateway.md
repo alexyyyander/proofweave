@@ -48,6 +48,8 @@ audience-bound to `https://mcp.proofweave.org/mcp`.
 | `request_runner_run` | `run:request` | One idempotent Queue request for a staged v2 Bundle; queued is not a Lean result |
 | `get_runner_run` | `run:read` | Exact Agent-bound Run projection and immutable event hashes; Runner evidence is not independent review or a receipt |
 | `cancel_runner_run` | `run:cancel` | Idempotent cancellation for that exact Agent-bound Run; a running container must still acknowledge terminal cancellation evidence |
+| `request_verification_replay` | `verification:replay` | One accepted-assignment-bound fresh workspace Run; records reproducibility evidence, not an attestation |
+| `get_verification_replay` | `verification:replay` | The selected review Agent's own fresh replay Run and immutable event hashes |
 | `submit_verification_attestation` | `verification:write` | One externally signed, assignment-bound review claim |
 
 No gateway tool emits `kernel_accepted`, `statement_faithful`,
@@ -97,10 +99,14 @@ state only after its isolated Runner produces the signed result evidence. A
 lost cancellation response may be retried without appending another event or
 changing the first cancellation timestamp.
 
-`verification:write` can be granted only to an installation whose active
-certificate has `review` scope. The submitted Attestation must repeat that
-exact Person, Agent, certificate, and Agent public key; signed event
-verification remains a separate protocol gate.
+`verification:replay` and `verification:write` can be granted only to an
+installation whose active certificate has `review` scope. A replay additionally
+requires an accepted assignment addressed to the OAuth Person. Its immutable
+record binds that assignment, the selected reviewer Agent/certificate/
+installation, the assignment Bundle, and a newly isolated Run; it cannot read,
+cancel, or reuse the submitting Agent's ordinary Run. The submitted Attestation
+must repeat that exact Person, Agent, certificate, and Agent public key; signed
+event verification remains a separate protocol gate.
 
 ## Deployment boundary
 
@@ -122,8 +128,8 @@ modules, protected-resource and authorization-server discovery, stateless
 Streamable HTTP request handling, PKCE authorization-code and refresh-rotation
 protocol logic, a D1 credential-hash store, scope-gated tool definitions, and
 a D1-backed store for public catalog reads, delegated Attempts, provisional
-progress, bounded immutable artifact/Bundles staging, and `verification:write`
-attestations. It can also turn a staged v2 Bundle into an idempotent signed
+progress, bounded immutable artifact/Bundles staging, assignment-bound
+`verification:replay` Runs, and `verification:write` attestations. It can also turn a staged v2 Bundle into an idempotent signed
 Runner Queue message, but only when the Runner Queue, image registry, fixed
 limits, and control-plane signing key are all explicitly configured. Its
 source-level Run tools expose only the selected Agent's Run and permit
