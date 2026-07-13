@@ -70,6 +70,27 @@ within that retired key's validity interval. A revoked key is no longer trusted
 for receipt display or dependency validation, including historical evidence,
 until a future recovery policy explicitly supplies replacement evidence.
 
+## Portable verification bundle
+
+`GET /api/receipts/:id/verification-bundle` downloads a
+`pw-contribution-receipt-verification-bundle-v1` JSON file for a currently
+verified public Receipt. It contains the root Receipt, every upstream Receipt
+declared in its dependency closure, every Receipt reached through a signed
+lifecycle replacement link, the corresponding signed lifecycle events, and the
+read-only issuer-key metadata actually used by that evidence closure.
+
+The endpoint re-resolves each item through the same D1 verification reader
+before export. `verifyContributionReceiptVerificationBundle` then rechecks the
+Receipt hashes, signatures, policy, issuer-key time windows, dependency hashes,
+replacement relationships, lifecycle ordering, and closure completeness without
+the Proofweave UI. The response carries the canonical bundle hash in
+`X-Proofweave-Verification-Bundle-Hash`.
+
+The issuer-key list is a trust snapshot at download time, not a substitute for
+obtaining a newer `/api/receipts/issuer-keys` response when checking later
+revocations. The export never contains Agent private keys, issuer private keys,
+private artifact bytes, or hidden review material.
+
 ## Internal issuance boundary
 
 `D1ContributionReceiptStore` rebuilds a draft only from staged immutable
@@ -112,15 +133,17 @@ supersession or retraction are rejected. The event table is append-only; it
 never updates an original receipt or an earlier event.
 
 The web application exposes read-only `GET /api/receipts/:id` JSON,
-`GET /api/receipts/:id/dependencies` edge JSON, and `/receipt/:id` display
-routes when a D1 binding is configured. Each read re-parses canonical payloads,
-recomputes hashes, verifies issuer signatures, and requires the edge projection
-to exactly match the downstream receipt's declared dependencies before returning
-or rendering it. An unknown identifier returns no receipt. No route can issue
-or alter evidence. `GET /api/receipts/:id/lifecycle` and the receipt page also
-verify each lifecycle signature and its replacement relationship before showing
-the append-only history. `GET /api/receipts` and `/receipts` expose a bounded,
+`GET /api/receipts/:id/dependencies` edge JSON,
+`GET /api/receipts/:id/verification-bundle` portable evidence JSON, and
+`/receipt/:id` display routes when a D1 binding is configured. Each read
+re-parses canonical payloads, recomputes hashes, verifies issuer signatures,
+and requires the edge projection to exactly match the downstream receipt's
+declared dependencies before returning or rendering it. An unknown identifier
+returns no receipt. No route can issue or alter evidence.
+`GET /api/receipts/:id/lifecycle` and the receipt page also verify each
+lifecycle signature and its replacement relationship before showing the
+append-only history. `GET /api/receipts` and `/receipts` expose a bounded,
 newest-first public index only after each listed receipt and its lifecycle
-status have passed the same verification. Issuer-key rotation is represented
-by the separate operator key registry, never by mutating a field on this v1
+status have passed the same verification. Issuer-key rotation is represented by
+the separate operator key registry, never by mutating a field on this v1
 receipt.

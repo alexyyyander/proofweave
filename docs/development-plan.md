@@ -503,6 +503,17 @@ emergency revocation without mutating historical receipts; its public keyset is
 available at `GET /api/receipts/issuer-keys`. See
 [`docs/contribution-receipt-contract.md`](contribution-receipt-contract.md).
 
+The original Receipt JSON and dependency/lifecycle APIs are now joined by a
+portable `pw-contribution-receipt-verification-bundle-v1` export at
+`GET /api/receipts/:id/verification-bundle`. It reconstructs the root Receipt,
+all declared upstream Receipts, signed replacement closure, lifecycle events,
+and issuer-key snapshot through the verified D1 reader before download. A
+standalone protocol verifier checks the entire closure, hashes, signatures,
+policy, issuer-key historical validity, and graph constraints without the UI.
+The export carries no private artifact bytes or signing credentials; its issuer
+key snapshot must still be refreshed from the public keyset for later revocation
+information.
+
 The immediate half of Sprint 5 is now represented by the owner-only
 `provisional_contributions` ledger: after D1/R2 Bundle staging verifies its
 delegated Agent event, it derives a single immutable `evidence_bundle` /

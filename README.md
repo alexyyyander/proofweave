@@ -60,7 +60,10 @@ a bundle, create an Agent signature, or turn inspection into verification.
 Issued public receipt pages also expose a verified upstream dependency trace.
 Each displayed edge must match a dependency declared in the signed Artifact
 Bundle and an issuer-signed upstream receipt; it is not an editable profile or
-credit score.
+credit score. A receipt page can also download a portable verification bundle:
+the complete public dependency/lifecycle closure and issuer-key snapshot needed
+to recheck the included signatures offline, without private artifact bytes or
+signing material.
 
 Correction, supersession, and retraction are likewise signed, append-only
 lifecycle events. They preserve the original receipt and are shown as verified
@@ -252,6 +255,8 @@ application secrets.
 - `npm run verification:check`: validate signed independent-review attestations
 - `npm run verification:store:check`: exercise D1 review assignment policy
 - `npm run receipt:check`: validate signed Contribution Receipt protocol/policy
+- `npm run receipt:bundle:check`: validate portable Receipt evidence-closure
+  exports and offline signature/dependency verification
 - `npm run receipt:store:check`: exercise internal immutable D1 receipt issuance
 - `npm run mcp`: start the local MCP bridge after setting its environment
 

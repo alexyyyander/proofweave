@@ -15,6 +15,10 @@ import {
   createContributionReceipt,
 } from "../packages/protocol/contribution-receipt.mjs";
 import { createContributionReceiptLifecycleEvent } from "../packages/protocol/contribution-receipt-lifecycle.mjs";
+import {
+  contributionReceiptVerificationBundleHash,
+  verifyContributionReceiptVerificationBundle,
+} from "../packages/protocol/contribution-receipt-verification-bundle.mjs";
 import { D1VerificationStore } from "../services/verification/d1-verification-store.mjs";
 import { closedAlphaAttemptLimits } from "../packages/domain/attempt-policy.mjs";
 
@@ -589,6 +593,11 @@ test("does not present a receipt preview as signed public evidence", async () =>
   assert.deepEqual(await lifecycle.json(), {
     error: { code: "not_found", message: "Contribution Receipt not found." },
   });
+  const verificationBundle = await render("/api/receipts/abc-l1/verification-bundle");
+  assert.equal(verificationBundle.status, 404);
+  assert.deepEqual(await verificationBundle.json(), {
+    error: { code: "not_found", message: "Contribution Receipt not found." },
+  });
 });
 
 test("imports the pinned catalog idempotently and serves provenance through the API", async () => {
@@ -637,6 +646,7 @@ test("renders only a hash-checked, issuer-signed receipt from D1", async () => {
   assert.match(html, /Open dependency JSON/i);
   assert.match(html, /This receipt was retracted; the original evidence remains inspectable/i);
   assert.match(html, /Open lifecycle JSON/i);
+  assert.match(html, /Download verification bundle/i);
 
   const index = await render("/api/receipts");
   assert.equal(index.status, 200);
@@ -686,6 +696,20 @@ test("renders only a hash-checked, issuer-signed receipt from D1", async () => {
     receiptId: receipt.id,
     events: [lifecycleEvent],
   });
+
+  const verificationBundle = await render(`/api/receipts/${receipt.id}/verification-bundle`);
+  assert.equal(verificationBundle.status, 200);
+  assert.match(verificationBundle.headers.get("content-type") ?? "", /^application\/json/i);
+  assert.match(verificationBundle.headers.get("content-disposition") ?? "", /attachment/i);
+  assert.doesNotMatch(verificationBundle.headers.get("cache-control") ?? "", /immutable/i);
+  const downloadedBundle = await verificationBundle.json();
+  assert.equal(downloadedBundle.rootReceiptId, receipt.id);
+  assert.deepEqual(downloadedBundle.receipts.map((entry) => entry.receipt.id).sort(), [receipt.id, upstreamReceipt.id].sort());
+  assert.equal((await verifyContributionReceiptVerificationBundle(downloadedBundle)).rootReceiptId, receipt.id);
+  assert.equal(
+    verificationBundle.headers.get("x-proofweave-verification-bundle-hash"),
+    await contributionReceiptVerificationBundleHash(downloadedBundle),
+  );
 });
 
 test("scopes closed-alpha review assignments to the assigned Person and preserves decisions", async () => {
