@@ -134,9 +134,11 @@ Implemented locally on 2026-07-13:
 - integration tests proving the full key/Agent/sign/revoke sequence plus D1
   immutability triggers.
 
-The workbench remains preview data until it has a safe Person-key lifecycle and
-real Agent setup flow. The API contract and current limitation are documented
-in [`docs/agent-delegation-api.md`](agent-delegation-api.md).
+The workbench now reads an authenticated Person's persisted key, Agent, and
+active-delegation status while preserving its existing preview research branch.
+It still needs a safe Person-key lifecycle and real Agent setup flow before the
+preview branch can submit work. The API contract and current limitation are
+documented in [`docs/agent-delegation-api.md`](agent-delegation-api.md).
 
 ## 3. Architecture boundary
 

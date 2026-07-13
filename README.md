@@ -157,8 +157,9 @@ Lean kernel acceptance, independent review, novelty, or a contribution receipt.
 
 The closed-alpha control plane can now persist an authenticated Person's
 Ed25519 signing key, registered Agent, signed delegation certificate, and
-append-only revocation. This is attribution infrastructure, not public
-onboarding: the UI remains a preview, key proof-of-possession is still needed,
+append-only revocation. The signed-in workbench now reflects that persisted
+setup while its research-run content remains preview-only. This is attribution
+infrastructure, not public onboarding: key proof-of-possession is still needed,
 and the separate remote identity/MCP services are not deployed.
 
 ## Learn More

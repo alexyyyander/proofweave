@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { DelegationProfile } from "@/db/repositories/delegation";
 import { delegation, leanSource, type GateState, type WorkbenchEvent, workbenchTarget } from "./workbench-data";
 
 function GateRow({ state, label, detail }: { state: GateState; label: string; detail: string }) {
@@ -7,28 +8,46 @@ function GateRow({ state, label, detail }: { state: GateState; label: string; de
   return <li className={`gate-row gate-${state}`}><span className="gate-icon" aria-hidden="true">{symbol}</span><span><strong>{label}</strong><small>{detail}</small></span><em>{stateText}</em></li>;
 }
 
-export function WorkbenchHero({ isRunning }: { isRunning: boolean }) {
+export function WorkbenchHero({ isRunning, profile }: { isRunning: boolean; profile: DelegationProfile | null }) {
+  const active = activeDelegation(profile);
+  const agent = active && profile?.agents.find((candidate) => candidate.id === active.agentId);
+  const agentName = agent?.label ?? delegation.agentName;
+  const agentId = agent?.id ?? delegation.agentId;
+  const ownerId = profile?.person.id ?? delegation.ownerId;
+  const status = active ? "Delegation active" : profile ? "Agent setup required" : "Delegation preview";
+  const activityLabel = active
+    ? isRunning ? "Ready for a bounded step" : "Agent paused"
+    : profile ? "No active delegation" : "Preview workspace";
+
   return <section className="workbench-hero" aria-labelledby="workbench-title">
     <div>
-      <p className="eyebrow">Personal workspace <span className="preview-marker">Local preview</span></p>
+      <p className="eyebrow">Personal workspace <span className="preview-marker">{profile ? "Account connected" : "Local preview"}</span></p>
       <h1 id="workbench-title">Your research agent</h1>
       <p>One focused proof branch, its evidence, and the next action required to move it forward.</p>
     </div>
     <div className="agent-identity-card">
-      <div className="agent-identity-top"><span className={isRunning ? "agent-live" : "agent-paused"}><i aria-hidden="true" />{isRunning ? "Ready for a bounded step" : "Agent paused"}</span><span className="record-chip">Delegation active</span></div>
-      <strong>{delegation.agentName}</strong>
-      <code>{delegation.agentId}</code>
-      <span>Owner&nbsp; <code>{delegation.ownerId}</code></span>
+      <div className="agent-identity-top"><span className={active && isRunning ? "agent-live" : "agent-paused"}><i aria-hidden="true" />{activityLabel}</span><span className="record-chip">{status}</span></div>
+      <strong>{agentName}</strong>
+      <code>{agentId}</code>
+      <span>Owner&nbsp; <code>{ownerId}</code></span>
     </div>
   </section>;
 }
 
-export function DelegationSummary() {
+export function DelegationSummary({ profile }: { profile: DelegationProfile | null }) {
+  const active = activeDelegation(profile);
+  const agent = active && profile?.agents.find((candidate) => candidate.id === active.agentId);
+  const signingKey = active && profile?.signingKeys.find((candidate) => candidate.id === active.personKeyId);
+  const scopes = active?.scopes ?? delegation.scopes;
+  const certificate = active?.id ?? delegation.certificate;
+  const fingerprint = signingKey?.fingerprint ?? delegation.fingerprint;
+  const expiration = active ? new Date(active.validUntil).toLocaleDateString(undefined, { day: "2-digit", month: "short", year: "numeric" }) : delegation.expires;
+
   return <section className="delegation-summary" aria-label="Delegation certificate">
-    <div className="delegation-title"><span className="micro-label">Active delegation</span><strong>{delegation.certificate}</strong><small>Key fingerprint · {delegation.fingerprint}</small></div>
-    <div><span className="micro-label">Allowed work</span><p className="scope-list">{delegation.scopes.map((scope) => <b key={scope}>{scope}</b>)}</p></div>
-    <div><span className="micro-label">Valid until</span><strong>{delegation.expires}</strong><small>Revocable by owner</small></div>
-    <div className="delegation-note"><span className="micro-label">Credit rule</span><small>Same-owner Agents cannot independently verify this branch.</small></div>
+    <div className="delegation-title"><span className="micro-label">{active ? "Active delegation" : profile ? "Delegation setup" : "Preview delegation"}</span><strong>{certificate}</strong><small>Key fingerprint · {fingerprint}</small></div>
+    <div><span className="micro-label">Allowed work</span><p className="scope-list">{scopes.map((scope) => <b key={scope}>{scope}</b>)}</p></div>
+    <div><span className="micro-label">{active ? "Valid until" : "Setup status"}</span><strong>{active ? expiration : profile ? `${profile.signingKeys.length} key · ${profile.agents.length} Agent` : expiration}</strong><small>{active ? "Revocable by owner" : "Create a signed delegation before reporting work"}</small></div>
+    <div className="delegation-note"><span className="micro-label">Credit rule</span><small>{agent && active ? "This signed authority credits its owner; same-owner Agents cannot independently verify it." : "Same-owner Agents cannot independently verify this branch."}</small></div>
   </section>;
 }
 
@@ -69,4 +88,13 @@ export function SubmissionReadiness({ hasRunStep, bundleStaged, onStageBundle }:
     <div className="submission-copy"><p className="eyebrow">Evidence before credit</p><h2 id="submission-title">Prepare a bundle only when its checks are explicit.</h2><p>A future network submission will record a source diff, pinned environment, declared dependencies, and signed Agent event. It will not create a contribution receipt until an independent owner has reviewed it.</p></div>
     <div className="submission-card"><div className="submission-card-heading"><strong>Bundle readiness</strong><span>{hasRunStep ? "1 local prerequisite met" : "1 action required"}</span></div><ul className="gate-list"><GateRow state="preview" label="Pinned environment" detail="Preview manifest shows Lean, Mathlib, and dependency revisions" /><GateRow state="preview" label="No admitted proof" detail="Preview source scan contains no sorry declarations" /><GateRow state="preview" label="Axiom audit" detail="Example audit result; not yet connected to Lean" /><GateRow state={hasRunStep ? "preview" : "waiting"} label="Signed Agent event" detail={hasRunStep ? "Local event outline attached; signing service is not connected" : "Complete the primary action above to create a local event outline"} /><GateRow state="required" label="Independent review" detail="Must be performed by a different owner" /></ul><p className="submission-hint">{hasRunStep ? "You can now stage an outline for review. It remains local until the required services are connected." : "The outline button unlocks after the recommended bounded step above."}</p><button className="button button-primary submit-button" type="button" disabled={!hasRunStep} onClick={onStageBundle}>{bundleStaged ? "Bundle outline staged" : "Prepare bundle outline"}</button>{bundleStaged && <p className="bundle-note"><span aria-hidden="true">✓</span> Local preview staged a bundle outline. Network submission remains unavailable until the signing and verifier services are connected.</p>}</div>
   </section>;
+}
+
+function activeDelegation(profile: DelegationProfile | null) {
+  const now = Date.now();
+  return profile?.delegations.find((candidate) =>
+    candidate.revokedAt === null &&
+    Date.parse(candidate.validFrom) <= now &&
+    now < Date.parse(candidate.validUntil),
+  ) ?? null;
 }
