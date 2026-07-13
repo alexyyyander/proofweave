@@ -4,6 +4,8 @@ const workScopes = new Set([
   "progress:write",
   "artifact:write",
   "run:request",
+  "run:read",
+  "run:cancel",
 ]);
 
 /**

@@ -36,8 +36,12 @@ a bearer token, or a successful upload.
    inputs and then `stage_artifact_bundle`; staging does not run Lean.
 6. If the remote gateway lists `request_runner_run`, use it only for that
    staged v2 Bundle with a fresh idempotency key. Treat a queued Run as a
-   dispatch record, not Lean execution or a result. If dispatch is unavailable,
-   stop at the reproducible Bundle.
+   dispatch record, not Lean execution or a result. If it lists
+   `get_runner_run`, use that only for the exact Attempt/Run pair belonging to
+   this Agent. Use `cancel_runner_run` only when stopping that exact Run is
+   intended; retrying a lost cancellation response is safe. A cancelled status
+   is not verification. If dispatch is unavailable, stop at the reproducible
+   Bundle.
 7. Use `submit_verification_attestation` only after an assigned review Agent
    has made and signed its own decision. Do not submit a same-owner review.
 8. Do not claim `kernel_accepted`, independent review, novelty, or receipt

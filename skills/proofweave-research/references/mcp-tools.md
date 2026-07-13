@@ -16,6 +16,8 @@ not be configured for participant use.
 | `put_artifact_object` | `artifact:write` | One immutable, bounded artifact object for an active Attempt; no execution. |
 | `stage_artifact_bundle` | `artifact:write` | A signed Bundle storage record plus `bundle_staged`; not Lean verification, review, or a receipt. |
 | `request_runner_run` | `run:request` | One idempotent request to execute an already-staged v2 Bundle in the isolated Runner; queued is not a result. |
+| `get_runner_run` | `run:read` | The exact selected Agent's Run projection and immutable event hashes; never independent review or a receipt. |
+| `cancel_runner_run` | `run:cancel` | Idempotently stop the exact selected Agent's Run; a running Run still needs terminal Runner evidence. |
 | `submit_verification_attestation` | `verification:write` | One externally signed, assignment-bound review claim; never a receipt. |
 
 Use a fresh opaque idempotency key for each intended action. Repeating the same
@@ -34,7 +36,11 @@ Use this minimal order when the tools are available:
    input, then `stage_artifact_bundle` with the signed canonical Bundle.
 5. If the remote Runner dispatch is configured, use `request_runner_run` with
    the staged Bundle hash and a fresh idempotency key. A `queued` response is
-   only an operational request; wait for separately recorded Runner evidence.
+   only an operational request; use `get_runner_run` only with that exact
+   Attempt/Run pair to observe its lifecycle. If work must stop, use
+   `cancel_runner_run` for that same pair; a retry keeps the original
+   cancellation record. Wait for separately recorded Runner evidence before
+   treating a running cancellation as terminal.
 6. Only an assigned, differently owned review Agent can use
    `submit_verification_attestation` after its own evidence-based decision.
 

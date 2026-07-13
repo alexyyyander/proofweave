@@ -338,7 +338,7 @@ test("a prove-delegated OAuth Agent stages a signed v2 Bundle and requests one i
     resource,
     personId: "person:gateway-reviewer",
     agentInstallationId: "installation:gateway-prover",
-    scopes: ["attempt:create", "artifact:write", "run:request"],
+    scopes: ["attempt:create", "artifact:write", "run:request", "run:read", "run:cancel"],
     issuedAt: "2026-07-13T00:00:00Z",
     accessExpiresAt: "2027-07-13T00:00:00Z",
     refreshExpiresAt: "2027-08-13T00:00:00Z",
@@ -448,6 +448,63 @@ test("a prove-delegated OAuth Agent stages a signed v2 Bundle and requests one i
   assert.equal(replayRun.runCreated, false);
   assert.equal(replayRun.run.id, run.run.id);
   assert.equal(runnerQueue.messages.length, 2);
+
+  const visible = await callGatewayTool(gateway, resource, accessToken, "get_runner_run", {
+    attemptId,
+    runId: run.run.id,
+  });
+  assert.equal(visible.result.isError, undefined);
+  const visibleRun = JSON.parse(visible.result.content[0].text);
+  assert.equal(visibleRun.run.id, run.run.id);
+  assert.equal(visibleRun.run.state, "queued");
+  assert.deepEqual(visibleRun.events.map((event) => event.eventType), ["run_queued"]);
+  assert.equal(visibleRun.verificationState, "not_verified");
+
+  const reviewerAccessToken = "pw_at_gateway_reviewer_run_fixture";
+  await oauthStore.issueTokenPair({
+    accessTokenHash: await tokenHash(reviewerAccessToken),
+    refreshTokenHash: await tokenHash("pw_rt_gateway_reviewer_run_fixture"),
+    clientId: "client:gateway-codex",
+    resource,
+    personId: "person:gateway-reviewer",
+    agentInstallationId: "installation:gateway-reviewer",
+    scopes: ["run:read"],
+    issuedAt: "2026-07-13T00:00:00Z",
+    accessExpiresAt: "2027-07-13T00:00:00Z",
+    refreshExpiresAt: "2027-08-13T00:00:00Z",
+  });
+  const hiddenFromOtherAgent = await callGatewayTool(gateway, resource, reviewerAccessToken, "get_runner_run", {
+    attemptId,
+    runId: run.run.id,
+  });
+  assert.equal(hiddenFromOtherAgent.result.isError, true);
+  assert.match(hiddenFromOtherAgent.result.content[0].text, /Attempt not found/);
+
+  const cancelled = await callGatewayTool(gateway, resource, accessToken, "cancel_runner_run", {
+    attemptId,
+    runId: run.run.id,
+  });
+  assert.equal(cancelled.result.isError, undefined);
+  const cancelledRun = JSON.parse(cancelled.result.content[0].text);
+  assert.equal(cancelledRun.run.state, "cancelled");
+  assert.equal(cancelledRun.cancellationState, "cancelled_before_execution");
+  assert.equal(cancelledRun.verificationState, "not_verified");
+  const firstCancelledAt = cancelledRun.run.cancelRequestedAt;
+
+  const cancellationReplay = await callGatewayTool(gateway, resource, accessToken, "cancel_runner_run", {
+    attemptId,
+    runId: run.run.id,
+  });
+  const replayCancelledRun = JSON.parse(cancellationReplay.result.content[0].text);
+  assert.equal(replayCancelledRun.run.state, "cancelled");
+  assert.equal(replayCancelledRun.run.cancelRequestedAt, firstCancelledAt);
+
+  const afterCancellation = await callGatewayTool(gateway, resource, accessToken, "get_runner_run", {
+    attemptId,
+    runId: run.run.id,
+  });
+  const afterCancellationRun = JSON.parse(afterCancellation.result.content[0].text);
+  assert.deepEqual(afterCancellationRun.events.map((event) => event.eventType), ["run_queued", "run_cancelled"]);
 });
 
 test("remote MCP capacity is shared by every Agent owned by the same Person", async () => {

@@ -149,10 +149,10 @@ export class D1RunStore {
 
   async requestCancellation(runId, requestedAt) {
     const current = await this.requireRun(runId);
-    if (
-      ["cancel_requested", "cancelled"].includes(current.state) &&
-      current.cancelRequestedAt === requestedAt
-    ) {
+    // A caller may retry after losing the first response and cannot know the
+    // original server time. Returning the immutable projection avoids a second
+    // cancellation event while preserving the first recorded instant.
+    if (["cancel_requested", "cancelled"].includes(current.state)) {
       return current;
     }
     const next = requestRunCancellation(current, requestedAt);

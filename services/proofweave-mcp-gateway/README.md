@@ -31,6 +31,15 @@ only: it is never represented as a Lean result, review, or receipt. With no
 Runner configuration, this tool reports that dispatch is unavailable instead
 of falling back to a local executor or simulated result.
 
+`run:read` and `run:cancel` are also constrained to the same exact active
+Agent/certificate and Attempt. They expose only the immutable Run projection
+and event hashes belonging to that Attempt; another Agent of the same owner
+cannot inspect or cancel it. Cancellation is idempotent: a queued/preparing
+Run becomes terminally cancelled and is skipped if its Queue delivery arrives;
+a running Run records a cancellation request until its isolated runner returns
+signed terminal evidence. Neither tool creates verification, review, or a
+receipt.
+
 The `verification:write` adapter binds an Attestation to the selected OAuth
 installation, requires its delegation to include `review`, and then lets the
 verification store recheck assignment, evidence, revocation, timestamp,

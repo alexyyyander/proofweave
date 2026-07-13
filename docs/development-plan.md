@@ -228,6 +228,10 @@ Implemented locally on 2026-07-13:
   operator-approved Lean/Mathlib image, and atomically binds it to one signed,
   idempotent Runner Queue request. It remains unavailable until every separate
   Queue, Runner image, limits, and signing binding is provisioned; and
+- source-level `run:read` and idempotent `run:cancel` tools that recheck the
+  same exact Agent/certificate/Attempt binding, expose only immutable Run
+  lifecycle metadata, and distinguish queued cancellation from an
+  evidence-backed running cancellation; and
 - a fail-closed Cloudflare gateway deployment entrypoint that composes D1
   token lookup, D1/R2 evidence storage, and stateless OAuth resource-server
   enforcement from explicit Worker bindings; and
@@ -433,7 +437,9 @@ Terminal runner results must be signed by an active, operator-provisioned runner
 key before the store accepts them. Lean jobs intentionally support
 cancellation—not fake pause/resume—because a reproducible checkpoint format
 does not exist yet. The store remains internal: no public run-creation or
-execution route exists. See
+execution route exists. The remote MCP source may let the exact delegated
+Agent read or request cancellation of its own Run, but it cannot make a
+cancelled status mean verification. See
 [`docs/run-state-contract.md`](run-state-contract.md).
 
 ### Verification-assignment progress

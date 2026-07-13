@@ -33,6 +33,20 @@ function fixtureStore() {
     async putArtifactObject(_principal, input) { return { object: input, storageState: "object_staged_only" }; },
     async stageArtifactBundle(_principal, bundle) { return { bundle, storageState: "bundle_staged_only" }; },
     async requestRunnerRun(_principal, input) { return { run: { id: "run:test", ...input, state: "queued" }, verificationState: "not_verified" }; },
+    async getRunnerRun(_principal, input) {
+      return {
+        run: { id: input.runId, attemptId: input.attemptId, state: "queued" },
+        events: [],
+        verificationState: "not_verified",
+      };
+    },
+    async cancelRunnerRun(_principal, input) {
+      return {
+        run: { id: input.runId, attemptId: input.attemptId, state: "cancelled" },
+        cancellationState: "cancelled_before_execution",
+        verificationState: "not_verified",
+      };
+    },
     async submitVerificationAttestation(_principal, attestation) { return { id: attestation.id, created: true }; },
   };
 }
@@ -114,6 +128,40 @@ test("requires run:request before an Agent can queue a staged Bundle", async () 
   const payload = await response.json();
   assert.equal(payload.result.isError, true);
   assert.match(payload.result.content[0].text, /Missing OAuth scope: run:request/);
+});
+
+test("requires separate read and cancellation scopes for an Agent's exact Run", async () => {
+  for (const [tool, scope] of [["get_runner_run", "run:read"], ["cancel_runner_run", "run:cancel"]]) {
+    const gateway = gatewayWith({
+      async authenticate() {
+        return {
+          accessToken: "access-test-token",
+          clientId: "client:test",
+          personId: "person:test",
+          agentInstallationId: "installation:test",
+          scopes: ["run:request"],
+        };
+      },
+    });
+    const response = await gateway.fetch(new Request(resource, {
+      method: "POST",
+      headers: {
+        authorization: "Bearer access-test-token",
+        Accept: "application/json, text/event-stream",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        jsonrpc: "2.0",
+        id: 1,
+        method: "tools/call",
+        params: { name: tool, arguments: { attemptId: "attempt:test", runId: "run:test" } },
+      }),
+    }));
+    assert.equal(response.status, 200);
+    const payload = await response.json();
+    assert.equal(payload.result.isError, true);
+    assert.match(payload.result.content[0].text, new RegExp(`Missing OAuth scope: ${scope}`));
+  }
 });
 
 test("the Cloudflare gateway entrypoint fails closed without its control-plane bindings", async () => {

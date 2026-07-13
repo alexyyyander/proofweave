@@ -58,7 +58,9 @@ test("D1 Run store persists an idempotent lifecycle with immutable evidence", as
   const running = await store.start("run:fixture-1", "2026-07-13T00:00:02Z");
   const outputStore = new D1R2RunnerOutputStore({ database, bucket });
   const cancelling = await store.requestCancellation("run:fixture-1", "2026-07-13T00:00:03Z");
-  assert.equal((await store.requestCancellation("run:fixture-1", "2026-07-13T00:00:03Z")).state, "cancel_requested");
+  const cancellationReplay = await store.requestCancellation("run:fixture-1", "2026-07-13T00:00:09Z");
+  assert.equal(cancellationReplay.state, "cancel_requested");
+  assert.equal(cancellationReplay.cancelRequestedAt, "2026-07-13T00:00:03Z");
   const invalidResult = await fixtureResult();
   invalidResult.runnerSignature = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
   await assert.rejects(

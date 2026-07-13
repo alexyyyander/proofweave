@@ -23,6 +23,9 @@ can also request an idempotent isolated Runner Queue job for a staged v2 Bundle.
 That request rechecks the stored signed evidence and selects only an
 operator-approved Lean/Mathlib image; a queued job remains operational status,
 not a kernel result, review, or receipt.
+The same exact Agent/certificate may read its Run's immutable lifecycle and
+request idempotent cancellation. It cannot inspect or control a sibling
+Agent's Run, and a cancellation is never presented as Lean verification.
 
 The remote MCP runtime also has source-level D1-atomic request quotas. They
 aggregate by Person rather than Agent installation and retain only short-lived,

@@ -117,6 +117,14 @@ export class UnconfiguredGatewayStore {
   async requestRunnerRun() {
     throw new Error("The Proofweave remote control plane is not configured.");
   }
+
+  async getRunnerRun() {
+    throw new Error("The Proofweave remote control plane is not configured.");
+  }
+
+  async cancelRunnerRun() {
+    throw new Error("The Proofweave remote control plane is not configured.");
+  }
 }
 
 async function handleMcpRequest(request, principal, store, resource, rateLimiter) {
@@ -319,6 +327,46 @@ function createMcpServer(principal, store, rateLimiter) {
       "request_runner_run",
       rateLimiter,
       () => store.requestRunnerRun(principal, input),
+    )),
+  );
+
+  server.registerTool(
+    "get_runner_run",
+    {
+      title: "Read an isolated Lean Run",
+      description: "Read the selected Agent's exact Run state and immutable event hashes. A recorded Runner result is not independent review or a receipt.",
+      inputSchema: {
+        attemptId: z.string().min(1).max(160),
+        runId: z.string().min(1).max(240),
+      },
+      annotations: { readOnlyHint: true, destructiveHint: false },
+    },
+    async (input) => toolResult(await withScope(
+      principal,
+      "run:read",
+      "get_runner_run",
+      rateLimiter,
+      () => store.getRunnerRun(principal, input),
+    )),
+  );
+
+  server.registerTool(
+    "cancel_runner_run",
+    {
+      title: "Cancel an isolated Lean Run",
+      description: "Request cancellation only for the selected Agent's exact active Run. Repeating a lost response is safe and preserves the first cancellation record.",
+      inputSchema: {
+        attemptId: z.string().min(1).max(160),
+        runId: z.string().min(1).max(240),
+      },
+      annotations: { readOnlyHint: false, destructiveHint: false },
+    },
+    async (input) => toolResult(await withScope(
+      principal,
+      "run:cancel",
+      "cancel_runner_run",
+      rateLimiter,
+      () => store.cancelRunnerRun(principal, input),
     )),
   );
 

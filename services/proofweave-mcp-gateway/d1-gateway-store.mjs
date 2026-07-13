@@ -6,6 +6,7 @@ import {
   VerificationStoreValidationError,
 } from "../verification/d1-verification-store.mjs";
 import { D1R2ArtifactStore, maxArtifactObjectBytes } from "../artifacts/d1-r2-artifact-store.mjs";
+import { D1RunStore } from "../lean-runner/d1-run-store.mjs";
 import { closedAlphaAttemptLimits } from "../../packages/domain/attempt-policy.mjs";
 
 export class GatewayStoreAuthorizationError extends Error {
@@ -60,6 +61,7 @@ export class D1RemoteMcpGatewayStore {
     this.database = database;
     this.verificationStore = new D1VerificationStore(database);
     this.artifactStore = bucket ? new D1R2ArtifactStore({ database, bucket }) : null;
+    this.runStore = new D1RunStore(database);
     this.runnerDispatcher = runnerDispatcher;
   }
 
@@ -291,6 +293,35 @@ export class D1RemoteMcpGatewayStore {
     });
   }
 
+  async getRunnerRun(principal, input) {
+    assertPrincipalScope(principal, "run:read");
+    requireRunnerLookupInput(input);
+    const installation = await this.requireInstallation(principal);
+    const attempt = await this.requireArtifactAttempt(principal, installation, input.attemptId);
+    await this.requireInstallation(principal, attempt.delegationScope);
+    const run = await this.requireRunForAttempt(input.runId, attempt.id);
+    return Object.freeze({
+      run,
+      events: Object.freeze(await this.runStore.listEvents(run.id)),
+      verificationState: run.runnerResultHash ? "runner_evidence_recorded" : "not_verified",
+    });
+  }
+
+  async cancelRunnerRun(principal, input) {
+    assertPrincipalScope(principal, "run:cancel");
+    requireRunnerLookupInput(input);
+    const installation = await this.requireInstallation(principal);
+    const attempt = await this.requireArtifactAttempt(principal, installation, input.attemptId);
+    await this.requireInstallation(principal, attempt.delegationScope);
+    const run = await this.requireRunForAttempt(input.runId, attempt.id);
+    const cancelled = await this.runStore.requestCancellation(run.id, new Date().toISOString());
+    return Object.freeze({
+      run: cancelled,
+      cancellationState: cancelled.state === "cancelled" ? "cancelled_before_execution" : "cancellation_requested",
+      verificationState: cancelled.runnerResultHash ? "runner_evidence_recorded" : "not_verified",
+    });
+  }
+
   async submitVerificationAttestation(principal, attestation) {
     assertVerificationPrincipal(principal);
     let normalized;
@@ -399,6 +430,15 @@ export class D1RemoteMcpGatewayStore {
       throw new GatewayStoreValidationError("Attempt does not have delegated formalize or prove authority.");
     }
     return attempt;
+  }
+
+  async requireRunForAttempt(runId, attemptId) {
+    requireIdentifier(runId, "Run id", 240);
+    const run = await this.runStore.find(runId);
+    if (!run || run.attemptId !== attemptId) {
+      throw new GatewayStoreNotFoundError("Run not found.");
+    }
+    return run;
   }
 
   async findAttemptForInstallation(principal, installation, attemptId) {
@@ -598,6 +638,14 @@ function requireRunnerRequestInput(input) {
   if (typeof input.artifactBundleHash !== "string" || !/^sha256:[a-f0-9]{64}$/.test(input.artifactBundleHash)) {
     throw new GatewayStoreValidationError("Artifact Bundle hash must be a sha256:<hex> value.");
   }
+}
+
+function requireRunnerLookupInput(input) {
+  if (!input || typeof input !== "object" || Array.isArray(input)) {
+    throw new GatewayStoreValidationError("Run lookup input is required.");
+  }
+  requireIdentifier(input.attemptId, "Attempt id", 160);
+  requireIdentifier(input.runId, "Run id", 240);
 }
 
 function decodeBase64Url(value) {

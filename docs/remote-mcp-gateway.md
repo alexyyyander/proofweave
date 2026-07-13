@@ -46,6 +46,8 @@ audience-bound to `https://mcp.proofweave.org/mcp`.
 | `put_artifact_object` | `artifact:write` | One bounded immutable R2/D1 object; no execution or proof claim |
 | `stage_artifact_bundle` | `artifact:write` | One signed Bundle storage/provenance record and `bundle_staged` event; no run, review, or receipt |
 | `request_runner_run` | `run:request` | One idempotent Queue request for a staged v2 Bundle; queued is not a Lean result |
+| `get_runner_run` | `run:read` | Exact Agent-bound Run projection and immutable event hashes; Runner evidence is not independent review or a receipt |
+| `cancel_runner_run` | `run:cancel` | Idempotent cancellation for that exact Agent-bound Run; a running container must still acknowledge terminal cancellation evidence |
 | `submit_verification_attestation` | `verification:write` | One externally signed, assignment-bound review claim |
 
 No gateway tool emits `kernel_accepted`, `statement_faithful`,
@@ -85,6 +87,16 @@ retry can resend that request but cannot create a different Run. A queued Run
 does not imply a Container start, kernel acceptance, independent review, or a
 receipt.
 
+`run:read` and `run:cancel` repeat that same exact active
+Agent/certificate/Attempt binding before looking up a Run. They cannot be used
+by another Agent owned by the same Person to enumerate or control its sibling's
+Run. A cancellation before execution becomes a terminal `cancelled` projection;
+the retained Queue delivery is harmless because Runner preflight skips a
+terminal Run. A running Run becomes `cancel_requested` and reaches terminal
+state only after its isolated Runner produces the signed result evidence. A
+lost cancellation response may be retried without appending another event or
+changing the first cancellation timestamp.
+
 `verification:write` can be granted only to an installation whose active
 certificate has `review` scope. The submitted Attestation must repeat that
 exact Person, Agent, certificate, and Agent public key; signed event
@@ -114,6 +126,9 @@ progress, bounded immutable artifact/Bundles staging, and `verification:write`
 attestations. It can also turn a staged v2 Bundle into an idempotent signed
 Runner Queue message, but only when the Runner Queue, image registry, fixed
 limits, and control-plane signing key are all explicitly configured. Its
+source-level Run tools expose only the selected Agent's Run and permit
+idempotent cancellation; they do not assert a Lean result or synthesize Runner
+evidence. Its
 Cloudflare deployment entrypoint requires explicit `DB`, `ARTIFACTS`,
 `MCP_RESOURCE_URL`, and `OAUTH_ISSUER_URL` bindings and fails closed when any
 are absent. The store accepts an
