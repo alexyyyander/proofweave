@@ -77,7 +77,10 @@ Implemented locally on 2026-07-13:
 - upgraded the welcome image to the platform image component to keep the lint
   baseline clean.
 
-The first remote CI run is pending the source push that includes this workflow.
+The workflow is ready for a GitHub-connected mirror. The current
+Sites-controlled source repository does not execute GitHub Actions, so connect a
+GitHub remote or equivalent CI provider before marking the “CI blocks a broken
+build” exit criterion as achieved.
 
 ## 3. Architecture boundary
 
