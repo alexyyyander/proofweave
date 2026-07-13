@@ -64,7 +64,11 @@ persists the resulting canonical receipt in an immutable D1 row. Retrying the
 same receipt/evidence identity returns the stored receipt rather than issuing a
 duplicate.
 
-There is still no participant-facing issuance route, public receipt
-JSON/download endpoint, or replacement for the frontend schema-preview page.
-Dependency edges, supersession, correction, retraction, and issuer-key rotation
-remain append-only work, not mutable fields on this v1 receipt.
+There is no participant-facing issuance route. The web application does expose
+read-only `GET /api/receipts/:id` JSON and `/receipt/:id` display routes when a
+D1 binding is configured. Each route re-parses the stored canonical payload,
+recomputes the stored receipt hash, and verifies the embedded issuer signature
+before returning or rendering it; an unknown identifier returns no receipt.
+Neither route can issue or alter evidence. Dependency edges, supersession,
+correction, retraction, and issuer-key rotation remain append-only work, not
+mutable fields on this v1 receipt.

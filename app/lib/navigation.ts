@@ -10,5 +10,5 @@ export const footerNavigation = [
   { href: "/explore", label: "Explore" },
   { href: "/workbench", label: "Workbench" },
   { href: "/how-it-works", label: "Protocol" },
-  { href: "/receipt/abc-l1", label: "Receipt preview" },
+  { href: "/how-it-works", label: "Receipt requirements" },
 ];

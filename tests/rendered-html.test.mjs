@@ -5,6 +5,10 @@ import { fileURLToPath } from "node:url";
 import { Miniflare } from "miniflare";
 import { delegationSigningPayload } from "../packages/domain/delegation.mjs";
 import { canonicalJson } from "../packages/protocol/canonical-json.mjs";
+import {
+  contributionReceiptHash,
+  createContributionReceipt,
+} from "../packages/protocol/contribution-receipt.mjs";
 
 const repositoryRoot = new URL("../", import.meta.url);
 const migrationsRoot = new URL("../drizzle/", import.meta.url);
@@ -69,6 +73,152 @@ async function applyMigrations(d1, onlySeed = false) {
   }
 }
 
+async function insertSignedReceiptFixture() {
+  const keyPair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
+  const issuerPublicKey = Buffer.from(
+    await crypto.subtle.exportKey("raw", keyPair.publicKey),
+  ).toString("base64url");
+  const hash = (character) => `sha256:${character.repeat(64)}`;
+  const receipt = await createContributionReceipt({
+    receipt: {
+      protocolVersion: "pw-contribution-receipt-v1",
+      id: "receipt:public-fixture",
+      kind: "lemma",
+      beneficiary: {
+        personId: "person:fixture-owner",
+        agentId: "agent:fixture-prover",
+        delegationCertificateId: "delegation:fixture-prover",
+      },
+      attempt: {
+        id: "attempt:fixture-public",
+        personId: "person:fixture-owner",
+        agentId: "agent:fixture-prover",
+        delegationCertificateId: "delegation:fixture-prover",
+        problemRevisionId: "revision:fixture-public",
+      },
+      target: { declaration: "Fixture.PublicLemma", statementHash: hash("a") },
+      artifactBundleHash: hash("b"),
+      bundle: { manifestHash: hash("b"), dependencyReceipts: [] },
+      run: {
+        id: "run:fixture-public",
+        requestHash: hash("c"),
+        resultHash: hash("d"),
+        status: "succeeded",
+        kernelStatus: "accepted",
+      },
+      claims: [
+        fixtureClaim("bundle_reproducible", "attestation:fixture-bundle", "agent:fixture-reviewer", "delegation:fixture-reviewer", hash("b"), hash("e")),
+        fixtureClaim("kernel_accepted", "attestation:fixture-kernel", "agent:fixture-reviewer", "delegation:fixture-reviewer", hash("b"), hash("f")),
+        fixtureClaim("project_accepted", "attestation:fixture-project", "agent:fixture-curator", "delegation:fixture-curator", hash("b"), hash("0")),
+      ],
+      issuedAt: "2026-07-13T00:00:00Z",
+      policyVersion: "pw-receipt-policy-v1",
+      issuerKeyId: "issuer:fixture",
+      issuerPublicKey,
+    },
+    issuerPrivateKey: keyPair.privateKey,
+  });
+  const receiptHash = await contributionReceiptHash(receipt);
+
+  await seedReceiptEvidenceFixture({ receipt, receiptHash, hash });
+
+  return { receipt, receiptHash };
+}
+
+async function seedReceiptEvidenceFixture({ receipt, receiptHash, hash }) {
+  const now = "2026-07-13T00:00:00Z";
+  const rows = [
+    [
+      `INSERT INTO source_snapshots (
+        id, upstream_name, source_url, revision_tag, revision_commit, retrieved_at,
+        content_hash, manifest_hash, source_license, lean_toolchain, mathlib_revision
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      ["snapshot:fixture-public", "fixture", "https://example.test/fixture", "v1", "fixture-public", now, hash("1"), hash("2"), "MIT", "leanprover/lean4:v4.27.0", "fixture"],
+    ],
+    ["INSERT INTO projects (id, slug, kind, title, summary) VALUES (?, ?, ?, ?, ?)", ["project:fixture-public", "fixture-public", "frontier", "Fixture", "Fixture"]],
+    [
+      `INSERT INTO problem_revisions (
+        id, project_id, source_snapshot_id, target_key, slug, revision_number,
+        title, domain, research_status, informal_statement, lean_statement
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [receipt.attempt.problemRevisionId, "project:fixture-public", "snapshot:fixture-public", "fixture-target", "fixture-target", 1, "Fixture target", "logic", "research_open", "fixture", "theorem public_fixture : True := by trivial"],
+    ],
+    ["INSERT INTO persons (id, identity_provider, provider_subject, display_name, updated_at) VALUES (?, ?, ?, ?, ?)", [receipt.beneficiary.personId, "proofweave", "fixture-owner", "Fixture owner", now]],
+    ["INSERT INTO person_keys (id, person_id, public_key, fingerprint) VALUES (?, ?, ?, ?)", ["person-key:fixture-owner", receipt.beneficiary.personId, "fixture-person-key", hash("3")]],
+    ["INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint) VALUES (?, ?, ?, ?, ?)", [receipt.beneficiary.agentId, receipt.beneficiary.personId, "Fixture prover", "fixture-agent-key", hash("4")]],
+    [
+      `INSERT INTO delegation_certificates (
+        id, owner_person_id, agent_id, person_key_id, agent_public_key, scopes_json,
+        valid_from, valid_until, beneficiary_person_id, protocol_version, payload_hash,
+        canonical_payload, person_signature
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [receipt.beneficiary.delegationCertificateId, receipt.beneficiary.personId, receipt.beneficiary.agentId, "person-key:fixture-owner", "fixture-agent-key", '["formalize","prove"]', now, "2027-07-13T00:00:00Z", receipt.beneficiary.personId, "pw-delegation-v1", hash("5"), "{}", "fixture-signature"],
+    ],
+    [
+      `INSERT INTO agent_attempts (
+        id, person_id, problem_revision_id, agent_id, delegation_certificate_id,
+        agent_label, status, idempotency_key, created_at, updated_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [receipt.attempt.id, receipt.attempt.personId, receipt.attempt.problemRevisionId, receipt.attempt.agentId, receipt.attempt.delegationCertificateId, "Fixture prover", "active", "fixture-attempt", now, now],
+    ],
+    ["INSERT INTO artifact_objects (content_hash, object_key, byte_length, content_type) VALUES (?, ?, ?, ?)", [receipt.artifactBundleHash, "bundles/fixture-public.json", 1, "application/json"]],
+    [
+      `INSERT INTO artifact_bundles (
+        id, attempt_id, problem_revision_id, manifest_hash, manifest_key,
+        canonical_manifest, agent_event_id, agent_event_payload_hash
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      ["bundle:fixture-public", receipt.attempt.id, receipt.attempt.problemRevisionId, receipt.artifactBundleHash, "bundles/fixture-public.json", "{}", "agent-event:fixture-public", hash("6")],
+    ],
+    [
+      `INSERT INTO runs (
+        id, attempt_id, artifact_bundle_hash, request_hash, idempotency_key, state,
+        queued_at, finished_at, runner_result_hash, updated_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [receipt.run.id, receipt.attempt.id, receipt.artifactBundleHash, receipt.run.requestHash, "fixture-run", "succeeded", now, now, receipt.run.resultHash, now],
+    ],
+    ["INSERT INTO run_results (run_id, result_hash, canonical_result, received_at) VALUES (?, ?, ?, ?)", [receipt.run.id, receipt.run.resultHash, "{}", now]],
+    [
+      `INSERT INTO contribution_receipts (
+        id, kind, beneficiary_person_id, beneficiary_agent_id,
+        beneficiary_delegation_certificate_id, attempt_id, problem_revision_id,
+        artifact_bundle_manifest_hash, run_id, receipt_hash, canonical_receipt,
+        payload_hash, issuer_key_id, issuer_public_key, issuer_signature, issued_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        receipt.id, receipt.kind, receipt.beneficiary.personId, receipt.beneficiary.agentId,
+        receipt.beneficiary.delegationCertificateId, receipt.attempt.id,
+        receipt.attempt.problemRevisionId, receipt.artifactBundleHash, receipt.run.id,
+        receiptHash, canonicalJson(receipt), receipt.payloadHash, receipt.issuerKeyId,
+        receipt.issuerPublicKey, receipt.issuerSignature, receipt.issuedAt,
+      ],
+    ],
+  ];
+
+  for (const [query, bindings] of rows) {
+    await database.prepare(query).bind(...bindings).run();
+  }
+}
+
+function fixtureClaim(
+  claimType,
+  verificationAttestationId,
+  reviewerAgentId,
+  reviewerDelegationCertificateId,
+  artifactBundleHash,
+  verificationAttestationHash,
+) {
+  return {
+    claimType,
+    verificationAttestationId,
+    verificationAttestationHash,
+    artifactBundleHash,
+    reviewerPersonId: "person:fixture-reviewer",
+    reviewerAgentId,
+    reviewerDelegationCertificateId,
+    decision: "attested",
+  };
+}
+
 async function listJavaScriptModules(directory) {
   const entries = await readdir(directory, { withFileTypes: true });
   const nestedModules = await Promise.all(
@@ -108,6 +258,7 @@ test("serves the public research paths", async () => {
     ["/how-it-works", /Participation is personal\. Verification is public/i],
     ["/workbench", /Your research agent/i],
     ["/integrations", /Connect your research agent without sharing a secret/i],
+    ["/receipt/abc-l1", /Receipt not issued/i],
   ]);
 
   for (const [pathname, expectedContent] of expectedPageContent) {
@@ -119,6 +270,14 @@ test("serves the public research paths", async () => {
       `${pathname} should render its heading`,
     );
   }
+});
+
+test("does not present a receipt preview as signed public evidence", async () => {
+  const response = await render("/api/receipts/abc-l1");
+  assert.equal(response.status, 404);
+  assert.deepEqual(await response.json(), {
+    error: { code: "not_found", message: "Contribution Receipt not found." },
+  });
 });
 
 test("imports the pinned catalog idempotently and serves provenance through the API", async () => {
@@ -146,6 +305,22 @@ test("imports the pinned catalog idempotently and serves provenance through the 
   const { record } = await recordResponse.json();
   assert.equal(record.declaration.qualifiedName, "Erdos865.erdos_865");
   assert.match(record.declaration.sourceContentHash, /^sha256:[a-f0-9]{64}$/);
+});
+
+test("renders only a hash-checked, issuer-signed receipt from D1", async () => {
+  const { receipt, receiptHash } = await insertSignedReceiptFixture();
+
+  const response = await render(`/api/receipts/${receipt.id}`);
+  assert.equal(response.status, 200);
+  assert.match(response.headers.get("cache-control") ?? "", /immutable/i);
+  assert.deepEqual(await response.json(), { receipt, receiptHash });
+
+  const page = await render(`/receipt/${receipt.id}`);
+  assert.equal(page.status, 200);
+  const html = await page.text();
+  assert.match(html, /Reusable lemma/i);
+  assert.match(html, new RegExp(receiptHash));
+  assert.match(html, /Open verified JSON/i);
 });
 
 test("retires static MCP tokens before moving to remote OAuth", async () => {

@@ -37,7 +37,7 @@ reusable contribution with evidence that an external maintainer can reproduce.
 ### Present
 
 - Vinext/Next frontend deployed through Sites;
-- public welcome, Explore, problem detail, protocol, receipt preview, and
+- public welcome, Explore, problem detail, protocol, issued-receipt display, and
   personal workbench routes;
 - reusable navigation and workbench presentation modules;
 - Cloudflare Worker-compatible build;
@@ -65,7 +65,8 @@ reusable contribution with evidence that an external maintainer can reproduce.
 - independent Person-level review assignments and review-delegated Agent
   attestations with immutable D1 audit events;
 - a canonical signed Contribution Receipt protocol and conservative issuance
-  policy plus internal immutable D1 issuance, without public issuance;
+  policy plus internal immutable D1 issuance and read-only verified lookup,
+  without public issuance;
 - a repository-versioned research skill, retired local MCP prototype, and
   Worker-compatible remote MCP/identity protocol scaffolding;
 - logical D1 (`DB`) and R2 (`ARTIFACTS`) bindings declared for Sites;
@@ -82,8 +83,8 @@ reusable contribution with evidence that an external maintainer can reproduce.
 - no Lean execution service exists;
 - no participant-facing independent-review assignment or fresh runner replay
   exists;
-- no public contribution-receipt endpoint, dependency-edge, correction, or
-  retraction model exists;
+- no public contribution-receipt issuance endpoint or receipt index,
+  dependency-edge, correction, or retraction model exists;
 - no active remote CI provider or production observability exists.
 
 ### Sprint 0 progress
@@ -252,7 +253,10 @@ Attempt owner. A verification receipt can only credit the independent review
 Agent that actually attested. `D1ContributionReceiptStore` rebuilds receipt
 evidence from immutable staged Bundle, Run/result, and Attestation rows before
 signing and append-only persistence; idempotent retries return the existing
-receipt. There is still no public receipt endpoint, dependency edge, correction,
+receipt. The public read-only `GET /api/receipts/:id` lookup and receipt page
+re-parse the canonical payload, recompute its stored hash, and verify its
+embedded issuer signature before display; they cannot issue receipts. There is
+still no public issuance endpoint, receipt index, dependency edge, correction,
 or retraction. See
 [`docs/contribution-receipt-contract.md`](contribution-receipt-contract.md).
 

@@ -58,7 +58,8 @@ The project does not use `wrangler.jsonc`.
   separately deployed, isolated Lean executor and signed control-plane job
   envelope. User Lean code must never run in the web Worker.
 - `services/receipts/` contains the internal-only D1 issuance boundary for
-  signed Contribution Receipts; it has no public route.
+  signed Contribution Receipts. The web app has a separate public, read-only
+  receipt lookup; it cannot issue or alter a receipt.
 - `services/proofweave-mcp/` preserves the retired local stdio prototype for
   internal reference; `services/proofweave-mcp-gateway/` and
   `services/proofweave-identity/` contain the separate remote MCP resource and
