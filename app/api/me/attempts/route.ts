@@ -26,9 +26,15 @@ export async function GET() {
 
   try {
     const profile = await getDelegationRepository().getProfile(identity);
+    const mcp = getMcpRepository();
+    const [attempts, runs] = await Promise.all([
+      mcp.listAttempts(profile.person.id),
+      mcp.listRunSummaries(profile.person.id),
+    ]);
     return Response.json({
-      attempts: await getMcpRepository().listAttempts(profile.person.id),
-      note: "Attempts are provisional owner records. Agent-reported progress, Lean verification, review, and receipts remain separate evidence boundaries.",
+      attempts,
+      runs,
+      note: "Attempts are provisional owner records. Runner summaries are owner-scoped evidence projections; Agent progress, Lean verification, review, and receipts remain separate evidence boundaries.",
     });
   } catch (error) {
     return attemptFailure(error);

@@ -4,8 +4,13 @@ import {
   type McpAttempt,
   type McpAttemptEvent,
   type McpAttemptStatus,
+  type McpRunSummary,
+  type McpRunState,
+  type McpRunnerResultSummary,
 } from "@/packages/domain/mcp";
 import { closedAlphaAttemptLimits } from "@/packages/domain/attempt-policy.mjs";
+import { canonicalJson, sha256Canonical } from "@/packages/protocol/canonical-json.mjs";
+import { normalizeLeanRunnerResult } from "@/packages/protocol/lean-runner.mjs";
 import {
   DelegationAuthorizationError,
   DelegationNotFoundError,
@@ -91,6 +96,20 @@ type EventRow = {
   occurred_at: string;
 };
 type EventWithIdempotencyRow = EventRow & { idempotency_key: string };
+type RunSummaryRow = {
+  id: string;
+  attempt_id: string;
+  artifact_bundle_hash: string;
+  request_hash: string;
+  state: string;
+  queued_at: string;
+  started_at: string | null;
+  finished_at: string | null;
+  runner_result_hash: string | null;
+  result_hash: string | null;
+  canonical_result: string | null;
+  received_at: string | null;
+};
 
 const attemptSelect = `
   SELECT
@@ -132,6 +151,7 @@ export interface McpRepository {
   ): Promise<IdempotentResult<McpAttemptEvent> | null>;
   findAttempt(personId: string, attemptId: string): Promise<McpAttempt | null>;
   listAttempts(personId: string): Promise<McpAttempt[]>;
+  listRunSummaries(personId: string): Promise<readonly McpRunSummary[]>;
 }
 
 class D1McpRepository implements McpRepository {
@@ -411,6 +431,34 @@ class D1McpRepository implements McpRepository {
     return attempts.filter((attempt: McpAttempt | null): attempt is McpAttempt => attempt !== null);
   }
 
+  /**
+   * The workbench can only see Runs belonging to the current Person. This is
+   * intentionally a summary projection: controlled evidence retains logs,
+   * signatures, and full canonical result payloads.
+   */
+  async listRunSummaries(personId: string): Promise<readonly McpRunSummary[]> {
+    const rows = await getD1()
+      .prepare(
+        `SELECT run.id, run.attempt_id, run.artifact_bundle_hash, run.request_hash,
+                run.state, run.queued_at, run.started_at, run.finished_at,
+                run.runner_result_hash, result.result_hash, result.canonical_result,
+                result.received_at
+         FROM runs AS run
+         INNER JOIN agent_attempts AS attempt ON attempt.id = run.attempt_id
+         LEFT JOIN run_results AS result ON result.run_id = run.id
+         WHERE attempt.person_id = ?
+           AND NOT EXISTS (
+             SELECT 1 FROM verification_replays AS replay
+             WHERE replay.run_id = run.id
+           )
+         ORDER BY run.updated_at DESC, run.id ASC
+         LIMIT 100`,
+      )
+      .bind(personId)
+      .all<RunSummaryRow>();
+    return Object.freeze(await Promise.all((rows.results ?? []).map(toRunSummary)));
+  }
+
   private async upsertPerson(identity: McpIdentity): Promise<PersonRow> {
     const now = new Date().toISOString();
     const subject = identity.providerSubject.trim().toLowerCase();
@@ -462,6 +510,73 @@ function toEvent(row: EventRow): McpAttemptEvent {
     progressPercent: row.progress_percent,
     occurredAt: row.occurred_at,
   };
+}
+
+async function toRunSummary(row: RunSummaryRow): Promise<McpRunSummary> {
+  const base = {
+    id: row.id,
+    attemptId: row.attempt_id,
+    artifactBundleHash: row.artifact_bundle_hash,
+    state: runState(row.state),
+    queuedAt: row.queued_at,
+    startedAt: row.started_at,
+    finishedAt: row.finished_at,
+    runnerResultHash: row.runner_result_hash,
+  } as const;
+
+  const hasNoResult = !row.runner_result_hash && !row.result_hash && !row.canonical_result && !row.received_at;
+  if (hasNoResult) {
+    return Object.freeze({ ...base, evidenceState: "not_recorded", result: null });
+  }
+  if (!row.runner_result_hash || !row.result_hash || !row.canonical_result || !row.received_at) {
+    return Object.freeze({ ...base, evidenceState: "unreadable", result: null });
+  }
+
+  try {
+    const normalized = normalizeLeanRunnerResult(JSON.parse(row.canonical_result));
+    const resultHash = await sha256Canonical(normalized);
+    if (
+      canonicalJson(normalized) !== row.canonical_result ||
+      resultHash !== row.result_hash ||
+      row.runner_result_hash !== row.result_hash ||
+      normalized.jobId !== row.id ||
+      normalized.attemptId !== row.attempt_id ||
+      normalized.requestHash !== row.request_hash ||
+      normalized.status !== row.state ||
+      normalized.finishedAt !== row.finished_at
+    ) {
+      throw new Error("Runner summary projection mismatch");
+    }
+    return Object.freeze({
+      ...base,
+      evidenceState: "recorded",
+      result: Object.freeze({
+        resultHash: row.result_hash,
+        receivedAt: row.received_at,
+        summary: runnerSummary(normalized),
+      }),
+    });
+  } catch {
+    return Object.freeze({ ...base, evidenceState: "unreadable", result: null });
+  }
+}
+
+function runState(value: string): McpRunState {
+  if (
+    value === "queued" || value === "preparing" || value === "running" ||
+    value === "cancel_requested" || value === "succeeded" || value === "failed" ||
+    value === "timed_out" || value === "rejected" || value === "cancelled"
+  ) return value;
+  throw new Error("Stored Run state is invalid.");
+}
+
+function runnerSummary(result: ReturnType<typeof normalizeLeanRunnerResult>): McpRunnerResultSummary {
+  return Object.freeze({
+    status: result.status,
+    exitCode: result.exitCode,
+    kernelStatus: result.kernelStatus,
+    checks: Object.freeze({ ...result.checks }),
+  });
 }
 
 function newId(prefix: string): string {

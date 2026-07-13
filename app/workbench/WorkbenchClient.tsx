@@ -3,7 +3,7 @@
 import { useState } from "react";
 import type { DelegationProfile } from "@/db/repositories/delegation";
 import type { CatalogProblem } from "@/packages/domain/catalog";
-import type { McpAttempt } from "@/packages/domain/mcp";
+import type { McpAttempt, McpRunSummary } from "@/packages/domain/mcp";
 import type { ProvisionalContribution } from "@/db/repositories/provisional-contributions";
 import { DelegationSummary, FocusAction, ProvisionalContributionLedger, ResearchWorkstation, SubmissionReadiness, WorkbenchHero } from "./workbench-sections";
 import { DelegationSetup } from "./DelegationSetup";
@@ -13,6 +13,7 @@ import { AgentConnections } from "./AgentConnections";
 export function WorkbenchClient({
   profile,
   initialAttempts,
+  initialRuns,
   initialProvisionalContributions,
   provisionalLedgerAvailable,
   catalogTargets,
@@ -23,6 +24,7 @@ export function WorkbenchClient({
 }: {
   profile: DelegationProfile | null;
   initialAttempts: readonly McpAttempt[];
+  initialRuns: readonly McpRunSummary[];
   initialProvisionalContributions: readonly ProvisionalContribution[];
   provisionalLedgerAvailable: boolean;
   catalogTargets: readonly CatalogProblem[];
@@ -32,6 +34,7 @@ export function WorkbenchClient({
   storageAvailable: boolean;
 }) {
   const [attempts, setAttempts] = useState<readonly McpAttempt[]>(initialAttempts);
+  const [runs, setRuns] = useState<readonly McpRunSummary[]>(initialRuns);
   const [provisionalContributions, setProvisionalContributions] = useState<readonly ProvisionalContribution[]>(initialProvisionalContributions);
   const [isProvisionalLedgerAvailable, setIsProvisionalLedgerAvailable] = useState(provisionalLedgerAvailable);
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -50,10 +53,11 @@ export function WorkbenchClient({
           : Promise.resolve(null),
       ]);
       const attemptPayload = await attemptResponse.json().catch(() => null);
-      if (!attemptResponse.ok || !Array.isArray(attemptPayload?.attempts)) {
+      if (!attemptResponse.ok || !Array.isArray(attemptPayload?.attempts) || !Array.isArray(attemptPayload?.runs)) {
         throw new Error(attemptPayload?.error?.message ?? "Proofweave could not refresh the durable Attempt records.");
       }
       setAttempts(attemptPayload.attempts as McpAttempt[]);
+      setRuns(attemptPayload.runs as McpRunSummary[]);
       if (contributionResponse) {
         const contributionPayload = await contributionResponse.json().catch(() => null);
         if (contributionResponse.ok && Array.isArray(contributionPayload?.contributions)) {
@@ -79,8 +83,8 @@ export function WorkbenchClient({
     {profile && <AgentConnections installations={profile.agentInstallations} />}
     <AttemptQueue profile={profile} attempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={initialTargetSlug} onAttemptCreated={(attempt) => { setAttempts((current) => [attempt, ...current.filter((candidate) => candidate.id !== attempt.id)]); setRefreshError(null); }} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} />
     <FocusAction profile={profile} attempts={attempts} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} isRefreshing={isRefreshing} refreshError={refreshError} refreshedAt={refreshedAt} onRefresh={() => { void refreshAttempts(); }} />
-    <ResearchWorkstation attempt={attempts[0] ?? null} />
+    <ResearchWorkstation attempt={attempts[0] ?? null} runs={runs} />
     <ProvisionalContributionLedger profile={profile} contributions={provisionalContributions} isAuthenticated={isAuthenticated} ledgerAvailable={isProvisionalLedgerAvailable} />
-    <SubmissionReadiness attempt={attempts[0] ?? null} profile={profile} />
+    <SubmissionReadiness attempt={attempts[0] ?? null} profile={profile} runs={runs} />
   </>;
 }

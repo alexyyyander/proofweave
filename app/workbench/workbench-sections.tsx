@@ -1,13 +1,13 @@
 import Link from "next/link";
 import type { DelegationProfile } from "@/db/repositories/delegation";
-import type { McpAttempt, McpAttemptEvent } from "@/packages/domain/mcp";
+import type { McpAttempt, McpAttemptEvent, McpRunSummary } from "@/packages/domain/mcp";
 import type { ProvisionalContribution } from "@/db/repositories/provisional-contributions";
 
-type GateState = "passed" | "waiting" | "required";
+type GateState = "passed" | "waiting" | "required" | "failed";
 
 function GateRow({ state, label, detail }: { state: GateState; label: string; detail: string }) {
-  const stateText = state === "passed" ? "Recorded" : state === "waiting" ? "Awaiting" : "Independent";
-  const symbol = state === "passed" ? "✓" : state === "waiting" ? "·" : "↗";
+  const stateText = state === "passed" ? "Recorded" : state === "waiting" ? "Awaiting" : state === "failed" ? "Needs rerun" : "Independent";
+  const symbol = state === "passed" ? "✓" : state === "waiting" ? "·" : state === "failed" ? "!" : "↗";
 
   return <li className={`gate-row gate-${state}`}>
     <span className="gate-icon" aria-hidden="true">{symbol}</span>
@@ -172,8 +172,12 @@ export function ProvisionalContributionLedger({
   </section>;
 }
 
-export function ResearchWorkstation({ attempt }: { attempt: McpAttempt | null }) {
+export function ResearchWorkstation({ attempt, runs }: { attempt: McpAttempt | null; runs: readonly McpRunSummary[] }) {
   const bundleStaged = Boolean(attempt?.events.some((event) => event.type === "bundle_staged"));
+  const latestRun = latestRunForAttempt(attempt, runs);
+  const runnerResult = latestRun?.result?.summary ?? null;
+  const runnerAccepted = hasAcceptedKernel(latestRun);
+  const evidenceHref = latestRun ? `/evidence/${encodeURIComponent(latestRun.artifactBundleHash)}` : "/evidence";
 
   return <section className="workstation-grid" aria-label="Research workstation">
     <article className="workstation-panel context-panel">
@@ -191,14 +195,25 @@ export function ResearchWorkstation({ attempt }: { attempt: McpAttempt | null })
       <div className="context-footer">{attempt ? <><span>Opened {formatTimestamp(attempt.createdAt)}</span><span>Last updated {formatTimestamp(attempt.updatedAt)}</span></> : <><span>No source snapshot selected</span><span>No Agent activity recorded</span></>}</div>
     </article>
     <article className="workstation-panel source-panel">
-      <div className="workstation-heading"><span>02 / Artifact &amp; Lean evidence</span><span className={bundleStaged ? "source-good" : "source-waiting"}>{bundleStaged ? "Bundle staged" : "Awaiting bundle"}</span></div>
+      <div className="workstation-heading"><span>02 / Artifact &amp; Lean evidence</span><span className={runnerAccepted ? "source-good" : "source-waiting"}>{runnerAccepted ? "Kernel accepted" : bundleStaged ? "Bundle staged" : "Awaiting bundle"}</span></div>
       <div className="source-state">
-        <strong>{bundleStaged ? "A signed Artifact Bundle is staged for this Attempt." : "No Artifact Bundle has been staged."}</strong>
-        <p>{bundleStaged ? "Open controlled evidence to inspect the hash-bound bundle. Staging alone is not a Lean check or an accepted contribution." : "Proofweave does not render a sample source file or a fictional compiler result in place of Agent-supplied evidence."}</p>
-        {attempt && <Link className="text-link source-link" href="/evidence">Open controlled evidence <span>→</span></Link>}
+        <strong>{runnerAccepted ? "The isolated Lean Runner recorded an accepted kernel result." : bundleStaged ? "A signed Artifact Bundle is staged for this Attempt." : "No Artifact Bundle has been staged."}</strong>
+        <p>{runnerAccepted ? "This Runner result satisfies only the Lean execution gate. It is not independent review or a Contribution Receipt." : bundleStaged ? "Open controlled evidence to inspect the hash-bound bundle. Staging alone is not a Lean check or an accepted contribution." : "Proofweave does not render a sample source file or a fictional compiler result in place of Agent-supplied evidence."}</p>
+        {attempt && <Link className="text-link source-link" href={evidenceHref}>Open controlled evidence <span>→</span></Link>}
       </div>
-      <div className="diagnostic-box"><div><span className={`check-dot${bundleStaged ? " is-waiting" : " is-pending"}`} aria-hidden="true" />Lean kernel status</div><p>No kernel result is recorded here. Only an isolated Lean Runner can record compiler diagnostics, a <code>sorry</code> audit, axioms, and kernel acceptance.</p></div>
-      <div className="source-meta"><span>{attempt ? "Attempt-bound evidence" : "No workspace evidence"}</span><span>Runner required</span><span>Independent review required</span></div>
+      <div className="diagnostic-box">
+        <div><span className={`check-dot ${runnerDotClass(latestRun)}`} aria-hidden="true" />{runnerDiagnosticTitle(latestRun)}</div>
+        <p>{runnerDiagnosticDetail(latestRun)}</p>
+        {runnerResult && <dl className="diagnostic-checks">
+          <div><dt>Build</dt><dd>{runnerResult.status} · exit {runnerResult.exitCode}</dd></div>
+          <div><dt>Kernel</dt><dd>{runnerResult.kernelStatus}</dd></div>
+          <div><dt>Network</dt><dd>{runnerResult.checks.network}</dd></div>
+          <div><dt><code>sorry</code></dt><dd>{runnerResult.checks.noSorry}</dd></div>
+          <div><dt>Axioms</dt><dd>{runnerResult.checks.allowedAxioms}</dd></div>
+          <div><dt>Lean build</dt><dd>{runnerResult.checks.leanBuild}</dd></div>
+        </dl>}
+      </div>
+      <div className="source-meta"><span>{attempt ? "Attempt-bound evidence" : "No workspace evidence"}</span><span>{latestRun ? `Runner · ${latestRun.state}` : "Runner required"}</span><span>{latestRun?.evidenceState === "recorded" ? "Result evidence recorded" : "Independent review required"}</span></div>
     </article>
     <article className="workstation-panel run-panel" id="attempt-activity">
       <div className="workstation-heading"><span>03 / Agent events &amp; artifacts</span><span className="record-chip">Structured</span></div>
@@ -209,10 +224,11 @@ export function ResearchWorkstation({ attempt }: { attempt: McpAttempt | null })
   </section>;
 }
 
-export function SubmissionReadiness({ attempt, profile }: { attempt: McpAttempt | null; profile: DelegationProfile | null }) {
+export function SubmissionReadiness({ attempt, profile, runs }: { attempt: McpAttempt | null; profile: DelegationProfile | null; runs: readonly McpRunSummary[] }) {
   const hasAgentProgress = Boolean(attempt?.events.some((event) => event.type === "agent_reported"));
   const bundleStaged = Boolean(attempt?.events.some((event) => event.type === "bundle_staged"));
   const connectionActive = Boolean(attempt && profile?.agentInstallations.some((installation) => installation.status === "active" && installation.agentId === attempt.agentId));
+  const leanGate = leanGateFor(latestRunForAttempt(attempt, runs));
 
   return <section className="submission-section" aria-labelledby="submission-title">
     <div className="submission-copy"><p className="eyebrow">Evidence before credit</p><h2 id="submission-title">See every gate before a contribution can count.</h2><p>Proofweave records only evidence that exists. Agent-reported activity, Lean execution, independent review, and a Contribution Receipt remain separate gates.</p></div>
@@ -222,13 +238,62 @@ export function SubmissionReadiness({ attempt, profile }: { attempt: McpAttempt 
         <GateRow state={attempt ? "passed" : "waiting"} label="Bounded Attempt" detail={attempt ? "Target and delegated Agent authority are durably bound." : "Open a source-pinned Attempt first."} />
         <GateRow state={hasAgentProgress ? "passed" : "waiting"} label="Agent-reported progress" detail={hasAgentProgress ? "A separately authorized Agent event is recorded." : "Requires the remote OAuth MCP connection; browser clicks cannot create this event."} />
         <GateRow state={bundleStaged ? "passed" : "waiting"} label="Signed Artifact Bundle" detail={bundleStaged ? "A bundle-staged event is recorded; inspect its controlled evidence separately." : "Requires a complete signed bundle from the authorized Agent."} />
-        <GateRow state="waiting" label="Isolated Lean result" detail="Requires a fresh runner execution with kernel, axiom, and sorry evidence." />
+        <GateRow state={leanGate.state} label="Isolated Lean result" detail={leanGate.detail} />
         <GateRow state="required" label="Independent review" detail="Must be performed by a different owner." />
       </ul>
       <p className="submission-hint">{connectionActive ? "An active Agent installation is recorded. The remote gateway still controls which operations it may perform." : "No active Agent installation is recorded for this Attempt. Connection approval is separate from delegation."}</p>
       <Link className="button button-primary submit-button" href="/integrations">Review connection status</Link>
     </div>
   </section>;
+}
+
+function latestRunForAttempt(attempt: McpAttempt | null, runs: readonly McpRunSummary[]): McpRunSummary | null {
+  if (!attempt) return null;
+  return runs.find((run) => run.attemptId === attempt.id) ?? null;
+}
+
+function hasAcceptedKernel(run: McpRunSummary | null): boolean {
+  const summary = run?.result?.summary;
+  return Boolean(
+    run?.evidenceState === "recorded" &&
+    run.state === "succeeded" &&
+    summary?.status === "succeeded" &&
+    summary.kernelStatus === "accepted" &&
+    summary.checks.network === "passed" &&
+    summary.checks.noSorry === "passed" &&
+    summary.checks.allowedAxioms === "passed" &&
+    summary.checks.leanBuild === "passed",
+  );
+}
+
+function runnerDotClass(run: McpRunSummary | null): string {
+  if (hasAcceptedKernel(run)) return "is-passed";
+  if (run?.evidenceState === "unreadable" || ["failed", "timed_out", "rejected", "cancelled"].includes(run?.state ?? "")) return "is-failed";
+  return run ? "is-waiting" : "is-pending";
+}
+
+function runnerDiagnosticTitle(run: McpRunSummary | null): string {
+  if (!run) return "Lean kernel status · no Run recorded";
+  if (hasAcceptedKernel(run)) return "Lean kernel status · accepted";
+  if (run.evidenceState === "unreadable") return "Lean Runner result needs controlled inspection";
+  if (run.result?.summary) return `Lean Runner result · ${run.result.summary.status}`;
+  return `Lean Runner lifecycle · ${run.state}`;
+}
+
+function runnerDiagnosticDetail(run: McpRunSummary | null): string {
+  if (!run) return "No isolated Lean Run is recorded for this Attempt. Only a Runner can record compiler diagnostics, a sorry audit, axioms, and kernel acceptance.";
+  if (hasAcceptedKernel(run)) return "The recorded signed result passed the network, sorry, axiom, and Lean build checks. Inspect controlled evidence for the complete immutable record.";
+  if (run.evidenceState === "unreadable") return "A stored result row could not be normalized and bound to this Run, so Proofweave will not show it as a Lean verdict. Inspect controlled evidence before acting on it.";
+  if (run.result?.summary) return "This terminal Runner result is recorded, but it did not meet the accepted Lean gate. A corrected Bundle or a new isolated Run may be required.";
+  return "This is lifecycle state only, not a Lean verdict. A terminal signed result must be recorded before kernel, axiom, and sorry checks can count.";
+}
+
+function leanGateFor(run: McpRunSummary | null): { state: GateState; detail: string } {
+  if (!run) return { state: "waiting", detail: "Requires a fresh runner execution with kernel, axiom, and sorry evidence." };
+  if (hasAcceptedKernel(run)) return { state: "passed", detail: "A hash-bound Runner result recorded accepted kernel and all required policy checks." };
+  if (run.evidenceState === "unreadable") return { state: "failed", detail: "A stored Runner result could not be safely normalized for this Attempt; inspect controlled evidence and create a new Run if needed." };
+  if (run.result?.summary) return { state: "failed", detail: `The recorded Runner ended ${run.result.summary.status} with kernel ${run.result.summary.kernelStatus}; a successful isolated rerun is required.` };
+  return { state: "waiting", detail: `Runner is ${run.state}; lifecycle state is not a kernel result.` };
 }
 
 function AttemptEventRow({ event }: { event: McpAttemptEvent }) {

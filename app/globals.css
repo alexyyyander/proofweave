@@ -194,6 +194,13 @@ h1, h2, h3, p { margin-top: 0; }
 .source-panel .source-link { color: #c7d7ff; font-size: 11px; }
 .check-dot.is-waiting { background: #f3d48b; }
 .check-dot.is-pending { background: #7890c8; }
+.check-dot.is-passed { background: #89d3a6; }
+.check-dot.is-failed { background: #eb7770; }
+.diagnostic-checks { display: grid; gap: 0 12px; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 12px 0 0; }
+.diagnostic-checks > div { border-top: 1px solid rgba(178,200,244,.16); display: flex; gap: 8px; justify-content: space-between; padding: 6px 0; }
+.diagnostic-checks dt { color: #8ea4ca; font-size: 9px; }
+.diagnostic-checks dd { color: #d9e4fa; font-size: 9px; margin: 0; text-align: right; }
+.gate-failed { color: #b54d48; }
 .event-list li { grid-template-columns: 42px 7px 1fr; }
 .event-list small { color: var(--ink-faint); display: block; font-size: 9px; margin-top: 5px; }
 .event-empty { color: var(--ink-soft); font-size: 12px; line-height: 1.55; margin: 0; }

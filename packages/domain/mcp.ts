@@ -7,6 +7,21 @@ export const mcpAttemptEventTypes = [
 export type McpAttemptEventType = (typeof mcpAttemptEventTypes)[number];
 export type McpAttemptStatus = "active" | "submitted" | "cancelled";
 
+export const mcpRunStates = [
+  "queued",
+  "preparing",
+  "running",
+  "cancel_requested",
+  "succeeded",
+  "failed",
+  "timed_out",
+  "rejected",
+  "cancelled",
+] as const;
+
+export type McpRunState = (typeof mcpRunStates)[number];
+export type McpRunEvidenceState = "not_recorded" | "recorded" | "unreadable";
+
 export type McpAttemptEvent = Readonly<{
   id: string;
   sequence: number;
@@ -31,6 +46,41 @@ export type McpAttempt = Readonly<{
   updatedAt: string;
   events: readonly McpAttemptEvent[];
   verificationState: "agent_reported_only";
+}>;
+
+/**
+ * A deliberately small, owner-scoped projection of an isolated Lean Run.
+ * Full signed result payloads and stdout/stderr remain in controlled evidence
+ * records. `unreadable` means a persisted row exists but cannot be safely
+ * presented as a normalized Runner verdict.
+ */
+export type McpRunnerResultSummary = Readonly<{
+  status: "succeeded" | "failed" | "timed_out" | "rejected" | "cancelled";
+  exitCode: number;
+  kernelStatus: "accepted" | "rejected" | "not_run";
+  checks: Readonly<{
+    network: "passed" | "failed" | "not_run";
+    noSorry: "passed" | "failed" | "not_run";
+    allowedAxioms: "passed" | "failed" | "not_run";
+    leanBuild: "passed" | "failed" | "not_run";
+  }>;
+}>;
+
+export type McpRunSummary = Readonly<{
+  id: string;
+  attemptId: string;
+  artifactBundleHash: string;
+  state: McpRunState;
+  queuedAt: string;
+  startedAt: string | null;
+  finishedAt: string | null;
+  runnerResultHash: string | null;
+  evidenceState: McpRunEvidenceState;
+  result: Readonly<{
+    resultHash: string;
+    receivedAt: string;
+    summary: McpRunnerResultSummary;
+  }> | null;
 }>;
 
 // This initial MCP surface intentionally cannot emit any mathematical

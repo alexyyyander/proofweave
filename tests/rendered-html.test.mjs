@@ -996,6 +996,12 @@ test("limits Bundle and Runner evidence to the Attempt owner or assigned reviewe
   }]);
   assert.doesNotMatch(JSON.stringify(ownerEvidence), new RegExp(fixture.owner.person.id));
 
+  const ownerWorkbenchRunsResponse = await render("/api/me/attempts", { headers: fixture.ownerHeaders });
+  assert.equal(ownerWorkbenchRunsResponse.status, 200);
+  const { runs: ownerWorkbenchRuns } = await ownerWorkbenchRunsResponse.json();
+  assert.equal(ownerWorkbenchRuns.some((run) => run.id === "run:controlled-evidence"), true);
+  assert.equal(ownerWorkbenchRuns.some((run) => run.id === "run:controlled-fresh-replay"), false);
+
   const ownerIndex = await render("/evidence", { headers: fixture.ownerHeaders });
   assert.equal(ownerIndex.status, 200);
   assert.match(await ownerIndex.text(), /Your Attempt/i);
@@ -1507,17 +1513,132 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
   assert.equal(selectedTargetAttempt.problemSlug, "erdos-865-k2");
   assert.match(selectedTargetAttempt.problemTitle, /k = 2 variant/i);
 
+  // The owner workbench receives only a normalized, hash-bound Runner summary.
+  // It must never receive the canonical signed-result payload or logs directly.
+  const runnerResult = {
+    protocolVersion: "pw-lean-runner-v1",
+    jobId: "run:workbench-owner-summary",
+    attemptId: ownerAttempt.id,
+    requestHash: `sha256:${"3".repeat(64)}`,
+    runnerKeyId: "runner-key:workbench-summary",
+    runnerSignature: base64Url(crypto.getRandomValues(new Uint8Array(64))),
+    status: "succeeded",
+    exitCode: 0,
+    startedAt: "2026-07-14T00:00:00Z",
+    finishedAt: "2026-07-14T00:00:01Z",
+    kernelStatus: "accepted",
+    checks: { network: "passed", noSorry: "passed", allowedAxioms: "passed", leanBuild: "passed" },
+    artifacts: {
+      manifestHash: provisionalManifestHash,
+      stdoutHash: `sha256:${"4".repeat(64)}`,
+      stderrHash: `sha256:${"5".repeat(64)}`,
+    },
+  };
+  const runnerResultHash = await sha256Canonical(runnerResult);
+  await database.batch([
+    database.prepare(
+      `INSERT INTO agent_attempt_events (
+        id, attempt_id, sequence, event_type, message, idempotency_key, occurred_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+    ).bind(
+      "attempt-event:workbench-summary-bundle",
+      ownerAttempt.id,
+      2,
+      "bundle_staged",
+      "Fixture Bundle staged for the owner workbench Runner summary.",
+      "workbench-summary-bundle",
+      "2026-07-14T00:00:00Z",
+    ),
+    database.prepare(
+      `INSERT INTO runs (
+        id, attempt_id, artifact_bundle_hash, request_hash, idempotency_key, state,
+        queued_at, preparing_at, started_at, finished_at, runner_result_hash, updated_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    ).bind(
+      runnerResult.jobId,
+      ownerAttempt.id,
+      provisionalManifestHash,
+      runnerResult.requestHash,
+      "workbench-owner-summary",
+      "succeeded",
+      "2026-07-14T00:00:00Z",
+      "2026-07-14T00:00:00Z",
+      runnerResult.startedAt,
+      runnerResult.finishedAt,
+      runnerResultHash,
+      "2027-01-01T00:00:00Z",
+    ),
+    database.prepare("INSERT INTO run_results (run_id, result_hash, canonical_result, received_at) VALUES (?, ?, ?, ?)").bind(
+      runnerResult.jobId,
+      runnerResultHash,
+      canonicalJson(runnerResult),
+      "2026-07-14T00:00:01Z",
+    ),
+    // This malformed historical projection proves that a row is never
+    // upgraded into a Lean verdict merely because it says `succeeded`.
+    database.prepare(
+      `INSERT INTO runs (
+        id, attempt_id, artifact_bundle_hash, request_hash, idempotency_key, state,
+        queued_at, started_at, finished_at, runner_result_hash, updated_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    ).bind(
+      "run:workbench-unreadable",
+      attempt.id,
+      provisionalManifestHash,
+      `sha256:${"6".repeat(64)}`,
+      "workbench-unreadable",
+      "succeeded",
+      "2026-07-13T00:00:00Z",
+      "2026-07-13T00:00:00Z",
+      "2026-07-13T00:00:01Z",
+      `sha256:${"7".repeat(64)}`,
+      "2026-07-13T00:00:01Z",
+    ),
+    database.prepare("INSERT INTO run_results (run_id, result_hash, canonical_result, received_at) VALUES (?, ?, ?, ?)").bind(
+      "run:workbench-unreadable",
+      `sha256:${"7".repeat(64)}`,
+      "{}",
+      "2026-07-13T00:00:01Z",
+    ),
+    database.prepare("UPDATE agent_attempts SET updated_at = ? WHERE id = ?").bind("2027-01-01T00:00:00Z", ownerAttempt.id),
+  ]);
+
   const ownerAttemptsResponse = await render("/api/me/attempts", { headers: authHeaders });
   assert.equal(ownerAttemptsResponse.status, 200);
-  const { attempts: ownerAttempts } = await ownerAttemptsResponse.json();
+  const { attempts: ownerAttempts, runs: ownerRuns } = await ownerAttemptsResponse.json();
   assert.equal(ownerAttempts.some((candidate) => candidate.id === ownerAttempt.id), true);
   assert.equal(ownerAttempts.some((candidate) => candidate.id === attempt.id), true);
+  assert.deepEqual(ownerRuns.find((run) => run.id === runnerResult.jobId), {
+    id: runnerResult.jobId,
+    attemptId: ownerAttempt.id,
+    artifactBundleHash: provisionalManifestHash,
+    state: "succeeded",
+    queuedAt: "2026-07-14T00:00:00Z",
+    startedAt: "2026-07-14T00:00:00Z",
+    finishedAt: "2026-07-14T00:00:01Z",
+    runnerResultHash,
+    evidenceState: "recorded",
+    result: {
+      resultHash: runnerResultHash,
+      receivedAt: "2026-07-14T00:00:01Z",
+      summary: {
+        status: "succeeded",
+        exitCode: 0,
+        kernelStatus: "accepted",
+        checks: { network: "passed", noSorry: "passed", allowedAxioms: "passed", leanBuild: "passed" },
+      },
+    },
+  });
+  assert.equal(ownerRuns.find((run) => run.id === "run:workbench-unreadable")?.evidenceState, "unreadable");
+  assert.doesNotMatch(JSON.stringify(ownerRuns), /runnerSignature|canonicalResult|stdoutHash/i);
 
   const otherAttemptsResponse = await render("/api/me/attempts", {
     headers: { "oai-authenticated-user-email": "other-owner@example.test" },
   });
   assert.equal(otherAttemptsResponse.status, 200);
-  assert.deepEqual((await otherAttemptsResponse.json()).attempts, []);
+  const otherAttemptPayload = await otherAttemptsResponse.json();
+  assert.deepEqual(otherAttemptPayload.attempts, []);
+  assert.deepEqual(otherAttemptPayload.runs, []);
   const otherProvisionalResponse = await render("/api/me/provisional-contributions", {
     headers: { "oai-authenticated-user-email": "other-owner@example.test" },
   });
@@ -1534,6 +1655,9 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
   assert.match(ownerWorkbenchHtml, /Refresh records/i);
   assert.match(ownerWorkbenchHtml, /Provisional contribution ledger/i);
   assert.match(ownerWorkbenchHtml, /Bundle staged · provisional/i);
+  assert.match(ownerWorkbenchHtml, /Lean kernel status · accepted/i);
+  assert.match(ownerWorkbenchHtml, /Result evidence recorded/i);
+  assert.match(ownerWorkbenchHtml, /Hash-bound Runner result recorded accepted kernel/i);
   assert.match(ownerWorkbenchHtml, /not a theorem, Lean result, novelty finding, independent review, or final Contribution Receipt/i);
 
   const activeAttemptCount = ownerAttempts.filter((candidate) => candidate.status === "active").length;
