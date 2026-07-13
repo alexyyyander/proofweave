@@ -10,6 +10,7 @@ import {
   canonicalContributionReceiptVerificationBundle,
   contributionReceiptVerificationBundleHash,
   verifyContributionReceiptVerificationBundle,
+  verifyContributionReceiptVerificationBundleWithIssuerKeyset,
 } from "../packages/protocol/contribution-receipt-verification-bundle.mjs";
 import {
   contributionReceiptHash,
@@ -62,21 +63,44 @@ test("rejects tampered hashes, missing dependency evidence, and unrelated record
   );
 });
 
+test("rechecks a portable Bundle against a newer issuer keyset and rejects a later revocation", async () => {
+  const fixture = await verificationBundleFixture();
+  const keyset = { issuerKeys: fixture.bundle.issuerKeys };
+  const verified = await verifyContributionReceiptVerificationBundleWithIssuerKeyset(fixture.bundle, keyset);
+  assert.equal(verified.rootReceiptId, fixture.root.id);
+
+  await assert.rejects(
+    verifyContributionReceiptVerificationBundleWithIssuerKeyset(fixture.bundle, {
+      issuerKeys: fixture.bundle.issuerKeys.map((key) => ({
+        ...key,
+        status: "revoked",
+        revokedAt: "2026-07-13T00:00:06Z",
+      })),
+    }),
+    ContributionReceiptVerificationBundleProtocolError,
+  );
+});
+
 test("the standalone CLI verifies a downloaded Bundle and prints canonical metadata", async () => {
   const fixture = await verificationBundleFixture();
   const directory = await mkdtemp(join(tmpdir(), "proofweave-receipt-bundle-"));
   const filePath = join(directory, "verification-bundle.json");
+  const issuerKeysetPath = join(directory, "issuer-keys.json");
   await writeFile(filePath, JSON.stringify(fixture.bundle), "utf8");
+  await writeFile(issuerKeysetPath, JSON.stringify({ issuerKeys: fixture.bundle.issuerKeys }), "utf8");
 
   try {
     const { stdout, stderr } = await execFileAsync(process.execPath, [
       "scripts/verify-receipt-bundle.mjs",
       filePath,
+      "--issuer-keyset",
+      issuerKeysetPath,
     ], { cwd: process.cwd() });
 
     assert.equal(stderr, "");
     assert.deepEqual(JSON.parse(stdout), {
       verified: true,
+      issuerKeysetChecked: true,
       protocolVersion: "pw-contribution-receipt-verification-bundle-v1",
       rootReceiptId: fixture.root.id,
       receiptCount: 3,

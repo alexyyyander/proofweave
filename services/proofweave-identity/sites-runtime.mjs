@@ -35,8 +35,8 @@ export function createD1SitesIdentityRuntime({
   if (!database || typeof database.prepare !== "function") {
     throw new SitesIdentityRuntimeConfigurationError("Proofweave OAuth requires a D1 DB binding.");
   }
-  requireHttpsUrl(resource, "MCP_RESOURCE_URL");
-  requireHttpsUrl(issuer, "OAuth issuer");
+  requireHttpsEndpointUrl(resource, "MCP_RESOURCE_URL");
+  requireHttpsOrigin(issuer, "OAuth issuer");
   const clientRegistrationPolicy = parseClientRegistrationAllowlist(clientRegistrationAllowlistJson);
 
   const store = new D1ProofweaveOAuthStore(database);
@@ -71,7 +71,7 @@ function parseClientRegistrationAllowlist(value) {
 }
 
 /** @param {unknown} value @param {string} label */
-function requireHttpsUrl(value, label) {
+function requireHttpsEndpointUrl(value, label) {
   if (typeof value !== "string") throw new SitesIdentityRuntimeConfigurationError(`${label} must be an HTTPS URL.`);
   let url;
   try {
@@ -79,7 +79,16 @@ function requireHttpsUrl(value, label) {
   } catch {
     throw new SitesIdentityRuntimeConfigurationError(`${label} must be an HTTPS URL.`);
   }
-  if (url.protocol !== "https:" || url.username || url.password || url.hash || url.pathname !== "/" || url.search) {
+  if (url.protocol !== "https:" || url.username || url.password || url.hash || url.search) {
+    throw new SitesIdentityRuntimeConfigurationError(`${label} must be an HTTPS URL.`);
+  }
+}
+
+/** @param {unknown} value @param {string} label */
+function requireHttpsOrigin(value, label) {
+  requireHttpsEndpointUrl(value, label);
+  const url = new URL(value);
+  if (url.pathname !== "/") {
     throw new SitesIdentityRuntimeConfigurationError(`${label} must be an HTTPS origin.`);
   }
 }

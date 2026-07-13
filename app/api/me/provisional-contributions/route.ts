@@ -21,7 +21,7 @@ export async function GET() {
     const profile = await getDelegationRepository().getProfile(identity);
     return Response.json({
       contributions: await getProvisionalContributionRepository().listForPerson(profile.person.id),
-      note: "Each record is an immutable staged-Bundle evidence record. Lean execution, independent review, novelty, project acceptance, and Contribution Receipts remain separate gates.",
+      note: "Each record is an immutable staged-Bundle evidence record. It does not assert mathematical correctness; Lean execution, independent review, novelty, project acceptance, and Contribution Receipts remain separate gates.",
     });
   } catch (error) {
     if (error instanceof ProvisionalContributionSchemaUnavailableError) {

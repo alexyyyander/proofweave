@@ -194,6 +194,22 @@ test("Sites identity exposes dynamic registration only from explicit deployment 
     }),
     SitesIdentityRuntimeConfigurationError,
   );
+  assert.throws(
+    () => createD1SitesIdentityRuntime({
+      database,
+      resource: `${resource}#fragment`,
+      issuer,
+    }),
+    /MCP_RESOURCE_URL must be an HTTPS URL/,
+  );
+  assert.throws(
+    () => createD1SitesIdentityRuntime({
+      database,
+      resource,
+      issuer: `${issuer}/identity`,
+    }),
+    /OAuth issuer must be an HTTPS origin/,
+  );
 });
 
 function clientRegistrationRequest(metadata) {

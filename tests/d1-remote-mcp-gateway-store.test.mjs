@@ -33,6 +33,7 @@ let reviewerKeyPair;
 let reviewerPublicKey;
 let proverKeyPair;
 let proverPublicKey;
+let alternateProverPublicKey;
 let artifactBucket;
 let controlPlanePrivateKeyJwkJson;
 
@@ -41,6 +42,8 @@ before(async () => {
   reviewerPublicKey = base64Url(await crypto.subtle.exportKey("raw", reviewerKeyPair.publicKey));
   proverKeyPair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
   proverPublicKey = base64Url(await crypto.subtle.exportKey("raw", proverKeyPair.publicKey));
+  const alternateProverKeyPair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
+  alternateProverPublicKey = base64Url(await crypto.subtle.exportKey("raw", alternateProverKeyPair.publicKey));
   const controlPlaneKeyPair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
   controlPlanePrivateKeyJwkJson = JSON.stringify(await crypto.subtle.exportKey("jwk", controlPlaneKeyPair.privateKey));
   miniflare = new Miniflare({
@@ -53,7 +56,7 @@ before(async () => {
   database = await miniflare.getD1Database("DB");
   artifactBucket = await miniflare.getR2Bucket("ARTIFACTS");
   await applyMigrations(database);
-  await seedGatewayFixture(database, { reviewerPublicKey, proverPublicKey });
+  await seedGatewayFixture(database, { reviewerPublicKey, proverPublicKey, alternateProverPublicKey });
 });
 
 after(async () => {
@@ -460,20 +463,20 @@ test("a prove-delegated OAuth Agent stages a signed v2 Bundle and requests one i
   assert.deepEqual(visibleRun.events.map((event) => event.eventType), ["run_queued"]);
   assert.equal(visibleRun.verificationState, "not_verified");
 
-  const reviewerAccessToken = "pw_at_gateway_reviewer_run_fixture";
+  const alternateProverAccessToken = "pw_at_gateway_alternate_prover_run_fixture";
   await oauthStore.issueTokenPair({
-    accessTokenHash: await tokenHash(reviewerAccessToken),
-    refreshTokenHash: await tokenHash("pw_rt_gateway_reviewer_run_fixture"),
+    accessTokenHash: await tokenHash(alternateProverAccessToken),
+    refreshTokenHash: await tokenHash("pw_rt_gateway_alternate_prover_run_fixture"),
     clientId: "client:gateway-codex",
     resource,
     personId: "person:gateway-reviewer",
-    agentInstallationId: "installation:gateway-reviewer",
+    agentInstallationId: "installation:gateway-prover-alt",
     scopes: ["run:read"],
     issuedAt: "2026-07-13T00:00:00Z",
     accessExpiresAt: "2027-07-13T00:00:00Z",
     refreshExpiresAt: "2027-08-13T00:00:00Z",
   });
-  const hiddenFromOtherAgent = await callGatewayTool(gateway, resource, reviewerAccessToken, "get_runner_run", {
+  const hiddenFromOtherAgent = await callGatewayTool(gateway, resource, alternateProverAccessToken, "get_runner_run", {
     attemptId,
     runId: run.run.id,
   });
@@ -583,7 +586,7 @@ async function signedAttestation({
   return attestation;
 }
 
-async function seedGatewayFixture(d1, { reviewerPublicKey, proverPublicKey }) {
+async function seedGatewayFixture(d1, { reviewerPublicKey, proverPublicKey, alternateProverPublicKey }) {
   const statements = [
     ["INSERT INTO persons (id, identity_provider, provider_subject, display_name, updated_at) VALUES (?, ?, ?, ?, ?)", ["person:gateway-owner", "proofweave", "gateway-owner", "Gateway owner", "2026-07-01T00:00:00Z"]],
     ["INSERT INTO persons (id, identity_provider, provider_subject, display_name, updated_at) VALUES (?, ?, ?, ?, ?)", ["person:gateway-reviewer", "proofweave", "gateway-reviewer", "Gateway reviewer", "2026-07-01T00:00:00Z"]],
@@ -609,6 +612,7 @@ async function seedGatewayFixture(d1, { reviewerPublicKey, proverPublicKey }) {
     ["INSERT INTO person_keys (id, person_id, public_key, fingerprint) VALUES (?, ?, ?, ?)", ["person-key:gateway-reviewer", "person:gateway-reviewer", "person-key", sha("4")]],
     ["INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint) VALUES (?, ?, ?, ?, ?)", ["agent:gateway-reviewer", "person:gateway-reviewer", "Gateway reviewer Agent", reviewerPublicKey, sha("5")]],
     ["INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint) VALUES (?, ?, ?, ?, ?)", ["agent:gateway-prover", "person:gateway-reviewer", "Gateway prover Agent", proverPublicKey, sha("7")]],
+    ["INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint) VALUES (?, ?, ?, ?, ?)", ["agent:gateway-prover-alt", "person:gateway-reviewer", "Gateway alternate prover Agent", alternateProverPublicKey, sha("9")]],
     [
       `INSERT INTO delegation_certificates (id, owner_person_id, agent_id, person_key_id, agent_public_key, scopes_json, valid_from, valid_until, beneficiary_person_id, protocol_version, payload_hash, canonical_payload, person_signature)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -618,6 +622,11 @@ async function seedGatewayFixture(d1, { reviewerPublicKey, proverPublicKey }) {
       `INSERT INTO delegation_certificates (id, owner_person_id, agent_id, person_key_id, agent_public_key, scopes_json, valid_from, valid_until, beneficiary_person_id, protocol_version, payload_hash, canonical_payload, person_signature)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       ["delegation:gateway-prover", "person:gateway-reviewer", "agent:gateway-prover", "person-key:gateway-reviewer", proverPublicKey, '["formalize","prove"]', "2026-07-01T00:00:00Z", "2027-07-01T00:00:00Z", "person:gateway-reviewer", "pw-delegation-v1", sha("8"), "{}", "signature"],
+    ],
+    [
+      `INSERT INTO delegation_certificates (id, owner_person_id, agent_id, person_key_id, agent_public_key, scopes_json, valid_from, valid_until, beneficiary_person_id, protocol_version, payload_hash, canonical_payload, person_signature)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      ["delegation:gateway-prover-alt", "person:gateway-reviewer", "agent:gateway-prover-alt", "person-key:gateway-reviewer", alternateProverPublicKey, '["formalize","prove"]', "2026-07-01T00:00:00Z", "2027-07-01T00:00:00Z", "person:gateway-reviewer", "pw-delegation-v1", sha("a"), "{}", "signature"],
     ],
     ["INSERT INTO oauth_clients (id, client_name, redirect_uris_json) VALUES (?, ?, ?)", ["client:gateway-codex", "Gateway Codex", '["https://codex.example.test/callback"]']],
     [
@@ -629,6 +638,11 @@ async function seedGatewayFixture(d1, { reviewerPublicKey, proverPublicKey }) {
       `INSERT INTO agent_installations (id, person_id, agent_id, delegation_certificate_id, client_id, label)
        VALUES (?, ?, ?, ?, ?, ?)`,
       ["installation:gateway-prover", "person:gateway-reviewer", "agent:gateway-prover", "delegation:gateway-prover", "client:gateway-codex", "Gateway prover Codex"],
+    ],
+    [
+      `INSERT INTO agent_installations (id, person_id, agent_id, delegation_certificate_id, client_id, label)
+       VALUES (?, ?, ?, ?, ?, ?)`,
+      ["installation:gateway-prover-alt", "person:gateway-reviewer", "agent:gateway-prover-alt", "delegation:gateway-prover-alt", "client:gateway-codex", "Gateway alternate prover Codex"],
     ],
   ];
   for (const [statement, values] of statements) await d1.prepare(statement).bind(...values).run();

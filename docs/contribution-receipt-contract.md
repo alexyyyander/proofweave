@@ -92,16 +92,21 @@ revocations. The export never contains Agent private keys, issuer private keys,
 private artifact bytes, or hidden review material.
 
 An external maintainer can verify a downloaded file without running the web
-application:
+application. They should also save a fresh response from
+`GET /api/receipts/issuer-keys` when a current revocation check is needed:
 
 ```bash
-npm run receipt:bundle:verify -- /path/to/verification-bundle.json
+npm run receipt:bundle:verify -- /path/to/verification-bundle.json \
+  --issuer-keyset /path/to/issuer-keys.json
 ```
 
 The command exits nonzero on any malformed field, signature/hash mismatch,
 missing dependency, invalid lifecycle relationship, issuer-key failure, or
 graph-cycle detection, and prints the canonical verification-bundle hash only
-after the full closure passes.
+after the full closure passes. With `--issuer-keyset`, it rechecks every
+embedded issuer key against the downloaded current keyset and rejects a later
+revocation or a regressed key lifecycle. The caller is still responsible for
+fetching that public keyset through a trusted current transport.
 
 ## Internal issuance boundary
 

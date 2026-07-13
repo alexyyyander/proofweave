@@ -69,6 +69,23 @@ export async function contributionReceiptVerificationBundleHash(bundle) {
 }
 
 /**
+ * Normalize the public key-distribution response from
+ * GET /api/receipts/issuer-keys. It intentionally has no signing material.
+ */
+export function normalizeContributionReceiptIssuerKeyset(keyset) {
+  requireRecord(keyset, "Contribution Receipt issuer keyset");
+  rejectExtraKeys(keyset, ["issuerKeys"], "Contribution Receipt issuer keyset");
+  if (!Array.isArray(keyset.issuerKeys) || keyset.issuerKeys.length === 0 || keyset.issuerKeys.length > maxReceiptsPerBundle) {
+    throw new ContributionReceiptVerificationBundleProtocolError(`Contribution Receipt issuer keyset issuerKeys must contain 1 to ${maxReceiptsPerBundle} records.`);
+  }
+  const issuerKeyIds = new Set();
+  const issuerKeys = keyset.issuerKeys
+    .map((key) => normalizeIssuerKey(key, issuerKeyIds))
+    .sort((left, right) => compareIdentifier(left.id, right.id));
+  return Object.freeze({ issuerKeys: Object.freeze(issuerKeys) });
+}
+
+/**
  * Verify every signed Receipt and lifecycle event, its issuer-key snapshot,
  * its complete dependency closure, and lifecycle replacement relationships.
  * A successful result means the bundle is self-consistent; key snapshots still
@@ -124,6 +141,30 @@ export async function verifyContributionReceiptVerificationBundle(bundle) {
   assertNoDependencyCycles(receiptsById);
   assertNoReplacementCycles(receiptsById);
   return normalized;
+}
+
+/**
+ * Re-verify a portable closure with a newer public issuer-key response.
+ * The caller must obtain that response through a trusted current transport;
+ * this check detects a later retirement or revocation without trusting the
+ * stale key snapshot embedded in the downloaded bundle.
+ */
+export async function verifyContributionReceiptVerificationBundleWithIssuerKeyset(bundle, issuerKeyset) {
+  const verifiedBundle = await verifyContributionReceiptVerificationBundle(bundle);
+  const normalizedKeyset = normalizeContributionReceiptIssuerKeyset(issuerKeyset);
+  const currentKeysById = new Map(normalizedKeyset.issuerKeys.map((key) => [key.id, key]));
+  const currentBundleKeys = verifiedBundle.issuerKeys.map((snapshot) => {
+    const current = currentKeysById.get(snapshot.id);
+    if (!current || current.publicKey !== snapshot.publicKey || current.validFrom !== snapshot.validFrom) {
+      throw new ContributionReceiptVerificationBundleProtocolError(`Current issuer keyset does not preserve Receipt issuer key ${snapshot.id}.`);
+    }
+    assertIssuerKeyLifecycleDoesNotRegress(snapshot, current);
+    return current;
+  });
+  return verifyContributionReceiptVerificationBundle({
+    ...verifiedBundle,
+    issuerKeys: currentBundleKeys,
+  });
 }
 
 function normalizeReceiptEntry(entry, receiptIds, lifecycleEventIds) {
@@ -205,6 +246,17 @@ function assertIssuerTrustedAt(keysById, issuerKeyId, issuerPublicKey, occurredA
     (key.retiredAt && Date.parse(occurredAt) > Date.parse(key.retiredAt))
   ) {
     throw new ContributionReceiptVerificationBundleProtocolError(`${subject} issuer key was not trusted at its evidence time.`);
+  }
+}
+
+function assertIssuerKeyLifecycleDoesNotRegress(snapshot, current) {
+  if (
+    (snapshot.retiredAt && current.retiredAt !== snapshot.retiredAt) ||
+    (snapshot.revokedAt && current.revokedAt !== snapshot.revokedAt) ||
+    (snapshot.status === "retired" && current.status === "active") ||
+    (snapshot.status === "revoked" && current.status !== "revoked")
+  ) {
+    throw new ContributionReceiptVerificationBundleProtocolError(`Current issuer keyset regresses lifecycle state for issuer key ${snapshot.id}.`);
   }
 }
 

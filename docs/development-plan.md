@@ -512,7 +512,10 @@ standalone protocol verifier checks the entire closure, hashes, signatures,
 policy, issuer-key historical validity, and graph constraints without the UI.
 The export carries no private artifact bytes or signing credentials; its issuer
 key snapshot must still be refreshed from the public keyset for later revocation
-information.
+information. The repository's standalone verifier accepts that latest keyset as
+an explicit input and fails closed on later key revocation or lifecycle
+regression; acquiring the keyset through a trusted current transport remains
+the external verifier's responsibility.
 
 The immediate half of Sprint 5 is now represented by the owner-only
 `provisional_contributions` ledger: after D1/R2 Bundle staging verifies its
