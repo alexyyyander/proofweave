@@ -60,6 +60,8 @@ reusable contribution with evidence that an external maintainer can reproduce.
   cancellation acknowledgement semantics;
 - operator-managed runner-key allowlist with signed-result verification before
   immutable Run evidence is accepted;
+- independent Person-level review assignments and review-delegated Agent
+  attestations with immutable D1 audit events;
 - a repository-versioned research skill, retired local MCP prototype, and
   Worker-compatible remote MCP/identity protocol scaffolding;
 - logical D1 (`DB`) and R2 (`ARTIFACTS`) bindings declared for Sites;
@@ -218,6 +220,16 @@ cancellation—not fake pause/resume—because a reproducible checkpoint format
 does not exist yet. The store remains internal: no public run-creation or
 execution route exists. See
 [`docs/run-state-contract.md`](run-state-contract.md).
+
+### Verification-assignment progress
+
+The internal verification store now snapshots an Attempt owner's Person ID when
+assigning a staged bundle, rejects same-owner review, and records acceptance,
+decline, and Agent-signed Attestation events immutably. Completing an
+Attestation requires a different owner's active `review` delegation, exact
+assignment/claim/evidence match, and Ed25519 verification. This is a policy and
+audit layer only: no participant review API or fresh runner replay exists yet.
+See [`docs/verification-contract.md`](verification-contract.md).
 
 ## 3. Architecture boundary
 

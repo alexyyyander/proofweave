@@ -658,3 +658,112 @@ export const artifactBundles = sqliteTable(
     index("artifact_bundles_revision_created_idx").on(table.problemRevisionId, table.createdAt),
   ],
 );
+
+// Assignment identity and every review event are retained so a later receipt
+// can prove that its verifier belonged to a different Person than the Attempt.
+export const verificationAssignments = sqliteTable(
+  "verification_assignments",
+  {
+    id: text("id").primaryKey(),
+    artifactBundleManifestHash: text("artifact_bundle_manifest_hash")
+      .notNull()
+      .references(() => artifactBundles.manifestHash, { onDelete: "restrict" }),
+    claimType: text("claim_type", {
+      enum: [
+        "bundle_reproducible",
+        "kernel_accepted",
+        "statement_faithful",
+        "novelty_reviewed",
+        "project_accepted",
+      ],
+    }).notNull(),
+    attemptOwnerPersonId: text("attempt_owner_person_id")
+      .notNull()
+      .references(() => persons.id, { onDelete: "restrict" }),
+    verifierPersonId: text("verifier_person_id")
+      .notNull()
+      .references(() => persons.id, { onDelete: "restrict" }),
+    status: text("status", {
+      enum: ["assigned", "accepted", "declined", "completed", "cancelled"],
+    })
+      .notNull()
+      .default("assigned"),
+    assignedAt: text("assigned_at").notNull(),
+    acceptedAt: text("accepted_at"),
+    declinedAt: text("declined_at"),
+    completedAt: text("completed_at"),
+    createdAt,
+    updatedAt: text("updated_at").notNull(),
+  },
+  (table) => [
+    uniqueIndex("verification_assignments_unique_reviewer_idx").on(
+      table.artifactBundleManifestHash,
+      table.claimType,
+      table.verifierPersonId,
+    ),
+    index("verification_assignments_verifier_status_idx").on(table.verifierPersonId, table.status),
+    index("verification_assignments_bundle_claim_idx").on(table.artifactBundleManifestHash, table.claimType),
+  ],
+);
+
+export const verificationAssignmentEvents = sqliteTable(
+  "verification_assignment_events",
+  {
+    id: text("id").primaryKey(),
+    assignmentId: text("assignment_id")
+      .notNull()
+      .references(() => verificationAssignments.id, { onDelete: "restrict" }),
+    sequence: integer("sequence").notNull(),
+    eventType: text("event_type", {
+      enum: ["assignment_created", "assignment_accepted", "assignment_declined", "attestation_recorded"],
+    }).notNull(),
+    status: text("status").notNull(),
+    payloadHash: text("payload_hash").notNull(),
+    canonicalPayload: text("canonical_payload").notNull(),
+    occurredAt: text("occurred_at").notNull(),
+    createdAt,
+  },
+  (table) => [
+    uniqueIndex("verification_assignment_events_sequence_idx").on(table.assignmentId, table.sequence),
+    uniqueIndex("verification_assignment_events_payload_idx").on(table.payloadHash),
+    index("verification_assignment_events_occurred_idx").on(table.assignmentId, table.occurredAt),
+  ],
+);
+
+export const verificationAttestations = sqliteTable(
+  "verification_attestations",
+  {
+    id: text("id").primaryKey(),
+    assignmentId: text("assignment_id")
+      .notNull()
+      .unique()
+      .references(() => verificationAssignments.id, { onDelete: "restrict" }),
+    artifactBundleManifestHash: text("artifact_bundle_manifest_hash")
+      .notNull()
+      .references(() => artifactBundles.manifestHash, { onDelete: "restrict" }),
+    claimType: text("claim_type").notNull(),
+    verifierPersonId: text("verifier_person_id")
+      .notNull()
+      .references(() => persons.id, { onDelete: "restrict" }),
+    verifierAgentId: text("verifier_agent_id")
+      .notNull()
+      .references(() => agents.id, { onDelete: "restrict" }),
+    delegationCertificateId: text("delegation_certificate_id")
+      .notNull()
+      .references(() => delegationCertificates.id, { onDelete: "restrict" }),
+    verifierAgentPublicKey: text("verifier_agent_public_key").notNull(),
+    decision: text("decision", { enum: ["attested", "rejected", "request_changes"] }).notNull(),
+    evidenceHash: text("evidence_hash")
+      .notNull()
+      .references(() => artifactObjects.contentHash, { onDelete: "restrict" }),
+    canonicalPayload: text("canonical_payload").notNull(),
+    payloadHash: text("payload_hash").notNull(),
+    signature: text("signature").notNull(),
+    attestedAt: text("attested_at").notNull(),
+    createdAt,
+  },
+  (table) => [
+    index("verification_attestations_bundle_claim_idx").on(table.artifactBundleManifestHash, table.claimType),
+    index("verification_attestations_verifier_idx").on(table.verifierPersonId, table.attestedAt),
+  ],
+);

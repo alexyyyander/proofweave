@@ -1,0 +1,163 @@
+import assert from "node:assert/strict";
+import { after, before, test } from "node:test";
+import { readFile, readdir } from "node:fs/promises";
+import { Miniflare } from "miniflare";
+import { D1VerificationStore } from "../services/verification/d1-verification-store.mjs";
+import {
+  verificationAttestationPayloadHash,
+  verificationAttestationSigningPayload,
+} from "../packages/protocol/verification-attestation.mjs";
+import { canonicalJson } from "../packages/protocol/canonical-json.mjs";
+
+const migrationsRoot = new URL("../drizzle/", import.meta.url);
+let miniflare;
+let database;
+let reviewerKeyPair;
+let reviewerPublicKey;
+
+before(async () => {
+  reviewerKeyPair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
+  reviewerPublicKey = base64Url(await crypto.subtle.exportKey("raw", reviewerKeyPair.publicKey));
+  miniflare = new Miniflare({
+    modules: true,
+    script: "export default { fetch() { return new Response('ok'); } }",
+    compatibilityDate: "2026-05-22",
+    d1Databases: ["DB"],
+  });
+  database = await miniflare.getD1Database("DB");
+  await applyMigrations(database);
+  await seedBundle(database, reviewerPublicKey);
+});
+
+after(async () => {
+  await miniflare?.dispose();
+});
+
+test("D1 Verification store enforces different-owner review and persists signed evidence", async () => {
+  const store = new D1VerificationStore(database);
+  await assert.rejects(
+    store.assign({
+      id: "assignment:self-review", artifactBundleManifestHash: sha("a"), claimType: "kernel_accepted",
+      verifierPersonId: "person:alice", assignedAt: "2026-07-13T00:00:00Z",
+    }),
+    /cannot independently review their own Attempt/,
+  );
+
+  const assigned = await store.assign({
+    id: "assignment:bob-review", artifactBundleManifestHash: sha("a"), claimType: "kernel_accepted",
+    verifierPersonId: "person:bob", assignedAt: "2026-07-13T00:00:00Z",
+  });
+  assert.equal(assigned.created, true);
+  assert.equal((await store.assign({
+    id: "assignment:retry", artifactBundleManifestHash: sha("a"), claimType: "kernel_accepted",
+    verifierPersonId: "person:bob", assignedAt: "2026-07-13T00:00:01Z",
+  })).created, false);
+
+  const accepted = await store.accept("assignment:bob-review", "person:bob", "2026-07-13T00:00:02Z");
+  const attestation = await signedAttestation();
+  const recorded = await store.recordAttestation(attestation);
+  assert.equal(accepted.status, "accepted");
+  assert.equal(recorded.created, true);
+  assert.equal((await store.recordAttestation(attestation)).created, false);
+
+  const events = await store.listEvents("assignment:bob-review");
+  assert.deepEqual(events.map((event) => event.eventType), [
+    "assignment_created",
+    "assignment_accepted",
+    "attestation_recorded",
+  ]);
+  await assert.rejects(
+    database.prepare("UPDATE verification_assignments SET claim_type = ? WHERE id = ?").bind("novelty_reviewed", "assignment:bob-review").run(),
+    /verification assignment identity is immutable/,
+  );
+  await assert.rejects(
+    database.prepare("UPDATE verification_attestations SET decision = ? WHERE id = ?").bind("rejected", attestation.id).run(),
+    /verification attestations are immutable/,
+  );
+});
+
+async function signedAttestation() {
+  const attestation = {
+    protocolVersion: "pw-verification-attestation-v1",
+    id: "attestation:bob-review",
+    assignmentId: "assignment:bob-review",
+    artifactBundleHash: sha("a"),
+    claimType: "kernel_accepted",
+    verifierPersonId: "person:bob",
+    verifierAgentId: "agent:bob-reviewer",
+    delegationCertificateId: "delegation:bob-reviewer",
+    verifierAgentPublicKey: reviewerPublicKey,
+    decision: "attested",
+    evidenceHash: sha("b"),
+    attestedAt: "2026-07-13T00:00:03Z",
+    payloadHash: sha("0"),
+    signature: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+  };
+  attestation.payloadHash = await verificationAttestationPayloadHash(attestation);
+  attestation.signature = base64Url(
+    await crypto.subtle.sign(
+      "Ed25519",
+      reviewerKeyPair.privateKey,
+      new TextEncoder().encode(canonicalJson(verificationAttestationSigningPayload(attestation))),
+    ),
+  );
+  return attestation;
+}
+
+async function seedBundle(d1, publicKey) {
+  const manifestHash = sha("a");
+  const evidenceHash = sha("b");
+  const statements = [
+    ["INSERT INTO persons (id, identity_provider, provider_subject, display_name, updated_at) VALUES (?, ?, ?, ?, ?)", ["person:alice", "proofweave", "alice", "Alice", "2026-07-01T00:00:00Z"]],
+    ["INSERT INTO persons (id, identity_provider, provider_subject, display_name, updated_at) VALUES (?, ?, ?, ?, ?)", ["person:bob", "proofweave", "bob", "Bob", "2026-07-01T00:00:00Z"]],
+    [
+      `INSERT INTO source_snapshots (id, upstream_name, source_url, revision_tag, revision_commit, retrieved_at, content_hash, manifest_hash, source_license, lean_toolchain, mathlib_revision)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      ["snapshot:verification", "fixture", "https://example.test/source", "v1", "abc123", "2026-07-01T00:00:00Z", sha("1"), sha("2"), "MIT", "leanprover/lean4:v4.27.0", "abc123"],
+    ],
+    ["INSERT INTO projects (id, slug, kind, title, summary) VALUES (?, ?, ?, ?, ?)", ["project:verification", "verification", "frontier", "Verification", "Fixture"]],
+    [
+      `INSERT INTO problem_revisions (id, project_id, source_snapshot_id, target_key, slug, revision_number, title, domain, research_status, informal_statement, lean_statement)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      ["revision:verification", "project:verification", "snapshot:verification", "verification-target", "verification-target", 1, "Verification target", "logic", "research_open", "fixture", "theorem fixture : True := by trivial"],
+    ],
+    [
+      "INSERT INTO agent_attempts (id, person_id, problem_revision_id, agent_label, idempotency_key, updated_at) VALUES (?, ?, ?, ?, ?, ?)",
+      ["attempt:verification", "person:alice", "revision:verification", "Alice Agent", "attempt-verification", "2026-07-01T00:00:00Z"],
+    ],
+    ["INSERT INTO artifact_objects (content_hash, object_key, byte_length, content_type) VALUES (?, ?, ?, ?)", [manifestHash, `bundles/sha256/${"a".repeat(64)}/bundle.json`, 2, "application/json"]],
+    ["INSERT INTO artifact_objects (content_hash, object_key, byte_length, content_type) VALUES (?, ?, ?, ?)", [evidenceHash, `bundles/sha256/${"b".repeat(64)}/review.json`, 2, "application/json"]],
+    [
+      `INSERT INTO artifact_bundles (id, attempt_id, problem_revision_id, manifest_hash, manifest_key, canonical_manifest, agent_event_id, agent_event_payload_hash)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      ["bundle:verification", "attempt:verification", "revision:verification", manifestHash, `bundles/sha256/${"a".repeat(64)}/bundle.json`, "{}", "agent-event:verification", sha("3")],
+    ],
+    ["INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint) VALUES (?, ?, ?, ?, ?)", ["agent:bob-reviewer", "person:bob", "Bob reviewer", publicKey, sha("4")]],
+    ["INSERT INTO person_keys (id, person_id, public_key, fingerprint) VALUES (?, ?, ?, ?)", ["person-key:bob", "person:bob", "person-key", sha("5")]],
+    [
+      `INSERT INTO delegation_certificates (id, owner_person_id, agent_id, person_key_id, agent_public_key, scopes_json, valid_from, valid_until, beneficiary_person_id, protocol_version, payload_hash, canonical_payload, person_signature)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      ["delegation:bob-reviewer", "person:bob", "agent:bob-reviewer", "person-key:bob", publicKey, '["review"]', "2026-07-01T00:00:00Z", "2027-07-01T00:00:00Z", "person:bob", "pw-delegation-v1", sha("6"), "{}", "signature"],
+    ],
+  ];
+  for (const [statement, values] of statements) await d1.prepare(statement).bind(...values).run();
+}
+
+async function applyMigrations(d1) {
+  const filenames = (await readdir(migrationsRoot)).filter((filename) => filename.endsWith(".sql")).sort();
+  for (const filename of filenames) {
+    const source = await readFile(new URL(filename, migrationsRoot), "utf8");
+    for (const statement of source.split("--> statement-breakpoint").map((value) => value.trim()).filter(Boolean)) {
+      await d1.prepare(statement).run();
+    }
+  }
+}
+
+function sha(character) {
+  return `sha256:${character.repeat(64)}`;
+}
+
+function base64Url(buffer) {
+  const binary = String.fromCharCode(...new Uint8Array(buffer));
+  return btoa(binary).replaceAll("+", "-").replaceAll("/", "_").replaceAll("=", "");
+}

@@ -21,6 +21,7 @@ connected.
 - [Artifact bundle contract](docs/artifact-bundle-contract.md)
 - [Artifact storage contract](docs/artifact-storage-contract.md)
 - [Run state contract](docs/run-state-contract.md)
+- [Independent verification contract](docs/verification-contract.md)
 
 ## Current stack
 
@@ -149,6 +150,8 @@ application secrets.
 - `npm run artifact:store:check`: exercise signed R2/D1 artifact staging
 - `npm run run:check`: validate bounded-run lifecycle and result binding
 - `npm run run:store:check`: exercise D1 Run lifecycle and immutable evidence
+- `npm run verification:check`: validate signed independent-review attestations
+- `npm run verification:store:check`: exercise D1 review assignment policy
 - `npm run mcp`: start the local MCP bridge after setting its environment
 
 ## Codex MCP direction
