@@ -56,3 +56,24 @@ Wrangler deployment commands:
 
 The isolated Lean runner is a later deployment boundary; see
 [`runner-cloudflare-deployment.md`](runner-cloudflare-deployment.md).
+
+## Closed-alpha client-registration setting
+
+The owner-only Sites identity adapter keeps dynamic client registration off
+unless `OAUTH_CLIENT_REGISTRATION_ALLOWLIST_JSON` is set to a finite JSON array
+of exact client metadata, for example:
+
+```json
+[
+  {
+    "client_name": "Approved client",
+    "redirect_uris": ["https://client.example/callback"]
+  }
+]
+```
+
+Treat every entry as an operator approval for that exact normalized name and
+redirect-URI set. Do not use wildcards, accept arbitrary metadata, or set this
+binding during the private alpha. The setting has no effect on the deliberately
+unavailable standalone identity Worker; a future public identity deployment
+must introduce an equivalent reviewed configuration deliberately.

@@ -235,8 +235,9 @@ Implemented locally on 2026-07-13:
   quota; only ephemeral transport counters are retained. Load validation,
   deployed retention, and an abuse-response process remain rollout work; and
 - dynamic OAuth client registration closed by default, with discovery exposing
-  it only for a finite operator-reviewed metadata allowlist and D1 assigning
-  idempotent client IDs to identical approved registrations; and
+  it only for a finite operator-reviewed metadata allowlist; the private Sites
+  runtime reads that allowlist only from an explicit deployment binding, and D1
+  assigns idempotent client IDs to identical approved registrations; and
 - a private Sites OAuth adapter with one-use D1 consent challenges, HttpOnly
   CSRF binding, capability-filtered Agent selection, and automatic revocable
   Agent-installation creation for a browser-approved MCP client; and

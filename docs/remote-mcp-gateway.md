@@ -129,10 +129,13 @@ until load-tested and paired with deployed abuse response and operator policy.
 
 Dynamic client registration is closed by default. The authorization-server
 metadata omits `/register` unless deployment configuration supplies a finite,
-operator-reviewed allowlist of exact client names and redirect URIs. An enabled
-allowlist gives repeated registration of identical metadata one deterministic
-D1 client ID rather than minting unbounded client records. This avoids treating
-an arbitrary redirect URI posted by a remote client as enrollment authority.
+operator-reviewed allowlist of exact client names and redirect URIs. For the
+private Sites adapter, that configuration is the optional
+`OAUTH_CLIENT_REGISTRATION_ALLOWLIST_JSON` binding; the standalone identity
+Worker remains unavailable and does not read it. An enabled allowlist gives
+repeated registration of identical metadata one deterministic D1 client ID
+rather than minting unbounded client records. This avoids treating an arbitrary
+redirect URI posted by a remote client as enrollment authority.
 
 The separate identity Worker remains deliberately unavailable by default. The
 private Sites alpha now has an alternative Worker-mounted authorization adapter:

@@ -20,8 +20,13 @@ OAuth scopes, and creates or reuses one installation only after approval.
 `d1-oauth-store.mjs` stores credential and consent-token hashes; it invalidates
 an installation whenever its underlying Agent delegation is no longer active.
 
-Dynamic client registration is intentionally closed by default. A future
-deployment must pass an explicit finite allowlist of exact client metadata to
+Dynamic client registration is intentionally closed by default. The private
+Sites adapter reads it only from the optional
+`OAUTH_CLIENT_REGISTRATION_ALLOWLIST_JSON` deployment binding: a finite JSON
+array of exact client metadata. It passes that array to
 `createAllowlistedClientRegistrationPolicy`; only then does discovery advertise
-`/register`. The D1 store derives a stable client ID for identical approved
-metadata, preventing re-registration from creating an unbounded client table.
+`/register`. Leave the binding absent for the private alpha. The D1 store
+derives a stable client ID for identical approved metadata, preventing
+re-registration from creating an unbounded client table. The deliberately
+unavailable standalone identity Worker does not inherit this setting; a future
+public identity service must wire its own reviewed policy explicitly.

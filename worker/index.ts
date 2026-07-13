@@ -15,6 +15,7 @@ interface Env {
   DB?: unknown;
   MCP_RESOURCE_URL?: string;
   OAUTH_ISSUER_URL?: string;
+  OAUTH_CLIENT_REGISTRATION_ALLOWLIST_JSON?: string;
   IMAGES: {
     input(stream: ReadableStream): {
       transform(options: Record<string, unknown>): {
@@ -76,6 +77,7 @@ function fetchOAuthIdentity(request: Request, env: Env, url: URL): Promise<Respo
       database: env.DB,
       resource: env.MCP_RESOURCE_URL,
       issuer: url.origin,
+      clientRegistrationAllowlistJson: env.OAUTH_CLIENT_REGISTRATION_ALLOWLIST_JSON,
     });
     return identity.fetch(request);
   } catch (error) {

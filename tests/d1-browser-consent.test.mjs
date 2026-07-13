@@ -6,6 +6,10 @@ import { createD1BrowserConsentResolver } from "../services/proofweave-identity/
 import { D1ProofweaveOAuthStore } from "../services/proofweave-identity/d1-oauth-store.mjs";
 import { createProofweaveOAuthProvider } from "../services/proofweave-identity/oauth.mjs";
 import { createSitesChatGPTSessionResolver } from "../services/proofweave-identity/sites-session.mjs";
+import {
+  createD1SitesIdentityRuntime,
+  SitesIdentityRuntimeConfigurationError,
+} from "../services/proofweave-identity/sites-runtime.mjs";
 
 const migrationsRoot = new URL("../drizzle/", import.meta.url);
 const resource = "https://mcp.example.test/mcp";
@@ -138,6 +142,67 @@ test("closed-alpha session bridge redirects unsigned browsers and never creates 
     403,
   );
 });
+
+test("Sites identity exposes dynamic registration only from explicit deployment allowlist JSON", async () => {
+  const closed = createD1SitesIdentityRuntime({ database, resource, issuer });
+  const closedMetadata = await (await closed.fetch(new Request(`${issuer}/.well-known/oauth-authorization-server`))).json();
+  assert.equal(Object.hasOwn(closedMetadata, "registration_endpoint"), false);
+
+  const enabled = createD1SitesIdentityRuntime({
+    database,
+    resource,
+    issuer,
+    clientRegistrationAllowlistJson: JSON.stringify([{
+      client_name: "Approved Codex",
+      redirect_uris: ["https://codex.example.test/callback"],
+    }]),
+  });
+  const enabledMetadata = await (await enabled.fetch(new Request(`${issuer}/.well-known/oauth-authorization-server`))).json();
+  assert.equal(enabledMetadata.registration_endpoint, `${issuer}/register`);
+  const approvedMetadata = {
+    client_name: "Approved Codex",
+    redirect_uris: ["https://codex.example.test/callback"],
+  };
+  const first = await enabled.fetch(clientRegistrationRequest(approvedMetadata));
+  assert.equal(first.status, 201);
+  const firstClient = await first.json();
+  assert.match(firstClient.client_id, /^pw_client:/);
+  const replay = await enabled.fetch(clientRegistrationRequest(approvedMetadata));
+  assert.equal(replay.status, 201);
+  assert.equal((await replay.json()).client_id, firstClient.client_id);
+  const rejected = await enabled.fetch(clientRegistrationRequest({
+    client_name: "Unapproved client",
+    redirect_uris: ["https://attacker.example.test/callback"],
+  }));
+  assert.equal(rejected.status, 403);
+  assert.equal((await rejected.json()).error, "access_denied");
+  assert.throws(
+    () => createD1SitesIdentityRuntime({
+      database,
+      resource,
+      issuer,
+      clientRegistrationAllowlistJson: "not-json",
+    }),
+    SitesIdentityRuntimeConfigurationError,
+  );
+  assert.throws(
+    () => createD1SitesIdentityRuntime({
+      database,
+      resource,
+      issuer,
+      clientRegistrationAllowlistJson: "[]",
+    }),
+    SitesIdentityRuntimeConfigurationError,
+  );
+});
+
+function clientRegistrationRequest(metadata) {
+  return new Request(`${issuer}/register`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(metadata),
+  });
+}
 
 function hiddenValue(html, name) {
   const value = html.match(new RegExp(`<input type="hidden" name="${name}" value="([^"]+)"`))?.[1];

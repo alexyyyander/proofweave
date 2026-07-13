@@ -240,9 +240,11 @@ catalog/Attempt/progress store, bounded R2/D1 artifact-Bundle staging, and a
 review-scope-bound signed-attestation admission path are implemented locally.
 The deployable resource-server source additionally enforces Person-aggregated,
 opaque D1 request quotas before each authorized MCP tool operation.
-Dynamic client registration is closed unless an operator supplies a finite,
-exact metadata allowlist; this prevents an arbitrary redirect URI from becoming
-an enrolled OAuth client.
+Dynamic client registration is closed unless an operator supplies the private
+Sites runtime with a finite, exact metadata allowlist through
+`OAUTH_CLIENT_REGISTRATION_ALLOWLIST_JSON`; this prevents an arbitrary redirect
+URI from becoming an enrolled OAuth client. The binding remains unset in the
+private alpha.
 The workbench also lists each approved Agent/client connection and lets its
 owner revoke it; revocation immediately invalidates the installation at the
 resource-server boundary.
