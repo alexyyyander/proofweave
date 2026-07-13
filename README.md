@@ -57,6 +57,8 @@ The project does not use `wrangler.jsonc`.
 - `services/lean-runner/` contains the versioned protocol boundary for the
   separately deployed, isolated Lean executor and signed control-plane job
   envelope. User Lean code must never run in the web Worker.
+- `services/receipts/` contains the internal-only D1 issuance boundary for
+  signed Contribution Receipts; it has no public route.
 - `services/proofweave-mcp/` preserves the retired local stdio prototype for
   internal reference; `services/proofweave-mcp-gateway/` and
   `services/proofweave-identity/` contain the separate remote MCP resource and
@@ -155,6 +157,7 @@ application secrets.
 - `npm run verification:check`: validate signed independent-review attestations
 - `npm run verification:store:check`: exercise D1 review assignment policy
 - `npm run receipt:check`: validate signed Contribution Receipt protocol/policy
+- `npm run receipt:store:check`: exercise internal immutable D1 receipt issuance
 - `npm run mcp`: start the local MCP bridge after setting its environment
 
 ## Codex MCP direction

@@ -54,10 +54,17 @@ verify the Ed25519 signature with `issuerPublicKey`, and recompute the full
 receipt hash without the Proofweave UI. Trusting that the key belongs to a
 given Proofweave issuer is a separate key-distribution concern.
 
-## Deliberate current limit
+## Internal issuance boundary
 
-The repository currently contains the protocol and its policy tests only. It
-does **not** persist or issue receipts, expose receipt JSON/download endpoints,
-or replace the frontend schema-preview page. Dependency edges, supersession,
-correction, and retraction remain append-only persistence work, not mutable
-fields on this v1 receipt.
+`D1ContributionReceiptStore` rebuilds a draft only from staged immutable
+Bundle, Run/result, and Attestation rows. It does not accept arbitrary target,
+claim, or build-result JSON from a route or browser. The store applies the
+policy, requests a signature from a caller-supplied deployment secret, then
+persists the resulting canonical receipt in an immutable D1 row. Retrying the
+same receipt/evidence identity returns the stored receipt rather than issuing a
+duplicate.
+
+There is still no participant-facing issuance route, public receipt
+JSON/download endpoint, or replacement for the frontend schema-preview page.
+Dependency edges, supersession, correction, retraction, and issuer-key rotation
+remain append-only work, not mutable fields on this v1 receipt.

@@ -767,3 +767,56 @@ export const verificationAttestations = sqliteTable(
     index("verification_attestations_verifier_idx").on(table.verifierPersonId, table.attestedAt),
   ],
 );
+
+// The canonical JSON contains the complete claims and dependency-receipt
+// evidence. These indexed columns make recipient and source queries possible
+// without mutating the signed payload.
+export const contributionReceipts = sqliteTable(
+  "contribution_receipts",
+  {
+    id: text("id").primaryKey(),
+    kind: text("kind", {
+      enum: ["formalization", "lemma", "proof_patch", "counterexample", "verification", "synthesis", "infrastructure"],
+    }).notNull(),
+    beneficiaryPersonId: text("beneficiary_person_id")
+      .notNull()
+      .references(() => persons.id, { onDelete: "restrict" }),
+    beneficiaryAgentId: text("beneficiary_agent_id")
+      .notNull()
+      .references(() => agents.id, { onDelete: "restrict" }),
+    beneficiaryDelegationCertificateId: text("beneficiary_delegation_certificate_id")
+      .notNull()
+      .references(() => delegationCertificates.id, { onDelete: "restrict" }),
+    attemptId: text("attempt_id")
+      .notNull()
+      .references(() => agentAttempts.id, { onDelete: "restrict" }),
+    problemRevisionId: text("problem_revision_id")
+      .notNull()
+      .references(() => problemRevisions.id, { onDelete: "restrict" }),
+    artifactBundleManifestHash: text("artifact_bundle_manifest_hash")
+      .notNull()
+      .references(() => artifactBundles.manifestHash, { onDelete: "restrict" }),
+    runId: text("run_id")
+      .notNull()
+      .references(() => runs.id, { onDelete: "restrict" }),
+    receiptHash: text("receipt_hash").notNull().unique(),
+    canonicalReceipt: text("canonical_receipt").notNull(),
+    payloadHash: text("payload_hash").notNull(),
+    issuerKeyId: text("issuer_key_id").notNull(),
+    issuerPublicKey: text("issuer_public_key").notNull(),
+    issuerSignature: text("issuer_signature").notNull(),
+    issuedAt: text("issued_at").notNull(),
+    createdAt,
+  },
+  (table) => [
+    uniqueIndex("contribution_receipts_evidence_beneficiary_idx").on(
+      table.artifactBundleManifestHash,
+      table.kind,
+      table.beneficiaryPersonId,
+      table.beneficiaryAgentId,
+      table.beneficiaryDelegationCertificateId,
+    ),
+    index("contribution_receipts_person_issued_idx").on(table.beneficiaryPersonId, table.issuedAt),
+    index("contribution_receipts_attempt_idx").on(table.attemptId),
+  ],
+);
