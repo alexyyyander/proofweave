@@ -92,15 +92,21 @@ page and `GET /api/me/evidence/bundles/:manifestHash` expose the canonical
 Bundle manifest, its indexed source archive/patch/Lake-manifest metadata, and
 stored Run/result metadata. An assigned reviewer sees the submitting Agent
 label needed to inspect the work but never the Attempt owner's Person identity
-or display name.
+or display name. A terminal fresh replay evidence closure is additionally
+visible and downloadable only to the Person whose review Agent created that
+replay; it includes the exact replay/assignment identity and signed Runner
+result needed to prepare `bundle_reproducible`. It is not exposed to the
+Attempt owner or to other reviewers before a separate attestation makes an
+explicit claim.
 
 `GET /api/me/evidence/bundles/:manifestHash/artifacts/:artifactId` returns a
 download only after the same access test succeeds and the private R2 object's
 stored size and `sha256` metadata match the immutable D1 index. Responses are
 `private, no-store` attachments with `nosniff`; R2 object keys are never
 returned in the JSON view. Supported artifact identifiers are the signed Bundle
-manifest, source archive, normalized patch, Lake manifest, and any persisted
-Runner stdout/stderr object for that Bundle's Runs.
+manifest, source archive, normalized patch, Lake manifest, any persisted
+Runner stdout/stderr object for that Bundle's Runs, and the caller's own
+terminal fresh-replay evidence closure.
 
 Inspection and download are deliberately not replay: they do not execute Lean,
 update a Run, create an attestation, or make a verification claim.

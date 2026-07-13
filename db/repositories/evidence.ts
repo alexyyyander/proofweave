@@ -5,6 +5,12 @@ import {
   canonicalArtifactBundle,
   normalizeArtifactBundle,
 } from "@/packages/protocol/artifact-bundle.mjs";
+import {
+  normalizeVerificationReplayEvidence,
+  verificationReplayEvidenceHash,
+} from "@/packages/protocol/verification-replay-evidence.mjs";
+import { canonicalJson } from "@/packages/protocol/canonical-json.mjs";
+import { normalizeLeanRunnerResult } from "@/packages/protocol/lean-runner.mjs";
 
 export type EvidenceAccessRole = "attempt_owner" | "assigned_reviewer";
 export type EvidenceArtifactId =
@@ -13,7 +19,8 @@ export type EvidenceArtifactId =
   | "sourcePatch"
   | "lakeManifest"
   | `run:${string}:stdout`
-  | `run:${string}:stderr`;
+  | `run:${string}:stderr`
+  | `replay:${string}:evidence`;
 
 export type EvidenceArtifact = Readonly<{
   id: EvidenceArtifactId;
@@ -37,6 +44,17 @@ export type EvidenceRun = Readonly<{
     receivedAt: string;
   }> | null;
   outputs: readonly EvidenceArtifact[];
+}>;
+
+export type EvidenceReplay = Readonly<{
+  id: string;
+  assignmentId: string;
+  runId: string;
+  runnerResultHash: string;
+  evidenceHash: string;
+  recordedAt: string;
+  canonicalEvidence: string;
+  artifact: EvidenceArtifact;
 }>;
 
 export type AttemptEvidenceSummary = Readonly<{
@@ -66,6 +84,7 @@ export type AttemptEvidence = Readonly<{
     artifacts: readonly EvidenceArtifact[];
   }>;
   runs: readonly EvidenceRun[];
+  replays: readonly EvidenceReplay[];
 }>;
 
 type BaseRow = {
@@ -114,6 +133,30 @@ type OutputRow = {
   content_type: string;
 };
 
+type ReplayRow = {
+  id: string;
+  replay_id: string;
+  assignment_id: string;
+  run_id: string;
+  artifact_bundle_manifest_hash: string;
+  runner_result_hash: string;
+  evidence_hash: string;
+  canonical_evidence: string;
+  recorded_at: string;
+  replay_artifact_bundle_manifest_hash: string;
+  requester_person_id: string;
+  requester_agent_id: string;
+  delegation_certificate_id: string;
+  verifier_person_id: string;
+  run_runner_result_hash: string;
+  result_hash: string;
+  canonical_result: string;
+  content_hash: string;
+  object_key: string;
+  byte_length: number;
+  content_type: string;
+};
+
 type PrivateEvidenceArtifact = EvidenceArtifact & Readonly<{
   objectKey: string;
   filename: string;
@@ -154,6 +197,7 @@ class D1EvidenceRepository implements EvidenceRepository {
     if (!base) return null;
     const privateArtifacts = await this.artifactsFor(base);
     const runs = await this.runsFor(base.attempt_id);
+    const replays = await this.replaysFor(personId, base);
     return Object.freeze({
       summary: summaryFrom(base, runs[0]?.state ?? null),
       bundle: Object.freeze({
@@ -169,6 +213,10 @@ class D1EvidenceRepository implements EvidenceRepository {
         ...run,
         outputs: Object.freeze(run.outputs.map(publicArtifact)),
       }))),
+      replays: Object.freeze(replays.map((replay) => Object.freeze({
+        ...replay,
+        artifact: publicArtifact(replay.artifact),
+      }))),
     });
   }
 
@@ -177,7 +225,10 @@ class D1EvidenceRepository implements EvidenceRepository {
     if (!base) return null;
     const artifacts = await this.artifactsFor(base);
     const runs = await this.runsFor(base.attempt_id);
-    return artifacts.concat(runs.flatMap((run) => run.outputs)).find((artifact) => artifact.id === artifactId) ?? null;
+    const replays = await this.replaysFor(personId, base);
+    return artifacts
+      .concat(runs.flatMap((run) => run.outputs), replays.map((replay) => replay.artifact))
+      .find((artifact) => artifact.id === artifactId) ?? null;
   }
 
   private async findBase(personId: string, bundleManifestHash: string): Promise<BaseRow | null> {
@@ -269,6 +320,86 @@ class D1EvidenceRepository implements EvidenceRepository {
         ? Object.freeze({ resultHash: run.result_hash, canonicalResult: run.canonical_result, receivedAt: run.received_at })
         : null,
       outputs: Object.freeze(outputsByRun.get(run.id) ?? []),
+    })));
+  }
+
+  /**
+   * A replay artifact remains visible only to the Person whose review Agent
+   * created it. Attempt owners and other assignees can inspect the shared
+   * Bundle/Run record but cannot browse a reviewer Agent's reproducibility
+   * evidence before that reviewer makes its separately signed claim.
+   */
+  private async replaysFor(personId: string, base: BaseRow): Promise<readonly (EvidenceReplay & { artifact: PrivateEvidenceArtifact })[]> {
+    const rows = await getD1()
+      .prepare(
+        `SELECT
+          evidence.id, evidence.replay_id, evidence.assignment_id, evidence.run_id,
+          evidence.artifact_bundle_manifest_hash, evidence.runner_result_hash,
+          evidence.evidence_hash, evidence.canonical_evidence, evidence.recorded_at,
+          replay.artifact_bundle_manifest_hash AS replay_artifact_bundle_manifest_hash,
+          replay.requester_person_id, replay.requester_agent_id, replay.delegation_certificate_id,
+          assignment.verifier_person_id,
+          run.runner_result_hash AS run_runner_result_hash,
+          result.result_hash, result.canonical_result,
+          object.content_hash, object.object_key, object.byte_length, object.content_type
+         FROM verification_replay_evidence AS evidence
+         INNER JOIN verification_replays AS replay ON replay.id = evidence.replay_id
+         INNER JOIN verification_assignments AS assignment ON assignment.id = evidence.assignment_id
+         INNER JOIN runs AS run ON run.id = evidence.run_id
+         INNER JOIN run_results AS result ON result.run_id = evidence.run_id
+         INNER JOIN artifact_objects AS object ON object.content_hash = evidence.evidence_hash
+         WHERE evidence.artifact_bundle_manifest_hash = ?
+           AND replay.requester_person_id = ?
+           AND assignment.verifier_person_id = ?
+         ORDER BY evidence.recorded_at DESC, evidence.id ASC`,
+      )
+      .bind(base.manifest_hash, personId, personId)
+      .all<ReplayRow>();
+    return Object.freeze(await Promise.all((rows.results ?? []).map(async (row: ReplayRow) => {
+      try {
+        const evidence = await normalizeVerificationReplayEvidence(JSON.parse(row.canonical_evidence));
+        const result = normalizeLeanRunnerResult(JSON.parse(row.canonical_result));
+        if (
+          canonicalJson(evidence) !== row.canonical_evidence ||
+          await verificationReplayEvidenceHash(evidence) !== row.evidence_hash ||
+          canonicalJson(evidence.runnerResult) !== row.canonical_result ||
+          row.id !== `verification-replay-evidence:${row.replay_id}` ||
+          evidence.id !== row.id ||
+          evidence.replayId !== row.replay_id ||
+          evidence.assignmentId !== row.assignment_id ||
+          evidence.runId !== row.run_id ||
+          evidence.artifactBundleHash !== base.manifest_hash ||
+          evidence.runnerResultHash !== row.runner_result_hash ||
+          evidence.recordedAt !== row.recorded_at ||
+          row.replay_artifact_bundle_manifest_hash !== base.manifest_hash ||
+          row.artifact_bundle_manifest_hash !== base.manifest_hash ||
+          row.run_runner_result_hash !== row.runner_result_hash ||
+          row.result_hash !== row.runner_result_hash ||
+          canonicalJson(result) !== row.canonical_result
+        ) {
+          throw new Error("Replay projection mismatch");
+        }
+        const object = await this.objectFor(row.evidence_hash, row.object_key);
+        const artifact = privateArtifact({
+          id: `replay:${row.replay_id}:evidence` as EvidenceArtifactId,
+          label: "Fresh replay evidence",
+          filename: "verification-replay-evidence.json",
+          object,
+        });
+        return Object.freeze({
+          id: row.replay_id,
+          assignmentId: row.assignment_id,
+          runId: row.run_id,
+          runnerResultHash: row.runner_result_hash,
+          evidenceHash: row.evidence_hash,
+          recordedAt: row.recorded_at,
+          canonicalEvidence: row.canonical_evidence,
+          artifact,
+        });
+      } catch (error) {
+        if (error instanceof EvidenceIntegrityError) throw error;
+        throw new EvidenceIntegrityError();
+      }
     })));
   }
 

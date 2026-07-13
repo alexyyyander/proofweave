@@ -4,7 +4,8 @@ import { after, before, test } from "node:test";
 import { fileURLToPath } from "node:url";
 import { Miniflare } from "miniflare";
 import { delegationPayloadHash, delegationSigningPayload } from "../packages/domain/delegation.mjs";
-import { canonicalJson } from "../packages/protocol/canonical-json.mjs";
+import { canonicalJson, sha256Canonical } from "../packages/protocol/canonical-json.mjs";
+import { verificationReplayEvidenceHash } from "../packages/protocol/verification-replay-evidence.mjs";
 import { personKeyProofChallengeSigningPayload } from "../packages/protocol/person-key-proof.mjs";
 import {
   artifactBundleHash,
@@ -236,6 +237,42 @@ async function insertControlledEvidenceFixture() {
   const manifest = await putEvidenceObject(canonicalManifest, "bundle.json", "application/json", manifestHash);
   const stdout = await putRunnerOutput("kernel accepted\n", "stdout");
   const stderr = await putRunnerOutput("", "stderr");
+  const reviewerReplayPublicKey = base64Url(crypto.getRandomValues(new Uint8Array(32)));
+  const replayRunnerResult = {
+    protocolVersion: "pw-lean-runner-v1",
+    jobId: "run:controlled-fresh-replay",
+    attemptId: bundle.attemptId,
+    requestHash: hash("1"),
+    runnerKeyId: "runner-key:controlled-evidence",
+    runnerSignature: base64Url(crypto.getRandomValues(new Uint8Array(64))),
+    status: "succeeded",
+    exitCode: 0,
+    startedAt: now,
+    finishedAt: now,
+    kernelStatus: "accepted",
+    checks: { network: "passed", noSorry: "passed", allowedAxioms: "passed", leanBuild: "passed" },
+    artifacts: { manifestHash: manifest.contentHash, stdoutHash: stdout.contentHash, stderrHash: stderr.contentHash },
+  };
+  const replayRunnerResultHash = await sha256Canonical(replayRunnerResult);
+  const replayEvidence = {
+    protocolVersion: "pw-verification-replay-evidence-v1",
+    id: "verification-replay-evidence:controlled-evidence",
+    replayId: "verification-replay:controlled-evidence",
+    assignmentId: "assignment:controlled-evidence-replay",
+    runId: replayRunnerResult.jobId,
+    artifactBundleHash: manifest.contentHash,
+    runnerResultHash: replayRunnerResultHash,
+    runnerResult: replayRunnerResult,
+    recordedAt: now,
+  };
+  const canonicalReplayEvidence = canonicalJson(replayEvidence);
+  const replayEvidenceHash = await verificationReplayEvidenceHash(replayEvidence);
+  const replayEvidenceObject = await putEvidenceObject(
+    canonicalReplayEvidence,
+    "verification-replay-evidence.json",
+    "application/vnd.proofweave.verification-replay-evidence+json",
+    replayEvidenceHash,
+  );
 
   const rows = [
     [
@@ -283,9 +320,68 @@ async function insertControlledEvidenceFixture() {
       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
       ["assignment:controlled-evidence", manifest.contentHash, "kernel_accepted", owner.person.id, reviewer.person.id, "assigned", now, now],
     ],
+    ["INSERT INTO person_keys (id, person_id, public_key, fingerprint) VALUES (?, ?, ?, ?)", ["person-key:controlled-evidence-reviewer", reviewer.person.id, reviewerReplayPublicKey, hash("2")]],
+    ["INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint) VALUES (?, ?, ?, ?, ?)", ["agent:controlled-evidence-reviewer", reviewer.person.id, "Controlled evidence reviewer", reviewerReplayPublicKey, hash("3")]],
+    [
+      `INSERT INTO delegation_certificates (
+        id, owner_person_id, agent_id, person_key_id, agent_public_key, scopes_json,
+        valid_from, valid_until, beneficiary_person_id, protocol_version,
+        payload_hash, canonical_payload, person_signature
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        "delegation:controlled-evidence-reviewer", reviewer.person.id, "agent:controlled-evidence-reviewer", "person-key:controlled-evidence-reviewer", reviewerReplayPublicKey, '["review"]',
+        "2026-07-01T00:00:00Z", "2027-07-01T00:00:00Z", reviewer.person.id,
+        "pw-delegation-v1", hash("4"), "{}", "fixture-signature",
+      ],
+    ],
+    ["INSERT INTO oauth_clients (id, client_name, redirect_uris_json) VALUES (?, ?, ?)", ["client:controlled-evidence-reviewer", "Controlled evidence reviewer", '["https://codex.example.test/callback"]']],
+    ["INSERT INTO agent_installations (id, person_id, agent_id, delegation_certificate_id, client_id, label) VALUES (?, ?, ?, ?, ?, ?)", ["installation:controlled-evidence-reviewer", reviewer.person.id, "agent:controlled-evidence-reviewer", "delegation:controlled-evidence-reviewer", "client:controlled-evidence-reviewer", "Controlled evidence reviewer"]],
+    [
+      `INSERT INTO verification_assignments (
+        id, artifact_bundle_manifest_hash, claim_type, attempt_owner_person_id,
+        verifier_person_id, status, assigned_at, accepted_at, updated_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      ["assignment:controlled-evidence-replay", manifest.contentHash, "bundle_reproducible", owner.person.id, reviewer.person.id, "accepted", now, now, now],
+    ],
+    [
+      `INSERT INTO runs (
+        id, attempt_id, artifact_bundle_hash, request_hash, idempotency_key, state,
+        queued_at, started_at, finished_at, runner_result_hash, updated_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [replayRunnerResult.jobId, bundle.attemptId, manifest.contentHash, replayRunnerResult.requestHash, "controlled-evidence-fresh-replay", "succeeded", now, now, now, replayRunnerResultHash, now],
+    ],
+    ["INSERT INTO run_results (run_id, result_hash, canonical_result, received_at) VALUES (?, ?, ?, ?)", [replayRunnerResult.jobId, replayRunnerResultHash, canonicalJson(replayRunnerResult), now]],
+    [
+      `INSERT INTO verification_replays (
+        id, assignment_id, run_id, artifact_bundle_manifest_hash,
+        requester_person_id, requester_agent_id, delegation_certificate_id,
+        agent_installation_id, idempotency_key, requested_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        replayEvidence.replayId, replayEvidence.assignmentId, replayEvidence.runId, manifest.contentHash,
+        reviewer.person.id, "agent:controlled-evidence-reviewer", "delegation:controlled-evidence-reviewer",
+        "installation:controlled-evidence-reviewer", "controlled-evidence-fresh-workspace", now,
+      ],
+    ],
+    [
+      `INSERT INTO verification_replay_evidence (
+        id, replay_id, assignment_id, run_id, artifact_bundle_manifest_hash,
+        runner_result_hash, evidence_hash, canonical_evidence, recorded_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        replayEvidence.id, replayEvidence.replayId, replayEvidence.assignmentId, replayEvidence.runId,
+        manifest.contentHash, replayRunnerResultHash, replayEvidenceObject.contentHash, canonicalReplayEvidence, now,
+      ],
+    ],
   ];
   for (const [query, bindings] of rows) await database.prepare(query).bind(...bindings).run();
-  return { ownerHeaders, reviewerHeaders, owner, reviewer, attemptId: bundle.attemptId, manifestHash: manifest.contentHash };
+  return {
+    ownerHeaders, reviewerHeaders, owner, reviewer,
+    attemptId: bundle.attemptId,
+    manifestHash: manifest.contentHash,
+    replayEvidenceHash: replayEvidenceObject.contentHash,
+    replayArtifactId: `replay:${replayEvidence.replayId}:evidence`,
+  };
 }
 
 async function putEvidenceObject(value, filename, contentType, expectedHash = null) {
@@ -869,6 +965,7 @@ test("limits Bundle and Runner evidence to the Attempt owner or assigned reviewe
     "run:run:controlled-evidence:stderr",
     "run:run:controlled-evidence:stdout",
   ]);
+  assert.equal(ownerEvidence.replays.length, 0);
   assert.doesNotMatch(JSON.stringify(ownerEvidence), new RegExp(fixture.owner.person.id));
 
   const ownerIndex = await render("/evidence", { headers: fixture.ownerHeaders });
@@ -885,6 +982,9 @@ test("limits Bundle and Runner evidence to the Attempt owner or assigned reviewe
   assert.equal(reviewerRecord.status, 200);
   const { evidence: reviewerEvidence } = await reviewerRecord.json();
   assert.equal(reviewerEvidence.summary.accessRole, "assigned_reviewer");
+  assert.equal(reviewerEvidence.replays.length, 1);
+  assert.equal(reviewerEvidence.replays[0].evidenceHash, fixture.replayEvidenceHash);
+  assert.equal(reviewerEvidence.replays[0].artifact.id, fixture.replayArtifactId);
   assert.doesNotMatch(JSON.stringify(reviewerEvidence), new RegExp(fixture.owner.person.id));
   assert.doesNotMatch(JSON.stringify(reviewerEvidence), /Evidence Owner/i);
   const reviewerIndex = await render("/evidence", { headers: fixture.reviewerHeaders });
@@ -896,11 +996,26 @@ test("limits Bundle and Runner evidence to the Attempt owner or assigned reviewe
   assert.equal(reviewerLog.status, 200);
   assert.equal(await reviewerLog.text(), "kernel accepted\n");
 
+  const reviewerReplayEvidence = await render(
+    `/api/me/evidence/bundles/${encodeURIComponent(fixture.manifestHash)}/artifacts/${encodeURIComponent(fixture.replayArtifactId)}`,
+    { headers: fixture.reviewerHeaders },
+  );
+  assert.equal(reviewerReplayEvidence.status, 200);
+  assert.match(reviewerReplayEvidence.headers.get("content-disposition") ?? "", /verification-replay-evidence\.json/i);
+  assert.match(await reviewerReplayEvidence.text(), /pw-verification-replay-evidence-v1/);
+  const ownerReplayEvidence = await render(
+    `/api/me/evidence/bundles/${encodeURIComponent(fixture.manifestHash)}/artifacts/${encodeURIComponent(fixture.replayArtifactId)}`,
+    { headers: fixture.ownerHeaders },
+  );
+  assert.equal(ownerReplayEvidence.status, 404);
+
   const reviewerPage = await render(`/evidence/${encodeURIComponent(fixture.manifestHash)}`, { headers: fixture.reviewerHeaders });
   assert.equal(reviewerPage.status, 200);
   const reviewerHtml = await reviewerPage.text();
   assert.match(reviewerHtml, /Assigned review · controlled evidence/i);
   assert.match(reviewerHtml, /Downloading an object does not perform a fresh runner replay/i);
+  assert.match(reviewerHtml, /Fresh review replay evidence/i);
+  assert.match(reviewerHtml, /Terminal replay recorded/i);
   assert.doesNotMatch(reviewerHtml, new RegExp(fixture.owner.person.id));
   assert.doesNotMatch(reviewerHtml, /Evidence Owner/i);
 

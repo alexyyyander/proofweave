@@ -4,7 +4,7 @@ import { chatGPTSignInPath, getChatGPTUser } from "@/app/chatgpt-auth";
 import { Footer, Header } from "@/app/ui";
 import { MissingDatabaseBindingError } from "@/db";
 import { getDelegationRepository } from "@/db/repositories/delegation";
-import { getEvidenceRepository, type AttemptEvidence, type EvidenceArtifact } from "@/db/repositories/evidence";
+import { getEvidenceRepository, type AttemptEvidence, type EvidenceArtifact, type EvidenceReplay } from "@/db/repositories/evidence";
 
 export const dynamic = "force-dynamic";
 
@@ -42,6 +42,7 @@ function EvidenceDetail({ evidence }: { evidence: AttemptEvidence }) {
         <article className="evidence-panel evidence-manifest"><div className="panel-heading"><span>02 / Canonical manifest</span><a className="text-link" href={artifactHref(bundleManifestHash, "bundle-manifest")}>Download JSON <span>→</span></a></div><pre><code>{evidence.bundle.canonicalManifest}</code></pre></article>
       </section>
       <section className="evidence-runs" aria-label="Runner records"><div className="panel-heading"><span>03 / Runner records</span><span>{evidence.runs.length} recorded</span></div>{evidence.runs.length === 0 ? <p className="evidence-empty">No Runner record is stored for this Bundle. That absence is not a failed verification or a fresh-replay option.</p> : evidence.runs.map((run) => <article className="evidence-run" key={run.id}><div><strong>{run.state}</strong><span><code>{run.id}</code></span></div><dl className="evidence-metadata"><div><dt>Request hash</dt><dd><code>{run.requestHash}</code></dd></div><div><dt>Result hash</dt><dd><code>{run.runnerResultHash ?? "Not recorded"}</code></dd></div><div><dt>Queued</dt><dd>{run.queuedAt}</dd></div><div><dt>Finished</dt><dd>{run.finishedAt ?? "Not finished"}</dd></div></dl>{run.outputs.length > 0 && <ArtifactList bundleManifestHash={bundleManifestHash} artifacts={run.outputs} />}{run.result && <details className="evidence-result"><summary>View canonical signed-result payload</summary><pre><code>{run.result.canonicalResult}</code></pre></details>}</article>)}</section>
+      <section className="evidence-runs evidence-replays" aria-label="Fresh review replay evidence"><div className="panel-heading"><span>04 / Fresh review replay evidence</span><span>{evidence.replays.length} available to you</span></div>{evidence.replays.length === 0 ? <p className="evidence-empty">No terminal replay evidence is addressed to your review Agent. A queued replay is not evidence, and another reviewer’s replay stays private to that reviewer.</p> : evidence.replays.map((replay) => <ReplayEvidence bundleManifestHash={bundleManifestHash} replay={replay} key={replay.id} />)}</section>
     </main>
     <Footer />
   </div>;
@@ -49,6 +50,15 @@ function EvidenceDetail({ evidence }: { evidence: AttemptEvidence }) {
 
 function ArtifactList({ bundleManifestHash, artifacts }: { bundleManifestHash: string; artifacts: readonly EvidenceArtifact[] }) {
   return <ul className="evidence-artifact-list">{artifacts.map((artifact) => <li key={artifact.id}><div><strong>{artifact.label}</strong><small><code>{artifact.contentHash}</code> · {formatBytes(artifact.byteLength)} · {artifact.contentType}</small></div><a className="quiet-action" href={artifactHref(bundleManifestHash, artifact.id)}>Download</a></li>)}</ul>;
+}
+
+function ReplayEvidence({ bundleManifestHash, replay }: { bundleManifestHash: string; replay: EvidenceReplay }) {
+  return <article className="evidence-run evidence-replay">
+    <div><strong>Terminal replay recorded</strong><span><code>{replay.id}</code></span></div>
+    <dl className="evidence-metadata"><div><dt>Assignment</dt><dd><code>{replay.assignmentId}</code></dd></div><div><dt>Fresh Run</dt><dd><code>{replay.runId}</code></dd></div><div><dt>Runner result</dt><dd><code>{replay.runnerResultHash}</code></dd></div><div><dt>Evidence hash</dt><dd><code>{replay.evidenceHash}</code></dd></div><div><dt>Recorded</dt><dd>{replay.recordedAt}</dd></div></dl>
+    <ArtifactList bundleManifestHash={bundleManifestHash} artifacts={[replay.artifact]} />
+    <details className="evidence-result"><summary>View canonical replay-evidence payload</summary><pre><code>{replay.canonicalEvidence}</code></pre></details>
+  </article>;
 }
 
 function artifactHref(bundleManifestHash: string, artifactId: string) {

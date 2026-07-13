@@ -473,8 +473,10 @@ positive verification. It never exposes the Attempt owner, fabricates an Agent
 signature, or labels acceptance as verification. `/evidence` now lets an
 Attempt owner or independently assigned reviewer inspect the exact canonical
 Bundle, indexed source/patch/Lake artifacts, recorded Run result metadata, and
-Runner logs. Artifact bytes are returned only after the D1 object index and R2
-metadata agree; reviewer views retain the owner-identity boundary. This is an
+Runner logs. A reviewer can additionally inspect/download only the terminal
+fresh-replay evidence created by that review Person's own Agent; it retains
+the owner-identity and reviewer-to-reviewer isolation boundary. Artifact bytes
+are returned only after the D1 object index and R2 metadata agree. This is an
 inspection/download surface only: it does not perform a fresh runner replay or
 create an attestation. The remote MCP source now accepts an already-signed
 Attestation only through a `verification:write` OAuth installation with an
