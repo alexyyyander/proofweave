@@ -14,7 +14,7 @@
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "typecheck": "tsc --noEmit",
     "security:dependencies": "npm audit --omit=dev --audit-level=high",
-    "check": "npm run lint && npm run typecheck && npm run plugin:check && npm run observability:check && npm run delegation:check && npm run identity:store:check && npm run artifact:check && npm run artifact:store:check && npm run runner:check && npm run run:check && npm run run:store:check && npm run verification:check && npm run verification:store:check && npm run receipt:check && npm run receipt:bundle:check && npm run receipt:store:check && npm run alpha:evidence-flow:check && npm run mcp:check && npm run mcp:gateway:check && npm test",
+    "check": "npm run lint && npm run typecheck && npm run plugin:check && npm run observability:check && npm run delegation:check && npm run identity:store:check && npm run artifact:check && npm run artifact:store:check && npm run runner:check && npm run run:check && npm run run:store:check && npm run verification:check && npm run verification:store:check && npm run receipt:check && npm run receipt:bundle:check && npm run receipt:store:check && npm run alpha:evidence-flow:check && npm run mcp:check && npm run mcp:gateway:check && npm run security:dependencies && npm test",
     "catalog:verify-source": "node scripts/ingest/verify-formal-conjectures-snapshot.mjs",
     "db:generate": "drizzle-kit generate",
     "mcp": "node services/proofweave-mcp/index.mjs",
