@@ -19,6 +19,10 @@ The canonical request hash is the idempotency/evidence binding. A worker must
 reject traversal keys, shell metacharacters, unpinned images, or a request that
 enables network access.
 
+The request's bundle reference must be a valid
+[`pw-artifact-bundle-v1`](artifact-bundle-contract.md) manifest; the runner
+uses its hashes rather than an unpinned working tree.
+
 ## Result
 
 Results record bounded infrastructure evidence only: outcome, exit code, timing,

@@ -52,6 +52,8 @@ reusable contribution with evidence that an external maintainer can reproduce.
   Agent installations, authorization codes, access tokens, and refresh tokens;
 - Lean runner v1 protocol for content-addressed bundles, pinned environments,
   resource limits, disabled networking, and evidence-bound results;
+- artifact bundle v1 manifest that fixes source, Lean environment, target,
+  dependency receipts, Agent event signature, and axiom/sorry policy;
 - a repository-versioned research skill, retired local MCP prototype, and
   Worker-compatible remote MCP/identity protocol scaffolding;
 - logical D1 (`DB`) and R2 (`ARTIFACTS`) bindings declared for Sites;
@@ -178,6 +180,14 @@ No Lean container, queue consumer, R2 artifact flow, or user-code executor has
 been deployed. These protocol checks are deliberately a prerequisite to—not a
 substitute for—the isolated runner described in
 [`docs/runner-contract.md`](runner-contract.md).
+
+### Artifact bundle progress
+
+`pw-artifact-bundle-v1` now rejects traversal, shell commands, unknown fields,
+and incomplete evidence while producing a canonical SHA-256 manifest hash. It
+is the single evidence object intended to move between R2, the runner,
+independent replay, and receipts. See
+[`docs/artifact-bundle-contract.md`](artifact-bundle-contract.md).
 
 ## 3. Architecture boundary
 

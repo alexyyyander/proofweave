@@ -18,6 +18,7 @@ connected.
 - [Information-source map](docs/resource-map.md)
 - [Closed-alpha Agent delegation API](docs/agent-delegation-api.md)
 - [Lean runner contract](docs/runner-contract.md)
+- [Artifact bundle contract](docs/artifact-bundle-contract.md)
 
 ## Current stack
 
@@ -142,6 +143,7 @@ application secrets.
 - `npm run mcp:gateway:check`: test the remote gateway and identity protocol
   scaffolding
 - `npm run runner:check`: validate the isolated Lean runner protocol
+- `npm run artifact:check`: validate the immutable artifact bundle manifest
 - `npm run mcp`: start the local MCP bridge after setting its environment
 
 ## Codex MCP direction
