@@ -46,6 +46,9 @@ execution implementation. `d1-r2-runner-bundle-resolver.mjs` rechecks the
 immutable D1/R2 Bundle before source transfer, `runner-job-preflight.mjs`
 claims exactly one persisted queued Run after that check, and
 `runner-image-policy.mjs` binds an approved image digest to exact Lean/Mathlib
-versions. The selected hosting boundary, non-deployable config template, and
-remaining gates are documented in
+versions. Only `pw-artifact-bundle-v2` can be claimed for execution: it fixes
+safe archive extraction, patch application, Lake manifest replacement, and the
+final workspace-tree hash before a future transfer implementation can start.
+The selected hosting boundary, non-deployable config template, and remaining
+gates are documented in
 [`docs/runner-cloudflare-deployment.md`](../../docs/runner-cloudflare-deployment.md).

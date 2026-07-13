@@ -1,25 +1,89 @@
-# Artifact bundle contract v1
+# Artifact Bundle contract v1 and v2
 
-Every future Lean submission is an immutable, content-addressed manifest—not a
-free-form upload. `pw-artifact-bundle-v1` fixes:
+Every Lean submission is an immutable, content-addressed manifest—not a
+free-form upload. Both versions bind one Attempt, pinned problem revision,
+target declaration and statement hash, Lean environment, shell-free `lake env
+lean` command, dependency receipts, Agent signature, `sorry` policy, and axiom
+allowlist.
 
-- one Attempt, pinned problem revision, declaration, and statement hash;
-- source archive, normalized patch, and Lake manifest object keys that each
-  embed and match their SHA-256 hashes, plus an unpacked source-tree hash;
-- `lean-toolchain`, `lake-manifest.json`, Mathlib revision, and shell-free
-  `lake env lean` argument array;
-- dependency receipt ids and hashes;
-- Agent event id, payload hash, raw Ed25519 public key, and signature;
-- required `sorry` audit and explicit qualified axiom allowlist.
+The Agent signature covers every evidence field plus the Agent event ID, time,
+and public key. It excludes the signature and `payloadHash` fields themselves
+to avoid a circular hash. The canonical manifest hash moves through R2, Runner
+evidence, independent replay, and receipts; it does not itself prove kernel
+acceptance or authorship.
 
-Unknown manifest fields are rejected, so prompts, credentials, and private
-chain-of-thought cannot become an accidental part of the public evidence object.
-The Agent signature covers the canonical signing payload: every evidence field
-plus Agent event id, time, and public key, but excludes its own signature and
-payload-hash fields to avoid a circular hash. The canonical manifest hash is
-passed to the runner, replayed by verifiers, and later covered by a receipt; it
-does not itself prove kernel acceptance or authorship until the corresponding
-signature and runner checks are verified.
+## v1: historical evidence
 
-The R2/D1 staging rules are in
+`pw-artifact-bundle-v1` records a source archive, normalized patch, a Lake
+manifest, and a claimed tree hash. It remains valid for stored provenance,
+inspection, and receipts. Its archive format, safe extraction rules, patch
+semantics, and tree-hash construction were not fixed tightly enough for a
+hostile-code execution boundary.
+
+The Runner resolver can therefore inspect v1 evidence but the Runner preflight
+will never claim a v1 Bundle for isolated execution.
+
+## v2: executable workspace evidence
+
+`pw-artifact-bundle-v2` moves object locations into `workspace` and fixes the
+reconstruction contract. An executable Bundle must include:
+
+- `workspace.archive`: exactly `source.tar.zst`, `format: "tar.zst"`, maximum
+  expanded byte/file counts, and `symlinkPolicy: "forbidden"`;
+- `workspace.patch`: exactly `normalized.patch`, a unified diff applied with
+  strip level 1 and `allowFuzz: false`;
+- `workspace.lakeManifest`: exactly `lake-manifest.json`, written to the
+  workspace root after the patch;
+- `workspace.tree`: a final `pw-tree-v1` hash with state
+  `after_patch_and_lake_manifest`;
+- a Lean toolchain and Mathlib revision that must match the Runner's
+  operator-approved, digest-pinned image.
+
+An implementation must reconstruct a v2 workspace in this exact order:
+
+1. Extract the zstd tar archive into an empty workspace, rejecting absolute or
+   traversal paths, duplicate paths, symlinks, hard links, devices, FIFOs, and
+   all non-regular files. Enforce the manifest's expanded-byte and file-count
+   limits while extracting.
+2. Apply `normalized.patch` once with `patch --batch --forward --fuzz=0 -p1`.
+   Reject a patch that escapes the workspace, is reversed, or needs fuzz.
+3. Replace the root `lake-manifest.json` with the referenced immutable object.
+4. Recompute the final `pw-tree-v1` hash and require an exact match before the
+   supplied argument-array entry command may run.
+
+The Run's disk allowance must be at least the Bundle's declared maximum
+expanded workspace size. The current resolver enforces this before a Run moves
+from `queued` to `running`; the future transfer/executor must enforce the same
+limit during extraction.
+
+## `pw-tree-v1`
+
+`pw-tree-v1` is the canonical JSON payload:
+
+```json
+{
+  "protocolVersion": "pw-tree-v1",
+  "entries": [
+    {
+      "path": "Proofweave/Main.lean",
+      "mode": 420,
+      "contentHash": "sha256:<file-bytes-hash>"
+    }
+  ]
+}
+```
+
+Entries contain every final regular file, sorted by bytewise POSIX path.
+Directories are implicit; paths must be relative, non-empty, use safe segments,
+and contain no backslashes or traversal. Modes are normalized to `0644` or
+`0755`; each content hash is the SHA-256 of that file's bytes. The overall tree
+hash is the SHA-256 of this canonical JSON. The protocol implementation lives
+in [`packages/protocol/workspace-tree.mjs`](../packages/protocol/workspace-tree.mjs).
+
+## Storage and compatibility
+
+The immutable R2/D1 staging boundary uses a version-neutral list of the three
+referenced objects (archive, patch, Lake manifest), so it accepts valid signed
+v1 and v2 evidence. New executable Runs require v2; historical v1 rows remain
+unchanged and inspectable. The storage rules are in
 [`artifact-storage-contract.md`](artifact-storage-contract.md).

@@ -85,6 +85,30 @@ test("stages a signed Artifact Bundle only after immutable R2/D1 evidence is pre
   );
 });
 
+test("stages a signed v2 workspace manifest through the same immutable object gate", async () => {
+  const store = new D1R2ArtifactStore({ database, bucket });
+  const archive = await store.putObject({
+    bytes: "source archive v2 fixture",
+    filename: "source.tar.zst",
+    contentType: "application/zstd",
+  });
+  const patch = await store.putObject({
+    bytes: "normalized patch v2 fixture",
+    filename: "normalized.patch",
+    contentType: "text/plain",
+  });
+  const lakeManifest = await store.putObject({
+    bytes: '{"packages":[]}',
+    filename: "lake-manifest.json",
+    contentType: "application/json",
+  });
+  const bundle = await signedBundleV2({ archive, patch, lakeManifest });
+
+  const staged = await store.stageBundle(bundle);
+  assert.equal(staged.created, true);
+  assert.equal((await store.findBundle(staged.bundle.manifestHash)).id, bundle.id);
+});
+
 async function signedBundle({ archive, patch, lakeManifest }) {
   const bundle = {
     protocolVersion: "pw-artifact-bundle-v1",
@@ -109,6 +133,66 @@ async function signedBundle({ archive, patch, lakeManifest }) {
     dependencyReceipts: [],
     agentEvent: {
       eventId: "agent-event:artifact-store-test",
+      occurredAt: "2026-07-13T00:00:00Z",
+      payloadHash: sha("0"),
+      agentPublicKey,
+      signature: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    },
+    policy: { requireNoSorry: true, allowedAxioms: [] },
+  };
+  bundle.agentEvent.payloadHash = await artifactBundleSigningPayloadHash(bundle);
+  bundle.agentEvent.signature = base64Url(
+    await crypto.subtle.sign(
+      "Ed25519",
+      agentKeyPair.privateKey,
+      new TextEncoder().encode(canonicalJson(artifactBundleSigningPayload(bundle))),
+    ),
+  );
+  return bundle;
+}
+
+async function signedBundleV2({ archive, patch, lakeManifest }) {
+  const bundle = {
+    protocolVersion: "pw-artifact-bundle-v2",
+    id: "bundle:artifact-store-v2-test",
+    attemptId: "attempt:artifact-store-test",
+    problemRevisionId: "revision:artifact-store-test",
+    target: { declaration: "Proofweave.Artifact.v2Target", statementHash: sha("7") },
+    workspace: {
+      archive: {
+        objectKey: archive.objectKey,
+        contentHash: archive.contentHash,
+        format: "tar.zst",
+        maxExpandedBytes: 64 * 1024 * 1024,
+        maxFileCount: 10_000,
+        symlinkPolicy: "forbidden",
+      },
+      patch: {
+        objectKey: patch.objectKey,
+        contentHash: patch.contentHash,
+        format: "unified-diff",
+        strip: 1,
+        allowFuzz: false,
+      },
+      tree: {
+        hash: sha("8"),
+        algorithm: "pw-tree-v1",
+        state: "after_patch_and_lake_manifest",
+      },
+      lakeManifest: {
+        objectKey: lakeManifest.objectKey,
+        contentHash: lakeManifest.contentHash,
+        destination: "lake-manifest.json",
+      },
+    },
+    environment: {
+      leanToolchain: "leanprover/lean4:v4.27.0",
+      mathlibRevision: "a3a10db0e9d6",
+    },
+    entryCommand: ["lake", "env", "lean", "Proofweave/ArtifactV2.lean"],
+    dependencyReceipts: [],
+    agentEvent: {
+      eventId: "agent-event:artifact-store-v2-test",
       occurredAt: "2026-07-13T00:00:00Z",
       payloadHash: sha("0"),
       agentPublicKey,

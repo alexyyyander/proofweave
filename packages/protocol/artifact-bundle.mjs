@@ -1,6 +1,17 @@
 import { canonicalJson, canonicalUtf8, sha256Canonical } from "./canonical-json.mjs";
+import { workspaceTreeProtocolVersion } from "./workspace-tree.mjs";
 
 export const artifactBundleProtocolVersion = "pw-artifact-bundle-v1";
+export const artifactBundleV2ProtocolVersion = "pw-artifact-bundle-v2";
+export const artifactBundleProtocolVersions = Object.freeze([
+  artifactBundleProtocolVersion,
+  artifactBundleV2ProtocolVersion,
+]);
+
+export const workspaceTreeAlgorithm = workspaceTreeProtocolVersion;
+export const workspaceTreeState = "after_patch_and_lake_manifest";
+export const workspaceArchiveFormat = "tar.zst";
+export const workspacePatchFormat = "unified-diff";
 
 export class ArtifactBundleProtocolError extends Error {
   constructor(message) {
@@ -9,59 +20,20 @@ export class ArtifactBundleProtocolError extends Error {
   }
 }
 
-/** Normalize the complete reproducibility manifest submitted for one Attempt. */
+/**
+ * Normalize a complete reproducibility manifest. v1 remains readable for
+ * historical evidence; v2 adds the strict workspace reconstruction rules that
+ * an execution service needs before it can unpack submitted source.
+ */
 export function normalizeArtifactBundle(bundle) {
   requireRecord(bundle, "Artifact bundle");
-  rejectExtraKeys(bundle, [
-    "protocolVersion", "id", "attemptId", "problemRevisionId", "target",
-    "source", "environment", "entryCommand", "dependencyReceipts",
-    "agentEvent", "policy",
-  ], "Artifact bundle");
-  if (bundle.protocolVersion !== artifactBundleProtocolVersion) {
-    throw new ArtifactBundleProtocolError("Unsupported artifact bundle protocol version.");
+  if (bundle.protocolVersion === artifactBundleProtocolVersion) {
+    return normalizeArtifactBundleV1(bundle);
   }
-  requireIdentifier(bundle.id, "bundle id");
-  requireIdentifier(bundle.attemptId, "bundle attemptId");
-  requireIdentifier(bundle.problemRevisionId, "bundle problemRevisionId");
-
-  requireRecord(bundle.target, "bundle target");
-  rejectExtraKeys(bundle.target, ["declaration", "statementHash"], "bundle target");
-  requireQualifiedName(bundle.target.declaration, "bundle target declaration");
-  requireSha256(bundle.target.statementHash, "bundle target statementHash");
-
-  requireRecord(bundle.source, "bundle source");
-  rejectExtraKeys(bundle.source, ["archiveKey", "archiveHash", "treeHash", "patchKey", "patchHash"], "bundle source");
-  requireSha256(bundle.source.archiveHash, "bundle source archiveHash");
-  requireContentKey(bundle.source.archiveKey, bundle.source.archiveHash, "bundle source archiveKey");
-  requireSha256(bundle.source.treeHash, "bundle source treeHash");
-  requireSha256(bundle.source.patchHash, "bundle source patchHash");
-  requireContentKey(bundle.source.patchKey, bundle.source.patchHash, "bundle source patchKey");
-
-  requireRecord(bundle.environment, "bundle environment");
-  rejectExtraKeys(bundle.environment, ["leanToolchain", "lakeManifestKey", "lakeManifestHash", "mathlibRevision"], "bundle environment");
-  requireString(bundle.environment.leanToolchain, "bundle environment leanToolchain", 240);
-  requireSha256(bundle.environment.lakeManifestHash, "bundle environment lakeManifestHash");
-  requireContentKey(bundle.environment.lakeManifestKey, bundle.environment.lakeManifestHash, "bundle environment lakeManifestKey");
-  requireString(bundle.environment.mathlibRevision, "bundle environment mathlibRevision", 160);
-
-  const entryCommand = normalizeEntryCommand(bundle.entryCommand);
-  const dependencyReceipts = normalizeDependencyReceipts(bundle.dependencyReceipts);
-  const agentEvent = normalizeAgentEvent(bundle.agentEvent);
-  const policy = normalizePolicy(bundle.policy);
-
-  return Object.freeze({
-    protocolVersion: artifactBundleProtocolVersion,
-    id: bundle.id,
-    attemptId: bundle.attemptId,
-    problemRevisionId: bundle.problemRevisionId,
-    target: Object.freeze({ ...bundle.target }),
-    source: Object.freeze({ ...bundle.source }),
-    environment: Object.freeze({ ...bundle.environment }),
-    entryCommand: Object.freeze(entryCommand),
-    dependencyReceipts: Object.freeze(dependencyReceipts),
-    agentEvent: Object.freeze(agentEvent),
-    policy: Object.freeze(policy),
-  });
+  if (bundle.protocolVersion === artifactBundleV2ProtocolVersion) {
+    return normalizeArtifactBundleV2(bundle);
+  }
+  throw new ArtifactBundleProtocolError("Unsupported artifact bundle protocol version.");
 }
 
 export function canonicalArtifactBundle(bundle) {
@@ -73,18 +45,41 @@ export async function artifactBundleHash(bundle) {
 }
 
 /**
+ * Return the exact immutable objects every bundle version needs. Storage and
+ * runners use this rather than reaching into a version-specific manifest.
+ */
+export function artifactBundleObjectReferences(bundle) {
+  const normalized = normalizeArtifactBundle(bundle);
+  if (normalized.protocolVersion === artifactBundleProtocolVersion) {
+    return Object.freeze([
+      reference("sourceArchive", "source archive", normalized.source.archiveKey, normalized.source.archiveHash),
+      reference("sourcePatch", "source patch", normalized.source.patchKey, normalized.source.patchHash),
+      reference("lakeManifest", "Lake manifest", normalized.environment.lakeManifestKey, normalized.environment.lakeManifestHash),
+    ]);
+  }
+  return Object.freeze([
+    reference("sourceArchive", "source archive", normalized.workspace.archive.objectKey, normalized.workspace.archive.contentHash),
+    reference("sourcePatch", "source patch", normalized.workspace.patch.objectKey, normalized.workspace.patch.contentHash),
+    reference("lakeManifest", "Lake manifest", normalized.workspace.lakeManifest.objectKey, normalized.workspace.lakeManifest.contentHash),
+  ]);
+}
+
+/**
  * The Agent signs this payload, not the full manifest: its signature and
  * payloadHash fields are deliberately excluded to avoid a circular hash.
  */
 export function artifactBundleSigningPayload(bundle) {
   const normalized = normalizeArtifactBundle(bundle);
+  const workspaceEvidence = normalized.protocolVersion === artifactBundleProtocolVersion
+    ? { source: normalized.source }
+    : { workspace: normalized.workspace };
   return {
     protocolVersion: normalized.protocolVersion,
     id: normalized.id,
     attemptId: normalized.attemptId,
     problemRevisionId: normalized.problemRevisionId,
     target: normalized.target,
-    source: normalized.source,
+    ...workspaceEvidence,
     environment: normalized.environment,
     entryCommand: normalized.entryCommand,
     dependencyReceipts: normalized.dependencyReceipts,
@@ -120,6 +115,159 @@ export async function verifyArtifactBundleAgentSignature(bundle) {
     fromBase64Url(normalized.agentEvent.signature),
     canonicalUtf8(artifactBundleSigningPayload(normalized)),
   );
+}
+
+function normalizeArtifactBundleV1(bundle) {
+  rejectExtraKeys(bundle, [
+    "protocolVersion", "id", "attemptId", "problemRevisionId", "target",
+    "source", "environment", "entryCommand", "dependencyReceipts",
+    "agentEvent", "policy",
+  ], "Artifact bundle");
+  const common = normalizeCommon(bundle, { version: artifactBundleProtocolVersion, environment: "v1" });
+
+  requireRecord(bundle.source, "bundle source");
+  rejectExtraKeys(bundle.source, ["archiveKey", "archiveHash", "treeHash", "patchKey", "patchHash"], "bundle source");
+  requireSha256(bundle.source.archiveHash, "bundle source archiveHash");
+  requireContentKey(bundle.source.archiveKey, bundle.source.archiveHash, "bundle source archiveKey");
+  requireSha256(bundle.source.treeHash, "bundle source treeHash");
+  requireSha256(bundle.source.patchHash, "bundle source patchHash");
+  requireContentKey(bundle.source.patchKey, bundle.source.patchHash, "bundle source patchKey");
+
+  return Object.freeze({
+    protocolVersion: artifactBundleProtocolVersion,
+    ...common,
+    source: Object.freeze({ ...bundle.source }),
+  });
+}
+
+function normalizeArtifactBundleV2(bundle) {
+  rejectExtraKeys(bundle, [
+    "protocolVersion", "id", "attemptId", "problemRevisionId", "target",
+    "workspace", "environment", "entryCommand", "dependencyReceipts",
+    "agentEvent", "policy",
+  ], "Artifact bundle");
+  const common = normalizeCommon(bundle, { version: artifactBundleV2ProtocolVersion, environment: "v2" });
+  return Object.freeze({
+    protocolVersion: artifactBundleV2ProtocolVersion,
+    ...common,
+    workspace: normalizeWorkspace(bundle.workspace),
+  });
+}
+
+function normalizeCommon(bundle, { environment }) {
+  requireIdentifier(bundle.id, "bundle id");
+  requireIdentifier(bundle.attemptId, "bundle attemptId");
+  requireIdentifier(bundle.problemRevisionId, "bundle problemRevisionId");
+
+  const target = normalizeTarget(bundle.target);
+  const normalizedEnvironment = environment === "v1"
+    ? normalizeV1Environment(bundle.environment)
+    : normalizeV2Environment(bundle.environment);
+  const entryCommand = normalizeEntryCommand(bundle.entryCommand);
+  const dependencyReceipts = normalizeDependencyReceipts(bundle.dependencyReceipts);
+  const agentEvent = normalizeAgentEvent(bundle.agentEvent);
+  const policy = normalizePolicy(bundle.policy);
+
+  return {
+    id: bundle.id,
+    attemptId: bundle.attemptId,
+    problemRevisionId: bundle.problemRevisionId,
+    target,
+    environment: normalizedEnvironment,
+    entryCommand: Object.freeze(entryCommand),
+    dependencyReceipts: Object.freeze(dependencyReceipts),
+    agentEvent: Object.freeze(agentEvent),
+    policy: Object.freeze(policy),
+  };
+}
+
+function normalizeTarget(value) {
+  requireRecord(value, "bundle target");
+  rejectExtraKeys(value, ["declaration", "statementHash"], "bundle target");
+  requireQualifiedName(value.declaration, "bundle target declaration");
+  requireSha256(value.statementHash, "bundle target statementHash");
+  return Object.freeze({ ...value });
+}
+
+function normalizeV1Environment(value) {
+  requireRecord(value, "bundle environment");
+  rejectExtraKeys(value, ["leanToolchain", "lakeManifestKey", "lakeManifestHash", "mathlibRevision"], "bundle environment");
+  requireString(value.leanToolchain, "bundle environment leanToolchain", 240);
+  requireSha256(value.lakeManifestHash, "bundle environment lakeManifestHash");
+  requireContentKey(value.lakeManifestKey, value.lakeManifestHash, "bundle environment lakeManifestKey");
+  requireString(value.mathlibRevision, "bundle environment mathlibRevision", 160);
+  return Object.freeze({ ...value });
+}
+
+function normalizeV2Environment(value) {
+  requireRecord(value, "bundle environment");
+  rejectExtraKeys(value, ["leanToolchain", "mathlibRevision"], "bundle environment");
+  requireString(value.leanToolchain, "bundle environment leanToolchain", 240);
+  requireString(value.mathlibRevision, "bundle environment mathlibRevision", 160);
+  return Object.freeze({ ...value });
+}
+
+function normalizeWorkspace(value) {
+  requireRecord(value, "bundle workspace");
+  rejectExtraKeys(value, ["archive", "patch", "tree", "lakeManifest"], "bundle workspace");
+  return Object.freeze({
+    archive: normalizeArchive(value.archive),
+    patch: normalizePatch(value.patch),
+    tree: normalizeWorkspaceTree(value.tree),
+    lakeManifest: normalizeWorkspaceLakeManifest(value.lakeManifest),
+  });
+}
+
+function normalizeArchive(value) {
+  requireRecord(value, "bundle workspace archive");
+  rejectExtraKeys(value, ["objectKey", "contentHash", "format", "maxExpandedBytes", "maxFileCount", "symlinkPolicy"], "bundle workspace archive");
+  requireSha256(value.contentHash, "bundle workspace archive contentHash");
+  requireNamedContentKey(value.objectKey, value.contentHash, "source.tar.zst", "bundle workspace archive objectKey");
+  if (value.format !== workspaceArchiveFormat) {
+    throw new ArtifactBundleProtocolError(`bundle workspace archive format must be ${workspaceArchiveFormat}.`);
+  }
+  requireBoundedInteger(value.maxExpandedBytes, "bundle workspace archive maxExpandedBytes", 1, 16 * 1024 * 1024 * 1024);
+  requireBoundedInteger(value.maxFileCount, "bundle workspace archive maxFileCount", 1, 100_000);
+  if (value.symlinkPolicy !== "forbidden") {
+    throw new ArtifactBundleProtocolError("bundle workspace archive symlinkPolicy must be forbidden.");
+  }
+  return Object.freeze({ ...value });
+}
+
+function normalizePatch(value) {
+  requireRecord(value, "bundle workspace patch");
+  rejectExtraKeys(value, ["objectKey", "contentHash", "format", "strip", "allowFuzz"], "bundle workspace patch");
+  requireSha256(value.contentHash, "bundle workspace patch contentHash");
+  requireNamedContentKey(value.objectKey, value.contentHash, "normalized.patch", "bundle workspace patch objectKey");
+  if (value.format !== workspacePatchFormat || value.strip !== 1 || value.allowFuzz !== false) {
+    throw new ArtifactBundleProtocolError("bundle workspace patch must be a no-fuzz unified diff with strip level 1.");
+  }
+  return Object.freeze({ ...value });
+}
+
+function normalizeWorkspaceTree(value) {
+  requireRecord(value, "bundle workspace tree");
+  rejectExtraKeys(value, ["hash", "algorithm", "state"], "bundle workspace tree");
+  requireSha256(value.hash, "bundle workspace tree hash");
+  if (value.algorithm !== workspaceTreeAlgorithm || value.state !== workspaceTreeState) {
+    throw new ArtifactBundleProtocolError("bundle workspace tree must use the fixed post-patch tree algorithm and state.");
+  }
+  return Object.freeze({ ...value });
+}
+
+function normalizeWorkspaceLakeManifest(value) {
+  requireRecord(value, "bundle workspace lakeManifest");
+  rejectExtraKeys(value, ["objectKey", "contentHash", "destination"], "bundle workspace lakeManifest");
+  requireSha256(value.contentHash, "bundle workspace lakeManifest contentHash");
+  requireNamedContentKey(value.objectKey, value.contentHash, "lake-manifest.json", "bundle workspace lakeManifest objectKey");
+  if (value.destination !== "lake-manifest.json") {
+    throw new ArtifactBundleProtocolError("bundle workspace lakeManifest destination must be lake-manifest.json.");
+  }
+  return Object.freeze({ ...value });
+}
+
+function reference(id, label, objectKey, contentHash) {
+  return Object.freeze({ id, label, objectKey, contentHash });
 }
 
 function normalizeDependencyReceipts(value) {
@@ -187,9 +335,22 @@ function requireContentKey(value, hash, label) {
   }
 }
 
+function requireNamedContentKey(value, hash, filename, label) {
+  requireContentKey(value, hash, label);
+  if (!value.endsWith(`/${filename}`)) {
+    throw new ArtifactBundleProtocolError(`${label} must name ${filename}.`);
+  }
+}
+
 function requireSha256(value, label) {
   if (typeof value !== "string" || !/^sha256:[a-f0-9]{64}$/.test(value)) {
     throw new ArtifactBundleProtocolError(`${label} must be sha256:<hex>.`);
+  }
+}
+
+function requireBoundedInteger(value, label, min, max) {
+  if (!Number.isSafeInteger(value) || value < min || value > max) {
+    throw new ArtifactBundleProtocolError(`${label} must be an integer from ${min} to ${max}.`);
   }
 }
 

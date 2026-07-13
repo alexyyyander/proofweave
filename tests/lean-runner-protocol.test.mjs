@@ -35,6 +35,16 @@ test("creates a runner request only from the canonical artifact bundle", async (
   assert.equal(request.bundle.entryCommand[3], "Proofweave/Fixture.lean");
   assert.equal(request.environment.leanToolchain, "leanprover/lean4:v4.27.0");
   assert.equal(request.policy.requireNoSorry, true);
+  await assert.rejects(
+    createLeanRunnerRequest({
+      jobId: "run:historical-v1",
+      idempotencyKey: "historical-v1",
+      artifactBundle: await fixtureArtifactBundleV1(),
+      imageDigest: `ghcr.io/proofweave/lean-runner@sha256:${"c".repeat(64)}`,
+      limits: fixtureRequest().limits,
+    }),
+    /require pw-artifact-bundle-v2/,
+  );
 });
 
 test("rejects runner requests that could widen execution authority", () => {
@@ -108,6 +118,52 @@ function fixtureRequest() {
 }
 
 async function fixtureArtifactBundle() {
+  const pair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
+  const bundle = {
+    protocolVersion: "pw-artifact-bundle-v2",
+    id: "bundle:fixture-1",
+    attemptId: "attempt:fixture-1",
+    problemRevisionId: "problem-revision:fixture-1",
+    target: { declaration: "Proofweave.Fixture.target", statementHash: `sha256:${"a".repeat(64)}` },
+    workspace: {
+      archive: {
+        objectKey: `bundles/sha256/${"b".repeat(64)}/source.tar.zst`, contentHash: `sha256:${"b".repeat(64)}`,
+        format: "tar.zst", maxExpandedBytes: 64 * 1024 * 1024, maxFileCount: 10_000, symlinkPolicy: "forbidden",
+      },
+      patch: {
+        objectKey: `bundles/sha256/${"d".repeat(64)}/normalized.patch`, contentHash: `sha256:${"d".repeat(64)}`,
+        format: "unified-diff", strip: 1, allowFuzz: false,
+      },
+      tree: { hash: `sha256:${"f".repeat(64)}`, algorithm: "pw-tree-v1", state: "after_patch_and_lake_manifest" },
+      lakeManifest: {
+        objectKey: `bundles/sha256/${"e".repeat(64)}/lake-manifest.json`, contentHash: `sha256:${"e".repeat(64)}`,
+        destination: "lake-manifest.json",
+      },
+    },
+    environment: { leanToolchain: "leanprover/lean4:v4.27.0", mathlibRevision: "a3a10db0e9d6" },
+    entryCommand: ["lake", "env", "lean", "Proofweave/Fixture.lean"],
+    dependencyReceipts: [],
+    agentEvent: {
+      eventId: "agent-event:fixture-1",
+      occurredAt: "2026-07-13T00:00:00Z",
+      payloadHash: `sha256:${"f".repeat(64)}`,
+      agentPublicKey: base64Url(await crypto.subtle.exportKey("raw", pair.publicKey)),
+      signature: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    },
+    policy: { requireNoSorry: true, allowedAxioms: [] },
+  };
+  bundle.agentEvent.payloadHash = await artifactBundleSigningPayloadHash(bundle);
+  bundle.agentEvent.signature = base64Url(
+    await crypto.subtle.sign(
+      "Ed25519",
+      pair.privateKey,
+      new TextEncoder().encode(canonicalJson(artifactBundleSigningPayload(bundle))),
+    ),
+  );
+  return bundle;
+}
+
+async function fixtureArtifactBundleV1() {
   const pair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
   const bundle = {
     protocolVersion: "pw-artifact-bundle-v1",

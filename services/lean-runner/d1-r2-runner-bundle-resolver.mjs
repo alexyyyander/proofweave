@@ -1,6 +1,8 @@
 import {
   artifactBundleHash,
   canonicalArtifactBundle,
+  artifactBundleObjectReferences,
+  artifactBundleV2ProtocolVersion,
   normalizeArtifactBundle,
   verifyArtifactBundleAgentSignature,
 } from "../../packages/protocol/artifact-bundle.mjs";
@@ -112,23 +114,11 @@ export class D1R2RunnerBundleResolver {
     }
     assertRequestMatchesBundle(normalizedRequest, bundle);
 
-    const objects = Object.freeze({
-      sourceArchive: await this.resolveReferencedObject({
-        label: "source archive",
-        objectKey: bundle.source.archiveKey,
-        contentHash: bundle.source.archiveHash,
-      }),
-      sourcePatch: await this.resolveReferencedObject({
-        label: "source patch",
-        objectKey: bundle.source.patchKey,
-        contentHash: bundle.source.patchHash,
-      }),
-      lakeManifest: await this.resolveReferencedObject({
-        label: "Lake manifest",
-        objectKey: bundle.environment.lakeManifestKey,
-        contentHash: bundle.environment.lakeManifestHash,
-      }),
-    });
+    const objectEntries = await Promise.all(artifactBundleObjectReferences(bundle).map(async (reference) => [
+      reference.id,
+      await this.resolveReferencedObject(reference),
+    ]));
+    const objects = Object.freeze(Object.fromEntries(objectEntries));
 
     return Object.freeze({
       request: normalizedRequest,
@@ -185,6 +175,12 @@ function assertRequestMatchesBundle(request, bundle) {
     !sameArray(bundle.policy.allowedAxioms, request.policy.allowedAxioms)
   ) {
     throw new RunnerBundleResolutionError("Runner request policy does not match its Artifact Bundle manifest.");
+  }
+  if (
+    bundle.protocolVersion === artifactBundleV2ProtocolVersion &&
+    bundle.workspace.archive.maxExpandedBytes > request.limits.diskMiB * 1024 * 1024
+  ) {
+    throw new RunnerBundleResolutionError("Runner request disk limit is lower than the Artifact Bundle v2 workspace expansion limit.");
   }
 }
 

@@ -60,12 +60,11 @@ test("Runner resolves only the staged canonical bundle and exact immutable objec
   });
   const bundle = await signedBundle({ archive, patch, lakeManifest });
   const staged = await store.stageBundle(bundle);
-  const request = await createLeanRunnerRequest({
+  const request = historicalRunnerRequest({
     jobId: "run:bundle-resolver-test",
     idempotencyKey: "bundle-resolver-idempotency",
-    artifactBundle: bundle,
-    imageDigest: `registry.cloudflare.com/proofweave/lean-runner@sha256:${"a".repeat(64)}`,
-    limits: { cpuSeconds: 60, wallSeconds: 120, memoryMiB: 2_048, diskMiB: 2_048, outputBytes: 1_000_000 },
+    bundle,
+    stagedBundle: staged.bundle,
   });
   const resolver = new D1R2RunnerBundleResolver({ database, bucket });
 
@@ -122,6 +121,44 @@ test("Runner resolves only the staged canonical bundle and exact immutable objec
   );
 });
 
+test("Runner resolves v2 workspace metadata and rejects a Run with insufficient disk", async () => {
+  const store = new D1R2ArtifactStore({ database, bucket });
+  const archive = await store.putObject({
+    bytes: "source archive resolver v2 fixture",
+    filename: "source.tar.zst",
+    contentType: "application/zstd",
+  });
+  const patch = await store.putObject({
+    bytes: "normalized patch resolver v2 fixture",
+    filename: "normalized.patch",
+    contentType: "text/plain",
+  });
+  const lakeManifest = await store.putObject({
+    bytes: '{"packages":[]}',
+    filename: "lake-manifest.json",
+    contentType: "application/json",
+  });
+  const bundle = await signedBundleV2({ archive, patch, lakeManifest });
+  await store.stageBundle(bundle);
+  const request = await createLeanRunnerRequest({
+    jobId: "run:bundle-resolver-v2-test",
+    idempotencyKey: "bundle-resolver-v2-idempotency",
+    artifactBundle: bundle,
+    imageDigest: `registry.cloudflare.com/proofweave/lean-runner@sha256:${"b".repeat(64)}`,
+    limits: { cpuSeconds: 60, wallSeconds: 120, memoryMiB: 2_048, diskMiB: 512, outputBytes: 1_000_000 },
+  });
+  const resolver = new D1R2RunnerBundleResolver({ database, bucket });
+
+  const resolved = await resolver.resolve(request);
+  assert.equal(resolved.bundle.protocolVersion, "pw-artifact-bundle-v2");
+  assert.equal(resolved.bundle.workspace.tree.state, "after_patch_and_lake_manifest");
+  assert.equal(resolved.objects.sourcePatch.contentHash, patch.contentHash);
+  await assert.rejects(
+    resolver.resolve({ ...request, limits: { ...request.limits, diskMiB: 128 } }),
+    /disk limit is lower than the Artifact Bundle v2 workspace expansion limit/,
+  );
+});
+
 async function signedBundle({ archive, patch, lakeManifest }) {
   const bundle = {
     protocolVersion: "pw-artifact-bundle-v1",
@@ -146,6 +183,66 @@ async function signedBundle({ archive, patch, lakeManifest }) {
     dependencyReceipts: [],
     agentEvent: {
       eventId: "agent-event:runner-bundle-resolver-test",
+      occurredAt: "2026-07-13T00:00:00Z",
+      payloadHash: sha("0"),
+      agentPublicKey,
+      signature: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    },
+    policy: { requireNoSorry: true, allowedAxioms: [] },
+  };
+  bundle.agentEvent.payloadHash = await artifactBundleSigningPayloadHash(bundle);
+  bundle.agentEvent.signature = base64Url(
+    await crypto.subtle.sign(
+      "Ed25519",
+      agentKeyPair.privateKey,
+      new TextEncoder().encode(canonicalJson(artifactBundleSigningPayload(bundle))),
+    ),
+  );
+  return bundle;
+}
+
+async function signedBundleV2({ archive, patch, lakeManifest }) {
+  const bundle = {
+    protocolVersion: "pw-artifact-bundle-v2",
+    id: "bundle:runner-bundle-resolver-v2-test",
+    attemptId: "attempt:runner-bundle-resolver-test",
+    problemRevisionId: "revision:runner-bundle-resolver-test",
+    target: { declaration: "Proofweave.RunnerBundle.v2Target", statementHash: sha("7") },
+    workspace: {
+      archive: {
+        objectKey: archive.objectKey,
+        contentHash: archive.contentHash,
+        format: "tar.zst",
+        maxExpandedBytes: 256 * 1024 * 1024,
+        maxFileCount: 10_000,
+        symlinkPolicy: "forbidden",
+      },
+      patch: {
+        objectKey: patch.objectKey,
+        contentHash: patch.contentHash,
+        format: "unified-diff",
+        strip: 1,
+        allowFuzz: false,
+      },
+      tree: {
+        hash: sha("8"),
+        algorithm: "pw-tree-v1",
+        state: "after_patch_and_lake_manifest",
+      },
+      lakeManifest: {
+        objectKey: lakeManifest.objectKey,
+        contentHash: lakeManifest.contentHash,
+        destination: "lake-manifest.json",
+      },
+    },
+    environment: {
+      leanToolchain: "leanprover/lean4:v4.27.0",
+      mathlibRevision: "a3a10db0e9d6",
+    },
+    entryCommand: ["lake", "env", "lean", "Proofweave/RunnerBundleV2.lean"],
+    dependencyReceipts: [],
+    agentEvent: {
+      eventId: "agent-event:runner-bundle-resolver-v2-test",
       occurredAt: "2026-07-13T00:00:00Z",
       payloadHash: sha("0"),
       agentPublicKey,
@@ -234,4 +331,27 @@ function sha(character) {
 function base64Url(buffer) {
   const binary = String.fromCharCode(...new Uint8Array(buffer));
   return btoa(binary).replaceAll("+", "-").replaceAll("/", "_").replaceAll("=", "");
+}
+
+function historicalRunnerRequest({ jobId, idempotencyKey, bundle, stagedBundle }) {
+  return {
+    protocolVersion: "pw-lean-runner-v1",
+    jobId,
+    idempotencyKey,
+    attemptId: bundle.attemptId,
+    bundle: {
+      objectKey: stagedBundle.manifestKey,
+      contentHash: stagedBundle.manifestHash,
+      manifestHash: stagedBundle.manifestHash,
+      entryCommand: bundle.entryCommand,
+    },
+    environment: {
+      imageDigest: `registry.cloudflare.com/proofweave/lean-runner@sha256:${"a".repeat(64)}`,
+      leanToolchain: bundle.environment.leanToolchain,
+      mathlibRevision: bundle.environment.mathlibRevision,
+      network: "disabled",
+    },
+    limits: { cpuSeconds: 60, wallSeconds: 120, memoryMiB: 2_048, diskMiB: 2_048, outputBytes: 1_000_000 },
+    policy: bundle.policy,
+  };
 }

@@ -20,6 +20,7 @@ connected.
 - [Lean runner contract](docs/runner-contract.md)
 - [Cloudflare runner deployment boundary](docs/runner-cloudflare-deployment.md)
 - [Artifact bundle contract](docs/artifact-bundle-contract.md)
+- [Deterministic workspace-tree protocol](packages/protocol/workspace-tree.mjs)
 - [Artifact storage contract](docs/artifact-storage-contract.md)
 - [Run state contract](docs/run-state-contract.md)
 - [Independent verification contract](docs/verification-contract.md)

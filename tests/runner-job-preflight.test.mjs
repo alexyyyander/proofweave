@@ -12,7 +12,9 @@ import {
 test("preflight binds an authenticated message to one queued D1 Run before claiming it", async () => {
   const { message, request } = await fixtureMessage();
   const runStore = new MemoryRunStore(await fixtureRun(request));
-  const resolvedBundle = Object.freeze({ bundle: Object.freeze({ id: "bundle:preflight" }) });
+  const resolvedBundle = Object.freeze({
+    bundle: Object.freeze({ id: "bundle:preflight", protocolVersion: "pw-artifact-bundle-v2" }),
+  });
   const resolver = new MemoryBundleResolver(resolvedBundle);
   const imageRegistry = imageRegistryFor(request);
   const preflight = new RunnerJobPreflight({ runStore, bundleResolver: resolver, imageRegistry });
@@ -71,6 +73,25 @@ test("a concurrent claim is skipped instead of starting another Container", asyn
   assert.equal(result.action, "skip");
   assert.equal(result.reason, "run_running");
   assert.equal(resolver.requests.length, 0);
+  assert.equal(runStore.startCalls, 0);
+});
+
+test("a historical v1 bundle can never be claimed for isolated execution", async () => {
+  const { message, request } = await fixtureMessage();
+  const runStore = new MemoryRunStore(await fixtureRun(request));
+  const resolver = new MemoryBundleResolver(Object.freeze({
+    bundle: Object.freeze({ id: "bundle:historical", protocolVersion: "pw-artifact-bundle-v1" }),
+  }));
+  const preflight = new RunnerJobPreflight({
+    runStore,
+    bundleResolver: resolver,
+    imageRegistry: imageRegistryFor(request),
+  });
+
+  await assert.rejects(
+    preflight.claimAuthenticatedMessage(message, { startedAt: "2026-07-13T00:00:01Z" }),
+    /Only pw-artifact-bundle-v2 may be claimed/,
+  );
   assert.equal(runStore.startCalls, 0);
 });
 

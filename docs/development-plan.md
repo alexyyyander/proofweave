@@ -52,8 +52,9 @@ reusable contribution with evidence that an external maintainer can reproduce.
   Agent installations, authorization codes, access tokens, and refresh tokens;
 - Lean runner v1 protocol for content-addressed bundles, pinned environments,
   resource limits, disabled networking, and evidence-bound results;
-- artifact bundle v1 manifest that fixes source, Lean environment, target,
-  dependency receipts, Agent event signature, and axiom/sorry policy;
+- artifact bundle v1 historical manifest plus v2 executable-workspace manifest
+  that fixes archive, patch, Lake manifest, final tree, Lean environment,
+  target, dependency receipts, Agent event signature, and axiom/sorry policy;
 - immutable R2/D1 artifact store that verifies Agent signatures, delegation
   timing, referenced object hashes, and canonical bundle manifests;
 - bounded Run state machine with idempotent request/result binding and
@@ -211,10 +212,15 @@ runner described in
 
 ### Artifact bundle progress
 
-`pw-artifact-bundle-v1` now rejects traversal, shell commands, unknown fields,
-and incomplete evidence while producing a canonical SHA-256 manifest hash. It
-is the single evidence object intended to move between R2, the runner,
-independent replay, and receipts. See
+`pw-artifact-bundle-v1` rejects traversal, shell commands, unknown fields, and
+incomplete evidence while producing a canonical SHA-256 manifest hash.
+`pw-artifact-bundle-v2` adds an executable workspace contract: a `tar.zst`
+archive with no links, bounded extraction, no-fuzz normalized patch, root Lake
+manifest replacement, and a canonical post-patch `pw-tree-v1` hash. Staging
+and resolution support both versions, while Runner preflight permits only v2
+to move into isolated execution. The canonical manifest remains the single
+evidence object intended to move between R2, the runner, independent replay,
+and receipts. See
 [`docs/artifact-bundle-contract.md`](artifact-bundle-contract.md).
 
 ### Artifact storage progress
@@ -232,7 +238,9 @@ small canonical manifest before resolving it, then compares the request's
 Attempt, command, pinned Lean environment, Mathlib revision, and policy to the
 signed manifest. It only returns metadata for the referenced archive, patch,
 and Lake files after their immutable D1/R2 index records agree; it does not
-yet transfer or execute those files.
+yet transfer or execute those files. Historical v1 Bundles can be resolved for
+audit but cannot create a Runner request or advance a queued Run; only v2 has
+safe workspace reconstruction semantics.
 
 ### Run lifecycle progress
 

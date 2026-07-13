@@ -4,6 +4,7 @@ import {
   artifactBundleHash,
   artifactBundleSigningPayload,
   artifactBundleSigningPayloadHash,
+  artifactBundleObjectReferences,
   canonicalArtifactBundle,
   normalizeArtifactBundle,
   verifyArtifactBundleAgentSignature,
@@ -57,6 +58,51 @@ test("an Artifact Bundle binds a valid Agent signature to the full evidence payl
   }), false);
 });
 
+test("v2 fixes the safe workspace reconstruction contract and its object references", async () => {
+  const bundle = fixtureBundleV2();
+  const normalized = normalizeArtifactBundle(bundle);
+  assert.equal(normalized.protocolVersion, "pw-artifact-bundle-v2");
+  assert.equal(normalized.workspace.archive.symlinkPolicy, "forbidden");
+  assert.deepEqual(
+    artifactBundleObjectReferences(bundle).map((reference) => reference.id),
+    ["sourceArchive", "sourcePatch", "lakeManifest"],
+  );
+
+  const pair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
+  bundle.agentEvent.agentPublicKey = base64Url(await crypto.subtle.exportKey("raw", pair.publicKey));
+  bundle.agentEvent.payloadHash = await artifactBundleSigningPayloadHash(bundle);
+  bundle.agentEvent.signature = base64Url(await crypto.subtle.sign(
+    "Ed25519",
+    pair.privateKey,
+    new TextEncoder().encode(canonicalJson(artifactBundleSigningPayload(bundle))),
+  ));
+  assert.equal(await verifyArtifactBundleAgentSignature(bundle), true);
+});
+
+test("v2 rejects archive and patch semantics that would make execution ambiguous", () => {
+  assert.throws(
+    () => normalizeArtifactBundle({
+      ...fixtureBundleV2(),
+      workspace: { ...fixtureBundleV2().workspace, archive: { ...fixtureBundleV2().workspace.archive, symlinkPolicy: "allowed" } },
+    }),
+    /symlinkPolicy must be forbidden/,
+  );
+  assert.throws(
+    () => normalizeArtifactBundle({
+      ...fixtureBundleV2(),
+      workspace: { ...fixtureBundleV2().workspace, patch: { ...fixtureBundleV2().workspace.patch, allowFuzz: true } },
+    }),
+    /no-fuzz unified diff/,
+  );
+  assert.throws(
+    () => normalizeArtifactBundle({
+      ...fixtureBundleV2(),
+      workspace: { ...fixtureBundleV2().workspace, lakeManifest: { ...fixtureBundleV2().workspace.lakeManifest, destination: "nested/lake-manifest.json" } },
+    }),
+    /destination must be lake-manifest.json/,
+  );
+});
+
 function fixtureBundle() {
   return {
     protocolVersion: "pw-artifact-bundle-v1",
@@ -86,6 +132,60 @@ function fixtureBundle() {
       eventId: "agent-event:fixture-1",
       occurredAt: "2026-07-13T00:00:00Z",
       payloadHash: `sha256:${"f".repeat(64)}`,
+      agentPublicKey: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      signature: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    },
+    policy: { requireNoSorry: true, allowedAxioms: [] },
+  };
+}
+
+function fixtureBundleV2() {
+  return {
+    protocolVersion: "pw-artifact-bundle-v2",
+    id: "bundle:fixture-v2",
+    attemptId: "attempt:fixture-v2",
+    problemRevisionId: "problem-revision:fixture-v2",
+    target: {
+      declaration: "Proofweave.FixtureV2.target",
+      statementHash: `sha256:${"1".repeat(64)}`,
+    },
+    workspace: {
+      archive: {
+        objectKey: `bundles/sha256/${"2".repeat(64)}/source.tar.zst`,
+        contentHash: `sha256:${"2".repeat(64)}`,
+        format: "tar.zst",
+        maxExpandedBytes: 128 * 1024 * 1024,
+        maxFileCount: 10_000,
+        symlinkPolicy: "forbidden",
+      },
+      patch: {
+        objectKey: `bundles/sha256/${"3".repeat(64)}/normalized.patch`,
+        contentHash: `sha256:${"3".repeat(64)}`,
+        format: "unified-diff",
+        strip: 1,
+        allowFuzz: false,
+      },
+      tree: {
+        hash: `sha256:${"4".repeat(64)}`,
+        algorithm: "pw-tree-v1",
+        state: "after_patch_and_lake_manifest",
+      },
+      lakeManifest: {
+        objectKey: `bundles/sha256/${"5".repeat(64)}/lake-manifest.json`,
+        contentHash: `sha256:${"5".repeat(64)}`,
+        destination: "lake-manifest.json",
+      },
+    },
+    environment: {
+      leanToolchain: "leanprover/lean4:v4.27.0",
+      mathlibRevision: "a3a10db0e9d6",
+    },
+    entryCommand: ["lake", "env", "lean", "Proofweave/FixtureV2.lean"],
+    dependencyReceipts: [],
+    agentEvent: {
+      eventId: "agent-event:fixture-v2",
+      occurredAt: "2026-07-13T00:00:00Z",
+      payloadHash: `sha256:${"6".repeat(64)}`,
       agentPublicKey: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
       signature: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
     },

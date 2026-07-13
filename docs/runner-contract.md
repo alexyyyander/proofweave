@@ -20,8 +20,11 @@ reject traversal keys, shell metacharacters, unpinned images, or a request that
 enables network access.
 
 The request's bundle reference must be a valid
-[`pw-artifact-bundle-v1`](artifact-bundle-contract.md) manifest; the runner
-uses its hashes rather than an unpinned working tree.
+[`Artifact Bundle`](artifact-bundle-contract.md) manifest; the runner uses its
+hashes rather than an unpinned working tree. Historical v1 Bundles remain
+inspectable but cannot be claimed for execution. Only v2 fixes the archive,
+patch, final-tree, and Lake-manifest reconstruction rules required before a
+Container may receive source bytes.
 
 `PinnedRunnerImageRegistry` is a deployment-owned allowlist that binds each
 approved image digest to one exact Lean toolchain and Mathlib revision. The
@@ -43,7 +46,8 @@ must stream and limit them without trusting a user-provided path or hash.
 `createLeanRunnerRequest` derives command, Lean version, Mathlib revision,
 policy, and canonical `bundle.json` key from that manifest. The control plane
 cannot change those inputs after the manifest hash is fixed, and it rejects an
-Artifact Bundle whose Agent signature does not verify. Its lifecycle is
+Artifact Bundle whose Agent signature does not verify. It also rejects v1
+Bundles before a Run is persisted or a Queue envelope is signed. Its lifecycle is
 separately constrained by the [`Run state contract`](run-state-contract.md).
 
 ## Queue delivery

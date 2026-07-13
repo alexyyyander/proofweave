@@ -1,6 +1,7 @@
 import {
   artifactBundleHash,
   canonicalArtifactBundle,
+  artifactBundleObjectReferences,
   normalizeArtifactBundle,
   verifyArtifactBundleAgentSignature,
 } from "../../packages/protocol/artifact-bundle.mjs";
@@ -93,11 +94,9 @@ export class D1R2ArtifactStore {
       throw new ArtifactStoreValidationError("Artifact Bundle Agent signature or payload hash is invalid.");
     }
     await this.assertAttemptAuthority(normalized);
-    await Promise.all([
-      this.assertObjectPresent({ contentHash: normalized.source.archiveHash, objectKey: normalized.source.archiveKey }),
-      this.assertObjectPresent({ contentHash: normalized.source.patchHash, objectKey: normalized.source.patchKey }),
-      this.assertObjectPresent({ contentHash: normalized.environment.lakeManifestHash, objectKey: normalized.environment.lakeManifestKey }),
-    ]);
+    await Promise.all(artifactBundleObjectReferences(normalized).map((reference) =>
+      this.assertObjectPresent({ contentHash: reference.contentHash, objectKey: reference.objectKey }),
+    ));
 
     const canonicalManifest = canonicalArtifactBundle(normalized);
     const manifestHash = await artifactBundleHash(normalized);

@@ -109,22 +109,40 @@ function fixtureLimits() {
 async function fixtureBundle() {
   const pair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
   const bundle = {
-    protocolVersion: "pw-artifact-bundle-v1",
+    protocolVersion: "pw-artifact-bundle-v2",
     id: "bundle:orchestrator-1",
     attemptId: "attempt:orchestrator-1",
     problemRevisionId: "problem-revision:orchestrator-1",
     target: { declaration: "Proofweave.Orchestrator.target", statementHash: sha("a") },
-    source: {
-      archiveKey: `bundles/sha256/${"b".repeat(64)}/source.tar.zst`,
-      archiveHash: sha("b"),
-      treeHash: sha("c"),
-      patchKey: `bundles/sha256/${"d".repeat(64)}/normalized.patch`,
-      patchHash: sha("d"),
+    workspace: {
+      archive: {
+        objectKey: `bundles/sha256/${"b".repeat(64)}/source.tar.zst`,
+        contentHash: sha("b"),
+        format: "tar.zst",
+        maxExpandedBytes: 64 * 1024 * 1024,
+        maxFileCount: 10_000,
+        symlinkPolicy: "forbidden",
+      },
+      patch: {
+        objectKey: `bundles/sha256/${"d".repeat(64)}/normalized.patch`,
+        contentHash: sha("d"),
+        format: "unified-diff",
+        strip: 1,
+        allowFuzz: false,
+      },
+      tree: {
+        hash: sha("c"),
+        algorithm: "pw-tree-v1",
+        state: "after_patch_and_lake_manifest",
+      },
+      lakeManifest: {
+        objectKey: `bundles/sha256/${"e".repeat(64)}/lake-manifest.json`,
+        contentHash: sha("e"),
+        destination: "lake-manifest.json",
+      },
     },
     environment: {
       leanToolchain: "leanprover/lean4:v4.27.0",
-      lakeManifestKey: `bundles/sha256/${"e".repeat(64)}/lake-manifest.json`,
-      lakeManifestHash: sha("e"),
       mathlibRevision: "a3a10db0e9d6",
     },
     entryCommand: ["lake", "env", "lean", "Proofweave/Orchestrator.lean"],
