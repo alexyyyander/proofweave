@@ -36,8 +36,9 @@ npm run alpha:deploy:preflight -- /secure/path/proofweave-mcp-alpha.json /secure
 ```
 
 This pairwise preflight requires the exact same D1 database name/ID and R2
-bucket name, preventing independently valid Workers from splitting the
-immutable control-plane record.
+bucket name, plus the same Queue, one pinned Lean/Mathlib image, and
+control-plane key ID. It prevents independently valid Workers from splitting
+the immutable control-plane record or accepting incompatible Runner jobs.
 
 ## Required evidence before activation
 

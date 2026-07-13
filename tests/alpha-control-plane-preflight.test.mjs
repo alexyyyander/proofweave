@@ -13,6 +13,16 @@ const mcpManifest = {
     resource_url: "https://mcp.proofweave.test/mcp",
   },
   identity: { issuer_url: "https://auth.proofweave.test/" },
+  runner: {
+    queue_name: "proofweave-runner-jobs-alpha",
+    approved_images: [{
+      image_digest: `registry.cloudflare.com/proofweave/lean-runner@sha256:${"a".repeat(64)}`,
+      lean_toolchain: "leanprover/lean4:v4.30.0",
+      mathlib_revision: "fixture-mathlib-revision",
+    }],
+    control_plane_key_id: "control-plane:closed-alpha",
+    default_limits: { cpu_seconds: 60, wall_seconds: 120, memory_mib: 2_048, disk_mib: 2_048, output_bytes: 1_000_000 },
+  },
 };
 
 const runnerManifest = {
@@ -53,6 +63,8 @@ test("alpha deployment preflight requires MCP and Runner to share one D1/R2 auth
   });
   assert.equal(topology.gateway.resourceUrl, mcpManifest.gateway.resource_url);
   assert.equal(topology.runner.queueName, runnerManifest.queue.name);
+  assert.equal(topology.runner.controlPlaneKeyId, runnerManifest.keys.control_plane_issuer.id);
+  assert.deepEqual(topology.runner.defaultLimits, { cpuSeconds: 60, wallSeconds: 120, memoryMiB: 2_048, diskMiB: 2_048, outputBytes: 1_000_000 });
   assert.equal(topology.runner.executionEnabled, false);
   assert.doesNotMatch(JSON.stringify(topology), new RegExp(runnerManifest.keys.control_plane_issuer.public_key));
 });
@@ -87,5 +99,35 @@ test("alpha deployment preflight rejects D1 and R2 drift between otherwise valid
       },
     }),
     /same R2 bucket name/,
+  );
+});
+
+test("alpha deployment preflight rejects Queue, image, and signing-key drift", () => {
+  assert.throws(
+    () => validateAlphaControlPlaneTopology({
+      mcpManifest: { ...mcpManifest, runner: { ...mcpManifest.runner, queue_name: "proofweave-other-queue" } },
+      runnerManifest,
+    }),
+    /same Runner Queue name/,
+  );
+  assert.throws(
+    () => validateAlphaControlPlaneTopology({
+      mcpManifest: { ...mcpManifest, runner: { ...mcpManifest.runner, control_plane_key_id: "control-plane:other" } },
+      runnerManifest,
+    }),
+    /same Runner control-plane key ID/,
+  );
+  assert.throws(
+    () => validateAlphaControlPlaneTopology({
+      mcpManifest: {
+        ...mcpManifest,
+        runner: {
+          ...mcpManifest.runner,
+          approved_images: [{ ...mcpManifest.runner.approved_images[0], mathlib_revision: "other-mathlib" }],
+        },
+      },
+      runnerManifest,
+    }),
+    /same single approved Runner image/,
   );
 });

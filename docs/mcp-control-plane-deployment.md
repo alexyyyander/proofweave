@@ -44,9 +44,13 @@ and compare both non-secret manifests before either Worker is deployed:
 npm run alpha:deploy:preflight -- /secure/path/proofweave-mcp-alpha.json /secure/path/proofweave-runner-alpha.json
 ```
 
-The pairwise check rejects any D1 database name/ID or R2 bucket mismatch. It
-does not create resources, enable Runner execution, or prove provider-level
-Container isolation.
+When the optional `runner` block is present, the MCP preflight renders the
+non-secret `RUNNER_QUEUE`, image registry, control-plane key ID, and default
+limits binding. It deliberately never renders
+`RUNNER_CONTROL_PLANE_PRIVATE_KEY_JWK`; that matching private signing key is a
+gateway-secret-provider responsibility. The pairwise check rejects any D1/R2,
+Queue, image, or control-plane key-ID mismatch. It does not create resources,
+enable Runner execution, or prove provider-level Container isolation.
 
 After a deployment is reachable, run the credential-free live check against
 that same manifest:
@@ -81,8 +85,8 @@ Wrangler deployment commands:
 6. An integration test confirms a revoked installation’s old token receives no
    MCP access.
 
-If the gateway will expose `request_runner_run`, it must additionally have the
-same Queue producer consumed by the isolated Runner Worker, an exact
+If the gateway will expose `request_runner_run`, its manifest `runner` block
+must name the same Queue consumed by the isolated Runner Worker, an exact
 `RUNNER_APPROVED_IMAGES_JSON` registry, `RUNNER_DEFAULT_LIMITS_JSON`, and a
 matching `RUNNER_CONTROL_PLANE_KEY_ID`. Set
 `RUNNER_CONTROL_PLANE_PRIVATE_KEY_JWK` only as a gateway secret; the Runner

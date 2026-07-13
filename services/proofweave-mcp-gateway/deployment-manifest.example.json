@@ -10,5 +10,23 @@
   },
   "identity": {
     "issuer_url": "https://auth.example.org/"
+  },
+  "runner": {
+    "queue_name": "proofweave-runner-jobs-alpha",
+    "approved_images": [
+      {
+        "image_digest": "registry.cloudflare.com/REPLACE_ACCOUNT_ID/proofweave-lean-runner@sha256:REPLACE_WITH_APPROVED_IMAGE_DIGEST",
+        "lean_toolchain": "REPLACE_WITH_PINNED_LEAN_TOOLCHAIN",
+        "mathlib_revision": "REPLACE_WITH_PINNED_MATHLIB_REVISION"
+      }
+    ],
+    "control_plane_key_id": "control-plane:closed-alpha",
+    "default_limits": {
+      "cpu_seconds": 60,
+      "wall_seconds": 120,
+      "memory_mib": 2048,
+      "disk_mib": 2048,
+      "output_bytes": 1000000
+    }
   }
 }

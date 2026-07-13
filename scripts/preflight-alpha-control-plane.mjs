@@ -5,8 +5,9 @@ import { validateLeanRunnerDeploymentManifest } from "./preflight-lean-runner-de
 
 /**
  * The MCP gateway and isolated Runner may be deployed separately, but they
- * cannot use independently valid D1/R2 resources. This non-secret preflight
- * checks the pair before any Worker configuration is rendered or deployed.
+ * cannot use independently valid D1/R2 resources or dispatch values. This
+ * non-secret preflight checks the pair before any Worker configuration is
+ * rendered or deployed.
  */
 export function validateAlphaControlPlaneTopology({ mcpManifest, runnerManifest } = {}) {
   const mcp = validateMcpControlPlaneManifest(mcpManifest);
@@ -14,6 +15,14 @@ export function validateAlphaControlPlaneTopology({ mcpManifest, runnerManifest 
   assertSame("D1 database name", mcp.controlPlane.databaseName, runner.controlPlane.databaseName);
   assertSame("D1 database ID", mcp.controlPlane.databaseId, runner.controlPlane.databaseId);
   assertSame("R2 bucket name", mcp.controlPlane.bucketName, runner.controlPlane.bucketName);
+  if (!mcp.runner) {
+    throw new Error("MCP manifest must declare runner integration before it can be paired with a Runner deployment.");
+  }
+  assertSame("Runner Queue name", mcp.runner.queueName, runner.queue.name);
+  assertSame("Runner control-plane key ID", mcp.runner.controlPlaneKeyId, runner.keys.controlPlaneIssuer.id);
+  if (mcp.runner.approvedImages.length !== 1 || !sameImage(mcp.runner.approvedImages[0], runner.runner.image)) {
+    throw new Error("MCP and Runner manifests must declare the same single approved Runner image.");
+  }
 
   return Object.freeze({
     controlPlane: Object.freeze({ ...mcp.controlPlane }),
@@ -26,6 +35,7 @@ export function validateAlphaControlPlaneTopology({ mcpManifest, runnerManifest 
       image: Object.freeze({ ...runner.runner.image }),
       controlPlaneKeyId: runner.keys.controlPlaneIssuer.id,
       runnerResultKeyId: runner.keys.runnerResultKeyId,
+      defaultLimits: Object.freeze({ ...mcp.runner.defaultLimits }),
       executionEnabled: false,
     }),
   });
@@ -42,7 +52,7 @@ async function main() {
   ]);
   const topology = validateAlphaControlPlaneTopology({ mcpManifest, runnerManifest });
   process.stdout.write(`${JSON.stringify(topology, null, 2)}\n`);
-  process.stdout.write("MCP and Runner manifests share one D1/R2 authority. This check does not deploy a Worker, create a resource, enable Runner execution, or verify provider isolation.\n");
+  process.stdout.write("MCP and Runner manifests share one D1/R2 authority and one Runner dispatch contract. This check does not deploy a Worker, create a resource, enable Runner execution, or verify provider isolation.\n");
 }
 
 async function readJson(path, label) {
@@ -63,6 +73,12 @@ function assertSame(label, left, right) {
   if (left !== right) {
     throw new Error(`MCP and Runner manifests must use the same ${label}.`);
   }
+}
+
+function sameImage(left, right) {
+  return left?.imageDigest === right?.imageDigest &&
+    left?.leanToolchain === right?.leanToolchain &&
+    left?.mathlibRevision === right?.mathlibRevision;
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
