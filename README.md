@@ -267,6 +267,9 @@ application secrets.
 - `npm run mcp`: start the local MCP bridge after setting its environment
 - `npm run mcp:deploy:preflight -- /secure/path/manifest.json`: validate a
   non-secret external MCP control-plane manifest without deploying it
+- `npm run alpha:deploy:preflight -- /secure/path/mcp-alpha.json /secure/path/runner-alpha.json`:
+  verify that independently prepared MCP and Runner manifests name the exact
+  same D1 database and R2 evidence bucket, without enabling execution
 - `npm run mcp:deploy:verify -- /secure/path/manifest.json`: credential-free
   live verification of the deployed MCP/OAuth discovery and `401` challenge
 

@@ -74,6 +74,9 @@ reusable contribution with evidence that an external maintainer can reproduce.
   image/key validation, renders an execution-disabled Worker configuration,
   and has an explicit activation, rollback, backup, observability, and
   incident procedure;
+- a paired MCP/Runner preflight that rejects a D1 database or R2 evidence
+  bucket mismatch before separately deployed Workers can split the immutable
+  control-plane record;
 - operator-managed runner-key allowlist with signed-result verification before
   immutable Run evidence is accepted;
 - independent Person-level review assignments and review-delegated Agent

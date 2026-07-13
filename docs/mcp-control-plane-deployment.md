@@ -36,6 +36,18 @@ The command rejects placeholders, non-HTTPS origins, an invalid D1 identifier,
 and an issuer on the MCP resource origin. It prints the exact gateway binding
 configuration after validation. It does not deploy or create a resource.
 
+If the gateway will later request Runner jobs, prepare the separate Runner
+manifest described in [`runner-deployment-preflight.md`](runner-deployment-preflight.md)
+and compare both non-secret manifests before either Worker is deployed:
+
+```bash
+npm run alpha:deploy:preflight -- /secure/path/proofweave-mcp-alpha.json /secure/path/proofweave-runner-alpha.json
+```
+
+The pairwise check rejects any D1 database name/ID or R2 bucket mismatch. It
+does not create resources, enable Runner execution, or prove provider-level
+Container isolation.
+
 After a deployment is reachable, run the credential-free live check against
 that same manifest:
 

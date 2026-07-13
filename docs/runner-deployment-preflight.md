@@ -20,13 +20,24 @@ npm run runner:deploy:preflight -- /secure/path/proofweave-runner-alpha.json
 ```
 
 The command uses the same image and Queue-public-key validation code as the
-Runner. It requires one shared D1/R2 authority, a distinct Queue and DLQ, one
+Runner. It validates one D1/R2 authority pair, a distinct Queue and DLQ, one
 message per batch, one concurrent Container, an immutable image digest, and a
 single pinned Lean/Mathlib environment. Its generated Worker configuration
 always keeps execution disabled and omits the result private key. A successful
 preflight proves configuration syntax and internal consistency only; it does
 not prove that Cloudflare provisioned those resources or that the Container is
 isolated.
+
+Before deploying a Runner used by the MCP gateway, compare this manifest with
+the validated MCP manifest:
+
+```bash
+npm run alpha:deploy:preflight -- /secure/path/proofweave-mcp-alpha.json /secure/path/proofweave-runner-alpha.json
+```
+
+This pairwise preflight requires the exact same D1 database name/ID and R2
+bucket name, preventing independently valid Workers from splitting the
+immutable control-plane record.
 
 ## Required evidence before activation
 

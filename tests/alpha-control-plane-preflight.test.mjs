@@ -1,0 +1,91 @@
+import assert from "node:assert/strict";
+import test from "node:test";
+import { validateAlphaControlPlaneTopology } from "../scripts/preflight-alpha-control-plane.mjs";
+
+const mcpManifest = {
+  control_plane: {
+    d1_database_name: "proofweave-control-alpha",
+    d1_database_id: "ce75f2fb-40a9-4d14-9393-6cdb6a6f6069",
+    r2_bucket_name: "proofweave-control-artifacts-alpha",
+  },
+  gateway: {
+    worker_name: "proofweave-mcp-gateway-alpha",
+    resource_url: "https://mcp.proofweave.test/mcp",
+  },
+  identity: { issuer_url: "https://auth.proofweave.test/" },
+};
+
+const runnerManifest = {
+  control_plane: { ...mcpManifest.control_plane },
+  queue: {
+    name: "proofweave-runner-jobs-alpha",
+    dead_letter_queue: "proofweave-runner-jobs-alpha-dlq",
+    max_batch_size: 1,
+    max_batch_timeout_seconds: 5,
+    max_retries: 5,
+    max_concurrency: 1,
+  },
+  runner: {
+    worker_name: "proofweave-lean-runner-alpha",
+    container_class: "LeanRunnerContainer",
+    image: {
+      image_digest: `registry.cloudflare.com/proofweave/lean-runner@sha256:${"a".repeat(64)}`,
+      lean_toolchain: "leanprover/lean4:v4.30.0",
+      mathlib_revision: "fixture-mathlib-revision",
+    },
+    retry_delay_seconds: 30,
+  },
+  keys: {
+    control_plane_issuer: {
+      id: "control-plane:closed-alpha",
+      public_key: "BAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ",
+    },
+    runner_result_key_id: "runner:closed-alpha",
+  },
+};
+
+test("alpha deployment preflight requires MCP and Runner to share one D1/R2 authority", () => {
+  const topology = validateAlphaControlPlaneTopology({ mcpManifest, runnerManifest });
+  assert.deepEqual(topology.controlPlane, {
+    databaseName: mcpManifest.control_plane.d1_database_name,
+    databaseId: mcpManifest.control_plane.d1_database_id,
+    bucketName: mcpManifest.control_plane.r2_bucket_name,
+  });
+  assert.equal(topology.gateway.resourceUrl, mcpManifest.gateway.resource_url);
+  assert.equal(topology.runner.queueName, runnerManifest.queue.name);
+  assert.equal(topology.runner.executionEnabled, false);
+  assert.doesNotMatch(JSON.stringify(topology), new RegExp(runnerManifest.keys.control_plane_issuer.public_key));
+});
+
+test("alpha deployment preflight rejects D1 and R2 drift between otherwise valid manifests", () => {
+  assert.throws(
+    () => validateAlphaControlPlaneTopology({
+      mcpManifest,
+      runnerManifest: {
+        ...runnerManifest,
+        control_plane: { ...runnerManifest.control_plane, d1_database_name: "proofweave-other-alpha" },
+      },
+    }),
+    /same D1 database name/,
+  );
+  assert.throws(
+    () => validateAlphaControlPlaneTopology({
+      mcpManifest,
+      runnerManifest: {
+        ...runnerManifest,
+        control_plane: { ...runnerManifest.control_plane, d1_database_id: "6b3c0e15-443b-4e4d-b8e5-99c37ad5d2c3" },
+      },
+    }),
+    /same D1 database ID/,
+  );
+  assert.throws(
+    () => validateAlphaControlPlaneTopology({
+      mcpManifest,
+      runnerManifest: {
+        ...runnerManifest,
+        control_plane: { ...runnerManifest.control_plane, r2_bucket_name: "proofweave-other-artifacts" },
+      },
+    }),
+    /same R2 bucket name/,
+  );
+});
