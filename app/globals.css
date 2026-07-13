@@ -30,6 +30,9 @@ html { scroll-behavior: smooth; }
 body { background: var(--background); color: var(--foreground); font-family: Arial, Helvetica, sans-serif; margin: 0; min-width: 320px; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; }
+.skip-link { background: var(--navy); color: #fff; left: 12px; padding: 10px 13px; position: fixed; top: -60px; transition: top .15s ease; z-index: 20; }
+.skip-link:focus { outline: 3px solid #f3d48b; outline-offset: 2px; top: 12px; }
+main:focus { outline: none; }
 
 .site-shell { min-height: 100vh; }
 .public-shell { background: var(--paper); }

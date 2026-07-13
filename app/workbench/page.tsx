@@ -29,7 +29,7 @@ export default async function WorkbenchPage({
   return (
     <div className="site-shell app-shell">
       <Header active="workbench" />
-      <main className="workbench-main">
+      <main id="main-content" tabIndex={-1} className="workbench-main">
         <WorkbenchClient profile={profile} initialAttempts={attempts} initialRuns={runs} initialProvisionalContributions={provisionalContributions} provisionalLedgerAvailable={provisionalLedgerAvailable} catalogTargets={catalogTargets} initialTargetSlug={targetSlug} isAuthenticated={Boolean(user)} signInPath={chatGPTSignInPath(returnTo)} storageAvailable={storageAvailable} />
       </main>
       <Footer />

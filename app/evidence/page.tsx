@@ -15,7 +15,7 @@ export default async function EvidenceIndexPage() {
   const evidence = result.evidence;
   return <div className="site-shell app-shell">
     <Header active="workbench" />
-    <main className="page-main evidence-main">
+    <main id="main-content" tabIndex={-1} className="page-main evidence-main">
       <div className="breadcrumb"><Link href="/workbench">Workbench</Link><span> / </span><span>Evidence records</span></div>
       <section className="review-heading"><div><p className="eyebrow">Controlled evidence access · closed alpha</p><h1>Inspect the record behind a proof attempt.</h1><p>Only your own Attempts and Bundles assigned to you for independent review appear here. Artifact downloads are hash-bound R2 objects; opening them never runs Lean again.</p></div><span className="record-chip">{evidence.length} records</span></section>
       {evidence.length === 0 ? <section className="review-empty"><p className="eyebrow">No accessible evidence</p><h2>Your evidence inbox is clear.</h2><p>Your own staged Bundles and any assigned independent reviews will appear here. Preview activity in the workbench is not evidence.</p><Link className="text-link" href="/workbench">Return to workspace <span>→</span></Link></section> : <section className="evidence-index-list" aria-label="Accessible evidence records">{evidence.map((record) => <EvidenceIndexCard key={record.attemptId} record={record} />)}</section>}
@@ -52,7 +52,7 @@ function EvidenceMessage({ unauthenticated, unavailable }: { unauthenticated?: b
     : "No unverified fallback evidence is shown while the control-plane store is unavailable.";
   return <div className="site-shell app-shell">
     <Header active="workbench" />
-    <main className="page-main evidence-main"><div className="breadcrumb"><Link href="/workbench">Workbench</Link><span> / </span><span>Evidence records</span></div><section className="review-heading"><div><p className="eyebrow">Controlled evidence access</p><h1>{title}</h1><p>{detail}</p></div><span className="record-chip">{unavailable ? "Unavailable" : "Personal"}</span></section>{unauthenticated && <Link className="button button-primary review-sign-in" href={chatGPTSignInPath("/evidence")}>Sign in to inspect <span aria-hidden="true">→</span></Link>}</main>
+    <main id="main-content" tabIndex={-1} className="page-main evidence-main"><div className="breadcrumb"><Link href="/workbench">Workbench</Link><span> / </span><span>Evidence records</span></div><section className="review-heading"><div><p className="eyebrow">Controlled evidence access</p><h1>{title}</h1><p>{detail}</p></div><span className="record-chip">{unavailable ? "Unavailable" : "Personal"}</span></section>{unauthenticated && <Link className="button button-primary review-sign-in" href={chatGPTSignInPath("/evidence")}>Sign in to inspect <span aria-hidden="true">→</span></Link>}</main>
     <Footer />
   </div>;
 }

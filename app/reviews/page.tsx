@@ -18,7 +18,7 @@ export default async function ReviewsPage() {
   const activeAssignments = result.assignments.filter((assignment) => assignment.status === "assigned" || assignment.status === "accepted").length;
   return <div className="site-shell app-shell">
     <Header active="review" />
-    <main className="page-main review-main">
+    <main id="main-content" tabIndex={-1} className="page-main review-main">
       <div className="breadcrumb"><Link href="/workbench">Workbench</Link><span> / </span><span>Independent review</span></div>
       <section className="review-heading"><div><p className="eyebrow">Verification queue · closed alpha</p><h1>Review another person’s evidence.</h1><p>Assignments are addressed to a Person. A different owner’s review-scoped Agent must supply the signed attestation through the separately deployed remote connection; accepting a task alone never verifies a theorem.</p></div><span className="record-chip">{activeAssignments}/{closedAlphaReviewLimits.maximumActiveAssignmentsPerPerson} active</span></section>
       <ReviewQueueClient initialAssignments={result.assignments} hasReviewDelegation={hasActiveReviewDelegation(result.profile)} />
@@ -63,7 +63,7 @@ function ReviewMessage({ unauthenticated, unavailable }: { unauthenticated?: boo
     : "No review action was taken while the control plane was unavailable.";
   return <div className="site-shell app-shell">
     <Header active="review" />
-    <main className="page-main review-main">
+    <main id="main-content" tabIndex={-1} className="page-main review-main">
       <div className="breadcrumb"><Link href="/how-it-works">Protocol</Link><span> / </span><span>Independent review</span></div>
       <section className="review-heading"><div><p className="eyebrow">Verification queue</p><h1>{title}</h1><p>{detail}</p></div><span className="record-chip">{unavailable ? "Unavailable" : "Personal"}</span></section>
       {unauthenticated && <Link className="button button-primary review-sign-in" href={chatGPTSignInPath("/reviews")}>Sign in to review <span aria-hidden="true">→</span></Link>}

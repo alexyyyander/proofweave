@@ -11,7 +11,7 @@ export default async function Home() {
   return (
     <div className="site-shell public-shell">
       <Header active="home" />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <section className="hero section-grid">
           <div className="hero-copy">
             <p className="eyebrow">Open formal mathematics</p>

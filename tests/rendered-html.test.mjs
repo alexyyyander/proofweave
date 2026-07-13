@@ -689,6 +689,17 @@ test("serves the public research paths", async () => {
   assert.doesNotMatch(integrationsHtml, /https:\/\/mcp\.proofweave\.org\/mcp/i);
 });
 
+test("keeps keyboard users one action away from the main content on critical pages", async () => {
+  for (const pathname of ["/", "/explore", "/how-it-works", "/workbench", "/integrations", "/evidence", "/reviews", "/receipts"]) {
+    const response = await render(pathname);
+    assert.equal(response.status, 200, `${pathname} should render its keyboard navigation`);
+    const html = await response.text();
+    assert.match(html, /href="#main-content"[^>]*>Skip to main content/i, `${pathname} should include a skip link`);
+    assert.match(html, /<main id="main-content" tabindex="-1"/i, `${pathname} should expose a focusable main landmark`);
+    assert.equal((html.match(/id="main-content"/g) ?? []).length, 1, `${pathname} should have exactly one main-content landmark`);
+  }
+});
+
 test("does not present a receipt preview as signed public evidence", async () => {
   const response = await render("/api/receipts/abc-l1");
   assert.equal(response.status, 404);

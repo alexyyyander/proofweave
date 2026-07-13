@@ -29,7 +29,7 @@ function DelegationDocument({ delegation }: { delegation: PublicDelegationRecord
   return (
     <div className="site-shell app-shell">
       <Header active="workbench" />
-      <main className="page-main receipt-main">
+      <main id="main-content" tabIndex={-1} className="page-main receipt-main">
         <div className="breadcrumb"><Link href="/workbench">Workbench</Link><span> / </span><span>Delegation certificate</span></div>
         <section className="receipt-heading">
           <div>
@@ -92,7 +92,7 @@ function DelegationMessage({ title, detail, id }: { title: string; detail: strin
   return (
     <div className="site-shell app-shell">
       <Header active="workbench" />
-      <main className="page-main receipt-main">
+      <main id="main-content" tabIndex={-1} className="page-main receipt-main">
         <div className="breadcrumb"><Link href="/workbench">Workbench</Link><span> / </span><span>Delegation certificate</span></div>
         <section className="receipt-heading"><div><p className="eyebrow">Public delegation record</p><h1>{title}</h1><p>{detail}</p></div><span className="record-chip">{id ? "Not found" : "Unavailable"}</span></section>
         {id && <section className="receipt-card receipt-message"><p className="eyebrow">Requested certificate ID</p><code>{id}</code><Link className="text-link" href="/how-it-works">Read the delegation model <span>→</span></Link></section>}

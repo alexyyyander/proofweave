@@ -17,7 +17,7 @@ export default async function ReceiptsPage() {
   }
   return <div className="site-shell app-shell">
     <Header active="receipt" />
-    <main className="page-main receipts-main">
+    <main id="main-content" tabIndex={-1} className="page-main receipts-main">
       <div className="breadcrumb"><Link href="/explore">Explore</Link><span> / </span><span>Contribution receipts</span></div>
       <section className="receipt-heading"><div><p className="eyebrow">Public evidence index</p><h1>Verified contributions, not activity counts.</h1><p>Every entry is independently hash-checked and issuer-signed before it appears here. The index reports evidence status without collapsing mathematics into a score.</p></div><span className="record-chip">{unavailable ? "Unavailable" : `${receipts.length} records`}</span></section>
       {unavailable ? <section className="receipt-message"><p className="eyebrow">Index unavailable</p><p>Contribution receipt storage is temporarily unavailable. No unverified fallback data is shown.</p></section> : receipts.length === 0 ? <section className="receipt-message"><p className="eyebrow">No issued records</p><p>Receipts appear only after kernel evidence and the required independent attestations are signed and stored.</p></section> : <section className="receipt-index-list" aria-label="Verified Contribution Receipts">{receipts.map((receipt) => <ReceiptIndexCard receipt={receipt} key={receipt.id} />)}</section>}

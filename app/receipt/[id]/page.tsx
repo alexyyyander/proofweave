@@ -41,7 +41,7 @@ function IssuedReceipt({ receipt, receiptHash, dependencies, lifecycle }: { rece
   return (
     <div className="site-shell app-shell">
       <Header active="receipt" />
-      <main className="page-main receipt-main">
+      <main id="main-content" tabIndex={-1} className="page-main receipt-main">
         <div className="breadcrumb"><Link href="/explore">Explore</Link><span> / </span><span>Contribution receipt</span></div>
         <section className="receipt-heading"><div><p className="eyebrow">Public evidence record · signed</p><h1>{contributionKindLabel(receipt.kind)}</h1><p>This immutable receipt credits one verified contribution. Its signed evidence can be inspected as JSON or downloaded as a portable verification bundle.</p></div><span className="record-chip">Issued</span></section>
         <section className="receipt-summary"><div><span>Credited person</span><code>{receipt.beneficiary.personId}</code></div><div><span>Via delegated Agent</span><code>{receipt.beneficiary.agentId}</code></div><div><span>Target</span><strong>{receipt.target.declaration}</strong></div><div><span>Issued</span><strong>{receipt.issuedAt}</strong></div></section>
@@ -74,7 +74,7 @@ function ReceiptMessage({ title, detail, id }: { title: string; detail: string; 
   return (
     <div className="site-shell app-shell">
       <Header active="receipt" />
-      <main className="page-main receipt-main">
+      <main id="main-content" tabIndex={-1} className="page-main receipt-main">
         <div className="breadcrumb"><Link href="/explore">Explore</Link><span> / </span><span>Contribution receipt</span></div>
         <section className="receipt-heading"><div><p className="eyebrow">Public evidence record</p><h1>{title}</h1><p>{detail}</p></div><span className="record-chip">{id ? "Not issued" : "Unavailable"}</span></section>
         {id && <section className="receipt-card receipt-message"><p className="eyebrow">Requested receipt ID</p><code>{id}</code><Link className="text-link" href="/how-it-works">Read the issuance requirements <span>→</span></Link></section>}

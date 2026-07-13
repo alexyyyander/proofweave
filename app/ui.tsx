@@ -4,13 +4,16 @@ import { footerNavigation, primaryNavigation, type ActivePage } from "./lib/navi
 
 export function Header({ active }: { active: ActivePage }) {
   return (
-    <header className="site-header">
-      <Link className="brand" href="/" aria-label="Proofweave home"><span className="brand-mark" aria-hidden="true"><i /><i /><i /></span><span>Proofweave</span></Link>
-      <nav className="main-nav" aria-label="Primary navigation">
-        {primaryNavigation.map((item) => <Link className={active === item.page ? "is-active" : ""} href={item.href} key={item.href}>{item.label}</Link>)}
-      </nav>
-      <div className="header-actions"><Link className={active === "workbench" ? "sign-in-link is-active" : "sign-in-link"} href="/workbench">My workspace</Link><Link className="header-cta" href="/how-it-works">Delegate an Agent</Link></div>
-    </header>
+    <>
+      <a className="skip-link" href="#main-content">Skip to main content</a>
+      <header className="site-header">
+        <Link className="brand" href="/" aria-label="Proofweave home"><span className="brand-mark" aria-hidden="true"><i /><i /><i /></span><span>Proofweave</span></Link>
+        <nav className="main-nav" aria-label="Primary navigation">
+          {primaryNavigation.map((item) => <Link className={active === item.page ? "is-active" : ""} href={item.href} key={item.href}>{item.label}</Link>)}
+        </nav>
+        <div className="header-actions"><Link className={active === "workbench" ? "sign-in-link is-active" : "sign-in-link"} href="/workbench">My workspace</Link><Link className="header-cta" href="/how-it-works">Delegate an Agent</Link></div>
+      </header>
+    </>
   );
 }
 

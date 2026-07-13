@@ -13,7 +13,7 @@ export default async function ConjecturePage({ params }: { params: Promise<{ slu
   return (
     <div className="site-shell app-shell">
       <Header active="explore" />
-      <main className="page-main detail-main">
+      <main id="main-content" tabIndex={-1} className="page-main detail-main">
         <div className="breadcrumb"><Link href="/explore">Explore</Link><span> / </span><span>{project.domain}</span></div>
         <section className="detail-heading">
           <div><p className="eyebrow">{project.domain} · {project.source.upstreamName}</p><h1>{project.title}</h1><p>{project.projectSummary}</p></div>
