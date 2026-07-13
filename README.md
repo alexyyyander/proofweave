@@ -19,6 +19,7 @@ connected.
 - [Closed-alpha Agent delegation API](docs/agent-delegation-api.md)
 - [Lean runner contract](docs/runner-contract.md)
 - [Artifact bundle contract](docs/artifact-bundle-contract.md)
+- [Run state contract](docs/run-state-contract.md)
 
 ## Current stack
 
@@ -144,6 +145,7 @@ application secrets.
   scaffolding
 - `npm run runner:check`: validate the isolated Lean runner protocol
 - `npm run artifact:check`: validate the immutable artifact bundle manifest
+- `npm run run:check`: validate bounded-run lifecycle and result binding
 - `npm run mcp`: start the local MCP bridge after setting its environment
 
 ## Codex MCP direction

@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   canonicalLeanRunnerRequest,
+  createLeanRunnerRequest,
   leanRunnerRequestHash,
   normalizeLeanRunnerRequest,
   normalizeLeanRunnerResult,
@@ -12,6 +13,21 @@ test("normalizes a deterministic network-isolated Lean runner request", async ()
   assert.equal(normalizeLeanRunnerRequest(request).environment.network, "disabled");
   assert.equal(canonicalLeanRunnerRequest(request), canonicalLeanRunnerRequest({ ...request }));
   assert.match(await leanRunnerRequestHash(request), /^sha256:[a-f0-9]{64}$/);
+});
+
+test("creates a runner request only from the canonical artifact bundle", async () => {
+  const request = await createLeanRunnerRequest({
+    jobId: "run:fixture-1",
+    idempotencyKey: "runner-fixture-1",
+    artifactBundle: fixtureArtifactBundle(),
+    imageDigest: `ghcr.io/proofweave/lean-runner@sha256:${"c".repeat(64)}`,
+    limits: fixtureRequest().limits,
+  });
+
+  assert.equal(request.attemptId, "attempt:fixture-1");
+  assert.equal(request.bundle.entryCommand[3], "Proofweave/Fixture.lean");
+  assert.equal(request.environment.leanToolchain, "leanprover/lean4:v4.27.0");
+  assert.equal(request.policy.requireNoSorry, true);
 });
 
 test("rejects runner requests that could widen execution authority", () => {
@@ -25,7 +41,7 @@ test("rejects runner requests that could widen execution authority", () => {
   );
   assert.throws(
     () => normalizeLeanRunnerRequest({ ...fixtureRequest(), bundle: { ...fixtureRequest().bundle, objectKey: "bundles/sha256/../escape" } }),
-    /safe content-addressed R2 key/,
+    /matching canonical bundle hash/,
   );
 });
 
@@ -49,9 +65,9 @@ function fixtureRequest() {
     idempotencyKey: "runner-fixture-1",
     attemptId: "attempt:fixture-1",
     bundle: {
-      objectKey: "bundles/sha256/a1/fixture.tar.zst",
+      objectKey: `bundles/sha256/${"a".repeat(64)}/bundle.json`,
       contentHash: `sha256:${"a".repeat(64)}`,
-      manifestHash: `sha256:${"b".repeat(64)}`,
+      manifestHash: `sha256:${"a".repeat(64)}`,
       entryCommand: ["lake", "env", "lean", "Proofweave/Fixture.lean"],
     },
     environment: {
@@ -61,6 +77,39 @@ function fixtureRequest() {
       network: "disabled",
     },
     limits: { cpuSeconds: 60, wallSeconds: 120, memoryMiB: 2_048, diskMiB: 2_048, outputBytes: 1_000_000 },
+    policy: { requireNoSorry: true, allowedAxioms: [] },
+  };
+}
+
+function fixtureArtifactBundle() {
+  return {
+    protocolVersion: "pw-artifact-bundle-v1",
+    id: "bundle:fixture-1",
+    attemptId: "attempt:fixture-1",
+    problemRevisionId: "problem-revision:fixture-1",
+    target: { declaration: "Proofweave.Fixture.target", statementHash: `sha256:${"a".repeat(64)}` },
+    source: {
+      archiveKey: `bundles/sha256/${"b".repeat(64)}/source.tar.zst`,
+      archiveHash: `sha256:${"b".repeat(64)}`,
+      treeHash: `sha256:${"c".repeat(64)}`,
+      patchKey: `bundles/sha256/${"d".repeat(64)}/normalized.patch`,
+      patchHash: `sha256:${"d".repeat(64)}`,
+    },
+    environment: {
+      leanToolchain: "leanprover/lean4:v4.27.0",
+      lakeManifestKey: `bundles/sha256/${"e".repeat(64)}/lake-manifest.json`,
+      lakeManifestHash: `sha256:${"e".repeat(64)}`,
+      mathlibRevision: "a3a10db0e9d6",
+    },
+    entryCommand: ["lake", "env", "lean", "Proofweave/Fixture.lean"],
+    dependencyReceipts: [],
+    agentEvent: {
+      eventId: "agent-event:fixture-1",
+      occurredAt: "2026-07-13T00:00:00Z",
+      payloadHash: `sha256:${"f".repeat(64)}`,
+      agentPublicKey: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      signature: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    },
     policy: { requireNoSorry: true, allowedAxioms: [] },
   };
 }

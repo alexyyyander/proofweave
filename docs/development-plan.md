@@ -54,6 +54,8 @@ reusable contribution with evidence that an external maintainer can reproduce.
   resource limits, disabled networking, and evidence-bound results;
 - artifact bundle v1 manifest that fixes source, Lean environment, target,
   dependency receipts, Agent event signature, and axiom/sorry policy;
+- bounded Run state machine with idempotent request/result binding and
+  cancellation acknowledgement semantics;
 - a repository-versioned research skill, retired local MCP prototype, and
   Worker-compatible remote MCP/identity protocol scaffolding;
 - logical D1 (`DB`) and R2 (`ARTIFACTS`) bindings declared for Sites;
@@ -188,6 +190,16 @@ and incomplete evidence while producing a canonical SHA-256 manifest hash. It
 is the single evidence object intended to move between R2, the runner,
 independent replay, and receipts. See
 [`docs/artifact-bundle-contract.md`](artifact-bundle-contract.md).
+
+### Run lifecycle progress
+
+The control plane now has a tested, immutable Run projection for queueing,
+start, cancellation request, and terminal runner evidence. A runner request can
+only be constructed from a canonical artifact bundle, so its command,
+environment, and policy cannot drift after submission. Lean jobs intentionally
+support cancellation—not fake pause/resume—because a reproducible checkpoint
+format does not exist yet. See
+[`docs/run-state-contract.md`](run-state-contract.md).
 
 ## 3. Architecture boundary
 

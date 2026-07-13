@@ -10,4 +10,5 @@ disk/output limits, and disabled network. It does not yet contain a container
 image, queue consumer, or executable user-code service.
 
 See [the runner contract](../../docs/runner-contract.md) for the non-negotiable
-security and evidence boundaries.
+security and evidence boundaries, and [the Run state contract](../../docs/run-state-contract.md)
+for queue/start/cancellation result semantics.

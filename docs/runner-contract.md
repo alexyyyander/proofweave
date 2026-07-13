@@ -23,6 +23,11 @@ The request's bundle reference must be a valid
 [`pw-artifact-bundle-v1`](artifact-bundle-contract.md) manifest; the runner
 uses its hashes rather than an unpinned working tree.
 
+`createLeanRunnerRequest` derives command, Lean version, Mathlib revision,
+policy, and canonical `bundle.json` key from that manifest. The control plane
+cannot change those inputs after the manifest hash is fixed. Its lifecycle is
+separately constrained by the [`Run state contract`](run-state-contract.md).
+
 ## Result
 
 Results record bounded infrastructure evidence only: outcome, exit code, timing,

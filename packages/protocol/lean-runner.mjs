@@ -1,4 +1,8 @@
 import { canonicalJson, sha256Canonical } from "./canonical-json.mjs";
+import {
+  artifactBundleHash,
+  normalizeArtifactBundle,
+} from "./artifact-bundle.mjs";
 
 export const leanRunnerProtocolVersion = "pw-lean-runner-v1";
 
@@ -23,9 +27,12 @@ export function normalizeLeanRunnerRequest(request) {
   requireIdentifier(request.idempotencyKey, "idempotencyKey");
   requireIdentifier(request.attemptId, "attemptId");
   requireRecord(request.bundle, "bundle");
-  requireBundleKey(request.bundle.objectKey);
   requireSha256(request.bundle.contentHash, "bundle contentHash");
   requireSha256(request.bundle.manifestHash, "bundle manifestHash");
+  if (request.bundle.contentHash !== request.bundle.manifestHash) {
+    throw new LeanRunnerProtocolError("bundle contentHash and manifestHash must match for canonical bundle.json.");
+  }
+  requireBundleKey(request.bundle.objectKey, request.bundle.contentHash);
   const entryCommand = normalizeCommand(request.bundle.entryCommand);
 
   requireRecord(request.environment, "environment");
@@ -81,6 +88,44 @@ export function normalizeLeanRunnerRequest(request) {
   });
 }
 
+/**
+ * Bind a runner job to a complete artifact manifest. Callers cannot substitute
+ * a different command, Lean environment, or policy after the bundle hash has
+ * been fixed.
+ */
+export async function createLeanRunnerRequest({
+  jobId,
+  idempotencyKey,
+  artifactBundle,
+  imageDigest,
+  limits,
+}) {
+  const normalizedBundle = normalizeArtifactBundle(artifactBundle);
+  const manifestHash = await artifactBundleHash(normalizedBundle);
+  const hashHex = manifestHash.slice("sha256:".length);
+
+  return normalizeLeanRunnerRequest({
+    protocolVersion: leanRunnerProtocolVersion,
+    jobId,
+    idempotencyKey,
+    attemptId: normalizedBundle.attemptId,
+    bundle: {
+      objectKey: `bundles/sha256/${hashHex}/bundle.json`,
+      contentHash: manifestHash,
+      manifestHash,
+      entryCommand: normalizedBundle.entryCommand,
+    },
+    environment: {
+      imageDigest,
+      leanToolchain: normalizedBundle.environment.leanToolchain,
+      mathlibRevision: normalizedBundle.environment.mathlibRevision,
+      network: "disabled",
+    },
+    limits,
+    policy: normalizedBundle.policy,
+  });
+}
+
 export async function leanRunnerRequestHash(request) {
   return sha256Canonical(normalizeLeanRunnerRequest(request));
 }
@@ -94,7 +139,7 @@ export function normalizeLeanRunnerResult(result) {
   requireIdentifier(result.jobId, "result jobId");
   requireIdentifier(result.attemptId, "result attemptId");
   requireSha256(result.requestHash, "result requestHash");
-  if (!["succeeded", "failed", "timed_out", "rejected"].includes(result.status)) {
+  if (!["succeeded", "failed", "timed_out", "rejected", "cancelled"].includes(result.status)) {
     throw new LeanRunnerProtocolError("Runner result status is invalid.");
   }
   if (!Number.isInteger(result.exitCode) || result.exitCode < 0 || result.exitCode > 255) {
@@ -124,6 +169,9 @@ export function normalizeLeanRunnerResult(result) {
     if (result.exitCode !== 0 || result.kernelStatus !== "accepted" || Object.values(checks).some((value) => value !== "passed")) {
       throw new LeanRunnerProtocolError("A succeeded runner result requires clean accepted checks.");
     }
+  }
+  if (result.status === "cancelled" && result.kernelStatus !== "not_run") {
+    throw new LeanRunnerProtocolError("A cancelled runner result cannot claim kernel acceptance.");
   }
   if (checks.network !== "passed") {
     throw new LeanRunnerProtocolError("Every runner result must evidence disabled network execution.");
@@ -164,10 +212,11 @@ function normalizeCommand(command) {
   return [...command];
 }
 
-function requireBundleKey(value) {
+function requireBundleKey(value, hash) {
   requireString(value, "bundle objectKey", 1_024);
-  if (!value.startsWith("bundles/sha256/") || value.includes("..") || value.includes("\\")) {
-    throw new LeanRunnerProtocolError("bundle objectKey is not a safe content-addressed R2 key.");
+  const match = /^bundles\/sha256\/([a-f0-9]{64})\/bundle\.json$/.exec(value);
+  if (!match || match[1] !== hash.slice("sha256:".length)) {
+    throw new LeanRunnerProtocolError("bundle objectKey must embed the matching canonical bundle hash.");
   }
 }
 
