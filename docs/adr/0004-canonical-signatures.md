@@ -12,9 +12,10 @@ signature construction must therefore be consistent across services.
 
 Define protocol version `0.1` in a UI-independent package. Signed JSON uses
 RFC 8785 JSON Canonicalization Scheme (JCS); content digests use SHA-256; Agent
-events use Ed25519 signatures. Every signature payload includes a protocol
-version, event ID, issued-at time, delegation certificate ID, and replay-safe
-idempotency key. Hashes cover the complete manifest-declared bundle.
+events and system-issued contribution receipts use Ed25519 signatures. Every
+signature payload includes a protocol version, event ID, issued-at time,
+delegation certificate ID, and replay-safe idempotency key where applicable.
+Hashes cover the complete manifest-declared bundle or receipt evidence.
 
 Route handlers and React components call protocol functions; they must not
 assemble signed bytes, hashes, or receipt payloads ad hoc.

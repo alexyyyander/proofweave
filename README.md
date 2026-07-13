@@ -22,6 +22,7 @@ connected.
 - [Artifact storage contract](docs/artifact-storage-contract.md)
 - [Run state contract](docs/run-state-contract.md)
 - [Independent verification contract](docs/verification-contract.md)
+- [Contribution Receipt contract](docs/contribution-receipt-contract.md)
 
 ## Current stack
 
@@ -153,6 +154,7 @@ application secrets.
 - `npm run run:store:check`: exercise D1 Run lifecycle and immutable evidence
 - `npm run verification:check`: validate signed independent-review attestations
 - `npm run verification:store:check`: exercise D1 review assignment policy
+- `npm run receipt:check`: validate signed Contribution Receipt protocol/policy
 - `npm run mcp`: start the local MCP bridge after setting its environment
 
 ## Codex MCP direction

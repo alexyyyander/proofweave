@@ -64,6 +64,8 @@ reusable contribution with evidence that an external maintainer can reproduce.
   immutable Run evidence is accepted;
 - independent Person-level review assignments and review-delegated Agent
   attestations with immutable D1 audit events;
+- a canonical signed Contribution Receipt protocol and conservative issuance
+  policy validation, without receipt persistence or public issuance;
 - a repository-versioned research skill, retired local MCP prototype, and
   Worker-compatible remote MCP/identity protocol scaffolding;
 - logical D1 (`DB`) and R2 (`ARTIFACTS`) bindings declared for Sites;
@@ -80,7 +82,8 @@ reusable contribution with evidence that an external maintainer can reproduce.
 - no Lean execution service exists;
 - no participant-facing independent-review assignment or fresh runner replay
   exists;
-- no immutable contribution-receipt or dependency-edge model exists;
+- no persisted contribution-receipt, dependency-edge, correction, or
+  retraction model exists;
 - no active remote CI provider or production observability exists.
 
 ### Sprint 0 progress
@@ -237,6 +240,18 @@ Attestation requires a different owner's active `review` delegation, exact
 assignment/claim/evidence match, and Ed25519 verification. This is a policy and
 audit layer only: no participant review API or fresh runner replay exists yet.
 See [`docs/verification-contract.md`](verification-contract.md).
+
+### Contribution Receipt protocol progress
+
+`pw-contribution-receipt-v1` now canonicalizes and Ed25519-signs the credited
+Person/Agent/delegation, Attempt and target, Bundle, Run hashes, independent
+attestation references, and upstream dependency receipts. Its initial policy
+requires a succeeded kernel-accepted Run plus `bundle_reproducible`,
+`kernel_accepted`, and `project_accepted` evidence by Persons other than the
+Attempt owner. A verification receipt can only credit the independent review
+Agent that actually attested. No D1 issuance store, public receipt endpoint,
+dependency edge, correction, or retraction exists yet. See
+[`docs/contribution-receipt-contract.md`](contribution-receipt-contract.md).
 
 ## 3. Architecture boundary
 
