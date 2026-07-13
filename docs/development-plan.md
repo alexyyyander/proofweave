@@ -267,8 +267,9 @@ from the infrastructure runner.
   portable if later moved to PostgreSQL.
 - Artifacts: use R2 with immutable content-addressed object keys.
 - Runner: containerized service in the same monorepo but deployed separately.
-- Queue: provider-neutral `RunnerQueue` interface; choose the concrete hosted
-  queue in an architecture decision before Sprint 3.
+- Queue: provider-neutral `RunnerQueue` contract plus deterministic in-memory
+  reference adapter are checked in; choose the concrete hosted queue in an
+  architecture decision before any execution is enabled.
 - Authentication: use the existing Sites/ChatGPT identity for the closed alpha;
   introduce independent passkey/email authentication before public beta so a
   ChatGPT account is not a global participation requirement.
@@ -430,7 +431,8 @@ Exit criteria:
 
 Deliverables:
 
-- define the runner request/result contract and deterministic fixtures;
+- define the runner request/result contract, provider-neutral queue contract,
+  and deterministic fixtures;
 - implement the isolated Lean runner container;
 - add attempt creation, bounded-run, pause, cancel, and status APIs;
 - stream or poll structured events without exposing chain-of-thought;

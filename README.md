@@ -146,6 +146,7 @@ application secrets.
 - `npm run mcp:gateway:check`: test the remote gateway and identity protocol
   scaffolding
 - `npm run runner:check`: validate the isolated Lean runner protocol
+- `npm run runner:fixtures:check`: run the checked-in local Lean fixtures
 - `npm run artifact:check`: validate the immutable artifact bundle manifest
 - `npm run artifact:store:check`: exercise signed R2/D1 artifact staging
 - `npm run run:check`: validate bounded-run lifecycle and result binding

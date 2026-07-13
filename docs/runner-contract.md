@@ -29,6 +29,22 @@ cannot change those inputs after the manifest hash is fixed, and it rejects an
 Artifact Bundle whose Agent signature does not verify. Its lifecycle is
 separately constrained by the [`Run state contract`](run-state-contract.md).
 
+## Queue delivery
+
+`pw-runner-queue-v1` is the provider-neutral envelope between the control
+plane and a separately hosted runner. Its payload contains the immutable
+`pw-lean-runner-v1` request plus a re-derived request hash, a run ID equal to
+the request job ID, and enqueue time. It contains no source bytes, credentials,
+or shell string. Queue adapters must use at-least-once delivery; the runner and
+control plane use the request hash/idempotency key to make duplicate delivery
+safe.
+
+The reference in-memory adapter only tests that contract. It does not provide
+durability, authentication, network isolation, or Lean execution. A hosted
+adapter must authenticate both publisher and consumer, support removing a
+queued job, and leave a leased/running cancellation to the runner lifecycle.
+See [`services/lean-runner/queue.mjs`](../services/lean-runner/queue.mjs).
+
 ## Result
 
 Results record bounded infrastructure evidence only: outcome, exit code, timing,
@@ -44,7 +60,7 @@ acceptance, or a contribution receipt. Those remain separate attestations.
 ## Still required before execution
 
 - non-root container image with pinned Lean and Mathlib;
-- isolated queue and signed job authentication;
+- hosted queue adapter and signed control-plane-to-runner job authentication;
 - no-network enforcement, archive limits, cgroup limits, cancellation, cleanup;
 - R2 bundle retrieval/upload and signed immutable result manifest;
 - production logging, quotas, abuse response, and external security review.
