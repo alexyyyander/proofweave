@@ -205,7 +205,11 @@ Implemented locally on 2026-07-13:
   Agent-installation creation for a browser-approved MCP client; and
 - an owner workbench connection-control panel that lists each Agent/client
   installation and records an immutable owner revocation while immediately
-  invalidating its resource-server access.
+  invalidating its resource-server access; and
+- an updated repository Codex research Skill with an explicit catalog →
+  Attempt → progress → Bundle → independent-review workflow, including a
+  fail-closed instruction not to claim a remote event when the MCP server is
+  absent.
 
 The default standalone identity Worker is intentionally still unavailable.
 The private Sites application now also carries a closed-alpha OAuth adapter:

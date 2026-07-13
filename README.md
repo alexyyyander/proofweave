@@ -216,6 +216,11 @@ review-scope-bound signed-attestation admission path are implemented locally.
 The workbench also lists each approved Agent/client connection and lets its
 owner revoke it; revocation immediately invalidates the installation at the
 resource-server boundary.
+
+The repository skill at `skills/proofweave-research/` gives Codex the same
+truthful reporting workflow: it creates or continues only an authorized
+Attempt, records concise evidence-bound progress, stages reproducible Bundles,
+and never labels agent-reported work as verification or a receipt.
 The endpoint, scopes, identity boundary, and rollout gates are defined in the
 [remote MCP gateway contract](docs/remote-mcp-gateway.md).
 

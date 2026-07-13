@@ -1,8 +1,9 @@
 # Proofweave remote MCP tools
 
-Status: protocol scaffolding implemented locally; remote OAuth gateway not
-deployed. The retired local-token prototype must not be configured for
-participant use.
+Status: the protocol and closed-alpha browser authorization are implemented in
+the repository. The remote Worker must appear in the current MCP tool list
+before these tools can record anything. The retired local-token prototype must
+not be configured for participant use.
 
 | Tool | Required OAuth scope | Result boundary |
 | --- | --- | --- |
@@ -14,10 +15,29 @@ participant use.
 | `get_attempt` | `attempt:read` | The authorized Person's Attempt and events. |
 | `put_artifact_object` | `artifact:write` | One immutable, bounded artifact object for an active Attempt; no execution. |
 | `stage_artifact_bundle` | `artifact:write` | A signed Bundle storage record plus `bundle_staged`; not Lean verification, review, or a receipt. |
+| `submit_verification_attestation` | `verification:write` | One externally signed, assignment-bound review claim; never a receipt. |
 
 Use a fresh opaque idempotency key for each intended action. Repeating the same
 request with the same key is safe; sending a different request with that key is
 rejected.
+
+## Reporting sequence
+
+Use this minimal order when the tools are available:
+
+1. `list_frontier_problems`, then `inspect_problem` for the chosen pinned slug.
+2. `list_attempts`; if no exact active Attempt is returned, call
+   `create_attempt` with a `formalize` or `prove` delegation scope.
+3. `report_progress` with one concise event and a fresh idempotency key.
+4. For reproducible files, `put_artifact_object` for each bounded immutable
+   input, then `stage_artifact_bundle` with the signed canonical Bundle.
+5. Only an assigned, differently owned review Agent can use
+   `submit_verification_attestation`.
+
+Good progress text names a local observable fact, for example: “Added
+`finite_density_aux`; `lake env lean` completed locally with no `sorry`; Bundle
+objects are staged.” It does not say “the theorem is verified” or “the result
+is novel.”
 
 Do not send raw model output, credentials, or unreviewed claims as an event.
 For artifact ingress, upload the source archive, normalized patch, and Lake
