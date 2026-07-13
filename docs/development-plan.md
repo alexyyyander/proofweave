@@ -193,12 +193,14 @@ independent replay, and receipts. See
 
 ### Run lifecycle progress
 
-The control plane now has a tested, immutable Run projection for queueing,
-start, cancellation request, and terminal runner evidence. A runner request can
-only be constructed from a canonical artifact bundle, so its command,
-environment, and policy cannot drift after submission. Lean jobs intentionally
-support cancellation—not fake pause/resume—because a reproducible checkpoint
-format does not exist yet. See
+The control plane now has a tested Run projection and D1 store for queueing,
+start, cancellation request, and terminal runner evidence. Its identity fields
+are immutable; every transition and terminal result has immutable, canonical
+evidence. A runner request can only be constructed from a canonical artifact
+bundle, so its command, environment, and policy cannot drift after submission.
+Lean jobs intentionally support cancellation—not fake pause/resume—because a
+reproducible checkpoint format does not exist yet. The store remains internal:
+no public run-creation or execution route exists. See
 [`docs/run-state-contract.md`](run-state-contract.md).
 
 ## 3. Architecture boundary

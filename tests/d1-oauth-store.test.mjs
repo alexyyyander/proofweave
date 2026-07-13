@@ -12,7 +12,7 @@ before(async () => {
   miniflare = new Miniflare({
     modules: true,
     script: "export default { fetch() { return new Response('ok'); } }",
-    compatibilityDate: "2026-07-13",
+    compatibilityDate: "2026-05-22",
     d1Databases: ["DB"],
   });
   database = await miniflare.getD1Database("DB");

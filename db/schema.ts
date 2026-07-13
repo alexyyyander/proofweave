@@ -520,3 +520,87 @@ export const agentAttemptEvents = sqliteTable(
     ),
   ],
 );
+
+// Runs are mutable projections backed by immutable execution events and an
+// immutable terminal result. They never constitute mathematical verification.
+export const runs = sqliteTable(
+  "runs",
+  {
+    id: text("id").primaryKey(),
+    attemptId: text("attempt_id")
+      .notNull()
+      .references(() => agentAttempts.id, { onDelete: "restrict" }),
+    artifactBundleHash: text("artifact_bundle_hash").notNull(),
+    requestHash: text("request_hash").notNull(),
+    idempotencyKey: text("idempotency_key").notNull(),
+    state: text("state", {
+      enum: [
+        "queued",
+        "running",
+        "cancel_requested",
+        "succeeded",
+        "failed",
+        "timed_out",
+        "rejected",
+        "cancelled",
+      ],
+    })
+      .notNull()
+      .default("queued"),
+    queuedAt: text("queued_at").notNull(),
+    startedAt: text("started_at"),
+    cancelRequestedAt: text("cancel_requested_at"),
+    finishedAt: text("finished_at"),
+    runnerResultHash: text("runner_result_hash"),
+    createdAt,
+    updatedAt: text("updated_at").notNull(),
+  },
+  (table) => [
+    uniqueIndex("runs_attempt_idempotency_idx").on(table.attemptId, table.idempotencyKey),
+    index("runs_state_queued_idx").on(table.state, table.queuedAt),
+    index("runs_attempt_updated_idx").on(table.attemptId, table.updatedAt),
+  ],
+);
+
+export const runEvents = sqliteTable(
+  "run_events",
+  {
+    id: text("id").primaryKey(),
+    runId: text("run_id")
+      .notNull()
+      .references(() => runs.id, { onDelete: "restrict" }),
+    sequence: integer("sequence").notNull(),
+    eventType: text("event_type", {
+      enum: [
+        "run_queued",
+        "run_started",
+        "cancellation_requested",
+        "run_cancelled",
+        "runner_result_recorded",
+      ],
+    }).notNull(),
+    state: text("state").notNull(),
+    payloadHash: text("payload_hash").notNull(),
+    canonicalPayload: text("canonical_payload").notNull(),
+    occurredAt: text("occurred_at").notNull(),
+    createdAt,
+  },
+  (table) => [
+    uniqueIndex("run_events_sequence_idx").on(table.runId, table.sequence),
+    uniqueIndex("run_events_payload_hash_idx").on(table.payloadHash),
+    index("run_events_run_occurred_idx").on(table.runId, table.occurredAt),
+  ],
+);
+
+export const runResults = sqliteTable(
+  "run_results",
+  {
+    runId: text("run_id")
+      .primaryKey()
+      .references(() => runs.id, { onDelete: "restrict" }),
+    resultHash: text("result_hash").notNull().unique(),
+    canonicalResult: text("canonical_result").notNull(),
+    receivedAt: text("received_at").notNull(),
+    createdAt,
+  },
+);

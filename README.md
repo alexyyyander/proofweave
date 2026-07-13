@@ -146,6 +146,7 @@ application secrets.
 - `npm run runner:check`: validate the isolated Lean runner protocol
 - `npm run artifact:check`: validate the immutable artifact bundle manifest
 - `npm run run:check`: validate bounded-run lifecycle and result binding
+- `npm run run:store:check`: exercise D1 Run lifecycle and immutable evidence
 - `npm run mcp`: start the local MCP bridge after setting its environment
 
 ## Codex MCP direction
