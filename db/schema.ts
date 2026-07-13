@@ -423,6 +423,39 @@ export const oauthClients = sqliteTable(
   (table) => [index("oauth_clients_active_idx").on(table.revokedAt)],
 );
 
+// A browser-consent page never carries a live OAuth request in its form. This
+// short-lived, single-use server record preserves the exact request and the
+// hash of its CSRF cookie until the Person approves or declines it.
+export const oauthConsentChallenges = sqliteTable(
+  "oauth_consent_challenges",
+  {
+    id: text("id").primaryKey(),
+    personId: text("person_id")
+      .notNull()
+      .references(() => persons.id, { onDelete: "restrict" }),
+    clientId: text("client_id")
+      .notNull()
+      .references(() => oauthClients.id, { onDelete: "restrict" }),
+    redirectUri: text("redirect_uri").notNull(),
+    resource: text("resource").notNull(),
+    scopesJson: text("scopes_json").notNull(),
+    codeChallenge: text("code_challenge").notNull(),
+    state: text("state"),
+    csrfTokenHash: text("csrf_token_hash").notNull(),
+    issuedAt: text("issued_at").notNull(),
+    expiresAt: text("expires_at").notNull(),
+    consumedAt: text("consumed_at"),
+    createdAt,
+  },
+  (table) => [
+    index("oauth_consent_challenges_person_expiry_idx").on(
+      table.personId,
+      table.expiresAt,
+    ),
+    index("oauth_consent_challenges_expiry_idx").on(table.expiresAt),
+  ],
+);
+
 // OAuth credential tables keep only SHA-256 hashes. Codes and refresh tokens
 // are atomically consumed; access tokens can be explicitly revoked later.
 export const oauthAuthorizationCodes = sqliteTable(

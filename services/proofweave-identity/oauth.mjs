@@ -1,4 +1,5 @@
 import { remoteMcpScopes } from "../../packages/protocol/remote-mcp-scopes.mjs";
+import { delegationAllowsOAuthScopes } from "./delegation-scope-policy.mjs";
 
 const defaultAccessLifetimeSeconds = 60 * 60;
 const defaultRefreshLifetimeSeconds = 30 * 24 * 60 * 60;
@@ -20,51 +21,39 @@ export function createProofweaveOAuthProvider({
 }) {
   return {
     async authorize(request) {
-      if (request.method !== "GET") return methodNotAllowed("GET");
+      const session = await sessionResolver.currentSession(request);
+      if (request.method === "POST") {
+        if (!session) return sessionResolver.authorizationRequired(request, null);
+        if (typeof consentResolver.complete !== "function") return methodNotAllowed("GET");
+        const completed = await consentResolver.complete({ request, personId: session.personId });
+        if (completed instanceof Response) return completed;
+        const client = await store.findClient(completed.authorization.clientId, completed.authorization.redirectUri);
+        if (!client) return oauthError("invalid_request", "Unknown OAuth client or redirect URI.", 400);
+        return completeAuthorization({
+          authorization: completed.authorization,
+          decision: completed.decision,
+          personId: session.personId,
+          store,
+          resource,
+          now,
+        });
+      }
+      if (request.method !== "GET") return methodNotAllowed("GET, POST");
+
       const parameters = Object.fromEntries(new URL(request.url).searchParams);
       const authorization = validateAuthorizationRequest(parameters, resource);
       const client = await store.findClient(authorization.clientId, authorization.redirectUri);
       if (!client) return oauthError("invalid_request", "Unknown OAuth client or redirect URI.", 400);
-
-      const session = await sessionResolver.currentSession(request);
       if (!session) return sessionResolver.authorizationRequired(request, authorization);
 
       const decision = await consentResolver.resolve({
         request,
         authorization,
+        client,
         personId: session.personId,
       });
-      if (!decision.approved) {
-        return redirectError(authorization.redirectUri, "access_denied", authorization.state);
-      }
-      const scopes = normalizeScopes(decision.grantedScopes ?? authorization.scopes);
-      if (!scopes.every((scope) => authorization.scopes.includes(scope))) {
-        return oauthError("invalid_request", "Consent cannot grant unrequested scopes.", 400);
-      }
-      const installation = await store.findAgentInstallation(
-        session.personId,
-        decision.agentInstallationId,
-        authorization.clientId,
-        requiredDelegationScope(scopes),
-      );
-      if (!installation) {
-        return oauthError("access_denied", "The selected Agent installation is unavailable.", 403);
-      }
-
-      const code = randomToken("pw_code");
-      await store.issueAuthorizationCode({
-        codeHash: await sha256(code),
-        clientId: authorization.clientId,
-        redirectUri: authorization.redirectUri,
-        resource,
-        personId: session.personId,
-        agentInstallationId: installation.id,
-        scopes,
-        codeChallenge: authorization.codeChallenge,
-        issuedAt: now().toISOString(),
-        expiresAt: expiry(now(), 5 * 60),
-      });
-      return redirectSuccess(authorization.redirectUri, code, authorization.state);
+      if (decision instanceof Response) return decision;
+      return completeAuthorization({ authorization, decision, personId: session.personId, store, resource, now });
     },
 
     async token(request) {
@@ -187,9 +176,12 @@ async function issueTokenPair({ store, grant, now, accessLifetimeSeconds, refres
     grant.personId,
     grant.agentInstallationId,
     grant.clientId,
-    requiredDelegationScope(grant.scopes),
   );
-  if (!installation) {
+  if (
+    !installation ||
+    (Array.isArray(installation.delegationScopes) &&
+      !delegationAllowsOAuthScopes(grant.scopes, installation.delegationScopes))
+  ) {
     return oauthError("invalid_grant", "The delegated Agent installation is no longer active.", 400);
   }
   const accessToken = randomToken("pw_at");
@@ -234,6 +226,7 @@ function validateAuthorizationRequest(parameters, resource) {
   return {
     clientId,
     redirectUri,
+    resource,
     codeChallenge,
     scopes: normalizeScopes(parameters.scope ?? ""),
     state: typeof parameters.state === "string" ? parameters.state : null,
@@ -264,8 +257,44 @@ function normalizeScopes(value) {
   return normalized;
 }
 
-function requiredDelegationScope(scopes) {
-  return scopes.includes("verification:write") ? "review" : null;
+async function completeAuthorization({ authorization, decision, personId, store, resource, now }) {
+  if (!decision || typeof decision !== "object" || typeof decision.approved !== "boolean") {
+    return oauthError("invalid_request", "Consent decision is invalid.", 400);
+  }
+  if (!decision.approved) {
+    return redirectError(authorization.redirectUri, "access_denied", authorization.state);
+  }
+  const scopes = normalizeScopes(decision.grantedScopes ?? authorization.scopes);
+  if (!scopes.every((scope) => authorization.scopes.includes(scope))) {
+    return oauthError("invalid_request", "Consent cannot grant unrequested scopes.", 400);
+  }
+  const installation = await store.findAgentInstallation(
+    personId,
+    decision.agentInstallationId,
+    authorization.clientId,
+  );
+  if (
+    !installation ||
+    (Array.isArray(installation.delegationScopes) &&
+      !delegationAllowsOAuthScopes(scopes, installation.delegationScopes))
+  ) {
+    return oauthError("access_denied", "The selected Agent installation is unavailable.", 403);
+  }
+
+  const code = randomToken("pw_code");
+  await store.issueAuthorizationCode({
+    codeHash: await sha256(code),
+    clientId: authorization.clientId,
+    redirectUri: authorization.redirectUri,
+    resource,
+    personId,
+    agentInstallationId: installation.id,
+    scopes,
+    codeChallenge: authorization.codeChallenge,
+    issuedAt: now().toISOString(),
+    expiresAt: expiry(now(), 5 * 60),
+  });
+  return redirectSuccess(authorization.redirectUri, code, authorization.state);
 }
 
 function validRedirectUri(value) {

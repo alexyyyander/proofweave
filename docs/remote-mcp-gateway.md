@@ -21,7 +21,8 @@ Remote MCP gateway: mcp.proofweave.org
 POST /mcp                                  Streamable HTTP MCP endpoint
 GET  /.well-known/oauth-protected-resource Resource metadata
 
-Proofweave Identity: auth.proofweave.org
+Proofweave Identity: auth.proofweave.org (public beta) or the private
+Proofweave Sites origin (closed alpha)
 GET  /.well-known/oauth-authorization-server Authorization-server metadata
 GET  /authorize                             Person sign-in and consent
 POST /token                                 OAuth code and refresh exchange
@@ -109,17 +110,27 @@ signature/evidence checks to the verification store. Stateless handling
 deliberately verifies OAuth on every tool request rather than relying on memory
 local to one Worker isolate.
 
-This is not a live participant integration: the checked-in identity adapter
-intentionally returns `503` for authorize, token, and registration until an
-independent browser session and consent resolver are configured. The gateway
-source can now be bound to the same D1/R2 control-plane resources, but no
-gateway, identity service, or public OAuth URL is deployed yet.
+The separate identity Worker remains deliberately unavailable by default. The
+private Sites alpha now has an alternative Worker-mounted authorization adapter:
+it uses the existing signed-in Sites session to locate the already-created
+Person, persists a five-minute one-use consent challenge, binds the POST to an
+HttpOnly `SameSite=Lax` CSRF cookie, lists only active Agents whose delegation
+covers the requested scopes, and creates or reuses one installation after the
+Person approves. Neither the Agent nor Codex sees the browser session or a
+copied Proofweave secret. A key, Agent, or delegation revocation invalidates
+that installation on every authorization and resource-server read.
+
+This is still not a live participant integration: the remote gateway has no
+deployed public URL or control-plane bindings, and the Sites identity bridge is
+owner-only and has no independent account recovery. Before a public rollout,
+deploy a provider-neutral identity service and keep the same consent/PKCE
+boundary.
 
 ## Rollout gates
 
-- independent email/passkey identity and account recovery;
-- OAuth authorization-code flow with PKCE, refresh rotation, exact redirect
-  validation, consent CSRF protection, and client-registration policy;
+- independent email/passkey identity, account linking, and recovery;
+- production rate limits, consent/audit retention policy, and dynamic-client
+  registration policy;
 - token audience and scope enforcement at the HTTP boundary;
 - Agent registration and delegation selection in the consent screen;
 - rate limits, audit logs, revocation, abuse reporting, and observability;

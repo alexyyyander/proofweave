@@ -99,8 +99,8 @@ The project does not use `wrangler.jsonc`.
   receipt lookup; it cannot issue or alter a receipt.
 - `services/proofweave-mcp/` preserves the retired local stdio prototype for
   internal reference; `services/proofweave-mcp-gateway/` and
-  `services/proofweave-identity/` contain the separate remote MCP resource and
-  OAuth-identity Worker scaffolding.
+  `services/proofweave-identity/` contain the remote MCP resource, standard
+  OAuth protocol, and closed-alpha browser-consent adapter.
 - `skills/proofweave-research/` is the versioned Codex workflow skill that
   keeps MCP updates evidence-bound and provisional.
 - `.openai/hosting.json` declares the `DB` D1 binding and `ARTIFACTS` R2
@@ -206,12 +206,13 @@ application secrets.
 ## Codex MCP direction
 
 Static MCP token issuance is retired. A remote Streamable HTTP gateway and
-separate OAuth identity-service scaffold are now in the repository; they are
-not deployed until the independent browser identity and consent layers are
-configured. PKCE, token rotation, credential-hash persistence, delegated
-Agent-installation checks, a D1-backed catalog/Attempt/progress store,
-bounded R2/D1 artifact-Bundle staging, and a review-scope-bound
-signed-attestation admission path are implemented locally.
+standard OAuth service are now in the repository. The private-alpha Sites
+Worker can use the existing signed-in browser session to render a D1-backed,
+one-use consent page: the Person chooses an active delegated Agent and approves
+scopes without copying a secret or local config. PKCE, token rotation,
+credential-hash persistence, delegated Agent-installation checks, a D1-backed
+catalog/Attempt/progress store, bounded R2/D1 artifact-Bundle staging, and a
+review-scope-bound signed-attestation admission path are implemented locally.
 The endpoint, scopes, identity boundary, and rollout gates are defined in the
 [remote MCP gateway contract](docs/remote-mcp-gateway.md).
 
@@ -236,8 +237,8 @@ setup while its research-run content remains preview-only. Each Person key must
 complete a one-time signed proof of possession before it can delegate. A key
 revocation blocks subsequent Agent progress under delegations it signed. This
 is still attribution infrastructure, not public onboarding: account recovery,
-public cross-device rotation policy, and the separate remote identity/MCP
-services are not deployed.
+public cross-device rotation policy, and the separate remote MCP control plane
+are not deployed.
 
 New provisional Attempt records are bound to that Agent and a valid
 `formalize` or `prove` delegation; later agent-reported progress is rejected

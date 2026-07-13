@@ -98,9 +98,10 @@ reusable contribution with evidence that an external maintainer can reproduce.
   participant-ready delegation service exists; closed-alpha browser-held keys
   now have proof-of-possession and append-only revoke/replace controls, but
   this is not a public identity or recovery system;
-- no production browser-session/consent adapter, deployed OAuth identity
-  service, deployed MCP gateway control plane, bounded-run, artifact,
-  verification, or receipt API exists;
+- a private-alpha Sites session/consent adapter now supports standard browser
+  OAuth authorization for an already-created Person and selected delegated
+  Agent; no independent participant identity, deployed MCP gateway control
+  plane, bounded-run, artifact, verification, or receipt API exists;
 - no Lean execution service exists;
 - no participant-facing fresh runner replay exists. Closed-alpha owners and
   assigned reviewers can inspect a controlled Bundle/Run metadata view and
@@ -166,13 +167,13 @@ existing prototype token and token issuance now returns `410 Gone`.
 The replacement is a remote Streamable HTTP MCP gateway with Proofweave OAuth.
 The source now includes separated Worker-compatible gateway and identity
 services, standard discovery metadata, stateless MCP request handling,
-scope-gated tool definitions, and a D1-backed gateway store for source-pinned
+scope-gated tool definitions, a D1-backed gateway store for source-pinned
 catalog reads, delegated Attempt/progress writes, immutable Artifact Bundle
-staging, and signed review attestations. Its deployment entrypoint now binds
-D1/R2-backed resource-server enforcement but remains deliberately
-non-deployable for participants until independent identity, consent, gateway
-control-plane provisioning, token validation, revocation, and observability
-exist. The product contract is in
+staging, and signed review attestations. The private Sites Worker also has a
+CSRF-bound browser-consent adapter for the already-authenticated alpha owner.
+The resource-server deployment entrypoint remains deliberately non-deployable
+for participants until independent identity, gateway control-plane provisioning,
+revocation operations, and observability exist. The product contract is in
 [`docs/remote-mcp-gateway.md`](remote-mcp-gateway.md) and the architectural
 decision is ADR 0005.
 
@@ -198,12 +199,19 @@ Implemented locally on 2026-07-13:
   and review pipeline.
 - a fail-closed Cloudflare gateway deployment entrypoint that composes D1
   token lookup, D1/R2 evidence storage, and stateless OAuth resource-server
-  enforcement from explicit Worker bindings. It is intentionally separate from
-  the still-unimplemented browser session and consent adapter.
+  enforcement from explicit Worker bindings; and
+- a private Sites OAuth adapter with one-use D1 consent challenges, HttpOnly
+  CSRF binding, capability-filtered Agent selection, and automatic revocable
+  Agent-installation creation for a browser-approved MCP client.
 
-The default identity Worker is intentionally still unavailable: choosing and
-configuring independent login/session recovery plus a user-facing consent
-screen is a deployment decision, not something Sites can safely infer.
+The default standalone identity Worker is intentionally still unavailable.
+The private Sites application now also carries a closed-alpha OAuth adapter:
+it reuses the existing authenticated Sites session only to find a pre-existing
+Person, renders a one-time CSRF-bound consent page, filters selected Agents by
+active delegation scope, and issues a revocable client installation. This does
+not provide independent login, account linking, recovery, or public
+participant access; those remain deployment gates for the standalone identity
+service.
 
 ### Sprint 2 progress
 

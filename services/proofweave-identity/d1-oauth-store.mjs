@@ -1,3 +1,5 @@
+import { delegationAllowsOAuthScopes } from "./delegation-scope-policy.mjs";
+
 /**
  * D1 persistence adapter for Proofweave OAuth. It stores only SHA-256 hashes
  * of codes and tokens. The caller owns raw credential generation and never
@@ -17,8 +19,21 @@ export class D1ProofweaveOAuthStore {
     return { id: row.id, clientName: row.client_name };
   }
 
+  async findChatGPTPerson(providerSubject) {
+    const normalized = typeof providerSubject === "string" ? providerSubject.trim().toLowerCase() : "";
+    if (!normalized) return null;
+    const row = await this.database
+      .prepare(
+        `SELECT id, display_name
+         FROM persons
+         WHERE identity_provider = 'chatgpt' AND provider_subject = ?`,
+      )
+      .bind(normalized)
+      .first();
+    return row ? { id: row.id, displayName: row.display_name } : null;
+  }
+
   async findAgentInstallation(personId, installationId, clientId, requiredScope = null) {
-    if (requiredScope !== null && requiredScope !== "review") return null;
     const now = new Date().toISOString();
     const row = await this.database
       .prepare(
@@ -40,6 +55,7 @@ export class D1ProofweaveOAuthStore {
            AND agent.status = 'active'
            AND agent.revoked_at IS NULL
            AND certificate.owner_person_id = installation.person_id
+           AND certificate.beneficiary_person_id = installation.person_id
            AND certificate.agent_id = installation.agent_id
            AND certificate.valid_from <= ?
            AND certificate.valid_until > ?
@@ -49,8 +65,158 @@ export class D1ProofweaveOAuthStore {
       .bind(installationId, personId, clientId, now, now)
       .first();
     const scopes = row && parseStringArray(row.scopes_json);
-    if (!row || (requiredScope && !scopes?.includes(requiredScope))) return null;
-    return { id: row.id };
+    if (!row || !scopes || !delegationMeetsRequirement(scopes, requiredScope)) return null;
+    return { id: row.id, delegationScopes: scopes };
+  }
+
+  async listEligibleAgents(personId, oauthScopes) {
+    const now = new Date().toISOString();
+    const result = await this.database
+      .prepare(
+        `SELECT agent.id AS agent_id, agent.label AS agent_label,
+                certificate.id AS delegation_certificate_id,
+                certificate.scopes_json, certificate.valid_until
+         FROM agents AS agent
+         INNER JOIN delegation_certificates AS certificate ON certificate.agent_id = agent.id
+         INNER JOIN person_keys AS signer ON signer.id = certificate.person_key_id
+         LEFT JOIN delegation_revocations AS revocation
+           ON revocation.delegation_certificate_id = certificate.id
+         LEFT JOIN person_key_revocations AS key_revocation ON key_revocation.person_key_id = signer.id
+         WHERE agent.owner_person_id = ?
+           AND agent.status = 'active'
+           AND agent.revoked_at IS NULL
+           AND certificate.owner_person_id = agent.owner_person_id
+           AND certificate.beneficiary_person_id = agent.owner_person_id
+           AND certificate.valid_from <= ?
+           AND certificate.valid_until > ?
+           AND revocation.id IS NULL
+           AND COALESCE(key_revocation.revoked_at, signer.revoked_at) IS NULL
+         ORDER BY agent.label ASC, certificate.valid_until ASC`,
+      )
+      .bind(personId, now, now)
+      .all();
+
+    return (result.results ?? [])
+      .map((row) => ({
+        agentId: row.agent_id,
+        agentLabel: row.agent_label,
+        delegationCertificateId: row.delegation_certificate_id,
+        delegationScopes: parseStringArray(row.scopes_json),
+        validUntil: row.valid_until,
+      }))
+      .filter((candidate) =>
+        candidate.delegationScopes && delegationAllowsOAuthScopes(oauthScopes, candidate.delegationScopes),
+      );
+  }
+
+  async ensureAgentInstallation({ personId, clientId, agentId, delegationCertificateId }) {
+    const candidates = await this.listEligibleAgents(personId, []);
+    const candidate = candidates.find(
+      (value) =>
+        value.agentId === agentId &&
+        value.delegationCertificateId === delegationCertificateId,
+    );
+    if (!candidate) return null;
+
+    await this.database
+      .prepare(
+        `INSERT INTO agent_installations (
+          id, person_id, agent_id, delegation_certificate_id, client_id, label
+        ) VALUES (?, ?, ?, ?, ?, ?)
+        ON CONFLICT(agent_id, client_id, delegation_certificate_id) DO NOTHING`,
+      )
+      .bind(
+        `agent-installation:${crypto.randomUUID()}`,
+        personId,
+        candidate.agentId,
+        candidate.delegationCertificateId,
+        clientId,
+        `${candidate.agentLabel} · MCP`,
+      )
+      .run();
+
+    const row = await this.database
+      .prepare(
+        `SELECT id
+         FROM agent_installations
+         WHERE person_id = ?
+           AND agent_id = ?
+           AND delegation_certificate_id = ?
+           AND client_id = ?
+           AND status = 'active'
+           AND revoked_at IS NULL`,
+      )
+      .bind(personId, candidate.agentId, candidate.delegationCertificateId, clientId)
+      .first();
+    return row ? { id: row.id, delegationScopes: candidate.delegationScopes } : null;
+  }
+
+  async createConsentChallenge(record) {
+    const id = `oauth-consent:${crypto.randomUUID()}`;
+    await this.database
+      .prepare(
+        `INSERT INTO oauth_consent_challenges (
+          id, person_id, client_id, redirect_uri, resource, scopes_json,
+          code_challenge, state, csrf_token_hash, issued_at, expires_at
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      )
+      .bind(
+        id,
+        record.personId,
+        record.clientId,
+        record.redirectUri,
+        record.resource,
+        JSON.stringify(record.scopes),
+        record.codeChallenge,
+        record.state,
+        record.csrfTokenHash,
+        record.issuedAt,
+        record.expiresAt,
+      )
+      .run();
+    return { id };
+  }
+
+  async consumeConsentChallenge({ id, personId, csrfTokenHash, consumedAt }) {
+    const row = await this.database
+      .prepare(
+        `SELECT client_id, redirect_uri, resource, scopes_json, code_challenge, state, expires_at
+         FROM oauth_consent_challenges
+         WHERE id = ?
+           AND person_id = ?
+           AND csrf_token_hash = ?
+           AND consumed_at IS NULL
+           AND expires_at > ?`,
+      )
+      .bind(id, personId, csrfTokenHash, consumedAt)
+      .first();
+    if (!row) return null;
+
+    const changed = await this.database
+      .prepare(
+        `UPDATE oauth_consent_challenges
+         SET consumed_at = ?
+         WHERE id = ?
+           AND person_id = ?
+           AND csrf_token_hash = ?
+           AND consumed_at IS NULL
+           AND expires_at > ?`,
+      )
+      .bind(consumedAt, id, personId, csrfTokenHash, consumedAt)
+      .run();
+    if (changed.meta.changes !== 1) return null;
+
+    const scopes = parseStringArray(row.scopes_json);
+    if (!scopes) return null;
+    return {
+      clientId: row.client_id,
+      redirectUri: row.redirect_uri,
+      resource: row.resource,
+      scopes,
+      codeChallenge: row.code_challenge,
+      state: row.state,
+      expiresAt: row.expires_at,
+    };
   }
 
   async issueAuthorizationCode(record) {
@@ -160,6 +326,7 @@ export class D1ProofweaveOAuthStore {
                        AND agent.status = 'active'
                        AND agent.revoked_at IS NULL
                        AND certificate.owner_person_id = installation.person_id
+                       AND certificate.beneficiary_person_id = installation.person_id
                        AND certificate.agent_id = installation.agent_id
                        AND certificate.valid_from <= ?
                        AND certificate.valid_until > ?
@@ -194,7 +361,7 @@ export class D1ProofweaveOAuthStore {
           scopes,
           expiresAt: row.expires_at,
           installationActive: row.installation_active === 1 &&
-            (!scopes.includes("verification:write") || certificateScopes?.includes("review") === true),
+            delegationAllowsOAuthScopes(scopes, certificateScopes ?? []),
         }
       : null;
   }
@@ -256,4 +423,11 @@ function parseStringArray(value) {
   } catch {
     return null;
   }
+}
+
+function delegationMeetsRequirement(scopes, requirement) {
+  if (!requirement) return true;
+  if (requirement === "review") return scopes.includes("review");
+  if (requirement === "work") return scopes.includes("formalize") || scopes.includes("prove");
+  return false;
 }

@@ -38,7 +38,7 @@ test("D1 OAuth store atomically consumes credentials and invalidates an installa
       "installation:oauth-test",
       "codex-test",
     ),
-    { id: "installation:oauth-test" },
+    { id: "installation:oauth-test", delegationScopes: ["formalize", "prove"] },
   );
   assert.equal(
     await store.findAgentInstallation(
