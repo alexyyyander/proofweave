@@ -257,6 +257,10 @@ Implemented locally on 2026-07-13:
   Attempt → progress → Bundle → independent-review workflow, including a
   fail-closed instruction not to claim a remote event when the MCP server is
   absent; and
+- a portable `proofweave-research` Codex plugin source package that carries
+  that checked Skill and is regression-tested for exact source alignment. It
+  deliberately has no MCP endpoint, local bridge, or static credential
+  configuration before the remote OAuth control plane is deployed; and
 - a tested remote-MCP deployment preflight that rejects placeholder bindings
   and documents the requirement for one shared external D1/R2 control-plane
   boundary before any public Worker is deployed.

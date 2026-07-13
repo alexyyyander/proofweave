@@ -135,6 +135,10 @@ The project does not use `wrangler.jsonc`.
   OAuth protocol, and closed-alpha browser-consent adapter.
 - `skills/proofweave-research/` is the versioned Codex workflow skill that
   keeps MCP updates evidence-bound and provisional.
+- `plugins/proofweave-research/` is the portable Codex plugin source package.
+  It carries the same checked research skill but deliberately ships no remote
+  MCP endpoint or static credential configuration before the external control
+  plane exists. See [the plugin release guide](docs/codex-plugin.md).
 - `.openai/hosting.json` declares the `DB` D1 binding and `ARTIFACTS` R2
   binding. The catalog uses D1 now; R2 is reserved for immutable bundles in
   the runner phase.
@@ -217,6 +221,8 @@ application secrets.
 - `npm run catalog:verify-source`: validate the pinned Formal Conjectures seed
   before creating a new catalog migration
 - `npm run mcp:check`: syntax-check the local Codex MCP bridge
+- `npm run plugin:check`: verify the portable Codex plugin manifest and ensure
+  its bundled skill remains byte-for-byte aligned with the source workflow
 - `npm run observability:check`: validate privacy-minimal Worker audit records
 - `npm run mcp:gateway:check`: test the remote gateway and identity protocol
   scaffolding
@@ -265,6 +271,12 @@ The repository skill at `skills/proofweave-research/` gives Codex the same
 truthful reporting workflow: it creates or continues only an authorized
 Attempt, records concise evidence-bound progress, stages reproducible Bundles,
 and never labels agent-reported work as verification or a receipt.
+`plugins/proofweave-research/` packages that workflow for Codex installation
+and is intentionally skill-only at this stage: it has no `.mcp.json`,
+placeholder gateway URL, local bridge, or static token. When the remote
+control plane has passed deployment preflight, its reviewed release can add the
+actual OAuth MCP connection separately. See the
+[Codex plugin guide](docs/codex-plugin.md).
 The endpoint, scopes, identity boundary, and rollout gates are defined in the
 [remote MCP gateway contract](docs/remote-mcp-gateway.md).
 The external Worker preflight and shared D1/R2 deployment invariant are in the
