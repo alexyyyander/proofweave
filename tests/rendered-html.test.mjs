@@ -960,6 +960,12 @@ test("limits Bundle and Runner evidence to the Attempt owner or assigned reviewe
   const { evidence: ownerEvidence } = await ownerRecord.json();
   assert.equal(ownerEvidence.summary.accessRole, "attempt_owner");
   assert.equal(ownerEvidence.bundle.manifestHash, fixture.manifestHash);
+  assert.deepEqual(ownerEvidence.bundle.review, {
+    target: { declaration: "Proofweave.Evidence.target", statementHash: `sha256:${"a".repeat(64)}` },
+    environment: { leanToolchain: "leanprover/lean4:v4.27.0", mathlibRevision: "fixture-evidence" },
+    entryCommand: ["lake", "env", "lean", "Proofweave/Evidence.lean"],
+    policy: { requireNoSorry: true, allowedAxioms: [] },
+  });
   assert.deepEqual(ownerEvidence.bundle.artifacts.map((artifact) => artifact.id), ["bundle-manifest", "sourceArchive", "sourcePatch", "lakeManifest"]);
   assert.deepEqual(ownerEvidence.runs[0].outputs.map((artifact) => artifact.id), [
     "run:run:controlled-evidence:stderr",
@@ -985,6 +991,13 @@ test("limits Bundle and Runner evidence to the Attempt owner or assigned reviewe
   assert.equal(reviewerEvidence.replays.length, 1);
   assert.equal(reviewerEvidence.replays[0].evidenceHash, fixture.replayEvidenceHash);
   assert.equal(reviewerEvidence.replays[0].artifact.id, fixture.replayArtifactId);
+  const freshRunnerResult = reviewerEvidence.runs.find((run) => run.id === "run:controlled-fresh-replay")?.result?.summary;
+  assert.deepEqual(freshRunnerResult, {
+    status: "succeeded",
+    exitCode: 0,
+    kernelStatus: "accepted",
+    checks: { network: "passed", noSorry: "passed", allowedAxioms: "passed", leanBuild: "passed" },
+  });
   assert.doesNotMatch(JSON.stringify(reviewerEvidence), new RegExp(fixture.owner.person.id));
   assert.doesNotMatch(JSON.stringify(reviewerEvidence), /Evidence Owner/i);
   const reviewerIndex = await render("/evidence", { headers: fixture.reviewerHeaders });
@@ -1016,6 +1029,11 @@ test("limits Bundle and Runner evidence to the Attempt owner or assigned reviewe
   assert.match(reviewerHtml, /Downloading an object does not perform a fresh runner replay/i);
   assert.match(reviewerHtml, /Fresh review replay evidence/i);
   assert.match(reviewerHtml, /Terminal replay recorded/i);
+  assert.match(reviewerHtml, /Review facts/i);
+  assert.match(reviewerHtml, /Preview source diff/i);
+  assert.match(reviewerHtml, /Lean toolchain/i);
+  assert.match(reviewerHtml, /Build status/i);
+  assert.match(reviewerHtml, /Kernel/i);
   assert.doesNotMatch(reviewerHtml, new RegExp(fixture.owner.person.id));
   assert.doesNotMatch(reviewerHtml, /Evidence Owner/i);
 

@@ -42,8 +42,37 @@ export type EvidenceRun = Readonly<{
     resultHash: string;
     canonicalResult: string;
     receivedAt: string;
+    summary: EvidenceRunnerResultSummary | null;
   }> | null;
   outputs: readonly EvidenceArtifact[];
+}>;
+
+export type EvidenceRunnerResultSummary = Readonly<{
+  status: string;
+  exitCode: number;
+  kernelStatus: string;
+  checks: Readonly<{
+    network: string;
+    noSorry: string;
+    allowedAxioms: string;
+    leanBuild: string;
+  }>;
+}>;
+
+export type EvidenceBundleReview = Readonly<{
+  target: Readonly<{
+    declaration: string;
+    statementHash: string;
+  }>;
+  environment: Readonly<{
+    leanToolchain: string;
+    mathlibRevision: string;
+  }>;
+  entryCommand: readonly string[];
+  policy: Readonly<{
+    requireNoSorry: boolean;
+    allowedAxioms: readonly string[];
+  }>;
 }>;
 
 export type EvidenceReplay = Readonly<{
@@ -81,6 +110,7 @@ export type AttemptEvidence = Readonly<{
     agentEventId: string;
     agentEventPayloadHash: string;
     canonicalManifest: string;
+    review: EvidenceBundleReview;
     artifacts: readonly EvidenceArtifact[];
   }>;
   runs: readonly EvidenceRun[];
@@ -196,6 +226,7 @@ class D1EvidenceRepository implements EvidenceRepository {
     const base = await this.findBase(personId, bundleManifestHash);
     if (!base) return null;
     const privateArtifacts = await this.artifactsFor(base);
+    const review = await this.reviewFactsFor(base);
     const runs = await this.runsFor(base.attempt_id);
     const replays = await this.replaysFor(personId, base);
     return Object.freeze({
@@ -207,6 +238,7 @@ class D1EvidenceRepository implements EvidenceRepository {
         agentEventId: base.agent_event_id,
         agentEventPayloadHash: base.agent_event_payload_hash,
         canonicalManifest: base.canonical_manifest,
+        review,
         artifacts: Object.freeze(privateArtifacts.map(publicArtifact)),
       }),
       runs: Object.freeze(runs.map((run) => Object.freeze({
@@ -272,6 +304,39 @@ class D1EvidenceRepository implements EvidenceRepository {
     }
   }
 
+  /** Stable Bundle facts that a reviewer needs before reading raw manifests. */
+  private async reviewFactsFor(base: BaseRow): Promise<EvidenceBundleReview> {
+    try {
+      const normalized = normalizeArtifactBundle(JSON.parse(base.canonical_manifest));
+      if (
+        normalized.id !== base.bundle_id ||
+        normalized.attemptId !== base.attempt_id ||
+        canonicalArtifactBundle(normalized) !== base.canonical_manifest ||
+        await artifactBundleHash(normalized) !== base.manifest_hash
+      ) {
+        throw new Error("Bundle review projection mismatch");
+      }
+      return Object.freeze({
+        target: Object.freeze({
+          declaration: normalized.target.declaration,
+          statementHash: normalized.target.statementHash,
+        }),
+        environment: Object.freeze({
+          leanToolchain: normalized.environment.leanToolchain,
+          mathlibRevision: normalized.environment.mathlibRevision,
+        }),
+        entryCommand: Object.freeze([...normalized.entryCommand]),
+        policy: Object.freeze({
+          requireNoSorry: normalized.policy.requireNoSorry,
+          allowedAxioms: Object.freeze([...normalized.policy.allowedAxioms]),
+        }),
+      });
+    } catch (error) {
+      if (error instanceof EvidenceIntegrityError) throw error;
+      throw new EvidenceIntegrityError();
+    }
+  }
+
   private async runsFor(attemptId: string): Promise<readonly (EvidenceRun & { outputs: readonly PrivateEvidenceArtifact[] })[]> {
     const rows = await getD1()
       .prepare(
@@ -317,7 +382,12 @@ class D1EvidenceRepository implements EvidenceRepository {
       startedAt: run.started_at,
       finishedAt: run.finished_at,
       result: run.result_hash && run.canonical_result && run.received_at
-        ? Object.freeze({ resultHash: run.result_hash, canonicalResult: run.canonical_result, receivedAt: run.received_at })
+        ? Object.freeze({
+          resultHash: run.result_hash,
+          canonicalResult: run.canonical_result,
+          receivedAt: run.received_at,
+          summary: runnerResultSummary(run.canonical_result),
+        })
         : null,
       outputs: Object.freeze(outputsByRun.get(run.id) ?? []),
     })));
@@ -484,6 +554,22 @@ function protocolVersion(row: BaseRow): "pw-artifact-bundle-v1" | "pw-artifact-b
     // The detailed lookup performs the full integrity-error path.
   }
   throw new EvidenceIntegrityError();
+}
+
+function runnerResultSummary(canonicalResult: string): EvidenceRunnerResultSummary | null {
+  try {
+    const result = normalizeLeanRunnerResult(JSON.parse(canonicalResult));
+    return Object.freeze({
+      status: result.status,
+      exitCode: result.exitCode,
+      kernelStatus: result.kernelStatus,
+      checks: Object.freeze({ ...result.checks }),
+    });
+  } catch {
+    // Historical or fixture-only result rows remain downloadable as canonical
+    // evidence, but never receive a fabricated structured build verdict.
+    return null;
+  }
 }
 
 function filenameFor(referenceId: string): string {

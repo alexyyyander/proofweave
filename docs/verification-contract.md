@@ -90,7 +90,12 @@ recorded Attempt owner or the assignee of an independent verification task.
 Each record is addressed by its immutable Bundle manifest hash. The detail
 page and `GET /api/me/evidence/bundles/:manifestHash` expose the canonical
 Bundle manifest, its indexed source archive/patch/Lake-manifest metadata, and
-stored Run/result metadata. An assigned reviewer sees the submitting Agent
+stored Run/result metadata. The review surface projects the declared target,
+pinned Lean/Mathlib environment, command, `sorry`/axiom policy, and valid
+signed Runner build/kernel checks before exposing the canonical payloads. Its
+normalized source patch can be fetched through the same private artifact route
+for an escaped, 1 MiB-bounded in-page preview or downloaded unchanged. An
+assigned reviewer sees the submitting Agent
 label needed to inspect the work but never the Attempt owner's Person identity
 or display name. A terminal fresh replay evidence closure is additionally
 visible and downloadable only to the Person whose review Agent created that

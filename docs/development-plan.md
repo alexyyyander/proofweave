@@ -473,7 +473,11 @@ positive verification. It never exposes the Attempt owner, fabricates an Agent
 signature, or labels acceptance as verification. `/evidence` now lets an
 Attempt owner or independently assigned reviewer inspect the exact canonical
 Bundle, indexed source/patch/Lake artifacts, recorded Run result metadata, and
-Runner logs. A reviewer can additionally inspect/download only the terminal
+Runner logs. Its review view now projects the target declaration and statement
+hash, pinned Lean/Mathlib environment, entry command, `sorry`/axiom policy,
+and every valid signed Runner build/kernel check alongside the raw canonical
+records; the normalized source patch can be previewed in place up to a fixed
+1 MiB limit or downloaded unchanged. A reviewer can additionally inspect/download only the terminal
 fresh-replay evidence created by that review Person's own Agent; it retains
 the owner-identity and reviewer-to-reviewer isolation boundary. Artifact bytes
 are returned only after the D1 object index and R2 metadata agree. This is an
