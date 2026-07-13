@@ -115,6 +115,7 @@ export class D1R2ArtifactStore {
       .first();
     if (existing) {
       assertSameBundle(existing, { normalized, manifestHash, manifestKey: manifestObject.objectKey, canonicalManifest });
+      await this.recordBundleStagedEvent(normalized, manifestHash);
       return { bundle: toStoredBundle(existing), created: false };
     }
 
@@ -144,6 +145,7 @@ export class D1R2ArtifactStore {
         normalized.agentEvent.payloadHash,
       )
       .run();
+    await this.recordBundleStagedEvent(normalized, manifestHash);
     return {
       bundle: {
         id: normalized.id,
@@ -232,6 +234,35 @@ export class D1R2ArtifactStore {
       (row.signer_key_revoked_at && eventTime >= Date.parse(row.signer_key_revoked_at))
     ) {
       throw new ArtifactStoreValidationError("Artifact Bundle Agent event occurred outside its valid delegation period.");
+    }
+  }
+
+  async recordBundleStagedEvent(bundle, manifestHash) {
+    const now = new Date().toISOString();
+    const idempotencyKey = `bundle-staged:${manifestHash}`;
+    const inserted = await this.database
+      .prepare(
+        `INSERT OR IGNORE INTO agent_attempt_events (
+          id, attempt_id, sequence, event_type, message, idempotency_key, occurred_at
+        )
+        SELECT ?, ?, COALESCE(MAX(sequence), 0) + 1, 'bundle_staged', ?, ?, ?
+        FROM agent_attempt_events
+        WHERE attempt_id = ?`,
+      )
+      .bind(
+        idempotencyKey,
+        bundle.attemptId,
+        `Agent staged signed Artifact Bundle ${manifestHash}. It awaits a separate isolated runner and review.`,
+        idempotencyKey,
+        now,
+        bundle.attemptId,
+      )
+      .run();
+    if (inserted.meta.changes === 1) {
+      await this.database
+        .prepare("UPDATE agent_attempts SET updated_at = ? WHERE id = ?")
+        .bind(now, bundle.attemptId)
+        .run();
     }
   }
 }

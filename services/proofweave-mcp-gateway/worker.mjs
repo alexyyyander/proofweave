@@ -7,6 +7,7 @@ export const remoteMcpScopes = [
   "attempt:create",
   "attempt:read",
   "progress:write",
+  "artifact:write",
   "verification:write",
 ];
 
@@ -103,6 +104,14 @@ export class UnconfiguredGatewayStore {
   }
 
   async submitVerificationAttestation() {
+    throw new Error("The Proofweave remote control plane is not configured.");
+  }
+
+  async putArtifactObject() {
+    throw new Error("The Proofweave remote control plane is not configured.");
+  }
+
+  async stageArtifactBundle() {
     throw new Error("The Proofweave remote control plane is not configured.");
   }
 }
@@ -244,6 +253,43 @@ function createMcpServer(principal, store) {
       annotations: { readOnlyHint: true, destructiveHint: false },
     },
     async ({ attemptId }) => toolResult(await withScope(principal, "attempt:read", () => store.getAttempt(principal, attemptId))),
+  );
+
+  server.registerTool(
+    "put_artifact_object",
+    {
+      title: "Stage one immutable artifact object",
+      description: "Store one bounded, content-addressed artifact for an authorized Attempt. This does not execute Lean or verify a proof.",
+      inputSchema: {
+        attemptId: z.string().min(1).max(160),
+        filename: z.string().min(1).max(128),
+        contentType: z.string().min(1).max(255),
+        contentBase64Url: z.string().min(1).max(44_739_243).regex(/^[A-Za-z0-9_-]+$/),
+      },
+      annotations: { readOnlyHint: false, destructiveHint: false },
+    },
+    async (input) => toolResult(await withScope(
+      principal,
+      "artifact:write",
+      () => store.putArtifactObject(principal, input),
+    )),
+  );
+
+  server.registerTool(
+    "stage_artifact_bundle",
+    {
+      title: "Stage a signed Artifact Bundle",
+      description: "Validate and persist a signed, reproducible Artifact Bundle for an authorized Attempt. Staging is not a Lean run, review, or receipt.",
+      inputSchema: {
+        bundle: z.object({}).passthrough(),
+      },
+      annotations: { readOnlyHint: false, destructiveHint: false },
+    },
+    async ({ bundle }) => toolResult(await withScope(
+      principal,
+      "artifact:write",
+      () => store.stageArtifactBundle(principal, bundle),
+    )),
   );
 
   server.registerTool(

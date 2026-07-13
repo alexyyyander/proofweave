@@ -11,10 +11,12 @@ key, create a signed, revocable delegation certificate, and safely replace or
 emergency-revoke a lost device key. The
 workbench can also choose a public, source-pinned frontier target and open an
 owner-created, D1-persisted provisional Attempt for an active `formalize` or
-`prove` delegation. That does not impersonate an Agent event or create a
-mathematical claim: the research branch's progress controls, remote connection,
-Lean execution, signed independent-review attestation submission, and
-production receipts are not participant-ready yet.
+`prove` delegation. The remote control-plane source can then bind that exact
+Agent installation to bounded immutable artifact-object and signed Bundle
+staging, but it is not deployed for participants. Neither action impersonates
+an Agent event or creates a mathematical claim: Lean execution, signed
+independent-review attestation submission, and production receipts are not
+participant-ready yet.
 
 Signed-in closed-alpha reviewers can use `/reviews` to inspect only the
 assignments addressed to their Person and record an immutable accept or decline
@@ -207,13 +209,15 @@ Static MCP token issuance is retired. A remote Streamable HTTP gateway and
 separate OAuth identity-service scaffold are now in the repository; they are
 not deployed until the independent browser identity and consent layers are
 configured. PKCE, token rotation, credential-hash persistence, delegated
-Agent-installation checks, a D1-backed catalog/Attempt/progress store, and a
-review-scope-bound signed-attestation admission path are implemented locally.
+Agent-installation checks, a D1-backed catalog/Attempt/progress store,
+bounded R2/D1 artifact-Bundle staging, and a review-scope-bound
+signed-attestation admission path are implemented locally.
 The endpoint, scopes, identity boundary, and rollout gates are defined in the
 [remote MCP gateway contract](docs/remote-mcp-gateway.md).
 
 The gateway records `agent_reported_only` activity only under the selected
-Agent's exact active `formalize` or `prove` certificate and can transport one
+Agent's exact active `formalize` or `prove` certificate, can stage bounded
+immutable evidence only for that exact active Attempt, and can transport one
 already-signed review-Agent attestation for an assignment addressed to the
 authorized Person. It cannot fabricate Lean kernel acceptance, independently
 decide a review, infer novelty, or issue a contribution receipt.

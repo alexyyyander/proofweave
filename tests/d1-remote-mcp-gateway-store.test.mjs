@@ -15,6 +15,10 @@ import {
   verificationAttestationPayloadHash,
   verificationAttestationSigningPayload,
 } from "../packages/protocol/verification-attestation.mjs";
+import {
+  artifactBundleSigningPayload,
+  artifactBundleSigningPayloadHash,
+} from "../packages/protocol/artifact-bundle.mjs";
 import { canonicalJson } from "../packages/protocol/canonical-json.mjs";
 
 const migrationsRoot = new URL("../drizzle/", import.meta.url);
@@ -22,19 +26,26 @@ let miniflare;
 let database;
 let reviewerKeyPair;
 let reviewerPublicKey;
+let proverKeyPair;
+let proverPublicKey;
+let artifactBucket;
 
 before(async () => {
   reviewerKeyPair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
   reviewerPublicKey = base64Url(await crypto.subtle.exportKey("raw", reviewerKeyPair.publicKey));
+  proverKeyPair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
+  proverPublicKey = base64Url(await crypto.subtle.exportKey("raw", proverKeyPair.publicKey));
   miniflare = new Miniflare({
     modules: true,
     script: "export default { fetch() { return new Response('ok'); } }",
     compatibilityDate: "2026-05-22",
     d1Databases: ["DB"],
+    r2Buckets: ["ARTIFACTS"],
   });
   database = await miniflare.getD1Database("DB");
+  artifactBucket = await miniflare.getR2Bucket("ARTIFACTS");
   await applyMigrations(database);
-  await seedGatewayFixture(database, reviewerPublicKey);
+  await seedGatewayFixture(database, { reviewerPublicKey, proverPublicKey });
 });
 
 after(async () => {
@@ -276,6 +287,71 @@ test("a verified OAuth token reaches catalog and Attempt D1 boundaries through M
   assert.equal(JSON.parse(loaded.result.content[0].text).attempt.events.length, 2);
 });
 
+test("a prove-delegated OAuth Agent stages immutable objects and a signed v2 Bundle through MCP", async () => {
+  const resource = "https://mcp.gateway.example.test/mcp";
+  const accessToken = "pw_at_gateway_artifact_fixture";
+  const oauthStore = new D1ProofweaveOAuthStore(database);
+  await oauthStore.issueTokenPair({
+    accessTokenHash: await tokenHash(accessToken),
+    refreshTokenHash: await tokenHash("pw_rt_gateway_artifact_fixture"),
+    clientId: "client:gateway-codex",
+    resource,
+    personId: "person:gateway-reviewer",
+    agentInstallationId: "installation:gateway-prover",
+    scopes: ["attempt:create", "artifact:write"],
+    issuedAt: "2026-07-13T00:00:00Z",
+    accessExpiresAt: "2027-07-13T00:00:00Z",
+    refreshExpiresAt: "2027-08-13T00:00:00Z",
+  });
+  const gateway = createRemoteMcpGateway({
+    resource,
+    issuer: "https://auth.gateway.example.test",
+    identityProvider: createOAuthAccessTokenAuthenticator({ store: oauthStore, resource }),
+    store: new D1RemoteMcpGatewayStore({ database, bucket: artifactBucket }),
+  });
+  const created = await callGatewayTool(gateway, resource, accessToken, "create_attempt", {
+    problemSlug: "gateway-target",
+    delegationScope: "prove",
+    idempotencyKey: "gateway-artifact-prover-attempt",
+  });
+  const attemptId = JSON.parse(created.result.content[0].text).attempt.id;
+
+  const archive = await stageArtifactObject(gateway, resource, accessToken, attemptId, {
+    filename: "source.tar.zst",
+    contentType: "application/zstd",
+    content: "gateway fixture archive",
+  });
+  const patch = await stageArtifactObject(gateway, resource, accessToken, attemptId, {
+    filename: "normalized.patch",
+    contentType: "text/x-diff",
+    content: "diff --git a/Proofweave/Gateway.lean b/Proofweave/Gateway.lean\n",
+  });
+  const lakeManifest = await stageArtifactObject(gateway, resource, accessToken, attemptId, {
+    filename: "lake-manifest.json",
+    contentType: "application/json",
+    content: "{\"packages\":[]}",
+  });
+  const bundle = await signedBundleV2({ attemptId, archive, patch, lakeManifest });
+  const staged = await callGatewayTool(gateway, resource, accessToken, "stage_artifact_bundle", { bundle });
+  assert.equal(staged.result.isError, undefined);
+  const first = JSON.parse(staged.result.content[0].text);
+  assert.equal(first.created, true);
+  assert.equal(first.storageState, "bundle_staged_only");
+  assert.equal(first.verificationState, "not_verified");
+
+  const replay = await callGatewayTool(gateway, resource, accessToken, "stage_artifact_bundle", { bundle });
+  const second = JSON.parse(replay.result.content[0].text);
+  assert.equal(second.created, false);
+  const loaded = await new D1RemoteMcpGatewayStore({ database, bucket: artifactBucket }).getAttempt({
+    clientId: "client:gateway-codex",
+    personId: "person:gateway-reviewer",
+    agentInstallationId: "installation:gateway-prover",
+    scopes: ["attempt:read"],
+  }, attemptId);
+  assert.equal(loaded.attempt.events.filter((event) => event.type === "bundle_staged").length, 1);
+  assert.match(loaded.attempt.events.at(-1)?.message ?? "", /awaits a separate isolated runner and review/);
+});
+
 async function signedAttestation({
   id = "attestation:gateway-review",
   assignmentId = "assignment:gateway-review",
@@ -307,7 +383,7 @@ async function signedAttestation({
   return attestation;
 }
 
-async function seedGatewayFixture(d1, publicKey) {
+async function seedGatewayFixture(d1, { reviewerPublicKey, proverPublicKey }) {
   const statements = [
     ["INSERT INTO persons (id, identity_provider, provider_subject, display_name, updated_at) VALUES (?, ?, ?, ?, ?)", ["person:gateway-owner", "proofweave", "gateway-owner", "Gateway owner", "2026-07-01T00:00:00Z"]],
     ["INSERT INTO persons (id, identity_provider, provider_subject, display_name, updated_at) VALUES (?, ?, ?, ?, ?)", ["person:gateway-reviewer", "proofweave", "gateway-reviewer", "Gateway reviewer", "2026-07-01T00:00:00Z"]],
@@ -331,17 +407,17 @@ async function seedGatewayFixture(d1, publicKey) {
       ["bundle:gateway", "attempt:gateway", "revision:gateway", sha("a"), `bundles/sha256/${"a".repeat(64)}/bundle.json`, "{}", "agent-event:gateway", sha("3")],
     ],
     ["INSERT INTO person_keys (id, person_id, public_key, fingerprint) VALUES (?, ?, ?, ?)", ["person-key:gateway-reviewer", "person:gateway-reviewer", "person-key", sha("4")]],
-    ["INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint) VALUES (?, ?, ?, ?, ?)", ["agent:gateway-reviewer", "person:gateway-reviewer", "Gateway reviewer Agent", publicKey, sha("5")]],
-    ["INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint) VALUES (?, ?, ?, ?, ?)", ["agent:gateway-prover", "person:gateway-reviewer", "Gateway prover Agent", "gateway-prover-public-key", sha("7")]],
+    ["INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint) VALUES (?, ?, ?, ?, ?)", ["agent:gateway-reviewer", "person:gateway-reviewer", "Gateway reviewer Agent", reviewerPublicKey, sha("5")]],
+    ["INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint) VALUES (?, ?, ?, ?, ?)", ["agent:gateway-prover", "person:gateway-reviewer", "Gateway prover Agent", proverPublicKey, sha("7")]],
     [
       `INSERT INTO delegation_certificates (id, owner_person_id, agent_id, person_key_id, agent_public_key, scopes_json, valid_from, valid_until, beneficiary_person_id, protocol_version, payload_hash, canonical_payload, person_signature)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      ["delegation:gateway-reviewer", "person:gateway-reviewer", "agent:gateway-reviewer", "person-key:gateway-reviewer", publicKey, '["review"]', "2026-07-01T00:00:00Z", "2027-07-01T00:00:00Z", "person:gateway-reviewer", "pw-delegation-v1", sha("6"), "{}", "signature"],
+      ["delegation:gateway-reviewer", "person:gateway-reviewer", "agent:gateway-reviewer", "person-key:gateway-reviewer", reviewerPublicKey, '["review"]', "2026-07-01T00:00:00Z", "2027-07-01T00:00:00Z", "person:gateway-reviewer", "pw-delegation-v1", sha("6"), "{}", "signature"],
     ],
     [
       `INSERT INTO delegation_certificates (id, owner_person_id, agent_id, person_key_id, agent_public_key, scopes_json, valid_from, valid_until, beneficiary_person_id, protocol_version, payload_hash, canonical_payload, person_signature)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      ["delegation:gateway-prover", "person:gateway-reviewer", "agent:gateway-prover", "person-key:gateway-reviewer", "gateway-prover-public-key", '["formalize","prove"]', "2026-07-01T00:00:00Z", "2027-07-01T00:00:00Z", "person:gateway-reviewer", "pw-delegation-v1", sha("8"), "{}", "signature"],
+      ["delegation:gateway-prover", "person:gateway-reviewer", "agent:gateway-prover", "person-key:gateway-reviewer", proverPublicKey, '["formalize","prove"]', "2026-07-01T00:00:00Z", "2027-07-01T00:00:00Z", "person:gateway-reviewer", "pw-delegation-v1", sha("8"), "{}", "signature"],
     ],
     ["INSERT INTO oauth_clients (id, client_name, redirect_uris_json) VALUES (?, ?, ?)", ["client:gateway-codex", "Gateway Codex", '["https://codex.example.test/callback"]']],
     [
@@ -399,4 +475,75 @@ async function callGatewayTool(gateway, resource, accessToken, name, arguments_)
   }));
   assert.equal(response.status, 200);
   return response.json();
+}
+
+async function stageArtifactObject(gateway, resource, accessToken, attemptId, { filename, contentType, content }) {
+  const response = await callGatewayTool(gateway, resource, accessToken, "put_artifact_object", {
+    attemptId,
+    filename,
+    contentType,
+    contentBase64Url: base64Url(new TextEncoder().encode(content)),
+  });
+  assert.equal(response.result.isError, undefined);
+  const result = JSON.parse(response.result.content[0].text);
+  assert.equal(result.storageState, "object_staged_only");
+  return result.object;
+}
+
+async function signedBundleV2({ attemptId, archive, patch, lakeManifest }) {
+  const bundle = {
+    protocolVersion: "pw-artifact-bundle-v2",
+    id: `bundle:gateway-artifact-${attemptId.slice("attempt:".length)}`,
+    attemptId,
+    problemRevisionId: "revision:gateway",
+    target: { declaration: "Proofweave.Gateway.Target", statementHash: sha("c") },
+    workspace: {
+      archive: {
+        objectKey: archive.objectKey,
+        contentHash: archive.contentHash,
+        format: "tar.zst",
+        maxExpandedBytes: 64 * 1024 * 1024,
+        maxFileCount: 10_000,
+        symlinkPolicy: "forbidden",
+      },
+      patch: {
+        objectKey: patch.objectKey,
+        contentHash: patch.contentHash,
+        format: "unified-diff",
+        strip: 1,
+        allowFuzz: false,
+      },
+      tree: {
+        hash: sha("d"),
+        algorithm: "pw-tree-v1",
+        state: "after_patch_and_lake_manifest",
+      },
+      lakeManifest: {
+        objectKey: lakeManifest.objectKey,
+        contentHash: lakeManifest.contentHash,
+        destination: "lake-manifest.json",
+      },
+    },
+    environment: {
+      leanToolchain: "leanprover/lean4:v4.27.0",
+      mathlibRevision: "gateway-fixture",
+    },
+    entryCommand: ["lake", "env", "lean", "Proofweave/Gateway.lean"],
+    dependencyReceipts: [],
+    agentEvent: {
+      eventId: `agent-event:gateway-artifact-${attemptId.slice("attempt:".length)}`,
+      occurredAt: "2026-07-13T00:00:00Z",
+      payloadHash: sha("0"),
+      agentPublicKey: proverPublicKey,
+      signature: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    },
+    policy: { requireNoSorry: true, allowedAxioms: [] },
+  };
+  bundle.agentEvent.payloadHash = await artifactBundleSigningPayloadHash(bundle);
+  bundle.agentEvent.signature = base64Url(await crypto.subtle.sign(
+    "Ed25519",
+    proverKeyPair.privateKey,
+    new TextEncoder().encode(canonicalJson(artifactBundleSigningPayload(bundle))),
+  ));
+  return bundle;
 }

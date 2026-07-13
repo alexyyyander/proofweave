@@ -19,8 +19,11 @@ short-lived access and refresh credentials.
 
 The consent screen binds a Person, a selected Agent installation, a scope set,
 and an expiry. Initial scopes are `catalog:read`, `attempt:create`,
-`attempt:read`, and `progress:write`. The gateway cannot issue Lean kernel,
-review, novelty, project-acceptance, or receipt claims.
+`attempt:read`, `progress:write`, `artifact:write`, and
+`verification:write`. Artifact ingress is additionally bound to an active
+Attempt and its current `formalize` or `prove` delegation; it stages immutable
+evidence only. The gateway cannot issue Lean kernel, review, novelty,
+project-acceptance, or receipt claims.
 
 The existing Sites app remains the public product and dashboard surface. The
 MCP gateway and independent identity service are separate control-plane

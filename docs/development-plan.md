@@ -188,6 +188,11 @@ Implemented locally on 2026-07-13:
   operation, derives Agent attribution from D1 rather than tool input, limits
   Attempt discovery, reads, and progress to the exact Agent/certificate pair,
   and is covered by actual OAuth-token-to-MCP-to-D1 integration tests.
+- bounded `artifact:write` ingress that rechecks the exact active Attempt and
+  its current `formalize` or `prove` delegation before accepting one immutable
+  object or signed v2 Artifact Bundle; Bundle staging appends only a
+  `bundle_staged` activity event and remains separate from the isolated runner
+  and review pipeline.
 
 The default identity Worker is intentionally still unavailable: choosing and
 configuring independent login/session recovery plus a user-facing consent

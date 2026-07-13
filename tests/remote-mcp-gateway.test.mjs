@@ -27,6 +27,8 @@ function fixtureStore() {
     async reportProgress(_principal, input) { return { id: "event:test", ...input }; },
     async listAttempts() { return { attempts: [{ id: "attempt:test" }], verificationState: "agent_reported_only" }; },
     async getAttempt(_principal, attemptId) { return { id: attemptId }; },
+    async putArtifactObject(_principal, input) { return { object: input, storageState: "object_staged_only" }; },
+    async stageArtifactBundle(_principal, bundle) { return { bundle, storageState: "bundle_staged_only" }; },
     async submitVerificationAttestation(_principal, attestation) { return { id: attestation.id, created: true }; },
   };
 }
@@ -235,6 +237,8 @@ test("handles sequential authenticated MCP requests without retaining a session"
   const payload = await tools.json();
   assert.ok(payload.result.tools.some((tool) => tool.name === "create_attempt"));
   assert.ok(payload.result.tools.some((tool) => tool.name === "list_attempts"));
+  assert.ok(payload.result.tools.some((tool) => tool.name === "put_artifact_object"));
+  assert.ok(payload.result.tools.some((tool) => tool.name === "stage_artifact_bundle"));
   assert.ok(payload.result.tools.some((tool) => tool.name === "submit_verification_attestation"));
 });
 

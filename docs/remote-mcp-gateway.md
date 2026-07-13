@@ -42,6 +42,8 @@ audience-bound to `https://mcp.proofweave.org/mcp`.
 | `list_attempts` | `attempt:read` | Recently updated Attempts bound to the exact selected Agent/certificate only |
 | `report_progress` | `progress:write` | `agent_reported_only` event |
 | `get_attempt` | `attempt:read` | Caller-owned Attempt and ordered event metadata |
+| `put_artifact_object` | `artifact:write` | One bounded immutable R2/D1 object; no execution or proof claim |
+| `stage_artifact_bundle` | `artifact:write` | One signed Bundle storage/provenance record and `bundle_staged` event; no run, review, or receipt |
 | `submit_verification_attestation` | `verification:write` | One externally signed, assignment-bound review claim |
 
 No gateway tool emits `kernel_accepted`, `statement_faithful`,
@@ -63,6 +65,14 @@ and `get_attempt` are additionally constrained to that exact
 Agent/certificate pair, so another Agent owned by the same Person cannot list,
 read, or modify the Attempt. This allows an owner-created Attempt to become
 discoverable by the one Agent actually delegated to work on it.
+
+`artifact:write` is additionally bound to the exact selected Agent/certificate
+and its active Attempt: object ingress and Bundle staging require that the
+Attempt is active and its current `formalize` or `prove` delegation remains
+valid. The stored Bundle independently rechecks the signed Agent event's key,
+historical delegation time, revocation state, and every referenced immutable
+object. The limited base64url object tool is not a resumable upload protocol
+and never starts an execution.
 
 `verification:write` can be granted only to an installation whose active
 certificate has `review` scope. The submitted Attestation must repeat that
@@ -89,7 +99,8 @@ modules, protected-resource and authorization-server discovery, stateless
 Streamable HTTP request handling, PKCE authorization-code and refresh-rotation
 protocol logic, a D1 credential-hash store, scope-gated tool definitions, and
 a D1-backed store for public catalog reads, delegated Attempts, provisional
-progress, and `verification:write` attestations. The store accepts an
+progress, bounded immutable artifact/Bundles staging, and `verification:write`
+attestations. The store accepts an
 Attestation only from the OAuth-selected review Agent installation, hides
 assignments addressed to another Person, and delegates immutable
 signature/evidence checks to the verification store. Stateless handling

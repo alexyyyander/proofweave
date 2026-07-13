@@ -5,6 +5,7 @@ import {
   VerificationStoreNotFoundError,
   VerificationStoreValidationError,
 } from "../verification/d1-verification-store.mjs";
+import { D1R2ArtifactStore, maxArtifactObjectBytes } from "../artifacts/d1-r2-artifact-store.mjs";
 
 export class GatewayStoreAuthorizationError extends Error {
   constructor(message) {
@@ -42,12 +43,14 @@ export class GatewayStoreConflictError extends Error {
  * installation and hide assignments addressed to other Persons.
  */
 export class D1RemoteMcpGatewayStore {
-  constructor(database) {
+  constructor(databaseOrOptions) {
+    const { database, bucket } = normalizeGatewayBindings(databaseOrOptions);
     if (!database || typeof database.prepare !== "function") {
       throw new TypeError("D1RemoteMcpGatewayStore requires a D1 database binding.");
     }
     this.database = database;
     this.verificationStore = new D1VerificationStore(database);
+    this.artifactStore = bucket ? new D1R2ArtifactStore({ database, bucket }) : null;
   }
 
   async listFrontier(principal) {
@@ -216,6 +219,38 @@ export class D1RemoteMcpGatewayStore {
     });
   }
 
+  async putArtifactObject(principal, input) {
+    assertPrincipalScope(principal, "artifact:write");
+    requireArtifactObjectInput(input);
+    const installation = await this.requireInstallation(principal);
+    const attempt = await this.requireArtifactAttempt(principal, installation, input.attemptId);
+    await this.requireInstallation(principal, attempt.delegationScope);
+    const object = await this.requireArtifactStore().putObject({
+      bytes: decodeBase64Url(input.contentBase64Url),
+      filename: input.filename,
+      contentType: input.contentType,
+    });
+    return Object.freeze({
+      object,
+      storageState: "object_staged_only",
+      verificationState: "not_verified",
+    });
+  }
+
+  async stageArtifactBundle(principal, bundle) {
+    assertPrincipalScope(principal, "artifact:write");
+    requireArtifactBundleInput(bundle);
+    const installation = await this.requireInstallation(principal);
+    const attempt = await this.requireArtifactAttempt(principal, installation, bundle.attemptId);
+    await this.requireInstallation(principal, attempt.delegationScope);
+    const staged = await this.requireArtifactStore().stageBundle(bundle);
+    return Object.freeze({
+      ...staged,
+      storageState: "bundle_staged_only",
+      verificationState: "not_verified",
+    });
+  }
+
   async submitVerificationAttestation(principal, attestation) {
     assertVerificationPrincipal(principal);
     let normalized;
@@ -304,6 +339,26 @@ export class D1RemoteMcpGatewayStore {
     if (!assignment || assignment.verifier_person_id !== personId) {
       throw new GatewayStoreAuthorizationError("The requested verification assignment is not addressed to this Person.");
     }
+  }
+
+  requireArtifactStore() {
+    if (!this.artifactStore) {
+      throw new GatewayStoreValidationError("Artifact storage is not configured for this remote gateway.");
+    }
+    return this.artifactStore;
+  }
+
+  async requireArtifactAttempt(principal, installation, attemptId) {
+    requireIdentifier(attemptId, "Attempt id", 160);
+    const attempt = await this.findAttemptForInstallation(principal, installation, attemptId);
+    if (!attempt) throw new GatewayStoreNotFoundError("Attempt not found.");
+    if (attempt.status !== "active") {
+      throw new GatewayStoreConflictError("Artifacts can only be staged while an Attempt is active.");
+    }
+    if (attempt.delegationScope !== "formalize" && attempt.delegationScope !== "prove") {
+      throw new GatewayStoreValidationError("Attempt does not have delegated formalize or prove authority.");
+    }
+    return attempt;
   }
 
   async findAttemptForInstallation(principal, installation, attemptId) {
@@ -464,6 +519,61 @@ function requireProgressInput(input) {
   if (!Number.isInteger(input.progressPercent) || input.progressPercent < 0 || input.progressPercent > 100) {
     throw new GatewayStoreValidationError("Progress percent must be an integer between 0 and 100.");
   }
+}
+
+function requireArtifactObjectInput(input) {
+  if (!input || typeof input !== "object") {
+    throw new GatewayStoreValidationError("Artifact object input is required.");
+  }
+  requireIdentifier(input.attemptId, "Attempt id", 160);
+  if (typeof input.filename !== "string" || input.filename.length === 0 || input.filename.length > 128) {
+    throw new GatewayStoreValidationError("Artifact filename must be between 1 and 128 characters.");
+  }
+  if (typeof input.contentType !== "string" || input.contentType.length === 0 || input.contentType.length > 255) {
+    throw new GatewayStoreValidationError("Artifact contentType must be between 1 and 255 characters.");
+  }
+  if (
+    typeof input.contentBase64Url !== "string" ||
+    input.contentBase64Url.length === 0 ||
+    input.contentBase64Url.length > base64UrlCharactersFor(maxArtifactObjectBytes) ||
+    !/^[A-Za-z0-9_-]+$/.test(input.contentBase64Url)
+  ) {
+    throw new GatewayStoreValidationError("Artifact contentBase64Url must be unpadded base64url within the control-plane byte limit.");
+  }
+}
+
+function requireArtifactBundleInput(bundle) {
+  if (!bundle || typeof bundle !== "object" || Array.isArray(bundle)) {
+    throw new GatewayStoreValidationError("Artifact Bundle input is required.");
+  }
+  requireIdentifier(bundle.attemptId, "Artifact Bundle attemptId", 160);
+}
+
+function decodeBase64Url(value) {
+  try {
+    const padded = `${value}${"=".repeat((4 - (value.length % 4)) % 4)}`;
+    const binary = atob(padded.replaceAll("-", "+").replaceAll("_", "/"));
+    const bytes = Uint8Array.from(binary, (character) => character.charCodeAt(0));
+    if (bytes.byteLength > maxArtifactObjectBytes) {
+      throw new GatewayStoreValidationError("Artifact object exceeds the control-plane byte limit.");
+    }
+    return bytes;
+  } catch (error) {
+    if (error instanceof GatewayStoreValidationError) throw error;
+    throw new GatewayStoreValidationError("Artifact contentBase64Url could not be decoded.");
+  }
+}
+
+function base64UrlCharactersFor(bytes) {
+  const remainder = bytes % 3;
+  return Math.floor(bytes / 3) * 4 + (remainder === 0 ? 0 : remainder + 1);
+}
+
+function normalizeGatewayBindings(value) {
+  if (value && typeof value === "object" && typeof value.database?.prepare === "function") {
+    return { database: value.database, bucket: value.bucket ?? null };
+  }
+  return { database: value, bucket: null };
 }
 
 function attemptListLimit(value) {
