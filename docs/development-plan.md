@@ -209,7 +209,10 @@ Implemented locally on 2026-07-13:
 - an updated repository Codex research Skill with an explicit catalog →
   Attempt → progress → Bundle → independent-review workflow, including a
   fail-closed instruction not to claim a remote event when the MCP server is
-  absent.
+  absent; and
+- a tested remote-MCP deployment preflight that rejects placeholder bindings
+  and documents the requirement for one shared external D1/R2 control-plane
+  boundary before any public Worker is deployed.
 
 The default standalone identity Worker is intentionally still unavailable.
 The private Sites application now also carries a closed-alpha OAuth adapter:

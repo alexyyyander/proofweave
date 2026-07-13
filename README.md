@@ -223,6 +223,8 @@ Attempt, records concise evidence-bound progress, stages reproducible Bundles,
 and never labels agent-reported work as verification or a receipt.
 The endpoint, scopes, identity boundary, and rollout gates are defined in the
 [remote MCP gateway contract](docs/remote-mcp-gateway.md).
+The external Worker preflight and shared D1/R2 deployment invariant are in the
+[MCP control-plane deployment guide](docs/mcp-control-plane-deployment.md).
 
 The gateway records `agent_reported_only` activity only under the selected
 Agent's exact active `formalize` or `prove` certificate, can stage bounded
