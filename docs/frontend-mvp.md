@@ -60,6 +60,24 @@ Search                                        Account / delegated Agent status
 Avoid a global leaderboard in the first release. It would turn provisional
 metrics into a game before the contribution rules have survived adversarial use.
 
+## MVP page hierarchy
+
+The product is organized around the user’s research path rather than a generic
+dashboard. The four primary surfaces are:
+
+1. `/` — understand the participation model and enter without an account.
+2. `/explore` and `/explore/[slug]` — choose a problem, then inspect its
+   statement, dependencies, and evidence.
+3. `/workbench` — supervise one delegated Agent and take the next bounded
+   research action.
+4. `/receipt/[id]` — inspect durable, public attribution once a contribution
+   actually exists.
+
+`/how-it-works` is supporting protocol education, not a competing primary
+destination. The verification queue is the next major authenticated page after
+the workbench; it should be implemented before profiles, rankings, or social
+features.
+
 ## Page 0: Public welcome
 
 The information architecture should follow the successful citizen-science
