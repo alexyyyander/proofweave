@@ -25,34 +25,6 @@ CREATE TABLE `verification_replays` (
 CREATE UNIQUE INDEX `verification_replays_run_idx` ON `verification_replays` (`run_id`);--> statement-breakpoint
 CREATE UNIQUE INDEX `verification_replays_assignment_actor_idempotency_idx` ON `verification_replays` (`assignment_id`,`requester_agent_id`,`delegation_certificate_id`,`idempotency_key`);--> statement-breakpoint
 CREATE INDEX `verification_replays_assignment_requested_idx` ON `verification_replays` (`assignment_id`,`requested_at`);--> statement-breakpoint
-CREATE TRIGGER `verification_replays_identity_valid`
-BEFORE INSERT ON `verification_replays`
-BEGIN
-	SELECT CASE WHEN NOT EXISTS (
-		SELECT 1
-		FROM verification_assignments AS assignment
-		INNER JOIN artifact_bundles AS bundle
-			ON bundle.manifest_hash = assignment.artifact_bundle_manifest_hash
-		INNER JOIN runs AS run ON run.id = NEW.run_id
-		INNER JOIN agents AS agent ON agent.id = NEW.requester_agent_id
-		INNER JOIN delegation_certificates AS delegation
-			ON delegation.id = NEW.delegation_certificate_id
-		INNER JOIN agent_installations AS installation
-			ON installation.id = NEW.agent_installation_id
-		WHERE assignment.id = NEW.assignment_id
-			AND assignment.status = 'accepted'
-			AND assignment.verifier_person_id = NEW.requester_person_id
-			AND assignment.artifact_bundle_manifest_hash = NEW.artifact_bundle_manifest_hash
-			AND bundle.attempt_id = run.attempt_id
-			AND run.artifact_bundle_hash = NEW.artifact_bundle_manifest_hash
-			AND agent.owner_person_id = NEW.requester_person_id
-			AND delegation.owner_person_id = NEW.requester_person_id
-			AND delegation.agent_id = NEW.requester_agent_id
-			AND installation.person_id = NEW.requester_person_id
-			AND installation.agent_id = NEW.requester_agent_id
-			AND installation.delegation_certificate_id = NEW.delegation_certificate_id
-	) THEN RAISE(ABORT, 'verification replay identity is invalid') END;
-END;--> statement-breakpoint
 CREATE TRIGGER `verification_replays_immutable_update`
 BEFORE UPDATE ON `verification_replays`
 BEGIN
