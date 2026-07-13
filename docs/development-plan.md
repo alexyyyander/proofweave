@@ -78,7 +78,9 @@ reusable contribution with evidence that an external maintainer can reproduce.
 - a canonical signed Contribution Receipt protocol and conservative issuance
   policy plus internal immutable D1 issuance, dependency-edge projection, and
   signed append-only lifecycle events with read-only verified
-  receipt/dependency/lifecycle lookup, without public issuance;
+  receipt/dependency/lifecycle lookup, plus an operator-only issuer-key
+  registry with one active key, retirement, emergency revocation, and a
+  public read-only keyset; no public issuance;
 - a repository-versioned research skill, retired local MCP prototype, and
   Worker-compatible remote MCP/identity protocol scaffolding, including a
   D1/R2-backed public catalog/Attempt/progress and immutable Bundle-staging
@@ -120,8 +122,9 @@ reusable contribution with evidence that an external maintainer can reproduce.
   fresh replay or a verification claim. The source has a remote Agent
   attestation-admission path, but it remains unavailable until the separate
   identity and MCP gateway control plane are deployed;
-- no public contribution-receipt issuance endpoint or issuer-key rotation model
-  exists;
+- no public contribution-receipt issuance endpoint exists. Issuer-key rotation
+  is now source-complete through an operator-only D1 registry and public
+  keyset, but it has no deployed operator secret provider or incident runbook;
 - no production observability exists. GitHub Actions now runs the complete
   `npm run check` workflow for every push and pull request, but an enforced
   required-check branch policy remains a repository/account administration
@@ -454,7 +457,9 @@ verified history through `GET /api/receipts/:id/lifecycle` and the receipt
 page. The bounded, newest-first `GET /api/receipts` and `/receipts` index
 includes only receipts that pass the same canonical/hash/signature checks and
 reports their latest signed lifecycle status. There is still no public issuance
-endpoint or issuer-key rotation. See
+endpoint. The operator-only issuer-key registry now supports retirement and
+emergency revocation without mutating historical receipts; its public keyset is
+available at `GET /api/receipts/issuer-keys`. See
 [`docs/contribution-receipt-contract.md`](contribution-receipt-contract.md).
 
 ## 3. Architecture boundary

@@ -424,6 +424,22 @@ async function seedReceiptEvidenceFixture({ receipt, receiptHash, upstreamReceip
   for (const [query, bindings] of rows) {
     await database.prepare(query).bind(...bindings).run();
   }
+  await database
+    .prepare(
+      `INSERT INTO contribution_receipt_issuer_keys (
+        id, public_key, status, valid_from, retired_at, revoked_at
+      ) VALUES (?, ?, 'active', ?, NULL, NULL)`,
+    )
+    .bind(upstreamReceipt.issuerKeyId, upstreamReceipt.issuerPublicKey, upstreamReceipt.issuedAt)
+    .run();
+  await database
+    .prepare(
+      `INSERT INTO contribution_receipt_issuer_key_events (
+        id, key_id, event_type, related_key_id, occurred_at
+      ) VALUES (?, ?, 'activated', NULL, ?)`,
+    )
+    .bind(`issuer-key-event:activated:${upstreamReceipt.issuerKeyId}`, upstreamReceipt.issuerKeyId, upstreamReceipt.issuedAt)
+    .run();
   for (const [record, recordHash] of [[upstreamReceipt, upstreamReceiptHash], [receipt, receiptHash]]) {
     await database
       .prepare(
@@ -634,6 +650,19 @@ test("renders only a hash-checked, issuer-signed receipt from D1", async () => {
   const indexPage = await render("/receipts");
   assert.equal(indexPage.status, 200);
   assert.match(await indexPage.text(), /Verified contributions, not activity counts/i);
+
+  const issuerKeys = await render("/api/receipts/issuer-keys");
+  assert.equal(issuerKeys.status, 200);
+  assert.deepEqual(await issuerKeys.json(), {
+    issuerKeys: [{
+      id: receipt.issuerKeyId,
+      publicKey: receipt.issuerPublicKey,
+      status: "active",
+      validFrom: upstreamReceipt.issuedAt,
+      retiredAt: null,
+      revokedAt: null,
+    }],
+  });
 
   const dependencies = await render(`/api/receipts/${receipt.id}/dependencies`);
   assert.equal(dependencies.status, 200);

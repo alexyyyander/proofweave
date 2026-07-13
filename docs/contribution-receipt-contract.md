@@ -51,8 +51,18 @@ policy in force at issuance.
 
 An external verifier can canonicalize the JSON, recompute `payloadHash`,
 verify the Ed25519 signature with `issuerPublicKey`, and recompute the full
-receipt hash without the Proofweave UI. Trusting that the key belongs to a
-given Proofweave issuer is a separate key-distribution concern.
+receipt hash without the Proofweave UI. The public
+`GET /api/receipts/issuer-keys` keyset records Proofweave's operator-managed
+key IDs, public keys, activation times, retirement, and emergency revocation
+status; it contains no signing material.
+
+Exactly one issuer key is active at a time. A new Receipt or lifecycle event
+must use that active key. Rotation retires the prior key and installs the
+successor in one control-plane transaction; already-issued receipts retain
+their embedded original key and remain trusted only when their timestamp falls
+within that retired key's validity interval. A revoked key is no longer trusted
+for receipt display or dependency validation, including historical evidence,
+until a future recovery policy explicitly supplies replacement evidence.
 
 ## Internal issuance boundary
 
@@ -85,13 +95,15 @@ issuer-signed events against the original receipt:
 - `superseded` links one later receipt covering the same Attempt and target;
 - `retracted` records no replacement and never removes the original receipt.
 
-Each event commits a reason hash, time, original issuer key ID/public key,
+Each event commits a reason hash, time, its signing issuer key ID/public key,
 canonical payload hash, and detached Ed25519 signature. The initial policy
-requires the same issuer key as the original receipt, an event time no earlier
-than issuance, and (where applicable) a replacement issued after the original
-and no later than the event. Replacement cycles, duplicate corrections, and
-any event after a supersession or retraction are rejected. The event table is
-append-only; it never updates an original receipt or an earlier event.
+requires the current active issuer key, an event time no earlier than issuance,
+and (where applicable) a replacement issued after the original and no later
+than the event. This permits a successor key to correct or retract a receipt
+signed before a normal key rotation, while the original receipt remains
+unchanged. Replacement cycles, duplicate corrections, and any event after a
+supersession or retraction are rejected. The event table is append-only; it
+never updates an original receipt or an earlier event.
 
 The web application exposes read-only `GET /api/receipts/:id` JSON,
 `GET /api/receipts/:id/dependencies` edge JSON, and `/receipt/:id` display
@@ -103,5 +115,6 @@ or alter evidence. `GET /api/receipts/:id/lifecycle` and the receipt page also
 verify each lifecycle signature and its replacement relationship before showing
 the append-only history. `GET /api/receipts` and `/receipts` expose a bounded,
 newest-first public index only after each listed receipt and its lifecycle
-status have passed the same verification. Issuer-key rotation remains future
-work, not a mutable field on this v1 receipt.
+status have passed the same verification. Issuer-key rotation is represented
+by the separate operator key registry, never by mutating a field on this v1
+receipt.

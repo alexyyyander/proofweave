@@ -20,6 +20,7 @@ import { normalizeArtifactBundle } from "../../packages/protocol/artifact-bundle
 import { normalizeLeanRunnerResult } from "../../packages/protocol/lean-runner.mjs";
 import { canonicalJson, sha256Canonical } from "../../packages/protocol/canonical-json.mjs";
 import { normalizeVerificationAttestation } from "../../packages/protocol/verification-attestation.mjs";
+import { D1ContributionReceiptIssuerKeyStore } from "./d1-contribution-receipt-issuer-key-store.mjs";
 
 export class ContributionReceiptStoreConflictError extends Error {
   constructor(message) {
@@ -50,6 +51,7 @@ export class ContributionReceiptStoreNotFoundError extends Error {
 export class D1ContributionReceiptStore {
   constructor(database) {
     this.database = database;
+    this.issuerKeys = new D1ContributionReceiptIssuerKeyStore(database);
   }
 
   async issue({
@@ -82,6 +84,11 @@ export class D1ContributionReceiptStore {
     };
     const existing = await this.findExistingForDraft(draft);
     if (existing) return { receipt: existing, created: false };
+    await this.issuerKeys.assertCanIssue({
+      issuerKeyId: draft.issuerKeyId,
+      issuerPublicKey: draft.issuerPublicKey,
+      issuedAt: draft.issuedAt,
+    });
 
     const dependencies = await this.loadDependencyEvidence({
       downstreamReceiptId: id,
@@ -173,6 +180,11 @@ export class D1ContributionReceiptStore {
       if (!await verifyContributionReceiptLifecycleEventSignature(existing)) {
         throw new ContributionReceiptStoreValidationError("Stored Contribution Receipt lifecycle event has an invalid issuer signature.");
       }
+      await this.issuerKeys.assertHistoricallyTrusted({
+        issuerKeyId: existing.issuerKeyId,
+        issuerPublicKey: existing.issuerPublicKey,
+        occurredAt: existing.occurredAt,
+      });
       if (canonicalJson(contributionReceiptLifecycleEventSigningPayload(existing)) !== canonicalJson(draft)) {
         throw new ContributionReceiptStoreConflictError("A Contribution Receipt lifecycle event id already has different immutable evidence.");
       }
@@ -180,9 +192,14 @@ export class D1ContributionReceiptStore {
     }
 
     const receipt = await this.loadVerifiedReceipt(receiptId);
-    if (receipt.issuerKeyId !== draft.issuerKeyId || receipt.issuerPublicKey !== draft.issuerPublicKey) {
-      throw new ContributionReceiptStoreValidationError("Receipt lifecycle events must be signed by the original receipt issuer key.");
-    }
+    // Lifecycle evidence is allowed to move to the current issuer key after a
+    // rotation. The original receipt keeps its historical key in its own
+    // immutable payload; a new event must be authorized by today's active key.
+    await this.issuerKeys.assertCanIssue({
+      issuerKeyId: draft.issuerKeyId,
+      issuerPublicKey: draft.issuerPublicKey,
+      issuedAt: draft.occurredAt,
+    });
     if (Date.parse(draft.occurredAt) < Date.parse(receipt.issuedAt)) {
       throw new ContributionReceiptStoreValidationError("Receipt lifecycle event cannot predate receipt issuance.");
     }
@@ -251,6 +268,7 @@ export class D1ContributionReceiptStore {
     if (canonicalJson(contributionReceiptSigningPayload(existing)) !== canonicalJson(draft)) {
       throw new ContributionReceiptStoreConflictError("A Contribution Receipt identity already has different immutable evidence.");
     }
+    await this.assertTrustedReceipt(existing);
     return existing;
   }
 
@@ -262,14 +280,10 @@ export class D1ContributionReceiptStore {
     if (!row) throw new ContributionReceiptStoreNotFoundError(id);
     const receipt = parseReceipt(row.canonical_receipt);
     try {
-      if (
-        receipt.id !== row.id ||
-        row.receipt_hash !== await contributionReceiptHash(receipt) ||
-        !await verifyContributionReceiptSignature(receipt)
-      ) {
+      if (receipt.id !== row.id || row.receipt_hash !== await contributionReceiptHash(receipt)) {
         throw new Error("receipt evidence mismatch");
       }
-      assertContributionReceiptPolicy(receipt);
+      await this.assertTrustedReceipt(receipt);
     } catch {
       throw new ContributionReceiptStoreValidationError("Stored Contribution Receipt did not pass hash, issuer signature, and policy verification.");
     }
@@ -290,6 +304,11 @@ export class D1ContributionReceiptStore {
       if (!await verifyContributionReceiptLifecycleEventSignature(event)) {
         throw new ContributionReceiptStoreValidationError("Stored Contribution Receipt lifecycle event has an invalid issuer signature.");
       }
+      await this.issuerKeys.assertHistoricallyTrusted({
+        issuerKeyId: event.issuerKeyId,
+        issuerPublicKey: event.issuerPublicKey,
+        occurredAt: event.occurredAt,
+      });
       events.push(event);
     }
     if (events.some((event) => event.eventType === "retracted" || event.eventType === "superseded")) {
@@ -472,12 +491,11 @@ export class D1ContributionReceiptStore {
           upstream.id !== dependency.receiptId ||
           row.receipt_hash !== dependency.receiptHash ||
           row.receipt_hash !== await contributionReceiptHash(upstream) ||
-          !await verifyContributionReceiptSignature(upstream) ||
           Date.parse(upstream.issuedAt) > Date.parse(issuedAt)
         ) {
           throw new Error("upstream receipt evidence mismatch");
         }
-        assertContributionReceiptPolicy(upstream);
+        await this.assertTrustedReceipt(upstream);
       } catch {
         throw new ContributionReceiptStoreValidationError(`Declared upstream Contribution Receipt ${dependency.receiptId} did not pass hash, signature, and policy verification.`);
       }
@@ -489,6 +507,18 @@ export class D1ContributionReceiptStore {
       }));
     }
     return Object.freeze(dependencies);
+  }
+
+  async assertTrustedReceipt(receipt) {
+    if (!await verifyContributionReceiptSignature(receipt)) {
+      throw new ContributionReceiptStoreValidationError("Stored Contribution Receipt has an invalid issuer signature.");
+    }
+    await this.issuerKeys.assertHistoricallyTrusted({
+      issuerKeyId: receipt.issuerKeyId,
+      issuerPublicKey: receipt.issuerPublicKey,
+      occurredAt: receipt.issuedAt,
+    });
+    assertContributionReceiptPolicy(receipt);
   }
 }
 

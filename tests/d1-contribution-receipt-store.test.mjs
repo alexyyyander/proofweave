@@ -9,6 +9,7 @@ import {
   verifyContributionReceiptSignature,
 } from "../packages/protocol/contribution-receipt.mjs";
 import { verifyContributionReceiptLifecycleEventSignature } from "../packages/protocol/contribution-receipt-lifecycle.mjs";
+import { D1ContributionReceiptIssuerKeyStore } from "../services/receipts/d1-contribution-receipt-issuer-key-store.mjs";
 import { D1ContributionReceiptStore } from "../services/receipts/d1-contribution-receipt-store.mjs";
 
 const migrationsRoot = new URL("../drizzle/", import.meta.url);
@@ -19,6 +20,7 @@ let miniflare;
 let database;
 let issuerPair;
 let issuerPublicKey;
+let issuerKeys;
 let upstreamReceipt;
 let upstreamReceiptHash;
 
@@ -33,6 +35,12 @@ before(async () => {
   });
   database = await miniflare.getD1Database("DB");
   await applyMigrations(database);
+  issuerKeys = new D1ContributionReceiptIssuerKeyStore(database);
+  await issuerKeys.registerInitial({
+    id: "issuer:closed-alpha-1",
+    publicKey: issuerPublicKey,
+    activatedAt: "2026-07-13T00:00:00Z",
+  });
   await seedReceiptEvidence(database);
 });
 
@@ -156,7 +164,7 @@ test("D1 Receipt store derives, signs, retries, and freezes a certified contribu
       issuerPublicKey: base64Url(await crypto.subtle.exportKey("raw", rogueIssuer.publicKey)),
       issuerPrivateKey: rogueIssuer.privateKey,
     }),
-    /original receipt issuer key/,
+    /not registered with its embedded public key/,
   );
 
   const retraction = await store.recordLifecycleEvent({
@@ -226,6 +234,64 @@ test("verification receipt credits the review Agent present in immutable attesta
     }),
     /must cover an attestation made by its credited review Agent/,
   );
+});
+
+test("retiring a receipt issuer key preserves historical evidence but moves issuance and lifecycle authority to its successor", async () => {
+  const successorPair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
+  const successorPublicKey = base64Url(await crypto.subtle.exportKey("raw", successorPair.publicKey));
+  const rotation = await issuerKeys.rotate({
+    previousKeyId: "issuer:closed-alpha-1",
+    id: "issuer:closed-alpha-2",
+    publicKey: successorPublicKey,
+    rotatedAt: "2026-07-13T00:05:00Z",
+  });
+  assert.equal(rotation.previousKey.status, "retired");
+  assert.equal(rotation.key.status, "active");
+  await issuerKeys.assertHistoricallyTrusted({
+    issuerKeyId: "issuer:closed-alpha-1",
+    issuerPublicKey,
+    occurredAt: "2026-07-13T00:01:00Z",
+  });
+  await assert.rejects(
+    issuerKeys.assertCanIssue({
+      issuerKeyId: "issuer:closed-alpha-1",
+      issuerPublicKey,
+      issuedAt: "2026-07-13T00:06:00Z",
+    }),
+    /current active issuer key/,
+  );
+
+  const store = new D1ContributionReceiptStore(database);
+  await assert.rejects(
+    store.issue({
+      ...receiptInput({ id: "receipt:old-key-after-rotation", kind: "synthesis", issuedAt: "2026-07-13T00:06:00Z" }),
+    issuerPrivateKey: issuerPair.privateKey,
+    issuerPublicKey,
+  }),
+    /current active issuer key/,
+  );
+  const successorReceipt = await store.issue({
+    ...receiptInput({ id: "receipt:successor-key", kind: "synthesis", issuedAt: "2026-07-13T00:06:00Z" }),
+    issuerKeyId: "issuer:closed-alpha-2",
+    issuerPublicKey: successorPublicKey,
+    issuerPrivateKey: successorPair.privateKey,
+  });
+  assert.equal(successorReceipt.created, true);
+  assert.equal(successorReceipt.receipt.issuerKeyId, "issuer:closed-alpha-2");
+
+  const lifecycle = await store.recordLifecycleEvent({
+    id: "receipt-event:bob-verification-successor-retracted",
+    receiptId: "receipt:bob-verification",
+    eventType: "retracted",
+    reasonHash: sha("d"),
+    occurredAt: "2026-07-13T00:07:00Z",
+    issuerKeyId: "issuer:closed-alpha-2",
+    issuerPublicKey: successorPublicKey,
+    issuerPrivateKey: successorPair.privateKey,
+  });
+  assert.equal(lifecycle.created, true);
+  assert.equal(lifecycle.event.issuerKeyId, "issuer:closed-alpha-2");
+  assert.equal(await verifyContributionReceiptLifecycleEventSignature(lifecycle.event), true);
 });
 
 function receiptInput({ id, kind, issuedAt = "2026-07-13T00:01:00Z" }) {

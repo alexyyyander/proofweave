@@ -9,6 +9,7 @@ import {
   normalizeContributionReceiptLifecycleEvent,
   verifyContributionReceiptLifecycleEventSignature,
 } from "@/packages/protocol/contribution-receipt-lifecycle.mjs";
+import { D1ContributionReceiptIssuerKeyStore } from "@/services/receipts/d1-contribution-receipt-issuer-key-store.mjs";
 
 export type ContributionReceiptKind =
   | "formalization"
@@ -105,6 +106,15 @@ export type PublicContributionReceiptIndexItem = Readonly<{
   lifecycleStatus: "issued" | PublicContributionReceiptLifecycleEvent["eventType"];
 }>;
 
+export type PublicContributionReceiptIssuerKey = Readonly<{
+  id: string;
+  publicKey: string;
+  status: "active" | "retired" | "revoked";
+  validFrom: string;
+  retiredAt: string | null;
+  revokedAt: string | null;
+}>;
+
 export class ContributionReceiptIntegrityError extends Error {
   constructor() {
     super("Stored Contribution Receipt did not pass its canonical hash and issuer-signature checks.");
@@ -117,6 +127,7 @@ export interface ContributionReceiptReader {
   listRecent(limit?: number): Promise<readonly PublicContributionReceiptIndexItem[]>;
   findDependenciesById(id: string): Promise<readonly PublicContributionReceiptDependency[] | null>;
   findLifecycleById(id: string): Promise<readonly PublicContributionReceiptLifecycleEvent[] | null>;
+  listIssuerKeys(): Promise<readonly PublicContributionReceiptIssuerKey[]>;
 }
 
 type ReceiptRow = {
@@ -154,6 +165,11 @@ type LifecycleRow = {
  * embedded issuer signature agree.
  */
 class D1ContributionReceiptReader implements ContributionReceiptReader {
+  async listIssuerKeys(): Promise<readonly PublicContributionReceiptIssuerKey[]> {
+    const keys = await new D1ContributionReceiptIssuerKeyStore(getD1()).list();
+    return Object.freeze(keys.map((key: PublicContributionReceiptIssuerKey) => Object.freeze({ ...key })));
+  }
+
   async findById(id: string): Promise<PublicContributionReceiptRecord | null> {
     if (!isContributionReceiptId(id)) return null;
 
@@ -237,12 +253,11 @@ class D1ContributionReceiptReader implements ContributionReceiptReader {
           row.recorded_at !== downstream.receipt.issuedAt ||
           upstream.id !== row.upstream_receipt_id ||
           row.receipt_hash !== await contributionReceiptHash(upstream) ||
-          !await verifyContributionReceiptSignature(upstream) ||
           Date.parse(upstream.issuedAt) > Date.parse(downstream.receipt.issuedAt)
         ) {
           throw new Error("dependency projection mismatch");
         }
-        assertContributionReceiptPolicy(upstream);
+        await assertHistoricallyTrustedReceipt(upstream);
       } catch {
         throw new ContributionReceiptIntegrityError();
       }
@@ -287,13 +302,16 @@ class D1ContributionReceiptReader implements ContributionReceiptReader {
           event.issuerPublicKey !== row.issuer_public_key ||
           event.payloadHash !== row.payload_hash ||
           event.issuerSignature !== row.issuer_signature ||
-          event.issuerKeyId !== receipt.receipt.issuerKeyId ||
-          event.issuerPublicKey !== receipt.receipt.issuerPublicKey ||
           Date.parse(event.occurredAt) < Date.parse(receipt.receipt.issuedAt) ||
           !await verifyContributionReceiptLifecycleEventSignature(event)
         ) {
           throw new Error("lifecycle event projection mismatch");
         }
+        await assertHistoricallyTrustedIssuer({
+          issuerKeyId: event.issuerKeyId,
+          issuerPublicKey: event.issuerPublicKey,
+          occurredAt: event.occurredAt,
+        });
         if (event.replacementReceiptId) {
           const replacement = await this.findById(event.replacementReceiptId);
           if (
@@ -362,11 +380,35 @@ async function verifyStoredReceiptRow(row: ReceiptRow, expectedId: string): Prom
     ) {
       throw new ContributionReceiptIntegrityError();
     }
-    assertContributionReceiptPolicy(receipt);
+    await assertHistoricallyTrustedReceipt(receipt);
   } catch {
     throw new ContributionReceiptIntegrityError();
   }
   return Object.freeze({ receipt, receiptHash: row.receipt_hash });
+}
+
+async function assertHistoricallyTrustedReceipt(receipt: PublicContributionReceipt) {
+  if (!await verifyContributionReceiptSignature(receipt)) {
+    throw new ContributionReceiptIntegrityError();
+  }
+  await assertHistoricallyTrustedIssuer({
+    issuerKeyId: receipt.issuerKeyId,
+    issuerPublicKey: receipt.issuerPublicKey,
+    occurredAt: receipt.issuedAt,
+  });
+  assertContributionReceiptPolicy(receipt);
+}
+
+async function assertHistoricallyTrustedIssuer({
+  issuerKeyId,
+  issuerPublicKey,
+  occurredAt,
+}: Readonly<{ issuerKeyId: string; issuerPublicKey: string; occurredAt: string }>) {
+  await new D1ContributionReceiptIssuerKeyStore(getD1()).assertHistoricallyTrusted({
+    issuerKeyId,
+    issuerPublicKey,
+    occurredAt,
+  });
 }
 
 function parseCanonicalReceipt(canonicalReceipt: string): PublicContributionReceipt {

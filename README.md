@@ -47,6 +47,12 @@ Correction, supersession, and retraction are likewise signed, append-only
 lifecycle events. They preserve the original receipt and are shown as verified
 history on its public evidence page.
 
+Receipt issuer keys have their own operator-only rotation registry. A public
+read-only keyset at `/api/receipts/issuer-keys` lets an external verifier learn
+which embedded issuer keys are active, retired, or emergency-revoked without
+ever exposing signing material. Rotating a key never rewrites a historical
+receipt.
+
 Each persisted certificate also has a read-only human and JSON evidence view.
 It exposes only its signed attribution identifiers, public keys, canonical
 payload, signature, hash, and any append-only revocation—not provider identity,

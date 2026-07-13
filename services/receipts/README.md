@@ -17,4 +17,10 @@ The separate web reader exposes verified receipt and dependency JSON plus a
 human-readable receipt page. It also exposes a separately signed, append-only
 correction, supersession, or retraction history: an original receipt is never
 modified or deleted. The reader cannot issue or alter receipts. Issuer-key
-rotation remains future work.
+rotation is handled by the operator-only
+`d1-contribution-receipt-issuer-key-store.mjs`: it keeps exactly one active
+signing key, retires a predecessor before activating its successor, and records
+immutable activation/retirement/revocation audit events. Historical receipts
+retain their embedded key and are trusted only within the registered key's
+validity window. The public reader exposes the non-secret registry through
+`GET /api/receipts/issuer-keys`; it cannot mutate key state.

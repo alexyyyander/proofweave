@@ -981,6 +981,40 @@ export const contributionReceipts = sqliteTable(
   ],
 );
 
+// Operator-managed registry for the public keys that may sign new Contribution
+// Receipts. Historical receipts retain their embedded key and are checked
+// against this registry at their own issuance time.
+export const contributionReceiptIssuerKeys = sqliteTable(
+  "contribution_receipt_issuer_keys",
+  {
+    id: text("id").primaryKey(),
+    publicKey: text("public_key").notNull().unique(),
+    status: text("status", { enum: ["active", "retired", "revoked"] }).notNull(),
+    validFrom: text("valid_from").notNull(),
+    retiredAt: text("retired_at"),
+    revokedAt: text("revoked_at"),
+    createdAt,
+  },
+  (table) => [index("contribution_receipt_issuer_keys_status_valid_from_idx").on(table.status, table.validFrom)],
+);
+
+// An audit trail for activation, rotation retirement, and emergency revocation.
+// It is intentionally separate from immutable receipt payloads.
+export const contributionReceiptIssuerKeyEvents = sqliteTable(
+  "contribution_receipt_issuer_key_events",
+  {
+    id: text("id").primaryKey(),
+    keyId: text("key_id")
+      .notNull()
+      .references(() => contributionReceiptIssuerKeys.id, { onDelete: "restrict" }),
+    eventType: text("event_type", { enum: ["activated", "retired", "revoked"] }).notNull(),
+    relatedKeyId: text("related_key_id").references(() => contributionReceiptIssuerKeys.id, { onDelete: "restrict" }),
+    occurredAt: text("occurred_at").notNull(),
+    createdAt,
+  },
+  (table) => [index("contribution_receipt_issuer_key_events_key_idx").on(table.keyId, table.occurredAt, table.id)],
+);
+
 // An immutable query projection of dependencyReceipts inside the signed
 // canonical receipt. The receipt store inserts this only after it verifies the
 // referenced upstream receipt hash and issuer signature.
