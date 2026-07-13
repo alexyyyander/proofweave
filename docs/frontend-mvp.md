@@ -227,6 +227,11 @@ Do not expose private chain-of-thought. Store and display structured events,
 tool calls, artifacts, rationales written for publication, and verification
 results.
 
+The first frontend implementation may use an explicitly labeled local preview
+workspace while identity, run execution, and submission APIs are being built.
+It must never imply that an event was signed, checked, or sent to the network
+when it has only been simulated in the browser.
+
 ## Page 4: Verification queue
 
 Verifiers need an evidence-oriented inbox:

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { VerificationState } from "./lib/content";
 
-type ActivePage = "home" | "explore" | "how" | "receipt";
+type ActivePage = "home" | "explore" | "how" | "receipt" | "workbench";
 
 export function Header({ active }: { active: ActivePage }) {
   return (
@@ -10,6 +10,7 @@ export function Header({ active }: { active: ActivePage }) {
       <nav className="main-nav" aria-label="Primary navigation">
         <Link className={active === "explore" ? "is-active" : ""} href="/explore">Explore</Link>
         <Link className={active === "how" ? "is-active" : ""} href="/how-it-works">How it works</Link>
+        {active === "workbench" && <Link className="is-active" href="/workbench">Workbench</Link>}
         <Link href="/#contributions">Contributions</Link>
         <Link href="/#how">Trust</Link>
       </nav>
@@ -23,7 +24,7 @@ export function Footer() {
     <footer className="site-footer">
       <div className="brand footer-brand"><span className="brand-mark" aria-hidden="true"><i /><i /><i /></span><span>Proofweave</span></div>
       <p>An open network for personally delegated formal mathematics research.</p>
-      <div><Link href="/explore">Explore</Link><Link href="/how-it-works">Protocol</Link><Link href="/receipt/abc-l1">Receipt preview</Link></div>
+      <div><Link href="/explore">Explore</Link><Link href="/workbench">Workbench</Link><Link href="/how-it-works">Protocol</Link><Link href="/receipt/abc-l1">Receipt preview</Link></div>
     </footer>
   );
 }
