@@ -121,7 +121,10 @@ reusable contribution with evidence that an external maintainer can reproduce.
 - no production observability exists. GitHub Actions now runs the complete
   `npm run check` workflow for every push and pull request, but an enforced
   required-check branch policy remains a repository/account administration
-  decision and is not asserted by this source repository.
+  decision and is not asserted by this source repository. CI now also rejects
+  known high-severity production dependency vulnerabilities, while Dependabot
+  proposes weekly npm and GitHub Actions updates; structured runtime telemetry,
+  alerting, and cost accounting remain undeployed.
 
 ### Sprint 0 progress
 

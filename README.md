@@ -189,6 +189,7 @@ application secrets.
 - `npm run build`: verify the vinext build output
 - `npm run lint`: lint application and test code
 - `npm run typecheck`: check TypeScript without emitting files
+- `npm run security:dependencies`: fail on known high-severity production dependency vulnerabilities
 - `npm test`: build and smoke-test the rendered product routes
 - `npm run check`: run the required lint, typecheck, build, and route tests
 - `npm run db:generate`: generate Drizzle migrations after schema changes
