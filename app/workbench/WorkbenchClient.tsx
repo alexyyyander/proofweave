@@ -8,6 +8,7 @@ import { boundedStepPreview, initialEvents } from "./workbench-data";
 import { DelegationSummary, FocusAction, ResearchWorkstation, SubmissionReadiness, WorkbenchHero } from "./workbench-sections";
 import { DelegationSetup } from "./DelegationSetup";
 import { AttemptQueue } from "./AttemptQueue";
+import { AgentConnections } from "./AgentConnections";
 
 export function WorkbenchClient({
   profile,
@@ -43,6 +44,7 @@ export function WorkbenchClient({
     <WorkbenchHero isRunning={isRunning} profile={profile} isAuthenticated={isAuthenticated} storageAvailable={storageAvailable} attemptCount={attempts.length} />
     <DelegationSummary profile={profile} />
     <DelegationSetup profile={profile} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} />
+    {profile && <AgentConnections installations={profile.agentInstallations} />}
     <AttemptQueue profile={profile} attempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={initialTargetSlug} onAttemptCreated={(attempt) => setAttempts((current) => [attempt, ...current.filter((candidate) => candidate.id !== attempt.id)])} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} />
     <FocusAction isRunning={isRunning} hasRunStep={hasRunStep} hasActiveDelegation={hasActiveDelegation} accountRequiresSetup={Boolean(profile && !hasActiveDelegation)} onRun={runBoundedStep} onToggleAgent={() => setIsRunning((value) => !value)} />
     <ResearchWorkstation events={events} />

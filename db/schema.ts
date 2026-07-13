@@ -408,6 +408,34 @@ export const agentInstallations = sqliteTable(
   ],
 );
 
+// Revoking an OAuth installation is an owner decision distinct from revoking
+// the underlying Agent or delegation. The installation row is made unusable
+// for immediate enforcement, while this immutable record preserves why.
+export const agentInstallationRevocations = sqliteTable(
+  "agent_installation_revocations",
+  {
+    id: text("id").primaryKey(),
+    agentInstallationId: text("agent_installation_id")
+      .notNull()
+      .references(() => agentInstallations.id, { onDelete: "restrict" }),
+    ownerPersonId: text("owner_person_id")
+      .notNull()
+      .references(() => persons.id, { onDelete: "restrict" }),
+    revokedAt: text("revoked_at").notNull(),
+    reason: text("reason").notNull(),
+    createdAt,
+  },
+  (table) => [
+    uniqueIndex("agent_installation_revocations_installation_idx").on(
+      table.agentInstallationId,
+    ),
+    index("agent_installation_revocations_owner_idx").on(
+      table.ownerPersonId,
+      table.revokedAt,
+    ),
+  ],
+);
+
 export const oauthClients = sqliteTable(
   "oauth_clients",
   {

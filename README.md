@@ -213,6 +213,9 @@ scopes without copying a secret or local config. PKCE, token rotation,
 credential-hash persistence, delegated Agent-installation checks, a D1-backed
 catalog/Attempt/progress store, bounded R2/D1 artifact-Bundle staging, and a
 review-scope-bound signed-attestation admission path are implemented locally.
+The workbench also lists each approved Agent/client connection and lets its
+owner revoke it; revocation immediately invalidates the installation at the
+resource-server boundary.
 The endpoint, scopes, identity boundary, and rollout gates are defined in the
 [remote MCP gateway contract](docs/remote-mcp-gateway.md).
 

@@ -92,11 +92,27 @@ export type StoredDelegation = Readonly<{
   createdAt: string;
 }>;
 
+export type AgentInstallation = Readonly<{
+  id: string;
+  agentId: string;
+  agentLabel: string;
+  delegationCertificateId: string;
+  delegationScopes: readonly string[];
+  clientId: string;
+  clientName: string;
+  label: string;
+  status: "active" | "revoked";
+  revokedAt: string | null;
+  revocationReason: string | null;
+  createdAt: string;
+}>;
+
 export type DelegationProfile = Readonly<{
   person: DelegationPerson;
   signingKeys: readonly PersonSigningKey[];
   agents: readonly RegisteredAgent[];
   delegations: readonly StoredDelegation[];
+  agentInstallations: readonly AgentInstallation[];
 }>;
 
 /**
@@ -232,6 +248,20 @@ type DelegationRow = {
   signer_key_revocation_reason: string | null;
   created_at: string;
 };
+type AgentInstallationRow = {
+  id: string;
+  agent_id: string;
+  agent_label: string;
+  delegation_certificate_id: string;
+  scopes_json: string;
+  client_id: string;
+  client_name: string;
+  label: string;
+  status: "active" | "revoked";
+  revoked_at: string | null;
+  revocation_reason: string | null;
+  created_at: string;
+};
 type PublicDelegationRow = DelegationRow & {
   protocol_version: string;
   canonical_payload: string;
@@ -266,6 +296,10 @@ export interface DelegationRepository {
     identity: PersonIdentity,
     input: { delegationId: string; reason: string; revokedAt: string },
   ): Promise<StoredDelegation>;
+  revokeAgentInstallation(
+    identity: PersonIdentity,
+    input: { installationId: string; reason: string; revokedAt: string },
+  ): Promise<AgentInstallation>;
   assertAuthorizedDelegation(
     personId: string,
     delegationId: string,
@@ -277,7 +311,7 @@ export interface DelegationRepository {
 class D1DelegationRepository implements DelegationRepository {
   async getProfile(identity: PersonIdentity): Promise<DelegationProfile> {
     const person = await this.upsertPerson(identity);
-    const [keys, agents, delegations] = await Promise.all([
+    const [keys, agents, delegations, agentInstallations] = await Promise.all([
       getD1()
         .prepare(
           `SELECT key.id, key.person_id, key.algorithm, key.public_key, key.fingerprint,
@@ -318,6 +352,25 @@ class D1DelegationRepository implements DelegationRepository {
         )
         .bind(person.id)
         .all<DelegationRow>(),
+      getD1()
+        .prepare(
+          `SELECT installation.id, installation.agent_id, agent.label AS agent_label,
+                  installation.delegation_certificate_id, certificate.scopes_json,
+                  installation.client_id, client.client_name, installation.label,
+                  installation.status, installation.revoked_at,
+                  revocation.reason AS revocation_reason, installation.created_at
+           FROM agent_installations AS installation
+           INNER JOIN agents AS agent ON agent.id = installation.agent_id
+           INNER JOIN delegation_certificates AS certificate
+             ON certificate.id = installation.delegation_certificate_id
+           INNER JOIN oauth_clients AS client ON client.id = installation.client_id
+           LEFT JOIN agent_installation_revocations AS revocation
+             ON revocation.agent_installation_id = installation.id
+           WHERE installation.person_id = ?
+           ORDER BY installation.created_at DESC`,
+        )
+        .bind(person.id)
+        .all<AgentInstallationRow>(),
     ]);
 
     return {
@@ -325,6 +378,7 @@ class D1DelegationRepository implements DelegationRepository {
       signingKeys: (keys.results ?? []).map(toPersonKey),
       agents: (agents.results ?? []).map(toAgent),
       delegations: (delegations.results ?? []).map(toDelegation),
+      agentInstallations: (agentInstallations.results ?? []).map(toAgentInstallation),
     };
   }
 
@@ -732,6 +786,59 @@ class D1DelegationRepository implements DelegationRepository {
     return toDelegation(revoked);
   }
 
+  async revokeAgentInstallation(
+    identity: PersonIdentity,
+    input: { installationId: string; reason: string; revokedAt: string },
+  ): Promise<AgentInstallation> {
+    requireInputString(input.installationId, "installationId", 240);
+    requireInputString(input.reason, "reason", 1_000);
+    if (!isUtcInstant(input.revokedAt)) throw new Error("revokedAt must be a UTC instant.");
+    const person = await this.upsertPerson(identity);
+    const installation = await this.findAgentInstallation(input.installationId);
+    if (!installation || installation.person_id !== person.id) {
+      throw new DelegationNotFoundError("Agent connection not found.");
+    }
+    if (installation.revoked_at) {
+      const existing = await this.findAgentInstallationRevocation(installation.id);
+      if (
+        !existing ||
+        existing.owner_person_id !== person.id ||
+        existing.reason !== input.reason.trim() ||
+        existing.revoked_at !== input.revokedAt
+      ) {
+        throw new DelegationConflictError("This Agent connection already has a different revocation record.");
+      }
+      return toAgentInstallation(await this.requireAgentInstallation(installation.id));
+    }
+
+    await getD1().batch([
+      getD1()
+        .prepare(
+          `INSERT OR IGNORE INTO agent_installation_revocations (
+            id, agent_installation_id, owner_person_id, revoked_at, reason
+          ) VALUES (?, ?, ?, ?, ?)`,
+        )
+        .bind(newId("agent-installation-revocation"), installation.id, person.id, input.revokedAt, input.reason.trim()),
+      getD1()
+        .prepare(
+          `UPDATE agent_installations
+           SET status = 'revoked', revoked_at = ?
+           WHERE id = ? AND person_id = ? AND status = 'active' AND revoked_at IS NULL`,
+        )
+        .bind(input.revokedAt, installation.id, person.id),
+    ]);
+    const recorded = await this.findAgentInstallationRevocation(installation.id);
+    if (
+      !recorded ||
+      recorded.owner_person_id !== person.id ||
+      recorded.reason !== input.reason.trim() ||
+      recorded.revoked_at !== input.revokedAt
+    ) {
+      throw new DelegationConflictError("This Agent connection already has a different revocation record.");
+    }
+    return toAgentInstallation(await this.requireAgentInstallation(installation.id));
+  }
+
   async assertAuthorizedDelegation(
     personId: string,
     delegationId: string,
@@ -796,6 +903,41 @@ class D1DelegationRepository implements DelegationRepository {
       )
       .bind(id)
       .first<DelegationRow>();
+  }
+
+  private async findAgentInstallation(id: string): Promise<{ id: string; person_id: string; revoked_at: string | null } | null> {
+    return getD1()
+      .prepare("SELECT id, person_id, revoked_at FROM agent_installations WHERE id = ?")
+      .bind(id)
+      .first<{ id: string; person_id: string; revoked_at: string | null }>();
+  }
+
+  private async findAgentInstallationRevocation(installationId: string): Promise<{ owner_person_id: string; revoked_at: string; reason: string } | null> {
+    return getD1()
+      .prepare("SELECT owner_person_id, revoked_at, reason FROM agent_installation_revocations WHERE agent_installation_id = ?")
+      .bind(installationId)
+      .first<{ owner_person_id: string; revoked_at: string; reason: string }>();
+  }
+
+  private async requireAgentInstallation(id: string): Promise<AgentInstallationRow> {
+    const row = await getD1()
+      .prepare(
+        `SELECT installation.id, installation.agent_id, agent.label AS agent_label,
+                installation.delegation_certificate_id, certificate.scopes_json,
+                installation.client_id, client.client_name, installation.label,
+                installation.status, installation.revoked_at,
+                revocation.reason AS revocation_reason, installation.created_at
+         FROM agent_installations AS installation
+         INNER JOIN agents AS agent ON agent.id = installation.agent_id
+         INNER JOIN delegation_certificates AS certificate ON certificate.id = installation.delegation_certificate_id
+         INNER JOIN oauth_clients AS client ON client.id = installation.client_id
+         LEFT JOIN agent_installation_revocations AS revocation ON revocation.agent_installation_id = installation.id
+         WHERE installation.id = ?`,
+      )
+      .bind(id)
+      .first<AgentInstallationRow>();
+    if (!row) throw new Error("Agent connection became unavailable.");
+    return row;
   }
 
   private async findPersonKey(id: string): Promise<KeyRow | null> {
@@ -1007,6 +1149,23 @@ function toDelegation(row: DelegationRow): StoredDelegation {
     revocationReason: row.revocation_reason,
     signerKeyRevokedAt: row.signer_key_revoked_at,
     signerKeyRevocationReason: row.signer_key_revocation_reason,
+    createdAt: row.created_at,
+  };
+}
+
+function toAgentInstallation(row: AgentInstallationRow): AgentInstallation {
+  return {
+    id: row.id,
+    agentId: row.agent_id,
+    agentLabel: row.agent_label,
+    delegationCertificateId: row.delegation_certificate_id,
+    delegationScopes: parseScopes(row.scopes_json),
+    clientId: row.client_id,
+    clientName: row.client_name,
+    label: row.label,
+    status: row.status,
+    revokedAt: row.revoked_at,
+    revocationReason: row.revocation_reason,
     createdAt: row.created_at,
   };
 }

@@ -110,6 +110,31 @@ test("D1 OAuth store atomically consumes credentials and invalidates an installa
   assert.equal((await store.consumeRefreshToken("refresh-hash-1", now))?.clientId, "codex-test");
   assert.equal(await store.consumeRefreshToken("refresh-hash-1", now), null);
 
+  await database.batch([
+    database
+      .prepare(
+        "INSERT INTO agent_installation_revocations (id, agent_installation_id, owner_person_id, revoked_at, reason) VALUES (?, ?, ?, ?, ?)",
+      )
+      .bind(
+        "agent-installation-revocation:oauth-test",
+        "installation:oauth-test",
+        "person:oauth-test",
+        now,
+        "Owner revoked the Codex connection.",
+      ),
+    database
+      .prepare("UPDATE agent_installations SET status = 'revoked', revoked_at = ? WHERE id = ?")
+      .bind(now, "installation:oauth-test"),
+  ]);
+  assert.equal(
+    await store.findAgentInstallation("person:oauth-test", "installation:oauth-test", "codex-test"),
+    null,
+  );
+  assert.equal(
+    (await store.findAccessToken("access-hash-1", "https://mcp.example.test/mcp", now))?.installationActive,
+    false,
+  );
+
   await database
     .prepare(
       "INSERT INTO person_key_revocations (id, person_key_id, owner_person_id, revoked_at, reason) VALUES (?, ?, ?, ?, ?)",

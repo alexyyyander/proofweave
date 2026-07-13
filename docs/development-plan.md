@@ -202,7 +202,10 @@ Implemented locally on 2026-07-13:
   enforcement from explicit Worker bindings; and
 - a private Sites OAuth adapter with one-use D1 consent challenges, HttpOnly
   CSRF binding, capability-filtered Agent selection, and automatic revocable
-  Agent-installation creation for a browser-approved MCP client.
+  Agent-installation creation for a browser-approved MCP client; and
+- an owner workbench connection-control panel that lists each Agent/client
+  installation and records an immutable owner revocation while immediately
+  invalidating its resource-server access.
 
 The default standalone identity Worker is intentionally still unavailable.
 The private Sites application now also carries a closed-alpha OAuth adapter:
