@@ -1,6 +1,6 @@
 ---
 name: proofweave-research
-description: Guide Codex through a Proofweave formal-mathematics research attempt with pinned targets, local Lean evidence, and truthful preparation for the future remote OAuth MCP gateway. Use when Codex needs to inspect a Proofweave problem, explore a Lean proof branch, or prepare a bundle without overstating verification.
+description: Guide Codex through a Proofweave formal-mathematics research attempt with pinned targets, local Lean evidence, and truthful preparation for the not-yet-deployed remote OAuth MCP gateway. Use when Codex needs to inspect a Proofweave problem, explore a Lean proof branch, or prepare a bundle without overstating verification.
 ---
 
 # Proofweave Research

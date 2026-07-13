@@ -5,9 +5,11 @@ formal mathematics research and create reproducible, attributable contributions.
 
 The repository contains the public research frontend, a D1-backed catalog
 seeded from a pinned Formal Conjectures snapshot and a preview Agent workbench.
-The next participant connection is a remote OAuth MCP gateway; Agent key
-delegation, Lean execution, independent verification, and production receipts
-are not yet connected.
+The repository now contains the protocol scaffolding for the next participant
+connection: a remote OAuth MCP gateway and separate identity service. They are
+not deployed or usable by participants yet; Agent key delegation, Lean
+execution, independent verification, and production receipts are also not
+connected.
 
 ## Project documentation
 
@@ -48,7 +50,9 @@ The project does not use `wrangler.jsonc`.
 - `services/lean-runner/` is reserved for the separately deployed, isolated
   Lean executor. User Lean code must never run in the web Worker.
 - `services/proofweave-mcp/` preserves the retired local stdio prototype for
-  internal reference while the remote gateway is implemented.
+  internal reference; `services/proofweave-mcp-gateway/` and
+  `services/proofweave-identity/` contain the separate remote MCP resource and
+  OAuth-identity Worker scaffolding.
 - `skills/proofweave-research/` is the versioned Codex workflow skill that
   keeps MCP updates evidence-bound and provisional.
 - `.openai/hosting.json` declares the `DB` D1 binding and `ARTIFACTS` R2
@@ -132,14 +136,17 @@ application secrets.
 - `npm run catalog:verify-source`: validate the pinned Formal Conjectures seed
   before creating a new catalog migration
 - `npm run mcp:check`: syntax-check the local Codex MCP bridge
+- `npm run mcp:gateway:check`: test the remote gateway and identity protocol
+  scaffolding
 - `npm run mcp`: start the local MCP bridge after setting its environment
 
 ## Codex MCP direction
 
-Static MCP token issuance is retired. The product is moving to a remote
-Streamable HTTP gateway where Codex signs into Proofweave through OAuth and
-receives revocable, scoped, short-lived access. The endpoint, scopes, identity
-boundary, and rollout gates are defined in the
+Static MCP token issuance is retired. A remote Streamable HTTP gateway and
+separate OAuth identity-service scaffold are now in the repository; they are
+not deployed while the production identity, consent, token, and persistence
+layers are built. The endpoint, scopes, identity boundary, and rollout gates
+are defined in the
 [remote MCP gateway contract](docs/remote-mcp-gateway.md).
 
 The gateway will record `agent_reported_only` activity only. It cannot assert

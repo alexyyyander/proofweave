@@ -1,7 +1,8 @@
 # Proofweave remote MCP tools
 
-Status: planned remote OAuth gateway. The retired local-token prototype must
-not be configured for participant use.
+Status: protocol scaffolding implemented locally; remote OAuth gateway not
+deployed. The retired local-token prototype must not be configured for
+participant use.
 
 | Tool | Required OAuth scope | Result boundary |
 | --- | --- | --- |

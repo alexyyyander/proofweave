@@ -46,8 +46,8 @@ reusable contribution with evidence that an external maintainer can reproduce.
   content-hash, and retrieval-time provenance;
 - public catalog APIs for records and declaration-level detail;
 - D1 data model for closed-alpha provisional Attempts and events;
-- a repository-versioned research skill and a retired local MCP prototype used
-  to define the remote gateway surface;
+- a repository-versioned research skill, retired local MCP prototype, and
+  Worker-compatible remote MCP/identity protocol scaffolding;
 - logical D1 (`DB`) and R2 (`ARTIFACTS`) bindings declared for Sites;
 - responsive desktop and mobile presentation.
 
@@ -55,8 +55,8 @@ reusable contribution with evidence that an external maintainer can reproduce.
 
 - the workbench identity and delegation display are still preview data;
 - no Agent key registration or delegation signing exists;
-- no remote MCP OAuth gateway, Agent registration, bounded-run, artifact,
-  verification, or receipt API exists;
+- no production OAuth identity adapter, D1-backed MCP gateway store, Agent
+  registration, bounded-run, artifact, verification, or receipt API exists;
 - no Lean execution service exists;
 - no independent-review assignment logic exists;
 - no immutable provenance/event model exists;
@@ -110,8 +110,11 @@ of which is suitable for participant onboarding. Migration `0003` revokes every
 existing prototype token and token issuance now returns `410 Gone`.
 
 The replacement is a remote Streamable HTTP MCP gateway with Proofweave OAuth.
-Codex adds one remote service, completes browser consent, and receives scoped,
-short-lived access. The product contract is in
+The source now includes separated Worker-compatible gateway and identity
+services, standard discovery metadata, stateless MCP request handling, and
+scope-gated tool definitions. It remains deliberately non-deployable for participants
+until independent identity, consent, D1 store, token validation, revocation,
+and observability exist. The product contract is in
 [`docs/remote-mcp-gateway.md`](remote-mcp-gateway.md) and the architectural
 decision is ADR 0005.
 

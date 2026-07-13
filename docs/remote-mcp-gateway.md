@@ -17,8 +17,11 @@ that entry automatically.
 ## Required HTTP surface
 
 ```text
+Remote MCP gateway: mcp.proofweave.org
 POST /mcp                                  Streamable HTTP MCP endpoint
 GET  /.well-known/oauth-protected-resource Resource metadata
+
+Proofweave Identity: auth.proofweave.org
 GET  /.well-known/oauth-authorization-server Authorization-server metadata
 GET  /authorize                             Person sign-in and consent
 POST /token                                 OAuth code and refresh exchange
@@ -26,8 +29,8 @@ POST /register                              Optional dynamic client registration
 ```
 
 Unauthenticated MCP requests return `401` with a `WWW-Authenticate` header
-that includes the protected-resource metadata URL and the smallest required
-scope. Access tokens are audience-bound to `https://mcp.proofweave.org/mcp`.
+that includes the protected-resource metadata URL. Access tokens are
+audience-bound to `https://mcp.proofweave.org/mcp`.
 
 ## Initial tool contract
 
@@ -63,6 +66,17 @@ Isolated Lean runner           runner.proofweave.org
 The gateway is a Cloudflare Worker-compatible service with D1-backed consent,
 client, Agent-installation, and audit records. The Lean runner remains isolated
 and never receives the MCP user's OAuth access token.
+
+## Implementation status
+
+The repository now contains Worker-compatible gateway and identity-service
+modules, protected-resource and authorization-server discovery, stateless
+Streamable HTTP request handling, and scope-gated tool definitions. Stateless
+handling deliberately verifies OAuth on every tool request rather than relying
+on memory local to one Worker isolate. They are protocol scaffolding, not a live
+participant integration: the checked-in identity
+adapter intentionally returns `503` for authorize, token, and registration,
+and the gateway store is unconfigured. No public OAuth URL is deployed yet.
 
 ## Rollout gates
 
