@@ -78,12 +78,20 @@ export function FocusAction({
   isAuthenticated,
   signInPath,
   storageAvailable,
+  isRefreshing,
+  refreshError,
+  refreshedAt,
+  onRefresh,
 }: {
   profile: DelegationProfile | null;
   attempts: readonly McpAttempt[];
   isAuthenticated: boolean;
   signInPath: string;
   storageAvailable: boolean;
+  isRefreshing: boolean;
+  refreshError: string | null;
+  refreshedAt: string | null;
+  onRefresh: () => void;
 }) {
   const latestAttempt = attempts[0] ?? null;
   const action = nextAction({
@@ -117,7 +125,10 @@ export function FocusAction({
       <div className="next-action-controls">
         <Link className="button button-primary focus-primary" href={action.href}>{action.label}</Link>
         {latestAttempt && <Link className="workspace-pause-button" href="#attempt-activity">Inspect recorded activity</Link>}
+        {latestAttempt && <button className="workspace-secondary-button" type="button" disabled={isRefreshing} onClick={onRefresh}>{isRefreshing ? "Refreshing records…" : "Refresh records"}</button>}
       </div>
+      {refreshedAt && <p className="activity-refresh-status" role="status">Records refreshed {formatTimestamp(refreshedAt)}.</p>}
+      {refreshError && <p className="activity-refresh-error" role="alert">{refreshError}</p>}
     </div>
   </section>;
 }

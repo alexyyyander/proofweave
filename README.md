@@ -20,7 +20,8 @@ participant-ready yet.
 
 The workbench presents durable Attempt records and their immutable activity
 timeline only. It never substitutes sample Lean source, local progress, or a
-fictional compiler result for Agent-supplied evidence.
+fictional compiler result for Agent-supplied evidence. An authenticated owner
+can refresh that owner-scoped record after a remote Agent reports new work.
 
 Signed-in closed-alpha reviewers can use `/reviews` to inspect only the
 assignments addressed to their Person and record an immutable accept or decline

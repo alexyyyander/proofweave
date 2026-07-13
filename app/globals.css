@@ -197,3 +197,11 @@ h1, h2, h3, p { margin-top: 0; }
 .event-list small { color: var(--ink-faint); display: block; font-size: 9px; margin-top: 5px; }
 .event-empty { color: var(--ink-soft); font-size: 12px; line-height: 1.55; margin: 0; }
 #attempt-activity { scroll-margin-top: 24px; }
+.workspace-secondary-button { background: transparent; border: 1px solid rgba(222,231,255,.42); color: #dce6ff; cursor: pointer; font: inherit; font-size: 11px; font-weight: 600; padding: 11px 12px; }
+.workspace-secondary-button:hover { border-color: #fff; color: #fff; }
+.workspace-secondary-button:disabled { cursor: wait; opacity: .6; }
+.activity-refresh-status, .activity-refresh-error { font-size: 10px !important; line-height: 1.45; margin: 10px 0 0 !important; }
+.activity-refresh-status { color: #bce3ca !important; }
+.activity-refresh-error { color: #ffcbc6 !important; }
+
+@media (max-width: 620px) { .workspace-secondary-button { justify-content: center; width: 100%; } }

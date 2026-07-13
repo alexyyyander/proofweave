@@ -92,9 +92,9 @@ reusable contribution with evidence that an external maintainer can reproduce.
 - the workbench now renders only persisted provisional Attempt events and
   explicit evidence gates; it does not simulate a proof branch, compiler
   output, Agent progress, or bundle submission. An authenticated closed-alpha
-  owner can open a persistent provisional Attempt under a valid delegated
-  Agent authority, but subsequent Agent work and bundle staging require the
-  separately deployed remote control plane;
+  owner can open or refresh a persistent provisional Attempt under a valid
+  delegated Agent authority, but subsequent Agent work and bundle staging
+  require the separately deployed remote control plane;
 - no public identity, account recovery, cross-device key-rotation policy, or
   participant-ready delegation service exists; closed-alpha browser-held keys
   now have proof-of-possession and append-only revoke/replace controls, but

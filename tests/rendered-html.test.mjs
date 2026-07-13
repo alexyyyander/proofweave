@@ -1172,6 +1172,7 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
   assert.match(ownerWorkbenchHtml, /Selected catalog target/i);
   assert.match(ownerWorkbenchHtml, /Erdős Problem 865: k = 2 variant/i);
   assert.match(ownerWorkbenchHtml, /Attempt opened by its owner/i);
+  assert.match(ownerWorkbenchHtml, /Refresh records/i);
 
   const guardedKeyRevocation = await render(`/api/me/keys/${encodeURIComponent(key.id)}/revoke`, {
     method: "POST",
