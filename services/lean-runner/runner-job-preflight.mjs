@@ -15,15 +15,19 @@ export class RunnerJobPreflightError extends Error {
  * projection behind.
  */
 export class RunnerJobPreflight {
-  constructor({ runStore, bundleResolver }) {
+  constructor({ runStore, bundleResolver, imageRegistry }) {
     if (!runStore || typeof runStore.find !== "function" || typeof runStore.start !== "function") {
       throw new TypeError("RunnerJobPreflight requires a Run store with find() and start().");
     }
     if (!bundleResolver || typeof bundleResolver.resolve !== "function") {
       throw new TypeError("RunnerJobPreflight requires a D1/R2 Bundle resolver.");
     }
+    if (!imageRegistry || typeof imageRegistry.resolve !== "function") {
+      throw new TypeError("RunnerJobPreflight requires an approved Runner image registry.");
+    }
     this.runStore = runStore;
     this.bundleResolver = bundleResolver;
+    this.imageRegistry = imageRegistry;
   }
 
   /**
@@ -38,6 +42,7 @@ export class RunnerJobPreflight {
       return skipped(current);
     }
 
+    const image = this.imageRegistry.resolve(normalizedMessage.request);
     const resolvedBundle = await this.bundleResolver.resolve(normalizedMessage.request);
     let started;
     try {
@@ -57,6 +62,7 @@ export class RunnerJobPreflight {
       action: "execute",
       run: started,
       message: normalizedMessage,
+      image,
       resolvedBundle,
     });
   }
@@ -87,6 +93,7 @@ function skipped(run) {
     reason: `run_${run.state}`,
     run,
     message: null,
+    image: null,
     resolvedBundle: null,
   });
 }

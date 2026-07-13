@@ -45,6 +45,11 @@ export {
 } from "./runner-job-preflight.mjs";
 
 export {
+  PinnedRunnerImageRegistry,
+  RunnerImagePolicyError,
+} from "./runner-image-policy.mjs";
+
+export {
   RunnerDispatchError,
   RunnerOrchestrator,
 } from "./orchestrator.mjs";

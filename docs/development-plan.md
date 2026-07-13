@@ -66,6 +66,8 @@ reusable contribution with evidence that an external maintainer can reproduce.
   re-checks request-to-bundle/object binding before source transfer;
 - Runner preflight that binds an authenticated Queue delivery to exactly one
   persisted Run before it can transition to `running`;
+- deployment-owned pinned-image registry that binds image digests to exact
+  Lean and Mathlib environments before a Run can be claimed;
 - operator-managed runner-key allowlist with signed-result verification before
   immutable Run evidence is accepted;
 - independent Person-level review assignments and review-delegated Agent

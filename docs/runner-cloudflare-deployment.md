@@ -39,8 +39,8 @@ per-Run wall-time, output, archive, axiom, or cleanup enforcement.
 ## Required gates before deployment
 
 1. Build and independently inspect a Linux `amd64` Lean image, then record its
-   immutable `@sha256:` digest in both the Runner deployment config and each
-   Runner request policy.
+   immutable `@sha256:` digest and the exact bundled Lean/Mathlib revisions in
+   the Runner image registry. Each request must match that registry.
 2. Complete the Runner Worker after its verified D1/R2 bundle resolution:
    streaming source transfer, clean workspace creation, explicit process
    timeout/resource controls, result signing, D1 result persistence,

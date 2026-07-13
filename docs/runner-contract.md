@@ -23,6 +23,14 @@ The request's bundle reference must be a valid
 [`pw-artifact-bundle-v1`](artifact-bundle-contract.md) manifest; the runner
 uses its hashes rather than an unpinned working tree.
 
+`PinnedRunnerImageRegistry` is a deployment-owned allowlist that binds each
+approved image digest to one exact Lean toolchain and Mathlib revision. The
+Runner rejects a digest absent from that registry, or a request that pairs an
+otherwise approved digest with a different environment. This closes the gap
+between a syntactically pinned image reference and an actually reproducible
+toolchain; the configured registry must be independently checked against the
+image before deployment.
+
 Before a Container can receive any source bytes, `D1R2RunnerBundleResolver`
 re-fetches the canonical manifest from R2, re-hashes it, compares it with the
 immutable D1 manifest record, re-verifies the Agent signature, and checks the
@@ -51,10 +59,11 @@ signature verifies.
 
 After authentication, `RunnerJobPreflight` compares the queue request hash,
 Attempt, and Bundle hash with the single persisted D1 Run. It resolves the
-immutable Bundle before atomically changing that Run from `queued` to
-`running`; duplicate, already-running, cancelled, or terminal deliveries are
-acknowledged as no-ops rather than starting another Container. A storage or
-identity failure does not claim the Run and must be retried or sent to the DLQ.
+immutable Bundle and deployment-owned image registry before atomically changing
+that Run from `queued` to `running`; duplicate, already-running, cancelled, or
+terminal deliveries are acknowledged as no-ops rather than starting another
+Container. A storage, image, or identity failure does not claim the Run and
+must be retried or sent to the DLQ.
 
 The matching private key is a control-plane deployment secret, never a D1
 value, Artifact Bundle field, queue message field, browser value, or repository
