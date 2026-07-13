@@ -312,12 +312,14 @@ export class D1RemoteMcpGatewayStore {
     });
     if (existing) {
       const run = await this.requireRunForAttempt(existing.runId, assignment.attempt.id);
+      const replayEvidence = await this.findVerificationReplayEvidence(existing.id);
       return Object.freeze({
         replay: existing,
         run,
         runCreated: false,
         queueDeliveryState: null,
-        verificationState: "fresh_replay_recorded",
+        replayEvidence,
+        verificationState: replayEvidence ? "fresh_replay_evidence_recorded" : "fresh_replay_recorded",
       });
     }
     if (!this.runnerDispatcher || typeof this.runnerDispatcher.queueBundle !== "function") {
@@ -351,12 +353,14 @@ export class D1RemoteMcpGatewayStore {
       idempotencyKey: input.idempotencyKey,
     });
     if (!replay) throw new Error("Verification replay was queued without immutable replay provenance.");
+    const replayEvidence = await this.findVerificationReplayEvidence(replay.id);
     return Object.freeze({
       replay,
       run: queued.run,
       runCreated: queued.runCreated,
       queueDeliveryState: queued.delivery?.deliveryState ?? null,
-      verificationState: "fresh_replay_recorded",
+      replayEvidence,
+      verificationState: replayEvidence ? "fresh_replay_evidence_recorded" : "fresh_replay_recorded",
     });
   }
 
@@ -373,11 +377,13 @@ export class D1RemoteMcpGatewayStore {
     });
     if (!replay) throw new GatewayStoreNotFoundError("Verification replay not found.");
     const run = await this.requireRunForAttempt(replay.runId, assignment.attempt.id);
+    const replayEvidence = await this.findVerificationReplayEvidence(replay.id);
     return Object.freeze({
       replay,
       run,
       events: Object.freeze(await this.runStore.listEvents(run.id)),
-      verificationState: run.runnerResultHash ? "fresh_replay_evidence_recorded" : "fresh_replay_recorded",
+      replayEvidence,
+      verificationState: replayEvidence ? "fresh_replay_evidence_recorded" : "fresh_replay_recorded",
     });
   }
 
@@ -590,6 +596,30 @@ export class D1RemoteMcpGatewayStore {
       .bind(assignmentId, requesterAgentId, delegationCertificateId, idempotencyKey)
       .first();
     return row ? toVerificationReplay(row) : null;
+  }
+
+  async findVerificationReplayEvidence(replayId) {
+    const row = await this.database
+      .prepare(
+        `SELECT evidence.id, evidence.replay_id, evidence.run_id,
+                evidence.runner_result_hash, evidence.evidence_hash, evidence.recorded_at
+         FROM verification_replay_evidence AS evidence
+         INNER JOIN run_results AS result ON result.run_id = evidence.run_id
+         INNER JOIN runs AS run ON run.id = evidence.run_id
+         WHERE evidence.replay_id = ?
+           AND result.result_hash = evidence.runner_result_hash
+           AND run.runner_result_hash = evidence.runner_result_hash`,
+      )
+      .bind(replayId)
+      .first();
+    return row ? Object.freeze({
+      id: row.id,
+      replayId: row.replay_id,
+      runId: row.run_id,
+      runnerResultHash: row.runner_result_hash,
+      evidenceHash: row.evidence_hash,
+      recordedAt: row.recorded_at,
+    }) : null;
   }
 
   requireArtifactStore() {

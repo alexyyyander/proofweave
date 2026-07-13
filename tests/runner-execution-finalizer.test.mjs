@@ -41,6 +41,15 @@ test("execution finalizer persists outputs before signing and recording a Run re
         return signed;
       },
     },
+    replayEvidenceStore: {
+      async persist(input) {
+        calls.push("replay-evidence");
+        assert.equal(input.run, run);
+        assert.equal(input.result, signed);
+        assert.equal(input.receivedAt, "2026-07-13T00:00:01Z");
+        return { evidenceHash: sha("e") };
+      },
+    },
   });
 
   const finalized = await finalizer.finalize({
@@ -51,10 +60,12 @@ test("execution finalizer persists outputs before signing and recording a Run re
 
   assert.equal(finalized.run.state, "succeeded");
   assert.equal(finalized.result, signed);
+  assert.equal(finalized.replayEvidence?.evidenceHash, sha("e"));
   assert.deepEqual(calls, [
     "find:run:finalizer",
     "persist",
     "sign",
+    "replay-evidence",
     "record:run:finalizer:2026-07-13T00:00:01Z",
   ]);
 });

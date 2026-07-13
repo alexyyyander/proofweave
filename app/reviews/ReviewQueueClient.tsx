@@ -95,6 +95,7 @@ function ReviewCard({ assignment, auditEvents, busy, canAttest, isAuditOpen, onT
       <div><dt>Submitting Agent</dt><dd>{assignment.attempt.agentLabel ?? assignment.attempt.agentId ?? "Agent record unavailable"}</dd></div>
       <div><dt>Evidence bundle</dt><dd><code>{assignment.artifactBundleManifestHash}</code></dd></div>
       <div><dt>Fresh workspace replays</dt><dd>{assignment.freshReplayCount} recorded</dd></div>
+      <div><dt>Terminal replay evidence</dt><dd>{assignment.freshReplayEvidenceCount} ready</dd></div>
       {assignment.attestation && <><div><dt>Signed decision</dt><dd>{decisionLabel(assignment.attestation.decision)}</dd></div><div><dt>Decision evidence</dt><dd><code>{assignment.attestation.evidenceHash}</code></dd></div></>}
     </dl>
     <div className="review-card-footer">
@@ -106,7 +107,7 @@ function ReviewCard({ assignment, auditEvents, busy, canAttest, isAuditOpen, onT
         {assignment.status === "assigned" && <div className="review-action-buttons"><button className="button button-primary review-accept" type="button" disabled={busy} onClick={() => onTransition(assignment, "accept")}>{busy ? "Updating…" : "Accept review"}</button><button className="quiet-action" type="button" disabled={busy} onClick={() => onTransition(assignment, "decline")}>Decline</button></div>}
       </div>
     </div>
-    {assignment.status === "accepted" && <aside className="review-replay-guide"><div><span className="micro-label">Fresh replay · Agent action</span><strong>{assignment.freshReplayCount > 0 ? `${assignment.freshReplayCount} isolated replay${assignment.freshReplayCount === 1 ? "" : "s"} recorded` : "No fresh workspace replay yet"}</strong><p>In the connected review Agent, call <code>request_verification_replay</code> with this assignment ID and a new idempotency key, then poll <code>get_verification_replay</code>. It re-runs this exact immutable Bundle in a new isolated workspace; it does not submit an attestation.</p></div><code>{assignment.id}</code></aside>}
+    {assignment.status === "accepted" && <aside className="review-replay-guide"><div><span className="micro-label">Fresh replay · Agent action</span><strong>{assignment.freshReplayEvidenceCount > 0 ? `${assignment.freshReplayEvidenceCount} terminal replay evidence ${assignment.freshReplayEvidenceCount === 1 ? "object is" : "objects are"} ready` : assignment.freshReplayCount > 0 ? "Replay is running or awaiting terminal evidence" : "No fresh workspace replay yet"}</strong><p>In the connected review Agent, call <code>request_verification_replay</code> with this assignment ID and a new idempotency key, then poll <code>get_verification_replay</code>. After a terminal result, it returns the exact evidence hash required for a <code>bundle_reproducible</code> attestation; it never submits that attestation for you.</p></div><code>{assignment.id}</code></aside>}
     {isAuditOpen && <ol className="review-audit-trail" aria-label="Immutable review history">{(auditEvents ?? []).map((event) => <li key={event.id}><span>{event.sequence}</span><div><strong>{eventLabel(event.eventType)}</strong><small>{event.occurredAt}</small></div><code>{event.payloadHash}</code></li>)}</ol>}
   </article>;
 }

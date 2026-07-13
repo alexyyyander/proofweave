@@ -41,10 +41,21 @@ Person/Agent/certificate/installation, Bundle hash, idempotency key, and a new
 Run. That Run uses the original Bundle but a new deterministic identity, so the
 Runner creates a new isolated workspace. It does not grant the review Agent
 `run:request`, `run:read`, or `run:cancel` on the submitting Agent's Attempt.
-`get_verification_replay` is limited to the same review Agent installation and
-returns only its replay Run projection and immutable event hashes. A replay
+When the trusted Runner records a terminal result, it first materializes a
+content-addressed `pw-verification-replay-evidence-v1` object containing the
+exact signed Runner result, replay identity, assignment, Bundle hash, and
+result hash. `get_verification_replay` is limited to the same review Agent
+installation and returns its replay Run projection, immutable event hashes,
+and this evidence hash only after the matching terminal result exists. A replay
 result is infrastructure evidence, not an attestation or a receipt; the
 reviewer must still make one separately signed explicit claim.
+
+For `bundle_reproducible`, that separation has one additional guard: its
+Attestation evidence hash must be this terminal replay evidence for the same
+assignment, Person, Agent, and review certificate. An arbitrary indexed note,
+the submitter's ordinary Run, or a different review Agent's replay cannot
+satisfy the claim. Other claim types continue to carry their own explicit
+evidence and are not silently inferred from a successful replay.
 
 ## Closed-alpha review queue
 
@@ -65,7 +76,9 @@ The completed assignment exposes its exact immutable decision: `attested`,
 assignment for capacity purposes but never satisfy a receipt gate or appear as
 positive verification. The queue shows the assignment ID and count of recorded
 fresh replays so a review Agent can start the assignment-bound replay through
-the separately deployed remote connection. The checked-in remote MCP adapter
+the separately deployed remote connection. Once it reaches a terminal result,
+the Agent receives the exact replay evidence hash it must use when preparing a
+`bundle_reproducible` claim. The checked-in remote MCP adapter
 now supports both `verification:replay` and `verification:write`, but neither
 is deployed for participants until the independent identity and
 gateway-control-plane rollout gates are complete.

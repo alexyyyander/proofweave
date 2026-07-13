@@ -18,6 +18,7 @@ import { RunnerWorkspaceTransfer } from "../services/lean-runner/runner-workspac
 import { ContainerLeanExecutor } from "../services/lean-runner/container-lean-executor.mjs";
 import { createContainerWorkspaceHttpHandler } from "../services/lean-runner/container-workspace-runtime.mjs";
 import { D1VerificationStore } from "../services/verification/d1-verification-store.mjs";
+import { D1R2VerificationReplayEvidenceStore } from "../services/verification/d1-r2-verification-replay-evidence-store.mjs";
 import { D1ContributionReceiptIssuerKeyStore } from "../services/receipts/d1-contribution-receipt-issuer-key-store.mjs";
 import { D1ContributionReceiptStore } from "../services/receipts/d1-contribution-receipt-store.mjs";
 import {
@@ -77,7 +78,6 @@ test("a local evidence-chain fixture reaches a signed receipt without crossing t
     contentType: "application/json",
   });
   const reviewEvidence = await Promise.all([
-    artifacts.putObject({ bytes: "fresh workspace replay", filename: "bundle-reproducible.txt", contentType: "text/plain" }),
     artifacts.putObject({ bytes: "kernel accepted fixture", filename: "kernel-accepted.txt", contentType: "text/plain" }),
     artifacts.putObject({ bytes: "project acceptance fixture", filename: "project-accepted.txt", contentType: "text/plain" }),
   ]);
@@ -142,21 +142,82 @@ test("a local evidence-chain fixture reaches a signed receipt without crossing t
   assert.equal(finalized.outputs.stdout.created, true);
 
   const verification = new D1VerificationStore(database);
+  const replayAssignmentId = "assignment:closed-alpha:bundle_reproducible";
+  await verification.assign({
+    id: replayAssignmentId,
+    artifactBundleManifestHash: staged.bundle.manifestHash,
+    claimType: "bundle_reproducible",
+    verifierPersonId: "person:bob",
+    assignedAt: "2026-07-13T00:00:05Z",
+  });
+  await verification.accept(replayAssignmentId, "person:bob", "2026-07-13T00:00:06Z");
+  const replayQueued = await runStore.queue({
+    id: "run:closed-alpha-fresh-replay",
+    attemptId: bundle.attemptId,
+    idempotencyKey: "closed-alpha-fresh-replay",
+    requestHash: sha("b"),
+    artifactBundleHash: staged.bundle.manifestHash,
+    queuedAt: "2026-07-13T00:00:07Z",
+  });
+  await database
+    .prepare(
+      `INSERT INTO verification_replays (
+        id, assignment_id, run_id, artifact_bundle_manifest_hash,
+        requester_person_id, requester_agent_id, delegation_certificate_id,
+        agent_installation_id, idempotency_key, requested_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    )
+    .bind(
+      "verification-replay:closed-alpha", replayAssignmentId, replayQueued.run.id, staged.bundle.manifestHash,
+      "person:bob", "agent:bob-reviewer", "delegation:bob-reviewer",
+      "installation:closed-alpha-bob-reviewer", "closed-alpha-fresh-workspace", "2026-07-13T00:00:07Z",
+    )
+    .run();
+  await runStore.prepare(replayQueued.run.id, "2026-07-13T00:00:08Z");
+  const replayRunning = await runStore.start(replayQueued.run.id, "2026-07-13T00:00:09Z");
+  const replayExecution = {
+    ...execution,
+    result: {
+      ...execution.result,
+      jobId: replayRunning.id,
+      requestHash: replayRunning.requestHash,
+      startedAt: "2026-07-13T00:00:09Z",
+      finishedAt: "2026-07-13T00:00:10Z",
+    },
+  };
+  const replayFinalized = await new RunnerExecutionFinalizer({
+    runStore,
+    outputStore: new D1R2RunnerOutputStore({ database, bucket }),
+    replayEvidenceStore: new D1R2VerificationReplayEvidenceStore({ database, bucket }),
+    resultSigner: new RunnerExecutionResultSigner({
+      runnerKeyId: "runner-key:closed-alpha",
+      runnerPrivateKey: keys.runner.privateKey,
+    }),
+  }).finalize({
+    runId: replayRunning.id,
+    execution: replayExecution,
+    receivedAt: "2026-07-13T00:00:10Z",
+  });
+  assert.equal(replayFinalized.run.state, "succeeded");
+  assert.equal(replayFinalized.replayEvidence?.assignmentId, replayAssignmentId);
+  assert.equal(replayFinalized.replayEvidence?.artifactBundleHash, staged.bundle.manifestHash);
+
   const reviewInputs = [
-    ["bundle_reproducible", "bob", reviewEvidence[0]],
-    ["kernel_accepted", "bob", reviewEvidence[1]],
-    ["project_accepted", "carol", reviewEvidence[2]],
+    ["bundle_reproducible", "bob", { contentHash: replayFinalized.replayEvidence.evidenceHash }, replayAssignmentId],
+    ["kernel_accepted", "bob", reviewEvidence[0], "assignment:closed-alpha:kernel_accepted"],
+    ["project_accepted", "carol", reviewEvidence[1], "assignment:closed-alpha:project_accepted"],
   ];
-  for (const [claimType, reviewer, evidence] of reviewInputs) {
-    const assignmentId = `assignment:closed-alpha:${claimType}`;
-    await verification.assign({
-      id: assignmentId,
-      artifactBundleManifestHash: staged.bundle.manifestHash,
-      claimType,
-      verifierPersonId: `person:${reviewer}`,
-      assignedAt: "2026-07-13T00:00:05Z",
-    });
-    await verification.accept(assignmentId, `person:${reviewer}`, "2026-07-13T00:00:06Z");
+  for (const [claimType, reviewer, evidence, assignmentId] of reviewInputs) {
+    if (assignmentId !== replayAssignmentId) {
+      await verification.assign({
+        id: assignmentId,
+        artifactBundleManifestHash: staged.bundle.manifestHash,
+        claimType,
+        verifierPersonId: `person:${reviewer}`,
+        assignedAt: "2026-07-13T00:00:05Z",
+      });
+      await verification.accept(assignmentId, `person:${reviewer}`, "2026-07-13T00:00:06Z");
+    }
     const attestation = await signedAttestation({
       claimType,
       assignmentId,
@@ -349,19 +410,92 @@ test("a local Lean fixture binds actual execution evidence into the signed recei
     assert.equal(finalized.run.state, "succeeded");
     assert.equal(finalized.result.kernelStatus, "accepted");
 
+    const verification = new D1VerificationStore(database);
+    const replayAssignmentId = "assignment:closed-alpha-local-lean:bundle_reproducible";
+    await verification.assign({
+      id: replayAssignmentId,
+      artifactBundleManifestHash: staged.bundle.manifestHash,
+      claimType: "bundle_reproducible",
+      verifierPersonId: "person:bob",
+      assignedAt: "2026-07-13T00:00:07Z",
+    });
+    await verification.accept(replayAssignmentId, "person:bob", "2026-07-13T00:00:08Z");
+    const replayRequest = await createLeanRunnerRequest({
+      jobId: "run:closed-alpha-local-lean-fresh-replay",
+      idempotencyKey: "closed-alpha-local-lean-fresh-replay",
+      artifactBundle: bundle,
+      imageDigest,
+      limits: request.limits,
+    });
+    const replayQueued = await runStore.queue({
+      id: replayRequest.jobId,
+      attemptId: replayRequest.attemptId,
+      idempotencyKey: replayRequest.idempotencyKey,
+      requestHash: await leanRunnerRequestHash(replayRequest),
+      artifactBundleHash: staged.bundle.manifestHash,
+      queuedAt: "2026-07-13T00:00:09Z",
+    });
+    await database
+      .prepare(
+        `INSERT INTO verification_replays (
+          id, assignment_id, run_id, artifact_bundle_manifest_hash,
+          requester_person_id, requester_agent_id, delegation_certificate_id,
+          agent_installation_id, idempotency_key, requested_at
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      )
+      .bind(
+        "verification-replay:closed-alpha-local-lean", replayAssignmentId, replayQueued.run.id, staged.bundle.manifestHash,
+        "person:bob", "agent:bob-reviewer", "delegation:bob-reviewer",
+        "installation:closed-alpha-bob-reviewer", "closed-alpha-local-lean-fresh-workspace", "2026-07-13T00:00:09Z",
+      )
+      .run();
+    const replayPreparing = await runStore.prepare(replayQueued.run.id, "2026-07-13T00:00:10Z");
+    let replayExecutionInstant = 11;
+    const replayHandler = createContainerWorkspaceHttpHandler({
+      stagingRoot: join(root, "staging"),
+      workspaceRoot: join(root, "workspaces"),
+      executor: new ContainerLeanExecutor({
+        networkIsolated: true,
+        resourceLimitsEnforced: true,
+        now: () => new Date(`2026-07-13T00:00:${String(replayExecutionInstant++).padStart(2, "0")}Z`),
+      }),
+    });
+    await new RunnerWorkspaceTransfer({ bucket }).stage({
+      run: replayPreparing,
+      resolvedBundle,
+      container: { fetch: replayHandler },
+    });
+    const replayRunning = await runStore.start(replayQueued.run.id, "2026-07-13T00:00:11Z");
+    const replayExecution = await new RunnerContainerExecutionClient().execute({
+      container: { fetch: replayHandler },
+      run: replayRunning,
+      request: replayRequest,
+    });
+    const replayFinalized = await new RunnerExecutionFinalizer({
+      runStore,
+      outputStore: new D1R2RunnerOutputStore({ database, bucket }),
+      replayEvidenceStore: new D1R2VerificationReplayEvidenceStore({ database, bucket }),
+      resultSigner: new RunnerExecutionResultSigner({
+        runnerKeyId: "runner-key:closed-alpha",
+        runnerPrivateKey: keys.runner.privateKey,
+      }),
+    }).finalize({
+      runId: replayRunning.id,
+      execution: replayExecution,
+      receivedAt: "2026-07-13T00:00:13Z",
+    });
+    assert.equal(replayFinalized.replayEvidence?.assignmentId, replayAssignmentId);
+
     const reviewEvidence = await Promise.all([
-      artifacts.putObject({ bytes: "fixture independent workspace reproduction", filename: "local-bundle-reproducible.txt", contentType: "text/plain" }),
       artifacts.putObject({ bytes: "fixture independent kernel inspection", filename: "local-kernel-accepted.txt", contentType: "text/plain" }),
       artifacts.putObject({ bytes: "fixture project acceptance", filename: "local-project-accepted.txt", contentType: "text/plain" }),
     ]);
-    const verification = new D1VerificationStore(database);
-    for (const [claimType, reviewer, evidence] of [
-      ["bundle_reproducible", "bob", reviewEvidence[0]],
-      ["kernel_accepted", "bob", reviewEvidence[1]],
-      ["project_accepted", "carol", reviewEvidence[2]],
+    for (const [claimType, reviewer, evidence, assignmentId] of [
+      ["bundle_reproducible", "bob", { contentHash: replayFinalized.replayEvidence.evidenceHash }, replayAssignmentId],
+      ["kernel_accepted", "bob", reviewEvidence[0], "assignment:closed-alpha-local-lean:kernel_accepted"],
+      ["project_accepted", "carol", reviewEvidence[1], "assignment:closed-alpha-local-lean:project_accepted"],
     ]) {
-      const assignmentId = `assignment:closed-alpha-local-lean:${claimType}`;
-      await verification.assign({
+      if (assignmentId !== replayAssignmentId) await verification.assign({
         id: assignmentId,
         artifactBundleManifestHash: staged.bundle.manifestHash,
         claimType,
@@ -462,6 +596,13 @@ async function seedDelegatedPeopleAndAttempt(d1, fixtureKeys) {
     ["INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint) VALUES (?, ?, ?, ?, ?)", ["agent:bob-reviewer", "person:bob", "Bob reviewer", fixtureKeys.bob.publicKey, sha("7")]],
     ["INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint) VALUES (?, ?, ?, ?, ?)", ["agent:carol-curator", "person:carol", "Carol curator", fixtureKeys.carol.publicKey, sha("8")]],
     ...delegationStatements(fixtureKeys),
+    ["INSERT INTO oauth_clients (id, client_name, redirect_uris_json) VALUES (?, ?, ?)", ["client:closed-alpha-reviewer", "Closed alpha reviewer", '["https://codex.example.test/callback"]']],
+    [
+      `INSERT INTO agent_installations (
+        id, person_id, agent_id, delegation_certificate_id, client_id, label
+      ) VALUES (?, ?, ?, ?, ?, ?)`,
+      ["installation:closed-alpha-bob-reviewer", "person:bob", "agent:bob-reviewer", "delegation:bob-reviewer", "client:closed-alpha-reviewer", "Closed alpha reviewer"],
+    ],
     [
       `INSERT INTO agent_attempts (
         id, person_id, problem_revision_id, agent_id, delegation_certificate_id,

@@ -279,8 +279,11 @@ catalog/Attempt/progress store, bounded R2/D1 artifact-Bundle staging, and a
 review-scope-bound signed-attestation admission path are implemented locally.
 An accepted review assignment can also authorize its review Agent to queue and
 inspect a new isolated replay of the exact immutable Bundle; it cannot access
-the submitting Agent's ordinary Run, and replay evidence remains distinct from
-a signed attestation.
+the submitting Agent's ordinary Run. A terminal replay is materialized as a
+content-addressed signed-Runner evidence object, and a
+`bundle_reproducible` attestation must cite that exact same-Agent replay
+evidence. The evidence remains distinct from the separately signed human/Agent
+claim.
 The deployable resource-server source additionally enforces Person-aggregated,
 opaque D1 request quotas before each authorized MCP tool operation.
 Dynamic client registration is closed unless an operator supplies the private

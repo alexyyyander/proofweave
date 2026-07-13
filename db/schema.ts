@@ -969,6 +969,41 @@ export const verificationReplays = sqliteTable(
   ],
 );
 
+// A materialized, signed Runner result for a fresh independent replay. The
+// content-addressed evidence object remains infrastructure evidence until the
+// assigned review Agent separately signs an explicit claim.
+export const verificationReplayEvidence = sqliteTable(
+  "verification_replay_evidence",
+  {
+    id: text("id").primaryKey(),
+    replayId: text("replay_id")
+      .notNull()
+      .unique()
+      .references(() => verificationReplays.id, { onDelete: "restrict" }),
+    assignmentId: text("assignment_id")
+      .notNull()
+      .references(() => verificationAssignments.id, { onDelete: "restrict" }),
+    runId: text("run_id")
+      .notNull()
+      .unique()
+      .references(() => runs.id, { onDelete: "restrict" }),
+    artifactBundleManifestHash: text("artifact_bundle_manifest_hash")
+      .notNull()
+      .references(() => artifactBundles.manifestHash, { onDelete: "restrict" }),
+    runnerResultHash: text("runner_result_hash").notNull(),
+    evidenceHash: text("evidence_hash")
+      .notNull()
+      .unique()
+      .references(() => artifactObjects.contentHash, { onDelete: "restrict" }),
+    canonicalEvidence: text("canonical_evidence").notNull(),
+    recordedAt: text("recorded_at").notNull(),
+    createdAt,
+  },
+  (table) => [
+    index("verification_replay_evidence_assignment_idx").on(table.assignmentId, table.recordedAt),
+  ],
+);
+
 export const verificationAssignmentEvents = sqliteTable(
   "verification_assignment_events",
   {

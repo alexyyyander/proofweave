@@ -5,6 +5,11 @@ import {
   verificationClaimTypes,
   verifyVerificationAttestationSignature,
 } from "../../packages/protocol/verification-attestation.mjs";
+import {
+  normalizeVerificationReplayEvidence,
+  verificationReplayEvidenceHash,
+} from "../../packages/protocol/verification-replay-evidence.mjs";
+import { normalizeLeanRunnerResult } from "../../packages/protocol/lean-runner.mjs";
 import { closedAlphaReviewLimits } from "../../packages/domain/attempt-policy.mjs";
 
 export class VerificationStoreConflictError extends Error {
@@ -207,6 +212,9 @@ export class D1VerificationStore {
     }
     const evidence = await this.database.prepare("SELECT content_hash FROM artifact_objects WHERE content_hash = ?").bind(normalized.evidenceHash).first();
     if (!evidence) throw new VerificationStoreValidationError("Verification attestation evidence is not in the immutable artifact index.");
+    if (normalized.claimType === "bundle_reproducible") {
+      await this.assertFreshReplayEvidence(assignment, normalized);
+    }
 
     const next = Object.freeze({ ...assignment, status: "completed", completedAt: normalized.attestedAt });
     await this.database
@@ -313,6 +321,77 @@ export class D1VerificationStore {
       (row.signer_key_revoked_at && eventTime >= Date.parse(row.signer_key_revoked_at))
     ) {
       throw new VerificationStoreValidationError("Verification attestation occurred outside valid review delegation authority.");
+    }
+  }
+
+  /**
+   * Reproducibility is the one claim whose evidence must be the terminal
+   * output of this exact review Agent's fresh isolated replay. A plain indexed
+   * note, an owner Run, or another review Agent's replay cannot satisfy it.
+   */
+  async assertFreshReplayEvidence(assignment, attestation) {
+    const row = await this.database
+      .prepare(
+        `SELECT
+          evidence.id, evidence.replay_id, evidence.assignment_id, evidence.run_id,
+          evidence.artifact_bundle_manifest_hash, evidence.runner_result_hash,
+          evidence.evidence_hash, evidence.canonical_evidence, evidence.recorded_at,
+          replay.requester_person_id, replay.requester_agent_id,
+          replay.delegation_certificate_id, replay.artifact_bundle_manifest_hash AS replay_artifact_bundle_manifest_hash,
+          run.runner_result_hash AS run_runner_result_hash,
+          result.result_hash, result.canonical_result
+         FROM verification_replay_evidence AS evidence
+         INNER JOIN verification_replays AS replay ON replay.id = evidence.replay_id
+         INNER JOIN runs AS run ON run.id = evidence.run_id
+         INNER JOIN run_results AS result ON result.run_id = evidence.run_id
+         WHERE evidence.assignment_id = ? AND evidence.evidence_hash = ?
+           AND replay.requester_person_id = ? AND replay.requester_agent_id = ?
+           AND replay.delegation_certificate_id = ?`,
+      )
+      .bind(
+        assignment.id,
+        attestation.evidenceHash,
+        attestation.verifierPersonId,
+        attestation.verifierAgentId,
+        attestation.delegationCertificateId,
+      )
+      .first();
+    if (!row) {
+      throw new VerificationStoreValidationError("bundle_reproducible requires terminal fresh replay evidence from this assigned review Agent.");
+    }
+    if (
+      row.artifact_bundle_manifest_hash !== assignment.artifactBundleManifestHash ||
+      row.replay_artifact_bundle_manifest_hash !== assignment.artifactBundleManifestHash ||
+      row.run_runner_result_hash !== row.runner_result_hash ||
+      row.result_hash !== row.runner_result_hash
+    ) {
+      throw new VerificationStoreValidationError("Fresh replay evidence does not match its assigned Bundle or terminal Runner result.");
+    }
+
+    let evidence;
+    let storedResult;
+    try {
+      evidence = await normalizeVerificationReplayEvidence(JSON.parse(row.canonical_evidence));
+      storedResult = normalizeLeanRunnerResult(JSON.parse(row.canonical_result));
+    } catch (cause) {
+      throw new VerificationStoreValidationError(
+        cause instanceof Error ? `Fresh replay evidence is malformed: ${cause.message}` : "Fresh replay evidence is malformed.",
+      );
+    }
+    if (
+      canonicalJson(evidence) !== row.canonical_evidence ||
+      canonicalJson(storedResult) !== row.canonical_result ||
+      await verificationReplayEvidenceHash(evidence) !== row.evidence_hash ||
+      evidence.id !== row.id ||
+      evidence.replayId !== row.replay_id ||
+      evidence.assignmentId !== assignment.id ||
+      evidence.runId !== row.run_id ||
+      evidence.artifactBundleHash !== assignment.artifactBundleManifestHash ||
+      evidence.runnerResultHash !== row.runner_result_hash ||
+      evidence.recordedAt !== row.recorded_at ||
+      canonicalJson(evidence.runnerResult) !== row.canonical_result
+    ) {
+      throw new VerificationStoreValidationError("Fresh replay evidence is not an exact immutable projection of the terminal Runner result.");
     }
   }
 

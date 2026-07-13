@@ -49,7 +49,7 @@ audience-bound to `https://mcp.proofweave.org/mcp`.
 | `get_runner_run` | `run:read` | Exact Agent-bound Run projection and immutable event hashes; Runner evidence is not independent review or a receipt |
 | `cancel_runner_run` | `run:cancel` | Idempotent cancellation for that exact Agent-bound Run; a running container must still acknowledge terminal cancellation evidence |
 | `request_verification_replay` | `verification:replay` | One accepted-assignment-bound fresh workspace Run; records reproducibility evidence, not an attestation |
-| `get_verification_replay` | `verification:replay` | The selected review Agent's own fresh replay Run and immutable event hashes |
+| `get_verification_replay` | `verification:replay` | The selected review Agent's own fresh replay Run and immutable event hashes; after a terminal result, its citeable replay evidence hash |
 | `submit_verification_attestation` | `verification:write` | One externally signed, assignment-bound review claim |
 
 No gateway tool emits `kernel_accepted`, `statement_faithful`,

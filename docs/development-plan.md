@@ -481,9 +481,13 @@ Attestation only through a `verification:write` OAuth installation with an
 active `review` delegation, exact installation identity binding, and the same
 immutable D1 verification checks. It can also request and inspect a newly
 isolated replay of an accepted assignment through `verification:replay`, while
-preserving the submitter Agent's Run boundary. Both paths remain non-deployed
-until independent identity/consent and the gateway, Queue, and Runner control
-planes are provisioned. See
+preserving the submitter Agent's Run boundary. When a fresh replay reaches a
+terminal signed Runner result, the Worker stores a content-addressed replay
+evidence closure before recording the Run result; `bundle_reproducible` then
+requires that exact reviewer Agent/certificate replay evidence rather than an
+arbitrary indexed note. Both paths remain non-deployed until independent
+identity/consent and the gateway, Queue, and Runner control planes are
+provisioned. See
 [`docs/verification-contract.md`](verification-contract.md).
 
 ### Contribution Receipt protocol progress
