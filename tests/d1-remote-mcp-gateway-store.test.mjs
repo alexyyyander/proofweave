@@ -7,9 +7,9 @@ import {
   GatewayStoreAuthorizationError,
   GatewayStoreNotFoundError,
 } from "../services/proofweave-mcp-gateway/d1-gateway-store.mjs";
-import { createRemoteMcpGateway } from "../services/proofweave-mcp-gateway/worker.mjs";
+import { createD1RemoteMcpGatewayRuntime } from "../services/proofweave-mcp-gateway/runtime.mjs";
+import cloudflareGatewayWorker from "../services/proofweave-mcp-gateway/cloudflare-worker.mjs";
 import { D1ProofweaveOAuthStore } from "../services/proofweave-identity/d1-oauth-store.mjs";
-import { createOAuthAccessTokenAuthenticator } from "../services/proofweave-identity/oauth.mjs";
 import { D1VerificationStore } from "../services/verification/d1-verification-store.mjs";
 import {
   verificationAttestationPayloadHash,
@@ -202,12 +202,7 @@ test("a verified OAuth token reaches the review-attestation D1 boundary through 
     accessExpiresAt: "2027-07-13T00:00:00Z",
     refreshExpiresAt: "2027-08-13T00:00:00Z",
   });
-  const gateway = createRemoteMcpGateway({
-    resource,
-    issuer: "https://auth.gateway.example.test",
-    identityProvider: createOAuthAccessTokenAuthenticator({ store: oauthStore, resource }),
-    store: new D1RemoteMcpGatewayStore(database),
-  });
+  const gateway = boundGateway({ resource, issuer: "https://auth.gateway.example.test" });
   const attestation = await signedAttestation({
     id: "attestation:gateway-mcp",
     assignmentId: "assignment:gateway-mcp",
@@ -251,11 +246,11 @@ test("a verified OAuth token reaches catalog and Attempt D1 boundaries through M
     accessExpiresAt: "2027-07-13T00:00:00Z",
     refreshExpiresAt: "2027-08-13T00:00:00Z",
   });
-  const gateway = createRemoteMcpGateway({
+  const gateway = createD1RemoteMcpGatewayRuntime({
     resource,
     issuer: "https://auth.gateway.example.test",
-    identityProvider: createOAuthAccessTokenAuthenticator({ store: oauthStore, resource }),
-    store: new D1RemoteMcpGatewayStore(database),
+    database,
+    bucket: artifactBucket,
   });
   const listed = await callGatewayTool(gateway, resource, accessToken, "list_frontier_problems", {});
   assert.equal(listed.result.isError, undefined);
@@ -303,11 +298,11 @@ test("a prove-delegated OAuth Agent stages immutable objects and a signed v2 Bun
     accessExpiresAt: "2027-07-13T00:00:00Z",
     refreshExpiresAt: "2027-08-13T00:00:00Z",
   });
-  const gateway = createRemoteMcpGateway({
+  const gateway = createD1RemoteMcpGatewayRuntime({
     resource,
     issuer: "https://auth.gateway.example.test",
-    identityProvider: createOAuthAccessTokenAuthenticator({ store: oauthStore, resource }),
-    store: new D1RemoteMcpGatewayStore({ database, bucket: artifactBucket }),
+    database,
+    bucket: artifactBucket,
   });
   const created = await callGatewayTool(gateway, resource, accessToken, "create_attempt", {
     problemSlug: "gateway-target",
@@ -475,6 +470,19 @@ async function callGatewayTool(gateway, resource, accessToken, name, arguments_)
   }));
   assert.equal(response.status, 200);
   return response.json();
+}
+
+function boundGateway({ resource, issuer }) {
+  return {
+    fetch(request) {
+      return cloudflareGatewayWorker.fetch(request, {
+        DB: database,
+        ARTIFACTS: artifactBucket,
+        MCP_RESOURCE_URL: resource,
+        OAUTH_ISSUER_URL: issuer,
+      });
+    },
+  };
 }
 
 async function stageArtifactObject(gateway, resource, accessToken, attemptId, { filename, contentType, content }) {

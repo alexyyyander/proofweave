@@ -1,7 +1,5 @@
-import {
-  remoteMcpScopes,
-  UnconfiguredIdentityProvider,
-} from "../proofweave-mcp-gateway/worker.mjs";
+import { remoteMcpScopes } from "../../packages/protocol/remote-mcp-scopes.mjs";
+import { UnconfiguredIdentityProvider } from "../proofweave-mcp-gateway/worker.mjs";
 
 /**
  * The OAuth authorization server for the remote MCP resource. A real adapter

@@ -1,15 +1,9 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
 import { z } from "zod";
+import { remoteMcpScopes } from "../../packages/protocol/remote-mcp-scopes.mjs";
 
-export const remoteMcpScopes = [
-  "catalog:read",
-  "attempt:create",
-  "attempt:read",
-  "progress:write",
-  "artifact:write",
-  "verification:write",
-];
+export { remoteMcpScopes };
 
 /**
  * Create the remote Proofweave MCP protected resource. OAuth issuance and

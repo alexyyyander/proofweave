@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { createProofweaveIdentityService } from "../services/proofweave-identity/worker.mjs";
+import cloudflareGatewayWorker from "../services/proofweave-mcp-gateway/cloudflare-worker.mjs";
 import {
   createOAuthAccessTokenAuthenticator,
   createProofweaveOAuthProvider,
@@ -71,6 +72,14 @@ test("challenges unauthenticated MCP requests with protected-resource metadata",
     response.headers.get("www-authenticate") ?? "",
     /resource_metadata="https:\/\/mcp\.example\.test\/\.well-known\/oauth-protected-resource"/,
   );
+});
+
+test("the Cloudflare gateway entrypoint fails closed without its control-plane bindings", async () => {
+  const response = await cloudflareGatewayWorker.fetch(new Request(resource, { method: "POST" }), {});
+  assert.equal(response.status, 503);
+  const payload = await response.json();
+  assert.equal(payload.error, "temporarily_unavailable");
+  assert.match(payload.error_description, /control-plane bindings/);
 });
 
 test("keeps identity endpoints unavailable until an identity adapter is connected", async () => {

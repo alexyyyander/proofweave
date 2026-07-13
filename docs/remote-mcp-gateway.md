@@ -100,7 +100,9 @@ Streamable HTTP request handling, PKCE authorization-code and refresh-rotation
 protocol logic, a D1 credential-hash store, scope-gated tool definitions, and
 a D1-backed store for public catalog reads, delegated Attempts, provisional
 progress, bounded immutable artifact/Bundles staging, and `verification:write`
-attestations. The store accepts an
+attestations. Its Cloudflare deployment entrypoint now requires explicit `DB`,
+`ARTIFACTS`, `MCP_RESOURCE_URL`, and `OAUTH_ISSUER_URL` bindings and fails
+closed when any are absent. The store accepts an
 Attestation only from the OAuth-selected review Agent installation, hides
 assignments addressed to another Person, and delegates immutable
 signature/evidence checks to the verification store. Stateless handling
@@ -109,9 +111,9 @@ local to one Worker isolate.
 
 This is not a live participant integration: the checked-in identity adapter
 intentionally returns `503` for authorize, token, and registration until an
-independent browser session and consent resolver are configured, and the
-gateway/store are not wired to a deployed control plane. No public OAuth URL is
-deployed yet.
+independent browser session and consent resolver are configured. The gateway
+source can now be bound to the same D1/R2 control-plane resources, but no
+gateway, identity service, or public OAuth URL is deployed yet.
 
 ## Rollout gates
 

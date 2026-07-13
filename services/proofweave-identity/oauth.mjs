@@ -1,4 +1,4 @@
-import { remoteMcpScopes } from "../proofweave-mcp-gateway/worker.mjs";
+import { remoteMcpScopes } from "../../packages/protocol/remote-mcp-scopes.mjs";
 
 const defaultAccessLifetimeSeconds = 60 * 60;
 const defaultRefreshLifetimeSeconds = 30 * 24 * 60 * 60;

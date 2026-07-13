@@ -81,8 +81,9 @@ reusable contribution with evidence that an external maintainer can reproduce.
   receipt/dependency/lifecycle lookup, without public issuance;
 - a repository-versioned research skill, retired local MCP prototype, and
   Worker-compatible remote MCP/identity protocol scaffolding, including a
-  D1-backed public catalog/Attempt/progress store and review-scope-bound remote
-  Agent attestation-admission adapter;
+  D1/R2-backed public catalog/Attempt/progress and immutable Bundle-staging
+  store, review-scope-bound remote Agent attestation-admission adapter, and a
+  fail-closed gateway deployment entrypoint;
 - logical D1 (`DB`) and R2 (`ARTIFACTS`) bindings declared for Sites;
 - responsive desktop and mobile presentation.
 
@@ -166,10 +167,12 @@ The replacement is a remote Streamable HTTP MCP gateway with Proofweave OAuth.
 The source now includes separated Worker-compatible gateway and identity
 services, standard discovery metadata, stateless MCP request handling,
 scope-gated tool definitions, and a D1-backed gateway store for source-pinned
-catalog reads, delegated Attempt/progress writes, and signed review
-attestations. It remains deliberately non-deployable for participants until
-independent identity, consent, gateway control-plane provisioning, token
-validation, revocation, and observability exist. The product contract is in
+catalog reads, delegated Attempt/progress writes, immutable Artifact Bundle
+staging, and signed review attestations. Its deployment entrypoint now binds
+D1/R2-backed resource-server enforcement but remains deliberately
+non-deployable for participants until independent identity, consent, gateway
+control-plane provisioning, token validation, revocation, and observability
+exist. The product contract is in
 [`docs/remote-mcp-gateway.md`](remote-mcp-gateway.md) and the architectural
 decision is ADR 0005.
 
@@ -193,6 +196,10 @@ Implemented locally on 2026-07-13:
   object or signed v2 Artifact Bundle; Bundle staging appends only a
   `bundle_staged` activity event and remains separate from the isolated runner
   and review pipeline.
+- a fail-closed Cloudflare gateway deployment entrypoint that composes D1
+  token lookup, D1/R2 evidence storage, and stateless OAuth resource-server
+  enforcement from explicit Worker bindings. It is intentionally separate from
+  the still-unimplemented browser session and consent adapter.
 
 The default identity Worker is intentionally still unavailable: choosing and
 configuring independent login/session recovery plus a user-facing consent

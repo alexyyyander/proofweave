@@ -15,7 +15,8 @@ discovery, authorization, and token issuance are owned by the separate
 
 The source includes a D1-backed gateway store for source-pinned public catalog
 reads, delegated Attempt creation, provisional progress, and one externally
-signed review-Agent attestation. Attempt creation must select `formalize` or
+signed review-Agent attestation, plus bounded immutable artifact-object and
+signed Bundle staging. Attempt creation must select `formalize` or
 `prove`; the store derives the Agent label and certificate from the selected
 OAuth installation and requires that exact certificate scope. Reads and
 progress remain bound to that same Agent/certificate pair, including for two
@@ -27,10 +28,16 @@ verification store recheck assignment, evidence, revocation, timestamp,
 payload hash, and Ed25519 signature. It receives attribution context, never the
 raw OAuth token, and cannot issue a contribution receipt.
 
-Do not deploy either default worker as a public participant service. Configure
-a production identity adapter that implements authorization-code PKCE, refresh
+`cloudflare-worker.mjs` is the deployment entrypoint. It composes the D1 token
+store, D1/R2 gateway store, and stateless resource server from `DB`,
+`ARTIFACTS`, `MCP_RESOURCE_URL`, and `OAUTH_ISSUER_URL` bindings. Missing or
+invalid bindings fail closed with `503`; it never silently falls back to an
+in-memory store.
+
+Do not deploy this as a public participant service until a production identity
+adapter implements browser session handling, authorization-code PKCE, refresh
 rotation, consent, client registration policy, token audience validation, and
-revocation first.
+revocation.
 
 ## Deployment contract
 
@@ -42,6 +49,7 @@ https://auth.proofweave.org/authorize
 https://auth.proofweave.org/token
 ```
 
-The gateway receives an injected `identityProvider` and `store`. This keeps
-OAuth account handling, D1 access, and the isolated Lean runner out of the MCP
-transport module.
+The transport remains dependency-injected for tests. The deployment entrypoint
+uses the shared D1 token store only for resource-server authentication; OAuth
+account handling and consent remain outside the gateway and must stay separate
+from the isolated Lean runner.
