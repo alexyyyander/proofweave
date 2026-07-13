@@ -262,6 +262,10 @@ application secrets.
   latest public issuer-key status, and print its canonical bundle hash
 - `npm run receipt:store:check`: exercise internal immutable D1 receipt issuance
 - `npm run mcp`: start the local MCP bridge after setting its environment
+- `npm run mcp:deploy:preflight -- /secure/path/manifest.json`: validate a
+  non-secret external MCP control-plane manifest without deploying it
+- `npm run mcp:deploy:verify -- /secure/path/manifest.json`: credential-free
+  live verification of the deployed MCP/OAuth discovery and `401` challenge
 
 ## Codex MCP direction
 

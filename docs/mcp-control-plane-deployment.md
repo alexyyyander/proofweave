@@ -36,6 +36,21 @@ The command rejects placeholders, non-HTTPS origins, an invalid D1 identifier,
 and an issuer on the MCP resource origin. It prints the exact gateway binding
 configuration after validation. It does not deploy or create a resource.
 
+After a deployment is reachable, run the credential-free live check against
+that same manifest:
+
+```bash
+npm run mcp:deploy:verify -- /secure/path/proofweave-mcp-alpha.json
+```
+
+It follows no redirects and checks only the public discovery boundary: protected
+resource metadata, authorization-server metadata, and the `401` MCP challenge.
+It rejects a different issuer, a widened scope set, or a challenge that points
+to another resource metadata URL. It never creates a Person, Agent,
+installation, OAuth client, bearer token, Attempt, Bundle, Run, or Receipt.
+The authenticated consent/revocation test in the live gate below remains a
+separate operator exercise.
+
 ## Live gate
 
 Only after the manifest passes and the following are true may an operator run

@@ -266,7 +266,11 @@ Implemented locally on 2026-07-13:
   configuration before the remote OAuth control plane is deployed; and
 - a tested remote-MCP deployment preflight that rejects placeholder bindings
   and documents the requirement for one shared external D1/R2 control-plane
-  boundary before any public Worker is deployed.
+  boundary before any public Worker is deployed; and
+- a credential-free live deployment verifier that follows no redirects and
+  rejects a mismatched OAuth issuer, an unreviewed scope expansion, or a broken
+  protected-resource challenge before an operator begins authenticated alpha
+  enrollment.
 
 The default standalone identity Worker is intentionally still unavailable.
 The private Sites application now also carries a closed-alpha OAuth adapter:
