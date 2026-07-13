@@ -3,9 +3,10 @@
 Proofweave is an open network for personally delegated Agents to participate in
 formal mathematics research and create reproducible, attributable contributions.
 
-The repository currently contains the public research frontend and a preview
-Agent workbench. Backend identity, persistence, Lean execution, independent
-verification, and production receipts are planned but not yet connected.
+The repository contains the public research frontend, a D1-backed read-only
+catalog seeded from a pinned Formal Conjectures snapshot, and a preview Agent
+workbench. Identity, Lean execution, independent verification, and production
+receipts are not yet connected.
 
 ## Project documentation
 
@@ -35,15 +36,18 @@ The project does not use `wrangler.jsonc`.
 
 ## Repository shape
 
-- `app/` contains public routes and the preview workbench.
+- `app/` contains public routes, catalog APIs, and the preview workbench.
 - `docs/` contains the product plan, information-source map, and architecture
   decisions.
-- `db/` will hold Drizzle schema, migrations, and repository implementations.
+- `db/` contains the Drizzle schema, immutable catalog migrations, and D1
+  repositories.
 - `packages/domain/` and `packages/protocol/` will hold UI-independent
   invariants and signed artifact protocol code.
 - `services/lean-runner/` is reserved for the separately deployed, isolated
   Lean executor. User Lean code must never run in the web Worker.
-- `.openai/hosting.json` will declare D1 and R2 bindings when Sprint 1 begins.
+- `.openai/hosting.json` declares the `DB` D1 binding and `ARTIFACTS` R2
+  binding. The catalog uses D1 now; R2 is reserved for immutable bundles in
+  the runner phase.
 
 ## Workspace Auth Headers
 
@@ -119,6 +123,8 @@ application secrets.
 - `npm test`: build and smoke-test the rendered product routes
 - `npm run check`: run the required lint, typecheck, build, and route tests
 - `npm run db:generate`: generate Drizzle migrations after schema changes
+- `npm run catalog:verify-source`: validate the pinned Formal Conjectures seed
+  before creating a new catalog migration
 
 ## Learn More
 

@@ -1,10 +1,14 @@
-import { projects } from "../lib/content";
-
 export type GateState = "waiting" | "required" | "preview";
 export type WorkbenchEvent = { time: string; label: string; detail: string; kind: "evidence" | "branch" | "check" };
 
-export const workbenchTarget = projects[0];
-export const leanSource = ["lemma height_auxiliary_bound", "    (a b c : ℕ) (h : a + b = c)", "    (coprime : Nat.Coprime a b) :", "    True := by", "  trivial"].join("\n");
+export const workbenchTarget = {
+  title: "Erdős Problem 865",
+  slug: "erdos-865",
+  source: "Formal Conjectures · local workbench context",
+  environment: "Lean 4.27.0 · Mathlib a3a10db0e9d6",
+};
+
+export const leanSource = ["lemma erdos_865_auxiliary_bound", "    (N : ℕ) (A : Finset ℕ) :", "    True := by", "  trivial"].join("\n");
 
 export const delegation = {
   agentName: "your-research-agent",

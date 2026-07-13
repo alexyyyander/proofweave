@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { VerificationState } from "./lib/content";
+import type { CatalogDisplayStatus } from "@/packages/domain/catalog";
 import { footerNavigation, primaryNavigation, type ActivePage } from "./lib/navigation";
 
 export function Header({ active }: { active: ActivePage }) {
@@ -24,14 +24,15 @@ export function Footer() {
   );
 }
 
-const stateClass: Record<VerificationState, string> = {
-  Formalized: "state-formalized",
-  "Proof branch open": "state-open",
-  "Kernel checked": "state-kernel",
-  "Statement review": "state-review",
+const stateClass: Record<CatalogDisplayStatus, string> = {
+  "Formalized statement": "state-formalized",
+  "Open proof branch": "state-open",
+  "Kernel accepted": "state-kernel",
+  "Statement fidelity reviewed": "state-review",
   "Independent review": "state-review",
+  "No Proofweave attestation": "state-unverified",
 };
 
-export function StatusStack({ statuses, compact = false }: { statuses: VerificationState[]; compact?: boolean }) {
+export function StatusStack({ statuses, compact = false }: { statuses: readonly CatalogDisplayStatus[]; compact?: boolean }) {
   return <div className={compact ? "status-stack compact" : "status-stack"} aria-label="Verification states">{statuses.map((status) => <span className={stateClass[status]} key={status}><i aria-hidden="true" />{status}</span>)}</div>;
 }

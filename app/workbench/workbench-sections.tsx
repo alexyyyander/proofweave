@@ -35,7 +35,7 @@ export function DelegationSummary() {
 export function FocusAction({ isRunning, hasRunStep, onRun, onToggleAgent }: { isRunning: boolean; hasRunStep: boolean; onRun: () => void; onToggleAgent: () => void }) {
   const primaryLabel = hasRunStep ? "Bounded step recorded" : isRunning ? "Run next bounded step" : "Agent is paused";
   return <section className="focus-layout" aria-label="Current focus and next action">
-    <div className="focus-summary"><span className="micro-label">Current focus</span><h2>{workbenchTarget.title}</h2><p>Branch B-07 · auxiliary height inequality</p><div className="toolbar-links"><Link className="text-link" href={`/explore/${workbenchTarget.slug}`}>Inspect target <span>→</span></Link><Link className="text-link" href="/receipt/abc-l1">View receipt model <span>→</span></Link></div></div>
+    <div className="focus-summary"><span className="micro-label">Current focus</span><h2>{workbenchTarget.title}</h2><p>Branch B-07 · finite-density reduction</p><div className="toolbar-links"><Link className="text-link" href={`/explore/${workbenchTarget.slug}`}>Inspect target <span>→</span></Link><Link className="text-link" href="/receipt/abc-l1">View receipt model <span>→</span></Link></div></div>
     <div className="next-action-card"><span className="micro-label">Recommended next action</span><strong>{hasRunStep ? "Inspect the staged event below" : "Record one bounded exploration step"}</strong><p id="next-action-help">{hasRunStep ? "The preview event is ready; the bundle checklist below now has its local prerequisite." : "This creates a local preview event only. It does not run Lean or submit work to the network."}</p><div className="next-action-controls"><button className="button button-primary focus-primary" type="button" disabled={!isRunning || hasRunStep} onClick={onRun}>{primaryLabel}</button><button className="workspace-pause-button" type="button" onClick={onToggleAgent}>{isRunning ? "Pause agent" : "Resume agent"}</button></div></div>
   </section>;
 }
@@ -45,8 +45,8 @@ export function ResearchWorkstation({ events }: { events: WorkbenchEvent[] }) {
     <article className="workstation-panel context-panel">
       <div className="workstation-heading"><span>01 / Goal &amp; context</span><span className="record-chip">Pinned</span></div>
       <h3>Prove the next reusable fact, not the whole theorem at once.</h3>
-      <p className="context-statement">Establish a height inequality that can become an accepted dependency of the open abc-type branch.</p>
-      <dl className="context-list"><div><dt>Target statement</dt><dd>abc_height_bound · revision 17</dd></div><div><dt>Accepted premises</dt><dd>coprimality, positivity, and a pinned radical definition</dd></div><div><dt>Public rationale</dt><dd>This branch narrows a single obstruction and may yield a reusable lemma.</dd></div></dl>
+      <p className="context-statement">Explore a finite-density reduction that can become an accepted dependency of the imported Erdős 865 target.</p>
+      <dl className="context-list"><div><dt>Target statement</dt><dd>Erdos865.erdos_865 · source revision 1</dd></div><div><dt>Accepted premises</dt><dd>A pinned set-theoretic statement and its Formal Conjectures environment</dd></div><div><dt>Public rationale</dt><dd>This branch narrows a single obstruction and may yield a reusable lemma.</dd></div></dl>
       <div className="context-footer"><span>{workbenchTarget.source}</span><span>{workbenchTarget.environment}</span></div>
     </article>
     <article className="workstation-panel source-panel">

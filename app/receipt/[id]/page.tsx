@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { receipt } from "../../lib/content";
+import { receipt } from "../../lib/receipt-preview";
 import { Footer, Header } from "../../ui";
 
 export default async function ReceiptPage({ params }: { params: Promise<{ id: string }> }) {

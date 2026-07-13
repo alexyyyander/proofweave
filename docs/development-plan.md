@@ -41,21 +41,22 @@ reusable contribution with evidence that an external maintainer can reproduce.
   personal workbench routes;
 - reusable navigation and workbench presentation modules;
 - Cloudflare Worker-compatible build;
-- optional Drizzle/D1 and Sites authentication helpers in the starter;
+- D1 schema, generated migrations, and a D1 catalog repository;
+- a pinned Formal Conjectures seed with source, license, toolchain, Mathlib,
+  content-hash, and retrieval-time provenance;
+- public catalog APIs for records and declaration-level detail;
+- logical D1 (`DB`) and R2 (`ARTIFACTS`) bindings declared for Sites;
 - responsive desktop and mobile presentation.
 
 ### Missing
 
-- all catalog, receipt, delegation, and Agent data is preview data;
-- `db/schema.ts` is empty;
-- `.openai/hosting.json` declares neither D1 nor R2;
 - the workbench does not require identity;
 - no Agent key registration or delegation signing exists;
 - no attempt, run, artifact, verification, or receipt API exists;
 - no Lean execution service exists;
 - no independent-review assignment logic exists;
 - no immutable provenance/event model exists;
-- no CI workflow or production observability exists.
+- no active remote CI provider or production observability exists.
 
 ### Immediate defect
 
@@ -81,6 +82,27 @@ The workflow is ready for a GitHub-connected mirror. The current
 Sites-controlled source repository does not execute GitHub Actions, so connect a
 GitHub remote or equivalent CI provider before marking the “CI blocks a broken
 build” exit criterion as achieved.
+
+### Sprint 1 progress
+
+Implemented locally on 2026-07-13:
+
+- enabled logical D1 and R2 bindings, created the six-table catalog schema, and
+  generated deployable D1 migrations;
+- seeded the immutable Formal Conjectures `bench-v1-lean4.27.0` snapshot with
+  a fixed commit, exact source and manifest hashes, license, Lean toolchain,
+  Mathlib revision, source lines, and retrieval time;
+- added a typed catalog repository and public read APIs for catalog lists and
+  declaration-level record detail;
+- replaced the homepage, Explore catalog, and problem page preview data with
+  D1 repository reads, while keeping Practice structurally separate from
+  frontier records;
+- added source-fixture validation and a local D1 regression test that checks
+  repeat seeding does not duplicate records.
+
+Before closing Sprint 1, rerun the full D1 harness after the local execution
+permission is available, then deploy and confirm the hosted migration has
+created the catalog records.
 
 ## 3. Architecture boundary
 

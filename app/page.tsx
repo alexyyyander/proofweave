@@ -1,9 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import { projects } from "./lib/content";
+import { getCatalogRepository } from "@/db/repositories/catalog";
 import { Footer, Header, StatusStack } from "./ui";
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const projects = await getCatalogRepository().list("frontier");
+
   return (
     <div className="site-shell public-shell">
       <Header active="home" />
@@ -53,11 +57,11 @@ export default function Home() {
           <div className="project-grid">
             {projects.slice(0, 3).map((project) => (
               <article className="project-card" key={project.slug}>
-                <div className="card-topline"><span className="micro-label">{project.domain}</span><span className="record-chip">Preview record</span></div>
+                <div className="card-topline"><span className="micro-label">{project.domain}</span><span className="record-chip">Pinned source</span></div>
                 <h3>{project.title}</h3>
-                <p>{project.summary}</p>
-                <StatusStack statuses={project.statuses} compact />
-                <div className="card-footer"><span>{project.source}</span><Link href={`/explore/${project.slug}`}>Inspect record <span>→</span></Link></div>
+                <p>{project.informalStatement}</p>
+                <StatusStack statuses={project.displayStatuses} compact />
+                <div className="card-footer"><span>{project.source.upstreamName} · {project.source.revisionTag}</span><Link href={`/explore/${project.slug}`}>Inspect record <span>→</span></Link></div>
               </article>
             ))}
           </div>

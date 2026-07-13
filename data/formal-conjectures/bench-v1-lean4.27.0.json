@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "snapshot": {
+    "id": "snapshot:formal-conjectures:bench-v1-lean4.27.0",
+    "upstreamName": "Formal Conjectures",
+    "sourceUrl": "https://github.com/google-deepmind/formal-conjectures/tree/7a41db3d761324599812d6ca6cb6a9f311046dc7",
+    "revisionTag": "bench-v1-lean4.27.0",
+    "revisionCommit": "7a41db3d761324599812d6ca6cb6a9f311046dc7",
+    "retrievedAt": "2026-07-13T03:48:00Z",
+    "contentHash": "sha256:95024fd456d2254c21c69f2c5c1c00b65aca4629a0557d2cb58523a070573367",
+    "manifestHash": "sha256:5b99b5f4f807cbba67bbcd22e5e486c17d6a8d970ea218de08d05830ab350c26",
+    "sourceLicense": "Apache-2.0 source code; upstream materials may carry their own stated terms.",
+    "leanToolchain": "leanprover/lean4:v4.27.0",
+    "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900"
+  },
+  "project": {
+    "id": "project:formal-conjectures:erdos-865",
+    "slug": "formal-conjectures-erdos-865",
+    "kind": "frontier",
+    "title": "Erdős Problem 865",
+    "summary": "A pinned collection of formal statements around a density threshold problem attributed to Erdős and Sós. Source categories describe mathematical research status; Proofweave records separate verification claims.",
+    "visibility": "public"
+  },
+  "records": [
+    {
+      "id": "problem-revision:formal-conjectures:erdos-865:main:1",
+      "targetKey": "erdos-865-main",
+      "slug": "erdos-865",
+      "title": "Erdős Problem 865",
+      "domain": "Number theory",
+      "researchStatus": "research_open",
+      "informalStatement": "There exists a constant C > 0 such that, for all sufficiently large N, every subset A of {1, …, N} with size at least 5N/8 + C contains distinct a, b, c with a + b, a + c, and b + c all in A.",
+      "leanStatement": "theorem erdos_865 :\n    ∃ C > 0, ∀ᶠ (N : ℕ) in atTop,\n      ∀ A ⊆ Icc 1 N, A.card ≥ (5 / 8 : ℝ) * N + C →\n      ∃ a ∈ A, ∃ b ∈ A, ∃ c ∈ A, a ≠ b ∧ a ≠ c ∧ b ≠ c ∧\n      a + b ∈ A ∧ a + c ∈ A ∧ b + c ∈ A := by\n  sorry",
+      "proofState": "admitted",
+      "sourceCorrespondence": "imported_unreviewed",
+      "priority": 100,
+      "declaration": {
+        "id": "declaration:formal-conjectures:erdos-865",
+        "qualifiedName": "Erdos865.erdos_865",
+        "kind": "theorem",
+        "sourcePath": "FormalConjectures/ErdosProblems/865.lean",
+        "sourceUrl": "https://github.com/google-deepmind/formal-conjectures/blob/7a41db3d761324599812d6ca6cb6a9f311046dc7/FormalConjectures/ErdosProblems/865.lean#L36-L41",
+        "sourceLineStart": 36,
+        "sourceLineEnd": 41,
+        "sourceContentHash": "sha256:95024fd456d2254c21c69f2c5c1c00b65aca4629a0557d2cb58523a070573367"
+      }
+    },
+    {
+      "id": "problem-revision:formal-conjectures:erdos-865:k2:1",
+      "targetKey": "erdos-865-k2",
+      "slug": "erdos-865-k2",
+      "title": "Erdős Problem 865: k = 2 variant",
+      "domain": "Number theory",
+      "researchStatus": "research_solved",
+      "informalStatement": "For every subset A of {1, …, 2N} with at least N + 2 elements, there are distinct a and b in A with a + b also in A.",
+      "leanStatement": "theorem erdos_865.variants.k2 (N : ℕ) :\n    ∀ A ⊆ Icc 1 (2 * N), A.card ≥ N + 2 →\n    ∃ a ∈ A, ∃ b ∈ A, a ≠ b ∧ a + b ∈ A := by\n  sorry",
+      "proofState": "admitted",
+      "sourceCorrespondence": "imported_unreviewed",
+      "priority": 90,
+      "declaration": {
+        "id": "declaration:formal-conjectures:erdos-865-k2",
+        "qualifiedName": "Erdos865.erdos_865.variants.k2",
+        "kind": "theorem",
+        "sourcePath": "FormalConjectures/ErdosProblems/865.lean",
+        "sourceUrl": "https://github.com/google-deepmind/formal-conjectures/blob/7a41db3d761324599812d6ca6cb6a9f311046dc7/FormalConjectures/ErdosProblems/865.lean#L49-L52",
+        "sourceLineStart": 49,
+        "sourceLineEnd": 52,
+        "sourceContentHash": "sha256:95024fd456d2254c21c69f2c5c1c00b65aca4629a0557d2cb58523a070573367"
+      }
+    },
+    {
+      "id": "problem-revision:formal-conjectures:erdos-865:sos:1",
+      "targetKey": "erdos-865-sos",
+      "slug": "erdos-865-sos-variant",
+      "title": "Erdős–Sós asymptotic variant",
+      "domain": "Number theory",
+      "researchStatus": "research_open",
+      "informalStatement": "For each k ≥ 2, the minimum density threshold f_k(N) for a k-element subset with all pairwise sums in A has the conjectured asymptotic form as N tends to infinity.",
+      "leanStatement": "theorem erdos_865.variants.sos :\n    ∀ᵉ (k : ℕ) (hk : 2 ≤ k),\n    (fun N ↦ (f N k : ℝ)) ~[atTop] (fun N ↦ (1 / 2 : ℝ) * (1 + ∑ r ∈ Icc 1 (k - 2),\n      (1 / 4 : ℝ) ^ r) * N) := by\n  sorry",
+      "proofState": "admitted",
+      "sourceCorrespondence": "imported_unreviewed",
+      "priority": 80,
+      "declaration": {
+        "id": "declaration:formal-conjectures:erdos-865-sos",
+        "qualifiedName": "Erdos865.erdos_865.variants.sos",
+        "kind": "theorem",
+        "sourcePath": "FormalConjectures/ErdosProblems/865.lean",
+        "sourceUrl": "https://github.com/google-deepmind/formal-conjectures/blob/7a41db3d761324599812d6ca6cb6a9f311046dc7/FormalConjectures/ErdosProblems/865.lean#L66-L71",
+        "sourceLineStart": 66,
+        "sourceLineEnd": 71,
+        "sourceContentHash": "sha256:95024fd456d2254c21c69f2c5c1c00b65aca4629a0557d2cb58523a070573367"
+      }
+    },
+    {
+      "id": "problem-revision:formal-conjectures:erdos-865:upper-bound:1",
+      "targetKey": "erdos-865-upper-bound",
+      "slug": "erdos-865-upper-bound",
+      "title": "Erdős–Sós upper-bound variant",
+      "domain": "Number theory",
+      "researchStatus": "research_solved",
+      "informalStatement": "For each k ≥ 3, there is ε_k > 0 such that, for all sufficiently large N, f_k(N) is at most (2/3 − ε_k)N.",
+      "leanStatement": "theorem erdos_865.variants.upper_bound (k : ℕ) (hk : 3 ≤ k) :\n    ∃ ε > 0, ∀ᶠ N in atTop, (f N k : ℝ) ≤ (2 / 3 - ε) * N := by\n  sorry",
+      "proofState": "admitted",
+      "sourceCorrespondence": "imported_unreviewed",
+      "priority": 70,
+      "declaration": {
+        "id": "declaration:formal-conjectures:erdos-865-upper-bound",
+        "qualifiedName": "Erdos865.erdos_865.variants.upper_bound",
+        "kind": "theorem",
+        "sourcePath": "FormalConjectures/ErdosProblems/865.lean",
+        "sourceUrl": "https://github.com/google-deepmind/formal-conjectures/blob/7a41db3d761324599812d6ca6cb6a9f311046dc7/FormalConjectures/ErdosProblems/865.lean#L79-L81",
+        "sourceLineStart": 79,
+        "sourceLineEnd": 81,
+        "sourceContentHash": "sha256:95024fd456d2254c21c69f2c5c1c00b65aca4629a0557d2cb58523a070573367"
+      }
+    }
+  ]
+}

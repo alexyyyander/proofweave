@@ -21,6 +21,11 @@ time, and license.
   misformalization; create a new problem revision.
 - Licensing: repository code is Apache-2.0 and other repository materials are
   CC-BY 4.0, with source-specific exceptions documented upstream.
+- Initial committed seed: `bench-v1-lean4.27.0` at
+  `7a41db3d761324599812d6ca6cb6a9f311046dc7`, with Lean
+  `leanprover/lean4:v4.27.0` and Mathlib
+  `a3a10db0e9d66acbebf76c5e6a135066525ac900`. The exact source and manifest
+  hashes are recorded in `data/formal-conjectures/` and the seed migration.
 
 ### Mathlib
 
@@ -131,4 +136,3 @@ content_hash
 license
 supersedes
 ```
-

@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { projects } from "../../lib/content";
+import { getCatalogRepository } from "@/db/repositories/catalog";
 import { Footer, Header, StatusStack } from "../../ui";
+
+export const dynamic = "force-dynamic";
 
 export default async function ConjecturePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const project = projects.find((item) => item.slug === slug);
+  const project = await getCatalogRepository().findBySlug(slug);
   if (!project) notFound();
 
   return (
@@ -14,15 +16,15 @@ export default async function ConjecturePage({ params }: { params: Promise<{ slu
       <main className="page-main detail-main">
         <div className="breadcrumb"><Link href="/explore">Explore</Link><span> / </span><span>{project.domain}</span></div>
         <section className="detail-heading">
-          <div><p className="eyebrow">{project.domain} · {project.source}</p><h1>{project.title}</h1><p>{project.summary}</p></div>
-          <div className="detail-environment"><span>Environment</span><code>{project.environment}</code></div>
+          <div><p className="eyebrow">{project.domain} · {project.source.upstreamName}</p><h1>{project.title}</h1><p>{project.projectSummary}</p></div>
+          <div className="detail-environment"><span>Environment</span><code>{project.source.leanToolchain}<br />mathlib:{project.source.mathlibRevision.slice(0, 12)}</code></div>
         </section>
-        <StatusStack statuses={project.statuses} />
+        <StatusStack statuses={project.displayStatuses} />
         <section className="detail-grid">
-          <article className="detail-panel statement-panel"><div className="panel-heading"><span>Informal statement</span><span className="record-chip">Preview data</span></div><p>{project.informal}</p><div className="source-rail"><span>Source correspondence</span><strong>Awaiting curated source link</strong></div></article>
-          <article className="detail-panel lean-panel"><div className="panel-heading"><span>Pinned Lean statement</span><span className="mono-label">Lean 4</span></div><pre><code>{project.lean}</code></pre></article>
-          <article className="detail-panel dependency-panel"><div className="panel-heading"><span>Local dependency map</span><span className="mono-label">P-04</span></div><div className="dependency-chain"><div className="node node-open">Open target</div><span>←</span><div className="node">Auxiliary lemma</div><span>←</span><div className="node">Formal definitions</div></div><p>Full project DAGs stay collapsed until a contributor asks for local context.</p></article>
-          <article className="detail-panel activity-panel"><div className="panel-heading"><span>Public activity</span><span className="mono-label">0 receipts</span></div><p>No production receipts are connected to this preview record. The future activity stream will list signed attempts and independent verification events, never private reasoning traces.</p><Link className="text-link" href="/receipt/abc-l1">Inspect receipt schema <span>→</span></Link></article>
+          <article className="detail-panel statement-panel"><div className="panel-heading"><span>Informal statement</span><span className="record-chip">Pinned source</span></div><p>{project.informalStatement}</p><div className="source-rail"><span>Source correspondence</span><strong>{project.sourceCorrespondence === "reviewed" ? "Proofweave review recorded" : "Imported; no Proofweave fidelity attestation"}</strong></div></article>
+          <article className="detail-panel lean-panel"><div className="panel-heading"><span>Pinned Lean statement</span><span className="mono-label">Lean 4</span></div><pre><code>{project.leanStatement}</code></pre></article>
+          <article className="detail-panel provenance-panel"><div className="panel-heading"><span>Reproducibility record</span><span className="mono-label">{project.source.revisionTag}</span></div><dl className="provenance-list"><div><dt>Source</dt><dd><a href={project.declaration.sourceUrl} rel="noreferrer" target="_blank">{project.declaration.sourcePath}</a></dd></div><div><dt>Revision</dt><dd><code>{project.source.revisionCommit}</code></dd></div><div><dt>Retrieved</dt><dd>{project.source.retrievedAt}</dd></div><div><dt>Source hash</dt><dd><code>{project.declaration.sourceContentHash}</code></dd></div><div><dt>License</dt><dd>{project.source.sourceLicense}</dd></div><div><dt>Mathlib</dt><dd><code>{project.source.mathlibRevision}</code></dd></div></dl></article>
+          <article className="detail-panel activity-panel"><div className="panel-heading"><span>Proofweave verification</span><span className="mono-label">{project.claims.filter((claim) => claim.status === "attested").length} attestations</span></div><p>This record carries a source declaration, not a completed Proofweave result. Reproducibility, kernel acceptance, statement fidelity, novelty, and project acceptance stay separate until evidence is submitted.</p><Link className="text-link" href="/how-it-works">Read the verification model <span>→</span></Link></article>
         </section>
       </main>
       <Footer />
