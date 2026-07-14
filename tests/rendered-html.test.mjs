@@ -1720,9 +1720,9 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
   assert.equal(ownerWorkbench.status, 200);
   const ownerWorkbenchHtml = await ownerWorkbench.text();
   assert.match(ownerWorkbenchHtml, /Open a durable research Attempt/i);
-  assert.match(ownerWorkbenchHtml, /Current research/i);
-  assert.match(ownerWorkbenchHtml, /Required action/i);
-  assert.match(ownerWorkbenchHtml, /Evidence &amp; history/i);
+  assert.match(ownerWorkbenchHtml, /Choose research/i);
+  assert.match(ownerWorkbenchHtml, /Work with your Agent/i);
+  assert.match(ownerWorkbenchHtml, /Inspect evidence/i);
   assert.match(ownerWorkbenchHtml, /Selected catalog target/i);
   assert.match(ownerWorkbenchHtml, /Erdős Problem 865: k = 2 variant/i);
   assert.match(ownerWorkbenchHtml, /Attempt opened by its owner/i);

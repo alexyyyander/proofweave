@@ -42,10 +42,11 @@ export function IntegrationClient() {
           {authorizedScopes.map((scope) => <span key={scope}>{scope}</span>)}
         </div>
         <p className="integration-note">
-          OAuth authorization and artifact staging are not Lean verification or
-          a contribution receipt. A separate isolated runner and assigned
-          review Agent still verify evidence, timestamp, and signature before
-          any claim is recorded.
+          No external Proofweave MCP endpoint is available in this alpha. OAuth
+          authorization and artifact staging are not Lean verification or a
+          contribution receipt. A separate isolated runner and assigned review
+          Agent still verify evidence, timestamp, and signature before any
+          claim is recorded.
         </p>
         <Link className="text-link" href="/workbench">Review your delegated Agents <span>→</span></Link>
       </article>
