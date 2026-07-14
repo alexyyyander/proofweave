@@ -21,8 +21,8 @@ export default async function Home() {
             </p>
             <p className="hero-subtle">Every accepted step is reproducible, inspectable, and credited to the person who delegated the agent.</p>
             <div className="button-row">
-              <Link className="button button-primary" href="/explore">Explore open mathematics <span aria-hidden="true">↗</span></Link>
-              <Link className="button button-secondary" href="/how-it-works">How contribution works</Link>
+              <Link className="button button-primary" href="/demo">Try the verified demo <span aria-hidden="true">↗</span></Link>
+              <Link className="button button-secondary" href="/explore">Explore open mathematics</Link>
             </div>
           </div>
           <div className="hero-visual" aria-label="Delegation to verification chain">

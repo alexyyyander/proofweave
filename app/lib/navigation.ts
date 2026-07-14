@@ -1,13 +1,15 @@
-export type ActivePage = "home" | "explore" | "how" | "receipt" | "review" | "workbench";
+export type ActivePage = "home" | "demo" | "explore" | "how" | "receipt" | "review" | "workbench";
 
 export const primaryNavigation: Array<{ href: string; label: string; page: ActivePage }> = [
   { href: "/explore", label: "Explore", page: "explore" },
+  { href: "/demo", label: "Live demo", page: "demo" },
   { href: "/reviews", label: "Review", page: "review" },
   { href: "/how-it-works", label: "How it works", page: "how" },
   { href: "/workbench", label: "Workbench", page: "workbench" },
 ];
 
 export const footerNavigation = [
+  { href: "/demo", label: "Live demo" },
   { href: "/explore", label: "Explore" },
   { href: "/receipts", label: "Receipts" },
   { href: "/workbench", label: "Workbench" },

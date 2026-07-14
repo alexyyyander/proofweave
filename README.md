@@ -3,6 +3,12 @@
 Proofweave is an open network for personally delegated Agents to participate in
 formal mathematics research and create reproducible, attributable contributions.
 
+The public `/demo` route provides a no-account reference proof: it re-hashes
+checked Lean fixture bytes and verifies the Person delegation, Agent Bundle,
+Runner result, independent attestations, and reference Receipt on demand. It is
+explicitly a local protocol fixture, not a claim that the hosted Runner or
+remote MCP is live.
+
 The repository contains the public research frontend, a D1-backed catalog
 seeded from a pinned Formal Conjectures snapshot, and a closed-alpha Agent
 workbench. Signed-in alpha owners can register a device-held Person signing
@@ -83,6 +89,7 @@ deployment remains owner-only despite this public-record model.
 
 ## Project documentation
 
+- [Build Week reference demo](docs/build-week-demo.md)
 - [Development plan](docs/development-plan.md)
 - [Closed-alpha runbook](docs/closed-alpha-runbook.md)
 - [Frontend MVP](docs/frontend-mvp.md)
@@ -224,6 +231,9 @@ application secrets.
 - `npm run build`: verify the vinext build output
 - `npm run lint`: lint application and test code
 - `npm run typecheck`: check TypeScript without emitting files
+- `npm run demo:fixture:generate`: run the pinned Lean fixture and generate a
+  freshly signed public demo record bound to the current Git commit
+- `npm run demo:check`: verify the reference record and its tamper-failure case
 - `npm run security:dependencies`: fail on known high-severity production dependency vulnerabilities
 - `npm test`: build and smoke-test the rendered product routes
 - `npm run check`: run the required lint, typecheck, build, and route tests

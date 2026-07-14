@@ -663,6 +663,7 @@ test("server-renders the Proofweave welcome page", async () => {
 
 test("serves the public research paths", async () => {
   const expectedPageContent = new Map([
+    ["/demo", /Watch one Lean proof become/i],
     ["/explore", /Frontier mathematics, made inspectable/i],
     ["/explore/erdos-865", /Erdős Problem 865/i],
     ["/how-it-works", /Participation is personal\. Verification is public/i],
@@ -693,8 +694,29 @@ test("serves the public research paths", async () => {
   assert.doesNotMatch(integrationsHtml, /https:\/\/mcp\.proofweave\.org\/mcp/i);
 });
 
+test("publicly verifies the checked Build Week reference evidence", async () => {
+  const page = await render("/demo");
+  assert.equal(page.status, 200);
+  const html = await page.text();
+  assert.match(html, /All checks passed/i);
+  assert.match(html, /Reference fixture · public verification · no account required/i);
+  assert.match(html, /The hosted Runner is live/i);
+  assert.match(html, /This demo does not claim/i);
+
+  const response = await render("/api/demo/verify");
+  assert.equal(response.status, 200);
+  assert.equal(response.headers.get("cache-control"), "no-store");
+  const verification = await response.json();
+  assert.equal(verification.status, "verified");
+  assert.equal(verification.checks.length, 6);
+  assert.equal(verification.checks.every((check) => check.passed), true);
+  assert.match(verification.record.bundleHash, /^sha256:[a-f0-9]{64}$/);
+  assert.match(verification.record.receiptHash, /^sha256:[a-f0-9]{64}$/);
+  assert.match(verification.disclosure, /not a live network contribution/i);
+});
+
 test("keeps keyboard users one action away from the main content on critical pages", async () => {
-  for (const pathname of ["/", "/explore", "/how-it-works", "/workbench", "/integrations", "/evidence", "/reviews", "/receipts"]) {
+  for (const pathname of ["/", "/demo", "/explore", "/how-it-works", "/workbench", "/integrations", "/evidence", "/reviews", "/receipts"]) {
     const response = await render(pathname);
     assert.equal(response.status, 200, `${pathname} should render its keyboard navigation`);
     const html = await response.text();

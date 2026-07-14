@@ -11,7 +11,7 @@ export function Header({ active }: { active: ActivePage }) {
         <nav className="main-nav" aria-label="Primary navigation">
           {primaryNavigation.map((item) => <Link className={active === item.page ? "is-active" : ""} href={item.href} key={item.href}>{item.label}</Link>)}
         </nav>
-        <div className="header-actions"><Link className={active === "workbench" ? "sign-in-link is-active" : "sign-in-link"} href="/workbench">My workspace</Link><Link className="header-cta" href="/how-it-works">Delegate an Agent</Link></div>
+        <div className="header-actions"><Link className={active === "workbench" ? "sign-in-link is-active" : "sign-in-link"} href="/workbench">My workspace</Link><Link className={active === "demo" ? "header-cta is-active" : "header-cta"} href="/demo">Verify a proof</Link></div>
       </header>
     </>
   );

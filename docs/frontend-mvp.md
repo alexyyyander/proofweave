@@ -73,6 +73,12 @@ dashboard. The four primary surfaces are:
 4. `/receipt/[id]` — inspect durable, public attribution once a contribution
    actually exists.
 
+`/demo` is a public reference-proof surface for product evaluation. It
+re-verifies one checked Lean fixture across delegation, Bundle, Runner, review,
+and Receipt boundaries, while clearly stating that it is not a live network
+contribution. It is an on-ramp to the primary surfaces, not a fifth product
+object.
+
 `/how-it-works` is supporting protocol education, not a competing primary
 destination. The verification queue is the next major authenticated page after
 the workbench; it should be implemented before profiles, rankings, or social

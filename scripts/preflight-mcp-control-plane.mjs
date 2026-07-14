@@ -112,11 +112,11 @@ function normalizeRunnerIntegration(value) {
   let defaultLimits;
   try {
     defaultLimits = normalizeLeanRunnerLimits(normalizeRunnerLimits(runner.default_limits));
-    if (defaultLimits.outputBytes > maxInlineArtifactObjectBytes) {
-      throw new Error("Runner output limit exceeds the D1 inline alpha evidence limit.");
-    }
   } catch {
     throw new Error("runner.default_limits must satisfy the Lean Runner resource limits.");
+  }
+  if (defaultLimits.outputBytes > maxInlineArtifactObjectBytes) {
+    throw new Error("Runner output limit exceeds the D1 inline alpha evidence limit.");
   }
   return Object.freeze({
     queueName,
