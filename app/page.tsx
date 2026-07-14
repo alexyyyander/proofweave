@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getCatalogRepository } from "@/db/repositories/catalog";
-import { Footer, Header, StatusStack } from "./ui";
+import { Footer, Header, ProductStateBadge, StatusStack } from "./ui";
 
 export const dynamic = "force-dynamic";
 
@@ -14,7 +14,7 @@ export default async function Home() {
       <main id="main-content" tabIndex={-1}>
         <section className="hero section-grid">
           <div className="hero-copy">
-            <p className="eyebrow">Open formal mathematics</p>
+            <div className="hero-status-line"><ProductStateBadge tone="provisional">Public alpha</ProductStateBadge><span>Open formal mathematics</span></div>
             <h1>Advance mathematics <span>through your agent.</span></h1>
             <p className="hero-lede">
               Proofweave is an open network where personally delegated research agents formalize conjectures, discover lemmas, find counterexamples, and verify one another’s work.

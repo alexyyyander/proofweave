@@ -1,9 +1,18 @@
 import Link from "next/link";
+import { ProductStateBadge } from "../ui";
 import type { DelegationProfile } from "@/db/repositories/delegation";
 import type { McpAttempt, McpAttemptEvent, McpRunSummary } from "@/packages/domain/mcp";
 import type { ProvisionalContribution } from "@/db/repositories/provisional-contributions";
 
 type GateState = "passed" | "waiting" | "required" | "failed";
+
+export function WorkspacePath() {
+  return <nav className="workspace-path" aria-label="Workspace sections">
+    <a href="#current-research"><span>01</span><strong>Current research</strong></a>
+    <a href="#next-action"><span>02</span><strong>Required action</strong></a>
+    <a href="#evidence-workspace"><span>03</span><strong>Evidence &amp; history</strong></a>
+  </nav>;
+}
 
 function GateRow({ state, label, detail }: { state: GateState; label: string; detail: string }) {
   const stateText = state === "passed" ? "Recorded" : state === "waiting" ? "Awaiting" : state === "failed" ? "Needs rerun" : "Independent";
@@ -46,7 +55,7 @@ export function WorkbenchHero({
       <p>Open accountable work, inspect the evidence that exists, and see the exact gate that must be met next.</p>
     </div>
     <div className="agent-identity-card">
-      <div className="agent-identity-top"><span className={active ? "agent-live" : "agent-paused"}><i aria-hidden="true" />{activityLabel}</span><span className="record-chip">{status}</span></div>
+      <div className="agent-identity-top"><span className={active ? "agent-live" : "agent-paused"}><i aria-hidden="true" />{activityLabel}</span><ProductStateBadge tone={!storageAvailable ? "not-deployed" : active ? "available" : "provisional"}>{status}</ProductStateBadge></div>
       <strong>{agent?.label ?? "No delegated Agent selected"}</strong>
       <code>{agent?.id ?? "Create a signing key, Agent, and scoped delegation to begin."}</code>
       <span>Owner&nbsp; <code>{profile?.person.id ?? "Sign in to create a Person record"}</code></span>
@@ -107,7 +116,7 @@ export function FocusAction({
     ? `${latestAttempt.agentLabel} · ${latestAttempt.delegationScope ?? "legacy"} authority · ${latestAttempt.status}`
     : "An Attempt is a bounded, durable workspace—not a claim that a proof has been found.";
 
-  return <section className="focus-layout" aria-label="Current focus and next action">
+  return <section className="focus-layout" id="current-research" aria-label="Current focus and next action">
     <div className="focus-summary">
       <span className="micro-label">Current focus</span>
       <h2>{focusTitle}</h2>
@@ -120,7 +129,7 @@ export function FocusAction({
         <Link className="text-link" href="/integrations">Connection status <span>→</span></Link>
       </div>
     </div>
-    <div className="next-action-card">
+    <div className="next-action-card" id="next-action">
       <span className="micro-label">Recommended next action</span>
       <strong>{action.title}</strong>
       <p id="next-action-help">{action.detail}</p>
@@ -179,7 +188,7 @@ export function ResearchWorkstation({ attempt, runs }: { attempt: McpAttempt | n
   const runnerAccepted = hasAcceptedKernel(latestRun);
   const evidenceHref = latestRun ? `/evidence/${encodeURIComponent(latestRun.artifactBundleHash)}` : "/evidence";
 
-  return <section className="workstation-grid" aria-label="Research workstation">
+  return <section className="workstation-grid" id="evidence-workspace" aria-label="Research workstation">
     <article className="workstation-panel context-panel">
       <div className="workstation-heading"><span>01 / Bounded Attempt</span><span className="record-chip">{attempt ? attempt.status : "Not opened"}</span></div>
       <h3>{attempt ? attempt.problemTitle : "Open a source-pinned target before starting research work."}</h3>
@@ -230,7 +239,7 @@ export function SubmissionReadiness({ attempt, profile, runs }: { attempt: McpAt
   const connectionActive = Boolean(attempt && profile?.agentInstallations.some((installation) => installation.status === "active" && installation.agentId === attempt.agentId));
   const leanGate = leanGateFor(latestRunForAttempt(attempt, runs));
 
-  return <section className="submission-section" aria-labelledby="submission-title">
+  return <section className="submission-section" id="contribution-gates" aria-labelledby="submission-title">
     <div className="submission-copy"><p className="eyebrow">Evidence before credit</p><h2 id="submission-title">See every gate before a contribution can count.</h2><p>Proofweave records only evidence that exists. Agent-reported activity, Lean execution, independent review, and a Contribution Receipt remain separate gates.</p></div>
     <div className="submission-card">
       <div className="submission-card-heading"><strong>Contribution path</strong><span>{attempt ? "Attempt selected" : "No Attempt yet"}</span></div>

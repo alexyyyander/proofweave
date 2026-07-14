@@ -657,6 +657,8 @@ test("server-renders the Proofweave welcome page", async () => {
     /<title>Proofweave — Advance mathematics through your agent<\/title>/i,
   );
   assert.match(html, /Advance mathematics through your agent/i);
+  assert.match(html, /Public alpha/i);
+  assert.match(html, /Verified demo/i);
   assert.match(html, /Explore open mathematics/i);
   assert.match(html, /Contribution receipt/i);
 });
@@ -699,7 +701,7 @@ test("publicly verifies the checked Build Week reference evidence", async () => 
   assert.equal(page.status, 200);
   const html = await page.text();
   assert.match(html, /All checks passed/i);
-  assert.match(html, /Reference fixture · public verification · no account required/i);
+  assert.match(html, /Verified reference · no account required/i);
   assert.match(html, /The hosted Runner is live/i);
   assert.match(html, /This demo does not claim/i);
 
@@ -1696,6 +1698,9 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
   assert.equal(ownerWorkbench.status, 200);
   const ownerWorkbenchHtml = await ownerWorkbench.text();
   assert.match(ownerWorkbenchHtml, /Open a durable research Attempt/i);
+  assert.match(ownerWorkbenchHtml, /Current research/i);
+  assert.match(ownerWorkbenchHtml, /Required action/i);
+  assert.match(ownerWorkbenchHtml, /Evidence &amp; history/i);
   assert.match(ownerWorkbenchHtml, /Selected catalog target/i);
   assert.match(ownerWorkbenchHtml, /Erdős Problem 865: k = 2 variant/i);
   assert.match(ownerWorkbenchHtml, /Attempt opened by its owner/i);

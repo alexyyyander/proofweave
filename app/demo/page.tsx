@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Footer, Header } from "@/app/ui";
+import { Footer, Header, ProductStateBadge } from "@/app/ui";
 import { verifyBuildWeekDemoFixture } from "@/app/lib/build-week-demo";
 import { DemoVerificationClient } from "./DemoVerificationClient";
 
@@ -34,7 +34,7 @@ export default async function DemoPage() {
         <section className="demo-boundary" aria-label="Demo boundary">
           <strong>What you are seeing</strong>
           <p>{verification.disclosure}</p>
-          <span>Reference fixture · public verification · no account required</span>
+          <ProductStateBadge tone="verified">Verified reference · no account required</ProductStateBadge>
         </section>
 
         <DemoVerificationClient initial={verification} />

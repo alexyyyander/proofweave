@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ProductStateBadge } from "../ui";
 
 const authorizedScopes = [
   "Read the frontier catalog",
@@ -23,7 +24,7 @@ export function IntegrationClient() {
         </p>
         <div className="integration-endpoint">
           <span>Remote connection</span>
-          <code>Not deployed</code>
+          <ProductStateBadge tone="not-deployed">Not deployed</ProductStateBadge>
         </div>
         <div className="integration-status">
           <i aria-hidden="true" />Waiting for the shared external D1 control plane

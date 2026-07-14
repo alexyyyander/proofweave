@@ -27,7 +27,7 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { background: var(--background); color: var(--foreground); font-family: Arial, Helvetica, sans-serif; margin: 0; min-width: 320px; }
+body { background: var(--background); color: var(--foreground); font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif; margin: 0; min-width: 320px; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; }
 .skip-link { background: var(--navy); color: #fff; left: 12px; padding: 10px 13px; position: fixed; top: -60px; transition: top .15s ease; z-index: 20; }
@@ -348,4 +348,83 @@ h1, h2, h3, p { margin-top: 0; }
   .demo-source-panel code { font-size: 11px; }
   .demo-honesty-grid { grid-template-columns: 1fr; padding-bottom: 72px; padding-top: 72px; }
   .demo-honesty-grid article + article { border-left: 1px solid var(--line); border-top: 0; }
+}
+
+/* Public-alpha product hierarchy. These shared states keep availability,
+   provisional work, verified evidence, and undeployed infrastructure visibly
+   distinct without changing the established editorial design language. */
+.product-state { align-items: center; border: 1px solid currentColor; display: inline-flex; font-size: 10px; font-weight: 700; letter-spacing: .055em; line-height: 1; padding: 6px 8px; text-transform: uppercase; white-space: nowrap; width: fit-content; }
+.product-state-available { background: var(--indigo-soft); border-color: #c5d0ff; color: #4055af; }
+.product-state-provisional { background: var(--amber-soft); border-color: #e5d18b; color: var(--amber); }
+.product-state-verified { background: var(--sage-soft); border-color: #b9d5c3; color: var(--sage); }
+.product-state-not-deployed { background: #f0efea; border-color: #cfcec8; color: #5e6673; }
+.hero-status-line { align-items: center; color: #b6c7ff; display: flex; flex-wrap: wrap; font-size: 11px; font-weight: 700; gap: 12px; letter-spacing: .13em; margin: 0 0 18px; text-transform: uppercase; }
+.hero-status-line .product-state-provisional { background: rgba(243, 212, 139, .12); border-color: rgba(243, 212, 139, .48); color: #f3d48b; }
+.demo-boundary > .product-state { justify-self: end; }
+.integration-endpoint .product-state { justify-self: start; }
+
+/* Desktop navigation stays editorial and non-repetitive. The verified Demo
+   returns as a compact action only when the full navigation collapses. */
+.mobile-demo-link { align-items: center; border: 1px solid rgba(218,227,255,.42); border-radius: 999px; color: #fff; display: none; font-size: 11px; justify-content: center; padding: 8px 11px; }
+.mobile-demo-link:hover, .mobile-demo-link.is-active { background: rgba(168,187,255,.16); border-color: #a8bbff; }
+.mobile-demo-link-short { display: none; }
+
+/* The workspace reads in one direction: current research, required action,
+   then evidence and credit history. */
+.workspace-path { border-bottom: 1px solid var(--line); display: grid; grid-template-columns: repeat(3, minmax(160px, 1fr)); margin-bottom: 20px; overflow-x: auto; }
+.workspace-path a { align-items: center; border-right: 1px solid var(--line); color: var(--ink-soft); display: grid; gap: 10px; grid-template-columns: 28px 1fr; min-height: 64px; padding: 13px 16px; }
+.workspace-path a:last-child { border-right: 0; }
+.workspace-path a:hover { background: #eeede7; color: var(--ink); }
+.workspace-path span { color: var(--indigo); font-size: 11px; font-weight: 700; letter-spacing: .06em; }
+.workspace-path strong { font-size: 12px; font-weight: 600; }
+.delegation-summary { background: transparent; border-left: 0; border-right: 0; margin: 0 0 20px; }
+.focus-layout { margin-bottom: 42px; scroll-margin-top: 24px; }
+.next-action-card, #evidence-workspace, #contribution-gates { scroll-margin-top: 24px; }
+.delegation-setup, .agent-connections { margin-top: 0; }
+.submission-section { margin-top: 18px; }
+.provisional-ledger { margin-top: 18px; }
+
+/* Raise operational metadata above microprint size while preserving compact
+   hashes and proof records. */
+.workbench-main small,
+.workbench-main dt,
+.workbench-main label,
+.workbench-main legend,
+.workbench-main code,
+.workbench-main .preview-marker,
+.workbench-main .record-chip,
+.workbench-main .scope-list b,
+.workbench-main .attempt-target p,
+.workbench-main .attempt-form-note,
+.workbench-main .attempt-message,
+.workbench-main .attempt-metadata span,
+.workbench-main .attempt-list p,
+.workbench-main .event-list p,
+.workbench-main .event-list time,
+.workbench-main .diagnostic-box p,
+.workbench-main .diagnostic-checks dt,
+.workbench-main .diagnostic-checks dd,
+.workbench-main .submission-hint,
+.workbench-main .gate-row small,
+.workbench-main .gate-row em { font-size: 11px; }
+.next-action-card > p { font-size: 12px; }
+.demo-check-list p, .demo-proof-copy dd { font-size: 12px; }
+.demo-check-state, .demo-record-card dt, .demo-record-card code, .demo-checked-at, .demo-proof-copy dt { font-size: 10px; }
+
+@media (max-width: 900px) {
+  .mobile-demo-link { display: inline-flex; }
+  .workspace-path { margin-top: 4px; }
+}
+
+@media (max-width: 620px) {
+  .site-header { gap: 12px; }
+  .brand { font-size: 15px; gap: 8px; }
+  .header-actions { gap: 8px; }
+  .sign-in-link { display: inline-flex; font-size: 11px; }
+  .mobile-demo-link { display: inline-flex; min-height: 34px; padding: 7px 10px; }
+  .mobile-demo-link-long { display: none; }
+  .mobile-demo-link-short { display: inline; }
+  .workspace-path { margin-left: -18px; margin-right: -18px; }
+  .workspace-path a { min-width: 148px; padding-left: 14px; padding-right: 14px; }
+  .demo-boundary > .product-state { justify-self: start; white-space: normal; }
 }

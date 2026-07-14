@@ -1,8 +1,11 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import type { CatalogDisplayStatus } from "@/packages/domain/catalog";
 import { footerNavigation, primaryNavigation, type ActivePage } from "./lib/navigation";
 
 export function Header({ active }: { active: ActivePage }) {
+  const workspaceActive = active === "workbench" || active === "review";
+
   return (
     <>
       <a className="skip-link" href="#main-content">Skip to main content</a>
@@ -11,10 +14,19 @@ export function Header({ active }: { active: ActivePage }) {
         <nav className="main-nav" aria-label="Primary navigation">
           {primaryNavigation.map((item) => <Link className={active === item.page ? "is-active" : ""} href={item.href} key={item.href}>{item.label}</Link>)}
         </nav>
-        <div className="header-actions"><Link className={active === "workbench" ? "sign-in-link is-active" : "sign-in-link"} href="/workbench">My workspace</Link><Link className={active === "demo" ? "header-cta is-active" : "header-cta"} href="/demo">Verify a proof</Link></div>
+        <div className="header-actions">
+          <Link className={workspaceActive ? "sign-in-link is-active" : "sign-in-link"} href="/workbench">Workspace</Link>
+          <Link className={active === "demo" ? "mobile-demo-link is-active" : "mobile-demo-link"} href="/demo" aria-label="Open the verified proof demo"><span className="mobile-demo-link-long">Verified demo</span><span className="mobile-demo-link-short">Verify</span></Link>
+        </div>
       </header>
     </>
   );
+}
+
+export type ProductStateTone = "available" | "provisional" | "verified" | "not-deployed";
+
+export function ProductStateBadge({ tone, children }: { tone: ProductStateTone; children: ReactNode }) {
+  return <span className={`product-state product-state-${tone}`}>{children}</span>;
 }
 
 export function Footer() {
