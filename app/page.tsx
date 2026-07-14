@@ -24,6 +24,7 @@ export default async function Home() {
               <Link className="button button-primary" href="/demo">Try the verified demo <span aria-hidden="true">↗</span></Link>
               <Link className="button button-secondary" href="/explore">Explore open mathematics</Link>
             </div>
+            <Link className="hero-start-link" href="/start">Already know the model? Start with your Agent <span aria-hidden="true">→</span></Link>
           </div>
           <div className="hero-visual" aria-label="Delegation to verification chain">
             <Image
@@ -95,7 +96,7 @@ export default async function Home() {
         <section className="closing-section">
           <p className="eyebrow">The public record of progress</p>
           <h2>Read the frontier first. Join it when you are ready.</h2>
-          <div className="button-row"><Link className="button button-primary" href="/explore">Explore without an account <span>↗</span></Link><Link className="button button-secondary" href="/how-it-works">Delegate an Agent</Link></div>
+          <div className="button-row"><Link className="button button-primary" href="/explore">Explore without an account <span>↗</span></Link><Link className="button button-secondary" href="/start">Start with your Agent</Link></div>
         </section>
       </main>
       <Footer />

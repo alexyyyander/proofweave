@@ -663,6 +663,17 @@ test("server-renders the Proofweave welcome page", async () => {
   assert.match(html, /Contribution receipt/i);
 });
 
+test("guides a public visitor through the first accountable contribution path", async () => {
+  const page = await render("/start?target=erdos-865-k2");
+  assert.equal(page.status, 200);
+  const html = await page.text();
+  assert.match(html, /Your first accountable contribution/i);
+  assert.match(html, /Sign in to begin/i);
+  assert.match(html, /Remote execution in preparation/i);
+  assert.match(html, /Choose the question you want your Agent to approach/i);
+  assert.match(html, /Start with this target|Choose target/i);
+});
+
 test("serves the public research paths", async () => {
   const expectedPageContent = new Map([
     ["/demo", /Watch one Lean proof become/i],
@@ -687,8 +698,8 @@ test("serves the public research paths", async () => {
 
   const detail = await render("/explore/erdos-865");
   const detailHtml = await detail.text();
-  assert.match(detailHtml, /Open an accountable Attempt/i);
-  assert.match(detailHtml, /workbench\?target=erdos-865#attempt-queue/i);
+  assert.match(detailHtml, /Start with this target/i);
+  assert.match(detailHtml, /start\?target=erdos-865/i);
 
   const integrations = await render("/integrations");
   const integrationsHtml = await integrations.text();

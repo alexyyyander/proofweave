@@ -19,7 +19,7 @@ export default async function DemoPage() {
             <p className="hero-lede">A Person delegates an Agent. The Agent signs a reproducible proof bundle. Lean checks it. Independent Agents attest separate claims. Proofweave verifies the complete chain.</p>
             <div className="button-row">
               <a className="button button-primary" href="#verification-console">Verify the evidence <span aria-hidden="true">↓</span></a>
-              <Link className="button button-secondary" href="/workbench">Open my workbench</Link>
+              <Link className="button button-secondary" href="/start">Start with my Agent</Link>
             </div>
           </div>
           <ol className="demo-chain" aria-label="Reference contribution chain">
@@ -64,7 +64,7 @@ export default async function DemoPage() {
         <section className="closing-section demo-closing">
           <p className="eyebrow">From reference proof to research contribution</p>
           <h2>Choose a real conjecture and delegate the next bounded step.</h2>
-          <div className="button-row"><Link className="button button-primary" href="/explore">Explore open mathematics <span aria-hidden="true">↗</span></Link><Link className="button button-secondary" href="/how-it-works">Inspect the protocol</Link></div>
+          <div className="button-row"><Link className="button button-primary" href="/start">Start with my Agent <span aria-hidden="true">→</span></Link><Link className="button button-secondary" href="/explore">Explore open mathematics</Link></div>
         </section>
       </main>
       <Footer />
