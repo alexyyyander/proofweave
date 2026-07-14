@@ -1881,7 +1881,11 @@ test("keeps the production frontend free of the deleted starter preview", async 
   assert.match(workbench, /Independent review/);
   assert.doesNotMatch(workbench, /Run next bounded step|Illustrative only|Example check result|Local preview/);
   assert.match(delegationSetup, /Set up an accountable research Agent/);
-  assert.match(delegationSetup, /Agent private key must stay where the Agent runs/);
+  assert.match(delegationSetup, /Nothing to paste here yet/);
+  assert.match(delegationSetup, /Advanced: I already have an Agent public key/);
+  assert.match(delegationSetup, /Wait to activate a delegation/);
+  assert.match(delegationSetup, /It will never ask for your ChatGPT password, API key, or private workspace/);
+  assert.doesNotMatch(delegationSetup, /Enter Agent identity/);
   assert.match(delegationSetup, /Replace or revoke key/);
   assert.match(browserKeyStore, /IndexedDB-backed WebCrypto store/);
   assert.match(browserKeyStore, /Remove a locally held private key/);

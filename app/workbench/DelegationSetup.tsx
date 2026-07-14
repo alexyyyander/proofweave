@@ -300,20 +300,32 @@ function AgentStep({ agents, busy, onRegister }: {
   return <article className="delegation-step">
     <span className="step-number">02</span>
     <div>
-      <span className="micro-label">Agent public key</span>
-      <h3>{activeAgents.length > 0 ? `${activeAgents.length} Agent${activeAgents.length === 1 ? "" : "s"} registered to you.` : "Register the Agent that will report work."}</h3>
-      <p>The Agent private key must stay where the Agent runs. This form records only its stable identifier, label, and public key.</p>
+      <span className="micro-label">Local Agent</span>
+      <h3>{activeAgents.length > 0 ? `${activeAgents.length} Agent${activeAgents.length === 1 ? "" : "s"} identity${activeAgents.length === 1 ? " is" : " identities are"} recorded.` : "Connect your local Agent when secure sync opens."}</h3>
+      <p>{activeAgents.length > 0
+        ? "A public Agent identity is recorded. It does not itself connect to your computer, start Codex, or upload project files."
+        : "You should not need to create or paste a public key. The future local connection will generate one on the Agent’s computer and keep its private half there."}</p>
       {activeAgents.length > 0 && <ul className="registered-agent-list">{activeAgents.map((agent) => <li key={agent.id}><strong>{agent.label}</strong><code>{agent.id}</code><small>{agent.keyFingerprint}</small></li>)}</ul>}
-      <details className="agent-register-details" open={activeAgents.length === 0}>
-        <summary>{activeAgents.length > 0 ? "Register another Agent" : "Enter Agent identity"}</summary>
+      {activeAgents.length === 0 && <div className="local-agent-connection-card">
+        <div>
+          <span className="connection-card-status"><i aria-hidden="true" />Local connection in preparation</span>
+          <strong>Nothing to paste here yet.</strong>
+          <p>Proofweave will eventually pair a local Codex or Lean Agent through a revocable browser approval. It will never ask for your ChatGPT password, API key, or private workspace.</p>
+        </div>
+        <Link className="button button-secondary setup-action" href="/integrations">See how local work stays private <span aria-hidden="true">→</span></Link>
+      </div>}
+      <details className="agent-register-details" id="agent-manual-registration">
+        <summary>{activeAgents.length > 0 ? "Advanced: register another existing Agent" : "Advanced: I already have an Agent public key"}</summary>
+        <p className="agent-register-warning">Use this only when the actual local Agent has already generated an Ed25519 key pair. Paste its public key—not a ChatGPT token, API key, password, or private key. Manual registration records authority only; it does not create a live connection.</p>
         <form className="delegation-form" onSubmit={(event) => {
           event.preventDefault();
           void onRegister({ agentId, label, publicKey });
         }}>
-          <label>Agent label<input required maxLength={120} value={label} onChange={(event) => setLabel(event.target.value)} placeholder="Alice’s local Codex" /></label>
-          <label>Stable Agent ID<input required maxLength={240} value={agentId} onChange={(event) => setAgentId(event.target.value)} placeholder="urn:pw:agent:alice-codex-01" /></label>
+          <label>Agent label<input required maxLength={120} value={label} onChange={(event) => setLabel(event.target.value)} placeholder="Alex’s local Codex" /></label>
+          <label>Stable Agent ID<input required maxLength={240} value={agentId} onChange={(event) => setAgentId(event.target.value)} placeholder="urn:pw:agent:alex-local-codex-01" /></label>
           <label>Agent public key<input required value={publicKey} onChange={(event) => setPublicKey(event.target.value)} placeholder="Base64url Ed25519 public key" spellCheck="false" autoCapitalize="none" /></label>
-          <button className="button button-secondary setup-action" type="submit" disabled={busy}>{busy ? "Registering Agent…" : "Register Agent public key"}</button>
+          <small className="agent-public-key-hint">Expected format: the base64url-encoded 32-byte Ed25519 public key created by that Agent.</small>
+          <button className="button button-secondary setup-action" type="submit" disabled={busy}>{busy ? "Recording Agent identity…" : "Record existing Agent identity"}</button>
         </form>
       </details>
     </div>
@@ -335,6 +347,7 @@ function CertificateStep({ profile, active, deviceKeys, busy, onIssue }: {
   const verifiedDeviceKeys = deviceKeys.filter((key) => key.revokedAt === null && key.possessionVerifiedAt !== null);
   const signingKey = verifiedDeviceKeys.find((key) => key.id === signingKeyId) ?? verifiedDeviceKeys[0];
   const agent = availableAgents.find((candidate) => candidate.id === agentId) ?? availableAgents[0];
+  const needsAgentIdentity = !active && availableAgents.length === 0;
   const canIssue = !active && Boolean(signingKey && agent && selectedScopes.length > 0);
 
   const toggleScope = (scope: Scope) => setSelectedScopes((current) => current.includes(scope)
@@ -345,11 +358,21 @@ function CertificateStep({ profile, active, deviceKeys, busy, onIssue }: {
     <span className="step-number">03</span>
     <div>
       <span className="micro-label">Revocable delegation</span>
-      <h3>{active ? "An active certificate already governs this Agent." : "Sign the scope and expiry you are granting."}</h3>
+      <h3>{active
+        ? "An active certificate already governs this Agent."
+        : needsAgentIdentity
+          ? "Connect or register an Agent before granting authority."
+          : "Sign the scope and expiry you are granting."}</h3>
       <p>{active
         ? "Creating another certificate is intentionally paused while one is active. Revoke it first if the Agent or authority needs to change."
-        : "The certificate is signed by your device key, then stored as immutable evidence. Its revocation is a separate append-only event."}</p>
-      {!active && <form className="delegation-form certificate-form" onSubmit={(event) => {
+        : needsAgentIdentity
+          ? "You will choose permitted work and an expiry after a local Agent identity is available."
+          : "The certificate is signed by your device key, then stored as immutable evidence. Its revocation is a separate append-only event."}</p>
+      {needsAgentIdentity ? <div className="certificate-prerequisite">
+        <strong>Wait to activate a delegation.</strong>
+        <p>A local Agent identity is required first. The recommended connection will do this automatically when secure sync is available; manual registration is only for an Agent that already has its own public key.</p>
+        <a className="text-link" href="#agent-manual-registration">I already have an Agent key <span aria-hidden="true">→</span></a>
+      </div> : !active && <form className="delegation-form certificate-form" onSubmit={(event) => {
         event.preventDefault();
         if (signingKey && agent) void onIssue({ signingKey, agent, selectedScopes, days: Number(days) });
       }}>
