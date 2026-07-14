@@ -1,12 +1,15 @@
 # Closed-alpha runbook
 
-This runbook describes the current Proofweave alpha honestly. The private
-Sites application is an owner-only setup and evidence-inspection surface; it
-is **not** a public MCP service and does not itself execute Lean.
+This runbook describes the current Proofweave alpha honestly. The Sites
+application has a publicly readable research catalog and verified reference
+Demo. Its Person-scoped setup, workbench, review, and evidence actions require
+Sign in with ChatGPT. It is **not** a public MCP service and does not itself
+execute Lean.
 
 ## Participant path available today
 
-1. Sign in to the private workspace.
+1. Open the public catalog or verified reference Demo without an account, or
+   sign in before creating Person-scoped records.
 2. Create a device-held Person signing key and complete its proof of
    possession.
 3. Register an Agent public key and issue a scoped, revocable delegation.
@@ -66,7 +69,7 @@ corrections use their own append-only lifecycle protocol.
 
 ## Release evidence
 
-Before each private Sites release run:
+Before each Sites release run:
 
 ```bash
 npm run check
@@ -74,6 +77,7 @@ npm run security:dependencies
 ```
 
 The production dependency audit must report no high-severity findings. The
-private deployment process packages the exact checked commit and retains the
-owner-only access policy. A future participant rollout needs an explicit
-access-policy review; it is not authorized by this runbook.
+deployment process packages the exact checked commit. Public access is limited
+to the frontend and Sign in with ChatGPT boundary: enabling remote MCP, hosted
+Lean execution, or broader participant writes still requires the external
+deployment and security gates in this runbook.

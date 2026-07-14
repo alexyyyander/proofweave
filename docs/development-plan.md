@@ -222,8 +222,9 @@ Implemented locally on 2026-07-13:
   repeat seeding does not duplicate records.
 
 The local D1 harness passed on 2026-07-13 and the catalog was deployed to the
-private Sites environment. Hosted catalog access remains protected by its
-owner-only platform policy.
+Sites environment. The frontend became publicly readable on 2026-07-14;
+Person-scoped actions remain behind Sign in with ChatGPT and the catalog API
+remains read-only.
 
 ### MCP direction change
 
@@ -360,8 +361,9 @@ Agent connection remain required before participant access. The API contract and
 limitation are documented in
 [`docs/agent-delegation-api.md`](agent-delegation-api.md).
 The new read-only record representation is part of the Sprint 2 inspection
-surface, not public participant onboarding: the current Sites deployment still
-has an owner-only access policy.
+surface, not public participant onboarding. The Sites frontend is publicly
+readable, but its public access does not provide account recovery, a remote
+Agent connection, or hosted Lean execution.
 
 The same closed-alpha workbench now has a D1-backed owner work queue. It lists
 only public, source-pinned frontier records, accepts a selected target from a

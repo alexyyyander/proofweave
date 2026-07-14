@@ -4,7 +4,7 @@ Status: accepted direction, source adapters complete, deployment pending, 2026-0
 
 ## Context
 
-The private Sites application owns its D1 binding. That database cannot be the
+The Sites application owns its D1 binding. That database cannot be the
 shared authority for separately hosted public MCP, OAuth, queue, and Runner
 processes. Cloudflare Queues and Containers also require account capabilities
 that are not available to the no-card alpha.
@@ -17,15 +17,17 @@ alpha would add risk without changing any signed research protocol.
 
 ## Decision
 
-Keep the Sites frontend and its current owner-only D1 data intact. Build the
-separate participant control plane around provider-neutral boundaries:
+Keep the Sites frontend and its current Person-scoped D1 data intact. Public
+read access to the frontend does not turn that database into a shared external
+control plane. Build the separate participant control plane around
+provider-neutral boundaries:
 
 1. Use remote libSQL/Turso as the first shared control-plane database. The
    `LibsqlD1Database` adapter implements only the D1 surface Proofweave uses:
    `prepare`, `bind`, `first`, `all`, `run`, `raw`, and atomic `batch`.
 2. Apply the existing migrations unchanged to the new database, including the
    one-megabyte D1-inline evidence boundary from migration `0025`. Do not copy
-   private Sites records implicitly.
+   existing Sites records implicitly.
 3. Keep every signature, canonical hash, Artifact Bundle, Runner request,
    review attestation, and Contribution Receipt format provider-neutral.
 4. Use a Modal Sandbox adapter behind the existing private Container `fetch`

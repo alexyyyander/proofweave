@@ -84,8 +84,10 @@ receipt.
 Each persisted certificate also has a read-only human and JSON evidence view.
 It exposes only its signed attribution identifiers, public keys, canonical
 payload, signature, hash, and any append-only revocation—not provider identity,
-display names, private credentials, or Agent reasoning. The current Sites
-deployment remains owner-only despite this public-record model.
+display names, private credentials, or Agent reasoning. The Sites frontend is
+publicly readable as of 2026-07-14, while Person-scoped setup, workbench, review,
+and evidence actions still require Sign in with ChatGPT. Public frontend access
+does not imply that the remote MCP control plane or hosted Lean Runner is live.
 
 ## Project documentation
 
