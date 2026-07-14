@@ -30,9 +30,14 @@ create a verification or contribution-receipt claim.
 
 1. Keep the bundled Skill aligned with the canonical source and run
    `npm run plugin:check`.
-2. For the private repository, add the repository marketplace in Codex:
-   `codex plugin marketplace add alexyyyander/proofweave --ref main --sparse .agents/plugins`,
-   then install **Proofweave Research** from the Plugins panel.
+2. Ask Codex to follow the public, auditable installer at
+   [`/codex-install.md`](https://proofweave-research.yualex031821.chatgpt.site/codex-install.md),
+   or show the user the commands first: `codex plugin marketplace add
+   alexyyyander/proofweave --ref main --sparse .agents/plugins`, then
+   `codex plugin add proofweave-research@proofweave-private-beta`. The user
+   must explicitly confirm the installation. When the repository is public,
+   this works for any Codex user; during private beta it requires repository
+   access.
 3. Run `connect_proofweave` in Codex. The browser approval creates the local
    Agent identity and a 30-day formalize/prove delegation without asking the
    participant to paste a public key.

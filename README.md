@@ -351,11 +351,14 @@ The external Worker preflight and shared D1-inline deployment invariant are in t
 The parallel Runner deployment guard is in the
 [Runner deployment preflight guide](docs/runner-deployment-preflight.md).
 
-The `/integrations` page now provides the private-beta Codex marketplace and
-local Connector flow. It does not expose a bearer token, public raw MCP URL,
-or workspace-upload configuration. The flow becomes usable only after the
-Site D1 control-plane migrations are applied; public participant access still
-needs the separate deployment gates.
+The `/integrations` page now provides a Codex-guided installation request and
+a public, versioned [`codex-install.md`](public/codex-install.md) procedure.
+Codex may perform the two plugin commands after the user confirms them, but it
+must not connect an account or create an Agent without a separate explicit
+request. The local Connector does not expose a bearer token, raw MCP endpoint,
+or workspace-upload configuration. The flow becomes usable only after the Site
+D1 control-plane migrations are applied; public participant access still needs
+the separate deployment gates.
 
 The gateway records `agent_reported_only` activity only under the selected
 Agent's exact active `formalize` or `prove` certificate, can stage bounded

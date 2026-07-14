@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CodexInstallPrompt } from "./CodexInstallPrompt";
 
 const authorizedScopes = [
   "Read the frontier catalog",
@@ -20,12 +21,14 @@ export function IntegrationClient() {
           your computer alongside Codex; it is not a hosted model and it never
           receives your ChatGPT password or API key.
         </p>
-        <div className="integration-endpoint">
-          <span>Codex marketplace command</span>
+        <CodexInstallPrompt />
+        <details className="integration-command-details">
+          <summary>Prefer the terminal? Show the two install commands.</summary>
           <code>codex plugin marketplace add alexyyyander/proofweave --ref main --sparse .agents/plugins</code>
-        </div>
-        <div className="integration-status integration-status-ready"><i aria-hidden="true" />Private repository access is required for this Beta</div>
-        <p className="integration-note integration-note-light">After adding the marketplace, install <strong>Proofweave Research</strong> in Codex’s Plugins panel. The plugin’s local Bridge is included automatically.</p>
+          <code>codex plugin add proofweave-research@proofweave-private-beta</code>
+        </details>
+        <div className="integration-status integration-status-ready"><i aria-hidden="true" />The marketplace becomes public with the public release</div>
+        <p className="integration-note integration-note-light">Codex can perform the setup, but it must show the commands and receive your confirmation first. The local Bridge is included automatically.</p>
       </article>
 
       <article className="integration-card integration-card-dark">
