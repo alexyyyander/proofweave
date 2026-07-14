@@ -1,6 +1,8 @@
+import Link from "next/link";
+
 import { MissingDatabaseBindingError } from "@/db";
 import { getDelegationRepository, type DelegationProfile } from "@/db/repositories/delegation";
-import { chatGPTSignInPath, getChatGPTUser, type ChatGPTUser } from "../chatgpt-auth";
+import { chatGPTSignInPath, chatGPTSignOutPath, getChatGPTUser, type ChatGPTUser } from "../chatgpt-auth";
 import { Footer, Header, ProductStateBadge } from "../ui";
 import { AgentConnections } from "../workbench/AgentConnections";
 import { DelegationSetup } from "../workbench/DelegationSetup";
@@ -28,7 +30,17 @@ export default async function SettingsPage() {
           <h1 id="settings-title">Manage your research Agent.</h1>
           <p>Keep identity, keys, delegated authority, and Agent connections separate from the mathematical work happening in your Workspace.</p>
         </div>
-        <div className="settings-hero-status"><ProductStateBadge tone={status.tone}>{status.label}</ProductStateBadge><span>{user ? user.displayName : "Your contribution record starts after sign-in."}</span></div>
+        <div className="settings-hero-status">
+          <ProductStateBadge tone={status.tone}>{status.label}</ProductStateBadge>
+          <span>{user ? user.displayName : "Your contribution record starts after sign-in."}</span>
+          <Link
+            className="settings-account-switch"
+            href={user ? chatGPTSignOutPath("/settings") : chatGPTSignInPath("/settings")}
+          >
+            {user ? "Switch ChatGPT account" : "Sign in with ChatGPT"}
+            <span aria-hidden="true">→</span>
+          </Link>
+        </div>
       </section>
 
       <section className="settings-guide" aria-label="Settings purpose">

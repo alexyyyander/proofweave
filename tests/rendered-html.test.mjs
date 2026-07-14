@@ -697,6 +697,11 @@ test("serves the public research paths", async () => {
     );
   }
 
+  const settings = await render("/settings");
+  const settingsHtml = await settings.text();
+  assert.match(settingsHtml, /Sign in with ChatGPT/i);
+  assert.match(settingsHtml, /signin-with-chatgpt/);
+
   const detail = await render("/explore/erdos-865");
   const detailHtml = await detail.text();
   assert.match(detailHtml, /Start with this target/i);
