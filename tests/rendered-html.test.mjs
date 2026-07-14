@@ -680,9 +680,9 @@ test("serves the public research paths", async () => {
     ["/explore", /Frontier mathematics, made inspectable/i],
     ["/explore/erdos-865", /Erdős Problem 865/i],
     ["/how-it-works", /Participation is personal\. Verification is public/i],
-    ["/workbench", /Your research agent/i],
+    ["/workbench", /Keep the work on your computer/i],
     ["/settings", /Manage your research Agent/i],
-    ["/integrations", /Prepare your research Agent now/i],
+    ["/integrations", /Keep your research Agent on your computer/i],
     ["/receipt/abc-l1", /Receipt not issued/i],
     ["/delegations/abc-l1", /Delegation not found/i],
   ]);
@@ -701,6 +701,11 @@ test("serves the public research paths", async () => {
   const settingsHtml = await settings.text();
   assert.match(settingsHtml, /Sign in with ChatGPT/i);
   assert.match(settingsHtml, /signin-with-chatgpt/);
+
+  const workbench = await render("/workbench");
+  const workbenchHtml = await workbench.text();
+  assert.match(workbenchHtml, /Keep the work on your computer/i);
+  assert.match(workbenchHtml, /Local-first research/i);
 
   const detail = await render("/explore/erdos-865");
   const detailHtml = await detail.text();

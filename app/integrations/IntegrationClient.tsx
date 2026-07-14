@@ -12,34 +12,31 @@ const authorizedScopes = [
 
 export function IntegrationClient() {
   return (
-    <section className="integration-grid" aria-label="Remote Codex connection">
+    <section className="integration-grid" aria-label="Local Agent connection">
       <article className="integration-card">
-        <span className="micro-label">01 / Closed-alpha availability</span>
-        <h2>Set up authority now. Connect later.</h2>
+        <span className="micro-label">01 / Work locally now</span>
+        <h2>Start with a bounded research brief.</h2>
         <p>
-          No external Proofweave MCP endpoint is available in this alpha. Do
-          not add a URL or look for a token. You can still establish a Person,
-          register an Agent, issue a scoped delegation, and open durable
-          Attempts in the workbench.
+          Open one source-pinned Attempt, then copy or download its brief for
+          the Codex or Lean Agent you already run on your computer. Your source
+          files, model choice, credentials, and raw exploration stay local.
         </p>
         <div className="integration-endpoint">
-          <span>Remote connection</span>
-          <ProductStateBadge tone="not-deployed">Not deployed</ProductStateBadge>
+          <span>Local handoff</span>
+          <ProductStateBadge tone="available">Available in Workspace</ProductStateBadge>
         </div>
-        <div className="integration-status">
-          <i aria-hidden="true" />Waiting for the shared external D1 control plane
-        </div>
-        <Link className="text-link" href="/workbench">Set up Agent authority <span>→</span></Link>
+        <div className="integration-status integration-status-ready"><i aria-hidden="true" />No project files are uploaded by the brief</div>
+        <Link className="text-link" href="/workbench#local-agent">Prepare a local research brief <span>→</span></Link>
       </article>
 
       <article className="integration-card integration-card-dark">
-        <span className="micro-label">02 / After activation</span>
+        <span className="micro-label">02 / Secure sync later</span>
         <h2>Your Agent will get only the work it needs.</h2>
         <ol className="integration-flow">
           <li><b>1</b><span>Select the published Proofweave connection in your Agent environment after the service becomes available.</span></li>
-          <li><b>2</b><span>Your browser opens Proofweave using your existing signed-in session.</span></li>
+          <li><b>2</b><span>Your browser opens Proofweave using your existing signed-in session and asks for one revocable approval.</span></li>
           <li><b>3</b><span>Approve only the research scopes your Agent needs; review submission additionally requires a `review` delegation.</span></li>
-          <li><b>4</b><span>After you open an Attempt in the workbench, the selected Agent can discover only that certificate’s work, report provisional progress, and stage signed evidence for a separate runner.</span></li>
+          <li><b>4</b><span>Before upload, inspect the exact signed patch, manifests, and checks. The remote service never receives an unreviewed copy of your workspace.</span></li>
         </ol>
         <div className="integration-scopes" aria-label="Authorization scopes after activation">
           {authorizedScopes.map((scope) => <span key={scope}>{scope}</span>)}
@@ -54,17 +51,17 @@ export function IntegrationClient() {
       </article>
 
       <article className="integration-card integration-card-wide">
-        <span className="micro-label">What you can do today</span>
-        <h2>Build a durable research identity before remote access opens.</h2>
+        <span className="micro-label">Privacy boundary</span>
+        <h2>Review evidence before it becomes a network record.</h2>
         <p>
-          The earlier local-token prototype has been retired. The active
-          closed-alpha workbench records one Person, each Agent public key,
-          scoped revocable delegations, and owner-created Attempts without
-          pretending that a remote Agent, Lean runner, or review has occurred.
-          Once available, every approval will create one revocable Agent
-          installation for one client.
+          The earlier local-token prototype remains retired. The active alpha
+          records a Person, Agent public key, scoped revocable delegation, and
+          owner-created Attempt—but does not pretend that your computer has
+          been connected, a Lean Runner has executed, or a review has occurred.
+          When available, each OAuth approval will create one revocable Agent
+          installation for one client and a minimal, reviewable evidence handoff.
         </p>
-        <Link className="text-link" href="/workbench">Open your workbench <span>→</span></Link>
+        <Link className="text-link" href="/workbench">Open your local-first Workspace <span>→</span></Link>
       </article>
     </section>
   );

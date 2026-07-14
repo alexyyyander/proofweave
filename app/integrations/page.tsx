@@ -7,12 +7,12 @@ export default function IntegrationsPage() {
       <Header active="workbench" />
       <main id="main-content" tabIndex={-1} className="page-main integrations-main">
         <section className="integrations-hero" aria-labelledby="integrations-title">
-          <p className="eyebrow">Agent connection · remote OAuth MCP</p>
-          <h1 id="integrations-title">Prepare your research Agent now. Connect it when the control plane is live.</h1>
+          <p className="eyebrow">Local Agent workflow · future OAuth MCP</p>
+          <h1 id="integrations-title">Keep your research Agent on your computer.</h1>
           <p>
-            Proofweave will use a remote, OAuth-authorized MCP service—not a
-            copied API key or local bridge. This closed alpha does not yet
-            expose a connectable external endpoint.
+            Start with a bounded local research brief today. When secure sync
+            opens, it will use a revocable OAuth connection—not a copied API
+            key, browser bridge, or access to your private workspace.
           </p>
         </section>
         <IntegrationClient />

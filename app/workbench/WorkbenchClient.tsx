@@ -7,6 +7,7 @@ import type { McpAttempt, McpRunSummary } from "@/packages/domain/mcp";
 import type { ProvisionalContribution } from "@/db/repositories/provisional-contributions";
 import { DelegationSummary, FocusAction, ProvisionalContributionLedger, ResearchWorkstation, SubmissionReadiness, WorkbenchHero, WorkspacePath, WorkspaceSettingsPrompt } from "./workbench-sections";
 import { AttemptQueue } from "./AttemptQueue";
+import { LocalAgentHandoff } from "./LocalAgentHandoff";
 
 export function WorkbenchClient({
   profile,
@@ -79,6 +80,7 @@ export function WorkbenchClient({
     <WorkspacePath />
     <DelegationSummary profile={profile} />
     <FocusAction profile={profile} attempts={attempts} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} isRefreshing={isRefreshing} refreshError={refreshError} refreshedAt={refreshedAt} onRefresh={() => { void refreshAttempts(); }} />
+    <LocalAgentHandoff profile={profile} attempt={attempts[0] ?? null} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} />
     <WorkspaceSettingsPrompt profile={profile} isAuthenticated={isAuthenticated} storageAvailable={storageAvailable} />
     <AttemptQueue profile={profile} attempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={initialTargetSlug} onAttemptCreated={(attempt) => { setAttempts((current) => [attempt, ...current.filter((candidate) => candidate.id !== attempt.id)]); setRefreshError(null); }} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} />
     <ResearchWorkstation attempt={attempts[0] ?? null} runs={runs} />

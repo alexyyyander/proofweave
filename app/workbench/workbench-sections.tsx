@@ -8,9 +8,9 @@ type GateState = "passed" | "waiting" | "required" | "failed";
 
 export function WorkspacePath() {
   return <nav className="workspace-path" aria-label="Workspace sections">
-    <a href="#current-research"><span>01</span><strong>Current research</strong></a>
-    <a href="#next-action"><span>02</span><strong>Required action</strong></a>
-    <a href="#evidence-workspace"><span>03</span><strong>Evidence &amp; history</strong></a>
+    <a href="#current-research"><span>01</span><strong>Choose research</strong></a>
+    <a href="#local-agent"><span>02</span><strong>Work with your Agent</strong></a>
+    <a href="#evidence-workspace"><span>03</span><strong>Inspect evidence</strong></a>
   </nav>;
 }
 
@@ -52,7 +52,7 @@ export function WorkbenchHero({
     <div>
       <p className="eyebrow">Personal workspace <span className="preview-marker">{marker}</span></p>
       <h1 id="workbench-title">Your research agent</h1>
-      <p>Open accountable work, inspect the evidence that exists, and see the exact gate that must be met next.</p>
+      <p>Choose accountable work, hand a bounded brief to your local Agent, and inspect only the evidence that actually exists.</p>
     </div>
     <div className="agent-identity-card">
       <div className="agent-identity-top"><span className={active ? "agent-live" : "agent-paused"}><i aria-hidden="true" />{activityLabel}</span><ProductStateBadge tone={!storageAvailable ? "not-deployed" : active ? "available" : "provisional"}>{status}</ProductStateBadge></div>
@@ -349,7 +349,7 @@ function nextAction({ active, hasAttempt, isAuthenticated, signInPath, storageAv
   if (!storageAvailable) return { title: "Wait for the control plane to recover.", detail: "No local fallback can create an accountable Attempt while durable storage is unavailable.", label: "Browse public research", href: "/explore" };
   if (!active) return { title: "Create scoped authority before any work can be attributed.", detail: "A Person key, registered Agent, and active formalize or prove delegation are required before an Attempt can open.", label: "Open Agent settings", href: "/settings#delegation-setup" };
   if (!hasAttempt) return { title: "Open one durable Attempt for your selected Agent.", detail: "This records a bounded workspace only. It does not impersonate Agent activity or run Lean.", label: "Open a durable Attempt", href: "#attempt-queue" };
-  return { title: "Inspect the evidence recorded for the current Attempt.", detail: "The next missing gate is shown below; nothing is marked verified until its own evidence has been recorded.", label: "View Attempt activity", href: "#attempt-activity" };
+  return { title: "Send the bounded brief to your local Agent.", detail: "Your Lean workspace and private reasoning stay on your computer. Reviewable evidence is a later, separate handoff.", label: "Prepare local research", href: "#local-agent" };
 }
 
 function eventLabel(type: McpAttemptEvent["type"]): string {

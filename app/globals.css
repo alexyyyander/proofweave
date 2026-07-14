@@ -362,6 +362,7 @@ h1, h2, h3, p { margin-top: 0; }
 .hero-status-line .product-state-provisional { background: rgba(243, 212, 139, .12); border-color: rgba(243, 212, 139, .48); color: #f3d48b; }
 .demo-boundary > .product-state { justify-self: end; }
 .integration-endpoint .product-state { justify-self: start; }
+.integration-status-ready { color: var(--sage); }
 
 /* Desktop navigation stays editorial and non-repetitive. The verified Demo
    returns as a compact action only when the full navigation collapses. */
@@ -383,6 +384,38 @@ h1, h2, h3, p { margin-top: 0; }
 .delegation-setup, .agent-connections { margin-top: 0; }
 .submission-section { margin-top: 18px; }
 .provisional-ledger { margin-top: 18px; }
+
+/* Local-first handoff: the Workspace helps a person start useful local work
+   now, while making the future secure-sync boundary explicit. */
+.local-agent-section { background: #fff; border: 1px solid var(--line); margin: 0 0 24px; padding: 28px; scroll-margin-top: 24px; }
+.local-agent-heading { align-items: start; border-bottom: 1px solid var(--line); display: flex; gap: 30px; justify-content: space-between; padding-bottom: 24px; }
+.local-agent-heading > div:first-child { max-width: 740px; }
+.local-agent-heading .eyebrow { margin-bottom: 11px; }
+.local-agent-heading h2 { font-family: Georgia, "Times New Roman", serif; font-size: clamp(30px, 3.5vw, 44px); font-weight: 400; letter-spacing: -.047em; line-height: 1.04; margin: 0 0 12px; }
+.local-agent-heading > div > p:not(.eyebrow) { color: var(--ink-soft); font-size: 13px; line-height: 1.58; margin: 0; }
+.local-agent-badges { align-items: end; display: grid; gap: 8px; justify-items: end; min-width: 168px; }
+.local-agent-steps { border-bottom: 1px solid var(--line); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); list-style: none; margin: 0; padding: 0; }
+.local-agent-steps li { border-right: 1px solid var(--line); display: grid; gap: 17px; grid-template-columns: 27px minmax(0, 1fr); min-height: 175px; padding: 22px 18px 22px 0; }
+.local-agent-steps li + li { padding-left: 18px; }
+.local-agent-steps li:last-child { border-right: 0; padding-right: 0; }
+.local-agent-steps > li > span { color: var(--indigo); font-size: 11px; font-weight: 700; letter-spacing: .06em; }
+.local-agent-steps strong { display: block; font-size: 13px; margin-bottom: 9px; }
+.local-agent-steps p { color: var(--ink-soft); font-size: 12px; line-height: 1.53; margin: 0 0 12px; }
+.local-agent-steps small { color: var(--ink-faint); display: block; font-size: 10px; line-height: 1.45; }
+.local-agent-actions { align-items: center; background: #f0f2f9; border-bottom: 1px solid #d1d9ef; display: flex; gap: 25px; justify-content: space-between; margin-top: 24px; padding: 19px 20px; }
+.local-agent-actions > div:first-child { max-width: 650px; }
+.local-agent-actions .micro-label { display: block; margin-bottom: 7px; }
+.local-agent-actions strong { display: block; font-size: 14px; margin-bottom: 6px; }
+.local-agent-actions p { color: var(--ink-soft); font-size: 11px; line-height: 1.5; margin: 0; }
+.local-agent-buttons { display: flex; flex: 0 0 auto; flex-wrap: wrap; gap: 10px; }
+.local-agent-buttons .workspace-secondary-button { background: #fff; }
+.local-agent-notice { background: var(--sage-soft); border-left: 2px solid var(--sage); color: #315e48; font-size: 11px; line-height: 1.45; margin: 14px 0 0; padding: 11px 13px; }
+.local-agent-boundary { color: var(--ink-faint); font-size: 10px; line-height: 1.5; margin: 15px 0 0; }
+.local-agent-unavailable { background: #fcfcfa; }
+.local-agent-empty { background: #f0f2f9; display: grid; gap: 10px; margin-top: 24px; max-width: 760px; padding: 19px 20px; }
+.local-agent-empty strong { font-size: 14px; }
+.local-agent-empty p { color: var(--ink-soft); font-size: 12px; line-height: 1.52; margin: 0; }
+.local-agent-empty .button { justify-self: start; margin-top: 4px; }
 
 /* Raise operational metadata above microprint size while preserving compact
    hashes and proof records. */
@@ -414,6 +447,11 @@ h1, h2, h3, p { margin-top: 0; }
 @media (max-width: 900px) {
   .mobile-demo-link { display: inline-flex; }
   .workspace-path { margin-top: 4px; }
+  .local-agent-heading { align-items: start; flex-direction: column; }
+  .local-agent-badges { justify-items: start; }
+  .local-agent-steps { grid-template-columns: 1fr; }
+  .local-agent-steps li, .local-agent-steps li + li, .local-agent-steps li:last-child { border-bottom: 1px solid var(--line); border-right: 0; min-height: 0; padding: 18px 0; }
+  .local-agent-steps li:last-child { border-bottom: 0; }
 }
 
 @media (max-width: 620px) {
@@ -427,6 +465,12 @@ h1, h2, h3, p { margin-top: 0; }
   .workspace-path { margin-left: -18px; margin-right: -18px; }
   .workspace-path a { min-width: 148px; padding-left: 14px; padding-right: 14px; }
   .demo-boundary > .product-state { justify-self: start; white-space: normal; }
+  .local-agent-section { margin-left: -18px; margin-right: -18px; padding: 22px 18px; }
+  .local-agent-heading { gap: 20px; padding-bottom: 20px; }
+  .local-agent-heading h2 { font-size: 31px; }
+  .local-agent-actions { align-items: start; flex-direction: column; gap: 17px; margin-top: 18px; padding: 18px; }
+  .local-agent-buttons { width: 100%; }
+  .local-agent-buttons .button, .local-agent-buttons .workspace-secondary-button { justify-content: center; width: 100%; }
 }
 
 /* First-contribution journey: a single, state-aware path from public proof
