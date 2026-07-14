@@ -97,7 +97,7 @@ export function AttemptQueue({
     </div> : eligibleDelegations.length === 0 ? <div className="attempt-queue-empty">
       <strong>Add a `formalize` or `prove` delegation first.</strong>
       <p>Proofweave will not attribute a durable Attempt without active scoped authority.</p>
-      <button className="quiet-action" type="button" onClick={() => document.getElementById("delegation-setup")?.scrollIntoView({ behavior: "smooth", block: "start" })}>Go to delegation setup</button>
+      <Link className="quiet-action" href="/settings#delegation-setup">Go to Agent settings</Link>
     </div> : <div className="attempt-queue-grid">
       <form className="attempt-open-form" onSubmit={(event) => { event.preventDefault(); void openAttempt(); }}>
         <label>Public frontier target

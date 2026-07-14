@@ -522,3 +522,60 @@ h1, h2, h3, p { margin-top: 0; }
   .journey-expectations { gap: 26px; margin-top: 62px; padding-top: 34px; }
   .journey-expectations h2 { font-size: 35px; }
 }
+
+/* Device-key fingerprints are intentionally long, opaque identifiers. They
+   must wrap inside their own delegation column instead of expanding the grid
+   into the neighbouring Agent setup step. */
+.delegation-step > div,
+.device-key-statuses,
+.device-key-status { min-width: 0; }
+.device-key-label { display: block; inline-size: 100%; max-inline-size: 100%; overflow-wrap: anywhere; white-space: normal; word-break: break-word; }
+
+/* Settings owns identity and access management. The Workspace remains about
+   current mathematical work rather than account configuration. */
+.settings-link { color: #c8d2e1; font-size: 13px; transition: color .2s ease; }
+.settings-link:hover, .settings-link.is-active { color: #fff; }
+.settings-main { margin: 0 auto; max-width: 1240px; padding: 68px 28px 120px; }
+.settings-hero { align-items: end; border-bottom: 1px solid var(--line); display: flex; gap: 32px; justify-content: space-between; padding-bottom: 42px; }
+.settings-hero > div:first-child { max-width: 735px; }
+.settings-hero .eyebrow { margin-bottom: 14px; }
+.settings-hero h1, .workspace-settings-prompt h2 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; letter-spacing: -.052em; }
+.settings-hero h1 { font-size: clamp(44px, 5vw, 68px); line-height: .98; margin: 0 0 18px; }
+.settings-hero > div > p:not(.eyebrow) { color: var(--ink-soft); font-size: 16px; line-height: 1.6; margin: 0; max-width: 680px; }
+.settings-hero-status { align-items: start; background: var(--navy); color: #c4d0e7; display: grid; gap: 13px; max-width: 290px; min-width: 240px; padding: 17px; }
+.settings-hero-status span { font-size: 11px; line-height: 1.45; overflow-wrap: anywhere; }
+.settings-guide { border-bottom: 1px solid var(--line); display: grid; grid-template-columns: repeat(3, 1fr); margin-bottom: 28px; }
+.settings-guide > div { border-right: 1px solid var(--line); display: grid; gap: 8px; min-height: 132px; padding: 21px; }
+.settings-guide > div:first-child { border-left: 1px solid var(--line); }
+.settings-guide span { color: var(--indigo); font-size: 11px; font-weight: 700; letter-spacing: .08em; }
+.settings-guide strong { font-size: 13px; }
+.settings-guide p { color: var(--ink-soft); font-size: 11px; line-height: 1.48; margin: 0; }
+.settings-main .delegation-summary { margin: 0 0 24px; }
+.settings-main .delegation-setup { margin: 0 0 24px; }
+.settings-main .agent-connections { margin: 0; }
+.workspace-settings-prompt { align-items: end; background: #f0f2f9; border: 1px solid #d1d9ef; display: flex; gap: 26px; justify-content: space-between; margin: -24px 0 42px; padding: 21px 23px; }
+.workspace-settings-prompt > div { max-width: 780px; }
+.workspace-settings-prompt .eyebrow { margin-bottom: 10px; }
+.workspace-settings-prompt h2 { font-size: 27px; line-height: 1.08; margin: 0 0 8px; }
+.workspace-settings-prompt p:not(.eyebrow) { color: var(--ink-soft); font-size: 12px; line-height: 1.52; margin: 0; }
+.workspace-settings-prompt .button { background: #fff; flex: 0 0 auto; }
+
+@media (max-width: 900px) {
+  .settings-link { display: none; }
+  .settings-hero { align-items: start; flex-direction: column; }
+  .settings-hero-status { max-width: 500px; width: 100%; }
+  .workspace-settings-prompt { align-items: start; flex-direction: column; margin-top: -16px; }
+}
+
+@media (max-width: 620px) {
+  .settings-main { padding: 44px 18px 72px; }
+  .settings-hero { padding-bottom: 34px; }
+  .settings-hero h1 { font-size: 45px; }
+  .settings-guide { grid-template-columns: 1fr; margin-left: -18px; margin-right: -18px; }
+  .settings-guide > div, .settings-guide > div:first-child { border-left: 0; border-right: 0; border-top: 1px solid var(--line); min-height: 0; padding: 17px 18px; }
+  .settings-guide > div:first-child { border-top: 0; }
+  .settings-main .delegation-summary { margin-bottom: 18px; }
+  .workspace-settings-prompt { margin: -10px -18px 35px; padding: 21px 18px; }
+  .workspace-settings-prompt h2 { font-size: 25px; }
+  .workspace-settings-prompt .button { justify-content: center; width: 100%; }
+}

@@ -681,6 +681,7 @@ test("serves the public research paths", async () => {
     ["/explore/erdos-865", /Erdős Problem 865/i],
     ["/how-it-works", /Participation is personal\. Verification is public/i],
     ["/workbench", /Your research agent/i],
+    ["/settings", /Manage your research Agent/i],
     ["/integrations", /Prepare your research Agent now/i],
     ["/receipt/abc-l1", /Receipt not issued/i],
     ["/delegations/abc-l1", /Delegation not found/i],

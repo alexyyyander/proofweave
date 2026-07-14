@@ -16,6 +16,7 @@ export function Header({ active }: { active: ActivePage }) {
         </nav>
         <div className="header-actions">
           <Link className={workspaceActive ? "sign-in-link is-active" : "sign-in-link"} href="/workbench">Workspace</Link>
+          <Link className={active === "settings" ? "settings-link is-active" : "settings-link"} href="/settings">Settings</Link>
           <Link className={active === "demo" ? "mobile-demo-link is-active" : "mobile-demo-link"} href="/demo" aria-label="Open the verified proof demo"><span className="mobile-demo-link-long">Verified demo</span><span className="mobile-demo-link-short">Verify</span></Link>
         </div>
       </header>

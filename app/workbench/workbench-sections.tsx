@@ -144,6 +144,37 @@ export function FocusAction({
   </section>;
 }
 
+export function WorkspaceSettingsPrompt({
+  profile,
+  isAuthenticated,
+  storageAvailable,
+}: {
+  profile: DelegationProfile | null;
+  isAuthenticated: boolean;
+  storageAvailable: boolean;
+}) {
+  const active = activeDelegation(profile);
+  const title = !isAuthenticated
+    ? "Keep Agent authority in one account settings page."
+    : !storageAvailable
+      ? "Account controls are waiting for the durable control plane."
+      : active
+        ? "Your research Agent is configured outside the active research flow."
+        : "Finish Agent setup in Settings before opening accountable work.";
+  const detail = !isAuthenticated
+    ? "Signing keys, Agent registration, and revocable delegations are personal account controls—not properties of a single research Attempt."
+    : !storageAvailable
+      ? "Proofweave will not expose a local fallback for keys or delegation changes while account storage is unavailable."
+      : active
+        ? "Use Settings to inspect or revoke keys, delegated scopes, and external Agent approvals without interrupting the workbench."
+        : "Create your device signing key, register the Agent public key, and sign only the scopes that you intend to grant.";
+
+  return <section className="workspace-settings-prompt" aria-labelledby="workspace-settings-title">
+    <div><p className="eyebrow">Account controls</p><h2 id="workspace-settings-title">{title}</h2><p>{detail}</p></div>
+    <Link className="button button-secondary" href="/settings#delegation-setup">{active ? "Manage Agent settings" : "Open Agent settings"}<span aria-hidden="true">→</span></Link>
+  </section>;
+}
+
 export function ProvisionalContributionLedger({
   profile,
   contributions,
@@ -316,7 +347,7 @@ function AttemptEventRow({ event }: { event: McpAttemptEvent }) {
 function nextAction({ active, hasAttempt, isAuthenticated, signInPath, storageAvailable }: { active: boolean; hasAttempt: boolean; isAuthenticated: boolean; signInPath: string; storageAvailable: boolean }) {
   if (!isAuthenticated) return { title: "Sign in to create accountable research work.", detail: "Proofweave creates a Person record only from an authenticated session; no sample identity is used.", label: "Sign in to your workspace", href: signInPath };
   if (!storageAvailable) return { title: "Wait for the control plane to recover.", detail: "No local fallback can create an accountable Attempt while durable storage is unavailable.", label: "Browse public research", href: "/explore" };
-  if (!active) return { title: "Create scoped authority before any work can be attributed.", detail: "A Person key, registered Agent, and active formalize or prove delegation are required before an Attempt can open.", label: "Set up delegation", href: "#delegation-setup" };
+  if (!active) return { title: "Create scoped authority before any work can be attributed.", detail: "A Person key, registered Agent, and active formalize or prove delegation are required before an Attempt can open.", label: "Open Agent settings", href: "/settings#delegation-setup" };
   if (!hasAttempt) return { title: "Open one durable Attempt for your selected Agent.", detail: "This records a bounded workspace only. It does not impersonate Agent activity or run Lean.", label: "Open a durable Attempt", href: "#attempt-queue" };
   return { title: "Inspect the evidence recorded for the current Attempt.", detail: "The next missing gate is shown below; nothing is marked verified until its own evidence has been recorded.", label: "View Attempt activity", href: "#attempt-activity" };
 }
