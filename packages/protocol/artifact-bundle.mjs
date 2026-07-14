@@ -3,9 +3,11 @@ import { workspaceTreeProtocolVersion } from "./workspace-tree.mjs";
 
 export const artifactBundleProtocolVersion = "pw-artifact-bundle-v1";
 export const artifactBundleV2ProtocolVersion = "pw-artifact-bundle-v2";
+export const artifactBundleV3ProtocolVersion = "pw-artifact-bundle-v3";
 export const artifactBundleProtocolVersions = Object.freeze([
   artifactBundleProtocolVersion,
   artifactBundleV2ProtocolVersion,
+  artifactBundleV3ProtocolVersion,
 ]);
 
 export const workspaceTreeAlgorithm = workspaceTreeProtocolVersion;
@@ -32,6 +34,9 @@ export function normalizeArtifactBundle(bundle) {
   }
   if (bundle.protocolVersion === artifactBundleV2ProtocolVersion) {
     return normalizeArtifactBundleV2(bundle);
+  }
+  if (bundle.protocolVersion === artifactBundleV3ProtocolVersion) {
+    return normalizeArtifactBundleV3(bundle);
   }
   throw new ArtifactBundleProtocolError("Unsupported artifact bundle protocol version.");
 }
@@ -69,6 +74,13 @@ export function normalizeArtifactBundleV2Workspace(workspace) {
   return normalizeWorkspace(workspace);
 }
 
+/** True only for workspace Bundles the isolated Runner may reconstruct. */
+export function isExecutableArtifactBundle(bundle) {
+  return Boolean(bundle && typeof bundle === "object" && !Array.isArray(bundle)) &&
+    (bundle.protocolVersion === artifactBundleV2ProtocolVersion ||
+      bundle.protocolVersion === artifactBundleV3ProtocolVersion);
+}
+
 /**
  * The Agent signs this payload, not the full manifest: its signature and
  * payloadHash fields are deliberately excluded to avoid a circular hash.
@@ -77,7 +89,12 @@ export function artifactBundleSigningPayload(bundle) {
   const normalized = normalizeArtifactBundle(bundle);
   const workspaceEvidence = normalized.protocolVersion === artifactBundleProtocolVersion
     ? { source: normalized.source }
-    : { workspace: normalized.workspace };
+    : {
+      workspace: normalized.workspace,
+      ...(normalized.protocolVersion === artifactBundleV3ProtocolVersion
+        ? { repositorySnapshot: normalized.repositorySnapshot }
+        : {}),
+    };
   return {
     protocolVersion: normalized.protocolVersion,
     id: normalized.id,
@@ -157,6 +174,44 @@ function normalizeArtifactBundleV2(bundle) {
     ...common,
     workspace: normalizeWorkspace(bundle.workspace),
   });
+}
+
+/**
+ * v3 preserves the byte-identical v2 offline workspace while binding it to an
+ * Agent-signed GitHub commit. The Runner still receives only D1 evidence, so
+ * private repository credentials never enter the execution boundary.
+ */
+function normalizeArtifactBundleV3(bundle) {
+  rejectExtraKeys(bundle, [
+    "protocolVersion", "id", "attemptId", "problemRevisionId", "target",
+    "workspace", "repositorySnapshot", "environment", "entryCommand", "dependencyReceipts",
+    "agentEvent", "policy",
+  ], "Artifact bundle");
+  const common = normalizeCommon(bundle, { version: artifactBundleV3ProtocolVersion, environment: "v2" });
+  return Object.freeze({
+    protocolVersion: artifactBundleV3ProtocolVersion,
+    ...common,
+    workspace: normalizeWorkspace(bundle.workspace),
+    repositorySnapshot: normalizeRepositorySnapshot(bundle.repositorySnapshot),
+  });
+}
+
+function normalizeRepositorySnapshot(value) {
+  requireRecord(value, "bundle repositorySnapshot");
+  rejectExtraKeys(value, ["provider", "repository", "commitSha", "visibility"], "bundle repositorySnapshot");
+  if (value.provider !== "github") {
+    throw new ArtifactBundleProtocolError("bundle repositorySnapshot provider must be github.");
+  }
+  if (typeof value.repository !== "string" || !/^[A-Za-z0-9][A-Za-z0-9._-]{0,99}\/[A-Za-z0-9][A-Za-z0-9._-]{0,99}$/.test(value.repository)) {
+    throw new ArtifactBundleProtocolError("bundle repositorySnapshot repository must be an owner/name GitHub repository.");
+  }
+  if (typeof value.commitSha !== "string" || !/^[a-f0-9]{40}$/.test(value.commitSha)) {
+    throw new ArtifactBundleProtocolError("bundle repositorySnapshot commitSha must be a lowercase immutable 40-character Git commit SHA.");
+  }
+  if (value.visibility !== "public" && value.visibility !== "private") {
+    throw new ArtifactBundleProtocolError("bundle repositorySnapshot visibility must be public or private.");
+  }
+  return Object.freeze({ ...value });
 }
 
 function normalizeCommon(bundle, { environment }) {

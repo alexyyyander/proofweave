@@ -1,11 +1,16 @@
 # ADR 0006: Closed-alpha runner uses Cloudflare Queues and Containers
 
-Status: accepted, 2026-07-13
+Status: accepted, 2026-07-13 (storage detail amended 2026-07-14)
+
+The original R2 storage detail is superseded for the no-card alpha by
+[`ADR 0007`](0007-d1-inline-alpha-evidence.md): bounded immutable evidence is
+stored inline in D1. This ADR's Queue/Container isolation decision remains in
+force; Cloudflare Containers still require a paid Workers plan.
 
 ## Context
 
-The web/control plane is already a Cloudflare-compatible application with D1
-and R2 bindings. The runner needs durable at-least-once dispatch, a dead-letter
+The web/control plane is already a Cloudflare-compatible application with a D1
+binding. The runner needs durable at-least-once dispatch, a dead-letter
 path, a separate hostile-code process boundary, and no public network access
 for submitted Lean projects. The repository has a provider-neutral signed
 `RunnerQueue` protocol, but no hosted adapter.
@@ -24,7 +29,7 @@ will transfer a prevalidated, content-addressed bundle into that one instance,
 run it in a fresh workspace, collect a bounded result, then stop it. The
 Container must have `enableInternet = false`, no deployment secrets, no direct
 browser route, and a pinned image digest. The trusted Worker—not the
-Container—holds R2, D1, result-signing, and control-plane credentials.
+Container—holds D1, result-signing, and control-plane credentials.
 
 ## Consequences
 

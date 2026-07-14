@@ -11,7 +11,8 @@ import {
  * Deployment entrypoint. It deliberately has no authorization-code or
  * consent implementation: Proofweave Identity is a separate deployment. The
  * gateway can nevertheless validate that service's opaque D1-backed tokens
- * and enforce its own D1/R2 attribution boundary once bindings are supplied.
+ * and enforce its own D1 inline-evidence attribution boundary once bindings
+ * are supplied.
  */
 export function createCloudflareGatewayWorker({ audit = defaultAudit() } = {}) {
   if (!audit || typeof audit.handle !== "function") {
@@ -23,7 +24,6 @@ export function createCloudflareGatewayWorker({ audit = defaultAudit() } = {}) {
         try {
           return await createD1RemoteMcpGatewayRuntime({
             database: env.DB,
-            bucket: env.ARTIFACTS,
             resource: env.MCP_RESOURCE_URL,
             issuer: env.OAUTH_ISSUER_URL,
             runnerQueue: env.RUNNER_QUEUE,

@@ -5,7 +5,7 @@ import { validateLeanRunnerDeploymentManifest } from "./preflight-lean-runner-de
 
 /**
  * The MCP gateway and isolated Runner may be deployed separately, but they
- * cannot use independently valid D1/R2 resources or dispatch values. This
+ * cannot use independently valid D1 evidence boundaries or dispatch values. This
  * non-secret preflight checks the pair before any Worker configuration is
  * rendered or deployed.
  */
@@ -14,7 +14,7 @@ export function validateAlphaControlPlaneTopology({ mcpManifest, runnerManifest 
   const runner = validateLeanRunnerDeploymentManifest(runnerManifest);
   assertSame("D1 database name", mcp.controlPlane.databaseName, runner.controlPlane.databaseName);
   assertSame("D1 database ID", mcp.controlPlane.databaseId, runner.controlPlane.databaseId);
-  assertSame("R2 bucket name", mcp.controlPlane.bucketName, runner.controlPlane.bucketName);
+  assertSame("artifact storage mode", mcp.controlPlane.artifactStorage, runner.controlPlane.artifactStorage);
   if (!mcp.runner) {
     throw new Error("MCP manifest must declare runner integration before it can be paired with a Runner deployment.");
   }
@@ -52,7 +52,7 @@ async function main() {
   ]);
   const topology = validateAlphaControlPlaneTopology({ mcpManifest, runnerManifest });
   process.stdout.write(`${JSON.stringify(topology, null, 2)}\n`);
-  process.stdout.write("MCP and Runner manifests share one D1/R2 authority and one Runner dispatch contract. This check does not deploy a Worker, create a resource, enable Runner execution, or verify provider isolation.\n");
+  process.stdout.write("MCP and Runner manifests share one D1 inline-evidence authority and one Runner dispatch contract. This check does not deploy a Worker, create a resource, enable Runner execution, or verify provider isolation.\n");
 }
 
 async function readJson(path, label) {

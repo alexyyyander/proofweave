@@ -6,7 +6,7 @@ const mcpManifest = {
   control_plane: {
     d1_database_name: "proofweave-control-alpha",
     d1_database_id: "ce75f2fb-40a9-4d14-9393-6cdb6a6f6069",
-    r2_bucket_name: "proofweave-control-artifacts-alpha",
+    artifact_storage: "d1_inline",
   },
   gateway: {
     worker_name: "proofweave-mcp-gateway-alpha",
@@ -57,12 +57,12 @@ const runnerManifest = {
   },
 };
 
-test("alpha deployment preflight requires MCP and Runner to share one D1/R2 authority", () => {
+test("alpha deployment preflight requires MCP and Runner to share one D1 inline-evidence authority", () => {
   const topology = validateAlphaControlPlaneTopology({ mcpManifest, runnerManifest });
   assert.deepEqual(topology.controlPlane, {
     databaseName: mcpManifest.control_plane.d1_database_name,
     databaseId: mcpManifest.control_plane.d1_database_id,
-    bucketName: mcpManifest.control_plane.r2_bucket_name,
+    artifactStorage: mcpManifest.control_plane.artifact_storage,
   });
   assert.equal(topology.gateway.resourceUrl, mcpManifest.gateway.resource_url);
   assert.equal(topology.runner.queueName, runnerManifest.queue.name);
@@ -72,7 +72,7 @@ test("alpha deployment preflight requires MCP and Runner to share one D1/R2 auth
   assert.doesNotMatch(JSON.stringify(topology), new RegExp(runnerManifest.keys.control_plane_issuer.public_key));
 });
 
-test("alpha deployment preflight rejects D1 and R2 drift between otherwise valid manifests", () => {
+test("alpha deployment preflight rejects D1 and inline-storage drift between otherwise valid manifests", () => {
   assert.throws(
     () => validateAlphaControlPlaneTopology({
       mcpManifest,
@@ -98,10 +98,10 @@ test("alpha deployment preflight rejects D1 and R2 drift between otherwise valid
       mcpManifest,
       runnerManifest: {
         ...runnerManifest,
-        control_plane: { ...runnerManifest.control_plane, r2_bucket_name: "proofweave-other-artifacts" },
+        control_plane: { ...runnerManifest.control_plane, artifact_storage: "r2" },
       },
     }),
-    /same R2 bucket name/,
+    /artifact_storage must be d1_inline/,
   );
 });
 

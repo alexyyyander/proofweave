@@ -17,7 +17,7 @@ export default async function EvidenceIndexPage() {
     <Header active="workbench" />
     <main id="main-content" tabIndex={-1} className="page-main evidence-main">
       <div className="breadcrumb"><Link href="/workbench">Workbench</Link><span> / </span><span>Evidence records</span></div>
-      <section className="review-heading"><div><p className="eyebrow">Controlled evidence access · closed alpha</p><h1>Inspect the record behind a proof attempt.</h1><p>Only your own Attempts and Bundles assigned to you for independent review appear here. Artifact downloads are hash-bound R2 objects; opening them never runs Lean again.</p></div><span className="record-chip">{evidence.length} records</span></section>
+      <section className="review-heading"><div><p className="eyebrow">Controlled evidence access · closed alpha</p><h1>Inspect the record behind a proof attempt.</h1><p>Only your own Attempts and Bundles assigned to you for independent review appear here. Artifact downloads are hash-bound, D1-stored alpha objects; opening them never runs Lean again.</p></div><span className="record-chip">{evidence.length} records</span></section>
       {evidence.length === 0 ? <section className="review-empty"><p className="eyebrow">No accessible evidence</p><h2>Your evidence inbox is clear.</h2><p>Your own staged Bundles and any assigned independent reviews will appear here. Preview activity in the workbench is not evidence.</p><Link className="text-link" href="/workbench">Return to workspace <span>→</span></Link></section> : <section className="evidence-index-list" aria-label="Accessible evidence records">{evidence.map((record) => <EvidenceIndexCard key={record.attemptId} record={record} />)}</section>}
     </main>
     <Footer />

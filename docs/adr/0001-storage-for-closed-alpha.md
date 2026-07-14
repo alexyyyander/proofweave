@@ -1,6 +1,6 @@
 # ADR 0001: Closed-alpha storage boundary
 
-Status: accepted, 2026-07-13
+Status: superseded by [ADR 0007](0007-d1-inline-alpha-evidence.md), 2026-07-14
 
 ## Context
 

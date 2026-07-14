@@ -6,7 +6,8 @@ import {
   VerificationStoreNotFoundError,
   VerificationStoreValidationError,
 } from "../verification/d1-verification-store.mjs";
-import { D1R2ArtifactStore, maxArtifactObjectBytes } from "../artifacts/d1-r2-artifact-store.mjs";
+import { D1R2ArtifactStore } from "../artifacts/d1-r2-artifact-store.mjs";
+import { maxInlineArtifactObjectBytes } from "../artifacts/d1-inline-artifact-store.mjs";
 import { D1RunStore } from "../lean-runner/d1-run-store.mjs";
 import { closedAlphaAttemptLimits } from "../../packages/domain/attempt-policy.mjs";
 
@@ -55,13 +56,13 @@ export class GatewayStoreRateLimitError extends Error {
  */
 export class D1RemoteMcpGatewayStore {
   constructor(databaseOrOptions) {
-    const { database, bucket, runnerDispatcher } = normalizeGatewayBindings(databaseOrOptions);
+    const { database, bucket, artifactStore, runnerDispatcher } = normalizeGatewayBindings(databaseOrOptions);
     if (!database || typeof database.prepare !== "function") {
       throw new TypeError("D1RemoteMcpGatewayStore requires a D1 database binding.");
     }
     this.database = database;
     this.verificationStore = new D1VerificationStore(database);
-    this.artifactStore = bucket ? new D1R2ArtifactStore({ database, bucket }) : null;
+    this.artifactStore = artifactStore ?? (bucket ? new D1R2ArtifactStore({ database, bucket }) : null);
     this.runStore = new D1RunStore(database);
     this.runnerDispatcher = runnerDispatcher;
   }
@@ -825,7 +826,7 @@ function requireArtifactObjectInput(input) {
   if (
     typeof input.contentBase64Url !== "string" ||
     input.contentBase64Url.length === 0 ||
-    input.contentBase64Url.length > base64UrlCharactersFor(maxArtifactObjectBytes) ||
+    input.contentBase64Url.length > base64UrlCharactersFor(maxInlineArtifactObjectBytes) ||
     !/^[A-Za-z0-9_-]+$/.test(input.contentBase64Url)
   ) {
     throw new GatewayStoreValidationError("Artifact contentBase64Url must be unpadded base64url within the control-plane byte limit.");
@@ -879,7 +880,7 @@ function decodeBase64Url(value) {
     const padded = `${value}${"=".repeat((4 - (value.length % 4)) % 4)}`;
     const binary = atob(padded.replaceAll("-", "+").replaceAll("_", "/"));
     const bytes = Uint8Array.from(binary, (character) => character.charCodeAt(0));
-    if (bytes.byteLength > maxArtifactObjectBytes) {
+    if (bytes.byteLength > maxInlineArtifactObjectBytes) {
       throw new GatewayStoreValidationError("Artifact object exceeds the control-plane byte limit.");
     }
     return bytes;
@@ -899,10 +900,11 @@ function normalizeGatewayBindings(value) {
     return {
       database: value.database,
       bucket: value.bucket ?? null,
+      artifactStore: value.artifactStore ?? null,
       runnerDispatcher: value.runnerDispatcher ?? null,
     };
   }
-  return { database: value, bucket: null, runnerDispatcher: null };
+  return { database: value, bucket: null, artifactStore: null, runnerDispatcher: null };
 }
 
 async function verificationReplayIdentity({ assignmentId, requesterAgentId, delegationCertificateId, idempotencyKey }) {

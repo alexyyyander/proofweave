@@ -9,7 +9,7 @@ Proofweave OAuth token.
 
 ```text
 Proofweave web control plane ─┐
-Proofweave OAuth issuer      ─┼─ one shared D1 + R2 authority boundary
+Proofweave OAuth issuer      ─┼─ one shared D1 inline-evidence authority boundary
 Remote MCP gateway           ─┘
 ```
 
@@ -17,7 +17,7 @@ Do not deploy the gateway against a newly created empty D1 database. It would
 not see Persons, Agent delegations, OAuth clients, installations, Attempts, or
 artifact indexes; it is therefore fail-closed but non-functional. Before a live
 gateway rollout, migrate the web control plane to an external Cloudflare Worker
-or otherwise bind all three services to the same externally managed D1/R2
+or otherwise bind all three services to the same externally managed D1
 resources.
 
 ## Operator manifest
@@ -48,7 +48,7 @@ When the optional `runner` block is present, the MCP preflight renders the
 non-secret `RUNNER_QUEUE`, image registry, control-plane key ID, and default
 limits binding. It deliberately never renders
 `RUNNER_CONTROL_PLANE_PRIVATE_KEY_JWK`; that matching private signing key is a
-gateway-secret-provider responsibility. The pairwise check rejects any D1/R2,
+gateway-secret-provider responsibility. The pairwise check rejects any D1,
 Queue, image, or control-plane key-ID mismatch. It does not create resources,
 enable Runner execution, or prove provider-level Container isolation.
 
@@ -89,7 +89,9 @@ Wrangler deployment commands:
 
 1. The same D1 has all repository migrations (including the opaque remote-MCP
    rate-limit buckets) and the required owner records.
-2. The R2 bucket is private and contains only content-addressed evidence.
+2. `inline_artifact_bytes` is present in the migrated shared D1; evidence is
+   content-addressed, immutable, and each object remains within the 1 MB alpha
+   limit.
 3. The external identity origin has a real browser session, consent, recovery,
    and audit policy; dynamic registration remains disabled unless a finite,
    operator-reviewed client metadata allowlist is configured. The current Sites

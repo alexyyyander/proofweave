@@ -1,5 +1,5 @@
 import { currentReviewPersonId } from "@/app/lib/review-api";
-import { MissingArtifactBindingError, MissingDatabaseBindingError } from "@/db";
+import { MissingDatabaseBindingError } from "@/db";
 import { EvidenceIntegrityError } from "@/db/repositories/evidence";
 
 export async function currentEvidencePersonId(): Promise<string | Response> {
@@ -7,7 +7,7 @@ export async function currentEvidencePersonId(): Promise<string | Response> {
 }
 
 export function evidenceFailure(error: unknown): Response {
-  if (error instanceof MissingDatabaseBindingError || error instanceof MissingArtifactBindingError) {
+  if (error instanceof MissingDatabaseBindingError) {
     return Response.json({ error: { code: "unavailable", message: "Evidence storage is temporarily unavailable." } }, { status: 503 });
   }
   if (error instanceof EvidenceIntegrityError) {

@@ -44,7 +44,7 @@ test("creates a runner request only from the canonical artifact bundle", async (
       imageDigest: `ghcr.io/proofweave/lean-runner@sha256:${"c".repeat(64)}`,
       limits: fixtureRequest().limits,
     }),
-    /require pw-artifact-bundle-v2/,
+    /require executable pw-artifact-bundle-v2 or pw-artifact-bundle-v3/,
   );
 });
 

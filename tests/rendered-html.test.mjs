@@ -29,7 +29,6 @@ const migrationsRoot = new URL("../drizzle/", import.meta.url);
 const workerRoot = new URL("../dist/server/", import.meta.url);
 let miniflare;
 let database;
-let bucket;
 let signedReceiptFixture;
 let controlledEvidenceFixture;
 
@@ -48,13 +47,11 @@ before(async () => {
     compatibilityDate: "2026-05-15",
     compatibilityFlags: ["nodejs_compat"],
     d1Databases: ["DB"],
-    r2Buckets: ["ARTIFACTS"],
     serviceBindings: {
       ASSETS: async () => new Response("Not found", { status: 404 }),
     },
   });
   database = await miniflare.getD1Database("DB");
-  bucket = await miniflare.getR2Bucket("ARTIFACTS");
   await applyMigrations(database);
 });
 
@@ -405,7 +402,7 @@ async function putEvidenceObject(value, filename, contentType, expectedHash = nu
   const contentHash = await sha256Bytes(bytes);
   assert.equal(expectedHash ?? contentHash, contentHash);
   const objectKey = `bundles/sha256/${contentHash.slice("sha256:".length)}/${filename}`;
-  await bucket.put(objectKey, bytes, { httpMetadata: { contentType }, customMetadata: { sha256: contentHash } });
+  await putInlineObject({ objectKey, contentHash, bytes, contentType });
   await database.prepare("INSERT INTO artifact_objects (content_hash, object_key, byte_length, content_type) VALUES (?, ?, ?, ?)").bind(contentHash, objectKey, bytes.byteLength, contentType).run();
   return { contentHash, objectKey, byteLength: bytes.byteLength, contentType };
 }
@@ -415,8 +412,15 @@ async function putRunnerOutput(value, role) {
   const contentHash = await sha256Bytes(bytes);
   const objectKey = `runner-results/sha256/${contentHash.slice("sha256:".length)}/${role}.log`;
   const contentType = "text/plain; charset=utf-8";
-  await bucket.put(objectKey, bytes, { httpMetadata: { contentType }, customMetadata: { sha256: contentHash } });
+  await putInlineObject({ objectKey, contentHash, bytes, contentType });
   return { contentHash, objectKey, byteLength: bytes.byteLength, contentType };
+}
+
+async function putInlineObject({ objectKey, contentHash, bytes, contentType }) {
+  await database
+    .prepare("INSERT INTO inline_artifact_bytes (object_key, content_hash, byte_length, content_type, bytes) VALUES (?, ?, ?, ?, ?)")
+    .bind(objectKey, contentHash, bytes.byteLength, contentType, bytes)
+    .run();
 }
 
 async function insertPublicDelegationFixture() {

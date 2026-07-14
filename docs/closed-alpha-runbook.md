@@ -32,8 +32,8 @@ must continue to state that no external endpoint is available.
 Complete every gate in [MCP control-plane deployment](mcp-control-plane-deployment.md)
 and [Runner deployment preflight](runner-deployment-preflight.md):
 
-- one migrated external D1 and private R2 authority shared by web, OAuth,
-  gateway, and Runner;
+- one migrated external D1 inline-evidence authority shared by web, OAuth,
+  gateway, and Runner; every alpha evidence object must remain below 1 MB;
 - reviewed HTTPS origins, finite client allowlist, and revocable installation
   flow;
 - paired MCP/Runner manifests, secret-provider key-pair verification, and an
@@ -53,7 +53,7 @@ For suspected gateway, Runner, key, Queue, or storage compromise:
 
 1. Disable Runner execution and the Queue consumer; revoke affected Agent
    installations or delegations as appropriate.
-2. Preserve D1 events, immutable R2 objects, Queue/DLQ counts, Runner IDs,
+2. Preserve D1 events, immutable inline evidence rows, Queue/DLQ counts, Runner IDs,
    image digest, and privacy-minimal audit records. Do not delete evidence to
    clear a backlog.
 3. Reconcile non-terminal Runs by their existing idempotency keys only; never

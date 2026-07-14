@@ -9,7 +9,7 @@ const manifest = {
   control_plane: {
     d1_database_name: "proofweave-control-alpha",
     d1_database_id: "ce75f2fb-40a9-4d14-9393-6cdb6a6f6069",
-    r2_bucket_name: "proofweave-control-artifacts-alpha",
+    artifact_storage: "d1_inline",
   },
   queue: {
     name: "proofweave-runner-jobs-alpha",
@@ -65,6 +65,7 @@ test("Runner deployment preflight normalizes one pinned non-secret topology", ()
   }]);
   assert.equal(config.containers[0].max_instances, 1);
   assert.equal(config.containers[0].instance_type, "standard-1");
+  assert.equal(config.r2_buckets, undefined);
   assert.doesNotMatch(JSON.stringify(config), /RUNNER_RESULT_PRIVATE_KEY_JWK/);
 });
 

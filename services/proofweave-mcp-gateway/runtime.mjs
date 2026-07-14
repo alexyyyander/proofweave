@@ -6,6 +6,7 @@ import { D1RemoteMcpRunnerDispatcher } from "./runner-dispatch.mjs";
 import { createRemoteMcpGateway } from "./worker.mjs";
 import { CloudflareRunnerQueue } from "../lean-runner/cloudflare-queues.mjs";
 import { PinnedRunnerImageRegistry } from "../lean-runner/runner-image-policy.mjs";
+import { D1InlineArtifactStore } from "../artifacts/d1-inline-artifact-store.mjs";
 
 export class RemoteMcpRuntimeConfigurationError extends Error {
   constructor(message) {
@@ -22,7 +23,7 @@ export class RemoteMcpRuntimeConfigurationError extends Error {
  */
 export function createD1RemoteMcpGatewayRuntime({
   database,
-  bucket,
+  bucket = null,
   resource,
   issuer,
   runnerQueue = null,
@@ -34,14 +35,15 @@ export function createD1RemoteMcpGatewayRuntime({
   if (!database || typeof database.prepare !== "function") {
     throw new RemoteMcpRuntimeConfigurationError("Remote MCP requires a D1 DB binding.");
   }
-  if (!bucket || typeof bucket.head !== "function") {
-    throw new RemoteMcpRuntimeConfigurationError("Remote MCP requires an R2 ARTIFACTS binding.");
-  }
   requireAbsoluteUrl(resource, "MCP_RESOURCE_URL");
   requireAbsoluteUrl(issuer, "OAUTH_ISSUER_URL");
+  const artifactStore = bucket
+    ? null
+    : new D1InlineArtifactStore({ database });
   const runnerDispatcher = createOptionalRunnerDispatcher({
     database,
     bucket,
+    artifactStore,
     runnerQueue,
     runnerApprovedImagesJson,
     runnerControlPlaneKeyId,
@@ -54,7 +56,7 @@ export function createD1RemoteMcpGatewayRuntime({
     resource,
     issuer,
     identityProvider: createOAuthAccessTokenAuthenticator({ store: oauthStore, resource }),
-    store: new D1RemoteMcpGatewayStore({ database, bucket, runnerDispatcher }),
+    store: new D1RemoteMcpGatewayStore({ database, bucket, artifactStore, runnerDispatcher }),
     rateLimiter: new D1RemoteMcpRateLimiter({ database }),
   });
 }
@@ -62,6 +64,7 @@ export function createD1RemoteMcpGatewayRuntime({
 function createOptionalRunnerDispatcher({
   database,
   bucket,
+  artifactStore,
   runnerQueue,
   runnerApprovedImagesJson,
   runnerControlPlaneKeyId,
@@ -87,6 +90,7 @@ function createOptionalRunnerDispatcher({
     return new D1RemoteMcpRunnerDispatcher({
       database,
       bucket,
+      artifactStore,
       runnerQueue: new CloudflareRunnerQueue({ queue: runnerQueue }),
       approvedImages: new PinnedRunnerImageRegistry({
         images: parseDeploymentJson(runnerApprovedImagesJson, "RUNNER_APPROVED_IMAGES_JSON"),

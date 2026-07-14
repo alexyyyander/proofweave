@@ -18,7 +18,7 @@ export function validateLeanRunnerDeploymentManifest(value) {
   const queue = object(value.queue, "queue");
   const runner = object(value.runner, "runner");
   const keys = object(value.keys, "keys");
-  rejectExtraKeys(controlPlane, ["d1_database_name", "d1_database_id", "r2_bucket_name"], "control_plane");
+  rejectExtraKeys(controlPlane, ["d1_database_name", "d1_database_id", "artifact_storage"], "control_plane");
   rejectExtraKeys(queue, ["name", "dead_letter_queue", "max_batch_size", "max_batch_timeout_seconds", "max_retries", "max_concurrency"], "queue");
   rejectExtraKeys(runner, ["worker_name", "container_class", "image", "retry_delay_seconds"], "runner");
   rejectExtraKeys(keys, ["control_plane_issuer", "runner_result"], "keys");
@@ -26,7 +26,7 @@ export function validateLeanRunnerDeploymentManifest(value) {
   const normalizedControlPlane = Object.freeze({
     databaseName: requiredName(controlPlane.d1_database_name, "control_plane.d1_database_name"),
     databaseId: requiredUuid(controlPlane.d1_database_id, "control_plane.d1_database_id"),
-    bucketName: requiredName(controlPlane.r2_bucket_name, "control_plane.r2_bucket_name"),
+    artifactStorage: requiredExact(controlPlane.artifact_storage, "d1_inline", "control_plane.artifact_storage"),
   });
   const normalizedQueue = Object.freeze({
     name: requiredQueueName(queue.name, "queue.name"),
@@ -124,7 +124,6 @@ export function renderLeanRunnerWranglerConfig(manifest) {
       database_name: config.controlPlane.databaseName,
       database_id: config.controlPlane.databaseId,
     }],
-    r2_buckets: [{ binding: "ARTIFACTS", bucket_name: config.controlPlane.bucketName }],
   }, null, 2) + "\n";
 }
 

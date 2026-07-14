@@ -12,29 +12,12 @@ export class MissingDatabaseBindingError extends Error {
   }
 }
 
-export class MissingArtifactBindingError extends Error {
-  constructor() {
-    super(
-      "Cloudflare R2 binding `ARTIFACTS` is unavailable. Run this route with the Proofweave immutable artifact bucket.",
-    );
-    this.name = "MissingArtifactBindingError";
-  }
-}
-
 export function getD1(): AnyD1Database {
   if (!env.DB) {
     throw new MissingDatabaseBindingError();
   }
 
   return env.DB;
-}
-
-export function getArtifactBucket() {
-  if (!env.ARTIFACTS) {
-    throw new MissingArtifactBindingError();
-  }
-
-  return env.ARTIFACTS;
 }
 
 export function getDb() {

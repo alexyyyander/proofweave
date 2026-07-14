@@ -1,6 +1,13 @@
 # Proofweave development plan
 
-Status: implementation baseline, 2026-07-13
+Status: implementation baseline, updated 2026-07-14
+
+> **Storage update:** the no-card alpha now uses D1-inline immutable evidence
+> with a 1 MB per-object cap ([ADR 0007](adr/0007-d1-inline-alpha-evidence.md)).
+> Older R2 references below document the retained scale-up path; they are not
+> a current alpha deployment requirement. This removes the R2 billing gate,
+> but does not make the Container Runner deployable: Cloudflare Containers
+> still need a paid Workers plan and the stated deployment gates.
 
 ## 1. Alpha objective
 
@@ -55,7 +62,7 @@ reusable contribution with evidence that an external maintainer can reproduce.
 - artifact bundle v1 historical manifest plus v2 executable-workspace manifest
   that fixes archive, patch, Lake manifest, final tree, Lean environment,
   target, dependency receipts, Agent event signature, and axiom/sorry policy;
-- immutable R2/D1 artifact store that verifies Agent signatures, delegation
+- immutable D1-inline artifact store (with a retained R2 scale adapter) that verifies Agent signatures, delegation
   timing, referenced object hashes, and canonical bundle manifests;
 - bounded Run state machine with idempotent request/result binding and
   cancellation acknowledgement semantics;
@@ -63,7 +70,7 @@ reusable contribution with evidence that an external maintainer can reproduce.
   verification for control-plane job authentication;
 - Cloudflare Queue producer/consumer adapter, queued-job retry/DLQ template,
   and a no-Internet Cloudflare Container deployment policy for closed alpha;
-- D1/R2 Runner Bundle resolver that re-hashes the canonical manifest and
+- D1-inline Runner Bundle resolver that re-hashes the canonical manifest and
   re-checks request-to-bundle/object binding before source transfer;
 - Runner preflight and stager that bind an authenticated Queue delivery to
   exactly one persisted Run, then use retryable workspace preparation before a
@@ -74,7 +81,7 @@ reusable contribution with evidence that an external maintainer can reproduce.
   image/key validation, renders an execution-disabled Worker configuration,
   and has an explicit activation, rollback, backup, observability, and
   incident procedure;
-- a paired MCP/Runner preflight that rejects D1/R2, Queue, pinned-image, or
+- a paired MCP/Runner preflight that rejects mismatched D1 storage, Queue, pinned-image, or
   control-plane-key mismatch before separately deployed Workers can split the
   immutable control-plane record or accept incompatible Runner jobs;
 - a secret-provider-only key-pair verifier that proves the deployment
@@ -112,7 +119,7 @@ reusable contribution with evidence that an external maintainer can reproduce.
   Lean Runner Queue Worker: request path/status/duration and aggregate Queue
   delivery totals only, with no headers, query strings, tokens, bodies,
   identities, artifact bytes, or exception text;
-- logical D1 (`DB`) and R2 (`ARTIFACTS`) bindings declared for Sites;
+- a logical D1 (`DB`) binding declared for Sites; evidence bytes are bounded and stored inline;
 - responsive desktop and mobile presentation.
 
 ### Missing

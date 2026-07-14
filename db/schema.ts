@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { index, integer, primaryKey, sqliteTable, text, uniqueIndex } from "drizzle-orm/sqlite-core";
+import { blob, index, integer, primaryKey, sqliteTable, text, uniqueIndex } from "drizzle-orm/sqlite-core";
 
 const createdAt = text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`);
 
@@ -774,8 +774,9 @@ export const runnerKeys = sqliteTable(
   (table) => [index("runner_keys_active_idx").on(table.status, table.revokedAt)],
 );
 
-// R2 holds bytes; this immutable D1 index binds every content hash to exactly
-// one canonical object key and records which signed manifests reference it.
+// The selected alpha store keeps bounded bytes in D1; this immutable index
+// binds every content hash to exactly one canonical object key and records
+// which signed manifests reference it.
 export const artifactObjects = sqliteTable(
   "artifact_objects",
   {
@@ -783,6 +784,18 @@ export const artifactObjects = sqliteTable(
     objectKey: text("object_key").notNull().unique(),
     byteLength: integer("byte_length").notNull(),
     contentType: text("content_type").notNull(),
+    createdAt,
+  },
+);
+
+export const inlineArtifactBytes = sqliteTable(
+  "inline_artifact_bytes",
+  {
+    objectKey: text("object_key").primaryKey(),
+    contentHash: text("content_hash").notNull().unique(),
+    byteLength: integer("byte_length").notNull(),
+    contentType: text("content_type").notNull(),
+    bytes: blob("bytes", { mode: "buffer" }).notNull(),
     createdAt,
   },
 );

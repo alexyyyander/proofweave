@@ -8,6 +8,14 @@ cannot supply a result-signing secret. The source-level Worker remains
 deliberately non-deployable until every gate below is complete. Do not deploy
 `services/lean-runner/wrangler.example.jsonc` as-is.
 
+**Storage update (2026-07-14).** The no-card alpha uses immutable D1-inline
+evidence, capped at 1 MB per object, as specified in
+[`ADR 0007`](adr/0007-d1-inline-alpha-evidence.md). References to R2 below
+describe the retained scale-up adapter and are not a requirement for this
+alpha. This change does not make the Runner deployable: Cloudflare Containers
+still require a paid Workers plan and the image, Queue, key, and security gates
+in this document remain unmet.
+
 Before any Wrangler command, copy
 `services/lean-runner/deployment-manifest.example.json` outside the repository,
 replace every value with provisioned resources, and run:
@@ -32,7 +40,7 @@ Control-plane Worker
                                       v
                              Runner Worker consumer
                               | verifies issuer signature
-                              | reads prevalidated R2 bundle
+                              | reads prevalidated D1-inline bundle
                               v
                        one Container instance per Run
                         - fresh workspace
@@ -40,7 +48,7 @@ Control-plane Worker
                         - no credentials
                               |
                               v
-                    signed result -> R2/D1 control evidence
+                    signed result -> D1-inline control evidence
 ```
 
 Cloudflare Queues provide a Worker producer/consumer binding, individual
@@ -74,7 +82,7 @@ per-Run wall-time, output, archive, axiom, or cleanup enforcement.
    the deployment has proved no egress plus CPU/memory/disk/process limits.
    The checked-in Worker source wires authenticated Queue consumption,
    D1 preflight, exact named-Container staging, private execution, immutable
-   stdout/stderr R2 persistence, Worker-held result signing, and D1 result
+   stdout/stderr immutable evidence persistence, Worker-held result signing, and D1 result
    recording. It also polls the durable `cancel_requested` projection while an
    execution is in flight and forwards that request to the same private
    Container, which aborts Lean and returns normal cancellation evidence.
@@ -85,7 +93,7 @@ per-Run wall-time, output, archive, axiom, or cleanup enforcement.
    before it can count as production observability.
    Non-production lifecycle testing of that delivery path remains a deployment
    gate. Source-only runtime tests are not a deployed Container service.
-3. Provision the Queue, DLQ, D1/R2 bindings, control-plane signing secret, and
+3. Provision the Queue, DLQ, D1 binding, control-plane signing secret, and
    Runner public issuer-key allowlist. Before any result can be accepted, use
    `runner:deploy:key-enrollment` with the reviewed Runner manifest and apply
    its collision-checked, parameterized D1 `runner_keys` plan through the

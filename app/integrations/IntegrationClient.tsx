@@ -26,7 +26,7 @@ export function IntegrationClient() {
           <code>Not deployed</code>
         </div>
         <div className="integration-status">
-          <i aria-hidden="true" />Waiting for the shared external D1/R2 control plane
+          <i aria-hidden="true" />Waiting for the shared external D1 control plane
         </div>
         <Link className="text-link" href="/workbench">Set up Agent authority <span>→</span></Link>
       </article>

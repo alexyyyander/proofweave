@@ -3,10 +3,12 @@ import { after, before, test } from "node:test";
 import { readFile, readdir } from "node:fs/promises";
 import { Miniflare } from "miniflare";
 import { D1R2ArtifactStore } from "../services/artifacts/d1-r2-artifact-store.mjs";
+import { D1InlineArtifactStore } from "../services/artifacts/d1-inline-artifact-store.mjs";
 import {
   D1R2RunnerBundleResolver,
   RunnerBundleResolutionError,
 } from "../services/lean-runner/d1-r2-runner-bundle-resolver.mjs";
+import { D1InlineRunnerBundleResolver } from "../services/lean-runner/d1-inline-runner-bundle-resolver.mjs";
 import { createLeanRunnerRequest } from "../packages/protocol/lean-runner.mjs";
 import {
   artifactBundleSigningPayload,
@@ -157,6 +159,35 @@ test("Runner resolves v2 workspace metadata and rejects a Run with insufficient 
     resolver.resolve({ ...request, limits: { ...request.limits, diskMiB: 128 } }),
     /disk limit is lower than the Artifact Bundle v2 workspace expansion limit/,
   );
+});
+
+test("Runner resolves D1-inline alpha evidence without an R2 binding", async () => {
+  const store = new D1InlineArtifactStore({ database });
+  const archive = await store.putObject({ bytes: "inline runner archive", filename: "source.tar.zst", contentType: "application/zstd" });
+  const patch = await store.putObject({ bytes: "inline runner patch", filename: "normalized.patch", contentType: "text/plain" });
+  const lakeManifest = await store.putObject({ bytes: '{"packages":["inline"]}', filename: "lake-manifest.json", contentType: "application/json" });
+  const bundle = await signedBundleV2({ archive, patch, lakeManifest });
+  bundle.id = "bundle:runner-bundle-inline";
+  bundle.agentEvent.eventId = "agent-event:runner-bundle-inline";
+  bundle.agentEvent.payloadHash = await artifactBundleSigningPayloadHash(bundle);
+  bundle.agentEvent.signature = base64Url(await crypto.subtle.sign(
+    "Ed25519",
+    agentKeyPair.privateKey,
+    new TextEncoder().encode(canonicalJson(artifactBundleSigningPayload(bundle))),
+  ));
+  await store.stageBundle(bundle);
+  const request = await createLeanRunnerRequest({
+    jobId: "run:bundle-resolver-inline",
+    idempotencyKey: "bundle-resolver-inline-idempotency",
+    artifactBundle: bundle,
+    imageDigest: `registry.cloudflare.com/proofweave/lean-runner@sha256:${"c".repeat(64)}`,
+    limits: { cpuSeconds: 60, wallSeconds: 120, memoryMiB: 2_048, diskMiB: 512, outputBytes: 1_000_000 },
+  });
+
+  const resolved = await new D1InlineRunnerBundleResolver({ database }).resolve(request);
+  assert.equal(resolved.manifest.contentHash, request.bundle.manifestHash);
+  assert.equal(resolved.objects.sourceArchive.contentHash, archive.contentHash);
+  assert.equal(resolved.objects.lakeManifest.contentHash, lakeManifest.contentHash);
 });
 
 async function signedBundle({ archive, patch, lakeManifest }) {

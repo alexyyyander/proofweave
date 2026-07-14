@@ -1,4 +1,4 @@
-import { artifactBundleV2ProtocolVersion } from "../../packages/protocol/artifact-bundle.mjs";
+import { isExecutableArtifactBundle } from "../../packages/protocol/artifact-bundle.mjs";
 import { leanRunnerRequestHash } from "../../packages/protocol/lean-runner.mjs";
 import { runnerWorkspaceIngressProtocolVersion } from "./container-workspace-ingress.mjs";
 
@@ -102,8 +102,8 @@ async function assertRunAndResolvedBundle(run, resolvedBundle) {
   ) {
     throw new RunnerWorkspaceTransferError("Claimed Run does not match the resolved Runner request.");
   }
-  if (resolvedBundle.bundle.protocolVersion !== artifactBundleV2ProtocolVersion) {
-    throw new RunnerWorkspaceTransferError("Runner workspace transfer requires pw-artifact-bundle-v2.");
+  if (!isExecutableArtifactBundle(resolvedBundle.bundle)) {
+    throw new RunnerWorkspaceTransferError("Runner workspace transfer requires executable pw-artifact-bundle-v2 or pw-artifact-bundle-v3 evidence.");
   }
 }
 

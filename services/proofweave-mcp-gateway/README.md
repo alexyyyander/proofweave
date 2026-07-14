@@ -24,7 +24,7 @@ Agents owned by one Person.
 
 When every Runner binding is explicitly supplied, the gateway can also accept
 `run:request` for an exact active Attempt and staged v2 Bundle. It rechecks the
-canonical D1/R2 manifest and Agent signature, chooses the single
+canonical D1 inline-evidence manifest and Agent signature, chooses the single
 operator-approved image matching the Bundle's Lean/Mathlib environment, and
 persists an idempotent signed Queue request. A queued Run is operational work
 only: it is never represented as a Lean result, review, or receipt. With no
@@ -59,8 +59,8 @@ payload hash, and Ed25519 signature. It receives attribution context, never the
 raw OAuth token, and cannot issue a contribution receipt.
 
 `cloudflare-worker.mjs` is the deployment entrypoint. It composes the D1 token
-store, D1/R2 gateway store, and stateless resource server from `DB`,
-`ARTIFACTS`, `MCP_RESOURCE_URL`, and `OAUTH_ISSUER_URL` bindings. Missing or
+store, D1 inline gateway store, and stateless resource server from `DB`,
+`MCP_RESOURCE_URL`, and `OAUTH_ISSUER_URL` bindings. Missing or
 invalid bindings fail closed with `503`; it never silently falls back to an
 in-memory store.
 

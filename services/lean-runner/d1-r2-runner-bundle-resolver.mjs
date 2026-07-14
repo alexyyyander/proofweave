@@ -2,7 +2,7 @@ import {
   artifactBundleHash,
   canonicalArtifactBundle,
   artifactBundleObjectReferences,
-  artifactBundleV2ProtocolVersion,
+  isExecutableArtifactBundle,
   normalizeArtifactBundle,
   verifyArtifactBundleAgentSignature,
 } from "../../packages/protocol/artifact-bundle.mjs";
@@ -177,7 +177,7 @@ function assertRequestMatchesBundle(request, bundle) {
     throw new RunnerBundleResolutionError("Runner request policy does not match its Artifact Bundle manifest.");
   }
   if (
-    bundle.protocolVersion === artifactBundleV2ProtocolVersion &&
+    isExecutableArtifactBundle(bundle) &&
     bundle.workspace.archive.maxExpandedBytes > request.limits.diskMiB * 1024 * 1024
   ) {
     throw new RunnerBundleResolutionError("Runner request disk limit is lower than the Artifact Bundle v2 workspace expansion limit.");

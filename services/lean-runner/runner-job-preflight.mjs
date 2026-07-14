@@ -1,5 +1,5 @@
 import { runStates } from "../../packages/domain/run.mjs";
-import { artifactBundleV2ProtocolVersion } from "../../packages/protocol/artifact-bundle.mjs";
+import { isExecutableArtifactBundle } from "../../packages/protocol/artifact-bundle.mjs";
 import { normalizeRunnerQueueMessage } from "./queue.mjs";
 
 export class RunnerJobPreflightError extends Error {
@@ -46,8 +46,8 @@ export class RunnerJobPreflight {
 
     const image = this.imageRegistry.resolve(normalizedMessage.request);
     const resolvedBundle = await this.bundleResolver.resolve(normalizedMessage.request);
-    if (resolvedBundle?.bundle?.protocolVersion !== artifactBundleV2ProtocolVersion) {
-      throw new RunnerJobPreflightError("Only pw-artifact-bundle-v2 may be claimed for isolated execution.");
+    if (!resolvedBundle?.bundle || !isExecutableArtifactBundle(resolvedBundle.bundle)) {
+      throw new RunnerJobPreflightError("Only executable pw-artifact-bundle-v2 or pw-artifact-bundle-v3 Bundles may be claimed for isolated execution.");
     }
     let preparing = current;
     if (current.state === "queued") {

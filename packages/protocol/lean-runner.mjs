@@ -1,7 +1,7 @@
 import { canonicalJson, canonicalUtf8, sha256Canonical } from "./canonical-json.mjs";
 import {
   artifactBundleHash,
-  artifactBundleV2ProtocolVersion,
+  isExecutableArtifactBundle,
   normalizeArtifactBundle,
   verifyArtifactBundleAgentSignature,
 } from "./artifact-bundle.mjs";
@@ -109,8 +109,8 @@ export async function createLeanRunnerRequest({
   limits,
 }) {
   const normalizedBundle = normalizeArtifactBundle(artifactBundle);
-  if (normalizedBundle.protocolVersion !== artifactBundleV2ProtocolVersion) {
-    throw new LeanRunnerProtocolError("Lean Runner requests require pw-artifact-bundle-v2 executable workspace evidence.");
+  if (!isExecutableArtifactBundle(normalizedBundle)) {
+    throw new LeanRunnerProtocolError("Lean Runner requests require executable pw-artifact-bundle-v2 or pw-artifact-bundle-v3 workspace evidence.");
   }
   if (!await verifyArtifactBundleAgentSignature(normalizedBundle)) {
     throw new LeanRunnerProtocolError("Runner requests require a valid Artifact Bundle Agent signature.");

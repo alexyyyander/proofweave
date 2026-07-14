@@ -53,7 +53,7 @@ assignments addressed to their Person and record an immutable accept or decline
 decision. `/evidence` exposes the corresponding controlled evidence record to
 the Attempt owner or assigned reviewer: canonical Bundle metadata, hash-bound
 source/patch/Lake artifacts, persisted Runner metadata, and Runner logs. Each
-download is rechecked against the immutable D1/R2 object binding and reviewer
+download is rechecked against the immutable D1 object binding and reviewer
 views omit the Attempt owner’s Person identity. These pages still do not replay
 a bundle, create an Agent signature, or turn inspection into verification.
 
@@ -94,6 +94,7 @@ deployment remains owner-only despite this public-record model.
 - [Artifact bundle contract](docs/artifact-bundle-contract.md)
 - [Deterministic workspace-tree protocol](packages/protocol/workspace-tree.mjs)
 - [Artifact storage contract](docs/artifact-storage-contract.md)
+- [D1-inline alpha storage decision](docs/adr/0007-d1-inline-alpha-evidence.md)
 - [Run state contract](docs/run-state-contract.md)
 - [Independent verification contract](docs/verification-contract.md)
 - [Provisional contribution ledger contract](docs/provisional-contribution-contract.md)
@@ -148,9 +149,9 @@ The project does not use `wrangler.jsonc`.
   It carries the same checked research skill but deliberately ships no remote
   MCP endpoint or static credential configuration before the external control
   plane exists. See [the plugin release guide](docs/codex-plugin.md).
-- `.openai/hosting.json` declares the `DB` D1 binding and `ARTIFACTS` R2
-  binding. The catalog uses D1 now; R2 is reserved for immutable bundles in
-  the runner phase.
+- `.openai/hosting.json` declares the `DB` D1 binding. The closed alpha stores
+  bounded immutable evidence in D1 and reserves an R2 adapter for a later,
+  billing-enabled scale phase.
 
 ## Workspace Auth Headers
 
@@ -243,7 +244,7 @@ application secrets.
 - `npm run runner:e2e:check`: reconstruct a real v2 `tar.zst` fixture and run
   it through the local Container workspace and Lean-executor source boundaries
 - `npm run runner:deploy:preflight -- /secure/path/runner-alpha.json`: validate
-  the non-secret shared D1/R2, Queue/DLQ, pinned image, and Runner-key topology
+  the non-secret shared D1-inline, Queue/DLQ, pinned image, and Runner-key topology
   before generating a disabled-by-default Worker configuration
 - `npm run artifact:check`: validate the immutable artifact bundle manifest
 - `npm run artifact:store:check`: exercise signed R2/D1 artifact staging
@@ -270,7 +271,7 @@ application secrets.
   non-secret external MCP control-plane manifest without deploying it
 - `npm run alpha:deploy:preflight -- /secure/path/mcp-alpha.json /secure/path/runner-alpha.json`:
   verify that independently prepared MCP and Runner manifests name the exact
-  same D1/R2 authority, Queue, pinned image, and control-plane key ID without
+  same D1-inline authority, Queue, pinned image, and control-plane key ID without
   enabling execution
 - `npm run alpha:deploy:keys:verify -- /secure/path/mcp-alpha.json /secure/path/runner-alpha.json`:
   use deployment-secret JWKs to prove they match the reviewed Runner public
@@ -321,7 +322,7 @@ actual OAuth MCP connection separately. See the
 [Codex plugin guide](docs/codex-plugin.md).
 The endpoint, scopes, identity boundary, and rollout gates are defined in the
 [remote MCP gateway contract](docs/remote-mcp-gateway.md).
-The external Worker preflight and shared D1/R2 deployment invariant are in the
+The external Worker preflight and shared D1-inline deployment invariant are in the
 [MCP control-plane deployment guide](docs/mcp-control-plane-deployment.md).
 The parallel Runner deployment guard is in the
 [Runner deployment preflight guide](docs/runner-deployment-preflight.md).

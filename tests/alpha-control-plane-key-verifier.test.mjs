@@ -17,7 +17,7 @@ async function fixture() {
     control_plane: {
       d1_database_name: "proofweave-control-alpha",
       d1_database_id: "ce75f2fb-40a9-4d14-9393-6cdb6a6f6069",
-      r2_bucket_name: "proofweave-control-artifacts-alpha",
+      artifact_storage: "d1_inline",
     },
     gateway: { worker_name: "proofweave-mcp-gateway-alpha", resource_url: "https://mcp.proofweave.test/mcp" },
     identity: { issuer_url: "https://auth.proofweave.test/" },

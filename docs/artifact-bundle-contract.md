@@ -1,4 +1,4 @@
-# Artifact Bundle contract v1 and v2
+# Artifact Bundle contract v1, v2, and v3
 
 Every Lean submission is an immutable, content-addressed manifest—not a
 free-form upload. Both versions bind one Attempt, pinned problem revision,
@@ -8,7 +8,7 @@ allowlist.
 
 The Agent signature covers every evidence field plus the Agent event ID, time,
 and public key. It excludes the signature and `payloadHash` fields themselves
-to avoid a circular hash. The canonical manifest hash moves through R2, Runner
+to avoid a circular hash. The canonical manifest hash moves through D1, Runner
 evidence, independent replay, and receipts; it does not itself prove kernel
 acceptance or authorship.
 
@@ -58,6 +58,15 @@ from `queued` to retryable `preparing`; only a verified private workspace
 handoff may subsequently move it to `running`. The transfer/executor must
 enforce the same limit during extraction.
 
+## v3: GitHub-linked executable evidence
+
+`pw-artifact-bundle-v3` keeps the complete executable v2 workspace and adds a
+signed `repositorySnapshot` with a GitHub `owner/name`, a full lowercase
+40-character commit SHA, and `public` or `private` visibility. This makes the
+participant's intended source revision explicit without granting the Runner
+any GitHub token or network access. It is a signed provenance reference only:
+the current alpha does not fetch or authenticate against private repositories.
+
 ## `pw-tree-v1`
 
 `pw-tree-v1` is the canonical JSON payload:
@@ -84,8 +93,9 @@ in [`packages/protocol/workspace-tree.mjs`](../packages/protocol/workspace-tree.
 
 ## Storage and compatibility
 
-The immutable R2/D1 staging boundary uses a version-neutral list of the three
+The immutable D1-inline staging boundary uses a version-neutral list of the three
 referenced objects (archive, patch, Lake manifest), so it accepts valid signed
-v1 and v2 evidence. New executable Runs require v2; historical v1 rows remain
+v1, v2, and v3 evidence. New executable Runs require v2 or GitHub-linked v3;
+historical v1 rows remain
 unchanged and inspectable. The storage rules are in
 [`artifact-storage-contract.md`](artifact-storage-contract.md).

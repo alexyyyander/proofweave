@@ -1,9 +1,10 @@
 import { D1R2ArtifactStore } from "../artifacts/d1-r2-artifact-store.mjs";
+import { D1InlineArtifactStore, maxInlineArtifactObjectBytes } from "../artifacts/d1-inline-artifact-store.mjs";
 import { D1RunStore } from "../lean-runner/d1-run-store.mjs";
 import { RunnerOrchestrator } from "../lean-runner/orchestrator.mjs";
 import { PinnedRunnerImageRegistry } from "../lean-runner/runner-image-policy.mjs";
 import { normalizeLeanRunnerLimits } from "../../packages/protocol/lean-runner.mjs";
-import { artifactBundleV2ProtocolVersion } from "../../packages/protocol/artifact-bundle.mjs";
+import { isExecutableArtifactBundle } from "../../packages/protocol/artifact-bundle.mjs";
 
 export class RemoteMcpRunnerDispatchConfigurationError extends Error {
   constructor(message) {
@@ -29,7 +30,8 @@ export class RemoteMcpRunnerDispatchValidationError extends Error {
 export class D1RemoteMcpRunnerDispatcher {
   constructor({
     database,
-    bucket,
+    bucket = null,
+    artifactStore = null,
     runnerQueue,
     approvedImages,
     controlPlaneKeyId,
@@ -40,8 +42,11 @@ export class D1RemoteMcpRunnerDispatcher {
     if (!database || typeof database.prepare !== "function") {
       throw new RemoteMcpRunnerDispatchConfigurationError("Runner dispatch requires a D1 database binding.");
     }
-    if (!bucket || typeof bucket.head !== "function") {
-      throw new RemoteMcpRunnerDispatchConfigurationError("Runner dispatch requires an R2 ARTIFACTS binding.");
+    if (artifactStore && typeof artifactStore.loadBundleForDispatch !== "function") {
+      throw new RemoteMcpRunnerDispatchConfigurationError("Runner dispatch artifact storage must load staged immutable Bundles.");
+    }
+    if (!artifactStore && bucket && typeof bucket.head !== "function") {
+      throw new RemoteMcpRunnerDispatchConfigurationError("Runner dispatch object storage must expose head().");
     }
     if (!runnerQueue || typeof runnerQueue.enqueue !== "function") {
       throw new RemoteMcpRunnerDispatchConfigurationError("Runner dispatch requires a trusted Runner Queue adapter.");
@@ -55,13 +60,20 @@ export class D1RemoteMcpRunnerDispatcher {
       throw new RemoteMcpRunnerDispatchConfigurationError("Runner dispatch requires a clock function.");
     }
 
-    this.artifactStore = new D1R2ArtifactStore({ database, bucket });
+    this.artifactStore = artifactStore ?? (bucket
+      ? new D1R2ArtifactStore({ database, bucket })
+      : new D1InlineArtifactStore({ database }));
     this.runStore = new D1RunStore(database);
     this.runnerQueue = runnerQueue;
     this.approvedImages = approvedImages;
     this.controlPlaneKeyId = controlPlaneKeyId;
     this.controlPlanePrivateKeyJwk = controlPlanePrivateKeyJwk;
     this.defaultLimits = normalizeLeanRunnerLimits(defaultLimits);
+    if (this.defaultLimits.outputBytes > maxInlineArtifactObjectBytes) {
+      throw new RemoteMcpRunnerDispatchConfigurationError(
+        `Runner outputBytes must not exceed the ${maxInlineArtifactObjectBytes} byte D1 inline-alpha evidence limit.`,
+      );
+    }
     this.now = now;
     this.controlPlanePrivateKeyPromise = null;
   }
@@ -81,8 +93,8 @@ export class D1RemoteMcpRunnerDispatcher {
     if (loaded.bundle.problemRevisionId !== attempt.problemRevisionId) {
       throw new RemoteMcpRunnerDispatchValidationError("Artifact Bundle target does not match the authorized Attempt revision.");
     }
-    if (loaded.bundle.protocolVersion !== artifactBundleV2ProtocolVersion) {
-      throw new RemoteMcpRunnerDispatchValidationError("Runner dispatch requires pw-artifact-bundle-v2 executable workspace evidence.");
+    if (!isExecutableArtifactBundle(loaded.bundle)) {
+      throw new RemoteMcpRunnerDispatchValidationError("Runner dispatch requires executable pw-artifact-bundle-v2 or pw-artifact-bundle-v3 workspace evidence.");
     }
 
     const image = this.approvedImages.resolveEnvironment(loaded.bundle.environment);

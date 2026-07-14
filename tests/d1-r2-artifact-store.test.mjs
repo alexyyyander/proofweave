@@ -4,6 +4,11 @@ import { readFile, readdir } from "node:fs/promises";
 import { Miniflare } from "miniflare";
 import { D1R2ArtifactStore } from "../services/artifacts/d1-r2-artifact-store.mjs";
 import {
+  D1InlineArtifactBucket,
+  D1InlineArtifactStore,
+  maxInlineArtifactObjectBytes,
+} from "../services/artifacts/d1-inline-artifact-store.mjs";
+import {
   artifactBundleSigningPayload,
   artifactBundleSigningPayloadHash,
 } from "../packages/protocol/artifact-bundle.mjs";
@@ -160,6 +165,31 @@ test("stages a signed v2 workspace manifest through the same immutable object ga
   const staged = await store.stageBundle(bundle);
   assert.equal(staged.created, true);
   assert.equal((await store.findBundle(staged.bundle.manifestHash)).id, bundle.id);
+});
+
+test("stages bounded evidence in D1 alone when R2 is not enabled", async () => {
+  const store = new D1InlineArtifactStore({ database });
+  const archive = await store.putObject({ bytes: "inline archive fixture", filename: "source.tar.zst", contentType: "application/zstd" });
+  const patch = await store.putObject({ bytes: "inline patch fixture", filename: "normalized.patch", contentType: "text/plain" });
+  const lakeManifest = await store.putObject({ bytes: '{"packages":[]}', filename: "lake-manifest.json", contentType: "application/json" });
+  const bundle = await signedBundleV2({ archive, patch, lakeManifest });
+  bundle.id = "bundle:artifact-store-inline";
+  bundle.agentEvent.eventId = "agent-event:artifact-store-inline";
+  bundle.agentEvent.payloadHash = await artifactBundleSigningPayloadHash(bundle);
+  bundle.agentEvent.signature = base64Url(await crypto.subtle.sign(
+    "Ed25519",
+    agentKeyPair.privateKey,
+    new TextEncoder().encode(canonicalJson(artifactBundleSigningPayload(bundle))),
+  ));
+
+  const staged = await store.stageBundle(bundle);
+  const manifest = await new D1InlineArtifactBucket(database).get(staged.bundle.manifestKey);
+  assert.equal(manifest.customMetadata.sha256, staged.bundle.manifestHash);
+  assert.equal(new TextDecoder().decode(await manifest.arrayBuffer()), canonicalJson(bundle));
+  await assert.rejects(
+    store.putObject({ bytes: new Uint8Array(maxInlineArtifactObjectBytes + 1), filename: "oversize.bin", contentType: "application/octet-stream" }),
+    /closed-alpha limit/,
+  );
 });
 
 test("rejects an Artifact Bundle event after its signer key is revoked", async () => {

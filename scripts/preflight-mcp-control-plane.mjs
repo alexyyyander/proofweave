@@ -2,11 +2,12 @@ import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { PinnedRunnerImageRegistry } from "../services/lean-runner/runner-image-policy.mjs";
 import { normalizeLeanRunnerLimits } from "../packages/protocol/lean-runner.mjs";
+import { maxInlineArtifactObjectBytes } from "../services/artifacts/d1-inline-artifact-store.mjs";
 
 /**
  * Validate the non-secret operator manifest before a remote MCP gateway is
  * pointed at production. The gateway, authorization service, and web control
- * plane must use one D1/R2 evidence boundary; a fresh empty Worker database is
+ * plane must use one D1 evidence boundary; a fresh empty Worker database is
  * not a valid deployment.
  */
 export function validateMcpControlPlaneManifest(value) {
@@ -17,13 +18,13 @@ export function validateMcpControlPlaneManifest(value) {
   const controlPlane = object(value.control_plane, "control_plane");
   const gateway = object(value.gateway, "gateway");
   const identity = object(value.identity, "identity");
-  rejectExtraKeys(controlPlane, ["d1_database_name", "d1_database_id", "r2_bucket_name"], "control_plane");
+  rejectExtraKeys(controlPlane, ["d1_database_name", "d1_database_id", "artifact_storage"], "control_plane");
   rejectExtraKeys(gateway, ["worker_name", "resource_url"], "gateway");
   rejectExtraKeys(identity, ["issuer_url"], "identity");
 
   const databaseName = requiredName(controlPlane.d1_database_name, "control_plane.d1_database_name");
   const databaseId = requiredUuid(controlPlane.d1_database_id, "control_plane.d1_database_id");
-  const bucketName = requiredName(controlPlane.r2_bucket_name, "control_plane.r2_bucket_name");
+  const artifactStorage = requiredExact(controlPlane.artifact_storage, "d1_inline", "control_plane.artifact_storage");
   const gatewayName = requiredWorkerName(gateway.worker_name, "gateway.worker_name");
   const resourceUrl = requiredHttpsUrl(gateway.resource_url, "gateway.resource_url", "/mcp");
   const issuerUrl = requiredHttpsUrl(identity.issuer_url, "identity.issuer_url", "/");
@@ -32,7 +33,7 @@ export function validateMcpControlPlaneManifest(value) {
     throw new Error("gateway.resource_url and identity.issuer_url must use separate origins.");
   }
   const result = {
-    controlPlane: { databaseName, databaseId, bucketName },
+    controlPlane: { databaseName, databaseId, artifactStorage },
     gateway: { workerName: gatewayName, resourceUrl },
     identity: { issuerUrl },
   };
@@ -65,7 +66,6 @@ export function renderGatewayWranglerConfig(manifest) {
       database_name: config.controlPlane.databaseName,
       database_id: config.controlPlane.databaseId,
     }],
-    r2_buckets: [{ binding: "ARTIFACTS", bucket_name: config.controlPlane.bucketName }],
   }, null, 2) + "\n";
 }
 
@@ -83,7 +83,7 @@ async function main() {
   }
   validateMcpControlPlaneManifest(manifest);
   process.stdout.write(`${renderGatewayWranglerConfig(manifest)}\n`);
-  process.stdout.write("MCP control-plane manifest is valid. Use the rendered configuration only after the same D1/R2 bindings serve the Proofweave web control plane.\n");
+  process.stdout.write("MCP control-plane manifest is valid. Use the rendered configuration only after the same D1 inline-evidence boundary serves the Proofweave web control plane.\n");
 }
 
 function object(value, label) {
@@ -112,6 +112,9 @@ function normalizeRunnerIntegration(value) {
   let defaultLimits;
   try {
     defaultLimits = normalizeLeanRunnerLimits(normalizeRunnerLimits(runner.default_limits));
+    if (defaultLimits.outputBytes > maxInlineArtifactObjectBytes) {
+      throw new Error("Runner output limit exceeds the D1 inline alpha evidence limit.");
+    }
   } catch {
     throw new Error("runner.default_limits must satisfy the Lean Runner resource limits.");
   }
@@ -198,6 +201,11 @@ function requiredIdentifier(value, label) {
   if (typeof value !== "string" || !value.trim() || value.length > 240 || /[\0\r\n]/.test(value) || isPlaceholder(value)) {
     throw new Error(`${label} must be a non-placeholder bounded identifier.`);
   }
+  return value;
+}
+
+function requiredExact(value, expected, label) {
+  if (value !== expected) throw new Error(`${label} must be ${expected}.`);
   return value;
 }
 

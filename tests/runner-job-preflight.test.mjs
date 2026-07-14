@@ -91,7 +91,7 @@ test("a historical v1 bundle can never be claimed for isolated execution", async
 
   await assert.rejects(
     preflight.claimAuthenticatedMessage(message, { preparingAt: "2026-07-13T00:00:01Z" }),
-    /Only pw-artifact-bundle-v2 may be claimed/,
+    /Only executable pw-artifact-bundle-v2 or pw-artifact-bundle-v3 Bundles may be claimed/,
   );
   assert.equal(runStore.startCalls, 0);
 });

@@ -1,14 +1,15 @@
-import { D1R2RunnerBundleResolver } from "./d1-r2-runner-bundle-resolver.mjs";
-import { D1R2RunnerOutputStore } from "./d1-r2-runner-output-store.mjs";
+import { D1InlineRunnerBundleResolver } from "./d1-inline-runner-bundle-resolver.mjs";
+import { D1InlineRunnerOutputStore } from "./d1-inline-runner-output-store.mjs";
 import { D1RunStore } from "./d1-run-store.mjs";
 import { RunnerContainerExecutionClient } from "./runner-container-execution-client.mjs";
 import { RunnerExecutionFinalizer } from "./runner-execution-finalizer.mjs";
 import { RunnerExecutionResultSigner } from "./runner-execution-result-signer.mjs";
-import { D1R2VerificationReplayEvidenceStore } from "../verification/d1-r2-verification-replay-evidence-store.mjs";
+import { D1InlineVerificationReplayEvidenceStore } from "../verification/d1-inline-verification-replay-evidence-store.mjs";
 import { PinnedRunnerImageRegistry } from "./runner-image-policy.mjs";
 import { RunnerJobPreflight } from "./runner-job-preflight.mjs";
 import { RunnerWorkspaceStager } from "./runner-workspace-stager.mjs";
 import { RunnerWorkspaceTransfer } from "./runner-workspace-transfer.mjs";
+import { D1InlineArtifactBucket } from "../artifacts/d1-inline-artifact-store.mjs";
 import { consumeCloudflareRunnerBatch } from "./cloudflare-queues.mjs";
 import { RunnerJobAuthenticator } from "./queue.mjs";
 import {
@@ -81,20 +82,21 @@ export async function createRunnerRuntime({
     issuerKeys: parseJsonSetting(env, "RUNNER_CONTROL_PLANE_ISSUER_KEYS_JSON"),
   });
   const runStore = new D1RunStore(env.DB);
+  const artifactBucket = new D1InlineArtifactBucket(env.DB);
   const preflight = new RunnerJobPreflight({
     runStore,
-    bundleResolver: new D1R2RunnerBundleResolver({ database: env.DB, bucket: env.ARTIFACTS }),
+    bundleResolver: new D1InlineRunnerBundleResolver({ database: env.DB }),
     imageRegistry,
   });
   const workspaceStager = new RunnerWorkspaceStager({
     preflight,
-    workspaceTransfer: new RunnerWorkspaceTransfer({ bucket: env.ARTIFACTS }),
+    workspaceTransfer: new RunnerWorkspaceTransfer({ bucket: artifactBucket }),
     getContainer: getContainerForRun,
   });
   const finalizer = new RunnerExecutionFinalizer({
     runStore,
-    outputStore: new D1R2RunnerOutputStore({ database: env.DB, bucket: env.ARTIFACTS }),
-    replayEvidenceStore: new D1R2VerificationReplayEvidenceStore({ database: env.DB, bucket: env.ARTIFACTS }),
+    outputStore: new D1InlineRunnerOutputStore({ database: env.DB }),
+    replayEvidenceStore: new D1InlineVerificationReplayEvidenceStore({ database: env.DB }),
     resultSigner: new RunnerExecutionResultSigner({
       runnerKeyId: requireSetting(env, "RUNNER_RESULT_KEY_ID"),
       runnerPrivateKey: await importRunnerPrivateKey(requireSetting(env, "RUNNER_RESULT_PRIVATE_KEY_JWK")),
@@ -293,8 +295,8 @@ async function importRunnerPrivateKey(serialized) {
 }
 
 function requireEnvironment(env) {
-  if (!env || typeof env !== "object" || !env.DB || !env.ARTIFACTS || !env.LEAN_RUNNER_CONTAINER) {
-    throw new RunnerWorkerConfigurationError("Runner Worker requires DB, ARTIFACTS, and LEAN_RUNNER_CONTAINER bindings.");
+  if (!env || typeof env !== "object" || !env.DB || !env.LEAN_RUNNER_CONTAINER) {
+    throw new RunnerWorkerConfigurationError("Runner Worker requires DB and LEAN_RUNNER_CONTAINER bindings.");
   }
 }
 

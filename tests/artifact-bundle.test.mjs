@@ -7,6 +7,7 @@ import {
   artifactBundleObjectReferences,
   canonicalArtifactBundle,
   normalizeArtifactBundle,
+  isExecutableArtifactBundle,
   verifyArtifactBundleAgentSignature,
 } from "../packages/protocol/artifact-bundle.mjs";
 import { canonicalJson } from "../packages/protocol/canonical-json.mjs";
@@ -100,6 +101,43 @@ test("v2 rejects archive and patch semantics that would make execution ambiguous
       workspace: { ...fixtureBundleV2().workspace, lakeManifest: { ...fixtureBundleV2().workspace.lakeManifest, destination: "nested/lake-manifest.json" } },
     }),
     /destination must be lake-manifest.json/,
+  );
+});
+
+test("v3 signs an immutable GitHub snapshot without giving the Runner repository credentials", async () => {
+  const bundle = {
+    ...fixtureBundleV2(),
+    protocolVersion: "pw-artifact-bundle-v3",
+    id: "bundle:fixture-v3",
+    repositorySnapshot: {
+      provider: "github",
+      repository: "proofweave-labs/formalization-fixture",
+      commitSha: "a".repeat(40),
+      visibility: "private",
+    },
+  };
+  const pair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
+  bundle.agentEvent.agentPublicKey = base64Url(await crypto.subtle.exportKey("raw", pair.publicKey));
+  bundle.agentEvent.payloadHash = await artifactBundleSigningPayloadHash(bundle);
+  bundle.agentEvent.signature = base64Url(await crypto.subtle.sign(
+    "Ed25519",
+    pair.privateKey,
+    new TextEncoder().encode(canonicalJson(artifactBundleSigningPayload(bundle))),
+  ));
+
+  assert.equal(normalizeArtifactBundle(bundle).repositorySnapshot.commitSha, "a".repeat(40));
+  assert.equal(isExecutableArtifactBundle(bundle), true);
+  assert.equal(await verifyArtifactBundleAgentSignature(bundle), true);
+  assert.equal(await verifyArtifactBundleAgentSignature({
+    ...bundle,
+    repositorySnapshot: { ...bundle.repositorySnapshot, commitSha: "b".repeat(40) },
+  }), false);
+  assert.throws(
+    () => normalizeArtifactBundle({
+      ...bundle,
+      repositorySnapshot: { ...bundle.repositorySnapshot, commitSha: "main" },
+    }),
+    /immutable 40-character Git commit SHA/,
   );
 });
 

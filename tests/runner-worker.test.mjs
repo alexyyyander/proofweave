@@ -199,7 +199,7 @@ test("Runner execution remains disabled until the deployment kill switch is expl
   );
   await assert.rejects(
     createRunnerRuntime({ env: { RUNNER_EXECUTION_ENABLED: "true" } }),
-    /requires DB, ARTIFACTS, and LEAN_RUNNER_CONTAINER bindings/,
+    /requires DB and LEAN_RUNNER_CONTAINER bindings/,
   );
 });
 

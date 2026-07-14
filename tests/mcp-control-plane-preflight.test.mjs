@@ -10,7 +10,7 @@ const manifest = {
   control_plane: {
     d1_database_name: "proofweave-control-alpha",
     d1_database_id: "ce75f2fb-40a9-4d14-9393-6cdb6a6f6069",
-    r2_bucket_name: "proofweave-control-artifacts-alpha",
+    artifact_storage: "d1_inline",
   },
   gateway: {
     worker_name: "proofweave-mcp-gateway-alpha",
@@ -24,7 +24,7 @@ test("MCP control-plane preflight requires one concrete external binding manifes
     controlPlane: {
       databaseName: "proofweave-control-alpha",
       databaseId: "ce75f2fb-40a9-4d14-9393-6cdb6a6f6069",
-      bucketName: "proofweave-control-artifacts-alpha",
+      artifactStorage: "d1_inline",
     },
     gateway: {
       workerName: "proofweave-mcp-gateway-alpha",
@@ -36,7 +36,7 @@ test("MCP control-plane preflight requires one concrete external binding manifes
   assert.equal(generated.vars.MCP_RESOURCE_URL, manifest.gateway.resource_url);
   assert.equal(generated.vars.OAUTH_ISSUER_URL, manifest.identity.issuer_url);
   assert.equal(generated.d1_databases[0].database_id, manifest.control_plane.d1_database_id);
-  assert.equal(generated.r2_buckets[0].bucket_name, manifest.control_plane.r2_bucket_name);
+  assert.equal(generated.r2_buckets, undefined);
 });
 
 test("MCP control-plane preflight rejects placeholders and a same-origin authorization server", () => {
@@ -115,6 +115,22 @@ test("MCP control-plane preflight rejects incomplete or unsafe Runner producer m
       },
     }),
     /sha256 digest|resource limits/,
+  );
+  assert.throws(
+    () => validateMcpControlPlaneManifest({
+      ...manifest,
+      runner: {
+        queue_name: "proofweave-runner-jobs-alpha",
+        approved_images: [{
+          image_digest: `registry.cloudflare.com/proofweave/lean-runner@sha256:${"a".repeat(64)}`,
+          lean_toolchain: "leanprover/lean4:v4.30.0",
+          mathlib_revision: "fixture-mathlib-revision",
+        }],
+        control_plane_key_id: "control-plane:closed-alpha",
+        default_limits: { cpu_seconds: 60, wall_seconds: 120, memory_mib: 2_048, disk_mib: 2_048, output_bytes: 1_000_001 },
+      },
+    }),
+    /D1 inline alpha evidence limit/,
   );
 });
 
