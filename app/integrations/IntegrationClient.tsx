@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ProductStateBadge } from "../ui";
 
 const authorizedScopes = [
   "Read the frontier catalog",
@@ -13,54 +12,52 @@ const authorizedScopes = [
 export function IntegrationClient() {
   return (
     <section className="integration-grid" aria-label="Local Agent connection">
-      <article className="integration-card">
-        <span className="micro-label">01 / Work locally now</span>
-        <h2>Start with a bounded research brief.</h2>
+      <article className="integration-card" id="codex-beta">
+        <span className="micro-label">01 / Install once</span>
+        <h2>Add the Proofweave Research plugin.</h2>
         <p>
-          Open one source-pinned Attempt, then copy or download its brief for
-          the Codex or Lean Agent you already run on your computer. Your source
-          files, model choice, credentials, and raw exploration stay local.
+          The private-beta plugin includes a local MCP Connector. It runs on
+          your computer alongside Codex; it is not a hosted model and it never
+          receives your ChatGPT password or API key.
         </p>
         <div className="integration-endpoint">
-          <span>Local handoff</span>
-          <ProductStateBadge tone="available">Available in Workspace</ProductStateBadge>
+          <span>Codex marketplace command</span>
+          <code>codex plugin marketplace add alexyyyander/proofweave --ref main --sparse .agents/plugins</code>
         </div>
-        <div className="integration-status integration-status-ready"><i aria-hidden="true" />No project files are uploaded by the brief</div>
-        <Link className="text-link" href="/workbench#local-agent">Prepare a local research brief <span>→</span></Link>
+        <div className="integration-status integration-status-ready"><i aria-hidden="true" />Private repository access is required for this Beta</div>
+        <p className="integration-note integration-note-light">After adding the marketplace, install <strong>Proofweave Research</strong> in Codex’s Plugins panel. The plugin’s local Bridge is included automatically.</p>
       </article>
 
       <article className="integration-card integration-card-dark">
-        <span className="micro-label">02 / Secure sync later</span>
-        <h2>Your Agent will get only the work it needs.</h2>
+        <span className="micro-label">02 / Connect in Codex</span>
+        <h2>Approve one local Agent, once.</h2>
         <ol className="integration-flow">
-          <li><b>1</b><span>Select the published Proofweave connection in your Agent environment after the service becomes available.</span></li>
-          <li><b>2</b><span>Your browser opens Proofweave using your existing signed-in session and asks for one revocable approval.</span></li>
-          <li><b>3</b><span>Approve only the research scopes your Agent needs; review submission additionally requires a `review` delegation.</span></li>
-          <li><b>4</b><span>Before upload, inspect the exact signed patch, manifests, and checks. The remote service never receives an unreviewed copy of your workspace.</span></li>
+          <li><b>1</b><span>Ask Codex to use <code>connect_proofweave</code>, or say “Connect Proofweave.”</span></li>
+          <li><b>2</b><span>The local Bridge generates an Ed25519 Agent key on this computer and opens your browser.</span></li>
+          <li><b>3</b><span>Sign in, inspect the privacy boundary, and approve a 30-day formalize/prove delegation.</span></li>
+          <li><b>4</b><span>Return to Codex. It receives a revocable OAuth connection, not your browser session.</span></li>
         </ol>
         <div className="integration-scopes" aria-label="Authorization scopes after activation">
           {authorizedScopes.map((scope) => <span key={scope}>{scope}</span>)}
         </div>
         <p className="integration-note">
-          No external Proofweave MCP endpoint is available in this alpha. OAuth
-          authorization and artifact staging are not Lean verification or a
-          contribution receipt. A separate isolated runner and assigned review
-          Agent still verify evidence, timestamp, and signature before any
-          claim is recorded.
+          This Beta can read the frontier, create bounded Attempts, and record
+          provisional progress. It does not upload a workspace, run Lean in
+          the cloud, or turn Agent-reported work into verification or a
+          contribution receipt.
         </p>
-        <Link className="text-link" href="/workbench">Review your delegated Agents <span>→</span></Link>
+        <Link className="text-link" href="/settings">Inspect or revoke local connections <span>→</span></Link>
       </article>
 
       <article className="integration-card integration-card-wide">
         <span className="micro-label">Privacy boundary</span>
-        <h2>Review evidence before it becomes a network record.</h2>
+        <h2>Keep reasoning private; make only selected progress portable.</h2>
         <p>
-          The earlier local-token prototype remains retired. The active alpha
-          records a Person, Agent public key, scoped revocable delegation, and
-          owner-created Attempt—but does not pretend that your computer has
-          been connected, a Lean Runner has executed, or a review has occurred.
-          When available, each OAuth approval will create one revocable Agent
-          installation for one client and a minimal, reviewable evidence handoff.
+          The local Connector stores its Agent private key and refresh token in
+          a protected file on your computer. Proofweave records the public
+          Agent key, your signed delegation, and the reversible connection
+          installation. Artifact uploads remain explicit, separate actions
+          with their own manifest and review gates.
         </p>
         <Link className="text-link" href="/workbench">Open your local-first Workspace <span>→</span></Link>
       </article>

@@ -3,8 +3,9 @@
 This runbook describes the current Proofweave alpha honestly. The Sites
 application has a publicly readable research catalog and verified reference
 Demo. Its Person-scoped setup, workbench, review, and evidence actions require
-Sign in with ChatGPT. It is **not** a public MCP service and does not itself
-execute Lean.
+Sign in with ChatGPT. The private-beta local Codex Connector is available only
+after the Site D1 control-plane migrations are applied; it is **not** a public
+MCP service and does not itself execute Lean.
 
 ## Participant path available today
 
@@ -12,7 +13,9 @@ execute Lean.
    sign in before creating Person-scoped records.
 2. Create a device-held Person signing key and complete its proof of
    possession.
-3. Register an Agent public key and issue a scoped, revocable delegation.
+3. Install the private-beta Proofweave Research plugin, run
+   `connect_proofweave`, and approve its browser flow. It creates the local
+   Agent public key and a scoped, revocable delegation without manual key entry.
 4. Open one source-pinned Attempt from the frontier catalog.
 5. Inspect the owner-scoped Attempt, provisional Bundle ledger, evidence
    records, Runner summaries, and review outcomes.
@@ -25,10 +28,11 @@ key signature all verify.
 
 ## What must remain unavailable
 
-Do not give participants an MCP URL, bearer token, Runner endpoint, or a
-placeholder configuration while the separately deployed OAuth issuer, remote
-MCP gateway, Queue, and isolated Runner are absent. The `/integrations` page
-must continue to state that no external endpoint is available.
+Do not give participants a bearer token, Runner endpoint, or a placeholder
+configuration. The private local Connector is permitted only after the shared
+D1 migrations and OAuth/MCP routes have been deployed and smoke-tested. Do not
+claim that it is public, cross-device, independently reviewed, or able to run
+Lean; Queue, Runner, and broader participant access remain separately gated.
 
 ## Before enrolling a remote Agent
 

@@ -9,10 +9,12 @@ Proofweave uses a remote OAuth MCP gateway. Never ask the user to create,
 paste, or share a static Proofweave token. Read
 `references/mcp-tools.md` before using MCP tools.
 
-Use MCP tools only when the remote Proofweave server is actually available in
-the current tool list. If it is unavailable, continue local Lean work and tell
-the user that no Proofweave event was recorded; do not invent an HTTP request,
-a bearer token, or a successful upload.
+When the private-beta `proofweave-local` tools appear, begin with
+`connection_status`. If it is not connected, ask the user whether they want to
+run `connect_proofweave`; that local tool opens the browser approval and never
+asks them to paste an API key or public key. If the tools are absent or remain
+unconnected, continue local Lean work and tell the user that no Proofweave
+event was recorded; do not invent an HTTP request, bearer token, or upload.
 
 ## Workflow
 

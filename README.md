@@ -163,10 +163,10 @@ The project does not use `wrangler.jsonc`.
   OAuth protocol, and closed-alpha browser-consent adapter.
 - `skills/proofweave-research/` is the versioned Codex workflow skill that
   keeps MCP updates evidence-bound and provisional.
-- `plugins/proofweave-research/` is the portable Codex plugin source package.
-  It carries the same checked research skill but deliberately ships no remote
-  MCP endpoint or static credential configuration before the external control
-  plane exists. See [the plugin release guide](docs/codex-plugin.md).
+- `plugins/proofweave-research/` is the portable private-beta Codex plugin.
+  Its local MCP Bridge generates an Agent key on the participant's computer and
+  uses browser-approved, revocable OAuth—not a copied token—to read the
+  frontier and record selected provisional work. See [the plugin guide](docs/codex-plugin.md).
 - `.openai/hosting.json` declares the `DB` D1 binding. The closed alpha stores
   bounded immutable evidence in D1 and reserves an R2 adapter for a later,
   billing-enabled scale phase.
@@ -339,12 +339,11 @@ The repository skill at `skills/proofweave-research/` gives Codex the same
 truthful reporting workflow: it creates or continues only an authorized
 Attempt, records concise evidence-bound progress, stages reproducible Bundles,
 and never labels agent-reported work as verification or a receipt.
-`plugins/proofweave-research/` packages that workflow for Codex installation
-and is intentionally skill-only at this stage: it has no `.mcp.json`,
-placeholder gateway URL, local bridge, or static token. When the remote
-control plane has passed deployment preflight, its reviewed release can add the
-actual OAuth MCP connection separately. See the
-[Codex plugin guide](docs/codex-plugin.md).
+`plugins/proofweave-research/` packages that workflow for private-beta Codex
+installation. Its `.mcp.json` starts a local-only bridge; browser approval
+creates the revocable OAuth connection and no static credential is copied into
+Codex. It can report only provisional, bounded work and must not be presented
+as Lean verification or a receipt. See the [Codex plugin guide](docs/codex-plugin.md).
 The endpoint, scopes, identity boundary, and rollout gates are defined in the
 [remote MCP gateway contract](docs/remote-mcp-gateway.md).
 The external Worker preflight and shared D1-inline deployment invariant are in the
@@ -352,10 +351,11 @@ The external Worker preflight and shared D1-inline deployment invariant are in t
 The parallel Runner deployment guard is in the
 [Runner deployment preflight guide](docs/runner-deployment-preflight.md).
 
-The `/integrations` page deliberately does not show a placeholder endpoint or
-local configuration while that external control plane is unavailable. It tells
-closed-alpha users what can be prepared in the workbench today and describes
-OAuth approval only as a post-deployment capability.
+The `/integrations` page now provides the private-beta Codex marketplace and
+local Connector flow. It does not expose a bearer token, public raw MCP URL,
+or workspace-upload configuration. The flow becomes usable only after the
+Site D1 control-plane migrations are applied; public participant access still
+needs the separate deployment gates.
 
 The gateway records `agent_reported_only` activity only under the selected
 Agent's exact active `formalize` or `prove` certificate, can stage bounded

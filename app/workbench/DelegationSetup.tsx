@@ -16,7 +16,6 @@ import {
 import {
   issueDelegation,
   issuePersonKeyProofChallenge,
-  registerAgent,
   registerPersonKey,
   revokeDelegation,
   revokePersonKey,
@@ -62,7 +61,7 @@ function DelegationSetupFlow({ profile }: { profile: DelegationProfile }) {
   const [deviceKeyPublicKeys, setDeviceKeyPublicKeys] = useState<ReadonlySet<string> | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [busy, setBusy] = useState<"key" | "proof" | "key-revoke" | "agent" | "delegation" | "revoke" | null>(null);
+  const [busy, setBusy] = useState<"key" | "proof" | "key-revoke" | "delegation" | "revoke" | null>(null);
 
   useEffect(() => {
     let live = true;
@@ -170,18 +169,7 @@ function DelegationSetupFlow({ profile }: { profile: DelegationProfile }) {
           }
         }}
       />
-      <AgentStep agents={profile.agents} busy={busy === "agent"} onRegister={async (input) => {
-        setBusy("agent");
-        setError(null);
-        try {
-          await registerAgent(input);
-          refresh("The Agent public key was registered to your Person record.");
-        } catch (cause) {
-          setError(messageFor(cause));
-        } finally {
-          setBusy(null);
-        }
-      }} />
+      <AgentStep agents={profile.agents} />
       <CertificateStep
         profile={profile}
         active={active}
@@ -287,47 +275,26 @@ function PersonKeyStep({ keys, deviceKeys, loading, busy, onCreate, onProve, onR
   </article>;
 }
 
-function AgentStep({ agents, busy, onRegister }: {
-  agents: readonly RegisteredAgent[];
-  busy: boolean;
-  onRegister: (input: { agentId: string; label: string; publicKey: string }) => Promise<void>;
-}) {
-  const [label, setLabel] = useState("");
-  const [agentId, setAgentId] = useState("");
-  const [publicKey, setPublicKey] = useState("");
+function AgentStep({ agents }: { agents: readonly RegisteredAgent[] }) {
   const activeAgents = agents.filter((agent) => agent.status === "active" && agent.revokedAt === null);
 
   return <article className="delegation-step">
     <span className="step-number">02</span>
     <div>
       <span className="micro-label">Local Agent</span>
-      <h3>{activeAgents.length > 0 ? `${activeAgents.length} Agent${activeAgents.length === 1 ? "" : "s"} identity${activeAgents.length === 1 ? " is" : " identities are"} recorded.` : "Connect your local Agent when secure sync opens."}</h3>
+      <h3>{activeAgents.length > 0 ? `${activeAgents.length} Agent${activeAgents.length === 1 ? "" : "s"} identity${activeAgents.length === 1 ? " is" : " identities are"} recorded.` : "Connect Codex with one browser approval."}</h3>
       <p>{activeAgents.length > 0
-        ? "A public Agent identity is recorded. It does not itself connect to your computer, start Codex, or upload project files."
-        : "You should not need to create or paste a public key. The future local connection will generate one on the Agent’s computer and keep its private half there."}</p>
+        ? "Each public identity belongs to a local Agent key. Proofweave still cannot start Codex or inspect project files; only the local Connector can request bounded network actions."
+        : "Install the Proofweave Research plugin in Codex, then run Connect Proofweave. The Connector creates its own key on your computer and opens a single approval page—nothing to paste."}</p>
       {activeAgents.length > 0 && <ul className="registered-agent-list">{activeAgents.map((agent) => <li key={agent.id}><strong>{agent.label}</strong><code>{agent.id}</code><small>{agent.keyFingerprint}</small></li>)}</ul>}
-      {activeAgents.length === 0 && <div className="local-agent-connection-card">
+      <div className="local-agent-connection-card">
         <div>
-          <span className="connection-card-status"><i aria-hidden="true" />Local connection in preparation</span>
-          <strong>Nothing to paste here yet.</strong>
-          <p>Proofweave will eventually pair a local Codex or Lean Agent through a revocable browser approval. It will never ask for your ChatGPT password, API key, or private workspace.</p>
+          <span className="connection-card-status"><i aria-hidden="true" />Private Beta · local-first</span>
+          <strong>{activeAgents.length > 0 ? "Add another local Codex only when you need it." : "No public key or API key is required."}</strong>
+          <p>Proofweave never asks for your ChatGPT password, API key, private key, or workspace. You can later revoke the connection independently from its delegation.</p>
         </div>
-        <Link className="button button-secondary setup-action" href="/integrations">See how local work stays private <span aria-hidden="true">→</span></Link>
-      </div>}
-      <details className="agent-register-details" id="agent-manual-registration">
-        <summary>{activeAgents.length > 0 ? "Advanced: register another existing Agent" : "Advanced: I already have an Agent public key"}</summary>
-        <p className="agent-register-warning">Use this only when the actual local Agent has already generated an Ed25519 key pair. Paste its public key—not a ChatGPT token, API key, password, or private key. Manual registration records authority only; it does not create a live connection.</p>
-        <form className="delegation-form" onSubmit={(event) => {
-          event.preventDefault();
-          void onRegister({ agentId, label, publicKey });
-        }}>
-          <label>Agent label<input required maxLength={120} value={label} onChange={(event) => setLabel(event.target.value)} placeholder="Alex’s local Codex" /></label>
-          <label>Stable Agent ID<input required maxLength={240} value={agentId} onChange={(event) => setAgentId(event.target.value)} placeholder="urn:pw:agent:alex-local-codex-01" /></label>
-          <label>Agent public key<input required value={publicKey} onChange={(event) => setPublicKey(event.target.value)} placeholder="Base64url Ed25519 public key" spellCheck="false" autoCapitalize="none" /></label>
-          <small className="agent-public-key-hint">Expected format: the base64url-encoded 32-byte Ed25519 public key created by that Agent.</small>
-          <button className="button button-secondary setup-action" type="submit" disabled={busy}>{busy ? "Recording Agent identity…" : "Record existing Agent identity"}</button>
-        </form>
-      </details>
+        <Link className="button button-primary setup-action" href="/integrations#codex-beta">Install or connect Codex <span aria-hidden="true">→</span></Link>
+      </div>
     </div>
   </article>;
 }
@@ -361,17 +328,17 @@ function CertificateStep({ profile, active, deviceKeys, busy, onIssue }: {
       <h3>{active
         ? "An active certificate already governs this Agent."
         : needsAgentIdentity
-          ? "Connect or register an Agent before granting authority."
+          ? "Connect a local Codex before granting authority."
           : "Sign the scope and expiry you are granting."}</h3>
       <p>{active
         ? "Creating another certificate is intentionally paused while one is active. Revoke it first if the Agent or authority needs to change."
         : needsAgentIdentity
-          ? "You will choose permitted work and an expiry after a local Agent identity is available."
+          ? "The local Codex approval creates its Agent identity and a short, scoped delegation together."
           : "The certificate is signed by your device key, then stored as immutable evidence. Its revocation is a separate append-only event."}</p>
       {needsAgentIdentity ? <div className="certificate-prerequisite">
-        <strong>Wait to activate a delegation.</strong>
-        <p>A local Agent identity is required first. The recommended connection will do this automatically when secure sync is available; manual registration is only for an Agent that already has its own public key.</p>
-        <a className="text-link" href="#agent-manual-registration">I already have an Agent key <span aria-hidden="true">→</span></a>
+        <strong>Connect Codex first.</strong>
+        <p>Open the Proofweave Research plugin in Codex and select Connect Proofweave. Its browser approval creates a device-bound Person key when needed, records the Agent public key, and signs a 30-day formalize/prove delegation.</p>
+        <Link className="text-link" href="/integrations#codex-beta">See the three-step connection <span aria-hidden="true">→</span></Link>
       </div> : !active && <form className="delegation-form certificate-form" onSubmit={(event) => {
         event.preventDefault();
         if (signingKey && agent) void onIssue({ signingKey, agent, selectedScopes, days: Number(days) });

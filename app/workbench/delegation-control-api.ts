@@ -6,6 +6,7 @@ import type {
   PersonKeyRevocation,
   PersonSigningKey,
   RegisteredAgent,
+  StoredDelegation,
 } from "@/db/repositories/delegation";
 
 type ApiError = { error?: { message?: string } };
@@ -60,8 +61,9 @@ export async function issueDelegation(input: {
   personKeyId: string;
   certificate: unknown;
   personSignature: string;
-}): Promise<void> {
-  await post("/api/me/delegations", input);
+}): Promise<StoredDelegation> {
+  const result = await post<{ delegation: StoredDelegation }>("/api/me/delegations", input);
+  return result.delegation;
 }
 
 export async function revokeDelegation(delegationId: string, reason: string): Promise<void> {

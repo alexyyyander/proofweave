@@ -2,17 +2,20 @@
 
 ## User experience
 
-1. A Person selects **Connect Codex** in Proofweave.
-2. Codex adds `https://mcp.proofweave.org/mcp` as a remote MCP server.
-3. Codex receives an authorization challenge and opens Proofweave in a browser.
-4. The Person signs in, selects an Agent installation, reviews scopes, and
-   grants consent.
+1. A Person installs the private-beta Proofweave Research plugin and asks
+   Codex to run `connect_proofweave`.
+2. The local Connector generates its Ed25519 Agent key on that computer,
+   creates a PKCE request, and opens Proofweave in a browser.
+3. The Person signs in, sees the local/network privacy boundary, and approves
+   that exact Agent's 30-day formalize/prove delegation.
+4. The browser returns a single-use authorization code to the Connector's
+   loopback callback.
 5. Codex can now call bounded research tools without seeing a raw Proofweave
-   credential.
+   credential, ChatGPT session, or local workspace.
 
-The browser cannot silently configure a local application. The only initial
-client action is adding the remote service URL; a future Codex plugin bundles
-that entry automatically.
+The browser cannot silently configure a local application. The initial user
+action remains an explicit approval button; the plugin only removes manual key
+and endpoint entry.
 
 ## Required HTTP surface
 
@@ -21,8 +24,8 @@ Remote MCP gateway: mcp.proofweave.org
 POST /mcp                                  Streamable HTTP MCP endpoint
 GET  /.well-known/oauth-protected-resource Resource metadata
 
-Proofweave Identity: auth.proofweave.org (public beta) or the private
-Proofweave Sites origin (closed alpha)
+Proofweave Identity: auth.proofweave.org (public beta) or the same private
+Proofweave Sites origin (local-Connector beta)
 GET  /.well-known/oauth-authorization-server Authorization-server metadata
 GET  /authorize                             Person sign-in and consent
 POST /token                                 OAuth code and refresh exchange
@@ -117,6 +120,13 @@ Remote MCP gateway             mcp.proofweave.org/mcp
 Proofweave identity + consent  auth.proofweave.org
 Isolated Lean runner           runner.proofweave.org
 ```
+
+The private local-Connector beta temporarily mounts the resource and
+authorization routes on the Proofweave Sites origin so it can share its
+closed-alpha D1 binding. It still exposes the standards-required `/mcp` and
+`/.well-known/*` paths. It is not a public multi-tenant topology: participant
+invites require the D1 migrations, independent identity, rate-limit review,
+and the separate public origins above.
 
 The gateway is a Cloudflare Worker-compatible service with D1-backed consent,
 client, Agent-installation, and audit records. The Lean runner remains isolated

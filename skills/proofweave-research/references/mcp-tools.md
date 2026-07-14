@@ -1,9 +1,9 @@
 # Proofweave remote MCP tools
 
-Status: the protocol and closed-alpha browser authorization are implemented in
-the repository. The remote Worker must appear in the current MCP tool list
-before these tools can record anything. The retired local-token prototype must
-not be configured for participant use.
+Status: the private-beta plugin starts a local `proofweave-local` Connector.
+Run `connection_status`, then `connect_proofweave` when the user wants to
+approve this computer. The Connector uses browser OAuth PKCE; the retired
+local-token prototype must not be configured for participant use.
 
 | Tool | Required OAuth scope | Result boundary |
 | --- | --- | --- |

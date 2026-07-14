@@ -7,12 +7,12 @@ export default function IntegrationsPage() {
       <Header active="workbench" />
       <main id="main-content" tabIndex={-1} className="page-main integrations-main">
         <section className="integrations-hero" aria-labelledby="integrations-title">
-          <p className="eyebrow">Local Agent workflow · future OAuth MCP</p>
+          <p className="eyebrow">Local Agent workflow · private-beta OAuth MCP</p>
           <h1 id="integrations-title">Keep your research Agent on your computer.</h1>
           <p>
-            Start with a bounded local research brief today. When secure sync
-            opens, it will use a revocable OAuth connection—not a copied API
-            key, browser bridge, or access to your private workspace.
+            Run Codex and Lean work on your own computer, then approve a
+            revocable OAuth connection for only the bounded Proofweave actions
+            you choose—not a copied API key or access to your private workspace.
           </p>
         </section>
         <IntegrationClient />
