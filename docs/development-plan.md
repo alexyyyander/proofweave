@@ -8,6 +8,12 @@ Status: implementation baseline, updated 2026-07-14
 > a current alpha deployment requirement. This removes the R2 billing gate,
 > but does not make the Container Runner deployable: Cloudflare Containers
 > still need a paid Workers plan and the stated deployment gates.
+>
+> **Provider portability update:** ADR 0008 adds a tested libSQL compatibility
+> boundary that applies the complete D1 migration history unchanged, plus a
+> no-egress Modal Sandbox adapter behind the existing private Container
+> contract. These are source-complete adapters, not a deployed public MCP,
+> OAuth service, durable queue, or hosted Lean Runner.
 
 ## 1. Alpha objective
 
@@ -120,6 +126,13 @@ reusable contribution with evidence that an external maintainer can reproduce.
   delivery totals only, with no headers, query strings, tokens, bodies,
   identities, artifact bytes, or exception text;
 - a logical D1 (`DB`) binding declared for Sites; evidence bytes are bounded and stored inline;
+- a remote libSQL compatibility adapter that preserves the D1 prepared-query,
+  atomic-batch, trigger, and inline-BLOB semantics used by all 26 migration
+  files (`0000` through `0025`);
+- a one-Run Modal Sandbox adapter that uses a pinned image digest, blocks
+  outbound networking, keeps its short-lived Connect Token in the trusted
+  runner, and refuses startup until the external resource policy is explicitly
+  reviewed;
 - responsive desktop and mobile presentation.
 
 ### Missing

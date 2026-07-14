@@ -102,6 +102,7 @@ deployment remains owner-only despite this public-record model.
 - [Deterministic workspace-tree protocol](packages/protocol/workspace-tree.mjs)
 - [Artifact storage contract](docs/artifact-storage-contract.md)
 - [D1-inline alpha storage decision](docs/adr/0007-d1-inline-alpha-evidence.md)
+- [Provider-neutral alpha hosting decision](docs/adr/0008-provider-neutral-alpha-hosting.md)
 - [Run state contract](docs/run-state-contract.md)
 - [Independent verification contract](docs/verification-contract.md)
 - [Provisional contribution ledger contract](docs/provisional-contribution-contract.md)
@@ -143,6 +144,14 @@ The project does not use `wrangler.jsonc`.
   Container policy. Its source-only private workspace runtime and HTTP process
   verify streamed v2 bundles and can invoke fixed Lean checks only after an
   external isolation assertion; user Lean code must never run in the web Worker.
+- `services/database/libsql-d1-adapter.mjs` lets the same reviewed SQLite/D1
+  stores run against a separately hosted libSQL control-plane database without
+  changing signed protocol data. It does not connect the current Sites D1 to an
+  external service or create a production database.
+- `services/lean-runner/modal-sandbox-container.mjs` adapts one no-egress,
+  pinned-image Modal Sandbox to the existing private Container fetch contract.
+  It stays fail-closed until an operator explicitly reviews the complete
+  external resource policy; no hosted Runner is implied by this source.
 - `services/receipts/` contains the internal-only D1 issuance boundary for
   signed Contribution Receipts. The web app has a separate public, read-only
   receipt lookup; it cannot issue or alter a receipt.
@@ -244,6 +253,10 @@ application secrets.
 - `npm run plugin:check`: verify the portable Codex plugin manifest and ensure
   its bundled skill remains byte-for-byte aligned with the source workflow
 - `npm run observability:check`: validate privacy-minimal Worker audit records
+- `npm run portable:database:check`: verify D1 compatibility, atomic batches,
+  BLOB evidence, and the complete migration history on local libSQL
+- `npm run modal:runner:check`: verify the one-Run, no-egress Modal Sandbox
+  adapter and prove its Connect Token never enters the Lean environment
 - `npm run mcp:gateway:check`: test the remote gateway and identity protocol
   scaffolding
 - `npm run runner:check`: validate the isolated Lean runner protocol and

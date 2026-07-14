@@ -36,6 +36,13 @@ export {
 } from "./cloudflare-container-policy.mjs";
 
 export {
+  createModalSandboxContainerFactoryFromEnvironment,
+  ModalSandboxContainer,
+  ModalSandboxContainerError,
+  ModalSandboxContainerFactory,
+} from "./modal-sandbox-container.mjs";
+
+export {
   D1R2RunnerBundleResolver,
   maxRunnerManifestBytes,
   RunnerBundleResolutionError,
