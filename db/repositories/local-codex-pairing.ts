@@ -4,7 +4,7 @@ import { D1ProofweaveOAuthStore } from "@/services/proofweave-identity/d1-oauth-
 
 const localCallbackUrl = "http://127.0.0.1:44765/callback";
 const localConnectorName = "Proofweave local Codex Connector";
-const requestedScopes = ["catalog:read", "attempt:create", "attempt:read", "progress:write"] as const;
+const requestedScopes = ["catalog:read", "attempt:create", "attempt:read", "progress:write", "artifact:write"] as const;
 const pairingLifetimeMs = 10 * 60 * 1_000;
 
 type PairingRow = {
