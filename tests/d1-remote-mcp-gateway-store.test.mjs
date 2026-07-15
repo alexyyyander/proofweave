@@ -294,11 +294,49 @@ test("remote MCP D1 store pins catalog and Attempt work to the selected delegate
     occurredAt: "2026-07-15T00:00:02Z",
   });
   await store.publishResearchCheckpoint(principal, childCheckpoint);
+  const checkpointBundleHash = sha("d");
+  await database.batch([
+    database.prepare(
+      "INSERT INTO artifact_objects (content_hash, object_key, byte_length, content_type) VALUES (?, ?, ?, ?)",
+    ).bind(checkpointBundleHash, `bundles/sha256/${"d".repeat(64)}/bundle.json`, 2, "application/json"),
+    database.prepare(
+      `INSERT INTO artifact_bundles (
+        id, attempt_id, problem_revision_id, manifest_hash, manifest_key,
+        canonical_manifest, agent_event_id, agent_event_payload_hash
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+    ).bind(
+      "bundle:gateway-research-checkpoint",
+      created.attempt.id,
+      "revision:gateway",
+      checkpointBundleHash,
+      `bundles/sha256/${"d".repeat(64)}/bundle.json`,
+      "{}",
+      "agent-event:gateway-research-checkpoint-bundle",
+      sha("f"),
+    ),
+  ]);
+  const evidenceCheckpoint = await signedResearchCheckpoint({
+    id: "research-node:gateway-evidence",
+    eventId: "research-checkpoint-event:gateway-evidence",
+    attemptId: created.attempt.id,
+    summary: "Bound a proof patch checkpoint to its already staged Artifact Bundle.",
+    kind: "proof_patch",
+    parentNodeIds: [childCheckpoint.id],
+    artifactBundleHash: checkpointBundleHash,
+    occurredAt: "2026-07-15T00:00:03Z",
+  });
+  await store.publishResearchCheckpoint(principal, evidenceCheckpoint);
   const sharedGraph = await store.inspectResearchGraph(principal, "gateway-target");
-  assert.deepEqual(sharedGraph.graph.nodes.map((node) => node.id), [firstCheckpoint.id, childCheckpoint.id]);
-  assert.deepEqual(sharedGraph.graph.edges.map((edge) => [edge.parentNodeId, edge.childNodeId]), [[firstCheckpoint.id, childCheckpoint.id]]);
+  assert.deepEqual(sharedGraph.graph.nodes.map((node) => node.id), [firstCheckpoint.id, childCheckpoint.id, evidenceCheckpoint.id]);
+  assert.deepEqual(sharedGraph.graph.edges.map((edge) => [edge.parentNodeId, edge.childNodeId]), [
+    [firstCheckpoint.id, childCheckpoint.id],
+    [childCheckpoint.id, evidenceCheckpoint.id],
+  ]);
+  assert.equal(sharedGraph.graph.nodes[0].evidence.stage, "shared");
+  assert.equal(sharedGraph.graph.nodes[2].evidence.stage, "bundle_staged");
+  assert.equal(sharedGraph.graph.nodes[2].evidence.bundle.manifestHash, checkpointBundleHash);
   assert.deepEqual(sharedGraph.graph.externalWorks[0].citedBy, [{ nodeId: firstCheckpoint.id, relation: "builds_on" }]);
-  assert.equal((await store.getAttempt(principal, created.attempt.id)).attempt.events.filter((event) => event.type === "checkpoint_published").length, 2);
+  assert.equal((await store.getAttempt(principal, created.attempt.id)).attempt.events.filter((event) => event.type === "checkpoint_published").length, 3);
 
   await assert.rejects(
     store.getAttempt(
@@ -994,6 +1032,7 @@ async function signedResearchCheckpoint({
   kind,
   parentNodeIds = [],
   citations = [],
+  artifactBundleHash = null,
   occurredAt,
 }) {
   const checkpoint = {
@@ -1005,7 +1044,7 @@ async function signedResearchCheckpoint({
     summary,
     parentNodeIds,
     proofStateHash: null,
-    artifactBundleHash: null,
+    artifactBundleHash,
     citations,
     agentEvent: {
       id: eventId,

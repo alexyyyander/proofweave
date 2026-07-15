@@ -4,6 +4,7 @@ import {
   verifyResearchCheckpointSignature,
 } from "../../packages/protocol/research-checkpoint.mjs";
 import { canonicalJson, sha256Canonical } from "../../packages/protocol/canonical-json.mjs";
+import { loadResearchNodeEvidence } from "./research-node-evidence.mjs";
 
 export class ResearchGraphValidationError extends Error {
   constructor(message) {
@@ -173,7 +174,10 @@ export class D1ResearchGraphStore {
        ORDER BY node.agent_event_occurred_at ASC, node.id ASC
        LIMIT ?`,
     ).bind(problemRevisionId, limit).all();
-    const nodes = (nodeRows.results ?? []).map(toPublicNode);
+    const nodes = await loadResearchNodeEvidence(
+      this.database,
+      (nodeRows.results ?? []).map(toPublicNode),
+    );
     const nodeIds = nodes.map((node) => node.id);
     const placeholders = nodeIds.map(() => "?").join(",");
     const edgePromise = nodeIds.length === 0
@@ -371,6 +375,7 @@ export class D1ResearchGraphStore {
 const publicNodeSelect = `SELECT
   node.id, node.problem_revision_id, node.attempt_id, node.kind, node.summary,
   node.proof_state_hash, node.artifact_bundle_manifest_hash, node.initial_state,
+  node.delegation_certificate_id,
   node.payload_hash, node.checkpoint_hash, node.agent_event_occurred_at,
   node.beneficiary_person_id, person.display_name AS person_display_name,
   node.beneficiary_agent_id, agent.label AS agent_label
@@ -387,6 +392,7 @@ function toPublicNode(row) {
     summary: row.summary,
     proofStateHash: row.proof_state_hash,
     artifactBundleHash: row.artifact_bundle_manifest_hash,
+    delegationCertificateId: row.delegation_certificate_id,
     state: row.initial_state,
     payloadHash: row.payload_hash,
     checkpointHash: row.checkpoint_hash,

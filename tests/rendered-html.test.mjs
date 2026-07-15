@@ -661,6 +661,9 @@ test("server-renders the Proofweave welcome page", async () => {
   assert.match(html, /Verified demo/i);
   assert.match(html, /Explore open mathematics/i);
   assert.match(html, /Contribution receipt/i);
+  assert.match(html, /proof-paper-mark/i);
+  assert.match(html, /proof-paper-line/i);
+  assert.match(html, /proof-paper-check/i);
 });
 
 test("guides a public visitor through the first accountable contribution path", async () => {
@@ -1873,9 +1876,11 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
 });
 
 test("keeps the production frontend free of the deleted starter preview", async () => {
-  const [page, layout, packageJson, workbench, delegationSetup, localAgentHandoff, browserKeyStore, sourceSkill, legacyContent] = await Promise.all([
+  const [page, layout, globals, researchGraphView, packageJson, workbench, delegationSetup, localAgentHandoff, browserKeyStore, sourceSkill, legacyContent] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
+    readFile(new URL("../app/explore/[slug]/ResearchGraphView.tsx", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
     readFile(
       new URL("../app/workbench/workbench-sections.tsx", import.meta.url),
@@ -1907,6 +1912,10 @@ test("keeps the production frontend free of the deleted starter preview", async 
   assert.doesNotMatch(page, /SkeletonPreview|codex-preview|react-loading-skeleton/i);
   assert.doesNotMatch(layout, /codex-preview|_sites-preview/i);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/i);
+  assert.match(globals, /@media \(prefers-reduced-motion: reduce\)/);
+  assert.match(globals, /proof-paper-settle/);
+  assert.match(researchGraphView, /Checkpoint evidence gates/);
+  assert.match(researchGraphView, /Receipt recorded/);
   assert.match(workbench, /No simulated Agent work is created in this workspace/);
   assert.match(workbench, /Proofweave does not render a sample source file or a fictional compiler result/);
   assert.match(workbench, /Independent review/);

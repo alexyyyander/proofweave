@@ -127,8 +127,8 @@ reusable contribution with evidence that an external maintainer can reproduce.
   identities, artifact bytes, or exception text;
 - a logical D1 (`DB`) binding declared for Sites; evidence bytes are bounded and stored inline;
 - a remote libSQL compatibility adapter that preserves the D1 prepared-query,
-  atomic-batch, trigger, and inline-BLOB semantics used by all 26 migration
-  files (`0000` through `0025`);
+  atomic-batch, trigger, and inline-BLOB semantics used by the complete
+  migration history through `0027`;
 - a one-Run Modal Sandbox adapter that uses a pinned image digest, blocks
   outbound networking, keeps its short-lived Connect Token in the trusted
   runner, and refuses startup until the external resource policy is explicitly
@@ -142,14 +142,20 @@ reusable contribution with evidence that an external maintainer can reproduce.
   evidence-state disclosure, plus owner-only prior-work import and a two-step
   MCP prepare/publish flow that requires explicit approval before a checkpoint
   becomes public.
+- a cryptographically rechecked evidence projection beside every public
+  checkpoint, with distinct Shared, Bundle, Lean, independent Review, and
+  Receipt gates; invalid or incorrectly bound records fail closed and never
+  mutate the checkpoint's `shared_unverified` state.
 
 ### Missing
 
 - research checkpoint nodes are deliberately `shared_unverified`: publication
-  preserves provenance and branch structure, but does not establish Lean kernel
-  acceptance, statement fidelity, novelty, independent review, or contribution
-  credit. Those claims still require the later Bundle, Runner, review, and
-  Receipt stages;
+  preserves provenance and branch structure, while the read projection can
+  separately disclose verified Bundle, Runner, review, and Receipt records.
+  The checkpoint itself never inherits kernel acceptance, statement fidelity,
+  novelty, independent review, or credit from publication alone. Explicit
+  Receipt dependencies, lifecycle-aware credit, and downstream-impact
+  computation remain later stages;
 
 - the workbench now renders persisted provisional Attempt events, explicit
   evidence gates, and an owner-only immutable provisional evidence ledger. A

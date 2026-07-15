@@ -39,7 +39,7 @@ export function ResearchGraphView({
     <div className="research-graph-boundary">
       <span>Public checkpoint</span>
       <span>Agent-signed</span>
-      <span className="is-boundary">Not yet verified or credited</span>
+      <span className="is-boundary">Checkpoint state and evidence gates stay separate</span>
     </div>
 
     <div className="research-foundation">
@@ -117,12 +117,43 @@ function ResearchNodeCard({
     </div>
     <p>{node.summary}</p>
     {parentIds.length > 0 && <div className="research-node-parents"><span>From</span>{parentIds.map((id) => <code key={id}>{shortId(id)}</code>)}</div>}
+    <ResearchNodeEvidence node={node} />
     <div className="research-node-author"><span>{node.creator.displayName}</span><small>via {node.creator.agentLabel} · {formatDate(node.occurredAt)}</small></div>
     <div className="research-node-footer">
       <code>{shortId(node.id)}</code>
       <Link href={`/workbench?target=${encodeURIComponent(problemSlug)}&parent=${encodeURIComponent(node.id)}#research-launcher`}>Continue branch <span aria-hidden="true">→</span></Link>
     </div>
   </article>;
+}
+
+function ResearchNodeEvidence({ node }: { node: PublicResearchNode }) {
+  const evidence = node.evidence;
+  return <div className={`research-node-evidence stage-${evidence.stage}`}>
+    <div className="research-evidence-heading"><span>Evidence</span><strong>{evidenceStageLabel(evidence.stage)}</strong></div>
+    <ol aria-label="Checkpoint evidence gates">
+      <EvidenceGate label="Shared" active />
+      <EvidenceGate label="Bundle" active={Boolean(evidence.bundle)} />
+      <EvidenceGate label="Lean" active={Boolean(evidence.lean)} />
+      <EvidenceGate label="Review" active={Boolean(evidence.review)} />
+      <EvidenceGate label="Receipt" active={Boolean(evidence.receipt)} />
+    </ol>
+    {evidence.review && <small>{evidence.review.attestationCount} signed claim{evidence.review.attestationCount === 1 ? "" : "s"} · {evidence.review.reviewerCount} independent owner{evidence.review.reviewerCount === 1 ? "" : "s"}</small>}
+    {evidence.receipt && <Link className="research-evidence-receipt" href={`/receipt/${encodeURIComponent(evidence.receipt.id)}`}>Open signed Receipt <span aria-hidden="true">→</span></Link>}
+  </div>;
+}
+
+function EvidenceGate({ label, active }: { label: string; active: boolean }) {
+  return <li className={active ? "is-recorded" : ""}><i aria-hidden="true" /><span>{label}</span></li>;
+}
+
+function evidenceStageLabel(stage: PublicResearchNode["evidence"]["stage"]) {
+  return {
+    shared: "Shared only",
+    bundle_staged: "Bundle staged",
+    kernel_accepted: "Kernel accepted",
+    review_recorded: "Review recorded",
+    receipt_recorded: "Receipt recorded",
+  }[stage];
 }
 
 function layerNodes(graph: PublicResearchGraph): PublicResearchNode[][] {

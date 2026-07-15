@@ -68,6 +68,9 @@ the attribution status without rewriting the original assertion.
 `inspect_research_graph` return:
 
 - public checkpoint nodes without private signing material;
+- a per-node evidence projection that separately rechecks the staged Bundle,
+  accepted signed Runner result, independent signed review attestations, and a
+  policy-valid signed Contribution Receipt when those records exist;
 - explicit `derives_from` or `merges` edges;
 - linked historical works, their source-backed attributions, and citation
   back-references;
@@ -79,11 +82,22 @@ an independent root, continue an open tip, or synthesize branches. Choosing
 Codex brief; the parent is still not published until the owner approves the
 signed checkpoint draft.
 
+The evidence projection is intentionally layered. A node remains
+`shared_unverified`; its `evidence.stage` may progress from `shared` through
+`bundle_staged`, `kernel_accepted`, `review_recorded`, and `receipt_recorded`.
+Every layer is derived from its own immutable record and signature. Missing,
+malformed, tampered, or incorrectly bound evidence is ignored rather than used
+to upgrade the display. A recorded Receipt is linked to the exact Attempt,
+problem revision, Bundle, beneficiary Person/Agent/delegation, and compatible
+contribution kind. It is displayed as a record, not folded into the checkpoint
+state or treated as a permanent lifecycle claim.
+
 ## Deliberate limits
 
 - Node withdrawal, supersession, and verification events have append-only
   schema space but no participant API in this slice.
 - The graph records structured milestones, not raw exploration traces.
 - Artifact bytes remain in the separate Bundle/object flow.
-- Downstream credit remains a later Receipt-DAG computation; node counts are
-  not contribution scores.
+- Node counts are not contribution scores. Receipt links expose already-issued
+  contribution records; downstream DAG impact and lifecycle-aware credit
+  computation remain separate projections.

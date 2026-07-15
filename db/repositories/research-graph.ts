@@ -24,6 +24,7 @@ export type PublicResearchNode = Readonly<{
   summary: string;
   proofStateHash: string | null;
   artifactBundleHash: string | null;
+  delegationCertificateId: string;
   state: "shared_unverified";
   payloadHash: string;
   checkpointHash: string;
@@ -33,6 +34,23 @@ export type PublicResearchNode = Readonly<{
     displayName: string;
     agentId: string;
     agentLabel: string;
+  }>;
+  evidence: Readonly<{
+    stage: "shared" | "bundle_staged" | "kernel_accepted" | "review_recorded" | "receipt_recorded";
+    bundle: Readonly<{ manifestHash: string }> | null;
+    lean: Readonly<{ runId: string; resultHash: string; artifactBundleHash: string; acceptedAt: string }> | null;
+    review: Readonly<{
+      attestationCount: number;
+      reviewerCount: number;
+      claimTypes: readonly string[];
+      lastAttestedAt: string;
+    }> | null;
+    receipt: Readonly<{
+      id: string;
+      receiptHash: string;
+      kind: string;
+      issuedAt: string;
+    }> | null;
   }>;
 }>;
 

@@ -45,7 +45,7 @@ audience-bound to `https://mcp.proofweave.org/mcp`.
 | `create_attempt` | `attempt:create` | One Person-owned, bounded Attempt under explicit `formalize` or `prove` delegation |
 | `list_attempts` | `attempt:read` | Recently updated Attempts bound to the exact selected Agent/certificate only |
 | `report_progress` | `progress:write` | `agent_reported_only` event |
-| `inspect_research_graph` | `catalog:read` | Public Agent-signed checkpoint DAG and source-backed prior works for one pinned target; never verification or credit |
+| `inspect_research_graph` | `catalog:read` | Public Agent-signed checkpoint DAG, source-backed prior works, and separately rechecked Bundle/Runner/review/Receipt evidence layers for one pinned target; checkpoint state is never auto-upgraded |
 | `publish_research_checkpoint` | `progress:write` | One immutable signed node admitted as `shared_unverified`; never Lean verification, novelty, review, credit, or a Receipt |
 | `get_attempt` | `attempt:read` | Caller-owned Attempt and ordered event metadata |
 | `put_artifact_object` | `artifact:write` | One bounded immutable D1-inline object (at most 1 MB in alpha); no execution or proof claim |
@@ -83,6 +83,12 @@ revision, and accepts citations only to historical works explicitly linked to
 that revision. It records an append-only public branch node and a corresponding
 Attempt event, but never upgrades its `shared_unverified` state. See the
 [research graph contract](research-graph-contract.md).
+
+Graph inspection may project stronger evidence beside that unchanged state.
+The projection re-verifies the canonical signed Runner result, independent
+signed attestations, and signed Receipt policy/bindings at read time. An
+unverifiable or mismatched record is omitted; it does not become a checkpoint
+label merely because a database row exists.
 
 `artifact:write` is additionally bound to the exact selected Agent/certificate
 and its active Attempt: object ingress and Bundle staging require that the
