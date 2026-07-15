@@ -31,8 +31,10 @@ event was recorded; do not invent an HTTP request, bearer token, or upload.
    `formalize` or `prove` scope, and a fresh opaque idempotency key.
 4. Call `report_progress` only for a material milestone: a checked local file,
    a reproducible compiler outcome, a reusable lemma, a refuted direction, or
-   a prepared Bundle. State what changed and where the evidence lives. Never
-   upload prompts, chain-of-thought, credentials, or unverifiable conclusions.
+   a prepared Bundle. First show the owner the concise proposed message and
+   percentage, then wait for explicit confirmation before recording it. State
+   what changed and where the evidence lives. Never upload prompts,
+   chain-of-thought, credentials, or unverifiable conclusions.
 5. Stage a reproducible Bundle only after every referenced object exists and
    the Agent event is signed. Use `put_artifact_object` for bounded immutable
    inputs and then `stage_artifact_bundle`; staging does not run Lean.

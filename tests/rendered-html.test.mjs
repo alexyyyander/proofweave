@@ -1852,7 +1852,7 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
 });
 
 test("keeps the production frontend free of the deleted starter preview", async () => {
-  const [page, layout, packageJson, workbench, delegationSetup, browserKeyStore, legacyContent] = await Promise.all([
+  const [page, layout, packageJson, workbench, delegationSetup, localAgentHandoff, browserKeyStore, sourceSkill, legacyContent] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
@@ -1865,7 +1865,15 @@ test("keeps the production frontend free of the deleted starter preview", async 
       "utf8",
     ),
     readFile(
+      new URL("../app/workbench/LocalAgentHandoff.tsx", import.meta.url),
+      "utf8",
+    ),
+    readFile(
       new URL("../app/workbench/browser-signing-key.ts", import.meta.url),
+      "utf8",
+    ),
+    readFile(
+      new URL("../skills/proofweave-research/SKILL.md", import.meta.url),
       "utf8",
     ),
     access(new URL("../app/lib/content.ts", import.meta.url)).then(
@@ -1889,6 +1897,12 @@ test("keeps the production frontend free of the deleted starter preview", async 
   assert.match(delegationSetup, /Proofweave never asks for your ChatGPT password, API key, private key, or workspace/);
   assert.doesNotMatch(delegationSetup, /Enter Agent identity/);
   assert.match(delegationSetup, /Replace or revoke key/);
+  assert.match(localAgentHandoff, /Continue this Proofweave Attempt in Codex/);
+  assert.match(localAgentHandoff, /Copy for Codex/);
+  assert.match(localAgentHandoff, /Check recorded progress/);
+  assert.match(localAgentHandoff, /do not call \\`report_progress\\` unless I explicitly confirm/);
+  assert.doesNotMatch(localAgentHandoff, /PROOFWEAVE_API_TOKEN/);
+  assert.match(sourceSkill, /wait for explicit confirmation before recording it/);
   assert.match(browserKeyStore, /IndexedDB-backed WebCrypto store/);
   assert.match(browserKeyStore, /Remove a locally held private key/);
   assert.doesNotMatch(browserKeyStore, /localStorage/);

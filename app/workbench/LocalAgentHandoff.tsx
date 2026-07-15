@@ -13,12 +13,16 @@ export function LocalAgentHandoff({
   isAuthenticated,
   signInPath,
   storageAvailable,
+  isRefreshing,
+  onRefresh,
 }: {
   profile: DelegationProfile | null;
   attempt: McpAttempt | null;
   isAuthenticated: boolean;
   signInPath: string;
   storageAvailable: boolean;
+  isRefreshing: boolean;
+  onRefresh: () => void;
 }) {
   const active = activeWorkDelegation(profile);
   const connection = activeLocalCodexInstallation(profile, active);
@@ -62,28 +66,28 @@ export function LocalAgentHandoff({
     </section>;
   }
 
-  const brief = researchBrief({ agentLabel: agent.label, attempt });
+  const codexInstruction = researchBrief({ agentLabel: agent.label, attempt });
 
-  const copyBrief = async () => {
+  const copyCodexInstruction = async () => {
     try {
-      await navigator.clipboard.writeText(brief);
-      setNotice("Research brief copied. Paste it into the local Codex or Agent session you want to use.");
+      await navigator.clipboard.writeText(codexInstruction);
+      setNotice("Codex instruction copied. Paste it into the Codex session on this connected computer; it already contains the bound Attempt ID and safe reporting rules.");
     } catch {
-      setNotice("Your browser could not copy the brief. Download it instead, then open it from your local workspace.");
+      setNotice("Your browser could not copy the Codex instruction. Download it instead, then open it from your local workspace.");
     }
   };
 
-  const downloadBrief = () => {
-    const blob = new Blob([brief], { type: "text/markdown;charset=utf-8" });
+  const downloadCodexInstruction = () => {
+    const blob = new Blob([codexInstruction], { type: "text/markdown;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = `proofweave-${safeFilename(attempt.problemSlug)}-brief.md`;
+    link.download = `proofweave-${safeFilename(attempt.problemSlug)}-codex-brief.md`;
     document.body.appendChild(link);
     link.click();
     link.remove();
     URL.revokeObjectURL(url);
-    setNotice("Research brief downloaded. No project file or private reasoning was uploaded.");
+    setNotice("Codex instruction downloaded. No project file or private reasoning was uploaded.");
   };
 
   return <section className="local-agent-section" id="local-agent" aria-labelledby="local-agent-title">
@@ -106,27 +110,28 @@ export function LocalAgentHandoff({
       </li>
       <li>
         <span>02</span>
-        <div><strong>Work locally</strong><p>Open your Lean workspace and give this bounded brief to the connected Codex.</p><small>Proofweave does not read your workspace or run a command from this page.</small></div>
+        <div><strong>Continue in Codex</strong><p>Open Codex on this computer and paste the ready instruction below. Codex reads this exact Attempt through the local Connector before it works.</p><small>You never need to type an Attempt ID, public key, or API token.</small></div>
       </li>
       <li>
         <span>03</span>
-        <div><strong>Review before sharing</strong><p>Choose exactly which signed progress or Artifact Bundle to record. Proofweave shows the evidence boundary before any submission.</p><small>Private reasoning remains local by default.</small></div>
+        <div><strong>Share one material milestone</strong><p>Only after a local observable result, ask Codex to show the concise progress message and percentage it proposes. Confirm it before Codex records the signed event.</p><small>Private reasoning remains local; an Agent event is still not Lean verification.</small></div>
       </li>
     </ol>
 
     <div className="local-agent-actions">
       <div>
-        <span className="micro-label">Research brief</span>
-        <strong>Ready for your local Agent</strong>
-        <p>Contains the selected catalog target, bounded scope, and evidence boundary—nothing from your private workspace.</p>
+        <span className="micro-label">Your next Codex message</span>
+        <strong>Continue this Proofweave Attempt in Codex.</strong>
+        <p>It names the selected target and tells Codex to request your confirmation before recording provisional progress. Nothing from your private workspace is included.</p>
       </div>
       <div className="local-agent-buttons">
-        <button className="button button-primary" type="button" onClick={() => { void copyBrief(); }}>Copy brief</button>
-        <button className="workspace-secondary-button" type="button" onClick={downloadBrief}>Download .md</button>
+        <button className="button button-primary" type="button" onClick={() => { void copyCodexInstruction(); }}>Copy for Codex</button>
+        <button className="workspace-secondary-button" type="button" disabled={isRefreshing} onClick={onRefresh}>{isRefreshing ? "Checking…" : "Check recorded progress"}</button>
+        <button className="workspace-secondary-button" type="button" onClick={downloadCodexInstruction}>Download .md</button>
       </div>
     </div>
     {notice && <p className="local-agent-notice" role="status">{notice}</p>}
-    <p className="local-agent-boundary">This page does not access your computer, run Codex, or upload files. The existing OAuth connection is revocable in Settings and never grants workspace access.</p>
+    <p className="local-agent-boundary">This page cannot access your computer, run Codex, or create Agent progress. Only the connected local Agent can sign a reported milestone; the connection is revocable in Settings and never grants workspace access.</p>
   </section>;
 }
 
@@ -176,9 +181,9 @@ function unavailableState({
 }
 
 function researchBrief({ agentLabel, attempt }: { agentLabel: string; attempt: McpAttempt }): string {
-  return `# Proofweave local research brief
+  return `# Continue this Proofweave Attempt in Codex
 
-This is an owner-created local research brief. It is not an Agent event, a Lean result, or a contribution receipt.
+Use the connected Proofweave Research plugin on this computer. This instruction is local-only; it is not an Agent event, Lean result, or contribution receipt.
 
 ## Bounded target
 
@@ -188,16 +193,17 @@ This is an owner-created local research brief. It is not an Agent event, a Lean 
 - Agent label: ${agentLabel}
 - Attempt: ${attempt.id}
 
-## Local working agreement
+## Start safely
 
-1. Work only in the Lean project and toolchain you control.
-2. Keep private prompts, reasoning, credentials, and unrelated source files local.
-3. Record a small reproducible patch, relevant manifests, and the exact Lean command when you have something worth reviewing.
-4. Do not describe a theorem as verified unless an isolated kernel check and the required review have actually been recorded.
+1. Call \`get_attempt\` for ${attempt.id} before working, then inspect the pinned target and its existing events.
+2. Work only in the Lean project and toolchain I control. Keep prompts, reasoning, credentials, and unrelated files local.
+3. Do not record progress merely for exploration. Wait for a material local fact such as a checked file, reproducible command outcome, reusable lemma, refuted direction, or prepared evidence bundle.
 
-## Future evidence handoff
+## Before recording anything
 
-When Proofweave secure sync is available, review the proposed evidence package before submitting it. The default package should be the smallest reproducible proof patch and its checks, not a copy of your whole workspace.
+When a material milestone exists, show me the exact concise message and percentage you propose to record. State where the local evidence lives, avoid private reasoning, and do not call \`report_progress\` unless I explicitly confirm. Use a fresh opaque idempotency key after confirmation.
+
+Never call a milestone Lean-verified, independently reviewed, novel, or a Contribution Receipt unless that separate evidence is recorded.
 `;
 }
 
