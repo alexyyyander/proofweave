@@ -79,7 +79,23 @@ export async function POST(request: Request) {
       return apiError("not_found", "A public frontier catalog record with that slug was not found.", 404);
     }
 
-    const result = await getMcpRepository().createAttempt(profile.person.id, {
+    const mcp = getMcpRepository();
+    const existing = (await mcp.listAttempts(profile.person.id)).find((attempt) =>
+      attempt.status === "active" &&
+      attempt.problemRevisionId === problem.id &&
+      attempt.agentId === agent.id &&
+      attempt.delegationCertificateId === delegation.id,
+    );
+    if (existing) {
+      return Response.json({
+        attempt: existing,
+        idempotentReplay: true,
+        reusedActiveAttempt: true,
+        note: "Proofweave reused the active provisional workspace already bound to this Agent and source-pinned target. It is not a new Agent work event, Lean verification, independent review, or a contribution receipt.",
+      });
+    }
+
+    const result = await mcp.createAttempt(profile.person.id, {
       problemRevisionId: problem.id,
       agentId: agent.id,
       agentLabel: agent.label,

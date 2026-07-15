@@ -32,7 +32,7 @@ ChatGPT password or API key.
    local research files until the person asks. Connection opens a browser page
    where the person can inspect and approve a revocable delegation.
 
-### Restricted-network Codex tasks
+### If the connection needs repair
 
 The local Connector needs one outbound HTTPS destination to begin a browser
 approval and later exchange bounded Proofweave MCP requests:
@@ -41,9 +41,10 @@ approval and later exchange bounded Proofweave MCP requests:
 proofweave-research.yualex031821.chatgpt.site
 ```
 
-If the person's Codex task uses a domain allowlist, allow only that host. Do
-not disable the sandbox or grant broad network access. In a project-scoped
-`.codex/config.toml`, a least-privilege profile can be:
+Most people do not need to configure anything else. If Codex says it cannot
+reach Proofweave, the task may use a domain allowlist. Allow only that host;
+do not disable the sandbox or grant broad network access. In a project-scoped
+`.codex/config.toml`, a least-privilege repair profile can be:
 
 ```toml
 default_permissions = "proofweave-connector"
@@ -76,30 +77,34 @@ Installation only adds local tools to Codex. It does not connect an account,
 create an Agent, read a workspace, or send research files anywhere.
 
 1. Start a new Codex thread after installation (and after any permission-profile change).
-2. Ask Codex to check the connection status. This reads only the local
-   Connector configuration; it does not contact Proofweave.
-3. If the status is not connected and the person wants to proceed, they can
-   say **“Connect Proofweave.”** Codex must ask for approval before opening the
-   browser flow.
-4. In the browser, sign in to Proofweave, inspect the privacy boundary and the
+2. When the person is ready, they can say **“Connect Proofweave.”** Codex checks
+   the local state and must ask for approval before opening the browser flow.
+3. In the browser, sign in to Proofweave, inspect the privacy boundary and the
    proposed `formalize`/`prove` delegation, then approve or decline it. The
    Connector creates and retains its Agent private key on the local computer;
    Proofweave receives only the public Agent identity and the revocable
    installation record.
-5. Return to Codex. The Proofweave [Workbench](/workbench) shows the connected
-   local Agent, its active delegation, and later the selected Attempt events.
+4. Return to the Proofweave [Workbench](/workbench), choose one source-pinned
+   question, and click **Start research**. The website derives the connected
+   Agent and authority; it does not ask for a certificate or Attempt ID.
+5. In Codex, say **“Continue my Proofweave research.”** The plugin uses the
+   selected target to resume or create the bounded Attempt automatically.
    Use [Settings](/settings#delegation-setup) to inspect or revoke the Agent
    authority at any time.
 
 ### Normal research loop
 
-1. Choose a source-pinned target from the public frontier in Codex or on the
-   website, then create one bounded Attempt under the approved delegation.
-2. Keep Lean, model settings, private notes, and the working project on the
+1. Choose a source-pinned target from the public frontier or your Workspace and
+   click **Start research**.
+2. Tell Codex **“Continue my Proofweave research.”** It uses one composite
+   start operation to read the pinned target and resume or create the matching
+   bounded Attempt. You do not type an Attempt ID, certificate ID, or
+   idempotency key.
+3. Keep Lean, model settings, private notes, and the working project on the
    local computer while exploring.
-3. Ask Codex to record only a material milestone. The Workbench displays it as
+4. Ask Codex to record only a material milestone. The Workbench displays it as
    an Agent-reported, provisional event—not a verified theorem.
-4. If evidence should leave the computer, Codex first previews the exact file
+5. If evidence should leave the computer, Codex first previews the exact file
    names, sizes, and SHA-256 hashes. Bytes are sent only after the owner
    confirms that exact preview. A submitted object is stored evidence only; it
    is not a Bundle, Lean result, independent review, or Contribution Receipt.

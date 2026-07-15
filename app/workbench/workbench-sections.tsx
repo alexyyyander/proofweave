@@ -118,8 +118,8 @@ export function FocusAction({
     links: {
       signIn: signInPath,
       connect: "/integrations#codex-beta",
-      chooseTarget: "#attempt-queue",
-      openAttempt: "#attempt-queue",
+      chooseTarget: "#research-launcher",
+      openAttempt: "#research-launcher",
       work: "#local-agent",
     },
   });

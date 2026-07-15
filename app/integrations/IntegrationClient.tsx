@@ -33,19 +33,15 @@ export function IntegrationClient({ connection }: { connection: { agentLabel: st
 
       <article className="integration-card integration-card-dark">
         <span className="micro-label">02 / {connection ? "Use Codex" : "Connect in Codex"}</span>
-        <h2>{connection ? "Continue from your local research workspace." : "Approve one local Agent, once."}</h2>
+        <h2>{connection ? "Choose a target, then simply continue in Codex." : "Approve one local Agent, once."}</h2>
         {connection ? <ol className="integration-flow">
-          <li><b>1</b><span>Ask Codex to list the frontier or inspect the problem you selected.</span></li>
-          <li><b>2</b><span>Keep Lean, models, and private notes on this computer while you explore.</span></li>
-          <li><b>3</b><span>Record only a material, signed milestone when you choose to share it; view the provisional event in your Workspace.</span></li>
-          <li><b>4</b><span>Inspect or revoke this Agent authority in Settings whenever you need to stop the connection.</span></li>
+          <li><b>1</b><span>Choose a source-pinned question in your Workspace or the public frontier.</span></li>
+          <li><b>2</b><span>Click <strong>Start research</strong>, then tell Codex: “Continue my Proofweave research.”</span></li>
+          <li><b>3</b><span>Keep Lean and private notes local. Only selected milestones and explicitly approved evidence appear in Proofweave.</span></li>
         </ol> : <ol className="integration-flow">
-          <li><b>1</b><span>If your Codex task uses a network allowlist, permit only <code>proofweave-research.yualex031821.chatgpt.site</code>, then start a new task. The complete guide includes a scoped profile.</span></li>
-          <li><b>2</b><span>Ask Codex to check <code>connection_status</code>. This does not contact Proofweave.</span></li>
-          <li><b>3</b><span>When you are ready, say “Connect Proofweave.” Codex asks before it opens the browser approval.</span></li>
-          <li><b>4</b><span>The local Bridge generates an Ed25519 Agent key on this computer; sign in, inspect the privacy boundary, and approve a 30-day formalize/prove delegation.</span></li>
-          <li><b>5</b><span>Return to Codex. It receives a revocable OAuth connection, not your browser session.</span></li>
-          <li><b>6</b><span>Open the Workspace to see the connected Agent and any selected, provisional research events.</span></li>
+          <li><b>1</b><span>Install the plugin once, then ask Codex to connect Proofweave when you are ready.</span></li>
+          <li><b>2</b><span>Approve the browser screen. Your local Agent key remains on this computer; Proofweave receives only its public identity and revocable authority.</span></li>
+          <li><b>3</b><span>Return here, choose a target, and start research. You never need to paste a key, certificate, Attempt ID, or token.</span></li>
         </ol>}
         <div className="integration-scopes" aria-label="Authorization scopes after activation">
           {authorizedScopes.map((scope) => <span key={scope}>{scope}</span>)}
@@ -57,6 +53,10 @@ export function IntegrationClient({ connection }: { connection: { agentLabel: st
           confirmation. It does not turn Agent-reported work into verification
           or a contribution receipt.
         </p>
+        {!connection && <details className="integration-command-details">
+          <summary>Connection did not work?</summary>
+          <p>If Codex reports that Proofweave cannot be reached, its task may use a network allowlist. Allow only <code>proofweave-research.yualex031821.chatgpt.site</code> and start a fresh task; the complete guide gives the scoped repair steps.</p>
+        </details>}
         <Link className="text-link" href={connection ? "/settings#delegation-setup" : "/settings"}>{connection ? "Inspect or revoke this local connection" : "Inspect or revoke local connections"} <span>→</span></Link>
         <a className="text-link" href="/codex-install.md" target="_blank" rel="noreferrer">Read the complete connection guide <span>→</span></a>
       </article>

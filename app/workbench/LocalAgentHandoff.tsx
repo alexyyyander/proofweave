@@ -174,7 +174,7 @@ function unavailableState({
     title: "Choose one question before starting local research.",
     detail: "Opening an Attempt pins the public source target and gives your local Agent a bounded brief. It does not upload or run anything.",
     label: "Choose a research target",
-    href: "#attempt-queue",
+    href: "#research-launcher",
   };
   return {
     title: "Your local research handoff is not ready yet.",

@@ -31,6 +31,8 @@ const toolDefinitions = [
   tool("connection_status", "Show whether this local Connector has a revocable Proofweave connection. It does not contact Proofweave.", { type: "object", additionalProperties: false, properties: {} }),
   tool("list_frontier_problems", "List Proofweave frontier problems available to this connected Agent.", { type: "object", additionalProperties: false, properties: { limit: { type: "integer", minimum: 1, maximum: 100 } } }),
   tool("inspect_problem", "Read a source-pinned Proofweave frontier problem before starting local work.", { type: "object", additionalProperties: false, properties: { slug: { type: "string", minLength: 1, maxLength: 160 } }, required: ["slug"] }),
+  tool("begin_research", "Start or resume one source-pinned Proofweave research target for this connected Agent. It recovers an existing active Attempt when present and never reads local files, records progress, uploads evidence, runs Lean, or creates credit.", { type: "object", additionalProperties: false, properties: { targetSlug: { type: "string", minLength: 1, maxLength: 160 }, intent: { type: "string", enum: ["formalize", "prove"] } }, required: ["targetSlug"] }),
+  tool("continue_research", "Continue the only active Proofweave research target for this connected Agent. If more than one target is active, it returns a short choice list instead of guessing. It never reads local files, records progress, uploads evidence, runs Lean, or creates credit.", { type: "object", additionalProperties: false, properties: {} }),
   tool("create_attempt", "Create a bounded Proofweave Attempt for the connected Agent. Use an idempotency key so retried work does not create duplicate attempts.", { type: "object", additionalProperties: false, properties: { problemSlug: { type: "string", minLength: 1, maxLength: 160 }, delegationScope: { type: "string", enum: ["formalize", "prove"] }, idempotencyKey: { type: "string", minLength: 1, maxLength: 160 } }, required: ["problemSlug", "delegationScope", "idempotencyKey"] }),
   tool("report_progress", "Record a concise provisional progress update for one of this Agent's Attempts. This is not Lean verification or a contribution receipt.", { type: "object", additionalProperties: false, properties: { attemptId: { type: "string", minLength: 1, maxLength: 240 }, message: { type: "string", minLength: 1, maxLength: 4000 }, progressPercent: { type: "integer", minimum: 0, maximum: 100 }, idempotencyKey: { type: "string", minLength: 1, maxLength: 160 } }, required: ["attemptId", "message", "progressPercent", "idempotencyKey"] }),
   tool("list_attempts", "List bounded Attempts attributed to this exact local Agent.", { type: "object", additionalProperties: false, properties: { limit: { type: "integer", minimum: 1, maximum: 100 } } }),
@@ -79,6 +81,8 @@ async function handleRequest(method, params) {
   const args = params.arguments && typeof params.arguments === "object" && !Array.isArray(params.arguments) ? params.arguments : {};
   if (name === "connect_proofweave") return connectionResult(await connect());
   if (name === "connection_status") return connectionResult(await connectionStatus());
+  if (name === "begin_research") return connectionResult(await beginResearch(args));
+  if (name === "continue_research") return connectionResult(await continueResearch());
   if (name === "preview_local_evidence") return connectionResult(await previewLocalEvidence(args));
   if (name === "submit_local_evidence") return connectionResult(await submitLocalEvidence(args));
   if (name === "prepare_workspace_bundle_v2") return connectionResult(await prepareWorkspaceBundleV2(args));
@@ -87,6 +91,89 @@ async function handleRequest(method, params) {
   if (!toolDefinitions.some((item) => item.name === name)) return toolError(`Unknown Proofweave tool: ${name}`);
   const result = await callRemoteTool(name, args);
   return result;
+}
+
+async function beginResearch(args) {
+  const targetSlug = requiredLocalString(args.targetSlug, "targetSlug", 160);
+  const intent = args.intent === undefined ? "formalize" : normalizeResearchIntent(args.intent);
+
+  // Read the immutable public target first. This is intentionally the only
+  // catalog data returned by the convenience operation; Agent workspace data
+  // never enters the request.
+  const target = await requireRemoteProblem(targetSlug);
+  const listed = parseRemoteToolJson(await callRemoteTool("list_attempts", { limit: 100 }), "list_attempts");
+  const existing = Array.isArray(listed?.attempts)
+    ? listed.attempts.find((attempt) =>
+      attempt?.status === "active" &&
+      attempt.problemSlug === targetSlug &&
+      (attempt.delegationScope === "formalize" || attempt.delegationScope === "prove"),
+    )
+    : null;
+
+  if (existing) return researchStartResult({ attempt: existing, target, created: false });
+
+  // A retry after an interrupted response re-lists Attempts before reaching
+  // this call, so the normal recovery path never needs an owner-supplied key.
+  const created = parseRemoteToolJson(await callRemoteTool("create_attempt", {
+    problemSlug: targetSlug,
+    delegationScope: intent,
+    idempotencyKey: `begin-research:${randomUUID()}`,
+  }), "create_attempt");
+  if (!created?.attempt) throw new Error("Proofweave did not return the bounded research workspace it created.");
+  return researchStartResult({ attempt: created.attempt, target, created: true });
+}
+
+function normalizeResearchIntent(value) {
+  if (value !== "formalize" && value !== "prove") throw new Error("intent must be formalize or prove.");
+  return value;
+}
+
+function researchStartResult({ attempt, target, created }) {
+  return {
+    operation: created ? "research_started" : "research_resumed",
+    created,
+    attempt,
+    target: {
+      slug: target.slug,
+      title: target.title,
+      revision: target.source?.revisionTag ?? null,
+      leanToolchain: target.source?.leanToolchain ?? null,
+      mathlibRevision: target.source?.mathlibRevision ?? null,
+    },
+    uploaded: false,
+    recordedProgress: false,
+    verificationState: "agent_reported_only",
+    next: "Work locally against this pinned target. Record only a material milestone after the owner confirms its concise message. File reads and all evidence uploads require their own explicit approval.",
+  };
+}
+
+async function continueResearch() {
+  const listed = parseRemoteToolJson(await callRemoteTool("list_attempts", { limit: 100 }), "list_attempts");
+  const active = Array.isArray(listed?.attempts)
+    ? listed.attempts.filter((attempt) => attempt?.status === "active" && typeof attempt.problemSlug === "string")
+    : [];
+  if (active.length === 0) {
+    return {
+      operation: "research_target_required",
+      uploaded: false,
+      recordedProgress: false,
+      verificationState: "not_recorded",
+      next: "No active Proofweave research target is available for this local Agent. Ask the owner to choose a source-pinned target and start research first.",
+    };
+  }
+  if (active.length > 1) {
+    return {
+      operation: "research_selection_required",
+      uploaded: false,
+      recordedProgress: false,
+      verificationState: "not_recorded",
+      choices: active.map((attempt) => ({ attemptId: attempt.id, targetSlug: attempt.problemSlug, title: attempt.problemTitle ?? attempt.problemSlug })),
+      next: "More than one active target exists. Ask the owner which source-pinned target to continue; do not guess.",
+    };
+  }
+  const attempt = active[0];
+  const target = await requireRemoteProblem(attempt.problemSlug);
+  return researchStartResult({ attempt, target, created: false });
 }
 
 async function previewLocalEvidence(args) {

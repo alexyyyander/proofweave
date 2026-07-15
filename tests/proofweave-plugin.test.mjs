@@ -54,6 +54,7 @@ test("the private-beta plugin starts only a local PKCE Connector", async () => {
   assert.match(connector, /\/api\/connect\/sessions/);
   assert.match(connector, /code_verifier/);
   assert.match(connector, /generateKeyPairSync\("ed25519"\)/);
+  assert.match(connector, /begin_research/);
   assert.match(connector, /submit_local_evidence/);
   assert.match(connector, /I_CONFIRM_SUBMIT/);
   assert.match(connector, /expectedSha256/);
@@ -98,6 +99,8 @@ test("the local Connector exposes connection and bounded research tools over STD
       "connection_status",
       "list_frontier_problems",
       "inspect_problem",
+      "begin_research",
+      "continue_research",
       "create_attempt",
       "report_progress",
       "list_attempts",
@@ -109,6 +112,70 @@ test("the local Connector exposes connection and bounded research tools over STD
       "stage_prepared_artifact_bundle",
     ],
   );
+});
+
+test("the local Connector starts or resumes a selected research target without exposing protocol fields", async () => {
+  const calls = [];
+  const attempts = [];
+  const server = createServer((request, response) => {
+    let body = "";
+    request.setEncoding("utf8");
+    request.on("data", (chunk) => { body += chunk; });
+    request.on("end", () => {
+      const payload = JSON.parse(body);
+      const { name, arguments: args } = payload.params;
+      calls.push({ name, args });
+      if (name === "inspect_problem") return respondTool(response, {
+        slug: args.slug,
+        title: "Fixture frontier target",
+        declaration: { qualifiedName: "Proofweave.Fixture.target", sourceContentHash: `sha256:${"1".repeat(64)}` },
+        source: { revisionTag: "fixture:1", leanToolchain: "leanprover/lean4:v4.27.0", mathlibRevision: "fixture-mathlib" },
+      });
+      if (name === "list_attempts") return respondTool(response, { attempts });
+      if (name === "create_attempt") {
+        const attempt = {
+          id: `attempt:${attempts.length + 1}`,
+          problemSlug: args.problemSlug,
+          delegationScope: args.delegationScope,
+          status: "active",
+        };
+        attempts.push(attempt);
+        return respondTool(response, { attempt, verificationState: "agent_reported_only" });
+      }
+      response.writeHead(400, { "content-type": "application/json" });
+      response.end(JSON.stringify({ error: { message: `Unexpected tool: ${name}` } }));
+    });
+  });
+  const port = await listen(server);
+  const fixtureRoot = await mkdtemp(join(tmpdir(), "proofweave-research-start-"));
+  try {
+    const baseUrl = `http://127.0.0.1:${port}`;
+    const configPath = join(fixtureRoot, "connector.json");
+    await writeFile(configPath, JSON.stringify(connectedFixtureConfig(baseUrl)));
+    const env = { ...process.env, PROOFWEAVE_BASE_URL: baseUrl, PROOFWEAVE_CONNECTOR_CONFIG: configPath };
+
+    const started = await callConnectorTool("begin_research", { targetSlug: "fixture-target" }, env);
+    assert.equal(started.error, undefined);
+    const first = JSON.parse(started.result.content[0].text);
+    assert.equal(first.operation, "research_started");
+    assert.equal(first.created, true);
+    assert.equal(first.attempt.problemSlug, "fixture-target");
+    assert.equal(first.uploaded, false);
+    assert.equal(first.recordedProgress, false);
+    assert.equal(calls.filter((call) => call.name === "create_attempt").length, 1);
+    assert.equal(calls.find((call) => call.name === "create_attempt").args.delegationScope, "formalize");
+    assert.equal("idempotencyKey" in first, false);
+
+    const resumed = await callConnectorTool("continue_research", {}, env);
+    assert.equal(resumed.error, undefined);
+    const second = JSON.parse(resumed.result.content[0].text);
+    assert.equal(second.operation, "research_resumed");
+    assert.equal(second.created, false);
+    assert.equal(second.attempt.id, first.attempt.id);
+    assert.equal(calls.filter((call) => call.name === "create_attempt").length, 1);
+  } finally {
+    await Promise.all([close(server), rm(fixtureRoot, { recursive: true, force: true })]);
+  }
 });
 
 test("the local Connector explains a sandboxed DNS failure without exposing a credential", async () => {
@@ -424,6 +491,26 @@ function listen(server) {
 
 function close(server) {
   return new Promise((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
+}
+
+function respondTool(response, value) {
+  response.writeHead(200, { "content-type": "application/json" });
+  response.end(JSON.stringify({ result: { content: [{ type: "text", text: JSON.stringify(value) }] } }));
+}
+
+function connectedFixtureConfig(baseUrl) {
+  return {
+    version: 1,
+    baseUrl,
+    agentId: "urn:pw:agent:test",
+    agentLabel: "Test Codex",
+    agentPublicKey: "A".repeat(43),
+    privateKeyJwk: {},
+    clientId: "client:test",
+    accessToken: "access-test",
+    refreshToken: "refresh-test",
+    accessTokenExpiresAt: new Date(Date.now() + 60 * 60 * 1_000).toISOString(),
+  };
 }
 
 function sha256(value) {

@@ -24,7 +24,7 @@ export default async function WorkbenchPage({
   const targetSlug = requestedTargetSlug(await searchParams);
   const { profile, attempts, runs, provisionalContributions, provisionalLedgerAvailable, storageAvailable } = await loadWorkbench(user);
   const catalogTargets = await loadCatalogTargets();
-  const returnTo = targetSlug ? `/workbench?target=${encodeURIComponent(targetSlug)}#attempt-queue` : "/workbench";
+  const returnTo = targetSlug ? `/workbench?target=${encodeURIComponent(targetSlug)}#research-launcher` : "/workbench";
 
   return (
     <div className="site-shell app-shell">
