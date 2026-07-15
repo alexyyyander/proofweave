@@ -29,10 +29,11 @@ test("the portable Proofweave Codex plugin carries the checked source skill", as
 });
 
 test("the private-beta plugin starts only a local PKCE Connector", async () => {
-  const [manifestText, mcpManifestText, connector] = await Promise.all([
+  const [manifestText, mcpManifestText, connector, pairingRepository] = await Promise.all([
     readFile(resolve(pluginRoot, ".codex-plugin/plugin.json"), "utf8"),
     readFile(resolve(pluginRoot, ".mcp.json"), "utf8"),
     readFile(resolve(pluginRoot, "mcp/proofweave-local.mjs"), "utf8"),
+    readFile(resolve(root, "db/repositories/local-codex-pairing.ts"), "utf8"),
   ]);
   const manifest = JSON.parse(manifestText);
   const mcpManifest = JSON.parse(mcpManifestText);
@@ -64,8 +65,40 @@ test("the private-beta plugin starts only a local PKCE Connector", async () => {
   assert.match(connector, /stage_prepared_artifact_bundle/);
   assert.match(connector, /I_CONFIRM_STAGE_BUNDLE/);
   assert.match(connector, /pw-artifact-bundle-v2/);
+  assert.match(connector, /requiredConnectionScopes/);
+  assert.match(connector, /artifact:write/);
+  assert.match(pairingRepository, /requestedScopes = \[[^\]]*"artifact:write"/);
   assert.match(connector, /likely credential or private key/);
   assert.doesNotMatch(connector, /PROOFWEAVE_API_TOKEN/);
+});
+
+test("the local Connector flags legacy connections for the artifact-write scope upgrade", async () => {
+  const fixtureRoot = await mkdtemp(join(tmpdir(), "proofweave-connector-scopes-"));
+  try {
+    const baseUrl = "https://proofweave.example.test";
+    const configPath = join(fixtureRoot, "connector.json");
+    const legacy = connectedFixtureConfig(baseUrl);
+    await writeFile(configPath, JSON.stringify(legacy));
+    const env = { ...process.env, PROOFWEAVE_BASE_URL: baseUrl, PROOFWEAVE_CONNECTOR_CONFIG: configPath };
+
+    const legacyResponse = await callConnectorTool("connection_status", {}, env);
+    const legacyStatus = JSON.parse(legacyResponse.result.content[0].text);
+    assert.equal(legacyStatus.connected, true);
+    assert.equal(legacyStatus.scopeUpgradeRequired, true);
+    assert.deepEqual(legacyStatus.missingScopes, ["artifact:write"]);
+
+    await writeFile(configPath, JSON.stringify({
+      ...legacy,
+      version: 2,
+      grantedScopes: ["catalog:read", "attempt:create", "attempt:read", "progress:write", "artifact:write"],
+    }));
+    const upgradedResponse = await callConnectorTool("connection_status", {}, env);
+    const upgradedStatus = JSON.parse(upgradedResponse.result.content[0].text);
+    assert.equal(upgradedStatus.scopeUpgradeRequired, false);
+    assert.deepEqual(upgradedStatus.missingScopes, []);
+  } finally {
+    await rm(fixtureRoot, { recursive: true, force: true });
+  }
 });
 
 test("the local Connector exposes connection and bounded research tools over STDIO", async () => {
@@ -390,6 +423,7 @@ test("the local Connector prepares and stages one signed, hash-bound v2 Artifact
   const receivedObjects = [];
   let stagedBundle = null;
   let expectedManifestHash = null;
+  let rejectArtifactWrites = true;
   const targetHash = `sha256:${"1".repeat(64)}`;
   const server = createServer((request, response) => {
     let body = "";
@@ -413,6 +447,10 @@ test("the local Connector prepares and stages one signed, hash-bound v2 Artifact
         return;
       }
       if (name === "put_artifact_object") {
+        if (rejectArtifactWrites) {
+          respondToolError(response, "Missing OAuth scope: artifact:write.");
+          return;
+        }
         const bytes = Buffer.from(args.contentBase64Url, "base64url");
         const contentHash = `sha256:${createHash("sha256").update(bytes).digest("hex")}`;
         receivedObjects.push(args);
@@ -507,6 +545,19 @@ test("the local Connector prepares and stages one signed, hash-bound v2 Artifact
     assert.equal(receivedObjects.length, 0);
     expectedManifestHash = draft.manifestHash;
 
+    const missingScopeResponse = await callConnectorTool("stage_prepared_artifact_bundle", {
+      bundle: draft.bundle,
+      artifacts: { sourceArchivePath, patchPath, lakeManifestPath },
+      expectedArtifactSha256: artifactHashes,
+      expectedBundleHash: draft.manifestHash,
+      ownerConfirmation: "I_CONFIRM_STAGE_BUNDLE",
+    }, env);
+    assert.match(missingScopeResponse.error.message, /missing OAuth scope artifact:write/);
+    assert.match(missingScopeResponse.error.message, /connect_proofweave/);
+    assert.doesNotMatch(missingScopeResponse.error.message, /immutable object/);
+    assert.equal(receivedObjects.length, 0);
+
+    rejectArtifactWrites = false;
     const stagedResponse = await callConnectorTool("stage_prepared_artifact_bundle", {
       bundle: draft.bundle,
       artifacts: { sourceArchivePath, patchPath, lakeManifestPath },
@@ -614,6 +665,11 @@ function close(server) {
 function respondTool(response, value) {
   response.writeHead(200, { "content-type": "application/json" });
   response.end(JSON.stringify({ result: { content: [{ type: "text", text: JSON.stringify(value) }] } }));
+}
+
+function respondToolError(response, message) {
+  response.writeHead(200, { "content-type": "application/json" });
+  response.end(JSON.stringify({ result: { content: [{ type: "text", text: message }], isError: true } }));
 }
 
 function connectedFixtureConfig(baseUrl) {

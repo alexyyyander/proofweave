@@ -26,6 +26,8 @@ const redirectUri = `http://${callbackHost}:${callbackPort}${callbackPath}`;
 const configPath = process.env.PROOFWEAVE_CONNECTOR_CONFIG ?? join(homedir(), ".proofweave", "codex-connector.json");
 const localEvidencePreviewLimits = { maxFiles: 6, maxFileBytes: 1_000_000, maxTotalBytes: 3_000_000 };
 const localWorkspaceBundleDefaults = { maxExpandedBytes: 64 * 1024 * 1024, maxFileCount: 10_000 };
+const legacyConnectionScopes = Object.freeze(["catalog:read", "attempt:create", "attempt:read", "progress:write"]);
+const requiredConnectionScopes = Object.freeze([...legacyConnectionScopes, "artifact:write"]);
 const toolDefinitions = [
   tool("connect_proofweave", "Connect this local Codex to Proofweave with a one-time browser approval. It generates an Agent key on this computer; no key needs to be pasted.", { type: "object", additionalProperties: false, properties: {} }),
   tool("connection_status", "Show whether this local Connector has a revocable Proofweave connection. It does not contact Proofweave.", { type: "object", additionalProperties: false, properties: {} }),
@@ -1225,9 +1227,11 @@ function canonicalJson(value) {
 
 async function connect() {
   const existing = await readConfig();
-  if (existing?.refreshToken && existing.baseUrl === baseUrl) {
+  const missingScopes = missingRequiredConnectionScopes(existing);
+  if (existing?.refreshToken && existing.baseUrl === baseUrl && missingScopes.length === 0) {
     return { connected: true, message: `Already connected as ${existing.agentLabel}. Revoke this connection in Proofweave Settings before reconnecting.` };
   }
+  const upgrading = Boolean(existing?.refreshToken && existing.baseUrl === baseUrl);
   const identity = existing?.privateKeyJwk && existing?.agentId && existing?.agentPublicKey
     ? existing
     : createLocalIdentity();
@@ -1242,8 +1246,13 @@ async function connect() {
     codeChallenge,
   });
   const tokens = await waitForCallback({ connectionUrl: session.connectionUrl, state, verifier, clientId: session.clientId });
+  const grantedScopes = normalizeOAuthScopes(tokens.scope);
+  const missingGrantedScopes = requiredConnectionScopes.filter((scope) => !grantedScopes.includes(scope));
+  if (missingGrantedScopes.length > 0) {
+    throw new Error(`Proofweave browser approval did not grant the required Connector scopes: ${missingGrantedScopes.join(", ")}.`);
+  }
   const next = {
-    version: 1,
+    version: 2,
     baseUrl,
     agentId: identity.agentId,
     agentLabel: identity.agentLabel,
@@ -1253,20 +1262,30 @@ async function connect() {
     accessToken: tokens.access_token,
     refreshToken: tokens.refresh_token,
     accessTokenExpiresAt: new Date(Date.now() + Number(tokens.expires_in) * 1_000).toISOString(),
+    grantedScopes,
   };
   await writeConfig(next);
-  return { connected: true, message: `Connected as ${next.agentLabel}. You can revoke this installation in Proofweave Settings.` };
+  return {
+    connected: true,
+    scopeUpgradeRequired: false,
+    message: `${upgrading ? "Connection upgraded" : "Connected"} as ${next.agentLabel}. You can revoke this installation in Proofweave Settings.`,
+  };
 }
 
 async function connectionStatus() {
   const config = await readConfig();
   if (!config?.refreshToken) return { connected: false, message: "Not connected. Use connect_proofweave to approve this local Codex." };
+  const missingScopes = missingRequiredConnectionScopes(config);
   return {
     connected: true,
     agentId: config.agentId,
     agentLabel: config.agentLabel,
     baseUrl: config.baseUrl,
-    message: "Connected locally. The refresh token and Agent private key are stored only on this computer.",
+    scopeUpgradeRequired: missingScopes.length > 0,
+    missingScopes,
+    message: missingScopes.length > 0
+      ? "This local connection predates artifact staging. Use connect_proofweave to approve the upgraded scopes before uploading or staging evidence."
+      : "Connected locally. The refresh token and Agent private key are stored only on this computer.",
   };
 }
 
@@ -1354,7 +1373,21 @@ async function callRemoteTool(name, args) {
   }
   if (payload?.error) throw new Error(payload.error.message ?? "Proofweave MCP rejected this request.");
   if (!payload?.result) throw new Error("Proofweave MCP returned an invalid response.");
+  if (payload.result.isError === true) throw new Error(remoteToolErrorMessage(name, payload.result));
   return payload.result;
+}
+
+function remoteToolErrorMessage(name, result) {
+  const text = Array.isArray(result?.content)
+    ? result.content.find((item) => item?.type === "text" && typeof item.text === "string")?.text
+    : null;
+  const message = typeof text === "string"
+    ? text.replaceAll(/\s+/g, " ").trim().slice(0, 500)
+    : "The remote tool failed without a readable error.";
+  if (message === "Missing OAuth scope: artifact:write.") {
+    return "This local Proofweave connection is missing OAuth scope artifact:write. Use connect_proofweave to approve the upgraded connection, then review and retry the exact Bundle.";
+  }
+  return `Proofweave rejected ${name}: ${message}`;
 }
 
 async function postMcp(accessToken, name, args) {
@@ -1383,12 +1416,28 @@ async function refreshAccessToken(config) {
   });
   const next = {
     ...config,
+    version: 2,
     accessToken: tokens.access_token,
     refreshToken: tokens.refresh_token,
     accessTokenExpiresAt: new Date(Date.now() + Number(tokens.expires_in) * 1_000).toISOString(),
+    grantedScopes: normalizeOAuthScopes(tokens.scope),
   };
   await writeConfig(next);
   return next;
+}
+
+function missingRequiredConnectionScopes(config) {
+  const grantedScopes = Array.isArray(config?.grantedScopes)
+    ? normalizeOAuthScopes(config.grantedScopes)
+    : config?.version === 1 && config?.refreshToken
+      ? legacyConnectionScopes
+      : [];
+  return requiredConnectionScopes.filter((scope) => !grantedScopes.includes(scope));
+}
+
+function normalizeOAuthScopes(value) {
+  const scopes = Array.isArray(value) ? value : typeof value === "string" ? value.split(/\s+/) : [];
+  return [...new Set(scopes.filter((scope) => typeof scope === "string" && scope.length > 0))].sort();
 }
 
 async function postForm(url, data) {
