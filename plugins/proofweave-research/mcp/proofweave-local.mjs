@@ -896,4 +896,13 @@ function tool(name, description, inputSchema) { return { name, description, inpu
 function connectionResult(value) { return { content: [{ type: "text", text: JSON.stringify(value, null, 2) }] }; }
 function toolError(message) { return { content: [{ type: "text", text: message }], isError: true }; }
 function respond(value) { process.stdout.write(`${JSON.stringify(value)}\n`); }
-function messageFor(error) { return error instanceof Error ? error.message : "Proofweave local Connector failed."; }
+function messageFor(error) {
+  if (!(error instanceof Error)) return "Proofweave local Connector failed.";
+  const cause = error.cause;
+  if (error.message === "fetch failed") {
+    const cannotReach = !cause || typeof cause !== "object" || cause.code !== "ENOTFOUND";
+    const action = cannotReach ? "cannot reach" : "cannot resolve";
+    return `Proofweave Connector ${action} ${new URL(baseUrl).hostname}. This Codex task has no permitted network route to Proofweave. Allow outbound HTTPS only to that host in the task's Codex permission profile, start a fresh task, then retry.`;
+  }
+  return error.message;
+}

@@ -106,6 +106,22 @@ test("the local Connector exposes connection and bounded research tools over STD
   );
 });
 
+test("the local Connector explains a sandboxed DNS failure without exposing a credential", async () => {
+  const fixtureRoot = await mkdtemp(join(tmpdir(), "proofweave-connector-network-"));
+  try {
+    const result = await callConnectorTool("connect_proofweave", {}, {
+      ...process.env,
+      PROOFWEAVE_BASE_URL: "https://proofweave.invalid",
+      PROOFWEAVE_CONNECTOR_CONFIG: join(fixtureRoot, "connector.json"),
+    });
+    assert.match(result.error.message, /cannot (resolve|reach) proofweave\.invalid/);
+    assert.match(result.error.message, /no permitted network route/);
+    assert.doesNotMatch(result.error.message, /token|private key/i);
+  } finally {
+    await rm(fixtureRoot, { recursive: true, force: true });
+  }
+});
+
 test("the local Connector submits only an owner-confirmed, hash-bound evidence preview", async () => {
   const receivedObjects = [];
   const server = createServer((request, response) => {

@@ -32,6 +32,36 @@ ChatGPT password or API key.
    local research files until the person asks. Connection opens a browser page
    where the person can inspect and approve a revocable delegation.
 
+### Restricted-network Codex tasks
+
+The local Connector needs one outbound HTTPS destination to begin a browser
+approval and later exchange bounded Proofweave MCP requests:
+
+```text
+proofweave-research.yualex031821.chatgpt.site
+```
+
+If the person's Codex task uses a domain allowlist, allow only that host. Do
+not disable the sandbox or grant broad network access. In a project-scoped
+`.codex/config.toml`, a least-privilege profile can be:
+
+```toml
+default_permissions = "proofweave-connector"
+
+[permissions.proofweave-connector]
+extends = ":workspace"
+
+[permissions.proofweave-connector.network]
+enabled = true
+
+[permissions.proofweave-connector.network.domains]
+"proofweave-research.yualex031821.chatgpt.site" = "allow"
+```
+
+Start a fresh Codex task after changing a permission profile. In a managed
+workspace, ask the administrator to add that exact host instead. The browser
+approval still requires the person's separate confirmation.
+
 ## After installation
 
 When the person asks to connect, call `connection_status`. If it is not
@@ -45,7 +75,7 @@ API key, or Proofweave bearer token.
 Installation only adds local tools to Codex. It does not connect an account,
 create an Agent, read a workspace, or send research files anywhere.
 
-1. Start a new Codex thread after installation.
+1. Start a new Codex thread after installation (and after any permission-profile change).
 2. Ask Codex to check the connection status. This reads only the local
    Connector configuration; it does not contact Proofweave.
 3. If the status is not connected and the person wants to proceed, they can

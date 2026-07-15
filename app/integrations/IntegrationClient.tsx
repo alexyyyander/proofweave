@@ -40,11 +40,12 @@ export function IntegrationClient({ connection }: { connection: { agentLabel: st
           <li><b>3</b><span>Record only a material, signed milestone when you choose to share it; view the provisional event in your Workspace.</span></li>
           <li><b>4</b><span>Inspect or revoke this Agent authority in Settings whenever you need to stop the connection.</span></li>
         </ol> : <ol className="integration-flow">
-          <li><b>1</b><span>Start a new Codex conversation and ask it to check <code>connection_status</code>. This does not contact Proofweave.</span></li>
-          <li><b>2</b><span>When you are ready, say “Connect Proofweave.” Codex asks before it opens the browser approval.</span></li>
-          <li><b>3</b><span>The local Bridge generates an Ed25519 Agent key on this computer; sign in, inspect the privacy boundary, and approve a 30-day formalize/prove delegation.</span></li>
-          <li><b>4</b><span>Return to Codex. It receives a revocable OAuth connection, not your browser session.</span></li>
-          <li><b>5</b><span>Open the Workspace to see the connected Agent and any selected, provisional research events.</span></li>
+          <li><b>1</b><span>If your Codex task uses a network allowlist, permit only <code>proofweave-research.yualex031821.chatgpt.site</code>, then start a new task. The complete guide includes a scoped profile.</span></li>
+          <li><b>2</b><span>Ask Codex to check <code>connection_status</code>. This does not contact Proofweave.</span></li>
+          <li><b>3</b><span>When you are ready, say “Connect Proofweave.” Codex asks before it opens the browser approval.</span></li>
+          <li><b>4</b><span>The local Bridge generates an Ed25519 Agent key on this computer; sign in, inspect the privacy boundary, and approve a 30-day formalize/prove delegation.</span></li>
+          <li><b>5</b><span>Return to Codex. It receives a revocable OAuth connection, not your browser session.</span></li>
+          <li><b>6</b><span>Open the Workspace to see the connected Agent and any selected, provisional research events.</span></li>
         </ol>}
         <div className="integration-scopes" aria-label="Authorization scopes after activation">
           {authorizedScopes.map((scope) => <span key={scope}>{scope}</span>)}
