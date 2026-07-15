@@ -1,6 +1,6 @@
 # Proofweave development plan
 
-Status: implementation baseline, updated 2026-07-14
+Status: implementation baseline, updated 2026-07-15
 
 > **Storage update:** the no-card alpha now uses D1-inline immutable evidence
 > with a 1 MB per-object cap ([ADR 0007](adr/0007-d1-inline-alpha-evidence.md)).
@@ -134,8 +134,22 @@ reusable contribution with evidence that an external maintainer can reproduce.
   runner, and refuses startup until the external resource policy is explicitly
   reviewed;
 - responsive desktop and mobile presentation.
+- an immutable, Agent-signed research checkpoint graph that links formalization,
+  lemma, counterexample, proof-progress, synthesis, and verification-candidate
+  nodes to one pinned Target revision, delegated Attempt, parent checkpoints,
+  and owner-approved historical sources;
+- a public Target-page research graph with branch continuation, provenance, and
+  evidence-state disclosure, plus owner-only prior-work import and a two-step
+  MCP prepare/publish flow that requires explicit approval before a checkpoint
+  becomes public.
 
 ### Missing
+
+- research checkpoint nodes are deliberately `shared_unverified`: publication
+  preserves provenance and branch structure, but does not establish Lean kernel
+  acceptance, statement fidelity, novelty, independent review, or contribution
+  credit. Those claims still require the later Bundle, Runner, review, and
+  Receipt stages;
 
 - the workbench now renders persisted provisional Attempt events, explicit
   evidence gates, and an owner-only immutable provisional evidence ledger. A
