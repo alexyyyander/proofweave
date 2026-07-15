@@ -116,13 +116,17 @@ export function LocalAgentHandoff({
         <span>03</span>
         <div><strong>Share one material milestone</strong><p>Only after a local observable result, ask Codex to show the concise progress message and percentage it proposes. Confirm it before Codex records the signed event.</p><small>Private reasoning remains local; an Agent event is still not Lean verification.</small></div>
       </li>
+      <li>
+        <span>04</span>
+        <div><strong>Prepare evidence deliberately</strong><p>When you are ready, Codex can show a local file-and-hash preview. You will be asked again before any selected file bytes leave this computer.</p><small>Stored objects are not a Bundle, Lean result, review, or contribution record.</small></div>
+      </li>
     </ol>
 
     <div className="local-agent-actions">
       <div>
         <span className="micro-label">Your next Codex message</span>
         <strong>Continue this Proofweave Attempt in Codex.</strong>
-        <p>It names the selected target and tells Codex to request your confirmation before recording provisional progress. Nothing from your private workspace is included.</p>
+        <p>It names the selected target and tells Codex to request your confirmation before recording progress or submitting selected evidence. Nothing from your private workspace is included.</p>
       </div>
       <div className="local-agent-buttons">
         <button className="button button-primary" type="button" onClick={() => { void copyCodexInstruction(); }}>Copy for Codex</button>
@@ -131,7 +135,7 @@ export function LocalAgentHandoff({
       </div>
     </div>
     {notice && <p className="local-agent-notice" role="status">{notice}</p>}
-    <p className="local-agent-boundary">This page cannot access your computer, run Codex, or create Agent progress. Only the connected local Agent can sign a reported milestone; the connection is revocable in Settings and never grants workspace access.</p>
+    <p className="local-agent-boundary">This page cannot access your computer, run Codex, or create Agent progress. Only the connected local Agent can sign a reported milestone or submit an explicitly confirmed file list; the connection is revocable in Settings and never grants workspace access.</p>
   </section>;
 }
 
@@ -206,6 +210,10 @@ When a material milestone exists, show me the exact concise message and percenta
 ## Prepare evidence without sending it
 
 If I ask to prepare evidence, first ask me to identify the smallest set of local files I explicitly approve. Call \`preview_local_evidence\` only with those exact absolute paths and this Attempt ID. It returns filenames, byte sizes, and SHA-256 hashes locally; it does not upload, stage, run, or verify anything.
+
+## Submit selected evidence only with my confirmation
+
+Before any file bytes leave this computer, show me the exact filename, byte size, and SHA-256 list again and tell me these bytes will be stored as immutable Proofweave objects. Call \`submit_local_evidence\` only after I explicitly say to submit that exact list, with the matching \`expectedSha256\` values and \`ownerConfirmation: "I_CONFIRM_SUBMIT"\`. If any file changed, stop and preview it again. Its result is only \`object_staged_only\`: it does not create a signed Bundle, run Lean, verify a proof, or create a contribution record.
 
 Never call a milestone Lean-verified, independently reviewed, novel, or a Contribution Receipt unless that separate evidence is recorded.
 `;

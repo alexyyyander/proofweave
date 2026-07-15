@@ -1,7 +1,10 @@
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
-import { readFile } from "node:fs/promises";
-import { dirname, resolve } from "node:path";
+import { createHash } from "node:crypto";
+import { createServer } from "node:http";
+import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { test } from "node:test";
 
@@ -48,6 +51,10 @@ test("the private-beta plugin starts only a local PKCE Connector", async () => {
   assert.match(connector, /\/api\/connect\/sessions/);
   assert.match(connector, /code_verifier/);
   assert.match(connector, /generateKeyPairSync\("ed25519"\)/);
+  assert.match(connector, /submit_local_evidence/);
+  assert.match(connector, /I_CONFIRM_SUBMIT/);
+  assert.match(connector, /expectedSha256/);
+  assert.match(connector, /likely credential or private key/);
   assert.doesNotMatch(connector, /PROOFWEAVE_API_TOKEN/);
 });
 
@@ -87,6 +94,113 @@ test("the local Connector exposes connection and bounded research tools over STD
       "list_attempts",
       "get_attempt",
       "preview_local_evidence",
+      "submit_local_evidence",
     ],
   );
 });
+
+test("the local Connector submits only an owner-confirmed, hash-bound evidence preview", async () => {
+  const receivedObjects = [];
+  const server = createServer((request, response) => {
+    let body = "";
+    request.setEncoding("utf8");
+    request.on("data", (chunk) => { body += chunk; });
+    request.on("end", () => {
+      const payload = JSON.parse(body);
+      const { name, arguments: args } = payload.params;
+      if (name === "get_attempt") {
+        response.writeHead(200, { "content-type": "application/json" });
+        response.end(JSON.stringify({ result: { content: [{ type: "text", text: JSON.stringify({ attempt: { id: args.attemptId } }) }] } }));
+        return;
+      }
+      if (name === "put_artifact_object") {
+        receivedObjects.push(args);
+        response.writeHead(200, { "content-type": "application/json" });
+        response.end(JSON.stringify({ result: { content: [{ type: "text", text: JSON.stringify({ object: { contentHash: `sha256:${createHash("sha256").update(Buffer.from(args.contentBase64Url, "base64url")).digest("hex")}`, objectKey: "bundles/sha256/test/fixture.lean" }, storageState: "object_staged_only", verificationState: "not_verified" }) }] } }));
+        return;
+      }
+      response.writeHead(400, { "content-type": "application/json" });
+      response.end(JSON.stringify({ error: { message: `Unexpected tool: ${name}` } }));
+    });
+  });
+  const port = await listen(server);
+  const fixtureRoot = await mkdtemp(join(tmpdir(), "proofweave-local-evidence-"));
+  try {
+    const baseUrl = `http://127.0.0.1:${port}`;
+    const configPath = join(fixtureRoot, "connector.json");
+    const evidencePath = join(fixtureRoot, "Fixture.lean");
+    const contents = Buffer.from("theorem fixture : True := by trivial\n", "utf8");
+    const sha256 = `sha256:${createHash("sha256").update(contents).digest("hex")}`;
+    await Promise.all([
+      writeFile(evidencePath, contents),
+      writeFile(configPath, JSON.stringify({
+        version: 1,
+        baseUrl,
+        agentId: "urn:pw:agent:test",
+        agentLabel: "Test Codex",
+        agentPublicKey: "A".repeat(43),
+        privateKeyJwk: {},
+        clientId: "client:test",
+        accessToken: "access-test",
+        refreshToken: "refresh-test",
+        accessTokenExpiresAt: new Date(Date.now() + 60 * 60 * 1_000).toISOString(),
+      })),
+    ]);
+    const env = { ...process.env, PROOFWEAVE_BASE_URL: baseUrl, PROOFWEAVE_CONNECTOR_CONFIG: configPath };
+    const success = await callConnectorTool("submit_local_evidence", {
+      attemptId: "attempt:test",
+      paths: [evidencePath],
+      expectedSha256: [sha256],
+      ownerConfirmation: "I_CONFIRM_SUBMIT",
+    }, env);
+    const submitted = JSON.parse(success.result.content[0].text);
+    assert.equal(submitted.storageState, "object_staged_only");
+    assert.equal(submitted.verificationState, "not_verified");
+    assert.equal(submitted.files[0].sha256, sha256);
+    assert.equal(receivedObjects.length, 1);
+    assert.equal(receivedObjects[0].contentBase64Url, contents.toString("base64url"));
+
+    const changed = await callConnectorTool("submit_local_evidence", {
+      attemptId: "attempt:test",
+      paths: [evidencePath],
+      expectedSha256: [`sha256:${"0".repeat(64)}`],
+      ownerConfirmation: "I_CONFIRM_SUBMIT",
+    }, env);
+    assert.match(changed.error.message, /changed since the owner reviewed it/);
+    assert.equal(receivedObjects.length, 1);
+  } finally {
+    await Promise.all([close(server), rm(fixtureRoot, { recursive: true, force: true })]);
+  }
+});
+
+async function callConnectorTool(name, args, env) {
+  const connector = resolve(pluginRoot, "mcp/proofweave-local.mjs");
+  const child = spawn(process.execPath, [connector], { cwd: root, env, stdio: ["pipe", "pipe", "pipe"] });
+  let output = "";
+  let errors = "";
+  child.stdout.setEncoding("utf8");
+  child.stderr.setEncoding("utf8");
+  child.stdout.on("data", (chunk) => { output += chunk; });
+  child.stderr.on("data", (chunk) => { errors += chunk; });
+  child.stdin.end(`${JSON.stringify({ jsonrpc: "2.0", id: 1, method: "tools/call", params: { name, arguments: args } })}\n`);
+  const status = await new Promise((resolve, reject) => {
+    child.once("error", reject);
+    child.once("close", resolve);
+  });
+  assert.equal(status, 0, errors);
+  return JSON.parse(output.trim());
+}
+
+function listen(server) {
+  return new Promise((resolve, reject) => {
+    server.once("error", reject);
+    server.listen(0, "127.0.0.1", () => {
+      server.off("error", reject);
+      resolve(server.address().port);
+    });
+  });
+}
+
+function close(server) {
+  return new Promise((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
+}

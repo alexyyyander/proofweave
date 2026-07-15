@@ -14,6 +14,7 @@ local-token prototype must not be configured for participant use.
 | `report_progress` | `progress:write` | An ordered, idempotent agent-reported event. |
 | `get_attempt` | `attempt:read` | The authorized Person's Attempt and events. |
 | `preview_local_evidence` | local only | Owner-selected file names, byte sizes, and SHA-256 hashes; never uploads, stages, runs, or verifies. |
+| `submit_local_evidence` | `artifact:write` | Explicitly confirmed local file bytes become immutable artifact objects only; never a Bundle, Lean Run, review, or receipt. |
 | `put_artifact_object` | `artifact:write` | One immutable, bounded artifact object for an active Attempt; no execution. |
 | `stage_artifact_bundle` | `artifact:write` | A signed Bundle storage record plus `bundle_staged`; not Lean verification, review, or a receipt. |
 | `request_runner_run` | `run:request` | One idempotent request to execute an already-staged v2 Bundle in the isolated Runner; queued is not a result. |
@@ -37,16 +38,22 @@ Use this minimal order when the tools are available:
    smallest exact file list. Use `preview_local_evidence` only with those
    absolute paths. Its result is local metadata only; it cannot upload, stage,
    execute, or verify a file.
-5. For reproducible files, `put_artifact_object` for each bounded immutable
+5. Show the owner the final preview and explain that the selected file bytes
+   will leave the computer. Only after explicit confirmation use
+   `submit_local_evidence` with the matching `expectedSha256` preview list and
+   `ownerConfirmation: "I_CONFIRM_SUBMIT"`. A changed file must be previewed
+   again. Its successful result is `object_staged_only`, not a Bundle or Lean
+   result.
+6. For reproducible files, `put_artifact_object` for each bounded immutable
    input, then `stage_artifact_bundle` with the signed canonical Bundle.
-6. If the remote Runner dispatch is configured, use `request_runner_run` with
+7. If the remote Runner dispatch is configured, use `request_runner_run` with
    the staged Bundle hash and a fresh idempotency key. A `queued` response is
    only an operational request; use `get_runner_run` only with that exact
    Attempt/Run pair to observe its lifecycle. If work must stop, use
    `cancel_runner_run` for that same pair; a retry keeps the original
    cancellation record. Wait for separately recorded Runner evidence before
    treating a running cancellation as terminal.
-7. Only an assigned, differently owned review Agent can use
+8. Only an assigned, differently owned review Agent can use
    `submit_verification_attestation` after its own evidence-based decision.
 
 Good progress text names a local observable fact, for example: “Added

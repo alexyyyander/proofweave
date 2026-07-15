@@ -32,6 +32,7 @@ const toolDefinitions = [
   tool("list_attempts", "List bounded Attempts attributed to this exact local Agent.", { type: "object", additionalProperties: false, properties: { limit: { type: "integer", minimum: 1, maximum: 100 } } }),
   tool("get_attempt", "Read one Attempt attributed to this exact local Agent.", { type: "object", additionalProperties: false, properties: { attemptId: { type: "string", minLength: 1, maxLength: 240 } }, required: ["attemptId"] }),
   tool("preview_local_evidence", "Preview up to six explicitly owner-selected local files for one authorized Attempt. It returns only each filename, byte size, and SHA-256 hash; it never uploads, stages, runs, or verifies anything.", { type: "object", additionalProperties: false, properties: { attemptId: { type: "string", minLength: 1, maxLength: 240 }, paths: { type: "array", minItems: 1, maxItems: 6, items: { type: "string", minLength: 1, maxLength: 1000 } } }, required: ["attemptId", "paths"] }),
+  tool("submit_local_evidence", "Submit up to six explicitly owner-approved local files as immutable artifact objects for one authorized Attempt. This sends the selected bytes to Proofweave only when the current hashes match the exact preview the owner confirmed. It does not stage a Bundle, run Lean, or verify a proof.", { type: "object", additionalProperties: false, properties: { attemptId: { type: "string", minLength: 1, maxLength: 240 }, paths: { type: "array", minItems: 1, maxItems: 6, items: { type: "string", minLength: 1, maxLength: 1000 } }, expectedSha256: { type: "array", minItems: 1, maxItems: 6, items: { type: "string", pattern: "^sha256:[a-f0-9]{64}$" } }, ownerConfirmation: { type: "string", enum: ["I_CONFIRM_SUBMIT"] } }, required: ["attemptId", "paths", "expectedSha256", "ownerConfirmation"] }),
 ];
 
 const rl = readline.createInterface({ input: process.stdin, crlfDelay: Infinity });
@@ -72,6 +73,7 @@ async function handleRequest(method, params) {
   if (name === "connect_proofweave") return connectionResult(await connect());
   if (name === "connection_status") return connectionResult(await connectionStatus());
   if (name === "preview_local_evidence") return connectionResult(await previewLocalEvidence(args));
+  if (name === "submit_local_evidence") return connectionResult(await submitLocalEvidence(args));
   if (!toolDefinitions.some((item) => item.name === name)) return toolError(`Unknown Proofweave tool: ${name}`);
   const result = await callRemoteTool(name, args);
   return result;
@@ -84,32 +86,7 @@ async function previewLocalEvidence(args) {
   // This read establishes that the requested Attempt remains available to this
   // exact connected Agent before any user-selected local file is opened.
   await callRemoteTool("get_attempt", { attemptId });
-
-  const files = [];
-  let totalBytes = 0;
-  for (const path of paths) {
-    if (!isAbsolute(path)) throw new Error("Each evidence path must be an absolute path selected by the owner.");
-    const metadata = await lstat(path).catch((error) => {
-      if (error?.code === "ENOENT") throw new Error(`Selected evidence file was not found: ${basename(path)}`);
-      throw new Error(`Selected evidence file could not be inspected: ${basename(path)}`);
-    });
-    if (!metadata.isFile() || metadata.isSymbolicLink()) {
-      throw new Error(`Selected evidence must be a regular file, not a directory or link: ${basename(path)}`);
-    }
-    if (metadata.size > localEvidencePreviewLimits.maxFileBytes) {
-      throw new Error(`Selected evidence exceeds the ${localEvidencePreviewLimits.maxFileBytes} byte preview limit: ${basename(path)}`);
-    }
-    totalBytes += metadata.size;
-    if (totalBytes > localEvidencePreviewLimits.maxTotalBytes) {
-      throw new Error(`Selected evidence exceeds the ${localEvidencePreviewLimits.maxTotalBytes} byte combined preview limit.`);
-    }
-    const contents = await readFile(path);
-    files.push({
-      filename: basename(path),
-      bytes: contents.byteLength,
-      sha256: `sha256:${createHash("sha256").update(contents).digest("hex")}`,
-    });
-  }
+  const files = await readSelectedEvidence(paths);
 
   return {
     attemptId,
@@ -117,9 +94,82 @@ async function previewLocalEvidence(args) {
     uploaded: false,
     staged: false,
     verificationState: "not_recorded",
-    files,
+    files: files.map(localEvidenceSummary),
     next: "Review this minimal file list with the owner. A separate explicit artifact-staging action is required before any file can leave this computer.",
   };
+}
+
+async function submitLocalEvidence(args) {
+  const attemptId = requiredLocalString(args.attemptId, "attemptId", 240);
+  const paths = normalizeEvidencePaths(args.paths);
+  const expectedSha256 = normalizeExpectedEvidenceHashes(args.expectedSha256, paths.length);
+  if (args.ownerConfirmation !== "I_CONFIRM_SUBMIT") {
+    throw new Error("The owner must explicitly confirm this exact submission before selected file bytes can leave this computer.");
+  }
+
+  // Check current authority before reading or sending local bytes.
+  await callRemoteTool("get_attempt", { attemptId });
+  const files = await readSelectedEvidence(paths);
+  for (let index = 0; index < files.length; index += 1) {
+    if (files[index].sha256 !== expectedSha256[index]) {
+      throw new Error(`Selected evidence changed since the owner reviewed it: ${files[index].filename}. Preview the exact files again before submitting.`);
+    }
+  }
+  const staged = [];
+  for (const file of files) {
+    const response = await callRemoteTool("put_artifact_object", {
+      attemptId,
+      filename: file.filename,
+      contentType: evidenceContentType(file.filename),
+      contentBase64Url: file.contents.toString("base64url"),
+    });
+    staged.push({ ...localEvidenceSummary(file), ...remoteObjectSummary(response) });
+  }
+
+  return {
+    attemptId,
+    operation: "local_evidence_submission",
+    uploaded: true,
+    storageState: "object_staged_only",
+    verificationState: "not_verified",
+    files: staged,
+    next: "These immutable objects are stored, but no Artifact Bundle, Lean Run, review, or Contribution Receipt exists yet.",
+  };
+}
+
+async function readSelectedEvidence(paths) {
+  const files = [];
+  let totalBytes = 0;
+  for (const path of paths) {
+    if (!isAbsolute(path)) throw new Error("Each evidence path must be an absolute path selected by the owner.");
+    const filename = basename(path);
+    assertSafeEvidenceFilename(filename);
+    const metadata = await lstat(path).catch((error) => {
+      if (error?.code === "ENOENT") throw new Error(`Selected evidence file was not found: ${filename}`);
+      throw new Error(`Selected evidence file could not be inspected: ${filename}`);
+    });
+    if (!metadata.isFile() || metadata.isSymbolicLink()) {
+      throw new Error(`Selected evidence must be a regular file, not a directory or link: ${filename}`);
+    }
+    if (metadata.size > localEvidencePreviewLimits.maxFileBytes) {
+      throw new Error(`Selected evidence exceeds the ${localEvidencePreviewLimits.maxFileBytes} byte alpha limit: ${filename}`);
+    }
+    const contents = await readFile(path);
+    if (contents.byteLength > localEvidencePreviewLimits.maxFileBytes) {
+      throw new Error(`Selected evidence changed and now exceeds the ${localEvidencePreviewLimits.maxFileBytes} byte alpha limit: ${filename}`);
+    }
+    totalBytes += contents.byteLength;
+    if (totalBytes > localEvidencePreviewLimits.maxTotalBytes) {
+      throw new Error(`Selected evidence exceeds the ${localEvidencePreviewLimits.maxTotalBytes} byte combined alpha limit.`);
+    }
+    files.push({
+      filename,
+      bytes: contents.byteLength,
+      sha256: `sha256:${createHash("sha256").update(contents).digest("hex")}`,
+      contents,
+    });
+  }
+  return files;
 }
 
 async function connect() {
@@ -385,6 +435,57 @@ function normalizeEvidencePaths(value) {
   const paths = value.map((path) => requiredLocalString(path, "Each evidence path", 1000));
   if (new Set(paths).size !== paths.length) throw new Error("Choose each local evidence file only once.");
   return paths;
+}
+
+function normalizeExpectedEvidenceHashes(value, expectedLength) {
+  if (!Array.isArray(value) || value.length !== expectedLength) {
+    throw new Error("Provide the exact SHA-256 list from the owner-approved preview.");
+  }
+  return value.map((hash) => {
+    if (typeof hash !== "string" || !/^sha256:[a-f0-9]{64}$/.test(hash)) {
+      throw new Error("Each expected evidence hash must be sha256:<lowercase hex>.");
+    }
+    return hash;
+  });
+}
+
+function assertSafeEvidenceFilename(filename) {
+  const normalized = filename.toLowerCase();
+  const blockedNames = new Set([".env", "id_rsa", "id_dsa", "id_ecdsa", "id_ed25519", "credentials.json"]);
+  const blockedExtensions = [".pem", ".key", ".p12", ".pfx", ".kdbx"];
+  if (blockedNames.has(normalized) || blockedExtensions.some((extension) => normalized.endsWith(extension))) {
+    throw new Error(`Proofweave will not stage a likely credential or private key: ${filename}`);
+  }
+}
+
+function evidenceContentType(filename) {
+  const normalized = filename.toLowerCase();
+  if (normalized.endsWith(".tar.zst")) return "application/zstd";
+  if (normalized.endsWith(".json")) return "application/json";
+  if (normalized.endsWith(".patch") || normalized.endsWith(".diff")) return "text/x-diff; charset=utf-8";
+  if (normalized.endsWith(".lean") || normalized.endsWith(".md") || normalized.endsWith(".txt") || normalized.endsWith(".log")) return "text/plain; charset=utf-8";
+  return "application/octet-stream";
+}
+
+function localEvidenceSummary(file) {
+  return { filename: file.filename, bytes: file.bytes, sha256: file.sha256 };
+}
+
+function remoteObjectSummary(response) {
+  const text = Array.isArray(response?.content)
+    ? response.content.find((item) => item?.type === "text" && typeof item.text === "string")?.text
+    : null;
+  try {
+    const parsed = text ? JSON.parse(text) : null;
+    return {
+      contentHash: parsed?.object?.contentHash ?? null,
+      objectKey: parsed?.object?.objectKey ?? null,
+      storageState: parsed?.storageState ?? "object_staged_only",
+      verificationState: parsed?.verificationState ?? "not_verified",
+    };
+  } catch {
+    return { contentHash: null, objectKey: null, storageState: "object_staged_only", verificationState: "not_verified" };
+  }
 }
 
 function randomToken(bytes) { return base64url(randomBytes(bytes)); }

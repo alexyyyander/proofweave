@@ -255,7 +255,7 @@ export function ResearchWorkstation({ attempt, runs }: { attempt: McpAttempt | n
       <div className="workstation-heading"><span>02 / Artifact &amp; Lean evidence</span><span className={runnerAccepted ? "source-good" : "source-waiting"}>{runnerAccepted ? "Kernel accepted" : bundleStaged ? "Bundle staged" : "Awaiting bundle"}</span></div>
       <div className="source-state">
         <strong>{runnerAccepted ? "The isolated Lean Runner recorded an accepted kernel result." : bundleStaged ? "A signed Artifact Bundle is staged for this Attempt." : "No Artifact Bundle has been staged."}</strong>
-        <p>{runnerAccepted ? "This Runner result satisfies only the Lean execution gate. It is not independent review or a Contribution Receipt." : bundleStaged ? "Open controlled evidence to inspect the hash-bound bundle. Staging alone is not a Lean check or an accepted contribution." : "Proofweave does not render a sample source file or a fictional compiler result in place of Agent-supplied evidence."}</p>
+        <p>{runnerAccepted ? "This Runner result satisfies only the Lean execution gate. It is not independent review or a Contribution Receipt." : bundleStaged ? "Open controlled evidence to inspect the hash-bound bundle. Staging alone is not a Lean check or an accepted contribution." : "A local preview or individual stored object does not move this gate. Proofweave does not render a sample source file or a fictional compiler result in place of a complete, Agent-signed Bundle."}</p>
         {attempt && <Link className="text-link source-link" href={evidenceHref}>Open controlled evidence <span>→</span></Link>}
       </div>
       <div className="diagnostic-box">
@@ -294,7 +294,7 @@ export function SubmissionReadiness({ attempt, profile, runs }: { attempt: McpAt
       <ul className="gate-list">
         <GateRow state={attempt ? "passed" : "waiting"} label="Bounded Attempt" detail={attempt ? "Target and delegated Agent authority are durably bound." : "Open a source-pinned Attempt first."} />
         <GateRow state={hasAgentProgress ? "passed" : "waiting"} label="Agent-reported progress" detail={hasAgentProgress ? "A separately authorized Agent event is recorded." : "Requires the remote OAuth MCP connection; browser clicks cannot create this event."} />
-        <GateRow state={bundleStaged ? "passed" : "waiting"} label="Signed Artifact Bundle" detail={bundleStaged ? "A bundle-staged event is recorded; inspect its controlled evidence separately." : "Requires a complete signed bundle from the authorized Agent."} />
+        <GateRow state={bundleStaged ? "passed" : "waiting"} label="Signed Artifact Bundle" detail={bundleStaged ? "A bundle-staged event is recorded; inspect its controlled evidence separately." : "Individual approved file objects are only preparation. This gate requires a complete signed Bundle from the authorized Agent."} />
         <GateRow state={leanGate.state} label="Isolated Lean result" detail={leanGate.detail} />
         <GateRow state="required" label="Independent review" detail="Must be performed by a different owner." />
       </ul>

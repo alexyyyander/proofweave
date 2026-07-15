@@ -41,6 +41,12 @@ does not use a seeded Person, a copied token, or a pre-existing browser key.
    choose the smallest local file set. `preview_local_evidence` may return only
    each filename, byte size, and SHA-256 hash. It must not upload, stage,
    execute, or verify those files.
+10. If the participant explicitly says to submit that exact previewed list,
+    Codex may call `submit_local_evidence` with the corresponding
+    `expectedSha256` preview values and `ownerConfirmation: "I_CONFIRM_SUBMIT"`.
+    If a file changed, it must require a new preview. The result must say that
+    only immutable objects were stored; it must not claim a signed Bundle, Lean
+    Run, review, or receipt.
 
 ## Fail the run when
 

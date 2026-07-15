@@ -1902,9 +1902,12 @@ test("keeps the production frontend free of the deleted starter preview", async 
   assert.match(localAgentHandoff, /Check recorded progress/);
   assert.match(localAgentHandoff, /do not call \\`report_progress\\` unless I explicitly confirm/);
   assert.match(localAgentHandoff, /preview_local_evidence/);
+  assert.match(localAgentHandoff, /submit_local_evidence/);
+  assert.match(localAgentHandoff, /I_CONFIRM_SUBMIT/);
   assert.doesNotMatch(localAgentHandoff, /PROOFWEAVE_API_TOKEN/);
   assert.match(sourceSkill, /wait for explicit confirmation before recording it/);
   assert.match(sourceSkill, /explicitly approve the smallest local file set/);
+  assert.match(sourceSkill, /Only after the owner explicitly confirms the exact previewed list/);
   assert.match(browserKeyStore, /IndexedDB-backed WebCrypto store/);
   assert.match(browserKeyStore, /Remove a locally held private key/);
   assert.doesNotMatch(browserKeyStore, /localStorage/);
