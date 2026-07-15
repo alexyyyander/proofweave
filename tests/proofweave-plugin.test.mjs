@@ -1,12 +1,13 @@
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
-import { createHash } from "node:crypto";
+import { createHash, generateKeyPairSync } from "node:crypto";
 import { createServer } from "node:http";
 import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { test } from "node:test";
+import { normalizeArtifactBundle, verifyArtifactBundleAgentSignature } from "../packages/protocol/artifact-bundle.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const sourceSkillRoot = resolve(root, "skills/proofweave-research");
@@ -54,6 +55,10 @@ test("the private-beta plugin starts only a local PKCE Connector", async () => {
   assert.match(connector, /submit_local_evidence/);
   assert.match(connector, /I_CONFIRM_SUBMIT/);
   assert.match(connector, /expectedSha256/);
+  assert.match(connector, /prepare_artifact_bundle_v2/);
+  assert.match(connector, /stage_prepared_artifact_bundle/);
+  assert.match(connector, /I_CONFIRM_STAGE_BUNDLE/);
+  assert.match(connector, /pw-artifact-bundle-v2/);
   assert.match(connector, /likely credential or private key/);
   assert.doesNotMatch(connector, /PROOFWEAVE_API_TOKEN/);
 });
@@ -95,6 +100,8 @@ test("the local Connector exposes connection and bounded research tools over STD
       "get_attempt",
       "preview_local_evidence",
       "submit_local_evidence",
+      "prepare_artifact_bundle_v2",
+      "stage_prepared_artifact_bundle",
     ],
   );
 });
@@ -173,6 +180,150 @@ test("the local Connector submits only an owner-confirmed, hash-bound evidence p
   }
 });
 
+test("the local Connector prepares and stages one signed, hash-bound v2 Artifact Bundle only after a second confirmation", async () => {
+  const receivedObjects = [];
+  let stagedBundle = null;
+  let expectedManifestHash = null;
+  const targetHash = `sha256:${"1".repeat(64)}`;
+  const server = createServer((request, response) => {
+    let body = "";
+    request.setEncoding("utf8");
+    request.on("data", (chunk) => { body += chunk; });
+    request.on("end", () => {
+      const payload = JSON.parse(body);
+      const { name, arguments: args } = payload.params;
+      if (name === "get_attempt") {
+        response.writeHead(200, { "content-type": "application/json" });
+        response.end(JSON.stringify({ result: { content: [{ type: "text", text: JSON.stringify({ attempt: { id: args.attemptId, problemSlug: "fixture-problem", problemRevisionId: "revision:fixture" } }) }] } }));
+        return;
+      }
+      if (name === "inspect_problem") {
+        response.writeHead(200, { "content-type": "application/json" });
+        response.end(JSON.stringify({ result: { content: [{ type: "text", text: JSON.stringify({
+          slug: "fixture-problem",
+          declaration: { qualifiedName: "Proofweave.Fixture.target", sourceContentHash: targetHash },
+          source: { leanToolchain: "leanprover/lean4:v4.27.0", mathlibRevision: "fixture-revision" },
+        }) }] } }));
+        return;
+      }
+      if (name === "put_artifact_object") {
+        const bytes = Buffer.from(args.contentBase64Url, "base64url");
+        const contentHash = `sha256:${createHash("sha256").update(bytes).digest("hex")}`;
+        receivedObjects.push(args);
+        response.writeHead(200, { "content-type": "application/json" });
+        response.end(JSON.stringify({ result: { content: [{ type: "text", text: JSON.stringify({
+          object: { contentHash, objectKey: `bundles/sha256/${contentHash.slice("sha256:".length)}/${args.filename}` },
+          storageState: "object_staged_only",
+          verificationState: "not_verified",
+        }) }] } }));
+        return;
+      }
+      if (name === "stage_artifact_bundle") {
+        stagedBundle = args.bundle;
+        response.writeHead(200, { "content-type": "application/json" });
+        response.end(JSON.stringify({ result: { content: [{ type: "text", text: JSON.stringify({
+          storageState: "bundle_staged_only",
+          verificationState: "not_verified",
+          bundle: {
+            id: args.bundle.id,
+            manifestHash: expectedManifestHash,
+            manifestKey: `bundles/sha256/${expectedManifestHash.slice("sha256:".length)}/bundle.json`,
+            agentEventId: args.bundle.agentEvent.eventId,
+          },
+        }) }] } }));
+        return;
+      }
+      response.writeHead(400, { "content-type": "application/json" });
+      response.end(JSON.stringify({ error: { message: `Unexpected tool: ${name}` } }));
+    });
+  });
+  const port = await listen(server);
+  const fixtureRoot = await mkdtemp(join(tmpdir(), "proofweave-local-bundle-"));
+  try {
+    const baseUrl = `http://127.0.0.1:${port}`;
+    const configPath = join(fixtureRoot, "connector.json");
+    const sourceArchivePath = join(fixtureRoot, "source.tar.zst");
+    const patchPath = join(fixtureRoot, "normalized.patch");
+    const lakeManifestPath = join(fixtureRoot, "lake-manifest.json");
+    const sourceArchive = Buffer.concat([Buffer.from([0x28, 0xb5, 0x2f, 0xfd]), Buffer.from("fixture-zstd-bytes")]);
+    const patch = Buffer.from("diff --git a/Main.lean b/Main.lean\nindex 1111111..2222222 100644\n--- a/Main.lean\n+++ b/Main.lean\n@@ -0,0 +1 @@\n+theorem fixture : True := by trivial\n", "utf8");
+    const lakeManifest = Buffer.from("{\"name\":\"fixture\"}\n", "utf8");
+    const mainLean = Buffer.from("theorem fixture : True := by trivial\n", "utf8");
+    const pair = generateKeyPairSync("ed25519");
+    const publicKeyJwk = pair.publicKey.export({ format: "jwk" });
+    const privateKeyJwk = pair.privateKey.export({ format: "jwk" });
+    assert.equal(publicKeyJwk.kty, "OKP");
+    assert.equal(publicKeyJwk.crv, "Ed25519");
+    assert.equal(typeof publicKeyJwk.x, "string");
+    await Promise.all([
+      writeFile(sourceArchivePath, sourceArchive),
+      writeFile(patchPath, patch),
+      writeFile(lakeManifestPath, lakeManifest),
+      writeFile(configPath, JSON.stringify({
+        version: 1,
+        baseUrl,
+        agentId: "urn:pw:agent:test",
+        agentLabel: "Test Codex",
+        agentPublicKey: publicKeyJwk.x,
+        privateKeyJwk,
+        clientId: "client:test",
+        accessToken: "access-test",
+        refreshToken: "refresh-test",
+        accessTokenExpiresAt: new Date(Date.now() + 60 * 60 * 1_000).toISOString(),
+      })),
+    ]);
+    const artifactHashes = {
+      sourceArchive: sha256(sourceArchive),
+      patch: sha256(patch),
+      lakeManifest: sha256(lakeManifest),
+    };
+    const env = { ...process.env, PROOFWEAVE_BASE_URL: baseUrl, PROOFWEAVE_CONNECTOR_CONFIG: configPath };
+    const draftResponse = await callConnectorTool("prepare_artifact_bundle_v2", {
+      attemptId: "attempt:fixture",
+      artifacts: { sourceArchivePath, patchPath, lakeManifestPath },
+      workspaceTree: [
+        { path: "Main.lean", mode: 0o644, contentHash: sha256(mainLean) },
+        { path: "lake-manifest.json", mode: 0o644, contentHash: artifactHashes.lakeManifest },
+      ],
+      maxExpandedBytes: 1_000_000,
+      maxFileCount: 12,
+      entryFile: "Main.lean",
+      allowedAxioms: [],
+    }, env);
+    assert.equal(draftResponse.error, undefined);
+    const draft = JSON.parse(draftResponse.result.content[0].text);
+    assert.equal(draft.operation, "local_bundle_preparation");
+    assert.equal(draft.uploaded, false);
+    assert.equal(draft.staged, false);
+    assert.equal(draft.bundle.protocolVersion, "pw-artifact-bundle-v2");
+    assert.equal(draft.bundle.agentEvent.agentPublicKey, publicKeyJwk.x);
+    assert.match(draft.manifestHash, /^sha256:[a-f0-9]{64}$/);
+    assert.equal(receivedObjects.length, 0);
+    expectedManifestHash = draft.manifestHash;
+
+    const stagedResponse = await callConnectorTool("stage_prepared_artifact_bundle", {
+      bundle: draft.bundle,
+      artifacts: { sourceArchivePath, patchPath, lakeManifestPath },
+      expectedArtifactSha256: artifactHashes,
+      expectedBundleHash: draft.manifestHash,
+      ownerConfirmation: "I_CONFIRM_STAGE_BUNDLE",
+    }, env);
+    assert.equal(stagedResponse.error, undefined);
+    const staged = JSON.parse(stagedResponse.result.content[0].text);
+    assert.equal(staged.storageState, "bundle_staged_only");
+    assert.equal(staged.verificationState, "not_verified");
+    assert.equal(staged.bundle.manifestHash, draft.manifestHash);
+    assert.equal(receivedObjects.length, 3);
+    assert.equal(stagedBundle.id, draft.bundle.id);
+    assert.equal(stagedBundle.workspace.archive.contentHash, artifactHashes.sourceArchive);
+    assert.match(stagedBundle.agentEvent.signature, /^[A-Za-z0-9_-]{86}$/);
+    assert.equal(normalizeArtifactBundle(stagedBundle).protocolVersion, "pw-artifact-bundle-v2");
+    assert.equal(await verifyArtifactBundleAgentSignature(stagedBundle), true);
+  } finally {
+    await Promise.all([close(server), rm(fixtureRoot, { recursive: true, force: true })]);
+  }
+});
+
 async function callConnectorTool(name, args, env) {
   const connector = resolve(pluginRoot, "mcp/proofweave-local.mjs");
   const child = spawn(process.execPath, [connector], { cwd: root, env, stdio: ["pipe", "pipe", "pipe"] });
@@ -203,4 +354,8 @@ function listen(server) {
 
 function close(server) {
   return new Promise((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
+}
+
+function sha256(value) {
+  return `sha256:${createHash("sha256").update(value).digest("hex")}`;
 }

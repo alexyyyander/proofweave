@@ -118,7 +118,7 @@ export function LocalAgentHandoff({
       </li>
       <li>
         <span>04</span>
-        <div><strong>Prepare evidence deliberately</strong><p>When you are ready, Codex can show a local file-and-hash preview. You will be asked again before any selected file bytes leave this computer.</p><small>Stored objects are not a Bundle, Lean result, review, or contribution record.</small></div>
+        <div><strong>Prepare one executable evidence Bundle</strong><p>Codex prepares the local source archive, normalized patch, and Lake manifest, then shows you the signed manifest hash and three exact file hashes. You approve that Bundle once more before its selected bytes leave this computer.</p><small>Staging creates reproducible evidence only; it is not yet a Lean result, review, or contribution receipt.</small></div>
       </li>
     </ol>
 
@@ -126,7 +126,7 @@ export function LocalAgentHandoff({
       <div>
         <span className="micro-label">Your next Codex message</span>
         <strong>Continue this Proofweave Attempt in Codex.</strong>
-        <p>It names the selected target and tells Codex to request your confirmation before recording progress or submitting selected evidence. Nothing from your private workspace is included.</p>
+        <p>It names the selected target and tells Codex to request your confirmation before recording progress or staging a selected evidence Bundle. Nothing from your private workspace is included.</p>
       </div>
       <div className="local-agent-buttons">
         <button className="button button-primary" type="button" onClick={() => { void copyCodexInstruction(); }}>Copy for Codex</button>
@@ -135,7 +135,7 @@ export function LocalAgentHandoff({
       </div>
     </div>
     {notice && <p className="local-agent-notice" role="status">{notice}</p>}
-    <p className="local-agent-boundary">This page cannot access your computer, run Codex, or create Agent progress. Only the connected local Agent can sign a reported milestone or submit an explicitly confirmed file list; the connection is revocable in Settings and never grants workspace access.</p>
+    <p className="local-agent-boundary">This page cannot access your computer, run Codex, or create Agent progress. Only the connected local Agent can sign a reported milestone or stage an explicitly confirmed evidence Bundle; the connection is revocable in Settings and never grants workspace access.</p>
   </section>;
 }
 
@@ -207,13 +207,17 @@ Use the connected Proofweave Research plugin on this computer. This instruction 
 
 When a material milestone exists, show me the exact concise message and percentage you propose to record. State where the local evidence lives, avoid private reasoning, and do not call \`report_progress\` unless I explicitly confirm. Use a fresh opaque idempotency key after confirmation.
 
-## Prepare evidence without sending it
+## Prepare one complete Bundle locally
 
-If I ask to prepare evidence, first ask me to identify the smallest set of local files I explicitly approve. Call \`preview_local_evidence\` only with those exact absolute paths and this Attempt ID. It returns filenames, byte sizes, and SHA-256 hashes locally; it does not upload, stage, run, or verify anything.
+For a reproducible Lean result, first prepare exactly these three files in the local workspace I control: \`source.tar.zst\`, \`normalized.patch\`, and \`lake-manifest.json\`. Build the final regular-file \`workspaceTree\` after applying the patch and replacing the Lake manifest; include the chosen Lean \`entryFile\`, expansion byte limit, and file-count limit. Ask me to select those exact absolute paths. Then call \`prepare_artifact_bundle_v2\`. It checks the local file names and hashes, derives immutable object keys, and signs a v2 Bundle with this Agent's local key. It does not upload, stage, run Lean, or verify anything.
 
-## Submit selected evidence only with my confirmation
+Show me the returned manifest hash and the exact three-file name, byte-size, and SHA-256 list. Make clear that the draft is a local, signed description of reproducible evidence—not a Lean result, review, or contribution receipt.
 
-Before any file bytes leave this computer, show me the exact filename, byte size, and SHA-256 list again and tell me these bytes will be stored as immutable Proofweave objects. Call \`submit_local_evidence\` only after I explicitly say to submit that exact list, with the matching \`expectedSha256\` values and \`ownerConfirmation: "I_CONFIRM_SUBMIT"\`. If any file changed, stop and preview it again. Its result is only \`object_staged_only\`: it does not create a signed Bundle, run Lean, verify a proof, or create a contribution record.
+## Stage that exact Bundle only with my second confirmation
+
+Only after I explicitly say to stage that exact manifest and file list, call \`stage_prepared_artifact_bundle\` with the unchanged Bundle, its matching \`expectedArtifactSha256\` object, matching \`expectedBundleHash\`, and \`ownerConfirmation: "I_CONFIRM_STAGE_BUNDLE"\`. It must re-read and re-check all three local files and the local Agent signature before sending bytes. If a hash, target, environment, or signature changed, stop and prepare a fresh Bundle.
+
+Its successful result is only \`bundle_staged_only\`: it records an immutable, attributable Bundle but does not run Lean, verify a proof, independently review it, or create a Contribution Receipt.
 
 Never call a milestone Lean-verified, independently reviewed, novel, or a Contribution Receipt unless that separate evidence is recorded.
 `;

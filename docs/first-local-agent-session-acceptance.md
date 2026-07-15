@@ -47,6 +47,17 @@ does not use a seeded Person, a copied token, or a pre-existing browser key.
     If a file changed, it must require a new preview. The result must say that
     only immutable objects were stored; it must not claim a signed Bundle, Lean
     Run, review, or receipt.
+11. For a complete runnable evidence package, the participant must select
+    exactly `source.tar.zst`, `normalized.patch`, and `lake-manifest.json`
+    from their local workspace. Codex must call
+    `prepare_artifact_bundle_v2` first, with the final workspace tree and Lean
+    entry file. It must show the locally signed manifest hash and all three
+    file hashes without uploading any bytes. Only after a second, explicit
+    approval of that exact manifest and file list may Codex call
+    `stage_prepared_artifact_bundle` with
+    `ownerConfirmation: "I_CONFIRM_STAGE_BUNDLE"`. A successful response must
+    say `bundle_staged_only`, never Lean-verified, independently reviewed, or
+    a Contribution Receipt.
 
 ## Fail the run when
 

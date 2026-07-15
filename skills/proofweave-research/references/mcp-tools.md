@@ -15,8 +15,8 @@ local-token prototype must not be configured for participant use.
 | `get_attempt` | `attempt:read` | The authorized Person's Attempt and events. |
 | `preview_local_evidence` | local only | Owner-selected file names, byte sizes, and SHA-256 hashes; never uploads, stages, runs, or verifies. |
 | `submit_local_evidence` | `artifact:write` | Explicitly confirmed local file bytes become immutable artifact objects only; never a Bundle, Lean Run, review, or receipt. |
-| `put_artifact_object` | `artifact:write` | One immutable, bounded artifact object for an active Attempt; no execution. |
-| `stage_artifact_bundle` | `artifact:write` | A signed Bundle storage record plus `bundle_staged`; not Lean verification, review, or a receipt. |
+| `prepare_artifact_bundle_v2` | local only | Locally validates and signs a three-object executable Bundle draft; never uploads, stages, runs, or verifies. |
+| `stage_prepared_artifact_bundle` | `artifact:write` | After a second explicit owner confirmation, uploads the three hash-bound files and stages that signed Bundle only; never Lean execution, review, or a receipt. |
 | `request_runner_run` | `run:request` | One idempotent request to execute an already-staged v2 Bundle in the isolated Runner; queued is not a result. |
 | `get_runner_run` | `run:read` | The exact selected Agent's Run projection and immutable event hashes; never independent review or a receipt. |
 | `cancel_runner_run` | `run:cancel` | Idempotently stop the exact selected Agent's Run; a running Run still needs terminal Runner evidence. |
@@ -44,16 +44,24 @@ Use this minimal order when the tools are available:
    `ownerConfirmation: "I_CONFIRM_SUBMIT"`. A changed file must be previewed
    again. Its successful result is `object_staged_only`, not a Bundle or Lean
    result.
-6. For reproducible files, `put_artifact_object` for each bounded immutable
-   input, then `stage_artifact_bundle` with the signed canonical Bundle.
-7. If the remote Runner dispatch is configured, use `request_runner_run` with
+6. For a complete executable Bundle, have the local Agent prepare exactly
+   `source.tar.zst`, `normalized.patch`, and `lake-manifest.json`, plus the
+   final workspace tree. Call `prepare_artifact_bundle_v2` with the three
+   owner-selected absolute paths. It creates a signed local draft and returns
+   its manifest hash and exact file hashes without sending any bytes.
+7. Show the owner that manifest hash and three-file list. Only after explicit
+   confirmation call `stage_prepared_artifact_bundle` with exactly the draft,
+   matching `expectedArtifactSha256`, matching `expectedBundleHash`, and
+   `ownerConfirmation: "I_CONFIRM_STAGE_BUNDLE"`. Its successful result is
+   `bundle_staged_only`, not a Lean result.
+8. If the remote Runner dispatch is configured, use `request_runner_run` with
    the staged Bundle hash and a fresh idempotency key. A `queued` response is
    only an operational request; use `get_runner_run` only with that exact
    Attempt/Run pair to observe its lifecycle. If work must stop, use
    `cancel_runner_run` for that same pair; a retry keeps the original
    cancellation record. Wait for separately recorded Runner evidence before
    treating a running cancellation as terminal.
-8. Only an assigned, differently owned review Agent can use
+9. Only an assigned, differently owned review Agent can use
    `submit_verification_attestation` after its own evidence-based decision.
 
 Good progress text names a local observable fact, for example: “Added
@@ -62,7 +70,8 @@ objects are staged.” It does not say “the theorem is verified” or “the r
 is novel.”
 
 Do not send raw model output, credentials, or unreviewed claims as an event.
-For artifact ingress, upload the source archive, normalized patch, and Lake
-manifest separately, then sign and stage a complete Bundle that references
-their returned hashes and object keys. The MCP ingress is capped at 32 MiB per
-decoded object and is not a resumable file-transfer protocol.
+For the current closed alpha, a complete Bundle contains the source archive,
+normalized patch, and Lake manifest. The local Connector accepts at most 1 MB
+per selected file and 3 MB combined, so it is intentionally suitable for small
+reproducible fixtures only; larger real Lean projects need the planned object
+storage ingress. It is not a resumable file-transfer protocol.
