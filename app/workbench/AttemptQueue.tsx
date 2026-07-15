@@ -6,6 +6,7 @@ import type { DelegationProfile, StoredDelegation } from "@/db/repositories/dele
 import type { CatalogProblem } from "@/packages/domain/catalog";
 import type { McpAttempt } from "@/packages/domain/mcp";
 import { closedAlphaAttemptLimits } from "@/packages/domain/attempt-policy.mjs";
+import { activeLocalCodexInstallation } from "../lib/local-agent-journey";
 
 type AttemptScope = "formalize" | "prove";
 
@@ -28,15 +29,19 @@ export function AttemptQueue({
   signInPath: string;
   storageAvailable: boolean;
 }) {
-  const eligibleDelegations = useMemo(() => activeWorkDelegations(profile), [profile]);
-  const [requestedDelegationId, setRequestedDelegationId] = useState("");
+  const connection = useMemo(() => activeLocalCodexInstallation(profile), [profile]);
+  const eligibleDelegations = useMemo(() => activeWorkDelegations(profile).filter((delegation) =>
+    connection !== null &&
+    delegation.agentId === connection.agentId &&
+    delegation.id === connection.delegationCertificateId,
+  ), [connection, profile]);
   const [requestedTargetSlug, setRequestedTargetSlug] = useState(initialTargetSlug ?? "");
   const [requestedScope, setRequestedScope] = useState<AttemptScope>("prove");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [notice, setNotice] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const selectedDelegation = eligibleDelegations.find((candidate) => candidate.id === requestedDelegationId) ?? eligibleDelegations[0] ?? null;
+  const selectedDelegation = eligibleDelegations[0] ?? null;
   const selectedTarget = catalogTargets.find((candidate) => candidate.slug === requestedTargetSlug) ?? catalogTargets[0] ?? null;
   const allowedScopes = selectedDelegation ? workScopes(selectedDelegation) : [];
   const scope = allowedScopes.includes(requestedScope) ? requestedScope : allowedScopes[0] ?? "prove";
@@ -78,7 +83,7 @@ export function AttemptQueue({
       <div>
         <p className="eyebrow">Closed-alpha work queue</p>
         <h2 id="attempt-queue-title">Open a durable research Attempt.</h2>
-        <p>Choose a source-pinned frontier target and active delegated Agent authority. This records only an owner-created workspace; subsequent Agent progress must arrive through a separately authorized Agent path.</p>
+        <p>Choose a source-pinned frontier target for your connected local Agent. This records only an owner-created workspace; subsequent Agent progress must arrive through that separately authorized Agent path.</p>
       </div>
       <span className="record-chip">Provisional only</span>
     </div>
@@ -94,10 +99,14 @@ export function AttemptQueue({
       <strong>Frontier catalog temporarily unavailable.</strong>
       <p>No durable Attempt can be opened until a source-pinned public frontier target is available. Proofweave does not fall back to preview data for accountable work.</p>
       <Link className="quiet-action" href="/explore">Browse the public catalog</Link>
+    </div> : !connection ? <div className="attempt-queue-empty">
+      <strong>Connect local Codex before opening accountable work.</strong>
+      <p>The normal browser approval creates the local Agent identity and its scoped authority together. No public key needs to be pasted here.</p>
+      <Link className="quiet-action" href="/integrations#codex-beta">Install or connect Codex</Link>
     </div> : eligibleDelegations.length === 0 ? <div className="attempt-queue-empty">
-      <strong>Add a `formalize` or `prove` delegation first.</strong>
-      <p>Proofweave will not attribute a durable Attempt without active scoped authority.</p>
-      <Link className="quiet-action" href="/settings#delegation-setup">Go to Agent settings</Link>
+      <strong>Your local connection needs an active work delegation.</strong>
+      <p>Reconnect the local Agent to create a fresh formalize or prove approval before opening a durable Attempt.</p>
+      <Link className="quiet-action" href="/integrations#codex-beta">Reconnect local Codex</Link>
     </div> : <div className="attempt-queue-grid">
       <form className="attempt-open-form" onSubmit={(event) => { event.preventDefault(); void openAttempt(); }}>
         <label>Public frontier target
@@ -106,11 +115,12 @@ export function AttemptQueue({
           </select>
         </label>
         {selectedTarget && <div className="attempt-target"><span className="micro-label">Selected catalog target</span><strong>{selectedTarget.title}</strong><code>{selectedTarget.slug} · {selectedTarget.source.revisionTag} · {selectedTarget.source.leanToolchain}</code><p>{selectedTarget.informalStatement}</p><Link className="text-link" href={`/explore/${selectedTarget.slug}`}>Inspect pinned source target <span>→</span></Link></div>}
-        <label>Delegated Agent authority
-          <select value={selectedDelegation?.id ?? ""} onChange={(event) => setRequestedDelegationId(event.target.value)} disabled={isSubmitting}>
-            {eligibleDelegations.map((candidate) => <option value={candidate.id} key={candidate.id}>{candidate.agentId} · {candidate.scopes.filter(isWorkScope).join(", ")}</option>)}
-          </select>
-        </label>
+        <div className="attempt-target">
+          <span className="micro-label">Connected Agent authority</span>
+          <strong>{connection.agentLabel}</strong>
+          <code>{selectedDelegation?.id ?? "Authority unavailable"} · {allowedScopes.join(", ")}</code>
+          <p>This Attempt will be bound to the local Agent you approved in Codex. Change or revoke that connection in Settings.</p>
+        </div>
         <label>Bounded work scope
           <select value={scope} onChange={(event) => setRequestedScope(event.target.value as AttemptScope)} disabled={isSubmitting}>
             {allowedScopes.map((candidate) => <option value={candidate} key={candidate}>{candidate}</option>)}

@@ -3,6 +3,7 @@ import { ProductStateBadge } from "../ui";
 import type { DelegationProfile } from "@/db/repositories/delegation";
 import type { McpAttempt, McpAttemptEvent, McpRunSummary } from "@/packages/domain/mcp";
 import type { ProvisionalContribution } from "@/db/repositories/provisional-contributions";
+import { activeLocalCodexInstallation, activeWorkDelegation, localAgentJourney } from "../lib/local-agent-journey";
 
 type GateState = "passed" | "waiting" | "required" | "failed";
 
@@ -38,13 +39,18 @@ export function WorkbenchHero({
 }) {
   const active = activeDelegation(profile);
   const agent = active && profile?.agents.find((candidate) => candidate.id === active.agentId);
-  const status = active ? "Delegation active" : profile ? "Agent setup required" : isAuthenticated ? "Profile unavailable" : "Sign in required";
+  const connection = activeLocalCodexInstallation(profile);
+  const status = connection ? "Local Codex connected" : active ? "Connect Codex next" : profile ? "Agent setup required" : isAuthenticated ? "Profile unavailable" : "Sign in required";
   const activityLabel = !storageAvailable
     ? "Control plane unavailable"
     : attemptCount > 0
-      ? `${attemptCount} durable Attempt${attemptCount === 1 ? "" : "s"} recorded`
-      : active
-        ? "Ready to open an Attempt"
+      ? connection
+        ? `${attemptCount} durable Attempt${attemptCount === 1 ? "" : "s"} recorded`
+        : "Connect Codex to continue this Attempt"
+      : connection
+        ? "Ready to choose a target"
+        : active
+          ? "Local connection required"
         : "No active Agent authority";
   const marker = profile ? "Account connected" : isAuthenticated ? "Connection unavailable" : "Account required";
 
@@ -55,9 +61,9 @@ export function WorkbenchHero({
       <p>Choose accountable work, hand a bounded brief to your local Agent, and inspect only the evidence that actually exists.</p>
     </div>
     <div className="agent-identity-card">
-      <div className="agent-identity-top"><span className={active ? "agent-live" : "agent-paused"}><i aria-hidden="true" />{activityLabel}</span><ProductStateBadge tone={!storageAvailable ? "not-deployed" : active ? "available" : "provisional"}>{status}</ProductStateBadge></div>
+      <div className="agent-identity-top"><span className={connection ? "agent-live" : "agent-paused"}><i aria-hidden="true" />{activityLabel}</span><ProductStateBadge tone={!storageAvailable ? "not-deployed" : connection ? "available" : "provisional"}>{status}</ProductStateBadge></div>
       <strong>{agent?.label ?? "No delegated Agent selected"}</strong>
-      <code>{agent?.id ?? "Create a signing key, Agent, and scoped delegation to begin."}</code>
+      <code>{agent?.id ?? "Connect local Codex to create its Agent identity and scoped delegation."}</code>
       <span>Owner&nbsp; <code>{profile?.person.id ?? "Sign in to create a Person record"}</code></span>
     </div>
   </section>;
@@ -84,7 +90,7 @@ export function DelegationSummary({ profile }: { profile: DelegationProfile | nu
 
 export function FocusAction({
   profile,
-  attempts,
+  attempt,
   isAuthenticated,
   signInPath,
   storageAvailable,
@@ -94,7 +100,7 @@ export function FocusAction({
   onRefresh,
 }: {
   profile: DelegationProfile | null;
-  attempts: readonly McpAttempt[];
+  attempt: McpAttempt | null;
   isAuthenticated: boolean;
   signInPath: string;
   storageAvailable: boolean;
@@ -103,17 +109,23 @@ export function FocusAction({
   refreshedAt: string | null;
   onRefresh: () => void;
 }) {
-  const latestAttempt = attempts[0] ?? null;
-  const action = nextAction({
-    active: Boolean(activeDelegation(profile)),
-    hasAttempt: Boolean(latestAttempt),
+  const action = localAgentJourney({
+    profile,
     isAuthenticated,
-    signInPath,
     storageAvailable,
+    hasAttempt: Boolean(attempt),
+    hasSelectedTarget: false,
+    links: {
+      signIn: signInPath,
+      connect: "/integrations#codex-beta",
+      chooseTarget: "#attempt-queue",
+      openAttempt: "#attempt-queue",
+      work: "#local-agent",
+    },
   });
-  const focusTitle = latestAttempt?.problemTitle ?? "Choose a source-pinned research target.";
-  const focusDetail = latestAttempt
-    ? `${latestAttempt.agentLabel} · ${latestAttempt.delegationScope ?? "legacy"} authority · ${latestAttempt.status}`
+  const focusTitle = attempt?.problemTitle ?? "Choose a source-pinned research target.";
+  const focusDetail = attempt
+    ? `${attempt.agentLabel} · ${attempt.delegationScope ?? "legacy"} authority · ${attempt.status}`
     : "An Attempt is a bounded, durable workspace—not a claim that a proof has been found.";
 
   return <section className="focus-layout" id="current-research" aria-label="Current focus and next action">
@@ -122,7 +134,7 @@ export function FocusAction({
       <h2>{focusTitle}</h2>
       <p>{focusDetail}</p>
       <div className="toolbar-links">
-        {latestAttempt && <Link className="text-link" href={`/explore/${latestAttempt.problemSlug}`}>Inspect target <span>→</span></Link>}
+        {attempt && <Link className="text-link" href={`/explore/${attempt.problemSlug}`}>Inspect target <span>→</span></Link>}
         <Link className="text-link" href="#provisional-ledger">Provisional ledger <span>→</span></Link>
         <Link className="text-link" href="/evidence">Evidence records <span>→</span></Link>
         <Link className="text-link" href="/reviews">Review queue <span>→</span></Link>
@@ -134,9 +146,9 @@ export function FocusAction({
       <strong>{action.title}</strong>
       <p id="next-action-help">{action.detail}</p>
       <div className="next-action-controls">
-        <Link className="button button-primary focus-primary" href={action.href}>{action.label}</Link>
-        {latestAttempt && <Link className="workspace-pause-button" href="#attempt-activity">Inspect recorded activity</Link>}
-        {latestAttempt && <button className="workspace-secondary-button" type="button" disabled={isRefreshing} onClick={onRefresh}>{isRefreshing ? "Refreshing records…" : "Refresh records"}</button>}
+        <Link className="button button-primary focus-primary" href={action.actionHref}>{action.actionLabel}</Link>
+        {attempt && <Link className="workspace-pause-button" href="#attempt-activity">Inspect recorded activity</Link>}
+        {attempt && <button className="workspace-secondary-button" type="button" disabled={isRefreshing} onClick={onRefresh}>{isRefreshing ? "Refreshing records…" : "Refresh records"}</button>}
       </div>
       {refreshedAt && <p className="activity-refresh-status" role="status">Records refreshed {formatTimestamp(refreshedAt)}.</p>}
       {refreshError && <p className="activity-refresh-error" role="alert">{refreshError}</p>}
@@ -154,24 +166,29 @@ export function WorkspaceSettingsPrompt({
   storageAvailable: boolean;
 }) {
   const active = activeDelegation(profile);
+  const connection = activeLocalCodexInstallation(profile);
   const title = !isAuthenticated
     ? "Keep Agent authority in one account settings page."
     : !storageAvailable
       ? "Account controls are waiting for the durable control plane."
-      : active
+      : connection
         ? "Your research Agent is configured outside the active research flow."
-        : "Finish Agent setup in Settings before opening accountable work.";
+        : active
+          ? "Connect your local Codex before continuing research."
+          : "Connect local Codex to create accountable Agent authority.";
   const detail = !isAuthenticated
     ? "Signing keys, Agent registration, and revocable delegations are personal account controls—not properties of a single research Attempt."
     : !storageAvailable
       ? "Proofweave will not expose a local fallback for keys or delegation changes while account storage is unavailable."
-      : active
+      : connection
         ? "Use Settings to inspect or revoke keys, delegated scopes, and external Agent approvals without interrupting the workbench."
-        : "Create your device signing key, register the Agent public key, and sign only the scopes that you intend to grant.";
+        : active
+          ? "Your existing authority needs a local Codex approval before it can use the bounded Proofweave tools."
+          : "The normal setup happens during browser-approved Codex pairing. Manual key management remains available only as an advanced control.";
 
   return <section className="workspace-settings-prompt" aria-labelledby="workspace-settings-title">
     <div><p className="eyebrow">Account controls</p><h2 id="workspace-settings-title">{title}</h2><p>{detail}</p></div>
-    <Link className="button button-secondary" href="/settings#delegation-setup">{active ? "Manage Agent settings" : "Open Agent settings"}<span aria-hidden="true">→</span></Link>
+    <Link className="button button-secondary" href={connection ? "/settings#delegation-setup" : "/integrations#codex-beta"}>{connection ? "Manage Agent settings" : "Install or connect Codex"}<span aria-hidden="true">→</span></Link>
   </section>;
 }
 
@@ -344,14 +361,6 @@ function AttemptEventRow({ event }: { event: McpAttemptEvent }) {
   </li>;
 }
 
-function nextAction({ active, hasAttempt, isAuthenticated, signInPath, storageAvailable }: { active: boolean; hasAttempt: boolean; isAuthenticated: boolean; signInPath: string; storageAvailable: boolean }) {
-  if (!isAuthenticated) return { title: "Sign in to create accountable research work.", detail: "Proofweave creates a Person record only from an authenticated session; no sample identity is used.", label: "Sign in to your workspace", href: signInPath };
-  if (!storageAvailable) return { title: "Wait for the control plane to recover.", detail: "No local fallback can create an accountable Attempt while durable storage is unavailable.", label: "Browse public research", href: "/explore" };
-  if (!active) return { title: "Create scoped authority before any work can be attributed.", detail: "A Person key, registered Agent, and active formalize or prove delegation are required before an Attempt can open.", label: "Open Agent settings", href: "/settings#delegation-setup" };
-  if (!hasAttempt) return { title: "Open one durable Attempt for your selected Agent.", detail: "This records a bounded workspace only. It does not impersonate Agent activity or run Lean.", label: "Open a durable Attempt", href: "#attempt-queue" };
-  return { title: "Send the bounded brief to your local Agent.", detail: "Your Lean workspace and private reasoning stay on your computer. Reviewable evidence is a later, separate handoff.", label: "Prepare local research", href: "#local-agent" };
-}
-
 function eventLabel(type: McpAttemptEvent["type"]): string {
   if (type === "attempt_created") return "Attempt opened";
   if (type === "agent_reported") return "Agent-reported progress";
@@ -370,12 +379,5 @@ function formatTimestamp(value: string): string {
 }
 
 function activeDelegation(profile: DelegationProfile | null) {
-  const now = Date.now();
-  return profile?.delegations.find((candidate) =>
-    candidate.revokedAt === null &&
-    candidate.signerKeyRevokedAt === null &&
-    profile.agents.some((agent) => agent.id === candidate.agentId && agent.status === "active" && agent.revokedAt === null) &&
-    Date.parse(candidate.validFrom) <= now &&
-    now < Date.parse(candidate.validUntil),
-  ) ?? null;
+  return activeWorkDelegation(profile);
 }

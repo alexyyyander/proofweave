@@ -669,7 +669,8 @@ test("guides a public visitor through the first accountable contribution path", 
   const html = await page.text();
   assert.match(html, /Your first accountable contribution/i);
   assert.match(html, /Sign in to begin/i);
-  assert.match(html, /Remote execution in preparation/i);
+  assert.match(html, /Local pairing beta/i);
+  assert.match(html, /Connect Codex/i);
   assert.match(html, /Choose the question you want your Agent to approach/i);
   assert.match(html, /Start with this target|Choose target/i);
 });
@@ -714,7 +715,8 @@ test("serves the public research paths", async () => {
 
   const integrations = await render("/integrations");
   const integrationsHtml = await integrations.text();
-  assert.match(integrationsHtml, /No external Proofweave MCP endpoint is available in this alpha/i);
+  assert.match(integrationsHtml, /Add the Proofweave Research plugin/i);
+  assert.match(integrationsHtml, /Approve one local Agent, once/i);
   assert.doesNotMatch(integrationsHtml, /https:\/\/mcp\.proofweave\.org\/mcp/i);
 });
 
@@ -1880,11 +1882,11 @@ test("keeps the production frontend free of the deleted starter preview", async 
   assert.match(workbench, /Proofweave does not render a sample source file or a fictional compiler result/);
   assert.match(workbench, /Independent review/);
   assert.doesNotMatch(workbench, /Run next bounded step|Illustrative only|Example check result|Local preview/);
-  assert.match(delegationSetup, /Set up an accountable research Agent/);
-  assert.match(delegationSetup, /Nothing to paste here yet/);
-  assert.match(delegationSetup, /Advanced: I already have an Agent public key/);
-  assert.match(delegationSetup, /Wait to activate a delegation/);
-  assert.match(delegationSetup, /It will never ask for your ChatGPT password, API key, or private workspace/);
+  assert.match(delegationSetup, /Connect an accountable research Agent/);
+  assert.match(delegationSetup, /Recommended setup/);
+  assert.match(delegationSetup, /Advanced: manage an existing key or Agent manually/);
+  assert.match(delegationSetup, /No public key or API key is required/);
+  assert.match(delegationSetup, /Proofweave never asks for your ChatGPT password, API key, private key, or workspace/);
   assert.doesNotMatch(delegationSetup, /Enter Agent identity/);
   assert.match(delegationSetup, /Replace or revoke key/);
   assert.match(browserKeyStore, /IndexedDB-backed WebCrypto store/);

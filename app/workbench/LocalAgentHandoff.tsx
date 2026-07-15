@@ -5,6 +5,7 @@ import { useState } from "react";
 import type { DelegationProfile, StoredDelegation } from "@/db/repositories/delegation";
 import type { McpAttempt } from "@/packages/domain/mcp";
 import { ProductStateBadge } from "../ui";
+import { activeLocalCodexInstallation, activeWorkDelegation } from "../lib/local-agent-journey";
 
 export function LocalAgentHandoff({
   profile,
@@ -20,6 +21,7 @@ export function LocalAgentHandoff({
   storageAvailable: boolean;
 }) {
   const active = activeWorkDelegation(profile);
+  const connection = activeLocalCodexInstallation(profile, active);
   const agent = active ? profile?.agents.find((candidate) => candidate.id === active.agentId) ?? null : null;
   const [notice, setNotice] = useState<string | null>(null);
 
@@ -38,6 +40,24 @@ export function LocalAgentHandoff({
         <strong>{state.title}</strong>
         <p>{state.detail}</p>
         <Link className="button button-primary" href={state.href}>{state.label} <span aria-hidden="true">→</span></Link>
+      </div>
+    </section>;
+  }
+
+  if (!connection) {
+    return <section className="local-agent-section local-agent-unavailable" id="local-agent" aria-labelledby="local-agent-title">
+      <div className="local-agent-heading">
+        <div>
+          <p className="eyebrow">Local-first research</p>
+          <h2 id="local-agent-title">Connect this Agent to your local Codex.</h2>
+          <p>Your existing delegation is valid, but it has no active local Codex approval. Connect once before using Proofweave’s bounded research tools.</p>
+        </div>
+        <ProductStateBadge tone="provisional">Connection needed</ProductStateBadge>
+      </div>
+      <div className="local-agent-empty">
+        <strong>Pair a local Agent without sharing a key.</strong>
+        <p>The local Connector creates and retains its own private key. Browser approval records only its public identity, short-lived delegation, and revocable connection.</p>
+        <Link className="button button-primary" href="/integrations#codex-beta">Install or connect Codex <span aria-hidden="true">→</span></Link>
       </div>
     </section>;
   }
@@ -70,12 +90,12 @@ export function LocalAgentHandoff({
     <div className="local-agent-heading">
       <div>
         <p className="eyebrow">Local-first research</p>
-        <h2 id="local-agent-title">Send a bounded brief to your own Agent.</h2>
-        <p>Your Lean project, model choice, and private exploration stay on this computer. Proofweave gives your Agent a precise target and later asks you to review any evidence before it leaves the device.</p>
-      </div>
-      <div className="local-agent-badges">
-        <ProductStateBadge tone="available">Authority ready</ProductStateBadge>
-        <ProductStateBadge tone="not-deployed">Secure sync in preparation</ProductStateBadge>
+          <h2 id="local-agent-title">Continue with your connected local Agent.</h2>
+          <p>Your Lean project, model choice, and private exploration stay on this computer. Proofweave gives your Agent a precise target and receives only the selected, signed progress you decide to record.</p>
+        </div>
+        <div className="local-agent-badges">
+          <ProductStateBadge tone="available">Authority ready</ProductStateBadge>
+          <ProductStateBadge tone="available">Local Codex connected</ProductStateBadge>
       </div>
     </div>
 
@@ -86,11 +106,11 @@ export function LocalAgentHandoff({
       </li>
       <li>
         <span>02</span>
-        <div><strong>Work locally</strong><p>Open your Lean workspace and hand this brief to Codex or another Agent you control.</p><small>No automatic command is run from this page.</small></div>
+        <div><strong>Work locally</strong><p>Open your Lean workspace and give this bounded brief to the connected Codex.</p><small>Proofweave does not read your workspace or run a command from this page.</small></div>
       </li>
       <li>
         <span>03</span>
-        <div><strong>Review before sharing</strong><p>When secure sync opens, Proofweave will show the exact patch, manifest, and checks before any submission.</p><small>Private reasoning remains local by default.</small></div>
+        <div><strong>Review before sharing</strong><p>Choose exactly which signed progress or Artifact Bundle to record. Proofweave shows the evidence boundary before any submission.</p><small>Private reasoning remains local by default.</small></div>
       </li>
     </ol>
 
@@ -106,7 +126,7 @@ export function LocalAgentHandoff({
       </div>
     </div>
     {notice && <p className="local-agent-notice" role="status">{notice}</p>}
-    <p className="local-agent-boundary">This page does not connect to your computer, run Codex, or upload files. The future OAuth connection will be a separate, revocable approval.</p>
+    <p className="local-agent-boundary">This page does not access your computer, run Codex, or upload files. The existing OAuth connection is revocable in Settings and never grants workspace access.</p>
   </section>;
 }
 
@@ -136,10 +156,10 @@ function unavailableState({
     href: "/explore",
   };
   if (!active) return {
-    title: "Prepare Agent authority once, then keep working locally.",
-    detail: "Create a device signing key, register the public half of your Agent key, and grant only the scope you intend to use.",
-    label: "Set up your Agent",
-    href: "/settings#delegation-setup",
+    title: "Connect a local Codex before you open accountable work.",
+    detail: "The normal browser approval creates the Person key, Agent identity, and short scoped delegation together. No public key needs to be pasted.",
+    label: "Install or connect Codex",
+    href: "/integrations#codex-beta",
   };
   if (!attempt) return {
     title: "Choose one question before starting local research.",
@@ -153,18 +173,6 @@ function unavailableState({
     label: "Return to Workspace",
     href: "/workbench",
   };
-}
-
-function activeWorkDelegation(profile: DelegationProfile | null): StoredDelegation | null {
-  const now = Date.now();
-  return profile?.delegations.find((delegation) =>
-    delegation.revokedAt === null &&
-    delegation.signerKeyRevokedAt === null &&
-    Date.parse(delegation.validFrom) <= now &&
-    now < Date.parse(delegation.validUntil) &&
-    delegation.scopes.some((scope) => scope === "formalize" || scope === "prove") &&
-    profile.agents.some((agent) => agent.id === delegation.agentId && agent.status === "active" && agent.revokedAt === null),
-  ) ?? null;
 }
 
 function researchBrief({ agentLabel, attempt }: { agentLabel: string; attempt: McpAttempt }): string {

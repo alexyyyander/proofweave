@@ -1,7 +1,12 @@
 import { Footer, Header } from "../ui";
 import { IntegrationClient } from "./IntegrationClient";
+import { getChatGPTUser } from "../chatgpt-auth";
+import { MissingDatabaseBindingError } from "@/db";
+import { getDelegationRepository } from "@/db/repositories/delegation";
+import { activeLocalCodexInstallation } from "../lib/local-agent-journey";
 
-export default function IntegrationsPage() {
+export default async function IntegrationsPage() {
+  const connection = await loadConnection();
   return (
     <>
       <Header active="workbench" />
@@ -15,9 +20,22 @@ export default function IntegrationsPage() {
             you choose—not a copied API key or access to your private workspace.
           </p>
         </section>
-        <IntegrationClient />
+        <IntegrationClient connection={connection} />
       </main>
       <Footer />
     </>
   );
+}
+
+async function loadConnection(): Promise<{ agentLabel: string } | null> {
+  const user = await getChatGPTUser();
+  if (!user) return null;
+  try {
+    const profile = await getDelegationRepository().getProfile({ provider: "chatgpt", subject: user.email, displayName: user.displayName });
+    const installation = activeLocalCodexInstallation(profile);
+    return installation ? { agentLabel: installation.agentLabel } : null;
+  } catch (error) {
+    if (error instanceof MissingDatabaseBindingError) return null;
+    throw error;
+  }
 }

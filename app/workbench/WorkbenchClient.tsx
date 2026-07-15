@@ -8,6 +8,7 @@ import type { ProvisionalContribution } from "@/db/repositories/provisional-cont
 import { DelegationSummary, FocusAction, ProvisionalContributionLedger, ResearchWorkstation, SubmissionReadiness, WorkbenchHero, WorkspacePath, WorkspaceSettingsPrompt } from "./workbench-sections";
 import { AttemptQueue } from "./AttemptQueue";
 import { LocalAgentHandoff } from "./LocalAgentHandoff";
+import { activeLocalAgentAttempt } from "../lib/local-agent-journey";
 
 export function WorkbenchClient({
   profile,
@@ -39,6 +40,7 @@ export function WorkbenchClient({
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [refreshError, setRefreshError] = useState<string | null>(null);
   const [refreshedAt, setRefreshedAt] = useState<string | null>(null);
+  const activeAttempt = activeLocalAgentAttempt(profile, attempts);
 
   const refreshAttempts = async () => {
     if (!isAuthenticated || !storageAvailable || isRefreshing) return;
@@ -79,12 +81,12 @@ export function WorkbenchClient({
     <WorkbenchHero profile={profile} isAuthenticated={isAuthenticated} storageAvailable={storageAvailable} attemptCount={attempts.length} />
     <WorkspacePath />
     <DelegationSummary profile={profile} />
-    <FocusAction profile={profile} attempts={attempts} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} isRefreshing={isRefreshing} refreshError={refreshError} refreshedAt={refreshedAt} onRefresh={() => { void refreshAttempts(); }} />
-    <LocalAgentHandoff profile={profile} attempt={attempts[0] ?? null} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} />
+    <FocusAction profile={profile} attempt={activeAttempt} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} isRefreshing={isRefreshing} refreshError={refreshError} refreshedAt={refreshedAt} onRefresh={() => { void refreshAttempts(); }} />
+    <LocalAgentHandoff profile={profile} attempt={activeAttempt} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} />
     <WorkspaceSettingsPrompt profile={profile} isAuthenticated={isAuthenticated} storageAvailable={storageAvailable} />
     <AttemptQueue profile={profile} attempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={initialTargetSlug} onAttemptCreated={(attempt) => { setAttempts((current) => [attempt, ...current.filter((candidate) => candidate.id !== attempt.id)]); setRefreshError(null); }} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} />
-    <ResearchWorkstation attempt={attempts[0] ?? null} runs={runs} />
-    <SubmissionReadiness attempt={attempts[0] ?? null} profile={profile} runs={runs} />
+    <ResearchWorkstation attempt={activeAttempt} runs={runs} />
+    <SubmissionReadiness attempt={activeAttempt} profile={profile} runs={runs} />
     <ProvisionalContributionLedger profile={profile} contributions={provisionalContributions} isAuthenticated={isAuthenticated} ledgerAvailable={isProvisionalLedgerAvailable} />
   </>;
 }

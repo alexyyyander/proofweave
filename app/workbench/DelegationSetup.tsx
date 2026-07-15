@@ -21,6 +21,7 @@ import {
   revokePersonKey,
   submitPersonKeyProof,
 } from "./delegation-control-api";
+import { activeLocalCodexInstallation } from "../lib/local-agent-journey";
 
 const scopes = ["formalize", "prove", "review"] as const;
 type Scope = (typeof scopes)[number];
@@ -58,6 +59,7 @@ export function DelegationSetup({ profile, isAuthenticated, signInPath, storageA
 function DelegationSetupFlow({ profile }: { profile: DelegationProfile }) {
   const router = useRouter();
   const active = activeDelegation(profile);
+  const connection = activeLocalCodexInstallation(profile);
   const [deviceKeyPublicKeys, setDeviceKeyPublicKeys] = useState<ReadonlySet<string> | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -112,88 +114,99 @@ function DelegationSetupFlow({ profile }: { profile: DelegationProfile }) {
     await submitPersonKeyProof({ keyId: key.id, challengeId: challenge.id, personSignature });
   };
 
+  const manualControls = <div className="delegation-steps">
+    <PersonKeyStep
+      keys={profile.signingKeys}
+      deviceKeys={deviceKeys}
+      loading={deviceKeyPublicKeys === null}
+      busy={busy === "key" || busy === "proof" || busy === "key-revoke"}
+      onCreate={createKey}
+      onProve={async (key) => {
+        setBusy("proof");
+        setError(null);
+        try {
+          await provePersonKey(key);
+          refresh("Proofweave recorded a signed proof that this device holds the selected Person key.");
+        } catch (cause) {
+          setError(messageFor(cause));
+        } finally {
+          setBusy(null);
+        }
+      }}
+      onRevoke={async ({ key, reason, emergency, deviceHeld }) => {
+        setBusy("key-revoke");
+        setError(null);
+        try {
+          await revokePersonKey({ keyId: key.id, reason, emergency });
+          if (deviceHeld) {
+            await removeDevicePersonKey(key.publicKey);
+            setDeviceKeyPublicKeys((current) => {
+              const next = new Set(current ?? []);
+              next.delete(key.publicKey);
+              return next;
+            });
+          }
+          refresh(emergency
+            ? "The Person signing key was emergency-revoked. Existing Agent authority signed by it is now blocked."
+            : "The replaced Person signing key was revoked and removed from this device.");
+          return true;
+        } catch (cause) {
+          setError(messageFor(cause));
+          return false;
+        } finally {
+          setBusy(null);
+        }
+      }}
+    />
+    <AgentStep agents={profile.agents} />
+    <CertificateStep
+      profile={profile}
+      active={active}
+      deviceKeys={deviceKeys}
+      busy={busy === "delegation"}
+      onIssue={async ({ signingKey, agent, selectedScopes, days }) => {
+        setBusy("delegation");
+        setError(null);
+        try {
+          const certificate = certificateFor(profile, agent, selectedScopes, days);
+          const personSignature = await signDevicePersonPayload(
+            signingKey.publicKey,
+            canonicalUtf8(delegationSigningPayload(certificate)),
+          );
+          await issueDelegation({ personKeyId: signingKey.id, certificate, personSignature });
+          refresh("The active delegation was signed on this device and recorded as immutable evidence.");
+        } catch (cause) {
+          setError(messageFor(cause));
+        } finally {
+          setBusy(null);
+        }
+      }}
+    />
+  </div>;
+
   return <section className="delegation-setup" id="delegation-setup" aria-labelledby="delegation-setup-title">
     <div className="delegation-setup-heading">
       <div>
         <p className="eyebrow">Personal attribution · closed alpha</p>
-        <h2 id="delegation-setup-title">{active ? "Manage delegated authority" : "Set up an accountable research Agent"}</h2>
+        <h2 id="delegation-setup-title">{connection ? "Manage your connected research Agent" : "Connect an accountable research Agent"}</h2>
         <p>Proofweave records the Person, the Agent key, and a signed certificate separately. Creating more Agents never creates more independent reviewers.</p>
       </div>
-      <span className={active ? "setup-status is-ready" : "setup-status"}>{active ? "Active delegation" : "Setup required"}</span>
+      <span className={connection ? "setup-status is-ready" : "setup-status"}>{connection ? "Local Codex connected" : "Connection required"}</span>
     </div>
 
     {notice && <p className="setup-message setup-message-success" role="status">{notice}</p>}
     {error && <p className="setup-message setup-message-error" role="alert">{error}</p>}
 
-    <div className="delegation-steps">
-      <PersonKeyStep
-        keys={profile.signingKeys}
-        deviceKeys={deviceKeys}
-        loading={deviceKeyPublicKeys === null}
-        busy={busy === "key" || busy === "proof" || busy === "key-revoke"}
-        onCreate={createKey}
-        onProve={async (key) => {
-          setBusy("proof");
-          setError(null);
-          try {
-            await provePersonKey(key);
-            refresh("Proofweave recorded a signed proof that this device holds the selected Person key.");
-          } catch (cause) {
-            setError(messageFor(cause));
-          } finally {
-            setBusy(null);
-          }
-        }}
-        onRevoke={async ({ key, reason, emergency, deviceHeld }) => {
-          setBusy("key-revoke");
-          setError(null);
-          try {
-            await revokePersonKey({ keyId: key.id, reason, emergency });
-            if (deviceHeld) {
-              await removeDevicePersonKey(key.publicKey);
-              setDeviceKeyPublicKeys((current) => {
-                const next = new Set(current ?? []);
-                next.delete(key.publicKey);
-                return next;
-              });
-            }
-            refresh(emergency
-              ? "The Person signing key was emergency-revoked. Existing Agent authority signed by it is now blocked."
-              : "The replaced Person signing key was revoked and removed from this device.");
-            return true;
-          } catch (cause) {
-            setError(messageFor(cause));
-            return false;
-          } finally {
-            setBusy(null);
-          }
-        }}
-      />
-      <AgentStep agents={profile.agents} />
-      <CertificateStep
-        profile={profile}
-        active={active}
-        deviceKeys={deviceKeys}
-        busy={busy === "delegation"}
-        onIssue={async ({ signingKey, agent, selectedScopes, days }) => {
-          setBusy("delegation");
-          setError(null);
-          try {
-            const certificate = certificateFor(profile, agent, selectedScopes, days);
-            const personSignature = await signDevicePersonPayload(
-              signingKey.publicKey,
-              canonicalUtf8(delegationSigningPayload(certificate)),
-            );
-            await issueDelegation({ personKeyId: signingKey.id, certificate, personSignature });
-            refresh("The active delegation was signed on this device and recorded as immutable evidence.");
-          } catch (cause) {
-            setError(messageFor(cause));
-          } finally {
-            setBusy(null);
-          }
-        }}
-      />
-    </div>
+    {!connection && <div className="connection-first-callout">
+      <div>
+        <span className="micro-label">Recommended setup</span>
+        <strong>Let the local Connector create the right authority.</strong>
+        <p>Install Proofweave Research in Codex, then choose Connect Proofweave. One browser approval creates the device-held Person key when needed, registers the local Agent public key, and signs a 30-day formalize/prove delegation.</p>
+      </div>
+      <Link className="button button-primary" href="/integrations#codex-beta">Install or connect Codex <span aria-hidden="true">→</span></Link>
+    </div>}
+
+    {connection ? manualControls : <details className="advanced-agent-controls"><summary>Advanced: manage an existing key or Agent manually</summary><p>Use this only for an Agent that already generated its own key outside the normal local Codex connection. Manual setup records authority; it does not create a live connection.</p>{manualControls}</details>}
 
     {active && <RevocationStep active={active} busy={busy === "revoke"} onRevoke={async (reason) => {
       setBusy("revoke");

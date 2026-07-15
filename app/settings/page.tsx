@@ -7,18 +7,22 @@ import { Footer, Header, ProductStateBadge } from "../ui";
 import { AgentConnections } from "../workbench/AgentConnections";
 import { DelegationSetup } from "../workbench/DelegationSetup";
 import { DelegationSummary } from "../workbench/workbench-sections";
+import { activeLocalCodexInstallation } from "../lib/local-agent-journey";
 
 export const dynamic = "force-dynamic";
 
 export default async function SettingsPage() {
   const user = await getChatGPTUser();
   const { profile, storageAvailable } = await loadSettingsProfile(user);
+  const connection = activeLocalCodexInstallation(profile);
   const status = !user
     ? { tone: "provisional" as const, label: "Sign in required" }
     : !storageAvailable
       ? { tone: "not-deployed" as const, label: "Storage unavailable" }
-      : profile?.delegations.some((delegation) => delegation.revokedAt === null)
-        ? { tone: "available" as const, label: "Account controls ready" }
+      : connection
+        ? { tone: "available" as const, label: "Local Codex connected" }
+        : profile?.delegations.some((delegation) => delegation.revokedAt === null)
+          ? { tone: "provisional" as const, label: "Codex connection required" }
         : { tone: "provisional" as const, label: "Setup required" };
 
   return <div className="site-shell app-shell">
@@ -46,7 +50,7 @@ export default async function SettingsPage() {
       <section className="settings-guide" aria-label="Settings purpose">
         <div><span>01</span><strong>Identity</strong><p>Your private Person signing key remains on this device.</p></div>
         <div><span>02</span><strong>Authority</strong><p>Delegations are scoped, signed, and revocable by their owner.</p></div>
-        <div><span>03</span><strong>Connections</strong><p>Remote Agent approvals can be inspected or revoked independently.</p></div>
+        <div><span>03</span><strong>Connections</strong><p>Local Codex approvals can be inspected or revoked independently.</p></div>
       </section>
 
       {profile && <DelegationSummary profile={profile} />}
