@@ -710,6 +710,9 @@ test("serves the public research paths", async () => {
   const detail = await render("/explore/erdos-865");
   const detailHtml = await detail.text();
   assert.match(detailHtml, /See what has been tried\. Continue what matters\./i);
+  assert.match(detailHtml, /Reward the proof path, not just the finish\./i);
+  assert.match(detailHtml, /Policy first\. Pool second\./i);
+  assert.match(detailHtml, /Token or compute spend never mints mathematical credit/i);
   assert.match(detailHtml, /No public research checkpoint yet/i);
   assert.match(detailHtml, /Start with my Agent/i);
   assert.match(detailHtml, /workbench\?target=erdos-865/i);
@@ -810,6 +813,36 @@ test("imports the pinned catalog idempotently and serves provenance through the 
   assert.deepEqual(graphPayload.graph.edges, []);
   assert.deepEqual(graphPayload.graph.externalWorks, []);
   assert.match(graphPayload.note, /not Lean verification/i);
+
+  const marketResponse = await render("/api/catalog/erdos-865/credit-market");
+  assert.equal(marketResponse.status, 200);
+  const marketPayload = await marketResponse.json();
+  assert.equal(marketPayload.problem.slug, "erdos-865");
+  assert.equal(marketPayload.market.policy.version, "pw-credit-market-v1");
+  assert.equal(marketPayload.market.pool, null);
+  assert.equal(marketPayload.market.policy.buckets.reduce((sum, bucket) => sum + bucket.basisPoints, 0), 10_000);
+  assert.equal(marketPayload.market.policy.boundaries.computeSpendCreatesCredit, false);
+  assert.equal(marketPayload.market.activity.sharedCheckpoints, 0);
+  assert.match(marketPayload.note, /non-transferable, non-financial/i);
+
+  const pilotMarketResponse = await render("/api/catalog/erdos-865-k2/credit-market");
+  assert.equal(pilotMarketResponse.status, 200);
+  const pilotMarketPayload = await pilotMarketResponse.json();
+  assert.equal(pilotMarketPayload.market.pool.state, "draft");
+  assert.equal(pilotMarketPayload.market.pool.totalCredits, 10_000);
+  assert.equal(pilotMarketPayload.market.pool.sponsorLabel, "Proofweave pilot");
+  assert.deepEqual(
+    pilotMarketPayload.market.policy.buckets.map((bucket) => bucket.credits),
+    [3_000, 4_000, 2_000, 1_000],
+  );
+
+  const marketTables = await database.prepare(
+    "SELECT name FROM sqlite_master WHERE type = 'table' AND name IN ('problem_credit_pools','problem_credit_pool_events') ORDER BY name",
+  ).all();
+  assert.deepEqual((marketTables.results ?? []).map((row) => row.name), [
+    "problem_credit_pool_events",
+    "problem_credit_pools",
+  ]);
 });
 
 test("renders only a hash-checked, issuer-signed receipt from D1", async () => {

@@ -811,6 +811,50 @@ export const researchNodeCitations = sqliteTable(
   ],
 );
 
+// A pool fixes a non-financial credit budget and policy for one immutable
+// problem revision. Its lifecycle is projected exclusively from append-only
+// events; compute and token usage never write to this ledger.
+export const problemCreditPools = sqliteTable(
+  "problem_credit_pools",
+  {
+    id: text("id").primaryKey(),
+    problemRevisionId: text("problem_revision_id")
+      .notNull()
+      .unique()
+      .references(() => problemRevisions.id, { onDelete: "restrict" }),
+    policyVersion: text("policy_version").notNull(),
+    unit: text("unit", { enum: ["non_transferable_research_credit"] })
+      .notNull()
+      .default("non_transferable_research_credit"),
+    totalCredits: integer("total_credits").notNull(),
+    sponsorLabel: text("sponsor_label").notNull(),
+    createdAt,
+  },
+  (table) => [index("problem_credit_pools_policy_idx").on(table.policyVersion, table.createdAt)],
+);
+
+export const problemCreditPoolEvents = sqliteTable(
+  "problem_credit_pool_events",
+  {
+    id: text("id").primaryKey(),
+    poolId: text("pool_id")
+      .notNull()
+      .references(() => problemCreditPools.id, { onDelete: "restrict" }),
+    sequence: integer("sequence").notNull(),
+    eventType: text("event_type", {
+      enum: ["created", "activated", "locked", "settled", "cancelled"],
+    }).notNull(),
+    payloadHash: text("payload_hash").notNull().unique(),
+    canonicalPayload: text("canonical_payload").notNull(),
+    occurredAt: text("occurred_at").notNull(),
+    createdAt,
+  },
+  (table) => [
+    uniqueIndex("problem_credit_pool_events_sequence_idx").on(table.poolId, table.sequence),
+    index("problem_credit_pool_events_occurred_idx").on(table.poolId, table.occurredAt),
+  ],
+);
+
 // Runs are mutable projections backed by immutable execution events and an
 // immutable terminal result. They never constitute mathematical verification.
 export const runs = sqliteTable(

@@ -693,6 +693,55 @@ h1, h2, h3, p { margin-top: 0; }
 .research-branch-selection { background: #fbf7e8; border-left: 2px solid #d2aa4d; display: grid; gap: 6px; padding: 11px 13px; }
 .research-branch-selection code { color: #6a5422; font-size: 10px; overflow-wrap: anywhere; }
 .research-branch-selection p { color: #786a45; font-size: 10px; line-height: 1.45; margin: 0; }
+.credit-market-section { border-top: 1px solid var(--line); margin-top: 58px; padding-top: 38px; }
+.credit-market-heading { align-items: end; display: flex; gap: 36px; justify-content: space-between; }
+.credit-market-heading > div { max-width: 760px; }
+.credit-market-heading h2 { font-family: Georgia, "Times New Roman", serif; font-size: clamp(34px, 4vw, 51px); font-weight: 400; letter-spacing: -.05em; line-height: 1.02; margin: 14px 0; }
+.credit-market-heading p:not(.eyebrow) { color: var(--ink-soft); font-size: 13px; line-height: 1.6; margin: 0; }
+.credit-market-heading > span { border: 1px solid #b9c8ef; color: #4055af; flex: 0 0 auto; font-size: 9px; font-weight: 700; letter-spacing: .045em; padding: 7px 9px; text-transform: uppercase; }
+.credit-market-board { display: grid; grid-template-columns: minmax(270px, .78fr) minmax(0, 1.42fr); margin-top: 28px; }
+.credit-market-summary { background: var(--navy); color: #eff3ff; display: flex; flex-direction: column; min-height: 330px; padding: 24px; }
+.credit-market-summary-top { align-items: center; display: flex; gap: 12px; justify-content: space-between; }
+.credit-market-summary-top code { color: #879bc3; font-size: 8px; }
+.credit-market-state { background: rgba(255,255,255,.1); color: #b9c9e6; font-size: 9px; font-weight: 700; letter-spacing: .035em; padding: 6px 7px; text-transform: uppercase; }
+.credit-market-state.state-active, .credit-market-state.state-settled { background: rgba(116,196,148,.15); color: #aee0c1; }
+.credit-market-summary .micro-label { color: #8fa5cd; margin: 56px 0 0; }
+.credit-market-summary h3 { font-family: Georgia, "Times New Roman", serif; font-size: 32px; font-weight: 400; letter-spacing: -.04em; line-height: 1.04; margin: 12px 0 11px; }
+.credit-market-summary > p:not(.micro-label) { color: #b7c5dc; font-size: 11px; line-height: 1.55; margin: 0; }
+.credit-market-actions { align-items: center; display: flex; flex-wrap: wrap; gap: 12px 18px; margin-top: auto; padding-top: 24px; }
+.credit-market-actions .button { background: #eff3ff; color: #182641; font-size: 10px; padding: 10px 12px; }
+.credit-market-actions .button:hover { background: #fff; }
+.credit-market-actions .text-link { color: #c7d5ee; font-size: 10px; }
+.credit-market-buckets { background: #fff; border-bottom: 1px solid var(--line); border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.credit-market-buckets article { border-right: 1px solid var(--line); display: flex; flex-direction: column; min-height: 165px; padding: 18px; }
+.credit-market-buckets article:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+.credit-market-buckets article:nth-child(2n) { border-right: 0; }
+.credit-market-buckets article > div { align-items: baseline; color: var(--indigo); display: flex; justify-content: space-between; }
+.credit-market-buckets article > div span { font-size: 9px; font-weight: 700; }
+.credit-market-buckets article > div strong { font-family: Georgia, "Times New Roman", serif; font-size: 24px; font-weight: 400; }
+.credit-market-buckets h4 { font-family: Georgia, "Times New Roman", serif; font-size: 19px; font-weight: 400; letter-spacing: -.025em; margin: 18px 0 7px; }
+.credit-market-buckets p { color: var(--ink-soft); font-size: 10px; line-height: 1.45; margin: 0; }
+.credit-market-buckets small { color: var(--ink-faint); font-size: 8px; font-weight: 700; margin-top: auto; padding-top: 12px; text-transform: uppercase; }
+.credit-market-evidence { background: #f0f2f9; display: grid; gap: 36px; grid-template-columns: .8fr 1.2fr; padding: 24px; }
+.credit-market-activity dl { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin: 16px 0 13px; }
+.credit-market-activity dl div { border-left: 1px solid #cbd3e5; padding-left: 9px; }
+.credit-market-activity dt { color: var(--ink-faint); font-size: 8px; font-weight: 700; text-transform: uppercase; }
+.credit-market-activity dd { font-family: Georgia, "Times New Roman", serif; font-size: 25px; margin: 5px 0 0; }
+.credit-market-activity > p:last-child { color: var(--ink-soft); font-size: 10px; line-height: 1.45; margin: 0; }
+.credit-eligibility-rail ol { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); list-style: none; margin: 16px 0 0; padding: 0; }
+.credit-eligibility-rail li { border-top: 2px solid #aab5cc; display: grid; gap: 5px; padding: 9px 8px 0 0; position: relative; }
+.credit-eligibility-rail li::before { background: #aab5cc; border: 3px solid #f0f2f9; border-radius: 50%; content: ""; height: 9px; left: -1px; position: absolute; top: -6px; width: 9px; }
+.credit-eligibility-rail li.is-eligible { border-color: var(--indigo); }
+.credit-eligibility-rail li.is-eligible::before { background: var(--indigo); }
+.credit-eligibility-rail li span { color: #4055af; font-size: 8px; font-weight: 700; }
+.credit-eligibility-rail li strong { font-size: 9px; line-height: 1.25; }
+.credit-eligibility-rail li small { color: var(--ink-faint); font-size: 8px; line-height: 1.25; }
+.credit-market-boundary { align-items: start; border: 1px solid #e0cd91; border-top: 0; display: grid; gap: 18px; grid-template-columns: 190px 1fr; padding: 14px 18px; }
+.credit-market-boundary strong { color: var(--amber); font-family: Georgia, "Times New Roman", serif; font-size: 17px; font-weight: 400; }
+.credit-market-boundary p { color: var(--ink-soft); font-size: 10px; line-height: 1.5; margin: 0; }
+.credit-market-unavailable { background: #fff; border: 1px solid var(--line); margin-top: 28px; padding: 24px; }
+.credit-market-unavailable strong { font-family: Georgia, "Times New Roman", serif; font-size: 24px; font-weight: 400; }
+.credit-market-unavailable p { color: var(--ink-soft); font-size: 11px; line-height: 1.5; margin: 8px 0 0; }
 .research-graph-section { border-top: 1px solid var(--line); margin-top: 58px; padding-top: 38px; scroll-margin-top: 24px; }
 .research-graph-heading { align-items: end; display: flex; gap: 40px; justify-content: space-between; }
 .research-graph-heading > div { max-width: 760px; }
@@ -776,6 +825,10 @@ h1, h2, h3, p { margin-top: 0; }
 .research-graph-truncated { color: var(--amber); font-size: 10px; line-height: 1.45; }
 
 @media (max-width: 900px) {
+  .credit-market-heading { align-items: start; flex-direction: column; }
+  .credit-market-board { grid-template-columns: 1fr; }
+  .credit-market-summary { min-height: 285px; }
+  .credit-market-evidence { grid-template-columns: 1fr; }
   .research-graph-heading { align-items: start; flex-direction: column; }
   .research-graph-heading dl { width: 220px; }
   .historical-source-list { grid-template-columns: 1fr 1fr; }
@@ -783,6 +836,22 @@ h1, h2, h3, p { margin-top: 0; }
 }
 
 @media (max-width: 620px) {
+  .credit-market-section { margin-top: 42px; padding-top: 30px; }
+  .credit-market-heading h2 { font-size: 35px; }
+  .credit-market-board, .credit-market-evidence, .credit-market-boundary, .credit-market-unavailable { margin-left: -18px; margin-right: -18px; }
+  .credit-market-summary { min-height: 0; padding: 20px 18px; }
+  .credit-market-summary .micro-label { margin-top: 42px; }
+  .credit-market-actions { align-items: stretch; flex-direction: column; }
+  .credit-market-actions .button { justify-content: center; width: 100%; }
+  .credit-market-buckets { grid-template-columns: 1fr; }
+  .credit-market-buckets article { border-bottom: 1px solid var(--line); border-right: 0; min-height: 150px; }
+  .credit-market-buckets article:last-child { border-bottom: 0; }
+  .credit-market-evidence { padding: 22px 18px; }
+  .credit-market-activity dl { grid-template-columns: repeat(5, minmax(52px, 1fr)); overflow-x: auto; padding-top: 3px; }
+  .credit-eligibility-rail ol { grid-template-columns: 1fr; }
+  .credit-eligibility-rail li { border-left: 2px solid #aab5cc; border-top: 0; grid-template-columns: 28px 1fr auto; padding: 0 0 14px 12px; }
+  .credit-eligibility-rail li::before { border-color: #f0f2f9; left: -6px; top: 0; }
+  .credit-market-boundary { grid-template-columns: 1fr; padding: 16px 18px; }
   .research-graph-section { margin-top: 42px; padding-top: 30px; }
   .research-graph-heading h2 { font-size: 35px; }
   .research-graph-heading dl { width: 100%; }

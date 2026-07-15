@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getCatalogRepository } from "@/db/repositories/catalog";
+import { CreditMarketSchemaUnavailableError, getCreditMarketRepository, type PublicCreditMarket } from "@/db/repositories/credit-market";
 import { getResearchGraphRepository, ResearchGraphSchemaUnavailableError, type PublicResearchGraph } from "@/db/repositories/research-graph";
 import { MissingDatabaseBindingError } from "@/db";
 import { chatGPTSignInPath, getChatGPTUser } from "../../chatgpt-auth";
 import { Footer, Header, StatusStack } from "../../ui";
+import { CreditMarketPanel } from "./CreditMarketPanel";
 import { ResearchGraphView } from "./ResearchGraphView";
 
 export const dynamic = "force-dynamic";
@@ -14,6 +16,7 @@ export default async function ConjecturePage({ params }: { params: Promise<{ slu
   const project = await getCatalogRepository().findBySlug(slug);
   if (!project) notFound();
   const [graph, user] = await Promise.all([loadResearchGraph(project.id), getChatGPTUser()]);
+  const market = graph ? await loadCreditMarket(project.id, graph) : null;
   const returnTo = `/explore/${encodeURIComponent(project.slug)}#research-graph`;
 
   return (
@@ -32,6 +35,7 @@ export default async function ConjecturePage({ params }: { params: Promise<{ slu
           <article className="detail-panel provenance-panel"><div className="panel-heading"><span>Reproducibility record</span><span className="mono-label">{project.source.revisionTag}</span></div><dl className="provenance-list"><div><dt>Source</dt><dd><a href={project.declaration.sourceUrl} rel="noreferrer" target="_blank">{project.declaration.sourcePath}</a></dd></div><div><dt>Revision</dt><dd><code>{project.source.revisionCommit}</code></dd></div><div><dt>Retrieved</dt><dd>{project.source.retrievedAt}</dd></div><div><dt>Source hash</dt><dd><code>{project.declaration.sourceContentHash}</code></dd></div><div><dt>License</dt><dd>{project.source.sourceLicense}</dd></div><div><dt>Mathlib</dt><dd><code>{project.source.mathlibRevision}</code></dd></div></dl></article>
           <article className="detail-panel activity-panel"><div className="panel-heading"><span>Proofweave verification</span><span className="mono-label">{project.claims.filter((claim) => claim.status === "attested").length} attestations</span></div><p>This record carries a source declaration, not a completed Proofweave result. Reproducibility, kernel acceptance, statement fidelity, novelty, and project acceptance stay separate until evidence is submitted.</p><Link className="text-link" href="/how-it-works">Read the verification model <span>→</span></Link><div className="attempt-entry"><strong>Approach this target with your Agent.</strong><p>Choose the target once. Proofweave derives your active local Agent and opens or resumes its provisional workspace without exposing certificate or protocol details.</p><Link className="button button-primary" href={`/workbench?target=${encodeURIComponent(project.slug)}#research-launcher`}>Start with my Agent <span aria-hidden="true">→</span></Link></div></article>
         </section>
+        <CreditMarketPanel market={market} problemSlug={project.slug} />
         <div id="research-graph">
           <ResearchGraphView graph={graph} problemSlug={project.slug} canImportSources={Boolean(user)} signInPath={chatGPTSignInPath(returnTo)} />
         </div>
@@ -39,6 +43,15 @@ export default async function ConjecturePage({ params }: { params: Promise<{ slu
       <Footer />
     </div>
   );
+}
+
+async function loadCreditMarket(problemRevisionId: string, graph: PublicResearchGraph): Promise<PublicCreditMarket | null> {
+  try {
+    return await getCreditMarketRepository().findByProblemRevisionId(problemRevisionId, graph);
+  } catch (error) {
+    if (error instanceof MissingDatabaseBindingError || error instanceof CreditMarketSchemaUnavailableError) return null;
+    throw error;
+  }
 }
 
 async function loadResearchGraph(problemRevisionId: string): Promise<PublicResearchGraph | null> {
