@@ -661,9 +661,11 @@ test("server-renders the Proofweave welcome page", async () => {
   assert.match(html, /Verified demo/i);
   assert.match(html, /Explore open mathematics/i);
   assert.match(html, /Contribution receipt/i);
-  assert.match(html, /proof-paper-mark/i);
-  assert.match(html, /proof-paper-line/i);
-  assert.match(html, /proof-paper-check/i);
+  assert.match(html, /brand-mark/i);
+  assert.doesNotMatch(html, /proof-paper-mark/i);
+  assert.match(html, /hero-proof-motion/i);
+  assert.match(html, /hero-proof-paper-layer/i);
+  assert.match(html, /hero-evidence-flow/i);
 });
 
 test("guides a public visitor through the first accountable contribution path", async () => {
@@ -1913,7 +1915,8 @@ test("keeps the production frontend free of the deleted starter preview", async 
   assert.doesNotMatch(layout, /codex-preview|_sites-preview/i);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/i);
   assert.match(globals, /@media \(prefers-reduced-motion: reduce\)/);
-  assert.match(globals, /proof-paper-settle/);
+  assert.match(globals, /hero-proof-page-lift/);
+  assert.match(globals, /hero-evidence-pulse/);
   assert.match(researchGraphView, /Checkpoint evidence gates/);
   assert.match(researchGraphView, /Receipt recorded/);
   assert.match(workbench, /No simulated Agent work is created in this workspace/);

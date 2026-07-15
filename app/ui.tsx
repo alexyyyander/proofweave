@@ -10,7 +10,7 @@ export function Header({ active }: { active: ActivePage }) {
     <>
       <a className="skip-link" href="#main-content">Skip to main content</a>
       <header className="site-header">
-        <Link className="brand" href="/" aria-label="Proofweave home"><ProofPaperMark /><span>Proofweave</span></Link>
+        <Link className="brand" href="/" aria-label="Proofweave home"><span className="brand-mark" aria-hidden="true"><i /><i /><i /></span><span>Proofweave</span></Link>
         <nav className="main-nav" aria-label="Primary navigation">
           {primaryNavigation.map((item) => <Link className={active === item.page ? "is-active" : ""} href={item.href} key={item.href}>{item.label}</Link>)}
         </nav>
@@ -33,23 +33,11 @@ export function ProductStateBadge({ tone, children }: { tone: ProductStateTone; 
 export function Footer() {
   return (
     <footer className="site-footer">
-      <div className="brand footer-brand"><ProofPaperMark /><span>Proofweave</span></div>
+      <div className="brand footer-brand"><span className="brand-mark" aria-hidden="true"><i /><i /><i /></span><span>Proofweave</span></div>
       <p>An open network for personally delegated formal mathematics research.</p>
       <div>{footerNavigation.map((item) => <Link href={item.href} key={item.href}>{item.label}</Link>)}</div>
     </footer>
   );
-}
-
-/** A proof page is written locally, then receives a separate kernel check. */
-function ProofPaperMark() {
-  return <span className="proof-paper-mark" aria-hidden="true">
-    <span className="proof-paper-sheet">
-      <span className="proof-paper-line proof-paper-line-one" />
-      <span className="proof-paper-line proof-paper-line-two" />
-      <span className="proof-paper-line proof-paper-line-three" />
-      <span className="proof-paper-check">✓</span>
-    </span>
-  </span>;
 }
 
 const stateClass: Record<CatalogDisplayStatus, string> = {

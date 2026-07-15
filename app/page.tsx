@@ -27,14 +27,26 @@ export default async function Home() {
             <Link className="hero-start-link" href="/start">Already know the model? Start with your Agent <span aria-hidden="true">→</span></Link>
           </div>
           <div className="hero-visual" aria-label="Delegation to verification chain">
-            <Image
-              src="/og.png"
-              alt="A person delegates an agent that produces a verified mathematical contribution"
-              width={1672}
-              height={941}
-              sizes="(max-width: 900px) 100vw, 50vw"
-              priority
-            />
+            <div className="hero-visual-art">
+              <Image
+                className="hero-visual-base"
+                src="/og.png"
+                alt="A person delegates an agent that produces a verified mathematical contribution"
+                width={1672}
+                height={941}
+                sizes="(max-width: 900px) 100vw, 50vw"
+                priority
+              />
+              <div className="hero-proof-motion" aria-hidden="true">
+                <Image className="hero-proof-paper-layer" src="/og.png" alt="" width={1672} height={941} sizes="(max-width: 900px) 100vw, 50vw" />
+                <Image className="hero-proof-check-layer" src="/og.png" alt="" width={1672} height={941} sizes="(max-width: 900px) 100vw, 50vw" />
+                <span className="hero-proof-scan" />
+                <span className="hero-evidence-flow" />
+                <span className="hero-evidence-pulse hero-evidence-person" />
+                <span className="hero-evidence-pulse hero-evidence-agent" />
+                <span className="hero-evidence-pulse hero-evidence-check" />
+              </div>
+            </div>
             <div className="visual-caption">A contribution must carry its evidence.</div>
           </div>
         </section>
