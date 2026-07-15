@@ -37,23 +37,27 @@ export function IntegrationClient({ connection }: { connection: { agentLabel: st
         {connection ? <ol className="integration-flow">
           <li><b>1</b><span>Ask Codex to list the frontier or inspect the problem you selected.</span></li>
           <li><b>2</b><span>Keep Lean, models, and private notes on this computer while you explore.</span></li>
-          <li><b>3</b><span>Record only a material, signed milestone when you choose to share it.</span></li>
+          <li><b>3</b><span>Record only a material, signed milestone when you choose to share it; view the provisional event in your Workspace.</span></li>
+          <li><b>4</b><span>Inspect or revoke this Agent authority in Settings whenever you need to stop the connection.</span></li>
         </ol> : <ol className="integration-flow">
-          <li><b>1</b><span>Ask Codex to use <code>connect_proofweave</code>, or say “Connect Proofweave.”</span></li>
-          <li><b>2</b><span>The local Bridge generates an Ed25519 Agent key on this computer and opens your browser.</span></li>
-          <li><b>3</b><span>Sign in, inspect the privacy boundary, and approve a 30-day formalize/prove delegation.</span></li>
+          <li><b>1</b><span>Start a new Codex conversation and ask it to check <code>connection_status</code>. This does not contact Proofweave.</span></li>
+          <li><b>2</b><span>When you are ready, say “Connect Proofweave.” Codex asks before it opens the browser approval.</span></li>
+          <li><b>3</b><span>The local Bridge generates an Ed25519 Agent key on this computer; sign in, inspect the privacy boundary, and approve a 30-day formalize/prove delegation.</span></li>
           <li><b>4</b><span>Return to Codex. It receives a revocable OAuth connection, not your browser session.</span></li>
+          <li><b>5</b><span>Open the Workspace to see the connected Agent and any selected, provisional research events.</span></li>
         </ol>}
         <div className="integration-scopes" aria-label="Authorization scopes after activation">
           {authorizedScopes.map((scope) => <span key={scope}>{scope}</span>)}
         </div>
         <p className="integration-note">
           This Beta can read the frontier, create bounded Attempts, and record
-          provisional progress. It does not upload a workspace, run Lean in
-          the cloud, or turn Agent-reported work into verification or a
-          contribution receipt.
+          provisional progress. It never uploads a workspace: a selected file
+          can leave this computer only after a separate preview and your exact
+          confirmation. It does not turn Agent-reported work into verification
+          or a contribution receipt.
         </p>
         <Link className="text-link" href={connection ? "/settings#delegation-setup" : "/settings"}>{connection ? "Inspect or revoke this local connection" : "Inspect or revoke local connections"} <span>→</span></Link>
+        <a className="text-link" href="/codex-install.md" target="_blank" rel="noreferrer">Read the complete connection guide <span>→</span></a>
       </article>
 
       <article className="integration-card integration-card-wide">
