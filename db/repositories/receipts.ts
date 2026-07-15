@@ -125,6 +125,7 @@ export class ContributionReceiptIntegrityError extends Error {
 export interface ContributionReceiptReader {
   findById(id: string): Promise<PublicContributionReceiptRecord | null>;
   listRecent(limit?: number): Promise<readonly PublicContributionReceiptIndexItem[]>;
+  listByPerson(personId: string, limit?: number): Promise<readonly PublicContributionReceiptIndexItem[]>;
   findDependenciesById(id: string): Promise<readonly PublicContributionReceiptDependency[] | null>;
   findLifecycleById(id: string): Promise<readonly PublicContributionReceiptLifecycleEvent[] | null>;
   listIssuerKeys(): Promise<readonly PublicContributionReceiptIssuerKey[]>;
@@ -195,22 +196,24 @@ class D1ContributionReceiptReader implements ContributionReceiptReader {
       )
       .bind(boundedLimit)
       .all<ReceiptRow>();
-    const items = await Promise.all((result.results ?? []).map(async (row: ReceiptRow) => {
-      const record = await verifyStoredReceiptRow(row, row.id);
-      const lifecycle = await this.findLifecycleById(record.receipt.id);
-      if (!lifecycle) throw new ContributionReceiptIntegrityError();
-      const latest = lifecycle.at(-1);
-      return Object.freeze({
-        id: record.receipt.id,
-        receiptHash: record.receiptHash,
-        kind: record.receipt.kind,
-        target: Object.freeze({ ...record.receipt.target }),
-        beneficiaryPersonId: record.receipt.beneficiary.personId,
-        issuedAt: record.receipt.issuedAt,
-        dependencyCount: record.receipt.bundle.dependencyReceipts.length,
-        lifecycleStatus: latest?.eventType ?? "issued",
-      });
-    }));
+    const items = await Promise.all((result.results ?? []).map((row: ReceiptRow) => this.toIndexItem(row)));
+    return Object.freeze(items);
+  }
+
+  async listByPerson(personId: string, limit = 48): Promise<readonly PublicContributionReceiptIndexItem[]> {
+    if (!isPersonId(personId)) return Object.freeze([]);
+    const boundedLimit = Number.isInteger(limit) && limit > 0 ? Math.min(limit, 100) : 48;
+    const result = await getD1()
+      .prepare(
+        `SELECT id, receipt_hash, canonical_receipt
+         FROM contribution_receipts
+         WHERE beneficiary_person_id = ?
+         ORDER BY issued_at DESC, id ASC
+         LIMIT ?`,
+      )
+      .bind(personId, boundedLimit)
+      .all<ReceiptRow>();
+    const items = await Promise.all((result.results ?? []).map((row: ReceiptRow) => this.toIndexItem(row)));
     return Object.freeze(items);
   }
 
@@ -359,6 +362,23 @@ class D1ContributionReceiptReader implements ContributionReceiptReader {
       }
     }
   }
+
+  private async toIndexItem(row: ReceiptRow): Promise<PublicContributionReceiptIndexItem> {
+    const record = await verifyStoredReceiptRow(row, row.id);
+    const lifecycle = await this.findLifecycleById(record.receipt.id);
+    if (!lifecycle) throw new ContributionReceiptIntegrityError();
+    const latest = lifecycle.at(-1);
+    return Object.freeze({
+      id: record.receipt.id,
+      receiptHash: record.receiptHash,
+      kind: record.receipt.kind,
+      target: Object.freeze({ ...record.receipt.target }),
+      beneficiaryPersonId: record.receipt.beneficiary.personId,
+      issuedAt: record.receipt.issuedAt,
+      dependencyCount: record.receipt.bundle.dependencyReceipts.length,
+      lifecycleStatus: latest?.eventType ?? "issued",
+    });
+  }
 }
 
 export function getContributionReceiptReader(): ContributionReceiptReader {
@@ -452,4 +472,8 @@ function assertLifecycleSequence(events: readonly PublicContributionReceiptLifec
 
 function isContributionReceiptId(value: string): boolean {
   return /^[A-Za-z0-9][A-Za-z0-9:._-]{2,239}$/.test(value);
+}
+
+function isPersonId(value: string): boolean {
+  return /^person:[A-Za-z0-9][A-Za-z0-9:._-]{1,232}$/.test(value);
 }

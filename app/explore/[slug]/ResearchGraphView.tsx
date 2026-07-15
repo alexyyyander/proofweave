@@ -118,7 +118,7 @@ function ResearchNodeCard({
     <p>{node.summary}</p>
     {parentIds.length > 0 && <div className="research-node-parents"><span>From</span>{parentIds.map((id) => <code key={id}>{shortId(id)}</code>)}</div>}
     <ResearchNodeEvidence node={node} />
-    <div className="research-node-author"><span>{node.creator.displayName}</span><small>via {node.creator.agentLabel} · {formatDate(node.occurredAt)}</small></div>
+    <div className="research-node-author"><Link href={`/people/${encodeURIComponent(node.creator.personId)}`}>{node.creator.displayName}</Link><small>via {node.creator.agentLabel} · {formatDate(node.occurredAt)}</small></div>
     <div className="research-node-footer">
       <code>{shortId(node.id)}</code>
       <Link href={`/workbench?target=${encodeURIComponent(problemSlug)}&parent=${encodeURIComponent(node.id)}#research-launcher`}>Continue branch <span aria-hidden="true">→</span></Link>

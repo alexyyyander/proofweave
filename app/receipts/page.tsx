@@ -30,7 +30,7 @@ function ReceiptIndexCard({ receipt }: { receipt: PublicContributionReceiptIndex
   return <article className="receipt-index-card">
     <div className="receipt-index-card-top"><span className="micro-label">{kindLabel(receipt.kind)}</span><span className={`receipt-index-status is-${receipt.lifecycleStatus}`}>{statusLabel(receipt.lifecycleStatus)}</span></div>
     <Link className="receipt-index-title" href={`/receipt/${encodeURIComponent(receipt.id)}`}>{receipt.target.declaration}</Link>
-    <dl><div><dt>Credited Person</dt><dd><code>{receipt.beneficiaryPersonId}</code></dd></div><div><dt>Issued</dt><dd>{receipt.issuedAt}</dd></div><div><dt>Upstream evidence</dt><dd>{receipt.dependencyCount === 0 ? "No receipt dependencies" : `${receipt.dependencyCount} receipt ${receipt.dependencyCount === 1 ? "dependency" : "dependencies"}`}</dd></div><div><dt>Receipt hash</dt><dd><code>{receipt.receiptHash}</code></dd></div></dl>
+    <dl><div><dt>Credited Person</dt><dd><Link className="person-record-link" href={`/people/${encodeURIComponent(receipt.beneficiaryPersonId)}`}><code>{receipt.beneficiaryPersonId}</code></Link></dd></div><div><dt>Issued</dt><dd>{receipt.issuedAt}</dd></div><div><dt>Upstream evidence</dt><dd>{receipt.dependencyCount === 0 ? "No receipt dependencies" : `${receipt.dependencyCount} receipt ${receipt.dependencyCount === 1 ? "dependency" : "dependencies"}`}</dd></div><div><dt>Receipt hash</dt><dd><code>{receipt.receiptHash}</code></dd></div></dl>
     <Link className="text-link" href={`/receipt/${encodeURIComponent(receipt.id)}`}>Inspect evidence <span>→</span></Link>
   </article>;
 }

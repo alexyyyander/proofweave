@@ -701,6 +701,14 @@ test("serves the public research paths", async () => {
   const settingsHtml = await settings.text();
   assert.match(settingsHtml, /Sign in with ChatGPT/i);
   assert.match(settingsHtml, /signin-with-chatgpt/);
+  assert.match(settingsHtml, />Sign in</i);
+
+  const privateProfile = await render("/profile", { redirect: "manual" });
+  assert.ok(
+    [302, 303, 307, 308].includes(privateProfile.status),
+    `expected an auth redirect, received ${privateProfile.status} with location ${privateProfile.headers.get("location") ?? "none"}`,
+  );
+  assert.match(privateProfile.headers.get("location") ?? "", /signin-with-chatgpt.*profile/i);
 
   const workbench = await render("/workbench");
   const workbenchHtml = await workbench.text();
@@ -886,7 +894,18 @@ test("renders only a hash-checked, issuer-signed receipt from D1", async () => {
   ]);
   const indexPage = await render("/receipts");
   assert.equal(indexPage.status, 200);
-  assert.match(await indexPage.text(), /Verified contributions, not activity counts/i);
+  const indexHtml = await indexPage.text();
+  assert.match(indexHtml, /Verified contributions, not activity counts/i);
+  assert.match(indexHtml, new RegExp(`/people/${encodeURIComponent(receipt.beneficiary.personId)}`));
+
+  const personPage = await render(`/people/${encodeURIComponent(receipt.beneficiary.personId)}`);
+  assert.equal(personPage.status, 200);
+  const personHtml = await personPage.text();
+  assert.match(personHtml, /Fixture owner/i);
+  assert.match(personHtml, /Public mathematical contribution record/i);
+  assert.match(personHtml, /Signed Contribution Receipts/i);
+  assert.match(personHtml, new RegExp(receipt.target.declaration));
+  assert.doesNotMatch(personHtml, /@example\.test|provider_subject|canonical_receipt/i);
 
   const issuerKeys = await render("/api/receipts/issuer-keys");
   assert.equal(issuerKeys.status, 200);
@@ -978,6 +997,17 @@ test("scopes closed-alpha review assignments to the assigned Person and preserve
   assert.match(pageHtml, /Verify evidence\. Earn review credit\./i);
   assert.match(pageHtml, /Open verification work/i);
   assert.match(pageHtml, /View audit trail/i);
+  assert.match(pageHtml, /Open account menu for Review Person/i);
+  assert.match(pageHtml, />My profile/i);
+
+  const profilePage = await render("/profile", { headers: reviewerHeaders });
+  assert.equal(profilePage.status, 200);
+  const profileHtml = await profilePage.text();
+  assert.match(profileHtml, /Your research identity at a glance/i);
+  assert.match(profileHtml, /Review Person/i);
+  assert.match(profileHtml, /reviewer@example\.test/i);
+  assert.match(profileHtml, new RegExp(profile.person.id.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  assert.match(profileHtml, new RegExp(`/people/${encodeURIComponent(profile.person.id)}`));
 
   const acceptResponse = await render("/api/me/review-assignments/assignment:rendered-review/accept", {
     method: "POST",

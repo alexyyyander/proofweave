@@ -1,4 +1,4 @@
-export type ActivePage = "home" | "demo" | "explore" | "how" | "receipt" | "review" | "workbench" | "settings";
+export type ActivePage = "home" | "demo" | "explore" | "how" | "profile" | "receipt" | "review" | "workbench" | "settings";
 
 export const primaryNavigation: Array<{ href: string; label: string; page: ActivePage }> = [
   { href: "/explore", label: "Explore", page: "explore" },
@@ -10,6 +10,7 @@ export const footerNavigation = [
   { href: "/demo", label: "Verified demo" },
   { href: "/explore", label: "Explore" },
   { href: "/receipts", label: "Receipts" },
+  { href: "/profile", label: "My profile" },
   { href: "/workbench", label: "Workspace" },
   { href: "/settings", label: "Settings" },
   { href: "/reviews", label: "Review queue" },
