@@ -664,15 +664,9 @@ test("server-renders the Proofweave welcome page", async () => {
 });
 
 test("guides a public visitor through the first accountable contribution path", async () => {
-  const page = await render("/start?target=erdos-865-k2");
-  assert.equal(page.status, 200);
-  const html = await page.text();
-  assert.match(html, /Your first accountable contribution/i);
-  assert.match(html, /Sign in to begin/i);
-  assert.match(html, /Local pairing beta/i);
-  assert.match(html, /Connect Codex/i);
-  assert.match(html, /Choose the question you want your Agent to approach/i);
-  assert.match(html, /Start with this target|Choose target/i);
+  const page = await render("/start?target=erdos-865-k2", { redirect: "manual" });
+  assert.equal(page.status, 307);
+  assert.match(page.headers.get("location") ?? "", /\/workbench\?target=erdos-865-k2#research-launcher$/i);
 });
 
 test("serves the public research paths", async () => {
@@ -710,8 +704,10 @@ test("serves the public research paths", async () => {
 
   const detail = await render("/explore/erdos-865");
   const detailHtml = await detail.text();
-  assert.match(detailHtml, /Start with this target/i);
-  assert.match(detailHtml, /start\?target=erdos-865/i);
+  assert.match(detailHtml, /See what has been tried\. Continue what matters\./i);
+  assert.match(detailHtml, /No public research checkpoint yet/i);
+  assert.match(detailHtml, /Start with my Agent/i);
+  assert.match(detailHtml, /workbench\?target=erdos-865/i);
 
   const integrations = await render("/integrations");
   const integrationsHtml = await integrations.text();
@@ -800,6 +796,15 @@ test("imports the pinned catalog idempotently and serves provenance through the 
   const { record } = await recordResponse.json();
   assert.equal(record.declaration.qualifiedName, "Erdos865.erdos_865");
   assert.match(record.declaration.sourceContentHash, /^sha256:[a-f0-9]{64}$/);
+
+  const graphResponse = await render("/api/catalog/erdos-865/research-graph");
+  assert.equal(graphResponse.status, 200);
+  const graphPayload = await graphResponse.json();
+  assert.equal(graphPayload.problem.slug, "erdos-865");
+  assert.deepEqual(graphPayload.graph.nodes, []);
+  assert.deepEqual(graphPayload.graph.edges, []);
+  assert.deepEqual(graphPayload.graph.externalWorks, []);
+  assert.match(graphPayload.note, /not Lean verification/i);
 });
 
 test("renders only a hash-checked, issuer-signed receipt from D1", async () => {
@@ -1473,7 +1478,7 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
     method: "POST",
     headers: { authorization: `Bearer ${testToken}`, "content-type": "application/json" },
     body: JSON.stringify({
-      problemSlug: "erdos-865",
+      problemSlug: "erdos-865-upper-bound",
       agentId: "urn:pw:agent:delegation-test",
       agentLabel: "Delegation test agent",
       delegationCertificateId: certificate.id,
@@ -1721,40 +1726,56 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
   const ownerWorkbench = await render("/workbench?target=erdos-865-k2", { headers: authHeaders });
   assert.equal(ownerWorkbench.status, 200);
   const ownerWorkbenchHtml = await ownerWorkbench.text();
-  assert.match(ownerWorkbenchHtml, /Open a durable research Attempt/i);
+  assert.match(ownerWorkbenchHtml, /Choose a question\. Start with your Agent\./i);
   assert.match(ownerWorkbenchHtml, /Choose research/i);
   assert.match(ownerWorkbenchHtml, /Work with your Agent/i);
   assert.match(ownerWorkbenchHtml, /Inspect evidence/i);
-  assert.match(ownerWorkbenchHtml, /Selected catalog target/i);
+  assert.match(ownerWorkbenchHtml, /Connect Codex once before starting research/i);
   assert.match(ownerWorkbenchHtml, /Erdős Problem 865: k = 2 variant/i);
-  assert.match(ownerWorkbenchHtml, /Attempt opened by its owner/i);
+  assert.match(ownerWorkbenchHtml, /Attempt opened/i);
   assert.match(ownerWorkbenchHtml, /Refresh records/i);
   assert.match(ownerWorkbenchHtml, /Provisional contribution ledger/i);
   assert.match(ownerWorkbenchHtml, /Bundle staged · provisional/i);
-  assert.match(ownerWorkbenchHtml, /Lean kernel status · accepted/i);
-  assert.match(ownerWorkbenchHtml, /Result evidence recorded/i);
-  assert.match(ownerWorkbenchHtml, /Hash-bound Runner result recorded accepted kernel/i);
+  assert.match(ownerWorkbenchHtml, /Lean kernel status · no Run recorded/i);
+  assert.match(ownerWorkbenchHtml, /Runner required/i);
+  assert.match(ownerWorkbenchHtml, /Requires a fresh runner execution with kernel, axiom, and sorry evidence/i);
+  assert.doesNotMatch(ownerWorkbenchHtml, /Lean kernel status · accepted/i);
   assert.match(ownerWorkbenchHtml, /not a theorem, Lean result, novelty finding, independent review, or final Contribution Receipt/i);
 
+  const evidenceWorkbench = await render("/workbench?target=erdos-865", { headers: authHeaders });
+  assert.equal(evidenceWorkbench.status, 200);
+  const evidenceWorkbenchHtml = await evidenceWorkbench.text();
+  assert.match(evidenceWorkbenchHtml, /Lean kernel status · accepted/i);
+  assert.match(evidenceWorkbenchHtml, /Result evidence recorded/i);
+  assert.match(evidenceWorkbenchHtml, /Hash-bound Runner result recorded accepted kernel/i);
+
   const activeAttemptCount = ownerAttempts.filter((candidate) => candidate.status === "active").length;
+  const capacityFixtures = [];
   for (let index = activeAttemptCount; index < closedAlphaAttemptLimits.maximumActiveAttemptsPerPerson; index += 1) {
-    const capacityResponse = await render("/api/me/attempts", {
-      method: "POST",
-      headers: { ...authHeaders, "content-type": "application/json" },
-      body: JSON.stringify({
-        problemSlug: "erdos-865-k2",
-        delegationCertificateId: certificate.id,
-        delegationScope: "prove",
-        idempotencyKey: `owner-attempt-capacity-${index}`,
-      }),
-    });
-    assert.equal(capacityResponse.status, 201);
+    capacityFixtures.push(database.prepare(
+      `INSERT INTO agent_attempts (
+        id, person_id, problem_revision_id, agent_id, delegation_certificate_id,
+        delegation_scope, agent_label, status, idempotency_key, created_at, updated_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, 'active', ?, ?, ?)`,
+    ).bind(
+      `attempt:owner-capacity:${index}`,
+      profile.person.id,
+      "problem-revision:formal-conjectures:erdos-865:main:1",
+      certificate.agentId,
+      certificate.id,
+      "prove",
+      "Delegation test agent",
+      `owner-attempt-capacity-${index}`,
+      `2026-07-14T00:00:${String(index).padStart(2, "0")}Z`,
+      `2026-07-14T00:00:${String(index).padStart(2, "0")}Z`,
+    ));
   }
+  if (capacityFixtures.length > 0) await database.batch(capacityFixtures);
   const exhaustedAttemptResponse = await render("/api/me/attempts", {
     method: "POST",
     headers: { ...authHeaders, "content-type": "application/json" },
     body: JSON.stringify({
-      problemSlug: "erdos-865-k2",
+      problemSlug: "erdos-865-sos-variant",
       delegationCertificateId: certificate.id,
       delegationScope: "prove",
       idempotencyKey: "owner-attempt-capacity-exhausted",
@@ -1901,10 +1922,10 @@ test("keeps the production frontend free of the deleted starter preview", async 
   assert.match(localAgentHandoff, /Copy for Codex/);
   assert.match(localAgentHandoff, /Check recorded progress/);
   assert.match(localAgentHandoff, /do not call \\`report_progress\\` unless I explicitly confirm/);
-  assert.match(localAgentHandoff, /preview_local_evidence/);
-  assert.match(localAgentHandoff, /submit_local_evidence/);
-  assert.match(localAgentHandoff, /I_CONFIRM_SUBMIT/);
-  assert.match(localAgentHandoff, /prepare_artifact_bundle_v2/);
+  assert.match(localAgentHandoff, /inspect_research_graph/);
+  assert.match(localAgentHandoff, /prepare_research_checkpoint/);
+  assert.match(localAgentHandoff, /publish_prepared_research_checkpoint/);
+  assert.match(localAgentHandoff, /I_CONFIRM_PUBLISH_CHECKPOINT/);
   assert.match(localAgentHandoff, /prepare_workspace_bundle_v2/);
   assert.match(localAgentHandoff, /stage_prepared_artifact_bundle/);
   assert.match(localAgentHandoff, /I_CONFIRM_PREPARE_WORKSPACE_BUNDLE/);

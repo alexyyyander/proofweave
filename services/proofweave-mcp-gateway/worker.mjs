@@ -249,6 +249,40 @@ function createMcpServer(principal, store, rateLimiter) {
   );
 
   server.registerTool(
+    "inspect_research_graph",
+    {
+      title: "Inspect shared research branches",
+      description: "Read the immutable public checkpoint DAG for one source-pinned target. Shared nodes are research progress only, not verification or credit.",
+      inputSchema: { slug: z.string().min(1).max(120) },
+      annotations: { readOnlyHint: true, destructiveHint: false },
+    },
+    async ({ slug }) => toolResult(await withScope(
+      principal,
+      "catalog:read",
+      "inspect_research_graph",
+      rateLimiter,
+      () => store.inspectResearchGraph(principal, slug),
+    )),
+  );
+
+  server.registerTool(
+    "publish_research_checkpoint",
+    {
+      title: "Publish a signed research checkpoint",
+      description: "Validate and append one structured Agent-signed checkpoint to the public research DAG. It is not Lean verification, independent review, novelty, or contribution credit.",
+      inputSchema: { checkpoint: z.object({}).passthrough() },
+      annotations: { readOnlyHint: false, destructiveHint: false },
+    },
+    async ({ checkpoint }) => toolResult(await withScope(
+      principal,
+      "progress:write",
+      "publish_research_checkpoint",
+      rateLimiter,
+      () => store.publishResearchCheckpoint(principal, checkpoint),
+    )),
+  );
+
+  server.registerTool(
     "list_attempts",
     {
       title: "List authorized Attempts",

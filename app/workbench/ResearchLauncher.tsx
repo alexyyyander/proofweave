@@ -20,6 +20,7 @@ export function ResearchLauncher({
   attempts,
   catalogTargets,
   initialTargetSlug,
+  initialParentNodeId,
   onAttemptReady,
   isAuthenticated,
   signInPath,
@@ -29,6 +30,7 @@ export function ResearchLauncher({
   attempts: readonly McpAttempt[];
   catalogTargets: readonly CatalogProblem[];
   initialTargetSlug: string | null;
+  initialParentNodeId: string | null;
   onAttemptReady: (attempt: McpAttempt) => void;
   isAuthenticated: boolean;
   signInPath: string;
@@ -61,7 +63,9 @@ export function ResearchLauncher({
     if (existing) {
       onAttemptReady(existing);
       activateLocalResearch();
-      setNotice("This research is already active. In Codex, say “Continue my Proofweave research” to resume the same bounded target.");
+      setNotice(initialParentNodeId
+        ? "This research is already active. The local handoff below names the exact shared checkpoint you chose to continue."
+        : "This research is already active. In Codex, say “Continue my Proofweave research” to resume the same bounded target.");
       return;
     }
 
@@ -83,7 +87,9 @@ export function ResearchLauncher({
       }
       onAttemptReady(payload.attempt as McpAttempt);
       activateLocalResearch();
-      setNotice("Research is ready. In Codex, say “Continue my Proofweave research” — the plugin will recover this exact target automatically.");
+      setNotice(initialParentNodeId
+        ? "Research is ready. The local handoff below names the exact shared checkpoint you chose to continue."
+        : "Research is ready. In Codex, say “Continue my Proofweave research” — the plugin will recover this exact target automatically.");
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : "Proofweave could not start this research workspace.");
     } finally {
@@ -143,6 +149,11 @@ export function ResearchLauncher({
           <span>{target.source.leanToolchain}</span>
           <Link href={`/explore/${target.slug}`}>Inspect source <span aria-hidden="true">→</span></Link>
         </div>
+      </div>}
+      {initialParentNodeId && <div className="research-branch-selection">
+        <span className="micro-label">Selected branch parent</span>
+        <code>{initialParentNodeId}</code>
+        <p>Your new public checkpoint can derive from this node. The parent is only declared when you review and approve the locally signed checkpoint draft.</p>
       </div>}
       <div className="research-launcher-footer">
         <p><strong>{connection.agentLabel}</strong> is ready. We record only a provisional Attempt now; progress, evidence, Lean execution, and review remain separate gates.</p>

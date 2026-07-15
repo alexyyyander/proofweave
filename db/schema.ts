@@ -652,7 +652,7 @@ export const agentAttemptEvents = sqliteTable(
       .references(() => agentAttempts.id, { onDelete: "cascade" }),
     sequence: integer("sequence").notNull(),
     eventType: text("event_type", {
-      enum: ["attempt_created", "agent_reported", "bundle_staged"],
+      enum: ["attempt_created", "agent_reported", "checkpoint_published", "bundle_staged"],
     }).notNull(),
     message: text("message").notNull(),
     progressPercent: integer("progress_percent"),
@@ -669,6 +669,145 @@ export const agentAttemptEvents = sqliteTable(
       table.attemptId,
       table.idempotencyKey,
     ),
+  ],
+);
+
+// Public research nodes are immutable, Agent-signed structured milestones.
+// Their initial state never implies Lean execution, review, novelty, or credit.
+export const researchNodes = sqliteTable(
+  "research_nodes",
+  {
+    id: text("id").primaryKey(),
+    problemRevisionId: text("problem_revision_id").notNull().references(() => problemRevisions.id, { onDelete: "restrict" }),
+    attemptId: text("attempt_id").notNull().references(() => agentAttempts.id, { onDelete: "restrict" }),
+    beneficiaryPersonId: text("beneficiary_person_id").notNull().references(() => persons.id, { onDelete: "restrict" }),
+    beneficiaryAgentId: text("beneficiary_agent_id").notNull().references(() => agents.id, { onDelete: "restrict" }),
+    delegationCertificateId: text("delegation_certificate_id").notNull().references(() => delegationCertificates.id, { onDelete: "restrict" }),
+    kind: text("kind", { enum: ["formalization", "hypothesis", "lemma", "proof_state", "proof_patch", "counterexample", "negative_result", "synthesis"] }).notNull(),
+    summary: text("summary").notNull(),
+    proofStateHash: text("proof_state_hash"),
+    // The SQL migration adds the FK to artifact_bundles. Keep this declaration
+    // as text because artifactBundles is declared later in this module.
+    artifactBundleManifestHash: text("artifact_bundle_manifest_hash"),
+    initialState: text("initial_state", { enum: ["shared_unverified"] }).notNull().default("shared_unverified"),
+    payloadHash: text("payload_hash").notNull(),
+    checkpointHash: text("checkpoint_hash").notNull(),
+    canonicalCheckpoint: text("canonical_checkpoint").notNull(),
+    agentEventId: text("agent_event_id").notNull(),
+    agentEventOccurredAt: text("agent_event_occurred_at").notNull(),
+    agentPublicKey: text("agent_public_key").notNull(),
+    agentSignature: text("agent_signature").notNull(),
+    createdAt,
+  },
+  (table) => [
+    uniqueIndex("research_nodes_payload_hash_idx").on(table.payloadHash),
+    uniqueIndex("research_nodes_checkpoint_hash_idx").on(table.checkpointHash),
+    uniqueIndex("research_nodes_agent_event_idx").on(table.agentEventId),
+    index("research_nodes_problem_time_idx").on(table.problemRevisionId, table.agentEventOccurredAt),
+    index("research_nodes_attempt_time_idx").on(table.attemptId, table.agentEventOccurredAt),
+  ],
+);
+
+export const researchDerivationEdges = sqliteTable(
+  "research_derivation_edges",
+  {
+    childNodeId: text("child_node_id").notNull().references(() => researchNodes.id, { onDelete: "restrict" }),
+    parentNodeId: text("parent_node_id").notNull().references(() => researchNodes.id, { onDelete: "restrict" }),
+    relation: text("relation", { enum: ["derives_from", "merges"] }).notNull(),
+    declaredByPayloadHash: text("declared_by_payload_hash").notNull().references(() => researchNodes.payloadHash, { onDelete: "restrict" }),
+    recordedAt: text("recorded_at").notNull(),
+  },
+  (table) => [
+    primaryKey({ columns: [table.childNodeId, table.parentNodeId] }),
+    index("research_derivation_edges_parent_idx").on(table.parentNodeId, table.recordedAt),
+  ],
+);
+
+export const researchNodeEvents = sqliteTable(
+  "research_node_events",
+  {
+    id: text("id").primaryKey(),
+    nodeId: text("node_id").notNull().references(() => researchNodes.id, { onDelete: "restrict" }),
+    sequence: integer("sequence").notNull(),
+    eventType: text("event_type", { enum: ["published", "superseded", "withdrawn", "verification_recorded"] }).notNull(),
+    payloadHash: text("payload_hash").notNull(),
+    occurredAt: text("occurred_at").notNull(),
+    createdAt,
+  },
+  (table) => [
+    uniqueIndex("research_node_events_sequence_idx").on(table.nodeId, table.sequence),
+    uniqueIndex("research_node_events_payload_idx").on(table.payloadHash, table.eventType),
+  ],
+);
+
+export const externalWorks = sqliteTable(
+  "external_works",
+  {
+    id: text("id").primaryKey(),
+    sourceSystem: text("source_system").notNull(),
+    sourceUrl: text("source_url").notNull(),
+    sourceObjectId: text("source_object_id").notNull(),
+    sourceRevision: text("source_revision").notNull(),
+    title: text("title").notNull(),
+    contentHash: text("content_hash").notNull(),
+    sourceLicense: text("source_license").notNull(),
+    retrievedAt: text("retrieved_at").notNull(),
+    assertedByPersonId: text("asserted_by_person_id").references(() => persons.id, { onDelete: "restrict" }),
+    createdAt,
+  },
+  (table) => [
+    uniqueIndex("external_works_source_revision_idx").on(table.sourceSystem, table.sourceObjectId, table.sourceRevision),
+    index("external_works_asserted_by_idx").on(table.assertedByPersonId, table.retrievedAt),
+  ],
+);
+
+export const externalWorkProblemLinks = sqliteTable(
+  "external_work_problem_links",
+  {
+    externalWorkId: text("external_work_id").notNull().references(() => externalWorks.id, { onDelete: "restrict" }),
+    problemRevisionId: text("problem_revision_id").notNull().references(() => problemRevisions.id, { onDelete: "restrict" }),
+    relation: text("relation", { enum: ["prior_work"] }).notNull().default("prior_work"),
+    assertedByPersonId: text("asserted_by_person_id").notNull().references(() => persons.id, { onDelete: "restrict" }),
+    recordedAt: text("recorded_at").notNull(),
+  },
+  (table) => [
+    primaryKey({ columns: [table.externalWorkId, table.problemRevisionId, table.relation] }),
+    index("external_work_problem_links_problem_idx").on(table.problemRevisionId, table.recordedAt),
+  ],
+);
+
+export const externalAttributions = sqliteTable(
+  "external_attributions",
+  {
+    id: text("id").primaryKey(),
+    externalWorkId: text("external_work_id").notNull().references(() => externalWorks.id, { onDelete: "restrict" }),
+    displayName: text("display_name").notNull(),
+    persistentIdScheme: text("persistent_id_scheme"),
+    persistentId: text("persistent_id"),
+    role: text("role", { enum: ["author", "formalizer", "prover", "reviewer", "maintainer"] }).notNull(),
+    assertionStatus: text("assertion_status", { enum: ["source_asserted", "curator_reviewed", "author_confirmed"] }).notNull(),
+    assertedByPersonId: text("asserted_by_person_id").references(() => persons.id, { onDelete: "restrict" }),
+    evidenceUrl: text("evidence_url").notNull(),
+    createdAt,
+  },
+  (table) => [
+    uniqueIndex("external_attributions_identity_idx").on(table.externalWorkId, table.displayName, table.role, table.evidenceUrl),
+    index("external_attributions_work_idx").on(table.externalWorkId, table.assertionStatus),
+  ],
+);
+
+export const researchNodeCitations = sqliteTable(
+  "research_node_citations",
+  {
+    researchNodeId: text("research_node_id").notNull().references(() => researchNodes.id, { onDelete: "restrict" }),
+    externalWorkId: text("external_work_id").notNull().references(() => externalWorks.id, { onDelete: "restrict" }),
+    relation: text("relation", { enum: ["builds_on", "formalizes", "refutes", "reproduces"] }).notNull(),
+    declaredByPayloadHash: text("declared_by_payload_hash").notNull().references(() => researchNodes.payloadHash, { onDelete: "restrict" }),
+    recordedAt: text("recorded_at").notNull(),
+  },
+  (table) => [
+    primaryKey({ columns: [table.researchNodeId, table.externalWorkId, table.relation] }),
+    index("research_node_citations_work_idx").on(table.externalWorkId, table.recordedAt),
   ],
 );
 

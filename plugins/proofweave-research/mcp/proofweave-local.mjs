@@ -35,6 +35,9 @@ const toolDefinitions = [
   tool("continue_research", "Continue the only active Proofweave research target for this connected Agent. If more than one target is active, it returns a short choice list instead of guessing. It never reads local files, records progress, uploads evidence, runs Lean, or creates credit.", { type: "object", additionalProperties: false, properties: {} }),
   tool("create_attempt", "Create a bounded Proofweave Attempt for the connected Agent. Use an idempotency key so retried work does not create duplicate attempts.", { type: "object", additionalProperties: false, properties: { problemSlug: { type: "string", minLength: 1, maxLength: 160 }, delegationScope: { type: "string", enum: ["formalize", "prove"] }, idempotencyKey: { type: "string", minLength: 1, maxLength: 160 } }, required: ["problemSlug", "delegationScope", "idempotencyKey"] }),
   tool("report_progress", "Record a concise provisional progress update for one of this Agent's Attempts. This is not Lean verification or a contribution receipt.", { type: "object", additionalProperties: false, properties: { attemptId: { type: "string", minLength: 1, maxLength: 240 }, message: { type: "string", minLength: 1, maxLength: 4000 }, progressPercent: { type: "integer", minimum: 0, maximum: 100 }, idempotencyKey: { type: "string", minLength: 1, maxLength: 160 } }, required: ["attemptId", "message", "progressPercent", "idempotencyKey"] }),
+  tool("inspect_research_graph", "Read the shared checkpoint DAG for one source-pinned target. Nodes are structured public research progress, not Lean verification, independent review, novelty, or contribution credit.", { type: "object", additionalProperties: false, properties: { slug: { type: "string", minLength: 1, maxLength: 120 } }, required: ["slug"] }),
+  tool("prepare_research_checkpoint", "Prepare and sign one concise structured research checkpoint locally. It never publishes, uploads files, runs Lean, records verification, or creates credit.", { type: "object", additionalProperties: false, properties: { attemptId: { type: "string", minLength: 1, maxLength: 240 }, kind: { type: "string", enum: ["formalization", "hypothesis", "lemma", "proof_state", "proof_patch", "counterexample", "negative_result", "synthesis"] }, summary: { type: "string", minLength: 1, maxLength: 1200 }, parentNodeIds: { type: "array", maxItems: 8, items: { type: "string", minLength: 1, maxLength: 240 } }, proofStateHash: { anyOf: [{ type: "string", pattern: "^sha256:[a-f0-9]{64}$" }, { type: "null" }] }, artifactBundleHash: { anyOf: [{ type: "string", pattern: "^sha256:[a-f0-9]{64}$" }, { type: "null" }] }, citations: { type: "array", maxItems: 32, items: researchCheckpointCitationSchema() } }, required: ["attemptId", "kind", "summary"] }),
+  tool("publish_prepared_research_checkpoint", "Publish the exact locally signed checkpoint only after the owner approves its hash, summary, parents, and citations. A successful result is shared_unverified research progress only.", { type: "object", additionalProperties: false, properties: { checkpoint: { type: "object" }, expectedCheckpointHash: { type: "string", pattern: "^sha256:[a-f0-9]{64}$" }, ownerConfirmation: { type: "string", enum: ["I_CONFIRM_PUBLISH_CHECKPOINT"] } }, required: ["checkpoint", "expectedCheckpointHash", "ownerConfirmation"] }),
   tool("list_attempts", "List bounded Attempts attributed to this exact local Agent.", { type: "object", additionalProperties: false, properties: { limit: { type: "integer", minimum: 1, maximum: 100 } } }),
   tool("get_attempt", "Read one Attempt attributed to this exact local Agent.", { type: "object", additionalProperties: false, properties: { attemptId: { type: "string", minLength: 1, maxLength: 240 } }, required: ["attemptId"] }),
   tool("preview_local_evidence", "Preview up to six explicitly owner-selected local files for one authorized Attempt. It returns only each filename, byte size, and SHA-256 hash; it never uploads, stages, runs, or verifies anything.", { type: "object", additionalProperties: false, properties: { attemptId: { type: "string", minLength: 1, maxLength: 240 }, paths: { type: "array", minItems: 1, maxItems: 6, items: { type: "string", minLength: 1, maxLength: 1000 } } }, required: ["attemptId", "paths"] }),
@@ -83,6 +86,8 @@ async function handleRequest(method, params) {
   if (name === "connection_status") return connectionResult(await connectionStatus());
   if (name === "begin_research") return connectionResult(await beginResearch(args));
   if (name === "continue_research") return connectionResult(await continueResearch());
+  if (name === "prepare_research_checkpoint") return connectionResult(await prepareResearchCheckpoint(args));
+  if (name === "publish_prepared_research_checkpoint") return connectionResult(await publishPreparedResearchCheckpoint(args));
   if (name === "preview_local_evidence") return connectionResult(await previewLocalEvidence(args));
   if (name === "submit_local_evidence") return connectionResult(await submitLocalEvidence(args));
   if (name === "prepare_workspace_bundle_v2") return connectionResult(await prepareWorkspaceBundleV2(args));
@@ -174,6 +179,267 @@ async function continueResearch() {
   const attempt = active[0];
   const target = await requireRemoteProblem(attempt.problemSlug);
   return researchStartResult({ attempt, target, created: false });
+}
+
+async function prepareResearchCheckpoint(args) {
+  const config = await requireConfig();
+  if (!config.privateKeyJwk || !config.agentId || !config.agentPublicKey) {
+    throw new Error("This local Agent key is unavailable. Reconnect Proofweave before preparing a research checkpoint.");
+  }
+  const attemptId = requiredLocalString(args.attemptId, "attemptId", 240);
+  const attempt = await requireRemoteAttempt(attemptId);
+  const problem = await requireRemoteProblem(attempt.problemSlug);
+  const kind = normalizeResearchCheckpointKind(args.kind);
+  const summary = normalizeResearchCheckpointSummary(args.summary);
+  const parentNodeIds = normalizeResearchParentNodeIds(args.parentNodeIds ?? [], kind);
+  const proofStateHash = optionalResearchHash(args.proofStateHash, "proofStateHash");
+  const artifactBundleHash = optionalResearchHash(args.artifactBundleHash, "artifactBundleHash");
+  const citations = normalizeResearchCitations(args.citations ?? []);
+  const graph = parseRemoteToolJson(
+    await callRemoteTool("inspect_research_graph", { slug: attempt.problemSlug }),
+    "inspect_research_graph",
+  )?.graph;
+  if (!graph || !Array.isArray(graph.nodes) || !Array.isArray(graph.externalWorks)) {
+    throw new Error("Proofweave did not return the shared research graph for this target.");
+  }
+  const visibleNodeIds = new Set(graph.nodes.map((node) => node?.id).filter((id) => typeof id === "string"));
+  if (parentNodeIds.some((id) => !visibleNodeIds.has(id))) {
+    throw new Error("Every parentNodeId must already exist in the shared graph for this target.");
+  }
+  const visibleWorkIds = new Set(graph.externalWorks.map((work) => work?.id).filter((id) => typeof id === "string"));
+  if (citations.some((citation) => !visibleWorkIds.has(citation.externalWorkId))) {
+    throw new Error("Every cited historical work must already be imported into this target's shared graph.");
+  }
+  const checkpoint = createSignedResearchCheckpoint({
+    config,
+    attempt,
+    problem,
+    kind,
+    summary,
+    parentNodeIds,
+    proofStateHash,
+    artifactBundleHash,
+    citations,
+  });
+  const checkpointHash = sha256Canonical(checkpoint);
+  return {
+    operation: "research_checkpoint_prepared",
+    published: false,
+    uploadedFiles: false,
+    verificationState: "not_recorded",
+    checkpointHash,
+    checkpoint,
+    publishInput: { checkpoint, expectedCheckpointHash: checkpointHash },
+    next: "Show the owner this concise summary, kind, parent nodes, citations, and checkpoint hash. Publish only after they explicitly approve this exact draft; no raw prompt or chain-of-thought belongs in a checkpoint.",
+  };
+}
+
+async function publishPreparedResearchCheckpoint(args) {
+  if (args.ownerConfirmation !== "I_CONFIRM_PUBLISH_CHECKPOINT") {
+    throw new Error("The owner must explicitly approve this exact research checkpoint before it becomes public.");
+  }
+  const expectedCheckpointHash = requireSha256(args.expectedCheckpointHash, "expectedCheckpointHash");
+  const config = await requireConfig();
+  const checkpoint = normalizeLocalResearchCheckpoint(args.checkpoint);
+  const checkpointHash = sha256Canonical(checkpoint);
+  if (checkpointHash !== expectedCheckpointHash) {
+    throw new Error("The prepared research checkpoint changed after the owner reviewed it. Prepare and review a fresh draft.");
+  }
+  if (checkpoint.agentEvent.agentId !== config.agentId || checkpoint.agentEvent.agentPublicKey !== config.agentPublicKey) {
+    throw new Error("The prepared research checkpoint is not signed by this connected local Agent.");
+  }
+  const attempt = await requireRemoteAttempt(checkpoint.attemptId);
+  if (attempt.problemRevisionId !== checkpoint.problemRevisionId || attempt.agentId !== config.agentId) {
+    throw new Error("The prepared research checkpoint no longer matches this Agent's authorized Attempt.");
+  }
+  assertLocalResearchCheckpointSignature(checkpoint);
+  const published = parseRemoteToolJson(
+    await callRemoteTool("publish_research_checkpoint", { checkpoint }),
+    "publish_research_checkpoint",
+  );
+  return {
+    operation: "research_checkpoint_published",
+    published: true,
+    uploadedFiles: false,
+    checkpointHash,
+    ...published,
+    verificationState: "shared_research_only",
+    contributionState: "not_credited",
+    next: "The checkpoint is now an immutable public branch node. It still needs separately staged evidence, Lean execution, independent review, and receipt policy before any verified contribution claim.",
+  };
+}
+
+function createSignedResearchCheckpoint({ config, attempt, problem, kind, summary, parentNodeIds, proofStateHash, artifactBundleHash, citations }) {
+  const checkpoint = {
+    protocolVersion: "pw-research-checkpoint-v1",
+    id: `research-node:${randomUUID()}`,
+    attemptId: attempt.id,
+    problemRevisionId: problem.id,
+    kind,
+    summary,
+    parentNodeIds,
+    proofStateHash,
+    artifactBundleHash,
+    citations,
+    agentEvent: {
+      id: `research-checkpoint-event:${randomUUID()}`,
+      agentId: config.agentId,
+      agentPublicKey: config.agentPublicKey,
+      occurredAt: new Date().toISOString(),
+      signature: "A".repeat(86),
+    },
+    payloadHash: `sha256:${"0".repeat(64)}`,
+  };
+  checkpoint.payloadHash = sha256Canonical(researchCheckpointSigningPayload(checkpoint));
+  const key = createPrivateKey({ key: config.privateKeyJwk, format: "jwk" });
+  checkpoint.agentEvent.signature = sign(
+    null,
+    Buffer.from(canonicalJson(researchCheckpointSigningPayload(checkpoint))),
+    key,
+  ).toString("base64url");
+  return normalizeLocalResearchCheckpoint(checkpoint);
+}
+
+function researchCheckpointSigningPayload(checkpoint) {
+  const normalized = normalizeLocalResearchCheckpoint(checkpoint);
+  return {
+    protocolVersion: normalized.protocolVersion,
+    id: normalized.id,
+    attemptId: normalized.attemptId,
+    problemRevisionId: normalized.problemRevisionId,
+    kind: normalized.kind,
+    summary: normalized.summary,
+    parentNodeIds: normalized.parentNodeIds,
+    proofStateHash: normalized.proofStateHash,
+    artifactBundleHash: normalized.artifactBundleHash,
+    citations: normalized.citations,
+    agentEvent: {
+      id: normalized.agentEvent.id,
+      agentId: normalized.agentEvent.agentId,
+      agentPublicKey: normalized.agentEvent.agentPublicKey,
+      occurredAt: normalized.agentEvent.occurredAt,
+    },
+  };
+}
+
+function assertLocalResearchCheckpointSignature(checkpoint) {
+  if (checkpoint.payloadHash !== sha256Canonical(researchCheckpointSigningPayload(checkpoint))) {
+    throw new Error("The prepared research checkpoint payload hash is invalid.");
+  }
+  const publicKey = createPublicKey({ key: { kty: "OKP", crv: "Ed25519", x: checkpoint.agentEvent.agentPublicKey }, format: "jwk" });
+  if (!verify(
+    null,
+    Buffer.from(canonicalJson(researchCheckpointSigningPayload(checkpoint))),
+    publicKey,
+    Buffer.from(checkpoint.agentEvent.signature, "base64url"),
+  )) {
+    throw new Error("The prepared research checkpoint signature is invalid.");
+  }
+}
+
+function normalizeLocalResearchCheckpoint(value) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) throw new Error("checkpoint must be an object.");
+  const allowed = ["protocolVersion", "id", "attemptId", "problemRevisionId", "kind", "summary", "parentNodeIds", "proofStateHash", "artifactBundleHash", "citations", "agentEvent", "payloadHash"];
+  const unexpected = Object.keys(value).find((key) => !allowed.includes(key));
+  if (unexpected) throw new Error(`checkpoint contains unsupported field ${unexpected}.`);
+  if (value.protocolVersion !== "pw-research-checkpoint-v1") throw new Error("checkpoint protocolVersion is unsupported.");
+  const kind = normalizeResearchCheckpointKind(value.kind);
+  const id = requiredLocalString(value.id, "checkpoint.id", 240);
+  const attemptId = requiredLocalString(value.attemptId, "checkpoint.attemptId", 240);
+  const problemRevisionId = requiredLocalString(value.problemRevisionId, "checkpoint.problemRevisionId", 240);
+  const summary = normalizeResearchCheckpointSummary(value.summary);
+  const parentNodeIds = normalizeResearchParentNodeIds(value.parentNodeIds, kind, id);
+  const proofStateHash = optionalResearchHash(value.proofStateHash, "checkpoint.proofStateHash");
+  const artifactBundleHash = optionalResearchHash(value.artifactBundleHash, "checkpoint.artifactBundleHash");
+  const citations = normalizeResearchCitations(value.citations);
+  const agentEvent = value.agentEvent;
+  if (!agentEvent || typeof agentEvent !== "object" || Array.isArray(agentEvent)) throw new Error("checkpoint.agentEvent must be an object.");
+  const agentEventAllowed = ["id", "agentId", "agentPublicKey", "occurredAt", "signature"];
+  const agentEventUnexpected = Object.keys(agentEvent).find((key) => !agentEventAllowed.includes(key));
+  if (agentEventUnexpected) throw new Error(`checkpoint.agentEvent contains unsupported field ${agentEventUnexpected}.`);
+  const normalizedEvent = {
+    id: requiredLocalString(agentEvent.id, "checkpoint.agentEvent.id", 240),
+    agentId: requiredLocalString(agentEvent.agentId, "checkpoint.agentEvent.agentId", 240),
+    agentPublicKey: requireBase64UrlBytes(agentEvent.agentPublicKey, 32, "checkpoint.agentEvent.agentPublicKey"),
+    occurredAt: requireUtcInstant(agentEvent.occurredAt, "checkpoint.agentEvent.occurredAt"),
+    signature: requireBase64UrlBytes(agentEvent.signature, 64, "checkpoint.agentEvent.signature"),
+  };
+  return {
+    protocolVersion: "pw-research-checkpoint-v1",
+    id,
+    attemptId,
+    problemRevisionId,
+    kind,
+    summary,
+    parentNodeIds,
+    proofStateHash,
+    artifactBundleHash,
+    citations,
+    agentEvent: normalizedEvent,
+    payloadHash: requireSha256(value.payloadHash, "checkpoint.payloadHash"),
+  };
+}
+
+function normalizeResearchCheckpointKind(value) {
+  const kinds = ["formalization", "hypothesis", "lemma", "proof_state", "proof_patch", "counterexample", "negative_result", "synthesis"];
+  if (!kinds.includes(value)) throw new Error("kind must be a supported structured research milestone.");
+  return value;
+}
+
+function normalizeResearchCheckpointSummary(value) {
+  if (typeof value !== "string" || value.length < 1 || value.length > 1200 || value !== value.trim() || value.includes("\0") || value.split("\n").length > 12) {
+    throw new Error("summary must be concise, trimmed structured output of at most 1,200 characters and 12 lines; do not include prompts or chain-of-thought.");
+  }
+  return value;
+}
+
+function normalizeResearchParentNodeIds(value, kind, checkpointId = null) {
+  if (!Array.isArray(value) || value.length > 8) throw new Error("parentNodeIds must contain at most eight checkpoint identifiers.");
+  const normalized = value.map((entry) => requiredLocalString(entry, "Each parentNodeId", 240));
+  if (new Set(normalized).size !== normalized.length || (checkpointId && normalized.includes(checkpointId))) {
+    throw new Error("parentNodeIds must be unique and cannot contain the checkpoint itself.");
+  }
+  normalized.sort();
+  if (kind === "synthesis" && normalized.length < 2) throw new Error("A synthesis checkpoint requires at least two parent nodes.");
+  return normalized;
+}
+
+function normalizeResearchCitations(value) {
+  if (!Array.isArray(value) || value.length > 32) throw new Error("citations must contain at most 32 imported historical works.");
+  const relations = ["builds_on", "formalizes", "refutes", "reproduces"];
+  const normalized = value.map((citation) => {
+    if (!citation || typeof citation !== "object" || Array.isArray(citation)) throw new Error("Each citation must be an object.");
+    const unexpected = Object.keys(citation).find((key) => !["externalWorkId", "relation"].includes(key));
+    if (unexpected) throw new Error(`citation contains unsupported field ${unexpected}.`);
+    if (!relations.includes(citation.relation)) throw new Error("citation relation is invalid.");
+    return { externalWorkId: requiredLocalString(citation.externalWorkId, "citation.externalWorkId", 240), relation: citation.relation };
+  });
+  const keys = normalized.map((citation) => `${citation.externalWorkId}\0${citation.relation}`);
+  if (new Set(keys).size !== keys.length) throw new Error("citations must be unique.");
+  normalized.sort((left, right) => {
+    const leftKey = `${left.externalWorkId}\0${left.relation}`;
+    const rightKey = `${right.externalWorkId}\0${right.relation}`;
+    return leftKey < rightKey ? -1 : leftKey > rightKey ? 1 : 0;
+  });
+  return normalized;
+}
+
+function optionalResearchHash(value, label) {
+  return value === undefined || value === null ? null : requireSha256(value, label);
+}
+
+function requireUtcInstant(value, label) {
+  if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{3})?Z$/.test(value) || !Number.isFinite(Date.parse(value))) {
+    throw new Error(`${label} must be an ISO-8601 UTC instant.`);
+  }
+  return value;
+}
+
+function requireBase64UrlBytes(value, length, label) {
+  if (typeof value !== "string" || !/^[A-Za-z0-9_-]+$/.test(value) || Buffer.from(value, "base64url").byteLength !== length) {
+    throw new Error(`${label} must be ${length}-byte unpadded base64url.`);
+  }
+  return value;
 }
 
 async function previewLocalEvidence(args) {
@@ -692,6 +958,18 @@ function expectedBundleArtifactHashesSchema() {
       lakeManifest: { type: "string", pattern: "^sha256:[a-f0-9]{64}$" },
     },
     required: ["sourceArchive", "patch", "lakeManifest"],
+  };
+}
+
+function researchCheckpointCitationSchema() {
+  return {
+    type: "object",
+    additionalProperties: false,
+    properties: {
+      externalWorkId: { type: "string", minLength: 1, maxLength: 240 },
+      relation: { type: "string", enum: ["builds_on", "formalizes", "refutes", "reproduces"] },
+    },
+    required: ["externalWorkId", "relation"],
   };
 }
 

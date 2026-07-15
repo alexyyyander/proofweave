@@ -18,19 +18,23 @@ export const dynamic = "force-dynamic";
 export default async function WorkbenchPage({
   searchParams,
 }: {
-  searchParams: Promise<{ target?: string | string[] }>;
+  searchParams: Promise<{ target?: string | string[]; parent?: string | string[] }>;
 }) {
   const user = await getChatGPTUser();
-  const targetSlug = requestedTargetSlug(await searchParams);
+  const resolvedSearchParams = await searchParams;
+  const targetSlug = requestedTargetSlug(resolvedSearchParams);
+  const parentNodeId = requestedParentNodeId(resolvedSearchParams);
   const { profile, attempts, runs, provisionalContributions, provisionalLedgerAvailable, storageAvailable } = await loadWorkbench(user);
   const catalogTargets = await loadCatalogTargets();
-  const returnTo = targetSlug ? `/workbench?target=${encodeURIComponent(targetSlug)}#research-launcher` : "/workbench";
+  const returnTo = targetSlug
+    ? `/workbench?target=${encodeURIComponent(targetSlug)}${parentNodeId ? `&parent=${encodeURIComponent(parentNodeId)}` : ""}#research-launcher`
+    : "/workbench";
 
   return (
     <div className="site-shell app-shell">
       <Header active="workbench" />
       <main id="main-content" tabIndex={-1} className="workbench-main">
-        <WorkbenchClient profile={profile} initialAttempts={attempts} initialRuns={runs} initialProvisionalContributions={provisionalContributions} provisionalLedgerAvailable={provisionalLedgerAvailable} catalogTargets={catalogTargets} initialTargetSlug={targetSlug} isAuthenticated={Boolean(user)} signInPath={chatGPTSignInPath(returnTo)} storageAvailable={storageAvailable} />
+        <WorkbenchClient profile={profile} initialAttempts={attempts} initialRuns={runs} initialProvisionalContributions={provisionalContributions} provisionalLedgerAvailable={provisionalLedgerAvailable} catalogTargets={catalogTargets} initialTargetSlug={targetSlug} initialParentNodeId={parentNodeId} isAuthenticated={Boolean(user)} signInPath={chatGPTSignInPath(returnTo)} storageAvailable={storageAvailable} />
       </main>
       <Footer />
     </div>
@@ -93,4 +97,9 @@ async function loadCatalogTargets(): Promise<readonly CatalogProblem[]> {
 function requestedTargetSlug(searchParams: { target?: string | string[] }): string | null {
   const target = typeof searchParams.target === "string" ? searchParams.target.trim() : "";
   return target.length > 0 && target.length <= 120 ? target : null;
+}
+
+function requestedParentNodeId(searchParams: { parent?: string | string[] }): string | null {
+  const parent = typeof searchParams.parent === "string" ? searchParams.parent.trim() : "";
+  return parent.length > 0 && parent.length <= 240 ? parent : null;
 }

@@ -29,25 +29,34 @@ does not use a seeded Person, a copied token, or a pre-existing browser key.
    Agent's Attempt must not become the current workspace.
 6. In the Workspace, copy **Copy for Codex** into the connected Codex session.
    The instruction must include the Attempt ID and tell Codex to read it first.
-7. Ask Codex to work locally. Until there is a material local fact, no
+7. Ask Codex to inspect the target's shared research graph before choosing a
+   direction. It must distinguish source-backed prior works, root checkpoints,
+   derived branches, and open tips without calling any of them verified.
+8. Ask Codex to work locally. Until there is a material local fact, no
    `report_progress` call should occur. For a milestone, Codex must first show
    the proposed message and percentage and wait for the participant's explicit
    confirmation.
-8. After confirmation, use **Check recorded progress**. The Workspace should
+9. For a material milestone intended for the public graph, Codex must call
+   `prepare_research_checkpoint` first and show the participant the exact kind,
+   summary, parent IDs, citations, and checkpoint hash. It may publish only the
+   unchanged draft after `I_CONFIRM_PUBLISH_CHECKPOINT`. The result must say
+   `shared_unverified`, not Lean-verified, novel, reviewed, credited, or a
+   Contribution Receipt.
+10. After confirmation, use **Check recorded progress**. The Workspace should
    show the signed Agent event, still labelled provisional/agent-reported only;
    it must not claim Lean verification, independent review, novelty, or a
    Contribution Receipt.
-9. If the participant asks to prepare evidence, Codex must first ask them to
+11. If the participant asks to prepare evidence, Codex must first ask them to
    choose the smallest local file set. `preview_local_evidence` may return only
    each filename, byte size, and SHA-256 hash. It must not upload, stage,
    execute, or verify those files.
-10. If the participant explicitly says to submit that exact previewed list,
+12. If the participant explicitly says to submit that exact previewed list,
     Codex may call `submit_local_evidence` with the corresponding
     `expectedSha256` preview values and `ownerConfirmation: "I_CONFIRM_SUBMIT"`.
     If a file changed, it must require a new preview. The result must say that
     only immutable objects were stored; it must not claim a signed Bundle, Lean
     Run, review, or receipt.
-11. For a normal complete runnable evidence package, the participant selects
+13. For a normal complete runnable evidence package, the participant selects
     one local Git/Lean workspace root and its entry Lean file. Codex must first
     explain the local read scope, then call `prepare_workspace_bundle_v2` only
     after `ownerConfirmation: "I_CONFIRM_PREPARE_WORKSPACE_BUNDLE"`. It must
@@ -56,7 +65,7 @@ does not use a seeded Person, a copied token, or a pre-existing browser key.
     stop rather than silently include untracked, new, deleted, renamed, binary,
     or symlinked workspace files. The advanced three-artifact path requires a
     separate exact-file selection.
-12. Only after a second, explicit approval of that exact manifest and file list
+14. Only after a second, explicit approval of that exact manifest and file list
     may Codex call
     `stage_prepared_artifact_bundle` with
     `ownerConfirmation: "I_CONFIRM_STAGE_BUNDLE"`. A successful response must
@@ -71,5 +80,7 @@ does not use a seeded Person, a copied token, or a pre-existing browser key.
   local Agent and the participant's confirmation;
 - a different Agent's or expired certificate's Attempt is presented as the
   current research workspace; or
+- a checkpoint can cite an unlinked historical work, point across problem
+  revisions, or be published after its owner-reviewed hash changes; or
 - a private workspace file, prompt, model credential, or raw reasoning is sent
   to Proofweave without a separate, explicit evidence action.

@@ -10,6 +10,7 @@ import { activeLocalCodexInstallation, activeWorkDelegation } from "../lib/local
 export function LocalAgentHandoff({
   profile,
   attempt,
+  initialParentNodeId,
   isAuthenticated,
   signInPath,
   storageAvailable,
@@ -18,6 +19,7 @@ export function LocalAgentHandoff({
 }: {
   profile: DelegationProfile | null;
   attempt: McpAttempt | null;
+  initialParentNodeId: string | null;
   isAuthenticated: boolean;
   signInPath: string;
   storageAvailable: boolean;
@@ -66,7 +68,7 @@ export function LocalAgentHandoff({
     </section>;
   }
 
-  const codexInstruction = researchBrief({ agentLabel: agent.label, attempt });
+  const codexInstruction = researchBrief({ agentLabel: agent.label, attempt, parentNodeId: initialParentNodeId });
 
   const copyCodexInstruction = async () => {
     try {
@@ -184,7 +186,7 @@ function unavailableState({
   };
 }
 
-function researchBrief({ agentLabel, attempt }: { agentLabel: string; attempt: McpAttempt }): string {
+function researchBrief({ agentLabel, attempt, parentNodeId }: { agentLabel: string; attempt: McpAttempt; parentNodeId: string | null }): string {
   return `# Continue this Proofweave Attempt in Codex
 
 Use the connected Proofweave Research plugin on this computer. This instruction is local-only; it is not an Agent event, Lean result, or contribution receipt.
@@ -196,16 +198,20 @@ Use the connected Proofweave Research plugin on this computer. This instruction 
 - Delegated scope: ${attempt.delegationScope ?? "formalize"}
 - Agent label: ${agentLabel}
 - Attempt: ${attempt.id}
+${parentNodeId ? `- Selected parent checkpoint: ${parentNodeId}` : "- Selected parent checkpoint: none — inspect the graph before choosing whether to open or continue a branch"}
 
 ## Start safely
 
-1. Call \`get_attempt\` for ${attempt.id} before working, then inspect the pinned target and its existing events.
-2. Work only in the Lean project and toolchain I control. Keep prompts, reasoning, credentials, and unrelated files local.
-3. Do not record progress merely for exploration. Wait for a material local fact such as a checked file, reproducible command outcome, reusable lemma, refuted direction, or prepared evidence bundle.
+1. Call \`get_attempt\` for ${attempt.id}, then call \`inspect_research_graph\` for ${attempt.problemSlug} before working.
+${parentNodeId ? `2. Confirm that ${parentNodeId} is still visible on this exact problem revision, and treat it as the intended parent of the next public milestone.` : "2. Decide with me whether the next material milestone is an independent starting point or derives from one or more existing checkpoint nodes."}
+3. Work only in the Lean project and toolchain I control. Keep prompts, reasoning, credentials, and unrelated files local.
+4. Do not record progress merely for exploration. Wait for a material local fact such as a checked file, reproducible command outcome, reusable lemma, refuted direction, or prepared evidence bundle.
 
 ## Before recording anything
 
 When a material milestone exists, show me the exact concise message and percentage you propose to record. State where the local evidence lives, avoid private reasoning, and do not call \`report_progress\` unless I explicitly confirm. Use a fresh opaque idempotency key after confirmation.
+
+For a milestone that should join the public branch graph, call \`prepare_research_checkpoint\` first with the correct kind, concise summary, explicit parent node IDs, and any already imported historical citations. This signs a draft locally and publishes nothing. Show me the exact checkpoint hash, summary, parents, and citations. Only after I approve that exact draft, call \`publish_prepared_research_checkpoint\` with \`ownerConfirmation: "I_CONFIRM_PUBLISH_CHECKPOINT"\`. The result is public \`shared_unverified\` progress—not Lean verification, novelty, review, contribution credit, or a Receipt.
 
 ## Prepare one complete Bundle locally
 

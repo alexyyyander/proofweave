@@ -103,6 +103,9 @@ test("the local Connector exposes connection and bounded research tools over STD
       "continue_research",
       "create_attempt",
       "report_progress",
+      "inspect_research_graph",
+      "prepare_research_checkpoint",
+      "publish_prepared_research_checkpoint",
       "list_attempts",
       "get_attempt",
       "preview_local_evidence",
@@ -112,6 +115,121 @@ test("the local Connector exposes connection and bounded research tools over STD
       "stage_prepared_artifact_bundle",
     ],
   );
+});
+
+test("the local Connector publishes only an owner-confirmed, hash-bound research checkpoint", async () => {
+  let publishedCheckpoint = null;
+  const pair = generateKeyPairSync("ed25519");
+  const publicKeyJwk = pair.publicKey.export({ format: "jwk" });
+  const privateKeyJwk = pair.privateKey.export({ format: "jwk" });
+  const server = createServer((request, response) => {
+    let body = "";
+    request.setEncoding("utf8");
+    request.on("data", (chunk) => { body += chunk; });
+    request.on("end", () => {
+      const payload = JSON.parse(body);
+      const { name, arguments: args } = payload.params;
+      if (name === "get_attempt") return respondTool(response, {
+        attempt: {
+          id: args.attemptId,
+          problemSlug: "fixture-target",
+          problemRevisionId: "revision:fixture-target",
+          agentId: "urn:pw:agent:test",
+          status: "active",
+        },
+      });
+      if (name === "inspect_problem") return respondTool(response, {
+        id: "revision:fixture-target",
+        slug: "fixture-target",
+        title: "Fixture target",
+        declaration: {
+          qualifiedName: "Proofweave.Fixture.target",
+          sourceContentHash: `sha256:${"1".repeat(64)}`,
+        },
+        source: {
+          revisionTag: "fixture:1",
+          leanToolchain: "leanprover/lean4:v4.27.0",
+          mathlibRevision: "fixture-mathlib",
+        },
+      });
+      if (name === "inspect_research_graph") return respondTool(response, {
+        problem: { id: "revision:fixture-target", slug: "fixture-target" },
+        graph: { nodes: [], edges: [], externalWorks: [] },
+      });
+      if (name === "publish_research_checkpoint") {
+        publishedCheckpoint = args.checkpoint;
+        return respondTool(response, {
+          node: { id: args.checkpoint.id, state: "shared_unverified" },
+          graphState: "shared_unverified",
+          contributionState: "not_credited",
+        });
+      }
+      response.writeHead(400, { "content-type": "application/json" });
+      response.end(JSON.stringify({ error: { message: `Unexpected tool: ${name}` } }));
+    });
+  });
+  const port = await listen(server);
+  const fixtureRoot = await mkdtemp(join(tmpdir(), "proofweave-research-checkpoint-"));
+  try {
+    assert.equal(typeof publicKeyJwk.x, "string");
+    const baseUrl = `http://127.0.0.1:${port}`;
+    const configPath = join(fixtureRoot, "connector.json");
+    await writeFile(configPath, JSON.stringify({
+      version: 1,
+      baseUrl,
+      agentId: "urn:pw:agent:test",
+      agentLabel: "Test Codex",
+      agentPublicKey: publicKeyJwk.x,
+      privateKeyJwk,
+      clientId: "client:test",
+      accessToken: "access-test",
+      refreshToken: "refresh-test",
+      accessTokenExpiresAt: new Date(Date.now() + 60 * 60 * 1_000).toISOString(),
+    }));
+    const env = { ...process.env, PROOFWEAVE_BASE_URL: baseUrl, PROOFWEAVE_CONNECTOR_CONFIG: configPath };
+
+    const preparedResponse = await callConnectorTool("prepare_research_checkpoint", {
+      attemptId: "attempt:test",
+      kind: "lemma",
+      summary: "Reduced the target to a reusable bounded lemma.",
+    }, env);
+    assert.equal(preparedResponse.error, undefined);
+    const prepared = JSON.parse(preparedResponse.result.content[0].text);
+    assert.equal(prepared.published, false);
+    assert.equal(prepared.uploadedFiles, false);
+    assert.equal(prepared.checkpoint.agentEvent.agentId, "urn:pw:agent:test");
+    assert.match(prepared.checkpointHash, /^sha256:[a-f0-9]{64}$/);
+
+    const unconfirmed = await callConnectorTool("publish_prepared_research_checkpoint", {
+      ...prepared.publishInput,
+      ownerConfirmation: "NO",
+    }, env);
+    assert.match(unconfirmed.error.message, /explicitly approve/);
+    assert.equal(publishedCheckpoint, null);
+
+    const changed = structuredClone(prepared.checkpoint);
+    changed.summary = "Changed after review.";
+    const tampered = await callConnectorTool("publish_prepared_research_checkpoint", {
+      checkpoint: changed,
+      expectedCheckpointHash: prepared.checkpointHash,
+      ownerConfirmation: "I_CONFIRM_PUBLISH_CHECKPOINT",
+    }, env);
+    assert.match(tampered.error.message, /changed after the owner reviewed it/);
+    assert.equal(publishedCheckpoint, null);
+
+    const approvedResponse = await callConnectorTool("publish_prepared_research_checkpoint", {
+      ...prepared.publishInput,
+      ownerConfirmation: "I_CONFIRM_PUBLISH_CHECKPOINT",
+    }, env);
+    assert.equal(approvedResponse.error, undefined);
+    const approved = JSON.parse(approvedResponse.result.content[0].text);
+    assert.equal(approved.published, true);
+    assert.equal(approved.verificationState, "shared_research_only");
+    assert.equal(approved.contributionState, "not_credited");
+    assert.deepEqual(publishedCheckpoint, prepared.checkpoint);
+  } finally {
+    await Promise.all([close(server), rm(fixtureRoot, { recursive: true, force: true })]);
+  }
 });
 
 test("the local Connector starts or resumes a selected research target without exposing protocol fields", async () => {

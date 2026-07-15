@@ -26,6 +26,11 @@ import {
   artifactBundleSigningPayloadHash,
 } from "../packages/protocol/artifact-bundle.mjs";
 import { canonicalJson } from "../packages/protocol/canonical-json.mjs";
+import { D1ResearchGraphStore } from "../services/research/d1-research-graph-store.mjs";
+import {
+  researchCheckpointPayloadHash,
+  researchCheckpointSigningPayload,
+} from "../packages/protocol/research-checkpoint.mjs";
 
 const migrationsRoot = new URL("../drizzle/", import.meta.url);
 let miniflare;
@@ -219,6 +224,81 @@ test("remote MCP D1 store pins catalog and Attempt work to the selected delegate
   assert.equal(progress.idempotentReplay, false);
   assert.equal(progress.event.type, "agent_reported");
   assert.equal((await store.getAttempt(principal, created.attempt.id)).attempt.events.length, 2);
+
+  const researchGraph = new D1ResearchGraphStore(database);
+  const historical = await researchGraph.importExternalWork("person:gateway-reviewer", {
+    problemRevisionId: "revision:gateway",
+    sourceSystem: "example.test",
+    sourceUrl: "https://example.test/prior-work/v1",
+    sourceObjectId: "prior-work",
+    sourceRevision: "v1",
+    title: "A source-backed prior result",
+    contentHash: sha("c"),
+    sourceLicense: "CC BY 4.0",
+    retrievedAt: "2026-07-15T00:00:00Z",
+    contributors: [{
+      displayName: "Previous Mathematician",
+      persistentIdScheme: null,
+      persistentId: null,
+      role: "author",
+      evidenceUrl: "https://example.test/prior-work/v1",
+    }],
+  });
+  assert.equal(historical.attributionState, "source_asserted");
+  const repeatedHistorical = await researchGraph.importExternalWork("person:gateway-reviewer", {
+    problemRevisionId: "revision:gateway",
+    sourceSystem: "example.test",
+    sourceUrl: "https://example.test/prior-work/v1",
+    sourceObjectId: "prior-work",
+    sourceRevision: "v1",
+    title: "A source-backed prior result",
+    contentHash: sha("c"),
+    sourceLicense: "CC BY 4.0",
+    retrievedAt: "2026-07-15T00:00:03Z",
+    contributors: [{
+      displayName: "Previous Mathematician",
+      persistentIdScheme: null,
+      persistentId: null,
+      role: "author",
+      evidenceUrl: "https://example.test/prior-work/v1",
+    }],
+  });
+  assert.equal(repeatedHistorical.created, false);
+  assert.equal(repeatedHistorical.externalWork.retrievedAt, "2026-07-15T00:00:00Z");
+  const sourceOnlyGraph = await store.inspectResearchGraph(principal, "gateway-target");
+  assert.equal(sourceOnlyGraph.graph.externalWorks.length, 1);
+  assert.deepEqual(sourceOnlyGraph.graph.externalWorks[0].citedBy, []);
+
+  const firstCheckpoint = await signedResearchCheckpoint({
+    id: "research-node:gateway-first",
+    eventId: "research-checkpoint-event:gateway-first",
+    attemptId: created.attempt.id,
+    summary: "Excluded one false direction and preserved the minimal remaining goal.",
+    kind: "negative_result",
+    citations: [{ externalWorkId: historical.externalWork.id, relation: "builds_on" }],
+    occurredAt: "2026-07-15T00:00:01Z",
+  });
+  const firstPublished = await store.publishResearchCheckpoint(principal, firstCheckpoint);
+  assert.equal(firstPublished.created, true);
+  assert.equal(firstPublished.node.state, "shared_unverified");
+  assert.equal(firstPublished.contributionState, "not_credited");
+  assert.equal((await store.publishResearchCheckpoint(principal, firstCheckpoint)).created, false);
+
+  const childCheckpoint = await signedResearchCheckpoint({
+    id: "research-node:gateway-child",
+    eventId: "research-checkpoint-event:gateway-child",
+    attemptId: created.attempt.id,
+    summary: "Derived a reusable intermediate lemma from the surviving goal.",
+    kind: "lemma",
+    parentNodeIds: [firstCheckpoint.id],
+    occurredAt: "2026-07-15T00:00:02Z",
+  });
+  await store.publishResearchCheckpoint(principal, childCheckpoint);
+  const sharedGraph = await store.inspectResearchGraph(principal, "gateway-target");
+  assert.deepEqual(sharedGraph.graph.nodes.map((node) => node.id), [firstCheckpoint.id, childCheckpoint.id]);
+  assert.deepEqual(sharedGraph.graph.edges.map((edge) => [edge.parentNodeId, edge.childNodeId]), [[firstCheckpoint.id, childCheckpoint.id]]);
+  assert.deepEqual(sharedGraph.graph.externalWorks[0].citedBy, [{ nodeId: firstCheckpoint.id, relation: "builds_on" }]);
+  assert.equal((await store.getAttempt(principal, created.attempt.id)).attempt.events.filter((event) => event.type === "checkpoint_published").length, 2);
 
   await assert.rejects(
     store.getAttempt(
@@ -904,4 +984,43 @@ async function signedBundleV2({ attemptId, archive, patch, lakeManifest, agentPu
     new TextEncoder().encode(canonicalJson(artifactBundleSigningPayload(bundle))),
   ));
   return bundle;
+}
+
+async function signedResearchCheckpoint({
+  id,
+  eventId,
+  attemptId,
+  summary,
+  kind,
+  parentNodeIds = [],
+  citations = [],
+  occurredAt,
+}) {
+  const checkpoint = {
+    protocolVersion: "pw-research-checkpoint-v1",
+    id,
+    attemptId,
+    problemRevisionId: "revision:gateway",
+    kind,
+    summary,
+    parentNodeIds,
+    proofStateHash: null,
+    artifactBundleHash: null,
+    citations,
+    agentEvent: {
+      id: eventId,
+      agentId: "agent:gateway-prover",
+      agentPublicKey: proverPublicKey,
+      occurredAt,
+      signature: "A".repeat(86),
+    },
+    payloadHash: sha("0"),
+  };
+  checkpoint.payloadHash = await researchCheckpointPayloadHash(checkpoint);
+  checkpoint.agentEvent.signature = base64Url(await crypto.subtle.sign(
+    "Ed25519",
+    proverKeyPair.privateKey,
+    new TextEncoder().encode(canonicalJson(researchCheckpointSigningPayload(checkpoint))),
+  ));
+  return checkpoint;
 }

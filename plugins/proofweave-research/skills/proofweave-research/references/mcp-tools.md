@@ -11,6 +11,9 @@ local-token prototype must not be configured for participant use.
 | `inspect_problem` | `catalog:read` | One source-pinned target and its distinct claims. |
 | `begin_research` | `catalog:read`, `attempt:read`, `attempt:create` | Convenience operation: inspect a selected pinned target and resume or create one provisional Attempt; never reads files, reports progress, uploads, runs Lean, or creates credit. |
 | `continue_research` | `catalog:read`, `attempt:read` | Resumes the only active target without an Attempt ID, or returns a choice list if more than one active target exists; never reads files, reports progress, uploads, runs Lean, or creates credit. |
+| `inspect_research_graph` | `catalog:read` | Public Agent-signed checkpoint nodes, explicit DAG edges, and source-backed prior works for one pinned target; never verification or credit. |
+| `prepare_research_checkpoint` | local only | Validates and signs a concise branch node locally; never publishes, uploads files, runs Lean, or creates credit. |
+| `publish_prepared_research_checkpoint` | `progress:write` | After exact owner approval, publishes the unchanged signed node as `shared_unverified`; never verification, novelty, review, credit, or a Receipt. |
 | `create_attempt` | `attempt:create` | A provisional Person-owned Attempt. |
 | `list_attempts` | `attempt:read` | Recent Attempts bound to the exact authorized Agent and delegation certificate. |
 | `report_progress` | `progress:write` | An ordered, idempotent agent-reported event. |
@@ -42,41 +45,48 @@ Use this minimal order when the tools are available:
    exist.
 3. `list_frontier_problems`, `inspect_problem`, `list_attempts`, and
    `create_attempt` remain available for advanced recovery and audit.
-4. `report_progress` with one concise event and a fresh idempotency key.
-5. Before an evidence file is opened or sent, ask the owner to approve the
+4. Call `inspect_research_graph` before choosing a direction. Read explicit
+   parents and source-backed prior works; do not silently duplicate a known
+   branch or treat an imported name as Proofweave-verified authorship.
+5. For a material public milestone, call `prepare_research_checkpoint` with
+   the exact parents and citations. Show the owner its complete concise draft
+   and hash. Publish only the unchanged draft with
+   `publish_prepared_research_checkpoint` after explicit confirmation.
+6. `report_progress` with one concise event and a fresh idempotency key.
+7. Before an evidence file is opened or sent, ask the owner to approve the
    smallest exact file list. Use `preview_local_evidence` only with those
    absolute paths. Its result is local metadata only; it cannot upload, stage,
    execute, or verify a file.
-6. Show the owner the final preview and explain that the selected file bytes
+8. Show the owner the final preview and explain that the selected file bytes
    will leave the computer. Only after explicit confirmation use
    `submit_local_evidence` with the matching `expectedSha256` preview list and
    `ownerConfirmation: "I_CONFIRM_SUBMIT"`. A changed file must be previewed
    again. Its successful result is `object_staged_only`, not a Bundle or Lean
    result.
-7. For the standard complete Bundle path, ask the owner to select the local
+9. For the standard complete Bundle path, ask the owner to select the local
    Git/Lean workspace root and entry Lean file. Explain the local read scope,
    then call `prepare_workspace_bundle_v2` only with
    `ownerConfirmation: "I_CONFIRM_PREPARE_WORKSPACE_BUNDLE"`. It generates
    the source archive, normalized patch, Lake manifest, final tracked-file
    tree, and signed draft locally. It accepts modifications to existing tracked
    text files only and returns no uploaded bytes.
-8. If the workspace needs new, deleted, renamed, binary, symlinked, or
+10. If the workspace needs new, deleted, renamed, binary, symlinked, or
    untracked files, stop and ask the owner to select the three exact artifacts
    for the advanced `prepare_artifact_bundle_v2` flow instead; never guess how
    to include extra files.
-9. Show the owner that manifest hash and three-file list. Only after explicit
+11. Show the owner that manifest hash and three-file list. Only after explicit
    confirmation call `stage_prepared_artifact_bundle` with exactly the draft,
    matching `expectedArtifactSha256`, matching `expectedBundleHash`, and
    `ownerConfirmation: "I_CONFIRM_STAGE_BUNDLE"`. Its successful result is
    `bundle_staged_only`, not a Lean result.
-10. If the remote Runner dispatch is configured, use `request_runner_run` with
+12. If the remote Runner dispatch is configured, use `request_runner_run` with
    the staged Bundle hash and a fresh idempotency key. A `queued` response is
    only an operational request; use `get_runner_run` only with that exact
    Attempt/Run pair to observe its lifecycle. If work must stop, use
    `cancel_runner_run` for that same pair; a retry keeps the original
    cancellation record. Wait for separately recorded Runner evidence before
    treating a running cancellation as terminal.
-11. Only an assigned, differently owned review Agent can use
+13. Only an assigned, differently owned review Agent can use
    `submit_verification_attestation` after its own evidence-based decision.
 
 Good progress text names a local observable fact, for example: “Added

@@ -28,6 +28,8 @@ function fixtureStore() {
     async inspectProblem(_principal, slug) { return { slug }; },
     async createAttempt(_principal, input) { return { id: "attempt:test", ...input }; },
     async reportProgress(_principal, input) { return { id: "event:test", ...input }; },
+    async inspectResearchGraph(_principal, slug) { return { problem: { slug }, graph: { nodes: [], edges: [], externalWorks: [] } }; },
+    async publishResearchCheckpoint(_principal, checkpoint) { return { node: checkpoint, graphState: "shared_unverified" }; },
     async listAttempts() { return { attempts: [{ id: "attempt:test" }], verificationState: "agent_reported_only" }; },
     async getAttempt(_principal, attemptId) { return { id: attemptId }; },
     async putArtifactObject(_principal, input) { return { object: input, storageState: "object_staged_only" }; },

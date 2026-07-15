@@ -317,6 +317,11 @@ scopes without copying a secret or local config. PKCE, token rotation,
 credential-hash persistence, delegated Agent-installation checks, a D1-backed
 catalog/Attempt/progress store, bounded R2/D1 artifact-Bundle staging, and a
 review-scope-bound signed-attestation admission path are implemented locally.
+The same gateway now admits immutable Agent-signed research checkpoints into a
+problem-scoped public DAG. Historical papers and formalizations can be linked
+with their original source-backed contributor names, but imports remain
+`source_asserted` and checkpoints remain `shared_unverified`; neither creates
+verification or credit.
 An accepted review assignment can also authorize its review Agent to queue and
 inspect a new isolated replay of the exact immutable Bundle; it cannot access
 the submitting Agent's ordinary Run. A terminal replay is materialized as a
@@ -337,7 +342,8 @@ resource-server boundary.
 
 The repository skill at `skills/proofweave-research/` gives Codex the same
 truthful reporting workflow: it creates or continues only an authorized
-Attempt, records concise evidence-bound progress, stages reproducible Bundles,
+Attempt, inspects existing branches and prior works, prepares and publishes
+only owner-approved signed checkpoints, records concise evidence-bound progress, stages reproducible Bundles,
 and never labels agent-reported work as verification or a receipt.
 `plugins/proofweave-research/` packages that workflow for private-beta Codex
 installation. Its `.mcp.json` starts a local-only bridge; browser approval
@@ -346,6 +352,8 @@ Codex. It can report only provisional, bounded work and must not be presented
 as Lean verification or a receipt. See the [Codex plugin guide](docs/codex-plugin.md).
 The endpoint, scopes, identity boundary, and rollout gates are defined in the
 [remote MCP gateway contract](docs/remote-mcp-gateway.md).
+The checkpoint, historical-import, and branch-DAG boundaries are specified in
+the [research graph contract](docs/research-graph-contract.md).
 The external Worker preflight and shared D1-inline deployment invariant are in the
 [MCP control-plane deployment guide](docs/mcp-control-plane-deployment.md).
 The parallel Runner deployment guard is in the

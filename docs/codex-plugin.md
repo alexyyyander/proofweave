@@ -26,6 +26,14 @@ read the frontier, create the owner's bounded Attempts, and append provisional
 progress. They do not upload a workspace, run Lean remotely, submit review, or
 create a verification or contribution-receipt claim.
 
+The Connector can also inspect the shared research graph, prepare one concise
+Agent-signed checkpoint locally, and publish that exact hash only after a
+second owner confirmation. A published checkpoint is `shared_unverified`
+research progress. It may cite source-backed prior work and name explicit DAG
+parents, but it never contains raw reasoning or creates verification, novelty,
+credit, or a Receipt. See the
+[`research checkpoint graph contract`](research-graph-contract.md).
+
 ## Release sequence
 
 1. Keep the bundled Skill aligned with the canonical source and run

@@ -10,6 +10,12 @@ import { D1R2ArtifactStore } from "../artifacts/d1-r2-artifact-store.mjs";
 import { maxInlineArtifactObjectBytes } from "../artifacts/d1-inline-artifact-store.mjs";
 import { D1RunStore } from "../lean-runner/d1-run-store.mjs";
 import { closedAlphaAttemptLimits } from "../../packages/domain/attempt-policy.mjs";
+import {
+  D1ResearchGraphStore,
+  ResearchGraphConflictError,
+  ResearchGraphNotFoundError,
+  ResearchGraphValidationError,
+} from "../research/d1-research-graph-store.mjs";
 
 export class GatewayStoreAuthorizationError extends Error {
   constructor(message) {
@@ -64,6 +70,7 @@ export class D1RemoteMcpGatewayStore {
     this.verificationStore = new D1VerificationStore(database);
     this.artifactStore = artifactStore ?? (bucket ? new D1R2ArtifactStore({ database, bucket }) : null);
     this.runStore = new D1RunStore(database);
+    this.researchGraphStore = new D1ResearchGraphStore(database);
     this.runnerDispatcher = runnerDispatcher;
   }
 
@@ -202,6 +209,53 @@ export class D1RemoteMcpGatewayStore {
         .run();
     }
     return Object.freeze({ event, idempotentReplay: inserted.meta.changes !== 1, verificationState: "agent_reported_only" });
+  }
+
+  async inspectResearchGraph(principal, slug) {
+    assertPrincipalScope(principal, "catalog:read");
+    const problem = await this.inspectProblem(principal, slug);
+    if (!problem) throw new GatewayStoreNotFoundError("Frontier problem not found.");
+    return Object.freeze({
+      problem: Object.freeze({ id: problem.id, slug: problem.slug, title: problem.title }),
+      graph: await this.researchGraphStore.readProblemGraph(problem.id),
+      verificationState: "shared_research_only",
+    });
+  }
+
+  async publishResearchCheckpoint(principal, checkpoint) {
+    assertPrincipalScope(principal, "progress:write");
+    requireIdentifier(checkpoint?.attemptId, "Research checkpoint Attempt id", 160);
+    const installation = await this.requireInstallation(principal);
+    const attempt = await this.findAttemptForInstallation(principal, installation, checkpoint.attemptId);
+    if (!attempt) throw new GatewayStoreNotFoundError("Attempt not found.");
+    if (attempt.delegationScope !== "formalize" && attempt.delegationScope !== "prove") {
+      throw new GatewayStoreValidationError("Attempt does not have delegated formalize or prove authority.");
+    }
+    await this.requireInstallation(principal, attempt.delegationScope);
+    try {
+      const published = await this.researchGraphStore.publishCheckpoint({
+        principal,
+        installation,
+        attempt,
+        checkpoint,
+      });
+      return Object.freeze({
+        ...published,
+        verificationState: "shared_research_only",
+        contributionState: "not_credited",
+      });
+    } catch (error) {
+      if (error instanceof ResearchGraphNotFoundError) {
+        throw new GatewayStoreNotFoundError(error.message);
+      }
+      if (error instanceof ResearchGraphConflictError) {
+        throw new GatewayStoreConflictError(error.message);
+      }
+      if (error instanceof ResearchGraphValidationError) {
+        throw new GatewayStoreValidationError(error.message);
+      }
+      throw error;
+    }
   }
 
   async getAttempt(principal, attemptId) {

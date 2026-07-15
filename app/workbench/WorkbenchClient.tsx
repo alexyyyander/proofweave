@@ -18,6 +18,7 @@ export function WorkbenchClient({
   provisionalLedgerAvailable,
   catalogTargets,
   initialTargetSlug,
+  initialParentNodeId,
   isAuthenticated,
   signInPath,
   storageAvailable,
@@ -29,6 +30,7 @@ export function WorkbenchClient({
   provisionalLedgerAvailable: boolean;
   catalogTargets: readonly CatalogProblem[];
   initialTargetSlug: string | null;
+  initialParentNodeId: string | null;
   isAuthenticated: boolean;
   signInPath: string;
   storageAvailable: boolean;
@@ -40,7 +42,7 @@ export function WorkbenchClient({
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [refreshError, setRefreshError] = useState<string | null>(null);
   const [refreshedAt, setRefreshedAt] = useState<string | null>(null);
-  const activeAttempt = activeLocalAgentAttempt(profile, attempts);
+  const activeAttempt = selectVisibleAttempt(profile, attempts, initialTargetSlug);
 
   const refreshAttempts = async () => {
     if (!isAuthenticated || !storageAvailable || isRefreshing) return;
@@ -81,8 +83,8 @@ export function WorkbenchClient({
     <WorkbenchHero profile={profile} isAuthenticated={isAuthenticated} storageAvailable={storageAvailable} attemptCount={attempts.length} />
     <WorkspacePath />
     <FocusAction profile={profile} attempt={activeAttempt} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} isRefreshing={isRefreshing} refreshError={refreshError} refreshedAt={refreshedAt} onRefresh={() => { void refreshAttempts(); }} />
-    <ResearchLauncher profile={profile} attempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={initialTargetSlug} onAttemptReady={(attempt) => { setAttempts((current) => [attempt, ...current.filter((candidate) => candidate.id !== attempt.id)]); setRefreshError(null); }} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} />
-    <LocalAgentHandoff profile={profile} attempt={activeAttempt} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} isRefreshing={isRefreshing} onRefresh={() => { void refreshAttempts(); }} />
+    <ResearchLauncher profile={profile} attempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={initialTargetSlug} initialParentNodeId={initialParentNodeId} onAttemptReady={(attempt) => { setAttempts((current) => [attempt, ...current.filter((candidate) => candidate.id !== attempt.id)]); setRefreshError(null); }} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} />
+    <LocalAgentHandoff profile={profile} attempt={activeAttempt} initialParentNodeId={initialParentNodeId} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} isRefreshing={isRefreshing} onRefresh={() => { void refreshAttempts(); }} />
     <ResearchWorkstation attempt={activeAttempt} runs={runs} />
     <SubmissionReadiness attempt={activeAttempt} profile={profile} runs={runs} />
     <ProvisionalContributionLedger profile={profile} contributions={provisionalContributions} isAuthenticated={isAuthenticated} ledgerAvailable={isProvisionalLedgerAvailable} />
@@ -92,4 +94,25 @@ export function WorkbenchClient({
       <WorkspaceSettingsPrompt profile={profile} isAuthenticated={isAuthenticated} storageAvailable={storageAvailable} />
     </details>
   </>;
+}
+
+/**
+ * A local connection controls future Agent writes, not the owner's ability to
+ * inspect durable Attempt and Runner evidence. Prefer the target explicitly
+ * selected in the URL, then the connected Agent's active Attempt, then the
+ * most recent durable record returned by the owner-scoped repository.
+ */
+function selectVisibleAttempt(
+  profile: DelegationProfile | null,
+  attempts: readonly McpAttempt[],
+  targetSlug: string | null,
+): McpAttempt | null {
+  const requested = targetSlug
+    ? attempts.find((attempt) => attempt.status === "active" && attempt.problemSlug === targetSlug) ?? null
+    : null;
+  return requested
+    ?? activeLocalAgentAttempt(profile, attempts)
+    ?? attempts.find((attempt) => attempt.status === "active")
+    ?? attempts[0]
+    ?? null;
 }

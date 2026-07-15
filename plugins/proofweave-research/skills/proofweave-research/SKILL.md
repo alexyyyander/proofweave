@@ -1,6 +1,6 @@
 ---
 name: proofweave-research
-description: Guide Codex through a Proofweave formal-mathematics research attempt with pinned targets, local Lean evidence, and truthful OAuth-MCP reporting. Use when Codex needs to inspect a Proofweave problem, create or continue a delegated Attempt, report provisional Lean progress, stage a reproducible bundle, or submit an assigned independent review without overstating verification.
+description: Guide Codex through a Proofweave formal-mathematics research attempt with pinned targets, shared checkpoint branches, local Lean evidence, and truthful OAuth-MCP reporting. Use when Codex needs to inspect a Proofweave problem or research DAG, create or continue a delegated Attempt, publish an owner-approved signed checkpoint, stage a reproducible bundle, or submit an assigned independent review without overstating verification.
 ---
 
 # Proofweave Research
@@ -35,25 +35,39 @@ event was recorded; do not invent an HTTP request, bearer token, or upload.
 4. Explore in a local, pinned Lean project. Run the target command and retain
    the source diff, `lean-toolchain`, `lake-manifest.json`, diagnostics, and
    dependency list.
-5. Call `report_progress` only for a material milestone: a checked local file,
+5. Before choosing a public direction, call `inspect_research_graph` for the
+   exact target. Read its existing checkpoint nodes, explicit parent edges,
+   open tips, and imported historical works. Continue a named parent, open an
+   independent root, or synthesize at least two parents deliberately; never
+   infer a branch from raw private reasoning or silently repeat known work.
+6. When a material milestone should join the public DAG, call
+   `prepare_research_checkpoint` with a concise structured summary, the exact
+   parent node IDs, and only already imported historical citations. This signs
+   a draft locally and publishes nothing. Show the owner its kind, summary,
+   parents, citations, and checkpoint hash. Only after approval of that exact
+   draft call `publish_prepared_research_checkpoint` with
+   `ownerConfirmation: "I_CONFIRM_PUBLISH_CHECKPOINT"`. Its result is
+   `shared_unverified`: not Lean verification, novelty, review, contribution
+   credit, or a Receipt. Never put prompts or chain-of-thought in a checkpoint.
+7. Call `report_progress` only for a material milestone: a checked local file,
    a reproducible compiler outcome, a reusable lemma, a refuted direction, or
    a prepared Bundle. First show the owner the concise proposed message and
    percentage, then wait for explicit confirmation before recording it. State
    what changed and where the evidence lives. Never upload prompts,
    chain-of-thought, credentials, or unverifiable conclusions.
-6. Before any evidence file is read or uploaded, ask the owner to identify and
+8. Before any evidence file is read or uploaded, ask the owner to identify and
    explicitly approve the smallest local file set. Use
    `preview_local_evidence` only with those exact absolute paths; it returns
    local filenames, hashes, and sizes but does not upload, stage, execute, or
    verify anything.
-7. Only after the owner explicitly confirms the exact previewed list may you
+9. Only after the owner explicitly confirms the exact previewed list may you
    call `submit_local_evidence` with the corresponding `expectedSha256` list
    and `ownerConfirmation: "I_CONFIRM_SUBMIT"`. Tell the owner those file
    bytes will leave the computer. If a file changed, stop and preview again.
    Its successful result means immutable objects are stored only; it does not
    create a Bundle, execute Lean, verify a proof, or create a contribution
    record.
-8. For the normal executable v2 Bundle path, ask the owner to select one local
+10. For the normal executable v2 Bundle path, ask the owner to select one local
    Git/Lean workspace root and its relative Lean entry file. Before any local
    workspace read, explain that the Connector will create temporary evidence
    files outside the workspace and upload nothing. Only after explicit approval
@@ -63,20 +77,20 @@ event was recorded; do not invent an HTTP request, bearer token, or upload.
    local manifest itself. It accepts modifications to existing tracked text
    files only; never silently package untracked, new, deleted, renamed, binary,
    symlinked, or credential-like files.
-9. If that narrow local Git path cannot represent the work, ask the owner to
+11. If that narrow local Git path cannot represent the work, ask the owner to
    choose exactly `source.tar.zst`, `normalized.patch`, and
    `lake-manifest.json`, then use the advanced `prepare_artifact_bundle_v2`
    path with its final workspace tree and limits. Both preparation tools only
    create a local signed draft. Show the owner its manifest hash and all three
    file hashes; neither uploads, stages, executes, or verifies anything.
-10. Only after the owner explicitly approves that exact manifest and file list
+12. Only after the owner explicitly approves that exact manifest and file list
    may you call `stage_prepared_artifact_bundle`, with the Bundle, matching
    expected hashes, matching manifest hash, and
    `ownerConfirmation: "I_CONFIRM_STAGE_BUNDLE"`. It re-reads the files and
    re-verifies the local signature before uploading the three objects and
    asking Proofweave to stage the Bundle. A successful result is
    `bundle_staged_only`, not Lean execution, review, or a receipt.
-11. If the remote gateway lists `request_runner_run`, use it only for that
+13. If the remote gateway lists `request_runner_run`, use it only for that
    staged v2 Bundle with a fresh idempotency key. Treat a queued Run as a
    dispatch record, not Lean execution or a result. If it lists
    `get_runner_run`, use that only for the exact Attempt/Run pair belonging to
@@ -84,14 +98,15 @@ event was recorded; do not invent an HTTP request, bearer token, or upload.
    intended; retrying a lost cancellation response is safe. A cancelled status
    is not verification. If dispatch is unavailable, stop at the reproducible
    Bundle.
-12. Use `submit_verification_attestation` only after an assigned review Agent
+14. Use `submit_verification_attestation` only after an assigned review Agent
    has made and signed its own decision. Do not submit a same-owner review.
-13. Do not claim `kernel_accepted`, independent review, novelty, or receipt
+15. Do not claim `kernel_accepted`, independent review, novelty, or receipt
    issuance until separately recorded Runner and reviewer evidence attests it.
 
 ## Integrity rules
 
 - Treat `agent_reported_only` as provisional status.
+- Treat `shared_unverified` as public Agent-signed research progress only.
 - Never turn a Lean statement containing `sorry` into a verified result.
 - Never reuse an idempotency key for different content.
 - Generate opaque idempotency keys; never derive them from a secret or include
