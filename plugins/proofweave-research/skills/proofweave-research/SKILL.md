@@ -47,21 +47,30 @@ event was recorded; do not invent an HTTP request, bearer token, or upload.
    Its successful result means immutable objects are stored only; it does not
    create a Bundle, execute Lean, verify a proof, or create a contribution
    record.
-7. To form an executable v2 Bundle, prepare exactly `source.tar.zst`,
-   `normalized.patch`, and `lake-manifest.json` in the owner's local Lean
-   workspace. Ask the owner to select those three absolute paths, then call
-   `prepare_artifact_bundle_v2` with the final workspace tree, entry Lean file,
-   and expansion limits. It checks names and local hashes, derives content
-   keys, and signs a manifest locally; it does not upload, stage, execute, or
-   verify anything. Show the owner its manifest hash and all three file hashes.
-8. Only after the owner explicitly approves that exact manifest and file list
+7. For the normal executable v2 Bundle path, ask the owner to select one local
+   Git/Lean workspace root and its relative Lean entry file. Before any local
+   workspace read, explain that the Connector will create temporary evidence
+   files outside the workspace and upload nothing. Only after explicit approval
+   call `prepare_workspace_bundle_v2` with
+   `ownerConfirmation: "I_CONFIRM_PREPARE_WORKSPACE_BUNDLE"`. It builds the
+   source archive, normalized patch, Lake manifest, final file tree, and signed
+   local manifest itself. It accepts modifications to existing tracked text
+   files only; never silently package untracked, new, deleted, renamed, binary,
+   symlinked, or credential-like files.
+8. If that narrow local Git path cannot represent the work, ask the owner to
+   choose exactly `source.tar.zst`, `normalized.patch`, and
+   `lake-manifest.json`, then use the advanced `prepare_artifact_bundle_v2`
+   path with its final workspace tree and limits. Both preparation tools only
+   create a local signed draft. Show the owner its manifest hash and all three
+   file hashes; neither uploads, stages, executes, or verifies anything.
+9. Only after the owner explicitly approves that exact manifest and file list
    may you call `stage_prepared_artifact_bundle`, with the Bundle, matching
    expected hashes, matching manifest hash, and
    `ownerConfirmation: "I_CONFIRM_STAGE_BUNDLE"`. It re-reads the files and
    re-verifies the local signature before uploading the three objects and
    asking Proofweave to stage the Bundle. A successful result is
    `bundle_staged_only`, not Lean execution, review, or a receipt.
-9. If the remote gateway lists `request_runner_run`, use it only for that
+10. If the remote gateway lists `request_runner_run`, use it only for that
    staged v2 Bundle with a fresh idempotency key. Treat a queued Run as a
    dispatch record, not Lean execution or a result. If it lists
    `get_runner_run`, use that only for the exact Attempt/Run pair belonging to
@@ -69,9 +78,9 @@ event was recorded; do not invent an HTTP request, bearer token, or upload.
    intended; retrying a lost cancellation response is safe. A cancelled status
    is not verification. If dispatch is unavailable, stop at the reproducible
    Bundle.
-10. Use `submit_verification_attestation` only after an assigned review Agent
+11. Use `submit_verification_attestation` only after an assigned review Agent
    has made and signed its own decision. Do not submit a same-owner review.
-11. Do not claim `kernel_accepted`, independent review, novelty, or receipt
+12. Do not claim `kernel_accepted`, independent review, novelty, or receipt
    issuance until separately recorded Runner and reviewer evidence attests it.
 
 ## Integrity rules

@@ -15,6 +15,7 @@ local-token prototype must not be configured for participant use.
 | `get_attempt` | `attempt:read` | The authorized Person's Attempt and events. |
 | `preview_local_evidence` | local only | Owner-selected file names, byte sizes, and SHA-256 hashes; never uploads, stages, runs, or verifies. |
 | `submit_local_evidence` | `artifact:write` | Explicitly confirmed local file bytes become immutable artifact objects only; never a Bundle, Lean Run, review, or receipt. |
+| `prepare_workspace_bundle_v2` | local only | With explicit workspace-read approval, creates the three v2 artifacts, final tracked-file tree, and signed Bundle draft from one local Git/Lean workspace; never uploads, stages, runs, or verifies. |
 | `prepare_artifact_bundle_v2` | local only | Locally validates and signs a three-object executable Bundle draft; never uploads, stages, runs, or verifies. |
 | `stage_prepared_artifact_bundle` | `artifact:write` | After a second explicit owner confirmation, uploads the three hash-bound files and stages that signed Bundle only; never Lean execution, review, or a receipt. |
 | `request_runner_run` | `run:request` | One idempotent request to execute an already-staged v2 Bundle in the isolated Runner; queued is not a result. |
@@ -44,24 +45,30 @@ Use this minimal order when the tools are available:
    `ownerConfirmation: "I_CONFIRM_SUBMIT"`. A changed file must be previewed
    again. Its successful result is `object_staged_only`, not a Bundle or Lean
    result.
-6. For a complete executable Bundle, have the local Agent prepare exactly
-   `source.tar.zst`, `normalized.patch`, and `lake-manifest.json`, plus the
-   final workspace tree. Call `prepare_artifact_bundle_v2` with the three
-   owner-selected absolute paths. It creates a signed local draft and returns
-   its manifest hash and exact file hashes without sending any bytes.
-7. Show the owner that manifest hash and three-file list. Only after explicit
+6. For the standard complete Bundle path, ask the owner to select the local
+   Git/Lean workspace root and entry Lean file. Explain the local read scope,
+   then call `prepare_workspace_bundle_v2` only with
+   `ownerConfirmation: "I_CONFIRM_PREPARE_WORKSPACE_BUNDLE"`. It generates
+   the source archive, normalized patch, Lake manifest, final tracked-file
+   tree, and signed draft locally. It accepts modifications to existing tracked
+   text files only and returns no uploaded bytes.
+7. If the workspace needs new, deleted, renamed, binary, symlinked, or
+   untracked files, stop and ask the owner to select the three exact artifacts
+   for the advanced `prepare_artifact_bundle_v2` flow instead; never guess how
+   to include extra files.
+8. Show the owner that manifest hash and three-file list. Only after explicit
    confirmation call `stage_prepared_artifact_bundle` with exactly the draft,
    matching `expectedArtifactSha256`, matching `expectedBundleHash`, and
    `ownerConfirmation: "I_CONFIRM_STAGE_BUNDLE"`. Its successful result is
    `bundle_staged_only`, not a Lean result.
-8. If the remote Runner dispatch is configured, use `request_runner_run` with
+9. If the remote Runner dispatch is configured, use `request_runner_run` with
    the staged Bundle hash and a fresh idempotency key. A `queued` response is
    only an operational request; use `get_runner_run` only with that exact
    Attempt/Run pair to observe its lifecycle. If work must stop, use
    `cancel_runner_run` for that same pair; a retry keeps the original
    cancellation record. Wait for separately recorded Runner evidence before
    treating a running cancellation as terminal.
-9. Only an assigned, differently owned review Agent can use
+10. Only an assigned, differently owned review Agent can use
    `submit_verification_attestation` after its own evidence-based decision.
 
 Good progress text names a local observable fact, for example: “Added

@@ -9,10 +9,13 @@
  */
 import { createServer } from "node:http";
 import { createHash, createPrivateKey, createPublicKey, generateKeyPairSync, randomBytes, randomUUID, sign, verify } from "node:crypto";
-import { chmod, lstat, mkdir, readFile, rename, writeFile } from "node:fs/promises";
-import { homedir, platform } from "node:os";
-import { basename, dirname, isAbsolute, join } from "node:path";
+import { createWriteStream } from "node:fs";
+import { chmod, lstat, mkdir, mkdtemp, readFile, realpath, rename, rm, writeFile } from "node:fs/promises";
+import { homedir, platform, tmpdir } from "node:os";
+import { basename, dirname, isAbsolute, join, resolve } from "node:path";
 import { spawn } from "node:child_process";
+import { pipeline } from "node:stream/promises";
+import * as zlib from "node:zlib";
 import readline from "node:readline";
 
 const baseUrl = normalizeBaseUrl(process.env.PROOFWEAVE_BASE_URL ?? "https://proofweave-research.yualex031821.chatgpt.site");
@@ -22,6 +25,7 @@ const callbackPath = "/callback";
 const redirectUri = `http://${callbackHost}:${callbackPort}${callbackPath}`;
 const configPath = process.env.PROOFWEAVE_CONNECTOR_CONFIG ?? join(homedir(), ".proofweave", "codex-connector.json");
 const localEvidencePreviewLimits = { maxFiles: 6, maxFileBytes: 1_000_000, maxTotalBytes: 3_000_000 };
+const localWorkspaceBundleDefaults = { maxExpandedBytes: 64 * 1024 * 1024, maxFileCount: 10_000 };
 const toolDefinitions = [
   tool("connect_proofweave", "Connect this local Codex to Proofweave with a one-time browser approval. It generates an Agent key on this computer; no key needs to be pasted.", { type: "object", additionalProperties: false, properties: {} }),
   tool("connection_status", "Show whether this local Connector has a revocable Proofweave connection. It does not contact Proofweave.", { type: "object", additionalProperties: false, properties: {} }),
@@ -33,6 +37,7 @@ const toolDefinitions = [
   tool("get_attempt", "Read one Attempt attributed to this exact local Agent.", { type: "object", additionalProperties: false, properties: { attemptId: { type: "string", minLength: 1, maxLength: 240 } }, required: ["attemptId"] }),
   tool("preview_local_evidence", "Preview up to six explicitly owner-selected local files for one authorized Attempt. It returns only each filename, byte size, and SHA-256 hash; it never uploads, stages, runs, or verifies anything.", { type: "object", additionalProperties: false, properties: { attemptId: { type: "string", minLength: 1, maxLength: 240 }, paths: { type: "array", minItems: 1, maxItems: 6, items: { type: "string", minLength: 1, maxLength: 1000 } } }, required: ["attemptId", "paths"] }),
   tool("submit_local_evidence", "Submit up to six explicitly owner-approved local files as immutable artifact objects for one authorized Attempt. This sends the selected bytes to Proofweave only when the current hashes match the exact preview the owner confirmed. It does not stage a Bundle, run Lean, or verify a proof.", { type: "object", additionalProperties: false, properties: { attemptId: { type: "string", minLength: 1, maxLength: 240 }, paths: { type: "array", minItems: 1, maxItems: 6, items: { type: "string", minLength: 1, maxLength: 1000 } }, expectedSha256: { type: "array", minItems: 1, maxItems: 6, items: { type: "string", pattern: "^sha256:[a-f0-9]{64}$" } }, ownerConfirmation: { type: "string", enum: ["I_CONFIRM_SUBMIT"] } }, required: ["attemptId", "paths", "expectedSha256", "ownerConfirmation"] }),
+  tool("prepare_workspace_bundle_v2", "Prepare a signed v2 Artifact Bundle draft directly from one explicitly owner-approved local Git/Lean workspace. It creates the source archive, normalized patch, Lake manifest, and final workspace tree locally; it never uploads, stages, runs Lean, or creates credit.", { type: "object", additionalProperties: false, properties: { attemptId: { type: "string", minLength: 1, maxLength: 240 }, workspaceRoot: { type: "string", minLength: 1, maxLength: 1000 }, entryFile: { type: "string", minLength: 6, maxLength: 1024 }, allowedAxioms: { type: "array", maxItems: 256, items: { type: "string", minLength: 1, maxLength: 240 } }, ownerConfirmation: { type: "string", enum: ["I_CONFIRM_PREPARE_WORKSPACE_BUNDLE"] } }, required: ["attemptId", "workspaceRoot", "entryFile", "ownerConfirmation"] }),
   tool("prepare_artifact_bundle_v2", "Prepare a locally signed, executable Proofweave v2 Artifact Bundle draft from three explicitly owner-selected artifacts: source.tar.zst, normalized.patch, and lake-manifest.json. It does not upload, stage, run Lean, or create credit.", { type: "object", additionalProperties: false, properties: { attemptId: { type: "string", minLength: 1, maxLength: 240 }, artifacts: bundleArtifactPathsSchema(), workspaceTree: { type: "array", minItems: 1, maxItems: 100000, items: workspaceTreeEntrySchema() }, maxExpandedBytes: { type: "integer", minimum: 1, maximum: 17179869184 }, maxFileCount: { type: "integer", minimum: 1, maximum: 100000 }, entryFile: { type: "string", minLength: 6, maxLength: 1024 }, allowedAxioms: { type: "array", maxItems: 256, items: { type: "string", minLength: 1, maxLength: 240 } } }, required: ["attemptId", "artifacts", "workspaceTree", "maxExpandedBytes", "maxFileCount", "entryFile"] }),
   tool("stage_prepared_artifact_bundle", "Upload the exact three owner-approved Artifact Bundle files and stage one locally signed v2 Bundle. Call only after the owner explicitly confirms the prepared manifest hash and exact file hashes. A successful result records bundle_staged evidence only; it does not run Lean, review, or issue a receipt.", { type: "object", additionalProperties: false, properties: { bundle: { type: "object" }, artifacts: bundleArtifactPathsSchema(), expectedArtifactSha256: expectedBundleArtifactHashesSchema(), expectedBundleHash: { type: "string", pattern: "^sha256:[a-f0-9]{64}$" }, ownerConfirmation: { type: "string", enum: ["I_CONFIRM_STAGE_BUNDLE"] } }, required: ["bundle", "artifacts", "expectedArtifactSha256", "expectedBundleHash", "ownerConfirmation"] }),
 ];
@@ -76,6 +81,7 @@ async function handleRequest(method, params) {
   if (name === "connection_status") return connectionResult(await connectionStatus());
   if (name === "preview_local_evidence") return connectionResult(await previewLocalEvidence(args));
   if (name === "submit_local_evidence") return connectionResult(await submitLocalEvidence(args));
+  if (name === "prepare_workspace_bundle_v2") return connectionResult(await prepareWorkspaceBundleV2(args));
   if (name === "prepare_artifact_bundle_v2") return connectionResult(await prepareArtifactBundleV2(args));
   if (name === "stage_prepared_artifact_bundle") return connectionResult(await stagePreparedArtifactBundle(args));
   if (!toolDefinitions.some((item) => item.name === name)) return toolError(`Unknown Proofweave tool: ${name}`);
@@ -139,6 +145,56 @@ async function submitLocalEvidence(args) {
     files: staged,
     next: "These immutable objects are stored, but no Artifact Bundle, Lean Run, review, or Contribution Receipt exists yet.",
   };
+}
+
+async function prepareWorkspaceBundleV2(args) {
+  if (args.ownerConfirmation !== "I_CONFIRM_PREPARE_WORKSPACE_BUNDLE") {
+    throw new Error("The owner must explicitly approve reading this complete local Git/Lean workspace before a Bundle draft can be prepared.");
+  }
+  const attemptId = requiredLocalString(args.attemptId, "attemptId", 240);
+  const workspaceRoot = await requireWorkspaceRoot(args.workspaceRoot);
+  const entryFile = normalizeBundleEntryFile(args.entryFile);
+  const allowedAxioms = normalizeAllowedAxioms(args.allowedAxioms ?? []);
+
+  // Confirm the remote authority and target before inspecting the approved
+  // workspace. No local source bytes leave this machine in this operation.
+  const attempt = await requireRemoteAttempt(attemptId);
+  const problem = await requireRemoteProblem(attempt.problemSlug);
+  const config = await requireConfig();
+  let generated = null;
+  try {
+    generated = await createWorkspaceBundleArtifacts({ workspaceRoot, entryFile });
+    const artifacts = await readBundleArtifacts(generated.artifactPaths);
+    const workspaceTree = await readTrackedWorkspaceTree(workspaceRoot, generated.trackedFiles, localWorkspaceBundleDefaults);
+    assertWorkspaceTreeMatchesInputs(workspaceTree, artifacts, entryFile);
+    const bundle = createSignedArtifactBundleV2({
+      config,
+      attempt,
+      problem,
+      artifacts,
+      workspaceTree,
+      entryFile,
+      limits: localWorkspaceBundleDefaults,
+      allowedAxioms,
+    });
+    const manifestHash = sha256Canonical(bundle);
+    return {
+      attemptId,
+      operation: "local_workspace_bundle_preparation",
+      uploaded: false,
+      staged: false,
+      verificationState: "not_recorded",
+      workspace: { trackedFiles: workspaceTree.length, changedFiles: generated.changedFiles, stagingDirectory: generated.stagingDirectory },
+      manifestHash,
+      artifacts: bundleArtifactSummary(artifacts),
+      bundle,
+      stageInput: { artifacts: generated.artifactPaths },
+      next: "Show the owner this manifest hash and exact three-file hash list. A separate explicit bundle-staging action is required before any file bytes leave this computer.",
+    };
+  } catch (error) {
+    if (generated?.stagingDirectory) await rm(generated.stagingDirectory, { recursive: true, force: true }).catch(() => {});
+    throw error;
+  }
 }
 
 async function prepareArtifactBundleV2(args) {
@@ -265,6 +321,234 @@ async function readSelectedEvidence(paths) {
     });
   }
   return files;
+}
+
+async function requireWorkspaceRoot(value) {
+  const workspaceRoot = requiredLocalString(value, "workspaceRoot", 1000);
+  if (!isAbsolute(workspaceRoot)) throw new Error("workspaceRoot must be an absolute local directory explicitly selected by the owner.");
+  const metadata = await lstat(workspaceRoot).catch((error) => {
+    if (error?.code === "ENOENT") throw new Error("The selected local workspace was not found.");
+    throw new Error("The selected local workspace could not be inspected.");
+  });
+  if (!metadata.isDirectory() || metadata.isSymbolicLink()) {
+    throw new Error("workspaceRoot must be a regular local directory, not a link.");
+  }
+  return realpath(resolve(workspaceRoot));
+}
+
+async function createWorkspaceBundleArtifacts({ workspaceRoot, entryFile }) {
+  const gitRoot = (await runLocalCommand("git", ["rev-parse", "--show-toplevel"], { cwd: workspaceRoot })).toString("utf8").trim();
+  if (!gitRoot || await realpath(resolve(gitRoot)) !== workspaceRoot) {
+    throw new Error("Choose the root of a local Git Lean workspace. The current one-click alpha does not read a parent directory or a non-Git workspace.");
+  }
+  const trackedFiles = await listTrackedWorkspaceFiles(workspaceRoot);
+  if (!trackedFiles.some((file) => file.path === entryFile)) throw new Error("entryFile must be a tracked regular file in the selected workspace.");
+  if (!trackedFiles.some((file) => file.path === "lake-manifest.json")) throw new Error("The selected workspace must track lake-manifest.json for a reproducible v2 Bundle.");
+
+  const untracked = splitNul(await runLocalCommand("git", ["ls-files", "--others", "--exclude-standard", "-z"], { cwd: workspaceRoot }));
+  if (untracked.length > 0) {
+    throw new Error(`The one-click alpha accepts a clean Git workspace with modified tracked files only. Commit, remove, or explicitly handle the first untracked path before preparing a Bundle: ${untracked[0]}`);
+  }
+  const changedFiles = parseModifiedPaths(await runLocalCommand("git", ["diff", "--name-status", "-z", "HEAD", "--"], { cwd: workspaceRoot }));
+  if (changedFiles.length === 0) {
+    throw new Error("The selected workspace has no tracked source modification to form the required non-empty normalized patch.");
+  }
+
+  const patch = await runLocalCommand("git", ["diff", "--no-ext-diff", "--full-index", "--src-prefix=a/", "--dst-prefix=b/", "HEAD", "--"], { cwd: workspaceRoot, maxBytes: localEvidencePreviewLimits.maxFileBytes });
+  assertNormalizedPatchContents(patch);
+  const lakeManifestPath = join(workspaceRoot, "lake-manifest.json");
+  await assertRegularWorkspaceFile(lakeManifestPath, "lake-manifest.json");
+  const lakeManifest = await readFile(lakeManifestPath);
+  const stagingDirectory = await mkdtemp(join(tmpdir(), "proofweave-bundle-"));
+  const artifactPaths = {
+    sourceArchivePath: join(stagingDirectory, "source.tar.zst"),
+    patchPath: join(stagingDirectory, "normalized.patch"),
+    lakeManifestPath: join(stagingDirectory, "lake-manifest.json"),
+  };
+  try {
+    await Promise.all([
+      writeFile(artifactPaths.patchPath, patch, { mode: 0o600 }),
+      writeFile(artifactPaths.lakeManifestPath, lakeManifest, { mode: 0o600 }),
+      createZstdGitArchive(workspaceRoot, artifactPaths.sourceArchivePath),
+    ]);
+    return { stagingDirectory, artifactPaths, trackedFiles, changedFiles };
+  } catch (error) {
+    await rm(stagingDirectory, { recursive: true, force: true }).catch(() => {});
+    throw error;
+  }
+}
+
+async function listTrackedWorkspaceFiles(workspaceRoot) {
+  const records = splitNul(await runLocalCommand("git", ["ls-files", "-s", "-z"], { cwd: workspaceRoot, maxBytes: 16 * 1024 * 1024 }));
+  if (records.length === 0) throw new Error("The selected Git workspace has no tracked files at HEAD.");
+  return records.map((record) => {
+    const separator = record.indexOf("\t");
+    const fields = separator >= 0 ? record.slice(0, separator).split(" ") : [];
+    const path = separator >= 0 ? record.slice(separator + 1) : "";
+    if ((fields[0] !== "100644" && fields[0] !== "100755") || fields[2] !== "0") {
+      throw new Error("The one-click alpha permits only regular, non-submodule tracked workspace files.");
+    }
+    assertSafeWorkspacePath(path);
+    assertSafeEvidenceFilename(basename(path));
+    return { path, mode: fields[0] === "100755" ? 0o755 : 0o644 };
+  }).sort((left, right) => left.path.localeCompare(right.path));
+}
+
+function parseModifiedPaths(value) {
+  const fields = splitNul(value);
+  const paths = [];
+  for (let index = 0; index < fields.length; index += 2) {
+    const status = fields[index];
+    const path = fields[index + 1];
+    if (!status || !path || status !== "M") {
+      throw new Error("The one-click alpha supports modifications to existing text files only; additions, deletions, renames, mode changes, and submodules need the advanced Bundle flow.");
+    }
+    assertSafeWorkspacePath(path);
+    assertSafeEvidenceFilename(basename(path));
+    paths.push(path);
+  }
+  return paths;
+}
+
+async function readTrackedWorkspaceTree(workspaceRoot, trackedFiles, limits) {
+  const entries = [];
+  let expandedBytes = 0;
+  for (const tracked of trackedFiles) {
+    const path = join(workspaceRoot, ...tracked.path.split("/"));
+    const stats = await assertRegularWorkspaceFile(path, tracked.path);
+    const mode = stats.mode & 0o777;
+    if (mode !== tracked.mode) {
+      throw new Error(`Tracked file mode changed locally: ${tracked.path}. The one-click alpha requires the Git-tracked mode.`);
+    }
+    if (entries.length >= limits.maxFileCount || stats.size > limits.maxExpandedBytes - expandedBytes) {
+      throw new Error("The local workspace exceeds the one-click Bundle expansion limits.");
+    }
+    expandedBytes += stats.size;
+    const contents = await readFile(path);
+    entries.push({ path: tracked.path, mode, contentHash: `sha256:${createHash("sha256").update(contents).digest("hex")}` });
+  }
+  return entries;
+}
+
+async function assertRegularWorkspaceFile(path, label) {
+  const stats = await lstat(path).catch((error) => {
+    if (error?.code === "ENOENT") throw new Error(`Tracked workspace file is missing: ${label}`);
+    throw new Error(`Tracked workspace file could not be inspected: ${label}`);
+  });
+  if (!stats.isFile() || stats.isSymbolicLink()) throw new Error(`Tracked workspace entry is not a regular file: ${label}`);
+  return stats;
+}
+
+async function createZstdGitArchive(workspaceRoot, destination) {
+  const archive = spawn("git", ["archive", "--format=tar", "HEAD"], { cwd: workspaceRoot, stdio: ["ignore", "pipe", "pipe"], windowsHide: true });
+  const output = createWriteStream(destination, { flags: "wx", mode: 0o600 });
+  if (typeof zlib.createZstdCompress === "function") {
+    await Promise.all([
+      pipeline(archive.stdout, zlib.createZstdCompress(), output),
+      waitForLocalProcess(archive, "Git could not archive the selected workspace"),
+    ]);
+    return;
+  }
+
+  const compressor = spawn("zstd", ["--quiet", "--compress", "--stdout"], { stdio: ["pipe", "pipe", "pipe"], windowsHide: true });
+  await Promise.all([
+    pipeline(archive.stdout, compressor.stdin),
+    pipeline(compressor.stdout, output),
+    waitForLocalProcess(archive, "Git could not archive the selected workspace"),
+    waitForLocalProcess(compressor, "This Codex installation needs Node Zstandard support or the local zstd command to prepare a Bundle"),
+  ]);
+}
+
+async function runLocalCommand(command, args, { cwd, maxBytes = 4 * 1024 * 1024 } = {}) {
+  const child = spawn(command, args, { cwd, stdio: ["ignore", "pipe", "pipe"], windowsHide: true });
+  try {
+    const [stdout, stderr] = await Promise.all([
+      collectLocalOutput(child.stdout, maxBytes),
+      collectLocalOutput(child.stderr, 64 * 1024),
+      waitForLocalProcess(child, `${command} could not inspect the local workspace`),
+    ]);
+    if (stderr.length > 0) {
+      // Git writes benign progress only to stderr for the commands used here;
+      // a successful exit is the only accepted completion signal.
+    }
+    return stdout;
+  } catch (error) {
+    child.kill("SIGKILL");
+    throw error;
+  }
+}
+
+async function collectLocalOutput(stream, maxBytes) {
+  const chunks = [];
+  let total = 0;
+  for await (const chunk of stream) {
+    const bytes = Buffer.from(chunk);
+    total += bytes.byteLength;
+    if (total > maxBytes) throw new Error("The local workspace command produced more evidence than the closed-alpha Bundle limit permits.");
+    chunks.push(bytes);
+  }
+  return Buffer.concat(chunks);
+}
+
+function waitForLocalProcess(child, label) {
+  return new Promise((resolvePromise, rejectPromise) => {
+    child.once("error", (error) => rejectPromise(new Error(label, { cause: error })));
+    child.once("close", (code, signal) => {
+      if (code === 0 && !signal) resolvePromise();
+      else rejectPromise(new Error(`${label}.`));
+    });
+  });
+}
+
+function splitNul(value) {
+  return Buffer.from(value).toString("utf8").split("\0").filter(Boolean);
+}
+
+function assertSafeWorkspacePath(path) {
+  if (typeof path !== "string" || path.length === 0 || path.length > 1024 || path.startsWith("/") || path.includes("\\") || path.includes("\0") || path.split("/").some((segment) => !/^[A-Za-z0-9][A-Za-z0-9._+-]*$/.test(segment) || segment === "." || segment === "..")) {
+    throw new Error("The local workspace contains an unsafe tracked path.");
+  }
+}
+
+function assertNormalizedPatchContents(contents) {
+  const source = Buffer.from(contents).toString("utf8");
+  if (!source.startsWith("diff --git ") || source.includes("\0") || source.includes("\r")) {
+    throw new Error("The one-click Bundle requires a non-empty LF-only Git unified diff.");
+  }
+  let file = null;
+  let sawOld = false;
+  let sawNew = false;
+  let sawHunk = false;
+  for (const line of source.split("\n")) {
+    if (line.startsWith("diff --git ")) {
+      if (file && (!sawOld || !sawNew || !sawHunk)) throw new Error("The generated patch is incomplete and cannot be staged.");
+      const fields = line.split(" ");
+      if (fields.length !== 4 || !fields[2].startsWith("a/") || !fields[3].startsWith("b/")) throw new Error("The generated patch has an unsafe Git header.");
+      assertSafeWorkspacePath(fields[2].slice(2));
+      assertSafeWorkspacePath(fields[3].slice(2));
+      file = fields[2].slice(2);
+      sawOld = false;
+      sawNew = false;
+      sawHunk = false;
+      continue;
+    }
+    if (/^(?:new file mode |deleted file mode |old mode |new mode |rename |copy |similarity index|dissimilarity index|Binary files |GIT binary patch)/.test(line)) {
+      throw new Error("The generated patch contains a file operation not supported by the current one-click Bundle alpha.");
+    }
+    if (line.startsWith("--- ")) {
+      if (!file || sawOld || line.slice(4).split("\t", 1)[0] !== `a/${file}`) throw new Error("The generated patch has an invalid old-file header.");
+      sawOld = true;
+    }
+    if (line.startsWith("+++ ")) {
+      if (!file || !sawOld || sawNew || line.slice(4).split("\t", 1)[0] !== `b/${file}`) throw new Error("The generated patch has an invalid new-file header.");
+      sawNew = true;
+    }
+    if (line.startsWith("@@")) {
+      if (!file || !sawOld || !sawNew) throw new Error("The generated patch has a hunk without complete file headers.");
+      sawHunk = true;
+    }
+  }
+  if (!file || !sawOld || !sawNew || !sawHunk) throw new Error("The generated patch has no applicable unified hunk.");
 }
 
 async function requireRemoteAttempt(attemptId) {

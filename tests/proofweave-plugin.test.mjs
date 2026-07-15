@@ -1,18 +1,20 @@
 import assert from "node:assert/strict";
-import { spawn } from "node:child_process";
+import { execFile, spawn } from "node:child_process";
 import { createHash, generateKeyPairSync } from "node:crypto";
 import { createServer } from "node:http";
-import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { test } from "node:test";
+import { promisify } from "node:util";
 import { normalizeArtifactBundle, verifyArtifactBundleAgentSignature } from "../packages/protocol/artifact-bundle.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const sourceSkillRoot = resolve(root, "skills/proofweave-research");
 const pluginRoot = resolve(root, "plugins/proofweave-research");
 const pluginSkillRoot = resolve(pluginRoot, "skills/proofweave-research");
+const execFileAsync = promisify(execFile);
 
 test("the portable Proofweave Codex plugin carries the checked source skill", async () => {
   const [sourceSkill, bundledSkill, sourceReference, bundledReference] = await Promise.all([
@@ -55,6 +57,8 @@ test("the private-beta plugin starts only a local PKCE Connector", async () => {
   assert.match(connector, /submit_local_evidence/);
   assert.match(connector, /I_CONFIRM_SUBMIT/);
   assert.match(connector, /expectedSha256/);
+  assert.match(connector, /prepare_workspace_bundle_v2/);
+  assert.match(connector, /I_CONFIRM_PREPARE_WORKSPACE_BUNDLE/);
   assert.match(connector, /prepare_artifact_bundle_v2/);
   assert.match(connector, /stage_prepared_artifact_bundle/);
   assert.match(connector, /I_CONFIRM_STAGE_BUNDLE/);
@@ -100,6 +104,7 @@ test("the local Connector exposes connection and bounded research tools over STD
       "get_attempt",
       "preview_local_evidence",
       "submit_local_evidence",
+      "prepare_workspace_bundle_v2",
       "prepare_artifact_bundle_v2",
       "stage_prepared_artifact_bundle",
     ],
@@ -335,6 +340,55 @@ test("the local Connector prepares and stages one signed, hash-bound v2 Artifact
     assert.match(stagedBundle.agentEvent.signature, /^[A-Za-z0-9_-]{86}$/);
     assert.equal(normalizeArtifactBundle(stagedBundle).protocolVersion, "pw-artifact-bundle-v2");
     assert.equal(await verifyArtifactBundleAgentSignature(stagedBundle), true);
+
+    const workspaceRoot = join(fixtureRoot, "lean-workspace");
+    await mkdir(workspaceRoot);
+    await Promise.all([
+      writeFile(join(workspaceRoot, "Main.lean"), "theorem fixture : True := by trivial\n"),
+      writeFile(join(workspaceRoot, "lake-manifest.json"), "{\"name\":\"fixture\"}\n"),
+      writeFile(join(workspaceRoot, "lean-toolchain"), "leanprover/lean4:v4.27.0\n"),
+    ]);
+    await git(workspaceRoot, ["init", "-q"]);
+    await git(workspaceRoot, ["config", "user.email", "fixture@example.test"]);
+    await git(workspaceRoot, ["config", "user.name", "Proofweave fixture"]);
+    await git(workspaceRoot, ["add", "."]);
+    await git(workspaceRoot, ["commit", "-qm", "baseline"]);
+    await writeFile(join(workspaceRoot, "Main.lean"), "theorem fixture : True := by exact True.intro\n");
+
+    const receivedBeforeWorkspaceDraft = receivedObjects.length;
+    const workspaceDraftResponse = await callConnectorTool("prepare_workspace_bundle_v2", {
+      attemptId: "attempt:fixture",
+      workspaceRoot,
+      entryFile: "Main.lean",
+      ownerConfirmation: "I_CONFIRM_PREPARE_WORKSPACE_BUNDLE",
+    }, env);
+    assert.equal(workspaceDraftResponse.error, undefined);
+    const workspaceDraft = JSON.parse(workspaceDraftResponse.result.content[0].text);
+    assert.equal(workspaceDraft.operation, "local_workspace_bundle_preparation");
+    assert.equal(workspaceDraft.uploaded, false);
+    assert.equal(workspaceDraft.workspace.changedFiles[0], "Main.lean");
+    assert.equal(receivedObjects.length, receivedBeforeWorkspaceDraft);
+    assert.equal(workspaceDraft.bundle.protocolVersion, "pw-artifact-bundle-v2");
+    assert.equal(workspaceDraft.bundle.workspace.tree.hash.startsWith("sha256:"), true);
+    const generatedArchive = await readFile(workspaceDraft.stageInput.artifacts.sourceArchivePath);
+    const generatedPatch = await readFile(workspaceDraft.stageInput.artifacts.patchPath, "utf8");
+    assert.deepEqual([...generatedArchive.subarray(0, 4)], [0x28, 0xb5, 0x2f, 0xfd]);
+    assert.match(generatedPatch, /^diff --git a\/Main\.lean b\/Main\.lean/m);
+    const workspaceHashes = Object.fromEntries(workspaceDraft.artifacts.map((artifact) => [artifact.filename, artifact.sha256]));
+    expectedManifestHash = workspaceDraft.manifestHash;
+    const workspaceStagedResponse = await callConnectorTool("stage_prepared_artifact_bundle", {
+      bundle: workspaceDraft.bundle,
+      artifacts: workspaceDraft.stageInput.artifacts,
+      expectedArtifactSha256: {
+        sourceArchive: workspaceHashes["source.tar.zst"],
+        patch: workspaceHashes["normalized.patch"],
+        lakeManifest: workspaceHashes["lake-manifest.json"],
+      },
+      expectedBundleHash: workspaceDraft.manifestHash,
+      ownerConfirmation: "I_CONFIRM_STAGE_BUNDLE",
+    }, env);
+    assert.equal(workspaceStagedResponse.error, undefined);
+    assert.equal(receivedObjects.length, receivedBeforeWorkspaceDraft + 3);
   } finally {
     await Promise.all([close(server), rm(fixtureRoot, { recursive: true, force: true })]);
   }
@@ -374,4 +428,8 @@ function close(server) {
 
 function sha256(value) {
   return `sha256:${createHash("sha256").update(value).digest("hex")}`;
+}
+
+async function git(cwd, args) {
+  await execFileAsync("git", args, { cwd });
 }

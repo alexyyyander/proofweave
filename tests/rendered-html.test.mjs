@@ -1905,13 +1905,16 @@ test("keeps the production frontend free of the deleted starter preview", async 
   assert.match(localAgentHandoff, /submit_local_evidence/);
   assert.match(localAgentHandoff, /I_CONFIRM_SUBMIT/);
   assert.match(localAgentHandoff, /prepare_artifact_bundle_v2/);
+  assert.match(localAgentHandoff, /prepare_workspace_bundle_v2/);
   assert.match(localAgentHandoff, /stage_prepared_artifact_bundle/);
+  assert.match(localAgentHandoff, /I_CONFIRM_PREPARE_WORKSPACE_BUNDLE/);
   assert.match(localAgentHandoff, /I_CONFIRM_STAGE_BUNDLE/);
   assert.doesNotMatch(localAgentHandoff, /PROOFWEAVE_API_TOKEN/);
   assert.match(sourceSkill, /wait for explicit confirmation before recording it/);
   assert.match(sourceSkill, /explicitly approve the smallest local file set/);
   assert.match(sourceSkill, /Only after the owner explicitly confirms the exact previewed list/);
   assert.match(sourceSkill, /prepare_artifact_bundle_v2/);
+  assert.match(sourceSkill, /prepare_workspace_bundle_v2/);
   assert.match(sourceSkill, /I_CONFIRM_STAGE_BUNDLE/);
   assert.match(browserKeyStore, /IndexedDB-backed WebCrypto store/);
   assert.match(browserKeyStore, /Remove a locally held private key/);

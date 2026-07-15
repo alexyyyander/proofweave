@@ -118,7 +118,7 @@ export function LocalAgentHandoff({
       </li>
       <li>
         <span>04</span>
-        <div><strong>Prepare one executable evidence Bundle</strong><p>Codex prepares the local source archive, normalized patch, and Lake manifest, then shows you the signed manifest hash and three exact file hashes. You approve that Bundle once more before its selected bytes leave this computer.</p><small>Staging creates reproducible evidence only; it is not yet a Lean result, review, or contribution receipt.</small></div>
+        <div><strong>Choose one Lean workspace</strong><p>Codex can prepare the source archive, normalized patch, Lake manifest, final file tree, and signed Bundle draft from your selected local Git workspace. You review its manifest and three file hashes, then approve once more before any bytes leave this computer.</p><small>Staging creates reproducible evidence only; it is not yet a Lean result, review, or contribution receipt.</small></div>
       </li>
     </ol>
 
@@ -209,7 +209,9 @@ When a material milestone exists, show me the exact concise message and percenta
 
 ## Prepare one complete Bundle locally
 
-For a reproducible Lean result, first prepare exactly these three files in the local workspace I control: \`source.tar.zst\`, \`normalized.patch\`, and \`lake-manifest.json\`. Build the final regular-file \`workspaceTree\` after applying the patch and replacing the Lake manifest; include the chosen Lean \`entryFile\`, expansion byte limit, and file-count limit. Ask me to select those exact absolute paths. Then call \`prepare_artifact_bundle_v2\`. It checks the local file names and hashes, derives immutable object keys, and signs a v2 Bundle with this Agent's local key. It does not upload, stage, run Lean, or verify anything.
+Ask me to choose one local Git/Lean workspace root and the relative Lean \`entryFile\` to reproduce. Before reading it, tell me that the current one-click alpha will inspect only that selected workspace locally, create temporary evidence files outside it, and upload nothing. After I explicitly approve, call \`prepare_workspace_bundle_v2\` with \`ownerConfirmation: "I_CONFIRM_PREPARE_WORKSPACE_BUNDLE"\`.
+
+This standard path prepares \`source.tar.zst\`, \`normalized.patch\`, \`lake-manifest.json\`, and the final regular-file tree itself. It accepts a Git workspace with modifications to existing tracked text files only; it intentionally stops rather than guessing how to package new, deleted, renamed, binary, symlinked, or untracked files. If it stops, explain the reason and use the advanced three-artifact flow only after I explicitly select those exact files.
 
 Show me the returned manifest hash and the exact three-file name, byte-size, and SHA-256 list. Make clear that the draft is a local, signed description of reproducible evidence—not a Lean result, review, or contribution receipt.
 
