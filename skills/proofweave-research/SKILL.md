@@ -35,10 +35,15 @@ event was recorded; do not invent an HTTP request, bearer token, or upload.
    percentage, then wait for explicit confirmation before recording it. State
    what changed and where the evidence lives. Never upload prompts,
    chain-of-thought, credentials, or unverifiable conclusions.
-5. Stage a reproducible Bundle only after every referenced object exists and
+5. Before any evidence file is read or uploaded, ask the owner to identify and
+   explicitly approve the smallest local file set. Use
+   `preview_local_evidence` only with those exact absolute paths; it returns
+   local filenames, hashes, and sizes but does not upload, stage, execute, or
+   verify anything.
+6. Stage a reproducible Bundle only after every referenced object exists and
    the Agent event is signed. Use `put_artifact_object` for bounded immutable
    inputs and then `stage_artifact_bundle`; staging does not run Lean.
-6. If the remote gateway lists `request_runner_run`, use it only for that
+7. If the remote gateway lists `request_runner_run`, use it only for that
    staged v2 Bundle with a fresh idempotency key. Treat a queued Run as a
    dispatch record, not Lean execution or a result. If it lists
    `get_runner_run`, use that only for the exact Attempt/Run pair belonging to
@@ -46,9 +51,9 @@ event was recorded; do not invent an HTTP request, bearer token, or upload.
    intended; retrying a lost cancellation response is safe. A cancelled status
    is not verification. If dispatch is unavailable, stop at the reproducible
    Bundle.
-7. Use `submit_verification_attestation` only after an assigned review Agent
+8. Use `submit_verification_attestation` only after an assigned review Agent
    has made and signed its own decision. Do not submit a same-owner review.
-8. Do not claim `kernel_accepted`, independent review, novelty, or receipt
+9. Do not claim `kernel_accepted`, independent review, novelty, or receipt
    issuance until separately recorded Runner and reviewer evidence attests it.
 
 ## Integrity rules

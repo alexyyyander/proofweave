@@ -9,9 +9,9 @@
  */
 import { createServer } from "node:http";
 import { createHash, generateKeyPairSync, randomBytes, randomUUID } from "node:crypto";
-import { chmod, mkdir, readFile, rename, writeFile } from "node:fs/promises";
+import { chmod, lstat, mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import { homedir, platform } from "node:os";
-import { dirname, join } from "node:path";
+import { basename, dirname, isAbsolute, join } from "node:path";
 import { spawn } from "node:child_process";
 import readline from "node:readline";
 
@@ -21,6 +21,7 @@ const callbackPort = 44765;
 const callbackPath = "/callback";
 const redirectUri = `http://${callbackHost}:${callbackPort}${callbackPath}`;
 const configPath = process.env.PROOFWEAVE_CONNECTOR_CONFIG ?? join(homedir(), ".proofweave", "codex-connector.json");
+const localEvidencePreviewLimits = { maxFiles: 6, maxFileBytes: 1_000_000, maxTotalBytes: 3_000_000 };
 const toolDefinitions = [
   tool("connect_proofweave", "Connect this local Codex to Proofweave with a one-time browser approval. It generates an Agent key on this computer; no key needs to be pasted.", { type: "object", additionalProperties: false, properties: {} }),
   tool("connection_status", "Show whether this local Connector has a revocable Proofweave connection. It does not contact Proofweave.", { type: "object", additionalProperties: false, properties: {} }),
@@ -30,6 +31,7 @@ const toolDefinitions = [
   tool("report_progress", "Record a concise provisional progress update for one of this Agent's Attempts. This is not Lean verification or a contribution receipt.", { type: "object", additionalProperties: false, properties: { attemptId: { type: "string", minLength: 1, maxLength: 240 }, message: { type: "string", minLength: 1, maxLength: 4000 }, progressPercent: { type: "integer", minimum: 0, maximum: 100 }, idempotencyKey: { type: "string", minLength: 1, maxLength: 160 } }, required: ["attemptId", "message", "progressPercent", "idempotencyKey"] }),
   tool("list_attempts", "List bounded Attempts attributed to this exact local Agent.", { type: "object", additionalProperties: false, properties: { limit: { type: "integer", minimum: 1, maximum: 100 } } }),
   tool("get_attempt", "Read one Attempt attributed to this exact local Agent.", { type: "object", additionalProperties: false, properties: { attemptId: { type: "string", minLength: 1, maxLength: 240 } }, required: ["attemptId"] }),
+  tool("preview_local_evidence", "Preview up to six explicitly owner-selected local files for one authorized Attempt. It returns only each filename, byte size, and SHA-256 hash; it never uploads, stages, runs, or verifies anything.", { type: "object", additionalProperties: false, properties: { attemptId: { type: "string", minLength: 1, maxLength: 240 }, paths: { type: "array", minItems: 1, maxItems: 6, items: { type: "string", minLength: 1, maxLength: 1000 } } }, required: ["attemptId", "paths"] }),
 ];
 
 const rl = readline.createInterface({ input: process.stdin, crlfDelay: Infinity });
@@ -69,9 +71,55 @@ async function handleRequest(method, params) {
   const args = params.arguments && typeof params.arguments === "object" && !Array.isArray(params.arguments) ? params.arguments : {};
   if (name === "connect_proofweave") return connectionResult(await connect());
   if (name === "connection_status") return connectionResult(await connectionStatus());
+  if (name === "preview_local_evidence") return connectionResult(await previewLocalEvidence(args));
   if (!toolDefinitions.some((item) => item.name === name)) return toolError(`Unknown Proofweave tool: ${name}`);
   const result = await callRemoteTool(name, args);
   return result;
+}
+
+async function previewLocalEvidence(args) {
+  const attemptId = requiredLocalString(args.attemptId, "attemptId", 240);
+  const paths = normalizeEvidencePaths(args.paths);
+
+  // This read establishes that the requested Attempt remains available to this
+  // exact connected Agent before any user-selected local file is opened.
+  await callRemoteTool("get_attempt", { attemptId });
+
+  const files = [];
+  let totalBytes = 0;
+  for (const path of paths) {
+    if (!isAbsolute(path)) throw new Error("Each evidence path must be an absolute path selected by the owner.");
+    const metadata = await lstat(path).catch((error) => {
+      if (error?.code === "ENOENT") throw new Error(`Selected evidence file was not found: ${basename(path)}`);
+      throw new Error(`Selected evidence file could not be inspected: ${basename(path)}`);
+    });
+    if (!metadata.isFile() || metadata.isSymbolicLink()) {
+      throw new Error(`Selected evidence must be a regular file, not a directory or link: ${basename(path)}`);
+    }
+    if (metadata.size > localEvidencePreviewLimits.maxFileBytes) {
+      throw new Error(`Selected evidence exceeds the ${localEvidencePreviewLimits.maxFileBytes} byte preview limit: ${basename(path)}`);
+    }
+    totalBytes += metadata.size;
+    if (totalBytes > localEvidencePreviewLimits.maxTotalBytes) {
+      throw new Error(`Selected evidence exceeds the ${localEvidencePreviewLimits.maxTotalBytes} byte combined preview limit.`);
+    }
+    const contents = await readFile(path);
+    files.push({
+      filename: basename(path),
+      bytes: contents.byteLength,
+      sha256: `sha256:${createHash("sha256").update(contents).digest("hex")}`,
+    });
+  }
+
+  return {
+    attemptId,
+    operation: "local_evidence_preview",
+    uploaded: false,
+    staged: false,
+    verificationState: "not_recorded",
+    files,
+    next: "Review this minimal file list with the owner. A separate explicit artifact-staging action is required before any file can leave this computer.",
+  };
 }
 
 async function connect() {
@@ -321,6 +369,22 @@ function normalizeBaseUrl(value) {
   url.search = "";
   url.hash = "";
   return url.toString().replace(/\/$/, "");
+}
+
+function requiredLocalString(value, label, maxLength) {
+  if (typeof value !== "string" || !value.trim()) throw new Error(`${label} is required.`);
+  const normalized = value.trim();
+  if (normalized.length > maxLength) throw new Error(`${label} is too long.`);
+  return normalized;
+}
+
+function normalizeEvidencePaths(value) {
+  if (!Array.isArray(value) || value.length < 1 || value.length > localEvidencePreviewLimits.maxFiles) {
+    throw new Error(`Choose between 1 and ${localEvidencePreviewLimits.maxFiles} local evidence files.`);
+  }
+  const paths = value.map((path) => requiredLocalString(path, "Each evidence path", 1000));
+  if (new Set(paths).size !== paths.length) throw new Error("Choose each local evidence file only once.");
+  return paths;
 }
 
 function randomToken(bytes) { return base64url(randomBytes(bytes)); }

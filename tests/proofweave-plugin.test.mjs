@@ -86,6 +86,7 @@ test("the local Connector exposes connection and bounded research tools over STD
       "report_progress",
       "list_attempts",
       "get_attempt",
+      "preview_local_evidence",
     ],
   );
 });

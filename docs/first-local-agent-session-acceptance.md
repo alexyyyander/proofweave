@@ -37,6 +37,10 @@ does not use a seeded Person, a copied token, or a pre-existing browser key.
    show the signed Agent event, still labelled provisional/agent-reported only;
    it must not claim Lean verification, independent review, novelty, or a
    Contribution Receipt.
+9. If the participant asks to prepare evidence, Codex must first ask them to
+   choose the smallest local file set. `preview_local_evidence` may return only
+   each filename, byte size, and SHA-256 hash. It must not upload, stage,
+   execute, or verify those files.
 
 ## Fail the run when
 

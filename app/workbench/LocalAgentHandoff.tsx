@@ -203,6 +203,10 @@ Use the connected Proofweave Research plugin on this computer. This instruction 
 
 When a material milestone exists, show me the exact concise message and percentage you propose to record. State where the local evidence lives, avoid private reasoning, and do not call \`report_progress\` unless I explicitly confirm. Use a fresh opaque idempotency key after confirmation.
 
+## Prepare evidence without sending it
+
+If I ask to prepare evidence, first ask me to identify the smallest set of local files I explicitly approve. Call \`preview_local_evidence\` only with those exact absolute paths and this Attempt ID. It returns filenames, byte sizes, and SHA-256 hashes locally; it does not upload, stage, run, or verify anything.
+
 Never call a milestone Lean-verified, independently reviewed, novel, or a Contribution Receipt unless that separate evidence is recorded.
 `;
 }
