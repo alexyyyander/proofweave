@@ -1119,6 +1119,82 @@ export const verificationAssignments = sqliteTable(
   ],
 );
 
+// An open verification job is an immutable invitation to review one exact
+// claim over one staged Bundle. Reward weight is a settlement share, never a
+// reserved balance. A separate immutable claim binds the first eligible
+// different-owner Person to the existing assignment protocol.
+export const verificationMarketJobs = sqliteTable(
+  "verification_market_jobs",
+  {
+    id: text("id").primaryKey(),
+    problemRevisionId: text("problem_revision_id")
+      .notNull()
+      .references(() => problemRevisions.id, { onDelete: "restrict" }),
+    poolId: text("pool_id")
+      .notNull()
+      .references(() => problemCreditPools.id, { onDelete: "restrict" }),
+    artifactBundleManifestHash: text("artifact_bundle_manifest_hash")
+      .notNull()
+      .references(() => artifactBundles.manifestHash, { onDelete: "restrict" }),
+    claimType: text("claim_type", {
+      enum: ["bundle_reproducible", "statement_faithful", "novelty_reviewed"],
+    }).notNull(),
+    attemptOwnerPersonId: text("attempt_owner_person_id")
+      .notNull()
+      .references(() => persons.id, { onDelete: "restrict" }),
+    rewardWeight: integer("reward_weight").notNull(),
+    policyVersion: text("policy_version").notNull(),
+    publishedAt: text("published_at").notNull(),
+    createdAt,
+  },
+  (table) => [
+    uniqueIndex("verification_market_jobs_bundle_claim_idx").on(table.artifactBundleManifestHash, table.claimType),
+    index("verification_market_jobs_problem_published_idx").on(table.problemRevisionId, table.publishedAt),
+    index("verification_market_jobs_pool_published_idx").on(table.poolId, table.publishedAt),
+  ],
+);
+
+export const verificationMarketJobClaims = sqliteTable(
+  "verification_market_job_claims",
+  {
+    id: text("id").primaryKey(),
+    jobId: text("job_id")
+      .notNull()
+      .unique()
+      .references(() => verificationMarketJobs.id, { onDelete: "restrict" }),
+    assignmentId: text("assignment_id")
+      .notNull()
+      .unique()
+      .references(() => verificationAssignments.id, { onDelete: "restrict" }),
+    verifierPersonId: text("verifier_person_id")
+      .notNull()
+      .references(() => persons.id, { onDelete: "restrict" }),
+    claimedAt: text("claimed_at").notNull(),
+    createdAt,
+  },
+  (table) => [index("verification_market_job_claims_person_time_idx").on(table.verifierPersonId, table.claimedAt)],
+);
+
+export const verificationMarketJobEvents = sqliteTable(
+  "verification_market_job_events",
+  {
+    id: text("id").primaryKey(),
+    jobId: text("job_id")
+      .notNull()
+      .references(() => verificationMarketJobs.id, { onDelete: "restrict" }),
+    sequence: integer("sequence").notNull(),
+    eventType: text("event_type", { enum: ["published", "claimed", "withdrawn"] }).notNull(),
+    payloadHash: text("payload_hash").notNull().unique(),
+    canonicalPayload: text("canonical_payload").notNull(),
+    occurredAt: text("occurred_at").notNull(),
+    createdAt,
+  },
+  (table) => [
+    uniqueIndex("verification_market_job_events_sequence_idx").on(table.jobId, table.sequence),
+    index("verification_market_job_events_occurred_idx").on(table.jobId, table.occurredAt),
+  ],
+);
+
 // A replay is not a review decision. It is the immutable provenance link
 // between an accepted independent-review assignment and a new, isolated Run
 // of the exact staged Bundle. The reviewer Agent never receives the

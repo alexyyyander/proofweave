@@ -836,12 +836,21 @@ test("imports the pinned catalog idempotently and serves provenance through the 
     [3_000, 4_000, 2_000, 1_000],
   );
 
+  const reviewJobsResponse = await render("/api/review-jobs");
+  assert.equal(reviewJobsResponse.status, 200);
+  const reviewJobsPayload = await reviewJobsResponse.json();
+  assert.deepEqual(reviewJobsPayload.jobs, []);
+  assert.match(reviewJobsPayload.note, /not reserved credits/i);
+
   const marketTables = await database.prepare(
-    "SELECT name FROM sqlite_master WHERE type = 'table' AND name IN ('problem_credit_pools','problem_credit_pool_events') ORDER BY name",
+    "SELECT name FROM sqlite_master WHERE type = 'table' AND name IN ('problem_credit_pools','problem_credit_pool_events','verification_market_jobs','verification_market_job_claims','verification_market_job_events') ORDER BY name",
   ).all();
   assert.deepEqual((marketTables.results ?? []).map((row) => row.name), [
     "problem_credit_pool_events",
     "problem_credit_pools",
+    "verification_market_job_claims",
+    "verification_market_job_events",
+    "verification_market_jobs",
   ]);
 });
 
@@ -966,7 +975,8 @@ test("scopes closed-alpha review assignments to the assigned Person and preserve
   const page = await render("/reviews", { headers: reviewerHeaders });
   assert.equal(page.status, 200);
   const pageHtml = await page.text();
-  assert.match(pageHtml, /Review another person’s evidence\./i);
+  assert.match(pageHtml, /Verify evidence\. Earn review credit\./i);
+  assert.match(pageHtml, /Open verification work/i);
   assert.match(pageHtml, /View audit trail/i);
 
   const acceptResponse = await render("/api/me/review-assignments/assignment:rendered-review/accept", {

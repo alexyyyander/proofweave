@@ -1,7 +1,8 @@
 # Proofweave Credit & Verification Market v1
 
-Status: implemented protocol and public projection; the first `erdos-865-k2`
-pool is a draft pilot and is not reward-bearing yet.
+Status: implemented protocol, public projection, and claim-specific verification
+job market; the first `erdos-865-k2` pool is a draft pilot and is not
+reward-bearing yet.
 
 ## Product purpose
 
@@ -91,15 +92,36 @@ Proofweave must continue to distinguish:
   boundary.
 - A 10,000-credit draft pilot for `erdos-865-k2`; it is deliberately not active.
 
+## Implemented verification-job slice
+
+- Three explicit public jobs for every complete staged Bundle under an active
+  pool: Bundle reproduction, statement fidelity, and novelty review.
+- Policy-pinned reward weights of 1, 2, and 2. These are later settlement
+  shares inside the fixed verification bucket, not reserved credits.
+- Public read API at `/api/review-jobs` and a public board at `/reviews`.
+- Authenticated one-action claiming, which atomically creates an accepted
+  verification assignment and immutable job/assignment events.
+- Different-Person ownership, active review delegation, per-Person capacity,
+  concurrent-claim, and append-only database enforcement.
+- Market provenance shown in the personal review queue without treating a
+  claimed or accepted assignment as mathematical verification.
+
+`kernel_accepted` remains Runner evidence rather than human market work, and
+`project_accepted` remains a curator gate. A completed conflict declaration
+does not earn a verification share. Rejections, requests for changes, and
+integrity flags may enter later settlement only with their evidence and final
+Receipt closure; any error bonus still requires separate adjudication.
+
 ## Next implementation slices
 
 1. Add operator-reviewed pool activation with a signed activation event.
-2. Publish claim-specific review jobs only for complete, staged Bundles.
-3. Record reward reservations for completed independent attestations and valid
-   rejections.
-4. Lock an accepted theorem's Receipt dependency closure.
-5. Produce a deterministic settlement manifest and signed personal credit
+2. Project completed, evidence-bearing review shares without reserving or
+   minting credits before settlement.
+3. Lock an accepted theorem's Receipt dependency closure.
+4. Produce a deterministic settlement manifest and signed personal credit
    receipts.
+5. Add adjudicated challenge-reserve payouts for valid rejections and decisive
+   counterexamples; never infer them from a negative decision alone.
 6. Add Sybil, conflict-of-interest, duplicate-work, and graph-splitting audits
    before opening public settlement.
 7. Only after the off-chain ledger is stable, evaluate anchoring settlement

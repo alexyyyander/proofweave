@@ -33,6 +33,11 @@ export type ReviewAssignmentSummary = Readonly<{
   completedAt: string | null;
   freshReplayCount: number;
   freshReplayEvidenceCount: number;
+  market: Readonly<{
+    jobId: string;
+    poolId: string;
+    rewardWeight: number;
+  }> | null;
   attestation: ReviewAssignmentAttestation | null;
   attempt: Readonly<{
     id: string;
@@ -97,6 +102,9 @@ type AssignmentRow = {
   attestation_attested_at: string | null;
   fresh_replay_count: number;
   fresh_replay_evidence_count: number;
+  market_job_id: string | null;
+  market_pool_id: string | null;
+  market_reward_weight: number | null;
 };
 
 type EventRow = {
@@ -204,6 +212,8 @@ const assignmentSelect = `SELECT
   attestation.decision AS attestation_decision,
   attestation.evidence_hash AS attestation_evidence_hash,
   attestation.attested_at AS attestation_attested_at,
+  market_job.id AS market_job_id, market_job.pool_id AS market_pool_id,
+  market_job.reward_weight AS market_reward_weight,
   (SELECT COUNT(*) FROM verification_replays AS replay
    WHERE replay.assignment_id = assignment.id) AS fresh_replay_count,
   (SELECT COUNT(*)
@@ -220,7 +230,9 @@ const assignmentSelect = `SELECT
  INNER JOIN agent_attempts AS attempt ON attempt.id = bundle.attempt_id
  INNER JOIN problem_revisions AS revision ON revision.id = bundle.problem_revision_id
  INNER JOIN projects AS project ON project.id = revision.project_id
- LEFT JOIN verification_attestations AS attestation ON attestation.assignment_id = assignment.id`;
+ LEFT JOIN verification_attestations AS attestation ON attestation.assignment_id = assignment.id
+ LEFT JOIN verification_market_job_claims AS market_claim ON market_claim.assignment_id = assignment.id
+ LEFT JOIN verification_market_jobs AS market_job ON market_job.id = market_claim.job_id`;
 
 export function getReviewAssignmentRepository(): ReviewAssignmentRepository {
   return new D1ReviewAssignmentRepository();
@@ -247,6 +259,13 @@ function toAssignment(row: AssignmentRow): ReviewAssignmentSummary {
     completedAt: row.completed_at,
     freshReplayCount: Number(row.fresh_replay_count),
     freshReplayEvidenceCount: Number(row.fresh_replay_evidence_count),
+    market: row.market_job_id && row.market_pool_id && row.market_reward_weight !== null
+      ? Object.freeze({
+        jobId: row.market_job_id,
+        poolId: row.market_pool_id,
+        rewardWeight: Number(row.market_reward_weight),
+      })
+      : null,
     attestation: toAttestation(row),
     attempt: Object.freeze({
       id: row.attempt_id,

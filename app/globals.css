@@ -824,6 +824,33 @@ h1, h2, h3, p { margin-top: 0; }
 .research-node-footer a { color: var(--indigo); font-size: 9px; font-weight: 700; }
 .research-graph-truncated { color: var(--amber); font-size: 10px; line-height: 1.45; }
 
+.verification-market { border-bottom: 1px solid var(--line); padding: 36px 0 44px; }
+.verification-market-heading, .personal-review-heading { align-items: end; display: flex; gap: 36px; justify-content: space-between; }
+.verification-market-heading > div, .personal-review-heading > div { max-width: 760px; }
+.verification-market-heading h2, .personal-review-heading h2 { font-family: Georgia, "Times New Roman", serif; font-size: clamp(31px, 3.6vw, 45px); font-weight: 400; letter-spacing: -.05em; line-height: 1.05; margin: 9px 0 12px; }
+.verification-market-heading p:not(.eyebrow), .personal-review-heading p:not(.eyebrow) { color: var(--ink-soft); font-size: 13px; line-height: 1.6; margin: 0; }
+.verification-job-grid { display: grid; gap: 12px; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 22px; }
+.verification-job-card { background: #fff; border: 1px solid var(--line); border-top: 3px solid var(--indigo); display: flex; flex-direction: column; min-height: 430px; padding: 18px; }
+.verification-job-top, .review-card-badges { align-items: center; display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; }
+.review-share-chip { background: var(--indigo-soft); color: #4055af; font-size: 9px; font-weight: 700; letter-spacing: .035em; padding: 5px 7px; text-transform: uppercase; white-space: nowrap; }
+.verification-job-card h3 { font-family: Georgia, "Times New Roman", serif; font-size: 28px; font-weight: 400; letter-spacing: -.04em; line-height: 1.05; margin: 34px 0 9px; }
+.verification-job-target { color: var(--ink); font-size: 12px; font-weight: 700; line-height: 1.4; margin: 0 0 20px; }
+.verification-job-card dl { border-top: 1px solid var(--line); margin: 0; }
+.verification-job-card dl > div { border-bottom: 1px solid var(--line); display: grid; gap: 5px; padding: 9px 0; }
+.verification-job-card dt { color: var(--ink-faint); font-size: 8px; font-weight: 700; letter-spacing: .045em; text-transform: uppercase; }
+.verification-job-card dd { color: var(--ink-soft); font-size: 10px; line-height: 1.45; margin: 0; overflow-wrap: anywhere; }
+.verification-job-card code { font-size: 9px; }
+.verification-job-actions { align-items: center; display: flex; gap: 14px; justify-content: space-between; margin-top: auto; padding-top: 20px; }
+.verification-claim { border-radius: 3px; font-size: 10px; padding: 10px 12px; white-space: nowrap; }
+.verification-market-empty { background: #f0f2f9; border-left: 3px solid #9aa9c8; margin-top: 22px; padding: 20px; }
+.verification-market-empty strong { font-family: Georgia, "Times New Roman", serif; font-size: 23px; font-weight: 400; }
+.verification-market-empty p { color: var(--ink-soft); font-size: 11px; line-height: 1.55; margin: 7px 0 0; max-width: 720px; }
+.verification-market-boundary { color: var(--ink-faint); font-size: 10px; line-height: 1.55; margin: 16px 0 0; max-width: 900px; }
+.verification-market-boundary strong { color: var(--amber); }
+.personal-review-heading { padding-top: 40px; }
+.review-sign-in-panel { margin-top: 20px; }
+.review-sign-in-panel .button { display: inline-flex; }
+
 @media (max-width: 900px) {
   .credit-market-heading { align-items: start; flex-direction: column; }
   .credit-market-board { grid-template-columns: 1fr; }
@@ -833,6 +860,7 @@ h1, h2, h3, p { margin-top: 0; }
   .research-graph-heading dl { width: 220px; }
   .historical-source-list { grid-template-columns: 1fr 1fr; }
   .historical-source-fields { grid-template-columns: 1fr 1fr; }
+  .verification-job-grid { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 620px) {
@@ -861,4 +889,9 @@ h1, h2, h3, p { margin-top: 0; }
   .historical-source-list, .historical-source-fields { grid-template-columns: 1fr; }
   .research-graph-empty, .research-graph-unavailable { align-items: start; grid-template-columns: 1fr; margin-left: -18px; margin-right: -18px; padding: 20px 18px; }
   .research-graph-empty .button { grid-column: 1; grid-row: auto; justify-content: center; width: 100%; }
+  .verification-market-heading, .personal-review-heading { align-items: start; flex-direction: column; gap: 16px; }
+  .verification-job-grid { grid-template-columns: 1fr; }
+  .verification-job-card { min-height: 0; }
+  .verification-job-actions { align-items: stretch; flex-direction: column; }
+  .verification-job-actions .button { justify-content: center; width: 100%; }
 }

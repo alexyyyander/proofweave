@@ -87,7 +87,7 @@ function ReviewCard({ assignment, auditEvents, busy, canAttest, isAuditOpen, onT
 }) {
   const state = statusDetail(assignment, canAttest);
   return <article className="review-card">
-    <div className="review-card-top"><span className="micro-label">Independent review · {claimLabel(assignment.claimType)}</span><span className={`review-status is-${state.tone}`}>{state.label}</span></div>
+    <div className="review-card-top"><span className="micro-label">Independent review · {claimLabel(assignment.claimType)}</span><div className="review-card-badges">{assignment.market && <span className="review-share-chip">Market · {assignment.market.rewardWeight} {assignment.market.rewardWeight === 1 ? "share" : "shares"}</span>}<span className={`review-status is-${state.tone}`}>{state.label}</span></div></div>
     <div className="review-card-copy"><h2>{assignment.target.title}</h2><p><code>{assignment.target.declaration}</code></p></div>
     <dl className="review-metadata">
       <div><dt>Project</dt><dd>{assignment.target.projectSlug}</dd></div>
@@ -96,6 +96,7 @@ function ReviewCard({ assignment, auditEvents, busy, canAttest, isAuditOpen, onT
       <div><dt>Evidence bundle</dt><dd><code>{assignment.artifactBundleManifestHash}</code></dd></div>
       <div><dt>Fresh workspace replays</dt><dd>{assignment.freshReplayCount} recorded</dd></div>
       <div><dt>Terminal replay evidence</dt><dd>{assignment.freshReplayEvidenceCount} ready</dd></div>
+      {assignment.market && <><div><dt>Market pool</dt><dd><code>{assignment.market.poolId}</code></dd></div><div><dt>Settlement basis</dt><dd>{assignment.market.rewardWeight} weighted {assignment.market.rewardWeight === 1 ? "share" : "shares"}; no credits reserved</dd></div></>}
       {assignment.attestation && <><div><dt>Signed decision</dt><dd>{decisionLabel(assignment.attestation.decision)}</dd></div><div><dt>Decision evidence</dt><dd><code>{assignment.attestation.evidenceHash}</code></dd></div></>}
     </dl>
     <div className="review-card-footer">

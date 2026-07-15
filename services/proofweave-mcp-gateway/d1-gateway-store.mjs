@@ -6,6 +6,7 @@ import {
   VerificationStoreNotFoundError,
   VerificationStoreValidationError,
 } from "../verification/d1-verification-store.mjs";
+import { D1VerificationMarketStore } from "../verification/d1-verification-market-store.mjs";
 import { D1R2ArtifactStore } from "../artifacts/d1-r2-artifact-store.mjs";
 import { maxInlineArtifactObjectBytes } from "../artifacts/d1-inline-artifact-store.mjs";
 import { D1RunStore } from "../lean-runner/d1-run-store.mjs";
@@ -68,6 +69,7 @@ export class D1RemoteMcpGatewayStore {
     }
     this.database = database;
     this.verificationStore = new D1VerificationStore(database);
+    this.verificationMarketStore = new D1VerificationMarketStore(database);
     this.artifactStore = artifactStore ?? (bucket ? new D1R2ArtifactStore({ database, bucket }) : null);
     this.runStore = new D1RunStore(database);
     this.researchGraphStore = new D1ResearchGraphStore(database);
@@ -320,8 +322,13 @@ export class D1RemoteMcpGatewayStore {
     const attempt = await this.requireArtifactAttempt(principal, installation, bundle.attemptId);
     await this.requireInstallation(principal, attempt.delegationScope);
     const staged = await this.requireArtifactStore().stageBundle(bundle);
+    const verificationMarket = await this.verificationMarketStore.publishJobsForBundle(
+      staged.bundle.manifestHash,
+      new Date().toISOString(),
+    );
     return Object.freeze({
       ...staged,
+      verificationMarket,
       storageState: "bundle_staged_only",
       verificationState: "not_verified",
     });
