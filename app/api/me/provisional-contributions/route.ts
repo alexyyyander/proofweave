@@ -25,7 +25,7 @@ export async function GET() {
     });
   } catch (error) {
     if (error instanceof ProvisionalContributionSchemaUnavailableError) {
-      return apiError("unavailable", "The provisional contribution ledger is awaiting its control-plane migration.", 503);
+      return apiError("unavailable", "The staged evidence ledger is awaiting its control-plane migration.", 503);
     }
     return delegationFailure(error);
   }

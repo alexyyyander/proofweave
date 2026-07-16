@@ -63,6 +63,8 @@ export function WorkspaceTopbar({
   refreshedAt: string | null;
   onRefresh: () => void;
 }) {
+  const activeAttempts = attempts.filter((attempt) => attempt.status === "active");
+  const historicalAttempts = attempts.filter((attempt) => attempt.status !== "active");
   return <header className="workspace-topbar">
     <div className="workspace-topbar-title">
       <span className="micro-label">Personal workspace</span>
@@ -76,9 +78,10 @@ export function WorkspaceTopbar({
         onChange={(event) => onSelectAttempt(event.target.value)}
         disabled={attempts.length === 0}
       >
-        {attempts.length === 0
-          ? <option value="">No Attempt yet</option>
-          : attempts.map((attempt) => <option value={attempt.id} key={attempt.id}>{attempt.problemTitle} · {attempt.delegationScope ?? "research"}</option>)}
+        {attempts.length === 0 ? <option value="">No Attempt yet</option> : <>
+          {activeAttempts.length > 0 && <optgroup label="Active research">{activeAttempts.map((attempt) => <option value={attempt.id} key={attempt.id}>{attempt.problemTitle} · {attempt.delegationScope ?? "research"}</option>)}</optgroup>}
+          {historicalAttempts.length > 0 && <optgroup label="History">{historicalAttempts.map((attempt) => <option value={attempt.id} key={attempt.id}>{attempt.problemTitle} · {attemptStatusLabel(attempt.status)}</option>)}</optgroup>}
+        </>}
       </select>
     </label>
     <div className="workspace-topbar-status">
@@ -86,7 +89,7 @@ export function WorkspaceTopbar({
       <button type="button" className="workspace-sync-button" onClick={onRefresh} disabled={isRefreshing || !canRefresh}>
         {isRefreshing ? "Syncing…" : "Refresh records"}
       </button>
-      <small>{refreshedAt ? `Updated ${formatTimestamp(refreshedAt)}` : "Current session"}</small>
+      <small>{canRefresh ? `Auto-sync · ${refreshedAt ? `updated ${formatTimestamp(refreshedAt)}` : "current session"}` : "Current session"}</small>
     </div>
   </header>;
 }
@@ -95,23 +98,35 @@ export function WorkspaceSidebar({
   attempts,
   selectedAttemptId,
   onSelectAttempt,
+  view,
+  onViewChange,
   reviewCount,
   evidenceCount,
 }: {
   attempts: readonly McpAttempt[];
   selectedAttemptId: string | null;
   onSelectAttempt: (attemptId: string) => void;
+  view: "active" | "history";
+  onViewChange: (view: "active" | "history") => void;
   reviewCount: number | null;
   evidenceCount: number | null;
 }) {
+  const activeAttempts = attempts.filter((attempt) => attempt.status === "active");
+  const historicalAttempts = attempts.filter((attempt) => attempt.status !== "active");
+  const visibleAttempts = view === "active" ? activeAttempts : historicalAttempts;
+
   return <aside className="workspace-sidebar" aria-label="Personal workspace navigation">
     <section>
-      <div className="workspace-sidebar-heading"><span>Research</span><b>{attempts.length}</b></div>
-      {attempts.length === 0
-        ? <div className="workspace-sidebar-empty"><p>No research Attempt yet.</p><Link href="/explore">Explore problems <span>→</span></Link></div>
-        : <ol className="workspace-attempt-list">{attempts.map((attempt) => <li key={attempt.id}>
+      <div className="workspace-sidebar-heading"><span>Research</span><b>{activeAttempts.length}</b></div>
+      <div className="workspace-attempt-filters" role="tablist" aria-label="Research Attempt state">
+        <button type="button" role="tab" aria-selected={view === "active"} className={view === "active" ? "is-selected" : ""} onClick={() => onViewChange("active")}>Active <span>{activeAttempts.length}</span></button>
+        <button type="button" role="tab" aria-selected={view === "history"} className={view === "history" ? "is-selected" : ""} onClick={() => onViewChange("history")}>History <span>{historicalAttempts.length}</span></button>
+      </div>
+      {visibleAttempts.length === 0
+        ? <div className="workspace-sidebar-empty"><p>{view === "active" ? "No active research Attempt." : "Completed and closed Attempts will remain here."}</p>{view === "active" && <Link href="/explore">Explore problems <span>→</span></Link>}</div>
+        : <ol className="workspace-attempt-list">{visibleAttempts.map((attempt) => <li key={attempt.id}>
           <button type="button" className={attempt.id === selectedAttemptId ? "is-selected" : ""} onClick={() => onSelectAttempt(attempt.id)} aria-pressed={attempt.id === selectedAttemptId}>
-            <span>{attempt.status}</span>
+            <span>{attemptStatusLabel(attempt.status)}</span>
             <strong>{attempt.problemTitle}</strong>
             <small>{attempt.delegationScope ?? "research"} · {formatTimestamp(attempt.updatedAt)}</small>
           </button>
@@ -136,7 +151,7 @@ export function WorkspaceRecordLinks({
     <dl>
       <div><dt>Agent events</dt><dd>{eventCount}</dd></div>
       <div><dt>Runner records</dt><dd>{runCount}</dd></div>
-      <div><dt>Provisional credit</dt><dd>{contributionCount}</dd></div>
+      <div><dt>Staged evidence</dt><dd>{contributionCount}</dd></div>
     </dl>
     <div className="workspace-record-actions">
       <Link href="/evidence">Inspect evidence <span>→</span></Link>
@@ -148,4 +163,10 @@ export function WorkspaceRecordLinks({
 function formatTimestamp(value: string): string {
   const date = new Date(value);
   return Number.isNaN(date.getTime()) ? "Unknown" : new Intl.DateTimeFormat(undefined, { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" }).format(date);
+}
+
+function attemptStatusLabel(status: McpAttempt["status"]): string {
+  if (status === "active") return "Active";
+  if (status === "submitted") return "Submitted";
+  return "Closed";
 }

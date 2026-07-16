@@ -5,7 +5,7 @@ import { useState } from "react";
 import type { DelegationProfile, StoredDelegation } from "@/db/repositories/delegation";
 import type { McpAttempt } from "@/packages/domain/mcp";
 import { ProductStateBadge } from "../ui";
-import { activeLocalCodexInstallation, activeWorkDelegation } from "../lib/local-agent-journey";
+import { activeAttemptDelegation, activeLocalCodexInstallation, activeWorkDelegation } from "../lib/local-agent-journey";
 
 export function LocalAgentHandoff({
   profile,
@@ -26,7 +26,7 @@ export function LocalAgentHandoff({
   isRefreshing: boolean;
   onRefresh: () => void;
 }) {
-  const active = activeWorkDelegation(profile);
+  const active = attempt ? activeAttemptDelegation(profile, attempt) : activeWorkDelegation(profile);
   const connection = activeLocalCodexInstallation(profile, active);
   const agent = active ? profile?.agents.find((candidate) => candidate.id === active.agentId) ?? null : null;
   const [notice, setNotice] = useState<string | null>(null);
@@ -68,17 +68,8 @@ export function LocalAgentHandoff({
     </section>;
   }
 
-  const codexInstruction = researchBrief({ agentLabel: agent.label, attempt, parentNodeId: initialParentNodeId });
+  const codexInstruction = buildCodexResearchBrief({ agentLabel: agent.label, attempt, parentNodeId: initialParentNodeId });
   const hasRecordedMilestone = attempt.events.some((event) => event.type === "agent_reported" || event.type === "bundle_staged");
-
-  const copyCodexInstruction = async () => {
-    try {
-      await navigator.clipboard.writeText(codexInstruction);
-      setNotice("Codex instruction copied. Paste it into the Codex session on this connected computer; it already contains the bound Attempt ID and safe reporting rules.");
-    } catch {
-      setNotice("Your browser could not copy the Codex instruction. Download it instead, then open it from your local workspace.");
-    }
-  };
 
   const downloadCodexInstruction = () => {
     const blob = new Blob([codexInstruction], { type: "text/markdown;charset=utf-8" });
@@ -109,11 +100,10 @@ export function LocalAgentHandoff({
     <div className="local-agent-actions">
       <div>
         <span className="micro-label">Your next Codex message</span>
-        <strong>Continue this Proofweave Attempt in Codex.</strong>
-        <p>It names the selected target and tells Codex to prepare locally, show exact hashes, and wait for one final confirmation before staging and requesting a Run. Nothing from your private workspace is included.</p>
+        <strong>The brief is ready from the recommended action above.</strong>
+        <p>It names the selected target and tells Codex to prepare locally, show exact hashes, and wait for one final confirmation before staging and requesting a Run. This panel explains the boundary and keeps recovery actions nearby.</p>
       </div>
       <div className="local-agent-buttons">
-        <button className="button button-primary" type="button" onClick={() => { void copyCodexInstruction(); }}>Copy for Codex</button>
         <button className="workspace-secondary-button" type="button" disabled={isRefreshing} onClick={onRefresh}>{isRefreshing ? "Checking…" : "Check recorded progress"}</button>
         <button className="workspace-secondary-button" type="button" onClick={downloadCodexInstruction}>Download .md</button>
       </div>
@@ -189,7 +179,7 @@ function unavailableState({
   };
 }
 
-function researchBrief({ agentLabel, attempt, parentNodeId }: { agentLabel: string; attempt: McpAttempt; parentNodeId: string | null }): string {
+export function buildCodexResearchBrief({ agentLabel, attempt, parentNodeId }: { agentLabel: string; attempt: McpAttempt; parentNodeId: string | null }): string {
   return `# Continue this Proofweave Attempt in Codex
 
 Use the connected Proofweave Research plugin on this computer. This instruction is local-only; it is not an Agent event, Lean result, or contribution receipt.

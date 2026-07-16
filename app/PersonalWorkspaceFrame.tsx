@@ -30,7 +30,7 @@ export async function PersonalWorkspaceFrame({ active, children }: { active: Per
         <div><span>Active Attempts</span><strong>{countLabel(summary.counts.activeAttempts)}</strong></div>
         <div><span>Pending Reviews</span><strong>{countLabel(summary.counts.activeReviews)}</strong></div>
         <div><span>Evidence Records</span><strong>{countLabel(summary.counts.evidence)}</strong></div>
-        <div><span>Provisional Credit</span><strong>{countLabel(summary.counts.provisionalContributions)}</strong></div>
+        <div><span>Staged Evidence</span><strong>{countLabel(summary.counts.provisionalContributions)}</strong></div>
         <Link href={attemptHref}>{summary.currentAttempt ? "Return to current research" : "Open Workspace"} <span>→</span></Link>
       </section>
       <div className="personal-workspace-frame-content">{children}</div>

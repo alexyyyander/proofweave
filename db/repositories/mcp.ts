@@ -50,8 +50,8 @@ export class McpIdempotencyConflictError extends Error {
 }
 
 export class McpAttemptNotActiveError extends Error {
-  constructor() {
-    super("Progress can only be reported while an attempt is active.");
+  constructor(message = "Progress can only be reported while an attempt is active.") {
+    super(message);
     this.name = "McpAttemptNotActiveError";
   }
 }
@@ -153,6 +153,7 @@ export interface McpRepository {
     personId: string,
     input: { attemptId: string; message: string; progressPercent: number; idempotencyKey: string },
   ): Promise<IdempotentResult<McpAttemptEvent> | null>;
+  cancelAttempt(personId: string, attemptId: string): Promise<Readonly<{ value: McpAttempt; changed: boolean }> | null>;
   findAttempt(personId: string, attemptId: string): Promise<McpAttempt | null>;
   listAttempts(personId: string): Promise<McpAttempt[]>;
   listRunSummaries(personId: string): Promise<readonly McpRunSummary[]>;
@@ -385,6 +386,63 @@ class D1McpRepository implements McpRepository {
     }
 
     return { value: event, created: inserted.meta.changes === 1 };
+  }
+
+  async cancelAttempt(
+    personId: string,
+    attemptId: string,
+  ): Promise<Readonly<{ value: McpAttempt; changed: boolean }> | null> {
+    const current = await this.findAttempt(personId, attemptId);
+    if (!current) return null;
+    if (current.status === "cancelled") return { value: current, changed: false };
+    if (current.status !== "active") {
+      throw new McpAttemptNotActiveError("Only an active Attempt can be closed.");
+    }
+
+    const now = new Date().toISOString();
+    const database = getD1();
+    const [updated] = await database.batch([
+      database.prepare(
+        `UPDATE agent_attempts
+         SET status = 'cancelled', updated_at = ?
+         WHERE id = ? AND person_id = ? AND status = 'active'`,
+      )
+      .bind(now, attemptId, personId),
+      database.prepare(
+        `INSERT OR IGNORE INTO agent_attempt_events (
+          id, attempt_id, sequence, event_type, message, idempotency_key, occurred_at
+        )
+        SELECT ?, ?, (
+          SELECT COALESCE(MAX(sequence), 0) + 1
+          FROM agent_attempt_events
+          WHERE attempt_id = ?
+        ), 'attempt_cancelled', ?, ?, ?
+        WHERE EXISTS (
+          SELECT 1 FROM agent_attempts
+          WHERE id = ? AND person_id = ? AND status = 'cancelled'
+        )`,
+      ).bind(
+        `attempt-cancelled:${attemptId}`,
+        attemptId,
+        attemptId,
+        "Attempt closed by its owner. Existing events, evidence, Runs, and reviews remain available; future Agent progress is no longer accepted.",
+        `attempt-cancelled:${attemptId}`,
+        now,
+        attemptId,
+        personId,
+      ),
+    ]);
+
+    if (updated.meta.changes !== 1) {
+      const latest = await this.findAttempt(personId, attemptId);
+      if (!latest) return null;
+      if (latest.status === "cancelled") return { value: latest, changed: false };
+      throw new McpAttemptNotActiveError("Only an active Attempt can be closed.");
+    }
+
+    const cancelled = await this.findAttempt(personId, attemptId);
+    if (!cancelled) throw new Error("Closed Attempt record became unavailable.");
+    return { value: cancelled, changed: true };
   }
 
   async findAttempt(personId: string, attemptId: string): Promise<McpAttempt | null> {

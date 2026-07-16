@@ -1,14 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { DelegationProfile } from "@/db/repositories/delegation";
 import type { CatalogProblem } from "@/packages/domain/catalog";
 import type { McpAttempt, McpRunSummary } from "@/packages/domain/mcp";
 import type { ProvisionalContribution } from "@/db/repositories/provisional-contributions";
 import { DelegationSummary, FocusAction, ProvisionalContributionLedger, ResearchWorkstation, SubmissionReadiness, WorkspaceSettingsPrompt } from "./workbench-sections";
-import { LocalAgentHandoff } from "./LocalAgentHandoff";
+import { buildCodexResearchBrief, LocalAgentHandoff } from "./LocalAgentHandoff";
 import { ResearchLauncher } from "./ResearchLauncher";
-import { activeLocalAgentAttempt, activeLocalCodexInstallation } from "../lib/local-agent-journey";
+import { activeAttemptDelegation, activeLocalAgentAttempt, activeLocalCodexInstallation } from "../lib/local-agent-journey";
 import { deriveWorkspaceMode, WorkspaceRecordLinks, WorkspaceSidebar, WorkspaceTopbar } from "./WorkspaceShell";
 
 export function WorkbenchClient({
@@ -49,18 +49,31 @@ export function WorkbenchClient({
   const [reviewCount, setReviewCount] = useState<number | null>(initialReviewCount);
   const [evidenceCount, setEvidenceCount] = useState<number | null>(initialEvidenceCount);
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const refreshInFlight = useRef(false);
   const [refreshError, setRefreshError] = useState<string | null>(null);
   const [refreshedAt, setRefreshedAt] = useState<string | null>(null);
-  const [selectedAttemptId, setSelectedAttemptId] = useState<string | null>(() => selectVisibleAttempt(profile, initialAttempts, initialTargetSlug, initialAttemptId)?.id ?? null);
+  const [handoffNotice, setHandoffNotice] = useState<string | null>(null);
+  const [lifecycleNotice, setLifecycleNotice] = useState<string | null>(null);
+  const [isClosingAttempt, setIsClosingAttempt] = useState(false);
+  const initialVisibleAttempt = selectVisibleAttempt(profile, initialAttempts, initialTargetSlug, initialAttemptId);
+  const [selectedAttemptId, setSelectedAttemptId] = useState<string | null>(() => initialVisibleAttempt?.id ?? null);
+  const [attemptListView, setAttemptListView] = useState<"active" | "history">(() => initialVisibleAttempt?.status === "active" || !initialVisibleAttempt ? "active" : "history");
   const fallbackAttempt = selectVisibleAttempt(profile, attempts, initialTargetSlug, initialAttemptId);
   const activeAttempt = attempts.find((attempt) => attempt.id === selectedAttemptId) ?? fallbackAttempt;
   const connection = activeLocalCodexInstallation(profile);
-  const mode = deriveWorkspaceMode({ isAuthenticated, storageAvailable, isAgentConnected: Boolean(connection), attempt: activeAttempt });
+  const selectedDelegation = activeAttemptDelegation(profile, activeAttempt);
+  const selectedConnection = activeAttempt
+    ? activeLocalCodexInstallation(profile, selectedDelegation)
+    : connection;
+  const mode = deriveWorkspaceMode({ isAuthenticated, storageAvailable, isAgentConnected: Boolean(selectedConnection), attempt: activeAttempt });
   const activeRuns = activeAttempt ? runs.filter((run) => run.attemptId === activeAttempt.id) : [];
   const showActiveWorkspace = mode === "active-research" || mode === "evidence-review";
+  const canContinueLocally = activeAttempt?.status === "active" && Boolean(selectedConnection);
+  const hasPendingRun = activeRuns.some((run) => ["queued", "preparing", "running", "cancel_requested"].includes(run.state));
 
-  const refreshAttempts = async () => {
-    if (!isAuthenticated || !storageAvailable || isRefreshing) return;
+  const refreshAttempts = useCallback(async () => {
+    if (!isAuthenticated || !storageAvailable || refreshInFlight.current) return;
+    refreshInFlight.current = true;
     setIsRefreshing(true);
     setRefreshError(null);
     try {
@@ -97,13 +110,18 @@ export function WorkbenchClient({
     } catch (error) {
       setRefreshError(error instanceof Error ? error.message : "Proofweave could not refresh the durable Attempt records.");
     } finally {
+      refreshInFlight.current = false;
       setIsRefreshing(false);
     }
-  };
+  }, [isAuthenticated, isProvisionalLedgerAvailable, storageAvailable]);
 
   const selectAttempt = (attemptId: string) => {
-    if (!attempts.some((attempt) => attempt.id === attemptId)) return;
+    const selected = attempts.find((attempt) => attempt.id === attemptId);
+    if (!selected) return;
     setSelectedAttemptId(attemptId);
+    setAttemptListView(selected.status === "active" ? "active" : "history");
+    setHandoffNotice(null);
+    setLifecycleNotice(null);
     if (typeof window === "undefined") return;
     const url = new URL(window.location.href);
     url.searchParams.set("attempt", attemptId);
@@ -117,14 +135,31 @@ export function WorkbenchClient({
       const url = new URL(window.location.href);
       const restored = selectVisibleAttempt(profile, attempts, url.searchParams.get("target"), url.searchParams.get("attempt"));
       setSelectedAttemptId(restored?.id ?? null);
+      setAttemptListView(restored?.status === "active" || !restored ? "active" : "history");
     };
     window.addEventListener("popstate", restoreAttemptFromUrl);
     return () => window.removeEventListener("popstate", restoreAttemptFromUrl);
   }, [attempts, profile]);
 
+  useEffect(() => {
+    if (!isAuthenticated || !storageAvailable) return;
+    const refreshWhenVisible = () => {
+      if (document.visibilityState === "visible") void refreshAttempts();
+    };
+    window.addEventListener("focus", refreshWhenVisible);
+    document.addEventListener("visibilitychange", refreshWhenVisible);
+    const interval = hasPendingRun ? window.setInterval(refreshWhenVisible, 15_000) : null;
+    return () => {
+      window.removeEventListener("focus", refreshWhenVisible);
+      document.removeEventListener("visibilitychange", refreshWhenVisible);
+      if (interval !== null) window.clearInterval(interval);
+    };
+  }, [hasPendingRun, isAuthenticated, refreshAttempts, storageAvailable]);
+
   const onAttemptReady = (attempt: McpAttempt) => {
     setAttempts((current) => [attempt, ...current.filter((candidate) => candidate.id !== attempt.id)]);
     setSelectedAttemptId(attempt.id);
+    setAttemptListView("active");
     if (typeof window !== "undefined") {
       const url = new URL(window.location.href);
       url.searchParams.set("attempt", attempt.id);
@@ -133,17 +168,60 @@ export function WorkbenchClient({
       window.history.replaceState({ attemptId: attempt.id }, "", `${url.pathname}${url.search}${url.hash}`);
     }
     setRefreshError(null);
+    setLifecycleNotice(null);
+  };
+
+  const copyCodexBrief = async () => {
+    if (!activeAttempt || activeAttempt.status !== "active" || !selectedConnection) return;
+    const brief = buildCodexResearchBrief({
+      agentLabel: activeAttempt.agentLabel,
+      attempt: activeAttempt,
+      parentNodeId: initialParentNodeId,
+    });
+    try {
+      await navigator.clipboard.writeText(brief);
+      setHandoffNotice("Codex brief copied. Paste it into Codex on this connected computer; the target and Attempt are already bound.");
+    } catch {
+      setHandoffNotice("Your browser could not copy the Codex brief. Use Download .md in the local handoff section instead.");
+    }
+  };
+
+  const closeAttempt = async () => {
+    if (!activeAttempt || activeAttempt.status !== "active" || isClosingAttempt) return;
+    const attemptId = activeAttempt.id;
+    setIsClosingAttempt(true);
+    setLifecycleNotice(null);
+    try {
+      const response = await fetch(`/api/me/attempts/${encodeURIComponent(attemptId)}`, {
+        method: "PATCH",
+        headers: { accept: "application/json", "content-type": "application/json" },
+        body: JSON.stringify({ action: "cancel" }),
+      });
+      const payload = await response.json().catch(() => null);
+      if (!response.ok || !payload?.attempt) {
+        throw new Error(payload?.error?.message ?? "Proofweave could not close this Attempt.");
+      }
+      const closed = payload.attempt as McpAttempt;
+      setAttempts((current) => current.map((attempt) => attempt.id === closed.id ? closed : attempt));
+      setAttemptListView("history");
+      setLifecycleNotice("Attempt closed and moved to History. Its events, evidence, Runs, and reviews remain available.");
+      setRefreshedAt(new Date().toISOString());
+    } catch (error) {
+      setLifecycleNotice(error instanceof Error ? error.message : "Proofweave could not close this Attempt.");
+    } finally {
+      setIsClosingAttempt(false);
+    }
   };
 
   return <>
-    <WorkspaceTopbar attempts={attempts} selectedAttemptId={activeAttempt?.id ?? null} onSelectAttempt={selectAttempt} agentLabel={connection?.agentLabel ?? null} isAgentConnected={Boolean(connection)} mode={mode} isRefreshing={isRefreshing} canRefresh={isAuthenticated && storageAvailable} refreshedAt={refreshedAt} onRefresh={() => { void refreshAttempts(); }} />
+    <WorkspaceTopbar attempts={attempts} selectedAttemptId={activeAttempt?.id ?? null} onSelectAttempt={selectAttempt} agentLabel={selectedConnection?.agentLabel ?? null} isAgentConnected={Boolean(selectedConnection)} mode={mode} isRefreshing={isRefreshing} canRefresh={isAuthenticated && storageAvailable} refreshedAt={refreshedAt} onRefresh={() => { void refreshAttempts(); }} />
     <div className={`workspace-shell mode-${mode}`}>
-      <WorkspaceSidebar attempts={attempts} selectedAttemptId={activeAttempt?.id ?? null} onSelectAttempt={selectAttempt} reviewCount={reviewCount} evidenceCount={evidenceCount} />
+      <WorkspaceSidebar attempts={attempts} selectedAttemptId={activeAttempt?.id ?? null} onSelectAttempt={selectAttempt} view={attemptListView} onViewChange={setAttemptListView} reviewCount={reviewCount} evidenceCount={evidenceCount} />
       <section className="workspace-task-canvas" aria-label="Current research work">
-        <FocusAction profile={profile} attempt={activeAttempt} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} refreshError={refreshError} refreshedAt={refreshedAt} />
+        <FocusAction profile={profile} attempt={activeAttempt} canContinueLocally={canContinueLocally} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} refreshError={refreshError} refreshedAt={refreshedAt} handoffNotice={handoffNotice} lifecycleNotice={lifecycleNotice} isClosingAttempt={isClosingAttempt} onCopyCodexBrief={() => { void copyCodexBrief(); }} onCloseAttempt={() => { void closeAttempt(); }} />
         {!showActiveWorkspace && <ResearchLauncher profile={profile} attempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={initialTargetSlug} initialParentNodeId={initialParentNodeId} onAttemptReady={onAttemptReady} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} />}
         {showActiveWorkspace && <>
-          <LocalAgentHandoff profile={profile} attempt={activeAttempt} initialParentNodeId={initialParentNodeId} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} isRefreshing={isRefreshing} onRefresh={() => { void refreshAttempts(); }} />
+          {canContinueLocally && <LocalAgentHandoff profile={profile} attempt={activeAttempt} initialParentNodeId={initialParentNodeId} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} isRefreshing={isRefreshing} onRefresh={() => { void refreshAttempts(); }} />}
           <ResearchWorkstation attempt={activeAttempt} runs={runs} />
           <details className="workspace-new-research">
             <summary>Start another research target</summary>

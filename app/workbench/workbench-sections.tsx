@@ -91,25 +91,37 @@ export function DelegationSummary({ profile }: { profile: DelegationProfile | nu
 export function FocusAction({
   profile,
   attempt,
+  canContinueLocally,
   isAuthenticated,
   signInPath,
   storageAvailable,
   refreshError,
   refreshedAt,
+  handoffNotice,
+  lifecycleNotice,
+  isClosingAttempt,
+  onCopyCodexBrief,
+  onCloseAttempt,
 }: {
   profile: DelegationProfile | null;
   attempt: McpAttempt | null;
+  canContinueLocally: boolean;
   isAuthenticated: boolean;
   signInPath: string;
   storageAvailable: boolean;
   refreshError: string | null;
   refreshedAt: string | null;
+  handoffNotice: string | null;
+  lifecycleNotice: string | null;
+  isClosingAttempt: boolean;
+  onCopyCodexBrief: () => void;
+  onCloseAttempt: () => void;
 }) {
-  const action = localAgentJourney({
+  const journey = localAgentJourney({
     profile,
     isAuthenticated,
     storageAvailable,
-    hasAttempt: Boolean(attempt),
+    hasAttempt: attempt?.status === "active",
     hasSelectedTarget: false,
     links: {
       signIn: signInPath,
@@ -119,6 +131,24 @@ export function FocusAction({
       work: "#local-agent",
     },
   });
+  const isHistoricalAttempt = Boolean(attempt && attempt.status !== "active");
+  const needsAttemptConnection = Boolean(attempt?.status === "active" && !canContinueLocally);
+  const action = isHistoricalAttempt ? {
+    title: "This Attempt is retained in your research history.",
+    detail: "Its recorded events and evidence remain inspectable. Open a new Attempt if you want your Agent to continue this target or explore another direction.",
+    label: "Choose another target",
+    href: "/explore",
+  } : needsAttemptConnection ? {
+    title: "Connect the Agent bound to this Attempt.",
+    detail: "This research record belongs to a different or expired local Agent approval. Reconnect before copying a brief or recording more work.",
+    label: "Review Agent connection",
+    href: "/integrations#codex-beta",
+  } : {
+    title: journey.title,
+    detail: journey.detail,
+    label: journey.stage === "work_locally" ? "Copy Codex brief" : journey.actionLabel,
+    href: journey.actionHref,
+  };
   const focusTitle = attempt?.problemTitle ?? "Choose a source-pinned research target.";
   const focusDetail = attempt
     ? `${attempt.agentLabel} · ${attempt.delegationScope ?? "legacy"} authority · ${attempt.status}`
@@ -131,16 +161,28 @@ export function FocusAction({
       <p>{focusDetail}</p>
       <div className="toolbar-links">
         {attempt && <Link className="text-link" href={`/explore/${attempt.problemSlug}`}>Inspect target <span>→</span></Link>}
+        {attempt?.status === "active" && <details className="attempt-lifecycle-menu">
+          <summary>Manage Attempt</summary>
+          <div>
+            <strong>Close this Attempt?</strong>
+            <p>Future Agent progress will stop. Existing events, evidence, Runs, and reviews stay in History.</p>
+            <button type="button" disabled={isClosingAttempt} onClick={onCloseAttempt}>{isClosingAttempt ? "Closing…" : "Confirm close"}</button>
+          </div>
+        </details>}
       </div>
+      {lifecycleNotice && <p className="attempt-lifecycle-notice" role="status">{lifecycleNotice}</p>}
     </div>
     <div className="next-action-card" id="next-action">
       <span className="micro-label">Recommended next action</span>
       <strong>{action.title}</strong>
       <p id="next-action-help">{action.detail}</p>
       <div className="next-action-controls">
-        <Link className="button button-primary focus-primary" href={action.actionHref}>{action.actionLabel}</Link>
+        {!isHistoricalAttempt && !needsAttemptConnection && journey.stage === "work_locally"
+          ? <button className="button button-primary focus-primary" type="button" onClick={onCopyCodexBrief}>{action.label}</button>
+          : <Link className="button button-primary focus-primary" href={action.href}>{action.label}</Link>}
         {attempt && <Link className="workspace-pause-button" href="#attempt-activity">Inspect recorded activity</Link>}
       </div>
+      {handoffNotice && <p className="activity-refresh-status" role="status">{handoffNotice}</p>}
       {refreshedAt && <p className="activity-refresh-status" role="status">Records refreshed {formatTimestamp(refreshedAt)}.</p>}
       {refreshError && <p className="activity-refresh-error" role="alert">{refreshError}</p>}
     </div>
@@ -207,10 +249,10 @@ export function ProvisionalContributionLedger({
 
   return <section className="provisional-ledger" id="provisional-ledger" aria-labelledby="provisional-ledger-title">
     <div className="provisional-ledger-heading">
-      <div><p className="eyebrow">Immediate evidence record</p><h2 id="provisional-ledger-title">Provisional contribution ledger</h2><p>Each entry records an attributable signed Bundle. It is not a theorem, Lean result, novelty finding, independent review, or final Contribution Receipt.</p></div>
+      <div><p className="eyebrow">Immediate evidence record</p><h2 id="provisional-ledger-title">Staged evidence ledger</h2><p>Each entry records an attributable signed Bundle awaiting later checks. It is not a theorem, Lean result, novelty finding, independent review, credit award, or final Contribution Receipt.</p></div>
       <span className={ledgerAvailable ? "record-chip" : "record-chip provisional-unavailable"}>{ledgerAvailable ? `${contributions.length} record${contributions.length === 1 ? "" : "s"}` : "Migration required"}</span>
     </div>
-    {!ledgerAvailable ? <div className="provisional-ledger-unavailable"><strong>The ledger schema is not active in this control plane.</strong><p>Proofweave will not infer provisional credit from a timeline event. Apply the D1 migration before this owner-visible record can be read.</p></div> : contributions.length > 0 ? <ol className="provisional-ledger-list">{contributions.map((contribution) => <li key={contribution.id}>
+    {!ledgerAvailable ? <div className="provisional-ledger-unavailable"><strong>The ledger schema is not active in this control plane.</strong><p>Proofweave will not award credit from a timeline event. Apply the D1 migration before this owner-visible staged evidence record can be read.</p></div> : contributions.length > 0 ? <ol className="provisional-ledger-list">{contributions.map((contribution) => <li key={contribution.id}>
       <div className="provisional-entry-top"><span className="provisional-state">Bundle staged · provisional</span><time dateTime={contribution.recordedAt}>Recorded {formatTimestamp(contribution.recordedAt)}</time></div>
       <h3>{contribution.attempt.problemTitle}</h3>
       <p>{contribution.beneficiary.agentLabel} under <code>{contribution.beneficiary.delegationCertificateId}</code></p>
@@ -275,11 +317,18 @@ export function ResearchWorkstation({ attempt, runs }: { attempt: McpAttempt | n
 export function SubmissionReadiness({ attempt, profile, runs, compact = false }: { attempt: McpAttempt | null; profile: DelegationProfile | null; runs: readonly McpRunSummary[]; compact?: boolean }) {
   const hasAgentProgress = Boolean(attempt?.events.some((event) => event.type === "agent_reported"));
   const bundleStaged = Boolean(attempt?.events.some((event) => event.type === "bundle_staged"));
-  const connectionActive = Boolean(attempt && profile?.agentInstallations.some((installation) => installation.status === "active" && installation.agentId === attempt.agentId));
+  const connectionActive = Boolean(attempt && profile?.agentInstallations.some((installation) =>
+    installation.status === "active" &&
+    installation.agentId === attempt.agentId &&
+    installation.delegationCertificateId === attempt.delegationCertificateId,
+  ));
+  const attemptIsActive = attempt?.status === "active";
   const leanGate = leanGateFor(latestRunForAttempt(attempt, runs));
   const passedGates = [Boolean(attempt), hasAgentProgress, bundleStaged, leanGate.state === "passed"].filter(Boolean).length;
   const action = !attempt
     ? { href: "#research-launcher", label: "Start research" }
+    : !attemptIsActive
+      ? { href: "/explore", label: "Choose another target" }
     : !connectionActive
       ? { href: "/integrations", label: "Review connection" }
       : bundleStaged
@@ -302,8 +351,7 @@ export function SubmissionReadiness({ attempt, profile, runs, compact = false }:
     </div>
     <div className="submission-card">
       {gateList}
-      <p className="submission-hint">{connectionActive ? "The active Agent may continue this Attempt; every later claim still needs its own evidence." : "Connection approval is separate from delegation and from mathematical verification."}</p>
-      <Link className="button button-primary submit-button" href={action.href}>{action.label}</Link>
+      <p className="submission-hint">{!attemptIsActive && attempt ? "This terminal Attempt remains inspectable, but it no longer accepts Agent progress." : connectionActive ? "The active Agent may continue this Attempt; every later claim still needs its own evidence." : "Connection approval is separate from delegation and from mathematical verification."}</p>
     </div>
   </section>;
 
@@ -312,7 +360,7 @@ export function SubmissionReadiness({ attempt, profile, runs, compact = false }:
     <div className="submission-card">
       <div className="submission-card-heading"><strong>Contribution path</strong><span>{attempt ? "Attempt selected" : "No Attempt yet"}</span></div>
       {gateList}
-      <p className="submission-hint">{connectionActive ? "An active Agent installation is recorded. The remote gateway still controls which operations it may perform." : "No active Agent installation is recorded for this Attempt. Connection approval is separate from delegation."}</p>
+      <p className="submission-hint">{!attemptIsActive && attempt ? "This terminal Attempt remains inspectable, but it no longer accepts Agent progress." : connectionActive ? "An active Agent installation is recorded. The remote gateway still controls which operations it may perform." : "No active Agent installation is recorded for this Attempt. Connection approval is separate from delegation."}</p>
       <Link className="button button-primary submit-button" href={action.href}>{action.label}</Link>
     </div>
   </section>;
@@ -378,6 +426,7 @@ function AttemptEventRow({ event }: { event: McpAttemptEvent }) {
 function eventLabel(type: McpAttemptEvent["type"]): string {
   if (type === "attempt_created") return "Attempt opened";
   if (type === "agent_reported") return "Agent-reported progress";
+  if (type === "attempt_cancelled") return "Attempt closed by owner";
   return "Signed Artifact Bundle staged";
 }
 
