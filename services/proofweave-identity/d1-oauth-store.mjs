@@ -24,11 +24,36 @@ export class D1ProofweaveOAuthStore {
     if (!normalized) return null;
     const row = await this.database
       .prepare(
-        `SELECT id, display_name
+        `SELECT person.id, identity.display_name
+         FROM person_identities AS identity
+         INNER JOIN persons AS person ON person.id = identity.person_id
+         WHERE identity.provider = 'chatgpt' AND identity.provider_subject = ?
+         UNION ALL
+         SELECT id, display_name
          FROM persons
-         WHERE identity_provider = 'chatgpt' AND provider_subject = ?`,
+         WHERE identity_provider = 'chatgpt' AND provider_subject = ?
+         LIMIT 1`,
       )
-      .bind(normalized)
+      .bind(normalized, normalized)
+      .first();
+    return row ? { id: row.id, displayName: row.display_name } : null;
+  }
+
+  async findAppSessionPerson(tokenHash) {
+    const normalized = typeof tokenHash === "string" ? tokenHash.trim().toLowerCase() : "";
+    if (!/^[a-f0-9]{64}$/.test(normalized)) return null;
+    const row = await this.database
+      .prepare(
+        `SELECT person.id, identity.display_name
+         FROM app_sessions AS session
+         INNER JOIN person_identities AS identity ON identity.id = session.identity_id
+         INNER JOIN persons AS person ON person.id = session.person_id
+         WHERE session.token_hash = ?
+           AND session.revoked_at IS NULL
+           AND session.expires_at > ?
+           AND identity.person_id = session.person_id`,
+      )
+      .bind(normalized, new Date().toISOString())
       .first();
     return row ? { id: row.id, displayName: row.display_name } : null;
   }

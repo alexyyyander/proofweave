@@ -1,7 +1,8 @@
-import { Footer, Header, ProductStateBadge } from "@/app/ui";
+import { Footer, ProductStateBadge } from "@/app/ui";
+import { Header } from "@/app/header";
 import { MissingDatabaseBindingError } from "@/db";
 import { getDelegationRepository } from "@/db/repositories/delegation";
-import { chatGPTSignInPath, getChatGPTUser } from "@/app/chatgpt-auth";
+import { getCurrentUser, signInPath, toPersonIdentity } from "@/app/auth";
 import { CodexPairingApproval } from "./CodexPairingApproval";
 
 export const dynamic = "force-dynamic";
@@ -15,7 +16,7 @@ export default async function ConnectCodexPage({ searchParams }: ConnectCodexPag
   const pairingId = typeof query.pairing === "string" ? query.pairing : "";
   const secret = typeof query.secret === "string" ? query.secret : "";
   const returnTo = `/connect/codex?pairing=${encodeURIComponent(pairingId)}&secret=${encodeURIComponent(secret)}`;
-  const user = await getChatGPTUser();
+  const user = await getCurrentUser();
   if (!user) {
     return <div className="site-shell app-shell">
       <Header active="settings" />
@@ -24,7 +25,7 @@ export default async function ConnectCodexPage({ searchParams }: ConnectCodexPag
           <p className="eyebrow">Proofweave local connection</p>
           <h1>Sign in to approve this local Codex.</h1>
           <p>The browser approval is tied to your Proofweave profile. It never shares your ChatGPT session, password, or API key with the local Connector.</p>
-          <a className="button button-primary" href={chatGPTSignInPath(returnTo)}>Sign in with ChatGPT <span aria-hidden="true">→</span></a>
+          <a className="button button-primary" href={signInPath(returnTo)}>Choose a sign-in method <span aria-hidden="true">→</span></a>
         </section>
       </main>
       <Footer />
@@ -33,11 +34,7 @@ export default async function ConnectCodexPage({ searchParams }: ConnectCodexPag
 
   let profile = null;
   try {
-    profile = await getDelegationRepository().getProfile({
-      provider: "chatgpt",
-      subject: user.email,
-      displayName: user.displayName,
-    });
+    profile = await getDelegationRepository().getProfile(toPersonIdentity(user));
   } catch (error) {
     if (!(error instanceof MissingDatabaseBindingError)) throw error;
   }

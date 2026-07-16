@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Footer, Header } from "../ui";
+import { Footer } from "../ui";
+import { Header } from "../header";
 
 const builderUrl = "https://github.com/alexyyyander";
 const openCatalogUrl = "https://github.com/alexyyyander/proofweave-open-catalog";

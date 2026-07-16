@@ -1,5 +1,6 @@
-import { Footer, Header } from "../ui";
-import { chatGPTSignInPath, getChatGPTUser, type ChatGPTUser } from "../chatgpt-auth";
+import { Footer } from "../ui";
+import { Header } from "../header";
+import { getCurrentUser, signInPath, toPersonIdentity, type AuthUser } from "../auth";
 import { WorkbenchClient } from "./WorkbenchClient";
 import { getDelegationRepository, type DelegationProfile } from "@/db/repositories/delegation";
 import { getMcpRepository } from "@/db/repositories/mcp";
@@ -20,7 +21,7 @@ export default async function WorkbenchPage({
 }: {
   searchParams: Promise<{ target?: string | string[]; parent?: string | string[] }>;
 }) {
-  const user = await getChatGPTUser();
+  const user = await getCurrentUser();
   const resolvedSearchParams = await searchParams;
   const targetSlug = requestedTargetSlug(resolvedSearchParams);
   const parentNodeId = requestedParentNodeId(resolvedSearchParams);
@@ -34,14 +35,14 @@ export default async function WorkbenchPage({
     <div className="site-shell app-shell">
       <Header active="workbench" />
       <main id="main-content" tabIndex={-1} className="workbench-main">
-        <WorkbenchClient profile={profile} initialAttempts={attempts} initialRuns={runs} initialProvisionalContributions={provisionalContributions} provisionalLedgerAvailable={provisionalLedgerAvailable} catalogTargets={catalogTargets} initialTargetSlug={targetSlug} initialParentNodeId={parentNodeId} isAuthenticated={Boolean(user)} signInPath={chatGPTSignInPath(returnTo)} storageAvailable={storageAvailable} />
+        <WorkbenchClient profile={profile} initialAttempts={attempts} initialRuns={runs} initialProvisionalContributions={provisionalContributions} provisionalLedgerAvailable={provisionalLedgerAvailable} catalogTargets={catalogTargets} initialTargetSlug={targetSlug} initialParentNodeId={parentNodeId} isAuthenticated={Boolean(user)} signInPath={signInPath(returnTo)} storageAvailable={storageAvailable} />
       </main>
       <Footer />
     </div>
   );
 }
 
-async function loadWorkbench(user: ChatGPTUser | null): Promise<{
+async function loadWorkbench(user: AuthUser | null): Promise<{
   profile: DelegationProfile | null;
   attempts: readonly McpAttempt[];
   runs: readonly McpRunSummary[];
@@ -52,11 +53,7 @@ async function loadWorkbench(user: ChatGPTUser | null): Promise<{
   if (!user) return { profile: null, attempts: [], runs: [], provisionalContributions: [], provisionalLedgerAvailable: true, storageAvailable: true };
 
   try {
-    const profile = await getDelegationRepository().getProfile({
-      provider: "chatgpt",
-      subject: user.email,
-      displayName: user.displayName,
-    });
+    const profile = await getDelegationRepository().getProfile(toPersonIdentity(user));
     const mcp = getMcpRepository();
     const [attempts, runs] = await Promise.all([
       mcp.listAttempts(profile.person.id),

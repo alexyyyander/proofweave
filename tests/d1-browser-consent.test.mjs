@@ -120,6 +120,7 @@ test("closed-alpha session bridge redirects unsigned browsers and never creates 
         observed.push(email);
         return email === "owner@example.test" ? { id: "person:browser-consent", displayName: "Owner" } : null;
       },
+      async findAppSessionPerson() { return null; },
     },
   });
   assert.deepEqual(
@@ -133,13 +134,52 @@ test("closed-alpha session bridge redirects unsigned browsers and never creates 
   assert.equal(unsigned.status, 302);
   assert.equal(
     unsigned.headers.get("location"),
-    `${issuer}/signin-with-chatgpt?return_to=%2Fauthorize%3Fclient_id%3Dcodex-browser`,
+    `${issuer}/sign-in?return_to=%2Fauthorize%3Fclient_id%3Dcodex-browser`,
   );
   assert.equal(
     resolver.authorizationRequired(new Request(`${issuer}/authorize`, {
       headers: { "oai-authenticated-user-email": "not-created@example.test" },
     })).status,
     403,
+  );
+});
+
+test("Sites identity accepts a live provider-neutral app session for browser consent", async () => {
+  const rawToken = "google-app-session-token";
+  await database.prepare(
+    `INSERT INTO person_identities (
+       id, person_id, provider, provider_subject, email, email_normalized,
+       display_name, email_verified_at, updated_at
+     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+  ).bind(
+    "identity:google-browser-consent",
+    "person:browser-consent",
+    "google",
+    "google-subject-browser-consent",
+    "owner@example.test",
+    "owner@example.test",
+    "Google Owner",
+    "2026-07-16T00:00:00Z",
+    "2026-07-16T00:00:00Z",
+  ).run();
+  await database.prepare(
+    `INSERT INTO app_sessions (
+       id, person_id, identity_id, token_hash, expires_at, created_at
+     ) VALUES (?, ?, ?, ?, ?, ?)`,
+  ).bind(
+    "session:google-browser-consent",
+    "person:browser-consent",
+    "identity:google-browser-consent",
+    await sha256(rawToken),
+    "2099-07-16T00:00:00Z",
+    "2026-07-16T00:00:00Z",
+  ).run();
+  const resolver = createSitesChatGPTSessionResolver({ store: new D1ProofweaveOAuthStore(database) });
+  assert.deepEqual(
+    await resolver.currentSession(new Request(`${issuer}/authorize`, {
+      headers: { cookie: `__Host-pw_session=${rawToken}` },
+    })),
+    { personId: "person:browser-consent", displayName: "Google Owner" },
   );
 });
 

@@ -1,6 +1,7 @@
-import { Footer, Header } from "../ui";
+import { Footer } from "../ui";
+import { Header } from "../header";
 import { IntegrationClient } from "./IntegrationClient";
-import { getChatGPTUser } from "../chatgpt-auth";
+import { getCurrentUser, toPersonIdentity } from "../auth";
 import { MissingDatabaseBindingError } from "@/db";
 import { getDelegationRepository } from "@/db/repositories/delegation";
 import { activeLocalCodexInstallation } from "../lib/local-agent-journey";
@@ -28,10 +29,10 @@ export default async function IntegrationsPage() {
 }
 
 async function loadConnection(): Promise<{ agentLabel: string } | null> {
-  const user = await getChatGPTUser();
+  const user = await getCurrentUser();
   if (!user) return null;
   try {
-    const profile = await getDelegationRepository().getProfile({ provider: "chatgpt", subject: user.email, displayName: user.displayName });
+    const profile = await getDelegationRepository().getProfile(toPersonIdentity(user));
     const installation = activeLocalCodexInstallation(profile);
     return installation ? { agentLabel: installation.agentLabel } : null;
   } catch (error) {

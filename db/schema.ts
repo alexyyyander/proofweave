@@ -244,15 +244,14 @@ export const catalogCollectionMembers = sqliteTable(
   ],
 );
 
-// A Person is the attribution root for an authenticated participant. This
-// closed-alpha mapping intentionally uses the identity currently supplied by
-// Sites; public beta will replace it with provider-neutral identities.
+// A Person is the stable attribution root for an authenticated participant.
+// Provider-specific sign-in identities are mapped separately below.
 export const persons = sqliteTable(
   "persons",
   {
     id: text("id").primaryKey(),
     identityProvider: text("identity_provider", {
-      enum: ["chatgpt", "proofweave"],
+      enum: ["chatgpt", "google", "proofweave"],
     }).notNull(),
     providerSubject: text("provider_subject").notNull(),
     displayName: text("display_name").notNull(),
@@ -263,6 +262,63 @@ export const persons = sqliteTable(
     uniqueIndex("persons_provider_subject_idx").on(
       table.identityProvider,
       table.providerSubject,
+    ),
+  ],
+);
+
+export const personIdentities = sqliteTable(
+  "person_identities",
+  {
+    id: text("id").primaryKey(),
+    personId: text("person_id")
+      .notNull()
+      .references(() => persons.id, { onDelete: "restrict" }),
+    provider: text("provider", {
+      enum: ["chatgpt", "google", "proofweave"],
+    }).notNull(),
+    providerSubject: text("provider_subject").notNull(),
+    email: text("email"),
+    emailNormalized: text("email_normalized"),
+    displayName: text("display_name").notNull(),
+    emailVerifiedAt: text("email_verified_at"),
+    createdAt,
+    updatedAt: text("updated_at").notNull(),
+  },
+  (table) => [
+    uniqueIndex("person_identities_provider_subject_idx").on(
+      table.provider,
+      table.providerSubject,
+    ),
+    index("person_identities_person_idx").on(table.personId),
+    index("person_identities_verified_email_idx").on(
+      table.emailNormalized,
+      table.emailVerifiedAt,
+    ),
+  ],
+);
+
+export const appSessions = sqliteTable(
+  "app_sessions",
+  {
+    id: text("id").primaryKey(),
+    personId: text("person_id")
+      .notNull()
+      .references(() => persons.id, { onDelete: "restrict" }),
+    identityId: text("identity_id")
+      .notNull()
+      .references(() => personIdentities.id, { onDelete: "restrict" }),
+    tokenHash: text("token_hash").notNull(),
+    expiresAt: text("expires_at").notNull(),
+    revokedAt: text("revoked_at"),
+    createdAt,
+    lastSeenAt: text("last_seen_at"),
+  },
+  (table) => [
+    uniqueIndex("app_sessions_token_hash_idx").on(table.tokenHash),
+    index("app_sessions_person_active_idx").on(
+      table.personId,
+      table.revokedAt,
+      table.expiresAt,
     ),
   ],
 );

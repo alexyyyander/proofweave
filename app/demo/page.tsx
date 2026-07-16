@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Footer, Header, ProductStateBadge } from "@/app/ui";
+import { Footer, ProductStateBadge } from "@/app/ui";
+import { Header } from "@/app/header";
 import { verifyBuildWeekDemoFixture } from "@/app/lib/build-week-demo";
 import { DemoVerificationClient } from "./DemoVerificationClient";
 
