@@ -94,20 +94,16 @@ export function FocusAction({
   isAuthenticated,
   signInPath,
   storageAvailable,
-  isRefreshing,
   refreshError,
   refreshedAt,
-  onRefresh,
 }: {
   profile: DelegationProfile | null;
   attempt: McpAttempt | null;
   isAuthenticated: boolean;
   signInPath: string;
   storageAvailable: boolean;
-  isRefreshing: boolean;
   refreshError: string | null;
   refreshedAt: string | null;
-  onRefresh: () => void;
 }) {
   const action = localAgentJourney({
     profile,
@@ -135,10 +131,6 @@ export function FocusAction({
       <p>{focusDetail}</p>
       <div className="toolbar-links">
         {attempt && <Link className="text-link" href={`/explore/${attempt.problemSlug}`}>Inspect target <span>→</span></Link>}
-        <Link className="text-link" href="#provisional-ledger">Provisional ledger <span>→</span></Link>
-        <Link className="text-link" href="/evidence">Evidence records <span>→</span></Link>
-        <Link className="text-link" href="/reviews">Review queue <span>→</span></Link>
-        <Link className="text-link" href="/integrations">Connection status <span>→</span></Link>
       </div>
     </div>
     <div className="next-action-card" id="next-action">
@@ -148,7 +140,6 @@ export function FocusAction({
       <div className="next-action-controls">
         <Link className="button button-primary focus-primary" href={action.actionHref}>{action.actionLabel}</Link>
         {attempt && <Link className="workspace-pause-button" href="#attempt-activity">Inspect recorded activity</Link>}
-        {attempt && <button className="workspace-secondary-button" type="button" disabled={isRefreshing} onClick={onRefresh}>{isRefreshing ? "Refreshing records…" : "Refresh records"}</button>}
       </div>
       {refreshedAt && <p className="activity-refresh-status" role="status">Records refreshed {formatTimestamp(refreshedAt)}.</p>}
       {refreshError && <p className="activity-refresh-error" role="alert">{refreshError}</p>}
@@ -281,25 +272,48 @@ export function ResearchWorkstation({ attempt, runs }: { attempt: McpAttempt | n
   </section>;
 }
 
-export function SubmissionReadiness({ attempt, profile, runs }: { attempt: McpAttempt | null; profile: DelegationProfile | null; runs: readonly McpRunSummary[] }) {
+export function SubmissionReadiness({ attempt, profile, runs, compact = false }: { attempt: McpAttempt | null; profile: DelegationProfile | null; runs: readonly McpRunSummary[]; compact?: boolean }) {
   const hasAgentProgress = Boolean(attempt?.events.some((event) => event.type === "agent_reported"));
   const bundleStaged = Boolean(attempt?.events.some((event) => event.type === "bundle_staged"));
   const connectionActive = Boolean(attempt && profile?.agentInstallations.some((installation) => installation.status === "active" && installation.agentId === attempt.agentId));
   const leanGate = leanGateFor(latestRunForAttempt(attempt, runs));
+  const passedGates = [Boolean(attempt), hasAgentProgress, bundleStaged, leanGate.state === "passed"].filter(Boolean).length;
+  const action = !attempt
+    ? { href: "#research-launcher", label: "Start research" }
+    : !connectionActive
+      ? { href: "/integrations", label: "Review connection" }
+      : bundleStaged
+        ? { href: "/evidence", label: "Inspect evidence" }
+        : { href: "#local-agent", label: "Continue with Agent" };
+
+  const gateList = <ul className="gate-list">
+    <GateRow state={attempt ? "passed" : "waiting"} label="Bounded Attempt" detail={attempt ? "Target and delegated Agent authority are durably bound." : "Open a source-pinned Attempt first."} />
+    <GateRow state={hasAgentProgress ? "passed" : "waiting"} label="Agent-reported progress" detail={hasAgentProgress ? "A separately authorized Agent event is recorded." : "Requires the remote OAuth MCP connection; browser clicks cannot create this event."} />
+    <GateRow state={bundleStaged ? "passed" : "waiting"} label="Signed Artifact Bundle" detail={bundleStaged ? "A bundle-staged event is recorded; inspect its controlled evidence separately." : "Individual approved file objects are only preparation. This gate requires a complete signed Bundle from the authorized Agent."} />
+    <GateRow state={leanGate.state} label="Isolated Lean result" detail={leanGate.detail} />
+    <GateRow state="required" label="Independent review" detail="Must be performed by a different owner." />
+  </ul>;
+
+  if (compact) return <section className="submission-section submission-section-compact" id="contribution-gates" aria-labelledby="submission-title">
+    <div className="workspace-rail-heading">
+      <span className="micro-label">Evidence before credit</span>
+      <strong id="submission-title">Verification gates</strong>
+      <small>{passedGates} of 5 recorded</small>
+    </div>
+    <div className="submission-card">
+      {gateList}
+      <p className="submission-hint">{connectionActive ? "The active Agent may continue this Attempt; every later claim still needs its own evidence." : "Connection approval is separate from delegation and from mathematical verification."}</p>
+      <Link className="button button-primary submit-button" href={action.href}>{action.label}</Link>
+    </div>
+  </section>;
 
   return <section className="submission-section" id="contribution-gates" aria-labelledby="submission-title">
     <div className="submission-copy"><p className="eyebrow">Evidence before credit</p><h2 id="submission-title">See every gate before a contribution can count.</h2><p>Proofweave records only evidence that exists. Agent-reported activity, Lean execution, independent review, and a Contribution Receipt remain separate gates.</p></div>
     <div className="submission-card">
       <div className="submission-card-heading"><strong>Contribution path</strong><span>{attempt ? "Attempt selected" : "No Attempt yet"}</span></div>
-      <ul className="gate-list">
-        <GateRow state={attempt ? "passed" : "waiting"} label="Bounded Attempt" detail={attempt ? "Target and delegated Agent authority are durably bound." : "Open a source-pinned Attempt first."} />
-        <GateRow state={hasAgentProgress ? "passed" : "waiting"} label="Agent-reported progress" detail={hasAgentProgress ? "A separately authorized Agent event is recorded." : "Requires the remote OAuth MCP connection; browser clicks cannot create this event."} />
-        <GateRow state={bundleStaged ? "passed" : "waiting"} label="Signed Artifact Bundle" detail={bundleStaged ? "A bundle-staged event is recorded; inspect its controlled evidence separately." : "Individual approved file objects are only preparation. This gate requires a complete signed Bundle from the authorized Agent."} />
-        <GateRow state={leanGate.state} label="Isolated Lean result" detail={leanGate.detail} />
-        <GateRow state="required" label="Independent review" detail="Must be performed by a different owner." />
-      </ul>
+      {gateList}
       <p className="submission-hint">{connectionActive ? "An active Agent installation is recorded. The remote gateway still controls which operations it may perform." : "No active Agent installation is recorded for this Attempt. Connection approval is separate from delegation."}</p>
-      <Link className="button button-primary submit-button" href="/integrations">Review connection status</Link>
+      <Link className="button button-primary submit-button" href={action.href}>{action.label}</Link>
     </div>
   </section>;
 }
