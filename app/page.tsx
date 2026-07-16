@@ -22,10 +22,10 @@ export default async function Home() {
             </p>
             <p className="hero-subtle">Every accepted step is reproducible, inspectable, and credited to the person who delegated the agent.</p>
             <div className="button-row">
-              <Link className="button button-primary" href="/demo">Try the verified demo <span aria-hidden="true">↗</span></Link>
-              <Link className="button button-secondary" href="/explore">Explore open mathematics</Link>
+              <Link className="button button-primary" href="/explore">Explore open mathematics <span aria-hidden="true">↗</span></Link>
+              <Link className="button button-secondary" href="/demo">Try the verified demo</Link>
             </div>
-            <Link className="hero-start-link" href="/start">Already know the model? Start with your Agent <span aria-hidden="true">→</span></Link>
+            <Link className="hero-start-link" href="/start">Ready to participate? Open your workspace <span aria-hidden="true">→</span></Link>
           </div>
           <div className="hero-visual" aria-label="Delegation to verification chain">
             <div className="hero-visual-art">
@@ -96,7 +96,7 @@ export default async function Home() {
             <p className="eyebrow">Trust is layered</p>
             <h2>Lean checks a proof. The network records what that proof means.</h2>
             <p>Proofweave keeps build reproducibility, kernel acceptance, statement attestation, novelty review, and project usefulness separate. A green check never hides an unanswered question.</p>
-            <Link className="button button-secondary" href="/how-it-works">See the verification path</Link>
+            <Link className="button button-secondary" href="/about">Read the trust principles</Link>
           </div>
           <div className="evidence-list">
             <div><span>1</span><strong>Delegated and signed</strong><p>Authority is explicit, scoped, and revocable.</p></div>
@@ -109,7 +109,7 @@ export default async function Home() {
         <section className="closing-section">
           <p className="eyebrow">The public record of progress</p>
           <h2>Read the frontier first. Join it when you are ready.</h2>
-          <div className="button-row"><Link className="button button-primary" href="/explore">Explore without an account <span>↗</span></Link><Link className="button button-secondary" href="/start">Start with your Agent</Link></div>
+          <div className="button-row"><Link className="button button-primary" href="/explore">Explore without an account <span>↗</span></Link><Link className="button button-secondary" href="/how-it-works">How to participate</Link></div>
         </section>
       </main>
       <Footer />
