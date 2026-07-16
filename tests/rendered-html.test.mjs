@@ -745,6 +745,10 @@ test("serves the public research paths", async () => {
   const exploreHtml = await explore.text();
   assert.match(exploreHtml, /Founding Challenges/i);
   assert.match(exploreHtml, /Grand Challenges/i);
+  assert.match(exploreHtml, /Your first contribution/i);
+  assert.match(exploreHtml, /Formalize known mathematics first/i);
+  assert.match(exploreHtml, /Start formalizing/i);
+  assert.match(exploreHtml, /workbench\?target=erdos-865-k2/i);
   assert.match(exploreHtml, /Hadwiger–Nelson Problem/i);
   assert.match(exploreHtml, /Navier–Stokes Existence and Smoothness/i);
   assert.match(exploreHtml, /P versus NP/i);
@@ -939,7 +943,7 @@ test("publicly verifies the checked Build Week reference evidence", async () => 
   assert.match(html, /Verified reference · no Proofweave setup required/i);
   assert.match(html, /Mock identity · real verification/i);
   assert.match(html, /Mock owner reviews/i);
-  assert.match(html, /The reviewer is a live participant/i);
+  assert.match(html, /The reviewer is not a live participant/i);
   assert.match(html, /This demo does not claim/i);
   assert.match(html, /npm run demo:e2e:check/i);
   assert.match(html, /D1 inline · no R2/i);
@@ -2025,6 +2029,9 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
   assert.match(ownerWorkbenchHtml, /Erdős Problem 865: k = 2 variant/i);
   assert.match(ownerWorkbenchHtml, /Attempt opened/i);
   assert.match(ownerWorkbenchHtml, /Refresh records/i);
+  assert.match(ownerWorkbenchHtml, /First evidence path/i);
+  assert.match(ownerWorkbenchHtml, /One step at a time/i);
+  assert.match(ownerWorkbenchHtml, /After Lean acceptance, independent statement and novelty review can lead to a Contribution Receipt/i);
   assert.match(ownerWorkbenchHtml, /Staged evidence ledger/i);
   assert.doesNotMatch(ownerWorkbenchHtml, /Continue with Agent/i);
   assert.match(ownerWorkbenchHtml, /Bundle staged · provisional/i);

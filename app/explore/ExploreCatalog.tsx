@@ -12,6 +12,12 @@ const statusFilters = [
   "Kernel accepted",
 ] as const;
 
+const preferredStarterSlugs = [
+  "erdos-865-k2",
+  "sunflower-erdos-rado-bound",
+  "complexity-p-subset-np",
+] as const;
+
 export function ExploreCatalog({ projects }: { projects: readonly CatalogProblem[] }) {
   const [statusFilter, setStatusFilter] = useState<(typeof statusFilters)[number]>("All work");
   const [subjectFilter, setSubjectFilter] = useState("all");
@@ -46,6 +52,19 @@ export function ExploreCatalog({ projects }: { projects: readonly CatalogProblem
     };
   }, [projects]);
 
+  const starterProjects = useMemo(() => {
+    const preferred = preferredStarterSlugs
+      .map((slug) => projects.find((project) => project.slug === slug))
+      .filter((project): project is CatalogProblem => Boolean(project));
+    const fallback = projects.filter((project) =>
+      project.researchStatus === "research_solved" &&
+      project.proofState === "admitted" &&
+      project.collections.some((collection) => collection.role === "milestone") &&
+      !preferred.some((candidate) => candidate.id === project.id),
+    );
+    return [...preferred, ...fallback].slice(0, 3);
+  }, [projects]);
+
   const visibleProjects = useMemo(() => {
     const normalizedQuery = query.trim().toLocaleLowerCase();
     return projects.filter((project) => {
@@ -63,6 +82,36 @@ export function ExploreCatalog({ projects }: { projects: readonly CatalogProblem
 
   return (
     <>
+      <section className="starter-work-section" id="starter-work" aria-labelledby="starter-work-heading">
+        <div className="starter-work-heading">
+          <div>
+            <p className="micro-label">Your first contribution</p>
+            <h2 id="starter-work-heading">Formalize known mathematics first.</h2>
+          </div>
+          <div>
+            <p>These statements are established mathematics whose pinned Lean declarations still need a proof. They offer a bounded way to learn the workflow without claiming to solve an open conjecture.</p>
+            <span>Recommended starting path · not a difficulty guarantee</span>
+          </div>
+        </div>
+        <div className="starter-work-grid">
+          {starterProjects.map((project, index) => (
+            <article className="starter-work-card" key={project.slug}>
+              <div className="starter-work-topline">
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <span>{project.subjects[0]?.name ?? project.domain}</span>
+              </div>
+              <h3>{project.title}</h3>
+              <p>{project.informalStatement}</p>
+              <div className="starter-work-state"><span>Known result</span><span>Lean proof wanted</span></div>
+              <div className="starter-work-actions">
+                <Link className="button button-primary" href={`/workbench?target=${encodeURIComponent(project.slug)}#research-launcher`}>Start formalizing <span aria-hidden="true">→</span></Link>
+                <Link className="text-link" href={`/explore/${project.slug}`}>Inspect source</Link>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="challenge-section" aria-labelledby="founding-challenges-heading">
         <div className="challenge-heading">
           <div>

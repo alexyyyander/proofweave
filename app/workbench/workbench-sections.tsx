@@ -15,6 +15,78 @@ export function WorkspacePath() {
   </nav>;
 }
 
+export function FirstContributionPath({
+  attempt,
+  profile,
+  runs,
+  isAuthenticated,
+  signInPath,
+  storageAvailable,
+}: {
+  attempt: McpAttempt | null;
+  profile: DelegationProfile | null;
+  runs: readonly McpRunSummary[];
+  isAuthenticated: boolean;
+  signInPath: string;
+  storageAvailable: boolean;
+}) {
+  const agentConnected = Boolean(attempt
+    ? profile?.agentInstallations.some((installation) =>
+      installation.status === "active" &&
+      installation.agentId === attempt.agentId &&
+      installation.delegationCertificateId === attempt.delegationCertificateId,
+    )
+    : activeLocalCodexInstallation(profile));
+  const attemptOpened = Boolean(attempt);
+  const progressRecorded = Boolean(attempt?.events.some((event) => event.type === "agent_reported" || event.type === "bundle_staged"));
+  const bundleStaged = Boolean(attempt?.events.some((event) => event.type === "bundle_staged"));
+  const leanAccepted = hasAcceptedKernel(latestRunForAttempt(attempt, runs));
+  const states = [agentConnected, attemptOpened, progressRecorded, bundleStaged, leanAccepted];
+  const completed = states.filter(Boolean).length;
+  const current = states.findIndex((state) => !state);
+  const next = !isAuthenticated
+    ? { href: signInPath, label: "Sign in", detail: "Create the stable Person record that will own your Agent work." }
+    : !storageAvailable
+      ? { href: "/explore", label: "Browse research", detail: "The contribution control plane is temporarily unavailable; public records remain readable." }
+      : !agentConnected
+        ? { href: "/integrations#codex-beta", label: "Connect Codex", detail: "Approve one local Agent. No API key or public key needs to be pasted." }
+        : !attemptOpened
+          ? { href: "/explore#starter-work", label: "Choose a starter task", detail: "Begin with a source-pinned known result or choose another bounded target." }
+          : !progressRecorded
+            ? { href: "#next-action", label: "Continue in Codex", detail: "Copy the bound brief above, then let your Agent record one signed research checkpoint." }
+            : !bundleStaged
+              ? { href: "#local-agent", label: "Prepare evidence", detail: "Ask the bound Agent to stage an owner-approved, reproducible Artifact Bundle." }
+              : !leanAccepted
+                ? { href: "#local-agent", label: "Run isolated Lean", detail: "Submit the staged Bundle to the isolated Runner and wait for a signed result." }
+                : { href: "/evidence", label: "Inspect verified evidence", detail: "Your Lean evidence is ready for a different owner to review before any Receipt is issued." };
+  const steps = [
+    ["Connect Agent", "One-time browser approval"],
+    ["Open Attempt", "One pinned target"],
+    ["Record progress", "Signed checkpoint"],
+    ["Stage Bundle", "Reproducible evidence"],
+    ["Pass Lean", "Isolated kernel result"],
+  ] as const;
+
+  return <section className="first-contribution-path" aria-labelledby="first-contribution-title">
+    <div className="first-contribution-intro">
+      <div><span className="micro-label">First evidence path</span><strong id="first-contribution-title">One step at a time.</strong></div>
+      <span>{completed} / {steps.length} ready</span>
+    </div>
+    <ol>
+      {steps.map(([label, detail], index) => <li className={states[index] ? "is-complete" : index === current ? "is-current" : ""} key={label} aria-current={index === current ? "step" : undefined}>
+        <span>{states[index] ? "✓" : String(index + 1).padStart(2, "0")}</span>
+        <strong>{label}</strong>
+        <small>{detail}</small>
+      </li>)}
+    </ol>
+    <div className="first-contribution-next">
+      <div><span>Next</span><p>{next.detail}</p></div>
+      <Link className="text-link" href={next.href}>{next.label} <span aria-hidden="true">→</span></Link>
+    </div>
+    <p className="first-contribution-boundary">After Lean acceptance, independent statement and novelty review can lead to a Contribution Receipt. They are never inferred from these five owner-side steps.</p>
+  </section>;
+}
+
 function GateRow({ state, label, detail }: { state: GateState; label: string; detail: string }) {
   const stateText = state === "passed" ? "Recorded" : state === "waiting" ? "Awaiting" : state === "failed" ? "Needs rerun" : "Independent";
   const symbol = state === "passed" ? "✓" : state === "waiting" ? "·" : state === "failed" ? "!" : "↗";
