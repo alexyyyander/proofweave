@@ -42,6 +42,14 @@ export class RemoteMcpRequestRateLimitError extends Error {
  * SHA-256 digests; raw Person IDs never enter this operational table.
  */
 export class D1RemoteMcpRateLimiter {
+  /**
+   * @param {{
+   *   database?: import("drizzle-orm/d1").AnyD1Database,
+   *   policies?: Readonly<Record<string, Readonly<{ maxRequests: number, windowSeconds: number }>>>,
+   *   now?: () => Date,
+   *   retentionSeconds?: number,
+   * }} [options]
+   */
   constructor({ database, policies = remoteMcpRateLimitPolicies, now = () => new Date(), retentionSeconds = 172_800 } = {}) {
     if (!database || typeof database.prepare !== "function") {
       throw new TypeError("D1RemoteMcpRateLimiter requires a D1 database binding.");

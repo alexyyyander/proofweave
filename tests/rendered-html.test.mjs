@@ -845,6 +845,47 @@ test("uses a Google app session for the same stable Person and private account b
   assert.match(html, new RegExp(chatGPTProfile.person.id.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
 });
 
+test("keeps the public local-Agent pairing ingress bounded and rate limited", async () => {
+  const payload = {
+    agentId: "urn:pw:agent:public-pairing-test",
+    agentLabel: "Public pairing test Agent",
+    agentPublicKey: "a".repeat(43),
+    oauthState: "public-pairing-state",
+    codeChallenge: "b".repeat(43),
+    connectionMode: "research",
+  };
+  const request = (address, body = JSON.stringify(payload), contentType = "application/json") => render("/api/connect/sessions", {
+    method: "POST",
+    headers: { "cf-connecting-ip": address, "content-type": contentType },
+    body,
+  });
+
+  const unsupported = await request("203.0.113.10", "not-json", "text/plain");
+  assert.equal(unsupported.status, 415);
+  assert.equal(unsupported.headers.get("cache-control"), "no-store");
+
+  const oversized = await request("203.0.113.11", JSON.stringify({ padding: "x".repeat(17_000) }));
+  assert.equal(oversized.status, 413);
+
+  for (let index = 0; index < 8; index += 1) {
+    const accepted = await request("203.0.113.12", JSON.stringify({ ...payload, oauthState: `public-pairing-state-${index}` }));
+    assert.equal(accepted.status, 201);
+    assert.equal(accepted.headers.get("cache-control"), "no-store");
+    const pairing = await accepted.json();
+    assert.match(pairing.connectionUrl, /\/connect\/codex\?pairing=/);
+    assert.equal(typeof pairing.clientId, "string");
+  }
+  const limited = await request("203.0.113.12");
+  assert.equal(limited.status, 429);
+  assert.match(limited.headers.get("retry-after") ?? "", /^\d+$/);
+
+  const operationalRows = await database
+    .prepare("SELECT bucket_key FROM remote_mcp_rate_limit_buckets WHERE bucket_key LIKE 'sha256:%'")
+    .all();
+  assert.ok(operationalRows.results.length >= 3);
+  assert.doesNotMatch(JSON.stringify(operationalRows.results), /203\.0\.113|public-pairing-test/);
+});
+
 test("publicly verifies the checked Build Week reference evidence", async () => {
   const page = await render("/demo");
   assert.equal(page.status, 200);
