@@ -7,6 +7,7 @@ import { MissingDatabaseBindingError } from "@/db";
 import { getDelegationRepository } from "@/db/repositories/delegation";
 import { getEvidenceRepository, type AttemptEvidence, type EvidenceArtifact, type EvidenceReplay, type EvidenceReviewOutcome, type EvidenceRunnerResultSummary } from "@/db/repositories/evidence";
 import { SourceDiffPreview } from "@/app/evidence/SourceDiffPreview";
+import { PersonalWorkspaceFrame } from "@/app/PersonalWorkspaceFrame";
 
 export const dynamic = "force-dynamic";
 
@@ -38,7 +39,8 @@ function EvidenceDetail({ evidence }: { evidence: AttemptEvidence }) {
     : "No terminal replay evidence is addressed to your review Agent. A queued replay is not evidence, and another reviewer’s replay stays private to that reviewer.";
   return <div className="site-shell app-shell">
     <Header active="workbench" />
-    <main id="main-content" tabIndex={-1} className="page-main evidence-main">
+    <main id="main-content" tabIndex={-1} className="page-main evidence-main personal-workspace-main">
+      <PersonalWorkspaceFrame active="evidence">
       <div className="breadcrumb"><Link href="/evidence">Evidence records</Link><span> / </span><span>{bundleManifestHash}</span></div>
       <section className="review-heading evidence-detail-heading"><div><p className="eyebrow">{evidence.summary.accessRole === "attempt_owner" ? "Your Attempt · controlled evidence" : "Assigned review · controlled evidence"}</p><h1>{evidence.summary.target.title}</h1><p>These are stored hashes, signed Bundle metadata, and Runner outputs. Downloading an object does not perform a fresh runner replay or create a verification claim.</p></div><span className="record-chip">{evidence.bundle.protocolVersion}</span></section>
       <section className="evidence-integrity-note"><strong>Access boundary</strong><p>{evidence.summary.accessRole === "attempt_owner" ? "You are the recorded Attempt owner." : "You are an assigned independent reviewer; the submitter’s Person identity is intentionally omitted."} Every download is checked against the immutable D1 index and content hash before bounded alpha bytes are returned.</p></section>
@@ -50,6 +52,7 @@ function EvidenceDetail({ evidence }: { evidence: AttemptEvidence }) {
       <section className="evidence-runs evidence-manifest" aria-label="Canonical manifest"><div className="panel-heading"><span>04 / Canonical manifest</span><a className="text-link" href={artifactHref(bundleManifestHash, "bundle-manifest")}>Download JSON <span>→</span></a></div><pre><code>{evidence.bundle.canonicalManifest}</code></pre></section>
       {evidence.summary.accessRole === "attempt_owner" && <ReviewOutcomes outcomes={evidence.reviewOutcomes} />}
       <section className="evidence-runs evidence-replays" aria-label="Fresh review replay evidence"><div className="panel-heading"><span>{evidence.summary.accessRole === "attempt_owner" ? "06" : "05"} / Fresh review replay evidence</span><span>{evidence.replays.length} available to you</span></div>{evidence.replays.length === 0 ? <p className="evidence-empty">{replayEmptyMessage}</p> : evidence.replays.map((replay) => <ReplayEvidence bundleManifestHash={bundleManifestHash} replay={replay} key={replay.id} />)}</section>
+      </PersonalWorkspaceFrame>
     </main>
     <Footer />
   </div>;
@@ -112,5 +115,5 @@ function formatBytes(bytes: number) {
 }
 
 function EvidenceAccessMessage({ signInPath, unavailable }: { signInPath?: string; unavailable?: boolean }) {
-  return <div className="site-shell app-shell"><Header active="workbench" /><main id="main-content" tabIndex={-1} className="page-main evidence-main"><div className="breadcrumb"><Link href="/evidence">Evidence records</Link><span> / </span><span>Controlled record</span></div><section className="review-heading"><div><p className="eyebrow">Controlled evidence access</p><h1>{unavailable ? "Evidence records are temporarily unavailable." : "Sign in to inspect controlled evidence."}</h1><p>{unavailable ? "No unverified fallback evidence is shown while storage is unavailable." : "Only the recorded Attempt owner or an independently assigned reviewer can inspect this record."}</p></div><span className="record-chip">{unavailable ? "Unavailable" : "Personal"}</span></section>{signInPath && <Link className="button button-primary review-sign-in" href={signInPath}>Sign in to inspect <span aria-hidden="true">→</span></Link>}</main><Footer /></div>;
+  return <div className="site-shell app-shell"><Header active="workbench" /><main id="main-content" tabIndex={-1} className="page-main evidence-main personal-workspace-main"><PersonalWorkspaceFrame active="evidence"><div className="breadcrumb"><Link href="/evidence">Evidence records</Link><span> / </span><span>Controlled record</span></div><section className="review-heading"><div><p className="eyebrow">Controlled evidence access</p><h1>{unavailable ? "Evidence records are temporarily unavailable." : "Sign in to inspect controlled evidence."}</h1><p>{unavailable ? "No unverified fallback evidence is shown while storage is unavailable." : "Only the recorded Attempt owner or an independently assigned reviewer can inspect this record."}</p></div><span className="record-chip">{unavailable ? "Unavailable" : "Personal"}</span></section>{signInPath && <Link className="button button-primary review-sign-in" href={signInPath}>Sign in to inspect <span aria-hidden="true">→</span></Link>}</PersonalWorkspaceFrame></main><Footer /></div>;
 }

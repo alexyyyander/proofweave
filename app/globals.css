@@ -1240,7 +1240,7 @@ a.auth-provider:hover { border-color: #8295d5; box-shadow: 0 8px 22px rgba(21,34
    center, personal records stay discoverable at left, and verification remains
    visible without forcing every lifecycle section into one long document. */
 .workbench-main { max-width: 1510px; padding-top: 32px; }
-.workspace-topbar { align-items: center; background: #fff; border: 1px solid var(--line); display: grid; gap: 18px; grid-template-columns: 210px minmax(280px, 1fr) auto; margin-bottom: 16px; min-height: 78px; padding: 13px 16px; position: sticky; top: 0; z-index: 3; }
+.workspace-topbar { align-items: center; background: #fff; border: 1px solid var(--line); display: grid; gap: 18px; grid-template-columns: 210px minmax(280px, 1fr) auto; margin-bottom: 16px; min-height: 78px; padding: 13px 16px; position: sticky; top: 0; z-index: 1; }
 .workspace-topbar-title { display: grid; gap: 5px; }
 .workspace-topbar-title .micro-label { color: var(--indigo); margin: 0; }
 .workspace-topbar-title h1 { font-family: Georgia, "Times New Roman", serif; font-size: 20px; font-weight: 400; letter-spacing: -.025em; line-height: 1.1; margin: 0; }
@@ -1362,4 +1362,46 @@ a.auth-provider:hover { border-color: #8295d5; box-shadow: 0 8px 22px rgba(21,34
   .local-agent-guide > summary { align-items: start; flex-direction: column; gap: 5px; }
   .local-agent-guide .local-agent-steps { grid-template-columns: 1fr; }
   .workspace-new-research .research-launcher { margin-left: -18px; margin-right: -18px; }
+}
+
+/* Shared personal-area shell: reviews, evidence, receipts, profile, and Agent
+   settings retain the same research context and truthful aggregate counts. */
+.personal-workspace-main { max-width: 1510px; }
+.personal-workspace-frame { align-items: start; display: grid; gap: 22px; grid-template-columns: 220px minmax(0, 1fr); }
+.personal-workspace-frame-sidebar { background: #fff; border: 1px solid var(--line); position: sticky; top: 20px; }
+.personal-workspace-current { background: var(--navy); color: #eef3ff; display: grid; gap: 8px; padding: 17px 15px; }
+.personal-workspace-current .micro-label { color: #9eb1da; margin: 0; }
+.personal-workspace-current > a:not(.personal-workspace-start) { color: #f5f7ff; font-family: Georgia, "Times New Roman", serif; font-size: 20px; letter-spacing: -.025em; line-height: 1.12; }
+.personal-workspace-current > strong { font-family: Georgia, "Times New Roman", serif; font-size: 19px; font-weight: 400; }
+.personal-workspace-current > p { color: #aebbd3; font-size: 10px; margin: 0; }
+.personal-workspace-start { color: #c5d4ff; font-size: 10px; font-weight: 700; }
+.personal-agent-state { align-items: center; border-top: 1px solid rgba(220,230,255,.18); color: #e0bd72; display: inline-flex; font-size: 9px; font-weight: 700; gap: 6px; margin-top: 5px; padding-top: 10px; }
+.personal-agent-state i { background: currentColor; border-radius: 50%; height: 6px; width: 6px; }
+.personal-agent-state.is-connected { color: #a9dbbd; }
+.personal-workspace-frame-body { min-width: 0; }
+.personal-workspace-summary { align-items: stretch; background: #fff; border: 1px solid var(--line); display: grid; grid-template-columns: repeat(4, minmax(100px, 1fr)) auto; margin-bottom: 22px; }
+.personal-workspace-summary > div { border-right: 1px solid var(--line); display: grid; gap: 6px; padding: 13px 15px; }
+.personal-workspace-summary span { color: var(--ink-faint); font-size: 9px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.personal-workspace-summary strong { font-family: Georgia, "Times New Roman", serif; font-size: 23px; font-weight: 400; }
+.personal-workspace-summary > a { align-items: center; color: var(--indigo); display: flex; font-size: 10px; font-weight: 700; gap: 18px; justify-content: space-between; padding: 13px 15px; white-space: nowrap; }
+.personal-workspace-frame-content { min-width: 0; }
+.personal-workspace-frame-content > .breadcrumb:first-child { margin-top: 0; }
+
+@media (max-width: 1050px) {
+  .personal-workspace-frame { grid-template-columns: 1fr; }
+  .personal-workspace-frame-sidebar { display: grid; grid-template-columns: minmax(220px, .55fr) 1fr; position: static; }
+  .personal-workspace-frame-sidebar .workspace-personal-links { border-left: 1px solid var(--line); border-top: 0; grid-template-columns: repeat(2, 1fr); }
+  .personal-workspace-frame-sidebar .workspace-personal-links a.is-current { box-shadow: inset 3px 0 0 var(--indigo); }
+  .personal-workspace-summary { grid-template-columns: repeat(4, 1fr); }
+  .personal-workspace-summary > a { border-top: 1px solid var(--line); grid-column: 1 / -1; }
+}
+
+@media (max-width: 620px) {
+  .personal-workspace-main { padding-left: 18px; padding-right: 18px; }
+  .personal-workspace-frame-sidebar { grid-template-columns: 1fr; margin-left: -18px; margin-right: -18px; }
+  .personal-workspace-frame-sidebar .workspace-personal-links { border-left: 0; border-top: 1px solid var(--line); }
+  .personal-workspace-summary { grid-template-columns: 1fr 1fr; margin-left: -18px; margin-right: -18px; }
+  .personal-workspace-summary > div:nth-child(2n) { border-right: 0; }
+  .personal-workspace-summary > div:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .personal-workspace-summary > a { grid-column: 1 / -1; }
 }

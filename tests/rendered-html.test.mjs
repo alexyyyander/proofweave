@@ -724,6 +724,8 @@ test("serves the public research paths", async () => {
   const workbenchHtml = await workbench.text();
   assert.match(workbenchHtml, /Keep the work on your computer/i);
   assert.match(workbenchHtml, /Local-first research/i);
+  const anonymousWorkspaceSummary = await render("/api/me/workspace-summary");
+  assert.equal(anonymousWorkspaceSummary.status, 401);
 
   const detail = await render("/explore/erdos-865");
   const detailHtml = await detail.text();
@@ -837,6 +839,9 @@ test("uses a Google app session for the same stable Person and private account b
   assert.equal(page.status, 200);
   assert.match(html, /Google(?:<!-- -->)? account/i);
   assert.match(html, /linked-google@example\.test/i);
+  assert.match(html, /Active Attempts/i);
+  assert.match(html, /Pending Reviews/i);
+  assert.match(html, /Provisional Credit/i);
   assert.match(html, new RegExp(chatGPTProfile.person.id.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
 });
 
@@ -1942,6 +1947,18 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
   assert.doesNotMatch(ownerWorkbenchHtml, /Lean kernel status · accepted/i);
   assert.match(ownerWorkbenchHtml, /not a theorem, Lean result, novelty finding, independent review, or final Contribution Receipt/i);
 
+  const workspaceSummaryResponse = await render("/api/me/workspace-summary", { headers: authHeaders });
+  assert.equal(workspaceSummaryResponse.status, 200);
+  const { summary: workspaceSummary, note: workspaceSummaryNote } = await workspaceSummaryResponse.json();
+  assert.equal(workspaceSummary.counts.activeAttempts, ownerAttempts.filter((candidate) => candidate.status === "active").length);
+  assert.equal(workspaceSummary.counts.provisionalContributions, 1);
+  assert.ok(workspaceSummary.counts.evidence >= 1);
+  assert.match(workspaceSummaryNote, /do not imply mathematical correctness/i);
+
+  const persistedAttemptWorkbench = await render(`/workbench?attempt=${encodeURIComponent(ownerAttempt.id)}`, { headers: authHeaders });
+  assert.equal(persistedAttemptWorkbench.status, 200);
+  assert.match(await persistedAttemptWorkbench.text(), /Current focus<\/span><h2>Erdős Problem 865<\/h2>/i);
+
   const evidenceWorkbench = await render("/workbench?target=erdos-865", { headers: authHeaders });
   assert.equal(evidenceWorkbench.status, 200);
   const evidenceWorkbenchHtml = await evidenceWorkbench.text();
@@ -2127,6 +2144,7 @@ test("keeps the production frontend free of the deleted starter preview", async 
   assert.match(delegationSetup, /Replace or revoke key/);
   assert.match(localAgentHandoff, /Continue this Proofweave Attempt in Codex/);
   assert.match(localAgentHandoff, /Copy for Codex/);
+  assert.match(globals, /\.workspace-topbar \{[^}]*z-index:\s*1;/s);
   assert.match(localAgentHandoff, /Check recorded progress/);
   assert.match(localAgentHandoff, /do not call \\`report_progress\\` unless I explicitly confirm/);
   assert.match(localAgentHandoff, /inspect_research_graph/);
