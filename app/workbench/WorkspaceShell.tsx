@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import type { McpAttempt } from "@/packages/domain/mcp";
+import { PersonalWorkspaceNavigation } from "../PersonalWorkspaceNavigation";
 
 export type WorkspaceMode =
   | "signed-out"
@@ -117,14 +118,7 @@ export function WorkspaceSidebar({
         </li>)}</ol>}
       <Link className="workspace-choose-link" href="/explore">Choose research <span>→</span></Link>
     </section>
-    <nav className="workspace-personal-links" aria-label="Workspace records">
-      <Link className="is-current" href="/workbench"><span>Work with your Agent</span><b>→</b></Link>
-      <Link href="/reviews"><span>Reviews</span><b>{reviewCount ?? "↗"}</b></Link>
-      <Link href="/evidence"><span>Evidence</span><b>{evidenceCount ?? "↗"}</b></Link>
-      <Link href="/receipts"><span>Receipts</span><b>↗</b></Link>
-      <Link href="/profile"><span>My profile</span><b>↗</b></Link>
-      <Link href="/settings"><span>Agent settings</span><b>↗</b></Link>
-    </nav>
+    <PersonalWorkspaceNavigation active="workbench" activeAttemptCount={attempts.filter((attempt) => attempt.status === "active").length} activeReviewCount={reviewCount} evidenceCount={evidenceCount} />
   </aside>;
 }
 

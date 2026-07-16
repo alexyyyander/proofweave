@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { DelegationProfile } from "@/db/repositories/delegation";
 import type { CatalogProblem } from "@/packages/domain/catalog";
 import type { McpAttempt, McpRunSummary } from "@/packages/domain/mcp";
@@ -17,7 +17,10 @@ export function WorkbenchClient({
   initialRuns,
   initialProvisionalContributions,
   provisionalLedgerAvailable,
+  initialReviewCount,
+  initialEvidenceCount,
   catalogTargets,
+  initialAttemptId,
   initialTargetSlug,
   initialParentNodeId,
   isAuthenticated,
@@ -29,7 +32,10 @@ export function WorkbenchClient({
   initialRuns: readonly McpRunSummary[];
   initialProvisionalContributions: readonly ProvisionalContribution[];
   provisionalLedgerAvailable: boolean;
+  initialReviewCount: number | null;
+  initialEvidenceCount: number | null;
   catalogTargets: readonly CatalogProblem[];
+  initialAttemptId: string | null;
   initialTargetSlug: string | null;
   initialParentNodeId: string | null;
   isAuthenticated: boolean;
@@ -40,11 +46,13 @@ export function WorkbenchClient({
   const [runs, setRuns] = useState<readonly McpRunSummary[]>(initialRuns);
   const [provisionalContributions, setProvisionalContributions] = useState<readonly ProvisionalContribution[]>(initialProvisionalContributions);
   const [isProvisionalLedgerAvailable, setIsProvisionalLedgerAvailable] = useState(provisionalLedgerAvailable);
+  const [reviewCount, setReviewCount] = useState<number | null>(initialReviewCount);
+  const [evidenceCount, setEvidenceCount] = useState<number | null>(initialEvidenceCount);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [refreshError, setRefreshError] = useState<string | null>(null);
   const [refreshedAt, setRefreshedAt] = useState<string | null>(null);
-  const [selectedAttemptId, setSelectedAttemptId] = useState<string | null>(() => selectVisibleAttempt(profile, initialAttempts, initialTargetSlug)?.id ?? null);
-  const fallbackAttempt = selectVisibleAttempt(profile, attempts, initialTargetSlug);
+  const [selectedAttemptId, setSelectedAttemptId] = useState<string | null>(() => selectVisibleAttempt(profile, initialAttempts, initialTargetSlug, initialAttemptId)?.id ?? null);
+  const fallbackAttempt = selectVisibleAttempt(profile, attempts, initialTargetSlug, initialAttemptId);
   const activeAttempt = attempts.find((attempt) => attempt.id === selectedAttemptId) ?? fallbackAttempt;
   const connection = activeLocalCodexInstallation(profile);
   const mode = deriveWorkspaceMode({ isAuthenticated, storageAvailable, isAgentConnected: Boolean(connection), attempt: activeAttempt });
@@ -56,11 +64,12 @@ export function WorkbenchClient({
     setIsRefreshing(true);
     setRefreshError(null);
     try {
-      const [attemptResponse, contributionResponse] = await Promise.all([
+      const [attemptResponse, contributionResponse, summaryResponse] = await Promise.all([
         fetch("/api/me/attempts", { headers: { accept: "application/json" } }),
         isProvisionalLedgerAvailable
           ? fetch("/api/me/provisional-contributions", { headers: { accept: "application/json" } })
           : Promise.resolve(null),
+        fetch("/api/me/workspace-summary", { headers: { accept: "application/json" } }),
       ]);
       const attemptPayload = await attemptResponse.json().catch(() => null);
       if (!attemptResponse.ok || !Array.isArray(attemptPayload?.attempts) || !Array.isArray(attemptPayload?.runs)) {
@@ -78,6 +87,12 @@ export function WorkbenchClient({
           throw new Error(contributionPayload?.error?.message ?? "Proofweave could not refresh the provisional evidence ledger.");
         }
       }
+      if (summaryResponse.ok) {
+        const summaryPayload = await summaryResponse.json().catch(() => null);
+        const counts = summaryPayload?.summary?.counts;
+        if (typeof counts?.activeReviews === "number") setReviewCount(counts.activeReviews);
+        if (typeof counts?.evidence === "number") setEvidenceCount(counts.evidence);
+      }
       setRefreshedAt(new Date().toISOString());
     } catch (error) {
       setRefreshError(error instanceof Error ? error.message : "Proofweave could not refresh the durable Attempt records.");
@@ -86,16 +101,44 @@ export function WorkbenchClient({
     }
   };
 
+  const selectAttempt = (attemptId: string) => {
+    if (!attempts.some((attempt) => attempt.id === attemptId)) return;
+    setSelectedAttemptId(attemptId);
+    if (typeof window === "undefined") return;
+    const url = new URL(window.location.href);
+    url.searchParams.set("attempt", attemptId);
+    url.searchParams.delete("target");
+    url.searchParams.delete("parent");
+    window.history.pushState({ attemptId }, "", `${url.pathname}${url.search}${url.hash}`);
+  };
+
+  useEffect(() => {
+    const restoreAttemptFromUrl = () => {
+      const url = new URL(window.location.href);
+      const restored = selectVisibleAttempt(profile, attempts, url.searchParams.get("target"), url.searchParams.get("attempt"));
+      setSelectedAttemptId(restored?.id ?? null);
+    };
+    window.addEventListener("popstate", restoreAttemptFromUrl);
+    return () => window.removeEventListener("popstate", restoreAttemptFromUrl);
+  }, [attempts, profile]);
+
   const onAttemptReady = (attempt: McpAttempt) => {
     setAttempts((current) => [attempt, ...current.filter((candidate) => candidate.id !== attempt.id)]);
     setSelectedAttemptId(attempt.id);
+    if (typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+      url.searchParams.set("attempt", attempt.id);
+      url.searchParams.delete("target");
+      url.searchParams.delete("parent");
+      window.history.replaceState({ attemptId: attempt.id }, "", `${url.pathname}${url.search}${url.hash}`);
+    }
     setRefreshError(null);
   };
 
   return <>
-    <WorkspaceTopbar attempts={attempts} selectedAttemptId={activeAttempt?.id ?? null} onSelectAttempt={setSelectedAttemptId} agentLabel={connection?.agentLabel ?? null} isAgentConnected={Boolean(connection)} mode={mode} isRefreshing={isRefreshing} canRefresh={isAuthenticated && storageAvailable} refreshedAt={refreshedAt} onRefresh={() => { void refreshAttempts(); }} />
+    <WorkspaceTopbar attempts={attempts} selectedAttemptId={activeAttempt?.id ?? null} onSelectAttempt={selectAttempt} agentLabel={connection?.agentLabel ?? null} isAgentConnected={Boolean(connection)} mode={mode} isRefreshing={isRefreshing} canRefresh={isAuthenticated && storageAvailable} refreshedAt={refreshedAt} onRefresh={() => { void refreshAttempts(); }} />
     <div className={`workspace-shell mode-${mode}`}>
-      <WorkspaceSidebar attempts={attempts} selectedAttemptId={activeAttempt?.id ?? null} onSelectAttempt={setSelectedAttemptId} reviewCount={null} evidenceCount={null} />
+      <WorkspaceSidebar attempts={attempts} selectedAttemptId={activeAttempt?.id ?? null} onSelectAttempt={selectAttempt} reviewCount={reviewCount} evidenceCount={evidenceCount} />
       <section className="workspace-task-canvas" aria-label="Current research work">
         <FocusAction profile={profile} attempt={activeAttempt} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} refreshError={refreshError} refreshedAt={refreshedAt} />
         {!showActiveWorkspace && <ResearchLauncher profile={profile} attempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={initialTargetSlug} initialParentNodeId={initialParentNodeId} onAttemptReady={onAttemptReady} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} />}
@@ -132,11 +175,16 @@ function selectVisibleAttempt(
   profile: DelegationProfile | null,
   attempts: readonly McpAttempt[],
   targetSlug: string | null,
+  attemptId: string | null,
 ): McpAttempt | null {
+  const requestedById = attemptId
+    ? attempts.find((attempt) => attempt.id === attemptId) ?? null
+    : null;
   const requested = targetSlug
     ? attempts.find((attempt) => attempt.status === "active" && attempt.problemSlug === targetSlug) ?? null
     : null;
-  return requested
+  return requestedById
+    ?? requested
     ?? activeLocalAgentAttempt(profile, attempts)
     ?? attempts.find((attempt) => attempt.status === "active")
     ?? attempts[0]

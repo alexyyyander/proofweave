@@ -5,6 +5,7 @@ import { getDelegationRepository, type DelegationProfile } from "@/db/repositori
 import { getCurrentUser, providerAwareSignOutPath, signInPath, toPersonIdentity, type AuthUser } from "../auth";
 import { Footer, ProductStateBadge } from "../ui";
 import { Header } from "../header";
+import { PersonalWorkspaceFrame } from "../PersonalWorkspaceFrame";
 import { AgentConnections } from "../workbench/AgentConnections";
 import { DelegationSetup } from "../workbench/DelegationSetup";
 import { DelegationSummary } from "../workbench/workbench-sections";
@@ -28,7 +29,8 @@ export default async function SettingsPage() {
 
   return <div className="site-shell app-shell">
     <Header active="settings" />
-    <main id="main-content" tabIndex={-1} className="settings-main">
+    <main id="main-content" tabIndex={-1} className="settings-main personal-workspace-main">
+      <PersonalWorkspaceFrame active="settings">
       <section className="settings-hero" aria-labelledby="settings-title">
         <div>
           <p className="eyebrow">Account and Agent controls</p>
@@ -57,6 +59,7 @@ export default async function SettingsPage() {
       {profile && <DelegationSummary profile={profile} />}
       <DelegationSetup profile={profile} isAuthenticated={Boolean(user)} signInPath={signInPath("/settings#delegation-setup")} storageAvailable={storageAvailable} />
       {profile && <AgentConnections installations={profile.agentInstallations} />}
+      </PersonalWorkspaceFrame>
     </main>
     <Footer />
   </div>;

@@ -12,6 +12,7 @@ import type { McpAttempt } from "@/packages/domain/mcp";
 import { providerAwareSignOutPath, requireUser, toPersonIdentity, type AuthUser } from "../auth";
 import { Footer } from "../ui";
 import { Header } from "../header";
+import { PersonalWorkspaceFrame } from "../PersonalWorkspaceFrame";
 
 export const dynamic = "force-dynamic";
 
@@ -29,7 +30,8 @@ export default async function ProfilePage() {
 
   return <div className="site-shell app-shell">
     <Header active="profile" />
-    <main id="main-content" tabIndex={-1} className="page-main profile-main">
+    <main id="main-content" tabIndex={-1} className="page-main profile-main personal-workspace-main">
+      <PersonalWorkspaceFrame active="profile">
       <div className="breadcrumb"><Link href="/workbench">Workspace</Link><span> / </span><span>My profile</span></div>
       <section className="profile-hero">
         <div className="profile-avatar" aria-hidden="true">{initials(user.displayName)}</div>
@@ -69,6 +71,7 @@ export default async function ProfilePage() {
       </div>
 
       <section className="profile-privacy-boundary"><div><p className="eyebrow">Public / private boundary</p><h2>Your contribution record is public. Your account is not.</h2></div><p>The public page contains only your display name, Person ID, public research checkpoints, signed Receipts, and aggregate review outcomes. Email, provider subject, private evidence, prompts, keys, connection credentials, and unshared workspace data remain private.</p></section>
+      </PersonalWorkspaceFrame>
     </main>
     <Footer />
   </div>;
@@ -126,5 +129,5 @@ function formatDate(value: string) {
 }
 
 function ProfileUnavailable() {
-  return <div className="site-shell app-shell"><Header active="profile" /><main id="main-content" tabIndex={-1} className="page-main profile-main"><section className="review-heading"><div><p className="eyebrow">Personal profile</p><h1>Your profile is temporarily unavailable.</h1><p>No identity, contribution, or Agent record was changed. Please try again when the account control plane is available.</p></div><span className="record-chip">Unavailable</span></section></main><Footer /></div>;
+  return <div className="site-shell app-shell"><Header active="profile" /><main id="main-content" tabIndex={-1} className="page-main profile-main personal-workspace-main"><PersonalWorkspaceFrame active="profile"><section className="review-heading"><div><p className="eyebrow">Personal profile</p><h1>Your profile is temporarily unavailable.</h1><p>No identity, contribution, or Agent record was changed. Please try again when the account control plane is available.</p></div><span className="record-chip">Unavailable</span></section></PersonalWorkspaceFrame></main><Footer /></div>;
 }

@@ -11,6 +11,7 @@ import { closedAlphaReviewLimits } from "@/packages/domain/attempt-policy.mjs";
 import { getCurrentUser, signInPath, toPersonIdentity, type AuthUser } from "../auth";
 import { Footer } from "../ui";
 import { Header } from "../header";
+import { PersonalWorkspaceFrame } from "../PersonalWorkspaceFrame";
 import { ReviewQueueClient } from "./ReviewQueueClient";
 import { VerificationMarketBoard } from "./VerificationMarketBoard";
 
@@ -25,7 +26,8 @@ export default async function ReviewsPage() {
   const hasReviewDelegation = hasActiveReviewDelegation(result.profile);
   return <div className="site-shell app-shell">
     <Header active="review" />
-    <main id="main-content" tabIndex={-1} className="page-main review-main">
+    <main id="main-content" tabIndex={-1} className="page-main review-main personal-workspace-main">
+      <PersonalWorkspaceFrame active="reviews">
       <div className="breadcrumb"><Link href="/explore">Research frontier</Link><span> / </span><span>Verification market</span></div>
       <section className="review-heading"><div><p className="eyebrow">Verification market · public work board</p><h1>Verify evidence. Become eligible for review credit.</h1><p>Choose a claim pinned to another Person’s staged Bundle. Your review Agent performs the check and signs the decision; eligibility becomes settled credit only if the target later closes through a valid Receipt.</p></div><span className="record-chip">{result.jobs.length} open</span></section>
       <VerificationMarketBoard
@@ -41,6 +43,7 @@ export default async function ReviewsPage() {
       {user
         ? <ReviewQueueClient initialAssignments={result.assignments} hasReviewDelegation={hasReviewDelegation} />
         : <section className="review-empty review-sign-in-panel"><p className="eyebrow">Personal queue</p><h2>No anonymous assignments.</h2><p>Sign in first, then activate a review-scoped Agent delegation. Claiming a job creates an accepted assignment immediately, but never fabricates a mathematical attestation.</p><Link className="button button-primary review-sign-in" href={signInPath("/reviews")}>Sign in to review <span aria-hidden="true">→</span></Link></section>}
+      </PersonalWorkspaceFrame>
     </main>
     <Footer />
   </div>;
@@ -80,9 +83,11 @@ function ReviewMessage({ unavailable }: { unavailable?: boolean }) {
   const detail = "No market claim or review action was taken while the control plane was unavailable.";
   return <div className="site-shell app-shell">
     <Header active="review" />
-    <main id="main-content" tabIndex={-1} className="page-main review-main">
-      <div className="breadcrumb"><Link href="/how-it-works">Protocol</Link><span> / </span><span>Independent review</span></div>
-      <section className="review-heading"><div><p className="eyebrow">Verification queue</p><h1>{title}</h1><p>{detail}</p></div><span className="record-chip">{unavailable ? "Unavailable" : "Personal"}</span></section>
+    <main id="main-content" tabIndex={-1} className="page-main review-main personal-workspace-main">
+      <PersonalWorkspaceFrame active="reviews">
+        <div className="breadcrumb"><Link href="/how-it-works">Protocol</Link><span> / </span><span>Independent review</span></div>
+        <section className="review-heading"><div><p className="eyebrow">Verification queue</p><h1>{title}</h1><p>{detail}</p></div><span className="record-chip">{unavailable ? "Unavailable" : "Personal"}</span></section>
+      </PersonalWorkspaceFrame>
     </main>
     <Footer />
   </div>;
