@@ -1,0 +1,378 @@
+{
+  "schemaVersion": 2,
+  "snapshot": {
+    "id": "snapshot:formal-conjectures:focus-v1-lean4.27.0",
+    "upstreamName": "Formal Conjectures",
+    "sourceUrl": "https://github.com/google-deepmind/formal-conjectures/tree/b2e608fc52d765510915a244bb69b1a2741acc3c",
+    "revisionTag": "curated-focus-v1-lean4.27.0",
+    "revisionCommit": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+    "retrievedAt": "2026-07-16T00:00:00Z",
+    "contentHash": "sha256:d8087e6509f8b48303fd6c0ea25d354dfe9379f23b2f7bd8b31dc0e0276e1cf7",
+    "manifestHash": "sha256:43ca55a6fe946effb4a213e7a2b6b0c134d15b99888ff9aa0434c4e4676b24e6",
+    "sourceLicense": "Apache-2.0 source code; upstream materials may carry their own stated terms.",
+    "leanToolchain": "leanprover/lean4:v4.27.0",
+    "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+    "manifest": [
+      { "path": "FormalConjectures/ErdosProblems/20.lean", "hash": "sha256:a30fae786a2dab55d5a42b4cb74dd12b4e4e858d3513748c71ef14ff48b0ef4a" },
+      { "path": "FormalConjectures/ErdosProblems/508.lean", "hash": "sha256:267dd025998ff952ddff7c0aa95688bc7b2bce2755517ec44459bffb88312f08" },
+      { "path": "FormalConjectures/Millenium/NavierStokes.lean", "hash": "sha256:259d2ed5dd042c6140c90f74d9471e382909b37b7bec79d4a45bf69a2a51cd6d" },
+      { "path": "FormalConjectures/Millenium/RiemannHypothesis.lean", "hash": "sha256:31bc68fe45cd4bd1a896e71da6b7bd7459a18572a7d85878b66ddd15adb0130c" },
+      { "path": "FormalConjectures/Wikipedia/CollatzConjecture.lean", "hash": "sha256:555bd737d758ee380f6073b794594d53994b21c597fcd931373e727cb73226ea" },
+      { "path": "FormalConjectures/Wikipedia/GoldbachConjecture.lean", "hash": "sha256:bf6a587c50ba159af919fbe9afa09f04375608c33c68361ffc52246018a5b447" },
+      { "path": "FormalConjectures/Wikipedia/JacobianConjecture.lean", "hash": "sha256:22a6a801d27ae1a8b225171bbd4a12099c1a5643471273bd8eb11ee206957ced" },
+      { "path": "FormalConjectures/Wikipedia/Kakeya.lean", "hash": "sha256:4d624a82f55702f1602858e2d38bdf26bfdb9892954c71736768e84f8cb9012c" },
+      { "path": "FormalConjectures/Wikipedia/LonelyRunnerConjecture.lean", "hash": "sha256:a9f9d2504bb1f29e52e659a26080edf68b76a95abe4af8e68b1d6d404be1a309" },
+      { "path": "FormalConjectures/Wikipedia/TwinPrimes.lean", "hash": "sha256:e947e40aad99026f3a3efc00d958194aa3ef284b92b6e161f2bde9856e7a77ab" }
+    ]
+  },
+  "subjects": [
+    { "id": "subject:ams-05", "slug": "combinatorics", "name": "Combinatorics", "amsCode": "05", "description": "Enumerative, extremal, and structural combinatorics.", "sortOrder": 5 },
+    { "id": "subject:ams-11", "slug": "number-theory", "name": "Number theory", "amsCode": "11", "description": "Prime numbers, additive number theory, and arithmetic structures.", "sortOrder": 11 },
+    { "id": "subject:ams-14", "slug": "algebraic-geometry", "name": "Algebraic geometry", "amsCode": "14", "description": "Algebraic varieties, morphisms, and polynomial geometry.", "sortOrder": 14 },
+    { "id": "subject:ams-35", "slug": "partial-differential-equations", "name": "Partial differential equations", "amsCode": "35", "description": "Existence, regularity, and qualitative behavior of PDE solutions.", "sortOrder": 35 },
+    { "id": "subject:ams-37", "slug": "dynamical-systems", "name": "Dynamical systems", "amsCode": "37", "description": "Iteration, asymptotic behavior, and ergodic phenomena.", "sortOrder": 37 },
+    { "id": "subject:ams-42", "slug": "harmonic-analysis", "name": "Harmonic analysis", "amsCode": "42", "description": "Fourier analysis and geometric measure questions in Euclidean spaces.", "sortOrder": 42 },
+    { "id": "subject:ams-52", "slug": "discrete-geometry", "name": "Discrete geometry", "amsCode": "52", "description": "Convex, combinatorial, and incidence geometry.", "sortOrder": 52 }
+  ],
+  "collections": [
+    {
+      "id": "collection:founding-challenges",
+      "slug": "founding-challenges",
+      "title": "Founding Challenges",
+      "summary": "Recognizable open questions paired with smaller, known milestones that make a first research Attempt concrete.",
+      "tier": "founding",
+      "priority": 100,
+      "visibility": "public"
+    },
+    {
+      "id": "collection:grand-challenges",
+      "slug": "grand-challenges",
+      "title": "Grand Challenges",
+      "summary": "Long-horizon problems whose formal statements can anchor reusable lemmas, counterexamples, and independent review.",
+      "tier": "grand",
+      "priority": 90,
+      "visibility": "public"
+    }
+  ],
+  "existingRecords": [
+    { "problemRevisionId": "problem-revision:formal-conjectures:erdos-865:main:1", "subjects": [{ "slug": "number-theory", "isPrimary": true }, { "slug": "combinatorics", "isPrimary": false }], "collection": { "slug": "founding-challenges", "role": "headline", "position": 10 } },
+    { "problemRevisionId": "problem-revision:formal-conjectures:erdos-865:k2:1", "subjects": [{ "slug": "number-theory", "isPrimary": true }, { "slug": "combinatorics", "isPrimary": false }], "collection": { "slug": "founding-challenges", "role": "milestone", "position": 11 } },
+    { "problemRevisionId": "problem-revision:formal-conjectures:erdos-865:sos:1", "subjects": [{ "slug": "number-theory", "isPrimary": true }, { "slug": "combinatorics", "isPrimary": false }], "collection": { "slug": "founding-challenges", "role": "milestone", "position": 12 } },
+    { "problemRevisionId": "problem-revision:formal-conjectures:erdos-865:upper-bound:1", "subjects": [{ "slug": "number-theory", "isPrimary": true }, { "slug": "combinatorics", "isPrimary": false }], "collection": { "slug": "founding-challenges", "role": "milestone", "position": 13 } }
+  ],
+  "projects": [
+    {
+      "id": "project:formal-conjectures:erdos-20",
+      "slug": "formal-conjectures-erdos-20",
+      "kind": "frontier",
+      "title": "Erdős–Rado Sunflower Conjecture",
+      "summary": "The sunflower problem asks how large a uniform set family must be before a sunflower is unavoidable; the catalog pairs the open exponential question with the classical factorial bound.",
+      "visibility": "public",
+      "records": [
+        {
+          "id": "problem-revision:formal-conjectures:erdos-20:main:1",
+          "targetKey": "erdos-20-main",
+          "slug": "sunflower-conjecture",
+          "title": "Erdős–Rado Sunflower Conjecture",
+          "domain": "Combinatorics",
+          "subjects": [{ "slug": "combinatorics", "isPrimary": true }],
+          "collection": { "slug": "founding-challenges", "role": "headline", "position": 20 },
+          "researchStatus": "research_open",
+          "informalStatement": "For each number of petals k, the largest n-uniform family with no k-sunflower is bounded exponentially in n.",
+          "leanStatement": "theorem erdos_20 : answer(sorry) ↔ ∃ (c : ℕ → ℕ), ∀ n k, n > 0 → f n k < (c k) ^ n := by\n  sorry",
+          "proofState": "admitted",
+          "sourceCorrespondence": "imported_unreviewed",
+          "priority": 98,
+          "declaration": { "id": "declaration:formal-conjectures:erdos-20", "qualifiedName": "Erdos20.erdos_20", "kind": "theorem", "sourcePath": "FormalConjectures/ErdosProblems/20.lean", "sourceLineStart": 51, "sourceLineEnd": 51, "sourceContentHash": "sha256:a30fae786a2dab55d5a42b4cb74dd12b4e4e858d3513748c71ef14ff48b0ef4a" }
+        },
+        {
+          "id": "problem-revision:formal-conjectures:erdos-20:erdos-rado-bound:1",
+          "targetKey": "erdos-20-erdos-rado-bound",
+          "slug": "sunflower-erdos-rado-bound",
+          "title": "Sunflower: Erdős–Rado bound",
+          "domain": "Combinatorics",
+          "subjects": [{ "slug": "combinatorics", "isPrimary": true }],
+          "collection": { "slug": "founding-challenges", "role": "milestone", "position": 21 },
+          "researchStatus": "research_solved",
+          "informalStatement": "The classical Erdős–Rado argument bounds the sunflower-free extremal function by (k − 1)ⁿ n! + 1.",
+          "leanStatement": "theorem erdos_20.variants.erdos_rado_bound :\n    ∀ n k, n > 0 → 2 ≤ k → f n k ≤ (k - 1) ^ n * n.factorial + 1 := by\n  sorry",
+          "proofState": "admitted",
+          "sourceCorrespondence": "imported_unreviewed",
+          "priority": 88,
+          "declaration": { "id": "declaration:formal-conjectures:erdos-20-erdos-rado-bound", "qualifiedName": "Erdos20.erdos_20.variants.erdos_rado_bound", "kind": "theorem", "sourcePath": "FormalConjectures/ErdosProblems/20.lean", "sourceLineStart": 62, "sourceLineEnd": 63, "sourceContentHash": "sha256:a30fae786a2dab55d5a42b4cb74dd12b4e4e858d3513748c71ef14ff48b0ef4a" }
+        }
+      ]
+    },
+    {
+      "id": "project:formal-conjectures:erdos-508",
+      "slug": "formal-conjectures-erdos-508",
+      "kind": "frontier",
+      "title": "Hadwiger–Nelson Problem",
+      "summary": "Determine the chromatic number of the plane when points at unit distance must receive different colors, with known lower bounds exposed as formalization milestones.",
+      "visibility": "public",
+      "records": [
+        {
+          "id": "problem-revision:formal-conjectures:erdos-508:main:1",
+          "targetKey": "erdos-508-main",
+          "slug": "hadwiger-nelson",
+          "title": "Hadwiger–Nelson Problem",
+          "domain": "Discrete geometry",
+          "subjects": [{ "slug": "discrete-geometry", "isPrimary": true }],
+          "collection": { "slug": "founding-challenges", "role": "headline", "position": 30 },
+          "researchStatus": "research_open",
+          "informalStatement": "Determine the minimum number of colors needed to color the Euclidean plane so that points exactly one unit apart have different colors.",
+          "leanStatement": "theorem HadwigerNelsonProblem :\n    χ(ℝ²) = answer(sorry) := by\n  sorry",
+          "proofState": "admitted",
+          "sourceCorrespondence": "imported_unreviewed",
+          "priority": 97,
+          "declaration": { "id": "declaration:formal-conjectures:erdos-508", "qualifiedName": "Erdos508.HadwigerNelsonProblem", "kind": "theorem", "sourcePath": "FormalConjectures/ErdosProblems/508.lean", "sourceLineStart": 45, "sourceLineEnd": 46, "sourceContentHash": "sha256:267dd025998ff952ddff7c0aa95688bc7b2bce2755517ec44459bffb88312f08" }
+        },
+        {
+          "id": "problem-revision:formal-conjectures:erdos-508:at-least-five:1",
+          "targetKey": "erdos-508-at-least-five",
+          "slug": "hadwiger-nelson-at-least-five",
+          "title": "Hadwiger–Nelson: at least five colors",
+          "domain": "Discrete geometry",
+          "subjects": [{ "slug": "discrete-geometry", "isPrimary": true }],
+          "collection": { "slug": "founding-challenges", "role": "milestone", "position": 31 },
+          "researchStatus": "research_solved",
+          "informalStatement": "The chromatic number of the Euclidean plane is at least five.",
+          "leanStatement": "theorem HadwigerNelsonAtLeastFive :\n    5 ≤ χ(ℝ²) := by\n  sorry",
+          "proofState": "admitted",
+          "sourceCorrespondence": "imported_unreviewed",
+          "priority": 87,
+          "declaration": { "id": "declaration:formal-conjectures:erdos-508-at-least-five", "qualifiedName": "Erdos508.HadwigerNelsonAtLeastFive", "kind": "theorem", "sourcePath": "FormalConjectures/ErdosProblems/508.lean", "sourceLineStart": 57, "sourceLineEnd": 58, "sourceContentHash": "sha256:267dd025998ff952ddff7c0aa95688bc7b2bce2755517ec44459bffb88312f08" }
+        },
+        {
+          "id": "problem-revision:formal-conjectures:erdos-508:at-least-four:1",
+          "targetKey": "erdos-508-at-least-four",
+          "slug": "hadwiger-nelson-at-least-four",
+          "title": "Hadwiger–Nelson: at least four colors",
+          "domain": "Combinatorics",
+          "subjects": [{ "slug": "combinatorics", "isPrimary": true }],
+          "collection": { "slug": "founding-challenges", "role": "milestone", "position": 32 },
+          "researchStatus": "research_solved",
+          "informalStatement": "The chromatic number of the Euclidean plane is at least four.",
+          "leanStatement": "theorem HadwigerNelsonAtLeast4 : 4 ≤ χ(ℝ²) := by\n  sorry",
+          "proofState": "admitted",
+          "sourceCorrespondence": "imported_unreviewed",
+          "priority": 77,
+          "declaration": { "id": "declaration:formal-conjectures:erdos-508-at-least-four", "qualifiedName": "Erdos508.HadwigerNelsonAtLeast4", "kind": "theorem", "sourcePath": "FormalConjectures/ErdosProblems/508.lean", "sourceLineStart": 67, "sourceLineEnd": 67, "sourceContentHash": "sha256:267dd025998ff952ddff7c0aa95688bc7b2bce2755517ec44459bffb88312f08" }
+        }
+      ]
+    },
+    {
+      "id": "project:formal-conjectures:lonely-runner",
+      "slug": "formal-conjectures-lonely-runner",
+      "kind": "frontier",
+      "title": "Lonely Runner Conjecture",
+      "summary": "A Diophantine approximation problem about runners with distinct speeds, paired with a proved quantitative spacing milestone.",
+      "visibility": "public",
+      "records": [
+        {
+          "id": "problem-revision:formal-conjectures:lonely-runner:main:1",
+          "targetKey": "lonely-runner-main",
+          "slug": "lonely-runner",
+          "title": "Lonely Runner Conjecture",
+          "domain": "Number theory",
+          "subjects": [{ "slug": "number-theory", "isPrimary": true }],
+          "collection": { "slug": "founding-challenges", "role": "headline", "position": 40 },
+          "researchStatus": "research_open",
+          "informalStatement": "For runners with distinct constant speeds on a unit circle, each runner is eventually at least 1/n from every other runner.",
+          "leanStatement": "theorem lonely_runner_conjecture (n : ℕ)\n    (speed : Fin n ↪ ℝ) (lonely : Fin n → ℝ → Prop)\n    (lonely_def :\n      ∀ r t, lonely r t ↔\n        ∀ r2 : Fin n, r2 ≠ r →\n        dist (t * speed r : UnitAddCircle) (t * speed r2) ≥ 1 / n)\n    (r : Fin n) : ∃ t ≥ 0, lonely r t := by\n  sorry",
+          "proofState": "admitted",
+          "sourceCorrespondence": "imported_unreviewed",
+          "priority": 96,
+          "declaration": { "id": "declaration:formal-conjectures:lonely-runner", "qualifiedName": "LonelyRunnerConjecture.lonely_runner_conjecture", "kind": "theorem", "sourcePath": "FormalConjectures/Wikipedia/LonelyRunnerConjecture.lean", "sourceLineStart": 36, "sourceLineEnd": 42, "sourceContentHash": "sha256:a9f9d2504bb1f29e52e659a26080edf68b76a95abe4af8e68b1d6d404be1a309" }
+        },
+        {
+          "id": "problem-revision:formal-conjectures:lonely-runner:tao-2017:1",
+          "targetKey": "lonely-runner-tao-2017",
+          "slug": "lonely-runner-tao-2017",
+          "title": "Lonely Runner: Tao 2017 spacing bound",
+          "domain": "Number theory",
+          "subjects": [{ "slug": "number-theory", "isPrimary": true }],
+          "collection": { "slug": "founding-challenges", "role": "milestone", "position": 41 },
+          "researchStatus": "research_solved",
+          "informalStatement": "A quantitative lower bound improves the universal gap beyond 1/(2n) for all sufficiently large n.",
+          "leanStatement": "theorem lonely_runner_conjecture.variants.tao_2017 :\n    ∃ c : ℝ, 0 < c ∧\n      (∀ᶠ n : ℕ in Filter.atTop,\n        deltaGap n ≥\n          ((1 : ℝ) / (2 * (n : ℝ))\n            + c * Real.log (n : ℝ) /\n                ((n : ℝ) ^ 2 * (Real.log (Real.log (n : ℝ))) ^ 2))) := by\n  sorry",
+          "proofState": "admitted",
+          "sourceCorrespondence": "imported_unreviewed",
+          "priority": 86,
+          "declaration": { "id": "declaration:formal-conjectures:lonely-runner-tao-2017", "qualifiedName": "LonelyRunnerConjecture.lonely_runner_conjecture.variants.tao_2017", "kind": "theorem", "sourcePath": "FormalConjectures/Wikipedia/LonelyRunnerConjecture.lean", "sourceLineStart": 70, "sourceLineEnd": 76, "sourceContentHash": "sha256:a9f9d2504bb1f29e52e659a26080edf68b76a95abe4af8e68b1d6d404be1a309" }
+        }
+      ]
+    },
+    {
+      "id": "project:formal-conjectures:kakeya",
+      "slug": "formal-conjectures-kakeya",
+      "kind": "frontier",
+      "title": "Kakeya Set Conjecture",
+      "summary": "Kakeya sets contain a unit segment in every direction; the collection separates the open general dimension statement from solved Euclidean and finite-field cases.",
+      "visibility": "public",
+      "records": [
+        {
+          "id": "problem-revision:formal-conjectures:kakeya:main:1",
+          "targetKey": "kakeya-main",
+          "slug": "kakeya-set-conjecture",
+          "title": "Kakeya Set Conjecture",
+          "domain": "Harmonic analysis",
+          "subjects": [{ "slug": "harmonic-analysis", "isPrimary": true }],
+          "collection": { "slug": "founding-challenges", "role": "headline", "position": 50 },
+          "researchStatus": "research_open",
+          "informalStatement": "Every Kakeya set in positive Euclidean dimension has full Hausdorff dimension.",
+          "leanStatement": "theorem kakeya_set_conjecture (n : ℕ) (hn : n > 0) :\n    KakeyaSetConjectureDim n := by\n  sorry",
+          "proofState": "admitted",
+          "sourceCorrespondence": "imported_unreviewed",
+          "priority": 95,
+          "declaration": { "id": "declaration:formal-conjectures:kakeya", "qualifiedName": "Kakeya.kakeya_set_conjecture", "kind": "theorem", "sourcePath": "FormalConjectures/Wikipedia/Kakeya.lean", "sourceLineStart": 59, "sourceLineEnd": 60, "sourceContentHash": "sha256:4d624a82f55702f1602858e2d38bdf26bfdb9892954c71736768e84f8cb9012c" }
+        },
+        {
+          "id": "problem-revision:formal-conjectures:kakeya:2d:1",
+          "targetKey": "kakeya-2d",
+          "slug": "kakeya-two-dimensional",
+          "title": "Kakeya: two dimensions",
+          "domain": "Harmonic analysis",
+          "subjects": [{ "slug": "harmonic-analysis", "isPrimary": true }],
+          "collection": { "slug": "founding-challenges", "role": "milestone", "position": 51 },
+          "researchStatus": "research_solved",
+          "informalStatement": "The Kakeya set conjecture holds in two dimensions.",
+          "leanStatement": "theorem kakeya_2d : KakeyaSetConjectureDim 2 := by\n  sorry",
+          "proofState": "admitted",
+          "sourceCorrespondence": "imported_unreviewed",
+          "priority": 85,
+          "declaration": { "id": "declaration:formal-conjectures:kakeya-2d", "qualifiedName": "Kakeya.kakeya_2d", "kind": "theorem", "sourcePath": "FormalConjectures/Wikipedia/Kakeya.lean", "sourceLineStart": 70, "sourceLineEnd": 70, "sourceContentHash": "sha256:4d624a82f55702f1602858e2d38bdf26bfdb9892954c71736768e84f8cb9012c" }
+        },
+        {
+          "id": "problem-revision:formal-conjectures:kakeya:3d:1",
+          "targetKey": "kakeya-3d",
+          "slug": "kakeya-three-dimensional",
+          "title": "Kakeya: three dimensions",
+          "domain": "Harmonic analysis",
+          "subjects": [{ "slug": "harmonic-analysis", "isPrimary": true }],
+          "collection": { "slug": "founding-challenges", "role": "milestone", "position": 52 },
+          "researchStatus": "research_solved",
+          "informalStatement": "The Kakeya set conjecture holds in three dimensions.",
+          "leanStatement": "theorem kakeya_3d : KakeyaSetConjectureDim 3 := by\n  sorry",
+          "proofState": "admitted",
+          "sourceCorrespondence": "imported_unreviewed",
+          "priority": 84,
+          "declaration": { "id": "declaration:formal-conjectures:kakeya-3d", "qualifiedName": "Kakeya.kakeya_3d", "kind": "theorem", "sourcePath": "FormalConjectures/Wikipedia/Kakeya.lean", "sourceLineStart": 80, "sourceLineEnd": 80, "sourceContentHash": "sha256:4d624a82f55702f1602858e2d38bdf26bfdb9892954c71736768e84f8cb9012c" }
+        },
+        {
+          "id": "problem-revision:formal-conjectures:kakeya:finite:1",
+          "targetKey": "kakeya-finite-field",
+          "slug": "kakeya-finite-field",
+          "title": "Kakeya: finite-field bound",
+          "domain": "Discrete geometry",
+          "subjects": [{ "slug": "discrete-geometry", "isPrimary": true }],
+          "collection": { "slug": "founding-challenges", "role": "milestone", "position": 53 },
+          "researchStatus": "research_solved",
+          "informalStatement": "A finite-field Kakeya set satisfies the stated polynomial-method cardinality lower bound.",
+          "leanStatement": "theorem kakeya_finite {F : Type*} [Field F] [Fintype F] {n : ℕ}\n    (K : Finset (Fin n → F)) (hK : IsKakeyaFinite K) :\n    card F ^ n / (2 - 1 / card F : ℚ) ^ (n - 1) ≤ K.card := by\n  sorry",
+          "proofState": "admitted",
+          "sourceCorrespondence": "imported_unreviewed",
+          "priority": 83,
+          "declaration": { "id": "declaration:formal-conjectures:kakeya-finite", "qualifiedName": "Kakeya.kakeya_finite", "kind": "theorem", "sourcePath": "FormalConjectures/Wikipedia/Kakeya.lean", "sourceLineStart": 102, "sourceLineEnd": 104, "sourceContentHash": "sha256:4d624a82f55702f1602858e2d38bdf26bfdb9892954c71736768e84f8cb9012c" }
+        }
+      ]
+    },
+    {
+      "id": "project:formal-conjectures:goldbach",
+      "slug": "formal-conjectures-goldbach",
+      "kind": "frontier",
+      "title": "Goldbach Conjectures",
+      "summary": "The binary Goldbach conjecture remains open, while the ternary theorem supplies a famous solved statement for formalization work.",
+      "visibility": "public",
+      "records": [
+        {
+          "id": "problem-revision:formal-conjectures:goldbach:main:1",
+          "targetKey": "goldbach-main",
+          "slug": "goldbach-conjecture",
+          "title": "Goldbach Conjecture",
+          "domain": "Number theory",
+          "subjects": [{ "slug": "number-theory", "isPrimary": true }],
+          "collection": { "slug": "founding-challenges", "role": "headline", "position": 60 },
+          "researchStatus": "research_open",
+          "informalStatement": "Every even integer greater than two is the sum of two prime numbers.",
+          "leanStatement": "theorem goldbach :\n    answer(sorry) ↔ ∀ n : ℕ, 2 < n → Even n → ∃ p q, Prime p ∧ Prime q ∧ n = p + q := by\n  sorry",
+          "proofState": "admitted",
+          "sourceCorrespondence": "imported_unreviewed",
+          "priority": 94,
+          "declaration": { "id": "declaration:formal-conjectures:goldbach", "qualifiedName": "GoldbachConjecture.goldbach", "kind": "theorem", "sourcePath": "FormalConjectures/Wikipedia/GoldbachConjecture.lean", "sourceLineStart": 33, "sourceLineEnd": 34, "sourceContentHash": "sha256:bf6a587c50ba159af919fbe9afa09f04375608c33c68361ffc52246018a5b447" }
+        },
+        {
+          "id": "problem-revision:formal-conjectures:goldbach:ternary:1",
+          "targetKey": "goldbach-ternary",
+          "slug": "ternary-goldbach",
+          "title": "Ternary Goldbach theorem",
+          "domain": "Number theory",
+          "subjects": [{ "slug": "number-theory", "isPrimary": true }],
+          "collection": { "slug": "founding-challenges", "role": "milestone", "position": 61 },
+          "researchStatus": "research_solved",
+          "informalStatement": "Every odd integer greater than five is the sum of three prime numbers.",
+          "leanStatement": "theorem ternaryGoldbach (n : ℕ) (hn : 5 < n) (hn_odd : Odd n) :\n    ∃ p q r, Nat.Prime p ∧ Nat.Prime q ∧ Nat.Prime r ∧ n = p + q + r := by\n  sorry",
+          "proofState": "admitted",
+          "sourceCorrespondence": "imported_unreviewed",
+          "priority": 84,
+          "declaration": { "id": "declaration:formal-conjectures:goldbach-ternary", "qualifiedName": "TernaryGoldbachConjecture.ternaryGoldbach", "kind": "theorem", "sourcePath": "FormalConjectures/Wikipedia/GoldbachConjecture.lean", "sourceLineStart": 49, "sourceLineEnd": 50, "sourceContentHash": "sha256:bf6a587c50ba159af919fbe9afa09f04375608c33c68361ffc52246018a5b447" }
+        }
+      ]
+    },
+    {
+      "id": "project:formal-conjectures:collatz",
+      "slug": "formal-conjectures-collatz",
+      "kind": "frontier",
+      "title": "Collatz Conjecture",
+      "summary": "The elementary-looking iteration problem is presented as a long-horizon target for formal lemmas, finite checks, and structural reductions.",
+      "visibility": "public",
+      "records": [{
+        "id": "problem-revision:formal-conjectures:collatz:main:1", "targetKey": "collatz-main", "slug": "collatz-conjecture", "title": "Collatz Conjecture", "domain": "Number theory",
+        "subjects": [{ "slug": "number-theory", "isPrimary": true }, { "slug": "dynamical-systems", "isPrimary": false }], "collection": { "slug": "grand-challenges", "role": "headline", "position": 10 },
+        "researchStatus": "research_open", "informalStatement": "Starting from any positive integer, repeated Collatz steps eventually reach one.",
+        "leanStatement": "theorem collatz_conjecture (n : ℕ) (hn : n > 0) : ∃ m, collatzStep^[m] n = 1 := by\n  sorry", "proofState": "admitted", "sourceCorrespondence": "imported_unreviewed", "priority": 93,
+        "declaration": { "id": "declaration:formal-conjectures:collatz", "qualifiedName": "CollatzConjecture.collatz_conjecture", "kind": "theorem", "sourcePath": "FormalConjectures/Wikipedia/CollatzConjecture.lean", "sourceLineStart": 50, "sourceLineEnd": 50, "sourceContentHash": "sha256:555bd737d758ee380f6073b794594d53994b21c597fcd931373e727cb73226ea" }
+      }]
+    },
+    {
+      "id": "project:formal-conjectures:twin-primes", "slug": "formal-conjectures-twin-primes", "kind": "frontier", "title": "Twin Prime Conjecture", "summary": "The conjecture predicts infinitely many prime pairs separated by two.", "visibility": "public",
+      "records": [{
+        "id": "problem-revision:formal-conjectures:twin-primes:main:1", "targetKey": "twin-primes-main", "slug": "twin-prime-conjecture", "title": "Twin Prime Conjecture", "domain": "Number theory",
+        "subjects": [{ "slug": "number-theory", "isPrimary": true }], "collection": { "slug": "grand-challenges", "role": "headline", "position": 20 },
+        "researchStatus": "research_open", "informalStatement": "There are infinitely many prime numbers p such that p + 2 is also prime.",
+        "leanStatement": "theorem twin_primes :\n    answer(sorry) ↔ {p : ℕ | Prime p ∧ Prime (p + 2)}.Infinite := by\n  sorry", "proofState": "admitted", "sourceCorrespondence": "imported_unreviewed", "priority": 92,
+        "declaration": { "id": "declaration:formal-conjectures:twin-primes", "qualifiedName": "TwinPrimes.twin_primes", "kind": "theorem", "sourcePath": "FormalConjectures/Wikipedia/TwinPrimes.lean", "sourceLineStart": 34, "sourceLineEnd": 35, "sourceContentHash": "sha256:e947e40aad99026f3a3efc00d958194aa3ef284b92b6e161f2bde9856e7a77ab" }
+      }]
+    },
+    {
+      "id": "project:formal-conjectures:riemann-hypothesis", "slug": "formal-conjectures-riemann-hypothesis", "kind": "frontier", "title": "Riemann Hypothesis", "summary": "The formal target packages the classical assertion about nontrivial zeros of the Riemann zeta function.", "visibility": "public",
+      "records": [{
+        "id": "problem-revision:formal-conjectures:riemann-hypothesis:main:1", "targetKey": "riemann-hypothesis-main", "slug": "riemann-hypothesis", "title": "Riemann Hypothesis", "domain": "Number theory",
+        "subjects": [{ "slug": "number-theory", "isPrimary": true }], "collection": { "slug": "grand-challenges", "role": "headline", "position": 30 },
+        "researchStatus": "research_open", "informalStatement": "Every nontrivial zero of the Riemann zeta function has real part one half.",
+        "leanStatement": "theorem riemannHypothesis : RiemannHypothesis := by\n  sorry", "proofState": "admitted", "sourceCorrespondence": "imported_unreviewed", "priority": 91,
+        "declaration": { "id": "declaration:formal-conjectures:riemann-hypothesis", "qualifiedName": "RiemannHypothesis.riemannHypothesis", "kind": "theorem", "sourcePath": "FormalConjectures/Millenium/RiemannHypothesis.lean", "sourceLineStart": 58, "sourceLineEnd": 58, "sourceContentHash": "sha256:31bc68fe45cd4bd1a896e71da6b7bd7459a18572a7d85878b66ddd15adb0130c" }
+      }]
+    },
+    {
+      "id": "project:formal-conjectures:navier-stokes", "slug": "formal-conjectures-navier-stokes", "kind": "frontier", "title": "Navier–Stokes Existence and Smoothness", "summary": "The catalog pins the three-dimensional whole-space existence and smoothness formulation from the upstream Millennium problem formalization.", "visibility": "public",
+      "records": [{
+        "id": "problem-revision:formal-conjectures:navier-stokes:r3:1", "targetKey": "navier-stokes-r3", "slug": "navier-stokes-r3", "title": "Navier–Stokes existence and smoothness in ℝ³", "domain": "Partial differential equations",
+        "subjects": [{ "slug": "partial-differential-equations", "isPrimary": true }], "collection": { "slug": "grand-challenges", "role": "headline", "position": 40 },
+        "researchStatus": "research_open", "informalStatement": "For positive viscosity and suitably decaying smooth initial velocity in three dimensions, a global smooth Navier–Stokes solution exists.",
+        "leanStatement": "theorem navier_stokes_existence_and_smoothness_R3 (nu : ℝ) (hnu : nu > 0)\n    (u₀ : ℝ³ → ℝ³) (hu₀ : InitialVelocityConditionDecay u₀) :\n    ∃ v p, NavierStokesExistenceAndSmoothnessRn nu u₀ (f := 0) v p := by\n  sorry", "proofState": "admitted", "sourceCorrespondence": "imported_unreviewed", "priority": 90,
+        "declaration": { "id": "declaration:formal-conjectures:navier-stokes-r3", "qualifiedName": "NavierStokes.navier_stokes_existence_and_smoothness_R3", "kind": "theorem", "sourcePath": "FormalConjectures/Millenium/NavierStokes.lean", "sourceLineStart": 266, "sourceLineEnd": 268, "sourceContentHash": "sha256:259d2ed5dd042c6140c90f74d9471e382909b37b7bec79d4a45bf69a2a51cd6d" }
+      }]
+    },
+    {
+      "id": "project:formal-conjectures:jacobian", "slug": "formal-conjectures-jacobian", "kind": "frontier", "title": "Jacobian Conjecture", "summary": "The polynomial inverse problem is pinned as an algebraic-geometry target with its exact upstream Lean environment.", "visibility": "public",
+      "records": [{
+        "id": "problem-revision:formal-conjectures:jacobian:main:1", "targetKey": "jacobian-main", "slug": "jacobian-conjecture", "title": "Jacobian Conjecture", "domain": "Algebraic geometry",
+        "subjects": [{ "slug": "algebraic-geometry", "isPrimary": true }], "collection": { "slug": "grand-challenges", "role": "headline", "position": 50 },
+        "researchStatus": "research_open", "informalStatement": "A polynomial self-map with invertible constant Jacobian determinant has a polynomial inverse.",
+        "leanStatement": "theorem jacobian_conjecture (F : RegularFunction k σ σ)\n    (H : IsUnit F.Jacobian.det) :\n    ∃ (G : RegularFunction k σ σ), G.comp F = id k σ ∧\n    F.comp G = id k σ := by\n  sorry", "proofState": "admitted", "sourceCorrespondence": "imported_unreviewed", "priority": 89,
+        "declaration": { "id": "declaration:formal-conjectures:jacobian", "qualifiedName": "JacobianConjecture.jacobian_conjecture", "kind": "theorem", "sourcePath": "FormalConjectures/Wikipedia/JacobianConjecture.lean", "sourceLineStart": 72, "sourceLineEnd": 75, "sourceContentHash": "sha256:22a6a801d27ae1a8b225171bbd4a12099c1a5643471273bd8eb11ee206957ced" }
+      }]
+    }
+  ]
+}

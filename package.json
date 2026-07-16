@@ -18,6 +18,7 @@
     "demo:fixture:generate": "node scripts/generate-build-week-demo-fixture.mjs",
     "demo:check": "node --check scripts/generate-build-week-demo-fixture.mjs && node --test tests/build-week-demo.test.mjs",
     "catalog:verify-source": "node scripts/ingest/verify-formal-conjectures-snapshot.mjs",
+    "catalog:render-focus-migration": "node scripts/ingest/render-focus-catalog-migration.mjs",
     "db:generate": "drizzle-kit generate",
     "mcp": "node services/proofweave-mcp/index.mjs",
     "mcp:check": "node --check services/proofweave-mcp/index.mjs",

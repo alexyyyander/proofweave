@@ -677,7 +677,7 @@ test("guides a public visitor through the first accountable contribution path", 
 test("serves the public research paths", async () => {
   const expectedPageContent = new Map([
     ["/demo", /Watch one Lean proof become/i],
-    ["/explore", /Frontier mathematics, made inspectable/i],
+    ["/explore", /Choose a problem worth advancing/i],
     ["/explore/erdos-865", /Erdős Problem 865/i],
     ["/how-it-works", /Participation is personal\. Verification is public/i],
     ["/workbench", /Keep the work on your computer/i],
@@ -724,6 +724,25 @@ test("serves the public research paths", async () => {
   assert.match(detailHtml, /No public research checkpoint yet/i);
   assert.match(detailHtml, /Start with my Agent/i);
   assert.match(detailHtml, /workbench\?target=erdos-865/i);
+
+  const explore = await render("/explore");
+  const exploreHtml = await explore.text();
+  assert.match(exploreHtml, /Founding Challenges/i);
+  assert.match(exploreHtml, /Grand Challenges/i);
+  assert.match(exploreHtml, /Hadwiger–Nelson Problem/i);
+  assert.match(exploreHtml, /Navier–Stokes Existence and Smoothness/i);
+  assert.match(exploreHtml, /Number theory/i);
+  assert.match(exploreHtml, />MSC /i);
+  assert.match(exploreHtml, /Known result · Lean proof wanted/i);
+
+  const curatedDetail = await render("/explore/sunflower-conjecture");
+  assert.equal(curatedDetail.status, 200);
+  const curatedDetailHtml = await curatedDetail.text();
+  assert.match(curatedDetailHtml, /Erdős–Rado Sunflower Conjecture/i);
+  assert.match(curatedDetailHtml, /Combinatorics/i);
+  assert.match(curatedDetailHtml, /curated-focus-v1-lean4\.27\.0/i);
+  assert.match(curatedDetailHtml, /b2e608fc52d765510915a244bb69b1a2741acc3c/i);
+  assert.match(curatedDetailHtml, /workbench\?target=sunflower-conjecture/i);
 
   const integrations = await render("/integrations");
   const integrationsHtml = await integrations.text();
@@ -795,16 +814,18 @@ test("imports the pinned catalog idempotently and serves provenance through the 
       "SELECT (SELECT COUNT(*) FROM problem_revisions) AS problems, (SELECT COUNT(*) FROM verification_claims) AS claims, (SELECT COUNT(*) FROM catalog_imports) AS imports",
     )
     .first();
-  assert.deepEqual(counts, { problems: 4, claims: 20, imports: 1 });
+  assert.deepEqual(counts, { problems: 22, claims: 110, imports: 2 });
 
   const catalogResponse = await render("/api/catalog");
   assert.equal(catalogResponse.status, 200);
   const catalog = await catalogResponse.json();
-  assert.equal(catalog.records.length, 4);
+  assert.equal(catalog.records.length, 22);
   assert.equal(catalog.records[0].slug, "erdos-865");
   assert.equal(catalog.records[0].source.revisionTag, "bench-v1-lean4.27.0");
   assert.equal(catalog.records[0].source.leanToolchain, "leanprover/lean4:v4.27.0");
   assert.equal(catalog.records[0].claims.length, 5);
+  assert.equal(catalog.records[0].subjects[0].name, "Number theory");
+  assert.equal(catalog.records[0].collections[0].title, "Founding Challenges");
   assert.ok(catalog.records[0].displayStatuses.includes("No Proofweave attestation"));
 
   const recordResponse = await render("/api/catalog/erdos-865");

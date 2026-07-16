@@ -18,14 +18,20 @@ export default async function ConjecturePage({ params }: { params: Promise<{ slu
   const [graph, user] = await Promise.all([loadResearchGraph(project.id), getChatGPTUser()]);
   const market = graph ? await loadCreditMarket(project.id, graph) : null;
   const returnTo = `/explore/${encodeURIComponent(project.slug)}#research-graph`;
+  const primarySubject = project.subjects.find((subject) => subject.isPrimary) ?? project.subjects[0];
+  const workLabel = project.proofState === "proved"
+    ? "Lean proof available"
+    : project.researchStatus === "research_solved"
+      ? "Known result · Lean proof wanted"
+      : "Open conjecture";
 
   return (
     <div className="site-shell app-shell">
       <Header active="explore" />
       <main id="main-content" tabIndex={-1} className="page-main detail-main">
-        <div className="breadcrumb"><Link href="/explore">Explore</Link><span> / </span><span>{project.domain}</span></div>
+        <div className="breadcrumb"><Link href="/explore">Explore</Link><span> / </span><span>{primarySubject?.name ?? project.domain}</span></div>
         <section className="detail-heading">
-          <div><p className="eyebrow">{project.domain} · {project.source.upstreamName}</p><h1>{project.title}</h1><p>{project.projectSummary}</p></div>
+          <div><div className="subject-row detail-subjects">{project.subjects.map((subject) => <span className="subject-chip" key={subject.slug}>MSC {subject.amsCode} · {subject.name}</span>)}<span className="record-chip">{workLabel}</span></div><p className="eyebrow">{project.collections[0]?.title ?? "Public research catalog"} · {project.source.upstreamName}</p><h1>{project.title}</h1><p>{project.projectSummary}</p></div>
           <div className="detail-environment"><span>Environment</span><code>{project.source.leanToolchain}<br />mathlib:{project.source.mathlibRevision.slice(0, 12)}</code></div>
         </section>
         <StatusStack statuses={project.displayStatuses} />

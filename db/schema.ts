@@ -162,6 +162,83 @@ export const catalogImports = sqliteTable(
   ],
 );
 
+export const catalogSubjects = sqliteTable(
+  "catalog_subjects",
+  {
+    id: text("id").primaryKey(),
+    slug: text("slug").notNull().unique(),
+    name: text("name").notNull(),
+    amsCode: text("ams_code").notNull().unique(),
+    description: text("description").notNull(),
+    sortOrder: integer("sort_order").notNull().default(0),
+    createdAt,
+  },
+  (table) => [index("catalog_subjects_sort_idx").on(table.sortOrder, table.name)],
+);
+
+export const problemSubjects = sqliteTable(
+  "problem_subjects",
+  {
+    problemRevisionId: text("problem_revision_id")
+      .notNull()
+      .references(() => problemRevisions.id, { onDelete: "cascade" }),
+    subjectId: text("subject_id")
+      .notNull()
+      .references(() => catalogSubjects.id, { onDelete: "restrict" }),
+    isPrimary: integer("is_primary", { mode: "boolean" }).notNull().default(false),
+    createdAt,
+  },
+  (table) => [
+    primaryKey({ columns: [table.problemRevisionId, table.subjectId] }),
+    index("problem_subjects_subject_idx").on(table.subjectId, table.isPrimary),
+  ],
+);
+
+export const catalogCollections = sqliteTable(
+  "catalog_collections",
+  {
+    id: text("id").primaryKey(),
+    slug: text("slug").notNull().unique(),
+    title: text("title").notNull(),
+    summary: text("summary").notNull(),
+    tier: text("tier", { enum: ["founding", "grand"] }).notNull(),
+    priority: integer("priority").notNull().default(0),
+    visibility: text("visibility", { enum: ["public", "private"] })
+      .notNull()
+      .default("public"),
+    createdAt,
+  },
+  (table) => [
+    index("catalog_collections_visibility_priority_idx").on(
+      table.visibility,
+      table.priority,
+    ),
+  ],
+);
+
+export const catalogCollectionMembers = sqliteTable(
+  "catalog_collection_members",
+  {
+    collectionId: text("collection_id")
+      .notNull()
+      .references(() => catalogCollections.id, { onDelete: "cascade" }),
+    problemRevisionId: text("problem_revision_id")
+      .notNull()
+      .references(() => problemRevisions.id, { onDelete: "cascade" }),
+    role: text("role", { enum: ["headline", "milestone"] }).notNull(),
+    position: integer("position").notNull().default(0),
+    createdAt,
+  },
+  (table) => [
+    primaryKey({ columns: [table.collectionId, table.problemRevisionId] }),
+    index("catalog_collection_members_revision_idx").on(table.problemRevisionId),
+    index("catalog_collection_members_position_idx").on(
+      table.collectionId,
+      table.position,
+    ),
+  ],
+);
+
 // A Person is the attribution root for an authenticated participant. This
 // closed-alpha mapping intentionally uses the identity currently supplied by
 // Sites; public beta will replace it with provider-neutral identities.

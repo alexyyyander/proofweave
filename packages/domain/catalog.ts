@@ -36,14 +36,37 @@ export type CatalogClaim = Readonly<{
   recordedAt: string;
 }>;
 
+export type CatalogSubject = Readonly<{
+  id: string;
+  slug: string;
+  name: string;
+  amsCode: string;
+  description: string;
+  isPrimary: boolean;
+}>;
+
+export type CatalogCollection = Readonly<{
+  id: string;
+  slug: string;
+  title: string;
+  summary: string;
+  tier: "founding" | "grand";
+  role: "headline" | "milestone";
+  position: number;
+}>;
+
 export type CatalogProblem = Readonly<{
   id: string;
   slug: string;
   kind: CatalogRecordKind;
   title: string;
+  projectId: string;
+  projectSlug: string;
   projectTitle: string;
   projectSummary: string;
   domain: string;
+  subjects: readonly CatalogSubject[];
+  collections: readonly CatalogCollection[];
   researchStatus: "research_open" | "research_solved";
   informalStatement: string;
   leanStatement: string;

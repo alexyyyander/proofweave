@@ -2,8 +2,10 @@ import { getD1 } from "@/db";
 import {
   catalogDisplayStatuses,
   type CatalogClaim,
+  type CatalogCollection,
   type CatalogProblem,
   type CatalogRecordKind,
+  type CatalogSubject,
   type VerificationClaimStatus,
   type VerificationClaimType,
   verificationClaimTypes,
@@ -13,6 +15,8 @@ type CatalogRow = {
   problem_id: string;
   problem_slug: string;
   problem_title: string;
+  project_id: string;
+  project_slug: string;
   project_title: string;
   project_summary: string;
   project_kind: CatalogRecordKind;
@@ -45,6 +49,27 @@ type CatalogRow = {
   claim_recorded_at: string;
 };
 
+type SubjectRow = {
+  problem_revision_id: string;
+  id: string;
+  slug: string;
+  name: string;
+  ams_code: string;
+  description: string;
+  is_primary: number;
+};
+
+type CollectionRow = {
+  problem_revision_id: string;
+  id: string;
+  slug: string;
+  title: string;
+  summary: string;
+  tier: CatalogCollection["tier"];
+  role: CatalogCollection["role"];
+  position: number;
+};
+
 export interface CatalogReader {
   list(kind: CatalogRecordKind): Promise<CatalogProblem[]>;
   findBySlug(slug: string): Promise<CatalogProblem | null>;
@@ -55,6 +80,8 @@ const selectCatalogRows = `
     revision.id AS problem_id,
     revision.slug AS problem_slug,
     revision.title AS problem_title,
+    project.id AS project_id,
+    project.slug AS project_slug,
     project.title AS project_title,
     project.summary AS project_summary,
     project.kind AS project_kind,
@@ -102,7 +129,7 @@ class D1CatalogRepository implements CatalogReader {
       [kind],
     );
 
-    return toCatalogProblems(rows);
+    return this.enrich(toCatalogProblems(rows));
   }
 
   async findBySlug(slug: string): Promise<CatalogProblem | null> {
@@ -112,12 +139,68 @@ class D1CatalogRepository implements CatalogReader {
        ORDER BY claim.claim_type ASC`,
       [slug],
     );
-    return toCatalogProblems(rows)[0] ?? null;
+    return (await this.enrich(toCatalogProblems(rows)))[0] ?? null;
   }
 
   private async readRows(query: string, bindings: readonly string[]) {
     const result = await getD1().prepare(query).bind(...bindings).all<CatalogRow>();
     return result.results ?? [];
+  }
+
+
+  private async enrich(problems: CatalogProblem[]): Promise<CatalogProblem[]> {
+    if (problems.length === 0) return problems;
+
+    const ids = problems.map((problem) => problem.id);
+    const placeholders = ids.map(() => "?").join(", ");
+    const database = getD1();
+    const [subjectResult, collectionResult] = await Promise.all([
+      database
+        .prepare(`
+          SELECT
+            membership.problem_revision_id,
+            subject.id,
+            subject.slug,
+            subject.name,
+            subject.ams_code,
+            subject.description,
+            membership.is_primary
+          FROM problem_subjects AS membership
+          INNER JOIN catalog_subjects AS subject ON subject.id = membership.subject_id
+          WHERE membership.problem_revision_id IN (${placeholders})
+          ORDER BY membership.is_primary DESC, subject.sort_order ASC, subject.name ASC
+        `)
+        .bind(...ids)
+        .all<SubjectRow>(),
+      database
+        .prepare(`
+          SELECT
+            membership.problem_revision_id,
+            collection.id,
+            collection.slug,
+            collection.title,
+            collection.summary,
+            collection.tier,
+            membership.role,
+            membership.position
+          FROM catalog_collection_members AS membership
+          INNER JOIN catalog_collections AS collection ON collection.id = membership.collection_id
+          WHERE membership.problem_revision_id IN (${placeholders})
+            AND collection.visibility = 'public'
+          ORDER BY collection.priority DESC, membership.position ASC
+        `)
+        .bind(...ids)
+        .all<CollectionRow>(),
+    ]);
+
+    const subjects = groupSubjects(subjectResult.results ?? []);
+    const collections = groupCollections(collectionResult.results ?? []);
+
+    return problems.map((problem) => ({
+      ...problem,
+      subjects: subjects.get(problem.id) ?? [],
+      collections: collections.get(problem.id) ?? [],
+    }));
   }
 }
 
@@ -149,9 +232,13 @@ function toCatalogProblems(rows: readonly CatalogRow[]): CatalogProblem[] {
       slug: row.problem_slug,
       kind: row.project_kind,
       title: row.problem_title,
+      projectId: row.project_id,
+      projectSlug: row.project_slug,
       projectTitle: row.project_title,
       projectSummary: row.project_summary,
       domain: row.domain,
+      subjects: [],
+      collections: [],
       researchStatus: row.research_status,
       informalStatement: row.informal_statement,
       leanStatement: row.lean_statement,
@@ -184,6 +271,39 @@ function toCatalogProblems(rows: readonly CatalogRow[]): CatalogProblem[] {
   }
 
   return [...records.values()];
+}
+
+function groupSubjects(rows: readonly SubjectRow[]): Map<string, CatalogSubject[]> {
+  const grouped = new Map<string, CatalogSubject[]>();
+  for (const row of rows) {
+    const subject: CatalogSubject = {
+      id: row.id,
+      slug: row.slug,
+      name: row.name,
+      amsCode: row.ams_code,
+      description: row.description,
+      isPrimary: row.is_primary === 1,
+    };
+    grouped.set(row.problem_revision_id, [...(grouped.get(row.problem_revision_id) ?? []), subject]);
+  }
+  return grouped;
+}
+
+function groupCollections(rows: readonly CollectionRow[]): Map<string, CatalogCollection[]> {
+  const grouped = new Map<string, CatalogCollection[]>();
+  for (const row of rows) {
+    const collection: CatalogCollection = {
+      id: row.id,
+      slug: row.slug,
+      title: row.title,
+      summary: row.summary,
+      tier: row.tier,
+      role: row.role,
+      position: row.position,
+    };
+    grouped.set(row.problem_revision_id, [...(grouped.get(row.problem_revision_id) ?? []), collection]);
+  }
+  return grouped;
 }
 
 function toClaim(row: CatalogRow): CatalogClaim {
