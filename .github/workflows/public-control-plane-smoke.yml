@@ -18,9 +18,12 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          curl --fail --show-error --silent --max-time 45 "$BASE_URL/" | grep -qi "Proofweave"
-          curl --fail --show-error --silent --max-time 45 "$BASE_URL/sign-in" | grep -q "temporary Demo Person"
-          curl --fail --show-error --silent --max-time 45 "$BASE_URL/api/catalog" | jq -e '.records | length > 0' >/dev/null
+          home="$(curl --fail --show-error --silent --max-time 45 "$BASE_URL/")"
+          sign_in="$(curl --fail --show-error --silent --max-time 45 "$BASE_URL/sign-in")"
+          catalog="$(curl --fail --show-error --silent --max-time 45 "$BASE_URL/api/catalog")"
+          grep -qi "Proofweave" <<<"$home"
+          grep -q "temporary Demo Person" <<<"$sign_in"
+          jq -e '.records | length > 0' <<<"$catalog" >/dev/null
 
       - name: Verify OAuth PKCE metadata
         shell: bash
