@@ -3,7 +3,8 @@ import {
   getContributionReceiptReader,
   type PublicContributionReceiptIndexItem,
 } from "@/db/repositories/receipts";
-import { Footer, Header } from "../ui";
+import { Footer } from "../ui";
+import { Header } from "../header";
 
 export const dynamic = "force-dynamic";
 

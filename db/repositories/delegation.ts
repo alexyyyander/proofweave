@@ -1,4 +1,5 @@
 import { getD1 } from "@/db";
+import { getAccountAuthRepository } from "@/db/repositories/account-auth";
 import {
   assertDelegationAllows,
   delegationPayloadHash,
@@ -18,9 +19,11 @@ import {
 } from "@/packages/protocol/person-key-proof.mjs";
 
 export type PersonIdentity = Readonly<{
-  provider: "chatgpt" | "proofweave";
+  provider: "chatgpt" | "google" | "proofweave";
   subject: string;
   displayName: string;
+  email?: string | null;
+  emailVerified?: boolean;
 }>;
 
 export type DelegationPerson = Readonly<{
@@ -861,25 +864,12 @@ class D1DelegationRepository implements DelegationRepository {
   private async upsertPerson(identity: PersonIdentity): Promise<PersonRow> {
     requireInputString(identity.subject, "identity subject", 320);
     requireInputString(identity.displayName, "display name", 160);
-    const subject = identity.subject.trim().toLowerCase();
-    const now = new Date().toISOString();
-    await getD1()
-      .prepare(
-        `INSERT INTO persons (id, identity_provider, provider_subject, display_name, updated_at)
-         VALUES (?, ?, ?, ?, ?)
-         ON CONFLICT(identity_provider, provider_subject)
-         DO UPDATE SET display_name = excluded.display_name, updated_at = excluded.updated_at`,
-      )
-      .bind(newId("person"), identity.provider, subject, identity.displayName.trim(), now)
-      .run();
-    const person = await getD1()
-      .prepare(
-        "SELECT id, display_name FROM persons WHERE identity_provider = ? AND provider_subject = ?",
-      )
-      .bind(identity.provider, subject)
-      .first<PersonRow>();
-    if (!person) throw new Error("Person identity mapping did not produce a readable record.");
-    return person;
+    const account = await getAccountAuthRepository().resolveIdentity({
+      ...identity,
+      email: identity.email ?? (identity.provider === "chatgpt" ? identity.subject : null),
+      emailVerified: identity.emailVerified ?? identity.provider === "chatgpt",
+    });
+    return { id: account.personId, display_name: account.displayName };
   }
 
   private async findDelegation(id: string): Promise<DelegationRow | null> {

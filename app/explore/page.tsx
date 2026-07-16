@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { ExploreCatalog } from "./ExploreCatalog";
 import { getCatalogRepository } from "@/db/repositories/catalog";
-import { Footer, Header } from "../ui";
+import { Footer } from "../ui";
+import { Header } from "../header";
 
 export const dynamic = "force-dynamic";
 

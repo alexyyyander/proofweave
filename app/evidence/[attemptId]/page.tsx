@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { chatGPTSignInPath, getChatGPTUser } from "@/app/chatgpt-auth";
-import { Footer, Header } from "@/app/ui";
+import { getCurrentUser, signInPath, toPersonIdentity } from "@/app/auth";
+import { Footer } from "@/app/ui";
+import { Header } from "@/app/header";
 import { MissingDatabaseBindingError } from "@/db";
 import { getDelegationRepository } from "@/db/repositories/delegation";
 import { getEvidenceRepository, type AttemptEvidence, type EvidenceArtifact, type EvidenceReplay, type EvidenceReviewOutcome, type EvidenceRunnerResultSummary } from "@/db/repositories/evidence";
@@ -11,18 +12,18 @@ export const dynamic = "force-dynamic";
 
 export default async function EvidenceDetailPage({ params }: { params: Promise<{ attemptId: string }> }) {
   const { attemptId: bundleManifestHash } = await params;
-  const user = await getChatGPTUser();
+  const user = await getCurrentUser();
   const result = await loadEvidenceDetail(user, bundleManifestHash);
-  if (!user) return <EvidenceAccessMessage signInPath={chatGPTSignInPath(`/evidence/${encodeURIComponent(bundleManifestHash)}`)} />;
+  if (!user) return <EvidenceAccessMessage signInPath={signInPath(`/evidence/${encodeURIComponent(bundleManifestHash)}`)} />;
   if (result.unavailable) return <EvidenceAccessMessage unavailable />;
   if (!result.evidence) notFound();
   return <EvidenceDetail evidence={result.evidence} />;
 }
 
-async function loadEvidenceDetail(user: Awaited<ReturnType<typeof getChatGPTUser>>, bundleManifestHash: string): Promise<{ evidence: AttemptEvidence | null; unavailable: boolean }> {
+async function loadEvidenceDetail(user: Awaited<ReturnType<typeof getCurrentUser>>, bundleManifestHash: string): Promise<{ evidence: AttemptEvidence | null; unavailable: boolean }> {
   if (!user) return { evidence: null, unavailable: false };
   try {
-    const profile = await getDelegationRepository().getProfile({ provider: "chatgpt", subject: user.email, displayName: user.displayName });
+    const profile = await getDelegationRepository().getProfile(toPersonIdentity(user));
     return { evidence: await getEvidenceRepository().getForPerson(profile.person.id, bundleManifestHash), unavailable: false };
   } catch (error) {
     if (error instanceof MissingDatabaseBindingError) return { evidence: null, unavailable: true };
