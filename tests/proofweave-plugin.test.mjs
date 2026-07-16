@@ -54,6 +54,8 @@ test("the private-beta plugin starts only a local PKCE Connector", async () => {
     },
   });
   assert.match(connector, /\/api\/connect\/sessions/);
+  assert.match(connector, /proofweave-public-demo\.proofweave-research\.workers\.dev/);
+  assert.doesNotMatch(connector, /proofweave-research\.yualex031821\.chatgpt\.site/);
   assert.match(connector, /code_verifier/);
   assert.match(connector, /generateKeyPairSync\("ed25519"\)/);
   assert.match(connector, /begin_research/);

@@ -12,8 +12,8 @@ export const GOOGLE_FLOW_COOKIE = "__Secure-pw_google_flow";
 export const APP_SESSION_SECONDS = 60 * 60 * 24 * 30;
 
 export type AuthUser = Readonly<{
-  provider: "chatgpt" | "google";
-  providerLabel: "ChatGPT" | "Google";
+  provider: "chatgpt" | "google" | "proofweave";
+  providerLabel: "ChatGPT" | "Google" | "Demo";
   subject: string;
   personId: string | null;
   displayName: string;
@@ -27,10 +27,10 @@ export async function getCurrentUser(): Promise<AuthUser | null> {
   if (token) {
     try {
       const session = await getAccountAuthRepository().findSession(token);
-      if (session?.provider === "google" && session.email) {
+      if ((session?.provider === "google" || session?.provider === "proofweave") && session.email) {
         return {
-          provider: "google",
-          providerLabel: "Google",
+          provider: session.provider,
+          providerLabel: session.provider === "google" ? "Google" : "Demo",
           subject: session.subject,
           personId: session.personId,
           displayName: session.displayName,

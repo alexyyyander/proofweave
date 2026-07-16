@@ -18,7 +18,7 @@ import { pipeline } from "node:stream/promises";
 import * as zlib from "node:zlib";
 import readline from "node:readline";
 
-const baseUrl = normalizeBaseUrl(process.env.PROOFWEAVE_BASE_URL ?? "https://proofweave-research.yualex031821.chatgpt.site");
+const baseUrl = normalizeBaseUrl(process.env.PROOFWEAVE_BASE_URL ?? "https://proofweave-public-demo.proofweave-research.workers.dev");
 const callbackHost = "127.0.0.1";
 const callbackPort = 44765;
 const callbackPath = "/callback";

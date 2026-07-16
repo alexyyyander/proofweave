@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { chatGPTSignInPath, safeRelativeReturnPath } from "../chatgpt-auth";
 import { getCurrentUser } from "../auth";
+import { demoAuthConfig } from "../demo-auth-config";
 import { googleAuthConfig } from "../google-auth-config";
 import { Footer } from "../ui";
 import { Header } from "../header";
@@ -18,6 +19,7 @@ export default async function SignInPage({ searchParams }: SignInPageProps) {
   const user = await getCurrentUser();
   if (user) redirect(returnTo);
   const google = googleAuthConfig();
+  const demo = demoAuthConfig();
   const error = signInError(query.error);
 
   return <div className="site-shell app-shell">
@@ -31,6 +33,12 @@ export default async function SignInPage({ searchParams }: SignInPageProps) {
         </div>
         {error && <div className="auth-error" role="alert"><strong>Google sign-in did not finish.</strong><span>{error}</span></div>}
         <div className="auth-provider-list">
+          {demo.enabled && <form method="post" action="/auth/demo/start">
+            <input type="hidden" name="return_to" value={returnTo} />
+            <button className="auth-provider auth-provider-button" type="submit">
+              <span className="auth-provider-mark auth-provider-demo" aria-hidden="true">∴</span><span><strong>Continue with a temporary Demo Person</strong><small>No email or external account required; contributions remain clearly marked as demo data</small></span><i aria-hidden="true">→</i>
+            </button>
+          </form>}
           {google.configured
             ? <Link className="auth-provider auth-provider-google" href={`/auth/google/start?return_to=${encodeURIComponent(returnTo)}`}>
               <GoogleMark /><span><strong>Continue with Google</strong><small>Use a verified Google email</small></span><i aria-hidden="true">→</i>

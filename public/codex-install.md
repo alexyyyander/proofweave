@@ -38,7 +38,7 @@ The local Connector needs one outbound HTTPS destination to begin a browser
 approval and later exchange bounded Proofweave MCP requests:
 
 ```text
-proofweave-research.yualex031821.chatgpt.site
+proofweave-public-demo.proofweave-research.workers.dev
 ```
 
 Most people do not need to configure anything else. If Codex says it cannot
@@ -56,7 +56,7 @@ extends = ":workspace"
 enabled = true
 
 [permissions.proofweave-connector.network.domains]
-"proofweave-research.yualex031821.chatgpt.site" = "allow"
+"proofweave-public-demo.proofweave-research.workers.dev" = "allow"
 ```
 
 Start a fresh Codex task after changing a permission profile. In a managed

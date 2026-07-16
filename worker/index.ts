@@ -1,6 +1,7 @@
 /** Cloudflare Worker entry point for the Proofweave web application. */
 import { handleImageOptimization, DEFAULT_DEVICE_SIZES, DEFAULT_IMAGE_SIZES } from "vinext/server/image-optimization";
 import handler from "vinext/server/app-router-entry";
+import { getD1 } from "../db";
 import {
   createD1SitesIdentityRuntime,
   SitesIdentityRuntimeConfigurationError,
@@ -12,11 +13,10 @@ interface AssetFetcher {
 
 interface Env {
   ASSETS: AssetFetcher;
-  DB?: unknown;
   MCP_RESOURCE_URL?: string;
   OAUTH_ISSUER_URL?: string;
   OAUTH_CLIENT_REGISTRATION_ALLOWLIST_JSON?: string;
-  IMAGES: {
+  IMAGES?: {
     input(stream: ReadableStream): {
       transform(options: Record<string, unknown>): {
         output(options: { format: string; quality: number }): Promise<{ response(): Response }>;
@@ -44,12 +44,13 @@ const worker = {
       return fetchOAuthIdentity(request, env, url);
     }
 
-    if (url.pathname === "/_vinext/image") {
+    const images = env.IMAGES;
+    if (url.pathname === "/_vinext/image" && images) {
       const allowedWidths = [...DEFAULT_DEVICE_SIZES, ...DEFAULT_IMAGE_SIZES];
       return handleImageOptimization(request, {
         fetchAsset: (path) => env.ASSETS.fetch(new Request(new URL(path, request.url))),
         transformImage: async (body, { width, format, quality }) => {
-          const result = await env.IMAGES.input(body).transform(width > 0 ? { width } : {}).output({ format, quality });
+          const result = await images.input(body).transform(width > 0 ? { width } : {}).output({ format, quality });
           return result.response();
         },
       }, allowedWidths);
@@ -74,8 +75,8 @@ function fetchOAuthIdentity(request: Request, env: Env, url: URL): Promise<Respo
   }
   try {
     const identity = createD1SitesIdentityRuntime({
-      database: env.DB,
-      resource: env.MCP_RESOURCE_URL,
+      database: getD1(),
+      resource: env.MCP_RESOURCE_URL ?? `${url.origin}/mcp`,
       issuer: url.origin,
       clientRegistrationAllowlistJson: env.OAUTH_CLIENT_REGISTRATION_ALLOWLIST_JSON,
     });

@@ -1088,7 +1088,10 @@ h1, h2, h3, p { margin-top: 0; }
 .auth-intro > p:not(.eyebrow) { color: var(--ink-soft); font-size: 14px; line-height: 1.65; max-width: 440px; }
 .auth-provider-list { align-content: center; display: grid; gap: 12px; }
 .auth-provider { align-items: center; background: #fff; border: 1px solid #cdd1d9; display: grid; gap: 14px; grid-template-columns: 38px 1fr auto; min-height: 78px; padding: 14px 17px; transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease; }
-a.auth-provider:hover { border-color: #8295d5; box-shadow: 0 8px 22px rgba(21,34,57,.08); transform: translateY(-1px); }
+a.auth-provider:hover, .auth-provider-button:hover { border-color: #8295d5; box-shadow: 0 8px 22px rgba(21,34,57,.08); transform: translateY(-1px); }
+.auth-provider-list form { margin: 0; }
+.auth-provider-button { color: inherit; cursor: pointer; font: inherit; text-align: left; width: 100%; }
+.auth-provider-demo { color: var(--indigo); }
 .auth-provider > span:nth-child(2) { display: grid; gap: 5px; }
 .auth-provider strong { font-size: 14px; }
 .auth-provider small { color: var(--ink-faint); font-size: 11px; line-height: 1.35; }

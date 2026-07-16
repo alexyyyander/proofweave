@@ -113,6 +113,14 @@ export class LibsqlD1PreparedStatement {
   }
 }
 
+/**
+ * @param {{
+ *   url?: string,
+ *   authToken?: string,
+ *   clientFactory?: typeof createClient,
+ *   allowLocal?: boolean,
+ * }} [options]
+ */
 export function createRemoteLibsqlD1Database({
   url,
   authToken,

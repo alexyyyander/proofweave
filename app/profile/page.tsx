@@ -40,7 +40,7 @@ export default async function ProfilePage() {
       </section>
 
       <section className="profile-assurance" aria-label="Identity assurance">
-        <div><span>Authenticated as</span><strong>{user.providerLabel} account</strong><p>Your verified email identifies this private session and is never shown on the public profile.</p></div>
+        <div><span>Authenticated as</span><strong>{user.providerLabel} account</strong><p>{user.provider === "proofweave" ? "This temporary Build Week identity is isolated from external accounts and is explicitly demo-only." : "Your verified email identifies this private session and is never shown on the public profile."}</p></div>
         <div><span>Attribution root</span><strong>Proofweave Person</strong><p>Agent work, reviews, and Receipts are credited to this stable Person ID.</p></div>
         <div><span>Member since</span><strong>{formatDate(publicProfile.person.joinedAt)}</strong><p>Public evidence remains independently inspectable even if an Agent is later revoked.</p></div>
       </section>

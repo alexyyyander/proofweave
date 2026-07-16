@@ -47,6 +47,10 @@ before(async () => {
     compatibilityDate: "2026-05-15",
     compatibilityFlags: ["nodejs_compat"],
     d1Databases: ["DB"],
+    bindings: {
+      PROOFWEAVE_DEMO_AUTH_ENABLED: "true",
+      PROOFWEAVE_DEMO_PERSON_LABEL: "Build Week Test Person",
+    },
     serviceBindings: {
       ASSETS: async () => new Response("Not found", { status: 404 }),
     },
@@ -843,6 +847,47 @@ test("uses a Google app session for the same stable Person and private account b
   assert.match(html, /Pending Reviews/i);
   assert.match(html, /Staged Evidence/i);
   assert.match(html, new RegExp(chatGPTProfile.person.id.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+});
+
+test("creates an isolated, rate-limited temporary Demo Person without an external account", async () => {
+  const signIn = await render("/sign-in?return_to=%2Fprofile");
+  assert.equal(signIn.status, 200);
+  assert.match(await signIn.text(), /Continue with a temporary Demo Person/);
+
+  const created = await render("/auth/demo/start", {
+    method: "POST",
+    headers: {
+      "content-type": "application/x-www-form-urlencoded",
+      "origin": "http://localhost",
+      "cf-connecting-ip": "203.0.113.20",
+    },
+    body: "return_to=%2Fprofile",
+    redirect: "manual",
+  });
+  assert.equal(created.status, 303);
+  assert.equal(created.headers.get("location"), "http://localhost/profile");
+  assert.equal(created.headers.get("cache-control"), "no-store");
+  const cookie = created.headers.get("set-cookie")?.split(";", 1)[0];
+  assert.match(cookie ?? "", /^__Host-pw_session=/);
+
+  const profile = await render("/profile", { headers: { cookie } });
+  assert.equal(profile.status, 200);
+  const html = await profile.text();
+  assert.match(html, /Build Week Test Person/);
+  assert.match(html, /Authenticated as/);
+  assert.match(html, /Demo/);
+  assert.match(html, /explicitly demo-only/);
+
+  const crossOrigin = await render("/auth/demo/start", {
+    method: "POST",
+    headers: {
+      "content-type": "application/x-www-form-urlencoded",
+      "origin": "https://attacker.example",
+      "cf-connecting-ip": "203.0.113.21",
+    },
+    body: "return_to=%2Fprofile",
+  });
+  assert.equal(crossOrigin.status, 403);
 });
 
 test("keeps the public local-Agent pairing ingress bounded and rate limited", async () => {
