@@ -680,6 +680,7 @@ test("serves the public research paths", async () => {
     ["/explore", /Choose a problem worth advancing/i],
     ["/explore/erdos-865", /Erdős Problem 865/i],
     ["/how-it-works", /Participation is personal\. Verification is public/i],
+    ["/about", /Trust the record,[\s\S]*not the headline/i],
     ["/workbench", /Keep the work on your computer/i],
     ["/settings", /Manage your research Agent/i],
     ["/integrations", /Keep your research Agent on your computer/i],
@@ -743,6 +744,16 @@ test("serves the public research paths", async () => {
   assert.match(curatedDetailHtml, /curated-focus-v1-lean4\.27\.0/i);
   assert.match(curatedDetailHtml, /b2e608fc52d765510915a244bb69b1a2741acc3c/i);
   assert.match(curatedDetailHtml, /workbench\?target=sunflower-conjecture/i);
+  assert.match(curatedDetailHtml, /Why prior work and freshness are required/i);
+
+  const about = await render("/about");
+  const aboutHtml = await about.text();
+  assert.match(aboutHtml, /Before a famous problem is presented as current/i);
+  assert.match(aboutHtml, /many records are source-pinned imports and explicitly remain frontier-unreviewed/i);
+  assert.match(aboutHtml, /Proofweave was initiated and built by Alex Yu/i);
+  assert.match(aboutHtml, /One frontier map\.[\s\S]*Many coordinated Agents/i);
+  assert.match(aboutHtml, /Coordinated Agent research flow/i);
+  assert.match(aboutHtml, /github\.com\/alexyyyander\/proofweave-open-catalog/i);
 
   const integrations = await render("/integrations");
   const integrationsHtml = await integrations.text();
@@ -773,7 +784,7 @@ test("publicly verifies the checked Build Week reference evidence", async () => 
 });
 
 test("keeps keyboard users one action away from the main content on critical pages", async () => {
-  for (const pathname of ["/", "/demo", "/explore", "/how-it-works", "/workbench", "/integrations", "/evidence", "/reviews", "/receipts"]) {
+  for (const pathname of ["/", "/demo", "/explore", "/how-it-works", "/about", "/workbench", "/integrations", "/evidence", "/reviews", "/receipts"]) {
     const response = await render(pathname);
     assert.equal(response.status, 200, `${pathname} should render its keyboard navigation`);
     const html = await response.text();

@@ -1,0 +1,985 @@
+{
+  "schemaVersion": 1,
+  "catalog": {
+    "name": "Proofweave Open Catalog",
+    "generatedAt": "2026-07-16T00:00:00Z",
+    "recordCount": 22,
+    "policy": "policy/famous-problem-intake.md",
+    "boundary": "A source-pinned record is not a claim that the literature review is current or that Proofweave has verified the mathematics."
+  },
+  "records": [
+    {
+      "id": "problem-revision:formal-conjectures:erdos-865:main:1",
+      "slug": "erdos-865",
+      "title": "Erdős Problem 865",
+      "project": {
+        "id": "project:formal-conjectures:erdos-865",
+        "slug": "formal-conjectures-erdos-865",
+        "title": "Erdős Problem 865"
+      },
+      "subjects": [
+        "number-theory",
+        "combinatorics"
+      ],
+      "researchStatus": {
+        "value": "research_open",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "Erdos865.erdos_865",
+        "statement": "theorem erdos_865 :\n    ∃ C > 0, ∀ᶠ (N : ℕ) in atTop,\n      ∀ A ⊆ Icc 1 N, A.card ≥ (5 / 8 : ℝ) * N + C →\n      ∃ a ∈ A, ∃ b ∈ A, ∃ c ∈ A, a ≠ b ∧ a ≠ c ∧ b ≠ c ∧\n      a + b ∈ A ∧ a + c ∈ A ∧ b + c ∈ A := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "7a41db3d761324599812d6ca6cb6a9f311046dc7",
+        "revisionTag": "bench-v1-lean4.27.0",
+        "path": "FormalConjectures/ErdosProblems/865.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/7a41db3d761324599812d6ca6cb6a9f311046dc7/FormalConjectures/ErdosProblems/865.lean#L36-L41",
+        "contentHash": "sha256:95024fd456d2254c21c69f2c5c1c00b65aca4629a0557d2cb58523a070573367",
+        "retrievedAt": "2026-07-13T03:48:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 100
+    },
+    {
+      "id": "problem-revision:formal-conjectures:erdos-20:main:1",
+      "slug": "sunflower-conjecture",
+      "title": "Erdős–Rado Sunflower Conjecture",
+      "project": {
+        "id": "project:formal-conjectures:erdos-20",
+        "slug": "formal-conjectures-erdos-20",
+        "title": "Erdős–Rado Sunflower Conjecture"
+      },
+      "subjects": [
+        "combinatorics"
+      ],
+      "researchStatus": {
+        "value": "research_open",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "Erdos20.erdos_20",
+        "statement": "theorem erdos_20 : answer(sorry) ↔ ∃ (c : ℕ → ℕ), ∀ n k, n > 0 → f n k < (c k) ^ n := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-focus-v1-lean4.27.0",
+        "path": "FormalConjectures/ErdosProblems/20.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/ErdosProblems/20.lean",
+        "contentHash": "sha256:a30fae786a2dab55d5a42b4cb74dd12b4e4e858d3513748c71ef14ff48b0ef4a",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 98
+    },
+    {
+      "id": "problem-revision:formal-conjectures:erdos-508:main:1",
+      "slug": "hadwiger-nelson",
+      "title": "Hadwiger–Nelson Problem",
+      "project": {
+        "id": "project:formal-conjectures:erdos-508",
+        "slug": "formal-conjectures-erdos-508",
+        "title": "Hadwiger–Nelson Problem"
+      },
+      "subjects": [
+        "discrete-geometry"
+      ],
+      "researchStatus": {
+        "value": "research_open",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "Erdos508.HadwigerNelsonProblem",
+        "statement": "theorem HadwigerNelsonProblem :\n    χ(ℝ²) = answer(sorry) := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-focus-v1-lean4.27.0",
+        "path": "FormalConjectures/ErdosProblems/508.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/ErdosProblems/508.lean",
+        "contentHash": "sha256:267dd025998ff952ddff7c0aa95688bc7b2bce2755517ec44459bffb88312f08",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 97
+    },
+    {
+      "id": "problem-revision:formal-conjectures:lonely-runner:main:1",
+      "slug": "lonely-runner",
+      "title": "Lonely Runner Conjecture",
+      "project": {
+        "id": "project:formal-conjectures:lonely-runner",
+        "slug": "formal-conjectures-lonely-runner",
+        "title": "Lonely Runner Conjecture"
+      },
+      "subjects": [
+        "number-theory"
+      ],
+      "researchStatus": {
+        "value": "research_open",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "LonelyRunnerConjecture.lonely_runner_conjecture",
+        "statement": "theorem lonely_runner_conjecture (n : ℕ)\n    (speed : Fin n ↪ ℝ) (lonely : Fin n → ℝ → Prop)\n    (lonely_def :\n      ∀ r t, lonely r t ↔\n        ∀ r2 : Fin n, r2 ≠ r →\n        dist (t * speed r : UnitAddCircle) (t * speed r2) ≥ 1 / n)\n    (r : Fin n) : ∃ t ≥ 0, lonely r t := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-focus-v1-lean4.27.0",
+        "path": "FormalConjectures/Wikipedia/LonelyRunnerConjecture.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/Wikipedia/LonelyRunnerConjecture.lean",
+        "contentHash": "sha256:a9f9d2504bb1f29e52e659a26080edf68b76a95abe4af8e68b1d6d404be1a309",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 96
+    },
+    {
+      "id": "problem-revision:formal-conjectures:kakeya:main:1",
+      "slug": "kakeya-set-conjecture",
+      "title": "Kakeya Set Conjecture",
+      "project": {
+        "id": "project:formal-conjectures:kakeya",
+        "slug": "formal-conjectures-kakeya",
+        "title": "Kakeya Set Conjecture"
+      },
+      "subjects": [
+        "harmonic-analysis"
+      ],
+      "researchStatus": {
+        "value": "research_open",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "Kakeya.kakeya_set_conjecture",
+        "statement": "theorem kakeya_set_conjecture (n : ℕ) (hn : n > 0) :\n    KakeyaSetConjectureDim n := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-focus-v1-lean4.27.0",
+        "path": "FormalConjectures/Wikipedia/Kakeya.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/Wikipedia/Kakeya.lean",
+        "contentHash": "sha256:4d624a82f55702f1602858e2d38bdf26bfdb9892954c71736768e84f8cb9012c",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 95
+    },
+    {
+      "id": "problem-revision:formal-conjectures:goldbach:main:1",
+      "slug": "goldbach-conjecture",
+      "title": "Goldbach Conjecture",
+      "project": {
+        "id": "project:formal-conjectures:goldbach",
+        "slug": "formal-conjectures-goldbach",
+        "title": "Goldbach Conjectures"
+      },
+      "subjects": [
+        "number-theory"
+      ],
+      "researchStatus": {
+        "value": "research_open",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "GoldbachConjecture.goldbach",
+        "statement": "theorem goldbach :\n    answer(sorry) ↔ ∀ n : ℕ, 2 < n → Even n → ∃ p q, Prime p ∧ Prime q ∧ n = p + q := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-focus-v1-lean4.27.0",
+        "path": "FormalConjectures/Wikipedia/GoldbachConjecture.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/Wikipedia/GoldbachConjecture.lean",
+        "contentHash": "sha256:bf6a587c50ba159af919fbe9afa09f04375608c33c68361ffc52246018a5b447",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 94
+    },
+    {
+      "id": "problem-revision:formal-conjectures:collatz:main:1",
+      "slug": "collatz-conjecture",
+      "title": "Collatz Conjecture",
+      "project": {
+        "id": "project:formal-conjectures:collatz",
+        "slug": "formal-conjectures-collatz",
+        "title": "Collatz Conjecture"
+      },
+      "subjects": [
+        "number-theory",
+        "dynamical-systems"
+      ],
+      "researchStatus": {
+        "value": "research_open",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "CollatzConjecture.collatz_conjecture",
+        "statement": "theorem collatz_conjecture (n : ℕ) (hn : n > 0) : ∃ m, collatzStep^[m] n = 1 := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-focus-v1-lean4.27.0",
+        "path": "FormalConjectures/Wikipedia/CollatzConjecture.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/Wikipedia/CollatzConjecture.lean",
+        "contentHash": "sha256:555bd737d758ee380f6073b794594d53994b21c597fcd931373e727cb73226ea",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 93
+    },
+    {
+      "id": "problem-revision:formal-conjectures:twin-primes:main:1",
+      "slug": "twin-prime-conjecture",
+      "title": "Twin Prime Conjecture",
+      "project": {
+        "id": "project:formal-conjectures:twin-primes",
+        "slug": "formal-conjectures-twin-primes",
+        "title": "Twin Prime Conjecture"
+      },
+      "subjects": [
+        "number-theory"
+      ],
+      "researchStatus": {
+        "value": "research_open",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "TwinPrimes.twin_primes",
+        "statement": "theorem twin_primes :\n    answer(sorry) ↔ {p : ℕ | Prime p ∧ Prime (p + 2)}.Infinite := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-focus-v1-lean4.27.0",
+        "path": "FormalConjectures/Wikipedia/TwinPrimes.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/Wikipedia/TwinPrimes.lean",
+        "contentHash": "sha256:e947e40aad99026f3a3efc00d958194aa3ef284b92b6e161f2bde9856e7a77ab",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 92
+    },
+    {
+      "id": "problem-revision:formal-conjectures:riemann-hypothesis:main:1",
+      "slug": "riemann-hypothesis",
+      "title": "Riemann Hypothesis",
+      "project": {
+        "id": "project:formal-conjectures:riemann-hypothesis",
+        "slug": "formal-conjectures-riemann-hypothesis",
+        "title": "Riemann Hypothesis"
+      },
+      "subjects": [
+        "number-theory"
+      ],
+      "researchStatus": {
+        "value": "research_open",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "RiemannHypothesis.riemannHypothesis",
+        "statement": "theorem riemannHypothesis : RiemannHypothesis := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-focus-v1-lean4.27.0",
+        "path": "FormalConjectures/Millenium/RiemannHypothesis.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/Millenium/RiemannHypothesis.lean",
+        "contentHash": "sha256:31bc68fe45cd4bd1a896e71da6b7bd7459a18572a7d85878b66ddd15adb0130c",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 91
+    },
+    {
+      "id": "problem-revision:formal-conjectures:erdos-865:k2:1",
+      "slug": "erdos-865-k2",
+      "title": "Erdős Problem 865: k = 2 variant",
+      "project": {
+        "id": "project:formal-conjectures:erdos-865",
+        "slug": "formal-conjectures-erdos-865",
+        "title": "Erdős Problem 865"
+      },
+      "subjects": [
+        "number-theory",
+        "combinatorics"
+      ],
+      "researchStatus": {
+        "value": "research_solved",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "Erdos865.erdos_865.variants.k2",
+        "statement": "theorem erdos_865.variants.k2 (N : ℕ) :\n    ∀ A ⊆ Icc 1 (2 * N), A.card ≥ N + 2 →\n    ∃ a ∈ A, ∃ b ∈ A, a ≠ b ∧ a + b ∈ A := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "7a41db3d761324599812d6ca6cb6a9f311046dc7",
+        "revisionTag": "bench-v1-lean4.27.0",
+        "path": "FormalConjectures/ErdosProblems/865.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/7a41db3d761324599812d6ca6cb6a9f311046dc7/FormalConjectures/ErdosProblems/865.lean#L49-L52",
+        "contentHash": "sha256:95024fd456d2254c21c69f2c5c1c00b65aca4629a0557d2cb58523a070573367",
+        "retrievedAt": "2026-07-13T03:48:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 90
+    },
+    {
+      "id": "problem-revision:formal-conjectures:navier-stokes:r3:1",
+      "slug": "navier-stokes-r3",
+      "title": "Navier–Stokes existence and smoothness in ℝ³",
+      "project": {
+        "id": "project:formal-conjectures:navier-stokes",
+        "slug": "formal-conjectures-navier-stokes",
+        "title": "Navier–Stokes Existence and Smoothness"
+      },
+      "subjects": [
+        "partial-differential-equations"
+      ],
+      "researchStatus": {
+        "value": "research_open",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "NavierStokes.navier_stokes_existence_and_smoothness_R3",
+        "statement": "theorem navier_stokes_existence_and_smoothness_R3 (nu : ℝ) (hnu : nu > 0)\n    (u₀ : ℝ³ → ℝ³) (hu₀ : InitialVelocityConditionDecay u₀) :\n    ∃ v p, NavierStokesExistenceAndSmoothnessRn nu u₀ (f := 0) v p := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-focus-v1-lean4.27.0",
+        "path": "FormalConjectures/Millenium/NavierStokes.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/Millenium/NavierStokes.lean",
+        "contentHash": "sha256:259d2ed5dd042c6140c90f74d9471e382909b37b7bec79d4a45bf69a2a51cd6d",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 90
+    },
+    {
+      "id": "problem-revision:formal-conjectures:jacobian:main:1",
+      "slug": "jacobian-conjecture",
+      "title": "Jacobian Conjecture",
+      "project": {
+        "id": "project:formal-conjectures:jacobian",
+        "slug": "formal-conjectures-jacobian",
+        "title": "Jacobian Conjecture"
+      },
+      "subjects": [
+        "algebraic-geometry"
+      ],
+      "researchStatus": {
+        "value": "research_open",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "JacobianConjecture.jacobian_conjecture",
+        "statement": "theorem jacobian_conjecture (F : RegularFunction k σ σ)\n    (H : IsUnit F.Jacobian.det) :\n    ∃ (G : RegularFunction k σ σ), G.comp F = id k σ ∧\n    F.comp G = id k σ := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-focus-v1-lean4.27.0",
+        "path": "FormalConjectures/Wikipedia/JacobianConjecture.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/Wikipedia/JacobianConjecture.lean",
+        "contentHash": "sha256:22a6a801d27ae1a8b225171bbd4a12099c1a5643471273bd8eb11ee206957ced",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 89
+    },
+    {
+      "id": "problem-revision:formal-conjectures:erdos-20:erdos-rado-bound:1",
+      "slug": "sunflower-erdos-rado-bound",
+      "title": "Sunflower: Erdős–Rado bound",
+      "project": {
+        "id": "project:formal-conjectures:erdos-20",
+        "slug": "formal-conjectures-erdos-20",
+        "title": "Erdős–Rado Sunflower Conjecture"
+      },
+      "subjects": [
+        "combinatorics"
+      ],
+      "researchStatus": {
+        "value": "research_solved",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "Erdos20.erdos_20.variants.erdos_rado_bound",
+        "statement": "theorem erdos_20.variants.erdos_rado_bound :\n    ∀ n k, n > 0 → 2 ≤ k → f n k ≤ (k - 1) ^ n * n.factorial + 1 := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-focus-v1-lean4.27.0",
+        "path": "FormalConjectures/ErdosProblems/20.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/ErdosProblems/20.lean",
+        "contentHash": "sha256:a30fae786a2dab55d5a42b4cb74dd12b4e4e858d3513748c71ef14ff48b0ef4a",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 88
+    },
+    {
+      "id": "problem-revision:formal-conjectures:erdos-508:at-least-five:1",
+      "slug": "hadwiger-nelson-at-least-five",
+      "title": "Hadwiger–Nelson: at least five colors",
+      "project": {
+        "id": "project:formal-conjectures:erdos-508",
+        "slug": "formal-conjectures-erdos-508",
+        "title": "Hadwiger–Nelson Problem"
+      },
+      "subjects": [
+        "discrete-geometry"
+      ],
+      "researchStatus": {
+        "value": "research_solved",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "Erdos508.HadwigerNelsonAtLeastFive",
+        "statement": "theorem HadwigerNelsonAtLeastFive :\n    5 ≤ χ(ℝ²) := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-focus-v1-lean4.27.0",
+        "path": "FormalConjectures/ErdosProblems/508.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/ErdosProblems/508.lean",
+        "contentHash": "sha256:267dd025998ff952ddff7c0aa95688bc7b2bce2755517ec44459bffb88312f08",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 87
+    },
+    {
+      "id": "problem-revision:formal-conjectures:lonely-runner:tao-2017:1",
+      "slug": "lonely-runner-tao-2017",
+      "title": "Lonely Runner: Tao 2017 spacing bound",
+      "project": {
+        "id": "project:formal-conjectures:lonely-runner",
+        "slug": "formal-conjectures-lonely-runner",
+        "title": "Lonely Runner Conjecture"
+      },
+      "subjects": [
+        "number-theory"
+      ],
+      "researchStatus": {
+        "value": "research_solved",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "LonelyRunnerConjecture.lonely_runner_conjecture.variants.tao_2017",
+        "statement": "theorem lonely_runner_conjecture.variants.tao_2017 :\n    ∃ c : ℝ, 0 < c ∧\n      (∀ᶠ n : ℕ in Filter.atTop,\n        deltaGap n ≥\n          ((1 : ℝ) / (2 * (n : ℝ))\n            + c * Real.log (n : ℝ) /\n                ((n : ℝ) ^ 2 * (Real.log (Real.log (n : ℝ))) ^ 2))) := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-focus-v1-lean4.27.0",
+        "path": "FormalConjectures/Wikipedia/LonelyRunnerConjecture.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/Wikipedia/LonelyRunnerConjecture.lean",
+        "contentHash": "sha256:a9f9d2504bb1f29e52e659a26080edf68b76a95abe4af8e68b1d6d404be1a309",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 86
+    },
+    {
+      "id": "problem-revision:formal-conjectures:kakeya:2d:1",
+      "slug": "kakeya-two-dimensional",
+      "title": "Kakeya: two dimensions",
+      "project": {
+        "id": "project:formal-conjectures:kakeya",
+        "slug": "formal-conjectures-kakeya",
+        "title": "Kakeya Set Conjecture"
+      },
+      "subjects": [
+        "harmonic-analysis"
+      ],
+      "researchStatus": {
+        "value": "research_solved",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "Kakeya.kakeya_2d",
+        "statement": "theorem kakeya_2d : KakeyaSetConjectureDim 2 := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-focus-v1-lean4.27.0",
+        "path": "FormalConjectures/Wikipedia/Kakeya.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/Wikipedia/Kakeya.lean",
+        "contentHash": "sha256:4d624a82f55702f1602858e2d38bdf26bfdb9892954c71736768e84f8cb9012c",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 85
+    },
+    {
+      "id": "problem-revision:formal-conjectures:kakeya:3d:1",
+      "slug": "kakeya-three-dimensional",
+      "title": "Kakeya: three dimensions",
+      "project": {
+        "id": "project:formal-conjectures:kakeya",
+        "slug": "formal-conjectures-kakeya",
+        "title": "Kakeya Set Conjecture"
+      },
+      "subjects": [
+        "harmonic-analysis"
+      ],
+      "researchStatus": {
+        "value": "research_solved",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "Kakeya.kakeya_3d",
+        "statement": "theorem kakeya_3d : KakeyaSetConjectureDim 3 := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-focus-v1-lean4.27.0",
+        "path": "FormalConjectures/Wikipedia/Kakeya.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/Wikipedia/Kakeya.lean",
+        "contentHash": "sha256:4d624a82f55702f1602858e2d38bdf26bfdb9892954c71736768e84f8cb9012c",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 84
+    },
+    {
+      "id": "problem-revision:formal-conjectures:goldbach:ternary:1",
+      "slug": "ternary-goldbach",
+      "title": "Ternary Goldbach theorem",
+      "project": {
+        "id": "project:formal-conjectures:goldbach",
+        "slug": "formal-conjectures-goldbach",
+        "title": "Goldbach Conjectures"
+      },
+      "subjects": [
+        "number-theory"
+      ],
+      "researchStatus": {
+        "value": "research_solved",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "TernaryGoldbachConjecture.ternaryGoldbach",
+        "statement": "theorem ternaryGoldbach (n : ℕ) (hn : 5 < n) (hn_odd : Odd n) :\n    ∃ p q r, Nat.Prime p ∧ Nat.Prime q ∧ Nat.Prime r ∧ n = p + q + r := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-focus-v1-lean4.27.0",
+        "path": "FormalConjectures/Wikipedia/GoldbachConjecture.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/Wikipedia/GoldbachConjecture.lean",
+        "contentHash": "sha256:bf6a587c50ba159af919fbe9afa09f04375608c33c68361ffc52246018a5b447",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 84
+    },
+    {
+      "id": "problem-revision:formal-conjectures:kakeya:finite:1",
+      "slug": "kakeya-finite-field",
+      "title": "Kakeya: finite-field bound",
+      "project": {
+        "id": "project:formal-conjectures:kakeya",
+        "slug": "formal-conjectures-kakeya",
+        "title": "Kakeya Set Conjecture"
+      },
+      "subjects": [
+        "discrete-geometry"
+      ],
+      "researchStatus": {
+        "value": "research_solved",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "Kakeya.kakeya_finite",
+        "statement": "theorem kakeya_finite {F : Type*} [Field F] [Fintype F] {n : ℕ}\n    (K : Finset (Fin n → F)) (hK : IsKakeyaFinite K) :\n    card F ^ n / (2 - 1 / card F : ℚ) ^ (n - 1) ≤ K.card := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-focus-v1-lean4.27.0",
+        "path": "FormalConjectures/Wikipedia/Kakeya.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/Wikipedia/Kakeya.lean",
+        "contentHash": "sha256:4d624a82f55702f1602858e2d38bdf26bfdb9892954c71736768e84f8cb9012c",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 83
+    },
+    {
+      "id": "problem-revision:formal-conjectures:erdos-865:sos:1",
+      "slug": "erdos-865-sos-variant",
+      "title": "Erdős–Sós asymptotic variant",
+      "project": {
+        "id": "project:formal-conjectures:erdos-865",
+        "slug": "formal-conjectures-erdos-865",
+        "title": "Erdős Problem 865"
+      },
+      "subjects": [
+        "number-theory",
+        "combinatorics"
+      ],
+      "researchStatus": {
+        "value": "research_open",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "Erdos865.erdos_865.variants.sos",
+        "statement": "theorem erdos_865.variants.sos :\n    ∀ᵉ (k : ℕ) (hk : 2 ≤ k),\n    (fun N ↦ (f N k : ℝ)) ~[atTop] (fun N ↦ (1 / 2 : ℝ) * (1 + ∑ r ∈ Icc 1 (k - 2),\n      (1 / 4 : ℝ) ^ r) * N) := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "7a41db3d761324599812d6ca6cb6a9f311046dc7",
+        "revisionTag": "bench-v1-lean4.27.0",
+        "path": "FormalConjectures/ErdosProblems/865.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/7a41db3d761324599812d6ca6cb6a9f311046dc7/FormalConjectures/ErdosProblems/865.lean#L66-L71",
+        "contentHash": "sha256:95024fd456d2254c21c69f2c5c1c00b65aca4629a0557d2cb58523a070573367",
+        "retrievedAt": "2026-07-13T03:48:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 80
+    },
+    {
+      "id": "problem-revision:formal-conjectures:erdos-508:at-least-four:1",
+      "slug": "hadwiger-nelson-at-least-four",
+      "title": "Hadwiger–Nelson: at least four colors",
+      "project": {
+        "id": "project:formal-conjectures:erdos-508",
+        "slug": "formal-conjectures-erdos-508",
+        "title": "Hadwiger–Nelson Problem"
+      },
+      "subjects": [
+        "combinatorics"
+      ],
+      "researchStatus": {
+        "value": "research_solved",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "Erdos508.HadwigerNelsonAtLeast4",
+        "statement": "theorem HadwigerNelsonAtLeast4 : 4 ≤ χ(ℝ²) := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-focus-v1-lean4.27.0",
+        "path": "FormalConjectures/ErdosProblems/508.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/ErdosProblems/508.lean",
+        "contentHash": "sha256:267dd025998ff952ddff7c0aa95688bc7b2bce2755517ec44459bffb88312f08",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 77
+    },
+    {
+      "id": "problem-revision:formal-conjectures:erdos-865:upper-bound:1",
+      "slug": "erdos-865-upper-bound",
+      "title": "Erdős–Sós upper-bound variant",
+      "project": {
+        "id": "project:formal-conjectures:erdos-865",
+        "slug": "formal-conjectures-erdos-865",
+        "title": "Erdős Problem 865"
+      },
+      "subjects": [
+        "number-theory",
+        "combinatorics"
+      ],
+      "researchStatus": {
+        "value": "research_solved",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "Erdos865.erdos_865.variants.upper_bound",
+        "statement": "theorem erdos_865.variants.upper_bound (k : ℕ) (hk : 3 ≤ k) :\n    ∃ ε > 0, ∀ᶠ N in atTop, (f N k : ℝ) ≤ (2 / 3 - ε) * N := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "7a41db3d761324599812d6ca6cb6a9f311046dc7",
+        "revisionTag": "bench-v1-lean4.27.0",
+        "path": "FormalConjectures/ErdosProblems/865.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/7a41db3d761324599812d6ca6cb6a9f311046dc7/FormalConjectures/ErdosProblems/865.lean#L79-L81",
+        "contentHash": "sha256:95024fd456d2254c21c69f2c5c1c00b65aca4629a0557d2cb58523a070573367",
+        "retrievedAt": "2026-07-13T03:48:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 70
+    }
+  ]
+}
