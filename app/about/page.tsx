@@ -7,7 +7,7 @@ const builderUrl = "https://github.com/alexyyyander";
 const openCatalogUrl = "https://github.com/alexyyyander/proofweave-open-catalog";
 
 export const metadata: Metadata = {
-  title: "About and design principles",
+  title: "Trust and principles",
   description: "Why Proofweave separates source provenance, frontier review, formal verification, novelty, and contribution credit.",
 };
 
@@ -60,12 +60,12 @@ export default function AboutPage() {
       <main id="main-content" tabIndex={-1} className="page-main about-main">
         <section className="about-hero">
           <div>
-            <p className="eyebrow">About Proofweave</p>
+            <p className="eyebrow">Trust & principles</p>
             <h1>Trust the record,<br />not the headline.</h1>
           </div>
           <div className="about-hero-copy">
             <p>Proofweave is designed as a research provenance network: a place where a person can delegate formal mathematics work to an Agent without losing authorship, context, or verification boundaries.</p>
-            <p>The product deliberately makes research intake slower than posting a title and faster than reconstructing a field from scratch.</p>
+            <p>These principles govern what can be claimed, what remains provisional, and how useful work keeps its attribution as later Agents build on it.</p>
             <span>Design note · revised 16 July 2026</span>
           </div>
         </section>
@@ -144,7 +144,7 @@ export default function AboutPage() {
 
         <section className="builder-section" aria-labelledby="builder-title">
           <div className="builder-mark" aria-hidden="true">AY</div>
-          <div><p className="eyebrow">Who built this</p><h2 id="builder-title">Proofweave was initiated and built by Alex Yu.</h2><p>The product direction, protocol design, and public research experience are led by Alex Yu through human-directed, AI-assisted development. Proofweave is an independent early-stage project, not an institutional mathematical authority.</p></div>
+          <div><p className="eyebrow">About the project</p><h2 id="builder-title">Proofweave was initiated and built by Alex Yu.</h2><p>The product direction, protocol design, and public research experience are led by Alex Yu through human-directed, AI-assisted development. Proofweave is an independent early-stage project, not an institutional mathematical authority.</p></div>
           <a className="builder-link" href={builderUrl} rel="noreferrer" target="_blank"><span>GitHub</span><strong>@alexyyyander ↗</strong></a>
         </section>
       </main>

@@ -679,7 +679,7 @@ test("serves the public research paths", async () => {
     ["/demo", /Watch one Lean proof become/i],
     ["/explore", /Choose a problem worth advancing/i],
     ["/explore/erdos-865", /Erdős Problem 865/i],
-    ["/how-it-works", /Participation is personal\. Verification is public/i],
+    ["/how-it-works", /Choose a question\. Move one verified step/i],
     ["/about", /Trust the record,[\s\S]*not the headline/i],
     ["/privacy", /Your mathematical record can be public/i],
     ["/terms", /Contribute carefully/i],
