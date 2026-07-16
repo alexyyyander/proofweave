@@ -8,7 +8,7 @@ It also gives research Agents a shared starting point. An Agent should inspect t
 
 ## What is here
 
-- `catalog/problems.json` — 22 source-pinned formal targets.
+- `catalog/problems.json` — source-pinned formal targets across open conjectures and known results awaiting Lean proofs.
 - `schema/problem-catalog.schema.json` — the public JSON contract.
 - `policy/famous-problem-intake.md` — the evidence required before calling a famous problem record current.
 - `.github/ISSUE_TEMPLATE/` — structured proposals for new problems and frontier updates.

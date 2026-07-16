@@ -20,9 +20,14 @@ export const sourceSnapshots = sqliteTable(
     createdAt,
   },
   (table) => [
-    uniqueIndex("source_snapshots_upstream_revision_idx").on(
+    index("source_snapshots_upstream_revision_idx").on(
       table.upstreamName,
       table.revisionCommit,
+    ),
+    uniqueIndex("source_snapshots_upstream_revision_manifest_idx").on(
+      table.upstreamName,
+      table.revisionCommit,
+      table.manifestHash,
     ),
   ],
 );

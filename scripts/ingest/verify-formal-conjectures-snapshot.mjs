@@ -47,9 +47,9 @@ function verifyLegacySnapshot(catalog, filename) {
 }
 
 function verifyFocusSnapshot(catalog, filename) {
-  assert.match(catalog.snapshot.revisionTag, /^curated-focus-v\d+-lean4\.\d+\.\d+$/);
+  assert.match(catalog.snapshot.revisionTag, /^curated-(?:focus|expansion)-v\d+-lean4\.\d+\.\d+$/);
   assert.ok(Array.isArray(catalog.snapshot.manifest));
-  assert.equal(catalog.snapshot.manifest.length, 10);
+  assert.ok(catalog.snapshot.manifest.length > 0, `${filename}: manifest is empty`);
 
   const manifest = new Map();
   for (const file of catalog.snapshot.manifest) {
@@ -79,19 +79,25 @@ function verifyFocusSnapshot(catalog, filename) {
     assert.ok(project.records.length > 0, `${filename}: empty project ${project.slug}`);
     return project.records;
   });
-  assert.equal(records.length, 18, `${filename}: unexpected curated record count`);
+  assert.ok(records.length > 0, `${filename}: snapshot has no curated records`);
 
   const slugs = new Set();
+  const declaredSourcePaths = new Set();
   for (const record of records) {
     assert.ok(!slugs.has(record.slug), `${filename}: duplicate record slug ${record.slug}`);
     slugs.add(record.slug);
     verifyMembership(record, subjects, collections, filename);
     verifyDeclaration(record, catalog.snapshot, manifest, filename);
+    declaredSourcePaths.add(record.declaration.sourcePath);
   }
+  assert.deepEqual(
+    [...manifest.keys()].sort(),
+    [...declaredSourcePaths].sort(),
+    `${filename}: manifest must exactly cover the declared source files`,
+  );
 
-  assert.equal(catalog.existingRecords.length, 4);
-  for (const record of catalog.existingRecords) {
-    assert.match(record.problemRevisionId, /^problem-revision:formal-conjectures:erdos-865:/);
+  for (const record of catalog.existingRecords ?? []) {
+    assert.match(record.problemRevisionId, /^problem-revision:/);
     verifyMembership(record, subjects, collections, filename);
   }
 }

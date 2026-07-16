@@ -1,28 +1,39 @@
-import { readFile, writeFile } from "node:fs/promises";
+import { readdir, readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 
 const root = resolve(import.meta.dirname, "../..");
-const benchPath = resolve(root, "data/formal-conjectures/bench-v1-lean4.27.0.json");
-const focusPath = resolve(root, "data/formal-conjectures/focus-v1-lean4.27.0.json");
+const snapshotDirectory = resolve(root, "data/formal-conjectures");
 const outputPath = resolve(root, "open-catalog/catalog/problems.json");
 
-const [bench, focus] = await Promise.all([readJson(benchPath), readJson(focusPath)]);
-const existingMetadata = new Map(focus.existingRecords.map((record) => [record.problemRevisionId, record]));
+const snapshotPaths = (await readdir(snapshotDirectory))
+  .filter((filename) => filename.endsWith(".json"))
+  .sort()
+  .map((filename) => resolve(snapshotDirectory, filename));
+const snapshots = await Promise.all(snapshotPaths.map(readJson));
+const existingMetadata = new Map(
+  snapshots
+    .filter((snapshot) => snapshot.schemaVersion === 2)
+    .flatMap((snapshot) => snapshot.existingRecords ?? [])
+    .map((record) => [record.problemRevisionId, record]),
+);
 
-const records = [
-  ...bench.records.map((record) => toPublicRecord({
-    record,
-    project: bench.project,
-    snapshot: bench.snapshot,
-    metadata: existingMetadata.get(record.id),
-  })),
-  ...focus.projects.flatMap((project) => project.records.map((record) => toPublicRecord({
+const records = snapshots.flatMap((catalog) => {
+  if (catalog.schemaVersion === 1) {
+    return catalog.records.map((record) => toPublicRecord({
+      record,
+      project: catalog.project,
+      snapshot: catalog.snapshot,
+      metadata: existingMetadata.get(record.id),
+    }));
+  }
+
+  return catalog.projects.flatMap((project) => project.records.map((record) => toPublicRecord({
     record,
     project,
-    snapshot: focus.snapshot,
+    snapshot: catalog.snapshot,
     metadata: record,
-  }))),
-].sort((left, right) => right.priority - left.priority || left.slug.localeCompare(right.slug));
+  })));
+}).sort((left, right) => right.priority - left.priority || left.slug.localeCompare(right.slug));
 
 const output = {
   schemaVersion: 1,

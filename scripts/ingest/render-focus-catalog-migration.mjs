@@ -2,10 +2,13 @@ import { createHash } from "node:crypto";
 import { readFile, writeFile } from "node:fs/promises";
 
 const inputUrl = new URL(
-  "../../data/formal-conjectures/focus-v1-lean4.27.0.json",
+  process.argv[2] ?? "../../data/formal-conjectures/focus-v1-lean4.27.0.json",
   import.meta.url,
 );
-const outputUrl = new URL("../../drizzle/0030_add_curated_challenges.sql", import.meta.url);
+const outputUrl = new URL(
+  process.argv[3] ?? "../../drizzle/0030_add_curated_challenges.sql",
+  import.meta.url,
+);
 const input = await readFile(inputUrl, "utf8");
 const catalog = JSON.parse(input);
 
@@ -73,6 +76,12 @@ CREATE TABLE IF NOT EXISTS catalog_collection_members (
 )`);
 add("CREATE INDEX IF NOT EXISTS catalog_collection_members_revision_idx ON catalog_collection_members (problem_revision_id)");
 add("CREATE INDEX IF NOT EXISTS catalog_collection_members_position_idx ON catalog_collection_members (collection_id, position)");
+
+if (catalog.snapshot.revisionIdentity === "commit_and_manifest") {
+  add("DROP INDEX IF EXISTS source_snapshots_upstream_revision_idx");
+  add("CREATE INDEX IF NOT EXISTS source_snapshots_upstream_revision_idx ON source_snapshots (upstream_name, revision_commit)");
+  add("CREATE UNIQUE INDEX IF NOT EXISTS source_snapshots_upstream_revision_manifest_idx ON source_snapshots (upstream_name, revision_commit, manifest_hash)");
+}
 
 add(`
 INSERT OR IGNORE INTO source_snapshots (
@@ -231,7 +240,7 @@ add(`
 INSERT OR IGNORE INTO catalog_imports (
   id, source_snapshot_id, input_hash, imported_at, record_count
 ) VALUES ${values([[
-  "import:formal-conjectures:focus-v1-lean4.27.0",
+  catalog.snapshot.id.replace(/^snapshot:/, "import:"),
   catalog.snapshot.id,
   inputHash,
   catalog.snapshot.retrievedAt,
@@ -239,4 +248,4 @@ INSERT OR IGNORE INTO catalog_imports (
 ]])}`);
 
 await writeFile(outputUrl, `${statements.join(";\n--> statement-breakpoint\n")}\n`);
-console.log(`Rendered ${newRecords.length} curated catalog records to ${outputUrl.pathname}.`);
+console.log(`Rendered ${newRecords.length} curated catalog records from ${inputUrl.pathname} to ${outputUrl.pathname}.`);

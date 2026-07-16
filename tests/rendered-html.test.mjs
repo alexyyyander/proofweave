@@ -732,7 +732,10 @@ test("serves the public research paths", async () => {
   assert.match(exploreHtml, /Grand Challenges/i);
   assert.match(exploreHtml, /Hadwiger–Nelson Problem/i);
   assert.match(exploreHtml, /Navier–Stokes Existence and Smoothness/i);
+  assert.match(exploreHtml, /P versus NP/i);
+  assert.match(exploreHtml, /Smooth Poincaré conjecture in dimension four/i);
   assert.match(exploreHtml, /Number theory/i);
+  assert.match(exploreHtml, /Computer science/i);
   assert.match(exploreHtml, />MSC /i);
   assert.match(exploreHtml, /Known result · Lean proof wanted/i);
 
@@ -745,6 +748,17 @@ test("serves the public research paths", async () => {
   assert.match(curatedDetailHtml, /b2e608fc52d765510915a244bb69b1a2741acc3c/i);
   assert.match(curatedDetailHtml, /workbench\?target=sunflower-conjecture/i);
   assert.match(curatedDetailHtml, /Why prior work and freshness are required/i);
+
+  const expandedDetail = await render("/explore/p-vs-np");
+  assert.equal(expandedDetail.status, 200);
+  const expandedDetailHtml = await expandedDetail.text();
+  assert.match(expandedDetailHtml, /P versus NP/i);
+  assert.match(expandedDetailHtml, /curated-expansion-v1-lean4\.27\.0/i);
+  assert.match(expandedDetailHtml, /Open conjecture/i);
+
+  const knownResultDetail = await render("/explore/catalan-mihailescu-theorem");
+  assert.equal(knownResultDetail.status, 200);
+  assert.match(await knownResultDetail.text(), /Known result · Lean proof wanted/i);
 
   const about = await render("/about");
   const aboutHtml = await about.text();
@@ -825,12 +839,12 @@ test("imports the pinned catalog idempotently and serves provenance through the 
       "SELECT (SELECT COUNT(*) FROM problem_revisions) AS problems, (SELECT COUNT(*) FROM verification_claims) AS claims, (SELECT COUNT(*) FROM catalog_imports) AS imports",
     )
     .first();
-  assert.deepEqual(counts, { problems: 22, claims: 110, imports: 2 });
+  assert.deepEqual(counts, { problems: 38, claims: 190, imports: 3 });
 
   const catalogResponse = await render("/api/catalog");
   assert.equal(catalogResponse.status, 200);
   const catalog = await catalogResponse.json();
-  assert.equal(catalog.records.length, 22);
+  assert.equal(catalog.records.length, 38);
   assert.equal(catalog.records[0].slug, "erdos-865");
   assert.equal(catalog.records[0].source.revisionTag, "bench-v1-lean4.27.0");
   assert.equal(catalog.records[0].source.leanToolchain, "leanprover/lean4:v4.27.0");

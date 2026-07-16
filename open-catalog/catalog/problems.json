@@ -3,7 +3,7 @@
   "catalog": {
     "name": "Proofweave Open Catalog",
     "generatedAt": "2026-07-16T00:00:00Z",
-    "recordCount": 22,
+    "recordCount": 38,
     "policy": "policy/famous-problem-intake.md",
     "boundary": "A source-pinned record is not a claim that the literature review is current or that Proofweave has verified the mathematics."
   },
@@ -52,6 +52,50 @@
         "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
       },
       "priority": 100
+    },
+    {
+      "id": "problem-revision:formal-conjectures:p-vs-np:main:1",
+      "slug": "p-vs-np",
+      "title": "P versus NP",
+      "project": {
+        "id": "project:formal-conjectures:p-vs-np",
+        "slug": "formal-conjectures-p-vs-np",
+        "title": "P versus NP"
+      },
+      "subjects": [
+        "computer-science"
+      ],
+      "researchStatus": {
+        "value": "research_open",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "ComplexityTheory.P_ne_NP",
+        "statement": "theorem P_ne_NP : P ≠ NP := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-expansion-v1-lean4.27.0",
+        "path": "FormalConjectures/Millenium/PvsNP.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/Millenium/PvsNP.lean",
+        "contentHash": "sha256:5af9dc0179ce1d9dd09a8b73e4acecb9d5f1787438f30a3a3c0eb70ef673bdf6",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 99
     },
     {
       "id": "problem-revision:formal-conjectures:erdos-20:main:1",
@@ -230,6 +274,51 @@
       "priority": 95
     },
     {
+      "id": "problem-revision:formal-conjectures:poincare:smooth-dimension-four:1",
+      "slug": "smooth-poincare-dimension-four",
+      "title": "Smooth Poincaré conjecture in dimension four",
+      "project": {
+        "id": "project:formal-conjectures:poincare",
+        "slug": "formal-conjectures-poincare",
+        "title": "Poincaré Conjecture and smooth variants"
+      },
+      "subjects": [
+        "manifolds",
+        "general-topology"
+      ],
+      "researchStatus": {
+        "value": "research_open",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "PoincareConjecture.poincare_conjecture.variants.smooth_dimension_four",
+        "statement": "theorem poincare_conjecture.variants.smooth_dimension_four : SmoothConjectureFor 4 := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-expansion-v1-lean4.27.0",
+        "path": "FormalConjectures/Millenium/Poincare.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/Millenium/Poincare.lean",
+        "contentHash": "sha256:8c9e44bb2b7fc0a89a7a9198e87e0ca9c4dc35fefd10d3686fa201e28cb6ffe2",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 95
+    },
+    {
       "id": "problem-revision:formal-conjectures:goldbach:main:1",
       "slug": "goldbach-conjecture",
       "title": "Goldbach Conjecture",
@@ -259,6 +348,50 @@
         "path": "FormalConjectures/Wikipedia/GoldbachConjecture.lean",
         "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/Wikipedia/GoldbachConjecture.lean",
         "contentHash": "sha256:bf6a587c50ba159af919fbe9afa09f04375608c33c68361ffc52246018a5b447",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 94
+    },
+    {
+      "id": "problem-revision:formal-conjectures:legendre:main:1",
+      "slug": "legendre-conjecture",
+      "title": "Legendre's Conjecture",
+      "project": {
+        "id": "project:formal-conjectures:legendre",
+        "slug": "formal-conjectures-legendre",
+        "title": "Legendre's Conjecture"
+      },
+      "subjects": [
+        "number-theory"
+      ],
+      "researchStatus": {
+        "value": "research_open",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "LegendreConjecture.legendre_conjecture",
+        "statement": "theorem legendre_conjecture :\n    answer(sorry) ↔ ∀ n ≥ 1, ∃ p ∈ Set.Ioo (n ^ 2) ((n + 1) ^ 2), Nat.Prime p := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-expansion-v1-lean4.27.0",
+        "path": "FormalConjectures/Wikipedia/LegendreConjecture.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/Wikipedia/LegendreConjecture.lean",
+        "contentHash": "sha256:c7ec74fb1e28040c870d64d01bd52d7ff85d812475e211e53d604bc809b3c577",
         "retrievedAt": "2026-07-16T00:00:00Z",
         "leanToolchain": "leanprover/lean4:v4.27.0",
         "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
@@ -319,6 +452,96 @@
       "priority": 93
     },
     {
+      "id": "problem-revision:formal-conjectures:poincare:dimension-three:1",
+      "slug": "poincare-conjecture-dimension-three",
+      "title": "Poincaré conjecture in dimension three",
+      "project": {
+        "id": "project:formal-conjectures:poincare",
+        "slug": "formal-conjectures-poincare",
+        "title": "Poincaré Conjecture and smooth variants"
+      },
+      "subjects": [
+        "manifolds",
+        "general-topology"
+      ],
+      "researchStatus": {
+        "value": "research_solved",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "PoincareConjecture.poincare_conjecture",
+        "statement": "theorem poincare_conjecture : ConjectureFor 3 := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-expansion-v1-lean4.27.0",
+        "path": "FormalConjectures/Millenium/Poincare.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/Millenium/Poincare.lean",
+        "contentHash": "sha256:8c9e44bb2b7fc0a89a7a9198e87e0ca9c4dc35fefd10d3686fa201e28cb6ffe2",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 93
+    },
+    {
+      "id": "problem-revision:formal-conjectures:inscribed-square:main:1",
+      "slug": "inscribed-square-problem",
+      "title": "Inscribed Square Problem",
+      "project": {
+        "id": "project:formal-conjectures:inscribed-square",
+        "slug": "formal-conjectures-inscribed-square",
+        "title": "Inscribed Square Problem"
+      },
+      "subjects": [
+        "geometry",
+        "general-topology"
+      ],
+      "researchStatus": {
+        "value": "research_open",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "InscribedSquare.inscribed_square_problem",
+        "statement": "theorem inscribed_square_problem :\n    answer(sorry) ↔ ∀ (γ : Circle → ℝ²) (hγ : IsEmbedding γ),\n      ∃ t₁ t₂ t₃ t₄, IsRectangle (γ t₁) (γ t₂) (γ t₃) (γ t₄) 1 := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-expansion-v1-lean4.27.0",
+        "path": "FormalConjectures/Wikipedia/InscribedSquare.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/Wikipedia/InscribedSquare.lean",
+        "contentHash": "sha256:42b9c274d20d5da0d319babdf41ebaea19de86e8df570bde2078227c5bca2d3a",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 92
+    },
+    {
       "id": "problem-revision:formal-conjectures:twin-primes:main:1",
       "slug": "twin-prime-conjecture",
       "title": "Twin Prime Conjecture",
@@ -361,6 +584,50 @@
         "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
       },
       "priority": 92
+    },
+    {
+      "id": "problem-revision:formal-conjectures:beal:main:1",
+      "slug": "beal-conjecture",
+      "title": "Beal Conjecture",
+      "project": {
+        "id": "project:formal-conjectures:beal",
+        "slug": "formal-conjectures-beal",
+        "title": "Beal Conjecture"
+      },
+      "subjects": [
+        "number-theory"
+      ],
+      "researchStatus": {
+        "value": "research_open",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "BealConjecture.beal_conjecture",
+        "statement": "theorem beal_conjecture : bealConjecture := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-expansion-v1-lean4.27.0",
+        "path": "FormalConjectures/Wikipedia/BealConjecture.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/Wikipedia/BealConjecture.lean",
+        "contentHash": "sha256:f46a9c09eb9d26be34b45f8b28cb002ec5a31c1a9da9b83f6290b826a8777fa4",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 91
     },
     {
       "id": "problem-revision:formal-conjectures:riemann-hypothesis:main:1",
@@ -496,6 +763,94 @@
       "priority": 90
     },
     {
+      "id": "problem-revision:formal-conjectures:perfect-cuboid:main:1",
+      "slug": "perfect-cuboid-problem",
+      "title": "Perfect Cuboid Problem",
+      "project": {
+        "id": "project:formal-conjectures:perfect-cuboid",
+        "slug": "formal-conjectures-perfect-cuboid",
+        "title": "Perfect Cuboid Problem"
+      },
+      "subjects": [
+        "number-theory"
+      ],
+      "researchStatus": {
+        "value": "research_open",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "EulerBrick.perfect_euler_brick_existence",
+        "statement": "theorem perfect_euler_brick_existence :\n    answer(sorry) ↔ ∃ a b c : ℕ+, IsPerfectCuboid a b c := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-expansion-v1-lean4.27.0",
+        "path": "FormalConjectures/Wikipedia/EulerBrick.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/Wikipedia/EulerBrick.lean",
+        "contentHash": "sha256:1cabe26d55fe93bc808f2c5fcbb12cbd78e3e497a3e33ef510df29edb9a2e67b",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 90
+    },
+    {
+      "id": "problem-revision:formal-conjectures:graceful-tree:main:1",
+      "slug": "graceful-tree-conjecture",
+      "title": "Graceful Tree Conjecture",
+      "project": {
+        "id": "project:formal-conjectures:graceful-tree",
+        "slug": "formal-conjectures-graceful-tree",
+        "title": "Graceful Tree Conjecture"
+      },
+      "subjects": [
+        "combinatorics"
+      ],
+      "researchStatus": {
+        "value": "research_open",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "GracefulLabeling.graceful_tree_conjecture",
+        "statement": "theorem graceful_tree_conjecture {V : Type*} [Fintype V] [DecidableEq V]\n    (T : SimpleGraph V) [DecidableRel T.Adj] (hT : T.IsTree) :\n    let m := T.edgeFinset.card\n    ∃ f : V → ℕ,\n      Function.Injective f ∧\n      (∀ v, f v ≤ m) ∧\n      T.edgeFinset.image (fun e =>\n        e.lift ⟨fun u v => Int.natAbs ((f u : ℤ) - (f v : ℤ)),\n                fun u v => by\n                  show ((f u : ℤ) - f v).natAbs = ((f v : ℤ) - f u).natAbs\n                  rw [← Int.natAbs_neg, neg_sub]⟩) = Finset.Icc 1 m := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-expansion-v1-lean4.27.0",
+        "path": "FormalConjectures/Wikipedia/GracefulLabeling.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/Wikipedia/GracefulLabeling.lean",
+        "contentHash": "sha256:0fdacd321606e048d2c30042349915ca19d154ec8801684e4552b8b998655c3f",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 89
+    },
+    {
       "id": "problem-revision:formal-conjectures:jacobian:main:1",
       "slug": "jacobian-conjecture",
       "title": "Jacobian Conjecture",
@@ -538,6 +893,50 @@
         "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
       },
       "priority": 89
+    },
+    {
+      "id": "problem-revision:formal-conjectures:catalan:main:1",
+      "slug": "catalan-mihailescu-theorem",
+      "title": "Catalan–Mihăilescu Theorem",
+      "project": {
+        "id": "project:formal-conjectures:catalan",
+        "slug": "formal-conjectures-catalan",
+        "title": "Catalan–Mihăilescu Theorem"
+      },
+      "subjects": [
+        "number-theory"
+      ],
+      "researchStatus": {
+        "value": "research_solved",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "Catalan.catalans_conjecture",
+        "statement": "theorem catalans_conjecture (a b x y : ℕ) (ha : 1 < a) (hb : 1 < b) (hx : 0 < x) (hy : 0 < y)\n    (heq : x ^ a - y ^ b = 1) : a = 2 ∧ b = 3 ∧ x = 3 ∧ y = 2 := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-expansion-v1-lean4.27.0",
+        "path": "FormalConjectures/Wikipedia/Catalan.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/Wikipedia/Catalan.lean",
+        "contentHash": "sha256:4d6a944a1cec1df6928207be2cdf44ad0b1e7bdc89263f9812fc93037f6b152c",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 88
     },
     {
       "id": "problem-revision:formal-conjectures:erdos-20:erdos-rado-bound:1",
@@ -628,6 +1027,94 @@
       "priority": 87
     },
     {
+      "id": "problem-revision:formal-conjectures:modularity:main:1",
+      "slug": "modularity-theorem",
+      "title": "Modularity Theorem",
+      "project": {
+        "id": "project:formal-conjectures:modularity",
+        "slug": "formal-conjectures-modularity",
+        "title": "Modularity Theorem"
+      },
+      "subjects": [
+        "number-theory"
+      ],
+      "researchStatus": {
+        "value": "research_solved",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "ModularityConjecture.modularity_conjecture",
+        "statement": "theorem modularity_conjecture (E : WeierstrassCurve ℚ) [E.IsElliptic] : modularityConjecture E := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-expansion-v1-lean4.27.0",
+        "path": "FormalConjectures/Wikipedia/ModularityConjecture.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/Wikipedia/ModularityConjecture.lean",
+        "contentHash": "sha256:4124eaa034c34448e6c3a68ca9c6d39743f193de49aabf9a75fdebb88ebf6137",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 87
+    },
+    {
+      "id": "problem-revision:formal-conjectures:legendre:large-n:1",
+      "slug": "legendre-sufficiently-large-n",
+      "title": "Legendre's conjecture for sufficiently large n",
+      "project": {
+        "id": "project:formal-conjectures:legendre",
+        "slug": "formal-conjectures-legendre",
+        "title": "Legendre's Conjecture"
+      },
+      "subjects": [
+        "number-theory"
+      ],
+      "researchStatus": {
+        "value": "research_solved",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "LegendreConjecture.legendre_conjecture.ferreira_large_n",
+        "statement": "theorem legendre_conjecture.ferreira_large_n :\n    ∀ᶠ n in atTop, ∃ p ∈ Set.Ioo (n ^ 2) ((n + 1) ^ 2), Nat.Prime p := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-expansion-v1-lean4.27.0",
+        "path": "FormalConjectures/Wikipedia/LegendreConjecture.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/Wikipedia/LegendreConjecture.lean",
+        "contentHash": "sha256:c7ec74fb1e28040c870d64d01bd52d7ff85d812475e211e53d604bc809b3c577",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 86
+    },
+    {
       "id": "problem-revision:formal-conjectures:lonely-runner:tao-2017:1",
       "slug": "lonely-runner-tao-2017",
       "title": "Lonely Runner: Tao 2017 spacing bound",
@@ -672,6 +1159,50 @@
       "priority": 86
     },
     {
+      "id": "problem-revision:formal-conjectures:gromov-growth:main:1",
+      "slug": "gromov-polynomial-growth-theorem",
+      "title": "Gromov's Polynomial Growth Theorem",
+      "project": {
+        "id": "project:formal-conjectures:gromov-growth",
+        "slug": "formal-conjectures-gromov-growth",
+        "title": "Gromov's Polynomial Growth Theorem"
+      },
+      "subjects": [
+        "group-theory"
+      ],
+      "researchStatus": {
+        "value": "research_solved",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "GromovPolynomialGrowth.GromovPolynomialGrowthTheorem",
+        "statement": "theorem GromovPolynomialGrowthTheorem [Group.FG G] :\n    HasPolynomialGrowth G ↔ Group.IsVirtuallyNilpotent G := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-expansion-v1-lean4.27.0",
+        "path": "FormalConjectures/Wikipedia/GromovPolynomialGrowth.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/Wikipedia/GromovPolynomialGrowth.lean",
+        "contentHash": "sha256:f39b958b0257f05420868a1722ca5a54222abfc3155553bbee902e824508c0f4",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 85
+    },
+    {
       "id": "problem-revision:formal-conjectures:kakeya:2d:1",
       "slug": "kakeya-two-dimensional",
       "title": "Kakeya: two dimensions",
@@ -714,6 +1245,51 @@
         "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
       },
       "priority": 85
+    },
+    {
+      "id": "problem-revision:formal-conjectures:inscribed-square:c2:1",
+      "slug": "inscribed-square-c2-curves",
+      "title": "Inscribed squares for C² Jordan curves",
+      "project": {
+        "id": "project:formal-conjectures:inscribed-square",
+        "slug": "formal-conjectures-inscribed-square",
+        "title": "Inscribed Square Problem"
+      },
+      "subjects": [
+        "geometry",
+        "general-topology"
+      ],
+      "researchStatus": {
+        "value": "research_solved",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "InscribedSquare.exists_inscribed_square_of_C2",
+        "statement": "theorem exists_inscribed_square_of_C2 (γ : Circle → ℝ²)\n    (hγ : IsEmbedding γ) (hγ' : ContMDiff (𝓡 1) (𝓡 2) 2 γ) :\n    ∃ t₁ t₂ t₃ t₄, IsRectangle (γ t₁) (γ t₂) (γ t₃) (γ t₄) 1 := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-expansion-v1-lean4.27.0",
+        "path": "FormalConjectures/Wikipedia/InscribedSquare.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/Wikipedia/InscribedSquare.lean",
+        "contentHash": "sha256:42b9c274d20d5da0d319babdf41ebaea19de86e8df570bde2078227c5bca2d3a",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 84
     },
     {
       "id": "problem-revision:formal-conjectures:kakeya:3d:1",
@@ -804,6 +1380,50 @@
       "priority": 84
     },
     {
+      "id": "problem-revision:formal-conjectures:p-vs-np:p-subset-np:1",
+      "slug": "complexity-p-subset-np",
+      "title": "Complexity classes: P is contained in NP",
+      "project": {
+        "id": "project:formal-conjectures:p-vs-np",
+        "slug": "formal-conjectures-p-vs-np",
+        "title": "P versus NP"
+      },
+      "subjects": [
+        "computer-science"
+      ],
+      "researchStatus": {
+        "value": "research_solved",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "ComplexityTheory.P_subset_NP",
+        "statement": "theorem P_subset_NP :\n    P ⊆ NP := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-expansion-v1-lean4.27.0",
+        "path": "FormalConjectures/Millenium/PvsNP.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/Millenium/PvsNP.lean",
+        "contentHash": "sha256:5af9dc0179ce1d9dd09a8b73e4acecb9d5f1787438f30a3a3c0eb70ef673bdf6",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 83
+    },
+    {
       "id": "problem-revision:formal-conjectures:kakeya:finite:1",
       "slug": "kakeya-finite-field",
       "title": "Kakeya: finite-field bound",
@@ -848,6 +1468,50 @@
       "priority": 83
     },
     {
+      "id": "problem-revision:formal-conjectures:p-vs-np:cop-eq-p:1",
+      "slug": "complexity-cop-equals-p",
+      "title": "Complexity classes: coP equals P",
+      "project": {
+        "id": "project:formal-conjectures:p-vs-np",
+        "slug": "formal-conjectures-p-vs-np",
+        "title": "P versus NP"
+      },
+      "subjects": [
+        "computer-science"
+      ],
+      "researchStatus": {
+        "value": "research_solved",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "ComplexityTheory.coP_eq_P",
+        "statement": "theorem coP_eq_P :\n    { L | Lᶜ ∈ P } = P := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-expansion-v1-lean4.27.0",
+        "path": "FormalConjectures/Millenium/PvsNP.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/Millenium/PvsNP.lean",
+        "contentHash": "sha256:5af9dc0179ce1d9dd09a8b73e4acecb9d5f1787438f30a3a3c0eb70ef673bdf6",
+        "retrievedAt": "2026-07-16T00:00:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 82
+    },
+    {
       "id": "problem-revision:formal-conjectures:erdos-865:sos:1",
       "slug": "erdos-865-sos-variant",
       "title": "Erdős–Sós asymptotic variant",
@@ -879,6 +1543,51 @@
         "url": "https://github.com/google-deepmind/formal-conjectures/blob/7a41db3d761324599812d6ca6cb6a9f311046dc7/FormalConjectures/ErdosProblems/865.lean#L66-L71",
         "contentHash": "sha256:95024fd456d2254c21c69f2c5c1c00b65aca4629a0557d2cb58523a070573367",
         "retrievedAt": "2026-07-13T03:48:00Z",
+        "leanToolchain": "leanprover/lean4:v4.27.0",
+        "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+        "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
+      },
+      "frontierAudit": {
+        "status": "not_completed",
+        "literatureCheckedThrough": null,
+        "reviewedBy": null,
+        "priorWork": [],
+        "note": "Formal source imported. Open status, best-known results, and recent literature still require an independent dated review."
+      },
+      "priority": 80
+    },
+    {
+      "id": "problem-revision:formal-conjectures:inscribed-square:rectangle:1",
+      "slug": "jordan-curve-inscribed-rectangle",
+      "title": "Every Jordan curve has an inscribed rectangle",
+      "project": {
+        "id": "project:formal-conjectures:inscribed-square",
+        "slug": "formal-conjectures-inscribed-square",
+        "title": "Inscribed Square Problem"
+      },
+      "subjects": [
+        "geometry",
+        "general-topology"
+      ],
+      "researchStatus": {
+        "value": "research_solved",
+        "authority": "upstream_import",
+        "proofweaveAttested": false
+      },
+      "formalization": {
+        "state": "admitted",
+        "correspondence": "imported_unreviewed",
+        "qualifiedName": "InscribedSquare.exists_inscribed_rectangle",
+        "statement": "theorem exists_inscribed_rectangle (γ : Circle → ℝ²) (hγ : IsEmbedding γ) :\n    ∃ t₁ t₂ t₃ t₄ r, IsRectangle (γ t₁) (γ t₂) (γ t₃) (γ t₄) r := by\n  sorry"
+      },
+      "source": {
+        "upstream": "Formal Conjectures",
+        "revision": "b2e608fc52d765510915a244bb69b1a2741acc3c",
+        "revisionTag": "curated-expansion-v1-lean4.27.0",
+        "path": "FormalConjectures/Wikipedia/InscribedSquare.lean",
+        "url": "https://github.com/google-deepmind/formal-conjectures/blob/b2e608fc52d765510915a244bb69b1a2741acc3c/FormalConjectures/Wikipedia/InscribedSquare.lean",
+        "contentHash": "sha256:42b9c274d20d5da0d319babdf41ebaea19de86e8df570bde2078227c5bca2d3a",
+        "retrievedAt": "2026-07-16T00:00:00Z",
         "leanToolchain": "leanprover/lean4:v4.27.0",
         "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
         "licenseNote": "Apache-2.0 source code; upstream materials may carry their own stated terms."
