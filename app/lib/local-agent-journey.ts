@@ -36,7 +36,28 @@ export function activeWorkDelegation(
   profile: DelegationProfile | null,
   now = Date.now(),
 ): StoredDelegation | null {
-  return profile?.delegations.find((delegation) =>
+  return profile?.delegations.find((delegation) => isActiveWorkDelegation(profile, delegation, now)) ?? null;
+}
+
+export function activeAttemptDelegation(
+  profile: DelegationProfile | null,
+  attempt: McpAttempt | null,
+  now = Date.now(),
+): StoredDelegation | null {
+  if (!profile || !attempt?.delegationCertificateId || !attempt.agentId) return null;
+  return profile.delegations.find((delegation) =>
+    delegation.id === attempt.delegationCertificateId &&
+    delegation.agentId === attempt.agentId &&
+    isActiveWorkDelegation(profile, delegation, now),
+  ) ?? null;
+}
+
+function isActiveWorkDelegation(
+  profile: DelegationProfile,
+  delegation: StoredDelegation,
+  now: number,
+): boolean {
+  return (
     delegation.revokedAt === null &&
     delegation.signerKeyRevokedAt === null &&
     delegation.scopes.some((scope) => scope === "formalize" || scope === "prove") &&
@@ -46,8 +67,8 @@ export function activeWorkDelegation(
       agent.id === delegation.agentId &&
       agent.status === "active" &&
       agent.revokedAt === null,
-    ),
-  ) ?? null;
+    )
+  );
 }
 
 export function activeLocalCodexInstallation(

@@ -2,6 +2,7 @@ export const mcpAttemptEventTypes = [
   "attempt_created",
   "agent_reported",
   "bundle_staged",
+  "attempt_cancelled",
 ] as const;
 
 export type McpAttemptEventType = (typeof mcpAttemptEventTypes)[number];

@@ -790,7 +790,7 @@ export const agentAttemptEvents = sqliteTable(
       .references(() => agentAttempts.id, { onDelete: "cascade" }),
     sequence: integer("sequence").notNull(),
     eventType: text("event_type", {
-      enum: ["attempt_created", "agent_reported", "checkpoint_published", "bundle_staged"],
+      enum: ["attempt_created", "agent_reported", "checkpoint_published", "bundle_staged", "attempt_cancelled"],
     }).notNull(),
     message: text("message").notNull(),
     progressPercent: integer("progress_percent"),

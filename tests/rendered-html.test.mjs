@@ -841,7 +841,7 @@ test("uses a Google app session for the same stable Person and private account b
   assert.match(html, /linked-google@example\.test/i);
   assert.match(html, /Active Attempts/i);
   assert.match(html, /Pending Reviews/i);
-  assert.match(html, /Provisional Credit/i);
+  assert.match(html, /Staged Evidence/i);
   assert.match(html, new RegExp(chatGPTProfile.person.id.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
 });
 
@@ -1980,13 +1980,14 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
   assert.match(ownerWorkbenchHtml, /Erdős Problem 865: k = 2 variant/i);
   assert.match(ownerWorkbenchHtml, /Attempt opened/i);
   assert.match(ownerWorkbenchHtml, /Refresh records/i);
-  assert.match(ownerWorkbenchHtml, /Provisional contribution ledger/i);
+  assert.match(ownerWorkbenchHtml, /Staged evidence ledger/i);
+  assert.doesNotMatch(ownerWorkbenchHtml, /Continue with Agent/i);
   assert.match(ownerWorkbenchHtml, /Bundle staged · provisional/i);
   assert.match(ownerWorkbenchHtml, /Lean kernel status · no Run recorded/i);
   assert.match(ownerWorkbenchHtml, /Runner required/i);
   assert.match(ownerWorkbenchHtml, /Requires a fresh runner execution with kernel, axiom, and sorry evidence/i);
   assert.doesNotMatch(ownerWorkbenchHtml, /Lean kernel status · accepted/i);
-  assert.match(ownerWorkbenchHtml, /not a theorem, Lean result, novelty finding, independent review, or final Contribution Receipt/i);
+  assert.match(ownerWorkbenchHtml, /not a theorem, Lean result, novelty finding, independent review, credit award, or final Contribution Receipt/i);
 
   const workspaceSummaryResponse = await render("/api/me/workspace-summary", { headers: authHeaders });
   assert.equal(workspaceSummaryResponse.status, 200);
@@ -2007,7 +2008,44 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
   assert.match(evidenceWorkbenchHtml, /Result evidence recorded/i);
   assert.match(evidenceWorkbenchHtml, /Hash-bound Runner result recorded accepted kernel/i);
 
-  const activeAttemptCount = ownerAttempts.filter((candidate) => candidate.status === "active").length;
+  const otherOwnerClose = await render(`/api/me/attempts/${encodeURIComponent(selectedTargetAttempt.id)}`, {
+    method: "PATCH",
+    headers: { "oai-authenticated-user-email": "other-owner@example.test", "content-type": "application/json" },
+    body: JSON.stringify({ action: "cancel" }),
+  });
+  assert.equal(otherOwnerClose.status, 404);
+
+  const closeAttemptResponse = await render(`/api/me/attempts/${encodeURIComponent(selectedTargetAttempt.id)}`, {
+    method: "PATCH",
+    headers: { ...authHeaders, "content-type": "application/json" },
+    body: JSON.stringify({ action: "cancel" }),
+  });
+  assert.equal(closeAttemptResponse.status, 200);
+  const { attempt: closedAttempt, idempotentReplay: firstCloseReplay } = await closeAttemptResponse.json();
+  assert.equal(firstCloseReplay, false);
+  assert.equal(closedAttempt.status, "cancelled");
+  assert.equal(closedAttempt.events.at(-1).type, "attempt_cancelled");
+  assert.match(closedAttempt.events.at(-1).message, /closed by its owner/i);
+
+  const repeatedCloseResponse = await render(`/api/me/attempts/${encodeURIComponent(selectedTargetAttempt.id)}`, {
+    method: "PATCH",
+    headers: { ...authHeaders, "content-type": "application/json" },
+    body: JSON.stringify({ action: "cancel" }),
+  });
+  assert.equal(repeatedCloseResponse.status, 200);
+  assert.equal((await repeatedCloseResponse.json()).idempotentReplay, true);
+
+  const historyWorkbench = await render(`/workbench?attempt=${encodeURIComponent(selectedTargetAttempt.id)}`, { headers: authHeaders });
+  assert.equal(historyWorkbench.status, 200);
+  const historyWorkbenchHtml = await historyWorkbench.text();
+  assert.match(historyWorkbenchHtml, /History/i);
+  assert.match(historyWorkbenchHtml, /Attempt closed by owner/i);
+  assert.match(historyWorkbenchHtml, /This Attempt is retained in your research history/i);
+  assert.doesNotMatch(historyWorkbenchHtml, /Copy Codex brief/i);
+
+  const currentOwnerAttemptsResponse = await render("/api/me/attempts", { headers: authHeaders });
+  const { attempts: currentOwnerAttempts } = await currentOwnerAttemptsResponse.json();
+  const activeAttemptCount = currentOwnerAttempts.filter((candidate) => candidate.status === "active").length;
   const capacityFixtures = [];
   for (let index = activeAttemptCount; index < closedAlphaAttemptLimits.maximumActiveAttemptsPerPerson; index += 1) {
     capacityFixtures.push(database.prepare(
@@ -2184,7 +2222,7 @@ test("keeps the production frontend free of the deleted starter preview", async 
   assert.doesNotMatch(delegationSetup, /Enter Agent identity/);
   assert.match(delegationSetup, /Replace or revoke key/);
   assert.match(localAgentHandoff, /Continue this Proofweave Attempt in Codex/);
-  assert.match(localAgentHandoff, /Copy for Codex/);
+  assert.match(workbench, /Copy Codex brief/);
   assert.match(globals, /\.workspace-topbar \{[^}]*z-index:\s*1;/s);
   assert.match(localAgentHandoff, /Check recorded progress/);
   assert.match(localAgentHandoff, /do not call \\`report_progress\\` unless I explicitly confirm/);

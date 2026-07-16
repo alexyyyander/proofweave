@@ -1268,6 +1268,10 @@ a.auth-provider:hover { border-color: #8295d5; box-shadow: 0 8px 22px rgba(21,34
 .workspace-sidebar-empty p { color: var(--ink-soft); font-size: 11px; margin: 0; }
 .workspace-sidebar-empty a { color: var(--indigo); font-size: 10px; font-weight: 700; }
 .workspace-attempt-list { display: grid; gap: 7px; list-style: none; margin: 12px 0 0; max-height: 330px; overflow-y: auto; padding: 0; }
+.workspace-attempt-filters { background: #f4f4f0; display: grid; grid-template-columns: 1fr 1fr; margin-top: 12px; padding: 3px; }
+.workspace-attempt-filters button { align-items: center; background: transparent; border: 0; color: var(--ink-faint); cursor: pointer; display: flex; font-size: 9px; font-weight: 700; gap: 5px; justify-content: center; padding: 7px 5px; }
+.workspace-attempt-filters button.is-selected { background: #fff; box-shadow: 0 1px 4px rgba(20,31,52,.09); color: var(--ink); }
+.workspace-attempt-filters button span { color: var(--indigo); font-size: 8px; }
 .workspace-attempt-list button { background: #f8f8f5; border: 1px solid transparent; color: var(--ink); cursor: pointer; display: grid; gap: 5px; padding: 11px; text-align: left; width: 100%; }
 .workspace-attempt-list button:hover { border-color: #cbd3e7; }
 .workspace-attempt-list button.is-selected { background: #eef1fa; border-color: #bfcaf0; box-shadow: inset 3px 0 0 var(--indigo); }
@@ -1286,6 +1290,17 @@ a.auth-provider:hover { border-color: #8295d5; box-shadow: 0 8px 22px rgba(21,34
 .workspace-task-canvas .focus-summary { background: #fff; border: 1px solid var(--line); padding: 18px; }
 .workspace-task-canvas .focus-summary h2 { font-size: 29px; margin-top: 9px; }
 .workspace-task-canvas .focus-summary > p { margin-bottom: 13px; }
+.workspace-task-canvas .focus-primary { border: 0; cursor: pointer; font: inherit; font-size: 11px; font-weight: 700; justify-content: center; }
+.attempt-lifecycle-menu { color: var(--ink-soft); font-size: 10px; position: relative; }
+.attempt-lifecycle-menu > summary { color: var(--ink-faint); cursor: pointer; font-weight: 700; list-style: none; }
+.attempt-lifecycle-menu > summary::-webkit-details-marker { display: none; }
+.attempt-lifecycle-menu > summary::after { content: " ···"; }
+.attempt-lifecycle-menu > div { background: #fff; border: 1px solid var(--line); box-shadow: 0 12px 28px rgba(20,31,52,.12); display: grid; gap: 7px; left: 0; min-width: 250px; padding: 13px; position: absolute; top: 19px; z-index: 3; }
+.attempt-lifecycle-menu strong { color: var(--ink); }
+.attempt-lifecycle-menu p { color: var(--ink-faint); line-height: 1.45; margin: 0; }
+.attempt-lifecycle-menu button { background: #fff7f5; border: 1px solid #d7a69c; color: #9c4135; cursor: pointer; font-size: 9px; font-weight: 700; justify-self: start; padding: 7px 9px; }
+.attempt-lifecycle-menu button:disabled { cursor: wait; opacity: .55; }
+.attempt-lifecycle-notice { color: var(--sage) !important; font-size: 10px !important; line-height: 1.45; margin: 11px 0 0 !important; }
 .workspace-task-canvas .next-action-card { min-height: 176px; }
 .workspace-task-canvas .research-launcher, .workspace-task-canvas .local-agent-section { margin-bottom: 16px; }
 .workspace-task-canvas .workstation-grid { grid-template-columns: 1fr 1fr; }
@@ -1321,6 +1336,8 @@ a.auth-provider:hover { border-color: #8295d5; box-shadow: 0 8px 22px rgba(21,34
 .workspace-record-actions a { color: #c7d6ff; font-size: 10px; font-weight: 700; }
 
 .local-agent-actions { margin-top: 20px; }
+.local-agent-buttons .workspace-secondary-button { background: #fff; border-color: var(--line); color: var(--ink-soft); }
+.local-agent-buttons .workspace-secondary-button:hover { border-color: var(--indigo); color: var(--indigo); }
 .local-agent-guide { border-top: 1px solid var(--line); margin-top: 16px; }
 .local-agent-guide > summary { align-items: center; color: var(--indigo); cursor: pointer; display: flex; font-size: 11px; font-weight: 700; justify-content: space-between; padding: 14px 0 0; }
 .local-agent-guide > summary small { color: var(--ink-faint); font-size: 9px; font-weight: 400; }
