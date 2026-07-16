@@ -5,7 +5,7 @@ import type { DelegationProfile } from "@/db/repositories/delegation";
 import type { CatalogProblem } from "@/packages/domain/catalog";
 import type { McpAttempt, McpRunSummary } from "@/packages/domain/mcp";
 import type { ProvisionalContribution } from "@/db/repositories/provisional-contributions";
-import { DelegationSummary, FocusAction, ProvisionalContributionLedger, ResearchWorkstation, SubmissionReadiness, WorkspaceSettingsPrompt } from "./workbench-sections";
+import { DelegationSummary, FirstContributionPath, FocusAction, ProvisionalContributionLedger, ResearchWorkstation, SubmissionReadiness, WorkspaceSettingsPrompt } from "./workbench-sections";
 import { buildCodexResearchBrief, LocalAgentHandoff } from "./LocalAgentHandoff";
 import { ResearchLauncher } from "./ResearchLauncher";
 import { activeAttemptDelegation, activeLocalAgentAttempt, activeLocalCodexInstallation } from "../lib/local-agent-journey";
@@ -215,6 +215,7 @@ export function WorkbenchClient({
 
   return <>
     <WorkspaceTopbar attempts={attempts} selectedAttemptId={activeAttempt?.id ?? null} onSelectAttempt={selectAttempt} agentLabel={selectedConnection?.agentLabel ?? null} isAgentConnected={Boolean(selectedConnection)} mode={mode} isRefreshing={isRefreshing} canRefresh={isAuthenticated && storageAvailable} refreshedAt={refreshedAt} onRefresh={() => { void refreshAttempts(); }} />
+    <FirstContributionPath attempt={activeAttempt} profile={profile} runs={runs} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} />
     <div className={`workspace-shell mode-${mode}`}>
       <WorkspaceSidebar attempts={attempts} selectedAttemptId={activeAttempt?.id ?? null} onSelectAttempt={selectAttempt} view={attemptListView} onViewChange={setAttemptListView} reviewCount={reviewCount} evidenceCount={evidenceCount} />
       <section className="workspace-task-canvas" aria-label="Current research work">

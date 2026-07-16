@@ -59,7 +59,7 @@ export default async function DemoPage() {
 
         <section className="demo-honesty-grid">
           <article><span className="micro-label">This demo proves</span><h2>The evidence protocol is executable.</h2><p>Displayed bytes are re-hashed, four signature classes are checked, owner IDs remain distinct, and Receipt policy runs on every request.</p></article>
-          <article><span className="micro-label">This demo does not claim</span><h2>The reviewer is a live participant.</h2><p>The second account is a deterministic mock and the Lean result is a checked local fixture. It demonstrates the exact production protocol without pretending public onboarding or hosted execution is complete.</p></article>
+          <article><span className="micro-label">This demo does not claim</span><h2>The reviewer is not a live participant.</h2><p>The second account is a deterministic mock and the Lean result is a checked local fixture. It demonstrates the exact production protocol without pretending public onboarding or hosted execution is complete.</p></article>
         </section>
 
         <section className="demo-reproduce" aria-labelledby="demo-reproduce-title">
