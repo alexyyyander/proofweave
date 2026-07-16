@@ -4,10 +4,10 @@ These endpoints establish the attribution prerequisites for an Attempt. They do
 not run Lean, verify a proof, authorize the remote MCP gateway, or issue a
 contribution receipt.
 
-They are currently available only through the existing Sites ChatGPT identity
-used for the private alpha. A public deployment must replace that boundary with
-the independent Proofweave identity service described in the
-[remote MCP contract](remote-mcp-gateway.md).
+They are available through the provider-neutral web identity boundary. Google
+OpenID Connect and dispatch-owned ChatGPT identities map to a stable Person;
+the remote MCP service remains separately constrained by the identity service
+described in the [remote MCP contract](remote-mcp-gateway.md).
 
 ## Flow
 

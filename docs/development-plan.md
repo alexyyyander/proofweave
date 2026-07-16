@@ -249,7 +249,7 @@ Implemented locally on 2026-07-13:
 
 The local D1 harness passed on 2026-07-13 and the catalog was deployed to the
 Sites environment. The frontend became publicly readable on 2026-07-14;
-Person-scoped actions remain behind Sign in with ChatGPT and the catalog API
+Person-scoped actions remain behind provider-neutral sign-in and the catalog API
 remains read-only.
 
 ### MCP direction change
@@ -677,9 +677,10 @@ from the infrastructure runner.
 - Queue: either Cloudflare Queues or migration `0032`'s provider-neutral
   libSQL lease queue. Both authenticate the signed envelope before execution;
   neither a Queue, trusted process, image, nor Container is deployed yet.
-- Authentication: use the existing Sites/ChatGPT identity for the closed alpha;
-  introduce independent passkey/email authentication before public beta so a
-  ChatGPT account is not a global participation requirement.
+- Authentication: preserve Sites/ChatGPT sign-in and add Google OpenID Connect
+  behind provider-neutral `person_identities` and hashed app sessions. Both map
+  to one stable Person; passkeys or additional providers can be evaluated later
+  without making a ChatGPT account a global participation requirement.
 
 ## 4. Proposed repository shape
 

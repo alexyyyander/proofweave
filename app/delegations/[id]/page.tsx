@@ -4,7 +4,8 @@ import {
   getDelegationRepository,
   type PublicDelegationRecord,
 } from "@/db/repositories/delegation";
-import { Footer, Header } from "../../ui";
+import { Footer } from "../../ui";
+import { Header } from "../../header";
 
 export const dynamic = "force-dynamic";
 

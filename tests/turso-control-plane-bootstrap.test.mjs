@@ -42,7 +42,7 @@ test("bootstrap creates or reuses one Turso database without printing its token"
     async applyControlPlane({ url, authToken }) {
       assert.equal(url, "libsql://proofweave-control-alice.turso.io");
       assert.equal(authToken, token);
-      return { appliedMigrations: 33, latestMigration: "0032_add_runner_queue_leases.sql" };
+      return { appliedMigrations: 34, latestMigration: "0033_add_external_account_auth.sql" };
     },
   });
 
@@ -78,7 +78,7 @@ test("bootstrap reuses complete local credentials and preserves unrelated settin
       applied += 1;
       assert.equal(url, "libsql://existing.turso.io");
       assert.equal(authToken, "x".repeat(32));
-      return { appliedMigrations: 0, latestMigration: "0032_add_runner_queue_leases.sql" };
+      return { appliedMigrations: 0, latestMigration: "0033_add_external_account_auth.sql" };
     },
   });
   assert.equal(result.reusedCredentials, true);

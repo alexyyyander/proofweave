@@ -681,6 +681,8 @@ test("serves the public research paths", async () => {
     ["/explore/erdos-865", /Erdős Problem 865/i],
     ["/how-it-works", /Participation is personal\. Verification is public/i],
     ["/about", /Trust the record,[\s\S]*not the headline/i],
+    ["/privacy", /Your mathematical record can be public/i],
+    ["/terms", /Contribute carefully/i],
     ["/workbench", /Keep the work on your computer/i],
     ["/settings", /Manage your research Agent/i],
     ["/integrations", /Keep your research Agent on your computer/i],
@@ -700,16 +702,23 @@ test("serves the public research paths", async () => {
 
   const settings = await render("/settings");
   const settingsHtml = await settings.text();
-  assert.match(settingsHtml, /Sign in with ChatGPT/i);
-  assert.match(settingsHtml, /signin-with-chatgpt/);
+  assert.match(settingsHtml, /Choose a sign-in method/i);
+  assert.match(settingsHtml, /\/sign-in\?return_to=/);
   assert.match(settingsHtml, />Sign in</i);
+
+  const signIn = await render("/sign-in");
+  const signInHtml = await signIn.text();
+  assert.equal(signIn.status, 200);
+  assert.match(signInHtml, /Continue with Google/i);
+  assert.match(signInHtml, /Continue with ChatGPT/i);
+  assert.match(signInHtml, /One Person, multiple sign-in methods/i);
 
   const privateProfile = await render("/profile", { redirect: "manual" });
   assert.ok(
     [302, 303, 307, 308].includes(privateProfile.status),
     `expected an auth redirect, received ${privateProfile.status} with location ${privateProfile.headers.get("location") ?? "none"}`,
   );
-  assert.match(privateProfile.headers.get("location") ?? "", /signin-with-chatgpt.*profile/i);
+  assert.match(privateProfile.headers.get("location") ?? "", /\/sign-in.*profile/i);
 
   const workbench = await render("/workbench");
   const workbenchHtml = await workbench.text();
@@ -774,6 +783,61 @@ test("serves the public research paths", async () => {
   assert.match(integrationsHtml, /Add the Proofweave Research plugin/i);
   assert.match(integrationsHtml, /Approve one local Agent, once/i);
   assert.doesNotMatch(integrationsHtml, /https:\/\/mcp\.proofweave\.org\/mcp/i);
+});
+
+test("uses a Google app session for the same stable Person and private account boundary", async () => {
+  const email = "linked-google@example.test";
+  const chatGPTHeaders = {
+    "oai-authenticated-user-email": email,
+    "oai-authenticated-user-full-name": "Linked%20Researcher",
+    "oai-authenticated-user-full-name-encoding": "percent-encoded-utf-8",
+  };
+  const initial = await render("/api/me/delegation", { headers: chatGPTHeaders });
+  assert.equal(initial.status, 200);
+  const { profile: chatGPTProfile } = await initial.json();
+  const token = "rendered-google-app-session";
+  const now = "2026-07-16T00:00:00Z";
+  await database.prepare(
+    `INSERT INTO person_identities (
+       id, person_id, provider, provider_subject, email, email_normalized,
+       display_name, email_verified_at, updated_at
+     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+  ).bind(
+    "identity:rendered-google",
+    chatGPTProfile.person.id,
+    "google",
+    "google-subject-rendered",
+    email,
+    email,
+    "Linked Researcher",
+    now,
+    now,
+  ).run();
+  await database.prepare(
+    `INSERT INTO app_sessions (
+       id, person_id, identity_id, token_hash, expires_at, created_at
+     ) VALUES (?, ?, ?, ?, ?, ?)`,
+  ).bind(
+    "session:rendered-google",
+    chatGPTProfile.person.id,
+    "identity:rendered-google",
+    await sha256(token),
+    "2099-07-16T00:00:00Z",
+    now,
+  ).run();
+
+  const googleHeaders = { cookie: `__Host-pw_session=${encodeURIComponent(token)}` };
+  const googleProfileResponse = await render("/api/me/delegation", { headers: googleHeaders });
+  assert.equal(googleProfileResponse.status, 200);
+  const { profile: googleProfile } = await googleProfileResponse.json();
+  assert.equal(googleProfile.person.id, chatGPTProfile.person.id);
+
+  const page = await render("/profile", { headers: googleHeaders });
+  const html = await page.text();
+  assert.equal(page.status, 200);
+  assert.match(html, /Google(?:<!-- -->)? account/i);
+  assert.match(html, /linked-google@example\.test/i);
+  assert.match(html, new RegExp(chatGPTProfile.person.id.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
 });
 
 test("publicly verifies the checked Build Week reference evidence", async () => {

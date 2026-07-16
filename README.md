@@ -86,7 +86,7 @@ It exposes only its signed attribution identifiers, public keys, canonical
 payload, signature, hash, and any append-only revocation—not provider identity,
 display names, private credentials, or Agent reasoning. The Sites frontend is
 publicly readable as of 2026-07-14, while Person-scoped setup, workbench, review,
-and evidence actions still require Sign in with ChatGPT. Public frontend access
+and evidence actions require Google or ChatGPT sign-in. Public frontend access
 does not imply that the remote MCP control plane or hosted Lean Runner is live.
 
 ## Project documentation
@@ -94,6 +94,7 @@ does not imply that the remote MCP control plane or hosted Lean Runner is live.
 - [Build Week reference demo](docs/build-week-demo.md)
 - [Development plan](docs/development-plan.md)
 - [Closed-alpha runbook](docs/closed-alpha-runbook.md)
+- [Google sign-in deployment](docs/google-auth-deployment.md)
 - [Frontend MVP](docs/frontend-mvp.md)
 - [Information-source map](docs/resource-map.md)
 - [Closed-alpha Agent delegation API](docs/agent-delegation-api.md)
@@ -206,39 +207,59 @@ export default async function Home() {
 }
 ```
 
-## Optional Dispatch-Owned ChatGPT Sign-In
+## Provider-neutral sign-in
 
-Import the ready-to-use helpers from `app/chatgpt-auth.ts` when the site needs
-optional or required ChatGPT sign-in:
+The public application offers Google OpenID Connect and dispatch-owned ChatGPT
+sign-in through one provider-neutral account boundary. Application code should
+use `app/auth.ts`:
 
-- Use `getChatGPTUser()` for optional signed-in UI.
-- Use `requireChatGPTUser(returnTo)` for server-rendered pages that should send
-  anonymous visitors through Sign in with ChatGPT.
-- Use `chatGPTSignInPath(returnTo)` and `chatGPTSignOutPath(returnTo)` for
-  browser links or actions.
+- Use `getCurrentUser()` for optional signed-in UI.
+- Use `requireUser(returnTo)` for protected server-rendered pages.
+- Use `signInPath(returnTo)` and `providerAwareSignOutPath(user, returnTo)` for
+  browser navigation.
 - Pass a same-origin relative `returnTo` path for the destination after sign-in
   or sign-out. The helper validates and safely encodes it.
 - Mark protected pages with `export const dynamic = "force-dynamic"` because
-  they depend on per-request identity headers.
+  they depend on per-request identity headers or an HttpOnly app session.
+
+Provider credentials map through `person_identities` to one stable Person. A
+new Google identity can join an existing Person only when Google has verified
+the same normalized email. Google `sub`, not email, remains the provider's
+stable identity key. Google access and ID tokens are never persisted; D1 stores
+only a hash of the 30-day opaque app-session cookie.
 
 Dispatch owns `/signin-with-chatgpt`, `/signout-with-chatgpt`, `/callback`, the
-OAuth cookies, and identity header injection. Do not implement app routes for
-those reserved paths. Routes that do not import and call the helper remain
-anonymous-compatible.
+ChatGPT OAuth cookies, and identity header injection. The app owns
+`/auth/google/start`, `/auth/google/callback`, `/auth/signout`, and `/sign-in`.
+Do not implement app replacements for the dispatch-reserved paths.
 
 SIWC establishes identity only; it does not prove workspace membership. Use the
 Sites hosting platform's access policy controls for workspace-wide restrictions,
 or enforce explicit server-side membership or allowlist checks.
 
-Use SIWC for account pages, user-specific dashboards, saved records, and write
-actions tied to the current ChatGPT user. Leave public content anonymous.
+Use authentication for account pages, user-specific dashboards, saved records,
+and attributed write actions. Leave public content anonymous.
+
+For a hosted Google login, create a Google web OAuth client and register this
+exact production redirect URI:
+
+```text
+https://proofweave-research.yualex031821.chatgpt.site/auth/google/callback
+```
+
+Then configure `GOOGLE_OAUTH_CLIENT_ID`, `GOOGLE_OAUTH_CLIENT_SECRET`, and a
+random 32-or-more-character `GOOGLE_OAUTH_STATE_SECRET` in the Sites hosted
+environment. Optionally pin `GOOGLE_OAUTH_REDIRECT_URI` to the same exact URI.
+The Google consent screen should use the public `/`, `/privacy`, and `/terms`
+pages. See [Google sign-in deployment](docs/google-auth-deployment.md).
 
 ## Local configuration
 
 Copy `.env.example` to `.env.local` when a local environment needs an explicit
 public origin or an isolated runner endpoint. Never commit production secrets,
-private keys, or database credentials. The current frontend runs without any
-application secrets.
+private keys, or database credentials. The frontend runs without Google
+credentials, but shows Google sign-in as unavailable until the hosted OAuth
+variables are configured.
 
 ## Useful commands
 
