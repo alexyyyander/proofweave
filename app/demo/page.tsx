@@ -15,7 +15,7 @@ export default async function DemoPage() {
       <main id="main-content" tabIndex={-1}>
         <section className="demo-hero">
           <div className="demo-hero-copy">
-            <p className="eyebrow">Verified reference · no account required</p>
+            <p className="eyebrow">Verified reference · no Proofweave setup required</p>
             <h1>Watch one Lean proof become <span>verifiable evidence.</span></h1>
             <p className="hero-lede">A Person delegates a local Codex Agent. The Agent signs a reproducible Lean workspace. A clearly labeled mock second account performs the independent review, and Proofweave verifies every cryptographic boundary.</p>
             <div className="button-row">

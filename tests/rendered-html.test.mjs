@@ -845,7 +845,7 @@ test("publicly verifies the checked Build Week reference evidence", async () => 
   assert.equal(page.status, 200);
   const html = await page.text();
   assert.match(html, /All checks passed/i);
-  assert.match(html, /Verified reference · no account required/i);
+  assert.match(html, /Verified reference · no Proofweave setup required/i);
   assert.match(html, /Mock identity · real verification/i);
   assert.match(html, /Mock owner reviews/i);
   assert.match(html, /The reviewer is a live participant/i);
