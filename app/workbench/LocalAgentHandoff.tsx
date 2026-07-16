@@ -69,6 +69,7 @@ export function LocalAgentHandoff({
   }
 
   const codexInstruction = researchBrief({ agentLabel: agent.label, attempt, parentNodeId: initialParentNodeId });
+  const hasRecordedMilestone = attempt.events.some((event) => event.type === "agent_reported" || event.type === "bundle_staged");
 
   const copyCodexInstruction = async () => {
     try {
@@ -105,25 +106,6 @@ export function LocalAgentHandoff({
       </div>
     </div>
 
-    <ol className="local-agent-steps" aria-label="Local research workflow">
-      <li>
-        <span>01</span>
-        <div><strong>Bounded question</strong><p>{attempt.problemTitle}</p><small>{attempt.delegationScope ?? "formalize"} scope · {agent.label}</small></div>
-      </li>
-      <li>
-        <span>02</span>
-        <div><strong>Continue in Codex</strong><p>Open Codex on this computer and paste the ready instruction below. Codex reads this exact Attempt through the local Connector before it works.</p><small>You never need to type an Attempt ID, public key, or API token.</small></div>
-      </li>
-      <li>
-        <span>03</span>
-        <div><strong>Share one material milestone</strong><p>Only after a local observable result, ask Codex to show the concise progress message and percentage it proposes. Confirm it before Codex records the signed event.</p><small>Private reasoning remains local; an Agent event is still not Lean verification.</small></div>
-      </li>
-      <li>
-        <span>04</span>
-        <div><strong>Prepare, review, then submit</strong><p>Codex creates the signed Bundle draft locally and shows its manifest and three file hashes. One final confirmation authorizes the unchanged upload, immutable staging, and isolated Run request.</p><small>A queued Run is operational state only; it is not yet a Lean result, review, or contribution receipt.</small></div>
-      </li>
-    </ol>
-
     <div className="local-agent-actions">
       <div>
         <span className="micro-label">Your next Codex message</span>
@@ -137,6 +119,27 @@ export function LocalAgentHandoff({
       </div>
     </div>
     {notice && <p className="local-agent-notice" role="status">{notice}</p>}
+    <details className="local-agent-guide" open={!hasRecordedMilestone}>
+      <summary><span>How this handoff works</span><small>Four bounded steps · no private workspace access</small></summary>
+      <ol className="local-agent-steps" aria-label="Local research workflow">
+        <li>
+          <span>01</span>
+          <div><strong>Bounded question</strong><p>{attempt.problemTitle}</p><small>{attempt.delegationScope ?? "formalize"} scope · {agent.label}</small></div>
+        </li>
+        <li>
+          <span>02</span>
+          <div><strong>Continue in Codex</strong><p>Open Codex on this computer and paste the ready instruction above. Codex reads this exact Attempt through the local Connector before it works.</p><small>You never need to type an Attempt ID, public key, or API token.</small></div>
+        </li>
+        <li>
+          <span>03</span>
+          <div><strong>Share one material milestone</strong><p>After a local observable result, review the concise progress message and percentage before Codex records the signed event.</p><small>Private reasoning remains local; an Agent event is still not Lean verification.</small></div>
+        </li>
+        <li>
+          <span>04</span>
+          <div><strong>Prepare, review, then submit</strong><p>Codex shows the signed Bundle manifest and file hashes before one final confirmation stages it and requests an isolated Run.</p><small>A queued Run is operational state only; it is not yet a Lean result, review, or receipt.</small></div>
+        </li>
+      </ol>
+    </details>
     <p className="local-agent-boundary">This page cannot access your computer, run Codex, or create Agent progress. Only the connected local Agent can sign a reported milestone or stage an explicitly confirmed evidence Bundle; the connection is revocable in Settings and never grants workspace access.</p>
   </section>;
 }
