@@ -83,15 +83,13 @@ function createOptionalRunnerDispatcher({
   if (configured !== settings.length) {
     throw new RemoteMcpRuntimeConfigurationError("Runner dispatch configuration must include Queue, image registry, limits, and control-plane signing material together.");
   }
-  if (!runnerQueue || typeof runnerQueue.send !== "function") {
-    throw new RemoteMcpRuntimeConfigurationError("Runner dispatch requires a Cloudflare Queue producer binding.");
-  }
+  const runnerQueueAdapter = providerNeutralRunnerQueue(runnerQueue);
   try {
     return new D1RemoteMcpRunnerDispatcher({
       database,
       bucket,
       artifactStore,
-      runnerQueue: new CloudflareRunnerQueue({ queue: runnerQueue }),
+      runnerQueue: runnerQueueAdapter,
       approvedImages: new PinnedRunnerImageRegistry({
         images: parseDeploymentJson(runnerApprovedImagesJson, "RUNNER_APPROVED_IMAGES_JSON"),
       }),
@@ -106,6 +104,12 @@ function createOptionalRunnerDispatcher({
     if (error instanceof RemoteMcpRuntimeConfigurationError) throw error;
     throw new RemoteMcpRuntimeConfigurationError("Runner dispatch configuration is invalid.");
   }
+}
+
+function providerNeutralRunnerQueue(value) {
+  if (value && typeof value.enqueue === "function") return value;
+  if (value && typeof value.send === "function") return new CloudflareRunnerQueue({ queue: value });
+  throw new RemoteMcpRuntimeConfigurationError("Runner dispatch requires a durable Queue adapter or Cloudflare Queue producer binding.");
 }
 
 function parseDeploymentJson(value, label) {

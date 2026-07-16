@@ -8,6 +8,7 @@ import * as zlib from "node:zlib";
 import { Miniflare } from "miniflare";
 import { D1R2ArtifactStore } from "../services/artifacts/d1-r2-artifact-store.mjs";
 import { D1R2RunnerBundleResolver } from "../services/lean-runner/d1-r2-runner-bundle-resolver.mjs";
+import { D1RunnerLeaseQueue } from "../services/lean-runner/d1-runner-lease-queue.mjs";
 import { D1RunStore } from "../services/lean-runner/d1-run-store.mjs";
 import { D1R2RunnerOutputStore } from "../services/lean-runner/d1-r2-runner-output-store.mjs";
 import { RunnerContainerExecutionClient } from "../services/lean-runner/runner-container-execution-client.mjs";
@@ -15,6 +16,7 @@ import { RunnerExecutionFinalizer } from "../services/lean-runner/runner-executi
 import { RunnerExecutionResultSigner } from "../services/lean-runner/runner-execution-result-signer.mjs";
 import { PinnedRunnerImageRegistry } from "../services/lean-runner/runner-image-policy.mjs";
 import { RunnerWorkspaceTransfer } from "../services/lean-runner/runner-workspace-transfer.mjs";
+import { TrustedRunnerProcess } from "../services/lean-runner/trusted-runner-process.mjs";
 import { ContainerLeanExecutor } from "../services/lean-runner/container-lean-executor.mjs";
 import { createContainerWorkspaceHttpHandler } from "../services/lean-runner/container-workspace-runtime.mjs";
 import { D1VerificationStore } from "../services/verification/d1-verification-store.mjs";
@@ -27,6 +29,7 @@ import {
 } from "../packages/protocol/artifact-bundle.mjs";
 import { canonicalJson } from "../packages/protocol/canonical-json.mjs";
 import { createLeanRunnerRequest, leanRunnerRequestHash } from "../packages/protocol/lean-runner.mjs";
+import { createRunnerQueueMessage, RunnerJobAuthenticator } from "../services/lean-runner/queue.mjs";
 import { runnerKeyFingerprint } from "../packages/protocol/runner-key-registry.mjs";
 import {
   verificationAttestationPayloadHash,
@@ -361,7 +364,6 @@ test("a local Lean fixture binds actual execution evidence into the signed recei
       artifactBundleHash: staged.bundle.manifestHash,
       queuedAt: "2026-07-13T00:00:01Z",
     });
-    const preparing = await runStore.prepare(queued.run.id, "2026-07-13T00:00:02Z");
     let executionInstant = 4;
     const handler = createContainerWorkspaceHttpHandler({
       stagingRoot: join(root, "staging"),
@@ -372,42 +374,74 @@ test("a local Lean fixture binds actual execution evidence into the signed recei
         now: () => new Date(`2026-07-13T00:00:${String(executionInstant++).padStart(2, "0")}Z`),
       }),
     });
-    const transfer = await new RunnerWorkspaceTransfer({ bucket }).stage({
-      run: preparing,
-      resolvedBundle,
-      container: { fetch: handler },
-    });
-    assert.deepEqual(transfer.uploaded, ["sourceArchive", "sourcePatch", "lakeManifest"]);
-    const running = await runStore.start(queued.run.id, "2026-07-13T00:00:03Z");
-    const execution = await new RunnerContainerExecutionClient().execute({
-      container: { fetch: handler },
-      run: running,
+    const queue = new D1RunnerLeaseQueue({ database });
+    const queueMessage = await createRunnerQueueMessage({
+      runId: request.jobId,
       request,
+      enqueuedAt: queued.run.queuedAt,
+      controlPlaneKeyId: "control-plane:closed-alpha-local",
+      controlPlanePrivateKey: keys.controlPlane.privateKey,
     });
-    assert.equal(execution.result.status, "succeeded");
-    assert.equal(execution.result.kernelStatus, "accepted");
-    assert.equal(execution.workspaceTreeHash, workspace.treeHash);
-    assert.deepEqual(execution.result.checks, {
-      network: "passed",
-      noSorry: "passed",
-      allowedAxioms: "passed",
-      leanBuild: "passed",
-    });
-    assert.deepEqual(await readdir(join(root, "staging")), []);
-    assert.deepEqual(await readdir(join(root, "workspaces")), []);
-
-    const finalized = await new RunnerExecutionFinalizer({
-      runStore,
-      outputStore: new D1R2RunnerOutputStore({ database, bucket }),
-      resultSigner: new RunnerExecutionResultSigner({
-        runnerKeyId: "runner-key:closed-alpha",
-        runnerPrivateKey: keys.runner.privateKey,
+    await queue.enqueue(queueMessage);
+    let finalized;
+    let trustedRunnerClockReads = 0;
+    const trustedRunner = new TrustedRunnerProcess({
+      queue,
+      authenticator: new RunnerJobAuthenticator({
+        issuerKeys: [{ id: "control-plane:closed-alpha-local", publicKey: keys.controlPlane.publicKey }],
       }),
-    }).finalize({
-      runId: running.id,
-      execution,
-      receivedAt: "2026-07-13T00:00:06Z",
+      consumerId: "runner:closed-alpha-local",
+      leaseDurationSeconds: 60,
+      heartbeatSeconds: 10,
+      now: () => new Date(trustedRunnerClockReads++ === 0
+        ? "2026-07-13T00:00:01.500Z"
+        : "2026-07-13T00:00:07Z"),
+      sleep: async () => new Promise(() => {}),
+      execute: async (authenticatedMessage, { beforeFinalize }) => {
+        assert.equal(authenticatedMessage.requestHash, await leanRunnerRequestHash(request));
+        const preparing = await runStore.prepare(queued.run.id, "2026-07-13T00:00:02Z");
+        const transfer = await new RunnerWorkspaceTransfer({ bucket }).stage({
+          run: preparing,
+          resolvedBundle,
+          container: { fetch: handler },
+        });
+        assert.deepEqual(transfer.uploaded, ["sourceArchive", "sourcePatch", "lakeManifest"]);
+        const running = await runStore.start(queued.run.id, "2026-07-13T00:00:03Z");
+        const execution = await new RunnerContainerExecutionClient().execute({
+          container: { fetch: handler },
+          run: running,
+          request: authenticatedMessage.request,
+        });
+        assert.equal(execution.result.status, "succeeded");
+        assert.equal(execution.result.kernelStatus, "accepted");
+        assert.equal(execution.workspaceTreeHash, workspace.treeHash);
+        assert.deepEqual(execution.result.checks, {
+          network: "passed",
+          noSorry: "passed",
+          allowedAxioms: "passed",
+          leanBuild: "passed",
+        });
+        assert.deepEqual(await readdir(join(root, "staging")), []);
+        assert.deepEqual(await readdir(join(root, "workspaces")), []);
+        await beforeFinalize();
+        finalized = await new RunnerExecutionFinalizer({
+          runStore,
+          outputStore: new D1R2RunnerOutputStore({ database, bucket }),
+          resultSigner: new RunnerExecutionResultSigner({
+            runnerKeyId: "runner-key:closed-alpha",
+            runnerPrivateKey: keys.runner.privateKey,
+          }),
+        }).finalize({
+          runId: running.id,
+          execution,
+          receivedAt: "2026-07-13T00:00:06Z",
+        });
+      },
     });
+    const trustedRunnerResult = await trustedRunner.processNext();
+    const durableDelivery = await queue.find(request.jobId);
+    assert.equal(trustedRunnerResult.outcome, "acknowledged", JSON.stringify({ trustedRunnerResult, durableDelivery }));
+    assert.equal(durableDelivery.deliveryState, "acknowledged");
     assert.equal(finalized.run.state, "succeeded");
     assert.equal(finalized.result.kernelStatus, "accepted");
 
@@ -549,8 +583,8 @@ test("a local Lean fixture binds actual execution evidence into the signed recei
 });
 
 async function createKeyFixture() {
-  const [alice, bob, carol, runner, issuer] = await Promise.all(
-    Array.from({ length: 5 }, () => crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"])),
+  const [alice, bob, carol, runner, issuer, controlPlane] = await Promise.all(
+    Array.from({ length: 6 }, () => crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"])),
   );
   return Object.freeze({
     alice: await toKeyPair(alice),
@@ -558,6 +592,7 @@ async function createKeyFixture() {
     carol: await toKeyPair(carol),
     runner: await toKeyPair(runner),
     issuer: await toKeyPair(issuer),
+    controlPlane: await toKeyPair(controlPlane),
   });
 }
 

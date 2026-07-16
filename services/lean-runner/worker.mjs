@@ -99,7 +99,7 @@ export async function createRunnerRuntime({
     replayEvidenceStore: new D1InlineVerificationReplayEvidenceStore({ database: env.DB }),
     resultSigner: new RunnerExecutionResultSigner({
       runnerKeyId: requireSetting(env, "RUNNER_RESULT_KEY_ID"),
-      runnerPrivateKey: await importRunnerPrivateKey(requireSetting(env, "RUNNER_RESULT_PRIVATE_KEY_JWK")),
+      runnerPrivateKey: await importRunnerResultPrivateKey(requireSetting(env, "RUNNER_RESULT_PRIVATE_KEY_JWK")),
     }),
   });
   return Object.freeze({
@@ -160,7 +160,10 @@ export function createRunnerQueueExecution({
   if (typeof sleep !== "function") throw new TypeError("Runner queue execution requires a sleep function.");
   if (typeof now !== "function") throw new TypeError("Runner queue execution requires a clock function.");
 
-  return async function executeAuthenticatedMessage(message) {
+  return async function executeAuthenticatedMessage(message, { beforeFinalize = async () => {} } = {}) {
+    if (typeof beforeFinalize !== "function") {
+      throw new TypeError("Runner queue execution beforeFinalize boundary must be a function.");
+    }
     const staged = await workspaceStager.executeAuthenticatedMessage(message, {
       preparingAt: timestamp(now),
       startedAt: timestamp(now),
@@ -183,6 +186,7 @@ export function createRunnerQueueExecution({
         cancellationPollMilliseconds,
         sleep,
         now,
+        beforeFinalize,
       });
     }
     if (staged.action !== "execute") {
@@ -198,6 +202,7 @@ export function createRunnerQueueExecution({
       cancellationPollMilliseconds,
       sleep,
       now,
+      beforeFinalize,
     });
   };
 }
@@ -212,6 +217,7 @@ async function executeAndFinalize({
   cancellationPollMilliseconds,
   sleep,
   now,
+  beforeFinalize,
 }) {
   const container = await getContainerForRun(run.id);
   if (!container || typeof container.fetch !== "function") {
@@ -237,6 +243,11 @@ async function executeAndFinalize({
   // Surface a control-plane or private-cancel failure before finalizing a
   // result. This leaves the Run active and makes Queue retry semantics safe.
   await cancellation.stop();
+  // Provider-neutral lease runners fence stale workers here, after private
+  // execution/output retrieval but before operator signing or durable result
+  // persistence. Cloudflare's binding can retain the default no-op because
+  // its Queue delivery acknowledgement owns that provider's retry boundary.
+  await beforeFinalize();
   return finalizer.finalize({ runId: run.id, execution, receivedAt: timestamp(now) });
 }
 
@@ -277,7 +288,7 @@ function getNamedContainer(env, runId) {
   return env.LEAN_RUNNER_CONTAINER.getByName(runId);
 }
 
-async function importRunnerPrivateKey(serialized) {
+export async function importRunnerResultPrivateKey(serialized) {
   let jwk;
   try {
     jwk = JSON.parse(serialized);

@@ -167,9 +167,11 @@ export class RunnerJobAuthenticator {
  */
 export const runnerQueueInterface = Object.freeze({
   enqueue: "enqueue(message) -> { message, created, deliveryState }",
-  claim: "claim({ consumerId, claimedAt }) -> { message, lease } | null",
+  claim: "claim({ consumerId, claimedAt, leaseDurationSeconds }) -> { message, lease } | null",
+  renew: "renew({ runId, leaseId, renewedAt, leaseDurationSeconds }) -> lease",
   acknowledge: "acknowledge({ runId, leaseId, acknowledgedAt }) -> message",
-  release: "release({ runId, leaseId, releasedAt }) -> message",
+  release: "release({ runId, leaseId, releasedAt, availableAt?, errorCode? }) -> message",
+  deadLetter: "deadLetter({ runId, leaseId, deadLetteredAt, errorCode }) -> message",
   cancelQueued: "cancelQueued({ runId, cancelledAt }) -> { deliveryState, message? }",
 });
 
@@ -211,6 +213,9 @@ export class InMemoryRunnerQueue {
       message: normalized,
       deliveryState: "queued",
       lease: null,
+      availableAt: normalized.enqueuedAt,
+      deliveryAttempts: 0,
+      lastErrorCode: null,
     };
     this.byRunId.set(normalized.runId, record);
     this.byIdempotency.set(idempotencyIdentity, record);
@@ -218,37 +223,85 @@ export class InMemoryRunnerQueue {
     return Object.freeze({ message: normalized, created: true, deliveryState: "queued" });
   }
 
-  async claim({ consumerId, claimedAt }) {
+  async claim({ consumerId, claimedAt, leaseDurationSeconds = 300 }) {
     requireIdentifier(consumerId, "consumerId");
     requireUtcInstant(claimedAt, "claimedAt");
+    requireDuration(leaseDurationSeconds, "leaseDurationSeconds");
     const record = this.order
       .map((runId) => this.byRunId.get(runId))
-      .find((candidate) => candidate?.deliveryState === "queued");
+      .find((candidate) => (
+        candidate?.deliveryState === "queued" && Date.parse(candidate.availableAt) <= Date.parse(claimedAt)
+      ) || (
+        candidate?.deliveryState === "leased" && Date.parse(candidate.lease.expiresAt) <= Date.parse(claimedAt)
+      ));
     if (!record) return null;
 
+    record.deliveryAttempts += 1;
     const lease = Object.freeze({
       id: `lease:${record.message.runId}:${++this.leaseSequence}`,
       consumerId,
       claimedAt,
+      expiresAt: addSeconds(claimedAt, leaseDurationSeconds),
+      deliveryAttempt: record.deliveryAttempts,
     });
     record.deliveryState = "leased";
     record.lease = lease;
+    record.lastErrorCode = null;
     return Object.freeze({ message: record.message, lease });
+  }
+
+  async renew({ runId, leaseId, renewedAt, leaseDurationSeconds = 300 }) {
+    const record = this.requireLeasedRecord(runId, leaseId);
+    requireUtcInstant(renewedAt, "renewedAt");
+    requireDuration(leaseDurationSeconds, "leaseDurationSeconds");
+    const nextExpiresAt = addSeconds(renewedAt, leaseDurationSeconds);
+    if (
+      Date.parse(record.lease.claimedAt) > Date.parse(renewedAt) ||
+      Date.parse(record.lease.expiresAt) <= Date.parse(renewedAt) ||
+      Date.parse(record.lease.expiresAt) >= Date.parse(nextExpiresAt)
+    ) {
+      throw new RunnerQueueProtocolError("RunnerQueue operation requires an unexpired active lease for this run.");
+    }
+    record.lease = Object.freeze({
+      ...record.lease,
+      expiresAt: nextExpiresAt,
+    });
+    return record.lease;
   }
 
   async acknowledge({ runId, leaseId, acknowledgedAt }) {
     const record = this.requireLeasedRecord(runId, leaseId);
     requireUtcInstant(acknowledgedAt, "acknowledgedAt");
+    requireLeaseUnexpired(record, acknowledgedAt);
     record.deliveryState = "acknowledged";
     record.lease = null;
     return record.message;
   }
 
-  async release({ runId, leaseId, releasedAt }) {
+  async release({ runId, leaseId, releasedAt, availableAt = releasedAt, errorCode = null }) {
     const record = this.requireLeasedRecord(runId, leaseId);
     requireUtcInstant(releasedAt, "releasedAt");
+    requireUtcInstant(availableAt, "availableAt");
+    requireLeaseUnexpired(record, releasedAt);
+    requireOptionalErrorCode(errorCode);
+    if (Date.parse(availableAt) < Date.parse(releasedAt)) {
+      throw new RunnerQueueProtocolError("RunnerQueue retry availability cannot precede its release.");
+    }
     record.deliveryState = "queued";
     record.lease = null;
+    record.availableAt = availableAt;
+    record.lastErrorCode = errorCode;
+    return record.message;
+  }
+
+  async deadLetter({ runId, leaseId, deadLetteredAt, errorCode }) {
+    const record = this.requireLeasedRecord(runId, leaseId);
+    requireUtcInstant(deadLetteredAt, "deadLetteredAt");
+    requireLeaseUnexpired(record, deadLetteredAt);
+    requireOptionalErrorCode(errorCode, { required: true });
+    record.deliveryState = "dead_letter";
+    record.lease = null;
+    record.lastErrorCode = errorCode;
     return record.message;
   }
 
@@ -313,6 +366,32 @@ function requireBase64Url(value, expectedByteLength, label) {
 function requireUtcInstant(value, label) {
   if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{3})?Z$/.test(value) || !Number.isFinite(Date.parse(value))) {
     throw new RunnerQueueProtocolError(`${label} must be an ISO-8601 UTC instant.`);
+  }
+}
+
+function requireDuration(value, label) {
+  if (!Number.isSafeInteger(value) || value < 30 || value > 3_600) {
+    throw new RunnerQueueProtocolError(`${label} must be between 30 and 3600 seconds.`);
+  }
+}
+
+function requireOptionalErrorCode(value, { required = false } = {}) {
+  if (value === null && !required) return;
+  if (typeof value !== "string" || !/^[a-z][a-z0-9_]{2,63}$/.test(value)) {
+    throw new RunnerQueueProtocolError("RunnerQueue errorCode must be a bounded privacy-safe code.");
+  }
+}
+
+function addSeconds(value, seconds) {
+  return new Date(Date.parse(value) + seconds * 1_000).toISOString();
+}
+
+function requireLeaseUnexpired(record, occurredAt) {
+  if (
+    Date.parse(record.lease.claimedAt) > Date.parse(occurredAt) ||
+    Date.parse(record.lease.expiresAt) <= Date.parse(occurredAt)
+  ) {
+    throw new RunnerQueueProtocolError("RunnerQueue operation requires an unexpired active lease for this run.");
   }
 }
 

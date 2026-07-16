@@ -22,6 +22,17 @@ export type DemoVerificationCheck = {
   passed: boolean;
 };
 
+export type DemoJourneyStage = {
+  id: "delegate" | "bundle" | "lean" | "review" | "receipt";
+  number: string;
+  title: string;
+  actor: string;
+  actorMode: "local_reference" | "mock_second_account" | "protocol_issuer";
+  detail: string;
+  evidence: string;
+  passed: boolean;
+};
+
 export type BuildWeekDemoVerification = {
   status: "verified" | "failed";
   checkedAt: string;
@@ -37,6 +48,21 @@ export type BuildWeekDemoVerification = {
     owner: string;
     agent: string;
     reviewers: readonly string[];
+  };
+  journey: readonly DemoJourneyStage[];
+  mockReviewer: {
+    personId: string;
+    agentId: string;
+    mode: "mock_second_account";
+    independentFromResearcher: boolean;
+    signedClaimCount: number;
+  };
+  creditPreview: {
+    status: "receipt_derived_preview_not_settled";
+    unit: "non_transferable_research_credit";
+    transferable: false;
+    researcher: readonly { label: string; value: number }[];
+    mockReviewer: readonly { label: string; value: number }[];
   };
   disclosure: string;
 };
@@ -120,6 +146,64 @@ export async function verifyBuildWeekDemoFixture(): Promise<BuildWeekDemoVerific
     ),
   ]);
 
+  const checksById = new Map(checks.map((candidate) => [candidate.id, candidate.passed]));
+  const mockReviewerAttestations = fixture.attestations.filter((attestation) => (
+    attestation.verifierPersonId === "person:demo-reviewer" &&
+    attestation.claimType !== "project_accepted"
+  ));
+  const journey: readonly DemoJourneyStage[] = [
+    {
+      id: "delegate",
+      number: "01",
+      title: "Delegate the local research Agent",
+      actor: "Reference researcher Person",
+      actorMode: "local_reference",
+      detail: "A Person signature grants one local Agent formalize and prove scope for a bounded period.",
+      evidence: fixture.delegation.payloadHash,
+      passed: checksById.get("delegation") === true,
+    },
+    {
+      id: "bundle",
+      number: "02",
+      title: "Package the minimum reproducible workspace",
+      actor: "Local Codex Agent",
+      actorMode: "local_reference",
+      detail: "The Agent signs the target, Git commit, Lean environment, patch, file tree and no-sorry policy.",
+      evidence: bundleHash,
+      passed: checksById.get("bundle") === true && checksById.get("objects") === true,
+    },
+    {
+      id: "lean",
+      number: "03",
+      title: "Replay the exact Lean entry file",
+      actor: "Local Lean fixture",
+      actorMode: "local_reference",
+      detail: "The checked fixture was executed by Lean locally; the signed result binds kernel status and output hashes.",
+      evidence: fixture.runner.result.requestHash,
+      passed: checksById.get("runner") === true,
+    },
+    {
+      id: "review",
+      number: "04",
+      title: "Review from a different owner",
+      actor: "Mock Reviewer Person",
+      actorMode: "mock_second_account",
+      detail: "The second account is simulated for the demo, but owns a distinct Ed25519 review key and signs real protocol attestations.",
+      evidence: mockReviewerAttestations[0]?.payloadHash ?? bundleHash,
+      passed: checksById.get("review") === true,
+    },
+    {
+      id: "receipt",
+      number: "05",
+      title: "Issue an attributable Receipt",
+      actor: "Proofweave reference issuer",
+      actorMode: "protocol_issuer",
+      detail: "Receipt policy binds the Person, Agent, Bundle, kernel result and different-owner claims into one signed record.",
+      evidence: receiptHash,
+      passed: checksById.get("receipt") === true,
+    },
+  ];
+
   return {
     status: checks.every((candidate) => candidate.passed) ? "verified" : "failed",
     checkedAt: new Date().toISOString(),
@@ -136,7 +220,22 @@ export async function verifyBuildWeekDemoFixture(): Promise<BuildWeekDemoVerific
       agent: fixture.receipt.beneficiary.agentId,
       reviewers: [...new Set(fixture.attestations.map((attestation) => attestation.verifierPersonId))],
     },
-    disclosure: fixture.disclosure,
+    journey,
+    mockReviewer: {
+      personId: "person:demo-reviewer",
+      agentId: "agent:demo-reviewer",
+      mode: "mock_second_account",
+      independentFromResearcher: "person:demo-reviewer" !== fixture.receipt.attempt.personId,
+      signedClaimCount: mockReviewerAttestations.length,
+    },
+    creditPreview: {
+      status: "receipt_derived_preview_not_settled",
+      unit: "non_transferable_research_credit",
+      transferable: false,
+      researcher: [{ label: "Certified lemma", value: checksById.get("receipt") === true ? 1 : 0 }],
+      mockReviewer: [{ label: "Independent verification claims", value: checksById.get("receipt") === true ? mockReviewerAttestations.length : 0 }],
+    },
+    disclosure: `${fixture.disclosure} The second reviewer account is a labeled deterministic mock; its key separation and signatures are checked by the real protocol.`,
   };
 }
 

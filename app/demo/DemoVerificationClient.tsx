@@ -5,6 +5,7 @@ import type { BuildWeekDemoVerification } from "@/app/lib/build-week-demo";
 
 export function DemoVerificationClient({ initial }: { initial: BuildWeekDemoVerification }) {
   const [verification, setVerification] = useState(initial);
+  const [activeStageIndex, setActiveStageIndex] = useState(0);
   const [isChecking, setIsChecking] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -30,9 +31,79 @@ export function DemoVerificationClient({ initial }: { initial: BuildWeekDemoVeri
   };
 
   const passedCount = verification.checks.filter((check) => check.passed).length;
+  const activeStage = verification.journey[activeStageIndex];
+  const isLastStage = activeStageIndex === verification.journey.length - 1;
 
   return (
-    <section className="demo-console" id="verification-console" aria-labelledby="verification-title">
+    <>
+      <section className="demo-walkthrough" id="demo-walkthrough" aria-labelledby="walkthrough-title">
+        <div className="demo-walkthrough-heading">
+          <div>
+            <p className="eyebrow">Three-minute walkthrough</p>
+            <h2 id="walkthrough-title">One local contribution. Five evidence gates.</h2>
+            <p>The researcher path is a checked local reference. The second account is intentionally mocked for demo reliability, while owner separation, keys, hashes, signatures and Receipt policy remain real.</p>
+          </div>
+          <span className="demo-mock-disclosure">Mock identity · real verification</span>
+        </div>
+
+        <div className="demo-walkthrough-layout">
+          <ol className="demo-stage-tabs" aria-label="Demo evidence gates">
+            {verification.journey.map((stage, index) => (
+              <li key={stage.id}>
+                <button
+                  type="button"
+                  className={index === activeStageIndex ? "is-active" : ""}
+                  aria-current={index === activeStageIndex ? "step" : undefined}
+                  onClick={() => setActiveStageIndex(index)}
+                >
+                  <span>{stage.number}</span>
+                  <strong>{stage.title}</strong>
+                  <i aria-label={stage.passed ? "passed" : "failed"}>{stage.passed ? "Passed" : "Failed"}</i>
+                </button>
+              </li>
+            ))}
+          </ol>
+
+          <article className="demo-stage-detail" aria-live="polite">
+            <div className="demo-stage-detail-topline">
+              <span>{modeLabel(activeStage.actorMode)}</span>
+              <strong>{activeStage.passed ? "Evidence gate passed" : "Evidence gate failed"}</strong>
+            </div>
+            <p className="demo-stage-number">Gate {activeStage.number}</p>
+            <h3>{activeStage.title}</h3>
+            <p>{activeStage.detail}</p>
+            <dl>
+              <div><dt>Actor</dt><dd>{activeStage.actor}</dd></div>
+              <div><dt>Bound evidence</dt><dd><code>{shortHash(activeStage.evidence)}</code></dd></div>
+              {activeStage.actorMode === "mock_second_account" && <div><dt>Owner check</dt><dd>{verification.mockReviewer.independentFromResearcher ? "Different Person ID" : "Conflict"}</dd></div>}
+            </dl>
+
+            {isLastStage && <div className="demo-credit-preview">
+              <div><span>Researcher preview</span><strong>{verification.creditPreview.researcher[0]?.value ?? 0}</strong><small>{verification.creditPreview.researcher[0]?.label}</small></div>
+              <div><span>Mock reviewer preview</span><strong>{verification.creditPreview.mockReviewer[0]?.value ?? 0}</strong><small>{verification.creditPreview.mockReviewer[0]?.label}</small></div>
+              <p>Receipt-derived, non-transferable and not settled as a Token.</p>
+            </div>}
+
+            <div className="demo-stage-actions">
+              <button
+                className="button button-primary"
+                type="button"
+                onClick={() => {
+                  if (isLastStage) void runChecks();
+                  else setActiveStageIndex((value) => Math.min(value + 1, verification.journey.length - 1));
+                }}
+                disabled={isLastStage && isChecking}
+              >
+                {isLastStage ? (isChecking ? "Checking signatures…" : "Verify complete chain") : "Next evidence gate"}
+                <span aria-hidden="true">{isLastStage ? "↻" : "→"}</span>
+              </button>
+              {activeStageIndex > 0 && <button className="demo-text-button" type="button" onClick={() => setActiveStageIndex(0)}>Restart walkthrough</button>}
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section className="demo-console" id="verification-console" aria-labelledby="verification-title">
       <div className="demo-console-heading">
         <div>
           <p className="eyebrow">Live protocol verification</p>
@@ -74,7 +145,8 @@ export function DemoVerificationClient({ initial }: { initial: BuildWeekDemoVeri
           {error && <p className="demo-check-error" role="alert">{error}</p>}
         </aside>
       </div>
-    </section>
+      </section>
+    </>
   );
 }
 
@@ -93,4 +165,10 @@ function formatTime(value: string) {
   } catch {
     return "just now";
   }
+}
+
+function modeLabel(mode: BuildWeekDemoVerification["journey"][number]["actorMode"]) {
+  if (mode === "mock_second_account") return "Mock second account";
+  if (mode === "protocol_issuer") return "Protocol issuer";
+  return "Local reference";
 }

@@ -63,3 +63,41 @@ test("a transfer failure never starts the Run and remains retryable through pref
   );
   assert.equal(startCalls, 0);
 });
+
+test("a process-local Sandbox provider restages immutable evidence when recovering a running Run", async () => {
+  const events = [];
+  const run = { id: "run:provider-recovery", state: "running" };
+  const message = { runId: run.id };
+  const stager = new RunnerWorkspaceStager({
+    preflight: {
+      async claimAuthenticatedMessage() {
+        events.push("claim");
+        return { action: "skip", reason: "run_running", run };
+      },
+      async recoverRunningAuthenticatedMessage() {
+        events.push("recover");
+        return { action: "stage", run, message, image: {}, resolvedBundle: { bundle: {} } };
+      },
+      async startAfterWorkspaceStaged() {
+        assert.fail("a recovered running Run must retain its original start transition");
+      },
+    },
+    workspaceTransfer: {
+      async stage() {
+        events.push("restage");
+        return { uploaded: ["sourceArchive", "sourcePatch", "lakeManifest"] };
+      },
+    },
+    getContainer: async () => ({ fetch: async () => new Response(null, { status: 204 }) }),
+    restageRunning: true,
+  });
+
+  const result = await stager.executeAuthenticatedMessage(message, {
+    preparingAt: "2026-07-13T00:00:03Z",
+    startedAt: "2026-07-13T00:00:04Z",
+  });
+  assert.equal(result.action, "execute");
+  assert.equal(result.recovered, true);
+  assert.equal(result.run, run);
+  assert.deepEqual(events, ["claim", "recover", "restage"]);
+});

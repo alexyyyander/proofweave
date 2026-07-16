@@ -88,6 +88,24 @@ export class RunnerJobPreflight {
     return Object.freeze({ action: "execute", run: started, message: normalizedMessage });
   }
 
+  /**
+   * A provider whose private Sandbox handle is process-local cannot resume a
+   * `running` Run after the trusted process crashes. Re-resolve the same
+   * immutable request so that provider may stage one fresh no-egress Sandbox;
+   * the Run identity and original startedAt remain unchanged.
+   */
+  async recoverRunningAuthenticatedMessage(message) {
+    const normalizedMessage = await normalizeRunnerQueueMessage(message);
+    const current = await this.requireMatchingRun(normalizedMessage);
+    if (current.state !== "running") return skipped(current);
+    const image = this.imageRegistry.resolve(normalizedMessage.request);
+    const resolvedBundle = await this.bundleResolver.resolve(normalizedMessage.request);
+    if (!resolvedBundle?.bundle || !isExecutableArtifactBundle(resolvedBundle.bundle)) {
+      throw new RunnerJobPreflightError("Only executable Bundles may be restaged for a running provider recovery.");
+    }
+    return this.stage(preparingMessage(normalizedMessage, current, image, resolvedBundle));
+  }
+
   async requireMatchingRun(message) {
     const run = await this.runStore.find(message.runId);
     if (!run) {

@@ -86,14 +86,17 @@ test("Runner queue execution stages once, executes in the named private Containe
     now: () => new Date("2026-07-13T00:00:00Z"),
   });
 
-  assert.deepEqual(await execute(message), { run: { ...running, state: "succeeded" } });
+  assert.deepEqual(await execute(message, {
+    beforeFinalize: async () => calls.push(["lease-fence"]),
+  }), { run: { ...running, state: "succeeded" } });
   assert.equal(calls[0][0], "stage");
   assert.equal(calls[1][0], "container");
   assert.equal(calls[1][1], running.id);
   assert.equal(calls[2][0], "execute");
   assert.equal(calls[2][1].request, message.request);
-  assert.equal(calls[3][0], "finalize");
-  assert.equal(calls[3][1].runId, running.id);
+  assert.equal(calls[3][0], "lease-fence");
+  assert.equal(calls[4][0], "finalize");
+  assert.equal(calls[4][1].runId, running.id);
 });
 
 test("Runner queue retry resumes a running Run but never restarts a cancellation or terminal Run", async () => {
@@ -129,6 +132,36 @@ test("Runner queue retry resumes a running Run but never restarts a cancellation
   await execute(message);
   assert.equal(imageCalls, 1);
   assert.equal(executionCalls, 1);
+});
+
+test("a stale provider lease cannot cross the result-finalization boundary", async () => {
+  let finalized = false;
+  const execute = createRunnerQueueExecution({
+    workspaceStager: {
+      async executeAuthenticatedMessage() {
+        return { action: "execute", run: running, message };
+      },
+    },
+    imageRegistry: { resolve() {} },
+    async getContainerForRun() { return { fetch() {} }; },
+    executionClient: {
+      async execute() { return { result: { jobId: running.id } }; },
+      async cancel() {},
+    },
+    finalizer: {
+      async finalize() {
+        finalized = true;
+        return { finalized: true };
+      },
+    },
+    now: () => new Date("2026-07-13T00:00:00Z"),
+  });
+
+  await assert.rejects(
+    execute(message, { beforeFinalize: async () => { throw new Error("lease lost"); } }),
+    /lease lost/,
+  );
+  assert.equal(finalized, false);
 });
 
 test("Runner forwards a durable cancellation exactly once to its named private Container", async () => {

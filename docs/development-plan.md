@@ -10,10 +10,11 @@ Status: implementation baseline, updated 2026-07-16
 > still need a paid Workers plan and the stated deployment gates.
 >
 > **Provider portability update:** ADR 0008 adds a tested libSQL compatibility
-> boundary that applies the complete D1 migration history unchanged, plus a
-> no-egress Modal Sandbox adapter behind the existing private Container
-> contract. These are source-complete adapters, not a deployed public MCP,
-> OAuth service, durable queue, or hosted Lean Runner.
+> boundary, a hash-ledgered zero-cost Turso bootstrap that applies the complete
+> D1 migration history unchanged, a durable
+> lease queue with stale-worker fencing, and a trusted process behind the
+> no-egress Modal Sandbox adapter. These are source-complete adapters, not a
+> deployed public MCP, OAuth service, or hosted Lean Runner.
 
 ## 1. Alpha objective
 
@@ -673,10 +674,9 @@ from the infrastructure runner.
 - Artifacts: use R2 with immutable content-addressed object keys.
 - Runner: separately deployed Cloudflare Container, one fresh instance per
   Run, with public Internet disabled and no Container credentials.
-- Queue: Cloudflare Queues for closed alpha, with a provider-neutral
-  `RunnerQueue` contract retained for future portability. The checked-in
-  adapter authenticates before execution, but no Queue, Runner Worker, image,
-  or Container is deployed yet.
+- Queue: either Cloudflare Queues or migration `0032`'s provider-neutral
+  libSQL lease queue. Both authenticate the signed envelope before execution;
+  neither a Queue, trusted process, image, nor Container is deployed yet.
 - Authentication: use the existing Sites/ChatGPT identity for the closed alpha;
   introduce independent passkey/email authentication before public beta so a
   ChatGPT account is not a global participation requirement.

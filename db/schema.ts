@@ -981,6 +981,80 @@ export const runs = sqliteTable(
   ],
 );
 
+// Durable transport for source-free, control-plane-signed Runner requests.
+// Identity columns are immutable in migration 0032; only the delivery
+// projection changes as a trusted process claims and fences expiring leases.
+export const runnerQueueMessages = sqliteTable(
+  "runner_queue_messages",
+  {
+    runId: text("run_id")
+      .primaryKey()
+      .references(() => runs.id, { onDelete: "restrict" }),
+    attemptId: text("attempt_id").notNull(),
+    idempotencyKey: text("idempotency_key").notNull(),
+    requestHash: text("request_hash").notNull(),
+    canonicalMessage: text("canonical_message").notNull(),
+    deliveryState: text("delivery_state", {
+      enum: ["queued", "leased", "acknowledged", "cancelled", "dead_letter"],
+    })
+      .notNull()
+      .default("queued"),
+    availableAt: text("available_at").notNull(),
+    leaseId: text("lease_id"),
+    leaseConsumerId: text("lease_consumer_id"),
+    leaseClaimedAt: text("lease_claimed_at"),
+    leaseExpiresAt: text("lease_expires_at"),
+    deliveryAttempts: integer("delivery_attempts").notNull().default(0),
+    lastErrorCode: text("last_error_code"),
+    enqueuedAt: text("enqueued_at").notNull(),
+    acknowledgedAt: text("acknowledged_at"),
+    cancelledAt: text("cancelled_at"),
+    deadLetteredAt: text("dead_lettered_at"),
+    createdAt,
+    updatedAt: text("updated_at").notNull(),
+  },
+  (table) => [
+    uniqueIndex("runner_queue_attempt_idempotency_idx").on(table.attemptId, table.idempotencyKey),
+    index("runner_queue_available_idx").on(table.deliveryState, table.availableAt, table.enqueuedAt),
+    index("runner_queue_lease_expiry_idx").on(table.deliveryState, table.leaseExpiresAt),
+  ],
+);
+
+export const runnerQueueEvents = sqliteTable(
+  "runner_queue_events",
+  {
+    id: text("id").primaryKey(),
+    deduplicationKey: text("deduplication_key").notNull(),
+    runId: text("run_id")
+      .notNull()
+      .references(() => runnerQueueMessages.runId, { onDelete: "restrict" }),
+    eventType: text("event_type", {
+      enum: [
+        "enqueued",
+        "lease_claimed",
+        "lease_reclaimed",
+        "lease_renewed",
+        "acknowledged",
+        "released",
+        "cancelled",
+        "dead_lettered",
+      ],
+    }).notNull(),
+    deliveryState: text("delivery_state", {
+      enum: ["queued", "leased", "acknowledged", "cancelled", "dead_letter"],
+    }).notNull(),
+    leaseId: text("lease_id"),
+    deliveryAttempt: integer("delivery_attempt").notNull(),
+    errorCode: text("error_code"),
+    occurredAt: text("occurred_at").notNull(),
+    createdAt,
+  },
+  (table) => [
+    uniqueIndex("runner_queue_events_deduplication_idx").on(table.deduplicationKey),
+    index("runner_queue_events_run_time_idx").on(table.runId, table.occurredAt),
+  ],
+);
+
 export const runEvents = sqliteTable(
   "run_events",
   {

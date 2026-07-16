@@ -782,7 +782,9 @@ test("publicly verifies the checked Build Week reference evidence", async () => 
   const html = await page.text();
   assert.match(html, /All checks passed/i);
   assert.match(html, /Verified reference · no account required/i);
-  assert.match(html, /The hosted Runner is live/i);
+  assert.match(html, /Mock identity · real verification/i);
+  assert.match(html, /Mock owner reviews/i);
+  assert.match(html, /The reviewer is a live participant/i);
   assert.match(html, /This demo does not claim/i);
 
   const response = await render("/api/demo/verify");
@@ -792,9 +794,17 @@ test("publicly verifies the checked Build Week reference evidence", async () => 
   assert.equal(verification.status, "verified");
   assert.equal(verification.checks.length, 6);
   assert.equal(verification.checks.every((check) => check.passed), true);
+  assert.equal(verification.journey.length, 5);
+  assert.equal(verification.journey.every((stage) => stage.passed), true);
+  assert.equal(verification.mockReviewer.mode, "mock_second_account");
+  assert.equal(verification.mockReviewer.independentFromResearcher, true);
+  assert.equal(verification.mockReviewer.signedClaimCount, 2);
+  assert.equal(verification.creditPreview.status, "receipt_derived_preview_not_settled");
+  assert.equal(verification.creditPreview.transferable, false);
   assert.match(verification.record.bundleHash, /^sha256:[a-f0-9]{64}$/);
   assert.match(verification.record.receiptHash, /^sha256:[a-f0-9]{64}$/);
   assert.match(verification.disclosure, /not a live network contribution/i);
+  assert.match(verification.disclosure, /labeled deterministic mock/i);
 });
 
 test("keeps keyboard users one action away from the main content on critical pages", async () => {

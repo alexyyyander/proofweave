@@ -63,7 +63,10 @@ test("a concurrent claim is skipped instead of starting another Container", asyn
   const { message, request } = await fixtureMessage();
   const queued = await fixtureRun(request);
   const runStore = new MemoryRunStore(markRunStarted(markRunPreparing(queued, "2026-07-13T00:00:01Z"), "2026-07-13T00:00:02Z"));
-  const resolver = new MemoryBundleResolver(Object.freeze({}));
+  const resolvedBundle = Object.freeze({
+    bundle: Object.freeze({ id: "bundle:preflight-recovery", protocolVersion: "pw-artifact-bundle-v2" }),
+  });
+  const resolver = new MemoryBundleResolver(resolvedBundle);
   const preflight = new RunnerJobPreflight({
     runStore,
     bundleResolver: resolver,
@@ -74,6 +77,13 @@ test("a concurrent claim is skipped instead of starting another Container", asyn
   assert.equal(result.action, "skip");
   assert.equal(result.reason, "run_running");
   assert.equal(resolver.requests.length, 0);
+  assert.equal(runStore.startCalls, 0);
+
+  const recovered = await preflight.recoverRunningAuthenticatedMessage(message);
+  assert.equal(recovered.action, "stage");
+  assert.equal(recovered.run.state, "running");
+  assert.equal(recovered.resolvedBundle, resolvedBundle);
+  assert.equal(resolver.requests.length, 1);
   assert.equal(runStore.startCalls, 0);
 });
 

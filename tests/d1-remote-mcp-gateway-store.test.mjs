@@ -525,7 +525,10 @@ test("a prove-delegated OAuth Agent stages a signed v2 Bundle and requests one i
   });
   const runnerQueue = {
     messages: [],
-    async send(message) { this.messages.push(message); },
+    async enqueue(message) {
+      this.messages.push(message);
+      return { message, created: true, deliveryState: "queued" };
+    },
   };
   const gateway = createD1RemoteMcpGatewayRuntime({
     resource,

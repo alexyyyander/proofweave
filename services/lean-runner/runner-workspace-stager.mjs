@@ -12,7 +12,7 @@ export class RunnerWorkspaceStagerError extends Error {
  * the separate transition into `running`.
  */
 export class RunnerWorkspaceStager {
-  constructor({ preflight, workspaceTransfer, getContainer }) {
+  constructor({ preflight, workspaceTransfer, getContainer, restageRunning = false }) {
     if (!preflight || typeof preflight.claimAuthenticatedMessage !== "function" || typeof preflight.startAfterWorkspaceStaged !== "function") {
       throw new TypeError("RunnerWorkspaceStager requires a RunnerJobPreflight preparation boundary.");
     }
@@ -22,13 +22,23 @@ export class RunnerWorkspaceStager {
     if (typeof getContainer !== "function") {
       throw new TypeError("RunnerWorkspaceStager requires a private Container resolver.");
     }
+    if (typeof restageRunning !== "boolean") {
+      throw new TypeError("RunnerWorkspaceStager restageRunning must be boolean.");
+    }
+    if (restageRunning && typeof preflight.recoverRunningAuthenticatedMessage !== "function") {
+      throw new TypeError("RunnerWorkspaceStager recovery requires a running-Run preflight boundary.");
+    }
     this.preflight = preflight;
     this.workspaceTransfer = workspaceTransfer;
     this.getContainer = getContainer;
+    this.restageRunning = restageRunning;
   }
 
   async executeAuthenticatedMessage(message, { preparingAt, startedAt }) {
-    const prepared = await this.preflight.claimAuthenticatedMessage(message, { preparingAt });
+    let prepared = await this.preflight.claimAuthenticatedMessage(message, { preparingAt });
+    if (prepared.action === "skip" && prepared.run?.state === "running" && this.restageRunning) {
+      prepared = await this.preflight.recoverRunningAuthenticatedMessage(message);
+    }
     if (prepared.action === "skip") return prepared;
     if (prepared.action !== "stage") {
       throw new RunnerWorkspaceStagerError("Runner preflight returned an unsupported workspace action.");
@@ -42,6 +52,17 @@ export class RunnerWorkspaceStager {
       resolvedBundle: prepared.resolvedBundle,
       container,
     });
+    if (prepared.run.state === "running") {
+      return Object.freeze({
+        action: "execute",
+        run: prepared.run,
+        message: prepared.message,
+        image: prepared.image,
+        resolvedBundle: prepared.resolvedBundle,
+        transfer,
+        recovered: true,
+      });
+    }
     const started = await this.preflight.startAfterWorkspaceStaged(message, { startedAt });
     if (started.action === "skip") return started;
     if (started.action !== "execute") {
@@ -54,6 +75,7 @@ export class RunnerWorkspaceStager {
       image: prepared.image,
       resolvedBundle: prepared.resolvedBundle,
       transfer,
+      recovered: false,
     });
   }
 }

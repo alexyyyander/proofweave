@@ -1,6 +1,6 @@
 # ADR 0008: Provider-neutral alpha control plane and Sandbox runner
 
-Status: accepted direction, source adapters complete, deployment pending, 2026-07-14
+Status: accepted direction, Turso bootstrap plus queue and trusted-runner adapters complete, hosted execution pending, 2026-07-16
 
 ## Context
 
@@ -10,7 +10,7 @@ processes. Cloudflare Queues and Containers also require account capabilities
 that are not available to the no-card alpha.
 
 The first alternative considered was managed Postgres. Proofweave already has
-26 SQLite migration files (`0000` through `0025`) and 117 prepared-query call sites using D1/SQLite
+33 SQLite migration files (`0000` through `0032`) and a large prepared-query surface using D1/SQLite
 semantics, including triggers, `INSERT OR IGNORE`, positional placeholders,
 BLOB evidence, and atomic batches. Rewriting that layer before the first live
 alpha would add risk without changing any signed research protocol.
@@ -27,7 +27,9 @@ provider-neutral boundaries:
    `prepare`, `bind`, `first`, `all`, `run`, `raw`, and atomic `batch`.
 2. Apply the existing migrations unchanged to the new database, including the
    one-megabyte D1-inline evidence boundary from migration `0025`. Do not copy
-   existing Sites records implicitly.
+   existing Sites records implicitly. The external database uses a separate
+   SHA-256 migration ledger; each migration and its ledger entry commit in one
+   libSQL batch, and a non-empty unledgered database is rejected.
 3. Keep every signature, canonical hash, Artifact Bundle, Runner request,
    review attestation, and Contribution Receipt format provider-neutral.
 4. Use a Modal Sandbox adapter behind the existing private Container `fetch`
@@ -50,7 +52,7 @@ public HTTPS MCP + OAuth service
       |
       +-- remote libSQL control-plane database
       |
-      +-- durable Runner queue/lease adapter (not yet implemented)
+      +-- durable Runner queue/lease adapter
                   |
                   v
             Modal Sandbox
@@ -61,14 +63,21 @@ public HTTPS MCP + OAuth service
 
 ## Deployment gates
 
-The new source adapters are not a live service. Production remains disabled
+The provider adapters are not a live service. Migration `0032` now supplies a
+durable, append-audited lease queue, and the trusted process renews leases,
+retries with bounded backoff, dead-letters invalid or exhausted deliveries,
+fences stale workers before result signing/persistence, restages immutable
+evidence after a process-local Sandbox recovery, and keeps database, Modal,
+and signing credentials outside the Sandbox.
+Production remains disabled
 until all of the following are satisfied:
 
 - an independently created remote database receives the reviewed migrations;
 - the public MCP and OAuth HTTPS process has participant identity, recovery,
   revocation, rate limiting, and structured audit operations;
-- a durable queue or lease store preserves at-least-once delivery and
-  idempotent Run claiming;
+- migration `0032` has been applied to the shared database and concurrent
+  claim, expiry recovery, stale-lease fencing, and dead-letter alerts have
+  been exercised against that hosted database;
 - the Modal app and pinned image digest are reviewed;
 - Modal's CPU, memory, timeout, disk, and process isolation are documented and
   accepted for this image before

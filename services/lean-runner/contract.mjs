@@ -23,6 +23,12 @@ export {
 } from "./queue.mjs";
 
 export {
+  D1RunnerLeaseQueue,
+  D1RunnerLeaseQueueConfigurationError,
+  durableRunnerQueueMaxMessageBytes,
+} from "./d1-runner-lease-queue.mjs";
+
+export {
   CloudflareRunnerQueue,
   CloudflareRunnerQueueError,
   cloudflareRunnerQueueMaxMessageBytes,
@@ -41,6 +47,13 @@ export {
   ModalSandboxContainerError,
   ModalSandboxContainerFactory,
 } from "./modal-sandbox-container.mjs";
+
+export {
+  createTrustedRunnerRuntime,
+  createTrustedRunnerRuntimeFromEnvironment,
+  TrustedRunnerProcess,
+  TrustedRunnerProcessConfigurationError,
+} from "./trusted-runner-process.mjs";
 
 export {
   D1R2RunnerBundleResolver,

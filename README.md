@@ -152,8 +152,12 @@ The project does not use `wrangler.jsonc`.
   external service or create a production database.
 - `services/lean-runner/modal-sandbox-container.mjs` adapts one no-egress,
   pinned-image Modal Sandbox to the existing private Container fetch contract.
-  It stays fail-closed until an operator explicitly reviews the complete
-  external resource policy; no hosted Runner is implied by this source.
+- `services/lean-runner/d1-runner-lease-queue.mjs` and
+  `trusted-runner-process.mjs` provide the external libSQL lease queue,
+  heartbeat/recovery loop, signature gate, and trusted result-signing boundary.
+  They stay fail-closed until an operator explicitly reviews the complete
+  external resource policy and enables execution; no hosted Runner is implied
+  by this source.
 - `services/receipts/` contains the internal-only D1 issuance boundary for
   signed Contribution Receipts. The web app has a separate public, read-only
   receipt lookup; it cannot issue or alter a receipt.
@@ -257,12 +261,22 @@ application secrets.
 - `npm run observability:check`: validate privacy-minimal Worker audit records
 - `npm run portable:database:check`: verify D1 compatibility, atomic batches,
   BLOB evidence, and the complete migration history on local libSQL
+- `npm run turso:bootstrap`: after the official Turso CLI is installed, open
+  Turso's login when needed, create/reuse the free external control-plane
+  database, save a 30-day scoped token to `.env.local`, and migrate it
+- `npm run turso:plan`: inspect the remote migration ledger without writing
+- `npm run turso:migrate`: atomically apply only the reviewed pending history
+- `npm run turso:verify`: require the complete immutable history and critical
+  control-plane tables; see the [zero-cost Turso guide](docs/turso-zero-cost-control-plane.md)
 - `npm run modal:runner:check`: verify the one-Run, no-egress Modal Sandbox
   adapter and prove its Connect Token never enters the Lean environment
 - `npm run mcp:gateway:check`: test the remote gateway and identity protocol
   scaffolding
 - `npm run runner:check`: validate the isolated Lean runner protocol and
-  Cloudflare Queue/Container policy adapter
+  Cloudflare plus provider-neutral queue/Container policy adapters
+- `npm run runner:trusted:start`: start the external libSQL + Modal trusted
+  Runner process; it fails closed unless all reviewed deployment values and
+  `RUNNER_EXECUTION_ENABLED=true` are present
 - `npm run runner:fixtures:check`: run the checked-in local Lean fixtures
 - `npm run runner:execution:check`: exercise the source-only Container Lean
   executor with those local Lean fixtures (requires `lake`/Lean locally)
@@ -364,6 +378,9 @@ The checkpoint, historical-import, and branch-DAG boundaries are specified in
 the [research graph contract](docs/research-graph-contract.md).
 The external Worker preflight and shared D1-inline deployment invariant are in the
 [MCP control-plane deployment guide](docs/mcp-control-plane-deployment.md).
+The separate no-card shared database can be bootstrapped with the
+[zero-cost Turso control-plane guide](docs/turso-zero-cost-control-plane.md);
+this does not switch the Sites frontend away from its existing D1 binding.
 The parallel Runner deployment guard is in the
 [Runner deployment preflight guide](docs/runner-deployment-preflight.md).
 
