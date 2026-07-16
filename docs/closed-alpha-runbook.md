@@ -3,7 +3,8 @@
 This runbook describes the current Proofweave alpha honestly. The Sites
 application has a publicly readable research catalog and verified reference
 Demo. Its Person-scoped setup, workbench, review, and evidence actions require
-Sign in with ChatGPT. The private-beta local Codex Connector is available only
+a Proofweave sign-in. Google OpenID Connect and dispatch-owned ChatGPT sign-in
+map to the same stable Person attribution root. The private-beta local Codex Connector is available only
 after the Site D1 control-plane migrations are applied; it is **not** a public
 MCP service and does not itself execute Lean.
 
@@ -82,6 +83,6 @@ npm run security:dependencies
 
 The production dependency audit must report no high-severity findings. The
 deployment process packages the exact checked commit. Public access is limited
-to the frontend and Sign in with ChatGPT boundary: enabling remote MCP, hosted
+to the frontend and provider-neutral sign-in boundary: enabling remote MCP, hosted
 Lean execution, or broader participant writes still requires the external
 deployment and security gates in this runbook.

@@ -17,4 +17,6 @@ export const footerNavigation = [
   { href: "/reviews", label: "Review queue" },
   { href: "/how-it-works", label: "How it works" },
   { href: "/about", label: "About & principles" },
+  { href: "/privacy", label: "Privacy" },
+  { href: "/terms", label: "Terms" },
 ];

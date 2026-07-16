@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getCatalogRepository } from "@/db/repositories/catalog";
-import { Footer, Header, ProductStateBadge, StatusStack } from "./ui";
+import { Footer, ProductStateBadge, StatusStack } from "./ui";
+import { Header } from "./header";
 
 export const dynamic = "force-dynamic";
 

@@ -1,6 +1,6 @@
 # ADR 0003: Person-rooted attribution and closed-alpha authentication
 
-Status: accepted, 2026-07-13
+Status: amended, 2026-07-16
 
 ## Context
 
@@ -11,15 +11,18 @@ provide ChatGPT/SIWC identity for a closed alpha.
 
 ## Decision
 
-Create one canonical `Person` per authenticated provider subject and store the
-provider mapping as `AuthIdentity`. An `Agent` has exactly one Person owner at a
+Create one canonical `Person` attribution root and store one or more provider
+mappings as `person_identities`. An `Agent` has exactly one Person owner at a
 time. A signed delegation certificate specifies its beneficiary, key, scope,
 validity period, and revocation history. Independence is computed from
 `Person` IDs, never Agent IDs.
 
-Use Sites/ChatGPT identity only for the closed alpha. Before public beta,
-introduce an independent passkey/email identity path so a ChatGPT account is
-not a participation requirement.
+Preserve Sites/ChatGPT identity and add Google OpenID Connect as the first
+external provider. Google `sub` is its stable provider key. A first Google
+login may link to an existing Person only through the same provider-verified
+normalized email; provider tokens are not retained. Future passkey or email
+providers must reuse this mapping boundary so a ChatGPT account is not a
+participation requirement.
 
 ## Consequences
 

@@ -1,5 +1,6 @@
 import { getD1 } from "@/db";
 import type { PersonIdentity } from "./delegation";
+import { getAccountAuthRepository } from "./account-auth";
 import { D1ProofweaveOAuthStore } from "@/services/proofweave-identity/d1-oauth-store.mjs";
 
 const localCallbackUrl = "http://127.0.0.1:44765/callback";
@@ -128,11 +129,8 @@ export async function approveLocalCodexPairing(input: {
   const connectionMode = connectionModeForStoredScopes(row.requested_scopes_json);
   const requestedScopes = connectionPolicies[connectionMode].oauthScopes;
   const store = new D1ProofweaveOAuthStore(getD1());
-  const person = await getD1()
-    .prepare("SELECT id FROM persons WHERE identity_provider = ? AND provider_subject = ?")
-    .bind(input.identity.provider, input.identity.subject.trim().toLowerCase())
-    .first<{ id: string }>();
-  if (!person) throw new LocalCodexPairingError("Open Proofweave settings before approving a local Codex connection.");
+  const account = await getAccountAuthRepository().resolveIdentity(input.identity);
+  const person = { id: account.personId };
 
   const eligible = await store.listEligibleAgents(person.id, requestedScopes);
   const agent = eligible.find(

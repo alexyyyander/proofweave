@@ -9,13 +9,14 @@ import {
 } from "@/db/repositories/provisional-contributions";
 import { getReviewAssignmentRepository } from "@/db/repositories/reviews";
 import type { McpAttempt } from "@/packages/domain/mcp";
-import { chatGPTSignOutPath, requireChatGPTUser } from "../chatgpt-auth";
-import { Footer, Header } from "../ui";
+import { providerAwareSignOutPath, requireUser, toPersonIdentity, type AuthUser } from "../auth";
+import { Footer } from "../ui";
+import { Header } from "../header";
 
 export const dynamic = "force-dynamic";
 
 export default async function ProfilePage() {
-  const user = await requireChatGPTUser("/profile");
+  const user = await requireUser("/profile");
   const data = await loadProfile(user);
   if (!data) return <ProfileUnavailable />;
   const { delegation, publicProfile, attempts, reviews, provisionalBundleCount } = data;
@@ -33,11 +34,11 @@ export default async function ProfilePage() {
       <section className="profile-hero">
         <div className="profile-avatar" aria-hidden="true">{initials(user.displayName)}</div>
         <div className="profile-hero-copy"><p className="eyebrow">Your Proofweave Person</p><h1>{user.displayName}</h1><p>{user.email}</p><code>{delegation.person.id}</code></div>
-        <div className="profile-hero-actions"><Link className="button profile-public-button" href={`/people/${encodeURIComponent(delegation.person.id)}`}>View public contribution record <span>↗</span></Link><Link className="text-link" href={chatGPTSignOutPath("/")}>Sign out <span>→</span></Link></div>
+        <div className="profile-hero-actions"><Link className="button profile-public-button" href={`/people/${encodeURIComponent(delegation.person.id)}`}>View public contribution record <span>↗</span></Link><Link className="text-link" href={providerAwareSignOutPath(user, "/")}>Sign out <span>→</span></Link></div>
       </section>
 
       <section className="profile-assurance" aria-label="Identity assurance">
-        <div><span>Authenticated as</span><strong>ChatGPT account</strong><p>Your email identifies this private session and is never shown on the public profile.</p></div>
+        <div><span>Authenticated as</span><strong>{user.providerLabel} account</strong><p>Your verified email identifies this private session and is never shown on the public profile.</p></div>
         <div><span>Attribution root</span><strong>Proofweave Person</strong><p>Agent work, reviews, and Receipts are credited to this stable Person ID.</p></div>
         <div><span>Member since</span><strong>{formatDate(publicProfile.person.joinedAt)}</strong><p>Public evidence remains independently inspectable even if an Agent is later revoked.</p></div>
       </section>
@@ -73,9 +74,9 @@ export default async function ProfilePage() {
   </div>;
 }
 
-async function loadProfile(user: { email: string; displayName: string }) {
+async function loadProfile(user: AuthUser) {
   try {
-    const delegation = await getDelegationRepository().getProfile({ provider: "chatgpt", subject: user.email, displayName: user.displayName });
+    const delegation = await getDelegationRepository().getProfile(toPersonIdentity(user));
     const [publicProfile, attempts, reviews, provisional] = await Promise.all([
       getPersonProfileRepository().findPublicByPersonId(delegation.person.id),
       getMcpRepository().listAttempts(delegation.person.id),

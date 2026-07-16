@@ -2,8 +2,9 @@ import Link from "next/link";
 
 import { MissingDatabaseBindingError } from "@/db";
 import { getDelegationRepository, type DelegationProfile } from "@/db/repositories/delegation";
-import { chatGPTSignInPath, chatGPTSignOutPath, getChatGPTUser, type ChatGPTUser } from "../chatgpt-auth";
-import { Footer, Header, ProductStateBadge } from "../ui";
+import { getCurrentUser, providerAwareSignOutPath, signInPath, toPersonIdentity, type AuthUser } from "../auth";
+import { Footer, ProductStateBadge } from "../ui";
+import { Header } from "../header";
 import { AgentConnections } from "../workbench/AgentConnections";
 import { DelegationSetup } from "../workbench/DelegationSetup";
 import { DelegationSummary } from "../workbench/workbench-sections";
@@ -12,7 +13,7 @@ import { activeLocalCodexInstallation } from "../lib/local-agent-journey";
 export const dynamic = "force-dynamic";
 
 export default async function SettingsPage() {
-  const user = await getChatGPTUser();
+  const user = await getCurrentUser();
   const { profile, storageAvailable } = await loadSettingsProfile(user);
   const connection = activeLocalCodexInstallation(profile);
   const status = !user
@@ -39,9 +40,9 @@ export default async function SettingsPage() {
           <span>{user ? user.displayName : "Your contribution record starts after sign-in."}</span>
           <Link
             className="settings-account-switch"
-            href={user ? chatGPTSignOutPath("/settings") : chatGPTSignInPath("/settings")}
+            href={user ? providerAwareSignOutPath(user, "/settings") : signInPath("/settings")}
           >
-            {user ? "Switch ChatGPT account" : "Sign in with ChatGPT"}
+            {user ? "Change sign-in account" : "Choose a sign-in method"}
             <span aria-hidden="true">→</span>
           </Link>
         </div>
@@ -54,18 +55,18 @@ export default async function SettingsPage() {
       </section>
 
       {profile && <DelegationSummary profile={profile} />}
-      <DelegationSetup profile={profile} isAuthenticated={Boolean(user)} signInPath={chatGPTSignInPath("/settings#delegation-setup")} storageAvailable={storageAvailable} />
+      <DelegationSetup profile={profile} isAuthenticated={Boolean(user)} signInPath={signInPath("/settings#delegation-setup")} storageAvailable={storageAvailable} />
       {profile && <AgentConnections installations={profile.agentInstallations} />}
     </main>
     <Footer />
   </div>;
 }
 
-async function loadSettingsProfile(user: ChatGPTUser | null): Promise<{ profile: DelegationProfile | null; storageAvailable: boolean }> {
+async function loadSettingsProfile(user: AuthUser | null): Promise<{ profile: DelegationProfile | null; storageAvailable: boolean }> {
   if (!user) return { profile: null, storageAvailable: true };
   try {
     return {
-      profile: await getDelegationRepository().getProfile({ provider: "chatgpt", subject: user.email, displayName: user.displayName }),
+      profile: await getDelegationRepository().getProfile(toPersonIdentity(user)),
       storageAvailable: true,
     };
   } catch (error) {

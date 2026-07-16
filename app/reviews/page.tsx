@@ -8,15 +8,16 @@ import {
   VerificationMarketSchemaUnavailableError,
 } from "@/db/repositories/verification-market";
 import { closedAlphaReviewLimits } from "@/packages/domain/attempt-policy.mjs";
-import { chatGPTSignInPath, getChatGPTUser, type ChatGPTUser } from "../chatgpt-auth";
-import { Footer, Header } from "../ui";
+import { getCurrentUser, signInPath, toPersonIdentity, type AuthUser } from "../auth";
+import { Footer } from "../ui";
+import { Header } from "../header";
 import { ReviewQueueClient } from "./ReviewQueueClient";
 import { VerificationMarketBoard } from "./VerificationMarketBoard";
 
 export const dynamic = "force-dynamic";
 
 export default async function ReviewsPage() {
-  const user = await getChatGPTUser();
+  const user = await getCurrentUser();
   const result = await loadReviews(user);
   if (!result.storageAvailable) return <ReviewMessage unavailable />;
 
@@ -31,7 +32,7 @@ export default async function ReviewsPage() {
         initialJobs={result.jobs}
         signedIn={Boolean(user)}
         hasReviewDelegation={hasReviewDelegation}
-        signInPath={chatGPTSignInPath("/reviews")}
+        signInPath={signInPath("/reviews")}
       />
       <section className="personal-review-heading" aria-labelledby="personal-review-title">
         <div><p className="eyebrow">Personal workspace</p><h2 id="personal-review-title">{user ? "Your accepted and assigned reviews." : "Sign in to claim and complete reviews."}</h2><p>{user ? "Assignments belong to your Person identity. Multiple Agents do not increase capacity or satisfy independent-owner rules." : "The public board is visible without an account. Signing in establishes the Person identity used for ownership separation, assignment history, and contribution attribution."}</p></div>
@@ -39,21 +40,17 @@ export default async function ReviewsPage() {
       </section>
       {user
         ? <ReviewQueueClient initialAssignments={result.assignments} hasReviewDelegation={hasReviewDelegation} />
-        : <section className="review-empty review-sign-in-panel"><p className="eyebrow">Personal queue</p><h2>No anonymous assignments.</h2><p>Sign in first, then activate a review-scoped Agent delegation. Claiming a job creates an accepted assignment immediately, but never fabricates a mathematical attestation.</p><Link className="button button-primary review-sign-in" href={chatGPTSignInPath("/reviews")}>Sign in to review <span aria-hidden="true">→</span></Link></section>}
+        : <section className="review-empty review-sign-in-panel"><p className="eyebrow">Personal queue</p><h2>No anonymous assignments.</h2><p>Sign in first, then activate a review-scoped Agent delegation. Claiming a job creates an accepted assignment immediately, but never fabricates a mathematical attestation.</p><Link className="button button-primary review-sign-in" href={signInPath("/reviews")}>Sign in to review <span aria-hidden="true">→</span></Link></section>}
     </main>
     <Footer />
   </div>;
 }
 
-async function loadReviews(user: ChatGPTUser | null): Promise<{ profile: DelegationProfile | null; assignments: readonly ReviewAssignmentSummary[]; jobs: readonly PublicVerificationJob[]; storageAvailable: boolean }> {
+async function loadReviews(user: AuthUser | null): Promise<{ profile: DelegationProfile | null; assignments: readonly ReviewAssignmentSummary[]; jobs: readonly PublicVerificationJob[]; storageAvailable: boolean }> {
   try {
     const jobsPromise = getVerificationMarketRepository().listOpenJobs();
     if (!user) return { profile: null, assignments: [], jobs: await jobsPromise, storageAvailable: true };
-    const profile = await getDelegationRepository().getProfile({
-      provider: "chatgpt",
-      subject: user.email,
-      displayName: user.displayName,
-    });
+    const profile = await getDelegationRepository().getProfile(toPersonIdentity(user));
     return {
       profile,
       assignments: await getReviewAssignmentRepository().listForPerson(profile.person.id),

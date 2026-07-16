@@ -1,4 +1,4 @@
-import { getChatGPTUser } from "@/app/chatgpt-auth";
+import { getCurrentUser, toPersonIdentity } from "@/app/auth";
 import { MissingDatabaseBindingError } from "@/db";
 import {
   DelegationAuthorizationError,
@@ -7,7 +7,7 @@ import {
 } from "@/db/repositories/delegation";
 
 export async function currentDelegationIdentity() {
-  const user = await getChatGPTUser();
+  const user = await getCurrentUser();
   if (!user) {
     return Response.json(
       { error: { code: "unauthorized", message: "Sign in to manage your research Agent." } },
@@ -15,11 +15,7 @@ export async function currentDelegationIdentity() {
     );
   }
 
-  return {
-    provider: "chatgpt" as const,
-    subject: user.email,
-    displayName: user.displayName,
-  };
+  return toPersonIdentity(user);
 }
 
 export function delegationFailure(error: unknown) {

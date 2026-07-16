@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import { MissingDatabaseBindingError } from "@/db";
 import { getPersonProfileRepository, type PublicPersonProfile } from "@/db/repositories/profiles";
 import type { ContributionReceiptKind } from "@/db/repositories/receipts";
-import { Footer, Header } from "../../ui";
+import { Footer } from "../../ui";
+import { Header } from "../../header";
 
 export const dynamic = "force-dynamic";
 

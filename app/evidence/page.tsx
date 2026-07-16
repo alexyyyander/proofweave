@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { chatGPTSignInPath, getChatGPTUser } from "@/app/chatgpt-auth";
-import { Footer, Header } from "@/app/ui";
+import { getCurrentUser, signInPath, toPersonIdentity } from "@/app/auth";
+import { Footer } from "@/app/ui";
+import { Header } from "@/app/header";
 import { MissingDatabaseBindingError } from "@/db";
 import { getDelegationRepository } from "@/db/repositories/delegation";
 import { getEvidenceRepository, type AttemptEvidenceSummary } from "@/db/repositories/evidence";
@@ -8,7 +9,7 @@ import { getEvidenceRepository, type AttemptEvidenceSummary } from "@/db/reposit
 export const dynamic = "force-dynamic";
 
 export default async function EvidenceIndexPage() {
-  const user = await getChatGPTUser();
+  const user = await getCurrentUser();
   const result = await loadEvidence(user);
   if (!user) return <EvidenceMessage unauthenticated />;
   if (result.unavailable) return <EvidenceMessage unavailable />;
@@ -24,10 +25,10 @@ export default async function EvidenceIndexPage() {
   </div>;
 }
 
-async function loadEvidence(user: Awaited<ReturnType<typeof getChatGPTUser>>): Promise<{ evidence: readonly AttemptEvidenceSummary[]; unavailable: boolean }> {
+async function loadEvidence(user: Awaited<ReturnType<typeof getCurrentUser>>): Promise<{ evidence: readonly AttemptEvidenceSummary[]; unavailable: boolean }> {
   if (!user) return { evidence: [], unavailable: false };
   try {
-    const profile = await getDelegationRepository().getProfile({ provider: "chatgpt", subject: user.email, displayName: user.displayName });
+    const profile = await getDelegationRepository().getProfile(toPersonIdentity(user));
     return { evidence: await getEvidenceRepository().listForPerson(profile.person.id), unavailable: false };
   } catch (error) {
     if (error instanceof MissingDatabaseBindingError) return { evidence: [], unavailable: true };
@@ -52,7 +53,7 @@ function EvidenceMessage({ unauthenticated, unavailable }: { unauthenticated?: b
     : "No unverified fallback evidence is shown while the control-plane store is unavailable.";
   return <div className="site-shell app-shell">
     <Header active="workbench" />
-    <main id="main-content" tabIndex={-1} className="page-main evidence-main"><div className="breadcrumb"><Link href="/workbench">Workbench</Link><span> / </span><span>Evidence records</span></div><section className="review-heading"><div><p className="eyebrow">Controlled evidence access</p><h1>{title}</h1><p>{detail}</p></div><span className="record-chip">{unavailable ? "Unavailable" : "Personal"}</span></section>{unauthenticated && <Link className="button button-primary review-sign-in" href={chatGPTSignInPath("/evidence")}>Sign in to inspect <span aria-hidden="true">→</span></Link>}</main>
+    <main id="main-content" tabIndex={-1} className="page-main evidence-main"><div className="breadcrumb"><Link href="/workbench">Workbench</Link><span> / </span><span>Evidence records</span></div><section className="review-heading"><div><p className="eyebrow">Controlled evidence access</p><h1>{title}</h1><p>{detail}</p></div><span className="record-chip">{unavailable ? "Unavailable" : "Personal"}</span></section>{unauthenticated && <Link className="button button-primary review-sign-in" href={signInPath("/evidence")}>Sign in to inspect <span aria-hidden="true">→</span></Link>}</main>
     <Footer />
   </div>;
 }

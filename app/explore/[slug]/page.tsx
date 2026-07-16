@@ -4,8 +4,9 @@ import { getCatalogRepository } from "@/db/repositories/catalog";
 import { CreditMarketSchemaUnavailableError, getCreditMarketRepository, type PublicCreditMarket } from "@/db/repositories/credit-market";
 import { getResearchGraphRepository, ResearchGraphSchemaUnavailableError, type PublicResearchGraph } from "@/db/repositories/research-graph";
 import { MissingDatabaseBindingError } from "@/db";
-import { chatGPTSignInPath, getChatGPTUser } from "../../chatgpt-auth";
-import { Footer, Header, StatusStack } from "../../ui";
+import { getCurrentUser, signInPath } from "../../auth";
+import { Footer, StatusStack } from "../../ui";
+import { Header } from "../../header";
 import { CreditMarketPanel } from "./CreditMarketPanel";
 import { ResearchGraphView } from "./ResearchGraphView";
 
@@ -15,7 +16,7 @@ export default async function ConjecturePage({ params }: { params: Promise<{ slu
   const { slug } = await params;
   const project = await getCatalogRepository().findBySlug(slug);
   if (!project) notFound();
-  const [graph, user] = await Promise.all([loadResearchGraph(project.id), getChatGPTUser()]);
+  const [graph, user] = await Promise.all([loadResearchGraph(project.id), getCurrentUser()]);
   const market = graph ? await loadCreditMarket(project.id, graph) : null;
   const returnTo = `/explore/${encodeURIComponent(project.slug)}#research-graph`;
   const primarySubject = project.subjects.find((subject) => subject.isPrimary) ?? project.subjects[0];
@@ -43,7 +44,7 @@ export default async function ConjecturePage({ params }: { params: Promise<{ slu
         </section>
         <CreditMarketPanel market={market} problemSlug={project.slug} />
         <div id="research-graph">
-          <ResearchGraphView graph={graph} problemSlug={project.slug} canImportSources={Boolean(user)} signInPath={chatGPTSignInPath(returnTo)} />
+          <ResearchGraphView graph={graph} problemSlug={project.slug} canImportSources={Boolean(user)} signInPath={signInPath(returnTo)} />
         </div>
       </main>
       <Footer />
