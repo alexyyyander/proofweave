@@ -2,9 +2,8 @@ export type ActivePage = "home" | "demo" | "explore" | "how" | "about" | "profil
 
 export const primaryNavigation: Array<{ href: string; label: string; page: ActivePage }> = [
   { href: "/explore", label: "Explore", page: "explore" },
-  { href: "/demo", label: "Verified demo", page: "demo" },
-  { href: "/how-it-works", label: "How it works", page: "how" },
-  { href: "/about", label: "About", page: "about" },
+  { href: "/how-it-works", label: "How to participate", page: "how" },
+  { href: "/about", label: "Trust & principles", page: "about" },
 ];
 
 export const footerNavigation = [
@@ -15,8 +14,8 @@ export const footerNavigation = [
   { href: "/workbench", label: "Workspace" },
   { href: "/settings", label: "Settings" },
   { href: "/reviews", label: "Review queue" },
-  { href: "/how-it-works", label: "How it works" },
-  { href: "/about", label: "About & principles" },
+  { href: "/how-it-works", label: "How to participate" },
+  { href: "/about", label: "Trust & principles" },
   { href: "/privacy", label: "Privacy" },
   { href: "/terms", label: "Terms" },
 ];
