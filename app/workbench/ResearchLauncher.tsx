@@ -108,8 +108,8 @@ export function ResearchLauncher({
     </div>
 
     {!isAuthenticated ? <LauncherState
-      title="Sign in to start an attributable research record."
-      detail="You can inspect the frontier without an account. Starting research creates a Person-owned workspace for your own delegated Agent."
+      title="Keep the work on your computer."
+      detail="Local-first research starts with a private sign-in. Creating an Attempt establishes a Person-owned record for your delegated Agent without uploading a workspace."
       href={signInPath}
       action="Sign in to start"
     /> : !storageAvailable ? <LauncherState

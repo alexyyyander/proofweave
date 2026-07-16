@@ -5,10 +5,11 @@ import type { DelegationProfile } from "@/db/repositories/delegation";
 import type { CatalogProblem } from "@/packages/domain/catalog";
 import type { McpAttempt, McpRunSummary } from "@/packages/domain/mcp";
 import type { ProvisionalContribution } from "@/db/repositories/provisional-contributions";
-import { DelegationSummary, FocusAction, ProvisionalContributionLedger, ResearchWorkstation, SubmissionReadiness, WorkbenchHero, WorkspacePath, WorkspaceSettingsPrompt } from "./workbench-sections";
+import { DelegationSummary, FocusAction, ProvisionalContributionLedger, ResearchWorkstation, SubmissionReadiness, WorkspaceSettingsPrompt } from "./workbench-sections";
 import { LocalAgentHandoff } from "./LocalAgentHandoff";
 import { ResearchLauncher } from "./ResearchLauncher";
-import { activeLocalAgentAttempt } from "../lib/local-agent-journey";
+import { activeLocalAgentAttempt, activeLocalCodexInstallation } from "../lib/local-agent-journey";
+import { deriveWorkspaceMode, WorkspaceRecordLinks, WorkspaceSidebar, WorkspaceTopbar } from "./WorkspaceShell";
 
 export function WorkbenchClient({
   profile,
@@ -42,7 +43,13 @@ export function WorkbenchClient({
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [refreshError, setRefreshError] = useState<string | null>(null);
   const [refreshedAt, setRefreshedAt] = useState<string | null>(null);
-  const activeAttempt = selectVisibleAttempt(profile, attempts, initialTargetSlug);
+  const [selectedAttemptId, setSelectedAttemptId] = useState<string | null>(() => selectVisibleAttempt(profile, initialAttempts, initialTargetSlug)?.id ?? null);
+  const fallbackAttempt = selectVisibleAttempt(profile, attempts, initialTargetSlug);
+  const activeAttempt = attempts.find((attempt) => attempt.id === selectedAttemptId) ?? fallbackAttempt;
+  const connection = activeLocalCodexInstallation(profile);
+  const mode = deriveWorkspaceMode({ isAuthenticated, storageAvailable, isAgentConnected: Boolean(connection), attempt: activeAttempt });
+  const activeRuns = activeAttempt ? runs.filter((run) => run.attemptId === activeAttempt.id) : [];
+  const showActiveWorkspace = mode === "active-research" || mode === "evidence-review";
 
   const refreshAttempts = async () => {
     if (!isAuthenticated || !storageAvailable || isRefreshing) return;
@@ -79,15 +86,34 @@ export function WorkbenchClient({
     }
   };
 
+  const onAttemptReady = (attempt: McpAttempt) => {
+    setAttempts((current) => [attempt, ...current.filter((candidate) => candidate.id !== attempt.id)]);
+    setSelectedAttemptId(attempt.id);
+    setRefreshError(null);
+  };
+
   return <>
-    <WorkbenchHero profile={profile} isAuthenticated={isAuthenticated} storageAvailable={storageAvailable} attemptCount={attempts.length} />
-    <WorkspacePath />
-    <FocusAction profile={profile} attempt={activeAttempt} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} isRefreshing={isRefreshing} refreshError={refreshError} refreshedAt={refreshedAt} onRefresh={() => { void refreshAttempts(); }} />
-    <ResearchLauncher profile={profile} attempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={initialTargetSlug} initialParentNodeId={initialParentNodeId} onAttemptReady={(attempt) => { setAttempts((current) => [attempt, ...current.filter((candidate) => candidate.id !== attempt.id)]); setRefreshError(null); }} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} />
-    <LocalAgentHandoff profile={profile} attempt={activeAttempt} initialParentNodeId={initialParentNodeId} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} isRefreshing={isRefreshing} onRefresh={() => { void refreshAttempts(); }} />
-    <ResearchWorkstation attempt={activeAttempt} runs={runs} />
-    <SubmissionReadiness attempt={activeAttempt} profile={profile} runs={runs} />
-    <ProvisionalContributionLedger profile={profile} contributions={provisionalContributions} isAuthenticated={isAuthenticated} ledgerAvailable={isProvisionalLedgerAvailable} />
+    <WorkspaceTopbar attempts={attempts} selectedAttemptId={activeAttempt?.id ?? null} onSelectAttempt={setSelectedAttemptId} agentLabel={connection?.agentLabel ?? null} isAgentConnected={Boolean(connection)} mode={mode} isRefreshing={isRefreshing} canRefresh={isAuthenticated && storageAvailable} refreshedAt={refreshedAt} onRefresh={() => { void refreshAttempts(); }} />
+    <div className={`workspace-shell mode-${mode}`}>
+      <WorkspaceSidebar attempts={attempts} selectedAttemptId={activeAttempt?.id ?? null} onSelectAttempt={setSelectedAttemptId} reviewCount={null} evidenceCount={null} />
+      <section className="workspace-task-canvas" aria-label="Current research work">
+        <FocusAction profile={profile} attempt={activeAttempt} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} refreshError={refreshError} refreshedAt={refreshedAt} />
+        {!showActiveWorkspace && <ResearchLauncher profile={profile} attempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={initialTargetSlug} initialParentNodeId={initialParentNodeId} onAttemptReady={onAttemptReady} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} />}
+        {showActiveWorkspace && <>
+          <LocalAgentHandoff profile={profile} attempt={activeAttempt} initialParentNodeId={initialParentNodeId} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} isRefreshing={isRefreshing} onRefresh={() => { void refreshAttempts(); }} />
+          <ResearchWorkstation attempt={activeAttempt} runs={runs} />
+          <details className="workspace-new-research">
+            <summary>Start another research target</summary>
+            <ResearchLauncher profile={profile} attempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={initialTargetSlug} initialParentNodeId={initialParentNodeId} onAttemptReady={onAttemptReady} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} />
+          </details>
+        </>}
+      </section>
+      <aside className="workspace-status-rail" aria-label="Verification and record status">
+        <SubmissionReadiness attempt={activeAttempt} profile={profile} runs={runs} compact />
+        <WorkspaceRecordLinks eventCount={activeAttempt?.events.length ?? 0} runCount={activeRuns.length} contributionCount={provisionalContributions.length} />
+      </aside>
+    </div>
+    {(provisionalContributions.length > 0 || mode === "evidence-review") && <ProvisionalContributionLedger profile={profile} contributions={provisionalContributions} isAuthenticated={isAuthenticated} ledgerAvailable={isProvisionalLedgerAvailable} />}
     <details className="workbench-account-details">
       <summary>Agent connection and authority</summary>
       <DelegationSummary profile={profile} />
