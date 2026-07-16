@@ -19,6 +19,7 @@
     "demo:fixture:generate": "node scripts/generate-build-week-demo-fixture.mjs",
     "demo:check": "node --check scripts/generate-build-week-demo-fixture.mjs && node --check scripts/verify-build-week-demo-local-lean.mjs && node --test tests/build-week-demo.test.mjs",
     "demo:local-lean:check": "node scripts/verify-build-week-demo-local-lean.mjs",
+    "demo:e2e:check": "npm run alpha:local-lean-evidence-flow:check && npm run demo:local-lean:check",
     "catalog:verify-source": "node scripts/ingest/verify-formal-conjectures-snapshot.mjs",
     "catalog:render-focus-migration": "node scripts/ingest/render-focus-catalog-migration.mjs",
     "catalog:render-expansion-migration": "node scripts/ingest/render-focus-catalog-migration.mjs ../../data/formal-conjectures/expansion-v1-lean4.27.0.json ../../drizzle/0031_add_catalog_expansion.sql",

@@ -6,10 +6,12 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import * as zlib from "node:zlib";
 import { Miniflare } from "miniflare";
+import { D1InlineArtifactBucket, D1InlineArtifactStore } from "../services/artifacts/d1-inline-artifact-store.mjs";
 import { D1R2ArtifactStore } from "../services/artifacts/d1-r2-artifact-store.mjs";
-import { D1R2RunnerBundleResolver } from "../services/lean-runner/d1-r2-runner-bundle-resolver.mjs";
+import { D1InlineRunnerBundleResolver } from "../services/lean-runner/d1-inline-runner-bundle-resolver.mjs";
 import { D1RunnerLeaseQueue } from "../services/lean-runner/d1-runner-lease-queue.mjs";
 import { D1RunStore } from "../services/lean-runner/d1-run-store.mjs";
+import { D1InlineRunnerOutputStore } from "../services/lean-runner/d1-inline-runner-output-store.mjs";
 import { D1R2RunnerOutputStore } from "../services/lean-runner/d1-r2-runner-output-store.mjs";
 import { RunnerContainerExecutionClient } from "../services/lean-runner/runner-container-execution-client.mjs";
 import { RunnerExecutionFinalizer } from "../services/lean-runner/runner-execution-finalizer.mjs";
@@ -20,6 +22,7 @@ import { TrustedRunnerProcess } from "../services/lean-runner/trusted-runner-pro
 import { ContainerLeanExecutor } from "../services/lean-runner/container-lean-executor.mjs";
 import { createContainerWorkspaceHttpHandler } from "../services/lean-runner/container-workspace-runtime.mjs";
 import { D1VerificationStore } from "../services/verification/d1-verification-store.mjs";
+import { D1InlineVerificationReplayEvidenceStore } from "../services/verification/d1-inline-verification-replay-evidence-store.mjs";
 import { D1R2VerificationReplayEvidenceStore } from "../services/verification/d1-r2-verification-replay-evidence-store.mjs";
 import { D1ContributionReceiptIssuerKeyStore } from "../services/receipts/d1-contribution-receipt-issuer-key-store.mjs";
 import { D1ContributionReceiptStore } from "../services/receipts/d1-contribution-receipt-store.mjs";
@@ -276,7 +279,7 @@ test("a local Lean fixture binds actual execution evidence into the signed recei
   const root = await mkdtemp(join(tmpdir(), "proofweave-real-alpha-flow-"));
   try {
     const workspace = await createRealLeanWorkspaceFixture();
-    const artifacts = new D1R2ArtifactStore({ database, bucket });
+    const artifacts = new D1InlineArtifactStore({ database });
     const [archive, patch, lakeManifest] = await Promise.all([
       artifacts.putObject({ bytes: workspace.archive, filename: "source.tar.zst", contentType: "application/zstd" }),
       artifacts.putObject({ bytes: workspace.patch, filename: "normalized.patch", contentType: "text/x-diff; charset=utf-8" }),
@@ -354,7 +357,7 @@ test("a local Lean fixture binds actual execution evidence into the signed recei
       }],
     }).resolve(request).imageDigest, imageDigest);
 
-    const resolvedBundle = await new D1R2RunnerBundleResolver({ database, bucket }).resolve(request);
+    const resolvedBundle = await new D1InlineRunnerBundleResolver({ database }).resolve(request);
     const runStore = new D1RunStore(database);
     const queued = await runStore.queue({
       id: request.jobId,
@@ -400,7 +403,7 @@ test("a local Lean fixture binds actual execution evidence into the signed recei
       execute: async (authenticatedMessage, { beforeFinalize }) => {
         assert.equal(authenticatedMessage.requestHash, await leanRunnerRequestHash(request));
         const preparing = await runStore.prepare(queued.run.id, "2026-07-13T00:00:02Z");
-        const transfer = await new RunnerWorkspaceTransfer({ bucket }).stage({
+        const transfer = await new RunnerWorkspaceTransfer({ bucket: new D1InlineArtifactBucket(database) }).stage({
           run: preparing,
           resolvedBundle,
           container: { fetch: handler },
@@ -426,7 +429,7 @@ test("a local Lean fixture binds actual execution evidence into the signed recei
         await beforeFinalize();
         finalized = await new RunnerExecutionFinalizer({
           runStore,
-          outputStore: new D1R2RunnerOutputStore({ database, bucket }),
+          outputStore: new D1InlineRunnerOutputStore({ database }),
           resultSigner: new RunnerExecutionResultSigner({
             runnerKeyId: "runner-key:closed-alpha",
             runnerPrivateKey: keys.runner.privateKey,
@@ -462,7 +465,7 @@ test("a local Lean fixture binds actual execution evidence into the signed recei
       imageDigest,
       limits: request.limits,
     });
-    const resolvedReplayBundle = await new D1R2RunnerBundleResolver({ database, bucket }).resolve(replayRequest);
+    const resolvedReplayBundle = await new D1InlineRunnerBundleResolver({ database }).resolve(replayRequest);
     const replayQueued = await runStore.queue({
       id: replayRequest.jobId,
       attemptId: replayRequest.attemptId,
@@ -496,7 +499,7 @@ test("a local Lean fixture binds actual execution evidence into the signed recei
         now: () => new Date(`2026-07-13T00:00:${String(replayExecutionInstant++).padStart(2, "0")}Z`),
       }),
     });
-    await new RunnerWorkspaceTransfer({ bucket }).stage({
+    await new RunnerWorkspaceTransfer({ bucket: new D1InlineArtifactBucket(database) }).stage({
       run: replayPreparing,
       resolvedBundle: resolvedReplayBundle,
       container: { fetch: replayHandler },
@@ -509,8 +512,8 @@ test("a local Lean fixture binds actual execution evidence into the signed recei
     });
     const replayFinalized = await new RunnerExecutionFinalizer({
       runStore,
-      outputStore: new D1R2RunnerOutputStore({ database, bucket }),
-      replayEvidenceStore: new D1R2VerificationReplayEvidenceStore({ database, bucket }),
+      outputStore: new D1InlineRunnerOutputStore({ database }),
+      replayEvidenceStore: new D1InlineVerificationReplayEvidenceStore({ database }),
       resultSigner: new RunnerExecutionResultSigner({
         runnerKeyId: "runner-key:closed-alpha",
         runnerPrivateKey: keys.runner.privateKey,
@@ -577,6 +580,11 @@ test("a local Lean fixture binds actual execution evidence into the signed recei
       "run_started",
       "runner_result_recorded",
     ]);
+    const inlineEvidence = await database
+      .prepare("SELECT COUNT(*) AS count, MAX(byte_length) AS largest FROM inline_artifact_bytes")
+      .first();
+    assert.ok(Number(inlineEvidence?.count) >= 7);
+    assert.ok(Number(inlineEvidence?.largest) > 0 && Number(inlineEvidence?.largest) <= 1_000_000);
   } finally {
     await rm(root, { recursive: true, force: true });
   }

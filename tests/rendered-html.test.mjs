@@ -850,6 +850,8 @@ test("publicly verifies the checked Build Week reference evidence", async () => 
   assert.match(html, /Mock owner reviews/i);
   assert.match(html, /The reviewer is a live participant/i);
   assert.match(html, /This demo does not claim/i);
+  assert.match(html, /npm run demo:e2e:check/i);
+  assert.match(html, /D1 inline · no R2/i);
 
   const response = await render("/api/demo/verify");
   assert.equal(response.status, 200);

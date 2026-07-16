@@ -392,11 +392,20 @@ h1, h2, h3, p { margin-top: 0; }
 .demo-honesty-grid article + article { border-left: 0; }
 .demo-honesty-grid h2 { font-size: 34px; line-height: 1.06; margin: 34px 0 15px; }
 .demo-honesty-grid p { color: var(--ink-soft); font-size: 13px; line-height: 1.6; margin: 0; }
+.demo-reproduce { align-items: end; background: #101e35; color: #eef3ff; display: grid; gap: 64px; grid-template-columns: minmax(0, 1fr) minmax(360px, .72fr); padding: 76px max(28px, calc((100vw - 1240px) / 2)); }
+.demo-reproduce > div:first-child { max-width: 720px; }
+.demo-reproduce .eyebrow { color: #9fb2df; }
+.demo-reproduce h2 { font-family: Georgia, "Times New Roman", serif; font-size: clamp(34px, 4vw, 52px); font-weight: 400; letter-spacing: -.052em; line-height: 1.03; margin: 0 0 20px; }
+.demo-reproduce p:not(.eyebrow) { color: #b3bfd2; font-size: 13px; line-height: 1.65; margin: 0; }
+.demo-reproduce-command { border: 1px solid rgba(205,218,244,.24); display: grid; gap: 14px; padding: 22px; }
+.demo-reproduce-command span, .demo-reproduce-command small { color: #8ea2c8; font-size: 9px; letter-spacing: .05em; text-transform: uppercase; }
+.demo-reproduce-command code { background: #1a2b49; border-left: 3px solid #8ca5ff; color: #f1f5ff; font-size: 12px; overflow-wrap: anywhere; padding: 16px; }
 .demo-closing { border-top: 1px solid var(--line); }
 .demo-run-button:focus-visible, .demo-hero a:focus-visible { outline: 3px solid #f3d48b; outline-offset: 3px; }
 
 @media (max-width: 900px) {
   .demo-hero, .demo-proof-section { grid-template-columns: 1fr; }
+  .demo-reproduce { align-items: start; grid-template-columns: 1fr; }
   .demo-walkthrough-layout { grid-template-columns: minmax(270px, .68fr) minmax(0, 1.32fr); }
   .demo-chain { max-width: 680px; }
   .demo-boundary { align-items: start; grid-template-columns: auto 1fr; }
@@ -407,7 +416,7 @@ h1, h2, h3, p { margin-top: 0; }
 }
 
 @media (max-width: 620px) {
-  .demo-hero, .demo-walkthrough, .demo-console, .demo-proof-section, .demo-honesty-grid { padding-left: 18px; padding-right: 18px; }
+  .demo-hero, .demo-walkthrough, .demo-console, .demo-proof-section, .demo-honesty-grid, .demo-reproduce { padding-left: 18px; padding-right: 18px; }
   .demo-hero { gap: 52px; padding-bottom: 62px; padding-top: 56px; }
   .demo-hero h1 { font-size: 47px; }
   .demo-boundary { gap: 9px; grid-template-columns: 1fr; padding: 20px 18px; }

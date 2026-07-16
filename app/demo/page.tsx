@@ -62,6 +62,19 @@ export default async function DemoPage() {
           <article><span className="micro-label">This demo does not claim</span><h2>The reviewer is a live participant.</h2><p>The second account is a deterministic mock and the Lean result is a checked local fixture. It demonstrates the exact production protocol without pretending public onboarding or hosted execution is complete.</p></article>
         </section>
 
+        <section className="demo-reproduce" aria-labelledby="demo-reproduce-title">
+          <div>
+            <p className="eyebrow">Local end-to-end reproduction</p>
+            <h2 id="demo-reproduce-title">Run Lean, replay it independently, and issue the Receipt.</h2>
+            <p>This command creates a temporary D1-inline evidence store, reconstructs the signed workspace, executes Lean for the research Run and fresh review replay, checks different-owner attestations, and verifies the issued Receipt. No file or event is sent to Proofweave.</p>
+          </div>
+          <div className="demo-reproduce-command">
+            <span>From the Proofweave repository</span>
+            <code>npm run demo:e2e:check</code>
+            <small>D1 inline · no R2 · temporary keys · no network contribution</small>
+          </div>
+        </section>
+
         <section className="closing-section demo-closing">
           <p className="eyebrow">From reference proof to research contribution</p>
           <h2>Choose a real conjecture and delegate the next bounded step.</h2>
