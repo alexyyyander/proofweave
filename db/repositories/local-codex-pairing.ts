@@ -4,7 +4,21 @@ import { D1ProofweaveOAuthStore } from "@/services/proofweave-identity/d1-oauth-
 
 const localCallbackUrl = "http://127.0.0.1:44765/callback";
 const localConnectorName = "Proofweave local Codex Connector";
-const requestedScopes = ["catalog:read", "attempt:create", "attempt:read", "progress:write", "artifact:write"] as const;
+const connectionPolicies = {
+  research: {
+    oauthScopes: ["catalog:read", "attempt:create", "attempt:read", "progress:write", "artifact:write", "run:request", "run:read", "run:cancel"],
+    delegationScopes: ["formalize", "prove"],
+  },
+  review: {
+    oauthScopes: ["catalog:read", "verification:replay", "verification:write"],
+    delegationScopes: ["review"],
+  },
+  research_and_review: {
+    oauthScopes: ["catalog:read", "attempt:create", "attempt:read", "progress:write", "artifact:write", "run:request", "run:read", "run:cancel", "verification:replay", "verification:write"],
+    delegationScopes: ["formalize", "prove", "review"],
+  },
+} as const;
+export type LocalCodexConnectionMode = keyof typeof connectionPolicies;
 const pairingLifetimeMs = 10 * 60 * 1_000;
 
 type PairingRow = {
@@ -31,6 +45,8 @@ export type LocalCodexPairingPreview = {
   agentId: string;
   agentLabel: string;
   agentPublicKey: string;
+  connectionMode: LocalCodexConnectionMode;
+  delegationScopes: readonly ("formalize" | "prove" | "review")[];
   expiresAt: string;
 };
 
@@ -42,8 +58,11 @@ export async function createLocalCodexPairing(input: {
   agentPublicKey: string;
   oauthState: string;
   codeChallenge: string;
+  connectionMode?: string;
 }): Promise<{ id: string; browserSecret: string; clientId: string; expiresAt: string }> {
   validateLocalAgent(input);
+  const connectionMode = normalizeConnectionMode(input.connectionMode);
+  const requestedScopes = connectionPolicies[connectionMode].oauthScopes;
   const issuedAt = new Date();
   const expiresAt = new Date(issuedAt.getTime() + pairingLifetimeMs).toISOString();
   const browserSecret = randomBase64Url(32);
@@ -85,11 +104,14 @@ export async function inspectLocalCodexPairing(input: {
   browserSecret: string;
 }): Promise<LocalCodexPairingPreview> {
   const row = await requireLivePairing(input);
+  const connectionMode = connectionModeForStoredScopes(row.requested_scopes_json);
   return {
     id: row.id,
     agentId: row.agent_id,
     agentLabel: row.agent_label,
     agentPublicKey: row.agent_public_key,
+    connectionMode,
+    delegationScopes: connectionPolicies[connectionMode].delegationScopes,
     expiresAt: row.expires_at,
   };
 }
@@ -103,6 +125,8 @@ export async function approveLocalCodexPairing(input: {
 }): Promise<{ redirectUrl: string; installationId: string }> {
   boundedString(input.delegationCertificateId, "delegationCertificateId", 240);
   const row = await requireLivePairing({ pairingId: input.pairingId, browserSecret: input.browserSecret });
+  const connectionMode = connectionModeForStoredScopes(row.requested_scopes_json);
+  const requestedScopes = connectionPolicies[connectionMode].oauthScopes;
   const store = new D1ProofweaveOAuthStore(getD1());
   const person = await getD1()
     .prepare("SELECT id FROM persons WHERE identity_provider = ? AND provider_subject = ?")
@@ -116,7 +140,12 @@ export async function approveLocalCodexPairing(input: {
       candidate.agentId === row.agent_id && candidate.delegationCertificateId === input.delegationCertificateId,
   );
   if (!agent) {
-    throw new LocalCodexPairingError("This Agent needs an active formalize or prove delegation before it can connect.");
+    const requirement = connectionMode === "research"
+      ? "an active formalize or prove delegation"
+      : connectionMode === "review"
+        ? "an active review delegation"
+        : "active formalize or prove and review authority";
+    throw new LocalCodexPairingError(`This Agent needs ${requirement} before it can connect.`);
   }
   const installation = await store.ensureAgentInstallation({
     personId: person.id,
@@ -192,6 +221,7 @@ function validateLocalAgent(input: {
   agentPublicKey: string;
   oauthState: string;
   codeChallenge: string;
+  connectionMode?: string;
 }) {
   boundedString(input.agentId, "agentId", 240);
   boundedString(input.agentLabel, "agentLabel", 120);
@@ -206,6 +236,33 @@ function validateLocalAgent(input: {
   if (!/^[A-Za-z0-9_-]{43}$/.test(input.codeChallenge)) {
     throw new LocalCodexPairingError("codeChallenge must be an S256 PKCE challenge.");
   }
+}
+
+function normalizeConnectionMode(value: unknown): LocalCodexConnectionMode {
+  const mode = value === undefined ? "research" : value;
+  if (typeof mode !== "string" || !(mode in connectionPolicies)) {
+    throw new LocalCodexPairingError("connectionMode must be research, review, or research_and_review.");
+  }
+  return mode as LocalCodexConnectionMode;
+}
+
+function connectionModeForStoredScopes(value: string): LocalCodexConnectionMode {
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(value);
+  } catch {
+    throw new LocalCodexPairingError("This local connection contains invalid requested scopes. Return to Codex and start it again.");
+  }
+  if (!Array.isArray(parsed) || !parsed.every((scope) => typeof scope === "string")) {
+    throw new LocalCodexPairingError("This local connection contains invalid requested scopes. Return to Codex and start it again.");
+  }
+  const canonical = [...new Set(parsed)].sort().join(" ");
+  const match = (Object.entries(connectionPolicies) as Array<[LocalCodexConnectionMode, typeof connectionPolicies[LocalCodexConnectionMode]]>)
+    .find(([, policy]) => [...policy.oauthScopes].sort().join(" ") === canonical);
+  if (!match) {
+    throw new LocalCodexPairingError("This local connection requests an unsupported permission set. Return to Codex and start it again.");
+  }
+  return match[0];
 }
 
 function boundedString(value: unknown, name: string, max: number): asserts value is string {

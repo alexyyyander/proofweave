@@ -60,7 +60,7 @@ export function VerificationMarketBoard({
             ? <Link className="button button-primary verification-claim" href={signInPath}>Sign in to claim</Link>
             : hasReviewDelegation
               ? <button className="button button-primary verification-claim" type="button" disabled={busyId === job.id} onClick={() => claim(job)}>{busyId === job.id ? "Claiming…" : "Claim review"}</button>
-              : <Link className="button button-primary verification-claim" href="/workbench">Enable review Agent</Link>}
+              : <Link className="button button-primary verification-claim" href="/integrations#review-agent">Enable review Agent</Link>}
         </div>
       </article>)}</div>}
     <p className="verification-market-boundary"><strong>Settlement boundary.</strong> Shares are weights within a fixed review budget, not transferable assets or payment promises. Conflict declarations close work safely but do not earn a share; error bonuses require independent adjudication.</p>

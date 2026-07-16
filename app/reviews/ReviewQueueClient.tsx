@@ -66,8 +66,8 @@ export function ReviewQueueClient({ initialAssignments, hasReviewDelegation }: R
 
   return <>
     <section className="review-authority" aria-label="Review authority status">
-      <div><p className="eyebrow">Your verification boundary</p><strong>{hasReviewDelegation ? "A scoped review delegation is active." : "No active review delegation yet."}</strong><p>{hasReviewDelegation ? "When the remote OAuth connection is deployed, your externally held review Agent key can submit the assignment-bound attestation." : "You may inspect or respond to an assignment, but an Agent needs an active `review` delegation before any attestation can be accepted."} Closed alpha permits at most {closedAlphaReviewLimits.maximumActiveAssignmentsPerPerson} active independent reviews per Person, regardless of Agent count.</p></div>
-      <div className="review-authority-actions"><span className="record-chip" aria-label={`${activeAssignmentCount} of ${closedAlphaReviewLimits.maximumActiveAssignmentsPerPerson} active independent reviews`}>{activeAssignmentCount}/{closedAlphaReviewLimits.maximumActiveAssignmentsPerPerson} active</span><Link className="text-link" href="/workbench">Manage Agent authority <span>→</span></Link></div>
+      <div><p className="eyebrow">Your verification boundary</p><strong>{hasReviewDelegation ? "A scoped review delegation is active." : "No active review delegation yet."}</strong><p>{hasReviewDelegation ? "Your local review Agent can request a fresh replay, prepare its signed decision locally, and submit only the exact attestation you approve." : "You may inspect or respond to an assignment, but an Agent needs an active `review` delegation before any attestation can be accepted."} Closed alpha permits at most {closedAlphaReviewLimits.maximumActiveAssignmentsPerPerson} active independent reviews per Person, regardless of Agent count.</p></div>
+      <div className="review-authority-actions"><span className="record-chip" aria-label={`${activeAssignmentCount} of ${closedAlphaReviewLimits.maximumActiveAssignmentsPerPerson} active independent reviews`}>{activeAssignmentCount}/{closedAlphaReviewLimits.maximumActiveAssignmentsPerPerson} active</span><Link className="text-link" href={hasReviewDelegation ? "/settings#delegation-setup" : "/integrations#review-agent"}>{hasReviewDelegation ? "Manage Agent authority" : "Connect a review Agent"} <span>→</span></Link></div>
     </section>
     {(notice || error) && <p className={error ? "review-message is-error" : "review-message"} role="status">{error ?? notice}</p>}
     {assignments.length === 0
@@ -108,9 +108,28 @@ function ReviewCard({ assignment, auditEvents, busy, canAttest, isAuditOpen, onT
         {assignment.status === "assigned" && <div className="review-action-buttons"><button className="button button-primary review-accept" type="button" disabled={busy} onClick={() => onTransition(assignment, "accept")}>{busy ? "Updating…" : "Accept review"}</button><button className="quiet-action" type="button" disabled={busy} onClick={() => onTransition(assignment, "decline")}>Decline</button></div>}
       </div>
     </div>
-    {assignment.status === "accepted" && <aside className="review-replay-guide"><div><span className="micro-label">Fresh replay · Agent action</span><strong>{assignment.freshReplayEvidenceCount > 0 ? `${assignment.freshReplayEvidenceCount} terminal replay evidence ${assignment.freshReplayEvidenceCount === 1 ? "object is" : "objects are"} ready` : assignment.freshReplayCount > 0 ? "Replay is running or awaiting terminal evidence" : "No fresh workspace replay yet"}</strong><p>In the connected review Agent, call <code>request_verification_replay</code> with this assignment ID and a new idempotency key, then poll <code>get_verification_replay</code>. A positive <code>bundle_reproducible</code> attestation needs its terminal evidence hash. The Agent may instead submit an evidence-linked conflict declaration or integrity flag; neither is a positive verification or a receipt gate.</p></div><code>{assignment.id}</code></aside>}
+    {assignment.status === "accepted" && <aside className="review-replay-guide"><div><span className="micro-label">Fresh replay · Agent action</span><strong>{assignment.freshReplayEvidenceCount > 0 ? `${assignment.freshReplayEvidenceCount} terminal replay evidence ${assignment.freshReplayEvidenceCount === 1 ? "object is" : "objects are"} ready` : assignment.freshReplayCount > 0 ? "Replay is running or awaiting terminal evidence" : "No fresh workspace replay yet"}</strong><p>Send this review to the connected Agent with one click. It first inspects the assignment and canonical Bundle, then requests a fresh replay with its own idempotency key. A positive <code>bundle_reproducible</code> attestation still needs the terminal evidence hash and a separate owner confirmation.</p></div><ReviewCodexPrompt assignmentId={assignment.id} /></aside>}
     {isAuditOpen && <ol className="review-audit-trail" aria-label="Immutable review history">{(auditEvents ?? []).map((event) => <li key={event.id}><span>{event.sequence}</span><div><strong>{eventLabel(event.eventType)}</strong><small>{event.occurredAt}</small></div><code>{event.payloadHash}</code></li>)}</ol>}
   </article>;
+}
+
+function ReviewCodexPrompt({ assignmentId }: { assignmentId: string }) {
+  const [copied, setCopied] = useState(false);
+  const request = `Continue my accepted Proofweave review assignment ${assignmentId}. First use get_review_assignment and summarize the target, requested claim, canonical Bundle manifest, and existing replay state. Wait for me before requesting a fresh replay or preparing any signed decision.`;
+
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(request);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2200);
+    } catch {
+      setCopied(false);
+    }
+  };
+
+  return <button className="button button-secondary" type="button" onClick={() => { void copy(); }}>
+    {copied ? "Review request copied" : "Send this review to Codex"}
+  </button>;
 }
 
 function claimLabel(value: string) {
@@ -134,7 +153,7 @@ function statusDetail(assignment: ReviewAssignmentSummary, canAttest: boolean) {
     label: "Accepted",
     tone: "accepted",
     title: canAttest ? "Prepare signed Agent evidence outside the browser." : "Set up a review-scoped Agent before attesting.",
-    detail: canAttest ? "The deployed remote Agent connection can submit one signed attestation against this exact Bundle hash. This private alpha queue does not transmit the Agent key." : "This queue never fabricates an Agent signature or lets a Person attest with a non-review authority.",
+    detail: canAttest ? "The local Connector prepares the Agent signature on this computer and submits only the exact owner-approved attestation against this Bundle hash." : "This queue never fabricates an Agent signature or lets a Person attest with a non-review authority.",
   };
   if (assignment.status === "completed") return completedStatusDetail(assignment);
   return {

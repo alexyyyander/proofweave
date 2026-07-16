@@ -169,6 +169,53 @@ test("remote MCP gateway store rejects an Attestation that is not the selected r
   );
 });
 
+test("a review Agent can discover only its Person-addressed assignments and controlled context", async () => {
+  const verification = new D1VerificationStore(database);
+  await verification.assign({
+    id: "assignment:gateway-discovery",
+    artifactBundleManifestHash: sha("a"),
+    claimType: "bundle_reproducible",
+    verifierPersonId: "person:gateway-reviewer",
+    assignedAt: "2026-07-13T00:00:10Z",
+  });
+  await verification.accept("assignment:gateway-discovery", "person:gateway-reviewer", "2026-07-13T00:00:11Z");
+  const store = new D1RemoteMcpGatewayStore(database);
+  const principal = {
+    clientId: "client:gateway-codex",
+    personId: "person:gateway-reviewer",
+    agentInstallationId: "installation:gateway-reviewer",
+    scopes: ["verification:replay"],
+  };
+
+  const listed = await store.listReviewAssignments(principal, { status: "accepted", limit: 20 });
+  const summary = listed.assignments.find((assignment) => assignment.id === "assignment:gateway-discovery");
+  assert.ok(summary);
+  assert.equal(summary.target.problemSlug, "gateway-target");
+  assert.equal(summary.artifactBundleManifestHash, sha("a"));
+  assert.equal(summary.exactAgentReplayCount, 0);
+  assert.equal("attemptOwnerPersonId" in summary, false);
+
+  const detail = await store.getReviewAssignment(principal, "assignment:gateway-discovery");
+  assert.equal(detail.assignment.id, "assignment:gateway-discovery");
+  assert.equal(detail.target.leanStatement, "theorem fixture : True := by trivial");
+  assert.deepEqual(detail.bundle.manifest, {});
+  assert.equal(detail.events.length, 2);
+  assert.deepEqual(detail.replays, []);
+  assert.equal("attemptOwnerPersonId" in detail, false);
+
+  await assert.rejects(
+    store.listReviewAssignments({ ...principal, scopes: ["verification:write"] }),
+    GatewayStoreAuthorizationError,
+  );
+  await assert.rejects(
+    store.getReviewAssignment({
+      ...principal,
+      personId: "person:gateway-owner",
+    }, "assignment:gateway-discovery"),
+    GatewayStoreAuthorizationError,
+  );
+});
+
 test("remote MCP D1 store pins catalog and Attempt work to the selected delegated Agent", async () => {
   const store = new D1RemoteMcpGatewayStore(database);
   const principal = {
@@ -177,6 +224,13 @@ test("remote MCP D1 store pins catalog and Attempt work to the selected delegate
     agentInstallationId: "installation:gateway-prover",
     scopes: ["catalog:read", "attempt:create", "attempt:read", "progress:write"],
   };
+
+  const authority = await store.getConnectionAuthority(principal);
+  assert.equal(authority.personId, "person:gateway-reviewer");
+  assert.equal(authority.agentId, "agent:gateway-prover");
+  assert.equal(authority.agentPublicKey, proverPublicKey);
+  assert.equal(authority.delegationCertificateId, "delegation:gateway-prover");
+  assert.deepEqual(authority.oauthScopes, principal.scopes);
 
   const frontier = await store.listFrontier(principal);
   const target = frontier.find((record) => record.slug === "gateway-target");

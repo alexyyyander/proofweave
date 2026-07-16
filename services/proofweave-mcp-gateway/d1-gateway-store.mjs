@@ -1,5 +1,5 @@
 import { normalizeVerificationAttestation } from "../../packages/protocol/verification-attestation.mjs";
-import { sha256Canonical } from "../../packages/protocol/canonical-json.mjs";
+import { canonicalJson, sha256Canonical } from "../../packages/protocol/canonical-json.mjs";
 import {
   D1VerificationStore,
   VerificationStoreConflictError,
@@ -74,6 +74,20 @@ export class D1RemoteMcpGatewayStore {
     this.runStore = new D1RunStore(database);
     this.researchGraphStore = new D1ResearchGraphStore(database);
     this.runnerDispatcher = runnerDispatcher;
+  }
+
+  async getConnectionAuthority(principal) {
+    assertPrincipalScope(principal, "catalog:read");
+    const installation = await this.requireInstallation(principal);
+    return Object.freeze({
+      personId: principal.personId,
+      agentInstallationId: principal.agentInstallationId,
+      agentId: installation.agentId,
+      agentLabel: installation.agentLabel,
+      agentPublicKey: installation.agentPublicKey,
+      delegationCertificateId: installation.delegationCertificateId,
+      oauthScopes: Object.freeze([...principal.scopes]),
+    });
   }
 
   async listFrontier(principal) {
@@ -294,6 +308,114 @@ export class D1RemoteMcpGatewayStore {
     return Object.freeze({
       attempts: Object.freeze(attempts.filter(Boolean)),
       verificationState: "agent_reported_only",
+    });
+  }
+
+  async listReviewAssignments(principal, input = {}) {
+    assertPrincipalScope(principal, "verification:replay");
+    const installation = await this.requireInstallation(principal, "review");
+    const limit = reviewAssignmentListLimit(input.limit);
+    const status = optionalReviewAssignmentStatus(input.status);
+    const statement = this.database.prepare(
+      `${reviewAssignmentSummarySelect}
+       WHERE assignment.verifier_person_id = ?
+         ${status ? "AND assignment.status = ?" : ""}
+       ORDER BY CASE assignment.status
+         WHEN 'assigned' THEN 0
+         WHEN 'accepted' THEN 1
+         WHEN 'completed' THEN 2
+         ELSE 3
+       END, assignment.updated_at DESC, assignment.id ASC
+       LIMIT ?`,
+    );
+    const rows = status
+      ? await statement.bind(
+        installation.agentId,
+        installation.delegationCertificateId,
+        installation.agentId,
+        installation.delegationCertificateId,
+        principal.personId,
+        status,
+        limit,
+      ).all()
+      : await statement.bind(
+        installation.agentId,
+        installation.delegationCertificateId,
+        installation.agentId,
+        installation.delegationCertificateId,
+        principal.personId,
+        limit,
+      ).all();
+    return Object.freeze({
+      assignments: Object.freeze((rows.results ?? []).map(toReviewAssignmentSummary)),
+      reviewAgent: Object.freeze({
+        agentId: installation.agentId,
+        delegationCertificateId: installation.delegationCertificateId,
+      }),
+      note: "Assignments belong to the reviewer Person. Replay counts shown here are restricted to this exact review Agent and delegation.",
+    });
+  }
+
+  async getReviewAssignment(principal, assignmentId) {
+    assertPrincipalScope(principal, "verification:replay");
+    requireIdentifier(assignmentId, "Verification assignment id", 240);
+    const installation = await this.requireInstallation(principal, "review");
+    const row = await this.database.prepare(
+      `${reviewAssignmentDetailSelect}
+       WHERE assignment.id = ? AND assignment.verifier_person_id = ?`,
+    ).bind(
+      installation.agentId,
+      installation.delegationCertificateId,
+      installation.agentId,
+      installation.delegationCertificateId,
+      assignmentId,
+      principal.personId,
+    ).first();
+    if (!row) throw new GatewayStoreNotFoundError("Verification assignment not found.");
+    const [events, replays] = await Promise.all([
+      this.database.prepare(
+        `SELECT id, sequence, event_type, status, payload_hash, occurred_at
+         FROM verification_assignment_events
+         WHERE assignment_id = ?
+         ORDER BY sequence ASC`,
+      ).bind(assignmentId).all(),
+      this.database.prepare(
+        `SELECT replay.id, replay.run_id, replay.idempotency_key, replay.requested_at,
+                run.state, run.queued_at, run.started_at, run.finished_at,
+                run.runner_result_hash, evidence.evidence_hash, evidence.recorded_at
+         FROM verification_replays AS replay
+         INNER JOIN runs AS run ON run.id = replay.run_id
+         LEFT JOIN verification_replay_evidence AS evidence ON evidence.replay_id = replay.id
+         WHERE replay.assignment_id = ? AND replay.requester_agent_id = ?
+           AND replay.delegation_certificate_id = ?
+           AND replay.agent_installation_id = ?
+         ORDER BY replay.requested_at DESC, replay.id ASC
+         LIMIT 25`,
+      ).bind(
+        assignmentId,
+        installation.agentId,
+        installation.delegationCertificateId,
+        principal.agentInstallationId,
+      ).all(),
+    ]);
+    return Object.freeze({
+      assignment: toReviewAssignmentSummary(row),
+      target: Object.freeze({
+        problemSlug: row.problem_slug,
+        projectSlug: row.project_slug,
+        title: row.problem_title,
+        declaration: row.target_key,
+        informalStatement: row.informal_statement,
+        leanStatement: row.lean_statement,
+      }),
+      bundle: Object.freeze({
+        manifestHash: row.artifact_bundle_manifest_hash,
+        createdAt: row.bundle_created_at,
+        manifest: parseStoredBundleManifest(row.canonical_manifest),
+      }),
+      events: Object.freeze((events.results ?? []).map(toReviewAssignmentEvent)),
+      replays: Object.freeze((replays.results ?? []).map(toReviewAgentReplaySummary)),
+      note: "This is controlled review context. It is not a fresh replay, attestation, contribution Receipt, or credit award.",
     });
   }
 
@@ -807,6 +929,66 @@ const attemptSelect = `SELECT
  FROM agent_attempts AS attempt
  INNER JOIN problem_revisions AS revision ON revision.id = attempt.problem_revision_id`;
 
+const reviewAssignmentSummarySelect = `SELECT
+  assignment.id, assignment.artifact_bundle_manifest_hash, assignment.claim_type,
+  assignment.status, assignment.assigned_at, assignment.accepted_at,
+  assignment.declined_at, assignment.completed_at, bundle.attempt_id,
+  attempt.agent_label, revision.slug AS problem_slug,
+  project.slug AS project_slug, revision.title AS problem_title,
+  revision.target_key, attestation.id AS attestation_id,
+  attestation.decision AS attestation_decision,
+  attestation.evidence_hash AS attestation_evidence_hash,
+  attestation.attested_at AS attestation_attested_at,
+  (SELECT COUNT(*) FROM verification_replays AS exact_replay
+   WHERE exact_replay.assignment_id = assignment.id
+     AND exact_replay.requester_agent_id = ?
+     AND exact_replay.delegation_certificate_id = ?) AS exact_agent_replay_count,
+  (SELECT COUNT(*)
+   FROM verification_replay_evidence AS exact_evidence
+   INNER JOIN verification_replays AS exact_replay
+     ON exact_replay.id = exact_evidence.replay_id
+   WHERE exact_replay.assignment_id = assignment.id
+     AND exact_replay.requester_agent_id = ?
+     AND exact_replay.delegation_certificate_id = ?) AS exact_agent_replay_evidence_count
+ FROM verification_assignments AS assignment
+ INNER JOIN artifact_bundles AS bundle
+   ON bundle.manifest_hash = assignment.artifact_bundle_manifest_hash
+ INNER JOIN agent_attempts AS attempt ON attempt.id = bundle.attempt_id
+ INNER JOIN problem_revisions AS revision ON revision.id = bundle.problem_revision_id
+ INNER JOIN projects AS project ON project.id = revision.project_id
+ LEFT JOIN verification_attestations AS attestation ON attestation.assignment_id = assignment.id`;
+
+const reviewAssignmentDetailSelect = `SELECT
+  assignment.id, assignment.artifact_bundle_manifest_hash, assignment.claim_type,
+  assignment.status, assignment.assigned_at, assignment.accepted_at,
+  assignment.declined_at, assignment.completed_at, bundle.attempt_id,
+  attempt.agent_label, revision.slug AS problem_slug,
+  project.slug AS project_slug, revision.title AS problem_title,
+  revision.target_key, revision.informal_statement, revision.lean_statement,
+  bundle.canonical_manifest, bundle.created_at AS bundle_created_at,
+  attestation.id AS attestation_id,
+  attestation.decision AS attestation_decision,
+  attestation.evidence_hash AS attestation_evidence_hash,
+  attestation.attested_at AS attestation_attested_at,
+  (SELECT COUNT(*) FROM verification_replays AS exact_replay
+   WHERE exact_replay.assignment_id = assignment.id
+     AND exact_replay.requester_agent_id = ?
+     AND exact_replay.delegation_certificate_id = ?) AS exact_agent_replay_count,
+  (SELECT COUNT(*)
+   FROM verification_replay_evidence AS exact_evidence
+   INNER JOIN verification_replays AS exact_replay
+     ON exact_replay.id = exact_evidence.replay_id
+   WHERE exact_replay.assignment_id = assignment.id
+     AND exact_replay.requester_agent_id = ?
+     AND exact_replay.delegation_certificate_id = ?) AS exact_agent_replay_evidence_count
+ FROM verification_assignments AS assignment
+ INNER JOIN artifact_bundles AS bundle
+   ON bundle.manifest_hash = assignment.artifact_bundle_manifest_hash
+ INNER JOIN agent_attempts AS attempt ON attempt.id = bundle.attempt_id
+ INNER JOIN problem_revisions AS revision ON revision.id = bundle.problem_revision_id
+ INNER JOIN projects AS project ON project.id = revision.project_id
+ LEFT JOIN verification_attestations AS attestation ON attestation.assignment_id = assignment.id`;
+
 function assertVerificationPrincipal(principal) {
   if (
     !principal || typeof principal !== "object" ||
@@ -1020,6 +1202,90 @@ function attemptListLimit(value) {
     throw new GatewayStoreValidationError("Attempt list limit must be an integer from 1 to 100.");
   }
   return value;
+}
+
+function reviewAssignmentListLimit(value) {
+  if (value === undefined) return 25;
+  if (!Number.isInteger(value) || value < 1 || value > 100) {
+    throw new GatewayStoreValidationError("Review assignment list limit must be an integer from 1 to 100.");
+  }
+  return value;
+}
+
+function optionalReviewAssignmentStatus(value) {
+  if (value === undefined) return null;
+  if (value === "assigned" || value === "accepted" || value === "declined" || value === "completed") return value;
+  throw new GatewayStoreValidationError("Review assignment status must be assigned, accepted, declined, or completed.");
+}
+
+function toReviewAssignmentSummary(row) {
+  return Object.freeze({
+    id: row.id,
+    artifactBundleManifestHash: row.artifact_bundle_manifest_hash,
+    claimType: row.claim_type,
+    status: row.status,
+    assignedAt: row.assigned_at,
+    acceptedAt: row.accepted_at,
+    declinedAt: row.declined_at,
+    completedAt: row.completed_at,
+    exactAgentReplayCount: Number(row.exact_agent_replay_count ?? 0),
+    exactAgentReplayEvidenceCount: Number(row.exact_agent_replay_evidence_count ?? 0),
+    attempt: Object.freeze({
+      id: row.attempt_id,
+      agentLabel: row.agent_label,
+    }),
+    target: Object.freeze({
+      problemSlug: row.problem_slug,
+      projectSlug: row.project_slug,
+      title: row.problem_title,
+      declaration: row.target_key,
+    }),
+    attestation: row.attestation_id ? Object.freeze({
+      id: row.attestation_id,
+      decision: row.attestation_decision,
+      evidenceHash: row.attestation_evidence_hash,
+      attestedAt: row.attestation_attested_at,
+    }) : null,
+  });
+}
+
+function toReviewAssignmentEvent(row) {
+  return Object.freeze({
+    id: row.id,
+    sequence: Number(row.sequence),
+    eventType: row.event_type,
+    status: row.status,
+    payloadHash: row.payload_hash,
+    occurredAt: row.occurred_at,
+  });
+}
+
+function toReviewAgentReplaySummary(row) {
+  return Object.freeze({
+    id: row.id,
+    runId: row.run_id,
+    idempotencyKey: row.idempotency_key,
+    requestedAt: row.requested_at,
+    state: row.state,
+    queuedAt: row.queued_at,
+    startedAt: row.started_at,
+    finishedAt: row.finished_at,
+    runnerResultHash: row.runner_result_hash,
+    evidenceHash: row.evidence_hash,
+    evidenceRecordedAt: row.recorded_at,
+  });
+}
+
+function parseStoredBundleManifest(value) {
+  try {
+    const parsed = JSON.parse(value);
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed) || canonicalJson(parsed) !== value) {
+      throw new Error("not canonical");
+    }
+    return Object.freeze(parsed);
+  } catch {
+    throw new GatewayStoreValidationError("The assigned Artifact Bundle manifest is not readable canonical evidence.");
+  }
 }
 
 function requireSlug(value) {

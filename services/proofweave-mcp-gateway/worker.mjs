@@ -78,6 +78,10 @@ export class UnconfiguredIdentityProvider {
 }
 
 export class UnconfiguredGatewayStore {
+  async getConnectionAuthority() {
+    throw new Error("The Proofweave remote control plane is not configured.");
+  }
+
   async listFrontier() {
     throw new Error("The Proofweave remote control plane is not configured.");
   }
@@ -99,6 +103,14 @@ export class UnconfiguredGatewayStore {
   }
 
   async listAttempts() {
+    throw new Error("The Proofweave remote control plane is not configured.");
+  }
+
+  async listReviewAssignments() {
+    throw new Error("The Proofweave remote control plane is not configured.");
+  }
+
+  async getReviewAssignment() {
     throw new Error("The Proofweave remote control plane is not configured.");
   }
 
@@ -194,6 +206,16 @@ function createMcpServer(principal, store, rateLimiter) {
       instructions:
         "Proofweave records provisional research work only. Never describe an agent-reported event as Lean verification, independent review, or a contribution receipt.",
     },
+  );
+
+  server.registerTool(
+    "get_connection_authority",
+    {
+      title: "Inspect this connection authority",
+      description: "Read the public Person, Agent, delegation, and OAuth scope identifiers bound to this exact local installation. It never returns a token or private key.",
+      annotations: { readOnlyHint: true, destructiveHint: false },
+    },
+    async () => toolResult(await withScope(principal, "catalog:read", "get_connection_authority", rateLimiter, () => store.getConnectionAuthority(principal))),
   );
 
   server.registerTool(
@@ -389,6 +411,43 @@ function createMcpServer(principal, store, rateLimiter) {
       "request_verification_replay",
       rateLimiter,
       () => store.requestVerificationReplay(principal, input),
+    )),
+  );
+
+  server.registerTool(
+    "list_review_assignments",
+    {
+      title: "List assigned independent reviews",
+      description: "List review assignments addressed to this Person through the exact active review Agent. This does not accept work, start a replay, submit an attestation, or award credit.",
+      inputSchema: {
+        status: z.enum(["assigned", "accepted", "declined", "completed"]).optional(),
+        limit: z.number().int().min(1).max(100).optional(),
+      },
+      annotations: { readOnlyHint: true, destructiveHint: false },
+    },
+    async (input) => toolResult(await withScope(
+      principal,
+      "verification:replay",
+      "list_review_assignments",
+      rateLimiter,
+      () => store.listReviewAssignments(principal, input),
+    )),
+  );
+
+  server.registerTool(
+    "get_review_assignment",
+    {
+      title: "Inspect an assigned independent review",
+      description: "Read one Person-addressed assignment, source-pinned target, canonical Bundle manifest, append-only events, and only this review Agent installation's replay summaries.",
+      inputSchema: { assignmentId: z.string().min(1).max(240) },
+      annotations: { readOnlyHint: true, destructiveHint: false },
+    },
+    async ({ assignmentId }) => toolResult(await withScope(
+      principal,
+      "verification:replay",
+      "get_review_assignment",
+      rateLimiter,
+      () => store.getReviewAssignment(principal, assignmentId),
     )),
   );
 

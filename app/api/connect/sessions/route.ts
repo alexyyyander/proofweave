@@ -12,6 +12,7 @@ export async function POST(request: Request) {
       agentPublicKey: typeof body?.agentPublicKey === "string" ? body.agentPublicKey : "",
       oauthState: typeof body?.oauthState === "string" ? body.oauthState : "",
       codeChallenge: typeof body?.codeChallenge === "string" ? body.codeChallenge : "",
+      connectionMode: typeof body?.connectionMode === "string" ? body.connectionMode : undefined,
     });
     const origin = new URL(request.url).origin;
     const connectionUrl = new URL("/connect/codex", origin);

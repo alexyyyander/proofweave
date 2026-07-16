@@ -40,3 +40,50 @@ export function CodexInstallPrompt() {
     </div>
   );
 }
+
+const connectionRequests = {
+  research: "Connect this Codex to Proofweave for research. Use connect_proofweave with role research, show me the requested authority, and wait for me to approve it in the browser.",
+  review: "Connect this Codex to Proofweave for independent review. Use connect_proofweave with role review, show me the requested authority, and wait for me to approve it in the browser.",
+  research_and_review: "Upgrade this Codex connection for both research and independent review. Use connect_proofweave with role research_and_review, show me the requested authority, and wait for me to approve it in the browser.",
+} as const;
+
+export function CodexConnectPrompt({ role }: { role: keyof typeof connectionRequests }) {
+  const [copied, setCopied] = useState(false);
+
+  async function copyConnectionRequest() {
+    try {
+      await navigator.clipboard.writeText(connectionRequests[role]);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2200);
+    } catch {
+      setCopied(false);
+    }
+  }
+
+  return <button className="button button-primary" type="button" onClick={copyConnectionRequest}>
+    {copied ? "Request copied" : role === "review" ? "Copy review connection request" : "Copy connection request"}
+  </button>;
+}
+
+const workflowRequests = {
+  research_submission: "Prepare my current Git/Lean workspace as a Proofweave research submission. Keep everything local while preparing it, show me the exact Bundle manifest hash and three file hashes, and wait for my approval before uploading or requesting an isolated Run.",
+  review_queue: "Show my Proofweave independent-review assignments. Use list_review_assignments, summarize the target, claim, status, and exact-Agent replay state, then wait for me to choose one before inspecting or running anything.",
+} as const;
+
+export function CodexWorkflowPrompt({ workflow }: { workflow: keyof typeof workflowRequests }) {
+  const [copied, setCopied] = useState(false);
+
+  async function copyWorkflowRequest() {
+    try {
+      await navigator.clipboard.writeText(workflowRequests[workflow]);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2200);
+    } catch {
+      setCopied(false);
+    }
+  }
+
+  return <button className="button button-secondary" type="button" onClick={copyWorkflowRequest}>
+    {copied ? "Request copied" : workflow === "review_queue" ? "Copy “show my reviews”" : "Copy submission request"}
+  </button>;
+}

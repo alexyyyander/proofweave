@@ -66,10 +66,11 @@ approval still requires the person's separate confirmation.
 ## After installation
 
 When the person asks to connect, call `connection_status`. If it is not
-connected, ask for permission to run `connect_proofweave`. The local Connector
+connected, ask for permission to run `connect_proofweave` with the narrowest
+role: `research`, `review`, or `research_and_review`. The local Connector
 generates its Agent key on the participant's computer and uses browser-approved
-OAuth. Never ask the person to paste a public key, password, ChatGPT token,
-API key, or Proofweave bearer token.
+OAuth. Never ask the person to paste a public key, password, ChatGPT token, API
+key, or Proofweave bearer token.
 
 ## Use Codex with the Proofweave website
 
@@ -77,10 +78,13 @@ Installation only adds local tools to Codex. It does not connect an account,
 create an Agent, read a workspace, or send research files anywhere.
 
 1. Start a new Codex thread after installation (and after any permission-profile change).
-2. When the person is ready, they can say **“Connect Proofweave.”** Codex checks
-   the local state and must ask for approval before opening the browser flow.
+2. When the person is ready, they can say **“Connect Proofweave for research.”**
+   Codex checks the local state and must ask for approval before opening the
+   browser flow.
 3. In the browser, sign in to Proofweave, inspect the privacy boundary and the
-   proposed `formalize`/`prove` delegation, then approve or decline it. The
+   proposed role and delegation scopes, then approve or decline it. A research
+   connection uses `formalize`/`prove`; a review connection uses `review`.
+   The
    Connector creates and retains its Agent private key on the local computer;
    Proofweave receives only the public Agent identity and the revocable
    installation record.
@@ -104,10 +108,29 @@ create an Agent, read a workspace, or send research files anywhere.
    local computer while exploring.
 4. Ask Codex to record only a material milestone. The Workbench displays it as
    an Agent-reported, provisional event—not a verified theorem.
-5. If evidence should leave the computer, Codex first previews the exact file
-   names, sizes, and SHA-256 hashes. Bytes are sent only after the owner
-   confirms that exact preview. A submitted object is stored evidence only; it
-   is not a Bundle, Lean result, independent review, or Contribution Receipt.
+5. When the work is ready, ask Codex to prepare the current Git/Lean workspace
+   for Proofweave. It creates a local signed draft and shows the exact manifest
+   and file hashes without uploading them.
+6. After you approve that exact draft and its isolated Run request, one
+   Connector action uploads and stages the unchanged Bundle and requests its
+   Runner lifecycle. If dispatch is unavailable, the staged Bundle remains
+   safe and Codex reports that partial state instead of uploading it again. A
+   queued Run is still not a Lean result.
+
+### Independent review loop
+
+1. Ask Codex to **“Connect Proofweave for independent review.”** It uses the
+   `review` role and the browser displays that separate authority before approval.
+2. Claim and accept only a Bundle owned by another Person. Then ask Codex to
+   **“Show my Proofweave review assignments.”** It discovers the Person-bound
+   queue itself; you do not paste an assignment ID.
+3. The review Agent inspects the selected target and canonical Bundle manifest,
+   requests a fresh replay, and waits for terminal evidence.
+4. It prepares one signed attestation locally and shows the exact claim,
+   decision, evidence hash, and payload hash.
+5. Only after the owner confirms that exact draft may the Connector submit it.
+   Submission records one review claim; it does not issue a Receipt or settle
+   credit.
 
 If connection or storage is unavailable, Proofweave records nothing. Do not
 work around that boundary with a copied token, a browser-session credential, or
@@ -115,10 +138,11 @@ an unreviewed upload.
 
 ## Scope and integrity
 
-The initial release can read the public frontier, create bounded Attempts, and
-record provisional progress. It can preview and, with explicit owner
-confirmation, submit selected bounded evidence files; it does not upload the
-whole workspace. It must not claim Lean verification, independent review,
-novelty, or a contribution receipt merely because an Agent reported work.
+The initial release can read the public frontier, create bounded Attempts,
+record provisional progress, stage an owner-approved signed Bundle, request a
+configured Runner, and prepare an assigned review decision locally. It does
+not upload an unselected workspace. It must not claim Lean verification,
+independent review, novelty, or a contribution receipt merely because an Agent
+reported work, a Run was queued, or an attestation draft was prepared.
 Keep private workspaces and chain-of-thought local; record only selected,
 bounded evidence through the normal Proofweave flow.

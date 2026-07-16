@@ -27,10 +27,16 @@ const configPath = process.env.PROOFWEAVE_CONNECTOR_CONFIG ?? join(homedir(), ".
 const localEvidencePreviewLimits = { maxFiles: 6, maxFileBytes: 1_000_000, maxTotalBytes: 3_000_000 };
 const localWorkspaceBundleDefaults = { maxExpandedBytes: 64 * 1024 * 1024, maxFileCount: 10_000 };
 const legacyConnectionScopes = Object.freeze(["catalog:read", "attempt:create", "attempt:read", "progress:write"]);
-const requiredConnectionScopes = Object.freeze([...legacyConnectionScopes, "artifact:write"]);
+const requiredConnectionScopes = Object.freeze([...legacyConnectionScopes, "artifact:write", "run:request", "run:read", "run:cancel"]);
+const connectionScopeSets = Object.freeze({
+  research: requiredConnectionScopes,
+  review: Object.freeze(["catalog:read", "verification:replay", "verification:write"]),
+  research_and_review: Object.freeze([...legacyConnectionScopes, "artifact:write", "run:request", "run:read", "run:cancel", "verification:replay", "verification:write"]),
+});
 const toolDefinitions = [
-  tool("connect_proofweave", "Connect this local Codex to Proofweave with a one-time browser approval. It generates an Agent key on this computer; no key needs to be pasted.", { type: "object", additionalProperties: false, properties: {} }),
+  tool("connect_proofweave", "Connect this local Codex to Proofweave with a one-time browser approval. Choose research, review, or both; the Agent key stays on this computer and no key needs to be pasted.", { type: "object", additionalProperties: false, properties: { role: { type: "string", enum: ["research", "review", "research_and_review"], description: "Least-privilege connection role. Defaults to research." } } }),
   tool("connection_status", "Show whether this local Connector has a revocable Proofweave connection. It does not contact Proofweave.", { type: "object", additionalProperties: false, properties: {} }),
+  tool("get_connection_authority", "Read the public Person, Agent, delegation, and OAuth scopes bound to this exact local installation. It never returns a token or private key.", { type: "object", additionalProperties: false, properties: {} }),
   tool("list_frontier_problems", "List Proofweave frontier problems available to this connected Agent.", { type: "object", additionalProperties: false, properties: { limit: { type: "integer", minimum: 1, maximum: 100 } } }),
   tool("inspect_problem", "Read a source-pinned Proofweave frontier problem before starting local work.", { type: "object", additionalProperties: false, properties: { slug: { type: "string", minLength: 1, maxLength: 160 } }, required: ["slug"] }),
   tool("begin_research", "Start or resume one source-pinned Proofweave research target for this connected Agent. It recovers an existing active Attempt when present and never reads local files, records progress, uploads evidence, runs Lean, or creates credit.", { type: "object", additionalProperties: false, properties: { targetSlug: { type: "string", minLength: 1, maxLength: 160 }, intent: { type: "string", enum: ["formalize", "prove"] } }, required: ["targetSlug"] }),
@@ -47,6 +53,16 @@ const toolDefinitions = [
   tool("prepare_workspace_bundle_v2", "Prepare a signed v2 Artifact Bundle draft directly from one explicitly owner-approved local Git/Lean workspace. It creates the source archive, normalized patch, Lake manifest, and final workspace tree locally; it never uploads, stages, runs Lean, or creates credit.", { type: "object", additionalProperties: false, properties: { attemptId: { type: "string", minLength: 1, maxLength: 240 }, workspaceRoot: { type: "string", minLength: 1, maxLength: 1000 }, entryFile: { type: "string", minLength: 6, maxLength: 1024 }, allowedAxioms: { type: "array", maxItems: 256, items: { type: "string", minLength: 1, maxLength: 240 } }, ownerConfirmation: { type: "string", enum: ["I_CONFIRM_PREPARE_WORKSPACE_BUNDLE"] } }, required: ["attemptId", "workspaceRoot", "entryFile", "ownerConfirmation"] }),
   tool("prepare_artifact_bundle_v2", "Prepare a locally signed, executable Proofweave v2 Artifact Bundle draft from three explicitly owner-selected artifacts: source.tar.zst, normalized.patch, and lake-manifest.json. It does not upload, stage, run Lean, or create credit.", { type: "object", additionalProperties: false, properties: { attemptId: { type: "string", minLength: 1, maxLength: 240 }, artifacts: bundleArtifactPathsSchema(), workspaceTree: { type: "array", minItems: 1, maxItems: 100000, items: workspaceTreeEntrySchema() }, maxExpandedBytes: { type: "integer", minimum: 1, maximum: 17179869184 }, maxFileCount: { type: "integer", minimum: 1, maximum: 100000 }, entryFile: { type: "string", minLength: 6, maxLength: 1024 }, allowedAxioms: { type: "array", maxItems: 256, items: { type: "string", minLength: 1, maxLength: 240 } } }, required: ["attemptId", "artifacts", "workspaceTree", "maxExpandedBytes", "maxFileCount", "entryFile"] }),
   tool("stage_prepared_artifact_bundle", "Upload the exact three owner-approved Artifact Bundle files and stage one locally signed v2 Bundle. Call only after the owner explicitly confirms the prepared manifest hash and exact file hashes. A successful result records bundle_staged evidence only; it does not run Lean, review, or issue a receipt.", { type: "object", additionalProperties: false, properties: { bundle: { type: "object" }, artifacts: bundleArtifactPathsSchema(), expectedArtifactSha256: expectedBundleArtifactHashesSchema(), expectedBundleHash: { type: "string", pattern: "^sha256:[a-f0-9]{64}$" }, ownerConfirmation: { type: "string", enum: ["I_CONFIRM_STAGE_BUNDLE"] } }, required: ["bundle", "artifacts", "expectedArtifactSha256", "expectedBundleHash", "ownerConfirmation"] }),
+  tool("submit_prepared_research_submission", "After one owner confirmation, upload and stage the exact prepared Bundle, then request its isolated Lean Run with one idempotency key. If Runner dispatch is unavailable, the immutable staged Bundle is preserved and reported separately; this never claims verification, review, a Receipt, or credit.", { type: "object", additionalProperties: false, properties: { bundle: { type: "object" }, artifacts: bundleArtifactPathsSchema(), expectedArtifactSha256: expectedBundleArtifactHashesSchema(), expectedBundleHash: { type: "string", pattern: "^sha256:[a-f0-9]{64}$" }, runIdempotencyKey: { type: "string", minLength: 1, maxLength: 160 }, ownerConfirmation: { type: "string", enum: ["I_CONFIRM_STAGE_AND_RUN"] } }, required: ["bundle", "artifacts", "expectedArtifactSha256", "expectedBundleHash", "runIdempotencyKey", "ownerConfirmation"] }),
+  tool("request_runner_run", "Queue one already staged v2 Artifact Bundle for the isolated Lean Runner. This records a Run request only; it is not kernel acceptance, independent review, or a Receipt.", { type: "object", additionalProperties: false, properties: { attemptId: { type: "string", minLength: 1, maxLength: 160 }, artifactBundleHash: { type: "string", pattern: "^sha256:[a-f0-9]{64}$" }, idempotencyKey: { type: "string", minLength: 1, maxLength: 160 } }, required: ["attemptId", "artifactBundleHash", "idempotencyKey"] }),
+  tool("get_runner_run", "Read this research Agent's exact isolated Lean Run and immutable event hashes. A terminal Runner result is infrastructure evidence, not independent review or a Receipt.", { type: "object", additionalProperties: false, properties: { attemptId: { type: "string", minLength: 1, maxLength: 160 }, runId: { type: "string", minLength: 1, maxLength: 240 } }, required: ["attemptId", "runId"] }),
+  tool("cancel_runner_run", "Request cancellation of this research Agent's exact active Run. The immutable Run history remains visible.", { type: "object", additionalProperties: false, properties: { attemptId: { type: "string", minLength: 1, maxLength: 160 }, runId: { type: "string", minLength: 1, maxLength: 240 } }, required: ["attemptId", "runId"] }),
+  tool("list_review_assignments", "List independent-review assignments addressed to this Person through this exact review Agent connection. This does not accept work, run Lean, submit an attestation, or award credit.", { type: "object", additionalProperties: false, properties: { status: { type: "string", enum: ["assigned", "accepted", "declined", "completed"] }, limit: { type: "integer", minimum: 1, maximum: 100 } } }),
+  tool("get_review_assignment", "Inspect one assigned target, claim, canonical Bundle manifest, append-only assignment events, and this exact review Agent installation's replay summaries before deciding what to check.", { type: "object", additionalProperties: false, properties: { assignmentId: { type: "string", minLength: 1, maxLength: 240 } }, required: ["assignmentId"] }),
+  tool("request_verification_replay", "Queue a fresh isolated replay for one accepted independent-review assignment. This requires a review connection and creates replay evidence only, not an attestation or Receipt.", { type: "object", additionalProperties: false, properties: { assignmentId: { type: "string", minLength: 1, maxLength: 240 }, idempotencyKey: { type: "string", minLength: 1, maxLength: 160 } }, required: ["assignmentId", "idempotencyKey"] }),
+  tool("get_verification_replay", "Read this review Agent's exact replay Run and terminal replay evidence for one assignment and idempotency key.", { type: "object", additionalProperties: false, properties: { assignmentId: { type: "string", minLength: 1, maxLength: 240 }, idempotencyKey: { type: "string", minLength: 1, maxLength: 160 } }, required: ["assignmentId", "idempotencyKey"] }),
+  tool("prepare_verification_attestation", "Prepare and sign one assignment-bound review attestation locally. It never submits, publishes, creates a Receipt, or awards credit. A positive reproducibility claim must name this review Agent's terminal replay evidence.", { type: "object", additionalProperties: false, properties: { assignmentId: { type: "string", minLength: 1, maxLength: 240 }, artifactBundleHash: { type: "string", pattern: "^sha256:[a-f0-9]{64}$" }, claimType: { type: "string", enum: ["bundle_reproducible", "kernel_accepted", "statement_faithful", "novelty_reviewed", "project_accepted"] }, decision: { type: "string", enum: ["attested", "rejected", "request_changes", "conflict_declared", "integrity_flagged"] }, evidenceHash: { type: "string", pattern: "^sha256:[a-f0-9]{64}$" }, replayIdempotencyKey: { type: "string", minLength: 1, maxLength: 160 } }, required: ["assignmentId", "artifactBundleHash", "claimType", "decision", "evidenceHash"] }),
+  tool("submit_prepared_verification_attestation", "Submit the exact locally signed review attestation only after the owner confirms its payload hash, decision, claim, and evidence hash. This records one review claim only; it never creates a Receipt or settles credit.", { type: "object", additionalProperties: false, properties: { attestation: { type: "object" }, expectedPayloadHash: { type: "string", pattern: "^sha256:[a-f0-9]{64}$" }, ownerConfirmation: { type: "string", enum: ["I_CONFIRM_SUBMIT_VERIFICATION"] } }, required: ["attestation", "expectedPayloadHash", "ownerConfirmation"] }),
 ];
 
 const rl = readline.createInterface({ input: process.stdin, crlfDelay: Infinity });
@@ -84,8 +100,10 @@ async function handleRequest(method, params) {
   if (method !== "tools/call") throw new Error(`Unsupported MCP method: ${method}`);
   const name = typeof params.name === "string" ? params.name : "";
   const args = params.arguments && typeof params.arguments === "object" && !Array.isArray(params.arguments) ? params.arguments : {};
-  if (name === "connect_proofweave") return connectionResult(await connect());
+  if (name === "connect_proofweave") return connectionResult(await connect(args));
   if (name === "connection_status") return connectionResult(await connectionStatus());
+  if (name === "prepare_verification_attestation") return connectionResult(await prepareVerificationAttestation(args));
+  if (name === "submit_prepared_verification_attestation") return connectionResult(await submitPreparedVerificationAttestation(args));
   if (name === "begin_research") return connectionResult(await beginResearch(args));
   if (name === "continue_research") return connectionResult(await continueResearch());
   if (name === "prepare_research_checkpoint") return connectionResult(await prepareResearchCheckpoint(args));
@@ -95,6 +113,7 @@ async function handleRequest(method, params) {
   if (name === "prepare_workspace_bundle_v2") return connectionResult(await prepareWorkspaceBundleV2(args));
   if (name === "prepare_artifact_bundle_v2") return connectionResult(await prepareArtifactBundleV2(args));
   if (name === "stage_prepared_artifact_bundle") return connectionResult(await stagePreparedArtifactBundle(args));
+  if (name === "submit_prepared_research_submission") return connectionResult(await submitPreparedResearchSubmission(args));
   if (!toolDefinitions.some((item) => item.name === name)) return toolError(`Unknown Proofweave tool: ${name}`);
   const result = await callRemoteTool(name, args);
   return result;
@@ -643,6 +662,54 @@ async function stagePreparedArtifactBundle(args) {
   };
 }
 
+async function submitPreparedResearchSubmission(args) {
+  if (args.ownerConfirmation !== "I_CONFIRM_STAGE_AND_RUN") {
+    throw new Error("The owner must explicitly confirm the exact prepared Bundle and isolated Runner request before any bytes can leave this computer.");
+  }
+  const runIdempotencyKey = requiredLocalString(args.runIdempotencyKey, "runIdempotencyKey", 160);
+  const staged = await stagePreparedArtifactBundle({
+    bundle: args.bundle,
+    artifacts: args.artifacts,
+    expectedArtifactSha256: args.expectedArtifactSha256,
+    expectedBundleHash: args.expectedBundleHash,
+    ownerConfirmation: "I_CONFIRM_STAGE_BUNDLE",
+  });
+  try {
+    const requested = parseRemoteToolJson(await callRemoteTool("request_runner_run", {
+      attemptId: staged.attemptId,
+      artifactBundleHash: staged.bundle.manifestHash,
+      idempotencyKey: runIdempotencyKey,
+    }), "request_runner_run");
+    if (
+      !requested?.run?.id || requested.run.attemptId !== staged.attemptId ||
+      requested.run.artifactBundleHash !== staged.bundle.manifestHash
+    ) {
+      throw new Error("Proofweave did not return a Run bound to the staged Bundle's Attempt.");
+    }
+    return {
+      attemptId: staged.attemptId,
+      operation: "research_submission",
+      submissionState: "bundle_staged_run_requested",
+      bundle: staged.bundle,
+      artifacts: staged.artifacts,
+      run: requested.run,
+      runnerVerificationState: requested.verificationState ?? "not_verified",
+      next: "The immutable Bundle is staged and its isolated Run was requested. Poll the returned Run id; only terminal signed Runner evidence can satisfy the Lean gate.",
+    };
+  } catch (error) {
+    return {
+      attemptId: staged.attemptId,
+      operation: "research_submission",
+      submissionState: "bundle_staged_run_not_requested",
+      bundle: staged.bundle,
+      artifacts: staged.artifacts,
+      run: null,
+      runnerRequestError: messageFor(error),
+      next: "The immutable Bundle remains safely staged. After Runner dispatch is available, retry request_runner_run with this Attempt id, Bundle manifest hash, and the same idempotency key; do not upload the Bundle again.",
+    };
+  }
+}
+
 async function readSelectedEvidence(paths) {
   const files = [];
   let totalBytes = 0;
@@ -1185,6 +1252,170 @@ function assertBundleMatchesCurrentEvidence({ bundle, expectedBundleHash, expect
   if (!signatureValid) throw new Error("The prepared Bundle signature is invalid. Prepare it again from this local Agent.");
 }
 
+async function prepareVerificationAttestation(args) {
+  const assignmentId = requiredLocalString(args.assignmentId, "assignmentId", 240);
+  const artifactBundleHash = requireSha256(args.artifactBundleHash, "artifactBundleHash");
+  const claimType = normalizeVerificationClaimType(args.claimType);
+  const decision = normalizeVerificationDecision(args.decision);
+  const evidenceHash = requireSha256(args.evidenceHash, "evidenceHash");
+  const config = await requireConfig();
+  const authority = await requireRemoteConnectionAuthority(config, "verification:write");
+
+  if (claimType === "bundle_reproducible" && decision === "attested") {
+    const replayIdempotencyKey = requiredLocalString(args.replayIdempotencyKey, "replayIdempotencyKey", 160);
+    const replayResult = parseRemoteToolJson(await callRemoteTool("get_verification_replay", {
+      assignmentId,
+      idempotencyKey: replayIdempotencyKey,
+    }), "get_verification_replay");
+    if (
+      replayResult?.replay?.assignmentId !== assignmentId ||
+      replayResult.replay.artifactBundleManifestHash !== artifactBundleHash ||
+      replayResult.replay.requesterPersonId !== authority.personId ||
+      replayResult.replay.requesterAgentId !== config.agentId ||
+      replayResult.replay.delegationCertificateId !== authority.delegationCertificateId ||
+      replayResult?.replayEvidence?.evidenceHash !== evidenceHash
+    ) {
+      throw new Error("A positive bundle_reproducible attestation must use this review Agent's terminal replay evidence hash for the exact assignment and Bundle.");
+    }
+  }
+
+  const unsigned = {
+    protocolVersion: "pw-verification-attestation-v1",
+    id: `attestation:${randomUUID()}`,
+    assignmentId,
+    artifactBundleHash,
+    claimType,
+    verifierPersonId: authority.personId,
+    verifierAgentId: authority.agentId,
+    delegationCertificateId: authority.delegationCertificateId,
+    verifierAgentPublicKey: authority.agentPublicKey,
+    decision,
+    evidenceHash,
+    attestedAt: new Date().toISOString(),
+  };
+  const payloadHash = sha256Canonical(unsigned);
+  const privateKey = createPrivateKey({ key: config.privateKeyJwk, format: "jwk" });
+  const signature = sign(null, Buffer.from(canonicalJson(unsigned)), privateKey).toString("base64url");
+  const attestation = { ...unsigned, payloadHash, signature };
+  return {
+    operation: "verification_attestation_prepared",
+    submitted: false,
+    createsReceipt: false,
+    createsCredit: false,
+    payloadHash,
+    attestation,
+    submitInput: {
+      attestation,
+      expectedPayloadHash: payloadHash,
+      ownerConfirmation: "I_CONFIRM_SUBMIT_VERIFICATION",
+    },
+  };
+}
+
+async function submitPreparedVerificationAttestation(args) {
+  if (args.ownerConfirmation !== "I_CONFIRM_SUBMIT_VERIFICATION") {
+    throw new Error("The owner must explicitly approve the exact prepared verification attestation before it is submitted.");
+  }
+  const expectedPayloadHash = requireSha256(args.expectedPayloadHash, "expectedPayloadHash");
+  const attestation = normalizePreparedVerificationAttestation(args.attestation);
+  const unsigned = verificationAttestationSigningPayload(attestation);
+  const actualPayloadHash = sha256Canonical(unsigned);
+  if (actualPayloadHash !== expectedPayloadHash || attestation.payloadHash !== expectedPayloadHash) {
+    throw new Error("The prepared verification attestation changed after the owner reviewed it.");
+  }
+  const config = await requireConfig();
+  const authority = await requireRemoteConnectionAuthority(config, "verification:write");
+  if (
+    attestation.verifierPersonId !== authority.personId ||
+    attestation.verifierAgentId !== authority.agentId ||
+    attestation.verifierAgentPublicKey !== authority.agentPublicKey ||
+    attestation.delegationCertificateId !== authority.delegationCertificateId
+  ) {
+    throw new Error("The prepared verification attestation no longer matches this authorized review Agent.");
+  }
+  let signatureValid = false;
+  try {
+    const publicKey = createPublicKey({ key: { kty: "OKP", crv: "Ed25519", x: authority.agentPublicKey }, format: "jwk" });
+    signatureValid = verify(null, Buffer.from(canonicalJson(unsigned)), publicKey, Buffer.from(attestation.signature, "base64url"));
+  } catch {
+    signatureValid = false;
+  }
+  if (!signatureValid) throw new Error("The prepared verification attestation signature is invalid. Prepare it again from this local review Agent.");
+  const recorded = parseRemoteToolJson(await callRemoteTool("submit_verification_attestation", { attestation }), "submit_verification_attestation");
+  return {
+    operation: "verification_attestation_submitted",
+    submitted: true,
+    createsReceipt: false,
+    createsCredit: false,
+    attestationId: attestation.id,
+    payloadHash: expectedPayloadHash,
+    recorded,
+  };
+}
+
+async function requireRemoteConnectionAuthority(config, requiredScope) {
+  const value = parseRemoteToolJson(await callRemoteTool("get_connection_authority", {}), "get_connection_authority");
+  if (
+    !value || typeof value !== "object" || value.agentId !== config.agentId ||
+    value.agentPublicKey !== config.agentPublicKey || typeof value.personId !== "string" ||
+    typeof value.delegationCertificateId !== "string" || !Array.isArray(value.oauthScopes) ||
+    !value.oauthScopes.includes(requiredScope)
+  ) {
+    throw new Error(`This local Agent does not have the active ${requiredScope} authority required for this operation.`);
+  }
+  return value;
+}
+
+function normalizePreparedVerificationAttestation(value) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    throw new Error("A prepared verification attestation is required.");
+  }
+  const allowed = [
+    "protocolVersion", "id", "assignmentId", "artifactBundleHash", "claimType",
+    "verifierPersonId", "verifierAgentId", "delegationCertificateId",
+    "verifierAgentPublicKey", "decision", "evidenceHash", "attestedAt",
+    "payloadHash", "signature",
+  ];
+  const extra = Object.keys(value).find((key) => !allowed.includes(key));
+  if (extra) throw new Error(`The prepared verification attestation contains unsupported field ${extra}.`);
+  if (value.protocolVersion !== "pw-verification-attestation-v1") throw new Error("The prepared verification attestation protocol version is invalid.");
+  for (const [label, entry] of Object.entries({
+    id: value.id,
+    assignmentId: value.assignmentId,
+    verifierPersonId: value.verifierPersonId,
+    verifierAgentId: value.verifierAgentId,
+    delegationCertificateId: value.delegationCertificateId,
+  })) requiredLocalString(entry, label, 240);
+  requireSha256(value.artifactBundleHash, "artifactBundleHash");
+  requireSha256(value.evidenceHash, "evidenceHash");
+  requireSha256(value.payloadHash, "payloadHash");
+  normalizeVerificationClaimType(value.claimType);
+  normalizeVerificationDecision(value.decision);
+  if (typeof value.attestedAt !== "string" || Number.isNaN(Date.parse(value.attestedAt))) throw new Error("attestedAt must be a valid timestamp.");
+  if (!/^[A-Za-z0-9_-]{43}$/.test(value.verifierAgentPublicKey)) throw new Error("verifierAgentPublicKey must be a base64url Ed25519 public key.");
+  if (!/^[A-Za-z0-9_-]{86}$/.test(value.signature)) throw new Error("signature must be a base64url Ed25519 signature.");
+  return value;
+}
+
+function verificationAttestationSigningPayload(attestation) {
+  const unsigned = { ...attestation };
+  delete unsigned.payloadHash;
+  delete unsigned.signature;
+  return unsigned;
+}
+
+function normalizeVerificationClaimType(value) {
+  const allowed = ["bundle_reproducible", "kernel_accepted", "statement_faithful", "novelty_reviewed", "project_accepted"];
+  if (!allowed.includes(value)) throw new Error("claimType is invalid.");
+  return value;
+}
+
+function normalizeVerificationDecision(value) {
+  const allowed = ["attested", "rejected", "request_changes", "conflict_declared", "integrity_flagged"];
+  if (!allowed.includes(value)) throw new Error("decision is invalid.");
+  return value;
+}
+
 function isSha256(value) {
   return typeof value === "string" && /^sha256:[a-f0-9]{64}$/.test(value);
 }
@@ -1225,11 +1456,12 @@ function canonicalJson(value) {
   }
 }
 
-async function connect() {
+async function connect(args = {}) {
+  const connectionMode = normalizeConnectionMode(args.role);
   const existing = await readConfig();
-  const missingScopes = missingRequiredConnectionScopes(existing);
-  if (existing?.refreshToken && existing.baseUrl === baseUrl && missingScopes.length === 0) {
-    return { connected: true, message: `Already connected as ${existing.agentLabel}. Revoke this connection in Proofweave Settings before reconnecting.` };
+  const missingScopes = missingRequiredConnectionScopes(existing, connectionMode);
+  if (existing?.refreshToken && existing.baseUrl === baseUrl && existingConnectionMode(existing) === connectionMode && missingScopes.length === 0) {
+    return { connected: true, connectionMode, message: `Already connected as ${existing.agentLabel} for ${connectionModeLabel(connectionMode)}. Revoke this connection in Proofweave Settings before reconnecting.` };
   }
   const upgrading = Boolean(existing?.refreshToken && existing.baseUrl === baseUrl);
   const identity = existing?.privateKeyJwk && existing?.agentId && existing?.agentPublicKey
@@ -1244,15 +1476,16 @@ async function connect() {
     agentPublicKey: identity.agentPublicKey,
     oauthState: state,
     codeChallenge,
+    connectionMode,
   });
   const tokens = await waitForCallback({ connectionUrl: session.connectionUrl, state, verifier, clientId: session.clientId });
   const grantedScopes = normalizeOAuthScopes(tokens.scope);
-  const missingGrantedScopes = requiredConnectionScopes.filter((scope) => !grantedScopes.includes(scope));
+  const missingGrantedScopes = scopesForConnectionMode(connectionMode).filter((scope) => !grantedScopes.includes(scope));
   if (missingGrantedScopes.length > 0) {
     throw new Error(`Proofweave browser approval did not grant the required Connector scopes: ${missingGrantedScopes.join(", ")}.`);
   }
   const next = {
-    version: 2,
+    version: 3,
     baseUrl,
     agentId: identity.agentId,
     agentLabel: identity.agentLabel,
@@ -1263,12 +1496,14 @@ async function connect() {
     refreshToken: tokens.refresh_token,
     accessTokenExpiresAt: new Date(Date.now() + Number(tokens.expires_in) * 1_000).toISOString(),
     grantedScopes,
+    connectionMode,
   };
   await writeConfig(next);
   return {
     connected: true,
+    connectionMode,
     scopeUpgradeRequired: false,
-    message: `${upgrading ? "Connection upgraded" : "Connected"} as ${next.agentLabel}. You can revoke this installation in Proofweave Settings.`,
+    message: `${upgrading ? "Connection upgraded" : "Connected"} as ${next.agentLabel} for ${connectionModeLabel(connectionMode)}. You can revoke this installation in Proofweave Settings.`,
   };
 }
 
@@ -1276,16 +1511,18 @@ async function connectionStatus() {
   const config = await readConfig();
   if (!config?.refreshToken) return { connected: false, message: "Not connected. Use connect_proofweave to approve this local Codex." };
   const missingScopes = missingRequiredConnectionScopes(config);
+  const connectionMode = existingConnectionMode(config);
   return {
     connected: true,
     agentId: config.agentId,
     agentLabel: config.agentLabel,
     baseUrl: config.baseUrl,
+    connectionMode,
     scopeUpgradeRequired: missingScopes.length > 0,
     missingScopes,
     message: missingScopes.length > 0
-      ? "This local connection predates artifact staging. Use connect_proofweave to approve the upgraded scopes before uploading or staging evidence."
-      : "Connected locally. The refresh token and Agent private key are stored only on this computer.",
+      ? `This local connection is missing ${missingScopes.join(", ")}. Use connect_proofweave with role ${connectionMode} to approve the upgraded least-privilege connection.`
+      : `Connected locally for ${connectionModeLabel(connectionMode)}. The refresh token and Agent private key are stored only on this computer.`,
   };
 }
 
@@ -1387,6 +1624,11 @@ function remoteToolErrorMessage(name, result) {
   if (message === "Missing OAuth scope: artifact:write.") {
     return "This local Proofweave connection is missing OAuth scope artifact:write. Use connect_proofweave to approve the upgraded connection, then review and retry the exact Bundle.";
   }
+  const missingScope = /^Missing OAuth scope: ([a-z:]+)\.$/.exec(message)?.[1];
+  if (missingScope) {
+    const role = missingScope.startsWith("verification:") ? "review" : "research";
+    return `This local Proofweave connection is missing OAuth scope ${missingScope}. Use connect_proofweave with role ${role} (or research_and_review), then retry.`;
+  }
   return `Proofweave rejected ${name}: ${message}`;
 }
 
@@ -1416,7 +1658,7 @@ async function refreshAccessToken(config) {
   });
   const next = {
     ...config,
-    version: 2,
+    version: 3,
     accessToken: tokens.access_token,
     refreshToken: tokens.refresh_token,
     accessTokenExpiresAt: new Date(Date.now() + Number(tokens.expires_in) * 1_000).toISOString(),
@@ -1426,13 +1668,39 @@ async function refreshAccessToken(config) {
   return next;
 }
 
-function missingRequiredConnectionScopes(config) {
+function missingRequiredConnectionScopes(config, requestedMode = existingConnectionMode(config)) {
   const grantedScopes = Array.isArray(config?.grantedScopes)
     ? normalizeOAuthScopes(config.grantedScopes)
     : config?.version === 1 && config?.refreshToken
       ? legacyConnectionScopes
       : [];
-  return requiredConnectionScopes.filter((scope) => !grantedScopes.includes(scope));
+  return scopesForConnectionMode(requestedMode).filter((scope) => !grantedScopes.includes(scope));
+}
+
+function normalizeConnectionMode(value) {
+  const mode = value === undefined ? "research" : value;
+  if (mode !== "research" && mode !== "review" && mode !== "research_and_review") {
+    throw new Error("role must be research, review, or research_and_review.");
+  }
+  return mode;
+}
+
+function existingConnectionMode(config) {
+  try {
+    return normalizeConnectionMode(config?.connectionMode);
+  } catch {
+    return "research";
+  }
+}
+
+function scopesForConnectionMode(mode) {
+  return connectionScopeSets[normalizeConnectionMode(mode)];
+}
+
+function connectionModeLabel(mode) {
+  if (mode === "review") return "independent review";
+  if (mode === "research_and_review") return "research and independent review";
+  return "research";
 }
 
 function normalizeOAuthScopes(value) {

@@ -23,6 +23,8 @@ type PairingPreview = {
   agentId: string;
   agentLabel: string;
   agentPublicKey: string;
+  connectionMode: "research" | "review" | "research_and_review";
+  delegationScopes: readonly ("formalize" | "prove" | "review")[];
   expiresAt: string;
 };
 
@@ -82,6 +84,7 @@ export function CodexPairingApproval({ profile, pairingId, secret }: {
         personId: profile.person.id,
         agentId: agent.id,
         agentPublicKey: agent.publicKey,
+        scopes: pairing.delegationScopes,
       });
       const personSignature = await signDevicePersonPayload(
         signingKey.publicKey,
@@ -123,11 +126,11 @@ export function CodexPairingApproval({ profile, pairingId, secret }: {
     <div className="connect-codex-device">
       <span className="micro-label">This local Agent</span>
       <strong>{pairing?.agentLabel ?? "Reading local connection…"}</strong>
-      {pairing && <><code>{pairing.agentId}</code><small>Approval link expires {formatExpiry(pairing.expiresAt)}.</small></>}
+      {pairing && <><code>{pairing.agentId}</code><small>{connectionModeLabel(pairing.connectionMode)} · approval link expires {formatExpiry(pairing.expiresAt)}.</small></>}
     </div>
     <div className="connect-codex-boundary">
       <div><span>Stored locally</span><p>Agent private key, OAuth refresh token, Codex workspace, model settings, and raw research notes.</p></div>
-      <div><span>Recorded by Proofweave</span><p>Agent public key, a 30-day formalize/prove delegation, and a revocable connection record.</p></div>
+      <div><span>Recorded by Proofweave</span><p>Agent public key, a 30-day {pairing ? delegationLabel(pairing.delegationScopes) : "scoped"} delegation, and a revocable connection record.</p></div>
     </div>
     {keyState === "checking" && <p className="connect-codex-status">Checking whether this browser can sign the approval…</p>}
     {keyState === "missing" && <p className="connect-codex-status">This browser will create one protected Person signing key before approval. Its private half never leaves this browser.</p>}
@@ -141,18 +144,37 @@ export function CodexPairingApproval({ profile, pairingId, secret }: {
   </section>;
 }
 
-function certificateFor(input: { personId: string; agentId: string; agentPublicKey: string }) {
+function certificateFor(input: {
+  personId: string;
+  agentId: string;
+  agentPublicKey: string;
+  scopes: readonly ("formalize" | "prove" | "review")[];
+}) {
   const validFrom = new Date();
   return {
     id: `pw:delegation:${crypto.randomUUID()}`,
     ownerPersonId: input.personId,
     agentId: input.agentId,
     agentPublicKey: input.agentPublicKey,
-    scopes: ["formalize", "prove"],
+    scopes: [...input.scopes],
     validFrom: validFrom.toISOString(),
     validUntil: new Date(validFrom.getTime() + 30 * 24 * 60 * 60 * 1_000).toISOString(),
     attributionPolicy: { beneficiaryPersonId: input.personId, mode: "agent_delegated" as const },
   };
+}
+
+function connectionModeLabel(mode: PairingPreview["connectionMode"]): string {
+  if (mode === "review") return "Independent review connection";
+  if (mode === "research_and_review") return "Research and independent review connection";
+  return "Research connection";
+}
+
+function delegationLabel(scopes: PairingPreview["delegationScopes"]): string {
+  if (scopes.includes("review") && scopes.some((scope) => scope === "formalize" || scope === "prove")) {
+    return "formalize/prove/review";
+  }
+  if (scopes.includes("review")) return "review";
+  return "formalize/prove";
 }
 
 function formatExpiry(value: string): string {

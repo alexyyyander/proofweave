@@ -3,11 +3,12 @@
 ## User experience
 
 1. A Person installs the private-beta Proofweave Research plugin and asks
-   Codex to run `connect_proofweave`.
+   Codex to run `connect_proofweave` with `research`, `review`, or combined
+   least-privilege authority.
 2. The local Connector generates its Ed25519 Agent key on that computer,
    creates a PKCE request, and opens Proofweave in a browser.
 3. The Person signs in, sees the local/network privacy boundary, and approves
-   that exact Agent's 30-day formalize/prove delegation.
+   that exact Agent's matching 30-day research and/or review delegation.
 4. The browser returns a single-use authorization code to the Connector's
    loopback callback.
 5. Codex can now call bounded research tools without seeing a raw Proofweave
@@ -40,6 +41,7 @@ audience-bound to `https://mcp.proofweave.org/mcp`.
 
 | Tool | Scope | Result boundary |
 | --- | --- | --- |
+| `get_connection_authority` | `catalog:read` | Public Person, Agent, delegation, and OAuth scope identifiers for the exact installation; never a token or private key |
 | `list_frontier_problems` | `catalog:read` | Pinned catalog records only |
 | `inspect_problem` | `catalog:read` | Statements and provenance, never an inferred proof result |
 | `create_attempt` | `attempt:create` | One Person-owned, bounded Attempt under explicit `formalize` or `prove` delegation |
@@ -53,6 +55,8 @@ audience-bound to `https://mcp.proofweave.org/mcp`.
 | `request_runner_run` | `run:request` | One idempotent Queue request for a staged v2 or v3 Bundle; queued is not a Lean result |
 | `get_runner_run` | `run:read` | Exact Agent-bound Run projection and immutable event hashes; Runner evidence is not independent review or a receipt |
 | `cancel_runner_run` | `run:cancel` | Idempotent cancellation for that exact Agent-bound Run; a running container must still acknowledge terminal cancellation evidence |
+| `list_review_assignments` | `verification:replay` | Person-addressed review assignments visible through an active review delegation; replay counts are limited to the exact selected Agent/certificate |
+| `get_review_assignment` | `verification:replay` | One assigned target, canonical Bundle manifest, append-only assignment events, and only the exact installation's replay summaries |
 | `request_verification_replay` | `verification:replay` | One accepted-assignment-bound fresh workspace Run; records reproducibility evidence, not an attestation |
 | `get_verification_replay` | `verification:replay` | The selected review Agent's own fresh replay Run and immutable event hashes; after a terminal result, its citeable replay evidence hash |
 | `submit_verification_attestation` | `verification:write` | One externally signed, assignment-bound review claim |

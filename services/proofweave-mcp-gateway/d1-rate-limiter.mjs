@@ -7,6 +7,7 @@ const principalPattern = /^[^\u0000\r\n]{1,240}$/;
  * transport abuse only; they neither measure nor award mathematical work.
  */
 export const remoteMcpRateLimitPolicies = Object.freeze({
+  get_connection_authority: Object.freeze({ maxRequests: 60, windowSeconds: 60 }),
   list_frontier_problems: Object.freeze({ maxRequests: 60, windowSeconds: 60 }),
   inspect_problem: Object.freeze({ maxRequests: 60, windowSeconds: 60 }),
   create_attempt: Object.freeze({ maxRequests: 12, windowSeconds: 3_600 }),
@@ -16,6 +17,8 @@ export const remoteMcpRateLimitPolicies = Object.freeze({
   put_artifact_object: Object.freeze({ maxRequests: 24, windowSeconds: 3_600 }),
   stage_artifact_bundle: Object.freeze({ maxRequests: 12, windowSeconds: 3_600 }),
   request_runner_run: Object.freeze({ maxRequests: 12, windowSeconds: 3_600 }),
+  list_review_assignments: Object.freeze({ maxRequests: 60, windowSeconds: 60 }),
+  get_review_assignment: Object.freeze({ maxRequests: 120, windowSeconds: 60 }),
   request_verification_replay: Object.freeze({ maxRequests: 12, windowSeconds: 3_600 }),
   get_verification_replay: Object.freeze({ maxRequests: 120, windowSeconds: 60 }),
   get_runner_run: Object.freeze({ maxRequests: 120, windowSeconds: 60 }),

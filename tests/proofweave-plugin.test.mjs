@@ -9,6 +9,7 @@ import { fileURLToPath } from "node:url";
 import { test } from "node:test";
 import { promisify } from "node:util";
 import { normalizeArtifactBundle, verifyArtifactBundleAgentSignature } from "../packages/protocol/artifact-bundle.mjs";
+import { verifyVerificationAttestationSignature } from "../packages/protocol/verification-attestation.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const sourceSkillRoot = resolve(root, "skills/proofweave-research");
@@ -67,7 +68,10 @@ test("the private-beta plugin starts only a local PKCE Connector", async () => {
   assert.match(connector, /pw-artifact-bundle-v2/);
   assert.match(connector, /requiredConnectionScopes/);
   assert.match(connector, /artifact:write/);
-  assert.match(pairingRepository, /requestedScopes = \[[^\]]*"artifact:write"/);
+  assert.match(connector, /run:request/);
+  assert.match(connector, /verification:replay/);
+  assert.match(pairingRepository, /research_and_review/);
+  assert.match(pairingRepository, /"artifact:write"/);
   assert.match(connector, /likely credential or private key/);
   assert.doesNotMatch(connector, /PROOFWEAVE_API_TOKEN/);
 });
@@ -85,12 +89,12 @@ test("the local Connector flags legacy connections for the artifact-write scope 
     const legacyStatus = JSON.parse(legacyResponse.result.content[0].text);
     assert.equal(legacyStatus.connected, true);
     assert.equal(legacyStatus.scopeUpgradeRequired, true);
-    assert.deepEqual(legacyStatus.missingScopes, ["artifact:write"]);
+    assert.deepEqual(legacyStatus.missingScopes, ["artifact:write", "run:request", "run:read", "run:cancel"]);
 
     await writeFile(configPath, JSON.stringify({
       ...legacy,
       version: 2,
-      grantedScopes: ["catalog:read", "attempt:create", "attempt:read", "progress:write", "artifact:write"],
+      grantedScopes: ["catalog:read", "attempt:create", "attempt:read", "progress:write", "artifact:write", "run:request", "run:read", "run:cancel"],
     }));
     const upgradedResponse = await callConnectorTool("connection_status", {}, env);
     const upgradedStatus = JSON.parse(upgradedResponse.result.content[0].text);
@@ -130,6 +134,7 @@ test("the local Connector exposes connection and bounded research tools over STD
     [
       "connect_proofweave",
       "connection_status",
+      "get_connection_authority",
       "list_frontier_problems",
       "inspect_problem",
       "begin_research",
@@ -146,6 +151,16 @@ test("the local Connector exposes connection and bounded research tools over STD
       "prepare_workspace_bundle_v2",
       "prepare_artifact_bundle_v2",
       "stage_prepared_artifact_bundle",
+      "submit_prepared_research_submission",
+      "request_runner_run",
+      "get_runner_run",
+      "cancel_runner_run",
+      "list_review_assignments",
+      "get_review_assignment",
+      "request_verification_replay",
+      "get_verification_replay",
+      "prepare_verification_attestation",
+      "submit_prepared_verification_attestation",
     ],
   );
 });
@@ -422,6 +437,8 @@ test("the local Connector submits only an owner-confirmed, hash-bound evidence p
 test("the local Connector prepares and stages one signed, hash-bound v2 Artifact Bundle only after a second confirmation", async () => {
   const receivedObjects = [];
   let stagedBundle = null;
+  let requestedRun = null;
+  let rejectRunnerRequests = false;
   let expectedManifestHash = null;
   let rejectArtifactWrites = true;
   const targetHash = `sha256:${"1".repeat(64)}`;
@@ -474,6 +491,24 @@ test("the local Connector prepares and stages one signed, hash-bound v2 Artifact
             manifestKey: `bundles/sha256/${expectedManifestHash.slice("sha256:".length)}/bundle.json`,
             agentEventId: args.bundle.agentEvent.eventId,
           },
+        }) }] } }));
+        return;
+      }
+      if (name === "request_runner_run") {
+        requestedRun = args;
+        if (rejectRunnerRequests) {
+          respondToolError(response, "Runner dispatch is not configured.");
+          return;
+        }
+        response.writeHead(200, { "content-type": "application/json" });
+        response.end(JSON.stringify({ result: { content: [{ type: "text", text: JSON.stringify({
+          run: {
+            id: "run:fixture-submission",
+            attemptId: args.attemptId,
+            artifactBundleHash: args.artifactBundleHash,
+            state: "queued",
+          },
+          verificationState: "not_verified",
         }) }] } }));
         return;
       }
@@ -577,6 +612,54 @@ test("the local Connector prepares and stages one signed, hash-bound v2 Artifact
     assert.equal(normalizeArtifactBundle(stagedBundle).protocolVersion, "pw-artifact-bundle-v2");
     assert.equal(await verifyArtifactBundleAgentSignature(stagedBundle), true);
 
+    const beforeUnifiedSubmission = receivedObjects.length;
+    const unconfirmedSubmission = await callConnectorTool("submit_prepared_research_submission", {
+      bundle: draft.bundle,
+      artifacts: { sourceArchivePath, patchPath, lakeManifestPath },
+      expectedArtifactSha256: artifactHashes,
+      expectedBundleHash: draft.manifestHash,
+      runIdempotencyKey: "run:fixture-submission",
+      ownerConfirmation: "NO",
+    }, env);
+    assert.match(unconfirmedSubmission.error.message, /explicitly confirm/);
+    assert.equal(receivedObjects.length, beforeUnifiedSubmission);
+    assert.equal(requestedRun, null);
+
+    const unifiedSubmissionResponse = await callConnectorTool("submit_prepared_research_submission", {
+      bundle: draft.bundle,
+      artifacts: { sourceArchivePath, patchPath, lakeManifestPath },
+      expectedArtifactSha256: artifactHashes,
+      expectedBundleHash: draft.manifestHash,
+      runIdempotencyKey: "run:fixture-submission",
+      ownerConfirmation: "I_CONFIRM_STAGE_AND_RUN",
+    }, env);
+    assert.equal(unifiedSubmissionResponse.error, undefined);
+    const unifiedSubmission = JSON.parse(unifiedSubmissionResponse.result.content[0].text);
+    assert.equal(unifiedSubmission.submissionState, "bundle_staged_run_requested");
+    assert.equal(unifiedSubmission.bundle.manifestHash, draft.manifestHash);
+    assert.equal(unifiedSubmission.run.id, "run:fixture-submission");
+    assert.equal(requestedRun.artifactBundleHash, draft.manifestHash);
+    assert.equal(requestedRun.idempotencyKey, "run:fixture-submission");
+    assert.equal(receivedObjects.length, beforeUnifiedSubmission + 3);
+
+    rejectRunnerRequests = true;
+    const stagedOnlyResponse = await callConnectorTool("submit_prepared_research_submission", {
+      bundle: draft.bundle,
+      artifacts: { sourceArchivePath, patchPath, lakeManifestPath },
+      expectedArtifactSha256: artifactHashes,
+      expectedBundleHash: draft.manifestHash,
+      runIdempotencyKey: "run:fixture-dispatch-unavailable",
+      ownerConfirmation: "I_CONFIRM_STAGE_AND_RUN",
+    }, env);
+    assert.equal(stagedOnlyResponse.error, undefined);
+    const stagedOnly = JSON.parse(stagedOnlyResponse.result.content[0].text);
+    assert.equal(stagedOnly.submissionState, "bundle_staged_run_not_requested");
+    assert.equal(stagedOnly.bundle.manifestHash, draft.manifestHash);
+    assert.equal(stagedOnly.run, null);
+    assert.match(stagedOnly.runnerRequestError, /dispatch is not configured/);
+    assert.match(stagedOnly.next, /do not upload the Bundle again/);
+    rejectRunnerRequests = false;
+
     const workspaceRoot = join(fixtureRoot, "lean-workspace");
     await mkdir(workspaceRoot);
     await Promise.all([
@@ -625,6 +708,117 @@ test("the local Connector prepares and stages one signed, hash-bound v2 Artifact
     }, env);
     assert.equal(workspaceStagedResponse.error, undefined);
     assert.equal(receivedObjects.length, receivedBeforeWorkspaceDraft + 3);
+  } finally {
+    await Promise.all([close(server), rm(fixtureRoot, { recursive: true, force: true })]);
+  }
+});
+
+test("the local Connector prepares and submits only an owner-confirmed review-Agent attestation", async () => {
+  const pair = generateKeyPairSync("ed25519");
+  const publicKeyJwk = pair.publicKey.export({ format: "jwk" });
+  const privateKeyJwk = pair.privateKey.export({ format: "jwk" });
+  assert.equal(typeof publicKeyJwk.x, "string");
+  const assignmentId = "assignment:review-fixture";
+  const delegationCertificateId = "pw:delegation:review-fixture";
+  const artifactBundleHash = `sha256:${"a".repeat(64)}`;
+  const evidenceHash = `sha256:${"b".repeat(64)}`;
+  let submittedAttestation = null;
+  const server = createServer((request, response) => {
+    let body = "";
+    request.setEncoding("utf8");
+    request.on("data", (chunk) => { body += chunk; });
+    request.on("end", () => {
+      const payload = JSON.parse(body);
+      const { name, arguments: args } = payload.params;
+      if (name === "get_connection_authority") return respondTool(response, {
+        personId: "person:reviewer",
+        agentInstallationId: "installation:review-fixture",
+        agentId: "urn:pw:agent:test",
+        agentLabel: "Test review Codex",
+        agentPublicKey: publicKeyJwk.x,
+        delegationCertificateId,
+        oauthScopes: ["catalog:read", "verification:replay", "verification:write"],
+      });
+      if (name === "get_verification_replay") return respondTool(response, {
+        replay: {
+          assignmentId,
+          artifactBundleManifestHash: artifactBundleHash,
+          requesterPersonId: "person:reviewer",
+          requesterAgentId: "urn:pw:agent:test",
+          delegationCertificateId,
+          idempotencyKey: args.idempotencyKey,
+        },
+        replayEvidence: { evidenceHash },
+        verificationState: "fresh_replay_evidence_recorded",
+      });
+      if (name === "submit_verification_attestation") {
+        submittedAttestation = args.attestation;
+        return respondTool(response, { assignment: { id: assignmentId, status: "completed" } });
+      }
+      response.writeHead(400, { "content-type": "application/json" });
+      response.end(JSON.stringify({ error: { message: `Unexpected tool: ${name}` } }));
+    });
+  });
+  const port = await listen(server);
+  const fixtureRoot = await mkdtemp(join(tmpdir(), "proofweave-review-attestation-"));
+  try {
+    const baseUrl = `http://127.0.0.1:${port}`;
+    const configPath = join(fixtureRoot, "connector.json");
+    await writeFile(configPath, JSON.stringify({
+      version: 3,
+      connectionMode: "review",
+      grantedScopes: ["catalog:read", "verification:replay", "verification:write"],
+      baseUrl,
+      agentId: "urn:pw:agent:test",
+      agentLabel: "Test review Codex",
+      agentPublicKey: publicKeyJwk.x,
+      privateKeyJwk,
+      clientId: "client:review-fixture",
+      accessToken: "access-review-fixture",
+      refreshToken: "refresh-review-fixture",
+      accessTokenExpiresAt: new Date(Date.now() + 60 * 60 * 1_000).toISOString(),
+    }));
+    const env = { ...process.env, PROOFWEAVE_BASE_URL: baseUrl, PROOFWEAVE_CONNECTOR_CONFIG: configPath };
+    const preparedResponse = await callConnectorTool("prepare_verification_attestation", {
+      assignmentId,
+      artifactBundleHash,
+      claimType: "bundle_reproducible",
+      decision: "attested",
+      evidenceHash,
+      replayIdempotencyKey: "review-replay-fixture",
+    }, env);
+    assert.equal(preparedResponse.error, undefined);
+    const prepared = JSON.parse(preparedResponse.result.content[0].text);
+    assert.equal(prepared.submitted, false);
+    assert.equal(prepared.createsReceipt, false);
+    assert.equal(prepared.createsCredit, false);
+    assert.equal(prepared.attestation.verifierPersonId, "person:reviewer");
+    assert.equal(prepared.attestation.artifactBundleHash, artifactBundleHash);
+    assert.equal(await verifyVerificationAttestationSignature(prepared.attestation), true);
+
+    const unconfirmed = await callConnectorTool("submit_prepared_verification_attestation", {
+      ...prepared.submitInput,
+      ownerConfirmation: "NO",
+    }, env);
+    assert.match(unconfirmed.error.message, /explicitly approve/);
+    assert.equal(submittedAttestation, null);
+
+    const changed = structuredClone(prepared.attestation);
+    changed.decision = "rejected";
+    const tampered = await callConnectorTool("submit_prepared_verification_attestation", {
+      attestation: changed,
+      expectedPayloadHash: prepared.payloadHash,
+      ownerConfirmation: "I_CONFIRM_SUBMIT_VERIFICATION",
+    }, env);
+    assert.match(tampered.error.message, /changed after the owner reviewed it/);
+    assert.equal(submittedAttestation, null);
+
+    const approvedResponse = await callConnectorTool("submit_prepared_verification_attestation", prepared.submitInput, env);
+    assert.equal(approvedResponse.error, undefined);
+    const approved = JSON.parse(approvedResponse.result.content[0].text);
+    assert.equal(approved.submitted, true);
+    assert.equal(approved.createsReceipt, false);
+    assert.deepEqual(submittedAttestation, prepared.attestation);
   } finally {
     await Promise.all([close(server), rm(fixtureRoot, { recursive: true, force: true })]);
   }

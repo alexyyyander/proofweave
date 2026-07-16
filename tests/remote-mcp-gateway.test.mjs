@@ -24,6 +24,17 @@ function gatewayWith(identityProvider, store = fixtureStore(), { rateLimiter } =
 
 function fixtureStore() {
   return {
+    async getConnectionAuthority(principal) {
+      return {
+        personId: principal.personId,
+        agentInstallationId: principal.agentInstallationId,
+        agentId: "urn:pw:agent:test",
+        agentLabel: "Test Agent",
+        agentPublicKey: "A".repeat(43),
+        delegationCertificateId: "pw:delegation:test",
+        oauthScopes: principal.scopes,
+      };
+    },
     async listFrontier() { return [{ slug: "erdos-865" }]; },
     async inspectProblem(_principal, slug) { return { slug }; },
     async createAttempt(_principal, input) { return { id: "attempt:test", ...input }; },
@@ -32,6 +43,8 @@ function fixtureStore() {
     async publishResearchCheckpoint(_principal, checkpoint) { return { node: checkpoint, graphState: "shared_unverified" }; },
     async listAttempts() { return { attempts: [{ id: "attempt:test" }], verificationState: "agent_reported_only" }; },
     async getAttempt(_principal, attemptId) { return { id: attemptId }; },
+    async listReviewAssignments() { return { assignments: [{ id: "assignment:test", status: "accepted" }] }; },
+    async getReviewAssignment(_principal, assignmentId) { return { assignment: { id: assignmentId, status: "accepted" } }; },
     async putArtifactObject(_principal, input) { return { object: input, storageState: "object_staged_only" }; },
     async stageArtifactBundle(_principal, bundle) { return { bundle, storageState: "bundle_staged_only" }; },
     async requestRunnerRun(_principal, input) { return { run: { id: "run:test", ...input, state: "queued" }, verificationState: "not_verified" }; },
@@ -205,6 +218,56 @@ test("requires verification:replay before a review Agent can request a fresh wor
   const payload = await response.json();
   assert.equal(payload.result.isError, true);
   assert.match(payload.result.content[0].text, /Missing OAuth scope: verification:replay/);
+});
+
+test("review assignment discovery requires replay authority and passes no bearer token to the store", async () => {
+  const calls = [];
+  const gateway = gatewayWith({
+    async authenticate() {
+      return {
+        accessToken: "review-token-that-must-stay-at-the-transport",
+        clientId: "client:test",
+        personId: "person:reviewer",
+        agentInstallationId: "installation:reviewer",
+        scopes: ["verification:replay"],
+      };
+    },
+  }, {
+    ...fixtureStore(),
+    async listReviewAssignments(principal, input) {
+      calls.push({ operation: "list", principal, input });
+      return { assignments: [{ id: "assignment:test", status: "accepted" }] };
+    },
+    async getReviewAssignment(principal, assignmentId) {
+      calls.push({ operation: "get", principal, assignmentId });
+      return { assignment: { id: assignmentId, status: "accepted" } };
+    },
+  });
+  const headers = { Accept: "application/json, text/event-stream", "Content-Type": "application/json" };
+  const listed = await gateway.fetch(mcpToolRequest("list_review_assignments", { status: "accepted", limit: 5 }, headers));
+  assert.equal(listed.status, 200);
+  assert.equal((await listed.json()).result.isError, undefined);
+  const inspected = await gateway.fetch(mcpToolRequest("get_review_assignment", { assignmentId: "assignment:test" }, headers));
+  assert.equal(inspected.status, 200);
+  assert.equal((await inspected.json()).result.isError, undefined);
+  assert.equal(calls.length, 2);
+  assert.equal("accessToken" in calls[0].principal, false);
+  assert.equal(calls[0].principal.personId, "person:reviewer");
+  assert.equal(calls[1].assignmentId, "assignment:test");
+
+  const blocked = gatewayWith({
+    async authenticate() {
+      return {
+        accessToken: "write-only-review-token",
+        clientId: "client:test",
+        personId: "person:reviewer",
+        agentInstallationId: "installation:reviewer",
+        scopes: ["verification:write"],
+      };
+    },
+  });
+  const blockedResponse = await blocked.fetch(mcpToolRequest("list_review_assignments", {}, headers));
+  assert.equal((await blockedResponse.json()).result.isError, true);
 });
 
 test("the Cloudflare gateway entrypoint fails closed without its control-plane bindings", async () => {
@@ -437,11 +500,58 @@ test("handles sequential authenticated MCP requests without retaining a session"
   );
   assert.equal(tools.status, 200);
   const payload = await tools.json();
+  assert.ok(payload.result.tools.some((tool) => tool.name === "get_connection_authority"));
   assert.ok(payload.result.tools.some((tool) => tool.name === "create_attempt"));
   assert.ok(payload.result.tools.some((tool) => tool.name === "list_attempts"));
   assert.ok(payload.result.tools.some((tool) => tool.name === "put_artifact_object"));
   assert.ok(payload.result.tools.some((tool) => tool.name === "stage_artifact_bundle"));
+  assert.ok(payload.result.tools.some((tool) => tool.name === "list_review_assignments"));
+  assert.ok(payload.result.tools.some((tool) => tool.name === "get_review_assignment"));
   assert.ok(payload.result.tools.some((tool) => tool.name === "submit_verification_attestation"));
+});
+
+test("returns only public authority identifiers for the exact OAuth installation", async () => {
+  let storePrincipal = null;
+  const gateway = gatewayWith(
+    {
+      async authenticate() {
+        return {
+          accessToken: "secret-token-that-must-not-reach-the-store",
+          clientId: "https://codex.example.test/client.json",
+          personId: "did:proofweave:alice",
+          agentInstallationId: "agent-installation:alice-codex",
+          scopes: ["catalog:read"],
+        };
+      },
+      ...unavailableIdentity(),
+    },
+    {
+      ...fixtureStore(),
+      async getConnectionAuthority(principal) {
+        storePrincipal = principal;
+        return {
+          personId: principal.personId,
+          agentInstallationId: principal.agentInstallationId,
+          agentId: "urn:pw:agent:alice-codex",
+          agentLabel: "Alice Codex",
+          agentPublicKey: "A".repeat(43),
+          delegationCertificateId: "pw:delegation:alice",
+          oauthScopes: principal.scopes,
+        };
+      },
+    },
+  );
+  const response = await gateway.fetch(mcpToolRequest("get_connection_authority", {}, {
+    Accept: "application/json, text/event-stream",
+    "Content-Type": "application/json",
+  }));
+  assert.equal(response.status, 200);
+  const payload = await response.json();
+  const authority = JSON.parse(payload.result.content[0].text);
+  assert.equal(authority.personId, "did:proofweave:alice");
+  assert.equal(authority.agentId, "urn:pw:agent:alice-codex");
+  assert.equal("accessToken" in authority, false);
+  assert.equal("accessToken" in storePrincipal, false);
 });
 
 test("passes only attribution context to the store and blocks an ungranted write scope", async () => {

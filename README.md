@@ -19,10 +19,10 @@ workbench can also choose a public, source-pinned frontier target and open an
 owner-created, D1-persisted provisional Attempt for an active `formalize` or
 `prove` delegation. The remote control-plane source can then bind that exact
 Agent installation to bounded immutable artifact-object and signed Bundle
-staging, but it is not deployed for participants. Neither action impersonates
-an Agent event or creates a mathematical claim: Lean execution, signed
-independent-review attestation submission, and production receipts are not
-participant-ready yet.
+staging. The Sites gateway is available to the private Beta, while hosted
+Runner dispatch remains unconfigured. Neither action impersonates an Agent
+event or creates a mathematical claim: hosted Lean execution and production
+receipts are not participant-ready yet.
 
 When the separate control plane is provisioned, an authorized delegated Agent
 can also request an idempotent isolated Runner Queue job for a staged v2 Bundle.
@@ -329,6 +329,11 @@ content-addressed signed-Runner evidence object, and a
 `bundle_reproducible` attestation must cite that exact same-Agent replay
 evidence. The evidence remains distinct from the separately signed human/Agent
 claim.
+The local Connector can now discover those Person-addressed assignments and
+read their target, canonical Bundle manifest, append-only assignment events,
+and only the selected review Agent installation's replay summaries. The owner
+does not need to copy an assignment ID, and discovery never accepts work or
+creates a review claim.
 The deployable resource-server source additionally enforces Person-aggregated,
 opaque D1 request quotas before each authorized MCP tool operation.
 Dynamic client registration is closed unless an operator supplies the private
@@ -344,6 +349,9 @@ The repository skill at `skills/proofweave-research/` gives Codex the same
 truthful reporting workflow: it creates or continues only an authorized
 Attempt, inspects existing branches and prior works, prepares and publishes
 only owner-approved signed checkpoints, records concise evidence-bound progress, stages reproducible Bundles,
+uses one owner-confirmed action to stage a prepared Bundle and request only the
+exact Agent's Runner lifecycle, discovers Person-addressed review work, prepares assigned review
+attestations with its local key, submits only an owner-confirmed signed draft,
 and never labels agent-reported work as verification or a receipt.
 `plugins/proofweave-research/` packages that workflow for private-beta Codex
 installation. Its `.mcp.json` starts a local-only bridge; browser approval
@@ -371,9 +379,9 @@ the separate deployment gates.
 The gateway records `agent_reported_only` activity only under the selected
 Agent's exact active `formalize` or `prove` certificate, can stage bounded
 immutable evidence only for that exact active Attempt, and can transport one
-already-signed review-Agent attestation for an assignment addressed to the
-authorized Person. It cannot fabricate Lean kernel acceptance, independently
-decide a review, infer novelty, or issue a contribution receipt.
+locally signed, owner-confirmed review-Agent attestation for an assignment
+addressed to the authorized Person. It cannot fabricate Lean kernel acceptance,
+independently decide a review, infer novelty, or issue a contribution receipt.
 
 Once the remote gateway is deployed, an authorized Agent can discover only the
 recent Attempts bound to its exact certificate through `list_attempts`, then

@@ -1,6 +1,6 @@
 # Proofweave development plan
 
-Status: implementation baseline, updated 2026-07-15
+Status: implementation baseline, updated 2026-07-16
 
 > **Storage update:** the no-card alpha now uses D1-inline immutable evidence
 > with a 1 MB per-object cap ([ADR 0007](adr/0007-d1-inline-alpha-evidence.md)).
@@ -118,6 +118,11 @@ reusable contribution with evidence that an external maintainer can reproduce.
   D1/R2-backed public catalog/Attempt/progress and immutable Bundle-staging
   store, review-scope-bound remote Agent attestation-admission adapter, and a
   fail-closed gateway deployment entrypoint;
+- a dependency-free local Codex Connector with least-privilege research,
+  review, or combined browser pairing; local Agent-key custody; two-phase
+  workspace preparation followed by one owner-confirmed Bundle-stage/Runner
+  request; and Person-addressed review-assignment discovery that exposes only
+  the selected review Agent/delegation's replay summaries;
 - D1-atomic remote-MCP transport quotas that aggregate every Agent
   installation under its owner Person, retain only opaque, short-lived bucket
   counters, and cover catalog, Attempt, progress, artifact, and review tools;
@@ -180,10 +185,10 @@ reusable contribution with evidence that an external maintainer can reproduce.
   OAuth authorization for an already-created Person and selected delegated
   Agent; no independent participant identity, deployed MCP gateway control
   plane, bounded-run, artifact, verification, or receipt API exists;
-- the closed-alpha Agent connection page now reports that no external endpoint
-  is available rather than exposing a placeholder URL or configuration. It
-  directs users to the durable Person/Agent/delegation setup that is available
-  now and describes the scoped OAuth flow only as a post-deployment capability;
+- the private-beta local Connector can complete browser-approved pairing
+  against the Sites consent surface without pasted keys or tokens. Public
+  participant rollout still requires independently reviewed identity,
+  recovery, gateway operations, and abuse-response boundaries;
 - no Lean execution service exists;
 - no participant-facing fresh runner replay exists. The source now has an
   assignment-bound remote Agent replay path that creates a new isolated Run

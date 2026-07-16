@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CodexInstallPrompt } from "./CodexInstallPrompt";
+import { CodexConnectPrompt, CodexInstallPrompt, CodexWorkflowPrompt } from "./CodexInstallPrompt";
 
 const authorizedScopes = [
   "Read the frontier catalog",
@@ -7,7 +7,9 @@ const authorizedScopes = [
   "Record provisional progress",
   "List and read only Attempts bound to this exact Agent certificate",
   "Stage bounded signed proof artifacts for an authorized Attempt",
-  "Submit one signed review attestation for an assigned Bundle",
+  "Request and inspect the exact research Agent's isolated Runner lifecycle",
+  "With review authority, discover only review assignments addressed to your Person",
+  "With review authority, submit one owner-confirmed signed attestation for an assigned Bundle",
 ];
 
 export function IntegrationClient({ connection }: { connection: { agentLabel: string } | null }) {
@@ -37,7 +39,7 @@ export function IntegrationClient({ connection }: { connection: { agentLabel: st
         {connection ? <ol className="integration-flow">
           <li><b>1</b><span>Choose a source-pinned question in your Workspace or the public frontier.</span></li>
           <li><b>2</b><span>Click <strong>Start research</strong>, then tell Codex: “Continue my Proofweave research.”</span></li>
-          <li><b>3</b><span>Keep Lean and private notes local. Only selected milestones and explicitly approved evidence appear in Proofweave.</span></li>
+          <li><b>3</b><span>Keep Lean and private notes local. When ready, one owner confirmation stages the prepared Bundle and requests its isolated Run.</span></li>
         </ol> : <ol className="integration-flow">
           <li><b>1</b><span>Install the plugin once, then ask Codex to connect Proofweave when you are ready.</span></li>
           <li><b>2</b><span>Approve the browser screen. Your local Agent key remains on this computer; Proofweave receives only its public identity and revocable authority.</span></li>
@@ -45,6 +47,16 @@ export function IntegrationClient({ connection }: { connection: { agentLabel: st
         </ol>}
         <div className="integration-scopes" aria-label="Authorization scopes after activation">
           {authorizedScopes.map((scope) => <span key={scope}>{scope}</span>)}
+        </div>
+        {connection && <div className="integration-connected-callout">
+          <strong>Ready to submit a local Lean workspace?</strong>
+          <p>Codex prepares the signed draft locally first. It must show the exact hashes and wait before one confirmed upload-and-run request.</p>
+          <CodexWorkflowPrompt workflow="research_submission" />
+        </div>}
+        <div className="integration-connected-callout" id="review-agent">
+          <strong>Need to verify another Person’s work?</strong>
+          <p>The browser shows a separate review-scoped delegation. Once connected, Codex can discover your Person-addressed queue without asking you to copy an assignment ID; your own Agents still cannot independently review your work.</p>
+          <div className="codex-install-actions"><CodexConnectPrompt role="review" /><CodexWorkflowPrompt workflow="review_queue" /></div>
         </div>
         <p className="integration-note">
           This Beta can read the frontier, create bounded Attempts, and record

@@ -11,7 +11,8 @@ paste, or share a static Proofweave token. Read
 
 When the private-beta `proofweave-local` tools appear, begin with
 `connection_status`. If it is not connected, ask the user whether they want to
-run `connect_proofweave`; that local tool opens the browser approval and never
+run `connect_proofweave` with the least-privilege role: `research`, `review`, or
+`research_and_review`. That local tool opens the browser approval and never
 asks them to paste an API key or public key. If the tools are absent or remain
 unconnected, continue local Lean work and tell the user that no Proofweave
 event was recorded; do not invent an HTTP request, bearer token, or upload.
@@ -83,24 +84,42 @@ event was recorded; do not invent an HTTP request, bearer token, or upload.
    path with its final workspace tree and limits. Both preparation tools only
    create a local signed draft. Show the owner its manifest hash and all three
    file hashes; neither uploads, stages, executes, or verifies anything.
-12. Only after the owner explicitly approves that exact manifest and file list
-   may you call `stage_prepared_artifact_bundle`, with the Bundle, matching
-   expected hashes, matching manifest hash, and
-   `ownerConfirmation: "I_CONFIRM_STAGE_BUNDLE"`. It re-reads the files and
-   re-verifies the local signature before uploading the three objects and
-   asking Proofweave to stage the Bundle. A successful result is
-   `bundle_staged_only`, not Lean execution, review, or a receipt.
-13. If the remote gateway lists `request_runner_run`, use it only for that
-   staged v2 Bundle with a fresh idempotency key. Treat a queued Run as a
-   dispatch record, not Lean execution or a result. If it lists
+12. Only after the owner explicitly approves that exact manifest, file list,
+   and isolated Run request may you use the normal
+   `submit_prepared_research_submission` action with
+   `ownerConfirmation: "I_CONFIRM_STAGE_AND_RUN"` and one fresh idempotency
+   key. It re-reads and re-verifies the exact local evidence, stages the Bundle,
+   then requests its Run. If Runner dispatch is unavailable, report the
+   returned `bundle_staged_run_not_requested` state and retry only
+   `request_runner_run` later; never upload the Bundle again. The advanced
+   `stage_prepared_artifact_bundle` action remains available when the owner
+   intentionally wants to stop at `bundle_staged_only`.
+13. Treat a queued Run as a dispatch record, not Lean execution or a result. If
+   the remote gateway lists
    `get_runner_run`, use that only for the exact Attempt/Run pair belonging to
    this Agent. Use `cancel_runner_run` only when stopping that exact Run is
    intended; retrying a lost cancellation response is safe. A cancelled status
    is not verification. If dispatch is unavailable, stop at the reproducible
    Bundle.
-14. Use `submit_verification_attestation` only after an assigned review Agent
-   has made and signed its own decision. Do not submit a same-owner review.
-15. Do not claim `kernel_accepted`, independent review, novelty, or receipt
+14. For review work, begin with `list_review_assignments`; do not ask the owner
+   to copy an assignment ID. Use `get_review_assignment` to inspect the target,
+   requested claim, canonical Bundle manifest, append-only assignment events,
+   and only this exact review Agent installation's replay summaries. If the
+   assignment is still `assigned`, tell the owner to accept it in Proofweave;
+   the Agent must not silently accept Person-level work.
+15. For an accepted assignment, use `request_verification_replay` with a fresh
+   idempotency key, then poll `get_verification_replay`. A positive
+   `bundle_reproducible` decision must use that exact replay's terminal evidence
+   hash. Replay evidence alone is not an attestation.
+16. After the review Agent reaches an evidence-based decision, call
+   `prepare_verification_attestation`. Show the owner the exact assignment,
+   Bundle hash, claim, decision, evidence hash, and payload hash. Only after the
+   owner approves that exact signed draft call
+   `submit_prepared_verification_attestation` with
+   `ownerConfirmation: "I_CONFIRM_SUBMIT_VERIFICATION"`. Do not submit a
+   same-owner review. Submission records one review claim only; it does not
+   issue a Receipt or settle credit.
+17. Do not claim `kernel_accepted`, independent review, novelty, or receipt
    issuance until separately recorded Runner and reviewer evidence attests it.
 
 ## Integrity rules

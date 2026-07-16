@@ -120,7 +120,7 @@ export function LocalAgentHandoff({
       </li>
       <li>
         <span>04</span>
-        <div><strong>Choose one Lean workspace</strong><p>Codex can prepare the source archive, normalized patch, Lake manifest, final file tree, and signed Bundle draft from your selected local Git workspace. You review its manifest and three file hashes, then approve once more before any bytes leave this computer.</p><small>Staging creates reproducible evidence only; it is not yet a Lean result, review, or contribution receipt.</small></div>
+        <div><strong>Prepare, review, then submit</strong><p>Codex creates the signed Bundle draft locally and shows its manifest and three file hashes. One final confirmation authorizes the unchanged upload, immutable staging, and isolated Run request.</p><small>A queued Run is operational state only; it is not yet a Lean result, review, or contribution receipt.</small></div>
       </li>
     </ol>
 
@@ -128,7 +128,7 @@ export function LocalAgentHandoff({
       <div>
         <span className="micro-label">Your next Codex message</span>
         <strong>Continue this Proofweave Attempt in Codex.</strong>
-        <p>It names the selected target and tells Codex to request your confirmation before recording progress or staging a selected evidence Bundle. Nothing from your private workspace is included.</p>
+        <p>It names the selected target and tells Codex to prepare locally, show exact hashes, and wait for one final confirmation before staging and requesting a Run. Nothing from your private workspace is included.</p>
       </div>
       <div className="local-agent-buttons">
         <button className="button button-primary" type="button" onClick={() => { void copyCodexInstruction(); }}>Copy for Codex</button>
@@ -221,11 +221,11 @@ This standard path prepares \`source.tar.zst\`, \`normalized.patch\`, \`lake-man
 
 Show me the returned manifest hash and the exact three-file name, byte-size, and SHA-256 list. Make clear that the draft is a local, signed description of reproducible evidence—not a Lean result, review, or contribution receipt.
 
-## Stage that exact Bundle only with my second confirmation
+## Submit that exact Bundle only with my final confirmation
 
-Only after I explicitly say to stage that exact manifest and file list, call \`stage_prepared_artifact_bundle\` with the unchanged Bundle, its matching \`expectedArtifactSha256\` object, matching \`expectedBundleHash\`, and \`ownerConfirmation: "I_CONFIRM_STAGE_BUNDLE"\`. It must re-read and re-check all three local files and the local Agent signature before sending bytes. If a hash, target, environment, or signature changed, stop and prepare a fresh Bundle.
+Only after I explicitly approve that exact manifest, file list, and isolated Run request, call \`submit_prepared_research_submission\` with the unchanged Bundle, its matching \`expectedArtifactSha256\` object, matching \`expectedBundleHash\`, one fresh opaque \`runIdempotencyKey\`, and \`ownerConfirmation: "I_CONFIRM_STAGE_AND_RUN"\`. It must re-read and re-check all three local files and the local Agent signature before sending bytes. If a hash, target, environment, or signature changed, stop and prepare a fresh Bundle.
 
-Its successful result is only \`bundle_staged_only\`: it records an immutable, attributable Bundle but does not run Lean, verify a proof, independently review it, or create a Contribution Receipt.
+If it returns \`bundle_staged_run_requested\`, poll only the returned exact Attempt/Run pair. A queued Run is not a Lean result. If it returns \`bundle_staged_run_not_requested\`, the immutable Bundle is already safe: retry only \`request_runner_run\` later with the returned Attempt, Bundle hash, and the same idempotency key; do not upload the Bundle again.
 
 Never call a milestone Lean-verified, independently reviewed, novel, or a Contribution Receipt unless that separate evidence is recorded.
 `;

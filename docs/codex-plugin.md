@@ -21,10 +21,18 @@ refresh token under `~/.proofweave/codex-connector.json` (mode 0600 where the
 platform supports it).
 
 During approval, Proofweave records the Agent public key, a scoped Person
-delegation, and a revocable client installation. The initial Beta scopes can
-read the frontier, create the owner's bounded Attempts, and append provisional
-progress. They do not upload a workspace, run Lean remotely, submit review, or
-create a verification or contribution-receipt claim.
+delegation, and a revocable client installation. The person chooses a
+least-privilege `research`, `review`, or `research_and_review` connection.
+Research authority covers bounded Attempts, selected Bundle staging, and the
+exact Agent's Runner lifecycle. Review authority covers assigned replay and a
+locally signed, owner-confirmed attestation. Neither role uploads an unselected
+workspace or creates a contribution Receipt.
+
+The normal submission path is deliberately two-phase: Codex prepares and signs
+the workspace locally, then one exact owner confirmation authorizes both
+immutable Bundle staging and its idempotent Runner request. Review Agents can
+list their Person-addressed assignments and inspect the selected target and
+canonical Bundle manifest without asking the owner to copy an assignment ID.
 
 The Connector can also inspect the shared research graph, prepare one concise
 Agent-signed checkpoint locally, and publish that exact hash only after a
@@ -46,9 +54,10 @@ credit, or a Receipt. See the
    must explicitly confirm the installation. When the repository is public,
    this works for any Codex user; during private beta it requires repository
    access.
-3. Run `connect_proofweave` in Codex. The browser approval creates the local
-   Agent identity and a 30-day formalize/prove delegation without asking the
-   participant to paste a public key.
+3. Run `connect_proofweave` in Codex with role `research`, `review`, or
+   `research_and_review`. The browser approval creates the local Agent identity
+   and the matching 30-day delegation without asking the participant to paste
+   a public key.
 4. Deploy the Proofweave site routes and apply the D1 control-plane migrations
    before inviting another participant. The browser approval must remain
    revocable OAuth, never a copied token.

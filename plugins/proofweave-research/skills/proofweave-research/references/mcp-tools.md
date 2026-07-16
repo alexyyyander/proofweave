@@ -1,12 +1,14 @@
 # Proofweave remote MCP tools
 
 Status: the private-beta plugin starts a local `proofweave-local` Connector.
-Run `connection_status`, then `connect_proofweave` when the user wants to
-approve this computer. The Connector uses browser OAuth PKCE; the retired
+Run `connection_status`, then `connect_proofweave` with role `research`,
+`review`, or `research_and_review` when the user wants to approve this
+computer. The Connector uses browser OAuth PKCE; the retired
 local-token prototype must not be configured for participant use.
 
 | Tool | Required OAuth scope | Result boundary |
 | --- | --- | --- |
+| `get_connection_authority` | `catalog:read` | Public Person, Agent, delegation, and scope identifiers for this exact installation; never tokens or private keys. |
 | `list_frontier_problems` | `catalog:read` | Pinned public frontier records. |
 | `inspect_problem` | `catalog:read` | One source-pinned target and its distinct claims. |
 | `begin_research` | `catalog:read`, `attempt:read`, `attempt:create` | Convenience operation: inspect a selected pinned target and resume or create one provisional Attempt; never reads files, reports progress, uploads, runs Lean, or creates credit. |
@@ -23,10 +25,16 @@ local-token prototype must not be configured for participant use.
 | `prepare_workspace_bundle_v2` | local only | With explicit workspace-read approval, creates the three v2 artifacts, final tracked-file tree, and signed Bundle draft from one local Git/Lean workspace; never uploads, stages, runs, or verifies. |
 | `prepare_artifact_bundle_v2` | local only | Locally validates and signs a three-object executable Bundle draft; never uploads, stages, runs, or verifies. |
 | `stage_prepared_artifact_bundle` | `artifact:write` | After a second explicit owner confirmation, uploads the three hash-bound files and stages that signed Bundle only; never Lean execution, review, or a receipt. |
+| `submit_prepared_research_submission` | `artifact:write`, `run:request` | Normal two-phase path: after exact owner approval, stages the unchanged prepared Bundle and requests one idempotent isolated Run; it reports a staged-only partial state if dispatch is unavailable. |
 | `request_runner_run` | `run:request` | One idempotent request to execute an already-staged v2 Bundle in the isolated Runner; queued is not a result. |
 | `get_runner_run` | `run:read` | The exact selected Agent's Run projection and immutable event hashes; never independent review or a receipt. |
 | `cancel_runner_run` | `run:cancel` | Idempotently stop the exact selected Agent's Run; a running Run still needs terminal Runner evidence. |
-| `submit_verification_attestation` | `verification:write` | One externally signed, assignment-bound review claim; never a receipt. |
+| `list_review_assignments` | `verification:replay` | Person-addressed review work visible through an active review Agent; exact-Agent replay counts only, no acceptance, execution, attestation, Receipt, or credit. |
+| `get_review_assignment` | `verification:replay` | One assignment's target, requested claim, canonical Bundle manifest, append-only events, and only this installation's replay summaries. |
+| `request_verification_replay` | `verification:replay` | A fresh isolated replay for an accepted different-owner assignment; replay evidence is not an attestation. |
+| `get_verification_replay` | `verification:replay` | The exact review Agent's replay Run, event hashes, and terminal evidence. |
+| `prepare_verification_attestation` | local only plus authority read | Locally signs one evidence-bound review decision; never submits, issues a Receipt, or creates credit. |
+| `submit_prepared_verification_attestation` | `verification:write` | After exact owner confirmation, submits the unchanged locally signed review claim; never a Receipt. |
 
 Use a fresh opaque idempotency key for each intended action. Repeating the same
 request with the same key is safe; sending a different request with that key is
@@ -74,20 +82,29 @@ Use this minimal order when the tools are available:
    untracked files, stop and ask the owner to select the three exact artifacts
    for the advanced `prepare_artifact_bundle_v2` flow instead; never guess how
    to include extra files.
-11. Show the owner that manifest hash and three-file list. Only after explicit
-   confirmation call `stage_prepared_artifact_bundle` with exactly the draft,
-   matching `expectedArtifactSha256`, matching `expectedBundleHash`, and
-   `ownerConfirmation: "I_CONFIRM_STAGE_BUNDLE"`. Its successful result is
-   `bundle_staged_only`, not a Lean result.
-12. If the remote Runner dispatch is configured, use `request_runner_run` with
-   the staged Bundle hash and a fresh idempotency key. A `queued` response is
+11. Show the owner that manifest hash and three-file list. For the normal path,
+   call `submit_prepared_research_submission` only after explicit approval of
+   both the upload and isolated Run request, with matching hashes, a fresh
+   idempotency key, and `I_CONFIRM_STAGE_AND_RUN`. Use
+   `stage_prepared_artifact_bundle` only when the owner deliberately wants to
+   stop after immutable staging. If the combined action reports that staging
+   succeeded but dispatch did not, retry only `request_runner_run` later.
+12. A `queued` response is
    only an operational request; use `get_runner_run` only with that exact
    Attempt/Run pair to observe its lifecycle. If work must stop, use
    `cancel_runner_run` for that same pair; a retry keeps the original
    cancellation record. Wait for separately recorded Runner evidence before
    treating a running cancellation as terminal.
-13. Only an assigned, differently owned review Agent can use
-   `submit_verification_attestation` after its own evidence-based decision.
+13. Start review with `list_review_assignments`, then inspect the selected item
+   with `get_review_assignment`. Do not ask the owner to find or paste an
+   assignment ID. An `assigned` item still requires Person-level acceptance in
+   Proofweave before the Agent may request a fresh replay.
+14. Only an accepted, differently owned review Agent can request and inspect a
+   fresh replay. A positive reproducibility decision must use that exact
+   replay's terminal evidence hash.
+15. Prepare the signed decision locally, show the owner its complete claim and
+   payload hash, then submit only the unchanged draft after
+   `I_CONFIRM_SUBMIT_VERIFICATION` confirmation.
 
 Good progress text names a local observable fact, for example: “Added
 `finite_density_aux`; `lake env lean` completed locally with no `sorry`; Bundle
