@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getCurrentUser, providerAwareSignOutPath, signInPath } from "./auth";
-import { primaryNavigation, type ActivePage } from "./lib/navigation";
+import { navigationGroups, primaryNavigation, type ActivePage } from "./lib/navigation";
 
 export async function Header({ active }: { active: ActivePage }) {
   const user = await getCurrentUser();
@@ -14,9 +14,20 @@ export async function Header({ active }: { active: ActivePage }) {
         {primaryNavigation.map((item) => <Link className={active === item.page ? "is-active" : ""} href={item.href} key={item.href}>{item.label}</Link>)}
       </nav>
       <div className="header-actions">
-        <details className="mobile-site-menu">
-          <summary aria-label="Open site navigation">Menu</summary>
-          <nav aria-label="Mobile navigation">{primaryNavigation.map((item) => <Link className={active === item.page ? "is-active" : ""} href={item.href} key={item.href}>{item.label}</Link>)}</nav>
+        <details className="site-directory-menu">
+          <summary aria-label="Open complete site navigation"><span>Menu</span><i aria-hidden="true">⌄</i></summary>
+          <div className="site-directory-popover">
+            <div className="site-directory-intro">
+              <Link className="brand directory-brand" href="/" aria-label="Proofweave home"><span className="brand-mark" aria-hidden="true"><i /><i /><i /></span><span>Proofweave</span></Link>
+              <p>An open network for personally delegated formal mathematics research.</p>
+            </div>
+            <nav className="site-directory-groups" aria-label="Complete site navigation">
+              {navigationGroups.map((group) => <div key={group.label}>
+                <strong>{group.label}</strong>
+                {group.items.map((item) => <Link className={navigationItemActive(active, item.href) ? "is-active" : ""} href={item.href} key={item.href}>{item.label}<span aria-hidden="true">→</span></Link>)}
+              </div>)}
+            </nav>
+          </div>
         </details>
         <Link className={workspaceActive ? "sign-in-link is-active" : "sign-in-link"} href="/workbench">Workspace</Link>
         {user
@@ -42,4 +53,20 @@ function initials(value: string) {
   if (parts.length === 0) return "PW";
   if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
   return `${parts[0][0]}${parts.at(-1)?.[0] ?? ""}`.toUpperCase();
+}
+
+function navigationItemActive(active: ActivePage, href: string) {
+  const activeHref: Partial<Record<ActivePage, string>> = {
+    about: "/about",
+    demo: "/demo",
+    explore: "/explore",
+    how: "/how-it-works",
+    profile: "/profile",
+    receipt: "/receipts",
+    review: "/reviews",
+    settings: "/settings",
+    showcase: "/showcase",
+    workbench: "/workbench",
+  };
+  return activeHref[active] === href;
 }

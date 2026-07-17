@@ -1,7 +1,5 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
 import type { CatalogDisplayStatus } from "@/packages/domain/catalog";
-import { footerNavigationGroups } from "./lib/navigation";
 
 export type ProductStateTone = "available" | "provisional" | "verified" | "not-deployed";
 
@@ -11,14 +9,12 @@ export function ProductStateBadge({ tone, children }: { tone: ProductStateTone; 
 
 export function Footer() {
   return (
-    <footer className="site-footer">
+    <footer className="site-footer site-footer-compact">
       <div className="footer-intro">
         <div className="brand footer-brand"><span className="brand-mark" aria-hidden="true"><i /><i /><i /></span><span>Proofweave</span></div>
         <p>An open network for personally delegated formal mathematics research.</p>
       </div>
-      <nav className="footer-groups" aria-label="Footer navigation">
-        {footerNavigationGroups.map((group) => <div key={group.label}><strong>{group.label}</strong>{group.items.map((item) => <Link href={item.href} key={item.href}>{item.label}</Link>)}</div>)}
-      </nav>
+      <p className="footer-compact-note">Open formal mathematics · Evidence before claims</p>
     </footer>
   );
 }
