@@ -1759,19 +1759,30 @@ a.auth-provider:hover, .auth-provider-button:hover { border-color: #8295d5; box-
 }
 
 /* Structured public information architecture */
-.site-footer { align-items: start; display: grid; gap: 72px; grid-template-columns: minmax(250px, .8fr) 1.7fr; max-width: 1240px; padding: 52px 28px; }
+.site-header { z-index: 100; }
+.site-directory-menu summary { align-items: center; color: #d7e0ef; cursor: pointer; display: flex; font-size: 11px; gap: 6px; list-style: none; padding: 10px 0; }
+.site-directory-menu summary::-webkit-details-marker { display: none; }
+.site-directory-menu summary i { color: #8595b1; font-size: 10px; font-style: normal; transition: transform .18s ease; }
+.site-directory-menu summary:hover, .site-directory-menu[open] summary { color: #fff; }
+.site-directory-menu[open] summary i { transform: rotate(180deg); }
+.site-directory-menu summary:focus-visible { border-radius: 2px; outline: 2px solid #f3d48b; outline-offset: 4px; }
+.site-directory-popover { background: #f7f6f1; border: 1px solid #c9ced8; box-shadow: 0 26px 70px rgba(5,16,36,.28); color: var(--ink); display: grid; grid-template-columns: minmax(260px, .72fr) 1.72fr; left: max(28px, calc((100vw - 1240px) / 2)); position: absolute; right: max(28px, calc((100vw - 1240px) / 2)); top: 100%; }
+.site-directory-intro { background: #0d1d37; color: #f3f6ff; padding: 30px; }
+.directory-brand { color: #fff; }
+.site-directory-intro p { color: #aebbd0; font-family: Georgia, "Times New Roman", serif; font-size: 20px; letter-spacing: -.025em; line-height: 1.34; margin: 34px 0 0; max-width: 280px; }
+.site-directory-groups { display: grid; gap: 32px; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 30px; }
+.site-directory-groups > div { align-content: start; display: grid; }
+.site-directory-groups strong { border-bottom: 1px solid var(--line); color: var(--ink-faint); font-size: 9px; letter-spacing: .1em; padding-bottom: 11px; text-transform: uppercase; }
+.site-directory-groups a { align-items: center; border-bottom: 1px solid var(--line); color: var(--ink-soft); display: flex; font-size: 11px; gap: 12px; justify-content: space-between; padding: 11px 0; }
+.site-directory-groups a span { color: #a4adc0; }
+.site-directory-groups a:hover, .site-directory-groups a.is-active { color: var(--indigo); }
+.site-directory-groups a:hover span, .site-directory-groups a.is-active span { color: var(--indigo); }
+.site-directory-groups a:focus-visible { outline: 2px solid var(--indigo); outline-offset: 3px; }
+.site-footer.site-footer-compact { align-items: center; display: grid; gap: 34px; grid-template-columns: 1fr auto; max-width: 1240px; padding: 34px 28px; }
+.site-footer-compact .footer-intro { align-items: center; display: flex; gap: 24px; }
 .footer-intro p { color: var(--ink-soft); font-size: 12px; line-height: 1.55; margin: 16px 0 0; max-width: 280px; }
-.footer-groups { display: grid !important; gap: 32px !important; grid-template-columns: repeat(3, minmax(0, 1fr)); justify-content: stretch !important; }
-.footer-groups > div { display: grid; gap: 10px; }
-.footer-groups strong { color: var(--ink); font-size: 10px; letter-spacing: .05em; margin-bottom: 5px; text-transform: uppercase; }
-.footer-groups a { color: var(--ink-soft); font-size: 11px; }
-.footer-groups a:hover { color: var(--indigo); }
-.mobile-site-menu { display: none; position: relative; }
-.mobile-site-menu summary { color: #e4ebfa; cursor: pointer; font-size: 11px; list-style: none; padding: 8px 0; }
-.mobile-site-menu summary::-webkit-details-marker { display: none; }
-.mobile-site-menu nav { background: #fff; border: 1px solid var(--line); box-shadow: 0 18px 35px rgba(8,20,42,.18); display: grid; min-width: 190px; padding: 7px; position: absolute; right: 0; top: calc(100% + 12px); z-index: 50; }
-.mobile-site-menu nav a { color: var(--ink); font-size: 12px; padding: 10px; }
-.mobile-site-menu nav a:hover, .mobile-site-menu nav a.is-active { background: #eef1fb; color: var(--indigo); }
+.site-footer-compact .footer-intro p { margin: 0; max-width: 430px; }
+.footer-compact-note { color: var(--ink-faint); font-size: 9px !important; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
 
 .home-choice-section, .home-boundary-section { margin: 0 auto; max-width: 1240px; padding: 88px 28px; }
 .home-choice-section { border-bottom: 1px solid var(--line); }
@@ -1874,8 +1885,12 @@ a.auth-provider:hover, .auth-provider-button:hover { border-color: #8295d5; box-
 .sharing-boundary p { color: var(--ink-soft); font-size: 12px; line-height: 1.6; margin: 20px 0 0; }
 
 @media (max-width: 900px) {
-  .mobile-site-menu { display: block; }
-  .site-footer { gap: 42px; grid-template-columns: 1fr; }
+  .site-directory-popover { grid-template-columns: 1fr; }
+  .site-directory-intro { align-items: center; display: flex; gap: 30px; justify-content: space-between; padding: 24px; }
+  .site-directory-intro p { font-size: 16px; margin: 0; max-width: 410px; text-align: right; }
+  .site-directory-groups { padding: 24px; }
+  .site-footer.site-footer-compact { gap: 24px; grid-template-columns: 1fr; }
+  .footer-compact-note { justify-self: start; }
   .information-hub-hero, .simple-flow-section, .about-definition, .home-boundary-section { grid-template-columns: 1fr; }
   .information-hub-hero { align-items: start; gap: 30px; min-height: 0; }
   .information-hub-hero > p { max-width: 680px; }
@@ -1890,9 +1905,13 @@ a.auth-provider:hover, .auth-provider-button:hover { border-color: #8295d5; box-
 }
 
 @media (max-width: 620px) {
-  .site-footer { padding: 38px 18px; }
-  .footer-groups { gap: 28px !important; grid-template-columns: 1fr 1fr; }
-  .footer-groups > div:last-child { grid-column: 1 / -1; }
+  .site-directory-popover { left: 18px; max-height: calc(100vh - 76px); overflow-y: auto; right: 18px; }
+  .site-directory-intro { align-items: start; display: grid; gap: 18px; }
+  .site-directory-intro p { font-size: 17px; text-align: left; }
+  .site-directory-groups { gap: 25px; grid-template-columns: 1fr; padding: 22px; }
+  .site-directory-groups a { min-height: 42px; }
+  .site-footer.site-footer-compact { padding: 30px 18px; }
+  .site-footer-compact .footer-intro { align-items: start; display: grid; gap: 12px; }
   .home-choice-section, .home-boundary-section { padding: 62px 18px; }
   .home-choice-grid, .information-path-grid { grid-template-columns: 1fr; }
   .home-choice-grid > a, .information-path-grid > a { min-height: 240px; }
