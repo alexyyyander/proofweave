@@ -14,6 +14,10 @@ export async function Header({ active }: { active: ActivePage }) {
         {primaryNavigation.map((item) => <Link className={active === item.page ? "is-active" : ""} href={item.href} key={item.href}>{item.label}</Link>)}
       </nav>
       <div className="header-actions">
+        <details className="mobile-site-menu">
+          <summary aria-label="Open site navigation">Menu</summary>
+          <nav aria-label="Mobile navigation">{primaryNavigation.map((item) => <Link className={active === item.page ? "is-active" : ""} href={item.href} key={item.href}>{item.label}</Link>)}</nav>
+        </details>
         <Link className={workspaceActive ? "sign-in-link is-active" : "sign-in-link"} href="/workbench">Workspace</Link>
         {user
           ? <details className={active === "profile" || active === "settings" ? "account-menu is-active" : "account-menu"}>
