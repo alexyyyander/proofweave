@@ -73,6 +73,14 @@ Automatic closure is enabled only when all four issuer settings are present:
 `RECEIPT_ISSUER_ACTIVATED_AT`. Missing all four leaves signed reviews durable
 with `issuer_unavailable`; a partial or mismatched set fails runtime startup.
 
+For the provider-neutral Turso path, set `RUNNER_QUEUE_MODE=d1` instead of a
+Cloudflare Queue binding. The gateway then writes the same signed queue
+envelope to migration `0032`'s durable lease table that the trusted Runner
+polls. This mode is valid only when MCP/OAuth and the Runner use the exact same
+external migrated database. It still requires the approved image registry,
+control-plane key ID/private JWK, and default limits; partial configuration or
+combining D1 mode with a provider Queue binding fails closed.
+
 The deployed runtime also uses a D1-atomic fixed-window limiter before every
 authorized tool operation. Its quotas aggregate on the Person root rather than
 on an Agent installation, so parallel Agents cannot multiply a participant's

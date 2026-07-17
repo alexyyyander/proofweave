@@ -120,6 +120,39 @@ test("partial Runner dispatch configuration fails closed before serving MCP", ()
   );
 });
 
+test("provider-neutral gateway composes the durable database Runner queue only from a complete configuration", () => {
+  const complete = {
+    resource: "https://mcp.gateway.example.test/mcp",
+    issuer: "https://auth.gateway.example.test",
+    database,
+    bucket: artifactBucket,
+    runnerQueueMode: "d1",
+    runnerApprovedImagesJson: JSON.stringify([{
+      imageDigest: `registry.example.test/proofweave/lean@sha256:${"f".repeat(64)}`,
+      leanToolchain: "leanprover/lean4:v4.27.0",
+      mathlibRevision: "gateway-fixture",
+    }]),
+    runnerControlPlaneKeyId: "runner-control:gateway",
+    runnerControlPlanePrivateKeyJwkJson: controlPlanePrivateKeyJwkJson,
+    runnerDefaultLimitsJson: JSON.stringify({
+      cpuSeconds: 60,
+      wallSeconds: 120,
+      memoryMiB: 2_048,
+      diskMiB: 2_048,
+      outputBytes: 1_000_000,
+    }),
+  };
+  assert.equal(typeof createD1RemoteMcpGatewayRuntime(complete).fetch, "function");
+  assert.throws(
+    () => createD1RemoteMcpGatewayRuntime({ ...complete, runnerQueueMode: "memory" }),
+    /RUNNER_QUEUE_MODE must be d1/,
+  );
+  assert.throws(
+    () => createD1RemoteMcpGatewayRuntime({ ...complete, runnerQueue: { async send() {} } }),
+    /cannot be combined/,
+  );
+});
+
 test("remote MCP gateway store binds a signed review attestation to its OAuth installation", async () => {
   const verification = new D1VerificationStore(database);
   await verification.assign({

@@ -27,6 +27,7 @@ export function createCloudflareGatewayWorker({ audit = defaultAudit() } = {}) {
             resource: env.MCP_RESOURCE_URL,
             issuer: env.OAUTH_ISSUER_URL,
             runnerQueue: env.RUNNER_QUEUE,
+            runnerQueueMode: env.RUNNER_QUEUE_MODE,
             runnerApprovedImagesJson: env.RUNNER_APPROVED_IMAGES_JSON,
             runnerControlPlaneKeyId: env.RUNNER_CONTROL_PLANE_KEY_ID,
             runnerControlPlanePrivateKeyJwkJson: env.RUNNER_CONTROL_PLANE_PRIVATE_KEY_JWK,

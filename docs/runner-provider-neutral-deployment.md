@@ -24,6 +24,13 @@ public keys, and Runner result private key. Submitted code receives none of
 them. The Modal Connect Token stays only in process memory and is cleared when
 the one-Run Sandbox terminates.
 
+The public gateway uses `RUNNER_QUEUE_MODE=d1`, the same Turso URL/token,
+`RUNNER_CONTROL_PLANE_KEY_ID`, its matching private JWK, the approved image
+registry, and bounded default limits. It signs and inserts only the canonical
+queue envelope. The trusted process receives the corresponding control-plane
+public key through `RUNNER_CONTROL_PLANE_ISSUER_KEYS_JSON`; it never receives
+the gateway private key.
+
 ## Required deployment values
 
 Start from `.env.example`. The process requires:
@@ -38,6 +45,14 @@ Start from `.env.example`. The process requires:
 - `RUNNER_RESULT_KEY_ID` and `RUNNER_RESULT_PRIVATE_KEY_JWK`, held only by the
   trusted process; and
 - a stable `RUNNER_CONSUMER_ID` for this deployment instance.
+
+The MCP/OAuth deployment additionally requires:
+
+- `RUNNER_QUEUE_MODE=d1`;
+- `RUNNER_CONTROL_PLANE_KEY_ID` and
+  `RUNNER_CONTROL_PLANE_PRIVATE_KEY_JWK`;
+- the same `RUNNER_APPROVED_IMAGES_JSON`; and
+- `RUNNER_DEFAULT_LIMITS_JSON` within the D1-inline evidence limit.
 
 Keep `RUNNER_EXECUTION_ENABLED=false` until every gate below is evidenced.
 

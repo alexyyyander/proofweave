@@ -5,6 +5,7 @@ import { D1RemoteMcpRateLimiter } from "./d1-rate-limiter.mjs";
 import { D1RemoteMcpRunnerDispatcher } from "./runner-dispatch.mjs";
 import { createRemoteMcpGateway } from "./worker.mjs";
 import { CloudflareRunnerQueue } from "../lean-runner/cloudflare-queues.mjs";
+import { D1RunnerLeaseQueue } from "../lean-runner/d1-runner-lease-queue.mjs";
 import { PinnedRunnerImageRegistry } from "../lean-runner/runner-image-policy.mjs";
 import { D1InlineArtifactStore } from "../artifacts/d1-inline-artifact-store.mjs";
 import { D1ContributionReceiptCoordinator } from "../receipts/d1-contribution-receipt-coordinator.mjs";
@@ -28,6 +29,7 @@ export class RemoteMcpRuntimeConfigurationError extends Error {
  *   resource: string,
  *   issuer: string,
  *   runnerQueue?: any,
+ *   runnerQueueMode?: string | null,
  *   runnerApprovedImagesJson?: string | null,
  *   runnerControlPlaneKeyId?: string | null,
  *   runnerControlPlanePrivateKeyJwkJson?: string | null,
@@ -44,6 +46,7 @@ export function createD1RemoteMcpGatewayRuntime({
   resource,
   issuer,
   runnerQueue = null,
+  runnerQueueMode = null,
   runnerApprovedImagesJson = null,
   runnerControlPlaneKeyId = null,
   runnerControlPlanePrivateKeyJwkJson = null,
@@ -65,7 +68,7 @@ export function createD1RemoteMcpGatewayRuntime({
     database,
     bucket,
     artifactStore,
-    runnerQueue,
+    runnerQueue: selectRunnerQueue({ database, runnerQueue, runnerQueueMode }),
     runnerApprovedImagesJson,
     runnerControlPlaneKeyId,
     runnerControlPlanePrivateKeyJwkJson,
@@ -87,6 +90,21 @@ export function createD1RemoteMcpGatewayRuntime({
     store: new D1RemoteMcpGatewayStore({ database, bucket, artifactStore, runnerDispatcher, receiptCoordinator }),
     rateLimiter: new D1RemoteMcpRateLimiter({ database }),
   });
+}
+
+function selectRunnerQueue({ database, runnerQueue, runnerQueueMode }) {
+  if (!isConfigured(runnerQueueMode)) return runnerQueue;
+  if (runnerQueueMode !== "d1") {
+    throw new RemoteMcpRuntimeConfigurationError("RUNNER_QUEUE_MODE must be d1 when configured.");
+  }
+  if (isConfigured(runnerQueue)) {
+    throw new RemoteMcpRuntimeConfigurationError("D1 Runner queue mode cannot be combined with a provider Queue binding.");
+  }
+  try {
+    return new D1RunnerLeaseQueue({ database });
+  } catch {
+    throw new RemoteMcpRuntimeConfigurationError("D1 Runner queue mode requires the shared migrated control-plane database.");
+  }
 }
 
 function createOptionalReceiptCoordinator({
