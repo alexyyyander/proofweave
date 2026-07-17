@@ -5,11 +5,17 @@ import { useMemo, useState } from "react";
 import type { CatalogProblem } from "@/packages/domain/catalog";
 import { StatusStack } from "../ui";
 
-const statusFilters = [
-  "All work",
-  "Open conjectures",
-  "Known results",
-  "Kernel accepted",
+const opportunityFilters = [
+  { id: "all", label: "All opportunities" },
+  { id: "formalize", label: "Formalize known results" },
+  { id: "advance", label: "Advance open conjectures" },
+  { id: "verified", label: "Inspect verified proofs" },
+] as const;
+
+const scopeFilters = [
+  { id: "all", label: "All scopes" },
+  { id: "bounded", label: "Bounded milestones" },
+  { id: "long-horizon", label: "Long-horizon programs" },
 ] as const;
 
 const preferredStarterSlugs = [
@@ -18,11 +24,14 @@ const preferredStarterSlugs = [
   "complexity-p-subset-np",
 ] as const;
 
+type OpportunityFilter = (typeof opportunityFilters)[number]["id"];
+type ScopeFilter = (typeof scopeFilters)[number]["id"];
+
 export function ExploreCatalog({ projects }: { projects: readonly CatalogProblem[] }) {
-  const [statusFilter, setStatusFilter] = useState<(typeof statusFilters)[number]>("All work");
+  const [opportunityFilter, setOpportunityFilter] = useState<OpportunityFilter>("all");
+  const [scopeFilter, setScopeFilter] = useState<ScopeFilter>("all");
   const [subjectFilter, setSubjectFilter] = useState("all");
   const [query, setQuery] = useState("");
-  const [expanded, setExpanded] = useState<string | null>(null);
 
   const subjects = useMemo(() => {
     const unique = new Map<string, CatalogProblem["subjects"][number]>();
@@ -38,17 +47,9 @@ export function ExploreCatalog({ projects }: { projects: readonly CatalogProblem
         .filter((project) => project.collections.some((collection) => collection.tier === tier && collection.role === "headline"))
         .sort((a, b) => collectionPosition(a, tier) - collectionPosition(b, tier));
 
-    const milestoneCounts = new Map<string, number>();
-    for (const project of projects) {
-      if (project.collections.some((collection) => collection.tier === "founding" && collection.role === "milestone")) {
-        milestoneCounts.set(project.projectId, (milestoneCounts.get(project.projectId) ?? 0) + 1);
-      }
-    }
-
     return {
       founding: headline("founding"),
       grand: headline("grand"),
-      milestoneCounts,
     };
   }, [projects]);
 
@@ -68,29 +69,79 @@ export function ExploreCatalog({ projects }: { projects: readonly CatalogProblem
   const visibleProjects = useMemo(() => {
     const normalizedQuery = query.trim().toLocaleLowerCase();
     return projects.filter((project) => {
-      if (statusFilter === "Open conjectures" && project.researchStatus !== "research_open") return false;
-      if (statusFilter === "Known results" && project.researchStatus !== "research_solved") return false;
-      if (statusFilter === "Kernel accepted" && !project.displayStatuses.includes("Kernel accepted")) return false;
+      if (opportunityFilter !== "all" && opportunityKind(project) !== opportunityFilter) return false;
+      if (scopeFilter !== "all" && scopeKind(project) !== scopeFilter) return false;
       if (subjectFilter !== "all" && !project.subjects.some((subject) => subject.slug === subjectFilter)) return false;
       if (!normalizedQuery) return true;
-      return [project.title, project.projectTitle, project.informalStatement, ...project.subjects.map((subject) => subject.name)]
+      return [
+        project.title,
+        project.projectTitle,
+        project.informalStatement,
+        project.declaration.qualifiedName,
+        project.source.upstreamName,
+        ...project.subjects.flatMap((subject) => [subject.name, subject.amsCode]),
+      ]
         .join(" ")
         .toLocaleLowerCase()
         .includes(normalizedQuery);
     });
-  }, [projects, query, statusFilter, subjectFilter]);
+  }, [projects, query, opportunityFilter, scopeFilter, subjectFilter]);
+
+  function selectOpportunity(filter: OpportunityFilter) {
+    setOpportunityFilter(filter);
+    document.getElementById("research-catalog")?.scrollIntoView({ block: "start" });
+  }
 
   return (
     <>
+      <section className="explore-command" aria-labelledby="explore-command-heading">
+        <div className="explore-command-search">
+          <div>
+            <p className="micro-label">Find useful work</p>
+            <h2 id="explore-command-heading">What can your Agent contribute now?</h2>
+          </div>
+          <label className="explore-main-search">
+            <span className="sr-only">Search research opportunities</span>
+            <input
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Search by problem, subject, or Lean declaration"
+              type="search"
+            />
+            <span>{visibleProjects.length} matching records</span>
+          </label>
+        </div>
+        <div className="opportunity-paths">
+          <button className="opportunity-path is-formalize" onClick={() => selectOpportunity("formalize")} type="button">
+            <span className="opportunity-path-index">01</span>
+            <strong>Formalize known mathematics</strong>
+            <p>Start with an established result whose pinned Lean declaration still needs a proof.</p>
+            <span className="opportunity-path-action">Browse bounded work <b aria-hidden="true">→</b></span>
+          </button>
+          <button className="opportunity-path is-advance" onClick={() => selectOpportunity("advance")} type="button">
+            <span className="opportunity-path-index">02</span>
+            <strong>Advance an open branch</strong>
+            <p>Join a conjecture through a formal target, reusable lemma, proof patch, or counterexample.</p>
+            <span className="opportunity-path-action">Browse open research <b aria-hidden="true">→</b></span>
+          </button>
+          <Link className="opportunity-path is-review" href="/reviews">
+            <span className="opportunity-path-index">03</span>
+            <strong>Verify submitted work</strong>
+            <p>Accept an eligible independent review assignment and inspect its exact evidence boundary.</p>
+            <span className="opportunity-path-action">Open verification work <b aria-hidden="true">→</b></span>
+          </Link>
+        </div>
+      </section>
+
       <section className="starter-work-section" id="starter-work" aria-labelledby="starter-work-heading">
         <div className="starter-work-heading">
           <div>
-            <p className="micro-label">Your first contribution</p>
-            <h2 id="starter-work-heading">Formalize known mathematics first.</h2>
+            <p className="micro-label">Recommended now · first contribution</p>
+            <h2 id="starter-work-heading">Begin with bounded formalization.</h2>
           </div>
           <div>
-            <p>These statements are established mathematics whose pinned Lean declarations still need a proof. They offer a bounded way to learn the workflow without claiming to solve an open conjecture.</p>
-            <span>Recommended starting path · not a difficulty guarantee</span>
+            <p>These are established results, not claims to have solved an open conjecture. They are the clearest way to learn the complete source, Attempt, evidence, and review workflow.</p>
+            <span>Curated starting path · not a mathematical difficulty guarantee</span>
           </div>
         </div>
         <div className="starter-work-grid">
@@ -100,97 +151,80 @@ export function ExploreCatalog({ projects }: { projects: readonly CatalogProblem
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <span>{project.subjects[0]?.name ?? project.domain}</span>
               </div>
+              <div className="starter-needed"><span>Needed now</span><strong>Formalize a known result</strong></div>
               <h3>{project.title}</h3>
               <p>{project.informalStatement}</p>
-              <div className="starter-work-state"><span>Known result</span><span>Lean proof wanted</span></div>
+              <div className="starter-work-state"><span>Bounded milestone</span><span>Lean proof wanted</span></div>
               <div className="starter-work-actions">
-                <Link className="button button-primary" href={`/workbench?target=${encodeURIComponent(project.slug)}#research-launcher`}>Start formalizing <span aria-hidden="true">→</span></Link>
-                <Link className="text-link" href={`/explore/${project.slug}`}>Inspect source</Link>
+                <Link className="button button-primary" href={`/workbench?target=${encodeURIComponent(project.slug)}#research-launcher`}>Start this contribution <span aria-hidden="true">→</span></Link>
+                <Link className="text-link" href={`/explore/${project.slug}`}>View source</Link>
               </div>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="challenge-section" aria-labelledby="founding-challenges-heading">
-        <div className="challenge-heading">
-          <div>
-            <p className="micro-label">Start with a tractable research path</p>
-            <h2 id="founding-challenges-heading">Founding Challenges</h2>
-          </div>
-          <p>Famous questions with smaller known milestones. Choose the open target, or formalize a result mathematics already knows.</p>
+      <section className="research-collections" aria-labelledby="research-collections-heading">
+        <div className="collection-heading">
+          <div><p className="micro-label">Curated collections</p><h2 id="research-collections-heading">Enter through a research program.</h2></div>
+          <p>Collections are navigation aids, not separate contribution systems. Every program resolves to the same pinned targets, Attempts, evidence, and independent review.</p>
         </div>
-        <div className="founding-grid">
-          {featured.founding.map((project, index) => (
-            <Link className="founding-card" href={`/explore/${project.slug}`} key={project.slug}>
-              <span className="challenge-index">{String(index + 1).padStart(2, "0")}</span>
-              <div className="subject-row">{project.subjects.map((subject) => <span className="subject-chip" key={subject.slug}>MSC {subject.amsCode} · {subject.name}</span>)}</div>
-              <h3>{project.title}</h3>
-              <p>{project.informalStatement}</p>
-              <div className="challenge-card-footer">
-                <span>{workLabel(project)}</span>
-                <span>{featured.milestoneCounts.get(project.projectId) ?? 0} milestones <b aria-hidden="true">→</b></span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="grand-section" aria-labelledby="grand-challenges-heading">
-        <div className="challenge-heading grand-heading">
-          <div><p className="micro-label">Long-horizon coordination</p><h2 id="grand-challenges-heading">Grand Challenges</h2></div>
-          <p>Not winner-takes-all bets. These targets organize reusable lemmas, counterexamples, and independent verification over time.</p>
-        </div>
-        <div className="grand-grid">
-          {featured.grand.map((project) => (
-            <Link className="grand-card" href={`/explore/${project.slug}`} key={project.slug}>
-              <span>{project.subjects[0]?.name ?? project.domain}</span>
-              <h3>{project.title}</h3>
-              <b>Inspect target <span aria-hidden="true">→</span></b>
-            </Link>
-          ))}
+        <div className="collection-groups">
+          <article className="collection-group">
+            <header><div><span>01</span><h3>Founding Challenges</h3></div><p>Famous questions with smaller known milestones.</p></header>
+            <div className="collection-records">
+              {featured.founding.map((project) => (
+                <Link href={`/explore/${project.slug}`} key={project.slug}>
+                  <span>{project.subjects[0]?.name ?? project.domain}</span>
+                  <strong>{project.title}</strong>
+                  <b>{workLabel(project)} <i aria-hidden="true">→</i></b>
+                </Link>
+              ))}
+            </div>
+          </article>
+          <article className="collection-group is-grand">
+            <header><div><span>02</span><h3>Grand Challenges</h3></div><p>Long-horizon programs for cumulative, reusable progress.</p></header>
+            <div className="collection-records">
+              {featured.grand.map((project) => (
+                <Link href={`/explore/${project.slug}`} key={project.slug}>
+                  <span>{project.subjects[0]?.name ?? project.domain}</span>
+                  <strong>{project.title}</strong>
+                  <b>{workLabel(project)} <i aria-hidden="true">→</i></b>
+                </Link>
+              ))}
+            </div>
+          </article>
         </div>
       </section>
 
-      <section className="catalog-section" aria-labelledby="all-records-heading">
+      <section className="catalog-section" id="research-catalog" aria-labelledby="all-records-heading">
         <div className="catalog-section-heading">
-          <div><p className="micro-label">Pinned formal catalog</p><h2 id="all-records-heading">All research records</h2></div>
-          <label className="catalog-search"><span className="sr-only">Search research records</span><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search conjectures and subjects" type="search" /></label>
+          <div><p className="micro-label">All research opportunities</p><h2 id="all-records-heading">Choose the next useful action.</h2></div>
+          <p className="catalog-section-intro">The catalog separates mathematical research status from Proofweave verification. No activity or readiness is implied unless the public record supports it.</p>
         </div>
         <div className="explore-layout">
           <aside className="explore-sidebar">
-            <p className="micro-label">Research status</p>
-            <div className="filter-group" aria-label="Research status filters">
-              {statusFilters.map((item) => <button key={item} className={statusFilter === item ? "filter-button active" : "filter-button"} onClick={() => setStatusFilter(item)} type="button">{item}</button>)}
+            <p className="micro-label">Contribution</p>
+            <div className="filter-group" aria-label="Contribution filters">
+              {opportunityFilters.map((item) => <button key={item.id} className={opportunityFilter === item.id ? "filter-button active" : "filter-button"} onClick={() => setOpportunityFilter(item.id)} type="button">{item.label}</button>)}
+            </div>
+            <p className="micro-label subject-filter-label">Scope</p>
+            <div className="filter-group" aria-label="Research scope filters">
+              {scopeFilters.map((item) => <button key={item.id} className={scopeFilter === item.id ? "filter-button active" : "filter-button"} onClick={() => setScopeFilter(item.id)} type="button">{item.label}</button>)}
             </div>
             <p className="micro-label subject-filter-label">Subject</p>
             <div className="filter-group" aria-label="Subject filters">
               <button className={subjectFilter === "all" ? "filter-button active" : "filter-button"} onClick={() => setSubjectFilter("all")} type="button">All subjects</button>
               {subjects.map((subject) => <button key={subject.slug} className={subjectFilter === subject.slug ? "filter-button active" : "filter-button"} onClick={() => setSubjectFilter(subject.slug)} type="button"><span>MSC {subject.amsCode}</span>{subject.name}</button>)}
             </div>
-            <div className="filter-note"><strong>Auditable source</strong><p>Every record pins its upstream declaration, source hash, Lean toolchain, and mathlib revision. Research status is kept separate from Proofweave verification.</p></div>
+            <div className="filter-note"><strong>Auditable source</strong><p>Every record pins its upstream declaration, source hash, Lean toolchain, and mathlib revision.</p></div>
           </aside>
           <div className="catalog-list">
-            <div className="catalog-toolbar"><span>{visibleProjects.length} visible records</span><span>Sorted by research priority</span></div>
-            {visibleProjects.length === 0 && <div className="catalog-empty"><strong>No records match these filters.</strong><p>Try another subject, status, or search phrase.</p></div>}
-            {visibleProjects.map((project) => {
-              const isExpanded = expanded === project.slug;
-              return (
-                <article className="catalog-card" key={project.slug}>
-                  <div className="catalog-card-main">
-                    <div className="card-topline">
-                      <div className="subject-row">{project.subjects.map((subject) => <span className="subject-chip" key={subject.slug}>MSC {subject.amsCode} · {subject.name}</span>)}</div>
-                      <span className="record-chip">{workLabel(project)}</span>
-                    </div>
-                    <Link href={`/explore/${project.slug}`}><h2>{project.title}</h2></Link>
-                    <p>{project.informalStatement}</p>
-                    <StatusStack statuses={project.displayStatuses} compact />
-                  </div>
-                  <div className="catalog-actions"><button className="code-toggle" onClick={() => setExpanded(isExpanded ? null : project.slug)} type="button" aria-expanded={isExpanded}>{isExpanded ? "Hide Lean" : "Show Lean"}</button><Link className="record-link" href={`/explore/${project.slug}`}>Inspect <span>→</span></Link></div>
-                  {isExpanded && <pre className="lean-snippet"><code>{project.leanStatement}</code></pre>}
-                </article>
-              );
-            })}
+            <div className="catalog-toolbar"><span>{visibleProjects.length} matching records</span><span>Existing catalog priority order</span></div>
+            {visibleProjects.length === 0 && <div className="catalog-empty"><strong>No opportunities match.</strong><p>Try another contribution type, scope, subject, or search phrase.</p></div>}
+            {visibleProjects.map((project) => (
+              <ResearchOpportunityCard project={project} key={project.slug} />
+            ))}
           </div>
         </div>
       </section>
@@ -198,8 +232,60 @@ export function ExploreCatalog({ projects }: { projects: readonly CatalogProblem
   );
 }
 
+function ResearchOpportunityCard({ project }: { project: CatalogProblem }) {
+  const canStart = project.proofState === "admitted";
+  return (
+    <article className="research-opportunity-card">
+      <div className="opportunity-card-topline">
+        <div className="subject-row">{project.subjects.map((subject) => <span className="subject-chip" key={subject.slug}>MSC {subject.amsCode} · {subject.name}</span>)}</div>
+        <span className="record-chip">{workLabel(project)}</span>
+      </div>
+      <Link className="opportunity-card-title" href={`/explore/${project.slug}`}><h3>{project.title}</h3></Link>
+      <p className="opportunity-card-statement">{project.informalStatement}</p>
+      <dl className="opportunity-signal-grid">
+        <div><dt>Needed now</dt><dd>{neededNow(project)}</dd></div>
+        <div><dt>Research scope</dt><dd>{scopeLabel(project)}</dd></div>
+        <div><dt>Pinned source</dt><dd>{project.source.upstreamName} · {project.source.revisionTag}</dd></div>
+      </dl>
+      <div className="opportunity-card-verification"><span>Current public record</span><StatusStack statuses={project.displayStatuses} compact /></div>
+      <footer className="opportunity-card-footer">
+        <code>{project.declaration.qualifiedName}</code>
+        <div>
+          {canStart && <Link className="button button-primary" href={`/workbench?target=${encodeURIComponent(project.slug)}#research-launcher`}>Start an Attempt</Link>}
+          <Link className={canStart ? "button button-secondary" : "button button-primary"} href={`/explore/${project.slug}`}>{canStart ? "View research record" : "Inspect proof record"} <span aria-hidden="true">→</span></Link>
+        </div>
+      </footer>
+    </article>
+  );
+}
+
 function collectionPosition(project: CatalogProblem, tier: "founding" | "grand") {
   return project.collections.find((collection) => collection.tier === tier)?.position ?? Number.MAX_SAFE_INTEGER;
+}
+
+function opportunityKind(project: CatalogProblem): Exclude<OpportunityFilter, "all"> {
+  if (project.proofState === "proved") return "verified";
+  if (project.researchStatus === "research_solved") return "formalize";
+  return "advance";
+}
+
+function scopeKind(project: CatalogProblem): Exclude<ScopeFilter, "all"> | "program" {
+  if (project.collections.some((collection) => collection.role === "milestone")) return "bounded";
+  if (project.collections.some((collection) => collection.tier === "grand" && collection.role === "headline")) return "long-horizon";
+  return "program";
+}
+
+function neededNow(project: CatalogProblem) {
+  if (project.proofState === "proved") return "Inspect the checked proof and its evidence";
+  if (project.researchStatus === "research_solved") return "Formalize an established mathematical result";
+  return "Advance an open formal proof branch";
+}
+
+function scopeLabel(project: CatalogProblem) {
+  const kind = scopeKind(project);
+  if (kind === "bounded") return "Bounded milestone";
+  if (kind === "long-horizon") return "Long-horizon program";
+  return "Open research program";
 }
 
 function workLabel(project: CatalogProblem) {
