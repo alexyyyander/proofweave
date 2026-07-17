@@ -696,8 +696,8 @@ test("server-renders the Proofweave welcome page", async () => {
   assert.match(html, /Advance mathematics through your agent/i);
   assert.match(html, /Public alpha/i);
   assert.match(html, /Verified demo/i);
-  assert.match(html, /Explore open mathematics/i);
-  assert.match(html, /Contribution receipt/i);
+  assert.match(html, /Find a contribution/i);
+  assert.match(html, /Contribution records/i);
   assert.match(html, /brand-mark/i);
   assert.doesNotMatch(html, /proof-paper-mark/i);
   assert.match(html, /hero-proof-motion/i);
@@ -717,8 +717,14 @@ test("serves the public research paths", async () => {
     ["/demo", /Watch one Lean proof become/i],
     ["/explore", /Find where your Agent can make a useful contribution/i],
     ["/explore/erdos-865", /Erdős Problem 865/i],
-    ["/how-it-works", /Choose a question\. Move one verified step/i],
-    ["/about", /Trust the record,[\s\S]*not the headline/i],
+    ["/how-it-works", /One shared frontier\. One useful step at a time/i],
+    ["/how-it-works/research", /Move one bounded research task forward/i],
+    ["/how-it-works/verification", /Check one exact claim, independently/i],
+    ["/how-it-works/contribution-records", /Credit the proof path, not just the last submitter/i],
+    ["/about", /A shared research network for people and their Agents/i],
+    ["/about/principles", /Six rules that protect useful research/i],
+    ["/about/catalog-standard", /Before a famous problem is presented as current/i],
+    ["/about/shared-research", /One frontier map\. Many coordinated Agents/i],
     ["/privacy", /Your mathematical record can be public/i],
     ["/terms", /Contribute carefully/i],
     ["/workbench", /Keep the work on your computer/i],
@@ -825,12 +831,20 @@ test("serves the public research paths", async () => {
 
   const about = await render("/about");
   const aboutHtml = await about.text();
-  assert.match(aboutHtml, /Before a famous problem is presented as current/i);
-  assert.match(aboutHtml, /many records are source-pinned imports and explicitly remain frontier-unreviewed/i);
+  assert.match(aboutHtml, /Research coordination, evidence, and attribution/i);
   assert.match(aboutHtml, /Proofweave was initiated and built by Alex Yu/i);
-  assert.match(aboutHtml, /One frontier map\.[\s\S]*Many coordinated Agents/i);
-  assert.match(aboutHtml, /Coordinated Agent research flow/i);
   assert.match(aboutHtml, /github\.com\/alexyyyander\/proofweave-open-catalog/i);
+
+  const catalogStandard = await render("/about/catalog-standard");
+  const catalogStandardHtml = await catalogStandard.text();
+  assert.match(catalogStandardHtml, /Before a famous problem is presented as current/i);
+  assert.match(catalogStandardHtml, /many records are source-pinned imports and explicitly remain frontier-unreviewed/i);
+  assert.match(catalogStandardHtml, /github\.com\/alexyyyander\/proofweave-open-catalog/i);
+
+  const sharedResearch = await render("/about/shared-research");
+  const sharedResearchHtml = await sharedResearch.text();
+  assert.match(sharedResearchHtml, /One frontier map\. Many coordinated Agents/i);
+  assert.match(sharedResearchHtml, /Read the shared state/i);
 
   const integrations = await render("/integrations");
   const integrationsHtml = await integrations.text();
@@ -1050,7 +1064,7 @@ test("publicly verifies the checked Build Week reference evidence", async () => 
 });
 
 test("keeps keyboard users one action away from the main content on critical pages", async () => {
-  for (const pathname of ["/", "/showcase", "/demo", "/explore", "/how-it-works", "/about", "/workbench", "/integrations", "/evidence", "/reviews", "/receipts"]) {
+  for (const pathname of ["/", "/showcase", "/demo", "/explore", "/how-it-works", "/how-it-works/research", "/about", "/about/principles", "/workbench", "/integrations", "/evidence", "/reviews", "/receipts"]) {
     const response = await render(pathname);
     assert.equal(response.status, 200, `${pathname} should render its keyboard navigation`);
     const html = await response.text();
