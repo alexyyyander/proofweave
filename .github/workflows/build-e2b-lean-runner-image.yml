@@ -95,12 +95,19 @@ jobs:
           --entrypoint /bin/sh "$FINAL_RUNNER_IMAGE" -c
           'node --version && lean --version && lake --version'
 
-      - name: Attest the final Runner image
+      - name: Attest the final Runner image in GitHub when supported
+        if: ${{ github.event.repository.visibility == 'public' }}
         uses: actions/attest-build-provenance@0f67c3f4856b2e3261c31976d6725780e5e4c373
         with:
           subject-name: ${{ env.RUNNER_IMAGE_NAME }}
           subject-digest: ${{ steps.runner.outputs.digest }}
           push-to-registry: true
+
+      - name: Record the private-repository attestation boundary
+        if: ${{ github.event.repository.visibility != 'public' }}
+        run: |
+          echo "GitHub artifact attestations are unavailable for user-owned private repositories." >> "$GITHUB_STEP_SUMMARY"
+          echo "The registry-attached BuildKit SBOM and provenance remain the published image evidence." >> "$GITHUB_STEP_SUMMARY"
 
       - name: Use the repository Node version
         if: ${{ inputs.build_e2b_template }}
