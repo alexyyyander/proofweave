@@ -46,6 +46,7 @@ test("Lean Runner image recipe fails closed and keeps its build context minimal"
   assert.match(imageWorkflow, /LEAN_RELEASE_SHA256: [a-f0-9]{64}/);
   assert.match(imageWorkflow, /docker\/setup-buildx-action@[a-f0-9]{40}/);
   assert.match(imageWorkflow, /driver: docker-container/);
+  assert.doesNotMatch(imageWorkflow, /^\s+install: true$/m);
   assert.ok(
     imageWorkflow.indexOf("docker/setup-buildx-action@")
       < imageWorkflow.indexOf("docker/build-push-action@"),
@@ -53,6 +54,8 @@ test("Lean Runner image recipe fails closed and keeps its build context minimal"
   );
   assert.match(imageWorkflow, /network: none/);
   assert.match(imageWorkflow, /--read-only --network=none/);
+  assert.match(imageWorkflow, /--entrypoint \/bin\/sh "\$FINAL_RUNNER_IMAGE" -c/);
+  assert.doesNotMatch(imageWorkflow, /--entrypoint \/bin\/sh "\$FINAL_RUNNER_IMAGE" -lc/);
   assert.match(imageWorkflow, /actions\/attest-build-provenance@[a-f0-9]{40}/);
   assert.match(imageWorkflow, /PROOFWEAVE_E2B_REGISTRY_PASSWORD: \$\{\{ secrets\.GHCR_READ_TOKEN \}\}/);
   assert.doesNotMatch(imageWorkflow, /PROOFWEAVE_E2B_REGISTRY_PASSWORD: \$\{\{ secrets\.GITHUB_TOKEN \}\}/);
