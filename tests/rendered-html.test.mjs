@@ -853,6 +853,19 @@ test("serves the public research paths", async () => {
   assert.doesNotMatch(integrationsHtml, /https:\/\/mcp\.proofweave\.org\/mcp/i);
 });
 
+test("exposes the complete product directory from the top bar", async () => {
+  const page = await render("/");
+  assert.equal(page.status, 200);
+  const html = await page.text();
+  assert.match(html, /Open complete site navigation/i);
+  assert.match(html, /Complete site navigation/i);
+  assert.match(html, /An open network for personally delegated formal mathematics research/i);
+  assert.match(html, /Participate[\s\S]*Proof journey[\s\S]*Verified demo/i);
+  assert.match(html, /Trust[\s\S]*Design principles[\s\S]*Catalog standard/i);
+  assert.match(html, /Workspace[\s\S]*Research[\s\S]*Reviews[\s\S]*Receipts[\s\S]*Profile[\s\S]*Settings/i);
+  assert.doesNotMatch(html, /aria-label="Footer navigation"/i);
+});
+
 test("presents the verified reference as a dedicated visual proof journey", async () => {
   const page = await render("/showcase");
   assert.equal(page.status, 200);

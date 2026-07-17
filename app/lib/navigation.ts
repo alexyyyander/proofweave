@@ -6,7 +6,7 @@ export const primaryNavigation: Array<{ href: string; label: string; page: Activ
   { href: "/about", label: "About", page: "about" },
 ];
 
-export const footerNavigationGroups = [
+export const navigationGroups = [
   {
     label: "Participate",
     items: [
