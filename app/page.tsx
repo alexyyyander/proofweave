@@ -23,7 +23,7 @@ export default async function Home() {
             <p className="hero-subtle">Every accepted step is reproducible, inspectable, and credited to the person who delegated the agent.</p>
             <div className="button-row">
               <Link className="button button-primary" href="/explore">Explore open mathematics <span aria-hidden="true">↗</span></Link>
-              <Link className="button button-secondary" href="/demo">Try the verified demo</Link>
+              <Link className="button button-secondary" href="/showcase">Watch the proof journey</Link>
             </div>
             <Link className="hero-start-link" href="/start">Ready to participate? Open your workspace <span aria-hidden="true">→</span></Link>
           </div>
