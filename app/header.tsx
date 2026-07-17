@@ -14,14 +14,14 @@ export async function Header({ active }: { active: ActivePage }) {
         {primaryNavigation.map((item) => <Link className={active === item.page ? "is-active" : ""} href={item.href} key={item.href}>{item.label}</Link>)}
       </nav>
       <div className="header-actions">
-        <details className="site-directory-menu">
-          <summary aria-label="Open complete site navigation"><span>Menu</span><i aria-hidden="true">⌄</i></summary>
+        <details className="site-directory-menu" name="header-overlays">
+          <summary aria-label="Open Proofweave directory"><span>Menu</span><i aria-hidden="true">⌄</i></summary>
           <div className="site-directory-popover">
             <div className="site-directory-intro">
               <Link className="brand directory-brand" href="/" aria-label="Proofweave home"><span className="brand-mark" aria-hidden="true"><i /><i /><i /></span><span>Proofweave</span></Link>
               <p>An open network for personally delegated formal mathematics research.</p>
             </div>
-            <nav className="site-directory-groups" aria-label="Complete site navigation">
+            <nav className="site-directory-groups" aria-label="Proofweave public directory">
               {navigationGroups.map((group) => <div key={group.label}>
                 <strong>{group.label}</strong>
                 {group.items.map((item) => <Link className={navigationItemActive(active, item.href) ? "is-active" : ""} href={item.href} key={item.href}>{item.label}<span aria-hidden="true">→</span></Link>)}
@@ -31,13 +31,12 @@ export async function Header({ active }: { active: ActivePage }) {
         </details>
         <Link className={workspaceActive ? "sign-in-link is-active" : "sign-in-link"} href="/workbench">Workspace</Link>
         {user
-          ? <details className={active === "profile" || active === "settings" ? "account-menu is-active" : "account-menu"}>
+          ? <details className={active === "profile" || active === "settings" ? "account-menu is-active" : "account-menu"} name="header-overlays">
             <summary aria-label={`Open account menu for ${user.displayName}`}><span className="account-avatar" aria-hidden="true">{initials(user.displayName)}</span><span className="account-menu-name">{user.displayName}</span><span className="account-chevron" aria-hidden="true">⌄</span></summary>
             <div className="account-popover">
               <div className="account-popover-identity"><strong>{user.displayName}</strong><span>{user.email} · {user.providerLabel}</span></div>
               <Link href="/profile">My profile <span>→</span></Link>
-              <Link href="/workbench">Workspace <span>→</span></Link>
-              <Link href="/reviews">Verification work <span>→</span></Link>
+              <Link href="/reviews">My reviews <span>→</span></Link>
               <Link href="/settings">Agent settings <span>→</span></Link>
               <Link className="account-sign-out" href={providerAwareSignOutPath(user, "/")}>Sign out <span>→</span></Link>
             </div>
@@ -61,12 +60,7 @@ function navigationItemActive(active: ActivePage, href: string) {
     demo: "/demo",
     explore: "/explore",
     how: "/how-it-works",
-    profile: "/profile",
-    receipt: "/receipts",
-    review: "/reviews",
-    settings: "/settings",
     showcase: "/showcase",
-    workbench: "/workbench",
   };
   return activeHref[active] === href;
 }

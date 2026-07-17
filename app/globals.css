@@ -1770,11 +1770,11 @@ a.auth-provider:hover, .auth-provider-button:hover { border-color: #8295d5; box-
 .site-directory-menu summary:hover, .site-directory-menu[open] summary { color: #fff; }
 .site-directory-menu[open] summary i { transform: rotate(180deg); }
 .site-directory-menu summary:focus-visible { border-radius: 2px; outline: 2px solid #f3d48b; outline-offset: 4px; }
-.site-directory-popover { background: #f7f6f1; border: 1px solid #c9ced8; box-shadow: 0 26px 70px rgba(5,16,36,.28); color: var(--ink); display: grid; grid-template-columns: minmax(260px, .72fr) 1.72fr; left: max(28px, calc((100vw - 1240px) / 2)); position: absolute; right: max(28px, calc((100vw - 1240px) / 2)); top: 100%; }
-.site-directory-intro { background: #0d1d37; color: #f3f6ff; padding: 30px; }
+.site-directory-popover { background: #f7f6f1; border: 1px solid #c9ced8; box-shadow: 0 26px 70px rgba(5,16,36,.28); color: var(--ink); display: grid; grid-template-columns: minmax(240px, .72fr) minmax(0, 1.55fr); left: auto; position: absolute; right: max(28px, calc((100vw - 1240px) / 2)); top: 100%; width: min(860px, calc(100vw - 56px)); }
+.site-directory-intro { background: #0d1d37; color: #f3f6ff; padding: 26px; }
 .directory-brand { color: #fff; }
-.site-directory-intro p { color: #aebbd0; font-family: Georgia, "Times New Roman", serif; font-size: 20px; letter-spacing: -.025em; line-height: 1.34; margin: 34px 0 0; max-width: 280px; }
-.site-directory-groups { display: grid; gap: 32px; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 30px; }
+.site-directory-intro p { color: #aebbd0; font-family: Georgia, "Times New Roman", serif; font-size: 17px; letter-spacing: -.02em; line-height: 1.4; margin: 28px 0 0; max-width: 250px; }
+.site-directory-groups { display: grid; gap: 26px; grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 26px; }
 .site-directory-groups > div { align-content: start; display: grid; }
 .site-directory-groups strong { border-bottom: 1px solid var(--line); color: var(--ink-faint); font-size: 9px; letter-spacing: .1em; padding-bottom: 11px; text-transform: uppercase; }
 .site-directory-groups a { align-items: center; border-bottom: 1px solid var(--line); color: var(--ink-soft); display: flex; font-size: 11px; gap: 12px; justify-content: space-between; padding: 11px 0; }
@@ -1909,7 +1909,7 @@ a.auth-provider:hover, .auth-provider-button:hover { border-color: #8295d5; box-
 }
 
 @media (max-width: 620px) {
-  .site-directory-popover { left: 18px; max-height: calc(100vh - 76px); overflow-y: auto; right: 18px; }
+  .site-directory-popover { left: 18px; max-height: calc(100vh - 76px); overflow-y: auto; right: 18px; width: auto; }
   .site-directory-intro { align-items: start; display: grid; gap: 18px; }
   .site-directory-intro p { font-size: 17px; text-align: left; }
   .site-directory-groups { gap: 25px; grid-template-columns: 1fr; padding: 22px; }
