@@ -13,6 +13,11 @@ const mcpManifest = {
     resource_url: "https://mcp.proofweave.test/mcp",
   },
   identity: { issuer_url: "https://auth.proofweave.test/" },
+  receipt_issuer: {
+    key_id: "receipt-issuer:closed-alpha",
+    public_key: "AwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM",
+    activated_at: "2026-07-17T00:00:00.000Z",
+  },
   runner: {
     queue_name: "proofweave-runner-jobs-alpha",
     approved_images: [{
@@ -65,6 +70,7 @@ test("alpha deployment preflight requires MCP and Runner to share one D1 inline-
     artifactStorage: mcpManifest.control_plane.artifact_storage,
   });
   assert.equal(topology.gateway.resourceUrl, mcpManifest.gateway.resource_url);
+  assert.equal(topology.receiptIssuer.keyId, mcpManifest.receipt_issuer.key_id);
   assert.equal(topology.runner.queueName, runnerManifest.queue.name);
   assert.equal(topology.runner.controlPlaneKeyId, runnerManifest.keys.control_plane_issuer.id);
   assert.deepEqual(topology.runner.defaultLimits, { cpuSeconds: 60, wallSeconds: 120, memoryMiB: 2_048, diskMiB: 2_048, outputBytes: 1_000_000 });

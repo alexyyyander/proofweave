@@ -151,8 +151,11 @@ The project does not use `wrangler.jsonc`.
   stores run against a separately hosted libSQL control-plane database without
   changing signed protocol data. It does not connect the current Sites D1 to an
   external service or create a production database.
-- `services/lean-runner/modal-sandbox-container.mjs` adapts one no-egress,
-  pinned-image Modal Sandbox to the existing private Container fetch contract.
+- `services/lean-runner/e2b-sandbox-container.mjs` adapts one secure,
+  no-egress E2B Sandbox to the existing private Container fetch contract;
+  the Modal adapter remains an optional provider behind the same boundary.
+- `.github/workflows/build-e2b-lean-runner-image.yml` builds and attests the
+  checksum-bound Lean Core alpha image, then can create its E2B template.
 - `services/lean-runner/d1-runner-lease-queue.mjs` and
   `trusted-runner-process.mjs` provide the external libSQL lease queue,
   heartbeat/recovery loop, signature gate, and trusted result-signing boundary.
@@ -291,13 +294,20 @@ variables are configured.
   control-plane tables; see the [zero-cost Turso guide](docs/turso-zero-cost-control-plane.md)
 - `npm run modal:runner:check`: verify the one-Run, no-egress Modal Sandbox
   adapter and prove its Connect Token never enters the Lean environment
+- `npm run e2b:runner:check`: verify secure/private E2B creation, explicit
+  no-egress inspection, one-Run binding, and credential-free Lean execution
 - `npm run mcp:gateway:check`: test the remote gateway and identity protocol
   scaffolding
 - `npm run runner:check`: validate the isolated Lean runner protocol and
   Cloudflare plus provider-neutral queue/Container policy adapters
-- `npm run runner:trusted:start`: start the external libSQL + Modal trusted
-  Runner process; it fails closed unless all reviewed deployment values and
+- `npm run runner:trusted:start`: start the external libSQL trusted Runner
+  with the explicitly selected E2B or Modal provider; it fails closed unless
+  all reviewed deployment values and
   `RUNNER_EXECUTION_ENABLED=true` are present
+- `npm run runner:trusted:once`: claim and execute at most one durable lease;
+  this is the protected GitHub Actions entrypoint for E2B verification
+- `npm run runner:e2b:template:build`: build a versioned E2B template from the
+  exact digest-pinned Runner image without putting application secrets in it
 - `npm run runner:fixtures:check`: run the checked-in local Lean fixtures
 - `npm run runner:execution:check`: exercise the source-only Container Lean
   executor with those local Lean fixtures (requires `lake`/Lean locally)

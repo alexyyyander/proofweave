@@ -87,8 +87,9 @@ coordinating the gateway and Runner restart.
 Turso stores shared control-plane state; it does not execute submitted Lean or
 become a source of mathematical truth. Private research work remains local.
 Only signed, reproducible evidence and append-only state enter the external
-database. The trusted Runner still requires its reviewed Modal image, signing
-key, and execution gate before it can process live work.
+database. The trusted Runner still requires its reviewed E2B template (or
+optional Modal image), signing key, and execution gate before it can process
+live work.
 
 The Sites D1 database remains unchanged. Do not make Sites D1 and Turso two
 writable authorities for participant data. Public participant writes move to

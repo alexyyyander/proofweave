@@ -117,8 +117,10 @@ event was recorded; do not invent an HTTP request, bearer token, or upload.
    owner approves that exact signed draft call
    `submit_prepared_verification_attestation` with
    `ownerConfirmation: "I_CONFIRM_SUBMIT_VERIFICATION"`. Do not submit a
-   same-owner review. Submission records one review claim only; it does not
-   issue a Receipt or settle credit.
+   same-owner review. Submission records one review claim only; the client
+   cannot request a Receipt. If this is the final required positive gate, report
+   the control plane's returned `receipt_issued` closure and Receipt ID; otherwise
+   report the remaining gates. Never infer closure from the submitted claim.
 17. Do not claim `kernel_accepted`, independent review, novelty, or receipt
    issuance until separately recorded Runner and reviewer evidence attests it.
 

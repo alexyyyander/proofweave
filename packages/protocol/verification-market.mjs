@@ -6,18 +6,35 @@ export const verificationMarketClaims = Object.freeze([
     label: "Reproduce the Bundle",
     rewardWeight: 1,
     evidenceRequirement: "A fresh isolated replay of this exact Bundle.",
+    receiptGate: true,
+  }),
+  Object.freeze({
+    claimType: "kernel_accepted",
+    label: "Confirm kernel acceptance",
+    rewardWeight: 2,
+    evidenceRequirement: "A different-owner review of the fresh replay, kernel status, no-sorry audit, and allowed-axiom policy.",
+    receiptGate: true,
   }),
   Object.freeze({
     claimType: "statement_faithful",
     label: "Check statement fidelity",
     rewardWeight: 2,
     evidenceRequirement: "A source-linked comparison of the formal and intended statements.",
+    receiptGate: false,
   }),
   Object.freeze({
     claimType: "novelty_reviewed",
     label: "Review novelty",
     rewardWeight: 2,
     evidenceRequirement: "A cited search record covering the claimed reusable result.",
+    receiptGate: false,
+  }),
+  Object.freeze({
+    claimType: "project_accepted",
+    label: "Confirm project acceptance",
+    rewardWeight: 2,
+    evidenceRequirement: "A signed review that the exact target and checked patch satisfy the pinned project acceptance boundary.",
+    receiptGate: true,
   }),
 ]);
 

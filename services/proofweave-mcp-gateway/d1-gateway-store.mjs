@@ -63,7 +63,7 @@ export class GatewayStoreRateLimitError extends Error {
  */
 export class D1RemoteMcpGatewayStore {
   constructor(databaseOrOptions) {
-    const { database, bucket, artifactStore, runnerDispatcher } = normalizeGatewayBindings(databaseOrOptions);
+    const { database, bucket, artifactStore, runnerDispatcher, receiptCoordinator } = normalizeGatewayBindings(databaseOrOptions);
     if (!database || typeof database.prepare !== "function") {
       throw new TypeError("D1RemoteMcpGatewayStore requires a D1 database binding.");
     }
@@ -74,6 +74,7 @@ export class D1RemoteMcpGatewayStore {
     this.runStore = new D1RunStore(database);
     this.researchGraphStore = new D1ResearchGraphStore(database);
     this.runnerDispatcher = runnerDispatcher;
+    this.receiptCoordinator = receiptCoordinator;
   }
 
   async getConnectionAuthority(principal) {
@@ -619,7 +620,37 @@ export class D1RemoteMcpGatewayStore {
     }
     await this.requireAssignedVerifier(normalized.assignmentId, principal.personId);
     try {
-      return await this.verificationStore.recordAttestation(normalized);
+      const recorded = await this.verificationStore.recordAttestation(normalized);
+      if (!this.receiptCoordinator) {
+        return Object.freeze({
+          ...recorded,
+          closure: Object.freeze({
+            state: "issuer_unavailable",
+            receiptId: null,
+            receiptHash: null,
+            missingClaims: Object.freeze([]),
+            blockingDecisions: Object.freeze([]),
+          }),
+        });
+      }
+      try {
+        const closure = await this.receiptCoordinator.tryIssueForBundle(normalized.artifactBundleHash);
+        return Object.freeze({ ...recorded, closure });
+      } catch {
+        // The signed review is already durable. An issuer outage must never
+        // erase or misreport it; a retry can deterministically close the same
+        // Bundle once the operator-only signing boundary recovers.
+        return Object.freeze({
+          ...recorded,
+          closure: Object.freeze({
+            state: "issuance_failed",
+            receiptId: null,
+            receiptHash: null,
+            missingClaims: Object.freeze([]),
+            blockingDecisions: Object.freeze([]),
+          }),
+        });
+      }
     } catch (error) {
       if (
         error instanceof VerificationStoreConflictError ||
@@ -1145,9 +1176,10 @@ function normalizeGatewayBindings(value) {
       bucket: value.bucket ?? null,
       artifactStore: value.artifactStore ?? null,
       runnerDispatcher: value.runnerDispatcher ?? null,
+      receiptCoordinator: value.receiptCoordinator ?? null,
     };
   }
-  return { database: value, bucket: null, artifactStore: null, runnerDispatcher: null };
+  return { database: value, bucket: null, artifactStore: null, runnerDispatcher: null, receiptCoordinator: null };
 }
 
 async function verificationReplayIdentity({ assignmentId, requesterAgentId, delegationCertificateId, idempotencyKey }) {

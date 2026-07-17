@@ -62,7 +62,7 @@ const toolDefinitions = [
   tool("request_verification_replay", "Queue a fresh isolated replay for one accepted independent-review assignment. This requires a review connection and creates replay evidence only, not an attestation or Receipt.", { type: "object", additionalProperties: false, properties: { assignmentId: { type: "string", minLength: 1, maxLength: 240 }, idempotencyKey: { type: "string", minLength: 1, maxLength: 160 } }, required: ["assignmentId", "idempotencyKey"] }),
   tool("get_verification_replay", "Read this review Agent's exact replay Run and terminal replay evidence for one assignment and idempotency key.", { type: "object", additionalProperties: false, properties: { assignmentId: { type: "string", minLength: 1, maxLength: 240 }, idempotencyKey: { type: "string", minLength: 1, maxLength: 160 } }, required: ["assignmentId", "idempotencyKey"] }),
   tool("prepare_verification_attestation", "Prepare and sign one assignment-bound review attestation locally. It never submits, publishes, creates a Receipt, or awards credit. A positive reproducibility claim must name this review Agent's terminal replay evidence.", { type: "object", additionalProperties: false, properties: { assignmentId: { type: "string", minLength: 1, maxLength: 240 }, artifactBundleHash: { type: "string", pattern: "^sha256:[a-f0-9]{64}$" }, claimType: { type: "string", enum: ["bundle_reproducible", "kernel_accepted", "statement_faithful", "novelty_reviewed", "project_accepted"] }, decision: { type: "string", enum: ["attested", "rejected", "request_changes", "conflict_declared", "integrity_flagged"] }, evidenceHash: { type: "string", pattern: "^sha256:[a-f0-9]{64}$" }, replayIdempotencyKey: { type: "string", minLength: 1, maxLength: 160 } }, required: ["assignmentId", "artifactBundleHash", "claimType", "decision", "evidenceHash"] }),
-  tool("submit_prepared_verification_attestation", "Submit the exact locally signed review attestation only after the owner confirms its payload hash, decision, claim, and evidence hash. This records one review claim only; it never creates a Receipt or settles credit.", { type: "object", additionalProperties: false, properties: { attestation: { type: "object" }, expectedPayloadHash: { type: "string", pattern: "^sha256:[a-f0-9]{64}$" }, ownerConfirmation: { type: "string", enum: ["I_CONFIRM_SUBMIT_VERIFICATION"] } }, required: ["attestation", "expectedPayloadHash", "ownerConfirmation"] }),
+  tool("submit_prepared_verification_attestation", "Submit the exact locally signed review attestation only after the owner confirms its payload hash, decision, claim, and evidence hash. This records one claim; the client cannot request a Receipt, but the platform may automatically close the Bundle if this is the last required valid gate.", { type: "object", additionalProperties: false, properties: { attestation: { type: "object" }, expectedPayloadHash: { type: "string", pattern: "^sha256:[a-f0-9]{64}$" }, ownerConfirmation: { type: "string", enum: ["I_CONFIRM_SUBMIT_VERIFICATION"] } }, required: ["attestation", "expectedPayloadHash", "ownerConfirmation"] }),
 ];
 
 const rl = readline.createInterface({ input: process.stdin, crlfDelay: Infinity });
@@ -1345,10 +1345,11 @@ async function submitPreparedVerificationAttestation(args) {
   return {
     operation: "verification_attestation_submitted",
     submitted: true,
-    createsReceipt: false,
+    createsReceipt: recorded?.closure?.state === "receipt_issued" && recorded?.closure?.receiptCreated === true,
     createsCredit: false,
     attestationId: attestation.id,
     payloadHash: expectedPayloadHash,
+    receiptClosure: recorded?.closure ?? null,
     recorded,
   };
 }

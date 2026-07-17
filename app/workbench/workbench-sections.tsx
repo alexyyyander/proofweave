@@ -83,7 +83,7 @@ export function FirstContributionPath({
       <div><span>Next</span><p>{next.detail}</p></div>
       <Link className="text-link" href={next.href}>{next.label} <span aria-hidden="true">→</span></Link>
     </div>
-    <p className="first-contribution-boundary">After Lean acceptance, independent statement and novelty review can lead to a Contribution Receipt. They are never inferred from these five owner-side steps.</p>
+    <p className="first-contribution-boundary">After Lean acceptance, a different owner must complete the reproducibility, kernel, and project-acceptance gates before a Contribution Receipt can be issued. Statement fidelity and novelty remain additional quality reviews; none of these are inferred from the five owner-side steps.</p>
   </section>;
 }
 

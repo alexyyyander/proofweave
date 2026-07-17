@@ -56,13 +56,30 @@ The `verification:write` adapter binds an Attestation to the selected OAuth
 installation, requires its delegation to include `review`, and then lets the
 verification store recheck assignment, evidence, revocation, timestamp,
 payload hash, and Ed25519 signature. It receives attribution context, never the
-raw OAuth token, and cannot issue a contribution receipt.
+raw OAuth token. After the claim is durable, an optional operator-configured
+Receipt coordinator re-reads the immutable Bundle, primary accepted Run, all
+required different-owner attestations, and active issuer registry. The client
+cannot supply a Receipt payload or choose its beneficiary, kind, Run, or key.
 
 `cloudflare-worker.mjs` is the deployment entrypoint. It composes the D1 token
 store, D1 inline gateway store, and stateless resource server from `DB`,
 `MCP_RESOURCE_URL`, and `OAUTH_ISSUER_URL` bindings. Missing or
 invalid bindings fail closed with `503`; it never silently falls back to an
 in-memory store.
+
+Automatic closure is enabled only when all four issuer settings are present:
+`RECEIPT_ISSUER_KEY_ID`, `RECEIPT_ISSUER_PUBLIC_KEY`,
+`RECEIPT_ISSUER_PRIVATE_KEY_JWK` (secret), and
+`RECEIPT_ISSUER_ACTIVATED_AT`. Missing all four leaves signed reviews durable
+with `issuer_unavailable`; a partial or mismatched set fails runtime startup.
+
+For the provider-neutral Turso path, set `RUNNER_QUEUE_MODE=d1` instead of a
+Cloudflare Queue binding. The gateway then writes the same signed queue
+envelope to migration `0032`'s durable lease table that the trusted Runner
+polls. This mode is valid only when MCP/OAuth and the Runner use the exact same
+external migrated database. It still requires the approved image registry,
+control-plane key ID/private JWK, and default limits; partial configuration or
+combining D1 mode with a provider Queue binding fails closed.
 
 The deployed runtime also uses a D1-atomic fixed-window limiter before every
 authorized tool operation. Its quotas aggregate on the Person root rather than

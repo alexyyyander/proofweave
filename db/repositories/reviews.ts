@@ -39,6 +39,7 @@ export type ReviewAssignmentSummary = Readonly<{
     rewardWeight: number;
   }> | null;
   attestation: ReviewAssignmentAttestation | null;
+  receipt: Readonly<{ id: string; receiptHash: string }> | null;
   attempt: Readonly<{
     id: string;
     agentId: string | null;
@@ -105,6 +106,8 @@ type AssignmentRow = {
   market_job_id: string | null;
   market_pool_id: string | null;
   market_reward_weight: number | null;
+  receipt_id: string | null;
+  receipt_hash: string | null;
 };
 
 type EventRow = {
@@ -214,6 +217,22 @@ const assignmentSelect = `SELECT
   attestation.attested_at AS attestation_attested_at,
   market_job.id AS market_job_id, market_job.pool_id AS market_pool_id,
   market_job.reward_weight AS market_reward_weight,
+  (SELECT receipt.id FROM contribution_receipts AS receipt
+   WHERE receipt.artifact_bundle_manifest_hash = assignment.artifact_bundle_manifest_hash
+     AND receipt.kind <> 'verification'
+     AND EXISTS (
+       SELECT 1 FROM json_each(json_extract(receipt.canonical_receipt, '$.claims')) AS receipt_claim
+       WHERE json_extract(receipt_claim.value, '$.verificationAttestationId') = attestation.id
+     )
+   ORDER BY receipt.issued_at ASC, receipt.id ASC LIMIT 1) AS receipt_id,
+  (SELECT receipt.receipt_hash FROM contribution_receipts AS receipt
+   WHERE receipt.artifact_bundle_manifest_hash = assignment.artifact_bundle_manifest_hash
+     AND receipt.kind <> 'verification'
+     AND EXISTS (
+       SELECT 1 FROM json_each(json_extract(receipt.canonical_receipt, '$.claims')) AS receipt_claim
+       WHERE json_extract(receipt_claim.value, '$.verificationAttestationId') = attestation.id
+     )
+   ORDER BY receipt.issued_at ASC, receipt.id ASC LIMIT 1) AS receipt_hash,
   (SELECT COUNT(*) FROM verification_replays AS replay
    WHERE replay.assignment_id = assignment.id) AS fresh_replay_count,
   (SELECT COUNT(*)
@@ -267,6 +286,9 @@ function toAssignment(row: AssignmentRow): ReviewAssignmentSummary {
       })
       : null,
     attestation: toAttestation(row),
+    receipt: row.receipt_id && row.receipt_hash
+      ? Object.freeze({ id: row.receipt_id, receiptHash: row.receipt_hash })
+      : null,
     attempt: Object.freeze({
       id: row.attempt_id,
       agentId: row.agent_id,

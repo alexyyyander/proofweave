@@ -17,6 +17,11 @@ const manifest = {
     resource_url: "https://mcp.proofweave.test/mcp",
   },
   identity: { issuer_url: "https://auth.proofweave.test/" },
+  receipt_issuer: {
+    key_id: "receipt-issuer:closed-alpha",
+    public_key: "BAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ",
+    activated_at: "2026-07-17T00:00:00.000Z",
+  },
 };
 
 test("MCP control-plane preflight requires one concrete external binding manifest", () => {
@@ -31,12 +36,42 @@ test("MCP control-plane preflight requires one concrete external binding manifes
       resourceUrl: "https://mcp.proofweave.test/mcp",
     },
     identity: { issuerUrl: "https://auth.proofweave.test/" },
+    receiptIssuer: {
+      keyId: "receipt-issuer:closed-alpha",
+      publicKey: "BAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ",
+      activatedAt: "2026-07-17T00:00:00.000Z",
+    },
   });
   const generated = JSON.parse(renderGatewayWranglerConfig(manifest));
   assert.equal(generated.vars.MCP_RESOURCE_URL, manifest.gateway.resource_url);
   assert.equal(generated.vars.OAUTH_ISSUER_URL, manifest.identity.issuer_url);
+  assert.equal(generated.vars.RECEIPT_ISSUER_KEY_ID, manifest.receipt_issuer.key_id);
+  assert.equal(generated.vars.RECEIPT_ISSUER_PUBLIC_KEY, manifest.receipt_issuer.public_key);
+  assert.equal(generated.vars.RECEIPT_ISSUER_ACTIVATED_AT, manifest.receipt_issuer.activated_at);
+  assert.equal(generated.vars.RECEIPT_ISSUER_PRIVATE_KEY_JWK, undefined);
   assert.equal(generated.d1_databases[0].database_id, manifest.control_plane.d1_database_id);
   assert.equal(generated.r2_buckets, undefined);
+});
+
+test("MCP control-plane preflight requires complete non-secret Receipt issuer metadata", () => {
+  assert.throws(
+    () => validateMcpControlPlaneManifest({ ...manifest, receipt_issuer: undefined }),
+    /receipt_issuer must be an object/,
+  );
+  assert.throws(
+    () => validateMcpControlPlaneManifest({
+      ...manifest,
+      receipt_issuer: { ...manifest.receipt_issuer, public_key: "not-a-key" },
+    }),
+    /Ed25519 public key/,
+  );
+  assert.throws(
+    () => validateMcpControlPlaneManifest({
+      ...manifest,
+      receipt_issuer: { ...manifest.receipt_issuer, activated_at: "July 17" },
+    }),
+    /ISO-8601 timestamp/,
+  );
 });
 
 test("MCP control-plane preflight rejects placeholders and a same-origin authorization server", () => {

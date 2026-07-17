@@ -27,10 +27,15 @@ export function createCloudflareGatewayWorker({ audit = defaultAudit() } = {}) {
             resource: env.MCP_RESOURCE_URL,
             issuer: env.OAUTH_ISSUER_URL,
             runnerQueue: env.RUNNER_QUEUE,
+            runnerQueueMode: env.RUNNER_QUEUE_MODE,
             runnerApprovedImagesJson: env.RUNNER_APPROVED_IMAGES_JSON,
             runnerControlPlaneKeyId: env.RUNNER_CONTROL_PLANE_KEY_ID,
             runnerControlPlanePrivateKeyJwkJson: env.RUNNER_CONTROL_PLANE_PRIVATE_KEY_JWK,
             runnerDefaultLimitsJson: env.RUNNER_DEFAULT_LIMITS_JSON,
+            receiptIssuerKeyId: env.RECEIPT_ISSUER_KEY_ID,
+            receiptIssuerPublicKey: env.RECEIPT_ISSUER_PUBLIC_KEY,
+            receiptIssuerPrivateKeyJwkJson: env.RECEIPT_ISSUER_PRIVATE_KEY_JWK,
+            receiptIssuerActivatedAt: env.RECEIPT_ISSUER_ACTIVATED_AT,
           }).fetch(request);
         } catch (error) {
           if (error instanceof RemoteMcpRuntimeConfigurationError) {

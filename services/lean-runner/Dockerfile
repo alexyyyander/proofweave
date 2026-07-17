@@ -27,7 +27,7 @@ RUN node --input-type=module -e '\
  && command -v lean \
  && command -v patch \
  && command -v tar \
- && command -v zstd
+ && (node --input-type=module -e 'import * as zlib from "node:zlib"; if (typeof zlib.createZstdDecompress !== "function") process.exit(1)' || command -v zstd)
 
 RUN addgroup --system proofweave \
  && adduser --system --ingroup proofweave --home /home/proofweave --shell /usr/sbin/nologin proofweave \

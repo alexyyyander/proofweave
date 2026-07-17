@@ -1349,7 +1349,7 @@ export const verificationMarketJobs = sqliteTable(
       .notNull()
       .references(() => artifactBundles.manifestHash, { onDelete: "restrict" }),
     claimType: text("claim_type", {
-      enum: ["bundle_reproducible", "statement_faithful", "novelty_reviewed"],
+      enum: ["bundle_reproducible", "kernel_accepted", "statement_faithful", "novelty_reviewed", "project_accepted"],
     }).notNull(),
     attemptOwnerPersonId: text("attempt_owner_person_id")
       .notNull()

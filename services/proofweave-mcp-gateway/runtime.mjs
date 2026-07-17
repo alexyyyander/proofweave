@@ -5,8 +5,10 @@ import { D1RemoteMcpRateLimiter } from "./d1-rate-limiter.mjs";
 import { D1RemoteMcpRunnerDispatcher } from "./runner-dispatch.mjs";
 import { createRemoteMcpGateway } from "./worker.mjs";
 import { CloudflareRunnerQueue } from "../lean-runner/cloudflare-queues.mjs";
+import { D1RunnerLeaseQueue } from "../lean-runner/d1-runner-lease-queue.mjs";
 import { PinnedRunnerImageRegistry } from "../lean-runner/runner-image-policy.mjs";
 import { D1InlineArtifactStore } from "../artifacts/d1-inline-artifact-store.mjs";
+import { D1ContributionReceiptCoordinator } from "../receipts/d1-contribution-receipt-coordinator.mjs";
 
 export class RemoteMcpRuntimeConfigurationError extends Error {
   constructor(message) {
@@ -20,6 +22,23 @@ export class RemoteMcpRuntimeConfigurationError extends Error {
  * authorization server remains a separate service: it writes opaque token
  * hashes to the same D1 database, while this resource server rechecks every
  * bearer token and selected Agent installation on each MCP request.
+ *
+ * @param {{
+ *   database: any,
+ *   bucket?: any,
+ *   resource: string,
+ *   issuer: string,
+ *   runnerQueue?: any,
+ *   runnerQueueMode?: string | null,
+ *   runnerApprovedImagesJson?: string | null,
+ *   runnerControlPlaneKeyId?: string | null,
+ *   runnerControlPlanePrivateKeyJwkJson?: string | null,
+ *   runnerDefaultLimitsJson?: string | null,
+ *   receiptIssuerKeyId?: string | null,
+ *   receiptIssuerPublicKey?: string | null,
+ *   receiptIssuerPrivateKeyJwkJson?: string | null,
+ *   receiptIssuerActivatedAt?: string | null,
+ * }} options
  */
 export function createD1RemoteMcpGatewayRuntime({
   database,
@@ -27,10 +46,15 @@ export function createD1RemoteMcpGatewayRuntime({
   resource,
   issuer,
   runnerQueue = null,
+  runnerQueueMode = null,
   runnerApprovedImagesJson = null,
   runnerControlPlaneKeyId = null,
   runnerControlPlanePrivateKeyJwkJson = null,
   runnerDefaultLimitsJson = null,
+  receiptIssuerKeyId = null,
+  receiptIssuerPublicKey = null,
+  receiptIssuerPrivateKeyJwkJson = null,
+  receiptIssuerActivatedAt = null,
 }) {
   if (!database || typeof database.prepare !== "function") {
     throw new RemoteMcpRuntimeConfigurationError("Remote MCP requires a D1 DB binding.");
@@ -44,11 +68,18 @@ export function createD1RemoteMcpGatewayRuntime({
     database,
     bucket,
     artifactStore,
-    runnerQueue,
+    runnerQueue: selectRunnerQueue({ database, runnerQueue, runnerQueueMode }),
     runnerApprovedImagesJson,
     runnerControlPlaneKeyId,
     runnerControlPlanePrivateKeyJwkJson,
     runnerDefaultLimitsJson,
+  });
+  const receiptCoordinator = createOptionalReceiptCoordinator({
+    database,
+    receiptIssuerKeyId,
+    receiptIssuerPublicKey,
+    receiptIssuerPrivateKeyJwkJson,
+    receiptIssuerActivatedAt,
   });
 
   const oauthStore = new D1ProofweaveOAuthStore(database);
@@ -56,9 +87,57 @@ export function createD1RemoteMcpGatewayRuntime({
     resource,
     issuer,
     identityProvider: createOAuthAccessTokenAuthenticator({ store: oauthStore, resource }),
-    store: new D1RemoteMcpGatewayStore({ database, bucket, artifactStore, runnerDispatcher }),
+    store: new D1RemoteMcpGatewayStore({ database, bucket, artifactStore, runnerDispatcher, receiptCoordinator }),
     rateLimiter: new D1RemoteMcpRateLimiter({ database }),
   });
+}
+
+function selectRunnerQueue({ database, runnerQueue, runnerQueueMode }) {
+  if (!isConfigured(runnerQueueMode)) return runnerQueue;
+  if (runnerQueueMode !== "d1") {
+    throw new RemoteMcpRuntimeConfigurationError("RUNNER_QUEUE_MODE must be d1 when configured.");
+  }
+  if (isConfigured(runnerQueue)) {
+    throw new RemoteMcpRuntimeConfigurationError("D1 Runner queue mode cannot be combined with a provider Queue binding.");
+  }
+  try {
+    return new D1RunnerLeaseQueue({ database });
+  } catch {
+    throw new RemoteMcpRuntimeConfigurationError("D1 Runner queue mode requires the shared migrated control-plane database.");
+  }
+}
+
+function createOptionalReceiptCoordinator({
+  database,
+  receiptIssuerKeyId,
+  receiptIssuerPublicKey,
+  receiptIssuerPrivateKeyJwkJson,
+  receiptIssuerActivatedAt,
+}) {
+  const settings = [
+    receiptIssuerKeyId,
+    receiptIssuerPublicKey,
+    receiptIssuerPrivateKeyJwkJson,
+    receiptIssuerActivatedAt,
+  ];
+  const configured = settings.filter(isConfigured).length;
+  if (configured === 0) return null;
+  if (configured !== settings.length) {
+    throw new RemoteMcpRuntimeConfigurationError("Receipt issuance configuration must include key id, public key, private JWK, and activation time together.");
+  }
+  try {
+    return new D1ContributionReceiptCoordinator({
+      database,
+      issuer: {
+        keyId: receiptIssuerKeyId,
+        publicKey: receiptIssuerPublicKey,
+        privateKeyJwk: parseDeploymentJson(receiptIssuerPrivateKeyJwkJson, "RECEIPT_ISSUER_PRIVATE_KEY_JWK"),
+        activatedAt: receiptIssuerActivatedAt,
+      },
+    });
+  } catch {
+    throw new RemoteMcpRuntimeConfigurationError("Receipt issuance configuration is invalid.");
+  }
 }
 
 function createOptionalRunnerDispatcher({

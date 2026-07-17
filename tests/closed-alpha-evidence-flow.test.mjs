@@ -26,6 +26,8 @@ import { D1InlineVerificationReplayEvidenceStore } from "../services/verificatio
 import { D1R2VerificationReplayEvidenceStore } from "../services/verification/d1-r2-verification-replay-evidence-store.mjs";
 import { D1ContributionReceiptIssuerKeyStore } from "../services/receipts/d1-contribution-receipt-issuer-key-store.mjs";
 import { D1ContributionReceiptStore } from "../services/receipts/d1-contribution-receipt-store.mjs";
+import { D1ContributionReceiptCoordinator } from "../services/receipts/d1-contribution-receipt-coordinator.mjs";
+import { D1RemoteMcpGatewayStore } from "../services/proofweave-mcp-gateway/d1-gateway-store.mjs";
 import {
   artifactBundleSigningPayload,
   artifactBundleSigningPayloadHash,
@@ -214,6 +216,18 @@ test("a local evidence-chain fixture reaches a signed receipt without crossing t
     ["kernel_accepted", "bob", reviewEvidence[0], "assignment:closed-alpha:kernel_accepted"],
     ["project_accepted", "carol", reviewEvidence[1], "assignment:closed-alpha:project_accepted"],
   ];
+  const coordinator = new D1ContributionReceiptCoordinator({
+    database,
+    issuer: {
+      keyId: "issuer:closed-alpha",
+      publicKey: keys.issuer.publicKey,
+      privateKeyJwk: await crypto.subtle.exportKey("jwk", keys.issuer.privateKey),
+      activatedAt: "2026-07-13T00:00:00Z",
+    },
+  });
+  const gateway = new D1RemoteMcpGatewayStore({ database, receiptCoordinator: coordinator });
+  let finalClosure = null;
+  const closureStates = [];
   for (const [claimType, reviewer, evidence, assignmentId] of reviewInputs) {
     if (assignmentId !== replayAssignmentId) {
       await verification.assign({
@@ -233,36 +247,43 @@ test("a local evidence-chain fixture reaches a signed receipt without crossing t
       reviewer,
       keys,
     });
-    const recorded = await verification.recordAttestation(attestation);
+    const recorded = await gateway.submitVerificationAttestation({
+      clientId: "client:closed-alpha-reviewer",
+      personId: `person:${reviewer}`,
+      agentInstallationId: `installation:closed-alpha-${reviewer}-reviewer`,
+      scopes: ["verification:write"],
+    }, attestation);
     assert.equal(recorded.created, true);
+    finalClosure = recorded.closure;
+    closureStates.push(recorded.closure);
     assert.equal((await verification.listEvents(assignmentId)).at(-1)?.eventType, "attestation_recorded");
   }
 
-  await ensureIssuerKey();
-  const receipts = new D1ContributionReceiptStore(database);
-  const input = {
-    id: "receipt:closed-alpha-evidence-flow",
-    kind: "lemma",
-    artifactBundleManifestHash: staged.bundle.manifestHash,
-    runId: finalized.run.id,
-    issuedAt: "2026-07-13T00:00:08Z",
-    issuerKeyId: "issuer:closed-alpha",
-    issuerPublicKey: keys.issuer.publicKey,
-    issuerPrivateKey: keys.issuer.privateKey,
-  };
-  const issued = await receipts.issue(input);
-  const replayed = await receipts.issue(input);
+  assert.deepEqual(closureStates.slice(0, 2).map((closure) => ({
+    state: closure.state,
+    missingClaims: closure.missingClaims,
+  })), [
+    { state: "awaiting_review", missingClaims: ["kernel_accepted", "project_accepted"] },
+    { state: "awaiting_review", missingClaims: ["project_accepted"] },
+  ]);
+  assert.equal(finalClosure?.state, "receipt_issued");
+  const issued = finalClosure;
+  const replayed = await coordinator.tryIssueForBundle(staged.bundle.manifestHash);
 
-  assert.equal(issued.created, true);
-  assert.equal(replayed.created, false);
-  assert.equal(issued.receipt.beneficiary.personId, "person:alice");
-  assert.deepEqual(issued.receipt.claims.map((claim) => claim.claimType), [
+  assert.equal(issued.state, "receipt_issued");
+  assert.equal(issued.receiptCreated, true);
+  assert.equal(replayed.state, "receipt_issued");
+  assert.equal(replayed.receiptId, issued.receiptId);
+  const receipt = await new D1ContributionReceiptStore(database).require(issued.receiptId);
+  assert.equal(receipt.beneficiary.personId, "person:alice");
+  assert.equal(receipt.kind, "proof_patch");
+  assert.deepEqual(receipt.claims.map((claim) => claim.claimType), [
     "bundle_reproducible",
     "kernel_accepted",
     "project_accepted",
   ]);
-  assert.equal(await verifyContributionReceiptSignature(issued.receipt), true);
-  assert.equal((await receipts.get(issued.receipt.id))?.run.resultHash, finalized.run.runnerResultHash);
+  assert.equal(await verifyContributionReceiptSignature(receipt), true);
+  assert.equal(receipt.run.resultHash, finalized.run.runnerResultHash);
   assert.deepEqual((await runStore.listEvents(finalized.run.id)).map((event) => event.eventType), [
     "run_queued",
     "workspace_preparation_started",
@@ -646,7 +667,13 @@ async function seedDelegatedPeopleAndAttempt(d1, fixtureKeys) {
       `INSERT INTO agent_installations (
         id, person_id, agent_id, delegation_certificate_id, client_id, label
       ) VALUES (?, ?, ?, ?, ?, ?)`,
-      ["installation:closed-alpha-bob-reviewer", "person:bob", "agent:bob-reviewer", "delegation:bob-reviewer", "client:closed-alpha-reviewer", "Closed alpha reviewer"],
+    ["installation:closed-alpha-bob-reviewer", "person:bob", "agent:bob-reviewer", "delegation:bob-reviewer", "client:closed-alpha-reviewer", "Closed alpha reviewer"],
+    ],
+    [
+      `INSERT INTO agent_installations (
+        id, person_id, agent_id, delegation_certificate_id, client_id, label
+      ) VALUES (?, ?, ?, ?, ?, ?)`,
+      ["installation:closed-alpha-carol-reviewer", "person:carol", "agent:carol-curator", "delegation:carol-curator", "client:closed-alpha-reviewer", "Closed alpha curator"],
     ],
     [
       `INSERT INTO agent_attempts (

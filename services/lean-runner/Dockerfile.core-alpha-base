@@ -1,0 +1,71 @@
+# syntax=docker/dockerfile:1.7
+#
+# Reproducible Build Week base for Lean Core-only verification. This image is
+# deliberately not a Mathlib image: its environment declares the exact
+# sentinel revision `none`, and the approved Runner registry must do the same.
+ARG NODE_BASE_IMAGE
+FROM ${NODE_BASE_IMAGE}
+
+ARG NODE_BASE_IMAGE
+ARG EXPECTED_LEAN_TOOLCHAIN
+ARG EXPECTED_MATHLIB_REVISION
+ARG LEAN_RELEASE_URL
+ARG LEAN_RELEASE_SHA256
+ARG LEAN_ARCHIVE_ROOT
+
+RUN node --input-type=module -e '\
+  const [base, toolchain, mathlib, url, digest, root] = process.argv.slice(1); \
+  if (!/^[a-z0-9][a-z0-9./:_-]*@sha256:[a-f0-9]{64}$/.test(base)) throw new Error("NODE_BASE_IMAGE must be pinned by sha256 digest."); \
+  const match = /^leanprover\/lean4:v(\d+\.\d+\.\d+)$/.exec(toolchain); \
+  if (!match) throw new Error("EXPECTED_LEAN_TOOLCHAIN must be an exact Lean release."); \
+  if (mathlib !== "none") throw new Error("The core-alpha base cannot claim a Mathlib revision."); \
+  const version = match[1]; \
+  if (url !== `https://github.com/leanprover/lean4/releases/download/v${version}/lean-${version}-linux.zip`) throw new Error("LEAN_RELEASE_URL must match the exact official Lean release."); \
+  if (!/^[a-f0-9]{64}$/.test(digest)) throw new Error("LEAN_RELEASE_SHA256 must be an exact sha256 digest."); \
+  if (root !== `lean-${version}-linux`) throw new Error("LEAN_ARCHIVE_ROOT must match the exact Lean release archive."); \
+' "$NODE_BASE_IMAGE" "$EXPECTED_LEAN_TOOLCHAIN" "$EXPECTED_MATHLIB_REVISION" "$LEAN_RELEASE_URL" "$LEAN_RELEASE_SHA256" "$LEAN_ARCHIVE_ROOT"
+
+RUN command -v curl \
+ && command -v sha256sum \
+ && command -v unzip \
+ && command -v patch \
+ && command -v tar
+
+RUN curl --proto '=https' --tlsv1.2 --fail --location --silent --show-error \
+      "$LEAN_RELEASE_URL" --output /tmp/lean-release.zip \
+ && echo "$LEAN_RELEASE_SHA256  /tmp/lean-release.zip" | sha256sum --check --strict \
+ && install -d -m 0755 /opt/lean-archive /opt/lean \
+ && unzip -q /tmp/lean-release.zip -d /opt/lean-archive \
+ && cp -a "/opt/lean-archive/$LEAN_ARCHIVE_ROOT/." /opt/lean/ \
+ && rm -rf /opt/lean-archive /tmp/lean-release.zip
+
+ENV PATH="/opt/lean/bin:${PATH}"
+ENV PROOFWEAVE_IMAGE_METADATA=/opt/proofweave/lean-environment.json
+
+RUN install -d -m 0755 /opt/proofweave \
+ && node --input-type=module -e '\
+  import { writeFile } from "node:fs/promises"; \
+  const [path, leanToolchain, mathlibRevision, leanReleaseSha256] = process.argv.slice(1); \
+  await writeFile(path, `${JSON.stringify({ \
+    protocolVersion: "pw-lean-image-v1", \
+    profile: "core-alpha", \
+    leanToolchain, \
+    mathlibRevision, \
+    leanReleaseSha256, \
+  }, null, 2)}\n`, { encoding: "utf8", mode: 0o644 }); \
+' "$PROOFWEAVE_IMAGE_METADATA" "$EXPECTED_LEAN_TOOLCHAIN" "$EXPECTED_MATHLIB_REVISION" "$LEAN_RELEASE_SHA256" \
+ && node --input-type=module -e '\
+  import { execFileSync } from "node:child_process"; \
+  import * as zlib from "node:zlib"; \
+  const [expected] = process.argv.slice(1); \
+  const version = execFileSync("lean", ["--version"], { encoding: "utf8" }); \
+  if (!version.includes(expected.slice(expected.lastIndexOf(":") + 2))) throw new Error("Installed Lean version does not match the reviewed toolchain."); \
+  execFileSync("lake", ["--version"], { stdio: "inherit" }); \
+  if (typeof zlib.createZstdDecompress !== "function") throw new Error("Pinned Node base must provide native zstd decompression."); \
+' "$EXPECTED_LEAN_TOOLCHAIN"
+
+LABEL org.opencontainers.image.title="Proofweave Lean Core alpha base" \
+      io.proofweave.lean-toolchain="${EXPECTED_LEAN_TOOLCHAIN}" \
+      io.proofweave.mathlib-revision="${EXPECTED_MATHLIB_REVISION}" \
+      io.proofweave.runner-profile="core-alpha"
+

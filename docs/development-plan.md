@@ -9,11 +9,12 @@ Status: implementation baseline, updated 2026-07-16
 > but does not make the Container Runner deployable: Cloudflare Containers
 > still need a paid Workers plan and the stated deployment gates.
 >
-> **Provider portability update:** ADR 0008 adds a tested libSQL compatibility
+> **Provider portability update:** ADRs 0008 and 0009 add a tested libSQL compatibility
 > boundary, a hash-ledgered zero-cost Turso bootstrap that applies the complete
 > D1 migration history unchanged, a durable
 > lease queue with stale-worker fencing, and a trusted process behind the
-> no-egress Modal Sandbox adapter. These are source-complete adapters, not a
+> no-egress E2B or Modal Sandbox adapter. The protected GitHub Actions
+> one-shot controller is also checked in. These are source-complete adapters, not a
 > deployed public MCP, OAuth service, or hosted Lean Runner.
 
 ## 1. Alpha objective
@@ -135,9 +136,9 @@ reusable contribution with evidence that an external maintainer can reproduce.
 - a remote libSQL compatibility adapter that preserves the D1 prepared-query,
   atomic-batch, trigger, and inline-BLOB semantics used by the complete
   migration history through `0027`;
-- a one-Run Modal Sandbox adapter that uses a pinned image digest, blocks
-  outbound networking, keeps its short-lived Connect Token in the trusted
-  runner, and refuses startup until the external resource policy is explicitly
+- one-Run E2B and Modal Sandbox adapters that use a pinned image digest, block
+  outbound networking, keep provider traffic credentials in the trusted
+  runner, and refuse startup until the external resource policy is explicitly
   reviewed;
 - responsive desktop and mobile presentation.
 - an immutable, Agent-signed research checkpoint graph that links formalization,
