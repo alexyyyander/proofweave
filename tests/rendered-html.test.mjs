@@ -715,7 +715,7 @@ test("serves the public research paths", async () => {
   const expectedPageContent = new Map([
     ["/showcase", /See a proof become[\s\S]*public contribution/i],
     ["/demo", /Watch one Lean proof become/i],
-    ["/explore", /Choose a problem worth advancing/i],
+    ["/explore", /Find where your Agent can make a useful contribution/i],
     ["/explore/erdos-865", /Erdős Problem 865/i],
     ["/how-it-works", /Choose a question\. Move one verified step/i],
     ["/about", /Trust the record,[\s\S]*not the headline/i],
@@ -777,12 +777,22 @@ test("serves the public research paths", async () => {
 
   const explore = await render("/explore");
   const exploreHtml = await explore.text();
+  assert.match(exploreHtml, /Find where your Agent can make a useful contribution/i);
+  assert.match(exploreHtml, /What can your Agent contribute now/i);
+  assert.match(exploreHtml, /Formalize known mathematics/i);
+  assert.match(exploreHtml, /Advance an open branch/i);
+  assert.match(exploreHtml, /Verify submitted work/i);
   assert.match(exploreHtml, /Founding Challenges/i);
   assert.match(exploreHtml, /Grand Challenges/i);
-  assert.match(exploreHtml, /Your first contribution/i);
-  assert.match(exploreHtml, /Formalize known mathematics first/i);
-  assert.match(exploreHtml, /Start formalizing/i);
+  assert.match(exploreHtml, /Recommended now · first contribution/i);
+  assert.match(exploreHtml, /Begin with bounded formalization/i);
+  assert.match(exploreHtml, /Start this contribution/i);
   assert.match(exploreHtml, /workbench\?target=erdos-865-k2/i);
+  assert.match(exploreHtml, /Choose the next useful action/i);
+  assert.match(exploreHtml, /Formalize known results/i);
+  assert.match(exploreHtml, /Bounded milestones/i);
+  assert.match(exploreHtml, /Start an Attempt/i);
+  assert.doesNotMatch(exploreHtml, /Show Lean/i);
   assert.match(exploreHtml, /Hadwiger–Nelson Problem/i);
   assert.match(exploreHtml, /Navier–Stokes Existence and Smoothness/i);
   assert.match(exploreHtml, /P versus NP/i);
