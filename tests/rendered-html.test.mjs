@@ -860,10 +860,39 @@ test("exposes the complete product directory from the top bar", async () => {
   assert.match(html, /Open complete site navigation/i);
   assert.match(html, /Complete site navigation/i);
   assert.match(html, /An open network for personally delegated formal mathematics research/i);
-  assert.match(html, /Participate[\s\S]*Proof journey[\s\S]*Verified demo/i);
+  assert.match(html, /href="\/explore"[^>]*>Explore<\/a>[\s\S]*href="\/reviews"[^>]*>Verify<\/a>[\s\S]*href="\/receipts"[^>]*>Contributions<\/a>[\s\S]*href="\/how-it-works"[^>]*>How it works<\/a>/i);
+  assert.match(html, /Participate[\s\S]*Verification market[\s\S]*Contribution receipts/i);
+  assert.match(html, /Learn[\s\S]*Proof journey[\s\S]*Verified demo/i);
   assert.match(html, /Trust[\s\S]*Design principles[\s\S]*Catalog standard/i);
   assert.match(html, /Workspace[\s\S]*Research[\s\S]*Reviews[\s\S]*Receipts[\s\S]*Profile[\s\S]*Settings/i);
   assert.doesNotMatch(html, /aria-label="Footer navigation"/i);
+});
+
+test("keeps public verification and contribution records outside personal workspace chrome", async () => {
+  const headers = {
+    "oai-authenticated-user-email": "public-boundary@example.test",
+    "oai-authenticated-user-full-name": "Public%20Boundary",
+    "oai-authenticated-user-full-name-encoding": "percent-encoded-utf-8",
+  };
+
+  const reviews = await render("/reviews", { headers });
+  assert.equal(reviews.status, 200);
+  const reviewsHtml = await reviews.text();
+  assert.match(reviewsHtml, /aria-label="Verification page"/i);
+  assert.match(reviewsHtml, /id="open-review-work"/i);
+  assert.match(reviewsHtml, /id="my-review-work"/i);
+  assert.doesNotMatch(reviewsHtml, /aria-label="Personal workspace context"/i);
+
+  const receipts = await render("/receipts", { headers });
+  assert.equal(receipts.status, 200);
+  const receiptsHtml = await receipts.text();
+  assert.match(receiptsHtml, /aria-label="Contribution records"/i);
+  assert.match(receiptsHtml, /id="receipt-index"/i);
+  assert.doesNotMatch(receiptsHtml, /aria-label="Personal workspace context"/i);
+
+  const profile = await render("/profile", { headers });
+  assert.equal(profile.status, 200);
+  assert.match(await profile.text(), /aria-label="Personal workspace context"/i);
 });
 
 test("presents the verified reference as a dedicated visual proof journey", async () => {

@@ -28,7 +28,7 @@ export function VerificationMarketBoard({
       const response = await fetch(`/api/me/review-jobs/${encodeURIComponent(job.id)}/claim`, { method: "POST" });
       const body = await response.json();
       if (!response.ok) throw new Error(body?.error?.message ?? "The verification job could not be claimed.");
-      window.location.assign("/reviews#personal-review-title");
+      window.location.assign("/reviews#my-review-work");
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : "The verification job could not be claimed.");
     } finally {
@@ -36,7 +36,7 @@ export function VerificationMarketBoard({
     }
   };
 
-  return <section className="verification-market" aria-labelledby="verification-market-title">
+  return <section className="verification-market" id="open-review-work" aria-labelledby="verification-market-title">
     <div className="verification-market-heading">
       <div><p className="eyebrow">Open verification work</p><h2 id="verification-market-title">Choose an exact claim to check.</h2><p>Every job is pinned to one Lean-accepted Bundle and one active credit pool. Claiming creates an immutable accepted assignment; only a completed, evidence-bearing review can later share the verification bucket.</p></div>
       <span className="record-chip">{jobs.length} open</span>
