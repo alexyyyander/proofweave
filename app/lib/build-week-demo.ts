@@ -20,7 +20,14 @@ export type DemoVerificationCheck = {
   label: string;
   detail: string;
   passed: boolean;
+  method: string;
+  input: string;
+  evidence: string;
+  result: string;
+  durationMs: number;
 };
+
+export type DemoVerificationMode = "reference" | "tampered_copy";
 
 export type DemoJourneyStage = {
   id: "delegate" | "bundle" | "lean" | "review" | "receipt";
@@ -35,8 +42,19 @@ export type DemoJourneyStage = {
 
 export type BuildWeekDemoVerification = {
   status: "verified" | "failed";
+  verificationId: string;
+  protocolVersion: string;
+  mode: DemoVerificationMode;
+  startedAt: string;
   checkedAt: string;
+  durationMs: number;
   checks: readonly DemoVerificationCheck[];
+  executionBoundary: {
+    evidenceSource: "checked_in_reference_fixture";
+    signedEvidenceReverified: true;
+    leanReplay: "not_run_by_this_request";
+    statement: string;
+  };
   record: {
     target: string;
     source: string;
@@ -67,87 +85,162 @@ export type BuildWeekDemoVerification = {
   disclosure: string;
 };
 
-export async function verifyBuildWeekDemoFixture(): Promise<BuildWeekDemoVerification> {
-  const bundleHash = await artifactBundleHash(fixture.bundle);
-  const receiptHash = await contributionReceiptHash(fixture.receipt);
-  const objectHashes = await Promise.all(fixture.objects.map(async (object) => ({
-    role: object.role,
-    declared: object.contentHash,
-    actual: await sha256Bytes(decodeObject(object)),
-  })));
+export async function verifyBuildWeekDemoFixture(
+  options: { mode?: DemoVerificationMode } = {},
+): Promise<BuildWeekDemoVerification> {
+  const mode = options.mode ?? "reference";
+  const checkedFixture = mode === "tampered_copy" ? structuredClone(fixture) : fixture;
+  if (mode === "tampered_copy") tamperOneArtifactByte(checkedFixture);
+
+  const startedAt = new Date().toISOString();
+  const started = preciseNow();
+  const verificationId = `vrf_${crypto.randomUUID().replaceAll("-", "").slice(0, 12)}`;
+  const bundleHash = await artifactBundleHash(checkedFixture.bundle);
+  const receiptHash = await contributionReceiptHash(checkedFixture.receipt);
   const references = {
-    source_archive: fixture.bundle.workspace.archive.contentHash,
-    source_patch: fixture.bundle.workspace.patch.contentHash,
-    lake_manifest: fixture.bundle.workspace.lakeManifest.contentHash,
+    source_archive: checkedFixture.bundle.workspace.archive.contentHash,
+    source_patch: checkedFixture.bundle.workspace.patch.contentHash,
+    lake_manifest: checkedFixture.bundle.workspace.lakeManifest.contentHash,
   } as Record<string, string>;
 
   const checks = await Promise.all([
     check(
-      "delegation",
-      "Person delegation is valid",
-      "The Person signature binds this Agent key and grants formalize/prove scope at the event time.",
+      {
+        id: "delegation",
+        label: "Person delegation is valid",
+        detail: "The Person signature binds this Agent key and grants formalize/prove scope at the event time.",
+        method: "Delegation policy + Ed25519 signature",
+        input: `${checkedFixture.delegation.certificate.id} · scope prove`,
+        evidence: checkedFixture.delegation.payloadHash,
+        failureResult: "Delegation scope, validity, Agent binding, or Person signature did not verify.",
+      },
       async () => {
-        assertDelegationAllows(fixture.delegation.certificate, "prove", fixture.bundle.agentEvent.occurredAt);
-        return fixture.delegation.certificate.agentPublicKey === fixture.bundle.agentEvent.agentPublicKey &&
+        assertDelegationAllows(checkedFixture.delegation.certificate, "prove", checkedFixture.bundle.agentEvent.occurredAt);
+        const passed = checkedFixture.delegation.certificate.agentPublicKey === checkedFixture.bundle.agentEvent.agentPublicKey &&
           await verifyDelegationSignature({
-            certificate: fixture.delegation.certificate,
-            personPublicKey: fixture.delegation.personPublicKey,
-            personSignature: fixture.delegation.personSignature,
+            certificate: checkedFixture.delegation.certificate,
+            personPublicKey: checkedFixture.delegation.personPublicKey,
+            personSignature: checkedFixture.delegation.personSignature,
           });
+        return {
+          passed,
+          result: `Valid at ${checkedFixture.bundle.agentEvent.occurredAt} · scopes ${checkedFixture.delegation.certificate.scopes.join(", ")}`,
+        };
       },
     ),
     check(
-      "bundle",
-      "Agent bundle signature is valid",
-      "The signed payload covers the target, Git commit, Lean environment, workspace hashes, and proof policy.",
-      async () => bundleHash === fixture.receipt.artifactBundleHash &&
-        await verifyArtifactBundleAgentSignature(fixture.bundle),
-    ),
-    check(
-      "objects",
-      "Artifact bytes match their hashes",
-      "The archive, normalized patch, and Lake manifest re-hash to the content-addressed Bundle references.",
-      async () => objectHashes.every((object) => (
-        object.actual === object.declared && references[object.role] === object.declared
-      )) && await sha256Bytes(new TextEncoder().encode(fixture.source.content)) === fixture.source.contentHash,
-    ),
-    check(
-      "runner",
-      "Runner result signature is valid",
-      "The signed result binds the exact request and reports Lean success, kernel acceptance, no sorry, and bounded outputs.",
-      async () => fixture.runner.result.artifacts.manifestHash === bundleHash &&
-        fixture.runner.result.status === "succeeded" &&
-        fixture.runner.result.kernelStatus === "accepted" &&
-        fixture.runner.result.checks.noSorry === "passed" &&
-        await verifyLeanRunnerResultSignature({
-          result: fixture.runner.result,
-          runnerPublicKey: fixture.runner.publicKey,
-        }),
-    ),
-    check(
-      "review",
-      "Independent attestations are signed",
-      "Different Person-owned review Agents attest reproducibility, kernel acceptance, and project acceptance separately.",
-      async () => fixture.attestations.every((attestation) => (
-        attestation.artifactBundleHash === bundleHash &&
-        attestation.verifierPersonId !== fixture.receipt.attempt.personId
-      )) && (await Promise.all(fixture.attestations.map((attestation) => (
-        verifyVerificationAttestationSignature(attestation)
-      )))).every(Boolean),
-    ),
-    check(
-      "receipt",
-      "Reference receipt satisfies policy",
-      "The issuer signature covers attribution, Bundle, Run, and all required independent review claims.",
+      {
+        id: "bundle",
+        label: "Agent bundle signature is valid",
+        detail: "The signed payload covers the target, Git commit, Lean environment, workspace hashes, and proof policy.",
+        method: "Canonical Bundle hash + Ed25519 signature",
+        input: `${checkedFixture.bundle.id} · ${checkedFixture.bundle.repositorySnapshot.commitSha}`,
+        evidence: bundleHash,
+        failureResult: "The Bundle hash no longer matches the Receipt, or the Agent signature is invalid.",
+      },
       async () => {
-        assertContributionReceiptPolicy(fixture.receipt);
-        return receiptHash === fixture.receiptHash && await verifyContributionReceiptSignature(fixture.receipt);
+        const currentBundleHash = await artifactBundleHash(checkedFixture.bundle);
+        const passed = currentBundleHash === checkedFixture.receipt.artifactBundleHash &&
+          await verifyArtifactBundleAgentSignature(checkedFixture.bundle);
+        return { passed, result: "Bundle hash matches Receipt · Agent signature valid." };
+      },
+    ),
+    check(
+      {
+        id: "objects",
+        label: "Artifact bytes match their hashes",
+        detail: "The archive, normalized patch, Lake manifest, and Lean source are re-hashed from their current bytes.",
+        method: "SHA-256 over stored artifact bytes",
+        input: `${checkedFixture.objects.length + 1} payloads · archive, patch, manifest, Lean source`,
+        evidence: checkedFixture.bundle.workspace.tree.hash,
+        failureResult: "At least one current byte payload does not match its declared SHA-256 hash.",
+      },
+      async () => {
+        const objectHashes = await Promise.all(checkedFixture.objects.map(async (object) => ({
+          role: object.role,
+          declared: object.contentHash,
+          actual: await sha256Bytes(decodeObject(object)),
+        })));
+        const mismatchedObject = objectHashes.find((object) => (
+          object.actual !== object.declared || references[object.role] !== object.declared
+        ));
+        const sourceMatches = await sha256Bytes(new TextEncoder().encode(checkedFixture.source.content)) === checkedFixture.source.contentHash;
+        const passed = !mismatchedObject && sourceMatches;
+        return {
+          passed,
+          result: passed
+            ? `${checkedFixture.objects.length + 1}/${checkedFixture.objects.length + 1} current byte payloads match their declared hashes.`
+            : `Hash mismatch detected in ${mismatchedObject?.role ?? "Lean source"}; the signed original was not modified.`,
+        };
+      },
+    ),
+    check(
+      {
+        id: "runner",
+        label: "Recorded Runner result is valid",
+        detail: "This verifies the signed historical Runner result and its kernel policy fields; it does not start Lean again.",
+        method: "Runner Ed25519 signature + recorded policy fields",
+        input: `${checkedFixture.runner.result.jobId} · ${checkedFixture.bundle.environment.leanToolchain}`,
+        evidence: checkedFixture.runner.result.requestHash,
+        failureResult: "The recorded Runner signature, Bundle binding, kernel status, or no-sorry policy is invalid.",
+      },
+      async () => {
+        const passed = checkedFixture.runner.result.artifacts.manifestHash === bundleHash &&
+          checkedFixture.runner.result.status === "succeeded" &&
+          checkedFixture.runner.result.kernelStatus === "accepted" &&
+          checkedFixture.runner.result.checks.noSorry === "passed" &&
+          await verifyLeanRunnerResultSignature({
+            result: checkedFixture.runner.result,
+            runnerPublicKey: checkedFixture.runner.publicKey,
+          });
+        return { passed, result: "Runner signature valid · kernel accepted · no sorry recorded · Lean not rerun now." };
+      },
+    ),
+    check(
+      {
+        id: "review",
+        label: "Independent attestations are signed",
+        detail: "Different Person-owned review Agents attest reproducibility, kernel acceptance, and project acceptance separately.",
+        method: "Owner separation + attestation Ed25519 signatures",
+        input: `${checkedFixture.attestations.length} attestations · ${new Set(checkedFixture.attestations.map((candidate) => candidate.verifierPersonId)).size} reviewer owners`,
+        evidence: checkedFixture.attestations[0]?.payloadHash ?? bundleHash,
+        failureResult: "A reviewer is not independent, an attestation points to another Bundle, or a signature is invalid.",
+      },
+      async () => {
+        const signatures = await Promise.all(checkedFixture.attestations.map((attestation) => (
+          verifyVerificationAttestationSignature(attestation)
+        )));
+        const passed = checkedFixture.attestations.every((attestation) => (
+          attestation.artifactBundleHash === bundleHash &&
+          attestation.verifierPersonId !== checkedFixture.receipt.attempt.personId
+        )) && signatures.every(Boolean);
+        return {
+          passed,
+          result: `${signatures.filter(Boolean).length}/${signatures.length} signatures valid · every reviewer owner differs from the researcher.`,
+        };
+      },
+    ),
+    check(
+      {
+        id: "receipt",
+        label: "Reference receipt satisfies policy",
+        detail: "The issuer signature covers attribution, Bundle, Run, and all required independent review claims.",
+        method: "Receipt policy + canonical hash + issuer Ed25519 signature",
+        input: `${checkedFixture.receipt.id} · beneficiary ${checkedFixture.receipt.beneficiary.personId}`,
+        evidence: receiptHash,
+        failureResult: "Receipt policy, canonical hash, attribution, or issuer signature did not verify.",
+      },
+      async () => {
+        assertContributionReceiptPolicy(checkedFixture.receipt);
+        const currentReceiptHash = await contributionReceiptHash(checkedFixture.receipt);
+        const passed = currentReceiptHash === checkedFixture.receiptHash && await verifyContributionReceiptSignature(checkedFixture.receipt);
+        return { passed, result: "Receipt hash matches · attribution policy satisfied · issuer signature valid." };
       },
     ),
   ]);
 
   const checksById = new Map(checks.map((candidate) => [candidate.id, candidate.passed]));
-  const mockReviewerAttestations = fixture.attestations.filter((attestation) => (
+  const mockReviewerAttestations = checkedFixture.attestations.filter((attestation) => (
     attestation.verifierPersonId === "person:demo-reviewer" &&
     attestation.claimType !== "project_accepted"
   ));
@@ -159,7 +252,7 @@ export async function verifyBuildWeekDemoFixture(): Promise<BuildWeekDemoVerific
       actor: "Reference researcher Person",
       actorMode: "local_reference",
       detail: "A Person signature grants one local Agent formalize and prove scope for a bounded period.",
-      evidence: fixture.delegation.payloadHash,
+      evidence: checkedFixture.delegation.payloadHash,
       passed: checksById.get("delegation") === true,
     },
     {
@@ -178,8 +271,8 @@ export async function verifyBuildWeekDemoFixture(): Promise<BuildWeekDemoVerific
       title: "Replay the exact Lean entry file",
       actor: "Local Lean fixture",
       actorMode: "local_reference",
-      detail: "The checked fixture was executed by Lean locally; the signed result binds kernel status and output hashes.",
-      evidence: fixture.runner.result.requestHash,
+      detail: "The checked fixture was executed by Lean locally; this request verifies the signed result but does not start Lean again.",
+      evidence: checkedFixture.runner.result.requestHash,
       passed: checksById.get("runner") === true,
     },
     {
@@ -204,21 +297,35 @@ export async function verifyBuildWeekDemoFixture(): Promise<BuildWeekDemoVerific
     },
   ];
 
+  const checkedAt = new Date().toISOString();
+  const durationMs = roundDuration(preciseNow() - started);
+
   return {
     status: checks.every((candidate) => candidate.passed) ? "verified" : "failed",
-    checkedAt: new Date().toISOString(),
+    verificationId,
+    protocolVersion: checkedFixture.fixtureProtocolVersion,
+    mode,
+    startedAt,
+    checkedAt,
+    durationMs,
     checks,
+    executionBoundary: {
+      evidenceSource: "checked_in_reference_fixture",
+      signedEvidenceReverified: true,
+      leanReplay: "not_run_by_this_request",
+      statement: "This request re-hashes current evidence bytes and re-verifies signatures and policy. It verifies the recorded Runner result; it does not execute Lean again.",
+    },
     record: {
-      target: fixture.bundle.target.declaration,
-      source: fixture.source.content,
-      leanVersion: fixture.source.leanVersion,
-      repository: fixture.bundle.repositorySnapshot.repository,
-      commitSha: fixture.bundle.repositorySnapshot.commitSha,
+      target: checkedFixture.bundle.target.declaration,
+      source: checkedFixture.source.content,
+      leanVersion: checkedFixture.source.leanVersion,
+      repository: checkedFixture.bundle.repositorySnapshot.repository,
+      commitSha: checkedFixture.bundle.repositorySnapshot.commitSha,
       bundleHash,
       receiptHash,
-      owner: fixture.receipt.beneficiary.personId,
-      agent: fixture.receipt.beneficiary.agentId,
-      reviewers: [...new Set(fixture.attestations.map((attestation) => attestation.verifierPersonId))],
+      owner: checkedFixture.receipt.beneficiary.personId,
+      agent: checkedFixture.receipt.beneficiary.agentId,
+      reviewers: [...new Set(checkedFixture.attestations.map((attestation) => attestation.verifierPersonId))],
     },
     journey,
     mockReviewer: {
@@ -235,21 +342,56 @@ export async function verifyBuildWeekDemoFixture(): Promise<BuildWeekDemoVerific
       researcher: [{ label: "Certified lemma", value: checksById.get("receipt") === true ? 1 : 0 }],
       mockReviewer: [{ label: "Independent verification claims", value: checksById.get("receipt") === true ? mockReviewerAttestations.length : 0 }],
     },
-    disclosure: `${fixture.disclosure} The second reviewer account is a labeled deterministic mock; its key separation and signatures are checked by the real protocol.`,
+    disclosure: `${checkedFixture.disclosure} The second reviewer account is a labeled deterministic mock; its key separation and signatures are checked by the real protocol.`,
   };
 }
 
 async function check(
-  id: string,
-  label: string,
-  detail: string,
-  verify: () => Promise<boolean>,
+  descriptor: Omit<DemoVerificationCheck, "passed" | "result" | "durationMs"> & { failureResult: string },
+  verify: () => Promise<{ passed: boolean; result: string }>,
 ): Promise<DemoVerificationCheck> {
+  const started = preciseNow();
   try {
-    return { id, label, detail, passed: await verify() };
+    const evaluation = await verify();
+    return {
+      id: descriptor.id,
+      label: descriptor.label,
+      detail: descriptor.detail,
+      method: descriptor.method,
+      input: descriptor.input,
+      evidence: descriptor.evidence,
+      passed: evaluation.passed,
+      result: evaluation.passed ? evaluation.result : descriptor.failureResult,
+      durationMs: roundDuration(preciseNow() - started),
+    };
   } catch {
-    return { id, label, detail, passed: false };
+    return {
+      id: descriptor.id,
+      label: descriptor.label,
+      detail: descriptor.detail,
+      method: descriptor.method,
+      input: descriptor.input,
+      evidence: descriptor.evidence,
+      passed: false,
+      result: descriptor.failureResult,
+      durationMs: roundDuration(preciseNow() - started),
+    };
   }
+}
+
+function tamperOneArtifactByte(target: typeof fixture) {
+  const artifact = target.objects.find((candidate) => candidate.role === "source_patch");
+  if (!artifact || artifact.content.length === 0) throw new Error("Demo tamper target is unavailable.");
+  const finalCharacter = artifact.content.at(-1);
+  artifact.content = `${artifact.content.slice(0, -1)}${finalCharacter === "\n" ? " " : "\n"}`;
+}
+
+function preciseNow() {
+  return typeof performance === "undefined" ? Date.now() : performance.now();
+}
+
+function roundDuration(value: number) {
+  return Math.max(0, Math.round(value * 10) / 10);
 }
 
 function decodeObject(object: (typeof fixture.objects)[number]): Uint8Array {
