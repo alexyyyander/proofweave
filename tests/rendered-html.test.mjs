@@ -853,16 +853,18 @@ test("serves the public research paths", async () => {
   assert.doesNotMatch(integrationsHtml, /https:\/\/mcp\.proofweave\.org\/mcp/i);
 });
 
-test("exposes the complete product directory from the top bar", async () => {
+test("keeps the public directory separate from the personal workspace", async () => {
   const page = await render("/");
   assert.equal(page.status, 200);
   const html = await page.text();
-  assert.match(html, /Open complete site navigation/i);
-  assert.match(html, /Complete site navigation/i);
+  assert.match(html, /Open Proofweave directory/i);
+  assert.match(html, /Proofweave public directory/i);
   assert.match(html, /An open network for personally delegated formal mathematics research/i);
   assert.match(html, /Participate[\s\S]*Proof journey[\s\S]*Verified demo/i);
   assert.match(html, /Trust[\s\S]*Design principles[\s\S]*Catalog standard/i);
-  assert.match(html, /Workspace[\s\S]*Research[\s\S]*Reviews[\s\S]*Receipts[\s\S]*Profile[\s\S]*Settings/i);
+  assert.doesNotMatch(html, /<strong>Workspace<\/strong>/i);
+  assert.match(html, /href="\/workbench"[^>]*>Workspace<\/a>/i);
+  assert.match(html, /class="site-directory-menu" name="header-overlays"/i);
   assert.doesNotMatch(html, /aria-label="Footer navigation"/i);
 });
 
@@ -1324,6 +1326,11 @@ test("scopes closed-alpha review assignments to the assigned Person and preserve
   assert.match(pageHtml, /Open review workspace/i);
   assert.match(pageHtml, /Open account menu for Review Person/i);
   assert.match(pageHtml, />My profile/i);
+  assert.match(pageHtml, />My reviews/i);
+  assert.match(pageHtml, /class="account-menu" name="header-overlays"/i);
+  const accountMenuHtml = pageHtml.match(/class="account-popover"[\s\S]*?class="account-sign-out"/)?.[0] ?? "";
+  assert.ok(accountMenuHtml, "expected the signed-in account menu to render");
+  assert.doesNotMatch(accountMenuHtml, /href="\/workbench">Workspace/i);
 
   const reviewWorkspace = await render("/reviews/assignment:rendered-review", { headers: reviewerHeaders });
   assert.equal(reviewWorkspace.status, 200);
@@ -2474,6 +2481,18 @@ test("keeps the production frontend free of the deleted starter preview", async 
   await assert.rejects(
     access(new URL("public/_sites-preview/SkeletonPreview.tsx", repositoryRoot)),
   );
+});
+
+test("reserves display typography for storytelling surfaces", async () => {
+  const globals = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+
+  assert.match(globals, /--type-page-title:\s*clamp\(34px, 3\.8vw, 50px\)/);
+  assert.match(globals, /--type-section-title:\s*clamp\(28px, 2\.7vw, 40px\)/);
+  assert.match(globals, /\.information-hub-hero h1[\s\S]*font-size:\s*var\(--type-page-title\)/);
+  assert.match(globals, /\.workbench-hero h1[\s\S]*font-size:\s*var\(--type-page-title\)/);
+  assert.match(globals, /\.home-simple-heading h2[\s\S]*font-size:\s*var\(--type-section-title\)/);
+  assert.match(globals, /\.hero h1 \{ font-size: clamp\(48px, 5vw, 76px\)/);
+  assert.match(globals, /\.showcase-intro h1 \{[^}]*108px/);
 });
 
 function base64Url(buffer) {
