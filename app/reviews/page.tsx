@@ -12,6 +12,7 @@ import { getCurrentUser, signInPath, toPersonIdentity, type AuthUser } from "../
 import { Footer } from "../ui";
 import { Header } from "../header";
 import { PersonalWorkspaceFrame } from "../PersonalWorkspaceFrame";
+import { hasActiveReviewDelegation } from "../lib/review-authority";
 import { ReviewQueueClient } from "./ReviewQueueClient";
 import { VerificationMarketBoard } from "./VerificationMarketBoard";
 
@@ -66,16 +67,6 @@ async function loadReviews(user: AuthUser | null): Promise<{ profile: Delegation
     }
     throw error;
   }
-}
-
-function hasActiveReviewDelegation(profile: DelegationProfile | null) {
-  const now = Date.now();
-  return Boolean(profile?.delegations.some((delegation) =>
-    delegation.revokedAt === null &&
-    delegation.scopes.includes("review") &&
-    Date.parse(delegation.validFrom) <= now &&
-    now < Date.parse(delegation.validUntil),
-  ));
 }
 
 function ReviewMessage({ unavailable }: { unavailable?: boolean }) {
