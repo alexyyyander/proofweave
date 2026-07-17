@@ -1003,6 +1003,11 @@ test("publicly verifies the checked Build Week reference evidence", async () => 
   assert.match(html, /Mock owner reviews/i);
   assert.match(html, /The reviewer is not a live participant/i);
   assert.match(html, /This demo does not claim/i);
+  assert.match(html, /Re-verify signed evidence/i);
+  assert.match(html, /Tamper-test a copy/i);
+  assert.match(html, /Inspect computed evidence/i);
+  assert.match(html, /What this control does/i);
+  assert.match(html, /Lean itself is not restarted/i);
   assert.match(html, /npm run demo:e2e:check/i);
   assert.match(html, /D1 inline · no R2/i);
 
@@ -1011,8 +1016,16 @@ test("publicly verifies the checked Build Week reference evidence", async () => 
   assert.equal(response.headers.get("cache-control"), "no-store");
   const verification = await response.json();
   assert.equal(verification.status, "verified");
+  assert.match(verification.verificationId, /^vrf_[a-f0-9]{12}$/);
+  assert.equal(verification.protocolVersion, "pw-build-week-demo-v1");
+  assert.equal(verification.mode, "reference");
+  assert.equal(verification.executionBoundary.signedEvidenceReverified, true);
+  assert.equal(verification.executionBoundary.leanReplay, "not_run_by_this_request");
+  assert.equal(typeof verification.durationMs, "number");
   assert.equal(verification.checks.length, 6);
   assert.equal(verification.checks.every((check) => check.passed), true);
+  assert.equal(verification.checks.every((check) => typeof check.method === "string" && typeof check.result === "string"), true);
+  assert.match(verification.checks.find((check) => check.id === "runner").result, /Lean not rerun now/i);
   assert.equal(verification.journey.length, 5);
   assert.equal(verification.journey.every((stage) => stage.passed), true);
   assert.equal(verification.mockReviewer.mode, "mock_second_account");
@@ -1024,6 +1037,16 @@ test("publicly verifies the checked Build Week reference evidence", async () => 
   assert.match(verification.record.receiptHash, /^sha256:[a-f0-9]{64}$/);
   assert.match(verification.disclosure, /not a live network contribution/i);
   assert.match(verification.disclosure, /labeled deterministic mock/i);
+
+  const tamperedResponse = await render("/api/demo/verify?tamper=artifact");
+  assert.equal(tamperedResponse.status, 200);
+  assert.equal(tamperedResponse.headers.get("cache-control"), "no-store");
+  const tampered = await tamperedResponse.json();
+  assert.equal(tampered.mode, "tampered_copy");
+  assert.equal(tampered.status, "failed");
+  assert.equal(tampered.checks.find((check) => check.id === "objects").passed, false);
+  assert.match(tampered.checks.find((check) => check.id === "objects").result, /does not match/i);
+  assert.equal(tampered.checks.filter((check) => !check.passed).length, 1);
 });
 
 test("keeps keyboard users one action away from the main content on critical pages", async () => {
