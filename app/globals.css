@@ -14,6 +14,10 @@
   --sage-soft: #e6f0e9;
   --amber: #795b20;
   --amber-soft: #fcf2d8;
+  --type-page-title: clamp(34px, 3.8vw, 50px);
+  --type-feature-title: clamp(30px, 3.2vw, 44px);
+  --type-section-title: clamp(28px, 2.7vw, 40px);
+  --type-panel-title: clamp(24px, 2.2vw, 32px);
   --background: var(--paper);
   --foreground: var(--ink);
 }
@@ -2054,4 +2058,83 @@ a.auth-provider:hover, .auth-provider-button:hover { border-color: #8295d5; box-
   .opportunity-card-footer { align-items: stretch; flex-direction: column; }
   .opportunity-card-footer > div { flex-direction: column; }
   .opportunity-card-footer .button { justify-content: center; width: 100%; }
+}
+
+/*
+ * Product typography hierarchy
+ *
+ * Large display type is reserved for the welcome, Proof Journey, and verified
+ * demo storytelling surfaces. Product, reading, and account pages use a
+ * quieter shared scale so the interface reads as one system instead of a
+ * sequence of competing headlines.
+ */
+.page-hero h1,
+.detail-heading h1,
+.receipt-heading h1,
+.review-heading h1,
+.integrations-hero h1,
+.workbench-hero h1,
+.review-workspace-heading h1,
+.connect-codex-intro h1,
+.connect-codex-card h1,
+.settings-hero h1,
+.profile-hero-copy h1,
+.public-profile-hero h1,
+.auth-intro h1,
+.legal-hero h1,
+.about-hero h1,
+.information-hub-hero h1,
+.reading-hero h1 {
+  font-size: var(--type-page-title);
+  letter-spacing: -.045em;
+  line-height: 1.04;
+}
+
+.section-heading h2,
+.evidence-section h2,
+.closing-section h2,
+.challenge-heading h2,
+.catalog-section-heading h2,
+.starter-work-heading h2,
+.research-launcher-heading h2,
+.submission-copy h2,
+.provisional-ledger-heading h2,
+.credit-market-heading h2,
+.research-graph-heading h2,
+.verification-market-heading h2,
+.personal-review-heading h2,
+.profile-section-heading h2,
+.home-simple-heading h2,
+.home-boundary-section h2,
+.collection-heading h2,
+.about-thesis h2,
+.catalog-standard-heading h2,
+.principles-section h2,
+.open-catalog-section h2,
+.builder-section h2,
+.about-definition h2,
+.explore-command-search h2 {
+  font-size: var(--type-section-title);
+  line-height: 1.08;
+}
+
+.shared-research-heading h2,
+.demo-walkthrough h2,
+.demo-console h2,
+.demo-proof-copy h2,
+.demo-reproduce h2,
+.journey-section-heading h2,
+.showcase-experience-topline h2,
+.showcase-afterword h2 {
+  font-size: var(--type-feature-title);
+  line-height: 1.06;
+}
+
+.demo-stage-detail h3,
+.showcase-stage-copy h3,
+.local-agent-heading h2,
+.simple-flow-section h2,
+.hub-next-action h2 {
+  font-size: var(--type-panel-title);
+  line-height: 1.1;
 }

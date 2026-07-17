@@ -2476,6 +2476,18 @@ test("keeps the production frontend free of the deleted starter preview", async 
   );
 });
 
+test("reserves display typography for storytelling surfaces", async () => {
+  const globals = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+
+  assert.match(globals, /--type-page-title:\s*clamp\(34px, 3\.8vw, 50px\)/);
+  assert.match(globals, /--type-section-title:\s*clamp\(28px, 2\.7vw, 40px\)/);
+  assert.match(globals, /\.information-hub-hero h1[\s\S]*font-size:\s*var\(--type-page-title\)/);
+  assert.match(globals, /\.workbench-hero h1[\s\S]*font-size:\s*var\(--type-page-title\)/);
+  assert.match(globals, /\.home-simple-heading h2[\s\S]*font-size:\s*var\(--type-section-title\)/);
+  assert.match(globals, /\.hero h1 \{ font-size: clamp\(48px, 5vw, 76px\)/);
+  assert.match(globals, /\.showcase-intro h1 \{[^}]*108px/);
+});
+
 function base64Url(buffer) {
   const binary = String.fromCharCode(...new Uint8Array(buffer));
   return btoa(binary).replaceAll("+", "-").replaceAll("/", "_").replaceAll("=", "");
