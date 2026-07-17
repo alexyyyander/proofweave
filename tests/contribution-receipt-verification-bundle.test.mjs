@@ -1,0 +1,257 @@
+import assert from "node:assert/strict";
+import { execFile } from "node:child_process";
+import { mkdtemp, rm, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { test } from "node:test";
+import { promisify } from "node:util";
+import {
+  ContributionReceiptVerificationBundleProtocolError,
+  canonicalContributionReceiptVerificationBundle,
+  contributionReceiptVerificationBundleHash,
+  verifyContributionReceiptVerificationBundle,
+  verifyContributionReceiptVerificationBundleWithIssuerKeyset,
+} from "../packages/protocol/contribution-receipt-verification-bundle.mjs";
+import {
+  contributionReceiptHash,
+  createContributionReceipt,
+} from "../packages/protocol/contribution-receipt.mjs";
+import { createContributionReceiptLifecycleEvent } from "../packages/protocol/contribution-receipt-lifecycle.mjs";
+
+const execFileAsync = promisify(execFile);
+
+test("verifies a portable Receipt closure with dependencies, issuer keys, and lifecycle evidence", async () => {
+  const fixture = await verificationBundleFixture();
+  const verified = await verifyContributionReceiptVerificationBundle(fixture.bundle);
+
+  assert.equal(verified.rootReceiptId, fixture.root.id);
+  assert.deepEqual(verified.receipts.map((entry) => entry.receipt.id), [fixture.root.id, fixture.upstream.id, fixture.replacement.id].sort());
+  assert.equal(verified.receipts.find((entry) => entry.receipt.id === fixture.root.id).lifecycle[0].eventType, "corrected");
+  assert.equal(await contributionReceiptVerificationBundleHash(verified), await contributionReceiptVerificationBundleHash(fixture.bundle));
+  assert.equal(canonicalContributionReceiptVerificationBundle(verified), canonicalContributionReceiptVerificationBundle(fixture.bundle));
+  assert.equal(
+    await contributionReceiptVerificationBundleHash({
+      ...fixture.bundle,
+      receipts: [...fixture.bundle.receipts].reverse(),
+    }),
+    await contributionReceiptVerificationBundleHash(fixture.bundle),
+  );
+});
+
+test("rejects tampered hashes, missing dependency evidence, and unrelated records", async () => {
+  const fixture = await verificationBundleFixture();
+  await assert.rejects(
+    verifyContributionReceiptVerificationBundle({
+      ...fixture.bundle,
+      receipts: fixture.bundle.receipts.map((entry) => entry.receipt.id === fixture.root.id ? { ...entry, receiptHash: sha("f") } : entry),
+    }),
+    ContributionReceiptVerificationBundleProtocolError,
+  );
+  await assert.rejects(
+    verifyContributionReceiptVerificationBundle({
+      ...fixture.bundle,
+      receipts: fixture.bundle.receipts.filter((entry) => entry.receipt.id !== fixture.upstream.id),
+    }),
+    ContributionReceiptVerificationBundleProtocolError,
+  );
+  await assert.rejects(
+    verifyContributionReceiptVerificationBundle({
+      ...fixture.bundle,
+      receipts: [...fixture.bundle.receipts, fixture.unrelatedEntry],
+    }),
+    ContributionReceiptVerificationBundleProtocolError,
+  );
+});
+
+test("rechecks a portable Bundle against a newer issuer keyset and rejects a later revocation", async () => {
+  const fixture = await verificationBundleFixture();
+  const keyset = { issuerKeys: fixture.bundle.issuerKeys };
+  const verified = await verifyContributionReceiptVerificationBundleWithIssuerKeyset(fixture.bundle, keyset);
+  assert.equal(verified.rootReceiptId, fixture.root.id);
+
+  await assert.rejects(
+    verifyContributionReceiptVerificationBundleWithIssuerKeyset(fixture.bundle, {
+      issuerKeys: fixture.bundle.issuerKeys.map((key) => ({
+        ...key,
+        status: "revoked",
+        revokedAt: "2026-07-13T00:00:06Z",
+      })),
+    }),
+    ContributionReceiptVerificationBundleProtocolError,
+  );
+});
+
+test("the standalone CLI verifies a downloaded Bundle and prints canonical metadata", async () => {
+  const fixture = await verificationBundleFixture();
+  const directory = await mkdtemp(join(tmpdir(), "proofweave-receipt-bundle-"));
+  const filePath = join(directory, "verification-bundle.json");
+  const issuerKeysetPath = join(directory, "issuer-keys.json");
+  await writeFile(filePath, JSON.stringify(fixture.bundle), "utf8");
+  await writeFile(issuerKeysetPath, JSON.stringify({ issuerKeys: fixture.bundle.issuerKeys }), "utf8");
+
+  try {
+    const { stdout, stderr } = await execFileAsync(process.execPath, [
+      "scripts/verify-receipt-bundle.mjs",
+      filePath,
+      "--issuer-keyset",
+      issuerKeysetPath,
+    ], { cwd: process.cwd() });
+
+    assert.equal(stderr, "");
+    assert.deepEqual(JSON.parse(stdout), {
+      verified: true,
+      issuerKeysetChecked: true,
+      protocolVersion: "pw-contribution-receipt-verification-bundle-v1",
+      rootReceiptId: fixture.root.id,
+      receiptCount: 3,
+      issuerKeyCount: 1,
+      bundleHash: await contributionReceiptVerificationBundleHash(fixture.bundle),
+    });
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+});
+
+async function verificationBundleFixture() {
+  const keyPair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
+  const issuerPublicKey = base64Url(await crypto.subtle.exportKey("raw", keyPair.publicKey));
+  const upstream = await createReceipt({
+    id: "receipt:bundle-upstream",
+    kind: "formalization",
+    issuedAt: "2026-07-13T00:00:00Z",
+    dependencyReceipts: [],
+    issuerPublicKey,
+    issuerPrivateKey: keyPair.privateKey,
+  });
+  const upstreamHash = await contributionReceiptHash(upstream);
+  const root = await createReceipt({
+    id: "receipt:bundle-root",
+    kind: "lemma",
+    issuedAt: "2026-07-13T00:00:02Z",
+    dependencyReceipts: [{ receiptId: upstream.id, receiptHash: upstreamHash }],
+    issuerPublicKey,
+    issuerPrivateKey: keyPair.privateKey,
+  });
+  const replacement = await createReceipt({
+    id: "receipt:bundle-replacement",
+    kind: "proof_patch",
+    issuedAt: "2026-07-13T00:00:03Z",
+    dependencyReceipts: [],
+    issuerPublicKey,
+    issuerPrivateKey: keyPair.privateKey,
+  });
+  const lifecycle = await createContributionReceiptLifecycleEvent({
+    event: {
+      protocolVersion: "pw-contribution-receipt-lifecycle-event-v1",
+      id: "receipt-event:bundle-root-corrected",
+      receiptId: root.id,
+      eventType: "corrected",
+      replacementReceiptId: replacement.id,
+      reasonHash: sha("9"),
+      occurredAt: "2026-07-13T00:00:04Z",
+      issuerKeyId: "issuer:bundle-fixture",
+      issuerPublicKey,
+    },
+    issuerPrivateKey: keyPair.privateKey,
+  });
+  const unrelated = await createReceipt({
+    id: "receipt:bundle-unrelated",
+    kind: "synthesis",
+    issuedAt: "2026-07-13T00:00:05Z",
+    dependencyReceipts: [],
+    issuerPublicKey,
+    issuerPrivateKey: keyPair.privateKey,
+  });
+  const unrelatedEntry = {
+    receipt: unrelated,
+    receiptHash: await contributionReceiptHash(unrelated),
+    lifecycle: [],
+  };
+  return {
+    root,
+    upstream,
+    replacement,
+    unrelatedEntry,
+    bundle: {
+      protocolVersion: "pw-contribution-receipt-verification-bundle-v1",
+      rootReceiptId: root.id,
+      receipts: [
+        { receipt: root, receiptHash: await contributionReceiptHash(root), lifecycle: [lifecycle] },
+        { receipt: upstream, receiptHash: upstreamHash, lifecycle: [] },
+        { receipt: replacement, receiptHash: await contributionReceiptHash(replacement), lifecycle: [] },
+      ],
+      issuerKeys: [{
+        id: "issuer:bundle-fixture",
+        publicKey: issuerPublicKey,
+        status: "active",
+        validFrom: "2026-07-12T00:00:00Z",
+        retiredAt: null,
+        revokedAt: null,
+      }],
+    },
+  };
+}
+
+async function createReceipt({ id, kind, issuedAt, dependencyReceipts, issuerPublicKey, issuerPrivateKey }) {
+  const artifactBundleHash = sha(kind === "formalization" ? "a" : kind === "lemma" ? "b" : "c");
+  return createContributionReceipt({
+    receipt: {
+      protocolVersion: "pw-contribution-receipt-v1",
+      id,
+      kind,
+      beneficiary: {
+        personId: "person:bundle-owner",
+        agentId: "agent:bundle-prover",
+        delegationCertificateId: "delegation:bundle-prover",
+      },
+      attempt: {
+        id: "attempt:bundle-owner",
+        personId: "person:bundle-owner",
+        agentId: "agent:bundle-prover",
+        delegationCertificateId: "delegation:bundle-prover",
+        problemRevisionId: "revision:bundle-target",
+      },
+      target: { declaration: "Proofweave.Bundle.target", statementHash: sha("d") },
+      artifactBundleHash,
+      bundle: { manifestHash: artifactBundleHash, dependencyReceipts },
+      run: {
+        id: `run:${id.slice("receipt:".length)}`,
+        requestHash: sha("e"),
+        resultHash: sha("f"),
+        status: "succeeded",
+        kernelStatus: "accepted",
+      },
+      claims: [
+        claim("bundle_reproducible", artifactBundleHash, "a"),
+        claim("kernel_accepted", artifactBundleHash, "b"),
+        claim("project_accepted", artifactBundleHash, "c"),
+      ],
+      issuedAt,
+      policyVersion: "pw-receipt-policy-v1",
+      issuerKeyId: "issuer:bundle-fixture",
+      issuerPublicKey,
+    },
+    issuerPrivateKey,
+  });
+}
+
+function claim(claimType, artifactBundleHash, suffix) {
+  return {
+    claimType,
+    verificationAttestationId: `attestation:bundle-${suffix}`,
+    verificationAttestationHash: sha(suffix),
+    artifactBundleHash,
+    reviewerPersonId: `person:bundle-reviewer-${suffix}`,
+    reviewerAgentId: `agent:bundle-reviewer-${suffix}`,
+    reviewerDelegationCertificateId: `delegation:bundle-reviewer-${suffix}`,
+    decision: "attested",
+  };
+}
+
+function sha(character) {
+  return `sha256:${character.repeat(64)}`;
+}
+
+function base64Url(buffer) {
+  return Buffer.from(buffer).toString("base64url");
+}

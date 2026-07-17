@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://proofweave-research.yualex031821.chatgpt.site/schemas/open-catalog-v1.json",
+  "title": "Proofweave Open Catalog",
+  "type": "object",
+  "required": ["schemaVersion", "catalog", "records"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "catalog": {
+      "type": "object",
+      "required": ["name", "generatedAt", "recordCount", "policy", "boundary"]
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "slug", "title", "project", "subjects", "researchStatus", "formalization", "source", "frontierAudit", "priority"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "slug": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+          "title": { "type": "string", "minLength": 1 },
+          "subjects": { "type": "array", "items": { "type": "string" } },
+          "researchStatus": {
+            "type": "object",
+            "required": ["value", "authority", "proofweaveAttested"],
+            "properties": {
+              "value": { "enum": ["research_open", "research_solved"] },
+              "authority": { "enum": ["upstream_import", "frontier_review"] },
+              "proofweaveAttested": { "type": "boolean" }
+            }
+          },
+          "formalization": {
+            "type": "object",
+            "required": ["state", "correspondence", "qualifiedName", "statement"]
+          },
+          "source": {
+            "type": "object",
+            "required": ["upstream", "revision", "revisionTag", "path", "url", "contentHash", "retrievedAt", "leanToolchain", "mathlibRevision", "licenseNote"]
+          },
+          "frontierAudit": {
+            "type": "object",
+            "required": ["status", "literatureCheckedThrough", "reviewedBy", "priorWork", "note"],
+            "properties": {
+              "status": { "enum": ["not_completed", "in_review", "reviewed", "stale", "disputed"] },
+              "literatureCheckedThrough": { "type": ["string", "null"], "format": "date" },
+              "reviewedBy": { "type": ["string", "null"] },
+              "priorWork": { "type": "array" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

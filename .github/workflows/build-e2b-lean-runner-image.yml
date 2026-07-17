@@ -1,0 +1,132 @@
+name: Build Proofweave Lean Core alpha image
+
+on:
+  workflow_dispatch:
+    inputs:
+      build_e2b_template:
+        description: Build the private E2B template after publishing the reviewed image
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+  packages: write
+  attestations: write
+  id-token: write
+
+concurrency:
+  group: proofweave-lean-core-alpha-image
+  cancel-in-progress: false
+
+env:
+  NODE_BASE_IMAGE: node@sha256:5647be709086c696ff32edaaf1c70cd26d1da6ab2b39c32f3c7b4c4a31957e37
+  LEAN_TOOLCHAIN: leanprover/lean4:v4.27.0
+  MATHLIB_REVISION: none
+  LEAN_RELEASE_URL: https://github.com/leanprover/lean4/releases/download/v4.27.0/lean-4.27.0-linux.zip
+  LEAN_RELEASE_SHA256: 0a62138ea5b9880a8eccd5e88d0920f93a58cf3428a9c78f99b8f4316383c69b
+  LEAN_ARCHIVE_ROOT: lean-4.27.0-linux
+  BASE_IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/proofweave-lean-core-base
+  RUNNER_IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/proofweave-lean-runner
+
+jobs:
+  build-and-inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    environment: proofweave-runner-alpha
+    steps:
+      - name: Check out the reviewed source
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+
+      - name: Log in to GHCR
+        uses: docker/login-action@650006c6eb7dba73a995cc03b0b2d7f5ca915bee
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and publish the checksum-bound Lean base
+        id: base
+        uses: docker/build-push-action@f9f3042f7e2789586610d6e8b85c8f03e5195baf
+        with:
+          context: .
+          file: services/lean-runner/Dockerfile.core-alpha-base
+          platforms: linux/amd64
+          push: true
+          provenance: mode=max
+          sbom: true
+          tags: ${{ env.BASE_IMAGE_NAME }}:${{ github.sha }}
+          build-args: |
+            NODE_BASE_IMAGE=${{ env.NODE_BASE_IMAGE }}
+            EXPECTED_LEAN_TOOLCHAIN=${{ env.LEAN_TOOLCHAIN }}
+            EXPECTED_MATHLIB_REVISION=${{ env.MATHLIB_REVISION }}
+            LEAN_RELEASE_URL=${{ env.LEAN_RELEASE_URL }}
+            LEAN_RELEASE_SHA256=${{ env.LEAN_RELEASE_SHA256 }}
+            LEAN_ARCHIVE_ROOT=${{ env.LEAN_ARCHIVE_ROOT }}
+
+      - name: Assemble and publish the credential-free Runner
+        id: runner
+        uses: docker/build-push-action@f9f3042f7e2789586610d6e8b85c8f03e5195baf
+        with:
+          context: .
+          file: services/lean-runner/Dockerfile
+          platforms: linux/amd64
+          network: none
+          push: true
+          provenance: mode=max
+          sbom: true
+          tags: ${{ env.RUNNER_IMAGE_NAME }}:${{ github.sha }}
+          build-args: |
+            RUNNER_BASE_IMAGE=${{ env.BASE_IMAGE_NAME }}@${{ steps.base.outputs.digest }}
+            EXPECTED_LEAN_TOOLCHAIN=${{ env.LEAN_TOOLCHAIN }}
+            EXPECTED_MATHLIB_REVISION=${{ env.MATHLIB_REVISION }}
+
+      - name: Exercise the final image without network access
+        env:
+          FINAL_RUNNER_IMAGE: ${{ env.RUNNER_IMAGE_NAME }}@${{ steps.runner.outputs.digest }}
+        run: >-
+          docker run --rm --read-only --network=none --cpus=1 --memory=2g
+          --pids-limit=128 --tmpfs /tmp/proofweave:rw,nosuid,nodev,size=1g
+          --entrypoint /bin/sh "$FINAL_RUNNER_IMAGE" -lc
+          'node --version && lean --version && lake --version'
+
+      - name: Attest the final Runner image
+        uses: actions/attest-build-provenance@0f67c3f4856b2e3261c31976d6725780e5e4c373
+        with:
+          subject-name: ${{ env.RUNNER_IMAGE_NAME }}
+          subject-digest: ${{ steps.runner.outputs.digest }}
+          push-to-registry: true
+
+      - name: Use the repository Node version
+        if: ${{ inputs.build_e2b_template }}
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install locked dependencies
+        if: ${{ inputs.build_e2b_template }}
+        run: npm ci --ignore-scripts
+
+      - name: Build the E2B template from the immutable private image
+        if: ${{ inputs.build_e2b_template }}
+        env:
+          E2B_API_KEY: ${{ secrets.E2B_API_KEY }}
+          PROOFWEAVE_E2B_RUNNER_IMAGE: ${{ env.RUNNER_IMAGE_NAME }}@${{ steps.runner.outputs.digest }}
+          PROOFWEAVE_E2B_TEMPLATE_NAME: proofweave-lean-core-alpha:${{ github.sha }}
+          PROOFWEAVE_E2B_CPU: "2"
+          PROOFWEAVE_E2B_MEMORY_MB: "2048"
+          PROOFWEAVE_E2B_REGISTRY_USERNAME: ${{ vars.GHCR_READ_USERNAME }}
+          PROOFWEAVE_E2B_REGISTRY_PASSWORD: ${{ secrets.GHCR_READ_TOKEN }}
+        run: npm run runner:e2b:template:build
+
+      - name: Publish immutable image coordinates
+        env:
+          FINAL_RUNNER_IMAGE: ${{ env.RUNNER_IMAGE_NAME }}@${{ steps.runner.outputs.digest }}
+        run: |
+          echo "### Proofweave Lean Core alpha" >> "$GITHUB_STEP_SUMMARY"
+          echo '```text' >> "$GITHUB_STEP_SUMMARY"
+          echo "PROOFWEAVE_E2B_RUNNER_IMAGE=$FINAL_RUNNER_IMAGE" >> "$GITHUB_STEP_SUMMARY"
+          echo "leanToolchain=${LEAN_TOOLCHAIN}" >> "$GITHUB_STEP_SUMMARY"
+          echo "mathlibRevision=${MATHLIB_REVISION}" >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"

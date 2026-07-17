@@ -1,0 +1,35 @@
+{
+  "name": "proofweave-research",
+  "version": "0.2.0+codex.20260717052654",
+  "description": "Local-first Proofweave research workflow and private-beta connection for Codex.",
+  "author": {
+    "name": "Proofweave"
+  },
+  "homepage": "https://proofweave-public-demo.proofweave-research.workers.dev",
+  "repository": "https://github.com/alexyyyander/proofweave",
+  "keywords": [
+    "lean",
+    "formal-mathematics",
+    "research",
+    "proofweave"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Proofweave Research",
+    "shortDescription": "Work locally, then record bounded research progress.",
+    "longDescription": "Keeps Codex and Lean work on your computer while a revocable local connection can read the frontier and record selected, provisional Proofweave progress.",
+    "developerName": "Proofweave",
+    "category": "Research",
+    "capabilities": [
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Inspect a Proofweave target and plan a reproducible Lean attempt.",
+      "Connect Proofweave through the local browser approval when I ask.",
+      "Prepare a signed Artifact Bundle without overstating its verification status.",
+      "Review the evidence gates for this Proofweave Attempt."
+    ],
+    "brandColor": "#3f5cf6"
+  }
+}

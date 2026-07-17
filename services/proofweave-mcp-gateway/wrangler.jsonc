@@ -1,0 +1,18 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "proofweave-mcp-gateway",
+  "main": "cloudflare-worker.mjs",
+  "compatibility_date": "2026-07-13",
+  "compatibility_flags": ["nodejs_compat"],
+  "vars": {
+    "MCP_RESOURCE_URL": "https://mcp.proofweave.org/mcp",
+    "OAUTH_ISSUER_URL": "https://auth.proofweave.org"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "REPLACE_WITH_PROOFWEAVE_D1_NAME",
+      "database_id": "REPLACE_WITH_PROOFWEAVE_D1_ID"
+    }
+  ]
+}

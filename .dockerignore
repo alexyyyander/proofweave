@@ -1,0 +1,10 @@
+# The Lean Runner image is built from the repository root, but it needs only
+# its protocol and private Container process. Keep every other file—including
+# local environment files, build output, and git metadata—out of the Docker
+# build context.
+*
+!packages/
+!packages/**
+!services/
+!services/lean-runner/
+!services/lean-runner/**

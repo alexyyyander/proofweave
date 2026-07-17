@@ -1,0 +1,306 @@
+{
+  "fixtureProtocolVersion": "pw-build-week-demo-v1",
+  "label": "Build Week reference proof",
+  "generatedAt": "2026-07-14T06:33:00Z",
+  "objects": [
+    {
+      "role": "source_archive",
+      "filename": "source.tar.zst",
+      "contentHash": "sha256:c817129b75204540fb12f5fc6ad5eb2bddfd8d8a082ced75c405248e0fe0bbf0",
+      "encoding": "base64",
+      "content": "KLUv/WAAE2UMABYUPyJAad07rmiZILa/s6BaZNU0hI8uGUsk6f+/zKCnvToKOARQNQAzADUAUVvytWoZm3rGtCV+zK4YLiL5p4WsIoxiWZRFkMTC7O42TWJ3F4Hcr7W0XsEH+uJOmGKUBQGPBjwT6KNPGbjUn/oB6Oy3qipKEYz+7hxHj6X1DB/75fJV2YJDoUfbkgt91PW7gyno0fSskSQMhXR+G0he/LN4aseSbUpbGH3KvljySBRSZWnWUSivit/6+dQI/BxsxtQ5bsqg5wAdNA1PItu9SLXE75EwOA6jLAvjPGg/e3LIFWLbMq25nkZA9hXlQ+E4qzDrTEkvxkewRsPhL2IwWDUg4AKZmZG6AZ1rBT14oFD+//Vqn7WOpeYI9jx1AFcIS0HgZ9PjrA14BWNV4t0MIMMATQDef+OxXsE4AYrqV6G5w8EGyiAzSNIq/sUZoaw8KvLOqNm6GYDgAJX09JQWFRC2SIGeJi14mTKdVy1SwLfMLCHFD1qRang3eG5IUUG8UwMkx4NVG465TEVVEw=="
+    },
+    {
+      "role": "source_patch",
+      "filename": "normalized.patch",
+      "contentHash": "sha256:b9f2bc3eeb98aeb6ada817c198612e15405ff3aa6b5c7d1dc579488b8bb20e16",
+      "encoding": "utf8",
+      "content": "diff --git a/ProofweaveFixture.lean b/ProofweaveFixture.lean\nindex 1111111..2222222 100644\n--- a/ProofweaveFixture.lean\n+++ b/ProofweaveFixture.lean\n@@ -1,6 +1,5 @@\n namespace ProofweaveFixture\n \n-theorem true_is_inhabited : True := by\n-  trivial\n+theorem true_is_inhabited : True := True.intro\n \n theorem natural_addition_commutes (left right : Nat) : left + right = right + left :=\n"
+    },
+    {
+      "role": "lake_manifest",
+      "filename": "lake-manifest.json",
+      "contentHash": "sha256:fc7d9c5d31375656d8f25779db930cc98c7a67db5f74712b625c69d854771d21",
+      "encoding": "utf8",
+      "content": "{\"version\": \"1.2.0\",\n \"packagesDir\": \".lake/packages\",\n \"packages\": [],\n \"name\": \"proofweaveFixture\",\n \"lakeDir\": \".lake\",\n \"fixedToolchain\": false}\n"
+    }
+  ],
+  "source": {
+    "path": "tests/fixtures/lean/core-success/ProofweaveFixture.lean",
+    "content": "namespace ProofweaveFixture\n\ntheorem true_is_inhabited : True := True.intro\n\ntheorem natural_addition_commutes (left right : Nat) : left + right = right + left :=\n  Nat.add_comm left right\n\nend ProofweaveFixture\n",
+    "contentHash": "sha256:ed4452e2953fcaeceebbd1f8d8e41f3cde894d2ccad0c89ce3782ed17e78c372",
+    "compilerStdout": "",
+    "compilerStderr": "",
+    "leanVersion": "Lean (version 4.30.0, arm64-apple-darwin24.6.0, commit d024af099ca4bf2c86f649261ebf59565dc8c622, Release)"
+  },
+  "delegation": {
+    "certificate": {
+      "id": "delegation:demo-prover",
+      "ownerPersonId": "person:demo-owner",
+      "agentId": "agent:demo-prover",
+      "agentPublicKey": "LC3l5SxE4x1xW1Ttbg6UhAgTEN43EKSM5afHEKyvCS4",
+      "scopes": [
+        "formalize",
+        "prove"
+      ],
+      "validFrom": "2026-07-13T00:00:00Z",
+      "validUntil": "2027-07-13T00:00:00Z",
+      "attributionPolicy": {
+        "beneficiaryPersonId": "person:demo-owner",
+        "mode": "agent_delegated"
+      }
+    },
+    "payloadHash": "sha256:653c77e1f71486b4dadc424b3b0b4494602ced99c7fb4a62a975b747043ed23e",
+    "personPublicKey": "Ifhe3sPHgd1RARy9F8d28upH5XC69mQ4Fd7oMy6XEO0",
+    "personSignature": "mTRcfgtcT4VRhnDLkpocsdxBLXCMzffwAuJnYNd2mqW1hKpK1_e_VDeu9AP_scdyU-NE8sDxbvmKXPPSTuWfCw"
+  },
+  "bundle": {
+    "protocolVersion": "pw-artifact-bundle-v3",
+    "id": "bundle:build-week-reference",
+    "attemptId": "attempt:build-week-reference",
+    "problemRevisionId": "revision:build-week-reference",
+    "target": {
+      "declaration": "ProofweaveFixture.true_is_inhabited",
+      "statementHash": "sha256:1d041c6247997b9ff8c746d2d71471ef4fd3c86e8f795616421b462c36c36e2a"
+    },
+    "workspace": {
+      "archive": {
+        "objectKey": "bundles/sha256/c817129b75204540fb12f5fc6ad5eb2bddfd8d8a082ced75c405248e0fe0bbf0/source.tar.zst",
+        "contentHash": "sha256:c817129b75204540fb12f5fc6ad5eb2bddfd8d8a082ced75c405248e0fe0bbf0",
+        "format": "tar.zst",
+        "maxExpandedBytes": 1048576,
+        "maxFileCount": 10,
+        "symlinkPolicy": "forbidden"
+      },
+      "patch": {
+        "objectKey": "bundles/sha256/b9f2bc3eeb98aeb6ada817c198612e15405ff3aa6b5c7d1dc579488b8bb20e16/normalized.patch",
+        "contentHash": "sha256:b9f2bc3eeb98aeb6ada817c198612e15405ff3aa6b5c7d1dc579488b8bb20e16",
+        "format": "unified-diff",
+        "strip": 1,
+        "allowFuzz": false
+      },
+      "tree": {
+        "hash": "sha256:3a6e5718a677a954baba7fff8900a293f057d86f4bdcccf83cde51628259214c",
+        "algorithm": "pw-tree-v1",
+        "state": "after_patch_and_lake_manifest"
+      },
+      "lakeManifest": {
+        "objectKey": "bundles/sha256/fc7d9c5d31375656d8f25779db930cc98c7a67db5f74712b625c69d854771d21/lake-manifest.json",
+        "contentHash": "sha256:fc7d9c5d31375656d8f25779db930cc98c7a67db5f74712b625c69d854771d21",
+        "destination": "lake-manifest.json"
+      }
+    },
+    "repositorySnapshot": {
+      "provider": "github",
+      "repository": "alexyyyander/proofweave",
+      "commitSha": "c5e2b4d0349e8df85f368e6674434b5d038d543d",
+      "visibility": "private"
+    },
+    "environment": {
+      "leanToolchain": "leanprover/lean4:v4.30.0",
+      "mathlibRevision": "core-only-no-mathlib"
+    },
+    "entryCommand": [
+      "lake",
+      "env",
+      "lean",
+      "ProofweaveFixture.lean"
+    ],
+    "dependencyReceipts": [],
+    "agentEvent": {
+      "eventId": "agent-event:build-week-reference",
+      "occurredAt": "2026-07-14T06:30:00Z",
+      "payloadHash": "sha256:7ad91b1eaa35dbc358a31da3e053b37911c76fca4f5dbfd250a547d6fed67444",
+      "agentPublicKey": "LC3l5SxE4x1xW1Ttbg6UhAgTEN43EKSM5afHEKyvCS4",
+      "signature": "PrZI6bRXqlstFmy4cttFAVHsEJLfM9i4iqGMhHe3Q4UrbmBhRzjaLPCbhkzw5yIXhQLypMno4uMrPy-zs4OAAQ"
+    },
+    "policy": {
+      "requireNoSorry": true,
+      "allowedAxioms": []
+    }
+  },
+  "runner": {
+    "request": {
+      "protocolVersion": "pw-lean-runner-v1",
+      "jobId": "run:build-week-reference",
+      "idempotencyKey": "build-week-reference-v1",
+      "attemptId": "attempt:build-week-reference",
+      "bundle": {
+        "objectKey": "bundles/sha256/bef5c21351d09120ca1fa2c36f4614b77c45a931dcd08a6740482d81750b162f/bundle.json",
+        "contentHash": "sha256:bef5c21351d09120ca1fa2c36f4614b77c45a931dcd08a6740482d81750b162f",
+        "manifestHash": "sha256:bef5c21351d09120ca1fa2c36f4614b77c45a931dcd08a6740482d81750b162f",
+        "entryCommand": [
+          "lake",
+          "env",
+          "lean",
+          "ProofweaveFixture.lean"
+        ]
+      },
+      "environment": {
+        "imageDigest": "registry.example/proofweave/lean@sha256:7777777777777777777777777777777777777777777777777777777777777777",
+        "leanToolchain": "leanprover/lean4:v4.30.0",
+        "mathlibRevision": "core-only-no-mathlib",
+        "network": "disabled"
+      },
+      "limits": {
+        "cpuSeconds": 10,
+        "wallSeconds": 30,
+        "memoryMiB": 512,
+        "diskMiB": 128,
+        "outputBytes": 1000000
+      },
+      "policy": {
+        "requireNoSorry": true,
+        "allowedAxioms": []
+      }
+    },
+    "result": {
+      "protocolVersion": "pw-lean-runner-v1",
+      "jobId": "run:build-week-reference",
+      "attemptId": "attempt:build-week-reference",
+      "requestHash": "sha256:b146132a755d652b737909945623ef6e6bfcf0258525c8fb146d5c3db3246231",
+      "runnerKeyId": "runner-key:build-week-reference",
+      "runnerSignature": "Fwf9gS_cdi9h5So21k0jmoWr3mOEMskP0tSKdtcBlQEg-N_w4X3ciWqVQSHO2OqM-gQbjrEuLK4LEest5kFIAw",
+      "status": "succeeded",
+      "exitCode": 0,
+      "startedAt": "2026-07-14T06:31:00Z",
+      "finishedAt": "2026-07-14T06:31:01Z",
+      "kernelStatus": "accepted",
+      "checks": {
+        "network": "passed",
+        "noSorry": "passed",
+        "allowedAxioms": "passed",
+        "leanBuild": "passed"
+      },
+      "artifacts": {
+        "manifestHash": "sha256:bef5c21351d09120ca1fa2c36f4614b77c45a931dcd08a6740482d81750b162f",
+        "stdoutHash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderrHash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "publicKey": "77rCRXHojXvYuGPPcySQmBWeQrUvQADos3yAzDOt7as"
+  },
+  "attestations": [
+    {
+      "protocolVersion": "pw-verification-attestation-v1",
+      "id": "attestation:build-week:bundle_reproducible",
+      "assignmentId": "assignment:build-week:bundle_reproducible",
+      "artifactBundleHash": "sha256:bef5c21351d09120ca1fa2c36f4614b77c45a931dcd08a6740482d81750b162f",
+      "claimType": "bundle_reproducible",
+      "verifierPersonId": "person:demo-reviewer",
+      "verifierAgentId": "agent:demo-reviewer",
+      "delegationCertificateId": "delegation:demo-reviewer",
+      "verifierAgentPublicKey": "TcrBIGEfLD1ak1Prns_Xu1Hu32BLF7gIGqU2ftyFDOo",
+      "decision": "attested",
+      "evidenceHash": "sha256:bef5c21351d09120ca1fa2c36f4614b77c45a931dcd08a6740482d81750b162f",
+      "attestedAt": "2026-07-14T06:32:00Z",
+      "payloadHash": "sha256:34051dcf21b38bd3b116e2abcfab3de994d35a796e337e04606d16f1d73a7f3d",
+      "signature": "xHLJGXgXmHh0m7Om_jpOTui3B4WpkL8bOhlBtdttwzGZBkHzY0rlHZYzl68a7YTVLOrt_gt9q2zu7wSHBomlCw"
+    },
+    {
+      "protocolVersion": "pw-verification-attestation-v1",
+      "id": "attestation:build-week:kernel_accepted",
+      "assignmentId": "assignment:build-week:kernel_accepted",
+      "artifactBundleHash": "sha256:bef5c21351d09120ca1fa2c36f4614b77c45a931dcd08a6740482d81750b162f",
+      "claimType": "kernel_accepted",
+      "verifierPersonId": "person:demo-reviewer",
+      "verifierAgentId": "agent:demo-reviewer",
+      "delegationCertificateId": "delegation:demo-reviewer",
+      "verifierAgentPublicKey": "TcrBIGEfLD1ak1Prns_Xu1Hu32BLF7gIGqU2ftyFDOo",
+      "decision": "attested",
+      "evidenceHash": "sha256:78860f63479e0f8ce2e02e22baf878ebe247716ab3adf01ad2312ad4cb2abf40",
+      "attestedAt": "2026-07-14T06:32:00Z",
+      "payloadHash": "sha256:c62c7b07de5ee0adb883181949866d679ba7ad8f5bb2c3ea8ade0ef69f3d903c",
+      "signature": "1sWLeqDm6OTQOBk9JYMhRgFOq-SkK0-HXbTKUJ_SQ7V05B2MboiOdhIlw8yzKw8DsDckqvqesolPWsD_vS69Cw"
+    },
+    {
+      "protocolVersion": "pw-verification-attestation-v1",
+      "id": "attestation:build-week:project_accepted",
+      "assignmentId": "assignment:build-week:project_accepted",
+      "artifactBundleHash": "sha256:bef5c21351d09120ca1fa2c36f4614b77c45a931dcd08a6740482d81750b162f",
+      "claimType": "project_accepted",
+      "verifierPersonId": "person:demo-curator",
+      "verifierAgentId": "agent:demo-curator",
+      "delegationCertificateId": "delegation:demo-curator",
+      "verifierAgentPublicKey": "jJGvwZ1KBT93ELtaV18DVutJmwaP9LyWVhtBabGFqL4",
+      "decision": "attested",
+      "evidenceHash": "sha256:256443a7155cb4bc934c5e776a4c6680e026c45b19e3d2808b7eb94b4d5fa62c",
+      "attestedAt": "2026-07-14T06:32:30Z",
+      "payloadHash": "sha256:3d4d9bbc78e9fd523b655aae79caa6db7872ec294a0f194f7c36dd4aedd76250",
+      "signature": "LNfhgl8QzgwAOyonCjLJjzX_N6-Nw7LJI0jVU_ectWslGYmf-VaPFMr_AvlXhE0SAoSw2yaCHt95LEQiJd-kCw"
+    }
+  ],
+  "receipt": {
+    "protocolVersion": "pw-contribution-receipt-v1",
+    "id": "receipt:build-week-reference",
+    "kind": "lemma",
+    "beneficiary": {
+      "personId": "person:demo-owner",
+      "agentId": "agent:demo-prover",
+      "delegationCertificateId": "delegation:demo-prover"
+    },
+    "attempt": {
+      "id": "attempt:build-week-reference",
+      "personId": "person:demo-owner",
+      "agentId": "agent:demo-prover",
+      "delegationCertificateId": "delegation:demo-prover",
+      "problemRevisionId": "revision:build-week-reference"
+    },
+    "target": {
+      "declaration": "ProofweaveFixture.true_is_inhabited",
+      "statementHash": "sha256:1d041c6247997b9ff8c746d2d71471ef4fd3c86e8f795616421b462c36c36e2a"
+    },
+    "artifactBundleHash": "sha256:bef5c21351d09120ca1fa2c36f4614b77c45a931dcd08a6740482d81750b162f",
+    "bundle": {
+      "manifestHash": "sha256:bef5c21351d09120ca1fa2c36f4614b77c45a931dcd08a6740482d81750b162f",
+      "dependencyReceipts": []
+    },
+    "run": {
+      "id": "run:build-week-reference",
+      "requestHash": "sha256:b146132a755d652b737909945623ef6e6bfcf0258525c8fb146d5c3db3246231",
+      "resultHash": "sha256:78860f63479e0f8ce2e02e22baf878ebe247716ab3adf01ad2312ad4cb2abf40",
+      "status": "succeeded",
+      "kernelStatus": "accepted"
+    },
+    "claims": [
+      {
+        "claimType": "bundle_reproducible",
+        "verificationAttestationId": "attestation:build-week:bundle_reproducible",
+        "verificationAttestationHash": "sha256:573139d09c14f4b19bffb0f4c37d80eadac2379b1c5c6645df1095d70b271675",
+        "artifactBundleHash": "sha256:bef5c21351d09120ca1fa2c36f4614b77c45a931dcd08a6740482d81750b162f",
+        "reviewerPersonId": "person:demo-reviewer",
+        "reviewerAgentId": "agent:demo-reviewer",
+        "reviewerDelegationCertificateId": "delegation:demo-reviewer",
+        "decision": "attested"
+      },
+      {
+        "claimType": "kernel_accepted",
+        "verificationAttestationId": "attestation:build-week:kernel_accepted",
+        "verificationAttestationHash": "sha256:a8a153e7ea1d2a582be33d6e83caf3c16357809c5e5efd85b98b16b7eb7c9827",
+        "artifactBundleHash": "sha256:bef5c21351d09120ca1fa2c36f4614b77c45a931dcd08a6740482d81750b162f",
+        "reviewerPersonId": "person:demo-reviewer",
+        "reviewerAgentId": "agent:demo-reviewer",
+        "reviewerDelegationCertificateId": "delegation:demo-reviewer",
+        "decision": "attested"
+      },
+      {
+        "claimType": "project_accepted",
+        "verificationAttestationId": "attestation:build-week:project_accepted",
+        "verificationAttestationHash": "sha256:c6a6ad242eb5952fb6de79515f516340889e81fb9ba1b87b512df61ef8f32ad6",
+        "artifactBundleHash": "sha256:bef5c21351d09120ca1fa2c36f4614b77c45a931dcd08a6740482d81750b162f",
+        "reviewerPersonId": "person:demo-curator",
+        "reviewerAgentId": "agent:demo-curator",
+        "reviewerDelegationCertificateId": "delegation:demo-curator",
+        "decision": "attested"
+      }
+    ],
+    "issuedAt": "2026-07-14T06:33:00Z",
+    "policyVersion": "pw-receipt-policy-v1",
+    "issuerKeyId": "issuer:build-week-reference",
+    "issuerPublicKey": "UyTlJI7N9CbBy9LxzcIkrVfgrXw-iMm8Oak2ng-wzRU",
+    "payloadHash": "sha256:9292d2a004225cd5803a1e2257139f52ffce458e4cbe62a06aaec0e7b948c877",
+    "issuerSignature": "R-DN4NVZj_IJgL4bqhn6wqfFlwZT7RS3319VUAAGFQeP_47cehKGqEH739GAQVVIwMqBj0pdskRUzvBBSTW_Dg"
+  },
+  "receiptHash": "sha256:27cce27fa5cf5212e3509e35798fe948cef80f8ac9431a697ca408e0dacdfdd7",
+  "disclosure": "This is a checked reference fixture generated by the local Lean runner path. It is not a live network contribution or evidence that the hosted Runner is deployed."
+}

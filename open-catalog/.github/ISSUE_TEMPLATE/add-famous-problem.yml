@@ -1,0 +1,58 @@
+name: Add a famous problem
+description: Propose a source-pinned formal target with a dated prior-work review.
+title: "[Problem]: "
+labels: ["catalog", "intake-review"]
+body:
+  - type: markdown
+    attributes:
+      value: Read `policy/famous-problem-intake.md` before submitting. A title or Lean statement alone is not enough.
+  - type: input
+    id: canonical-name
+    attributes:
+      label: Canonical name and exact variant
+    validations:
+      required: true
+  - type: textarea
+    id: statement
+    attributes:
+      label: Informal statement and scope
+      description: Explain distinctions from nearby variants.
+    validations:
+      required: true
+  - type: textarea
+    id: prior-work
+    attributes:
+      label: Original source and previous best work
+      description: Include stable links or identifiers for the original statement, best known result, solved cases, and counterexamples.
+    validations:
+      required: true
+  - type: textarea
+    id: freshness
+    attributes:
+      label: Frontier search and as-of date
+      description: List databases, repositories, search terms, primary sources inspected, and the ISO date through which you checked.
+    validations:
+      required: true
+  - type: textarea
+    id: formal-target
+    attributes:
+      label: Formal target provenance
+      description: Repository, commit, declaration, file hash, Lean toolchain, mathlib revision, and license.
+    validations:
+      required: true
+  - type: textarea
+    id: fidelity
+    attributes:
+      label: Statement-fidelity notes
+      description: Explain why the formal statement represents the intended mathematics and record any gaps.
+    validations:
+      required: true
+  - type: checkboxes
+    id: boundaries
+    attributes:
+      label: Review boundaries
+      options:
+        - label: I understand that source pinning is not Proofweave verification.
+          required: true
+        - label: I disclosed uncertainty and conflicts of interest.
+          required: true

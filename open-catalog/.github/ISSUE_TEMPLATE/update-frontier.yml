@@ -1,0 +1,45 @@
+name: Update frontier status
+description: Record newer mathematical progress or correct a stale frontier review.
+title: "[Frontier update]: "
+labels: ["catalog", "frontier-review"]
+body:
+  - type: input
+    id: slug
+    attributes:
+      label: Catalog slug
+    validations:
+      required: true
+  - type: textarea
+    id: changed
+    attributes:
+      label: What changed?
+      description: State whether this changes open/solved status, best known bounds, a special case, or statement fidelity.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Primary evidence
+      description: Provide DOI, arXiv, journal, official repository, or other stable primary-source links.
+    validations:
+      required: true
+  - type: input
+    id: checked-through
+    attributes:
+      label: Literature checked through
+      placeholder: YYYY-MM-DD
+    validations:
+      required: true
+  - type: textarea
+    id: search-scope
+    attributes:
+      label: Search scope and conflicting accounts
+    validations:
+      required: true
+  - type: checkboxes
+    id: conflicts
+    attributes:
+      label: Independence
+      options:
+        - label: I disclosed whether I am an author or beneficiary of the cited work.
+          required: true

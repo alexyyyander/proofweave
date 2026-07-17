@@ -1,0 +1,171 @@
+import assert from "node:assert/strict";
+import test from "node:test";
+import {
+  TrustedRunnerProcess,
+} from "../services/lean-runner/trusted-runner-process.mjs";
+import { RunnerJobAuthenticationError } from "../services/lean-runner/queue.mjs";
+
+test("trusted Runner renews its lease and acknowledges only after durable execution", async () => {
+  const renewed = deferred();
+  let sleepCalls = 0;
+  const queue = fakeQueue({
+    deliveryAttempt: 1,
+    async renew(input) {
+      this.renewed.push(input);
+      renewed.resolve();
+      return { ...this.delivery.lease, expiresAt: "2026-07-13T00:05:00.000Z" };
+    },
+  });
+  const audits = [];
+  const process = new TrustedRunnerProcess({
+    queue,
+    authenticator: { async authenticate(message) { return { ...message, authenticated: true }; } },
+    async execute(message, { beforeFinalize }) {
+      assert.equal(message.authenticated, true);
+      await renewed.promise;
+      await beforeFinalize();
+    },
+    consumerId: "runner:trusted-test",
+    leaseDurationSeconds: 60,
+    heartbeatSeconds: 10,
+    now: () => new Date("2026-07-13T00:00:01Z"),
+    sleep: async () => {
+      if (sleepCalls++ === 0) return;
+      await new Promise(() => {});
+    },
+    emit: (record) => audits.push(record),
+  });
+
+  const result = await process.processNext();
+  assert.equal(result.outcome, "acknowledged");
+  assert.equal(queue.renewed.length, 2);
+  assert.equal(queue.acknowledged.length, 1);
+  assert.equal(queue.released.length, 0);
+  assert.equal(audits.length, 1);
+  assert.equal(Object.hasOwn(audits[0], "runId"), false);
+});
+
+test("trusted Runner retries execution failures with bounded backoff", async () => {
+  const queue = fakeQueue({ deliveryAttempt: 2 });
+  const process = new TrustedRunnerProcess({
+    queue,
+    authenticator: { async authenticate(message) { return message; } },
+    async execute() {
+      const error = new Error("sensitive provider detail");
+      error.name = "SandboxTransportError";
+      throw error;
+    },
+    consumerId: "runner:trusted-test",
+    leaseDurationSeconds: 60,
+    heartbeatSeconds: 10,
+    retryDelaySeconds: 30,
+    now: () => new Date("2026-07-13T00:00:01Z"),
+    sleep: async () => new Promise(() => {}),
+  });
+
+  const result = await process.processNext();
+  assert.deepEqual(result, {
+    outcome: "retried",
+    deliveryAttempt: 2,
+    retryDelaySeconds: 60,
+    errorCode: "sandbox_transport_error",
+  });
+  assert.equal(queue.released[0].availableAt, "2026-07-13T00:01:01.000Z");
+  assert.equal(JSON.stringify(queue.released).includes("sensitive provider detail"), false);
+});
+
+test("trusted Runner dead-letters invalid signatures and exhausted deliveries", async () => {
+  const authenticationQueue = fakeQueue({ deliveryAttempt: 1 });
+  const invalidMessageProcess = new TrustedRunnerProcess({
+    queue: authenticationQueue,
+    authenticator: { async authenticate() { throw new RunnerJobAuthenticationError("invalid signature"); } },
+    execute: async () => assert.fail("invalid messages must never execute"),
+    consumerId: "runner:trusted-test",
+    leaseDurationSeconds: 60,
+    heartbeatSeconds: 10,
+    now: () => new Date("2026-07-13T00:00:01Z"),
+    sleep: async () => new Promise(() => {}),
+  });
+  assert.equal((await invalidMessageProcess.processNext()).outcome, "dead_lettered");
+  assert.equal(authenticationQueue.deadLetters[0].errorCode, "authentication_failed");
+
+  const exhaustedQueue = fakeQueue({ deliveryAttempt: 3 });
+  const exhaustedProcess = new TrustedRunnerProcess({
+    queue: exhaustedQueue,
+    authenticator: { async authenticate(message) { return message; } },
+    execute: async () => { throw new Error("execution failed"); },
+    consumerId: "runner:trusted-test",
+    leaseDurationSeconds: 60,
+    heartbeatSeconds: 10,
+    maxDeliveryAttempts: 3,
+    now: () => new Date("2026-07-13T00:00:01Z"),
+    sleep: async () => new Promise(() => {}),
+  });
+  assert.equal((await exhaustedProcess.processNext()).outcome, "dead_lettered");
+  assert.equal(exhaustedQueue.released.length, 0);
+  assert.equal(exhaustedQueue.deadLetters.length, 1);
+
+  const overLimitQueue = fakeQueue({ deliveryAttempt: 4 });
+  const overLimitProcess = new TrustedRunnerProcess({
+    queue: overLimitQueue,
+    authenticator: { async authenticate() { assert.fail("an exhausted delivery must not authenticate"); } },
+    execute: async () => assert.fail("an exhausted delivery must not execute"),
+    consumerId: "runner:trusted-test",
+    leaseDurationSeconds: 60,
+    heartbeatSeconds: 10,
+    maxDeliveryAttempts: 3,
+    now: () => new Date("2026-07-13T00:00:01Z"),
+  });
+  const overLimit = await overLimitProcess.processNext();
+  assert.equal(overLimit.outcome, "dead_lettered");
+  assert.equal(overLimit.errorCode, "delivery_attempts_exhausted");
+});
+
+function fakeQueue({ deliveryAttempt, renew } = {}) {
+  const queue = {
+    delivery: {
+      message: { runId: "run:trusted-test" },
+      lease: {
+        id: "lease:trusted-test",
+        consumerId: "runner:trusted-test",
+        claimedAt: "2026-07-13T00:00:00Z",
+        expiresAt: "2026-07-13T00:01:00Z",
+        deliveryAttempt,
+      },
+    },
+    claimed: false,
+    renewed: [],
+    acknowledged: [],
+    released: [],
+    deadLetters: [],
+    async claim() {
+      if (this.claimed) return null;
+      this.claimed = true;
+      return this.delivery;
+    },
+    async renew(input) {
+      this.renewed.push(input);
+      return this.delivery.lease;
+    },
+    async acknowledge(input) {
+      this.acknowledged.push(input);
+      return this.delivery.message;
+    },
+    async release(input) {
+      this.released.push(input);
+      return this.delivery.message;
+    },
+    async deadLetter(input) {
+      this.deadLetters.push(input);
+      return this.delivery.message;
+    },
+  };
+  if (renew) queue.renew = renew;
+  return queue;
+}
+
+function deferred() {
+  let resolve;
+  const promise = new Promise((complete) => { resolve = complete; });
+  return { promise, resolve };
+}

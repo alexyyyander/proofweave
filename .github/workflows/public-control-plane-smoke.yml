@@ -1,0 +1,51 @@
+name: Public control plane smoke
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    name: Verify the deployed public boundary
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      BASE_URL: https://proofweave-public-demo.proofweave-research.workers.dev
+    steps:
+      - name: Verify public pages and Turso catalog
+        shell: bash
+        run: |
+          set -euo pipefail
+          home="$(curl --fail --show-error --silent --max-time 45 "$BASE_URL/")"
+          sign_in="$(curl --fail --show-error --silent --max-time 45 "$BASE_URL/sign-in")"
+          catalog="$(curl --fail --show-error --silent --max-time 45 "$BASE_URL/api/catalog")"
+          grep -qi "Proofweave" <<<"$home"
+          grep -q "temporary Demo Person" <<<"$sign_in"
+          jq -e '.records | length > 0' <<<"$catalog" >/dev/null
+
+      - name: Verify OAuth PKCE metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          metadata="$(curl --fail --show-error --silent --max-time 45 "$BASE_URL/.well-known/oauth-authorization-server")"
+          jq -e --arg base "$BASE_URL" '
+            .issuer == $base and
+            .authorization_endpoint == ($base + "/authorize") and
+            .token_endpoint == ($base + "/token") and
+            (.code_challenge_methods_supported | index("S256") != null)
+          ' <<<"$metadata" >/dev/null
+
+      - name: Verify unauthenticated MCP challenge
+        shell: bash
+        run: |
+          set -euo pipefail
+          headers="$(mktemp)"
+          status="$(curl --show-error --silent --max-time 45 -D "$headers" -o /dev/null -w '%{http_code}' \
+            -X POST \
+            -H 'Content-Type: application/json' \
+            --data '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"proofweave-smoke","version":"1.0.0"}}}' \
+            "$BASE_URL/mcp")"
+          test "$status" = "401"
+          grep -qi '^www-authenticate: Bearer' "$headers"
