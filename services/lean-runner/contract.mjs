@@ -42,6 +42,13 @@ export {
 } from "./cloudflare-container-policy.mjs";
 
 export {
+  createE2BSandboxContainerFactoryFromEnvironment,
+  E2BSandboxContainer,
+  E2BSandboxContainerError,
+  E2BSandboxContainerFactory,
+} from "./e2b-sandbox-container.mjs";
+
+export {
   createModalSandboxContainerFactoryFromEnvironment,
   ModalSandboxContainer,
   ModalSandboxContainerError,
@@ -49,6 +56,7 @@ export {
 } from "./modal-sandbox-container.mjs";
 
 export {
+  createTrustedRunnerContainerFactoryFromEnvironment,
   createTrustedRunnerRuntime,
   createTrustedRunnerRuntimeFromEnvironment,
   TrustedRunnerProcess,

@@ -40,6 +40,14 @@ See [the runner contract](../../docs/runner-contract.md) for the non-negotiable
 security and evidence boundaries, and [the Run state contract](../../docs/run-state-contract.md)
 for queue/start/cancellation result semantics.
 
+For the no-card hosted alpha,
+[`e2b-sandbox-container.mjs`](e2b-sandbox-container.mjs) creates one secure,
+private, no-egress E2B Sandbox per Run behind the same Container `fetch`
+contract. A protected GitHub Actions workflow invokes the trusted process once,
+while all Turso, E2B, control-plane, and result-signing credentials stay outside
+submitted Lean. Provider selection is explicit; the existing Modal adapter is
+retained as an optional deployment target.
+
 The checked-in [Lean fixtures](../../tests/fixtures/lean/README.md) validate
 success, compiler-error, and mandatory-`sorry`-audit cases with local Lean.
 They are not an isolated runner and are intentionally outside the normal CI

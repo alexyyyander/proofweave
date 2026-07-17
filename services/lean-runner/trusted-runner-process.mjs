@@ -5,6 +5,7 @@ import { D1InlineRunnerBundleResolver } from "./d1-inline-runner-bundle-resolver
 import { D1InlineRunnerOutputStore } from "./d1-inline-runner-output-store.mjs";
 import { D1RunnerLeaseQueue } from "./d1-runner-lease-queue.mjs";
 import { D1RunStore } from "./d1-run-store.mjs";
+import { createE2BSandboxContainerFactoryFromEnvironment } from "./e2b-sandbox-container.mjs";
 import { createModalSandboxContainerFactoryFromEnvironment } from "./modal-sandbox-container.mjs";
 import { PinnedRunnerImageRegistry } from "./runner-image-policy.mjs";
 import { RunnerContainerExecutionClient } from "./runner-container-execution-client.mjs";
@@ -32,7 +33,7 @@ export class TrustedRunnerProcessConfigurationError extends Error {
 
 /**
  * Poll one durable lease at a time and execute it through an authenticated
- * private Sandbox. This process owns database, Modal, and result-signing
+ * private Sandbox. This process owns database, provider, and result-signing
  * credentials; the Sandbox receives none of them.
  */
 export class TrustedRunnerProcess {
@@ -253,7 +254,7 @@ export async function createTrustedRunnerRuntime({
     typeof containerFactory.imageReference === "string" &&
     (imageRegistry.images.size !== 1 || !imageRegistry.images.has(containerFactory.imageReference))
   ) {
-    throw new TrustedRunnerProcessConfigurationError("The Modal Sandbox image must be the single image in the Runner allowlist.");
+    throw new TrustedRunnerProcessConfigurationError("The Sandbox image must be the single image in the Runner allowlist.");
   }
   const authenticator = new RunnerJobAuthenticator({
     issuerKeys: parseJsonSetting(environment, "RUNNER_CONTROL_PLANE_ISSUER_KEYS_JSON"),
@@ -326,10 +327,38 @@ export async function createTrustedRunnerRuntime({
   });
 }
 
-/** Create the remote libSQL + Modal deployment adapters from process secrets. */
+/** Select exactly one reviewed Sandbox provider from process secrets. */
+export function createTrustedRunnerContainerFactoryFromEnvironment({
+  environment = process.env,
+  modalClient,
+  e2bSandboxApi,
+  fetcher = globalThis.fetch,
+  sleep = wait,
+} = {}) {
+  const provider = requireSetting(environment, "PROOFWEAVE_RUNNER_PROVIDER").toLowerCase();
+  if (provider === "modal") {
+    return createModalSandboxContainerFactoryFromEnvironment({
+      environment,
+      ...(modalClient ? { client: modalClient } : {}),
+      fetcher,
+    });
+  }
+  if (provider === "e2b") {
+    return createE2BSandboxContainerFactoryFromEnvironment({
+      environment,
+      ...(e2bSandboxApi ? { sandboxApi: e2bSandboxApi } : {}),
+      fetcher,
+      sleep,
+    });
+  }
+  throw new TrustedRunnerProcessConfigurationError("PROOFWEAVE_RUNNER_PROVIDER must be exactly modal or e2b.");
+}
+
+/** Create the remote libSQL + selected Sandbox deployment adapters. */
 export async function createTrustedRunnerRuntimeFromEnvironment({
   environment = process.env,
   modalClient,
+  e2bSandboxApi,
   fetcher = globalThis.fetch,
   now = () => new Date(),
   sleep = wait,
@@ -341,10 +370,12 @@ export async function createTrustedRunnerRuntimeFromEnvironment({
     authToken: requireSetting(environment, "TURSO_AUTH_TOKEN"),
   });
   try {
-    const containerFactory = createModalSandboxContainerFactoryFromEnvironment({
+    const containerFactory = createTrustedRunnerContainerFactoryFromEnvironment({
       environment,
-      ...(modalClient ? { client: modalClient } : {}),
+      modalClient,
+      e2bSandboxApi,
       fetcher,
+      sleep,
     });
     return await createTrustedRunnerRuntime({
       database,
