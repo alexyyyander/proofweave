@@ -2495,6 +2495,17 @@ test("reserves display typography for storytelling surfaces", async () => {
   assert.match(globals, /\.showcase-intro h1 \{[^}]*108px/);
 });
 
+test("keeps information hubs content-driven across viewport heights", async () => {
+  const globals = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+
+  assert.match(
+    globals,
+    /\.information-hub-hero \{[^}]*min-height:\s*0;[^}]*padding:\s*clamp\(54px, 7vh, 76px\)/,
+  );
+  assert.doesNotMatch(globals, /\.information-hub-hero \{[^}]*min-height:\s*430px/);
+  assert.match(globals, /@media \(max-width: 620px\)[\s\S]*\.information-hub-hero \{ padding: 44px 0 38px; \}/);
+});
+
 function base64Url(buffer) {
   const binary = String.fromCharCode(...new Uint8Array(buffer));
   return btoa(binary).replaceAll("+", "-").replaceAll("/", "_").replaceAll("=", "");
