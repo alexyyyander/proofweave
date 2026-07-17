@@ -713,6 +713,7 @@ test("guides a public visitor through the first accountable contribution path", 
 
 test("serves the public research paths", async () => {
   const expectedPageContent = new Map([
+    ["/showcase", /See a proof become[\s\S]*public contribution/i],
     ["/demo", /Watch one Lean proof become/i],
     ["/explore", /Choose a problem worth advancing/i],
     ["/explore/erdos-865", /Erdős Problem 865/i],
@@ -826,6 +827,20 @@ test("serves the public research paths", async () => {
   assert.match(integrationsHtml, /Add the Proofweave Research plugin/i);
   assert.match(integrationsHtml, /Approve one local Agent, once/i);
   assert.doesNotMatch(integrationsHtml, /https:\/\/mcp\.proofweave\.org\/mcp/i);
+});
+
+test("presents the verified reference as a dedicated visual proof journey", async () => {
+  const page = await render("/showcase");
+  assert.equal(page.status, 200);
+  const html = await page.text();
+  assert.match(html, /One theorem · six evidence moments/i);
+  assert.match(html, /Private · this computer/i);
+  assert.match(html, /Public · minimum evidence/i);
+  assert.match(html, /Frontier question/i);
+  assert.match(html, /Independent review/i);
+  assert.match(html, /Contribution Receipt/i);
+  assert.match(html, /Verify the complete chain/i);
+  assert.match(html, /same checked reference bytes, hashes and signatures/i);
 });
 
 test("uses a Google app session for the same stable Person and private account boundary", async () => {
@@ -1002,7 +1017,7 @@ test("publicly verifies the checked Build Week reference evidence", async () => 
 });
 
 test("keeps keyboard users one action away from the main content on critical pages", async () => {
-  for (const pathname of ["/", "/demo", "/explore", "/how-it-works", "/about", "/workbench", "/integrations", "/evidence", "/reviews", "/receipts"]) {
+  for (const pathname of ["/", "/showcase", "/demo", "/explore", "/how-it-works", "/about", "/workbench", "/integrations", "/evidence", "/reviews", "/receipts"]) {
     const response = await render(pathname);
     assert.equal(response.status, 200, `${pathname} should render its keyboard navigation`);
     const html = await response.text();
