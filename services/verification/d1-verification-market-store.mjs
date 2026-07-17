@@ -1,6 +1,7 @@
 import { closedAlphaReviewLimits } from "../../packages/domain/attempt-policy.mjs";
 import { canonicalJson, sha256Canonical } from "../../packages/protocol/canonical-json.mjs";
 import { projectCreditPoolState } from "../../packages/protocol/credit-market.mjs";
+import { normalizeLeanRunnerResult } from "../../packages/protocol/lean-runner.mjs";
 import {
   verificationClaimPolicy,
   verificationMarketClaims,
@@ -54,6 +55,9 @@ export class D1VerificationMarketStore {
     const poolState = await this.requirePoolState(bundle.pool_id);
     if (poolState !== "active") {
       return Object.freeze({ published: false, reason: `pool_${poolState}`, jobs: Object.freeze([]) });
+    }
+    if (!await this.hasAcceptedLeanResult(bundle)) {
+      return Object.freeze({ published: false, reason: "lean_not_accepted", jobs: Object.freeze([]) });
     }
 
     for (const policy of verificationMarketClaims) {
@@ -308,6 +312,65 @@ export class D1VerificationMarketStore {
        ORDER BY claim_type ASC`,
     ).bind(artifactBundleManifestHash).all();
     return (rows.results ?? []).map(toStoredJob);
+  }
+
+  async bundleReviewStatus(artifactBundleManifestHash) {
+    requireSha256(artifactBundleManifestHash, "artifactBundleManifestHash");
+    const rows = await this.database.prepare(
+      `SELECT job.claim_type, job.reward_weight, claim.id AS claim_id,
+              assignment.status AS assignment_status
+       FROM verification_market_jobs AS job
+       LEFT JOIN verification_market_job_claims AS claim ON claim.job_id = job.id
+       LEFT JOIN verification_assignments AS assignment ON assignment.id = claim.assignment_id
+       WHERE job.artifact_bundle_manifest_hash = ?
+       ORDER BY job.claim_type ASC`,
+    ).bind(artifactBundleManifestHash).all();
+    const jobs = (rows.results ?? []).map((row) => Object.freeze({
+      claimType: row.claim_type,
+      rewardWeight: Number(row.reward_weight),
+      state: !row.claim_id ? "open" : row.assignment_status === "completed" ? "completed" : "claimed",
+    }));
+    return Object.freeze({
+      totalJobs: jobs.length,
+      openJobs: jobs.filter((job) => job.state === "open").length,
+      claimedJobs: jobs.filter((job) => job.state === "claimed").length,
+      completedJobs: jobs.filter((job) => job.state === "completed").length,
+      jobs: Object.freeze(jobs),
+    });
+  }
+
+  async hasAcceptedLeanResult(bundle) {
+    const rows = await this.database.prepare(
+      `SELECT run.id, run.attempt_id, run.artifact_bundle_hash, run.state,
+              run.runner_result_hash, result.result_hash, result.canonical_result
+       FROM runs AS run
+       INNER JOIN run_results AS result ON result.run_id = run.id
+       WHERE run.artifact_bundle_hash = ?
+       ORDER BY run.finished_at DESC, run.id ASC`,
+    ).bind(bundle.manifest_hash).all();
+    for (const row of rows.results ?? []) {
+      let result;
+      try {
+        result = normalizeLeanRunnerResult(JSON.parse(row.canonical_result));
+      } catch {
+        throw new VerificationMarketValidationError("Stored Lean Runner evidence is not a valid canonical result.");
+      }
+      const resultHash = await sha256Canonical(result);
+      if (
+        canonicalJson(result) !== row.canonical_result ||
+        resultHash !== row.result_hash ||
+        resultHash !== row.runner_result_hash ||
+        result.jobId !== row.id ||
+        result.attemptId !== row.attempt_id ||
+        row.attempt_id === null ||
+        row.artifact_bundle_hash !== bundle.manifest_hash ||
+        result.artifacts.manifestHash !== bundle.manifest_hash
+      ) {
+        throw new VerificationMarketValidationError("Stored Lean Runner evidence failed its immutable integrity check.");
+      }
+      if (row.state === "succeeded" && result.status === "succeeded" && result.kernelStatus === "accepted") return true;
+    }
+    return false;
   }
 
   async requirePoolState(poolId) {

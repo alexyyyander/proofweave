@@ -256,6 +256,27 @@ async function insertControlledEvidenceFixture() {
     artifacts: { manifestHash: manifest.contentHash, stdoutHash: stdout.contentHash, stderrHash: stderr.contentHash },
   };
   const replayRunnerResultHash = await sha256Canonical(replayRunnerResult);
+  const ownerRunnerResult = {
+    ...replayRunnerResult,
+    jobId: "run:controlled-evidence",
+    requestHash: hash("f"),
+    artifacts: { manifestHash: manifest.contentHash, stdoutHash: stdout.contentHash, stderrHash: stderr.contentHash },
+  };
+  const ownerRunnerResultHash = await sha256Canonical(ownerRunnerResult);
+  const poolCreatedPayload = {
+    protocolVersion: "pw-credit-pool-event-v1",
+    poolId: "pool:controlled-evidence",
+    sequence: 1,
+    eventType: "created",
+    occurredAt: "2026-07-13T01:59:58Z",
+  };
+  const poolActivatedPayload = {
+    protocolVersion: "pw-credit-pool-event-v1",
+    poolId: "pool:controlled-evidence",
+    sequence: 2,
+    eventType: "activated",
+    occurredAt: "2026-07-13T01:59:59Z",
+  };
   const replayEvidence = {
     protocolVersion: "pw-verification-replay-evidence-v1",
     id: "verification-replay-evidence:verification-replay:controlled-evidence",
@@ -293,6 +314,18 @@ async function insertControlledEvidenceFixture() {
       ["revision:controlled-evidence", "project:controlled-evidence", "snapshot:controlled-evidence", "Proofweave.Evidence.target", "controlled-evidence-target", 1, "Controlled evidence target", "logic", "research_open", "fixture", "theorem target : True := by trivial"],
     ],
     [
+      "INSERT INTO problem_credit_pools (id, problem_revision_id, policy_version, total_credits, sponsor_label, created_at) VALUES (?, ?, ?, ?, ?, ?)",
+      ["pool:controlled-evidence", "revision:controlled-evidence", "pw-credit-market-v1", 5_000, "Controlled evidence pilot", poolCreatedPayload.occurredAt],
+    ],
+    [
+      "INSERT INTO problem_credit_pool_events (id, pool_id, sequence, event_type, payload_hash, canonical_payload, occurred_at) VALUES (?, ?, ?, ?, ?, ?, ?)",
+      ["pool-event:controlled-evidence:created", "pool:controlled-evidence", 1, "created", await sha256Canonical(poolCreatedPayload), canonicalJson(poolCreatedPayload), poolCreatedPayload.occurredAt],
+    ],
+    [
+      "INSERT INTO problem_credit_pool_events (id, pool_id, sequence, event_type, payload_hash, canonical_payload, occurred_at) VALUES (?, ?, ?, ?, ?, ?, ?)",
+      ["pool-event:controlled-evidence:activated", "pool:controlled-evidence", 2, "activated", await sha256Canonical(poolActivatedPayload), canonicalJson(poolActivatedPayload), poolActivatedPayload.occurredAt],
+    ],
+    [
       `INSERT INTO agent_attempts (
         id, person_id, problem_revision_id, agent_label, status, idempotency_key, created_at, updated_at
       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -310,9 +343,9 @@ async function insertControlledEvidenceFixture() {
         id, attempt_id, artifact_bundle_hash, request_hash, idempotency_key, state,
         queued_at, started_at, finished_at, runner_result_hash, updated_at
       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      ["run:controlled-evidence", bundle.attemptId, manifest.contentHash, hash("f"), "controlled-evidence-run", "succeeded", now, now, now, hash("0"), now],
+      ["run:controlled-evidence", bundle.attemptId, manifest.contentHash, hash("f"), "controlled-evidence-run", "succeeded", now, now, now, ownerRunnerResultHash, now],
     ],
-    ["INSERT INTO run_results (run_id, result_hash, canonical_result, received_at) VALUES (?, ?, ?, ?)", ["run:controlled-evidence", hash("0"), '{"status":"succeeded","kernelStatus":"accepted"}', now]],
+    ["INSERT INTO run_results (run_id, result_hash, canonical_result, received_at) VALUES (?, ?, ?, ?)", ["run:controlled-evidence", ownerRunnerResultHash, canonicalJson(ownerRunnerResult), now]],
     ["INSERT INTO runner_output_artifacts (id, run_id, role, content_hash, object_key, byte_length, content_type) VALUES (?, ?, ?, ?, ?, ?, ?)", ["runner-output:controlled-evidence:stdout", "run:controlled-evidence", "stdout", stdout.contentHash, stdout.objectKey, stdout.byteLength, stdout.contentType]],
     ["INSERT INTO runner_output_artifacts (id, run_id, role, content_hash, object_key, byte_length, content_type) VALUES (?, ?, ?, ?, ?, ?, ?)", ["runner-output:controlled-evidence:stderr", "run:controlled-evidence", "stderr", stderr.contentHash, stderr.objectKey, stderr.byteLength, stderr.contentType]],
     [
@@ -1053,7 +1086,7 @@ test("imports the pinned catalog idempotently and serves provenance through the 
   const pilotMarketResponse = await render("/api/catalog/erdos-865-k2/credit-market");
   assert.equal(pilotMarketResponse.status, 200);
   const pilotMarketPayload = await pilotMarketResponse.json();
-  assert.equal(pilotMarketPayload.market.pool.state, "draft");
+  assert.equal(pilotMarketPayload.market.pool.state, "active");
   assert.equal(pilotMarketPayload.market.pool.totalCredits, 10_000);
   assert.equal(pilotMarketPayload.market.pool.sponsorLabel, "Proofweave pilot");
   assert.deepEqual(
@@ -1373,8 +1406,44 @@ test("limits Bundle and Runner evidence to the Attempt owner or assigned reviewe
   assert.equal(ownerPage.status, 200);
   const ownerHtml = await ownerPage.text();
   assert.match(ownerHtml, /Independent review outcomes/i);
+  assert.match(ownerHtml, /Send this exact Bundle to independent review/i);
   assert.match(ownerHtml, /Integrity flag/i);
   assert.doesNotMatch(ownerHtml, /Controlled evidence reviewer/i);
+
+  const reviewerSubmit = await render(
+    `/api/me/evidence/bundles/${encodeURIComponent(fixture.manifestHash)}/submit-review`,
+    { method: "POST", headers: fixture.reviewerHeaders },
+  );
+  assert.equal(reviewerSubmit.status, 403);
+  const ownerSubmit = await render(
+    `/api/me/evidence/bundles/${encodeURIComponent(fixture.manifestHash)}/submit-review`,
+    { method: "POST", headers: fixture.ownerHeaders },
+  );
+  assert.equal(ownerSubmit.status, 200);
+  assert.match(ownerSubmit.headers.get("cache-control") ?? "", /private, no-store/i);
+  const ownerSubmitPayload = await ownerSubmit.json();
+  assert.equal(ownerSubmitPayload.reviewMarket.published, true);
+  assert.deepEqual(ownerSubmitPayload.reviewMarket.status, {
+    totalJobs: 3,
+    openJobs: 3,
+    claimedJobs: 0,
+    completedJobs: 0,
+    jobs: [
+      { claimType: "bundle_reproducible", rewardWeight: 1, state: "open" },
+      { claimType: "novelty_reviewed", rewardWeight: 2, state: "open" },
+      { claimType: "statement_faithful", rewardWeight: 2, state: "open" },
+    ],
+  });
+  const ownerSubmitAgain = await render(
+    `/api/me/evidence/bundles/${encodeURIComponent(fixture.manifestHash)}/submit-review`,
+    { method: "POST", headers: fixture.ownerHeaders },
+  );
+  assert.equal(ownerSubmitAgain.status, 200);
+  assert.equal((await ownerSubmitAgain.json()).reviewMarket.status.totalJobs, 3);
+  const ownerPublishedPage = await render(`/evidence/${encodeURIComponent(fixture.manifestHash)}`, { headers: fixture.ownerHeaders });
+  const ownerPublishedHtml = await ownerPublishedPage.text();
+  assert.match(ownerPublishedHtml, /Independent review work is open/i);
+  assert.match(ownerPublishedHtml, /3(?:<!-- -->)? jobs/i);
 
   const ownerPatch = await render(`/api/me/evidence/bundles/${encodeURIComponent(fixture.manifestHash)}/artifacts/sourcePatch`, { headers: fixture.ownerHeaders });
   assert.equal(ownerPatch.status, 200);

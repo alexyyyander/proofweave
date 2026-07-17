@@ -38,12 +38,12 @@ export function VerificationMarketBoard({
 
   return <section className="verification-market" aria-labelledby="verification-market-title">
     <div className="verification-market-heading">
-      <div><p className="eyebrow">Open verification work</p><h2 id="verification-market-title">Choose an exact claim to check.</h2><p>Every job is pinned to one staged Bundle and one active credit pool. Claiming creates an immutable accepted assignment; only a completed, evidence-bearing review can later share the verification bucket.</p></div>
+      <div><p className="eyebrow">Open verification work</p><h2 id="verification-market-title">Choose an exact claim to check.</h2><p>Every job is pinned to one Lean-accepted Bundle and one active credit pool. Claiming creates an immutable accepted assignment; only a completed, evidence-bearing review can later share the verification bucket.</p></div>
       <span className="record-chip">{jobs.length} open</span>
     </div>
     {error && <p className="review-message is-error" role="status">{error}</p>}
     {jobs.length === 0
-      ? <div className="verification-market-empty"><strong>No open review work right now.</strong><p>Jobs appear here only after an active pool receives a complete staged Bundle. Draft pools and provisional checkpoints never create public work.</p></div>
+      ? <div className="verification-market-empty"><strong>No open review work right now.</strong><p>Jobs appear here only after an active pool receives a complete Bundle with accepted isolated Lean evidence. Draft pools, staged-only Bundles, and provisional checkpoints never create public work.</p></div>
       : <div className="verification-job-grid">{jobs.map((job) => <article className="verification-job-card" key={job.id}>
         <div className="verification-job-top"><span className="micro-label">{job.target.projectSlug} · independent review</span><span className="review-share-chip">{job.rewardWeight} {job.rewardWeight === 1 ? "share" : "shares"}</span></div>
         <h3>{job.label}</h3>
