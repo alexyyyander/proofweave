@@ -34,14 +34,4 @@ export const navigationGroups = [
       { href: "/terms", label: "Terms" },
     ],
   },
-  {
-    label: "Workspace",
-    items: [
-      { href: "/workbench", label: "Research" },
-      { href: "/reviews", label: "Reviews" },
-      { href: "/receipts", label: "Receipts" },
-      { href: "/profile", label: "Profile" },
-      { href: "/settings", label: "Settings" },
-    ],
-  },
 ] as const;
