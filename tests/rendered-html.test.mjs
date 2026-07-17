@@ -1246,9 +1246,21 @@ test("scopes closed-alpha review assignments to the assigned Person and preserve
   const pageHtml = await page.text();
   assert.match(pageHtml, /Verify evidence\. Become eligible for review credit\./i);
   assert.match(pageHtml, /Open verification work/i);
-  assert.match(pageHtml, /View audit trail/i);
+  assert.match(pageHtml, /Open review workspace/i);
   assert.match(pageHtml, /Open account menu for Review Person/i);
   assert.match(pageHtml, />My profile/i);
+
+  const reviewWorkspace = await render("/reviews/assignment:rendered-review", { headers: reviewerHeaders });
+  assert.equal(reviewWorkspace.status, 200);
+  const reviewWorkspaceHtml = await reviewWorkspace.text();
+  assert.match(reviewWorkspaceHtml, /Accept this bounded review/i);
+  assert.match(reviewWorkspaceHtml, /Evidence brief/i);
+  assert.match(reviewWorkspaceHtml, /Immutable history/i);
+  assert.match(reviewWorkspaceHtml, /Accept review/i);
+
+  const signedOutWorkspace = await render("/reviews/assignment:rendered-review");
+  assert.equal(signedOutWorkspace.status, 200);
+  assert.match(await signedOutWorkspace.text(), /Sign in to open this review workspace/i);
 
   const profilePage = await render("/profile", { headers: reviewerHeaders });
   assert.equal(profilePage.status, 200);
@@ -1275,6 +1287,10 @@ test("scopes closed-alpha review assignments to the assigned Person and preserve
   assert.equal(repeatedAccept.status, 200);
   assert.equal((await repeatedAccept.json()).review.assignment.status, "accepted");
 
+  const acceptedWorkspace = await render("/reviews/assignment:rendered-review", { headers: reviewerHeaders });
+  assert.equal(acceptedWorkspace.status, 200);
+  assert.match(await acceptedWorkspace.text(), /Connect a review-scoped Agent/i);
+
   const declineAfterAccept = await render("/api/me/review-assignments/assignment:rendered-review/decline", {
     method: "POST",
     headers: reviewerHeaders,
@@ -1300,14 +1316,22 @@ test("scopes closed-alpha review assignments to the assigned Person and preserve
   assert.equal(completedPage.status, 200);
   const completedHtml = await completedPage.text();
   assert.match(completedHtml, /Changes requested/i);
-  assert.match(completedHtml, /Signed decision/i);
-  assert.doesNotMatch(completedHtml, /A signed attestation is already recorded/i);
+  assert.match(completedHtml, /Inspect review record/i);
+
+  const completedWorkspace = await render("/reviews/assignment:rendered-review", { headers: reviewerHeaders });
+  assert.equal(completedWorkspace.status, 200);
+  const completedWorkspaceHtml = await completedWorkspace.text();
+  assert.match(completedWorkspaceHtml, /Signed decision recorded/i);
+  assert.match(completedWorkspaceHtml, /Changes requested/i);
+  assert.match(completedWorkspaceHtml, new RegExp(signedDecision.evidenceHash.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
 
   const otherPersonHeaders = {
     "oai-authenticated-user-email": "other-reviewer@example.test",
   };
   const hiddenFromOtherPerson = await render("/api/me/review-assignments/assignment:rendered-review", { headers: otherPersonHeaders });
   assert.equal(hiddenFromOtherPerson.status, 404);
+  const hiddenWorkspace = await render("/reviews/assignment:rendered-review", { headers: otherPersonHeaders });
+  assert.equal(hiddenWorkspace.status, 404);
 });
 
 async function completeRenderedReviewWithRequestChanges({ assignmentId, personId, artifactBundleHash }) {
