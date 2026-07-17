@@ -154,6 +154,8 @@ The project does not use `wrangler.jsonc`.
 - `services/lean-runner/e2b-sandbox-container.mjs` adapts one secure,
   no-egress E2B Sandbox to the existing private Container fetch contract;
   the Modal adapter remains an optional provider behind the same boundary.
+- `.github/workflows/build-e2b-lean-runner-image.yml` builds and attests the
+  checksum-bound Lean Core alpha image, then can create its E2B template.
 - `services/lean-runner/d1-runner-lease-queue.mjs` and
   `trusted-runner-process.mjs` provide the external libSQL lease queue,
   heartbeat/recovery loop, signature gate, and trusted result-signing boundary.

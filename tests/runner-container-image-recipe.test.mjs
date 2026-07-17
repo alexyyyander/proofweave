@@ -3,14 +3,18 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 const dockerfileUrl = new URL("../services/lean-runner/Dockerfile", import.meta.url);
+const coreBaseDockerfileUrl = new URL("../services/lean-runner/Dockerfile.core-alpha-base", import.meta.url);
 const dockerignoreUrl = new URL("../.dockerignore", import.meta.url);
 const imageContractUrl = new URL("../docs/runner-container-image.md", import.meta.url);
+const imageWorkflowUrl = new URL("../.github/workflows/build-e2b-lean-runner-image.yml", import.meta.url);
 
 test("Lean Runner image recipe fails closed and keeps its build context minimal", async () => {
-  const [dockerfile, dockerignore, contract] = await Promise.all([
+  const [dockerfile, coreBaseDockerfile, dockerignore, contract, imageWorkflow] = await Promise.all([
     readFile(dockerfileUrl, "utf8"),
+    readFile(coreBaseDockerfileUrl, "utf8"),
     readFile(dockerignoreUrl, "utf8"),
     readFile(imageContractUrl, "utf8"),
+    readFile(imageWorkflowUrl, "utf8"),
   ]);
 
   assert.match(dockerfile, /^ARG RUNNER_BASE_IMAGE$/m);
@@ -21,11 +25,30 @@ test("Lean Runner image recipe fails closed and keeps its build context minimal"
   assert.match(dockerfile, /command -v lean/);
   assert.match(dockerfile, /command -v patch/);
   assert.match(dockerfile, /command -v tar/);
-  assert.match(dockerfile, /command -v zstd/);
+  assert.match(dockerfile, /createZstdDecompress/);
   assert.match(dockerfile, /USER proofweave/);
   assert.match(dockerfile, /ENTRYPOINT \["node", "\/opt\/proofweave\/services\/lean-runner\/container-http-server\.mjs"\]/);
   assert.doesNotMatch(dockerfile, /(?:apt-get|apk add|curl|wget|git clone|npm (?:install|ci))/i);
   assert.doesNotMatch(dockerfile, /ENV\s+PROOFWEAVE_(?:NETWORK_ISOLATED|RESOURCE_LIMITS_ENFORCED)/);
+
+  assert.match(coreBaseDockerfile, /^ARG NODE_BASE_IMAGE$/m);
+  assert.match(coreBaseDockerfile, /^FROM \$\{NODE_BASE_IMAGE\}$/m);
+  assert.match(coreBaseDockerfile, /NODE_BASE_IMAGE must be pinned by sha256 digest/);
+  assert.match(coreBaseDockerfile, /The core-alpha base cannot claim a Mathlib revision/);
+  assert.match(coreBaseDockerfile, /github\.com\/leanprover\/lean4\/releases\/download/);
+  assert.match(coreBaseDockerfile, /sha256sum --check --strict/);
+  assert.match(coreBaseDockerfile, /Installed Lean version does not match the reviewed toolchain/);
+  assert.match(coreBaseDockerfile, /createZstdDecompress/);
+  assert.doesNotMatch(coreBaseDockerfile, /elan-init|git clone|lake exe cache get/);
+
+  assert.match(imageWorkflow, /node@sha256:[a-f0-9]{64}/);
+  assert.match(imageWorkflow, /lean-4\.27\.0-linux\.zip/);
+  assert.match(imageWorkflow, /LEAN_RELEASE_SHA256: [a-f0-9]{64}/);
+  assert.match(imageWorkflow, /network: none/);
+  assert.match(imageWorkflow, /--read-only --network=none/);
+  assert.match(imageWorkflow, /actions\/attest-build-provenance@[a-f0-9]{40}/);
+  assert.match(imageWorkflow, /PROOFWEAVE_E2B_REGISTRY_PASSWORD: \$\{\{ secrets\.GHCR_READ_TOKEN \}\}/);
+  assert.doesNotMatch(imageWorkflow, /PROOFWEAVE_E2B_REGISTRY_PASSWORD: \$\{\{ secrets\.GITHUB_TOKEN \}\}/);
 
   assert.match(dockerignore, /^\*$/m);
   assert.match(dockerignore, /^!packages\/\*\*$/m);

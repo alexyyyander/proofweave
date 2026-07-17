@@ -65,6 +65,21 @@ default limits. The Runner receives only the matching control-plane public key.
 The template is built from the already reviewed Proofweave Runner image, not
 from mutable source or a floating tag:
 
+```text
+GitHub Actions core-alpha image build
+  -> checksum-bound Lean base
+  -> network-disabled final assembly
+  -> GHCR image digest + provenance
+  -> optional private-registry E2B template build
+```
+
+Run `.github/workflows/build-e2b-lean-runner-image.yml` first. The checked-in
+profile supports only Lean Core and records `mathlibRevision=none`; it must not
+verify a Bundle that declares Mathlib. The optional template step authenticates
+E2B's builder to the private GHCR package without placing the registry
+credential in the resulting Sandbox. Use a separate read-only package token;
+never send the workflow's package-write `GITHUB_TOKEN` to E2B.
+
 ```sh
 npm run runner:e2b:template:build
 ```
@@ -83,11 +98,13 @@ executed on the GitHub-hosted machine.
 
 Configure the `proofweave-runner-alpha` GitHub environment:
 
-- secrets: `TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN`, `E2B_API_KEY`, and
+- secrets: `TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN`, `E2B_API_KEY`,
+  `GHCR_READ_TOKEN` (read-only package access), and
   `RUNNER_RESULT_PRIVATE_KEY_JWK`;
 - variables: `PROOFWEAVE_E2B_TEMPLATE_ID`,
   `PROOFWEAVE_E2B_RUNNER_IMAGE`, `RUNNER_APPROVED_IMAGES_JSON`,
-  `RUNNER_CONTROL_PLANE_ISSUER_KEYS_JSON`, and `RUNNER_RESULT_KEY_ID`.
+  `RUNNER_CONTROL_PLANE_ISSUER_KEYS_JSON`, `RUNNER_RESULT_KEY_ID`, and the
+  account name `GHCR_READ_USERNAME`.
 
 The workflow supports manual `workflow_dispatch` and the bounded
 `proofweave_lean_run` repository dispatch event. Until a least-privilege GitHub
@@ -112,8 +129,8 @@ Receipt coordinator still requires the configured independent review policy.
    migrations.
 2. Enrol the Runner result public key; never put its private JWK in the E2B
    template, Sandbox environment, database, or output.
-3. Build the final Runner image by digest, inspect it, then build and record the
-   E2B template id.
+3. Build the final Runner image by digest, inspect its provenance and offline
+   smoke test, then build and record the exact E2B template id.
 4. Exercise E2B creation and confirm the provider reports both disabled
    Internet access and private inbound traffic.
 5. Configure the protected GitHub environment and run one signed fixture with

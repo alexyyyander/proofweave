@@ -20,6 +20,9 @@ digest-required Docker assembly recipe in [`Dockerfile`](Dockerfile); without
 an independently inspected base image and a recorded final digest, it cannot
 become a Runner image. The build and inspection contract is in
 [`docs/runner-container-image.md`](../../docs/runner-container-image.md). It
+also includes [`Dockerfile.core-alpha-base`](Dockerfile.core-alpha-base), a
+checksum-bound Lean Core-only Build Week base that explicitly declares
+`mathlibRevision=none`, plus a GHCR/E2B image build workflow. It
 also contains a source-level Cloudflare Queue consumer in
 [`cloudflare-worker.mjs`](cloudflare-worker.mjs): it composes authenticated
 preflight, exact named-Container transfer, private execution, immutable output
@@ -47,6 +50,8 @@ contract. A protected GitHub Actions workflow invokes the trusted process once,
 while all Turso, E2B, control-plane, and result-signing credentials stay outside
 submitted Lean. Provider selection is explicit; the existing Modal adapter is
 retained as an optional deployment target.
+`.github/workflows/build-e2b-lean-runner-image.yml` produces and attests the
+reviewed GHCR image and can optionally create its private E2B template.
 
 The checked-in [Lean fixtures](../../tests/fixtures/lean/README.md) validate
 success, compiler-error, and mandatory-`sorry`-audit cases with local Lean.
