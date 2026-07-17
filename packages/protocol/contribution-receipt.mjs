@@ -13,7 +13,7 @@ export const contributionKinds = [
 ];
 export const contributionReceiptPolicyVersion = "pw-receipt-policy-v1";
 
-const requiredClaims = Object.freeze([
+export const contributionReceiptRequiredClaimTypes = Object.freeze([
   "bundle_reproducible",
   "kernel_accepted",
   "project_accepted",
@@ -125,7 +125,7 @@ function assertContributionReceiptPolicyNormalized(normalized) {
   if (normalized.bundle.manifestHash !== normalized.artifactBundleHash) {
     throw new ContributionReceiptPolicyError("Contribution Receipt bundle evidence does not match its Artifact Bundle hash.");
   }
-  for (const claimType of requiredClaims) {
+  for (const claimType of contributionReceiptRequiredClaimTypes) {
     const claim = normalized.claims.find((candidate) => candidate.claimType === claimType);
     if (!claim) {
       throw new ContributionReceiptPolicyError(`Contribution Receipt is missing required ${claimType} attestation evidence.`);

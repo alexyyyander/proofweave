@@ -33,8 +33,10 @@ npm run mcp:deploy:preflight -- /secure/path/proofweave-mcp-alpha.json
 ```
 
 The command rejects placeholders, non-HTTPS origins, an invalid D1 identifier,
-and an issuer on the MCP resource origin. It prints the exact gateway binding
-configuration after validation. It does not deploy or create a resource.
+an issuer on the MCP resource origin, and missing or malformed Receipt issuer
+metadata. It prints the exact non-secret gateway binding configuration after
+validation. The Receipt private JWK is never read from this manifest or printed.
+The command does not deploy or create a resource.
 
 If the gateway will later request Runner jobs, prepare the separate Runner
 manifest described in [`runner-deployment-preflight.md`](runner-deployment-preflight.md)
@@ -59,13 +61,14 @@ private-key pairing check before deployment:
 npm run alpha:deploy:keys:verify -- /secure/path/proofweave-mcp-alpha.json /secure/path/proofweave-runner-alpha.json
 ```
 
-It requires `PROOFWEAVE_RUNNER_CONTROL_PLANE_PRIVATE_KEY_JWK` and
-`PROOFWEAVE_RUNNER_RESULT_PRIVATE_KEY_JWK` in that process environment. It
+It requires `PROOFWEAVE_RUNNER_CONTROL_PLANE_PRIVATE_KEY_JWK`,
+`PROOFWEAVE_RUNNER_RESULT_PRIVATE_KEY_JWK`, and
+`PROOFWEAVE_RECEIPT_ISSUER_PRIVATE_KEY_JWK` in that process environment. It
 signs fixed challenge payloads and verifies them against the manifest public
 keys, returning only their key IDs. It never accepts a key on the command line,
 writes a key to disk, or prints a JWK. This proves secret/manifest pairing, not
-that a result public key is already active in the externally provisioned D1
-`runner_keys` registry.
+that the Runner result or Receipt issuer key is already active in the externally
+provisioned D1 registries.
 
 After a deployment is reachable, run the credential-free live check against
 that same manifest:
@@ -87,8 +90,9 @@ separate operator exercise.
 Only after the manifest passes and the following are true may an operator run
 Wrangler deployment commands:
 
-1. The same D1 has all repository migrations (including the opaque remote-MCP
-   rate-limit buckets) and the required owner records.
+1. The same D1 has all repository migrations, including
+   `0035_align_review_market_with_receipt_gates.sql`, the opaque remote-MCP
+   rate-limit buckets, and the required owner records.
 2. `inline_artifact_bytes` is present in the migrated shared D1; evidence is
    content-addressed, immutable, and each object remains within the 1 MB alpha
    limit.
@@ -101,6 +105,11 @@ Wrangler deployment commands:
    and an OAuth browser flow creates a revocable Agent installation.
 6. An integration test confirms a revoked installation’s old token receives no
    MCP access.
+7. Set `RECEIPT_ISSUER_PRIVATE_KEY_JWK` as a gateway secret matching
+   `receipt_issuer.public_key`. The preflight renders the matching key ID,
+   public key, and activation time as non-secret bindings. Supplying only part
+   of the four-value runtime set makes the gateway fail closed; omitting the
+   whole set preserves reviews but leaves closure at `issuer_unavailable`.
 
 If the gateway will expose `request_runner_run`, its manifest `runner` block
 must name the same Queue consumed by the isolated Runner Worker, an exact

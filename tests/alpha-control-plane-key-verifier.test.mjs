@@ -3,15 +3,18 @@ import test from "node:test";
 import { verifyAlphaControlPlaneKeys } from "../scripts/verify-alpha-control-plane-keys.mjs";
 
 async function fixture() {
-  const [controlPlane, runnerResult] = await Promise.all([
+  const [controlPlane, runnerResult, receiptIssuer] = await Promise.all([
+    crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]),
     crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]),
     crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]),
   ]);
-  const [controlPlanePrivateKeyJwk, runnerResultPrivateKeyJwk, controlPlanePublicKey, runnerResultPublicKey] = await Promise.all([
+  const [controlPlanePrivateKeyJwk, runnerResultPrivateKeyJwk, receiptIssuerPrivateKeyJwk, controlPlanePublicKey, runnerResultPublicKey, receiptIssuerPublicKey] = await Promise.all([
     crypto.subtle.exportKey("jwk", controlPlane.privateKey),
     crypto.subtle.exportKey("jwk", runnerResult.privateKey),
+    crypto.subtle.exportKey("jwk", receiptIssuer.privateKey),
     crypto.subtle.exportKey("raw", controlPlane.publicKey),
     crypto.subtle.exportKey("raw", runnerResult.publicKey),
+    crypto.subtle.exportKey("raw", receiptIssuer.publicKey),
   ]);
   const mcpManifest = {
     control_plane: {
@@ -21,6 +24,11 @@ async function fixture() {
     },
     gateway: { worker_name: "proofweave-mcp-gateway-alpha", resource_url: "https://mcp.proofweave.test/mcp" },
     identity: { issuer_url: "https://auth.proofweave.test/" },
+    receipt_issuer: {
+      key_id: "receipt-issuer:closed-alpha",
+      public_key: base64Url(receiptIssuerPublicKey),
+      activated_at: "2026-07-17T00:00:00.000Z",
+    },
     runner: {
       queue_name: "proofweave-runner-jobs-alpha",
       approved_images: [{
@@ -57,7 +65,7 @@ async function fixture() {
       runner_result: { id: "runner:closed-alpha", public_key: base64Url(runnerResultPublicKey) },
     },
   };
-  return { mcpManifest, runnerManifest, controlPlanePrivateKeyJwk, runnerResultPrivateKeyJwk };
+  return { mcpManifest, runnerManifest, controlPlanePrivateKeyJwk, runnerResultPrivateKeyJwk, receiptIssuerPrivateKeyJwk };
 }
 
 test("deployment key verifier proves secret JWKs match reviewed manifest public keys", async () => {
@@ -65,7 +73,18 @@ test("deployment key verifier proves secret JWKs match reviewed manifest public 
   assert.deepEqual(await verifyAlphaControlPlaneKeys(values), {
     controlPlaneKeyId: "control-plane:closed-alpha",
     runnerResultKeyId: "runner:closed-alpha",
+    receiptIssuerKeyId: "receipt-issuer:closed-alpha",
   });
+});
+
+test("deployment key verifier rejects a mismatched Receipt issuer secret", async () => {
+  const values = await fixture();
+  const other = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
+  const otherPrivateKeyJwk = await crypto.subtle.exportKey("jwk", other.privateKey);
+  await assert.rejects(
+    () => verifyAlphaControlPlaneKeys({ ...values, receiptIssuerPrivateKeyJwk: otherPrivateKeyJwk }),
+    /Contribution Receipt signing private key does not match/,
+  );
 });
 
 test("deployment key verifier rejects a secret from another key pair", async () => {

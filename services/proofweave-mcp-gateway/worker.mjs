@@ -515,7 +515,7 @@ function createMcpServer(principal, store, rateLimiter) {
     "submit_verification_attestation",
     {
       title: "Submit a signed verification attestation",
-      description: "Submit an externally signed review-Agent attestation for an assigned Bundle. It is one explicit claim, never a contribution receipt.",
+      description: "Submit one externally signed review-Agent attestation for an assigned Bundle. The client cannot request a Receipt; after storage, the control plane may automatically issue one only when every independent Receipt gate is already satisfied.",
       inputSchema: {
         attestation: z.object({
           protocolVersion: z.literal("pw-verification-attestation-v1"),

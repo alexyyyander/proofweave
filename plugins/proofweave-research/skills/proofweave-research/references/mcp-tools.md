@@ -34,7 +34,7 @@ local-token prototype must not be configured for participant use.
 | `request_verification_replay` | `verification:replay` | A fresh isolated replay for an accepted different-owner assignment; replay evidence is not an attestation. |
 | `get_verification_replay` | `verification:replay` | The exact review Agent's replay Run, event hashes, and terminal evidence. |
 | `prepare_verification_attestation` | local only plus authority read | Locally signs one evidence-bound review decision; never submits, issues a Receipt, or creates credit. |
-| `submit_prepared_verification_attestation` | `verification:write` | After exact owner confirmation, submits the unchanged locally signed review claim; never a Receipt. |
+| `submit_prepared_verification_attestation` | `verification:write` | After exact owner confirmation, submits the unchanged locally signed review claim. The client cannot request a Receipt; the returned closure reports whether the platform is still waiting, blocked, or automatically issued one after all gates passed. |
 
 Use a fresh opaque idempotency key for each intended action. Repeating the same
 request with the same key is safe; sending a different request with that key is
@@ -104,7 +104,9 @@ Use this minimal order when the tools are available:
    replay's terminal evidence hash.
 15. Prepare the signed decision locally, show the owner its complete claim and
    payload hash, then submit only the unchanged draft after
-   `I_CONFIRM_SUBMIT_VERIFICATION` confirmation.
+   `I_CONFIRM_SUBMIT_VERIFICATION` confirmation. Read the returned `closure`:
+   report `receipt_issued` with its Receipt ID, or name the missing/blocked gates.
+   Do not claim that the submitted review itself authored or requested a Receipt.
 
 Good progress text names a local observable fact, for example: “Added
 `finite_density_aux`; `lake env lean` completed locally with no `sorry`; Bundle

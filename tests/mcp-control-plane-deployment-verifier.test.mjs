@@ -17,6 +17,11 @@ const manifest = {
     resource_url: "https://mcp.proofweave.test/mcp",
   },
   identity: { issuer_url: "https://auth.proofweave.test/" },
+  receipt_issuer: {
+    key_id: "receipt-issuer:closed-alpha",
+    public_key: "BAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ",
+    activated_at: "2026-07-17T00:00:00.000Z",
+  },
 };
 
 test("live deployment verifier checks discovery and the unauthenticated MCP challenge without a credential", async () => {

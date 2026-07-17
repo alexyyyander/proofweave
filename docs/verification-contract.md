@@ -139,7 +139,12 @@ and confirms the assignment is addressed to that Person. The verification store
 then performs its existing exact assignment, independence, evidence-hash,
 time-window, revocation, payload-hash, and Ed25519 checks.
 
-The MCP access token is never passed into that D1 adapter, and an attestation
-cannot be used to mint a contribution receipt. This source-level pathway still
-requires a deployed independent identity/consent provider and gateway before it
-is participant-accessible.
+The MCP access token is never passed into that D1 adapter. A submitted
+attestation cannot specify or mint a Receipt directly. After the signed claim
+is durable, an operator-configured coordinator may independently re-read the
+Bundle, primary accepted Runner result, all required different-owner claims,
+attribution, and issuer registry. It deterministically issues a Receipt only
+when the complete policy is satisfied; missing or rejected gates remain
+visible and the review record is never rolled back. This source-level pathway
+still requires a deployed independent identity/consent provider and gateway
+before it is participant-accessible.

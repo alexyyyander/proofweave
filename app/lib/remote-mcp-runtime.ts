@@ -1,6 +1,7 @@
 import { MissingDatabaseBindingError, getD1 } from "@/db";
 import { createD1SitesIdentityRuntime } from "@/services/proofweave-identity/sites-runtime.mjs";
 import { createD1RemoteMcpGatewayRuntime } from "@/services/proofweave-mcp-gateway/runtime.mjs";
+import { env } from "cloudflare:workers";
 
 export function proofweaveMcpResource(request: Request): string {
   return `${new URL(request.url).origin}/mcp`;
@@ -9,10 +10,15 @@ export function proofweaveMcpResource(request: Request): string {
 export async function handleRemoteMcp(request: Request): Promise<Response> {
   try {
     const origin = new URL(request.url).origin;
+    const settings = env as unknown as Record<string, string | undefined>;
     return await createD1RemoteMcpGatewayRuntime({
       database: getD1(),
       resource: `${origin}/mcp`,
       issuer: `${origin}/`,
+      receiptIssuerKeyId: settings.RECEIPT_ISSUER_KEY_ID,
+      receiptIssuerPublicKey: settings.RECEIPT_ISSUER_PUBLIC_KEY,
+      receiptIssuerPrivateKeyJwkJson: settings.RECEIPT_ISSUER_PRIVATE_KEY_JWK,
+      receiptIssuerActivatedAt: settings.RECEIPT_ISSUER_ACTIVATED_AT,
     }).fetch(request);
   } catch (error) {
     return remoteMcpFailure(error);

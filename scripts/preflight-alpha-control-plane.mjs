@@ -28,6 +28,7 @@ export function validateAlphaControlPlaneTopology({ mcpManifest, runnerManifest 
     controlPlane: Object.freeze({ ...mcp.controlPlane }),
     gateway: Object.freeze({ ...mcp.gateway }),
     identity: Object.freeze({ ...mcp.identity }),
+    receiptIssuer: Object.freeze({ ...mcp.receiptIssuer }),
     runner: Object.freeze({
       workerName: runner.runner.workerName,
       queueName: runner.queue.name,

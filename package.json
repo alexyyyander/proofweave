@@ -61,7 +61,7 @@
     "receipt:check": "node --check packages/protocol/contribution-receipt.mjs && node --check packages/protocol/contribution-receipt-lifecycle.mjs && node --test tests/contribution-receipt.test.mjs tests/contribution-receipt-lifecycle.test.mjs",
     "receipt:bundle:check": "node --check packages/protocol/contribution-receipt-verification-bundle.mjs && node --check scripts/verify-receipt-bundle.mjs && node --test tests/contribution-receipt-verification-bundle.test.mjs",
     "receipt:bundle:verify": "node scripts/verify-receipt-bundle.mjs",
-    "receipt:store:check": "node --check services/receipts/d1-contribution-receipt-issuer-key-store.mjs && node --check services/receipts/d1-contribution-receipt-store.mjs && node --test tests/d1-contribution-receipt-issuer-key-store.test.mjs tests/d1-contribution-receipt-store.test.mjs"
+    "receipt:store:check": "node --check services/receipts/d1-contribution-receipt-issuer-key-store.mjs && node --check services/receipts/d1-contribution-receipt-store.mjs && node --check services/receipts/d1-contribution-receipt-coordinator.mjs && node --test tests/d1-contribution-receipt-issuer-key-store.test.mjs tests/d1-contribution-receipt-store.test.mjs"
   },
   "dependencies": {
     "@cloudflare/containers": "^0.3.7",

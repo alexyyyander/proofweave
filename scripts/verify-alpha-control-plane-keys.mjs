@@ -5,6 +5,7 @@ import { validateAlphaControlPlaneTopology } from "./preflight-alpha-control-pla
 
 const controlPlaneSecretName = "PROOFWEAVE_RUNNER_CONTROL_PLANE_PRIVATE_KEY_JWK";
 const runnerResultSecretName = "PROOFWEAVE_RUNNER_RESULT_PRIVATE_KEY_JWK";
+const receiptIssuerSecretName = "PROOFWEAVE_RECEIPT_ISSUER_PRIVATE_KEY_JWK";
 
 /**
  * Prove that deployment-only private JWKs can sign against the public keys
@@ -16,6 +17,7 @@ export async function verifyAlphaControlPlaneKeys({
   runnerManifest,
   controlPlanePrivateKeyJwk,
   runnerResultPrivateKeyJwk,
+  receiptIssuerPrivateKeyJwk,
 } = {}) {
   const topology = validateAlphaControlPlaneTopology({ mcpManifest, runnerManifest });
   await assertPrivateKeyMatches({
@@ -30,9 +32,16 @@ export async function verifyAlphaControlPlaneKeys({
     keyId: topology.runner.runnerResultKeyId,
     role: "Runner result signing",
   });
+  await assertPrivateKeyMatches({
+    privateJwk: receiptIssuerPrivateKeyJwk,
+    publicKey: topology.receiptIssuer.publicKey,
+    keyId: topology.receiptIssuer.keyId,
+    role: "Contribution Receipt signing",
+  });
   return Object.freeze({
     controlPlaneKeyId: topology.runner.controlPlaneKeyId,
     runnerResultKeyId: topology.runner.runnerResultKeyId,
+    receiptIssuerKeyId: topology.receiptIssuer.keyId,
   });
 }
 
@@ -50,8 +59,9 @@ async function main() {
     runnerManifest,
     controlPlanePrivateKeyJwk: readPrivateJwkSecret(controlPlaneSecretName),
     runnerResultPrivateKeyJwk: readPrivateJwkSecret(runnerResultSecretName),
+    receiptIssuerPrivateKeyJwk: readPrivateJwkSecret(receiptIssuerSecretName),
   });
-  process.stdout.write(`Verified deployment private-key pairing for ${keys.controlPlaneKeyId} and ${keys.runnerResultKeyId}.\n`);
+  process.stdout.write(`Verified deployment private-key pairing for ${keys.controlPlaneKeyId}, ${keys.runnerResultKeyId}, and ${keys.receiptIssuerKeyId}.\n`);
 }
 
 async function assertPrivateKeyMatches({ privateJwk, publicKey, keyId, role }) {

@@ -61,12 +61,16 @@ audience-bound to `https://mcp.proofweave.org/mcp`.
 | `get_verification_replay` | `verification:replay` | The selected review Agent's own fresh replay Run and immutable event hashes; after a terminal result, its citeable replay evidence hash |
 | `submit_verification_attestation` | `verification:write` | One externally signed, assignment-bound review claim |
 
-No gateway tool emits `kernel_accepted`, `statement_faithful`,
-`novelty_reviewed`, `project_accepted`, independent review, or a contribution
-receipt automatically. `submit_verification_attestation` only transports an
-already-signed Agent claim: the D1 boundary rechecks its assignment,
-independence, review delegation, event time, evidence-object index, payload
-hash, and Ed25519 signature before recording it. It never issues a receipt.
+No gateway tool accepts a client-authored Receipt or turns an Agent claim into
+Lean truth. `submit_verification_attestation` transports an already-signed
+Agent claim: the D1 boundary rechecks its assignment, independence, review
+delegation, event time, evidence-object index, payload hash, and Ed25519
+signature before recording it. Only after that write is durable may the
+operator-configured coordinator re-read the immutable Bundle, primary accepted
+Runner result, required different-owner attestations, attribution, and active
+issuer key. If every Receipt gate is satisfied, it deterministically issues the
+platform-signed Receipt; otherwise the response reports the exact missing or
+blocked gate. The client cannot provide Receipt fields or request issuance.
 
 ## Identity and attribution
 

@@ -1496,13 +1496,15 @@ test("limits Bundle and Runner evidence to the Attempt owner or assigned reviewe
   const ownerSubmitPayload = await ownerSubmit.json();
   assert.equal(ownerSubmitPayload.reviewMarket.published, true);
   assert.deepEqual(ownerSubmitPayload.reviewMarket.status, {
-    totalJobs: 3,
-    openJobs: 3,
+    totalJobs: 5,
+    openJobs: 5,
     claimedJobs: 0,
     completedJobs: 0,
     jobs: [
       { claimType: "bundle_reproducible", rewardWeight: 1, state: "open" },
+      { claimType: "kernel_accepted", rewardWeight: 2, state: "open" },
       { claimType: "novelty_reviewed", rewardWeight: 2, state: "open" },
+      { claimType: "project_accepted", rewardWeight: 2, state: "open" },
       { claimType: "statement_faithful", rewardWeight: 2, state: "open" },
     ],
   });
@@ -1511,11 +1513,11 @@ test("limits Bundle and Runner evidence to the Attempt owner or assigned reviewe
     { method: "POST", headers: fixture.ownerHeaders },
   );
   assert.equal(ownerSubmitAgain.status, 200);
-  assert.equal((await ownerSubmitAgain.json()).reviewMarket.status.totalJobs, 3);
+  assert.equal((await ownerSubmitAgain.json()).reviewMarket.status.totalJobs, 5);
   const ownerPublishedPage = await render(`/evidence/${encodeURIComponent(fixture.manifestHash)}`, { headers: fixture.ownerHeaders });
   const ownerPublishedHtml = await ownerPublishedPage.text();
   assert.match(ownerPublishedHtml, /Independent review work is open/i);
-  assert.match(ownerPublishedHtml, /3(?:<!-- -->)? jobs/i);
+  assert.match(ownerPublishedHtml, /5(?:<!-- -->)? jobs/i);
 
   const ownerPatch = await render(`/api/me/evidence/bundles/${encodeURIComponent(fixture.manifestHash)}/artifacts/sourcePatch`, { headers: fixture.ownerHeaders });
   assert.equal(ownerPatch.status, 200);
@@ -2172,7 +2174,7 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
   assert.match(ownerWorkbenchHtml, /Refresh records/i);
   assert.match(ownerWorkbenchHtml, /First evidence path/i);
   assert.match(ownerWorkbenchHtml, /One step at a time/i);
-  assert.match(ownerWorkbenchHtml, /After Lean acceptance, independent statement and novelty review can lead to a Contribution Receipt/i);
+  assert.match(ownerWorkbenchHtml, /different owner must complete the reproducibility, kernel, and project-acceptance gates/i);
   assert.match(ownerWorkbenchHtml, /Staged evidence ledger/i);
   assert.doesNotMatch(ownerWorkbenchHtml, /Continue with Agent/i);
   assert.match(ownerWorkbenchHtml, /Bundle staged · provisional/i);

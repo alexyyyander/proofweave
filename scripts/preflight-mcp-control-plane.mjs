@@ -14,13 +14,15 @@ export function validateMcpControlPlaneManifest(value) {
   if (!value || typeof value !== "object" || Array.isArray(value)) {
     throw new Error("Deployment manifest must be a JSON object.");
   }
-  rejectExtraKeys(value, ["control_plane", "gateway", "identity", "runner"], "Deployment manifest");
+  rejectExtraKeys(value, ["control_plane", "gateway", "identity", "receipt_issuer", "runner"], "Deployment manifest");
   const controlPlane = object(value.control_plane, "control_plane");
   const gateway = object(value.gateway, "gateway");
   const identity = object(value.identity, "identity");
+  const receiptIssuer = object(value.receipt_issuer, "receipt_issuer");
   rejectExtraKeys(controlPlane, ["d1_database_name", "d1_database_id", "artifact_storage"], "control_plane");
   rejectExtraKeys(gateway, ["worker_name", "resource_url"], "gateway");
   rejectExtraKeys(identity, ["issuer_url"], "identity");
+  rejectExtraKeys(receiptIssuer, ["key_id", "public_key", "activated_at"], "receipt_issuer");
 
   const databaseName = requiredName(controlPlane.d1_database_name, "control_plane.d1_database_name");
   const databaseId = requiredUuid(controlPlane.d1_database_id, "control_plane.d1_database_id");
@@ -28,6 +30,9 @@ export function validateMcpControlPlaneManifest(value) {
   const gatewayName = requiredWorkerName(gateway.worker_name, "gateway.worker_name");
   const resourceUrl = requiredHttpsUrl(gateway.resource_url, "gateway.resource_url", "/mcp");
   const issuerUrl = requiredHttpsUrl(identity.issuer_url, "identity.issuer_url", "/");
+  const receiptIssuerKeyId = requiredIdentifier(receiptIssuer.key_id, "receipt_issuer.key_id");
+  const receiptIssuerPublicKey = requiredEd25519PublicKey(receiptIssuer.public_key, "receipt_issuer.public_key");
+  const receiptIssuerActivatedAt = requiredIsoTimestamp(receiptIssuer.activated_at, "receipt_issuer.activated_at");
 
   if (new URL(resourceUrl).origin === new URL(issuerUrl).origin) {
     throw new Error("gateway.resource_url and identity.issuer_url must use separate origins.");
@@ -36,6 +41,11 @@ export function validateMcpControlPlaneManifest(value) {
     controlPlane: { databaseName, databaseId, artifactStorage },
     gateway: { workerName: gatewayName, resourceUrl },
     identity: { issuerUrl },
+    receiptIssuer: {
+      keyId: receiptIssuerKeyId,
+      publicKey: receiptIssuerPublicKey,
+      activatedAt: receiptIssuerActivatedAt,
+    },
   };
   if (value.runner !== undefined) result.runner = normalizeRunnerIntegration(value.runner);
   return Object.freeze(result);
@@ -52,6 +62,9 @@ export function renderGatewayWranglerConfig(manifest) {
     vars: {
       MCP_RESOURCE_URL: config.gateway.resourceUrl,
       OAUTH_ISSUER_URL: config.identity.issuerUrl,
+      RECEIPT_ISSUER_KEY_ID: config.receiptIssuer.keyId,
+      RECEIPT_ISSUER_PUBLIC_KEY: config.receiptIssuer.publicKey,
+      RECEIPT_ISSUER_ACTIVATED_AT: config.receiptIssuer.activatedAt,
       ...(config.runner ? {
         RUNNER_APPROVED_IMAGES_JSON: JSON.stringify(config.runner.approvedImages),
         RUNNER_CONTROL_PLANE_KEY_ID: config.runner.controlPlaneKeyId,
@@ -200,6 +213,28 @@ function requiredText(value, label, maximum) {
 function requiredIdentifier(value, label) {
   if (typeof value !== "string" || !value.trim() || value.length > 240 || /[\0\r\n]/.test(value) || isPlaceholder(value)) {
     throw new Error(`${label} must be a non-placeholder bounded identifier.`);
+  }
+  return value;
+}
+
+function requiredEd25519PublicKey(value, label) {
+  if (typeof value !== "string" || !/^[A-Za-z0-9_-]{43}$/.test(value) || isPlaceholder(value)) {
+    throw new Error(`${label} must be a non-placeholder base64url Ed25519 public key.`);
+  }
+  const bytes = Buffer.from(value, "base64url");
+  if (bytes.length !== 32 || bytes.toString("base64url") !== value) {
+    throw new Error(`${label} must encode exactly 32 bytes.`);
+  }
+  return value;
+}
+
+function requiredIsoTimestamp(value, label) {
+  if (typeof value !== "string" || isPlaceholder(value)) {
+    throw new Error(`${label} must be a canonical ISO-8601 timestamp.`);
+  }
+  const timestamp = new Date(value);
+  if (!Number.isFinite(timestamp.valueOf()) || timestamp.toISOString() !== value) {
+    throw new Error(`${label} must be a canonical ISO-8601 timestamp.`);
   }
   return value;
 }

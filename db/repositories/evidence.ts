@@ -129,6 +129,7 @@ export type AttemptEvidence = Readonly<{
   runs: readonly EvidenceRun[];
   replays: readonly EvidenceReplay[];
   reviewOutcomes: readonly EvidenceReviewOutcome[];
+  receipt: Readonly<{ id: string; receiptHash: string; issuedAt: string }> | null;
 }>;
 
 type BaseRow = {
@@ -146,6 +147,9 @@ type BaseRow = {
   problem_title: string;
   declaration: string;
   access_role: EvidenceAccessRole;
+  receipt_id: string | null;
+  receipt_hash: string | null;
+  receipt_issued_at: string | null;
 };
 
 type ArtifactObjectRow = {
@@ -273,6 +277,9 @@ class D1EvidenceRepository implements EvidenceRepository {
         artifact: publicArtifact(replay.artifact),
       }))),
       reviewOutcomes,
+      receipt: base.receipt_id && base.receipt_hash && base.receipt_issued_at
+        ? Object.freeze({ id: base.receipt_id, receiptHash: base.receipt_hash, issuedAt: base.receipt_issued_at })
+        : null,
     });
   }
 
@@ -550,6 +557,18 @@ const baseSelect = `SELECT
   bundle.canonical_manifest, bundle.agent_event_id, bundle.agent_event_payload_hash,
   project.slug AS project_slug, revision.slug AS problem_slug,
   revision.title AS problem_title, revision.target_key AS declaration,
+  (SELECT receipt.id FROM contribution_receipts AS receipt
+   WHERE receipt.artifact_bundle_manifest_hash = bundle.manifest_hash
+     AND receipt.kind <> 'verification'
+   ORDER BY receipt.issued_at ASC, receipt.id ASC LIMIT 1) AS receipt_id,
+  (SELECT receipt.receipt_hash FROM contribution_receipts AS receipt
+   WHERE receipt.artifact_bundle_manifest_hash = bundle.manifest_hash
+     AND receipt.kind <> 'verification'
+   ORDER BY receipt.issued_at ASC, receipt.id ASC LIMIT 1) AS receipt_hash,
+  (SELECT receipt.issued_at FROM contribution_receipts AS receipt
+   WHERE receipt.artifact_bundle_manifest_hash = bundle.manifest_hash
+     AND receipt.kind <> 'verification'
+   ORDER BY receipt.issued_at ASC, receipt.id ASC LIMIT 1) AS receipt_issued_at,
   CASE WHEN attempt.person_id = ? THEN 'attempt_owner' ELSE 'assigned_reviewer' END AS access_role
  FROM artifact_bundles AS bundle
  INNER JOIN agent_attempts AS attempt ON attempt.id = bundle.attempt_id

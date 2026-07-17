@@ -80,6 +80,16 @@ test("partial Runner dispatch configuration fails closed before serving MCP", ()
       issuer: "https://auth.gateway.example.test",
       database,
       bucket: artifactBucket,
+      receiptIssuerKeyId: "issuer:partial",
+    }),
+    RemoteMcpRuntimeConfigurationError,
+  );
+  assert.throws(
+    () => createD1RemoteMcpGatewayRuntime({
+      resource: "https://mcp.gateway.example.test/mcp",
+      issuer: "https://auth.gateway.example.test",
+      database,
+      bucket: artifactBucket,
       runnerApprovedImagesJson: "[]",
     }),
     RemoteMcpRuntimeConfigurationError,

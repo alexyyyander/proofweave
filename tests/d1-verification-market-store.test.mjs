@@ -42,31 +42,35 @@ test("an active pool publishes exactly the policy review jobs for one staged Bun
   assert.equal(noLean.reason, "lean_not_accepted");
   const published = await store.publishJobsForBundle(manifestHash, "2026-07-15T08:00:00Z");
   assert.equal(published.published, true);
-  assert.equal(published.jobs.length, 3);
+  assert.equal(published.jobs.length, 5);
   assert.deepEqual(
     published.jobs.map(({ claimType, rewardWeight }) => ({ claimType, rewardWeight })),
     [
       { claimType: "bundle_reproducible", rewardWeight: 1 },
+      { claimType: "kernel_accepted", rewardWeight: 2 },
       { claimType: "novelty_reviewed", rewardWeight: 2 },
+      { claimType: "project_accepted", rewardWeight: 2 },
       { claimType: "statement_faithful", rewardWeight: 2 },
     ],
   );
-  assert.equal((await store.publishJobsForBundle(manifestHash, "2026-07-15T08:00:00Z")).jobs.length, 3);
+  assert.equal((await store.publishJobsForBundle(manifestHash, "2026-07-15T08:00:00Z")).jobs.length, 5);
 
   assert.deepEqual(await store.bundleReviewStatus(manifestHash), {
-    totalJobs: 3,
-    openJobs: 3,
+    totalJobs: 5,
+    openJobs: 5,
     claimedJobs: 0,
     completedJobs: 0,
     jobs: [
       { claimType: "bundle_reproducible", rewardWeight: 1, state: "open" },
+      { claimType: "kernel_accepted", rewardWeight: 2, state: "open" },
       { claimType: "novelty_reviewed", rewardWeight: 2, state: "open" },
+      { claimType: "project_accepted", rewardWeight: 2, state: "open" },
       { claimType: "statement_faithful", rewardWeight: 2, state: "open" },
     ],
   });
 
   const open = await store.listOpenJobs();
-  assert.equal(open.length, 3);
+  assert.equal(open.length, 5);
   assert.equal(open[0].target.problemSlug, "erdos-865-k2");
   assert.equal(open[0].pool.verificationBucketPercentage, 20);
   assert.equal(open.every((job) => !Object.hasOwn(job, "attemptOwnerPersonId")), true);
@@ -107,7 +111,7 @@ test("claiming is atomic, different-owner, review-delegated, and immediately acc
     { sequence: 1, event_type: "published" },
     { sequence: 2, event_type: "claimed" },
   ]);
-  assert.equal((await store.listOpenJobs()).length, 2);
+  assert.equal((await store.listOpenJobs()).length, 4);
 });
 
 test("two concurrent reviewers can create only one immutable claim", async () => {

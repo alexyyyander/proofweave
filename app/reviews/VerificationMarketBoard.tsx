@@ -45,7 +45,7 @@ export function VerificationMarketBoard({
     {jobs.length === 0
       ? <div className="verification-market-empty"><strong>No open review work right now.</strong><p>Jobs appear here only after an active pool receives a complete Bundle with accepted isolated Lean evidence. Draft pools, staged-only Bundles, and provisional checkpoints never create public work.</p></div>
       : <div className="verification-job-grid">{jobs.map((job) => <article className="verification-job-card" key={job.id}>
-        <div className="verification-job-top"><span className="micro-label">{job.target.projectSlug} · independent review</span><span className="review-share-chip">{job.rewardWeight} {job.rewardWeight === 1 ? "share" : "shares"}</span></div>
+        <div className="verification-job-top"><span className="micro-label">{job.target.projectSlug} · {isReceiptGate(job.claimType) ? "Receipt gate" : "quality review"}</span><span className="review-share-chip">{job.rewardWeight} {job.rewardWeight === 1 ? "share" : "shares"}</span></div>
         <h3>{job.label}</h3>
         <p className="verification-job-target">{job.target.title}</p>
         <dl>
@@ -69,4 +69,8 @@ export function VerificationMarketBoard({
 
 function shortHash(value: string) {
   return `${value.slice(0, 15)}…${value.slice(-8)}`;
+}
+
+function isReceiptGate(claimType: string) {
+  return claimType === "bundle_reproducible" || claimType === "kernel_accepted" || claimType === "project_accepted";
 }

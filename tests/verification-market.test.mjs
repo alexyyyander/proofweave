@@ -15,8 +15,10 @@ test("verification market publishes only evidence-bearing different-owner work",
     verificationMarketClaims.map(({ claimType, rewardWeight }) => ({ claimType, rewardWeight })),
     [
       { claimType: "bundle_reproducible", rewardWeight: 1 },
+      { claimType: "kernel_accepted", rewardWeight: 2 },
       { claimType: "statement_faithful", rewardWeight: 2 },
       { claimType: "novelty_reviewed", rewardWeight: 2 },
+      { claimType: "project_accepted", rewardWeight: 2 },
     ],
   );
   assert.equal(verificationMarketBoundaries.requiresActivePool, true);
