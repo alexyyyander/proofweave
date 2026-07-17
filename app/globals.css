@@ -236,8 +236,19 @@ h1, h2, h3, p { margin-top: 0; }
 .evidence-result summary { color: var(--indigo); cursor: pointer; font-size: 11px; font-weight: 700; }
 .evidence-result pre { background: #f2f4fa; font-size: 10px; line-height: 1.55; margin: 12px 0 0; max-height: 260px; overflow: auto; padding: 12px; white-space: pre-wrap; }
 .evidence-preview-action { border-top: 1px solid var(--line); margin-top: 16px; padding-top: 12px; }.evidence-preview-action p { color: var(--amber); font-size: 11px; line-height: 1.45; margin: 10px 0 0; }
+.evidence-review-handoff { border-color: #b9c8ec; }
+.evidence-review-handoff-body { align-items: center; display: grid; gap: 28px; grid-template-columns: minmax(0, 1fr) minmax(230px, .42fr); padding-top: 20px; }
+.evidence-review-handoff h2 { font-family: Georgia, "Times New Roman", serif; font-size: 28px; font-weight: 400; letter-spacing: -.035em; line-height: 1.08; margin: 7px 0 9px; }
+.evidence-review-handoff h2 + p { color: var(--ink-soft); font-size: 12px; line-height: 1.55; margin: 0; max-width: 690px; }
+.evidence-review-action, .evidence-review-status { align-items: stretch; display: grid; gap: 10px; }
+.evidence-review-action .button, .evidence-review-status .button { justify-content: center; width: 100%; }
+.evidence-review-action small, .evidence-review-status span { color: var(--ink-faint); font-size: 10px; line-height: 1.45; }
+.evidence-review-status { background: var(--sage-soft); border-left: 2px solid var(--sage); padding: 14px; }
+.evidence-review-status strong { color: #315d45; font-family: Georgia, "Times New Roman", serif; font-size: 24px; font-weight: 400; }
+.evidence-review-boundary { border-top: 1px solid var(--line); color: var(--ink-faint); font-size: 10px; line-height: 1.55; margin: 18px 0 0; padding-top: 12px; }
+.evidence-review-boundary strong { color: var(--amber); }
 
-@media (max-width: 900px) { .evidence-detail-grid { grid-template-columns: 1fr; }.evidence-index-card dl { grid-template-columns: 1fr 1fr; }.evidence-index-card dl > div:last-child { grid-column: 1 / -1; } }
+@media (max-width: 900px) { .evidence-detail-grid, .evidence-review-handoff-body { grid-template-columns: 1fr; }.evidence-index-card dl { grid-template-columns: 1fr 1fr; }.evidence-index-card dl > div:last-child { grid-column: 1 / -1; } }
 @media (max-width: 620px) { .evidence-index-card { margin-left: -18px; margin-right: -18px; padding: 20px 18px; }.evidence-index-card dl { grid-template-columns: 1fr; }.evidence-index-card dl > div:last-child { grid-column: auto; }.evidence-detail-grid { margin-left: -18px; margin-right: -18px; }.evidence-panel, .evidence-runs { padding: 20px 18px; }.evidence-artifact-list li { align-items: start; grid-template-columns: 1fr; }.evidence-artifact-list .quiet-action { justify-self: start; } }
 
 /* The workbench shows only durable records. These states intentionally avoid

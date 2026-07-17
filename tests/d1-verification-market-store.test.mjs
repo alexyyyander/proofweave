@@ -37,6 +37,9 @@ test("an active pool publishes exactly the policy review jobs for one staged Bun
   assert.equal(draft.reason, "pool_draft");
 
   await activatePool(database);
+  const noLean = await store.publishJobsForBundle(draftBundle, "2026-07-15T08:00:00Z");
+  assert.equal(noLean.published, false);
+  assert.equal(noLean.reason, "lean_not_accepted");
   const published = await store.publishJobsForBundle(manifestHash, "2026-07-15T08:00:00Z");
   assert.equal(published.published, true);
   assert.equal(published.jobs.length, 3);
@@ -49,6 +52,18 @@ test("an active pool publishes exactly the policy review jobs for one staged Bun
     ],
   );
   assert.equal((await store.publishJobsForBundle(manifestHash, "2026-07-15T08:00:00Z")).jobs.length, 3);
+
+  assert.deepEqual(await store.bundleReviewStatus(manifestHash), {
+    totalJobs: 3,
+    openJobs: 3,
+    claimedJobs: 0,
+    completedJobs: 0,
+    jobs: [
+      { claimType: "bundle_reproducible", rewardWeight: 1, state: "open" },
+      { claimType: "novelty_reviewed", rewardWeight: 2, state: "open" },
+      { claimType: "statement_faithful", rewardWeight: 2, state: "open" },
+    ],
+  });
 
   const open = await store.listOpenJobs();
   assert.equal(open.length, 3);
@@ -149,6 +164,37 @@ async function seedMarketFixture(d1) {
       sha("c"),
     ),
   ]);
+  const result = {
+    protocolVersion: "pw-lean-runner-v1",
+    jobId: "run:verification-market",
+    attemptId: "attempt:verification-market",
+    requestHash: sha("7"),
+    runnerKeyId: "runner-key:verification-market",
+    runnerSignature: Buffer.alloc(64).toString("base64url"),
+    status: "succeeded",
+    exitCode: 0,
+    startedAt: "2026-07-15T07:30:00Z",
+    finishedAt: "2026-07-15T07:31:00Z",
+    kernelStatus: "accepted",
+    checks: { network: "passed", noSorry: "passed", allowedAxioms: "passed", leanBuild: "passed" },
+    artifacts: { manifestHash, stdoutHash: sha("8"), stderrHash: sha("9") },
+  };
+  const resultHash = await sha256Canonical(result);
+  await d1.batch([
+    d1.prepare(
+      `INSERT INTO runs (
+         id, attempt_id, artifact_bundle_hash, request_hash, idempotency_key,
+         state, queued_at, started_at, finished_at, runner_result_hash, updated_at
+       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    ).bind(
+      result.jobId, result.attemptId, manifestHash, result.requestHash,
+      "verification-market-run", "succeeded", result.startedAt, result.startedAt,
+      result.finishedAt, resultHash, result.finishedAt,
+    ),
+    d1.prepare(
+      "INSERT INTO run_results (run_id, result_hash, canonical_result, received_at) VALUES (?, ?, ?, ?)",
+    ).bind(result.jobId, resultHash, canonicalJson(result), result.finishedAt),
+  ]);
   await seedReviewDelegation(d1, "market-reviewer", "person:market-reviewer", "1");
   await seedReviewDelegation(d1, "market-reviewer-two", "person:market-reviewer-two", "2");
 }
@@ -240,7 +286,12 @@ function personStatement(d1, id, subject, displayName) {
 }
 
 async function applyMigrations(d1) {
-  const filenames = (await readdir(migrationsRoot)).filter((filename) => filename.endsWith(".sql")).sort();
+  // This unit test exercises both draft and active state explicitly; the
+  // production pilot activation migration is covered by the rendered app test.
+  const filenames = (await readdir(migrationsRoot))
+    .filter((filename) => filename.endsWith(".sql"))
+    .filter((filename) => filename !== "0034_activate_pilot_review_market.sql")
+    .sort();
   for (const filename of filenames) {
     const source = await readFile(new URL(filename, migrationsRoot), "utf8");
     for (const statement of source.split("--> statement-breakpoint").map((value) => value.trim()).filter(Boolean)) {

@@ -8,6 +8,9 @@ import { getDelegationRepository } from "@/db/repositories/delegation";
 import { getEvidenceRepository, type AttemptEvidence, type EvidenceArtifact, type EvidenceReplay, type EvidenceReviewOutcome, type EvidenceRunnerResultSummary } from "@/db/repositories/evidence";
 import { SourceDiffPreview } from "@/app/evidence/SourceDiffPreview";
 import { PersonalWorkspaceFrame } from "@/app/PersonalWorkspaceFrame";
+import { IndependentReviewHandoff } from "@/app/evidence/IndependentReviewHandoff";
+import { hasAcceptedLeanEvidence } from "@/app/lib/evidence-eligibility";
+import { getVerificationMarketRepository, type BundleVerificationMarketStatus, VerificationMarketSchemaUnavailableError } from "@/db/repositories/verification-market";
 
 export const dynamic = "force-dynamic";
 
@@ -18,21 +21,28 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
   if (!user) return <EvidenceAccessMessage signInPath={signInPath(`/evidence/${encodeURIComponent(bundleManifestHash)}`)} />;
   if (result.unavailable) return <EvidenceAccessMessage unavailable />;
   if (!result.evidence) notFound();
-  return <EvidenceDetail evidence={result.evidence} />;
+  return <EvidenceDetail evidence={result.evidence} reviewMarketStatus={result.reviewMarketStatus} reviewMarketUnavailable={result.reviewMarketUnavailable} />;
 }
 
-async function loadEvidenceDetail(user: Awaited<ReturnType<typeof getCurrentUser>>, bundleManifestHash: string): Promise<{ evidence: AttemptEvidence | null; unavailable: boolean }> {
-  if (!user) return { evidence: null, unavailable: false };
+async function loadEvidenceDetail(user: Awaited<ReturnType<typeof getCurrentUser>>, bundleManifestHash: string): Promise<{ evidence: AttemptEvidence | null; unavailable: boolean; reviewMarketStatus: BundleVerificationMarketStatus | null; reviewMarketUnavailable: boolean }> {
+  if (!user) return { evidence: null, unavailable: false, reviewMarketStatus: null, reviewMarketUnavailable: false };
   try {
     const profile = await getDelegationRepository().getProfile(toPersonIdentity(user));
-    return { evidence: await getEvidenceRepository().getForPerson(profile.person.id, bundleManifestHash), unavailable: false };
+    const evidence = await getEvidenceRepository().getForPerson(profile.person.id, bundleManifestHash);
+    if (!evidence || evidence.summary.accessRole !== "attempt_owner") return { evidence, unavailable: false, reviewMarketStatus: null, reviewMarketUnavailable: false };
+    try {
+      return { evidence, unavailable: false, reviewMarketStatus: await getVerificationMarketRepository().statusForBundle(evidence.bundle.manifestHash), reviewMarketUnavailable: false };
+    } catch (error) {
+      if (error instanceof VerificationMarketSchemaUnavailableError) return { evidence, unavailable: false, reviewMarketStatus: null, reviewMarketUnavailable: true };
+      throw error;
+    }
   } catch (error) {
-    if (error instanceof MissingDatabaseBindingError) return { evidence: null, unavailable: true };
+    if (error instanceof MissingDatabaseBindingError) return { evidence: null, unavailable: true, reviewMarketStatus: null, reviewMarketUnavailable: true };
     throw error;
   }
 }
 
-function EvidenceDetail({ evidence }: { evidence: AttemptEvidence }) {
+function EvidenceDetail({ evidence, reviewMarketStatus, reviewMarketUnavailable }: { evidence: AttemptEvidence; reviewMarketStatus: BundleVerificationMarketStatus | null; reviewMarketUnavailable: boolean }) {
   const bundleManifestHash = evidence.bundle.manifestHash;
   const replayEmptyMessage = evidence.summary.accessRole === "attempt_owner"
     ? "Fresh replay artifacts remain private to their independent review Agent. A replay becomes relevant to your record only when that Agent separately signs a review decision."
@@ -49,9 +59,10 @@ function EvidenceDetail({ evidence }: { evidence: AttemptEvidence }) {
         <article className="evidence-panel"><div className="panel-heading"><span>02 / Review facts</span><a className="text-link" href={artifactHref(bundleManifestHash, "sourcePatch")}>Download source diff <span>→</span></a></div><dl className="evidence-metadata"><div><dt>Target declaration</dt><dd><code>{evidence.bundle.review.target.declaration}</code></dd></div><div><dt>Statement hash</dt><dd><code>{evidence.bundle.review.target.statementHash}</code></dd></div><div><dt>Lean toolchain</dt><dd><code>{evidence.bundle.review.environment.leanToolchain}</code></dd></div><div><dt>Mathlib revision</dt><dd><code>{evidence.bundle.review.environment.mathlibRevision}</code></dd></div><div><dt>Entry command</dt><dd><code>{evidence.bundle.review.entryCommand.join(" ")}</code></dd></div><div><dt><code>sorry</code> policy</dt><dd>{evidence.bundle.review.policy.requireNoSorry ? "Required absent" : "Not required"}</dd></div><div><dt>Allowed axioms</dt><dd>{evidence.bundle.review.policy.allowedAxioms.length === 0 ? "None" : <code>{evidence.bundle.review.policy.allowedAxioms.join(", ")}</code>}</dd></div></dl><SourceDiffPreview href={artifactHref(bundleManifestHash, "sourcePatch")} /></article>
       </section>
       <section className="evidence-runs" aria-label="Runner records"><div className="panel-heading"><span>03 / Runner records</span><span>{evidence.runs.length} recorded</span></div>{evidence.runs.length === 0 ? <p className="evidence-empty">No Runner record is stored for this Bundle. That absence is not a failed verification or a fresh-replay option.</p> : evidence.runs.map((run) => <article className="evidence-run" key={run.id}><div><strong>{run.state}</strong><span><code>{run.id}</code></span></div><dl className="evidence-metadata"><div><dt>Request hash</dt><dd><code>{run.requestHash}</code></dd></div><div><dt>Result hash</dt><dd><code>{run.runnerResultHash ?? "Not recorded"}</code></dd></div><div><dt>Queued</dt><dd>{run.queuedAt}</dd></div><div><dt>Finished</dt><dd>{run.finishedAt ?? "Not finished"}</dd></div></dl>{run.result?.summary && <RunnerResultSummary summary={run.result.summary} />}{run.outputs.length > 0 && <ArtifactList bundleManifestHash={bundleManifestHash} artifacts={run.outputs} />}{run.result && <details className="evidence-result"><summary>View canonical signed-result payload</summary><pre><code>{run.result.canonicalResult}</code></pre></details>}</article>)}</section>
-      <section className="evidence-runs evidence-manifest" aria-label="Canonical manifest"><div className="panel-heading"><span>04 / Canonical manifest</span><a className="text-link" href={artifactHref(bundleManifestHash, "bundle-manifest")}>Download JSON <span>→</span></a></div><pre><code>{evidence.bundle.canonicalManifest}</code></pre></section>
+      {evidence.summary.accessRole === "attempt_owner" && <IndependentReviewHandoff bundleManifestHash={bundleManifestHash} eligible={hasAcceptedLeanEvidence(evidence)} initialStatus={reviewMarketStatus} unavailable={reviewMarketUnavailable} />}
+      <section className="evidence-runs evidence-manifest" aria-label="Canonical manifest"><div className="panel-heading"><span>{evidence.summary.accessRole === "attempt_owner" ? "05" : "04"} / Canonical manifest</span><a className="text-link" href={artifactHref(bundleManifestHash, "bundle-manifest")}>Download JSON <span>→</span></a></div><pre><code>{evidence.bundle.canonicalManifest}</code></pre></section>
       {evidence.summary.accessRole === "attempt_owner" && <ReviewOutcomes outcomes={evidence.reviewOutcomes} />}
-      <section className="evidence-runs evidence-replays" aria-label="Fresh review replay evidence"><div className="panel-heading"><span>{evidence.summary.accessRole === "attempt_owner" ? "06" : "05"} / Fresh review replay evidence</span><span>{evidence.replays.length} available to you</span></div>{evidence.replays.length === 0 ? <p className="evidence-empty">{replayEmptyMessage}</p> : evidence.replays.map((replay) => <ReplayEvidence bundleManifestHash={bundleManifestHash} replay={replay} key={replay.id} />)}</section>
+      <section className="evidence-runs evidence-replays" aria-label="Fresh review replay evidence"><div className="panel-heading"><span>{evidence.summary.accessRole === "attempt_owner" ? "07" : "05"} / Fresh review replay evidence</span><span>{evidence.replays.length} available to you</span></div>{evidence.replays.length === 0 ? <p className="evidence-empty">{replayEmptyMessage}</p> : evidence.replays.map((replay) => <ReplayEvidence bundleManifestHash={bundleManifestHash} replay={replay} key={replay.id} />)}</section>
       </PersonalWorkspaceFrame>
     </main>
     <Footer />
@@ -73,7 +84,7 @@ function ReplayEvidence({ bundleManifestHash, replay }: { bundleManifestHash: st
 
 function ReviewOutcomes({ outcomes }: { outcomes: readonly EvidenceReviewOutcome[] }) {
   return <section className="evidence-runs evidence-review-outcomes" aria-label="Independent review outcomes">
-    <div className="panel-heading"><span>05 / Independent review outcomes</span><span>{outcomes.length} signed</span></div>
+    <div className="panel-heading"><span>06 / Independent review outcomes</span><span>{outcomes.length} signed</span></div>
     {outcomes.length === 0
       ? <p className="evidence-empty">No signed independent review outcome is recorded for this Bundle. Assigned and accepted tasks are not shown as decisions.</p>
       : outcomes.map((outcome) => <article className="evidence-run evidence-review-outcome" key={outcome.assignmentId}>

@@ -41,6 +41,26 @@ export type ClaimedVerificationJob = Readonly<{
   }>;
 }>;
 
+export type BundleVerificationJobStatus = Readonly<{
+  claimType: string;
+  rewardWeight: number;
+  state: "open" | "claimed" | "completed";
+}>;
+
+export type BundleVerificationMarketStatus = Readonly<{
+  totalJobs: number;
+  openJobs: number;
+  claimedJobs: number;
+  completedJobs: number;
+  jobs: readonly BundleVerificationJobStatus[];
+}>;
+
+export type PublishedBundleVerificationJobs = Readonly<{
+  published: boolean;
+  reason: string | null;
+  status: BundleVerificationMarketStatus;
+}>;
+
 export class VerificationMarketSchemaUnavailableError extends Error {
   constructor() {
     super("The verification market schema is not active in this control plane.");
@@ -51,6 +71,8 @@ export class VerificationMarketSchemaUnavailableError extends Error {
 export interface VerificationMarketRepository {
   listOpenJobs(limit?: number): Promise<readonly PublicVerificationJob[]>;
   claimForPerson(personId: string, jobId: string, claimedAt: string): Promise<ClaimedVerificationJob>;
+  publishForBundle(bundleManifestHash: string, publishedAt: string): Promise<PublishedBundleVerificationJobs>;
+  statusForBundle(bundleManifestHash: string): Promise<BundleVerificationMarketStatus>;
 }
 
 class D1VerificationMarketRepository implements VerificationMarketRepository {
@@ -66,6 +88,30 @@ class D1VerificationMarketRepository implements VerificationMarketRepository {
   async claimForPerson(personId: string, jobId: string, claimedAt: string): Promise<ClaimedVerificationJob> {
     try {
       return await new D1VerificationMarketStore(getD1()).claimJob(jobId, personId, claimedAt) as ClaimedVerificationJob;
+    } catch (error) {
+      if (isMissingVerificationMarketTable(error)) throw new VerificationMarketSchemaUnavailableError();
+      throw error;
+    }
+  }
+
+  async publishForBundle(bundleManifestHash: string, publishedAt: string): Promise<PublishedBundleVerificationJobs> {
+    try {
+      const store = new D1VerificationMarketStore(getD1());
+      const result = await store.publishJobsForBundle(bundleManifestHash, publishedAt) as { published: boolean; reason: string | null };
+      return Object.freeze({
+        published: result.published,
+        reason: result.reason,
+        status: await store.bundleReviewStatus(bundleManifestHash) as BundleVerificationMarketStatus,
+      });
+    } catch (error) {
+      if (isMissingVerificationMarketTable(error)) throw new VerificationMarketSchemaUnavailableError();
+      throw error;
+    }
+  }
+
+  async statusForBundle(bundleManifestHash: string): Promise<BundleVerificationMarketStatus> {
+    try {
+      return await new D1VerificationMarketStore(getD1()).bundleReviewStatus(bundleManifestHash) as BundleVerificationMarketStatus;
     } catch (error) {
       if (isMissingVerificationMarketTable(error)) throw new VerificationMarketSchemaUnavailableError();
       throw error;
