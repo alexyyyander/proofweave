@@ -191,7 +191,7 @@ function DelegationSetupFlow({ profile }: { profile: DelegationProfile }) {
         <h2 id="delegation-setup-title">{connection ? "Manage your connected research Agent" : "Connect an accountable research Agent"}</h2>
         <p>Proofweave records the Person, the Agent key, and a signed certificate separately. Creating more Agents never creates more independent reviewers.</p>
       </div>
-      <span className={connection ? "setup-status is-ready" : "setup-status"}>{connection ? "Local Codex connected" : "Connection required"}</span>
+      <span className={connection ? "setup-status is-ready" : "setup-status"}>{connection ? "Website approval active" : "Connection required"}</span>
     </div>
 
     {notice && <p className="setup-message setup-message-success" role="status">{notice}</p>}

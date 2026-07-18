@@ -180,7 +180,7 @@ export function WorkbenchClient({
     });
     try {
       await navigator.clipboard.writeText(brief);
-      setHandoffNotice("Codex brief copied. Paste it into Codex on this connected computer; the target and Attempt are already bound.");
+      setHandoffNotice("Codex brief copied. Paste it into a new Codex task on this computer; it will verify the Connector and resume this target without creating duplicate work.");
     } catch {
       setHandoffNotice("Your browser could not copy the Codex brief. Use Download .md in the local handoff section instead.");
     }

@@ -88,12 +88,12 @@ export function LocalAgentHandoff({
     <div className="local-agent-heading">
       <div>
         <p className="eyebrow">Local-first research</p>
-          <h2 id="local-agent-title">Continue with your connected local Agent.</h2>
-          <p>Your Lean project, model choice, and private exploration stay on this computer. Proofweave gives your Agent a precise target and receives only the selected, signed progress you decide to record.</p>
+          <h2 id="local-agent-title">Continue with your approved local Agent.</h2>
+          <p>Your Lean project, model choice, and private exploration stay on this computer. The website records the Agent approval; the brief asks Codex to verify that its local Connector still points to this same Proofweave control plane before doing any work.</p>
         </div>
         <div className="local-agent-badges">
           <ProductStateBadge tone="available">Authority ready</ProductStateBadge>
-          <ProductStateBadge tone="available">Local Codex connected</ProductStateBadge>
+          <ProductStateBadge tone="available">Website approval active</ProductStateBadge>
       </div>
     </div>
 
@@ -101,7 +101,7 @@ export function LocalAgentHandoff({
       <div>
         <span className="micro-label">Your next Codex message</span>
         <strong>The brief is ready from the recommended action above.</strong>
-        <p>It names the selected target and tells Codex to prepare locally, show exact hashes, and wait for one final confirmation before staging and requesting a Run. This panel explains the boundary and keeps recovery actions nearby.</p>
+        <p>It first checks the Connector and resumes the selected target without creating a duplicate Attempt. Only then does it prepare locally, show exact hashes, and wait for confirmation before staging and requesting a Run.</p>
       </div>
       <div className="local-agent-buttons">
         <button className="workspace-secondary-button" type="button" disabled={isRefreshing} onClick={onRefresh}>{isRefreshing ? "Checking…" : "Check recorded progress"}</button>
@@ -118,7 +118,7 @@ export function LocalAgentHandoff({
         </li>
         <li>
           <span>02</span>
-          <div><strong>Continue in Codex</strong><p>Open Codex on this computer and paste the ready instruction above. Codex reads this exact Attempt through the local Connector before it works.</p><small>You never need to type an Attempt ID, public key, or API token.</small></div>
+          <div><strong>Verify, then continue in Codex</strong><p>Open Codex on this computer and paste the ready instruction above. Codex checks the saved control-plane address, then resumes this target through the local Connector.</p><small>A mismatch stops safely without opening duplicate work.</small></div>
         </li>
         <li>
           <span>03</span>
@@ -130,7 +130,7 @@ export function LocalAgentHandoff({
         </li>
       </ol>
     </details>
-    <p className="local-agent-boundary">This page cannot access your computer, run Codex, or create Agent progress. Only the connected local Agent can sign a reported milestone or stage an explicitly confirmed evidence Bundle; the connection is revocable in Settings and never grants workspace access.</p>
+    <p className="local-agent-boundary">This page cannot inspect whether a Connector process is currently running, access your computer, run Codex, or create Agent progress. It records an Agent approval only. Codex verifies the local connection separately before that Agent can sign a milestone or stage an explicitly confirmed evidence Bundle.</p>
   </section>;
 }
 
@@ -182,7 +182,7 @@ function unavailableState({
 export function buildCodexResearchBrief({ agentLabel, attempt, parentNodeId }: { agentLabel: string; attempt: McpAttempt; parentNodeId: string | null }): string {
   return `# Continue this Proofweave Attempt in Codex
 
-Use the connected Proofweave Research plugin on this computer. This instruction is local-only; it is not an Agent event, Lean result, or contribution receipt.
+Use the Proofweave Research plugin on this computer. This instruction is local-only; it is not an Agent event, Lean result, or contribution receipt.
 
 ## Bounded target
 
@@ -195,10 +195,12 @@ ${parentNodeId ? `- Selected parent checkpoint: ${parentNodeId}` : "- Selected p
 
 ## Start safely
 
-1. Call \`get_attempt\` for ${attempt.id}, then call \`inspect_research_graph\` for ${attempt.problemSlug} before working.
-${parentNodeId ? `2. Confirm that ${parentNodeId} is still visible on this exact problem revision, and treat it as the intended parent of the next public milestone.` : "2. Decide with me whether the next material milestone is an independent starting point or derives from one or more existing checkpoint nodes."}
-3. Work only in the Lean project and toolchain I control. Keep prompts, reasoning, credentials, and unrelated files local.
-4. Do not record progress merely for exploration. Wait for a material local fact such as a checked file, reproducible command outcome, reusable lemma, refuted direction, or prepared evidence bundle.
+1. Call \`connection_status\`. If it reports disconnected, a different \`baseUrl\`, or \`reconnectRequired\`, stop and ask for my approval before calling \`connect_proofweave\` with role \`research\`.
+2. Once connected to \`https://proofweave-research.yualex031821.chatgpt.site\`, call \`continue_research\` with \`targetSlug: "${attempt.problemSlug}"\`. This is read-only recovery: if it reports \`research_connection_mismatch\`, stop and do not create a replacement Attempt.
+3. Confirm that the resumed target is ${attempt.problemTitle}, then call \`inspect_research_graph\` for ${attempt.problemSlug} before working. If that operation is unavailable, report a plugin or gateway version mismatch and stop rather than guessing a branch.
+${parentNodeId ? `4. Confirm that ${parentNodeId} is still visible on this exact problem revision, and treat it as the intended parent of the next public milestone.` : "4. Decide with me whether the next material milestone is an independent starting point or derives from one or more existing checkpoint nodes."}
+5. Work only in the Lean project and toolchain I control. Keep prompts, reasoning, credentials, and unrelated files local.
+6. Do not record progress merely for exploration. Wait for a material local fact such as a checked file, reproducible command outcome, reusable lemma, refuted direction, or prepared evidence bundle.
 
 ## Before recording anything
 

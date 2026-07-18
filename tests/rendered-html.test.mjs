@@ -2457,6 +2457,10 @@ test("keeps the production frontend free of the deleted starter preview", async 
   assert.match(globals, /\.workspace-topbar \{[^}]*z-index:\s*1;/s);
   assert.match(localAgentHandoff, /Check recorded progress/);
   assert.match(localAgentHandoff, /do not call \\`report_progress\\` unless I explicitly confirm/);
+  assert.match(localAgentHandoff, /connection_status/);
+  assert.match(localAgentHandoff, /continue_research/);
+  assert.match(localAgentHandoff, /research_connection_mismatch/);
+  assert.match(localAgentHandoff, /do not create a replacement Attempt/);
   assert.match(localAgentHandoff, /inspect_research_graph/);
   assert.match(localAgentHandoff, /prepare_research_checkpoint/);
   assert.match(localAgentHandoff, /publish_prepared_research_checkpoint/);

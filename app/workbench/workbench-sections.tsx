@@ -112,7 +112,7 @@ export function WorkbenchHero({
   const active = activeDelegation(profile);
   const agent = active && profile?.agents.find((candidate) => candidate.id === active.agentId);
   const connection = activeLocalCodexInstallation(profile);
-  const status = connection ? "Local Codex connected" : active ? "Connect Codex next" : profile ? "Agent setup required" : isAuthenticated ? "Profile unavailable" : "Sign in required";
+  const status = connection ? "Website approval active" : active ? "Connect Codex next" : profile ? "Agent setup required" : isAuthenticated ? "Profile unavailable" : "Sign in required";
   const activityLabel = !storageAvailable
     ? "Control plane unavailable"
     : attemptCount > 0
@@ -212,7 +212,7 @@ export function FocusAction({
     href: "/explore",
   } : needsAttemptConnection ? {
     title: "Connect the Agent bound to this Attempt.",
-    detail: "This research record belongs to a different or expired local Agent approval. Reconnect before copying a brief or recording more work.",
+    detail: "This research record belongs to a different or expired Agent approval. Reconnect before copying a brief or recording more work.",
     label: "Review Agent connection",
     href: "/integrations#codex-beta",
   } : {

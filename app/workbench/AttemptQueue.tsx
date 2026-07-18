@@ -83,7 +83,7 @@ export function AttemptQueue({
       <div>
         <p className="eyebrow">Closed-alpha work queue</p>
         <h2 id="attempt-queue-title">Open a durable research Attempt.</h2>
-        <p>Choose a source-pinned frontier target for your connected local Agent. This records only an owner-created workspace; subsequent Agent progress must arrive through that separately authorized Agent path.</p>
+        <p>Choose a source-pinned frontier target for your approved local Agent. This records only an owner-created workspace; a running Connector verifies the saved website address before any later Agent progress can arrive.</p>
       </div>
       <span className="record-chip">Provisional only</span>
     </div>

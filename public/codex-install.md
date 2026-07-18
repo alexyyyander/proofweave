@@ -38,7 +38,7 @@ The local Connector needs one outbound HTTPS destination to begin a browser
 approval and later exchange bounded Proofweave MCP requests:
 
 ```text
-proofweave-public-demo.proofweave-research.workers.dev
+proofweave-research.yualex031821.chatgpt.site
 ```
 
 Most people do not need to configure anything else. If Codex says it cannot
@@ -56,7 +56,7 @@ extends = ":workspace"
 enabled = true
 
 [permissions.proofweave-connector.network.domains]
-"proofweave-public-demo.proofweave-research.workers.dev" = "allow"
+"proofweave-research.yualex031821.chatgpt.site" = "allow"
 ```
 
 Start a fresh Codex task after changing a permission profile. In a managed
@@ -91,8 +91,10 @@ create an Agent, read a workspace, or send research files anywhere.
 4. Return to the Proofweave [Workbench](/workbench), choose one source-pinned
    question, and click **Start research**. The website derives the connected
    Agent and authority; it does not ask for a certificate or Attempt ID.
-5. In Codex, say **“Continue my Proofweave research.”** The plugin uses the
-   selected target to resume or create the bounded Attempt automatically.
+5. In Codex, say **“Continue my Proofweave research.”** The plugin checks that
+   its saved connection belongs to this website, then resumes the selected
+   active target without creating duplicate work. If the control planes do not
+   match, it stops and asks for a new browser approval.
    Use [Settings](/settings#delegation-setup) to inspect or revoke the Agent
    authority at any time.
 
@@ -100,10 +102,10 @@ create an Agent, read a workspace, or send research files anywhere.
 
 1. Choose a source-pinned target from the public frontier or your Workspace and
    click **Start research**.
-2. Tell Codex **“Continue my Proofweave research.”** It uses one composite
-   start operation to read the pinned target and resume or create the matching
-   bounded Attempt. You do not type an Attempt ID, certificate ID, or
-   idempotency key.
+2. Tell Codex **“Continue my Proofweave research.”** The website handoff names
+   the selected target, and the Connector resumes that matching active Attempt
+   read-only. It stops on a connection mismatch instead of creating a second
+   Attempt. You do not type an Attempt ID, certificate ID, or idempotency key.
 3. Keep Lean, model settings, private notes, and the working project on the
    local computer while exploring.
 4. Ask Codex to record only a material milestone. The Workbench displays it as

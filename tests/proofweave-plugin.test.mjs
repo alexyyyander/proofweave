@@ -54,8 +54,8 @@ test("the private-beta plugin starts only a local PKCE Connector", async () => {
     },
   });
   assert.match(connector, /\/api\/connect\/sessions/);
-  assert.match(connector, /proofweave-public-demo\.proofweave-research\.workers\.dev/);
-  assert.doesNotMatch(connector, /proofweave-research\.yualex031821\.chatgpt\.site/);
+  assert.match(connector, /proofweave-research\.yualex031821\.chatgpt\.site/);
+  assert.doesNotMatch(connector, /proofweave-public-demo\.proofweave-research\.workers\.dev/);
   assert.match(connector, /code_verifier/);
   assert.match(connector, /generateKeyPairSync\("ed25519"\)/);
   assert.match(connector, /begin_research/);
@@ -102,6 +102,27 @@ test("the local Connector flags legacy connections for the artifact-write scope 
     const upgradedStatus = JSON.parse(upgradedResponse.result.content[0].text);
     assert.equal(upgradedStatus.scopeUpgradeRequired, false);
     assert.deepEqual(upgradedStatus.missingScopes, []);
+  } finally {
+    await rm(fixtureRoot, { recursive: true, force: true });
+  }
+});
+
+test("the local Connector refuses to treat a saved connection for another control plane as active", async () => {
+  const fixtureRoot = await mkdtemp(join(tmpdir(), "proofweave-connector-control-plane-"));
+  try {
+    const configPath = join(fixtureRoot, "connector.json");
+    await writeFile(configPath, JSON.stringify(connectedFixtureConfig("https://old-proofweave.example.test")));
+    const response = await callConnectorTool("connection_status", {}, {
+      ...process.env,
+      PROOFWEAVE_BASE_URL: "https://proofweave.example.test",
+      PROOFWEAVE_CONNECTOR_CONFIG: configPath,
+    });
+    const status = JSON.parse(response.result.content[0].text);
+    assert.equal(status.connected, false);
+    assert.equal(status.reconnectRequired, true);
+    assert.equal(status.configuredBaseUrl, "https://old-proofweave.example.test");
+    assert.equal(status.expectedBaseUrl, "https://proofweave.example.test");
+    assert.match(status.message, /approve connect_proofweave/i);
   } finally {
     await rm(fixtureRoot, { recursive: true, force: true });
   }
@@ -334,12 +355,20 @@ test("the local Connector starts or resumes a selected research target without e
     assert.equal(calls.find((call) => call.name === "create_attempt").args.delegationScope, "formalize");
     assert.equal("idempotencyKey" in first, false);
 
-    const resumed = await callConnectorTool("continue_research", {}, env);
+    const resumed = await callConnectorTool("continue_research", { targetSlug: "fixture-target" }, env);
     assert.equal(resumed.error, undefined);
     const second = JSON.parse(resumed.result.content[0].text);
     assert.equal(second.operation, "research_resumed");
     assert.equal(second.created, false);
     assert.equal(second.attempt.id, first.attempt.id);
+    assert.equal(calls.filter((call) => call.name === "create_attempt").length, 1);
+
+    const mismatch = await callConnectorTool("continue_research", { targetSlug: "website-only-target" }, env);
+    assert.equal(mismatch.error, undefined);
+    const mismatchResult = JSON.parse(mismatch.result.content[0].text);
+    assert.equal(mismatchResult.operation, "research_connection_mismatch");
+    assert.equal(mismatchResult.recordedProgress, false);
+    assert.match(mismatchResult.next, /Do not create a duplicate Attempt/i);
     assert.equal(calls.filter((call) => call.name === "create_attempt").length, 1);
   } finally {
     await Promise.all([close(server), rm(fixtureRoot, { recursive: true, force: true })]);

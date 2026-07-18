@@ -85,7 +85,7 @@ export function WorkspaceTopbar({
       </select>
     </label>
     <div className="workspace-topbar-status">
-      <span className={isAgentConnected ? "workspace-agent-state is-connected" : "workspace-agent-state"}><i aria-hidden="true" />{isAgentConnected ? agentLabel ?? "Agent connected" : "Agent not connected"}</span>
+      <span className={isAgentConnected ? "workspace-agent-state is-connected" : "workspace-agent-state"}><i aria-hidden="true" />{isAgentConnected ? `${agentLabel ?? "Agent"} approval active` : "No active Agent approval"}</span>
       <button type="button" className="workspace-sync-button" onClick={onRefresh} disabled={isRefreshing || !canRefresh}>
         {isRefreshing ? "Syncing…" : "Refresh records"}
       </button>

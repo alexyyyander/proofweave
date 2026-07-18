@@ -26,9 +26,11 @@ event was recorded; do not invent an HTTP request, bearer token, or upload.
    for an Attempt ID, certificate ID, or idempotency key. It does not read
    local files, record progress, upload evidence, run Lean, or create credit.
 2. When the owner says “Continue my Proofweave research”, use
-   `continue_research`. It resumes the only active target without requiring an
-   Attempt ID; if more than one is active, ask the owner to choose from its
-   returned short list rather than guessing.
+   `continue_research`. A website handoff may supply its exact target slug; use
+   that slug so the read-only recovery either resumes the matching active
+   target or reports a connection mismatch without creating a duplicate
+   Attempt. Without a handoff slug, if more than one target is active, ask the
+   owner to choose from its returned short list rather than guessing.
 3. If `begin_research` is unavailable, inspect the pinned target from
    `list_frontier_problems` and `inspect_problem`, then use `list_attempts`
    and `create_attempt` only as the advanced fallback. Record the revision,
