@@ -12,7 +12,8 @@ test("trusted Runner selects E2B explicitly and fails closed for missing or unkn
   const environment = {
     PROOFWEAVE_RUNNER_PROVIDER: "e2b",
     E2B_API_KEY: "e2b_test_api_key_1234567890",
-    PROOFWEAVE_E2B_TEMPLATE_ID: "template_proofweave_lean_v1",
+    PROOFWEAVE_E2B_TEMPLATE_ID: "template_proofweave_lean_v1:commit_0123456789abcdef",
+    PROOFWEAVE_E2B_TEMPLATE_BUILD_ID: "9420e83e-3c6d-48b8-94fe-a73807af5797",
     PROOFWEAVE_E2B_RUNNER_IMAGE: imageReference,
     PROOFWEAVE_E2B_RESOURCE_POLICY_REVIEWED: "true",
     PROOFWEAVE_E2B_CPU: "2",
@@ -23,6 +24,7 @@ test("trusted Runner selects E2B explicitly and fails closed for missing or unkn
   const factory = createTrustedRunnerContainerFactoryFromEnvironment({
     environment,
     e2bSandboxApi: { async create() { throw new Error("not invoked during selection"); } },
+    e2bTemplateApi: { async getTags() { throw new Error("not invoked during selection"); } },
   });
   assert.ok(factory instanceof E2BSandboxContainerFactory);
 

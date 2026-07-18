@@ -27,10 +27,12 @@ const built = await Template.build(template, templateName, {
     process.stderr.write(`[e2b:${level}] ${message}\n`);
   },
 });
+const templateTag = templateName.includes(":") ? templateName.slice(templateName.indexOf(":") + 1) : null;
 
 process.stdout.write(`${JSON.stringify({
   schemaVersion: "pw-e2b-template-build-v1",
   templateId: built.templateId,
+  templateReference: templateTag ? `${built.templateId}:${templateTag}` : built.templateId,
   buildId: built.buildId,
   name: built.name,
   imageReference,
