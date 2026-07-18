@@ -92,6 +92,27 @@ test("Worker execution client exposes only a bounded stage code when private exe
   );
 });
 
+test("Worker execution client preserves a privacy-safe Lean diagnostic header", async () => {
+  const request = fixtureRequest();
+  const requestHash = await leanRunnerRequestHash(request);
+  const container = {
+    async fetch() {
+      return new Response(JSON.stringify({ error: "workspace_rejected" }), {
+        status: 400,
+        headers: { "x-proofweave-error-code": "lean_environment_missing" },
+      });
+    },
+  };
+
+  await assert.rejects(
+    new RunnerContainerExecutionClient().execute({ container, run: fixtureRun(requestHash), request }),
+    (error) => {
+      assert.equal(error.diagnosticCode, "runner_container_lean_environment_missing_error");
+      return true;
+    },
+  );
+});
+
 test("Worker cancellation client can target only the active Run's private Container route", async () => {
   const calls = [];
   const container = {

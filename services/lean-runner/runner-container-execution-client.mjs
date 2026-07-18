@@ -99,7 +99,11 @@ export class RunnerContainerExecutionClient {
 
 async function expectSuccess(response, label) {
   if (!response || !Number.isInteger(response.status) || response.status < 200 || response.status > 299) {
-    throw new RunnerContainerExecutionClientError(`Private Container rejected ${label}.`);
+    const privateCode = response?.headers?.get?.("x-proofweave-error-code");
+    const diagnosticCode = typeof privateCode === "string" && /^lean_[a-z0-9_]{3,48}$/.test(privateCode)
+      ? `runner_container_${privateCode}_error`
+      : undefined;
+    throw new RunnerContainerExecutionClientError(`Private Container rejected ${label}.`, { diagnosticCode });
   }
 }
 
@@ -191,7 +195,7 @@ async function diagnoseStage(diagnosticCode, operation) {
   try {
     return await operation();
   } catch (cause) {
-    if (cause instanceof RunnerContainerExecutionClientError && cause.diagnosticCode === diagnosticCode) {
+    if (cause instanceof RunnerContainerExecutionClientError && cause.diagnosticCode) {
       throw cause;
     }
     throw new RunnerContainerExecutionClientError("Private Container execution stage failed.", {

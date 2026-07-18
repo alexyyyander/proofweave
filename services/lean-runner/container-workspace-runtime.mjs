@@ -194,8 +194,9 @@ export class ContainerWorkspaceRuntime {
 export function createContainerWorkspaceHttpHandler({ executor = null, ...runtimeOptions }) {
   const sessions = new Map();
   const handleContainerWorkspaceRequest = async function handleContainerWorkspaceRequest(request) {
+    let route = null;
     try {
-      const route = parseIngressRoute(request);
+      route = parseIngressRoute(request);
       if (!route) return new Response("Not found", { status: 404 });
       if (route.kind === "declare") {
         if (request.method !== "POST") return methodNotAllowed("POST");
@@ -309,11 +310,11 @@ export function createContainerWorkspaceHttpHandler({ executor = null, ...runtim
         },
       });
     } catch (cause) {
-      if (cause instanceof SyntaxError) return jsonResponse({ error: "invalid_workspace_request" }, 400);
+      if (cause instanceof SyntaxError) return rejectionResponse("invalid_workspace_request");
       if (cause instanceof ContainerWorkspaceRuntimeError || cause instanceof Error) {
-        return jsonResponse({ error: "workspace_rejected" }, 400);
+        return rejectionResponse("workspace_rejected", privateContainerFailureCode(cause, route));
       }
-      return jsonResponse({ error: "workspace_rejected" }, 400);
+      return rejectionResponse("workspace_rejected");
     }
   };
   Object.defineProperty(handleContainerWorkspaceRequest, "cleanup", {
@@ -848,6 +849,20 @@ function jsonResponse(value, status = 200) {
     status,
     headers: { "content-type": "application/json; charset=utf-8" },
   });
+}
+
+function rejectionResponse(error, diagnosticCode = null) {
+  const headers = { "content-type": "application/json; charset=utf-8" };
+  if (diagnosticCode) headers["x-proofweave-error-code"] = diagnosticCode;
+  return new Response(JSON.stringify({ error }), { status: 400, headers });
+}
+
+function privateContainerFailureCode(cause, route) {
+  if (route?.kind !== "execute") return null;
+  if (typeof cause?.diagnosticCode === "string" && /^lean_[a-z0-9_]{3,48}$/.test(cause.diagnosticCode)) {
+    return cause.diagnosticCode;
+  }
+  return "lean_execution_internal_failed";
 }
 
 function methodNotAllowed(allow) {
