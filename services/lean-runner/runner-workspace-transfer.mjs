@@ -94,7 +94,7 @@ async function assertRunAndResolvedBundle(run, resolvedBundle) {
     throw new RunnerWorkspaceTransferError("Runner workspace transfer requires a resolved Artifact Bundle.");
   }
   if (
-    run.state !== "preparing" ||
+    !["preparing", "running"].includes(run.state) ||
     run.id !== resolvedBundle.request.jobId ||
     run.attemptId !== resolvedBundle.request.attemptId ||
     run.artifactBundleHash !== resolvedBundle.manifest?.contentHash ||
