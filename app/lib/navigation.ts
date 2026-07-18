@@ -20,7 +20,7 @@ export const navigationGroups = [
     label: "Learn",
     items: [
       { href: "/how-it-works", label: "How it works" },
-      { href: "/showcase", label: "Guided proof story" },
+      { href: "/#proof-journey", label: "Proof journey" },
       { href: "/demo", label: "Executable verified demo" },
     ],
   },

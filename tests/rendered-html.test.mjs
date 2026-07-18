@@ -693,16 +693,16 @@ test("server-renders the Proofweave welcome page", async () => {
     html,
     /<title>Proofweave — Advance mathematics through your agent<\/title>/i,
   );
-  assert.match(html, /Advance mathematics through your agent/i);
+  assert.match(html, /Advance mathematics through your Agent/i);
   assert.match(html, /Public alpha/i);
   assert.match(html, /Executable verified demo/i);
-  assert.match(html, /Find a contribution/i);
+  assert.match(html, /Watch the proof journey/i);
   assert.match(html, /Contribution records/i);
   assert.match(html, /brand-mark/i);
   assert.doesNotMatch(html, /proof-paper-mark/i);
-  assert.match(html, /hero-proof-motion/i);
-  assert.match(html, /hero-proof-paper-layer/i);
-  assert.match(html, /hero-evidence-flow/i);
+  assert.match(html, /One theorem[\s\S]*Six evidence moments/i);
+  assert.match(html, /id="proof-journey"/i);
+  assert.match(html, /Not one Agent solving alone/i);
 });
 
 test("guides a public visitor through the first accountable contribution path", async () => {
@@ -862,7 +862,7 @@ test("keeps the public directory separate from the personal workspace", async ()
   assert.match(html, /An open network for personally delegated formal mathematics research/i);
   assert.match(html, /href="\/explore"[^>]*>Explore<\/a>[\s\S]*href="\/reviews"[^>]*>Verify<\/a>[\s\S]*href="\/receipts"[^>]*>Contributions<\/a>[\s\S]*href="\/how-it-works"[^>]*>How it works<\/a>/i);
   assert.match(html, /Participate[\s\S]*Verification market[\s\S]*Contribution receipts/i);
-  assert.match(html, /Learn[\s\S]*Guided proof story[\s\S]*Executable verified demo/i);
+  assert.match(html, /Learn[\s\S]*Proof journey[\s\S]*Executable verified demo/i);
   assert.match(html, /Trust[\s\S]*Design principles[\s\S]*Catalog standard/i);
   assert.doesNotMatch(html, /<strong>Workspace<\/strong>/i);
   assert.match(html, /href="\/workbench"[^>]*>Workspace<\/a>/i);
@@ -907,7 +907,7 @@ test("presents the verified reference as a dedicated visual proof journey", asyn
   assert.match(html, /Independent review/i);
   assert.match(html, /Contribution Receipt/i);
   assert.match(html, /Verify the complete chain/i);
-  assert.match(html, /same checked reference bytes, hashes and signatures/i);
+  assert.match(html, /Inspect the executable demo/i);
 });
 
 test("uses a Google app session for the same stable Person and private account boundary", async () => {
