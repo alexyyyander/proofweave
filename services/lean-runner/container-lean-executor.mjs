@@ -11,9 +11,12 @@ const terminationExitCode = 137;
 const axiomAuditFile = ".proofweave-axiom-audit.lean";
 
 export class ContainerLeanExecutorError extends Error {
-  constructor(message, options) {
+  constructor(message, options = {}) {
     super(message, options);
     this.name = "ContainerLeanExecutorError";
+    if (options.diagnosticCode !== undefined) {
+      this.diagnosticCode = requireExecutorDiagnosticCode(options.diagnosticCode);
+    }
   }
 }
 
@@ -46,20 +49,25 @@ export class ContainerLeanExecutor {
   async execute({ request, workspace, signal }) {
     const normalizedRequest = normalizeLeanRunnerRequest(request);
     const requestHash = await leanRunnerRequestHash(normalizedRequest);
-    assertWorkspaceMatchesRequest(workspace, normalizedRequest, requestHash, this.executable);
+    await diagnoseExecutorStage("lean_request_binding_failed", async () => {
+      assertWorkspaceMatchesRequest(workspace, normalizedRequest, requestHash, this.executable);
+    });
     const startedAt = isoInstant(this.now(), "Container Lean execution start time");
     const deadline = Date.now() + normalizedRequest.limits.wallSeconds * 1_000;
     const collector = new BoundedOutputCollector(normalizedRequest.limits.outputBytes);
-    const noSorry = await auditNoSorry(workspace);
+    const noSorry = await diagnoseExecutorStage(
+      "lean_no_sorry_audit_failed",
+      () => auditNoSorry(workspace),
+    );
 
-    const build = await runCommand({
+    const build = await diagnoseExecutorStage("lean_build_execution_failed", () => runCommand({
       command: this.executable,
       args: normalizedRequest.bundle.entryCommand.slice(1),
       cwd: workspace.workspaceDirectory,
       collector,
       deadline,
       signal,
-    });
+    }));
 
     let status;
     let kernelStatus;
@@ -81,14 +89,14 @@ export class ContainerLeanExecutor {
       status = "failed";
       kernelStatus = "not_run";
     } else {
-      const axiomAudit = await auditAllowedAxioms({
+      const axiomAudit = await diagnoseExecutorStage("lean_axiom_audit_execution_failed", () => auditAllowedAxioms({
         workspace,
         request: normalizedRequest,
         command: this.executable,
         collector,
         deadline,
         signal,
-      });
+      }));
       allowedAxioms = axiomAudit.check;
       if (axiomAudit.reason === "cancelled") {
         status = "cancelled";
@@ -280,7 +288,10 @@ async function runCommand({ command, args, cwd, collector, deadline, signal }) {
     child.once("error", (cause) => {
       clearTimeout(timeout);
       signal?.removeEventListener("abort", onAbort);
-      rejectExecution(new ContainerLeanExecutorError("Container could not start the fixed lake executable.", { cause }));
+      rejectExecution(new ContainerLeanExecutorError("Container could not start the fixed lake executable.", {
+        cause,
+        diagnosticCode: "lean_process_start_failed",
+      }));
     });
     child.once("close", (code, processSignal) => {
       clearTimeout(timeout);
@@ -299,8 +310,8 @@ async function runCommand({ command, args, cwd, collector, deadline, signal }) {
 function restrictedEnvironment() {
   const path = process.env.PATH;
   const home = process.env.HOME;
-  if (!path) throw new ContainerLeanExecutorError("Container image must provide PATH for its fixed lake executable.");
-  if (!home) throw new ContainerLeanExecutorError("Container image must provide HOME for its fixed Lean toolchain installation.");
+  if (!path) throw new ContainerLeanExecutorError("Container image must provide PATH for its fixed lake executable.", { diagnosticCode: "lean_environment_missing" });
+  if (!home) throw new ContainerLeanExecutorError("Container image must provide HOME for its fixed Lean toolchain installation.", { diagnosticCode: "lean_environment_missing" });
   return {
     PATH: path,
     HOME: home,
@@ -358,6 +369,25 @@ function assertWorkspaceMatchesRequest(workspace, request, requestHash, executab
 
 function sameArray(left, right) {
   return Array.isArray(left) && Array.isArray(right) && left.length === right.length && left.every((value, index) => value === right[index]);
+}
+
+async function diagnoseExecutorStage(diagnosticCode, operation) {
+  try {
+    return await operation();
+  } catch (cause) {
+    if (cause instanceof ContainerLeanExecutorError && cause.diagnosticCode) throw cause;
+    throw new ContainerLeanExecutorError("Container Lean execution stage failed.", {
+      cause,
+      diagnosticCode,
+    });
+  }
+}
+
+function requireExecutorDiagnosticCode(value) {
+  if (typeof value !== "string" || !/^lean_[a-z0-9_]{3,48}$/.test(value)) {
+    throw new TypeError("Container Lean diagnostic code is invalid.");
+  }
+  return value;
 }
 
 function samePolicy(left, right) {

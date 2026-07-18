@@ -5,7 +5,9 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import test from "node:test";
 import * as zlib from "node:zlib";
+import { leanRunnerRequestHash } from "../packages/protocol/lean-runner.mjs";
 import { workspaceTreeHash } from "../packages/protocol/workspace-tree.mjs";
+import { ContainerLeanExecutorError } from "../services/lean-runner/container-lean-executor.mjs";
 import {
   ContainerWorkspaceRuntime,
   ContainerWorkspaceRuntimeError,
@@ -112,6 +114,74 @@ test("Container workspace HTTP handler accepts an idempotent private cancellatio
     assert.equal((await handler(new Request(`${base}/workspace/cancel`, { method: "POST" }))).status, 204);
     assert.equal((await handler(new Request(`${base}/workspace/cancel`, { method: "GET" }))).status, 405);
     await handler.cleanup();
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("Container workspace HTTP handler returns only a fixed Lean diagnostic code", { skip: !hasNativeZstd }, async () => {
+  const root = await mkdtemp(join(tmpdir(), "proofweave-container-diagnostic-"));
+  try {
+    const fixture = await validWorkspaceFixture();
+    const request = {
+      protocolVersion: "pw-lean-runner-v1",
+      jobId: fixture.declaration.jobId,
+      idempotencyKey: "container-diagnostic",
+      attemptId: "attempt:container-diagnostic",
+      bundle: {
+        objectKey: `bundles/sha256/${"c".repeat(64)}/bundle.json`,
+        contentHash: sha("c"),
+        manifestHash: sha("c"),
+        entryCommand: fixture.declaration.entryCommand,
+      },
+      environment: {
+        imageDigest: `registry.cloudflare.com/proofweave/lean-runner@sha256:${"d".repeat(64)}`,
+        leanToolchain: "leanprover/lean4:v4.30.0",
+        mathlibRevision: "fixture-mathlib",
+        network: "disabled",
+      },
+      limits: { cpuSeconds: 10, wallSeconds: 30, memoryMiB: 512, diskMiB: 512, outputBytes: 1_000_000 },
+      policy: fixture.declaration.policy,
+    };
+    fixture.declaration.requestHash = await leanRunnerRequestHash(request);
+    const handler = createContainerWorkspaceHttpHandler({
+      stagingRoot: join(root, "staging"),
+      workspaceRoot: join(root, "workspaces"),
+      executor: {
+        async execute() {
+          throw new ContainerLeanExecutorError("private local cause", {
+            diagnosticCode: "lean_environment_missing",
+          });
+        },
+      },
+    });
+    const base = `https://proofweave-runner.internal/v1/runs/${encodeURIComponent(fixture.declaration.jobId)}`;
+    assert.equal((await handler(new Request(`${base}/workspace`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(fixture.declaration),
+    }))).status, 204);
+    for (const [endpoint, id] of [["source-archive", "sourceArchive"], ["source-patch", "sourcePatch"], ["lake-manifest", "lakeManifest"]]) {
+      const metadata = fixture.metadata[id];
+      assert.equal((await handler(new Request(`${base}/workspace/artifacts/${endpoint}`, {
+        method: "PUT",
+        headers: {
+          "content-type": metadata.contentType,
+          "content-length": String(metadata.byteLength),
+          "x-proofweave-artifact-role": id,
+          "x-proofweave-content-sha256": metadata.contentHash,
+        },
+        body: fixture.artifacts[id],
+      }))).status, 204);
+    }
+    const response = await handler(new Request(`${base}/workspace/execute`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(request),
+    }));
+    assert.equal(response.status, 400);
+    assert.equal(response.headers.get("x-proofweave-error-code"), "lean_environment_missing");
+    assert.deepEqual(await response.json(), { error: "workspace_rejected" });
   } finally {
     await rm(root, { recursive: true, force: true });
   }
