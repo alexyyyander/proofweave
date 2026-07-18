@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Footer, PageSectionNav } from "../ui";
 import { Header } from "../header";
 
@@ -5,6 +6,7 @@ export default function TermsPage() {
   return <div className="site-shell app-shell">
     <Header active="about" />
     <main id="main-content" tabIndex={-1} className="page-main legal-main">
+      <div className="breadcrumb"><Link href="/about">About</Link><span> / </span><span>Terms</span></div>
       <section className="legal-hero">
         <p className="eyebrow">Terms · public alpha</p>
         <h1>Contribute carefully. Treat every status as a bounded claim.</h1>
