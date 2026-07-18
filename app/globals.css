@@ -2338,7 +2338,7 @@ a.auth-provider:hover, .auth-provider-button:hover { border-color: #8295d5; box-
   :root { --content-page-title-size: 40px; }
 }
 
-/* Learn and Trust pages share one outer rail while preserving readable measures. */
+/* Learn, Trust, and Demo pages share one outer rail while preserving readable measures. */
 :root {
   --editorial-page-column-gap: 70px;
   --editorial-page-max-width: 1240px;
@@ -2356,9 +2356,60 @@ a.auth-provider:hover, .auth-provider-button:hover { border-color: #8295d5; box-
   grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr);
 }
 
+.demo-shell {
+  --demo-page-gutter: max(28px, calc((100vw - var(--editorial-page-max-width)) / 2));
+}
+
+.demo-hero,
+.demo-boundary,
+.demo-live-record,
+.demo-proof-section,
+.demo-reproduce,
 .demo-shell main > .page-section-nav {
-  padding-left: max(28px, calc((100vw - var(--editorial-page-max-width)) / 2));
-  padding-right: max(28px, calc((100vw - var(--editorial-page-max-width)) / 2));
+  padding-left: var(--demo-page-gutter);
+  padding-right: var(--demo-page-gutter);
+}
+
+/* These sections used to cap the border box at 1240px, which made their
+   content rail 56px narrower than the surrounding full-width sections. */
+.demo-walkthrough,
+.demo-console,
+.demo-honesty-grid,
+.demo-closing {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: none;
+  padding-left: var(--demo-page-gutter);
+  padding-right: var(--demo-page-gutter);
+}
+
+/* Local reproduction is an optional audit affordance, not a peer of the
+   browser walkthrough and live verification flow. */
+.demo-reproduce {
+  align-items: center;
+  gap: 42px;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 500px);
+  padding-bottom: 44px;
+  padding-top: 44px;
+}
+
+.demo-reproduce h2 {
+  font-size: clamp(28px, 3vw, 38px);
+  margin-bottom: 12px;
+}
+
+.demo-reproduce p:not(.eyebrow) {
+  font-size: 12px;
+  max-width: 700px;
+}
+
+.demo-reproduce-command {
+  gap: 11px;
+  padding: 16px 18px;
+}
+
+.demo-reproduce-command code {
+  padding: 13px 14px;
 }
 
 .reading-hero > p:not(.eyebrow),
@@ -2375,9 +2426,8 @@ a.auth-provider:hover, .auth-provider-button:hover { border-color: #8295d5; box-
 }
 
 @media (max-width: 620px) {
-  .demo-shell main > .page-section-nav {
-    padding-left: 18px;
-    padding-right: 18px;
+  .demo-shell {
+    --demo-page-gutter: 18px;
   }
 }
 
