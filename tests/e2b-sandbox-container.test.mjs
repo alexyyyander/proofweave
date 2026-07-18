@@ -50,6 +50,9 @@ test("E2B adapter creates one secure no-egress Sandbox and keeps control credent
   assert.equal(JSON.stringify(e2b.createOptions.metadata).includes("run:e2b-1"), false);
   assert.equal(e2b.serverCommand, "node /opt/proofweave/services/lean-runner/container-http-server.mjs");
   assert.equal(e2b.serverOptions.background, true);
+  assert.equal(e2b.serverOptions.user, "proofweave");
+  assert.equal(e2b.serverOptions.envs.HOME, "/home/proofweave");
+  assert.equal(e2b.serverOptions.envs.PATH.startsWith("/opt/lean/bin:"), true);
   assert.equal(e2b.serverOptions.envs.PROOFWEAVE_NETWORK_ISOLATED, "true");
   assert.equal(forwarded[0].url, "https://8080-sandbox.e2b.test/ready");
   assert.equal(forwarded[0].options.headers.get("e2b-traffic-access-token"), "e2b-traffic-token-1234567890");
