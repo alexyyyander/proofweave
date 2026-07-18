@@ -2272,3 +2272,36 @@ a.auth-provider:hover, .auth-provider-button:hover { border-color: #8295d5; box-
 @media (prefers-reduced-motion: reduce) {
   .home-showcase-shell .showcase-experience *, .home-showcase-shell .showcase-experience *::before, .home-showcase-shell .showcase-experience *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .001ms !important; }
 }
+
+/* One title scale for every content page. The showcase homepage keeps its display scale. */
+:root { --content-page-title-size: clamp(42px, 4.25vw, 58px); }
+.site-shell:not(.home-showcase-shell) :where(
+  .page-hero,
+  .detail-heading,
+  .receipt-heading,
+  .review-heading,
+  .integrations-hero,
+  .workbench-hero,
+  .review-workspace-heading,
+  .demo-hero,
+  .journey-hero,
+  .connect-codex-intro,
+  .connect-codex-card,
+  .settings-hero,
+  .profile-hero-copy,
+  .public-profile-hero,
+  .auth-intro,
+  .legal-hero,
+  .about-hero,
+  .information-hub-hero,
+  .reading-hero,
+  .workspace-onboarding-copy
+) h1 {
+  font-size: var(--content-page-title-size);
+  letter-spacing: -.052em;
+  line-height: 1;
+}
+
+@media (max-width: 620px) {
+  :root { --content-page-title-size: 40px; }
+}
