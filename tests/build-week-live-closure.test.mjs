@@ -156,6 +156,38 @@ test("the Build Week closure rejects key reuse across mock Person and Agent iden
   }), /must be distinct/);
 });
 
+test("the live closure queues a primary Run before opening independent review work", async () => {
+  const keys = await generateMockerKeys();
+  const queued = [];
+  const closure = new D1BuildWeekLiveClosure({
+    database: { prepare() {}, batch() {} },
+    ...keys,
+    runnerDispatcher: {
+      async queueBundle(input) {
+        queued.push(input);
+        return { run: { id: "run:primary", state: "queued" }, runCreated: true };
+      },
+    },
+  });
+  closure.requireEligibleBundle = async () => ({
+    attemptId: "attempt:primary",
+    problemRevisionId: "revision:primary",
+    attemptOwnerPersonId: "person:primary",
+  });
+  closure.findAcceptedPrimaryRun = async () => null;
+  const result = await closure.prime({ artifactBundleHash: `sha256:${"a".repeat(64)}` });
+  assert.equal(result.state, "primary_run_queued");
+  assert.equal(result.runId, "run:primary");
+  assert.equal(queued.length, 1);
+  assert.deepEqual(queued[0].attempt, { id: "attempt:primary", problemRevisionId: "revision:primary" });
+
+  closure.findAcceptedPrimaryRun = async () => ({ id: "run:already-accepted" });
+  const replay = await closure.prime({ artifactBundleHash: `sha256:${"a".repeat(64)}` });
+  assert.equal(replay.state, "primary_run_succeeded");
+  assert.equal(replay.runId, "run:already-accepted");
+  assert.equal(queued.length, 1, "an accepted primary Run must not be queued again");
+});
+
 async function generateMockerKeys() {
   const pairs = await Promise.all(Array.from({ length: 4 }, () => (
     crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"])
