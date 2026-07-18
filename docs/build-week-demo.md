@@ -33,14 +33,16 @@ keys are not written to disk.
 The interactive verification console is a generated protocol fixture, not a
 live network contribution, and it is not credited to a real participant. The
 live-network panel is deliberately separate. It appears only after a fresh E2B
-Lean replay, three signed review gates from an owner different from the Attempt
+Lean replay, three signed review gates from owners different from the Attempt
 owner, and an issuer-signed Receipt have been persisted and re-verified.
 
-For the Build Week path, that second owner is explicitly labelled
-`Build Week Mock Reviewer (demo)`. It is not a human participant. Its Person
-possession proof, review-only delegation, local Agent signatures, isolated
-replay provenance, and Receipt are nevertheless real protocol evidence. This
-lets the demo exercise the complete boundary without inventing a human review.
+For the Build Week path, two owners are explicitly labelled
+`Build Week Mocker 1st (demo)` and `Build Week Mocker 2nd (demo)`. They are not
+human participants. Mocker 1st owns the fresh reproducibility replay;
+Mocker 2nd owns kernel and pinned-project acceptance. Each has a distinct
+Person key, Agent key, possession proof, review-only delegation, and signed
+attestations. This exercises multi-owner enforcement without inventing human
+review.
 
 The fixture remains useful because it fails closed: changing the signed Git
 commit, workspace hashes, target, Run evidence, reviewer identities, or receipt
@@ -68,11 +70,11 @@ coverage for `/demo` and `/api/demo/verify`.
 
 Operators use the protected GitHub Actions workflow
 `Proofweave Build Week live Receipt`. It accepts one exact succeeded Artifact
-Bundle hash, creates the labelled mock reviewer idempotently, claims the three
-required review jobs, replays the Bundle in a fresh E2B sandbox, records the
-signed attestations, and issues the Receipt. The workflow environment keeps
-the reviewer Person key, reviewer Agent key, and Receipt issuer key in GitHub
-environment secrets; none are printed in the audit output.
+Bundle hash, creates both labelled mock owners idempotently, distributes the
+three required review jobs, replays the Bundle in a fresh E2B sandbox, records
+the signed attestations, and issues the Receipt. The workflow environment keeps
+four distinct mock Person/Agent private keys and the Receipt issuer key in
+GitHub environment secrets; none are printed in the audit output.
 
 The underlying phases can also be audited locally against an authorized shared
 store:

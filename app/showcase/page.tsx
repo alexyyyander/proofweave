@@ -45,13 +45,14 @@ export default async function ShowcasePage() {
             <p className="eyebrow">Live control-plane record</p>
             <h2 id="showcase-live-title">{liveClosure ? "The cloud evidence chain has closed." : "The reference chain remains inspectable."}</h2>
             <p>{liveClosure
-              ? "A fresh isolated Lean replay, three signed review gates from an owner different from the Attempt owner, and the issuer signature now resolve to one public Contribution Receipt. The second owner is explicitly labelled as a demo mock; its keys, replay, attestations, and Receipt are real records."
+              ? `A fresh isolated Lean replay, three signed review gates across ${liveClosure.reviewerCount} mock owner${liveClosure.reviewerCount === 1 ? "" : "s"} different from the Attempt owner, and the issuer signature resolve to one public Contribution Receipt. The mock identities are explicit; their keys, replay, attestations, and Receipt are real records.`
               : "The animated journey below is backed by the checked reference fixture. A live Receipt appears here only after a fresh cloud replay and all required signed review gates exist in the shared evidence store."}</p>
           </div>
           {liveClosure ? <>
             <dl>
               <div><dt>Target</dt><dd>{liveClosure.target}</dd></div>
               <div><dt>Fresh replay</dt><dd><code>{shortHash(liveClosure.replayRunId)}</code></dd></div>
+              <div><dt>Mock owners</dt><dd>{liveClosure.reviewerCount} distinct</dd></div>
               <div><dt>Review gates</dt><dd>{liveClosure.attestationCount} signed</dd></div>
               <div><dt>Receipt</dt><dd><code>{shortHash(liveClosure.receiptHash)}</code></dd></div>
             </dl>

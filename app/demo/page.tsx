@@ -19,7 +19,7 @@ export default async function DemoPage() {
           <div className="demo-hero-copy">
             <p className="eyebrow">Verified reference · no Proofweave setup required</p>
             <h1>Watch one Lean proof become <span>verifiable evidence.</span></h1>
-            <p className="hero-lede">A Person delegates a local Codex Agent. The Agent signs a reproducible Lean workspace. A clearly labeled mock second account performs the independent review, and Proofweave verifies every cryptographic boundary.</p>
+            <p className="hero-lede">A Person delegates a local Codex Agent. The Agent signs a reproducible Lean workspace. Two clearly labelled mock owners split the independent review gates, and Proofweave verifies every cryptographic boundary.</p>
             <div className="button-row">
               <a className="button button-primary" href="#demo-walkthrough">Run the walkthrough <span aria-hidden="true">↓</span></a>
               <Link className="button button-secondary" href="/start">Start with my Agent</Link>
@@ -29,7 +29,7 @@ export default async function DemoPage() {
             <li><span>01</span><div><strong>Person delegates</strong><p>A signed certificate grants one Agent formalize and prove scope.</p></div></li>
             <li><span>02</span><div><strong>Agent signs</strong><p>The target, Git commit, workspace and Lean policy become immutable.</p></div></li>
             <li><span>03</span><div><strong>Lean checks</strong><p>Lean 4.30 accepts the theorem with no <code>sorry</code>.</p></div></li>
-            <li><span>04</span><div><strong>Mock owner reviews</strong><p>A simulated second Person owns a distinct real review key and signs the replay claims.</p></div></li>
+            <li><span>04</span><div><strong>Mock owners review</strong><p>Two simulated Persons own distinct real keys and split replay, kernel, and project claims.</p></div></li>
             <li><span>05</span><div><strong>Person is credited</strong><p>The reference receipt binds attribution to all preceding evidence.</p></div></li>
           </ol>
         </section>
@@ -37,7 +37,7 @@ export default async function DemoPage() {
         <section className="demo-boundary" aria-label="Demo boundary">
           <strong>What you are seeing</strong>
           <p>{verification.disclosure}</p>
-          <ProductStateBadge tone="verified">Local fixture + mock reviewer</ProductStateBadge>
+          <ProductStateBadge tone="verified">Local fixture + 2 mock owners</ProductStateBadge>
         </section>
 
         <section className={`demo-live-record ${liveClosure ? "is-issued" : "is-pending"}`} aria-labelledby="demo-live-record-title">
@@ -45,13 +45,14 @@ export default async function DemoPage() {
             <p className="eyebrow">Separate live-network proof</p>
             <h2 id="demo-live-record-title">{liveClosure ? "A real cloud replay reached a signed Receipt." : "Live cloud closure has not been recorded yet."}</h2>
             <p>{liveClosure
-              ? `The public record covers ${liveClosure.target}. Its different-owner reviewer is clearly marked as a demo mock, while the fresh isolated replay, ${liveClosure.attestationCount} Agent signatures, and issuer-signed Receipt are stored evidence.`
+              ? `The public record covers ${liveClosure.target}. Its ${liveClosure.reviewerCount} different-owner mock reviewer${liveClosure.reviewerCount === 1 ? " is" : "s are"} clearly labelled, while the fresh isolated replay, ${liveClosure.attestationCount} Agent signatures, and issuer-signed Receipt are stored evidence.`
               : "The interactive console below verifies a checked reference fixture. It does not claim that a hosted replay or network Receipt exists until this separate panel can resolve one from shared storage."}</p>
           </div>
           {liveClosure ? <div className="demo-live-record-proof">
             <dl>
               <div><dt>Replay</dt><dd><code>{shortHash(liveClosure.replayRunId)}</code></dd></div>
               <div><dt>Evidence</dt><dd><code>{shortHash(liveClosure.replayEvidenceHash)}</code></dd></div>
+              <div><dt>Mock owners</dt><dd>{liveClosure.reviewerCount} distinct</dd></div>
               <div><dt>Receipt</dt><dd><code>{shortHash(liveClosure.receiptHash)}</code></dd></div>
             </dl>
             <Link className="button button-primary" href={`/receipt/${encodeURIComponent(liveClosure.receiptId)}`}>Inspect live Receipt <span aria-hidden="true">→</span></Link>
@@ -79,7 +80,7 @@ export default async function DemoPage() {
 
         <section className="demo-honesty-grid">
           <article><span className="micro-label">This demo proves</span><h2>The evidence protocol is executable.</h2><p>Displayed bytes are re-hashed, four signature classes are checked, owner IDs remain distinct, and Receipt policy runs on every request.</p></article>
-          <article><span className="micro-label">This demo does not claim</span><h2>The reviewer is not a human participant.</h2><p>The second account is an explicitly labelled mock. The interactive console still checks a local reference fixture; any separate hosted replay and Receipt are reported only by the live-network panel above.</p></article>
+          <article><span className="micro-label">This demo does not claim</span><h2>The reviewers are not human participants.</h2><p>The review accounts are explicitly labelled mocks. They prove owner separation and cryptographic enforcement, not independent human judgment. Hosted replay and Receipt claims appear only in the live-network panel above.</p></article>
         </section>
 
         <section className="demo-reproduce" aria-labelledby="demo-reproduce-title">
