@@ -7,6 +7,7 @@ const internalOrigin = "https://proofweave-runner.internal";
 const runnerUser = "proofweave";
 const runnerHome = "/home/proofweave";
 const runnerPath = "/opt/lean/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin";
+const runnerLeanExecutable = "/opt/lean/bin/lake";
 const runPath = /^\/v1\/runs\/([^/]+)\/workspace(?:\/artifacts\/(?:source-archive|source-patch|lake-manifest)|\/(?:finalize|execute|cancel|complete)|\/result\/(?:stdout|stderr))?$/;
 
 export class E2BSandboxContainerError extends Error {
@@ -308,6 +309,21 @@ async function startSandboxServer(sandbox, timeoutMs, requestTimeoutMs) {
   if (!sandbox?.commands || typeof sandbox.commands.run !== "function") {
     throw new E2BSandboxContainerError("E2B Sandbox does not expose the reviewed command boundary.");
   }
+  const commandEnvironment = {
+    HOME: runnerHome,
+    PATH: runnerPath,
+    PROOFWEAVE_LEAN_EXECUTABLE_PATH: runnerLeanExecutable,
+    PROOFWEAVE_NETWORK_ISOLATED: "true",
+    PROOFWEAVE_RESOURCE_LIMITS_ENFORCED: "true",
+    PROOFWEAVE_REQUEST_TIMEOUT_MS: String(timeoutMs),
+  };
+  await sandbox.commands.run(`${runnerLeanExecutable} --version`, {
+    cwd: "/opt/proofweave",
+    user: runnerUser,
+    timeoutMs: Math.min(10_000, timeoutMs),
+    requestTimeoutMs,
+    envs: commandEnvironment,
+  });
   await sandbox.commands.run(
     "node /opt/proofweave/services/lean-runner/container-http-server.mjs",
     {
@@ -316,13 +332,7 @@ async function startSandboxServer(sandbox, timeoutMs, requestTimeoutMs) {
       user: runnerUser,
       timeoutMs: Math.min(3_600_000, timeoutMs + 30_000),
       requestTimeoutMs,
-      envs: {
-        HOME: runnerHome,
-        PATH: runnerPath,
-        PROOFWEAVE_NETWORK_ISOLATED: "true",
-        PROOFWEAVE_RESOURCE_LIMITS_ENFORCED: "true",
-        PROOFWEAVE_REQUEST_TIMEOUT_MS: String(timeoutMs),
-      },
+      envs: commandEnvironment,
     },
   );
 }

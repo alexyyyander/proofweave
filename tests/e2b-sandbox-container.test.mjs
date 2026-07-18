@@ -48,11 +48,14 @@ test("E2B adapter creates one secure no-egress Sandbox and keeps control credent
   assert.equal(e2b.createOptions.envs.PROOFWEAVE_RESOURCE_LIMITS_ENFORCED, "true");
   assert.equal(Object.values(e2b.createOptions.envs).includes(apiKey), false);
   assert.equal(JSON.stringify(e2b.createOptions.metadata).includes("run:e2b-1"), false);
+  assert.equal(e2b.runtimeProbeCommand, "/opt/lean/bin/lake --version");
+  assert.equal(e2b.runtimeProbeOptions.user, "proofweave");
   assert.equal(e2b.serverCommand, "node /opt/proofweave/services/lean-runner/container-http-server.mjs");
   assert.equal(e2b.serverOptions.background, true);
   assert.equal(e2b.serverOptions.user, "proofweave");
   assert.equal(e2b.serverOptions.envs.HOME, "/home/proofweave");
   assert.equal(e2b.serverOptions.envs.PATH.startsWith("/opt/lean/bin:"), true);
+  assert.equal(e2b.serverOptions.envs.PROOFWEAVE_LEAN_EXECUTABLE_PATH, "/opt/lean/bin/lake");
   assert.equal(e2b.serverOptions.envs.PROOFWEAVE_NETWORK_ISOLATED, "true");
   assert.equal(forwarded[0].url, "https://8080-sandbox.e2b.test/ready");
   assert.equal(forwarded[0].options.headers.get("e2b-traffic-access-token"), "e2b-traffic-token-1234567890");
@@ -223,8 +226,13 @@ function fakeE2B({
     trafficAccessToken,
     commands: {
       async run(command, options) {
-        state.serverCommand = command;
-        state.serverOptions = options;
+        if (command.endsWith("lake --version")) {
+          state.runtimeProbeCommand = command;
+          state.runtimeProbeOptions = options;
+        } else {
+          state.serverCommand = command;
+          state.serverOptions = options;
+        }
         return { pid: 17 };
       },
     },

@@ -31,7 +31,7 @@ export class ContainerLeanExecutorError extends Error {
  * bytes for the trusted Runner Worker to persist and sign.
  */
 export class ContainerLeanExecutor {
-  constructor({ networkIsolated, resourceLimitsEnforced, executable = "lake", now = () => new Date() }) {
+  constructor({ networkIsolated, resourceLimitsEnforced, executable = "lake", executablePath = executable, now = () => new Date() }) {
     if (networkIsolated !== true) {
       throw new TypeError("ContainerLeanExecutor requires an explicitly network-isolated Container.");
     }
@@ -41,8 +41,12 @@ export class ContainerLeanExecutor {
     if (typeof executable !== "string" || executable.length === 0 || executable.length > 240 || /[\0\r\n]/.test(executable)) {
       throw new TypeError("Container Lean executable must be a bounded executable name.");
     }
+    if (typeof executablePath !== "string" || !isReviewedExecutablePath(executablePath)) {
+      throw new TypeError("Container Lean executable path must be lake or a normalized absolute path ending in lake.");
+    }
     if (typeof now !== "function") throw new TypeError("ContainerLeanExecutor now must be a function.");
     this.executable = executable;
+    this.executablePath = executablePath;
     this.now = now;
   }
 
@@ -61,7 +65,7 @@ export class ContainerLeanExecutor {
     );
 
     const build = await diagnoseExecutorStage("lean_build_execution_failed", () => runCommand({
-      command: this.executable,
+      command: this.executablePath,
       args: normalizedRequest.bundle.entryCommand.slice(1),
       cwd: workspace.workspaceDirectory,
       collector,
@@ -92,7 +96,7 @@ export class ContainerLeanExecutor {
       const axiomAudit = await diagnoseExecutorStage("lean_axiom_audit_execution_failed", () => auditAllowedAxioms({
         workspace,
         request: normalizedRequest,
-        command: this.executable,
+        command: this.executablePath,
         collector,
         deadline,
         signal,
@@ -388,6 +392,10 @@ function requireExecutorDiagnosticCode(value) {
     throw new TypeError("Container Lean diagnostic code is invalid.");
   }
   return value;
+}
+
+function isReviewedExecutablePath(value) {
+  return value === "lake" || /^\/(?:[A-Za-z0-9._+-]+\/)*lake$/.test(value);
 }
 
 function samePolicy(left, right) {

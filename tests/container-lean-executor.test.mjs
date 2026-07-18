@@ -87,6 +87,14 @@ test("Container Lean executor refuses to run without deployment-enforced isolati
     () => new ContainerLeanExecutor({ networkIsolated: true, resourceLimitsEnforced: false }),
     TypeError,
   );
+  assert.throws(
+    () => new ContainerLeanExecutor({
+      networkIsolated: true,
+      resourceLimitsEnforced: true,
+      executablePath: "../lake",
+    }),
+    /normalized absolute path/,
+  );
 });
 
 test("Container Lean executor returns normal unsigned cancellation evidence for an aborted private request", async () => {
