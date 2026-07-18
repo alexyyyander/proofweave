@@ -873,9 +873,19 @@ test("serves the public research paths", async () => {
 
   const integrations = await render("/integrations");
   const integrationsHtml = await integrations.text();
-  assert.match(integrationsHtml, /Add the Proofweave Research plugin/i);
-  assert.match(integrationsHtml, /Approve one local Agent, once/i);
+  assert.match(integrationsHtml, /Install Proofweave Research once/i);
+  assert.match(integrationsHtml, /Approve your local Codex once/i);
   assert.doesNotMatch(integrationsHtml, /https:\/\/mcp\.proofweave\.org\/mcp/i);
+
+  const selectedIntegration = await render("/integrations?target=erdos-865-k2&return_to=%2Fworkbench%3Ftarget%3Derdos-865-k2%23research-launcher");
+  const selectedIntegrationHtml = await selectedIntegration.text();
+  assert.match(selectedIntegrationHtml, /Erdős Problem 865: k = 2 variant/i);
+  assert.match(selectedIntegrationHtml, /Your target remains selected during connection/i);
+
+  const selectedWorkbench = await render("/workbench?target=erdos-865-k2");
+  const selectedWorkbenchHtml = await selectedWorkbench.text();
+  assert.match(selectedWorkbenchHtml, /Erdős Problem 865: k = 2 variant/i);
+  assert.match(selectedWorkbenchHtml, /exact target and source revision stay selected after sign-in/i);
 });
 
 test("keeps the public directory separate from the personal workspace", async () => {

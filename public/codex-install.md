@@ -63,6 +63,14 @@ Start a fresh Codex task after changing a permission profile. In a managed
 workspace, ask the administrator to add that exact host instead. The browser
 approval still requires the person's separate confirmation.
 
+If `connection_status` reports `reconnectRequired` or shows an older address
+such as `proofweave-public-demo.proofweave-research.workers.dev`, the saved
+OAuth connection belongs to an earlier deployment. Show both addresses and
+ask the person to approve `connect_proofweave` again for the current Site. Do
+not delete the local Agent key or copy its refresh token. Reconnection changes
+the approved control plane; it does not silently copy or merge research records
+from a separate legacy database.
+
 ## After installation
 
 When the person asks to connect, call `connection_status`. If it is not

@@ -1,5 +1,6 @@
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { MissingDatabaseBindingError } from "@/db";
 import { getAccountAuthRepository } from "@/db/repositories/account-auth";
 import type { PersonIdentity } from "@/db/repositories/delegation";
 import {
@@ -51,13 +52,38 @@ export async function getCurrentUser(): Promise<AuthUser | null> {
     requestHeaders.get("oai-authenticated-user-full-name-encoding") === "percent-encoded-utf-8"
       ? safeDecodeURIComponent(encodedFullName)
       : null;
+  const subject = email.toLowerCase();
+  const displayName = fullName ?? email;
+  try {
+    // Dispatch-owned ChatGPT auth has no application cookie. Resolve it into
+    // the same identity table used by Google before any workspace repository
+    // is opened, so a later verified-email login keeps one stable Person.
+    const identity = await getAccountAuthRepository().resolveIdentity({
+      provider: "chatgpt",
+      subject,
+      displayName,
+      email: subject,
+      emailVerified: true,
+    });
+    return {
+      provider: "chatgpt",
+      providerLabel: "ChatGPT",
+      subject: identity.subject,
+      personId: identity.personId,
+      displayName: identity.displayName,
+      email: identity.email ?? subject,
+      fullName,
+    };
+  } catch (error) {
+    if (!(error instanceof MissingDatabaseBindingError)) throw error;
+  }
   return {
     provider: "chatgpt",
     providerLabel: "ChatGPT",
-    subject: email.toLowerCase(),
+    subject,
     personId: null,
-    displayName: fullName ?? email,
-    email: email.toLowerCase(),
+    displayName,
+    email: subject,
     fullName,
   };
 }

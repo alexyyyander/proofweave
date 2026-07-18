@@ -41,19 +41,38 @@ export function CodexInstallPrompt() {
   );
 }
 
-const connectionRequests = {
-  research: "Connect this Codex to Proofweave for research. Use connect_proofweave with role research, show me the requested authority, and wait for me to approve it in the browser.",
-  review: "Connect this Codex to Proofweave for independent review. Use connect_proofweave with role review, show me the requested authority, and wait for me to approve it in the browser.",
-  research_and_review: "Upgrade this Codex connection for both research and independent review. Use connect_proofweave with role research_and_review, show me the requested authority, and wait for me to approve it in the browser.",
+const roleDescriptions = {
+  research: "research",
+  review: "independent review",
+  research_and_review: "research and independent review",
 } as const;
 
-export function CodexConnectPrompt({ role }: { role: keyof typeof connectionRequests }) {
+export function CodexConnectPrompt({
+  role,
+  targetTitle,
+  returnHref,
+  onRequestCopied,
+}: {
+  role: keyof typeof roleDescriptions;
+  targetTitle?: string;
+  returnHref?: string;
+  onRequestCopied?: () => void;
+}) {
   const [copied, setCopied] = useState(false);
+  const destination = returnHref
+    ? `https://proofweave-research.yualex031821.chatgpt.site${returnHref}`
+    : "https://proofweave-research.yualex031821.chatgpt.site/workbench";
+  const connectionRequest = `Check Proofweave connection_status first. Connect this Codex to https://proofweave-research.yualex031821.chatgpt.site for ${roleDescriptions[role]}.
+
+If it is disconnected, reconnectRequired, or configured for a different Proofweave address, explain the current and requested connection, then ask for my approval before running connect_proofweave with role ${role}. Do not delete local keys or tokens and do not create an Attempt yet.
+
+After connection succeeds, tell me to return to ${destination}${targetTitle ? ` to continue “${targetTitle}”` : ""}.`;
 
   async function copyConnectionRequest() {
     try {
-      await navigator.clipboard.writeText(connectionRequests[role]);
+      await navigator.clipboard.writeText(connectionRequest);
       setCopied(true);
+      onRequestCopied?.();
       window.setTimeout(() => setCopied(false), 2200);
     } catch {
       setCopied(false);
