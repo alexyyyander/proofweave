@@ -1,4 +1,4 @@
-import { getD1 } from "@/db";
+import { getD1, getSharedResearchD1 } from "@/db";
 import {
   assertContributionReceiptPolicy,
   contributionReceiptHash,
@@ -166,15 +166,17 @@ type LifecycleRow = {
  * embedded issuer signature agree.
  */
 class D1ContributionReceiptReader implements ContributionReceiptReader {
+  constructor(private readonly database: ReturnType<typeof getD1> = getD1()) {}
+
   async listIssuerKeys(): Promise<readonly PublicContributionReceiptIssuerKey[]> {
-    const keys = await new D1ContributionReceiptIssuerKeyStore(getD1()).list();
+    const keys = await new D1ContributionReceiptIssuerKeyStore(this.database).list();
     return Object.freeze(keys.map((key: PublicContributionReceiptIssuerKey) => Object.freeze({ ...key })));
   }
 
   async findById(id: string): Promise<PublicContributionReceiptRecord | null> {
     if (!isContributionReceiptId(id)) return null;
 
-    const row = await getD1()
+    const row = await this.database
       .prepare(
         "SELECT id, receipt_hash, canonical_receipt FROM contribution_receipts WHERE id = ?",
       )
@@ -182,12 +184,12 @@ class D1ContributionReceiptReader implements ContributionReceiptReader {
       .first<ReceiptRow>();
     if (!row) return null;
 
-    return verifyStoredReceiptRow(row, id);
+    return verifyStoredReceiptRow(row, id, this.database);
   }
 
   async listRecent(limit = 24): Promise<readonly PublicContributionReceiptIndexItem[]> {
     const boundedLimit = Number.isInteger(limit) && limit > 0 ? Math.min(limit, 48) : 24;
-    const result = await getD1()
+    const result = await this.database
       .prepare(
         `SELECT id, receipt_hash, canonical_receipt
          FROM contribution_receipts
@@ -203,7 +205,7 @@ class D1ContributionReceiptReader implements ContributionReceiptReader {
   async listByPerson(personId: string, limit = 48): Promise<readonly PublicContributionReceiptIndexItem[]> {
     if (!isPersonId(personId)) return Object.freeze([]);
     const boundedLimit = Number.isInteger(limit) && limit > 0 ? Math.min(limit, 100) : 48;
-    const result = await getD1()
+    const result = await this.database
       .prepare(
         `SELECT id, receipt_hash, canonical_receipt
          FROM contribution_receipts
@@ -221,7 +223,7 @@ class D1ContributionReceiptReader implements ContributionReceiptReader {
     const downstream = await this.findById(id);
     if (!downstream) return null;
 
-    const result = await getD1()
+    const result = await this.database
       .prepare(
         `SELECT
            edge.upstream_receipt_id, edge.upstream_receipt_hash,
@@ -260,7 +262,7 @@ class D1ContributionReceiptReader implements ContributionReceiptReader {
         ) {
           throw new Error("dependency projection mismatch");
         }
-        await assertHistoricallyTrustedReceipt(upstream);
+        await assertHistoricallyTrustedReceipt(upstream, this.database);
       } catch {
         throw new ContributionReceiptIntegrityError();
       }
@@ -279,7 +281,7 @@ class D1ContributionReceiptReader implements ContributionReceiptReader {
   async findLifecycleById(id: string): Promise<readonly PublicContributionReceiptLifecycleEvent[] | null> {
     const receipt = await this.findById(id);
     if (!receipt) return null;
-    const result = await getD1()
+    const result = await this.database
       .prepare(
         `SELECT id, receipt_id, event_type, replacement_receipt_id, reason_hash,
                 occurred_at, issuer_key_id, issuer_public_key, canonical_payload,
@@ -314,7 +316,7 @@ class D1ContributionReceiptReader implements ContributionReceiptReader {
           issuerKeyId: event.issuerKeyId,
           issuerPublicKey: event.issuerPublicKey,
           occurredAt: event.occurredAt,
-        });
+        }, this.database);
         if (event.replacementReceiptId) {
           const replacement = await this.findById(event.replacementReceiptId);
           if (
@@ -349,7 +351,7 @@ class D1ContributionReceiptReader implements ContributionReceiptReader {
       if (traversed > 512) throw new ContributionReceiptIntegrityError();
       const path = new Set(current.path);
       path.add(current.id);
-      const result = await getD1()
+      const result = await this.database
         .prepare(
           `SELECT replacement_receipt_id
            FROM contribution_receipt_lifecycle_events
@@ -364,7 +366,7 @@ class D1ContributionReceiptReader implements ContributionReceiptReader {
   }
 
   private async toIndexItem(row: ReceiptRow): Promise<PublicContributionReceiptIndexItem> {
-    const record = await verifyStoredReceiptRow(row, row.id);
+    const record = await verifyStoredReceiptRow(row, row.id, this.database);
     const lifecycle = await this.findLifecycleById(record.receipt.id);
     if (!lifecycle) throw new ContributionReceiptIntegrityError();
     const latest = lifecycle.at(-1);
@@ -382,14 +384,22 @@ class D1ContributionReceiptReader implements ContributionReceiptReader {
 }
 
 export function getContributionReceiptReader(): ContributionReceiptReader {
-  return new D1ContributionReceiptReader();
+  return new D1ContributionReceiptReader(getSharedResearchD1());
+}
+
+export function getContributionReceiptReaderFor(database: ReturnType<typeof getD1>): ContributionReceiptReader {
+  return new D1ContributionReceiptReader(database);
 }
 
 function parseStoredReceipt(row: ReceiptRow): PublicContributionReceipt {
   return parseCanonicalReceipt(row.canonical_receipt);
 }
 
-async function verifyStoredReceiptRow(row: ReceiptRow, expectedId: string): Promise<PublicContributionReceiptRecord> {
+async function verifyStoredReceiptRow(
+  row: ReceiptRow,
+  expectedId: string,
+  database: ReturnType<typeof getD1>,
+): Promise<PublicContributionReceiptRecord> {
   const receipt = parseStoredReceipt(row);
   try {
     if (
@@ -400,14 +410,17 @@ async function verifyStoredReceiptRow(row: ReceiptRow, expectedId: string): Prom
     ) {
       throw new ContributionReceiptIntegrityError();
     }
-    await assertHistoricallyTrustedReceipt(receipt);
+    await assertHistoricallyTrustedReceipt(receipt, database);
   } catch {
     throw new ContributionReceiptIntegrityError();
   }
   return Object.freeze({ receipt, receiptHash: row.receipt_hash });
 }
 
-async function assertHistoricallyTrustedReceipt(receipt: PublicContributionReceipt) {
+async function assertHistoricallyTrustedReceipt(
+  receipt: PublicContributionReceipt,
+  database: ReturnType<typeof getD1>,
+) {
   if (!await verifyContributionReceiptSignature(receipt)) {
     throw new ContributionReceiptIntegrityError();
   }
@@ -415,7 +428,7 @@ async function assertHistoricallyTrustedReceipt(receipt: PublicContributionRecei
     issuerKeyId: receipt.issuerKeyId,
     issuerPublicKey: receipt.issuerPublicKey,
     occurredAt: receipt.issuedAt,
-  });
+  }, database);
   assertContributionReceiptPolicy(receipt);
 }
 
@@ -423,8 +436,8 @@ async function assertHistoricallyTrustedIssuer({
   issuerKeyId,
   issuerPublicKey,
   occurredAt,
-}: Readonly<{ issuerKeyId: string; issuerPublicKey: string; occurredAt: string }>) {
-  await new D1ContributionReceiptIssuerKeyStore(getD1()).assertHistoricallyTrusted({
+}: Readonly<{ issuerKeyId: string; issuerPublicKey: string; occurredAt: string }>, database: ReturnType<typeof getD1>) {
+  await new D1ContributionReceiptIssuerKeyStore(database).assertHistoricallyTrusted({
     issuerKeyId,
     issuerPublicKey,
     occurredAt,
