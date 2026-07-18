@@ -19,15 +19,33 @@ export function getD1(): AnyD1Database {
   if (env.DB) {
     return env.DB;
   }
+  return getRemoteDatabase();
+}
+
+/**
+ * Read the cross-runtime research control plane when Turso is configured.
+ * Sites keeps its own D1 for browser sessions and product state; only public
+ * records that must reflect the Runner/MCP shared store should use this gate.
+ */
+export function getSharedResearchD1(): AnyD1Database {
   const values = env as unknown as Record<string, string | undefined>;
   if (values.TURSO_DATABASE_URL && values.TURSO_AUTH_TOKEN) {
-    remoteDatabase ??= createRemoteLibsqlD1Database({
-      url: values.TURSO_DATABASE_URL,
-      authToken: values.TURSO_AUTH_TOKEN,
-    }) as unknown as AnyD1Database;
-    return remoteDatabase;
+    return getRemoteDatabase();
   }
+  if (env.DB) return env.DB;
   throw new MissingDatabaseBindingError();
+}
+
+function getRemoteDatabase(): AnyD1Database {
+  const values = env as unknown as Record<string, string | undefined>;
+  if (!values.TURSO_DATABASE_URL || !values.TURSO_AUTH_TOKEN) {
+    throw new MissingDatabaseBindingError();
+  }
+  remoteDatabase ??= createRemoteLibsqlD1Database({
+    url: values.TURSO_DATABASE_URL,
+    authToken: values.TURSO_AUTH_TOKEN,
+  }) as unknown as AnyD1Database;
+  return remoteDatabase;
 }
 
 export function getDb() {

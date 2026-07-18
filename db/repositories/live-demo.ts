@@ -1,5 +1,5 @@
-import { getD1 } from "@/db";
-import { getContributionReceiptReader } from "@/db/repositories/receipts";
+import { getSharedResearchD1 } from "@/db";
+import { getContributionReceiptReaderFor } from "@/db/repositories/receipts";
 
 export type LiveBuildWeekClosure = Readonly<{
   receiptId: string;
@@ -29,7 +29,8 @@ type ReplayRow = {
 };
 
 export async function latestLiveBuildWeekClosure(): Promise<LiveBuildWeekClosure | null> {
-  const receipt = await getD1().prepare(
+  const database = getSharedResearchD1();
+  const receipt = await database.prepare(
     `SELECT receipt.id AS receipt_id, reviewer.id AS reviewer_person_id,
             reviewer.display_name AS reviewer_display_name,
             COUNT(DISTINCT attestation.id) AS attestation_count
@@ -52,10 +53,10 @@ export async function latestLiveBuildWeekClosure(): Promise<LiveBuildWeekClosure
   // A convenient SQL projection is not a trust decision. The public reader
   // rechecks the canonical hash, issuer signature, Receipt policy, and
   // historical issuer-key authorization before this page may say "live".
-  const verifiedReceipt = await getContributionReceiptReader().findById(receipt.receipt_id);
+  const verifiedReceipt = await getContributionReceiptReaderFor(database).findById(receipt.receipt_id);
   if (!verifiedReceipt) return null;
 
-  const replay = await getD1().prepare(
+  const replay = await database.prepare(
     `SELECT replay.run_id AS replay_run_id,
             evidence.evidence_hash AS replay_evidence_hash
      FROM contribution_receipts AS receipt
