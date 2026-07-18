@@ -19,6 +19,7 @@ export function createLeanRunnerContainerProcess({ environment = process.env } =
   const executor = new ContainerLeanExecutor({
     networkIsolated: options.networkIsolated,
     resourceLimitsEnforced: options.resourceLimitsEnforced,
+    executablePath: options.leanExecutablePath,
   });
   const handler = createContainerWorkspaceHttpHandler({
     stagingRoot: options.stagingRoot,
@@ -115,6 +116,9 @@ function readRuntimeOptions(environment) {
     resourceLimitsEnforced: true,
     port,
     requestTimeoutMilliseconds,
+    leanExecutablePath: environment.PROOFWEAVE_LEAN_EXECUTABLE_PATH === undefined
+      ? "lake"
+      : absolutePath(environment.PROOFWEAVE_LEAN_EXECUTABLE_PATH, "PROOFWEAVE_LEAN_EXECUTABLE_PATH"),
     stagingRoot: absolutePath(environment.PROOFWEAVE_STAGING_ROOT ?? "/tmp/proofweave/staging", "PROOFWEAVE_STAGING_ROOT"),
     workspaceRoot: absolutePath(environment.PROOFWEAVE_WORKSPACE_ROOT ?? "/tmp/proofweave/workspaces", "PROOFWEAVE_WORKSPACE_ROOT"),
   });
