@@ -1,4 +1,4 @@
-import { Sandbox } from "e2b";
+import { Sandbox, Template } from "e2b";
 import { assertPinnedRunnerImage } from "./cloudflare-container-policy.mjs";
 
 const defaultPort = 8080;
@@ -23,8 +23,10 @@ export class E2BSandboxContainerError extends Error {
 export class E2BSandboxContainerFactory {
   constructor({
     sandboxApi = Sandbox,
+    templateApi = Template,
     apiKey,
     templateId,
+    templateBuildId,
     imageReference,
     cpuCount,
     memoryMB,
@@ -38,8 +40,12 @@ export class E2BSandboxContainerFactory {
     if (!sandboxApi || typeof sandboxApi.create !== "function") {
       throw new E2BSandboxContainerError("E2B runner requires the official Sandbox API.");
     }
+    if (!templateApi || typeof templateApi.getTags !== "function") {
+      throw new E2BSandboxContainerError("E2B runner requires the official Template API.");
+    }
     this.apiKey = requireSecret(apiKey, "E2B API key");
-    this.templateId = requireIdentifier(templateId, "E2B template id", 240);
+    this.template = requireVersionedTemplateReference(templateId);
+    this.templateBuildId = requireBuildId(templateBuildId);
     this.imageReference = assertPinnedRunnerImage(imageReference);
     this.cpuCount = integerRange(cpuCount, "E2B template CPU count", 1, 8);
     this.memoryMB = integerRange(memoryMB, "E2B template memory", 512, 8_192);
@@ -55,6 +61,7 @@ export class E2BSandboxContainerFactory {
       throw new E2BSandboxContainerError("E2B runner requires HTTPS fetch and bounded wait implementations.");
     }
     this.sandboxApi = sandboxApi;
+    this.templateApi = templateApi;
     this.port = port;
     this.fetcher = fetcher;
     this.sleep = sleep;
@@ -96,7 +103,12 @@ export class E2BSandboxContainerFactory {
   async create(runId) {
     let sandbox;
     try {
-      sandbox = await this.sandboxApi.create(this.templateId, {
+      await assertTemplateBuildReference(this.templateApi, {
+        apiKey: this.apiKey,
+        template: this.template,
+        buildId: this.templateBuildId,
+      });
+      sandbox = await this.sandboxApi.create(this.template.reference, {
         apiKey: this.apiKey,
         secure: true,
         allowInternetAccess: false,
@@ -118,7 +130,7 @@ export class E2BSandboxContainerFactory {
         },
       });
       await assertSandboxIsolation(sandbox, {
-        templateId: this.templateId,
+        templateId: this.template.id,
         requestTimeoutMs: this.startupTimeoutMs,
         cpuCount: this.cpuCount,
         memoryMB: this.memoryMB,
@@ -236,13 +248,16 @@ export class E2BSandboxContainer {
 export function createE2BSandboxContainerFactoryFromEnvironment({
   environment = process.env,
   sandboxApi = Sandbox,
+  templateApi = Template,
   fetcher = globalThis.fetch,
   sleep = wait,
 } = {}) {
   return new E2BSandboxContainerFactory({
     sandboxApi,
+    templateApi,
     apiKey: environment.E2B_API_KEY,
     templateId: environment.PROOFWEAVE_E2B_TEMPLATE_ID,
+    templateBuildId: environment.PROOFWEAVE_E2B_TEMPLATE_BUILD_ID,
     imageReference: environment.PROOFWEAVE_E2B_RUNNER_IMAGE,
     cpuCount: integerFromEnvironment(environment.PROOFWEAVE_E2B_CPU, "PROOFWEAVE_E2B_CPU"),
     memoryMB: integerFromEnvironment(environment.PROOFWEAVE_E2B_MEMORY_MB, "PROOFWEAVE_E2B_MEMORY_MB"),
@@ -252,6 +267,22 @@ export function createE2BSandboxContainerFactoryFromEnvironment({
     fetcher,
     sleep,
   });
+}
+
+async function assertTemplateBuildReference(templateApi, { apiKey, template, buildId }) {
+  let tags;
+  try {
+    tags = await templateApi.getTags(template.id, { apiKey });
+  } catch (cause) {
+    throw new E2BSandboxContainerError("E2B could not verify the reviewed template build tag.", { cause });
+  }
+  if (!Array.isArray(tags)) {
+    throw new E2BSandboxContainerError("E2B template build tags are unavailable.");
+  }
+  const matched = tags.find((entry) => entry?.tag === template.tag);
+  if (matched?.buildId !== buildId) {
+    throw new E2BSandboxContainerError("E2B template tag no longer resolves to the reviewed immutable build id.");
+  }
 }
 
 async function assertSandboxIsolation(sandbox, { templateId, requestTimeoutMs, cpuCount, memoryMB }) {
@@ -345,6 +376,26 @@ function requireSecret(value, label) {
 function requireIdentifier(value, label, maximum) {
   if (typeof value !== "string" || !/^[A-Za-z0-9][A-Za-z0-9:._-]{2,}$/.test(value) || value.length > maximum) {
     throw new E2BSandboxContainerError(`${label} must be a bounded identifier.`);
+  }
+  return value;
+}
+
+function requireVersionedTemplateReference(value) {
+  const reference = requireIdentifier(value, "E2B template reference", 240);
+  const separator = reference.indexOf(":");
+  if (separator < 3 || separator === reference.length - 1 || reference.indexOf(":", separator + 1) !== -1) {
+    throw new E2BSandboxContainerError("E2B template reference must include one explicit immutable build tag.");
+  }
+  const id = reference.slice(0, separator);
+  const tag = reference.slice(separator + 1);
+  requireIdentifier(id, "E2B template id", 160);
+  requireIdentifier(tag, "E2B template tag", 80);
+  return Object.freeze({ reference, id, tag });
+}
+
+function requireBuildId(value) {
+  if (typeof value !== "string" || !/^[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/.test(value)) {
+    throw new E2BSandboxContainerError("E2B template build id must be an immutable UUID.");
   }
   return value;
 }

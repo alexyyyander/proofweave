@@ -51,7 +51,10 @@ E2B additionally requires:
 - `E2B_API_KEY`, kept only in the protected GitHub Actions environment;
 - `PROOFWEAVE_E2B_RUNNER_IMAGE`, pinned by registry sha256 digest and identical
   to the single approved image declaration;
-- `PROOFWEAVE_E2B_TEMPLATE_ID`, produced from that exact image;
+- `PROOFWEAVE_E2B_TEMPLATE_ID`, a version-tagged `template-id:tag` reference
+  produced from that exact image;
+- `PROOFWEAVE_E2B_TEMPLATE_BUILD_ID`, the immutable build UUID that the tag
+  must still resolve to before every Sandbox creation;
 - bounded runtime and startup timeouts; and
 - `PROOFWEAVE_E2B_RESOURCE_POLICY_REVIEWED=true` only after the template,
   resources, network policy, and termination path have been reviewed.
@@ -86,10 +89,12 @@ is required.
 npm run runner:e2b:template:build
 ```
 
-Record the returned template id as `PROOFWEAVE_E2B_TEMPLATE_ID`. The template
-contains Lean, Lake, the pinned dependencies, and the credential-free Runner
-HTTP process. Runtime code still checks the configured image against the
-signed job's approved environment before staging any bytes.
+Record the returned `templateReference` as `PROOFWEAVE_E2B_TEMPLATE_ID` and
+`buildId` as `PROOFWEAVE_E2B_TEMPLATE_BUILD_ID`. Before every Sandbox creation,
+the Runner verifies that the version tag still resolves to that exact build
+UUID. The template contains Lean, Lake, the pinned dependencies, and the
+credential-free Runner HTTP process. Runtime code still checks the configured
+image against the signed job's approved environment before staging any bytes.
 
 ## GitHub Actions control process
 
@@ -102,7 +107,7 @@ Configure the `proofweave-runner-alpha` GitHub environment:
 
 - secrets: `TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN`, `E2B_API_KEY`, and
   `RUNNER_RESULT_PRIVATE_KEY_JWK`;
-- variables: `PROOFWEAVE_E2B_TEMPLATE_ID`,
+- variables: `PROOFWEAVE_E2B_TEMPLATE_ID`, `PROOFWEAVE_E2B_TEMPLATE_BUILD_ID`,
   `PROOFWEAVE_E2B_RUNNER_IMAGE`, `RUNNER_APPROVED_IMAGES_JSON`,
   `RUNNER_CONTROL_PLANE_ISSUER_KEYS_JSON`, and `RUNNER_RESULT_KEY_ID`.
 

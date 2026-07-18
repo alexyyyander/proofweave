@@ -8,14 +8,20 @@ import {
 
 const imageReference = "registry.example/proofweave/lean-runner@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 const apiKey = "e2b_test_api_key_1234567890";
+const templateId = "template_proofweave_lean_v1";
+const templateTag = "commit_0123456789abcdef";
+const templateReference = `${templateId}:${templateTag}`;
+const templateBuildId = "9420e83e-3c6d-48b8-94fe-a73807af5797";
 
 test("E2B adapter creates one secure no-egress Sandbox and keeps control credentials outside", async () => {
   const e2b = fakeE2B();
   const forwarded = [];
   const factory = new E2BSandboxContainerFactory({
     sandboxApi: e2b.api,
+    templateApi: e2b.templateApi,
     apiKey,
-    templateId: "template_proofweave_lean_v1",
+    templateId: templateReference,
+    templateBuildId,
     imageReference,
     cpuCount: 2,
     memoryMB: 2_048,
@@ -29,7 +35,7 @@ test("E2B adapter creates one secure no-egress Sandbox and keeps control credent
   });
 
   const container = await factory.get("run:e2b-1");
-  assert.equal(e2b.templateId, "template_proofweave_lean_v1");
+  assert.equal(e2b.templateId, templateReference);
   assert.equal(e2b.createOptions.apiKey, apiKey);
   assert.equal(e2b.createOptions.secure, true);
   assert.equal(e2b.createOptions.allowInternetAccess, false);
@@ -65,8 +71,10 @@ test("E2B adapter binds one Run, terminates on completion, and fails closed on p
   const e2b = fakeE2B();
   const factory = new E2BSandboxContainerFactory({
     sandboxApi: e2b.api,
+    templateApi: e2b.templateApi,
     apiKey,
-    templateId: "template_proofweave_lean_v1",
+    templateId: templateReference,
+    templateBuildId,
     imageReference,
     cpuCount: 2,
     memoryMB: 2_048,
@@ -94,8 +102,10 @@ test("E2B adapter binds one Run, terminates on completion, and fails closed on p
   const drifted = fakeE2B({ allowInternetAccess: true });
   const driftedFactory = new E2BSandboxContainerFactory({
     sandboxApi: drifted.api,
+    templateApi: drifted.templateApi,
     apiKey,
-    templateId: "template_proofweave_lean_v1",
+    templateId: templateReference,
+    templateBuildId,
     imageReference,
     cpuCount: 2,
     memoryMB: 2_048,
@@ -110,8 +120,10 @@ test("E2B adapter binds one Run, terminates on completion, and fails closed on p
   const mutableAlias = fakeE2B({ reportedTemplateId: "template_unreviewed_build" });
   const mutableAliasFactory = new E2BSandboxContainerFactory({
     sandboxApi: mutableAlias.api,
+    templateApi: mutableAlias.templateApi,
     apiKey,
-    templateId: "template_proofweave_lean_v1",
+    templateId: templateReference,
+    templateBuildId,
     imageReference,
     cpuCount: 2,
     memoryMB: 2_048,
@@ -128,8 +140,10 @@ test("E2B adapter requires a pinned image, reviewed policy, private traffic toke
   const e2b = fakeE2B();
   assert.throws(() => new E2BSandboxContainerFactory({
     sandboxApi: e2b.api,
+    templateApi: e2b.templateApi,
     apiKey,
-    templateId: "template_proofweave_lean_v1",
+    templateId: templateReference,
+    templateBuildId,
     imageReference: "registry.example/proofweave/lean-runner:latest",
     cpuCount: 2,
     memoryMB: 2_048,
@@ -139,8 +153,10 @@ test("E2B adapter requires a pinned image, reviewed policy, private traffic toke
   }), /sha256/);
   assert.throws(() => new E2BSandboxContainerFactory({
     sandboxApi: e2b.api,
+    templateApi: e2b.templateApi,
     apiKey,
-    templateId: "template_proofweave_lean_v1",
+    templateId: templateReference,
+    templateBuildId,
     imageReference,
     cpuCount: 2,
     memoryMB: 2_048,
@@ -152,8 +168,10 @@ test("E2B adapter requires a pinned image, reviewed policy, private traffic toke
   const missingTrafficToken = fakeE2B({ trafficAccessToken: "" });
   const missingTokenFactory = new E2BSandboxContainerFactory({
     sandboxApi: missingTrafficToken.api,
+    templateApi: missingTrafficToken.templateApi,
     apiKey,
-    templateId: "template_proofweave_lean_v1",
+    templateId: templateReference,
+    templateBuildId,
     imageReference,
     cpuCount: 2,
     memoryMB: 2_048,
@@ -168,7 +186,8 @@ test("E2B adapter requires a pinned image, reviewed policy, private traffic toke
   assert.throws(() => createE2BSandboxContainerFactoryFromEnvironment({
     environment: {
       E2B_API_KEY: apiKey,
-      PROOFWEAVE_E2B_TEMPLATE_ID: "template_proofweave_lean_v1",
+      PROOFWEAVE_E2B_TEMPLATE_ID: templateReference,
+      PROOFWEAVE_E2B_TEMPLATE_BUILD_ID: templateBuildId,
       PROOFWEAVE_E2B_RUNNER_IMAGE: imageReference,
       PROOFWEAVE_E2B_RESOURCE_POLICY_REVIEWED: "true",
       PROOFWEAVE_E2B_CPU: "2",
@@ -176,6 +195,7 @@ test("E2B adapter requires a pinned image, reviewed policy, private traffic toke
       PROOFWEAVE_E2B_TIMEOUT_MS: "120000",
     },
     sandboxApi: e2b.api,
+    templateApi: e2b.templateApi,
   }), /STARTUP_TIMEOUT/);
 });
 
@@ -190,6 +210,12 @@ function fakeE2B({
     createOptions: null,
     killed: 0,
   };
+  state.templateApi = {
+    async getTags(requestedTemplateId) {
+      assert.equal(requestedTemplateId, templateId);
+      return [{ tag: templateTag, buildId: templateBuildId }];
+    },
+  };
   const sandbox = {
     trafficAccessToken,
     commands: {
@@ -202,7 +228,7 @@ function fakeE2B({
     getHost(port) { return `${port}-sandbox.e2b.test`; },
     async getInfo() {
       return {
-        templateId: reportedTemplateId ?? state.templateId,
+        templateId: reportedTemplateId ?? templateId,
         allowInternetAccess,
         cpuCount: 2,
         memoryMB: 2_048,
