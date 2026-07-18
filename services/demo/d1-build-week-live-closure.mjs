@@ -105,6 +105,38 @@ export class D1BuildWeekLiveClosure {
     this.now = now;
   }
 
+  async prime({ artifactBundleHash }) {
+    requireSha256(artifactBundleHash, "artifactBundleHash");
+    if (!this.runnerDispatcher) {
+      throw new BuildWeekLiveClosureConfigurationError("Priming the live closure requires the trusted Runner dispatcher.");
+    }
+    const bundle = await this.requireEligibleBundle(artifactBundleHash);
+    const existing = await this.findAcceptedPrimaryRun(artifactBundleHash);
+    if (existing) {
+      return Object.freeze({
+        state: "primary_run_succeeded",
+        artifactBundleHash,
+        attemptId: bundle.attemptId,
+        ownerPersonId: bundle.attemptOwnerPersonId,
+        runId: existing.id,
+        runCreated: false,
+      });
+    }
+    const queued = await this.runnerDispatcher.queueBundle({
+      attempt: { id: bundle.attemptId, problemRevisionId: bundle.problemRevisionId },
+      artifactBundleHash,
+      idempotencyKey: primaryRunIdempotencyKey(artifactBundleHash),
+    });
+    return Object.freeze({
+      state: queued.run.state === "succeeded" ? "primary_run_succeeded" : "primary_run_queued",
+      artifactBundleHash,
+      attemptId: bundle.attemptId,
+      ownerPersonId: bundle.attemptOwnerPersonId,
+      runId: queued.run.id,
+      runCreated: queued.runCreated,
+    });
+  }
+
   async prepare({ artifactBundleHash }) {
     requireSha256(artifactBundleHash, "artifactBundleHash");
     if (!this.runnerDispatcher) {
@@ -618,6 +650,34 @@ export class D1BuildWeekLiveClosure {
     });
   }
 
+  async findAcceptedPrimaryRun(artifactBundleHash) {
+    const rows = await this.database.prepare(
+      `SELECT run.id, run.state, run.runner_result_hash,
+              result.result_hash, result.canonical_result
+       FROM runs AS run
+       INNER JOIN run_results AS result ON result.run_id = run.id
+       WHERE run.artifact_bundle_hash = ?
+         AND NOT EXISTS (
+           SELECT 1 FROM verification_replays AS replay WHERE replay.run_id = run.id
+         )
+       ORDER BY run.finished_at DESC, run.id ASC`,
+    ).bind(artifactBundleHash).all();
+    for (const row of rows.results ?? []) {
+      try {
+        const result = normalizeLeanRunnerResult(JSON.parse(row.canonical_result));
+        if (
+          row.state === "succeeded"
+          && result.status === "succeeded"
+          && result.kernelStatus === "accepted"
+          && row.runner_result_hash === row.result_hash
+        ) return Object.freeze({ id: row.id });
+      } catch {
+        // Historical malformed or non-accepted results remain ineligible.
+      }
+    }
+    return null;
+  }
+
   async requireReceiptGateAssignments(artifactBundleHash, reviewers) {
     const rows = await this.database.prepare(
       `SELECT id, claim_type, verifier_person_id, status
@@ -923,6 +983,10 @@ function deterministicAttestedAt(finishedAt, offsetSeconds) {
 
 function replayIdempotencyKey(artifactBundleHash) {
   return `build-week-live-replay-v1:${artifactBundleHash.slice("sha256:".length, "sha256:".length + 32)}`;
+}
+
+function primaryRunIdempotencyKey(artifactBundleHash) {
+  return `build-week-live-primary-v1:${artifactBundleHash.slice("sha256:".length, "sha256:".length + 32)}`;
 }
 
 function laterInstant(left, right) {

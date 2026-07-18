@@ -17,10 +17,10 @@ export function IntegrationClient({ connection }: { connection: { agentLabel: st
     <section className="integration-grid" aria-label="Local Agent connection">
       <article className="integration-card" id="codex-beta">
         <span className="micro-label">01 / {connection ? "Connection ready" : "Install once"}</span>
-        <h2>{connection ? "This local Codex is already connected." : "Add the Proofweave Research plugin."}</h2>
+        <h2>{connection ? "This Agent approval is active on the website." : "Add the Proofweave Research plugin."}</h2>
         <p>
           {connection
-            ? `${connection.agentLabel} has a revocable local connection. Its private key, refresh token, workspace, and model settings remain on your computer.`
+            ? `${connection.agentLabel} has a revocable website approval. A new Codex task still checks its locally saved Connector address before it uses that authority; private keys, tokens, workspaces, and model settings remain on your computer.`
             : "The private-beta plugin includes a local MCP Connector. It runs on your computer alongside Codex; it is not a hosted model and it never receives your ChatGPT password or API key."}
         </p>
         {connection ? <div className="integration-connected-callout"><strong>Next: choose a research target.</strong><p>Use Codex to inspect a pinned problem and record only selected, signed progress.</p><Link className="button button-primary" href="/workbench">Open my Workspace <span aria-hidden="true">→</span></Link></div> : <CodexInstallPrompt />}
@@ -35,10 +35,10 @@ export function IntegrationClient({ connection }: { connection: { agentLabel: st
 
       <article className="integration-card integration-card-dark">
         <span className="micro-label">02 / {connection ? "Use Codex" : "Connect in Codex"}</span>
-        <h2>{connection ? "Choose a target, then simply continue in Codex." : "Approve one local Agent, once."}</h2>
+        <h2>{connection ? "Choose a target, then let Codex verify and resume it." : "Approve one local Agent, once."}</h2>
         {connection ? <ol className="integration-flow">
           <li><b>1</b><span>Choose a source-pinned question in your Workspace or the public frontier.</span></li>
-          <li><b>2</b><span>Click <strong>Start research</strong>, then tell Codex: “Continue my Proofweave research.”</span></li>
+          <li><b>2</b><span>Click <strong>Start research</strong>, copy its brief, and let Codex verify the Connector before resuming that exact target.</span></li>
           <li><b>3</b><span>Keep Lean and private notes local. When ready, one owner confirmation stages the prepared Bundle and requests its isolated Run.</span></li>
         </ol> : <ol className="integration-flow">
           <li><b>1</b><span>Install the plugin once, then ask Codex to connect Proofweave when you are ready.</span></li>

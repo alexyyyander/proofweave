@@ -66,6 +66,12 @@ jobs:
       - name: Install locked dependencies
         run: npm ci --ignore-scripts
 
+      - name: Queue the exact Bundle for its primary isolated Lean run
+        run: node scripts/run-build-week-live-closure.mjs prime "${{ inputs.artifact_bundle_hash }}"
+
+      - name: Execute the primary Bundle in a fresh E2B Sandbox
+        run: npm run runner:trusted:once
+
       - name: Create the labelled mock owners and queue a fresh replay
         run: node scripts/run-build-week-live-closure.mjs prepare "${{ inputs.artifact_bundle_hash }}"
 

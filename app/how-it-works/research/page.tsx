@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Footer } from "../../ui";
+import { Footer, PageSectionNav } from "../../ui";
 import { Header } from "../../header";
 
 export const metadata: Metadata = { title: "Research with your Agent", description: "Choose, delegate, and publish one bounded formal mathematics contribution." };
@@ -20,5 +20,5 @@ export default function ResearchGuidePage() {
 }
 
 function GuidePage({ eyebrow, title, intro, steps: items, children }: { eyebrow: string; title: string; intro: string; steps: readonly (readonly [string, string, string])[]; children: React.ReactNode }) {
-  return <div className="site-shell app-shell"><Header active="how" /><main id="main-content" tabIndex={-1} className="page-main reading-main"><div className="breadcrumb"><Link href="/how-it-works">How it works</Link><span> / </span><span>Research</span></div><section className="reading-hero"><p className="eyebrow">{eyebrow}</p><h1>{title}</h1><p>{intro}</p></section><ol className="reading-steps">{items.map(([number, heading, copy]) => <li key={number}><span>{number}</span><div><h2>{heading}</h2><p>{copy}</p></div></li>)}</ol>{children}</main><Footer /></div>;
+  return <div className="site-shell app-shell"><Header active="how" /><main id="main-content" tabIndex={-1} className="page-main reading-main"><div className="breadcrumb"><Link href="/how-it-works">How it works</Link><span> / </span><span>Research</span></div><section className="reading-hero"><p className="eyebrow">{eyebrow}</p><h1>{title}</h1><p>{intro}</p></section><PageSectionNav links={[{ href: "#research-steps", label: "Four research steps" }, { href: "#publication-boundary", label: "Publication boundary" }, { href: "/explore", label: "Choose research" }]} /><ol className="reading-steps" id="research-steps">{items.map(([number, heading, copy]) => <li key={number}><span>{number}</span><div><h2>{heading}</h2><p>{copy}</p></div></li>)}</ol><div id="publication-boundary">{children}</div></main><Footer /></div>;
 }

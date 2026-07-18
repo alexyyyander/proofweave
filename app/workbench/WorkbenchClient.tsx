@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { DelegationProfile } from "@/db/repositories/delegation";
 import type { CatalogProblem } from "@/packages/domain/catalog";
@@ -26,6 +27,7 @@ export function WorkbenchClient({
   isAuthenticated,
   signInPath,
   storageAvailable,
+  variant = "legacy",
 }: {
   profile: DelegationProfile | null;
   initialAttempts: readonly McpAttempt[];
@@ -41,6 +43,7 @@ export function WorkbenchClient({
   isAuthenticated: boolean;
   signInPath: string;
   storageAvailable: boolean;
+  variant?: "legacy" | "detail";
 }) {
   const [attempts, setAttempts] = useState<readonly McpAttempt[]>(initialAttempts);
   const [runs, setRuns] = useState<readonly McpRunSummary[]>(initialRuns);
@@ -123,6 +126,10 @@ export function WorkbenchClient({
     setHandoffNotice(null);
     setLifecycleNotice(null);
     if (typeof window === "undefined") return;
+    if (variant === "detail") {
+      window.location.assign(`/workbench/attempts/${encodeURIComponent(attemptId)}`);
+      return;
+    }
     const url = new URL(window.location.href);
     url.searchParams.set("attempt", attemptId);
     url.searchParams.delete("target");
@@ -180,7 +187,7 @@ export function WorkbenchClient({
     });
     try {
       await navigator.clipboard.writeText(brief);
-      setHandoffNotice("Codex brief copied. Paste it into Codex on this connected computer; the target and Attempt are already bound.");
+      setHandoffNotice("Codex brief copied. Paste it into a new Codex task on this computer; it will verify the Connector and resume this target without creating duplicate work.");
     } catch {
       setHandoffNotice("Your browser could not copy the Codex brief. Use Download .md in the local handoff section instead.");
     }
@@ -212,6 +219,25 @@ export function WorkbenchClient({
       setIsClosingAttempt(false);
     }
   };
+
+  if (variant === "detail") return <>
+    <nav className="attempt-detail-breadcrumb" aria-label="Breadcrumb"><Link href="/workbench">My work</Link><span>/</span><span>{activeAttempt?.problemTitle ?? "Attempt"}</span></nav>
+    <WorkspaceTopbar attempts={attempts} selectedAttemptId={activeAttempt?.id ?? null} onSelectAttempt={selectAttempt} agentLabel={selectedConnection?.agentLabel ?? null} isAgentConnected={Boolean(selectedConnection)} mode={mode} isRefreshing={isRefreshing} canRefresh={isAuthenticated && storageAvailable} refreshedAt={refreshedAt} onRefresh={() => { void refreshAttempts(); }} />
+    <FirstContributionPath attempt={activeAttempt} profile={profile} runs={runs} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} />
+    <div className="attempt-detail-layout">
+      <section className="workspace-task-canvas" aria-label="Current research work">
+        <FocusAction profile={profile} attempt={activeAttempt} canContinueLocally={canContinueLocally} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} refreshError={refreshError} refreshedAt={refreshedAt} handoffNotice={handoffNotice} lifecycleNotice={lifecycleNotice} isClosingAttempt={isClosingAttempt} onCopyCodexBrief={() => { void copyCodexBrief(); }} onCloseAttempt={() => { void closeAttempt(); }} isPageHeading />
+        {canContinueLocally && <LocalAgentHandoff profile={profile} attempt={activeAttempt} initialParentNodeId={initialParentNodeId} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} isRefreshing={isRefreshing} onRefresh={() => { void refreshAttempts(); }} />}
+        <ResearchWorkstation attempt={activeAttempt} runs={runs} />
+      </section>
+      <aside className="workspace-status-rail" aria-label="Verification and record status">
+        <SubmissionReadiness attempt={activeAttempt} profile={profile} runs={runs} compact />
+        <WorkspaceRecordLinks eventCount={activeAttempt?.events.length ?? 0} runCount={activeRuns.length} contributionCount={provisionalContributions.length} />
+      </aside>
+    </div>
+    {(provisionalContributions.length > 0 || mode === "evidence-review") && <ProvisionalContributionLedger profile={profile} contributions={provisionalContributions} isAuthenticated={isAuthenticated} ledgerAvailable={isProvisionalLedgerAvailable} />}
+    <details className="workbench-account-details"><summary>Agent connection and authority</summary><DelegationSummary profile={profile} /><WorkspaceSettingsPrompt profile={profile} isAuthenticated={isAuthenticated} storageAvailable={storageAvailable} /></details>
+  </>;
 
   return <>
     <WorkspaceTopbar attempts={attempts} selectedAttemptId={activeAttempt?.id ?? null} onSelectAttempt={selectAttempt} agentLabel={selectedConnection?.agentLabel ?? null} isAgentConnected={Boolean(selectedConnection)} mode={mode} isRefreshing={isRefreshing} canRefresh={isAuthenticated && storageAvailable} refreshedAt={refreshedAt} onRefresh={() => { void refreshAttempts(); }} />

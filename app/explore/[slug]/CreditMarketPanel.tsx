@@ -3,10 +3,8 @@ import type { PublicCreditMarket } from "@/db/repositories/credit-market";
 
 export function CreditMarketPanel({
   market,
-  problemSlug,
 }: {
   market: PublicCreditMarket | null;
-  problemSlug: string;
 }) {
   if (!market) {
     return <section className="credit-market-section" aria-labelledby="credit-market-title">
@@ -33,7 +31,7 @@ export function CreditMarketPanel({
           ? `${market.pool.sponsorLabel} fixed this target's budget before settlement. Credits remain non-transferable and have no monetary value.`
           : "The allocation and eligibility rules are public, but this target is not reward-bearing yet. A future sponsor must fix the total budget before the market can activate."}</p>
         <div className="credit-market-actions">
-          <Link className="button button-primary" href={`/workbench?target=${encodeURIComponent(problemSlug)}#research-launcher`}>Research this target <span aria-hidden="true">→</span></Link>
+          <Link className="button button-primary" href="#research-graph">Inspect contribution graph <span aria-hidden="true">↓</span></Link>
           <Link className="text-link" href="/reviews">Open review queue <span>→</span></Link>
         </div>
       </article>

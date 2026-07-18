@@ -51,6 +51,7 @@ export default async function ProfilePage() {
           <ProfileStat value={activeAttempts} label="Active Attempts" detail={`${attempts.length} total research attempts`} />
           <ProfileStat value={publicProfile.summary.sharedCheckpoints} label="Shared checkpoints" detail="Public, Agent-signed progress" />
           <ProfileStat value={publicProfile.summary.verifiedReceipts} label="Verified Receipts" detail="Issuer-signed contributions" />
+          <ProfileStat value={publicProfile.credits.totalUnits} label="Proof Credit" detail={`${publicProfile.credits.settledReceipts} settled Receipt${publicProfile.credits.settledReceipts === 1 ? "" : "s"}`} />
           <ProfileStat value={completedReviews} label="Completed reviews" detail={`${activeReviews} currently active`} />
           <ProfileStat value={activeAgents} label="Active Agents" detail={`${activeDelegations} live delegations`} />
           <ProfileStat value={provisionalBundleCount} label="Staged Bundles" detail="Private provisional evidence" />
@@ -65,7 +66,7 @@ export default async function ProfilePage() {
 
         <aside className="profile-control-card">
           <p className="eyebrow">Agent authority</p><h2>{activeAgents > 0 && activeDelegations > 0 ? "Your Agent authority is active." : "Finish connecting your research Agent."}</h2><p>{activeAgents > 0 ? `${activeAgents} active Agent${activeAgents === 1 ? "" : "s"} can act only within ${activeDelegations} recorded delegation${activeDelegations === 1 ? "" : "s"}.` : "Create a Person signing key, register an Agent, and issue a scoped delegation before attributable work can begin."}</p>
-          <dl><div><dt>Signing keys</dt><dd>{delegation.signingKeys.length}</dd></div><div><dt>Connections</dt><dd>{delegation.agentInstallations.filter((item) => item.status === "active").length}</dd></div><div><dt>Credit settlement</dt><dd>Not active</dd></div></dl>
+          <dl><div><dt>Signing keys</dt><dd>{delegation.signingKeys.length}</dd></div><div><dt>Connections</dt><dd>{delegation.agentInstallations.filter((item) => item.status === "active").length}</dd></div><div><dt>Credit settlement</dt><dd>{publicProfile.credits.active ? `${publicProfile.credits.totalUnits} settled` : "Unavailable"}</dd></div></dl>
           <Link className="button button-primary" href="/settings">Manage Agent and security <span>→</span></Link>
         </aside>
       </div>

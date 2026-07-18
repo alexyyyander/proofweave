@@ -205,7 +205,7 @@ export function DemoVerificationClient({ initial }: { initial: BuildWeekDemoVeri
           <p className="demo-tamper-note">Changes one byte in a temporary request copy. The signed original remains untouched.</p>
           <div className="demo-report-links">
             <a href={isTamperResult ? "/api/demo/verify?tamper=artifact" : "/api/demo/verify"} target="_blank" rel="noreferrer">View verification JSON <span aria-hidden="true">↗</span></a>
-            <span>Checked {formatTime(verification.checkedAt)} · {formatDuration(verification.durationMs)}</span>
+            <span>Checked {formatTime(verification.checkedAt)} UTC · {formatDuration(verification.durationMs)}</span>
           </div>
           {error && <p className="demo-check-error" role="alert">{error}</p>}
         </aside>
@@ -226,7 +226,13 @@ function shortLeanVersion(value: string) {
 
 function formatTime(value: string) {
   try {
-    return new Intl.DateTimeFormat("en", { hour: "2-digit", minute: "2-digit", second: "2-digit" }).format(new Date(value));
+    return new Intl.DateTimeFormat("en", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false,
+      timeZone: "UTC",
+    }).format(new Date(value));
   } catch {
     return "just now";
   }

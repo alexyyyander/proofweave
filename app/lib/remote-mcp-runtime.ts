@@ -3,8 +3,10 @@ import { createD1SitesIdentityRuntime } from "@/services/proofweave-identity/sit
 import { createD1RemoteMcpGatewayRuntime } from "@/services/proofweave-mcp-gateway/runtime.mjs";
 import { env } from "cloudflare:workers";
 
+export const proofweaveMcpPath = "/api/mcp";
+
 export function proofweaveMcpResource(request: Request): string {
-  return `${new URL(request.url).origin}/mcp`;
+  return `${new URL(request.url).origin}${proofweaveMcpPath}`;
 }
 
 export async function handleRemoteMcp(request: Request): Promise<Response> {
@@ -13,7 +15,7 @@ export async function handleRemoteMcp(request: Request): Promise<Response> {
     const settings = env as unknown as Record<string, string | undefined>;
     return await createD1RemoteMcpGatewayRuntime({
       database: getD1(),
-      resource: `${origin}/mcp`,
+      resource: `${origin}${proofweaveMcpPath}`,
       issuer: `${origin}/`,
       runnerQueueMode: settings.RUNNER_QUEUE_MODE,
       runnerApprovedImagesJson: settings.RUNNER_APPROVED_IMAGES_JSON,
@@ -35,7 +37,7 @@ export async function handleRemoteIdentity(request: Request): Promise<Response> 
     const origin = new URL(request.url).origin;
     return await createD1SitesIdentityRuntime({
       database: getD1(),
-      resource: `${origin}/mcp`,
+      resource: `${origin}${proofweaveMcpPath}`,
       issuer: `${origin}/`,
     }).fetch(request);
   } catch (error) {

@@ -2,7 +2,7 @@
 
 This is the deployable boundary for the remote MCP resource server. It is
 separate from the owner-only Sites frontend because a remote Codex client must
-reach `/mcp` without a browser session, while every operation still requires a
+reach `/api/mcp` without a browser session, while every operation still requires a
 Proofweave OAuth token.
 
 ## Non-negotiable topology
@@ -91,7 +91,7 @@ Only after the manifest passes and the following are true may an operator run
 Wrangler deployment commands:
 
 1. The same D1 has all repository migrations, including
-   `0035_align_review_market_with_receipt_gates.sql`, the opaque remote-MCP
+   `0037_add_problem_proposals.sql`, the opaque remote-MCP
    rate-limit buckets, and the required owner records.
 2. `inline_artifact_bytes` is present in the migrated shared D1; evidence is
    content-addressed, immutable, and each object remains within the 1 MB alpha
@@ -101,7 +101,7 @@ Wrangler deployment commands:
    operator-reviewed client metadata allowlist is configured. The current Sites
    bridge remains closed-alpha only.
 4. `MCP_RESOURCE_URL` and `OAUTH_ISSUER_URL` match public HTTPS origins.
-5. A fresh unauthenticated `POST /mcp` returns the protected-resource challenge,
+5. A fresh unauthenticated `POST /api/mcp` returns the protected-resource challenge,
    and an OAuth browser flow creates a revocable Agent installation.
 6. An integration test confirms a revoked installation’s old token receives no
    MCP access.

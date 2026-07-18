@@ -112,7 +112,7 @@ export function WorkbenchHero({
   const active = activeDelegation(profile);
   const agent = active && profile?.agents.find((candidate) => candidate.id === active.agentId);
   const connection = activeLocalCodexInstallation(profile);
-  const status = connection ? "Local Codex connected" : active ? "Connect Codex next" : profile ? "Agent setup required" : isAuthenticated ? "Profile unavailable" : "Sign in required";
+  const status = connection ? "Website approval active" : active ? "Connect Codex next" : profile ? "Agent setup required" : isAuthenticated ? "Profile unavailable" : "Sign in required";
   const activityLabel = !storageAvailable
     ? "Control plane unavailable"
     : attemptCount > 0
@@ -174,6 +174,7 @@ export function FocusAction({
   isClosingAttempt,
   onCopyCodexBrief,
   onCloseAttempt,
+  isPageHeading = false,
 }: {
   profile: DelegationProfile | null;
   attempt: McpAttempt | null;
@@ -188,6 +189,7 @@ export function FocusAction({
   isClosingAttempt: boolean;
   onCopyCodexBrief: () => void;
   onCloseAttempt: () => void;
+  isPageHeading?: boolean;
 }) {
   const journey = localAgentJourney({
     profile,
@@ -212,7 +214,7 @@ export function FocusAction({
     href: "/explore",
   } : needsAttemptConnection ? {
     title: "Connect the Agent bound to this Attempt.",
-    detail: "This research record belongs to a different or expired local Agent approval. Reconnect before copying a brief or recording more work.",
+    detail: "This research record belongs to a different or expired Agent approval. Reconnect before copying a brief or recording more work.",
     label: "Review Agent connection",
     href: "/integrations#codex-beta",
   } : {
@@ -225,11 +227,12 @@ export function FocusAction({
   const focusDetail = attempt
     ? `${attempt.agentLabel} · ${attempt.delegationScope ?? "legacy"} authority · ${attempt.status}`
     : "An Attempt is a bounded, durable workspace—not a claim that a proof has been found.";
+  const FocusTitle = isPageHeading ? "h1" : "h2";
 
   return <section className="focus-layout" id="current-research" aria-label="Current focus and next action">
     <div className="focus-summary">
       <span className="micro-label">Current focus</span>
-      <h2>{focusTitle}</h2>
+      <FocusTitle>{focusTitle}</FocusTitle>
       <p>{focusDetail}</p>
       <div className="toolbar-links">
         {attempt && <Link className="text-link" href={`/explore/${attempt.problemSlug}`}>Inspect target <span>→</span></Link>}

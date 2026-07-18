@@ -18,7 +18,7 @@ import { pipeline } from "node:stream/promises";
 import * as zlib from "node:zlib";
 import readline from "node:readline";
 
-const baseUrl = normalizeBaseUrl(process.env.PROOFWEAVE_BASE_URL ?? "https://proofweave-public-demo.proofweave-research.workers.dev");
+const baseUrl = normalizeBaseUrl(process.env.PROOFWEAVE_BASE_URL ?? "https://proofweave-research.yualex031821.chatgpt.site");
 const callbackHost = "127.0.0.1";
 const callbackPort = 44765;
 const callbackPath = "/callback";
@@ -40,7 +40,7 @@ const toolDefinitions = [
   tool("list_frontier_problems", "List Proofweave frontier problems available to this connected Agent.", { type: "object", additionalProperties: false, properties: { limit: { type: "integer", minimum: 1, maximum: 100 } } }),
   tool("inspect_problem", "Read a source-pinned Proofweave frontier problem before starting local work.", { type: "object", additionalProperties: false, properties: { slug: { type: "string", minLength: 1, maxLength: 160 } }, required: ["slug"] }),
   tool("begin_research", "Start or resume one source-pinned Proofweave research target for this connected Agent. It recovers an existing active Attempt when present and never reads local files, records progress, uploads evidence, runs Lean, or creates credit.", { type: "object", additionalProperties: false, properties: { targetSlug: { type: "string", minLength: 1, maxLength: 160 }, intent: { type: "string", enum: ["formalize", "prove"] } }, required: ["targetSlug"] }),
-  tool("continue_research", "Continue the only active Proofweave research target for this connected Agent. If more than one target is active, it returns a short choice list instead of guessing. It never reads local files, records progress, uploads evidence, runs Lean, or creates credit.", { type: "object", additionalProperties: false, properties: {} }),
+  tool("continue_research", "Continue an active Proofweave research target for this connected Agent. A website handoff may name the exact target slug; otherwise multiple active targets return a short choice list instead of guessing. It never creates an Attempt, reads local files, records progress, uploads evidence, runs Lean, or creates credit.", { type: "object", additionalProperties: false, properties: { targetSlug: { type: "string", minLength: 1, maxLength: 160 } } }),
   tool("create_attempt", "Create a bounded Proofweave Attempt for the connected Agent. Use an idempotency key so retried work does not create duplicate attempts.", { type: "object", additionalProperties: false, properties: { problemSlug: { type: "string", minLength: 1, maxLength: 160 }, delegationScope: { type: "string", enum: ["formalize", "prove"] }, idempotencyKey: { type: "string", minLength: 1, maxLength: 160 } }, required: ["problemSlug", "delegationScope", "idempotencyKey"] }),
   tool("report_progress", "Record a concise provisional progress update for one of this Agent's Attempts. This is not Lean verification or a contribution receipt.", { type: "object", additionalProperties: false, properties: { attemptId: { type: "string", minLength: 1, maxLength: 240 }, message: { type: "string", minLength: 1, maxLength: 4000 }, progressPercent: { type: "integer", minimum: 0, maximum: 100 }, idempotencyKey: { type: "string", minLength: 1, maxLength: 160 } }, required: ["attemptId", "message", "progressPercent", "idempotencyKey"] }),
   tool("inspect_research_graph", "Read the shared checkpoint DAG for one source-pinned target. Nodes are structured public research progress, not Lean verification, independent review, novelty, or contribution credit.", { type: "object", additionalProperties: false, properties: { slug: { type: "string", minLength: 1, maxLength: 120 } }, required: ["slug"] }),
@@ -105,7 +105,7 @@ async function handleRequest(method, params) {
   if (name === "prepare_verification_attestation") return connectionResult(await prepareVerificationAttestation(args));
   if (name === "submit_prepared_verification_attestation") return connectionResult(await submitPreparedVerificationAttestation(args));
   if (name === "begin_research") return connectionResult(await beginResearch(args));
-  if (name === "continue_research") return connectionResult(await continueResearch());
+  if (name === "continue_research") return connectionResult(await continueResearch(args));
   if (name === "prepare_research_checkpoint") return connectionResult(await prepareResearchCheckpoint(args));
   if (name === "publish_prepared_research_checkpoint") return connectionResult(await publishPreparedResearchCheckpoint(args));
   if (name === "preview_local_evidence") return connectionResult(await previewLocalEvidence(args));
@@ -173,12 +173,25 @@ function researchStartResult({ attempt, target, created }) {
   };
 }
 
-async function continueResearch() {
+async function continueResearch(args = {}) {
+  const targetSlug = args.targetSlug === undefined ? null : requiredLocalString(args.targetSlug, "targetSlug", 160);
   const listed = parseRemoteToolJson(await callRemoteTool("list_attempts", { limit: 100 }), "list_attempts");
   const active = Array.isArray(listed?.attempts)
     ? listed.attempts.filter((attempt) => attempt?.status === "active" && typeof attempt.problemSlug === "string")
     : [];
-  if (active.length === 0) {
+  const matching = targetSlug ? active.filter((attempt) => attempt.problemSlug === targetSlug) : active;
+  if (targetSlug && matching.length === 0) {
+    return {
+      operation: "research_connection_mismatch",
+      targetSlug,
+      uploaded: false,
+      recordedProgress: false,
+      verificationState: "not_recorded",
+      choices: active.map((attempt) => ({ targetSlug: attempt.problemSlug, title: attempt.problemTitle ?? attempt.problemSlug })),
+      next: "This connected Agent cannot see the website-selected target. Check connection_status and reconnect to the website control plane before continuing. Do not create a duplicate Attempt.",
+    };
+  }
+  if (matching.length === 0) {
     return {
       operation: "research_target_required",
       uploaded: false,
@@ -187,17 +200,17 @@ async function continueResearch() {
       next: "No active Proofweave research target is available for this local Agent. Ask the owner to choose a source-pinned target and start research first.",
     };
   }
-  if (active.length > 1) {
+  if (matching.length > 1) {
     return {
       operation: "research_selection_required",
       uploaded: false,
       recordedProgress: false,
       verificationState: "not_recorded",
-      choices: active.map((attempt) => ({ attemptId: attempt.id, targetSlug: attempt.problemSlug, title: attempt.problemTitle ?? attempt.problemSlug })),
+      choices: matching.map((attempt) => ({ attemptId: attempt.id, targetSlug: attempt.problemSlug, title: attempt.problemTitle ?? attempt.problemSlug })),
       next: "More than one active target exists. Ask the owner which source-pinned target to continue; do not guess.",
     };
   }
-  const attempt = active[0];
+  const attempt = matching[0];
   const target = await requireRemoteProblem(attempt.problemSlug);
   return researchStartResult({ attempt, target, created: false });
 }
@@ -1511,6 +1524,13 @@ async function connect(args = {}) {
 async function connectionStatus() {
   const config = await readConfig();
   if (!config?.refreshToken) return { connected: false, message: "Not connected. Use connect_proofweave to approve this local Codex." };
+  if (config.baseUrl !== baseUrl) return {
+    connected: false,
+    reconnectRequired: true,
+    configuredBaseUrl: config.baseUrl,
+    expectedBaseUrl: baseUrl,
+    message: `This saved connection belongs to ${new URL(config.baseUrl).hostname}, but this plugin uses ${new URL(baseUrl).hostname}. Ask the owner to approve connect_proofweave before reading or writing Proofweave work.`,
+  };
   const missingScopes = missingRequiredConnectionScopes(config);
   const connectionMode = existingConnectionMode(config);
   return {
@@ -1634,7 +1654,7 @@ function remoteToolErrorMessage(name, result) {
 }
 
 async function postMcp(accessToken, name, args) {
-  return fetch(`${baseUrl}/mcp`, {
+  return fetch(`${baseUrl}/api/mcp`, {
     method: "POST",
     headers: {
       "content-type": "application/json",

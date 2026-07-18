@@ -2,6 +2,8 @@ name: Proofweave E2B Lean verification
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
   repository_dispatch:
     types: [proofweave_lean_run]
 

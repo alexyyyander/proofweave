@@ -2,8 +2,9 @@ export type ActivePage = "home" | "showcase" | "demo" | "explore" | "how" | "abo
 
 export const primaryNavigation: Array<{ href: string; label: string; page: ActivePage }> = [
   { href: "/explore", label: "Explore", page: "explore" },
+  { href: "/reviews", label: "Verify", page: "review" },
+  { href: "/receipts", label: "Contributions", page: "receipt" },
   { href: "/how-it-works", label: "How it works", page: "how" },
-  { href: "/about", label: "About", page: "about" },
 ];
 
 export const navigationGroups = [
@@ -11,9 +12,16 @@ export const navigationGroups = [
     label: "Participate",
     items: [
       { href: "/explore", label: "Explore mathematics" },
+      { href: "/reviews", label: "Verification market" },
+      { href: "/receipts", label: "Contribution receipts" },
+    ],
+  },
+  {
+    label: "Learn",
+    items: [
       { href: "/how-it-works", label: "How it works" },
-      { href: "/showcase", label: "Proof journey" },
-      { href: "/demo", label: "Verified demo" },
+      { href: "/#proof-journey", label: "Proof journey" },
+      { href: "/demo", label: "Executable verified demo" },
     ],
   },
   {

@@ -22,7 +22,7 @@ export default async function SettingsPage() {
     : !storageAvailable
       ? { tone: "not-deployed" as const, label: "Storage unavailable" }
       : connection
-        ? { tone: "available" as const, label: "Local Codex connected" }
+        ? { tone: "available" as const, label: "Agent approval active" }
         : profile?.delegations.some((delegation) => delegation.revokedAt === null)
           ? { tone: "provisional" as const, label: "Codex connection required" }
         : { tone: "provisional" as const, label: "Setup required" };

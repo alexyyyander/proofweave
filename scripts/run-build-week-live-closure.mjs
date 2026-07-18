@@ -15,8 +15,8 @@ const defaultRunnerLimits = Object.freeze({
 });
 
 export async function runBuildWeekLiveClosure({ phase, artifactBundleHash, environment = process.env }) {
-  if (phase !== "prepare" && phase !== "finalize") {
-    throw new Error("Build Week live closure phase must be prepare or finalize.");
+  if (phase !== "prime" && phase !== "prepare" && phase !== "finalize") {
+    throw new Error("Build Week live closure phase must be prime, prepare, or finalize.");
   }
   const database = createRemoteLibsqlD1Database({
     url: required(environment, "TURSO_DATABASE_URL"),
@@ -29,7 +29,7 @@ export async function runBuildWeekLiveClosure({ phase, artifactBundleHash, envir
       mocker2PersonPrivateKeyJwk: jsonSetting(environment, "DEMO_MOCKER_2_PERSON_PRIVATE_KEY_JWK"),
       mocker2AgentPrivateKeyJwk: jsonSetting(environment, "DEMO_MOCKER_2_AGENT_PRIVATE_KEY_JWK"),
     };
-    if (phase === "prepare") {
+    if (phase === "prime" || phase === "prepare") {
       const runnerDispatcher = new D1RemoteMcpRunnerDispatcher({
         database,
         artifactStore: new D1InlineArtifactStore({ database }),
@@ -41,11 +41,14 @@ export async function runBuildWeekLiveClosure({ phase, artifactBundleHash, envir
         controlPlanePrivateKeyJwk: jsonSetting(environment, "RUNNER_CONTROL_PLANE_PRIVATE_KEY_JWK"),
         defaultLimits: defaultRunnerLimits,
       });
-      return await new D1BuildWeekLiveClosure({
+      const closure = new D1BuildWeekLiveClosure({
         database,
         ...mockerKeys,
         runnerDispatcher,
-      }).prepare({ artifactBundleHash });
+      });
+      return phase === "prime"
+        ? await closure.prime({ artifactBundleHash })
+        : await closure.prepare({ artifactBundleHash });
     }
 
     const receiptIssuerPrivateKeyJwk = jsonSetting(environment, "RECEIPT_ISSUER_PRIVATE_KEY_JWK");
@@ -77,6 +80,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
       reviewerMode: "multiple_mock_owners",
       reviewerCount: result.reviewers?.length ?? null,
       replayRunId: result.replay?.runId ?? null,
+      primaryRunId: result.runId ?? null,
       receiptId: result.receiptId ?? null,
       receiptHash: result.receiptHash ?? null,
       receiptSignatureValid: result.receiptSignatureValid ?? null,

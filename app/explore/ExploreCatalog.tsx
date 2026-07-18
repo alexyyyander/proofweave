@@ -24,14 +24,19 @@ const preferredStarterSlugs = [
   "complexity-p-subset-np",
 ] as const;
 
+const pageSize = 12;
+
 type OpportunityFilter = (typeof opportunityFilters)[number]["id"];
 type ScopeFilter = (typeof scopeFilters)[number]["id"];
+type CatalogSort = "recommended" | "title" | "subject";
 
 export function ExploreCatalog({ projects }: { projects: readonly CatalogProblem[] }) {
   const [opportunityFilter, setOpportunityFilter] = useState<OpportunityFilter>("all");
   const [scopeFilter, setScopeFilter] = useState<ScopeFilter>("all");
   const [subjectFilter, setSubjectFilter] = useState("all");
   const [query, setQuery] = useState("");
+  const [sort, setSort] = useState<CatalogSort>("recommended");
+  const [visibleCount, setVisibleCount] = useState(pageSize);
 
   const subjects = useMemo(() => {
     const unique = new Map<string, CatalogProblem["subjects"][number]>();
@@ -87,29 +92,67 @@ export function ExploreCatalog({ projects }: { projects: readonly CatalogProblem
     });
   }, [projects, query, opportunityFilter, scopeFilter, subjectFilter]);
 
+  const sortedProjects = useMemo(() => {
+    const sorted = [...visibleProjects];
+    if (sort === "title") sorted.sort((a, b) => a.title.localeCompare(b.title));
+    if (sort === "subject") {
+      sorted.sort((a, b) => {
+        const subjectOrder = (a.subjects[0]?.amsCode ?? "999").localeCompare(b.subjects[0]?.amsCode ?? "999");
+        return subjectOrder || a.title.localeCompare(b.title);
+      });
+    }
+    return sorted;
+  }, [visibleProjects, sort]);
+
+  const displayedProjects = sortedProjects.slice(0, visibleCount);
+  const remainingCount = Math.max(0, sortedProjects.length - displayedProjects.length);
+  const activeFilterCount = Number(opportunityFilter !== "all") + Number(scopeFilter !== "all") + Number(subjectFilter !== "all");
+
+  function scrollToCatalog() {
+    window.requestAnimationFrame(() => document.getElementById("research-catalog")?.scrollIntoView({ block: "start" }));
+  }
+
   function selectOpportunity(filter: OpportunityFilter) {
     setOpportunityFilter(filter);
-    document.getElementById("research-catalog")?.scrollIntoView({ block: "start" });
+    setVisibleCount(pageSize);
+    scrollToCatalog();
+  }
+
+  function selectScope(filter: ScopeFilter) {
+    setScopeFilter(filter);
+    setVisibleCount(pageSize);
+  }
+
+  function selectSubject(filter: string) {
+    setSubjectFilter(filter);
+    setVisibleCount(pageSize);
+  }
+
+  function clearFilters() {
+    setOpportunityFilter("all");
+    setScopeFilter("all");
+    setSubjectFilter("all");
+    setQuery("");
+    setSort("recommended");
+    setVisibleCount(pageSize);
   }
 
   return (
     <>
-      <section className="explore-command" aria-labelledby="explore-command-heading">
-        <div className="explore-command-search">
+      <nav className="explore-section-nav" aria-label="Explore page sections">
+        <a href="#contribution-paths">Contribution paths</a>
+        <a href="#starter-work">Start here</a>
+        <a href="#research-programs">Research programs</a>
+        <a href="#research-catalog">All opportunities</a>
+      </nav>
+
+      <section className="explore-command" id="contribution-paths" aria-labelledby="explore-command-heading">
+        <div className="explore-command-heading">
           <div>
             <p className="micro-label">Find useful work</p>
             <h2 id="explore-command-heading">What can your Agent contribute now?</h2>
           </div>
-          <label className="explore-main-search">
-            <span className="sr-only">Search research opportunities</span>
-            <input
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              placeholder="Search by problem, subject, or Lean declaration"
-              type="search"
-            />
-            <span>{visibleProjects.length} matching records</span>
-          </label>
+          <p>Choose a contribution mode first, then use the persistent catalog filters to narrow the exact mathematical target.</p>
         </div>
         <div className="opportunity-paths">
           <button className="opportunity-path is-formalize" onClick={() => selectOpportunity("formalize")} type="button">
@@ -164,16 +207,20 @@ export function ExploreCatalog({ projects }: { projects: readonly CatalogProblem
         </div>
       </section>
 
-      <section className="research-collections" aria-labelledby="research-collections-heading">
+      <section className="research-collections" id="research-programs" aria-labelledby="research-collections-heading">
         <div className="collection-heading">
           <div><p className="micro-label">Curated collections</p><h2 id="research-collections-heading">Enter through a research program.</h2></div>
           <p>Collections are navigation aids, not separate contribution systems. Every program resolves to the same pinned targets, Attempts, evidence, and independent review.</p>
         </div>
         <div className="collection-groups">
           <article className="collection-group">
-            <header><div><span>01</span><h3>Founding Challenges</h3></div><p>Famous questions with smaller known milestones.</p></header>
+            <header>
+              <div><span>01</span><h3>Founding Challenges</h3></div>
+              <p>Famous questions with smaller known milestones.</p>
+              <a className="collection-browse-link" href="#research-catalog">{featured.founding.length} targets · Browse catalog <i aria-hidden="true">→</i></a>
+            </header>
             <div className="collection-records">
-              {featured.founding.map((project) => (
+              {featured.founding.slice(0, 3).map((project) => (
                 <Link href={`/explore/${project.slug}`} key={project.slug}>
                   <span>{project.subjects[0]?.name ?? project.domain}</span>
                   <strong>{project.title}</strong>
@@ -183,9 +230,13 @@ export function ExploreCatalog({ projects }: { projects: readonly CatalogProblem
             </div>
           </article>
           <article className="collection-group is-grand">
-            <header><div><span>02</span><h3>Grand Challenges</h3></div><p>Long-horizon programs for cumulative, reusable progress.</p></header>
+            <header>
+              <div><span>02</span><h3>Grand Challenges</h3></div>
+              <p>Long-horizon programs for cumulative, reusable progress.</p>
+              <a className="collection-browse-link" href="#research-catalog">{featured.grand.length} targets · Browse catalog <i aria-hidden="true">→</i></a>
+            </header>
             <div className="collection-records">
-              {featured.grand.map((project) => (
+              {featured.grand.slice(0, 3).map((project) => (
                 <Link href={`/explore/${project.slug}`} key={project.slug}>
                   <span>{project.subjects[0]?.name ?? project.domain}</span>
                   <strong>{project.title}</strong>
@@ -204,27 +255,63 @@ export function ExploreCatalog({ projects }: { projects: readonly CatalogProblem
         </div>
         <div className="explore-layout">
           <aside className="explore-sidebar">
-            <p className="micro-label">Contribution</p>
-            <div className="filter-group" aria-label="Contribution filters">
-              {opportunityFilters.map((item) => <button key={item.id} className={opportunityFilter === item.id ? "filter-button active" : "filter-button"} onClick={() => setOpportunityFilter(item.id)} type="button">{item.label}</button>)}
+            <div className="explore-sidebar-sticky">
+              <div className="filter-heading"><p className="micro-label">Filter opportunities</p>{activeFilterCount > 0 && <button onClick={clearFilters} type="button">Clear</button>}</div>
+              <p className="micro-label filter-section-label">Contribution</p>
+              <div className="filter-group" aria-label="Contribution filters">
+                {opportunityFilters.map((item) => <button key={item.id} className={opportunityFilter === item.id ? "filter-button active" : "filter-button"} onClick={() => selectOpportunity(item.id)} type="button">{item.label}</button>)}
+              </div>
+              <p className="micro-label subject-filter-label">Scope</p>
+              <div className="filter-group" aria-label="Research scope filters">
+                {scopeFilters.map((item) => <button key={item.id} className={scopeFilter === item.id ? "filter-button active" : "filter-button"} onClick={() => selectScope(item.id)} type="button">{item.label}</button>)}
+              </div>
+              <p className="micro-label subject-filter-label">Subject</p>
+              <div className="filter-group" aria-label="Subject filters">
+                <button className={subjectFilter === "all" ? "filter-button active" : "filter-button"} onClick={() => selectSubject("all")} type="button">All subjects</button>
+                {subjects.map((subject) => <button key={subject.slug} className={subjectFilter === subject.slug ? "filter-button active" : "filter-button"} onClick={() => selectSubject(subject.slug)} type="button"><span>MSC {subject.amsCode}</span>{subject.name}</button>)}
+              </div>
+              <div className="filter-note"><strong>Auditable source</strong><p>Every record pins its upstream declaration, source hash, Lean toolchain, and mathlib revision.</p></div>
             </div>
-            <p className="micro-label subject-filter-label">Scope</p>
-            <div className="filter-group" aria-label="Research scope filters">
-              {scopeFilters.map((item) => <button key={item.id} className={scopeFilter === item.id ? "filter-button active" : "filter-button"} onClick={() => setScopeFilter(item.id)} type="button">{item.label}</button>)}
-            </div>
-            <p className="micro-label subject-filter-label">Subject</p>
-            <div className="filter-group" aria-label="Subject filters">
-              <button className={subjectFilter === "all" ? "filter-button active" : "filter-button"} onClick={() => setSubjectFilter("all")} type="button">All subjects</button>
-              {subjects.map((subject) => <button key={subject.slug} className={subjectFilter === subject.slug ? "filter-button active" : "filter-button"} onClick={() => setSubjectFilter(subject.slug)} type="button"><span>MSC {subject.amsCode}</span>{subject.name}</button>)}
-            </div>
-            <div className="filter-note"><strong>Auditable source</strong><p>Every record pins its upstream declaration, source hash, Lean toolchain, and mathlib revision.</p></div>
           </aside>
           <div className="catalog-list">
-            <div className="catalog-toolbar"><span>{visibleProjects.length} matching records</span><span>Existing catalog priority order</span></div>
+            <div className="catalog-results-toolbar">
+              <div className="catalog-search-row">
+                <label className="catalog-search-control">
+                  <span>Search catalog</span>
+                  <input
+                    value={query}
+                    onChange={(event) => { setQuery(event.target.value); setVisibleCount(pageSize); }}
+                    placeholder="Problem, subject, or Lean declaration"
+                    type="search"
+                  />
+                </label>
+                <label className="catalog-sort-control">
+                  <span>Sort by</span>
+                  <select value={sort} onChange={(event) => { setSort(event.target.value as CatalogSort); setVisibleCount(pageSize); }}>
+                    <option value="recommended">Recommended order</option>
+                    <option value="title">Title A–Z</option>
+                    <option value="subject">MSC subject</option>
+                  </select>
+                </label>
+              </div>
+              <div className="catalog-toolbar">
+                <span aria-live="polite">{sortedProjects.length} matches · showing {displayedProjects.length}</span>
+                {(activeFilterCount > 0 || query) && <button className="catalog-clear-button" onClick={clearFilters} type="button">Clear all</button>}
+              </div>
+              {activeFilterCount > 0 && <div className="active-filter-row" aria-label="Active catalog filters">
+                {opportunityFilter !== "all" && <button onClick={() => selectOpportunity("all")} type="button">{opportunityFilters.find((item) => item.id === opportunityFilter)?.label} <span aria-hidden="true">×</span></button>}
+                {scopeFilter !== "all" && <button onClick={() => selectScope("all")} type="button">{scopeFilters.find((item) => item.id === scopeFilter)?.label} <span aria-hidden="true">×</span></button>}
+                {subjectFilter !== "all" && <button onClick={() => selectSubject("all")} type="button">{subjects.find((subject) => subject.slug === subjectFilter)?.name} <span aria-hidden="true">×</span></button>}
+              </div>}
+            </div>
             {visibleProjects.length === 0 && <div className="catalog-empty"><strong>No opportunities match.</strong><p>Try another contribution type, scope, subject, or search phrase.</p></div>}
-            {visibleProjects.map((project) => (
+            {displayedProjects.map((project) => (
               <ResearchOpportunityCard project={project} key={project.slug} />
             ))}
+            {remainingCount > 0 && <div className="catalog-load-more">
+              <p>Showing {displayedProjects.length} of {sortedProjects.length} matching opportunities.</p>
+              <button className="button button-secondary" onClick={() => setVisibleCount((count) => count + pageSize)} type="button">Show {Math.min(pageSize, remainingCount)} more <span aria-hidden="true">↓</span></button>
+            </div>}
           </div>
         </div>
       </section>

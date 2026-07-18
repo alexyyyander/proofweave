@@ -5,6 +5,12 @@ import {
   type PublicContributionReceiptIndexItem,
 } from "@/db/repositories/receipts";
 import type { ResearchNodeKind } from "@/db/repositories/research-graph";
+import {
+  emptyReceiptCreditSummary,
+  getReceiptCreditRepository,
+  ReceiptCreditSchemaUnavailableError,
+  type PublicReceiptCreditSummary,
+} from "@/db/repositories/receipt-credits";
 
 export type PublicPersonCheckpoint = Readonly<{
   id: string;
@@ -29,6 +35,7 @@ export type PublicPersonProfile = Readonly<{
     challengeFindings: number;
   }>;
   receiptKinds: readonly Readonly<{ kind: ContributionReceiptKind; count: number }>[];
+  credits: PublicReceiptCreditSummary;
   receipts: readonly PublicContributionReceiptIndexItem[];
   recentCheckpoints: readonly PublicPersonCheckpoint[];
   publicAgentLabels: readonly string[];
@@ -66,7 +73,7 @@ class D1PersonProfileRepository implements PersonProfileRepository {
       .first<PersonRow>();
     if (!person) return null;
 
-    const [checkpointCount, reviewCount, checkpointRows, agentRows, receipts] = await Promise.all([
+    const [checkpointCount, reviewCount, checkpointRows, agentRows, receipts, credits] = await Promise.all([
       database.prepare("SELECT COUNT(*) AS count FROM research_nodes WHERE beneficiary_person_id = ?")
         .bind(personId).first<CountRow>(),
       database.prepare(
@@ -100,6 +107,10 @@ class D1PersonProfileRepository implements PersonProfileRepository {
          ORDER BY agent.label ASC`,
       ).bind(personId, personId).all<AgentLabelRow>(),
       getContributionReceiptReader().listByPerson(personId, 100),
+      getReceiptCreditRepository().summaryForPerson(personId).catch((error) => {
+        if (error instanceof ReceiptCreditSchemaUnavailableError) return emptyReceiptCreditSummary();
+        throw error;
+      }),
     ]);
 
     return Object.freeze({
@@ -112,6 +123,7 @@ class D1PersonProfileRepository implements PersonProfileRepository {
         challengeFindings: Number(reviewCount?.challenge_findings ?? 0),
       }),
       receiptKinds: countReceiptKinds(receipts),
+      credits,
       receipts,
       recentCheckpoints: Object.freeze((checkpointRows.results ?? []).map(toCheckpoint)),
       publicAgentLabels: Object.freeze((agentRows.results ?? []).map((row: AgentLabelRow) => row.label)),
