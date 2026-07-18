@@ -14,7 +14,7 @@ export function PersonalWorkspaceNavigation({
   evidenceCount: number | null;
 }) {
   return <nav className="workspace-personal-links" aria-label="Personal workspace">
-    <WorkspaceLink active={active === "workbench"} href="/workbench" label="Work with your Agent" value={activeAttemptCount} />
+    <WorkspaceLink active={active === "workbench"} href="/workbench" label="My work" value={activeAttemptCount} />
     <WorkspaceLink active={active === "reviews"} href="/reviews#my-review-work" label="Review work" value={activeReviewCount} />
     <WorkspaceLink active={active === "evidence"} href="/evidence" label="Evidence" value={evidenceCount} />
     <WorkspaceLink active={active === "profile"} href="/profile" label="My profile" />

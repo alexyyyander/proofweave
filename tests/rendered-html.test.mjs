@@ -2223,7 +2223,6 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
   const ownerWorkbenchHtml = await ownerWorkbench.text();
   assert.match(ownerWorkbenchHtml, /Choose a question\. Start with your Agent\./i);
   assert.match(ownerWorkbenchHtml, /Choose research/i);
-  assert.match(ownerWorkbenchHtml, /Work with your Agent/i);
   assert.match(ownerWorkbenchHtml, /Inspect evidence/i);
   assert.match(ownerWorkbenchHtml, /Connect Codex once before starting research/i);
   assert.match(ownerWorkbenchHtml, /Erdős Problem 865: k = 2 variant/i);
@@ -2252,6 +2251,19 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
   const persistedAttemptWorkbench = await render(`/workbench?attempt=${encodeURIComponent(ownerAttempt.id)}`, { headers: authHeaders });
   assert.equal(persistedAttemptWorkbench.status, 200);
   assert.match(await persistedAttemptWorkbench.text(), /Current focus<\/span><h2>Erdős Problem 865<\/h2>/i);
+
+  const myWorkOverview = await render("/workbench", { headers: authHeaders });
+  assert.equal(myWorkOverview.status, 200);
+  const myWorkOverviewHtml = await myWorkOverview.text();
+  assert.match(myWorkOverviewHtml, /Personal research workspace[\s\S]*<h1[^>]*>My work<\/h1>/i);
+  assert.match(myWorkOverviewHtml, /Active research|Needs attention|Waiting/i);
+  assert.match(myWorkOverviewHtml, /href="\/workbench\/attempts\/[^\"]+"/i);
+
+  const attemptDetail = await render(`/workbench/attempts/${encodeURIComponent(ownerAttempt.id)}`, { headers: authHeaders });
+  assert.equal(attemptDetail.status, 200);
+  const attemptDetailHtml = await attemptDetail.text();
+  assert.match(attemptDetailHtml, /My work[\s\S]*Current focus<\/span><h1>Erdős Problem 865<\/h1>/i);
+  assert.match(attemptDetailHtml, /Manage Attempt/i);
 
   const evidenceWorkbench = await render("/workbench?target=erdos-865", { headers: authHeaders });
   assert.equal(evidenceWorkbench.status, 200);

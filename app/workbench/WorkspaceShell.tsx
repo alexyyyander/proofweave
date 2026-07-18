@@ -68,7 +68,7 @@ export function WorkspaceTopbar({
   return <header className="workspace-topbar">
     <div className="workspace-topbar-title">
       <span className="micro-label">Personal workspace</span>
-      <h1>{modeLabels[mode]}</h1>
+      <strong>{modeLabels[mode]}</strong>
     </div>
     <label className="workspace-attempt-switcher">
       <span>Current Attempt</span>
