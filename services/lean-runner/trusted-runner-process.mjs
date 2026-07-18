@@ -332,6 +332,7 @@ export function createTrustedRunnerContainerFactoryFromEnvironment({
   environment = process.env,
   modalClient,
   e2bSandboxApi,
+  e2bTemplateApi,
   fetcher = globalThis.fetch,
   sleep = wait,
 } = {}) {
@@ -347,6 +348,7 @@ export function createTrustedRunnerContainerFactoryFromEnvironment({
     return createE2BSandboxContainerFactoryFromEnvironment({
       environment,
       ...(e2bSandboxApi ? { sandboxApi: e2bSandboxApi } : {}),
+      ...(e2bTemplateApi ? { templateApi: e2bTemplateApi } : {}),
       fetcher,
       sleep,
     });
@@ -359,6 +361,7 @@ export async function createTrustedRunnerRuntimeFromEnvironment({
   environment = process.env,
   modalClient,
   e2bSandboxApi,
+  e2bTemplateApi,
   fetcher = globalThis.fetch,
   now = () => new Date(),
   sleep = wait,
@@ -374,6 +377,7 @@ export async function createTrustedRunnerRuntimeFromEnvironment({
       environment,
       modalClient,
       e2bSandboxApi,
+      e2bTemplateApi,
       fetcher,
       sleep,
     });
