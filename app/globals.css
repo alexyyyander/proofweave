@@ -484,6 +484,20 @@ h1, h2, h3, p { margin-top: 0; }
 .demo-closing { border-top: 1px solid var(--line); }
 .demo-run-button:focus-visible, .demo-hero a:focus-visible { outline: 3px solid #f3d48b; outline-offset: 3px; }
 
+/* Shared long-page orientation */
+.page-section-nav { align-items: center; background: rgba(248,247,243,.97); border-bottom: 1px solid var(--line); border-top: 1px solid var(--line); display: flex; gap: 30px; min-height: 52px; padding: 0 16px; position: sticky; top: 0; z-index: 12; }
+.page-section-nav > span { color: var(--ink-faint); flex: 0 0 auto; font-size: 9px; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; }
+.page-section-nav > div { align-items: stretch; display: flex; flex: 1; justify-content: flex-end; min-width: 0; }
+.page-section-nav a { align-items: center; border-left: 1px solid var(--line); color: var(--ink-soft); display: inline-flex; font-size: 10px; font-weight: 650; min-height: 51px; padding: 0 16px; white-space: nowrap; }
+.page-section-nav a:hover { background: #eef1f8; color: var(--indigo); }
+.page-section-nav a:focus-visible { outline: 2px solid var(--indigo); outline-offset: -2px; }
+.page-section-nav-dark { background: rgba(9,24,48,.97); border-color: rgba(216,226,246,.18); color: #eef3ff; }
+.page-section-nav-dark > span { color: #8595b2; }
+.page-section-nav-dark a { border-color: rgba(216,226,246,.16); color: #c6d2e7; }
+.page-section-nav-dark a:hover { background: rgba(255,255,255,.06); color: #fff; }
+main section[id], main ol[id], main div[id] { scroll-margin-top: 68px; }
+.public-section-nav { background: rgba(255,255,255,.97); box-shadow: 0 10px 24px rgba(18,31,54,.05); position: sticky; top: 10px; z-index: 9; }
+
 @keyframes demo-verification-spin { to { transform: rotate(360deg); } }
 @keyframes demo-check-pulse { 50% { opacity: .55; } }
 @keyframes demo-report-arrive { from { opacity: .25; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
@@ -2147,4 +2161,41 @@ a.auth-provider:hover, .auth-provider-button:hover { border-color: #8295d5; box-
   .opportunity-card-footer { align-items: stretch; flex-direction: column; }
   .opportunity-card-footer > div { flex-direction: column; }
   .opportunity-card-footer .button { justify-content: center; width: 100%; }
+}
+
+/* Final cross-page density pass: these overrides intentionally follow route-specific styles. */
+.information-hub-hero { min-height: 370px; padding-bottom: 52px; padding-top: 72px; }
+.information-hub-hero h1 { font-size: clamp(46px, 4.8vw, 64px); line-height: .98; }
+.reading-hero { padding-bottom: 46px; padding-top: 48px; }
+.reading-hero h1 { font-size: clamp(42px, 4.7vw, 60px); line-height: 1; }
+.legal-hero { padding-bottom: 44px; padding-top: 64px; }
+.legal-hero h1 { font-size: clamp(40px, 4.8vw, 58px); line-height: 1; }
+.detail-heading h1, .receipt-heading h1 { font-size: clamp(40px, 4.5vw, 58px); line-height: 1.02; }
+.demo-hero { padding-bottom: 76px; padding-top: 76px; }
+.demo-hero h1 { font-size: clamp(44px, 4.8vw, 64px); line-height: 1; }
+.demo-walkthrough { padding-top: 78px; }
+.demo-console { padding-bottom: 78px; padding-top: 78px; }
+.demo-honesty-grid { padding-bottom: 78px; padding-top: 78px; }
+.showcase-intro h1 { font-size: clamp(54px, 6vw, 86px); line-height: .92; }
+.showcase-afterword { padding-bottom: 74px; padding-top: 74px; }
+.showcase-afterword h2 { font-size: clamp(38px, 4.2vw, 56px); }
+
+@media (max-width: 620px) {
+  .page-section-nav { gap: 14px; min-height: 48px; overflow-x: auto; padding: 0 18px; scrollbar-width: none; }
+  .page-main > .page-section-nav { margin-left: -18px; margin-right: -18px; }
+  .page-section-nav::-webkit-scrollbar { display: none; }
+  .page-section-nav > span { position: sticky; left: 0; }
+  .page-section-nav > div { justify-content: flex-start; }
+  .page-section-nav a { min-height: 47px; padding: 0 13px; }
+  .information-hub-hero { padding-bottom: 42px; padding-top: 48px; }
+  .information-hub-hero h1, .reading-hero h1 { font-size: 42px; }
+  .legal-hero { padding-top: 46px; }
+  .legal-hero h1 { font-size: 39px; }
+  .demo-hero { padding-bottom: 56px; padding-top: 52px; }
+  .demo-hero h1 { font-size: 44px; }
+  .showcase-intro h1 { font-size: 49px; }
+  .public-section-nav { display: flex; margin-left: -18px; margin-right: -18px; overflow-x: auto; scrollbar-width: none; }
+  .public-section-nav::-webkit-scrollbar { display: none; }
+  .public-section-nav a { flex: 0 0 auto; min-height: 48px; min-width: 170px; }
+  .public-section-nav a + a { border-left: 1px solid var(--line); border-top: 0; }
 }

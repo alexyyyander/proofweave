@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Footer, ProductStateBadge } from "@/app/ui";
+import { Footer, PageSectionNav, ProductStateBadge } from "@/app/ui";
 import { Header } from "@/app/header";
 import { verifyBuildWeekDemoFixture } from "@/app/lib/build-week-demo";
 import { DemoVerificationClient } from "./DemoVerificationClient";
@@ -38,9 +38,21 @@ export default async function DemoPage() {
           <ProductStateBadge tone="verified">Local fixture + mock reviewer</ProductStateBadge>
         </section>
 
+        <PageSectionNav
+          tone="dark"
+          label="Verified demo"
+          links={[
+            { href: "#demo-walkthrough", label: "Walkthrough" },
+            { href: "#verification-console", label: "Live verification" },
+            { href: "#mathematical-payload", label: "Lean source" },
+            { href: "#demo-boundaries", label: "Claim boundary" },
+            { href: "#reproduce", label: "Reproduce locally" },
+          ]}
+        />
+
         <DemoVerificationClient initial={verification} />
 
-        <section className="demo-proof-section">
+        <section className="demo-proof-section" id="mathematical-payload">
           <div className="demo-proof-copy">
             <p className="eyebrow">The mathematical payload</p>
             <h2>Small theorem. Complete evidence chain.</h2>
@@ -57,12 +69,12 @@ export default async function DemoPage() {
           </div>
         </section>
 
-        <section className="demo-honesty-grid">
+        <section className="demo-honesty-grid" id="demo-boundaries">
           <article><span className="micro-label">This demo proves</span><h2>The evidence protocol is executable.</h2><p>Displayed bytes are re-hashed, four signature classes are checked, owner IDs remain distinct, and Receipt policy runs on every request.</p></article>
           <article><span className="micro-label">This demo does not claim</span><h2>The reviewer is not a live participant.</h2><p>The second account is a deterministic mock and the Lean result is a checked local fixture. It demonstrates the exact production protocol without pretending public onboarding or hosted execution is complete.</p></article>
         </section>
 
-        <section className="demo-reproduce" aria-labelledby="demo-reproduce-title">
+        <section className="demo-reproduce" id="reproduce" aria-labelledby="demo-reproduce-title">
           <div>
             <p className="eyebrow">Local end-to-end reproduction</p>
             <h2 id="demo-reproduce-title">Run Lean, replay it independently, and issue the Receipt.</h2>

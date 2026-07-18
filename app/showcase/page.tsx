@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Footer } from "@/app/ui";
+import { Footer, PageSectionNav } from "@/app/ui";
 import { Header } from "@/app/header";
 import { verifyBuildWeekDemoFixture } from "@/app/lib/build-week-demo";
 import { ShowcaseExperience } from "./ShowcaseExperience";
@@ -38,9 +38,19 @@ export default async function ShowcasePage() {
           </dl>
         </section>
 
+        <PageSectionNav
+          tone="dark"
+          label="Proof journey"
+          links={[
+            { href: "#proof-journey", label: "Six evidence moments" },
+            { href: "#showcase-verification", label: "Verification handoff" },
+            { href: "/demo#verification-console", label: "Open verified demo" },
+          ]}
+        />
+
         <ShowcaseExperience verification={verification} />
 
-        <section className="showcase-afterword">
+        <section className="showcase-afterword" id="showcase-verification">
           <div>
             <p className="eyebrow">The visual story is only the entrance</p>
             <h2>Inspect every claim behind it.</h2>
