@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Footer, PageSectionNav } from "../ui";
 import { Header } from "../header";
 
@@ -5,6 +6,7 @@ export default function PrivacyPage() {
   return <div className="site-shell app-shell">
     <Header active="about" />
     <main id="main-content" tabIndex={-1} className="page-main legal-main">
+      <div className="breadcrumb"><Link href="/about">About</Link><span> / </span><span>Privacy</span></div>
       <section className="legal-hero">
         <p className="eyebrow">Privacy · public alpha</p>
         <h1>Your mathematical record can be public. Your login does not need to be.</h1>
