@@ -11,9 +11,6 @@ on:
 
 permissions:
   contents: read
-  packages: write
-  attestations: write
-  id-token: write
 
 concurrency:
   group: proofweave-lean-core-alpha-image
@@ -31,9 +28,16 @@ env:
 
 jobs:
   build-and-inspect:
+    permissions:
+      contents: read
+      packages: write
+      attestations: write
+      id-token: write
     runs-on: ubuntu-latest
     timeout-minutes: 45
     environment: proofweave-runner-alpha
+    outputs:
+      runner_image: ${{ steps.coordinates.outputs.runner_image }}
     steps:
       - name: Check out the reviewed source
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
@@ -109,36 +113,51 @@ jobs:
           echo "GitHub artifact attestations are unavailable for user-owned private repositories." >> "$GITHUB_STEP_SUMMARY"
           echo "The registry-attached BuildKit SBOM and provenance remain the published image evidence." >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Use the repository Node version
-        if: ${{ inputs.build_e2b_template }}
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
-        with:
-          node-version: 22
-          cache: npm
-
-      - name: Install locked dependencies
-        if: ${{ inputs.build_e2b_template }}
-        run: npm ci --ignore-scripts
-
-      - name: Build the E2B template from the immutable private image
-        if: ${{ inputs.build_e2b_template }}
-        env:
-          E2B_API_KEY: ${{ secrets.E2B_API_KEY }}
-          PROOFWEAVE_E2B_RUNNER_IMAGE: ${{ env.RUNNER_IMAGE_NAME }}@${{ steps.runner.outputs.digest }}
-          PROOFWEAVE_E2B_TEMPLATE_NAME: proofweave-lean-core-alpha:${{ github.sha }}
-          PROOFWEAVE_E2B_CPU: "2"
-          PROOFWEAVE_E2B_MEMORY_MB: "2048"
-          PROOFWEAVE_E2B_REGISTRY_USERNAME: ${{ vars.GHCR_READ_USERNAME }}
-          PROOFWEAVE_E2B_REGISTRY_PASSWORD: ${{ secrets.GHCR_READ_TOKEN }}
-        run: npm run runner:e2b:template:build
-
       - name: Publish immutable image coordinates
+        id: coordinates
         env:
           FINAL_RUNNER_IMAGE: ${{ env.RUNNER_IMAGE_NAME }}@${{ steps.runner.outputs.digest }}
         run: |
+          echo "runner_image=$FINAL_RUNNER_IMAGE" >> "$GITHUB_OUTPUT"
           echo "### Proofweave Lean Core alpha" >> "$GITHUB_STEP_SUMMARY"
           echo '```text' >> "$GITHUB_STEP_SUMMARY"
           echo "PROOFWEAVE_E2B_RUNNER_IMAGE=$FINAL_RUNNER_IMAGE" >> "$GITHUB_STEP_SUMMARY"
           echo "leanToolchain=${LEAN_TOOLCHAIN}" >> "$GITHUB_STEP_SUMMARY"
           echo "mathlibRevision=${MATHLIB_REVISION}" >> "$GITHUB_STEP_SUMMARY"
           echo '```' >> "$GITHUB_STEP_SUMMARY"
+
+  build-e2b-template:
+    if: ${{ inputs.build_e2b_template }}
+    needs: build-and-inspect
+    permissions:
+      contents: read
+      packages: read
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: proofweave-runner-alpha
+    steps:
+      - name: Check out the reviewed template builder
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+
+      - name: Use the repository Node version
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts
+
+      # This job has packages:read only. Its short-lived GITHUB_TOKEN lets E2B
+      # import the private image without exposing the package-write token used
+      # by the separate publication job or requiring a long-lived package PAT.
+      - name: Build the E2B template from the immutable private image
+        env:
+          E2B_API_KEY: ${{ secrets.E2B_API_KEY }}
+          PROOFWEAVE_E2B_RUNNER_IMAGE: ${{ needs.build-and-inspect.outputs.runner_image }}
+          PROOFWEAVE_E2B_TEMPLATE_NAME: proofweave-lean-core-alpha:${{ github.sha }}
+          PROOFWEAVE_E2B_CPU: "2"
+          PROOFWEAVE_E2B_MEMORY_MB: "2048"
+          PROOFWEAVE_E2B_REGISTRY_USERNAME: ${{ github.actor }}
+          PROOFWEAVE_E2B_REGISTRY_PASSWORD: ${{ github.token }}
+        run: npm run runner:e2b:template:build

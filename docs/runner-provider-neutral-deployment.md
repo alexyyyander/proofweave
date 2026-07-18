@@ -75,10 +75,12 @@ GitHub Actions core-alpha image build
 
 Run `.github/workflows/build-e2b-lean-runner-image.yml` first. The checked-in
 profile supports only Lean Core and records `mathlibRevision=none`; it must not
-verify a Bundle that declares Mathlib. The optional template step authenticates
+verify a Bundle that declares Mathlib. The optional template job authenticates
 E2B's builder to the private GHCR package without placing the registry
-credential in the resulting Sandbox. Use a separate read-only package token;
-never send the workflow's package-write `GITHUB_TOKEN` to E2B.
+credential in the resulting Sandbox. It runs separately with a short-lived
+`GITHUB_TOKEN` restricted to `packages: read`; the package-write token used by
+the image publication job is never sent to E2B, and no long-lived package PAT
+is required.
 
 ```sh
 npm run runner:e2b:template:build
@@ -98,13 +100,13 @@ executed on the GitHub-hosted machine.
 
 Configure the `proofweave-runner-alpha` GitHub environment:
 
-- secrets: `TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN`, `E2B_API_KEY`,
-  `GHCR_READ_TOKEN` (read-only package access), and
+- secrets: `TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN`, `E2B_API_KEY`, and
   `RUNNER_RESULT_PRIVATE_KEY_JWK`;
 - variables: `PROOFWEAVE_E2B_TEMPLATE_ID`,
   `PROOFWEAVE_E2B_RUNNER_IMAGE`, `RUNNER_APPROVED_IMAGES_JSON`,
-  `RUNNER_CONTROL_PLANE_ISSUER_KEYS_JSON`, `RUNNER_RESULT_KEY_ID`, and the
-  account name `GHCR_READ_USERNAME`.
+  `RUNNER_CONTROL_PLANE_ISSUER_KEYS_JSON`, and `RUNNER_RESULT_KEY_ID`.
+
+The template job derives its GHCR username from `github.actor`.
 
 The workflow supports manual `workflow_dispatch` and the bounded
 `proofweave_lean_run` repository dispatch event. Until a least-privilege GitHub

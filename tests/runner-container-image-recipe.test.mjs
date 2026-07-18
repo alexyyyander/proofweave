@@ -61,7 +61,9 @@ test("Lean Runner image recipe fails closed and keeps its build context minimal"
   assert.match(imageWorkflow, /if: \$\{\{ github\.event\.repository\.visibility == 'public' \}\}/);
   assert.match(imageWorkflow, /registry-attached BuildKit SBOM and provenance remain the published image evidence/);
   assert.match(imageWorkflow, /actions\/attest-build-provenance@[a-f0-9]{40}/);
-  assert.match(imageWorkflow, /PROOFWEAVE_E2B_REGISTRY_PASSWORD: \$\{\{ secrets\.GHCR_READ_TOKEN \}\}/);
+  assert.match(imageWorkflow, /build-e2b-template:[\s\S]*?permissions:[\s\S]*?packages: read/);
+  assert.match(imageWorkflow, /PROOFWEAVE_E2B_REGISTRY_PASSWORD: \$\{\{ github\.token \}\}/);
+  assert.match(imageWorkflow, /build-and-inspect:[\s\S]*?permissions:[\s\S]*?packages: write/);
   assert.doesNotMatch(imageWorkflow, /PROOFWEAVE_E2B_REGISTRY_PASSWORD: \$\{\{ secrets\.GITHUB_TOKEN \}\}/);
 
   assert.match(dockerignore, /^\*$/m);

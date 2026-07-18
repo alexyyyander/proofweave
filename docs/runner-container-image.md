@@ -18,8 +18,8 @@ official Lean `v4.27.0` Linux release URL and GitHub-published SHA-256,
 The workflow publishes a Linux/amd64 base and final image to GHCR, emits SBOM
 and build provenance, assembles the final image with Docker build networking
 disabled, and smoke-tests it with no network and a read-only root filesystem.
-It can optionally create the E2B template after the protected environment has
-an `E2B_API_KEY`. The final image digest and E2B template id still need
+It can optionally create the E2B template in a separate `packages: read` job
+after the protected environment has an `E2B_API_KEY`. The final image digest and E2B template id still need
 operator review before admission to the approved Runner registry.
 
 This profile is intentionally limited to Lean Core projects with no external
