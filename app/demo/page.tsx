@@ -68,7 +68,6 @@ export default async function DemoPage() {
             { href: "#verification-console", label: "Live verification" },
             { href: "#mathematical-payload", label: "Lean source" },
             { href: "#demo-boundaries", label: "Claim boundary" },
-            { href: "#reproduce", label: "Reproduce locally" },
           ]}
         />
 
@@ -98,14 +97,14 @@ export default async function DemoPage() {
 
         <section className="demo-reproduce" id="reproduce" aria-labelledby="demo-reproduce-title">
           <div>
-            <p className="eyebrow">Local end-to-end reproduction</p>
-            <h2 id="demo-reproduce-title">Run Lean, replay it independently, and issue the Receipt.</h2>
-            <p>This command creates a temporary D1-inline evidence store, reconstructs the signed workspace, executes Lean for the research Run and fresh review replay, checks different-owner attestations, and verifies the issued Receipt. No file or event is sent to Proofweave.</p>
+            <p className="eyebrow">Optional audit path · developers and reviewers</p>
+            <h2 id="demo-reproduce-title">Reproduce this reference proof locally.</h2>
+            <p>Clone the repository to reconstruct the signed workspace, execute Lean, replay the review, and verify the reference Receipt. This does not connect your account, create an Attempt, or publish a contribution.</p>
           </div>
           <div className="demo-reproduce-command">
-            <span>From the Proofweave repository</span>
+            <span>After installing Node 22+ and Lean 4.30</span>
             <code>npm run demo:e2e:check</code>
-            <small>D1 inline · no R2 · temporary keys · no network contribution</small>
+            <small>Local fixture · temporary storage and keys · no network contribution</small>
           </div>
         </section>
 
