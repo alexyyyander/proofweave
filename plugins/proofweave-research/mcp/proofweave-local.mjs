@@ -1654,7 +1654,7 @@ function remoteToolErrorMessage(name, result) {
 }
 
 async function postMcp(accessToken, name, args) {
-  return fetch(`${baseUrl}/mcp`, {
+  return fetch(`${baseUrl}/api/mcp`, {
     method: "POST",
     headers: {
       "content-type": "application/json",

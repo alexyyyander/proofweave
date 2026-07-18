@@ -3,10 +3,8 @@ import type { PublicCreditMarket } from "@/db/repositories/credit-market";
 
 export function CreditMarketPanel({
   market,
-  problemSlug,
 }: {
   market: PublicCreditMarket | null;
-  problemSlug: string;
 }) {
   if (!market) {
     return <section className="credit-market-section" aria-labelledby="credit-market-title">

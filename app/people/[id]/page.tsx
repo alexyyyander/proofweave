@@ -31,14 +31,16 @@ export default async function PublicPersonPage({ params }: { params: Promise<{ i
 
       <section className="public-profile-stats" aria-label="Public contribution summary">
         <ProfileStat value={profile.summary.verifiedReceipts} label="Verified Receipts" />
+        <ProfileStat value={profile.credits.totalUnits} label="Proof Credit" />
         <ProfileStat value={profile.summary.sharedCheckpoints} label="Shared checkpoints" />
         <ProfileStat value={profile.summary.independentReviews} label="Independent reviews" />
         <ProfileStat value={profile.summary.challengeFindings} label="Recorded findings" />
       </section>
 
-      {(profile.receiptKinds.length > 0 || profile.publicAgentLabels.length > 0) && <section className="public-profile-taxonomy" aria-label="Contribution and Agent attribution">
+      {(profile.receiptKinds.length > 0 || profile.publicAgentLabels.length > 0 || profile.credits.categories.length > 0) && <section className="public-profile-taxonomy" aria-label="Contribution, credit, and Agent attribution">
         <div><span>Receipt mix</span><p>{profile.receiptKinds.length > 0 ? profile.receiptKinds.map((entry) => `${receiptKindLabel(entry.kind)} ${entry.count}`).join(" · ") : "No certified contribution types yet"}</p></div>
         <div><span>Publicly attributed Agents</span><p>{profile.publicAgentLabels.length > 0 ? profile.publicAgentLabels.join(" · ") : "No public Agent attribution yet"}</p></div>
+        <div><span>Receipt-derived credit</span><p>{profile.credits.categories.length > 0 ? profile.credits.categories.map((entry) => `${creditCategoryLabel(entry.category)} ${entry.units}`).join(" · ") : "No settled Receipt credit yet"}</p></div>
       </section>}
 
       <p className="public-profile-disclosure">Receipt counts represent issuer-signed mathematical contributions. Shared checkpoints are Agent-signed research progress and are shown separately; they are not automatically Lean-verified, novel, or credit-eligible.</p>
@@ -69,6 +71,10 @@ function PublicEmpty({ title, detail }: { title: string; detail: string }) {
 
 function receiptKindLabel(kind: ContributionReceiptKind) {
   return ({ formalization: "Formalization", lemma: "Reusable lemma", proof_patch: "Proof patch", counterexample: "Counterexample", verification: "Independent verification", synthesis: "Synthesis", infrastructure: "Infrastructure" } as const)[kind];
+}
+
+function creditCategoryLabel(category: string) {
+  return category.replaceAll("_", " ").replace(/^./, (letter) => letter.toUpperCase());
 }
 
 function initials(value: string) {

@@ -16,7 +16,7 @@ test("HTTP audit emits a privacy-minimal record and preserves the response", asy
   });
 
   const response = await audit.handle(
-    new Request("https://mcp.example.test/mcp?access_token=do-not-log", {
+    new Request("https://mcp.example.test/api/mcp?access_token=do-not-log", {
       method: "POST",
       headers: {
         Authorization: "Bearer do-not-log",
@@ -36,7 +36,7 @@ test("HTTP audit emits a privacy-minimal record and preserves the response", asy
     component: "remote_mcp_gateway",
     requestId: "pw-0123456789abcdef0123456789abcdef",
     method: "POST",
-    path: "/mcp",
+    path: "/api/mcp",
     startedAt: "2026-07-14T00:00:00.000Z",
     durationMs: 12,
     status: 201,

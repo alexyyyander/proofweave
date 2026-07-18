@@ -297,6 +297,68 @@ export const personIdentities = sqliteTable(
   ],
 );
 
+// A proposal is an authenticated request to curate a new mathematical target.
+// It is deliberately separate from the public catalog: submission establishes
+// provenance and review history, but does not claim formalization, novelty,
+// verification, or a contribution Receipt.
+export const problemProposals = sqliteTable(
+  "problem_proposals",
+  {
+    id: text("id").primaryKey(),
+    proposerPersonId: text("proposer_person_id")
+      .notNull()
+      .references(() => persons.id, { onDelete: "restrict" }),
+    title: text("title").notNull(),
+    domain: text("domain").notNull(),
+    informalStatement: text("informal_statement").notNull(),
+    motivation: text("motivation").notNull(),
+    sourceUrl: text("source_url"),
+    idempotencyKey: text("idempotency_key").notNull(),
+    requestHash: text("request_hash").notNull(),
+    payloadHash: text("payload_hash").notNull(),
+    canonicalPayload: text("canonical_payload").notNull(),
+    submittedAt: text("submitted_at").notNull(),
+    createdAt,
+  },
+  (table) => [
+    uniqueIndex("problem_proposals_person_idempotency_idx").on(
+      table.proposerPersonId,
+      table.idempotencyKey,
+    ),
+    uniqueIndex("problem_proposals_payload_hash_idx").on(table.payloadHash),
+    index("problem_proposals_person_time_idx").on(table.proposerPersonId, table.submittedAt),
+  ],
+);
+
+// Status changes are append-only review events. This preserves rejected and
+// withdrawn history instead of rewriting the original proposal.
+export const problemProposalEvents = sqliteTable(
+  "problem_proposal_events",
+  {
+    id: text("id").primaryKey(),
+    proposalId: text("proposal_id")
+      .notNull()
+      .references(() => problemProposals.id, { onDelete: "restrict" }),
+    sequence: integer("sequence").notNull(),
+    eventType: text("event_type", {
+      enum: ["submitted", "under_review", "accepted", "rejected", "withdrawn"],
+    }).notNull(),
+    actorPersonId: text("actor_person_id")
+      .notNull()
+      .references(() => persons.id, { onDelete: "restrict" }),
+    note: text("note"),
+    payloadHash: text("payload_hash").notNull(),
+    canonicalPayload: text("canonical_payload").notNull(),
+    occurredAt: text("occurred_at").notNull(),
+    createdAt,
+  },
+  (table) => [
+    uniqueIndex("problem_proposal_events_sequence_idx").on(table.proposalId, table.sequence),
+    uniqueIndex("problem_proposal_events_payload_hash_idx").on(table.payloadHash),
+    index("problem_proposal_events_proposal_time_idx").on(table.proposalId, table.occurredAt),
+  ],
+);
+
 export const appSessions = sqliteTable(
   "app_sessions",
   {
@@ -1602,6 +1664,68 @@ export const contributionReceipts = sqliteTable(
     ),
     index("contribution_receipts_person_issued_idx").on(table.beneficiaryPersonId, table.issuedAt),
     index("contribution_receipts_attempt_idx").on(table.attemptId),
+  ],
+);
+
+// Receipt-derived credits are an append-only, non-transferable projection of
+// already verified Contribution Receipts. They are neither a token balance nor
+// a payment claim. A settlement is unique per Receipt and every atomic entry
+// keeps its own canonical hash for portable verification.
+export const receiptCreditSettlements = sqliteTable(
+  "receipt_credit_settlements",
+  {
+    receiptId: text("receipt_id")
+      .primaryKey()
+      .references(() => contributionReceipts.id, { onDelete: "restrict" }),
+    receiptHash: text("receipt_hash").notNull().unique(),
+    policyVersion: text("policy_version").notNull(),
+    unit: text("unit", { enum: ["non_transferable_research_credit"] }).notNull(),
+    payloadHash: text("payload_hash").notNull().unique(),
+    canonicalPayload: text("canonical_payload").notNull(),
+    settledAt: text("settled_at").notNull(),
+    createdAt,
+  },
+  (table) => [index("receipt_credit_settlements_time_idx").on(table.settledAt, table.receiptId)],
+);
+
+export const receiptCreditEntries = sqliteTable(
+  "receipt_credit_entries",
+  {
+    id: text("id").primaryKey(),
+    receiptId: text("receipt_id")
+      .notNull()
+      .references(() => receiptCreditSettlements.receiptId, { onDelete: "restrict" }),
+    personId: text("person_id")
+      .notNull()
+      .references(() => persons.id, { onDelete: "restrict" }),
+    category: text("category", {
+      enum: [
+        "certified_receipt", "formalization", "lemma", "proof_progress",
+        "counterexample", "verification", "synthesis", "infrastructure",
+        "downstream_impact",
+      ],
+    }).notNull(),
+    units: integer("units").notNull(),
+    reasonKey: text("reason_key").notNull(),
+    sourceReceiptId: text("source_receipt_id")
+      .notNull()
+      .references(() => contributionReceipts.id, { onDelete: "restrict" }),
+    policyVersion: text("policy_version").notNull(),
+    unit: text("unit", { enum: ["non_transferable_research_credit"] }).notNull(),
+    payloadHash: text("payload_hash").notNull().unique(),
+    canonicalPayload: text("canonical_payload").notNull(),
+    occurredAt: text("occurred_at").notNull(),
+    createdAt,
+  },
+  (table) => [
+    uniqueIndex("receipt_credit_entries_reason_idx").on(
+      table.receiptId,
+      table.personId,
+      table.category,
+      table.reasonKey,
+    ),
+    index("receipt_credit_entries_person_idx").on(table.personId, table.occurredAt),
+    index("receipt_credit_entries_receipt_idx").on(table.receiptId, table.category),
   ],
 );
 

@@ -11,6 +11,7 @@ import {
 import { verifyContributionReceiptLifecycleEventSignature } from "../packages/protocol/contribution-receipt-lifecycle.mjs";
 import { D1ContributionReceiptIssuerKeyStore } from "../services/receipts/d1-contribution-receipt-issuer-key-store.mjs";
 import { D1ContributionReceiptStore } from "../services/receipts/d1-contribution-receipt-store.mjs";
+import { D1ReceiptCreditSettlement } from "../services/credits/d1-receipt-credit-settlement.mjs";
 
 const migrationsRoot = new URL("../drizzle/", import.meta.url);
 const bundleHash = sha("a");
@@ -207,6 +208,42 @@ test("D1 Receipt store derives, signs, retries, and freezes a certified contribu
   await assert.rejects(
     database.prepare("DELETE FROM contribution_receipt_lifecycle_events WHERE id = ?").bind(correction.event.id).run(),
     /contribution receipt lifecycle events cannot be deleted/,
+  );
+});
+
+test("Receipt credit settlement derives immutable author, reviewer, and downstream entries exactly once", async () => {
+  const receiptStore = new D1ContributionReceiptStore(database);
+  await receiptStore.issue(receiptInput({ id: "receipt:alice-credit", kind: "infrastructure", issuedAt: "2026-07-13T00:04:00Z" }));
+  const credits = new D1ReceiptCreditSettlement(database);
+  const first = await credits.settleReceipt("receipt:alice-credit");
+  const retry = await credits.settleReceipt("receipt:alice-credit");
+
+  assert.equal(first.created, true);
+  assert.equal(retry.created, false);
+  assert.equal(first.totalUnits, 6);
+  assert.equal(first.peopleCredited, 3);
+  assert.deepEqual(first.categoryUnits, [
+    { category: "certified_receipt", units: 1 },
+    { category: "downstream_impact", units: 1 },
+    { category: "infrastructure", units: 1 },
+    { category: "verification", units: 3 },
+  ]);
+  const balances = await database.prepare(
+    `SELECT person_id, SUM(units) AS units FROM receipt_credit_entries
+     WHERE receipt_id = ? GROUP BY person_id ORDER BY person_id`,
+  ).bind("receipt:alice-credit").all();
+  assert.deepEqual(balances.results, [
+    { person_id: "person:alice", units: 3 },
+    { person_id: "person:bob", units: 2 },
+    { person_id: "person:carol", units: 1 },
+  ]);
+  await assert.rejects(
+    database.prepare("UPDATE receipt_credit_entries SET units = 2 WHERE receipt_id = ?").bind("receipt:alice-credit").run(),
+    /receipt credit entries are immutable/,
+  );
+  await assert.rejects(
+    database.prepare("DELETE FROM receipt_credit_settlements WHERE receipt_id = ?").bind("receipt:alice-credit").run(),
+    /receipt credit settlements cannot be deleted/,
   );
 });
 

@@ -1,6 +1,7 @@
 import { currentDelegationIdentity } from "@/app/lib/delegation-api";
 import { MissingDatabaseBindingError } from "@/db";
 import { LocalCodexPairingError, approveLocalCodexPairing } from "@/db/repositories/local-codex-pairing";
+import { proofweaveMcpResource } from "@/app/lib/remote-mcp-runtime";
 
 export const dynamic = "force-dynamic";
 
@@ -15,7 +16,7 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
       browserSecret: typeof body?.secret === "string" ? body.secret : "",
       delegationCertificateId: typeof body?.delegationCertificateId === "string" ? body.delegationCertificateId : "",
       identity,
-      resource: `${new URL(request.url).origin}/mcp`,
+      resource: proofweaveMcpResource(request),
     });
     return Response.json(approved, { headers: { "Cache-Control": "no-store" } });
   } catch (error) {

@@ -10,6 +10,10 @@ const requiredControlPlaneTables = Object.freeze([
   "runs",
   "verification_attestations",
   "contribution_receipts",
+  "receipt_credit_settlements",
+  "receipt_credit_entries",
+  "problem_proposals",
+  "problem_proposal_events",
   "runner_queue_messages",
   "runner_queue_events",
 ]);

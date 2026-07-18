@@ -22,7 +22,7 @@ and endpoint entry.
 
 ```text
 Remote MCP gateway: mcp.proofweave.org
-POST /mcp                                  Streamable HTTP MCP endpoint
+POST /api/mcp                              Streamable HTTP MCP endpoint
 GET  /.well-known/oauth-protected-resource Resource metadata
 
 Proofweave Identity: auth.proofweave.org (public beta) or the same private

@@ -73,6 +73,31 @@ async function render(pathname = "/", init = {}) {
   );
 }
 
+test("publishes one reachable Sites-safe MCP resource URL", async () => {
+  const metadataResponse = await miniflare.dispatchFetch("https://localhost/.well-known/oauth-protected-resource", {
+    headers: { accept: "application/json" },
+  });
+  assert.equal(metadataResponse.status, 200);
+  const metadata = await metadataResponse.json();
+  assert.equal(metadata.resource, "https://localhost/api/mcp");
+
+  const challenge = await miniflare.dispatchFetch("https://localhost/api/mcp", {
+    method: "POST",
+    headers: {
+      accept: "application/json, text/event-stream",
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      jsonrpc: "2.0",
+      id: 1,
+      method: "initialize",
+      params: { protocolVersion: "2025-06-18", capabilities: {}, clientInfo: { name: "route-test", version: "1" } },
+    }),
+  });
+  assert.equal(challenge.status, 401);
+  assert.match(challenge.headers.get("www-authenticate") ?? "", /oauth-protected-resource/);
+});
+
 async function applyMigrations(d1, onlySeed = false) {
   const filenames = (await readdir(migrationsRoot))
     .filter((filename) => filename.endsWith(".sql"))
@@ -894,6 +919,69 @@ test("keeps public verification and contribution records outside personal worksp
   const profile = await render("/profile", { headers });
   assert.equal(profile.status, 200);
   assert.match(await profile.text(), /aria-label="Personal workspace context"/i);
+});
+
+test("records an attributed problem proposal without promoting it to a theorem or Credit", async () => {
+  const headers = {
+    "oai-authenticated-user-email": "proposer@example.test",
+    "oai-authenticated-user-full-name": "Problem%20Proposer",
+    "oai-authenticated-user-full-name-encoding": "percent-encoded-utf-8",
+  };
+  const anonymousPage = await render("/propose", { redirect: "manual" });
+  assert.equal(anonymousPage.status, 307);
+  assert.match(anonymousPage.headers.get("location") ?? "", /\/sign-in\?return_to=%2Fpropose/);
+
+  const page = await render("/propose", { headers });
+  assert.equal(page.status, 200);
+  assert.match(await page.text(), /Bring a mathematical question into Proofweave/i);
+
+  const input = {
+    title: "A source-pinned test proposal",
+    domain: "Combinatorics · MSC 05",
+    informalStatement: "For every finite object satisfying the stated hypotheses, the proposed invariant is nonnegative.",
+    motivation: "This tests the authenticated catalog intake and immutable proposal ledger without claiming a proof.",
+    sourceUrl: "https://example.test/mathematics/source",
+    idempotencyKey: "proposal-rendered-test-0001",
+  };
+  const created = await render("/api/me/problem-proposals", {
+    method: "POST",
+    headers: { ...headers, accept: "application/json", "content-type": "application/json" },
+    body: JSON.stringify(input),
+  });
+  assert.equal(created.status, 201);
+  const createdPayload = await created.json();
+  assert.equal(createdPayload.proposal.status, "submitted");
+  assert.equal(createdPayload.idempotentReplay, false);
+  assert.match(createdPayload.note, /No mathematical claim or credit/i);
+
+  const replayed = await render("/api/me/problem-proposals", {
+    method: "POST",
+    headers: { ...headers, accept: "application/json", "content-type": "application/json" },
+    body: JSON.stringify(input),
+  });
+  assert.equal(replayed.status, 200);
+  const replayedPayload = await replayed.json();
+  assert.equal(replayedPayload.proposal.id, createdPayload.proposal.id);
+  assert.equal(replayedPayload.idempotentReplay, true);
+
+  const conflict = await render("/api/me/problem-proposals", {
+    method: "POST",
+    headers: { ...headers, accept: "application/json", "content-type": "application/json" },
+    body: JSON.stringify({ ...input, title: "Different content with the same key" }),
+  });
+  assert.equal(conflict.status, 409);
+
+  const listing = await render("/api/me/problem-proposals", { headers: { ...headers, accept: "application/json" } });
+  assert.equal(listing.status, 200);
+  const listingPayload = await listing.json();
+  assert.equal(listingPayload.proposals.length, 1);
+  assert.equal(listingPayload.proposals[0].id, createdPayload.proposal.id);
+  assert.match(listingPayload.note, /not yet a public target/i);
+
+  await assert.rejects(
+    database.prepare("UPDATE problem_proposals SET title = ? WHERE id = ?").bind("mutated", createdPayload.proposal.id).run(),
+    /problem proposals are immutable/i,
+  );
 });
 
 test("presents the verified reference as a dedicated visual proof journey", async () => {

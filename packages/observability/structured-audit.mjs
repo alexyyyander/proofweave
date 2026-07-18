@@ -168,7 +168,7 @@ function randomRequestId() {
 function auditPathDimension(path) {
   // The remote resource has two static public paths. Unknown paths are grouped
   // instead of recording an arbitrary URL segment supplied by a client.
-  if (path === "/mcp" || path === "/.well-known/oauth-protected-resource") return path;
+  if (path === "/mcp" || path === "/api/mcp" || path === "/.well-known/oauth-protected-resource") return path;
   return "/other";
 }
 

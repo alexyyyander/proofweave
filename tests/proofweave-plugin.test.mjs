@@ -194,6 +194,7 @@ test("the local Connector publishes only an owner-confirmed, hash-bound research
   const publicKeyJwk = pair.publicKey.export({ format: "jwk" });
   const privateKeyJwk = pair.privateKey.export({ format: "jwk" });
   const server = createServer((request, response) => {
+    assert.equal(request.url, "/api/mcp");
     let body = "";
     request.setEncoding("utf8");
     request.on("data", (chunk) => { body += chunk; });

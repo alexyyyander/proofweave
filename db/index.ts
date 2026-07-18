@@ -16,24 +16,23 @@ export class MissingDatabaseBindingError extends Error {
 }
 
 export function getD1(): AnyD1Database {
-  if (env.DB) {
-    return env.DB;
-  }
-  return getRemoteDatabase();
+  const values = env as unknown as Record<string, string | undefined>;
+  // A configured Turso database is the shared participant control plane. MCP,
+  // OAuth, browser writes, Runner leases, reviews, Receipts, and Credit must
+  // observe the same rows; silently preferring the Sites-local D1 split those
+  // trust boundaries and left externally queued Runs invisible to E2B.
+  if (values.TURSO_DATABASE_URL && values.TURSO_AUTH_TOKEN) return getRemoteDatabase();
+  if (env.DB) return env.DB;
+  throw new MissingDatabaseBindingError();
 }
 
 /**
- * Read the cross-runtime research control plane when Turso is configured.
- * Sites keeps its own D1 for browser sessions and product state; only public
- * records that must reflect the Runner/MCP shared store should use this gate.
+ * Read the same cross-runtime control plane used by browser, MCP, Runner,
+ * review, Receipt, and Credit paths. The explicit name documents that callers
+ * are crossing process boundaries even though the backing database is shared.
  */
 export function getSharedResearchD1(): AnyD1Database {
-  const values = env as unknown as Record<string, string | undefined>;
-  if (values.TURSO_DATABASE_URL && values.TURSO_AUTH_TOKEN) {
-    return getRemoteDatabase();
-  }
-  if (env.DB) return env.DB;
-  throw new MissingDatabaseBindingError();
+  return getD1();
 }
 
 function getRemoteDatabase(): AnyD1Database {

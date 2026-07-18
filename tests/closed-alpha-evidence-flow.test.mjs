@@ -267,12 +267,15 @@ test("a local evidence-chain fixture reaches a signed receipt without crossing t
     { state: "awaiting_review", missingClaims: ["project_accepted"] },
   ]);
   assert.equal(finalClosure?.state, "receipt_issued");
+  assert.equal(finalClosure?.creditSettlement?.created, true);
+  assert.ok(finalClosure?.creditSettlement?.totalUnits >= 5);
   const issued = finalClosure;
   const replayed = await coordinator.tryIssueForBundle(staged.bundle.manifestHash);
 
   assert.equal(issued.state, "receipt_issued");
   assert.equal(issued.receiptCreated, true);
   assert.equal(replayed.state, "receipt_issued");
+  assert.equal(replayed.creditSettlement.created, false);
   assert.equal(replayed.receiptId, issued.receiptId);
   const receipt = await new D1ContributionReceiptStore(database).require(issued.receiptId);
   assert.equal(receipt.beneficiary.personId, "person:alice");

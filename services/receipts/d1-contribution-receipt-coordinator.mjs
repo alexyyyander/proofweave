@@ -5,6 +5,7 @@ import {
 import { normalizeLeanRunnerResult } from "../../packages/protocol/lean-runner.mjs";
 import { D1ContributionReceiptIssuerKeyStore } from "./d1-contribution-receipt-issuer-key-store.mjs";
 import { D1ContributionReceiptStore } from "./d1-contribution-receipt-store.mjs";
+import { D1ReceiptCreditSettlement } from "../credits/d1-receipt-credit-settlement.mjs";
 
 export class ContributionReceiptCoordinatorConfigurationError extends Error {
   constructor(message) {
@@ -27,6 +28,7 @@ export class D1ContributionReceiptCoordinator {
     this.database = database;
     this.issuer = normalizeIssuer(issuer);
     this.receipts = new D1ContributionReceiptStore(database);
+    this.credits = new D1ReceiptCreditSettlement(database);
     this.issuerKeys = new D1ContributionReceiptIssuerKeyStore(database);
     this.issuerPrivateKeyPromise = null;
   }
@@ -79,6 +81,10 @@ export class D1ContributionReceiptCoordinator {
 
   async tryIssueForBundle(artifactBundleManifestHash) {
     const status = await this.statusForBundle(artifactBundleManifestHash);
+    if (status.state === "receipt_issued") {
+      const creditSettlement = await this.credits.settleReceipt(status.receiptId);
+      return freezeClosure({ ...status, creditSettlement });
+    }
     if (status.state !== "ready_to_issue") return status;
 
     const [run, attempt, reviewState] = await Promise.all([
@@ -106,11 +112,13 @@ export class D1ContributionReceiptCoordinator {
       issuerPublicKey: this.issuer.publicKey,
       issuerPrivateKey: await this.importIssuerPrivateKey(),
     });
+    const creditSettlement = await this.credits.settleReceipt(issued.receipt.id);
     return freezeClosure({
       state: "receipt_issued",
       receiptId: issued.receipt.id,
       receiptHash: await contributionReceiptHash(issued.receipt),
       receiptCreated: issued.created,
+      creditSettlement,
       missingClaims: [],
       blockingDecisions: [],
     });
