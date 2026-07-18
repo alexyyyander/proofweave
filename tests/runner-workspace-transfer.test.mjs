@@ -35,6 +35,36 @@ test("trusted Worker stages v2 workspace objects in a fixed private Container se
   assert.deepEqual(declaration.policy, resolvedBundle.request.policy);
 });
 
+test("trusted Worker can idempotently restage immutable evidence for a running Run", async () => {
+  const objects = fixtureObjects();
+  const bucket = new MemoryBucket(objects);
+  const container = new MemoryContainer();
+  const transfer = new RunnerWorkspaceTransfer({ bucket });
+  const resolvedBundle = fixtureResolvedBundle(objects);
+
+  const result = await transfer.stage({
+    run: await fixtureRun(resolvedBundle, "running"),
+    resolvedBundle,
+    container,
+  });
+
+  assert.deepEqual(result.uploaded, ["sourceArchive", "sourcePatch", "lakeManifest"]);
+  assert.equal(container.requests.at(-1).pathname.endsWith("/workspace/finalize"), true);
+});
+
+test("trusted Worker refuses to stage evidence for a terminal Run", async () => {
+  const objects = fixtureObjects();
+  const resolvedBundle = fixtureResolvedBundle(objects);
+  await assert.rejects(
+    new RunnerWorkspaceTransfer({ bucket: new MemoryBucket(objects) }).stage({
+      run: await fixtureRun(resolvedBundle, "succeeded"),
+      resolvedBundle,
+      container: new MemoryContainer(),
+    }),
+    RunnerWorkspaceTransferError,
+  );
+});
+
 test("transfer fails closed when R2 metadata changes after Bundle resolution", async () => {
   const objects = fixtureObjects();
   const bucket = new MemoryBucket({
@@ -83,13 +113,13 @@ class MemoryContainer {
   }
 }
 
-async function fixtureRun(resolvedBundle) {
+async function fixtureRun(resolvedBundle, state = "preparing") {
   return {
     id: "run:workspace-transfer",
     attemptId: "attempt:workspace-transfer",
     artifactBundleHash: sha("b"),
     requestHash: await leanRunnerRequestHash(resolvedBundle.request),
-    state: "preparing",
+    state,
   };
 }
 
