@@ -21,6 +21,11 @@ const built = await Template.build(template, templateName, {
   apiKey,
   cpuCount,
   memoryMB,
+  onBuildLogs(entry) {
+    const level = typeof entry?.level === "string" ? entry.level : "info";
+    const message = typeof entry?.message === "string" ? entry.message : "E2B template build event";
+    process.stderr.write(`[e2b:${level}] ${message}\n`);
+  },
 });
 
 process.stdout.write(`${JSON.stringify({
