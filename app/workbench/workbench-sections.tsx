@@ -174,6 +174,7 @@ export function FocusAction({
   isClosingAttempt,
   onCopyCodexBrief,
   onCloseAttempt,
+  isPageHeading = false,
 }: {
   profile: DelegationProfile | null;
   attempt: McpAttempt | null;
@@ -188,6 +189,7 @@ export function FocusAction({
   isClosingAttempt: boolean;
   onCopyCodexBrief: () => void;
   onCloseAttempt: () => void;
+  isPageHeading?: boolean;
 }) {
   const journey = localAgentJourney({
     profile,
@@ -225,11 +227,12 @@ export function FocusAction({
   const focusDetail = attempt
     ? `${attempt.agentLabel} · ${attempt.delegationScope ?? "legacy"} authority · ${attempt.status}`
     : "An Attempt is a bounded, durable workspace—not a claim that a proof has been found.";
+  const FocusTitle = isPageHeading ? "h1" : "h2";
 
   return <section className="focus-layout" id="current-research" aria-label="Current focus and next action">
     <div className="focus-summary">
       <span className="micro-label">Current focus</span>
-      <h2>{focusTitle}</h2>
+      <FocusTitle>{focusTitle}</FocusTitle>
       <p>{focusDetail}</p>
       <div className="toolbar-links">
         {attempt && <Link className="text-link" href={`/explore/${attempt.problemSlug}`}>Inspect target <span>→</span></Link>}

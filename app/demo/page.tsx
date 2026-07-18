@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Footer, ProductStateBadge } from "@/app/ui";
+import { Footer, PageSectionNav, ProductStateBadge } from "@/app/ui";
 import { Header } from "@/app/header";
 import { verifyBuildWeekDemoFixture } from "@/app/lib/build-week-demo";
 import { latestLiveBuildWeekClosure } from "@/db/repositories/live-demo";
@@ -8,7 +8,7 @@ import { DemoVerificationClient } from "./DemoVerificationClient";
 export const dynamic = "force-dynamic";
 
 export default async function DemoPage() {
-  const verification = await verifyBuildWeekDemoFixture();
+  const verification = await verifyBuildWeekDemoFixture({ stableRun: true });
   const liveClosure = await latestLiveBuildWeekClosure().catch(() => null);
 
   return (
@@ -40,7 +40,7 @@ export default async function DemoPage() {
           <ProductStateBadge tone="verified">Local fixture + 2 mock owners</ProductStateBadge>
         </section>
 
-        <section className={`demo-live-record ${liveClosure ? "is-issued" : "is-pending"}`} aria-labelledby="demo-live-record-title">
+        <section className={`demo-live-record ${liveClosure ? "is-issued" : "is-pending"}`} id="live-network-record" aria-labelledby="demo-live-record-title">
           <div>
             <p className="eyebrow">Separate live-network proof</p>
             <h2 id="demo-live-record-title">{liveClosure ? "A real cloud replay reached a signed Receipt." : "Live cloud closure has not been recorded yet."}</h2>
@@ -59,9 +59,22 @@ export default async function DemoPage() {
           </div> : <ProductStateBadge tone="provisional">Reference only</ProductStateBadge>}
         </section>
 
+        <PageSectionNav
+          tone="dark"
+          label="Verified demo"
+          links={[
+            { href: "#demo-walkthrough", label: "Walkthrough" },
+            { href: "#live-network-record", label: "Live record" },
+            { href: "#verification-console", label: "Live verification" },
+            { href: "#mathematical-payload", label: "Lean source" },
+            { href: "#demo-boundaries", label: "Claim boundary" },
+            { href: "#reproduce", label: "Reproduce locally" },
+          ]}
+        />
+
         <DemoVerificationClient initial={verification} />
 
-        <section className="demo-proof-section">
+        <section className="demo-proof-section" id="mathematical-payload">
           <div className="demo-proof-copy">
             <p className="eyebrow">The mathematical payload</p>
             <h2>Small theorem. Complete evidence chain.</h2>
@@ -78,12 +91,12 @@ export default async function DemoPage() {
           </div>
         </section>
 
-        <section className="demo-honesty-grid">
+        <section className="demo-honesty-grid" id="demo-boundaries">
           <article><span className="micro-label">This demo proves</span><h2>The evidence protocol is executable.</h2><p>Displayed bytes are re-hashed, four signature classes are checked, owner IDs remain distinct, and Receipt policy runs on every request.</p></article>
           <article><span className="micro-label">This demo does not claim</span><h2>The reviewers are not human participants.</h2><p>The review accounts are explicitly labelled mocks. They prove owner separation and cryptographic enforcement, not independent human judgment. Hosted replay and Receipt claims appear only in the live-network panel above.</p></article>
         </section>
 
-        <section className="demo-reproduce" aria-labelledby="demo-reproduce-title">
+        <section className="demo-reproduce" id="reproduce" aria-labelledby="demo-reproduce-title">
           <div>
             <p className="eyebrow">Local end-to-end reproduction</p>
             <h2 id="demo-reproduce-title">Run Lean, replay it independently, and issue the Receipt.</h2>

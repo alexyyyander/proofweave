@@ -4,7 +4,7 @@ import { navigationGroups, primaryNavigation, type ActivePage } from "./lib/navi
 
 export async function Header({ active }: { active: ActivePage }) {
   const user = await getCurrentUser();
-  const workspaceActive = active === "workbench" || active === "review";
+  const workspaceActive = active === "workbench";
 
   return <>
     <a className="skip-link" href="#main-content">Skip to main content</a>
@@ -60,7 +60,12 @@ function navigationItemActive(active: ActivePage, href: string) {
     demo: "/demo",
     explore: "/explore",
     how: "/how-it-works",
+    profile: "/profile",
+    receipt: "/receipts",
+    review: "/reviews",
+    settings: "/settings",
     showcase: "/showcase",
+    workbench: "/workbench",
   };
   return activeHref[active] === href;
 }

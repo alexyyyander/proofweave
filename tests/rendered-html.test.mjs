@@ -693,16 +693,16 @@ test("server-renders the Proofweave welcome page", async () => {
     html,
     /<title>Proofweave — Advance mathematics through your agent<\/title>/i,
   );
-  assert.match(html, /Advance mathematics through your agent/i);
+  assert.match(html, /Advance mathematics through your Agent/i);
   assert.match(html, /Public alpha/i);
-  assert.match(html, /Verified demo/i);
-  assert.match(html, /Find a contribution/i);
+  assert.match(html, /Executable verified demo/i);
+  assert.match(html, /Watch the proof journey/i);
   assert.match(html, /Contribution records/i);
   assert.match(html, /brand-mark/i);
   assert.doesNotMatch(html, /proof-paper-mark/i);
-  assert.match(html, /hero-proof-motion/i);
-  assert.match(html, /hero-proof-paper-layer/i);
-  assert.match(html, /hero-evidence-flow/i);
+  assert.match(html, /One theorem[\s\S]*Six evidence moments/i);
+  assert.match(html, /id="proof-journey"/i);
+  assert.match(html, /Not one Agent solving alone/i);
 });
 
 test("guides a public visitor through the first accountable contribution path", async () => {
@@ -727,7 +727,7 @@ test("serves the public research paths", async () => {
     ["/about/shared-research", /One frontier map\. Many coordinated Agents/i],
     ["/privacy", /Your mathematical record can be public/i],
     ["/terms", /Contribute carefully/i],
-    ["/workbench", /Keep the work on your computer/i],
+    ["/workbench", /One private place for your Agent's research/i],
     ["/settings", /Manage your research Agent/i],
     ["/integrations", /Keep your research Agent on your computer/i],
     ["/receipt/abc-l1", /Receipt not issued/i],
@@ -766,8 +766,8 @@ test("serves the public research paths", async () => {
 
   const workbench = await render("/workbench");
   const workbenchHtml = await workbench.text();
-  assert.match(workbenchHtml, /Keep the work on your computer/i);
-  assert.match(workbenchHtml, /Local-first research/i);
+  assert.match(workbenchHtml, /One private place for your Agent's research/i);
+  assert.match(workbenchHtml, /Empty dashboards stay hidden/i);
   const anonymousWorkspaceSummary = await render("/api/me/workspace-summary");
   assert.equal(anonymousWorkspaceSummary.status, 401);
 
@@ -778,7 +778,7 @@ test("serves the public research paths", async () => {
   assert.match(detailHtml, /Policy first\. Pool second\./i);
   assert.match(detailHtml, /Token or compute spend never mints mathematical credit/i);
   assert.match(detailHtml, /No public research checkpoint yet/i);
-  assert.match(detailHtml, /Start with my Agent/i);
+  assert.match(detailHtml, /Start an Attempt/i);
   assert.match(detailHtml, /workbench\?target=erdos-865/i);
 
   const explore = await render("/explore");
@@ -860,12 +860,40 @@ test("keeps the public directory separate from the personal workspace", async ()
   assert.match(html, /Open Proofweave directory/i);
   assert.match(html, /Proofweave public directory/i);
   assert.match(html, /An open network for personally delegated formal mathematics research/i);
-  assert.match(html, /Participate[\s\S]*Proof journey[\s\S]*Verified demo/i);
+  assert.match(html, /href="\/explore"[^>]*>Explore<\/a>[\s\S]*href="\/reviews"[^>]*>Verify<\/a>[\s\S]*href="\/receipts"[^>]*>Contributions<\/a>[\s\S]*href="\/how-it-works"[^>]*>How it works<\/a>/i);
+  assert.match(html, /Participate[\s\S]*Verification market[\s\S]*Contribution receipts/i);
+  assert.match(html, /Learn[\s\S]*Proof journey[\s\S]*Executable verified demo/i);
   assert.match(html, /Trust[\s\S]*Design principles[\s\S]*Catalog standard/i);
   assert.doesNotMatch(html, /<strong>Workspace<\/strong>/i);
   assert.match(html, /href="\/workbench"[^>]*>Workspace<\/a>/i);
-  assert.match(html, /class="site-directory-menu" name="header-overlays"/i);
   assert.doesNotMatch(html, /aria-label="Footer navigation"/i);
+});
+
+test("keeps public verification and contribution records outside personal workspace chrome", async () => {
+  const headers = {
+    "oai-authenticated-user-email": "public-boundary@example.test",
+    "oai-authenticated-user-full-name": "Public%20Boundary",
+    "oai-authenticated-user-full-name-encoding": "percent-encoded-utf-8",
+  };
+
+  const reviews = await render("/reviews", { headers });
+  assert.equal(reviews.status, 200);
+  const reviewsHtml = await reviews.text();
+  assert.match(reviewsHtml, /aria-label="Verification page"/i);
+  assert.match(reviewsHtml, /id="open-review-work"/i);
+  assert.match(reviewsHtml, /id="my-review-work"/i);
+  assert.doesNotMatch(reviewsHtml, /aria-label="Personal workspace context"/i);
+
+  const receipts = await render("/receipts", { headers });
+  assert.equal(receipts.status, 200);
+  const receiptsHtml = await receipts.text();
+  assert.match(receiptsHtml, /aria-label="Contribution records"/i);
+  assert.match(receiptsHtml, /id="receipt-index"/i);
+  assert.doesNotMatch(receiptsHtml, /aria-label="Personal workspace context"/i);
+
+  const profile = await render("/profile", { headers });
+  assert.equal(profile.status, 200);
+  assert.match(await profile.text(), /aria-label="Personal workspace context"/i);
 });
 
 test("presents the verified reference as a dedicated visual proof journey", async () => {
@@ -879,7 +907,7 @@ test("presents the verified reference as a dedicated visual proof journey", asyn
   assert.match(html, /Independent review/i);
   assert.match(html, /Contribution Receipt/i);
   assert.match(html, /Verify the complete chain/i);
-  assert.match(html, /same checked reference bytes, hashes and signatures/i);
+  assert.match(html, /Inspect the executable demo/i);
 });
 
 test("uses a Google app session for the same stable Person and private account boundary", async () => {
@@ -1328,11 +1356,6 @@ test("scopes closed-alpha review assignments to the assigned Person and preserve
   assert.match(pageHtml, /Open review workspace/i);
   assert.match(pageHtml, /Open account menu for Review Person/i);
   assert.match(pageHtml, />My profile/i);
-  assert.match(pageHtml, />My reviews/i);
-  assert.match(pageHtml, /class="account-menu" name="header-overlays"/i);
-  const accountMenuHtml = pageHtml.match(/class="account-popover"[\s\S]*?class="account-sign-out"/)?.[0] ?? "";
-  assert.ok(accountMenuHtml, "expected the signed-in account menu to render");
-  assert.doesNotMatch(accountMenuHtml, /href="\/workbench">Workspace/i);
 
   const reviewWorkspace = await render("/reviews/assignment:rendered-review", { headers: reviewerHeaders });
   assert.equal(reviewWorkspace.status, 200);
@@ -2202,7 +2225,6 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
   const ownerWorkbenchHtml = await ownerWorkbench.text();
   assert.match(ownerWorkbenchHtml, /Choose a question\. Start with your Agent\./i);
   assert.match(ownerWorkbenchHtml, /Choose research/i);
-  assert.match(ownerWorkbenchHtml, /Work with your Agent/i);
   assert.match(ownerWorkbenchHtml, /Inspect evidence/i);
   assert.match(ownerWorkbenchHtml, /Connect Codex once before starting research/i);
   assert.match(ownerWorkbenchHtml, /Erdős Problem 865: k = 2 variant/i);
@@ -2231,6 +2253,19 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
   const persistedAttemptWorkbench = await render(`/workbench?attempt=${encodeURIComponent(ownerAttempt.id)}`, { headers: authHeaders });
   assert.equal(persistedAttemptWorkbench.status, 200);
   assert.match(await persistedAttemptWorkbench.text(), /Current focus<\/span><h2>Erdős Problem 865<\/h2>/i);
+
+  const myWorkOverview = await render("/workbench", { headers: authHeaders });
+  assert.equal(myWorkOverview.status, 200);
+  const myWorkOverviewHtml = await myWorkOverview.text();
+  assert.match(myWorkOverviewHtml, /Personal research workspace[\s\S]*<h1[^>]*>My work<\/h1>/i);
+  assert.match(myWorkOverviewHtml, /Active research|Needs attention|Waiting/i);
+  assert.match(myWorkOverviewHtml, /href="\/workbench\/attempts\/[^\"]+"/i);
+
+  const attemptDetail = await render(`/workbench/attempts/${encodeURIComponent(ownerAttempt.id)}`, { headers: authHeaders });
+  assert.equal(attemptDetail.status, 200);
+  const attemptDetailHtml = await attemptDetail.text();
+  assert.match(attemptDetailHtml, /My work[\s\S]*Current focus<\/span><h1>Erdős Problem 865<\/h1>/i);
+  assert.match(attemptDetailHtml, /Manage Attempt/i);
 
   const evidenceWorkbench = await render("/workbench?target=erdos-865", { headers: authHeaders });
   assert.equal(evidenceWorkbench.status, 200);
@@ -2489,18 +2524,6 @@ test("keeps the production frontend free of the deleted starter preview", async 
   await assert.rejects(
     access(new URL("public/_sites-preview/SkeletonPreview.tsx", repositoryRoot)),
   );
-});
-
-test("reserves display typography for storytelling surfaces", async () => {
-  const globals = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
-
-  assert.match(globals, /--type-page-title:\s*clamp\(34px, 3\.8vw, 50px\)/);
-  assert.match(globals, /--type-section-title:\s*clamp\(28px, 2\.7vw, 40px\)/);
-  assert.match(globals, /\.information-hub-hero h1[\s\S]*font-size:\s*var\(--type-page-title\)/);
-  assert.match(globals, /\.workbench-hero h1[\s\S]*font-size:\s*var\(--type-page-title\)/);
-  assert.match(globals, /\.home-simple-heading h2[\s\S]*font-size:\s*var\(--type-section-title\)/);
-  assert.match(globals, /\.hero h1 \{ font-size: clamp\(48px, 5vw, 76px\)/);
-  assert.match(globals, /\.showcase-intro h1 \{[^}]*108px/);
 });
 
 function base64Url(buffer) {

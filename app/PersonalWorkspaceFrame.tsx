@@ -8,7 +8,7 @@ export async function PersonalWorkspaceFrame({ active, children }: { active: Per
   const user = await getCurrentUser();
   if (!user) return <>{children}</>;
   const summary = await loadPersonalWorkspaceSummary(user);
-  const attemptHref = summary.currentAttempt ? `/workbench?attempt=${encodeURIComponent(summary.currentAttempt.id)}` : "/workbench";
+  const attemptHref = summary.currentAttempt ? `/workbench/attempts/${encodeURIComponent(summary.currentAttempt.id)}` : "/workbench";
 
   return <div className="personal-workspace-frame">
     <aside className="personal-workspace-frame-sidebar" aria-label="Personal workspace context">

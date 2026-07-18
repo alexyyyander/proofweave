@@ -86,15 +86,18 @@ export type BuildWeekDemoVerification = {
 };
 
 export async function verifyBuildWeekDemoFixture(
-  options: { mode?: DemoVerificationMode } = {},
+  options: { mode?: DemoVerificationMode; stableRun?: boolean } = {},
 ): Promise<BuildWeekDemoVerification> {
   const mode = options.mode ?? "reference";
+  const stableRun = options.stableRun === true;
   const checkedFixture = mode === "tampered_copy" ? structuredClone(fixture) : fixture;
   if (mode === "tampered_copy") tamperOneArtifactByte(checkedFixture);
 
-  const startedAt = new Date().toISOString();
+  const startedAt = stableRun ? checkedFixture.runner.result.startedAt : new Date().toISOString();
   const started = preciseNow();
-  const verificationId = `vrf_${crypto.randomUUID().replaceAll("-", "").slice(0, 12)}`;
+  const verificationId = stableRun
+    ? "vrf_reference_fixture"
+    : `vrf_${crypto.randomUUID().replaceAll("-", "").slice(0, 12)}`;
   const bundleHash = await artifactBundleHash(checkedFixture.bundle);
   const receiptHash = await contributionReceiptHash(checkedFixture.receipt);
   const references = {
@@ -103,7 +106,7 @@ export async function verifyBuildWeekDemoFixture(
     lake_manifest: checkedFixture.bundle.workspace.lakeManifest.contentHash,
   } as Record<string, string>;
 
-  const checks = await Promise.all([
+  const measuredChecks = await Promise.all([
     check(
       {
         id: "delegation",
@@ -238,6 +241,9 @@ export async function verifyBuildWeekDemoFixture(
       },
     ),
   ]);
+  const checks = stableRun
+    ? measuredChecks.map((candidate) => ({ ...candidate, durationMs: 0 }))
+    : measuredChecks;
 
   const checksById = new Map(checks.map((candidate) => [candidate.id, candidate.passed]));
   const mockReviewerAttestations = checkedFixture.attestations.filter((attestation) => (
@@ -297,8 +303,8 @@ export async function verifyBuildWeekDemoFixture(
     },
   ];
 
-  const checkedAt = new Date().toISOString();
-  const durationMs = roundDuration(preciseNow() - started);
+  const checkedAt = stableRun ? checkedFixture.receipt.issuedAt : new Date().toISOString();
+  const durationMs = stableRun ? 0 : roundDuration(preciseNow() - started);
 
   return {
     status: checks.every((candidate) => candidate.passed) ? "verified" : "failed",

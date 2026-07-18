@@ -107,7 +107,7 @@ export function ShowcaseExperience({ verification }: { verification: BuildWeekDe
               <small>Signed · reproducible · attributable</small>
             </div>
           </div>
-          <p className="showcase-visual-caption"><span>Checked reference</span> The animation is driven by the same verified fixture used by the public Demo; live network evidence is shown separately above.</p>
+          <p className="showcase-visual-caption"><span>Checked reference</span> The animation is driven by the same verified fixture used by the public Demo; live network evidence is shown separately in the Demo.</p>
         </div>
 
         <div className="showcase-story-column">

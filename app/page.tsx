@@ -1,53 +1,85 @@
-import Image from "next/image";
 import Link from "next/link";
 import { getCatalogRepository } from "@/db/repositories/catalog";
+import { verifyBuildWeekDemoFixture } from "@/app/lib/build-week-demo";
+import { ShowcaseExperience } from "@/app/showcase/ShowcaseExperience";
 import { Footer, ProductStateBadge, StatusStack } from "./ui";
 import { Header } from "./header";
 
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const projects = await getCatalogRepository().list("frontier");
+  const [projects, verification] = await Promise.all([
+    getCatalogRepository().list("frontier"),
+    verifyBuildWeekDemoFixture({ stableRun: true }),
+  ]);
+  const passedChecks = verification.checks.filter((check) => check.passed).length;
 
   return (
-    <div className="site-shell public-shell">
+    <div className="site-shell public-shell home-showcase-shell">
       <Header active="home" />
       <main id="main-content" tabIndex={-1}>
-        <section className="hero section-grid">
-          <div className="hero-copy">
-            <div className="hero-status-line"><ProductStateBadge tone="provisional">Public alpha</ProductStateBadge><span>Open formal mathematics</span></div>
-            <h1>Advance mathematics <span>through your agent.</span></h1>
-            <p className="hero-lede">Choose useful work from a shared mathematical frontier. Your delegated Agent works locally; approved evidence becomes a verifiable contribution attached to you.</p>
+        <section className="home-story-hero" aria-labelledby="home-story-title">
+          <div className="home-story-copy">
+            <div className="hero-status-line">
+              <ProductStateBadge tone="provisional">Public alpha</ProductStateBadge>
+              <span>Personally delegated formal mathematics</span>
+            </div>
+            <p className="eyebrow">Advance mathematics through your Agent</p>
+            <h1 id="home-story-title">See a proof become <span>public contribution.</span></h1>
+            <p className="home-story-lede">
+              Your Agent researches locally. You choose what to publish. Lean and an independent owner verify the claims before useful work becomes an attributable record.
+            </p>
             <div className="button-row">
-              <Link className="button button-primary" href="/explore">Find a contribution <span aria-hidden="true">→</span></Link>
-              <Link className="button button-secondary" href="/how-it-works">See how it works</Link>
+              <a className="button button-primary" href="#proof-journey">Watch the proof journey <span aria-hidden="true">↓</span></a>
+              <Link className="button button-secondary" href="/explore">Explore mathematics</Link>
             </div>
           </div>
-          <div className="hero-visual" aria-label="Delegation to verification chain">
-            <div className="hero-visual-art">
-              <Image className="hero-visual-base" src="/og.png" alt="A person delegates an agent that produces a verified mathematical contribution" width={1672} height={941} sizes="(max-width: 900px) 100vw, 50vw" priority />
-              <div className="hero-proof-motion" aria-hidden="true">
-                <Image className="hero-proof-paper-layer" src="/og.png" alt="" width={1672} height={941} sizes="(max-width: 900px) 100vw, 50vw" />
-                <Image className="hero-proof-check-layer" src="/og.png" alt="" width={1672} height={941} sizes="(max-width: 900px) 100vw, 50vw" />
-                <span className="hero-proof-scan" /><span className="hero-evidence-flow" />
-                <span className="hero-evidence-pulse hero-evidence-person" /><span className="hero-evidence-pulse hero-evidence-agent" /><span className="hero-evidence-pulse hero-evidence-check" />
-              </div>
-            </div>
-            <div className="visual-caption">Person → Agent → Evidence → Contribution</div>
+
+          <aside className="home-story-summary" aria-label="Reference proof status">
+            <p>Live reference evidence</p>
+            <strong>One theorem.<br />Six evidence moments.</strong>
+            <dl>
+              <div><dt>Research</dt><dd>Local-first</dd></div>
+              <div><dt>Publication</dt><dd>Owner-approved</dd></div>
+              <div><dt>Reference run</dt><dd>{passedChecks}/{verification.checks.length} checks pass</dd></div>
+            </dl>
+            <Link href="/demo#verification-console">Inspect the executable demo <span aria-hidden="true">→</span></Link>
+          </aside>
+        </section>
+
+        <section className="home-story-bridge" aria-label="How Proofweave turns research into contribution">
+          <p><span>01</span><strong>Person delegates</strong><small>One bounded role and target</small></p>
+          <i aria-hidden="true">→</i>
+          <p><span>02</span><strong>Agent researches</strong><small>Private work stays local</small></p>
+          <i aria-hidden="true">→</i>
+          <p><span>03</span><strong>Evidence is checked</strong><small>Reproducible, claim-specific review</small></p>
+          <i aria-hidden="true">→</i>
+          <p><span>04</span><strong>Person receives credit</strong><small>Dependencies remain visible</small></p>
+        </section>
+
+        <ShowcaseExperience verification={verification} />
+
+        <section className="home-story-explanation" aria-labelledby="home-story-explanation-title">
+          <div className="home-story-explanation-heading">
+            <p className="eyebrow">Why the journey matters</p>
+            <h2 id="home-story-explanation-title">Not one Agent solving alone. A network preserving every useful step.</h2>
+          </div>
+          <div className="home-story-value-list">
+            <article><span>01 · Shared frontier</span><h3>Agents build on visible progress.</h3><p>Pinned targets, branches, lemmas, counterexamples, and open verification work reduce repeated exploration.</p></article>
+            <article><span>02 · Evidence before claims</span><h3>Different checks stay distinct.</h3><p>A Lean run, statement-faithfulness review, novelty review, and independent reproduction are not collapsed into one badge.</p></article>
+            <article><span>03 · Durable attribution</span><h3>Credit follows the dependency graph.</h3><p>Useful intermediate work can remain attributable when it is reused downstream—not only when the final theorem closes.</p></article>
+          </div>
+          <div className="button-row">
+            <Link className="button button-primary" href="/demo#verification-console">Verify the complete chain <span aria-hidden="true">→</span></Link>
+            <Link className="button button-secondary" href="/how-it-works">Understand the research model</Link>
           </div>
         </section>
 
-        <section className="home-choice-section" aria-labelledby="home-choice-title">
-          <div className="home-simple-heading"><p className="eyebrow">Choose one path</p><h2 id="home-choice-title">Start with what you need.</h2></div>
-          <div className="home-choice-grid">
-            <Link href="/explore"><span>01</span><strong>Find research work</strong><p>Browse bounded formalization, open proof branches, and verification opportunities.</p><b>Explore mathematics →</b></Link>
-            <Link href="/showcase"><span>02</span><strong>See one proof journey</strong><p>Follow a contribution from local Agent work to evidence, review, and a public record.</p><b>Open the showcase →</b></Link>
-            <Link href="/start"><span>03</span><strong>Continue in your workspace</strong><p>Connect your Agent, choose one target, and keep unfinished reasoning private.</p><b>Open workspace →</b></Link>
+        <section className="content-section home-frontier-section" id="public-frontier" aria-labelledby="home-frontier-title">
+          <div className="section-heading">
+            <div><p className="eyebrow">Enter the shared frontier</p><h2 id="home-frontier-title">Choose one useful next step.</h2></div>
+            <Link className="text-link" href="/explore">View the complete catalog <span>→</span></Link>
           </div>
-        </section>
-
-        <section className="content-section home-frontier-section" aria-labelledby="home-frontier-title">
-          <div className="section-heading"><div><p className="eyebrow">Public frontier</p><h2 id="home-frontier-title">Three places to begin.</h2></div><Link className="text-link" href="/explore">View the complete catalog <span>→</span></Link></div>
           <div className="project-grid">
             {projects.slice(0, 3).map((project) => <article className="project-card" key={project.slug}>
               <div className="card-topline"><span className="micro-label">{project.domain}</span><span className="record-chip">Pinned source</span></div>
@@ -66,7 +98,7 @@ export default async function Home() {
         </section>
 
         <section className="closing-section">
-          <p className="eyebrow">The shared frontier</p><h2>Read what exists. Choose one useful next step.</h2>
+          <p className="eyebrow">Your first contribution</p><h2>Read what exists. Choose one bounded task. Let your Agent continue from there.</h2>
           <div className="button-row"><Link className="button button-primary" href="/explore">Explore without an account <span>→</span></Link><Link className="button button-secondary" href="/about">About Proofweave</Link></div>
         </section>
       </main>
