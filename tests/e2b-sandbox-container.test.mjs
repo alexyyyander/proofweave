@@ -30,7 +30,7 @@ test("E2B adapter creates one secure no-egress Sandbox and keeps control credent
     resourcePolicyReviewed: true,
     fetcher: async (url, options) => {
       forwarded.push({ url: String(url), options });
-      return new Response(null, { status: new URL(url).pathname === "/ready" ? 200 : 204 });
+      return new Response(null, { status: 204 });
     },
   });
 
@@ -81,7 +81,7 @@ test("E2B adapter binds one Run, terminates on completion, and fails closed on p
     timeoutMs: 120_000,
     startupTimeoutMs: 10_000,
     resourcePolicyReviewed: true,
-    fetcher: async (url) => new Response(null, { status: new URL(url).pathname === "/ready" ? 200 : 204 }),
+    fetcher: async () => new Response(null, { status: 204 }),
   });
   const container = await factory.get("run:e2b-2");
   await assert.rejects(
