@@ -46,8 +46,10 @@ jobs:
       RUNNER_CONTROL_PLANE_ISSUER_KEYS_JSON: ${{ vars.RUNNER_CONTROL_PLANE_ISSUER_KEYS_JSON }}
       RUNNER_RESULT_KEY_ID: ${{ vars.RUNNER_RESULT_KEY_ID }}
       RUNNER_RESULT_PRIVATE_KEY_JWK: ${{ secrets.RUNNER_RESULT_PRIVATE_KEY_JWK }}
-      DEMO_REVIEWER_PERSON_PRIVATE_KEY_JWK: ${{ secrets.DEMO_REVIEWER_PERSON_PRIVATE_KEY_JWK }}
-      DEMO_REVIEWER_AGENT_PRIVATE_KEY_JWK: ${{ secrets.DEMO_REVIEWER_AGENT_PRIVATE_KEY_JWK }}
+      DEMO_MOCKER_1_PERSON_PRIVATE_KEY_JWK: ${{ secrets.DEMO_MOCKER_1_PERSON_PRIVATE_KEY_JWK }}
+      DEMO_MOCKER_1_AGENT_PRIVATE_KEY_JWK: ${{ secrets.DEMO_MOCKER_1_AGENT_PRIVATE_KEY_JWK }}
+      DEMO_MOCKER_2_PERSON_PRIVATE_KEY_JWK: ${{ secrets.DEMO_MOCKER_2_PERSON_PRIVATE_KEY_JWK }}
+      DEMO_MOCKER_2_AGENT_PRIVATE_KEY_JWK: ${{ secrets.DEMO_MOCKER_2_AGENT_PRIVATE_KEY_JWK }}
       RECEIPT_ISSUER_KEY_ID: issuer:build-week-live-v1
       RECEIPT_ISSUER_ACTIVATED_AT: "2026-07-18T00:00:00.000Z"
       RECEIPT_ISSUER_PRIVATE_KEY_JWK: ${{ secrets.RECEIPT_ISSUER_PRIVATE_KEY_JWK }}
@@ -64,7 +66,7 @@ jobs:
       - name: Install locked dependencies
         run: npm ci --ignore-scripts
 
-      - name: Create the labelled second owner and queue its fresh replay
+      - name: Create the labelled mock owners and queue a fresh replay
         run: node scripts/run-build-week-live-closure.mjs prepare "${{ inputs.artifact_bundle_hash }}"
 
       - name: Replay the exact Bundle in a fresh E2B Sandbox

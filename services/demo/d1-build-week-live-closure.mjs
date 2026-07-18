@@ -29,19 +29,19 @@ import { D1ContributionReceiptCoordinator } from "../receipts/d1-contribution-re
 import { D1ContributionReceiptStore } from "../receipts/d1-contribution-receipt-store.mjs";
 import { D1VerificationMarketStore } from "../verification/d1-verification-market-store.mjs";
 
-export const buildWeekLiveReviewer = Object.freeze({
-  personId: "person:build-week-mock-reviewer-v1",
-  personKeyId: "person-key:build-week-mock-reviewer-v1",
-  personProofChallengeId: "person-key-proof-challenge:build-week-mock-reviewer-v1",
-  personProofId: "person-key-proof:build-week-mock-reviewer-v1",
-  agentId: "agent:build-week-mock-reviewer-v1",
-  delegationId: "delegation:build-week-mock-reviewer-v1",
-  clientId: "client:build-week-live-closure-v1",
-  installationId: "installation:build-week-mock-reviewer-v1",
-  displayName: "Build Week Mock Reviewer (demo)",
-  agentLabel: "Build Week Mock Review Agent",
-  validFrom: "2026-07-17T00:00:00.000Z",
-  validUntil: "2027-07-17T00:00:00.000Z",
+export const buildWeekLiveReviewers = Object.freeze([
+  mockReviewerIdentity({ slug: "mocker-1st", ordinal: "1st" }),
+  mockReviewerIdentity({ slug: "mocker-2nd", ordinal: "2nd" }),
+]);
+
+// Retain the old singular export for downstream imports while making its
+// meaning explicit: this is the replay reviewer, not the only reviewer.
+export const buildWeekLiveReviewer = buildWeekLiveReviewers[0];
+
+export const buildWeekLiveClaimOwnership = Object.freeze({
+  bundle_reproducible: buildWeekLiveReviewers[0].personId,
+  kernel_accepted: buildWeekLiveReviewers[1].personId,
+  project_accepted: buildWeekLiveReviewers[1].personId,
 });
 
 const poolProtocolVersion = "pw-credit-pool-event-v1";
@@ -57,17 +57,19 @@ export class BuildWeekLiveClosureConfigurationError extends Error {
 }
 
 /**
- * Operator-only Build Week closure helper. The reviewer is deliberately and
- * permanently labelled as a mock second account, but its Person possession
- * proof, delegation, replay provenance, claim signatures, and Receipt are all
- * real protocol records. It never turns a same-owner Agent into an independent
- * reviewer and never fabricates a Runner result.
+ * Operator-only Build Week closure helper. Both reviewers are deliberately and
+ * permanently labelled as mock accounts, but their Person possession proofs,
+ * delegations, replay provenance, claim signatures, and Receipt are real
+ * protocol records. It never turns same-owner Agents into independent
+ * reviewers and never fabricates a Runner result.
  */
 export class D1BuildWeekLiveClosure {
   constructor({
     database,
-    reviewerPersonPrivateKeyJwk,
-    reviewerAgentPrivateKeyJwk,
+    mocker1PersonPrivateKeyJwk,
+    mocker1AgentPrivateKeyJwk,
+    mocker2PersonPrivateKeyJwk,
+    mocker2AgentPrivateKeyJwk,
     runnerDispatcher = null,
     receiptIssuer = null,
     now = () => new Date(),
@@ -79,13 +81,28 @@ export class D1BuildWeekLiveClosure {
       throw new BuildWeekLiveClosureConfigurationError("Build Week live closure requires a clock function.");
     }
     this.database = database;
-    this.reviewerPersonPrivateKeyJwk = normalizePrivateEd25519Jwk(reviewerPersonPrivateKeyJwk, "reviewer Person key");
-    this.reviewerAgentPrivateKeyJwk = normalizePrivateEd25519Jwk(reviewerAgentPrivateKeyJwk, "reviewer Agent key");
+    this.reviewerCredentials = Object.freeze([
+      reviewerCredential({
+        identity: buildWeekLiveReviewers[0],
+        personPrivateKeyJwk: mocker1PersonPrivateKeyJwk,
+        agentPrivateKeyJwk: mocker1AgentPrivateKeyJwk,
+      }),
+      reviewerCredential({
+        identity: buildWeekLiveReviewers[1],
+        personPrivateKeyJwk: mocker2PersonPrivateKeyJwk,
+        agentPrivateKeyJwk: mocker2AgentPrivateKeyJwk,
+      }),
+    ]);
+    const reviewerPublicKeys = this.reviewerCredentials.flatMap((credential) => [
+      credential.personPrivateKeyJwk.x,
+      credential.agentPrivateKeyJwk.x,
+    ]);
+    if (new Set(reviewerPublicKeys).size !== reviewerPublicKeys.length) {
+      throw new BuildWeekLiveClosureConfigurationError("Every mock reviewer Person and Agent key must be distinct.");
+    }
     this.runnerDispatcher = runnerDispatcher;
     this.receiptIssuer = receiptIssuer ? normalizeReceiptIssuer(receiptIssuer) : null;
     this.now = now;
-    this.personPrivateKeyPromise = null;
-    this.agentPrivateKeyPromise = null;
   }
 
   async prepare({ artifactBundleHash }) {
@@ -93,10 +110,10 @@ export class D1BuildWeekLiveClosure {
     if (!this.runnerDispatcher) {
       throw new BuildWeekLiveClosureConfigurationError("Preparing the live closure requires the trusted Runner dispatcher.");
     }
-    const reviewer = await this.ensureMockReviewer();
+    const reviewers = await this.ensureMockReviewers();
     const bundle = await this.requireEligibleBundle(artifactBundleHash);
-    if (bundle.attemptOwnerPersonId === reviewer.personId) {
-      throw new BuildWeekLiveClosureConfigurationError("The mock reviewer cannot own the Attempt it reviews.");
+    if (reviewers.some((reviewer) => bundle.attemptOwnerPersonId === reviewer.personId)) {
+      throw new BuildWeekLiveClosureConfigurationError("A mock reviewer cannot own the Attempt it reviews.");
     }
 
     const market = new D1VerificationMarketStore(this.database);
@@ -110,8 +127,9 @@ export class D1BuildWeekLiveClosure {
     for (const claimType of requiredClaimTypes) {
       const job = published.jobs.find((candidate) => candidate.claimType === claimType);
       if (!job) throw new BuildWeekLiveClosureConfigurationError(`The live review market omitted ${claimType}.`);
+      const reviewer = reviewerForClaim(reviewers, claimType);
       const claimed = await market.claimJob(job.id, reviewer.personId, isoInstant(this.now()));
-      assignments.push(claimed.assignment);
+      assignments.push(Object.freeze({ ...claimed.assignment, reviewer }));
     }
 
     const reproducibility = assignments.find((assignment) => assignment.claimType === "bundle_reproducible");
@@ -120,7 +138,7 @@ export class D1BuildWeekLiveClosure {
       database: this.database,
       runnerDispatcher: this.runnerDispatcher,
     });
-    const replay = await gateway.requestVerificationReplay(reviewer.principal, {
+    const replay = await gateway.requestVerificationReplay(reproducibility.reviewer.principal, {
       assignmentId: reproducibility.id,
       idempotencyKey: replayIdempotencyKey(artifactBundleHash),
     });
@@ -130,13 +148,13 @@ export class D1BuildWeekLiveClosure {
       artifactBundleHash,
       attemptId: bundle.attemptId,
       ownerPersonId: bundle.attemptOwnerPersonId,
-      reviewerPersonId: reviewer.personId,
-      reviewerAgentId: reviewer.agentId,
+      reviewers: Object.freeze(reviewers.map(publicReviewerProjection)),
       poolId: pool.id,
       assignments: Object.freeze(assignments.map((assignment) => Object.freeze({
         id: assignment.id,
         claimType: assignment.claimType,
         status: assignment.status,
+        reviewerPersonId: assignment.reviewer.personId,
       }))),
       replay: Object.freeze({
         id: replay.replay.id,
@@ -152,20 +170,21 @@ export class D1BuildWeekLiveClosure {
     if (!this.receiptIssuer) {
       throw new BuildWeekLiveClosureConfigurationError("Finalizing the live closure requires the Receipt issuer.");
     }
-    const reviewer = await this.ensureMockReviewer();
+    const reviewers = await this.ensureMockReviewers();
     const bundle = await this.requireEligibleBundle(artifactBundleHash);
-    if (bundle.attemptOwnerPersonId === reviewer.personId) {
-      throw new BuildWeekLiveClosureConfigurationError("The mock reviewer cannot own the Attempt it reviews.");
+    if (reviewers.some((reviewer) => bundle.attemptOwnerPersonId === reviewer.personId)) {
+      throw new BuildWeekLiveClosureConfigurationError("A mock reviewer cannot own the Attempt it reviews.");
     }
-    const evidence = await this.requireTerminalReplayEvidence(artifactBundleHash, reviewer);
-    const assignments = await this.requireReceiptGateAssignments(artifactBundleHash, reviewer.personId);
+    const replayReviewer = reviewerForClaim(reviewers, "bundle_reproducible");
+    const evidence = await this.requireTerminalReplayEvidence(artifactBundleHash, replayReviewer);
+    const assignments = await this.requireReceiptGateAssignments(artifactBundleHash, reviewers);
     const artifacts = new D1InlineArtifactStore({ database: this.database });
 
     const kernelEvidence = await artifacts.putObject({
       bytes: canonicalJson({
         protocolVersion: "pw-build-week-review-evidence-v1",
         evidenceType: "kernel_acceptance_review",
-        reviewerMode: "mock_second_account",
+        reviewerMode: "multiple_mock_owners",
         artifactBundleHash,
         target: bundle.target,
         primaryRun: evidence.primaryRun,
@@ -180,7 +199,7 @@ export class D1BuildWeekLiveClosure {
       bytes: canonicalJson({
         protocolVersion: "pw-build-week-review-evidence-v1",
         evidenceType: "project_acceptance_review",
-        reviewerMode: "mock_second_account",
+        reviewerMode: "multiple_mock_owners",
         artifactBundleHash,
         target: bundle.target,
         freshReplayEvidenceHash: evidence.replayEvidenceHash,
@@ -206,10 +225,14 @@ export class D1BuildWeekLiveClosure {
     });
     const closures = [];
     for (const claimType of requiredClaimTypes) {
-      const assignment = assignments.find((candidate) => candidate.claimType === claimType);
+      const reviewer = reviewerForClaim(reviewers, claimType);
+      const assignment = assignments.find((candidate) => (
+        candidate.claimType === claimType && candidate.verifierPersonId === reviewer.personId
+      ));
       if (!assignment) throw new BuildWeekLiveClosureConfigurationError(`The ${claimType} assignment is missing.`);
       const attestation = await this.signedAttestation({
         assignment,
+        reviewer,
         artifactBundleHash,
         evidenceHash: evidenceByClaim.get(claimType),
         attestedAt: deterministicAttestedAt(evidence.finishedAt, requiredClaimTypes.indexOf(claimType) + 1),
@@ -232,8 +255,8 @@ export class D1BuildWeekLiveClosure {
       state: "receipt_issued",
       artifactBundleHash,
       ownerPersonId: bundle.attemptOwnerPersonId,
-      reviewerPersonId: reviewer.personId,
-      reviewerMode: "mock_second_account",
+      reviewers: Object.freeze(reviewers.map(publicReviewerProjection)),
+      reviewerMode: "multiple_mock_owners",
       replay: Object.freeze({
         id: evidence.replayId,
         runId: evidence.freshReplay.id,
@@ -247,11 +270,20 @@ export class D1BuildWeekLiveClosure {
     });
   }
 
-  async ensureMockReviewer() {
-    const ids = buildWeekLiveReviewer;
+  async ensureMockReviewers() {
+    return Object.freeze(await Promise.all(
+      this.reviewerCredentials.map((credential) => this.ensureMockReviewer(credential)),
+    ));
+  }
+
+  async ensureMockReviewer(credential = this.reviewerCredentials[0]) {
+    if (!this.reviewerCredentials.includes(credential)) {
+      throw new BuildWeekLiveClosureConfigurationError("Unknown mock reviewer credential.");
+    }
+    const ids = credential.identity;
     const now = isoInstant(this.now());
-    const personPublicKey = this.reviewerPersonPrivateKeyJwk.x;
-    const agentPublicKey = this.reviewerAgentPrivateKeyJwk.x;
+    const personPublicKey = credential.personPrivateKeyJwk.x;
+    const agentPublicKey = credential.agentPrivateKeyJwk.x;
     const personFingerprint = await keyFingerprint(personPublicKey);
     const agentFingerprint = await keyFingerprint(agentPublicKey);
 
@@ -259,10 +291,10 @@ export class D1BuildWeekLiveClosure {
       `INSERT OR IGNORE INTO persons (
          id, identity_provider, provider_subject, display_name, updated_at
        ) VALUES (?, ?, ?, ?, ?)`,
-    ).bind(ids.personId, "proofweave-demo", "build-week-mock-reviewer-v1", ids.displayName, now).run();
+    ).bind(ids.personId, "proofweave-demo", ids.providerSubject, ids.displayName, now).run();
     await assertRow(this.database, "persons", ids.personId, {
       identity_provider: "proofweave-demo",
-      provider_subject: "build-week-mock-reviewer-v1",
+      provider_subject: ids.providerSubject,
       display_name: ids.displayName,
     });
 
@@ -274,7 +306,7 @@ export class D1BuildWeekLiveClosure {
       public_key: personPublicKey,
       fingerprint: personFingerprint,
     });
-    await this.ensurePersonPossessionProof({ now, personPublicKey });
+    await this.ensurePersonPossessionProof({ credential, now, personPublicKey });
 
     await this.database.prepare(
       "INSERT OR IGNORE INTO agents (id, owner_person_id, label, public_key, key_fingerprint) VALUES (?, ?, ?, ?, ?)",
@@ -286,15 +318,15 @@ export class D1BuildWeekLiveClosure {
       key_fingerprint: agentFingerprint,
       status: "active",
     });
-    await this.ensureReviewDelegation({ personPublicKey, agentPublicKey });
+    await this.ensureReviewDelegation({ credential, personPublicKey, agentPublicKey });
 
     await this.database.prepare(
       `INSERT OR IGNORE INTO oauth_clients (
          id, client_name, redirect_uris_json, token_endpoint_auth_method
        ) VALUES (?, ?, ?, ?)`,
-    ).bind(ids.clientId, "Proofweave Build Week live closure", "[]", "none").run();
+    ).bind(ids.clientId, `Proofweave Build Week ${ids.ordinal} mock reviewer`, "[]", "none").run();
     await assertRow(this.database, "oauth_clients", ids.clientId, {
-      client_name: "Proofweave Build Week live closure",
+      client_name: `Proofweave Build Week ${ids.ordinal} mock reviewer`,
       redirect_uris_json: "[]",
       token_endpoint_auth_method: "none",
     });
@@ -309,7 +341,7 @@ export class D1BuildWeekLiveClosure {
       ids.agentId,
       ids.delegationId,
       ids.clientId,
-      "Build Week mock review connection",
+      `Build Week ${ids.ordinal} mock review connection`,
     ).run();
     await assertRow(this.database, "agent_installations", ids.installationId, {
       person_id: ids.personId,
@@ -324,6 +356,8 @@ export class D1BuildWeekLiveClosure {
       agentId: ids.agentId,
       delegationId: ids.delegationId,
       installationId: ids.installationId,
+      ordinal: ids.ordinal,
+      displayName: ids.displayName,
       agentPublicKey,
       principal: Object.freeze({
         clientId: ids.clientId,
@@ -334,8 +368,8 @@ export class D1BuildWeekLiveClosure {
     });
   }
 
-  async ensurePersonPossessionProof({ now, personPublicKey }) {
-    const ids = buildWeekLiveReviewer;
+  async ensurePersonPossessionProof({ credential, now, personPublicKey }) {
+    const ids = credential.identity;
     const existing = await this.database.prepare(
       "SELECT id FROM person_key_proof_events WHERE person_key_id = ? ORDER BY verified_at DESC LIMIT 1",
     ).bind(ids.personKeyId).first();
@@ -357,7 +391,7 @@ export class D1BuildWeekLiveClosure {
     const payloadHash = await personKeyProofChallengePayloadHash(challenge);
     const personSignature = base64Url(await crypto.subtle.sign(
       "Ed25519",
-      await this.personPrivateKey(),
+      await this.personPrivateKey(credential),
       canonicalUtf8(personKeyProofChallengeSigningPayload(challenge)),
     ));
     if (!await verifyPersonKeyProofChallengeSignature({ challenge, personPublicKey, personSignature })) {
@@ -407,8 +441,8 @@ export class D1BuildWeekLiveClosure {
     });
   }
 
-  async ensureReviewDelegation({ personPublicKey, agentPublicKey }) {
-    const ids = buildWeekLiveReviewer;
+  async ensureReviewDelegation({ credential, personPublicKey, agentPublicKey }) {
+    const ids = credential.identity;
     const certificate = {
       id: ids.delegationId,
       ownerPersonId: ids.personId,
@@ -426,7 +460,7 @@ export class D1BuildWeekLiveClosure {
     const payloadHash = await delegationPayloadHash(certificate);
     const personSignature = base64Url(await crypto.subtle.sign(
       "Ed25519",
-      await this.personPrivateKey(),
+      await this.personPrivateKey(credential),
       canonicalUtf8(delegationSigningPayload(certificate)),
     ));
     if (!await verifyDelegationSignature({ certificate, personPublicKey, personSignature })) {
@@ -584,15 +618,14 @@ export class D1BuildWeekLiveClosure {
     });
   }
 
-  async requireReceiptGateAssignments(artifactBundleHash, reviewerPersonId) {
+  async requireReceiptGateAssignments(artifactBundleHash, reviewers) {
     const rows = await this.database.prepare(
       `SELECT id, claim_type, verifier_person_id, status
        FROM verification_assignments
        WHERE artifact_bundle_manifest_hash = ?
-         AND verifier_person_id = ?
          AND claim_type IN ('bundle_reproducible','kernel_accepted','project_accepted')
        ORDER BY claim_type ASC`,
-    ).bind(artifactBundleHash, reviewerPersonId).all();
+    ).bind(artifactBundleHash).all();
     const assignments = (rows.results ?? []).map((row) => Object.freeze({
       id: row.id,
       claimType: row.claim_type,
@@ -600,9 +633,17 @@ export class D1BuildWeekLiveClosure {
       status: row.status,
     }));
     for (const claimType of requiredClaimTypes) {
-      const assignment = assignments.find((candidate) => candidate.claimType === claimType);
-      if (!assignment || !["accepted", "completed"].includes(assignment.status)) {
-        throw new BuildWeekLiveClosureConfigurationError(`The ${claimType} assignment is not accepted for the mock reviewer.`);
+      const expectedReviewer = reviewerForClaim(reviewers, claimType);
+      const assignment = assignments.find((candidate) => (
+        candidate.claimType === claimType && candidate.verifierPersonId === expectedReviewer.personId
+      ));
+      if (
+        !assignment ||
+        !["accepted", "completed"].includes(assignment.status)
+      ) {
+        throw new BuildWeekLiveClosureConfigurationError(
+          `The ${claimType} assignment is not accepted for ${expectedReviewer.displayName}.`,
+        );
       }
     }
     return Object.freeze(assignments);
@@ -673,18 +714,18 @@ export class D1BuildWeekLiveClosure {
     });
   }
 
-  async signedAttestation({ assignment, artifactBundleHash, evidenceHash, attestedAt }) {
-    const reviewer = buildWeekLiveReviewer;
+  async signedAttestation({ assignment, reviewer, artifactBundleHash, evidenceHash, attestedAt }) {
+    const credential = this.reviewerCredential(reviewer.personId);
     const attestation = {
       protocolVersion: "pw-verification-attestation-v1",
-      id: `attestation:build-week-live:${assignment.claimType}:v1`,
+      id: `attestation:build-week-live:${artifactBundleHash.slice("sha256:".length, "sha256:".length + 16)}:${assignment.claimType}:v2`,
       assignmentId: assignment.id,
       artifactBundleHash,
       claimType: assignment.claimType,
       verifierPersonId: reviewer.personId,
       verifierAgentId: reviewer.agentId,
       delegationCertificateId: reviewer.delegationId,
-      verifierAgentPublicKey: this.reviewerAgentPrivateKeyJwk.x,
+      verifierAgentPublicKey: credential.agentPrivateKeyJwk.x,
       decision: "attested",
       evidenceHash,
       attestedAt,
@@ -694,20 +735,32 @@ export class D1BuildWeekLiveClosure {
     attestation.payloadHash = await verificationAttestationPayloadHash(attestation);
     attestation.signature = base64Url(await crypto.subtle.sign(
       "Ed25519",
-      await this.agentPrivateKey(),
+      await this.agentPrivateKey(credential),
       canonicalUtf8(verificationAttestationSigningPayload(attestation)),
     ));
     return Object.freeze(attestation);
   }
 
-  personPrivateKey() {
-    this.personPrivateKeyPromise ??= importPrivateEd25519Key(this.reviewerPersonPrivateKeyJwk, "reviewer Person key");
-    return this.personPrivateKeyPromise;
+  reviewerCredential(personId) {
+    const credential = this.reviewerCredentials.find((candidate) => candidate.identity.personId === personId);
+    if (!credential) throw new BuildWeekLiveClosureConfigurationError("Unknown mock reviewer Person.");
+    return credential;
   }
 
-  agentPrivateKey() {
-    this.agentPrivateKeyPromise ??= importPrivateEd25519Key(this.reviewerAgentPrivateKeyJwk, "reviewer Agent key");
-    return this.agentPrivateKeyPromise;
+  personPrivateKey(credential) {
+    credential.personPrivateKeyPromise ??= importPrivateEd25519Key(
+      credential.personPrivateKeyJwk,
+      `${credential.identity.displayName} Person key`,
+    );
+    return credential.personPrivateKeyPromise;
+  }
+
+  agentPrivateKey(credential) {
+    credential.agentPrivateKeyPromise ??= importPrivateEd25519Key(
+      credential.agentPrivateKeyJwk,
+      `${credential.identity.displayName} Agent key`,
+    );
+    return credential.agentPrivateKeyPromise;
   }
 }
 
@@ -742,6 +795,61 @@ async function normalizeStoredRunnerResult(database, row, artifactBundleHash, la
     finishedAt: result.finishedAt,
     kernelStatus: result.kernelStatus,
     checks: Object.freeze({ ...result.checks }),
+  });
+}
+
+function mockReviewerIdentity({ slug, ordinal }) {
+  const versionedSlug = `build-week-${slug}-v2`;
+  return Object.freeze({
+    slug,
+    ordinal,
+    personId: `person:${versionedSlug}`,
+    personKeyId: `person-key:${versionedSlug}`,
+    personProofChallengeId: `person-key-proof-challenge:${versionedSlug}`,
+    personProofId: `person-key-proof:${versionedSlug}`,
+    agentId: `agent:${versionedSlug}`,
+    delegationId: `delegation:${versionedSlug}`,
+    clientId: `client:${versionedSlug}`,
+    installationId: `installation:${versionedSlug}`,
+    providerSubject: versionedSlug,
+    displayName: `Build Week Mocker ${ordinal} (demo)`,
+    agentLabel: `Build Week Mocker ${ordinal} Review Agent`,
+    validFrom: "2026-07-18T00:00:00.000Z",
+    validUntil: "2027-07-18T00:00:00.000Z",
+  });
+}
+
+function reviewerCredential({ identity, personPrivateKeyJwk, agentPrivateKeyJwk }) {
+  return {
+    identity,
+    personPrivateKeyJwk: normalizePrivateEd25519Jwk(
+      personPrivateKeyJwk,
+      `${identity.displayName} Person key`,
+    ),
+    agentPrivateKeyJwk: normalizePrivateEd25519Jwk(
+      agentPrivateKeyJwk,
+      `${identity.displayName} Agent key`,
+    ),
+    personPrivateKeyPromise: null,
+    agentPrivateKeyPromise: null,
+  };
+}
+
+function reviewerForClaim(reviewers, claimType) {
+  const expectedPersonId = buildWeekLiveClaimOwnership[claimType];
+  const reviewer = reviewers.find((candidate) => candidate.personId === expectedPersonId);
+  if (!reviewer) {
+    throw new BuildWeekLiveClosureConfigurationError(`No mock reviewer is assigned to ${claimType}.`);
+  }
+  return reviewer;
+}
+
+function publicReviewerProjection(reviewer) {
+  return Object.freeze({
+    personId: reviewer.personId,
+    agentId: reviewer.agentId,
+    ordinal: reviewer.ordinal,
+    displayName: reviewer.displayName,
   });
 }
 

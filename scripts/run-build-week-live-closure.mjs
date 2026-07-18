@@ -23,8 +23,12 @@ export async function runBuildWeekLiveClosure({ phase, artifactBundleHash, envir
     authToken: required(environment, "TURSO_AUTH_TOKEN"),
   });
   try {
-    const reviewerPersonPrivateKeyJwk = jsonSetting(environment, "DEMO_REVIEWER_PERSON_PRIVATE_KEY_JWK");
-    const reviewerAgentPrivateKeyJwk = jsonSetting(environment, "DEMO_REVIEWER_AGENT_PRIVATE_KEY_JWK");
+    const mockerKeys = {
+      mocker1PersonPrivateKeyJwk: jsonSetting(environment, "DEMO_MOCKER_1_PERSON_PRIVATE_KEY_JWK"),
+      mocker1AgentPrivateKeyJwk: jsonSetting(environment, "DEMO_MOCKER_1_AGENT_PRIVATE_KEY_JWK"),
+      mocker2PersonPrivateKeyJwk: jsonSetting(environment, "DEMO_MOCKER_2_PERSON_PRIVATE_KEY_JWK"),
+      mocker2AgentPrivateKeyJwk: jsonSetting(environment, "DEMO_MOCKER_2_AGENT_PRIVATE_KEY_JWK"),
+    };
     if (phase === "prepare") {
       const runnerDispatcher = new D1RemoteMcpRunnerDispatcher({
         database,
@@ -39,8 +43,7 @@ export async function runBuildWeekLiveClosure({ phase, artifactBundleHash, envir
       });
       return await new D1BuildWeekLiveClosure({
         database,
-        reviewerPersonPrivateKeyJwk,
-        reviewerAgentPrivateKeyJwk,
+        ...mockerKeys,
         runnerDispatcher,
       }).prepare({ artifactBundleHash });
     }
@@ -48,8 +51,7 @@ export async function runBuildWeekLiveClosure({ phase, artifactBundleHash, envir
     const receiptIssuerPrivateKeyJwk = jsonSetting(environment, "RECEIPT_ISSUER_PRIVATE_KEY_JWK");
     return await new D1BuildWeekLiveClosure({
       database,
-      reviewerPersonPrivateKeyJwk,
-      reviewerAgentPrivateKeyJwk,
+      ...mockerKeys,
       receiptIssuer: {
         keyId: required(environment, "RECEIPT_ISSUER_KEY_ID"),
         publicKey: receiptIssuerPrivateKeyJwk.x,
@@ -72,7 +74,8 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
       component: "build_week_live_closure",
       outcome: result.state,
       artifactBundleHash: result.artifactBundleHash,
-      reviewerMode: "mock_second_account",
+      reviewerMode: "multiple_mock_owners",
+      reviewerCount: result.reviewers?.length ?? null,
       replayRunId: result.replay?.runId ?? null,
       receiptId: result.receiptId ?? null,
       receiptHash: result.receiptHash ?? null,
