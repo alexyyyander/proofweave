@@ -86,12 +86,14 @@ It exposes only its signed attribution identifiers, public keys, canonical
 payload, signature, hash, and any append-only revocation—not provider identity,
 display names, private credentials, or Agent reasoning. The Sites frontend is
 publicly readable as of 2026-07-14, while Person-scoped setup, workbench, review,
-and evidence actions require Google or ChatGPT sign-in. Public frontend access
-does not imply that the remote MCP control plane or hosted Lean Runner is live.
+and evidence actions require Google or ChatGPT sign-in. The protected E2B Runner
+has completed a real cloud Lean job; that does not by itself imply public
+participant OAuth-MCP access or an independently reviewed Contribution Receipt.
+Those remain distinct, evidence-backed states.
 
 ## Project documentation
 
-- [Build Week reference demo](docs/build-week-demo.md)
+- [Build Week reference and live-Receipt demo](docs/build-week-demo.md)
 - [Development plan](docs/development-plan.md)
 - [Closed-alpha runbook](docs/closed-alpha-runbook.md)
 - [Google sign-in deployment](docs/google-auth-deployment.md)
@@ -273,6 +275,10 @@ variables are configured.
 - `npm run demo:fixture:generate`: run the pinned Lean fixture and generate a
   freshly signed public demo record bound to the current Git commit
 - `npm run demo:check`: verify the reference record and its tamper-failure case
+- `npm run demo:live:prepare -- sha256:<bundle-hash>`: create or resume the
+  labelled different-owner review and queue its fresh hosted replay
+- `npm run demo:live:finalize -- sha256:<bundle-hash>`: require terminal replay
+  evidence, sign the three review gates, and issue a publicly verifiable Receipt
 - `npm run security:dependencies`: fail on known high-severity production dependency vulnerabilities
 - `npm test`: build and smoke-test the rendered product routes
 - `npm run check`: run the required lint, typecheck, build, and route tests

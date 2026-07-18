@@ -2,12 +2,14 @@ import Link from "next/link";
 import { Footer, ProductStateBadge } from "@/app/ui";
 import { Header } from "@/app/header";
 import { verifyBuildWeekDemoFixture } from "@/app/lib/build-week-demo";
+import { latestLiveBuildWeekClosure } from "@/db/repositories/live-demo";
 import { DemoVerificationClient } from "./DemoVerificationClient";
 
 export const dynamic = "force-dynamic";
 
 export default async function DemoPage() {
   const verification = await verifyBuildWeekDemoFixture();
+  const liveClosure = await latestLiveBuildWeekClosure().catch(() => null);
 
   return (
     <div className="site-shell demo-shell">
@@ -38,6 +40,24 @@ export default async function DemoPage() {
           <ProductStateBadge tone="verified">Local fixture + mock reviewer</ProductStateBadge>
         </section>
 
+        <section className={`demo-live-record ${liveClosure ? "is-issued" : "is-pending"}`} aria-labelledby="demo-live-record-title">
+          <div>
+            <p className="eyebrow">Separate live-network proof</p>
+            <h2 id="demo-live-record-title">{liveClosure ? "A real cloud replay reached a signed Receipt." : "Live cloud closure has not been recorded yet."}</h2>
+            <p>{liveClosure
+              ? `The public record covers ${liveClosure.target}. Its different-owner reviewer is clearly marked as a demo mock, while the fresh isolated replay, ${liveClosure.attestationCount} Agent signatures, and issuer-signed Receipt are stored evidence.`
+              : "The interactive console below verifies a checked reference fixture. It does not claim that a hosted replay or network Receipt exists until this separate panel can resolve one from shared storage."}</p>
+          </div>
+          {liveClosure ? <div className="demo-live-record-proof">
+            <dl>
+              <div><dt>Replay</dt><dd><code>{shortHash(liveClosure.replayRunId)}</code></dd></div>
+              <div><dt>Evidence</dt><dd><code>{shortHash(liveClosure.replayEvidenceHash)}</code></dd></div>
+              <div><dt>Receipt</dt><dd><code>{shortHash(liveClosure.receiptHash)}</code></dd></div>
+            </dl>
+            <Link className="button button-primary" href={`/receipt/${encodeURIComponent(liveClosure.receiptId)}`}>Inspect live Receipt <span aria-hidden="true">→</span></Link>
+          </div> : <ProductStateBadge tone="provisional">Reference only</ProductStateBadge>}
+        </section>
+
         <DemoVerificationClient initial={verification} />
 
         <section className="demo-proof-section">
@@ -59,7 +79,7 @@ export default async function DemoPage() {
 
         <section className="demo-honesty-grid">
           <article><span className="micro-label">This demo proves</span><h2>The evidence protocol is executable.</h2><p>Displayed bytes are re-hashed, four signature classes are checked, owner IDs remain distinct, and Receipt policy runs on every request.</p></article>
-          <article><span className="micro-label">This demo does not claim</span><h2>The reviewer is not a live participant.</h2><p>The second account is a deterministic mock and the Lean result is a checked local fixture. It demonstrates the exact production protocol without pretending public onboarding or hosted execution is complete.</p></article>
+          <article><span className="micro-label">This demo does not claim</span><h2>The reviewer is not a human participant.</h2><p>The second account is an explicitly labelled mock. The interactive console still checks a local reference fixture; any separate hosted replay and Receipt are reported only by the live-network panel above.</p></article>
         </section>
 
         <section className="demo-reproduce" aria-labelledby="demo-reproduce-title">
@@ -84,4 +104,9 @@ export default async function DemoPage() {
       <Footer />
     </div>
   );
+}
+
+function shortHash(value: string) {
+  const normalized = value.replace(/^sha256:/, "");
+  return normalized.length > 22 ? `${normalized.slice(0, 10)}…${normalized.slice(-8)}` : value;
 }

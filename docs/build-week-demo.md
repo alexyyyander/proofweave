@@ -1,9 +1,10 @@
-# Build Week reference demo
+# Build Week reference and live-Receipt demo
 
 The public `/demo` route is a compact, executable view of Proofweave's trust
 model. It uses one checked-in Lean 4.30 Core fixture so a visitor can verify the
-complete evidence protocol without signing in or depending on an undeployed
-remote MCP or Container Runner.
+complete evidence protocol without signing in. A separate live-network panel is
+shown only when shared storage contains a cryptographically valid Receipt from
+the hosted replay path.
 
 ## What is real
 
@@ -29,10 +30,17 @@ keys are not written to disk.
 
 ## Honest boundary
 
-This is a generated protocol fixture, not a live network contribution. It does
-not show that the hosted remote MCP, Queue, or Container Runner is deployed,
-and it is not credited to a real participant. The page repeats that boundary
-in its hero-adjacent disclosure and its closing comparison.
+The interactive verification console is a generated protocol fixture, not a
+live network contribution, and it is not credited to a real participant. The
+live-network panel is deliberately separate. It appears only after a fresh E2B
+Lean replay, three signed review gates from an owner different from the Attempt
+owner, and an issuer-signed Receipt have been persisted and re-verified.
+
+For the Build Week path, that second owner is explicitly labelled
+`Build Week Mock Reviewer (demo)`. It is not a human participant. Its Person
+possession proof, review-only delegation, local Agent signatures, isolated
+replay provenance, and Receipt are nevertheless real protocol evidence. This
+lets the demo exercise the complete boundary without inventing a human review.
 
 The fixture remains useful because it fails closed: changing the signed Git
 commit, workspace hashes, target, Run evidence, reviewer identities, or receipt
@@ -56,16 +64,36 @@ before committing it.
 The repository-wide `npm run check` includes `demo:check` and rendered-route
 coverage for `/demo` and `/api/demo/verify`.
 
+## Close one live Bundle
+
+Operators use the protected GitHub Actions workflow
+`Proofweave Build Week live Receipt`. It accepts one exact succeeded Artifact
+Bundle hash, creates the labelled mock reviewer idempotently, claims the three
+required review jobs, replays the Bundle in a fresh E2B sandbox, records the
+signed attestations, and issues the Receipt. The workflow environment keeps
+the reviewer Person key, reviewer Agent key, and Receipt issuer key in GitHub
+environment secrets; none are printed in the audit output.
+
+The underlying phases can also be audited locally against an authorized shared
+store:
+
+```bash
+npm run demo:live:prepare -- sha256:<bundle-hash>
+npm run runner:trusted:once
+npm run demo:live:finalize -- sha256:<bundle-hash>
+```
+
 ## Three-minute walkthrough
 
 1. Open `/demo` and state the problem: Agent work is easy to generate but hard
    to attribute and trust.
 2. Walk down the Person → Agent → Lean → independent review → Person credit
    rail.
-3. Select **Re-run all checks** and show that six protocol boundaries pass.
-4. Show the exact Lean theorem and the content-addressed Bundle/Receipt hashes.
-5. End on the explicit hosted-Runner boundary and then open a real frontier
-   target from `/explore`.
+3. Select **Re-run all checks** and show the six reference protocol boundaries.
+4. In the separate live-network panel, open the persisted Receipt and recheck
+   its issuer signature, exact Run, replay evidence, and review claims.
+5. Show the exact Lean theorem and the content-addressed Bundle/Receipt hashes,
+   then open a real frontier target from `/explore`.
 
 For a competition submission, record the qualifying Codex `/feedback` session
 ID and the GPT-5.6 work separately. Never insert a model or session claim that
