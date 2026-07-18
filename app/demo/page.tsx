@@ -104,7 +104,7 @@ export default async function DemoPage() {
           <div className="demo-reproduce-command">
             <span>After installing Node 22+ and Lean 4.30</span>
             <code>npm run demo:e2e:check</code>
-            <small>Local fixture · temporary storage and keys · no network contribution</small>
+            <small>D1 inline · no R2 · temporary storage and keys · no network contribution</small>
           </div>
         </section>
 
