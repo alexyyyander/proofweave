@@ -4,6 +4,9 @@ import { assertPinnedRunnerImage } from "./cloudflare-container-policy.mjs";
 const defaultPort = 8080;
 const allTraffic = "0.0.0.0/0";
 const internalOrigin = "https://proofweave-runner.internal";
+const runnerUser = "proofweave";
+const runnerHome = "/home/proofweave";
+const runnerPath = "/opt/lean/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin";
 const runPath = /^\/v1\/runs\/([^/]+)\/workspace(?:\/artifacts\/(?:source-archive|source-patch|lake-manifest)|\/(?:finalize|execute|cancel|complete)|\/result\/(?:stdout|stderr))?$/;
 
 export class E2BSandboxContainerError extends Error {
@@ -310,9 +313,12 @@ async function startSandboxServer(sandbox, timeoutMs, requestTimeoutMs) {
     {
       background: true,
       cwd: "/opt/proofweave",
+      user: runnerUser,
       timeoutMs: Math.min(3_600_000, timeoutMs + 30_000),
       requestTimeoutMs,
       envs: {
+        HOME: runnerHome,
+        PATH: runnerPath,
         PROOFWEAVE_NETWORK_ISOLATED: "true",
         PROOFWEAVE_RESOURCE_LIMITS_ENFORCED: "true",
         PROOFWEAVE_REQUEST_TIMEOUT_MS: String(timeoutMs),
