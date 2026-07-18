@@ -86,6 +86,7 @@ export function ExploreCatalog({ projects }: { projects: readonly CatalogProblem
         .includes(normalizedQuery);
     });
   }, [projects, query, opportunityFilter, scopeFilter, subjectFilter]);
+  const isSearching = query.trim().length > 0;
 
   function selectOpportunity(filter: OpportunityFilter) {
     setOpportunityFilter(filter);
@@ -108,7 +109,7 @@ export function ExploreCatalog({ projects }: { projects: readonly CatalogProblem
               placeholder="Search by problem, subject, or Lean declaration"
               type="search"
             />
-            <span>{visibleProjects.length} matching records</span>
+            <span>{visibleProjects.length} catalog matches · search filters the complete catalog below</span>
           </label>
         </div>
         <div className="opportunity-paths">
@@ -133,7 +134,7 @@ export function ExploreCatalog({ projects }: { projects: readonly CatalogProblem
         </div>
       </section>
 
-      <section className="starter-work-section" id="starter-work" aria-labelledby="starter-work-heading">
+      <section className={isSearching ? "starter-work-section explore-search-hidden" : "starter-work-section"} id="starter-work" aria-labelledby="starter-work-heading" aria-hidden={isSearching || undefined}>
         <div className="starter-work-heading">
           <div>
             <p className="micro-label">Recommended now · first contribution</p>
@@ -164,7 +165,7 @@ export function ExploreCatalog({ projects }: { projects: readonly CatalogProblem
         </div>
       </section>
 
-      <section className="research-collections" aria-labelledby="research-collections-heading">
+      <section className={isSearching ? "research-collections explore-search-hidden" : "research-collections"} aria-labelledby="research-collections-heading" aria-hidden={isSearching || undefined}>
         <div className="collection-heading">
           <div><p className="micro-label">Curated collections</p><h2 id="research-collections-heading">Enter through a research program.</h2></div>
           <p>Collections are navigation aids, not separate contribution systems. Every program resolves to the same pinned targets, Attempts, evidence, and independent review.</p>
@@ -220,7 +221,7 @@ export function ExploreCatalog({ projects }: { projects: readonly CatalogProblem
             <div className="filter-note"><strong>Auditable source</strong><p>Every record pins its upstream declaration, source hash, Lean toolchain, and mathlib revision.</p></div>
           </aside>
           <div className="catalog-list">
-            <div className="catalog-toolbar"><span>{visibleProjects.length} matching records</span><span>Existing catalog priority order</span></div>
+            <div className="catalog-toolbar"><span>{visibleProjects.length} catalog matches</span><span>Existing catalog priority order</span></div>
             {visibleProjects.length === 0 && <div className="catalog-empty"><strong>No opportunities match.</strong><p>Try another contribution type, scope, subject, or search phrase.</p></div>}
             {visibleProjects.map((project) => (
               <ResearchOpportunityCard project={project} key={project.slug} />

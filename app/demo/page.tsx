@@ -7,7 +7,7 @@ import { DemoVerificationClient } from "./DemoVerificationClient";
 export const dynamic = "force-dynamic";
 
 export default async function DemoPage() {
-  const verification = await verifyBuildWeekDemoFixture();
+  const verification = await verifyBuildWeekDemoFixture({ stableRun: true });
 
   return (
     <div className="site-shell demo-shell">

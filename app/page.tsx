@@ -41,7 +41,7 @@ export default async function Home() {
           <div className="home-simple-heading"><p className="eyebrow">Choose one path</p><h2 id="home-choice-title">Start with what you need.</h2></div>
           <div className="home-choice-grid">
             <Link href="/explore"><span>01</span><strong>Find research work</strong><p>Browse bounded formalization, open proof branches, and verification opportunities.</p><b>Explore mathematics →</b></Link>
-            <Link href="/showcase"><span>02</span><strong>See one proof journey</strong><p>Follow a contribution from local Agent work to evidence, review, and a public record.</p><b>Open the showcase →</b></Link>
+            <Link href="/showcase"><span>02</span><strong>See the proof story</strong><p>Follow a guided contribution from local Agent work to evidence, review, and a public record.</p><b>Open the guided story →</b></Link>
             <Link href="/start"><span>03</span><strong>Continue in your workspace</strong><p>Connect your Agent, choose one target, and keep unfinished reasoning private.</p><b>Open workspace →</b></Link>
           </div>
         </section>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Footer } from "../ui";
 import { Header } from "../header";
 import { getCurrentUser, signInPath, toPersonIdentity, type AuthUser } from "../auth";
@@ -28,13 +29,18 @@ export default async function WorkbenchPage({
   const targetSlug = requestedTargetSlug(resolvedSearchParams);
   const parentNodeId = requestedParentNodeId(resolvedSearchParams);
   const attemptId = requestedAttemptId(resolvedSearchParams);
-  const { profile, attempts, runs, provisionalContributions, provisionalLedgerAvailable, reviewCount, evidenceCount, storageAvailable } = await loadWorkbench(user);
-  const catalogTargets = await loadCatalogTargets();
   const returnTo = targetSlug
     ? `/workbench?target=${encodeURIComponent(targetSlug)}${parentNodeId ? `&parent=${encodeURIComponent(parentNodeId)}` : ""}#research-launcher`
     : attemptId
       ? `/workbench?attempt=${encodeURIComponent(attemptId)}`
       : "/workbench";
+
+  if (!user) {
+    return <SignedOutWorkbench signInHref={signInPath(returnTo)} hasSelectedTarget={Boolean(targetSlug)} />;
+  }
+
+  const { profile, attempts, runs, provisionalContributions, provisionalLedgerAvailable, reviewCount, evidenceCount, storageAvailable } = await loadWorkbench(user);
+  const catalogTargets = await loadCatalogTargets();
 
   return (
     <div className="site-shell app-shell">
@@ -45,6 +51,37 @@ export default async function WorkbenchPage({
       <Footer />
     </div>
   );
+}
+
+function SignedOutWorkbench({ signInHref, hasSelectedTarget }: { signInHref: string; hasSelectedTarget: boolean }) {
+  return <div className="site-shell app-shell">
+    <Header active="workbench" />
+    <main id="main-content" tabIndex={-1} className="workbench-main signed-out-workbench">
+      <section className="workspace-onboarding" aria-labelledby="workspace-onboarding-title">
+        <div className="workspace-onboarding-copy">
+          <p className="eyebrow">Personal research workspace</p>
+          <h1 id="workspace-onboarding-title">One private place for your Agent&apos;s research.</h1>
+          <p>Sign in to connect a local Agent, open bounded Attempts, and publish only the evidence you approve. Empty dashboards stay hidden until you have real work to show.</p>
+          {hasSelectedTarget && <p className="workspace-onboarding-selection">Your selected research target will still be waiting after sign-in.</p>}
+          <div className="button-row">
+            <Link className="button button-primary" href={signInHref}>Sign in to begin <span aria-hidden="true">→</span></Link>
+            <Link className="button button-secondary" href="/explore">Explore first</Link>
+          </div>
+        </div>
+        <ol className="workspace-onboarding-steps" aria-label="Workspace setup steps">
+          <li><span>01</span><div><strong>Choose one exact target</strong><p>Start from a pinned statement instead of an unbounded prompt.</p></div></li>
+          <li><span>02</span><div><strong>Connect your local Agent</strong><p>Your repository and unfinished reasoning remain on your computer.</p></div></li>
+          <li><span>03</span><div><strong>Approve evidence for review</strong><p>Only selected checkpoints become attributable public records.</p></div></li>
+        </ol>
+      </section>
+      <section className="workspace-onboarding-boundary" aria-label="Workspace privacy boundary">
+        <strong>Private by default.</strong>
+        <p>Signing in creates a stable Person identity for attribution. It does not upload your prompts, private keys, repository, or reasoning history.</p>
+        <Link href="/privacy">Read the privacy boundary <span aria-hidden="true">→</span></Link>
+      </section>
+    </main>
+    <Footer />
+  </div>;
 }
 
 async function loadWorkbench(user: AuthUser | null): Promise<{

@@ -695,7 +695,7 @@ test("server-renders the Proofweave welcome page", async () => {
   );
   assert.match(html, /Advance mathematics through your agent/i);
   assert.match(html, /Public alpha/i);
-  assert.match(html, /Verified demo/i);
+  assert.match(html, /Executable verified demo/i);
   assert.match(html, /Find a contribution/i);
   assert.match(html, /Contribution records/i);
   assert.match(html, /brand-mark/i);
@@ -727,7 +727,7 @@ test("serves the public research paths", async () => {
     ["/about/shared-research", /One frontier map\. Many coordinated Agents/i],
     ["/privacy", /Your mathematical record can be public/i],
     ["/terms", /Contribute carefully/i],
-    ["/workbench", /Keep the work on your computer/i],
+    ["/workbench", /One private place for your Agent's research/i],
     ["/settings", /Manage your research Agent/i],
     ["/integrations", /Keep your research Agent on your computer/i],
     ["/receipt/abc-l1", /Receipt not issued/i],
@@ -766,8 +766,8 @@ test("serves the public research paths", async () => {
 
   const workbench = await render("/workbench");
   const workbenchHtml = await workbench.text();
-  assert.match(workbenchHtml, /Keep the work on your computer/i);
-  assert.match(workbenchHtml, /Local-first research/i);
+  assert.match(workbenchHtml, /One private place for your Agent's research/i);
+  assert.match(workbenchHtml, /Empty dashboards stay hidden/i);
   const anonymousWorkspaceSummary = await render("/api/me/workspace-summary");
   assert.equal(anonymousWorkspaceSummary.status, 401);
 
@@ -778,7 +778,7 @@ test("serves the public research paths", async () => {
   assert.match(detailHtml, /Policy first\. Pool second\./i);
   assert.match(detailHtml, /Token or compute spend never mints mathematical credit/i);
   assert.match(detailHtml, /No public research checkpoint yet/i);
-  assert.match(detailHtml, /Start with my Agent/i);
+  assert.match(detailHtml, /Start an Attempt/i);
   assert.match(detailHtml, /workbench\?target=erdos-865/i);
 
   const explore = await render("/explore");
@@ -862,7 +862,7 @@ test("keeps the public directory separate from the personal workspace", async ()
   assert.match(html, /An open network for personally delegated formal mathematics research/i);
   assert.match(html, /href="\/explore"[^>]*>Explore<\/a>[\s\S]*href="\/reviews"[^>]*>Verify<\/a>[\s\S]*href="\/receipts"[^>]*>Contributions<\/a>[\s\S]*href="\/how-it-works"[^>]*>How it works<\/a>/i);
   assert.match(html, /Participate[\s\S]*Verification market[\s\S]*Contribution receipts/i);
-  assert.match(html, /Learn[\s\S]*Proof journey[\s\S]*Verified demo/i);
+  assert.match(html, /Learn[\s\S]*Guided proof story[\s\S]*Executable verified demo/i);
   assert.match(html, /Trust[\s\S]*Design principles[\s\S]*Catalog standard/i);
   assert.doesNotMatch(html, /<strong>Workspace<\/strong>/i);
   assert.match(html, /href="\/workbench"[^>]*>Workspace<\/a>/i);

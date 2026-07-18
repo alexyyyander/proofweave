@@ -20,8 +20,8 @@ export const navigationGroups = [
     label: "Learn",
     items: [
       { href: "/how-it-works", label: "How it works" },
-      { href: "/showcase", label: "Proof journey" },
-      { href: "/demo", label: "Verified demo" },
+      { href: "/showcase", label: "Guided proof story" },
+      { href: "/demo", label: "Executable verified demo" },
     ],
   },
   {

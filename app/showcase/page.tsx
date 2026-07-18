@@ -8,12 +8,12 @@ import { ShowcaseExperience } from "./ShowcaseExperience";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Proof journey",
+  title: "Guided proof story",
   description: "Watch a local research Agent turn one Lean proof into reproducible evidence, independent review, and attributable contribution.",
 };
 
 export default async function ShowcasePage() {
-  const verification = await verifyBuildWeekDemoFixture();
+  const verification = await verifyBuildWeekDemoFixture({ stableRun: true });
 
   return (
     <div className="site-shell showcase-shell">
@@ -28,7 +28,7 @@ export default async function ShowcasePage() {
             </p>
             <div className="button-row">
               <a className="button button-primary" href="#proof-journey">Play the proof journey <span aria-hidden="true">↓</span></a>
-              <Link className="button button-secondary" href="/demo">Open the verification demo</Link>
+              <Link className="button button-secondary" href="/demo">Open executable demo</Link>
             </div>
           </div>
           <dl className="showcase-intro-facts" aria-label="Showcase facts">
