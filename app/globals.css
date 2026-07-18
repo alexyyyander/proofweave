@@ -2395,6 +2395,49 @@ a.auth-provider:hover, .auth-provider-button:hover { border-color: #8295d5; box-
   :root { --content-page-title-size: 40px; }
 }
 
+/* Learn and Trust pages share one outer rail while preserving readable measures. */
+:root {
+  --editorial-page-column-gap: 70px;
+  --editorial-page-max-width: 1240px;
+}
+
+.information-hub-main,
+.reading-main,
+.legal-main {
+  max-width: var(--editorial-page-max-width);
+}
+
+.about-simple-hero,
+.about-definition {
+  gap: var(--editorial-page-column-gap);
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr);
+}
+
+.demo-shell main > .page-section-nav {
+  padding-left: max(28px, calc((100vw - var(--editorial-page-max-width)) / 2));
+  padding-right: max(28px, calc((100vw - var(--editorial-page-max-width)) / 2));
+}
+
+.reading-hero > p:not(.eyebrow),
+.legal-sections p {
+  max-width: 720px;
+}
+
+@media (max-width: 900px) {
+  .about-simple-hero,
+  .about-definition {
+    gap: 30px;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .demo-shell main > .page-section-nav {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
+
 /* My Work: intent-led task overview and focused Attempt detail. */
 .my-work-main { max-width: 1240px; padding-top: 54px; }
 .my-work-hero { align-items: end; border-bottom: 1px solid var(--line); display: grid; gap: 48px; grid-template-columns: minmax(0, 1fr) auto; padding-bottom: 38px; }
