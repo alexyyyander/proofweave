@@ -176,7 +176,7 @@ export class E2BSandboxContainer {
     while (Date.now() < deadline) {
       try {
         const response = await this.forward(new Request(`${internalOrigin}/ready`));
-        if (response.status === 200) return;
+        if (response.status === 204) return;
         lastError = new Error(`status_${response.status}`);
       } catch (error) {
         lastError = error;
