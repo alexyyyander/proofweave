@@ -489,6 +489,9 @@ function requireIdentifier(value, label) {
 }
 
 function privacySafeErrorCode(error) {
+  if (typeof error?.diagnosticCode === "string" && /^[a-z][a-z0-9_]{2,63}$/.test(error.diagnosticCode)) {
+    return error.diagnosticCode;
+  }
   const name = typeof error?.name === "string" ? error.name : "execution_error";
   const normalized = name
     .replace(/([a-z0-9])([A-Z])/g, "$1_$2")

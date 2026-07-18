@@ -6,9 +6,12 @@ import {
 const maxExecutionResponseBytes = 256 * 1024;
 
 export class RunnerContainerExecutionClientError extends Error {
-  constructor(message, options) {
+  constructor(message, options = {}) {
     super(message, options);
     this.name = "RunnerContainerExecutionClientError";
+    if (options.diagnosticCode !== undefined) {
+      this.diagnosticCode = requireDiagnosticCode(options.diagnosticCode);
+    }
   }
 }
 
@@ -27,22 +30,33 @@ export class RunnerContainerExecutionClient {
     const requestHash = await leanRunnerRequestHash(normalizedRequest);
     assertRunMatchesRequest(run, normalizedRequest, requestHash);
     const baseUrl = `https://proofweave-runner.internal/v1/runs/${encodeURIComponent(run.id)}`;
-    const response = await container.fetch(new Request(`${baseUrl}/workspace/execute`, {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(normalizedRequest),
-    }));
-    await expectSuccess(response, "Lean execution request");
-    const payload = normalizeExecutionPayload(await readJson(response));
-    assertResultMatchesRun(payload.result, run);
+    const payload = await diagnoseStage("runner_container_execute_response_error", async () => {
+      const response = await container.fetch(new Request(`${baseUrl}/workspace/execute`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(normalizedRequest),
+      }));
+      await expectSuccess(response, "Lean execution request");
+      const normalized = normalizeExecutionPayload(await readJson(response));
+      assertResultMatchesRun(normalized.result, run);
+      return normalized;
+    });
     const [stdout, stderr] = await Promise.all([
-      this.fetchOutput(container, `${baseUrl}/workspace/result/stdout`, payload.result.artifacts.stdoutHash, "stdout"),
-      this.fetchOutput(container, `${baseUrl}/workspace/result/stderr`, payload.result.artifacts.stderrHash, "stderr"),
+      diagnoseStage(
+        "runner_container_stdout_response_error",
+        () => this.fetchOutput(container, `${baseUrl}/workspace/result/stdout`, payload.result.artifacts.stdoutHash, "stdout"),
+      ),
+      diagnoseStage(
+        "runner_container_stderr_response_error",
+        () => this.fetchOutput(container, `${baseUrl}/workspace/result/stderr`, payload.result.artifacts.stderrHash, "stderr"),
+      ),
     ]);
-    await expectSuccess(
-      await container.fetch(new Request(`${baseUrl}/workspace/complete`, { method: "POST" })),
-      "workspace cleanup acknowledgement",
-    );
+    await diagnoseStage("runner_container_cleanup_response_error", async () => {
+      await expectSuccess(
+        await container.fetch(new Request(`${baseUrl}/workspace/complete`, { method: "POST" })),
+        "workspace cleanup acknowledgement",
+      );
+    });
     return Object.freeze({
       result: payload.result,
       stdout,
@@ -171,4 +185,25 @@ function requireSha256(value, label) {
   if (typeof value !== "string" || !/^sha256:[a-f0-9]{64}$/.test(value)) {
     throw new RunnerContainerExecutionClientError(`${label} must be sha256:<hex>.`);
   }
+}
+
+async function diagnoseStage(diagnosticCode, operation) {
+  try {
+    return await operation();
+  } catch (cause) {
+    if (cause instanceof RunnerContainerExecutionClientError && cause.diagnosticCode === diagnosticCode) {
+      throw cause;
+    }
+    throw new RunnerContainerExecutionClientError("Private Container execution stage failed.", {
+      cause,
+      diagnosticCode,
+    });
+  }
+}
+
+function requireDiagnosticCode(value) {
+  if (typeof value !== "string" || !/^runner_container_[a-z0-9_]{3,48}_error$/.test(value)) {
+    throw new TypeError("Runner Container diagnostic code is invalid.");
+  }
+  return value;
 }
