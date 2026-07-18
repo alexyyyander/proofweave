@@ -61,7 +61,34 @@ test("Worker execution client rejects a substituted private output stream", asyn
 
   await assert.rejects(
     new RunnerContainerExecutionClient().execute({ container, run: fixtureRun(requestHash), request }),
-    RunnerContainerExecutionClientError,
+    (error) => {
+      assert.equal(error instanceof RunnerContainerExecutionClientError, true);
+      assert.equal(error.diagnosticCode, "runner_container_stdout_response_error");
+      return true;
+    },
+  );
+});
+
+test("Worker execution client exposes only a bounded stage code when private execution is rejected", async () => {
+  const request = fixtureRequest();
+  const requestHash = await leanRunnerRequestHash(request);
+  const container = {
+    async fetch() {
+      return new Response(JSON.stringify({
+        error: "workspace_rejected",
+        unsafeDetail: "/private/workspace/secret.lean",
+      }), { status: 400 });
+    },
+  };
+
+  await assert.rejects(
+    new RunnerContainerExecutionClient().execute({ container, run: fixtureRun(requestHash), request }),
+    (error) => {
+      assert.equal(error instanceof RunnerContainerExecutionClientError, true);
+      assert.equal(error.diagnosticCode, "runner_container_execute_response_error");
+      assert.equal(JSON.stringify(error).includes("secret.lean"), false);
+      return true;
+    },
   );
 });
 

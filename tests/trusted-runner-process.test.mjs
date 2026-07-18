@@ -74,6 +74,28 @@ test("trusted Runner retries execution failures with bounded backoff", async () 
   assert.equal(JSON.stringify(queue.released).includes("sensitive provider detail"), false);
 });
 
+test("trusted Runner preserves an allowlisted diagnostic stage without leaking its cause", async () => {
+  const queue = fakeQueue({ deliveryAttempt: 1 });
+  const process = new TrustedRunnerProcess({
+    queue,
+    authenticator: { async authenticate(message) { return message; } },
+    async execute() {
+      const error = new Error("sensitive private response");
+      error.diagnosticCode = "runner_container_execute_response_error";
+      throw error;
+    },
+    consumerId: "runner:trusted-test",
+    leaseDurationSeconds: 60,
+    heartbeatSeconds: 10,
+    now: () => new Date("2026-07-13T00:00:01Z"),
+    sleep: async () => new Promise(() => {}),
+  });
+
+  const result = await process.processNext();
+  assert.equal(result.errorCode, "runner_container_execute_response_error");
+  assert.equal(JSON.stringify(queue.released).includes("sensitive private response"), false);
+});
+
 test("trusted Runner dead-letters invalid signatures and exhausted deliveries", async () => {
   const authenticationQueue = fakeQueue({ deliveryAttempt: 1 });
   const invalidMessageProcess = new TrustedRunnerProcess({
