@@ -1,0 +1,74 @@
+name: Proofweave Build Week live Receipt
+
+on:
+  workflow_dispatch:
+    inputs:
+      artifact_bundle_hash:
+        description: Exact succeeded Artifact Bundle hash to review and close
+        required: true
+        type: string
+
+concurrency:
+  group: proofweave-build-week-live-receipt
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  replay-review-and-issue:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: proofweave-runner-alpha
+    env:
+      RUNNER_EXECUTION_ENABLED: "true"
+      PROOFWEAVE_RUNNER_PROVIDER: e2b
+      RUNNER_CONSUMER_ID: runner:github-e2b-alpha-01
+      RUNNER_LEASE_SECONDS: "300"
+      RUNNER_LEASE_HEARTBEAT_SECONDS: "60"
+      RUNNER_RETRY_DELAY_SECONDS: "30"
+      RUNNER_MAX_DELIVERY_ATTEMPTS: "5"
+      RUNNER_POLL_MILLISECONDS: "1000"
+      PROOFWEAVE_E2B_RESOURCE_POLICY_REVIEWED: "true"
+      PROOFWEAVE_E2B_CPU: "2"
+      PROOFWEAVE_E2B_MEMORY_MB: "2048"
+      PROOFWEAVE_E2B_TIMEOUT_MS: "120000"
+      PROOFWEAVE_E2B_STARTUP_TIMEOUT_MS: "60000"
+      TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+      TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+      E2B_API_KEY: ${{ secrets.E2B_API_KEY }}
+      PROOFWEAVE_E2B_TEMPLATE_ID: ${{ vars.PROOFWEAVE_E2B_TEMPLATE_ID }}
+      PROOFWEAVE_E2B_TEMPLATE_BUILD_ID: ${{ vars.PROOFWEAVE_E2B_TEMPLATE_BUILD_ID }}
+      PROOFWEAVE_E2B_RUNNER_IMAGE: ${{ vars.PROOFWEAVE_E2B_RUNNER_IMAGE }}
+      RUNNER_APPROVED_IMAGES_JSON: ${{ vars.RUNNER_APPROVED_IMAGES_JSON }}
+      RUNNER_CONTROL_PLANE_KEY_ID: ${{ vars.RUNNER_CONTROL_PLANE_KEY_ID }}
+      RUNNER_CONTROL_PLANE_PRIVATE_KEY_JWK: ${{ secrets.RUNNER_CONTROL_PLANE_PRIVATE_KEY_JWK }}
+      RUNNER_CONTROL_PLANE_ISSUER_KEYS_JSON: ${{ vars.RUNNER_CONTROL_PLANE_ISSUER_KEYS_JSON }}
+      RUNNER_RESULT_KEY_ID: ${{ vars.RUNNER_RESULT_KEY_ID }}
+      RUNNER_RESULT_PRIVATE_KEY_JWK: ${{ secrets.RUNNER_RESULT_PRIVATE_KEY_JWK }}
+      DEMO_REVIEWER_PERSON_PRIVATE_KEY_JWK: ${{ secrets.DEMO_REVIEWER_PERSON_PRIVATE_KEY_JWK }}
+      DEMO_REVIEWER_AGENT_PRIVATE_KEY_JWK: ${{ secrets.DEMO_REVIEWER_AGENT_PRIVATE_KEY_JWK }}
+      RECEIPT_ISSUER_KEY_ID: issuer:build-week-live-v1
+      RECEIPT_ISSUER_ACTIVATED_AT: "2026-07-18T00:00:00.000Z"
+      RECEIPT_ISSUER_PRIVATE_KEY_JWK: ${{ secrets.RECEIPT_ISSUER_PRIVATE_KEY_JWK }}
+    steps:
+      - name: Check out the reviewed control-plane source
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+
+      - name: Use the repository Node version
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Create the labelled second owner and queue its fresh replay
+        run: node scripts/run-build-week-live-closure.mjs prepare "${{ inputs.artifact_bundle_hash }}"
+
+      - name: Replay the exact Bundle in a fresh E2B Sandbox
+        run: npm run runner:trusted:once
+
+      - name: Sign the three review gates and issue the Receipt
+        run: node scripts/run-build-week-live-closure.mjs finalize "${{ inputs.artifact_bundle_hash }}"

@@ -1030,7 +1030,9 @@ test("publicly verifies the checked Build Week reference evidence", async () => 
   assert.match(html, /Verified reference · no Proofweave setup required/i);
   assert.match(html, /Mock identity · real verification/i);
   assert.match(html, /Mock owner reviews/i);
-  assert.match(html, /The reviewer is not a live participant/i);
+  assert.match(html, /The reviewer is not a human participant/i);
+  assert.match(html, /Separate live-network proof/i);
+  assert.match(html, /Reference only|Inspect live Receipt/i);
   assert.match(html, /This demo does not claim/i);
   assert.match(html, /Re-verify signed evidence/i);
   assert.match(html, /Tamper-test a copy/i);
