@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { BuildWeekDemoVerification, DemoVerificationMode } from "@/app/lib/build-week-demo";
 
 export function DemoVerificationClient({ initial }: { initial: BuildWeekDemoVerification }) {
@@ -9,7 +9,16 @@ export function DemoVerificationClient({ initial }: { initial: BuildWeekDemoVeri
   const [isChecking, setIsChecking] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [requestedMode, setRequestedMode] = useState<DemoVerificationMode>(initial.mode);
-  const [runSequence, setRunSequence] = useState(0);
+  const [runSequence, setRunSequence] = useState(initial.mode === "tampered_copy" ? 1 : 0);
+  const runResultRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (runSequence === 0) return;
+    const frame = window.requestAnimationFrame(() => {
+      runResultRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [runSequence]);
 
   const runChecks = async (mode: DemoVerificationMode = "reference") => {
     if (isChecking) return;
@@ -140,6 +149,7 @@ export function DemoVerificationClient({ initial }: { initial: BuildWeekDemoVeri
       </div>
 
       <div
+        ref={runResultRef}
         key={`${runSequence}-${isChecking ? "running" : "complete"}`}
         className={`demo-verification-run ${isChecking ? "is-running" : verification.status === "verified" ? "is-verified" : isTamperResult ? "is-tamper" : "is-failed"}`}
         role="status"
@@ -196,6 +206,11 @@ export function DemoVerificationClient({ initial }: { initial: BuildWeekDemoVeri
             <strong>What it does not do</strong>
             <p>It does not start Lean. A fresh Lean replay is the separate local end-to-end command below.</p>
           </div>
+          {isTamperResult && verification.status === "failed" && <div className="demo-tamper-result" role="note">
+            <span>Tampering blocked</span>
+            <strong>The signed original is unchanged.</strong>
+            <p>Only a temporary request copy failed artifact integrity.</p>
+          </div>}
           <button className="button button-primary demo-run-button" type="button" onClick={() => { void runChecks("reference"); }} disabled={isChecking}>
             {isChecking && requestedMode === "reference" ? "Re-hashing & verifying…" : isTamperResult ? "Verify original evidence" : "Re-verify signed evidence"}<span aria-hidden="true">↻</span>
           </button>
@@ -205,7 +220,7 @@ export function DemoVerificationClient({ initial }: { initial: BuildWeekDemoVeri
           <p className="demo-tamper-note">Changes one byte in a temporary request copy. The signed original remains untouched.</p>
           <div className="demo-report-links">
             <a href={isTamperResult ? "/api/demo/verify?tamper=artifact" : "/api/demo/verify"} target="_blank" rel="noreferrer">View verification JSON <span aria-hidden="true">↗</span></a>
-            <span>Checked {formatTime(verification.checkedAt)} UTC · {formatDuration(verification.durationMs)}</span>
+            <span>Checked {formatTime(verification.checkedAt)} · {formatDuration(verification.durationMs)}</span>
           </div>
           {error && <p className="demo-check-error" role="alert">{error}</p>}
         </aside>
@@ -226,13 +241,7 @@ function shortLeanVersion(value: string) {
 
 function formatTime(value: string) {
   try {
-    return new Intl.DateTimeFormat("en", {
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-      hour12: false,
-      timeZone: "UTC",
-    }).format(new Date(value));
+    return `${new Date(value).toISOString().slice(11, 19)} UTC`;
   } catch {
     return "just now";
   }

@@ -7,8 +7,16 @@ import { DemoVerificationClient } from "./DemoVerificationClient";
 
 export const dynamic = "force-dynamic";
 
-export default async function DemoPage() {
-  const verification = await verifyBuildWeekDemoFixture({ stableRun: true });
+export default async function DemoPage({
+  searchParams,
+}: {
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const params = await searchParams;
+  const verification = await verifyBuildWeekDemoFixture({
+    mode: params?.tamper === "artifact" ? "tampered_copy" : "reference",
+    stableRun: true,
+  });
   const liveClosure = await latestLiveBuildWeekClosure().catch(() => null);
 
   return (

@@ -407,15 +407,15 @@ h1, h2, h3, p { margin-top: 0; }
 .demo-verdict.is-verified { background: var(--sage-soft); border-color: #b9d5c3; color: var(--sage); }
 .demo-verdict.is-failed { background: #fff0ee; border-color: #e7c2bd; color: #94332d; }
 .demo-verdict.is-running { background: #edf1ff; border-color: #c6d0f2; color: var(--indigo); }
-.demo-verdict.is-tamper { background: #fff4dc; border-color: #e4c987; color: #78550e; }
+.demo-verdict.is-tamper { background: #fff0ee; border-color: #d99a92; color: #8f302a; }
 .demo-verification-run { align-items: center; animation: demo-report-arrive .28s ease-out; border: 1px solid var(--line); display: grid; gap: 18px; grid-template-columns: auto minmax(0, 1fr) auto; margin-top: 34px; padding: 18px 20px; }
 .demo-verification-run.is-verified { background: #f3f8f3; border-color: #c8ddce; }
 .demo-verification-run.is-failed { background: #fff3f1; border-color: #e7c2bd; }
-.demo-verification-run.is-tamper { background: #fff8e8; border-color: #e7d3a1; }
+.demo-verification-run.is-tamper { background: #fff3f1; border-color: #dba49d; }
 .demo-verification-run.is-running { background: #f2f4fb; border-color: #cdd6ef; }
 .demo-run-signal { align-items: center; border: 1px solid currentColor; border-radius: 50%; color: var(--sage); display: inline-flex; font-size: 16px; font-weight: 700; height: 36px; justify-content: center; width: 36px; }
 .demo-verification-run.is-failed .demo-run-signal { color: #94332d; }
-.demo-verification-run.is-tamper .demo-run-signal { color: #8b6417; }
+.demo-verification-run.is-tamper .demo-run-signal { color: #94332d; }
 .demo-verification-run.is-running .demo-run-signal { animation: demo-verification-spin .8s linear infinite; color: var(--indigo); }
 .demo-run-message strong { display: block; font-size: 13px; margin-bottom: 5px; }
 .demo-run-message p { color: var(--ink-soft); font-size: 11px; line-height: 1.5; margin: 0; }
@@ -434,6 +434,7 @@ h1, h2, h3, p { margin-top: 0; }
 .demo-check-state { border: 1px solid currentColor; font-size: 9px; font-weight: 700; letter-spacing: .05em; padding: 5px 7px; text-transform: uppercase; }
 .demo-check-list .is-passed .demo-check-state { background: var(--sage-soft); color: var(--sage); }
 .demo-check-list .is-failed .demo-check-state { background: #fff0ee; color: #94332d; }
+.demo-check-list li.is-failed { background: #fff7f5; box-shadow: inset 3px 0 #b84a42; padding-left: 12px; padding-right: 12px; }
 .demo-check-list .is-running .demo-check-state { animation: demo-check-pulse 1s ease-in-out infinite; background: #edf1ff; color: var(--indigo); }
 .demo-check-list .is-running .demo-check-evidence { opacity: .48; pointer-events: none; }
 .demo-check-evidence { margin-top: 9px; }
@@ -448,7 +449,7 @@ h1, h2, h3, p { margin-top: 0; }
 .demo-check-evidence code { color: #314f9f; font-size: 8px; }
 .demo-record-card { background: var(--navy); color: #edf2ff; padding: 24px; }
 .demo-record-card .micro-label { color: #9fb2df; }
-.demo-record-card h3 { font-family: Georgia, "Times New Roman", serif; font-size: 27px; font-weight: 400; letter-spacing: -.035em; line-height: 1.08; margin: 30px 0 22px; overflow-wrap: anywhere; }
+.demo-record-card h3 { font-family: Georgia, "Times New Roman", serif; font-size: 22px; font-weight: 400; letter-spacing: -.025em; line-height: 1.12; margin: 24px 0 20px; overflow-wrap: anywhere; }
 .demo-record-card dl { border-top: 1px solid rgba(205,218,244,.18); margin: 0; }
 .demo-record-card dl > div { border-bottom: 1px solid rgba(205,218,244,.18); display: grid; gap: 12px; grid-template-columns: 90px minmax(0, 1fr); padding: 10px 0; }
 .demo-record-card dt { color: #8ea2c8; font-size: 9px; letter-spacing: .04em; text-transform: uppercase; }
@@ -463,6 +464,10 @@ h1, h2, h3, p { margin-top: 0; }
 .demo-tamper-button:hover { background: rgba(205,218,244,.08); border-color: #91a7ee; }
 .demo-tamper-button:disabled { cursor: wait; opacity: .55; }
 .demo-tamper-note { color: #8ea2c8; font-size: 8px; line-height: 1.45; margin: 8px 0 0; text-align: center; }
+.demo-tamper-result { border-left: 2px solid #e98f86; display: grid; gap: 4px; margin-top: 20px; padding: 2px 0 2px 13px; }
+.demo-tamper-result span { color: #f0a59e; font-size: 9px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+.demo-tamper-result strong { color: #fff3f1; font-size: 12px; }
+.demo-tamper-result p { color: #b8c5dd; font-size: 9px; line-height: 1.45; margin: 0; }
 .demo-report-links { align-items: center; border-top: 1px solid rgba(205,218,244,.18); display: flex; gap: 10px; justify-content: space-between; margin-top: 16px; padding-top: 12px; }
 .demo-report-links a { color: #b9c7ff; font-size: 9px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
 .demo-report-links span { color: #8ea2c8; font-size: 8px; text-align: right; }
