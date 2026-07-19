@@ -1158,6 +1158,13 @@ test("publicly verifies the checked Build Week reference evidence", async () => 
   assert.match(html, /npm run demo:e2e:check/i);
   assert.match(html, /D1 inline · no R2/i);
 
+  const tamperPage = await render("/demo?tamper=artifact");
+  assert.equal(tamperPage.status, 200);
+  const tamperHtml = await tamperPage.text();
+  assert.match(tamperHtml, /Tamper detected as expected/i);
+  assert.match(tamperHtml, /The signed original is unchanged/i);
+  assert.match(tamperHtml, /Only a temporary request copy failed artifact integrity/i);
+
   const response = await render("/api/demo/verify");
   assert.equal(response.status, 200);
   assert.equal(response.headers.get("cache-control"), "no-store");
