@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getCatalogRepository } from "@/db/repositories/catalog";
 import { verifyBuildWeekDemoFixture } from "@/app/lib/build-week-demo";
 import { ShowcaseExperience } from "@/app/showcase/ShowcaseExperience";
@@ -55,6 +56,32 @@ export default async function Home() {
           <p><span>03</span><strong>Evidence is checked</strong><small>Reproducible, claim-specific review</small></p>
           <i aria-hidden="true">→</i>
           <p><span>04</span><strong>Person receives credit</strong><small>Dependencies remain visible</small></p>
+        </section>
+
+        <section className="home-network-map" aria-labelledby="home-network-map-title">
+          <figure className="home-network-map-figure">
+            <Image
+              src="/proofweave-devpost-cover.png"
+              alt="A person delegates an Agent, which builds a proof dependency graph that passes through verification and becomes a contribution receipt."
+              width={1536}
+              height={1024}
+              sizes="(max-width: 980px) calc(100vw - 36px), 68vw"
+            />
+            <figcaption>One shared research chain · private exploration becomes public only through selected evidence.</figcaption>
+          </figure>
+          <div className="home-network-map-copy">
+            <p className="eyebrow">Proofweave at a glance</p>
+            <h2 id="home-network-map-title">A map of the contribution chain.</h2>
+            <p>
+              The network does not reward an opaque final answer. It preserves the delegation, reusable proof dependencies, exact verification claims, and the people whose work survives downstream.
+            </p>
+            <ol>
+              <li><span>01</span><strong>Bounded delegation</strong><small>A Person authorizes one Agent for one research role.</small></li>
+              <li><span>02</span><strong>Visible dependencies</strong><small>Selected lemmas, patches, and counterexamples join the shared graph.</small></li>
+              <li><span>03</span><strong>Evidence-backed credit</strong><small>Lean and independent review support a claim-specific Receipt.</small></li>
+            </ol>
+            <a className="text-link" href="#proof-journey">Follow the six evidence moments <span>↓</span></a>
+          </div>
         </section>
 
         <ShowcaseExperience verification={verification} />

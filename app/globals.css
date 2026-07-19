@@ -2370,6 +2370,22 @@ a.auth-provider:hover, .auth-provider-button:hover { border-color: #8295d5; box-
 .home-story-bridge i { align-self: center; color: #536581; font-size: 11px; font-style: normal; }
 .home-showcase-shell .showcase-experience { color: #eef3ff; }
 
+.home-network-map { align-items: center; background: #07152b; color: #eef3ff; display: grid; gap: clamp(30px, 4vw, 58px); grid-template-columns: minmax(0, 1.55fr) minmax(270px, .55fr); padding: 72px max(28px, calc((100vw - 1340px) / 2)); }
+.home-network-map-figure { background: #08172d; border: 1px solid rgba(220,230,255,.18); margin: 0; min-width: 0; }
+.home-network-map-figure img { display: block; height: auto; width: 100%; }
+.home-network-map-figure figcaption { border-top: 1px solid rgba(220,230,255,.15); color: #71829f; font-size: 8px; letter-spacing: .04em; line-height: 1.5; padding: 11px 14px; text-transform: uppercase; }
+.home-network-map-copy { border-top: 1px solid rgba(220,230,255,.22); padding-top: 21px; }
+.home-network-map-copy .eyebrow { color: #9eb3ff; }
+.home-network-map-copy h2 { font-family: Georgia, "Times New Roman", serif; font-size: clamp(29px, 3vw, 42px); font-weight: 400; letter-spacing: -.045em; line-height: 1.02; margin: 12px 0 19px; }
+.home-network-map-copy > p:not(.eyebrow) { color: #9baac2; font-size: 11px; line-height: 1.65; margin: 0; }
+.home-network-map-copy ol { list-style: none; margin: 27px 0 20px; padding: 0; }
+.home-network-map-copy li { border-top: 1px solid rgba(220,230,255,.15); display: grid; gap: 4px 10px; grid-template-columns: 24px 1fr; padding: 13px 0; }
+.home-network-map-copy li:last-child { border-bottom: 1px solid rgba(220,230,255,.15); }
+.home-network-map-copy li span { color: #7084c3; font-size: 8px; font-weight: 750; grid-row: 1 / span 2; letter-spacing: .05em; padding-top: 2px; }
+.home-network-map-copy li strong { color: #e5ecfa; font-family: Georgia, "Times New Roman", serif; font-size: 15px; font-weight: 400; letter-spacing: -.02em; }
+.home-network-map-copy li small { color: #7585a0; font-size: 8px; line-height: 1.45; }
+.home-network-map-copy .text-link { color: #aebfff; font-size: 9px; }
+
 .home-story-explanation { background: #eeeae0; color: var(--ink); padding: 86px max(28px, calc((100vw - 1240px) / 2)); }
 .home-story-explanation-heading { display: grid; gap: 52px; grid-template-columns: 180px minmax(0, 1fr); margin-bottom: 52px; }
 .home-story-explanation-heading h2 { font-family: Georgia, "Times New Roman", serif; font-size: clamp(38px, 4.3vw, 57px); font-weight: 400; letter-spacing: -.052em; line-height: 1; margin: 0; max-width: 900px; }
@@ -2386,6 +2402,10 @@ a.auth-provider:hover, .auth-provider-button:hover { border-color: #8295d5; box-
   .home-story-summary > p, .home-story-summary > strong { grid-column: 1; }
   .home-story-summary dl { grid-column: 2; grid-row: 1 / span 3; }
   .home-story-summary > a { grid-column: 1; }
+  .home-network-map { grid-template-columns: 1fr; }
+  .home-network-map-copy { display: grid; gap: 0 32px; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
+  .home-network-map-copy .eyebrow, .home-network-map-copy h2, .home-network-map-copy > p:not(.eyebrow), .home-network-map-copy .text-link { grid-column: 1; }
+  .home-network-map-copy ol { grid-column: 2; grid-row: 1 / span 5; margin: 0; }
   .home-story-explanation-heading { gap: 26px; grid-template-columns: 1fr; }
 }
 
@@ -2400,6 +2420,12 @@ a.auth-provider:hover, .auth-provider-button:hover { border-color: #8295d5; box-
   .home-story-bridge p:last-child { border-bottom: 0; }
   .home-story-bridge small { grid-column: 2; }
   .home-story-bridge i { display: none; }
+  .home-network-map { padding: 48px 18px; }
+  .home-network-map-figure { margin-left: -18px; margin-right: -18px; }
+  .home-network-map-figure figcaption { padding-left: 18px; padding-right: 18px; }
+  .home-network-map-copy { display: block; }
+  .home-network-map-copy h2 { font-size: 31px; }
+  .home-network-map-copy ol { margin: 24px 0 19px; }
   .home-story-explanation { padding: 62px 18px; }
   .home-story-explanation-heading { margin-bottom: 36px; }
   .home-story-explanation-heading h2 { font-size: 38px; }
