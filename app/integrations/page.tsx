@@ -2,12 +2,29 @@ import { Footer } from "../ui";
 import { Header } from "../header";
 import { IntegrationClient } from "./IntegrationClient";
 import { getCurrentUser, toPersonIdentity } from "../auth";
+import { safeRelativeReturnPath } from "../chatgpt-auth";
 import { MissingDatabaseBindingError } from "@/db";
 import { getDelegationRepository } from "@/db/repositories/delegation";
 import { activeLocalCodexInstallation } from "../lib/local-agent-journey";
+import { loadCatalogTargets, requestedParentNodeId, requestedTargetSlug } from "../workbench/workbench-data";
 
-export default async function IntegrationsPage() {
-  const connection = await loadConnection();
+export default async function IntegrationsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ target?: string | string[]; parent?: string | string[]; return_to?: string | string[] }>;
+}) {
+  const query = await searchParams;
+  const targetSlug = requestedTargetSlug(query);
+  const parentNodeId = requestedParentNodeId(query);
+  const [connection, targets] = await Promise.all([loadConnection(), loadCatalogTargets()]);
+  const selectedTarget = targetSlug
+    ? targets.find((candidate) => candidate.slug === targetSlug) ?? null
+    : null;
+  const fallbackReturn = selectedTarget
+    ? `/workbench?target=${encodeURIComponent(selectedTarget.slug)}${parentNodeId ? `&parent=${encodeURIComponent(parentNodeId)}` : ""}#research-launcher`
+    : "/workbench";
+  const requestedReturn = typeof query.return_to === "string" ? query.return_to : fallbackReturn;
+  const returnHref = safeRelativeReturnPath(requestedReturn);
   return (
     <>
       <Header active="workbench" />
@@ -21,7 +38,16 @@ export default async function IntegrationsPage() {
             you choose—not a copied API key or access to your private workspace.
           </p>
         </section>
-        <IntegrationClient connection={connection} />
+        <IntegrationClient
+          connection={connection}
+          selectedTarget={selectedTarget ? {
+            slug: selectedTarget.slug,
+            title: selectedTarget.title,
+            domain: selectedTarget.domain,
+            informalStatement: selectedTarget.informalStatement,
+          } : null}
+          returnHref={returnHref}
+        />
       </main>
       <Footer />
     </>

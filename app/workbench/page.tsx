@@ -19,21 +19,23 @@ export default async function WorkbenchPage({
 }: {
   searchParams: Promise<{ attempt?: string | string[]; target?: string | string[]; parent?: string | string[] }>;
 }) {
-  const user = await getCurrentUser();
   const resolvedSearchParams = await searchParams;
   const targetSlug = requestedTargetSlug(resolvedSearchParams);
   const parentNodeId = requestedParentNodeId(resolvedSearchParams);
   const attemptId = requestedAttemptId(resolvedSearchParams);
+  const [user, catalogTargets] = await Promise.all([getCurrentUser(), loadCatalogTargets()]);
+  const selectedTarget = targetSlug
+    ? catalogTargets.find((candidate) => candidate.slug === targetSlug) ?? null
+    : null;
   const returnTo = targetSlug
     ? `/workbench?target=${encodeURIComponent(targetSlug)}${parentNodeId ? `&parent=${encodeURIComponent(parentNodeId)}` : ""}#research-launcher`
     : attemptId
       ? `/workbench?attempt=${encodeURIComponent(attemptId)}`
       : "/workbench";
 
-  if (!user) return <SignedOutWorkbench signInHref={signInPath(returnTo)} hasSelectedTarget={Boolean(targetSlug)} />;
+  if (!user) return <SignedOutWorkbench signInHref={signInPath(returnTo)} selectedTarget={selectedTarget} />;
 
   const data = await loadWorkbenchData(user);
-  const catalogTargets = await loadCatalogTargets();
   const isLegacyFocusedEntry = Boolean(targetSlug || attemptId);
 
   return <div className="site-shell app-shell">
@@ -71,7 +73,10 @@ export default async function WorkbenchPage({
   </div>;
 }
 
-function SignedOutWorkbench({ signInHref, hasSelectedTarget }: { signInHref: string; hasSelectedTarget: boolean }) {
+function SignedOutWorkbench({ signInHref, selectedTarget }: {
+  signInHref: string;
+  selectedTarget: Awaited<ReturnType<typeof loadCatalogTargets>>[number] | null;
+}) {
   return <div className="site-shell app-shell">
     <Header active="workbench" />
     <main id="main-content" tabIndex={-1} className="workbench-main signed-out-workbench">
@@ -80,7 +85,12 @@ function SignedOutWorkbench({ signInHref, hasSelectedTarget }: { signInHref: str
           <p className="eyebrow">Personal research workspace</p>
           <h1 id="workspace-onboarding-title">One private place for your Agent&apos;s research.</h1>
           <p>Sign in to connect a local Agent, open bounded Attempts, and publish only the evidence you approve. Empty dashboards stay hidden until you have real work to show.</p>
-          {hasSelectedTarget && <p className="workspace-onboarding-selection">Your selected research target will still be waiting after sign-in.</p>}
+          {selectedTarget && <div className="workspace-onboarding-selection">
+            <span className="micro-label">Selected target</span>
+            <strong>{selectedTarget.title}</strong>
+            <p>{selectedTarget.informalStatement}</p>
+            <span>Your exact target and source revision stay selected after sign-in.</span>
+          </div>}
           <div className="button-row"><Link className="button button-primary" href={signInHref}>Sign in to begin <span aria-hidden="true">→</span></Link><Link className="button button-secondary" href="/explore">Explore first</Link></div>
         </div>
         <ol className="workspace-onboarding-steps" aria-label="Workspace setup steps">
