@@ -1,10 +1,17 @@
-# Build Week reference and live-Receipt demo
+# Build Week demo runbook
 
-The public `/demo` route is a compact, executable view of Proofweave's trust
-model. It uses one checked-in Lean 4.30 Core fixture so a visitor can verify the
-complete evidence protocol without signing in. A separate live-network panel is
-shown only when shared storage contains a cryptographically valid Receipt from
-the hosted replay path.
+The public demo has one narrative and two independently truthful evidence paths:
+
+- `/` explains the user promise and plays the Person → Agent → evidence →
+  Receipt journey;
+- `/demo` lets anyone re-verify a checked Lean 4.30 reference fixture and reject
+  a tampered copy without signing in; and
+- the live-network panel links to a persisted Receipt produced by the hosted
+  Turso → GitHub Actions → E2B → independent review → issuer path.
+
+The reference fixture makes the protocol deterministic during a presentation.
+The live Receipt proves that the deployed network path has also completed. Do
+not blur these two claims.
 
 ## What is real
 
@@ -66,6 +73,22 @@ before committing it.
 The repository-wide `npm run check` includes `demo:check` and rendered-route
 coverage for `/demo` and `/api/demo/verify`.
 
+Before recording or presenting, run the complete release preflight:
+
+```bash
+npm run demo:e2e:check
+npm run demo:release:check
+```
+
+`demo:e2e:check` starts Lean locally against the checked fixture.
+`demo:release:check` is read-only: it checks the deployed homepage, Demo, 6/6
+reference verifier, tamper rejection, live Receipt link, and live Receipt page.
+Pass another deployment URL as the final argument when rehearsing a preview:
+
+```bash
+npm run demo:release:check -- https://preview.example
+```
+
 ## Close one live Bundle
 
 Operators use the protected GitHub Actions workflow
@@ -87,16 +110,67 @@ npm run demo:live:finalize -- sha256:<bundle-hash>
 
 ## Three-minute walkthrough
 
-1. Open `/demo` and state the problem: Agent work is easy to generate but hard
-   to attribute and trust.
-2. Walk down the Person → Agent → Lean → independent review → Person credit
-   rail.
-3. Select **Re-run all checks** and show the six reference protocol boundaries.
-4. In the separate live-network panel, open the persisted Receipt and recheck
-   its issuer signature, exact Run, replay evidence, and review claims.
-5. Show the exact Lean theorem and the content-addressed Bundle/Receipt hashes,
-   then open a real frontier target from `/explore`.
+### 0:00–0:35 — the product promise
 
-For a competition submission, record the qualifying Codex `/feedback` session
-ID and the GPT-5.6 work separately. Never insert a model or session claim that
-cannot be backed by the official Codex record.
+Open `/`. Say: “Agent work is easy to generate; useful mathematical progress is
+hard to coordinate, verify, and attribute.” Scroll through the six evidence
+moments. Emphasize that private reasoning stays local and only owner-approved
+evidence enters the shared network.
+
+### 0:35–1:05 — a real user entry
+
+Open `/explore`. Use the **Begin with bounded formalization** row rather than a
+grand conjecture. Open one pinned target, show its source and Lean environment,
+then follow **Start this contribution** to the workspace handoff. For a recorded
+demo, an already connected presenter account may show the existing Attempt; do
+not create a throwaway Attempt on stage.
+
+### 1:05–2:10 — verification that can fail
+
+Open `/demo#verification-console`. Select **Re-verify signed evidence** and show
+all six checks passing. Then select **Tamper-test a copy** and show the artifact
+integrity gate reject the changed byte. State explicitly that this deterministic
+reference uses two labelled mock owners; its hashes, keys, signatures, owner
+separation, Runner record, and Receipt policy are real.
+
+### 2:10–2:45 — the deployed network closed the loop
+
+In the separate live-network panel, open **Inspect live Receipt**. Point out the
+fresh isolated Run, three signed independent attestations across two distinct
+mock Persons, issuer key, content-addressed Bundle, portable verification bundle,
+and immutable lifecycle. Say that mock identity is a demo limitation, not a
+hidden human-review claim.
+
+### 2:45–3:00 — return to the frontier
+
+Return to `/explore` and finish with the actual product loop: choose a bounded
+task, continue it through a personally delegated Agent, publish selected
+evidence, let a different owner verify it, and preserve every useful dependency
+as public contribution history.
+
+## Presentation fallback
+
+Keep the live Receipt URL open in a second tab before recording. If GitHub
+Actions or E2B is delayed during rehearsal, do not claim a new live replay:
+
+1. use the existing persisted live Receipt to demonstrate the completed hosted
+   chain;
+2. use **Re-verify signed evidence** for the deterministic 6/6 verifier;
+3. use **Tamper-test a copy** to prove the verifier fails closed; and
+4. show the most recent `npm run demo:release:check` result in the repository.
+
+If any of those three public surfaces is unavailable, stop and fix the release;
+do not replace missing evidence with slides or narration.
+
+## Recording checklist
+
+- Use a clean browser window at a stable desktop viewport and 100% zoom.
+- Preload `/`, `/explore`, `/demo#verification-console`, and the live Receipt.
+- Hide bookmarks, notifications, private tabs, tokens, and local file paths.
+- Keep mock labels visible whenever their records are on screen.
+- Never show prompts, private reasoning, signing keys, OAuth tokens, or database
+  credentials.
+- Record the qualifying Codex `/feedback` session ID and GPT-5.6 work separately.
+
+Never insert a model, session, reviewer, or verification claim that cannot be
+backed by the official Codex or Proofweave record.

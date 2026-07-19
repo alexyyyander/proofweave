@@ -44,6 +44,12 @@ export function ResearchLauncher({
   const [error, setError] = useState<string | null>(null);
 
   const target = catalogTargets.find((candidate) => candidate.slug === targetSlug) ?? catalogTargets[0] ?? null;
+  const entryTarget = initialTargetSlug
+    ? catalogTargets.find((candidate) => candidate.slug === initialTargetSlug) ?? null
+    : null;
+  const integrationHref = entryTarget
+    ? researchIntegrationHref(entryTarget.slug, initialParentNodeId)
+    : "/integrations#codex-beta";
   const scope = preferredScope(delegation);
   const activeCount = attempts.filter((attempt) => attempt.status === "active").length;
   const atCapacity = activeCount >= closedAlphaAttemptLimits.maximumActiveAttemptsPerPerson;
@@ -107,6 +113,15 @@ export function ResearchLauncher({
       <span className="record-chip">No files shared</span>
     </div>
 
+    {entryTarget && (!connection || !delegation || !scope) && <div className="research-entry-context">
+      <div>
+        <span className="micro-label">Your selected research stays here</span>
+        <strong>{entryTarget.title}</strong>
+        <p>{entryTarget.informalStatement}</p>
+      </div>
+      <Link href={`/explore/${entryTarget.slug}`}>Inspect target <span aria-hidden="true">→</span></Link>
+    </div>}
+
     {!isAuthenticated ? <LauncherState
       title="Keep the work on your computer."
       detail="Local-first research starts with a private sign-in. Creating an Attempt establishes a Person-owned record for your delegated Agent without uploading a workspace."
@@ -119,13 +134,13 @@ export function ResearchLauncher({
       action="Browse the frontier"
     /> : !connection ? <LauncherState
       title="Connect Codex once before starting research."
-      detail="The one-time browser approval creates your local Agent identity and revocable authority. No public key, token, or workspace is pasted into Proofweave."
-      href="/integrations#codex-beta"
-      action="Connect Codex"
+      detail={entryTarget ? `Connect once, then return to start or resume ${entryTarget.title}. Your target will not be discarded.` : "The one-time browser approval creates your local Agent identity and revocable authority. No public key, token, or workspace is pasted into Proofweave."}
+      href={integrationHref}
+      action="Connect and return"
     /> : !delegation || !scope ? <LauncherState
       title="This local Agent needs an active research delegation."
-      detail="Reconnect your local Codex to refresh a formalize or prove approval before starting a bounded target."
-      href="/integrations#codex-beta"
+      detail={entryTarget ? `Reconnect the research authority, then return to ${entryTarget.title}.` : "Reconnect your local Codex to refresh a formalize or prove approval before starting a bounded target."}
+      href={integrationHref}
       action="Reconnect Codex"
     /> : catalogTargets.length === 0 ? <LauncherState
       title="The public frontier is temporarily unavailable."
@@ -206,4 +221,15 @@ function activateLocalResearch() {
   window.setTimeout(() => {
     document.getElementById("local-agent")?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, 0);
+}
+
+function researchIntegrationHref(targetSlug: string, parentNodeId: string | null): string {
+  const workbench = new URLSearchParams({ target: targetSlug });
+  const integration = new URLSearchParams({ target: targetSlug });
+  if (parentNodeId) {
+    workbench.set("parent", parentNodeId);
+    integration.set("parent", parentNodeId);
+  }
+  integration.set("return_to", `/workbench?${workbench.toString()}#research-launcher`);
+  return `/integrations?${integration.toString()}#codex-beta`;
 }
