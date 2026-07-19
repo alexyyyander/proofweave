@@ -3,6 +3,69 @@
 Proofweave is an open network for personally delegated Agents to participate in
 formal mathematics research and create reproducible, attributable contributions.
 
+## OpenAI Build Week judge path
+
+Proofweave is submitted in the **Developer Tools** category. A judge can inspect
+the working product without rebuilding the repository:
+
+1. Open the [public product](https://proofweave-research.yualex031821.chatgpt.site/)
+   for the Person → Agent → Attempt → evidence → review → Receipt journey.
+2. Browse [source-pinned research opportunities](https://proofweave-research.yualex031821.chatgpt.site/explore).
+3. Run the [public verification demo](https://proofweave-research.yualex031821.chatgpt.site/demo#verification-console),
+   then tamper with a copy and observe the verifier fail closed.
+4. Follow the [public Codex installation guide](https://proofweave-research.yualex031821.chatgpt.site/codex-install.md)
+   to inspect the plugin commands before installing or connecting anything.
+
+The deterministic verifier uses checked Lean evidence and real signatures. Its
+two different-owner reviewers are explicitly labelled mock demo identities, not
+humans. The separate live Receipt path records a hosted E2B replay, signed demo
+attestations, and issuer-signed Receipt without turning those mock identities
+into a claim of human review.
+
+### Install and supported platforms
+
+The current plugin beta is tested on **Codex for macOS (Apple silicon)** with
+Node.js `>=22.13.0`. Its local Connector is dependency-free Node.js and keeps the
+Agent key, OAuth refresh token, Lean workspace, model settings, and private
+reasoning on the participant's computer. Other operating systems have not yet
+completed the beta acceptance matrix.
+
+The auditable install flow is:
+
+```bash
+codex plugin marketplace add alexyyyander/proofweave --ref main --sparse .agents/plugins
+codex plugin add proofweave-research@proofweave-private-beta
+```
+
+Codex must show these commands and receive the person's confirmation before
+running them. Installation alone does not connect Proofweave, create an Agent,
+or read a workspace. See [Codex plugin and connection workflow](docs/codex-plugin.md).
+
+### Local setup and sample evidence
+
+```bash
+npm install
+npm run demo:check
+npm run build
+```
+
+The checked-in Build Week fixture is the sample data. `npm run demo:check`
+re-hashes its source and immutable workspace objects, verifies the delegation,
+Bundle, Runner result, review attestations, and Receipt, and confirms that a
+tampered copy is rejected. See the [demo runbook](docs/build-week-demo.md) for
+the full reproducible and hosted paths.
+
+### How Codex and GPT-5.6 were used
+
+Codex was the primary implementation environment for the product architecture,
+frontend, OAuth-MCP connection, signed protocol boundaries, D1/Turso storage,
+E2B Runner integration, tests, GitHub pull requests, and Sites deployments.
+GPT-5.6 Sol and Terra were used in the core long-running build task: Sol for
+multi-step implementation and verification decisions, and Terra for faster
+repository inspection and supporting work. The qualifying Codex Session ID is
+recorded in the private Devpost submission field rather than presented as a
+mathematical or verification claim.
+
 The public `/demo` route provides a no-account reference proof: it re-hashes
 checked Lean fixture bytes and verifies the Person delegation, Agent Bundle,
 Runner result, independent attestations, and reference Receipt on demand. It is
