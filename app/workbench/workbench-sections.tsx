@@ -3,7 +3,7 @@ import { ProductStateBadge } from "../ui";
 import type { DelegationProfile } from "@/db/repositories/delegation";
 import type { McpAttempt, McpAttemptEvent, McpRunSummary } from "@/packages/domain/mcp";
 import type { ProvisionalContribution } from "@/db/repositories/provisional-contributions";
-import { activeLocalCodexInstallation, activeWorkDelegation, localAgentJourney } from "../lib/local-agent-journey";
+import { activeAttemptDelegation, activeLocalCodexInstallation, activeWorkDelegation, localAgentJourney } from "../lib/local-agent-journey";
 
 type GateState = "passed" | "waiting" | "required" | "failed";
 
@@ -31,11 +31,7 @@ export function FirstContributionPath({
   storageAvailable: boolean;
 }) {
   const agentConnected = Boolean(attempt
-    ? profile?.agentInstallations.some((installation) =>
-      installation.status === "active" &&
-      installation.agentId === attempt.agentId &&
-      installation.delegationCertificateId === attempt.delegationCertificateId,
-    )
+    ? activeLocalCodexInstallation(profile, activeAttemptDelegation(profile, attempt))
     : activeLocalCodexInstallation(profile));
   const attemptOpened = Boolean(attempt);
   const progressRecorded = Boolean(attempt?.events.some((event) => event.type === "agent_reported" || event.type === "bundle_staged"));
@@ -171,9 +167,9 @@ export function FocusAction({
   refreshedAt,
   handoffNotice,
   lifecycleNotice,
-  isClosingAttempt,
+  lifecycleAction,
   onCopyCodexBrief,
-  onCloseAttempt,
+  onLifecycleAction,
   isPageHeading = false,
 }: {
   profile: DelegationProfile | null;
@@ -186,9 +182,9 @@ export function FocusAction({
   refreshedAt: string | null;
   handoffNotice: string | null;
   lifecycleNotice: string | null;
-  isClosingAttempt: boolean;
+  lifecycleAction: "pause" | "resume" | "abandon" | null;
   onCopyCodexBrief: () => void;
-  onCloseAttempt: () => void;
+  onLifecycleAction: (action: "pause" | "resume" | "abandon") => void;
   isPageHeading?: boolean;
 }) {
   const journey = localAgentJourney({
@@ -205,9 +201,15 @@ export function FocusAction({
       work: "#local-agent",
     },
   });
-  const isHistoricalAttempt = Boolean(attempt && attempt.status !== "active");
+  const isPausedAttempt = attempt?.status === "paused";
+  const isHistoricalAttempt = Boolean(attempt && attempt.status !== "active" && !isPausedAttempt);
   const needsAttemptConnection = Boolean(attempt?.status === "active" && !canContinueLocally);
-  const action = isHistoricalAttempt ? {
+  const action = isPausedAttempt ? {
+    title: "This Attempt is paused, not lost.",
+    detail: "Its stable id, branch history, and evidence remain intact. Resume it under current same-Agent authority when you are ready.",
+    label: "Resume from Manage Attempt",
+    href: "#current-research",
+  } : isHistoricalAttempt ? {
     title: "This Attempt is retained in your research history.",
     detail: "Its recorded events and evidence remain inspectable. Open a new Attempt if you want your Agent to continue this target or explore another direction.",
     label: "Choose another target",
@@ -234,14 +236,20 @@ export function FocusAction({
       <span className="micro-label">Current focus</span>
       <FocusTitle>{focusTitle}</FocusTitle>
       <p>{focusDetail}</p>
+      {attempt && <code className="focus-attempt-id">Stable Attempt · {attempt.id}</code>}
       <div className="toolbar-links">
         {attempt && <Link className="text-link" href={`/explore/${attempt.problemSlug}`}>Inspect target <span>→</span></Link>}
-        {attempt?.status === "active" && <details className="attempt-lifecycle-menu">
+        {(attempt?.status === "active" || attempt?.status === "paused") && <details className="attempt-lifecycle-menu">
           <summary>Manage Attempt</summary>
           <div>
-            <strong>Close this Attempt?</strong>
-            <p>Future Agent progress will stop. Existing events, evidence, Runs, and reviews stay in History.</p>
-            <button type="button" disabled={isClosingAttempt} onClick={onCloseAttempt}>{isClosingAttempt ? "Closing…" : "Confirm close"}</button>
+            <strong>{attempt.status === "paused" ? "Paused research" : "Research controls"}</strong>
+            <p>{attempt.status === "paused" ? "Resume the same Attempt id, or abandon this direction permanently." : "Pause keeps this task resumable. Abandon ends future work but retains every record."}</p>
+            <div className="button-row">
+              {attempt.status === "active"
+                ? <button type="button" disabled={Boolean(lifecycleAction)} onClick={() => onLifecycleAction("pause")}>{lifecycleAction === "pause" ? "Pausing…" : "Pause Attempt"}</button>
+                : <button type="button" disabled={Boolean(lifecycleAction)} onClick={() => onLifecycleAction("resume")}>{lifecycleAction === "resume" ? "Resuming…" : "Resume Attempt"}</button>}
+              <button type="button" disabled={Boolean(lifecycleAction)} onClick={() => onLifecycleAction("abandon")}>{lifecycleAction === "abandon" ? "Abandoning…" : "Abandon permanently"}</button>
+            </div>
           </div>
         </details>}
       </div>
@@ -252,7 +260,9 @@ export function FocusAction({
       <strong>{action.title}</strong>
       <p id="next-action-help">{action.detail}</p>
       <div className="next-action-controls">
-        {!isHistoricalAttempt && !needsAttemptConnection && journey.stage === "work_locally"
+        {isPausedAttempt
+          ? <button className="button button-primary focus-primary" type="button" disabled={Boolean(lifecycleAction)} onClick={() => onLifecycleAction("resume")}>{lifecycleAction === "resume" ? "Resuming…" : "Resume same Attempt"}</button>
+          : !isHistoricalAttempt && !needsAttemptConnection && journey.stage === "work_locally"
           ? <button className="button button-primary focus-primary" type="button" onClick={onCopyCodexBrief}>{action.label}</button>
           : <Link className="button button-primary focus-primary" href={action.href}>{action.label}</Link>}
         {attempt && <Link className="workspace-pause-button" href="#attempt-activity">Inspect recorded activity</Link>}
@@ -392,10 +402,9 @@ export function ResearchWorkstation({ attempt, runs }: { attempt: McpAttempt | n
 export function SubmissionReadiness({ attempt, profile, runs, compact = false }: { attempt: McpAttempt | null; profile: DelegationProfile | null; runs: readonly McpRunSummary[]; compact?: boolean }) {
   const hasAgentProgress = Boolean(attempt?.events.some((event) => event.type === "agent_reported"));
   const bundleStaged = Boolean(attempt?.events.some((event) => event.type === "bundle_staged"));
-  const connectionActive = Boolean(attempt && profile?.agentInstallations.some((installation) =>
-    installation.status === "active" &&
-    installation.agentId === attempt.agentId &&
-    installation.delegationCertificateId === attempt.delegationCertificateId,
+  const connectionActive = Boolean(attempt && activeLocalCodexInstallation(
+    profile,
+    activeAttemptDelegation(profile, attempt),
   ));
   const attemptIsActive = attempt?.status === "active";
   const leanGate = leanGateFor(latestRunForAttempt(attempt, runs));
@@ -499,15 +508,25 @@ function AttemptEventRow({ event }: { event: McpAttemptEvent }) {
 }
 
 function eventLabel(type: McpAttemptEvent["type"]): string {
-  if (type === "attempt_created") return "Attempt opened";
-  if (type === "agent_reported") return "Agent-reported progress";
-  if (type === "attempt_cancelled") return "Attempt closed by owner";
-  return "Signed Artifact Bundle staged";
+  const labels: Record<McpAttemptEvent["type"], string> = {
+    attempt_created: "Attempt opened",
+    authority_renewed: "Agent authority renewed",
+    agent_reported: "Agent-reported progress",
+    checkpoint_published: "Research checkpoint published",
+    bundle_staged: "Signed Artifact Bundle staged",
+    attempt_paused: "Attempt paused by owner",
+    attempt_resumed: "Attempt resumed by owner",
+    attempt_submitted: "Attempt submitted",
+    attempt_completed: "Attempt completed",
+    attempt_abandoned: "Attempt abandoned by owner",
+    attempt_cancelled: "Attempt closed by owner",
+  };
+  return labels[type];
 }
 
 function eventStyle(type: McpAttemptEvent["type"]): "branch" | "evidence" | "check" {
-  if (type === "attempt_created") return "branch";
-  if (type === "agent_reported") return "evidence";
+  if (["attempt_created", "authority_renewed", "attempt_paused", "attempt_resumed"].includes(type)) return "branch";
+  if (["agent_reported", "checkpoint_published"].includes(type)) return "evidence";
   return "check";
 }
 

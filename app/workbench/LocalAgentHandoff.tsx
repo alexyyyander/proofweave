@@ -196,7 +196,7 @@ ${parentNodeId ? `- Selected parent checkpoint: ${parentNodeId}` : "- Selected p
 ## Start safely
 
 1. Call \`connection_status\`. If it reports disconnected, a different \`baseUrl\`, or \`reconnectRequired\`, stop and ask for my approval before calling \`connect_proofweave\` with role \`research\`.
-2. Once connected to \`https://proofweave-research.yualex031821.chatgpt.site\`, call \`continue_research\` with \`targetSlug: "${attempt.problemSlug}"\`. This is read-only recovery: if it reports \`research_connection_mismatch\`, stop and do not create a replacement Attempt.
+2. Once connected to \`https://proofweave-research.yualex031821.chatgpt.site\`, call \`continue_research\` with \`attemptId: "${attempt.id}"\` and \`targetSlug: "${attempt.problemSlug}"\`. The Attempt id is authoritative; the slug is a cross-check. This is read-only recovery: if it reports \`research_connection_mismatch\`, stop and do not create a replacement Attempt.
 3. Confirm that the resumed target is ${attempt.problemTitle}, then call \`inspect_research_graph\` for ${attempt.problemSlug} before working. If that operation is unavailable, report a plugin or gateway version mismatch and stop rather than guessing a branch.
 ${parentNodeId ? `4. Confirm that ${parentNodeId} is still visible on this exact problem revision, and treat it as the intended parent of the next public milestone.` : "4. Decide with me whether the next material milestone is an independent starting point or derives from one or more existing checkpoint nodes."}
 5. Work only in the Lean project and toolchain I control. Keep prompts, reasoning, credentials, and unrelated files local.

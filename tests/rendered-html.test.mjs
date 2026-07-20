@@ -933,6 +933,16 @@ test("serves the public research paths", async () => {
   assert.match(selectedWorkbenchHtml, /exact target and source revision stay selected after sign-in/i);
 });
 
+test("uses Explore as the stable parent for public research work", async () => {
+  for (const pathname of ["/receipts", "/reviews"]) {
+    const response = await render(pathname);
+    assert.equal(response.status, 200, `${pathname} should respond with 200`);
+    const html = await response.text();
+    assert.match(html, /class="breadcrumb"><a href="\/explore">Explore<\/a>/i);
+    assert.doesNotMatch(html, /<a href="\/explore">Research frontier<\/a>/i);
+  }
+});
+
 test("keeps the public directory separate from the personal workspace", async () => {
   const page = await render("/");
   assert.equal(page.status, 200);
@@ -1212,6 +1222,7 @@ test("keeps the public local-Agent pairing ingress bounded and rate limited", as
   const oversized = await request("203.0.113.11", JSON.stringify({ padding: "x".repeat(17_000) }));
   assert.equal(oversized.status, 413);
 
+  const pairingUrls = [];
   for (let index = 0; index < 8; index += 1) {
     const accepted = await request("203.0.113.12", JSON.stringify({ ...payload, oauthState: `public-pairing-state-${index}` }));
     assert.equal(accepted.status, 201);
@@ -1219,10 +1230,30 @@ test("keeps the public local-Agent pairing ingress bounded and rate limited", as
     const pairing = await accepted.json();
     assert.match(pairing.connectionUrl, /\/connect\/codex\?pairing=/);
     assert.equal(typeof pairing.clientId, "string");
+    pairingUrls.push(new URL(pairing.connectionUrl));
   }
   const limited = await request("203.0.113.12");
   assert.equal(limited.status, 429);
   assert.match(limited.headers.get("retry-after") ?? "", /^\d+$/);
+
+  const pendingPairing = pairingUrls[0];
+  const pendingStatus = await render(`/api/connect/sessions/${encodeURIComponent(pendingPairing.searchParams.get("pairing"))}?secret=${encodeURIComponent(pendingPairing.searchParams.get("secret"))}`);
+  assert.equal(pendingStatus.status, 200);
+  assert.equal((await pendingStatus.json()).pairing.status, "pending");
+  await database.prepare("UPDATE local_codex_pairing_sessions SET approved_at = ? WHERE id = ?")
+    .bind("2026-07-20T00:00:00Z", pendingPairing.searchParams.get("pairing"))
+    .run();
+  const approvedStatus = await render(`/api/connect/sessions/${encodeURIComponent(pendingPairing.searchParams.get("pairing"))}?secret=${encodeURIComponent(pendingPairing.searchParams.get("secret"))}`);
+  assert.equal(approvedStatus.status, 200);
+  assert.equal((await approvedStatus.json()).pairing.status, "approved");
+
+  const expiredPairing = pairingUrls[1];
+  await database.prepare("UPDATE local_codex_pairing_sessions SET expires_at = ? WHERE id = ?")
+    .bind("2020-01-01T00:00:00Z", expiredPairing.searchParams.get("pairing"))
+    .run();
+  const expiredStatus = await render(`/api/connect/sessions/${encodeURIComponent(expiredPairing.searchParams.get("pairing"))}?secret=${encodeURIComponent(expiredPairing.searchParams.get("secret"))}`);
+  assert.equal(expiredStatus.status, 200);
+  assert.equal((await expiredStatus.json()).pairing.status, "expired");
 
   const operationalRows = await database
     .prepare("SELECT bucket_key FROM remote_mcp_rate_limit_buckets WHERE bucket_key LIKE 'sha256:%'")
@@ -2469,6 +2500,40 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
   assert.match(evidenceWorkbenchHtml, /Lean kernel status · accepted/i);
   assert.match(evidenceWorkbenchHtml, /Result evidence recorded/i);
   assert.match(evidenceWorkbenchHtml, /Hash-bound Runner result recorded accepted kernel/i);
+
+  const pausedResponse = await render(`/api/me/attempts/${encodeURIComponent(ownerAttempt.id)}`, {
+    method: "PATCH",
+    headers: { ...authHeaders, "content-type": "application/json" },
+    body: JSON.stringify({ action: "pause" }),
+  });
+  assert.equal(pausedResponse.status, 200);
+  const pausedAttempt = (await pausedResponse.json()).attempt;
+  assert.equal(pausedAttempt.id, ownerAttempt.id);
+  assert.equal(pausedAttempt.status, "paused");
+  assert.equal(pausedAttempt.events.at(-1).type, "attempt_paused");
+
+  const resumedResponse = await render(`/api/me/attempts/${encodeURIComponent(ownerAttempt.id)}`, {
+    method: "PATCH",
+    headers: { ...authHeaders, "content-type": "application/json" },
+    body: JSON.stringify({ action: "resume" }),
+  });
+  assert.equal(resumedResponse.status, 200);
+  const resumedAttempt = (await resumedResponse.json()).attempt;
+  assert.equal(resumedAttempt.id, ownerAttempt.id);
+  assert.equal(resumedAttempt.status, "active");
+  assert.equal(resumedAttempt.events.at(-1).type, "attempt_resumed");
+
+  const abandonedResponse = await render(`/api/me/attempts/${encodeURIComponent(ownerAttempt.id)}`, {
+    method: "PATCH",
+    headers: { ...authHeaders, "content-type": "application/json" },
+    body: JSON.stringify({ action: "abandon" }),
+  });
+  assert.equal(abandonedResponse.status, 200);
+  const abandonedAttempt = (await abandonedResponse.json()).attempt;
+  assert.equal(abandonedAttempt.id, ownerAttempt.id);
+  assert.equal(abandonedAttempt.status, "abandoned");
+  assert.equal(abandonedAttempt.events.at(-1).type, "attempt_abandoned");
+  assert.equal(abandonedAttempt.events.some((event) => event.type === "bundle_staged"), true);
 
   const otherOwnerClose = await render(`/api/me/attempts/${encodeURIComponent(selectedTargetAttempt.id)}`, {
     method: "PATCH",

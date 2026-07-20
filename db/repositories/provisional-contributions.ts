@@ -88,7 +88,6 @@ class D1ProvisionalContributionRepository implements ProvisionalContributionRepo
            WHERE contribution.beneficiary_person_id = ?
              AND attempt.person_id = contribution.beneficiary_person_id
              AND attempt.agent_id = contribution.beneficiary_agent_id
-             AND attempt.delegation_certificate_id = contribution.beneficiary_delegation_certificate_id
              AND attempt.problem_revision_id = contribution.problem_revision_id
              AND certificate.owner_person_id = contribution.beneficiary_person_id
              AND certificate.agent_id = contribution.beneficiary_agent_id

@@ -599,11 +599,14 @@ export const agentInstallations = sqliteTable(
     createdAt,
   },
   (table) => [
-    uniqueIndex("agent_installations_agent_client_certificate_idx").on(
+    index("agent_installations_agent_client_certificate_idx").on(
       table.agentId,
       table.clientId,
       table.delegationCertificateId,
     ),
+    uniqueIndex("agent_installations_active_agent_client_certificate_idx")
+      .on(table.agentId, table.clientId, table.delegationCertificateId)
+      .where(sql`${table.status} = 'active' AND ${table.revokedAt} IS NULL`),
     index("agent_installations_person_client_idx").on(table.personId, table.clientId),
   ],
 );
@@ -823,12 +826,13 @@ export const agentAttempts = sqliteTable(
     }),
     agentLabel: text("agent_label").notNull(),
     status: text("status", {
-      enum: ["active", "submitted", "cancelled"],
+      enum: ["active", "paused", "submitted", "completed", "abandoned", "cancelled"],
     })
       .notNull()
       .default("active"),
     idempotencyKey: text("idempotency_key").notNull(),
     lastProgressPercent: integer("last_progress_percent"),
+    lifecycleVersion: integer("lifecycle_version").notNull().default(0),
     createdAt,
     updatedAt: text("updated_at").notNull(),
   },
@@ -852,7 +856,11 @@ export const agentAttemptEvents = sqliteTable(
       .references(() => agentAttempts.id, { onDelete: "cascade" }),
     sequence: integer("sequence").notNull(),
     eventType: text("event_type", {
-      enum: ["attempt_created", "agent_reported", "checkpoint_published", "bundle_staged", "attempt_cancelled"],
+      enum: [
+        "attempt_created", "authority_renewed", "agent_reported", "checkpoint_published",
+        "bundle_staged", "attempt_paused", "attempt_resumed", "attempt_submitted",
+        "attempt_completed", "attempt_abandoned", "attempt_cancelled",
+      ],
     }).notNull(),
     message: text("message").notNull(),
     progressPercent: integer("progress_percent"),
@@ -869,6 +877,37 @@ export const agentAttemptEvents = sqliteTable(
       table.attemptId,
       table.idempotencyKey,
     ),
+  ],
+);
+
+// Append-only authorization continuity. The certificate stored on an Attempt
+// is its creation provenance; this table records each later certificate that
+// legitimately continued it without rewriting that history.
+export const attemptAuthorityEvents = sqliteTable(
+  "attempt_authority_events",
+  {
+    id: text("id").primaryKey(),
+    attemptId: text("attempt_id")
+      .notNull()
+      .references(() => agentAttempts.id, { onDelete: "restrict" }),
+    delegationCertificateId: text("delegation_certificate_id")
+      .notNull()
+      .references(() => delegationCertificates.id, { onDelete: "restrict" }),
+    agentInstallationId: text("agent_installation_id")
+      .notNull()
+      .references(() => agentInstallations.id, { onDelete: "restrict" }),
+    eventType: text("event_type", { enum: ["authority_renewed"] })
+      .notNull()
+      .default("authority_renewed"),
+    recordedAt: text("recorded_at").notNull(),
+    createdAt,
+  },
+  (table) => [
+    uniqueIndex("attempt_authority_events_attempt_delegation_idx").on(
+      table.attemptId,
+      table.delegationCertificateId,
+    ),
+    index("attempt_authority_events_attempt_time_idx").on(table.attemptId, table.recordedAt),
   ],
 );
 
@@ -1267,6 +1306,12 @@ export const artifactBundles = sqliteTable(
     problemRevisionId: text("problem_revision_id")
       .notNull()
       .references(() => problemRevisions.id, { onDelete: "restrict" }),
+    // Evidence-time authority. This may differ from the Attempt's immutable
+    // creation certificate after a safe delegation renewal.
+    delegationCertificateId: text("delegation_certificate_id").references(
+      () => delegationCertificates.id,
+      { onDelete: "restrict" },
+    ),
     manifestHash: text("manifest_hash")
       .notNull()
       .unique()
@@ -1280,6 +1325,7 @@ export const artifactBundles = sqliteTable(
   (table) => [
     index("artifact_bundles_attempt_created_idx").on(table.attemptId, table.createdAt),
     index("artifact_bundles_revision_created_idx").on(table.problemRevisionId, table.createdAt),
+    index("artifact_bundles_delegation_idx").on(table.delegationCertificateId),
   ],
 );
 

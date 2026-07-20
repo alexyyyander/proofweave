@@ -55,10 +55,10 @@ export function ResearchLauncher({
   const atCapacity = activeCount >= closedAlphaAttemptLimits.maximumActiveAttemptsPerPerson;
   const existing = target && connection && delegation
     ? attempts.find((attempt) =>
-      attempt.status === "active" &&
+      (attempt.status === "active" || attempt.status === "paused") &&
       attempt.problemSlug === target.slug &&
       attempt.agentId === connection.agentId &&
-      attempt.delegationCertificateId === delegation.id,
+      attempt.delegationScope === scope,
     ) ?? null
     : null;
 

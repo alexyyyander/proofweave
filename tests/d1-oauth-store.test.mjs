@@ -24,6 +24,93 @@ after(async () => {
   await miniflare?.dispose();
 });
 
+test("D1 OAuth store preserves a revoked installation and creates a new active connection under the same valid delegation", async () => {
+  const store = new D1ProofweaveOAuthStore(database);
+  const now = "2026-07-20T12:00:00Z";
+  const rows = [
+    [
+      "INSERT INTO persons (id, identity_provider, provider_subject, display_name, updated_at) VALUES (?, ?, ?, ?, ?)",
+      ["person:oauth-reconnect", "proofweave", "oauth-reconnect", "OAuth Reconnect", now],
+    ],
+    [
+      "INSERT INTO person_keys (id, person_id, public_key, fingerprint) VALUES (?, ?, ?, ?)",
+      ["person-key:oauth-reconnect", "person:oauth-reconnect", "person-key-reconnect", "sha256:person-key-reconnect"],
+    ],
+    [
+      "INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint) VALUES (?, ?, ?, ?, ?)",
+      ["agent:oauth-reconnect", "person:oauth-reconnect", "Reconnect Agent", "agent-key-reconnect", "sha256:agent-key-reconnect"],
+    ],
+    [
+      `INSERT INTO delegation_certificates (
+        id, owner_person_id, agent_id, person_key_id, agent_public_key,
+        scopes_json, valid_from, valid_until, beneficiary_person_id,
+        protocol_version, payload_hash, canonical_payload, person_signature
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        "delegation:oauth-reconnect", "person:oauth-reconnect", "agent:oauth-reconnect",
+        "person-key:oauth-reconnect", "agent-key-reconnect", '["formalize","prove"]',
+        "2026-07-20T00:00:00Z", "2027-07-20T00:00:00Z", "person:oauth-reconnect",
+        "pw-delegation-v1", "sha256:delegation-reconnect", "{}", "signature",
+      ],
+    ],
+    [
+      "INSERT INTO oauth_clients (id, client_name, redirect_uris_json) VALUES (?, ?, ?)",
+      ["codex-reconnect", "Codex reconnect", '["https://codex.example.test/reconnect"]'],
+    ],
+  ];
+  for (const [statement, values] of rows) {
+    await database.prepare(statement).bind(...values).run();
+  }
+
+  const request = {
+    personId: "person:oauth-reconnect",
+    clientId: "codex-reconnect",
+    agentId: "agent:oauth-reconnect",
+    delegationCertificateId: "delegation:oauth-reconnect",
+  };
+  const first = await store.ensureAgentInstallation(request);
+  assert.ok(first?.id);
+
+  await database.batch([
+    database
+      .prepare(
+        "INSERT INTO agent_installation_revocations (id, agent_installation_id, owner_person_id, revoked_at, reason) VALUES (?, ?, ?, ?, ?)",
+      )
+      .bind(
+        "agent-installation-revocation:oauth-reconnect",
+        first.id,
+        request.personId,
+        now,
+        "Owner disconnected this OAuth session.",
+      ),
+    database
+      .prepare("UPDATE agent_installations SET status = 'revoked', revoked_at = ? WHERE id = ?")
+      .bind(now, first.id),
+  ]);
+
+  const second = await store.ensureAgentInstallation(request);
+  assert.ok(second?.id);
+  assert.notEqual(second.id, first.id);
+  const installations = await database
+    .prepare(
+      `SELECT id, status, revoked_at
+       FROM agent_installations
+       WHERE person_id = ? AND agent_id = ? AND client_id = ?
+       ORDER BY created_at, id`,
+    )
+    .bind(request.personId, request.agentId, request.clientId)
+    .all();
+  assert.equal(installations.results.length, 2);
+  assert.deepEqual(
+    installations.results.map((row) => row.status).sort(),
+    ["active", "revoked"],
+  );
+  assert.equal(
+    installations.results.find((row) => row.id === first.id)?.revoked_at,
+    now,
+  );
+});
+
 test("D1 OAuth store atomically consumes credentials and invalidates an installation after delegation revocation", async () => {
   const store = new D1ProofweaveOAuthStore(database);
   const now = "2026-07-13T12:00:00Z";

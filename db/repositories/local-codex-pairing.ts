@@ -49,6 +49,7 @@ export type LocalCodexPairingPreview = {
   connectionMode: LocalCodexConnectionMode;
   delegationScopes: readonly ("formalize" | "prove" | "review")[];
   expiresAt: string;
+  status: "pending" | "approved" | "expired";
 };
 
 export class LocalCodexPairingError extends Error {}
@@ -104,7 +105,7 @@ export async function inspectLocalCodexPairing(input: {
   pairingId: string;
   browserSecret: string;
 }): Promise<LocalCodexPairingPreview> {
-  const row = await requireLivePairing(input);
+  const row = await loadPairing(input);
   const connectionMode = connectionModeForStoredScopes(row.requested_scopes_json);
   return {
     id: row.id,
@@ -114,6 +115,7 @@ export async function inspectLocalCodexPairing(input: {
     connectionMode,
     delegationScopes: connectionPolicies[connectionMode].delegationScopes,
     expiresAt: row.expires_at,
+    status: row.approved_at ? "approved" : Date.parse(row.expires_at) <= Date.now() ? "expired" : "pending",
   };
 }
 
@@ -125,7 +127,7 @@ export async function approveLocalCodexPairing(input: {
   resource: string;
 }): Promise<{ redirectUrl: string; installationId: string }> {
   boundedString(input.delegationCertificateId, "delegationCertificateId", 240);
-  const row = await requireLivePairing({ pairingId: input.pairingId, browserSecret: input.browserSecret });
+  const row = await requirePendingPairing({ pairingId: input.pairingId, browserSecret: input.browserSecret });
   const connectionMode = connectionModeForStoredScopes(row.requested_scopes_json);
   const requestedScopes = connectionPolicies[connectionMode].oauthScopes;
   const store = new D1ProofweaveOAuthStore(getD1());
@@ -193,10 +195,9 @@ export async function approveLocalCodexPairing(input: {
   return { redirectUrl: redirect.toString(), installationId: installation.id };
 }
 
-async function requireLivePairing(input: { pairingId: string; browserSecret: string }): Promise<PairingRow> {
+async function loadPairing(input: { pairingId: string; browserSecret: string }): Promise<PairingRow> {
   boundedString(input.pairingId, "pairingId", 240);
   boundedString(input.browserSecret, "browserSecret", 256);
-  const now = new Date().toISOString();
   const row = await getD1()
     .prepare(
       `SELECT id, browser_secret_hash, agent_id, agent_label, agent_public_key,
@@ -204,12 +205,18 @@ async function requireLivePairing(input: { pairingId: string; browserSecret: str
               requested_scopes_json, created_at, expires_at, approved_at,
               person_id, delegation_certificate_id, agent_installation_id
        FROM local_codex_pairing_sessions
-       WHERE id = ? AND browser_secret_hash = ? AND expires_at > ?`,
+       WHERE id = ? AND browser_secret_hash = ?`,
     )
-    .bind(input.pairingId, await sha256(input.browserSecret), now)
+    .bind(input.pairingId, await sha256(input.browserSecret))
     .first<PairingRow>();
-  if (!row) throw new LocalCodexPairingError("This local connection link is invalid or has expired. Return to Codex and try again.");
+  if (!row) throw new LocalCodexPairingError("This local connection link is invalid. Return to Codex and try again.");
+  return row;
+}
+
+async function requirePendingPairing(input: { pairingId: string; browserSecret: string }): Promise<PairingRow> {
+  const row = await loadPairing(input);
   if (row.approved_at) throw new LocalCodexPairingError("This local connection was already approved. Return to Codex to continue.");
+  if (Date.parse(row.expires_at) <= Date.now()) throw new LocalCodexPairingError("This local connection link has expired. Return to Codex and create a new approval link.");
   return row;
 }
 

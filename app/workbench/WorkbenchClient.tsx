@@ -57,10 +57,10 @@ export function WorkbenchClient({
   const [refreshedAt, setRefreshedAt] = useState<string | null>(null);
   const [handoffNotice, setHandoffNotice] = useState<string | null>(null);
   const [lifecycleNotice, setLifecycleNotice] = useState<string | null>(null);
-  const [isClosingAttempt, setIsClosingAttempt] = useState(false);
+  const [lifecycleAction, setLifecycleAction] = useState<"pause" | "resume" | "abandon" | null>(null);
   const initialVisibleAttempt = selectVisibleAttempt(profile, initialAttempts, initialTargetSlug, initialAttemptId);
   const [selectedAttemptId, setSelectedAttemptId] = useState<string | null>(() => initialVisibleAttempt?.id ?? null);
-  const [attemptListView, setAttemptListView] = useState<"active" | "history">(() => initialVisibleAttempt?.status === "active" || !initialVisibleAttempt ? "active" : "history");
+  const [attemptListView, setAttemptListView] = useState<"active" | "history">(() => !initialVisibleAttempt || isLiveAttempt(initialVisibleAttempt) ? "active" : "history");
   const fallbackAttempt = selectVisibleAttempt(profile, attempts, initialTargetSlug, initialAttemptId);
   const activeAttempt = attempts.find((attempt) => attempt.id === selectedAttemptId) ?? fallbackAttempt;
   const connection = activeLocalCodexInstallation(profile);
@@ -122,7 +122,7 @@ export function WorkbenchClient({
     const selected = attempts.find((attempt) => attempt.id === attemptId);
     if (!selected) return;
     setSelectedAttemptId(attemptId);
-    setAttemptListView(selected.status === "active" ? "active" : "history");
+    setAttemptListView(isLiveAttempt(selected) ? "active" : "history");
     setHandoffNotice(null);
     setLifecycleNotice(null);
     if (typeof window === "undefined") return;
@@ -142,7 +142,7 @@ export function WorkbenchClient({
       const url = new URL(window.location.href);
       const restored = selectVisibleAttempt(profile, attempts, url.searchParams.get("target"), url.searchParams.get("attempt"));
       setSelectedAttemptId(restored?.id ?? null);
-      setAttemptListView(restored?.status === "active" || !restored ? "active" : "history");
+      setAttemptListView(!restored || isLiveAttempt(restored) ? "active" : "history");
     };
     window.addEventListener("popstate", restoreAttemptFromUrl);
     return () => window.removeEventListener("popstate", restoreAttemptFromUrl);
@@ -193,30 +193,34 @@ export function WorkbenchClient({
     }
   };
 
-  const closeAttempt = async () => {
-    if (!activeAttempt || activeAttempt.status !== "active" || isClosingAttempt) return;
+  const updateAttemptLifecycle = async (action: "pause" | "resume" | "abandon") => {
+    if (!activeAttempt || lifecycleAction) return;
     const attemptId = activeAttempt.id;
-    setIsClosingAttempt(true);
+    setLifecycleAction(action);
     setLifecycleNotice(null);
     try {
       const response = await fetch(`/api/me/attempts/${encodeURIComponent(attemptId)}`, {
         method: "PATCH",
         headers: { accept: "application/json", "content-type": "application/json" },
-        body: JSON.stringify({ action: "cancel" }),
+        body: JSON.stringify({ action }),
       });
       const payload = await response.json().catch(() => null);
       if (!response.ok || !payload?.attempt) {
-        throw new Error(payload?.error?.message ?? "Proofweave could not close this Attempt.");
+        throw new Error(payload?.error?.message ?? "Proofweave could not update this Attempt.");
       }
-      const closed = payload.attempt as McpAttempt;
-      setAttempts((current) => current.map((attempt) => attempt.id === closed.id ? closed : attempt));
-      setAttemptListView("history");
-      setLifecycleNotice("Attempt closed and moved to History. Its events, evidence, Runs, and reviews remain available.");
+      const updated = payload.attempt as McpAttempt;
+      setAttempts((current) => current.map((attempt) => attempt.id === updated.id ? updated : attempt));
+      setAttemptListView(updated.status === "active" || updated.status === "paused" ? "active" : "history");
+      setLifecycleNotice(action === "pause"
+        ? "Attempt paused. Its id and records remain stable; new Agent writes are blocked until you resume it."
+        : action === "resume"
+          ? "Attempt resumed under the same Agent identity and current delegated authority."
+          : "Attempt abandoned and moved to History. Its events, evidence, Runs, and reviews remain available.");
       setRefreshedAt(new Date().toISOString());
     } catch (error) {
-      setLifecycleNotice(error instanceof Error ? error.message : "Proofweave could not close this Attempt.");
+      setLifecycleNotice(error instanceof Error ? error.message : "Proofweave could not update this Attempt.");
     } finally {
-      setIsClosingAttempt(false);
+      setLifecycleAction(null);
     }
   };
 
@@ -226,7 +230,7 @@ export function WorkbenchClient({
     <FirstContributionPath attempt={activeAttempt} profile={profile} runs={runs} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} />
     <div className="attempt-detail-layout">
       <section className="workspace-task-canvas" aria-label="Current research work">
-        <FocusAction profile={profile} attempt={activeAttempt} canContinueLocally={canContinueLocally} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} refreshError={refreshError} refreshedAt={refreshedAt} handoffNotice={handoffNotice} lifecycleNotice={lifecycleNotice} isClosingAttempt={isClosingAttempt} onCopyCodexBrief={() => { void copyCodexBrief(); }} onCloseAttempt={() => { void closeAttempt(); }} isPageHeading />
+        <FocusAction profile={profile} attempt={activeAttempt} canContinueLocally={canContinueLocally} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} refreshError={refreshError} refreshedAt={refreshedAt} handoffNotice={handoffNotice} lifecycleNotice={lifecycleNotice} lifecycleAction={lifecycleAction} onCopyCodexBrief={() => { void copyCodexBrief(); }} onLifecycleAction={(action) => { void updateAttemptLifecycle(action); }} isPageHeading />
         {canContinueLocally && <LocalAgentHandoff profile={profile} attempt={activeAttempt} initialParentNodeId={initialParentNodeId} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} isRefreshing={isRefreshing} onRefresh={() => { void refreshAttempts(); }} />}
         <ResearchWorkstation attempt={activeAttempt} runs={runs} />
       </section>
@@ -245,7 +249,7 @@ export function WorkbenchClient({
     <div className={`workspace-shell mode-${mode}`}>
       <WorkspaceSidebar attempts={attempts} selectedAttemptId={activeAttempt?.id ?? null} onSelectAttempt={selectAttempt} view={attemptListView} onViewChange={setAttemptListView} reviewCount={reviewCount} evidenceCount={evidenceCount} />
       <section className="workspace-task-canvas" aria-label="Current research work">
-        <FocusAction profile={profile} attempt={activeAttempt} canContinueLocally={canContinueLocally} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} refreshError={refreshError} refreshedAt={refreshedAt} handoffNotice={handoffNotice} lifecycleNotice={lifecycleNotice} isClosingAttempt={isClosingAttempt} onCopyCodexBrief={() => { void copyCodexBrief(); }} onCloseAttempt={() => { void closeAttempt(); }} />
+        <FocusAction profile={profile} attempt={activeAttempt} canContinueLocally={canContinueLocally} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} refreshError={refreshError} refreshedAt={refreshedAt} handoffNotice={handoffNotice} lifecycleNotice={lifecycleNotice} lifecycleAction={lifecycleAction} onCopyCodexBrief={() => { void copyCodexBrief(); }} onLifecycleAction={(action) => { void updateAttemptLifecycle(action); }} />
         {!showActiveWorkspace && <ResearchLauncher profile={profile} attempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={initialTargetSlug} initialParentNodeId={initialParentNodeId} onAttemptReady={onAttemptReady} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} />}
         {showActiveWorkspace && <>
           {canContinueLocally && <LocalAgentHandoff profile={profile} attempt={activeAttempt} initialParentNodeId={initialParentNodeId} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} isRefreshing={isRefreshing} onRefresh={() => { void refreshAttempts(); }} />}
@@ -286,12 +290,16 @@ function selectVisibleAttempt(
     ? attempts.find((attempt) => attempt.id === attemptId) ?? null
     : null;
   const requested = targetSlug
-    ? attempts.find((attempt) => attempt.status === "active" && attempt.problemSlug === targetSlug) ?? null
+    ? attempts.find((attempt) => isLiveAttempt(attempt) && attempt.problemSlug === targetSlug) ?? null
     : null;
   return requestedById
     ?? requested
     ?? activeLocalAgentAttempt(profile, attempts)
-    ?? attempts.find((attempt) => attempt.status === "active")
+    ?? attempts.find(isLiveAttempt)
     ?? attempts[0]
     ?? null;
+}
+
+function isLiveAttempt(attempt: McpAttempt): boolean {
+  return attempt.status === "active" || attempt.status === "paused";
 }

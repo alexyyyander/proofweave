@@ -22,15 +22,16 @@ event was recorded; do not invent an HTTP request, bearer token, or upload.
 1. When the owner has chosen a target and asked to start, use
    `begin_research` with that exact target slug (and `formalize` unless they
    explicitly choose `prove`). It reads the pinned target and resumes its
-   existing active Attempt or creates one bounded Attempt. Do not ask the owner
+   existing active or paused Attempt, or creates one bounded Attempt. Do not ask the owner
    for an Attempt ID, certificate ID, or idempotency key. It does not read
    local files, record progress, upload evidence, run Lean, or create credit.
 2. When the owner says “Continue my Proofweave research”, use
-   `continue_research`. A website handoff may supply its exact target slug; use
-   that slug so the read-only recovery either resumes the matching active
-   target or reports a connection mismatch without creating a duplicate
-   Attempt. Without a handoff slug, if more than one target is active, ask the
-   owner to choose from its returned short list rather than guessing.
+   `continue_research`. A website handoff should supply its durable Attempt id
+   and target slug. Use the Attempt id as identity and the slug as a cross-check
+   so read-only recovery either resumes that exact active Attempt or reports a
+   paused, terminal, or connection-mismatch state without creating a duplicate.
+   Without a handoff id, if more than one target is live, ask the owner to
+   choose from its returned short list rather than guessing.
 3. If `begin_research` is unavailable, inspect the pinned target from
    `list_frontier_problems` and `inspect_problem`, then use `list_attempts`
    and `create_attempt` only as the advanced fallback. Record the revision,

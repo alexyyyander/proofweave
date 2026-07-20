@@ -34,7 +34,7 @@ export function deriveWorkspaceMode({
 }): WorkspaceMode {
   if (!isAuthenticated) return "signed-out";
   if (!storageAvailable) return "unavailable";
-  if (attempt && (attempt.status !== "active" || attempt.events.some((event) => event.type === "bundle_staged"))) return "evidence-review";
+  if (attempt && (!isLiveAttempt(attempt) || attempt.events.some((event) => event.type === "bundle_staged"))) return "evidence-review";
   if (attempt) return "active-research";
   if (!isAgentConnected) return "connect-agent";
   return "choose-research";
@@ -63,8 +63,8 @@ export function WorkspaceTopbar({
   refreshedAt: string | null;
   onRefresh: () => void;
 }) {
-  const activeAttempts = attempts.filter((attempt) => attempt.status === "active");
-  const historicalAttempts = attempts.filter((attempt) => attempt.status !== "active");
+  const activeAttempts = attempts.filter(isLiveAttempt);
+  const historicalAttempts = attempts.filter((attempt) => !isLiveAttempt(attempt));
   return <header className="workspace-topbar">
     <div className="workspace-topbar-title">
       <span className="micro-label">Personal workspace</span>
@@ -111,8 +111,8 @@ export function WorkspaceSidebar({
   reviewCount: number | null;
   evidenceCount: number | null;
 }) {
-  const activeAttempts = attempts.filter((attempt) => attempt.status === "active");
-  const historicalAttempts = attempts.filter((attempt) => attempt.status !== "active");
+  const activeAttempts = attempts.filter(isLiveAttempt);
+  const historicalAttempts = attempts.filter((attempt) => !isLiveAttempt(attempt));
   const visibleAttempts = view === "active" ? activeAttempts : historicalAttempts;
 
   return <aside className="workspace-sidebar" aria-label="Personal workspace navigation">
@@ -133,7 +133,7 @@ export function WorkspaceSidebar({
         </li>)}</ol>}
       <Link className="workspace-choose-link" href="/explore">Choose research <span>→</span></Link>
     </section>
-    <PersonalWorkspaceNavigation active="workbench" activeAttemptCount={attempts.filter((attempt) => attempt.status === "active").length} activeReviewCount={reviewCount} evidenceCount={evidenceCount} />
+    <PersonalWorkspaceNavigation active="workbench" activeAttemptCount={attempts.filter(isLiveAttempt).length} activeReviewCount={reviewCount} evidenceCount={evidenceCount} />
   </aside>;
 }
 
@@ -167,6 +167,12 @@ function formatTimestamp(value: string): string {
 
 function attemptStatusLabel(status: McpAttempt["status"]): string {
   if (status === "active") return "Active";
+  if (status === "paused") return "Paused";
   if (status === "submitted") return "Submitted";
-  return "Closed";
+  if (status === "completed") return "Completed";
+  return "Abandoned";
+}
+
+function isLiveAttempt(attempt: McpAttempt): boolean {
+  return attempt.status === "active" || attempt.status === "paused";
 }

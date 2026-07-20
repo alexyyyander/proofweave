@@ -19,10 +19,19 @@ export function deriveAttemptPresentation({
   runs: readonly McpRunSummary[];
   agentConnected: boolean;
 }): AttemptPresentation {
+  if (attempt.status === "paused") {
+    return {
+      bucket: "needs-attention",
+      label: "Paused",
+      tone: "attention",
+      nextAction: "Resume the same Attempt",
+      detail: "The stable task and evidence are retained; new Agent writes are currently blocked.",
+    };
+  }
   if (attempt.status !== "active") {
     return {
       bucket: "history",
-      label: attempt.status === "submitted" ? "Submitted" : "Closed",
+      label: attempt.status === "submitted" ? "Submitted" : attempt.status === "completed" ? "Completed" : "Abandoned",
       tone: "complete",
       nextAction: "Inspect retained records",
       detail: "No future Agent progress is accepted for this Attempt.",

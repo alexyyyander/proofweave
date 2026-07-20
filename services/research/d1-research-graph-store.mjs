@@ -53,8 +53,7 @@ export class D1ResearchGraphStore {
       normalized.problemRevisionId !== attempt.problemRevisionId ||
       normalized.agentEvent.agentId !== installation.agentId ||
       normalized.agentEvent.agentPublicKey !== installation.agentPublicKey ||
-      attempt.agentId !== installation.agentId ||
-      attempt.delegationCertificateId !== installation.delegationCertificateId
+      attempt.agentId !== installation.agentId
     ) {
       throw new ResearchGraphValidationError("Research checkpoint does not match the authorized Agent, Attempt, or pinned target.");
     }

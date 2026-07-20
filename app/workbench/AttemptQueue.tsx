@@ -105,7 +105,7 @@ export function AttemptQueue({
       <Link className="quiet-action" href="/integrations#codex-beta">Install or connect Codex</Link>
     </div> : eligibleDelegations.length === 0 ? <div className="attempt-queue-empty">
       <strong>Your local connection needs an active work delegation.</strong>
-      <p>Reconnect the local Agent to create a fresh formalize or prove approval before opening a durable Attempt.</p>
+      <p>Reconnect the same local Agent. Proofweave reuses compatible authority when possible, or records renewed authority without replacing any stable Attempt id.</p>
       <Link className="quiet-action" href="/integrations#codex-beta">Reconnect local Codex</Link>
     </div> : <div className="attempt-queue-grid">
       <form className="attempt-open-form" onSubmit={(event) => { event.preventDefault(); void openAttempt(); }}>

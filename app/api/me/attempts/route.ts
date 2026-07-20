@@ -81,10 +81,10 @@ export async function POST(request: Request) {
 
     const mcp = getMcpRepository();
     const existing = (await mcp.listAttempts(profile.person.id)).find((attempt) =>
-      attempt.status === "active" &&
+      (attempt.status === "active" || attempt.status === "paused") &&
       attempt.problemRevisionId === problem.id &&
       attempt.agentId === agent.id &&
-      attempt.delegationCertificateId === delegation.id,
+      attempt.delegationScope === delegationScope,
     );
     if (existing) {
       return Response.json({

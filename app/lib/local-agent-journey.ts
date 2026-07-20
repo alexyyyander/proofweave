@@ -44,12 +44,34 @@ export function activeAttemptDelegation(
   attempt: McpAttempt | null,
   now = Date.now(),
 ): StoredDelegation | null {
-  if (!profile || !attempt?.delegationCertificateId || !attempt.agentId) return null;
+  if (!profile || !attempt?.delegationScope || !attempt.agentId) return null;
   return profile.delegations.find((delegation) =>
-    delegation.id === attempt.delegationCertificateId &&
     delegation.agentId === attempt.agentId &&
+    delegation.scopes.includes(attempt.delegationScope!) &&
     isActiveWorkDelegation(profile, delegation, now),
   ) ?? null;
+}
+
+export function reusableAgentDelegation(
+  profile: DelegationProfile,
+  input: Readonly<{
+    agentId: string;
+    agentPublicKey: string;
+    requiredScopes: readonly string[];
+  }>,
+  now = Date.now(),
+): StoredDelegation | null {
+  return profile.delegations
+    .filter((delegation) =>
+      delegation.agentId === input.agentId &&
+      delegation.agentPublicKey === input.agentPublicKey &&
+      input.requiredScopes.every((scope) => delegation.scopes.includes(scope)) &&
+      delegation.revokedAt === null &&
+      delegation.signerKeyRevokedAt === null &&
+      Date.parse(delegation.validFrom) <= now &&
+      now < Date.parse(delegation.validUntil),
+    )
+    .sort((left, right) => Date.parse(left.createdAt) - Date.parse(right.createdAt))[0] ?? null;
 }
 
 function isActiveWorkDelegation(
@@ -90,9 +112,13 @@ export function activeLocalAgentAttempt(
 ): McpAttempt | null {
   if (!installation) return null;
   return attempts.find((attempt) =>
-    attempt.status === "active" &&
+    (attempt.status === "active" || attempt.status === "paused") &&
     attempt.agentId === installation.agentId &&
-    attempt.delegationCertificateId === installation.delegationCertificateId,
+    profile?.delegations.some((delegation) =>
+      delegation.id === installation.delegationCertificateId &&
+      delegation.agentId === attempt.agentId &&
+      Boolean(attempt.delegationScope && delegation.scopes.includes(attempt.delegationScope)),
+    ),
   ) ?? null;
 }
 
@@ -112,7 +138,7 @@ export function localAgentJourney(input: Readonly<{
   if (!installation) {
     const hasOldConnection = input.profile?.agentInstallations.some((candidate) => candidate.status === "active") ?? false;
     return hasOldConnection
-      ? state("renew_connection", "Reconnect your local Codex before continuing.", "Your previous connection no longer has an active formalize or prove delegation. Reconnect to create a fresh, revocable approval.", "Reconnect local Codex", input.links.connect, delegation, null)
+      ? state("renew_connection", "Reconnect your local Codex before continuing.", "Proofweave will reuse compatible same-Agent authority when it is still valid, or issue a new revocable delegation without replacing stable Attempt ids.", "Reconnect local Codex", input.links.connect, delegation, null)
       : state("connect_agent", "Connect your local Codex once.", "The browser approval creates the local Agent identity and a short, revocable delegation. You do not need to paste a public key or token.", "Install or connect Codex", input.links.connect, delegation, null);
   }
   if (input.hasAttempt) return state("work_locally", "Continue with your approved local Agent.", "Your Lean project and private reasoning remain on your computer. The copied brief asks Codex to verify its saved Connector address before resuming this target or recording selected progress.", "Continue local research", input.links.work, delegation, installation);

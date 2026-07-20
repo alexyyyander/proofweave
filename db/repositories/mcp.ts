@@ -154,6 +154,11 @@ export interface McpRepository {
     input: { attemptId: string; message: string; progressPercent: number; idempotencyKey: string },
   ): Promise<IdempotentResult<McpAttemptEvent> | null>;
   cancelAttempt(personId: string, attemptId: string): Promise<Readonly<{ value: McpAttempt; changed: boolean }> | null>;
+  transitionAttempt(
+    personId: string,
+    attemptId: string,
+    action: "pause" | "resume" | "abandon",
+  ): Promise<Readonly<{ value: McpAttempt; changed: boolean }> | null>;
   findAttempt(personId: string, attemptId: string): Promise<McpAttempt | null>;
   listAttempts(personId: string): Promise<McpAttempt[]>;
   listRunSummaries(personId: string): Promise<readonly McpRunSummary[]>;
@@ -404,7 +409,7 @@ class D1McpRepository implements McpRepository {
     const [updated] = await database.batch([
       database.prepare(
         `UPDATE agent_attempts
-         SET status = 'cancelled', updated_at = ?
+         SET status = 'cancelled', lifecycle_version = lifecycle_version + 1, updated_at = ?
          WHERE id = ? AND person_id = ? AND status = 'active'`,
       )
       .bind(now, attemptId, personId),
@@ -443,6 +448,85 @@ class D1McpRepository implements McpRepository {
     const cancelled = await this.findAttempt(personId, attemptId);
     if (!cancelled) throw new Error("Closed Attempt record became unavailable.");
     return { value: cancelled, changed: true };
+  }
+
+  async transitionAttempt(
+    personId: string,
+    attemptId: string,
+    action: "pause" | "resume" | "abandon",
+  ): Promise<Readonly<{ value: McpAttempt; changed: boolean }> | null> {
+    const current = await this.findAttempt(personId, attemptId);
+    if (!current) return null;
+    const transition = attemptTransition(action);
+    if (current.status === transition.nextStatus) return { value: current, changed: false };
+    if (!transition.fromStatuses.includes(current.status)) {
+      throw new McpAttemptNotActiveError(transition.invalidMessage);
+    }
+
+    const now = new Date().toISOString();
+    const database = getD1();
+    const lifecycle = await database
+      .prepare("SELECT lifecycle_version FROM agent_attempts WHERE id = ? AND person_id = ?")
+      .bind(attemptId, personId)
+      .first<{ lifecycle_version: number }>();
+    if (!lifecycle) return null;
+    const expectedVersion = Number(lifecycle.lifecycle_version);
+    const nextVersion = expectedVersion + 1;
+    const update = action === "resume"
+      ? database.prepare(
+        `UPDATE agent_attempts
+         SET status = 'active', lifecycle_version = ?, updated_at = ?
+         WHERE id = ? AND person_id = ? AND status = 'paused' AND lifecycle_version = ?
+           AND (
+             SELECT COUNT(*) FROM agent_attempts
+             WHERE person_id = ? AND status = 'active'
+           ) < ?`,
+      ).bind(nextVersion, now, attemptId, personId, expectedVersion, personId, closedAlphaAttemptLimits.maximumActiveAttemptsPerPerson)
+      : database.prepare(
+        `UPDATE agent_attempts
+         SET status = ?, lifecycle_version = ?, updated_at = ?
+         WHERE id = ? AND person_id = ? AND lifecycle_version = ?
+           AND status IN (${transition.fromStatuses.map(() => "?").join(", ")})`,
+      ).bind(transition.nextStatus, nextVersion, now, attemptId, personId, expectedVersion, ...transition.fromStatuses);
+    const eventId = `attempt-lifecycle:${attemptId}:${nextVersion}`;
+    const [updated] = await database.batch([
+      update,
+      database.prepare(
+        `INSERT OR IGNORE INTO agent_attempt_events (
+          id, attempt_id, sequence, event_type, message, idempotency_key, occurred_at
+        )
+        SELECT ?, ?, (
+          SELECT COALESCE(MAX(sequence), 0) + 1
+          FROM agent_attempt_events
+          WHERE attempt_id = ?
+        ), ?, ?, ?, ?
+        FROM agent_attempts
+        WHERE id = ? AND person_id = ? AND status = ? AND lifecycle_version = ?`,
+      ).bind(
+        eventId,
+        attemptId,
+        attemptId,
+        transition.eventType,
+        transition.message,
+        eventId,
+        now,
+        attemptId,
+        personId,
+        transition.nextStatus,
+        nextVersion,
+      ),
+    ]);
+    if (updated.meta.changes !== 1) {
+      const latest = await this.findAttempt(personId, attemptId);
+      if (!latest) return null;
+      if (latest.status === transition.nextStatus) return { value: latest, changed: false };
+      if (action === "resume" && latest.status === "paused") throw new McpAttemptQuotaExceededError();
+      throw new McpAttemptNotActiveError(transition.invalidMessage);
+    }
+
+    const value = await this.findAttempt(personId, attemptId);
+    if (!value) throw new Error("Attempt lifecycle update became unavailable.");
+    return { value, changed: true };
   }
 
   async findAttempt(personId: string, attemptId: string): Promise<McpAttempt | null> {
@@ -561,6 +645,30 @@ class D1McpRepository implements McpRepository {
 
 export function getMcpRepository(): McpRepository {
   return new D1McpRepository();
+}
+
+function attemptTransition(action: "pause" | "resume" | "abandon") {
+  if (action === "pause") return {
+    fromStatuses: ["active"] as McpAttemptStatus[],
+    nextStatus: "paused" as const,
+    eventType: "attempt_paused" as const,
+    invalidMessage: "Only an active Attempt can be paused.",
+    message: "Attempt paused by its owner. New Agent progress and evidence are blocked until the same Agent resumes under active delegated authority.",
+  };
+  if (action === "resume") return {
+    fromStatuses: ["paused"] as McpAttemptStatus[],
+    nextStatus: "active" as const,
+    eventType: "attempt_resumed" as const,
+    invalidMessage: "Only a paused Attempt can be resumed.",
+    message: "Attempt resumed by its owner. The stable Attempt id and all prior evidence remain unchanged.",
+  };
+  return {
+    fromStatuses: ["active", "paused"] as McpAttemptStatus[],
+    nextStatus: "abandoned" as const,
+    eventType: "attempt_abandoned" as const,
+    invalidMessage: "Only an active or paused Attempt can be abandoned.",
+    message: "Attempt abandoned by its owner. Existing events, evidence, Runs, and reviews remain inspectable; no future Agent work is accepted under this Attempt id.",
+  };
 }
 
 function toEvent(row: EventRow): McpAttemptEvent {

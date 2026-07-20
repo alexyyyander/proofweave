@@ -11,7 +11,7 @@ export default async function ProposePage() {
   return <div className="site-shell app-shell">
     <Header active="explore" />
     <main id="main-content" tabIndex={-1} className="page-main proposal-main">
-      <div className="breadcrumb"><Link href="/explore">Research frontier</Link><span> / </span><span>Propose a target</span></div>
+      <div className="breadcrumb"><Link href="/explore">Explore</Link><span> / </span><span>Propose a target</span></div>
       <section className="page-hero proposal-hero">
         <p className="eyebrow">Catalog intake · attributed proposal</p>
         <h1>Bring a mathematical question into Proofweave.</h1>

@@ -27,7 +27,7 @@ export default async function ReviewsPage() {
   return <div className="site-shell app-shell">
     <Header active="review" />
     <main id="main-content" tabIndex={-1} className="page-main review-main">
-      <div className="breadcrumb"><Link href="/explore">Research frontier</Link><span> / </span><span>Verification market</span></div>
+      <div className="breadcrumb"><Link href="/explore">Explore</Link><span> / </span><span>Verification market</span></div>
       <section className="review-heading"><div><p className="eyebrow">Verification market · public work board</p><h1>Verify evidence. Become eligible for review credit.</h1><p>Choose a claim pinned to another Person’s staged Bundle. Your review Agent performs the check and signs the decision; eligibility becomes settled credit only if the target later closes through a valid Receipt.</p></div><span className="record-chip">{result.jobs.length} open</span></section>
       <nav className="public-section-nav" aria-label="Verification page">
         <a href="#open-review-work"><span>Open work</span><b>{result.jobs.length}</b></a>
@@ -77,7 +77,7 @@ function ReviewMessage({ unavailable }: { unavailable?: boolean }) {
   return <div className="site-shell app-shell">
     <Header active="review" />
     <main id="main-content" tabIndex={-1} className="page-main review-main">
-      <div className="breadcrumb"><Link href="/how-it-works">Protocol</Link><span> / </span><span>Independent review</span></div>
+      <div className="breadcrumb"><Link href="/explore">Explore</Link><span> / </span><span>Verification market</span></div>
       <section className="review-heading"><div><p className="eyebrow">Verification queue</p><h1>{title}</h1><p>{detail}</p></div><span className="record-chip">{unavailable ? "Unavailable" : "Personal"}</span></section>
     </main>
     <Footer />

@@ -196,7 +196,8 @@ export class D1RemoteMcpGatewayStore {
     if (attempt.delegationScope !== "formalize" && attempt.delegationScope !== "prove") {
       throw new GatewayStoreValidationError("Attempt does not have delegated formalize or prove authority.");
     }
-    await this.requireInstallation(principal, attempt.delegationScope);
+    const currentAuthority = await this.requireInstallation(principal, attempt.delegationScope);
+    await this.recordAttemptAuthorityRenewal(principal, currentAuthority, attempt);
     const existing = await this.findEvent(input.attemptId, input.idempotencyKey);
     if (existing) {
       if (existing.message !== input.message || existing.progressPercent !== input.progressPercent) {
@@ -248,7 +249,8 @@ export class D1RemoteMcpGatewayStore {
     if (attempt.delegationScope !== "formalize" && attempt.delegationScope !== "prove") {
       throw new GatewayStoreValidationError("Attempt does not have delegated formalize or prove authority.");
     }
-    await this.requireInstallation(principal, attempt.delegationScope);
+    const currentAuthority = await this.requireInstallation(principal, attempt.delegationScope);
+    await this.recordAttemptAuthorityRenewal(principal, currentAuthority, attempt);
     try {
       const published = await this.researchGraphStore.publishCheckpoint({
         principal,
@@ -292,14 +294,12 @@ export class D1RemoteMcpGatewayStore {
       .prepare(
         `${attemptSelect}
          WHERE attempt.person_id = ? AND attempt.agent_id = ?
-           AND attempt.delegation_certificate_id = ?
          ORDER BY attempt.updated_at DESC, attempt.created_at DESC
          LIMIT ?`,
       )
       .bind(
         principal.personId,
         installation.agentId,
-        installation.delegationCertificateId,
         limit,
       )
       .all();
@@ -425,7 +425,8 @@ export class D1RemoteMcpGatewayStore {
     requireArtifactObjectInput(input);
     const installation = await this.requireInstallation(principal);
     const attempt = await this.requireArtifactAttempt(principal, installation, input.attemptId);
-    await this.requireInstallation(principal, attempt.delegationScope);
+    const currentAuthority = await this.requireInstallation(principal, attempt.delegationScope);
+    await this.recordAttemptAuthorityRenewal(principal, currentAuthority, attempt);
     const object = await this.requireArtifactStore().putObject({
       bytes: decodeBase64Url(input.contentBase64Url),
       filename: input.filename,
@@ -443,8 +444,13 @@ export class D1RemoteMcpGatewayStore {
     requireArtifactBundleInput(bundle);
     const installation = await this.requireInstallation(principal);
     const attempt = await this.requireArtifactAttempt(principal, installation, bundle.attemptId);
-    await this.requireInstallation(principal, attempt.delegationScope);
-    const staged = await this.requireArtifactStore().stageBundle(bundle);
+    const currentAuthority = await this.requireInstallation(principal, attempt.delegationScope);
+    await this.recordAttemptAuthorityRenewal(principal, currentAuthority, attempt);
+    const staged = await this.requireArtifactStore().stageBundle(bundle, {
+      personId: principal.personId,
+      agentId: currentAuthority.agentId,
+      delegationCertificateId: currentAuthority.delegationCertificateId,
+    });
     const verificationMarket = await this.verificationMarketStore.publishJobsForBundle(
       staged.bundle.manifestHash,
       new Date().toISOString(),
@@ -462,7 +468,8 @@ export class D1RemoteMcpGatewayStore {
     requireRunnerRequestInput(input);
     const installation = await this.requireInstallation(principal);
     const attempt = await this.requireArtifactAttempt(principal, installation, input.attemptId);
-    await this.requireInstallation(principal, attempt.delegationScope);
+    const currentAuthority = await this.requireInstallation(principal, attempt.delegationScope);
+    await this.recordAttemptAuthorityRenewal(principal, currentAuthority, attempt);
     if (!this.runnerDispatcher || typeof this.runnerDispatcher.queueBundle !== "function") {
       throw new GatewayStoreValidationError("The isolated Lean Runner dispatch is not configured for this remote gateway.");
     }
@@ -591,7 +598,8 @@ export class D1RemoteMcpGatewayStore {
     requireRunnerLookupInput(input);
     const installation = await this.requireInstallation(principal);
     const attempt = await this.requireArtifactAttempt(principal, installation, input.attemptId);
-    await this.requireInstallation(principal, attempt.delegationScope);
+    const currentAuthority = await this.requireInstallation(principal, attempt.delegationScope);
+    await this.recordAttemptAuthorityRenewal(principal, currentAuthority, attempt);
     const run = await this.requireRunForAttempt(input.runId, attempt.id);
     const cancelled = await this.runStore.requestCancellation(run.id, new Date().toISOString());
     return Object.freeze({
@@ -706,6 +714,7 @@ export class D1RemoteMcpGatewayStore {
     return Object.freeze({
       agentId: row.agent_id,
       delegationCertificateId: row.delegation_certificate_id,
+      delegationScopes: Object.freeze([...(scopes ?? [])]),
       agentLabel: row.agent_label,
       agentPublicKey: row.agent_public_key,
     });
@@ -870,12 +879,12 @@ export class D1RemoteMcpGatewayStore {
     const row = await this.database
       .prepare(
         `${attemptSelect}
-         WHERE attempt.id = ? AND attempt.person_id = ? AND attempt.agent_id = ?
-           AND attempt.delegation_certificate_id = ?`,
+         WHERE attempt.id = ? AND attempt.person_id = ? AND attempt.agent_id = ?`,
       )
-      .bind(attemptId, principal.personId, installation.agentId, installation.delegationCertificateId)
+      .bind(attemptId, principal.personId, installation.agentId)
       .first();
     if (!row) return null;
+    if (!installation.delegationScopes?.includes(row.delegation_scope)) return null;
     const events = await this.database
       .prepare(
         `SELECT id, sequence, event_type, message, progress_percent, occurred_at
@@ -893,6 +902,8 @@ export class D1RemoteMcpGatewayStore {
       agentId: row.agent_id,
       agentLabel: row.agent_label,
       delegationCertificateId: row.delegation_certificate_id,
+      currentDelegationCertificateId: installation.delegationCertificateId,
+      authorityContinuity: row.delegation_certificate_id === installation.delegationCertificateId ? "original" : "renewed",
       delegationScope: row.delegation_scope,
       status: row.status,
       lastProgressPercent: row.last_progress_percent,
@@ -901,6 +912,47 @@ export class D1RemoteMcpGatewayStore {
       events: Object.freeze((events.results ?? []).map(toAttemptEvent)),
       verificationState: "agent_reported_only",
     });
+  }
+
+  async recordAttemptAuthorityRenewal(principal, installation, attempt) {
+    if (attempt.delegationCertificateId === installation.delegationCertificateId) return;
+    const now = new Date().toISOString();
+    const id = `attempt-authority:${attempt.id}:${installation.delegationCertificateId}`;
+    const inserted = await this.database
+      .prepare(
+        `INSERT OR IGNORE INTO attempt_authority_events (
+          id, attempt_id, delegation_certificate_id, agent_installation_id,
+          event_type, recorded_at
+        ) VALUES (?, ?, ?, ?, 'authority_renewed', ?)`,
+      )
+      .bind(
+        id,
+        attempt.id,
+        installation.delegationCertificateId,
+        principal.agentInstallationId,
+        now,
+      )
+      .run();
+    if (inserted.meta.changes !== 1) return;
+    await this.database.batch([
+      this.database.prepare(
+        `INSERT OR IGNORE INTO agent_attempt_events (
+          id, attempt_id, sequence, event_type, message, idempotency_key, occurred_at
+        )
+        SELECT ?, ?, COALESCE(MAX(sequence), 0) + 1, 'authority_renewed', ?, ?, ?
+        FROM agent_attempt_events WHERE attempt_id = ?`,
+      ).bind(
+        `attempt-authority-event:${attempt.id}:${installation.delegationCertificateId}`,
+        attempt.id,
+        `The same owner-approved Agent continued this Attempt under renewed ${attempt.delegationScope} authority. The original creation certificate remains immutable provenance.`,
+        `authority-renewed:${installation.delegationCertificateId}`,
+        now,
+        attempt.id,
+      ),
+      this.database.prepare(
+        "UPDATE agent_attempts SET updated_at = ? WHERE id = ? AND person_id = ?",
+      ).bind(now, attempt.id, principal.personId),
+    ]);
   }
 
   async findEvent(attemptId, idempotencyKey) {

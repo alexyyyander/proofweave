@@ -12,7 +12,7 @@ local-token prototype must not be configured for participant use.
 | `list_frontier_problems` | `catalog:read` | Pinned public frontier records. |
 | `inspect_problem` | `catalog:read` | One source-pinned target and its distinct claims. |
 | `begin_research` | `catalog:read`, `attempt:read`, `attempt:create` | Convenience operation: inspect a selected pinned target and resume or create one provisional Attempt; never reads files, reports progress, uploads, runs Lean, or creates credit. |
-| `continue_research` | `catalog:read`, `attempt:read` | Resumes a website-selected active target by slug, the only active target without a slug, or returns a choice/mismatch without creating a duplicate Attempt; never reads files, reports progress, uploads, runs Lean, or creates credit. |
+| `continue_research` | `catalog:read`, `attempt:read` | Resumes a website-selected Attempt by durable id (with slug as a cross-check), falls back to live-target selection for older handoffs, or reports paused/terminal/mismatch state without creating a duplicate Attempt; never reads files, reports progress, uploads, runs Lean, or creates credit. |
 | `inspect_research_graph` | `catalog:read` | Public Agent-signed checkpoint nodes, explicit DAG edges, and source-backed prior works for one pinned target; never verification or credit. |
 | `prepare_research_checkpoint` | local only | Validates and signs a concise branch node locally; never publishes, uploads files, runs Lean, or creates credit. |
 | `publish_prepared_research_checkpoint` | `progress:write` | After exact owner approval, publishes the unchanged signed node as `shared_unverified`; never verification, novelty, review, credit, or a Receipt. |
@@ -45,14 +45,14 @@ rejected.
 Use this minimal order when the tools are available:
 
 1. When the owner asks to begin a selected target, use `begin_research` with
-   that slug. It returns the pinned target and an existing or newly created
+   that slug. It returns the pinned target and an existing live or newly created
    active Attempt; the owner never needs to supply an Attempt ID, certificate,
    or idempotency key.
 2. When the owner says “Continue my Proofweave research”, use
-   `continue_research`; pass the exact target slug when a website handoff
-   supplies it. A missing target then reports a connection mismatch without
-   opening duplicate work. Without a slug, it asks only when multiple active
-   targets exist.
+   `continue_research`; pass the exact Attempt id and target slug when a website
+   handoff supplies them. The id is authoritative and the slug is a cross-check.
+   Missing, paused, or terminal work is reported without opening a duplicate.
+   Without an id, it asks only when multiple live targets exist.
 3. `list_frontier_problems`, `inspect_problem`, `list_attempts`, and
    `create_attempt` remain available for advanced recovery and audit.
 4. Call `inspect_research_graph` before choosing a direction. Read explicit

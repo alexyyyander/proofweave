@@ -88,12 +88,12 @@ export class D1R2ArtifactStore {
     return { contentHash, objectKey, byteLength: content.byteLength, contentType, created: true };
   }
 
-  async stageBundle(bundle) {
+  async stageBundle(bundle, currentAuthority = null) {
     const normalized = normalizeArtifactBundle(bundle);
     if (!await verifyArtifactBundleAgentSignature(normalized)) {
       throw new ArtifactStoreValidationError("Artifact Bundle Agent signature or payload hash is invalid.");
     }
-    const authority = await this.assertAttemptAuthority(normalized);
+    const authority = await this.assertAttemptAuthority(normalized, currentAuthority);
     await Promise.all(artifactBundleObjectReferences(normalized).map((reference) =>
       this.assertObjectPresent({ contentHash: reference.contentHash, objectKey: reference.objectKey }),
     ));
@@ -115,7 +115,10 @@ export class D1R2ArtifactStore {
       .first();
     if (existing) {
       assertSameBundle(existing, { normalized, manifestHash, manifestKey: manifestObject.objectKey, canonicalManifest });
-      await this.recordProvisionalContribution(normalized, manifestHash, authority);
+      await this.recordProvisionalContribution(normalized, manifestHash, {
+        ...authority,
+        delegationCertificateId: existing.delegation_certificate_id ?? authority.delegationCertificateId,
+      });
       await this.recordBundleStagedEvent(normalized, manifestHash);
       return { bundle: toStoredBundle(existing), created: false };
     }
@@ -131,14 +134,15 @@ export class D1R2ArtifactStore {
     await this.database
       .prepare(
         `INSERT INTO artifact_bundles (
-          id, attempt_id, problem_revision_id, manifest_hash, manifest_key,
+          id, attempt_id, problem_revision_id, delegation_certificate_id, manifest_hash, manifest_key,
           canonical_manifest, agent_event_id, agent_event_payload_hash
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       )
       .bind(
         normalized.id,
         normalized.attemptId,
         normalized.problemRevisionId,
+        authority.delegationCertificateId,
         manifestHash,
         manifestObject.objectKey,
         canonicalManifest,
@@ -153,6 +157,7 @@ export class D1R2ArtifactStore {
         id: normalized.id,
         attemptId: normalized.attemptId,
         problemRevisionId: normalized.problemRevisionId,
+        delegationCertificateId: authority.delegationCertificateId,
         manifestHash,
         manifestKey: manifestObject.objectKey,
         agentEventId: normalized.agentEvent.eventId,
@@ -201,7 +206,9 @@ export class D1R2ArtifactStore {
     await Promise.all(artifactBundleObjectReferences(bundle).map((reference) =>
       this.assertObjectPresent({ contentHash: reference.contentHash, objectKey: reference.objectKey }),
     ));
-    await this.assertAttemptAuthority(bundle);
+    await this.assertAttemptAuthority(bundle, {
+      delegationCertificateId: row.delegation_certificate_id ?? null,
+    });
     const [computedHash, signatureValid] = await Promise.all([
       artifactBundleHash(bundle),
       verifyArtifactBundleAgentSignature(bundle),
@@ -228,12 +235,13 @@ export class D1R2ArtifactStore {
     assertR2Object(object, { contentHash, byteLength: Number(indexed.byte_length) });
   }
 
-  async assertAttemptAuthority(bundle) {
+  async assertAttemptAuthority(bundle, currentAuthority = null) {
     const row = await this.database
       .prepare(
         `SELECT
           attempt.problem_revision_id, attempt.person_id, attempt.agent_id,
-          attempt.delegation_certificate_id, attempt.delegation_scope,
+          attempt.delegation_certificate_id AS creation_delegation_certificate_id,
+          attempt.delegation_scope,
           agent.public_key AS agent_public_key,
           certificate.owner_person_id AS certificate_owner_person_id,
           certificate.agent_id AS certificate_agent_id,
@@ -244,24 +252,26 @@ export class D1R2ArtifactStore {
          FROM agent_attempts AS attempt
          LEFT JOIN agents AS agent ON agent.id = attempt.agent_id
          LEFT JOIN delegation_certificates AS certificate
-           ON certificate.id = attempt.delegation_certificate_id
+           ON certificate.id = COALESCE(?, attempt.delegation_certificate_id)
          LEFT JOIN delegation_revocations AS revocation
            ON revocation.delegation_certificate_id = certificate.id
          LEFT JOIN person_keys AS signer ON signer.id = certificate.person_key_id
          LEFT JOIN person_key_revocations AS key_revocation ON key_revocation.person_key_id = signer.id
          WHERE attempt.id = ?`,
       )
-      .bind(bundle.attemptId)
+      .bind(currentAuthority?.delegationCertificateId ?? null, bundle.attemptId)
       .first();
     if (!row) throw new ArtifactStoreValidationError("Artifact Bundle references an unknown Attempt.");
     if (row.problem_revision_id !== bundle.problemRevisionId) {
       throw new ArtifactStoreValidationError("Artifact Bundle problem revision does not match its Attempt.");
     }
     if (
-      !row.agent_id || !row.delegation_certificate_id || !row.delegation_scope ||
+      !row.agent_id || !row.creation_delegation_certificate_id || !row.delegation_scope ||
       row.certificate_owner_person_id !== row.person_id || row.certificate_agent_id !== row.agent_id ||
       row.agent_public_key !== bundle.agentEvent.agentPublicKey ||
-      row.certificate_agent_public_key !== bundle.agentEvent.agentPublicKey
+      row.certificate_agent_public_key !== bundle.agentEvent.agentPublicKey ||
+      (currentAuthority?.personId && currentAuthority.personId !== row.person_id) ||
+      (currentAuthority?.agentId && currentAuthority.agentId !== row.agent_id)
     ) {
       throw new ArtifactStoreValidationError("Artifact Bundle does not match the Attempt's delegated Agent authority.");
     }
@@ -285,7 +295,7 @@ export class D1R2ArtifactStore {
     return Object.freeze({
       personId: row.person_id,
       agentId: row.agent_id,
-      delegationCertificateId: row.delegation_certificate_id,
+      delegationCertificateId: currentAuthority?.delegationCertificateId ?? row.creation_delegation_certificate_id,
     });
   }
 
@@ -338,13 +348,13 @@ export class D1R2ArtifactStore {
         )
         SELECT
           ?, 'evidence_bundle', 'bundle_staged',
-          attempt.person_id, attempt.agent_id, attempt.delegation_certificate_id,
+          attempt.person_id, attempt.agent_id, ?,
           attempt.id, attempt.problem_revision_id, bundle.manifest_hash,
           bundle.agent_event_id, ?, ?
         FROM artifact_bundles AS bundle
         INNER JOIN agent_attempts AS attempt ON attempt.id = bundle.attempt_id
         INNER JOIN delegation_certificates AS certificate
-          ON certificate.id = attempt.delegation_certificate_id
+          ON certificate.id = ?
         WHERE bundle.manifest_hash = ?
           AND bundle.id = ?
           AND bundle.attempt_id = ?
@@ -357,8 +367,10 @@ export class D1R2ArtifactStore {
       )
       .bind(
         id,
+        authority.delegationCertificateId,
         bundle.agentEvent.occurredAt,
         recordedAt,
+        authority.delegationCertificateId,
         manifestHash,
         bundle.id,
         bundle.attemptId,
@@ -438,6 +450,7 @@ function toStoredBundle(row) {
     id: row.id,
     attemptId: row.attempt_id,
     problemRevisionId: row.problem_revision_id,
+    delegationCertificateId: row.delegation_certificate_id,
     manifestHash: row.manifest_hash,
     manifestKey: row.manifest_key,
     agentEventId: row.agent_event_id,

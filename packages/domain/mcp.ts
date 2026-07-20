@@ -1,12 +1,19 @@
 export const mcpAttemptEventTypes = [
   "attempt_created",
+  "authority_renewed",
   "agent_reported",
+  "checkpoint_published",
   "bundle_staged",
+  "attempt_paused",
+  "attempt_resumed",
+  "attempt_submitted",
+  "attempt_completed",
+  "attempt_abandoned",
   "attempt_cancelled",
 ] as const;
 
 export type McpAttemptEventType = (typeof mcpAttemptEventTypes)[number];
-export type McpAttemptStatus = "active" | "submitted" | "cancelled";
+export type McpAttemptStatus = "active" | "paused" | "submitted" | "completed" | "abandoned" | "cancelled";
 
 export const mcpRunStates = [
   "queued",

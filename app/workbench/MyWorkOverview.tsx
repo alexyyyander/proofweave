@@ -47,7 +47,7 @@ export function MyWorkOverview({
     return { attempt, presentation: deriveAttemptPresentation({ attempt, runs, agentConnected }) };
   }), [attempts, profile, runs]);
   const grouped = useMemo(() => new Map(sections.map(({ bucket }) => [bucket, records.filter((record) => record.presentation.bucket === bucket)])), [records]);
-  const activeCount = attempts.filter((attempt) => attempt.status === "active").length;
+  const activeCount = attempts.filter((attempt) => attempt.status === "active" || attempt.status === "paused").length;
   const attentionCount = grouped.get("needs-attention")?.length ?? 0;
   const localConnection = activeLocalCodexInstallation(profile);
 
@@ -104,7 +104,7 @@ export function MyWorkOverview({
                     <div><dt>Next</dt><dd><strong>{presentation.nextAction}</strong><span>{presentation.detail}</span></dd></div>
                   </dl>
                   {typeof attempt.lastProgressPercent === "number" && <div className="my-work-progress" aria-label={`${attempt.lastProgressPercent}% agent-reported progress`}><span style={{ width: `${Math.max(0, Math.min(100, attempt.lastProgressPercent))}%` }} /></div>}
-                  <div className="my-work-card-actions"><Link className="button button-primary" href={`/workbench/attempts/${encodeURIComponent(attempt.id)}`}>{attempt.status === "active" ? "Continue task" : "View history"} <span>→</span></Link><Link className="text-link" href={`/explore/${attempt.problemSlug}`}>Inspect target</Link></div>
+                  <div className="my-work-card-actions"><Link className="button button-primary" href={`/workbench/attempts/${encodeURIComponent(attempt.id)}`}>{attempt.status === "active" ? "Continue task" : attempt.status === "paused" ? "Resume task" : "View history"} <span>→</span></Link><Link className="text-link" href={`/explore/${attempt.problemSlug}`}>Inspect target</Link></div>
                 </article>)}
               </div>
             </section>;

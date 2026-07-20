@@ -431,13 +431,30 @@ test("the local Connector starts or resumes a selected research target without e
     assert.equal(calls.find((call) => call.name === "create_attempt").args.delegationScope, "formalize");
     assert.equal("idempotencyKey" in first, false);
 
-    const resumed = await callConnectorTool("continue_research", { targetSlug: "fixture-target" }, env);
+    const resumed = await callConnectorTool("continue_research", { attemptId: first.attempt.id, targetSlug: "fixture-target" }, env);
     assert.equal(resumed.error, undefined);
     const second = JSON.parse(resumed.result.content[0].text);
     assert.equal(second.operation, "research_resumed");
     assert.equal(second.created, false);
     assert.equal(second.attempt.id, first.attempt.id);
     assert.equal(calls.filter((call) => call.name === "create_attempt").length, 1);
+
+    attempts[0].status = "paused";
+    const paused = await callConnectorTool("continue_research", { attemptId: first.attempt.id, targetSlug: "fixture-target" }, env);
+    assert.equal(paused.error, undefined);
+    const pausedResult = JSON.parse(paused.result.content[0].text);
+    assert.equal(pausedResult.operation, "research_resume_required");
+    assert.equal(pausedResult.attempt.id, first.attempt.id);
+    assert.match(pausedResult.next, /same Attempt/i);
+    const beginPaused = await callConnectorTool("begin_research", { targetSlug: "fixture-target" }, env);
+    assert.equal(JSON.parse(beginPaused.result.content[0].text).operation, "research_resume_required");
+    assert.equal(calls.filter((call) => call.name === "create_attempt").length, 1);
+
+    attempts[0].status = "completed";
+    const terminal = await callConnectorTool("continue_research", { attemptId: first.attempt.id }, env);
+    assert.equal(terminal.error, undefined);
+    assert.equal(JSON.parse(terminal.result.content[0].text).operation, "research_attempt_terminal");
+    attempts[0].status = "active";
 
     const mismatch = await callConnectorTool("continue_research", { targetSlug: "website-only-target" }, env);
     assert.equal(mismatch.error, undefined);

@@ -143,15 +143,31 @@ export class D1ProofweaveOAuthStore {
     );
     if (!candidate) return null;
 
+    const active = await this.database
+      .prepare(
+        `SELECT id
+         FROM agent_installations
+         WHERE person_id = ?
+           AND agent_id = ?
+           AND delegation_certificate_id = ?
+           AND client_id = ?
+           AND status = 'active'
+           AND revoked_at IS NULL`,
+      )
+      .bind(personId, candidate.agentId, candidate.delegationCertificateId, clientId)
+      .first();
+    if (active) return { id: active.id, delegationScopes: candidate.delegationScopes };
+
+    const installationId = `agent-installation:${crypto.randomUUID()}`;
     await this.database
       .prepare(
         `INSERT INTO agent_installations (
           id, person_id, agent_id, delegation_certificate_id, client_id, label
         ) VALUES (?, ?, ?, ?, ?, ?)
-        ON CONFLICT(agent_id, client_id, delegation_certificate_id) DO NOTHING`,
+        ON CONFLICT DO NOTHING`,
       )
       .bind(
-        `agent-installation:${crypto.randomUUID()}`,
+        installationId,
         personId,
         candidate.agentId,
         candidate.delegationCertificateId,
@@ -160,6 +176,9 @@ export class D1ProofweaveOAuthStore {
       )
       .run();
 
+    // A concurrent approval may have created the one permitted active row.
+    // Return that row rather than creating a second connection or reviving a
+    // revoked installation.
     const row = await this.database
       .prepare(
         `SELECT id

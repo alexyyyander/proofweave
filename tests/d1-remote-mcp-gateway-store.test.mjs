@@ -322,6 +322,30 @@ test("remote MCP D1 store pins catalog and Attempt work to the selected delegate
   assert.equal(progress.event.type, "agent_reported");
   assert.equal((await store.getAttempt(principal, created.attempt.id)).attempt.events.length, 2);
 
+  const renewedPrincipal = {
+    ...principal,
+    agentInstallationId: "installation:gateway-prover-renewed",
+  };
+  const continued = await store.getAttempt(renewedPrincipal, created.attempt.id);
+  assert.equal(continued.attempt.id, created.attempt.id);
+  assert.equal(continued.attempt.delegationCertificateId, "delegation:gateway-prover");
+  assert.equal(continued.attempt.currentDelegationCertificateId, "delegation:gateway-prover-renewed");
+  assert.equal(continued.attempt.authorityContinuity, "renewed");
+  const renewedProgress = await store.reportProgress(renewedPrincipal, {
+    attemptId: created.attempt.id,
+    message: "Continued the same durable Attempt under renewed same-Agent authority.",
+    progressPercent: 40,
+    idempotencyKey: "gateway-prover-renewed-progress",
+  });
+  assert.equal(renewedProgress.idempotentReplay, false);
+  const authorityRows = await database
+    .prepare("SELECT delegation_certificate_id FROM attempt_authority_events WHERE attempt_id = ? ORDER BY recorded_at")
+    .bind(created.attempt.id)
+    .all();
+  assert.deepEqual(authorityRows.results.map((row) => row.delegation_certificate_id), ["delegation:gateway-prover-renewed"]);
+  const renewedEvents = (await store.getAttempt(renewedPrincipal, created.attempt.id)).attempt.events;
+  assert.equal(renewedEvents.filter((event) => event.type === "authority_renewed").length, 1);
+
   const researchGraph = new D1ResearchGraphStore(database);
   const historical = await researchGraph.importExternalWork("person:gateway-reviewer", {
     problemRevisionId: "revision:gateway",
@@ -975,6 +999,11 @@ async function seedGatewayFixture(d1, { reviewerPublicKey, proverPublicKey, owne
     [
       `INSERT INTO delegation_certificates (id, owner_person_id, agent_id, person_key_id, agent_public_key, scopes_json, valid_from, valid_until, beneficiary_person_id, protocol_version, payload_hash, canonical_payload, person_signature)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      ["delegation:gateway-prover-renewed", "person:gateway-reviewer", "agent:gateway-prover", "person-key:gateway-reviewer", proverPublicKey, '["formalize","prove"]', "2026-07-02T00:00:00Z", "2027-07-02T00:00:00Z", "person:gateway-reviewer", "pw-delegation-v1", sha("d"), "{}", "signature"],
+    ],
+    [
+      `INSERT INTO delegation_certificates (id, owner_person_id, agent_id, person_key_id, agent_public_key, scopes_json, valid_from, valid_until, beneficiary_person_id, protocol_version, payload_hash, canonical_payload, person_signature)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       ["delegation:gateway-prover-alt", "person:gateway-reviewer", "agent:gateway-prover-alt", "person-key:gateway-reviewer", alternateProverPublicKey, '["formalize","prove"]', "2026-07-01T00:00:00Z", "2027-07-01T00:00:00Z", "person:gateway-reviewer", "pw-delegation-v1", sha("a"), "{}", "signature"],
     ],
     ["INSERT INTO oauth_clients (id, client_name, redirect_uris_json) VALUES (?, ?, ?)", ["client:gateway-codex", "Gateway Codex", '["https://codex.example.test/callback"]']],
@@ -987,6 +1016,11 @@ async function seedGatewayFixture(d1, { reviewerPublicKey, proverPublicKey, owne
       `INSERT INTO agent_installations (id, person_id, agent_id, delegation_certificate_id, client_id, label)
        VALUES (?, ?, ?, ?, ?, ?)`,
       ["installation:gateway-prover", "person:gateway-reviewer", "agent:gateway-prover", "delegation:gateway-prover", "client:gateway-codex", "Gateway prover Codex"],
+    ],
+    [
+      `INSERT INTO agent_installations (id, person_id, agent_id, delegation_certificate_id, client_id, label)
+       VALUES (?, ?, ?, ?, ?, ?)`,
+      ["installation:gateway-prover-renewed", "person:gateway-reviewer", "agent:gateway-prover", "delegation:gateway-prover-renewed", "client:gateway-codex", "Gateway renewed prover Codex"],
     ],
     [
       `INSERT INTO agent_installations (id, person_id, agent_id, delegation_certificate_id, client_id, label)

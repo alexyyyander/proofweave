@@ -375,7 +375,8 @@ export class D1ContributionReceiptStore {
           bundle.canonical_manifest,
           attempt.id AS attempt_id, attempt.person_id AS attempt_person_id,
           attempt.agent_id AS attempt_agent_id,
-          attempt.delegation_certificate_id AS attempt_delegation_certificate_id,
+          COALESCE(bundle.delegation_certificate_id, attempt.delegation_certificate_id)
+            AS attempt_delegation_certificate_id,
           attempt.problem_revision_id AS problem_revision_id,
           run.id AS run_id, run.request_hash, run.state AS run_state,
           run.runner_result_hash,
