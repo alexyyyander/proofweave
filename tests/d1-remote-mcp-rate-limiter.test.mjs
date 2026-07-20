@@ -5,6 +5,7 @@ import { Miniflare } from "miniflare";
 import {
   D1RemoteMcpRateLimiter,
   RemoteMcpRequestRateLimitError,
+  remoteMcpRateLimitPolicies,
 } from "../services/proofweave-mcp-gateway/d1-rate-limiter.mjs";
 
 const migrationsRoot = new URL("../drizzle/", import.meta.url);
@@ -85,6 +86,17 @@ test("remote MCP rate-limit counters expire instead of becoming an attribution h
     .prepare("SELECT window_started_at FROM remote_mcp_rate_limit_buckets ORDER BY window_started_at")
     .all();
   assert.deepEqual(rows.results, [{ window_started_at: "2026-07-14T00:03:00.000Z" }]);
+});
+
+test("remote MCP policies cover shared research graph reads and checkpoint publication", async () => {
+  assert.deepEqual(remoteMcpRateLimitPolicies.inspect_research_graph, {
+    maxRequests: 60,
+    windowSeconds: 60,
+  });
+  assert.deepEqual(remoteMcpRateLimitPolicies.publish_research_checkpoint, {
+    maxRequests: 120,
+    windowSeconds: 3_600,
+  });
 });
 
 test("remote MCP admits no more than the atomic limit under concurrent deliveries", async () => {
