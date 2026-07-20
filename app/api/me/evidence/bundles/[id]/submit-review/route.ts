@@ -35,6 +35,8 @@ export async function POST(_request: Request, { params }: { params: Promise<{ id
         ? "This pinned problem revision does not have an active review pool."
         : reviewMarket.reason === "lean_not_accepted"
           ? "The stored Lean Runner evidence is not eligible for independent review."
+          : reviewMarket.reason === "target_not_public_catalog"
+            ? "Independent review can open only after the target has a complete, inspectable public catalog record."
           : "The review pool is not active for new independent review work.";
       return Response.json(
         { error: { code: reviewMarket.reason ?? "review_not_available", message }, reviewMarket },

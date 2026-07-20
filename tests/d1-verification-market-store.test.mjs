@@ -76,6 +76,33 @@ test("an active pool publishes exactly the policy review jobs for one staged Bun
   assert.equal(open.every((job) => !Object.hasOwn(job, "attemptOwnerPersonId")), true);
 });
 
+test("public review work always resolves to an inspectable catalog target", async () => {
+  const job = await database.prepare(
+    "SELECT id FROM verification_market_jobs ORDER BY id LIMIT 1",
+  ).first();
+  const declaration = await database.prepare(
+    "SELECT id FROM declarations WHERE problem_revision_id = ? AND is_primary = 1 LIMIT 1",
+  ).bind(problemRevisionId).first();
+  assert.ok(job?.id);
+  assert.ok(declaration?.id);
+
+  await database.prepare("UPDATE declarations SET is_primary = 0 WHERE id = ?").bind(declaration.id).run();
+  try {
+    assert.equal((await store.listOpenJobs()).length, 0);
+    const rejected = await store.publishJobsForBundle(manifestHash, "2026-07-15T08:00:30Z");
+    assert.equal(rejected.published, false);
+    assert.equal(rejected.reason, "target_not_public_catalog");
+    await assert.rejects(
+      store.claimJob(job.id, "person:market-reviewer", "2026-07-15T08:00:45Z"),
+      /inspectable public catalog target/,
+    );
+  } finally {
+    await database.prepare("UPDATE declarations SET is_primary = 1 WHERE id = ?").bind(declaration.id).run();
+  }
+
+  assert.equal((await store.listOpenJobs()).length, 5);
+});
+
 test("claiming is atomic, different-owner, review-delegated, and immediately accepted", async () => {
   const [job] = await store.listOpenJobs();
   await assert.rejects(

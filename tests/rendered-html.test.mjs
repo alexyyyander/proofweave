@@ -339,6 +339,27 @@ async function insertControlledEvidenceFixture() {
       ["revision:controlled-evidence", "project:controlled-evidence", "snapshot:controlled-evidence", "Proofweave.Evidence.target", "controlled-evidence-target", 1, "Controlled evidence target", "logic", "research_open", "fixture", "theorem target : True := by trivial"],
     ],
     [
+      `INSERT INTO declarations (
+        id, problem_revision_id, qualified_name, declaration_kind,
+        source_path, source_url, source_line_start, source_line_end,
+        source_content_hash, is_primary
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        "declaration:controlled-evidence", "revision:controlled-evidence",
+        "Proofweave.Evidence.target", "theorem", "Proofweave/Evidence.lean",
+        "https://example.test/evidence/Proofweave/Evidence.lean#L1", 1, 1, hash("d"), 1,
+      ],
+    ],
+    [
+      `INSERT INTO verification_claims (
+        id, problem_revision_id, claim_type, status, evidence_url, recorded_at
+      ) VALUES (?, ?, ?, ?, ?, ?)`,
+      [
+        "claim:controlled-evidence:bundle", "revision:controlled-evidence",
+        "bundle_reproducible", "not_submitted", null, now,
+      ],
+    ],
+    [
       "INSERT INTO problem_credit_pools (id, problem_revision_id, policy_version, total_credits, sponsor_label, created_at) VALUES (?, ?, ?, ?, ?, ?)",
       ["pool:controlled-evidence", "revision:controlled-evidence", "pw-credit-market-v1", 5_000, "Controlled evidence pilot", poolCreatedPayload.occurredAt],
     ],

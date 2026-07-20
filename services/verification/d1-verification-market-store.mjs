@@ -51,6 +51,13 @@ export class D1VerificationMarketStore {
        WHERE bundle.manifest_hash = ?`,
     ).bind(artifactBundleManifestHash).first();
     if (!bundle) throw new VerificationMarketValidationError("Verification jobs require an existing staged Artifact Bundle.");
+    if (!await this.hasInspectablePublicTarget(bundle.problem_revision_id)) {
+      return Object.freeze({
+        published: false,
+        reason: "target_not_public_catalog",
+        jobs: Object.freeze([]),
+      });
+    }
     if (!bundle.pool_id) return Object.freeze({ published: false, reason: "no_pool", jobs: Object.freeze([]) });
     const poolState = await this.requirePoolState(bundle.pool_id);
     if (poolState !== "active") {
@@ -135,9 +142,20 @@ export class D1VerificationMarketStore {
        INNER JOIN agent_attempts AS attempt ON attempt.id = bundle.attempt_id
        INNER JOIN problem_revisions AS revision ON revision.id = job.problem_revision_id
        INNER JOIN projects AS project ON project.id = revision.project_id
+       INNER JOIN source_snapshots AS snapshot ON snapshot.id = revision.source_snapshot_id
        INNER JOIN problem_credit_pools AS pool ON pool.id = job.pool_id
        LEFT JOIN verification_market_job_claims AS claim ON claim.job_id = job.id
        WHERE claim.id IS NULL
+         AND project.visibility = 'public'
+         AND EXISTS (
+           SELECT 1 FROM declarations AS declaration
+           WHERE declaration.problem_revision_id = revision.id
+             AND declaration.is_primary = 1
+         )
+         AND EXISTS (
+           SELECT 1 FROM verification_claims AS catalog_claim
+           WHERE catalog_claim.problem_revision_id = revision.id
+         )
        ORDER BY job.published_at ASC, job.id ASC
        LIMIT ?`,
     ).bind(limit).all();
@@ -176,6 +194,11 @@ export class D1VerificationMarketStore {
         job: toStoredJob(job),
         assignment: await this.requireAssignment(existingClaim.assignment_id),
       });
+    }
+    if (!await this.hasInspectablePublicTarget(job.problem_revision_id)) {
+      throw new VerificationMarketConflictError(
+        "This verification job is not attached to an inspectable public catalog target.",
+      );
     }
     if (job.attempt_owner_person_id === verifierPersonId) {
       throw new VerificationMarketConflictError("A Person cannot claim independent review work over their own Attempt.");
@@ -411,6 +434,27 @@ export class D1VerificationMarketStore {
       throw new VerificationMarketValidationError("Stored verification job does not match the market policy.");
     }
     return row;
+  }
+
+  async hasInspectablePublicTarget(problemRevisionId) {
+    const row = await this.database.prepare(
+      `SELECT revision.id
+       FROM problem_revisions AS revision
+       INNER JOIN projects AS project ON project.id = revision.project_id
+       INNER JOIN source_snapshots AS snapshot ON snapshot.id = revision.source_snapshot_id
+       WHERE revision.id = ?
+         AND project.visibility = 'public'
+         AND EXISTS (
+           SELECT 1 FROM declarations AS declaration
+           WHERE declaration.problem_revision_id = revision.id
+             AND declaration.is_primary = 1
+         )
+         AND EXISTS (
+           SELECT 1 FROM verification_claims AS catalog_claim
+           WHERE catalog_claim.problem_revision_id = revision.id
+         )`,
+    ).bind(problemRevisionId).first();
+    return Boolean(row);
   }
 
   async assertStoredJob(expected) {
