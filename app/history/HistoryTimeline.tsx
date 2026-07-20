@@ -17,6 +17,9 @@ export type HistoryMilestone = {
   significance: string;
   sources: Array<{ label: string; href: string }>;
   frontier?: boolean;
+  shortTitle: string;
+  timelinePosition: string;
+  timelineLane: "above" | "below";
 };
 
 export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[] }) {
@@ -35,53 +38,56 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
     <section className="history-timeline" id="timeline" aria-labelledby="timeline-title">
       <div className="history-timeline-heading">
         <div>
-          <p className="eyebrow">Seven moments · four evidence states</p>
-          <h2 id="timeline-title">Select a moment in the record.</h2>
+          <p className="eyebrow">Seven moments · one accelerating frontier</p>
+          <h2 id="timeline-title">Follow the record across 2026.</h2>
         </div>
-        <p>Each entry separates what the AI produced, what people contributed, and what evidence can be checked today.</p>
+        <p>Spacing follows publication or announcement time. Clustered nodes show activity accelerating—not stronger evidence. Month-only records sit at mid-month.</p>
       </div>
 
-      <div className="history-timeline-workspace">
-        <div className="history-tablist" role="tablist" aria-label="AI mathematics milestones">
+      <div className="history-timeline-viewport">
+        <div className="history-time-visual" role="tablist" aria-label="AI mathematics milestones from January to July 2026">
+          <div className="history-time-axis" aria-hidden="true"><span className="is-jan">JAN</span><span className="is-mar">MAR</span><span className="is-may">MAY</span><span className="is-jul">JUL</span></div>
           {milestones.map((item, index) => {
-            const isActive = item.number === activeNumber;
-            return (
-              <button
-                aria-controls={`history-panel-${item.number}`}
-                aria-selected={isActive}
-                className={`history-tab${isActive ? " is-active" : ""}`}
-                id={`history-tab-${item.number}`}
-                key={item.number}
-                onClick={() => setActiveNumber(item.number)}
-                onKeyDown={(event) => {
-                  if (event.key === "ArrowDown" || event.key === "ArrowRight") {
-                    event.preventDefault();
-                    focusTab(index + 1);
-                  } else if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
-                    event.preventDefault();
-                    focusTab(index - 1);
-                  } else if (event.key === "Home") {
-                    event.preventDefault();
-                    focusTab(0);
-                  } else if (event.key === "End") {
-                    event.preventDefault();
-                    focusTab(milestones.length - 1);
-                  }
-                }}
-                ref={(element) => { tabRefs.current[index] = element; }}
-                role="tab"
-                tabIndex={isActive ? 0 : -1}
-                type="button"
-              >
-                <span className="history-tab-meta"><b>{item.number}</b><time>{item.date}</time>{item.frontier ? <em>Live</em> : null}</span>
-                <strong>{item.title}</strong>
-                <span className={`history-tab-evidence is-${item.evidenceTone}`}>{item.evidence}</span>
-              </button>
-            );
-          })}
+              const isActive = item.number === activeNumber;
+              return (
+                <button
+                  aria-controls={`history-panel-${item.number}`}
+                  aria-label={`${item.date}: ${item.title}. ${item.evidence}`}
+                  aria-selected={isActive}
+                  className={`history-timepoint is-${item.timelineLane} tone-${item.evidenceTone}${isActive ? " is-active" : ""}${item.frontier ? " is-latest" : ""}`}
+                  id={`history-tab-${item.number}`}
+                  key={item.number}
+                  onClick={() => setActiveNumber(item.number)}
+                  onKeyDown={(event) => {
+                    if (event.key === "ArrowDown" || event.key === "ArrowRight") {
+                      event.preventDefault();
+                      focusTab(index + 1);
+                    } else if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
+                      event.preventDefault();
+                      focusTab(index - 1);
+                    } else if (event.key === "Home") {
+                      event.preventDefault();
+                      focusTab(0);
+                    } else if (event.key === "End") {
+                      event.preventDefault();
+                      focusTab(milestones.length - 1);
+                    }
+                  }}
+                  ref={(element) => { tabRefs.current[index] = element; }}
+                  role="tab"
+                  style={{ left: item.timelinePosition }}
+                  tabIndex={isActive ? 0 : -1}
+                  type="button"
+                >
+                  <span className="history-timepoint-copy"><time>{item.date}</time><strong>{item.shortTitle}</strong>{item.frontier ? <em>Latest entry</em> : null}</span>
+                  <span className="history-timepoint-node"><b>{item.number}</b></span>
+                </button>
+              );
+            })}
         </div>
+      </div>
 
-        <div className="history-panels">
+      <div className="history-panels">
           {milestones.map((item) => {
             const isActive = item.number === activeNumber;
             return (
@@ -113,7 +119,6 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
               </article>
             );
           })}
-        </div>
       </div>
     </section>
   );

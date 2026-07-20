@@ -931,11 +931,16 @@ test("publishes a sourced AI mathematics record without flattening evidence stat
   assert.equal(response.status, 200);
   const html = await response.text();
 
-  assert.match(html, /Select a moment in the record/i);
+  assert.match(html, /one accelerating frontier/i);
+  assert.match(html, /Follow the record across 2026/i);
+  assert.match(html, /Clustered nodes show activity accelerating—not stronger evidence/i);
   assert.match(html, /role="tablist"/i);
+  assert.match(html, /AI mathematics milestones from January to July 2026/i);
   assert.match(html, /role="tab"/i);
   assert.match(html, /aria-selected="true"/i);
   assert.match(html, /role="tabpanel"/i);
+  assert.match(html, /Latest entry/i);
+  assert.doesNotMatch(html, />\s*Live\s*</i);
   assert.match(html, /Erdős Problem #728/i);
   assert.match(html, /Erdős Problem #650/i);
   assert.match(html, /Erdős Problem #1196/i);
