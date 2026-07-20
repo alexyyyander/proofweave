@@ -50,10 +50,10 @@ export default async function DemoPage({
 
         <section className={`demo-live-record ${liveClosure ? "is-issued" : "is-pending"}`} id="live-network-record" aria-labelledby="demo-live-record-title">
           <div>
-            <p className="eyebrow">Separate live-network proof</p>
-            <h2 id="demo-live-record-title">{liveClosure ? "A real cloud replay reached a signed Receipt." : "Live cloud closure has not been recorded yet."}</h2>
+            <p className="eyebrow">Separate live protocol run</p>
+            <h2 id="demo-live-record-title">{liveClosure ? "A real cloud replay produced an internal test Receipt." : "Live cloud closure has not been recorded yet."}</h2>
             <p>{liveClosure
-              ? `The public record covers ${liveClosure.target}. Its ${liveClosure.reviewerCount} different-owner mock reviewer${liveClosure.reviewerCount === 1 ? " is" : "s are"} clearly labelled, while the fresh isolated replay, ${liveClosure.attestationCount} Agent signatures, and issuer-signed Receipt are stored evidence.`
+              ? `The protocol run covers ${liveClosure.target}. Its ${liveClosure.reviewerCount} different-owner mock reviewer${liveClosure.reviewerCount === 1 ? " is" : "s are"} clearly labelled. The replay, ${liveClosure.attestationCount} Agent signatures, and issuer-signed Receipt remain auditable test evidence—not a public math contribution or Research Credit.`
               : "The interactive console below verifies a checked reference fixture. It does not claim that a hosted replay or network Receipt exists until this separate panel can resolve one from shared storage."}</p>
           </div>
           {liveClosure ? <div className="demo-live-record-proof">
@@ -63,7 +63,7 @@ export default async function DemoPage({
               <div><dt>Mock owners</dt><dd>{liveClosure.reviewerCount} distinct</dd></div>
               <div><dt>Receipt</dt><dd><code>{shortHash(liveClosure.receiptHash)}</code></dd></div>
             </dl>
-            <Link className="button button-primary" href={`/receipt/${encodeURIComponent(liveClosure.receiptId)}`}>Inspect live Receipt <span aria-hidden="true">→</span></Link>
+            <a className="button button-primary" href="#verification-console">Inspect verification boundary <span aria-hidden="true">↓</span></a>
           </div> : <ProductStateBadge tone="provisional">Reference only</ProductStateBadge>}
         </section>
 

@@ -18,7 +18,8 @@ export async function checkBuildWeekDemoRelease({
   const demo = await getText(fetchImpl, `${normalizedBaseUrl}/demo`);
   requireText(demo.body, "Watch one Lean proof become", "demo introduction");
   requireText(demo.body, "verifiable evidence.", "demo introduction outcome");
-  requireText(demo.body, "A real cloud replay reached a signed Receipt.", "live-network record");
+  requireText(demo.body, "A real cloud replay produced an internal test Receipt.", "live protocol record");
+  requireText(demo.body, "not a public math contribution or Research Credit", "live protocol boundary");
 
   const reference = await getJson(fetchImpl, `${normalizedBaseUrl}/api/demo/verify`);
   if (reference.body?.status !== "verified") {
@@ -39,10 +40,11 @@ export async function checkBuildWeekDemoRelease({
     throw new Error("Tamper test did not reject the modified artifact bytes.");
   }
 
-  const receiptPath = extractReceiptPath(demo.body);
-  const receipt = await getText(fetchImpl, `${normalizedBaseUrl}${receiptPath}`);
-  requireText(receipt.body, "Public evidence record", "live Receipt page");
-  requireText(receipt.body, "ProofweaveCloudSmoke.true_is_inhabited", "live Receipt target");
+  const publicReceipts = await getJson(fetchImpl, `${normalizedBaseUrl}/api/receipts`);
+  const publicReceiptPayload = JSON.stringify(publicReceipts.body);
+  if (/ProofweaveCloudSmoke|build-week-local-mock|cloud-smoke/i.test(publicReceiptPayload)) {
+    throw new Error("Internal smoke-test evidence leaked into the public Receipt index.");
+  }
 
   return {
     schemaVersion: "pw-audit-v1",
@@ -52,8 +54,8 @@ export async function checkBuildWeekDemoRelease({
     baseUrl: normalizedBaseUrl,
     referenceChecks: `${passedChecks}/${EXPECTED_REFERENCE_CHECKS}`,
     tamperRejected: true,
-    receiptPath,
-    checkedRoutes: ["/", "/demo", "/api/demo/verify", "/api/demo/verify?tamper=artifact", receiptPath],
+    internalSmokeExcluded: true,
+    checkedRoutes: ["/", "/demo", "/api/demo/verify", "/api/demo/verify?tamper=artifact", "/api/receipts"],
     durationMs: Date.now() - startedAt,
   };
 }
@@ -104,12 +106,6 @@ async function getJson(fetchImpl, url) {
 
 function requireText(value, expected, label) {
   if (!value.includes(expected)) throw new Error(`${label} is missing.`);
-}
-
-function extractReceiptPath(html) {
-  const match = html.match(/href=["'](\/receipt\/receipt%3A[0-9a-f]{64})["']/i);
-  if (!match) throw new Error("The demo page does not expose a live Receipt link.");
-  return match[1];
 }
 
 function safeErrorCode(error) {

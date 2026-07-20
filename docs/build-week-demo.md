@@ -82,7 +82,8 @@ npm run demo:release:check
 
 `demo:e2e:check` starts Lean locally against the checked fixture.
 `demo:release:check` is read-only: it checks the deployed homepage, Demo, 6/6
-reference verifier, tamper rejection, live Receipt link, and live Receipt page.
+reference verifier, tamper rejection, the internal live protocol boundary, and
+that smoke-test evidence is absent from the public Receipt index.
 Pass another deployment URL as the final argument when rehearsing a preview:
 
 ```bash

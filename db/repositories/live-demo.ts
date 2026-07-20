@@ -1,5 +1,6 @@
 import { getSharedResearchD1 } from "@/db";
-import { getContributionReceiptReaderFor } from "@/db/repositories/receipts";
+import { contributionReceiptHash } from "@/packages/protocol/contribution-receipt.mjs";
+import { D1ContributionReceiptStore } from "@/services/receipts/d1-contribution-receipt-store.mjs";
 
 export type LiveBuildWeekClosure = Readonly<{
   receiptId: string;
@@ -23,6 +24,8 @@ type ReceiptRow = {
   receipt_id: string;
   attestation_count: number;
   reviewer_count: number;
+  record_class: "smoke_test";
+  visibility: "internal";
 };
 
 type ReviewerRow = {
@@ -44,9 +47,13 @@ export async function latestLiveBuildWeekClosure(): Promise<LiveBuildWeekClosure
   const database = getSharedResearchD1();
   const receipt = await database.prepare(
     `SELECT receipt.id AS receipt_id,
+            publication.record_class,
+            publication.visibility,
             COUNT(DISTINCT attestation.id) AS attestation_count,
             COUNT(DISTINCT reviewer.id) AS reviewer_count
      FROM contribution_receipts AS receipt
+     INNER JOIN contribution_receipt_publications AS publication
+       ON publication.receipt_id = receipt.id
      INNER JOIN json_each(receipt.canonical_receipt, '$.claims') AS receipt_claim
      INNER JOIN verification_attestations AS attestation
        ON attestation.id = json_extract(receipt_claim.value, '$.verificationAttestationId')
@@ -55,6 +62,8 @@ export async function latestLiveBuildWeekClosure(): Promise<LiveBuildWeekClosure
       AND attestation.decision = 'attested'
      INNER JOIN persons AS reviewer ON reviewer.id = attestation.verifier_person_id
      WHERE receipt.kind <> 'verification'
+       AND publication.record_class = 'smoke_test'
+       AND publication.visibility = 'internal'
        AND reviewer.identity_provider = 'proofweave-demo'
        AND attestation.claim_type IN ('bundle_reproducible','kernel_accepted','project_accepted')
      GROUP BY receipt.id
@@ -66,11 +75,13 @@ export async function latestLiveBuildWeekClosure(): Promise<LiveBuildWeekClosure
   ).first<ReceiptRow>();
   if (!receipt) return null;
 
-  // A convenient SQL projection is not a trust decision. The public reader
-  // rechecks the canonical hash, issuer signature, Receipt policy, and
-  // historical issuer-key authorization before this page may say "live".
-  const verifiedReceipt = await getContributionReceiptReaderFor(database).findById(receipt.receipt_id);
-  if (!verifiedReceipt) return null;
+  // A convenient SQL projection is not a trust decision. The internal store
+  // rechecks canonical evidence, issuer authorization, signatures, and Receipt
+  // policy. Publication classification is checked separately above: this run
+  // may demonstrate the protocol, but it is never a public math contribution.
+  const internalReceipt = await new D1ContributionReceiptStore(database)
+    .loadVerifiedReceipt(receipt.receipt_id);
+  const verifiedReceiptHash = await contributionReceiptHash(internalReceipt);
 
   const reviewerRows = await database.prepare(
     `SELECT DISTINCT reviewer.id AS person_id, reviewer.display_name
@@ -108,9 +119,9 @@ export async function latestLiveBuildWeekClosure(): Promise<LiveBuildWeekClosure
      ORDER BY evidence.recorded_at DESC, evidence.id DESC LIMIT 1`,
   ).bind(receipt.receipt_id).first<ReplayRow>();
   if (!replay) return null;
-  const publicReceipt = verifiedReceipt.receipt;
+  const publicReceipt = internalReceipt;
   if (
-    !isIdentifier(receipt.receipt_id) || !isSha256(verifiedReceipt.receiptHash) ||
+    !isIdentifier(receipt.receipt_id) || !isSha256(verifiedReceiptHash) ||
     !isIdentifier(publicReceipt.run.id) || !isSha256(publicReceipt.run.resultHash) ||
     !isIdentifier(replay.replay_run_id) || !isSha256(replay.replay_evidence_hash) ||
     !isIdentifier(publicReceipt.beneficiary.personId) ||
@@ -125,7 +136,7 @@ export async function latestLiveBuildWeekClosure(): Promise<LiveBuildWeekClosure
 
   return Object.freeze({
     receiptId: receipt.receipt_id,
-    receiptHash: verifiedReceipt.receiptHash,
+    receiptHash: verifiedReceiptHash,
     issuedAt: publicReceipt.issuedAt,
     target: publicReceipt.target.declaration,
     ownerPersonId: publicReceipt.beneficiary.personId,
