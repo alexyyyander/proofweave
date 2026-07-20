@@ -101,6 +101,23 @@ const milestones: Milestone[] = [
     significance: "Its reported 9/353 Erdős and 44/492 OEIS results shifted the frontier from one celebrated example to a repeatable, measurable workflow.",
     sources: [{ label: "Research paper", href: "https://arxiv.org/abs/2605.22763" }],
   },
+  {
+    number: "06",
+    date: "09 JUL 2026",
+    title: "Cycle Double Cover Conjecture",
+    system: "GPT-5.6 Sol Ultra + Codex",
+    summary: "OpenAI released a proof that every finite bridgeless loopless multigraph admits a family of cycles covering each edge exactly twice.",
+    aiRole: "GPT-5.6 Sol Ultra developed the proof; Codex helped produce the write-up and the accompanying Lean formalization.",
+    humanRole: "Specified the exact target and adversarial audit requirements, published the complete prompt, and opened the artifacts to independent review.",
+    evidence: "Lean kernel-checked artifact",
+    evidenceTone: "formal",
+    significance: "A concise flow-and-linear-algebra argument arrived with a pinned Lean project that checks the full unconditional theorem—not only a finite computation or special graph class.",
+    sources: [
+      { label: "Proof note", href: "https://cdn.openai.com/pdf/04d1d1e4-bc75-476a-97cf-49055cd98d31/cdc_proof.pdf" },
+      { label: "Lean formalization", href: "https://github.com/openai/cdc-lean" },
+      { label: "Published prompt", href: "https://cdn.openai.com/pdf/04d1d1e4-bc75-476a-97cf-49055cd98d31/cdc_prompt.pdf" },
+    ],
+  },
 ];
 
 const evidenceLegend: Array<{ tone: EvidenceTone; label: string; detail: string }> = [
@@ -114,7 +131,7 @@ export default function HistoryPage() {
   return <div className="site-shell history-shell"><Header active="history" /><main id="main-content" tabIndex={-1}>
     <section className="history-hero">
       <div className="history-hero-copy"><p className="eyebrow">AI × MATHEMATICS · PUBLIC RECORD</p><h1>From one Erdős problem to the Jacobian frontier.</h1><p>A sourced timeline of AI contributions to open mathematics—and the evidence behind each claim. This record separates discovery, human judgment, formal checking, and public announcement.</p><div className="history-hero-actions"><a className="button button-primary" href="#timeline">Read the timeline <span aria-hidden="true">↓</span></a><Link className="history-text-link" href="/demo">See executable evidence <span aria-hidden="true">→</span></Link></div></div>
-      <aside className="history-hero-index" aria-label="Record summary"><span>RECORD WINDOW</span><strong>JAN — JUL</strong><small>2026 · six milestones</small><div className="history-pulse" aria-hidden="true"><i /><i /><i /><i /><i /><i /></div><p>Updated 20 July 2026</p></aside>
+      <aside className="history-hero-index" aria-label="Record summary"><span>RECORD WINDOW</span><strong>JAN — JUL</strong><small>2026 · seven milestones</small><div className="history-pulse" aria-hidden="true"><i /><i /><i /><i /><i /><i /><i /></div><p>Updated 20 July 2026</p></aside>
     </section>
 
     <section className="history-legend" aria-labelledby="evidence-legend-title"><div><p className="eyebrow">How to read this record</p><h2 id="evidence-legend-title">“AI solved it” is not one evidence state.</h2></div><div className="history-legend-grid">{evidenceLegend.map((item) => <article key={item.label}><span className={`history-state is-${item.tone}`}>{item.label}</span><p>{item.detail}</p></article>)}</div></section>
@@ -126,7 +143,7 @@ export default function HistoryPage() {
       </article>)}
 
       <article className="history-entry is-frontier">
-        <div className="history-entry-marker"><span>06</span><time>20 JUL 2026</time><b>LIVE FRONTIER</b></div>
+        <div className="history-entry-marker"><span>07</span><time>20 JUL 2026</time><b>LIVE FRONTIER</b></div>
         <div className="history-entry-card"><header><div><p className="history-system">Claude-Fable · reported by Levent Alpöge</p><h2>A three-dimensional Jacobian counterexample is announced.</h2></div><span className="history-state is-announced">Newly announced</span></header><p className="history-entry-summary">An explicit polynomial map over ℂ was reported with constant nonzero Jacobian determinant and three distinct inputs sharing one output—the exact shape required to refute the classical Jacobian Conjecture in dimension three.</p>
           <div className="history-jacobian-proof"><div><span>CONSTANT JACOBIAN</span><strong>det JF = −2</strong></div><div><span>NON-INJECTIVITY</span><strong>3 inputs → (−¼, 0, 0)</strong></div></div>
           <details className="history-jacobian-formula"><summary>Inspect the exact polynomial map <span aria-hidden="true">+</span></summary><div><code>F₁ = (1 + xy)³z + y²(1 + xy)(4 + 3xy)</code><code>F₂ = y + 3x(1 + xy)²z + 3xy²(4 + 3xy)</code><code>F₃ = 2x − 3x²y − x³z</code><p><strong>Collision:</strong> (0, 0, −¼), (1, −3/2, 13/2), and (−1, 3/2, 13/2) all map to (−¼, 0, 0).</p></div></details>

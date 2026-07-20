@@ -2679,10 +2679,10 @@ a.auth-provider:hover, .auth-provider-button:hover { border-color: #8295d5; box-
 .history-hero-index > strong { font-family: Georgia, "Times New Roman", serif; font-size: 36px; font-weight: 400; letter-spacing: -.035em; margin-top: 18px; }
 .history-hero-index > small { color: #9eacc2; font-size: 10px; margin-top: 5px; }
 .history-hero-index > p { color: #9eacc2; font-size: 9px; margin: 15px 0 0; }
-.history-pulse { align-items: center; display: flex; gap: 0; height: 36px; margin-top: 22px; }
-.history-pulse::before { background: rgba(149, 171, 236, .37); content: ""; height: 1px; position: absolute; width: 224px; }
-.history-pulse i { background: #829bea; border: 3px solid var(--navy); border-radius: 50%; height: 9px; margin-right: 35px; position: relative; width: 9px; }
-.history-pulse i:last-child { background: #e5c983; box-shadow: 0 0 0 4px rgba(229, 201, 131, .12); margin-right: 0; }
+.history-pulse { align-items: center; display: flex; gap: 0; height: 36px; justify-content: space-between; margin-top: 22px; position: relative; }
+.history-pulse::before { background: rgba(149, 171, 236, .37); content: ""; height: 1px; left: 4px; position: absolute; right: 4px; }
+.history-pulse i { background: #829bea; border: 3px solid var(--navy); border-radius: 50%; height: 9px; position: relative; width: 9px; }
+.history-pulse i:last-child { background: #e5c983; box-shadow: 0 0 0 4px rgba(229, 201, 131, .12); }
 
 .history-legend { border-bottom: 1px solid #d2d0c7; display: grid; gap: 62px; grid-template-columns: minmax(240px, .7fr) minmax(0, 1.3fr); margin: 0 auto; max-width: 1240px; padding: 68px 28px 58px; }
 .history-legend h2 { font-family: Georgia, "Times New Roman", serif; font-size: clamp(30px, 3.2vw, 43px); font-weight: 400; letter-spacing: -.045em; line-height: 1.05; margin: 0; max-width: 450px; }

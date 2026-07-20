@@ -936,6 +936,11 @@ test("publishes a sourced AI mathematics record without flattening evidence stat
   assert.match(html, /Erdős Problem #1196/i);
   assert.match(html, /planar unit-distance conjecture/i);
   assert.match(html, /AlphaProof Nexus scales the search/i);
+  assert.match(html, /Cycle Double Cover Conjecture/i);
+  assert.match(html, /GPT-5\.6 Sol Ultra \+ Codex/i);
+  assert.match(html, /Lean kernel-checked artifact/i);
+  assert.match(html, /github\.com\/openai\/cdc-lean/i);
+  assert.match(html, /cdc_proof\.pdf/i);
   assert.match(html, /three-dimensional Jacobian counterexample is announced/i);
   assert.match(html, /det JF = −2/i);
   assert.match(html, /3 inputs → \(−¼, 0, 0\)/i);
