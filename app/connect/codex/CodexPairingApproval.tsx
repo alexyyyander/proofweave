@@ -185,5 +185,9 @@ function formatExpiry(value: string): string {
 }
 
 function messageFor(cause: unknown): string {
-  return cause instanceof Error ? cause.message : "The local connection could not be completed.";
+  const message = cause instanceof Error ? cause.message : "The local connection could not be completed.";
+  if (/Agent id cannot be reused with different ownership or key material/i.test(message)) {
+    return "This approval page was created with an Agent identity that is already bound elsewhere. Close this stale tab, update the Proofweave plugin, and start connect_proofweave again from a new Codex task. The updated Connector creates a fresh identity while preserving the previous Agent and its records.";
+  }
+  return message;
 }

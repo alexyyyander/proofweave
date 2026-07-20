@@ -75,6 +75,9 @@ test("the private-beta plugin starts only a local PKCE Connector", async () => {
   assert.match(pairingRepository, /research_and_review/);
   assert.match(pairingRepository, /"artifact:write"/);
   assert.match(connector, /likely credential or private key/);
+  assert.match(connector, /changingControlPlane/);
+  assert.match(connector, /previousAgentPreserved/);
+  assert.match(connector, /fresh deployment-scoped Agent identity/);
   assert.doesNotMatch(connector, /PROOFWEAVE_API_TOKEN/);
 });
 
@@ -120,11 +123,83 @@ test("the local Connector refuses to treat a saved connection for another contro
     const status = JSON.parse(response.result.content[0].text);
     assert.equal(status.connected, false);
     assert.equal(status.reconnectRequired, true);
+    assert.equal(status.identityRotationRequired, true);
     assert.equal(status.configuredBaseUrl, "https://old-proofweave.example.test");
     assert.equal(status.expectedBaseUrl, "https://proofweave.example.test");
     assert.match(status.message, /approve connect_proofweave/i);
+    assert.match(status.message, /fresh Agent identity/i);
+    assert.match(status.message, /preserving the previous Agent/i);
   } finally {
     await rm(fixtureRoot, { recursive: true, force: true });
+  }
+});
+
+test("the local Connector rotates an Agent identity before approving a different control plane", async () => {
+  const fixtureRoot = await mkdtemp(join(tmpdir(), "proofweave-connector-identity-rotation-"));
+  let pairingPayload;
+  let resolvePairing;
+  const pairingReceived = new Promise((resolve) => { resolvePairing = resolve; });
+  const server = createServer((request, response) => {
+    let body = "";
+    request.setEncoding("utf8");
+    request.on("data", (chunk) => { body += chunk; });
+    request.on("end", () => {
+      if (request.url === "/api/connect/sessions") {
+        pairingPayload = JSON.parse(body);
+        response.writeHead(201, { "content-type": "application/json" });
+        response.end(JSON.stringify({
+          clientId: "client:fresh-control-plane",
+          connectionUrl: "http://127.0.0.1:9/approval-is-suppressed-in-this-test",
+          expiresAt: new Date(Date.now() + 10 * 60 * 1_000).toISOString(),
+        }));
+        resolvePairing();
+        return;
+      }
+      if (request.url === "/token") {
+        response.writeHead(200, { "content-type": "application/json" });
+        response.end(JSON.stringify({
+          access_token: "access-fresh-control-plane",
+          refresh_token: "refresh-fresh-control-plane",
+          expires_in: 3_600,
+          scope: "catalog:read attempt:create attempt:read progress:write artifact:write run:request run:read run:cancel",
+        }));
+        return;
+      }
+      response.writeHead(404).end();
+    });
+  });
+  try {
+    const port = await listen(server);
+    const callbackPort = await availablePort();
+    const baseUrl = `http://127.0.0.1:${port}`;
+    const configPath = join(fixtureRoot, "connector.json");
+    const previous = connectedFixtureConfig("https://old-proofweave.example.test");
+    await writeFile(configPath, JSON.stringify(previous));
+    const connectPromise = callConnectorTool("connect_proofweave", {}, {
+      ...process.env,
+      PROOFWEAVE_BASE_URL: baseUrl,
+      PROOFWEAVE_CONNECTOR_CONFIG: configPath,
+      PROOFWEAVE_CALLBACK_PORT: String(callbackPort),
+      PROOFWEAVE_DISABLE_BROWSER_OPEN: "1",
+    });
+
+    await pairingReceived;
+    assert.notEqual(pairingPayload.agentId, previous.agentId);
+    assert.notEqual(pairingPayload.agentPublicKey, previous.agentPublicKey);
+    assert.match(pairingPayload.agentId, /^urn:pw:agent:codex-/);
+    await fetchWithRetry(`http://127.0.0.1:${callbackPort}/callback?code=approved-code&state=${encodeURIComponent(pairingPayload.oauthState)}`);
+
+    const response = await connectPromise;
+    assert.equal(response.error, undefined);
+    const result = JSON.parse(response.result.content[0].text);
+    assert.equal(result.connected, true);
+    assert.equal(result.identityRotated, true);
+    assert.equal(result.previousAgentPreserved, true);
+    const saved = JSON.parse(await readFile(configPath, "utf8"));
+    assert.equal(saved.agentId, pairingPayload.agentId);
+    assert.notEqual(saved.agentId, previous.agentId);
+  } finally {
+    await Promise.all([close(server), rm(fixtureRoot, { recursive: true, force: true })]);
   }
 });
 
@@ -882,6 +957,28 @@ function listen(server) {
       resolve(server.address().port);
     });
   });
+}
+
+async function availablePort() {
+  const server = createServer();
+  const port = await listen(server);
+  await close(server);
+  return port;
+}
+
+async function fetchWithRetry(url) {
+  let lastError;
+  for (let attempt = 0; attempt < 50; attempt += 1) {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`Callback returned HTTP ${response.status}.`);
+      return response;
+    } catch (error) {
+      lastError = error;
+      await new Promise((resolve) => setTimeout(resolve, 10));
+    }
+  }
+  throw lastError;
 }
 
 function close(server) {

@@ -20,7 +20,7 @@ import readline from "node:readline";
 
 const baseUrl = normalizeBaseUrl(process.env.PROOFWEAVE_BASE_URL ?? "https://proofweave-research.yualex031821.chatgpt.site");
 const callbackHost = "127.0.0.1";
-const callbackPort = 44765;
+const callbackPort = normalizeCallbackPort(process.env.PROOFWEAVE_CALLBACK_PORT);
 const callbackPath = "/callback";
 const redirectUri = `http://${callbackHost}:${callbackPort}${callbackPath}`;
 const configPath = process.env.PROOFWEAVE_CONNECTOR_CONFIG ?? join(homedir(), ".proofweave", "codex-connector.json");
@@ -1478,7 +1478,13 @@ async function connect(args = {}) {
     return { connected: true, connectionMode, message: `Already connected as ${existing.agentLabel} for ${connectionModeLabel(connectionMode)}. Revoke this connection in Proofweave Settings before reconnecting.` };
   }
   const upgrading = Boolean(existing?.refreshToken && existing.baseUrl === baseUrl);
-  const identity = existing?.privateKeyJwk && existing?.agentId && existing?.agentPublicKey
+  // Agent identities are scoped to one Proofweave control plane. Reusing an
+  // id/key pair while moving between deployments can collide with a Person or
+  // Agent record already present on the destination. Keep the previous config
+  // untouched until browser approval succeeds, but propose a fresh identity
+  // for the destination deployment.
+  const changingControlPlane = Boolean(existing?.baseUrl && existing.baseUrl !== baseUrl);
+  const identity = !changingControlPlane && existing?.privateKeyJwk && existing?.agentId && existing?.agentPublicKey
     ? existing
     : createLocalIdentity();
   const state = randomToken(24);
@@ -1517,7 +1523,11 @@ async function connect(args = {}) {
     connected: true,
     connectionMode,
     scopeUpgradeRequired: false,
-    message: `${upgrading ? "Connection upgraded" : "Connected"} as ${next.agentLabel} for ${connectionModeLabel(connectionMode)}. You can revoke this installation in Proofweave Settings.`,
+    identityRotated: changingControlPlane,
+    previousAgentPreserved: changingControlPlane,
+    message: changingControlPlane
+      ? `Connected as ${next.agentLabel} for ${connectionModeLabel(connectionMode)} with a fresh deployment-scoped Agent identity. The previous Agent and its records remain preserved on the earlier Proofweave deployment.`
+      : `${upgrading ? "Connection upgraded" : "Connected"} as ${next.agentLabel} for ${connectionModeLabel(connectionMode)}. You can revoke this installation in Proofweave Settings.`,
   };
 }
 
@@ -1527,9 +1537,10 @@ async function connectionStatus() {
   if (config.baseUrl !== baseUrl) return {
     connected: false,
     reconnectRequired: true,
+    identityRotationRequired: true,
     configuredBaseUrl: config.baseUrl,
     expectedBaseUrl: baseUrl,
-    message: `This saved connection belongs to ${new URL(config.baseUrl).hostname}, but this plugin uses ${new URL(baseUrl).hostname}. Ask the owner to approve connect_proofweave before reading or writing Proofweave work.`,
+    message: `This saved connection belongs to ${new URL(config.baseUrl).hostname}, but this plugin uses ${new URL(baseUrl).hostname}. Ask the owner to approve connect_proofweave. Approval creates a fresh Agent identity for this deployment while preserving the previous Agent and its records.`,
   };
   const missingScopes = missingRequiredConnectionScopes(config);
   const connectionMode = existingConnectionMode(config);
@@ -1788,6 +1799,7 @@ async function writeConfig(value) {
 }
 
 function openBrowser(url) {
+  if (process.env.PROOFWEAVE_DISABLE_BROWSER_OPEN === "1") return true;
   const target = platform() === "darwin" ? ["open", [url]] : platform() === "win32" ? ["cmd", ["/c", "start", "", url]] : ["xdg-open", [url]];
   try {
     const child = spawn(target[0], target[1], { detached: true, stdio: "ignore" });
@@ -1796,6 +1808,15 @@ function openBrowser(url) {
   } catch {
     return false;
   }
+}
+
+function normalizeCallbackPort(value) {
+  if (value === undefined || value === "") return 44765;
+  const port = Number(value);
+  if (!Number.isSafeInteger(port) || port < 1024 || port > 65535) {
+    throw new Error("PROOFWEAVE_CALLBACK_PORT must be an integer between 1024 and 65535.");
+  }
+  return port;
 }
 
 function normalizeBaseUrl(value) {
