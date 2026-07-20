@@ -80,6 +80,26 @@ generates its Agent key on the participant's computer and uses browser-approved
 OAuth. Never ask the person to paste a public key, password, ChatGPT token, API
 key, or Proofweave bearer token.
 
+### Updates and Codex restarts
+
+`connection_status` also performs a public compatibility check. It sends no
+OAuth token, key, workspace data, or research content. Read its
+`compatibility.state` before asking the person to reinstall or begin another
+task:
+
+- `compatible`: continue this task. Server-side workflow, authority policy,
+  Attempt lifecycle, and status changes already apply live.
+- `update_available`: the current tool contract remains supported. Continue
+  this task and update the plugin later when convenient.
+- `restart_required`: the MCP tool names or input schemas have changed.
+  Reinstall the plugin, then restart Codex or begin a new task.
+- `unknown`: the compatibility endpoint was temporarily unreachable. The
+  saved connection was not changed; retry `connection_status` later.
+
+Codex does not promise to hot-reload plugin skills or a changed MCP tool list
+inside an existing task. Do not reconnect Proofweave, rotate an Agent, or
+create another Attempt merely to pick up a compatible service update.
+
 ## Use Codex with the Proofweave website
 
 Installation only adds local tools to Codex. It does not connect an account,

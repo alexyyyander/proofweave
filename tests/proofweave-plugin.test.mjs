@@ -18,15 +18,58 @@ const pluginSkillRoot = resolve(pluginRoot, "skills/proofweave-research");
 const execFileAsync = promisify(execFile);
 
 test("the portable Proofweave Codex plugin carries the checked source skill", async () => {
-  const [sourceSkill, bundledSkill, sourceReference, bundledReference] = await Promise.all([
+  const [sourceSkill, bundledSkill, sourceReference, bundledReference, protocolContract, bundledProtocolContract] = await Promise.all([
     readFile(resolve(sourceSkillRoot, "SKILL.md"), "utf8"),
     readFile(resolve(pluginSkillRoot, "SKILL.md"), "utf8"),
     readFile(resolve(sourceSkillRoot, "references/mcp-tools.md"), "utf8"),
     readFile(resolve(pluginSkillRoot, "references/mcp-tools.md"), "utf8"),
+    readFile(resolve(root, "packages/protocol/proofweave-client-compatibility.json"), "utf8"),
+    readFile(resolve(pluginRoot, "mcp/proofweave-client-compatibility.json"), "utf8"),
   ]);
 
   assert.equal(bundledSkill, sourceSkill);
   assert.equal(bundledReference, sourceReference);
+  assert.deepEqual(JSON.parse(bundledProtocolContract), JSON.parse(protocolContract));
+});
+
+test("connection_status distinguishes live-compatible updates from tool-schema restarts", async () => {
+  let toolSchemaVersion = 1;
+  const server = createServer((request, response) => {
+    if (request.url !== "/api/mcp/capabilities") return response.writeHead(404).end();
+    response.writeHead(200, { "content-type": "application/json" });
+    response.end(JSON.stringify({
+      protocolVersion: "pw-local-connector-v1",
+      toolSchemaVersion,
+      minimumConnectorApiVersion: 1,
+      recommendedConnectorApiVersion: 1,
+      capabilities: ["stable_attempt_handoff"],
+    }));
+  });
+  const fixtureRoot = await mkdtemp(join(tmpdir(), "proofweave-connector-compatibility-"));
+  try {
+    const port = await listen(server);
+    const baseUrl = `http://127.0.0.1:${port}`;
+    const configPath = join(fixtureRoot, "connector.json");
+    await writeFile(configPath, JSON.stringify(connectedFixtureConfig(baseUrl)));
+    const env = { ...process.env, PROOFWEAVE_BASE_URL: baseUrl, PROOFWEAVE_CONNECTOR_CONFIG: configPath };
+
+    const compatibleResponse = await callConnectorTool("connection_status", {}, env);
+    const compatible = JSON.parse(compatibleResponse.result.content[0].text);
+    assert.equal(compatible.compatibility.state, "compatible");
+    assert.equal(compatible.compatibility.taskAction, "continue_current_task");
+    assert.equal(compatible.compatibility.restartRequired, false);
+    assert.equal(compatible.connector.toolSchemaVersion, 1);
+    assert.equal(compatible.compatibility.remote.capabilities[0], "stable_attempt_handoff");
+
+    toolSchemaVersion = 2;
+    const restartResponse = await callConnectorTool("connection_status", {}, env);
+    const restart = JSON.parse(restartResponse.result.content[0].text);
+    assert.equal(restart.compatibility.state, "restart_required");
+    assert.equal(restart.compatibility.taskAction, "reinstall_then_restart_codex");
+    assert.equal(restart.compatibility.restartRequired, true);
+  } finally {
+    await Promise.all([close(server), rm(fixtureRoot, { recursive: true, force: true })]);
+  }
 });
 
 test("the private-beta plugin starts only a local PKCE Connector", async () => {

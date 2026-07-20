@@ -16,7 +16,7 @@ test("complete Proofweave migration history is atomically ledgered on libSQL", a
   t.after(() => database.close());
   const migrations = await loadProofweaveMigrations();
   assert.equal(migrations[0].name, "0000_busy_lester.sql");
-  assert.equal(migrations.at(-1).name, "0037_add_problem_proposals.sql");
+  assert.equal(migrations.at(-1).name, "0039_decouple_attempt_authority.sql");
 
   const initial = await planProofweaveMigrations({ database, migrations });
   assert.equal(initial.fresh, true);
@@ -33,7 +33,7 @@ test("complete Proofweave migration history is atomically ledgered on libSQL", a
   assert.equal(result.plan.pending.length, 0);
   assert.deepEqual(await verifyProofweaveControlPlane({ database, migrations }), {
     migrationCount: migrations.length,
-    latestMigration: "0037_add_problem_proposals.sql",
+    latestMigration: "0039_decouple_attempt_authority.sql",
     requiredTables: [
       "persons",
       "artifact_bundles",

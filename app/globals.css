@@ -849,6 +849,17 @@ main section[id], main ol[id], main div[id] { scroll-margin-top: 68px; }
 .integration-install-card { gap: 16px; }
 .integration-install-card code { font-size: 11px; }
 .integration-install-card .codex-install-prompt { margin-top: 4px; }
+.integration-update-policy { background: #f7f7f4; border: 1px solid var(--line); display: grid; gap: 12px; padding: 14px; }
+.integration-update-policy > div:first-child { display: flex; flex-wrap: wrap; gap: 8px 16px; justify-content: space-between; }
+.integration-update-policy strong { color: var(--ink); font-size: 11px; }
+.integration-update-policy dl { border-bottom: 1px solid var(--line); border-top: 1px solid var(--line); margin: 0; }
+.integration-update-policy dl div { display: flex; gap: 12px; justify-content: space-between; padding: 8px 0; }
+.integration-update-policy dl div + div { border-top: 1px solid var(--line); }
+.integration-update-policy dt, .integration-update-policy dd { font-size: 10px; margin: 0; }
+.integration-update-policy dt { color: var(--ink-soft); }
+.integration-update-policy dd { color: var(--sage); font-weight: 700; text-align: right; }
+.integration-update-policy p { color: var(--ink-faint); font-size: 10px; line-height: 1.5; margin: 0; }
+.integration-update-policy p code { color: var(--indigo); }
 .integration-advanced-card { padding-bottom: 22px; }
 .integration-advanced-card h2 { margin-bottom: 22px; }
 .integration-disclosures { border-top: 1px solid var(--line); }

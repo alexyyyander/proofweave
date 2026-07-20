@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import compatibilityContract from "@/packages/protocol/proofweave-client-compatibility.json";
 import { CodexConnectPrompt, CodexInstallPrompt, CodexWorkflowPrompt } from "./CodexInstallPrompt";
 
 const authorizedScopes = [
@@ -130,6 +131,17 @@ export function IntegrationClient({
           <code>codex plugin add proofweave-research@proofweave-private-beta</code>
         </details>
         <div className="integration-status integration-status-ready"><i aria-hidden="true" />Private beta: GitHub repository access is currently required</div>
+        <div className="integration-update-policy" aria-label="Connector update policy">
+          <div>
+            <span className="micro-label">Live compatibility</span>
+            <strong>Protocol v{compatibilityContract.connectorApiVersion} · tool schema v{compatibilityContract.toolSchemaVersion}</strong>
+          </div>
+          <dl>
+            <div><dt>Normal service updates</dt><dd>Continue this task</dd></div>
+            <div><dt>Tool or skill changes</dt><dd>Update, then restart Codex</dd></div>
+          </dl>
+          <p>Ask Codex to run <code>connection_status</code>. It checks this contract without sending a token, key, workspace file, or research content.</p>
+        </div>
       </article>
 
       <article className="integration-card integration-card-wide integration-advanced-card">

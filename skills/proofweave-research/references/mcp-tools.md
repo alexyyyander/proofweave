@@ -6,6 +6,25 @@ Run `connection_status`, then `connect_proofweave` with role `research`,
 computer. The Connector uses browser OAuth PKCE; the retired
 local-token prototype must not be configured for participant use.
 
+## Connector compatibility
+
+Call `connection_status` before connection repair or a plugin update. Its
+public compatibility request sends no token, key, workspace data, or research
+content. Interpret `compatibility.state` exactly:
+
+- `compatible`: continue in the current Codex task. Server workflow, policy,
+  Attempt lifecycle, and capability metadata already update live.
+- `update_available`: the current tool contract is still accepted. Continue
+  now and update the plugin later.
+- `restart_required`: reinstall the plugin, then restart Codex or begin a new
+  task because MCP tool names, input schemas, or plugin skills changed.
+- `unknown`: leave the saved connection intact and retry the status check when
+  the service is reachable.
+
+A compatible service update never requires a new Agent, a new delegation, or
+a replacement Attempt. Codex does not guarantee hot reload of a changed MCP
+tool list or changed skill text inside an existing task.
+
 | Tool | Required OAuth scope | Result boundary |
 | --- | --- | --- |
 | `get_connection_authority` | `catalog:read` | Public Person, Agent, delegation, and scope identifiers for this exact installation; never tokens or private keys. |

@@ -99,6 +99,22 @@ test("publishes one reachable Sites-safe MCP resource URL", async () => {
   assert.match(challenge.headers.get("www-authenticate") ?? "", /oauth-protected-resource/);
 });
 
+test("publishes a public Connector compatibility contract", async () => {
+  const response = await miniflare.dispatchFetch("https://localhost/api/mcp/capabilities", {
+    headers: { accept: "application/json" },
+  });
+  assert.equal(response.status, 200);
+  assert.match(response.headers.get("cache-control") ?? "", /no-store/);
+  const contract = await response.json();
+  assert.equal(contract.protocolVersion, "pw-local-connector-v1");
+  assert.equal(contract.toolSchemaVersion, 1);
+  assert.equal(contract.minimumConnectorApiVersion, 1);
+  assert.equal(contract.recommendedConnectorApiVersion, 1);
+  assert.ok(contract.capabilities.includes("stable_attempt_handoff"));
+  assert.ok(contract.updatePolicy.liveWithoutRestart.includes("attempt_lifecycle"));
+  assert.ok(contract.updatePolicy.restartCodexAfterPluginUpdate.includes("mcp_tool_input_schemas"));
+});
+
 async function applyMigrations(d1, onlySeed = false) {
   const filenames = (await readdir(migrationsRoot))
     .filter((filename) => filename.endsWith(".sql"))
@@ -920,6 +936,10 @@ test("serves the public research paths", async () => {
   const integrationsHtml = await integrations.text();
   assert.match(integrationsHtml, /Install Proofweave Research once/i);
   assert.match(integrationsHtml, /Approve your local Codex once/i);
+  assert.match(integrationsHtml, /Normal service updates/i);
+  assert.match(integrationsHtml, /Continue this task/i);
+  assert.match(integrationsHtml, /Tool or skill changes/i);
+  assert.match(integrationsHtml, /Update, then restart Codex/i);
   assert.doesNotMatch(integrationsHtml, /https:\/\/mcp\.proofweave\.org\/mcp/i);
 
   const selectedIntegration = await render("/integrations?target=erdos-865-k2&return_to=%2Fworkbench%3Ftarget%3Derdos-865-k2%23research-launcher");

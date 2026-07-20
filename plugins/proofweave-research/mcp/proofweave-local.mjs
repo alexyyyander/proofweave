@@ -18,6 +18,12 @@ import { pipeline } from "node:stream/promises";
 import * as zlib from "node:zlib";
 import readline from "node:readline";
 
+const localCompatibilityContract = Object.freeze(JSON.parse(
+  await readFile(new URL("./proofweave-client-compatibility.json", import.meta.url), "utf8"),
+));
+const pluginManifest = Object.freeze(JSON.parse(
+  await readFile(new URL("../.codex-plugin/plugin.json", import.meta.url), "utf8"),
+));
 const baseUrl = normalizeBaseUrl(process.env.PROOFWEAVE_BASE_URL ?? "https://proofweave-research.yualex031821.chatgpt.site");
 const callbackHost = "127.0.0.1";
 const callbackPort = normalizeCallbackPort(process.env.PROOFWEAVE_CALLBACK_PORT);
@@ -35,7 +41,7 @@ const connectionScopeSets = Object.freeze({
 });
 const toolDefinitions = [
   tool("connect_proofweave", "Connect this local Codex to Proofweave with a one-time browser approval. Choose research, review, or both; the Agent key stays on this computer and no key needs to be pasted.", { type: "object", additionalProperties: false, properties: { role: { type: "string", enum: ["research", "review", "research_and_review"], description: "Least-privilege connection role. Defaults to research." } } }),
-  tool("connection_status", "Show whether this local Connector has a revocable Proofweave connection. It does not contact Proofweave.", { type: "object", additionalProperties: false, properties: {} }),
+  tool("connection_status", "Show whether this local Connector has a revocable Proofweave connection and check its live compatibility with the current Proofweave service. The check sends no token, key, workspace data, or research content.", { type: "object", additionalProperties: false, properties: {} }),
   tool("get_connection_authority", "Read the public Person, Agent, delegation, and OAuth scopes bound to this exact local installation. It never returns a token or private key.", { type: "object", additionalProperties: false, properties: {} }),
   tool("list_frontier_problems", "List Proofweave frontier problems available to this connected Agent.", { type: "object", additionalProperties: false, properties: { limit: { type: "integer", minimum: 1, maximum: 100 } } }),
   tool("inspect_problem", "Read a source-pinned Proofweave frontier problem before starting local work.", { type: "object", additionalProperties: false, properties: { slug: { type: "string", minLength: 1, maxLength: 160 } }, required: ["slug"] }),
@@ -91,7 +97,7 @@ async function handleRequest(method, params) {
     return {
       protocolVersion: params.protocolVersion ?? "2025-03-26",
       capabilities: { tools: {} },
-      serverInfo: { name: "proofweave-local", version: "0.2.0" },
+      serverInfo: { name: "proofweave-local", version: pluginManifest.version },
       instructions: "Use connect_proofweave before requesting Proofweave data. Local work remains on this computer unless a selected tool records a bounded event.",
     };
   }
@@ -1583,10 +1589,19 @@ async function connect(args = {}) {
 }
 
 async function connectionStatus() {
+  const compatibility = await checkServiceCompatibility();
+  const connector = localConnectorIdentity();
   const config = await readConfig();
-  if (!config?.refreshToken) return { connected: false, message: "Not connected. Use connect_proofweave to approve this local Codex." };
+  if (!config?.refreshToken) return {
+    connected: false,
+    connector,
+    compatibility,
+    message: "Not connected. Use connect_proofweave to approve this local Codex.",
+  };
   if (config.baseUrl !== baseUrl) return {
     connected: false,
+    connector,
+    compatibility,
     reconnectRequired: true,
     identityRotationRequired: true,
     configuredBaseUrl: config.baseUrl,
@@ -1597,6 +1612,8 @@ async function connectionStatus() {
   const connectionMode = existingConnectionMode(config);
   return {
     connected: true,
+    connector,
+    compatibility,
     agentId: config.agentId,
     agentLabel: config.agentLabel,
     baseUrl: config.baseUrl,
@@ -1607,6 +1624,107 @@ async function connectionStatus() {
       ? `This local connection is missing ${missingScopes.join(", ")}. Use connect_proofweave with role ${connectionMode} to approve the upgraded least-privilege connection.`
       : `Connected locally for ${connectionModeLabel(connectionMode)}. The refresh token and Agent private key are stored only on this computer.`,
   };
+}
+
+function localConnectorIdentity() {
+  return {
+    pluginVersion: pluginManifest.version,
+    protocolVersion: localCompatibilityContract.protocolVersion,
+    toolSchemaVersion: localCompatibilityContract.toolSchemaVersion,
+    connectorApiVersion: localCompatibilityContract.connectorApiVersion,
+  };
+}
+
+async function checkServiceCompatibility() {
+  const checkedAt = new Date().toISOString();
+  const local = localConnectorIdentity();
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 1_500);
+  try {
+    const response = await fetch(`${baseUrl}/api/mcp/capabilities`, {
+      method: "GET",
+      headers: { accept: "application/json" },
+      signal: controller.signal,
+    });
+    const payload = await response.json().catch(() => null);
+    if (!response.ok || !payload || typeof payload !== "object" || Array.isArray(payload)) {
+      throw new Error("invalid compatibility response");
+    }
+    const remote = normalizeRemoteCompatibility(payload);
+    const protocolChanged = remote.protocolVersion !== local.protocolVersion;
+    const toolSchemaChanged = remote.toolSchemaVersion !== local.toolSchemaVersion;
+    const connectorTooOld = remote.minimumConnectorApiVersion > local.connectorApiVersion;
+    if (protocolChanged || toolSchemaChanged || connectorTooOld) {
+      return {
+        state: "restart_required",
+        taskAction: "reinstall_then_restart_codex",
+        restartRequired: true,
+        checkedAt,
+        local,
+        remote,
+        message: "This service now requires a newer MCP tool contract. Reinstall the Proofweave plugin, then restart Codex or begin a new task before continuing.",
+      };
+    }
+    if (remote.recommendedConnectorApiVersion > local.connectorApiVersion) {
+      return {
+        state: "update_available",
+        taskAction: "continue_current_task",
+        restartRequired: false,
+        checkedAt,
+        local,
+        remote,
+        message: "A compatible Connector update is available. This task may continue; update the plugin when convenient.",
+      };
+    }
+    return {
+      state: "compatible",
+      taskAction: "continue_current_task",
+      restartRequired: false,
+      checkedAt,
+      local,
+      remote,
+      message: "This Connector is compatible. Server-side workflow and policy updates apply without reconnecting or opening a new task.",
+    };
+  } catch {
+    return {
+      state: "unknown",
+      taskAction: "retry_connection_status",
+      restartRequired: false,
+      checkedAt,
+      local,
+      remote: null,
+      message: "Compatibility could not be checked. The saved connection is unchanged; retry connection_status when Proofweave is reachable.",
+    };
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+function normalizeRemoteCompatibility(value) {
+  const protocolVersion = requiredLocalString(value.protocolVersion, "compatibility protocolVersion", 120);
+  const toolSchemaVersion = normalizeCompatibilityInteger(value.toolSchemaVersion, "toolSchemaVersion");
+  const minimumConnectorApiVersion = normalizeCompatibilityInteger(value.minimumConnectorApiVersion, "minimumConnectorApiVersion");
+  const recommendedConnectorApiVersion = normalizeCompatibilityInteger(value.recommendedConnectorApiVersion, "recommendedConnectorApiVersion");
+  if (recommendedConnectorApiVersion < minimumConnectorApiVersion) {
+    throw new Error("recommendedConnectorApiVersion cannot be below the minimum");
+  }
+  const capabilities = Array.isArray(value.capabilities)
+    ? value.capabilities.map((entry) => requiredLocalString(entry, "Each capability", 120)).slice(0, 64)
+    : [];
+  return {
+    protocolVersion,
+    toolSchemaVersion,
+    minimumConnectorApiVersion,
+    recommendedConnectorApiVersion,
+    capabilities,
+  };
+}
+
+function normalizeCompatibilityInteger(value, label) {
+  if (!Number.isSafeInteger(value) || value < 1 || value > 1_000_000) {
+    throw new Error(`${label} must be a positive integer.`);
+  }
+  return value;
 }
 
 async function startPairing(payload) {
