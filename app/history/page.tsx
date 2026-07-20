@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Header } from "../header";
 import { Footer } from "../ui";
+import { HistoryTimeline, type EvidenceTone, type HistoryMilestone } from "./HistoryTimeline";
 
 export const metadata: Metadata = {
   title: "AI Mathematics Record",
@@ -19,23 +20,7 @@ export const metadata: Metadata = {
   },
 };
 
-type EvidenceTone = "formal" | "reviewed" | "reproduced" | "announced";
-
-type Milestone = {
-  number: string;
-  date: string;
-  title: string;
-  system: string;
-  summary: string;
-  aiRole: string;
-  humanRole: string;
-  evidence: string;
-  evidenceTone: EvidenceTone;
-  significance: string;
-  sources: Array<{ label: string; href: string }>;
-};
-
-const milestones: Milestone[] = [
+const milestones: HistoryMilestone[] = [
   {
     number: "01",
     date: "JAN 2026",
@@ -118,6 +103,23 @@ const milestones: Milestone[] = [
       { label: "Published prompt", href: "https://cdn.openai.com/pdf/04d1d1e4-bc75-476a-97cf-49055cd98d31/cdc_prompt.pdf" },
     ],
   },
+  {
+    number: "07",
+    date: "20 JUL 2026",
+    title: "A three-dimensional Jacobian counterexample is announced.",
+    system: "Claude-Fable · reported by Levent Alpöge",
+    summary: "An explicit polynomial map over ℂ was reported with constant nonzero Jacobian determinant and three distinct inputs sharing one output—the exact shape required to refute the classical Jacobian Conjecture in dimension three.",
+    aiRole: "Claude-Fable produced the explicit map during an open-ended mathematical exploration.",
+    humanRole: "Levent Alpöge directed the investigation, checked the construction, and announced the result with exact coordinates.",
+    evidence: "Newly announced",
+    evidenceTone: "announced",
+    significance: "The determinant and collision are directly reproducible by symbolic or exact arithmetic. Journal review and a formal Proofweave receipt are not yet recorded.",
+    sources: [
+      { label: "Original announcement", href: "https://x.com/__alpoge__/status/2079028340955197566" },
+      { label: "Mathematical discussion", href: "https://mathoverflow.net/questions/130777/could-the-jacobian-conjecture-be-undecidable/513385" },
+    ],
+    frontier: true,
+  },
 ];
 
 const evidenceLegend: Array<{ tone: EvidenceTone; label: string; detail: string }> = [
@@ -136,23 +138,7 @@ export default function HistoryPage() {
 
     <section className="history-legend" aria-labelledby="evidence-legend-title"><div><p className="eyebrow">How to read this record</p><h2 id="evidence-legend-title">“AI solved it” is not one evidence state.</h2></div><div className="history-legend-grid">{evidenceLegend.map((item) => <article key={item.label}><span className={`history-state is-${item.tone}`}>{item.label}</span><p>{item.detail}</p></article>)}</div></section>
 
-    <section className="history-timeline" id="timeline" aria-label="AI mathematics timeline">
-      {milestones.map((item) => <article className="history-entry" key={item.number}>
-        <div className="history-entry-marker"><span>{item.number}</span><time>{item.date}</time></div>
-        <div className="history-entry-card"><header><div><p className="history-system">{item.system}</p><h2>{item.title}</h2></div><span className={`history-state is-${item.evidenceTone}`}>{item.evidence}</span></header><p className="history-entry-summary">{item.summary}</p><dl className="history-role-grid"><div><dt>AI contribution</dt><dd>{item.aiRole}</dd></div><div><dt>Human contribution</dt><dd>{item.humanRole}</dd></div><div><dt>Why it mattered</dt><dd>{item.significance}</dd></div></dl><footer>{item.sources.map((source) => <a href={source.href} key={source.href} rel="noreferrer" target="_blank">{source.label} <span aria-hidden="true">↗</span></a>)}</footer></div>
-      </article>)}
-
-      <article className="history-entry is-frontier">
-        <div className="history-entry-marker"><span>07</span><time>20 JUL 2026</time><b>LIVE FRONTIER</b></div>
-        <div className="history-entry-card"><header><div><p className="history-system">Claude-Fable · reported by Levent Alpöge</p><h2>A three-dimensional Jacobian counterexample is announced.</h2></div><span className="history-state is-announced">Newly announced</span></header><p className="history-entry-summary">An explicit polynomial map over ℂ was reported with constant nonzero Jacobian determinant and three distinct inputs sharing one output—the exact shape required to refute the classical Jacobian Conjecture in dimension three.</p>
-          <div className="history-jacobian-proof"><div><span>CONSTANT JACOBIAN</span><strong>det JF = −2</strong></div><div><span>NON-INJECTIVITY</span><strong>3 inputs → (−¼, 0, 0)</strong></div></div>
-          <details className="history-jacobian-formula"><summary>Inspect the exact polynomial map <span aria-hidden="true">+</span></summary><div><code>F₁ = (1 + xy)³z + y²(1 + xy)(4 + 3xy)</code><code>F₂ = y + 3x(1 + xy)²z + 3xy²(4 + 3xy)</code><code>F₃ = 2x − 3x²y − x³z</code><p><strong>Collision:</strong> (0, 0, −¼), (1, −3/2, 13/2), and (−1, 3/2, 13/2) all map to (−¼, 0, 0).</p></div></details>
-          <dl className="history-role-grid"><div><dt>AI contribution</dt><dd>Claude-Fable produced the explicit map during an open-ended mathematical exploration.</dd></div><div><dt>Human contribution</dt><dd>Levent Alpöge directed the investigation, checked the construction, and announced the result with exact coordinates.</dd></div><div><dt>Evidence today</dt><dd>The determinant and collision are directly reproducible by symbolic or exact arithmetic. Journal review and a formal Proofweave receipt are not yet recorded.</dd></div></dl>
-          <div className="history-frontier-boundary"><strong>What this does—and does not—establish</strong><p>The displayed algebraic claims can be checked now. The scholarly publication and attribution record are still forming, and the two-dimensional Jacobian Conjecture remains open.</p></div>
-          <footer><a href="https://x.com/__alpoge__/status/2079028340955197566" rel="noreferrer" target="_blank">Original announcement <span aria-hidden="true">↗</span></a><a href="https://mathoverflow.net/questions/130777/could-the-jacobian-conjecture-be-undecidable/513385" rel="noreferrer" target="_blank">Mathematical discussion <span aria-hidden="true">↗</span></a></footer>
-        </div>
-      </article>
-    </section>
+    <HistoryTimeline milestones={milestones} />
 
     <section className="history-method"><div><p className="eyebrow">A record, not a leaderboard</p><h2>The unit of history should be a verifiable contribution.</h2></div><div className="history-method-flow" aria-label="Contribution evidence chain"><span>Problem selection</span><i aria-hidden="true">→</i><span>AI exploration</span><i aria-hidden="true">→</i><span>Human judgment</span><i aria-hidden="true">→</i><span>Exact evidence</span><i aria-hidden="true">→</i><span>Independent record</span></div><p>Proof search, problem selection, literature review, formal verification, and publication are different contributions. This archive preserves those boundaries instead of awarding a whole result to the most dramatic headline.</p></section>
 
