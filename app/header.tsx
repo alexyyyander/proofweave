@@ -59,6 +59,7 @@ function navigationItemActive(active: ActivePage, href: string) {
     about: "/about",
     demo: "/demo",
     explore: "/explore",
+    history: "/history",
     how: "/how-it-works",
     profile: "/profile",
     receipt: "/receipts",

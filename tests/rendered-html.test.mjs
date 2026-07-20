@@ -761,6 +761,7 @@ test("serves the public research paths", async () => {
   const expectedPageContent = new Map([
     ["/showcase", /See a proof become[\s\S]*public contribution/i],
     ["/demo", /Watch one Lean proof become/i],
+    ["/history", /From one Erdős problem to the Jacobian frontier/i],
     ["/explore", /Find where your Agent can make a useful contribution/i],
     ["/explore/erdos-865", /Erdős Problem 865/i],
     ["/how-it-works", /One shared frontier\. One useful step at a time/i],
@@ -918,11 +919,34 @@ test("keeps the public directory separate from the personal workspace", async ()
   assert.match(html, /An open network for personally delegated formal mathematics research/i);
   assert.match(html, /href="\/explore"[^>]*>Explore<\/a>[\s\S]*href="\/reviews"[^>]*>Verify<\/a>[\s\S]*href="\/receipts"[^>]*>Contributions<\/a>[\s\S]*href="\/how-it-works"[^>]*>How it works<\/a>/i);
   assert.match(html, /Participate[\s\S]*Verification market[\s\S]*Contribution receipts/i);
-  assert.match(html, /Learn[\s\S]*Proof journey[\s\S]*Executable verified demo/i);
+  assert.match(html, /Learn[\s\S]*AI mathematics record[\s\S]*Proof journey[\s\S]*Executable verified demo/i);
   assert.match(html, /Trust[\s\S]*Design principles[\s\S]*Catalog standard/i);
   assert.doesNotMatch(html, /<strong>Workspace<\/strong>/i);
   assert.match(html, /href="\/workbench"[^>]*>Workspace<\/a>/i);
   assert.doesNotMatch(html, /aria-label="Footer navigation"/i);
+});
+
+test("publishes a sourced AI mathematics record without flattening evidence states", async () => {
+  const response = await render("/history");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  assert.match(html, /Erdős Problem #728/i);
+  assert.match(html, /Erdős Problem #650/i);
+  assert.match(html, /Erdős Problem #1196/i);
+  assert.match(html, /planar unit-distance conjecture/i);
+  assert.match(html, /AlphaProof Nexus scales the search/i);
+  assert.match(html, /three-dimensional Jacobian counterexample is announced/i);
+  assert.match(html, /det JF = −2/i);
+  assert.match(html, /3 inputs → \(−¼, 0, 0\)/i);
+  assert.match(html, /F₁ = \(1 \+ xy\)³z \+ y²\(1 \+ xy\)\(4 \+ 3xy\)/i);
+  assert.match(html, /\(0, 0, −¼\), \(1, −3\/2, 13\/2\), and \(−1, 3\/2, 13\/2\)/i);
+  assert.match(html, /Journal review and a formal Proofweave receipt are not yet recorded/i);
+  assert.match(html, /two-dimensional Jacobian Conjecture remains open/i);
+  assert.match(html, /arxiv\.org\/abs\/2601\.07421/i);
+  assert.match(html, /openai\.com\/index\/model-disproves-discrete-geometry-conjecture/i);
+  assert.match(html, /mathoverflow\.net\/questions\/130777/i);
+  assert.doesNotMatch(html, /peer-reviewed Jacobian counterexample/i);
 });
 
 test("keeps public verification and contribution records outside personal workspace chrome", async () => {
@@ -1235,7 +1259,7 @@ test("publicly verifies the checked Build Week reference evidence", async () => 
 });
 
 test("keeps keyboard users one action away from the main content on critical pages", async () => {
-  for (const pathname of ["/", "/showcase", "/demo", "/explore", "/how-it-works", "/how-it-works/research", "/about", "/about/principles", "/workbench", "/integrations", "/evidence", "/reviews", "/receipts"]) {
+  for (const pathname of ["/", "/showcase", "/demo", "/history", "/explore", "/how-it-works", "/how-it-works/research", "/about", "/about/principles", "/workbench", "/integrations", "/evidence", "/reviews", "/receipts"]) {
     const response = await render(pathname);
     assert.equal(response.status, 200, `${pathname} should render its keyboard navigation`);
     const html = await response.text();

@@ -1,0 +1,144 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { Header } from "../header";
+import { Footer } from "../ui";
+
+export const metadata: Metadata = {
+  title: "AI Mathematics Record",
+  description: "A sourced history of AI contributions to open mathematics, from Erdős problems to the Jacobian frontier, with the evidence behind every claim.",
+  openGraph: {
+    title: "From Erdős to the Jacobian frontier",
+    description: "A sourced history of AI contributions to open mathematics—and the evidence behind every claim.",
+    images: ["/ai-mathematics-record-og.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "From Erdős to the Jacobian frontier",
+    description: "A sourced history of AI contributions to open mathematics—and the evidence behind every claim.",
+    images: ["/ai-mathematics-record-og.png"],
+  },
+};
+
+type EvidenceTone = "formal" | "reviewed" | "reproduced" | "announced";
+
+type Milestone = {
+  number: string;
+  date: string;
+  title: string;
+  system: string;
+  summary: string;
+  aiRole: string;
+  humanRole: string;
+  evidence: string;
+  evidenceTone: EvidenceTone;
+  significance: string;
+  sources: Array<{ label: string; href: string }>;
+};
+
+const milestones: Milestone[] = [
+  {
+    number: "01",
+    date: "JAN 2026",
+    title: "Erdős Problem #728",
+    system: "Aristotle",
+    summary: "A Lean-checked result became the first recognized Erdős problem resolved autonomously by an AI system.",
+    aiRole: "Generated the proof and its Lean formalization.",
+    humanRole: "Selected and presented the result, and searched the literature for prior work.",
+    evidence: "Kernel-checked Lean proof",
+    evidenceTone: "formal",
+    significance: "The headline was bounded by an executable artifact: the mathematical proof could be replayed independently of the model narrative.",
+    sources: [{ label: "Research paper", href: "https://arxiv.org/abs/2601.07421" }],
+  },
+  {
+    number: "02",
+    date: "MAR 2026",
+    title: "Erdős Problem #650",
+    system: "ChatGPT + Aristotle",
+    summary: "A model-proposed strategy was made rigorous and formally verified, showing a distinctly collaborative path to a result.",
+    aiRole: "ChatGPT proposed the strategy; Aristotle produced a detailed Lean-verified argument.",
+    humanRole: "Checked the reasoning, supplied context, and wrote the final exposition.",
+    evidence: "Paper + formal verification",
+    evidenceTone: "formal",
+    significance: "It made clear that “AI solved” can describe a chain of different systems and human decisions, not one isolated act.",
+    sources: [{ label: "Research paper", href: "https://arxiv.org/abs/2603.28636" }],
+  },
+  {
+    number: "03",
+    date: "MAY 2026",
+    title: "Erdős Problem #1196",
+    system: "GPT-5.4 Pro + mathematicians",
+    summary: "A new Markov-chain method with von Mangoldt weights emerged from model output and was refined into a mathematical paper.",
+    aiRole: "Suggested the central method and an initial route through the argument.",
+    humanRole: "Reworked gaps, established the rigorous result, and authored the paper.",
+    evidence: "Human-reviewed preprint",
+    evidenceTone: "reviewed",
+    significance: "The valuable contribution was an idea that changed the proof route—not a claim that the first generated answer was already a proof.",
+    sources: [{ label: "Research paper", href: "https://arxiv.org/abs/2605.00301" }],
+  },
+  {
+    number: "04",
+    date: "20 MAY 2026",
+    title: "A planar unit-distance conjecture falls",
+    system: "OpenAI reasoning model",
+    summary: "A general-purpose reasoning model produced a counterexample to a longstanding Erdős unit-distance conjecture.",
+    aiRole: "Found the construction and the core disproof.",
+    humanRole: "External mathematicians checked it, simplified the construction, and situated the result in the literature.",
+    evidence: "Expert-checked counterexample",
+    evidenceTone: "reviewed",
+    significance: "Counterexamples became a visible AI research mode: one exact construction can decisively close the wrong branch.",
+    sources: [{ label: "OpenAI report", href: "https://openai.com/index/model-disproves-discrete-geometry-conjecture/" }],
+  },
+  {
+    number: "05",
+    date: "21 MAY 2026",
+    title: "AlphaProof Nexus scales the search",
+    system: "AlphaProof Nexus",
+    summary: "A formal campaign reported autonomous resolutions of 9 out of 353 formalized open Erdős problems and 44 out of 492 OEIS conjectures.",
+    aiRole: "Searched for and generated formal proofs across a large benchmark of open statements.",
+    humanRole: "Formalized targets and evaluated statement fidelity, novelty, and mathematical relevance.",
+    evidence: "Lean artifacts + expert validation",
+    evidenceTone: "formal",
+    significance: "The frontier shifted from a single celebrated example to a repeatable, measurable research workflow.",
+    sources: [{ label: "Research paper", href: "https://arxiv.org/abs/2605.22763" }],
+  },
+];
+
+const evidenceLegend: Array<{ tone: EvidenceTone; label: string; detail: string }> = [
+  { tone: "formal", label: "Formalized", detail: "Executable proof checked by a proof kernel" },
+  { tone: "reviewed", label: "Human-reviewed", detail: "Paper or construction checked by mathematicians" },
+  { tone: "reproduced", label: "Exact reproduction", detail: "A bounded algebraic claim can be recomputed" },
+  { tone: "announced", label: "Newly announced", detail: "Public claim whose scholarly record is still forming" },
+];
+
+export default function HistoryPage() {
+  return <div className="site-shell history-shell"><Header active="history" /><main id="main-content" tabIndex={-1}>
+    <section className="history-hero">
+      <div className="history-hero-copy"><p className="eyebrow">AI × MATHEMATICS · PUBLIC RECORD</p><h1>From one Erdős problem to the Jacobian frontier.</h1><p>A sourced timeline of AI contributions to open mathematics—and the evidence behind each claim. This record separates discovery, human judgment, formal checking, and public announcement.</p><div className="history-hero-actions"><a className="button button-primary" href="#timeline">Read the timeline <span aria-hidden="true">↓</span></a><Link className="history-text-link" href="/demo">See executable evidence <span aria-hidden="true">→</span></Link></div></div>
+      <aside className="history-hero-index" aria-label="Record summary"><span>RECORD WINDOW</span><strong>JAN — JUL</strong><small>2026 · six milestones</small><div className="history-pulse" aria-hidden="true"><i /><i /><i /><i /><i /><i /></div><p>Updated 20 July 2026</p></aside>
+    </section>
+
+    <section className="history-legend" aria-labelledby="evidence-legend-title"><div><p className="eyebrow">How to read this record</p><h2 id="evidence-legend-title">“AI solved it” is not one evidence state.</h2></div><div className="history-legend-grid">{evidenceLegend.map((item) => <article key={item.label}><span className={`history-state is-${item.tone}`}>{item.label}</span><p>{item.detail}</p></article>)}</div></section>
+
+    <section className="history-timeline" id="timeline" aria-label="AI mathematics timeline">
+      {milestones.map((item) => <article className="history-entry" key={item.number}>
+        <div className="history-entry-marker"><span>{item.number}</span><time>{item.date}</time></div>
+        <div className="history-entry-card"><header><div><p className="history-system">{item.system}</p><h2>{item.title}</h2></div><span className={`history-state is-${item.evidenceTone}`}>{item.evidence}</span></header><p className="history-entry-summary">{item.summary}</p><dl className="history-role-grid"><div><dt>AI contribution</dt><dd>{item.aiRole}</dd></div><div><dt>Human contribution</dt><dd>{item.humanRole}</dd></div><div><dt>Why it mattered</dt><dd>{item.significance}</dd></div></dl><footer>{item.sources.map((source) => <a href={source.href} key={source.href} rel="noreferrer" target="_blank">{source.label} <span aria-hidden="true">↗</span></a>)}</footer></div>
+      </article>)}
+
+      <article className="history-entry is-frontier">
+        <div className="history-entry-marker"><span>06</span><time>20 JUL 2026</time><b>LIVE FRONTIER</b></div>
+        <div className="history-entry-card"><header><div><p className="history-system">Claude-Fable · reported by Levent Alpöge</p><h2>A three-dimensional Jacobian counterexample is announced.</h2></div><span className="history-state is-announced">Newly announced</span></header><p className="history-entry-summary">An explicit polynomial map over ℂ was reported with constant nonzero Jacobian determinant and three distinct inputs sharing one output—the exact shape required to refute the classical Jacobian Conjecture in dimension three.</p>
+          <div className="history-jacobian-proof"><div><span>CONSTANT JACOBIAN</span><strong>det JF = −2</strong></div><div><span>NON-INJECTIVITY</span><strong>3 inputs → (−¼, 0, 0)</strong></div></div>
+          <details className="history-jacobian-formula"><summary>Inspect the exact polynomial map <span aria-hidden="true">+</span></summary><div><code>F₁ = (1 + xy)³z + y²(1 + xy)(4 + 3xy)</code><code>F₂ = y + 3x(1 + xy)²z + 3xy²(4 + 3xy)</code><code>F₃ = 2x − 3x²y − x³z</code><p><strong>Collision:</strong> (0, 0, −¼), (1, −3/2, 13/2), and (−1, 3/2, 13/2) all map to (−¼, 0, 0).</p></div></details>
+          <dl className="history-role-grid"><div><dt>AI contribution</dt><dd>Claude-Fable produced the explicit map during an open-ended mathematical exploration.</dd></div><div><dt>Human contribution</dt><dd>Levent Alpöge directed the investigation, checked the construction, and announced the result with exact coordinates.</dd></div><div><dt>Evidence today</dt><dd>The determinant and collision are directly reproducible by symbolic or exact arithmetic. Journal review and a formal Proofweave receipt are not yet recorded.</dd></div></dl>
+          <div className="history-frontier-boundary"><strong>What this does—and does not—establish</strong><p>The displayed algebraic claims can be checked now. The scholarly publication and attribution record are still forming, and the two-dimensional Jacobian Conjecture remains open.</p></div>
+          <footer><a href="https://x.com/__alpoge__/status/2079028340955197566" rel="noreferrer" target="_blank">Original announcement <span aria-hidden="true">↗</span></a><a href="https://mathoverflow.net/questions/130777/could-the-jacobian-conjecture-be-undecidable/513385" rel="noreferrer" target="_blank">Mathematical discussion <span aria-hidden="true">↗</span></a></footer>
+        </div>
+      </article>
+    </section>
+
+    <section className="history-method"><div><p className="eyebrow">A record, not a leaderboard</p><h2>The unit of history should be a verifiable contribution.</h2></div><div className="history-method-flow" aria-label="Contribution evidence chain"><span>Problem selection</span><i aria-hidden="true">→</i><span>AI exploration</span><i aria-hidden="true">→</i><span>Human judgment</span><i aria-hidden="true">→</i><span>Exact evidence</span><i aria-hidden="true">→</i><span>Independent record</span></div><p>Proof search, problem selection, literature review, formal verification, and publication are different contributions. This archive preserves those boundaries instead of awarding a whole result to the most dramatic headline.</p></section>
+
+    <section className="history-cta"><div><p className="eyebrow">The next entry</p><h2>Make the next mathematical advance reproducible from the start.</h2></div><div><p>Proofweave turns local Agent work into signed evidence, independent replay, and contribution records attributed to the person who delegated it.</p><div className="button-row"><Link className="button button-primary" href="/explore">Explore open mathematics <span aria-hidden="true">→</span></Link><Link className="button button-secondary" href="/demo">Inspect a verified record</Link></div></div></section>
+  </main><Footer /></div>;
+}
