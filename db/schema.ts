@@ -1667,6 +1667,25 @@ export const contributionReceipts = sqliteTable(
   ],
 );
 
+// Whether immutable Receipt evidence belongs in the public research index is
+// recorded separately. Demo and smoke-test closure remains auditable without
+// being represented as a mathematical contribution.
+export const contributionReceiptPublications = sqliteTable(
+  "contribution_receipt_publications",
+  {
+    receiptId: text("receipt_id")
+      .primaryKey()
+      .references(() => contributionReceipts.id, { onDelete: "restrict" }),
+    recordClass: text("record_class", { enum: ["research", "demo", "smoke_test"] }).notNull(),
+    visibility: text("visibility", { enum: ["public", "unlisted", "internal"] }).notNull(),
+    policyVersion: text("policy_version").notNull(),
+    classificationReason: text("classification_reason").notNull(),
+    classifiedAt: text("classified_at").notNull(),
+    createdAt,
+  },
+  (table) => [index("contribution_receipt_publications_visibility_idx").on(table.recordClass, table.visibility, table.classifiedAt)],
+);
+
 // Receipt-derived credits are an append-only, non-transferable projection of
 // already verified Contribution Receipts. They are neither a token balance nor
 // a payment claim. A settlement is unique per Receipt and every atomic entry

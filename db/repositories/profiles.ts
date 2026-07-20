@@ -102,7 +102,12 @@ class D1PersonProfileRepository implements PersonProfileRepository {
          WHERE agent.id IN (
            SELECT node.beneficiary_agent_id FROM research_nodes AS node WHERE node.beneficiary_person_id = ?
            UNION
-           SELECT receipt.beneficiary_agent_id FROM contribution_receipts AS receipt WHERE receipt.beneficiary_person_id = ?
+           SELECT receipt.beneficiary_agent_id
+           FROM contribution_receipts AS receipt
+           INNER JOIN contribution_receipt_publications AS publication ON publication.receipt_id = receipt.id
+           WHERE receipt.beneficiary_person_id = ?
+             AND publication.record_class = 'research'
+             AND publication.visibility = 'public'
          )
          ORDER BY agent.label ASC`,
       ).bind(personId, personId).all<AgentLabelRow>(),

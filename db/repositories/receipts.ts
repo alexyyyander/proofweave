@@ -178,7 +178,13 @@ class D1ContributionReceiptReader implements ContributionReceiptReader {
 
     const row = await this.database
       .prepare(
-        "SELECT id, receipt_hash, canonical_receipt FROM contribution_receipts WHERE id = ?",
+        `SELECT receipt.id, receipt.receipt_hash, receipt.canonical_receipt
+         FROM contribution_receipts AS receipt
+         INNER JOIN contribution_receipt_publications AS publication
+           ON publication.receipt_id = receipt.id
+         WHERE receipt.id = ?
+           AND publication.record_class = 'research'
+           AND publication.visibility = 'public'`,
       )
       .bind(id)
       .first<ReceiptRow>();
@@ -191,9 +197,13 @@ class D1ContributionReceiptReader implements ContributionReceiptReader {
     const boundedLimit = Number.isInteger(limit) && limit > 0 ? Math.min(limit, 48) : 24;
     const result = await this.database
       .prepare(
-        `SELECT id, receipt_hash, canonical_receipt
-         FROM contribution_receipts
-         ORDER BY issued_at DESC, id ASC
+        `SELECT receipt.id, receipt.receipt_hash, receipt.canonical_receipt
+         FROM contribution_receipts AS receipt
+         INNER JOIN contribution_receipt_publications AS publication
+           ON publication.receipt_id = receipt.id
+         WHERE publication.record_class = 'research'
+           AND publication.visibility = 'public'
+         ORDER BY receipt.issued_at DESC, receipt.id ASC
          LIMIT ?`,
       )
       .bind(boundedLimit)
@@ -207,10 +217,14 @@ class D1ContributionReceiptReader implements ContributionReceiptReader {
     const boundedLimit = Number.isInteger(limit) && limit > 0 ? Math.min(limit, 100) : 48;
     const result = await this.database
       .prepare(
-        `SELECT id, receipt_hash, canonical_receipt
-         FROM contribution_receipts
-         WHERE beneficiary_person_id = ?
-         ORDER BY issued_at DESC, id ASC
+        `SELECT receipt.id, receipt.receipt_hash, receipt.canonical_receipt
+         FROM contribution_receipts AS receipt
+         INNER JOIN contribution_receipt_publications AS publication
+           ON publication.receipt_id = receipt.id
+         WHERE receipt.beneficiary_person_id = ?
+           AND publication.record_class = 'research'
+           AND publication.visibility = 'public'
+         ORDER BY receipt.issued_at DESC, receipt.id ASC
          LIMIT ?`,
       )
       .bind(personId, boundedLimit)
@@ -232,7 +246,11 @@ class D1ContributionReceiptReader implements ContributionReceiptReader {
          FROM contribution_receipt_dependency_edges AS edge
          INNER JOIN contribution_receipts AS upstream
            ON upstream.id = edge.upstream_receipt_id
+         INNER JOIN contribution_receipt_publications AS publication
+           ON publication.receipt_id = upstream.id
          WHERE edge.downstream_receipt_id = ?
+           AND publication.record_class = 'research'
+           AND publication.visibility = 'public'
          ORDER BY edge.upstream_receipt_id ASC`,
       )
       .bind(id)

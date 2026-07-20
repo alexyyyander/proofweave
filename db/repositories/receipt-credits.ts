@@ -69,7 +69,10 @@ class D1ReceiptCreditRepository implements ReceiptCreditRepository {
                 entry.occurred_at
          FROM receipt_credit_entries AS entry
          INNER JOIN receipt_credit_settlements AS settlement ON settlement.receipt_id = entry.receipt_id
+         INNER JOIN contribution_receipt_publications AS publication ON publication.receipt_id = entry.receipt_id
          WHERE entry.person_id = ?
+           AND publication.record_class = 'research'
+           AND publication.visibility = 'public'
            AND NOT EXISTS (
              SELECT 1 FROM contribution_receipt_lifecycle_events AS lifecycle
              WHERE lifecycle.receipt_id = entry.receipt_id

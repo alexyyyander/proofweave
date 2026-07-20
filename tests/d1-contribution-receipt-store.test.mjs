@@ -11,6 +11,7 @@ import {
 import { verifyContributionReceiptLifecycleEventSignature } from "../packages/protocol/contribution-receipt-lifecycle.mjs";
 import { D1ContributionReceiptIssuerKeyStore } from "../services/receipts/d1-contribution-receipt-issuer-key-store.mjs";
 import { D1ContributionReceiptStore } from "../services/receipts/d1-contribution-receipt-store.mjs";
+import { classifyReceiptPublication } from "../services/receipts/receipt-publication-policy.mjs";
 import { D1ReceiptCreditSettlement } from "../services/credits/d1-receipt-credit-settlement.mjs";
 
 const migrationsRoot = new URL("../drizzle/", import.meta.url);
@@ -62,6 +63,17 @@ test("D1 Receipt store derives, signs, retries, and freezes a certified contribu
   assert.equal(await verifyContributionReceiptSignature(first.receipt), true);
   assert.deepEqual(await store.get("receipt:alice-lemma"), first.receipt);
 
+  const publication = await database.prepare(
+    `SELECT record_class, visibility, policy_version, classification_reason
+     FROM contribution_receipt_publications WHERE receipt_id = ?`,
+  ).bind(first.receipt.id).first();
+  assert.deepEqual(publication, {
+    record_class: "research",
+    visibility: "public",
+    policy_version: "pw-receipt-publication-policy-v1",
+    classification_reason: "research_default",
+  });
+
   const edges = await database
     .prepare(
       `SELECT downstream_receipt_id, upstream_receipt_id, upstream_receipt_hash,
@@ -86,6 +98,14 @@ test("D1 Receipt store derives, signs, retries, and freezes a certified contribu
   await assert.rejects(
     database.prepare("DELETE FROM contribution_receipts WHERE id = ?").bind("receipt:alice-lemma").run(),
     /contribution receipts cannot be deleted/,
+  );
+  await assert.rejects(
+    database.prepare("UPDATE contribution_receipt_publications SET visibility = 'internal' WHERE receipt_id = ?").bind("receipt:alice-lemma").run(),
+    /publication records are immutable/,
+  );
+  await assert.rejects(
+    database.prepare("DELETE FROM contribution_receipt_publications WHERE receipt_id = ?").bind("receipt:alice-lemma").run(),
+    /publication records cannot be deleted/,
   );
   await assert.rejects(
     database.prepare("UPDATE contribution_receipt_dependency_edges SET recorded_at = ? WHERE downstream_receipt_id = ?").bind("2026-07-14T00:00:00Z", "receipt:alice-lemma").run(),
@@ -211,6 +231,45 @@ test("D1 Receipt store derives, signs, retries, and freezes a certified contribu
   );
 });
 
+test("Receipt publication policy quarantines smoke, mock, and demo closure from public research", () => {
+  const base = {
+    id: "receipt:research-result",
+    target: { declaration: "Research.MainTheorem" },
+    beneficiary: { personId: "person:alice", agentId: "agent:alice-prover" },
+    attempt: { id: "attempt:alice-research" },
+    issuedAt: "2026-07-13T00:00:00Z",
+  };
+  assert.deepEqual(classifyReceiptPublication(base), {
+    recordClass: "research",
+    visibility: "public",
+    policyVersion: "pw-receipt-publication-policy-v1",
+    reason: "research_default",
+    classifiedAt: base.issuedAt,
+  });
+  assert.deepEqual(classifyReceiptPublication({
+    ...base,
+    target: { declaration: "ProofweaveCloudSmoke.true_is_inhabited" },
+  }), {
+    recordClass: "smoke_test",
+    visibility: "internal",
+    policyVersion: "pw-receipt-publication-policy-v1",
+    reason: "smoke_or_mock_marker",
+    classifiedAt: base.issuedAt,
+  });
+  assert.equal(classifyReceiptPublication({
+    ...base,
+    beneficiary: { ...base.beneficiary, personId: "person:build-week-local-mock-owner:1" },
+  }).visibility, "internal");
+  assert.equal(classifyReceiptPublication({
+    ...base,
+    beneficiary: { ...base.beneficiary, personId: "person:demo-owner" },
+  }).visibility, "unlisted");
+  assert.throws(
+    () => classifyReceiptPublication(base, { recordClass: "demo", visibility: "public" }),
+    /Only research Receipts may enter the public contribution index/,
+  );
+});
+
 test("Receipt credit settlement derives immutable author, reviewer, and downstream entries exactly once", async () => {
   const receiptStore = new D1ContributionReceiptStore(database);
   await receiptStore.issue(receiptInput({ id: "receipt:alice-credit", kind: "infrastructure", issuedAt: "2026-07-13T00:04:00Z" }));
@@ -245,6 +304,29 @@ test("Receipt credit settlement derives immutable author, reviewer, and downstre
     database.prepare("DELETE FROM receipt_credit_settlements WHERE receipt_id = ?").bind("receipt:alice-credit").run(),
     /receipt credit settlements cannot be deleted/,
   );
+});
+
+test("demo and smoke-test Receipts never mint research Credit", async () => {
+  const receiptStore = new D1ContributionReceiptStore(database);
+  const smoke = await receiptStore.issue({
+    ...receiptInput({ id: "receipt:alice-smoke", kind: "counterexample", issuedAt: "2026-07-13T00:04:30Z" }),
+    publication: { recordClass: "smoke_test", visibility: "internal" },
+  });
+  const settlement = await new D1ReceiptCreditSettlement(database).settleReceipt(smoke.receipt.id);
+  assert.deepEqual(settlement, {
+    eligible: false,
+    created: false,
+    reason: "not_public_research",
+    receiptId: smoke.receipt.id,
+    totalUnits: 0,
+    peopleCredited: 0,
+    entryCount: 0,
+    categoryUnits: [],
+  });
+  const stored = await database.prepare(
+    "SELECT COUNT(*) AS count FROM receipt_credit_settlements WHERE receipt_id = ?",
+  ).bind(smoke.receipt.id).first();
+  assert.equal(stored.count, 0);
 });
 
 test("verification receipt credits the review Agent present in immutable attestation evidence", async () => {

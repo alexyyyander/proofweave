@@ -23,6 +23,7 @@ import {
 import { signLeanRunnerResult } from "../packages/protocol/lean-runner.mjs";
 import { D1VerificationStore } from "../services/verification/d1-verification-store.mjs";
 import { closedAlphaAttemptLimits } from "../packages/domain/attempt-policy.mjs";
+import { classifyReceiptPublication } from "../services/receipts/receipt-publication-policy.mjs";
 
 const repositoryRoot = new URL("../", import.meta.url);
 const migrationsRoot = new URL("../drizzle/", import.meta.url);
@@ -180,6 +181,18 @@ async function insertSignedReceiptFixture() {
     issuerPrivateKey: keyPair.privateKey,
   });
   const receiptHash = await contributionReceiptHash(receipt);
+  const smokeReceipt = await createContributionReceipt({
+    receipt: {
+      ...baseReceipt,
+      id: "receipt:cloud-smoke-fixture",
+      kind: "proof_patch",
+      target: { declaration: "ProofweaveCloudSmoke.true_is_inhabited", statementHash: hash("8") },
+      bundle: { manifestHash: hash("b"), dependencyReceipts: [] },
+      issuedAt: "2026-07-13T00:00:30Z",
+    },
+    issuerPrivateKey: keyPair.privateKey,
+  });
+  const smokeReceiptHash = await contributionReceiptHash(smokeReceipt);
   const lifecycleEvent = await createContributionReceiptLifecycleEvent({
     event: {
       protocolVersion: "pw-contribution-receipt-lifecycle-event-v1",
@@ -194,9 +207,9 @@ async function insertSignedReceiptFixture() {
     issuerPrivateKey: keyPair.privateKey,
   });
 
-  await seedReceiptEvidenceFixture({ receipt, receiptHash, upstreamReceipt, upstreamReceiptHash, lifecycleEvent, hash });
+  await seedReceiptEvidenceFixture({ receipt, receiptHash, upstreamReceipt, upstreamReceiptHash, smokeReceipt, smokeReceiptHash, lifecycleEvent, hash });
 
-  return { receipt, receiptHash, upstreamReceipt, upstreamReceiptHash, lifecycleEvent };
+  return { receipt, receiptHash, upstreamReceipt, upstreamReceiptHash, smokeReceipt, smokeReceiptHash, lifecycleEvent };
 }
 
 async function getSignedReceiptFixture() {
@@ -570,7 +583,7 @@ async function insertPublicDelegationFixture() {
   return { certificate, canonicalPayload, ownerPublicKey, payloadHash, personSignature };
 }
 
-async function seedReceiptEvidenceFixture({ receipt, receiptHash, upstreamReceipt, upstreamReceiptHash, lifecycleEvent, hash }) {
+async function seedReceiptEvidenceFixture({ receipt, receiptHash, upstreamReceipt, upstreamReceiptHash, smokeReceipt, smokeReceiptHash, lifecycleEvent, hash }) {
   const now = "2026-07-13T00:00:00Z";
   const rows = [
     [
@@ -643,7 +656,7 @@ async function seedReceiptEvidenceFixture({ receipt, receiptHash, upstreamReceip
     )
     .bind(`issuer-key-event:activated:${upstreamReceipt.issuerKeyId}`, upstreamReceipt.issuerKeyId, upstreamReceipt.issuedAt)
     .run();
-  for (const [record, recordHash] of [[upstreamReceipt, upstreamReceiptHash], [receipt, receiptHash]]) {
+  for (const [record, recordHash] of [[upstreamReceipt, upstreamReceiptHash], [receipt, receiptHash], [smokeReceipt, smokeReceiptHash]]) {
     await database
       .prepare(
         `INSERT INTO contribution_receipts (
@@ -661,6 +674,16 @@ async function seedReceiptEvidenceFixture({ receipt, receiptHash, upstreamReceip
         record.issuerPublicKey, record.issuerSignature, record.issuedAt,
       )
       .run();
+    const publication = classifyReceiptPublication(record);
+    await database.prepare(
+      `INSERT INTO contribution_receipt_publications (
+        receipt_id, record_class, visibility, policy_version,
+        classification_reason, classified_at
+      ) VALUES (?, ?, ?, ?, ?, ?)`,
+    ).bind(
+      record.id, publication.recordClass, publication.visibility,
+      publication.policyVersion, publication.reason, publication.classifiedAt,
+    ).run();
   }
   await database
     .prepare(
@@ -1385,7 +1408,7 @@ test("imports the pinned catalog idempotently and serves provenance through the 
 });
 
 test("renders only a hash-checked, issuer-signed receipt from D1", async () => {
-  const { receipt, receiptHash, upstreamReceipt, upstreamReceiptHash, lifecycleEvent } = await getSignedReceiptFixture();
+  const { receipt, receiptHash, upstreamReceipt, upstreamReceiptHash, smokeReceipt, lifecycleEvent } = await getSignedReceiptFixture();
 
   const response = await render(`/api/receipts/${receipt.id}`);
   assert.equal(response.status, 200);
@@ -1414,6 +1437,11 @@ test("renders only a hash-checked, issuer-signed receipt from D1", async () => {
     [receipt.id, "retracted"],
     [upstreamReceipt.id, "issued"],
   ]);
+  assert.doesNotMatch(JSON.stringify(indexBody), /ProofweaveCloudSmoke|cloud-smoke-fixture/i);
+  const hiddenSmokeApi = await render(`/api/receipts/${smokeReceipt.id}`);
+  assert.equal(hiddenSmokeApi.status, 404);
+  const hiddenSmokePage = await render(`/receipt/${smokeReceipt.id}`);
+  assert.equal(hiddenSmokePage.status, 404);
   const indexPage = await render("/receipts");
   assert.equal(indexPage.status, 200);
   const indexHtml = await indexPage.text();

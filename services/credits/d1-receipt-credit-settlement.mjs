@@ -30,6 +30,22 @@ export class D1ReceiptCreditSettlement {
 
   async settleReceipt(receiptId) {
     requireIdentifier(receiptId, "receiptId");
+    const publication = await this.database.prepare(
+      `SELECT record_class, visibility
+       FROM contribution_receipt_publications WHERE receipt_id = ?`,
+    ).bind(receiptId).first();
+    if (publication?.record_class !== "research" || publication?.visibility !== "public") {
+      return Object.freeze({
+        eligible: false,
+        created: false,
+        reason: "not_public_research",
+        receiptId,
+        totalUnits: 0,
+        peopleCredited: 0,
+        entryCount: 0,
+        categoryUnits: Object.freeze([]),
+      });
+    }
     const existing = await this.getSettlement(receiptId);
     if (existing) return Object.freeze({ ...existing, created: false });
 
@@ -93,7 +109,7 @@ export class D1ReceiptCreditSettlement {
       if (raced && raced.payloadHash === settlement.payloadHash) return Object.freeze({ ...raced, created: false });
       throw error;
     }
-    return Object.freeze({ ...projectSettlement(settlement), created: true });
+    return Object.freeze({ ...projectSettlement(settlement), eligible: true, created: true });
   }
 
   async getSettlement(receiptId) {
@@ -176,6 +192,7 @@ function projectSettlement(settlement) {
     people.add(entry.personId);
   }
   return Object.freeze({
+    eligible: true,
     receiptId: settlement.receiptId,
     receiptHash: settlement.receiptHash,
     payloadHash: settlement.payloadHash,

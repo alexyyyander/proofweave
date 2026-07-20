@@ -21,6 +21,7 @@ import { normalizeLeanRunnerResult } from "../../packages/protocol/lean-runner.m
 import { canonicalJson, sha256Canonical } from "../../packages/protocol/canonical-json.mjs";
 import { normalizeVerificationAttestation } from "../../packages/protocol/verification-attestation.mjs";
 import { D1ContributionReceiptIssuerKeyStore } from "./d1-contribution-receipt-issuer-key-store.mjs";
+import { classifyReceiptPublication } from "./receipt-publication-policy.mjs";
 
 export class ContributionReceiptStoreConflictError extends Error {
   constructor(message) {
@@ -64,6 +65,7 @@ export class D1ContributionReceiptStore {
     issuerKeyId,
     issuerPublicKey,
     issuerPrivateKey,
+    publication,
   }) {
     const evidence = await this.loadEvidence({ artifactBundleManifestHash, runId });
     const draft = {
@@ -98,6 +100,7 @@ export class D1ContributionReceiptStore {
     });
     const receipt = await createContributionReceipt({ receipt: draft, issuerPrivateKey });
     const receiptHash = await contributionReceiptHash(receipt);
+    const publicationRecord = classifyReceiptPublication(receipt, publication);
     const receiptInsert = this.database
       .prepare(
         `INSERT INTO contribution_receipts (
@@ -114,6 +117,18 @@ export class D1ContributionReceiptStore {
         receiptHash, canonicalContributionReceipt(receipt), receipt.payloadHash,
         receipt.issuerKeyId, receipt.issuerPublicKey, receipt.issuerSignature, receipt.issuedAt,
       );
+    const publicationInsert = this.database
+      .prepare(
+        `INSERT INTO contribution_receipt_publications (
+          receipt_id, record_class, visibility, policy_version,
+          classification_reason, classified_at
+        ) VALUES (?, ?, ?, ?, ?, ?)`,
+      )
+      .bind(
+        receipt.id, publicationRecord.recordClass, publicationRecord.visibility,
+        publicationRecord.policyVersion, publicationRecord.reason,
+        publicationRecord.classifiedAt,
+      );
     const edgeInserts = dependencies.map((dependency) => this.database
       .prepare(
         `INSERT INTO contribution_receipt_dependency_edges (
@@ -125,7 +140,7 @@ export class D1ContributionReceiptStore {
         receipt.id, dependency.receiptId, dependency.receiptHash,
         artifactBundleManifestHash, receipt.issuedAt,
       ));
-    await this.database.batch([receiptInsert, ...edgeInserts]);
+    await this.database.batch([receiptInsert, publicationInsert, ...edgeInserts]);
     return { receipt, created: true };
   }
 
