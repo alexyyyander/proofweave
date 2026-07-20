@@ -1441,7 +1441,10 @@ test("renders only a hash-checked, issuer-signed receipt from D1", async () => {
   const hiddenSmokeApi = await render(`/api/receipts/${smokeReceipt.id}`);
   assert.equal(hiddenSmokeApi.status, 404);
   const hiddenSmokePage = await render(`/receipt/${smokeReceipt.id}`);
-  assert.equal(hiddenSmokePage.status, 404);
+  assert.equal(hiddenSmokePage.status, 200);
+  const hiddenSmokeHtml = await hiddenSmokePage.text();
+  assert.match(hiddenSmokeHtml, /Receipt not issued/i);
+  assert.doesNotMatch(hiddenSmokeHtml, /ProofweaveCloudSmoke\.true_is_inhabited/i);
   const indexPage = await render("/receipts");
   assert.equal(indexPage.status, 200);
   const indexHtml = await indexPage.text();
