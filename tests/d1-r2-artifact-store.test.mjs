@@ -192,6 +192,31 @@ test("stages bounded evidence in D1 alone when R2 is not enabled", async () => {
   );
 });
 
+test("D1 inline storage keeps distinct logical keys when Runner outputs have identical bytes", async () => {
+  const inlineBucket = new D1InlineArtifactBucket(database);
+  const bytes = new Uint8Array();
+  const digest = new Uint8Array(await crypto.subtle.digest("SHA-256", bytes));
+  const contentHash = `sha256:${[...digest].map((byte) => byte.toString(16).padStart(2, "0")).join("")}`;
+  const prefix = `runner-results/sha256/${contentHash.slice("sha256:".length)}`;
+  const options = {
+    onlyIf: { etagDoesNotMatch: "*" },
+    httpMetadata: { contentType: "text/plain; charset=utf-8" },
+    customMetadata: { sha256: contentHash },
+  };
+
+  await inlineBucket.put(`${prefix}/stdout.log`, bytes, options);
+  await inlineBucket.put(`${prefix}/stderr.log`, bytes, options);
+
+  const rows = await database
+    .prepare("SELECT object_key FROM inline_artifact_bytes WHERE content_hash = ? ORDER BY object_key")
+    .bind(contentHash)
+    .all();
+  assert.deepEqual(rows.results.map((row) => row.object_key), [
+    `${prefix}/stderr.log`,
+    `${prefix}/stdout.log`,
+  ]);
+});
+
 test("rejects an Artifact Bundle event after its signer key is revoked", async () => {
   const store = new D1R2ArtifactStore({ database, bucket });
   const archive = await store.putObject({ bytes: "source archive after revocation", filename: "source.tar.zst", contentType: "application/zstd" });
