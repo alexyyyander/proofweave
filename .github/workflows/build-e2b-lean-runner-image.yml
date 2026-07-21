@@ -133,6 +133,15 @@ jobs:
             EXPECTED_LEAN_TOOLCHAIN=${{ steps.profile.outputs.lean_toolchain }}
             EXPECTED_MATHLIB_REVISION=${{ steps.profile.outputs.mathlib_revision }}
 
+      # Mathlib's compiled closure is intentionally large. The pushed image is
+      # immutable at this point, so discard BuildKit's duplicate local layers
+      # before Docker pulls that image back for the separate offline smoke run.
+      - name: Reclaim build cache before the offline image pull
+        run: |
+          docker buildx du
+          docker buildx prune --all --force
+          docker system df
+
       - name: Exercise the final image without network access
         env:
           FINAL_RUNNER_IMAGE: ${{ env.RUNNER_IMAGE_NAME }}@${{ steps.runner.outputs.digest }}
