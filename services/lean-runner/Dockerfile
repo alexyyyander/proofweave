@@ -29,8 +29,8 @@ RUN node --input-type=module -e '\
  && command -v tar \
  && (node --input-type=module -e 'import * as zlib from "node:zlib"; if (typeof zlib.createZstdDecompress !== "function") process.exit(1)' || command -v zstd)
 
-RUN addgroup --system proofweave \
- && adduser --system --ingroup proofweave --home /home/proofweave --shell /usr/sbin/nologin proofweave \
+RUN (getent group proofweave >/dev/null || addgroup --system proofweave) \
+ && (id -u proofweave >/dev/null 2>&1 || adduser --system --ingroup proofweave --home /home/proofweave --shell /usr/sbin/nologin proofweave) \
  && install -d -o proofweave -g proofweave -m 0700 /tmp/proofweave/staging /tmp/proofweave/workspaces \
  && su -s /bin/sh proofweave -c 'node --version && lake --version && lean --version'
 
