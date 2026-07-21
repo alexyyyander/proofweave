@@ -18,7 +18,7 @@ permissions:
 jobs:
   replay-review-and-issue:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     environment: proofweave-runner-alpha
     env:
       RUNNER_EXECUTION_ENABLED: "true"
@@ -32,7 +32,7 @@ jobs:
       PROOFWEAVE_E2B_RESOURCE_POLICY_REVIEWED: "true"
       PROOFWEAVE_E2B_CPU: "2"
       PROOFWEAVE_E2B_MEMORY_MB: "2048"
-      PROOFWEAVE_E2B_TIMEOUT_MS: "120000"
+      PROOFWEAVE_E2B_TIMEOUT_MS: "600000"
       PROOFWEAVE_E2B_STARTUP_TIMEOUT_MS: "60000"
       TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
       TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
