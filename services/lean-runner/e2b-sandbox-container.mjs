@@ -8,6 +8,7 @@ const runnerUser = "proofweave";
 const runnerHome = "/home/proofweave";
 const runnerPath = "/opt/lean/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin";
 const runnerLeanExecutable = "/opt/lean/bin/lake";
+const runnerDependencyPackagesRoot = "/opt/proofweave/lake-packages";
 const runPath = /^\/v1\/runs\/([^/]+)\/workspace(?:\/artifacts\/(?:source-archive|source-patch|lake-manifest)|\/(?:finalize|execute|cancel|complete)|\/result\/(?:stdout|stderr))?$/;
 
 export class E2BSandboxContainerError extends Error {
@@ -313,6 +314,7 @@ async function startSandboxServer(sandbox, timeoutMs, requestTimeoutMs) {
     HOME: runnerHome,
     PATH: runnerPath,
     PROOFWEAVE_LEAN_EXECUTABLE_PATH: runnerLeanExecutable,
+    PROOFWEAVE_LAKE_PACKAGES_ROOT: runnerDependencyPackagesRoot,
     PROOFWEAVE_NETWORK_ISOLATED: "true",
     PROOFWEAVE_RESOURCE_LIMITS_ENFORCED: "true",
     PROOFWEAVE_REQUEST_TIMEOUT_MS: String(timeoutMs),
