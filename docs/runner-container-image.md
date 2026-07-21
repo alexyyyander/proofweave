@@ -1,19 +1,20 @@
 # Lean Runner Container image build contract
 
-Status: reproducible Lean Core alpha build path, 2026-07-17
+Status: reproducible reviewed Lean environment build path, 2026-07-21
 
 This document defines the reproducible build input for the private Lean Runner
 Container. It does not approve a particular output digest or authorize a
 deployment. The final image must still pass the gates in
 [`runner-cloudflare-deployment.md`](runner-cloudflare-deployment.md).
 
-## Build Week Lean Core profile
+## Reviewed Runner profiles
 
-`.github/workflows/build-e2b-lean-runner-image.yml` builds the exact
-`core-alpha` profile used by the public reference demonstration. Its reviewed
-inputs are the official Node `22.23.1-bookworm` image by OCI digest, the
-official Lean `v4.27.0` Linux release URL and GitHub-published SHA-256,
-`mathlibRevision=none`, and the checked-in credential-free Runner source.
+`.github/workflows/build-e2b-lean-runner-image.yml` builds one explicitly
+selected environment at a time. The reviewed profiles are Lean Core 4.27.0,
+Mathlib commit `a3a10db0e9d66acbebf76c5e6a135066525ac900` on Lean 4.27.0,
+and Mathlib commit `9a9483a92959bc92bd6a60176dd1fe597298c1f8` on Lean 4.31.0.
+Every profile pins the Node base by OCI digest and the official Lean archive
+by SHA-256.
 
 The workflow publishes a Linux/amd64 base and final image to GHCR, emits SBOM
 and build provenance, assembles the final image with Docker build networking
@@ -22,10 +23,12 @@ It can optionally create the E2B template in a separate `packages: read` job
 after the protected environment has an `E2B_API_KEY`. The final image digest and E2B template id still need
 operator review before admission to the approved Runner registry.
 
-This profile is intentionally limited to Lean Core projects with no external
-Lake dependencies. A project importing Mathlib must use a separately built,
-revision-pinned Mathlib image; labelling `core-alpha` as Mathlib-capable is a
-deployment error.
+The Core profile is intentionally limited to projects with no external Lake
+dependencies. Each Mathlib profile downloads and verifies dependencies only
+during the independently inspectable base build. The final image contains a
+root-owned, read-only Lake package closure, and the executor mounts that closure
+only after the submitted workspace tree has passed its hash checks. A submitted
+workspace-provided `.lake` directory is rejected.
 
 ## Base-image interface
 
@@ -39,10 +42,10 @@ Every independently built base must provide, on `PATH` for the unprivileged
 `proofweave` user:
 
 - Node.js 22.13 or newer;
-- `lake` and `lean` for `leanprover/lean4:v4.27.0`;
+- `lake` and `lean` for the exact selected Lean toolchain;
 - `patch`, `tar`, and either Node native zstd or the `zstd` executable for the
   checked-in private workspace runtime;
-- either the exact Mathlib closure required by the selected environment, with
+- either the exact, read-only Mathlib closure required by the selected environment, with
   no runtime dependency download, or the explicit `none` sentinel for the
   reviewed Lean Core-only profile; and
 - a root-owned, world-readable `/opt/proofweave/lean-environment.json`:
@@ -66,7 +69,7 @@ The metadata is a build assertion, not sufficient evidence by itself. The
 operator must inspect the actual Lean and Mathlib files, verify their hashes
 and revisions, scan the final image, and record the final assembled image
 digest in the deployment-owned `PinnedRunnerImageRegistry` configuration.
-For `core-alpha`, the Mathlib inspection is replaced by a check that no
+For the Core profile, the Mathlib inspection is replaced by a check that no
 Mathlib dependency is claimed or admitted by the approved environment.
 
 ## Offline final assembly

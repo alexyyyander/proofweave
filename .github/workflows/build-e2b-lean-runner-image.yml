@@ -1,8 +1,17 @@
-name: Build Proofweave Lean Core alpha image
+name: Build Proofweave reviewed Lean Runner image
 
 on:
   workflow_dispatch:
     inputs:
+      profile:
+        description: Exact reviewed Lean environment to build
+        required: true
+        default: core-4.27
+        type: choice
+        options:
+          - core-4.27
+          - mathlib-4.27-a3a10
+          - mathlib-4.31-9a948
       build_e2b_template:
         description: Build the private E2B template after publishing the reviewed image
         required: true
@@ -13,17 +22,12 @@ permissions:
   contents: read
 
 concurrency:
-  group: proofweave-lean-core-alpha-image
+  group: proofweave-reviewed-lean-runner-image
   cancel-in-progress: false
 
 env:
   NODE_BASE_IMAGE: node@sha256:5647be709086c696ff32edaaf1c70cd26d1da6ab2b39c32f3c7b4c4a31957e37
-  LEAN_TOOLCHAIN: leanprover/lean4:v4.27.0
-  MATHLIB_REVISION: none
-  LEAN_RELEASE_URL: https://github.com/leanprover/lean4/releases/download/v4.27.0/lean-4.27.0-linux.zip
-  LEAN_RELEASE_SHA256: 0a62138ea5b9880a8eccd5e88d0920f93a58cf3428a9c78f99b8f4316383c69b
-  LEAN_ARCHIVE_ROOT: lean-4.27.0-linux
-  BASE_IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/proofweave-lean-core-base
+  BASE_IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/proofweave-lean-base
   RUNNER_IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/proofweave-lean-runner
 
 jobs:
@@ -34,13 +38,52 @@ jobs:
       attestations: write
       id-token: write
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 90
     environment: proofweave-runner-alpha
     outputs:
       runner_image: ${{ steps.coordinates.outputs.runner_image }}
     steps:
       - name: Check out the reviewed source
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+
+      - name: Select the exact reviewed environment
+        id: profile
+        env:
+          SELECTED_PROFILE: ${{ inputs.profile }}
+        run: |
+          case "$SELECTED_PROFILE" in
+            core-4.27)
+              echo "profile=core-4.27" >> "$GITHUB_OUTPUT"
+              echo "base_dockerfile=services/lean-runner/Dockerfile.core-alpha-base" >> "$GITHUB_OUTPUT"
+              echo "lean_toolchain=leanprover/lean4:v4.27.0" >> "$GITHUB_OUTPUT"
+              echo "mathlib_revision=none" >> "$GITHUB_OUTPUT"
+              echo "lean_release_url=https://github.com/leanprover/lean4/releases/download/v4.27.0/lean-4.27.0-linux.zip" >> "$GITHUB_OUTPUT"
+              echo "lean_release_sha256=0a62138ea5b9880a8eccd5e88d0920f93a58cf3428a9c78f99b8f4316383c69b" >> "$GITHUB_OUTPUT"
+              echo "lean_archive_root=lean-4.27.0-linux" >> "$GITHUB_OUTPUT"
+              ;;
+            mathlib-4.27-a3a10)
+              echo "profile=mathlib-4.27-a3a10" >> "$GITHUB_OUTPUT"
+              echo "base_dockerfile=services/lean-runner/Dockerfile.mathlib-base" >> "$GITHUB_OUTPUT"
+              echo "lean_toolchain=leanprover/lean4:v4.27.0" >> "$GITHUB_OUTPUT"
+              echo "mathlib_revision=a3a10db0e9d66acbebf76c5e6a135066525ac900" >> "$GITHUB_OUTPUT"
+              echo "lean_release_url=https://github.com/leanprover/lean4/releases/download/v4.27.0/lean-4.27.0-linux.tar.zst" >> "$GITHUB_OUTPUT"
+              echo "lean_release_sha256=056e2dc8564fc064a801e69f3eb18c044b9b546bc8b0e5a2c00247f8a1cb8ce6" >> "$GITHUB_OUTPUT"
+              echo "lean_archive_root=lean-4.27.0-linux" >> "$GITHUB_OUTPUT"
+              ;;
+            mathlib-4.31-9a948)
+              echo "profile=mathlib-4.31-9a948" >> "$GITHUB_OUTPUT"
+              echo "base_dockerfile=services/lean-runner/Dockerfile.mathlib-base" >> "$GITHUB_OUTPUT"
+              echo "lean_toolchain=leanprover/lean4:v4.31.0" >> "$GITHUB_OUTPUT"
+              echo "mathlib_revision=9a9483a92959bc92bd6a60176dd1fe597298c1f8" >> "$GITHUB_OUTPUT"
+              echo "lean_release_url=https://github.com/leanprover/lean4/releases/download/v4.31.0/lean-4.31.0-linux.tar.zst" >> "$GITHUB_OUTPUT"
+              echo "lean_release_sha256=07a633cc8d9151cbc08825ea4cdda50d4b02a2c9cb852c0131b13046f49cad7f" >> "$GITHUB_OUTPUT"
+              echo "lean_archive_root=lean-4.31.0-linux" >> "$GITHUB_OUTPUT"
+              ;;
+            *)
+              echo "Unsupported reviewed profile" >&2
+              exit 1
+              ;;
+          esac
 
       - name: Log in to GHCR
         uses: docker/login-action@af1e73f918a031802d376d3c8bbc3fe56130a9b0
@@ -59,19 +102,19 @@ jobs:
         uses: docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a
         with:
           context: .
-          file: services/lean-runner/Dockerfile.core-alpha-base
+          file: ${{ steps.profile.outputs.base_dockerfile }}
           platforms: linux/amd64
           push: true
           provenance: mode=max
           sbom: true
-          tags: ${{ env.BASE_IMAGE_NAME }}:${{ github.sha }}
+          tags: ${{ env.BASE_IMAGE_NAME }}:${{ github.sha }}-${{ steps.profile.outputs.profile }}
           build-args: |
             NODE_BASE_IMAGE=${{ env.NODE_BASE_IMAGE }}
-            EXPECTED_LEAN_TOOLCHAIN=${{ env.LEAN_TOOLCHAIN }}
-            EXPECTED_MATHLIB_REVISION=${{ env.MATHLIB_REVISION }}
-            LEAN_RELEASE_URL=${{ env.LEAN_RELEASE_URL }}
-            LEAN_RELEASE_SHA256=${{ env.LEAN_RELEASE_SHA256 }}
-            LEAN_ARCHIVE_ROOT=${{ env.LEAN_ARCHIVE_ROOT }}
+            EXPECTED_LEAN_TOOLCHAIN=${{ steps.profile.outputs.lean_toolchain }}
+            EXPECTED_MATHLIB_REVISION=${{ steps.profile.outputs.mathlib_revision }}
+            LEAN_RELEASE_URL=${{ steps.profile.outputs.lean_release_url }}
+            LEAN_RELEASE_SHA256=${{ steps.profile.outputs.lean_release_sha256 }}
+            LEAN_ARCHIVE_ROOT=${{ steps.profile.outputs.lean_archive_root }}
 
       - name: Assemble and publish the credential-free Runner
         id: runner
@@ -84,20 +127,24 @@ jobs:
           push: true
           provenance: mode=max
           sbom: true
-          tags: ${{ env.RUNNER_IMAGE_NAME }}:${{ github.sha }}
+          tags: ${{ env.RUNNER_IMAGE_NAME }}:${{ github.sha }}-${{ steps.profile.outputs.profile }}
           build-args: |
             RUNNER_BASE_IMAGE=${{ env.BASE_IMAGE_NAME }}@${{ steps.base.outputs.digest }}
-            EXPECTED_LEAN_TOOLCHAIN=${{ env.LEAN_TOOLCHAIN }}
-            EXPECTED_MATHLIB_REVISION=${{ env.MATHLIB_REVISION }}
+            EXPECTED_LEAN_TOOLCHAIN=${{ steps.profile.outputs.lean_toolchain }}
+            EXPECTED_MATHLIB_REVISION=${{ steps.profile.outputs.mathlib_revision }}
 
       - name: Exercise the final image without network access
         env:
           FINAL_RUNNER_IMAGE: ${{ env.RUNNER_IMAGE_NAME }}@${{ steps.runner.outputs.digest }}
+          LEAN_TOOLCHAIN: ${{ steps.profile.outputs.lean_toolchain }}
+          MATHLIB_REVISION: ${{ steps.profile.outputs.mathlib_revision }}
         run: >-
           docker run --rm --read-only --network=none --cpus=1 --memory=2g
-          --pids-limit=128 --tmpfs /tmp/proofweave:rw,nosuid,nodev,size=1g
-          --entrypoint /bin/sh "$FINAL_RUNNER_IMAGE" -c
-          'node --version && lean --version && lake --version'
+          --pids-limit=128 --tmpfs /tmp/proofweave:rw,nosuid,nodev,size=1g,mode=1777
+          -e EXPECTED_LEAN_TOOLCHAIN="$LEAN_TOOLCHAIN"
+          -e EXPECTED_MATHLIB_REVISION="$MATHLIB_REVISION"
+          --entrypoint node "$FINAL_RUNNER_IMAGE"
+          /opt/proofweave/services/lean-runner/inspect-image-environment.mjs
 
       - name: Attest the final Runner image in GitHub when supported
         if: ${{ github.event.repository.visibility == 'public' }}
@@ -119,11 +166,11 @@ jobs:
           FINAL_RUNNER_IMAGE: ${{ env.RUNNER_IMAGE_NAME }}@${{ steps.runner.outputs.digest }}
         run: |
           echo "runner_image=$FINAL_RUNNER_IMAGE" >> "$GITHUB_OUTPUT"
-          echo "### Proofweave Lean Core alpha" >> "$GITHUB_STEP_SUMMARY"
+          echo "### Proofweave reviewed Lean Runner" >> "$GITHUB_STEP_SUMMARY"
           echo '```text' >> "$GITHUB_STEP_SUMMARY"
           echo "PROOFWEAVE_E2B_RUNNER_IMAGE=$FINAL_RUNNER_IMAGE" >> "$GITHUB_STEP_SUMMARY"
-          echo "leanToolchain=${LEAN_TOOLCHAIN}" >> "$GITHUB_STEP_SUMMARY"
-          echo "mathlibRevision=${MATHLIB_REVISION}" >> "$GITHUB_STEP_SUMMARY"
+          echo "leanToolchain=${{ steps.profile.outputs.lean_toolchain }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "mathlibRevision=${{ steps.profile.outputs.mathlib_revision }}" >> "$GITHUB_STEP_SUMMARY"
           echo '```' >> "$GITHUB_STEP_SUMMARY"
 
   build-e2b-template:
@@ -133,7 +180,7 @@ jobs:
       contents: read
       packages: read
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     environment: proofweave-runner-alpha
     steps:
       - name: Check out the reviewed template builder
@@ -155,7 +202,7 @@ jobs:
         env:
           E2B_API_KEY: ${{ secrets.E2B_API_KEY }}
           PROOFWEAVE_E2B_RUNNER_IMAGE: ${{ needs.build-and-inspect.outputs.runner_image }}
-          PROOFWEAVE_E2B_TEMPLATE_NAME: proofweave-lean-core-alpha:${{ github.sha }}
+          PROOFWEAVE_E2B_TEMPLATE_NAME: proofweave-${{ inputs.profile }}:${{ github.sha }}
           PROOFWEAVE_E2B_CPU: "2"
           PROOFWEAVE_E2B_MEMORY_MB: "2048"
           PROOFWEAVE_E2B_REGISTRY_USERNAME: ${{ github.actor }}

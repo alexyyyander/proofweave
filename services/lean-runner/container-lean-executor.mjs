@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
-import { readFile, rm, writeFile } from "node:fs/promises";
-import { join } from "node:path";
+import { lstat, mkdir, readFile, rm, symlink, writeFile } from "node:fs/promises";
+import { join, resolve } from "node:path";
 import { spawn } from "node:child_process";
 import {
   leanRunnerRequestHash,
@@ -31,7 +31,7 @@ export class ContainerLeanExecutorError extends Error {
  * bytes for the trusted Runner Worker to persist and sign.
  */
 export class ContainerLeanExecutor {
-  constructor({ networkIsolated, resourceLimitsEnforced, executable = "lake", executablePath = executable, now = () => new Date() }) {
+  constructor({ networkIsolated, resourceLimitsEnforced, executable = "lake", executablePath = executable, dependencyPackagesRoot = null, now = () => new Date() }) {
     if (networkIsolated !== true) {
       throw new TypeError("ContainerLeanExecutor requires an explicitly network-isolated Container.");
     }
@@ -44,9 +44,13 @@ export class ContainerLeanExecutor {
     if (typeof executablePath !== "string" || !isReviewedExecutablePath(executablePath)) {
       throw new TypeError("Container Lean executable path must be lake or a normalized absolute path ending in lake.");
     }
+    if (dependencyPackagesRoot !== null && !isNormalizedAbsolutePath(dependencyPackagesRoot)) {
+      throw new TypeError("Container dependency packages root must be a normalized absolute path.");
+    }
     if (typeof now !== "function") throw new TypeError("ContainerLeanExecutor now must be a function.");
     this.executable = executable;
     this.executablePath = executablePath;
+    this.dependencyPackagesRoot = dependencyPackagesRoot;
     this.now = now;
   }
 
@@ -56,6 +60,11 @@ export class ContainerLeanExecutor {
     await diagnoseExecutorStage("lean_request_binding_failed", async () => {
       assertWorkspaceMatchesRequest(workspace, normalizedRequest, requestHash, this.executable);
     });
+    await diagnoseExecutorStage("lean_dependency_environment_failed", () => mountPinnedLakePackages({
+      workspace,
+      request: normalizedRequest,
+      dependencyPackagesRoot: this.dependencyPackagesRoot,
+    }));
     const startedAt = isoInstant(this.now(), "Container Lean execution start time");
     const deadline = Date.now() + normalizedRequest.limits.wallSeconds * 1_000;
     const collector = new BoundedOutputCollector(normalizedRequest.limits.outputBytes);
@@ -159,6 +168,34 @@ export class ContainerLeanExecutor {
       workspaceTreeHash: workspace.treeHash,
     });
   }
+}
+
+async function mountPinnedLakePackages({ workspace, request, dependencyPackagesRoot }) {
+  if (request.environment.mathlibRevision === "none") {
+    if (dependencyPackagesRoot !== null) {
+      throw new ContainerLeanExecutorError("Lean Core execution cannot mount a Mathlib dependency closure.", { diagnosticCode: "lean_environment_mismatch" });
+    }
+    return;
+  }
+  if (dependencyPackagesRoot === null) {
+    throw new ContainerLeanExecutorError("Pinned Mathlib execution requires the image-owned Lake package closure.", { diagnosticCode: "lean_environment_missing" });
+  }
+  const dependencyRoot = await lstat(dependencyPackagesRoot).catch((cause) => {
+    throw new ContainerLeanExecutorError("Pinned Lake package closure is missing from the Runner image.", { cause, diagnosticCode: "lean_environment_missing" });
+  });
+  if (!dependencyRoot.isDirectory() || dependencyRoot.isSymbolicLink()) {
+    throw new ContainerLeanExecutorError("Pinned Lake package closure must be an image-owned directory.", { diagnosticCode: "lean_environment_mismatch" });
+  }
+  const lakeDirectory = join(workspace.workspaceDirectory, ".lake");
+  const existingLakeDirectory = await lstat(lakeDirectory).catch((error) => {
+    if (error?.code === "ENOENT") return null;
+    throw error;
+  });
+  if (existingLakeDirectory !== null) {
+    throw new ContainerLeanExecutorError("Submitted workspace cannot provide its own .lake directory.", { diagnosticCode: "lean_workspace_unsafe" });
+  }
+  await mkdir(lakeDirectory, { mode: 0o700 });
+  await symlink(dependencyPackagesRoot, join(lakeDirectory, "packages"), "dir");
 }
 
 async function auditAllowedAxioms({ workspace, request, command, collector, deadline, signal }) {
@@ -396,6 +433,15 @@ function requireExecutorDiagnosticCode(value) {
 
 function isReviewedExecutablePath(value) {
   return value === "lake" || /^\/(?:[A-Za-z0-9._+-]+\/)*lake$/.test(value);
+}
+
+function isNormalizedAbsolutePath(value) {
+  return typeof value === "string"
+    && value.startsWith("/")
+    && value !== "/"
+    && !value.includes("\0")
+    && !value.includes("\\")
+    && resolve(value) === value;
 }
 
 function samePolicy(left, right) {
