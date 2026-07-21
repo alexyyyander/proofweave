@@ -6,6 +6,7 @@ const metadataPath = process.env.PROOFWEAVE_IMAGE_METADATA;
 const expectedLeanToolchain = process.env.EXPECTED_LEAN_TOOLCHAIN;
 const expectedMathlibRevision = process.env.EXPECTED_MATHLIB_REVISION;
 const packagesRoot = process.env.PROOFWEAVE_LAKE_PACKAGES_ROOT;
+const smokeTimeoutMs = 300_000;
 
 if (!metadataPath || !expectedLeanToolchain || !expectedMathlibRevision) {
   throw new Error("Expected image metadata and exact Lean environment values are required.");
@@ -35,15 +36,18 @@ if (expectedMathlibRevision === "none") {
 }
 
 function run(command, args, options = {}) {
+  const startedAt = Date.now();
+  process.stdout.write(`proofweave-image-smoke: ${command} ${args.join(" ")}\n`);
   const result = spawnSync(command, args, {
     ...options,
     encoding: "utf8",
     env: process.env,
     stdio: "inherit",
-    timeout: 120_000,
+    timeout: smokeTimeoutMs,
   });
   if (result.error) throw result.error;
   if (result.status !== 0) {
     throw new Error(`${command} exited with status ${result.status}.`);
   }
+  process.stdout.write(`proofweave-image-smoke: completed in ${Date.now() - startedAt}ms\n`);
 }
