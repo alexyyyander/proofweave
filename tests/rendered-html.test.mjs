@@ -1402,12 +1402,12 @@ test("imports the pinned catalog idempotently and serves provenance through the 
       "SELECT (SELECT COUNT(*) FROM problem_revisions) AS problems, (SELECT COUNT(*) FROM verification_claims) AS claims, (SELECT COUNT(*) FROM catalog_imports) AS imports",
     )
     .first();
-  assert.deepEqual(counts, { problems: 38, claims: 190, imports: 3 });
+  assert.deepEqual(counts, { problems: 39, claims: 195, imports: 4 });
 
   const catalogResponse = await render("/api/catalog");
   assert.equal(catalogResponse.status, 200);
   const catalog = await catalogResponse.json();
-  assert.equal(catalog.records.length, 38);
+  assert.equal(catalog.records.length, 39);
   assert.equal(catalog.records[0].slug, "erdos-865");
   assert.equal(catalog.records[0].source.revisionTag, "bench-v1-lean4.27.0");
   assert.equal(catalog.records[0].source.leanToolchain, "leanprover/lean4:v4.27.0");

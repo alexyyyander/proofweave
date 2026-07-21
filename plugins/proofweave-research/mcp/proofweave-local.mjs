@@ -997,7 +997,14 @@ function splitNul(value) {
 }
 
 function assertSafeWorkspacePath(path) {
-  if (typeof path !== "string" || path.length === 0 || path.length > 1024 || path.startsWith("/") || path.includes("\\") || path.includes("\0") || path.split("/").some((segment) => !/^[A-Za-z0-9][A-Za-z0-9._+-]*$/.test(segment) || segment === "." || segment === "..")) {
+  const allowedRootDotfiles = new Set([".editorconfig", ".gitattributes", ".gitignore", ".lean-version"]);
+  const segments = typeof path === "string" ? path.split("/") : [];
+  const unsafeSegment = segments.some((segment, index) => {
+    if (segment === "." || segment === "..") return true;
+    if (/^[A-Za-z0-9][A-Za-z0-9._+-]*$/.test(segment)) return false;
+    return index !== 0 || !allowedRootDotfiles.has(segment);
+  });
+  if (typeof path !== "string" || path.length === 0 || path.length > 1024 || path.startsWith("/") || path.includes("\\") || path.includes("\0") || unsafeSegment) {
     throw new Error("The local workspace contains an unsafe tracked path.");
   }
 }
