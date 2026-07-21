@@ -830,6 +830,7 @@ test("the local Connector prepares and stages one signed, hash-bound v2 Artifact
     const workspaceRoot = join(fixtureRoot, "lean-workspace");
     await mkdir(workspaceRoot);
     await Promise.all([
+      writeFile(join(workspaceRoot, ".gitignore"), ".lake/\n"),
       writeFile(join(workspaceRoot, "Main.lean"), "theorem fixture : True := by trivial\n"),
       writeFile(join(workspaceRoot, "lake-manifest.json"), "{\"name\":\"fixture\"}\n"),
       writeFile(join(workspaceRoot, "lean-toolchain"), "leanprover/lean4:v4.27.0\n"),
@@ -852,6 +853,7 @@ test("the local Connector prepares and stages one signed, hash-bound v2 Artifact
     const workspaceDraft = JSON.parse(workspaceDraftResponse.result.content[0].text);
     assert.equal(workspaceDraft.operation, "local_workspace_bundle_preparation");
     assert.equal(workspaceDraft.uploaded, false);
+    assert.equal(workspaceDraft.workspace.trackedFiles, 4);
     assert.equal(workspaceDraft.workspace.changedFiles[0], "Main.lean");
     assert.equal(receivedObjects.length, receivedBeforeWorkspaceDraft);
     assert.equal(workspaceDraft.bundle.protocolVersion, "pw-artifact-bundle-v2");
