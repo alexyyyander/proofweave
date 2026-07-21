@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { cp, mkdtemp, rm } from "node:fs/promises";
+import { cp, lstat, mkdir, mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import test from "node:test";
@@ -95,6 +95,47 @@ test("Container Lean executor refuses to run without deployment-enforced isolati
     }),
     /normalized absolute path/,
   );
+  assert.throws(
+    () => new ContainerLeanExecutor({
+      networkIsolated: true,
+      resourceLimitsEnforced: true,
+      dependencyPackagesRoot: "../packages",
+    }),
+    /dependency packages root/,
+  );
+});
+
+test("Container Lean executor mounts only the image-owned pinned Lake package closure", async () => {
+  const root = await mkdtemp(join(tmpdir(), "proofweave-lean-dependencies-"));
+  const workspaceDirectory = join(root, "workspace");
+  const dependencyPackagesRoot = join(root, "image-packages");
+  try {
+    await mkdir(workspaceDirectory);
+    await mkdir(dependencyPackagesRoot);
+    await cp(fileURLToPath(new URL("core-success/", fixturesRoot)), workspaceDirectory, { recursive: true });
+    const request = fixtureRequest({ id: "pinned-dependencies", mathlibRevision: "fixture-mathlib" });
+    const execution = await new ContainerLeanExecutor({
+      networkIsolated: true,
+      resourceLimitsEnforced: true,
+      dependencyPackagesRoot,
+    }).execute({
+      request,
+      workspace: {
+        jobId: request.jobId,
+        requestHash: await leanRunnerRequestHash(request),
+        workspaceDirectory,
+        treeHash: sha("f"),
+        entries: [{ path: "ProofweaveFixture.lean", mode: 0o644, contentHash: sha("e") }],
+        target: { declaration: "ProofweaveFixture.true_is_inhabited", statementHash: sha("d") },
+        policy: request.policy,
+        entryCommand: request.bundle.entryCommand,
+      },
+    });
+    assert.equal(execution.result.status, "succeeded");
+    assert.equal((await lstat(join(workspaceDirectory, ".lake", "packages"))).isSymbolicLink(), true);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
 });
 
 test("Container Lean executor returns normal unsigned cancellation evidence for an aborted private request", async () => {
@@ -136,7 +177,7 @@ test("Container Lean executor returns normal unsigned cancellation evidence for 
   }
 });
 
-function fixtureRequest({ id }) {
+function fixtureRequest({ id, mathlibRevision = "none" }) {
   return {
     protocolVersion: "pw-lean-runner-v1",
     jobId: `run:${id}`,
@@ -151,7 +192,7 @@ function fixtureRequest({ id }) {
     environment: {
       imageDigest: `registry.cloudflare.com/proofweave/lean-runner@sha256:${"b".repeat(64)}`,
       leanToolchain: "leanprover/lean4:v4.30.0",
-      mathlibRevision: "fixture-mathlib",
+      mathlibRevision,
       network: "disabled",
     },
     limits: { cpuSeconds: 10, wallSeconds: 30, memoryMiB: 512, diskMiB: 512, outputBytes: 1_000_000 },

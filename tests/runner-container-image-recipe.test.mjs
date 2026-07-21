@@ -4,14 +4,16 @@ import test from "node:test";
 
 const dockerfileUrl = new URL("../services/lean-runner/Dockerfile", import.meta.url);
 const coreBaseDockerfileUrl = new URL("../services/lean-runner/Dockerfile.core-alpha-base", import.meta.url);
+const mathlibBaseDockerfileUrl = new URL("../services/lean-runner/Dockerfile.mathlib-base", import.meta.url);
 const dockerignoreUrl = new URL("../.dockerignore", import.meta.url);
 const imageContractUrl = new URL("../docs/runner-container-image.md", import.meta.url);
 const imageWorkflowUrl = new URL("../.github/workflows/build-e2b-lean-runner-image.yml", import.meta.url);
 
 test("Lean Runner image recipe fails closed and keeps its build context minimal", async () => {
-  const [dockerfile, coreBaseDockerfile, dockerignore, contract, imageWorkflow] = await Promise.all([
+  const [dockerfile, coreBaseDockerfile, mathlibBaseDockerfile, dockerignore, contract, imageWorkflow] = await Promise.all([
     readFile(dockerfileUrl, "utf8"),
     readFile(coreBaseDockerfileUrl, "utf8"),
+    readFile(mathlibBaseDockerfileUrl, "utf8"),
     readFile(dockerignoreUrl, "utf8"),
     readFile(imageContractUrl, "utf8"),
     readFile(imageWorkflowUrl, "utf8"),
@@ -41,9 +43,23 @@ test("Lean Runner image recipe fails closed and keeps its build context minimal"
   assert.match(coreBaseDockerfile, /createZstdDecompress/);
   assert.doesNotMatch(coreBaseDockerfile, /elan-init|git clone|lake exe cache get/);
 
+  assert.match(mathlibBaseDockerfile, /^ARG NODE_BASE_IMAGE$/m);
+  assert.match(mathlibBaseDockerfile, /EXPECTED_MATHLIB_REVISION must be an exact Git commit/);
+  assert.match(mathlibBaseDockerfile, /sha256sum --check --strict/);
+  assert.match(mathlibBaseDockerfile, /git clone --filter=blob:none --no-checkout/);
+  assert.match(mathlibBaseDockerfile, /git -C \/tmp\/mathlib fetch --depth=1 origin/);
+  assert.match(mathlibBaseDockerfile, /lake exe cache get/);
+  assert.match(mathlibBaseDockerfile, /PROOFWEAVE_LAKE_PACKAGES_ROOT=\/opt\/proofweave\/lake-packages/);
+  assert.match(mathlibBaseDockerfile, /ln -s \.\.\/\.\. \/opt\/proofweave\/lake-packages\/mathlib\/\.lake\/packages/);
+  assert.match(mathlibBaseDockerfile, /chmod -R a-w \/opt\/proofweave\/lake-packages/);
+
   assert.match(imageWorkflow, /node@sha256:[a-f0-9]{64}/);
   assert.match(imageWorkflow, /lean-4\.27\.0-linux\.zip/);
-  assert.match(imageWorkflow, /LEAN_RELEASE_SHA256: [a-f0-9]{64}/);
+  assert.match(imageWorkflow, /mathlib-4\.27-a3a10/);
+  assert.match(imageWorkflow, /mathlib-4\.31-9a948/);
+  assert.match(imageWorkflow, /a3a10db0e9d66acbebf76c5e6a135066525ac900/);
+  assert.match(imageWorkflow, /9a9483a92959bc92bd6a60176dd1fe597298c1f8/);
+  assert.match(imageWorkflow, /lean_release_sha256=[a-f0-9]{64}/);
   assert.match(imageWorkflow, /docker\/setup-buildx-action@[a-f0-9]{40}/);
   assert.match(imageWorkflow, /driver: docker-container/);
   assert.doesNotMatch(imageWorkflow, /^\s+install: true$/m);
@@ -54,8 +70,8 @@ test("Lean Runner image recipe fails closed and keeps its build context minimal"
   );
   assert.match(imageWorkflow, /network: none/);
   assert.match(imageWorkflow, /--read-only --network=none/);
-  assert.match(imageWorkflow, /--entrypoint \/bin\/sh "\$FINAL_RUNNER_IMAGE" -c/);
-  assert.doesNotMatch(imageWorkflow, /--entrypoint \/bin\/sh "\$FINAL_RUNNER_IMAGE" -lc/);
+  assert.match(imageWorkflow, /--entrypoint node "\$FINAL_RUNNER_IMAGE"/);
+  assert.match(imageWorkflow, /inspect-image-environment\.mjs/);
   assert.equal(imageWorkflow.match(/provenance: mode=max/g)?.length, 2);
   assert.equal(imageWorkflow.match(/sbom: true/g)?.length, 2);
   assert.match(imageWorkflow, /if: \$\{\{ github\.event\.repository\.visibility == 'public' \}\}/);

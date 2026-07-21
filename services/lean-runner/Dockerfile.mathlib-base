@@ -1,0 +1,86 @@
+# syntax=docker/dockerfile:1.7
+#
+# Revision-pinned Mathlib base for the private Proofweave Runner. Network is
+# available only while this independently inspectable base is assembled. The
+# final credential-free Runner image is still built with --network=none.
+ARG NODE_BASE_IMAGE
+FROM ${NODE_BASE_IMAGE}
+
+ARG NODE_BASE_IMAGE
+ARG EXPECTED_LEAN_TOOLCHAIN
+ARG EXPECTED_MATHLIB_REVISION
+ARG LEAN_RELEASE_URL
+ARG LEAN_RELEASE_SHA256
+ARG LEAN_ARCHIVE_ROOT
+
+RUN node --input-type=module -e '\
+  const [base, toolchain, mathlib, url, digest, root] = process.argv.slice(1); \
+  if (!/^[a-z0-9][a-z0-9./:_-]*@sha256:[a-f0-9]{64}$/.test(base)) throw new Error("NODE_BASE_IMAGE must be pinned by sha256 digest."); \
+  const match = /^leanprover\/lean4:v(\d+\.\d+\.\d+)$/.exec(toolchain); \
+  if (!match) throw new Error("EXPECTED_LEAN_TOOLCHAIN must be an exact Lean release."); \
+  if (!/^[a-f0-9]{40}$/.test(mathlib)) throw new Error("EXPECTED_MATHLIB_REVISION must be an exact Git commit."); \
+  const version = match[1]; \
+  if (url !== `https://github.com/leanprover/lean4/releases/download/v${version}/lean-${version}-linux.tar.zst`) throw new Error("LEAN_RELEASE_URL must match the exact official Lean release."); \
+  if (!/^[a-f0-9]{64}$/.test(digest)) throw new Error("LEAN_RELEASE_SHA256 must be an exact sha256 digest."); \
+  if (root !== `lean-${version}-linux`) throw new Error("LEAN_ARCHIVE_ROOT must match the exact Lean release archive."); \
+' "$NODE_BASE_IMAGE" "$EXPECTED_LEAN_TOOLCHAIN" "$EXPECTED_MATHLIB_REVISION" "$LEAN_RELEASE_URL" "$LEAN_RELEASE_SHA256" "$LEAN_ARCHIVE_ROOT"
+
+RUN command -v curl \
+ && command -v sha256sum \
+ && command -v git \
+ && command -v tar \
+ && command -v patch
+
+RUN curl --proto '=https' --tlsv1.2 --fail --location --silent --show-error \
+      "$LEAN_RELEASE_URL" --output /tmp/lean-release.tar.zst \
+ && echo "$LEAN_RELEASE_SHA256  /tmp/lean-release.tar.zst" | sha256sum --check --strict \
+ && node --input-type=module -e '\
+      import { createReadStream, createWriteStream } from "node:fs"; \
+      import { pipeline } from "node:stream/promises"; \
+      import { createZstdDecompress } from "node:zlib"; \
+      await pipeline(createReadStream("/tmp/lean-release.tar.zst"), createZstdDecompress(), createWriteStream("/tmp/lean-release.tar")); \
+    ' \
+ && install -d -m 0755 /opt/lean-archive /opt/lean \
+ && tar -xf /tmp/lean-release.tar -C /opt/lean-archive \
+ && cp -a "/opt/lean-archive/$LEAN_ARCHIVE_ROOT/." /opt/lean/ \
+ && rm -rf /opt/lean-archive /tmp/lean-release.tar /tmp/lean-release.tar.zst
+
+ENV PATH="/opt/lean/bin:${PATH}"
+ENV PROOFWEAVE_IMAGE_METADATA=/opt/proofweave/lean-environment.json
+ENV PROOFWEAVE_LAKE_PACKAGES_ROOT=/opt/proofweave/lake-packages
+
+RUN git clone --filter=blob:none --no-checkout https://github.com/leanprover-community/mathlib4.git /tmp/mathlib \
+ && git -C /tmp/mathlib fetch --depth=1 origin "$EXPECTED_MATHLIB_REVISION" \
+ && git -C /tmp/mathlib checkout --detach "$EXPECTED_MATHLIB_REVISION" \
+ && test "$(git -C /tmp/mathlib rev-parse HEAD)" = "$EXPECTED_MATHLIB_REVISION" \
+ && test "$(cat /tmp/mathlib/lean-toolchain)" = "$EXPECTED_LEAN_TOOLCHAIN" \
+ && cd /tmp/mathlib \
+ && lake exe cache get \
+ && printf 'import Mathlib\n#check Nat\n' > ProofweaveImageSmoke.lean \
+ && lake env lean ProofweaveImageSmoke.lean \
+ && rm ProofweaveImageSmoke.lean \
+ && install -d -m 0755 /opt/proofweave/lake-packages \
+ && cp -a /tmp/mathlib/.lake/packages/. /opt/proofweave/lake-packages/ \
+ && rm -rf /tmp/mathlib/.git /tmp/mathlib/.lake/packages \
+ && mv /tmp/mathlib /opt/proofweave/lake-packages/mathlib \
+ && ln -s ../.. /opt/proofweave/lake-packages/mathlib/.lake/packages \
+ && find /opt/proofweave/lake-packages -name .git -type d -prune -exec rm -rf '{}' + \
+ && chmod -R a-w /opt/proofweave/lake-packages
+
+RUN install -d -m 0755 /opt/proofweave \
+ && node --input-type=module -e '\
+  import { writeFile } from "node:fs/promises"; \
+  const [path, leanToolchain, mathlibRevision, leanReleaseSha256] = process.argv.slice(1); \
+  await writeFile(path, `${JSON.stringify({ \
+    protocolVersion: "pw-lean-image-v1", \
+    profile: "mathlib-pinned", \
+    leanToolchain, \
+    mathlibRevision, \
+    leanReleaseSha256, \
+  }, null, 2)}\n`, { encoding: "utf8", mode: 0o644 }); \
+' "$PROOFWEAVE_IMAGE_METADATA" "$EXPECTED_LEAN_TOOLCHAIN" "$EXPECTED_MATHLIB_REVISION" "$LEAN_RELEASE_SHA256"
+
+LABEL org.opencontainers.image.title="Proofweave pinned Mathlib base" \
+      io.proofweave.lean-toolchain="${EXPECTED_LEAN_TOOLCHAIN}" \
+      io.proofweave.mathlib-revision="${EXPECTED_MATHLIB_REVISION}" \
+      io.proofweave.runner-profile="mathlib-pinned"
