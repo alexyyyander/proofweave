@@ -69,6 +69,34 @@ test("pending migrations resume only from an immutable contiguous ledger prefix"
   );
 });
 
+test("the exact public-alpha 0039 ledger identity remains a bounded migration alias", async (t) => {
+  const database = memoryDatabase();
+  t.after(() => database.close());
+  const migrations = await loadProofweaveMigrations();
+  await applyProofweaveMigrations({ database, migrations: migrations.slice(0, 40) });
+  await database
+    .prepare(`UPDATE ${proofweaveMigrationLedgerTable} SET sha256 = ?, statement_count = ? WHERE name = ?`)
+    .bind(
+      "03f7f5819c18255fb8264b8fe3c0c4c4d7458dd050b7bd1a6b8a8249cefe001c",
+      12,
+      "0039_decouple_attempt_authority.sql",
+    )
+    .run();
+
+  const plan = await planProofweaveMigrations({ database, migrations });
+  assert.equal(plan.applied.at(-1), "0039_decouple_attempt_authority.sql");
+  assert.equal(plan.pending[0].name, "0040_add_cycle_double_cover_target.sql");
+
+  await database
+    .prepare(`UPDATE ${proofweaveMigrationLedgerTable} SET sha256 = ? WHERE name = ?`)
+    .bind("0".repeat(64), "0039_decouple_attempt_authority.sql")
+    .run();
+  await assert.rejects(
+    planProofweaveMigrations({ database, migrations }),
+    /integrity mismatch for 0039/,
+  );
+});
+
 test("non-empty unledgered databases fail closed instead of guessing a baseline", async (t) => {
   const database = memoryDatabase();
   t.after(() => database.close());

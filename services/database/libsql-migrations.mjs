@@ -4,6 +4,18 @@ import { readdir, readFile } from "node:fs/promises";
 export const proofweaveMigrationLedgerTable = "_proofweave_migrations";
 
 const migrationFilenamePattern = /^(\d{4})_[a-z0-9_]+\.sql$/;
+// During the public-alpha authority rollout, 0039 was applied from one
+// reviewed pre-merge source before its repository copy was normalized. Keep
+// that exact immutable ledger identity as a narrowly scoped compatibility
+// checksum; every other name, digest, and statement count still fails closed.
+const acceptedLegacyMigrationIdentities = Object.freeze({
+  "0039_decouple_attempt_authority.sql": Object.freeze([
+    Object.freeze({
+      sha256: "03f7f5819c18255fb8264b8fe3c0c4c4d7458dd050b7bd1a6b8a8249cefe001c",
+      statementCount: 12,
+    }),
+  ]),
+});
 const requiredControlPlaneTables = Object.freeze([
   "persons",
   "artifact_bundles",
@@ -175,7 +187,7 @@ function validateAppliedRows(rows, history) {
         `Migration ledger is not a contiguous prefix; expected ${expected?.name ?? "no further migration"}.`,
       );
     }
-    if (row.sha256 !== expected.sha256 || row.statement_count !== expected.statementCount) {
+    if (!matchesMigrationIdentity(row, expected)) {
       throw new ProofweaveMigrationError(`Migration ledger integrity mismatch for ${row.name}.`);
     }
     if (typeof row.applied_at !== "string" || !Number.isFinite(Date.parse(row.applied_at))) {
@@ -184,6 +196,13 @@ function validateAppliedRows(rows, history) {
     applied.push(expected);
   }
   return applied;
+}
+
+function matchesMigrationIdentity(row, expected) {
+  if (row.sha256 === expected.sha256 && row.statement_count === expected.statementCount) return true;
+  return acceptedLegacyMigrationIdentities[expected.name]?.some((identity) => (
+    row.sha256 === identity.sha256 && row.statement_count === identity.statementCount
+  )) === true;
 }
 
 async function listApplicationTables(database) {
