@@ -28,7 +28,10 @@ dependencies. Each Mathlib profile downloads and verifies dependencies only
 during the independently inspectable base build. The final image contains a
 root-owned, read-only Lake package closure, and the executor mounts that closure
 only after the submitted workspace tree has passed its hash checks. A submitted
-workspace-provided `.lake` directory is rejected.
+workspace-provided `.lake` directory is rejected. The shallow Git revision and
+public remote metadata are retained read-only because Lake uses them to confirm
+that every offline package still matches the pinned manifest; they contain no
+credentials and cannot be mutated by submitted code.
 
 ## Base-image interface
 
