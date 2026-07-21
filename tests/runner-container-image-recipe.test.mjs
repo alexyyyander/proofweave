@@ -53,7 +53,8 @@ test("Lean Runner image recipe fails closed and keeps its build context minimal"
   assert.match(mathlibBaseDockerfile, /adduser --system --ingroup proofweave/);
   assert.match(mathlibBaseDockerfile, /ln -s \.\.\/\.\. \/opt\/proofweave\/lake-packages\/mathlib\/\.lake\/packages/);
   assert.match(mathlibBaseDockerfile, /chown -R proofweave:proofweave \/opt\/proofweave\/lake-packages/);
-  assert.match(mathlibBaseDockerfile, /chmod -R a-w \/opt\/proofweave\/lake-packages/);
+  assert.match(mathlibBaseDockerfile, /chmod -R a\+rX,a-w \/opt\/proofweave\/lake-packages/);
+  assert.match(mathlibBaseDockerfile, /su -s \/bin\/sh nobody -c 'test -r \/opt\/proofweave\/lake-packages\/mathlib\/\.lake\/config\/mathlib'/);
   assert.doesNotMatch(mathlibBaseDockerfile, /find \/opt\/proofweave\/lake-packages -name \.git/);
   assert.match(mathlibBaseDockerfile, /su -s \/bin\/sh proofweave -c 'cd \/opt\/proofweave\/lake-packages\/mathlib && lake env lean/);
 
