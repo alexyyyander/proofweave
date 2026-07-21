@@ -52,6 +52,8 @@ test("Lean Runner image recipe fails closed and keeps its build context minimal"
   assert.match(mathlibBaseDockerfile, /PROOFWEAVE_LAKE_PACKAGES_ROOT=\/opt\/proofweave\/lake-packages/);
   assert.match(mathlibBaseDockerfile, /ln -s \.\.\/\.\. \/opt\/proofweave\/lake-packages\/mathlib\/\.lake\/packages/);
   assert.match(mathlibBaseDockerfile, /chmod -R a-w \/opt\/proofweave\/lake-packages/);
+  assert.doesNotMatch(mathlibBaseDockerfile, /find \/opt\/proofweave\/lake-packages -name \.git/);
+  assert.match(mathlibBaseDockerfile, /su -s \/bin\/sh node -c 'cd \/opt\/proofweave\/lake-packages\/mathlib && lake env lean/);
 
   assert.match(imageWorkflow, /node@sha256:[a-f0-9]{64}/);
   assert.match(imageWorkflow, /lean-4\.27\.0-linux\.zip/);

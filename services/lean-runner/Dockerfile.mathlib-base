@@ -61,11 +61,18 @@ RUN git clone --filter=blob:none --no-checkout https://github.com/leanprover-com
  && rm ProofweaveImageSmoke.lean \
  && install -d -m 0755 /opt/proofweave/lake-packages \
  && cp -a /tmp/mathlib/.lake/packages/. /opt/proofweave/lake-packages/ \
- && rm -rf /tmp/mathlib/.git /tmp/mathlib/.lake/packages \
+ && rm -rf /tmp/mathlib/.lake/packages \
  && mv /tmp/mathlib /opt/proofweave/lake-packages/mathlib \
  && ln -s ../.. /opt/proofweave/lake-packages/mathlib/.lake/packages \
- && find /opt/proofweave/lake-packages -name .git -type d -prune -exec rm -rf '{}' + \
  && chmod -R a-w /opt/proofweave/lake-packages
+
+# Exercise Lake again after the closure is relocated and made read-only. This
+# catches missing revision metadata before a multi-gigabyte final image is
+# published and later pulled for the separate no-network smoke run.
+RUN printf 'import Mathlib\n#check Nat\n' > /tmp/ProofweaveReadOnlySmoke.lean \
+ && chown node:node /tmp/ProofweaveReadOnlySmoke.lean \
+ && su -s /bin/sh node -c 'cd /opt/proofweave/lake-packages/mathlib && lake env lean /tmp/ProofweaveReadOnlySmoke.lean' \
+ && rm /tmp/ProofweaveReadOnlySmoke.lean
 
 RUN install -d -m 0755 /opt/proofweave \
  && node --input-type=module -e '\
