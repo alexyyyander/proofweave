@@ -17,6 +17,11 @@ on:
         required: true
         default: false
         type: boolean
+      existing_runner_image:
+        description: Optional reviewed Proofweave Runner digest for template-only recovery
+        required: false
+        default: ""
+        type: string
 
 permissions:
   contents: read
@@ -32,6 +37,7 @@ env:
 
 jobs:
   build-and-inspect:
+    if: ${{ inputs.existing_runner_image == '' }}
     permissions:
       contents: read
       packages: write
@@ -183,7 +189,7 @@ jobs:
           echo '```' >> "$GITHUB_STEP_SUMMARY"
 
   build-e2b-template:
-    if: ${{ inputs.build_e2b_template }}
+    if: ${{ always() && inputs.build_e2b_template && (needs.build-and-inspect.result == 'success' || inputs.existing_runner_image != '') }}
     needs: build-and-inspect
     permissions:
       contents: read
@@ -204,13 +210,23 @@ jobs:
       - name: Install locked dependencies
         run: npm ci --ignore-scripts
 
+      - name: Validate the reviewed Runner image source
+        env:
+          REVIEWED_RUNNER_IMAGE: ${{ inputs.existing_runner_image || needs.build-and-inspect.outputs.runner_image }}
+          REVIEWED_RUNNER_PREFIX: ghcr.io/${{ github.repository_owner }}/proofweave-lean-runner@sha256:
+        run: >-
+          node --input-type=module -e '
+          const [image, prefix] = process.argv.slice(1);
+          if (!image.startsWith(prefix)) throw new Error("Template recovery accepts only this repository owner Proofweave Runner image.");
+          ' "$REVIEWED_RUNNER_IMAGE" "$REVIEWED_RUNNER_PREFIX"
+
       # This job has packages:read only. Its short-lived GITHUB_TOKEN lets E2B
       # import the private image without exposing the package-write token used
       # by the separate publication job or requiring a long-lived package PAT.
       - name: Build the E2B template from the immutable private image
         env:
           E2B_API_KEY: ${{ secrets.E2B_API_KEY }}
-          PROOFWEAVE_E2B_RUNNER_IMAGE: ${{ needs.build-and-inspect.outputs.runner_image }}
+          PROOFWEAVE_E2B_RUNNER_IMAGE: ${{ inputs.existing_runner_image || needs.build-and-inspect.outputs.runner_image }}
           PROOFWEAVE_E2B_TEMPLATE_NAME: proofweave-runner:${{ github.run_id }}
           PROOFWEAVE_E2B_CPU: "2"
           PROOFWEAVE_E2B_MEMORY_MB: "2048"
