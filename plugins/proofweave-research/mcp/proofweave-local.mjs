@@ -932,7 +932,7 @@ async function assertRegularWorkspaceFile(path, label) {
 }
 
 async function createZstdGitArchive(workspaceRoot, destination) {
-  const archive = spawn("git", ["archive", "--format=tar", "HEAD"], { cwd: workspaceRoot, stdio: ["ignore", "pipe", "pipe"], windowsHide: true });
+  const archive = spawn("git", ["-c", "tar.umask=0022", "archive", "--format=tar", "HEAD"], { cwd: workspaceRoot, stdio: ["ignore", "pipe", "pipe"], windowsHide: true });
   const output = createWriteStream(destination, { flags: "wx", mode: 0o600 });
   if (typeof zlib.createZstdCompress === "function") {
     await Promise.all([
@@ -1260,7 +1260,8 @@ function artifactBundleSigningPayload(bundle) {
 }
 
 function workspaceTreeHash(entries) {
-  return sha256Canonical({ protocolVersion: "pw-tree-v1", entries });
+  const normalizedEntries = [...entries].sort((left, right) => left.path < right.path ? -1 : left.path > right.path ? 1 : 0);
+  return sha256Canonical({ protocolVersion: "pw-tree-v1", entries: normalizedEntries });
 }
 
 function artifactObjectKey(hash, filename) {
