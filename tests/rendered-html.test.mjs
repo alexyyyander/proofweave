@@ -963,6 +963,19 @@ test("uses Explore as the stable parent for public research work", async () => {
   }
 });
 
+test("keeps information hubs content-driven across viewport heights", async () => {
+  const globals = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+
+  assert.match(
+    globals,
+    /\/\* Final cross-page density pass[\s\S]*?\.information-hub-hero \{ min-height: 0; padding-bottom: 48px; padding-top: 52px; \}/,
+  );
+  assert.match(
+    globals,
+    /@media \(max-width: 620px\)[\s\S]*?\.information-hub-hero \{ padding-bottom: 42px; padding-top: 48px; \}/,
+  );
+});
+
 test("keeps the public directory separate from the personal workspace", async () => {
   const page = await render("/");
   assert.equal(page.status, 200);
