@@ -213,7 +213,7 @@ jobs:
       - name: Validate the reviewed Runner image source
         env:
           REVIEWED_RUNNER_IMAGE: ${{ inputs.existing_runner_image || needs.build-and-inspect.outputs.runner_image }}
-          REVIEWED_RUNNER_PREFIX: ghcr.io/${{ github.repository_owner }}/proofweave-lean-runner@sha256:
+          REVIEWED_RUNNER_PREFIX: "ghcr.io/${{ github.repository_owner }}/proofweave-lean-runner@sha256:"
         run: >-
           node --input-type=module -e '
           const [image, prefix] = process.argv.slice(1);
