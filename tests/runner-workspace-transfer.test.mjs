@@ -82,6 +82,50 @@ test("transfer fails closed when R2 metadata changes after Bundle resolution", a
   assert.equal(container.requests.some((request) => request.pathname.endsWith("/source-patch")), false);
 });
 
+test("transfer reports a bounded privacy-safe stage and status class when the Container rejects bytes", async () => {
+  const objects = fixtureObjects();
+  const resolvedBundle = fixtureResolvedBundle(objects);
+  const container = new MemoryContainer({ rejectRequest: 2, rejectStatus: 413 });
+
+  await assert.rejects(
+    new RunnerWorkspaceTransfer({ bucket: new MemoryBucket(objects) }).stage({
+      run: await fixtureRun(resolvedBundle),
+      resolvedBundle,
+      container,
+    }),
+    (error) => {
+      assert.equal(error instanceof RunnerWorkspaceTransferError, true);
+      assert.equal(error.diagnosticCode, "runner_workspace_source_archive_rejected_4xx");
+      assert.equal(error.message, "Runner Container rejected source archive upload.");
+      return true;
+    },
+  );
+});
+
+test("transfer diagnostics do not copy a private Container response body", async () => {
+  const objects = fixtureObjects();
+  const resolvedBundle = fixtureResolvedBundle(objects);
+  const container = new MemoryContainer({
+    rejectRequest: 1,
+    rejectStatus: 400,
+    rejectBody: "private workspace detail must stay private",
+  });
+
+  await assert.rejects(
+    new RunnerWorkspaceTransfer({ bucket: new MemoryBucket(objects) }).stage({
+      run: await fixtureRun(resolvedBundle),
+      resolvedBundle,
+      container,
+    }),
+    (error) => {
+      assert.equal(error.diagnosticCode, "runner_workspace_declaration_rejected_4xx");
+      assert.equal(JSON.stringify(error).includes("private workspace detail"), false);
+      assert.equal(error.message.includes("private workspace detail"), false);
+      return true;
+    },
+  );
+});
+
 class MemoryBucket {
   constructor(objects) {
     this.objects = new Map(Object.values(objects).map((object) => [object.objectKey, object]));
@@ -99,8 +143,11 @@ class MemoryBucket {
 }
 
 class MemoryContainer {
-  constructor() {
+  constructor({ rejectRequest = null, rejectStatus = 400, rejectBody = null } = {}) {
     this.requests = [];
+    this.rejectRequest = rejectRequest;
+    this.rejectStatus = rejectStatus;
+    this.rejectBody = rejectBody;
   }
 
   async fetch(request) {
@@ -109,6 +156,9 @@ class MemoryContainer {
       headers: request.headers,
       body: request.body ? await request.text() : "",
     });
+    if (this.requests.length === this.rejectRequest) {
+      return new Response(this.rejectBody, { status: this.rejectStatus });
+    }
     return new Response(null, { status: 204 });
   }
 }
