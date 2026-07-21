@@ -5,9 +5,12 @@ import { runnerWorkspaceIngressProtocolVersion } from "./container-workspace-ing
 export const runnerWorkspaceTransferProtocolVersion = runnerWorkspaceIngressProtocolVersion;
 
 export class RunnerWorkspaceTransferError extends Error {
-  constructor(message, options) {
+  constructor(message, options = {}) {
     super(message, options);
     this.name = "RunnerWorkspaceTransferError";
+    if (options.diagnosticCode !== undefined) {
+      this.diagnosticCode = requireDiagnosticCode(options.diagnosticCode);
+    }
   }
 }
 
@@ -50,6 +53,7 @@ export class RunnerWorkspaceTransfer {
         }])),
       })),
       "workspace declaration",
+      "runner_workspace_declaration",
     );
 
     const uploaded = [];
@@ -70,6 +74,7 @@ export class RunnerWorkspaceTransfer {
           "x-proofweave-content-sha256": transfer.object.contentHash,
         })),
         `${transfer.label} upload`,
+        `runner_workspace_${transfer.id.replace(/([a-z])([A-Z])/g, "$1_$2").toLowerCase()}`,
       );
       uploaded.push(transfer.id);
     }
@@ -77,6 +82,7 @@ export class RunnerWorkspaceTransfer {
     await expectAccepted(
       await container.fetch(new Request(`${baseUrl}/workspace/finalize`, { method: "POST" })),
       "workspace finalization",
+      "runner_workspace_finalization",
     );
     return Object.freeze({
       protocolVersion: runnerWorkspaceTransferProtocolVersion,
@@ -131,10 +137,22 @@ function assertR2Object(object, expected, label) {
   }
 }
 
-async function expectAccepted(response, label) {
+async function expectAccepted(response, label, diagnosticPrefix) {
   if (!response || !Number.isInteger(response.status) || response.status < 200 || response.status > 299) {
-    throw new RunnerWorkspaceTransferError(`Runner Container rejected ${label}.`);
+    const statusClass = Number.isInteger(response?.status)
+      ? `${Math.floor(response.status / 100)}xx`
+      : "response_error";
+    throw new RunnerWorkspaceTransferError(`Runner Container rejected ${label}.`, {
+      diagnosticCode: `${diagnosticPrefix}_rejected_${statusClass}`,
+    });
   }
+}
+
+function requireDiagnosticCode(value) {
+  if (typeof value !== "string" || !/^runner_workspace_[a-z0-9_]{3,45}$/.test(value)) {
+    throw new TypeError("Runner workspace diagnostic code is invalid.");
+  }
+  return value;
 }
 
 function jsonRequest(url, payload) {
