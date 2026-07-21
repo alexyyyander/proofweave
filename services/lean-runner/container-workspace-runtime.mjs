@@ -145,7 +145,7 @@ export class ContainerWorkspaceRuntime {
   async finalizeOnce() {
     const finalization = this.ingress.finalize();
     const { workspace } = finalization;
-    await extractZstdTar(this.artifactPaths.sourceArchive, this.workspaceDirectory, {
+    const extraction = await extractZstdTar(this.artifactPaths.sourceArchive, this.workspaceDirectory, {
       maxExpandedBytes: workspace.archive.maxExpandedBytes,
       maxFileCount: workspace.archive.maxFileCount,
     });
@@ -163,14 +163,23 @@ export class ContainerWorkspaceRuntime {
       maxFileCount: workspace.archive.maxFileCount,
     });
     const treeHash = await workspaceTreeHash(entries);
-    if (treeHash !== workspace.tree.hash) {
+    const verifiedTreeHash = treeHash === workspace.tree.hash
+      ? treeHash
+      : extraction.hasGitGlobalPaxHeader && legacyConnectorWorkspaceTreeHash(entries) === workspace.tree.hash
+        ? workspace.tree.hash
+        : null;
+    if (verifiedTreeHash === null) {
       throw new ContainerWorkspaceRuntimeError("Reconstructed workspace tree does not match the immutable v2 Bundle tree hash.");
     }
     return Object.freeze({
       jobId: finalization.jobId,
       requestHash: finalization.requestHash,
       workspaceDirectory: this.workspaceDirectory,
-      treeHash,
+      // Early one-click Connector builds hashed the same exact entries after
+      // locale ordering instead of pw-tree-v1 byte ordering. The bounded Git
+      // PAX marker gates that migration path; both hashes still bind every
+      // normalized path, mode, and content digest in this workspace.
+      treeHash: verifiedTreeHash,
       entries: Object.freeze(entries),
       target: finalization.target,
       policy: finalization.policy,
@@ -344,7 +353,10 @@ async function extractZstdTar(archivePath, destination, limits) {
   } else {
     await extractWithZstdExecutable(archivePath, sink);
   }
-  return extractor.entries;
+  return Object.freeze({
+    entries: extractor.entries,
+    hasGitGlobalPaxHeader: extractor.sawGitGlobalPaxHeader,
+  });
 }
 
 async function extractWithZstdExecutable(archivePath, sink) {
@@ -391,6 +403,7 @@ class SafeTarExtractor {
     this.expandedBytes = 0;
     this.entries = [];
     this.paths = new Set();
+    this.sawGitGlobalPaxHeader = false;
   }
 
   async push(chunk) {
@@ -415,8 +428,12 @@ class SafeTarExtractor {
         if (this.buffer.length === 0) return;
         const length = Math.min(this.buffer.length, this.current.remaining);
         const content = this.take(length);
-        await writeAll(this.current.handle, content);
-        this.current.hash.update(content);
+        if (this.current.kind === "file") {
+          await writeAll(this.current.handle, content);
+          this.current.hash.update(content);
+        } else {
+          this.current.chunks.push(content);
+        }
         this.current.remaining -= length;
         if (this.current.remaining === 0) {
           await this.closeCurrentEntry();
@@ -452,7 +469,24 @@ class SafeTarExtractor {
     return value;
   }
 
-  async openEntry({ path, mode, size }) {
+  async openEntry(entry) {
+    if (entry.kind === "git-global-pax") {
+      if (this.sawGitGlobalPaxHeader || this.paths.size > 0) {
+        throw new ContainerWorkspaceRuntimeError("tar.zst Git provenance header must appear exactly once before workspace files.");
+      }
+      if (entry.size > 128 || entry.size > this.maxExpandedBytes - this.expandedBytes) {
+        throw new ContainerWorkspaceRuntimeError("tar.zst Git provenance header exceeds its bounded size limit.");
+      }
+      this.sawGitGlobalPaxHeader = true;
+      this.expandedBytes += entry.size;
+      return {
+        ...entry,
+        remaining: entry.size,
+        chunks: [],
+      };
+    }
+
+    const { path, mode, size } = entry;
     if (this.paths.has(path)) {
       throw new ContainerWorkspaceRuntimeError("tar.zst contains duplicate workspace paths.");
     }
@@ -468,6 +502,7 @@ class SafeTarExtractor {
     await mkdir(dirname(target), { recursive: true, mode: 0o755 });
     const handle = await open(target, "wx", mode);
     return {
+      kind: "file",
       path,
       target,
       mode,
@@ -480,6 +515,12 @@ class SafeTarExtractor {
 
   async closeCurrentEntry() {
     const entry = this.current;
+    if (entry.kind === "git-global-pax") {
+      validateGitGlobalPaxHeader(Buffer.concat(entry.chunks, entry.size));
+      this.paddingRemaining = (512 - (entry.size % 512)) % 512;
+      this.current = null;
+      return;
+    }
     await entry.handle.close();
     await chmod(entry.target, entry.mode);
     this.entries.push({
@@ -495,6 +536,18 @@ class SafeTarExtractor {
 function parseTarHeader(header) {
   verifyTarChecksum(header);
   const type = header[156];
+  if (type === 103) {
+    const name = readTarString(header.subarray(0, 100), "tar metadata name");
+    const prefix = readTarString(header.subarray(345, 500), "tar metadata prefix");
+    const linkName = readTarString(header.subarray(157, 257), "tar metadata link target");
+    if (name !== "pax_global_header" || prefix || linkName) {
+      throw new ContainerWorkspaceRuntimeError("tar.zst contains an unsupported global PAX header.");
+    }
+    return {
+      kind: "git-global-pax",
+      size: parseTarOctal(header.subarray(124, 136), "tar metadata size"),
+    };
+  }
   if (type !== 0 && type !== 48) {
     throw new ContainerWorkspaceRuntimeError("tar.zst may contain only regular files; links and other entry types are forbidden.");
   }
@@ -506,12 +559,33 @@ function parseTarHeader(header) {
   const prefix = readTarString(header.subarray(345, 500), "tar path prefix");
   const path = prefix ? `${prefix}/${name}` : name;
   requireWorkspacePath(path, "tar path");
-  const mode = parseTarOctal(header.subarray(100, 108), "tar mode");
-  if (![0o644, 0o755].includes(mode)) {
-    throw new ContainerWorkspaceRuntimeError("tar.zst file mode must be exactly 0644 or 0755.");
+  const archivedMode = parseTarOctal(header.subarray(100, 108), "tar mode");
+  const mode = archivedMode === 0o644 || archivedMode === 0o664
+    ? 0o644
+    : archivedMode === 0o755 || archivedMode === 0o775
+      ? 0o755
+      : null;
+  if (mode === null) {
+    throw new ContainerWorkspaceRuntimeError("tar.zst file mode must normalize exactly to 0644 or 0755.");
   }
   const size = parseTarOctal(header.subarray(124, 136), "tar file size");
-  return { path, mode, size };
+  return { kind: "file", path, mode, size };
+}
+
+function validateGitGlobalPaxHeader(bytes) {
+  const text = Buffer.from(bytes).toString("ascii");
+  const match = /^(\d+) comment=([0-9a-f]{40}|[0-9a-f]{64})\n$/.exec(text);
+  if (!match || Number.parseInt(match[1], 10) !== bytes.byteLength) {
+    throw new ContainerWorkspaceRuntimeError("tar.zst global PAX header is not a bounded Git commit provenance record.");
+  }
+}
+
+function legacyConnectorWorkspaceTreeHash(entries) {
+  const legacyEntries = [...entries].sort((left, right) => left.path.localeCompare(right.path));
+  return `sha256:${createHash("sha256").update(canonicalJson({
+    protocolVersion: "pw-tree-v1",
+    entries: legacyEntries,
+  })).digest("hex")}`;
 }
 
 function verifyTarChecksum(header) {

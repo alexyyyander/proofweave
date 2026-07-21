@@ -6,6 +6,7 @@ import { join } from "node:path";
 import test from "node:test";
 import * as zlib from "node:zlib";
 import { leanRunnerRequestHash } from "../packages/protocol/lean-runner.mjs";
+import { canonicalJson } from "../packages/protocol/canonical-json.mjs";
 import { workspaceTreeHash } from "../packages/protocol/workspace-tree.mjs";
 import { ContainerLeanExecutorError } from "../services/lean-runner/container-lean-executor.mjs";
 import {
@@ -45,6 +46,59 @@ test("Container workspace runtime reconstructs a verified v2 tree and tolerates 
       fixture.lakeManifest.toString("utf8"),
     );
     assert.equal(await runtime.finalize(), finalized);
+    await runtime.cleanup();
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("Container workspace runtime accepts only Git's bounded global PAX commit header", { skip: !hasNativeZstd }, async () => {
+  const root = await mkdtemp(join(tmpdir(), "proofweave-container-git-pax-"));
+  try {
+    const fixture = await validWorkspaceFixture({ includeGitPax: true });
+    const runtime = new ContainerWorkspaceRuntime({
+      stagingRoot: join(root, "staging"),
+      workspaceRoot: join(root, "workspaces"),
+    });
+    await stageAll(runtime, fixture);
+    const finalized = await runtime.finalize();
+    assert.equal(finalized.treeHash, fixture.declaration.workspace.tree.hash);
+    assert.equal(finalized.entries.length, 2);
+    await runtime.cleanup();
+
+    const malformedArchive = zlib.zstdCompressSync(makeTar([
+      { path: "pax_global_header", contents: Buffer.from("22 path=outside.lean\n", "utf8"), type: "g", mode: 0o664 },
+      { path: "Proofweave/Main.lean", contents: Buffer.from("theorem initial : True := by\n  trivial\n", "utf8") },
+      { path: "lake-manifest.json", contents: Buffer.from("{\"old\":true}\n", "utf8") },
+    ]));
+    const malformedFixture = await validWorkspaceFixture({ archive: malformedArchive });
+    const malformedRuntime = new ContainerWorkspaceRuntime({
+      stagingRoot: join(root, "malformed-staging"),
+      workspaceRoot: join(root, "malformed-workspaces"),
+    });
+    await stageAll(malformedRuntime, malformedFixture);
+    await assert.rejects(
+      malformedRuntime.finalize(),
+      /not a bounded Git commit provenance record/,
+    );
+    await malformedRuntime.cleanup();
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("Container workspace runtime verifies the exact legacy Connector entry set during migration", { skip: !hasNativeZstd }, async () => {
+  const root = await mkdtemp(join(tmpdir(), "proofweave-container-legacy-tree-"));
+  try {
+    const fixture = await validWorkspaceFixture({ includeGitPax: true, legacyConnectorTree: true });
+    const runtime = new ContainerWorkspaceRuntime({
+      stagingRoot: join(root, "staging"),
+      workspaceRoot: join(root, "workspaces"),
+    });
+    await stageAll(runtime, fixture);
+    const finalized = await runtime.finalize();
+    assert.equal(finalized.treeHash, fixture.declaration.workspace.tree.hash);
+    assert.notEqual(await workspaceTreeHash(finalized.entries), finalized.treeHash);
     await runtime.cleanup();
   } finally {
     await rm(root, { recursive: true, force: true });
@@ -232,10 +286,19 @@ test("Container workspace runtime rejects archive links and patch paths before L
 });
 
 async function validWorkspaceFixture(overrides = {}) {
-  const archive = overrides.archive ?? zlib.zstdCompressSync(makeTar([
-    { path: "Proofweave/Main.lean", contents: Buffer.from("theorem initial : True := by\n  trivial\n", "utf8") },
-    { path: "lake-manifest.json", contents: Buffer.from("{\"old\":true}\n", "utf8") },
-  ]));
+  const archiveEntries = [
+    { path: "Proofweave/Main.lean", contents: Buffer.from("theorem initial : True := by\n  trivial\n", "utf8"), mode: overrides.includeGitPax ? 0o664 : 0o644 },
+    { path: "lake-manifest.json", contents: Buffer.from("{\"old\":true}\n", "utf8"), mode: overrides.includeGitPax ? 0o664 : 0o644 },
+  ];
+  if (overrides.includeGitPax) {
+    archiveEntries.unshift({
+      path: "pax_global_header",
+      contents: Buffer.from(`52 comment=${"a".repeat(40)}\n`, "utf8"),
+      type: "g",
+      mode: 0o664,
+    });
+  }
+  const archive = overrides.archive ?? zlib.zstdCompressSync(makeTar(archiveEntries));
   const patch = overrides.patch ?? Buffer.from(validPatch(), "utf8");
   const lakeManifest = Buffer.from("{\"name\":\"Proofweave\",\"version\":\"1.0.0\"}\n", "utf8");
   const entries = [
@@ -246,11 +309,14 @@ async function validWorkspaceFixture(overrides = {}) {
     },
     { path: "lake-manifest.json", mode: 0o644, contentHash: hash(lakeManifest) },
   ];
+  const treeHash = overrides.treeHash ?? (overrides.legacyConnectorTree
+    ? legacyConnectorTreeHash(entries)
+    : await workspaceTreeHash(entries));
   return fixtureFor({
     archive,
     patch,
     lakeManifest,
-    treeHash: overrides.treeHash ?? await workspaceTreeHash(entries),
+    treeHash,
   });
 }
 
@@ -323,6 +389,11 @@ function artifactMetadata(bytes, contentType) {
 
 function hash(value) {
   return `sha256:${createHash("sha256").update(value).digest("hex")}`;
+}
+
+function legacyConnectorTreeHash(entries) {
+  const ordered = [...entries].sort((left, right) => left.path.localeCompare(right.path));
+  return `sha256:${createHash("sha256").update(canonicalJson({ protocolVersion: "pw-tree-v1", entries: ordered })).digest("hex")}`;
 }
 
 function sha(character) {
