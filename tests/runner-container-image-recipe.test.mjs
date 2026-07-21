@@ -78,6 +78,7 @@ test("Lean Runner image recipe fails closed and keeps its build context minimal"
   );
   assert.match(imageWorkflow, /network: none/);
   assert.match(imageWorkflow, /--read-only --network=none/);
+  assert.match(imageWorkflow, /--cpus=2 --memory=2g/);
   assert.match(imageWorkflow, /--entrypoint node "\$FINAL_RUNNER_IMAGE"/);
   assert.match(imageWorkflow, /inspect-image-environment\.mjs/);
   assert.match(imageWorkflow, /docker buildx prune --all --force/);
