@@ -211,7 +211,7 @@ jobs:
         env:
           E2B_API_KEY: ${{ secrets.E2B_API_KEY }}
           PROOFWEAVE_E2B_RUNNER_IMAGE: ${{ needs.build-and-inspect.outputs.runner_image }}
-          PROOFWEAVE_E2B_TEMPLATE_NAME: proofweave-${{ inputs.profile }}:${{ github.sha }}
+          PROOFWEAVE_E2B_TEMPLATE_NAME: proofweave-runner:${{ github.run_id }}
           PROOFWEAVE_E2B_CPU: "2"
           PROOFWEAVE_E2B_MEMORY_MB: "2048"
           PROOFWEAVE_E2B_REGISTRY_USERNAME: ${{ github.actor }}

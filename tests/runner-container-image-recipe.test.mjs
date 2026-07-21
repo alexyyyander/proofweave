@@ -85,6 +85,7 @@ test("Lean Runner image recipe fails closed and keeps its build context minimal"
   assert.match(imageWorkflow, /actions\/attest-build-provenance@[a-f0-9]{40}/);
   assert.match(imageWorkflow, /build-e2b-template:[\s\S]*?permissions:[\s\S]*?packages: read/);
   assert.match(imageWorkflow, /PROOFWEAVE_E2B_REGISTRY_PASSWORD: \$\{\{ github\.token \}\}/);
+  assert.match(imageWorkflow, /PROOFWEAVE_E2B_TEMPLATE_NAME: proofweave-runner:\$\{\{ github\.run_id \}\}/);
   assert.match(imageWorkflow, /build-and-inspect:[\s\S]*?permissions:[\s\S]*?packages: write/);
   assert.doesNotMatch(imageWorkflow, /PROOFWEAVE_E2B_REGISTRY_PASSWORD: \$\{\{ secrets\.GITHUB_TOKEN \}\}/);
 
