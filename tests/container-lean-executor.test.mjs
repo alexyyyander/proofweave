@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { cp, lstat, mkdir, mkdtemp, rm } from "node:fs/promises";
+import { cp, lstat, mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import test from "node:test";
@@ -135,6 +135,77 @@ test("Container Lean executor mounts only the image-owned pinned Lake package cl
     assert.equal((await lstat(join(workspaceDirectory, ".lake", "packages"))).isSymbolicLink(), true);
   } finally {
     await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("Container Lean executor builds imported workspace modules before checking the selected entry", async () => {
+  const workspaceDirectory = await mkdtemp(join(tmpdir(), "proofweave-lean-multi-module-"));
+  try {
+    await mkdir(join(workspaceDirectory, "MultiModule"));
+    await Promise.all([
+      cp(fileURLToPath(new URL("core-success/lean-toolchain", fixturesRoot)), join(workspaceDirectory, "lean-toolchain")),
+      cp(fileURLToPath(new URL("core-success/lake-manifest.json", fixturesRoot)), join(workspaceDirectory, "lake-manifest.json")),
+      writeFile(join(workspaceDirectory, "lakefile.toml"), [
+        'name = "multiModuleFixture"',
+        'version = "0.1.0"',
+        'defaultTargets = ["MultiModule"]',
+        "",
+        "[[lean_lib]]",
+        'name = "MultiModule"',
+        "",
+      ].join("\n")),
+      writeFile(join(workspaceDirectory, "MultiModule", "Dependency.lean"), [
+        "namespace MultiModule",
+        "theorem dependency : True := True.intro",
+        "end MultiModule",
+        "",
+      ].join("\n")),
+      writeFile(join(workspaceDirectory, "MultiModule", "Main.lean"), [
+        "import MultiModule.Dependency",
+        "namespace MultiModule",
+        "theorem assembled : True := dependency",
+        "end MultiModule",
+        "",
+      ].join("\n")),
+      writeFile(join(workspaceDirectory, "MultiModule.lean"), [
+        "import MultiModule.Main",
+        "",
+      ].join("\n")),
+    ]);
+    const request = fixtureRequest({ id: "multi-module" });
+    request.bundle.entryCommand = ["lake", "env", "lean", "MultiModule/Main.lean"];
+    const execution = await new ContainerLeanExecutor({
+      networkIsolated: true,
+      resourceLimitsEnforced: true,
+    }).execute({
+      request,
+      workspace: {
+        jobId: request.jobId,
+        requestHash: await leanRunnerRequestHash(request),
+        workspaceDirectory,
+        treeHash: sha("f"),
+        entries: [
+          { path: "MultiModule.lean", mode: 0o644, contentHash: sha("b") },
+          { path: "MultiModule/Dependency.lean", mode: 0o644, contentHash: sha("c") },
+          { path: "MultiModule/Main.lean", mode: 0o644, contentHash: sha("e") },
+        ],
+        target: { declaration: "MultiModule.assembled", statementHash: sha("d") },
+        policy: request.policy,
+        entryCommand: request.bundle.entryCommand,
+      },
+    });
+
+    assert.equal(execution.result.status, "succeeded", execution.stdout.toString("utf8"));
+    assert.equal(execution.result.kernelStatus, "accepted");
+    assert.deepEqual(execution.result.checks, {
+      network: "passed",
+      noSorry: "passed",
+      allowedAxioms: "passed",
+      leanBuild: "passed",
+    });
+    assert.equal((await lstat(join(workspaceDirectory, ".lake", "build", "lib", "lean", "MultiModule", "Dependency.olean"))).isFile(), true);
+  } finally {
+    await rm(workspaceDirectory, { recursive: true, force: true });
   }
 });
 
