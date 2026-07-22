@@ -3,7 +3,9 @@ name: Proofweave E2B Lean verification
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/5 * * * *"
+    # Repository dispatch is the normal wake-up path. This low-frequency sweep
+    # only recovers work after a missed dispatch or an expired lease.
+    - cron: "23 */6 * * *"
   repository_dispatch:
     types: [proofweave_lean_run]
 

@@ -114,9 +114,13 @@ Configure the `proofweave-runner-alpha` GitHub environment:
 The template job derives its GHCR username from `github.actor`.
 
 The workflow supports manual `workflow_dispatch` and the bounded
-`proofweave_lean_run` repository dispatch event. Until a least-privilege GitHub
-App owns the automatic dispatch credential, keep automatic dispatch disabled
-and trigger the alpha workflow manually after a Bundle has been queued.
+`proofweave_lean_run` repository dispatch event. Repository dispatch is the
+normal low-latency wake-up path. A six-hour scheduled recovery sweep exists only
+for a missed dispatch or an expired lease; it is not a five-minute queue poller.
+Until a least-privilege GitHub App owns the automatic dispatch credential, keep
+automatic dispatch disabled and trigger the alpha workflow manually after a
+Bundle has been queued. The recovery sweep is intentionally too slow to serve
+as the interactive product path.
 
 ## Database and delivery semantics
 

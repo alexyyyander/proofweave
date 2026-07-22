@@ -1,9 +1,20 @@
 name: Check
 
 on:
+  workflow_dispatch:
   push:
-    branches: ["**"]
+    branches: [main]
+    paths-ignore:
+      - "README.md"
+      - "docs/**"
   pull_request:
+    paths-ignore:
+      - "README.md"
+      - "docs/**"
+
+concurrency:
+  group: check-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read

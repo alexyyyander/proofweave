@@ -28,7 +28,9 @@ permissions:
 
 concurrency:
   group: proofweave-reviewed-lean-runner-image
-  cancel-in-progress: false
+  # A newer manually reviewed build supersedes an older queued or running one.
+  # This prevents repeated recovery attempts from draining hosted-runner time.
+  cancel-in-progress: true
 
 env:
   NODE_BASE_IMAGE: node@sha256:5647be709086c696ff32edaaf1c70cd26d1da6ab2b39c32f3c7b4c4a31957e37
