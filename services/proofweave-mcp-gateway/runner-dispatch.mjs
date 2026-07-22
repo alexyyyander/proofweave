@@ -37,6 +37,7 @@ export class D1RemoteMcpRunnerDispatcher {
     controlPlaneKeyId,
     controlPlanePrivateKeyJwk,
     defaultLimits,
+    runnerWake = null,
     now = () => new Date(),
   } = {}) {
     if (!database || typeof database.prepare !== "function") {
@@ -59,6 +60,9 @@ export class D1RemoteMcpRunnerDispatcher {
     if (typeof now !== "function") {
       throw new RemoteMcpRunnerDispatchConfigurationError("Runner dispatch requires a clock function.");
     }
+    if (runnerWake !== null && typeof runnerWake?.wake !== "function") {
+      throw new RemoteMcpRunnerDispatchConfigurationError("Runner dispatch wake client must expose wake().");
+    }
 
     this.artifactStore = artifactStore ?? (bucket
       ? new D1R2ArtifactStore({ database, bucket })
@@ -69,6 +73,7 @@ export class D1RemoteMcpRunnerDispatcher {
     this.controlPlaneKeyId = controlPlaneKeyId;
     this.controlPlanePrivateKeyJwk = controlPlanePrivateKeyJwk;
     this.defaultLimits = normalizeLeanRunnerLimits(defaultLimits);
+    this.runnerWake = runnerWake;
     if (this.defaultLimits.outputBytes > maxInlineArtifactObjectBytes) {
       throw new RemoteMcpRunnerDispatchConfigurationError(
         `Runner outputBytes must not exceed the ${maxInlineArtifactObjectBytes} byte D1 inline-alpha evidence limit.`,
@@ -106,13 +111,23 @@ export class D1RemoteMcpRunnerDispatcher {
       controlPlaneKeyId: this.controlPlaneKeyId,
       controlPlanePrivateKey: await this.controlPlanePrivateKey(),
     });
-    return orchestrator.queueArtifactBundle({
+    const queued = await orchestrator.queueArtifactBundle({
       runId,
       idempotencyKey,
       artifactBundle: loaded.bundle,
       queuedAt: isoInstant(this.now()),
       beforeDispatch,
     });
+    if (!queued.delivery || !this.runnerWake) return Object.freeze({ ...queued, runnerWake: null });
+    try {
+      const runnerWake = await this.runnerWake.wake();
+      return Object.freeze({ ...queued, runnerWake });
+    } catch (error) {
+      return Object.freeze({
+        ...queued,
+        runnerWake: Object.freeze({ state: "wake_failed", errorCode: privacySafeErrorCode(error) }),
+      });
+    }
   }
 
   async controlPlanePrivateKey() {
@@ -168,4 +183,11 @@ function isoInstant(value) {
     throw new RemoteMcpRunnerDispatchConfigurationError("Runner dispatch clock returned an invalid instant.");
   }
   return instant.toISOString();
+}
+
+function privacySafeErrorCode(error) {
+  if (typeof error?.diagnosticCode === "string" && /^[a-z][a-z0-9_]{2,63}$/.test(error.diagnosticCode)) {
+    return error.diagnosticCode;
+  }
+  return "runner_wake_failed";
 }

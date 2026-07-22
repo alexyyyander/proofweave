@@ -105,6 +105,14 @@ evidence before `runner-execution-finalizer.mjs` signs and records the result.
 Deployment of this source-only Container route and provisioned Worker/R2
 bindings remains work. `RUNNER_RESULT_PRIVATE_KEY_JWK` must be provisioned as a
 Worker secret; the Container never receives it.
+
+`hosted-trusted-runner.mjs` is the provider-neutral scale-to-zero coordinator
+entrypoint used by the Hugging Face Docker deployment. Its HTTP surface exposes
+only privacy-safe health and an authenticated wake signal; it polls the signed
+Turso lease queue and sends untrusted Lean work exclusively to the selected
+private E2B or Modal Sandbox. See
+[`deploy/huggingface-runner`](../../deploy/huggingface-runner) for the minimal
+export and secret contract.
 `runner-workspace-stager.mjs` connects authenticated preflight, private
 workspace transfer, and the D1 `preparing -> running` transition so an
 interrupted transfer is retryable rather than a stuck running Run.

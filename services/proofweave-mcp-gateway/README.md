@@ -81,6 +81,15 @@ external migrated database. It still requires the approved image registry,
 control-plane key ID/private JWK, and default limits; partial configuration or
 combining D1 mode with a provider Queue binding fails closed.
 
+A scale-to-zero trusted Runner can be woken after (and only after) the signed
+queue delivery is durable. Configure `RUNNER_WAKE_URL` with the exact HTTPS
+`/v1/wake` endpoint and `RUNNER_WAKE_TOKEN` as a shared secret. For a private
+host such as a private Hugging Face Space, also configure the host's bounded
+read token as `RUNNER_WAKE_HOST_AUTHORIZATION_TOKEN`. Wake failure is reported
+as bounded operational state and never rolls back or loses the durable job.
+The wake endpoint cannot receive a workspace, Bundle, Run payload, or signing
+material.
+
 The deployed runtime also uses a D1-atomic fixed-window limiter before every
 authorized tool operation. Its quotas aggregate on the Person root rather than
 on an Agent installation, so parallel Agents cannot multiply a participant's

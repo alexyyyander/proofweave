@@ -9,6 +9,7 @@ import { D1RunnerLeaseQueue } from "../lean-runner/d1-runner-lease-queue.mjs";
 import { PinnedRunnerImageRegistry } from "../lean-runner/runner-image-policy.mjs";
 import { D1InlineArtifactStore } from "../artifacts/d1-inline-artifact-store.mjs";
 import { D1ContributionReceiptCoordinator } from "../receipts/d1-contribution-receipt-coordinator.mjs";
+import { HostedRunnerWakeClient } from "../lean-runner/hosted-runner-wake-client.mjs";
 
 export class RemoteMcpRuntimeConfigurationError extends Error {
   constructor(message) {
@@ -34,6 +35,9 @@ export class RemoteMcpRuntimeConfigurationError extends Error {
  *   runnerControlPlaneKeyId?: string | null,
  *   runnerControlPlanePrivateKeyJwkJson?: string | null,
  *   runnerDefaultLimitsJson?: string | null,
+ *   runnerWakeUrl?: string | null,
+ *   runnerWakeToken?: string | null,
+ *   runnerWakeHostAuthorizationToken?: string | null,
  *   receiptIssuerKeyId?: string | null,
  *   receiptIssuerPublicKey?: string | null,
  *   receiptIssuerPrivateKeyJwkJson?: string | null,
@@ -51,6 +55,9 @@ export function createD1RemoteMcpGatewayRuntime({
   runnerControlPlaneKeyId = null,
   runnerControlPlanePrivateKeyJwkJson = null,
   runnerDefaultLimitsJson = null,
+  runnerWakeUrl = null,
+  runnerWakeToken = null,
+  runnerWakeHostAuthorizationToken = null,
   receiptIssuerKeyId = null,
   receiptIssuerPublicKey = null,
   receiptIssuerPrivateKeyJwkJson = null,
@@ -73,6 +80,11 @@ export function createD1RemoteMcpGatewayRuntime({
     runnerControlPlaneKeyId,
     runnerControlPlanePrivateKeyJwkJson,
     runnerDefaultLimitsJson,
+    runnerWake: createOptionalRunnerWakeClient({
+      runnerWakeUrl,
+      runnerWakeToken,
+      runnerWakeHostAuthorizationToken,
+    }),
   });
   const receiptCoordinator = createOptionalReceiptCoordinator({
     database,
@@ -149,6 +161,7 @@ function createOptionalRunnerDispatcher({
   runnerControlPlaneKeyId,
   runnerControlPlanePrivateKeyJwkJson,
   runnerDefaultLimitsJson,
+  runnerWake,
 }) {
   const settings = [
     runnerQueue,
@@ -178,10 +191,40 @@ function createOptionalRunnerDispatcher({
         "RUNNER_CONTROL_PLANE_PRIVATE_KEY_JWK",
       ),
       defaultLimits: parseDeploymentJson(runnerDefaultLimitsJson, "RUNNER_DEFAULT_LIMITS_JSON"),
+      runnerWake,
     });
   } catch (error) {
     if (error instanceof RemoteMcpRuntimeConfigurationError) throw error;
     throw new RemoteMcpRuntimeConfigurationError("Runner dispatch configuration is invalid.");
+  }
+}
+
+function createOptionalRunnerWakeClient({
+  runnerWakeUrl,
+  runnerWakeToken,
+  runnerWakeHostAuthorizationToken,
+}) {
+  const required = [runnerWakeUrl, runnerWakeToken];
+  const configured = required.filter(isConfigured).length;
+  if (configured === 0) {
+    if (isConfigured(runnerWakeHostAuthorizationToken)) {
+      throw new RemoteMcpRuntimeConfigurationError("Runner host authorization cannot be configured without a wake URL and token.");
+    }
+    return null;
+  }
+  if (configured !== required.length) {
+    throw new RemoteMcpRuntimeConfigurationError("Runner wake configuration must include URL and wake token together.");
+  }
+  try {
+    return new HostedRunnerWakeClient({
+      url: runnerWakeUrl,
+      wakeToken: runnerWakeToken,
+      hostAuthorizationToken: isConfigured(runnerWakeHostAuthorizationToken)
+        ? runnerWakeHostAuthorizationToken
+        : null,
+    });
+  } catch {
+    throw new RemoteMcpRuntimeConfigurationError("Runner wake configuration is invalid.");
   }
 }
 
