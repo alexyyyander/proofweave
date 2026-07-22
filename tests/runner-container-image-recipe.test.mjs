@@ -81,7 +81,8 @@ test("Lean Runner image recipe fails closed and keeps its build context minimal"
     "the attestation-capable Buildx builder must be initialized before the first image build",
   );
   assert.match(imageWorkflow, /network: none/);
-  assert.match(imageWorkflow, /--read-only --network=none/);
+  assert.match(imageWorkflow, /docker run --rm --network=none/);
+  assert.doesNotMatch(imageWorkflow, /docker run --rm --read-only --network=none/);
   assert.match(imageWorkflow, /--cpus=2 --memory=2g/);
   assert.match(imageWorkflow, /--entrypoint node "\$FINAL_RUNNER_IMAGE"/);
   assert.match(imageWorkflow, /inspect-image-environment\.mjs/);
@@ -108,7 +109,8 @@ test("Lean Runner image recipe fails closed and keeps its build context minimal"
   assert.doesNotMatch(dockerignore, /^!\.env/m);
 
   assert.match(contract, /--network=none/);
-  assert.match(contract, /--read-only --network=none/);
+  assert.match(contract, /docker run --rm --network=none/);
+  assert.match(contract, /whole-root read-only container/);
   assert.match(contract, /@sha256:/);
   assert.match(contract, /PROOFWEAVE_RESOURCE_LIMITS_ENFORCED/);
 });

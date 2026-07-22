@@ -18,7 +18,8 @@ by SHA-256.
 
 The workflow publishes a Linux/amd64 base and final image to GHCR, emits SBOM
 and build provenance, assembles the final image with Docker build networking
-disabled, and smoke-tests it with no network and a read-only root filesystem.
+disabled, and smoke-tests it with no network and the image's path-scoped
+filesystem permissions intact.
 It can optionally create the E2B template in a separate `packages: read` job
 after the protected environment has an `E2B_API_KEY`. The final image digest and E2B template id still need
 operator review before admission to the approved Runner registry.
@@ -101,12 +102,16 @@ repository.
 
 ## Isolated smoke test
 
-Before any Cloudflare deployment, the operator must run a non-production
-smoke test with a read-only root filesystem, no network, explicit CPU/memory/
-process/disk bounds, and an ephemeral writable workspace. For example:
+Before any deployment, the operator must run a non-production smoke test with
+no network, explicit CPU/memory/process/disk bounds, and an ephemeral writable
+workspace. The reviewed Mathlib image keeps dependency source and compiled
+output read-only while allowing only generated `.lake/config/**` state to be
+updated. Do not add Docker's whole-root `--read-only` flag to this E2B smoke:
+it would override that narrower filesystem policy and prevent Lake from
+creating its generated lock files. For example:
 
 ```sh
-docker run --rm --read-only --network=none \
+docker run --rm --network=none \
   --cpus=1 --memory=2g --pids-limit=128 \
   --tmpfs /tmp/proofweave:rw,nosuid,nodev,size=1g \
   -e PROOFWEAVE_NETWORK_ISOLATED=true \
@@ -116,6 +121,6 @@ docker run --rm --read-only --network=none \
 
 Those environment variables are intentionally absent from the Dockerfile: the
 process treats them only as deployment assertions. Setting them without the
-actual outer isolation is unsafe. The Worker/Container deployment must prove
-the equivalent Cloudflare controls before it supplies the resource-limit
-assertion.
+actual outer isolation is unsafe. A future whole-root read-only container
+profile must provide a separate writable overlay for every generated Lake
+config tree before it can claim an equivalent filesystem boundary.
