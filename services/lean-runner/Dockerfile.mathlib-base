@@ -72,6 +72,7 @@ RUN git clone --filter=blob:none --no-checkout https://github.com/leanprover-com
  && test "$(cat /tmp/mathlib/lean-toolchain)" = "$EXPECTED_LEAN_TOOLCHAIN" \
  && cd /tmp/mathlib \
  && lake exe cache get \
+ && lake build Mathlib \
  && printf 'import Mathlib\n#check Nat\n' > ProofweaveImageSmoke.lean \
  && lake build proofwidgets/widgetPackageLock \
  && lake env lean ProofweaveImageSmoke.lean \

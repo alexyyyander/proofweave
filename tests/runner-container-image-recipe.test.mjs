@@ -49,6 +49,7 @@ test("Lean Runner image recipe fails closed and keeps its build context minimal"
   assert.match(mathlibBaseDockerfile, /git clone --filter=blob:none --no-checkout/);
   assert.match(mathlibBaseDockerfile, /git -C \/tmp\/mathlib fetch --depth=1 origin/);
   assert.match(mathlibBaseDockerfile, /lake exe cache get/);
+  assert.match(mathlibBaseDockerfile, /lake build Mathlib/);
   assert.match(mathlibBaseDockerfile, /lake build proofwidgets\/widgetPackageLock/);
   assert.match(mathlibBaseDockerfile, /PROOFWEAVE_LAKE_PACKAGES_ROOT=\/opt\/proofweave\/lake-packages/);
   assert.match(mathlibBaseDockerfile, /adduser --system --ingroup proofweave/);
