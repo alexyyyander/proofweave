@@ -4,6 +4,8 @@ import {
 } from "../../packages/protocol/lean-runner.mjs";
 
 const maxExecutionResponseBytes = 256 * 1024;
+const defaultExecutionPollMilliseconds = 1_000;
+const executionPollGraceMilliseconds = 60_000;
 
 export class RunnerContainerExecutionClientError extends Error {
   constructor(message, options = {}) {
@@ -22,6 +24,22 @@ export class RunnerContainerExecutionClientError extends Error {
  * Container an operator signing key.
  */
 export class RunnerContainerExecutionClient {
+  constructor({
+    sleep = wait,
+    now = () => Date.now(),
+    pollMilliseconds = defaultExecutionPollMilliseconds,
+  } = {}) {
+    if (typeof sleep !== "function" || typeof now !== "function") {
+      throw new TypeError("Runner Container execution polling requires clock and sleep functions.");
+    }
+    if (!Number.isInteger(pollMilliseconds) || pollMilliseconds < 10 || pollMilliseconds > 10_000) {
+      throw new TypeError("Runner Container execution poll interval is invalid.");
+    }
+    this.sleep = sleep;
+    this.now = now;
+    this.pollMilliseconds = pollMilliseconds;
+  }
+
   async execute({ container, run, request }) {
     if (!container || typeof container.fetch !== "function") {
       throw new TypeError("RunnerContainerExecutionClient requires a private Container fetch stub.");
@@ -30,17 +48,16 @@ export class RunnerContainerExecutionClient {
     const requestHash = await leanRunnerRequestHash(normalizedRequest);
     assertRunMatchesRequest(run, normalizedRequest, requestHash);
     const baseUrl = `https://proofweave-runner.internal/v1/runs/${encodeURIComponent(run.id)}`;
-    const payload = await diagnoseStage("runner_container_execute_response_error", async () => {
-      const response = await container.fetch(new Request(`${baseUrl}/workspace/execute`, {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(normalizedRequest),
-      }));
-      await expectSuccess(response, "Lean execution request");
-      const normalized = normalizeExecutionPayload(await readJson(response));
-      assertResultMatchesRun(normalized.result, run);
-      return normalized;
-    });
+    const payload = await diagnoseStage(
+      "runner_container_execute_response_error",
+      () => this.pollExecution({
+        container,
+        run,
+        request: normalizedRequest,
+        baseUrl,
+        deadline: this.now() + (normalizedRequest.limits.wallSeconds * 1_000) + executionPollGraceMilliseconds,
+      }),
+    );
     const [stdout, stderr] = await Promise.all([
       diagnoseStage(
         "runner_container_stdout_response_error",
@@ -64,6 +81,31 @@ export class RunnerContainerExecutionClient {
       outputTruncated: payload.outputTruncated,
       workspaceTreeHash: payload.workspaceTreeHash,
     });
+  }
+
+  async pollExecution({ container, run, request, baseUrl, deadline }) {
+    const body = JSON.stringify(request);
+    while (true) {
+      const response = await container.fetch(new Request(`${baseUrl}/workspace/execute`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body,
+      }));
+      if (response?.status === 202) {
+        if (this.now() >= deadline) {
+          throw new RunnerContainerExecutionClientError(
+            "Private Container execution polling exceeded its bounded window.",
+            { diagnosticCode: "runner_container_execute_poll_timeout_error" },
+          );
+        }
+        await this.sleep(Math.min(this.pollMilliseconds, Math.max(1, deadline - this.now())));
+        continue;
+      }
+      await expectSuccess(response, "Lean execution request");
+      const normalized = normalizeExecutionPayload(await readJson(response));
+      assertResultMatchesRun(normalized.result, run);
+      return normalized;
+    }
   }
 
   async fetchOutput(container, url, expectedHash, label) {
@@ -210,4 +252,8 @@ function requireDiagnosticCode(value) {
     throw new TypeError("Runner Container diagnostic code is invalid.");
   }
   return value;
+}
+
+function wait(milliseconds) {
+  return new Promise((resolveWait) => setTimeout(resolveWait, milliseconds));
 }

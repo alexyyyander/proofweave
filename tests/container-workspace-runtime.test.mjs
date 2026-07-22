@@ -228,6 +228,13 @@ test("Container workspace HTTP handler returns only a fixed Lean diagnostic code
         body: fixture.artifacts[id],
       }))).status, 204);
     }
+    const started = await handler(new Request(`${base}/workspace/execute`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(request),
+    }));
+    assert.equal(started.status, 202);
+    await new Promise((resolve) => setImmediate(resolve));
     const response = await handler(new Request(`${base}/workspace/execute`, {
       method: "POST",
       headers: { "content-type": "application/json" },

@@ -220,6 +220,9 @@ export function createContainerWorkspaceHttpHandler({ executor = null, ...runtim
             execution: null,
             executionRequestHash: null,
             executionController: null,
+            executionState: "idle",
+            executionResult: null,
+            executionFailure: null,
             cancellationRequested: false,
             cleaned: false,
           };
@@ -263,7 +266,9 @@ export function createContainerWorkspaceHttpHandler({ executor = null, ...runtim
           if (session.executionRequestHash !== requestHash) {
             throw new ContainerWorkspaceRuntimeError("Container Run cannot execute a different Runner request.");
           }
-          return executionResponse(await session.execution);
+          if (session.executionState === "failed") throw session.executionFailure;
+          if (session.executionState === "completed") return executionResponse(session.executionResult);
+          return executionPendingResponse();
         }
         const workspace = await session.runtime.finalize();
         if (workspace.requestHash !== requestHash) {
@@ -273,12 +278,28 @@ export function createContainerWorkspaceHttpHandler({ executor = null, ...runtim
         if (session.cancellationRequested) controller.abort();
         session.executionController = controller;
         session.executionRequestHash = requestHash;
-        session.execution = Promise.resolve(executor.execute({
-          request: runnerRequest,
-          workspace,
-          signal: controller.signal,
-        })).finally(() => { session.executionController = null; });
-        return executionResponse(await session.execution);
+        session.executionState = "running";
+        session.execution = Promise.resolve()
+          .then(() => executor.execute({
+            request: runnerRequest,
+            workspace,
+            signal: controller.signal,
+          }))
+          .then((result) => {
+            session.executionState = "completed";
+            session.executionResult = result;
+            return result;
+          }, (error) => {
+            session.executionState = "failed";
+            session.executionFailure = error;
+            throw error;
+          })
+          .finally(() => { session.executionController = null; });
+        // Execution may legitimately outlive a provider's single HTTP request
+        // window. Start it once, then let the trusted client poll this private
+        // route until the bounded Lean result is available.
+        session.execution.catch(() => {});
+        return executionPendingResponse();
       }
       if (route.kind === "cancel") {
         if (request.method !== "POST") return methodNotAllowed("POST");
@@ -922,6 +943,13 @@ function jsonResponse(value, status = 200) {
   return new Response(JSON.stringify(value), {
     status,
     headers: { "content-type": "application/json; charset=utf-8" },
+  });
+}
+
+function executionPendingResponse() {
+  return new Response(null, {
+    status: 202,
+    headers: { "retry-after": "1" },
   });
 }
 
