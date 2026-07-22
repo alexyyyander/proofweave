@@ -44,6 +44,39 @@ test("Worker execution client binds private Container result and byte streams to
   ].sort());
 });
 
+test("Worker execution client polls a long-running private execution without holding one HTTP request", async () => {
+  const request = fixtureRequest();
+  const requestHash = await leanRunnerRequestHash(request);
+  const stdout = new TextEncoder().encode("lean output\n");
+  const stderr = new Uint8Array();
+  const result = await fixtureResult({ requestHash, stdout, stderr });
+  let executeCalls = 0;
+  const sleeps = [];
+  const container = {
+    async fetch(requestObject) {
+      const path = new URL(requestObject.url).pathname;
+      if (path.endsWith("/workspace/execute")) {
+        executeCalls += 1;
+        if (executeCalls === 1) return new Response(null, { status: 202, headers: { "retry-after": "1" } });
+        return json({ result, outputTruncated: false, workspaceTreeHash: sha("c") });
+      }
+      if (path.endsWith("/stdout")) return output(stdout, result.artifacts.stdoutHash);
+      if (path.endsWith("/stderr")) return output(stderr, result.artifacts.stderrHash);
+      if (path.endsWith("/workspace/complete")) return new Response(null, { status: 204 });
+      return new Response(null, { status: 404 });
+    },
+  };
+
+  const execution = await new RunnerContainerExecutionClient({
+    pollMilliseconds: 10,
+    sleep: async (milliseconds) => { sleeps.push(milliseconds); },
+  }).execute({ container, run: fixtureRun(requestHash), request });
+
+  assert.equal(executeCalls, 2);
+  assert.deepEqual(sleeps, [10]);
+  assert.deepEqual(execution.result, result);
+});
+
 test("Worker execution client rejects a substituted private output stream", async () => {
   const request = fixtureRequest();
   const requestHash = await leanRunnerRequestHash(request);
