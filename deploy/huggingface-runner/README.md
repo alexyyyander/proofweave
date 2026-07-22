@@ -1,8 +1,12 @@
-# Hugging Face Runner deployment
+# Scale-to-zero Runner deployment
 
-This target packages the trusted Proofweave queue coordinator as a private
-Hugging Face Docker Space. Free CPU Basic is enough because untrusted Lean
-execution remains in E2B.
+This target packages the trusted Proofweave queue coordinator as a minimal
+Node service. Untrusted Lean execution remains in E2B; the host only leases
+signed jobs and records bounded results.
+
+The exported repository includes both a Dockerfile and a Render Blueprint.
+Render's free Web Service is the current no-payment-method path. It sleeps
+after inactivity and is woken by the Proofweave gateway before a queued Run.
 
 ## Export an auditable Space repository
 
@@ -13,6 +17,15 @@ npm run runner:huggingface:export -- /tmp/proofweave-hf-space
 The export contains only the runtime dependency graph: protocol packages,
 artifact/database/Runner/verification services, a minimal dependency lockfile,
 the Dockerfile, and the Space README.
+
+## Render free Web Service
+
+Push the exported directory to a dedicated private Git repository and create a
+service from its `render.yaml`. Keep every `sync: false` value secret in the
+Render dashboard. The service must remain a public HTTP endpoint because free
+Render services cannot receive private-network traffic; `/v1/wake` still
+requires the separate 32+ character wake token and no workspace upload route
+exists.
 
 ## Required Space secrets
 

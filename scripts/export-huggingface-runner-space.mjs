@@ -17,6 +17,7 @@ const sources = [
   ["deploy/huggingface-runner/Dockerfile", "Dockerfile"],
   ["deploy/huggingface-runner/README.space.md", "README.md"],
   ["deploy/huggingface-runner/.dockerignore", ".dockerignore"],
+  ["deploy/huggingface-runner/render.yaml", "render.yaml"],
   ["deploy/huggingface-runner/package.json", "package.json"],
   ["deploy/huggingface-runner/package-lock.json", "package-lock.json"],
   ["packages", "packages"],
