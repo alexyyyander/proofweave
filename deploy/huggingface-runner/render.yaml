@@ -1,0 +1,54 @@
+services:
+  - type: web
+    name: proofweave-trusted-runner
+    runtime: node
+    plan: free
+    buildCommand: npm ci --omit=dev
+    startCommand: node services/lean-runner/hosted-trusted-runner-main.mjs
+    healthCheckPath: /healthz
+    autoDeployTrigger: commit
+    envVars:
+      - key: NODE_VERSION
+        value: 22.14.0
+      - key: HOST
+        value: 0.0.0.0
+      - key: RUNNER_EXECUTION_ENABLED
+        value: "true"
+      - key: PROOFWEAVE_RUNNER_PROVIDER
+        value: e2b
+      - key: RUNNER_CONSUMER_ID
+        value: runner:render-free-alpha
+      - key: TURSO_DATABASE_URL
+        sync: false
+      - key: TURSO_AUTH_TOKEN
+        sync: false
+      - key: E2B_API_KEY
+        sync: false
+      - key: RUNNER_RESULT_PRIVATE_KEY_JWK
+        sync: false
+      - key: PROOFWEAVE_RUNNER_WAKE_TOKEN
+        sync: false
+      - key: RUNNER_RESULT_KEY_ID
+        sync: false
+      - key: RUNNER_APPROVED_IMAGES_JSON
+        sync: false
+      - key: RUNNER_CONTROL_PLANE_ISSUER_KEYS_JSON
+        sync: false
+      - key: PROOFWEAVE_E2B_TEMPLATE_ID
+        sync: false
+      - key: PROOFWEAVE_E2B_TEMPLATE_BUILD_ID
+        sync: false
+      - key: PROOFWEAVE_E2B_RUNNER_IMAGE
+        sync: false
+      - key: PROOFWEAVE_E2B_CPU
+        value: "2"
+      - key: PROOFWEAVE_E2B_MEMORY_MB
+        value: "2048"
+      - key: PROOFWEAVE_E2B_TIMEOUT_MS
+        value: "900000"
+      - key: PROOFWEAVE_E2B_STARTUP_TIMEOUT_MS
+        value: "180000"
+      - key: PROOFWEAVE_E2B_RESOURCE_POLICY_REVIEWED
+        value: "true"
+      - key: PROOFWEAVE_RUNNER_REVISION
+        sync: false

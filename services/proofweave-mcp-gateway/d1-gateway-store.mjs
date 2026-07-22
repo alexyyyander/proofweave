@@ -482,6 +482,7 @@ export class D1RemoteMcpGatewayStore {
       run: queued.run,
       runCreated: queued.runCreated,
       queueDeliveryState: queued.delivery?.deliveryState ?? null,
+      runnerWakeState: queued.runnerWake?.state ?? null,
       verificationState: "not_verified",
     });
   }
@@ -551,6 +552,7 @@ export class D1RemoteMcpGatewayStore {
       run: queued.run,
       runCreated: queued.runCreated,
       queueDeliveryState: queued.delivery?.deliveryState ?? null,
+      runnerWakeState: queued.runnerWake?.state ?? null,
       replayEvidence,
       verificationState: replayEvidence ? "fresh_replay_evidence_recorded" : "fresh_replay_recorded",
     });
