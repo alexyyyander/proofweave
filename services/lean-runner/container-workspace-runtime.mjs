@@ -511,7 +511,7 @@ class SafeTarExtractor {
     if (this.paths.has(path)) {
       throw new ContainerWorkspaceRuntimeError("tar.zst contains duplicate workspace paths.");
     }
-    if (this.entries.length >= this.maxFileCount) {
+    if (this.paths.size >= this.maxFileCount) {
       throw new ContainerWorkspaceRuntimeError("tar.zst exceeds the declared workspace file-count limit.");
     }
     if (size > this.maxExpandedBytes - this.expandedBytes) {
@@ -521,6 +521,17 @@ class SafeTarExtractor {
     this.expandedBytes += size;
     const target = workspaceChild(this.destination, path);
     await mkdir(dirname(target), { recursive: true, mode: 0o755 });
+    if (entry.kind === "directory") {
+      await mkdir(target, { mode: 0o755 });
+      return {
+        kind: "directory",
+        path,
+        target,
+        mode: 0o755,
+        size: 0,
+        remaining: 0,
+      };
+    }
     const handle = await open(target, "wx", mode);
     return {
       kind: "file",
@@ -539,6 +550,12 @@ class SafeTarExtractor {
     if (entry.kind === "git-global-pax") {
       validateGitGlobalPaxHeader(Buffer.concat(entry.chunks, entry.size));
       this.paddingRemaining = (512 - (entry.size % 512)) % 512;
+      this.current = null;
+      return;
+    }
+    if (entry.kind === "directory") {
+      await chmod(entry.target, entry.mode);
+      this.paddingRemaining = 0;
       this.current = null;
       return;
     }
@@ -569,18 +586,30 @@ function parseTarHeader(header) {
       size: parseTarOctal(header.subarray(124, 136), "tar metadata size"),
     };
   }
-  if (type !== 0 && type !== 48) {
-    throw new ContainerWorkspaceRuntimeError("tar.zst may contain only regular files; links and other entry types are forbidden.");
-  }
   const linkName = readTarString(header.subarray(157, 257), "tar link target");
   if (linkName) {
-    throw new ContainerWorkspaceRuntimeError("tar.zst regular files may not contain a link target.");
+    throw new ContainerWorkspaceRuntimeError("tar.zst entries may not contain a link target.");
+  }
+  const isDirectory = type === 53;
+  if (!isDirectory && type !== 0 && type !== 48) {
+    throw new ContainerWorkspaceRuntimeError("tar.zst may contain only regular files and directories; links and other entry types are forbidden.");
   }
   const name = readTarString(header.subarray(0, 100), "tar path");
   const prefix = readTarString(header.subarray(345, 500), "tar path prefix");
-  const path = prefix ? `${prefix}/${name}` : name;
+  const archivedPath = prefix ? `${prefix}/${name}` : name;
+  const path = isDirectory && archivedPath.endsWith("/") ? archivedPath.slice(0, -1) : archivedPath;
   requireWorkspacePath(path, "tar path");
   const archivedMode = parseTarOctal(header.subarray(100, 108), "tar mode");
+  const size = parseTarOctal(header.subarray(124, 136), "tar file size");
+  if (isDirectory) {
+    if (size !== 0) {
+      throw new ContainerWorkspaceRuntimeError("tar.zst directory entries must be empty.");
+    }
+    if (archivedMode !== 0o755 && archivedMode !== 0o775) {
+      throw new ContainerWorkspaceRuntimeError("tar.zst directory mode must normalize exactly to 0755.");
+    }
+    return { kind: "directory", path, mode: 0o755, size: 0 };
+  }
   const mode = archivedMode === 0o644 || archivedMode === 0o664
     ? 0o644
     : archivedMode === 0o755 || archivedMode === 0o775
@@ -589,7 +618,6 @@ function parseTarHeader(header) {
   if (mode === null) {
     throw new ContainerWorkspaceRuntimeError("tar.zst file mode must normalize exactly to 0644 or 0755.");
   }
-  const size = parseTarOctal(header.subarray(124, 136), "tar file size");
   return { kind: "file", path, mode, size };
 }
 

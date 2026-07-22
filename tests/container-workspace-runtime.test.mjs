@@ -87,6 +87,28 @@ test("Container workspace runtime accepts only Git's bounded global PAX commit h
   }
 });
 
+test("Container workspace runtime accepts safe directory entries without changing the verified file tree", { skip: !hasNativeZstd }, async () => {
+  const root = await mkdtemp(join(tmpdir(), "proofweave-container-directories-"));
+  try {
+    const fixture = await validWorkspaceFixture({ includeDirectory: true });
+    const runtime = new ContainerWorkspaceRuntime({
+      stagingRoot: join(root, "staging"),
+      workspaceRoot: join(root, "workspaces"),
+    });
+    await stageAll(runtime, fixture);
+    const finalized = await runtime.finalize();
+    assert.equal(finalized.treeHash, fixture.declaration.workspace.tree.hash);
+    assert.equal(finalized.entries.length, 2);
+    assert.equal(
+      await readFile(join(finalized.workspaceDirectory, "Proofweave", "Main.lean"), "utf8"),
+      "theorem checked : True := by\n  trivial\n",
+    );
+    await runtime.cleanup();
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
 test("Container workspace runtime verifies the exact legacy Connector entry set during migration", { skip: !hasNativeZstd }, async () => {
   const root = await mkdtemp(join(tmpdir(), "proofweave-container-legacy-tree-"));
   try {
@@ -267,6 +289,22 @@ test("Container workspace runtime rejects archive links and patch paths before L
     await assert.rejects(runtime.finalize(), ContainerWorkspaceRuntimeError);
     await runtime.cleanup();
 
+    const nonEmptyDirectoryArchive = zlib.zstdCompressSync(makeTar([
+      { path: "Proofweave/", contents: Buffer.from("not-a-directory", "utf8"), type: "5", mode: 0o775 },
+    ]));
+    const nonEmptyDirectoryFixture = await fixtureFor({
+      archive: nonEmptyDirectoryArchive,
+      patch: Buffer.from(validPatch(), "utf8"),
+      treeHash: sha("d"),
+    });
+    const nonEmptyDirectoryRuntime = new ContainerWorkspaceRuntime({
+      stagingRoot: join(root, "directory-stage"),
+      workspaceRoot: join(root, "directory-workspace"),
+    });
+    await stageAll(nonEmptyDirectoryRuntime, nonEmptyDirectoryFixture);
+    await assert.rejects(nonEmptyDirectoryRuntime.finalize(), /directory entries must be empty/);
+    await nonEmptyDirectoryRuntime.cleanup();
+
     const unsafeFixture = await validWorkspaceFixture({
       patch: Buffer.from([
         "diff --git a/Proofweave/Main.lean b/Proofweave/Main.lean",
@@ -297,6 +335,9 @@ async function validWorkspaceFixture(overrides = {}) {
     { path: "Proofweave/Main.lean", contents: Buffer.from("theorem initial : True := by\n  trivial\n", "utf8"), mode: overrides.includeGitPax ? 0o664 : 0o644 },
     { path: "lake-manifest.json", contents: Buffer.from("{\"old\":true}\n", "utf8"), mode: overrides.includeGitPax ? 0o664 : 0o644 },
   ];
+  if (overrides.includeDirectory) {
+    archiveEntries.unshift({ path: "Proofweave/", contents: Buffer.alloc(0), type: "5", mode: 0o775 });
+  }
   if (overrides.includeGitPax) {
     archiveEntries.unshift({
       path: "pax_global_header",
