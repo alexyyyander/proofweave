@@ -61,7 +61,8 @@ RUN addgroup --system proofweave \
 # closure is public data, so make every directory traversable and every file
 # readable before removing write bits. Lake is the sole exception: when this
 # closure is mounted into a different project it rewrites the already-existing
-# .lake/config package records. Those small generated records must therefore
+# .lake/config package records using a temporary file plus atomic rename. Those
+# small generated records and their immediate config directories must therefore
 # remain writable in the fresh, one-Run Sandbox; package source and build output
 # remain read-only.
 RUN git clone --filter=blob:none --no-checkout https://github.com/leanprover-community/mathlib4.git /tmp/mathlib \
@@ -82,6 +83,7 @@ RUN git clone --filter=blob:none --no-checkout https://github.com/leanprover-com
  && chown -R proofweave:proofweave /opt/proofweave/lake-packages \
  && chmod -R a+rX,a-w /opt/proofweave/lake-packages \
  && test -n "$(find /opt/proofweave/lake-packages -path '*/.lake/config/*' -type f -print -quit)" \
+ && find /opt/proofweave/lake-packages -path '*/.lake/config' -type d -exec chmod a+rwx {} + \
  && find /opt/proofweave/lake-packages -path '*/.lake/config/*' -type f -exec chmod a+rw {} + \
  && su -s /bin/sh nobody -c 'test -z "$(find /opt/proofweave/lake-packages \( -type f ! -readable -o -type d ! -readable -o -type d ! -executable \) -print -quit)"'
 
