@@ -29,11 +29,12 @@ during the independently inspectable base build. The final image contains an
 image-owned Lake package closure, and the executor mounts that closure only
 after the submitted workspace tree has passed its hash checks. Package source,
 compiled output, shallow Git revision, and public remote metadata remain
-read-only. The only writable files are Lake's already-existing generated
-`.lake/config/*` package records: Lake must refresh those records when the same
-pinned closure is mounted into a different project. They live inside a fresh,
-single-Run Sandbox and contain no credentials. A submitted workspace-provided
-`.lake` directory is rejected.
+read-only. The only writable paths are Lake's generated `.lake/config`
+directories and their already-existing package records: Lake refreshes those
+records with a temporary file and atomic rename when the same pinned closure is
+mounted into a different project. They live inside a fresh, single-Run Sandbox
+and contain no credentials. A submitted workspace-provided `.lake` directory is
+rejected.
 
 ## Base-image interface
 
