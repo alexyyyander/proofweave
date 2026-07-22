@@ -73,7 +73,7 @@ RUN git clone --filter=blob:none --no-checkout https://github.com/leanprover-com
  && cd /tmp/mathlib \
  && lake exe cache get \
  && printf 'import Mathlib\n#check Nat\n' > ProofweaveImageSmoke.lean \
- && lake build ProofweaveImageSmoke \
+ && lake build proofwidgets/widgetPackageLock \
  && lake env lean ProofweaveImageSmoke.lean \
  && rm ProofweaveImageSmoke.lean \
  && install -d -m 0755 /opt/proofweave/lake-packages \
@@ -95,7 +95,7 @@ RUN git clone --filter=blob:none --no-checkout https://github.com/leanprover-com
 # not detect a missing generated target that Lake later tries to create.
 RUN install -d -o proofweave -g proofweave -m 0700 /tmp/proofweave-external-smoke/.lake \
  && ln -s /opt/proofweave/lake-packages /tmp/proofweave-external-smoke/.lake/packages \
- && printf 'import Lake\nopen Lake DSL\npackage proofweaveExternalSmoke\nrequire mathlib from git "https://github.com/leanprover-community/mathlib4.git" @ "%s"\n' "$EXPECTED_MATHLIB_REVISION" > /tmp/proofweave-external-smoke/lakefile.lean \
+ && printf 'import Lake\nopen Lake DSL\npackage proofweaveExternalSmoke\nrequire mathlib from git "https://github.com/leanprover-community/mathlib4.git" @ "%s"\n@[default_target]\nlean_lib ProofweaveImageSmoke\n' "$EXPECTED_MATHLIB_REVISION" > /tmp/proofweave-external-smoke/lakefile.lean \
  && printf '%s\n' "$EXPECTED_LEAN_TOOLCHAIN" > /tmp/proofweave-external-smoke/lean-toolchain \
  && printf 'import Mathlib\n#check Nat\n' > /tmp/proofweave-external-smoke/ProofweaveImageSmoke.lean \
  && node --input-type=module -e '\
