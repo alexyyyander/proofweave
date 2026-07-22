@@ -73,9 +73,9 @@ export class ContainerLeanExecutor {
       () => auditNoSorry(workspace),
     );
 
-    const build = await diagnoseExecutorStage("lean_build_execution_failed", () => runCommand({
+    const build = await diagnoseExecutorStage("lean_build_execution_failed", () => buildWorkspaceAndCheckEntry({
       command: this.executablePath,
-      args: normalizedRequest.bundle.entryCommand.slice(1),
+      entryArgs: normalizedRequest.bundle.entryCommand.slice(1),
       cwd: workspace.workspaceDirectory,
       collector,
       deadline,
@@ -168,6 +168,27 @@ export class ContainerLeanExecutor {
       workspaceTreeHash: workspace.treeHash,
     });
   }
+}
+
+async function buildWorkspaceAndCheckEntry({ command, entryArgs, cwd, collector, deadline, signal }) {
+  const entryModule = entryArgs[2].slice(0, -".lean".length).split("/").join(".");
+  const workspaceBuild = await runCommand({
+    command,
+    args: ["build", entryModule],
+    cwd,
+    collector,
+    deadline,
+    signal,
+  });
+  if (workspaceBuild.reason || workspaceBuild.code !== 0) return workspaceBuild;
+  return runCommand({
+    command,
+    args: entryArgs,
+    cwd,
+    collector,
+    deadline,
+    signal,
+  });
 }
 
 async function mountPinnedLakePackages({ workspace, request, dependencyPackagesRoot }) {
