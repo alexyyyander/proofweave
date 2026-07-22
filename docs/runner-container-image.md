@@ -25,13 +25,15 @@ operator review before admission to the approved Runner registry.
 
 The Core profile is intentionally limited to projects with no external Lake
 dependencies. Each Mathlib profile downloads and verifies dependencies only
-during the independently inspectable base build. The final image contains a
-root-owned, read-only Lake package closure, and the executor mounts that closure
-only after the submitted workspace tree has passed its hash checks. A submitted
-workspace-provided `.lake` directory is rejected. The shallow Git revision and
-public remote metadata are retained read-only because Lake uses them to confirm
-that every offline package still matches the pinned manifest; they contain no
-credentials and cannot be mutated by submitted code.
+during the independently inspectable base build. The final image contains an
+image-owned Lake package closure, and the executor mounts that closure only
+after the submitted workspace tree has passed its hash checks. Package source,
+compiled output, shallow Git revision, and public remote metadata remain
+read-only. The only writable files are Lake's already-existing generated
+`.lake/config/*` package records: Lake must refresh those records when the same
+pinned closure is mounted into a different project. They live inside a fresh,
+single-Run Sandbox and contain no credentials. A submitted workspace-provided
+`.lake` directory is rejected.
 
 ## Base-image interface
 
@@ -48,8 +50,9 @@ Every independently built base must provide, on `PATH` for the unprivileged
 - `lake` and `lean` for the exact selected Lean toolchain;
 - `patch`, `tar`, and either Node native zstd or the `zstd` executable for the
   checked-in private workspace runtime;
-- either the exact, read-only Mathlib closure required by the selected environment, with
-  no runtime dependency download, or the explicit `none` sentinel for the
+- either the exact Mathlib closure required by the selected environment, with
+  read-only package source/build output, writable generated Lake config records,
+  and no runtime dependency download, or the explicit `none` sentinel for the
   reviewed Lean Core-only profile; and
 - a root-owned, world-readable `/opt/proofweave/lean-environment.json`:
 

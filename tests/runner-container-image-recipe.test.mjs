@@ -54,12 +54,15 @@ test("Lean Runner image recipe fails closed and keeps its build context minimal"
   assert.match(mathlibBaseDockerfile, /ln -s \.\.\/\.\. \/opt\/proofweave\/lake-packages\/mathlib\/\.lake\/packages/);
   assert.match(mathlibBaseDockerfile, /chown -R proofweave:proofweave \/opt\/proofweave\/lake-packages/);
   assert.match(mathlibBaseDockerfile, /chmod -R a\+rX,a-w \/opt\/proofweave\/lake-packages/);
+  assert.match(mathlibBaseDockerfile, /find \/opt\/proofweave\/lake-packages -path '\*\/\.lake\/config\/\*' -type f -exec chmod a\+rw/);
   assert.match(mathlibBaseDockerfile, /su -s \/bin\/sh nobody -c 'test -z/);
   assert.match(mathlibBaseDockerfile, /find \/opt\/proofweave\/lake-packages/);
   assert.match(mathlibBaseDockerfile, /-type f ! -readable/);
   assert.match(mathlibBaseDockerfile, /-type d ! -executable/);
   assert.doesNotMatch(mathlibBaseDockerfile, /find \/opt\/proofweave\/lake-packages -name \.git/);
-  assert.match(mathlibBaseDockerfile, /su -s \/bin\/sh proofweave -c 'cd \/opt\/proofweave\/lake-packages\/mathlib && lake env lean/);
+  assert.match(mathlibBaseDockerfile, /proofweave-external-smoke\/\.lake\/packages/);
+  assert.match(mathlibBaseDockerfile, /name: "proofweaveExternalSmoke", packages: \[mathlib, \.\.\.manifest\.packages\]/);
+  assert.match(mathlibBaseDockerfile, /su -s \/bin\/sh proofweave -c 'cd \/tmp\/proofweave-external-smoke && lake env lean ProofweaveImageSmoke\.lean'/);
 
   assert.match(imageWorkflow, /node@sha256:[a-f0-9]{64}/);
   assert.match(imageWorkflow, /lean-4\.27\.0-linux\.zip/);

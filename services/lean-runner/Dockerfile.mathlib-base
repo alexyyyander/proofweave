@@ -57,10 +57,13 @@ RUN addgroup --system proofweave \
  && adduser --system --ingroup proofweave --home /home/proofweave --shell /usr/sbin/nologin proofweave
 
 # E2B may materialize an imported image with remapped numeric ownership even
-# when commands run as the named proofweave user. The dependency closure is
-# public source/olean data, so make every directory traversable and every file
-# readable before removing all write bits. This preserves immutability while
-# preventing Lake's generated .lake/config files from becoming owner-only.
+# when commands run as the named proofweave user. The dependency source/olean
+# closure is public data, so make every directory traversable and every file
+# readable before removing write bits. Lake is the sole exception: when this
+# closure is mounted into a different project it rewrites the already-existing
+# .lake/config package records. Those small generated records must therefore
+# remain writable in the fresh, one-Run Sandbox; package source and build output
+# remain read-only.
 RUN git clone --filter=blob:none --no-checkout https://github.com/leanprover-community/mathlib4.git /tmp/mathlib \
  && git -C /tmp/mathlib fetch --depth=1 origin "$EXPECTED_MATHLIB_REVISION" \
  && git -C /tmp/mathlib checkout --detach "$EXPECTED_MATHLIB_REVISION" \
@@ -78,15 +81,28 @@ RUN git clone --filter=blob:none --no-checkout https://github.com/leanprover-com
  && ln -s ../.. /opt/proofweave/lake-packages/mathlib/.lake/packages \
  && chown -R proofweave:proofweave /opt/proofweave/lake-packages \
  && chmod -R a+rX,a-w /opt/proofweave/lake-packages \
+ && test -n "$(find /opt/proofweave/lake-packages -path '*/.lake/config/*' -type f -print -quit)" \
+ && find /opt/proofweave/lake-packages -path '*/.lake/config/*' -type f -exec chmod a+rw {} + \
  && su -s /bin/sh nobody -c 'test -z "$(find /opt/proofweave/lake-packages \( -type f ! -readable -o -type d ! -readable -o -type d ! -executable \) -print -quit)"'
 
-# Exercise Lake again after the closure is relocated and made read-only. This
-# catches missing revision metadata before a multi-gigabyte final image is
-# published and later pulled for the separate no-network smoke run.
-RUN printf 'import Mathlib\n#check Nat\n' > /tmp/ProofweaveReadOnlySmoke.lean \
- && chown proofweave:proofweave /tmp/ProofweaveReadOnlySmoke.lean \
- && su -s /bin/sh proofweave -c 'cd /opt/proofweave/lake-packages/mathlib && lake env lean /tmp/ProofweaveReadOnlySmoke.lean' \
- && rm /tmp/ProofweaveReadOnlySmoke.lean
+# Exercise Lake from an external project, exactly like a staged Bundle. Running
+# only from the Mathlib checkout does not make Lake rewrite its package config
+# and therefore missed the production permission failure this gate prevents.
+RUN install -d -o proofweave -g proofweave -m 0700 /tmp/proofweave-external-smoke/.lake \
+ && ln -s /opt/proofweave/lake-packages /tmp/proofweave-external-smoke/.lake/packages \
+ && printf 'import Lake\nopen Lake DSL\npackage proofweaveExternalSmoke\nrequire mathlib from git "https://github.com/leanprover-community/mathlib4.git" @ "%s"\n' "$EXPECTED_MATHLIB_REVISION" > /tmp/proofweave-external-smoke/lakefile.lean \
+ && printf '%s\n' "$EXPECTED_LEAN_TOOLCHAIN" > /tmp/proofweave-external-smoke/lean-toolchain \
+ && printf 'import Mathlib\n#check Nat\n' > /tmp/proofweave-external-smoke/ProofweaveImageSmoke.lean \
+ && node --input-type=module -e '\
+      import { readFile, writeFile } from "node:fs/promises"; \
+      const [source, destination, revision] = process.argv.slice(1); \
+      const manifest = JSON.parse(await readFile(source, "utf8")); \
+      const mathlib = { url: "https://github.com/leanprover-community/mathlib4.git", type: "git", subDir: null, scope: "", rev: revision, name: "mathlib", manifestFile: "lake-manifest.json", inputRev: revision, inherited: false, configFile: "lakefile.lean" }; \
+      await writeFile(destination, `${JSON.stringify({ ...manifest, name: "proofweaveExternalSmoke", packages: [mathlib, ...manifest.packages] }, null, 2)}\n`); \
+    ' /opt/proofweave/lake-packages/mathlib/lake-manifest.json /tmp/proofweave-external-smoke/lake-manifest.json "$EXPECTED_MATHLIB_REVISION" \
+ && chown -R proofweave:proofweave /tmp/proofweave-external-smoke \
+ && su -s /bin/sh proofweave -c 'cd /tmp/proofweave-external-smoke && lake env lean ProofweaveImageSmoke.lean' \
+ && rm -rf /tmp/proofweave-external-smoke
 
 RUN install -d -m 0755 /opt/proofweave \
  && node --input-type=module -e '\
