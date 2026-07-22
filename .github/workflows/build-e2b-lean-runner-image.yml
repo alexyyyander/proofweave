@@ -44,7 +44,11 @@ jobs:
       attestations: write
       id-token: write
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    # A cold, checksum-bound Mathlib closure can exceed 90 minutes while Lake
+    # downloads the exact cache and BuildKit publishes its SBOM/provenance.
+    # Keep the verification gates unchanged and give this image-build-only job
+    # enough time to finish on a fresh GitHub-hosted runner.
+    timeout-minutes: 180
     environment: proofweave-runner-alpha
     outputs:
       runner_image: ${{ steps.coordinates.outputs.runner_image }}
