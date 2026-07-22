@@ -73,6 +73,7 @@ RUN git clone --filter=blob:none --no-checkout https://github.com/leanprover-com
  && cd /tmp/mathlib \
  && lake exe cache get \
  && printf 'import Mathlib\n#check Nat\n' > ProofweaveImageSmoke.lean \
+ && lake build ProofweaveImageSmoke \
  && lake env lean ProofweaveImageSmoke.lean \
  && rm ProofweaveImageSmoke.lean \
  && install -d -m 0755 /opt/proofweave/lake-packages \
@@ -87,9 +88,11 @@ RUN git clone --filter=blob:none --no-checkout https://github.com/leanprover-com
  && find /opt/proofweave/lake-packages -path '*/.lake/config/*' -type f -exec chmod a+rw {} + \
  && su -s /bin/sh nobody -c 'test -z "$(find /opt/proofweave/lake-packages \( -type f ! -readable -o -type d ! -readable -o -type d ! -executable \) -print -quit)"'
 
-# Exercise Lake from an external project, exactly like a staged Bundle. Running
-# only from the Mathlib checkout does not make Lake rewrite its package config
-# and therefore missed the production permission failure this gate prevents.
+# Exercise the full Lake build graph from an external project, exactly like a
+# staged Bundle. The image build above must have materialized dependency-owned
+# generated targets (including ProofWidgets package-lock metadata) before the
+# package closure became read-only. A source-only `lake env lean` smoke would
+# not detect a missing generated target that Lake later tries to create.
 RUN install -d -o proofweave -g proofweave -m 0700 /tmp/proofweave-external-smoke/.lake \
  && ln -s /opt/proofweave/lake-packages /tmp/proofweave-external-smoke/.lake/packages \
  && printf 'import Lake\nopen Lake DSL\npackage proofweaveExternalSmoke\nrequire mathlib from git "https://github.com/leanprover-community/mathlib4.git" @ "%s"\n' "$EXPECTED_MATHLIB_REVISION" > /tmp/proofweave-external-smoke/lakefile.lean \
@@ -103,7 +106,7 @@ RUN install -d -o proofweave -g proofweave -m 0700 /tmp/proofweave-external-smok
       await writeFile(destination, `${JSON.stringify({ ...manifest, name: "proofweaveExternalSmoke", packages: [mathlib, ...manifest.packages] }, null, 2)}\n`); \
     ' /opt/proofweave/lake-packages/mathlib/lake-manifest.json /tmp/proofweave-external-smoke/lake-manifest.json "$EXPECTED_MATHLIB_REVISION" \
  && chown -R proofweave:proofweave /tmp/proofweave-external-smoke \
- && su -s /bin/sh proofweave -c 'cd /tmp/proofweave-external-smoke && lake env lean ProofweaveImageSmoke.lean' \
+ && su -s /bin/sh proofweave -c 'cd /tmp/proofweave-external-smoke && lake build ProofweaveImageSmoke && lake env lean ProofweaveImageSmoke.lean' \
  && rm -rf /tmp/proofweave-external-smoke
 
 RUN install -d -m 0755 /opt/proofweave \
