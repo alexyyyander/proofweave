@@ -1402,12 +1402,12 @@ test("imports the pinned catalog idempotently and serves provenance through the 
       "SELECT (SELECT COUNT(*) FROM problem_revisions) AS problems, (SELECT COUNT(*) FROM verification_claims) AS claims, (SELECT COUNT(*) FROM catalog_imports) AS imports",
     )
     .first();
-  assert.deepEqual(counts, { problems: 39, claims: 195, imports: 4 });
+  assert.deepEqual(counts, { problems: 40, claims: 200, imports: 5 });
 
   const catalogResponse = await render("/api/catalog");
   assert.equal(catalogResponse.status, 200);
   const catalog = await catalogResponse.json();
-  assert.equal(catalog.records.length, 39);
+  assert.equal(catalog.records.length, 40);
   assert.equal(catalog.records[0].slug, "erdos-865");
   assert.equal(catalog.records[0].source.revisionTag, "bench-v1-lean4.27.0");
   assert.equal(catalog.records[0].source.leanToolchain, "leanprover/lean4:v4.27.0");
@@ -1421,6 +1421,20 @@ test("imports the pinned catalog idempotently and serves provenance through the 
   const { record } = await recordResponse.json();
   assert.equal(record.declaration.qualifiedName, "Erdos865.erdos_865");
   assert.match(record.declaration.sourceContentHash, /^sha256:[a-f0-9]{64}$/);
+
+  const jacobianAuditResponse = await render(
+    "/api/catalog/jacobian-counterexample-algebraic-audit",
+  );
+  assert.equal(jacobianAuditResponse.status, 200);
+  const { record: jacobianAudit } = await jacobianAuditResponse.json();
+  assert.equal(
+    jacobianAudit.declaration.qualifiedName,
+    "ProofweaveJacobian.jacobian_counterexample_audit",
+  );
+  assert.equal(
+    jacobianAudit.declaration.sourceContentHash,
+    "sha256:05557171f31ff0beefccdfa346ac83069ec7b63c0ecf6997e895fd62bc29ee26",
+  );
 
   const graphResponse = await render("/api/catalog/erdos-865/research-graph");
   assert.equal(graphResponse.status, 200);
