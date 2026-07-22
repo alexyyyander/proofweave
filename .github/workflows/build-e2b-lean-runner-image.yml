@@ -154,7 +154,7 @@ jobs:
           LEAN_TOOLCHAIN: ${{ steps.profile.outputs.lean_toolchain }}
           MATHLIB_REVISION: ${{ steps.profile.outputs.mathlib_revision }}
         run: >-
-          docker run --rm --read-only --network=none --cpus=2 --memory=2g
+          docker run --rm --network=none --cpus=2 --memory=2g
           --pids-limit=128 --tmpfs /tmp/proofweave:rw,nosuid,nodev,size=1g,mode=1777
           -e EXPECTED_LEAN_TOOLCHAIN="$LEAN_TOOLCHAIN"
           -e EXPECTED_MATHLIB_REVISION="$MATHLIB_REVISION"
