@@ -56,3 +56,7 @@ exists.
 `RUNNER_APPROVED_IMAGES_JSON` must contain exactly the same immutable image
 digest as `PROOFWEAVE_E2B_RUNNER_IMAGE`. The result key's public half must be
 enrolled by the Proofweave control plane before execution is enabled.
+
+On Render, the service records the platform-provided `RENDER_GIT_COMMIT` as
+its Runner revision. `PROOFWEAVE_RUNNER_REVISION` remains the explicit
+fallback for local or non-Render deployments.

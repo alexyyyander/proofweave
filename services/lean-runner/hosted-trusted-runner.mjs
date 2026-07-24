@@ -32,7 +32,10 @@ export class HostedTrustedRunnerService {
     this.port = integerSetting(environment.PORT, "PORT", defaultPort, 0, 65_535);
     this.host = normalizedHost(environment.HOST ?? "0.0.0.0");
     this.wakeToken = requireWakeToken(environment.PROOFWEAVE_RUNNER_WAKE_TOKEN);
-    this.revision = boundedLabel(environment.PROOFWEAVE_RUNNER_REVISION ?? "development", "Runner revision");
+    this.revision = boundedLabel(
+      environment.RENDER_GIT_COMMIT ?? environment.PROOFWEAVE_RUNNER_REVISION ?? "development",
+      "Runner revision",
+    );
     this.provider = boundedLabel(environment.PROOFWEAVE_RUNNER_PROVIDER ?? "unconfigured", "Runner provider");
     this.controller = new AbortController();
     this.runtime = null;

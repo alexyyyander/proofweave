@@ -14,6 +14,7 @@ test("hosted Runner exposes health and authenticated wake without accepting work
       PROOFWEAVE_RUNNER_WAKE_TOKEN: wakeToken,
       PROOFWEAVE_RUNNER_PROVIDER: "e2b",
       PROOFWEAVE_RUNNER_REVISION: "test-revision",
+      RENDER_GIT_COMMIT: "47fa209a9aef5de9f76f5e2c04b9a1bfddb01872",
     },
     runtimeFactory: async () => ({
       async run({ signal }) {
@@ -33,7 +34,7 @@ test("hosted Runner exposes health and authenticated wake without accepting work
   assert.equal(healthBody.service, "proofweave-trusted-runner");
   assert.equal(healthBody.state, "ready");
   assert.equal(healthBody.provider, "e2b");
-  assert.equal(healthBody.revision, "test-revision");
+  assert.equal(healthBody.revision, "47fa209a9aef5de9f76f5e2c04b9a1bfddb01872");
   assert.equal(healthBody.lastWakeAt, null);
   assert.equal(healthBody.executionBoundary, "isolated-sandbox-only");
   assert.match(healthBody.startedAt, /^\d{4}-\d{2}-\d{2}T/);
@@ -44,7 +45,11 @@ test("hosted Runner exposes health and authenticated wake without accepting work
     headers: { authorization: `Bearer ${wakeToken}` },
   });
   assert.equal(wake.status, 202);
-  assert.deepEqual(await wake.json(), { accepted: true, state: "ready", revision: "test-revision" });
+  assert.deepEqual(await wake.json(), {
+    accepted: true,
+    state: "ready",
+    revision: "47fa209a9aef5de9f76f5e2c04b9a1bfddb01872",
+  });
 
   const rejectedWorkspace = await fetch(`${origin}/v1/runs/run-1/workspace`, { method: "POST" });
   assert.equal(rejectedWorkspace.status, 404);
