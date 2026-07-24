@@ -123,9 +123,13 @@ export class D1RemoteMcpRunnerDispatcher {
       const runnerWake = await this.runnerWake.wake();
       return Object.freeze({ ...queued, runnerWake });
     } catch (error) {
+      const errorCode = privacySafeErrorCode(error);
       return Object.freeze({
         ...queued,
-        runnerWake: Object.freeze({ state: "wake_failed", errorCode: privacySafeErrorCode(error) }),
+        runnerWake: Object.freeze({
+          state: errorCode === "runner_wake_unconfirmed" ? "wake_unconfirmed" : "wake_failed",
+          errorCode,
+        }),
       });
     }
   }

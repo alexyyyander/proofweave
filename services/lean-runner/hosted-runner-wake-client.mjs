@@ -13,6 +13,14 @@ export class HostedRunnerWakeError extends Error {
   }
 }
 
+export class HostedRunnerWakeUnconfirmedError extends Error {
+  constructor(message, options) {
+    super(message, options);
+    this.name = "HostedRunnerWakeUnconfirmedError";
+    this.diagnosticCode = "runner_wake_unconfirmed";
+  }
+}
+
 /** Wake a scale-to-zero coordinator after its durable queue delivery exists. */
 export class HostedRunnerWakeClient {
   constructor({
@@ -20,7 +28,7 @@ export class HostedRunnerWakeClient {
     wakeToken,
     hostAuthorizationToken = null,
     fetcher = globalThis.fetch,
-    timeoutMilliseconds = 8_000,
+    timeoutMilliseconds = 60_000,
   } = {}) {
     this.url = requireWakeUrl(url);
     this.wakeToken = requireSecret(wakeToken, "Runner wake token");
@@ -30,8 +38,8 @@ export class HostedRunnerWakeClient {
     if (typeof fetcher !== "function") {
       throw new HostedRunnerWakeConfigurationError("Runner wake client requires HTTPS fetch.");
     }
-    if (!Number.isSafeInteger(timeoutMilliseconds) || timeoutMilliseconds < 1_000 || timeoutMilliseconds > 30_000) {
-      throw new HostedRunnerWakeConfigurationError("Runner wake timeout must be between 1000 and 30000 milliseconds.");
+    if (!Number.isSafeInteger(timeoutMilliseconds) || timeoutMilliseconds < 1_000 || timeoutMilliseconds > 90_000) {
+      throw new HostedRunnerWakeConfigurationError("Runner wake timeout must be between 1000 and 90000 milliseconds.");
     }
     this.fetcher = fetcher;
     this.timeoutMilliseconds = timeoutMilliseconds;
@@ -56,7 +64,10 @@ export class HostedRunnerWakeClient {
         signal: controller.signal,
       });
     } catch (cause) {
-      throw new HostedRunnerWakeError("The hosted Runner could not be woken after durable queue delivery.", { cause });
+      throw new HostedRunnerWakeUnconfirmedError(
+        "The durable Runner job was recorded, but the hosted Runner wake response could not be confirmed.",
+        { cause },
+      );
     } finally {
       clearTimeout(timer);
     }

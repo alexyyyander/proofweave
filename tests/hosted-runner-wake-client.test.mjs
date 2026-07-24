@@ -4,6 +4,7 @@ import {
   HostedRunnerWakeClient,
   HostedRunnerWakeConfigurationError,
   HostedRunnerWakeError,
+  HostedRunnerWakeUnconfirmedError,
 } from "../services/lean-runner/hosted-runner-wake-client.mjs";
 
 const wakeToken = "wake-token-0123456789abcdef-0123456789abcdef";
@@ -44,6 +45,22 @@ test("hosted Runner wake failures are privacy-safe and durable-queue compatible"
   });
 });
 
+test("hosted Runner wake transport uncertainty preserves truthful durable-queue state", async () => {
+  const client = new HostedRunnerWakeClient({
+    url: "https://proofweave-runner.example/v1/wake",
+    wakeToken,
+    fetcher: async () => {
+      throw new TypeError("provider connection timed out with private details");
+    },
+  });
+  await assert.rejects(() => client.wake(), (error) => {
+    assert.ok(error instanceof HostedRunnerWakeUnconfirmedError);
+    assert.equal(error.diagnosticCode, "runner_wake_unconfirmed");
+    assert.doesNotMatch(error.message, /private details/);
+    return true;
+  });
+});
+
 test("hosted Runner wake client accepts only an exact HTTPS wake route", () => {
   for (const url of [
     "http://proofweave-runner.example/v1/wake",
@@ -55,4 +72,20 @@ test("hosted Runner wake client accepts only an exact HTTPS wake route", () => {
       HostedRunnerWakeConfigurationError,
     );
   }
+});
+
+test("hosted Runner wake timeout accommodates free-host cold starts but remains bounded", () => {
+  assert.doesNotThrow(() => new HostedRunnerWakeClient({
+    url: "https://proofweave-runner.example/v1/wake",
+    wakeToken,
+    timeoutMilliseconds: 90_000,
+  }));
+  assert.throws(
+    () => new HostedRunnerWakeClient({
+      url: "https://proofweave-runner.example/v1/wake",
+      wakeToken,
+      timeoutMilliseconds: 90_001,
+    }),
+    HostedRunnerWakeConfigurationError,
+  );
 });

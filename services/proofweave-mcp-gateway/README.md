@@ -85,8 +85,11 @@ A scale-to-zero trusted Runner can be woken after (and only after) the signed
 queue delivery is durable. Configure `RUNNER_WAKE_URL` with the exact HTTPS
 `/v1/wake` endpoint and `RUNNER_WAKE_TOKEN` as a shared secret. For a private
 host such as a private Hugging Face Space, also configure the host's bounded
-read token as `RUNNER_WAKE_HOST_AUTHORIZATION_TOKEN`. Wake failure is reported
-as bounded operational state and never rolls back or loses the durable job.
+read token as `RUNNER_WAKE_HOST_AUTHORIZATION_TOKEN`. The client allows up to
+60 seconds for a free host's cold start. A provider rejection is reported as
+`wake_failed`; a timeout or transport failure is reported as
+`wake_unconfirmed`, because the authenticated request may still have reached
+the host. Neither state rolls back or loses the durable job.
 The wake endpoint cannot receive a workspace, Bundle, Run payload, or signing
 material.
 
