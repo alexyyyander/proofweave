@@ -88,9 +88,18 @@ export class RunnerOrchestrator {
     // the fresh workspace. The callback must itself be idempotent because a
     // delivery retry can revisit an already queued Run.
     if (beforeDispatch) await beforeDispatch(queued.run);
-    // A duplicate request must never re-deliver an already leased, running, or
-    // terminal Run. Queued records remain safe to resend after provider loss.
-    if (queued.run.state !== "queued") {
+    // A duplicate request must never re-deliver an already leased or terminal
+    // Run. One narrow recovery exception exists for a preparing/running Run
+    // with no result whose exact immutable queue message is already
+    // dead-lettered. That state can occur when an infrastructure worker loses
+    // its lease after recording `run_started`.
+    const recoverableActiveRun = (
+      ["preparing", "running"].includes(queued.run.state) &&
+      queued.run.runnerResultHash === null &&
+      typeof this.runnerQueue.find === "function" &&
+      (await this.runnerQueue.find(queued.run.id))?.deliveryState === "dead_letter"
+    );
+    if (queued.run.state !== "queued" && !recoverableActiveRun) {
       return Object.freeze({
         run: queued.run,
         runCreated: queued.created,

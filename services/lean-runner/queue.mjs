@@ -167,6 +167,7 @@ export class RunnerJobAuthenticator {
  */
 export const runnerQueueInterface = Object.freeze({
   enqueue: "enqueue(message) -> { message, created, deliveryState }",
+  find: "find(runId) -> { deliveryState, message } | null",
   claim: "claim({ consumerId, claimedAt, leaseDurationSeconds }) -> { message, lease } | null",
   renew: "renew({ runId, leaseId, renewedAt, leaseDurationSeconds }) -> lease",
   acknowledge: "acknowledge({ runId, leaseId, acknowledgedAt }) -> message",
@@ -222,6 +223,14 @@ export class InMemoryRunnerQueue {
     this.byIdempotency.set(idempotencyIdentity, record);
     this.order.push(normalized.runId);
     return Object.freeze({ message: normalized, created: true, deliveryState: "queued" });
+  }
+
+  async find(runId) {
+    requireIdentifier(runId, "runId");
+    const record = this.byRunId.get(runId);
+    return record
+      ? Object.freeze({ deliveryState: record.deliveryState, message: record.message })
+      : null;
   }
 
   async claim({ consumerId, claimedAt, leaseDurationSeconds = 300 }) {

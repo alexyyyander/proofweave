@@ -125,6 +125,63 @@ test("an exact idempotent retry redrives only the original dead-lettered Run", a
   assert.equal(redrivenClaim.lease.deliveryAttempt, 1);
 });
 
+test("an exact retry may redrive an active Run only after its immutable delivery is dead-lettered", async () => {
+  const pair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
+  const queue = new InMemoryRunnerQueue();
+  const runStore = new MemoryRunStore();
+  const orchestrator = new RunnerOrchestrator({
+    runStore,
+    runnerQueue: queue,
+    imageDigest: `ghcr.io/proofweave/lean-runner@sha256:${"b".repeat(64)}`,
+    defaultLimits: fixtureLimits(),
+    controlPlaneKeyId: "control-plane:closed-alpha",
+    controlPlanePrivateKey: pair.privateKey,
+  });
+  const input = {
+    runId: "run:orchestrator-active-redrive",
+    idempotencyKey: "orchestrator-active-redrive-key",
+    artifactBundle: await fixtureBundle(),
+    queuedAt: "2026-07-13T00:00:00Z",
+  };
+  const first = await orchestrator.queueArtifactBundle(input);
+  const claimed = await queue.claim({
+    consumerId: "runner:active-redrive-fixture",
+    claimedAt: "2026-07-13T00:00:01Z",
+    leaseDurationSeconds: 30,
+  });
+  runStore.runs[0] = Object.freeze({
+    ...first.run,
+    state: "running",
+    preparingAt: "2026-07-13T00:00:01Z",
+    startedAt: "2026-07-13T00:00:01Z",
+  });
+
+  const whileLeased = await orchestrator.queueArtifactBundle({
+    ...input,
+    runId: "run:must-not-replace-active",
+    queuedAt: "2026-07-13T00:00:02Z",
+  });
+  assert.equal(whileLeased.run.state, "running");
+  assert.equal(whileLeased.delivery, null);
+
+  await queue.deadLetter({
+    runId: first.run.id,
+    leaseId: claimed.lease.id,
+    deadLetteredAt: "2026-07-13T00:00:03Z",
+    errorCode: "delivery_attempts_exhausted",
+  });
+  const recovered = await orchestrator.queueArtifactBundle({
+    ...input,
+    runId: "run:must-not-replace-active",
+    queuedAt: "2026-07-13T00:00:04Z",
+  });
+  assert.equal(recovered.runCreated, false);
+  assert.equal(recovered.run.id, first.run.id);
+  assert.equal(recovered.run.state, "running");
+  assert.equal(recovered.delivery.redriven, true);
+  assert.equal(recovered.delivery.deliveryState, "queued");
+});
+
 class MemoryRunStore {
   constructor() {
     this.runs = [];
