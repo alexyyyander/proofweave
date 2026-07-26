@@ -1647,7 +1647,10 @@ async function checkServiceCompatibility() {
   const checkedAt = new Date().toISOString();
   const local = localConnectorIdentity();
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 1_500);
+  // Codex's managed HTTPS proxy can take several seconds to establish a cold
+  // tunnel. This is a public, unauthenticated compatibility probe, so allow
+  // enough time for that handshake without making connection_status hang.
+  const timeout = setTimeout(() => controller.abort(), 10_000);
   try {
     const response = await fetch(`${baseUrl}/api/mcp/capabilities`, {
       method: "GET",
@@ -1815,12 +1818,23 @@ async function callRemoteTool(name, args) {
   }
   const payload = await response.json().catch(() => null);
   if (!response.ok) {
-    throw new Error(payload?.error?.message ?? payload?.error_description ?? `Proofweave MCP returned ${response.status}.`);
+    throw new Error(remoteHttpErrorMessage(payload, response.status));
   }
   if (payload?.error) throw new Error(payload.error.message ?? "Proofweave MCP rejected this request.");
   if (!payload?.result) throw new Error("Proofweave MCP returned an invalid response.");
   if (payload.result.isError === true) throw new Error(remoteToolErrorMessage(name, payload.result));
   return payload.result;
+}
+
+function remoteHttpErrorMessage(payload, status) {
+  const candidate = payload?.error?.message
+    ?? payload?.error_description
+    ?? (typeof payload?.error === "string" ? payload.error : null)
+    ?? (typeof payload?.message === "string" ? payload.message : null);
+  const message = typeof candidate === "string"
+    ? candidate.replaceAll(/\s+/g, " ").trim().slice(0, 500)
+    : "";
+  return message || `Proofweave MCP returned ${status}.`;
 }
 
 function remoteToolErrorMessage(name, result) {

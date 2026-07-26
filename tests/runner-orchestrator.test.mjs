@@ -76,6 +76,55 @@ test("a queue delivery failure leaves the recorded Run safe to retry", async () 
   assert.equal(result.delivery.created, true);
 });
 
+test("an exact idempotent retry redrives only the original dead-lettered Run", async () => {
+  const pair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
+  const queue = new InMemoryRunnerQueue();
+  const runStore = new MemoryRunStore();
+  const orchestrator = new RunnerOrchestrator({
+    runStore,
+    runnerQueue: queue,
+    imageDigest: `ghcr.io/proofweave/lean-runner@sha256:${"b".repeat(64)}`,
+    defaultLimits: fixtureLimits(),
+    controlPlaneKeyId: "control-plane:closed-alpha",
+    controlPlanePrivateKey: pair.privateKey,
+  });
+  const input = {
+    runId: "run:orchestrator-redrive",
+    idempotencyKey: "orchestrator-redrive-key",
+    artifactBundle: await fixtureBundle(),
+    queuedAt: "2026-07-13T00:00:00Z",
+  };
+  const first = await orchestrator.queueArtifactBundle(input);
+  const claimed = await queue.claim({
+    consumerId: "runner:redrive-fixture",
+    claimedAt: "2026-07-13T00:00:01Z",
+    leaseDurationSeconds: 30,
+  });
+  await queue.deadLetter({
+    runId: first.run.id,
+    leaseId: claimed.lease.id,
+    deadLetteredAt: "2026-07-13T00:00:02Z",
+    errorCode: "runner_image_policy_error",
+  });
+
+  const retried = await orchestrator.queueArtifactBundle({
+    ...input,
+    runId: "run:must-not-replace-original",
+    queuedAt: "2026-07-13T00:00:03Z",
+  });
+  assert.equal(retried.runCreated, false);
+  assert.equal(retried.run.id, first.run.id);
+  assert.equal(retried.delivery.redriven, true);
+  assert.equal(retried.delivery.deliveryState, "queued");
+  const redrivenClaim = await queue.claim({
+    consumerId: "runner:redrive-fixture",
+    claimedAt: "2026-07-13T00:00:03Z",
+    leaseDurationSeconds: 30,
+  });
+  assert.equal(redrivenClaim.message.runId, first.run.id);
+  assert.equal(redrivenClaim.lease.deliveryAttempt, 1);
+});
+
 class MemoryRunStore {
   constructor() {
     this.runs = [];

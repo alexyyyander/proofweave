@@ -109,6 +109,18 @@ export class RunnerOrchestrator {
     let delivery;
     try {
       delivery = await this.runnerQueue.enqueue(message);
+      if (delivery.deliveryState === "dead_letter") {
+        if (typeof this.runnerQueue.redrive !== "function") {
+          throw new Error("The Runner queue cannot redrive an exhausted immutable delivery.");
+        }
+        delivery = await this.runnerQueue.redrive({
+          runId: queued.run.id,
+          redrivenAt: queuedAt,
+        });
+        if (!delivery.redriven || delivery.deliveryState !== "queued") {
+          throw new Error("The exhausted Runner delivery could not be safely redriven.");
+        }
+      }
     } catch (error) {
       throw new RunnerDispatchError({ runId: queued.run.id, cause: error });
     }

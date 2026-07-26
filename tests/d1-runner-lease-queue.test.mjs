@@ -123,6 +123,26 @@ test("durable Runner queue preserves idempotency, cancellation, and dead letters
     errorCode: "authentication_failed",
   });
   assert.equal((await queue.find(dead.message.runId)).deliveryState, "dead_letter");
+  const redriven = await queue.redrive({
+    runId: dead.message.runId,
+    redrivenAt: "2026-07-13T00:00:04Z",
+  });
+  assert.equal(redriven.redriven, true);
+  assert.equal(redriven.deliveryState, "queued");
+  assert.equal((await queue.find(dead.message.runId)).deliveryAttempts, 0);
+  const redrivenClaim = await queue.claim({
+    consumerId: "runner:redriven",
+    claimedAt: "2026-07-13T00:00:04Z",
+    leaseDurationSeconds: 30,
+  });
+  assert.equal(redrivenClaim.lease.deliveryAttempt, 1);
+  assert.deepEqual((await queue.listEvents(dead.message.runId)).map((event) => event.eventType), [
+    "enqueued",
+    "lease_claimed",
+    "dead_lettered",
+    "enqueued",
+    "lease_claimed",
+  ]);
 
   await assert.rejects(
     database.prepare("UPDATE runner_queue_messages SET request_hash = ? WHERE run_id = ?")
