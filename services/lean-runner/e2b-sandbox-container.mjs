@@ -9,6 +9,8 @@ const runnerHome = "/home/proofweave";
 const runnerPath = "/opt/lean/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin";
 const runnerLeanExecutable = "/opt/lean/bin/lake";
 const runnerDependencyPackagesRoot = "/opt/proofweave/lake-packages";
+const proofWidgetsPackageLockHash = `${runnerDependencyPackagesRoot}/proofwidgets/widget/package-lock.json.hash`;
+const prepareDependencyCacheCommand = `test -f ${proofWidgetsPackageLockHash} && chmod u+w ${proofWidgetsPackageLockHash}`;
 const runPath = /^\/v1\/runs\/([^/]+)\/workspace(?:\/artifacts\/(?:source-archive|source-patch|lake-manifest)|\/(?:finalize|execute|cancel|complete)|\/result\/(?:stdout|stderr))?$/;
 
 export class E2BSandboxContainerError extends Error {
@@ -319,6 +321,16 @@ async function startSandboxServer(sandbox, timeoutMs, requestTimeoutMs) {
     PROOFWEAVE_RESOURCE_LIMITS_ENFORCED: "true",
     PROOFWEAVE_REQUEST_TIMEOUT_MS: String(timeoutMs),
   };
+  // Mathlib's ProofWidgets target refreshes this generated hash marker during
+  // `lake build`. Keep the dependency tree read-only and make only that
+  // pre-existing marker writable inside the fresh, no-egress Sandbox.
+  await sandbox.commands.run(prepareDependencyCacheCommand, {
+    cwd: "/opt/proofweave",
+    user: runnerUser,
+    timeoutMs: Math.min(10_000, timeoutMs),
+    requestTimeoutMs,
+    envs: commandEnvironment,
+  });
   await sandbox.commands.run(`${runnerLeanExecutable} --version`, {
     cwd: "/opt/proofweave",
     user: runnerUser,

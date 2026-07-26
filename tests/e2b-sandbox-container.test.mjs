@@ -48,6 +48,11 @@ test("E2B adapter creates one secure no-egress Sandbox and keeps control credent
   assert.equal(e2b.createOptions.envs.PROOFWEAVE_RESOURCE_LIMITS_ENFORCED, "true");
   assert.equal(Object.values(e2b.createOptions.envs).includes(apiKey), false);
   assert.equal(JSON.stringify(e2b.createOptions.metadata).includes("run:e2b-1"), false);
+  assert.equal(
+    e2b.dependencyCacheCommand,
+    "test -f /opt/proofweave/lake-packages/proofwidgets/widget/package-lock.json.hash && chmod u+w /opt/proofweave/lake-packages/proofwidgets/widget/package-lock.json.hash",
+  );
+  assert.equal(e2b.dependencyCacheOptions.user, "proofweave");
   assert.equal(e2b.runtimeProbeCommand, "/opt/lean/bin/lake --version");
   assert.equal(e2b.runtimeProbeOptions.user, "proofweave");
   assert.equal(e2b.serverCommand, "node /opt/proofweave/services/lean-runner/container-http-server.mjs");
@@ -227,7 +232,10 @@ function fakeE2B({
     trafficAccessToken,
     commands: {
       async run(command, options) {
-        if (command.endsWith("lake --version")) {
+        if (command.startsWith("test -f ")) {
+          state.dependencyCacheCommand = command;
+          state.dependencyCacheOptions = options;
+        } else if (command.endsWith("lake --version")) {
           state.runtimeProbeCommand = command;
           state.runtimeProbeOptions = options;
         } else {
