@@ -286,6 +286,60 @@ export class D1RunnerLeaseQueue {
     });
   }
 
+  /**
+   * Re-open only the exact immutable message that exhausted delivery. The
+   * signed envelope, Run identity, and prior queue events remain unchanged;
+   * only the delivery projection receives a fresh bounded attempt budget.
+   */
+  async redrive({ runId, redrivenAt }) {
+    requireIdentifier(runId, "runId");
+    requireUtcInstant(redrivenAt, "redrivenAt");
+    const effectiveRedrivenAt = canonicalInstant(redrivenAt);
+    const current = await this.rowByRunId(runId);
+    if (!current) return Object.freeze({ deliveryState: "not_found", redriven: false });
+    if (current.delivery_state !== "dead_letter") {
+      const record = await hydrateRecord(current);
+      return Object.freeze({
+        deliveryState: record.deliveryState,
+        message: record.message,
+        redriven: false,
+      });
+    }
+    const results = await this.database.batch([
+      this.database.prepare(
+        `UPDATE runner_queue_messages
+         SET delivery_state = 'queued', available_at = ?, delivery_attempts = 0,
+             lease_id = NULL, lease_consumer_id = NULL, lease_claimed_at = NULL,
+             lease_expires_at = NULL, last_error_code = NULL,
+             acknowledged_at = NULL, cancelled_at = NULL, dead_lettered_at = NULL,
+             updated_at = ?
+         WHERE run_id = ? AND delivery_state = 'dead_letter'`,
+      ).bind(effectiveRedrivenAt, effectiveRedrivenAt, runId),
+      this.eventInsert({
+        eventId: this.newIdentifier("queue-event"),
+        deduplicationKey: `${runId}:redriven:${effectiveRedrivenAt}`,
+        runId,
+        // Re-enqueue the same signed envelope using the existing append-only
+        // queue vocabulary. The distinct deduplication key and reset attempt
+        // number preserve the redrive boundary without rewriting old events.
+        eventType: "enqueued",
+        deliveryState: "queued",
+        leaseId: null,
+        deliveryAttempt: 0,
+        errorCode: null,
+        occurredAt: effectiveRedrivenAt,
+        requiredState: "queued",
+        requiredLeaseId: null,
+      }),
+    ]);
+    const record = await hydrateRecord(await this.rowByRunId(runId));
+    return Object.freeze({
+      deliveryState: record.deliveryState,
+      message: record.message,
+      redriven: changes(results[0]) === 1,
+    });
+  }
+
   async cancelQueued({ runId, cancelledAt }) {
     requireIdentifier(runId, "runId");
     requireUtcInstant(cancelledAt, "cancelledAt");
