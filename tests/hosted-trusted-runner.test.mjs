@@ -3,6 +3,7 @@ import test from "node:test";
 import { HostedTrustedRunnerService } from "../services/lean-runner/hosted-trusted-runner.mjs";
 
 const wakeToken = "wake-token-0123456789abcdef-0123456789abcdef";
+const imageDigest = `ghcr.io/proofweave/lean-runner@sha256:${"a".repeat(64)}`;
 
 test("hosted Runner exposes health and authenticated wake without accepting work", async () => {
   let runStarted = false;
@@ -15,6 +16,12 @@ test("hosted Runner exposes health and authenticated wake without accepting work
       PROOFWEAVE_RUNNER_PROVIDER: "e2b",
       PROOFWEAVE_RUNNER_REVISION: "test-revision",
       RENDER_GIT_COMMIT: "47fa209a9aef5de9f76f5e2c04b9a1bfddb01872",
+      PROOFWEAVE_E2B_RUNNER_IMAGE: imageDigest,
+      RUNNER_APPROVED_IMAGES_JSON: JSON.stringify([{
+        imageDigest,
+        leanToolchain: "leanprover/lean4:v4.31.0",
+        mathlibRevision: "mathlib-revision",
+      }]),
     },
     runtimeFactory: async () => ({
       async run({ signal }) {
@@ -36,6 +43,16 @@ test("hosted Runner exposes health and authenticated wake without accepting work
   assert.equal(healthBody.provider, "e2b");
   assert.equal(healthBody.revision, "47fa209a9aef5de9f76f5e2c04b9a1bfddb01872");
   assert.equal(healthBody.lastWakeAt, null);
+  assert.deepEqual(healthBody.runnerPolicy, {
+    state: "configured",
+    sandboxImageDigest: imageDigest,
+    approvedImages: [{
+      imageDigest,
+      leanToolchain: "leanprover/lean4:v4.31.0",
+      mathlibRevision: "mathlib-revision",
+    }],
+    sandboxImageApproved: true,
+  });
   assert.equal(healthBody.executionBoundary, "isolated-sandbox-only");
   assert.match(healthBody.startedAt, /^\d{4}-\d{2}-\d{2}T/);
 
