@@ -10,7 +10,7 @@ const runnerPath = "/opt/lean/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/
 const runnerLeanExecutable = "/opt/lean/bin/lake";
 const runnerDependencyPackagesRoot = "/opt/proofweave/lake-packages";
 const proofWidgetsPackageLockHash = `${runnerDependencyPackagesRoot}/proofwidgets/widget/package-lock.json.hash`;
-const prepareDependencyCacheCommand = `test -f ${proofWidgetsPackageLockHash} && chmod u+w ${proofWidgetsPackageLockHash}`;
+const prepareDependencyCacheCommand = `touch ${proofWidgetsPackageLockHash} && chown proofweave:proofweave ${proofWidgetsPackageLockHash} && chmod 0644 ${proofWidgetsPackageLockHash}`;
 const runPath = /^\/v1\/runs\/([^/]+)\/workspace(?:\/artifacts\/(?:source-archive|source-patch|lake-manifest)|\/(?:finalize|execute|cancel|complete)|\/result\/(?:stdout|stderr))?$/;
 
 export class E2BSandboxContainerError extends Error {
@@ -321,12 +321,13 @@ async function startSandboxServer(sandbox, timeoutMs, requestTimeoutMs) {
     PROOFWEAVE_RESOURCE_LIMITS_ENFORCED: "true",
     PROOFWEAVE_REQUEST_TIMEOUT_MS: String(timeoutMs),
   };
-  // Mathlib's ProofWidgets target refreshes this generated hash marker during
-  // `lake build`. Keep the dependency tree read-only and make only that
-  // pre-existing marker writable inside the fresh, no-egress Sandbox.
+  // E2B can remap imported-image ownership. Mathlib's ProofWidgets target
+  // refreshes this generated marker during `lake build`, so the trusted
+  // startup boundary repairs only this exact file before dropping back to the
+  // unprivileged Runner user. The dependency tree remains read-only.
   await sandbox.commands.run(prepareDependencyCacheCommand, {
     cwd: "/opt/proofweave",
-    user: runnerUser,
+    user: "root",
     timeoutMs: Math.min(10_000, timeoutMs),
     requestTimeoutMs,
     envs: commandEnvironment,

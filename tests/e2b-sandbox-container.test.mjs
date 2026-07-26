@@ -50,9 +50,9 @@ test("E2B adapter creates one secure no-egress Sandbox and keeps control credent
   assert.equal(JSON.stringify(e2b.createOptions.metadata).includes("run:e2b-1"), false);
   assert.equal(
     e2b.dependencyCacheCommand,
-    "test -f /opt/proofweave/lake-packages/proofwidgets/widget/package-lock.json.hash && chmod u+w /opt/proofweave/lake-packages/proofwidgets/widget/package-lock.json.hash",
+    "touch /opt/proofweave/lake-packages/proofwidgets/widget/package-lock.json.hash && chown proofweave:proofweave /opt/proofweave/lake-packages/proofwidgets/widget/package-lock.json.hash && chmod 0644 /opt/proofweave/lake-packages/proofwidgets/widget/package-lock.json.hash",
   );
-  assert.equal(e2b.dependencyCacheOptions.user, "proofweave");
+  assert.equal(e2b.dependencyCacheOptions.user, "root");
   assert.equal(e2b.runtimeProbeCommand, "/opt/lean/bin/lake --version");
   assert.equal(e2b.runtimeProbeOptions.user, "proofweave");
   assert.equal(e2b.serverCommand, "node /opt/proofweave/services/lean-runner/container-http-server.mjs");
@@ -232,7 +232,7 @@ function fakeE2B({
     trafficAccessToken,
     commands: {
       async run(command, options) {
-        if (command.startsWith("test -f ")) {
+        if (command.startsWith("touch ")) {
           state.dependencyCacheCommand = command;
           state.dependencyCacheOptions = options;
         } else if (command.endsWith("lake --version")) {
