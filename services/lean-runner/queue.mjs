@@ -172,6 +172,7 @@ export const runnerQueueInterface = Object.freeze({
   acknowledge: "acknowledge({ runId, leaseId, acknowledgedAt }) -> message",
   release: "release({ runId, leaseId, releasedAt, availableAt?, errorCode? }) -> message",
   deadLetter: "deadLetter({ runId, leaseId, deadLetteredAt, errorCode }) -> message",
+  redrive: "redrive({ runId, redrivenAt }) -> { deliveryState, message?, redriven }",
   cancelQueued: "cancelQueued({ runId, cancelledAt }) -> { deliveryState, message? }",
 });
 
@@ -303,6 +304,22 @@ export class InMemoryRunnerQueue {
     record.lease = null;
     record.lastErrorCode = errorCode;
     return record.message;
+  }
+
+  async redrive({ runId, redrivenAt }) {
+    requireIdentifier(runId, "runId");
+    requireUtcInstant(redrivenAt, "redrivenAt");
+    const record = this.byRunId.get(runId);
+    if (!record) return Object.freeze({ deliveryState: "not_found", redriven: false });
+    if (record.deliveryState !== "dead_letter") {
+      return Object.freeze({ deliveryState: record.deliveryState, message: record.message, redriven: false });
+    }
+    record.deliveryState = "queued";
+    record.lease = null;
+    record.availableAt = redrivenAt;
+    record.deliveryAttempts = 0;
+    record.lastErrorCode = null;
+    return Object.freeze({ deliveryState: "queued", message: record.message, redriven: true });
   }
 
   async cancelQueued({ runId, cancelledAt }) {
