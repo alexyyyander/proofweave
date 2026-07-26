@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   createE2BSandboxContainerFactoryFromEnvironment,
+  E2BSandboxContainer,
   E2BSandboxContainerError,
   E2BSandboxContainerFactory,
 } from "../services/lean-runner/e2b-sandbox-container.mjs";
@@ -65,6 +66,7 @@ test("E2B adapter creates one secure no-egress Sandbox and keeps control credent
   assert.equal(e2b.serverOptions.envs.PROOFWEAVE_NETWORK_ISOLATED, "true");
   assert.equal(forwarded[0].url, "https://8080-sandbox.e2b.test/ready");
   assert.equal(forwarded[0].options.headers.get("e2b-traffic-access-token"), "e2b-traffic-token-1234567890");
+  assert.equal(forwarded[0].options.signal instanceof AbortSignal, true);
 
   const response = await container.fetch(new Request(
     "https://proofweave-runner.internal/v1/runs/run%3Ae2b-1/workspace",
@@ -209,6 +211,32 @@ test("E2B adapter requires a pinned image, reviewed policy, private traffic toke
     sandboxApi: e2b.api,
     templateApi: e2b.templateApi,
   }), /STARTUP_TIMEOUT/);
+});
+
+test("E2B adapter bounds each authenticated private Sandbox request", async () => {
+  const sandbox = {
+    trafficAccessToken: "e2b-traffic-token-1234567890",
+    async kill() {},
+    getHost(port) { return `${port}-sandbox.e2b.test`; },
+  };
+  const container = new E2BSandboxContainer({
+    sandbox,
+    token: sandbox.trafficAccessToken,
+    runId: "run:e2b-timeout",
+    port: 8080,
+    requestTimeoutMs: 1_000,
+    fetcher: async (_url, options) => new Promise((_resolve, reject) => {
+      options.signal.addEventListener("abort", () => reject(options.signal.reason), { once: true });
+    }),
+    sleep: async () => {},
+    onTerminated: () => {},
+  });
+  const startedAt = Date.now();
+  await assert.rejects(
+    container.fetch(new Request("https://proofweave-runner.internal/v1/runs/run%3Ae2b-timeout/workspace")),
+    /Authenticated E2B Sandbox request failed/,
+  );
+  assert.equal(Date.now() - startedAt < 2_000, true);
 });
 
 function fakeE2B({

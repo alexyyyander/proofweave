@@ -148,6 +148,7 @@ export class E2BSandboxContainerFactory {
         token: sandbox.trafficAccessToken,
         runId,
         port: this.port,
+        requestTimeoutMs: this.startupTimeoutMs,
         fetcher: this.fetcher,
         sleep: this.sleep,
         onTerminated: () => this.active.delete(runId),
@@ -163,7 +164,7 @@ export class E2BSandboxContainerFactory {
 }
 
 export class E2BSandboxContainer {
-  constructor({ sandbox, token, runId, port, fetcher, sleep, onTerminated }) {
+  constructor({ sandbox, token, runId, port, requestTimeoutMs, fetcher, sleep, onTerminated }) {
     if (!sandbox || typeof sandbox.kill !== "function" || typeof sandbox.getHost !== "function") {
       throw new E2BSandboxContainerError("E2B Sandbox handle is invalid.");
     }
@@ -171,6 +172,7 @@ export class E2BSandboxContainer {
     this.baseUrl = requireSandboxUrl(sandbox.getHost(port));
     this.token = requireTrafficToken(token);
     this.sandbox = sandbox;
+    this.requestTimeoutMs = integerRange(requestTimeoutMs, "E2B private request timeout", 1_000, 120_000);
     this.fetcher = fetcher;
     this.sleep = sleep;
     this.onTerminated = onTerminated;
@@ -221,6 +223,13 @@ export class E2BSandboxContainer {
     target.search = source.search;
     const headers = forwardedHeaders(request.headers);
     headers.set("e2b-traffic-access-token", this.token);
+    const controller = new AbortController();
+    const forwardAbort = () => controller.abort(request.signal.reason);
+    request.signal.addEventListener("abort", forwardAbort, { once: true });
+    const timeout = setTimeout(
+      () => controller.abort(new Error("E2B authenticated Sandbox request exceeded its bounded timeout.")),
+      this.requestTimeoutMs,
+    );
     let response;
     try {
       response = await this.fetcher(target, {
@@ -229,10 +238,13 @@ export class E2BSandboxContainer {
         body: ["GET", "HEAD"].includes(request.method) ? undefined : request.body,
         duplex: ["GET", "HEAD"].includes(request.method) ? undefined : "half",
         redirect: "error",
-        signal: request.signal,
+        signal: controller.signal,
       });
     } catch (cause) {
       throw new E2BSandboxContainerError("Authenticated E2B Sandbox request failed.", { cause });
+    } finally {
+      clearTimeout(timeout);
+      request.signal.removeEventListener("abort", forwardAbort);
     }
     if (!(response instanceof Response)) {
       throw new E2BSandboxContainerError("E2B Sandbox returned an invalid HTTP response.");
