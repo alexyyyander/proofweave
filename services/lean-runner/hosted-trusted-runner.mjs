@@ -37,6 +37,7 @@ export class HostedTrustedRunnerService {
       "Runner revision",
     );
     this.provider = boundedLabel(environment.PROOFWEAVE_RUNNER_PROVIDER ?? "unconfigured", "Runner provider");
+    this.runnerPolicy = publicRunnerPolicy(environment);
     this.controller = new AbortController();
     this.runtime = null;
     this.server = null;
@@ -125,6 +126,7 @@ export class HostedTrustedRunnerService {
       startedAt: this.startedAt,
       lastWakeAt: this.lastWakeAt,
       ...(this.failureCode ? { failureCode: this.failureCode } : {}),
+      runnerPolicy: this.runnerPolicy,
       executionBoundary: "isolated-sandbox-only",
     });
   }
@@ -191,6 +193,45 @@ function boundedLabel(value, label) {
     throw new HostedTrustedRunnerConfigurationError(`${label} must be a bounded label.`);
   }
   return value;
+}
+
+function publicRunnerPolicy(environment) {
+  const sandboxImageDigest = boundedPublicSetting(environment.PROOFWEAVE_E2B_RUNNER_IMAGE);
+  let images;
+  try {
+    const parsed = JSON.parse(environment.RUNNER_APPROVED_IMAGES_JSON ?? "null");
+    images = Array.isArray(parsed)
+      ? parsed.slice(0, 8).map((image) => ({
+        imageDigest: boundedPublicSetting(image?.imageDigest),
+        leanToolchain: boundedPublicSetting(image?.leanToolchain),
+        mathlibRevision: boundedPublicSetting(image?.mathlibRevision),
+      })).filter((image) => Object.values(image).every(Boolean))
+      : null;
+  } catch {
+    images = null;
+  }
+  if (!images) {
+    return Object.freeze({
+      state: environment.RUNNER_APPROVED_IMAGES_JSON ? "invalid" : "unconfigured",
+      sandboxImageDigest,
+      approvedImages: [],
+      sandboxImageApproved: false,
+    });
+  }
+  return Object.freeze({
+    state: "configured",
+    sandboxImageDigest,
+    approvedImages: Object.freeze(images.map((image) => Object.freeze(image))),
+    sandboxImageApproved: Boolean(
+      sandboxImageDigest && images.some((image) => image.imageDigest === sandboxImageDigest),
+    ),
+  });
+}
+
+function boundedPublicSetting(value) {
+  return typeof value === "string" && value.length > 0 && value.length <= 320 && !/[\s\0]/.test(value)
+    ? value
+    : null;
 }
 
 function integerSetting(value, label, fallback, minimum, maximum) {
