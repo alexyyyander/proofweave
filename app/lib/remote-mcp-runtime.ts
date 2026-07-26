@@ -1,6 +1,9 @@
 import { MissingDatabaseBindingError, getD1 } from "@/db";
 import { createD1SitesIdentityRuntime } from "@/services/proofweave-identity/sites-runtime.mjs";
-import { createD1RemoteMcpGatewayRuntime } from "@/services/proofweave-mcp-gateway/runtime.mjs";
+import {
+  RemoteMcpRuntimeConfigurationError,
+  createD1RemoteMcpGatewayRuntime,
+} from "@/services/proofweave-mcp-gateway/runtime.mjs";
 import { env } from "cloudflare:workers";
 
 export const proofweaveMcpPath = "/api/mcp";
@@ -31,7 +34,7 @@ export async function handleRemoteMcp(request: Request): Promise<Response> {
       receiptIssuerActivatedAt: settings.RECEIPT_ISSUER_ACTIVATED_AT,
     }).fetch(request);
   } catch (error) {
-    return remoteMcpFailure(error);
+    return remoteMcpFailure("mcp", error);
   }
 }
 
@@ -44,11 +47,26 @@ export async function handleRemoteIdentity(request: Request): Promise<Response> 
       issuer: `${origin}/`,
     }).fetch(request);
   } catch (error) {
-    return remoteMcpFailure(error);
+    return remoteMcpFailure("identity", error);
   }
 }
 
-function remoteMcpFailure(error: unknown): Response {
+function remoteMcpFailure(surface: "mcp" | "identity", error: unknown): Response {
+  const category = error instanceof MissingDatabaseBindingError
+    ? "missing_database_binding"
+    : error instanceof RemoteMcpRuntimeConfigurationError
+      ? "runtime_configuration"
+      : "unexpected_runtime_error";
+  const diagnostic = error instanceof RemoteMcpRuntimeConfigurationError
+    ? error.message
+    : error instanceof Error
+      ? error.name
+      : typeof error;
+  console.error("proofweave_remote_runtime_failure", {
+    surface,
+    category,
+    diagnostic,
+  });
   const message = error instanceof MissingDatabaseBindingError
     ? "Proofweave connection storage is unavailable."
     : "Proofweave local connection is temporarily unavailable.";

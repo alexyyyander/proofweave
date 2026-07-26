@@ -1647,7 +1647,10 @@ async function checkServiceCompatibility() {
   const checkedAt = new Date().toISOString();
   const local = localConnectorIdentity();
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 1_500);
+  // Codex's managed HTTPS proxy can take several seconds to establish a cold
+  // tunnel. This is a public, unauthenticated compatibility probe, so allow
+  // enough time for that handshake without making connection_status hang.
+  const timeout = setTimeout(() => controller.abort(), 10_000);
   try {
     const response = await fetch(`${baseUrl}/api/mcp/capabilities`, {
       method: "GET",
