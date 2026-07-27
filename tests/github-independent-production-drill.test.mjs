@@ -21,6 +21,12 @@ const siteOrigin = "https://proofweave.example";
 const runnerOrigin = "https://runner.example";
 const createdAt = "2026-07-27T00:00:00.000Z";
 const wakeAt = "2026-07-27T00:00:05.000Z";
+const installedPluginVersion = JSON.parse(
+  await readFile(
+    new URL("../plugins/proofweave-research/.codex-plugin/plugin.json", import.meta.url),
+    "utf8",
+  ),
+).version;
 
 test("default phase is a strictly read-only preflight over release, Turso, downloads, and Runner health", async () => {
   const fixture = makeDrillFixture();
@@ -277,7 +283,7 @@ function makeDrillFixture({ mutateDistribution = (value) => value } = {}) {
     schemaVersion: "pw-codex-plugin-distribution-v1",
     marketplaceName: "proofweave-private-beta",
     pluginName: "proofweave-research",
-    pluginVersion: "0.2.0+codex.20260726084742",
+    pluginVersion: installedPluginVersion,
     archive: {
       path: "/downloads/proofweave-research-marketplace.tar",
       filename: "proofweave-research-marketplace.tar",
