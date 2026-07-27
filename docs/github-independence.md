@@ -122,8 +122,9 @@ With no phase argument it is a read-only preflight. It fails unless
   release manifest;
 - every configured Site plugin download is reachable, with the marketplace
   archive matching its published checksum;
-- `/healthz` reports a ready `e2b` Runner at the same revision and exposes
-  `lastWakeAt`.
+- `/healthz` reports a ready `e2b` Runner at the same revision; and
+- the expected hosted Runner queue consumer is supplied explicitly. A GitHub
+  recovery consumer is not interchangeable with that production consumer.
 
 Set these non-secret drill values in the operator environment:
 
@@ -131,6 +132,7 @@ Set these non-secret drill values in the operator environment:
 PROOFWEAVE_GITHUB_RECOVERY_ENABLED=false
 PROOFWEAVE_DRILL_SITE_ORIGIN=https://your-proofweave-site.example
 PROOFWEAVE_RUNNER_URL=https://your-proofweave-runner.example
+PROOFWEAVE_DRILL_EXPECTED_RUNNER_CONSUMER_ID=consumer:your-hosted-runner
 PROOFWEAVE_DRILL_PLUGIN_DOWNLOADS_JSON=["/downloads/proofweave-research-marketplace.tar","/downloads/proofweave-research-marketplace.tar.sha256","/downloads/proofweave-research-marketplace.json"]
 ```
 
@@ -140,12 +142,20 @@ strictly checked against the downloaded archive and checksum and against the
 marketplace name, plugin name/version, and canonical connector compatibility
 contract in the source release. `TURSO_DATABASE_URL` and `TURSO_AUTH_TOKEN`
 remain operator secrets; the command emits only the database fingerprint and
-migration head.
+migration head. The URL must use the canonical credential-free
+`libsql://hostname` form with no path, query, fragment, or embedded
+username/password; the auth token remains a separate secret.
+
+Before `begin`, install and connect the local Agent, choose the exact Lean
+workspace, and call `prepare_workspace_bundle_v2`. This preparation creates a
+signed local draft and its exact Bundle manifest hash; it uploads nothing.
+Show that draft to the owner. Do not invent a placeholder hash and do not
+prepare another draft after `begin`.
 
 The write phases create or update only one local JSON state file. Put it
 outside the repository so the strict clean-source check remains meaningful.
-Each phase requires the exact confirmation printed below; abbreviations are
-rejected:
+Begin only after the exact draft/hash exists. Each phase requires the exact
+confirmation printed below; abbreviations are rejected:
 
 ```sh
 npm run runtime:github-independent:drill -- begin \
@@ -157,19 +167,17 @@ npm run runtime:github-independent:drill -- begin \
   --bundle-hash sha256:REPLACE_WITH_64_HEX_CHARACTERS
 ```
 
-`begin` does not call a trigger endpoint. After it succeeds, perform the real
-participant workflow through the normal local Agent and browser-approved
+`begin` does not upload or trigger anything. After it succeeds, submit the
+same prepared draft through the normal local Agent and browser-approved
 Connector:
 
-1. Install the plugin into a clean Codex environment using only the Site
-   archive, offline checksum verification, and a local marketplace path.
-2. Connect one local Agent through browser OAuth.
-3. Prepare and owner-approve one signed provider-neutral v2 Bundle from a local
-   Lean workspace.
-4. Stage it in Turso and allow the normal gateway to wake the hosted Runner.
-5. Observe one fresh E2B result, complete different-owner reviews, issue the
-   Receipt, and download the portable Receipt closure and current issuer
-   keyset.
+1. Reconfirm that the retained prepared draft has the exact manifest hash
+   recorded by `begin`.
+2. Owner-approve and stage that unchanged draft in Turso, then
+   allow the normal gateway to wake the hosted Runner.
+3. Observe one fresh E2B result, complete different-owner reviews, issue the
+   Receipt, and download only the portable Receipt closure. The drill fetches
+   the current issuer keyset itself from the same fixed Site.
 
 Record the observed public identifiers and hashes in a local file with this
 strict shape:
@@ -212,14 +220,31 @@ npm run runtime:github-independent:drill -- finalize \
   --state /private/tmp/proofweave-production-drill.json \
   --confirm I-CONFIRM-PORTABLE-RECEIPT-CLOSURE-IS-FINAL \
   --correlation-id correlation:production-20260727-001 \
-  --receipt-bundle /private/tmp/proofweave-receipt-bundle.json \
-  --issuer-keyset /private/tmp/proofweave-issuer-keys.json
+  --receipt-bundle /private/tmp/proofweave-receipt-bundle.json
 ```
 
-`record` requires a new observable Runner wake after `begin`. `finalize`
-re-runs the read-only preflight, rejects revision/correlation/hash drift and
-same-owner review, and invokes the existing portable Receipt verifier with
-the current issuer keyset. Receipt or identity fields containing
+`record` does not use global Runner wake time as causal evidence. It queries
+the live Turso control plane for the exact supplied Run and requires:
+
+- the Run's Attempt Person/Agent, Bundle and result hash to match the state
+  created by `begin`;
+- Run, result, attestation and Receipt timestamps to be at or after
+  `state.createdAt`, in their required order;
+- migration-0043 queue events for that Run to have positive consecutive
+  sequences, the exact configured hosted consumer and lease, and an
+  `acknowledged` terminal event;
+- the immutable Receipt row to bind the same Run, Bundle, beneficiary and
+  Receipt hash; and
+- every covered canonical attestation to bind its exact reviewer, Agent,
+  Bundle and `sha256Canonical(attestation)` hash, with no same-owner review.
+
+`finalize` re-runs both the read-only preflight and that exact Turso probe,
+rejects any live evidence drift, and requires the portable Receipt
+`issuedAt >= state.createdAt`. It obtains the current issuer keyset only from
+the fixed same-origin HTTPS
+`/api/receipts/issuer-keys` endpoint with redirects disabled, JSON content
+type, and a bounded response; the production CLI does not accept an operator
+keyset file. Receipt or identity fields containing
 `mock`, `demo`, `smoke`, or `fixture` are ineligible. Injected transports used
 by the test suite can only produce `fixture_verified`; only the non-injected
 CLI over real production endpoints can emit `production_passed`.

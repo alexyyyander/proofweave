@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
+import { spawnSync } from "node:child_process";
 import { mkdtemp, readFile, readdir, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -19,8 +20,8 @@ const bundleHash = sha("b");
 const databaseFingerprint = "0123456789abcdef";
 const siteOrigin = "https://proofweave.example";
 const runnerOrigin = "https://runner.example";
+const expectedConsumerId = "consumer:render-hosted-production";
 const createdAt = "2026-07-27T00:00:00.000Z";
-const wakeAt = "2026-07-27T00:00:05.000Z";
 const installedPluginVersion = JSON.parse(
   await readFile(
     new URL("../plugins/proofweave-research/.codex-plugin/plugin.json", import.meta.url),
@@ -28,211 +29,218 @@ const installedPluginVersion = JSON.parse(
   ),
 ).version;
 
-test("default phase is a strictly read-only preflight over release, Turso, downloads, and Runner health", async () => {
+test("preflight binds the release to one explicit hosted consumer and remains read-only", async () => {
   const fixture = makeDrillFixture();
   const directory = await mkdtemp(join(tmpdir(), "proofweave-drill-preflight-"));
   try {
-    assert.deepEqual(await readdir(directory), []);
     const result = await fixture.drill.preflight({ environment: fixture.environment });
     assert.equal(result.outcome, "preflight_passed");
     assert.equal(result.productionEligible, false);
-    assert.equal(result.release.gitSha, revision);
-    assert.equal(result.release.databaseAuthority, "turso");
-    assert.equal(result.release.databaseFingerprint, databaseFingerprint);
-    assert.equal(result.release.migrationHead, "0042_current.sql");
-    assert.equal(result.release.pluginDownloads.length, 3);
-    assert.equal(result.runner.provider, "e2b");
-    assert.equal(result.runner.lastWakeAt, null);
+    assert.equal(result.release.siteOrigin, siteOrigin);
+    assert.equal(result.release.expectedRunnerConsumerId, expectedConsumerId);
+    assert.equal(result.release.migrationHead, "0043_add_runner_queue_event_sequence.sql");
     assert.deepEqual(await readdir(directory), []);
     assert.equal(fixture.calls.database, 1);
+    assert.equal(fixture.calls.live, 0);
     assert.deepEqual(
-      fixture.calls.fetch.map((entry) => [entry.method, new URL(entry.url).pathname]),
+      fixture.calls.fetch.map((entry) => new URL(entry.url).pathname),
       [
-        ["GET", "/downloads/proofweave-research-marketplace.tar"],
-        ["GET", "/downloads/proofweave-research-marketplace.tar.sha256"],
-        ["GET", "/downloads/proofweave-research-marketplace.json"],
-        ["GET", "/healthz"],
+        "/downloads/proofweave-research-marketplace.tar",
+        "/downloads/proofweave-research-marketplace.tar.sha256",
+        "/downloads/proofweave-research-marketplace.json",
+        "/healthz",
       ],
+    );
+
+    await assert.rejects(
+      fixture.drill.preflight({
+        environment: {
+          ...fixture.environment,
+          PROOFWEAVE_DRILL_EXPECTED_RUNNER_CONSUMER_ID: "",
+        },
+      }),
+      (error) => error.code === "EXPECTED_RUNNER_CONSUMER_ID_MISSING",
     );
   } finally {
     await rm(directory, { recursive: true, force: true });
   }
 });
 
-test("preflight rejects a distribution manifest that drifts from the downloaded archive contract", async () => {
-  const fixture = makeDrillFixture({
-    mutateDistribution: (distribution) => ({
-      ...distribution,
-      archive: { ...distribution.archive, bytes: distribution.archive.bytes + 1 },
-    }),
-  });
+test("preflight rejects recovery and published plugin drift before live evidence is read", async () => {
+  const recovery = makeDrillFixture();
   await assert.rejects(
-    fixture.drill.preflight({ environment: fixture.environment }),
-    (error) => error instanceof GithubIndependentDrillError
-      && error.code === "PLUGIN_DISTRIBUTION_MANIFEST_MISMATCH",
-  );
-});
-
-test("preflight fails closed unless GitHub recovery is explicitly disabled", async () => {
-  const fixture = makeDrillFixture();
-  await assert.rejects(
-    fixture.drill.preflight({
-      environment: { ...fixture.environment, PROOFWEAVE_GITHUB_RECOVERY_ENABLED: "true" },
+    recovery.drill.preflight({
+      environment: { ...recovery.environment, PROOFWEAVE_GITHUB_RECOVERY_ENABLED: "true" },
     }),
     (error) => error instanceof GithubIndependentDrillError
       && error.code === "GITHUB_RECOVERY_NOT_DISABLED",
   );
-  assert.equal(fixture.calls.database, 0);
-  assert.equal(fixture.calls.fetch.length, 0);
+  assert.equal(recovery.calls.live, 0);
+
+  const distribution = makeDrillFixture({
+    mutateDistribution: (value) => ({
+      ...value,
+      archive: { ...value.archive, bytes: value.archive.bytes + 1 },
+    }),
+  });
+  await assert.rejects(
+    distribution.drill.preflight({ environment: distribution.environment }),
+    (error) => error.code === "PLUGIN_DISTRIBUTION_MANIFEST_MISMATCH",
+  );
 });
 
-test("begin requires the fixed confirmation, writes only an external secret-free local state file", async () => {
+test("begin writes a secret-free v2 state only after the exact Bundle hash exists", async () => {
   const fixture = makeDrillFixture();
   const directory = await mkdtemp(join(tmpdir(), "proofweave-drill-begin-"));
   const statePath = join(directory, "state.json");
   try {
-    await assert.rejects(
-      fixture.drill.begin({
-        environment: fixture.environment,
-        statePath,
-        confirmation: "yes",
-        ...identity(),
-      }),
-      (error) => error.code === "CONFIRMATION_REQUIRED",
-    );
-    assert.deepEqual(await readdir(directory), []);
-
-    const result = await fixture.drill.begin({
-      environment: fixture.environment,
-      statePath,
-      confirmation: githubIndependentDrillConfirmations.begin,
-      ...identity(),
-    });
-    assert.equal(result.outcome, "begun");
+    await beginFixture(fixture, statePath);
     const source = await readFile(statePath, "utf8");
+    const state = JSON.parse(source);
+    assert.equal(state.schemaVersion, "pw-github-independent-production-drill-v2");
+    assert.equal(state.artifactBundleHash, bundleHash);
+    assert.equal(state.release.expectedRunnerConsumerId, expectedConsumerId);
+    assert.equal(Object.hasOwn(state, "baselineRunnerLastWakeAt"), false);
     assert.equal(source.includes("database-secret-token"), false);
     assert.equal(source.includes("libsql://"), false);
-    assert.equal(source.includes("PROOFWEAVE_RUNNER_WAKE_TOKEN"), false);
-    const state = JSON.parse(source);
-    assert.equal(state.phase, "begun");
-    assert.equal(state.productionEligible, false);
-    assert.equal(state.correlationId, identity().correlationId);
-    assert.equal(state.baselineRunnerLastWakeAt, null);
   } finally {
     await rm(directory, { recursive: true, force: true });
   }
 });
 
-test("record requires an immutable release, a fresh wake, exact identity, and different-owner reviews", async () => {
+test("record binds one fresh exact Run, queue lease/consumer, Receipt, and independent reviews", async () => {
   const fixture = makeDrillFixture();
   const directory = await mkdtemp(join(tmpdir(), "proofweave-drill-record-"));
   const statePath = join(directory, "state.json");
   try {
     await beginFixture(fixture, statePath);
-    fixture.health.lastWakeAt = wakeAt;
-    const sameOwner = evidenceFixture({
-      reviews: reviews().map((review, index) => index === 0
-        ? { ...review, reviewerPersonId: identity().personId }
-        : review),
-    });
-    await assert.rejects(
-      fixture.drill.record({
-        environment: fixture.environment,
-        statePath,
-        confirmation: githubIndependentDrillConfirmations.record,
-        evidence: sameOwner,
-      }),
-      (error) => error.code === "SAME_OWNER_REVIEW",
-    );
-
-    const result = await fixture.drill.record({
-      environment: fixture.environment,
-      statePath,
-      confirmation: githubIndependentDrillConfirmations.record,
-      evidence: evidenceFixture(),
-    });
+    const result = await recordFixture(fixture, statePath);
     assert.equal(result.outcome, "evidence_recorded");
+    assert.equal(result.runId, evidenceFixture().run.id);
     assert.equal(result.reviewCount, 3);
-    assert.equal(JSON.parse(await readFile(statePath, "utf8")).observedRunnerLastWakeAt, wakeAt);
+    const state = JSON.parse(await readFile(statePath, "utf8"));
+    assert.equal(state.liveEvidence.queue.consumerId, expectedConsumerId);
+    assert.equal(state.liveEvidence.queue.deliveryState, "acknowledged");
+    assert.deepEqual(
+      state.liveEvidence.queue.events.map((event) => event.sequence),
+      [1, 2, 3],
+    );
+    assert.equal(fixture.calls.live, 1);
   } finally {
     await rm(directory, { recursive: true, force: true });
   }
 });
 
-test("portable Receipt verification binds Person, Agent, Bundle, Run, reviews, hashes, and can never production-pass with fixtures", async () => {
+test("an unrelated global wake cannot substitute for exact fresh live evidence", async () => {
   const fixture = makeDrillFixture();
-  const receiptFixture = await createPortableReceiptFixture();
-  const directory = await mkdtemp(join(tmpdir(), "proofweave-drill-finalize-"));
+  const directory = await mkdtemp(join(tmpdir(), "proofweave-drill-unrelated-wake-"));
   const statePath = join(directory, "state.json");
   try {
     await beginFixture(fixture, statePath);
-    fixture.health.lastWakeAt = wakeAt;
-    await fixture.drill.record({
-      environment: fixture.environment,
-      statePath,
-      confirmation: githubIndependentDrillConfirmations.record,
-      evidence: evidenceFixture({ receiptHash: receiptFixture.receiptHash }),
-    });
-    const result = await fixture.drill.finalize({
-      environment: fixture.environment,
-      statePath,
-      confirmation: githubIndependentDrillConfirmations.finalize,
-      correlationId: identity().correlationId,
-      verificationBundle: receiptFixture.bundle,
-      issuerKeyset: receiptFixture.keyset,
-    });
-    assert.equal(result.outcome, "fixture_verified");
-    assert.notEqual(result.outcome, "production_passed");
-    assert.equal(result.portableClosure.rootReceiptHash, receiptFixture.receiptHash);
-    assert.equal(JSON.parse(await readFile(statePath, "utf8")).phase, "fixture_verified");
+    fixture.health.lastWakeAt = "2026-07-27T00:10:00.000Z";
+    fixture.live.value.run.queuedAt = "2026-07-26T23:59:00.000Z";
+    await assert.rejects(
+      recordFixture(fixture, statePath),
+      (error) => error.code === "LIVE_RUN_NOT_FRESH",
+    );
   } finally {
     await rm(directory, { recursive: true, force: true });
   }
 });
 
-test("finalize rejects correlation, release, Receipt hash, and Runner wake drift", async (context) => {
-  await context.test("correlation drift", async () => {
-    const setup = await recordedFixture();
+test("record rejects different Run, wrong consumer, non-consecutive queue, and same-owner review", async (context) => {
+  async function rejected(mutator, expectedCode) {
+    const fixture = makeDrillFixture();
+    const directory = await mkdtemp(join(tmpdir(), "proofweave-drill-reject-"));
+    const statePath = join(directory, "state.json");
     try {
+      await beginFixture(fixture, statePath);
+      mutator(fixture.live.value);
       await assert.rejects(
-        setup.fixture.drill.finalize({
-          environment: setup.fixture.environment,
-          statePath: setup.statePath,
-          confirmation: githubIndependentDrillConfirmations.finalize,
-          correlationId: "correlation:production-other",
-          verificationBundle: setup.receipt.bundle,
-          issuerKeyset: setup.receipt.keyset,
-        }),
-        (error) => error.code === "CORRELATION_ID_DRIFT",
+        recordFixture(fixture, statePath),
+        (error) => error.code === expectedCode,
+      );
+    } finally {
+      await rm(directory, { recursive: true, force: true });
+    }
+  }
+
+  await context.test("different Run", () => rejected(
+    (live) => {
+      live.run.id = "run:production-closure-other";
+      live.queue.runId = live.run.id;
+      live.receipt.runId = live.run.id;
+    },
+    "LIVE_EVIDENCE_BINDING_MISMATCH",
+  ));
+  await context.test("wrong hosted consumer", () => rejected(
+    (live) => { live.queue.consumerId = "consumer:github-recovery"; },
+    "LIVE_EVIDENCE_BINDING_MISMATCH",
+  ));
+  await context.test("non-consecutive 0043 events", () => rejected(
+    (live) => { live.queue.events[1].sequence = 4; },
+    "LIVE_QUEUE_SEQUENCE_INVALID",
+  ));
+  await context.test("same owner review", () => rejected(
+    (live) => { live.reviews[0].reviewerPersonId = identity().personId; },
+    "LIVE_REVIEW_BINDING_MISMATCH",
+  ));
+  await context.test("unacknowledged terminal", () => rejected(
+    (live) => {
+      live.queue.deliveryState = "leased";
+      live.queue.events.at(-1).eventType = "lease_renewed";
+      live.queue.events.at(-1).deliveryState = "leased";
+    },
+    "LIVE_QUEUE_NOT_ACKNOWLEDGED",
+  ));
+});
+
+test("finalize re-probes exact evidence, fetches the current same-Site keyset, and fixtures cannot production-pass", async () => {
+  const setup = await recordedPortableFixture();
+  try {
+    const result = await setup.fixture.drill.finalize({
+      environment: setup.fixture.environment,
+      statePath: setup.statePath,
+      confirmation: githubIndependentDrillConfirmations.finalize,
+      correlationId: identity().correlationId,
+      verificationBundle: setup.receipt.bundle,
+    });
+    assert.equal(result.outcome, "fixture_verified");
+    assert.notEqual(result.outcome, "production_passed");
+    assert.equal(result.portableClosure.rootReceiptHash, setup.receipt.receiptHash);
+    const keysetCall = setup.fixture.calls.fetch.at(-1);
+    assert.equal(new URL(keysetCall.url).origin, siteOrigin);
+    assert.equal(new URL(keysetCall.url).pathname, "/api/receipts/issuer-keys");
+    assert.equal(keysetCall.redirect, "error");
+    assert.equal(setup.fixture.calls.live, 2);
+  } finally {
+    await setup.cleanup();
+  }
+});
+
+test("finalize fails closed on live drift, old portable Receipt, old keyset, and cross-source keyset", async (context) => {
+  await context.test("live evidence changed after record", async () => {
+    const setup = await recordedPortableFixture();
+    try {
+      setup.fixture.live.value.reviews[0].attestedAt = "2026-07-27T00:00:06.500Z";
+      await assert.rejects(
+        finalizeFixture(setup),
+        (error) => error.code === "LIVE_EVIDENCE_DRIFT",
       );
     } finally {
       await setup.cleanup();
     }
   });
 
-  await context.test("release revision drift", async () => {
-    const setup = await recordedFixture();
+  await context.test("portable Receipt predates begin", async () => {
+    const oldReceipt = await createPortableReceiptFixture({
+      issuedAt: "2026-07-26T23:59:59Z",
+    });
+    const setup = await recordedPortableFixture({ receipt: oldReceipt });
     try {
-      setup.fixture.manifest.source.gitSha = "c".repeat(40);
-      setup.fixture.manifest.source.originMainSha = "c".repeat(40);
-      setup.fixture.manifest.sites.commitSha = "c".repeat(40);
-      setup.fixture.manifest.gateway.revision = "c".repeat(40);
-      setup.fixture.manifest.runner.revision = "c".repeat(40);
-      setup.fixture.health.revision = "c".repeat(40);
+      setup.fixture.live.value.receipt.issuedAt = "2026-07-27T00:00:10.000Z";
       await assert.rejects(
-        finalizeSetup(setup),
-        (error) => error.code === "RELEASE_DRIFT",
-      );
-    } finally {
-      await setup.cleanup();
-    }
-  });
-
-  await context.test("Receipt hash drift", async () => {
-    const setup = await recordedFixture({ recordedReceiptHash: sha("f") });
-    try {
-      await assert.rejects(
-        finalizeSetup(setup),
+        finalizeFixture(setup),
         (error) => error.code === "PORTABLE_RECEIPT_BINDING_MISMATCH",
       );
     } finally {
@@ -240,13 +248,31 @@ test("finalize rejects correlation, release, Receipt hash, and Runner wake drift
     }
   });
 
-  await context.test("Runner wake drift", async () => {
-    const setup = await recordedFixture();
+  await context.test("current keyset no longer preserves issuer key", async () => {
+    const setup = await recordedPortableFixture();
     try {
-      setup.fixture.health.lastWakeAt = "2026-07-27T00:00:06.000Z";
+      setup.fixture.keyset.source = JSON.stringify({
+        issuerKeys: [{
+          ...setup.receipt.keyset.issuerKeys[0],
+          id: "issuer:previous-production-receipts",
+        }],
+      });
       await assert.rejects(
-        finalizeSetup(setup),
-        (error) => error.code === "RUNNER_WAKE_DRIFT",
+        finalizeFixture(setup),
+        (error) => error.code === "PORTABLE_RECEIPT_VERIFY_FAILED",
+      );
+    } finally {
+      await setup.cleanup();
+    }
+  });
+
+  await context.test("keyset response crosses the fixed Site origin", async () => {
+    const setup = await recordedPortableFixture();
+    try {
+      setup.fixture.keyset.url = "https://other.example/api/receipts/issuer-keys";
+      await assert.rejects(
+        finalizeFixture(setup),
+        (error) => error.code === "ISSUER_KEYSET_ORIGIN_INVALID",
       );
     } finally {
       await setup.cleanup();
@@ -254,25 +280,19 @@ test("finalize rejects correlation, release, Receipt hash, and Runner wake drift
   });
 });
 
-test("mock, demo, smoke, and fixture identifiers are rejected before they can enter drill state", async () => {
-  for (const marker of ["mock", "demo", "smoke", "fixture"]) {
-    const fixture = makeDrillFixture();
-    const directory = await mkdtemp(join(tmpdir(), "proofweave-drill-marker-"));
-    try {
-      await assert.rejects(
-        fixture.drill.begin({
-          environment: fixture.environment,
-          statePath: join(directory, "state.json"),
-          confirmation: githubIndependentDrillConfirmations.begin,
-          ...identity(),
-          correlationId: `correlation:${marker}-closure`,
-        }),
-        (error) => error.code === "FIXTURE_IDENTIFIER_FORBIDDEN",
-      );
-    } finally {
-      await rm(directory, { recursive: true, force: true });
-    }
-  }
+test("production CLI rejects the retired --issuer-keyset input before any network access", () => {
+  const result = spawnSync(
+    process.execPath,
+    [
+      "scripts/run-github-independent-production-drill.mjs",
+      "finalize",
+      "--issuer-keyset",
+      "/private/tmp/operator-keyset.json",
+    ],
+    { cwd: process.cwd(), encoding: "utf8" },
+  );
+  assert.equal(result.status, 1);
+  assert.equal(JSON.parse(result.stdout).errorCode, "ARGUMENTS_INVALID");
 });
 
 function makeDrillFixture({ mutateDistribution = (value) => value } = {}) {
@@ -296,26 +316,34 @@ function makeDrillFixture({ mutateDistribution = (value) => value } = {}) {
       toolSchemaVersion: 1,
     },
   });
-  const manifestDownload = Buffer.from(`${JSON.stringify(distribution)}\n`);
   const health = {
     service: "proofweave-trusted-runner",
     state: "ready",
     provider: "e2b",
     revision,
-    startedAt: "2026-07-26T00:00:00.000Z",
     lastWakeAt: null,
-    runnerPolicy: {},
     executionBoundary: "isolated-sandbox-only",
   };
   const downloads = new Map([
     ["/downloads/proofweave-research-marketplace.tar", archive],
     ["/downloads/proofweave-research-marketplace.tar.sha256", checksum],
-    ["/downloads/proofweave-research-marketplace.json", manifestDownload],
+    ["/downloads/proofweave-research-marketplace.json", Buffer.from(`${JSON.stringify(distribution)}\n`)],
   ]);
-  const calls = { fetch: [], database: 0 };
+  const calls = { fetch: [], database: 0, live: 0 };
   const manifest = releaseManifest();
+  const live = { value: liveEvidenceFixture() };
+  const keyset = {
+    source: JSON.stringify({ issuerKeys: [] }),
+    url: `${siteOrigin}/api/receipts/issuer-keys`,
+    redirected: false,
+    contentType: "application/json; charset=utf-8",
+  };
   const fetcher = async (url, init) => {
-    calls.fetch.push({ url: url.toString(), method: init.method });
+    calls.fetch.push({
+      url: url.toString(),
+      method: init.method,
+      redirect: init.redirect,
+    });
     const pathname = new URL(url).pathname;
     if (pathname === "/healthz") {
       return new Response(JSON.stringify(health), {
@@ -323,9 +351,24 @@ function makeDrillFixture({ mutateDistribution = (value) => value } = {}) {
         headers: { "content-type": "application/json" },
       });
     }
+    if (pathname === "/api/receipts/issuer-keys") {
+      return {
+        ok: true,
+        redirected: keyset.redirected,
+        url: keyset.url,
+        headers: new Headers({
+          "content-type": keyset.contentType,
+          "content-length": String(Buffer.byteLength(keyset.source)),
+        }),
+        text: async () => keyset.source,
+      };
+    }
     const bytes = downloads.get(pathname);
     return bytes
-      ? new Response(bytes, { status: 200, headers: { "content-length": String(bytes.length) } })
+      ? new Response(bytes, {
+        status: 200,
+        headers: { "content-length": String(bytes.length) },
+      })
       : new Response("not found", { status: 404 });
   };
   const databaseProbe = async () => {
@@ -333,13 +376,18 @@ function makeDrillFixture({ mutateDistribution = (value) => value } = {}) {
     return {
       authority: "turso",
       fingerprint: databaseFingerprint,
-      migrationHead: "0042_current.sql",
-      migrationCount: 43,
+      migrationHead: "0043_add_runner_queue_event_sequence.sql",
+      migrationCount: 44,
     };
+  };
+  const liveEvidenceProbe = async () => {
+    calls.live += 1;
+    return structuredClone(live.value);
   };
   const environment = {
     PROOFWEAVE_GITHUB_RECOVERY_ENABLED: "false",
     PROOFWEAVE_DRILL_SITE_ORIGIN: siteOrigin,
+    PROOFWEAVE_DRILL_EXPECTED_RUNNER_CONSUMER_ID: expectedConsumerId,
     PROOFWEAVE_RUNNER_URL: runnerOrigin,
     PROOFWEAVE_DRILL_PLUGIN_DOWNLOADS_JSON: JSON.stringify([...downloads.keys()]),
     TURSO_DATABASE_URL: "libsql://database.example",
@@ -350,9 +398,10 @@ function makeDrillFixture({ mutateDistribution = (value) => value } = {}) {
     fetcher,
     manifestProvider: async () => ({ manifest, exitCode: 0 }),
     databaseProbe,
+    liveEvidenceProbe,
     now: () => new Date(createdAt),
   });
-  return { drill, environment, health, manifest, calls };
+  return { drill, environment, health, manifest, calls, live, keyset };
 }
 
 function releaseManifest() {
@@ -390,8 +439,8 @@ function releaseManifest() {
       authority: "turso",
       gatewayFingerprint: databaseFingerprint,
       runnerFingerprint: databaseFingerprint,
-      repositoryMigrationHead: "0042_current.sql",
-      deployedMigrationHead: "0042_current.sql",
+      repositoryMigrationHead: "0043_add_runner_queue_event_sequence.sql",
+      deployedMigrationHead: "0043_add_runner_queue_event_sequence.sql",
     },
     validation: { mode: "release", state: "valid", issues: [] },
   };
@@ -407,16 +456,18 @@ function identity() {
 }
 
 function reviews() {
-  return ["bundle_reproducible", "kernel_accepted", "project_accepted"].map((claimType, index) => ({
-    claimType,
-    verificationAttestationId: `attestation:production-review-${index + 1}`,
-    verificationAttestationHash: sha(String(index + 3)),
-    reviewerPersonId: `person:production-reviewer-${index + 1}`,
-    reviewerAgentId: `agent:production-reviewer-${index + 1}`,
-  }));
+  return ["bundle_reproducible", "kernel_accepted", "project_accepted"].map(
+    (claimType, index) => ({
+      claimType,
+      verificationAttestationId: `attestation:production-review-${index + 1}`,
+      verificationAttestationHash: sha(String(index + 3)),
+      reviewerPersonId: `person:production-reviewer-${index + 1}`,
+      reviewerAgentId: `agent:production-reviewer-${index + 1}`,
+    }),
+  );
 }
 
-function evidenceFixture({ reviews: reviewValues = reviews(), receiptHash = sha("e") } = {}) {
+function evidenceFixture({ receiptHash = sha("e") } = {}) {
   return {
     correlationId: identity().correlationId,
     revision,
@@ -427,7 +478,7 @@ function evidenceFixture({ reviews: reviewValues = reviews(), receiptHash = sha(
       id: "run:production-closure-001",
       resultHash: sha("d"),
     },
-    reviews: reviewValues.map((review) => ({
+    reviews: reviews().map((review) => ({
       verificationAttestationId: review.verificationAttestationId,
       verificationAttestationHash: review.verificationAttestationHash,
       reviewerPersonId: review.reviewerPersonId,
@@ -440,6 +491,82 @@ function evidenceFixture({ reviews: reviewValues = reviews(), receiptHash = sha(
   };
 }
 
+function liveEvidenceFixture({ receiptHash = sha("e") } = {}) {
+  return {
+    run: {
+      id: "run:production-closure-001",
+      attemptId: "attempt:production-closure-001",
+      personId: identity().personId,
+      agentId: identity().agentId,
+      artifactBundleHash: bundleHash,
+      requestHash: sha("a"),
+      resultHash: sha("d"),
+      status: "succeeded",
+      queuedAt: "2026-07-27T00:00:01.000Z",
+      startedAt: "2026-07-27T00:00:02.000Z",
+      finishedAt: "2026-07-27T00:00:03.000Z",
+      resultReceivedAt: "2026-07-27T00:00:04.000Z",
+    },
+    queue: {
+      runId: "run:production-closure-001",
+      attemptId: "attempt:production-closure-001",
+      consumerId: expectedConsumerId,
+      leaseId: "lease:production-closure-001",
+      deliveryAttempts: 1,
+      deliveryState: "acknowledged",
+      enqueuedAt: "2026-07-27T00:00:01.000Z",
+      acknowledgedAt: "2026-07-27T00:00:04.000Z",
+      events: [
+        {
+          id: "queue-event:production-enqueued",
+          sequence: 1,
+          eventType: "enqueued",
+          deliveryState: "queued",
+          leaseId: null,
+          deliveryAttempt: 0,
+          occurredAt: "2026-07-27T00:00:01.000Z",
+        },
+        {
+          id: "queue-event:production-claimed",
+          sequence: 2,
+          eventType: "lease_claimed",
+          deliveryState: "leased",
+          leaseId: "lease:production-closure-001",
+          deliveryAttempt: 1,
+          occurredAt: "2026-07-27T00:00:02.000Z",
+        },
+        {
+          id: "queue-event:production-acknowledged",
+          sequence: 3,
+          eventType: "acknowledged",
+          deliveryState: "acknowledged",
+          leaseId: "lease:production-closure-001",
+          deliveryAttempt: 1,
+          occurredAt: "2026-07-27T00:00:04.000Z",
+        },
+      ],
+    },
+    receipt: {
+      id: "receipt:production-closure-001",
+      hash: receiptHash,
+      attemptId: "attempt:production-closure-001",
+      runId: "run:production-closure-001",
+      artifactBundleHash: bundleHash,
+      beneficiaryPersonId: identity().personId,
+      beneficiaryAgentId: identity().agentId,
+      issuedAt: "2026-07-27T00:00:10.000Z",
+    },
+    reviews: reviews().map((review, index) => ({
+      verificationAttestationId: review.verificationAttestationId,
+      verificationAttestationHash: review.verificationAttestationHash,
+      reviewerPersonId: review.reviewerPersonId,
+      reviewerAgentId: review.reviewerAgentId,
+      artifactBundleHash: bundleHash,
+      attestedAt: `2026-07-27T00:00:0${index + 6}.000Z`,
+    })),
+  };
+}
+
 async function beginFixture(fixture, statePath) {
   return fixture.drill.begin({
     environment: fixture.environment,
@@ -449,9 +576,20 @@ async function beginFixture(fixture, statePath) {
   });
 }
 
-async function createPortableReceiptFixture() {
+function recordFixture(fixture, statePath, receiptHash = fixture.live.value.receipt.hash) {
+  return fixture.drill.record({
+    environment: fixture.environment,
+    statePath,
+    confirmation: githubIndependentDrillConfirmations.record,
+    evidence: evidenceFixture({ receiptHash }),
+  });
+}
+
+async function createPortableReceiptFixture({ issuedAt = "2026-07-27T00:00:10Z" } = {}) {
   const keyPair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
-  const issuerPublicKey = Buffer.from(await crypto.subtle.exportKey("raw", keyPair.publicKey)).toString("base64url");
+  const issuerPublicKey = Buffer.from(
+    await crypto.subtle.exportKey("raw", keyPair.publicKey),
+  ).toString("base64url");
   const receipt = await createContributionReceipt({
     receipt: {
       protocolVersion: "pw-contribution-receipt-v1",
@@ -492,7 +630,7 @@ async function createPortableReceiptFixture() {
         reviewerDelegationCertificateId: `delegation:${review.reviewerAgentId}`,
         decision: "attested",
       })),
-      issuedAt: "2026-07-27T00:00:10Z",
+      issuedAt,
       policyVersion: "pw-receipt-policy-v1",
       issuerKeyId: "issuer:production-receipts",
       issuerPublicKey,
@@ -521,35 +659,30 @@ async function createPortableReceiptFixture() {
   };
 }
 
-async function recordedFixture({ recordedReceiptHash } = {}) {
+async function recordedPortableFixture({ receipt = null } = {}) {
+  const portable = receipt ?? await createPortableReceiptFixture();
   const fixture = makeDrillFixture();
-  const receipt = await createPortableReceiptFixture();
+  fixture.live.value.receipt.hash = portable.receiptHash;
+  fixture.keyset.source = JSON.stringify(portable.keyset);
   const directory = await mkdtemp(join(tmpdir(), "proofweave-drill-recorded-"));
   const statePath = join(directory, "state.json");
   await beginFixture(fixture, statePath);
-  fixture.health.lastWakeAt = wakeAt;
-  await fixture.drill.record({
-    environment: fixture.environment,
-    statePath,
-    confirmation: githubIndependentDrillConfirmations.record,
-    evidence: evidenceFixture({ receiptHash: recordedReceiptHash ?? receipt.receiptHash }),
-  });
+  await recordFixture(fixture, statePath, portable.receiptHash);
   return {
     fixture,
-    receipt,
+    receipt: portable,
     statePath,
     cleanup: () => rm(directory, { recursive: true, force: true }),
   };
 }
 
-function finalizeSetup(setup) {
+function finalizeFixture(setup) {
   return setup.fixture.drill.finalize({
     environment: setup.fixture.environment,
     statePath: setup.statePath,
     confirmation: githubIndependentDrillConfirmations.finalize,
     correlationId: identity().correlationId,
     verificationBundle: setup.receipt.bundle,
-    issuerKeyset: setup.receipt.keyset,
   });
 }
 

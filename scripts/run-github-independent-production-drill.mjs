@@ -18,8 +18,15 @@ import {
   contributionReceiptHash,
 } from "../packages/protocol/contribution-receipt.mjs";
 import { sha256Canonical } from "../packages/protocol/canonical-json.mjs";
+import {
+  bindLiveEvidence,
+  fetchCurrentIssuerKeyset,
+  normalizeLiveEvidence,
+  probeTursoLiveClosureEvidence,
+  tursoDatabaseFingerprint,
+} from "./lib/github-independent-live-evidence.mjs";
 
-export const githubIndependentDrillSchemaVersion = "pw-github-independent-production-drill-v1";
+export const githubIndependentDrillSchemaVersion = "pw-github-independent-production-drill-v2";
 export const githubIndependentDrillConfirmations = Object.freeze({
   begin: "I-CONFIRM-GITHUB-RECOVERY-IS-DISABLED",
   record: "I-CONFIRM-REAL-PRODUCTION-EVIDENCE-WAS-OBSERVED",
@@ -55,6 +62,7 @@ export function createGithubIndependentProductionDrill(options = {}) {
     "fetcher",
     "manifestProvider",
     "databaseProbe",
+    "liveEvidenceProbe",
     "receiptVerifier",
     "now",
   ].some((key) => Object.hasOwn(options, key));
@@ -62,12 +70,14 @@ export function createGithubIndependentProductionDrill(options = {}) {
   const fetcher = options.fetcher ?? globalThis.fetch;
   const manifestProvider = options.manifestProvider ?? ((input) => createReleaseManifest(input));
   const databaseProbe = options.databaseProbe ?? probeTursoControlPlane;
+  const liveEvidenceProbe = options.liveEvidenceProbe ?? probeTursoLiveClosureEvidence;
   const receiptVerifier = options.receiptVerifier ?? verifyPortableReceipt;
   const now = options.now ?? (() => new Date());
   if (
     typeof fetcher !== "function" ||
     typeof manifestProvider !== "function" ||
     typeof databaseProbe !== "function" ||
+    typeof liveEvidenceProbe !== "function" ||
     typeof receiptVerifier !== "function" ||
     typeof now !== "function"
   ) {
@@ -84,9 +94,17 @@ export function createGithubIndependentProductionDrill(options = {}) {
     const manifest = requireStrictReleaseManifest(releaseResult);
     const database = await databaseProbe({ environment, manifest });
     validateDatabaseProbe(database, manifest);
+    const siteOrigin = requireHttpsOrigin(
+      environment.PROOFWEAVE_DRILL_SITE_ORIGIN,
+      "SITE_ORIGIN_INVALID",
+    ).origin;
+    const expectedRunnerConsumerId = requireProductionIdentifier(
+      environment.PROOFWEAVE_DRILL_EXPECTED_RUNNER_CONSUMER_ID,
+      "EXPECTED_RUNNER_CONSUMER_ID_MISSING",
+    );
     const downloads = await inspectPublishedDownloads({
       fetcher,
-      siteOrigin: environment.PROOFWEAVE_DRILL_SITE_ORIGIN,
+      siteOrigin,
       paths: parseDownloadPaths(environment.PROOFWEAVE_DRILL_PLUGIN_DOWNLOADS_JSON),
       root,
     });
@@ -95,7 +113,13 @@ export function createGithubIndependentProductionDrill(options = {}) {
       runnerOrigin: environment.PROOFWEAVE_RUNNER_URL,
       expectedRevision: manifest.source.gitSha,
     });
-    const release = releaseProjection({ manifest, database, downloads });
+    const release = releaseProjection({
+      manifest,
+      database,
+      downloads,
+      siteOrigin,
+      expectedRunnerConsumerId,
+    });
     return Object.freeze({
       schemaVersion: githubIndependentDrillSchemaVersion,
       phase: "preflight",
@@ -140,8 +164,8 @@ export function createGithubIndependentProductionDrill(options = {}) {
       artifactBundleHash: identity.artifactBundleHash,
       release: checked.release,
       releaseFingerprint: checked.releaseFingerprint,
-      baselineRunnerLastWakeAt: checked.runner.lastWakeAt,
       evidence: null,
+      liveEvidence: null,
       portableClosure: null,
     };
     await createStateFile(path, state);
@@ -161,17 +185,18 @@ export function createGithubIndependentProductionDrill(options = {}) {
     requireReleaseUnchanged(state, checked);
     const normalizedEvidence = normalizeObservedEvidence(evidence);
     bindObservedEvidence(state, normalizedEvidence);
-    requireFreshRunnerWake({
-      baseline: state.baselineRunnerLastWakeAt,
-      observed: checked.runner.lastWakeAt,
-      notBefore: state.createdAt,
-    });
+    const liveEvidence = normalizeLiveEvidence(await liveEvidenceProbe({
+      environment,
+      state,
+      evidence: normalizedEvidence,
+    }));
+    bindLiveEvidence({ state, evidence: normalizedEvidence, live: liveEvidence });
     const next = {
       ...state,
       phase: "evidence_recorded",
       updatedAt: utcTimestamp(now(), "DRILL_CLOCK_INVALID"),
-      observedRunnerLastWakeAt: checked.runner.lastWakeAt,
       evidence: normalizedEvidence,
+      liveEvidence,
     };
     await replaceStateFile(path, next);
     return publicStateResult(next, "evidence_recorded");
@@ -183,7 +208,6 @@ export function createGithubIndependentProductionDrill(options = {}) {
     confirmation,
     correlationId,
     verificationBundle,
-    issuerKeyset,
   } = {}) {
     requireConfirmation(confirmation, githubIndependentDrillConfirmations.finalize);
     const path = requireExternalStatePath(statePath, root);
@@ -193,14 +217,19 @@ export function createGithubIndependentProductionDrill(options = {}) {
     }
     const checked = await preflight({ environment });
     requireReleaseUnchanged(state, checked);
-    requireFreshRunnerWake({
-      baseline: state.baselineRunnerLastWakeAt,
-      observed: checked.runner.lastWakeAt,
-      notBefore: state.createdAt,
-    });
-    if (checked.runner.lastWakeAt !== state.observedRunnerLastWakeAt) {
-      throw new GithubIndependentDrillError("RUNNER_WAKE_DRIFT");
+    const liveEvidence = normalizeLiveEvidence(await liveEvidenceProbe({
+      environment,
+      state,
+      evidence: state.evidence,
+    }));
+    bindLiveEvidence({ state, evidence: state.evidence, live: liveEvidence });
+    if (JSON.stringify(liveEvidence) !== JSON.stringify(state.liveEvidence)) {
+      throw new GithubIndependentDrillError("LIVE_EVIDENCE_DRIFT");
     }
+    const issuerKeyset = await fetchCurrentIssuerKeyset({
+      fetcher,
+      siteOrigin: checked.release.siteOrigin,
+    });
     const portable = await receiptVerifier({ verificationBundle, issuerKeyset });
     const closure = await bindPortableReceipt(state, portable);
     const outcome = state.productionEligible && checked.productionEligible
@@ -222,7 +251,7 @@ export function createGithubIndependentProductionDrill(options = {}) {
 async function probeTursoControlPlane({ environment, manifest }) {
   const url = requiredSetting(environment, "TURSO_DATABASE_URL", "TURSO_DATABASE_URL_MISSING");
   const authToken = requiredSetting(environment, "TURSO_AUTH_TOKEN", "TURSO_AUTH_TOKEN_MISSING");
-  const fingerprint = createHash("sha256").update(url).digest("hex").slice(0, 16);
+  const fingerprint = tursoDatabaseFingerprint(url);
   if (
     fingerprint !== manifest.database.gatewayFingerprint ||
     fingerprint !== manifest.database.runnerFingerprint
@@ -483,9 +512,17 @@ async function inspectRunnerHealth({ fetcher, runnerOrigin, expectedRevision }) 
   });
 }
 
-function releaseProjection({ manifest, database, downloads }) {
+function releaseProjection({
+  manifest,
+  database,
+  downloads,
+  siteOrigin,
+  expectedRunnerConsumerId,
+}) {
   return Object.freeze({
     gitSha: manifest.source.gitSha,
+    siteOrigin,
+    expectedRunnerConsumerId,
     sitesVersion: manifest.sites.version,
     sitesCommitSha: manifest.sites.commitSha,
     gatewayRevision: manifest.gateway.revision,
@@ -562,7 +599,9 @@ function normalizeObservedEvidence(value) {
       reviewerPersonId: requireProductionIdentifier(review.reviewerPersonId, "REVIEW_EVIDENCE_INVALID"),
       reviewerAgentId: requireProductionIdentifier(review.reviewerAgentId, "REVIEW_EVIDENCE_INVALID"),
     });
-  });
+  }).sort((left, right) => (
+    left.verificationAttestationId.localeCompare(right.verificationAttestationId)
+  ));
   if (new Set(reviews.map((review) => review.verificationAttestationId)).size !== reviews.length) {
     throw new GithubIndependentDrillError("REVIEW_EVIDENCE_DUPLICATE");
   }
@@ -602,7 +641,7 @@ function bindObservedEvidence(state, evidence) {
 async function bindPortableReceipt(state, portable) {
   const { root, rootReceiptHash, bundleHash } = portable ?? {};
   const receipt = root?.receipt;
-  const evidence = state.evidence;
+  const evidence = state.liveEvidence;
   if (
     !receipt ||
     rootReceiptHash !== evidence.receipt.hash ||
@@ -611,10 +650,14 @@ async function bindPortableReceipt(state, portable) {
     receipt.attempt.agentId !== state.participant.agentId ||
     receipt.beneficiary.personId !== state.participant.personId ||
     receipt.beneficiary.agentId !== state.participant.agentId ||
+    receipt.attempt.id !== evidence.run.attemptId ||
     receipt.artifactBundleHash !== state.artifactBundleHash ||
     receipt.bundle.manifestHash !== state.artifactBundleHash ||
     receipt.run.id !== evidence.run.id ||
-    receipt.run.resultHash !== evidence.run.resultHash
+    receipt.run.requestHash !== evidence.run.requestHash ||
+    receipt.run.resultHash !== evidence.run.resultHash ||
+    utcTimestamp(receipt.issuedAt, "PORTABLE_RECEIPT_TIME_INVALID") !== evidence.receipt.issuedAt ||
+    Date.parse(receipt.issuedAt) < Date.parse(state.createdAt)
   ) {
     throw new GithubIndependentDrillError("PORTABLE_RECEIPT_BINDING_MISMATCH");
   }
@@ -665,16 +708,6 @@ async function bindPortableReceipt(state, portable) {
 function assertNoFixtureMarkers(values) {
   if (values.some((value) => forbiddenProductionMarker.test(value))) {
     throw new GithubIndependentDrillError("FIXTURE_RECEIPT_FORBIDDEN");
-  }
-}
-
-function requireFreshRunnerWake({ baseline, observed, notBefore }) {
-  if (
-    observed === null ||
-    observed === baseline ||
-    Date.parse(observed) < Date.parse(notBefore)
-  ) {
-    throw new GithubIndependentDrillError("FRESH_RUNNER_WAKE_NOT_OBSERVED");
   }
 }
 
@@ -859,6 +892,15 @@ function parseCliArguments(args) {
     if (Object.hasOwn(values, key)) throw new GithubIndependentDrillError("ARGUMENTS_INVALID");
     values[key] = value;
   }
+  const allowed = {
+    preflight: new Set(),
+    begin: new Set(["state", "confirm", "correlation-id", "person-id", "agent-id", "bundle-hash"]),
+    record: new Set(["state", "confirm", "evidence"]),
+    finalize: new Set(["state", "confirm", "correlation-id", "receipt-bundle"]),
+  }[phase];
+  if (Object.keys(values).some((key) => !allowed.has(key))) {
+    throw new GithubIndependentDrillError("ARGUMENTS_INVALID");
+  }
   return { phase, values };
 }
 
@@ -904,10 +946,6 @@ async function runCli() {
           parsed.values["receipt-bundle"],
           "PORTABLE_RECEIPT_FILE_INVALID",
         ),
-        issuerKeyset: await readJsonArgument(
-          parsed.values["issuer-keyset"],
-          "ISSUER_KEYSET_FILE_INVALID",
-        ),
       });
     }
     process.stdout.write(`${JSON.stringify(result)}\n`);
@@ -916,7 +954,7 @@ async function runCli() {
       schemaVersion: githubIndependentDrillSchemaVersion,
       phase,
       outcome: "failed",
-      errorCode: error instanceof GithubIndependentDrillError ? error.code : "DRILL_FAILED",
+      errorCode: typeof error?.code === "string" ? error.code : "DRILL_FAILED",
     })}\n`);
     process.exitCode = 1;
   }
