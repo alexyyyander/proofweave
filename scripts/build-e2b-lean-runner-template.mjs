@@ -1,4 +1,5 @@
 import { Template, waitForProcess } from "e2b";
+import { basename, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { assertPinnedRunnerImage } from "../services/lean-runner/cloudflare-container-policy.mjs";
 
@@ -14,15 +15,19 @@ const sourceOverlayEnabled = booleanSetting(
   "PROOFWEAVE_E2B_RUNNER_SOURCE_OVERLAY",
   false,
 );
+const repositoryRoot = fileURLToPath(new URL("..", import.meta.url));
+const repositoryParent = dirname(repositoryRoot);
+const repositoryDirectory = basename(repositoryRoot);
 
 // The source image is already the independently reviewed, digest-pinned
 // Proofweave Runner image. E2B receives no application secrets while building
 // this immutable template. The actual HTTP service starts only after the
 // runtime adapter has confirmed no egress and private inbound traffic.
 let template = Template({
-  // E2B stringifies this option internally before passing it to Node's tar
-  // process. Use an OS path rather than a file: URL so cwd remains valid.
-  fileContextPath: fileURLToPath(new URL("..", import.meta.url)),
+  // E2B applies a context-root .dockerignore to all uploads. Use the repository
+  // parent as context so the Docker image's intentionally restrictive ignore
+  // policy cannot hide these two explicitly selected source directories.
+  fileContextPath: repositoryParent,
 }).fromImage(imageReference, registryCredentials);
 
 if (sourceOverlayEnabled) {
@@ -31,12 +36,12 @@ if (sourceOverlayEnabled) {
   // digest-pinned image. Build-time credentials and local configuration files
   // are outside these two bounded source trees and are never copied.
   template = template
-    .copy("packages", "/opt/proofweave/", {
+    .copy(`${repositoryDirectory}/packages`, "/opt/proofweave/", {
       forceUpload: true,
       user: "root",
       resolveSymlinks: false,
     })
-    .copy("services/lean-runner", "/opt/proofweave/services/", {
+    .copy(`${repositoryDirectory}/services/lean-runner`, "/opt/proofweave/services/", {
       forceUpload: true,
       user: "root",
       resolveSymlinks: false,
@@ -51,16 +56,21 @@ if (sourceOverlayEnabled) {
 
 template = template.setStartCmd("tail -f /dev/null", waitForProcess("tail"));
 
-const built = await Template.build(template, templateName, {
-  apiKey,
-  cpuCount,
-  memoryMB,
-  onBuildLogs(entry) {
-    const level = typeof entry?.level === "string" ? entry.level : "info";
-    const message = typeof entry?.message === "string" ? entry.message : "E2B template build event";
-    process.stderr.write(`[e2b:${level}] ${message}\n`);
-  },
-});
+let built;
+try {
+  built = await Template.build(template, templateName, {
+    apiKey,
+    cpuCount,
+    memoryMB,
+    onBuildLogs(entry) {
+      const level = typeof entry?.level === "string" ? entry.level : "info";
+      const message = typeof entry?.message === "string" ? entry.message : "E2B template build event";
+      process.stderr.write(`[e2b:${level}] ${message}\n`);
+    },
+  });
+} catch (error) {
+  throw new Error(`E2B template build failed: ${safeBuildError(error)}`);
+}
 const templateTag = templateName.includes(":") ? templateName.slice(templateName.indexOf(":") + 1) : null;
 
 process.stdout.write(`${JSON.stringify({
@@ -120,4 +130,18 @@ function booleanSetting(value, label, fallback) {
   if (value === "true") return true;
   if (value === "false") return false;
   throw new Error(`${label} must be either true or false.`);
+}
+
+function safeBuildError(error) {
+  const name = error instanceof Error && /^[A-Za-z][A-Za-z0-9]{0,79}$/.test(error.name)
+    ? error.name
+    : "UnknownError";
+  const rawMessage = error instanceof Error && typeof error.message === "string"
+    ? error.message
+    : "";
+  const message = rawMessage
+    .replace(/https?:\/\/\S+/giu, "[redacted-url]")
+    .replace(/[\0\r\n]+/gu, " ")
+    .slice(0, 500);
+  return message ? `${name}: ${message}` : name;
 }
