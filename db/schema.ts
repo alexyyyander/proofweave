@@ -1,5 +1,14 @@
 import { sql } from "drizzle-orm";
-import { blob, index, integer, primaryKey, sqliteTable, text, uniqueIndex } from "drizzle-orm/sqlite-core";
+import {
+  blob,
+  check,
+  index,
+  integer,
+  primaryKey,
+  sqliteTable,
+  text,
+  uniqueIndex,
+} from "drizzle-orm/sqlite-core";
 
 const createdAt = text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`);
 
@@ -1203,12 +1212,23 @@ export const runnerQueueEvents = sqliteTable(
     leaseId: text("lease_id"),
     deliveryAttempt: integer("delivery_attempt").notNull(),
     errorCode: text("error_code"),
+    // Migration 0043 deliberately leaves pre-cutover rows NULL. Every
+    // post-cutover writer is fenced by the database trigger and must append a
+    // positive, per-Run sequence.
+    eventSequence: integer("event_sequence"),
     occurredAt: text("occurred_at").notNull(),
     createdAt,
   },
   (table) => [
     uniqueIndex("runner_queue_events_deduplication_idx").on(table.deduplicationKey),
+    uniqueIndex("runner_queue_events_run_sequence_idx")
+      .on(table.runId, table.eventSequence)
+      .where(sql`${table.eventSequence} IS NOT NULL`),
     index("runner_queue_events_run_time_idx").on(table.runId, table.occurredAt),
+    check(
+      "runner_queue_events_event_sequence_positive",
+      sql`${table.eventSequence} IS NULL OR ${table.eventSequence} > 0`,
+    ),
   ],
 );
 

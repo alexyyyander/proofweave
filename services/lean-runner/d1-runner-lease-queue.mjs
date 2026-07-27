@@ -45,11 +45,26 @@ export class D1RunnerLeaseQueue {
     if (canonicalUtf8(normalized).byteLength >= durableRunnerQueueMaxMessageBytes) {
       throw new RunnerQueueProtocolError("Signed RunnerQueue message exceeds the durable queue message limit.");
     }
+    const [existingRun, existingIdempotency] = await Promise.all([
+      this.rowByRunId(normalized.runId),
+      this.rowByIdempotency(normalized.request.attemptId, normalized.request.idempotencyKey),
+    ]);
+    const existing = existingRun ?? existingIdempotency;
+    if (existing) {
+      assertSameEnqueuedMessage({ existingRun, existingIdempotency, canonicalMessage });
+      await this.ensureEnqueuedEvent(normalized);
+      const record = await hydrateRecord(existing);
+      return Object.freeze({
+        message: record.message,
+        created: false,
+        deliveryState: record.deliveryState,
+      });
+    }
     const eventId = this.newIdentifier("queue-event");
     const eventDeduplicationKey = `${normalized.runId}:enqueued`;
     const statements = [
       this.database.prepare(
-        `INSERT OR IGNORE INTO runner_queue_messages (
+        `INSERT INTO runner_queue_messages (
           run_id, attempt_id, idempotency_key, request_hash, canonical_message,
           delivery_state, available_at, delivery_attempts, enqueued_at, updated_at
         ) VALUES (?, ?, ?, ?, ?, 'queued', ?, 0, ?, ?)`,
@@ -64,7 +79,7 @@ export class D1RunnerLeaseQueue {
         enqueuedAt,
       ),
       this.database.prepare(
-        `INSERT OR IGNORE INTO runner_queue_events (
+        `INSERT INTO runner_queue_events (
           id, deduplication_key, run_id, event_type, delivery_state,
           lease_id, delivery_attempt, error_code, occurred_at, event_sequence
         )
@@ -91,26 +106,35 @@ export class D1RunnerLeaseQueue {
         canonicalMessage,
       ),
     ];
-    const results = await this.database.batch(statements);
-    const created = changes(results[0]) === 1;
-    const [existingRun, existingIdempotency] = await Promise.all([
-      this.rowByRunId(normalized.runId),
-      this.rowByIdempotency(normalized.request.attemptId, normalized.request.idempotencyKey),
-    ]);
-    const existing = existingRun ?? existingIdempotency;
-    if (!existing) {
-      throw new D1RunnerLeaseQueueConfigurationError("Durable Runner queue did not persist or recover the enqueued message.");
+    try {
+      const results = await this.database.batch(statements);
+      requireAtomicMutation(results, "enqueue");
+    } catch (cause) {
+      const [racedRun, racedIdempotency] = await Promise.all([
+        this.rowByRunId(normalized.runId),
+        this.rowByIdempotency(normalized.request.attemptId, normalized.request.idempotencyKey),
+      ]);
+      const raced = racedRun ?? racedIdempotency;
+      if (!raced) {
+        throw new D1RunnerLeaseQueueConfigurationError("Durable Runner queue did not atomically persist the enqueued message.", { cause });
+      }
+      assertSameEnqueuedMessage({
+        existingRun: racedRun,
+        existingIdempotency: racedIdempotency,
+        canonicalMessage,
+      });
+      await this.ensureEnqueuedEvent(normalized);
+      const record = await hydrateRecord(raced);
+      return Object.freeze({
+        message: record.message,
+        created: false,
+        deliveryState: record.deliveryState,
+      });
     }
-    if (
-      (existingRun && existingRun.canonical_message !== canonicalMessage) ||
-      (existingIdempotency && existingIdempotency.canonical_message !== canonicalMessage)
-    ) {
-      throw new RunnerQueueProtocolError("A durable RunnerQueue identity cannot be reused for a different request.");
-    }
-    const record = await hydrateRecord(existing);
+    const record = await hydrateRecord(await this.rowByRunId(normalized.runId));
     return Object.freeze({
       message: record.message,
-      created,
+      created: true,
       deliveryState: record.deliveryState,
     });
   }
@@ -177,6 +201,7 @@ export class D1RunnerLeaseQueue {
         }),
       ]);
       if (changes(results[0]) !== 1) continue;
+      requireAtomicMutation(results, "claim");
       const row = await this.rowByRunId(candidate.run_id);
       const record = await hydrateRecord(row);
       return Object.freeze({ message: record.message, lease: record.lease });
@@ -223,7 +248,7 @@ export class D1RunnerLeaseQueue {
         requiredLeaseId: leaseId,
       }),
     ]);
-    requireOneActiveLease(results[0]);
+    requireAtomicActiveLease(results);
     return (await hydrateRecord(await this.rowByRunId(runId))).lease;
   }
 
@@ -281,7 +306,7 @@ export class D1RunnerLeaseQueue {
         requiredLeaseId: leaseId,
       }),
     ]);
-    requireOneActiveLease(results[0]);
+    requireAtomicActiveLease(results);
     return (await hydrateRecord(await this.rowByRunId(runId))).message;
   }
 
@@ -345,6 +370,9 @@ export class D1RunnerLeaseQueue {
       }),
     ]);
     const record = await hydrateRecord(await this.rowByRunId(runId));
+    if (changes(results[0]) === 1) {
+      requireAtomicMutation(results, "redrive");
+    }
     return Object.freeze({
       deliveryState: record.deliveryState,
       message: record.message,
@@ -380,6 +408,7 @@ export class D1RunnerLeaseQueue {
     if (!row) return Object.freeze({ deliveryState: "not_found" });
     const record = await hydrateRecord(row);
     if (changes(results[0]) === 1) {
+      requireAtomicMutation(results, "cancellation");
       return Object.freeze({ deliveryState: "cancelled", message: record.message });
     }
     return Object.freeze({ deliveryState: record.deliveryState, message: record.message });
@@ -394,7 +423,7 @@ export class D1RunnerLeaseQueue {
   async listEvents(runId) {
     requireIdentifier(runId, "runId");
     const rows = await this.database.prepare(
-      `SELECT id, event_type, delivery_state, lease_id, delivery_attempt, error_code, occurred_at
+      `SELECT id, event_type, delivery_state, lease_id, delivery_attempt, error_code, occurred_at, event_sequence
        FROM runner_queue_events
        WHERE run_id = ?
        ORDER BY
@@ -412,6 +441,7 @@ export class D1RunnerLeaseQueue {
       deliveryAttempt: row.delivery_attempt,
       errorCode: row.error_code,
       occurredAt: row.occurred_at,
+      eventSequence: nullableEventSequence(row.event_sequence),
     })));
   }
 
@@ -466,7 +496,7 @@ export class D1RunnerLeaseQueue {
         requiredLeaseId: leaseId,
       }),
     ]);
-    requireOneActiveLease(results[0]);
+    requireAtomicActiveLease(results);
     return (await hydrateRecord(await this.rowByRunId(runId))).message;
   }
 
@@ -483,7 +513,7 @@ export class D1RunnerLeaseQueue {
     requiredLeaseId,
   }) {
     return this.database.prepare(
-      `INSERT OR IGNORE INTO runner_queue_events (
+      `INSERT INTO runner_queue_events (
         id, deduplication_key, run_id, event_type, delivery_state,
         lease_id, delivery_attempt, error_code, occurred_at, event_sequence
       )
@@ -528,6 +558,44 @@ export class D1RunnerLeaseQueue {
     return this.database.prepare(
       "SELECT * FROM runner_queue_messages WHERE attempt_id = ? AND idempotency_key = ?",
     ).bind(attemptId, idempotencyKey).first();
+  }
+
+  async ensureEnqueuedEvent(message) {
+    const deduplicationKey = `${message.runId}:enqueued`;
+    const existing = await this.database.prepare(
+      "SELECT * FROM runner_queue_events WHERE deduplication_key = ?",
+    ).bind(deduplicationKey).first();
+    if (existing) {
+      assertSameEnqueuedEvent(existing, message);
+      return;
+    }
+    const result = await this.database.prepare(
+      `INSERT INTO runner_queue_events (
+        id, deduplication_key, run_id, event_type, delivery_state,
+        lease_id, delivery_attempt, error_code, occurred_at, event_sequence
+      )
+      SELECT ?, ?, run_id, 'enqueued', 'queued', NULL, 0, NULL, ?, 1
+      FROM runner_queue_messages
+      WHERE run_id = ? AND canonical_message = ?
+        AND delivery_state = 'queued'
+        AND delivery_attempts = 0
+        AND lease_id IS NULL
+        AND NOT EXISTS (
+          SELECT 1 FROM runner_queue_events
+          WHERE runner_queue_events.run_id = runner_queue_messages.run_id
+        )`,
+    ).bind(
+      this.newIdentifier("queue-event"),
+      deduplicationKey,
+      canonicalInstant(message.enqueuedAt),
+      message.runId,
+      canonicalJson(message),
+    ).run();
+    if (changes(result) !== 1) {
+      throw new RunnerQueueProtocolError(
+        "Durable RunnerQueue can repair a missing enqueue event only before any delivery or later immutable event.",
+      );
+    }
   }
 
   newIdentifier(prefix) {
@@ -580,9 +648,42 @@ async function hydrateRecord(row) {
   });
 }
 
-function requireOneActiveLease(result) {
-  if (changes(result) !== 1) {
+function requireAtomicActiveLease(results) {
+  if (changes(results[0]) !== 1) {
     throw new RunnerQueueProtocolError("RunnerQueue operation requires an unexpired active lease for this run.");
+  }
+  requireAtomicMutation(results, "lease transition");
+}
+
+function requireAtomicMutation(results, operation) {
+  if (!Array.isArray(results) || results.length < 2 || changes(results[0]) !== 1 || changes(results[1]) !== 1) {
+    throw new D1RunnerLeaseQueueConfigurationError(
+      `Durable RunnerQueue ${operation} did not persist its projection and immutable event together.`,
+    );
+  }
+}
+
+function assertSameEnqueuedMessage({ existingRun, existingIdempotency, canonicalMessage }) {
+  if (
+    (existingRun && existingRun.canonical_message !== canonicalMessage) ||
+    (existingIdempotency && existingIdempotency.canonical_message !== canonicalMessage)
+  ) {
+    throw new RunnerQueueProtocolError("A durable RunnerQueue identity cannot be reused for a different request.");
+  }
+}
+
+function assertSameEnqueuedEvent(row, message) {
+  if (
+    row.run_id !== message.runId ||
+    row.event_type !== "enqueued" ||
+    row.delivery_state !== "queued" ||
+    row.lease_id !== null ||
+    integer(row.delivery_attempt, "event delivery_attempt") !== 0 ||
+    row.error_code !== null ||
+    row.occurred_at !== canonicalInstant(message.enqueuedAt) ||
+    (row.event_sequence !== null && nullableEventSequence(row.event_sequence) !== 1)
+  ) {
+    throw new RunnerQueueProtocolError("A durable RunnerQueue enqueue event contains different immutable evidence.");
   }
 }
 
@@ -596,6 +697,15 @@ function integer(value, label) {
     throw new RunnerQueueProtocolError(`Durable RunnerQueue ${label} is invalid.`);
   }
   return value;
+}
+
+function nullableEventSequence(value) {
+  if (value === null || value === undefined) return null;
+  const sequence = integer(value, "event_sequence");
+  if (sequence < 1) {
+    throw new RunnerQueueProtocolError("Durable RunnerQueue event_sequence is invalid.");
+  }
+  return sequence;
 }
 
 function requireIdentifier(value, label) {

@@ -5,7 +5,7 @@ import { Miniflare } from "miniflare";
 import { D1RunStore } from "../services/lean-runner/d1-run-store.mjs";
 import { D1R2RunnerOutputStore } from "../services/lean-runner/d1-r2-runner-output-store.mjs";
 import { runnerResultSigningPayload } from "../packages/protocol/lean-runner.mjs";
-import { canonicalJson } from "../packages/protocol/canonical-json.mjs";
+import { canonicalJson, sha256Canonical } from "../packages/protocol/canonical-json.mjs";
 import { runnerKeyFingerprint } from "../packages/protocol/runner-key-registry.mjs";
 
 const migrationsRoot = new URL("../drizzle/", import.meta.url);
@@ -133,31 +133,528 @@ test("D1 Run store persists an idempotent lifecycle with immutable evidence", as
   );
 });
 
-function fixtureRun() {
+test("D1 Run store atomically rolls back a projection when its immutable event conflicts", async () => {
+  const store = new D1RunStore(database);
+  const input = fixtureRun({ id: "run:atomic-conflict", idempotencyKey: "run-atomic-conflict" });
+  await store.queue(input);
+  await database.prepare(
+    `INSERT INTO run_events (
+      id, run_id, sequence, event_type, state, payload_hash, canonical_payload, occurred_at
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+  ).bind(
+    `run-event:${input.id}:workspace-preparing`,
+    input.id,
+    2,
+    "workspace_preparation_started",
+    "preparing",
+    sha("f"),
+    "{}",
+    "2026-07-13T00:01:00Z",
+  ).run();
+
+  await assert.rejects(
+    store.prepare(input.id, "2026-07-13T00:01:00Z"),
+    /different canonical evidence|state changed/,
+  );
+  assert.equal((await store.find(input.id)).state, "queued");
+});
+
+test("D1 Run store repairs a canonical event omitted by an older projection writer", async () => {
+  const store = new D1RunStore(database);
+  const input = fixtureRun({ id: "run:legacy-repair", idempotencyKey: "run-legacy-repair" });
+  const preparingAt = "2026-07-13T00:02:00Z";
+  await store.queue(input);
+  await database.prepare(
+    `UPDATE runs
+     SET state = 'preparing', preparing_at = ?, updated_at = ?
+     WHERE id = ? AND state = 'queued'`,
+  ).bind(preparingAt, preparingAt, input.id).run();
+
+  const repaired = await store.prepare(input.id, preparingAt);
+  assert.equal(repaired.state, "preparing");
+  assert.deepEqual((await store.listEvents(input.id)).map((event) => event.eventType), [
+    "run_queued",
+    "workspace_preparation_started",
+  ]);
+  assert.equal((await store.listEvents(input.id))[1].sequence, 2);
+});
+
+test("D1 Run store repairs a missing canonical queue event on idempotent retry", async () => {
+  const store = new D1RunStore(database);
+  const input = fixtureRun({ id: "run:legacy-queue-repair", idempotencyKey: "run-legacy-queue-repair" });
+  await database.prepare(
+    `INSERT INTO runs (
+      id, attempt_id, artifact_bundle_hash, request_hash, idempotency_key,
+      state, queued_at, updated_at
+    ) VALUES (?, ?, ?, ?, ?, 'queued', ?, ?)`,
+  ).bind(
+    input.id,
+    input.attemptId,
+    input.artifactBundleHash,
+    input.requestHash,
+    input.idempotencyKey,
+    input.queuedAt,
+    input.queuedAt,
+  ).run();
+
+  const retried = await store.queue(input);
+  assert.equal(retried.created, false);
+  assert.deepEqual((await store.listEvents(input.id)).map((event) => [event.eventType, event.sequence]), [
+    ["run_queued", 1],
+  ]);
+});
+
+test("D1 Run store refuses late run_queued repair for preparing, running, and terminal projections", async () => {
+  const store = new D1RunStore(database);
+  const cases = [
+    {
+      suffix: "preparing",
+      state: "preparing",
+      preparingAt: "2026-07-13T00:04:01Z",
+      startedAt: null,
+      finishedAt: null,
+      resultHash: null,
+    },
+    {
+      suffix: "running",
+      state: "running",
+      preparingAt: "2026-07-13T00:05:01Z",
+      startedAt: "2026-07-13T00:05:02Z",
+      finishedAt: null,
+      resultHash: null,
+    },
+    {
+      suffix: "terminal",
+      state: "succeeded",
+      preparingAt: "2026-07-13T00:06:01Z",
+      startedAt: "2026-07-13T00:06:02Z",
+      finishedAt: "2026-07-13T00:06:03Z",
+      resultHash: sha("9"),
+    },
+  ];
+  for (const current of cases) {
+    const input = fixtureRun({
+      id: `run:late-queue-${current.suffix}`,
+      idempotencyKey: `run-late-queue-${current.suffix}`,
+    });
+    await database.prepare(
+      `INSERT INTO runs (
+        id, attempt_id, artifact_bundle_hash, request_hash, idempotency_key,
+        state, queued_at, preparing_at, started_at, finished_at,
+        runner_result_hash, updated_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    ).bind(
+      input.id,
+      input.attemptId,
+      input.artifactBundleHash,
+      input.requestHash,
+      input.idempotencyKey,
+      current.state,
+      input.queuedAt,
+      current.preparingAt,
+      current.startedAt,
+      current.finishedAt,
+      current.resultHash,
+      current.finishedAt ?? current.startedAt ?? current.preparingAt,
+    ).run();
+
+    await assert.rejects(
+      store.queue(input),
+      /only for a pristine queued Run with no later history/,
+    );
+    assert.equal((await store.listEvents(input.id)).length, 0);
+  }
+});
+
+test("D1 Run store converges concurrent canonical retries to one immutable event", async () => {
+  const store = new D1RunStore(database);
+  const input = fixtureRun({ id: "run:concurrent-retry", idempotencyKey: "run-concurrent-retry" });
+  const preparingAt = "2026-07-13T00:03:00Z";
+  await store.queue(input);
+  const transitions = await Promise.all([
+    store.prepare(input.id, preparingAt),
+    store.prepare(input.id, preparingAt),
+  ]);
+
+  assert.equal(transitions.every((run) => run.state === "preparing"), true);
+  assert.deepEqual((await store.listEvents(input.id)).map((event) => event.eventType), [
+    "run_queued",
+    "workspace_preparation_started",
+  ]);
+});
+
+test("D1 Run store repairs canonical result evidence from active and terminal legacy projections", async () => {
+  const store = new D1RunStore(database);
+  for (const [suffix, terminal] of [["active", false], ["terminal", true]]) {
+    const runId = `run:result-repair-${suffix}`;
+    const input = fixtureRun({ id: runId, idempotencyKey: `run-result-repair-${suffix}` });
+    await store.queue(input);
+    await store.prepare(runId, "2026-07-13T00:10:01Z");
+    await store.start(runId, "2026-07-13T00:10:02Z");
+    const result = await fixtureResult({
+      runId,
+      startedAt: "2026-07-13T00:10:02Z",
+      finishedAt: "2026-07-13T00:10:03Z",
+      status: "succeeded",
+    });
+    await persistOutput(store, runId, result);
+    const resultHash = await sha256Canonical(result);
+    const receivedAt = "2026-07-13T00:10:04Z";
+    await database.prepare(
+      "INSERT INTO run_results (run_id, result_hash, canonical_result, received_at) VALUES (?, ?, ?, ?)",
+    ).bind(runId, resultHash, canonicalJson(result), receivedAt).run();
+    if (terminal) {
+      await database.prepare(
+        `UPDATE runs
+         SET state = 'succeeded', finished_at = ?, runner_result_hash = ?, updated_at = ?
+         WHERE id = ? AND state = 'running'`,
+      ).bind(result.finishedAt, resultHash, receivedAt, runId).run();
+    }
+
+    const repaired = await store.recordResult(runId, result, "2026-07-13T00:10:09Z");
+    assert.equal(repaired.runnerResultHash, resultHash);
+    assert.equal((await store.recordResult(runId, result, "2026-07-13T00:10:10Z")).runnerResultHash, resultHash);
+    assert.equal((await database
+      .prepare("SELECT updated_at FROM runs WHERE id = ?")
+      .bind(runId)
+      .first())?.updated_at, receivedAt);
+    assert.deepEqual(
+      (await store.listEvents(runId)).map((event) => [event.sequence, event.eventType, event.occurredAt]),
+      [
+        [1, "run_queued", "2026-07-13T00:00:00Z"],
+        [2, "workspace_preparation_started", "2026-07-13T00:10:01Z"],
+        [3, "run_started", "2026-07-13T00:10:02Z"],
+        [4, "runner_result_recorded", receivedAt],
+      ],
+    );
+    assert.equal(
+      (await store.listEvents(runId)).filter((event) => event.eventType === "runner_result_recorded").length,
+      1,
+    );
+  }
+});
+
+test("D1 Run store rejects unsafe immutable timing before legacy result repair", async () => {
+  const store = new D1RunStore(database);
+
+  const earlyRunId = "run:result-repair-early-received";
+  await store.queue(fixtureRun({ id: earlyRunId, idempotencyKey: "run-result-repair-early-received" }));
+  await store.prepare(earlyRunId, "2026-07-13T00:14:01Z");
+  await store.start(earlyRunId, "2026-07-13T00:14:02Z");
+  const earlyResult = await fixtureResult({
+    runId: earlyRunId,
+    startedAt: "2026-07-13T00:14:02Z",
+    finishedAt: "2026-07-13T00:14:04Z",
+    status: "succeeded",
+  });
+  await persistOutput(store, earlyRunId, earlyResult);
+  const earlyResultHash = await sha256Canonical(earlyResult);
+  await database.prepare(
+    "INSERT INTO run_results (run_id, result_hash, canonical_result, received_at) VALUES (?, ?, ?, ?)",
+  ).bind(
+    earlyRunId,
+    earlyResultHash,
+    canonicalJson(earlyResult),
+    "2026-07-13T00:14:03Z",
+  ).run();
+  const earlyProjectionBefore = await database.prepare("SELECT * FROM runs WHERE id = ?").bind(earlyRunId).first();
+  const earlyEventsBefore = await store.listEvents(earlyRunId);
+
+  await assert.rejects(
+    store.recordResult(earlyRunId, earlyResult, "2026-07-13T00:14:06Z"),
+    /Stored Runner result receivedAt precedes its signed finish time/,
+  );
+  assert.deepEqual(
+    await database.prepare("SELECT * FROM runs WHERE id = ?").bind(earlyRunId).first(),
+    earlyProjectionBefore,
+  );
+  assert.deepEqual(await store.listEvents(earlyRunId), earlyEventsBefore);
+
+  const invalidRunId = "run:result-repair-invalid-received";
+  await store.queue(fixtureRun({ id: invalidRunId, idempotencyKey: "run-result-repair-invalid-received" }));
+  await store.prepare(invalidRunId, "2026-07-13T00:15:01Z");
+  await store.start(invalidRunId, "2026-07-13T00:15:02Z");
+  const invalidResult = await fixtureResult({
+    runId: invalidRunId,
+    startedAt: "2026-07-13T00:15:02Z",
+    finishedAt: "2026-07-13T00:15:03Z",
+    status: "succeeded",
+  });
+  await persistOutput(store, invalidRunId, invalidResult);
+  const invalidResultHash = await sha256Canonical(invalidResult);
+  const invalidReceivedAt = "not-an-instant";
+  await database.prepare(
+    "INSERT INTO run_results (run_id, result_hash, canonical_result, received_at) VALUES (?, ?, ?, ?)",
+  ).bind(invalidRunId, invalidResultHash, canonicalJson(invalidResult), invalidReceivedAt).run();
+  await database.prepare(
+    `UPDATE runs
+     SET state = 'succeeded', finished_at = ?, runner_result_hash = ?, updated_at = ?
+     WHERE id = ? AND state = 'running'`,
+  ).bind(invalidResult.finishedAt, invalidResultHash, invalidReceivedAt, invalidRunId).run();
+  const invalidProjectionBefore = await database.prepare("SELECT * FROM runs WHERE id = ?").bind(invalidRunId).first();
+  const invalidEventsBefore = await store.listEvents(invalidRunId);
+
+  await assert.rejects(
+    store.recordResult(invalidRunId, invalidResult, "2026-07-13T00:15:06Z"),
+    /Stored Runner result receivedAt is not a valid ISO-8601 UTC instant/,
+  );
+  assert.deepEqual(
+    await database.prepare("SELECT * FROM runs WHERE id = ?").bind(invalidRunId).first(),
+    invalidProjectionBefore,
+  );
+  assert.deepEqual(await store.listEvents(invalidRunId), invalidEventsBefore);
+});
+
+test("D1 Run store refuses legacy result repair after a later cancellation transition", async () => {
+  const store = new D1RunStore(database);
+  const runId = "run:result-repair-after-cancellation";
+  await store.queue(fixtureRun({ id: runId, idempotencyKey: "run-result-repair-after-cancellation" }));
+  await store.prepare(runId, "2026-07-13T00:13:01Z");
+  await store.start(runId, "2026-07-13T00:13:02Z");
+  const result = await fixtureResult({
+    runId,
+    startedAt: "2026-07-13T00:13:02Z",
+    finishedAt: "2026-07-13T00:13:03Z",
+    status: "succeeded",
+  });
+  await persistOutput(store, runId, result);
+  const resultHash = await sha256Canonical(result);
+  const receivedAt = "2026-07-13T00:13:04Z";
+  await database.prepare(
+    "INSERT INTO run_results (run_id, result_hash, canonical_result, received_at) VALUES (?, ?, ?, ?)",
+  ).bind(runId, resultHash, canonicalJson(result), receivedAt).run();
+
+  await store.requestCancellation(runId, "2026-07-13T00:13:05Z");
+  await assert.rejects(
+    store.recordResult(runId, result, "2026-07-13T00:13:06Z"),
+    /projection transition later than its immutable receivedAt/,
+  );
+
+  const projection = await database
+    .prepare("SELECT state, runner_result_hash, updated_at FROM runs WHERE id = ?")
+    .bind(runId)
+    .first();
+  assert.equal(projection?.state, "cancel_requested");
+  assert.equal(projection?.runner_result_hash, null);
+  assert.equal(projection?.updated_at, "2026-07-13T00:13:05Z");
+  assert.deepEqual(
+    (await store.listEvents(runId)).map((event) => [event.sequence, event.eventType, event.occurredAt]),
+    [
+      [1, "run_queued", "2026-07-13T00:00:00Z"],
+      [2, "workspace_preparation_started", "2026-07-13T00:13:01Z"],
+      [3, "run_started", "2026-07-13T00:13:02Z"],
+      [4, "cancellation_requested", "2026-07-13T00:13:05Z"],
+    ],
+  );
+});
+
+test("D1 Run store rolls back result bytes when result event or projection ownership conflicts", async () => {
+  const store = new D1RunStore(database);
+  const conflictId = "run:result-event-conflict";
+  await store.queue(fixtureRun({ id: conflictId, idempotencyKey: "run-result-event-conflict" }));
+  await store.prepare(conflictId, "2026-07-13T00:11:01Z");
+  await store.start(conflictId, "2026-07-13T00:11:02Z");
+  const conflictResult = await fixtureResult({
+    runId: conflictId,
+    startedAt: "2026-07-13T00:11:02Z",
+    finishedAt: "2026-07-13T00:11:03Z",
+    status: "succeeded",
+  });
+  await persistOutput(store, conflictId, conflictResult);
+  await database.prepare(
+    `INSERT INTO run_events (
+      id, run_id, sequence, event_type, state, payload_hash, canonical_payload, occurred_at
+    ) VALUES (?, ?, 4, 'runner_result_recorded', 'succeeded', ?, '{}', ?)`,
+  ).bind(
+    `run-event:${conflictId}:runner-result`,
+    conflictId,
+    sha("e"),
+    "2026-07-13T00:11:04Z",
+  ).run();
+  await assert.rejects(
+    store.recordResult(conflictId, conflictResult, "2026-07-13T00:11:04Z"),
+    /state changed|different canonical evidence/,
+  );
+  assert.equal((await store.find(conflictId)).state, "running");
+  assert.equal(
+    await database.prepare("SELECT result_hash FROM run_results WHERE run_id = ?").bind(conflictId).first(),
+    null,
+  );
+
+  const raceId = "run:result-cancel-race";
+  await store.queue(fixtureRun({ id: raceId, idempotencyKey: "run-result-cancel-race" }));
+  await store.prepare(raceId, "2026-07-13T00:12:01Z");
+  await store.start(raceId, "2026-07-13T00:12:02Z");
+  const raceResult = await fixtureResult({
+    runId: raceId,
+    startedAt: "2026-07-13T00:12:02Z",
+    finishedAt: "2026-07-13T00:12:03Z",
+    status: "succeeded",
+  });
+  await persistOutput(store, raceId, raceResult);
+  let cancellationInjected = false;
+  const racingStore = new D1RunStore({
+    prepare: (...args) => database.prepare(...args),
+    batch: async (statements) => {
+      if (!cancellationInjected) {
+        cancellationInjected = true;
+        await store.requestCancellation(raceId, "2026-07-13T00:12:03Z");
+      }
+      return database.batch(statements);
+    },
+  });
+  await assert.rejects(
+    racingStore.recordResult(raceId, raceResult, "2026-07-13T00:12:04Z"),
+    /state changed/,
+  );
+  const projection = await store.find(raceId);
+  const storedResult = await database
+    .prepare("SELECT result_hash FROM run_results WHERE run_id = ?")
+    .bind(raceId)
+    .first();
+  const resultEvents = (await store.listEvents(raceId))
+    .filter((event) => event.eventType === "runner_result_recorded");
+  assert.equal(cancellationInjected, true);
+  assert.equal(projection.state, "cancel_requested");
+  assert.equal(projection.runnerResultHash, null);
+  assert.equal(storedResult, null);
+  assert.equal(resultEvents.length, 0);
+});
+
+test("D1 Run store repairs cancellation events from queued, preparing, and running projections", async () => {
+  const store = new D1RunStore(database);
+  for (const [suffix, priorState, terminalState] of [
+    ["queued", "queued", "cancelled"],
+    ["preparing", "preparing", "cancelled"],
+    ["running", "running", "cancel_requested"],
+  ]) {
+    const runId = `run:cancel-repair-${suffix}`;
+    const input = fixtureRun({ id: runId, idempotencyKey: `run-cancel-repair-${suffix}` });
+    const requestedAt = `2026-07-13T00:2${suffix === "queued" ? 0 : suffix === "preparing" ? 1 : 2}:03Z`;
+    await store.queue(input);
+    if (priorState !== "queued") await store.prepare(runId, "2026-07-13T00:20:01Z");
+    if (priorState === "running") await store.start(runId, "2026-07-13T00:20:02Z");
+    await database.prepare(
+      `UPDATE runs
+       SET state = ?, cancel_requested_at = ?, finished_at = ?, updated_at = ?
+       WHERE id = ? AND state = ?`,
+    ).bind(
+      terminalState,
+      requestedAt,
+      terminalState === "cancelled" ? requestedAt : null,
+      requestedAt,
+      runId,
+      priorState,
+    ).run();
+
+    const repaired = await store.requestCancellation(runId, "2026-07-13T00:29:59Z");
+    assert.equal(repaired.state, terminalState);
+    assert.equal(repaired.cancelRequestedAt, requestedAt);
+    assert.equal(
+      (await store.listEvents(runId)).filter((event) =>
+        ["run_cancelled", "cancellation_requested"].includes(event.eventType)).length,
+      1,
+    );
+  }
+});
+
+test("D1 Run store repairs a missing start event and rejects a conflicting one", async () => {
+  const store = new D1RunStore(database);
+  const repairId = "run:start-repair";
+  const startedAt = "2026-07-13T00:30:02Z";
+  await store.queue(fixtureRun({ id: repairId, idempotencyKey: "run-start-repair" }));
+  await store.prepare(repairId, "2026-07-13T00:30:01Z");
+  await database.prepare(
+    "UPDATE runs SET state = 'running', started_at = ?, updated_at = ? WHERE id = ? AND state = 'preparing'",
+  ).bind(startedAt, startedAt, repairId).run();
+  assert.equal((await store.start(repairId, startedAt)).state, "running");
+  assert.equal((await store.listEvents(repairId)).at(-1).eventType, "run_started");
+
+  const conflictId = "run:start-conflict";
+  await store.queue(fixtureRun({ id: conflictId, idempotencyKey: "run-start-conflict" }));
+  await store.prepare(conflictId, "2026-07-13T00:31:01Z");
+  await database.prepare(
+    `INSERT INTO run_events (
+      id, run_id, sequence, event_type, state, payload_hash, canonical_payload, occurred_at
+    ) VALUES (?, ?, 3, 'run_started', 'running', ?, '{}', ?)`,
+  ).bind(`run-event:${conflictId}:started`, conflictId, sha("d"), "2026-07-13T00:31:02Z").run();
+  await assert.rejects(
+    store.start(conflictId, "2026-07-13T00:31:02Z"),
+    /state changed|different canonical evidence/,
+  );
+  assert.equal((await store.find(conflictId)).state, "preparing");
+});
+
+test("D1 Run store never appends a missing cancellation event after terminal result evidence", async () => {
+  const store = new D1RunStore(database);
+  const runId = "run:late-cancellation-after-result";
+  await store.queue(fixtureRun({ id: runId, idempotencyKey: "run-late-cancellation-after-result" }));
+  await store.prepare(runId, "2026-07-13T00:41:01Z");
+  await store.start(runId, "2026-07-13T00:41:02Z");
+  await database.prepare(
+    `UPDATE runs
+     SET state = 'cancel_requested', cancel_requested_at = ?, updated_at = ?
+     WHERE id = ? AND state = 'running'`,
+  ).bind("2026-07-13T00:41:03Z", "2026-07-13T00:41:03Z", runId).run();
+  const result = await fixtureResult({
+    runId,
+    startedAt: "2026-07-13T00:41:02Z",
+    finishedAt: "2026-07-13T00:41:03Z",
+  });
+  await persistOutput(store, runId, result);
+  const terminal = await store.recordResult(runId, result, "2026-07-13T00:41:04Z");
+  assert.equal(terminal.state, "cancelled");
+  assert.equal(
+    (await store.listEvents(runId)).some((event) => event.eventType === "cancellation_requested"),
+    false,
+  );
+
+  await assert.rejects(
+    store.requestCancellation(runId, "2026-07-13T00:41:09Z"),
+    /cannot be appended after terminal runner evidence/,
+  );
+  assert.equal(
+    (await store.listEvents(runId)).some((event) => event.eventType === "cancellation_requested"),
+    false,
+  );
+});
+
+function fixtureRun({
+  id = "run:fixture-1",
+  idempotencyKey = "run-idempotency-1",
+} = {}) {
   return {
-    id: "run:fixture-1",
+    id,
     attemptId: "attempt:run-test",
-    idempotencyKey: "run-idempotency-1",
+    idempotencyKey,
     requestHash: sha("a"),
     artifactBundleHash: sha("b"),
     queuedAt: "2026-07-13T00:00:00Z",
   };
 }
 
-async function fixtureResult() {
+async function fixtureResult({
+  runId = "run:fixture-1",
+  startedAt = "2026-07-13T00:00:02Z",
+  finishedAt = "2026-07-13T00:00:03Z",
+  status = "cancelled",
+} = {}) {
+  const succeeded = status === "succeeded";
   const result = {
     protocolVersion: "pw-lean-runner-v1",
-    jobId: "run:fixture-1",
+    jobId: runId,
     attemptId: "attempt:run-test",
     requestHash: sha("a"),
     runnerKeyId: "runner-key:run-test",
     runnerSignature: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-    status: "cancelled",
-    exitCode: 137,
-    startedAt: "2026-07-13T00:00:02Z",
-    finishedAt: "2026-07-13T00:00:03Z",
-    kernelStatus: "not_run",
-    checks: { network: "passed", noSorry: "not_run", allowedAxioms: "not_run", leanBuild: "not_run" },
+    status,
+    exitCode: succeeded ? 0 : 137,
+    startedAt,
+    finishedAt,
+    kernelStatus: succeeded ? "accepted" : "not_run",
+    checks: succeeded
+      ? { network: "passed", noSorry: "passed", allowedAxioms: "passed", leanBuild: "passed" }
+      : { network: "passed", noSorry: "not_run", allowedAxioms: "not_run", leanBuild: "not_run" },
     artifacts: { manifestHash: sha("b"), stdoutHash: runnerStdoutHash, stderrHash: runnerStderrHash },
   };
   result.runnerSignature = base64Url(
@@ -168,6 +665,17 @@ async function fixtureResult() {
     ),
   );
   return result;
+}
+
+async function persistOutput(store, runId, result) {
+  const unsignedResult = { ...result };
+  delete unsignedResult.runnerKeyId;
+  delete unsignedResult.runnerSignature;
+  const outputStore = new D1R2RunnerOutputStore({ database, bucket });
+  await outputStore.persist({
+    run: await store.find(runId),
+    execution: { result: unsignedResult, stdout: runnerStdout, stderr: runnerStderr },
+  });
 }
 
 function sha(character) {
