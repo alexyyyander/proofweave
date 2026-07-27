@@ -240,8 +240,8 @@ class D1EvidenceRepository implements EvidenceRepository {
       .all<BaseRow>();
     const summaries = await Promise.all((rows.results ?? []).map(async (row: BaseRow) => {
       const latest = await getD1()
-        .prepare("SELECT state FROM runs WHERE attempt_id = ? ORDER BY updated_at DESC, id ASC LIMIT 1")
-        .bind(row.attempt_id)
+        .prepare("SELECT state FROM runs WHERE artifact_bundle_hash = ? ORDER BY updated_at DESC, id ASC LIMIT 1")
+        .bind(row.manifest_hash)
         .first<{ state: string }>();
       return summaryFrom(row, latest?.state ?? null);
     }));
@@ -253,7 +253,7 @@ class D1EvidenceRepository implements EvidenceRepository {
     if (!base) return null;
     const privateArtifacts = await this.artifactsFor(base);
     const review = await this.reviewFactsFor(base);
-    const runs = await this.runsFor(base.attempt_id);
+    const runs = await this.runsFor(base.manifest_hash);
     const replays = await this.replaysFor(personId, base);
     const reviewOutcomes = await this.reviewOutcomesFor(base);
     return Object.freeze({
@@ -287,7 +287,7 @@ class D1EvidenceRepository implements EvidenceRepository {
     const base = await this.findBase(personId, bundleManifestHash);
     if (!base) return null;
     const artifacts = await this.artifactsFor(base);
-    const runs = await this.runsFor(base.attempt_id);
+    const runs = await this.runsFor(base.manifest_hash);
     const replays = await this.replaysFor(personId, base);
     return artifacts
       .concat(runs.flatMap((run) => run.outputs), replays.map((replay) => replay.artifact))
@@ -368,7 +368,7 @@ class D1EvidenceRepository implements EvidenceRepository {
     }
   }
 
-  private async runsFor(attemptId: string): Promise<readonly (EvidenceRun & { outputs: readonly PrivateEvidenceArtifact[] })[]> {
+  private async runsFor(bundleManifestHash: string): Promise<readonly (EvidenceRun & { outputs: readonly PrivateEvidenceArtifact[] })[]> {
     const rows = await getD1()
       .prepare(
         `SELECT run.id, run.state, run.request_hash, run.runner_result_hash,
@@ -376,10 +376,10 @@ class D1EvidenceRepository implements EvidenceRepository {
                 result.result_hash, result.canonical_result, result.received_at
          FROM runs AS run
          LEFT JOIN run_results AS result ON result.run_id = run.id
-         WHERE run.attempt_id = ?
+         WHERE run.artifact_bundle_hash = ?
          ORDER BY run.updated_at DESC, run.id ASC`,
       )
-      .bind(attemptId)
+      .bind(bundleManifestHash)
       .all<RunRow>();
     const outputRows = await getD1()
       .prepare(
@@ -387,10 +387,10 @@ class D1EvidenceRepository implements EvidenceRepository {
                 output.byte_length, output.content_type
          FROM runner_output_artifacts AS output
          INNER JOIN runs AS run ON run.id = output.run_id
-         WHERE run.attempt_id = ?
+         WHERE run.artifact_bundle_hash = ?
          ORDER BY output.run_id ASC, output.role ASC`,
       )
-      .bind(attemptId)
+      .bind(bundleManifestHash)
       .all<OutputRow>();
     const outputsByRun = new Map<string, PrivateEvidenceArtifact[]>();
     for (const output of outputRows.results ?? []) {
@@ -452,6 +452,9 @@ class D1EvidenceRepository implements EvidenceRepository {
          WHERE evidence.artifact_bundle_manifest_hash = ?
            AND replay.requester_person_id = ?
            AND assignment.verifier_person_id = ?
+           AND replay.artifact_bundle_manifest_hash = evidence.artifact_bundle_manifest_hash
+           AND assignment.artifact_bundle_manifest_hash = evidence.artifact_bundle_manifest_hash
+           AND run.artifact_bundle_hash = evidence.artifact_bundle_manifest_hash
          ORDER BY evidence.recorded_at DESC, evidence.id ASC`,
       )
       .bind(base.manifest_hash, personId, personId)
