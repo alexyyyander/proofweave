@@ -156,6 +156,10 @@ test("fake D1 queue must prove exactly one hosted delivery with one exact lease"
     (rows) => { rows.queue.lease_claimed_at = "2026-07-27T00:00:02.500Z"; },
     "LIVE_QUEUE_TIME_MISMATCH",
   ));
+  await context.test("Run starts before its queue lease is claimed", () => rejects(
+    (rows) => { rows.closure.started_at = "2026-07-27T00:00:01.500Z"; },
+    "LIVE_QUEUE_TIME_MISMATCH",
+  ));
   await context.test("not acknowledged", () => rejects(
     (rows) => { rows.queue.delivery_state = "leased"; },
     "LIVE_QUEUE_NOT_ACKNOWLEDGED",
@@ -169,7 +173,7 @@ test("fake D1 queue must prove exactly one hosted delivery with one exact lease"
   ));
 });
 
-test("normalized and bound live evidence reject acknowledgement before result persistence", async (context) => {
+test("normalized and bound live evidence reject impossible queue and Run chronology", async (context) => {
   const fixture = await canonicalDatabaseFixture();
   const reconstructed = await readLiveClosureEvidence({
     database: fixture.database,
@@ -201,6 +205,33 @@ test("normalized and bound live evidence reject acknowledgement before result pe
           })),
         },
         live: staleAcknowledgement,
+      }),
+      (error) => error.code === "LIVE_QUEUE_TIME_MISMATCH",
+    );
+  });
+
+  const startedBeforeClaim = structuredClone(reconstructed);
+  startedBeforeClaim.run.startedAt = "2026-07-27T00:00:01.500Z";
+  await context.test("normalization rejects a Run started before lease claim", () => {
+    assert.throws(
+      () => normalizeLiveEvidence(startedBeforeClaim),
+      (error) => error.code === "LIVE_QUEUE_TIME_MISMATCH",
+    );
+  });
+  await context.test("binding rejects a Run started before lease claim", () => {
+    assert.throws(
+      () => bindLiveEvidence({
+        state: fixture.state,
+        evidence: {
+          ...fixture.evidence,
+          reviews: reconstructed.reviews.map((review) => ({
+            verificationAttestationId: review.verificationAttestationId,
+            verificationAttestationHash: review.verificationAttestationHash,
+            reviewerPersonId: review.reviewerPersonId,
+            reviewerAgentId: review.reviewerAgentId,
+          })),
+        },
+        live: startedBeforeClaim,
       }),
       (error) => error.code === "LIVE_QUEUE_TIME_MISMATCH",
     );

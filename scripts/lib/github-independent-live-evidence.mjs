@@ -715,8 +715,16 @@ function assertQueueAcknowledgedAfterResult({ run, queue }) {
   const terminal = queue.events.at(-1);
   if (!terminal) throw error("LIVE_QUEUE_TIME_MISMATCH");
   freshChronology(
-    run.resultReceivedAt,
-    [terminal.occurredAt, queue.acknowledgedAt],
+    run.queuedAt,
+    [
+      queue.enqueuedAt,
+      queue.leaseClaimedAt,
+      run.startedAt,
+      run.finishedAt,
+      run.resultReceivedAt,
+      terminal.occurredAt,
+      queue.acknowledgedAt,
+    ],
     "LIVE_QUEUE_TIME_MISMATCH",
   );
 }
