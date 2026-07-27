@@ -66,8 +66,8 @@ and must be recorded in `render.yaml`; changing a queued or completed Run is
 not allowed.
 
 The currently recorded immutable template is
-`cbfjgbsrgtku0c7sliu5:root-dotfiles-20260727e`, build
-`e8d8d236-fd4a-40f5-880c-e2d5c25bba24`. It keeps Lean and Mathlib from the
+`cbfjgbsrgtku0c7sliu5:root-dotfiles-20260727g`, build
+`c07bbdf8-db5f-4464-911a-89ad0e564399`. It keeps Lean and Mathlib from the
 approved digest-pinned image and overlays only the reviewed `packages/` and
 `services/lean-runner/` source trees as root-owned, runtime-read-only files.
 
