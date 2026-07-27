@@ -66,9 +66,21 @@ export class D1RunnerLeaseQueue {
       this.database.prepare(
         `INSERT OR IGNORE INTO runner_queue_events (
           id, deduplication_key, run_id, event_type, delivery_state,
-          lease_id, delivery_attempt, error_code, occurred_at
+          lease_id, delivery_attempt, error_code, occurred_at, event_sequence
         )
-        SELECT ?, ?, run_id, 'enqueued', 'queued', NULL, 0, NULL, ?
+        SELECT ?, ?, run_id, 'enqueued', 'queued', NULL, 0, NULL, ?,
+          MAX(
+            COALESCE((
+              SELECT MAX(events.event_sequence)
+              FROM runner_queue_events AS events
+              WHERE events.run_id = runner_queue_messages.run_id
+            ), 0),
+            (
+              SELECT COUNT(*)
+              FROM runner_queue_events AS events
+              WHERE events.run_id = runner_queue_messages.run_id
+            )
+          ) + 1
         FROM runner_queue_messages
         WHERE run_id = ? AND canonical_message = ?`,
       ).bind(
@@ -383,7 +395,14 @@ export class D1RunnerLeaseQueue {
     requireIdentifier(runId, "runId");
     const rows = await this.database.prepare(
       `SELECT id, event_type, delivery_state, lease_id, delivery_attempt, error_code, occurred_at
-       FROM runner_queue_events WHERE run_id = ? ORDER BY occurred_at, created_at, id`,
+       FROM runner_queue_events
+       WHERE run_id = ?
+       ORDER BY
+         CASE WHEN event_sequence IS NULL THEN 0 ELSE 1 END,
+         CASE WHEN event_sequence IS NULL THEN rowid END,
+         event_sequence,
+         occurred_at,
+         id`,
     ).bind(runId).all();
     return Object.freeze((rows.results ?? []).map((row) => Object.freeze({
       id: row.id,
@@ -466,9 +485,21 @@ export class D1RunnerLeaseQueue {
     return this.database.prepare(
       `INSERT OR IGNORE INTO runner_queue_events (
         id, deduplication_key, run_id, event_type, delivery_state,
-        lease_id, delivery_attempt, error_code, occurred_at
+        lease_id, delivery_attempt, error_code, occurred_at, event_sequence
       )
-      SELECT ?, ?, run_id, ?, ?, ?, delivery_attempts, ?, ?
+      SELECT ?, ?, run_id, ?, ?, ?, delivery_attempts, ?, ?,
+        MAX(
+          COALESCE((
+            SELECT MAX(events.event_sequence)
+            FROM runner_queue_events AS events
+            WHERE events.run_id = runner_queue_messages.run_id
+          ), 0),
+          (
+            SELECT COUNT(*)
+            FROM runner_queue_events AS events
+            WHERE events.run_id = runner_queue_messages.run_id
+          )
+        ) + 1
       FROM runner_queue_messages
       WHERE run_id = ? AND delivery_state = ?
         AND updated_at = ?

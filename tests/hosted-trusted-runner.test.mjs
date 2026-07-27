@@ -5,7 +5,7 @@ import { HostedTrustedRunnerService } from "../services/lean-runner/hosted-trust
 const wakeToken = "wake-token-0123456789abcdef-0123456789abcdef";
 const imageDigest = `ghcr.io/proofweave/lean-runner@sha256:${"a".repeat(64)}`;
 
-test("hosted Runner exposes health and authenticated wake without accepting work", async () => {
+test("hosted Runner exposes health and authenticated wake without accepting work", async (t) => {
   let runStarted = false;
   let closeCount = 0;
   const service = new HostedTrustedRunnerService({
@@ -31,6 +31,7 @@ test("hosted Runner exposes health and authenticated wake without accepting work
       async close() { closeCount += 1; },
     }),
   });
+  t.after(() => service.close());
   await service.start();
   await waitFor(() => runStarted);
   const origin = `http://127.0.0.1:${service.port}`;
@@ -75,7 +76,7 @@ test("hosted Runner exposes health and authenticated wake without accepting work
   assert.equal(closeCount, 1);
 });
 
-test("hosted Runner reports degraded health without exposing startup error text", async () => {
+test("hosted Runner reports degraded health without exposing startup error text", async (t) => {
   const service = new HostedTrustedRunnerService({
     environment: {
       PORT: "0",
@@ -87,6 +88,7 @@ test("hosted Runner reports degraded health without exposing startup error text"
       throw new TypeError("secret database URL must never be returned");
     },
   });
+  t.after(() => service.close());
   await service.start();
   await waitFor(() => service.state === "degraded");
 
