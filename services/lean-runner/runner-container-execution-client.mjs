@@ -144,7 +144,9 @@ async function expectSuccess(response, label) {
     const privateCode = response?.headers?.get?.("x-proofweave-error-code");
     const diagnosticCode = typeof privateCode === "string" && /^lean_[a-z0-9_]{3,48}$/.test(privateCode)
       ? `runner_container_${privateCode}_error`
-      : undefined;
+      : Number.isInteger(response?.status) && response.status >= 400 && response.status <= 599
+        ? `runner_container_http_${response.status}_error`
+        : undefined;
     throw new RunnerContainerExecutionClientError(`Private Container rejected ${label}.`, { diagnosticCode });
   }
 }
