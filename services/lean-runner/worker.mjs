@@ -129,6 +129,7 @@ export function createRunnerQueueExecution({
   workspaceStager,
   imageRegistry,
   getContainerForRun,
+  discardContainerForRun = async () => {},
   executionClient,
   finalizer,
   isCancellationRequested = async () => false,
@@ -144,6 +145,9 @@ export function createRunnerQueueExecution({
   }
   if (typeof getContainerForRun !== "function") {
     throw new TypeError("Runner queue execution requires a private Container resolver.");
+  }
+  if (typeof discardContainerForRun !== "function") {
+    throw new TypeError("Runner queue execution requires a private Container discard boundary.");
   }
   if (!executionClient || typeof executionClient.execute !== "function" || typeof executionClient.cancel !== "function") {
     throw new TypeError("Runner queue execution requires a private execution client.");
@@ -180,6 +184,7 @@ export function createRunnerQueueExecution({
         run: staged.run,
         message,
         getContainerForRun,
+        discardContainerForRun,
         executionClient,
         finalizer,
         isCancellationRequested,
@@ -196,6 +201,7 @@ export function createRunnerQueueExecution({
       run: staged.run,
       message: staged.message,
       getContainerForRun,
+      discardContainerForRun,
       executionClient,
       finalizer,
       isCancellationRequested,
@@ -211,6 +217,7 @@ async function executeAndFinalize({
   run,
   message,
   getContainerForRun,
+  discardContainerForRun,
   executionClient,
   finalizer,
   isCancellationRequested,
@@ -236,8 +243,11 @@ async function executeAndFinalize({
   } catch (cause) {
     // Preserve the primary execution error. The Queue will retry it; an
     // incidental failure while stopping the background state poll must not
-    // replace the evidence/transport failure that triggered the retry.
+    // replace the evidence/transport failure that triggered the retry. A
+    // provider-neutral hosted Runner must also discard this failed Sandbox so
+    // the next delivery restages the same durable Bundle into a clean one.
     await cancellation.stop().catch(() => {});
+    await discardContainerForRun(run.id).catch(() => {});
     throw cause;
   }
   // Surface a control-plane or private-cancel failure before finalizing a
