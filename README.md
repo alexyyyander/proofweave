@@ -79,9 +79,9 @@ Proofweave records states instead of collapsing all activity into a score:
 | No-account signed reference verifier and tamper test | **Live** |
 | Public Receipt and portable evidence inspection | **Live demo path** |
 | Person signing keys and revocable Agent delegation | **Closed alpha** |
-| Local OAuth-PKCE Codex Connector | **Private beta** on macOS Apple silicon |
+| Local OAuth-PKCE Codex Connector | **Private beta** on macOS Apple silicon; no GitHub account required |
 | D1/Turso evidence, Attempt, review, and Receipt protocols | **Implemented and tested** |
-| Protected E2B Lean replay | **Operator-controlled**; not open participant infrastructure |
+| Protected E2B Lean replay | **Operator-controlled**; hosted Runner + E2B is the reference path, with live closure still pending |
 
 The distinction matters: a queued Run is not a result, a successful Lean replay
 is not an independent review, and an Agent-reported checkpoint is not a
@@ -92,19 +92,36 @@ Contribution Receipt.
 The optional plugin beta is tested with **Codex for macOS on Apple silicon** and
 Node.js `>=22.13.0`.
 
+The normal participant path downloads a checksum-published marketplace archive
+from the Proofweave site, verifies it before extraction, and registers the
+unpacked local directory:
+
 ```bash
-codex plugin marketplace add alexyyyander/proofweave --ref main --sparse .agents/plugins
+PROOFWEAVE_DOWNLOAD_DIR="$HOME/Downloads/proofweave-install"
+PROOFWEAVE_MARKETPLACE_DIR="$HOME/.local/share/proofweave/marketplace"
+mkdir -p "$PROOFWEAVE_DOWNLOAD_DIR" "$PROOFWEAVE_MARKETPLACE_DIR"
+curl --fail --location --output "$PROOFWEAVE_DOWNLOAD_DIR/proofweave-research-marketplace.tar" \
+  "https://proofweave-research.yualex031821.chatgpt.site/downloads/proofweave-research-marketplace.tar"
+curl --fail --location --output "$PROOFWEAVE_DOWNLOAD_DIR/proofweave-research-marketplace.tar.sha256" \
+  "https://proofweave-research.yualex031821.chatgpt.site/downloads/proofweave-research-marketplace.tar.sha256"
+cd "$PROOFWEAVE_DOWNLOAD_DIR"
+shasum -a 256 -c proofweave-research-marketplace.tar.sha256
+tar -xf proofweave-research-marketplace.tar -C "$PROOFWEAVE_MARKETPLACE_DIR"
+codex plugin marketplace add "$PROOFWEAVE_MARKETPLACE_DIR"
 codex plugin add proofweave-research@proofweave-private-beta
 ```
 
-Codex must display both commands and receive your approval before running them.
+Codex must display the selected directories and every command, then receive
+your approval before running them. Never pipe downloaded content into a shell.
 Installation alone does not connect an account, create an Agent, or read a
 workspace. A separate browser OAuth approval creates a revocable connection.
 The Agent private key, refresh token, Lean workspace, model settings, and
 private reasoning remain on the participant's computer.
 
 See the [plugin and connection workflow](docs/codex-plugin.md) for the complete
-authority and privacy model.
+authority and privacy model. A GitHub source checkout remains available as an
+advanced development option, but GitHub access is not required for the normal
+installation or research flow.
 
 ## Local development
 
@@ -175,6 +192,17 @@ flowchart TB
     S --> D
     I --> D
 ```
+
+The executable `pw-artifact-bundle-v2` is the provider-neutral default: it
+carries the exact content-addressed workspace bytes required for replay without
+a repository checkout. Optional v3 evidence adds a signed GitHub provenance
+reference but does not give the Runner a GitHub token or make GitHub a runtime
+requirement. The alpha reference execution path is the hosted trusted Runner
+on Render with one fresh E2B sandbox per Run. GitHub Actions remains a bounded
+CI, image-release, and recovery mechanism—not the primary Runner.
+
+See [GitHub independence and remaining dependencies](docs/github-independence.md)
+for the canonical product, runtime, and delivery boundary.
 
 ### Design invariants
 

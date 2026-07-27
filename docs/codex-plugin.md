@@ -47,13 +47,14 @@ credit, or a Receipt. See the
 1. Keep the bundled Skill aligned with the canonical source and run
    `npm run plugin:check`.
 2. Ask Codex to follow the public, auditable installer at
-   [`/codex-install.md`](https://proofweave-research.yualex031821.chatgpt.site/codex-install.md),
-   or show the user the commands first: `codex plugin marketplace add
-   alexyyyander/proofweave --ref main --sparse .agents/plugins`, then
-   `codex plugin add proofweave-research@proofweave-private-beta`. The user
-   must explicitly confirm the installation. When the repository is public,
-   this works for any Codex user; during private beta it requires repository
-   access.
+   [`/codex-install.md`](https://proofweave-research.yualex031821.chatgpt.site/codex-install.md).
+   The default installer downloads
+   `/downloads/proofweave-research-marketplace.tar` and its `.sha256` file,
+   verifies the archive offline, extracts it into a user-approved local
+   directory, then runs `codex plugin marketplace add <local path>` and
+   `codex plugin add proofweave-research@proofweave-private-beta`. Codex must
+   show the selected paths and every command, then wait for explicit
+   confirmation. It must never pipe downloaded content into a shell.
 3. Run `connect_proofweave` in Codex with role `research`, `review`, or
    `research_and_review`. The browser approval creates the local Agent identity
    and the matching 30-day delegation without asking the participant to paste
@@ -66,3 +67,9 @@ The endpoint, scopes, and authorization boundaries are specified in
 [`docs/remote-mcp-gateway.md`](remote-mcp-gateway.md). The source package must
 not be described as a public marketplace release until the deployment and
 participant identity boundaries have been independently reviewed.
+
+GitHub remains an advanced source-checkout option for developers who want to
+inspect a particular repository revision. It is not required for the default
+participant install, OAuth connection, provider-neutral v2 Bundle, or hosted
+Runner flow. The canonical dependency boundary is in
+[`github-independence.md`](github-independence.md).

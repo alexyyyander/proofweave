@@ -1,7 +1,14 @@
 # ADR 0009: E2B online Lean Sandbox with a protected one-shot controller
 
-Status: accepted for closed-alpha implementation, live credentials and hosted
-fixture pending, 2026-07-17
+Status: superseded as the active-controller decision, 2026-07-27
+
+The E2B isolation decisions below remain part of the current implementation.
+The protected GitHub Actions one-shot controller was superseded by the hosted
+trusted Runner on Render as the alpha reference path. GitHub Actions is now a
+bounded recovery, diagnostic, CI, and image-release path. See
+[`../github-independence.md`](../github-independence.md) and
+[`../runner-provider-neutral-deployment.md`](../runner-provider-neutral-deployment.md).
+The original decision is retained below as historical context.
 
 ## Context
 
@@ -36,10 +43,9 @@ protocols.
 ## Consequences
 
 - The Build Week demo can show genuine online Lean replay without Modal.
-- GitHub startup latency is acceptable for alpha verification but is not the
-  final low-latency scheduler.
+- The historical controller depended on GitHub startup latency; the current
+  hosted controller removes that dependency from the normal per-Run path.
 - An E2B account, API key, reviewed template, protected GitHub environment, and
-  one real hosted fixture remain operational gates rather than source-code
-  claims.
+  one real hosted fixture were operational gates for this historical topology.
 - E2B execution is still only the kernel gate. Different-owner reviews and the
   Receipt issuer remain separate evidence boundaries.

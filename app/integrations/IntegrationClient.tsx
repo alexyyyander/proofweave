@@ -122,15 +122,18 @@ export function IntegrationClient({
 
       <article className="integration-card integration-install-card">
         <span className="micro-label">02 / Only if the plugin is missing</span>
-        <h2>Install Proofweave Research once.</h2>
-        <p>If Codex already exposes <code>connection_status</code>, skip this card. Otherwise the public guide makes Codex show both commands and wait for your confirmation.</p>
+        <h2>Install from a local marketplace once.</h2>
+        <p>If Codex already exposes <code>connection_status</code>, skip this card. Otherwise Codex downloads the public archive and checksum, verifies them before extraction, and asks before adding the local marketplace. No GitHub account or repository access is required.</p>
         <CodexInstallPrompt />
         <details className="integration-command-details">
-          <summary>Show the two auditable terminal commands</summary>
-          <code>codex plugin marketplace add alexyyyander/proofweave --ref main --sparse .agents/plugins</code>
+          <summary>Show the auditable installation sequence</summary>
+          <code>Download /downloads/proofweave-research-marketplace.tar and its .sha256 file</code>
+          <code>shasum -a 256 -c proofweave-research-marketplace.tar.sha256</code>
+          <code>tar -xf proofweave-research-marketplace.tar -C &quot;$PROOFWEAVE_MARKETPLACE_DIR&quot;</code>
+          <code>codex plugin marketplace add &quot;$PROOFWEAVE_MARKETPLACE_DIR&quot;</code>
           <code>codex plugin add proofweave-research@proofweave-private-beta</code>
         </details>
-        <div className="integration-status integration-status-ready"><i aria-hidden="true" />Private beta: GitHub repository access is currently required</div>
+        <div className="integration-status integration-status-ready"><i aria-hidden="true" />Private beta: local install; no GitHub account required</div>
         <div className="integration-update-policy" aria-label="Connector update policy">
           <div>
             <span className="micro-label">Live compatibility</span>

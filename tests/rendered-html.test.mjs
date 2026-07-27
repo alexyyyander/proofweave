@@ -986,12 +986,18 @@ test("serves the public research paths", async () => {
 
   const integrations = await render("/integrations");
   const integrationsHtml = await integrations.text();
-  assert.match(integrationsHtml, /Install Proofweave Research once/i);
+  assert.match(integrationsHtml, /Install from a local marketplace once/i);
   assert.match(integrationsHtml, /Approve your local Codex once/i);
+  assert.match(integrationsHtml, /No GitHub account or repository access is required/i);
+  assert.match(integrationsHtml, /local install; no GitHub account required/i);
+  assert.match(integrationsHtml, /shasum -a 256 -c proofweave-research-marketplace\.tar\.sha256/i);
+  assert.match(integrationsHtml, /codex plugin marketplace add/i);
   assert.match(integrationsHtml, /Normal service updates/i);
   assert.match(integrationsHtml, /Continue this task/i);
   assert.match(integrationsHtml, /Tool or skill changes/i);
   assert.match(integrationsHtml, /Update, then restart Codex/i);
+  assert.doesNotMatch(integrationsHtml, /GitHub repository access is currently required/i);
+  assert.doesNotMatch(integrationsHtml, /marketplace add alexyyyander\/proofweave/i);
   assert.doesNotMatch(integrationsHtml, /https:\/\/mcp\.proofweave\.org\/mcp/i);
 
   const selectedIntegration = await render("/integrations?target=erdos-865-k2&return_to=%2Fworkbench%3Ftarget%3Derdos-865-k2%23research-launcher");
