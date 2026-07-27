@@ -11,6 +11,7 @@ const paths = {
   bundle: new URL("../docs/artifact-bundle-contract.md", import.meta.url),
   runner: new URL("../docs/runner-provider-neutral-deployment.md", import.meta.url),
   e2bAdr: new URL("../docs/adr/0009-e2b-online-lean-runner.md", import.meta.url),
+  recoveryWorkflow: new URL("../.github/workflows/e2b-lean-runner.yml", import.meta.url),
 };
 
 async function sources() {
@@ -52,7 +53,7 @@ test("the normal Codex install uses a verified local marketplace without GitHub 
 });
 
 test("the evidence and Runner docs preserve the provider-neutral runtime boundary", async () => {
-  const { canonical, bundle, runner, e2bAdr } = await sources();
+  const { canonical, bundle, runner, e2bAdr, recoveryWorkflow } = await sources();
 
   assert.match(canonical, /Status: canonical architecture and product-truth boundary/i);
   assert.match(canonical, /No step in this path requires the participant to have a GitHub account/i);
@@ -75,4 +76,8 @@ test("the evidence and Runner docs preserve the provider-neutral runtime boundar
 
   assert.match(e2bAdr, /Status: superseded as the active-controller decision/i);
   assert.match(e2bAdr, /hosted\s+trusted Runner on Render as the alpha reference path/i);
+
+  assert.match(recoveryWorkflow, /authenticated hosted Runner wake is the normal path/i);
+  assert.match(recoveryWorkflow, /not participant runtime dependencies/i);
+  assert.doesNotMatch(recoveryWorkflow, /repository dispatch are the normal paths/i);
 });
