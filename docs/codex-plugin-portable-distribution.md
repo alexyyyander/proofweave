@@ -10,6 +10,7 @@ copy lives separately from this release-engineering reference.
 
 - `public/downloads/proofweave-research-marketplace.tar`
 - `public/downloads/proofweave-research-marketplace.tar.sha256`
+- `public/downloads/proofweave-research-marketplace.json`
 
 The tar archive has no wrapper directory. After extracting it into an empty
 directory, that directory is the marketplace root and contains:
@@ -29,6 +30,34 @@ The checksum file uses the standard
 `<sha256><two spaces><filename>` format accepted by
 `shasum -a 256 -c` when run beside the archive.
 
+The JSON file is a deterministic, machine-readable release manifest:
+
+```json
+{
+  "schemaVersion": "pw-codex-plugin-distribution-v1",
+  "marketplaceName": "proofweave-private-beta",
+  "pluginName": "proofweave-research",
+  "pluginVersion": "<from .codex-plugin/plugin.json>",
+  "archive": {
+    "path": "/downloads/proofweave-research-marketplace.tar",
+    "filename": "proofweave-research-marketplace.tar",
+    "sha256": "<64 lowercase hexadecimal characters>",
+    "bytes": 0
+  },
+  "compatibility": {
+    "protocolVersion": "<from the canonical compatibility contract>",
+    "connectorApiVersion": 1,
+    "toolSchemaVersion": 1
+  }
+}
+```
+
+The archive hash and byte count are computed from the final tar bytes. Plugin
+and compatibility versions are parsed from the exact plugin files being
+packaged and checked against the canonical compatibility contract. The
+manifest intentionally contains no timestamp, Git commit, host path,
+credential, or environment-specific value.
+
 ## Deterministic build contract
 
 The builder rejects:
@@ -41,6 +70,10 @@ The builder rejects:
 
 It emits sorted POSIX ustar entries with fixed ownership, modes, and timestamps
 so the same source bytes produce the same archive bytes.
+All three artifacts are first written into a temporary sibling directory. The
+builder then replaces the public files with rename operations and publishes the
+distribution manifest last. A failed replacement rolls back every file already
+replaced, and temporary staging files are removed.
 
 The release sequence is:
 
@@ -58,6 +91,7 @@ The release sequence is:
 - marketplace and plugin manifest contracts;
 - SHA-256 digest and checked-in bytes;
 - byte-for-byte determinism across repeated builds;
+- distribution schema, plugin version, archive size, and compatibility values;
 - the complete local plugin layout;
 - absence of common private-key and GitHub-token material;
 - local Codex marketplace discovery and plugin installation.

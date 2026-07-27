@@ -2,8 +2,11 @@ import { createHash } from "node:crypto";
 import {
   lstat,
   mkdir,
+  mkdtemp,
   readFile,
   readdir,
+  rename,
+  rm,
   writeFile,
 } from "node:fs/promises";
 import { dirname, relative, resolve, sep } from "node:path";
@@ -12,29 +15,65 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const marketplaceManifestPath = resolve(repositoryRoot, ".agents/plugins/marketplace.json");
 const pluginRoot = resolve(repositoryRoot, "plugins/proofweave-research");
+const compatibilityContractPath = resolve(
+  repositoryRoot,
+  "packages/protocol/proofweave-client-compatibility.json",
+);
 const archiveFilename = "proofweave-research-marketplace.tar";
 const checksumFilename = `${archiveFilename}.sha256`;
+const distributionFilename = "proofweave-research-marketplace.json";
+const distributionSchemaVersion = "pw-codex-plugin-distribution-v1";
 const expectedMarketplaceName = "proofweave-private-beta";
 const expectedPluginName = "proofweave-research";
 
 export async function buildProofweavePluginMarketplace({
   outputDirectory = resolve(repositoryRoot, "public/downloads"),
 } = {}) {
-  const entries = await collectArchiveEntries();
+  const {
+    entries,
+    marketplace,
+    pluginManifest,
+    compatibility,
+  } = await collectArchiveEntries();
   const archiveBytes = createTar(entries);
   const digest = createHash("sha256").update(archiveBytes).digest("hex");
+  const checksumBytes = Buffer.from(`${digest}  ${archiveFilename}\n`, "utf8");
+  const distribution = {
+    schemaVersion: distributionSchemaVersion,
+    marketplaceName: marketplace.name,
+    pluginName: pluginManifest.name,
+    pluginVersion: pluginManifest.version,
+    archive: {
+      path: `/downloads/${archiveFilename}`,
+      filename: archiveFilename,
+      sha256: digest,
+      bytes: archiveBytes.byteLength,
+    },
+    compatibility: {
+      protocolVersion: compatibility.protocolVersion,
+      connectorApiVersion: compatibility.connectorApiVersion,
+      toolSchemaVersion: compatibility.toolSchemaVersion,
+    },
+  };
+  validateDistributionManifest(distribution);
+  const distributionBytes = Buffer.from(`${JSON.stringify(distribution, null, 2)}\n`, "utf8");
   const resolvedOutputDirectory = resolve(outputDirectory);
   const archivePath = resolve(resolvedOutputDirectory, archiveFilename);
   const checksumPath = resolve(resolvedOutputDirectory, checksumFilename);
+  const distributionPath = resolve(resolvedOutputDirectory, distributionFilename);
 
-  await mkdir(resolvedOutputDirectory, { recursive: true });
-  await writeFile(archivePath, archiveBytes);
-  await writeFile(checksumPath, `${digest}  ${archiveFilename}\n`, "utf8");
+  await publishArtifactSetAtomically(resolvedOutputDirectory, [
+    { filename: archiveFilename, bytes: archiveBytes },
+    { filename: checksumFilename, bytes: checksumBytes },
+    { filename: distributionFilename, bytes: distributionBytes },
+  ]);
 
   return {
     archivePath,
     checksumPath,
+    distributionPath,
     digest,
+    distribution,
     entries: entries.map(({ path, type }) => ({ path, type })),
   };
 }
@@ -44,14 +83,6 @@ async function collectArchiveEntries() {
   const marketplace = parseJson(marketplaceBytes, ".agents/plugins/marketplace.json");
   validateMarketplace(marketplace);
 
-  const pluginManifestPath = resolve(pluginRoot, ".codex-plugin/plugin.json");
-  const pluginManifestBytes = await readFile(pluginManifestPath);
-  const pluginManifest = parseJson(
-    pluginManifestBytes,
-    "plugins/proofweave-research/.codex-plugin/plugin.json",
-  );
-  await validatePluginManifest(pluginManifest);
-
   const entries = [
     directoryEntry(".agents/"),
     directoryEntry(".agents/plugins/"),
@@ -60,7 +91,40 @@ async function collectArchiveEntries() {
   ];
   await appendTree(entries, pluginRoot, "plugins/proofweave-research");
   entries.sort((left, right) => comparePaths(left.path, right.path));
-  return entries;
+
+  const pluginManifest = parseJson(
+    requiredArchiveFile(
+      entries,
+      "plugins/proofweave-research/.codex-plugin/plugin.json",
+    ),
+    "plugins/proofweave-research/.codex-plugin/plugin.json",
+  );
+  await validatePluginManifest(pluginManifest);
+
+  const bundledCompatibility = parseJson(
+    requiredArchiveFile(
+      entries,
+      "plugins/proofweave-research/mcp/proofweave-client-compatibility.json",
+    ),
+    "plugins/proofweave-research/mcp/proofweave-client-compatibility.json",
+  );
+  const canonicalCompatibility = parseJson(
+    await readFile(compatibilityContractPath),
+    "packages/protocol/proofweave-client-compatibility.json",
+  );
+  validateCompatibility(canonicalCompatibility);
+  if (canonicalJson(bundledCompatibility) !== canonicalJson(canonicalCompatibility)) {
+    throw new Error("Bundled plugin compatibility contract does not match the canonical contract");
+  }
+  if (marketplace.plugins.find(({ name }) => name === expectedPluginName)?.name !== pluginManifest.name) {
+    throw new Error("Marketplace plugin name does not match the bundled plugin manifest");
+  }
+  return {
+    entries,
+    marketplace,
+    pluginManifest,
+    compatibility: canonicalCompatibility,
+  };
 }
 
 async function appendTree(entries, sourceDirectory, archiveDirectory) {
@@ -119,6 +183,48 @@ function validateMarketplace(marketplace) {
   }
 }
 
+function validateCompatibility(compatibility) {
+  if (
+    typeof compatibility?.protocolVersion !== "string"
+    || compatibility.protocolVersion.length === 0
+  ) {
+    throw new Error("Compatibility protocolVersion is required");
+  }
+  for (const field of ["connectorApiVersion", "toolSchemaVersion"]) {
+    if (!Number.isSafeInteger(compatibility[field]) || compatibility[field] < 1) {
+      throw new Error(`Compatibility ${field} must be a positive integer`);
+    }
+  }
+}
+
+function validateDistributionManifest(distribution) {
+  if (distribution.schemaVersion !== distributionSchemaVersion) {
+    throw new Error(`Distribution schemaVersion must be ${distributionSchemaVersion}`);
+  }
+  if (
+    distribution.marketplaceName !== expectedMarketplaceName
+    || distribution.pluginName !== expectedPluginName
+  ) {
+    throw new Error("Distribution identity does not match the packaged marketplace");
+  }
+  if (!isStrictSemver(distribution.pluginVersion)) {
+    throw new Error("Distribution pluginVersion must use strict semantic versioning");
+  }
+  if (
+    distribution.archive.path !== `/downloads/${archiveFilename}`
+    || distribution.archive.filename !== archiveFilename
+  ) {
+    throw new Error("Distribution archive path does not match the public package path");
+  }
+  if (!/^[a-f0-9]{64}$/.test(distribution.archive.sha256)) {
+    throw new Error("Distribution archive sha256 must be lowercase hexadecimal");
+  }
+  if (!Number.isSafeInteger(distribution.archive.bytes) || distribution.archive.bytes < 1) {
+    throw new Error("Distribution archive bytes must be a positive integer");
+  }
+  validateCompatibility(distribution.compatibility);
+}
+
 async function validatePluginManifest(manifest) {
   if (manifest?.name !== expectedPluginName) {
     throw new Error(`Plugin manifest name must be ${expectedPluginName}`);
@@ -163,6 +269,22 @@ function parseJson(bytes, label) {
   } catch (error) {
     throw new Error(`${label} is not valid JSON: ${error.message}`);
   }
+}
+
+function canonicalJson(value) {
+  if (Array.isArray(value)) return `[${value.map((item) => canonicalJson(item)).join(",")}]`;
+  if (value && typeof value === "object") {
+    return `{${Object.keys(value).sort(comparePaths).map((key) => (
+      `${JSON.stringify(key)}:${canonicalJson(value[key])}`
+    )).join(",")}}`;
+  }
+  return JSON.stringify(value);
+}
+
+function requiredArchiveFile(entries, path) {
+  const entry = entries.find((candidate) => candidate.path === path);
+  if (!entry || entry.type !== "file") throw new Error(`Required plugin file is missing: ${path}`);
+  return entry.bytes;
 }
 
 function isStrictSemver(version) {
@@ -261,6 +383,89 @@ function comparePaths(left, right) {
   if (left < right) return -1;
   if (left > right) return 1;
   return 0;
+}
+
+export async function publishArtifactSetAtomically(
+  outputDirectory,
+  artifacts,
+  { renameFile = rename } = {},
+) {
+  await mkdir(outputDirectory, { recursive: true });
+  const stagingDirectory = await mkdtemp(resolve(outputDirectory, ".proofweave-plugin-package-"));
+  const originals = new Map();
+  const published = [];
+
+  try {
+    for (const artifact of artifacts) {
+      assertSafeArtifactFilename(artifact.filename);
+      await writeFile(resolve(stagingDirectory, artifact.filename), artifact.bytes, {
+        flag: "wx",
+        mode: 0o644,
+      });
+      originals.set(
+        artifact.filename,
+        await readOptionalFile(resolve(outputDirectory, artifact.filename)),
+      );
+    }
+
+    try {
+      for (const artifact of artifacts) {
+        await renameFile(
+          resolve(stagingDirectory, artifact.filename),
+          resolve(outputDirectory, artifact.filename),
+        );
+        published.push(artifact.filename);
+      }
+    } catch (error) {
+      await rollbackArtifactSet(outputDirectory, published, originals);
+      throw new Error(`Could not publish a complete plugin artifact set: ${error.message}`, {
+        cause: error,
+      });
+    }
+  } finally {
+    await rm(stagingDirectory, { recursive: true, force: true });
+  }
+}
+
+async function rollbackArtifactSet(outputDirectory, published, originals) {
+  const rollbackDirectory = await mkdtemp(resolve(outputDirectory, ".proofweave-plugin-rollback-"));
+  try {
+    for (const filename of [...published].reverse()) {
+      const originalBytes = originals.get(filename);
+      const destination = resolve(outputDirectory, filename);
+      if (originalBytes === null) {
+        await rm(destination, { force: true });
+        continue;
+      }
+      const stagedOriginal = resolve(rollbackDirectory, filename);
+      await writeFile(stagedOriginal, originalBytes, { flag: "wx", mode: 0o644 });
+      await rename(stagedOriginal, destination);
+    }
+  } finally {
+    await rm(rollbackDirectory, { recursive: true, force: true });
+  }
+}
+
+async function readOptionalFile(path) {
+  try {
+    return await readFile(path);
+  } catch (error) {
+    if (error.code === "ENOENT") return null;
+    throw error;
+  }
+}
+
+function assertSafeArtifactFilename(filename) {
+  if (
+    typeof filename !== "string"
+    || filename.length === 0
+    || filename === "."
+    || filename === ".."
+    || filename.includes("/")
+    || filename.includes("\\")
+  ) {
+    throw new Error(`Unsafe artifact filename: ${filename}`);
+  }
 }
 
 function parseArguments(argv) {

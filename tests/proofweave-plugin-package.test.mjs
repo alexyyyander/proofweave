@@ -7,6 +7,7 @@ import {
   mkdtemp,
   readFile,
   readdir,
+  rename,
   rm,
   writeFile,
 } from "node:fs/promises";
@@ -15,13 +16,24 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { test } from "node:test";
 import { promisify } from "node:util";
-import { buildProofweavePluginMarketplace } from "../scripts/build-proofweave-plugin-marketplace.mjs";
+import {
+  buildProofweavePluginMarketplace,
+  publishArtifactSetAtomically,
+} from "../scripts/build-proofweave-plugin-marketplace.mjs";
 
 const execFileAsync = promisify(execFile);
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const pluginRoot = resolve(root, "plugins/proofweave-research");
 const checkedArchivePath = resolve(root, "public/downloads/proofweave-research-marketplace.tar");
 const checkedChecksumPath = `${checkedArchivePath}.sha256`;
+const checkedDistributionPath = resolve(
+  root,
+  "public/downloads/proofweave-research-marketplace.json",
+);
+const compatibilityContractPath = resolve(
+  root,
+  "packages/protocol/proofweave-client-compatibility.json",
+);
 
 test("the public plugin marketplace archive is deterministic, complete, and checksum-bound", async () => {
   const fixtureRoot = await mkdtemp(join(tmpdir(), "proofweave-plugin-package-"));
@@ -31,14 +43,57 @@ test("the public plugin marketplace archive is deterministic, complete, and chec
     await buildProofweavePluginMarketplace({ outputDirectory: firstDirectory });
     await buildProofweavePluginMarketplace({ outputDirectory: secondDirectory });
 
-    const [firstArchive, secondArchive, checkedArchive, checkedChecksum] = await Promise.all([
+    const [
+      firstArchive,
+      firstChecksum,
+      firstDistributionBytes,
+      secondArchive,
+      secondChecksum,
+      secondDistributionBytes,
+      checkedArchive,
+      checkedChecksum,
+      checkedDistributionBytes,
+      compatibility,
+    ] = await Promise.all([
       readFile(join(firstDirectory, "proofweave-research-marketplace.tar")),
+      readFile(join(firstDirectory, "proofweave-research-marketplace.tar.sha256")),
+      readFile(join(firstDirectory, "proofweave-research-marketplace.json")),
       readFile(join(secondDirectory, "proofweave-research-marketplace.tar")),
+      readFile(join(secondDirectory, "proofweave-research-marketplace.tar.sha256")),
+      readFile(join(secondDirectory, "proofweave-research-marketplace.json")),
       readFile(checkedArchivePath),
       readFile(checkedChecksumPath, "utf8"),
+      readFile(checkedDistributionPath),
+      readFile(compatibilityContractPath, "utf8").then((text) => JSON.parse(text)),
     ]);
     assert.deepEqual(firstArchive, secondArchive, "repeated builds must produce identical tar bytes");
+    assert.deepEqual(firstChecksum, secondChecksum, "repeated builds must produce identical checksum bytes");
+    assert.deepEqual(
+      firstDistributionBytes,
+      secondDistributionBytes,
+      "repeated builds must produce identical distribution manifest bytes",
+    );
     assert.deepEqual(checkedArchive, firstArchive, "the checked-in public archive must match a fresh build");
+    assert.deepEqual(
+      Buffer.from(checkedChecksum),
+      firstChecksum,
+      "the checked-in checksum must match a fresh build",
+    );
+    assert.deepEqual(
+      checkedDistributionBytes,
+      firstDistributionBytes,
+      "the checked-in distribution manifest must match a fresh build",
+    );
+    assert.equal(firstDistributionBytes.at(-1), 0x0a, "distribution JSON must end with a newline");
+    assert.deepEqual(
+      (await readdir(firstDirectory)).sort(comparePaths),
+      [
+        "proofweave-research-marketplace.json",
+        "proofweave-research-marketplace.tar",
+        "proofweave-research-marketplace.tar.sha256",
+      ],
+      "successful builds must leave exactly one coherent public artifact set",
+    );
 
     const digest = createHash("sha256").update(firstArchive).digest("hex");
     assert.equal(
@@ -82,10 +137,59 @@ test("the public plugin marketplace archive is deterministic, complete, and chec
     assert.equal(manifest.skills, "./skills/");
     assert.equal(manifest.mcpServers, "./.mcp.json");
 
-    const archiveText = firstArchive.toString("utf8");
-    assert.doesNotMatch(archiveText, /-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/);
-    assert.doesNotMatch(archiveText, /\bghp_[A-Za-z0-9]{20,}\b/);
-    assert.doesNotMatch(archiveText, /\bgithub_pat_[A-Za-z0-9_]{20,}\b/);
+    const bundledCompatibility = parseArchivedJson(
+      entries,
+      "plugins/proofweave-research/mcp/proofweave-client-compatibility.json",
+    );
+    assert.deepEqual(bundledCompatibility, compatibility);
+
+    const distribution = JSON.parse(firstDistributionBytes.toString("utf8"));
+    assert.deepEqual(Object.keys(distribution), [
+      "schemaVersion",
+      "marketplaceName",
+      "pluginName",
+      "pluginVersion",
+      "archive",
+      "compatibility",
+    ]);
+    assert.deepEqual(Object.keys(distribution.archive), [
+      "path",
+      "filename",
+      "sha256",
+      "bytes",
+    ]);
+    assert.deepEqual(Object.keys(distribution.compatibility), [
+      "protocolVersion",
+      "connectorApiVersion",
+      "toolSchemaVersion",
+    ]);
+    assert.deepEqual(distribution, {
+      schemaVersion: "pw-codex-plugin-distribution-v1",
+      marketplaceName: marketplace.name,
+      pluginName: manifest.name,
+      pluginVersion: manifest.version,
+      archive: {
+        path: "/downloads/proofweave-research-marketplace.tar",
+        filename: "proofweave-research-marketplace.tar",
+        sha256: digest,
+        bytes: firstArchive.byteLength,
+      },
+      compatibility: {
+        protocolVersion: compatibility.protocolVersion,
+        connectorApiVersion: compatibility.connectorApiVersion,
+        toolSchemaVersion: compatibility.toolSchemaVersion,
+      },
+    });
+    assertSafePublicArchivePath(distribution.archive);
+
+    const publishedText = Buffer.concat([
+      firstArchive,
+      firstChecksum,
+      firstDistributionBytes,
+    ]).toString("utf8");
+    assert.doesNotMatch(publishedText, /-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/);
+    assert.doesNotMatch(publishedText, /\bghp_[A-Za-z0-9]{20,}\b/);
+    assert.doesNotMatch(publishedText, /\bgithub_pat_[A-Za-z0-9_]{20,}\b/);
   } finally {
     await rm(fixtureRoot, { recursive: true, force: true });
   }
@@ -144,6 +248,46 @@ test("the extracted marketplace is recognized by Codex without global state or n
     const listed = await runCodex(cli, ["plugin", "list"], env);
     assert.match(listed.stdout, /proofweave-research@proofweave-private-beta/);
     assert.doesNotMatch(listed.stdout, /not installed/);
+  } finally {
+    await rm(fixtureRoot, { recursive: true, force: true });
+  }
+});
+
+test("a failed artifact-set replacement restores the prior coherent release", async () => {
+  const fixtureRoot = await mkdtemp(join(tmpdir(), "proofweave-plugin-rollback-"));
+  const filenames = [
+    "proofweave-research-marketplace.tar",
+    "proofweave-research-marketplace.tar.sha256",
+    "proofweave-research-marketplace.json",
+  ];
+  try {
+    await Promise.all(filenames.map((filename) => (
+      writeFile(resolve(fixtureRoot, filename), `old:${filename}\n`)
+    )));
+    let renameCalls = 0;
+    await assert.rejects(
+      publishArtifactSetAtomically(
+        fixtureRoot,
+        filenames.map((filename) => ({
+          filename,
+          bytes: Buffer.from(`new:${filename}\n`),
+        })),
+        {
+          async renameFile(source, destination) {
+            renameCalls += 1;
+            if (renameCalls === 2) throw new Error("simulated second-file publish failure");
+            await rename(source, destination);
+          },
+        },
+      ),
+      /Could not publish a complete plugin artifact set/,
+    );
+
+    assert.equal(renameCalls, 2);
+    for (const filename of filenames) {
+      assert.equal(await readFile(resolve(fixtureRoot, filename), "utf8"), `old:${filename}\n`);
+    }
+    assert.deepEqual((await readdir(fixtureRoot)).sort(comparePaths), filenames.sort(comparePaths));
   } finally {
     await rm(fixtureRoot, { recursive: true, force: true });
   }
@@ -246,6 +390,15 @@ function assertSafePath(path) {
   assert.equal(path.startsWith("/"), false, `absolute archive path: ${path}`);
   assert.equal(path.includes("\\"), false, `backslash archive path: ${path}`);
   assert.equal(path.split("/").includes(".."), false, `parent traversal archive path: ${path}`);
+}
+
+function assertSafePublicArchivePath(archive) {
+  assert.match(archive.filename, /^[a-z0-9.-]+\.tar$/);
+  assert.equal(archive.filename.includes("/"), false);
+  assert.equal(archive.filename.includes("\\"), false);
+  assert.equal(archive.path, `/downloads/${archive.filename}`);
+  assert.equal(archive.path.includes("\\"), false);
+  assert.equal(archive.path.split("/").includes(".."), false);
 }
 
 function parseArchivedJson(entries, path) {
