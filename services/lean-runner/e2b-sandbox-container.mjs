@@ -9,6 +9,7 @@ const runnerHome = "/home/proofweave";
 const runnerPath = "/opt/lean/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin";
 const runnerLeanExecutable = "/opt/lean/bin/lake";
 const runnerDependencyPackagesRoot = "/opt/proofweave/lake-packages";
+const maximumExecutionTimeoutMs = 1_260_000;
 const proofWidgetsPackageLockHash = `${runnerDependencyPackagesRoot}/proofwidgets/widget/package-lock.json.hash`;
 const prepareDependencyCacheCommand = `touch ${proofWidgetsPackageLockHash} && chown proofweave:proofweave ${proofWidgetsPackageLockHash} && chmod 0644 ${proofWidgetsPackageLockHash}`;
 const runPath = /^\/v1\/runs\/([^/]+)\/workspace(?:\/artifacts\/(?:source-archive|source-patch|lake-manifest)|\/(?:finalize|execute|cancel|complete)|\/result\/(?:stdout|stderr))?$/;
@@ -56,7 +57,7 @@ export class E2BSandboxContainerFactory {
     this.imageReference = assertPinnedRunnerImage(imageReference);
     this.cpuCount = integerRange(cpuCount, "E2B template CPU count", 1, 8);
     this.memoryMB = integerRange(memoryMB, "E2B template memory", 512, 8_192);
-    this.timeoutMs = integerRange(timeoutMs, "E2B execution timeout", 1_000, 3_540_000);
+    this.timeoutMs = integerRange(timeoutMs, "E2B execution timeout", 1_000, maximumExecutionTimeoutMs);
     this.startupTimeoutMs = integerRange(startupTimeoutMs, "E2B startup timeout", 1_000, Math.min(120_000, this.timeoutMs));
     if (resourcePolicyReviewed !== true) {
       throw new E2BSandboxContainerError("E2B runner stays disabled until its template, no-egress policy, resources, and timeout are reviewed.");

@@ -47,6 +47,7 @@ test("E2B adapter creates one secure no-egress Sandbox and keeps control credent
   assert.deepEqual(e2b.createOptions.lifecycle, { onTimeout: "kill" });
   assert.equal(e2b.createOptions.envs.PROOFWEAVE_NETWORK_ISOLATED, "true");
   assert.equal(e2b.createOptions.envs.PROOFWEAVE_RESOURCE_LIMITS_ENFORCED, "true");
+  assert.equal(e2b.createOptions.envs.PROOFWEAVE_REQUEST_TIMEOUT_MS, "120000");
   assert.equal(Object.values(e2b.createOptions.envs).includes(apiKey), false);
   assert.equal(JSON.stringify(e2b.createOptions.metadata).includes("run:e2b-1"), false);
   assert.equal(
@@ -64,6 +65,7 @@ test("E2B adapter creates one secure no-egress Sandbox and keeps control credent
   assert.equal(e2b.serverOptions.envs.PROOFWEAVE_LEAN_EXECUTABLE_PATH, "/opt/lean/bin/lake");
   assert.equal(e2b.serverOptions.envs.PROOFWEAVE_LAKE_PACKAGES_ROOT, "/opt/proofweave/lake-packages");
   assert.equal(e2b.serverOptions.envs.PROOFWEAVE_NETWORK_ISOLATED, "true");
+  assert.equal(e2b.serverOptions.envs.PROOFWEAVE_REQUEST_TIMEOUT_MS, "120000");
   assert.equal(forwarded[0].url, "https://8080-sandbox.e2b.test/ready");
   assert.equal(forwarded[0].options.headers.get("e2b-traffic-access-token"), "e2b-traffic-token-1234567890");
   assert.equal(forwarded[0].options.signal instanceof AbortSignal, true);
@@ -211,6 +213,20 @@ test("E2B adapter requires a pinned image, reviewed policy, private traffic toke
     sandboxApi: e2b.api,
     templateApi: e2b.templateApi,
   }), /STARTUP_TIMEOUT/);
+
+  assert.throws(() => new E2BSandboxContainerFactory({
+    sandboxApi: e2b.api,
+    templateApi: e2b.templateApi,
+    apiKey,
+    templateId: templateReference,
+    templateBuildId,
+    imageReference,
+    cpuCount: 2,
+    memoryMB: 2_048,
+    timeoutMs: 1_260_001,
+    startupTimeoutMs: 10_000,
+    resourcePolicyReviewed: true,
+  }), /between 1000 and 1260000/);
 });
 
 test("E2B adapter bounds each authenticated private Sandbox request", async () => {
