@@ -292,7 +292,15 @@ export async function createTrustedRunnerRuntime({
     imageRegistry,
     getContainerForRun,
     discardContainerForRun,
-    executionClient: new RunnerContainerExecutionClient(),
+    executionClient: new RunnerContainerExecutionClient({
+      pollMilliseconds: integerSetting(
+        environment,
+        "RUNNER_EXECUTION_POLL_MILLISECONDS",
+        1_000,
+        10,
+        10_000,
+      ),
+    }),
     finalizer,
     isCancellationRequested: async (runId) => (await runStore.find(runId))?.state === "cancel_requested",
     now,
