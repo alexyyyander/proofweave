@@ -11,13 +11,19 @@ import {
 import {
   inspectRuntimeRecoveryIsolationAtDrillBegin,
 } from "./github-recovery-surface-inspector.mjs";
+import {
+  assertProductionDrillOrigin,
+  collectGitOriginUrl,
+  loadProductionDrillPolicy,
+  normalizeProductionDrillPolicy,
+  productionDrillPolicyHash,
+} from "./production-drill-policy.mjs";
 
 export const recoveryIsolationOperatorKeysetVersion =
   "pw-runtime-recovery-operator-keyset-v1";
 
 const sha256Pattern = /^sha256:[a-f0-9]{64}$/;
 const identifierPattern = /^[A-Za-z0-9][A-Za-z0-9:._+/-]{0,511}$/;
-const repositoryPattern = /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/;
 const maxPrivateJwkBytes = 16 * 1024;
 
 export class GithubIndependentRecoveryIsolationError extends Error {
@@ -28,41 +34,81 @@ export class GithubIndependentRecoveryIsolationError extends Error {
   }
 }
 
-export async function recoveryIsolationReleaseConfiguration(environment) {
-  const repositoryFullName = requiredSetting(
+export async function recoveryIsolationReleaseConfiguration({
+  environment,
+  root,
+  policyBinding,
+  policyProvider = ({ root: policyRoot }) => loadProductionDrillPolicy({ root: policyRoot }),
+  gitOriginProvider = ({ root: originRoot }) => collectGitOriginUrl({ root: originRoot }),
+}) {
+  let policy;
+  let originUrl;
+  try {
+    policy = normalizeProductionDrillPolicy(await policyProvider({ root }));
+    originUrl = await gitOriginProvider({ root });
+    assertProductionDrillOrigin({ policy, originUrl });
+  } catch (cause) {
+    throw error(cause?.code ?? "RECOVERY_POLICY_INVALID", { cause });
+  }
+  const policyHash = productionDrillPolicyHash(policy);
+  let boundPolicyHash;
+  try {
+    boundPolicyHash = productionDrillPolicyHash(policyBinding?.policy);
+  } catch {
+    throw error("RECOVERY_POLICY_MANIFEST_MISMATCH");
+  }
+  if (
+    policyBinding?.policyHash !== policyHash
+    || boundPolicyHash !== policyHash
+    || policyBinding.gitOriginRepositoryFullName
+      !== policy.githubRepository.fullName
+  ) {
+    throw error("RECOVERY_POLICY_MANIFEST_MISMATCH");
+  }
+  assertOptionalExactSetting(
     environment,
     "PROOFWEAVE_DRILL_GITHUB_REPOSITORY",
-    "RECOVERY_REPOSITORY_MISSING",
-    240,
+    policy.githubRepository.fullName,
+    "RECOVERY_REPOSITORY_ASSERTION_MISMATCH",
   );
-  if (!repositoryPattern.test(repositoryFullName)) {
-    throw error("RECOVERY_REPOSITORY_INVALID");
-  }
-  const repositoryIdSource = requiredSetting(
+  assertOptionalExactSetting(
     environment,
     "PROOFWEAVE_DRILL_GITHUB_REPOSITORY_ID",
-    "RECOVERY_REPOSITORY_ID_MISSING",
-    16,
+    String(policy.githubRepository.id),
+    "RECOVERY_REPOSITORY_ID_ASSERTION_MISMATCH",
   );
-  if (!/^[1-9]\d{0,15}$/.test(repositoryIdSource)) {
-    throw error("RECOVERY_REPOSITORY_ID_INVALID");
+  if (environment?.PROOFWEAVE_DRILL_RECOVERY_TRUSTED_KEYS_JSON !== undefined) {
+    const asserted = await normalizeTrustedOperatorKeyset(
+      requiredSetting(
+        environment,
+        "PROOFWEAVE_DRILL_RECOVERY_TRUSTED_KEYS_JSON",
+        "RECOVERY_TRUSTED_KEYS_ASSERTION_INVALID",
+        64 * 1024,
+      ),
+      { allowEmpty: true },
+    );
+    const expected = Object.freeze({
+      schemaVersion: recoveryIsolationOperatorKeysetVersion,
+      keys: policy.recoveryOperatorKeys,
+    });
+    if (JSON.stringify(asserted) !== JSON.stringify(expected)) {
+      throw error("RECOVERY_TRUSTED_KEYS_ASSERTION_MISMATCH");
+    }
   }
-  const repositoryId = Number(repositoryIdSource);
-  if (!Number.isSafeInteger(repositoryId)) {
-    throw error("RECOVERY_REPOSITORY_ID_INVALID");
+  if (policy.recoveryOperatorKeys.length === 0) {
+    throw error("RECOVERY_OPERATOR_KEYS_NOT_ENROLLED");
   }
-  const trustedKeyset = await normalizeTrustedOperatorKeyset(
-    requiredSetting(
-      environment,
-      "PROOFWEAVE_DRILL_RECOVERY_TRUSTED_KEYS_JSON",
-      "RECOVERY_TRUSTED_KEYS_MISSING",
-      64 * 1024,
-    ),
-  );
+  const trustedKeyset = Object.freeze({
+    schemaVersion: recoveryIsolationOperatorKeysetVersion,
+    keys: policy.recoveryOperatorKeys,
+  });
   return Object.freeze({
-    repositoryFullName,
-    repositoryId,
+    repositoryFullName: policy.githubRepository.fullName,
+    repositoryId: policy.githubRepository.id,
     protocolVersion: runtimeRecoveryIsolationProtocolVersion,
+    policy,
+    policyVersion: policy.policyVersion,
+    policyHash,
     trustedKeyset,
     trustedKeysetHash: await sha256Canonical(trustedKeyset),
   });
@@ -77,9 +123,21 @@ export async function beginRecoveryIsolationSnapshot({
   inspector = inspectRuntimeRecoveryIsolationAtDrillBegin,
   verifier = verifyRuntimeRecoveryIsolationEvidence,
   operatorPrivateKeyProvider = loadRecoveryIsolationOperatorPrivateKey,
+  policyProvider,
+  gitOriginProvider,
   now = new Date(),
 }) {
-  const configuration = await recoveryIsolationReleaseConfiguration(environment);
+  const configuration = await recoveryIsolationReleaseConfiguration({
+    environment,
+    root,
+    policyBinding: {
+      policy: release.productionDrillPolicy,
+      policyHash: release.productionDrillPolicyHash,
+      gitOriginRepositoryFullName: release.gitOriginRepositoryFullName,
+    },
+    policyProvider,
+    gitOriginProvider,
+  });
   const githubToken = requiredSetting(
     environment,
     "PROOFWEAVE_DRILL_GITHUB_TOKEN",
@@ -91,6 +149,11 @@ export async function beginRecoveryIsolationSnapshot({
     "RECOVERY_OPERATOR_KEY_ID_MISSING",
   );
   const operatorPrivateKeyJwk = await operatorPrivateKeyProvider({ environment, root });
+  await assertOperatorPrivateKeyEnrollment({
+    operatorPrivateKeyJwk,
+    operatorKeyId,
+    trustedKeys: configuration.trustedKeyset.keys,
+  });
   let evidence;
   try {
     evidence = await inspector({
@@ -125,6 +188,9 @@ export async function verifyPersistedRecoveryIsolation({
   correlationId,
   createdAt,
   verifier = verifyRuntimeRecoveryIsolationEvidence,
+  root,
+  policyProvider,
+  gitOriginProvider,
   now = new Date(),
 }) {
   const normalizedState = normalizeRecoveryIsolationState(recoveryIsolation);
@@ -132,7 +198,17 @@ export async function verifyPersistedRecoveryIsolation({
   if (actualHash !== normalizedState.evidenceHash) {
     throw error("RECOVERY_ISOLATION_EVIDENCE_HASH_MISMATCH");
   }
-  const configuration = await recoveryIsolationReleaseConfiguration(environment);
+  const configuration = await recoveryIsolationReleaseConfiguration({
+    environment,
+    root,
+    policyBinding: {
+      policy: release.productionDrillPolicy,
+      policyHash: release.productionDrillPolicyHash,
+      gitOriginRepositoryFullName: release.gitOriginRepositoryFullName,
+    },
+    policyProvider,
+    gitOriginProvider,
+  });
   const bound = await bindVerifiedRecoveryIsolation({
     evidence: normalizedState.evidence,
     configuration,
@@ -268,7 +344,7 @@ async function bindVerifiedRecoveryIsolation({
   });
 }
 
-async function normalizeTrustedOperatorKeyset(source) {
+async function normalizeTrustedOperatorKeyset(source, { allowEmpty = false } = {}) {
   let value;
   try {
     value = JSON.parse(source);
@@ -280,7 +356,7 @@ async function normalizeTrustedOperatorKeyset(source) {
   if (
     value.schemaVersion !== recoveryIsolationOperatorKeysetVersion
     || !Array.isArray(value.keys)
-    || value.keys.length === 0
+    || (!allowEmpty && value.keys.length === 0)
     || value.keys.length > 32
   ) {
     throw error("RECOVERY_TRUSTED_KEYS_INVALID");
@@ -323,6 +399,45 @@ async function normalizeTrustedOperatorKeyset(source) {
   });
 }
 
+async function assertOperatorPrivateKeyEnrollment({
+  operatorPrivateKeyJwk,
+  operatorKeyId,
+  trustedKeys,
+}) {
+  if (
+    !operatorPrivateKeyJwk
+    || operatorPrivateKeyJwk.kty !== "OKP"
+    || operatorPrivateKeyJwk.crv !== "Ed25519"
+    || typeof operatorPrivateKeyJwk.d !== "string"
+    || typeof operatorPrivateKeyJwk.x !== "string"
+  ) {
+    throw error("RECOVERY_OPERATOR_PRIVATE_KEY_INVALID");
+  }
+  let publicKey;
+  let fingerprint;
+  try {
+    const bytes = Buffer.from(operatorPrivateKeyJwk.x, "base64url");
+    if (
+      bytes.length !== 32
+      || bytes.toString("base64url") !== operatorPrivateKeyJwk.x
+    ) {
+      throw new Error("non-canonical operator public key");
+    }
+    publicKey = bytes.toString("base64url");
+    fingerprint = await runtimeRecoveryIsolationKeyFingerprint(publicKey);
+  } catch (cause) {
+    throw error("RECOVERY_OPERATOR_PRIVATE_KEY_INVALID", { cause });
+  }
+  const enrolled = trustedKeys.find((entry) => entry.keyId === operatorKeyId);
+  if (!enrolled) throw error("RECOVERY_OPERATOR_KEY_ID_NOT_ENROLLED");
+  if (
+    enrolled.publicKey !== publicKey
+    || enrolled.keyFingerprint !== fingerprint
+  ) {
+    throw error("RECOVERY_OPERATOR_KEY_NOT_ENROLLED");
+  }
+}
+
 function requiredSetting(environment, name, code, maximumLength) {
   const value = environment?.[name];
   if (
@@ -340,6 +455,19 @@ function requiredSetting(environment, name, code, maximumLength) {
 function requiredIdentifier(value, code) {
   if (typeof value !== "string" || !identifierPattern.test(value)) throw error(code);
   return value;
+}
+
+function assertOptionalExactSetting(environment, name, expected, code) {
+  const value = environment?.[name];
+  if (value === undefined) return;
+  if (
+    typeof value !== "string"
+    || value !== expected
+    || value.trim() !== value
+    || /[\0\r\n]/.test(value)
+  ) {
+    throw error(code);
+  }
 }
 
 function record(value, code) {

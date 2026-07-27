@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { execFileSync } from "node:child_process";
 import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
@@ -6,6 +7,7 @@ import test from "node:test";
 import {
   createReleaseManifest,
   stableManifestJson,
+  validateReleaseManifest,
 } from "../scripts/print-release-manifest.mjs";
 
 const sourceRevision = "a".repeat(40);
@@ -26,6 +28,7 @@ test("release manifest emits one complete stable non-secret revision set", async
     const second = createReleaseManifest(options);
 
     assert.equal(first.exitCode, 0);
+    assert.equal(first.manifest.schemaVersion, "pw-release-manifest-v2");
     assert.equal(first.manifest.validation.mode, "release");
     assert.equal(first.manifest.validation.state, "valid");
     assert.deepEqual(first.manifest.validation.issues, []);
@@ -45,8 +48,46 @@ test("release manifest emits one complete stable non-secret revision set", async
     assert.equal(first.manifest.database.runnerFingerprint, databaseFingerprint);
     assert.equal(first.manifest.database.repositoryMigrationHead, migrationHead);
     assert.equal(first.manifest.database.deployedMigrationHead, migrationHead);
+    assert.equal(
+      first.manifest.productionDrill.policy.githubRepository.fullName,
+      "example/proofweave",
+    );
+    assert.match(first.manifest.productionDrill.policyHash, /^sha256:[a-f0-9]{64}$/);
+    assert.equal(
+      first.manifest.productionDrill.gitOriginRepositoryFullName,
+      "example/proofweave",
+    );
     assert.equal(stableManifestJson(first.manifest), stableManifestJson(second.manifest));
     assert.equal("generatedAt" in first.manifest, false);
+  });
+});
+
+test("release manifest fails closed when the reviewed policy and git origin diverge", async () => {
+  await withFixture(async (root) => {
+    execFileSync(
+      "git",
+      ["remote", "set-url", "origin", "https://github.com/attacker/proofweave.git"],
+      { cwd: root },
+    );
+    const result = createReleaseManifest(completeOptions(root));
+    assert.equal(result.exitCode, 1);
+    assert.equal(issueCodes(result).has("PRODUCTION_DRILL_POLICY_MISSING"), true);
+    assert.equal(issueCodes(result).has("PRODUCTION_DRILL_POLICY_HASH_MISSING"), true);
+  });
+});
+
+test("strict validation recomputes and rejects a stale production policy hash", async () => {
+  await withFixture(async (root) => {
+    const result = createReleaseManifest(completeOptions(root));
+    const tampered = structuredClone(result.manifest);
+    tampered.productionDrill.policy.policyVersion += 1;
+    const validation = validateReleaseManifest(tampered, { mode: "release" });
+    assert.equal(
+      validation.issues.some((issue) => (
+        issue.code === "PRODUCTION_DRILL_POLICY_HASH_MISMATCH"
+      )),
+      true,
+    );
   });
 });
 
@@ -268,6 +309,7 @@ async function withFixture(run) {
   try {
     await Promise.all([
       mkdir(join(root, ".openai"), { recursive: true }),
+      mkdir(join(root, "config"), { recursive: true }),
       mkdir(join(root, "deploy", "huggingface-runner"), { recursive: true }),
       mkdir(join(root, "drizzle"), { recursive: true }),
     ]);
@@ -276,10 +318,25 @@ async function withFixture(run) {
         join(root, ".openai", "hosting.json"),
         `${JSON.stringify({ project_id: "appgprj_fixture", d1: "DB" }, null, 2)}\n`,
       ),
+      writeFile(
+        join(root, "config", "production-drill-policy.json"),
+        `${JSON.stringify({
+          schemaVersion: "pw-production-drill-policy-v1",
+          policyVersion: 1,
+          githubRepository: { fullName: "example/proofweave", id: 123456 },
+          recoveryOperatorKeys: [],
+        }, null, 2)}\n`,
+      ),
       writeFile(join(root, "deploy", "huggingface-runner", "render.yaml"), renderFixture()),
       writeFile(join(root, "drizzle", "0041_allow_content_hash_aliases.sql"), "-- migration\n"),
       writeFile(join(root, "drizzle", migrationHead), "-- migration\n"),
     ]);
+    execFileSync("git", ["init", "-q"], { cwd: root });
+    execFileSync(
+      "git",
+      ["remote", "add", "origin", "https://github.com/example/proofweave.git"],
+      { cwd: root },
+    );
     await run(root);
   } finally {
     await rm(root, { recursive: true, force: true });

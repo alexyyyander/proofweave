@@ -12,6 +12,10 @@ import {
 import {
   runtimeRecoveryIsolationKeyFingerprint,
 } from "../packages/protocol/runtime-recovery-isolation.mjs";
+import {
+  loadProductionDrillPolicy,
+  productionDrillPolicyHash,
+} from "../scripts/lib/production-drill-policy.mjs";
 
 const keyPair = await crypto.subtle.generateKey(
   { name: "Ed25519" },
@@ -24,34 +28,51 @@ const publicKey = Buffer.from(
 ).toString("base64url");
 const keyFingerprint = await runtimeRecoveryIsolationKeyFingerprint(publicKey);
 
-test("release recovery configuration is bounded and requires canonical public keys", async () => {
+test("checked-in production policy fixes repository identity and stays un-enrolled", async () => {
+  const policy = loadProductionDrillPolicy({ root: process.cwd() });
+  assert.equal(policy.githubRepository.fullName, "alexyyyander/proofweave");
+  assert.equal(policy.githubRepository.id, 1298911069);
+  assert.deepEqual(policy.recoveryOperatorKeys, []);
+  await assert.rejects(
+    recoveryIsolationReleaseConfiguration({
+      environment: {},
+      root: process.cwd(),
+      policyBinding: {
+        policy,
+        policyHash: productionDrillPolicyHash(policy),
+        gitOriginRepositoryFullName: policy.githubRepository.fullName,
+      },
+    }),
+    (error) => error.code === "RECOVERY_OPERATOR_KEYS_NOT_ENROLLED",
+  );
+});
+
+test("release recovery configuration is fixed by policy and environment is assertion-only", async () => {
   const environment = validEnvironment();
-  const configuration = await recoveryIsolationReleaseConfiguration(environment);
+  const configuration = await recoveryIsolationReleaseConfiguration(configurationInput(environment));
   assert.equal(configuration.repositoryId, 4242);
   assert.equal(configuration.trustedKeyset.keys[0].publicKey, publicKey);
 
   await assert.rejects(
-    recoveryIsolationReleaseConfiguration({
+    recoveryIsolationReleaseConfiguration(configurationInput({
       ...environment,
-      PROOFWEAVE_DRILL_GITHUB_REPOSITORY: " proofweave/research",
-    }),
-    (error) => error.code === "RECOVERY_REPOSITORY_MISSING",
+      PROOFWEAVE_DRILL_GITHUB_REPOSITORY: "attacker/fork",
+    })),
+    (error) => error.code === "RECOVERY_REPOSITORY_ASSERTION_MISMATCH",
   );
+  const selfSelected = structuredClone(trustedKeyset());
+  selfSelected.keys[0].keyId = "attacker:self-selected";
   await assert.rejects(
-    recoveryIsolationReleaseConfiguration({
+    recoveryIsolationReleaseConfiguration(configurationInput({
       ...environment,
-      PROOFWEAVE_DRILL_RECOVERY_TRUSTED_KEYS_JSON: "x".repeat((64 * 1024) + 1),
-    }),
-    (error) => error.code === "RECOVERY_TRUSTED_KEYS_MISSING",
+      PROOFWEAVE_DRILL_RECOVERY_TRUSTED_KEYS_JSON: JSON.stringify(selfSelected),
+    })),
+    (error) => error.code === "RECOVERY_TRUSTED_KEYS_ASSERTION_MISMATCH",
   );
-  const nonCanonical = JSON.parse(environment.PROOFWEAVE_DRILL_RECOVERY_TRUSTED_KEYS_JSON);
-  nonCanonical.keys[0].publicKey = `${publicKey}=`;
+  const noKeys = { ...fixturePolicy(), recoveryOperatorKeys: [] };
   await assert.rejects(
-    recoveryIsolationReleaseConfiguration({
-      ...environment,
-      PROOFWEAVE_DRILL_RECOVERY_TRUSTED_KEYS_JSON: JSON.stringify(nonCanonical),
-    }),
-    (error) => error.code === "RECOVERY_TRUSTED_KEYS_INVALID",
+    recoveryIsolationReleaseConfiguration(configurationInput({}, noKeys)),
+    (error) => error.code === "RECOVERY_OPERATOR_KEYS_NOT_ENROLLED",
   );
 });
 
@@ -65,10 +86,17 @@ test("begin rejects oversized or whitespace-bearing GitHub tokens before inspect
           PROOFWEAVE_DRILL_GITHUB_TOKEN: token,
           PROOFWEAVE_DRILL_RECOVERY_OPERATOR_KEY_ID: "release-operator:production-01",
         },
-        release: { gitSha: "a".repeat(40) },
+        release: {
+          gitSha: "a".repeat(40),
+          productionDrillPolicy: fixturePolicy(),
+          productionDrillPolicyHash: productionDrillPolicyHash(fixturePolicy()),
+          gitOriginRepositoryFullName: "proofweave/research",
+        },
         releaseFingerprint: `sha256:${"b".repeat(64)}`,
         correlationId: "correlation:production-01",
         root: process.cwd(),
+        policyProvider: async () => fixturePolicy(),
+        gitOriginProvider: async () => "https://github.com/proofweave/research.git",
         inspector: async () => {
           inspected = true;
           throw new Error("must not run");
@@ -79,6 +107,76 @@ test("begin rejects oversized or whitespace-bearing GitHub tokens before inspect
     );
     assert.equal(inspected, false);
   }
+});
+
+test("same-SHA fork origin and policy drift cannot reuse an unchanged manifest binding", async () => {
+  await assert.rejects(
+    recoveryIsolationReleaseConfiguration({
+      ...configurationInput(validEnvironment()),
+      gitOriginProvider: async () => "https://github.com/attacker/proofweave.git",
+    }),
+    (error) => error.code === "PRODUCTION_DRILL_GIT_ORIGIN_POLICY_MISMATCH",
+  );
+  const drifted = { ...fixturePolicy(), policyVersion: 2 };
+  await assert.rejects(
+    recoveryIsolationReleaseConfiguration({
+      ...configurationInput(validEnvironment()),
+      policyProvider: async () => drifted,
+    }),
+    (error) => error.code === "RECOVERY_POLICY_MANIFEST_MISMATCH",
+  );
+});
+
+test("operator key id and derived public key must both be enrolled by policy", async () => {
+  const base = {
+    environment: {
+      ...validEnvironment(),
+      PROOFWEAVE_DRILL_GITHUB_TOKEN: "github-read-token",
+    },
+    release: {
+      gitSha: "a".repeat(40),
+      productionDrillPolicy: fixturePolicy(),
+      productionDrillPolicyHash: productionDrillPolicyHash(fixturePolicy()),
+      gitOriginRepositoryFullName: "proofweave/research",
+    },
+    releaseFingerprint: `sha256:${"b".repeat(64)}`,
+    correlationId: "correlation:production-01",
+    root: process.cwd(),
+    policyProvider: async () => fixturePolicy(),
+    gitOriginProvider: async () => "https://github.com/proofweave/research.git",
+    inspector: async () => {
+      throw new Error("inspector must not run for an untrusted operator");
+    },
+  };
+  await assert.rejects(
+    beginRecoveryIsolationSnapshot({
+      ...base,
+      environment: {
+        ...base.environment,
+        PROOFWEAVE_DRILL_RECOVERY_OPERATOR_KEY_ID: "release-operator:unknown",
+      },
+      operatorPrivateKeyProvider: async () => privateKeyJwk,
+    }),
+    (error) => error.code === "RECOVERY_OPERATOR_KEY_ID_NOT_ENROLLED",
+  );
+
+  const otherPair = await crypto.subtle.generateKey(
+    { name: "Ed25519" },
+    true,
+    ["sign", "verify"],
+  );
+  const otherPrivateKey = await crypto.subtle.exportKey("jwk", otherPair.privateKey);
+  await assert.rejects(
+    beginRecoveryIsolationSnapshot({
+      ...base,
+      environment: {
+        ...base.environment,
+        PROOFWEAVE_DRILL_RECOVERY_OPERATOR_KEY_ID: "release-operator:production-01",
+      },
+      operatorPrivateKeyProvider: async () => otherPrivateKey,
+    }),
+    (error) => error.code === "RECOVERY_OPERATOR_KEY_NOT_ENROLLED",
+  );
 });
 
 test("production operator private key file must be external, regular, and mode 0600", async () => {
@@ -114,13 +212,40 @@ function validEnvironment() {
   return {
     PROOFWEAVE_DRILL_GITHUB_REPOSITORY: "proofweave/research",
     PROOFWEAVE_DRILL_GITHUB_REPOSITORY_ID: "4242",
-    PROOFWEAVE_DRILL_RECOVERY_TRUSTED_KEYS_JSON: JSON.stringify({
-      schemaVersion: "pw-runtime-recovery-operator-keyset-v1",
-      keys: [{
-        keyId: "release-operator:production-01",
-        publicKey,
-        keyFingerprint,
-      }],
-    }),
+    PROOFWEAVE_DRILL_RECOVERY_TRUSTED_KEYS_JSON: JSON.stringify(trustedKeyset()),
+  };
+}
+
+function fixturePolicy() {
+  return {
+    schemaVersion: "pw-production-drill-policy-v1",
+    policyVersion: 1,
+    githubRepository: { fullName: "proofweave/research", id: 4242 },
+    recoveryOperatorKeys: [{
+      keyId: "release-operator:production-01",
+      publicKey,
+      keyFingerprint,
+    }],
+  };
+}
+
+function trustedKeyset() {
+  return {
+    schemaVersion: "pw-runtime-recovery-operator-keyset-v1",
+    keys: fixturePolicy().recoveryOperatorKeys,
+  };
+}
+
+function configurationInput(environment, policy = fixturePolicy()) {
+  return {
+    environment,
+    root: process.cwd(),
+    policyBinding: {
+      policy,
+      policyHash: productionDrillPolicyHash(policy),
+      gitOriginRepositoryFullName: policy.githubRepository.fullName,
+    },
+    policyProvider: async () => policy,
+    gitOriginProvider: async () => `https://github.com/${policy.githubRepository.fullName}.git`,
   };
 }

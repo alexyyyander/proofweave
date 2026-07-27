@@ -58,6 +58,32 @@ If any writer lacks an independently verifiable freeze control, abort before
 merge or migration. HTTP maintenance text alone is not a freeze unless mutation
 probes demonstrate that it blocks the underlying write path.
 
+### Reviewed production-drill trust policy
+
+The production drill takes repository identity and recovery-operator authority
+only from [`config/production-drill-policy.json`](../config/production-drill-policy.json).
+Its canonical hash is included in both the release manifest and drill release
+fingerprint. Runtime environment variables cannot add a repository or key;
+when supplied, they are exact-match assertions only.
+
+The checked-in policy currently contains the GitHub repository identity
+`alexyyyander/proofweave` / `1298911069`, verified through the read-only GitHub
+repository API on 2026-07-28. It deliberately contains no recovery operator
+key. Therefore a production preflight must fail with
+`RECOVERY_OPERATOR_KEYS_NOT_ENROLLED` until a release-reviewed pull request:
+
+1. generates an Ed25519 key outside this repository and keeps the private JWK
+   outside the repository in a regular mode-`0600` file;
+2. adds only its canonical 32-byte base64url public key, deterministic
+   fingerprint, and reviewed key ID to `recoveryOperatorKeys`;
+3. passes the release-manifest and production-drill negative tests;
+4. is independently reviewed before the new policy hash is used in a release.
+
+The drill CLI accepts only the external private-key file and key ID. It derives
+the public key and rejects it unless both ID and public bytes match the reviewed
+policy. An operator must not populate a trusted-keyset environment variable to
+bootstrap authority; a self-selected keyset is not production evidence.
+
 ## Phase 1 — Freeze producers
 
 Record the UTC start time and expected `RELEASE_SHA`, then prevent creation of

@@ -36,6 +36,7 @@ import {
   recoveryIsolationReleaseConfiguration,
   verifyPersistedRecoveryIsolation,
 } from "./lib/github-independent-recovery-isolation.mjs";
+import { productionDrillPolicyHash } from "./lib/production-drill-policy.mjs";
 
 export const githubIndependentDrillSchemaVersion = "pw-github-independent-production-drill-v4";
 export const githubIndependentDrillConfirmations = Object.freeze({
@@ -79,6 +80,8 @@ export function createGithubIndependentProductionDrill(options = {}) {
     "recoveryIsolationInspector",
     "recoveryIsolationVerifier",
     "operatorPrivateKeyProvider",
+    "productionDrillPolicyProvider",
+    "gitOriginProvider",
     "now",
   ].some((key) => Object.hasOwn(options, key));
   const root = resolve(options.root ?? repositoryRoot);
@@ -90,6 +93,8 @@ export function createGithubIndependentProductionDrill(options = {}) {
   const recoveryIsolationInspector = options.recoveryIsolationInspector;
   const recoveryIsolationVerifier = options.recoveryIsolationVerifier;
   const operatorPrivateKeyProvider = options.operatorPrivateKeyProvider;
+  const productionDrillPolicyProvider = options.productionDrillPolicyProvider;
+  const gitOriginProvider = options.gitOriginProvider;
   const now = options.now ?? (() => new Date());
   if (
     typeof fetcher !== "function" ||
@@ -100,6 +105,9 @@ export function createGithubIndependentProductionDrill(options = {}) {
     (recoveryIsolationInspector !== undefined && typeof recoveryIsolationInspector !== "function") ||
     (recoveryIsolationVerifier !== undefined && typeof recoveryIsolationVerifier !== "function") ||
     (operatorPrivateKeyProvider !== undefined && typeof operatorPrivateKeyProvider !== "function") ||
+    (productionDrillPolicyProvider !== undefined
+      && typeof productionDrillPolicyProvider !== "function") ||
+    (gitOriginProvider !== undefined && typeof gitOriginProvider !== "function") ||
     typeof now !== "function"
   ) {
     throw new GithubIndependentDrillError("DRILL_DEPENDENCY_INVALID");
@@ -113,6 +121,13 @@ export function createGithubIndependentProductionDrill(options = {}) {
       mode: "release",
     });
     const manifest = requireStrictReleaseManifest(releaseResult);
+    const recoveryIsolation = await recoveryIsolationReleaseConfiguration({
+      environment,
+      root,
+      policyBinding: manifest.productionDrill,
+      policyProvider: productionDrillPolicyProvider,
+      gitOriginProvider,
+    });
     const database = await databaseProbe({ environment, manifest });
     validateDatabaseProbe(database, manifest);
     const siteOrigin = requireHttpsOrigin(
@@ -123,7 +138,6 @@ export function createGithubIndependentProductionDrill(options = {}) {
       environment.PROOFWEAVE_DRILL_EXPECTED_RUNNER_CONSUMER_ID,
       "EXPECTED_RUNNER_CONSUMER_ID_MISSING",
     );
-    const recoveryIsolation = await recoveryIsolationReleaseConfiguration(environment);
     const siteReleaseDiagnostics = await inspectSiteReleaseDiagnostics({
       fetcher,
       siteOrigin,
@@ -203,6 +217,8 @@ export function createGithubIndependentProductionDrill(options = {}) {
       inspector: recoveryIsolationInspector,
       verifier: recoveryIsolationVerifier,
       operatorPrivateKeyProvider,
+      policyProvider: productionDrillPolicyProvider,
+      gitOriginProvider,
       now: now(),
     });
     const timestamp = recoveryIsolation.evidence.drill.observedAt;
@@ -251,6 +267,9 @@ export function createGithubIndependentProductionDrill(options = {}) {
       correlationId: state.correlationId,
       createdAt: state.createdAt,
       verifier: recoveryIsolationVerifier,
+      root,
+      policyProvider: productionDrillPolicyProvider,
+      gitOriginProvider,
       now: now(),
     });
     const checked = await preflight({ environment });
@@ -296,6 +315,9 @@ export function createGithubIndependentProductionDrill(options = {}) {
       correlationId: state.correlationId,
       createdAt: state.createdAt,
       verifier: recoveryIsolationVerifier,
+      root,
+      policyProvider: productionDrillPolicyProvider,
+      gitOriginProvider,
       now: now(),
     });
     const checked = await preflight({ environment });
@@ -399,10 +421,17 @@ function requireStrictReleaseManifest(result) {
     result?.exitCode !== 0 ||
     manifest?.validation?.mode !== "release" ||
     manifest?.validation?.state !== "valid" ||
+    manifest?.schemaVersion !== "pw-release-manifest-v2" ||
     !Array.isArray(manifest.validation.issues) ||
     manifest.validation.issues.length !== 0
   ) {
     throw new GithubIndependentDrillError("RELEASE_MANIFEST_INVALID");
+  }
+  let canonicalPolicyHash;
+  try {
+    canonicalPolicyHash = productionDrillPolicyHash(manifest.productionDrill?.policy);
+  } catch {
+    throw new GithubIndependentDrillError("RELEASE_MANIFEST_ALIGNMENT_FAILED");
   }
   const revision = manifest.source?.gitSha;
   if (
@@ -415,6 +444,11 @@ function requireStrictReleaseManifest(result) {
     manifest.database?.authority !== "turso" ||
     manifest.database.gatewayFingerprint !== manifest.database.runnerFingerprint ||
     manifest.database.repositoryMigrationHead !== manifest.database.deployedMigrationHead
+    || !manifest.productionDrill?.policy
+    || !sha256Pattern.test(manifest.productionDrill.policyHash ?? "")
+    || canonicalPolicyHash !== manifest.productionDrill.policyHash
+    || manifest.productionDrill.gitOriginRepositoryFullName
+      !== manifest.productionDrill.policy.githubRepository?.fullName
   ) {
     throw new GithubIndependentDrillError("RELEASE_MANIFEST_ALIGNMENT_FAILED");
   }
@@ -572,6 +606,9 @@ function releaseProjection({
     expectedRunnerConsumerId,
     githubRepositoryFullName: recoveryIsolation.repositoryFullName,
     githubRepositoryId: recoveryIsolation.repositoryId,
+    productionDrillPolicy: recoveryIsolation.policy,
+    productionDrillPolicyHash: recoveryIsolation.policyHash,
+    gitOriginRepositoryFullName: recoveryIsolation.repositoryFullName,
     recoveryIsolationProtocolVersion: recoveryIsolation.protocolVersion,
     recoveryOperatorKeysetHash: recoveryIsolation.trustedKeysetHash,
     sitesVersion: manifest.sites.version,

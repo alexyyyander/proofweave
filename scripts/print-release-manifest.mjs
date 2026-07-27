@@ -4,8 +4,14 @@ import { execFileSync } from "node:child_process";
 import { readdirSync, readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import {
+  assertProductionDrillOrigin,
+  collectGitOriginUrl,
+  loadProductionDrillPolicy,
+  productionDrillPolicyHash,
+} from "./lib/production-drill-policy.mjs";
 
-export const releaseManifestSchemaVersion = "pw-release-manifest-v1";
+export const releaseManifestSchemaVersion = "pw-release-manifest-v2";
 
 const revisionPattern = /^[a-f0-9]{40,64}$/;
 const publicLabelPattern = /^[A-Za-z0-9][A-Za-z0-9:._+/-]{0,191}$/;
@@ -46,6 +52,7 @@ export function collectReleaseManifest({
     runnerEnvironment.RUNNER_APPROVED_IMAGES_JSON,
     configuredImageDigest,
   );
+  const productionDrill = collectProductionDrillPolicy(root);
 
   return {
     schemaVersion: releaseManifestSchemaVersion,
@@ -89,6 +96,7 @@ export function collectReleaseManifest({
       repositoryMigrationHead: repositoryMigrationHead(resolve(root, "drizzle")),
       deployedMigrationHead: safeMigrationHead(environment[releaseEnvironmentKeys.migrationHead]),
     },
+    productionDrill,
   };
 }
 
@@ -235,6 +243,48 @@ export function validateReleaseManifest(manifest, { mode = "inspection" } = {}) 
     add("MIGRATION_HEAD_MISMATCH", "database.deployedMigrationHead");
   }
 
+  required(
+    manifest.productionDrill?.policy,
+    "PRODUCTION_DRILL_POLICY_MISSING",
+    "productionDrill.policy",
+  );
+  required(
+    manifest.productionDrill?.policyHash,
+    "PRODUCTION_DRILL_POLICY_HASH_MISSING",
+    "productionDrill.policyHash",
+  );
+  required(
+    manifest.productionDrill?.gitOriginRepositoryFullName,
+    "PRODUCTION_DRILL_GIT_ORIGIN_MISSING",
+    "productionDrill.gitOriginRepositoryFullName",
+  );
+  if (manifest.productionDrill?.policy && manifest.productionDrill?.policyHash) {
+    try {
+      if (
+        productionDrillPolicyHash(manifest.productionDrill.policy)
+        !== manifest.productionDrill.policyHash
+      ) {
+        add(
+          "PRODUCTION_DRILL_POLICY_HASH_MISMATCH",
+          "productionDrill.policyHash",
+        );
+      }
+    } catch {
+      add("PRODUCTION_DRILL_POLICY_INVALID", "productionDrill.policy");
+    }
+  }
+  if (
+    manifest.productionDrill?.policy?.githubRepository?.fullName
+    && manifest.productionDrill.gitOriginRepositoryFullName
+    && manifest.productionDrill.policy.githubRepository.fullName
+      !== manifest.productionDrill.gitOriginRepositoryFullName
+  ) {
+    add(
+      "PRODUCTION_DRILL_GIT_ORIGIN_MISMATCH",
+      "productionDrill.gitOriginRepositoryFullName",
+    );
+  }
+
   return {
     mode: normalizedMode,
     state: issues.length === 0
@@ -244,6 +294,24 @@ export function validateReleaseManifest(manifest, { mode = "inspection" } = {}) 
         : "incomplete",
     issues,
   };
+}
+
+function collectProductionDrillPolicy(root) {
+  try {
+    const policy = loadProductionDrillPolicy({ root });
+    const originUrl = collectGitOriginUrl({ root });
+    return {
+      policy,
+      policyHash: productionDrillPolicyHash(policy),
+      gitOriginRepositoryFullName: assertProductionDrillOrigin({ policy, originUrl }),
+    };
+  } catch {
+    return {
+      policy: null,
+      policyHash: null,
+      gitOriginRepositoryFullName: null,
+    };
+  }
 }
 
 export function stableManifestJson(value) {

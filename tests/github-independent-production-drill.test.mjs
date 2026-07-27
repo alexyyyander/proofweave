@@ -19,6 +19,9 @@ import {
   runtimeRecoveryIsolationKeyFingerprint,
   signRuntimeRecoveryIsolationEvidence,
 } from "../packages/protocol/runtime-recovery-isolation.mjs";
+import {
+  productionDrillPolicyHash,
+} from "../scripts/lib/production-drill-policy.mjs";
 
 const revision = "a".repeat(40);
 const bundleHash = sha("b");
@@ -52,6 +55,15 @@ const recoveryTrustedKeyset = Object.freeze({
     publicKey: recoveryOperatorPublicKey,
     keyFingerprint: recoveryOperatorKeyFingerprint,
   }],
+});
+const productionDrillPolicy = Object.freeze({
+  schemaVersion: "pw-production-drill-policy-v1",
+  policyVersion: 1,
+  githubRepository: {
+    fullName: recoveryRepositoryFullName,
+    id: recoveryRepositoryId,
+  },
+  recoveryOperatorKeys: recoveryTrustedKeyset.keys,
 });
 const installedPluginVersion = JSON.parse(
   await readFile(
@@ -131,6 +143,17 @@ test("preflight rejects recovery and published plugin drift before live evidence
     distribution.drill.preflight({ environment: distribution.environment }),
     (error) => error.code === "PLUGIN_DISTRIBUTION_MANIFEST_MISMATCH",
   );
+});
+
+test("preflight recomputes and rejects a stale production policy hash", async () => {
+  const fixture = makeDrillFixture();
+  fixture.manifest.productionDrill.policyHash = sha("9");
+  await assert.rejects(
+    fixture.drill.preflight({ environment: fixture.environment }),
+    (error) => error.code === "RELEASE_MANIFEST_ALIGNMENT_FAILED",
+  );
+  assert.equal(fixture.calls.database, 0);
+  assert.equal(fixture.calls.fetch.length, 0);
 });
 
 test("preflight fails closed on invalid or unbound Site release diagnostics", async (context) => {
@@ -318,6 +341,20 @@ test("begin writes a signed secret-free v4 drill state for the exact Bundle", as
   }
 });
 
+test("begin rejects a GitHub snapshot with the right name but wrong repository id", async () => {
+  const fixture = makeDrillFixture({ observedRepositoryId: 999999 });
+  const directory = await mkdtemp(join(tmpdir(), "proofweave-drill-wrong-repository-id-"));
+  try {
+    await assert.rejects(
+      beginFixture(fixture, join(directory, "state.json")),
+      (error) => error.code === "RECOVERY_ISOLATION_BINDING_MISMATCH",
+    );
+    assert.equal(fixture.calls.live, 0);
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+});
+
 test("record hard-fails recovery bypass attempts before live or Receipt work", async (context) => {
   async function rejected(mutator, expectedCode) {
     const fixture = makeDrillFixture({ includeReceiptVerifierProbe: true });
@@ -402,7 +439,7 @@ test("record rejects expired and untrusted recovery evidence before live work", 
       });
       await assert.rejects(
         recordFixture(fixture, statePath),
-        (error) => error.code === "RECOVERY_ISOLATION_OPERATOR_UNTRUSTED",
+        (error) => error.code === "RECOVERY_TRUSTED_KEYS_ASSERTION_MISMATCH",
       );
       assert.equal(fixture.calls.live, 0);
       assert.equal(fixture.calls.receiptVerifier, 0);
@@ -686,6 +723,7 @@ test("production CLI rejects the retired --issuer-keyset input before any networ
 function makeDrillFixture({
   mutateDistribution = (value) => value,
   includeReceiptVerifierProbe = false,
+  observedRepositoryId = recoveryRepositoryId,
 } = {}) {
   const archive = Buffer.from("portable marketplace archive");
   const digest = createHash("sha256").update(archive).digest("hex");
@@ -825,6 +863,7 @@ function makeDrillFixture({
       ...input,
       observedAt: clock.value,
       productionEligible: false,
+      repositoryId: observedRepositoryId,
     });
   };
   const operatorPrivateKeyProvider = async () => {
@@ -853,6 +892,10 @@ function makeDrillFixture({
     liveEvidenceProbe,
     recoveryIsolationInspector,
     operatorPrivateKeyProvider,
+    productionDrillPolicyProvider: async () => productionDrillPolicy,
+    gitOriginProvider: async () => (
+      `https://github.com/${recoveryRepositoryFullName}.git`
+    ),
     now: () => new Date(clock.value),
   };
   if (includeReceiptVerifierProbe) {
@@ -903,7 +946,7 @@ function readyRunnerPolicy() {
 
 function releaseManifest() {
   return {
-    schemaVersion: "pw-release-manifest-v1",
+    schemaVersion: "pw-release-manifest-v2",
     source: {
       gitSha: revision,
       originMainSha: revision,
@@ -938,6 +981,11 @@ function releaseManifest() {
       runnerFingerprint: databaseFingerprint,
       repositoryMigrationHead: "0043_add_runner_queue_event_sequence.sql",
       deployedMigrationHead: "0043_add_runner_queue_event_sequence.sql",
+    },
+    productionDrill: {
+      policy: productionDrillPolicy,
+      policyHash: productionDrillPolicyHash(productionDrillPolicy),
+      gitOriginRepositoryFullName: recoveryRepositoryFullName,
     },
     validation: { mode: "release", state: "valid", issues: [] },
   };
@@ -1081,6 +1129,7 @@ async function createRecoveryIsolationEvidence({
   operatorKeyId,
   observedAt,
   productionEligible,
+  repositoryId = recoveryRepositoryId,
 }) {
   const workflows = [
     {
@@ -1119,7 +1168,7 @@ async function createRecoveryIsolationEvidence({
       workflows,
     },
     githubObservation: {
-      repositoryId: recoveryRepositoryId,
+      repositoryId,
       repositoryFullName: recoveryRepositoryFullName,
       apiVersion: "2022-11-28",
       releaseSha,
