@@ -2,7 +2,7 @@
 
 Status: active; M0/M1 repository implementation accepted locally
 
-Baseline after M0/M1 rebase: `origin/main@8fc525bc39eea4f02ab902aec0de286472912e6f`
+Baseline after M0/M1 rebase: `origin/main@1c7b6b4666a2b270b9d5d084d4cbe2f2ac768fa8`
 
 Prepared: 2026-07-27
 
@@ -42,12 +42,12 @@ This plan turns that loop into the release proof for the closed alpha.
 - Turso/libSQL provides a shared authority across browser, MCP, Runner, review,
   and Receipt services.
 - The Render-hosted trusted Runner exposes bounded status at `/healthz`; at
-  the final M0/M1 audit it reports the current main revision but is degraded
-  with `e2_bsandbox_container_error`.
+  the post-rebase audit it reports ready at current main revision `1c7b6b4`.
 - The Runner policy approves the pinned Lean 4.31.0 / Mathlib image.
 - E2B is configured as the active isolated execution provider.
 - Dead-letter redrive, stale-lease fencing, retry classification, policy-drift
   diagnostics, and bounded result buffering are present on `origin/main`.
+- E2B execution now has a bounded 21-minute outer timeout on `origin/main`.
 
 ### Not yet proven as one current release
 
@@ -74,8 +74,12 @@ This plan turns that loop into the release proof for the closed alpha.
 | DEL-04 | P0 | Runner image workflows consume long Linux jobs | Routine pushes can spend tens of minutes rebuilding unchanged images | Images build only after relevant recipe/toolchain changes or explicit dispatch |
 | E2E-01 | P0 | No current-release end-to-end trace | Components can be online while the actual product loop is broken | One immutable trace links OAuth Agent, Attempt, Bundle, queue lease, sandbox, signed result, review, Receipt, and Credit |
 | E2E-02 | P0 | Hosted Runner health shows no wake after the current instance start | Control-plane-to-Runner wake is not operationally evidenced | Authenticated wake changes health/metrics state and closes an actual queued Run |
+| E2E-03 | P0 | Bundle evidence pages previously selected Runs by Attempt | Two Bundles in one Attempt could display each other's Run or output | Every Bundle projection, download, and eligibility check is keyed by its signed manifest hash |
 | SRC-01 | P0 | Several worktrees and deployment histories exist, and the shared root was switched by another task during M0 | Local testing can validate a different product than the deployed mainline | One documented canonical main worktree tracks current main; stabilization and other tasks use isolated worktrees |
 | REL-01 | P0 | Site, gateway, Runner, template, and image revisions are not presented as one release | Operators cannot quickly prove deployment parity | Release manifest records Git SHA, Sites version, gateway revision, Runner revision, E2B template build, image digest, and migration head |
+| REL-02 | P0 | Migration `0043` and old queue writers can overlap during a rolling deploy | New readers can reorder legacy NULL events or new writers can fail against old schema | Execute the stop-the-world [`0043` cutover runbook](runner-queue-0043-cutover-runbook.md): freeze producers, drain and freeze consumers, back up, migrate, deploy every writer from one SHA, validate strict manifest and smoke evidence, then unfreeze |
+| VER-01 | P0 | Positive kernel claims and Receipt closure could trust incomplete database projections | A signed Receipt could overstate what an independent replay proved | Fresh replay, completed assignment, signatures, delegation, owner independence, and required claims are re-verified fail closed |
+| RUN-01 | P0 | Projection, result, and immutable-event writes were separate | Crashes or concurrency can leave partial lifecycle evidence | Each transition is atomic and canonical retries repair only an exact legacy partial |
 | OBS-01 | P1 | No user-visible Run timeline | Waiting looks like failure and retries look like duplicate work | UI and API expose bounded state transitions with timestamps and safe reason codes |
 | OBS-02 | P1 | Logs are distributed across Sites, Worker/Render, Turso, E2B, and GitHub | Diagnosis requires manual cross-service searching | Every Run carries one correlation ID through structured privacy-minimal events |
 | OBS-03 | P1 | `/health` and `/healthz` expectations differ | Monitoring and operators can report a false outage | All docs, probes, and links use `/healthz`; readiness and liveness semantics are documented |
@@ -513,6 +517,8 @@ refer to the same release manifest:
 - [ ] clean source commit;
 - [ ] successful fast and full checks;
 - [ ] production dependency audit without known high-severity findings;
+- [ ] migration `0043` cutover owners named and
+      [`0043` cutover runbook](runner-queue-0043-cutover-runbook.md) completed;
 - [ ] current database migration head;
 - [ ] deployed Site, gateway, Runner, template, and image revisions recorded;
 - [ ] `/healthz` ready with approved policy;

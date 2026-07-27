@@ -16,6 +16,8 @@ const otherImageDigest = `ghcr.io/example/proofweave@sha256:${"e".repeat(64)}`;
 const templateId = "template:memory-8g";
 const templateBuildId = "62127604-a4bc-47ed-ba53-1f5313583f82";
 const migrationHead = "0042_add_jacobian_counterexample_audit.sql";
+const databaseFingerprint = "0123456789abcdef";
+const otherDatabaseFingerprint = "fedcba9876543210";
 
 test("release manifest emits one complete stable non-secret revision set", async () => {
   await withFixture(async (root) => {
@@ -38,6 +40,9 @@ test("release manifest emits one complete stable non-secret revision set", async
     assert.equal(first.manifest.runner.image.configuredDigest, imageDigest);
     assert.equal(first.manifest.runner.image.leanToolchain, "leanprover/lean4:v4.31.0");
     assert.equal(first.manifest.runner.image.mathlibRevision, mathlibRevision);
+    assert.equal(first.manifest.database.authority, "turso");
+    assert.equal(first.manifest.database.gatewayFingerprint, databaseFingerprint);
+    assert.equal(first.manifest.database.runnerFingerprint, databaseFingerprint);
     assert.equal(first.manifest.database.repositoryMigrationHead, migrationHead);
     assert.equal(first.manifest.database.deployedMigrationHead, migrationHead);
     assert.equal(stableManifestJson(first.manifest), stableManifestJson(second.manifest));
@@ -63,6 +68,9 @@ test("release strict mode fails closed when deployment fields are missing", asyn
     assert.equal(codes.has("RUNNER_REVISION_MISSING"), true);
     assert.equal(codes.has("E2B_DEPLOYED_TEMPLATE_MISSING"), true);
     assert.equal(codes.has("RUNNER_DEPLOYED_IMAGE_MISSING"), true);
+    assert.equal(codes.has("DATABASE_AUTHORITY_MISSING"), true);
+    assert.equal(codes.has("GATEWAY_DATABASE_FINGERPRINT_MISSING"), true);
+    assert.equal(codes.has("RUNNER_DATABASE_FINGERPRINT_MISSING"), true);
     assert.equal(codes.has("DEPLOYED_MIGRATION_HEAD_MISSING"), true);
   });
 });
@@ -97,6 +105,61 @@ test("release strict mode rejects revision, template, image, and migration drift
   });
 });
 
+test("release strict mode accepts only an explicit Turso database authority", async () => {
+  await withFixture(async (root) => {
+    const unknownEnvironment = completeEnvironment();
+    unknownEnvironment.PROOFWEAVE_RELEASE_DATABASE_AUTHORITY = "unknown";
+    const unknown = createReleaseManifest({
+      root,
+      mode: "release",
+      environment: unknownEnvironment,
+      source: cleanSource(),
+    });
+    assert.equal(unknown.exitCode, 1);
+    assert.equal(unknown.manifest.database.authority, null);
+    assert.equal(issueCodes(unknown).has("DATABASE_AUTHORITY_MISSING"), true);
+
+    const sitesEnvironment = completeEnvironment();
+    sitesEnvironment.PROOFWEAVE_RELEASE_DATABASE_AUTHORITY = "sites_d1";
+    const sites = createReleaseManifest({
+      root,
+      mode: "release",
+      environment: sitesEnvironment,
+      source: cleanSource(),
+    });
+    assert.equal(sites.exitCode, 1);
+    assert.equal(sites.manifest.database.authority, "sites_d1");
+    assert.equal(issueCodes(sites).has("DATABASE_AUTHORITY_NOT_TURSO"), true);
+  });
+});
+
+test("release strict mode requires matching lowercase database fingerprints", async () => {
+  await withFixture(async (root) => {
+    const mismatchEnvironment = completeEnvironment();
+    mismatchEnvironment.PROOFWEAVE_RELEASE_RUNNER_FINGERPRINT = otherDatabaseFingerprint;
+    const mismatch = createReleaseManifest({
+      root,
+      mode: "release",
+      environment: mismatchEnvironment,
+      source: cleanSource(),
+    });
+    assert.equal(mismatch.exitCode, 1);
+    assert.equal(issueCodes(mismatch).has("DATABASE_FINGERPRINT_MISMATCH"), true);
+
+    const malformedEnvironment = completeEnvironment();
+    malformedEnvironment.PROOFWEAVE_RELEASE_GATEWAY_FINGERPRINT = databaseFingerprint.toUpperCase();
+    const malformed = createReleaseManifest({
+      root,
+      mode: "release",
+      environment: malformedEnvironment,
+      source: cleanSource(),
+    });
+    assert.equal(malformed.exitCode, 1);
+    assert.equal(malformed.manifest.database.gatewayFingerprint, null);
+    assert.equal(issueCodes(malformed).has("GATEWAY_DATABASE_FINGERPRINT_MISSING"), true);
+  });
+});
+
 test("release manifest never projects unrelated credential environment values", async () => {
   await withFixture(async (root) => {
     const sentinel = "do-not-project-this-secret";
@@ -120,6 +183,7 @@ test("release manifest never projects unrelated credential environment values", 
     assert.equal(result.exitCode, 0);
     assert.equal(rendered.includes(sentinel), false);
     assert.equal(rendered.includes("TURSO_AUTH_TOKEN"), false);
+    assert.equal(rendered.includes("TURSO_DATABASE_URL"), false);
     assert.equal(rendered.includes("PRIVATE_KEY"), false);
     assert.equal(rendered.includes("API_KEY"), false);
   });
@@ -180,6 +244,9 @@ function completeEnvironment() {
     PROOFWEAVE_RELEASE_E2B_TEMPLATE_BUILD_ID: templateBuildId,
     PROOFWEAVE_RELEASE_RUNNER_IMAGE_DIGEST: imageDigest,
     PROOFWEAVE_RELEASE_MIGRATION_HEAD: migrationHead,
+    PROOFWEAVE_RELEASE_DATABASE_AUTHORITY: "turso",
+    PROOFWEAVE_RELEASE_GATEWAY_FINGERPRINT: databaseFingerprint,
+    PROOFWEAVE_RELEASE_RUNNER_FINGERPRINT: databaseFingerprint,
   };
 }
 

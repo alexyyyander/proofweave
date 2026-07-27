@@ -4,7 +4,7 @@ Status: active execution record
 
 Branch: `codex/stabilization-m0`
 
-Main baseline: `8fc525bc39eea4f02ab902aec0de286472912e6f`
+Main baseline: `1c7b6b4666a2b270b9d5d084d4cbe2f2ac768fa8`
 
 This document records evidence for each stabilization acceptance gate. A phase
 is not complete merely because its implementation exists; its stated checks
@@ -12,19 +12,30 @@ must pass against the same source revision.
 
 ## M0 — Source of truth and release manifest
 
-Status: local acceptance complete; merge and release parity pending
+Status: post-rebase repository acceptance passed; hosted CI, merge, and release
+parity pending
 
 ### Completed
 
 - Confirmed `3d629e2` and `a564dae` have the same stable patch ID.
 - Created an isolated stabilization worktree.
-- Fast-forwarded the canonical clean `main` worktree to `8fc525b`.
+- Fetched and rebased the stabilization branch onto `origin/main@1c7b6b4`;
+  the canonical clean `main` worktree still needs its final fast-forward before
+  release verification.
 - Recorded worktree purposes and disposition.
 - Added a privacy-minimal offline release manifest.
 - Added strict fail-closed revision, template, image, and migration checks.
-- Added six release-manifest regression tests.
-- Confirmed the public Runner reports revision `8fc525b` and the approved
-  Lean/Mathlib image policy.
+- Added eight release-manifest regression tests.
+- Synchronized the Drizzle queue-event projection with migration `0043`,
+  including nullable legacy sequences, a positive-value constraint, and the
+  partial per-Run unique index.
+- Added the required stop-the-world
+  [`0043` cutover runbook](runner-queue-0043-cutover-runbook.md). It makes the
+  producer freeze, drain, consumer freeze, backup, migration, exact-SHA deploy,
+  strict manifest, controlled smoke, recovery boundary, and named approvals
+  explicit.
+- Confirmed the public Runner reports ready at revision `1c7b6b4` with the
+  approved Lean/Mathlib image policy.
 - Confirmed the current Sites production version is 143 at source
   `f05dc40dd91a49761cd19e9fa36d5d2d96b58001`.
 
@@ -33,8 +44,8 @@ Status: local acceptance complete; merge and release parity pending
 The product is intentionally **not** marked as one aligned release:
 
 ```text
-origin/main       8fc525b
-hosted Runner     8fc525b (degraded: e2_bsandbox_container_error)
+origin/main       1c7b6b4
+hosted Runner     1c7b6b4 (ready; no current-instance wake recorded)
 Sites version 143 f05dc40
 ```
 
@@ -45,20 +56,27 @@ so this is source parity, not a completed live execution.
 
 ### Validation evidence
 
-- Release manifest tests: 6/6 passed.
+- Release manifest tests: 8/8 passed.
 - Actions budget policy tests: 9/9 passed.
 - The independent PR fast gate passed in approximately 20 seconds locally;
   it excludes build, Miniflare/D1 integration, and network suites.
 - Workspace protocol/runtime tests: 12/12 passed.
 - Connector tests: 13/13 passed when the test environment permits loopback.
 - Targeted ESLint and TypeScript: passed.
-- Runner suite: 89/89 passed on each accepted full run.
-- Queue lifecycle test: 50/50 subagent repetitions plus 20/20 independent
-  repetitions passed.
-- Four complete `npm run check` executions passed; the final execution ran
-  after the PR/full gate split and after rebasing onto
-  `origin/main@8fc525b`.
+- Runner suite: 93/93 passed on each accepted post-rebase full run.
+- Run store: 13/13 passed, including legacy result timing and late-event
+  rejection.
+- Verification stores: 16/16 passed, including guarded projection races and
+  exact immutable history gates.
+- Receipt store: 9/9 passed.
+- Remote MCP gateway: 55/55 passed.
+- Queue lifecycle test: 50/50 final repetitions passed after the atomicity
+  changes, in addition to the queue checks inside both full runs.
+- Two consecutive complete `npm run check` executions passed against
+  `origin/main@1c7b6b4`, including clean production builds, the dependency
+  security gate, Miniflare/libSQL integration, MCP gateway, and rendered HTML.
 - `git diff --check`: passed.
+- A bounded secret-pattern scan of the final diff found no credential material.
 
 ### Security gate discovered during full check
 
@@ -86,20 +104,54 @@ transport testing.
 ### Accepted implementation commits
 
 ```text
-9f0f4d3 Add fail-closed release manifest and secure dependencies
-a19a416 Make runner lifecycle ordering deterministic
-5049e4c Bound GitHub Actions usage
-0f12f22 Split fast PR and full release gates
+c8187e0 Add fail-closed release manifest and secure dependencies
+92817d4 Make runner lifecycle ordering deterministic
+522120d Bound GitHub Actions usage
+a49a88f Split fast PR and full release gates
 ```
 
 The branch diff contains no duplicate `3d629e2` workspace patch.
 
+### Post-rebase truth-boundary hardening
+
+Independent read-only audits after the `1c7b6b4` rebase found correctness
+boundaries that must close before this branch is mergeable:
+
+- migration `0043` now rejects new queue events without `event_sequence`, so
+  an old writer fails closed instead of appending reorderable NULL events;
+- a partially configured Turso authority now fails closed instead of silently
+  splitting writes into Sites D1;
+- evidence summaries, details, outputs, replay eligibility, and downloads are
+  scoped by Bundle manifest hash rather than only by Attempt;
+- positive `bundle_reproducible` and `kernel_accepted` attestations require an
+  exact fresh replay from the assigned independent review Agent;
+- attestation, assignment projection, and immutable assignment event are one
+  atomic batch;
+- Run and queue lifecycle projections, results, and immutable events now commit
+  atomically; guarded conflicts abort the whole batch and exact canonical
+  retries repair only bounded legacy partial state;
+- Receipt issuance re-verifies completed assignments, signed attestations,
+  reviewer ownership, Agent/Person key fingerprints, delegation authority,
+  revocation time, effective claim decisions, and publication side effects.
+
+Independent correlation and concurrency reviews returned `GO`. Negative
+fixtures, two full checks, and repeated queue tests passed. The remaining
+repository step is to record these reviewed changes in bounded commits and
+update the draft PR. The cutover runbook is now present, but executing it and
+all remaining release steps are external gates.
+
 ### Open before release acceptance
 
 - Merge the reviewed stabilization branch.
-- Deploy Sites, gateway, Runner, and migration `0043` from one merged SHA.
+- Name the cutover owners and execute the
+  [`0043` cutover runbook](runner-queue-0043-cutover-runbook.md); this is not a
+  rolling deployment.
+- Freeze producers before merge-triggered deployments, drain and freeze
+  consumers, back up Turso, apply `0043`, and deploy Sites, gateway, and every
+  Runner from one merged SHA while writes remain frozen.
 - Supply their non-secret revision fields to strict release-manifest mode.
-- Require strict manifest state `valid`; the current inspection state remains
+- Require strict manifest state `valid`, one persisted controlled smoke, and
+  named approval before unfreezing. The current inspection state remains
   intentionally incomplete before deployment.
 
 ## M1 — Budget-safe and deterministic delivery
@@ -137,7 +189,7 @@ still requires two external/account-level actions:
 
 ## M2 — Current live closure
 
-Status: blocked on merge/deployment and degraded live Runner
+Status: blocked on merge/deployment and a correlation-linked live execution
 
 No live Bundle will be queued until:
 
@@ -148,6 +200,8 @@ No live Bundle will be queued until:
 
 The M2 acceptance remains one correlation-linked path from local Agent through
 Receipt and Credit, including a different-owner review and offline portable
-verification. Before queueing that fixture, resolve the live Runner
-`e2_bsandbox_container_error`, deploy migration `0043`, and obtain a strict
-release manifest for the same merged SHA.
+verification. The Runner is ready, but `lastWakeAt: null` means readiness is
+not proof of a completed execution. Before queueing that fixture, deploy
+migration `0043` through the
+[`0043` cutover runbook](runner-queue-0043-cutover-runbook.md) and obtain a
+strict release manifest for the same merged SHA.

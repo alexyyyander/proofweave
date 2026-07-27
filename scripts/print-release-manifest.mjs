@@ -11,6 +11,8 @@ const revisionPattern = /^[a-f0-9]{40,64}$/;
 const publicLabelPattern = /^[A-Za-z0-9][A-Za-z0-9:._+/-]{0,191}$/;
 const imageDigestPattern = /^[A-Za-z0-9][A-Za-z0-9./:_-]*@sha256:[a-f0-9]{64}$/;
 const migrationPattern = /^\d{4}_[A-Za-z0-9._-]+\.sql$/;
+const databaseFingerprintPattern = /^[a-f0-9]{16}$/;
+const databaseAuthorities = new Set(["turso", "sites_d1"]);
 
 const releaseEnvironmentKeys = Object.freeze({
   sitesVersion: "PROOFWEAVE_RELEASE_SITES_VERSION",
@@ -21,6 +23,9 @@ const releaseEnvironmentKeys = Object.freeze({
   templateBuildId: "PROOFWEAVE_RELEASE_E2B_TEMPLATE_BUILD_ID",
   imageDigest: "PROOFWEAVE_RELEASE_RUNNER_IMAGE_DIGEST",
   migrationHead: "PROOFWEAVE_RELEASE_MIGRATION_HEAD",
+  databaseAuthority: "PROOFWEAVE_RELEASE_DATABASE_AUTHORITY",
+  gatewayFingerprint: "PROOFWEAVE_RELEASE_GATEWAY_FINGERPRINT",
+  runnerFingerprint: "PROOFWEAVE_RELEASE_RUNNER_FINGERPRINT",
 });
 
 /**
@@ -78,6 +83,9 @@ export function collectReleaseManifest({
       },
     },
     database: {
+      authority: safeDatabaseAuthority(environment[releaseEnvironmentKeys.databaseAuthority]),
+      gatewayFingerprint: safeDatabaseFingerprint(environment[releaseEnvironmentKeys.gatewayFingerprint]),
+      runnerFingerprint: safeDatabaseFingerprint(environment[releaseEnvironmentKeys.runnerFingerprint]),
       repositoryMigrationHead: repositoryMigrationHead(resolve(root, "drizzle")),
       deployedMigrationHead: safeMigrationHead(environment[releaseEnvironmentKeys.migrationHead]),
     },
@@ -98,6 +106,7 @@ export function createReleaseManifest(options = {}) {
 }
 
 export function validateReleaseManifest(manifest, { mode = "inspection" } = {}) {
+  const normalizedMode = mode === "release" ? "release" : "inspection";
   const issues = [];
   const add = (code, path) => issues.push({ code, path });
   const required = (value, code, path) => {
@@ -188,6 +197,30 @@ export function validateReleaseManifest(manifest, { mode = "inspection" } = {}) 
   }
 
   required(
+    manifest.database.authority,
+    "DATABASE_AUTHORITY_MISSING",
+    "database.authority",
+  );
+  if (normalizedMode === "release"
+    && manifest.database.authority
+    && manifest.database.authority !== "turso") {
+    add("DATABASE_AUTHORITY_NOT_TURSO", "database.authority");
+  }
+  required(
+    manifest.database.gatewayFingerprint,
+    "GATEWAY_DATABASE_FINGERPRINT_MISSING",
+    "database.gatewayFingerprint",
+  );
+  required(
+    manifest.database.runnerFingerprint,
+    "RUNNER_DATABASE_FINGERPRINT_MISSING",
+    "database.runnerFingerprint",
+  );
+  if (manifest.database.gatewayFingerprint && manifest.database.runnerFingerprint
+    && manifest.database.gatewayFingerprint !== manifest.database.runnerFingerprint) {
+    add("DATABASE_FINGERPRINT_MISMATCH", "database.runnerFingerprint");
+  }
+  required(
     manifest.database.repositoryMigrationHead,
     "REPOSITORY_MIGRATION_HEAD_MISSING",
     "database.repositoryMigrationHead",
@@ -202,7 +235,6 @@ export function validateReleaseManifest(manifest, { mode = "inspection" } = {}) 
     add("MIGRATION_HEAD_MISMATCH", "database.deployedMigrationHead");
   }
 
-  const normalizedMode = mode === "release" ? "release" : "inspection";
   return {
     mode: normalizedMode,
     state: issues.length === 0
@@ -345,6 +377,14 @@ function safeImageDigest(value) {
 
 function safeMigrationHead(value) {
   return typeof value === "string" && migrationPattern.test(value) ? value : null;
+}
+
+function safeDatabaseAuthority(value) {
+  return typeof value === "string" && databaseAuthorities.has(value) ? value : null;
+}
+
+function safeDatabaseFingerprint(value) {
+  return typeof value === "string" && databaseFingerprintPattern.test(value) ? value : null;
 }
 
 function parseArguments(args) {

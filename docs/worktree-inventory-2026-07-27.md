@@ -4,7 +4,7 @@ Status: M0 source-control record
 
 Recorded: 2026-07-27
 
-Main baseline: `origin/main@8fc525bc39eea4f02ab902aec0de286472912e6f`
+Main baseline: `origin/main@1c7b6b4666a2b270b9d5d084d4cbe2f2ac768fa8`
 
 ## Rules
 
@@ -23,10 +23,10 @@ Main baseline: `origin/main@8fc525bc39eea4f02ab902aec0de286472912e6f`
 
 | Path | Branch/revision at audit | Purpose | Disposition |
 | --- | --- | --- | --- |
-| `/Users/alexyu/Documents/proofwave` | `codex/e2b-runner-source-overlay@b8198aa` at final audit | Runner repair work in the shared user workspace | Do not deploy; its reviewed descendants are already on main |
-| `/private/tmp/proofweave-stabilization-m0` | `codex/stabilization-m0@0f12f22` | M0/M1 release manifest, deterministic queue, dependency, and budget work | Active reviewed feature worktree; merge through review |
-| `/private/tmp/proofweave-mcp-control-plane` | `main@8fc525b` after final fast-forward | Canonical clean release worktree | Fast-forward only to `origin/main`; run release verification here |
-| `/private/tmp/proofweave-hf-runner` | `codex/huggingface-runner@8fc525b` | Hosted Runner/export history | Temporary build/reference worktree; not a release source |
+| `/Users/alexyu/Documents/proofwave` | `codex/e2b-runner-source-overlay@eb99e2d` when inventoried | Runner repair work in the shared user workspace | Do not deploy; its reviewed descendants are already on main |
+| `/private/tmp/proofweave-stabilization-m0` | `codex/stabilization-m0`; working tree based on `origin/main@1c7b6b4` with post-rebase feature commits and reviewed uncommitted changes | M0/M1 release manifest, deterministic queue, dependency, budget, and truth-boundary work | Active reviewed feature worktree; its mutable HEAD is not a release reference; merge through PR #108 only |
+| `/private/tmp/proofweave-mcp-control-plane` | `main@8fc525b`, two commits behind | Canonical clean release worktree | Fast-forward only to `origin/main@1c7b6b4` before release verification |
+| `/private/tmp/proofweave-hf-runner` | `codex/huggingface-runner@1c7b6b4` | Hosted Runner/export history | Temporary build/reference worktree; not a release source |
 | `/private/tmp/proofweave-sites-main` | detached `1684fdf` | Sites deployment history | Read-only historical reference; never merge into main |
 
 ## Superseded Runner fix
@@ -55,7 +55,7 @@ therefore superseded and must not be cherry-picked, rebased, or resubmitted.
 ## Reviewed remote branches
 
 - `origin/codex/actions-budget-guardrails` is superseded by the reviewed M1
-  implementation at `5049e4c`; do not merge both.
+  implementation now rebased at `522120d`; do not merge both.
 - The React/RSC security updates were reproduced in the M0 lockfile rather
   than merging a stale Dependabot branch.
 - The E2B production-dependency branch remains deferred because its optional
