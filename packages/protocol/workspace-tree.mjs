@@ -1,6 +1,12 @@
 import { canonicalJson, sha256Canonical } from "./canonical-json.mjs";
 
 export const workspaceTreeProtocolVersion = "pw-tree-v1";
+export const allowedRootWorkspaceDotfiles = Object.freeze([
+  ".editorconfig",
+  ".gitattributes",
+  ".gitignore",
+  ".lean-version",
+]);
 
 export class WorkspaceTreeProtocolError extends Error {
   constructor(message) {
@@ -61,10 +67,24 @@ function requireWorkspacePath(value) {
   if (typeof value !== "string" || value.length === 0 || value.length > 1024 || value.startsWith("/") || value.includes("\\") || value.includes("\u0000")) {
     throw new WorkspaceTreeProtocolError("Workspace tree path must be a bounded relative POSIX path.");
   }
-  const segments = value.split("/");
-  if (segments.some((segment) => !/^[A-Za-z0-9][A-Za-z0-9._+-]*$/.test(segment) || segment === "." || segment === "..")) {
+  if (!isSafeWorkspacePath(value)) {
     throw new WorkspaceTreeProtocolError("Workspace tree path contains an unsafe segment.");
   }
+}
+
+/**
+ * Keep workspace paths portable while admitting only the small set of
+ * root-level project dotfiles emitted by the one-click Git archive flow.
+ * Hidden directories and arbitrary dotfiles remain forbidden.
+ */
+export function isSafeWorkspacePath(value) {
+  if (typeof value !== "string" || value.length === 0 || value.length > 1024 || value.startsWith("/") || value.includes("\\") || value.includes("\u0000")) {
+    return false;
+  }
+  if (allowedRootWorkspaceDotfiles.includes(value)) return true;
+  return value
+    .split("/")
+    .every((segment) => /^[A-Za-z0-9][A-Za-z0-9._+-]*$/.test(segment) && segment !== "." && segment !== "..");
 }
 
 function requireSha256(value, label) {

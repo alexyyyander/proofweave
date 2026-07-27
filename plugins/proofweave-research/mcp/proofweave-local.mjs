@@ -999,12 +999,13 @@ function splitNul(value) {
 function assertSafeWorkspacePath(path) {
   const allowedRootDotfiles = new Set([".editorconfig", ".gitattributes", ".gitignore", ".lean-version"]);
   const segments = typeof path === "string" ? path.split("/") : [];
-  const unsafeSegment = segments.some((segment, index) => {
+  const unsafeSegment = segments.some((segment) => {
     if (segment === "." || segment === "..") return true;
     if (/^[A-Za-z0-9][A-Za-z0-9._+-]*$/.test(segment)) return false;
-    return index !== 0 || !allowedRootDotfiles.has(segment);
+    return true;
   });
-  if (typeof path !== "string" || path.length === 0 || path.length > 1024 || path.startsWith("/") || path.includes("\\") || path.includes("\0") || unsafeSegment) {
+  const allowedRootDotfile = typeof path === "string" && allowedRootDotfiles.has(path);
+  if (typeof path !== "string" || path.length === 0 || path.length > 1024 || path.startsWith("/") || path.includes("\\") || path.includes("\0") || (!allowedRootDotfile && unsafeSegment)) {
     throw new Error("The local workspace contains an unsafe tracked path.");
   }
 }
@@ -1170,7 +1171,9 @@ function normalizeWorkspaceTree(value) {
   const entries = value.map((entry) => {
     if (!entry || typeof entry !== "object" || Array.isArray(entry)) throw new Error("Each workspaceTree entry must be an object.");
     const path = requiredLocalString(entry.path, "workspaceTree path", 1024);
-    if (path.startsWith("/") || path.includes("\\") || path.includes("\0") || path.split("/").some((part) => !/^[A-Za-z0-9][A-Za-z0-9._+-]*$/.test(part) || part === "." || part === "..")) {
+    try {
+      assertSafeWorkspacePath(path);
+    } catch {
       throw new Error("workspaceTree paths must be safe relative POSIX paths.");
     }
     if (entry.mode !== 0o644 && entry.mode !== 0o755) throw new Error("workspaceTree modes must be 0644 or 0755.");

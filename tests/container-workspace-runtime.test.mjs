@@ -330,11 +330,39 @@ test("Container workspace runtime rejects archive links and patch paths before L
   }
 });
 
+test("Container workspace runtime reconstructs an allowlisted root .gitignore", { skip: !hasNativeZstd }, async () => {
+  const root = await mkdtemp(join(tmpdir(), "proofweave-container-dotfile-"));
+  try {
+    const fixture = await validWorkspaceFixture({ rootDotfile: true });
+    const runtime = new ContainerWorkspaceRuntime({
+      stagingRoot: join(root, "stage"),
+      workspaceRoot: join(root, "workspace"),
+    });
+    await stageAll(runtime, fixture);
+    const finalized = await runtime.finalize();
+    assert.equal(
+      await readFile(join(finalized.workspaceDirectory, ".gitignore"), "utf8"),
+      ".lake/\n",
+    );
+    assert.equal(finalized.treeHash, fixture.declaration.workspace.tree.hash);
+    await runtime.cleanup();
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
 async function validWorkspaceFixture(overrides = {}) {
   const archiveEntries = [
     { path: "Proofweave/Main.lean", contents: Buffer.from("theorem initial : True := by\n  trivial\n", "utf8"), mode: overrides.includeGitPax ? 0o664 : 0o644 },
     { path: "lake-manifest.json", contents: Buffer.from("{\"old\":true}\n", "utf8"), mode: overrides.includeGitPax ? 0o664 : 0o644 },
   ];
+  if (overrides.rootDotfile) {
+    archiveEntries.unshift({
+      path: ".gitignore",
+      contents: Buffer.from(".lake/\n", "utf8"),
+      mode: 0o644,
+    });
+  }
   if (overrides.includeDirectory) {
     archiveEntries.unshift({ path: "Proofweave/", contents: Buffer.alloc(0), type: "5", mode: 0o775 });
   }
@@ -357,6 +385,13 @@ async function validWorkspaceFixture(overrides = {}) {
     },
     { path: "lake-manifest.json", mode: 0o644, contentHash: hash(lakeManifest) },
   ];
+  if (overrides.rootDotfile) {
+    entries.unshift({
+      path: ".gitignore",
+      mode: 0o644,
+      contentHash: hash(".lake/\n"),
+    });
+  }
   const treeHash = overrides.treeHash ?? (overrides.legacyConnectorTree
     ? legacyConnectorTreeHash(entries)
     : await workspaceTreeHash(entries));

@@ -19,7 +19,10 @@ import { pipeline } from "node:stream/promises";
 import * as zlib from "node:zlib";
 import { canonicalJson } from "../../packages/protocol/canonical-json.mjs";
 import { leanRunnerRequestHash } from "../../packages/protocol/lean-runner.mjs";
-import { workspaceTreeHash } from "../../packages/protocol/workspace-tree.mjs";
+import {
+  isSafeWorkspacePath,
+  workspaceTreeHash,
+} from "../../packages/protocol/workspace-tree.mjs";
 import {
   RunnerWorkspaceIngress,
   normalizeRunnerWorkspaceIngressDeclaration,
@@ -1011,8 +1014,7 @@ function requireWorkspacePath(path, label) {
   if (typeof path !== "string" || path.length === 0 || path.length > 1024 || path.startsWith("/") || path.includes("\\") || path.includes("\0")) {
     throw new ContainerWorkspaceRuntimeError(`${label} must be a bounded relative POSIX path.`);
   }
-  const segments = path.split("/");
-  if (segments.some((segment) => !/^[A-Za-z0-9][A-Za-z0-9._+-]*$/.test(segment) || segment === "." || segment === "..")) {
+  if (!isSafeWorkspacePath(path)) {
     throw new ContainerWorkspaceRuntimeError(`${label} contains an unsafe path segment.`);
   }
 }

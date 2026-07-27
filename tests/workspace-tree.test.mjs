@@ -18,6 +18,25 @@ test("workspace tree hashes are deterministic regardless of input entry order", 
   assert.equal(workspaceTreeManifest(entries).protocolVersion, "pw-tree-v1");
 });
 
+test("workspace tree admits only the allowlisted root project dotfiles", () => {
+  assert.deepEqual(normalizeWorkspaceTree([
+    { path: ".gitignore", mode: 0o644, contentHash: sha("a") },
+    { path: "Main.lean", mode: 0o644, contentHash: sha("b") },
+  ]).map((entry) => entry.path), [".gitignore", "Main.lean"]);
+  assert.throws(
+    () => normalizeWorkspaceTree([{ path: ".env", mode: 0o644, contentHash: sha("a") }]),
+    /unsafe segment/,
+  );
+  assert.throws(
+    () => normalizeWorkspaceTree([{ path: ".gitignore/secret", mode: 0o644, contentHash: sha("a") }]),
+    /unsafe segment/,
+  );
+  assert.throws(
+    () => normalizeWorkspaceTree([{ path: "Proofweave/.gitignore", mode: 0o644, contentHash: sha("a") }]),
+    /unsafe segment/,
+  );
+});
+
 test("workspace tree rejects traversal, links, duplicate paths, and unsupported modes", () => {
   assert.throws(
     () => normalizeWorkspaceTree([{ path: "../secret", mode: 0o644, contentHash: sha("a") }]),
