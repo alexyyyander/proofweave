@@ -114,6 +114,7 @@ export function createGithubIndependentProductionDrill(options = {}) {
   }
 
   async function preflight({ environment = process.env } = {}) {
+    requireNoNodePreload(environment);
     requireRecoveryDisabled(environment);
     const releaseResult = await manifestProvider({
       root,
@@ -205,14 +206,16 @@ export function createGithubIndependentProductionDrill(options = {}) {
       artifactBundleHash: requireSha256(artifactBundleHash, "BUNDLE_HASH_INVALID"),
     };
     const checked = await preflight({ environment });
-    if (recoveryIsolationInspector === undefined && resolve(process.cwd()) !== root) {
-      throw new GithubIndependentDrillError("RECOVERY_ISOLATION_REPOSITORY_CWD_MISMATCH");
-    }
     const recoveryIsolation = await beginRecoveryIsolationSnapshot({
       environment,
       release: checked.release,
       releaseFingerprint: checked.releaseFingerprint,
       correlationId: identity.correlationId,
+      subject: {
+        personId: identity.personId,
+        agentId: identity.agentId,
+        artifactBundleHash: identity.artifactBundleHash,
+      },
       root,
       inspector: recoveryIsolationInspector,
       verifier: recoveryIsolationVerifier,
@@ -265,6 +268,11 @@ export function createGithubIndependentProductionDrill(options = {}) {
       release: state.release,
       releaseFingerprint: state.releaseFingerprint,
       correlationId: state.correlationId,
+      subject: {
+        personId: state.participant.personId,
+        agentId: state.participant.agentId,
+        artifactBundleHash: state.artifactBundleHash,
+      },
       createdAt: state.createdAt,
       verifier: recoveryIsolationVerifier,
       root,
@@ -313,6 +321,11 @@ export function createGithubIndependentProductionDrill(options = {}) {
       release: state.release,
       releaseFingerprint: state.releaseFingerprint,
       correlationId: state.correlationId,
+      subject: {
+        personId: state.participant.personId,
+        agentId: state.participant.agentId,
+        artifactBundleHash: state.artifactBundleHash,
+      },
       createdAt: state.createdAt,
       verifier: recoveryIsolationVerifier,
       root,
@@ -413,6 +426,12 @@ function requireRecoveryDisabled(environment) {
   if (environment.PROOFWEAVE_GITHUB_RECOVERY_ENABLED !== "false") {
     throw new GithubIndependentDrillError("GITHUB_RECOVERY_NOT_DISABLED");
   }
+}
+
+function requireNoNodePreload(environment) {
+  const nodeOptions = environment?.NODE_OPTIONS;
+  if (nodeOptions === undefined || nodeOptions === "") return;
+  throw new GithubIndependentDrillError("NODE_OPTIONS_FORBIDDEN");
 }
 
 function requireStrictReleaseManifest(result) {
@@ -821,10 +840,11 @@ function requireProductionEligibilityUnchanged(state, checked, recoveryIsolation
 }
 
 async function createStateFile(path, state) {
+  const normalizedState = normalizePersistedEvidenceFields(state);
   let handle;
   try {
     handle = await open(path, "wx", 0o600);
-    await handle.writeFile(`${JSON.stringify(state, null, 2)}\n`, "utf8");
+    await handle.writeFile(`${JSON.stringify(normalizedState, null, 2)}\n`, "utf8");
   } catch (cause) {
     throw new GithubIndependentDrillError("STATE_CREATE_FAILED", { cause });
   } finally {
@@ -833,9 +853,10 @@ async function createStateFile(path, state) {
 }
 
 async function replaceStateFile(path, state) {
+  const normalizedState = normalizePersistedEvidenceFields(state);
   const temporaryPath = `${path}.next-${process.pid}-${randomUUID()}`;
   try {
-    await writeFile(temporaryPath, `${JSON.stringify(state, null, 2)}\n`, {
+    await writeFile(temporaryPath, `${JSON.stringify(normalizedState, null, 2)}\n`, {
       encoding: "utf8",
       mode: 0o600,
       flag: "wx",
@@ -908,9 +929,22 @@ async function readDrillState(path, expectedPhase) {
   ) {
     throw new GithubIndependentDrillError("STATE_INVALID");
   }
+  const evidence = parsed.evidence === null ? null : normalizeObservedEvidence(parsed.evidence);
+  const liveEvidence = parsed.liveEvidence === null ? null : normalizeLiveEvidence(parsed.liveEvidence);
   return {
     ...parsed,
     recoveryIsolation,
+    evidence,
+    liveEvidence,
+  };
+}
+
+function normalizePersistedEvidenceFields(state) {
+  return {
+    ...state,
+    recoveryIsolation: normalizeRecoveryIsolationState(state.recoveryIsolation),
+    evidence: state.evidence === null ? null : normalizeObservedEvidence(state.evidence),
+    liveEvidence: state.liveEvidence === null ? null : normalizeLiveEvidence(state.liveEvidence),
   };
 }
 
@@ -946,15 +980,22 @@ function publicStateResult(state, outcome) {
 }
 
 function requireExternalStatePath(value, root) {
-  if (typeof value !== "string" || !isAbsolute(value) || value.length > 1_024) {
+  if (typeof value !== "string" || value.length === 0 || value.length > 1_024) {
     throw new GithubIndependentDrillError("STATE_PATH_INVALID");
   }
-  const path = resolve(value);
+  const path = resolveDrillInputPath(value, root);
   const relativePath = relative(root, path);
   if (relativePath === "" || (!relativePath.startsWith("..") && !isAbsolute(relativePath))) {
     throw new GithubIndependentDrillError("STATE_PATH_INSIDE_REPOSITORY");
   }
   return path;
+}
+
+export function resolveDrillInputPath(value, root = repositoryRoot) {
+  if (typeof value !== "string" || value.length === 0 || value.length > 1_024) {
+    throw new GithubIndependentDrillError("INPUT_PATH_INVALID");
+  }
+  return isAbsolute(value) ? resolve(value) : resolve(root, value);
 }
 
 function requireConfirmation(actual, expected) {
@@ -1061,10 +1102,11 @@ function parseCliArguments(args) {
   return { phase, values };
 }
 
-async function readJsonArgument(path, code) {
+async function readJsonArgument(path, code, root = repositoryRoot) {
   if (typeof path !== "string") throw new GithubIndependentDrillError(code);
   try {
-    return JSON.parse(await readFile(resolve(path), "utf8"));
+    const normalizedPath = resolveDrillInputPath(path, root);
+    return JSON.parse(await readFile(normalizedPath, "utf8"));
   } catch (cause) {
     throw new GithubIndependentDrillError(code, { cause });
   }

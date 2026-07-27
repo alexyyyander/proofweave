@@ -1,6 +1,6 @@
 import { canonicalUtf8, sha256Canonical } from "./canonical-json.mjs";
 
-export const runtimeRecoveryIsolationProtocolVersion = "pw-runtime-recovery-isolation-v1";
+export const runtimeRecoveryIsolationProtocolVersion = "pw-runtime-recovery-isolation-v2";
 export const runtimeRecoveryIsolationActiveStates = Object.freeze([
   "in_progress",
   "pending",
@@ -139,6 +139,7 @@ export async function verifyRuntimeRecoveryIsolationEvidence(evidence, {
   expectedReleaseSha,
   expectedReleaseFingerprint,
   expectedCorrelationId,
+  expectedSubject,
   maximumTtlMilliseconds = runtimeRecoveryIsolationMaximumTtlMilliseconds,
 } = {}) {
   try {
@@ -149,6 +150,9 @@ export async function verifyRuntimeRecoveryIsolationEvidence(evidence, {
     const signedAt = Date.parse(normalized.operatorAttestation.signedAt);
     if (validUntil <= observedAt || validUntil - observedAt > maximumTtlMilliseconds) {
       return invalid("ttl_invalid");
+    }
+    if (nowMilliseconds < observedAt) {
+      return invalid("evidence_not_yet_valid");
     }
     if (signedAt < observedAt || signedAt > validUntil || nowMilliseconds > validUntil) {
       return invalid("evidence_expired");
@@ -161,6 +165,9 @@ export async function verifyRuntimeRecoveryIsolationEvidence(evidence, {
     }
     if (expectedCorrelationId && normalized.drill.correlationId !== expectedCorrelationId) {
       return invalid("correlation_mismatch");
+    }
+    if (expectedSubject && !subjectsEqual(normalized.drill.subject, normalizeSubject(expectedSubject))) {
+      return invalid("subject_mismatch");
     }
     if (normalized.githubObservation.releaseSha !== normalized.release.gitSha) {
       return invalid("observation_release_mismatch");
@@ -226,15 +233,35 @@ function normalizeRelease(value) {
 
 function normalizeDrill(value) {
   requireRecord(value, "Drill");
-  rejectExtraKeys(value, ["correlationId", "observedAt", "validUntil"], "Drill");
+  rejectExtraKeys(value, ["correlationId", "subject", "observedAt", "validUntil"], "Drill");
   requireIdentifier(value.correlationId, "Drill correlation id");
   requireUtcInstant(value.observedAt, "Drill observedAt");
   requireUtcInstant(value.validUntil, "Drill validUntil");
   return {
     correlationId: value.correlationId,
+    subject: normalizeSubject(value.subject),
     observedAt: value.observedAt,
     validUntil: value.validUntil,
   };
+}
+
+function normalizeSubject(value) {
+  requireRecord(value, "Drill subject");
+  rejectExtraKeys(value, ["personId", "agentId", "artifactBundleHash"], "Drill subject");
+  requireIdentifier(value.personId, "Drill subject Person id");
+  requireIdentifier(value.agentId, "Drill subject Agent id");
+  requireSha256(value.artifactBundleHash, "Drill subject artifact Bundle hash");
+  return {
+    personId: value.personId,
+    agentId: value.agentId,
+    artifactBundleHash: value.artifactBundleHash,
+  };
+}
+
+function subjectsEqual(left, right) {
+  return left.personId === right.personId
+    && left.agentId === right.agentId
+    && left.artifactBundleHash === right.artifactBundleHash;
 }
 
 function normalizeSurfaceManifest(value) {

@@ -1,5 +1,6 @@
 import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 import { sha256Canonical } from "../../packages/protocol/canonical-json.mjs";
 import {
@@ -10,6 +11,7 @@ import {
 } from "../../packages/protocol/runtime-recovery-isolation.mjs";
 
 export const githubRecoveryApiVersion = "2022-11-28";
+const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 export const expectedGithubRecoverySurfaces = Object.freeze({
   ".github/workflows/build-week-live-receipt.yml": "manual_queue_consumer",
   ".github/workflows/e2b-lean-runner.yml": "recovery_queue_consumer",
@@ -28,7 +30,7 @@ export class GithubRecoverySurfaceInspectionError extends Error {
  * signature is present outside the reviewed surface allowlist.
  */
 export async function scanGithubRecoverySurfaces({
-  repoRoot = process.cwd(),
+  repoRoot = repositoryRoot,
   readdirImpl = readdir,
   readFileImpl = readFile,
 } = {}) {
@@ -110,11 +112,12 @@ export async function inspectRuntimeRecoveryIsolationAtDrillBegin(options = {}) 
     releaseSha,
     releaseFingerprint,
     correlationId,
+    subject,
     operatorPrivateKeyJwk,
     operatorKeyId,
     ttlMilliseconds = runtimeRecoveryIsolationMaximumTtlMilliseconds,
     fetchImpl = globalThis.fetch,
-    repoRoot = process.cwd(),
+    repoRoot = repositoryRoot,
     readdirImpl = readdir,
     readFileImpl = readFile,
     now = new Date(),
@@ -128,6 +131,7 @@ export async function inspectRuntimeRecoveryIsolationAtDrillBegin(options = {}) 
   requireReleaseSha(releaseSha);
   requireSha256(releaseFingerprint, "Release fingerprint");
   requireIdentifier(correlationId, "Correlation id");
+  requireSubject(subject);
   if (
     !Number.isSafeInteger(ttlMilliseconds)
     || ttlMilliseconds <= 0
@@ -237,16 +241,17 @@ export async function inspectRuntimeRecoveryIsolationAtDrillBegin(options = {}) 
 
   const productionEligible = ![
     "fetchImpl",
-    "repoRoot",
     "readdirImpl",
     "readFileImpl",
     "now",
     "apiBaseUrl",
-  ].some((key) => Object.prototype.hasOwnProperty.call(options, key));
+  ].some((key) => Object.prototype.hasOwnProperty.call(options, key))
+    && path.resolve(repoRoot) === repositoryRoot;
   const evidenceIdDigest = await sha256Canonical({
     repositoryId: repository.id,
     releaseSha,
     correlationId,
+    subject,
     observedAt,
   });
   return signRuntimeRecoveryIsolationEvidence({
@@ -259,6 +264,7 @@ export async function inspectRuntimeRecoveryIsolationAtDrillBegin(options = {}) 
     },
     drill: {
       correlationId,
+      subject,
       observedAt,
       validUntil,
     },
@@ -418,6 +424,19 @@ function requireIdentifier(value, label) {
   ) {
     throw inspectionError("INVALID_IDENTIFIER", `${label} is invalid.`);
   }
+}
+
+function requireSubject(value) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    throw inspectionError("INVALID_SUBJECT", "Recovery isolation subject is invalid.");
+  }
+  const allowed = ["personId", "agentId", "artifactBundleHash"];
+  if (Object.keys(value).some((key) => !allowed.includes(key))) {
+    throw inspectionError("INVALID_SUBJECT", "Recovery isolation subject is invalid.");
+  }
+  requireIdentifier(value.personId, "Subject Person id");
+  requireIdentifier(value.agentId, "Subject Agent id");
+  requireSha256(value.artifactBundleHash, "Subject artifact Bundle hash");
 }
 
 function encodeRepository(repository) {

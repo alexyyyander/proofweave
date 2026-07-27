@@ -1,10 +1,11 @@
 import assert from "node:assert/strict";
-import { chmod, mkdtemp, rm, writeFile } from "node:fs/promises";
+import { chmod, link, mkdtemp, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { test } from "node:test";
 
 import {
+  assertRecoveryIsolationOperatorKeyFileMetadata,
   beginRecoveryIsolationSnapshot,
   loadRecoveryIsolationOperatorPrivateKey,
   recoveryIsolationReleaseConfiguration,
@@ -94,6 +95,11 @@ test("begin rejects oversized or whitespace-bearing GitHub tokens before inspect
         },
         releaseFingerprint: `sha256:${"b".repeat(64)}`,
         correlationId: "correlation:production-01",
+        subject: {
+          personId: "person:production-owner",
+          agentId: "agent:production-prover",
+          artifactBundleHash: `sha256:${"c".repeat(64)}`,
+        },
         root: process.cwd(),
         policyProvider: async () => fixturePolicy(),
         gitOriginProvider: async () => "https://github.com/proofweave/research.git",
@@ -202,6 +208,37 @@ test("production operator private key file must be external, regular, and mode 0
         root: process.cwd(),
       }),
       (error) => error.code === "RECOVERY_OPERATOR_PRIVATE_KEY_FILE_INVALID",
+    );
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+});
+
+test("production operator private key file rejects hardlinks and wrong ownership metadata", async () => {
+  const directory = await mkdtemp(join(tmpdir(), "proofweave-recovery-key-hardlink-"));
+  const path = join(directory, "operator.jwk");
+  const alias = join(directory, "operator-alias.jwk");
+  try {
+    await writeFile(path, JSON.stringify(privateKeyJwk), { mode: 0o600 });
+    await link(path, alias);
+    await assert.rejects(
+      loadRecoveryIsolationOperatorPrivateKey({
+        environment: {
+          PROOFWEAVE_DRILL_RECOVERY_OPERATOR_PRIVATE_KEY_JWK_FILE: path,
+        },
+        root: process.cwd(),
+      }),
+      (error) => error.code === "RECOVERY_OPERATOR_PRIVATE_KEY_FILE_INVALID",
+    );
+    assert.throws(
+      () => assertRecoveryIsolationOperatorKeyFileMetadata({
+        isFile: () => true,
+        isSymbolicLink: () => false,
+        uid: 1001,
+        nlink: 1,
+        mode: 0o100600,
+      }, { currentUid: 1000 }),
+      /invalid recovery operator key file metadata/,
     );
   } finally {
     await rm(directory, { recursive: true, force: true });

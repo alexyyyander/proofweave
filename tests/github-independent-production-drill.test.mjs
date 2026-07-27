@@ -3,12 +3,13 @@ import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
 import { mkdtemp, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { join, relative, resolve } from "node:path";
 import { test } from "node:test";
 import {
   createGithubIndependentProductionDrill,
   GithubIndependentDrillError,
   githubIndependentDrillConfirmations,
+  resolveDrillInputPath,
 } from "../scripts/run-github-independent-production-drill.mjs";
 import {
   contributionReceiptHash,
@@ -85,7 +86,7 @@ test("preflight binds the release to one explicit hosted consumer and remains re
     assert.equal(result.release.githubRepositoryId, recoveryRepositoryId);
     assert.equal(
       result.release.recoveryIsolationProtocolVersion,
-      "pw-runtime-recovery-isolation-v1",
+      "pw-runtime-recovery-isolation-v2",
     );
     assert.equal(result.release.migrationHead, "0043_add_runner_queue_event_sequence.sql");
     assert.deepEqual(result.release.siteReleaseDiagnostics, readyReleaseDiagnostics());
@@ -154,6 +155,30 @@ test("preflight recomputes and rejects a stale production policy hash", async ()
   );
   assert.equal(fixture.calls.database, 0);
   assert.equal(fixture.calls.fetch.length, 0);
+});
+
+test("preflight rejects every non-empty NODE_OPTIONS form before dependencies run", async () => {
+  for (const nodeOptions of [
+    "--import=/private/tmp/replace-fetch.mjs",
+    "\"--import /private/tmp/replace-fetch.mjs\"",
+    "  --require=/private/tmp/replace-fetch.cjs",
+    "--loader=/private/tmp/replace-fetch.mjs",
+    "--future-node-option",
+  ]) {
+    const fixture = makeDrillFixture();
+    await assert.rejects(
+      fixture.drill.preflight({
+        environment: {
+          ...fixture.environment,
+          NODE_OPTIONS: nodeOptions,
+        },
+      }),
+      (error) => error.code === "NODE_OPTIONS_FORBIDDEN",
+    );
+    assert.equal(fixture.calls.database, 0);
+    assert.equal(fixture.calls.fetch.length, 0);
+    assert.equal(fixture.calls.recoveryIsolation, 0);
+  }
 });
 
 test("preflight fails closed on invalid or unbound Site release diagnostics", async (context) => {
@@ -385,6 +410,18 @@ test("record hard-fails recovery bypass attempts before live or Receipt work", a
   await context.test("signed observedAt chronology drift", () => rejected(
     (state) => { state.createdAt = "2026-07-26T23:59:59.999Z"; },
     "RECOVERY_ISOLATION_STATE_BINDING_MISMATCH",
+  ));
+  await context.test("signed subject Person mismatch", () => rejected(
+    (state) => { state.participant.personId = "person:other-production-owner"; },
+    "RECOVERY_ISOLATION_SUBJECT_MISMATCH",
+  ));
+  await context.test("signed subject Bundle mismatch", () => rejected(
+    (state) => { state.artifactBundleHash = sha("9"); },
+    "RECOVERY_ISOLATION_SUBJECT_MISMATCH",
+  ));
+  await context.test("nested recovery field pollution", () => rejected(
+    (state) => { state.recoveryIsolation.evidence.drill.subject.polluted = true; },
+    "RECOVERY_ISOLATION_EVIDENCE_INVALID",
   ));
   await context.test("fixture eligibility edited true", () => rejected(
     (state) => { state.productionEligible = true; },
@@ -640,6 +677,44 @@ test("finalize rejects recovery expiry before live re-probe or Receipt verificat
     assert.equal(setup.fixture.calls.receiptVerifier, 0);
   } finally {
     await setup.cleanup();
+  }
+});
+
+test("finalize rejects nested persisted live-evidence pollution before re-probe", async () => {
+  const setup = await recordedPortableFixture();
+  try {
+    await rewriteState(setup.statePath, (state) => {
+      state.liveEvidence.queue.events[0].polluted = true;
+    });
+    await assert.rejects(
+      finalizeFixture(setup),
+      (error) => error.code === "LIVE_QUEUE_EVENT_INVALID",
+    );
+    assert.equal(setup.fixture.calls.live, 1);
+  } finally {
+    await setup.cleanup();
+  }
+});
+
+test("state and JSON input paths are rooted at the repository, not the caller cwd", async () => {
+  const fixture = makeDrillFixture();
+  const directory = await mkdtemp(join(tmpdir(), "proofweave-drill-non-root-cwd-"));
+  const callerDirectory = await mkdtemp(join(tmpdir(), "proofweave-drill-caller-"));
+  const repository = process.cwd();
+  const statePath = join(directory, "state.json");
+  const repositoryRelativeState = relative(repository, statePath);
+  try {
+    assert.equal(
+      resolveDrillInputPath("fixtures/production-evidence.json", repository),
+      resolve(repository, "fixtures/production-evidence.json"),
+    );
+    process.chdir(callerDirectory);
+    await beginFixture(fixture, repositoryRelativeState);
+    assert.equal(JSON.parse(await readFile(statePath, "utf8")).phase, "begun");
+  } finally {
+    process.chdir(repository);
+    await rm(directory, { recursive: true, force: true });
+    await rm(callerDirectory, { recursive: true, force: true });
   }
 });
 
@@ -1125,6 +1200,7 @@ async function createRecoveryIsolationEvidence({
   releaseSha,
   releaseFingerprint,
   correlationId,
+  subject,
   operatorPrivateKeyJwk,
   operatorKeyId,
   observedAt,
@@ -1151,7 +1227,7 @@ async function createRecoveryIsolationEvidence({
     waiting: 0,
   };
   return signRuntimeRecoveryIsolationEvidence({
-    protocolVersion: "pw-runtime-recovery-isolation-v1",
+    protocolVersion: "pw-runtime-recovery-isolation-v2",
     evidenceId: "recovery-isolation:production-20260727-001",
     productionEligible,
     release: {
@@ -1160,6 +1236,7 @@ async function createRecoveryIsolationEvidence({
     },
     drill: {
       correlationId,
+      subject,
       observedAt,
       validUntil: new Date(Date.parse(observedAt) + 2 * 60 * 60 * 1_000).toISOString(),
     },

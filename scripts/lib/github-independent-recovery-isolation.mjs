@@ -119,6 +119,7 @@ export async function beginRecoveryIsolationSnapshot({
   release,
   releaseFingerprint,
   correlationId,
+  subject,
   root,
   inspector = inspectRuntimeRecoveryIsolationAtDrillBegin,
   verifier = verifyRuntimeRecoveryIsolationEvidence,
@@ -163,6 +164,8 @@ export async function beginRecoveryIsolationSnapshot({
       releaseSha: release.gitSha,
       releaseFingerprint,
       correlationId,
+      subject,
+      repoRoot: root,
       operatorPrivateKeyJwk,
       operatorKeyId,
     });
@@ -175,6 +178,7 @@ export async function beginRecoveryIsolationSnapshot({
     release,
     releaseFingerprint,
     correlationId,
+    subject,
     verifier,
     now,
   });
@@ -186,6 +190,7 @@ export async function verifyPersistedRecoveryIsolation({
   release,
   releaseFingerprint,
   correlationId,
+  subject,
   createdAt,
   verifier = verifyRuntimeRecoveryIsolationEvidence,
   root,
@@ -215,6 +220,7 @@ export async function verifyPersistedRecoveryIsolation({
     release,
     releaseFingerprint,
     correlationId,
+    subject,
     verifier,
     now,
   });
@@ -264,20 +270,21 @@ export async function loadRecoveryIsolationOperatorPrivateKey({ environment, roo
   let source;
   let handle;
   try {
-    metadata = await lstat(path);
     if (
-      !metadata.isFile()
-      || metadata.isSymbolicLink()
+      !["aix", "darwin", "freebsd", "linux", "openbsd", "sunos"].includes(process.platform)
+      || typeof process.getuid !== "function"
     ) {
-      throw new Error("invalid key file");
+      throw new Error("unsupported private-key file security platform");
     }
+    const currentUid = process.getuid();
+    metadata = await lstat(path);
+    assertRecoveryIsolationOperatorKeyFileMetadata(metadata, { currentUid });
     handle = await open(path, "r");
     const openedMetadata = await handle.stat();
+    assertRecoveryIsolationOperatorKeyFileMetadata(openedMetadata, { currentUid });
     if (
-      !openedMetadata.isFile()
-      || openedMetadata.dev !== metadata.dev
+      openedMetadata.dev !== metadata.dev
       || openedMetadata.ino !== metadata.ino
-      || (openedMetadata.mode & 0o777) !== 0o600
       || openedMetadata.size <= 0
       || openedMetadata.size > maxPrivateJwkBytes
     ) {
@@ -299,12 +306,30 @@ export async function loadRecoveryIsolationOperatorPrivateKey({ environment, roo
   }
 }
 
+export function assertRecoveryIsolationOperatorKeyFileMetadata(metadata, { currentUid }) {
+  if (
+    !metadata
+    || typeof metadata.isFile !== "function"
+    || !metadata.isFile()
+    || (typeof metadata.isSymbolicLink === "function" && metadata.isSymbolicLink())
+    || !Number.isSafeInteger(currentUid)
+    || !Number.isSafeInteger(metadata.uid)
+    || metadata.uid !== currentUid
+    || !Number.isSafeInteger(metadata.nlink)
+    || metadata.nlink !== 1
+    || (metadata.mode & 0o777) !== 0o600
+  ) {
+    throw new Error("invalid recovery operator key file metadata");
+  }
+}
+
 async function bindVerifiedRecoveryIsolation({
   evidence,
   configuration,
   release,
   releaseFingerprint,
   correlationId,
+  subject,
   verifier,
   now,
 }) {
@@ -320,6 +345,7 @@ async function bindVerifiedRecoveryIsolation({
     expectedReleaseSha: release.gitSha,
     expectedReleaseFingerprint: releaseFingerprint,
     expectedCorrelationId: correlationId,
+    expectedSubject: subject,
   });
   if (!verification?.valid || !verification.evidence) {
     const reason = typeof verification?.reason === "string"
@@ -333,6 +359,9 @@ async function bindVerifiedRecoveryIsolation({
     || normalized.release.gitSha !== release.gitSha
     || normalized.release.fingerprint !== releaseFingerprint
     || normalized.drill.correlationId !== correlationId
+    || normalized.drill.subject.personId !== subject.personId
+    || normalized.drill.subject.agentId !== subject.agentId
+    || normalized.drill.subject.artifactBundleHash !== subject.artifactBundleHash
   ) {
     throw error("RECOVERY_ISOLATION_BINDING_MISMATCH");
   }

@@ -20,6 +20,11 @@ const releaseSha = "c".repeat(40);
 const releaseFingerprint = `sha256:${"d".repeat(64)}`;
 const observedAt = "2026-07-28T02:00:00.000Z";
 const repoRoot = path.resolve(new URL("..", import.meta.url).pathname);
+const subject = Object.freeze({
+  personId: "person:production-owner",
+  agentId: "agent:production-prover",
+  artifactBundleHash: `sha256:${"b".repeat(64)}`,
+});
 
 test("scanner deterministically covers exactly the reviewed production queue consumers", async () => {
   const first = await scanGithubRecoverySurfaces({ repoRoot });
@@ -112,6 +117,7 @@ test("begin inspector signs a complete disabled-and-idle GitHub observation", as
     expectedReleaseSha: releaseSha,
     expectedReleaseFingerprint: releaseFingerprint,
     expectedCorrelationId: "drill:fixture-01",
+    expectedSubject: subject,
   });
   assert.equal(verification.valid, true);
   assert.equal(verification.productionEligible, false);
@@ -176,6 +182,19 @@ test("offline verifier detects signed-payload tampering", async () => {
   assert.equal(verification.reason, "payload_hash_mismatch");
 });
 
+test("offline verifier fails closed for the superseded v1 signed schema", async () => {
+  const fixture = await createFixture();
+  const evidence = structuredClone(await inspect(fixture));
+  evidence.protocolVersion = "pw-runtime-recovery-isolation-v1";
+  const verification = await verifyRuntimeRecoveryIsolationEvidence(evidence, {
+    trustedOperatorKeys: trustedKeys(evidence),
+    now: new Date("2026-07-28T02:30:00.000Z"),
+  });
+  assert.equal(verification.valid, false);
+  assert.equal(verification.productionEligible, false);
+  assert.equal(verification.reason, "malformed_evidence");
+});
+
 test("offline verifier rejects evidence after its bounded TTL", async () => {
   const fixture = await createFixture();
   const evidence = await inspect(fixture);
@@ -185,6 +204,25 @@ test("offline verifier rejects evidence after its bounded TTL", async () => {
   });
   assert.equal(verification.valid, false);
   assert.equal(verification.reason, "evidence_expired");
+});
+
+test("offline verifier rejects verification before observedAt and a mismatched drill subject", async () => {
+  const fixture = await createFixture();
+  const evidence = await inspect(fixture);
+  const future = await verifyRuntimeRecoveryIsolationEvidence(evidence, {
+    trustedOperatorKeys: trustedKeys(evidence),
+    now: new Date("2026-07-28T01:59:59.999Z"),
+  });
+  assert.equal(future.valid, false);
+  assert.equal(future.reason, "evidence_not_yet_valid");
+
+  const mismatch = await verifyRuntimeRecoveryIsolationEvidence(evidence, {
+    trustedOperatorKeys: trustedKeys(evidence),
+    now: new Date("2026-07-28T02:30:00.000Z"),
+    expectedSubject: { ...subject, agentId: "agent:other-production-prover" },
+  });
+  assert.equal(mismatch.valid, false);
+  assert.equal(mismatch.reason, "subject_mismatch");
 });
 
 test("inspector is begin-only", async () => {
@@ -241,6 +279,7 @@ async function inspectionOptions(fixture) {
     releaseSha,
     releaseFingerprint,
     correlationId: "drill:fixture-01",
+    subject,
     operatorPrivateKeyJwk: fixture.operatorPrivateKeyJwk,
     operatorKeyId: "release-operator:fixture-01",
     ttlMilliseconds: 2 * 60 * 60 * 1_000,
