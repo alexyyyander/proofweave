@@ -2,6 +2,7 @@ import {
   assertContributionReceiptPolicy,
   canonicalContributionReceipt,
   contributionReceiptHash,
+  contributionReceiptRequiredClaimTypes,
   contributionReceiptSigningPayload,
   createContributionReceipt,
   normalizeContributionReceipt,
@@ -19,7 +20,18 @@ import {
 import { normalizeArtifactBundle } from "../../packages/protocol/artifact-bundle.mjs";
 import { normalizeLeanRunnerResult } from "../../packages/protocol/lean-runner.mjs";
 import { canonicalJson, sha256Canonical } from "../../packages/protocol/canonical-json.mjs";
-import { normalizeVerificationAttestation } from "../../packages/protocol/verification-attestation.mjs";
+import {
+  assertDelegationAllows,
+  delegationPayloadHash,
+  delegationProtocolVersion,
+  delegationSigningPayload,
+  normalizeDelegationCertificate,
+  verifyDelegationSignature,
+} from "../../packages/domain/delegation.mjs";
+import {
+  normalizeVerificationAttestation,
+  verifyVerificationAttestationSignature,
+} from "../../packages/protocol/verification-attestation.mjs";
 import { D1ContributionReceiptIssuerKeyStore } from "./d1-contribution-receipt-issuer-key-store.mjs";
 import { classifyReceiptPublication } from "./receipt-publication-policy.mjs";
 
@@ -85,7 +97,20 @@ export class D1ContributionReceiptStore {
       issuerPublicKey,
     };
     const existing = await this.findExistingForDraft(draft);
-    if (existing) return { receipt: existing, created: false };
+    if (existing) {
+      const dependencies = await this.loadDependencyEvidence({
+        downstreamReceiptId: existing.id,
+        artifactBundleManifestHash,
+        issuedAt: existing.issuedAt,
+        declaredDependencies: evidence.bundle.dependencyReceipts,
+      });
+      await this.assertReceiptSideEffects(
+        existing,
+        classifyReceiptPublication(existing, publication),
+        dependencies,
+      );
+      return { receipt: existing, created: false };
+    }
     await this.issuerKeys.assertCanIssue({
       issuerKeyId: draft.issuerKeyId,
       issuerPublicKey: draft.issuerPublicKey,
@@ -140,7 +165,17 @@ export class D1ContributionReceiptStore {
         receipt.id, dependency.receiptId, dependency.receiptHash,
         artifactBundleManifestHash, receipt.issuedAt,
       ));
-    await this.database.batch([receiptInsert, publicationInsert, ...edgeInserts]);
+    try {
+      await this.database.batch([receiptInsert, publicationInsert, ...edgeInserts]);
+    } catch (cause) {
+      // A concurrent canonical closure may win either immutable uniqueness
+      // constraint. D1 batches are atomic, so the losing writer can only
+      // return the stored winner when it covers byte-for-byte the same draft.
+      const raced = await this.findExistingForDraft(draft);
+      if (!raced) throw cause;
+      await this.assertReceiptSideEffects(raced, publicationRecord, dependencies);
+      return { receipt: raced, created: false };
+    }
     return { receipt, created: true };
   }
 
@@ -433,40 +468,293 @@ export class D1ContributionReceiptStore {
   }
 
   async loadAttestedClaims(artifactBundleManifestHash) {
+    const latest = await this.loadEffectiveReviewEvidence(artifactBundleManifestHash);
+    const blocking = [...latest.values()].filter((attestation) => attestation.decision !== "attested");
+    if (blocking.length > 0) {
+      throw new ContributionReceiptStoreValidationError(
+        "Receipt evidence contains a non-positive decision for a required verification claim.",
+      );
+    }
+    const missing = contributionReceiptRequiredClaimTypes.filter(
+      (claimType) => latest.get(claimType)?.decision !== "attested",
+    );
+    if (missing.length > 0) {
+      throw new ContributionReceiptStoreValidationError(
+        `Receipt evidence is missing required positive verification claims: ${missing.join(", ")}.`,
+      );
+    }
+    const selected = contributionReceiptRequiredClaimTypes.map(
+      (claimType) => latest.get(claimType),
+    );
+    return Promise.all(selected.map(async (attestation) => ({
+      claimType: attestation.claimType,
+      verificationAttestationId: attestation.id,
+      verificationAttestationHash: await sha256Canonical(attestation),
+      artifactBundleHash: attestation.artifactBundleHash,
+      reviewerPersonId: attestation.verifierPersonId,
+      reviewerAgentId: attestation.verifierAgentId,
+      reviewerDelegationCertificateId: attestation.delegationCertificateId,
+      decision: "attested",
+    })));
+  }
+
+  async loadEffectiveReviewEvidence(artifactBundleManifestHash) {
+    return latestReviewDecisions(await this.loadReviewEvidence(artifactBundleManifestHash));
+  }
+
+  /**
+   * Rebuild the receipt review boundary from canonical signed attestations and
+   * the exact completed assignments that authorized them. This deliberately
+   * does not trust the attestation projection, assignment status, Agent owner,
+   * or delegation projection in isolation.
+   */
+  async loadReviewEvidence(artifactBundleManifestHash) {
+    requireSha256(artifactBundleManifestHash, "artifactBundleManifestHash");
     const rows = await this.database
       .prepare(
-        `SELECT id, claim_type, artifact_bundle_manifest_hash, verifier_person_id,
-                verifier_agent_id, delegation_certificate_id, canonical_payload
-         FROM verification_attestations
-         WHERE artifact_bundle_manifest_hash = ? AND decision = 'attested'
-         ORDER BY id ASC`,
+        `SELECT
+          attestation.id, attestation.assignment_id,
+          attestation.artifact_bundle_manifest_hash, attestation.claim_type,
+          attestation.verifier_person_id, attestation.verifier_agent_id,
+          attestation.delegation_certificate_id,
+          attestation.verifier_agent_public_key, attestation.decision,
+          attestation.evidence_hash, attestation.canonical_payload,
+          attestation.payload_hash, attestation.signature,
+          attestation.attested_at,
+          assignment.artifact_bundle_manifest_hash AS assignment_bundle_hash,
+          assignment.claim_type AS assignment_claim_type,
+          assignment.attempt_owner_person_id AS assignment_attempt_owner_person_id,
+          assignment.verifier_person_id AS assignment_verifier_person_id,
+          assignment.status AS assignment_status,
+          assignment.assigned_at AS assignment_assigned_at,
+          assignment.accepted_at AS assignment_accepted_at,
+          assignment.completed_at AS assignment_completed_at,
+          attempt.person_id AS actual_attempt_owner_person_id,
+          agent.owner_person_id AS agent_owner_person_id,
+          agent.public_key AS agent_public_key,
+          agent.key_fingerprint AS agent_key_fingerprint,
+          agent.status AS agent_status,
+          agent.revoked_at AS agent_revoked_at,
+          agent.created_at AS agent_created_at,
+          certificate.owner_person_id AS certificate_owner_person_id,
+          certificate.agent_id AS certificate_agent_id,
+          certificate.person_key_id AS certificate_person_key_id,
+          certificate.agent_public_key AS certificate_agent_public_key,
+          certificate.scopes_json, certificate.valid_from,
+          certificate.valid_until,
+          certificate.beneficiary_person_id AS certificate_beneficiary_person_id,
+          certificate.protocol_version AS certificate_protocol_version,
+          certificate.payload_hash AS certificate_payload_hash,
+          certificate.canonical_payload AS certificate_canonical_payload,
+          certificate.person_signature AS certificate_person_signature,
+          signer.person_id AS signer_person_id,
+          signer.public_key AS signer_public_key,
+          signer.fingerprint AS signer_fingerprint,
+          signer.algorithm AS signer_algorithm,
+          signer.revoked_at AS signer_legacy_revoked_at,
+          delegation_revocation.revoked_at AS delegation_revoked_at,
+          key_revocation.revoked_at AS signer_event_revoked_at
+         FROM verification_attestations AS attestation
+         INNER JOIN verification_assignments AS assignment
+           ON assignment.id = attestation.assignment_id
+         INNER JOIN artifact_bundles AS bundle
+           ON bundle.manifest_hash = assignment.artifact_bundle_manifest_hash
+         INNER JOIN agent_attempts AS attempt ON attempt.id = bundle.attempt_id
+         LEFT JOIN agents AS agent ON agent.id = attestation.verifier_agent_id
+         LEFT JOIN delegation_certificates AS certificate
+           ON certificate.id = attestation.delegation_certificate_id
+         LEFT JOIN person_keys AS signer ON signer.id = certificate.person_key_id
+         LEFT JOIN delegation_revocations AS delegation_revocation
+           ON delegation_revocation.delegation_certificate_id = certificate.id
+         LEFT JOIN person_key_revocations AS key_revocation
+           ON key_revocation.person_key_id = signer.id
+         WHERE assignment.artifact_bundle_manifest_hash = ?
+           AND assignment.claim_type IN (
+             'bundle_reproducible','kernel_accepted','project_accepted'
+           )
+         ORDER BY attestation.attested_at ASC, attestation.id ASC`,
       )
       .bind(artifactBundleManifestHash)
       .all();
-    return Promise.all((rows.results ?? []).map(async (row) => {
+    const attestations = [];
+    for (const row of rows.results ?? []) {
       const attestation = parseAttestation(row.canonical_payload);
       if (
+        canonicalJson(attestation) !== row.canonical_payload ||
         attestation.id !== row.id ||
+        attestation.assignmentId !== row.assignment_id ||
         attestation.claimType !== row.claim_type ||
         attestation.artifactBundleHash !== row.artifact_bundle_manifest_hash ||
         attestation.verifierPersonId !== row.verifier_person_id ||
         attestation.verifierAgentId !== row.verifier_agent_id ||
         attestation.delegationCertificateId !== row.delegation_certificate_id ||
-        attestation.decision !== "attested"
+        attestation.verifierAgentPublicKey !== row.verifier_agent_public_key ||
+        attestation.decision !== row.decision ||
+        attestation.evidenceHash !== row.evidence_hash ||
+        attestation.payloadHash !== row.payload_hash ||
+        attestation.signature !== row.signature ||
+        attestation.attestedAt !== row.attested_at
       ) {
         throw new ContributionReceiptStoreValidationError("Stored verification attestation projection does not match canonical evidence.");
       }
-      return {
-        claimType: attestation.claimType,
-        verificationAttestationId: attestation.id,
-        verificationAttestationHash: await sha256Canonical(attestation),
-        artifactBundleHash: attestation.artifactBundleHash,
-        reviewerPersonId: attestation.verifierPersonId,
-        reviewerAgentId: attestation.verifierAgentId,
-        reviewerDelegationCertificateId: attestation.delegationCertificateId,
-        decision: "attested",
-      };
-    }));
+      if (
+        row.assignment_status !== "completed" ||
+        row.assignment_completed_at !== attestation.attestedAt ||
+        row.assignment_bundle_hash !== attestation.artifactBundleHash ||
+        row.assignment_claim_type !== attestation.claimType ||
+        row.assignment_verifier_person_id !== attestation.verifierPersonId ||
+        row.assignment_attempt_owner_person_id !== row.actual_attempt_owner_person_id
+      ) {
+        throw new ContributionReceiptStoreValidationError(
+          "Verification attestation does not match its completed assignment.",
+        );
+      }
+      const assignedAt = requireUtcInstant(row.assignment_assigned_at, "verification assignment assignedAt");
+      const acceptedAt = requireUtcInstant(row.assignment_accepted_at, "verification assignment acceptedAt");
+      const attestedAt = requireUtcInstant(attestation.attestedAt, "verification attestation attestedAt");
+      if (assignedAt > acceptedAt || acceptedAt > attestedAt) {
+        throw new ContributionReceiptStoreValidationError(
+          "Verification assignment timestamps do not form assigned <= accepted <= attested.",
+        );
+      }
+      if (row.actual_attempt_owner_person_id === attestation.verifierPersonId) {
+        throw new ContributionReceiptStoreValidationError(
+          "A Receipt cannot use a same-owner verification attestation.",
+        );
+      }
+      if (
+        !["active", "revoked"].includes(row.agent_status) ||
+        row.agent_owner_person_id !== attestation.verifierPersonId ||
+        row.agent_public_key !== attestation.verifierAgentPublicKey ||
+        row.certificate_owner_person_id !== attestation.verifierPersonId ||
+        row.certificate_agent_id !== attestation.verifierAgentId ||
+        row.certificate_agent_public_key !== attestation.verifierAgentPublicKey ||
+        row.certificate_beneficiary_person_id !== attestation.verifierPersonId ||
+        row.signer_person_id !== attestation.verifierPersonId
+      ) {
+        throw new ContributionReceiptStoreValidationError(
+          "Verification attestation does not match a valid review Agent delegation.",
+        );
+      }
+      const [expectedAgentFingerprint, expectedSignerFingerprint] = await Promise.all([
+        sha256Canonical({ algorithm: "ed25519", public_key: row.agent_public_key }),
+        sha256Canonical({ algorithm: "ed25519", public_key: row.signer_public_key }),
+      ]);
+      if (
+        row.agent_key_fingerprint !== expectedAgentFingerprint ||
+        row.signer_fingerprint !== expectedSignerFingerprint
+      ) {
+        throw new ContributionReceiptStoreValidationError(
+          "Review Agent or Person signing key fingerprint does not match its public key.",
+        );
+      }
+      const agentCreatedAt = requireUtcInstant(row.agent_created_at, "review Agent createdAt");
+      const agentRevokedAt = row.agent_revoked_at === null || row.agent_revoked_at === undefined
+        ? null
+        : requireUtcInstant(row.agent_revoked_at, "review Agent revokedAt");
+      if (
+        agentCreatedAt > attestedAt ||
+        (agentRevokedAt !== null && attestedAt >= agentRevokedAt) ||
+        (row.agent_status === "revoked" && agentRevokedAt === null)
+      ) {
+        throw new ContributionReceiptStoreValidationError(
+          "Verification attestation occurred outside the review Agent's historical authority.",
+        );
+      }
+      let scopes;
+      try {
+        scopes = JSON.parse(row.scopes_json);
+      } catch {
+        throw new ContributionReceiptStoreValidationError("Stored review delegation scopes are not valid JSON.");
+      }
+      try {
+        const certificate = normalizeDelegationCertificate({
+          id: attestation.delegationCertificateId,
+          ownerPersonId: row.certificate_owner_person_id,
+          agentId: row.certificate_agent_id,
+          agentPublicKey: row.certificate_agent_public_key,
+          scopes,
+          validFrom: row.valid_from,
+          validUntil: row.valid_until,
+          attributionPolicy: {
+            beneficiaryPersonId: row.certificate_beneficiary_person_id,
+            mode: "agent_delegated",
+          },
+        });
+        if (
+          row.certificate_protocol_version !== delegationProtocolVersion ||
+          row.certificate_canonical_payload !== canonicalJson(delegationSigningPayload(certificate)) ||
+          row.certificate_payload_hash !== await delegationPayloadHash(certificate) ||
+          row.signer_algorithm !== "ed25519" ||
+          !await verifyDelegationSignature({
+            certificate,
+            personPublicKey: row.signer_public_key,
+            personSignature: row.certificate_person_signature,
+          })
+        ) {
+          throw new Error("delegation integrity mismatch");
+        }
+        assertDelegationAllows(
+          certificate,
+          "review",
+          attestation.attestedAt,
+          earliestInstant(
+            optionalUtcInstant(row.delegation_revoked_at, "delegation revokedAt"),
+            optionalUtcInstant(row.signer_event_revoked_at, "Person key revocation event time"),
+            optionalUtcInstant(row.signer_legacy_revoked_at, "Person key legacy revokedAt"),
+          ),
+        );
+      } catch {
+        throw new ContributionReceiptStoreValidationError(
+          "Verification attestation occurred outside valid signed review delegation authority.",
+        );
+      }
+      if (!await verifyVerificationAttestationSignature(attestation)) {
+        throw new ContributionReceiptStoreValidationError(
+          "Verification attestation Agent signature or payload hash is invalid.",
+        );
+      }
+      attestations.push(attestation);
+    }
+    return Object.freeze(attestations);
+  }
+
+  async assertReceiptSideEffects(receipt, publication, dependencies) {
+    const storedPublication = await this.database.prepare(
+      `SELECT record_class, visibility, policy_version, classification_reason,
+              classified_at
+       FROM contribution_receipt_publications WHERE receipt_id = ?`,
+    ).bind(receipt.id).first();
+    if (
+      !storedPublication ||
+      storedPublication.record_class !== publication.recordClass ||
+      storedPublication.visibility !== publication.visibility ||
+      storedPublication.policy_version !== publication.policyVersion ||
+      storedPublication.classification_reason !== publication.reason ||
+      storedPublication.classified_at !== publication.classifiedAt
+    ) {
+      throw new ContributionReceiptStoreConflictError(
+        "Stored Contribution Receipt publication does not match its canonical classification.",
+      );
+    }
+    const storedEdges = await this.database.prepare(
+      `SELECT upstream_receipt_id, upstream_receipt_hash,
+              declared_by_bundle_manifest_hash, recorded_at
+       FROM contribution_receipt_dependency_edges
+       WHERE downstream_receipt_id = ?
+       ORDER BY upstream_receipt_id ASC`,
+    ).bind(receipt.id).all();
+    const expectedEdges = dependencies.map((dependency) => ({
+      upstream_receipt_id: dependency.receiptId,
+      upstream_receipt_hash: dependency.receiptHash,
+      declared_by_bundle_manifest_hash: dependency.artifactBundleManifestHash,
+      recorded_at: dependency.issuedAt,
+    })).sort((left, right) => left.upstream_receipt_id.localeCompare(right.upstream_receipt_id));
+    if (canonicalJson(storedEdges.results ?? []) !== canonicalJson(expectedEdges)) {
+      throw new ContributionReceiptStoreConflictError(
+        "Stored Contribution Receipt dependency edges do not match its canonical Bundle.",
+      );
+    }
   }
 
   /**
@@ -594,4 +882,41 @@ function requireUtcInstant(value, label) {
   if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{3})?Z$/.test(value) || Number.isNaN(Date.parse(value))) {
     throw new ContributionReceiptStoreValidationError(`${label} must be a UTC ISO-8601 instant.`);
   }
+  return Date.parse(value);
+}
+
+function optionalUtcInstant(value, label) {
+  if (value === null || value === undefined) return null;
+  requireUtcInstant(value, label);
+  return value;
+}
+
+function latestReviewDecisions(attestations) {
+  const latest = new Map();
+  for (const attestation of attestations) {
+    const existing = latest.get(attestation.claimType);
+    const attestedTime = Date.parse(attestation.attestedAt);
+    const existingTime = existing ? Date.parse(existing.attestedAt) : Number.NEGATIVE_INFINITY;
+    if (
+      !existing ||
+      attestedTime > existingTime ||
+      (attestedTime === existingTime && attestation.id > existing.id)
+    ) {
+      latest.set(attestation.claimType, attestation);
+    }
+  }
+  return latest;
+}
+
+function earliestInstant(...values) {
+  let earliest = null;
+  let earliestTime = Number.POSITIVE_INFINITY;
+  for (const value of values.filter(Boolean)) {
+    const time = Date.parse(value);
+    if (time < earliestTime) {
+      earliest = value;
+      earliestTime = time;
+    }
+  }
+  return earliest;
 }

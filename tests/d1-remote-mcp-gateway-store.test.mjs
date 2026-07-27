@@ -16,6 +16,7 @@ import {
 import cloudflareGatewayWorker from "../services/proofweave-mcp-gateway/cloudflare-worker.mjs";
 import { D1ProofweaveOAuthStore } from "../services/proofweave-identity/d1-oauth-store.mjs";
 import { D1VerificationStore } from "../services/verification/d1-verification-store.mjs";
+import { D1R2VerificationReplayEvidenceStore } from "../services/verification/d1-r2-verification-replay-evidence-store.mjs";
 import { D1R2ArtifactStore } from "../services/artifacts/d1-r2-artifact-store.mjs";
 import {
   verificationAttestationPayloadHash,
@@ -25,7 +26,12 @@ import {
   artifactBundleSigningPayload,
   artifactBundleSigningPayloadHash,
 } from "../packages/protocol/artifact-bundle.mjs";
-import { canonicalJson } from "../packages/protocol/canonical-json.mjs";
+import { canonicalJson, sha256Canonical } from "../packages/protocol/canonical-json.mjs";
+import {
+  signLeanRunnerResult,
+  verifyLeanRunnerResultSignature,
+} from "../packages/protocol/lean-runner.mjs";
+import { runnerKeyFingerprint } from "../packages/protocol/runner-key-registry.mjs";
 import { D1ResearchGraphStore } from "../services/research/d1-research-graph-store.mjs";
 import {
   researchCheckpointPayloadHash,
@@ -164,6 +170,120 @@ test("remote MCP gateway store binds a signed review attestation to its OAuth in
   });
   await verification.accept("assignment:gateway-review", "person:gateway-reviewer", "2026-07-13T00:00:01Z");
 
+  const replayRunId = "run:gateway-review-fresh-replay";
+  const replayId = "verification-replay:gateway-review";
+  const requestHash = sha("c");
+  await database.prepare(
+    `INSERT INTO runs (
+      id, attempt_id, artifact_bundle_hash, request_hash, idempotency_key,
+      state, queued_at, started_at, updated_at
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+  ).bind(
+    replayRunId,
+    "attempt:gateway",
+    sha("a"),
+    requestHash,
+    "gateway-review-fresh-replay",
+    "running",
+    "2026-07-13T00:00:01.100Z",
+    "2026-07-13T00:00:01.200Z",
+    "2026-07-13T00:00:01.200Z",
+  ).run();
+  await database.prepare(
+    `INSERT INTO verification_replays (
+      id, assignment_id, run_id, artifact_bundle_manifest_hash,
+      requester_person_id, requester_agent_id, delegation_certificate_id,
+      agent_installation_id, idempotency_key, requested_at
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+  ).bind(
+    replayId,
+    "assignment:gateway-review",
+    replayRunId,
+    sha("a"),
+    "person:gateway-reviewer",
+    "agent:gateway-reviewer",
+    "delegation:gateway-reviewer",
+    "installation:gateway-reviewer",
+    "gateway-review-fresh-replay",
+    "2026-07-13T00:00:01.100Z",
+  ).run();
+  const runnerKeyPair = await crypto.subtle.generateKey(
+    { name: "Ed25519" },
+    true,
+    ["sign", "verify"],
+  );
+  const runnerPublicKey = base64Url(await crypto.subtle.exportKey("raw", runnerKeyPair.publicKey));
+  await database.prepare(
+    "INSERT INTO runner_keys (id, public_key, fingerprint) VALUES (?, ?, ?)",
+  ).bind(
+    "runner-key:gateway-review-fixture",
+    runnerPublicKey,
+    await runnerKeyFingerprint(runnerPublicKey),
+  ).run();
+  const runnerResult = await signLeanRunnerResult({
+    result: {
+      protocolVersion: "pw-lean-runner-v1",
+      jobId: replayRunId,
+      attemptId: "attempt:gateway",
+      requestHash,
+      runnerKeyId: "runner-key:gateway-review-fixture",
+      status: "succeeded",
+      exitCode: 0,
+      startedAt: "2026-07-13T00:00:01.200Z",
+      finishedAt: "2026-07-13T00:00:01.500Z",
+      kernelStatus: "accepted",
+      checks: {
+        network: "passed",
+        noSorry: "passed",
+        allowedAxioms: "passed",
+        leanBuild: "passed",
+      },
+      artifacts: {
+        manifestHash: sha("a"),
+        stdoutHash: sha("d"),
+        stderrHash: sha("e"),
+      },
+    },
+    runnerPrivateKey: runnerKeyPair.privateKey,
+  });
+  assert.equal(await verifyLeanRunnerResultSignature({ result: runnerResult, runnerPublicKey }), true);
+  const replayEvidence = await new D1R2VerificationReplayEvidenceStore({
+    database,
+    bucket: artifactBucket,
+  }).persist({
+    run: {
+      id: replayRunId,
+      attemptId: "attempt:gateway",
+      requestHash,
+      artifactBundleHash: sha("a"),
+      state: "running",
+    },
+    result: runnerResult,
+    receivedAt: "2026-07-13T00:00:01.600Z",
+  });
+  assert.equal(replayEvidence?.created, true);
+  const runnerResultHash = await sha256Canonical(runnerResult);
+  await database.batch([
+    database.prepare(
+      "INSERT INTO run_results (run_id, result_hash, canonical_result, received_at) VALUES (?, ?, ?, ?)",
+    ).bind(
+      replayRunId,
+      runnerResultHash,
+      canonicalJson(runnerResult),
+      "2026-07-13T00:00:01.600Z",
+    ),
+    database.prepare(
+      `UPDATE runs
+       SET state = 'succeeded', finished_at = ?, runner_result_hash = ?, updated_at = ?
+       WHERE id = ? AND state = 'running'`,
+    ).bind(
+      "2026-07-13T00:00:01.500Z",
+      runnerResultHash,
+      "2026-07-13T00:00:01.600Z",
+      replayRunId,
+    ),
+  ]);
+
   const store = new D1RemoteMcpGatewayStore(database);
   const principal = {
     clientId: "client:gateway-codex",
@@ -171,7 +291,7 @@ test("remote MCP gateway store binds a signed review attestation to its OAuth in
     agentInstallationId: "installation:gateway-reviewer",
     scopes: ["catalog:read", "verification:write"],
   };
-  const attestation = await signedAttestation();
+  const attestation = await signedAttestation({ evidenceHash: replayEvidence.evidenceHash });
   const recorded = await store.submitVerificationAttestation(principal, attestation);
   assert.equal(recorded.created, true);
   assert.equal(recorded.attestation.id, attestation.id);
@@ -919,6 +1039,7 @@ async function signedAttestation({
   assignmentId = "assignment:gateway-review",
   claimType = "kernel_accepted",
   attestedAt = "2026-07-13T00:00:02Z",
+  evidenceHash = sha("b"),
 } = {}) {
   const attestation = {
     protocolVersion: "pw-verification-attestation-v1",
@@ -931,7 +1052,7 @@ async function signedAttestation({
     delegationCertificateId: "delegation:gateway-reviewer",
     verifierAgentPublicKey: reviewerPublicKey,
     decision: "attested",
-    evidenceHash: sha("b"),
+    evidenceHash,
     attestedAt,
     payloadHash: sha("0"),
     signature: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",

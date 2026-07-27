@@ -165,27 +165,29 @@ export class D1ContributionReceiptCoordinator {
   }
 
   async reviewState(artifactBundleManifestHash) {
-    const rows = await this.database.prepare(
-      `SELECT claim_type, decision, attested_at
-       FROM verification_attestations
-       WHERE artifact_bundle_manifest_hash = ?
-         AND claim_type IN ('bundle_reproducible','kernel_accepted','project_accepted')
-       ORDER BY attested_at ASC, id ASC`,
-    ).bind(artifactBundleManifestHash).all();
+    const latest = await this.receipts.loadEffectiveReviewEvidence(artifactBundleManifestHash);
     const positive = new Map();
-    const nonPositive = new Map();
-    for (const row of rows.results ?? []) {
-      if (row.decision === "attested") positive.set(row.claim_type, row.attested_at);
-      else if (!positive.has(row.claim_type)) nonPositive.set(row.claim_type, row.decision);
+    const blockingDecisions = [];
+    for (const attestation of latest.values()) {
+      if (attestation.decision === "attested") {
+        positive.set(attestation.claimType, attestation.attestedAt);
+      } else {
+        blockingDecisions.push(Object.freeze({
+          claimType: attestation.claimType,
+          decision: attestation.decision,
+        }));
+      }
     }
     const missingClaims = contributionReceiptRequiredClaimTypes.filter((claimType) => !positive.has(claimType));
-    const blockingDecisions = missingClaims
-      .filter((claimType) => nonPositive.has(claimType))
-      .map((claimType) => Object.freeze({ claimType, decision: nonPositive.get(claimType) }));
-    const closedAt = [...positive.values()].sort().at(-1) ?? this.issuer.activatedAt;
+    const closedAt = [...positive.values()].reduce(
+      (latest, candidate) => (
+        latest === null || Date.parse(candidate) > Date.parse(latest) ? candidate : latest
+      ),
+      null,
+    ) ?? this.issuer.activatedAt;
     return Object.freeze({
       missingClaims: Object.freeze([...missingClaims]),
-      blockingDecisions: Object.freeze(blockingDecisions),
+      blockingDecisions: Object.freeze([...blockingDecisions]),
       closedAt,
     });
   }

@@ -2,13 +2,21 @@ import assert from "node:assert/strict";
 import { after, before, test } from "node:test";
 import { readFile, readdir } from "node:fs/promises";
 import { Miniflare } from "miniflare";
-import { canonicalJson } from "../packages/protocol/canonical-json.mjs";
+import { canonicalJson, sha256Canonical } from "../packages/protocol/canonical-json.mjs";
+import {
+  delegationPayloadHash,
+  delegationSigningPayload,
+} from "../packages/domain/delegation.mjs";
 import {
   contributionReceiptHash,
   createContributionReceipt,
   verifyContributionReceiptSignature,
 } from "../packages/protocol/contribution-receipt.mjs";
 import { verifyContributionReceiptLifecycleEventSignature } from "../packages/protocol/contribution-receipt-lifecycle.mjs";
+import {
+  verificationAttestationPayloadHash,
+  verificationAttestationSigningPayload,
+} from "../packages/protocol/verification-attestation.mjs";
 import { D1ContributionReceiptIssuerKeyStore } from "../services/receipts/d1-contribution-receipt-issuer-key-store.mjs";
 import { D1ContributionReceiptStore } from "../services/receipts/d1-contribution-receipt-store.mjs";
 import { classifyReceiptPublication } from "../services/receipts/receipt-publication-policy.mjs";
@@ -23,12 +31,18 @@ let database;
 let issuerPair;
 let issuerPublicKey;
 let issuerKeys;
+let reviewerPairs;
 let upstreamReceipt;
 let upstreamReceiptHash;
 
 before(async () => {
   issuerPair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
   issuerPublicKey = base64Url(await crypto.subtle.exportKey("raw", issuerPair.publicKey));
+  reviewerPairs = {
+    alice: await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]),
+    bob: await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]),
+    carol: await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]),
+  };
   miniflare = new Miniflare({
     modules: true,
     script: "export default { fetch() { return new Response('ok'); } }",
@@ -331,16 +345,19 @@ test("demo and smoke-test Receipts never mint research Credit", async () => {
 
 test("verification receipt credits the review Agent present in immutable attestation evidence", async () => {
   const store = new D1ContributionReceiptStore(database);
-  const receipt = await store.issue({
+  const input = {
     ...receiptInput({ id: "receipt:bob-verification", kind: "verification" }),
     beneficiary: {
       personId: "person:bob",
       agentId: "agent:bob-reviewer",
       delegationCertificateId: "delegation:bob-reviewer",
     },
-  });
-  assert.equal(receipt.created, true);
-  assert.equal(receipt.receipt.beneficiary.personId, "person:bob");
+  };
+  const concurrent = await Promise.all([store.issue(input), store.issue(input)]);
+  assert.equal(concurrent.filter((result) => result.created).length, 1);
+  assert.equal(concurrent.filter((result) => !result.created).length, 1);
+  assert.deepEqual(concurrent[0].receipt, concurrent[1].receipt);
+  assert.equal(concurrent[0].receipt.beneficiary.personId, "person:bob");
 
   await assert.rejects(
     store.issue({
@@ -353,6 +370,103 @@ test("verification receipt credits the review Agent present in immutable attesta
     }),
     /must cover an attestation made by its credited review Agent/,
   );
+});
+
+test("Receipt closure fails closed on tampered, incomplete, expired, and same-owner review evidence", async () => {
+  const cases = [
+    {
+      name: "tampered Agent signature",
+      mutate(row) {
+        const attestation = {
+          ...JSON.parse(row.canonical_payload),
+          signature: base64Url(new Uint8Array(64)),
+        };
+        return {
+          ...row,
+          canonical_payload: canonicalJson(attestation),
+          signature: attestation.signature,
+        };
+      },
+      error: /signature or payload hash is invalid/,
+    },
+    {
+      name: "assignment not completed",
+      mutate: (row) => ({ ...row, assignment_status: "accepted", assignment_completed_at: null }),
+      error: /completed assignment/,
+    },
+    {
+      name: "expired review delegation",
+      mutate: (row) => ({ ...row, valid_until: row.attested_at }),
+      error: /outside valid signed review delegation authority/,
+    },
+    {
+      name: "tampered delegation certificate",
+      mutate: (row) => ({ ...row, certificate_canonical_payload: "{}" }),
+      error: /outside valid signed review delegation authority/,
+    },
+    {
+      name: "earliest Person key revocation wins across mixed precision",
+      mutate: (row) => ({
+        ...row,
+        signer_event_revoked_at: "2026-07-13T00:00:12.900Z",
+        signer_legacy_revoked_at: "2026-07-13T00:00:12Z",
+      }),
+      error: /outside valid signed review delegation authority/,
+    },
+    {
+      name: "public key fingerprint mismatch",
+      mutate: (row) => ({ ...row, agent_key_fingerprint: sha("0") }),
+      error: /fingerprint does not match its public key/,
+    },
+    {
+      name: "same-owner reviewer",
+      mutate: (row) => ({
+        ...row,
+        assignment_attempt_owner_person_id: row.verifier_person_id,
+        actual_attempt_owner_person_id: row.verifier_person_id,
+      }),
+      error: /same-owner verification attestation/,
+    },
+  ];
+  for (const scenario of cases) {
+    const row = scenario.mutate(await fixtureReviewEvidenceRow());
+    const store = new D1ContributionReceiptStore(reviewEvidenceDatabase([row]));
+    await assert.rejects(
+      store.loadReviewEvidence(bundleHash),
+      scenario.error,
+      scenario.name,
+    );
+  }
+});
+
+test("Receipt closure uses the latest valid signed decision per claim deterministically", async () => {
+  const rejected = await fixtureReviewEvidenceRow({
+    id: "attestation:review-boundary:old-rejected",
+    assignmentId: "assignment:review-boundary:old-rejected",
+    decision: "rejected",
+    attestedAt: "2026-07-13T00:00:12Z",
+  });
+  const attested = await fixtureReviewEvidenceRow({
+    id: "attestation:review-boundary:new-attested",
+    assignmentId: "assignment:review-boundary:new-attested",
+    decision: "attested",
+    attestedAt: "2026-07-13T00:00:12.900Z",
+  });
+  const recovered = await new D1ContributionReceiptStore(
+    reviewEvidenceDatabase([attested, rejected]),
+  ).loadEffectiveReviewEvidence(bundleHash);
+  assert.equal(recovered.get("bundle_reproducible")?.decision, "attested");
+
+  const laterRejected = await fixtureReviewEvidenceRow({
+    id: "attestation:review-boundary:latest-rejected",
+    assignmentId: "assignment:review-boundary:latest-rejected",
+    decision: "conflict_declared",
+    attestedAt: "2026-07-13T00:00:12.950Z",
+  });
+  const blocked = await new D1ContributionReceiptStore(
+    reviewEvidenceDatabase([attested, laterRejected]),
+  ).loadEffectiveReviewEvidence(bundleHash);
+  assert.equal(blocked.get("bundle_reproducible")?.decision, "conflict_declared");
 });
 
 test("retiring a receipt issuer key preserves historical evidence but moves issuance and lifecycle authority to its successor", async () => {
@@ -428,10 +542,16 @@ function receiptInput({ id, kind, issuedAt = "2026-07-13T00:01:00Z" }) {
 
 async function seedReceiptEvidence(d1) {
   const publicKeys = {
-    alice: fixturePublicKey(1),
-    bob: fixturePublicKey(2),
-    carol: fixturePublicKey(3),
+    alice: base64Url(await crypto.subtle.exportKey("raw", reviewerPairs.alice.publicKey)),
+    bob: base64Url(await crypto.subtle.exportKey("raw", reviewerPairs.bob.publicKey)),
+    carol: base64Url(await crypto.subtle.exportKey("raw", reviewerPairs.carol.publicKey)),
   };
+  const fingerprints = Object.fromEntries(await Promise.all(
+    Object.entries(publicKeys).map(async ([name, publicKey]) => [
+      name,
+      await keyFingerprint(publicKey),
+    ]),
+  ));
   upstreamReceipt = await fixtureUpstreamReceipt();
   upstreamReceiptHash = await contributionReceiptHash(upstreamReceipt);
   const manifest = fixtureBundle(publicKeys.alice, {
@@ -455,12 +575,12 @@ async function seedReceiptEvidence(d1) {
       ["revision:receipt", "project:receipt", "snapshot:receipt", "receipt-target", "receipt-target", 1, "Receipt target", "logic", "research_open", "fixture", "theorem fixture : True := by trivial"],
     ],
     ...["alice", "bob", "carol"].flatMap((name) => [
-      ["INSERT INTO person_keys (id, person_id, public_key, fingerprint) VALUES (?, ?, ?, ?)", [`person-key:${name}`, `person:${name}`, publicKeys[name], sha(`${name === "alice" ? "3" : name === "bob" ? "4" : "5"}`)]],
+      ["INSERT INTO person_keys (id, person_id, public_key, fingerprint) VALUES (?, ?, ?, ?)", [`person-key:${name}`, `person:${name}`, publicKeys[name], fingerprints[name]]],
     ]),
-    ["INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint) VALUES (?, ?, ?, ?, ?)", ["agent:alice-prover", "person:alice", "Alice prover", publicKeys.alice, sha("6")]],
-    ["INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint) VALUES (?, ?, ?, ?, ?)", ["agent:bob-reviewer", "person:bob", "Bob reviewer", publicKeys.bob, sha("7")]],
-    ["INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint) VALUES (?, ?, ?, ?, ?)", ["agent:carol-curator", "person:carol", "Carol curator", publicKeys.carol, sha("8")]],
-    ...delegationStatements(publicKeys),
+    ["INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint, created_at) VALUES (?, ?, ?, ?, ?, ?)", ["agent:alice-prover", "person:alice", "Alice prover", publicKeys.alice, fingerprints.alice, "2026-07-01T00:00:00Z"]],
+    ["INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint, created_at) VALUES (?, ?, ?, ?, ?, ?)", ["agent:bob-reviewer", "person:bob", "Bob reviewer", publicKeys.bob, fingerprints.bob, "2026-07-01T00:00:00Z"]],
+    ["INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint, created_at) VALUES (?, ?, ?, ?, ?, ?)", ["agent:carol-curator", "person:carol", "Carol curator", publicKeys.carol, fingerprints.carol, "2026-07-01T00:00:00Z"]],
+    ...await delegationStatements(publicKeys),
     [
       `INSERT INTO agent_attempts (id, person_id, problem_revision_id, agent_id, delegation_certificate_id, delegation_scope, agent_label, idempotency_key, updated_at)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -479,7 +599,7 @@ async function seedReceiptEvidence(d1) {
       ["run:receipt-fixture", "attempt:receipt", bundleHash, runRequestHash, "run-receipt", "succeeded", "2026-07-13T00:00:00Z", "2026-07-13T00:00:01Z", "2026-07-13T00:00:02Z", runResultHash, "2026-07-13T00:00:02Z"],
     ],
     ["INSERT INTO run_results (run_id, result_hash, canonical_result, received_at) VALUES (?, ?, ?, ?)", ["run:receipt-fixture", runResultHash, canonicalJson(runnerResult), "2026-07-13T00:00:02Z"]],
-    ...assignmentAndAttestationStatements(bundleHash, publicKeys),
+    ...await assignmentAndAttestationStatements(bundleHash, publicKeys),
   ];
   for (const [statement, values] of statements) await d1.prepare(statement).bind(...values).run();
   await d1
@@ -503,29 +623,66 @@ async function seedReceiptEvidence(d1) {
     .run();
 }
 
-function delegationStatements(publicKeys) {
-  return [
+async function delegationStatements(publicKeys) {
+  return Promise.all([
     ["alice", "agent:alice-prover", "prove"],
     ["bob", "agent:bob-reviewer", "review"],
     ["carol", "agent:carol-curator", "review"],
-  ].map(([person, agent, scope]) => [
-    `INSERT INTO delegation_certificates (id, owner_person_id, agent_id, person_key_id, agent_public_key, scopes_json, valid_from, valid_until, beneficiary_person_id, protocol_version, payload_hash, canonical_payload, person_signature)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-    [`delegation:${person}-${person === "alice" ? "prover" : person === "bob" ? "reviewer" : "curator"}`, `person:${person}`, agent, `person-key:${person}`, publicKeys[person], JSON.stringify([scope]), "2026-07-01T00:00:00Z", "2027-07-01T00:00:00Z", `person:${person}`, "pw-delegation-v1", sha(person === "alice" ? "a" : person === "bob" ? "b" : "c"), "{}", "signature"],
-  ]);
+  ].map(async ([person, agent, scope]) => {
+    const id = `delegation:${person}-${person === "alice" ? "prover" : person === "bob" ? "reviewer" : "curator"}`;
+    const certificate = {
+      id,
+      ownerPersonId: `person:${person}`,
+      agentId: agent,
+      agentPublicKey: publicKeys[person],
+      scopes: [scope],
+      validFrom: "2026-07-01T00:00:00Z",
+      validUntil: "2027-07-01T00:00:00Z",
+      attributionPolicy: {
+        beneficiaryPersonId: `person:${person}`,
+        mode: "agent_delegated",
+      },
+    };
+    return [
+      `INSERT INTO delegation_certificates (id, owner_person_id, agent_id, person_key_id, agent_public_key, scopes_json, valid_from, valid_until, beneficiary_person_id, protocol_version, payload_hash, canonical_payload, person_signature)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        id, `person:${person}`, agent, `person-key:${person}`, publicKeys[person],
+        JSON.stringify([scope]), certificate.validFrom, certificate.validUntil,
+        `person:${person}`, "pw-delegation-v1",
+        await delegationPayloadHash(certificate),
+        canonicalJson(delegationSigningPayload(certificate)),
+        base64Url(await crypto.subtle.sign(
+          "Ed25519",
+          reviewerPairs[person].privateKey,
+          new TextEncoder().encode(canonicalJson(delegationSigningPayload(certificate))),
+        )),
+      ],
+    ];
+  }));
 }
 
-function assignmentAndAttestationStatements(manifestHash, publicKeys) {
+async function assignmentAndAttestationStatements(manifestHash, publicKeys) {
   const entries = [
     ["bundle_reproducible", "bob", "d"],
     ["kernel_accepted", "bob", "e"],
     ["project_accepted", "carol", "f"],
   ];
-  return entries.flatMap(([claimType, reviewer, evidenceCharacter]) => {
+  return (await Promise.all(entries.map(async ([claimType, reviewer, evidenceCharacter]) => {
     const suffix = claimType.replaceAll("_", "-");
     const agent = reviewer === "bob" ? "agent:bob-reviewer" : "agent:carol-curator";
     const delegation = reviewer === "bob" ? "delegation:bob-reviewer" : "delegation:carol-curator";
-    const attestation = fixtureAttestation({ id: `attestation:${suffix}`, assignmentId: `assignment:${suffix}`, claimType, reviewer, agent, delegation, publicKey: publicKeys[reviewer], evidenceHash: sha(evidenceCharacter) });
+    const attestation = await fixtureAttestation({
+      id: `attestation:${suffix}`,
+      assignmentId: `assignment:${suffix}`,
+      claimType,
+      reviewer,
+      agent,
+      delegation,
+      publicKey: publicKeys[reviewer],
+      privateKey: reviewerPairs[reviewer].privateKey,
+      evidenceHash: sha(evidenceCharacter),
+    });
     return [
       [
         `INSERT INTO verification_assignments (id, artifact_bundle_manifest_hash, claim_type, attempt_owner_person_id, verifier_person_id, status, assigned_at, accepted_at, completed_at, updated_at)
@@ -538,7 +695,7 @@ function assignmentAndAttestationStatements(manifestHash, publicKeys) {
         [attestation.id, attestation.assignmentId, manifestHash, claimType, `person:${reviewer}`, agent, delegation, publicKeys[reviewer], "attested", sha(evidenceCharacter), canonicalJson(attestation), attestation.payloadHash, attestation.signature, attestation.attestedAt],
       ],
     ];
-  });
+  }))).flat();
 }
 
 function fixtureBundle(publicKey, dependencyReceipt) {
@@ -630,12 +787,156 @@ function fixtureRunnerResult() {
   };
 }
 
-function fixtureAttestation({ id, assignmentId, claimType, reviewer, agent, delegation, publicKey, evidenceHash }) {
-  return {
+async function fixtureAttestation({
+  id,
+  assignmentId,
+  claimType,
+  reviewer,
+  agent,
+  delegation,
+  publicKey,
+  privateKey,
+  evidenceHash,
+  decision = "attested",
+  attestedAt = "2026-07-13T00:00:12Z",
+}) {
+  const draft = {
     protocolVersion: "pw-verification-attestation-v1", id, assignmentId, artifactBundleHash: bundleHash, claimType,
     verifierPersonId: `person:${reviewer}`, verifierAgentId: agent, delegationCertificateId: delegation,
-    verifierAgentPublicKey: publicKey, decision: "attested", evidenceHash, attestedAt: "2026-07-13T00:00:12Z",
-    payloadHash: sha(claimType === "bundle_reproducible" ? "a" : claimType === "kernel_accepted" ? "b" : "c"), signature: base64Url(new Uint8Array(64)),
+    verifierAgentPublicKey: publicKey, decision, evidenceHash, attestedAt,
+  };
+  const payloadHash = await verificationAttestationPayloadHash({
+    ...draft,
+    payloadHash: sha("0"),
+    signature: base64Url(new Uint8Array(64)),
+  });
+  const signed = {
+    ...draft,
+    payloadHash,
+    signature: base64Url(await crypto.subtle.sign(
+      "Ed25519",
+      privateKey,
+      new TextEncoder().encode(canonicalJson(verificationAttestationSigningPayload({
+        ...draft,
+        payloadHash,
+        signature: base64Url(new Uint8Array(64)),
+      }))),
+    )),
+  };
+  return signed;
+}
+
+async function fixtureReviewEvidenceRow({
+  id = "attestation:review-boundary",
+  assignmentId = "assignment:review-boundary",
+  decision = "attested",
+  attestedAt = "2026-07-13T00:00:12Z",
+} = {}) {
+  const publicKey = base64Url(await crypto.subtle.exportKey("raw", reviewerPairs.bob.publicKey));
+  const attestation = await fixtureAttestation({
+    id,
+    assignmentId,
+    claimType: "bundle_reproducible",
+    reviewer: "bob",
+    agent: "agent:bob-reviewer",
+    delegation: "delegation:bob-reviewer",
+    publicKey,
+    privateKey: reviewerPairs.bob.privateKey,
+    evidenceHash: sha("d"),
+    decision,
+    attestedAt,
+  });
+  const row = {
+    id: attestation.id,
+    assignment_id: attestation.assignmentId,
+    artifact_bundle_manifest_hash: attestation.artifactBundleHash,
+    claim_type: attestation.claimType,
+    verifier_person_id: attestation.verifierPersonId,
+    verifier_agent_id: attestation.verifierAgentId,
+    delegation_certificate_id: attestation.delegationCertificateId,
+    verifier_agent_public_key: attestation.verifierAgentPublicKey,
+    decision: attestation.decision,
+    evidence_hash: attestation.evidenceHash,
+    canonical_payload: canonicalJson(attestation),
+    payload_hash: attestation.payloadHash,
+    signature: attestation.signature,
+    attested_at: attestation.attestedAt,
+    assignment_bundle_hash: attestation.artifactBundleHash,
+    assignment_claim_type: attestation.claimType,
+    assignment_attempt_owner_person_id: "person:alice",
+    assignment_verifier_person_id: attestation.verifierPersonId,
+    assignment_status: "completed",
+    assignment_assigned_at: "2026-07-13T00:00:10Z",
+    assignment_accepted_at: "2026-07-13T00:00:11Z",
+    assignment_completed_at: attestation.attestedAt,
+    actual_attempt_owner_person_id: "person:alice",
+    agent_owner_person_id: attestation.verifierPersonId,
+    agent_public_key: attestation.verifierAgentPublicKey,
+    agent_key_fingerprint: await keyFingerprint(attestation.verifierAgentPublicKey),
+    agent_status: "active",
+    agent_revoked_at: null,
+    agent_created_at: "2026-07-01T00:00:00Z",
+    certificate_owner_person_id: attestation.verifierPersonId,
+    certificate_agent_id: attestation.verifierAgentId,
+    certificate_person_key_id: "person-key:bob",
+    certificate_agent_public_key: attestation.verifierAgentPublicKey,
+    scopes_json: JSON.stringify(["review"]),
+    valid_from: "2026-07-01T00:00:00Z",
+    valid_until: "2027-07-01T00:00:00Z",
+    certificate_beneficiary_person_id: attestation.verifierPersonId,
+    certificate_protocol_version: "pw-delegation-v1",
+    certificate_payload_hash: null,
+    certificate_canonical_payload: null,
+    certificate_person_signature: null,
+    signer_person_id: attestation.verifierPersonId,
+    signer_public_key: attestation.verifierAgentPublicKey,
+    signer_fingerprint: await keyFingerprint(attestation.verifierAgentPublicKey),
+    signer_algorithm: "ed25519",
+    signer_legacy_revoked_at: null,
+    delegation_revoked_at: null,
+    signer_event_revoked_at: null,
+  };
+  const certificate = {
+    id: attestation.delegationCertificateId,
+    ownerPersonId: attestation.verifierPersonId,
+    agentId: attestation.verifierAgentId,
+    agentPublicKey: attestation.verifierAgentPublicKey,
+    scopes: ["review"],
+    validFrom: "2026-07-01T00:00:00Z",
+    validUntil: "2027-07-01T00:00:00Z",
+    attributionPolicy: {
+      beneficiaryPersonId: attestation.verifierPersonId,
+      mode: "agent_delegated",
+    },
+  };
+  row.certificate_payload_hash = await delegationPayloadHash(certificate);
+  row.certificate_canonical_payload = canonicalJson(delegationSigningPayload(certificate));
+  row.certificate_person_signature = base64Url(await crypto.subtle.sign(
+    "Ed25519",
+    reviewerPairs.bob.privateKey,
+    new TextEncoder().encode(row.certificate_canonical_payload),
+  ));
+  return row;
+}
+
+function reviewEvidenceDatabase(rows) {
+  return {
+    prepare(sql) {
+      assert.match(sql, /INNER JOIN verification_assignments AS assignment/);
+      return {
+        bind(value) {
+          assert.equal(value, bundleHash);
+          return {
+            async all() {
+              return { results: rows };
+            },
+          };
+        },
+      };
+    },
+    async batch() {
+      throw new Error("unexpected batch");
+    },
   };
 }
 
@@ -658,8 +959,6 @@ function base64Url(buffer) {
   return btoa(binary).replaceAll("+", "-").replaceAll("/", "_").replaceAll("=", "");
 }
 
-function fixturePublicKey(marker) {
-  const bytes = new Uint8Array(32);
-  bytes[31] = marker;
-  return base64Url(bytes);
+function keyFingerprint(publicKey) {
+  return sha256Canonical({ algorithm: "ed25519", public_key: publicKey });
 }
