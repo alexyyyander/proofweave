@@ -36,12 +36,20 @@ if (sourceOverlayEnabled) {
   // digest-pinned image. Build-time credentials and local configuration files
   // are outside these two bounded source trees and are never copied.
   template = template
-    .copy(`${repositoryDirectory}/packages`, "/opt/proofweave/", {
+    .remove([
+      "/opt/proofweave/packages",
+      "/opt/proofweave/services/lean-runner",
+    ], {
+      force: true,
+      recursive: true,
+      user: "root",
+    })
+    .copy(`${repositoryDirectory}/packages`, "/opt/proofweave/packages/", {
       forceUpload: true,
       user: "root",
       resolveSymlinks: false,
     })
-    .copy(`${repositoryDirectory}/services/lean-runner`, "/opt/proofweave/services/", {
+    .copy(`${repositoryDirectory}/services/lean-runner`, "/opt/proofweave/services/lean-runner/", {
       forceUpload: true,
       user: "root",
       resolveSymlinks: false,
@@ -50,6 +58,8 @@ if (sourceOverlayEnabled) {
       "chown -R root:root /opt/proofweave/packages /opt/proofweave/services/lean-runner",
       "find /opt/proofweave/packages /opt/proofweave/services/lean-runner -type d -exec chmod 0755 {} +",
       "find /opt/proofweave/packages /opt/proofweave/services/lean-runner -type f -exec chmod 0644 {} +",
+      "grep -F 'allowedRootWorkspaceDotfiles' /opt/proofweave/packages/protocol/workspace-tree.mjs",
+      "grep -F 'from \"../../packages/protocol/workspace-tree.mjs\"' /opt/proofweave/services/lean-runner/container-workspace-runtime.mjs",
       "node --check /opt/proofweave/services/lean-runner/container-http-server.mjs",
     ], { user: "root" });
 }
