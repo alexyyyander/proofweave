@@ -453,6 +453,7 @@ export function normalizeLiveEvidence(value) {
   ) {
     throw error("LIVE_QUEUE_NOT_ACKNOWLEDGED");
   }
+  assertQueueAcknowledgedAfterResult({ run, queue });
 
   record(value.receipt, "LIVE_RECEIPT_INVALID");
   extraKeys(value.receipt, [
@@ -529,6 +530,7 @@ export function bindLiveEvidence({ state, evidence, live }) {
     ],
     "LIVE_QUEUE_NOT_FRESH",
   );
+  assertQueueAcknowledgedAfterResult({ run: live.run, queue: live.queue });
   if (
     live.run.id !== evidence.run.id ||
     live.run.personId !== state.participant.personId ||
@@ -650,7 +652,7 @@ function liveQueue({ queueRow, eventRows, run, notBefore, expectedConsumerId }) 
   ) {
     throw error("LIVE_QUEUE_TIME_MISMATCH");
   }
-  return Object.freeze({
+  const queue = Object.freeze({
     runId: run.id,
     attemptId: run.attemptId,
     consumerId: expectedConsumerId,
@@ -661,6 +663,18 @@ function liveQueue({ queueRow, eventRows, run, notBefore, expectedConsumerId }) 
     acknowledgedAt,
     events: Object.freeze(events),
   });
+  assertQueueAcknowledgedAfterResult({ run, queue });
+  return queue;
+}
+
+function assertQueueAcknowledgedAfterResult({ run, queue }) {
+  const terminal = queue.events.at(-1);
+  if (!terminal) throw error("LIVE_QUEUE_TIME_MISMATCH");
+  freshChronology(
+    run.resultReceivedAt,
+    [terminal.occurredAt, queue.acknowledgedAt],
+    "LIVE_QUEUE_TIME_MISMATCH",
+  );
 }
 
 function freshChronology(notBefore, timestamps, code) {

@@ -1,7 +1,9 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import {
+  bindLiveEvidence,
   fetchCurrentIssuerKeyset,
+  normalizeLiveEvidence,
   readLiveClosureEvidence,
   tursoDatabaseFingerprint,
 } from "../scripts/lib/github-independent-live-evidence.mjs";
@@ -95,6 +97,51 @@ test("fake D1 queue must be post-0043 consecutive, acknowledged, and consumed by
     (rows) => { rows.queue.delivery_state = "leased"; },
     "LIVE_QUEUE_NOT_ACKNOWLEDGED",
   ));
+  await context.test("acknowledged before the Runner result was persisted", () => rejects(
+    (rows) => {
+      rows.queue.acknowledged_at = "2026-07-27T00:00:03.500Z";
+      rows.queueEvents.at(-1).occurred_at = "2026-07-27T00:00:03.500Z";
+    },
+    "LIVE_QUEUE_TIME_MISMATCH",
+  ));
+});
+
+test("normalized and bound live evidence reject acknowledgement before result persistence", async (context) => {
+  const fixture = await canonicalDatabaseFixture();
+  const reconstructed = await readLiveClosureEvidence({
+    database: fixture.database,
+    state: fixture.state,
+    evidence: fixture.evidence,
+  });
+  const staleAcknowledgement = structuredClone(reconstructed);
+  staleAcknowledgement.queue.acknowledgedAt = "2026-07-27T00:00:03.500Z";
+  staleAcknowledgement.queue.events.at(-1).occurredAt = "2026-07-27T00:00:03.500Z";
+
+  await context.test("normalization", () => {
+    assert.throws(
+      () => normalizeLiveEvidence(staleAcknowledgement),
+      (error) => error.code === "LIVE_QUEUE_TIME_MISMATCH",
+    );
+  });
+
+  await context.test("binding defense", () => {
+    assert.throws(
+      () => bindLiveEvidence({
+        state: fixture.state,
+        evidence: {
+          ...fixture.evidence,
+          reviews: reconstructed.reviews.map((review) => ({
+            verificationAttestationId: review.verificationAttestationId,
+            verificationAttestationHash: review.verificationAttestationHash,
+            reviewerPersonId: review.reviewerPersonId,
+            reviewerAgentId: review.reviewerAgentId,
+          })),
+        },
+        live: staleAcknowledgement,
+      }),
+      (error) => error.code === "LIVE_QUEUE_TIME_MISMATCH",
+    );
+  });
 });
 
 test("fake D1 rejects stale timestamps and same-owner canonical attestations", async (context) => {
