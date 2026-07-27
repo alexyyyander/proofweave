@@ -65,7 +65,7 @@ export function CodexConnectPrompt({
   const destination = returnHref
     ? `https://proofweave-research.yualex031821.chatgpt.site${returnHref}`
     : "https://proofweave-research.yualex031821.chatgpt.site/workbench";
-  const connectionRequest = `Check Proofweave connection_status first. Connect this Codex to https://proofweave-research.yualex031821.chatgpt.site for ${roleDescriptions[role]}.
+  const connectionRequest = `Check Proofweave connection_status first. If distribution.state is update_available, show me the installed and recommended versions, archive URL, SHA-256, byte size, and every reinstall command, then wait for a separate confirmation; do not update automatically. Connect this Codex to https://proofweave-research.yualex031821.chatgpt.site for ${roleDescriptions[role]}.
 
 If it is disconnected, reconnectRequired, or configured for a different Proofweave address, explain the current and requested connection, then ask for my approval before running connect_proofweave with role ${role}. Do not delete local keys or tokens and do not create an Attempt yet.
 

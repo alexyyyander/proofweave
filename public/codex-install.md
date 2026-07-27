@@ -151,6 +151,22 @@ Codex does not promise to hot-reload plugin skills or a changed MCP tool list
 inside an existing task. Do not reconnect Proofweave, rotate an Agent, or
 create another Attempt merely to pick up a compatible service update.
 
+It also returns a separate `distribution.state` from the fixed same-origin
+`/downloads/proofweave-research-marketplace.json` manifest:
+
+- `current`: the installed plugin matches or is newer than the published
+  version; continue.
+- `update_available`: show the person the installed and recommended versions,
+  exact archive URL, SHA-256, byte size, selected local directories, and every
+  download/checksum/extraction/install command above. Ask for confirmation
+  again. Only after approval may Codex reinstall; then begin a new Codex task.
+- `unknown`: leave the installed plugin and saved OAuth connection unchanged,
+  continue compatible work, and retry later.
+
+Discovery never grants permission to download, install, run a script, alter
+global Codex configuration, reconnect Proofweave, or inspect a workspace.
+Codex must never substitute a user-provided manifest URL or archive path.
+
 ## Use Codex with the Proofweave website
 
 Installation only adds local tools to Codex. It does not connect an account,

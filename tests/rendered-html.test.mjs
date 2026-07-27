@@ -110,9 +110,23 @@ test("publishes a public Connector compatibility contract", async () => {
   assert.equal(contract.toolSchemaVersion, 1);
   assert.equal(contract.minimumConnectorApiVersion, 1);
   assert.equal(contract.recommendedConnectorApiVersion, 1);
+  assert.equal(
+    contract.distributionManifestUrl,
+    "https://localhost/downloads/proofweave-research-marketplace.json",
+  );
   assert.ok(contract.capabilities.includes("stable_attempt_handoff"));
   assert.ok(contract.updatePolicy.liveWithoutRestart.includes("attempt_lifecycle"));
   assert.ok(contract.updatePolicy.restartCodexAfterPluginUpdate.includes("mcp_tool_input_schemas"));
+
+  const ignoredOverride = await miniflare.dispatchFetch(
+    "https://localhost/api/mcp/capabilities?distributionManifestUrl=https%3A%2F%2Fattacker.example%2Fplugin.json",
+    { headers: { accept: "application/json" } },
+  );
+  assert.equal(ignoredOverride.status, 200);
+  assert.equal(
+    (await ignoredOverride.json()).distributionManifestUrl,
+    "https://localhost/downloads/proofweave-research-marketplace.json",
+  );
 });
 
 async function applyMigrations(d1, onlySeed = false) {
@@ -994,8 +1008,13 @@ test("serves the public research paths", async () => {
   assert.match(integrationsHtml, /codex plugin marketplace add/i);
   assert.match(integrationsHtml, /Normal service updates/i);
   assert.match(integrationsHtml, /Continue this task/i);
-  assert.match(integrationsHtml, /Tool or skill changes/i);
-  assert.match(integrationsHtml, /Update, then restart Codex/i);
+  assert.match(integrationsHtml, /Published plugin update/i);
+  assert.match(integrationsHtml, /Review checksum and commands/i);
+  assert.match(integrationsHtml, /After an approved reinstall/i);
+  assert.match(integrationsHtml, /Restart Codex/i);
+  assert.match(integrationsHtml, /fixed same-origin distribution manifest/i);
+  assert.match(integrationsHtml, /available update is advice only/i);
+  assert.match(integrationsHtml, /ask again before reinstalling/i);
   assert.doesNotMatch(integrationsHtml, /GitHub repository access is currently required/i);
   assert.doesNotMatch(integrationsHtml, /marketplace add alexyyyander\/proofweave/i);
   assert.doesNotMatch(integrationsHtml, /https:\/\/mcp\.proofweave\.org\/mcp/i);

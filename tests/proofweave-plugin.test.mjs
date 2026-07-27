@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { execFile, spawn } from "node:child_process";
 import { createHash, generateKeyPairSync } from "node:crypto";
 import { createServer } from "node:http";
+import { createServer as createHttpsServer } from "node:https";
 import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
@@ -69,6 +70,159 @@ test("connection_status distinguishes live-compatible updates from tool-schema r
     assert.equal(restart.compatibility.restartRequired, true);
   } finally {
     await Promise.all([close(server), rm(fixtureRoot, { recursive: true, force: true })]);
+  }
+});
+
+test("connection_status discovers only the fixed same-origin plugin distribution without leaking local authority", async () => {
+  const fixtureRoot = await mkdtemp(join(tmpdir(), "proofweave-connector-distribution-"));
+  const keyPath = join(fixtureRoot, "tls-key.pem");
+  const certificatePath = join(fixtureRoot, "tls-certificate.pem");
+  await execFileAsync("openssl", [
+    "req",
+    "-x509",
+    "-newkey",
+    "rsa:2048",
+    "-sha256",
+    "-days",
+    "1",
+    "-nodes",
+    "-subj",
+    "/CN=127.0.0.1",
+    "-addext",
+    "subjectAltName=IP:127.0.0.1",
+    "-keyout",
+    keyPath,
+    "-out",
+    certificatePath,
+  ]);
+  const [tlsKey, tlsCertificate, pluginManifestText] = await Promise.all([
+    readFile(keyPath),
+    readFile(certificatePath),
+    readFile(resolve(pluginRoot, ".codex-plugin/plugin.json"), "utf8"),
+  ]);
+  const installedVersion = JSON.parse(pluginManifestText).version;
+  const requests = [];
+  let mode = "current";
+  let baseUrl;
+  const server = createHttpsServer({ key: tlsKey, cert: tlsCertificate }, (request, response) => {
+    requests.push({
+      url: request.url,
+      authorization: request.headers.authorization ?? null,
+      cookie: request.headers.cookie ?? null,
+      agentId: request.headers["x-proofweave-agent-id"] ?? null,
+    });
+    if (request.url === "/api/mcp/capabilities") {
+      response.writeHead(200, { "content-type": "application/json" });
+      response.end(JSON.stringify({
+        protocolVersion: "pw-local-connector-v1",
+        toolSchemaVersion: 1,
+        minimumConnectorApiVersion: 1,
+        recommendedConnectorApiVersion: 1,
+        capabilities: ["stable_attempt_handoff"],
+        distributionManifestUrl: mode === "malicious_url"
+          ? "https://attacker.example/downloads/proofweave-research-marketplace.json"
+          : `${baseUrl}/downloads/proofweave-research-marketplace.json`,
+      }));
+      return;
+    }
+    if (request.url !== "/downloads/proofweave-research-marketplace.json") {
+      response.writeHead(404).end();
+      return;
+    }
+    if (mode === "oversized") {
+      response.writeHead(200, {
+        "content-type": "application/json",
+        "content-length": String(40 * 1024),
+      });
+      response.end("{}");
+      return;
+    }
+    const manifest = distributionManifest({
+      pluginVersion: mode === "update" ? "9.0.0+codex.recommended" : installedVersion,
+    });
+    if (mode === "malformed") manifest.archive.path = "https://attacker.example/plugin.tar";
+    response.writeHead(200, { "content-type": "application/json" });
+    response.end(JSON.stringify(manifest));
+  });
+  try {
+    const port = await listen(server);
+    baseUrl = `https://127.0.0.1:${port}`;
+    const configPath = join(fixtureRoot, "connector.json");
+    await writeFile(configPath, JSON.stringify({
+      ...connectedFixtureConfig(baseUrl),
+      accessToken: "access-token-must-not-leak",
+      refreshToken: "refresh-token-must-not-leak",
+      privateKeyJwk: { d: "private-key-must-not-leak" },
+      workspacePath: "/private/workspace/must-not-leak",
+    }));
+    const env = {
+      ...process.env,
+      NODE_TLS_REJECT_UNAUTHORIZED: "0",
+      PROOFWEAVE_BASE_URL: baseUrl,
+      PROOFWEAVE_CONNECTOR_CONFIG: configPath,
+    };
+
+    const current = JSON.parse((await callConnectorTool("connection_status", {}, env)).result.content[0].text);
+    assert.equal(current.connected, true);
+    assert.equal(current.distribution.state, "current");
+    assert.equal(current.distribution.installedVersion, installedVersion);
+    assert.equal(current.distribution.recommendedVersion, installedVersion);
+    assert.equal(current.distribution.archive.sha256, "a".repeat(64));
+    assert.equal(current.distribution.archive.bytes, 148_992);
+    assert.equal(current.distribution.archive.url, `${baseUrl}/downloads/proofweave-research-marketplace.tar`);
+    assert.equal(current.distribution.taskAction, "continue_current_task");
+
+    mode = "update";
+    const update = JSON.parse((await callConnectorTool("connection_status", {}, env)).result.content[0].text);
+    assert.equal(update.connected, true);
+    assert.equal(update.distribution.state, "update_available");
+    assert.equal(update.distribution.recommendedVersion, "9.0.0+codex.recommended");
+    assert.equal(update.distribution.taskAction, "reinstall_then_restart_codex");
+    assert.equal(update.distribution.restartRequiredAfterUpdate, true);
+    assert.match(update.distribution.message, /show the archive URL, SHA-256, byte size, local paths, and every command/i);
+    assert.match(update.distribution.message, /ask for confirmation again/i);
+    assert.match(update.distribution.message, /never automatic/i);
+
+    for (const unsafeMode of ["malicious_url", "oversized", "malformed"]) {
+      mode = unsafeMode;
+      const unknown = JSON.parse((await callConnectorTool("connection_status", {}, env)).result.content[0].text);
+      assert.equal(unknown.connected, true);
+      assert.equal(unknown.distribution.state, "unknown");
+      assert.equal(unknown.distribution.recommendedVersion, null);
+      assert.equal(unknown.distribution.archive, null);
+      assert.equal(unknown.distribution.taskAction, "continue_current_task");
+      assert.match(unknown.distribution.message, /saved OAuth connection is unchanged/i);
+    }
+
+    assert.equal(
+      requests.filter(({ url }) => url === "/downloads/proofweave-research-marketplace.json").length,
+      4,
+      "the rejected cross-origin URL must never be fetched",
+    );
+    for (const request of requests) {
+      assert.equal(request.authorization, null);
+      assert.equal(request.cookie, null);
+      assert.equal(request.agentId, null);
+      assert.ok(
+        request.url === "/api/mcp/capabilities"
+          || request.url === "/downloads/proofweave-research-marketplace.json",
+      );
+    }
+    const observedRequests = JSON.stringify(requests);
+    assert.doesNotMatch(observedRequests, /access-token-must-not-leak/);
+    assert.doesNotMatch(observedRequests, /refresh-token-must-not-leak/);
+    assert.doesNotMatch(observedRequests, /private-key-must-not-leak/);
+    assert.doesNotMatch(observedRequests, /private\/workspace\/must-not-leak/);
+
+    await close(server);
+    const unavailable = JSON.parse((await callConnectorTool("connection_status", {}, env)).result.content[0].text);
+    assert.equal(unavailable.connected, true);
+    assert.equal(unavailable.compatibility.state, "unknown");
+    assert.equal(unavailable.distribution.state, "unknown");
+    assert.match(unavailable.distribution.message, /saved OAuth connection is unchanged/i);
+  } finally {
+    if (server.listening) await close(server);
+    await rm(fixtureRoot, { recursive: true, force: true });
   }
 });
 
@@ -1069,6 +1223,26 @@ function connectedFixtureConfig(baseUrl) {
     accessToken: "access-test",
     refreshToken: "refresh-test",
     accessTokenExpiresAt: new Date(Date.now() + 60 * 60 * 1_000).toISOString(),
+  };
+}
+
+function distributionManifest({ pluginVersion }) {
+  return {
+    schemaVersion: "pw-codex-plugin-distribution-v1",
+    marketplaceName: "proofweave-private-beta",
+    pluginName: "proofweave-research",
+    pluginVersion,
+    archive: {
+      path: "/downloads/proofweave-research-marketplace.tar",
+      filename: "proofweave-research-marketplace.tar",
+      sha256: "a".repeat(64),
+      bytes: 148_992,
+    },
+    compatibility: {
+      protocolVersion: "pw-local-connector-v1",
+      connectorApiVersion: 1,
+      toolSchemaVersion: 1,
+    },
   };
 }
 

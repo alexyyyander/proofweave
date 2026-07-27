@@ -141,9 +141,10 @@ export function IntegrationClient({
           </div>
           <dl>
             <div><dt>Normal service updates</dt><dd>Continue this task</dd></div>
-            <div><dt>Tool or skill changes</dt><dd>Update, then restart Codex</dd></div>
+            <div><dt>Published plugin update</dt><dd>Review checksum and commands</dd></div>
+            <div><dt>After an approved reinstall</dt><dd>Restart Codex</dd></div>
           </dl>
-          <p>Ask Codex to run <code>connection_status</code>. It checks this contract without sending a token, key, workspace file, or research content.</p>
+          <p>Ask Codex to run <code>connection_status</code>. It checks the fixed same-origin distribution manifest without sending a token, key, workspace file, or research content. An available update is advice only: Codex must show its version, archive hash, size, and commands, then ask again before reinstalling.</p>
         </div>
       </article>
 

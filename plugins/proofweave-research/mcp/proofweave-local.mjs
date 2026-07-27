@@ -25,6 +25,14 @@ const pluginManifest = Object.freeze(JSON.parse(
   await readFile(new URL("../.codex-plugin/plugin.json", import.meta.url), "utf8"),
 ));
 const baseUrl = normalizeBaseUrl(process.env.PROOFWEAVE_BASE_URL ?? "https://proofweave-research.yualex031821.chatgpt.site");
+const distributionManifestPath = "/downloads/proofweave-research-marketplace.json";
+const distributionArchivePath = "/downloads/proofweave-research-marketplace.tar";
+const distributionArchiveFilename = "proofweave-research-marketplace.tar";
+const distributionSchemaVersion = "pw-codex-plugin-distribution-v1";
+const distributionMarketplaceName = "proofweave-private-beta";
+const distributionPluginName = "proofweave-research";
+const maxDistributionManifestBytes = 32 * 1024;
+const maxDistributionArchiveBytes = 50 * 1024 * 1024;
 const callbackHost = "127.0.0.1";
 const callbackPort = normalizeCallbackPort(process.env.PROOFWEAVE_CALLBACK_PORT);
 const callbackPath = "/callback";
@@ -1601,18 +1609,21 @@ async function connect(args = {}) {
 
 async function connectionStatus() {
   const compatibility = await checkServiceCompatibility();
+  const distribution = await checkPluginDistribution(compatibility);
   const connector = localConnectorIdentity();
   const config = await readConfig();
   if (!config?.refreshToken) return {
     connected: false,
     connector,
     compatibility,
+    distribution,
     message: "Not connected. Use connect_proofweave to approve this local Codex.",
   };
   if (config.baseUrl !== baseUrl) return {
     connected: false,
     connector,
     compatibility,
+    distribution,
     reconnectRequired: true,
     identityRotationRequired: true,
     configuredBaseUrl: config.baseUrl,
@@ -1625,6 +1636,7 @@ async function connectionStatus() {
     connected: true,
     connector,
     compatibility,
+    distribution,
     agentId: config.agentId,
     agentLabel: config.agentLabel,
     baseUrl: config.baseUrl,
@@ -1725,12 +1737,20 @@ function normalizeRemoteCompatibility(value) {
   const capabilities = Array.isArray(value.capabilities)
     ? value.capabilities.map((entry) => requiredLocalString(entry, "Each capability", 120)).slice(0, 64)
     : [];
+  let distributionManifestUrl = null;
+  try {
+    distributionManifestUrl = normalizeDistributionManifestUrl(value.distributionManifestUrl);
+  } catch {
+    // Distribution discovery fails closed independently from service
+    // compatibility. A malformed update pointer cannot invalidate OAuth state.
+  }
   return {
     protocolVersion,
     toolSchemaVersion,
     minimumConnectorApiVersion,
     recommendedConnectorApiVersion,
     capabilities,
+    distributionManifestUrl,
   };
 }
 
@@ -1739,6 +1759,246 @@ function normalizeCompatibilityInteger(value, label) {
     throw new Error(`${label} must be a positive integer.`);
   }
   return value;
+}
+
+async function checkPluginDistribution(compatibility) {
+  const installedVersion = pluginManifest.version;
+  const checkedAt = new Date().toISOString();
+  const manifestUrl = compatibility?.remote?.distributionManifestUrl ?? null;
+  if (typeof manifestUrl !== "string") {
+    return unknownPluginDistribution(installedVersion, checkedAt);
+  }
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 10_000);
+  try {
+    const response = await fetch(manifestUrl, {
+      method: "GET",
+      headers: { accept: "application/json" },
+      redirect: "error",
+      signal: controller.signal,
+    });
+    if (!response.ok) throw new Error("distribution manifest request failed");
+    const manifest = normalizeDistributionManifest(
+      await readBoundedJson(response, maxDistributionManifestBytes),
+      compatibility.remote,
+      manifestUrl,
+    );
+    const archive = {
+      sha256: manifest.archive.sha256,
+      bytes: manifest.archive.bytes,
+      url: new URL(manifest.archive.path, manifestUrl).toString(),
+    };
+    if (recommendedVersionIsNewer(installedVersion, manifest.pluginVersion)) {
+      return {
+        state: "update_available",
+        installedVersion,
+        recommendedVersion: manifest.pluginVersion,
+        checkedAt,
+        taskAction: "reinstall_then_restart_codex",
+        restartRequiredAfterUpdate: true,
+        archive,
+        message: "A newer Proofweave plugin archive is available. Before reinstalling, Codex must show the archive URL, SHA-256, byte size, local paths, and every command, then ask for confirmation again. Installation is never automatic.",
+      };
+    }
+    return {
+      state: "current",
+      installedVersion,
+      recommendedVersion: manifest.pluginVersion,
+      checkedAt,
+      taskAction: "continue_current_task",
+      restartRequiredAfterUpdate: false,
+      archive,
+      message: "This installed Proofweave plugin matches or is newer than the published distribution. Continue this task.",
+    };
+  } catch {
+    return unknownPluginDistribution(installedVersion, checkedAt);
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+function unknownPluginDistribution(installedVersion, checkedAt) {
+  return {
+    state: "unknown",
+    installedVersion,
+    recommendedVersion: null,
+    checkedAt,
+    taskAction: "continue_current_task",
+    restartRequiredAfterUpdate: false,
+    archive: null,
+    message: "The public plugin distribution could not be checked. The saved OAuth connection is unchanged and this task may continue; retry connection_status later.",
+  };
+}
+
+function normalizeDistributionManifestUrl(value) {
+  const manifestUrl = new URL(requiredLocalString(value, "distributionManifestUrl", 2_048));
+  const serviceUrl = new URL(baseUrl);
+  if (
+    manifestUrl.protocol !== "https:"
+    || serviceUrl.protocol !== "https:"
+    || manifestUrl.origin !== serviceUrl.origin
+    || serviceUrl.username
+    || serviceUrl.password
+    || manifestUrl.username
+    || manifestUrl.password
+    || manifestUrl.pathname !== distributionManifestPath
+    || manifestUrl.search
+    || manifestUrl.hash
+  ) {
+    throw new Error("distributionManifestUrl must be the fixed same-origin HTTPS manifest path.");
+  }
+  return manifestUrl.toString();
+}
+
+function normalizeDistributionManifest(value, compatibility, manifestUrl) {
+  assertExactObject(value, [
+    "schemaVersion",
+    "marketplaceName",
+    "pluginName",
+    "pluginVersion",
+    "archive",
+    "compatibility",
+  ], "distribution manifest");
+  if (value.schemaVersion !== distributionSchemaVersion) throw new Error("Unsupported distribution manifest schema.");
+  if (value.marketplaceName !== distributionMarketplaceName) throw new Error("Unexpected marketplace name.");
+  if (value.pluginName !== distributionPluginName) throw new Error("Unexpected plugin name.");
+  const pluginVersion = normalizePluginVersion(value.pluginVersion, "pluginVersion");
+
+  assertExactObject(value.archive, ["path", "filename", "sha256", "bytes"], "distribution archive");
+  if (value.archive.path !== distributionArchivePath) throw new Error("Unexpected distribution archive path.");
+  if (value.archive.filename !== distributionArchiveFilename) throw new Error("Unexpected distribution archive filename.");
+  if (typeof value.archive.sha256 !== "string" || !/^[a-f0-9]{64}$/.test(value.archive.sha256)) {
+    throw new Error("Distribution archive SHA-256 must be lowercase hexadecimal.");
+  }
+  if (!Number.isSafeInteger(value.archive.bytes) || value.archive.bytes < 1 || value.archive.bytes > maxDistributionArchiveBytes) {
+    throw new Error("Distribution archive byte length is outside the supported range.");
+  }
+  const archiveUrl = new URL(value.archive.path, manifestUrl);
+  if (archiveUrl.origin !== new URL(manifestUrl).origin || archiveUrl.protocol !== "https:") {
+    throw new Error("Distribution archive must be same-origin HTTPS.");
+  }
+
+  assertExactObject(value.compatibility, [
+    "protocolVersion",
+    "connectorApiVersion",
+    "toolSchemaVersion",
+  ], "distribution compatibility");
+  const manifestCompatibility = {
+    protocolVersion: requiredLocalString(value.compatibility.protocolVersion, "distribution protocolVersion", 120),
+    connectorApiVersion: normalizeCompatibilityInteger(value.compatibility.connectorApiVersion, "distribution connectorApiVersion"),
+    toolSchemaVersion: normalizeCompatibilityInteger(value.compatibility.toolSchemaVersion, "distribution toolSchemaVersion"),
+  };
+  if (
+    manifestCompatibility.protocolVersion !== compatibility.protocolVersion
+    || manifestCompatibility.connectorApiVersion !== compatibility.recommendedConnectorApiVersion
+    || manifestCompatibility.toolSchemaVersion !== compatibility.toolSchemaVersion
+  ) {
+    throw new Error("Distribution compatibility does not match the service contract.");
+  }
+  return {
+    pluginVersion,
+    archive: {
+      path: value.archive.path,
+      filename: value.archive.filename,
+      sha256: value.archive.sha256,
+      bytes: value.archive.bytes,
+    },
+    compatibility: manifestCompatibility,
+  };
+}
+
+async function readBoundedJson(response, maxBytes) {
+  const contentType = response.headers.get("content-type") ?? "";
+  if (!/^application\/json(?:;|$)/i.test(contentType)) throw new Error("Distribution manifest must be JSON.");
+  const declaredLength = response.headers.get("content-length");
+  if (declaredLength !== null) {
+    const bytes = Number(declaredLength);
+    if (!Number.isSafeInteger(bytes) || bytes < 0 || bytes > maxBytes) {
+      throw new Error("Distribution manifest exceeds the response limit.");
+    }
+  }
+  if (!response.body) throw new Error("Distribution manifest response has no body.");
+  const reader = response.body.getReader();
+  const chunks = [];
+  let total = 0;
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      total += value.byteLength;
+      if (total > maxBytes) throw new Error("Distribution manifest exceeds the response limit.");
+      chunks.push(Buffer.from(value));
+    }
+  } finally {
+    reader.releaseLock();
+  }
+  const text = new TextDecoder("utf-8", { fatal: true }).decode(Buffer.concat(chunks));
+  const parsed = JSON.parse(text);
+  if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+    throw new Error("Distribution manifest must be a JSON object.");
+  }
+  return parsed;
+}
+
+function assertExactObject(value, expectedKeys, label) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    throw new Error(`${label} must be an object.`);
+  }
+  const actual = Object.keys(value).sort();
+  const expected = [...expectedKeys].sort();
+  if (actual.length !== expected.length || actual.some((key, index) => key !== expected[index])) {
+    throw new Error(`${label} has unexpected fields.`);
+  }
+}
+
+function normalizePluginVersion(value, label) {
+  const version = requiredLocalString(value, label, 120);
+  if (!/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?$/.test(version)) {
+    throw new Error(`${label} must use semantic versioning.`);
+  }
+  return version;
+}
+
+function recommendedVersionIsNewer(installedVersion, recommendedVersion) {
+  const installed = parsePluginVersion(installedVersion);
+  const recommended = parsePluginVersion(recommendedVersion);
+  const precedence = comparePluginVersionPrecedence(recommended, installed);
+  if (precedence !== 0) return precedence > 0;
+  return recommendedVersion !== installedVersion;
+}
+
+function parsePluginVersion(version) {
+  normalizePluginVersion(version, "installed plugin version");
+  const match = version.match(
+    /^(?<core>(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*))(?:-(?<prerelease>[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?/,
+  );
+  if (!match?.groups) throw new Error("installed plugin version must use semantic versioning.");
+  return {
+    core: match.groups.core.split(".").map(Number),
+    prerelease: match.groups.prerelease ? match.groups.prerelease.split(".") : [],
+  };
+}
+
+function comparePluginVersionPrecedence(left, right) {
+  for (let index = 0; index < 3; index += 1) {
+    if (left.core[index] !== right.core[index]) return left.core[index] > right.core[index] ? 1 : -1;
+  }
+  if (left.prerelease.length === 0 || right.prerelease.length === 0) {
+    if (left.prerelease.length === right.prerelease.length) return 0;
+    return left.prerelease.length === 0 ? 1 : -1;
+  }
+  const length = Math.max(left.prerelease.length, right.prerelease.length);
+  for (let index = 0; index < length; index += 1) {
+    if (left.prerelease[index] === undefined) return -1;
+    if (right.prerelease[index] === undefined) return 1;
+    if (left.prerelease[index] === right.prerelease[index]) continue;
+    const leftNumeric = /^\d+$/.test(left.prerelease[index]);
+    const rightNumeric = /^\d+$/.test(right.prerelease[index]);
+    if (leftNumeric && rightNumeric) return Number(left.prerelease[index]) > Number(right.prerelease[index]) ? 1 : -1;
+    if (leftNumeric !== rightNumeric) return leftNumeric ? -1 : 1;
+    return left.prerelease[index] > right.prerelease[index] ? 1 : -1;
+  }
+  return 0;
 }
 
 async function startPairing(payload) {

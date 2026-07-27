@@ -16,6 +16,10 @@ run `connect_proofweave` with the least-privilege role: `research`, `review`, or
 asks them to paste an API key or public key. If the tools are absent or remain
 unconnected, continue local Lean work and tell the user that no Proofweave
 event was recorded; do not invent an HTTP request, bearer token, or upload.
+If `connection_status.distribution.state` is `update_available`, show the
+returned version, archive URL, SHA-256, and byte size plus every reinstall
+command, then ask for confirmation again. Never download, install, reconnect,
+or change global Codex configuration merely because an update was discovered.
 
 ## Workflow
 

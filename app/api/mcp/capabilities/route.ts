@@ -11,13 +11,16 @@ const capabilities = Object.freeze([
   "isolated_lean_runs",
   "independent_review_replay",
 ]);
+const distributionManifestPath = "/downloads/proofweave-research-marketplace.json";
 
-export async function GET() {
+export async function GET(request: Request) {
+  const distributionManifestUrl = new URL(distributionManifestPath, request.url).toString();
   return Response.json({
     protocolVersion: compatibilityContract.protocolVersion,
     toolSchemaVersion: compatibilityContract.toolSchemaVersion,
     minimumConnectorApiVersion: compatibilityContract.connectorApiVersion,
     recommendedConnectorApiVersion: compatibilityContract.connectorApiVersion,
+    distributionManifestUrl,
     capabilities,
     updatePolicy: {
       liveWithoutRestart: [

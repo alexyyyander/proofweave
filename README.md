@@ -123,6 +123,13 @@ authority and privacy model. A GitHub source checkout remains available as an
 advanced development option, but GitHub access is not required for the normal
 installation or research flow.
 
+Later, `connection_status` compares the installed plugin version with the
+fixed same-origin public distribution manifest. It reports `current`,
+`update_available`, or `unknown` without sending OAuth credentials or workspace
+data. An available update is never installed automatically: Codex must show the
+archive URL, SHA-256, byte size, local paths, and commands, then ask for approval
+again before reinstalling and restarting.
+
 ## Local development
 
 ### Prerequisites
