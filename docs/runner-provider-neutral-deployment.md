@@ -96,6 +96,15 @@ UUID. The template contains Lean, Lake, the pinned dependencies, and the
 credential-free Runner HTTP process. Runtime code still checks the configured
 image against the signed job's approved environment before staging any bytes.
 
+For an audited runtime-only repair that does not change Lean, Mathlib, or
+system dependencies, set `PROOFWEAVE_E2B_RUNNER_SOURCE_OVERLAY=true`. The
+builder then uploads only `packages/` and `services/lean-runner/` from the
+reviewed checkout, writes them as root-owned read-only runtime files over the
+digest-pinned image, and checks the private container entry point before the
+template can become ready. This opt-in must be explicitly authorized because
+it sends those two source trees to E2B; local secrets, repository metadata,
+tests, and research workspaces are outside the upload context.
+
 ## GitHub Actions control process
 
 `.github/workflows/e2b-lean-runner.yml` runs only trusted repository code. It

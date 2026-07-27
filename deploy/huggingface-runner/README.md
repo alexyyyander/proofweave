@@ -65,6 +65,12 @@ wall-time limit. Resource changes require a new immutable E2B template build
 and must be recorded in `render.yaml`; changing a queued or completed Run is
 not allowed.
 
+The currently recorded immutable template is
+`cbfjgbsrgtku0c7sliu5:root-dotfiles-20260727e`, build
+`e8d8d236-fd4a-40f5-880c-e2d5c25bba24`. It keeps Lean and Mathlib from the
+approved digest-pinned image and overlays only the reviewed `packages/` and
+`services/lean-runner/` source trees as root-owned, runtime-read-only files.
+
 On Render, the service records the platform-provided `RENDER_GIT_COMMIT` as
 its Runner revision. `PROOFWEAVE_RUNNER_REVISION` remains the explicit
 fallback for local or non-Render deployments.
