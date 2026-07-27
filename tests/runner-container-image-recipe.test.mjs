@@ -123,6 +123,7 @@ test("E2B template source overlay is explicit, bounded, and root-owned", async (
   const source = await readFile(e2bTemplateBuildUrl, "utf8");
 
   assert.match(source, /PROOFWEAVE_E2B_RUNNER_SOURCE_OVERLAY/);
+  assert.match(source, /fileContextPath: fileURLToPath\(new URL\("\.\.", import\.meta\.url\)\)/);
   assert.match(source, /\.copy\("packages", "\/opt\/proofweave\/"/);
   assert.match(source, /\.copy\("services\/lean-runner", "\/opt\/proofweave\/services\/"/);
   assert.equal(source.match(/forceUpload: true/g)?.length, 2);
