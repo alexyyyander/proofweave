@@ -18,13 +18,18 @@ import {
   contributionReceiptHash,
 } from "../packages/protocol/contribution-receipt.mjs";
 import { sha256Canonical } from "../packages/protocol/canonical-json.mjs";
+import { tursoDatabaseFingerprint } from "../db/control-plane-authority.mjs";
 import {
   bindLiveEvidence,
   fetchCurrentIssuerKeyset,
   normalizeLiveEvidence,
   probeTursoLiveClosureEvidence,
-  tursoDatabaseFingerprint,
 } from "./lib/github-independent-live-evidence.mjs";
+import {
+  bindLiveReleaseAuthority,
+  inspectRunnerReleaseHealth,
+  inspectSiteReleaseDiagnostics,
+} from "./lib/github-independent-live-release-binding.mjs";
 import {
   beginRecoveryIsolationSnapshot,
   normalizeRecoveryIsolationState,
@@ -119,16 +124,33 @@ export function createGithubIndependentProductionDrill(options = {}) {
       "EXPECTED_RUNNER_CONSUMER_ID_MISSING",
     );
     const recoveryIsolation = await recoveryIsolationReleaseConfiguration(environment);
+    const siteReleaseDiagnostics = await inspectSiteReleaseDiagnostics({
+      fetcher,
+      siteOrigin,
+    });
     const downloads = await inspectPublishedDownloads({
       fetcher,
       siteOrigin,
       paths: parseDownloadPaths(environment.PROOFWEAVE_DRILL_PLUGIN_DOWNLOADS_JSON),
       root,
     });
-    const runner = await inspectRunnerHealth({
+    const runner = await inspectRunnerReleaseHealth({
       fetcher,
       runnerOrigin: environment.PROOFWEAVE_RUNNER_URL,
-      expectedRevision: manifest.source.gitSha,
+      expected: {
+        revision: manifest.source.gitSha,
+        templateId: manifest.runner.e2b.deployedTemplateId,
+        templateBuildId: manifest.runner.e2b.deployedTemplateBuildId,
+        imageDigest: manifest.runner.image.deployedDigest,
+        leanToolchain: manifest.runner.image.leanToolchain,
+        mathlibRevision: manifest.runner.image.mathlibRevision,
+      },
+    });
+    bindLiveReleaseAuthority({
+      manifest,
+      database,
+      siteDiagnostics: siteReleaseDiagnostics,
+      runnerDiagnostics: runner.releaseDiagnostics,
     });
     const release = releaseProjection({
       manifest,
@@ -137,6 +159,8 @@ export function createGithubIndependentProductionDrill(options = {}) {
       siteOrigin,
       expectedRunnerConsumerId,
       recoveryIsolation,
+      siteReleaseDiagnostics,
+      runner,
     });
     return Object.freeze({
       schemaVersion: githubIndependentDrillSchemaVersion,
@@ -311,7 +335,12 @@ export function createGithubIndependentProductionDrill(options = {}) {
 async function probeTursoControlPlane({ environment, manifest }) {
   const url = requiredSetting(environment, "TURSO_DATABASE_URL", "TURSO_DATABASE_URL_MISSING");
   const authToken = requiredSetting(environment, "TURSO_AUTH_TOKEN", "TURSO_AUTH_TOKEN_MISSING");
-  const fingerprint = tursoDatabaseFingerprint(url);
+  let fingerprint;
+  try {
+    fingerprint = tursoDatabaseFingerprint(url);
+  } catch (cause) {
+    throw new GithubIndependentDrillError("TURSO_DATABASE_URL_INVALID", { cause });
+  }
   if (
     fingerprint !== manifest.database.gatewayFingerprint ||
     fingerprint !== manifest.database.runnerFingerprint
@@ -527,51 +556,6 @@ async function readJsonFile(path) {
   return JSON.parse(await readFile(path, "utf8"));
 }
 
-async function inspectRunnerHealth({ fetcher, runnerOrigin, expectedRevision }) {
-  const origin = requireHttpsOrigin(runnerOrigin, "RUNNER_ORIGIN_INVALID");
-  const url = new URL("/healthz", origin);
-  let response;
-  try {
-    response = await fetcher(url, {
-      method: "GET",
-      redirect: "error",
-      signal: AbortSignal.timeout(15_000),
-      headers: { accept: "application/json" },
-    });
-  } catch (cause) {
-    throw new GithubIndependentDrillError("RUNNER_HEALTH_UNREACHABLE", { cause });
-  }
-  if (!response?.ok) throw new GithubIndependentDrillError("RUNNER_HEALTH_UNREACHABLE");
-  let health;
-  try {
-    const text = await response.text();
-    if (text.length > 65_536) throw new Error("oversized");
-    health = JSON.parse(text);
-  } catch (cause) {
-    throw new GithubIndependentDrillError("RUNNER_HEALTH_INVALID", { cause });
-  }
-  if (
-    health?.service !== "proofweave-trusted-runner" ||
-    health.state !== "ready" ||
-    health.provider !== "e2b" ||
-    health.revision !== expectedRevision ||
-    health.executionBoundary !== "isolated-sandbox-only" ||
-    !Object.hasOwn(health, "lastWakeAt")
-  ) {
-    throw new GithubIndependentDrillError("RUNNER_HEALTH_MISMATCH");
-  }
-  const lastWakeAt = health.lastWakeAt === null
-    ? null
-    : utcTimestamp(health.lastWakeAt, "RUNNER_LAST_WAKE_INVALID");
-  return Object.freeze({
-    service: health.service,
-    state: health.state,
-    provider: health.provider,
-    revision: health.revision,
-    lastWakeAt,
-  });
-}
-
 function releaseProjection({
   manifest,
   database,
@@ -579,6 +563,8 @@ function releaseProjection({
   siteOrigin,
   expectedRunnerConsumerId,
   recoveryIsolation,
+  siteReleaseDiagnostics,
+  runner,
 }) {
   return Object.freeze({
     gitSha: manifest.source.gitSha,
@@ -598,6 +584,11 @@ function releaseProjection({
     databaseAuthority: database.authority,
     databaseFingerprint: database.fingerprint,
     migrationHead: database.migrationHead,
+    siteReleaseDiagnostics,
+    runnerReleaseDiagnostics: runner.releaseDiagnostics,
+    runnerExecutionEnabled: runner.executionEnabled,
+    runnerExecutionBoundary: runner.executionBoundary,
+    runnerPolicy: runner.runnerPolicy,
     pluginDownloads: downloads.map((file) => ({
       path: file.path,
       sha256: file.sha256,

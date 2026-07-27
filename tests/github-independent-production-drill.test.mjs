@@ -76,12 +76,19 @@ test("preflight binds the release to one explicit hosted consumer and remains re
       "pw-runtime-recovery-isolation-v1",
     );
     assert.equal(result.release.migrationHead, "0043_add_runner_queue_event_sequence.sql");
+    assert.deepEqual(result.release.siteReleaseDiagnostics, readyReleaseDiagnostics());
+    assert.deepEqual(result.release.runnerReleaseDiagnostics, readyReleaseDiagnostics());
+    assert.equal(result.release.runnerExecutionEnabled, true);
+    assert.equal(result.release.runnerExecutionBoundary, "isolated-sandbox-only");
+    assert.deepEqual(result.release.runnerPolicy, readyRunnerPolicy());
+    assert.equal(result.runner.executionEnabled, true);
     assert.deepEqual(await readdir(directory), []);
     assert.equal(fixture.calls.database, 1);
     assert.equal(fixture.calls.live, 0);
     assert.deepEqual(
       fixture.calls.fetch.map((entry) => new URL(entry.url).pathname),
       [
+        "/api/mcp/capabilities",
         "/downloads/proofweave-research-marketplace.tar",
         "/downloads/proofweave-research-marketplace.tar.sha256",
         "/downloads/proofweave-research-marketplace.json",
@@ -124,6 +131,161 @@ test("preflight rejects recovery and published plugin drift before live evidence
     distribution.drill.preflight({ environment: distribution.environment }),
     (error) => error.code === "PLUGIN_DISTRIBUTION_MANIFEST_MISMATCH",
   );
+});
+
+test("preflight fails closed on invalid or unbound Site release diagnostics", async (context) => {
+  async function rejected(mutator, expectedCode) {
+    const fixture = makeDrillFixture();
+    mutator(fixture.siteCapabilities);
+    await assert.rejects(
+      fixture.drill.preflight({ environment: fixture.environment }),
+      (error) => error.code === expectedCode,
+    );
+  }
+
+  await context.test("503", () => rejected(
+    (site) => { site.status = 503; },
+    "SITE_CAPABILITIES_STATUS_INVALID",
+  ));
+  await context.test("redirect", () => rejected(
+    (site) => {
+      site.redirected = true;
+      site.url = "https://other.example/api/mcp/capabilities";
+    },
+    "SITE_CAPABILITIES_REDIRECTED",
+  ));
+  await context.test("non JSON", () => rejected(
+    (site) => { site.contentType = "text/plain"; },
+    "SITE_CAPABILITIES_CONTENT_TYPE_INVALID",
+  ));
+  await context.test("oversized", () => rejected(
+    (site) => { site.declaredLength = 65_537; },
+    "SITE_CAPABILITIES_TOO_LARGE",
+  ));
+  await context.test("missing field", () => rejected(
+    (site) => { delete site.body.releaseDiagnostics.ledgerHead; },
+    "SITE_RELEASE_DIAGNOSTICS_INVALID",
+  ));
+  await context.test("extra field", () => rejected(
+    (site) => { site.body.releaseDiagnostics.databaseUrl = "libsql://secret.example"; },
+    "SITE_RELEASE_DIAGNOSTICS_INVALID",
+  ));
+  await context.test("degraded", () => rejected(
+    (site) => {
+      site.body.releaseDiagnostics.state = "degraded";
+      site.body.releaseDiagnostics.ledgerHead = null;
+      site.body.releaseDiagnostics.failureCode = "control_plane_verification_failed";
+    },
+    "SITE_RELEASE_DIAGNOSTICS_INVALID",
+  ));
+  await context.test("database fingerprint mismatch", () => rejected(
+    (site) => { site.body.releaseDiagnostics.databaseFingerprint = "fedcba9876543210"; },
+    "LIVE_RELEASE_AUTHORITY_MISMATCH",
+  ));
+  await context.test("ledger head mismatch", () => rejected(
+    (site) => {
+      site.body.releaseDiagnostics.ledgerHead = "0042_add_jacobian_counterexample_audit.sql";
+    },
+    "LIVE_RELEASE_AUTHORITY_MISMATCH",
+  ));
+});
+
+test("preflight fails closed on invalid or drifting Runner release policy", async (context) => {
+  async function rejected(mutator, expectedCode) {
+    const fixture = makeDrillFixture();
+    mutator(fixture.health);
+    await assert.rejects(
+      fixture.drill.preflight({ environment: fixture.environment }),
+      (error) => error.code === expectedCode,
+    );
+  }
+
+  await context.test("missing diagnostics", () => rejected(
+    (health) => { delete health.releaseDiagnostics; },
+    "RUNNER_RELEASE_DIAGNOSTICS_INVALID",
+  ));
+  await context.test("degraded diagnostics", () => rejected(
+    (health) => {
+      health.releaseDiagnostics.state = "degraded";
+      health.releaseDiagnostics.ledgerHead = null;
+      health.releaseDiagnostics.failureCode = "control_plane_verification_failed";
+    },
+    "RUNNER_RELEASE_DIAGNOSTICS_INVALID",
+  ));
+  await context.test("execution disabled", () => rejected(
+    (health) => { health.executionEnabled = false; },
+    "RUNNER_HEALTH_MISMATCH",
+  ));
+  await context.test("template drift", () => rejected(
+    (health) => { health.runnerPolicy.templateId = "template-other"; },
+    "RUNNER_POLICY_MISMATCH",
+  ));
+  await context.test("template build drift", () => rejected(
+    (health) => { health.runnerPolicy.templateBuildId = "build-other"; },
+    "RUNNER_POLICY_MISMATCH",
+  ));
+  await context.test("image drift", () => rejected(
+    (health) => {
+      health.runnerPolicy.sandboxImageDigest =
+        `registry.example/proofweave@sha256:${"3".repeat(64)}`;
+    },
+    "RUNNER_POLICY_MISMATCH",
+  ));
+  await context.test("image approval false", () => rejected(
+    (health) => { health.runnerPolicy.sandboxImageApproved = false; },
+    "RUNNER_POLICY_MISMATCH",
+  ));
+  await context.test("database fingerprint drift", () => rejected(
+    (health) => {
+      health.releaseDiagnostics.databaseFingerprint = "fedcba9876543210";
+    },
+    "LIVE_RELEASE_AUTHORITY_MISMATCH",
+  ));
+  await context.test("ledger head drift", () => rejected(
+    (health) => {
+      health.releaseDiagnostics.ledgerHead = "0042_add_jacobian_counterexample_audit.sql";
+    },
+    "LIVE_RELEASE_AUTHORITY_MISMATCH",
+  ));
+});
+
+test("record and finalize bind live diagnostics and Runner policy into the release fingerprint", async (context) => {
+  const additionalApprovedImage = {
+    imageDigest: `registry.example/proofweave@sha256:${"4".repeat(64)}`,
+    leanToolchain: "v4.30.1",
+    mathlibRevision: "5".repeat(40),
+  };
+
+  await context.test("record", async () => {
+    const fixture = makeDrillFixture();
+    const directory = await mkdtemp(join(tmpdir(), "proofweave-drill-release-drift-record-"));
+    const statePath = join(directory, "state.json");
+    try {
+      await beginFixture(fixture, statePath);
+      fixture.health.runnerPolicy.approvedImages.push(additionalApprovedImage);
+      await assert.rejects(
+        recordFixture(fixture, statePath),
+        (error) => error.code === "RELEASE_DRIFT",
+      );
+      assert.equal(fixture.calls.live, 0);
+    } finally {
+      await rm(directory, { recursive: true, force: true });
+    }
+  });
+
+  await context.test("finalize", async () => {
+    const setup = await recordedPortableFixture();
+    try {
+      setup.fixture.health.runnerPolicy.approvedImages.push(additionalApprovedImage);
+      await assert.rejects(
+        finalizeFixture(setup),
+        (error) => error.code === "RELEASE_DRIFT",
+      );
+      assert.equal(setup.fixture.calls.live, 1);
+    } finally {
+      await setup.cleanup();
+    }
+  });
 });
 
 test("begin writes a signed secret-free v3 recovery snapshot for the exact Bundle", async () => {
@@ -479,12 +641,28 @@ function makeDrillFixture({
       toolSchemaVersion: 1,
     },
   });
+  const siteCapabilities = {
+    body: {
+      protocolVersion: "pw-local-connector-v1",
+      capabilities: ["signed_research_checkpoints"],
+      releaseDiagnostics: readyReleaseDiagnostics(),
+    },
+    status: 200,
+    redirected: false,
+    url: `${siteOrigin}/api/mcp/capabilities`,
+    contentType: "application/json; charset=utf-8",
+    declaredLength: null,
+    source: null,
+  };
   const health = {
     service: "proofweave-trusted-runner",
     state: "ready",
     provider: "e2b",
     revision,
     lastWakeAt: null,
+    executionEnabled: true,
+    releaseDiagnostics: readyReleaseDiagnostics(),
+    runnerPolicy: readyRunnerPolicy(),
     executionBoundary: "isolated-sandbox-only",
   };
   const downloads = new Map([
@@ -516,6 +694,23 @@ function makeDrillFixture({
       redirect: init.redirect,
     });
     const pathname = new URL(url).pathname;
+    if (pathname === "/api/mcp/capabilities") {
+      const source = siteCapabilities.source ?? JSON.stringify(siteCapabilities.body);
+      const headers = new Headers({
+        "content-type": siteCapabilities.contentType,
+        ...(siteCapabilities.declaredLength === null
+          ? { "content-length": String(Buffer.byteLength(source)) }
+          : { "content-length": String(siteCapabilities.declaredLength) }),
+      });
+      return {
+        ok: siteCapabilities.status >= 200 && siteCapabilities.status < 300,
+        status: siteCapabilities.status,
+        redirected: siteCapabilities.redirected,
+        url: siteCapabilities.url,
+        headers,
+        text: async () => source,
+      };
+    }
     if (pathname === "/healthz") {
       return new Response(JSON.stringify(health), {
         status: 200,
@@ -601,7 +796,43 @@ function makeDrillFixture({
     };
   }
   const drill = createGithubIndependentProductionDrill(drillOptions);
-  return { drill, environment, health, manifest, calls, live, keyset, clock };
+  return {
+    drill,
+    environment,
+    health,
+    manifest,
+    calls,
+    live,
+    keyset,
+    clock,
+    siteCapabilities,
+  };
+}
+
+function readyReleaseDiagnostics() {
+  return {
+    schemaVersion: "pw-live-release-diagnostics-v1",
+    state: "ready",
+    authority: "turso",
+    databaseFingerprint,
+    ledgerHead: "0043_add_runner_queue_event_sequence.sql",
+    failureCode: null,
+  };
+}
+
+function readyRunnerPolicy() {
+  return {
+    state: "configured",
+    sandboxImageDigest: `registry.example/proofweave@sha256:${"1".repeat(64)}`,
+    templateId: "template-production",
+    templateBuildId: "build-production",
+    approvedImages: [{
+      imageDigest: `registry.example/proofweave@sha256:${"1".repeat(64)}`,
+      leanToolchain: "v4.30.0",
+      mathlibRevision: "2".repeat(40),
+    }],
+    sandboxImageApproved: true,
+  };
 }
 
 function releaseManifest() {

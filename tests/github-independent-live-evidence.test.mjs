@@ -5,8 +5,8 @@ import {
   fetchCurrentIssuerKeyset,
   normalizeLiveEvidence,
   readLiveClosureEvidence,
-  tursoDatabaseFingerprint,
 } from "../scripts/lib/github-independent-live-evidence.mjs";
+import { tursoDatabaseFingerprint } from "../db/control-plane-authority.mjs";
 import {
   contributionReceiptHash,
   createContributionReceipt,
@@ -268,13 +268,18 @@ test("Turso fingerprint accepts only the canonical credential-free libsql origin
   assert.match(tursoDatabaseFingerprint(value), /^[a-f0-9]{16}$/);
   for (const invalid of [
     `${value}/`,
+    `${value}/tenant`,
     `${value}?authToken=secret`,
+    `${value}#fragment`,
     "https://proofweave-production.turso.io",
     "libsql://user:password@proofweave-production.turso.io",
+    ` ${value}`,
+    `${value}\0`,
+    `libsql://${"a".repeat(2_048)}.example`,
   ]) {
     assert.throws(
       () => tursoDatabaseFingerprint(invalid),
-      (error) => error.code === "TURSO_DATABASE_URL_INVALID",
+      (error) => error.name === "ControlPlaneAuthorityConfigurationError",
     );
   }
 });

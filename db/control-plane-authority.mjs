@@ -155,13 +155,14 @@ export function tursoDatabaseFingerprint(value) {
     url.username ||
     url.password ||
     url.hash ||
-    url.search
+    url.search ||
+    value !== `libsql://${url.host}`
   ) {
     throw new ControlPlaneAuthorityConfigurationError(
-      "TURSO_DATABASE_URL must be a credential-free libsql URL.",
+      "TURSO_DATABASE_URL must be the canonical credential-free libsql://host URL.",
     );
   }
-  return createHash("sha256").update(url.toString()).digest("hex").slice(0, 16);
+  return createHash("sha256").update(value).digest("hex").slice(0, 16);
 }
 
 function settingConfigured(value, name) {

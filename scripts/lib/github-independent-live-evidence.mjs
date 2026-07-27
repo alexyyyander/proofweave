@@ -1,5 +1,5 @@
-import { createHash } from "node:crypto";
 import { createRemoteLibsqlD1Database } from "../../services/database/libsql-d1-adapter.mjs";
+import { tursoDatabaseFingerprint } from "../../db/control-plane-authority.mjs";
 import {
   contributionReceiptHash,
   normalizeContributionReceipt,
@@ -27,7 +27,12 @@ export class GithubIndependentLiveEvidenceError extends Error {
 export async function probeTursoLiveClosureEvidence({ environment, state, evidence }) {
   const url = requiredSetting(environment, "TURSO_DATABASE_URL", "TURSO_DATABASE_URL_MISSING");
   const authToken = requiredSetting(environment, "TURSO_AUTH_TOKEN", "TURSO_AUTH_TOKEN_MISSING");
-  const fingerprint = tursoDatabaseFingerprint(url);
+  let fingerprint;
+  try {
+    fingerprint = tursoDatabaseFingerprint(url);
+  } catch (cause) {
+    throw error("TURSO_DATABASE_URL_INVALID", { cause });
+  }
   if (fingerprint !== state.release.databaseFingerprint) {
     throw error("LIVE_EVIDENCE_DATABASE_MISMATCH");
   }
@@ -40,28 +45,6 @@ export async function probeTursoLiveClosureEvidence({ environment, state, eviden
   } finally {
     database.close();
   }
-}
-
-export function tursoDatabaseFingerprint(value) {
-  let url;
-  try {
-    url = new URL(value);
-  } catch {
-    throw error("TURSO_DATABASE_URL_INVALID");
-  }
-  const canonical = `libsql://${url.host}`;
-  if (
-    url.protocol !== "libsql:" ||
-    !url.hostname ||
-    url.username ||
-    url.password ||
-    url.search ||
-    url.hash ||
-    value !== canonical
-  ) {
-    throw error("TURSO_DATABASE_URL_INVALID");
-  }
-  return createHash("sha256").update(canonical).digest("hex").slice(0, 16);
 }
 
 /**
