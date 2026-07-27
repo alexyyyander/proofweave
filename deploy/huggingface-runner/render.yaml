@@ -6,14 +6,14 @@ services:
     buildCommand: npm ci --omit=dev
     startCommand: node services/lean-runner/hosted-trusted-runner-main.mjs
     healthCheckPath: /healthz
-    autoDeployTrigger: commit
+    autoDeployTrigger: off
     envVars:
       - key: NODE_VERSION
         value: 22.14.0
       - key: HOST
         value: 0.0.0.0
       - key: RUNNER_EXECUTION_ENABLED
-        value: "true"
+        value: "false"
       - key: PROOFWEAVE_RUNNER_PROVIDER
         value: e2b
       - key: RUNNER_CONSUMER_ID

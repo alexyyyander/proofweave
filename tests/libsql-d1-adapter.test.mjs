@@ -12,7 +12,9 @@ import {
 import {
   controlPlaneAuthority,
   ControlPlaneAuthorityConfigurationError,
+  inspectLiveControlPlaneDiagnostics,
   selectControlPlaneAuthority,
+  tursoDatabaseFingerprint,
 } from "../db/control-plane-authority.mjs";
 
 test("libSQL adapter preserves the D1 prepare/bind/result contract", async (t) => {
@@ -117,6 +119,84 @@ test("partial Turso configuration fails closed instead of falling back to Sites 
     }),
     ControlPlaneAuthorityConfigurationError,
   );
+});
+
+test("live control-plane diagnostics expose only verified bounded release evidence", async () => {
+  const databaseUrl = "libsql://proofweave-live.example";
+  const diagnostics = await inspectLiveControlPlaneDiagnostics({
+    authority: controlPlaneAuthority.turso,
+    databaseUrl,
+    database: { prepare() {} },
+    verifyDatabase: async () => ({
+      migrationCount: 44,
+      latestMigration: "0043_add_runner_queue_event_sequence.sql",
+    }),
+  });
+  assert.deepEqual(diagnostics, {
+    schemaVersion: "pw-live-release-diagnostics-v1",
+    state: "ready",
+    authority: "turso",
+    databaseFingerprint: tursoDatabaseFingerprint(databaseUrl),
+    ledgerHead: "0043_add_runner_queue_event_sequence.sql",
+    failureCode: null,
+  });
+  const rendered = JSON.stringify({ diagnostics });
+  assert.doesNotMatch(rendered, /proofweave-live\.example|private-auth-token-sentinel/);
+  assert.deepEqual(Object.keys(diagnostics).sort(), [
+    "authority",
+    "databaseFingerprint",
+    "failureCode",
+    "ledgerHead",
+    "schemaVersion",
+    "state",
+  ]);
+});
+
+test("live control-plane diagnostics fail closed for fallback, invalid URLs, and ledger failure", async () => {
+  assert.deepEqual(await inspectLiveControlPlaneDiagnostics({
+    authority: controlPlaneAuthority.sitesD1,
+  }), {
+    schemaVersion: "pw-live-release-diagnostics-v1",
+    state: "degraded",
+    authority: "sites_d1",
+    databaseFingerprint: null,
+    ledgerHead: null,
+    failureCode: "release_authority_not_turso",
+  });
+
+  assert.deepEqual(await inspectLiveControlPlaneDiagnostics({
+    authority: controlPlaneAuthority.turso,
+    databaseUrl: "libsql://proofweave-live.example?credential=forbidden",
+    database: { prepare() {} },
+    verifyDatabase: async () => ({
+      migrationCount: 44,
+      latestMigration: "0043_add_runner_queue_event_sequence.sql",
+    }),
+  }), {
+    schemaVersion: "pw-live-release-diagnostics-v1",
+    state: "degraded",
+    authority: "turso",
+    databaseFingerprint: null,
+    ledgerHead: null,
+    failureCode: "turso_configuration_invalid",
+  });
+
+  const databaseUrl = "libsql://proofweave-live.example";
+  assert.deepEqual(await inspectLiveControlPlaneDiagnostics({
+    authority: controlPlaneAuthority.turso,
+    databaseUrl,
+    database: { prepare() {} },
+    verifyDatabase: async () => {
+      throw new Error("private database failure text");
+    },
+  }), {
+    schemaVersion: "pw-live-release-diagnostics-v1",
+    state: "degraded",
+    authority: "turso",
+    databaseFingerprint: tursoDatabaseFingerprint(databaseUrl),
+    ledgerHead: null,
+    failureCode: "control_plane_verification_failed",
+  });
 });
 
 function memoryDatabase() {

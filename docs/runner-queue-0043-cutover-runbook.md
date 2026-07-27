@@ -233,8 +233,10 @@ While execution remains disabled, verify:
 - OAuth discovery and gateway health;
 - Runner `/healthz`, full source revision, approved image digest, template ID
   and build ID;
-- the same lowercase database fingerprint from gateway and Runner;
-- migration head `0043_add_runner_queue_event_sequence.sql`;
+- the same lowercase database fingerprint from the Sites-integrated gateway
+  `releaseDiagnostics` and Runner `/healthz`;
+- live `ledgerHead` `0043_add_runner_queue_event_sequence.sql` on both
+  diagnostics; strict manifest separately binds it to the repository head;
 - no increase in Run, queue-message, or queue-event counts.
 
 ## Phase 7 — Controlled smoke while public producers stay frozen

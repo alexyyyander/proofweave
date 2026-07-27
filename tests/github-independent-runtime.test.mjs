@@ -11,6 +11,7 @@ import { leanRunnerRequestHash } from "../packages/protocol/lean-runner.mjs";
 import { runnerKeyFingerprint } from "../packages/protocol/runner-key-registry.mjs";
 import { D1InlineArtifactStore } from "../services/artifacts/d1-inline-artifact-store.mjs";
 import { LibsqlD1Database } from "../services/database/libsql-d1-adapter.mjs";
+import { tursoDatabaseFingerprint } from "../db/control-plane-authority.mjs";
 import {
   HostedTrustedRunnerService,
 } from "../services/lean-runner/hosted-trusted-runner.mjs";
@@ -36,14 +37,12 @@ const controlPlaneKeyId = "control-plane:github-independent";
 const stdout = new TextEncoder().encode("mock E2B transport reached the bounded result boundary\n");
 const stderr = new Uint8Array();
 
-test("Render wake drives the durable E2B path with every GitHub environment input absent", async (t) => {
+test("Render wake contract has no per-Run GitHub runtime dependency", async (t) => {
   assert.deepEqual(
     Object.keys(process.env).filter((key) => key.startsWith("GITHUB_")),
     [],
     "the executable contract must run with all GitHub environment inputs removed",
   );
-  assert.equal(process.env.PROOFWEAVE_GITHUB_RECOVERY_ENABLED, "false");
-
   const fixture = await createFixture({ resultMode: "valid" });
   t.after(() => fixture.close());
   const dispatched = await fixture.dispatch();
@@ -143,7 +142,9 @@ async function createFixture({ resultMode }) {
     RUNNER_EXECUTION_ENABLED: "true",
     PROOFWEAVE_RUNNER_PROVIDER: "e2b",
     PROOFWEAVE_RUNNER_WAKE_TOKEN: wakeToken,
-    PROOFWEAVE_RUNNER_REVISION: "github-independent-contract",
+    PROOFWEAVE_RUNNER_REVISION: "d".repeat(40),
+    TURSO_DATABASE_URL: "libsql://github-independent-runtime.example",
+    TURSO_AUTH_TOKEN: "fixture-turso-token-0123456789abcdef",
     RUNNER_CONSUMER_ID: "runner:github-independent",
     RUNNER_POLL_MILLISECONDS: "60000",
     RUNNER_LEASE_SECONDS: "60",
@@ -200,7 +201,17 @@ async function createFixture({ resultMode }) {
   });
   const service = new HostedTrustedRunnerService({
     environment: { ...environment, PORT: "0", HOST: "127.0.0.1" },
-    runtimeFactory: async () => runtime,
+    runtimeFactory: async () => Object.freeze({
+      ...runtime,
+      releaseDiagnostics: {
+        schemaVersion: "pw-live-release-diagnostics-v1",
+        state: "ready",
+        authority: "turso",
+        databaseFingerprint: tursoDatabaseFingerprint(environment.TURSO_DATABASE_URL),
+        ledgerHead: "0043_add_runner_queue_event_sequence.sql",
+        failureCode: null,
+      },
+    }),
     now,
     emit: () => {},
   });

@@ -1,4 +1,12 @@
 import { createRemoteLibsqlD1Database } from "../database/libsql-d1-adapter.mjs";
+import {
+  loadProofweaveMigrations,
+  verifyProofweaveControlPlane,
+} from "../database/libsql-migrations.mjs";
+import {
+  controlPlaneAuthority,
+  inspectLiveControlPlaneDiagnostics,
+} from "../../db/control-plane-authority.mjs";
 import { D1InlineArtifactBucket } from "../artifacts/d1-inline-artifact-store.mjs";
 import { D1InlineVerificationReplayEvidenceStore } from "../verification/d1-inline-verification-replay-evidence-store.mjs";
 import { D1InlineRunnerBundleResolver } from "./d1-inline-runner-bundle-resolver.mjs";
@@ -417,11 +425,21 @@ export async function createTrustedRunnerRuntimeFromEnvironment({
   emit = emitStructuredConsole,
 } = {}) {
   requireExecutionEnabled(environment);
+  const databaseUrl = requireSetting(environment, "TURSO_DATABASE_URL");
   const database = createRemoteLibsqlD1Database({
-    url: requireSetting(environment, "TURSO_DATABASE_URL"),
+    url: databaseUrl,
     authToken: requireSetting(environment, "TURSO_AUTH_TOKEN"),
   });
   try {
+    const releaseDiagnostics = await verifyTrustedRunnerControlPlane({
+      database,
+      databaseUrl,
+    });
+    if (releaseDiagnostics.state !== "ready") {
+      throw new TrustedRunnerProcessConfigurationError(
+        "Trusted Runner control-plane migration verification failed.",
+      );
+    }
     const containerFactory = createTrustedRunnerContainerFactoryFromEnvironment({
       environment,
       modalClient,
@@ -430,7 +448,7 @@ export async function createTrustedRunnerRuntimeFromEnvironment({
       fetcher,
       sleep,
     });
-    return await createTrustedRunnerRuntime({
+    const runtime = await createTrustedRunnerRuntime({
       database,
       containerFactory,
       environment,
@@ -439,10 +457,42 @@ export async function createTrustedRunnerRuntimeFromEnvironment({
       sleep,
       emit,
     });
+    return Object.freeze({
+      ...runtime,
+      releaseDiagnostics,
+    });
   } catch (error) {
     database.close();
     throw error;
   }
+}
+
+export async function verifyTrustedRunnerControlPlaneFromEnvironment({
+  environment = process.env,
+} = {}) {
+  const databaseUrl = requireSetting(environment, "TURSO_DATABASE_URL");
+  const database = createRemoteLibsqlD1Database({
+    url: databaseUrl,
+    authToken: requireSetting(environment, "TURSO_AUTH_TOKEN"),
+  });
+  try {
+    return await verifyTrustedRunnerControlPlane({ database, databaseUrl });
+  } finally {
+    database.close();
+  }
+}
+
+async function verifyTrustedRunnerControlPlane({ database, databaseUrl }) {
+  const migrations = await loadProofweaveMigrations();
+  return inspectLiveControlPlaneDiagnostics({
+    authority: controlPlaneAuthority.turso,
+    databaseUrl,
+    database,
+    verifyDatabase: ({ database: verifiedDatabase }) => verifyProofweaveControlPlane({
+      database: verifiedDatabase,
+      migrations,
+    }),
+  });
 }
 
 function createLeaseHeartbeat({

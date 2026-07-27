@@ -1,4 +1,9 @@
-# Cloudflare Runner deployment boundary
+# Cloudflare Runner deployment boundary (non-current reference)
+
+> **Not the active alpha topology.** Current release evidence comes from the
+> Sites-integrated Turso gateway and the Render/E2B Runner described in
+> `runner-provider-neutral-deployment.md`. This Cloudflare D1/Queue/Container
+> path is retained for a future separately reviewed provider activation.
 
 This document describes the selected closed-alpha hosting target. There is no
 approved Lean Runner image, image digest, live Queue, or Runner Worker yet.

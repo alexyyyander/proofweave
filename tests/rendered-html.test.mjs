@@ -103,7 +103,7 @@ test("publishes a public Connector compatibility contract", async () => {
   const response = await miniflare.dispatchFetch("https://localhost/api/mcp/capabilities", {
     headers: { accept: "application/json" },
   });
-  assert.equal(response.status, 200);
+  assert.equal(response.status, 503);
   assert.match(response.headers.get("cache-control") ?? "", /no-store/);
   const contract = await response.json();
   assert.equal(contract.protocolVersion, "pw-local-connector-v1");
@@ -115,6 +115,23 @@ test("publishes a public Connector compatibility contract", async () => {
     "https://localhost/downloads/proofweave-research-marketplace.json",
   );
   assert.ok(contract.capabilities.includes("stable_attempt_handoff"));
+  assert.deepEqual(contract.releaseDiagnostics, {
+    schemaVersion: "pw-live-release-diagnostics-v1",
+    state: "degraded",
+    authority: "sites_d1",
+    databaseFingerprint: null,
+    ledgerHead: null,
+    failureCode: "release_authority_not_turso",
+  });
+  assert.deepEqual(Object.keys(contract.releaseDiagnostics).sort(), [
+    "authority",
+    "databaseFingerprint",
+    "failureCode",
+    "ledgerHead",
+    "schemaVersion",
+    "state",
+  ]);
+  assert.doesNotMatch(JSON.stringify(contract.releaseDiagnostics), /token|password|private|libsql:\/\//i);
   assert.ok(contract.updatePolicy.liveWithoutRestart.includes("attempt_lifecycle"));
   assert.ok(contract.updatePolicy.restartCodexAfterPluginUpdate.includes("mcp_tool_input_schemas"));
 
@@ -122,7 +139,7 @@ test("publishes a public Connector compatibility contract", async () => {
     "https://localhost/api/mcp/capabilities?distributionManifestUrl=https%3A%2F%2Fattacker.example%2Fplugin.json",
     { headers: { accept: "application/json" } },
   );
-  assert.equal(ignoredOverride.status, 200);
+  assert.equal(ignoredOverride.status, 503);
   assert.equal(
     (await ignoredOverride.json()).distributionManifestUrl,
     "https://localhost/downloads/proofweave-research-marketplace.json",

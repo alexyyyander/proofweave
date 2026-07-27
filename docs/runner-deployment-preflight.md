@@ -1,4 +1,9 @@
-# Lean Runner deployment preflight and activation
+# Cloudflare Lean Runner preflight (non-current reference)
+
+> **Not the active alpha Runner.** The current release uses a Render-hosted
+> trusted control process and one private E2B Sandbox per Run against Turso.
+> This D1/Queue/R2/Cloudflare Container procedure remains a future provider
+> adapter and must not be mixed into the current 0043 cutover record.
 
 This is the operator procedure for preparing the isolated Lean Runner. It does
 not authorize public execution. Until every gate below has durable external

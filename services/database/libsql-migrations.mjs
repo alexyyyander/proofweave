@@ -162,6 +162,55 @@ export async function verifyProofweaveControlPlane({ database, migrations } = {}
   });
 }
 
+/**
+ * Verify the live ledger and critical table surface without reading migration
+ * files from the host filesystem. This is the Worker-safe diagnostic used by
+ * Sites after strict release parity is established separately against the
+ * repository migration head.
+ */
+export async function verifyLiveProofweaveControlPlane({ database } = {}) {
+  requireDatabase(database);
+  await database.prepare("SELECT 1 AS reachable").first("reachable");
+  const tables = await listApplicationTables(database);
+  if (!tables.includes(proofweaveMigrationLedgerTable)) {
+    throw new ProofweaveMigrationError("Live control plane is missing its immutable migration ledger.");
+  }
+  await validateLedgerSchema(database);
+  const rows = (await database.prepare(
+    `SELECT name, sha256, applied_at, statement_count FROM ${proofweaveMigrationLedgerTable} ORDER BY name`,
+  ).all()).results;
+  if (!Array.isArray(rows) || rows.length === 0) {
+    throw new ProofweaveMigrationError("Live control-plane migration ledger is empty.");
+  }
+  for (const [index, row] of rows.entries()) {
+    const prefix = String(index).padStart(4, "0");
+    if (
+      !row ||
+      typeof row.name !== "string" ||
+      row.name.length > 128 ||
+      !migrationFilenamePattern.test(row.name) ||
+      !row.name.startsWith(`${prefix}_`) ||
+      typeof row.sha256 !== "string" ||
+      !/^[a-f0-9]{64}$/.test(row.sha256) ||
+      !Number.isSafeInteger(row.statement_count) ||
+      row.statement_count <= 0 ||
+      typeof row.applied_at !== "string" ||
+      !Number.isFinite(Date.parse(row.applied_at))
+    ) {
+      throw new ProofweaveMigrationError("Live control-plane migration ledger is not a valid contiguous history.");
+    }
+  }
+  const missingTables = requiredControlPlaneTables.filter((name) => !tables.includes(name));
+  if (missingTables.length > 0) {
+    throw new ProofweaveMigrationError(`Live control plane is missing required tables: ${missingTables.join(", ")}.`);
+  }
+  return Object.freeze({
+    migrationCount: rows.length,
+    latestMigration: rows.at(-1).name,
+    requiredTables: requiredControlPlaneTables,
+  });
+}
+
 function freezePlan({ history, applied, ledgerPresent, fresh }) {
   const pending = history.slice(applied.length);
   return Object.freeze({

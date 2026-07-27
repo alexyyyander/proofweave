@@ -37,7 +37,10 @@ exists.
 
 ## Required Space variables
 
-- `RUNNER_EXECUTION_ENABLED=true`
+- `RUNNER_EXECUTION_ENABLED=false` during provisioning and every migration or
+  release cutover. Enable it manually only for the bounded controlled smoke,
+  disable it again for review, and enable it for participants only after named
+  release approval.
 - `RUNNER_CONSUMER_ID=runner:huggingface-alpha`
 - `PROOFWEAVE_RUNNER_PROVIDER=e2b`
 - `RUNNER_RESULT_KEY_ID`
@@ -74,3 +77,13 @@ approved digest-pinned image and overlays only the reviewed `packages/` and
 On Render, the service records the platform-provided `RENDER_GIT_COMMIT` as
 its Runner revision. `PROOFWEAVE_RUNNER_REVISION` remains the explicit
 fallback for local or non-Render deployments.
+
+The checked-in Blueprint keeps `autoDeployTrigger: off`. This is a safe desired
+state, not evidence about the existing Render service: an operator must still
+disable auto-deploy and execution in the Render dashboard before merging a
+cutover release, then record the provider audit observation.
+
+With the checked-in `RUNNER_EXECUTION_ENABLED=false`, startup still verifies
+the configured Turso migration ledger and public release identity. `/healthz`
+reports `paused` with execution disabled; `/v1/wake` cannot start work. Enabling
+execution requires a deliberate Render configuration change and redeploy.

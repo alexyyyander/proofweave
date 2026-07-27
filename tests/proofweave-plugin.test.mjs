@@ -35,9 +35,13 @@ test("the portable Proofweave Codex plugin carries the checked source skill", as
 
 test("connection_status distinguishes live-compatible updates from tool-schema restarts", async () => {
   let toolSchemaVersion = 1;
+  let responseStatus = 200;
   const server = createServer((request, response) => {
     if (request.url !== "/api/mcp/capabilities") return response.writeHead(404).end();
-    response.writeHead(200, { "content-type": "application/json" });
+    response.writeHead(responseStatus, {
+      "cache-control": "no-store",
+      "content-type": "application/json",
+    });
     response.end(JSON.stringify({
       protocolVersion: "pw-local-connector-v1",
       toolSchemaVersion,
@@ -68,6 +72,18 @@ test("connection_status distinguishes live-compatible updates from tool-schema r
     assert.equal(restart.compatibility.state, "restart_required");
     assert.equal(restart.compatibility.taskAction, "reinstall_then_restart_codex");
     assert.equal(restart.compatibility.restartRequired, true);
+
+    responseStatus = 503;
+    const degradedResponse = await callConnectorTool("connection_status", {}, env);
+    const degraded = JSON.parse(degradedResponse.result.content[0].text);
+    assert.equal(degraded.connected, true);
+    assert.equal(degraded.compatibility.state, "unknown");
+    assert.equal(degraded.compatibility.remote, null);
+    assert.equal(degraded.distribution.state, "unknown");
+    assert.match(degraded.compatibility.message, /saved connection is unchanged/i);
+    const saved = JSON.parse(await readFile(configPath, "utf8"));
+    assert.equal(saved.accessToken, "access-test");
+    assert.equal(saved.refreshToken, "refresh-test");
   } finally {
     await Promise.all([close(server), rm(fixtureRoot, { recursive: true, force: true })]);
   }

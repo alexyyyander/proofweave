@@ -1,4 +1,8 @@
 import compatibilityContract from "@/packages/protocol/proofweave-client-compatibility.json";
+import {
+  getLiveControlPlaneDiagnostics,
+  type LiveControlPlaneDiagnostics,
+} from "@/db";
 
 export const dynamic = "force-dynamic";
 
@@ -15,6 +19,7 @@ const distributionManifestPath = "/downloads/proofweave-research-marketplace.jso
 
 export async function GET(request: Request) {
   const distributionManifestUrl = new URL(distributionManifestPath, request.url).toString();
+  const releaseDiagnostics = await safeReleaseDiagnostics();
   return Response.json({
     protocolVersion: compatibilityContract.protocolVersion,
     toolSchemaVersion: compatibilityContract.toolSchemaVersion,
@@ -22,6 +27,7 @@ export async function GET(request: Request) {
     recommendedConnectorApiVersion: compatibilityContract.connectorApiVersion,
     distributionManifestUrl,
     capabilities,
+    releaseDiagnostics,
     updatePolicy: {
       liveWithoutRestart: [
         "server_workflow",
@@ -36,9 +42,25 @@ export async function GET(request: Request) {
       ],
     },
   }, {
+    status: releaseDiagnostics.state === "ready" ? 200 : 503,
     headers: {
       "cache-control": "no-store",
       "content-type": "application/json; charset=utf-8",
     },
   });
+}
+
+async function safeReleaseDiagnostics(): Promise<LiveControlPlaneDiagnostics> {
+  try {
+    return await getLiveControlPlaneDiagnostics();
+  } catch {
+    return {
+      schemaVersion: "pw-live-release-diagnostics-v1",
+      state: "degraded",
+      authority: "invalid",
+      databaseFingerprint: null,
+      ledgerHead: null,
+      failureCode: "control_plane_diagnostics_failed",
+    };
+  }
 }

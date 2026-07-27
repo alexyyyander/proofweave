@@ -8,6 +8,7 @@ import {
   loadProofweaveMigrations,
   planProofweaveMigrations,
   proofweaveMigrationLedgerTable,
+  verifyLiveProofweaveControlPlane,
   verifyProofweaveControlPlane,
 } from "../services/database/libsql-migrations.mjs";
 
@@ -32,6 +33,23 @@ test("complete Proofweave migration history is atomically ledgered on libSQL", a
   assert.equal(result.applied.length, migrations.length);
   assert.equal(result.plan.pending.length, 0);
   assert.deepEqual(await verifyProofweaveControlPlane({ database, migrations }), {
+    migrationCount: migrations.length,
+    latestMigration: "0043_add_runner_queue_event_sequence.sql",
+    requiredTables: [
+      "persons",
+      "artifact_bundles",
+      "runs",
+      "verification_attestations",
+      "contribution_receipts",
+      "receipt_credit_settlements",
+      "receipt_credit_entries",
+      "problem_proposals",
+      "problem_proposal_events",
+      "runner_queue_messages",
+      "runner_queue_events",
+    ],
+  });
+  assert.deepEqual(await verifyLiveProofweaveControlPlane({ database }), {
     migrationCount: migrations.length,
     latestMigration: "0043_add_runner_queue_event_sequence.sql",
     requiredTables: [
@@ -104,6 +122,21 @@ test("non-empty unledgered databases fail closed instead of guessing a baseline"
   await assert.rejects(
     planProofweaveMigrations({ database, migrations: await loadProofweaveMigrations() }),
     ProofweaveMigrationError,
+  );
+});
+
+test("live control-plane verification rejects malformed or non-contiguous ledger rows", async (t) => {
+  const database = memoryDatabase();
+  t.after(() => database.close());
+  const migrations = await loadProofweaveMigrations();
+  await applyProofweaveMigrations({ database, migrations });
+  await database
+    .prepare(`UPDATE ${proofweaveMigrationLedgerTable} SET sha256 = ? WHERE name = ?`)
+    .bind("not-a-sha", "0043_add_runner_queue_event_sequence.sql")
+    .run();
+  await assert.rejects(
+    verifyLiveProofweaveControlPlane({ database }),
+    /valid contiguous history/,
   );
 });
 

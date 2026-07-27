@@ -1,6 +1,13 @@
-# Remote MCP control-plane deployment
+# Standalone Cloudflare MCP control-plane deployment (non-current reference)
 
-This is the deployable boundary for the remote MCP resource server. It is
+> **Not the active alpha topology.** The current release serves identity and
+> `/api/mcp` from the Sites deployment, selects the shared Turso authority in
+> `db/index.ts`, and wakes the Render/E2B trusted Runner. The D1/Cloudflare
+> Worker procedure below is retained only for a future separately reviewed
+> topology. Do not combine it with the active Turso authority or use its
+> preflight as release evidence for the current Sites-integrated gateway.
+
+This is a retained deployable boundary for a future remote MCP resource server. It is
 separate from the owner-only Sites frontend because a remote Codex client must
 reach `/api/mcp` without a browser session, while every operation still requires a
 Proofweave OAuth token.

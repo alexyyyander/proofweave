@@ -1,9 +1,23 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {
+  createTrustedRunnerRuntimeFromEnvironment,
   TrustedRunnerProcess,
 } from "../services/lean-runner/trusted-runner-process.mjs";
 import { RunnerJobAuthenticationError } from "../services/lean-runner/queue.mjs";
+
+test("one-shot Runner fails closed before connecting or claiming when execution is disabled", async () => {
+  await assert.rejects(
+    createTrustedRunnerRuntimeFromEnvironment({
+      environment: {
+        RUNNER_EXECUTION_ENABLED: "false",
+        TURSO_DATABASE_URL: "libsql://must-not-be-contacted.example",
+        TURSO_AUTH_TOKEN: "must-not-be-read",
+      },
+    }),
+    /RUNNER_EXECUTION_ENABLED=true/,
+  );
+});
 
 test("trusted Runner wake interrupts a sixty-second idle poll without carrying work", async () => {
   const queue = fakeQueue({ deliveryAttempt: 1 });

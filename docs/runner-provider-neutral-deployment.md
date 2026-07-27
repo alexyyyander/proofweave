@@ -43,6 +43,26 @@ The hosted HTTP surface accepts no source or Bundle bytes. It exposes
 privacy-safe `GET /healthz` status plus authenticated, empty-body
 `POST /v1/wake`. Signed work remains in the durable Turso lease queue.
 
+`/healthz` becomes ready only after startup verifies the actual Turso migration
+ledger and the full Render revision, E2B template ID/build ID, immutable image
+digest, and approved-image registry. Its `releaseDiagnostics` object contains
+only the `turso` authority label, SHA-256-derived 16-character database
+fingerprint, live `ledgerHead`, and a bounded failure code. It never returns
+the database URL, token, wake credential, provider API key, or signing key.
+The Sites `/api/mcp/capabilities` route derives the same diagnostic from its
+selected runtime authority and caches one live ledger verification per Worker
+isolate. Strict release collection separately compares `ledgerHead` with the
+repository migration head; the live projection alone does not prove source
+parity.
+
+With `RUNNER_EXECUTION_ENABLED=false`, the host performs the same database and
+release-identity verification, reports HTTP 200 with `state: paused` and
+`executionEnabled: false`, creates no lease consumer, and rejects wake
+requests. This is the safe migration/deployment posture. A participant-ready
+release still requires an explicit operator change to `true`, a redeploy, and
+the controlled smoke; `paused` is healthy infrastructure, not executable
+capacity.
+
 ## Required deployment values
 
 Start from `.env.example`. The hosted trusted process requires:
@@ -145,24 +165,30 @@ Receipt coordinator still requires the configured independent-review policy.
 
 ## Activation sequence
 
-1. Keep `RUNNER_EXECUTION_ENABLED=false` while applying and verifying all Turso
+1. Disable Render auto-deploy in the live dashboard and verify the provider
+   observation before merging the cutover release. The checked-in Blueprint
+   uses `autoDeployTrigger: off`, but repository configuration cannot prove the
+   existing service has adopted it.
+2. Keep `RUNNER_EXECUTION_ENABLED=false` while applying and verifying all Turso
    migrations.
-2. Enrol the Runner result public key; never place its private JWK in the E2B
+3. Enrol the Runner result public key; never place its private JWK in the E2B
    template, Sandbox environment, database, logs, or source.
-3. Build and inspect the final Runner image by digest, then record the exact
+4. Build and inspect the final Runner image by digest, then record the exact
    E2B template reference and build ID.
-4. Exercise E2B creation and confirm disabled Internet plus private inbound
+5. Exercise E2B creation and confirm disabled Internet plus private inbound
    traffic.
-5. Configure the hosted trusted Runner and verify `GET /healthz` reports the
+6. Configure the hosted trusted Runner and verify `GET /healthz` reports the
    expected revision, provider, image, template, and ready state.
-6. Queue one signed v2 fixture, send one authenticated wake, and confirm real
+7. Queue one signed v2 fixture, send one authenticated wake, and confirm real
    Lean execution, kernel acceptance, no-`sorry`, allowed-axiom audit,
    immutable outputs, result signature, and queue acknowledgement.
-7. Disable the GitHub Actions Runner and repeat the fixture. This is the
-   required GitHub-independent runtime drill.
-8. Exercise lease expiry, cancellation, output truncation, invalid-signature
+8. Independently disable the live GitHub Actions recovery workflow through its
+   provider control, record that observation, and repeat the fixture. A local
+   `PROOFWEAVE_GITHUB_RECOVERY_ENABLED=false` value does not prove the external
+   workflow is stopped.
+9. Exercise lease expiry, cancellation, output truncation, invalid-signature
    dead-lettering, maximum attempts, Sandbox kill, and key revocation.
-9. Close different-owner review and Receipt issuance before calling the
+10. Close different-owner review and Receipt issuance before calling the
    current release operational.
 
 ## Shutdown and incident response

@@ -1,9 +1,10 @@
 # Zero-cost Turso control plane
 
-Proofweave can now create and migrate a separate remote libSQL control-plane
-database without changing the Sites frontend or its D1 binding. This is the
-first zero-card path for the durable Runner lease queue and the future public
-MCP/OAuth services.
+Proofweave uses one remote libSQL control-plane database for the active alpha:
+Sites browser routes, the Sites-integrated identity and MCP gateway, and the
+Render trusted Runner all select the same Turso authority. The logical Sites
+D1 binding remains available for local/fallback development but is not a
+second writable release authority.
 
 As checked on 2026-07-16, Turso's Free plan is `$0`, requires no credit card,
 and includes 100 databases, 5 GB storage, 500 million rows read per month, and
@@ -91,10 +92,11 @@ database. The trusted Runner still requires its reviewed E2B template (or
 optional Modal image), signing key, and execution gate before it can process
 live work.
 
-The Sites D1 database remains unchanged. Do not make Sites D1 and Turso two
-writable authorities for participant data. Public participant writes move to
-Turso only with the separate MCP/OAuth cutover and recovery plan described in
-[ADR 0008](./adr/0008-provider-neutral-alpha-hosting.md).
+Do not make Sites D1 and Turso two writable authorities for participant data.
+Both Turso settings must be present together on Sites and Render. The public
+capabilities endpoint and Runner `/healthz` remain degraded unless they verify
+the actual Turso migration ledger and expose the same privacy-minimal
+fingerprint and ledger head.
 
 Official references:
 

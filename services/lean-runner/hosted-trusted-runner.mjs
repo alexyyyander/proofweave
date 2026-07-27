@@ -1,5 +1,11 @@
 import { timingSafeEqual } from "node:crypto";
 import { createServer } from "node:http";
+import {
+  controlPlaneAuthority,
+  createDegradedControlPlaneDiagnostics,
+  selectControlPlaneAuthority,
+  tursoDatabaseFingerprint,
+} from "../../db/control-plane-authority.mjs";
 
 const defaultPort = 7860;
 
@@ -19,14 +25,21 @@ export class HostedTrustedRunnerService {
   constructor({
     environment = process.env,
     runtimeFactory = defaultRuntimeFactory,
+    diagnosticsFactory = defaultDiagnosticsFactory,
     now = () => new Date(),
     emit = emitStructuredConsole,
   } = {}) {
-    if (typeof runtimeFactory !== "function" || typeof now !== "function" || typeof emit !== "function") {
+    if (
+      typeof runtimeFactory !== "function" ||
+      typeof diagnosticsFactory !== "function" ||
+      typeof now !== "function" ||
+      typeof emit !== "function"
+    ) {
       throw new HostedTrustedRunnerConfigurationError("Hosted Runner requires runtime, clock, and audit functions.");
     }
     this.environment = environment;
     this.runtimeFactory = runtimeFactory;
+    this.diagnosticsFactory = diagnosticsFactory;
     this.now = now;
     this.emit = emit;
     this.port = integerSetting(environment.PORT, "PORT", defaultPort, 0, 65_535);
@@ -38,6 +51,7 @@ export class HostedTrustedRunnerService {
     );
     this.provider = boundedLabel(environment.PROOFWEAVE_RUNNER_PROVIDER ?? "unconfigured", "Runner provider");
     this.runnerPolicy = publicRunnerPolicy(environment);
+    this.releaseDiagnostics = configuredControlPlaneDiagnostics(environment);
     this.controller = new AbortController();
     this.runtime = null;
     this.server = null;
@@ -77,6 +91,27 @@ export class HostedTrustedRunnerService {
   startWorker() {
     this.workerPromise = (async () => {
       try {
+        assertHostedReleaseIdentity({
+          revision: this.revision,
+          provider: this.provider,
+          runnerPolicy: this.runnerPolicy,
+          releaseDiagnostics: this.releaseDiagnostics,
+        });
+        const executionEnabled = this.environment.RUNNER_EXECUTION_ENABLED === "true";
+        if (!executionEnabled && this.environment.RUNNER_EXECUTION_ENABLED !== "false") {
+          throw new HostedTrustedRunnerConfigurationError(
+            "RUNNER_EXECUTION_ENABLED must be exactly true or false.",
+          );
+        }
+        if (!executionEnabled) {
+          this.releaseDiagnostics = requireRuntimeReleaseDiagnostics({
+            diagnostics: await this.diagnosticsFactory({ environment: this.environment }),
+            configured: this.releaseDiagnostics,
+          });
+          this.state = "paused";
+          this.emitAudit("paused");
+          return;
+        }
         this.runtime = await this.runtimeFactory({ environment: this.environment });
         if (
           !this.runtime ||
@@ -87,6 +122,10 @@ export class HostedTrustedRunnerService {
             "Hosted Runner runtime must expose run() and wake() control boundaries.",
           );
         }
+        this.releaseDiagnostics = requireRuntimeReleaseDiagnostics({
+          diagnostics: this.runtime.releaseDiagnostics,
+          configured: this.releaseDiagnostics,
+        });
         this.state = "ready";
         this.emitAudit("ready");
         await this.runtime.run({ signal: this.controller.signal });
@@ -98,6 +137,14 @@ export class HostedTrustedRunnerService {
       } catch (error) {
         this.state = "degraded";
         this.failureCode = privacySafeErrorCode(error);
+        if (this.releaseDiagnostics.state !== "degraded" ||
+          this.releaseDiagnostics.failureCode === "control_plane_verification_pending") {
+          this.releaseDiagnostics = createDegradedControlPlaneDiagnostics({
+            authority: this.releaseDiagnostics.authority,
+            databaseFingerprint: this.releaseDiagnostics.databaseFingerprint,
+            failureCode: releaseDiagnosticsFailureCode(error),
+          });
+        }
         this.emitAudit("startup_or_worker_error", this.failureCode);
       }
     })();
@@ -110,7 +157,12 @@ export class HostedTrustedRunnerService {
       return sendHtml(response, 200, statusPage(this.snapshot()));
     }
     if ((request.method === "GET" || request.method === "HEAD") && url.pathname === "/healthz") {
-      return sendJson(response, this.state === "ready" ? 200 : 503, this.snapshot(), request.method === "HEAD");
+      return sendJson(
+        response,
+        ["ready", "paused"].includes(this.state) ? 200 : 503,
+        this.snapshot(),
+        request.method === "HEAD",
+      );
     }
     if (request.method === "POST" && url.pathname === "/v1/wake") {
       if (!authorized(request.headers.authorization, request.headers["x-proofweave-wake-token"], this.wakeToken)) {
@@ -144,7 +196,9 @@ export class HostedTrustedRunnerService {
       revision: this.revision,
       startedAt: this.startedAt,
       lastWakeAt: this.lastWakeAt,
+      executionEnabled: this.state === "ready",
       ...(this.failureCode ? { failureCode: this.failureCode } : {}),
+      releaseDiagnostics: this.releaseDiagnostics,
       runnerPolicy: this.runnerPolicy,
       executionBoundary: "isolated-sandbox-only",
     });
@@ -193,11 +247,113 @@ async function defaultRuntimeFactory(options) {
   return createTrustedRunnerRuntimeFromEnvironment(options);
 }
 
+async function defaultDiagnosticsFactory(options) {
+  const { verifyTrustedRunnerControlPlaneFromEnvironment } = await import("./trusted-runner-process.mjs");
+  return verifyTrustedRunnerControlPlaneFromEnvironment(options);
+}
+
 function requireWakeToken(value) {
   if (typeof value !== "string" || value.length < 32 || value.length > 512 || /\s|\0/.test(value)) {
     throw new HostedTrustedRunnerConfigurationError("Hosted Runner requires a 32-512 character PROOFWEAVE_RUNNER_WAKE_TOKEN.");
   }
   return value;
+}
+
+function configuredControlPlaneDiagnostics(environment) {
+  let authority;
+  try {
+    authority = selectControlPlaneAuthority({
+      tursoDatabaseUrl: environment.TURSO_DATABASE_URL,
+      tursoAuthToken: environment.TURSO_AUTH_TOKEN,
+    });
+  } catch {
+    return createDegradedControlPlaneDiagnostics({
+      authority: "invalid",
+      failureCode: "control_plane_configuration_invalid",
+    });
+  }
+  if (authority !== controlPlaneAuthority.turso) {
+    return createDegradedControlPlaneDiagnostics({
+      authority,
+      failureCode: "control_plane_authority_missing",
+    });
+  }
+  try {
+    return createDegradedControlPlaneDiagnostics({
+      authority,
+      databaseFingerprint: tursoDatabaseFingerprint(environment.TURSO_DATABASE_URL),
+      failureCode: "control_plane_verification_pending",
+    });
+  } catch {
+    return createDegradedControlPlaneDiagnostics({
+      authority,
+      failureCode: "turso_configuration_invalid",
+    });
+  }
+}
+
+function assertHostedReleaseIdentity({ revision, provider, runnerPolicy, releaseDiagnostics }) {
+  if (
+    !/^[a-f0-9]{40,64}$/.test(revision) ||
+    provider !== "e2b" ||
+    runnerPolicy.state !== "configured" ||
+    !runnerPolicy.sandboxImageDigest ||
+    !runnerPolicy.templateId ||
+    !runnerPolicy.templateBuildId ||
+    !runnerPolicy.sandboxImageApproved
+  ) {
+    throw new HostedTrustedRunnerConfigurationError(
+      "Hosted Runner release identity is incomplete or not the active Render/E2B topology.",
+    );
+  }
+  if (
+    releaseDiagnostics.authority !== controlPlaneAuthority.turso ||
+    !releaseDiagnostics.databaseFingerprint
+  ) {
+    throw new HostedTrustedRunnerConfigurationError(
+      "Hosted Runner requires one complete Turso control-plane authority.",
+    );
+  }
+}
+
+function requireRuntimeReleaseDiagnostics({ diagnostics, configured }) {
+  if (
+    !diagnostics ||
+    diagnostics.schemaVersion !== "pw-live-release-diagnostics-v1" ||
+    diagnostics.state !== "ready" ||
+    diagnostics.authority !== controlPlaneAuthority.turso ||
+    diagnostics.databaseFingerprint !== configured.databaseFingerprint ||
+    typeof diagnostics.ledgerHead !== "string" ||
+    diagnostics.ledgerHead.length > 128 ||
+    !/^\d{4}_[a-z0-9_]+\.sql$/.test(diagnostics.ledgerHead) ||
+    diagnostics.failureCode !== null ||
+    Object.keys(diagnostics).sort().join(",") !==
+      "authority,databaseFingerprint,failureCode,ledgerHead,schemaVersion,state"
+  ) {
+    throw new HostedTrustedRunnerConfigurationError(
+      "Hosted Runner runtime did not return exact verified control-plane diagnostics.",
+    );
+  }
+  return Object.freeze({
+    schemaVersion: diagnostics.schemaVersion,
+    state: diagnostics.state,
+    authority: diagnostics.authority,
+    databaseFingerprint: diagnostics.databaseFingerprint,
+    ledgerHead: diagnostics.ledgerHead,
+    failureCode: null,
+  });
+}
+
+function releaseDiagnosticsFailureCode(error) {
+  if (error instanceof HostedTrustedRunnerConfigurationError &&
+    /release identity/.test(error.message)) {
+    return "release_identity_invalid";
+  }
+  if (error instanceof HostedTrustedRunnerConfigurationError &&
+    /complete Turso/.test(error.message)) {
+    return "control_plane_configuration_invalid";
+  }
+  return "control_plane_verification_failed";
 }
 
 function normalizedHost(value) {
@@ -311,7 +467,7 @@ function sendHtml(response, status, body) {
 }
 
 function statusPage(status) {
-  const healthy = status.state === "ready";
+  const healthy = ["ready", "paused"].includes(status.state);
   return `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Proofweave Runner</title><style>body{margin:0;background:#0b1b37;color:#eef3ff;font:16px/1.5 system-ui,sans-serif}main{max-width:720px;margin:12vh auto;padding:32px}p{color:#b8c4dd}.status{display:inline-block;padding:6px 10px;border:1px solid ${healthy ? "#7fc6a4" : "#e2a46f"};color:${healthy ? "#9bddbd" : "#ffc28a"};text-transform:uppercase;letter-spacing:.08em;font-size:12px}code{color:#9eb8ff}</style><main><p class="status">${escapeHtml(status.state)}</p><h1>Proofweave trusted Runner</h1><p>This host coordinates signed queue leases. Submitted Lean code executes only inside a fresh, network-isolated <code>${escapeHtml(status.provider)}</code> Sandbox.</p><p>Revision <code>${escapeHtml(status.revision)}</code></p></main>`;
 }
 
