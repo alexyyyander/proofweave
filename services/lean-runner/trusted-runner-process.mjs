@@ -79,6 +79,8 @@ export class TrustedRunnerProcess {
     this.now = now;
     this.sleep = sleep;
     this.emit = emit;
+    this.wakeRequested = false;
+    this.resolveWake = null;
   }
 
   async processNext() {
@@ -154,11 +156,43 @@ export class TrustedRunnerProcess {
     while (!signal?.aborted) {
       try {
         const result = await this.processNext();
-        if (result.outcome === "idle") await this.sleep(this.pollMilliseconds);
+        if (result.outcome === "idle") await this.waitForPollOrWake(signal);
       } catch {
         this.emitAudit({ outcome: "control_plane_error", deliveryAttempt: 0, errorCode: "control_plane_error" });
-        await this.sleep(this.pollMilliseconds);
+        await this.waitForPollOrWake(signal);
       }
+    }
+  }
+
+  /**
+   * Interrupt an idle poll after the durable producer has enqueued a Run.
+   * This carries no Run id or source bytes and therefore cannot bypass lease
+   * acquisition or queue-message authentication.
+   */
+  wake() {
+    this.wakeRequested = true;
+    this.resolveWake?.();
+    return Object.freeze({ state: "wake_requested" });
+  }
+
+  async waitForPollOrWake(signal) {
+    if (this.wakeRequested || signal?.aborted) {
+      this.wakeRequested = false;
+      return;
+    }
+    let resolveWake;
+    const wakeSignal = new Promise((resolve) => { resolveWake = resolve; });
+    this.resolveWake = resolveWake;
+    const abort = () => resolveWake();
+    signal?.addEventListener("abort", abort, { once: true });
+    try {
+      // The losing bounded poll promise is deliberately harmless. A wake
+      // never cancels provider work; it only advances the next lease check.
+      await Promise.race([this.sleep(this.pollMilliseconds), wakeSignal]);
+    } finally {
+      signal?.removeEventListener("abort", abort);
+      if (this.resolveWake === resolveWake) this.resolveWake = null;
+      this.wakeRequested = false;
     }
   }
 
@@ -331,6 +365,7 @@ export async function createTrustedRunnerRuntime({
     process,
     processNext: () => process.processNext(),
     run: (options) => process.run(options),
+    wake: () => process.wake(),
     async close() {
       try {
         await containerFactory.close();

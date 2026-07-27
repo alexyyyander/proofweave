@@ -78,6 +78,15 @@ export class HostedTrustedRunnerService {
     this.workerPromise = (async () => {
       try {
         this.runtime = await this.runtimeFactory({ environment: this.environment });
+        if (
+          !this.runtime ||
+          typeof this.runtime.run !== "function" ||
+          typeof this.runtime.wake !== "function"
+        ) {
+          throw new HostedTrustedRunnerConfigurationError(
+            "Hosted Runner runtime must expose run() and wake() control boundaries.",
+          );
+        }
         this.state = "ready";
         this.emitAudit("ready");
         await this.runtime.run({ signal: this.controller.signal });
@@ -109,6 +118,16 @@ export class HostedTrustedRunnerService {
       }
       if (!requestHasEmptyBody(request)) {
         return sendJson(response, 413, { error: "request_body_not_allowed" });
+      }
+      if (this.state !== "ready" || !this.runtime) {
+        this.emitAudit("wake_rejected", "runner_unavailable");
+        return sendJson(response, 503, { error: "runner_unavailable" });
+      }
+      try {
+        await this.runtime.wake();
+      } catch (error) {
+        this.emitAudit("wake_rejected", privacySafeErrorCode(error));
+        return sendJson(response, 503, { error: "runner_unavailable" });
       }
       this.lastWakeAt = timestamp(this.now);
       this.emitAudit("wake_accepted");

@@ -32,6 +32,7 @@ test("hosted Runner exposes health and authenticated wake without accepting work
         runStarted = true;
         await new Promise((resolve) => signal.addEventListener("abort", resolve, { once: true }));
       },
+      wake() {},
       async close() { closeCount += 1; },
     }),
   });
@@ -109,6 +110,12 @@ test("hosted Runner reports degraded health without exposing startup error text"
   const rendered = JSON.stringify(body);
   assert.doesNotMatch(rendered, /secret database URL/);
   assert.doesNotMatch(rendered, /private-e2b-sentinel/);
+  const wake = await fetch(`http://127.0.0.1:${service.port}/v1/wake`, {
+    method: "POST",
+    headers: { authorization: `Bearer ${wakeToken}` },
+  });
+  assert.equal(wake.status, 503);
+  assert.deepEqual(await wake.json(), { error: "runner_unavailable" });
   await service.close();
 });
 

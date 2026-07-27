@@ -5,6 +5,48 @@ import {
 } from "../services/lean-runner/trusted-runner-process.mjs";
 import { RunnerJobAuthenticationError } from "../services/lean-runner/queue.mjs";
 
+test("trusted Runner wake interrupts a sixty-second idle poll without carrying work", async () => {
+  const queue = fakeQueue({ deliveryAttempt: 1 });
+  const originalClaim = queue.claim.bind(queue);
+  const originalAcknowledge = queue.acknowledge.bind(queue);
+  const idlePollStarted = deferred();
+  const acknowledged = deferred();
+  let deliveryAvailable = false;
+  queue.claim = async () => deliveryAvailable ? originalClaim() : null;
+  queue.acknowledge = async (input) => {
+    const result = await originalAcknowledge(input);
+    acknowledged.resolve();
+    return result;
+  };
+  const process = new TrustedRunnerProcess({
+    queue,
+    authenticator: { async authenticate(message) { return message; } },
+    async execute(_message, { beforeFinalize }) {
+      await beforeFinalize();
+    },
+    consumerId: "runner:wake-test",
+    leaseDurationSeconds: 60,
+    heartbeatSeconds: 10,
+    pollMilliseconds: 60_000,
+    now: () => new Date("2026-07-13T00:00:01Z"),
+    sleep: async (milliseconds) => {
+      if (milliseconds === 60_000) idlePollStarted.resolve();
+      await new Promise(() => {});
+    },
+  });
+  const controller = new AbortController();
+  const running = process.run({ signal: controller.signal });
+  await idlePollStarted.promise;
+
+  deliveryAvailable = true;
+  assert.deepEqual(process.wake(), { state: "wake_requested" });
+  await acknowledged.promise;
+  controller.abort();
+  process.wake();
+  await running;
+  assert.equal(queue.acknowledged.length, 1);
+});
+
 test("trusted Runner renews its lease and acknowledges only after durable execution", async () => {
   const renewed = deferred();
   let sleepCalls = 0;
