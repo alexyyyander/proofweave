@@ -77,6 +77,40 @@ test("Worker execution client polls a long-running private execution without hol
   assert.deepEqual(execution.result, result);
 });
 
+test("Worker execution client absorbs bounded transient private transport failures", async () => {
+  const request = fixtureRequest();
+  const requestHash = await leanRunnerRequestHash(request);
+  const stdout = new TextEncoder().encode("lean output\n");
+  const stderr = new Uint8Array();
+  const result = await fixtureResult({ requestHash, stdout, stderr });
+  let executeCalls = 0;
+  const sleeps = [];
+  const container = {
+    async fetch(requestObject) {
+      const path = new URL(requestObject.url).pathname;
+      if (path.endsWith("/workspace/execute")) {
+        executeCalls += 1;
+        if (executeCalls === 1) throw new Error("temporary private proxy reset");
+        if (executeCalls === 2) return new Response(null, { status: 502 });
+        return json({ result, outputTruncated: false, workspaceTreeHash: sha("c") });
+      }
+      if (path.endsWith("/stdout")) return output(stdout, result.artifacts.stdoutHash);
+      if (path.endsWith("/stderr")) return output(stderr, result.artifacts.stderrHash);
+      if (path.endsWith("/workspace/complete")) return new Response(null, { status: 204 });
+      return new Response(null, { status: 404 });
+    },
+  };
+
+  const execution = await new RunnerContainerExecutionClient({
+    pollMilliseconds: 10,
+    sleep: async (milliseconds) => { sleeps.push(milliseconds); },
+  }).execute({ container, run: fixtureRun(requestHash), request });
+
+  assert.equal(executeCalls, 3);
+  assert.deepEqual(sleeps, [10, 20]);
+  assert.deepEqual(execution.result, result);
+});
+
 test("Worker execution client rejects a substituted private output stream", async () => {
   const request = fixtureRequest();
   const requestHash = await leanRunnerRequestHash(request);
@@ -102,7 +136,7 @@ test("Worker execution client rejects a substituted private output stream", asyn
   );
 });
 
-test("Worker execution client exposes only a bounded stage code when private execution is rejected", async () => {
+test("Worker execution client exposes only a bounded HTTP status when private execution is rejected", async () => {
   const request = fixtureRequest();
   const requestHash = await leanRunnerRequestHash(request);
   const container = {
@@ -118,7 +152,7 @@ test("Worker execution client exposes only a bounded stage code when private exe
     new RunnerContainerExecutionClient().execute({ container, run: fixtureRun(requestHash), request }),
     (error) => {
       assert.equal(error instanceof RunnerContainerExecutionClientError, true);
-      assert.equal(error.diagnosticCode, "runner_container_execute_response_error");
+      assert.equal(error.diagnosticCode, "runner_container_http_400_error");
       assert.equal(JSON.stringify(error).includes("secret.lean"), false);
       return true;
     },

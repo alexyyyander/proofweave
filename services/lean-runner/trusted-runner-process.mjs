@@ -263,6 +263,11 @@ export async function createTrustedRunnerRuntime({
   const runStore = new D1RunStore(database);
   const artifactBucket = new D1InlineArtifactBucket(database);
   const getContainerForRun = (runId) => containerFactory.get(runId);
+  const discardContainerForRun = async (runId) => {
+    if (typeof containerFactory.terminate === "function") {
+      await containerFactory.terminate(runId);
+    }
+  };
   const workspaceStager = new RunnerWorkspaceStager({
     preflight: new RunnerJobPreflight({
       runStore,
@@ -286,7 +291,16 @@ export async function createTrustedRunnerRuntime({
     workspaceStager,
     imageRegistry,
     getContainerForRun,
-    executionClient: new RunnerContainerExecutionClient(),
+    discardContainerForRun,
+    executionClient: new RunnerContainerExecutionClient({
+      pollMilliseconds: integerSetting(
+        environment,
+        "RUNNER_EXECUTION_POLL_MILLISECONDS",
+        1_000,
+        10,
+        10_000,
+      ),
+    }),
     finalizer,
     isCancellationRequested: async (runId) => (await runStore.find(runId))?.state === "cancel_requested",
     now,

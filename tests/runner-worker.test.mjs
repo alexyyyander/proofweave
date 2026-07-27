@@ -134,6 +134,46 @@ test("Runner queue retry resumes a running Run but never restarts a cancellation
   assert.equal(executionCalls, 1);
 });
 
+test("Runner discards a failed hosted Sandbox before the queue retries", async () => {
+  const calls = [];
+  const executionFailure = new Error("private transport failed");
+  const execute = createRunnerQueueExecution({
+    workspaceStager: {
+      async executeAuthenticatedMessage() {
+        return { action: "skip", reason: "run_running", run: running };
+      },
+    },
+    imageRegistry: { resolve() {} },
+    async getContainerForRun(runId) {
+      calls.push(["container", runId]);
+      return { fetch() {} };
+    },
+    async discardContainerForRun(runId) {
+      calls.push(["discard", runId]);
+    },
+    executionClient: {
+      async execute() {
+        calls.push(["execute"]);
+        throw executionFailure;
+      },
+      async cancel() {},
+    },
+    finalizer: {
+      async finalize() {
+        assert.fail("A failed Sandbox must not reach finalization.");
+      },
+    },
+    now: () => new Date("2026-07-13T00:00:00Z"),
+  });
+
+  await assert.rejects(execute(message), (error) => error === executionFailure);
+  assert.deepEqual(calls, [
+    ["container", running.id],
+    ["execute"],
+    ["discard", running.id],
+  ]);
+});
+
 test("a stale provider lease cannot cross the result-finalization boundary", async () => {
   let finalized = false;
   const execute = createRunnerQueueExecution({
