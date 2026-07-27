@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
-import { mkdtemp, readFile, readdir, rm } from "node:fs/promises";
+import { mkdtemp, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { test } from "node:test";
@@ -14,6 +14,11 @@ import {
   contributionReceiptHash,
   createContributionReceipt,
 } from "../packages/protocol/contribution-receipt.mjs";
+import { sha256Canonical } from "../packages/protocol/canonical-json.mjs";
+import {
+  runtimeRecoveryIsolationKeyFingerprint,
+  signRuntimeRecoveryIsolationEvidence,
+} from "../packages/protocol/runtime-recovery-isolation.mjs";
 
 const revision = "a".repeat(40);
 const bundleHash = sha("b");
@@ -22,6 +27,32 @@ const siteOrigin = "https://proofweave.example";
 const runnerOrigin = "https://runner.example";
 const expectedConsumerId = "consumer:render-hosted-production";
 const createdAt = "2026-07-27T00:00:00.000Z";
+const recoveryRepositoryFullName = "proofweave/research";
+const recoveryRepositoryId = 4242;
+const recoveryOperatorKeyId = "release-operator:production-01";
+const recoveryOperatorKeyPair = await crypto.subtle.generateKey(
+  { name: "Ed25519" },
+  true,
+  ["sign", "verify"],
+);
+const recoveryOperatorPrivateKeyJwk = await crypto.subtle.exportKey(
+  "jwk",
+  recoveryOperatorKeyPair.privateKey,
+);
+const recoveryOperatorPublicKey = Buffer.from(
+  await crypto.subtle.exportKey("raw", recoveryOperatorKeyPair.publicKey),
+).toString("base64url");
+const recoveryOperatorKeyFingerprint = await runtimeRecoveryIsolationKeyFingerprint(
+  recoveryOperatorPublicKey,
+);
+const recoveryTrustedKeyset = Object.freeze({
+  schemaVersion: "pw-runtime-recovery-operator-keyset-v1",
+  keys: [{
+    keyId: recoveryOperatorKeyId,
+    publicKey: recoveryOperatorPublicKey,
+    keyFingerprint: recoveryOperatorKeyFingerprint,
+  }],
+});
 const installedPluginVersion = JSON.parse(
   await readFile(
     new URL("../plugins/proofweave-research/.codex-plugin/plugin.json", import.meta.url),
@@ -38,6 +69,12 @@ test("preflight binds the release to one explicit hosted consumer and remains re
     assert.equal(result.productionEligible, false);
     assert.equal(result.release.siteOrigin, siteOrigin);
     assert.equal(result.release.expectedRunnerConsumerId, expectedConsumerId);
+    assert.equal(result.release.githubRepositoryFullName, recoveryRepositoryFullName);
+    assert.equal(result.release.githubRepositoryId, recoveryRepositoryId);
+    assert.equal(
+      result.release.recoveryIsolationProtocolVersion,
+      "pw-runtime-recovery-isolation-v1",
+    );
     assert.equal(result.release.migrationHead, "0043_add_runner_queue_event_sequence.sql");
     assert.deepEqual(await readdir(directory), []);
     assert.equal(fixture.calls.database, 1);
@@ -89,7 +126,7 @@ test("preflight rejects recovery and published plugin drift before live evidence
   );
 });
 
-test("begin writes a secret-free v2 state only after the exact Bundle hash exists", async () => {
+test("begin writes a signed secret-free v3 recovery snapshot for the exact Bundle", async () => {
   const fixture = makeDrillFixture();
   const directory = await mkdtemp(join(tmpdir(), "proofweave-drill-begin-"));
   const statePath = join(directory, "state.json");
@@ -97,15 +134,120 @@ test("begin writes a secret-free v2 state only after the exact Bundle hash exist
     await beginFixture(fixture, statePath);
     const source = await readFile(statePath, "utf8");
     const state = JSON.parse(source);
-    assert.equal(state.schemaVersion, "pw-github-independent-production-drill-v2");
+    assert.equal(state.schemaVersion, "pw-github-independent-production-drill-v3");
     assert.equal(state.artifactBundleHash, bundleHash);
     assert.equal(state.release.expectedRunnerConsumerId, expectedConsumerId);
+    assert.equal(state.createdAt, state.recoveryIsolation.evidence.drill.observedAt);
+    assert.equal(
+      state.recoveryIsolation.evidence.githubObservation.repositoryId,
+      recoveryRepositoryId,
+    );
+    assert.equal(
+      state.recoveryIsolation.evidenceHash,
+      await sha256Canonical(state.recoveryIsolation.evidence),
+    );
     assert.equal(Object.hasOwn(state, "baselineRunnerLastWakeAt"), false);
     assert.equal(source.includes("database-secret-token"), false);
     assert.equal(source.includes("libsql://"), false);
+    assert.equal(source.includes("github-recovery-read-token"), false);
+    assert.equal(source.includes(recoveryOperatorPrivateKeyJwk.d), false);
   } finally {
     await rm(directory, { recursive: true, force: true });
   }
+});
+
+test("record hard-fails recovery bypass attempts before live or Receipt work", async (context) => {
+  async function rejected(mutator, expectedCode) {
+    const fixture = makeDrillFixture({ includeReceiptVerifierProbe: true });
+    const directory = await mkdtemp(join(tmpdir(), "proofweave-drill-recovery-reject-"));
+    const statePath = join(directory, "state.json");
+    try {
+      await beginFixture(fixture, statePath);
+      await rewriteState(statePath, mutator);
+      await assert.rejects(
+        recordFixture(fixture, statePath),
+        (error) => error.code === expectedCode,
+      );
+      assert.equal(fixture.calls.live, 0);
+      assert.equal(fixture.calls.receiptVerifier, 0);
+    } finally {
+      await rm(directory, { recursive: true, force: true });
+    }
+  }
+
+  await context.test("old v2 state", () => rejected(
+    (state) => { state.schemaVersion = "pw-github-independent-production-drill-v2"; },
+    "STATE_INVALID",
+  ));
+  await context.test("missing recovery state", () => rejected(
+    (state) => { delete state.recoveryIsolation; },
+    "RECOVERY_ISOLATION_STATE_INVALID",
+  ));
+  await context.test("signed observedAt chronology drift", () => rejected(
+    (state) => { state.createdAt = "2026-07-26T23:59:59.999Z"; },
+    "RECOVERY_ISOLATION_STATE_BINDING_MISMATCH",
+  ));
+  await context.test("fixture eligibility edited true", () => rejected(
+    (state) => { state.productionEligible = true; },
+    "PRODUCTION_ELIGIBILITY_DRIFT",
+  ));
+  await context.test("evidence tampered and full hash recomputed", () => rejected(
+    async (state) => {
+      state.recoveryIsolation.evidence.surfaceManifest.workflows[0].role =
+        "tampered_queue_consumer";
+      state.recoveryIsolation.evidence.surfaceManifest.hash = await sha256Canonical({
+        workflows: state.recoveryIsolation.evidence.surfaceManifest.workflows,
+      });
+      state.recoveryIsolation.evidenceHash = await sha256Canonical(
+        state.recoveryIsolation.evidence,
+      );
+    },
+    "RECOVERY_ISOLATION_PAYLOAD_HASH_MISMATCH",
+  ));
+});
+
+test("record rejects expired and untrusted recovery evidence before live work", async (context) => {
+  await context.test("expired at record", async () => {
+    const fixture = makeDrillFixture({ includeReceiptVerifierProbe: true });
+    const directory = await mkdtemp(join(tmpdir(), "proofweave-drill-recovery-expired-"));
+    const statePath = join(directory, "state.json");
+    try {
+      await beginFixture(fixture, statePath);
+      fixture.clock.value = "2026-07-27T02:00:00.001Z";
+      await assert.rejects(
+        recordFixture(fixture, statePath),
+        (error) => error.code === "RECOVERY_ISOLATION_EVIDENCE_EXPIRED",
+      );
+      assert.equal(fixture.calls.live, 0);
+      assert.equal(fixture.calls.receiptVerifier, 0);
+    } finally {
+      await rm(directory, { recursive: true, force: true });
+    }
+  });
+
+  await context.test("trusted keyset drift", async () => {
+    const fixture = makeDrillFixture({ includeReceiptVerifierProbe: true });
+    const directory = await mkdtemp(join(tmpdir(), "proofweave-drill-recovery-untrusted-"));
+    const statePath = join(directory, "state.json");
+    try {
+      await beginFixture(fixture, statePath);
+      fixture.environment.PROOFWEAVE_DRILL_RECOVERY_TRUSTED_KEYS_JSON = JSON.stringify({
+        ...recoveryTrustedKeyset,
+        keys: [{
+          ...recoveryTrustedKeyset.keys[0],
+          keyId: "release-operator:production-replacement",
+        }],
+      });
+      await assert.rejects(
+        recordFixture(fixture, statePath),
+        (error) => error.code === "RECOVERY_ISOLATION_OPERATOR_UNTRUSTED",
+      );
+      assert.equal(fixture.calls.live, 0);
+      assert.equal(fixture.calls.receiptVerifier, 0);
+    } finally {
+      await rm(directory, { recursive: true, force: true });
+    }
+  });
 });
 
 test("record binds one fresh exact Run, queue lease/consumer, Receipt, and independent reviews", async () => {
@@ -218,6 +360,24 @@ test("finalize re-probes exact evidence, fetches the current same-Site keyset, a
   }
 });
 
+test("finalize rejects recovery expiry before live re-probe or Receipt verification", async () => {
+  const setup = await recordedPortableFixture({
+    fixtureOptions: { includeReceiptVerifierProbe: true },
+  });
+  try {
+    assert.equal(setup.fixture.calls.live, 1);
+    setup.fixture.clock.value = "2026-07-27T02:00:00.001Z";
+    await assert.rejects(
+      finalizeFixture(setup),
+      (error) => error.code === "RECOVERY_ISOLATION_EVIDENCE_EXPIRED",
+    );
+    assert.equal(setup.fixture.calls.live, 1);
+    assert.equal(setup.fixture.calls.receiptVerifier, 0);
+  } finally {
+    await setup.cleanup();
+  }
+});
+
 test("finalize fails closed on live drift, old portable Receipt, old keyset, and cross-source keyset", async (context) => {
   await context.test("live evidence changed after record", async () => {
     const setup = await recordedPortableFixture();
@@ -295,7 +455,10 @@ test("production CLI rejects the retired --issuer-keyset input before any networ
   assert.equal(JSON.parse(result.stdout).errorCode, "ARGUMENTS_INVALID");
 });
 
-function makeDrillFixture({ mutateDistribution = (value) => value } = {}) {
+function makeDrillFixture({
+  mutateDistribution = (value) => value,
+  includeReceiptVerifierProbe = false,
+} = {}) {
   const archive = Buffer.from("portable marketplace archive");
   const digest = createHash("sha256").update(archive).digest("hex");
   const checksum = Buffer.from(`${digest}  proofweave-research-marketplace.tar\n`);
@@ -329,7 +492,15 @@ function makeDrillFixture({ mutateDistribution = (value) => value } = {}) {
     ["/downloads/proofweave-research-marketplace.tar.sha256", checksum],
     ["/downloads/proofweave-research-marketplace.json", Buffer.from(`${JSON.stringify(distribution)}\n`)],
   ]);
-  const calls = { fetch: [], database: 0, live: 0 };
+  const calls = {
+    fetch: [],
+    database: 0,
+    live: 0,
+    recoveryIsolation: 0,
+    operatorPrivateKey: 0,
+    receiptVerifier: 0,
+  };
+  const clock = { value: createdAt };
   const manifest = releaseManifest();
   const live = { value: liveEvidenceFixture() };
   const keyset = {
@@ -384,8 +555,28 @@ function makeDrillFixture({ mutateDistribution = (value) => value } = {}) {
     calls.live += 1;
     return structuredClone(live.value);
   };
+  const recoveryIsolationInspector = async (input) => {
+    calls.recoveryIsolation += 1;
+    assert.equal(Object.hasOwn(input, "maximumTtlMilliseconds"), false);
+    assert.equal(Object.hasOwn(input, "now"), false);
+    assert.equal(input.repositoryFullName, recoveryRepositoryFullName);
+    return createRecoveryIsolationEvidence({
+      ...input,
+      observedAt: clock.value,
+      productionEligible: false,
+    });
+  };
+  const operatorPrivateKeyProvider = async () => {
+    calls.operatorPrivateKey += 1;
+    return recoveryOperatorPrivateKeyJwk;
+  };
   const environment = {
     PROOFWEAVE_GITHUB_RECOVERY_ENABLED: "false",
+    PROOFWEAVE_DRILL_GITHUB_REPOSITORY: recoveryRepositoryFullName,
+    PROOFWEAVE_DRILL_GITHUB_REPOSITORY_ID: String(recoveryRepositoryId),
+    PROOFWEAVE_DRILL_RECOVERY_TRUSTED_KEYS_JSON: JSON.stringify(recoveryTrustedKeyset),
+    PROOFWEAVE_DRILL_GITHUB_TOKEN: "github-recovery-read-token",
+    PROOFWEAVE_DRILL_RECOVERY_OPERATOR_KEY_ID: recoveryOperatorKeyId,
     PROOFWEAVE_DRILL_SITE_ORIGIN: siteOrigin,
     PROOFWEAVE_DRILL_EXPECTED_RUNNER_CONSUMER_ID: expectedConsumerId,
     PROOFWEAVE_RUNNER_URL: runnerOrigin,
@@ -393,15 +584,24 @@ function makeDrillFixture({ mutateDistribution = (value) => value } = {}) {
     TURSO_DATABASE_URL: "libsql://database.example",
     TURSO_AUTH_TOKEN: "database-secret-token",
   };
-  const drill = createGithubIndependentProductionDrill({
+  const drillOptions = {
     root: process.cwd(),
     fetcher,
     manifestProvider: async () => ({ manifest, exitCode: 0 }),
     databaseProbe,
     liveEvidenceProbe,
-    now: () => new Date(createdAt),
-  });
-  return { drill, environment, health, manifest, calls, live, keyset };
+    recoveryIsolationInspector,
+    operatorPrivateKeyProvider,
+    now: () => new Date(clock.value),
+  };
+  if (includeReceiptVerifierProbe) {
+    drillOptions.receiptVerifier = async () => {
+      calls.receiptVerifier += 1;
+      throw new Error("receipt verifier must not run after recovery failure");
+    };
+  }
+  const drill = createGithubIndependentProductionDrill(drillOptions);
+  return { drill, environment, health, manifest, calls, live, keyset, clock };
 }
 
 function releaseManifest() {
@@ -567,6 +767,71 @@ function liveEvidenceFixture({ receiptHash = sha("e") } = {}) {
   };
 }
 
+async function createRecoveryIsolationEvidence({
+  releaseSha,
+  releaseFingerprint,
+  correlationId,
+  operatorPrivateKeyJwk,
+  operatorKeyId,
+  observedAt,
+  productionEligible,
+}) {
+  const workflows = [
+    {
+      path: ".github/workflows/build-week-live-receipt.yml",
+      role: "manual_queue_consumer",
+      sourceSha256: sha("7"),
+    },
+    {
+      path: ".github/workflows/e2b-lean-runner.yml",
+      role: "recovery_queue_consumer",
+      sourceSha256: sha("8"),
+    },
+  ];
+  const zeroActiveRuns = {
+    in_progress: 0,
+    pending: 0,
+    queued: 0,
+    requested: 0,
+    waiting: 0,
+  };
+  return signRuntimeRecoveryIsolationEvidence({
+    protocolVersion: "pw-runtime-recovery-isolation-v1",
+    evidenceId: "recovery-isolation:production-20260727-001",
+    productionEligible,
+    release: {
+      gitSha: releaseSha,
+      fingerprint: releaseFingerprint,
+    },
+    drill: {
+      correlationId,
+      observedAt,
+      validUntil: new Date(Date.parse(observedAt) + 2 * 60 * 60 * 1_000).toISOString(),
+    },
+    surfaceManifest: {
+      hash: await sha256Canonical({ workflows }),
+      workflows,
+    },
+    githubObservation: {
+      repositoryId: recoveryRepositoryId,
+      repositoryFullName: recoveryRepositoryFullName,
+      apiVersion: "2022-11-28",
+      releaseSha,
+      workflows: workflows.map((workflow, index) => ({
+        workflowId: 700 + index,
+        path: workflow.path,
+        sourceBlobSha: String(index + 1).repeat(40),
+        state: "disabled_manually",
+        activeRuns: zeroActiveRuns,
+      })),
+    },
+  }, {
+    operatorPrivateKeyJwk,
+    operatorKeyId,
+    signedAt: observedAt,
+  });
+}
+
 async function beginFixture(fixture, statePath) {
   return fixture.drill.begin({
     environment: fixture.environment,
@@ -659,9 +924,9 @@ async function createPortableReceiptFixture({ issuedAt = "2026-07-27T00:00:10Z" 
   };
 }
 
-async function recordedPortableFixture({ receipt = null } = {}) {
+async function recordedPortableFixture({ receipt = null, fixtureOptions = {} } = {}) {
   const portable = receipt ?? await createPortableReceiptFixture();
-  const fixture = makeDrillFixture();
+  const fixture = makeDrillFixture(fixtureOptions);
   fixture.live.value.receipt.hash = portable.receiptHash;
   fixture.keyset.source = JSON.stringify(portable.keyset);
   const directory = await mkdtemp(join(tmpdir(), "proofweave-drill-recorded-"));
@@ -683,6 +948,15 @@ function finalizeFixture(setup) {
     confirmation: githubIndependentDrillConfirmations.finalize,
     correlationId: identity().correlationId,
     verificationBundle: setup.receipt.bundle,
+  });
+}
+
+async function rewriteState(statePath, mutator) {
+  const state = JSON.parse(await readFile(statePath, "utf8"));
+  await mutator(state);
+  await writeFile(statePath, `${JSON.stringify(state, null, 2)}\n`, {
+    encoding: "utf8",
+    mode: 0o600,
   });
 }
 

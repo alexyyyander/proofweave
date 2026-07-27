@@ -25,8 +25,14 @@ import {
   probeTursoLiveClosureEvidence,
   tursoDatabaseFingerprint,
 } from "./lib/github-independent-live-evidence.mjs";
+import {
+  beginRecoveryIsolationSnapshot,
+  normalizeRecoveryIsolationState,
+  recoveryIsolationReleaseConfiguration,
+  verifyPersistedRecoveryIsolation,
+} from "./lib/github-independent-recovery-isolation.mjs";
 
-export const githubIndependentDrillSchemaVersion = "pw-github-independent-production-drill-v2";
+export const githubIndependentDrillSchemaVersion = "pw-github-independent-production-drill-v3";
 export const githubIndependentDrillConfirmations = Object.freeze({
   begin: "I-CONFIRM-GITHUB-RECOVERY-IS-DISABLED",
   record: "I-CONFIRM-REAL-PRODUCTION-EVIDENCE-WAS-OBSERVED",
@@ -59,11 +65,15 @@ export class GithubIndependentDrillError extends Error {
  */
 export function createGithubIndependentProductionDrill(options = {}) {
   const injected = [
+    "root",
     "fetcher",
     "manifestProvider",
     "databaseProbe",
     "liveEvidenceProbe",
     "receiptVerifier",
+    "recoveryIsolationInspector",
+    "recoveryIsolationVerifier",
+    "operatorPrivateKeyProvider",
     "now",
   ].some((key) => Object.hasOwn(options, key));
   const root = resolve(options.root ?? repositoryRoot);
@@ -72,6 +82,9 @@ export function createGithubIndependentProductionDrill(options = {}) {
   const databaseProbe = options.databaseProbe ?? probeTursoControlPlane;
   const liveEvidenceProbe = options.liveEvidenceProbe ?? probeTursoLiveClosureEvidence;
   const receiptVerifier = options.receiptVerifier ?? verifyPortableReceipt;
+  const recoveryIsolationInspector = options.recoveryIsolationInspector;
+  const recoveryIsolationVerifier = options.recoveryIsolationVerifier;
+  const operatorPrivateKeyProvider = options.operatorPrivateKeyProvider;
   const now = options.now ?? (() => new Date());
   if (
     typeof fetcher !== "function" ||
@@ -79,6 +92,9 @@ export function createGithubIndependentProductionDrill(options = {}) {
     typeof databaseProbe !== "function" ||
     typeof liveEvidenceProbe !== "function" ||
     typeof receiptVerifier !== "function" ||
+    (recoveryIsolationInspector !== undefined && typeof recoveryIsolationInspector !== "function") ||
+    (recoveryIsolationVerifier !== undefined && typeof recoveryIsolationVerifier !== "function") ||
+    (operatorPrivateKeyProvider !== undefined && typeof operatorPrivateKeyProvider !== "function") ||
     typeof now !== "function"
   ) {
     throw new GithubIndependentDrillError("DRILL_DEPENDENCY_INVALID");
@@ -102,6 +118,7 @@ export function createGithubIndependentProductionDrill(options = {}) {
       environment.PROOFWEAVE_DRILL_EXPECTED_RUNNER_CONSUMER_ID,
       "EXPECTED_RUNNER_CONSUMER_ID_MISSING",
     );
+    const recoveryIsolation = await recoveryIsolationReleaseConfiguration(environment);
     const downloads = await inspectPublishedDownloads({
       fetcher,
       siteOrigin,
@@ -119,6 +136,7 @@ export function createGithubIndependentProductionDrill(options = {}) {
       downloads,
       siteOrigin,
       expectedRunnerConsumerId,
+      recoveryIsolation,
     });
     return Object.freeze({
       schemaVersion: githubIndependentDrillSchemaVersion,
@@ -149,11 +167,27 @@ export function createGithubIndependentProductionDrill(options = {}) {
       artifactBundleHash: requireSha256(artifactBundleHash, "BUNDLE_HASH_INVALID"),
     };
     const checked = await preflight({ environment });
-    const timestamp = utcTimestamp(now(), "DRILL_CLOCK_INVALID");
+    if (recoveryIsolationInspector === undefined && resolve(process.cwd()) !== root) {
+      throw new GithubIndependentDrillError("RECOVERY_ISOLATION_REPOSITORY_CWD_MISMATCH");
+    }
+    const recoveryIsolation = await beginRecoveryIsolationSnapshot({
+      environment,
+      release: checked.release,
+      releaseFingerprint: checked.releaseFingerprint,
+      correlationId: identity.correlationId,
+      root,
+      inspector: recoveryIsolationInspector,
+      verifier: recoveryIsolationVerifier,
+      operatorPrivateKeyProvider,
+      now: now(),
+    });
+    const timestamp = recoveryIsolation.evidence.drill.observedAt;
+    const productionEligible = checked.productionEligible
+      && recoveryIsolation.productionEligible;
     const state = {
       schemaVersion: githubIndependentDrillSchemaVersion,
       phase: "begun",
-      productionEligible: checked.productionEligible,
+      productionEligible,
       createdAt: timestamp,
       updatedAt: timestamp,
       correlationId: identity.correlationId,
@@ -164,6 +198,10 @@ export function createGithubIndependentProductionDrill(options = {}) {
       artifactBundleHash: identity.artifactBundleHash,
       release: checked.release,
       releaseFingerprint: checked.releaseFingerprint,
+      recoveryIsolation: {
+        evidenceHash: recoveryIsolation.evidenceHash,
+        evidence: recoveryIsolation.evidence,
+      },
       evidence: null,
       liveEvidence: null,
       portableClosure: null,
@@ -181,8 +219,19 @@ export function createGithubIndependentProductionDrill(options = {}) {
     requireConfirmation(confirmation, githubIndependentDrillConfirmations.record);
     const path = requireExternalStatePath(statePath, root);
     const state = await readDrillState(path, "begun");
+    const recoveryIsolation = await verifyPersistedRecoveryIsolation({
+      recoveryIsolation: state.recoveryIsolation,
+      environment,
+      release: state.release,
+      releaseFingerprint: state.releaseFingerprint,
+      correlationId: state.correlationId,
+      createdAt: state.createdAt,
+      verifier: recoveryIsolationVerifier,
+      now: now(),
+    });
     const checked = await preflight({ environment });
     requireReleaseUnchanged(state, checked);
+    requireProductionEligibilityUnchanged(state, checked, recoveryIsolation);
     const normalizedEvidence = normalizeObservedEvidence(evidence);
     bindObservedEvidence(state, normalizedEvidence);
     const liveEvidence = normalizeLiveEvidence(await liveEvidenceProbe({
@@ -215,8 +264,19 @@ export function createGithubIndependentProductionDrill(options = {}) {
     if (correlationId !== state.correlationId) {
       throw new GithubIndependentDrillError("CORRELATION_ID_DRIFT");
     }
+    const recoveryIsolation = await verifyPersistedRecoveryIsolation({
+      recoveryIsolation: state.recoveryIsolation,
+      environment,
+      release: state.release,
+      releaseFingerprint: state.releaseFingerprint,
+      correlationId: state.correlationId,
+      createdAt: state.createdAt,
+      verifier: recoveryIsolationVerifier,
+      now: now(),
+    });
     const checked = await preflight({ environment });
     requireReleaseUnchanged(state, checked);
+    requireProductionEligibilityUnchanged(state, checked, recoveryIsolation);
     const liveEvidence = normalizeLiveEvidence(await liveEvidenceProbe({
       environment,
       state,
@@ -232,7 +292,7 @@ export function createGithubIndependentProductionDrill(options = {}) {
     });
     const portable = await receiptVerifier({ verificationBundle, issuerKeyset });
     const closure = await bindPortableReceipt(state, portable);
-    const outcome = state.productionEligible && checked.productionEligible
+    const outcome = checked.productionEligible && recoveryIsolation.productionEligible
       ? "production_passed"
       : "fixture_verified";
     const next = {
@@ -518,11 +578,16 @@ function releaseProjection({
   downloads,
   siteOrigin,
   expectedRunnerConsumerId,
+  recoveryIsolation,
 }) {
   return Object.freeze({
     gitSha: manifest.source.gitSha,
     siteOrigin,
     expectedRunnerConsumerId,
+    githubRepositoryFullName: recoveryIsolation.repositoryFullName,
+    githubRepositoryId: recoveryIsolation.repositoryId,
+    recoveryIsolationProtocolVersion: recoveryIsolation.protocolVersion,
+    recoveryOperatorKeysetHash: recoveryIsolation.trustedKeysetHash,
     sitesVersion: manifest.sites.version,
     sitesCommitSha: manifest.sites.commitSha,
     gatewayRevision: manifest.gateway.revision,
@@ -720,6 +785,13 @@ function requireReleaseUnchanged(state, checked) {
   }
 }
 
+function requireProductionEligibilityUnchanged(state, checked, recoveryIsolation) {
+  const derived = checked.productionEligible && recoveryIsolation.productionEligible;
+  if (state.productionEligible !== derived) {
+    throw new GithubIndependentDrillError("PRODUCTION_ELIGIBILITY_DRIFT");
+  }
+}
+
 async function createStateFile(path, state) {
   let handle;
   try {
@@ -755,17 +827,63 @@ async function readDrillState(path, expectedPhase) {
   } catch (cause) {
     throw new GithubIndependentDrillError("STATE_READ_FAILED", { cause });
   }
+  requireRecord(parsed, "STATE_INVALID");
+  rejectExtraKeys(parsed, [
+    "schemaVersion",
+    "phase",
+    "productionEligible",
+    "createdAt",
+    "updatedAt",
+    "correlationId",
+    "participant",
+    "artifactBundleHash",
+    "release",
+    "releaseFingerprint",
+    "recoveryIsolation",
+    "evidence",
+    "liveEvidence",
+    "portableClosure",
+  ], "STATE_INVALID");
   if (
-    parsed?.schemaVersion !== githubIndependentDrillSchemaVersion ||
+    parsed.schemaVersion !== githubIndependentDrillSchemaVersion ||
     parsed.phase !== expectedPhase ||
     typeof parsed.productionEligible !== "boolean" ||
+    utcTimestamp(parsed.createdAt, "STATE_INVALID") !== parsed.createdAt ||
+    utcTimestamp(parsed.updatedAt, "STATE_INVALID") !== parsed.updatedAt ||
     !parsed.release ||
-    !parsed.releaseFingerprint ||
+    !sha256Pattern.test(parsed.releaseFingerprint ?? "") ||
     !parsed.participant
   ) {
     throw new GithubIndependentDrillError("STATE_INVALID");
   }
-  return parsed;
+  requireRecord(parsed.participant, "STATE_INVALID");
+  rejectExtraKeys(parsed.participant, ["personId", "agentId"], "STATE_INVALID");
+  requireProductionIdentifier(parsed.correlationId, "STATE_INVALID");
+  requireProductionIdentifier(parsed.participant.personId, "STATE_INVALID");
+  requireProductionIdentifier(parsed.participant.agentId, "STATE_INVALID");
+  requireSha256(parsed.artifactBundleHash, "STATE_INVALID");
+  const recoveryIsolation = normalizeRecoveryIsolationState(parsed.recoveryIsolation);
+  if (parsed.createdAt !== recoveryIsolation.evidence.drill.observedAt) {
+    throw new GithubIndependentDrillError("RECOVERY_ISOLATION_STATE_BINDING_MISMATCH");
+  }
+  if (
+    (expectedPhase === "begun" && (
+      parsed.evidence !== null
+      || parsed.liveEvidence !== null
+      || parsed.portableClosure !== null
+    ))
+    || (expectedPhase === "evidence_recorded" && (
+      !parsed.evidence
+      || !parsed.liveEvidence
+      || parsed.portableClosure !== null
+    ))
+  ) {
+    throw new GithubIndependentDrillError("STATE_INVALID");
+  }
+  return {
+    ...parsed,
+    recoveryIsolation,
+  };
 }
 
 function publicStateResult(state, outcome) {
@@ -778,6 +896,14 @@ function publicStateResult(state, outcome) {
     personId: state.participant.personId,
     agentId: state.participant.agentId,
     artifactBundleHash: state.artifactBundleHash,
+    recoveryIsolation: {
+      evidenceId: state.recoveryIsolation.evidence.evidenceId,
+      evidenceHash: state.recoveryIsolation.evidenceHash,
+      validUntil: state.recoveryIsolation.evidence.drill.validUntil,
+      repositoryFullName: state.recoveryIsolation.evidence.githubObservation.repositoryFullName,
+      repositoryId: state.recoveryIsolation.evidence.githubObservation.repositoryId,
+      surfaceManifestHash: state.recoveryIsolation.evidence.surfaceManifest.hash,
+    },
     ...(state.evidence ? {
       runId: state.evidence.run.id,
       receiptId: state.evidence.receipt.id,

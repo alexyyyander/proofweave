@@ -133,6 +133,9 @@ PROOFWEAVE_GITHUB_RECOVERY_ENABLED=false
 PROOFWEAVE_DRILL_SITE_ORIGIN=https://your-proofweave-site.example
 PROOFWEAVE_RUNNER_URL=https://your-proofweave-runner.example
 PROOFWEAVE_DRILL_EXPECTED_RUNNER_CONSUMER_ID=consumer:your-hosted-runner
+PROOFWEAVE_DRILL_GITHUB_REPOSITORY=owner/repository
+PROOFWEAVE_DRILL_GITHUB_REPOSITORY_ID=123456789
+PROOFWEAVE_DRILL_RECOVERY_TRUSTED_KEYS_JSON={"schemaVersion":"pw-runtime-recovery-operator-keyset-v1","keys":[{"keyId":"release-operator:production-01","publicKey":"BASE64URL_ED25519_PUBLIC_KEY","keyFingerprint":"sha256:..."}]}
 PROOFWEAVE_DRILL_PLUGIN_DOWNLOADS_JSON=["/downloads/proofweave-research-marketplace.tar","/downloads/proofweave-research-marketplace.tar.sha256","/downloads/proofweave-research-marketplace.json"]
 ```
 
@@ -145,6 +148,14 @@ remain operator secrets; the command emits only the database fingerprint and
 migration head. The URL must use the canonical credential-free
 `libsql://hostname` form with no path, query, fragment, or embedded
 username/password; the auth token remains a separate secret.
+
+`begin` additionally requires a fine-grained read-only GitHub token in
+`PROOFWEAVE_DRILL_GITHUB_TOKEN`, the selected trusted key id in
+`PROOFWEAVE_DRILL_RECOVERY_OPERATOR_KEY_ID`, and an absolute external path in
+`PROOFWEAVE_DRILL_RECOVERY_OPERATOR_PRIVATE_KEY_JWK_FILE`. The key must be a
+regular, non-symlink POSIX file with mode `0600`. Neither the token nor private
+JWK is written to state or command output. The trusted public keyset and
+immutable repository id are included in the release fingerprint.
 
 Before `begin`, install and connect the local Agent, choose the exact Lean
 workspace, and call `prepare_workspace_bundle_v2`. This preparation creates a
@@ -167,9 +178,13 @@ npm run runtime:github-independent:drill -- begin \
   --bundle-hash sha256:REPLACE_WITH_64_HEX_CHARACTERS
 ```
 
-`begin` does not upload or trigger anything. After it succeeds, submit the
-same prepared draft through the normal local Agent and browser-approved
-Connector:
+`begin` does not upload or trigger anything. It takes one read-only GitHub API
+snapshot: each reviewed queue-consuming workflow must be
+`disabled_manually`, have zero active runs, and have release-source bytes
+matching the checked-in workflow hash. The release operator signs that
+snapshot, and its complete public evidence plus canonical hash are stored in
+the v3 state. After it succeeds, submit the same prepared draft through the
+normal local Agent and browser-approved Connector:
 
 1. Reconfirm that the retained prepared draft has the exact manifest hash
    recorded by `begin`.
@@ -238,6 +253,13 @@ the live Turso control plane for the exact supplied Run and requires:
 - every covered canonical attestation to bind its exact reviewer, Agent,
   Bundle and `sha256Canonical(attestation)` hash, with no same-owner review.
 
+Before any live Turso or Receipt work, both `record` and `finalize` recompute
+the full recovery-evidence hash and verify its trusted Ed25519 signature,
+two-hour TTL, release SHA/fingerprint, correlation id, and immutable GitHub
+repository identity offline. Missing, expired, untrusted, or modified evidence
+is a hard failure. Fixture evidence remains `fixture_verified` even if local
+state is edited to request production eligibility.
+
 `finalize` re-runs both the read-only preflight and that exact Turso probe,
 rejects any live evidence drift, and requires the portable Receipt
 `issuedAt >= state.createdAt`. It obtains the current issuer keyset only from
@@ -249,11 +271,17 @@ keyset file. Receipt or identity fields containing
 by the test suite can only produce `fixture_verified`; only the non-injected
 CLI over real production endpoints can emit `production_passed`.
 
+Recovery evidence is deliberately a **begin-time snapshot**. A
+`production_passed` result means GitHub recovery was observed isolated at the
+signed start of this bounded drill; it does not prove continuous workflow
+disablement after that instant. A continuous-isolation claim would require a
+separate signed end observation.
+
 All command output is one privacy-minimal JSON record. It never includes Turso
 credentials, Runner wake credentials, private keys, workspace bytes, or
-environment dumps. The local state contains only the release projection and
-the correlation, Person, Agent, Bundle, Run, review, and Receipt identifiers
-and hashes needed to audit this single drill.
+environment dumps. The local state contains only the release projection,
+signed public recovery snapshot, and the correlation, Person, Agent, Bundle,
+Run, review, and Receipt identifiers and hashes needed to audit this drill.
 
 Until this passes against one aligned deployed revision, the truthful status is:
 
