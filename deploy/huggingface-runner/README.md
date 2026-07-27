@@ -59,8 +59,11 @@ digest as `PROOFWEAVE_E2B_RUNNER_IMAGE`. The result key's public half must be
 enrolled by the Proofweave control plane before execution is enabled.
 
 The current public-alpha template reserves 2 vCPUs and 8 GiB of memory for
-Lean. Resource changes require a new immutable E2B template build and must be
-recorded in `render.yaml`; changing a queued or completed Run is not allowed.
+Lean. Its 30-minute sandbox lifetime leaves bounded startup, workspace
+transfer, and result-upload headroom around a Run's independent 20-minute Lean
+wall-time limit. Resource changes require a new immutable E2B template build
+and must be recorded in `render.yaml`; changing a queued or completed Run is
+not allowed.
 
 On Render, the service records the platform-provided `RENDER_GIT_COMMIT` as
 its Runner revision. `PROOFWEAVE_RUNNER_REVISION` remains the explicit
