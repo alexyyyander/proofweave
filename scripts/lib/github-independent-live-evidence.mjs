@@ -15,6 +15,11 @@ const identifierPattern = /^[A-Za-z0-9][A-Za-z0-9:._+/-]{0,511}$/;
 const forbiddenProductionMarker = /(mock|demo|smoke|fixture)/i;
 const issuerKeysetPath = "/api/receipts/issuer-keys";
 const maxIssuerKeysetBytes = 1024 * 1024;
+const singleHostedQueueRuntimeAssurance = Object.freeze({
+  kind: "single_hosted_queue_delivery",
+  continuousRecoveryIsolation: false,
+  hostedExclusiveExecution: false,
+});
 
 export class GithubIndependentLiveEvidenceError extends Error {
   constructor(code, options) {
@@ -142,7 +147,7 @@ export async function readLiveClosureEvidence({ database, state, evidence }) {
   const queueRow = await database
     .prepare(
       `SELECT run_id, attempt_id, delivery_state, lease_id, lease_consumer_id,
-              delivery_attempts, enqueued_at, acknowledged_at
+              lease_claimed_at, delivery_attempts, enqueued_at, acknowledged_at
        FROM runner_queue_messages
        WHERE run_id = ?`,
     )
@@ -151,7 +156,7 @@ export async function readLiveClosureEvidence({ database, state, evidence }) {
   const queueEventResult = await database
     .prepare(
       `SELECT id, event_type, delivery_state, lease_id, delivery_attempt,
-              occurred_at, event_sequence
+              error_code, occurred_at, event_sequence
        FROM runner_queue_events
        WHERE run_id = ?
        ORDER BY event_sequence ASC`,
@@ -263,6 +268,7 @@ export async function readLiveClosureEvidence({ database, state, evidence }) {
   return Object.freeze({
     run,
     queue,
+    runtimeAssurance: singleHostedQueueRuntimeAssurance,
     receipt: Object.freeze({
       id: productionIdentifier(row.receipt_id, "LIVE_RECEIPT_INVALID"),
       hash: sha256(row.receipt_hash, "LIVE_RECEIPT_INVALID"),
@@ -354,7 +360,11 @@ export async function fetchCurrentIssuerKeyset({ fetcher, siteOrigin }) {
 
 export function normalizeLiveEvidence(value) {
   record(value, "LIVE_EVIDENCE_INVALID");
-  extraKeys(value, ["run", "queue", "receipt", "reviews"], "LIVE_EVIDENCE_INVALID");
+  extraKeys(
+    value,
+    ["run", "queue", "runtimeAssurance", "receipt", "reviews"],
+    "LIVE_EVIDENCE_INVALID",
+  );
   record(value.run, "LIVE_RUN_INVALID");
   extraKeys(value.run, [
     "id", "attemptId", "personId", "agentId", "artifactBundleHash", "requestHash", "resultHash",
@@ -379,19 +389,16 @@ export function normalizeLiveEvidence(value) {
   record(value.queue, "LIVE_QUEUE_INVALID");
   extraKeys(value.queue, [
     "runId", "attemptId", "consumerId", "leaseId", "deliveryAttempts",
-    "deliveryState", "enqueuedAt", "acknowledgedAt", "events",
+    "deliveryState", "enqueuedAt", "leaseClaimedAt", "acknowledgedAt", "events",
   ], "LIVE_QUEUE_INVALID");
-  if (!Array.isArray(value.queue.events) || value.queue.events.length < 2 || value.queue.events.length > 256) {
+  if (!Array.isArray(value.queue.events) || value.queue.events.length !== 3) {
     throw error("LIVE_QUEUE_EVENTS_INVALID");
   }
-  const orderedEvents = [...value.queue.events].sort((left, right) => (
-    Number(left?.sequence) - Number(right?.sequence)
-  ));
-  const events = orderedEvents.map((eventValue, index) => {
+  const events = value.queue.events.map((eventValue, index) => {
     record(eventValue, "LIVE_QUEUE_EVENT_INVALID");
     extraKeys(eventValue, [
       "id", "sequence", "eventType", "deliveryState", "leaseId",
-      "deliveryAttempt", "occurredAt",
+      "deliveryAttempt", "errorCode", "occurredAt",
     ], "LIVE_QUEUE_EVENT_INVALID");
     if (
       !Number.isSafeInteger(eventValue.sequence) ||
@@ -410,6 +417,9 @@ export function normalizeLiveEvidence(value) {
         ? null
         : identifier(eventValue.leaseId, "LIVE_QUEUE_EVENT_INVALID"),
       deliveryAttempt: eventValue.deliveryAttempt,
+      errorCode: eventValue.errorCode === null
+        ? null
+        : identifier(eventValue.errorCode, "LIVE_QUEUE_EVENT_INVALID"),
       occurredAt: timestamp(eventValue.occurredAt, "LIVE_QUEUE_EVENT_TIME_INVALID"),
     });
   });
@@ -421,22 +431,14 @@ export function normalizeLiveEvidence(value) {
     deliveryAttempts: value.queue.deliveryAttempts,
     deliveryState: value.queue.deliveryState,
     enqueuedAt: timestamp(value.queue.enqueuedAt, "LIVE_QUEUE_TIME_INVALID"),
+    leaseClaimedAt: timestamp(value.queue.leaseClaimedAt, "LIVE_QUEUE_TIME_INVALID"),
     acknowledgedAt: timestamp(value.queue.acknowledgedAt, "LIVE_QUEUE_TIME_INVALID"),
     events: Object.freeze(events),
   });
-  if (
-    !Number.isSafeInteger(queue.deliveryAttempts) ||
-    queue.deliveryAttempts <= 0 ||
-    queue.deliveryState !== "acknowledged" ||
-    events[0].eventType !== "enqueued" ||
-    events.at(-1).eventType !== "acknowledged" ||
-    events.at(-1).deliveryState !== "acknowledged" ||
-    events.at(-1).leaseId !== queue.leaseId ||
-    events.at(-1).deliveryAttempt !== queue.deliveryAttempts
-  ) {
-    throw error("LIVE_QUEUE_NOT_ACKNOWLEDGED");
-  }
+  assertSingleHostedQueueDeliveryTopology(queue);
   assertQueueAcknowledgedAfterResult({ run, queue });
+
+  const runtimeAssurance = normalizeRuntimeAssurance(value.runtimeAssurance);
 
   record(value.receipt, "LIVE_RECEIPT_INVALID");
   extraKeys(value.receipt, [
@@ -495,10 +497,17 @@ export function normalizeLiveEvidence(value) {
   if (new Set(reviews.map((review) => review.verificationAttestationId)).size !== reviews.length) {
     throw error("LIVE_ATTESTATION_DUPLICATE");
   }
-  return Object.freeze({ run, queue, receipt, reviews: Object.freeze(reviews) });
+  return Object.freeze({
+    run,
+    queue,
+    runtimeAssurance,
+    receipt,
+    reviews: Object.freeze(reviews),
+  });
 }
 
 export function bindLiveEvidence({ state, evidence, live }) {
+  normalizeRuntimeAssurance(live.runtimeAssurance);
   freshChronology(
     state.createdAt,
     [live.run.queuedAt, live.run.startedAt, live.run.finishedAt, live.run.resultReceivedAt],
@@ -533,6 +542,7 @@ export function bindLiveEvidence({ state, evidence, live }) {
   ) {
     throw error("LIVE_EVIDENCE_BINDING_MISMATCH");
   }
+  assertSingleHostedQueueDeliveryTopology(live.queue);
   freshChronology(state.createdAt, [live.receipt.issuedAt], "LIVE_RECEIPT_NOT_FRESH");
   if (
     Date.parse(live.receipt.issuedAt) < Date.parse(live.run.resultReceivedAt) ||
@@ -579,18 +589,15 @@ function liveQueue({ queueRow, eventRows, run, notBefore, expectedConsumerId }) 
     queueRow.delivery_state !== "acknowledged" ||
     typeof queueRow.acknowledged_at !== "string" ||
     typeof queueRow.lease_id !== "string" ||
-    !Number.isSafeInteger(queueRow.delivery_attempts) ||
-    queueRow.delivery_attempts <= 0
+    typeof queueRow.lease_claimed_at !== "string" ||
+    queueRow.delivery_attempts !== 1
   ) {
     throw error("LIVE_QUEUE_NOT_ACKNOWLEDGED");
   }
-  if (!Array.isArray(eventRows) || eventRows.length < 2 || eventRows.length > 256) {
+  if (!Array.isArray(eventRows) || eventRows.length !== 3) {
     throw error("LIVE_QUEUE_EVENTS_INVALID");
   }
-  const orderedRows = [...eventRows].sort((left, right) => (
-    Number(left.event_sequence) - Number(right.event_sequence)
-  ));
-  const events = orderedRows.map((eventRow, index) => {
+  const events = eventRows.map((eventRow, index) => {
     if (
       !Number.isSafeInteger(eventRow.event_sequence) ||
       eventRow.event_sequence <= 0 ||
@@ -609,19 +616,14 @@ function liveQueue({ queueRow, eventRows, run, notBefore, expectedConsumerId }) 
         ? null
         : identifier(eventRow.lease_id, "LIVE_QUEUE_EVENT_INVALID"),
       deliveryAttempt: eventRow.delivery_attempt,
+      errorCode: eventRow.error_code === null
+        ? null
+        : identifier(eventRow.error_code, "LIVE_QUEUE_EVENT_INVALID"),
       occurredAt: timestamp(eventRow.occurred_at, "LIVE_QUEUE_EVENT_TIME_INVALID"),
     });
   });
-  if (
-    events[0].eventType !== "enqueued" ||
-    events.at(-1).eventType !== "acknowledged" ||
-    events.at(-1).deliveryState !== "acknowledged" ||
-    events.at(-1).leaseId !== queueRow.lease_id ||
-    events.at(-1).deliveryAttempt !== queueRow.delivery_attempts
-  ) {
-    throw error("LIVE_QUEUE_TERMINAL_INVALID");
-  }
   const enqueuedAt = timestamp(queueRow.enqueued_at, "LIVE_QUEUE_TIME_INVALID");
+  const leaseClaimedAt = timestamp(queueRow.lease_claimed_at, "LIVE_QUEUE_TIME_INVALID");
   const acknowledgedAt = timestamp(queueRow.acknowledged_at, "LIVE_QUEUE_TIME_INVALID");
   freshChronology(
     notBefore,
@@ -630,6 +632,7 @@ function liveQueue({ queueRow, eventRows, run, notBefore, expectedConsumerId }) 
   );
   if (
     enqueuedAt !== events[0].occurredAt ||
+    leaseClaimedAt !== events[1].occurredAt ||
     acknowledgedAt !== events.at(-1).occurredAt ||
     Date.parse(enqueuedAt) < Date.parse(run.queuedAt)
   ) {
@@ -643,11 +646,69 @@ function liveQueue({ queueRow, eventRows, run, notBefore, expectedConsumerId }) 
     deliveryAttempts: queueRow.delivery_attempts,
     deliveryState: "acknowledged",
     enqueuedAt,
+    leaseClaimedAt,
     acknowledgedAt,
     events: Object.freeze(events),
   });
+  assertSingleHostedQueueDeliveryTopology(queue);
   assertQueueAcknowledgedAfterResult({ run, queue });
   return queue;
+}
+
+function assertSingleHostedQueueDeliveryTopology(queue) {
+  const events = queue.events;
+  if (
+    queue.deliveryAttempts !== 1 ||
+    queue.deliveryState !== "acknowledged" ||
+    !Array.isArray(events) ||
+    events.length !== 3 ||
+    new Set(events.map((eventValue) => eventValue.id)).size !== 3
+  ) {
+    throw error("LIVE_QUEUE_SINGLE_DELIVERY_REQUIRED");
+  }
+  const [enqueued, claimed, acknowledged] = events;
+  if (
+    enqueued.sequence !== 1 ||
+    enqueued.eventType !== "enqueued" ||
+    enqueued.deliveryState !== "queued" ||
+    enqueued.leaseId !== null ||
+    enqueued.deliveryAttempt !== 0 ||
+    enqueued.errorCode !== null ||
+    claimed.sequence !== 2 ||
+    claimed.eventType !== "lease_claimed" ||
+    claimed.deliveryState !== "leased" ||
+    claimed.leaseId !== queue.leaseId ||
+    claimed.deliveryAttempt !== 1 ||
+    claimed.errorCode !== null ||
+    acknowledged.sequence !== 3 ||
+    acknowledged.eventType !== "acknowledged" ||
+    acknowledged.deliveryState !== "acknowledged" ||
+    acknowledged.leaseId !== queue.leaseId ||
+    acknowledged.deliveryAttempt !== 1 ||
+    acknowledged.errorCode !== null ||
+    queue.enqueuedAt !== enqueued.occurredAt ||
+    queue.leaseClaimedAt !== claimed.occurredAt ||
+    queue.acknowledgedAt !== acknowledged.occurredAt
+  ) {
+    throw error("LIVE_QUEUE_SINGLE_DELIVERY_TOPOLOGY_INVALID");
+  }
+}
+
+function normalizeRuntimeAssurance(value) {
+  record(value, "LIVE_RUNTIME_ASSURANCE_INVALID");
+  extraKeys(value, [
+    "kind",
+    "continuousRecoveryIsolation",
+    "hostedExclusiveExecution",
+  ], "LIVE_RUNTIME_ASSURANCE_INVALID");
+  if (
+    value.kind !== "single_hosted_queue_delivery" ||
+    value.continuousRecoveryIsolation !== false ||
+    value.hostedExclusiveExecution !== false
+  ) {
+    throw error("LIVE_RUNTIME_ASSURANCE_INVALID");
+  }
+  return singleHostedQueueRuntimeAssurance;
 }
 
 function assertQueueAcknowledgedAfterResult({ run, queue }) {

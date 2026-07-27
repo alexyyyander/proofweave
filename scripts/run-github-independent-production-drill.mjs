@@ -37,7 +37,7 @@ import {
   verifyPersistedRecoveryIsolation,
 } from "./lib/github-independent-recovery-isolation.mjs";
 
-export const githubIndependentDrillSchemaVersion = "pw-github-independent-production-drill-v3";
+export const githubIndependentDrillSchemaVersion = "pw-github-independent-production-drill-v4";
 export const githubIndependentDrillConfirmations = Object.freeze({
   begin: "I-CONFIRM-GITHUB-RECOVERY-IS-DISABLED",
   record: "I-CONFIRM-REAL-PRODUCTION-EVIDENCE-WAS-OBSERVED",
@@ -317,7 +317,7 @@ export function createGithubIndependentProductionDrill(options = {}) {
     const portable = await receiptVerifier({ verificationBundle, issuerKeyset });
     const closure = await bindPortableReceipt(state, portable);
     const outcome = checked.productionEligible && recoveryIsolation.productionEligible
-      ? "production_passed"
+      ? "production_closure_observed"
       : "fixture_verified";
     const next = {
       ...state,
@@ -900,6 +900,9 @@ function publicStateResult(state, outcome) {
       receiptId: state.evidence.receipt.id,
       receiptHash: state.evidence.receipt.hash,
       reviewCount: state.evidence.reviews.length,
+    } : {}),
+    ...(state.liveEvidence ? {
+      runtimeAssurance: state.liveEvidence.runtimeAssurance,
     } : {}),
     ...(state.portableClosure ? { portableClosure: state.portableClosure } : {}),
   });

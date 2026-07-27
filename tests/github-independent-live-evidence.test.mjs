@@ -36,7 +36,13 @@ test("fake D1 reconstruction computes canonical attestation hashes and binds exa
   assert.equal(result.run.personId, fixture.state.participant.personId);
   assert.equal(result.queue.consumerId, expectedConsumerId);
   assert.equal(result.queue.leaseId, "lease:production-closure-001");
+  assert.equal(result.queue.deliveryAttempts, 1);
   assert.deepEqual(result.queue.events.map((event) => event.sequence), [1, 2, 3]);
+  assert.deepEqual(result.runtimeAssurance, {
+    kind: "single_hosted_queue_delivery",
+    continuousRecoveryIsolation: false,
+    hostedExclusiveExecution: false,
+  });
   assert.equal(result.receipt.hash, fixture.evidence.receipt.hash);
   assert.deepEqual(
     result.reviews.map((review) => review.verificationAttestationHash),
@@ -67,7 +73,7 @@ test("fake D1 lookup cannot let a different Run satisfy the closure", async () =
   );
 });
 
-test("fake D1 queue must be post-0043 consecutive, acknowledged, and consumed by the hosted consumer", async (context) => {
+test("fake D1 queue must prove exactly one hosted delivery with one exact lease", async (context) => {
   async function rejects(mutator, expectedCode) {
     const fixture = await canonicalDatabaseFixture();
     mutator(fixture.rows);
@@ -92,6 +98,63 @@ test("fake D1 queue must be post-0043 consecutive, acknowledged, and consumed by
   await context.test("sequence gap", () => rejects(
     (rows) => { rows.queueEvents[2].event_sequence = 4; },
     "LIVE_QUEUE_SEQUENCE_INVALID",
+  ));
+  await context.test("event rows returned out of order", () => rejects(
+    (rows) => { [rows.queueEvents[1], rows.queueEvents[2]] = [rows.queueEvents[2], rows.queueEvents[1]]; },
+    "LIVE_QUEUE_SEQUENCE_INVALID",
+  ));
+  await context.test("duplicate claim", () => rejects(
+    (rows) => {
+      rows.queueEvents.splice(2, 0, {
+        ...rows.queueEvents[1],
+        id: "queue-event:production-duplicate-claim",
+        event_sequence: 3,
+      });
+      rows.queueEvents[3].event_sequence = 4;
+    },
+    "LIVE_QUEUE_EVENTS_INVALID",
+  ));
+  await context.test("release between claim and acknowledgement", () => rejects(
+    (rows) => {
+      rows.queueEvents.splice(
+        2,
+        0,
+        queueEvent(
+          3,
+          "released",
+          "queued",
+          "lease:production-closure-001",
+          1,
+          "2026-07-27T00:00:03Z",
+        ),
+      );
+      rows.queueEvents[3].event_sequence = 4;
+    },
+    "LIVE_QUEUE_EVENTS_INVALID",
+  ));
+  await context.test("nack-shaped unexpected event", () => rejects(
+    (rows) => { rows.queueEvents[1].event_type = "nack"; },
+    "LIVE_QUEUE_SINGLE_DELIVERY_TOPOLOGY_INVALID",
+  ));
+  await context.test("second delivery attempt", () => rejects(
+    (rows) => {
+      rows.queue.delivery_attempts = 2;
+      rows.queueEvents[1].delivery_attempt = 2;
+      rows.queueEvents[2].delivery_attempt = 2;
+    },
+    "LIVE_QUEUE_NOT_ACKNOWLEDGED",
+  ));
+  await context.test("claimed lease differs from final row lease", () => rejects(
+    (rows) => { rows.queueEvents[1].lease_id = "lease:production-closure-other"; },
+    "LIVE_QUEUE_SINGLE_DELIVERY_TOPOLOGY_INVALID",
+  ));
+  await context.test("acknowledged lease differs from final row lease", () => rejects(
+    (rows) => { rows.queueEvents[2].lease_id = "lease:production-closure-other"; },
+    "LIVE_QUEUE_SINGLE_DELIVERY_TOPOLOGY_INVALID",
+  ));
+  await context.test("claim time differs from final row lease claim time", () => rejects(
+    (rows) => { rows.queue.lease_claimed_at = "2026-07-27T00:00:02.500Z"; },
+    "LIVE_QUEUE_TIME_MISMATCH",
   ));
   await context.test("not acknowledged", () => rejects(
     (rows) => { rows.queue.delivery_state = "leased"; },
@@ -385,6 +448,7 @@ async function canonicalDatabaseFixture({
       delivery_state: "acknowledged",
       lease_id: "lease:production-closure-001",
       lease_consumer_id: expectedConsumerId,
+      lease_claimed_at: "2026-07-27T00:00:02Z",
       delivery_attempts: 1,
       enqueued_at: "2026-07-27T00:00:01Z",
       acknowledged_at: "2026-07-27T00:00:04Z",
@@ -531,6 +595,7 @@ function queueEvent(sequence, eventType, deliveryState, leaseId, deliveryAttempt
     delivery_state: deliveryState,
     lease_id: leaseId,
     delivery_attempt: deliveryAttempt,
+    error_code: null,
     occurred_at: occurredAt,
     event_sequence: sequence,
   };

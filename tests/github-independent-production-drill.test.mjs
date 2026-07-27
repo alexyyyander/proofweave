@@ -288,7 +288,7 @@ test("record and finalize bind live diagnostics and Runner policy into the relea
   });
 });
 
-test("begin writes a signed secret-free v3 recovery snapshot for the exact Bundle", async () => {
+test("begin writes a signed secret-free v4 drill state for the exact Bundle", async () => {
   const fixture = makeDrillFixture();
   const directory = await mkdtemp(join(tmpdir(), "proofweave-drill-begin-"));
   const statePath = join(directory, "state.json");
@@ -296,7 +296,7 @@ test("begin writes a signed secret-free v3 recovery snapshot for the exact Bundl
     await beginFixture(fixture, statePath);
     const source = await readFile(statePath, "utf8");
     const state = JSON.parse(source);
-    assert.equal(state.schemaVersion, "pw-github-independent-production-drill-v3");
+    assert.equal(state.schemaVersion, "pw-github-independent-production-drill-v4");
     assert.equal(state.artifactBundleHash, bundleHash);
     assert.equal(state.release.expectedRunnerConsumerId, expectedConsumerId);
     assert.equal(state.createdAt, state.recoveryIsolation.evidence.drill.observedAt);
@@ -425,6 +425,12 @@ test("record binds one fresh exact Run, queue lease/consumer, Receipt, and indep
     const state = JSON.parse(await readFile(statePath, "utf8"));
     assert.equal(state.liveEvidence.queue.consumerId, expectedConsumerId);
     assert.equal(state.liveEvidence.queue.deliveryState, "acknowledged");
+    assert.equal(state.liveEvidence.queue.deliveryAttempts, 1);
+    assert.deepEqual(result.runtimeAssurance, {
+      kind: "single_hosted_queue_delivery",
+      continuousRecoveryIsolation: false,
+      hostedExclusiveExecution: false,
+    });
     assert.deepEqual(
       state.liveEvidence.queue.events.map((event) => event.sequence),
       [1, 2, 3],
@@ -452,7 +458,7 @@ test("an unrelated global wake cannot substitute for exact fresh live evidence",
   }
 });
 
-test("record rejects different Run, wrong consumer, non-consecutive queue, and same-owner review", async (context) => {
+test("record rejects any queue evidence outside one exact hosted delivery", async (context) => {
   async function rejected(mutator, expectedCode) {
     const fixture = makeDrillFixture();
     const directory = await mkdtemp(join(tmpdir(), "proofweave-drill-reject-"));
@@ -485,6 +491,61 @@ test("record rejects different Run, wrong consumer, non-consecutive queue, and s
     (live) => { live.queue.events[1].sequence = 4; },
     "LIVE_QUEUE_SEQUENCE_INVALID",
   ));
+  await context.test("delivery attempt two", () => rejected(
+    (live) => {
+      live.queue.deliveryAttempts = 2;
+      live.queue.events[1].deliveryAttempt = 2;
+      live.queue.events[2].deliveryAttempt = 2;
+    },
+    "LIVE_QUEUE_SINGLE_DELIVERY_REQUIRED",
+  ));
+  await context.test("events supplied out of order", () => rejected(
+    (live) => {
+      [live.queue.events[1], live.queue.events[2]] = [
+        live.queue.events[2],
+        live.queue.events[1],
+      ];
+    },
+    "LIVE_QUEUE_SEQUENCE_INVALID",
+  ));
+  await context.test("duplicate claim", () => rejected(
+    (live) => {
+      live.queue.events.splice(2, 0, {
+        ...live.queue.events[1],
+        id: "queue-event:production-duplicate-claim",
+        sequence: 3,
+      });
+      live.queue.events[3].sequence = 4;
+    },
+    "LIVE_QUEUE_EVENTS_INVALID",
+  ));
+  await context.test("released delivery", () => rejected(
+    (live) => {
+      live.queue.events[1].eventType = "released";
+      live.queue.events[1].deliveryState = "queued";
+    },
+    "LIVE_QUEUE_SINGLE_DELIVERY_TOPOLOGY_INVALID",
+  ));
+  await context.test("claim lease mismatch", () => rejected(
+    (live) => { live.queue.events[1].leaseId = "lease:production-closure-other"; },
+    "LIVE_QUEUE_SINGLE_DELIVERY_TOPOLOGY_INVALID",
+  ));
+  await context.test("acknowledgement lease mismatch", () => rejected(
+    (live) => { live.queue.events[2].leaseId = "lease:production-closure-other"; },
+    "LIVE_QUEUE_SINGLE_DELIVERY_TOPOLOGY_INVALID",
+  ));
+  await context.test("claim timestamp not bound to final row", () => rejected(
+    (live) => { live.queue.leaseClaimedAt = "2026-07-27T00:00:02.500Z"; },
+    "LIVE_QUEUE_SINGLE_DELIVERY_TOPOLOGY_INVALID",
+  ));
+  await context.test("continuous recovery isolation overclaim", () => rejected(
+    (live) => { live.runtimeAssurance.continuousRecoveryIsolation = true; },
+    "LIVE_RUNTIME_ASSURANCE_INVALID",
+  ));
+  await context.test("hosted exclusive execution overclaim", () => rejected(
+    (live) => { live.runtimeAssurance.hostedExclusiveExecution = true; },
+    "LIVE_RUNTIME_ASSURANCE_INVALID",
+  ));
   await context.test("same owner review", () => rejected(
     (live) => { live.reviews[0].reviewerPersonId = identity().personId; },
     "LIVE_REVIEW_BINDING_MISMATCH",
@@ -495,7 +556,7 @@ test("record rejects different Run, wrong consumer, non-consecutive queue, and s
       live.queue.events.at(-1).eventType = "lease_renewed";
       live.queue.events.at(-1).deliveryState = "leased";
     },
-    "LIVE_QUEUE_NOT_ACKNOWLEDGED",
+    "LIVE_QUEUE_SINGLE_DELIVERY_REQUIRED",
   ));
 });
 
@@ -510,7 +571,12 @@ test("finalize re-probes exact evidence, fetches the current same-Site keyset, a
       verificationBundle: setup.receipt.bundle,
     });
     assert.equal(result.outcome, "fixture_verified");
-    assert.notEqual(result.outcome, "production_passed");
+    assert.notEqual(result.outcome, "production_closure_observed");
+    assert.deepEqual(result.runtimeAssurance, {
+      kind: "single_hosted_queue_delivery",
+      continuousRecoveryIsolation: false,
+      hostedExclusiveExecution: false,
+    });
     assert.equal(result.portableClosure.rootReceiptHash, setup.receipt.receiptHash);
     const keysetCall = setup.fixture.calls.fetch.at(-1);
     assert.equal(new URL(keysetCall.url).origin, siteOrigin);
@@ -946,6 +1012,7 @@ function liveEvidenceFixture({ receiptHash = sha("e") } = {}) {
       deliveryAttempts: 1,
       deliveryState: "acknowledged",
       enqueuedAt: "2026-07-27T00:00:01.000Z",
+      leaseClaimedAt: "2026-07-27T00:00:02.000Z",
       acknowledgedAt: "2026-07-27T00:00:04.000Z",
       events: [
         {
@@ -955,6 +1022,7 @@ function liveEvidenceFixture({ receiptHash = sha("e") } = {}) {
           deliveryState: "queued",
           leaseId: null,
           deliveryAttempt: 0,
+          errorCode: null,
           occurredAt: "2026-07-27T00:00:01.000Z",
         },
         {
@@ -964,6 +1032,7 @@ function liveEvidenceFixture({ receiptHash = sha("e") } = {}) {
           deliveryState: "leased",
           leaseId: "lease:production-closure-001",
           deliveryAttempt: 1,
+          errorCode: null,
           occurredAt: "2026-07-27T00:00:02.000Z",
         },
         {
@@ -973,9 +1042,15 @@ function liveEvidenceFixture({ receiptHash = sha("e") } = {}) {
           deliveryState: "acknowledged",
           leaseId: "lease:production-closure-001",
           deliveryAttempt: 1,
+          errorCode: null,
           occurredAt: "2026-07-27T00:00:04.000Z",
         },
       ],
+    },
+    runtimeAssurance: {
+      kind: "single_hosted_queue_delivery",
+      continuousRecoveryIsolation: false,
+      hostedExclusiveExecution: false,
     },
     receipt: {
       id: "receipt:production-closure-001",

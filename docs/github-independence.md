@@ -183,7 +183,7 @@ snapshot: each reviewed queue-consuming workflow must be
 `disabled_manually`, have zero active runs, and have release-source bytes
 matching the checked-in workflow hash. The release operator signs that
 snapshot, and its complete public evidence plus canonical hash are stored in
-the v3 state. After it succeeds, submit the same prepared draft through the
+the v4 drill state. After it succeeds, submit the same prepared draft through the
 normal local Agent and browser-approved Connector:
 
 1. Reconfirm that the retained prepared draft has the exact manifest hash
@@ -245,9 +245,14 @@ the live Turso control plane for the exact supplied Run and requires:
   created by `begin`;
 - Run, result, attestation and Receipt timestamps to be at or after
   `state.createdAt`, in their required order;
-- migration-0043 queue events for that Run to have positive consecutive
-  sequences, the exact configured hosted consumer and lease, and an
-  `acknowledged` terminal event;
+- the queue row to report exactly one delivery attempt by the configured hosted
+  consumer, with exactly three migration-0043 events and no others:
+  `enqueued(attempt 0, no lease)` →
+  `lease_claimed(attempt 1, final lease)` →
+  `acknowledged(attempt 1, same final lease)`;
+- the row's enqueue, final-lease claim, and acknowledgement timestamps to equal
+  their corresponding event timestamps, with the persisted result at or before
+  acknowledgement;
 - the immutable Receipt row to bind the same Run, Bundle, beneficiary and
   Receipt hash; and
 - every covered canonical attestation to bind its exact reviewer, Agent,
@@ -269,13 +274,21 @@ type, and a bounded response; the production CLI does not accept an operator
 keyset file. Receipt or identity fields containing
 `mock`, `demo`, `smoke`, or `fixture` are ineligible. Injected transports used
 by the test suite can only produce `fixture_verified`; only the non-injected
-CLI over real production endpoints can emit `production_passed`.
+CLI over real production endpoints can emit `production_closure_observed`.
 
 Recovery evidence is deliberately a **begin-time snapshot**. A
-`production_passed` result means GitHub recovery was observed isolated at the
-signed start of this bounded drill; it does not prove continuous workflow
-disablement after that instant. A continuous-isolation claim would require a
-separate signed end observation.
+`production_closure_observed` result proves one fresh, exact Run reached an
+acknowledged queue closure in one delivery attempt under the configured hosted
+consumer and final lease, and that the bound result, reviews, and Receipt
+survived the independent checks above. The output describes this narrowly as
+`runtimeAssurance.kind = "single_hosted_queue_delivery"`.
+
+It does **not** prove hosted-exclusive execution, and it does not prove that
+GitHub recovery remained disabled after the signed start snapshot. Accordingly,
+the same output fixes `hostedExclusiveExecution: false` and
+`continuousRecoveryIsolation: false`. A continuous-isolation claim would
+require a separate signed end observation or a continuously witnessed
+consumer-identity protocol.
 
 All command output is one privacy-minimal JSON record. It never includes Turso
 credentials, Runner wake credentials, private keys, workspace bytes, or
