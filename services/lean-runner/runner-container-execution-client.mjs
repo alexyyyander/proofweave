@@ -6,6 +6,7 @@ import {
 const maxExecutionResponseBytes = 256 * 1024;
 const defaultExecutionPollMilliseconds = 1_000;
 const executionPollGraceMilliseconds = 60_000;
+const maximumConsecutiveTransientPollFailures = 3;
 
 export class RunnerContainerExecutionClientError extends Error {
   constructor(message, options = {}) {
@@ -85,12 +86,32 @@ export class RunnerContainerExecutionClient {
 
   async pollExecution({ container, run, request, baseUrl, deadline }) {
     const body = JSON.stringify(request);
+    let transientFailures = 0;
     while (true) {
-      const response = await container.fetch(new Request(`${baseUrl}/workspace/execute`, {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body,
-      }));
+      let response;
+      try {
+        response = await container.fetch(new Request(`${baseUrl}/workspace/execute`, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body,
+        }));
+      } catch (cause) {
+        transientFailures += 1;
+        if (transientFailures >= maximumConsecutiveTransientPollFailures || this.now() >= deadline) {
+          throw cause;
+        }
+        await this.sleep(this.transientPollDelay(transientFailures, deadline));
+        continue;
+      }
+      if ([502, 503, 504].includes(response?.status)) {
+        transientFailures += 1;
+        if (transientFailures >= maximumConsecutiveTransientPollFailures || this.now() >= deadline) {
+          await expectSuccess(response, "Lean execution request");
+        }
+        await this.sleep(this.transientPollDelay(transientFailures, deadline));
+        continue;
+      }
+      transientFailures = 0;
       if (response?.status === 202) {
         if (this.now() >= deadline) {
           throw new RunnerContainerExecutionClientError(
@@ -106,6 +127,13 @@ export class RunnerContainerExecutionClient {
       assertResultMatchesRun(normalized.result, run);
       return normalized;
     }
+  }
+
+  transientPollDelay(failureCount, deadline) {
+    return Math.min(
+      this.pollMilliseconds * failureCount,
+      Math.max(1, deadline - this.now()),
+    );
   }
 
   async fetchOutput(container, url, expectedHash, label) {
