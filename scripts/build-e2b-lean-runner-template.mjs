@@ -8,14 +8,45 @@ const templateName = requireTemplateName(environment.PROOFWEAVE_E2B_TEMPLATE_NAM
 const cpuCount = integerSetting(environment.PROOFWEAVE_E2B_CPU, "PROOFWEAVE_E2B_CPU", 2, 1, 8);
 const memoryMB = integerSetting(environment.PROOFWEAVE_E2B_MEMORY_MB, "PROOFWEAVE_E2B_MEMORY_MB", 2_048, 512, 8_192);
 const registryCredentials = optionalRegistryCredentials(environment);
+const sourceOverlayEnabled = booleanSetting(
+  environment.PROOFWEAVE_E2B_RUNNER_SOURCE_OVERLAY,
+  "PROOFWEAVE_E2B_RUNNER_SOURCE_OVERLAY",
+  false,
+);
 
 // The source image is already the independently reviewed, digest-pinned
 // Proofweave Runner image. E2B receives no application secrets while building
 // this immutable template. The actual HTTP service starts only after the
 // runtime adapter has confirmed no egress and private inbound traffic.
-const template = Template()
-  .fromImage(imageReference, registryCredentials)
-  .setStartCmd("tail -f /dev/null", waitForProcess("tail"));
+let template = Template({
+  fileContextPath: new URL("..", import.meta.url),
+}).fromImage(imageReference, registryCredentials);
+
+if (sourceOverlayEnabled) {
+  // Overlay only the reviewed Runner protocol/runtime source. Lean, Mathlib,
+  // system packages, and the unprivileged runtime user remain supplied by the
+  // digest-pinned image. Build-time credentials and local configuration files
+  // are outside these two bounded source trees and are never copied.
+  template = template
+    .copy("packages", "/opt/proofweave/", {
+      forceUpload: true,
+      user: "root",
+      resolveSymlinks: false,
+    })
+    .copy("services/lean-runner", "/opt/proofweave/services/", {
+      forceUpload: true,
+      user: "root",
+      resolveSymlinks: false,
+    })
+    .runCmd([
+      "chown -R root:root /opt/proofweave/packages /opt/proofweave/services/lean-runner",
+      "find /opt/proofweave/packages /opt/proofweave/services/lean-runner -type d -exec chmod 0755 {} +",
+      "find /opt/proofweave/packages /opt/proofweave/services/lean-runner -type f -exec chmod 0644 {} +",
+      "node --check /opt/proofweave/services/lean-runner/container-http-server.mjs",
+    ], { user: "root" });
+}
+
+template = template.setStartCmd("tail -f /dev/null", waitForProcess("tail"));
 
 const built = await Template.build(template, templateName, {
   apiKey,
@@ -37,6 +68,7 @@ process.stdout.write(`${JSON.stringify({
   name: built.name,
   imageReference,
   privateRegistry: Boolean(registryCredentials),
+  sourceOverlayEnabled,
   cpuCount,
   memoryMB,
 }, null, 2)}\n`);
@@ -78,4 +110,11 @@ function integerSetting(value, label, fallback, minimum, maximum) {
     throw new Error(`${label} must be an integer between ${minimum} and ${maximum}.`);
   }
   return number;
+}
+
+function booleanSetting(value, label, fallback) {
+  if (value === undefined || value === "") return fallback;
+  if (value === "true") return true;
+  if (value === "false") return false;
+  throw new Error(`${label} must be either true or false.`);
 }

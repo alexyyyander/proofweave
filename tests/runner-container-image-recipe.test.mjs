@@ -8,6 +8,7 @@ const mathlibBaseDockerfileUrl = new URL("../services/lean-runner/Dockerfile.mat
 const dockerignoreUrl = new URL("../.dockerignore", import.meta.url);
 const imageContractUrl = new URL("../docs/runner-container-image.md", import.meta.url);
 const imageWorkflowUrl = new URL("../.github/workflows/build-e2b-lean-runner-image.yml", import.meta.url);
+const e2bTemplateBuildUrl = new URL("../scripts/build-e2b-lean-runner-template.mjs", import.meta.url);
 
 test("Lean Runner image recipe fails closed and keeps its build context minimal", async () => {
   const [dockerfile, coreBaseDockerfile, mathlibBaseDockerfile, dockerignore, contract, imageWorkflow] = await Promise.all([
@@ -116,4 +117,20 @@ test("Lean Runner image recipe fails closed and keeps its build context minimal"
   assert.match(contract, /whole-root read-only container/);
   assert.match(contract, /@sha256:/);
   assert.match(contract, /PROOFWEAVE_RESOURCE_LIMITS_ENFORCED/);
+});
+
+test("E2B template source overlay is explicit, bounded, and root-owned", async () => {
+  const source = await readFile(e2bTemplateBuildUrl, "utf8");
+
+  assert.match(source, /PROOFWEAVE_E2B_RUNNER_SOURCE_OVERLAY/);
+  assert.match(source, /\.copy\("packages", "\/opt\/proofweave\/"/);
+  assert.match(source, /\.copy\("services\/lean-runner", "\/opt\/proofweave\/services\/"/);
+  assert.equal(source.match(/forceUpload: true/g)?.length, 2);
+  assert.equal(source.match(/user: "root"/g)?.length, 3);
+  assert.equal(source.match(/resolveSymlinks: false/g)?.length, 2);
+  assert.match(source, /chown -R root:root \/opt\/proofweave\/packages \/opt\/proofweave\/services\/lean-runner/);
+  assert.match(source, /find \/opt\/proofweave\/packages \/opt\/proofweave\/services\/lean-runner -type d -exec chmod 0755/);
+  assert.match(source, /find \/opt\/proofweave\/packages \/opt\/proofweave\/services\/lean-runner -type f -exec chmod 0644/);
+  assert.match(source, /node --check \/opt\/proofweave\/services\/lean-runner\/container-http-server\.mjs/);
+  assert.doesNotMatch(source, /\.copy\([^)]*(?:\.env|secret|credential|node_modules)/i);
 });
