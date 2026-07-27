@@ -35,15 +35,15 @@ services:
       - key: RUNNER_CONTROL_PLANE_ISSUER_KEYS_JSON
         sync: false
       - key: PROOFWEAVE_E2B_TEMPLATE_ID
-        value: cbfjgbsrgtku0c7sliu5:permissions-20260724b
+        value: cbfjgbsrgtku0c7sliu5:memory-8g-20260727a
       - key: PROOFWEAVE_E2B_TEMPLATE_BUILD_ID
-        value: feec10f3-59e6-4492-8cb4-87d88a7300ea
+        value: 62127604-a4bc-47ed-ba53-1f5313583f82
       - key: PROOFWEAVE_E2B_RUNNER_IMAGE
         value: ghcr.io/alexyyyander/proofweave-lean-runner@sha256:ca896ab3945034079ab7f7cedfc7c5e665a601299c1745b51a72736420957393
       - key: PROOFWEAVE_E2B_CPU
         value: "2"
       - key: PROOFWEAVE_E2B_MEMORY_MB
-        value: "2048"
+        value: "8192"
       - key: PROOFWEAVE_E2B_TIMEOUT_MS
         value: "1260000"
       - key: PROOFWEAVE_E2B_STARTUP_TIMEOUT_MS
