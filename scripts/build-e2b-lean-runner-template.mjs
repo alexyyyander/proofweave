@@ -1,4 +1,5 @@
 import { Template, waitForProcess } from "e2b";
+import { fileURLToPath } from "node:url";
 import { assertPinnedRunnerImage } from "../services/lean-runner/cloudflare-container-policy.mjs";
 
 const environment = process.env;
@@ -19,7 +20,9 @@ const sourceOverlayEnabled = booleanSetting(
 // this immutable template. The actual HTTP service starts only after the
 // runtime adapter has confirmed no egress and private inbound traffic.
 let template = Template({
-  fileContextPath: new URL("..", import.meta.url),
+  // E2B stringifies this option internally before passing it to Node's tar
+  // process. Use an OS path rather than a file: URL so cwd remains valid.
+  fileContextPath: fileURLToPath(new URL("..", import.meta.url)),
 }).fromImage(imageReference, registryCredentials);
 
 if (sourceOverlayEnabled) {
