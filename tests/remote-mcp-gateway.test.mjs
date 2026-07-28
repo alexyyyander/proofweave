@@ -7,18 +7,26 @@ import {
   createOAuthAccessTokenAuthenticator,
   createProofweaveOAuthProvider,
 } from "../services/proofweave-identity/oauth.mjs";
-import { createRemoteMcpGateway, remoteMcpScopes } from "../services/proofweave-mcp-gateway/worker.mjs";
+import {
+  createRemoteMcpGateway,
+  remoteMcpReadOnlyToolNames,
+  remoteMcpScopes,
+} from "../services/proofweave-mcp-gateway/worker.mjs";
 
 const resource = "https://mcp.example.test/mcp";
 const issuer = "https://auth.example.test";
 
-function gatewayWith(identityProvider, store = fixtureStore(), { rateLimiter } = {}) {
+function gatewayWith(identityProvider, store = fixtureStore(), {
+  rateLimiter,
+  operationMode,
+} = {}) {
   return createRemoteMcpGateway({
     resource,
     issuer,
     identityProvider,
     store,
     ...(rateLimiter ? { rateLimiter } : {}),
+    ...(operationMode ? { operationMode } : {}),
   });
 }
 
@@ -508,6 +516,95 @@ test("handles sequential authenticated MCP requests without retaining a session"
   assert.ok(payload.result.tools.some((tool) => tool.name === "list_review_assignments"));
   assert.ok(payload.result.tools.some((tool) => tool.name === "get_review_assignment"));
   assert.ok(payload.result.tools.some((tool) => tool.name === "submit_verification_attestation"));
+});
+
+test("keeps authenticated MCP discovery and read tools available without persistence during read-only mode", async () => {
+  const storeCalls = [];
+  const limiterCalls = [];
+  const gateway = gatewayWith(
+    {
+      async authenticate() {
+        return {
+          accessToken: "read-only-test-token",
+          clientId: "https://codex.example.test/client.json",
+          personId: "did:proofweave:read-only",
+          agentInstallationId: "agent-installation:read-only",
+          scopes: remoteMcpScopes,
+        };
+      },
+      ...unavailableIdentity(),
+    },
+    {
+      ...fixtureStore(),
+      async listFrontier(principal) {
+        storeCalls.push({ operation: "list_frontier_problems", principal });
+        return [{ slug: "erdos-865" }];
+      },
+      async createAttempt() {
+        storeCalls.push({ operation: "create_attempt" });
+        return { id: "attempt:must-not-exist" };
+      },
+    },
+    {
+      operationMode: "read_only",
+      rateLimiter: {
+        async enforce(principal, operation) {
+          limiterCalls.push({ principal, operation });
+        },
+      },
+    },
+  );
+  const headers = {
+    Accept: "application/json, text/event-stream",
+    "Content-Type": "application/json",
+  };
+
+  const initialized = await gateway.fetch(new Request(resource, {
+    method: "POST",
+    headers,
+    body: JSON.stringify({
+      jsonrpc: "2.0",
+      id: 1,
+      method: "initialize",
+      params: {
+        protocolVersion: "2025-11-25",
+        capabilities: {},
+        clientInfo: { name: "Proofweave read-only test", version: "1.0.0" },
+      },
+    }),
+  }));
+  assert.equal(initialized.status, 200);
+
+  const toolsResponse = await gateway.fetch(new Request(resource, {
+    method: "POST",
+    headers: { ...headers, "MCP-Protocol-Version": "2025-11-25" },
+    body: JSON.stringify({ jsonrpc: "2.0", id: 2, method: "tools/list", params: {} }),
+  }));
+  assert.equal(toolsResponse.status, 200);
+  const tools = (await toolsResponse.json()).result.tools;
+  assert.deepEqual(
+    tools.filter((tool) => tool.annotations?.readOnlyHint === true).map((tool) => tool.name).sort(),
+    [...remoteMcpReadOnlyToolNames].sort(),
+  );
+
+  const listed = await gateway.fetch(mcpToolRequest("list_frontier_problems", {}, headers));
+  assert.equal(listed.status, 200);
+  assert.deepEqual(JSON.parse((await listed.json()).result.content[0].text), [{ slug: "erdos-865" }]);
+  assert.deepEqual(storeCalls.map((call) => call.operation), ["list_frontier_problems"]);
+  assert.equal(limiterCalls.length, 0);
+
+  for (const tool of tools.filter((candidate) => candidate.annotations?.readOnlyHint !== true)) {
+    const blocked = await gateway.fetch(mcpToolRequest(tool.name, {}, headers));
+    assert.equal(blocked.status, 503, `${tool.name} must be an HTTP 503`);
+    assert.equal(blocked.headers.get("cache-control"), "no-store");
+    assert.deepEqual(await blocked.json(), {
+      error: "temporarily_unavailable",
+      error_description: "Proofweave is temporarily read-only for maintenance.",
+      diagnostic_code: "control_plane_read_only",
+    });
+  }
+  assert.deepEqual(storeCalls.map((call) => call.operation), ["list_frontier_problems"]);
+  assert.equal(limiterCalls.length, 0);
 });
 
 test("returns only public authority identifiers for the exact OAuth installation", async () => {

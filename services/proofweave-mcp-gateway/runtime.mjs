@@ -10,6 +10,10 @@ import { PinnedRunnerImageRegistry } from "../lean-runner/runner-image-policy.mj
 import { D1InlineArtifactStore } from "../artifacts/d1-inline-artifact-store.mjs";
 import { D1ContributionReceiptCoordinator } from "../receipts/d1-contribution-receipt-coordinator.mjs";
 import { HostedRunnerWakeClient } from "../lean-runner/hosted-runner-wake-client.mjs";
+import {
+  controlPlaneOperationMode,
+  normalizeControlPlaneOperationMode,
+} from "../database/control-plane-operation-mode.mjs";
 
 export class RemoteMcpRuntimeConfigurationError extends Error {
   constructor(message) {
@@ -42,6 +46,7 @@ export class RemoteMcpRuntimeConfigurationError extends Error {
  *   receiptIssuerPublicKey?: string | null,
  *   receiptIssuerPrivateKeyJwkJson?: string | null,
  *   receiptIssuerActivatedAt?: string | null,
+ *   operationMode?: string | null,
  * }} options
  */
 export function createD1RemoteMcpGatewayRuntime({
@@ -62,12 +67,21 @@ export function createD1RemoteMcpGatewayRuntime({
   receiptIssuerPublicKey = null,
   receiptIssuerPrivateKeyJwkJson = null,
   receiptIssuerActivatedAt = null,
+  operationMode = controlPlaneOperationMode.readWrite,
 }) {
   if (!database || typeof database.prepare !== "function") {
     throw new RemoteMcpRuntimeConfigurationError("Remote MCP requires a D1 DB binding.");
   }
   requireAbsoluteUrl(resource, "MCP_RESOURCE_URL");
   requireAbsoluteUrl(issuer, "OAUTH_ISSUER_URL");
+  let normalizedOperationMode;
+  try {
+    normalizedOperationMode = normalizeControlPlaneOperationMode(operationMode);
+  } catch {
+    throw new RemoteMcpRuntimeConfigurationError(
+      "PROOFWEAVE_CONTROL_PLANE_MODE must be read_write or read_only.",
+    );
+  }
   const artifactStore = bucket
     ? null
     : new D1InlineArtifactStore({ database });
@@ -101,6 +115,7 @@ export function createD1RemoteMcpGatewayRuntime({
     identityProvider: createOAuthAccessTokenAuthenticator({ store: oauthStore, resource }),
     store: new D1RemoteMcpGatewayStore({ database, bucket, artifactStore, runnerDispatcher, receiptCoordinator }),
     rateLimiter: new D1RemoteMcpRateLimiter({ database }),
+    operationMode: normalizedOperationMode,
   });
 }
 

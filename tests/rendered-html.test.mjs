@@ -1574,32 +1574,6 @@ test("rejects public local-Agent pairing writes while the control plane is read-
   await readOnlyDatabase.prepare("DELETE FROM persons WHERE id = ?")
     .bind(appSessionPersonId)
     .run();
-
-  const mcpResponse = await readOnlyWorker.dispatchFetch("http://localhost/api/mcp", {
-    method: "POST",
-    headers: {
-      accept: "application/json, text/event-stream",
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      jsonrpc: "2.0",
-      id: 1,
-      method: "initialize",
-      params: {
-        protocolVersion: "2025-06-18",
-        capabilities: {},
-        clientInfo: { name: "read-only-maintenance-test", version: "1.0.0" },
-      },
-    }),
-  });
-  assert.equal(mcpResponse.status, 503);
-  assert.equal(mcpResponse.headers.get("cache-control"), "no-store");
-  assert.deepEqual(await mcpResponse.json(), {
-    error: "temporarily_unavailable",
-    error_description: "Proofweave is temporarily read-only for maintenance.",
-    diagnostic_code: "control_plane_read_only",
-  });
-
   assert.equal(
     await readOnlyDatabase.prepare("SELECT COUNT(*) AS count FROM local_codex_pairing_sessions").first("count"),
     0,
