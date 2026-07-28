@@ -10,6 +10,7 @@ const paths = {
   canonical: new URL("../docs/github-independence.md", import.meta.url),
   bundle: new URL("../docs/artifact-bundle-contract.md", import.meta.url),
   runner: new URL("../docs/runner-provider-neutral-deployment.md", import.meta.url),
+  cutover: new URL("../docs/runner-queue-0043-cutover-runbook.md", import.meta.url),
   e2bAdr: new URL("../docs/adr/0009-e2b-online-lean-runner.md", import.meta.url),
   recoveryWorkflow: new URL("../.github/workflows/e2b-lean-runner.yml", import.meta.url),
 };
@@ -53,14 +54,17 @@ test("the normal Codex install uses a verified local marketplace without GitHub 
 });
 
 test("the evidence and Runner docs preserve the provider-neutral runtime boundary", async () => {
-  const { canonical, bundle, runner, e2bAdr, recoveryWorkflow } = await sources();
+  const { canonical, bundle, runner, cutover, e2bAdr, recoveryWorkflow } = await sources();
 
   assert.match(canonical, /Status: canonical architecture and product-truth boundary/i);
   assert.match(canonical, /No step in this path requires the participant to have a GitHub account/i);
   assert.match(canonical, /Bundle v2 is the provider-neutral executable default/i);
   assert.match(canonical, /Hosted Runner \+ E2B is the alpha reference path/i);
   assert.match(canonical, /GitHub Actions is CI, image-release, and recovery infrastructure/i);
-  assert.match(canonical, /Disable the GitHub Actions Runner/i);
+  assert.match(canonical, /signed GitHub observation covers fixed reviewed workflow sources\s+at drill begin/i);
+  assert.match(canonical, /not continuous or exclusive isolation/i);
+  assert.match(canonical, /does not inspect GitHub Environment protection rules/i);
+  assert.doesNotMatch(canonical, /I-CONFIRM-GITHUB-RECOVERY-IS-DISABLED\b/);
 
   assert.match(bundle, /v2: provider-neutral executable workspace evidence/i);
   assert.match(bundle, /default executable format and does not name,\s*fetch, or authenticate against a Git hosting provider/i);
@@ -71,8 +75,14 @@ test("the evidence and Runner docs preserve the provider-neutral runtime boundar
   assert.match(runner, /reference deployment uses a hosted Node control process on Render/i);
   assert.match(runner, /GitHub Actions is not the primary Runner/i);
   assert.match(runner, /GitHub Actions recovery path/i);
-  assert.match(runner, /Disable the GitHub Actions Runner and repeat the fixture/i);
+  assert.match(runner, /configuration and control-plane readiness only/i);
+  assert.match(runner, /first controlled smoke\s+must verify those provider properties/i);
   assert.doesNotMatch(runner, /protected GitHub Actions trusted Runner/i);
+
+  assert.match(cutover, /External GitHub authority gate/i);
+  assert.match(cutover, /not authorized to merge\s+or deploy/i);
+  assert.match(cutover, /cannot substitute for this external gate/i);
+  assert.match(cutover, /neither proves continuous or hosted-exclusive isolation/i);
 
   assert.match(e2bAdr, /Status: superseded as the active-controller decision/i);
   assert.match(e2bAdr, /hosted\s+trusted Runner on Render as the alpha reference path/i);

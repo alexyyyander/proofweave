@@ -40,7 +40,7 @@ import { productionDrillPolicyHash } from "./lib/production-drill-policy.mjs";
 
 export const githubIndependentDrillSchemaVersion = "pw-github-independent-production-drill-v4";
 export const githubIndependentDrillConfirmations = Object.freeze({
-  begin: "I-CONFIRM-GITHUB-RECOVERY-IS-DISABLED",
+  begin: "I-CONFIRM-REVIEWED-GITHUB-WORKFLOWS-ARE-DISABLED-AT-BEGIN",
   record: "I-CONFIRM-REAL-PRODUCTION-EVIDENCE-WAS-OBSERVED",
   finalize: "I-CONFIRM-PORTABLE-RECEIPT-CLOSURE-IS-FINAL",
 });

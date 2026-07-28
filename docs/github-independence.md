@@ -122,7 +122,9 @@ With no phase argument it is a read-only preflight. It fails unless
   release manifest;
 - every configured Site plugin download is reachable, with the marketplace
   archive matching its published checksum;
-- `/healthz` reports a ready `e2b` Runner at the same revision; and
+- `/healthz` reports a ready `e2b` Runner at the same revision and exposes the
+  fixed configured template/image policy; actual provider build resolution and
+  isolation remain properties of the controlled smoke; and
 - the expected hosted Runner queue consumer is supplied explicitly. A GitHub
   recovery consumer is not interchangeable with that production consumer.
 
@@ -133,11 +135,17 @@ PROOFWEAVE_GITHUB_RECOVERY_ENABLED=false
 PROOFWEAVE_DRILL_SITE_ORIGIN=https://your-proofweave-site.example
 PROOFWEAVE_RUNNER_URL=https://your-proofweave-runner.example
 PROOFWEAVE_DRILL_EXPECTED_RUNNER_CONSUMER_ID=consumer:your-hosted-runner
-PROOFWEAVE_DRILL_GITHUB_REPOSITORY=owner/repository
-PROOFWEAVE_DRILL_GITHUB_REPOSITORY_ID=123456789
-PROOFWEAVE_DRILL_RECOVERY_TRUSTED_KEYS_JSON={"schemaVersion":"pw-runtime-recovery-operator-keyset-v1","keys":[{"keyId":"release-operator:production-01","publicKey":"BASE64URL_ED25519_PUBLIC_KEY","keyFingerprint":"sha256:..."}]}
 PROOFWEAVE_DRILL_PLUGIN_DOWNLOADS_JSON=["/downloads/proofweave-research-marketplace.tar","/downloads/proofweave-research-marketplace.tar.sha256","/downloads/proofweave-research-marketplace.json"]
 ```
+
+GitHub repository identity and recovery-operator public keys come only from
+the release-reviewed `config/production-drill-policy.json`. Optional
+`PROOFWEAVE_DRILL_GITHUB_REPOSITORY`,
+`PROOFWEAVE_DRILL_GITHUB_REPOSITORY_ID`, and
+`PROOFWEAVE_DRILL_RECOVERY_TRUSTED_KEYS_JSON` values are exact-match operator
+assertions; they cannot add authority. The checked-in policy intentionally
+contains no operator key until a reviewed enrollment PR is merged, so
+production preflight fails closed in the meantime.
 
 The three canonical paths are mandatory; the list may contain up to five
 additional same-origin public release files. The distribution manifest is
@@ -171,20 +179,30 @@ confirmation printed below; abbreviations are rejected:
 ```sh
 npm run runtime:github-independent:drill -- begin \
   --state /private/tmp/proofweave-production-drill.json \
-  --confirm I-CONFIRM-GITHUB-RECOVERY-IS-DISABLED \
+  --confirm I-CONFIRM-REVIEWED-GITHUB-WORKFLOWS-ARE-DISABLED-AT-BEGIN \
   --correlation-id correlation:production-20260727-001 \
   --person-id person:production-owner \
   --agent-id agent:production-prover \
   --bundle-hash sha256:REPLACE_WITH_64_HEX_CHARACTERS
 ```
 
-`begin` does not upload or trigger anything. It takes one read-only GitHub API
-snapshot: each reviewed queue-consuming workflow must be
+`begin` does not upload or trigger anything. Before the API observation, its
+static scanner requires the reviewed full-file SHA-256 for each checked-in
+queue workflow and separately closes over its fixed `uses` and `run` surfaces.
+Changes to triggers, permissions, Environment/secret mappings, local actions,
+reusable workflows, inherited-secret calls, wrappers, or unreviewed workflows
+carrying known queue authority fail closed. This is a conservative review gate,
+not a proof that static source analysis discovered every possible consumer.
+
+It then takes one read-only GitHub API snapshot: each reviewed queue workflow must be
 `disabled_manually`, have zero active runs, and have release-source bytes
 matching the checked-in workflow hash. The release operator signs that
 snapshot, and its complete public evidence plus canonical hash are stored in
-the v4 drill state. After it succeeds, submit the same prepared draft through the
-normal local Agent and browser-approved Connector:
+the v4 drill state. It does not inspect GitHub Environment protection rules,
+organization/repository/environment secret access, or state changes after
+`observedAt`; those remain mandatory external release gates in the migration
+runbook. After it succeeds, submit the same prepared draft through the normal
+local Agent and browser-approved Connector:
 
 1. Reconfirm that the retained prepared draft has the exact manifest hash
    recorded by `begin`.
@@ -310,5 +328,7 @@ Until this passes against one aligned deployed revision, the truthful status is:
 - Say **“Bundle v3 adds optional GitHub provenance.”**
 - Say **“Hosted Runner + E2B is the alpha reference path.”**
 - Say **“GitHub Actions is CI, image-release, and recovery infrastructure.”**
+- Say **“The signed GitHub observation covers fixed reviewed workflow sources
+  at drill begin; it is not continuous or exclusive isolation.”**
 - Do not say the entire product has no GitHub dependency while CI and the image
   supply chain still depend on it.

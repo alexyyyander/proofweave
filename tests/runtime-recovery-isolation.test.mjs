@@ -26,7 +26,7 @@ const subject = Object.freeze({
   artifactBundleHash: `sha256:${"b".repeat(64)}`,
 });
 
-test("scanner deterministically covers exactly the reviewed production queue consumers", async () => {
+test("scanner deterministically closes exactly the reviewed checked-in recovery surfaces", async () => {
   const first = await scanGithubRecoverySurfaces({ repoRoot });
   const second = await scanGithubRecoverySurfaces({ repoRoot });
   assert.equal(first.hash, second.hash);
@@ -94,7 +94,105 @@ test("scanner fails closed for an unknown secret-bearing consumer wrapper", asyn
   }
 });
 
-test("begin inspector signs a complete disabled-and-idle GitHub observation", async () => {
+test("scanner fails closed for an unknown local action reference", async () => {
+  const temporaryRoot = await copyReviewedWorkflows("proofweave-recovery-local-action-");
+  try {
+    await writeFile(
+      path.join(temporaryRoot, ".github", "workflows", "unreviewed-local-action.yml"),
+      [
+        "name: Unreviewed local action",
+        "jobs:",
+        "  call-local:",
+        "    runs-on: ubuntu-latest",
+        "    steps:",
+        "      - uses: ./.github/actions/private-runner-wrapper",
+        "",
+      ].join("\n"),
+    );
+    await assert.rejects(
+      scanGithubRecoverySurfaces({ repoRoot: temporaryRoot }),
+      (error) => error?.code === "UNREVIEWED_EXECUTION_REFERENCE",
+    );
+  } finally {
+    await rm(temporaryRoot, { recursive: true, force: true });
+  }
+});
+
+test("scanner fails closed for an unknown reusable workflow with inherited secrets", async () => {
+  const temporaryRoot = await copyReviewedWorkflows("proofweave-recovery-reusable-");
+  try {
+    await writeFile(
+      path.join(temporaryRoot, ".github", "workflows", "unreviewed-reusable.yml"),
+      [
+        "name: Unreviewed reusable workflow",
+        "jobs:",
+        "  call-reusable:",
+        "    uses: proofweave/ops/.github/workflows/private-runner.yml@0123456789abcdef0123456789abcdef01234567",
+        "    secrets: inherit",
+        "",
+      ].join("\n"),
+    );
+    await assert.rejects(
+      scanGithubRecoverySurfaces({ repoRoot: temporaryRoot }),
+      (error) => error?.code === "UNREVIEWED_EXECUTION_REFERENCE",
+    );
+  } finally {
+    await rm(temporaryRoot, { recursive: true, force: true });
+  }
+});
+
+test("scanner fails closed when a reviewed workflow adds an unreviewed wrapper", async () => {
+  const temporaryRoot = await copyReviewedWorkflows("proofweave-recovery-reviewed-drift-");
+  try {
+    const workflowPath = ".github/workflows/e2b-lean-runner.yml";
+    const source = await readFile(path.join(temporaryRoot, workflowPath), "utf8");
+    await writeFile(
+      path.join(temporaryRoot, workflowPath),
+      `${source}\n      - name: Invoke an added wrapper\n        run: ./private-runner-wrapper\n`,
+    );
+    await assert.rejects(
+      scanGithubRecoverySurfaces({ repoRoot: temporaryRoot }),
+      (error) => error?.code === "REVIEWED_SURFACE_DRIFT",
+    );
+  } finally {
+    await rm(temporaryRoot, { recursive: true, force: true });
+  }
+});
+
+test("scanner fails closed when only reviewed workflow permissions or environment mappings drift", async (context) => {
+  const mutations = [
+    {
+      name: "permissions",
+      replace: ["permissions:\n  contents: read", "permissions:\n  contents: write"],
+    },
+    {
+      name: "environment",
+      replace: ["environment: proofweave-runner-alpha", "environment: unreviewed-runner-environment"],
+    },
+  ];
+  for (const mutation of mutations) {
+    await context.test(mutation.name, async () => {
+      const temporaryRoot = await copyReviewedWorkflows(`proofweave-recovery-${mutation.name}-drift-`);
+      try {
+        const workflowPath = ".github/workflows/e2b-lean-runner.yml";
+        const source = await readFile(path.join(temporaryRoot, workflowPath), "utf8");
+        assert.ok(source.includes(mutation.replace[0]));
+        await writeFile(
+          path.join(temporaryRoot, workflowPath),
+          source.replace(...mutation.replace),
+        );
+        await assert.rejects(
+          scanGithubRecoverySurfaces({ repoRoot: temporaryRoot }),
+          (error) => error?.code === "REVIEWED_SURFACE_DRIFT",
+        );
+      } finally {
+        await rm(temporaryRoot, { recursive: true, force: true });
+      }
+    });
+  }
+});
+
+test("begin inspector signs a checked-in begin snapshot, not continuous or exclusive isolation", async () => {
   const fixture = await createFixture();
   const evidence = await inspect(fixture);
   assert.equal(evidence.protocolVersion, runtimeRecoveryIsolationProtocolVersion);
@@ -235,6 +333,17 @@ test("inspector is begin-only", async () => {
     (error) => error?.code === "BEGIN_ONLY",
   );
 });
+
+async function copyReviewedWorkflows(prefix) {
+  const temporaryRoot = await mkdtemp(path.join(os.tmpdir(), prefix));
+  const workflowDirectory = path.join(temporaryRoot, ".github", "workflows");
+  await mkdir(workflowDirectory, { recursive: true });
+  for (const workflowPath of Object.keys(expectedGithubRecoverySurfaces)) {
+    const source = await readFile(path.join(repoRoot, workflowPath));
+    await writeFile(path.join(temporaryRoot, workflowPath), source);
+  }
+  return temporaryRoot;
+}
 
 async function createFixture({
   workflowState = "disabled_manually",

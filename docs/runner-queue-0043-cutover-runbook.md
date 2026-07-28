@@ -84,6 +84,37 @@ the public key and rejects it unless both ID and public bytes match the reviewed
 policy. An operator must not populate a trusted-keyset environment variable to
 bootstrap authority; a self-selected keyset is not production evidence.
 
+### External GitHub authority gate
+
+The signed recovery observation covers only the fixed, reviewed workflow source
+closure at one begin-time instant. It does not query or prove GitHub
+organization, repository, or Environment authorization policy. Before merge or
+deployment, the release commander and independent observer must collect
+provider-side evidence that:
+
+- the `proofweave-runner-alpha` Environment permits only the reviewed branch or
+  tag and requires the named production approver(s);
+- repository and Environment secrets that can reach Turso, E2B, queue signing,
+  Runner-result signing, or Receipt issuance are not available to unreviewed
+  workflows, reusable workflows, local actions, forks, or unrestricted
+  maintainers;
+- no organization-level secret grants this repository a broader queue/runtime
+  authority than the reviewed Environment policy;
+- `workflow_dispatch`, `repository_dispatch`, schedules, and Environment
+  approvals for both reviewed queue workflows are disabled or blocked for the
+  freeze, with zero active runs;
+- every third-party action in the reviewed workflows is pinned to an immutable
+  full commit SHA; and
+- the scanner's reviewed full-file workflow hashes and fixed checked-in
+  `uses`/`run` closure pass without trigger, permission, Environment/secret
+  mapping, local-action, reusable-workflow, inherited-secret, or wrapper drift.
+
+Record the GitHub audit-event IDs, API responses, or screenshots and the UTC
+observation interval in the release record. If any item is unknown, inherited,
+or cannot be independently inspected, the release is **not authorized to merge
+or deploy**. A signed begin snapshot cannot substitute for this external gate,
+and neither proves continuous or hosted-exclusive isolation.
+
 ## Phase 1 — Freeze producers
 
 Record the UTC start time and expected `RELEASE_SHA`, then prevent creation of

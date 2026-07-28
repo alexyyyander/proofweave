@@ -44,11 +44,15 @@ privacy-safe `GET /healthz` status plus authenticated, empty-body
 `POST /v1/wake`. Signed work remains in the durable Turso lease queue.
 
 `/healthz` becomes ready only after startup verifies the actual Turso migration
-ledger and the full Render revision, E2B template ID/build ID, immutable image
-digest, and approved-image registry. Its `releaseDiagnostics` object contains
-only the `turso` authority label, SHA-256-derived 16-character database
-fingerprint, live `ledgerHead`, and a bounded failure code. It never returns
-the database URL, token, wake credential, provider API key, or signing key.
+ledger and full Render revision and validates the fixed configured E2B template
+ID/build ID, immutable image digest, and approved-image registry. It does not
+query E2B to prove that the provider currently resolves that build, launched
+that image, or enforced network/process isolation. The first controlled smoke
+must verify those provider properties and bind them to a terminal Run.
+`releaseDiagnostics` contains only the `turso` authority label,
+SHA-256-derived 16-character database fingerprint, live `ledgerHead`, and a
+bounded failure code. It never returns the database URL, token, wake credential,
+provider API key, or signing key.
 The Sites `/api/mcp/capabilities` route derives the same diagnostic from its
 selected runtime authority and caches one live ledger verification per Worker
 isolate. Strict release collection separately compares `ledgerHead` with the
@@ -178,10 +182,12 @@ Receipt coordinator still requires the configured independent-review policy.
 5. Exercise E2B creation and confirm disabled Internet plus private inbound
    traffic.
 6. Configure the hosted trusted Runner and verify `GET /healthz` reports the
-   expected revision, provider, image, template, and ready state.
+   expected revision, configured provider/image/template policy, and ready
+   state. Treat this as configuration and control-plane readiness only.
 7. Queue one signed v2 fixture, send one authenticated wake, and confirm real
-   Lean execution, kernel acceptance, no-`sorry`, allowed-axiom audit,
-   immutable outputs, result signature, and queue acknowledgement.
+   provider template/build resolution, sandbox isolation, Lean execution,
+   kernel acceptance, no-`sorry`, allowed-axiom audit, immutable outputs,
+   result signature, and queue acknowledgement.
 8. Independently disable the live GitHub Actions recovery workflow through its
    provider control, record that observation, and repeat the fixture. A local
    `PROOFWEAVE_GITHUB_RECOVERY_ENABLED=false` value does not prove the external

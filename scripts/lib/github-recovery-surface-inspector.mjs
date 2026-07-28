@@ -16,6 +16,47 @@ export const expectedGithubRecoverySurfaces = Object.freeze({
   ".github/workflows/build-week-live-receipt.yml": "manual_queue_consumer",
   ".github/workflows/e2b-lean-runner.yml": "recovery_queue_consumer",
 });
+const reviewedGithubRecoveryWorkflowPolicies = Object.freeze({
+  ".github/workflows/build-week-live-receipt.yml": Object.freeze({
+    sourceSha256: "sha256:5ae6458918ec85f9761e5d61e909622062132a4246fc75403fa04444b0bc9e8f",
+    allowedUses: Object.freeze([
+      "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+      "actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+    ]),
+    allowedRuns: Object.freeze([
+      "npm ci --ignore-scripts",
+      "node scripts/run-build-week-live-closure.mjs prime \"${{ inputs.artifact_bundle_hash }}\"",
+      "npm run runner:trusted:once",
+      "node scripts/run-build-week-live-closure.mjs prepare \"${{ inputs.artifact_bundle_hash }}\"",
+      "npm run runner:trusted:once",
+      "node scripts/run-build-week-live-closure.mjs finalize \"${{ inputs.artifact_bundle_hash }}\"",
+    ]),
+  }),
+  ".github/workflows/e2b-lean-runner.yml": Object.freeze({
+    sourceSha256: "sha256:d4a951dea544e61f47df06865271770a92583841a027ed0bc9e586de0d5a878c",
+    allowedUses: Object.freeze([
+      "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+      "actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+    ]),
+    allowedRuns: Object.freeze([
+      "npm ci --ignore-scripts",
+      "npm run runner:trusted:once",
+    ]),
+  }),
+});
+const queueAuthorityMarkers = Object.freeze([
+  "TURSO_DATABASE_URL",
+  "TURSO_AUTH_TOKEN",
+]);
+const runnerAuthorityMarkers = Object.freeze([
+  "RUNNER_EXECUTION_ENABLED",
+  "RUNNER_RESULT_PRIVATE_KEY_JWK",
+  "RUNNER_CONTROL_PLANE_PRIVATE_KEY_JWK",
+]);
+const knownQueueConsumerCommands = Object.freeze([
+  "npm run runner:trusted:once",
+  "run-trusted-lean-runner-once.mjs",
+]);
 
 export class GithubRecoverySurfaceInspectionError extends Error {
   constructor(code, message) {
@@ -26,8 +67,9 @@ export class GithubRecoverySurfaceInspectionError extends Error {
 }
 
 /**
- * Enumerate every Actions workflow and fail closed when a queue-consumer
- * signature is present outside the reviewed surface allowlist.
+ * Enumerate the checked-in Actions inventory and close over the exact reviewed
+ * workflow execution surfaces. This is deliberately not a claim that static
+ * source inspection discovers every possible runtime consumer.
  */
 export async function scanGithubRecoverySurfaces({
   repoRoot = repositoryRoot,
@@ -60,18 +102,27 @@ export async function scanGithubRecoverySurfaces({
     } catch {
       throw inspectionError("WORKFLOW_SCAN_FAILED", "A GitHub workflow surface is not valid UTF-8.");
     }
-    if (!isQueueConsumerWorkflow(text)) continue;
+    const sourceSha256 = await sha256Bytes(bytes);
+    const executionSurface = inspectWorkflowExecutionSurface(text);
+    rejectUnclosedWorkflowReferences(workflowPath, executionSurface);
     const role = expectedGithubRecoverySurfaces[workflowPath];
-    if (!role) {
+    if (!role && canReachKnownQueueAuthority(text)) {
       throw inspectionError(
         "UNKNOWN_QUEUE_CONSUMER",
-        "An unreviewed GitHub workflow can consume the production Runner queue.",
+        "An unreviewed checked-in GitHub workflow may reach the production Runner queue authority.",
       );
     }
+    if (!role) continue;
+    requireReviewedExecutionSurface(
+      workflowPath,
+      executionSurface,
+      reviewedGithubRecoveryWorkflowPolicies[workflowPath],
+      sourceSha256,
+    );
     detected.push({
       path: workflowPath,
       role,
-      sourceSha256: await sha256Bytes(bytes),
+      sourceSha256,
       sourceBytes: bytes,
     });
   }
@@ -84,7 +135,7 @@ export async function scanGithubRecoverySurfaces({
   ) {
     throw inspectionError(
       "EXPECTED_QUEUE_CONSUMER_MISSING",
-      "A reviewed GitHub recovery workflow is absent or no longer has a queue-consumer signature.",
+      "A reviewed GitHub recovery workflow is absent from the checked-in source closure.",
     );
   }
 
@@ -101,8 +152,9 @@ export async function scanGithubRecoverySurfaces({
 }
 
 /**
- * Observe recovery isolation only at the start of a production drill. GitHub
- * must report each reviewed workflow disabled manually and with no active run.
+ * Observe only the reviewed, checked-in recovery surfaces at drill begin.
+ * GitHub must report those workflows disabled manually and with no active run.
+ * This snapshot is neither continuous nor proof of exclusive execution.
  */
 export async function inspectRuntimeRecoveryIsolationAtDrillBegin(options = {}) {
   requireBeginOptions(options);
@@ -286,21 +338,72 @@ export async function inspectRuntimeRecoveryIsolationAtDrillBegin(options = {}) 
   });
 }
 
-function isQueueConsumerWorkflow(source) {
-  const executesKnownConsumer = (
-    /\bnpm\s+run\s+runner:trusted:once\b/.test(source)
-    || /\bnode\s+\S*run-trusted-lean-runner-once\.mjs\b/.test(source)
-  );
+function inspectWorkflowExecutionSurface(source) {
+  const uses = [];
+  const runs = [];
+  let inheritsSecrets = false;
+  for (const rawLine of source.split("\n")) {
+    const line = rawLine.trim();
+    const usesValue = scalarValue(line, "uses");
+    if (usesValue !== null) uses.push(usesValue);
+    const runValue = scalarValue(line, "run");
+    if (runValue !== null) runs.push(runValue);
+    if (scalarValue(line, "secrets") === "inherit") inheritsSecrets = true;
+  }
+  return Object.freeze({
+    uses: Object.freeze(uses),
+    runs: Object.freeze(runs),
+    inheritsSecrets,
+  });
+}
+
+function scalarValue(line, key) {
+  const prefix = `${key}:`;
+  const candidate = line.startsWith("- ") ? line.slice(2).trimStart() : line;
+  if (!candidate.startsWith(prefix)) return null;
+  return candidate.slice(prefix.length).trim();
+}
+
+function rejectUnclosedWorkflowReferences(workflowPath, executionSurface) {
+  const unclosedUse = executionSurface.uses.find((value) => (
+    value.startsWith("./")
+    || value.startsWith("../")
+    || value.includes("/.github/workflows/")
+    || value.startsWith(".github/workflows/")
+  ));
+  if (unclosedUse || executionSurface.inheritsSecrets) {
+    throw inspectionError(
+      "UNREVIEWED_EXECUTION_REFERENCE",
+      `Checked-in workflow ${workflowPath} references a local/reusable execution surface or inherited secrets that the reviewed closure cannot prove.`,
+    );
+  }
+}
+
+function requireReviewedExecutionSurface(workflowPath, executionSurface, policy, sourceSha256) {
+  if (
+    !policy
+    || sourceSha256 !== policy.sourceSha256
+    || !sameStrings(executionSurface.uses, policy.allowedUses)
+    || !sameStrings(executionSurface.runs, policy.allowedRuns)
+  ) {
+    throw inspectionError(
+      "REVIEWED_SURFACE_DRIFT",
+      `Reviewed GitHub workflow ${workflowPath} changed its fixed uses/run source closure.`,
+    );
+  }
+}
+
+function canReachKnownQueueAuthority(source) {
+  const executesKnownConsumer = knownQueueConsumerCommands.some((command) => source.includes(command));
   const holdsControlPlaneCredentials = (
-    /\bTURSO_DATABASE_URL\s*:/.test(source)
-    && /\bTURSO_AUTH_TOKEN\s*:/.test(source)
-    && (
-      /\bRUNNER_EXECUTION_ENABLED\s*:/.test(source)
-      || /\bRUNNER_RESULT_PRIVATE_KEY_JWK\s*:/.test(source)
-      || /\bRUNNER_CONTROL_PLANE_PRIVATE_KEY_JWK\s*:/.test(source)
-    )
+    queueAuthorityMarkers.every((marker) => source.includes(marker))
+    && runnerAuthorityMarkers.some((marker) => source.includes(marker))
   );
   return executesKnownConsumer || holdsControlPlaneCredentials;
+}
+
+function sameStrings(left, right) {
+  return left.length === right.length && left.every((value, index) => value === right[index]);
 }
 
 async function githubJson(fetchImpl, url, token, failureCode) {
