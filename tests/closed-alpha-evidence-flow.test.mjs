@@ -32,7 +32,11 @@ import {
   artifactBundleSigningPayload,
   artifactBundleSigningPayloadHash,
 } from "../packages/protocol/artifact-bundle.mjs";
-import { canonicalJson } from "../packages/protocol/canonical-json.mjs";
+import { canonicalJson, sha256Canonical } from "../packages/protocol/canonical-json.mjs";
+import {
+  delegationPayloadHash,
+  delegationSigningPayload,
+} from "../packages/domain/delegation.mjs";
 import { createLeanRunnerRequest, leanRunnerRequestHash } from "../packages/protocol/lean-runner.mjs";
 import { createRunnerQueueMessage, RunnerJobAuthenticator } from "../services/lean-runner/queue.mjs";
 import { runnerKeyFingerprint } from "../packages/protocol/runner-key-registry.mjs";
@@ -211,9 +215,72 @@ test("a local evidence-chain fixture reaches a signed receipt without crossing t
   assert.equal(replayFinalized.replayEvidence?.assignmentId, replayAssignmentId);
   assert.equal(replayFinalized.replayEvidence?.artifactBundleHash, staged.bundle.manifestHash);
 
+  const kernelReplayAssignmentId = "assignment:closed-alpha:kernel_accepted";
+  await verification.assign({
+    id: kernelReplayAssignmentId,
+    artifactBundleManifestHash: staged.bundle.manifestHash,
+    claimType: "kernel_accepted",
+    verifierPersonId: "person:bob",
+    assignedAt: "2026-07-13T00:00:05Z",
+  });
+  await verification.accept(kernelReplayAssignmentId, "person:bob", "2026-07-13T00:00:06Z");
+  const kernelReplayQueued = await runStore.queue({
+    id: "run:closed-alpha-kernel-replay",
+    attemptId: bundle.attemptId,
+    idempotencyKey: "closed-alpha-kernel-replay",
+    requestHash: sha("c"),
+    artifactBundleHash: staged.bundle.manifestHash,
+    queuedAt: "2026-07-13T00:00:11Z",
+  });
+  await database
+    .prepare(
+      `INSERT INTO verification_replays (
+        id, assignment_id, run_id, artifact_bundle_manifest_hash,
+        requester_person_id, requester_agent_id, delegation_certificate_id,
+        agent_installation_id, idempotency_key, requested_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    )
+    .bind(
+      "verification-replay:closed-alpha-kernel", kernelReplayAssignmentId,
+      kernelReplayQueued.run.id, staged.bundle.manifestHash,
+      "person:bob", "agent:bob-reviewer", "delegation:bob-reviewer",
+      "installation:closed-alpha-bob-reviewer", "closed-alpha-kernel-workspace",
+      "2026-07-13T00:00:11Z",
+    )
+    .run();
+  await runStore.prepare(kernelReplayQueued.run.id, "2026-07-13T00:00:12Z");
+  const kernelReplayRunning = await runStore.start(
+    kernelReplayQueued.run.id,
+    "2026-07-13T00:00:13Z",
+  );
+  const kernelReplayExecution = {
+    ...execution,
+    result: {
+      ...execution.result,
+      jobId: kernelReplayRunning.id,
+      requestHash: kernelReplayRunning.requestHash,
+      startedAt: "2026-07-13T00:00:13Z",
+      finishedAt: "2026-07-13T00:00:14Z",
+    },
+  };
+  const kernelReplayFinalized = await new RunnerExecutionFinalizer({
+    runStore,
+    outputStore: new D1R2RunnerOutputStore({ database, bucket }),
+    replayEvidenceStore: new D1R2VerificationReplayEvidenceStore({ database, bucket }),
+    resultSigner: new RunnerExecutionResultSigner({
+      runnerKeyId: "runner-key:closed-alpha",
+      runnerPrivateKey: keys.runner.privateKey,
+    }),
+  }).finalize({
+    runId: kernelReplayRunning.id,
+    execution: kernelReplayExecution,
+    receivedAt: "2026-07-13T00:00:14Z",
+  });
+  assert.equal(kernelReplayFinalized.replayEvidence?.assignmentId, kernelReplayAssignmentId);
+
   const reviewInputs = [
     ["bundle_reproducible", "bob", { contentHash: replayFinalized.replayEvidence.evidenceHash }, replayAssignmentId],
-    ["kernel_accepted", "bob", reviewEvidence[0], "assignment:closed-alpha:kernel_accepted"],
+    ["kernel_accepted", "bob", { contentHash: kernelReplayFinalized.replayEvidence.evidenceHash }, kernelReplayAssignmentId],
     ["project_accepted", "carol", reviewEvidence[1], "assignment:closed-alpha:project_accepted"],
   ];
   const coordinator = new D1ContributionReceiptCoordinator({
@@ -229,7 +296,7 @@ test("a local evidence-chain fixture reaches a signed receipt without crossing t
   let finalClosure = null;
   const closureStates = [];
   for (const [claimType, reviewer, evidence, assignmentId] of reviewInputs) {
-    if (assignmentId !== replayAssignmentId) {
+    if (![replayAssignmentId, kernelReplayAssignmentId].includes(assignmentId)) {
       await verification.assign({
         id: assignmentId,
         artifactBundleManifestHash: staged.bundle.manifestHash,
@@ -246,6 +313,7 @@ test("a local evidence-chain fixture reaches a signed receipt without crossing t
       evidenceHash: evidence.contentHash,
       reviewer,
       keys,
+      attestedAt: "2026-07-13T00:00:15Z",
     });
     const recorded = await gateway.submitVerificationAttestation({
       clientId: "client:closed-alpha-reviewer",
@@ -637,6 +705,12 @@ async function toKeyPair(pair) {
 
 async function seedDelegatedPeopleAndAttempt(d1, fixtureKeys) {
   const people = ["alice", "bob", "carol"];
+  const fingerprints = Object.fromEntries(await Promise.all(
+    people.map(async (person) => [
+      person,
+      await keyFingerprint(fixtureKeys[person].publicKey),
+    ]),
+  ));
   const statements = [
     ...people.map((person) => [
       "INSERT INTO persons (id, identity_provider, provider_subject, display_name, updated_at) VALUES (?, ?, ?, ?, ?)",
@@ -659,12 +733,12 @@ async function seedDelegatedPeopleAndAttempt(d1, fixtureKeys) {
     ],
     ...people.map((person) => [
       "INSERT INTO person_keys (id, person_id, public_key, fingerprint) VALUES (?, ?, ?, ?)",
-      [`person-key:${person}`, `person:${person}`, fixtureKeys[person].publicKey, sha(person === "alice" ? "3" : person === "bob" ? "4" : "5")],
+      [`person-key:${person}`, `person:${person}`, fixtureKeys[person].publicKey, fingerprints[person]],
     ]),
-    ["INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint) VALUES (?, ?, ?, ?, ?)", ["agent:alice-prover", "person:alice", "Alice prover", fixtureKeys.alice.publicKey, sha("6")]],
-    ["INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint) VALUES (?, ?, ?, ?, ?)", ["agent:bob-reviewer", "person:bob", "Bob reviewer", fixtureKeys.bob.publicKey, sha("7")]],
-    ["INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint) VALUES (?, ?, ?, ?, ?)", ["agent:carol-curator", "person:carol", "Carol curator", fixtureKeys.carol.publicKey, sha("8")]],
-    ...delegationStatements(fixtureKeys),
+    ["INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint, created_at) VALUES (?, ?, ?, ?, ?, ?)", ["agent:alice-prover", "person:alice", "Alice prover", fixtureKeys.alice.publicKey, fingerprints.alice, "2026-07-01T00:00:00Z"]],
+    ["INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint, created_at) VALUES (?, ?, ?, ?, ?, ?)", ["agent:bob-reviewer", "person:bob", "Bob reviewer", fixtureKeys.bob.publicKey, fingerprints.bob, "2026-07-01T00:00:00Z"]],
+    ["INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint, created_at) VALUES (?, ?, ?, ?, ?, ?)", ["agent:carol-curator", "person:carol", "Carol curator", fixtureKeys.carol.publicKey, fingerprints.carol, "2026-07-01T00:00:00Z"]],
+    ...await delegationStatements(fixtureKeys),
     ["INSERT INTO oauth_clients (id, client_name, redirect_uris_json) VALUES (?, ?, ?)", ["client:closed-alpha-reviewer", "Closed alpha reviewer", '["https://codex.example.test/callback"]']],
     [
       `INSERT INTO agent_installations (
@@ -717,33 +791,53 @@ async function seedLocalLeanAttempt(d1) {
   for (const [statement, values] of statements) await d1.prepare(statement).bind(...values).run();
 }
 
-function delegationStatements(fixtureKeys) {
-  return [
+async function delegationStatements(fixtureKeys) {
+  return Promise.all([
     ["alice", "prover", "prove"],
     ["bob", "reviewer", "review"],
     ["carol", "curator", "review"],
-  ].map(([person, role, scope]) => [
-    `INSERT INTO delegation_certificates (
-      id, owner_person_id, agent_id, person_key_id, agent_public_key,
-      scopes_json, valid_from, valid_until, beneficiary_person_id,
-      protocol_version, payload_hash, canonical_payload, person_signature
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-    [
-      `delegation:${person}-${role}`,
-      `person:${person}`,
-      `agent:${person}-${role}`,
-      `person-key:${person}`,
-      fixtureKeys[person].publicKey,
-      JSON.stringify([scope]),
-      "2026-07-01T00:00:00Z",
-      "2027-07-01T00:00:00Z",
-      `person:${person}`,
-      "pw-delegation-v1",
-      sha(person === "alice" ? "a" : person === "bob" ? "b" : "c"),
-      "{}",
-      "signature",
-    ],
-  ]);
+  ].map(async ([person, role, scope]) => {
+    const certificate = {
+      id: `delegation:${person}-${role}`,
+      ownerPersonId: `person:${person}`,
+      agentId: `agent:${person}-${role}`,
+      agentPublicKey: fixtureKeys[person].publicKey,
+      scopes: [scope],
+      validFrom: "2026-07-01T00:00:00Z",
+      validUntil: "2027-07-01T00:00:00Z",
+      attributionPolicy: {
+        beneficiaryPersonId: `person:${person}`,
+        mode: "agent_delegated",
+      },
+    };
+    const canonicalPayload = canonicalJson(delegationSigningPayload(certificate));
+    return [
+      `INSERT INTO delegation_certificates (
+        id, owner_person_id, agent_id, person_key_id, agent_public_key,
+        scopes_json, valid_from, valid_until, beneficiary_person_id,
+        protocol_version, payload_hash, canonical_payload, person_signature
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        certificate.id,
+        certificate.ownerPersonId,
+        certificate.agentId,
+        `person-key:${person}`,
+        certificate.agentPublicKey,
+        JSON.stringify(certificate.scopes),
+        certificate.validFrom,
+        certificate.validUntil,
+        certificate.attributionPolicy.beneficiaryPersonId,
+        "pw-delegation-v1",
+        await delegationPayloadHash(certificate),
+        canonicalPayload,
+        base64Url(await crypto.subtle.sign(
+          "Ed25519",
+          fixtureKeys[person].privateKey,
+          new TextEncoder().encode(canonicalPayload),
+        )),
+      ],
+    ];
+  }));
 }
 
 async function signedBundle({
@@ -947,4 +1041,8 @@ function writeTarOctal(target, offset, length, value) {
 function base64Url(value) {
   const binary = String.fromCharCode(...new Uint8Array(value));
   return btoa(binary).replaceAll("+", "-").replaceAll("/", "_").replaceAll("=", "");
+}
+
+function keyFingerprint(publicKey) {
+  return sha256Canonical({ algorithm: "ed25519", public_key: publicKey });
 }

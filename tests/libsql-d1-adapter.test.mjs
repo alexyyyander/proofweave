@@ -9,6 +9,11 @@ import {
   LibsqlD1Database,
   createRemoteLibsqlD1Database,
 } from "../services/database/libsql-d1-adapter.mjs";
+import {
+  controlPlaneAuthority,
+  ControlPlaneAuthorityConfigurationError,
+  selectControlPlaneAuthority,
+} from "../db/control-plane-authority.mjs";
 
 test("libSQL adapter preserves the D1 prepare/bind/result contract", async (t) => {
   const database = memoryDatabase();
@@ -80,6 +85,37 @@ test("remote libSQL configuration fails closed without a remote URL and token", 
   assert.throws(
     () => new LibsqlD1Database({ execute() {} }),
     LibsqlD1AdapterConfigurationError,
+  );
+});
+
+test("control-plane authority selects Turso only when both remote settings exist", () => {
+  const d1Database = { prepare() {} };
+  assert.equal(selectControlPlaneAuthority({
+    tursoDatabaseUrl: "libsql://proofweave.example",
+    tursoAuthToken: "token",
+    d1Database,
+  }), controlPlaneAuthority.turso);
+  assert.equal(selectControlPlaneAuthority({
+    d1Database,
+  }), controlPlaneAuthority.sitesD1);
+  assert.equal(selectControlPlaneAuthority(), controlPlaneAuthority.missing);
+});
+
+test("partial Turso configuration fails closed instead of falling back to Sites D1", () => {
+  const d1Database = { prepare() {} };
+  assert.throws(
+    () => selectControlPlaneAuthority({
+      tursoDatabaseUrl: "libsql://proofweave.example",
+      d1Database,
+    }),
+    ControlPlaneAuthorityConfigurationError,
+  );
+  assert.throws(
+    () => selectControlPlaneAuthority({
+      tursoAuthToken: "token",
+      d1Database,
+    }),
+    ControlPlaneAuthorityConfigurationError,
   );
 });
 

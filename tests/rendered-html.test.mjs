@@ -240,6 +240,7 @@ async function getControlledEvidenceFixture() {
 
 async function insertControlledEvidenceFixture() {
   const now = "2026-07-13T02:00:00Z";
+  const rejectedAt = "2026-07-13T02:00:01Z";
   const ownerHeaders = {
     "oai-authenticated-user-email": "evidence-owner@example.test",
     "oai-authenticated-user-full-name": "Evidence%20Owner",
@@ -291,8 +292,27 @@ async function insertControlledEvidenceFixture() {
   const canonicalManifest = canonicalArtifactBundle(bundle);
   const manifestHash = await artifactBundleHash(bundle);
   const manifest = await putEvidenceObject(canonicalManifest, "bundle.json", "application/json", manifestHash);
+  const rejectedBundle = {
+    ...bundle,
+    id: "bundle:controlled-evidence-rejected",
+    agentEvent: {
+      ...bundle.agentEvent,
+      eventId: "agent-event:controlled-evidence-rejected",
+      occurredAt: rejectedAt,
+      payloadHash: hash("6"),
+    },
+  };
+  const rejectedCanonicalManifest = canonicalArtifactBundle(rejectedBundle);
+  const rejectedManifestHash = await artifactBundleHash(rejectedBundle);
+  const rejectedManifest = await putEvidenceObject(
+    rejectedCanonicalManifest,
+    "bundle.json",
+    "application/json",
+    rejectedManifestHash,
+  );
   const stdout = await putRunnerOutput("kernel accepted\n", "stdout");
   const stderr = await putRunnerOutput("", "stderr");
+  const rejectedStdout = await putRunnerOutput("bundle B rejected\n", "stdout");
   const reviewerReplayPublicKey = base64Url(crypto.getRandomValues(new Uint8Array(32)));
   const replayRunnerResult = {
     protocolVersion: "pw-lean-runner-v1",
@@ -414,6 +434,17 @@ async function insertControlledEvidenceFixture() {
       [bundle.id, bundle.attemptId, bundle.problemRevisionId, manifest.contentHash, manifest.objectKey, canonicalManifest, bundle.agentEvent.eventId, bundle.agentEvent.payloadHash],
     ],
     [
+      `INSERT INTO artifact_bundles (
+        id, attempt_id, problem_revision_id, manifest_hash, manifest_key,
+        canonical_manifest, agent_event_id, agent_event_payload_hash
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        rejectedBundle.id, rejectedBundle.attemptId, rejectedBundle.problemRevisionId,
+        rejectedManifest.contentHash, rejectedManifest.objectKey, rejectedCanonicalManifest,
+        rejectedBundle.agentEvent.eventId, rejectedBundle.agentEvent.payloadHash,
+      ],
+    ],
+    [
       `INSERT INTO runs (
         id, attempt_id, artifact_bundle_hash, request_hash, idempotency_key, state,
         queued_at, started_at, finished_at, runner_result_hash, updated_at
@@ -423,6 +454,25 @@ async function insertControlledEvidenceFixture() {
     ["INSERT INTO run_results (run_id, result_hash, canonical_result, received_at) VALUES (?, ?, ?, ?)", ["run:controlled-evidence", ownerRunnerResultHash, canonicalJson(ownerRunnerResult), now]],
     ["INSERT INTO runner_output_artifacts (id, run_id, role, content_hash, object_key, byte_length, content_type) VALUES (?, ?, ?, ?, ?, ?, ?)", ["runner-output:controlled-evidence:stdout", "run:controlled-evidence", "stdout", stdout.contentHash, stdout.objectKey, stdout.byteLength, stdout.contentType]],
     ["INSERT INTO runner_output_artifacts (id, run_id, role, content_hash, object_key, byte_length, content_type) VALUES (?, ?, ?, ?, ?, ?, ?)", ["runner-output:controlled-evidence:stderr", "run:controlled-evidence", "stderr", stderr.contentHash, stderr.objectKey, stderr.byteLength, stderr.contentType]],
+    [
+      `INSERT INTO runs (
+        id, attempt_id, artifact_bundle_hash, request_hash, idempotency_key, state,
+        queued_at, started_at, finished_at, runner_result_hash, updated_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        "run:controlled-evidence-rejected", rejectedBundle.attemptId,
+        rejectedManifest.contentHash, hash("7"), "controlled-evidence-rejected-run",
+        "failed", rejectedAt, rejectedAt, rejectedAt, null, rejectedAt,
+      ],
+    ],
+    [
+      "INSERT INTO runner_output_artifacts (id, run_id, role, content_hash, object_key, byte_length, content_type) VALUES (?, ?, ?, ?, ?, ?, ?)",
+      [
+        "runner-output:controlled-evidence-rejected:stdout",
+        "run:controlled-evidence-rejected", "stdout", rejectedStdout.contentHash,
+        rejectedStdout.objectKey, rejectedStdout.byteLength, rejectedStdout.contentType,
+      ],
+    ],
     [
       `INSERT INTO verification_assignments (
         id, artifact_bundle_manifest_hash, claim_type, attempt_owner_person_id,
@@ -503,6 +553,8 @@ async function insertControlledEvidenceFixture() {
     ownerHeaders, reviewerHeaders, owner, reviewer,
     attemptId: bundle.attemptId,
     manifestHash: manifest.contentHash,
+    rejectedManifestHash: rejectedManifest.contentHash,
+    rejectedOutputArtifactId: "run:run:controlled-evidence-rejected:stdout",
     integrityFlagEvidenceHash: patch.contentHash,
     replayEvidenceHash: replayEvidenceObject.contentHash,
     replayArtifactId: `replay:${replayEvidence.replayId}:evidence`,
@@ -1916,6 +1968,89 @@ test("limits Bundle and Runner evidence to the Attempt owner or assigned reviewe
   const otherHeaders = { "oai-authenticated-user-email": "evidence-other@example.test" };
   assert.equal((await render(`/api/me/evidence/bundles/${encodeURIComponent(fixture.manifestHash)}`, { headers: otherHeaders })).status, 404);
   assert.equal((await render(`/api/me/evidence/bundles/${encodeURIComponent(fixture.manifestHash)}/artifacts/sourcePatch`, { headers: otherHeaders })).status, 404);
+});
+
+test("scopes Runs, outputs, and review eligibility to one Bundle within a shared Attempt", async () => {
+  const fixture = await getControlledEvidenceFixture();
+  const acceptedResponse = await render(
+    `/api/me/evidence/bundles/${encodeURIComponent(fixture.manifestHash)}`,
+    { headers: fixture.ownerHeaders },
+  );
+  assert.equal(acceptedResponse.status, 200);
+  const { evidence: acceptedEvidence } = await acceptedResponse.json();
+  assert.deepEqual(
+    acceptedEvidence.runs.map((run) => run.id),
+    ["run:controlled-evidence", "run:controlled-fresh-replay"],
+  );
+  assert.equal(
+    acceptedEvidence.runs.some((run) => run.id === "run:controlled-evidence-rejected"),
+    false,
+  );
+
+  const rejectedResponse = await render(
+    `/api/me/evidence/bundles/${encodeURIComponent(fixture.rejectedManifestHash)}`,
+    { headers: fixture.ownerHeaders },
+  );
+  assert.equal(rejectedResponse.status, 200);
+  const { evidence: rejectedEvidence } = await rejectedResponse.json();
+  assert.equal(rejectedEvidence.summary.attemptId, fixture.attemptId);
+  assert.equal(rejectedEvidence.summary.artifactBundleManifestHash, fixture.rejectedManifestHash);
+  assert.equal(rejectedEvidence.summary.latestRunState, "failed");
+  assert.deepEqual(rejectedEvidence.runs.map((run) => run.id), ["run:controlled-evidence-rejected"]);
+  assert.deepEqual(
+    rejectedEvidence.runs[0].outputs.map((artifact) => artifact.id),
+    [fixture.rejectedOutputArtifactId],
+  );
+  assert.equal(rejectedEvidence.runs[0].result, null);
+  assert.doesNotMatch(JSON.stringify(rejectedEvidence), /run:controlled-fresh-replay/);
+
+  const rejectedOutput = await render(
+    `/api/me/evidence/bundles/${encodeURIComponent(fixture.rejectedManifestHash)}/artifacts/${encodeURIComponent(fixture.rejectedOutputArtifactId)}`,
+    { headers: fixture.ownerHeaders },
+  );
+  assert.equal(rejectedOutput.status, 200);
+  assert.equal(await rejectedOutput.text(), "bundle B rejected\n");
+  assert.equal(
+    (await render(
+      `/api/me/evidence/bundles/${encodeURIComponent(fixture.manifestHash)}/artifacts/${encodeURIComponent(fixture.rejectedOutputArtifactId)}`,
+      { headers: fixture.ownerHeaders },
+    )).status,
+    404,
+  );
+  assert.equal(
+    (await render(
+      `/api/me/evidence/bundles/${encodeURIComponent(fixture.rejectedManifestHash)}/artifacts/${encodeURIComponent("run:run:controlled-evidence:stdout")}`,
+      { headers: fixture.ownerHeaders },
+    )).status,
+    404,
+  );
+
+  const rejectedPage = await render(
+    `/evidence/${encodeURIComponent(fixture.rejectedManifestHash)}`,
+    { headers: fixture.ownerHeaders },
+  );
+  assert.equal(rejectedPage.status, 200);
+  const rejectedHtml = await rejectedPage.text();
+  assert.match(rejectedHtml, /Finish the isolated Lean gate first/i);
+  assert.match(rejectedHtml, /Awaiting Lean acceptance/i);
+  assert.doesNotMatch(rejectedHtml, /Send this exact Bundle to independent review/i);
+
+  const rejectedSubmit = await render(
+    `/api/me/evidence/bundles/${encodeURIComponent(fixture.rejectedManifestHash)}/submit-review`,
+    { method: "POST", headers: fixture.ownerHeaders },
+  );
+  assert.equal(rejectedSubmit.status, 409);
+  assert.equal((await rejectedSubmit.json()).error.code, "lean_not_accepted");
+
+  const ownerIndex = await render("/evidence", { headers: fixture.ownerHeaders });
+  assert.equal(ownerIndex.status, 200);
+  const indexCards = (await ownerIndex.text()).split('<article class="evidence-index-card">').slice(1);
+  const acceptedCard = indexCards.find((card) => card.includes(fixture.manifestHash));
+  const rejectedCard = indexCards.find((card) => card.includes(fixture.rejectedManifestHash));
+  assert.ok(acceptedCard);
+  assert.ok(rejectedCard);
+  assert.match(acceptedCard, />succeeded</i);
+  assert.match(rejectedCard, />failed</i);
 });
 
 test("serves a privacy-minimal, signature-checked public delegation record", async () => {

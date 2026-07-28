@@ -2,9 +2,16 @@ import { env } from "cloudflare:workers";
 import { drizzle } from "drizzle-orm/d1";
 import type { AnyD1Database } from "drizzle-orm/d1";
 import { createRemoteLibsqlD1Database } from "@/services/database/libsql-d1-adapter.mjs";
+import {
+  controlPlaneAuthority,
+  ControlPlaneAuthorityConfigurationError,
+  selectControlPlaneAuthority,
+} from "./control-plane-authority.mjs";
 import * as schema from "./schema";
 
 let remoteDatabase: AnyD1Database | null = null;
+
+export { ControlPlaneAuthorityConfigurationError };
 
 export class MissingDatabaseBindingError extends Error {
   constructor() {
@@ -21,8 +28,15 @@ export function getD1(): AnyD1Database {
   // OAuth, browser writes, Runner leases, reviews, Receipts, and Credit must
   // observe the same rows; silently preferring the Sites-local D1 split those
   // trust boundaries and left externally queued Runs invisible to E2B.
-  if (values.TURSO_DATABASE_URL && values.TURSO_AUTH_TOKEN) return getRemoteDatabase();
-  if (env.DB) return env.DB;
+  const authority = selectControlPlaneAuthority({
+    tursoDatabaseUrl: values.TURSO_DATABASE_URL,
+    tursoAuthToken: values.TURSO_AUTH_TOKEN,
+    d1Database: env.DB,
+  });
+  if (authority === controlPlaneAuthority.turso) {
+    return getRemoteDatabase(values.TURSO_DATABASE_URL, values.TURSO_AUTH_TOKEN);
+  }
+  if (authority === controlPlaneAuthority.sitesD1) return env.DB;
   throw new MissingDatabaseBindingError();
 }
 
@@ -35,14 +49,15 @@ export function getSharedResearchD1(): AnyD1Database {
   return getD1();
 }
 
-function getRemoteDatabase(): AnyD1Database {
-  const values = env as unknown as Record<string, string | undefined>;
-  if (!values.TURSO_DATABASE_URL || !values.TURSO_AUTH_TOKEN) {
-    throw new MissingDatabaseBindingError();
+function getRemoteDatabase(url: string | undefined, authToken: string | undefined): AnyD1Database {
+  if (!url || !authToken) {
+    throw new ControlPlaneAuthorityConfigurationError(
+      "Turso control-plane URL and authentication token must be configured together.",
+    );
   }
   remoteDatabase ??= createRemoteLibsqlD1Database({
-    url: values.TURSO_DATABASE_URL,
-    authToken: values.TURSO_AUTH_TOKEN,
+    url,
+    authToken,
   }) as unknown as AnyD1Database;
   return remoteDatabase;
 }

@@ -197,6 +197,8 @@ function boundedLabel(value, label) {
 
 function publicRunnerPolicy(environment) {
   const sandboxImageDigest = boundedPublicSetting(environment.PROOFWEAVE_E2B_RUNNER_IMAGE);
+  const templateId = boundedPublicSetting(environment.PROOFWEAVE_E2B_TEMPLATE_ID);
+  const templateBuildId = boundedPublicSetting(environment.PROOFWEAVE_E2B_TEMPLATE_BUILD_ID);
   let images;
   try {
     const parsed = JSON.parse(environment.RUNNER_APPROVED_IMAGES_JSON ?? "null");
@@ -214,6 +216,8 @@ function publicRunnerPolicy(environment) {
     return Object.freeze({
       state: environment.RUNNER_APPROVED_IMAGES_JSON ? "invalid" : "unconfigured",
       sandboxImageDigest,
+      templateId,
+      templateBuildId,
       approvedImages: [],
       sandboxImageApproved: false,
     });
@@ -221,6 +225,8 @@ function publicRunnerPolicy(environment) {
   return Object.freeze({
     state: "configured",
     sandboxImageDigest,
+    templateId,
+    templateBuildId,
     approvedImages: Object.freeze(images.map((image) => Object.freeze(image))),
     sandboxImageApproved: Boolean(
       sandboxImageDigest && images.some((image) => image.imageDigest === sandboxImageDigest),
