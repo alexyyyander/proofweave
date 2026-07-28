@@ -1,5 +1,6 @@
 import { MissingDatabaseBindingError, getD1 } from "@/db";
 import { LocalCodexPairingError, createLocalCodexPairing } from "@/db/repositories/local-codex-pairing";
+import { ControlPlaneReadOnlyError } from "@/services/database/control-plane-operation-mode.mjs";
 import {
   D1RemoteMcpRateLimiter,
   RemoteMcpRequestRateLimitError,
@@ -57,13 +58,17 @@ function pairingFailure(error: unknown): Response {
       headers: { "Cache-Control": "no-store" },
     });
   }
+  const unavailable = error instanceof MissingDatabaseBindingError
+    || error instanceof ControlPlaneReadOnlyError;
   const message = error instanceof MissingDatabaseBindingError
     ? "Proofweave connection storage is unavailable."
+    : error instanceof ControlPlaneReadOnlyError
+      ? "Proofweave is temporarily read-only for maintenance."
     : error instanceof LocalCodexPairingError
       ? error.message
       : "The local Codex connection could not be started.";
   return Response.json({ error: { message } }, {
-    status: error instanceof MissingDatabaseBindingError ? 503 : 400,
+    status: unavailable ? 503 : 400,
     headers: { "Cache-Control": "no-store" },
   });
 }

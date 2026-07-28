@@ -8,15 +8,19 @@ import {
 } from "@/db/repositories/delegation";
 
 export async function currentDelegationIdentity() {
-  const user = await getCurrentUser();
-  if (!user) {
-    return Response.json(
-      { error: { code: "unauthorized", message: "Sign in to manage your research Agent." } },
-      { status: 401 },
-    );
-  }
+  try {
+    const user = await getCurrentUser();
+    if (!user) {
+      return Response.json(
+        { error: { code: "unauthorized", message: "Sign in to manage your research Agent." } },
+        { status: 401 },
+      );
+    }
 
-  return toPersonIdentity(user);
+    return toPersonIdentity(user);
+  } catch (error) {
+    return delegationFailure(error);
+  }
 }
 
 export function delegationFailure(error: unknown) {

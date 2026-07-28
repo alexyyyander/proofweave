@@ -1401,6 +1401,108 @@ test("keeps the public local-Agent pairing ingress bounded and rate limited", as
   assert.doesNotMatch(JSON.stringify(operationalRows.results), /203\.0\.113|public-pairing-test/);
 });
 
+test("rejects public local-Agent pairing writes while the control plane is read-only", async (t) => {
+  const entrypoint = fileURLToPath(new URL("index.js", workerRoot));
+  const modules = await listJavaScriptModules(workerRoot);
+  const readOnlyWorker = new Miniflare({
+    modules: [
+      { type: "ESModule", path: entrypoint },
+      ...modules
+        .filter((modulePath) => modulePath !== entrypoint)
+        .map((modulePath) => ({ type: "ESModule", path: modulePath })),
+    ],
+    modulesRoot: fileURLToPath(workerRoot),
+    compatibilityDate: "2026-05-15",
+    compatibilityFlags: ["nodejs_compat"],
+    d1Databases: ["DB"],
+    bindings: {
+      PROOFWEAVE_CONTROL_PLANE_MODE: "read_only",
+    },
+    serviceBindings: {
+      ASSETS: async () => new Response("Not found", { status: 404 }),
+    },
+  });
+  t.after(() => readOnlyWorker.dispose());
+  const readOnlyDatabase = await readOnlyWorker.getD1Database("DB");
+  await applyMigrations(readOnlyDatabase);
+
+  const response = await readOnlyWorker.dispatchFetch("http://localhost/api/connect/sessions", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      "cf-connecting-ip": "203.0.113.90",
+    },
+    body: JSON.stringify({
+      agentId: "urn:pw:agent:read-only-pairing-test",
+      agentLabel: "Read-only pairing test Agent",
+      agentPublicKey: "a".repeat(43),
+      oauthState: "read-only-pairing-state",
+      codeChallenge: "b".repeat(43),
+      connectionMode: "research",
+    }),
+  });
+
+  assert.equal(response.status, 503);
+  assert.equal(response.headers.get("cache-control"), "no-store");
+  assert.deepEqual(await response.json(), {
+    error: { message: "Proofweave is temporarily read-only for maintenance." },
+  });
+
+  const delegatedWrite = await readOnlyWorker.dispatchFetch("http://localhost/api/me/agents", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      "oai-authenticated-user-email": "read-only-user@example.test",
+    },
+    body: JSON.stringify({
+      label: "Read-only delegated Agent",
+      publicKey: "c".repeat(43),
+    }),
+  });
+  assert.equal(delegatedWrite.status, 503);
+  assert.deepEqual(await delegatedWrite.json(), {
+    error: { code: "unavailable", message: "Delegation storage is temporarily unavailable." },
+  });
+
+  const mcpResponse = await readOnlyWorker.dispatchFetch("http://localhost/api/mcp", {
+    method: "POST",
+    headers: {
+      accept: "application/json, text/event-stream",
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      jsonrpc: "2.0",
+      id: 1,
+      method: "initialize",
+      params: {
+        protocolVersion: "2025-06-18",
+        capabilities: {},
+        clientInfo: { name: "read-only-maintenance-test", version: "1.0.0" },
+      },
+    }),
+  });
+  assert.equal(mcpResponse.status, 503);
+  assert.equal(mcpResponse.headers.get("cache-control"), "no-store");
+  assert.deepEqual(await mcpResponse.json(), {
+    error: "temporarily_unavailable",
+    error_description: "Proofweave is temporarily read-only for maintenance.",
+    diagnostic_code: "control_plane_read_only",
+  });
+
+  assert.equal(
+    await readOnlyDatabase.prepare("SELECT COUNT(*) AS count FROM local_codex_pairing_sessions").first("count"),
+    0,
+  );
+  assert.equal(
+    await readOnlyDatabase.prepare("SELECT COUNT(*) AS count FROM remote_mcp_rate_limit_buckets").first("count"),
+    0,
+  );
+  assert.equal(
+    await readOnlyDatabase.prepare("SELECT COUNT(*) AS count FROM persons").first("count"),
+    0,
+  );
+});
+
 test("publicly verifies the checked Build Week reference evidence", async () => {
   const page = await render("/demo");
   assert.equal(page.status, 200);
