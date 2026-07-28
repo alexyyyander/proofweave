@@ -16,6 +16,13 @@ import {
   selectControlPlaneAuthority,
   tursoDatabaseFingerprint,
 } from "../db/control-plane-authority.mjs";
+import {
+  applyControlPlaneOperationMode,
+  controlPlaneOperationMode,
+  controlPlaneOperationState,
+  ControlPlaneOperationModeError,
+  ControlPlaneReadOnlyError,
+} from "../services/database/control-plane-operation-mode.mjs";
 
 const releaseIdentity = Object.freeze({
   sourceRevision: "a".repeat(40),
@@ -60,6 +67,78 @@ test("libSQL adapter maps D1 batch to one atomic write transaction", async (t) =
   ]));
   const count = await database.prepare("SELECT COUNT(*) AS count FROM records").first("count");
   assert.equal(count, 0);
+});
+
+test("provider-controlled read-only mode preserves queries and fences every write surface", async (t) => {
+  const database = memoryDatabase();
+  t.after(() => database.close());
+  await database.prepare("CREATE TABLE records (id TEXT PRIMARY KEY)").run();
+  await database.prepare("INSERT INTO records (id) VALUES (?)").bind("record:1").run();
+
+  const readOnly = applyControlPlaneOperationMode(
+    database,
+    controlPlaneOperationMode.readOnly,
+  );
+  assert.equal(
+    await readOnly.prepare("SELECT id FROM records WHERE id = ?").bind("record:1").first("id"),
+    "record:1",
+  );
+  assert.equal(
+    await readOnly.prepare("WITH current AS (SELECT id FROM records) SELECT COUNT(*) AS count FROM current")
+      .first("count"),
+    1,
+  );
+  assert.deepEqual(
+    (await readOnly.batch([
+      readOnly.prepare("SELECT id FROM records WHERE id = ?").bind("record:1"),
+      readOnly.prepare("SELECT COUNT(*) AS count FROM records"),
+    ])).map((result) => result.results),
+    [[{ id: "record:1" }], [{ count: 1 }]],
+  );
+
+  for (const sql of [
+    "INSERT INTO records (id) VALUES ('record:2')",
+    "/* read-looking */ DELETE FROM records",
+    "WITH removed AS (DELETE FROM records RETURNING id) SELECT id FROM removed",
+    "SELECT 1; UPDATE records SET id = 'record:2'",
+    "PRAGMA writable_schema = ON",
+  ]) {
+    assert.throws(
+      () => readOnly.prepare(sql),
+      ControlPlaneReadOnlyError,
+    );
+  }
+  assert.throws(() => readOnly.exec("SELECT 1"), ControlPlaneReadOnlyError);
+  assert.throws(
+    () => readOnly.batch([database.prepare("SELECT id FROM records")]),
+    ControlPlaneReadOnlyError,
+  );
+  assert.equal(await database.prepare("SELECT COUNT(*) AS count FROM records").first("count"), 1);
+});
+
+test("control-plane operation mode is observable and invalid provider values fail closed", () => {
+  assert.deepEqual(controlPlaneOperationState("read_only"), {
+    schemaVersion: "pw-control-plane-operation-state-v1",
+    mode: "read_only",
+    writesEnabled: false,
+    explicitlyConfigured: true,
+  });
+  assert.deepEqual(controlPlaneOperationState(), {
+    schemaVersion: "pw-control-plane-operation-state-v1",
+    mode: "read_write",
+    writesEnabled: true,
+    explicitlyConfigured: false,
+  });
+  assert.deepEqual(controlPlaneOperationState("typo"), {
+    schemaVersion: "pw-control-plane-operation-state-v1",
+    mode: "invalid",
+    writesEnabled: false,
+    explicitlyConfigured: true,
+  });
+  assert.throws(
+    () => applyControlPlaneOperationMode(memoryDatabase(), "typo"),
+    ControlPlaneOperationModeError,
+  );
 });
 
 test("the complete D1 migration history applies unchanged to local libSQL", async (t) => {

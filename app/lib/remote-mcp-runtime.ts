@@ -1,5 +1,6 @@
 import { MissingDatabaseBindingError, getD1 } from "@/db";
 import { createD1SitesIdentityRuntime } from "@/services/proofweave-identity/sites-runtime.mjs";
+import { ControlPlaneReadOnlyError } from "@/services/database/control-plane-operation-mode.mjs";
 import {
   RemoteMcpRuntimeConfigurationError,
   createD1RemoteMcpGatewayRuntime,
@@ -54,6 +55,8 @@ export async function handleRemoteIdentity(request: Request): Promise<Response> 
 function remoteMcpFailure(surface: "mcp" | "identity", error: unknown): Response {
   const category = error instanceof MissingDatabaseBindingError
     ? "missing_database_binding"
+    : error instanceof ControlPlaneReadOnlyError
+      ? "control_plane_read_only"
     : error instanceof RemoteMcpRuntimeConfigurationError
       ? "runtime_configuration"
       : "unexpected_runtime_error";
@@ -66,6 +69,8 @@ function remoteMcpFailure(surface: "mcp" | "identity", error: unknown): Response
   }));
   const message = error instanceof MissingDatabaseBindingError
     ? "Proofweave connection storage is unavailable."
+    : error instanceof ControlPlaneReadOnlyError
+      ? "Proofweave is temporarily read-only for maintenance."
     : "Proofweave local connection is temporarily unavailable.";
   return Response.json({
     error: "temporarily_unavailable",
@@ -79,6 +84,7 @@ function remoteMcpFailure(surface: "mcp" | "identity", error: unknown): Response
 
 function remoteRuntimeDiagnosticCode(error: unknown): string {
   if (error instanceof MissingDatabaseBindingError) return "database_binding_unavailable";
+  if (error instanceof ControlPlaneReadOnlyError) return "control_plane_read_only";
   if (!(error instanceof RemoteMcpRuntimeConfigurationError)) return "unexpected_runtime_error";
   const message = error.message.toLowerCase();
   if (message.includes("runner wake") || message.includes("runner host authorization")) {

@@ -54,6 +54,7 @@ export class E2BSandboxContainerFactory {
     this.apiKey = requireSecret(apiKey, "E2B API key");
     this.template = requireVersionedTemplateReference(templateId);
     this.templateBuildId = requireBuildId(templateBuildId);
+    this.immutableTemplateReference = `${this.template.id}:${this.templateBuildId}`;
     this.imageReference = assertPinnedRunnerImage(imageReference);
     this.cpuCount = integerRange(cpuCount, "E2B template CPU count", 1, 8);
     this.memoryMB = integerRange(memoryMB, "E2B template memory", 512, 8_192);
@@ -116,7 +117,10 @@ export class E2BSandboxContainerFactory {
         template: this.template,
         buildId: this.templateBuildId,
       });
-      sandbox = await this.sandboxApi.create(this.template.reference, {
+      // E2B build UUID references are immutable. The reviewed tag remains a
+      // human-readable release assertion, but must never be the creation
+      // authority because a provider-side tag can move after it is checked.
+      sandbox = await this.sandboxApi.create(this.immutableTemplateReference, {
         apiKey: this.apiKey,
         secure: true,
         allowInternetAccess: false,

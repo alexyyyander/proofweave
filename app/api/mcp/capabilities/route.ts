@@ -1,5 +1,6 @@
 import compatibilityContract from "@/packages/protocol/proofweave-client-compatibility.json";
 import {
+  getControlPlaneOperationState,
   getLiveControlPlaneDiagnostics,
   type LiveControlPlaneDiagnostics,
 } from "@/db";
@@ -20,6 +21,7 @@ const distributionManifestPath = "/downloads/proofweave-research-marketplace.jso
 export async function GET(request: Request) {
   const distributionManifestUrl = new URL(distributionManifestPath, request.url).toString();
   const releaseDiagnostics = await safeReleaseDiagnostics();
+  const controlPlaneOperations = getControlPlaneOperationState();
   return Response.json({
     protocolVersion: compatibilityContract.protocolVersion,
     toolSchemaVersion: compatibilityContract.toolSchemaVersion,
@@ -28,6 +30,7 @@ export async function GET(request: Request) {
     distributionManifestUrl,
     capabilities,
     releaseDiagnostics,
+    controlPlaneOperations,
     updatePolicy: {
       liveWithoutRestart: [
         "server_workflow",

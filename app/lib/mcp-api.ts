@@ -1,4 +1,5 @@
 import { MissingDatabaseBindingError } from "@/db";
+import { ControlPlaneReadOnlyError } from "@/services/database/control-plane-operation-mode.mjs";
 import {
   getMcpRepository,
   McpAttemptNotActiveError,
@@ -56,7 +57,10 @@ export async function requireMcpPrincipal(
 }
 
 export function mcpFailure(error: unknown): Response {
-  if (error instanceof MissingDatabaseBindingError) {
+  if (
+    error instanceof MissingDatabaseBindingError
+    || error instanceof ControlPlaneReadOnlyError
+  ) {
     return apiError("unavailable", "The Proofweave control plane is temporarily unavailable.", 503);
   }
   if (error instanceof McpIdempotencyConflictError) {
