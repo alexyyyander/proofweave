@@ -29,7 +29,7 @@ const publicKey = Buffer.from(
 ).toString("base64url");
 const keyFingerprint = await runtimeRecoveryIsolationKeyFingerprint(publicKey);
 
-test("checked-in production policy fixes repository identity and stays un-enrolled", async () => {
+test("checked-in production policy fixes resource identity and keeps operator authority un-enrolled", async () => {
   const policy = loadProductionDrillPolicy({ root: process.cwd() });
   assert.equal(policy.githubRepository.fullName, "alexyyyander/proofweave");
   assert.equal(policy.githubRepository.id, 1298911069);
@@ -42,8 +42,14 @@ test("checked-in production policy fixes repository identity and stays un-enroll
     policy.productionAuthorities.site.projectId,
     "appgprj_6a54400d01a8819199224b722afae056",
   );
-  assert.equal(policy.productionAuthorities.runner.origin, null);
-  assert.equal(policy.productionAuthorities.turso.databaseFingerprint, null);
+  assert.equal(
+    policy.productionAuthorities.runner.origin,
+    "https://proofweave-trusted-runner.onrender.com",
+  );
+  assert.equal(
+    policy.productionAuthorities.turso.databaseFingerprint,
+    "3f9e7934a04a22ec",
+  );
   assert.deepEqual(policy.recoveryOperatorKeys, []);
   await assert.rejects(
     recoveryIsolationReleaseConfiguration({

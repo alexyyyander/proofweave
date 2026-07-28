@@ -68,8 +68,13 @@ when supplied, they are exact-match assertions only.
 
 The checked-in policy currently contains the GitHub repository identity
 `alexyyyander/proofweave` / `1298911069`, verified through the read-only GitHub
-repository API on 2026-07-28. It deliberately contains no recovery operator
-key. Therefore a production preflight must fail with
+repository API on 2026-07-28. It also fixes the canonical Runner origin
+`https://proofweave-trusted-runner.onrender.com` and the verified Turso
+fingerprint `3f9e7934a04a22ec`. The Runner health endpoint is derived as
+`/healthz`; it is not a separate resource identity.
+
+The policy deliberately contains no recovery operator key. Therefore a
+production preflight must fail with
 `RECOVERY_OPERATOR_KEYS_NOT_ENROLLED` until a release-reviewed pull request:
 
 1. generates an Ed25519 key outside this repository and keeps the private JWK

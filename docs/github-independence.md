@@ -137,8 +137,8 @@ Set these non-secret drill values in the operator environment:
 
 ```text
 PROOFWEAVE_GITHUB_RECOVERY_ENABLED=false
-PROOFWEAVE_DRILL_SITE_ORIGIN=https://the-reviewed-site-origin.example
-PROOFWEAVE_RUNNER_URL=https://the-reviewed-runner-origin.example
+PROOFWEAVE_DRILL_SITE_ORIGIN=https://proofweave-research.yualex031821.chatgpt.site
+PROOFWEAVE_RUNNER_URL=https://proofweave-trusted-runner.onrender.com
 PROOFWEAVE_DRILL_EXPECTED_RUNNER_CONSUMER_ID=consumer:your-hosted-runner
 PROOFWEAVE_DRILL_PLUGIN_DOWNLOADS_JSON=["/downloads/proofweave-research-marketplace.tar","/downloads/proofweave-research-marketplace.tar.sha256","/downloads/proofweave-research-marketplace.json"]
 ```
@@ -162,11 +162,12 @@ migration head. The URL must use the canonical credential-free
 `libsql://hostname` form with no path, query, fragment, or embedded
 username/password; the auth token remains a separate secret.
 
-The two origins above are assertions, not configuration choices. Before a
-production drill, enroll the observed canonical Runner origin and the
-SHA-256-derived 16-character Turso fingerprint in the reviewed policy. The
-Site origin and Sites project ID are already reviewed there. Never derive the
-policy fingerprint from an operator-supplied URL during the drill.
+The two origins above are assertions, not configuration choices. The reviewed
+policy fixes that canonical Runner origin and the Turso fingerprint
+`3f9e7934a04a22ec`, as well as the Site origin and Sites project ID. The Runner
+health probe is derived by appending `/healthz`; it is not a separate authority.
+Never derive a policy origin or fingerprint from operator-supplied values
+during the drill.
 
 `begin` additionally requires a fine-grained read-only GitHub token in
 `PROOFWEAVE_DRILL_GITHUB_TOKEN`, the selected trusted key id in
