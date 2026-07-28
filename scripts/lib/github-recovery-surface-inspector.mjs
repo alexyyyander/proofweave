@@ -33,7 +33,7 @@ const reviewedGithubRecoveryWorkflowPolicies = Object.freeze({
     ]),
   }),
   ".github/workflows/e2b-lean-runner.yml": Object.freeze({
-    sourceSha256: "sha256:d4a951dea544e61f47df06865271770a92583841a027ed0bc9e586de0d5a878c",
+    sourceSha256: "sha256:0658db19a22e672c3c208f6d608c173109361ba6fed0a7d87902d8125b39d14e",
     allowedUses: Object.freeze([
       "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
       "actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",

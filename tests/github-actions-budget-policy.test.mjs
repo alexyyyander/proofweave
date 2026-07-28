@@ -7,6 +7,7 @@ const workflowUrls = {
   e2b: new URL("../.github/workflows/e2b-lean-runner.yml", import.meta.url),
   image: new URL("../.github/workflows/build-e2b-lean-runner-image.yml", import.meta.url),
 };
+const renderBlueprintUrl = new URL("../deploy/huggingface-runner/render.yaml", import.meta.url);
 const packageUrl = new URL("../package.json", import.meta.url);
 
 async function readWorkflows() {
@@ -157,6 +158,26 @@ test("E2B verification is event-driven with only a six-hour recovery sweep", asy
   assert.doesNotMatch(triggers, /^  (push|pull_request):/m);
 });
 
+test("the recovery workflow matches the reviewed Render E2B resource policy", async () => {
+  const [{ e2b }, renderBlueprint] = await Promise.all([
+    readWorkflows(),
+    readFile(renderBlueprintUrl, "utf8"),
+  ]);
+
+  for (const key of [
+    "PROOFWEAVE_E2B_CPU",
+    "PROOFWEAVE_E2B_MEMORY_MB",
+    "PROOFWEAVE_E2B_TIMEOUT_MS",
+    "PROOFWEAVE_E2B_STARTUP_TIMEOUT_MS",
+  ]) {
+    assert.equal(
+      workflowEnvironmentValue(e2b, key),
+      renderEnvironmentValue(renderBlueprint, key),
+      `${key} must match between the primary Render Runner and GitHub recovery Runner`,
+    );
+  }
+});
+
 test("a newer reviewed image build cancels the superseded run", async () => {
   const { image } = await readWorkflows();
 
@@ -165,3 +186,18 @@ test("a newer reviewed image build cancels the superseded run", async () => {
     /^concurrency:\n  group: proofweave-reviewed-lean-runner-image\n(?:  #.*\n)*  cancel-in-progress: true\s*$/m,
   );
 });
+
+function workflowEnvironmentValue(source, key) {
+  const match = source.match(new RegExp(`^\\s+${key}: "([^"]+)"\\s*$`, "m"));
+  assert.ok(match, `missing ${key} in the recovery workflow`);
+  return match[1];
+}
+
+function renderEnvironmentValue(source, key) {
+  const match = source.match(new RegExp(
+    `^\\s+- key: ${key}\\n\\s+value: "([^"]+)"\\s*$`,
+    "m",
+  ));
+  assert.ok(match, `missing ${key} in the Render Blueprint`);
+  return match[1];
+}
