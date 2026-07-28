@@ -1,4 +1,8 @@
-import { MissingDatabaseBindingError, getD1 } from "@/db";
+import {
+  MissingDatabaseBindingError,
+  getControlPlaneOperationState,
+  getD1,
+} from "@/db";
 import { createD1SitesIdentityRuntime } from "@/services/proofweave-identity/sites-runtime.mjs";
 import { ControlPlaneReadOnlyError } from "@/services/database/control-plane-operation-mode.mjs";
 import {
@@ -15,6 +19,12 @@ export function proofweaveMcpResource(request: Request): string {
 
 export async function handleRemoteMcp(request: Request): Promise<Response> {
   try {
+    // The MCP SDK serializes tool failures as successful HTTP responses. Reject
+    // the transport before SDK dispatch so a deployment-wide write fence is an
+    // observable HTTP 503 and the D1-backed rate limiter cannot write.
+    if (getControlPlaneOperationState().mode === "read_only") {
+      throw new ControlPlaneReadOnlyError();
+    }
     const origin = new URL(request.url).origin;
     const settings = env as unknown as Record<string, string | undefined>;
     return await createD1RemoteMcpGatewayRuntime({

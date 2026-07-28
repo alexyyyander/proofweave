@@ -2,6 +2,7 @@ import { currentDelegationIdentity } from "@/app/lib/delegation-api";
 import { MissingDatabaseBindingError } from "@/db";
 import { LocalCodexPairingError, approveLocalCodexPairing } from "@/db/repositories/local-codex-pairing";
 import { proofweaveMcpResource } from "@/app/lib/remote-mcp-runtime";
+import { ControlPlaneReadOnlyError } from "@/services/database/control-plane-operation-mode.mjs";
 
 export const dynamic = "force-dynamic";
 
@@ -20,11 +21,15 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
     });
     return Response.json(approved, { headers: { "Cache-Control": "no-store" } });
   } catch (error) {
+    const unavailable = error instanceof MissingDatabaseBindingError
+      || error instanceof ControlPlaneReadOnlyError;
     const message = error instanceof MissingDatabaseBindingError
       ? "Proofweave connection storage is unavailable."
+      : error instanceof ControlPlaneReadOnlyError
+        ? "Proofweave is temporarily read-only for maintenance."
       : error instanceof LocalCodexPairingError
         ? error.message
         : "The local Codex connection could not be approved.";
-    return Response.json({ error: { message } }, { status: error instanceof MissingDatabaseBindingError ? 503 : 400 });
+    return Response.json({ error: { message } }, { status: unavailable ? 503 : 400 });
   }
 }
