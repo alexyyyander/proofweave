@@ -29,7 +29,7 @@ const publicKey = Buffer.from(
 ).toString("base64url");
 const keyFingerprint = await runtimeRecoveryIsolationKeyFingerprint(publicKey);
 
-test("checked-in production policy fixes resource identity and keeps operator authority un-enrolled", async () => {
+test("checked-in production policy fixes resource identity and enrolls only the reviewed operator key", async () => {
   const policy = loadProductionDrillPolicy({ root: process.cwd() });
   assert.equal(policy.githubRepository.fullName, "alexyyyander/proofweave");
   assert.equal(policy.githubRepository.id, 1298911069);
@@ -50,19 +50,21 @@ test("checked-in production policy fixes resource identity and keeps operator au
     policy.productionAuthorities.turso.databaseFingerprint,
     "3f9e7934a04a22ec",
   );
-  assert.deepEqual(policy.recoveryOperatorKeys, []);
-  await assert.rejects(
-    recoveryIsolationReleaseConfiguration({
-      environment: {},
-      root: process.cwd(),
-      policyBinding: {
-        policy,
-        policyHash: productionDrillPolicyHash(policy),
-        gitOriginRepositoryFullName: policy.githubRepository.fullName,
-      },
-    }),
-    (error) => error.code === "RECOVERY_OPERATOR_KEYS_NOT_ENROLLED",
-  );
+  assert.deepEqual(policy.recoveryOperatorKeys, [{
+    keyId: "release-operator:alexyu-20260728",
+    publicKey: "i-0Y3KVtoeVA8U6F7WX2_jLjNCSTWGRK76-f3K48bsM",
+    keyFingerprint: "sha256:f2bbb9b62a10ab014030209be94679aa67d56e00700329e7b60a9686a8e7f162",
+  }]);
+  const configuration = await recoveryIsolationReleaseConfiguration({
+    environment: {},
+    root: process.cwd(),
+    policyBinding: {
+      policy,
+      policyHash: productionDrillPolicyHash(policy),
+      gitOriginRepositoryFullName: policy.githubRepository.fullName,
+    },
+  });
+  assert.equal(configuration.trustedKeyset.keys.length, 1);
 });
 
 test("release recovery configuration is fixed by policy and environment is assertion-only", async () => {

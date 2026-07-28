@@ -86,7 +86,10 @@ participant workspace reaches E2B only through the immutable Bundle handoff.
 The GitHub Actions E2B workflow is retained for bounded recovery, diagnostics,
 and explicitly approved operator runs. It is not the alpha's normal scheduler
 or trusted controller. GitHub Actions also remains part of CI and reviewed
-image/template releases.
+image/template releases. The historical Build Week Receipt workflow is kept
+disabled in the separate `proofweave-demo-alpha` Environment. It must never
+inherit production Runner or Receipt-issuer secrets from
+`proofweave-runner-alpha`.
 
 ## Failure boundary
 
@@ -148,9 +151,9 @@ the release-reviewed `config/production-drill-policy.json`. Optional
 `PROOFWEAVE_DRILL_GITHUB_REPOSITORY`,
 `PROOFWEAVE_DRILL_GITHUB_REPOSITORY_ID`, and
 `PROOFWEAVE_DRILL_RECOVERY_TRUSTED_KEYS_JSON` values are exact-match operator
-assertions; they cannot add authority. The checked-in policy intentionally
-contains no operator key until a reviewed enrollment PR is merged, so
-production preflight fails closed in the meantime.
+assertions; they cannot add authority. The checked-in policy enrolls only the
+reviewed public key `release-operator:alexyu-20260728`; its private JWK stays
+outside the repository in a regular mode-`0600` file.
 
 The three canonical paths are mandatory; the list may contain up to five
 additional same-origin public release files. The distribution manifest is

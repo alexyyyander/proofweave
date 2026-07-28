@@ -4,6 +4,7 @@ import test from "node:test";
 
 const workflowUrls = {
   ci: new URL("../.github/workflows/ci.yml", import.meta.url),
+  demo: new URL("../.github/workflows/build-week-live-receipt.yml", import.meta.url),
   e2b: new URL("../.github/workflows/e2b-lean-runner.yml", import.meta.url),
   image: new URL("../.github/workflows/build-e2b-lean-runner-image.yml", import.meta.url),
 };
@@ -174,6 +175,30 @@ test("the recovery workflow matches the reviewed Render E2B resource policy", as
       workflowEnvironmentValue(e2b, key),
       renderEnvironmentValue(renderBlueprint, key),
       `${key} must match between the primary Render Runner and GitHub recovery Runner`,
+    );
+  }
+});
+
+test("the historical live demo is isolated from production and matches the reviewed E2B resource policy", async () => {
+  const [{ demo }, renderBlueprint] = await Promise.all([
+    readWorkflows(),
+    readFile(renderBlueprintUrl, "utf8"),
+  ]);
+
+  assert.match(demo, /^\s+environment: proofweave-demo-alpha\s*$/m);
+  assert.doesNotMatch(demo, /^\s+environment: proofweave-runner-alpha\s*$/m);
+  assert.match(demo, /^\s+RUNNER_CONSUMER_ID: runner:github-e2b-demo-closure\s*$/m);
+
+  for (const key of [
+    "PROOFWEAVE_E2B_CPU",
+    "PROOFWEAVE_E2B_MEMORY_MB",
+    "PROOFWEAVE_E2B_TIMEOUT_MS",
+    "PROOFWEAVE_E2B_STARTUP_TIMEOUT_MS",
+  ]) {
+    assert.equal(
+      workflowEnvironmentValue(demo, key),
+      renderEnvironmentValue(renderBlueprint, key),
+      `${key} must match between the isolated demo and reviewed Render Runner`,
     );
   }
 });

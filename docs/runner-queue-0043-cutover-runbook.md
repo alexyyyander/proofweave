@@ -73,16 +73,13 @@ repository API on 2026-07-28. It also fixes the canonical Runner origin
 fingerprint `3f9e7934a04a22ec`. The Runner health endpoint is derived as
 `/healthz`; it is not a separate resource identity.
 
-The policy deliberately contains no recovery operator key. Therefore a
-production preflight must fail with
-`RECOVERY_OPERATOR_KEYS_NOT_ENROLLED` until a release-reviewed pull request:
-
-1. generates an Ed25519 key outside this repository and keeps the private JWK
-   outside the repository in a regular mode-`0600` file;
-2. adds only its canonical 32-byte base64url public key, deterministic
-   fingerprint, and reviewed key ID to `recoveryOperatorKeys`;
-3. passes the release-manifest and production-drill negative tests;
-4. is independently reviewed before the new policy hash is used in a release.
+Policy version 3 enrolls the recovery operator key
+`release-operator:alexyu-20260728`. Its Ed25519 private JWK is generated outside
+this repository and kept in a regular mode-`0600` file; the repository contains
+only its canonical 32-byte base64url public key and deterministic fingerprint.
+Any rotation must add or remove public keys through a separately reviewed pull
+request and pass the release-manifest and production-drill negative tests
+before the new policy hash is used in a release.
 
 The drill CLI accepts only the external private-key file and key ID. It derives
 the public key and rejects it unless both ID and public bytes match the reviewed
@@ -99,6 +96,8 @@ provider-side evidence that:
 
 - the `proofweave-runner-alpha` Environment permits only the reviewed branch or
   tag and requires the named production approver(s);
+- historical demo workflows use a distinct Environment and no demo or mocker
+  private key is stored in `proofweave-runner-alpha`;
 - repository and Environment secrets that can reach Turso, E2B, queue signing,
   Runner-result signing, or Receipt issuance are not available to unreviewed
   workflows, reusable workflows, local actions, forks, or unrestricted

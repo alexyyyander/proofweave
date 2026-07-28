@@ -18,7 +18,7 @@ export const expectedGithubRecoverySurfaces = Object.freeze({
 });
 const reviewedGithubRecoveryWorkflowPolicies = Object.freeze({
   ".github/workflows/build-week-live-receipt.yml": Object.freeze({
-    sourceSha256: "sha256:5ae6458918ec85f9761e5d61e909622062132a4246fc75403fa04444b0bc9e8f",
+    sourceSha256: "sha256:974bdf0b9588250fe4e788f739ac3826b2055f17c5cc6d9f5f125526afd6c796",
     allowedUses: Object.freeze([
       "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
       "actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
