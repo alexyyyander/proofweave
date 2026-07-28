@@ -32,6 +32,7 @@ const templateId = "template_proofweave_lean_v1";
 const templateTag = "reviewed_runtime_contract";
 const templateReference = `${templateId}:${templateTag}`;
 const templateBuildId = "9420e83e-3c6d-48b8-94fe-a73807af5797";
+const immutableTemplateReference = `${templateId}:${templateBuildId}`;
 const runnerKeyId = "runner-key:github-independent";
 const controlPlaneKeyId = "control-plane:github-independent";
 const stdout = new TextEncoder().encode("mock E2B transport reached the bounded result boundary\n");
@@ -338,7 +339,7 @@ function fakeE2BProvider() {
     async create(requestedTemplate, options) {
       state.createCalls += 1;
       state.createOptions = options;
-      assert.equal(requestedTemplate, templateReference);
+      assert.equal(requestedTemplate, immutableTemplateReference);
       return {
         trafficAccessToken: "e2b-private-traffic-token",
         commands: { async run() { return { pid: 17 }; } },
