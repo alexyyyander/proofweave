@@ -29,6 +29,8 @@ const bundleHash = sha("b");
 const databaseFingerprint = "0123456789abcdef";
 const siteOrigin = "https://proofweave.example";
 const runnerOrigin = "https://runner.example";
+const siteProjectId = `appgprj_${"f".repeat(32)}`;
+const sitesVersion = "release-140";
 const expectedConsumerId = "consumer:render-hosted-production";
 const createdAt = "2026-07-27T00:00:00.000Z";
 const recoveryRepositoryFullName = "proofweave/research";
@@ -58,11 +60,23 @@ const recoveryTrustedKeyset = Object.freeze({
   }],
 });
 const productionDrillPolicy = Object.freeze({
-  schemaVersion: "pw-production-drill-policy-v1",
-  policyVersion: 1,
+  schemaVersion: "pw-production-drill-policy-v2",
+  policyVersion: 2,
   githubRepository: {
     fullName: recoveryRepositoryFullName,
     id: recoveryRepositoryId,
+  },
+  productionAuthorities: {
+    site: {
+      origin: siteOrigin,
+      projectId: siteProjectId,
+    },
+    runner: {
+      origin: runnerOrigin,
+    },
+    turso: {
+      databaseFingerprint,
+    },
   },
   recoveryOperatorKeys: recoveryTrustedKeyset.keys,
 });
@@ -81,6 +95,11 @@ test("preflight binds the release to one explicit hosted consumer and remains re
     assert.equal(result.outcome, "preflight_passed");
     assert.equal(result.productionEligible, false);
     assert.equal(result.release.siteOrigin, siteOrigin);
+    assert.equal(result.release.runnerOrigin, runnerOrigin);
+    assert.deepEqual(
+      result.release.productionAuthorities,
+      productionDrillPolicy.productionAuthorities,
+    );
     assert.equal(result.release.expectedRunnerConsumerId, expectedConsumerId);
     assert.equal(result.release.githubRepositoryFullName, recoveryRepositoryFullName);
     assert.equal(result.release.githubRepositoryId, recoveryRepositoryId);
@@ -155,6 +174,95 @@ test("preflight recomputes and rejects a stale production policy hash", async ()
   );
   assert.equal(fixture.calls.database, 0);
   assert.equal(fixture.calls.fetch.length, 0);
+});
+
+test("preflight fails closed on un-enrolled or drifting reviewed production authorities", async (context) => {
+  async function rejected({ mutatePolicy, mutateEnvironment }, expectedCode) {
+    const fixture = makeDrillFixture();
+    const policy = structuredClone(fixture.manifest.productionDrill.policy);
+    mutatePolicy?.(policy);
+    fixture.manifest.productionDrill.policy = policy;
+    fixture.manifest.productionDrill.policyHash = productionDrillPolicyHash(policy);
+    fixture.policy.value = policy;
+    mutateEnvironment?.(fixture.environment);
+    await assert.rejects(
+      fixture.drill.preflight({ environment: fixture.environment }),
+      (error) => error.code === expectedCode,
+    );
+  }
+
+  await context.test("Runner not enrolled", () => rejected({
+    mutatePolicy: (policy) => { policy.productionAuthorities.runner.origin = null; },
+  }, "PRODUCTION_RUNNER_AUTHORITY_NOT_ENROLLED"));
+  await context.test("Turso not enrolled", () => rejected({
+    mutatePolicy: (policy) => {
+      policy.productionAuthorities.turso.databaseFingerprint = null;
+    },
+  }, "PRODUCTION_TURSO_AUTHORITY_NOT_ENROLLED"));
+  await context.test("staging Site origin", () => rejected({
+    mutateEnvironment: (environment) => {
+      environment.PROOFWEAVE_DRILL_SITE_ORIGIN = "https://staging.example";
+    },
+  }, "PRODUCTION_AUTHORITY_POLICY_MISMATCH"));
+  await context.test("wrong Site project", () => rejected({
+    mutatePolicy: (policy) => {
+      policy.productionAuthorities.site.projectId = `appgprj_${"e".repeat(32)}`;
+    },
+  }, "PRODUCTION_AUTHORITY_POLICY_MISMATCH"));
+  await context.test("Runner origin drift", () => rejected({
+    mutateEnvironment: (environment) => {
+      environment.PROOFWEAVE_RUNNER_URL = "https://other-runner.example";
+    },
+  }, "PRODUCTION_AUTHORITY_POLICY_MISMATCH"));
+  await context.test("Turso fingerprint drift", () => rejected({
+    mutatePolicy: (policy) => {
+      policy.productionAuthorities.turso.databaseFingerprint = "fedcba9876543210";
+    },
+  }, "PRODUCTION_AUTHORITY_POLICY_MISMATCH"));
+});
+
+test("preflight rejects Site and Runner deployment identity drift independent of database identity", async (context) => {
+  async function rejected(mutator, expectedCode) {
+    const fixture = makeDrillFixture();
+    mutator(fixture);
+    await assert.rejects(
+      fixture.drill.preflight({ environment: fixture.environment }),
+      (error) => error.code === expectedCode,
+    );
+  }
+
+  await context.test("old Sites version", () => rejected(
+    (fixture) => { fixture.siteCapabilities.body.releaseDiagnostics.sitesVersion = "release-139"; },
+    "SITE_RELEASE_IDENTITY_MISMATCH",
+  ));
+  await context.test("new Sites version", () => rejected(
+    (fixture) => { fixture.siteCapabilities.body.releaseDiagnostics.sitesVersion = "release-141"; },
+    "SITE_RELEASE_IDENTITY_MISMATCH",
+  ));
+  await context.test("wrong live Site project", () => rejected(
+    (fixture) => {
+      fixture.siteCapabilities.body.releaseDiagnostics.siteProjectId =
+        `appgprj_${"e".repeat(32)}`;
+    },
+    "SITE_RELEASE_IDENTITY_MISMATCH",
+  ));
+  await context.test("same database, wrong Site revision", () => rejected(
+    (fixture) => {
+      fixture.siteCapabilities.body.releaseDiagnostics.sourceRevision = "b".repeat(40);
+    },
+    "SITE_RELEASE_IDENTITY_MISMATCH",
+  ));
+  await context.test("same database, wrong Runner revision", () => rejected(
+    (fixture) => { fixture.health.releaseDiagnostics.sourceRevision = "b".repeat(40); },
+    "RUNNER_RELEASE_IDENTITY_MISMATCH",
+  ));
+  await context.test("Runner top-level and diagnostics revision diverge", () => rejected(
+    (fixture) => {
+      fixture.health.revision = revision;
+      fixture.health.releaseDiagnostics.sourceRevision = "b".repeat(40);
+    },
+    "RUNNER_RELEASE_IDENTITY_MISMATCH",
+  ));
 });
 
 test("preflight rejects every non-empty NODE_OPTIONS form before dependencies run", async () => {
@@ -858,6 +966,7 @@ function makeDrillFixture({
     receiptVerifier: 0,
   };
   const clock = { value: createdAt };
+  const policy = { value: productionDrillPolicy };
   const manifest = releaseManifest();
   const live = { value: liveEvidenceFixture() };
   const keyset = {
@@ -967,7 +1076,7 @@ function makeDrillFixture({
     liveEvidenceProbe,
     recoveryIsolationInspector,
     operatorPrivateKeyProvider,
-    productionDrillPolicyProvider: async () => productionDrillPolicy,
+    productionDrillPolicyProvider: async () => policy.value,
     gitOriginProvider: async () => (
       `https://github.com/${recoveryRepositoryFullName}.git`
     ),
@@ -989,17 +1098,21 @@ function makeDrillFixture({
     live,
     keyset,
     clock,
+    policy,
     siteCapabilities,
   };
 }
 
 function readyReleaseDiagnostics() {
   return {
-    schemaVersion: "pw-live-release-diagnostics-v1",
+    schemaVersion: "pw-live-release-diagnostics-v2",
     state: "ready",
     authority: "turso",
     databaseFingerprint,
     ledgerHead: "0043_add_runner_queue_event_sequence.sql",
+    sourceRevision: revision,
+    sitesVersion,
+    siteProjectId,
     failureCode: null,
   };
 }
@@ -1029,8 +1142,8 @@ function releaseManifest() {
       clean: true,
     },
     sites: {
-      projectId: "proofweave",
-      version: "release-140",
+      projectId: siteProjectId,
+      version: sitesVersion,
       commitSha: revision,
     },
     gateway: { revision },

@@ -5,12 +5,14 @@ import { resolve } from "node:path";
 
 import { canonicalJson } from "../../packages/protocol/canonical-json.mjs";
 
-export const productionDrillPolicySchemaVersion = "pw-production-drill-policy-v1";
+export const productionDrillPolicySchemaVersion = "pw-production-drill-policy-v2";
 export const productionDrillPolicyPath = "config/production-drill-policy.json";
 
 const sha256Pattern = /^sha256:[a-f0-9]{64}$/;
 const identifierPattern = /^[A-Za-z0-9][A-Za-z0-9:._+/-]{0,511}$/;
 const repositoryPattern = /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/;
+const projectIdPattern = /^appgprj_[a-f0-9]{32}$/;
+const databaseFingerprintPattern = /^[a-f0-9]{16}$/;
 
 export class ProductionDrillPolicyError extends Error {
   constructor(code, options) {
@@ -36,10 +38,30 @@ export function normalizeProductionDrillPolicy(value) {
     "schemaVersion",
     "policyVersion",
     "githubRepository",
+    "productionAuthorities",
     "recoveryOperatorKeys",
   ]);
   record(value.githubRepository, "PRODUCTION_DRILL_POLICY_INVALID");
   extraKeys(value.githubRepository, ["fullName", "id"]);
+  record(value.productionAuthorities, "PRODUCTION_DRILL_POLICY_INVALID");
+  extraKeys(value.productionAuthorities, ["site", "runner", "turso"]);
+  record(value.productionAuthorities.site, "PRODUCTION_DRILL_POLICY_INVALID");
+  extraKeys(value.productionAuthorities.site, ["origin", "projectId"]);
+  record(value.productionAuthorities.runner, "PRODUCTION_DRILL_POLICY_INVALID");
+  extraKeys(value.productionAuthorities.runner, ["origin"]);
+  record(value.productionAuthorities.turso, "PRODUCTION_DRILL_POLICY_INVALID");
+  extraKeys(value.productionAuthorities.turso, ["databaseFingerprint"]);
+  const siteOrigin = normalizeHttpsOrigin(
+    value.productionAuthorities.site.origin,
+    "PRODUCTION_DRILL_POLICY_INVALID",
+  );
+  const runnerOrigin = value.productionAuthorities.runner.origin === null
+    ? null
+    : normalizeHttpsOrigin(
+      value.productionAuthorities.runner.origin,
+      "PRODUCTION_DRILL_POLICY_INVALID",
+    );
+  const databaseFingerprint = value.productionAuthorities.turso.databaseFingerprint;
   if (
     value.schemaVersion !== productionDrillPolicySchemaVersion
     || !Number.isSafeInteger(value.policyVersion)
@@ -47,6 +69,11 @@ export function normalizeProductionDrillPolicy(value) {
     || !repositoryPattern.test(value.githubRepository.fullName ?? "")
     || !Number.isSafeInteger(value.githubRepository.id)
     || value.githubRepository.id <= 0
+    || !projectIdPattern.test(value.productionAuthorities.site.projectId ?? "")
+    || (
+      databaseFingerprint !== null
+      && !databaseFingerprintPattern.test(databaseFingerprint ?? "")
+    )
     || !Array.isArray(value.recoveryOperatorKeys)
     || value.recoveryOperatorKeys.length > 32
   ) {
@@ -84,8 +111,31 @@ export function normalizeProductionDrillPolicy(value) {
       fullName: value.githubRepository.fullName,
       id: value.githubRepository.id,
     }),
+    productionAuthorities: Object.freeze({
+      site: Object.freeze({
+        origin: siteOrigin,
+        projectId: value.productionAuthorities.site.projectId,
+      }),
+      runner: Object.freeze({
+        origin: runnerOrigin,
+      }),
+      turso: Object.freeze({
+        databaseFingerprint,
+      }),
+    }),
     recoveryOperatorKeys: Object.freeze(keys),
   });
+}
+
+export function requireEnrolledProductionAuthorities(policyValue) {
+  const policy = normalizeProductionDrillPolicy(policyValue);
+  if (policy.productionAuthorities.runner.origin === null) {
+    throw error("PRODUCTION_RUNNER_AUTHORITY_NOT_ENROLLED");
+  }
+  if (policy.productionAuthorities.turso.databaseFingerprint === null) {
+    throw error("PRODUCTION_TURSO_AUTHORITY_NOT_ENROLLED");
+  }
+  return policy.productionAuthorities;
 }
 
 export function productionDrillPolicyHash(policy) {
@@ -134,6 +184,35 @@ export function operatorKeyFingerprint(publicKey) {
   return `sha256:${createHash("sha256")
     .update(Buffer.from(publicKey, "base64url"))
     .digest("hex")}`;
+}
+
+function normalizeHttpsOrigin(value, code) {
+  if (
+    typeof value !== "string"
+    || value.length > 512
+    || value.trim() !== value
+    || /[\0\r\n\s]/.test(value)
+  ) {
+    throw error(code);
+  }
+  let url;
+  try {
+    url = new URL(value);
+  } catch {
+    throw error(code);
+  }
+  if (
+    url.protocol !== "https:"
+    || url.username
+    || url.password
+    || url.search
+    || url.hash
+    || (url.pathname !== "" && url.pathname !== "/")
+    || value !== url.origin
+  ) {
+    throw error(code);
+  }
+  return url.origin;
 }
 
 function record(value, code) {

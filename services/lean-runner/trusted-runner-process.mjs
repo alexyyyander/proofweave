@@ -434,6 +434,7 @@ export async function createTrustedRunnerRuntimeFromEnvironment({
     const releaseDiagnostics = await verifyTrustedRunnerControlPlane({
       database,
       databaseUrl,
+      releaseIdentity: trustedRunnerReleaseIdentity(environment),
     });
     if (releaseDiagnostics.state !== "ready") {
       throw new TrustedRunnerProcessConfigurationError(
@@ -476,23 +477,37 @@ export async function verifyTrustedRunnerControlPlaneFromEnvironment({
     authToken: requireSetting(environment, "TURSO_AUTH_TOKEN"),
   });
   try {
-    return await verifyTrustedRunnerControlPlane({ database, databaseUrl });
+    return await verifyTrustedRunnerControlPlane({
+      database,
+      databaseUrl,
+      releaseIdentity: trustedRunnerReleaseIdentity(environment),
+    });
   } finally {
     database.close();
   }
 }
 
-async function verifyTrustedRunnerControlPlane({ database, databaseUrl }) {
+async function verifyTrustedRunnerControlPlane({ database, databaseUrl, releaseIdentity }) {
   const migrations = await loadProofweaveMigrations();
   return inspectLiveControlPlaneDiagnostics({
     authority: controlPlaneAuthority.turso,
     databaseUrl,
     database,
+    releaseIdentity,
     verifyDatabase: ({ database: verifiedDatabase }) => verifyProofweaveControlPlane({
       database: verifiedDatabase,
       migrations,
     }),
   });
+}
+
+function trustedRunnerReleaseIdentity(environment) {
+  return {
+    sourceRevision: environment.RENDER_GIT_COMMIT
+      ?? environment.PROOFWEAVE_RUNNER_REVISION,
+    sitesVersion: environment.PROOFWEAVE_RELEASE_SITES_VERSION,
+    siteProjectId: environment.PROOFWEAVE_RELEASE_SITE_PROJECT_ID,
+  };
 }
 
 function createLeaseHeartbeat({

@@ -55,11 +55,14 @@ async function safeReleaseDiagnostics(): Promise<LiveControlPlaneDiagnostics> {
     return await getLiveControlPlaneDiagnostics();
   } catch {
     return {
-      schemaVersion: "pw-live-release-diagnostics-v1",
+      schemaVersion: "pw-live-release-diagnostics-v2",
       state: "degraded",
       authority: "invalid",
       databaseFingerprint: null,
       ledgerHead: null,
+      sourceRevision: null,
+      sitesVersion: null,
+      siteProjectId: null,
       failureCode: "control_plane_diagnostics_failed",
     };
   }

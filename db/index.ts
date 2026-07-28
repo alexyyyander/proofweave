@@ -1,4 +1,5 @@
 import { env } from "cloudflare:workers";
+import hostingConfiguration from "../.openai/hosting.json";
 import { drizzle } from "drizzle-orm/d1";
 import type { AnyD1Database } from "drizzle-orm/d1";
 import { createRemoteLibsqlD1Database } from "@/services/database/libsql-d1-adapter.mjs";
@@ -16,11 +17,14 @@ let remoteDatabase: AnyD1Database | null = null;
 let controlPlaneDiagnostics: Promise<LiveControlPlaneDiagnostics> | null = null;
 
 export type LiveControlPlaneDiagnostics = Readonly<{
-  schemaVersion: "pw-live-release-diagnostics-v1";
+  schemaVersion: "pw-live-release-diagnostics-v2";
   state: "ready" | "degraded";
   authority: "turso" | "sites_d1" | "missing" | "invalid";
   databaseFingerprint: string | null;
   ledgerHead: string | null;
+  sourceRevision: string | null;
+  sitesVersion: string | null;
+  siteProjectId: string | null;
   failureCode: string | null;
 }>;
 
@@ -74,6 +78,11 @@ export function getLiveControlPlaneDiagnostics(): Promise<LiveControlPlaneDiagno
 
 async function inspectConfiguredControlPlane(): Promise<LiveControlPlaneDiagnostics> {
   const values = env as unknown as Record<string, string | undefined>;
+  const releaseIdentity = {
+    sourceRevision: values.PROOFWEAVE_RELEASE_SITES_COMMIT_SHA,
+    sitesVersion: values.PROOFWEAVE_RELEASE_SITES_VERSION,
+    siteProjectId: hostingConfiguration.project_id,
+  };
   let authority: "turso" | "sites_d1" | "missing";
   try {
     authority = selectControlPlaneAuthority({
@@ -84,11 +93,15 @@ async function inspectConfiguredControlPlane(): Promise<LiveControlPlaneDiagnost
   } catch {
     return createDegradedControlPlaneDiagnostics({
       authority: "invalid",
+      releaseIdentity,
       failureCode: "control_plane_configuration_invalid",
     }) as LiveControlPlaneDiagnostics;
   }
   if (authority !== controlPlaneAuthority.turso) {
-    return inspectLiveControlPlaneDiagnostics({ authority }) as Promise<LiveControlPlaneDiagnostics>;
+    return inspectLiveControlPlaneDiagnostics({
+      authority,
+      releaseIdentity,
+    }) as Promise<LiveControlPlaneDiagnostics>;
   }
   let database: AnyD1Database;
   try {
@@ -96,6 +109,7 @@ async function inspectConfiguredControlPlane(): Promise<LiveControlPlaneDiagnost
   } catch {
     return createDegradedControlPlaneDiagnostics({
       authority,
+      releaseIdentity,
       failureCode: "turso_configuration_invalid",
     }) as LiveControlPlaneDiagnostics;
   }
@@ -104,6 +118,7 @@ async function inspectConfiguredControlPlane(): Promise<LiveControlPlaneDiagnost
     databaseUrl: values.TURSO_DATABASE_URL,
     database,
     verifyDatabase: verifyLiveProofweaveControlPlane,
+    releaseIdentity,
   }) as Promise<LiveControlPlaneDiagnostics>;
 }
 

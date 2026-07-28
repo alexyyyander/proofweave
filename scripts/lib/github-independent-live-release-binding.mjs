@@ -1,10 +1,13 @@
-const diagnosticsSchemaVersion = "pw-live-release-diagnostics-v1";
+const diagnosticsSchemaVersion = "pw-live-release-diagnostics-v2";
 const diagnosticsKeys = Object.freeze([
   "authority",
   "databaseFingerprint",
   "failureCode",
   "ledgerHead",
   "schemaVersion",
+  "siteProjectId",
+  "sitesVersion",
+  "sourceRevision",
   "state",
 ]);
 const runnerPolicyKeys = Object.freeze([
@@ -23,6 +26,7 @@ const approvedImageKeys = Object.freeze([
 const fingerprintPattern = /^[a-f0-9]{16}$/;
 const ledgerHeadPattern = /^\d{4}_[a-z0-9_]+\.sql$/;
 const revisionPattern = /^[a-f0-9]{40,64}$/;
+const sitesProjectIdPattern = /^appgprj_[a-f0-9]{32}$/;
 const imageDigestPattern = /^[A-Za-z0-9][A-Za-z0-9./:_-]*@sha256:[a-f0-9]{64}$/;
 const publicLabelPattern = /^[A-Za-z0-9][A-Za-z0-9:._+/-]{0,319}$/;
 const maxJsonBytes = 65_536;
@@ -38,6 +42,7 @@ export class GithubIndependentLiveReleaseBindingError extends Error {
 export async function inspectSiteReleaseDiagnostics({
   fetcher,
   siteOrigin,
+  expected,
 } = {}) {
   const url = fixedHttpsUrl(siteOrigin, "/api/mcp/capabilities", "SITE_ORIGIN_INVALID");
   const body = await fetchBoundedJson({
@@ -49,10 +54,12 @@ export async function inspectSiteReleaseDiagnostics({
   if (!isRecord(body)) {
     throw error("SITE_CAPABILITIES_INVALID");
   }
-  return normalizeReadyReleaseDiagnostics(
+  const diagnostics = normalizeReadyReleaseDiagnostics(
     body.releaseDiagnostics,
     "SITE_RELEASE_DIAGNOSTICS_INVALID",
   );
+  assertReleaseIdentity(diagnostics, expected, "SITE_RELEASE_IDENTITY_MISMATCH");
+  return diagnostics;
 }
 
 export async function inspectRunnerReleaseHealth({
@@ -83,6 +90,15 @@ export async function inspectRunnerReleaseHealth({
     health.releaseDiagnostics,
     "RUNNER_RELEASE_DIAGNOSTICS_INVALID",
   );
+  assertReleaseIdentity(
+    releaseDiagnostics,
+    {
+      sourceRevision: expected?.revision,
+      sitesVersion: expected?.sitesVersion,
+      siteProjectId: expected?.siteProjectId,
+    },
+    "RUNNER_RELEASE_IDENTITY_MISMATCH",
+  );
   const runnerPolicy = normalizeRunnerPolicy(health.runnerPolicy, expected);
   return Object.freeze({
     service: health.service,
@@ -102,6 +118,7 @@ export function bindLiveReleaseAuthority({
   database,
   siteDiagnostics,
   runnerDiagnostics,
+  productionAuthorities,
 } = {}) {
   const expectedFingerprint = manifest?.database?.gatewayFingerprint;
   const expectedLedgerHead = manifest?.database?.repositoryMigrationHead;
@@ -115,10 +132,42 @@ export function bindLiveReleaseAuthority({
     siteDiagnostics?.databaseFingerprint !== expectedFingerprint ||
     siteDiagnostics.ledgerHead !== expectedLedgerHead ||
     runnerDiagnostics?.databaseFingerprint !== expectedFingerprint ||
-    runnerDiagnostics.ledgerHead !== expectedLedgerHead
+    runnerDiagnostics.ledgerHead !== expectedLedgerHead ||
+    productionAuthorities?.site?.projectId !== manifest?.sites?.projectId ||
+    productionAuthorities?.turso?.databaseFingerprint !== expectedFingerprint ||
+    siteDiagnostics.sourceRevision !== manifest?.source?.gitSha ||
+    siteDiagnostics.sitesVersion !== manifest?.sites?.version ||
+    siteDiagnostics.siteProjectId !== manifest?.sites?.projectId ||
+    runnerDiagnostics.sourceRevision !== manifest?.runner?.revision ||
+    runnerDiagnostics.sitesVersion !== manifest?.sites?.version ||
+    runnerDiagnostics.siteProjectId !== manifest?.sites?.projectId
   ) {
     throw error("LIVE_RELEASE_AUTHORITY_MISMATCH");
   }
+}
+
+export function bindProductionAuthorityPolicy({
+  policy,
+  manifest,
+  database,
+  siteOrigin,
+  runnerOrigin,
+} = {}) {
+  const authorities = policy?.productionAuthorities;
+  if (
+    !authorities ||
+    authorities.site?.origin !== siteOrigin ||
+    authorities.site?.projectId !== manifest?.sites?.projectId ||
+    authorities.runner?.origin === null ||
+    authorities.runner?.origin !== runnerOrigin ||
+    authorities.turso?.databaseFingerprint === null ||
+    authorities.turso?.databaseFingerprint !== manifest?.database?.gatewayFingerprint ||
+    authorities.turso.databaseFingerprint !== manifest?.database?.runnerFingerprint ||
+    authorities.turso.databaseFingerprint !== database?.fingerprint
+  ) {
+    throw error("PRODUCTION_AUTHORITY_POLICY_MISMATCH");
+  }
+  return authorities;
 }
 
 function normalizeReadyReleaseDiagnostics(value, code) {
@@ -132,6 +181,9 @@ function normalizeReadyReleaseDiagnostics(value, code) {
     typeof value.ledgerHead !== "string" ||
     value.ledgerHead.length > 128 ||
     !ledgerHeadPattern.test(value.ledgerHead) ||
+    !revisionPattern.test(value.sourceRevision ?? "") ||
+    !publicLabelPattern.test(value.sitesVersion ?? "") ||
+    !sitesProjectIdPattern.test(value.siteProjectId ?? "") ||
     value.failureCode !== null
   ) {
     throw error(code);
@@ -142,8 +194,21 @@ function normalizeReadyReleaseDiagnostics(value, code) {
     authority: "turso",
     databaseFingerprint: value.databaseFingerprint,
     ledgerHead: value.ledgerHead,
+    sourceRevision: value.sourceRevision,
+    sitesVersion: value.sitesVersion,
+    siteProjectId: value.siteProjectId,
     failureCode: null,
   });
+}
+
+function assertReleaseIdentity(value, expected, code) {
+  if (
+    value.sourceRevision !== expected?.sourceRevision ||
+    value.sitesVersion !== expected?.sitesVersion ||
+    value.siteProjectId !== expected?.siteProjectId
+  ) {
+    throw error(code);
+  }
 }
 
 function normalizeRunnerPolicy(value, expected) {

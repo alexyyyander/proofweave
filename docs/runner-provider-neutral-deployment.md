@@ -45,14 +45,16 @@ privacy-safe `GET /healthz` status plus authenticated, empty-body
 
 `/healthz` becomes ready only after startup verifies the actual Turso migration
 ledger and full Render revision and validates the fixed configured E2B template
-ID/build ID, immutable image digest, and approved-image registry. It does not
-query E2B to prove that the provider currently resolves that build, launched
-that image, or enforced network/process isolation. The first controlled smoke
-must verify those provider properties and bind them to a terminal Run.
+ID/build ID, immutable image digest, approved-image registry, Sites version,
+and reviewed Sites project ID. It does not query E2B to prove that the provider
+currently resolves that build, launched that image, or enforced network/process
+isolation. The first controlled smoke must verify those provider properties and
+bind them to a terminal Run.
 `releaseDiagnostics` contains only the `turso` authority label,
-SHA-256-derived 16-character database fingerprint, live `ledgerHead`, and a
-bounded failure code. It never returns the database URL, token, wake credential,
-provider API key, or signing key.
+SHA-256-derived 16-character database fingerprint, live `ledgerHead`, full
+source revision, Sites version/project ID, and a bounded failure code. It never
+returns the database URL, token, wake credential, provider API key, or signing
+key.
 The Sites `/api/mcp/capabilities` route derives the same diagnostic from its
 selected runtime authority and caches one live ledger verification per Worker
 isolate. Strict release collection separately compares `ledgerHead` with the
@@ -81,7 +83,9 @@ Start from `.env.example`. The hosted trusted process requires:
 - `PROOFWEAVE_RUNNER_WAKE_TOKEN`, shared only with the control-plane wake
   client;
 - a stable `RUNNER_CONSUMER_ID`; and
-- a deployment revision such as `RENDER_GIT_COMMIT`.
+- a deployment revision such as `RENDER_GIT_COMMIT`;
+- the deployed `PROOFWEAVE_RELEASE_SITES_VERSION`; and
+- `PROOFWEAVE_RELEASE_SITE_PROJECT_ID`, equal to the reviewed Sites project.
 
 E2B additionally requires:
 

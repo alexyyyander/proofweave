@@ -51,7 +51,11 @@ export class HostedTrustedRunnerService {
     );
     this.provider = boundedLabel(environment.PROOFWEAVE_RUNNER_PROVIDER ?? "unconfigured", "Runner provider");
     this.runnerPolicy = publicRunnerPolicy(environment);
-    this.releaseDiagnostics = configuredControlPlaneDiagnostics(environment);
+    this.releaseIdentity = publicReleaseIdentity(environment, this.revision);
+    this.releaseDiagnostics = configuredControlPlaneDiagnostics(
+      environment,
+      this.releaseIdentity,
+    );
     this.controller = new AbortController();
     this.runtime = null;
     this.server = null;
@@ -142,6 +146,7 @@ export class HostedTrustedRunnerService {
           this.releaseDiagnostics = createDegradedControlPlaneDiagnostics({
             authority: this.releaseDiagnostics.authority,
             databaseFingerprint: this.releaseDiagnostics.databaseFingerprint,
+            releaseIdentity: this.releaseIdentity,
             failureCode: releaseDiagnosticsFailureCode(error),
           });
         }
@@ -259,7 +264,7 @@ function requireWakeToken(value) {
   return value;
 }
 
-function configuredControlPlaneDiagnostics(environment) {
+function configuredControlPlaneDiagnostics(environment, releaseIdentity) {
   let authority;
   try {
     authority = selectControlPlaneAuthority({
@@ -269,12 +274,14 @@ function configuredControlPlaneDiagnostics(environment) {
   } catch {
     return createDegradedControlPlaneDiagnostics({
       authority: "invalid",
+      releaseIdentity,
       failureCode: "control_plane_configuration_invalid",
     });
   }
   if (authority !== controlPlaneAuthority.turso) {
     return createDegradedControlPlaneDiagnostics({
       authority,
+      releaseIdentity,
       failureCode: "control_plane_authority_missing",
     });
   }
@@ -282,11 +289,13 @@ function configuredControlPlaneDiagnostics(environment) {
     return createDegradedControlPlaneDiagnostics({
       authority,
       databaseFingerprint: tursoDatabaseFingerprint(environment.TURSO_DATABASE_URL),
+      releaseIdentity,
       failureCode: "control_plane_verification_pending",
     });
   } catch {
     return createDegradedControlPlaneDiagnostics({
       authority,
+      releaseIdentity,
       failureCode: "turso_configuration_invalid",
     });
   }
@@ -308,7 +317,10 @@ function assertHostedReleaseIdentity({ revision, provider, runnerPolicy, release
   }
   if (
     releaseDiagnostics.authority !== controlPlaneAuthority.turso ||
-    !releaseDiagnostics.databaseFingerprint
+    !releaseDiagnostics.databaseFingerprint ||
+    releaseDiagnostics.sourceRevision !== revision ||
+    !releaseDiagnostics.sitesVersion ||
+    !releaseDiagnostics.siteProjectId
   ) {
     throw new HostedTrustedRunnerConfigurationError(
       "Hosted Runner requires one complete Turso control-plane authority.",
@@ -319,16 +331,19 @@ function assertHostedReleaseIdentity({ revision, provider, runnerPolicy, release
 function requireRuntimeReleaseDiagnostics({ diagnostics, configured }) {
   if (
     !diagnostics ||
-    diagnostics.schemaVersion !== "pw-live-release-diagnostics-v1" ||
+    diagnostics.schemaVersion !== "pw-live-release-diagnostics-v2" ||
     diagnostics.state !== "ready" ||
     diagnostics.authority !== controlPlaneAuthority.turso ||
     diagnostics.databaseFingerprint !== configured.databaseFingerprint ||
+    diagnostics.sourceRevision !== configured.sourceRevision ||
+    diagnostics.sitesVersion !== configured.sitesVersion ||
+    diagnostics.siteProjectId !== configured.siteProjectId ||
     typeof diagnostics.ledgerHead !== "string" ||
     diagnostics.ledgerHead.length > 128 ||
     !/^\d{4}_[a-z0-9_]+\.sql$/.test(diagnostics.ledgerHead) ||
     diagnostics.failureCode !== null ||
     Object.keys(diagnostics).sort().join(",") !==
-      "authority,databaseFingerprint,failureCode,ledgerHead,schemaVersion,state"
+      "authority,databaseFingerprint,failureCode,ledgerHead,schemaVersion,siteProjectId,sitesVersion,sourceRevision,state"
   ) {
     throw new HostedTrustedRunnerConfigurationError(
       "Hosted Runner runtime did not return exact verified control-plane diagnostics.",
@@ -340,7 +355,18 @@ function requireRuntimeReleaseDiagnostics({ diagnostics, configured }) {
     authority: diagnostics.authority,
     databaseFingerprint: diagnostics.databaseFingerprint,
     ledgerHead: diagnostics.ledgerHead,
+    sourceRevision: diagnostics.sourceRevision,
+    sitesVersion: diagnostics.sitesVersion,
+    siteProjectId: diagnostics.siteProjectId,
     failureCode: null,
+  });
+}
+
+function publicReleaseIdentity(environment, revision) {
+  return Object.freeze({
+    sourceRevision: revision,
+    sitesVersion: environment.PROOFWEAVE_RELEASE_SITES_VERSION,
+    siteProjectId: environment.PROOFWEAVE_RELEASE_SITE_PROJECT_ID,
   });
 }
 

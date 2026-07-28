@@ -116,12 +116,15 @@ test("publishes a public Connector compatibility contract", async () => {
   );
   assert.ok(contract.capabilities.includes("stable_attempt_handoff"));
   assert.deepEqual(contract.releaseDiagnostics, {
-    schemaVersion: "pw-live-release-diagnostics-v1",
+    schemaVersion: "pw-live-release-diagnostics-v2",
     state: "degraded",
     authority: "sites_d1",
     databaseFingerprint: null,
     ledgerHead: null,
-    failureCode: "release_authority_not_turso",
+    sourceRevision: null,
+    sitesVersion: null,
+    siteProjectId: "appgprj_6a54400d01a8819199224b722afae056",
+    failureCode: "release_identity_missing",
   });
   assert.deepEqual(Object.keys(contract.releaseDiagnostics).sort(), [
     "authority",
@@ -129,6 +132,9 @@ test("publishes a public Connector compatibility contract", async () => {
     "failureCode",
     "ledgerHead",
     "schemaVersion",
+    "siteProjectId",
+    "sitesVersion",
+    "sourceRevision",
     "state",
   ]);
   assert.doesNotMatch(JSON.stringify(contract.releaseDiagnostics), /token|password|private|libsql:\/\//i);

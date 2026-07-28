@@ -118,6 +118,11 @@ With no phase argument it is a read-only preflight. It fails unless
 
 - the strict release manifest is valid and source, Site, gateway, and Runner
   revisions all equal the current `origin/main` SHA;
+- the Site origin/project, Runner origin, and privacy-safe Turso fingerprint
+  exactly match the reviewed `config/production-drill-policy.json`; an
+  un-enrolled `null` Runner origin or database fingerprint blocks production;
+- the live Site and Runner diagnostics report the exact source revision, Sites
+  version, and Sites project ID recorded by the release manifest;
 - the live Turso database fingerprint and immutable migration ledger match the
   release manifest;
 - every configured Site plugin download is reachable, with the marketplace
@@ -132,8 +137,8 @@ Set these non-secret drill values in the operator environment:
 
 ```text
 PROOFWEAVE_GITHUB_RECOVERY_ENABLED=false
-PROOFWEAVE_DRILL_SITE_ORIGIN=https://your-proofweave-site.example
-PROOFWEAVE_RUNNER_URL=https://your-proofweave-runner.example
+PROOFWEAVE_DRILL_SITE_ORIGIN=https://the-reviewed-site-origin.example
+PROOFWEAVE_RUNNER_URL=https://the-reviewed-runner-origin.example
 PROOFWEAVE_DRILL_EXPECTED_RUNNER_CONSUMER_ID=consumer:your-hosted-runner
 PROOFWEAVE_DRILL_PLUGIN_DOWNLOADS_JSON=["/downloads/proofweave-research-marketplace.tar","/downloads/proofweave-research-marketplace.tar.sha256","/downloads/proofweave-research-marketplace.json"]
 ```
@@ -156,6 +161,12 @@ remain operator secrets; the command emits only the database fingerprint and
 migration head. The URL must use the canonical credential-free
 `libsql://hostname` form with no path, query, fragment, or embedded
 username/password; the auth token remains a separate secret.
+
+The two origins above are assertions, not configuration choices. Before a
+production drill, enroll the observed canonical Runner origin and the
+SHA-256-derived 16-character Turso fingerprint in the reviewed policy. The
+Site origin and Sites project ID are already reviewed there. Never derive the
+policy fingerprint from an operator-supplied URL during the drill.
 
 `begin` additionally requires a fine-grained read-only GitHub token in
 `PROOFWEAVE_DRILL_GITHUB_TOKEN`, the selected trusted key id in

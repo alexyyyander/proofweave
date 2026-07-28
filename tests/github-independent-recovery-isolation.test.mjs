@@ -33,6 +33,17 @@ test("checked-in production policy fixes repository identity and stays un-enroll
   const policy = loadProductionDrillPolicy({ root: process.cwd() });
   assert.equal(policy.githubRepository.fullName, "alexyyyander/proofweave");
   assert.equal(policy.githubRepository.id, 1298911069);
+  assert.equal(policy.schemaVersion, "pw-production-drill-policy-v2");
+  assert.equal(
+    policy.productionAuthorities.site.origin,
+    "https://proofweave-research.yualex031821.chatgpt.site",
+  );
+  assert.equal(
+    policy.productionAuthorities.site.projectId,
+    "appgprj_6a54400d01a8819199224b722afae056",
+  );
+  assert.equal(policy.productionAuthorities.runner.origin, null);
+  assert.equal(policy.productionAuthorities.turso.databaseFingerprint, null);
   assert.deepEqual(policy.recoveryOperatorKeys, []);
   await assert.rejects(
     recoveryIsolationReleaseConfiguration({
@@ -123,7 +134,7 @@ test("same-SHA fork origin and policy drift cannot reuse an unchanged manifest b
     }),
     (error) => error.code === "PRODUCTION_DRILL_GIT_ORIGIN_POLICY_MISMATCH",
   );
-  const drifted = { ...fixturePolicy(), policyVersion: 2 };
+  const drifted = { ...fixturePolicy(), policyVersion: 3 };
   await assert.rejects(
     recoveryIsolationReleaseConfiguration({
       ...configurationInput(validEnvironment()),
@@ -255,9 +266,17 @@ function validEnvironment() {
 
 function fixturePolicy() {
   return {
-    schemaVersion: "pw-production-drill-policy-v1",
-    policyVersion: 1,
+    schemaVersion: "pw-production-drill-policy-v2",
+    policyVersion: 2,
     githubRepository: { fullName: "proofweave/research", id: 4242 },
+    productionAuthorities: {
+      site: {
+        origin: "https://proofweave.example",
+        projectId: `appgprj_${"f".repeat(32)}`,
+      },
+      runner: { origin: "https://runner.example" },
+      turso: { databaseFingerprint: "0123456789abcdef" },
+    },
     recoveryOperatorKeys: [{
       keyId: "release-operator:production-01",
       publicKey,

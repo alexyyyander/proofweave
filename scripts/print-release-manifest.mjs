@@ -284,6 +284,39 @@ export function validateReleaseManifest(manifest, { mode = "inspection" } = {}) 
       "productionDrill.gitOriginRepositoryFullName",
     );
   }
+  const productionAuthorities = manifest.productionDrill?.policy?.productionAuthorities;
+  if (productionAuthorities) {
+    if (productionAuthorities.site?.projectId !== manifest.sites.projectId) {
+      add(
+        "PRODUCTION_SITE_PROJECT_POLICY_MISMATCH",
+        "sites.projectId",
+      );
+    }
+    if (!productionAuthorities.runner?.origin) {
+      add(
+        "PRODUCTION_RUNNER_AUTHORITY_NOT_ENROLLED",
+        "productionDrill.policy.productionAuthorities.runner.origin",
+      );
+    }
+    if (!productionAuthorities.turso?.databaseFingerprint) {
+      add(
+        "PRODUCTION_TURSO_AUTHORITY_NOT_ENROLLED",
+        "productionDrill.policy.productionAuthorities.turso.databaseFingerprint",
+      );
+    } else {
+      for (const [fingerprint, path] of [
+        [manifest.database.gatewayFingerprint, "database.gatewayFingerprint"],
+        [manifest.database.runnerFingerprint, "database.runnerFingerprint"],
+      ]) {
+        if (
+          fingerprint
+          && fingerprint !== productionAuthorities.turso.databaseFingerprint
+        ) {
+          add("PRODUCTION_TURSO_POLICY_MISMATCH", path);
+        }
+      }
+    }
+  }
 
   return {
     mode: normalizedMode,

@@ -274,6 +274,11 @@ observation that it represents. These values are non-secret, but they are
 release evidence, not values to guess or copy from the candidate configuration.
 If the gateway revision, database fingerprint, or migration head is not
 observable from the deployed service, the release remains blocked.
+The Site deployment must receive `PROOFWEAVE_RELEASE_SITES_COMMIT_SHA` and
+`PROOFWEAVE_RELEASE_SITES_VERSION`; the Runner must receive the same Sites
+version and reviewed `PROOFWEAVE_RELEASE_SITE_PROJECT_ID`. The production drill
+also remains blocked until the canonical Runner origin and Turso fingerprint
+are enrolled in `config/production-drill-policy.json`.
 
 Run strict mode from the clean `RELEASE_SHA` worktree:
 

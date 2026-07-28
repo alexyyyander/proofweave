@@ -27,6 +27,7 @@ import {
 } from "./lib/github-independent-live-evidence.mjs";
 import {
   bindLiveReleaseAuthority,
+  bindProductionAuthorityPolicy,
   inspectRunnerReleaseHealth,
   inspectSiteReleaseDiagnostics,
 } from "./lib/github-independent-live-release-binding.mjs";
@@ -36,7 +37,10 @@ import {
   recoveryIsolationReleaseConfiguration,
   verifyPersistedRecoveryIsolation,
 } from "./lib/github-independent-recovery-isolation.mjs";
-import { productionDrillPolicyHash } from "./lib/production-drill-policy.mjs";
+import {
+  productionDrillPolicyHash,
+  requireEnrolledProductionAuthorities,
+} from "./lib/production-drill-policy.mjs";
 
 export const githubIndependentDrillSchemaVersion = "pw-github-independent-production-drill-v4";
 export const githubIndependentDrillConfirmations = Object.freeze({
@@ -122,6 +126,9 @@ export function createGithubIndependentProductionDrill(options = {}) {
       mode: "release",
     });
     const manifest = requireStrictReleaseManifest(releaseResult);
+    const productionAuthorities = requireEnrolledProductionAuthorities(
+      manifest.productionDrill.policy,
+    );
     const recoveryIsolation = await recoveryIsolationReleaseConfiguration({
       environment,
       root,
@@ -135,6 +142,17 @@ export function createGithubIndependentProductionDrill(options = {}) {
       environment.PROOFWEAVE_DRILL_SITE_ORIGIN,
       "SITE_ORIGIN_INVALID",
     ).origin;
+    const runnerOrigin = requireHttpsOrigin(
+      environment.PROOFWEAVE_RUNNER_URL,
+      "RUNNER_ORIGIN_INVALID",
+    ).origin;
+    bindProductionAuthorityPolicy({
+      policy: manifest.productionDrill.policy,
+      manifest,
+      database,
+      siteOrigin,
+      runnerOrigin,
+    });
     const expectedRunnerConsumerId = requireProductionIdentifier(
       environment.PROOFWEAVE_DRILL_EXPECTED_RUNNER_CONSUMER_ID,
       "EXPECTED_RUNNER_CONSUMER_ID_MISSING",
@@ -142,6 +160,11 @@ export function createGithubIndependentProductionDrill(options = {}) {
     const siteReleaseDiagnostics = await inspectSiteReleaseDiagnostics({
       fetcher,
       siteOrigin,
+      expected: {
+        sourceRevision: manifest.source.gitSha,
+        sitesVersion: manifest.sites.version,
+        siteProjectId: manifest.sites.projectId,
+      },
     });
     const downloads = await inspectPublishedDownloads({
       fetcher,
@@ -151,9 +174,11 @@ export function createGithubIndependentProductionDrill(options = {}) {
     });
     const runner = await inspectRunnerReleaseHealth({
       fetcher,
-      runnerOrigin: environment.PROOFWEAVE_RUNNER_URL,
+      runnerOrigin,
       expected: {
         revision: manifest.source.gitSha,
+        sitesVersion: manifest.sites.version,
+        siteProjectId: manifest.sites.projectId,
         templateId: manifest.runner.e2b.deployedTemplateId,
         templateBuildId: manifest.runner.e2b.deployedTemplateBuildId,
         imageDigest: manifest.runner.image.deployedDigest,
@@ -166,12 +191,15 @@ export function createGithubIndependentProductionDrill(options = {}) {
       database,
       siteDiagnostics: siteReleaseDiagnostics,
       runnerDiagnostics: runner.releaseDiagnostics,
+      productionAuthorities,
     });
     const release = releaseProjection({
       manifest,
       database,
       downloads,
       siteOrigin,
+      runnerOrigin,
+      productionAuthorities,
       expectedRunnerConsumerId,
       recoveryIsolation,
       siteReleaseDiagnostics,
@@ -614,6 +642,8 @@ function releaseProjection({
   database,
   downloads,
   siteOrigin,
+  runnerOrigin,
+  productionAuthorities,
   expectedRunnerConsumerId,
   recoveryIsolation,
   siteReleaseDiagnostics,
@@ -622,6 +652,8 @@ function releaseProjection({
   return Object.freeze({
     gitSha: manifest.source.gitSha,
     siteOrigin,
+    runnerOrigin,
+    productionAuthorities,
     expectedRunnerConsumerId,
     githubRepositoryFullName: recoveryIsolation.repositoryFullName,
     githubRepositoryId: recoveryIsolation.repositoryId,

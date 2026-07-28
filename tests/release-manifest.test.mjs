@@ -20,6 +20,7 @@ const templateBuildId = "62127604-a4bc-47ed-ba53-1f5313583f82";
 const migrationHead = "0042_add_jacobian_counterexample_audit.sql";
 const databaseFingerprint = "0123456789abcdef";
 const otherDatabaseFingerprint = "fedcba9876543210";
+const sitesProjectId = `appgprj_${"f".repeat(32)}`;
 
 test("release manifest emits one complete stable non-secret revision set", async () => {
   await withFixture(async (root) => {
@@ -35,7 +36,7 @@ test("release manifest emits one complete stable non-secret revision set", async
     assert.equal(first.manifest.source.gitSha, sourceRevision);
     assert.equal(first.manifest.source.branch, "main");
     assert.equal(first.manifest.source.clean, true);
-    assert.equal(first.manifest.sites.projectId, "appgprj_fixture");
+    assert.equal(first.manifest.sites.projectId, sitesProjectId);
     assert.equal(first.manifest.sites.version, "version-136");
     assert.equal(first.manifest.gateway.revision, sourceRevision);
     assert.equal(first.manifest.runner.e2b.configuredTemplateId, templateId);
@@ -316,14 +317,22 @@ async function withFixture(run) {
     await Promise.all([
       writeFile(
         join(root, ".openai", "hosting.json"),
-        `${JSON.stringify({ project_id: "appgprj_fixture", d1: "DB" }, null, 2)}\n`,
+        `${JSON.stringify({ project_id: sitesProjectId, d1: "DB" }, null, 2)}\n`,
       ),
       writeFile(
         join(root, "config", "production-drill-policy.json"),
         `${JSON.stringify({
-          schemaVersion: "pw-production-drill-policy-v1",
-          policyVersion: 1,
+          schemaVersion: "pw-production-drill-policy-v2",
+          policyVersion: 2,
           githubRepository: { fullName: "example/proofweave", id: 123456 },
+          productionAuthorities: {
+            site: {
+              origin: "https://proofweave.example",
+              projectId: sitesProjectId,
+            },
+            runner: { origin: "https://runner.example" },
+            turso: { databaseFingerprint },
+          },
           recoveryOperatorKeys: [],
         }, null, 2)}\n`,
       ),
