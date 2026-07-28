@@ -1,4 +1,12 @@
 import { createRemoteLibsqlD1Database } from "../database/libsql-d1-adapter.mjs";
+import {
+  loadProofweaveMigrations,
+  verifyProofweaveControlPlane,
+} from "../database/libsql-migrations.mjs";
+import {
+  controlPlaneAuthority,
+  inspectLiveControlPlaneDiagnostics,
+} from "../../db/control-plane-authority.mjs";
 import { D1InlineArtifactBucket } from "../artifacts/d1-inline-artifact-store.mjs";
 import { D1InlineVerificationReplayEvidenceStore } from "../verification/d1-inline-verification-replay-evidence-store.mjs";
 import { D1InlineRunnerBundleResolver } from "./d1-inline-runner-bundle-resolver.mjs";
@@ -79,6 +87,8 @@ export class TrustedRunnerProcess {
     this.now = now;
     this.sleep = sleep;
     this.emit = emit;
+    this.wakeRequested = false;
+    this.resolveWake = null;
   }
 
   async processNext() {
@@ -154,11 +164,43 @@ export class TrustedRunnerProcess {
     while (!signal?.aborted) {
       try {
         const result = await this.processNext();
-        if (result.outcome === "idle") await this.sleep(this.pollMilliseconds);
+        if (result.outcome === "idle") await this.waitForPollOrWake(signal);
       } catch {
         this.emitAudit({ outcome: "control_plane_error", deliveryAttempt: 0, errorCode: "control_plane_error" });
-        await this.sleep(this.pollMilliseconds);
+        await this.waitForPollOrWake(signal);
       }
+    }
+  }
+
+  /**
+   * Interrupt an idle poll after the durable producer has enqueued a Run.
+   * This carries no Run id or source bytes and therefore cannot bypass lease
+   * acquisition or queue-message authentication.
+   */
+  wake() {
+    this.wakeRequested = true;
+    this.resolveWake?.();
+    return Object.freeze({ state: "wake_requested" });
+  }
+
+  async waitForPollOrWake(signal) {
+    if (this.wakeRequested || signal?.aborted) {
+      this.wakeRequested = false;
+      return;
+    }
+    let resolveWake;
+    const wakeSignal = new Promise((resolve) => { resolveWake = resolve; });
+    this.resolveWake = resolveWake;
+    const abort = () => resolveWake();
+    signal?.addEventListener("abort", abort, { once: true });
+    try {
+      // The losing bounded poll promise is deliberately harmless. A wake
+      // never cancels provider work; it only advances the next lease check.
+      await Promise.race([this.sleep(this.pollMilliseconds), wakeSignal]);
+    } finally {
+      signal?.removeEventListener("abort", abort);
+      if (this.resolveWake === resolveWake) this.resolveWake = null;
+      this.wakeRequested = false;
     }
   }
 
@@ -331,6 +373,7 @@ export async function createTrustedRunnerRuntime({
     process,
     processNext: () => process.processNext(),
     run: (options) => process.run(options),
+    wake: () => process.wake(),
     async close() {
       try {
         await containerFactory.close();
@@ -382,11 +425,22 @@ export async function createTrustedRunnerRuntimeFromEnvironment({
   emit = emitStructuredConsole,
 } = {}) {
   requireExecutionEnabled(environment);
+  const databaseUrl = requireSetting(environment, "TURSO_DATABASE_URL");
   const database = createRemoteLibsqlD1Database({
-    url: requireSetting(environment, "TURSO_DATABASE_URL"),
+    url: databaseUrl,
     authToken: requireSetting(environment, "TURSO_AUTH_TOKEN"),
   });
   try {
+    const releaseDiagnostics = await verifyTrustedRunnerControlPlane({
+      database,
+      databaseUrl,
+      releaseIdentity: trustedRunnerReleaseIdentity(environment),
+    });
+    if (releaseDiagnostics.state !== "ready") {
+      throw new TrustedRunnerProcessConfigurationError(
+        "Trusted Runner control-plane migration verification failed.",
+      );
+    }
     const containerFactory = createTrustedRunnerContainerFactoryFromEnvironment({
       environment,
       modalClient,
@@ -395,7 +449,7 @@ export async function createTrustedRunnerRuntimeFromEnvironment({
       fetcher,
       sleep,
     });
-    return await createTrustedRunnerRuntime({
+    const runtime = await createTrustedRunnerRuntime({
       database,
       containerFactory,
       environment,
@@ -404,10 +458,56 @@ export async function createTrustedRunnerRuntimeFromEnvironment({
       sleep,
       emit,
     });
+    return Object.freeze({
+      ...runtime,
+      releaseDiagnostics,
+    });
   } catch (error) {
     database.close();
     throw error;
   }
+}
+
+export async function verifyTrustedRunnerControlPlaneFromEnvironment({
+  environment = process.env,
+} = {}) {
+  const databaseUrl = requireSetting(environment, "TURSO_DATABASE_URL");
+  const database = createRemoteLibsqlD1Database({
+    url: databaseUrl,
+    authToken: requireSetting(environment, "TURSO_AUTH_TOKEN"),
+  });
+  try {
+    return await verifyTrustedRunnerControlPlane({
+      database,
+      databaseUrl,
+      releaseIdentity: trustedRunnerReleaseIdentity(environment),
+    });
+  } finally {
+    database.close();
+  }
+}
+
+async function verifyTrustedRunnerControlPlane({ database, databaseUrl, releaseIdentity }) {
+  const migrations = await loadProofweaveMigrations();
+  return inspectLiveControlPlaneDiagnostics({
+    authority: controlPlaneAuthority.turso,
+    databaseUrl,
+    database,
+    releaseIdentity,
+    verifyDatabase: ({ database: verifiedDatabase }) => verifyProofweaveControlPlane({
+      database: verifiedDatabase,
+      migrations,
+    }),
+  });
+}
+
+function trustedRunnerReleaseIdentity(environment) {
+  return {
+    sourceRevision: environment.RENDER_GIT_COMMIT
+      ?? environment.PROOFWEAVE_RUNNER_REVISION,
+    sitesVersion: environment.PROOFWEAVE_RELEASE_SITES_VERSION,
+    siteProjectId: environment.PROOFWEAVE_RELEASE_SITE_PROJECT_ID,
+  };
 }
 
 function createLeaseHeartbeat({

@@ -1,6 +1,14 @@
 # Proofweave development plan
 
-Status: implementation baseline, updated 2026-07-16
+Status: historical implementation baseline, updated 2026-07-16
+
+> **Current source of truth (2026-07-27):** this long-form plan preserves the
+> implementation history but is not the active deployment topology. The
+> canonical GitHub boundary is
+> [`github-independence.md`](github-independence.md); the current alpha Runner
+> path is [`runner-provider-neutral-deployment.md`](runner-provider-neutral-deployment.md);
+> execution and release priorities are in
+> [`stabilization-plan-2026-07-27.md`](stabilization-plan-2026-07-27.md).
 
 > **Storage update:** the no-card alpha now uses D1-inline immutable evidence
 > with a 1 MB per-object cap ([ADR 0007](adr/0007-d1-inline-alpha-evidence.md)).
@@ -13,9 +21,10 @@ Status: implementation baseline, updated 2026-07-16
 > boundary, a hash-ledgered zero-cost Turso bootstrap that applies the complete
 > D1 migration history unchanged, a durable
 > lease queue with stale-worker fencing, and a trusted process behind the
-> no-egress E2B or Modal Sandbox adapter. The protected GitHub Actions
-> one-shot controller is also checked in. These are source-complete adapters, not a
-> deployed public MCP, OAuth service, or hosted Lean Runner.
+> no-egress E2B or Modal Sandbox adapter. The hosted trusted Runner on Render is
+> the current alpha reference controller; the protected GitHub Actions
+> one-shot workflow is retained for recovery, CI, and image-release support.
+> Historical sections below may describe earlier source-only deployment gates.
 
 ## 1. Alpha objective
 

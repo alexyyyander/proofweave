@@ -58,6 +58,67 @@ If any writer lacks an independently verifiable freeze control, abort before
 merge or migration. HTTP maintenance text alone is not a freeze unless mutation
 probes demonstrate that it blocks the underlying write path.
 
+### Reviewed production-drill trust policy
+
+The production drill takes repository identity and recovery-operator authority
+only from [`config/production-drill-policy.json`](../config/production-drill-policy.json).
+Its canonical hash is included in both the release manifest and drill release
+fingerprint. Runtime environment variables cannot add a repository or key;
+when supplied, they are exact-match assertions only.
+
+The checked-in policy currently contains the GitHub repository identity
+`alexyyyander/proofweave` / `1298911069`, verified through the read-only GitHub
+repository API on 2026-07-28. It also fixes the canonical Runner origin
+`https://proofweave-trusted-runner.onrender.com` and the verified Turso
+fingerprint `3f9e7934a04a22ec`. The Runner health endpoint is derived as
+`/healthz`; it is not a separate resource identity.
+
+Policy version 3 enrolls the recovery operator key
+`release-operator:alexyu-20260728`. Its Ed25519 private JWK is generated outside
+this repository and kept in a regular mode-`0600` file; the repository contains
+only its canonical 32-byte base64url public key and deterministic fingerprint.
+Any rotation must add or remove public keys through a separately reviewed pull
+request and pass the release-manifest and production-drill negative tests
+before the new policy hash is used in a release.
+
+The drill CLI accepts only the external private-key file and key ID. It derives
+the public key and rejects it unless both ID and public bytes match the reviewed
+policy. An operator must not populate a trusted-keyset environment variable to
+bootstrap authority; a self-selected keyset is not production evidence.
+
+### External GitHub authority gate
+
+The signed recovery observation covers only the fixed, reviewed workflow source
+closure at one begin-time instant. It does not query or prove GitHub
+organization, repository, or Environment authorization policy. Before merge or
+deployment, the release commander and independent observer must collect
+provider-side evidence that:
+
+- the `proofweave-runner-alpha` Environment permits only the reviewed branch or
+  tag and requires the named production approver(s);
+- historical demo workflows use a distinct Environment and no demo or mocker
+  private key is stored in `proofweave-runner-alpha`;
+- repository and Environment secrets that can reach Turso, E2B, queue signing,
+  Runner-result signing, or Receipt issuance are not available to unreviewed
+  workflows, reusable workflows, local actions, forks, or unrestricted
+  maintainers;
+- no organization-level secret grants this repository a broader queue/runtime
+  authority than the reviewed Environment policy;
+- `workflow_dispatch`, `repository_dispatch`, schedules, and Environment
+  approvals for both reviewed queue workflows are disabled or blocked for the
+  freeze, with zero active runs;
+- every third-party action in the reviewed workflows is pinned to an immutable
+  full commit SHA; and
+- the scanner's reviewed full-file workflow hashes and fixed checked-in
+  `uses`/`run` closure pass without trigger, permission, Environment/secret
+  mapping, local-action, reusable-workflow, inherited-secret, or wrapper drift.
+
+Record the GitHub audit-event IDs, API responses, or screenshots and the UTC
+observation interval in the release record. If any item is unknown, inherited,
+or cannot be independently inspected, the release is **not authorized to merge
+or deploy**. A signed begin snapshot cannot substitute for this external gate,
+and neither proves continuous or hosted-exclusive isolation.
+
 ## Phase 1 — Freeze producers
 
 Record the UTC start time and expected `RELEASE_SHA`, then prevent creation of
@@ -217,6 +278,11 @@ observation that it represents. These values are non-secret, but they are
 release evidence, not values to guess or copy from the candidate configuration.
 If the gateway revision, database fingerprint, or migration head is not
 observable from the deployed service, the release remains blocked.
+The Site deployment must receive `PROOFWEAVE_RELEASE_SITES_COMMIT_SHA` and
+`PROOFWEAVE_RELEASE_SITES_VERSION`; the Runner must receive the same Sites
+version and reviewed `PROOFWEAVE_RELEASE_SITE_PROJECT_ID`. The production drill
+also remains blocked until the canonical Runner origin and Turso fingerprint
+are enrolled in `config/production-drill-policy.json`.
 
 Run strict mode from the clean `RELEASE_SHA` worktree:
 
@@ -233,8 +299,10 @@ While execution remains disabled, verify:
 - OAuth discovery and gateway health;
 - Runner `/healthz`, full source revision, approved image digest, template ID
   and build ID;
-- the same lowercase database fingerprint from gateway and Runner;
-- migration head `0043_add_runner_queue_event_sequence.sql`;
+- the same lowercase database fingerprint from the Sites-integrated gateway
+  `releaseDiagnostics` and Runner `/healthz`;
+- live `ledgerHead` `0043_add_runner_queue_event_sequence.sql` on both
+  diagnostics; strict manifest separately binds it to the repository head;
 - no increase in Run, queue-message, or queue-event counts.
 
 ## Phase 7 — Controlled smoke while public producers stay frozen

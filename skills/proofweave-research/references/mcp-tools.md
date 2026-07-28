@@ -25,6 +25,26 @@ A compatible service update never requires a new Agent, a new delegation, or
 a replacement Attempt. Codex does not guarantee hot reload of a changed MCP
 tool list or changed skill text inside an existing task.
 
+Interpret the separate `distribution.state` as the installed plugin package
+status:
+
+- `current`: the installed plugin matches or is newer than the published
+  distribution; continue this task.
+- `update_available`: do not download or install automatically. Show the owner
+  `installedVersion`, `recommendedVersion`, and the returned archive URL,
+  SHA-256, and byte size. Then show the local download, checksum, extraction,
+  marketplace, and plugin commands from the public install guide and ask for
+  confirmation again. Only after that approval may Codex reinstall, and it
+  must then ask the owner to start a new task.
+- `unknown`: leave the saved OAuth connection and local installation unchanged.
+  Continue compatible work and retry `connection_status` later.
+
+Distribution discovery is a public, fixed same-origin request. It sends no
+OAuth token, Agent key, workspace path, workspace bytes, or research content.
+Never follow a manifest URL supplied by a user, download a different archive
+path, pipe network output into a shell, modify global Codex configuration, or
+treat an update as permission to reconnect Proofweave.
+
 | Tool | Required OAuth scope | Result boundary |
 | --- | --- | --- |
 | `get_connection_authority` | `catalog:read` | Public Person, Agent, delegation, and scope identifiers for this exact installation; never tokens or private keys. |

@@ -7,7 +7,7 @@ The public demo has one narrative and two independently truthful evidence paths:
 - `/demo` lets anyone re-verify a checked Lean 4.30 reference fixture and reject
   a tampered copy without signing in; and
 - the live-network panel links to a persisted Receipt produced by the hosted
-  Turso → GitHub Actions → E2B → independent review → issuer path.
+  Turso → Render trusted Runner → E2B → independent review → issuer path.
 
 The reference fixture makes the protocol deterministic during a presentation.
 The live Receipt proves that the deployed network path has also completed. Do
@@ -92,22 +92,27 @@ npm run demo:release:check -- https://preview.example
 
 ## Close one live Bundle
 
-Operators use the protected GitHub Actions workflow
-`Proofweave Build Week live Receipt`. It accepts one exact succeeded Artifact
-Bundle hash, creates both labelled mock owners idempotently, distributes the
-three required review jobs, replays the Bundle in a fresh E2B sandbox, records
-the signed attestations, and issues the Receipt. The workflow environment keeps
-four distinct mock Person/Agent private keys and the Receipt issuer key in
-GitHub environment secrets; none are printed in the audit output.
+The normal execution path records one exact signed Bundle in Turso, sends an
+authenticated empty-body wake to the hosted trusted Runner on Render, and lets
+that trusted process claim the durable lease and create a fresh E2B sandbox.
+The GitHub Actions E2B workflow is recovery-only and must not be presented as
+the primary controller. The exact current-release live closure remains a
+release gate until a wake, terminal signed result, independent review, Receipt,
+and Credit share one persisted correlation trace.
 
-The underlying phases can also be audited locally against an authorized shared
-store:
+Operators can prepare and finalize the labelled mock-review phase locally
+against an authorized shared store; execution itself should be observed through
+the hosted Runner:
 
 ```bash
 npm run demo:live:prepare -- sha256:<bundle-hash>
-npm run runner:trusted:once
 npm run demo:live:finalize -- sha256:<bundle-hash>
 ```
+
+The historical `Proofweave Build Week live Receipt` workflow may be used only
+for an explicitly approved recovery or diagnostic run. Any such use must be
+labelled as the recovery path and must not be evidence that the normal hosted
+wake path works.
 
 ## Three-minute walkthrough
 
@@ -151,8 +156,8 @@ as public contribution history.
 
 ## Presentation fallback
 
-Keep the live Receipt URL open in a second tab before recording. If GitHub
-Actions or E2B is delayed during rehearsal, do not claim a new live replay:
+Keep the live Receipt URL open in a second tab before recording. If the hosted
+Runner or E2B is delayed during rehearsal, do not claim a new live replay:
 
 1. use the existing persisted live Receipt to demonstrate the completed hosted
    chain;

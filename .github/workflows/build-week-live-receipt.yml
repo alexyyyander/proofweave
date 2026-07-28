@@ -19,11 +19,14 @@ jobs:
   replay-review-and-issue:
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    environment: proofweave-runner-alpha
+    # This historical, operator-only demonstration is intentionally isolated
+    # from the production recovery Environment. Keep this workflow disabled
+    # unless proofweave-demo-alpha has been provisioned and reviewed separately.
+    environment: proofweave-demo-alpha
     env:
       RUNNER_EXECUTION_ENABLED: "true"
       PROOFWEAVE_RUNNER_PROVIDER: e2b
-      RUNNER_CONSUMER_ID: runner:github-e2b-alpha-01
+      RUNNER_CONSUMER_ID: runner:github-e2b-demo-closure
       RUNNER_LEASE_SECONDS: "300"
       RUNNER_LEASE_HEARTBEAT_SECONDS: "60"
       RUNNER_RETRY_DELAY_SECONDS: "30"
@@ -31,9 +34,9 @@ jobs:
       RUNNER_POLL_MILLISECONDS: "1000"
       PROOFWEAVE_E2B_RESOURCE_POLICY_REVIEWED: "true"
       PROOFWEAVE_E2B_CPU: "2"
-      PROOFWEAVE_E2B_MEMORY_MB: "2048"
-      PROOFWEAVE_E2B_TIMEOUT_MS: "600000"
-      PROOFWEAVE_E2B_STARTUP_TIMEOUT_MS: "60000"
+      PROOFWEAVE_E2B_MEMORY_MB: "8192"
+      PROOFWEAVE_E2B_TIMEOUT_MS: "1260000"
+      PROOFWEAVE_E2B_STARTUP_TIMEOUT_MS: "120000"
       TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
       TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
       E2B_API_KEY: ${{ secrets.E2B_API_KEY }}

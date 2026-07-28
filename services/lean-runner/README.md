@@ -113,6 +113,14 @@ Turso lease queue and sends untrusted Lean work exclusively to the selected
 private E2B or Modal Sandbox. See
 [`deploy/huggingface-runner`](../../deploy/huggingface-runner) for the minimal
 Render/Docker export and secret contract.
+The wake signal now interrupts an idle lease poll but never carries a Run id,
+workspace, or result. The hosted service rejects wake requests while its
+runtime is degraded, and the E2B path remains fail-closed on malformed result
+evidence. `npm run runtime:github-independent:check` clears every `GITHUB_*`
+input, disables the Actions recovery adapter, and exercises durable dispatch,
+authenticated wake, E2B-provider transport through an injected mock, bounded
+output persistence, and invalid-result rejection. This is an offline
+regression contract, not a claim that a real E2B Sandbox ran Lean.
 `runner-workspace-stager.mjs` connects authenticated preflight, private
 workspace transfer, and the D1 `preparing -> running` transition so an
 interrupted transfer is retryable rather than a stuck running Run.

@@ -1,7 +1,7 @@
 # Artifact Bundle contract v1, v2, and v3
 
 Every Lean submission is an immutable, content-addressed manifest—not a
-free-form upload. Both versions bind one Attempt, pinned problem revision,
+free-form upload. Every version binds one Attempt, pinned problem revision,
 target declaration and statement hash, Lean environment, shell-free `lake env
 lean` command, dependency receipts, Agent signature, `sorry` policy, and axiom
 allowlist.
@@ -23,10 +23,12 @@ hostile-code execution boundary.
 The Runner resolver can therefore inspect v1 evidence but the Runner preflight
 will never claim a v1 Bundle for isolated execution.
 
-## v2: executable workspace evidence
+## v2: provider-neutral executable workspace evidence
 
 `pw-artifact-bundle-v2` moves object locations into `workspace` and fixes the
-reconstruction contract. An executable Bundle must include:
+reconstruction contract. It is the default executable format and does not name,
+fetch, or authenticate against a Git hosting provider. An executable Bundle
+must include:
 
 - `workspace.archive`: exactly `source.tar.zst`, `format: "tar.zst"`, maximum
   expanded byte/file counts, and `symlinkPolicy: "forbidden"`;
@@ -58,7 +60,7 @@ from `queued` to retryable `preparing`; only a verified private workspace
 handoff may subsequently move it to `running`. The transfer/executor must
 enforce the same limit during extraction.
 
-## v3: GitHub-linked executable evidence
+## v3: optional GitHub provenance
 
 `pw-artifact-bundle-v3` keeps the complete executable v2 workspace and adds a
 signed `repositorySnapshot` with a GitHub `owner/name`, a full lowercase
@@ -66,6 +68,8 @@ signed `repositorySnapshot` with a GitHub `owner/name`, a full lowercase
 participant's intended source revision explicit without granting the Runner
 any GitHub token or network access. It is a signed provenance reference only:
 the current alpha does not fetch or authenticate against private repositories.
+It is never required merely to execute a Run, and it does not make the evidence
+more kernel-valid than the identical provider-neutral v2 workspace.
 
 ## `pw-tree-v1`
 
@@ -95,7 +99,8 @@ in [`packages/protocol/workspace-tree.mjs`](../packages/protocol/workspace-tree.
 
 The immutable D1-inline staging boundary uses a version-neutral list of the three
 referenced objects (archive, patch, Lake manifest), so it accepts valid signed
-v1, v2, and v3 evidence. New executable Runs require v2 or GitHub-linked v3;
-historical v1 rows remain
-unchanged and inspectable. The storage rules are in
+v1, v2, and v3 evidence. New executable Runs require v2 or v3; v2 is the
+provider-neutral default and v3 is only the same executable workspace with an
+optional GitHub provenance reference. Historical v1 rows remain unchanged and
+inspectable. The storage rules are in
 [`artifact-storage-contract.md`](artifact-storage-contract.md).

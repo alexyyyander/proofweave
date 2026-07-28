@@ -12,25 +12,76 @@ ChatGPT password or API key.
 
 ## Safe installation procedure
 
-1. Show the person the two commands below and get confirmation before running
-   either command.
-2. Add the public Proofweave marketplace:
+The default installation does not use GitHub. Proofweave publishes a portable
+marketplace archive and its SHA-256 checksum at:
 
-   ```sh
-   codex plugin marketplace add alexyyyander/proofweave --ref main --sparse .agents/plugins
-   ```
+```text
+https://proofweave-research.yualex031821.chatgpt.site/downloads/proofweave-research-marketplace.tar
+https://proofweave-research.yualex031821.chatgpt.site/downloads/proofweave-research-marketplace.tar.sha256
+```
 
-3. Install the plugin from that marketplace:
+Before changing the person's computer, Codex must:
 
-   ```sh
-   codex plugin add proofweave-research@proofweave-private-beta
-   ```
+1. ask the person to choose or approve an empty local marketplace directory;
+2. show the exact download, checksum, extraction, and Codex plugin commands;
+3. explain that the checksum detects bytes that do not match the archive
+   published by the Proofweave site; and
+4. wait for explicit confirmation.
 
-4. Confirm that the plugin is installed. Ask the person to begin a new Codex
+On the currently supported macOS beta, the following is an auditable example.
+Codex must show the concrete directory values it intends to use. A person may
+choose different local directories.
+
+```sh
+PROOFWEAVE_DOWNLOAD_DIR="$HOME/Downloads/proofweave-install"
+PROOFWEAVE_MARKETPLACE_DIR="$HOME/.local/share/proofweave/marketplace"
+mkdir -p "$PROOFWEAVE_DOWNLOAD_DIR" "$PROOFWEAVE_MARKETPLACE_DIR"
+
+curl --fail --location \
+  --output "$PROOFWEAVE_DOWNLOAD_DIR/proofweave-research-marketplace.tar" \
+  "https://proofweave-research.yualex031821.chatgpt.site/downloads/proofweave-research-marketplace.tar"
+curl --fail --location \
+  --output "$PROOFWEAVE_DOWNLOAD_DIR/proofweave-research-marketplace.tar.sha256" \
+  "https://proofweave-research.yualex031821.chatgpt.site/downloads/proofweave-research-marketplace.tar.sha256"
+
+cd "$PROOFWEAVE_DOWNLOAD_DIR"
+shasum -a 256 -c proofweave-research-marketplace.tar.sha256
+tar -xf proofweave-research-marketplace.tar -C "$PROOFWEAVE_MARKETPLACE_DIR"
+
+codex plugin marketplace add "$PROOFWEAVE_MARKETPLACE_DIR"
+codex plugin add proofweave-research@proofweave-private-beta
+```
+
+The checksum command must succeed before extraction. The archive has no extra
+top-level directory: after extraction, the chosen marketplace directory
+directly contains `.agents/plugins/marketplace.json` and
+`plugins/proofweave-research/`. If the destination is not empty, stop and ask
+the person to choose a new directory; do not delete or overwrite an existing
+installation without approval.
+
+Never pipe a downloaded response into `sh`, `bash`, or another interpreter.
+Downloading, verifying, and extracting are separate inspectable steps.
+
+5. Confirm that the plugin is installed. Ask the person to begin a new Codex
    thread before using its skills or local MCP tools.
-5. Do **not** invoke `connect_proofweave`, create an Agent, or inspect any
+6. Do **not** invoke `connect_proofweave`, create an Agent, or inspect any
    local research files until the person asks. Connection opens a browser page
    where the person can inspect and approve a revocable delegation.
+
+### Advanced: install from a reviewed GitHub source checkout
+
+GitHub is an optional source and development path, not a product requirement.
+Use it only when the person explicitly wants to inspect or install from a
+particular repository revision and has access to that source:
+
+```sh
+codex plugin marketplace add alexyyyander/proofweave --ref main --sparse .agents/plugins
+codex plugin add proofweave-research@proofweave-private-beta
+```
+
+This advanced path may require repository access while the source repository
+is private. It does not change the plugin's local privacy or OAuth authority
+boundaries. The portable archive above is the normal participant path.
 
 ### If the connection needs repair
 
@@ -99,6 +150,22 @@ task:
 Codex does not promise to hot-reload plugin skills or a changed MCP tool list
 inside an existing task. Do not reconnect Proofweave, rotate an Agent, or
 create another Attempt merely to pick up a compatible service update.
+
+It also returns a separate `distribution.state` from the fixed same-origin
+`/downloads/proofweave-research-marketplace.json` manifest:
+
+- `current`: the installed plugin matches or is newer than the published
+  version; continue.
+- `update_available`: show the person the installed and recommended versions,
+  exact archive URL, SHA-256, byte size, selected local directories, and every
+  download/checksum/extraction/install command above. Ask for confirmation
+  again. Only after approval may Codex reinstall; then begin a new Codex task.
+- `unknown`: leave the installed plugin and saved OAuth connection unchanged,
+  continue compatible work, and retry later.
+
+Discovery never grants permission to download, install, run a script, alter
+global Codex configuration, reconnect Proofweave, or inspect a workspace.
+Codex must never substitute a user-provided manifest URL or archive path.
 
 ## Use Codex with the Proofweave website
 

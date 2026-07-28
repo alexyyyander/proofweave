@@ -1,15 +1,32 @@
 import { env } from "cloudflare:workers";
+import hostingConfiguration from "../.openai/hosting.json";
 import { drizzle } from "drizzle-orm/d1";
 import type { AnyD1Database } from "drizzle-orm/d1";
 import { createRemoteLibsqlD1Database } from "@/services/database/libsql-d1-adapter.mjs";
 import {
   controlPlaneAuthority,
+  createDegradedControlPlaneDiagnostics,
   ControlPlaneAuthorityConfigurationError,
+  inspectLiveControlPlaneDiagnostics,
   selectControlPlaneAuthority,
 } from "./control-plane-authority.mjs";
+import { verifyLiveProofweaveControlPlane } from "@/services/database/libsql-migrations.mjs";
 import * as schema from "./schema";
 
 let remoteDatabase: AnyD1Database | null = null;
+let controlPlaneDiagnostics: Promise<LiveControlPlaneDiagnostics> | null = null;
+
+export type LiveControlPlaneDiagnostics = Readonly<{
+  schemaVersion: "pw-live-release-diagnostics-v2";
+  state: "ready" | "degraded";
+  authority: "turso" | "sites_d1" | "missing" | "invalid";
+  databaseFingerprint: string | null;
+  ledgerHead: string | null;
+  sourceRevision: string | null;
+  sitesVersion: string | null;
+  siteProjectId: string | null;
+  failureCode: string | null;
+}>;
 
 export { ControlPlaneAuthorityConfigurationError };
 
@@ -47,6 +64,62 @@ export function getD1(): AnyD1Database {
  */
 export function getSharedResearchD1(): AnyD1Database {
   return getD1();
+}
+
+/**
+ * Cache one live verification per Worker isolate. This projection is derived
+ * only from the selected runtime authority and the authority's immutable
+ * migration ledger; release evidence environment variables are never read.
+ */
+export function getLiveControlPlaneDiagnostics(): Promise<LiveControlPlaneDiagnostics> {
+  controlPlaneDiagnostics ??= inspectConfiguredControlPlane();
+  return controlPlaneDiagnostics;
+}
+
+async function inspectConfiguredControlPlane(): Promise<LiveControlPlaneDiagnostics> {
+  const values = env as unknown as Record<string, string | undefined>;
+  const releaseIdentity = {
+    sourceRevision: values.PROOFWEAVE_RELEASE_SITES_COMMIT_SHA,
+    sitesVersion: values.PROOFWEAVE_RELEASE_SITES_VERSION,
+    siteProjectId: hostingConfiguration.project_id,
+  };
+  let authority: "turso" | "sites_d1" | "missing";
+  try {
+    authority = selectControlPlaneAuthority({
+      tursoDatabaseUrl: values.TURSO_DATABASE_URL,
+      tursoAuthToken: values.TURSO_AUTH_TOKEN,
+      d1Database: env.DB,
+    });
+  } catch {
+    return createDegradedControlPlaneDiagnostics({
+      authority: "invalid",
+      releaseIdentity,
+      failureCode: "control_plane_configuration_invalid",
+    }) as LiveControlPlaneDiagnostics;
+  }
+  if (authority !== controlPlaneAuthority.turso) {
+    return inspectLiveControlPlaneDiagnostics({
+      authority,
+      releaseIdentity,
+    }) as Promise<LiveControlPlaneDiagnostics>;
+  }
+  let database: AnyD1Database;
+  try {
+    database = getRemoteDatabase(values.TURSO_DATABASE_URL, values.TURSO_AUTH_TOKEN);
+  } catch {
+    return createDegradedControlPlaneDiagnostics({
+      authority,
+      releaseIdentity,
+      failureCode: "turso_configuration_invalid",
+    }) as LiveControlPlaneDiagnostics;
+  }
+  return inspectLiveControlPlaneDiagnostics({
+    authority,
+    databaseUrl: values.TURSO_DATABASE_URL,
+    database,
+    verifyDatabase: verifyLiveProofweaveControlPlane,
+    releaseIdentity,
+  }) as Promise<LiveControlPlaneDiagnostics>;
 }
 
 function getRemoteDatabase(url: string | undefined, authToken: string | undefined): AnyD1Database {
