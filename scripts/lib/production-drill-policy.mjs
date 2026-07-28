@@ -161,7 +161,7 @@ export function parseCanonicalGithubOrigin(value) {
     throw error("PRODUCTION_DRILL_GIT_ORIGIN_INVALID");
   }
   const patterns = [
-    /^https:\/\/github\.com\/([A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+)\.git$/,
+    /^https:\/\/github\.com\/([A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+?)(?:\.git)?$/,
     /^git@github\.com:([A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+)\.git$/,
     /^ssh:\/\/git@github\.com\/([A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+)\.git$/,
   ];

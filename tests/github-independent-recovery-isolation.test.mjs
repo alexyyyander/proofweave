@@ -135,6 +135,12 @@ test("begin rejects oversized or whitespace-bearing GitHub tokens before inspect
 });
 
 test("same-SHA fork origin and policy drift cannot reuse an unchanged manifest binding", async () => {
+  const githubActionsConfiguration = await recoveryIsolationReleaseConfiguration({
+    ...configurationInput(validEnvironment()),
+    gitOriginProvider: async () => "https://github.com/proofweave/research",
+  });
+  assert.equal(githubActionsConfiguration.repositoryFullName, "proofweave/research");
+
   await assert.rejects(
     recoveryIsolationReleaseConfiguration({
       ...configurationInput(validEnvironment()),
