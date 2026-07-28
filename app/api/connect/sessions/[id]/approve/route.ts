@@ -23,13 +23,20 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
   } catch (error) {
     const unavailable = error instanceof MissingDatabaseBindingError
       || error instanceof ControlPlaneReadOnlyError;
+    const invalidRequest = error instanceof LocalCodexPairingError;
     const message = error instanceof MissingDatabaseBindingError
       ? "Proofweave connection storage is unavailable."
       : error instanceof ControlPlaneReadOnlyError
         ? "Proofweave is temporarily read-only for maintenance."
-      : error instanceof LocalCodexPairingError
+      : invalidRequest
         ? error.message
-        : "The local Codex connection could not be approved.";
-    return Response.json({ error: { message } }, { status: unavailable ? 503 : 400 });
+        : "The local Codex connection could not be approved because of an internal error.";
+    return Response.json(
+      { error: { message } },
+      {
+        status: unavailable ? 503 : invalidRequest ? 400 : 500,
+        headers: { "Cache-Control": "no-store" },
+      },
+    );
   }
 }

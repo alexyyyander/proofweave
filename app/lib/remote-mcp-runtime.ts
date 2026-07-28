@@ -19,12 +19,7 @@ export function proofweaveMcpResource(request: Request): string {
 
 export async function handleRemoteMcp(request: Request): Promise<Response> {
   try {
-    // The MCP SDK serializes tool failures as successful HTTP responses. Reject
-    // the transport before SDK dispatch so a deployment-wide write fence is an
-    // observable HTTP 503 and the D1-backed rate limiter cannot write.
-    if (getControlPlaneOperationState().mode === "read_only") {
-      throw new ControlPlaneReadOnlyError();
-    }
+    const operationState = getControlPlaneOperationState();
     const origin = new URL(request.url).origin;
     const settings = env as unknown as Record<string, string | undefined>;
     return await createD1RemoteMcpGatewayRuntime({
@@ -43,6 +38,7 @@ export async function handleRemoteMcp(request: Request): Promise<Response> {
       receiptIssuerPublicKey: settings.RECEIPT_ISSUER_PUBLIC_KEY,
       receiptIssuerPrivateKeyJwkJson: settings.RECEIPT_ISSUER_PRIVATE_KEY_JWK,
       receiptIssuerActivatedAt: settings.RECEIPT_ISSUER_ACTIVATED_AT,
+      operationMode: operationState.mode,
     }).fetch(request);
   } catch (error) {
     return remoteMcpFailure("mcp", error);

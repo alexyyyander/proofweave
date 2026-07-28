@@ -39,6 +39,7 @@ export function createCloudflareGatewayWorker({ audit = defaultAudit() } = {}) {
             receiptIssuerPublicKey: env.RECEIPT_ISSUER_PUBLIC_KEY,
             receiptIssuerPrivateKeyJwkJson: env.RECEIPT_ISSUER_PRIVATE_KEY_JWK,
             receiptIssuerActivatedAt: env.RECEIPT_ISSUER_ACTIVATED_AT,
+            operationMode: env.PROOFWEAVE_CONTROL_PLANE_MODE,
           }).fetch(request);
         } catch (error) {
           if (error instanceof RemoteMcpRuntimeConfigurationError) {

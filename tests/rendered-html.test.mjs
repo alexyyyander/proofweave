@@ -1460,35 +1460,120 @@ test("rejects public local-Agent pairing writes while the control plane is read-
     }),
   });
   assert.equal(delegatedWrite.status, 503);
+  assert.equal(delegatedWrite.headers.get("cache-control"), "no-store");
   assert.deepEqual(await delegatedWrite.json(), {
     error: { code: "unavailable", message: "Delegation storage is temporarily unavailable." },
   });
 
-  const mcpResponse = await readOnlyWorker.dispatchFetch("http://localhost/api/mcp", {
-    method: "POST",
-    headers: {
-      accept: "application/json, text/event-stream",
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      jsonrpc: "2.0",
-      id: 1,
-      method: "initialize",
-      params: {
-        protocolVersion: "2025-06-18",
-        capabilities: {},
-        clientInfo: { name: "read-only-maintenance-test", version: "1.0.0" },
+  const appSessionToken = "read-only-app-session-token";
+  const appSessionPersonId = "person:read-only-app-session";
+  const appSessionIdentityId = "identity:read-only-app-session";
+  const appSessionId = "session:read-only-app-session";
+  const appSessionPairingId = "pw:codex-pairing:read-only-app-session";
+  const appSessionPairingSecret = "read-only-app-session-pairing-secret";
+  const seededAt = "2026-07-28T00:00:00.000Z";
+  await readOnlyDatabase.prepare(
+    `INSERT INTO persons (id, identity_provider, provider_subject, display_name, created_at, updated_at)
+     VALUES (?, ?, ?, ?, ?, ?)`,
+  ).bind(
+    appSessionPersonId,
+    "proofweave",
+    "read-only-app-session",
+    "Read-only app session",
+    seededAt,
+    seededAt,
+  ).run();
+  await readOnlyDatabase.prepare(
+    `INSERT INTO person_identities (
+       id, person_id, provider, provider_subject, email, email_normalized,
+       display_name, email_verified_at, created_at, updated_at
+     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+  ).bind(
+    appSessionIdentityId,
+    appSessionPersonId,
+    "proofweave",
+    "read-only-app-session",
+    "read-only-app-session@example.test",
+    "read-only-app-session@example.test",
+    "Read-only app session",
+    seededAt,
+    seededAt,
+    seededAt,
+  ).run();
+  await readOnlyDatabase.prepare(
+    `INSERT INTO app_sessions (
+       id, person_id, identity_id, token_hash, expires_at, created_at
+     ) VALUES (?, ?, ?, ?, ?, ?)`,
+  ).bind(
+    appSessionId,
+    appSessionPersonId,
+    appSessionIdentityId,
+    await sha256(appSessionToken),
+    "2099-07-28T00:00:00.000Z",
+    seededAt,
+  ).run();
+  await readOnlyDatabase.prepare(
+    `INSERT INTO local_codex_pairing_sessions (
+       id, browser_secret_hash, agent_id, agent_label, agent_public_key,
+       redirect_uri, oauth_client_id, oauth_state, code_challenge,
+       requested_scopes_json, created_at, expires_at
+     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+  ).bind(
+    appSessionPairingId,
+    await sha256(appSessionPairingSecret),
+    "urn:pw:agent:read-only-app-session",
+    "Read-only app-session Agent",
+    "d".repeat(43),
+    "http://127.0.0.1:44765/callback",
+    "client:read-only-app-session",
+    "read-only-app-session-state",
+    "e".repeat(43),
+    JSON.stringify([
+      "catalog:read",
+      "attempt:create",
+      "attempt:read",
+      "progress:write",
+      "artifact:write",
+      "run:request",
+      "run:read",
+      "run:cancel",
+    ]),
+    seededAt,
+    "2099-07-28T00:00:00.000Z",
+  ).run();
+
+  const appSessionApprove = await readOnlyWorker.dispatchFetch(
+    `http://localhost/api/connect/sessions/${encodeURIComponent(appSessionPairingId)}/approve`,
+    {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        cookie: `__Host-pw_session=${encodeURIComponent(appSessionToken)}`,
       },
-    }),
-  });
-  assert.equal(mcpResponse.status, 503);
-  assert.equal(mcpResponse.headers.get("cache-control"), "no-store");
-  assert.deepEqual(await mcpResponse.json(), {
-    error: "temporarily_unavailable",
-    error_description: "Proofweave is temporarily read-only for maintenance.",
-    diagnostic_code: "control_plane_read_only",
+      body: JSON.stringify({
+        secret: appSessionPairingSecret,
+        delegationCertificateId: "delegation:read-only-app-session",
+      }),
+    },
+  );
+  assert.equal(appSessionApprove.status, 503);
+  assert.equal(appSessionApprove.headers.get("cache-control"), "no-store");
+  assert.deepEqual(await appSessionApprove.json(), {
+    error: { message: "Proofweave is temporarily read-only for maintenance." },
   });
 
+  await readOnlyDatabase.prepare("DELETE FROM local_codex_pairing_sessions WHERE id = ?")
+    .bind(appSessionPairingId)
+    .run();
+  await readOnlyDatabase.prepare("DELETE FROM app_sessions WHERE id = ?")
+    .bind(appSessionId)
+    .run();
+  await readOnlyDatabase.prepare("DELETE FROM person_identities WHERE id = ?")
+    .bind(appSessionIdentityId)
+    .run();
+  await readOnlyDatabase.prepare("DELETE FROM persons WHERE id = ?")
+    .bind(appSessionPersonId)
+    .run();
   assert.equal(
     await readOnlyDatabase.prepare("SELECT COUNT(*) AS count FROM local_codex_pairing_sessions").first("count"),
     0,
@@ -1501,6 +1586,47 @@ test("rejects public local-Agent pairing writes while the control plane is read-
     await readOnlyDatabase.prepare("SELECT COUNT(*) AS count FROM persons").first("count"),
     0,
   );
+});
+
+test("does not expose unexpected delegation auth/runtime errors as client input", async (t) => {
+  const entrypoint = fileURLToPath(new URL("index.js", workerRoot));
+  const modules = await listJavaScriptModules(workerRoot);
+  const invalidModeWorker = new Miniflare({
+    modules: [
+      { type: "ESModule", path: entrypoint },
+      ...modules
+        .filter((modulePath) => modulePath !== entrypoint)
+        .map((modulePath) => ({ type: "ESModule", path: modulePath })),
+    ],
+    modulesRoot: fileURLToPath(workerRoot),
+    compatibilityDate: "2026-05-15",
+    compatibilityFlags: ["nodejs_compat"],
+    d1Databases: ["DB"],
+    bindings: {
+      PROOFWEAVE_CONTROL_PLANE_MODE: "unexpected_runtime_mode",
+    },
+    serviceBindings: {
+      ASSETS: async () => new Response("Not found", { status: 404 }),
+    },
+  });
+  t.after(() => invalidModeWorker.dispose());
+  const invalidModeDatabase = await invalidModeWorker.getD1Database("DB");
+  await applyMigrations(invalidModeDatabase);
+
+  const response = await invalidModeWorker.dispatchFetch("http://localhost/api/me/agents", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      "oai-authenticated-user-email": "unexpected-runtime@example.test",
+    },
+    body: JSON.stringify({
+      label: "Unexpected runtime Agent",
+      publicKey: "f".repeat(43),
+    }),
+  });
+  const body = await response.text();
+  assert.equal(response.status, 500);
+  assert.doesNotMatch(body, /PROOFWEAVE_CONTROL_PLANE_MODE|unexpected_runtime_mode|read_write or read_only/i);
 });
 
 test("publicly verifies the checked Build Week reference evidence", async () => {

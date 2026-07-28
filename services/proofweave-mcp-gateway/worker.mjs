@@ -3,8 +3,16 @@ import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/
 import { z } from "zod";
 import { remoteMcpScopes } from "../../packages/protocol/remote-mcp-scopes.mjs";
 import { allowAllRemoteMcpRateLimiter } from "./d1-rate-limiter.mjs";
+import {
+  controlPlaneOperationMode,
+  normalizeControlPlaneOperationMode,
+} from "../database/control-plane-operation-mode.mjs";
+import {
+  remoteMcpReadOnlyToolNames,
+  remoteMcpRequestIsReadOnly,
+} from "./read-only-policy.mjs";
 
-export { remoteMcpScopes };
+export { remoteMcpReadOnlyToolNames, remoteMcpScopes };
 
 /**
  * Create the remote Proofweave MCP protected resource. OAuth issuance and
@@ -17,10 +25,17 @@ export function createRemoteMcpGateway({
   identityProvider,
   store,
   rateLimiter = allowAllRemoteMcpRateLimiter,
+  operationMode = controlPlaneOperationMode.readWrite,
 }) {
   if (!rateLimiter || typeof rateLimiter.enforce !== "function") {
     throw new TypeError("Proofweave MCP gateway requires a rate limiter with enforce().");
   }
+  const normalizedOperationMode = normalizeControlPlaneOperationMode(operationMode);
+  // A D1-backed limiter is itself a mutation. During a read-only freeze,
+  // protocol discovery and read tools must leave no operational bucket rows.
+  const effectiveRateLimiter = normalizedOperationMode === controlPlaneOperationMode.readOnly
+    ? allowAllRemoteMcpRateLimiter
+    : rateLimiter;
   const resourceUrl = new URL(resource);
   const resourceMetadataUrl = new URL(
     "/.well-known/oauth-protected-resource",
@@ -51,7 +66,19 @@ export function createRemoteMcpGateway({
           return unauthorized(resourceMetadataUrl);
         }
         if (!validPrincipal(principal)) return unauthorized(resourceMetadataUrl);
-        return handleMcpRequest(request, principal, store, resource, rateLimiter);
+        if (
+          normalizedOperationMode === controlPlaneOperationMode.readOnly
+          && !(await remoteMcpRequestIsReadOnly(request))
+        ) {
+          return controlPlaneReadOnly();
+        }
+        return handleMcpRequest(
+          request,
+          principal,
+          store,
+          resource,
+          effectiveRateLimiter,
+        );
       }
 
       return new Response("Not found", { status: 404 });
@@ -594,6 +621,17 @@ function oauthUnavailable() {
     {
       error: "temporarily_unavailable",
       error_description: "Proofweave Identity is not configured for this gateway yet.",
+    },
+    503,
+  );
+}
+
+function controlPlaneReadOnly() {
+  return json(
+    {
+      error: "temporarily_unavailable",
+      error_description: "Proofweave is temporarily read-only for maintenance.",
+      diagnostic_code: "control_plane_read_only",
     },
     503,
   );
