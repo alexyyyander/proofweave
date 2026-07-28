@@ -10,6 +10,10 @@ import {
   inspectLiveControlPlaneDiagnostics,
   selectControlPlaneAuthority,
 } from "./control-plane-authority.mjs";
+import {
+  applyControlPlaneOperationMode,
+  controlPlaneOperationState,
+} from "@/services/database/control-plane-operation-mode.mjs";
 import { verifyLiveProofweaveControlPlane } from "@/services/database/libsql-migrations.mjs";
 import * as schema from "./schema";
 
@@ -51,10 +55,23 @@ export function getD1(): AnyD1Database {
     d1Database: env.DB,
   });
   if (authority === controlPlaneAuthority.turso) {
-    return getRemoteDatabase(values.TURSO_DATABASE_URL, values.TURSO_AUTH_TOKEN);
+    return applyControlPlaneOperationMode(
+      getRemoteDatabase(values.TURSO_DATABASE_URL, values.TURSO_AUTH_TOKEN),
+      values.PROOFWEAVE_CONTROL_PLANE_MODE,
+    ) as unknown as AnyD1Database;
   }
-  if (authority === controlPlaneAuthority.sitesD1) return env.DB;
+  if (authority === controlPlaneAuthority.sitesD1) {
+    return applyControlPlaneOperationMode(
+      env.DB,
+      values.PROOFWEAVE_CONTROL_PLANE_MODE,
+    ) as unknown as AnyD1Database;
+  }
   throw new MissingDatabaseBindingError();
+}
+
+export function getControlPlaneOperationState() {
+  const values = env as unknown as Record<string, string | undefined>;
+  return controlPlaneOperationState(values.PROOFWEAVE_CONTROL_PLANE_MODE);
 }
 
 /**

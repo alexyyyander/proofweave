@@ -126,6 +126,12 @@ test("publishes a public Connector compatibility contract", async () => {
     siteProjectId: "appgprj_6a54400d01a8819199224b722afae056",
     failureCode: "release_identity_missing",
   });
+  assert.deepEqual(contract.controlPlaneOperations, {
+    schemaVersion: "pw-control-plane-operation-state-v1",
+    mode: "read_write",
+    writesEnabled: true,
+    explicitlyConfigured: false,
+  });
   assert.deepEqual(Object.keys(contract.releaseDiagnostics).sort(), [
     "authority",
     "databaseFingerprint",

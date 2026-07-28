@@ -1,6 +1,7 @@
 import { currentDelegationIdentity } from "@/app/lib/delegation-api";
 import { MissingDatabaseBindingError } from "@/db";
 import { getDelegationRepository } from "@/db/repositories/delegation";
+import { ControlPlaneReadOnlyError } from "@/services/database/control-plane-operation-mode.mjs";
 import {
   ReviewAssignmentConflictError,
   ReviewAssignmentNotFoundError,
@@ -15,7 +16,10 @@ export async function currentReviewPersonId(): Promise<string | Response> {
 }
 
 export function reviewFailure(error: unknown): Response {
-  if (error instanceof MissingDatabaseBindingError) {
+  if (
+    error instanceof MissingDatabaseBindingError
+    || error instanceof ControlPlaneReadOnlyError
+  ) {
     return Response.json(
       { error: { code: "unavailable", message: "Review assignments are temporarily unavailable." } },
       { status: 503 },

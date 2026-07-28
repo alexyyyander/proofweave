@@ -124,8 +124,12 @@ and neither proves continuous or hosted-exclusive isolation.
 Record the UTC start time and expected `RELEASE_SHA`, then prevent creation of
 new Runs before stopping consumers:
 
-1. Put participant-facing Sites mutation routes into provider-enforced
-   maintenance/read-only mode. Public catalog reads may remain available.
+1. Deploy the reviewed Sites release candidate with
+   `PROOFWEAVE_CONTROL_PLANE_MODE=read_only`. Public catalog reads may remain
+   available. The public capability document at
+   `/api/mcp/capabilities` must report
+   `controlPlaneOperations.mode=read_only` and
+   `controlPlaneOperations.writesEnabled=false`.
 2. Deny OAuth/MCP gateway methods that create or mutate Attempts, Bundles,
    reviews, Runs, or queue messages. Keep health and read-only discovery
    available.
@@ -134,9 +138,10 @@ new Runs before stopping consumers:
 4. Disable Render auto-deploy before the main merge. Do not allow a commit hook
    to replace the process during the window.
 5. Probe each public mutation boundary with a non-production owner account and
-   record the expected maintenance or disabled response. Confirm that the
-   durable Run and queue-message counts do not increase during the observation
-   interval.
+   record the expected HTTP 503 maintenance response. Confirm that the durable
+   Run and queue-message counts do not increase during the observation
+   interval. A capability response alone is not freeze evidence; the mutation
+   probe and unchanged database counts are both required.
 
 Do not revoke credentials merely to implement a planned freeze. Credential
 revocation is an incident action and requires a separate recovery record.

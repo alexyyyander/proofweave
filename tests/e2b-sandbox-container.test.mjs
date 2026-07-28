@@ -13,6 +13,7 @@ const templateId = "template_proofweave_lean_v1";
 const templateTag = "commit_0123456789abcdef";
 const templateReference = `${templateId}:${templateTag}`;
 const templateBuildId = "9420e83e-3c6d-48b8-94fe-a73807af5797";
+const immutableTemplateReference = `${templateId}:${templateBuildId}`;
 
 test("E2B adapter creates one secure no-egress Sandbox and keeps control credentials outside", async () => {
   const e2b = fakeE2B();
@@ -36,7 +37,7 @@ test("E2B adapter creates one secure no-egress Sandbox and keeps control credent
   });
 
   const container = await factory.get("run:e2b-1");
-  assert.equal(e2b.templateId, templateReference);
+  assert.equal(e2b.templateId, immutableTemplateReference);
   assert.equal(e2b.createOptions.apiKey, apiKey);
   assert.equal(e2b.createOptions.secure, true);
   assert.equal(e2b.createOptions.allowInternetAccess, false);

@@ -44,7 +44,7 @@
     "credit:market:check": "node --check packages/protocol/credit-market.mjs && node --check packages/protocol/verification-market.mjs && node --test tests/credit-market.test.mjs tests/verification-market.test.mjs",
     "credit:receipts:check": "node --test tests/d1-contribution-receipt-store.test.mjs tests/closed-alpha-evidence-flow.test.mjs",
     "credit:receipts:backfill": "node scripts/backfill-receipt-credits.mjs",
-    "portable:database:check": "node --check services/database/libsql-d1-adapter.mjs && node --check services/database/libsql-migrations.mjs && node --check scripts/lib/environment-file.mjs && node --check scripts/bootstrap-turso-control-plane.mjs && node --check scripts/manage-turso-control-plane.mjs && node --test tests/libsql-d1-adapter.test.mjs tests/libsql-migrations.test.mjs tests/turso-control-plane-bootstrap.test.mjs",
+    "portable:database:check": "node --check services/database/control-plane-operation-mode.mjs && node --check services/database/libsql-d1-adapter.mjs && node --check services/database/libsql-migrations.mjs && node --check scripts/lib/environment-file.mjs && node --check scripts/bootstrap-turso-control-plane.mjs && node --check scripts/manage-turso-control-plane.mjs && node --test tests/libsql-d1-adapter.test.mjs tests/libsql-migrations.test.mjs tests/turso-control-plane-bootstrap.test.mjs",
     "turso:bootstrap": "node scripts/bootstrap-turso-control-plane.mjs",
     "turso:plan": "node scripts/manage-turso-control-plane.mjs plan",
     "turso:migrate": "node scripts/manage-turso-control-plane.mjs apply",

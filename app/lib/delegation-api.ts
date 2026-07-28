@@ -1,5 +1,6 @@
 import { getCurrentUser, toPersonIdentity } from "@/app/auth";
 import { MissingDatabaseBindingError } from "@/db";
+import { ControlPlaneReadOnlyError } from "@/services/database/control-plane-operation-mode.mjs";
 import {
   DelegationAuthorizationError,
   DelegationConflictError,
@@ -19,7 +20,10 @@ export async function currentDelegationIdentity() {
 }
 
 export function delegationFailure(error: unknown) {
-  if (error instanceof MissingDatabaseBindingError) {
+  if (
+    error instanceof MissingDatabaseBindingError
+    || error instanceof ControlPlaneReadOnlyError
+  ) {
     return Response.json(
       { error: { code: "unavailable", message: "Delegation storage is temporarily unavailable." } },
       { status: 503 },
