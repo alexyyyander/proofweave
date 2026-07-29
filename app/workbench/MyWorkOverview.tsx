@@ -1,10 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { DelegationProfile } from "@/db/repositories/delegation";
 import type { CatalogProblem } from "@/packages/domain/catalog";
 import type { McpAttempt, McpRunSummary } from "@/packages/domain/mcp";
+import {
+  controlPlaneMaintenanceCopy,
+  loadControlPlaneWriteAvailability,
+  type ControlPlaneWriteAvailability,
+} from "../lib/control-plane-write-capability";
 import { activeAttemptDelegation, activeLocalCodexInstallation } from "../lib/local-agent-journey";
 import { ResearchLauncher } from "./ResearchLauncher";
 import { AttemptStatusBadge, deriveAttemptPresentation, type AttemptBucket } from "./attempt-presentation";
@@ -41,6 +46,9 @@ export function MyWorkOverview({
 }) {
   const [attempts, setAttempts] = useState<readonly McpAttempt[]>(initialAttempts);
   const [showLauncher, setShowLauncher] = useState(Boolean(initialTargetSlug));
+  const [writeAvailability, setWriteAvailability] = useState<ControlPlaneWriteAvailability>(
+    storageAvailable ? "available" : "unavailable",
+  );
   const records = useMemo(() => attempts.map((attempt) => {
     const delegation = activeAttemptDelegation(profile, attempt);
     const agentConnected = Boolean(activeLocalCodexInstallation(profile, delegation));
@@ -50,6 +58,15 @@ export function MyWorkOverview({
   const activeCount = attempts.filter((attempt) => attempt.status === "active" || attempt.status === "paused").length;
   const attentionCount = grouped.get("needs-attention")?.length ?? 0;
   const localConnection = activeLocalCodexInstallation(profile);
+  const maintenance = controlPlaneMaintenanceCopy(writeAvailability);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    void loadControlPlaneWriteAvailability(controller.signal).then((availability) => {
+      if (availability !== "checking") setWriteAvailability(availability);
+    });
+    return () => controller.abort();
+  }, []);
 
   const onAttemptReady = (attempt: McpAttempt) => {
     setAttempts((current) => [attempt, ...current.filter((candidate) => candidate.id !== attempt.id)]);
@@ -64,10 +81,18 @@ export function MyWorkOverview({
         <p>See what needs you, what your Agent can continue, and which contributions are waiting for verification.</p>
       </div>
       <div className="my-work-actions">
-        <button className="button button-primary" type="button" onClick={() => setShowLauncher((current) => !current)}>{showLauncher ? "Hide new task" : "Start new research"}</button>
+        {writeAvailability === "available"
+          ? <button className="button button-primary" type="button" onClick={() => setShowLauncher((current) => !current)}>{showLauncher ? "Hide new task" : "Start new research"}</button>
+          : <span className="button button-secondary" aria-disabled="true">{writeAvailability === "checking" ? "Checking research access…" : "Research updates paused"}</span>}
         <Link className="button button-secondary" href="/explore">Browse opportunities</Link>
       </div>
     </section>
+
+    {writeAvailability !== "available" && <section className="my-work-empty" aria-live="polite">
+      <p className="eyebrow">Read-only workspace</p>
+      <h2>{maintenance.title}</h2>
+      <p>{maintenance.detail}</p>
+    </section>}
 
     <section className="my-work-summary" aria-label="Workspace summary">
       <div><span>Active</span><strong>{activeCount}</strong><small>research tasks</small></div>
@@ -83,7 +108,7 @@ export function MyWorkOverview({
     </div>
 
     {showLauncher && <section className="my-work-launcher" aria-label="Start new research">
-      <ResearchLauncher profile={profile} attempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={initialTargetSlug} initialParentNodeId={initialParentNodeId} onAttemptReady={onAttemptReady} isAuthenticated signInPath="/sign-in?returnTo=%2Fworkbench" storageAvailable={storageAvailable} />
+      <ResearchLauncher profile={profile} attempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={initialTargetSlug} initialParentNodeId={initialParentNodeId} onAttemptReady={onAttemptReady} isAuthenticated signInPath="/sign-in?returnTo=%2Fworkbench" storageAvailable={storageAvailable} writeAvailability={writeAvailability} />
     </section>}
 
     {!storageAvailable ? <section className="my-work-empty"><p className="eyebrow">Workspace unavailable</p><h2>Your durable research records cannot be loaded.</h2><p>Proofweave does not substitute preview tasks when the accountable store is unavailable.</p></section>

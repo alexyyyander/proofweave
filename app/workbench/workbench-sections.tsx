@@ -3,6 +3,10 @@ import { ProductStateBadge } from "../ui";
 import type { DelegationProfile } from "@/db/repositories/delegation";
 import type { McpAttempt, McpAttemptEvent, McpRunSummary } from "@/packages/domain/mcp";
 import type { ProvisionalContribution } from "@/db/repositories/provisional-contributions";
+import {
+  controlPlaneMaintenanceCopy,
+  type ControlPlaneWriteAvailability,
+} from "../lib/control-plane-write-capability";
 import { activeAttemptDelegation, activeLocalCodexInstallation, activeWorkDelegation, localAgentJourney } from "../lib/local-agent-journey";
 
 type GateState = "passed" | "waiting" | "required" | "failed";
@@ -22,6 +26,7 @@ export function FirstContributionPath({
   isAuthenticated,
   signInPath,
   storageAvailable,
+  writeAvailability,
 }: {
   attempt: McpAttempt | null;
   profile: DelegationProfile | null;
@@ -29,6 +34,7 @@ export function FirstContributionPath({
   isAuthenticated: boolean;
   signInPath: string;
   storageAvailable: boolean;
+  writeAvailability: ControlPlaneWriteAvailability;
 }) {
   const agentConnected = Boolean(attempt
     ? activeLocalCodexInstallation(profile, activeAttemptDelegation(profile, attempt))
@@ -37,30 +43,32 @@ export function FirstContributionPath({
   const progressRecorded = Boolean(attempt?.events.some((event) => event.type === "agent_reported" || event.type === "bundle_staged"));
   const bundleStaged = Boolean(attempt?.events.some((event) => event.type === "bundle_staged"));
   const leanAccepted = hasAcceptedKernel(latestRunForAttempt(attempt, runs));
-  const states = [agentConnected, attemptOpened, progressRecorded, bundleStaged, leanAccepted];
+  const states = [attemptOpened, agentConnected, progressRecorded, bundleStaged, leanAccepted];
   const completed = states.filter(Boolean).length;
   const current = states.findIndex((state) => !state);
   const next = !isAuthenticated
     ? { href: signInPath, label: "Sign in", detail: "Create the stable Person record that will own your Agent work." }
     : !storageAvailable
       ? { href: "/explore", label: "Browse research", detail: "The contribution control plane is temporarily unavailable; public records remain readable." }
-      : !agentConnected
-        ? { href: "/integrations#codex-beta", label: "Connect Codex", detail: "Approve one local Agent. No API key or public key needs to be pasted." }
+      : writeAvailability !== "available"
+        ? { href: "/explore", label: "Browse public research", detail: controlPlaneMaintenanceCopy(writeAvailability).detail }
         : !attemptOpened
-          ? { href: "/explore#starter-work", label: "Choose a starter task", detail: "Begin with a source-pinned known result or choose another bounded target." }
+          ? { href: "/explore#starter-work", label: "Choose a question", detail: "Choose a precise public question so your Agent can build on shared work." }
+          : !agentConnected
+            ? { href: "/integrations#codex-beta", label: "Connect Agent", detail: "Approve your local Codex once. No API key, public key, or workspace is pasted." }
           : !progressRecorded
-            ? { href: "#next-action", label: "Continue in Codex", detail: "Copy the bound brief above, then let your Agent record one signed research checkpoint." }
+            ? { href: "#next-action", label: "Continue in Codex", detail: "Research locally, then choose whether one useful milestone should be recorded." }
             : !bundleStaged
-              ? { href: "#local-agent", label: "Prepare evidence", detail: "Ask the bound Agent to stage an owner-approved, reproducible Artifact Bundle." }
+              ? { href: "#local-agent", label: "Approve evidence", detail: "Review the exact files and hashes before allowing any evidence to leave your computer." }
               : !leanAccepted
-                ? { href: "#local-agent", label: "Run isolated Lean", detail: "Submit the staged Bundle to the isolated Runner and wait for a signed result." }
-                : { href: "/evidence", label: "Inspect verified evidence", detail: "Your Lean evidence is ready for a different owner to review before any Receipt is issued." };
+                ? { href: "#local-agent", label: "Track verification", detail: "Your approved evidence is waiting for an isolated Lean check." }
+                : { href: "/evidence", label: "View verification", detail: "Lean accepted this evidence. Independent review is still required before contribution credit." };
   const steps = [
-    ["Connect Agent", "One-time browser approval"],
-    ["Open Attempt", "One pinned target"],
-    ["Record progress", "Signed checkpoint"],
-    ["Stage Bundle", "Reproducible evidence"],
-    ["Pass Lean", "Isolated kernel result"],
+    ["Choose question", "One precise public target"],
+    ["Connect Agent", "One-time private approval"],
+    ["Research locally", "Private work stays local"],
+    ["Approve evidence", "You review before sharing"],
+    ["Verification & credit", leanAccepted ? "Lean accepted · review next" : "Lean, review, then credit"],
   ] as const;
 
   return <section className="first-contribution-path" aria-labelledby="first-contribution-title">
@@ -163,6 +171,7 @@ export function FocusAction({
   isAuthenticated,
   signInPath,
   storageAvailable,
+  writeAvailability,
   refreshError,
   refreshedAt,
   handoffNotice,
@@ -178,6 +187,7 @@ export function FocusAction({
   isAuthenticated: boolean;
   signInPath: string;
   storageAvailable: boolean;
+  writeAvailability: ControlPlaneWriteAvailability;
   refreshError: string | null;
   refreshedAt: string | null;
   handoffNotice: string | null;
@@ -193,6 +203,7 @@ export function FocusAction({
     storageAvailable,
     hasAttempt: attempt?.status === "active",
     hasSelectedTarget: false,
+    writeAvailability,
     links: {
       signIn: signInPath,
       connect: "/integrations#codex-beta",
@@ -204,7 +215,13 @@ export function FocusAction({
   const isPausedAttempt = attempt?.status === "paused";
   const isHistoricalAttempt = Boolean(attempt && attempt.status !== "active" && !isPausedAttempt);
   const needsAttemptConnection = Boolean(attempt?.status === "active" && !canContinueLocally);
-  const action = isPausedAttempt ? {
+  const maintenance = controlPlaneMaintenanceCopy(writeAvailability);
+  const action = writeAvailability !== "available" ? {
+    title: maintenance.title,
+    detail: maintenance.detail,
+    label: "Browse public research",
+    href: attempt ? `/explore/${attempt.problemSlug}` : "/explore",
+  } : isPausedAttempt ? {
     title: "This Attempt is paused, not lost.",
     detail: "Its stable id, branch history, and evidence remain intact. Resume it under current same-Agent authority when you are ready.",
     label: "Resume from Manage Attempt",
@@ -222,13 +239,17 @@ export function FocusAction({
   } : {
     title: journey.title,
     detail: journey.detail,
-    label: journey.stage === "work_locally" ? "Copy Codex brief" : journey.actionLabel,
+    label: journey.stage === "work_locally" ? "Continue in Codex" : journey.actionLabel,
     href: journey.actionHref,
   };
   const focusTitle = attempt?.problemTitle ?? "Choose a source-pinned research target.";
   const focusDetail = attempt
-    ? `${attempt.agentLabel} · ${attempt.delegationScope ?? "legacy"} authority · ${attempt.status}`
-    : "An Attempt is a bounded, durable workspace—not a claim that a proof has been found.";
+    ? attempt.status === "active"
+      ? `Research with ${attempt.agentLabel}. Your private work stays on your computer.`
+      : attempt.status === "paused"
+        ? "This research task is paused. Its public record and evidence remain available."
+        : "This research task is part of your history and remains available to inspect."
+    : "Choose a precise public question. Starting a task does not claim that a proof has been found.";
   const FocusTitle = isPageHeading ? "h1" : "h2";
 
   return <section className="focus-layout" id="current-research" aria-label="Current focus and next action">
@@ -236,20 +257,32 @@ export function FocusAction({
       <span className="micro-label">Current focus</span>
       <FocusTitle>{focusTitle}</FocusTitle>
       <p>{focusDetail}</p>
-      {attempt && <code className="focus-attempt-id">Stable Attempt · {attempt.id}</code>}
       <div className="toolbar-links">
         {attempt && <Link className="text-link" href={`/explore/${attempt.problemSlug}`}>Inspect target <span>→</span></Link>}
         {(attempt?.status === "active" || attempt?.status === "paused") && <details className="attempt-lifecycle-menu">
-          <summary>Manage Attempt</summary>
+          <summary>Manage research</summary>
           <div>
-            <strong>{attempt.status === "paused" ? "Paused research" : "Research controls"}</strong>
-            <p>{attempt.status === "paused" ? "Resume the same Attempt id, or abandon this direction permanently." : "Pause keeps this task resumable. Abandon ends future work but retains every record."}</p>
+            <strong>{writeAvailability !== "available" ? "Changes are paused" : attempt.status === "paused" ? "Paused research" : "Research controls"}</strong>
+            <p>{writeAvailability !== "available" ? maintenance.detail : attempt.status === "paused" ? "Resume this same task, or end this direction permanently." : "Pause keeps this task resumable. Ending it preserves every existing record."}</p>
             <div className="button-row">
               {attempt.status === "active"
-                ? <button type="button" disabled={Boolean(lifecycleAction)} onClick={() => onLifecycleAction("pause")}>{lifecycleAction === "pause" ? "Pausing…" : "Pause Attempt"}</button>
-                : <button type="button" disabled={Boolean(lifecycleAction)} onClick={() => onLifecycleAction("resume")}>{lifecycleAction === "resume" ? "Resuming…" : "Resume Attempt"}</button>}
-              <button type="button" disabled={Boolean(lifecycleAction)} onClick={() => onLifecycleAction("abandon")}>{lifecycleAction === "abandon" ? "Abandoning…" : "Abandon permanently"}</button>
+                ? <button type="button" disabled={writeAvailability !== "available" || Boolean(lifecycleAction)} onClick={() => onLifecycleAction("pause")}>{lifecycleAction === "pause" ? "Pausing…" : "Pause research"}</button>
+                : <button type="button" disabled={writeAvailability !== "available" || Boolean(lifecycleAction)} onClick={() => onLifecycleAction("resume")}>{lifecycleAction === "resume" ? "Resuming…" : "Resume research"}</button>}
+              <button type="button" disabled={writeAvailability !== "available" || Boolean(lifecycleAction)} onClick={() => onLifecycleAction("abandon")}>{lifecycleAction === "abandon" ? "Ending…" : "End this research"}</button>
             </div>
+          </div>
+        </details>}
+        {attempt && <details className="attempt-lifecycle-menu">
+          <summary>Technical details</summary>
+          <div>
+            <strong>Stable research record</strong>
+            <code className="focus-attempt-id">{attempt.id}</code>
+            <p>{attempt.agentLabel} · {attempt.delegationScope ?? "legacy"} authority · {attempt.status}</p>
+            <small>{attempt.status === "active"
+              ? "“Continue in Codex” will copy instructions for this exact record."
+              : attempt.status === "paused"
+                ? "Resume this record before asking the Agent to publish more progress."
+                : "This closed record cannot receive additional Agent writes."}</small>
           </div>
         </details>}
       </div>
@@ -260,12 +293,14 @@ export function FocusAction({
       <strong>{action.title}</strong>
       <p id="next-action-help">{action.detail}</p>
       <div className="next-action-controls">
-        {isPausedAttempt
+        {writeAvailability !== "available"
+          ? <Link className="button button-secondary focus-primary" href={action.href}>{action.label}</Link>
+          : isPausedAttempt
           ? <button className="button button-primary focus-primary" type="button" disabled={Boolean(lifecycleAction)} onClick={() => onLifecycleAction("resume")}>{lifecycleAction === "resume" ? "Resuming…" : "Resume same Attempt"}</button>
           : !isHistoricalAttempt && !needsAttemptConnection && journey.stage === "work_locally"
           ? <button className="button button-primary focus-primary" type="button" onClick={onCopyCodexBrief}>{action.label}</button>
           : <Link className="button button-primary focus-primary" href={action.href}>{action.label}</Link>}
-        {attempt && <Link className="workspace-pause-button" href="#attempt-activity">Inspect recorded activity</Link>}
+        {attempt && <Link className="workspace-pause-button" href="#attempt-activity">View recorded activity</Link>}
       </div>
       {handoffNotice && <p className="activity-refresh-status" role="status">{handoffNotice}</p>}
       {refreshedAt && <p className="activity-refresh-status" role="status">Records refreshed {formatTimestamp(refreshedAt)}.</p>}
@@ -356,10 +391,12 @@ export function ResearchWorkstation({ attempt, runs }: { attempt: McpAttempt | n
 
   return <section className="workstation-grid" id="evidence-workspace" aria-label="Research workstation">
     <article className="workstation-panel context-panel">
-      <div className="workstation-heading"><span>01 / Bounded Attempt</span><span className="record-chip">{attempt ? attempt.status : "Not opened"}</span></div>
-      <h3>{attempt ? attempt.problemTitle : "Open a source-pinned target before starting research work."}</h3>
-      <p className="context-statement">{attempt ? "This workspace is bound to one catalog revision and one delegated Agent authority. It does not imply progress or verification." : "Proofweave shows no invented research branch before a durable Attempt has been opened."}</p>
-      <dl className="context-list">{attempt ? <>
+      <div className="workstation-heading"><span>01 / Selected question</span><span className="record-chip">{attempt ? attempt.status : "Not selected"}</span></div>
+      <h3>{attempt ? attempt.problemTitle : "Choose a precise public question before starting research."}</h3>
+      <p className="context-statement">{attempt ? "This is the exact question assigned to your Agent. Selecting it does not imply progress or verification." : "Proofweave shows no invented research branch before a durable research task has been opened."}</p>
+      <details className="local-agent-guide">
+        <summary><span>Technical task details</span><small>Source, authority, and stable record</small></summary>
+        <dl className="context-list">{attempt ? <>
         <div><dt>Catalog target</dt><dd><Link href={`/explore/${attempt.problemSlug}`}>{attempt.problemSlug}</Link></dd></div>
         <div><dt>Agent authority</dt><dd>{attempt.agentLabel} · {attempt.delegationScope ?? "legacy authority"}</dd></div>
         <div><dt>Attempt record</dt><dd><code>{attempt.id}</code></dd></div>
@@ -367,39 +404,55 @@ export function ResearchWorkstation({ attempt, runs }: { attempt: McpAttempt | n
         <div><dt>First requirement</dt><dd>Sign in, issue a scoped delegation, then select a public frontier target.</dd></div>
         <div><dt>Evidence boundary</dt><dd>Only a remote Agent may report signed progress; only the isolated runner may produce Lean evidence.</dd></div>
       </>}</dl>
+      </details>
       <div className="context-footer">{attempt ? <><span>Opened {formatTimestamp(attempt.createdAt)}</span><span>Last updated {formatTimestamp(attempt.updatedAt)}</span></> : <><span>No source snapshot selected</span><span>No Agent activity recorded</span></>}</div>
     </article>
     <article className="workstation-panel source-panel">
-      <div className="workstation-heading"><span>02 / Artifact &amp; Lean evidence</span><span className={runnerAccepted ? "source-good" : "source-waiting"}>{runnerAccepted ? "Kernel accepted" : bundleStaged ? "Bundle staged" : "Awaiting bundle"}</span></div>
+      <div className="workstation-heading"><span>02 / Evidence &amp; verification</span><span className={runnerAccepted ? "source-good" : "source-waiting"}>{runnerAccepted ? "Lean accepted" : bundleStaged ? "Evidence approved" : "Awaiting evidence"}</span></div>
       <div className="source-state">
-        <strong>{runnerAccepted ? "The isolated Lean Runner recorded an accepted kernel result." : bundleStaged ? "A signed Artifact Bundle is staged for this Attempt." : "No Artifact Bundle has been staged."}</strong>
-        <p>{runnerAccepted ? "This Runner result satisfies only the Lean execution gate. It is not independent review or a Contribution Receipt." : bundleStaged ? "Open controlled evidence to inspect the hash-bound bundle. Staging alone is not a Lean check or an accepted contribution." : "A local preview or individual stored object does not move this gate. Proofweave does not render a sample source file or a fictional compiler result in place of a complete, Agent-signed Bundle."}</p>
-        {attempt && <Link className="text-link source-link" href={evidenceHref}>Open controlled evidence <span>→</span></Link>}
+        <strong>{runnerAccepted ? "Lean accepted the approved evidence." : bundleStaged ? "Your approved evidence is recorded and ready for verification." : "No evidence has been approved for verification."}</strong>
+        <p>{runnerAccepted ? "This confirms only the Lean check. Independent review and contribution credit remain separate." : bundleStaged ? "You can inspect exactly what was shared. Approval alone is not a Lean check or an accepted contribution." : "Private work and local previews do not move this step. Proofweave does not render a sample source file or a fictional compiler result in place of a complete, Agent-signed Bundle."}</p>
+        {attempt && <Link className="text-link source-link" href={evidenceHref}>View evidence <span>→</span></Link>}
       </div>
-      <div className="diagnostic-box">
-        <div><span className={`check-dot ${runnerDotClass(latestRun)}`} aria-hidden="true" />{runnerDiagnosticTitle(latestRun)}</div>
-        <p>{runnerDiagnosticDetail(latestRun)}</p>
-        {runnerResult && <dl className="diagnostic-checks">
-          <div><dt>Build</dt><dd>{runnerResult.status} · exit {runnerResult.exitCode}</dd></div>
-          <div><dt>Kernel</dt><dd>{runnerResult.kernelStatus}</dd></div>
-          <div><dt>Network</dt><dd>{runnerResult.checks.network}</dd></div>
-          <div><dt><code>sorry</code></dt><dd>{runnerResult.checks.noSorry}</dd></div>
-          <div><dt>Axioms</dt><dd>{runnerResult.checks.allowedAxioms}</dd></div>
-          <div><dt>Lean build</dt><dd>{runnerResult.checks.leanBuild}</dd></div>
-        </dl>}
-      </div>
-      <div className="source-meta"><span>{attempt ? "Attempt-bound evidence" : "No workspace evidence"}</span><span>{latestRun ? `Runner · ${latestRun.state}` : "Runner required"}</span><span>{latestRun?.evidenceState === "recorded" ? "Result evidence recorded" : "Independent review required"}</span></div>
+      <details className="local-agent-guide">
+        <summary><span>Technical verification details</span><small>Runner, kernel, and policy checks</small></summary>
+        <div className="diagnostic-box">
+          <div><span className={`check-dot ${runnerDotClass(latestRun)}`} aria-hidden="true" />{runnerDiagnosticTitle(latestRun)}</div>
+          <p>{runnerDiagnosticDetail(latestRun)}</p>
+          {runnerResult && <dl className="diagnostic-checks">
+            <div><dt>Build</dt><dd>{runnerResult.status} · exit {runnerResult.exitCode}</dd></div>
+            <div><dt>Kernel</dt><dd>{runnerResult.kernelStatus}</dd></div>
+            <div><dt>Network</dt><dd>{runnerResult.checks.network}</dd></div>
+            <div><dt><code>sorry</code></dt><dd>{runnerResult.checks.noSorry}</dd></div>
+            <div><dt>Axioms</dt><dd>{runnerResult.checks.allowedAxioms}</dd></div>
+            <div><dt>Lean build</dt><dd>{runnerResult.checks.leanBuild}</dd></div>
+          </dl>}
+        </div>
+        <div className="source-meta"><span>{attempt ? "Attempt-bound evidence" : "No workspace evidence"}</span><span>{latestRun ? `Runner · ${latestRun.state}` : "Runner required"}</span><span>{latestRun?.evidenceState === "recorded" ? "Result evidence recorded" : "Independent review required"}</span></div>
+      </details>
     </article>
     <article className="workstation-panel run-panel" id="attempt-activity">
-      <div className="workstation-heading"><span>03 / Agent events &amp; artifacts</span><span className="record-chip">Structured</span></div>
-      <p className="run-lede">Only publication-facing evidence appears here. Private chain-of-thought is never displayed.</p>
+      <div className="workstation-heading"><span>03 / Recorded activity</span><span className="record-chip">Private by default</span></div>
+      <p className="run-lede">Only progress and evidence approved for the research record appear here. Private reasoning is never displayed.</p>
       {attempt?.events.length ? <ol className="event-list" aria-live="polite">{attempt.events.map((event) => <AttemptEventRow event={event} key={event.id} />)}</ol> : <p className="event-empty">No Agent activity has been recorded. Opening an Attempt creates the first durable owner event; remote Agent progress is separately authorized.</p>}
       <p className="event-footer">{attempt ? "This timeline records only immutable Attempt events. It is not Lean verification, independent review, or a Contribution Receipt." : "No simulated Agent work is created in this workspace. Open an Attempt to establish a bounded record."}</p>
     </article>
   </section>;
 }
 
-export function SubmissionReadiness({ attempt, profile, runs, compact = false }: { attempt: McpAttempt | null; profile: DelegationProfile | null; runs: readonly McpRunSummary[]; compact?: boolean }) {
+export function SubmissionReadiness({
+  attempt,
+  profile,
+  runs,
+  writeAvailability,
+  compact = false,
+}: {
+  attempt: McpAttempt | null;
+  profile: DelegationProfile | null;
+  runs: readonly McpRunSummary[];
+  writeAvailability: ControlPlaneWriteAvailability;
+  compact?: boolean;
+}) {
   const hasAgentProgress = Boolean(attempt?.events.some((event) => event.type === "agent_reported"));
   const bundleStaged = Boolean(attempt?.events.some((event) => event.type === "bundle_staged"));
   const connectionActive = Boolean(attempt && activeLocalCodexInstallation(
@@ -409,7 +462,9 @@ export function SubmissionReadiness({ attempt, profile, runs, compact = false }:
   const attemptIsActive = attempt?.status === "active";
   const leanGate = leanGateFor(latestRunForAttempt(attempt, runs));
   const passedGates = [Boolean(attempt), hasAgentProgress, bundleStaged, leanGate.state === "passed"].filter(Boolean).length;
-  const action = !attempt
+  const action = writeAvailability !== "available"
+    ? { href: attempt ? `/explore/${attempt.problemSlug}` : "/explore", label: "Browse public research" }
+    : !attempt
     ? { href: "#research-launcher", label: "Start research" }
     : !attemptIsActive
       ? { href: "/explore", label: "Choose another target" }
@@ -420,31 +475,31 @@ export function SubmissionReadiness({ attempt, profile, runs, compact = false }:
         : { href: "#local-agent", label: "Continue with Agent" };
 
   const gateList = <ul className="gate-list">
-    <GateRow state={attempt ? "passed" : "waiting"} label="Bounded Attempt" detail={attempt ? "Target and delegated Agent authority are durably bound." : "Open a source-pinned Attempt first."} />
-    <GateRow state={hasAgentProgress ? "passed" : "waiting"} label="Agent-reported progress" detail={hasAgentProgress ? "A separately authorized Agent event is recorded." : "Requires the remote OAuth MCP connection; browser clicks cannot create this event."} />
-    <GateRow state={bundleStaged ? "passed" : "waiting"} label="Signed Artifact Bundle" detail={bundleStaged ? "A bundle-staged event is recorded; inspect its controlled evidence separately." : "Individual approved file objects are only preparation. This gate requires a complete signed Bundle from the authorized Agent."} />
-    <GateRow state={leanGate.state} label="Isolated Lean result" detail={leanGate.detail} />
-    <GateRow state="required" label="Independent review" detail="Must be performed by a different owner." />
+    <GateRow state={attempt ? "passed" : "waiting"} label="Question selected" detail={attempt ? "One precise public target is saved for this research task." : "Choose a precise public question first."} />
+    <GateRow state={hasAgentProgress ? "passed" : "waiting"} label="Research progress" detail={hasAgentProgress ? "A useful milestone approved by the owner is recorded." : "Private exploration does not count until you approve a concise milestone."} />
+    <GateRow state={bundleStaged ? "passed" : "waiting"} label="Evidence approved" detail={bundleStaged ? "The owner-approved, hash-checked evidence is recorded." : "You must review the exact files and hashes before evidence is shared."} />
+    <GateRow state={leanGate.state} label="Lean verification" detail={leanGate.detail} />
+    <GateRow state="required" label="Independent review & credit" detail="A different owner must review accepted evidence before contribution credit." />
   </ul>;
 
   if (compact) return <section className="submission-section submission-section-compact" id="contribution-gates" aria-labelledby="submission-title">
     <div className="workspace-rail-heading">
-      <span className="micro-label">Evidence before credit</span>
-      <strong id="submission-title">Verification gates</strong>
+      <span className="micro-label">Your contribution path</span>
+      <strong id="submission-title">Verification and credit</strong>
       <small>{passedGates} of 5 recorded</small>
     </div>
     <div className="submission-card">
       {gateList}
-      <p className="submission-hint">{!attemptIsActive && attempt ? "This terminal Attempt remains inspectable, but it no longer accepts Agent progress." : connectionActive ? "The active Agent may continue this Attempt; every later claim still needs its own evidence." : "Connection approval is separate from delegation and from mathematical verification."}</p>
+      <p className="submission-hint">{writeAvailability !== "available" ? controlPlaneMaintenanceCopy(writeAvailability).detail : !attemptIsActive && attempt ? "This finished research task remains inspectable, but it no longer accepts new progress." : connectionActive ? "Your Agent may continue this task; every later claim still needs its own evidence." : "Connecting an Agent does not by itself verify any mathematics."}</p>
     </div>
   </section>;
 
   return <section className="submission-section" id="contribution-gates" aria-labelledby="submission-title">
-    <div className="submission-copy"><p className="eyebrow">Evidence before credit</p><h2 id="submission-title">See every gate before a contribution can count.</h2><p>Proofweave records only evidence that exists. Agent-reported activity, Lean execution, independent review, and a Contribution Receipt remain separate gates.</p></div>
+    <div className="submission-copy"><p className="eyebrow">Verification and credit</p><h2 id="submission-title">See every step before a contribution can count.</h2><p>Progress, approved evidence, Lean verification, independent review, and contribution credit remain separate results.</p></div>
     <div className="submission-card">
-      <div className="submission-card-heading"><strong>Contribution path</strong><span>{attempt ? "Attempt selected" : "No Attempt yet"}</span></div>
+      <div className="submission-card-heading"><strong>Contribution path</strong><span>{attempt ? "Question selected" : "Choose a question"}</span></div>
       {gateList}
-      <p className="submission-hint">{!attemptIsActive && attempt ? "This terminal Attempt remains inspectable, but it no longer accepts Agent progress." : connectionActive ? "An active Agent installation is recorded. The remote gateway still controls which operations it may perform." : "No active Agent installation is recorded for this Attempt. Connection approval is separate from delegation."}</p>
+      <p className="submission-hint">{writeAvailability !== "available" ? controlPlaneMaintenanceCopy(writeAvailability).detail : !attemptIsActive && attempt ? "This finished research task remains inspectable, but it no longer accepts new progress." : connectionActive ? "Your connected Agent may continue. Every mathematical claim still needs its own evidence." : "Connect the Agent assigned to this question before continuing."}</p>
       <Link className="button button-primary submit-button" href={action.href}>{action.label}</Link>
     </div>
   </section>;

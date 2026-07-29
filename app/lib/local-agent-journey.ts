@@ -4,10 +4,12 @@ import type {
   StoredDelegation,
 } from "@/db/repositories/delegation";
 import type { McpAttempt } from "@/packages/domain/mcp";
+import type { ControlPlaneWriteAvailability } from "./control-plane-write-capability";
 
 export type LocalAgentJourneyStage =
   | "sign_in"
   | "storage_unavailable"
+  | "maintenance"
   | "connect_agent"
   | "renew_connection"
   | "choose_target"
@@ -128,6 +130,7 @@ export function localAgentJourney(input: Readonly<{
   storageAvailable: boolean;
   hasAttempt: boolean;
   hasSelectedTarget: boolean;
+  writeAvailability: ControlPlaneWriteAvailability;
   links: JourneyLinks;
 }>): LocalAgentJourney {
   const delegation = activeWorkDelegation(input.profile);
@@ -135,15 +138,28 @@ export function localAgentJourney(input: Readonly<{
 
   if (!input.isAuthenticated) return state("sign_in", "Sign in to begin an attributable research record.", "Proofweave creates a Person record only after sign-in. You can still inspect the public frontier without an account.", "Sign in to begin", input.links.signIn, null, null);
   if (!input.storageAvailable) return state("storage_unavailable", "Your account control plane is temporarily unavailable.", "Proofweave will not create a local fallback for Agent authority or contribution records while durable storage is unavailable.", "Browse public research", input.links.chooseTarget, null, null);
+  if (input.writeAvailability !== "available") return state(
+    "maintenance",
+    input.writeAvailability === "checking"
+      ? "Checking whether research updates are available."
+      : "Research updates are paused for maintenance.",
+    input.writeAvailability === "read_only"
+      ? "Your questions, activity, and evidence remain readable. Actions that create or change research will return after maintenance."
+      : "Existing records remain readable. Write actions stay closed until Proofweave can confirm the service is ready.",
+    "Browse public research",
+    input.links.chooseTarget,
+    null,
+    null,
+  );
   if (!installation) {
     const hasOldConnection = input.profile?.agentInstallations.some((candidate) => candidate.status === "active") ?? false;
     return hasOldConnection
-      ? state("renew_connection", "Reconnect your local Codex before continuing.", "Proofweave will reuse compatible same-Agent authority when it is still valid, or issue a new revocable delegation without replacing stable Attempt ids.", "Reconnect local Codex", input.links.connect, delegation, null)
-      : state("connect_agent", "Connect your local Codex once.", "The browser approval creates the local Agent identity and a short, revocable delegation. You do not need to paste a public key or token.", "Install or connect Codex", input.links.connect, delegation, null);
+      ? state("renew_connection", "Reconnect your Agent before continuing.", "Proofweave keeps your existing research tasks and reconnects compatible authority without asking you to recreate them.", "Reconnect Agent", input.links.connect, delegation, null)
+      : state("connect_agent", "Connect your Agent once.", "A browser approval links your local Codex to your account. You never need to paste an API key, public key, or workspace.", "Connect Agent", input.links.connect, delegation, null);
   }
-  if (input.hasAttempt) return state("work_locally", "Continue with your approved local Agent.", "Your Lean project and private reasoning remain on your computer. The copied brief asks Codex to verify its saved Connector address before resuming this target or recording selected progress.", "Continue local research", input.links.work, delegation, installation);
-  if (input.hasSelectedTarget) return state("open_attempt", "Open a bounded Attempt for this target.", "This links the selected revision to your connected Agent. It does not claim mathematical progress or run Lean.", "Open bounded Attempt", input.links.openAttempt, delegation, installation);
-  return state("choose_target", "Choose one source-pinned mathematical target.", "A connected Agent works against a precise public record, not an unbounded chat. You can change direction later by opening a separate Attempt.", "Choose a target", input.links.chooseTarget, delegation, installation);
+  if (input.hasAttempt) return state("work_locally", "Continue research in Codex.", "Your project and private exploration remain on your computer. You choose which concise progress or evidence may be recorded.", "Continue in Codex", input.links.work, delegation, installation);
+  if (input.hasSelectedTarget) return state("open_attempt", "Start research on this question.", "Proofweave saves the exact public question and assigns it to your connected Agent. This does not claim progress or run Lean.", "Start research", input.links.openAttempt, delegation, installation);
+  return state("choose_target", "Choose a mathematical question.", "Each task starts from a precise public source so your Agent can build on shared work instead of repeating it.", "Choose a question", input.links.chooseTarget, delegation, installation);
 }
 
 function state(

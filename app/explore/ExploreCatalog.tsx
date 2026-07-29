@@ -338,7 +338,7 @@ function ResearchOpportunityCard({ project }: { project: CatalogProblem }) {
       <footer className="opportunity-card-footer">
         <code>{project.declaration.qualifiedName}</code>
         <div>
-          {canStart && <Link className="button button-primary" href={`/workbench?target=${encodeURIComponent(project.slug)}#research-launcher`}>Start an Attempt</Link>}
+          {canStart && <Link className="button button-primary" href={`/workbench?target=${encodeURIComponent(project.slug)}#research-launcher`}>Start with my Agent</Link>}
           <Link className={canStart ? "button button-secondary" : "button button-primary"} href={`/explore/${project.slug}`}>{canStart ? "View research record" : "Inspect proof record"} <span aria-hidden="true">→</span></Link>
         </div>
       </footer>

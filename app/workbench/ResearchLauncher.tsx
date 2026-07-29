@@ -6,6 +6,10 @@ import type { DelegationProfile, StoredDelegation } from "@/db/repositories/dele
 import type { CatalogProblem } from "@/packages/domain/catalog";
 import type { McpAttempt } from "@/packages/domain/mcp";
 import { closedAlphaAttemptLimits } from "@/packages/domain/attempt-policy.mjs";
+import {
+  controlPlaneMaintenanceCopy,
+  type ControlPlaneWriteAvailability,
+} from "../lib/control-plane-write-capability";
 import { activeLocalCodexInstallation } from "../lib/local-agent-journey";
 
 type WorkScope = "formalize" | "prove";
@@ -25,6 +29,7 @@ export function ResearchLauncher({
   isAuthenticated,
   signInPath,
   storageAvailable,
+  writeAvailability,
 }: {
   profile: DelegationProfile | null;
   attempts: readonly McpAttempt[];
@@ -35,6 +40,7 @@ export function ResearchLauncher({
   isAuthenticated: boolean;
   signInPath: string;
   storageAvailable: boolean;
+  writeAvailability: ControlPlaneWriteAvailability;
 }) {
   const connection = useMemo(() => activeLocalCodexInstallation(profile), [profile]);
   const delegation = useMemo(() => connectedWorkDelegation(profile, connection?.agentId, connection?.delegationCertificateId), [connection, profile]);
@@ -63,6 +69,10 @@ export function ResearchLauncher({
     : null;
 
   const start = async () => {
+    if (writeAvailability !== "available") {
+      setError(controlPlaneMaintenanceCopy(writeAvailability).detail);
+      return;
+    }
     if (!target || !delegation || !scope || isStarting || atCapacity) return;
     setError(null);
     setNotice(null);
@@ -132,6 +142,11 @@ export function ResearchLauncher({
       detail="Proofweave will not substitute an untracked local record while its accountable control plane is unavailable."
       href="/explore"
       action="Browse the frontier"
+    /> : writeAvailability !== "available" ? <LauncherState
+      title={controlPlaneMaintenanceCopy(writeAvailability).title}
+      detail={`${controlPlaneMaintenanceCopy(writeAvailability).detail} When updates return, you can connect Codex once before starting research.`}
+      href="/explore"
+      action="Browse public research"
     /> : !connection ? <LauncherState
       title="Connect Codex once before starting research."
       detail={entryTarget ? `Connect once, then return to start or resume ${entryTarget.title}. Your target will not be discarded.` : "The one-time browser approval creates your local Agent identity and revocable authority. No public key, token, or workspace is pasted into Proofweave."}

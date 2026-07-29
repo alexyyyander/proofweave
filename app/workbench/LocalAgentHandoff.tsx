@@ -5,6 +5,10 @@ import { useState } from "react";
 import type { DelegationProfile, StoredDelegation } from "@/db/repositories/delegation";
 import type { McpAttempt } from "@/packages/domain/mcp";
 import { ProductStateBadge } from "../ui";
+import {
+  controlPlaneMaintenanceCopy,
+  type ControlPlaneWriteAvailability,
+} from "../lib/control-plane-write-capability";
 import { activeAttemptDelegation, activeLocalCodexInstallation, activeWorkDelegation } from "../lib/local-agent-journey";
 
 export function LocalAgentHandoff({
@@ -14,6 +18,7 @@ export function LocalAgentHandoff({
   isAuthenticated,
   signInPath,
   storageAvailable,
+  writeAvailability,
   isRefreshing,
   onRefresh,
 }: {
@@ -23,6 +28,7 @@ export function LocalAgentHandoff({
   isAuthenticated: boolean;
   signInPath: string;
   storageAvailable: boolean;
+  writeAvailability: ControlPlaneWriteAvailability;
   isRefreshing: boolean;
   onRefresh: () => void;
 }) {
@@ -31,7 +37,45 @@ export function LocalAgentHandoff({
   const agent = active ? profile?.agents.find((candidate) => candidate.id === active.agentId) ?? null : null;
   const [notice, setNotice] = useState<string | null>(null);
 
-  if (!isAuthenticated || !storageAvailable || !active || !agent || !attempt) {
+  if (!isAuthenticated || !storageAvailable) {
+    const state = unavailableState({ active, attempt, isAuthenticated, signInPath, storageAvailable });
+    return <section className="local-agent-section local-agent-unavailable" id="local-agent" aria-labelledby="local-agent-title">
+      <div className="local-agent-heading">
+        <div>
+          <p className="eyebrow">Local-first research</p>
+          <h2 id="local-agent-title">Keep the work on your computer.</h2>
+          <p>Proofweave will only receive reviewable evidence. It never needs your private workspace, model credentials, or raw reasoning.</p>
+        </div>
+        <ProductStateBadge tone="provisional">Setup needed</ProductStateBadge>
+      </div>
+      <div className="local-agent-empty">
+        <strong>{state.title}</strong>
+        <p>{state.detail}</p>
+        <Link className="button button-primary" href={state.href}>{state.label} <span aria-hidden="true">→</span></Link>
+      </div>
+    </section>;
+  }
+
+  if (writeAvailability !== "available") {
+    const maintenance = controlPlaneMaintenanceCopy(writeAvailability);
+    return <section className="local-agent-section local-agent-unavailable" id="local-agent" aria-labelledby="local-agent-title">
+      <div className="local-agent-heading">
+        <div>
+          <p className="eyebrow">Research locally</p>
+          <h2 id="local-agent-title">{maintenance.title}</h2>
+          <p>{maintenance.detail}</p>
+        </div>
+        <ProductStateBadge tone="not-deployed">{writeAvailability === "checking" ? "Checking" : "Read only"}</ProductStateBadge>
+      </div>
+      <div className="local-agent-empty">
+        <strong>Your existing research is safe and still readable.</strong>
+        <p>Proofweave will not offer a button that appears to submit work while updates are paused.</p>
+        <Link className="button button-secondary" href={attempt ? `/explore/${attempt.problemSlug}` : "/explore"}>{attempt ? "View public question" : "Browse public research"} <span aria-hidden="true">→</span></Link>
+      </div>
+    </section>;
+  }
+
+  if (!active || !agent || !attempt) {
     const state = unavailableState({ active, attempt, isAuthenticated, signInPath, storageAvailable });
     return <section className="local-agent-section local-agent-unavailable" id="local-agent" aria-labelledby="local-agent-title">
       <div className="local-agent-heading">
@@ -54,16 +98,16 @@ export function LocalAgentHandoff({
     return <section className="local-agent-section local-agent-unavailable" id="local-agent" aria-labelledby="local-agent-title">
       <div className="local-agent-heading">
         <div>
-          <p className="eyebrow">Local-first research</p>
-          <h2 id="local-agent-title">Connect this Agent to your local Codex.</h2>
-          <p>Your existing delegation is valid, but it has no active local Codex approval. Connect once before using Proofweave’s bounded research tools.</p>
+          <p className="eyebrow">Connect Agent</p>
+          <h2 id="local-agent-title">Connect this research task to Codex.</h2>
+          <p>Your question is saved. Connect the Agent assigned to it before continuing local research.</p>
         </div>
         <ProductStateBadge tone="provisional">Connection needed</ProductStateBadge>
       </div>
       <div className="local-agent-empty">
-        <strong>Pair a local Agent without sharing a key.</strong>
-        <p>The local Connector creates and retains its own private key. Browser approval records only its public identity, short-lived delegation, and revocable connection.</p>
-        <Link className="button button-primary" href="/integrations#codex-beta">Install or connect Codex <span aria-hidden="true">→</span></Link>
+        <strong>One private approval connects this Agent.</strong>
+        <p>No API key, public key, private workspace, or model credentials are pasted into Proofweave.</p>
+        <Link className="button button-primary" href="/integrations#codex-beta">Connect Agent <span aria-hidden="true">→</span></Link>
       </div>
     </section>;
   }
@@ -87,50 +131,55 @@ export function LocalAgentHandoff({
   return <section className="local-agent-section" id="local-agent" aria-labelledby="local-agent-title">
     <div className="local-agent-heading">
       <div>
-        <p className="eyebrow">Local-first research</p>
-          <h2 id="local-agent-title">Continue with your approved local Agent.</h2>
-          <p>Your Lean project, model choice, and private exploration stay on this computer. The website records the Agent approval; the brief asks Codex to verify that its local Connector still points to this same Proofweave control plane before doing any work.</p>
+        <p className="eyebrow">Research locally</p>
+          <h2 id="local-agent-title">Continue in Codex.</h2>
+          <p>Your Lean project, model choice, and unfinished exploration stay on this computer. You decide whether a useful milestone becomes a Proofweave record.</p>
         </div>
         <div className="local-agent-badges">
-          <ProductStateBadge tone="available">Authority ready</ProductStateBadge>
-          <ProductStateBadge tone="available">Website approval active</ProductStateBadge>
+          <ProductStateBadge tone="available">Agent connected</ProductStateBadge>
       </div>
     </div>
 
     <div className="local-agent-actions">
       <div>
-        <span className="micro-label">Your next Codex message</span>
-        <strong>The brief is ready from the recommended action above.</strong>
-        <p>It first checks the Connector and resumes the selected target without creating a duplicate Attempt. Only then does it prepare locally, show exact hashes, and wait for confirmation before staging and requesting a Run.</p>
+        <span className="micro-label">Your next step</span>
+        <strong>Use “Continue in Codex” above.</strong>
+        <p>Codex resumes this question, keeps private work local, and asks before recording progress or sharing evidence.</p>
       </div>
       <div className="local-agent-buttons">
         <button className="workspace-secondary-button" type="button" disabled={isRefreshing} onClick={onRefresh}>{isRefreshing ? "Checking…" : "Check recorded progress"}</button>
-        <button className="workspace-secondary-button" type="button" onClick={downloadCodexInstruction}>Download .md</button>
       </div>
     </div>
     {notice && <p className="local-agent-notice" role="status">{notice}</p>}
     <details className="local-agent-guide" open={!hasRecordedMilestone}>
-      <summary><span>How this handoff works</span><small>Four bounded steps · no private workspace access</small></summary>
+      <summary><span>What happens next</span><small>Three clear steps · private by default</small></summary>
       <ol className="local-agent-steps" aria-label="Local research workflow">
         <li>
           <span>01</span>
-          <div><strong>Bounded question</strong><p>{attempt.problemTitle}</p><small>{attempt.delegationScope ?? "formalize"} scope · {agent.label}</small></div>
+          <div><strong>Research locally</strong><p>Work on {attempt.problemTitle} in the Lean project you choose.</p><small>Prompts, reasoning, and unfinished files stay on this computer.</small></div>
         </li>
         <li>
           <span>02</span>
-          <div><strong>Verify, then continue in Codex</strong><p>Open Codex on this computer and paste the ready instruction above. Codex checks the saved control-plane address, then resumes this target through the local Connector.</p><small>A mismatch stops safely without opening duplicate work.</small></div>
+          <div><strong>Approve useful evidence</strong><p>Codex shows exactly what it proposes to record or share. Nothing is published until you confirm it.</p><small>File hashes are rechecked after approval; a change stops safely.</small></div>
         </li>
         <li>
           <span>03</span>
-          <div><strong>Share one material milestone</strong><p>After a local observable result, review the concise progress message and percentage before Codex records the signed event.</p><small>Private reasoning remains local; an Agent event is still not Lean verification.</small></div>
-        </li>
-        <li>
-          <span>04</span>
-          <div><strong>Prepare, review, then submit</strong><p>Codex shows the signed Bundle manifest and file hashes before one final confirmation stages it and requests an isolated Run.</p><small>A queued Run is operational state only; it is not yet a Lean result, review, or receipt.</small></div>
+          <div><strong>Track verification and credit</strong><p>Approved evidence can be checked by Lean and then reviewed by a different owner.</p><small>A progress record or queued check is not yet verification, independent review, or contribution credit.</small></div>
         </li>
       </ol>
     </details>
-    <p className="local-agent-boundary">This page cannot inspect whether a Connector process is currently running, access your computer, run Codex, or create Agent progress. It records an Agent approval only. Codex verifies the local connection separately before that Agent can sign a milestone or stage an explicitly confirmed evidence Bundle.</p>
+    <details className="local-agent-guide">
+      <summary><span>Technical details / Copy Codex brief</span><small>Advanced recovery and audit information</small></summary>
+      <div className="local-agent-actions">
+        <div>
+          <span className="micro-label">Bound record</span>
+          <strong>{attempt.problemTitle}</strong>
+          <p>{agent.label} · {attempt.delegationScope ?? "formalize"} authority · stable record {attempt.id}</p>
+        </div>
+        <button className="workspace-secondary-button" type="button" onClick={downloadCodexInstruction}>Download technical brief</button>
+      </div>
+    </details>
+    <p className="local-agent-boundary">The website cannot access your computer, run Codex, or read private reasoning. It records only the Agent approval and the progress or evidence you explicitly confirm. Lean verification, independent review, and contribution credit remain separate later results.</p>
   </section>;
 }
 

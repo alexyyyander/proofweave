@@ -1,6 +1,6 @@
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { MissingDatabaseBindingError } from "@/db";
+import { getControlPlaneOperationState, MissingDatabaseBindingError } from "@/db";
 import { getAccountAuthRepository } from "@/db/repositories/account-auth";
 import type { PersonIdentity } from "@/db/repositories/delegation";
 import {
@@ -54,6 +54,17 @@ export async function getCurrentUser(): Promise<AuthUser | null> {
       : null;
   const subject = email.toLowerCase();
   const displayName = fullName ?? email;
+  if (!getControlPlaneOperationState().writesEnabled) {
+    return {
+      provider: "chatgpt",
+      providerLabel: "ChatGPT",
+      subject,
+      personId: null,
+      displayName,
+      email: subject,
+      fullName,
+    };
+  }
   try {
     // Dispatch-owned ChatGPT auth has no application cookie. Resolve it into
     // the same identity table used by Google before any workspace repository

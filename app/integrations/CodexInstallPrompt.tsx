@@ -8,6 +8,41 @@ Use the Proofweave-hosted marketplace archive, not a GitHub checkout. Before cha
 
 After it is installed, do not connect Proofweave, create an Agent, or open my private workspace unless I explicitly ask.`;
 
+export function CodexSetupPrompt({
+  targetTitle,
+  returnHref,
+  onRequestCopied,
+}: {
+  targetTitle?: string;
+  returnHref: string;
+  onRequestCopied?: () => void;
+}) {
+  const [copied, setCopied] = useState(false);
+  const destination = `https://proofweave-research.yualex031821.chatgpt.site${returnHref}`;
+  const setupRequest = `Help me connect this Codex to Proofweave for research.
+
+First check whether the Proofweave Research plugin and connection_status tool are available. If the plugin is missing, follow the public instructions at https://proofweave-research.yualex031821.chatgpt.site/codex-install.md. Use the Proofweave-hosted marketplace archive, not a GitHub checkout. Show me the download and marketplace directories, archive checksum, and every install command, then wait for my confirmation before changing this computer. Never pipe downloaded content into a shell.
+
+After the plugin is available, check connection_status. If an update is recommended, show its version, SHA-256, size, and reinstall commands, then wait for separate confirmation. If this computer is disconnected, needs reconnection, or points at another Proofweave address, explain that state and ask for my approval before running connect_proofweave with the research role. Do not delete local keys or tokens, create an Attempt, upload files, or open my private workspace.
+
+If Proofweave reports maintenance or read-only mode, stop and tell me that connection cannot be completed yet. After a successful connection, tell me to return to ${destination}${targetTitle ? ` to continue “${targetTitle}”` : ""}.`;
+
+  async function copySetupRequest() {
+    try {
+      await navigator.clipboard.writeText(setupRequest);
+      setCopied(true);
+      onRequestCopied?.();
+      window.setTimeout(() => setCopied(false), 2200);
+    } catch {
+      setCopied(false);
+    }
+  }
+
+  return <button className="button button-primary" type="button" onClick={copySetupRequest}>
+    {copied ? "Setup request copied" : "Continue in Codex"}
+  </button>;
+}
+
 export function CodexInstallPrompt() {
   const [copied, setCopied] = useState(false);
 

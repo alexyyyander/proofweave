@@ -10,6 +10,10 @@ import { DelegationSummary, FirstContributionPath, FocusAction, ProvisionalContr
 import { buildCodexResearchBrief, LocalAgentHandoff } from "./LocalAgentHandoff";
 import { ResearchLauncher } from "./ResearchLauncher";
 import { activeAttemptDelegation, activeLocalAgentAttempt, activeLocalCodexInstallation } from "../lib/local-agent-journey";
+import {
+  loadControlPlaneWriteAvailability,
+  type ControlPlaneWriteAvailability,
+} from "../lib/control-plane-write-capability";
 import { deriveWorkspaceMode, WorkspaceRecordLinks, WorkspaceSidebar, WorkspaceTopbar } from "./WorkspaceShell";
 
 export function WorkbenchClient({
@@ -58,6 +62,9 @@ export function WorkbenchClient({
   const [handoffNotice, setHandoffNotice] = useState<string | null>(null);
   const [lifecycleNotice, setLifecycleNotice] = useState<string | null>(null);
   const [lifecycleAction, setLifecycleAction] = useState<"pause" | "resume" | "abandon" | null>(null);
+  const [writeAvailability, setWriteAvailability] = useState<ControlPlaneWriteAvailability>(
+    storageAvailable ? "available" : "unavailable",
+  );
   const initialVisibleAttempt = selectVisibleAttempt(profile, initialAttempts, initialTargetSlug, initialAttemptId);
   const [selectedAttemptId, setSelectedAttemptId] = useState<string | null>(() => initialVisibleAttempt?.id ?? null);
   const [attemptListView, setAttemptListView] = useState<"active" | "history">(() => !initialVisibleAttempt || isLiveAttempt(initialVisibleAttempt) ? "active" : "history");
@@ -71,7 +78,7 @@ export function WorkbenchClient({
   const mode = deriveWorkspaceMode({ isAuthenticated, storageAvailable, isAgentConnected: Boolean(selectedConnection), attempt: activeAttempt });
   const activeRuns = activeAttempt ? runs.filter((run) => run.attemptId === activeAttempt.id) : [];
   const showActiveWorkspace = mode === "active-research" || mode === "evidence-review";
-  const canContinueLocally = activeAttempt?.status === "active" && Boolean(selectedConnection);
+  const canContinueLocally = writeAvailability === "available" && activeAttempt?.status === "active" && Boolean(selectedConnection);
   const hasPendingRun = activeRuns.some((run) => ["queued", "preparing", "running", "cancel_requested"].includes(run.state));
 
   const refreshAttempts = useCallback(async () => {
@@ -138,6 +145,14 @@ export function WorkbenchClient({
   };
 
   useEffect(() => {
+    const controller = new AbortController();
+    void loadControlPlaneWriteAvailability(controller.signal).then((availability) => {
+      if (availability !== "checking") setWriteAvailability(availability);
+    });
+    return () => controller.abort();
+  }, []);
+
+  useEffect(() => {
     const restoreAttemptFromUrl = () => {
       const url = new URL(window.location.href);
       const restored = selectVisibleAttempt(profile, attempts, url.searchParams.get("target"), url.searchParams.get("attempt"));
@@ -179,7 +194,7 @@ export function WorkbenchClient({
   };
 
   const copyCodexBrief = async () => {
-    if (!activeAttempt || activeAttempt.status !== "active" || !selectedConnection) return;
+    if (writeAvailability !== "available" || !activeAttempt || activeAttempt.status !== "active" || !selectedConnection) return;
     const brief = buildCodexResearchBrief({
       agentLabel: activeAttempt.agentLabel,
       attempt: activeAttempt,
@@ -194,7 +209,7 @@ export function WorkbenchClient({
   };
 
   const updateAttemptLifecycle = async (action: "pause" | "resume" | "abandon") => {
-    if (!activeAttempt || lifecycleAction) return;
+    if (writeAvailability !== "available" || !activeAttempt || lifecycleAction) return;
     const attemptId = activeAttempt.id;
     setLifecycleAction(action);
     setLifecycleNotice(null);
@@ -227,15 +242,15 @@ export function WorkbenchClient({
   if (variant === "detail") return <>
     <nav className="attempt-detail-breadcrumb" aria-label="Breadcrumb"><Link href="/workbench">My work</Link><span>/</span><span>{activeAttempt?.problemTitle ?? "Attempt"}</span></nav>
     <WorkspaceTopbar attempts={attempts} selectedAttemptId={activeAttempt?.id ?? null} onSelectAttempt={selectAttempt} agentLabel={selectedConnection?.agentLabel ?? null} isAgentConnected={Boolean(selectedConnection)} mode={mode} isRefreshing={isRefreshing} canRefresh={isAuthenticated && storageAvailable} refreshedAt={refreshedAt} onRefresh={() => { void refreshAttempts(); }} />
-    <FirstContributionPath attempt={activeAttempt} profile={profile} runs={runs} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} />
+    <FirstContributionPath attempt={activeAttempt} profile={profile} runs={runs} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} writeAvailability={writeAvailability} />
     <div className="attempt-detail-layout">
       <section className="workspace-task-canvas" aria-label="Current research work">
-        <FocusAction profile={profile} attempt={activeAttempt} canContinueLocally={canContinueLocally} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} refreshError={refreshError} refreshedAt={refreshedAt} handoffNotice={handoffNotice} lifecycleNotice={lifecycleNotice} lifecycleAction={lifecycleAction} onCopyCodexBrief={() => { void copyCodexBrief(); }} onLifecycleAction={(action) => { void updateAttemptLifecycle(action); }} isPageHeading />
-        {canContinueLocally && <LocalAgentHandoff profile={profile} attempt={activeAttempt} initialParentNodeId={initialParentNodeId} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} isRefreshing={isRefreshing} onRefresh={() => { void refreshAttempts(); }} />}
+        <FocusAction profile={profile} attempt={activeAttempt} canContinueLocally={canContinueLocally} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} writeAvailability={writeAvailability} refreshError={refreshError} refreshedAt={refreshedAt} handoffNotice={handoffNotice} lifecycleNotice={lifecycleNotice} lifecycleAction={lifecycleAction} onCopyCodexBrief={() => { void copyCodexBrief(); }} onLifecycleAction={(action) => { void updateAttemptLifecycle(action); }} isPageHeading />
+        {activeAttempt?.status === "active" && selectedConnection && <LocalAgentHandoff profile={profile} attempt={activeAttempt} initialParentNodeId={initialParentNodeId} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} writeAvailability={writeAvailability} isRefreshing={isRefreshing} onRefresh={() => { void refreshAttempts(); }} />}
         <ResearchWorkstation attempt={activeAttempt} runs={runs} />
       </section>
       <aside className="workspace-status-rail" aria-label="Verification and record status">
-        <SubmissionReadiness attempt={activeAttempt} profile={profile} runs={runs} compact />
+        <SubmissionReadiness attempt={activeAttempt} profile={profile} runs={runs} writeAvailability={writeAvailability} compact />
         <WorkspaceRecordLinks eventCount={activeAttempt?.events.length ?? 0} runCount={activeRuns.length} contributionCount={provisionalContributions.length} />
       </aside>
     </div>
@@ -245,23 +260,23 @@ export function WorkbenchClient({
 
   return <>
     <WorkspaceTopbar attempts={attempts} selectedAttemptId={activeAttempt?.id ?? null} onSelectAttempt={selectAttempt} agentLabel={selectedConnection?.agentLabel ?? null} isAgentConnected={Boolean(selectedConnection)} mode={mode} isRefreshing={isRefreshing} canRefresh={isAuthenticated && storageAvailable} refreshedAt={refreshedAt} onRefresh={() => { void refreshAttempts(); }} />
-    <FirstContributionPath attempt={activeAttempt} profile={profile} runs={runs} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} />
+    <FirstContributionPath attempt={activeAttempt} profile={profile} runs={runs} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} writeAvailability={writeAvailability} />
     <div className={`workspace-shell mode-${mode}`}>
       <WorkspaceSidebar attempts={attempts} selectedAttemptId={activeAttempt?.id ?? null} onSelectAttempt={selectAttempt} view={attemptListView} onViewChange={setAttemptListView} reviewCount={reviewCount} evidenceCount={evidenceCount} />
       <section className="workspace-task-canvas" aria-label="Current research work">
-        <FocusAction profile={profile} attempt={activeAttempt} canContinueLocally={canContinueLocally} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} refreshError={refreshError} refreshedAt={refreshedAt} handoffNotice={handoffNotice} lifecycleNotice={lifecycleNotice} lifecycleAction={lifecycleAction} onCopyCodexBrief={() => { void copyCodexBrief(); }} onLifecycleAction={(action) => { void updateAttemptLifecycle(action); }} />
-        {!showActiveWorkspace && <ResearchLauncher profile={profile} attempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={initialTargetSlug} initialParentNodeId={initialParentNodeId} onAttemptReady={onAttemptReady} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} />}
+        <FocusAction profile={profile} attempt={activeAttempt} canContinueLocally={canContinueLocally} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} writeAvailability={writeAvailability} refreshError={refreshError} refreshedAt={refreshedAt} handoffNotice={handoffNotice} lifecycleNotice={lifecycleNotice} lifecycleAction={lifecycleAction} onCopyCodexBrief={() => { void copyCodexBrief(); }} onLifecycleAction={(action) => { void updateAttemptLifecycle(action); }} />
+        {!showActiveWorkspace && <ResearchLauncher profile={profile} attempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={initialTargetSlug} initialParentNodeId={initialParentNodeId} onAttemptReady={onAttemptReady} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} writeAvailability={writeAvailability} />}
         {showActiveWorkspace && <>
-          {canContinueLocally && <LocalAgentHandoff profile={profile} attempt={activeAttempt} initialParentNodeId={initialParentNodeId} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} isRefreshing={isRefreshing} onRefresh={() => { void refreshAttempts(); }} />}
+          {activeAttempt?.status === "active" && selectedConnection && <LocalAgentHandoff profile={profile} attempt={activeAttempt} initialParentNodeId={initialParentNodeId} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} writeAvailability={writeAvailability} isRefreshing={isRefreshing} onRefresh={() => { void refreshAttempts(); }} />}
           <ResearchWorkstation attempt={activeAttempt} runs={runs} />
           <details className="workspace-new-research">
             <summary>Start another research target</summary>
-            <ResearchLauncher profile={profile} attempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={initialTargetSlug} initialParentNodeId={initialParentNodeId} onAttemptReady={onAttemptReady} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} />
+            <ResearchLauncher profile={profile} attempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={initialTargetSlug} initialParentNodeId={initialParentNodeId} onAttemptReady={onAttemptReady} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} writeAvailability={writeAvailability} />
           </details>
         </>}
       </section>
       <aside className="workspace-status-rail" aria-label="Verification and record status">
-        <SubmissionReadiness attempt={activeAttempt} profile={profile} runs={runs} compact />
+        <SubmissionReadiness attempt={activeAttempt} profile={profile} runs={runs} writeAvailability={writeAvailability} compact />
         <WorkspaceRecordLinks eventCount={activeAttempt?.events.length ?? 0} runCount={activeRuns.length} contributionCount={provisionalContributions.length} />
       </aside>
     </div>

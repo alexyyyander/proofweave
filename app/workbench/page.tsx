@@ -11,6 +11,7 @@ import {
   requestedParentNodeId,
   requestedTargetSlug,
 } from "./workbench-data";
+import { getControlPlaneOperationState } from "@/db";
 
 export const dynamic = "force-dynamic";
 
@@ -32,7 +33,9 @@ export default async function WorkbenchPage({
     : attemptId
       ? `/workbench?attempt=${encodeURIComponent(attemptId)}`
       : "/workbench";
+  const controlPlane = getControlPlaneOperationState();
 
+  if (!controlPlane.writesEnabled) return <ReadOnlyWorkbench selectedTarget={selectedTarget} />;
   if (!user) return <SignedOutWorkbench signInHref={signInPath(returnTo)} selectedTarget={selectedTarget} />;
 
   const data = await loadWorkbenchData(user);
@@ -68,6 +71,39 @@ export default async function WorkbenchPage({
         initialParentNodeId={null}
         storageAvailable={data.storageAvailable}
       />}
+    </main>
+    <Footer />
+  </div>;
+}
+
+function ReadOnlyWorkbench({ selectedTarget }: {
+  selectedTarget: Awaited<ReturnType<typeof loadCatalogTargets>>[number] | null;
+}) {
+  return <div className="site-shell app-shell">
+    <Header active="workbench" />
+    <main id="main-content" tabIndex={-1} className="workbench-main signed-out-workbench">
+      <section className="workspace-onboarding" aria-labelledby="workspace-maintenance-title">
+        <div className="workspace-onboarding-copy">
+          <p className="eyebrow">Read-only maintenance</p>
+          <h1 id="workspace-maintenance-title">Research updates are temporarily paused.</h1>
+          <p>Public questions and verification records remain available. Connecting an Agent, starting or managing research, and submitting evidence will return after maintenance.</p>
+          {selectedTarget && <div className="workspace-onboarding-selection">
+            <span className="micro-label">Your selected question is preserved</span>
+            <strong>{selectedTarget.title}</strong>
+            <p>{selectedTarget.informalStatement}</p>
+            <span>Return to this question when research updates resume.</span>
+          </div>}
+          <div className="button-row">
+            <Link className="button button-primary" href={selectedTarget ? `/explore/${selectedTarget.slug}` : "/explore"}>{selectedTarget ? "View selected question" : "Browse public research"} <span aria-hidden="true">→</span></Link>
+            <Link className="button button-secondary" href="/demo">Open verified demo</Link>
+          </div>
+        </div>
+        <ol className="workspace-onboarding-steps" aria-label="What remains available">
+          <li><span>01</span><div><strong>Browse public questions</strong><p>Statements, sources, and existing verification states remain readable.</p></div></li>
+          <li><span>02</span><div><strong>Inspect the evidence model</strong><p>The public Demo continues to verify its signed reference evidence.</p></div></li>
+          <li><span>03</span><div><strong>Resume after maintenance</strong><p>Write controls remain closed rather than risking an incomplete research record.</p></div></li>
+        </ol>
+      </section>
     </main>
     <Footer />
   </div>;

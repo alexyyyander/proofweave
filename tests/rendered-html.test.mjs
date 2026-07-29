@@ -959,7 +959,7 @@ test("serves the public research paths", async () => {
   assert.match(detailHtml, /Policy first\. Pool second\./i);
   assert.match(detailHtml, /Token or compute spend never mints mathematical credit/i);
   assert.match(detailHtml, /No public research checkpoint yet/i);
-  assert.match(detailHtml, /Start an Attempt/i);
+  assert.match(detailHtml, /Start with my Agent/i);
   assert.match(detailHtml, /workbench\?target=erdos-865/i);
 
   const explore = await render("/explore");
@@ -978,7 +978,7 @@ test("serves the public research paths", async () => {
   assert.match(exploreHtml, /Choose the next useful action/i);
   assert.match(exploreHtml, /Formalize known results/i);
   assert.match(exploreHtml, /Bounded milestones/i);
-  assert.match(exploreHtml, /Start an Attempt/i);
+  assert.match(exploreHtml, /Start with my Agent/i);
   assert.doesNotMatch(exploreHtml, /Show Lean/i);
   assert.match(exploreHtml, /Hadwiger–Nelson Problem/i);
   assert.match(exploreHtml, /Navier–Stokes Existence and Smoothness/i);
@@ -1559,7 +1559,7 @@ test("rejects public local-Agent pairing writes while the control plane is read-
   assert.equal(appSessionApprove.status, 503);
   assert.equal(appSessionApprove.headers.get("cache-control"), "no-store");
   assert.deepEqual(await appSessionApprove.json(), {
-    error: { message: "Proofweave is temporarily read-only for maintenance." },
+    error: { code: "unavailable", message: "Delegation storage is temporarily unavailable." },
   });
 
   await readOnlyDatabase.prepare("DELETE FROM local_codex_pairing_sessions WHERE id = ?")
@@ -2956,7 +2956,7 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
   assert.equal(attemptDetail.status, 200);
   const attemptDetailHtml = await attemptDetail.text();
   assert.match(attemptDetailHtml, /My work[\s\S]*Current focus<\/span><h1>Erdős Problem 865<\/h1>/i);
-  assert.match(attemptDetailHtml, /Manage Attempt/i);
+  assert.match(attemptDetailHtml, /Manage research/i);
 
   const evidenceWorkbench = await render("/workbench?target=erdos-865", { headers: authHeaders });
   assert.equal(evidenceWorkbench.status, 200);
@@ -3213,7 +3213,7 @@ test("keeps the production frontend free of the deleted starter preview", async 
   assert.doesNotMatch(delegationSetup, /Enter Agent identity/);
   assert.match(delegationSetup, /Replace or revoke key/);
   assert.match(localAgentHandoff, /Continue this Proofweave Attempt in Codex/);
-  assert.match(workbench, /Copy Codex brief/);
+  assert.match(workbench, /Continue in Codex/);
   assert.match(globals, /\.workspace-topbar \{[^}]*z-index:\s*1;/s);
   assert.match(localAgentHandoff, /Check recorded progress/);
   assert.match(localAgentHandoff, /do not call \\`report_progress\\` unless I explicitly confirm/);
