@@ -15,6 +15,12 @@ test("accepts one complete redacted two-Person evidence graph offline", () => {
   assert.equal(result.outcome, "passed");
   assert.equal(result.executionMode, "offline_dry_run");
   assert.equal(result.release.controlPlaneMode, "read_write");
+  assert.deepEqual(result.release.environment, {
+    kind: "staging",
+    name: "proofweave-credentialed-smoke",
+    origin: "https://staging.proofweave.example",
+    databaseFingerprint: "0123456789abcdef",
+  });
   assert.equal(result.release.sameSitesGatewayRunnerRevision, true);
   assert.equal(result.contribution.primaryRunnerAccepted, true);
   assert.equal(result.contribution.independentReviewerPersonCount, 2);
@@ -31,6 +37,7 @@ test("accepts one complete redacted two-Person evidence graph offline", () => {
 
 test("fails closed when any required chain segment is missing", () => {
   for (const field of [
+    "environment",
     "release",
     "researcher",
     "attempt",
@@ -74,7 +81,7 @@ test("rejects a different database or migration after the journey", () => {
   databaseDrift.release.after.databaseFingerprint = "fedcba9876543210";
   assert.throws(
     () => checkCredentialedContributionRelease(databaseDrift),
-    (error) => error.code === "RELEASE_OBSERVATION_DRIFT"
+    (error) => error.code === "STAGING_DATABASE_FINGERPRINT_MISMATCH"
       && error.path === "$.release.after.databaseFingerprint",
   );
 
@@ -83,8 +90,68 @@ test("rejects a different database or migration after the journey", () => {
     "0042_add_jacobian_counterexample_audit.sql";
   assert.throws(
     () => checkCredentialedContributionRelease(migrationDrift),
-    (error) => error.code === "RELEASE_OBSERVATION_DRIFT"
+    (error) => error.code === "MIGRATION_HEAD_REQUIRED"
       && error.path === "$.release.after.migrationHead",
+  );
+});
+
+test("requires the exact reviewed 0043 migration head", () => {
+  for (const migrationHead of [
+    "0042_add_jacobian_counterexample_audit.sql",
+    "0043_runner_lease_queue.sql",
+    "0044_future_migration.sql",
+  ]) {
+    const evidence = completeEvidence();
+    evidence.release.before.migrationHead = migrationHead;
+    evidence.release.after.migrationHead = migrationHead;
+    assert.throws(
+      () => checkCredentialedContributionRelease(evidence),
+      (error) => error.code === "MIGRATION_HEAD_REQUIRED"
+        && error.path === "$.release.before.migrationHead",
+      migrationHead,
+    );
+  }
+});
+
+test("rejects the production origin and production database fingerprint", () => {
+  const productionOrigin = completeEvidence();
+  productionOrigin.environment.origin =
+    "https://proofweave-research.yualex031821.chatgpt.site";
+  assert.throws(
+    () => checkCredentialedContributionRelease(productionOrigin),
+    (error) => error.code === "PRODUCTION_ORIGIN_FORBIDDEN"
+      && error.path === "$.environment.origin",
+  );
+
+  const productionDatabase = completeEvidence();
+  productionDatabase.environment.databaseFingerprint =
+    "3f9e7934a04a22ec";
+  productionDatabase.release.before.databaseFingerprint =
+    "3f9e7934a04a22ec";
+  productionDatabase.release.after.databaseFingerprint =
+    "3f9e7934a04a22ec";
+  assert.throws(
+    () => checkCredentialedContributionRelease(productionDatabase),
+    (error) => error.code === "PRODUCTION_DATABASE_FINGERPRINT_FORBIDDEN"
+      && error.path === "$.environment.databaseFingerprint",
+  );
+});
+
+test("requires a staging environment identity bound to release observations", () => {
+  const wrongKind = completeEvidence();
+  wrongKind.environment.kind = "production";
+  assert.throws(
+    () => checkCredentialedContributionRelease(wrongKind),
+    (error) => error.code === "ENUM_VALUE_INVALID"
+      && error.path === "$.environment.kind",
+  );
+
+  const authorityDrift = completeEvidence();
+  authorityDrift.environment.databaseFingerprint = "fedcba9876543210";
+  assert.throws(
+    () => checkCredentialedContributionRelease(authorityDrift),
+    (error) => error.code === "STAGING_DATABASE_FINGERPRINT_MISMATCH"
+      && error.path === "$.release.before.databaseFingerprint",
   );
 });
 
@@ -386,6 +453,12 @@ function completeEvidence() {
   ];
   return {
     schemaVersion: "pw-credentialed-contribution-release-evidence-v1",
+    environment: {
+      kind: "staging",
+      name: "proofweave-credentialed-smoke",
+      origin: "https://staging.proofweave.example",
+      databaseFingerprint: "0123456789abcdef",
+    },
     release: {
       expectedGitSha: revision,
       before: observation({
@@ -517,7 +590,7 @@ function observation({ revision, observedAt }) {
     runnerRevision: revision,
     databaseAuthority: "turso",
     databaseFingerprint: "0123456789abcdef",
-    migrationHead: "0043_runner_lease_queue.sql",
+    migrationHead: "0043_add_runner_queue_event_sequence.sql",
   };
 }
 

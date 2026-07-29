@@ -27,6 +27,13 @@ fail-closed:
   Receipt;
 - it does not execute Lean or cryptographically verify signatures;
 - it never turns fixture data or successful booleans into a real contribution.
+- it accepts only an explicitly identified `staging` environment;
+- it rejects the production origin
+  `https://proofweave-research.yualex031821.chatgpt.site` and production
+  database fingerprint `3f9e7934a04a22ec`; and
+- it requires migration head
+  `0043_add_runner_queue_event_sequence.sql` before either release
+  observation can be accepted.
 
 Passing means only that a complete redacted evidence graph is internally
 consistent. The actual sign-in, browser consent, local key ownership, owner
@@ -43,16 +50,19 @@ audit evidence.
 Before collecting evidence:
 
 1. deploy Sites, MCP gateway, and Runner from one reviewed Git SHA;
-2. confirm Turso is the sole production authority and the required migration
-   head is applied;
-3. observe `read_write` and `writesEnabled: true`;
-4. keep GitHub Actions out of the participant execution path;
-5. use a new Person A and a genuinely different Person B;
-6. use active research and review delegations with distinct Agent keys;
-7. approve only the exact Bundle files and hashes shown to Person A;
-8. preserve primary Runner and independent replay evidence;
-9. issue a Receipt only after the three v1 policy claims are attested;
-10. re-download and verify the public Receipt against the current issuer
+2. create a dedicated staging Turso authority and staging HTTPS origin that
+   share no production credential, database fingerprint, issuer key, or
+   mutable runtime resource;
+3. confirm Turso is the sole staging authority and migration
+   `0043_add_runner_queue_event_sequence.sql` is applied;
+4. observe `read_write` and `writesEnabled: true` on staging only;
+5. keep GitHub Actions out of the participant execution path;
+6. use a new Person A and a genuinely different Person B;
+7. use active research and review delegations with distinct Agent keys;
+8. approve only the exact Bundle files and hashes shown to Person A;
+9. preserve primary Runner and independent replay evidence;
+10. issue a Receipt only after the three v1 policy claims are attested;
+11. re-download and verify the public Receipt against the current issuer
     keyset.
 
 Take the second release observation only after public Receipt verification.
@@ -86,6 +96,7 @@ objects are:
 
 | Object | Required evidence |
 | --- | --- |
+| `environment` | `kind: staging`, a bounded environment name, one credential-free HTTPS staging origin, and the dedicated non-production Turso fingerprint |
 | `release` | expected Git SHA plus before/after Sites, gateway, Runner, Turso fingerprint, migration, and `read_write` observations |
 | `researcher` | Person A, research Agent, active connection, owner-matched delegation, `formalize` or `prove` scope |
 | `attempt` | exact Person, Agent, delegation, problem revision, state, and creation time |
@@ -120,6 +131,34 @@ claim.
 
 All hashes use lowercase `sha256:<64 hex>`. Release revisions use a lowercase
 40–64 character Git revision. All timestamps are UTC ISO-8601.
+
+The environment projection is mandatory and is bound to both release
+observations:
+
+```json
+{
+  "environment": {
+    "kind": "staging",
+    "name": "proofweave-credentialed-smoke",
+    "origin": "https://staging.proofweave.example",
+    "databaseFingerprint": "0123456789abcdef"
+  }
+}
+```
+
+`origin` must be one HTTPS origin with no credentials, path, query, or
+fragment. The fingerprint must match both `release.before` and
+`release.after`. The hard-coded production origin and production fingerprint
+fail closed even if every other field looks valid. This prevents the offline
+checker from accepting evidence that explicitly identifies the current
+production authority; operators must additionally keep production credentials
+out of the staging environment because an offline JSON checker cannot inspect
+provider secret inheritance.
+
+Both release observations must report the exact migration filename
+`0043_add_runner_queue_event_sequence.sql`. Merely reporting a filename that
+starts with `0043`, or keeping the same older migration before and after the
+smoke, is rejected.
 
 ## What failure means
 

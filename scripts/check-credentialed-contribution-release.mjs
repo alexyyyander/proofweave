@@ -12,7 +12,12 @@ const MAX_EVIDENCE_BYTES = 512 * 1024;
 const HASH_PATTERN = /^sha256:[a-f0-9]{64}$/;
 const REVISION_PATTERN = /^[a-f0-9]{40,64}$/;
 const DATABASE_FINGERPRINT_PATTERN = /^[a-f0-9]{16}$/;
-const MIGRATION_PATTERN = /^\d{4}_[A-Za-z0-9._-]+\.sql$/;
+const REQUIRED_MIGRATION_HEAD =
+  "0043_add_runner_queue_event_sequence.sql";
+const PRODUCTION_ORIGIN =
+  "https://proofweave-research.yualex031821.chatgpt.site";
+const PRODUCTION_DATABASE_FINGERPRINT = "3f9e7934a04a22ec";
+const ENVIRONMENT_NAME_PATTERN = /^[a-z0-9][a-z0-9._-]{2,95}$/;
 const REQUIRED_CLAIMS = Object.freeze([
   "bundle_reproducible",
   "kernel_accepted",
@@ -68,6 +73,7 @@ export function checkCredentialedContributionRelease(evidence) {
     "SCHEMA_VERSION_UNSUPPORTED",
   );
 
+  const environment = stagingEnvironmentEvidence(root.environment);
   const release = object(root.release, "$.release");
   const expectedGitSha = revision(
     release.expectedGitSha,
@@ -82,6 +88,18 @@ export function checkCredentialedContributionRelease(evidence) {
     release.after,
     "$.release.after",
     expectedGitSha,
+  );
+  equal(
+    before.databaseFingerprint,
+    environment.databaseFingerprint,
+    "$.release.before.databaseFingerprint",
+    "STAGING_DATABASE_FINGERPRINT_MISMATCH",
+  );
+  equal(
+    after.databaseFingerprint,
+    environment.databaseFingerprint,
+    "$.release.after.databaseFingerprint",
+    "STAGING_DATABASE_FINGERPRINT_MISMATCH",
   );
   requireSameRelease(before, after);
   requireAtOrBefore(
@@ -204,6 +222,12 @@ export function checkCredentialedContributionRelease(evidence) {
     executionMode: "offline_dry_run",
     release: {
       gitSha: expectedGitSha,
+      environment: {
+        kind: environment.kind,
+        name: environment.name,
+        origin: environment.origin,
+        databaseFingerprint: environment.databaseFingerprint,
+      },
       controlPlaneMode: "read_write",
       writesEnabled: true,
       sameSitesGatewayRunnerRevision: true,
@@ -232,6 +256,79 @@ export function checkCredentialedContributionRelease(evidence) {
         "This gate checks a redacted evidence graph from a real smoke run. It does not perform or replace sign-in, Agent delegation, Bundle staging, Lean execution, independent review, Receipt issuance, or cryptographic verification.",
     },
   };
+}
+
+function stagingEnvironmentEvidence(value) {
+  const path = "$.environment";
+  const environment = object(value, path);
+  const kind = enumValue(
+    environment.kind,
+    ["staging"],
+    `${path}.kind`,
+  );
+  const name = pattern(
+    environment.name,
+    ENVIRONMENT_NAME_PATTERN,
+    `${path}.name`,
+    "STAGING_ENVIRONMENT_NAME_INVALID",
+  );
+  const origin = stagingOrigin(environment.origin, `${path}.origin`);
+  const databaseFingerprint = pattern(
+    environment.databaseFingerprint,
+    DATABASE_FINGERPRINT_PATTERN,
+    `${path}.databaseFingerprint`,
+    "DATABASE_FINGERPRINT_INVALID",
+  );
+  if (databaseFingerprint === PRODUCTION_DATABASE_FINGERPRINT) {
+    fail(
+      "PRODUCTION_DATABASE_FINGERPRINT_FORBIDDEN",
+      `${path}.databaseFingerprint`,
+      "Credentialed cloud smoke evidence must use a dedicated non-production database authority.",
+    );
+  }
+  return {
+    kind,
+    name,
+    origin,
+    databaseFingerprint,
+  };
+}
+
+function stagingOrigin(value, path) {
+  const raw = string(value, path);
+  let parsed;
+  try {
+    parsed = new URL(raw);
+  } catch {
+    fail(
+      "STAGING_ORIGIN_INVALID",
+      path,
+      "Staging origin must be an absolute HTTPS origin.",
+    );
+  }
+  if (
+    parsed.protocol !== "https:"
+    || parsed.username
+    || parsed.password
+    || parsed.pathname !== "/"
+    || parsed.search
+    || parsed.hash
+  ) {
+    fail(
+      "STAGING_ORIGIN_INVALID",
+      path,
+      "Staging origin must be one credential-free HTTPS origin with no path, query, or fragment.",
+    );
+  }
+  const normalized = parsed.origin;
+  if (normalized === PRODUCTION_ORIGIN) {
+    fail(
+      "PRODUCTION_ORIGIN_FORBIDDEN",
+      path,
+      "Credentialed cloud smoke evidence must never identify the Proofweave production origin.",
+    );
+  }
+  return normalized;
 }
 
 export async function loadCredentialedContributionEvidence({
@@ -362,11 +459,9 @@ function releaseObservation(value, path, expectedGitSha) {
       `${path}.databaseFingerprint`,
       "DATABASE_FINGERPRINT_INVALID",
     ),
-    migrationHead: pattern(
+    migrationHead: requiredMigrationHead(
       observation.migrationHead,
-      MIGRATION_PATTERN,
       `${path}.migrationHead`,
-      "MIGRATION_HEAD_INVALID",
     ),
   };
   for (const [name, actual] of [
@@ -382,6 +477,18 @@ function releaseObservation(value, path, expectedGitSha) {
     );
   }
   return result;
+}
+
+function requiredMigrationHead(value, path) {
+  const actual = string(value, path);
+  if (actual !== REQUIRED_MIGRATION_HEAD) {
+    fail(
+      "MIGRATION_HEAD_REQUIRED",
+      path,
+      `Credentialed cloud smoke requires ${REQUIRED_MIGRATION_HEAD}.`,
+    );
+  }
+  return actual;
 }
 
 function requireSameRelease(before, after) {
