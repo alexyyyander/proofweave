@@ -517,24 +517,27 @@ export class D1VerificationStore {
         cause instanceof Error ? `Fresh replay evidence is malformed: ${cause.message}` : "Fresh replay evidence is malformed.",
       );
     }
-    if (
-      canonicalJson(evidence) !== row.canonical_evidence ||
-      canonicalJson(storedResult) !== row.canonical_result ||
-      await verificationReplayEvidenceHash(evidence) !== row.evidence_hash ||
-      evidence.id !== row.id ||
-      evidence.replayId !== row.replay_id ||
-      evidence.assignmentId !== assignment.id ||
-      evidence.runId !== row.run_id ||
-      evidence.artifactBundleHash !== assignment.artifactBundleManifestHash ||
-      evidence.runnerResultHash !== row.runner_result_hash ||
-      evidence.recordedAt !== row.recorded_at ||
-      canonicalJson(evidence.runnerResult) !== row.canonical_result ||
-      storedResult.startedAt !== row.run_started_at ||
-      storedResult.finishedAt !== row.run_finished_at ||
-      Date.parse(storedResult.startedAt) < Date.parse(row.replay_requested_at) ||
-      Date.parse(storedResult.finishedAt) > Date.parse(evidence.recordedAt)
-    ) {
-      throw new VerificationStoreValidationError("Fresh replay evidence is not an exact immutable projection of the terminal Runner result.");
+    const projectionFailures = [
+      [canonicalJson(evidence) === row.canonical_evidence, "canonical_evidence"],
+      [canonicalJson(storedResult) === row.canonical_result, "canonical_result"],
+      [await verificationReplayEvidenceHash(evidence) === row.evidence_hash, "evidence_hash"],
+      [evidence.id === row.id, "evidence_id"],
+      [evidence.replayId === row.replay_id, "replay_id"],
+      [evidence.assignmentId === assignment.id, "assignment_id"],
+      [evidence.runId === row.run_id, "run_id"],
+      [evidence.artifactBundleHash === assignment.artifactBundleManifestHash, "artifact_bundle_hash"],
+      [evidence.runnerResultHash === row.runner_result_hash, "runner_result_hash"],
+      [evidence.recordedAt === row.recorded_at, "recorded_at"],
+      [canonicalJson(evidence.runnerResult) === row.canonical_result, "embedded_runner_result"],
+      [Date.parse(storedResult.startedAt) === Date.parse(row.run_started_at), "started_at_projection"],
+      [Date.parse(storedResult.finishedAt) === Date.parse(row.run_finished_at), "finished_at_projection"],
+      [Date.parse(storedResult.startedAt) >= Date.parse(row.replay_requested_at), "replay_started_after_request"],
+      [Date.parse(storedResult.finishedAt) <= Date.parse(evidence.recordedAt), "evidence_recorded_after_finish"],
+    ].filter(([passed]) => !passed).map(([, label]) => label);
+    if (projectionFailures.length > 0) {
+      throw new VerificationStoreValidationError(
+        `Fresh replay evidence is not an exact immutable projection of the terminal Runner result (${projectionFailures.join(", ")}).`,
+      );
     }
     if (
       row.run_state !== "succeeded" ||

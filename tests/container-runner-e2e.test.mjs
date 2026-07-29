@@ -174,7 +174,7 @@ function fixtureRequest(policy) {
     environment: {
       imageDigest: `registry.cloudflare.com/proofweave/lean-runner@sha256:${"b".repeat(64)}`,
       leanToolchain: "leanprover/lean4:v4.30.0",
-      mathlibRevision: "fixture-mathlib",
+      mathlibRevision: "none",
       network: "disabled",
     },
     limits: { cpuSeconds: 10, wallSeconds: 30, memoryMiB: 512, diskMiB: 512, outputBytes: 1_000_000 },

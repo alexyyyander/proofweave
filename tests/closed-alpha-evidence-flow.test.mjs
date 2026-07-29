@@ -53,8 +53,16 @@ let database;
 let bucket;
 let keys;
 
+function traceE2e(stage) {
+  if (process.env.PROOFWEAVE_E2E_TRACE === "1") {
+    process.stderr.write(`[proofweave-e2e] ${stage}\n`);
+  }
+}
+
 before(async () => {
+  traceE2e("setup:keys");
   keys = await createKeyFixture();
+  traceE2e("setup:miniflare");
   miniflare = new Miniflare({
     modules: true,
     script: "export default { fetch() { return new Response('ok'); } }",
@@ -62,18 +70,25 @@ before(async () => {
     d1Databases: ["DB"],
     r2Buckets: ["ARTIFACTS"],
   });
+  traceE2e("setup:bindings");
   database = await miniflare.getD1Database("DB");
   bucket = await miniflare.getR2Bucket("ARTIFACTS");
+  traceE2e("setup:migrations");
   await applyMigrations(database);
+  traceE2e("setup:seed");
   await seedDelegatedPeopleAndAttempt(database, keys);
   await seedLocalLeanAttempt(database);
+  traceE2e("setup:ready");
 });
 
 after(async () => {
+  traceE2e("teardown:start");
   await miniflare?.dispose();
+  traceE2e("teardown:done");
 });
 
 test("a local evidence-chain fixture reaches a signed receipt without crossing trust boundaries", async () => {
+  traceE2e("protocol:start");
   const artifacts = new D1R2ArtifactStore({ database, bucket });
   const archive = await artifacts.putObject({
     bytes: "closed-alpha fixture source archive",
@@ -96,6 +111,7 @@ test("a local evidence-chain fixture reaches a signed receipt without crossing t
   ]);
   const bundle = await signedBundle({ archive, patch, lakeManifest, keys });
   const staged = await artifacts.stageBundle(bundle);
+  traceE2e("protocol:bundle-staged");
   assert.equal(staged.created, true);
   assert.equal((await artifacts.loadBundleForDispatch(staged.bundle.manifestHash))?.bundle.id, bundle.id);
 
@@ -150,6 +166,7 @@ test("a local evidence-chain fixture reaches a signed receipt without crossing t
     execution,
     receivedAt: "2026-07-13T00:00:04Z",
   });
+  traceE2e("protocol:run-finalized");
   assert.equal(finalized.run.state, "succeeded");
   assert.equal(finalized.result.kernelStatus, "accepted");
   assert.equal(finalized.outputs.stdout.created, true);
@@ -211,6 +228,7 @@ test("a local evidence-chain fixture reaches a signed receipt without crossing t
     execution: replayExecution,
     receivedAt: "2026-07-13T00:00:10Z",
   });
+  traceE2e("protocol:replay-finalized");
   assert.equal(replayFinalized.run.state, "succeeded");
   assert.equal(replayFinalized.replayEvidence?.assignmentId, replayAssignmentId);
   assert.equal(replayFinalized.replayEvidence?.artifactBundleHash, staged.bundle.manifestHash);
@@ -276,6 +294,7 @@ test("a local evidence-chain fixture reaches a signed receipt without crossing t
     execution: kernelReplayExecution,
     receivedAt: "2026-07-13T00:00:14Z",
   });
+  traceE2e("protocol:kernel-replay-finalized");
   assert.equal(kernelReplayFinalized.replayEvidence?.assignmentId, kernelReplayAssignmentId);
 
   const reviewInputs = [
@@ -326,6 +345,7 @@ test("a local evidence-chain fixture reaches a signed receipt without crossing t
     closureStates.push(recorded.closure);
     assert.equal((await verification.listEvents(assignmentId)).at(-1)?.eventType, "attestation_recorded");
   }
+  traceE2e("protocol:reviews-recorded");
 
   assert.deepEqual(closureStates.slice(0, 2).map((closure) => ({
     state: closure.state,
@@ -361,13 +381,20 @@ test("a local evidence-chain fixture reaches a signed receipt without crossing t
     "run_started",
     "runner_result_recorded",
   ]);
+  traceE2e("protocol:done");
 });
 
 test("a local Lean fixture binds actual execution evidence into the signed receipt path", {
   skip: process.env.PROOFWEAVE_REQUIRE_LOCAL_LEAN !== "1"
     ? "set PROOFWEAVE_REQUIRE_LOCAL_LEAN=1 to run the local Lean evidence fixture"
-    : typeof zlib.zstdCompressSync !== "function",
+    : false,
 }, async () => {
+  if (typeof zlib.zstdCompressSync !== "function") {
+    throw new Error(
+      "PROOFWEAVE_REQUIRE_LOCAL_LEAN=1 requires Node.js zstd support; refusing to skip the real Lean evidence fixture.",
+    );
+  }
+  traceE2e("lean:start");
   const root = await mkdtemp(join(tmpdir(), "proofweave-real-alpha-flow-"));
   try {
     const workspace = await createRealLeanWorkspaceFixture();
@@ -418,7 +445,7 @@ test("a local Lean fixture binds actual execution evidence into the signed recei
       },
       environment: {
         leanToolchain: "leanprover/lean4:v4.30.0",
-        mathlibRevision: "fixture-mathlib",
+        mathlibRevision: "none",
       },
       entryCommand: ["lake", "env", "lean", "ProofweaveFixture.lean"],
       eventId: "agent-event:closed-alpha-local-lean-flow",
@@ -534,6 +561,7 @@ test("a local Lean fixture binds actual execution evidence into the signed recei
       },
     });
     const trustedRunnerResult = await trustedRunner.processNext();
+    traceE2e("lean:primary-run-finalized");
     const durableDelivery = await queue.find(request.jobId);
     assert.equal(trustedRunnerResult.outcome, "acknowledged", JSON.stringify({ trustedRunnerResult, durableDelivery }));
     assert.equal(durableDelivery.deliveryState, "acknowledged");
@@ -615,25 +643,113 @@ test("a local Lean fixture binds actual execution evidence into the signed recei
       execution: replayExecution,
       receivedAt: "2026-07-13T00:00:13Z",
     });
+    traceE2e("lean:replay-finalized");
     assert.equal(replayFinalized.replayEvidence?.assignmentId, replayAssignmentId);
 
-    const reviewEvidence = await Promise.all([
-      artifacts.putObject({ bytes: "fixture independent kernel inspection", filename: "local-kernel-accepted.txt", contentType: "text/plain" }),
-      artifacts.putObject({ bytes: "fixture project acceptance", filename: "local-project-accepted.txt", contentType: "text/plain" }),
-    ]);
+    const kernelReplayAssignmentId = "assignment:closed-alpha-local-lean:kernel_accepted";
+    await verification.assign({
+      id: kernelReplayAssignmentId,
+      artifactBundleManifestHash: staged.bundle.manifestHash,
+      claimType: "kernel_accepted",
+      verifierPersonId: "person:bob",
+      assignedAt: "2026-07-13T00:00:14Z",
+    });
+    await verification.accept(kernelReplayAssignmentId, "person:bob", "2026-07-13T00:00:15Z");
+    const kernelReplayRequest = await createLeanRunnerRequest({
+      jobId: "run:closed-alpha-local-lean-kernel-replay",
+      idempotencyKey: "closed-alpha-local-lean-kernel-replay",
+      artifactBundle: bundle,
+      imageDigest,
+      limits: request.limits,
+    });
+    const resolvedKernelReplayBundle = await new D1InlineRunnerBundleResolver({ database }).resolve(kernelReplayRequest);
+    const kernelReplayQueued = await runStore.queue({
+      id: kernelReplayRequest.jobId,
+      attemptId: kernelReplayRequest.attemptId,
+      idempotencyKey: kernelReplayRequest.idempotencyKey,
+      requestHash: await leanRunnerRequestHash(kernelReplayRequest),
+      artifactBundleHash: staged.bundle.manifestHash,
+      queuedAt: "2026-07-13T00:00:16Z",
+    });
+    await database
+      .prepare(
+        `INSERT INTO verification_replays (
+          id, assignment_id, run_id, artifact_bundle_manifest_hash,
+          requester_person_id, requester_agent_id, delegation_certificate_id,
+          agent_installation_id, idempotency_key, requested_at
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      )
+      .bind(
+        "verification-replay:closed-alpha-local-lean-kernel",
+        kernelReplayAssignmentId,
+        kernelReplayQueued.run.id,
+        staged.bundle.manifestHash,
+        "person:bob",
+        "agent:bob-reviewer",
+        "delegation:bob-reviewer",
+        "installation:closed-alpha-bob-reviewer",
+        "closed-alpha-local-lean-kernel-workspace",
+        "2026-07-13T00:00:16Z",
+      )
+      .run();
+    const kernelReplayPreparing = await runStore.prepare(kernelReplayQueued.run.id, "2026-07-13T00:00:17Z");
+    let kernelReplayExecutionInstant = 18;
+    const kernelReplayHandler = createContainerWorkspaceHttpHandler({
+      stagingRoot: join(root, "staging"),
+      workspaceRoot: join(root, "workspaces"),
+      executor: new ContainerLeanExecutor({
+        networkIsolated: true,
+        resourceLimitsEnforced: true,
+        now: () => new Date(`2026-07-13T00:00:${String(kernelReplayExecutionInstant++).padStart(2, "0")}Z`),
+      }),
+    });
+    await new RunnerWorkspaceTransfer({ bucket: new D1InlineArtifactBucket(database) }).stage({
+      run: kernelReplayPreparing,
+      resolvedBundle: resolvedKernelReplayBundle,
+      container: { fetch: kernelReplayHandler },
+    });
+    const kernelReplayRunning = await runStore.start(kernelReplayQueued.run.id, "2026-07-13T00:00:18Z");
+    const kernelReplayExecution = await new RunnerContainerExecutionClient().execute({
+      container: { fetch: kernelReplayHandler },
+      run: kernelReplayRunning,
+      request: kernelReplayRequest,
+    });
+    const kernelReplayFinalized = await new RunnerExecutionFinalizer({
+      runStore,
+      outputStore: new D1InlineRunnerOutputStore({ database }),
+      replayEvidenceStore: new D1InlineVerificationReplayEvidenceStore({ database }),
+      resultSigner: new RunnerExecutionResultSigner({
+        runnerKeyId: "runner-key:closed-alpha",
+        runnerPrivateKey: keys.runner.privateKey,
+      }),
+    }).finalize({
+      runId: kernelReplayRunning.id,
+      execution: kernelReplayExecution,
+      receivedAt: "2026-07-13T00:00:20Z",
+    });
+    traceE2e("lean:kernel-replay-finalized");
+    assert.equal(kernelReplayFinalized.replayEvidence?.assignmentId, kernelReplayAssignmentId);
+
+    const projectEvidence = await artifacts.putObject({
+      bytes: "fixture project acceptance",
+      filename: "local-project-accepted.txt",
+      contentType: "text/plain",
+    });
     for (const [claimType, reviewer, evidence, assignmentId] of [
       ["bundle_reproducible", "bob", { contentHash: replayFinalized.replayEvidence.evidenceHash }, replayAssignmentId],
-      ["kernel_accepted", "bob", reviewEvidence[0], "assignment:closed-alpha-local-lean:kernel_accepted"],
-      ["project_accepted", "carol", reviewEvidence[1], "assignment:closed-alpha-local-lean:project_accepted"],
+      ["kernel_accepted", "bob", { contentHash: kernelReplayFinalized.replayEvidence.evidenceHash }, kernelReplayAssignmentId],
+      ["project_accepted", "carol", projectEvidence, "assignment:closed-alpha-local-lean:project_accepted"],
     ]) {
-      if (assignmentId !== replayAssignmentId) await verification.assign({
-        id: assignmentId,
-        artifactBundleManifestHash: staged.bundle.manifestHash,
-        claimType,
-        verifierPersonId: `person:${reviewer}`,
-        assignedAt: "2026-07-13T00:00:07Z",
-      });
-      await verification.accept(assignmentId, `person:${reviewer}`, "2026-07-13T00:00:08Z");
+      if (![replayAssignmentId, kernelReplayAssignmentId].includes(assignmentId)) {
+        await verification.assign({
+          id: assignmentId,
+          artifactBundleManifestHash: staged.bundle.manifestHash,
+          claimType,
+          verifierPersonId: `person:${reviewer}`,
+          assignedAt: "2026-07-13T00:00:20Z",
+        });
+        await verification.accept(assignmentId, `person:${reviewer}`, "2026-07-13T00:00:21Z");
+      }
       const attestation = await signedAttestation({
         id: `attestation:closed-alpha-local-lean:${claimType}`,
         claimType,
@@ -642,7 +758,7 @@ test("a local Lean fixture binds actual execution evidence into the signed recei
         evidenceHash: evidence.contentHash,
         reviewer,
         keys,
-        attestedAt: "2026-07-13T00:00:09Z",
+        attestedAt: "2026-07-13T00:00:22Z",
       });
       assert.equal((await verification.recordAttestation(attestation)).created, true);
     }
@@ -654,7 +770,7 @@ test("a local Lean fixture binds actual execution evidence into the signed recei
       kind: "lemma",
       artifactBundleManifestHash: staged.bundle.manifestHash,
       runId: finalized.run.id,
-      issuedAt: "2026-07-13T00:00:10Z",
+      issuedAt: "2026-07-13T00:00:23Z",
       issuerKeyId: "issuer:closed-alpha",
       issuerPublicKey: keys.issuer.publicKey,
       issuerPrivateKey: keys.issuer.privateKey,
@@ -677,6 +793,7 @@ test("a local Lean fixture binds actual execution evidence into the signed recei
       .first();
     assert.ok(Number(inlineEvidence?.count) >= 7);
     assert.ok(Number(inlineEvidence?.largest) > 0 && Number(inlineEvidence?.largest) <= 1_000_000);
+    traceE2e("lean:done");
   } finally {
     await rm(root, { recursive: true, force: true });
   }
@@ -771,7 +888,7 @@ async function seedLocalLeanAttempt(d1) {
         id, upstream_name, source_url, revision_tag, revision_commit, retrieved_at,
         content_hash, manifest_hash, source_license, lean_toolchain, mathlib_revision
       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      ["snapshot:closed-alpha-local-lean", "fixture", "https://example.test/local-lean", "v1", "local-lean", "2026-07-13T00:00:00Z", sha("f"), sha("e"), "MIT", "leanprover/lean4:v4.30.0", "fixture-mathlib"],
+      ["snapshot:closed-alpha-local-lean", "fixture", "https://example.test/local-lean", "v1", "local-lean", "2026-07-13T00:00:00Z", sha("f"), sha("e"), "MIT", "leanprover/lean4:v4.30.0", "none"],
     ],
     [
       `INSERT INTO problem_revisions (

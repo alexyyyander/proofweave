@@ -10,15 +10,18 @@ has recorded evidence.
 | --- | --- | --- |
 | Ordinary-user UI and read-only boundary | Candidate changes implemented; independent audit found no private research-store read before maintenance guards | validating |
 | UI Lean truthfulness | One weak duplicate acceptance predicate found and replaced by the shared strict predicate | validating |
+| Single-maintainer executable chain | Local Miniflare D1/R2, primary Lean Run, two fresh Lean replays, signed test reviews, and signed test Receipt pass through one bounded command | complete for isolated test only |
 | PITR clone rehearsal | 0043 applied and queue-sequence smoke passed on the isolated clone | complete for rehearsal only |
 | Production cutover evidence | Offline fail-closed verifier implemented; live evidence not yet collected | blocked |
 | Independent release observer | Must be a genuinely different accountable person; none is currently recorded | blocked |
-| Same-SHA read-only deployment | Not performed by this plan run | pending approval |
+| Same-SHA read-only deployment | Sites v148 reports the candidate SHA and Turso fingerprint; the hosted Render Runner is suspended | incomplete |
 | Credentialed Person A → Person B smoke | Offline evidence-graph verifier implemented; no real production smoke performed | pending deployment and two people |
 | Public Receipt verification | Requires the real credentialed smoke | pending |
 
-The deterministic release tools are:
+The executable test and deterministic release tools are:
 
+- [`run-solo-contribution-smoke.mjs`](../scripts/run-solo-contribution-smoke.mjs)
+  for the real local Lean and test-Receipt chain owned by one maintainer;
 - [`check-production-contribution-cutover.mjs`](../scripts/check-production-contribution-cutover.mjs)
   for the frozen 0043 cutover evidence;
 - [`check-credentialed-contribution-release.mjs`](../scripts/check-credentialed-contribution-release.mjs)
@@ -26,8 +29,25 @@ The deterministic release tools are:
 - [`check-ordinary-user-release.mjs`](../scripts/check-ordinary-user-release.mjs)
   for unauthenticated, read-only public preflight.
 
-None of these tools creates evidence. They only reject incomplete or
-internally inconsistent evidence collected from the authoritative services.
+The production cutover and credentialed-release checkers do not create
+evidence; they reject incomplete or internally inconsistent evidence collected
+from authoritative services. The solo smoke intentionally creates only
+temporary, explicitly labelled test evidence in a local Miniflare authority,
+which disappears with the test process.
+
+## Phase 0 — Single-maintainer executable gate
+
+Before a cloud or production smoke, run:
+
+```bash
+npm run smoke:solo-contribution
+```
+
+This must complete the real local Bundle, primary Lean Run, two claim-specific
+fresh Lean replays, signed test attestations, and signed test Receipt. Generated
+mock Persons exercise ownership separation in the protocol, but their keys are
+controlled by one process, so this is not independent human review or public
+credit. See [the owner-controlled smoke contract](solo-contribution-smoke.md).
 
 ## What “the full chain works” means
 

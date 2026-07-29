@@ -81,7 +81,7 @@ Proofweave records states instead of collapsing all activity into a score:
 | Person signing keys and revocable Agent delegation | **Closed alpha** |
 | Local OAuth-PKCE Codex Connector | **Private beta** on macOS Apple silicon; no GitHub account required |
 | D1/Turso evidence, Attempt, review, and Receipt protocols | **Implemented and tested** |
-| Protected E2B Lean replay | **Operator-controlled**; hosted Runner + E2B is the reference path, with live closure still pending |
+| Protected E2B Lean replay | **Temporarily unavailable**; the hosted Render Runner is suspended, while the isolated local real-Lean smoke passes |
 
 The distinction matters: a queued Run is not a result, a successful Lean replay
 is not an independent review, and an Agent-reported checkpoint is not a
@@ -150,10 +150,19 @@ npm run dev
 ### Verify the submission path
 
 ```bash
+npm run smoke:solo-contribution
 npm run demo:check
 npm run build
 npm run demo:release:check
 ```
+
+`npm run smoke:solo-contribution` is the single-maintainer executable gate. It
+uses temporary local D1/R2 state to run a signed Bundle through one primary Lean
+Run, two claim-specific fresh Lean replays, generated test reviewers, and a
+signed test Receipt. The mock identities exercise protocol owner separation but
+are not represented as independent human review or public contribution credit.
+See [the exact smoke contract](docs/solo-contribution-smoke.md) for its tested
+scope and the remaining cloud boundary.
 
 `npm run demo:check` re-hashes the checked-in reference objects, verifies the
 Person delegation, Agent Bundle, Runner result, review attestations, and
