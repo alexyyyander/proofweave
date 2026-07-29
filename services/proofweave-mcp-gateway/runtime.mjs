@@ -85,28 +85,39 @@ export function createD1RemoteMcpGatewayRuntime({
   const artifactStore = bucket
     ? null
     : new D1InlineArtifactStore({ database });
-  const runnerDispatcher = createOptionalRunnerDispatcher({
-    database,
-    bucket,
-    artifactStore,
-    runnerQueue: selectRunnerQueue({ database, runnerQueue, runnerQueueMode }),
-    runnerApprovedImagesJson,
-    runnerControlPlaneKeyId,
-    runnerControlPlanePrivateKeyJwkJson,
-    runnerDefaultLimitsJson,
-    runnerWake: createOptionalRunnerWakeClient({
-      runnerWakeUrl,
-      runnerWakeToken,
-      runnerWakeHostAuthorizationToken,
-    }),
-  });
-  const receiptCoordinator = createOptionalReceiptCoordinator({
-    database,
-    receiptIssuerKeyId,
-    receiptIssuerPublicKey,
-    receiptIssuerPrivateKeyJwkJson,
-    receiptIssuerActivatedAt,
-  });
+  // During a maintenance freeze, read tools must remain available even when
+  // optional write-only deployment bindings are incomplete or stale. The
+  // request router rejects every mutating MCP tool before reaching the store,
+  // so these capabilities must not be constructed or validated in read-only
+  // mode.
+  const writeComponentsEnabled =
+    normalizedOperationMode === controlPlaneOperationMode.readWrite;
+  const runnerDispatcher = writeComponentsEnabled
+    ? createOptionalRunnerDispatcher({
+      database,
+      bucket,
+      artifactStore,
+      runnerQueue: selectRunnerQueue({ database, runnerQueue, runnerQueueMode }),
+      runnerApprovedImagesJson,
+      runnerControlPlaneKeyId,
+      runnerControlPlanePrivateKeyJwkJson,
+      runnerDefaultLimitsJson,
+      runnerWake: createOptionalRunnerWakeClient({
+        runnerWakeUrl,
+        runnerWakeToken,
+        runnerWakeHostAuthorizationToken,
+      }),
+    })
+    : null;
+  const receiptCoordinator = writeComponentsEnabled
+    ? createOptionalReceiptCoordinator({
+      database,
+      receiptIssuerKeyId,
+      receiptIssuerPublicKey,
+      receiptIssuerPrivateKeyJwkJson,
+      receiptIssuerActivatedAt,
+    })
+    : null;
 
   const oauthStore = new D1ProofweaveOAuthStore(database);
   return createRemoteMcpGateway({

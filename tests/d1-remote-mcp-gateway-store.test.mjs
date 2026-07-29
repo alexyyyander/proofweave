@@ -37,6 +37,7 @@ import {
   researchCheckpointPayloadHash,
   researchCheckpointSigningPayload,
 } from "../packages/protocol/research-checkpoint.mjs";
+import { applyControlPlaneOperationMode } from "../services/database/control-plane-operation-mode.mjs";
 
 const migrationsRoot = new URL("../drizzle/", import.meta.url);
 let miniflare;
@@ -124,6 +125,86 @@ test("partial Runner dispatch configuration fails closed before serving MCP", ()
     }),
     RemoteMcpRuntimeConfigurationError,
   );
+});
+
+test("read-only D1 runtime serves reads without validating write-only bindings and blocks mutations", async () => {
+  const resource = "https://mcp.gateway.example.test/mcp";
+  const accessToken = "pw_at_gateway_read_only_runtime_fixture";
+  const oauthStore = new D1ProofweaveOAuthStore(database);
+  await oauthStore.issueTokenPair({
+    accessTokenHash: await tokenHash(accessToken),
+    refreshTokenHash: await tokenHash("pw_rt_gateway_read_only_runtime_fixture"),
+    clientId: "client:gateway-codex",
+    resource,
+    personId: "person:gateway-reviewer",
+    agentInstallationId: "installation:gateway-prover",
+    scopes: ["catalog:read", "attempt:create"],
+    issuedAt: "2026-07-13T00:00:00Z",
+    accessExpiresAt: "2027-07-13T00:00:00Z",
+    refreshExpiresAt: "2027-08-13T00:00:00Z",
+  });
+  const readOnlyDatabase = applyControlPlaneOperationMode(database, "read_only");
+  const gateway = createD1RemoteMcpGatewayRuntime({
+    resource,
+    issuer: "https://auth.gateway.example.test",
+    database: readOnlyDatabase,
+    operationMode: "read_only",
+    runnerQueueMode: "invalid-write-only-mode",
+    runnerApprovedImagesJson: JSON.stringify([
+      `registry.example.test/proofweave/lean@sha256:${"f".repeat(64)}`,
+    ]),
+    receiptIssuerKeyId: "issuer:incomplete-write-only-config",
+  });
+
+  const authority = await callGatewayTool(
+    gateway,
+    resource,
+    accessToken,
+    "get_connection_authority",
+    {},
+  );
+  assert.equal(authority.result.isError, undefined);
+  assert.equal(
+    JSON.parse(authority.result.content[0].text).personId,
+    "person:gateway-reviewer",
+  );
+  const frontier = await callGatewayTool(
+    gateway,
+    resource,
+    accessToken,
+    "list_frontier_problems",
+    {},
+  );
+  assert.equal(frontier.result.isError, undefined);
+  assert.match(frontier.result.content[0].text, /gateway-target/);
+
+  const blocked = await gateway.fetch(new Request(resource, {
+    method: "POST",
+    headers: {
+      authorization: `Bearer ${accessToken}`,
+      Accept: "application/json, text/event-stream",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      jsonrpc: "2.0",
+      id: 1,
+      method: "tools/call",
+      params: {
+        name: "create_attempt",
+        arguments: {
+          problemSlug: "gateway-target",
+          delegationScope: "prove",
+          idempotencyKey: "must-not-write-during-read-only-runtime-test",
+        },
+      },
+    }),
+  }));
+  assert.equal(blocked.status, 503);
+  assert.deepEqual(await blocked.json(), {
+    error: "temporarily_unavailable",
+    error_description: "Proofweave is temporarily read-only for maintenance.",
+    diagnostic_code: "control_plane_read_only",
+  });
 });
 
 test("provider-neutral gateway composes the durable database Runner queue only from a complete configuration", () => {
