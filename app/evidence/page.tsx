@@ -6,13 +6,23 @@ import { PersonalWorkspaceFrame } from "@/app/PersonalWorkspaceFrame";
 import { MissingDatabaseBindingError } from "@/db";
 import { getDelegationRepository } from "@/db/repositories/delegation";
 import { getEvidenceRepository, type AttemptEvidenceSummary } from "@/db/repositories/evidence";
+import { personalWritesPaused, ReadOnlyPersonalSurface } from "@/app/lib/read-only-personal-surface";
 
 export const dynamic = "force-dynamic";
 
 export default async function EvidenceIndexPage() {
+  const readOnly = personalWritesPaused();
   const user = await getCurrentUser();
-  const result = await loadEvidence(user);
   if (!user) return <EvidenceMessage unauthenticated />;
+  if (readOnly) {
+    return <ReadOnlyPersonalSurface
+      active="workbench"
+      eyebrow="Controlled evidence · read-only maintenance"
+      title="Your private evidence records are temporarily paused."
+      detail="Public questions and published verification states remain readable. Private Bundle indexes, assigned-review evidence, downloads, and evidence submission controls are not loaded during maintenance."
+    />;
+  }
+  const result = await loadEvidence(user);
   if (result.unavailable) return <EvidenceMessage unavailable />;
   const evidence = result.evidence;
   return <div className="site-shell app-shell">

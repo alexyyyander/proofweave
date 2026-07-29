@@ -11,14 +11,24 @@ import { PersonalWorkspaceFrame } from "@/app/PersonalWorkspaceFrame";
 import { IndependentReviewHandoff } from "@/app/evidence/IndependentReviewHandoff";
 import { hasAcceptedLeanEvidence } from "@/app/lib/evidence-eligibility";
 import { getVerificationMarketRepository, type BundleVerificationMarketStatus, VerificationMarketSchemaUnavailableError } from "@/db/repositories/verification-market";
+import { personalWritesPaused, ReadOnlyPersonalSurface } from "@/app/lib/read-only-personal-surface";
 
 export const dynamic = "force-dynamic";
 
 export default async function EvidenceDetailPage({ params }: { params: Promise<{ attemptId: string }> }) {
   const { attemptId: bundleManifestHash } = await params;
+  const readOnly = personalWritesPaused();
   const user = await getCurrentUser();
-  const result = await loadEvidenceDetail(user, bundleManifestHash);
   if (!user) return <EvidenceAccessMessage signInPath={signInPath(`/evidence/${encodeURIComponent(bundleManifestHash)}`)} />;
+  if (readOnly) {
+    return <ReadOnlyPersonalSurface
+      active="workbench"
+      eyebrow="Controlled evidence · read-only maintenance"
+      title="This private evidence record is temporarily paused."
+      detail="Proofweave does not load the controlled Bundle, private artifacts, replay evidence, or review handoff while the personal control plane is read-only. Artifact access and verification actions are not offered."
+    />;
+  }
+  const result = await loadEvidenceDetail(user, bundleManifestHash);
   if (result.unavailable) return <EvidenceAccessMessage unavailable />;
   if (!result.evidence) notFound();
   return <EvidenceDetail evidence={result.evidence} reviewMarketStatus={result.reviewMarketStatus} reviewMarketUnavailable={result.reviewMarketUnavailable} />;

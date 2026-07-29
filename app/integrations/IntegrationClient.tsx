@@ -9,6 +9,7 @@ import {
   CodexSetupPrompt,
   CodexWorkflowPrompt,
 } from "./CodexInstallPrompt";
+import { integrationRefreshHref } from "@/packages/protocol/integration-return-href.mjs";
 
 const authorizedScopes = [
   "Read the frontier catalog",
@@ -47,9 +48,10 @@ export function IntegrationClient({
 }) {
   const [watchingConnection, setWatchingConnection] = useState(false);
   const [connectionNotice, setConnectionNotice] = useState<string | null>(null);
-  const pageHref = selectedTarget
-    ? `/integrations?target=${encodeURIComponent(selectedTarget.slug)}&return_to=${encodeURIComponent(returnHref)}#codex-beta`
-    : "/integrations#codex-beta";
+  const pageHref = integrationRefreshHref({
+    targetSlug: selectedTarget?.slug,
+    returnHref,
+  });
 
   useEffect(() => {
     if (connection || !watchingConnection) return;

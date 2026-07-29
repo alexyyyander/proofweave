@@ -7,7 +7,9 @@ import {
   controlPlaneMaintenanceCopy,
   type ControlPlaneWriteAvailability,
 } from "../lib/control-plane-write-capability";
+import { attemptIntegrationHref } from "../lib/attempt-integration-href";
 import { activeAttemptDelegation, activeLocalCodexInstallation, activeWorkDelegation, localAgentJourney } from "../lib/local-agent-journey";
+import { hasAcceptedKernelEvidence } from "./accepted-kernel-evidence";
 
 type GateState = "passed" | "waiting" | "required" | "failed";
 
@@ -42,7 +44,8 @@ export function FirstContributionPath({
   const attemptOpened = Boolean(attempt);
   const progressRecorded = Boolean(attempt?.events.some((event) => event.type === "agent_reported" || event.type === "bundle_staged"));
   const bundleStaged = Boolean(attempt?.events.some((event) => event.type === "bundle_staged"));
-  const leanAccepted = hasAcceptedKernel(latestRunForAttempt(attempt, runs));
+  const leanAccepted = hasAcceptedKernelEvidence(latestRunForAttempt(attempt, runs));
+  const attemptReconnectHref = attempt ? attemptIntegrationHref(attempt) : "/integrations#codex-beta";
   const states = [attemptOpened, agentConnected, progressRecorded, bundleStaged, leanAccepted];
   const completed = states.filter(Boolean).length;
   const current = states.findIndex((state) => !state);
@@ -55,26 +58,26 @@ export function FirstContributionPath({
         : !attemptOpened
           ? { href: "/explore#starter-work", label: "Choose a question", detail: "Choose a precise public question so your Agent can build on shared work." }
           : !agentConnected
-            ? { href: "/integrations#codex-beta", label: "Connect Agent", detail: "Approve your local Codex once. No API key, public key, or workspace is pasted." }
-          : !progressRecorded
-            ? { href: "#next-action", label: "Continue in Codex", detail: "Research locally, then choose whether one useful milestone should be recorded." }
-            : !bundleStaged
-              ? { href: "#local-agent", label: "Approve evidence", detail: "Review the exact files and hashes before allowing any evidence to leave your computer." }
-              : !leanAccepted
-                ? { href: "#local-agent", label: "Track verification", detail: "Your approved evidence is waiting for an isolated Lean check." }
-                : { href: "/evidence", label: "View verification", detail: "Lean accepted this evidence. Independent review is still required before contribution credit." };
+            ? { href: attemptReconnectHref, label: "Connect Agent", detail: "Approve your local Codex once. No API key, public key, or workspace is pasted." }
+            : !progressRecorded
+              ? { href: "#next-action", label: "Continue in Codex", detail: "Research locally, then choose whether one useful milestone should be recorded." }
+              : !bundleStaged
+                ? { href: "#local-agent", label: "Approve evidence", detail: "Review the exact files and hashes before allowing any evidence to leave your computer." }
+                : !leanAccepted
+                  ? { href: "#local-agent", label: "Track verification", detail: "Your approved evidence is waiting for an isolated Lean check." }
+                  : { href: "/evidence", label: "View verification", detail: "Lean accepted this evidence. Independent review is still required before contribution credit." };
   const steps = [
     ["Choose question", "One precise public target"],
     ["Connect Agent", "One-time private approval"],
     ["Research locally", "Private work stays local"],
     ["Approve evidence", "You review before sharing"],
-    ["Verification & credit", leanAccepted ? "Lean accepted · review next" : "Lean, review, then credit"],
+    ["Lean verification", leanAccepted ? "Kernel accepted · review remains" : "Isolated Lean check"],
   ] as const;
 
   return <section className="first-contribution-path" aria-labelledby="first-contribution-title">
     <div className="first-contribution-intro">
       <div><span className="micro-label">First evidence path</span><strong id="first-contribution-title">One step at a time.</strong></div>
-      <span>{completed} / {steps.length} ready</span>
+      <span>{completed} / {steps.length} owner steps complete</span>
     </div>
     <ol>
       {steps.map(([label, detail], index) => <li className={states[index] ? "is-complete" : index === current ? "is-current" : ""} key={label} aria-current={index === current ? "step" : undefined}>
@@ -87,7 +90,7 @@ export function FirstContributionPath({
       <div><span>Next</span><p>{next.detail}</p></div>
       <Link className="text-link" href={next.href}>{next.label} <span aria-hidden="true">→</span></Link>
     </div>
-    <p className="first-contribution-boundary">After Lean acceptance, a different owner must complete the reproducibility, kernel, and project-acceptance gates before a Contribution Receipt can be issued. Statement fidelity and novelty remain additional quality reviews; none of these are inferred from the five owner-side steps.</p>
+    <p className="first-contribution-boundary">These five owner-side steps end at Lean acceptance; they do not issue contribution credit. A different owner must still complete the required independent review gates before a Contribution Receipt can be issued. Statement fidelity and novelty remain additional quality reviews.</p>
   </section>;
 }
 
@@ -215,6 +218,7 @@ export function FocusAction({
   const isPausedAttempt = attempt?.status === "paused";
   const isHistoricalAttempt = Boolean(attempt && attempt.status !== "active" && !isPausedAttempt);
   const needsAttemptConnection = Boolean(attempt?.status === "active" && !canContinueLocally);
+  const attemptReconnectHref = attempt ? attemptIntegrationHref(attempt) : "/integrations#codex-beta";
   const maintenance = controlPlaneMaintenanceCopy(writeAvailability);
   const action = writeAvailability !== "available" ? {
     title: maintenance.title,
@@ -235,7 +239,7 @@ export function FocusAction({
     title: "Connect the Agent bound to this Attempt.",
     detail: "This research record belongs to a different or expired Agent approval. Reconnect before copying a brief or recording more work.",
     label: "Review Agent connection",
-    href: "/integrations#codex-beta",
+    href: attemptReconnectHref,
   } : {
     title: journey.title,
     detail: journey.detail,
@@ -386,7 +390,7 @@ export function ResearchWorkstation({ attempt, runs }: { attempt: McpAttempt | n
   const bundleStaged = Boolean(attempt?.events.some((event) => event.type === "bundle_staged"));
   const latestRun = latestRunForAttempt(attempt, runs);
   const runnerResult = latestRun?.result?.summary ?? null;
-  const runnerAccepted = hasAcceptedKernel(latestRun);
+  const runnerAccepted = hasAcceptedKernelEvidence(latestRun);
   const evidenceHref = latestRun ? `/evidence/${encodeURIComponent(latestRun.artifactBundleHash)}` : "/evidence";
 
   return <section className="workstation-grid" id="evidence-workspace" aria-label="Research workstation">
@@ -510,29 +514,15 @@ function latestRunForAttempt(attempt: McpAttempt | null, runs: readonly McpRunSu
   return runs.find((run) => run.attemptId === attempt.id) ?? null;
 }
 
-function hasAcceptedKernel(run: McpRunSummary | null): boolean {
-  const summary = run?.result?.summary;
-  return Boolean(
-    run?.evidenceState === "recorded" &&
-    run.state === "succeeded" &&
-    summary?.status === "succeeded" &&
-    summary.kernelStatus === "accepted" &&
-    summary.checks.network === "passed" &&
-    summary.checks.noSorry === "passed" &&
-    summary.checks.allowedAxioms === "passed" &&
-    summary.checks.leanBuild === "passed",
-  );
-}
-
 function runnerDotClass(run: McpRunSummary | null): string {
-  if (hasAcceptedKernel(run)) return "is-passed";
+  if (hasAcceptedKernelEvidence(run)) return "is-passed";
   if (run?.evidenceState === "unreadable" || ["failed", "timed_out", "rejected", "cancelled"].includes(run?.state ?? "")) return "is-failed";
   return run ? "is-waiting" : "is-pending";
 }
 
 function runnerDiagnosticTitle(run: McpRunSummary | null): string {
   if (!run) return "Lean kernel status · no Run recorded";
-  if (hasAcceptedKernel(run)) return "Lean kernel status · accepted";
+  if (hasAcceptedKernelEvidence(run)) return "Lean kernel status · accepted";
   if (run.evidenceState === "unreadable") return "Lean Runner result needs controlled inspection";
   if (run.result?.summary) return `Lean Runner result · ${run.result.summary.status}`;
   return `Lean Runner lifecycle · ${run.state}`;
@@ -540,7 +530,7 @@ function runnerDiagnosticTitle(run: McpRunSummary | null): string {
 
 function runnerDiagnosticDetail(run: McpRunSummary | null): string {
   if (!run) return "No isolated Lean Run is recorded for this Attempt. Only a Runner can record compiler diagnostics, a sorry audit, axioms, and kernel acceptance.";
-  if (hasAcceptedKernel(run)) return "The recorded signed result passed the network, sorry, axiom, and Lean build checks. Inspect controlled evidence for the complete immutable record.";
+  if (hasAcceptedKernelEvidence(run)) return "The recorded signed result passed the network, sorry, axiom, and Lean build checks. Inspect controlled evidence for the complete immutable record.";
   if (run.evidenceState === "unreadable") return "A stored result row could not be normalized and bound to this Run, so Proofweave will not show it as a Lean verdict. Inspect controlled evidence before acting on it.";
   if (run.result?.summary) return "This terminal Runner result is recorded, but it did not meet the accepted Lean gate. A corrected Bundle or a new isolated Run may be required.";
   return "This is lifecycle state only, not a Lean verdict. A terminal signed result must be recorded before kernel, axiom, and sorry checks can count.";
@@ -548,7 +538,7 @@ function runnerDiagnosticDetail(run: McpRunSummary | null): string {
 
 function leanGateFor(run: McpRunSummary | null): { state: GateState; detail: string } {
   if (!run) return { state: "waiting", detail: "Requires a fresh runner execution with kernel, axiom, and sorry evidence." };
-  if (hasAcceptedKernel(run)) return { state: "passed", detail: "A hash-bound Runner result recorded accepted kernel and all required policy checks." };
+  if (hasAcceptedKernelEvidence(run)) return { state: "passed", detail: "A hash-bound Runner result recorded accepted kernel and all required policy checks." };
   if (run.evidenceState === "unreadable") return { state: "failed", detail: "A stored Runner result could not be safely normalized for this Attempt; inspect controlled evidence and create a new Run if needed." };
   if (run.result?.summary) return { state: "failed", detail: `The recorded Runner ended ${run.result.summary.status} with kernel ${run.result.summary.kernelStatus}; a successful isolated rerun is required.` };
   return { state: "waiting", detail: `Runner is ${run.state}; lifecycle state is not a kernel result.` };

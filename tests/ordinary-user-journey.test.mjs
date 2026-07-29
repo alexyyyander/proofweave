@@ -168,6 +168,71 @@ test("read-only mode never offers a connection write that the service will rejec
   assert.doesNotMatch(workbenchText, /\bManage research\b/i);
 });
 
+test("authenticated personal surfaces render read-only maintenance without mutation controls", async () => {
+  const personalSurfaces = [
+    {
+      pathname: "/profile",
+      expected: /private contribution profile is temporarily paused/i,
+      forbidden: [/View public contribution record/i, /Manage Agent and security/i],
+    },
+    {
+      pathname: "/settings",
+      expected: /Agent and account changes are temporarily paused/i,
+      forbidden: [/Sign and activate delegation/i, /Revoke delegation/i, /Approve local Codex/i],
+    },
+    {
+      pathname: "/reviews",
+      expected: /Review assignments are temporarily paused/i,
+      forbidden: [/Sign in to claim/i, /Claim review/i, /Enable review Agent/i, /\bAccept\b/i, /\bDecline\b/i],
+    },
+    {
+      pathname: "/reviews/read-only-assignment",
+      expected: /private review workspace is temporarily paused/i,
+      forbidden: [/\bAccept\b/i, /\bDecline\b/i, /Submit signed decision/i, /Request fresh replay/i],
+    },
+    {
+      pathname: "/evidence",
+      expected: /private evidence records are temporarily paused/i,
+      forbidden: [/Inspect evidence/i, /\bDownload\b/i, /Submit evidence/i],
+    },
+    {
+      pathname: "/evidence/read-only-bundle",
+      expected: /private evidence record is temporarily paused/i,
+      forbidden: [/\bDownload\b/i, /Request independent review/i, /Submit evidence/i],
+    },
+    {
+      pathname: "/connect/codex?pairing=read-only-pairing&secret=not-used",
+      expected: /Approving a local Codex is temporarily paused/i,
+      forbidden: [/Approve local Codex/i, /Create key/i, /Approve and connect/i],
+    },
+    {
+      pathname: "/workbench/attempts/read-only-attempt",
+      expected: /This research task is temporarily paused/i,
+      forbidden: [/Copy Codex brief/i, /Manage Attempt/i, /Prepare evidence/i, /Refresh records/i],
+    },
+  ];
+
+  for (const surface of personalSurfaces) {
+    const response = await render(readOnlyWorker, surface.pathname, {
+      headers: authHeaders,
+    });
+    assert.equal(response.status, 200, `${surface.pathname} should render read-only maintenance`);
+    const html = await response.text();
+    const text = defaultVisibleText(html);
+    assert.match(text, surface.expected);
+    assert.match(html, /href="\/explore"/i);
+    assert.match(html, /href="\/demo"/i);
+    assert.match(text, /Public research remains readable/i);
+    for (const pattern of surface.forbidden) {
+      assert.doesNotMatch(
+        text,
+        pattern,
+        `${surface.pathname} should not expose mutation control ${pattern}`,
+      );
+    }
+  }
+});
+
 test("missing durable storage fails closed instead of showing sample or writable work", async () => {
   const response = await render(
     storageUnavailableWorker,

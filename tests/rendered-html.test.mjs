@@ -2923,7 +2923,8 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
   assert.match(ownerWorkbenchHtml, /Refresh records/i);
   assert.match(ownerWorkbenchHtml, /First evidence path/i);
   assert.match(ownerWorkbenchHtml, /One step at a time/i);
-  assert.match(ownerWorkbenchHtml, /different owner must complete the reproducibility, kernel, and project-acceptance gates/i);
+  assert.match(ownerWorkbenchHtml, /five owner-side steps end at Lean acceptance; they do not issue contribution credit/i);
+  assert.match(ownerWorkbenchHtml, /different owner must still complete the required independent review gates/i);
   assert.match(ownerWorkbenchHtml, /Staged evidence ledger/i);
   assert.doesNotMatch(ownerWorkbenchHtml, /Continue with Agent/i);
   assert.match(ownerWorkbenchHtml, /Bundle staged · provisional/i);

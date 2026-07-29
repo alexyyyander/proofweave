@@ -1,4 +1,5 @@
 import type { McpAttempt, McpRunSummary } from "@/packages/domain/mcp";
+import { hasAcceptedKernelEvidence } from "./accepted-kernel-evidence";
 
 export type AttemptBucket = "needs-attention" | "active" | "waiting" | "history";
 
@@ -45,10 +46,7 @@ export function deriveAttemptPresentation({
   const hasProgress = attempt.events.some((event) => event.type === "agent_reported");
   const runPending = Boolean(latestRun && ["queued", "preparing", "running", "cancel_requested"].includes(latestRun.state));
   const runFailed = Boolean(latestRun && ["failed", "timed_out", "rejected", "cancelled"].includes(latestRun.state));
-  const kernelAccepted = latestRun?.result?.summary.kernelStatus === "accepted"
-    && latestRun.result.summary.checks.leanBuild === "passed"
-    && latestRun.result.summary.checks.noSorry === "passed"
-    && latestRun.result.summary.checks.allowedAxioms === "passed";
+  const kernelAccepted = hasAcceptedKernelEvidence(latestRun);
 
   if (!agentConnected) return {
     bucket: "needs-attention",

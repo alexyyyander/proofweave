@@ -28,9 +28,12 @@ export default async function IntegrationsPage({
     : "/workbench";
   const requestedReturn = typeof query.return_to === "string" ? query.return_to : fallbackReturn;
   const returnHref = safeRelativeReturnPath(requestedReturn);
-  const integrationsReturnHref = selectedTarget
-    ? `/integrations?target=${encodeURIComponent(selectedTarget.slug)}&return_to=${encodeURIComponent(returnHref)}#codex-beta`
-    : "/integrations#codex-beta";
+  const signInReturnQuery = new URLSearchParams();
+  if (targetSlug) signInReturnQuery.set("target", targetSlug);
+  if (parentNodeId) signInReturnQuery.set("parent", parentNodeId);
+  signInReturnQuery.set("return_to", returnHref);
+  const integrationsReturnHref =
+    `/integrations?${signInReturnQuery.toString()}#codex-beta`;
   return (
     <>
       <Header active="workbench" />

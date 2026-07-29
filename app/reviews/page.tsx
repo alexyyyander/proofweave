@@ -14,11 +14,29 @@ import { Header } from "../header";
 import { hasActiveReviewDelegation } from "../lib/review-authority";
 import { ReviewQueueClient } from "./ReviewQueueClient";
 import { VerificationMarketBoard } from "./VerificationMarketBoard";
+import { personalWritesPaused, ReadOnlyPersonalSurface } from "../lib/read-only-personal-surface";
 
 export const dynamic = "force-dynamic";
 
 export default async function ReviewsPage() {
+  const readOnly = personalWritesPaused();
   const user = await getCurrentUser();
+  if (readOnly) {
+    return <ReadOnlyPersonalSurface
+      active="review"
+      eyebrow="Verification market · read-only maintenance"
+      title="Review assignments are temporarily paused."
+      detail={user
+        ? "Public questions and published verification records remain readable. Your private review queue is not loaded, and claiming, accepting, declining, or submitting a review is unavailable during maintenance."
+        : "Public questions and published verification records remain readable. Claiming review work and opening a personal review queue will return after maintenance."}
+    >
+      <section className="workspace-onboarding-boundary" aria-label="Verification information">
+        <strong>Verification remains inspectable.</strong>
+        <p>Learn how Bundle evidence, independent ownership, and claim-specific decisions remain separate from a Lean execution result.</p>
+        <Link href="/how-it-works/verification">How verification works <span aria-hidden="true">→</span></Link>
+      </section>
+    </ReadOnlyPersonalSurface>;
+  }
   const result = await loadReviews(user);
   if (!result.storageAvailable) return <ReviewMessage unavailable />;
 

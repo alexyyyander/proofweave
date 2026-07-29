@@ -9,6 +9,7 @@ import {
   controlPlaneMaintenanceCopy,
   type ControlPlaneWriteAvailability,
 } from "../lib/control-plane-write-capability";
+import { attemptIntegrationHref } from "../lib/attempt-integration-href";
 import { activeAttemptDelegation, activeLocalCodexInstallation, activeWorkDelegation } from "../lib/local-agent-journey";
 
 export function LocalAgentHandoff({
@@ -107,7 +108,7 @@ export function LocalAgentHandoff({
       <div className="local-agent-empty">
         <strong>One private approval connects this Agent.</strong>
         <p>No API key, public key, private workspace, or model credentials are pasted into Proofweave.</p>
-        <Link className="button button-primary" href="/integrations#codex-beta">Connect Agent <span aria-hidden="true">→</span></Link>
+        <Link className="button button-primary" href={attemptIntegrationHref(attempt)}>Connect Agent <span aria-hidden="true">→</span></Link>
       </div>
     </section>;
   }
@@ -212,7 +213,7 @@ function unavailableState({
     title: "Connect a local Codex before you open accountable work.",
     detail: "The normal browser approval creates the Person key, Agent identity, and short scoped delegation together. No public key needs to be pasted.",
     label: "Install or connect Codex",
-    href: "/integrations#codex-beta",
+    href: attempt ? attemptIntegrationHref(attempt) : "/integrations#codex-beta",
   };
   if (!attempt) return {
     title: "Choose one question before starting local research.",

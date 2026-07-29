@@ -10,11 +10,23 @@ import { AgentConnections } from "../workbench/AgentConnections";
 import { DelegationSetup } from "../workbench/DelegationSetup";
 import { DelegationSummary } from "../workbench/workbench-sections";
 import { activeLocalCodexInstallation } from "../lib/local-agent-journey";
+import { personalWritesPaused, ReadOnlyPersonalSurface } from "../lib/read-only-personal-surface";
 
 export const dynamic = "force-dynamic";
 
 export default async function SettingsPage() {
+  const readOnly = personalWritesPaused();
   const user = await getCurrentUser();
+  if (readOnly) {
+    return <ReadOnlyPersonalSurface
+      active="settings"
+      eyebrow="Agent settings · read-only maintenance"
+      title="Agent and account changes are temporarily paused."
+      detail={user
+        ? `You are still signed in as ${user.displayName}. Existing public records remain readable, but connecting or revoking an Agent, changing delegated authority, and creating signing material are unavailable during maintenance.`
+        : "Public research remains readable without an account. Sign-in and Agent controls will return after maintenance."}
+    />;
+  }
   const { profile, storageAvailable } = await loadSettingsProfile(user);
   const connection = activeLocalCodexInstallation(profile);
   const status = !user

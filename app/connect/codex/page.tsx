@@ -4,6 +4,7 @@ import { MissingDatabaseBindingError } from "@/db";
 import { getDelegationRepository } from "@/db/repositories/delegation";
 import { getCurrentUser, signInPath, toPersonIdentity } from "@/app/auth";
 import { CodexPairingApproval } from "./CodexPairingApproval";
+import { personalWritesPaused, ReadOnlyPersonalSurface } from "@/app/lib/read-only-personal-surface";
 
 export const dynamic = "force-dynamic";
 
@@ -12,6 +13,7 @@ type ConnectCodexPageProps = {
 };
 
 export default async function ConnectCodexPage({ searchParams }: ConnectCodexPageProps) {
+  const readOnly = personalWritesPaused();
   const query = await searchParams;
   const pairingId = typeof query.pairing === "string" ? query.pairing : "";
   const secret = typeof query.secret === "string" ? query.secret : "";
@@ -30,6 +32,15 @@ export default async function ConnectCodexPage({ searchParams }: ConnectCodexPag
       </main>
       <Footer />
     </div>;
+  }
+
+  if (readOnly) {
+    return <ReadOnlyPersonalSurface
+      active="settings"
+      eyebrow="Local Codex connection · read-only maintenance"
+      title="Approving a local Codex is temporarily paused."
+      detail="The pairing request was not opened and no Agent identity, signing key, delegation, or installation record was created. Keep Codex on this computer and try a fresh connection after maintenance."
+    />;
   }
 
   let profile = null;

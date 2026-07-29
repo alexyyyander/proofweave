@@ -81,6 +81,46 @@ Proofweave, rather than the participant, must:
 Do not describe the ordinary-user path as open until a fresh, non-operator test
 identity completes all of the following against the release candidate:
 
+### Public preflight
+
+Before using credentials or creating any data, run the repeatable public
+preflight against the exact release URL:
+
+```sh
+npm run smoke:ordinary-user -- \
+  --base-url https://proofweave-research.yualex031821.chatgpt.site \
+  --expect-mode read_only
+```
+
+Use `--expect-mode read_write` only after writes have deliberately been
+restored. The command performs unauthenticated `GET` requests only. It checks
+that:
+
+- the homepage, public catalog, one pinned target, and verified demo are
+  readable;
+- the selected target survives `/start`, sign-in, and Agent-connection
+  routing;
+- sign-in reports the actual ChatGPT and Google provider state;
+- maintenance is explicit on the connection page in `read_only` mode;
+- `/api/mcp/capabilities` agrees with the expected mode and
+  `writesEnabled` value; and
+- `/api/demo/verify` labels signed-evidence re-verification separately from a
+  fresh Lean replay.
+
+Run its deterministic regression test with:
+
+```sh
+npm run smoke:ordinary-user:check
+```
+
+Passing this preflight is **not** evidence that the contribution path works.
+It does not sign in, connect an Agent, create or manage an Attempt, publish a
+checkpoint or Bundle, execute Lean, submit a different-owner review, or issue
+a Contribution Receipt. Those steps remain the credentialed real-user smoke
+below.
+
+### Credentialed real-user smoke
+
 1. Open `/explore`, select a target, and reach sign-in with the target encoded
    in `return_to`.
 2. Complete ChatGPT sign-in and land on the same selected target.
@@ -99,6 +139,18 @@ identity completes all of the following against the release candidate:
    Bundle, Run, and reviews.
 10. Repeat the write actions once to confirm safe retry behavior, then pause or
     close the research record from the ordinary workspace.
+
+After the real smoke, export only its redacted evidence projection and run:
+
+```sh
+npm run smoke:credentialed-contribution -- \
+  --evidence-file /secure/operator/path/release-smoke.redacted.json
+```
+
+The schema, collection boundary, and manual acceptance record are documented
+in [credentialed-contribution-smoke.md](credentialed-contribution-smoke.md).
+This offline command does not perform the smoke, execute Lean, or
+cryptographically reverify a signature.
 
 Also run two failure smokes:
 

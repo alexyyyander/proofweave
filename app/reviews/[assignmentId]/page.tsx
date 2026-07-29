@@ -9,13 +9,23 @@ import { MissingDatabaseBindingError } from "@/db";
 import { getDelegationRepository } from "@/db/repositories/delegation";
 import { getReviewAssignmentRepository } from "@/db/repositories/reviews";
 import { ReviewAssignmentWorkspace } from "../ReviewAssignmentWorkspace";
+import { personalWritesPaused, ReadOnlyPersonalSurface } from "@/app/lib/read-only-personal-surface";
 
 export const dynamic = "force-dynamic";
 
 export default async function ReviewAssignmentPage({ params }: { params: Promise<{ assignmentId: string }> }) {
   const { assignmentId } = await params;
+  const readOnly = personalWritesPaused();
   const user = await getCurrentUser();
   if (!user) return <ReviewAssignmentMessage signInPath={signInPath(`/reviews/${encodeURIComponent(assignmentId)}`)} />;
+  if (readOnly) {
+    return <ReadOnlyPersonalSurface
+      active="review"
+      eyebrow="Review workspace · read-only maintenance"
+      title="This private review workspace is temporarily paused."
+      detail="The assignment and its controlled evidence are not loaded during maintenance. Assignment decisions, replay requests, and signed review submissions are unavailable, and no placeholder review record is shown."
+    />;
+  }
   const result = await loadReviewAssignment(user, assignmentId);
   if (result.unavailable) return <ReviewAssignmentMessage unavailable />;
   if (!result.review) notFound();

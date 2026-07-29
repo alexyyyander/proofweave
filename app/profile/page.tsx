@@ -13,11 +13,21 @@ import { providerAwareSignOutPath, requireUser, toPersonIdentity, type AuthUser 
 import { Footer } from "../ui";
 import { Header } from "../header";
 import { PersonalWorkspaceFrame } from "../PersonalWorkspaceFrame";
+import { personalWritesPaused, ReadOnlyPersonalSurface } from "../lib/read-only-personal-surface";
 
 export const dynamic = "force-dynamic";
 
 export default async function ProfilePage() {
+  const readOnly = personalWritesPaused();
   const user = await requireUser("/profile");
+  if (readOnly) {
+    return <ReadOnlyPersonalSurface
+      active="profile"
+      eyebrow="Personal profile · read-only maintenance"
+      title="Your private contribution profile is temporarily paused."
+      detail={`You are still signed in as ${user.displayName}. Public research and published verification records remain readable, but Proofweave will not load or change private identity, Agent, review, or contribution records until maintenance is complete.`}
+    />;
+  }
   const data = await loadProfile(user);
   if (!data) return <ProfileUnavailable />;
   const { delegation, publicProfile, attempts, reviews, provisionalBundleCount } = data;
