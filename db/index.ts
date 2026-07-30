@@ -15,6 +15,7 @@ import {
   controlPlaneOperationState,
 } from "@/services/database/control-plane-operation-mode.mjs";
 import { verifyLiveProofweaveControlPlane } from "@/services/database/libsql-migrations.mjs";
+import { createD1OAuthRefreshRotationCapability } from "@/services/proofweave-identity/d1-oauth-store.mjs";
 import * as schema from "./schema";
 
 let remoteDatabase: AnyD1Database | null = null;
@@ -45,6 +46,28 @@ export class MissingDatabaseBindingError extends Error {
 
 export function getD1(): AnyD1Database {
   const values = env as unknown as Record<string, string | undefined>;
+  return applyControlPlaneOperationMode(
+    getConfiguredControlPlaneDatabase(values),
+    values.PROOFWEAVE_CONTROL_PLANE_MODE,
+  ) as unknown as AnyD1Database;
+}
+
+/**
+ * Return a deliberately non-database capability for rotating an already
+ * issued OAuth refresh token during a research write freeze. The object has no
+ * prepare(), batch(), or database property, so callers cannot use this narrow
+ * maintenance exception for research, Agent, review, Receipt, or Credit writes.
+ */
+export function getOAuthRefreshRotationCapability() {
+  const values = env as unknown as Record<string, string | undefined>;
+  return createD1OAuthRefreshRotationCapability(
+    getConfiguredControlPlaneDatabase(values),
+  );
+}
+
+function getConfiguredControlPlaneDatabase(
+  values: Record<string, string | undefined>,
+): AnyD1Database {
   // A configured Turso database is the shared participant control plane. MCP,
   // OAuth, browser writes, Runner leases, reviews, Receipts, and Credit must
   // observe the same rows; silently preferring the Sites-local D1 split those
@@ -55,16 +78,10 @@ export function getD1(): AnyD1Database {
     d1Database: env.DB,
   });
   if (authority === controlPlaneAuthority.turso) {
-    return applyControlPlaneOperationMode(
-      getRemoteDatabase(values.TURSO_DATABASE_URL, values.TURSO_AUTH_TOKEN),
-      values.PROOFWEAVE_CONTROL_PLANE_MODE,
-    ) as unknown as AnyD1Database;
+    return getRemoteDatabase(values.TURSO_DATABASE_URL, values.TURSO_AUTH_TOKEN);
   }
   if (authority === controlPlaneAuthority.sitesD1) {
-    return applyControlPlaneOperationMode(
-      env.DB,
-      values.PROOFWEAVE_CONTROL_PLANE_MODE,
-    ) as unknown as AnyD1Database;
+    return env.DB as unknown as AnyD1Database;
   }
   throw new MissingDatabaseBindingError();
 }

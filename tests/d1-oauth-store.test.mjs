@@ -2,7 +2,10 @@ import assert from "node:assert/strict";
 import { after, before, test } from "node:test";
 import { readFile, readdir } from "node:fs/promises";
 import { Miniflare } from "miniflare";
-import { D1ProofweaveOAuthStore } from "../services/proofweave-identity/d1-oauth-store.mjs";
+import {
+  createD1OAuthRefreshRotationCapability,
+  D1ProofweaveOAuthStore,
+} from "../services/proofweave-identity/d1-oauth-store.mjs";
 
 const migrationsRoot = new URL("../drizzle/", import.meta.url);
 let miniflare;
@@ -109,6 +112,134 @@ test("D1 OAuth store preserves a revoked installation and creates a new active c
     installations.results.find((row) => row.id === first.id)?.revoked_at,
     now,
   );
+});
+
+test("D1 OAuth refresh capability is atomic, one-time and fails closed without consuming the old grant", async () => {
+  const store = new D1ProofweaveOAuthStore(database);
+  const capability = createD1OAuthRefreshRotationCapability(database);
+  assert.deepEqual(Object.keys(capability), ["rotateExistingRefreshToken"]);
+  assert.equal(capability.prepare, undefined);
+  assert.equal(capability.batch, undefined);
+  assert.equal(capability.database, undefined);
+  assert.ok(Object.isFrozen(capability));
+  const now = "2026-07-20T12:00:00Z";
+  const resource = "https://mcp.example.test/mcp";
+  const base = {
+    clientId: "codex-test",
+    resource,
+    personId: "person:oauth-test",
+    agentInstallationId: "installation:oauth-test",
+    scopes: ["attempt:read", "catalog:read"],
+    issuedAt: now,
+    accessExpiresAt: "2026-07-20T13:00:00Z",
+    refreshExpiresAt: "2026-08-20T12:00:00Z",
+  };
+  await store.issueTokenPair({
+    ...base,
+    accessTokenHash: hexHash("1"),
+    refreshTokenHash: hexHash("2"),
+  });
+
+  const wrongClient = await capability.rotateExistingRefreshToken({
+    previousRefreshTokenHash: hexHash("2"),
+    accessTokenHash: hexHash("3"),
+    refreshTokenHash: hexHash("4"),
+    clientId: "not-the-token-client",
+    resource,
+    issuedAt: now,
+    accessExpiresAt: base.accessExpiresAt,
+    refreshExpiresAt: base.refreshExpiresAt,
+  });
+  assert.equal(wrongClient, null);
+  assert.equal(
+    await database
+      .prepare("SELECT consumed_at FROM oauth_refresh_tokens WHERE token_hash = ?")
+      .bind(hexHash("2"))
+      .first("consumed_at"),
+    null,
+  );
+
+  const rotations = [
+    await capability.rotateExistingRefreshToken({
+      previousRefreshTokenHash: hexHash("2"),
+      accessTokenHash: hexHash("3"),
+      refreshTokenHash: hexHash("4"),
+      clientId: base.clientId,
+      resource,
+      issuedAt: now,
+      accessExpiresAt: base.accessExpiresAt,
+      refreshExpiresAt: base.refreshExpiresAt,
+    }),
+    await capability.rotateExistingRefreshToken({
+      previousRefreshTokenHash: hexHash("2"),
+      accessTokenHash: hexHash("5"),
+      refreshTokenHash: hexHash("6"),
+      clientId: base.clientId,
+      resource,
+      issuedAt: now,
+      accessExpiresAt: base.accessExpiresAt,
+      refreshExpiresAt: base.refreshExpiresAt,
+    }),
+  ];
+  assert.equal(rotations.filter(Boolean).length, 1);
+  assert.deepEqual(rotations.find(Boolean)?.scopes, ["attempt:read", "catalog:read"]);
+
+  await store.issueTokenPair({
+    ...base,
+    accessTokenHash: hexHash("7"),
+    refreshTokenHash: hexHash("8"),
+  });
+  await store.issueTokenPair({
+    ...base,
+    accessTokenHash: hexHash("9"),
+    refreshTokenHash: hexHash("a"),
+  });
+  await assert.rejects(
+    capability.rotateExistingRefreshToken({
+      previousRefreshTokenHash: hexHash("8"),
+      accessTokenHash: hexHash("9"),
+      refreshTokenHash: hexHash("b"),
+      clientId: base.clientId,
+      resource,
+      issuedAt: now,
+      accessExpiresAt: base.accessExpiresAt,
+      refreshExpiresAt: base.refreshExpiresAt,
+    }),
+  );
+  assert.equal(
+    await database
+      .prepare("SELECT consumed_at FROM oauth_refresh_tokens WHERE token_hash = ?")
+      .bind(hexHash("8"))
+      .first("consumed_at"),
+    null,
+  );
+  assert.ok(await capability.rotateExistingRefreshToken({
+    previousRefreshTokenHash: hexHash("8"),
+    accessTokenHash: hexHash("c"),
+    refreshTokenHash: hexHash("d"),
+    clientId: base.clientId,
+    resource,
+    issuedAt: now,
+    accessExpiresAt: base.accessExpiresAt,
+    refreshExpiresAt: base.refreshExpiresAt,
+  }));
+
+  await store.issueTokenPair({
+    ...base,
+    accessTokenHash: hexHash("e"),
+    refreshTokenHash: hexHash("f"),
+    scopes: ["verification:write"],
+  });
+  assert.equal(await capability.rotateExistingRefreshToken({
+    previousRefreshTokenHash: hexHash("f"),
+    accessTokenHash: hexHash("0"),
+    refreshTokenHash: "10".repeat(32),
+    clientId: base.clientId,
+    resource,
+    issuedAt: now,
+    accessExpiresAt: base.accessExpiresAt,
+    refreshExpiresAt: base.refreshExpiresAt,
+  }), null);
 });
 
 test("D1 OAuth store atomically consumes credentials and invalidates an installation after delegation revocation", async () => {
@@ -301,6 +432,11 @@ test("D1 OAuth client registration is idempotent for exactly one approved metada
     .first();
   assert.equal(rows.count, 1);
 });
+
+function hexHash(character) {
+  assert.match(character, /^[a-f0-9]$/);
+  return character.repeat(64);
+}
 
 async function seedIdentityRows(d1) {
   const statements = [

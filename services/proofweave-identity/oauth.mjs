@@ -1,5 +1,9 @@
 import { remoteMcpScopes } from "../../packages/protocol/remote-mcp-scopes.mjs";
 import { delegationAllowsOAuthScopes } from "./delegation-scope-policy.mjs";
+import {
+  controlPlaneOperationMode,
+  normalizeControlPlaneOperationMode,
+} from "../database/control-plane-operation-mode.mjs";
 
 const defaultAccessLifetimeSeconds = 60 * 60;
 const defaultRefreshLifetimeSeconds = 30 * 24 * 60 * 60;
@@ -23,11 +27,25 @@ export function createProofweaveOAuthProvider({
   accessLifetimeSeconds = defaultAccessLifetimeSeconds,
   refreshLifetimeSeconds = defaultRefreshLifetimeSeconds,
   clientRegistrationPolicy = disabledClientRegistrationPolicy,
+  operationMode = controlPlaneOperationMode.readWrite,
+  refreshTokenRotator = null,
 }) {
   requireClientRegistrationPolicy(clientRegistrationPolicy);
+  const normalizedOperationMode = normalizeControlPlaneOperationMode(operationMode);
+  if (
+    refreshTokenRotator !== null
+    && (
+      typeof refreshTokenRotator !== "object"
+      || typeof refreshTokenRotator.rotateExistingRefreshToken !== "function"
+    )
+  ) {
+    throw new TypeError("OAuth refresh-token rotator is invalid.");
+  }
+  const readOnly = normalizedOperationMode === controlPlaneOperationMode.readOnly;
   return {
     registrationEndpointEnabled: clientRegistrationPolicy.registrationEndpointEnabled,
     async authorize(request) {
+      if (readOnly) return controlPlaneReadOnly();
       const session = await sessionResolver.currentSession(request);
       if (request.method === "POST") {
         if (!session) return sessionResolver.authorizationRequired(request, null);
@@ -67,11 +85,28 @@ export function createProofweaveOAuthProvider({
       if (request.method !== "POST") return methodNotAllowed("POST");
       let form;
       try {
-        form = await request.formData();
+        form = await parseBoundedTokenForm(request);
       } catch {
-        return oauthError("invalid_request", "Token requests must use form data.", 400);
+        return oauthError(
+          "invalid_request",
+          "Token requests must use bounded application/x-www-form-urlencoded data.",
+          400,
+        );
       }
       const grantType = form.get("grant_type");
+      if (readOnly) {
+        if (grantType !== "refresh_token" || !refreshTokenRotator) {
+          return controlPlaneReadOnly();
+        }
+        return exchangeRefreshToken({
+          store: refreshTokenRotator,
+          form,
+          now,
+          accessLifetimeSeconds,
+          refreshLifetimeSeconds,
+          resource,
+        });
+      }
       if (grantType === "authorization_code") {
         return exchangeAuthorizationCode({
           store,
@@ -97,6 +132,7 @@ export function createProofweaveOAuthProvider({
 
     async register(request) {
       if (request.method !== "POST") return methodNotAllowed("POST");
+      if (readOnly) return controlPlaneReadOnly();
       if (!clientRegistrationPolicy.registrationEndpointEnabled) return notFound();
       let metadata;
       try {
@@ -188,16 +224,67 @@ async function exchangeRefreshToken({
   refreshLifetimeSeconds,
   resource,
 }) {
+  if (!isExactRefreshTokenForm(form)) {
+    return oauthError(
+      "invalid_request",
+      "Refresh requests must contain exactly grant_type, refresh_token and client_id.",
+      400,
+    );
+  }
   const refreshToken = requiredFormString(form, "refresh_token");
   const clientId = requiredFormString(form, "client_id");
   if (!refreshToken || !clientId) {
     return oauthError("invalid_request", "refresh_token and client_id are required.", 400);
+  }
+  if (typeof store.rotateExistingRefreshToken === "function") {
+    return rotateTokenPair({
+      store,
+      previousRefreshTokenHash: await sha256(refreshToken),
+      clientId,
+      now,
+      accessLifetimeSeconds,
+      refreshLifetimeSeconds,
+      resource,
+    });
   }
   const record = await store.consumeRefreshToken(await sha256(refreshToken), now().toISOString());
   if (!record || record.clientId !== clientId || record.resource !== resource) {
     return oauthError("invalid_grant", "Refresh token is invalid, expired, or already used.", 400);
   }
   return issueTokenPair({ store, grant: record, now, accessLifetimeSeconds, refreshLifetimeSeconds, resource });
+}
+
+async function rotateTokenPair({
+  store,
+  previousRefreshTokenHash,
+  clientId,
+  now,
+  accessLifetimeSeconds,
+  refreshLifetimeSeconds,
+  resource,
+}) {
+  const accessToken = randomToken("pw_at");
+  const refreshToken = randomToken("pw_rt");
+  const issuedAt = now().toISOString();
+  const grant = await store.rotateExistingRefreshToken({
+    previousRefreshTokenHash,
+    accessTokenHash: await sha256(accessToken),
+    refreshTokenHash: await sha256(refreshToken),
+    clientId,
+    resource,
+    issuedAt,
+    accessExpiresAt: expiry(now(), accessLifetimeSeconds),
+    refreshExpiresAt: expiry(now(), refreshLifetimeSeconds),
+  });
+  if (!grant) {
+    return oauthError("invalid_grant", "Refresh token is invalid, expired, or already used.", 400);
+  }
+  return tokenPairResponse({
+    accessToken,
+    refreshToken,
+    scopes: grant.scopes,
+    accessLifetimeSeconds,
+  });
 }
 
 async function issueTokenPair({ store, grant, now, accessLifetimeSeconds, refreshLifetimeSeconds, resource }) {
@@ -230,12 +317,21 @@ async function issueTokenPair({ store, grant, now, accessLifetimeSeconds, refres
     accessExpiresAt,
     refreshExpiresAt,
   });
+  return tokenPairResponse({
+    accessToken,
+    refreshToken,
+    scopes: grant.scopes,
+    accessLifetimeSeconds,
+  });
+}
+
+function tokenPairResponse({ accessToken, refreshToken, scopes, accessLifetimeSeconds }) {
   return json({
     access_token: accessToken,
     token_type: "Bearer",
     expires_in: accessLifetimeSeconds,
     refresh_token: refreshToken,
-    scope: normalizeScopes(grant.scopes).join(" "),
+    scope: normalizeScopes(scopes).join(" "),
   });
 }
 
@@ -395,6 +491,40 @@ function notFound() {
 
 function json(value, status = 200) {
   return Response.json(value, { status, headers: { "Cache-Control": "no-store" } });
+}
+
+function controlPlaneReadOnly() {
+  return oauthError(
+    "control_plane_read_only",
+    "The Proofweave control plane is temporarily read-only.",
+    400,
+  );
+}
+
+async function parseBoundedTokenForm(request) {
+  const contentType = request.headers.get("content-type")?.toLowerCase() ?? "";
+  if (!contentType.startsWith("application/x-www-form-urlencoded")) {
+    throw new TypeError("Unsupported token request content type.");
+  }
+  const contentLength = Number(request.headers.get("content-length"));
+  if (Number.isFinite(contentLength) && contentLength > 16_384) {
+    throw new TypeError("Token request body is too large.");
+  }
+  const body = await request.text();
+  if (new TextEncoder().encode(body).byteLength > 16_384) {
+    throw new TypeError("Token request body is too large.");
+  }
+  return new URLSearchParams(body);
+}
+
+function isExactRefreshTokenForm(form) {
+  const allowed = new Set(["grant_type", "refresh_token", "client_id"]);
+  const keys = [...form.keys()];
+  return (
+    keys.length === 3
+    && keys.every((key) => allowed.has(key))
+    && [...allowed].every((key) => form.getAll(key).length === 1)
+  );
 }
 
 function requiredFormString(form, key) {

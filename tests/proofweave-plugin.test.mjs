@@ -323,6 +323,92 @@ test("the local Connector flags legacy connections for the artifact-write scope 
   }
 });
 
+test("an expired Connector session refreshes before its first read and atomically saves the rotated credentials", async () => {
+  const fixtureRoot = await mkdtemp(join(tmpdir(), "proofweave-connector-expired-refresh-"));
+  const requests = [];
+  const oldAccessToken = "expired-access-must-not-leak";
+  const oldRefreshToken = "old-refresh-must-not-leak";
+  const newAccessToken = "rotated-access-token";
+  const newRefreshToken = "rotated-refresh-token";
+  const server = createServer((request, response) => {
+    let body = "";
+    request.setEncoding("utf8");
+    request.on("data", (chunk) => { body += chunk; });
+    request.on("end", () => {
+      requests.push({
+        url: request.url,
+        authorization: request.headers.authorization ?? null,
+        body,
+      });
+      if (request.url === "/token") {
+        response.writeHead(200, {
+          "cache-control": "no-store",
+          "content-type": "application/json",
+        });
+        response.end(JSON.stringify({
+          access_token: newAccessToken,
+          refresh_token: newRefreshToken,
+          expires_in: 3_600,
+          scope: "catalog:read attempt:create attempt:read progress:write artifact:write run:request run:read run:cancel",
+        }));
+        return;
+      }
+      if (request.url === "/api/mcp") {
+        const payload = JSON.parse(body);
+        response.writeHead(200, { "content-type": "application/json" });
+        response.end(JSON.stringify({
+          jsonrpc: "2.0",
+          id: payload.id,
+          result: {
+            content: [{ type: "text", text: JSON.stringify({ problems: [] }) }],
+          },
+        }));
+        return;
+      }
+      response.writeHead(404).end();
+    });
+  });
+  try {
+    const port = await listen(server);
+    const baseUrl = `http://127.0.0.1:${port}`;
+    const configPath = join(fixtureRoot, "connector.json");
+    await writeFile(configPath, JSON.stringify({
+      ...connectedFixtureConfig(baseUrl),
+      version: 3,
+      accessToken: oldAccessToken,
+      refreshToken: oldRefreshToken,
+      accessTokenExpiresAt: "2026-07-20T00:00:00.000Z",
+      grantedScopes: [
+        "catalog:read", "attempt:create", "attempt:read", "progress:write",
+        "artifact:write", "run:request", "run:read", "run:cancel",
+      ],
+    }));
+    const result = await callConnectorTool("list_frontier_problems", {}, {
+      ...process.env,
+      PROOFWEAVE_BASE_URL: baseUrl,
+      PROOFWEAVE_CONNECTOR_CONFIG: configPath,
+    });
+    assert.equal(result.error, undefined);
+    assert.deepEqual(requests.map(({ url }) => url), ["/token", "/api/mcp"]);
+    assert.equal(requests[0].authorization, null);
+    assert.equal(
+      new URLSearchParams(requests[0].body).get("refresh_token"),
+      oldRefreshToken,
+    );
+    assert.equal(requests[1].authorization, `Bearer ${newAccessToken}`);
+
+    const saved = JSON.parse(await readFile(configPath, "utf8"));
+    assert.equal(saved.accessToken, newAccessToken);
+    assert.equal(saved.refreshToken, newRefreshToken);
+    assert.ok(Date.parse(saved.accessTokenExpiresAt) > Date.now());
+    const visible = JSON.stringify(result);
+    assert.doesNotMatch(visible, new RegExp(oldAccessToken));
+    assert.doesNotMatch(visible, new RegExp(oldRefreshToken));
+  } finally {
+    await Promise.all([close(server), rm(fixtureRoot, { recursive: true, force: true })]);
+  }
+});
+
 test("the local Connector refuses to treat a saved connection for another control plane as active", async () => {
   const fixtureRoot = await mkdtemp(join(tmpdir(), "proofweave-connector-control-plane-"));
   try {

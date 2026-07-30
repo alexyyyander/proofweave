@@ -34,9 +34,15 @@ before(async () => {
   await applyMigrations(await normalWorker.getD1Database("DB"));
 
   readOnlyWorker = await createWorker({
-    bindings: { PROOFWEAVE_CONTROL_PLANE_MODE: "read_only" },
+    bindings: {
+      PROOFWEAVE_CONTROL_PLANE_MODE: "read_only",
+      MCP_RESOURCE_URL: "https://localhost/api/mcp",
+      OAUTH_ISSUER_URL: "https://localhost",
+    },
   });
-  await applyMigrations(await readOnlyWorker.getD1Database("DB"));
+  const readOnlyDatabase = await readOnlyWorker.getD1Database("DB");
+  await applyMigrations(readOnlyDatabase);
+  await seedReadOnlyOAuth(readOnlyDatabase);
 
   storageUnavailableWorker = await createWorker({ includeDatabase: false });
 });
@@ -166,6 +172,47 @@ test("read-only mode never offers a connection write that the service will rejec
   assert.match(workbenchText, /Your selected question is preserved/i);
   assert.doesNotMatch(workbenchText, /\bStart research\b/i);
   assert.doesNotMatch(workbenchText, /\bManage research\b/i);
+});
+
+test("the built Worker refreshes an existing Agent for reads while research writes remain frozen", async () => {
+  const refreshResponse = await readOnlyWorker.dispatchFetch("https://localhost/token", {
+    method: "POST",
+    headers: { "content-type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({
+      grant_type: "refresh_token",
+      refresh_token: "pw_rt_ordinary_read_only_fixture",
+      client_id: "client:ordinary-read-only",
+    }),
+  });
+  assert.equal(refreshResponse.status, 200);
+  assert.equal(refreshResponse.headers.get("cache-control"), "no-store");
+  const tokens = await refreshResponse.json();
+  assert.match(tokens.access_token, /^pw_at_/);
+  assert.match(tokens.refresh_token, /^pw_rt_/);
+
+  for (const name of ["list_frontier_problems", "list_attempts"]) {
+    const response = await callMcpTool(readOnlyWorker, tokens.access_token, name, {});
+    assert.equal(response.status, 200, `${name} should remain readable after refresh`);
+    const payload = await response.json();
+    assert.equal(payload.result?.isError, undefined);
+  }
+
+  const blocked = await callMcpTool(
+    readOnlyWorker,
+    tokens.access_token,
+    "create_attempt",
+    {
+      problemSlug: "erdos-865-k2",
+      delegationScope: "formalize",
+      idempotencyKey: "ordinary-read-only-worker-must-not-write",
+    },
+  );
+  assert.equal(blocked.status, 503);
+  assert.deepEqual(await blocked.json(), {
+    error: "temporarily_unavailable",
+    error_description: "Proofweave is temporarily read-only for maintenance.",
+    diagnostic_code: "control_plane_read_only",
+  });
 });
 
 test("authenticated personal surfaces render read-only maintenance without mutation controls", async () => {
@@ -344,6 +391,93 @@ async function applyMigrations(database) {
       await database.prepare(statement).run();
     }
   }
+}
+
+async function seedReadOnlyOAuth(database) {
+  const issuedAt = "2026-07-20T00:00:00.000Z";
+  const statements = [
+    [
+      "INSERT INTO persons (id, identity_provider, provider_subject, display_name, updated_at) VALUES (?, ?, ?, ?, ?)",
+      ["person:ordinary-read-only", "proofweave", "ordinary-read-only", "Ordinary read-only", issuedAt],
+    ],
+    [
+      "INSERT INTO person_keys (id, person_id, public_key, fingerprint) VALUES (?, ?, ?, ?)",
+      ["person-key:ordinary-read-only", "person:ordinary-read-only", "person-key", "sha256:ordinary-read-only-person-key"],
+    ],
+    [
+      "INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint) VALUES (?, ?, ?, ?, ?)",
+      ["agent:ordinary-read-only", "person:ordinary-read-only", "Ordinary read-only Agent", "agent-key", "sha256:ordinary-read-only-agent-key"],
+    ],
+    [
+      `INSERT INTO delegation_certificates (
+        id, owner_person_id, agent_id, person_key_id, agent_public_key,
+        scopes_json, valid_from, valid_until, beneficiary_person_id,
+        protocol_version, payload_hash, canonical_payload, person_signature
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        "delegation:ordinary-read-only", "person:ordinary-read-only",
+        "agent:ordinary-read-only", "person-key:ordinary-read-only", "agent-key",
+        '["formalize","prove"]', "2026-07-01T00:00:00.000Z",
+        "2027-07-01T00:00:00.000Z", "person:ordinary-read-only",
+        "pw-delegation-v1", "sha256:ordinary-read-only-delegation", "{}",
+        "signature",
+      ],
+    ],
+    [
+      "INSERT INTO oauth_clients (id, client_name, redirect_uris_json) VALUES (?, ?, ?)",
+      ["client:ordinary-read-only", "Ordinary read-only client", '["http://127.0.0.1/callback"]'],
+    ],
+    [
+      `INSERT INTO agent_installations (
+        id, person_id, agent_id, delegation_certificate_id, client_id, label
+      ) VALUES (?, ?, ?, ?, ?, ?)`,
+      [
+        "installation:ordinary-read-only", "person:ordinary-read-only",
+        "agent:ordinary-read-only", "delegation:ordinary-read-only",
+        "client:ordinary-read-only", "Ordinary read-only installation",
+      ],
+    ],
+    [
+      `INSERT INTO oauth_refresh_tokens (
+        token_hash, client_id, resource, person_id, agent_installation_id,
+        scopes_json, issued_at, expires_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        await tokenHash("pw_rt_ordinary_read_only_fixture"),
+        "client:ordinary-read-only", "https://localhost/api/mcp",
+        "person:ordinary-read-only", "installation:ordinary-read-only",
+        '["attempt:create","attempt:read","catalog:read"]', issuedAt,
+        "2027-07-01T00:00:00.000Z",
+      ],
+    ],
+  ];
+  for (const [sql, values] of statements) {
+    await database.prepare(sql).bind(...values).run();
+  }
+}
+
+async function callMcpTool(worker, accessToken, name, arguments_) {
+  return worker.dispatchFetch("https://localhost/api/mcp", {
+    method: "POST",
+    headers: {
+      authorization: `Bearer ${accessToken}`,
+      accept: "application/json, text/event-stream",
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      jsonrpc: "2.0",
+      id: 1,
+      method: "tools/call",
+      params: { name, arguments: arguments_ },
+    }),
+  });
+}
+
+async function tokenHash(value) {
+  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(value));
+  return [...new Uint8Array(digest)]
+    .map((byte) => byte.toString(16).padStart(2, "0"))
+    .join("");
 }
 
 async function listJavaScriptModules(directory) {

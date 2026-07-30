@@ -3,13 +3,20 @@ import { after, before, test } from "node:test";
 import { readFile, readdir } from "node:fs/promises";
 import { Miniflare } from "miniflare";
 import { createD1BrowserConsentResolver } from "../services/proofweave-identity/browser-consent.mjs";
-import { D1ProofweaveOAuthStore } from "../services/proofweave-identity/d1-oauth-store.mjs";
-import { createProofweaveOAuthProvider } from "../services/proofweave-identity/oauth.mjs";
+import {
+  createD1OAuthRefreshRotationCapability,
+  D1ProofweaveOAuthStore,
+} from "../services/proofweave-identity/d1-oauth-store.mjs";
+import {
+  createOAuthAccessTokenAuthenticator,
+  createProofweaveOAuthProvider,
+} from "../services/proofweave-identity/oauth.mjs";
 import { createSitesChatGPTSessionResolver } from "../services/proofweave-identity/sites-session.mjs";
 import {
   createD1SitesIdentityRuntime,
   SitesIdentityRuntimeConfigurationError,
 } from "../services/proofweave-identity/sites-runtime.mjs";
+import { applyControlPlaneOperationMode } from "../services/database/control-plane-operation-mode.mjs";
 
 const migrationsRoot = new URL("../drizzle/", import.meta.url);
 const resource = "https://mcp.example.test/mcp";
@@ -183,6 +190,108 @@ test("Sites identity accepts a live provider-neutral app session for browser con
   );
 });
 
+test("read-only Sites identity rotates an existing refresh token without opening authorization-code or research writes", async () => {
+  const store = new D1ProofweaveOAuthStore(database);
+  const installation = await store.ensureAgentInstallation({
+    personId: "person:browser-consent",
+    clientId: "codex-browser",
+    agentId: "agent:browser-consent",
+    delegationCertificateId: "delegation:browser-consent",
+  });
+  assert.ok(installation?.id);
+
+  const originalAccessToken = "pw_at_read_only_expired_fixture";
+  const originalRefreshToken = "pw_rt_read_only_live_fixture";
+  await store.issueTokenPair({
+    accessTokenHash: await sha256(originalAccessToken),
+    refreshTokenHash: await sha256(originalRefreshToken),
+    clientId: "codex-browser",
+    resource,
+    personId: "person:browser-consent",
+    agentInstallationId: installation.id,
+    scopes: ["attempt:read", "catalog:read"],
+    issuedAt: "2026-07-20T00:00:00Z",
+    accessExpiresAt: "2026-07-20T00:15:00Z",
+    refreshExpiresAt: "2027-07-20T00:00:00Z",
+  });
+
+  const readOnlyDatabase = applyControlPlaneOperationMode(database, "read_only");
+  const researchCountsBefore = await researchRowCounts(database);
+  const runtime = createD1SitesIdentityRuntime({
+    database: readOnlyDatabase,
+    refreshTokenRotator: createD1OAuthRefreshRotationCapability(database),
+    operationMode: "read_only",
+    resource,
+    issuer,
+  });
+  const wrongClient = await runtime.fetch(tokenRequest({
+    grant_type: "refresh_token",
+    refresh_token: originalRefreshToken,
+    client_id: "wrong-client-must-not-consume",
+  }));
+  assert.equal(wrongClient.status, 400);
+  assert.equal((await wrongClient.json()).error, "invalid_grant");
+
+  const refreshed = await runtime.fetch(tokenRequest({
+    grant_type: "refresh_token",
+    refresh_token: originalRefreshToken,
+    client_id: "codex-browser",
+  }));
+  assert.equal(refreshed.status, 200);
+  assert.equal(refreshed.headers.get("cache-control"), "no-store");
+  const refreshedTokens = await refreshed.json();
+  assert.notEqual(refreshedTokens.access_token, originalAccessToken);
+  assert.notEqual(refreshedTokens.refresh_token, originalRefreshToken);
+  assert.equal(refreshedTokens.scope, "attempt:read catalog:read");
+
+  const principal = await createOAuthAccessTokenAuthenticator({
+    store: new D1ProofweaveOAuthStore(readOnlyDatabase),
+    resource,
+  }).authenticate(new Request(resource, {
+    headers: { authorization: `Bearer ${refreshedTokens.access_token}` },
+  }));
+  assert.equal(principal?.personId, "person:browser-consent");
+  assert.equal(principal?.agentInstallationId, installation.id);
+  assert.deepEqual(principal?.scopes, ["attempt:read", "catalog:read"]);
+
+  const replay = await runtime.fetch(tokenRequest({
+    grant_type: "refresh_token",
+    refresh_token: originalRefreshToken,
+    client_id: "codex-browser",
+  }));
+  assert.equal(replay.status, 400);
+  assert.equal((await replay.json()).error, "invalid_grant");
+
+  const authorizationCode = "read-only-authorization-code-fixture";
+  await store.issueAuthorizationCode({
+    codeHash: await sha256(authorizationCode),
+    clientId: "codex-browser",
+    redirectUri: "https://codex.example.test/callback",
+    resource,
+    personId: "person:browser-consent",
+    agentInstallationId: installation.id,
+    scopes: ["catalog:read"],
+    codeChallenge: "unused-because-write-fence-runs-first",
+    issuedAt: "2026-07-30T00:00:00Z",
+    expiresAt: "2027-07-30T00:00:00Z",
+  });
+  const accessTokenCountBefore = await rowCount(database, "oauth_access_tokens");
+  const blockedCodeExchange = await runtime.fetch(tokenRequest({
+    grant_type: "authorization_code",
+    code: authorizationCode,
+    client_id: "codex-browser",
+    redirect_uri: "https://codex.example.test/callback",
+    code_verifier: "must-not-reach-pkce-or-token-issuance",
+  }));
+  assert.equal(blockedCodeExchange.status, 400);
+  assert.deepEqual(await blockedCodeExchange.json(), {
+    error: "control_plane_read_only",
+    error_description: "The Proofweave control plane is temporarily read-only.",
+  });
+  assert.equal(await rowCount(database, "oauth_access_tokens"), accessTokenCountBefore);
+  assert.deepEqual(await researchRowCounts(database), researchCountsBefore);
+});
+
 test("Sites identity exposes dynamic registration only from explicit deployment allowlist JSON", async () => {
   const closed = createD1SitesIdentityRuntime({ database, resource, issuer });
   const closedMetadata = await (await closed.fetch(new Request(`${issuer}/.well-known/oauth-authorization-server`))).json();
@@ -258,6 +367,41 @@ function clientRegistrationRequest(metadata) {
     headers: { "content-type": "application/json" },
     body: JSON.stringify(metadata),
   });
+}
+
+function tokenRequest(fields) {
+  return new Request(`${issuer}/token`, {
+    method: "POST",
+    body: new URLSearchParams(fields),
+  });
+}
+
+async function rowCount(d1, table) {
+  const allowed = new Set([
+    "agent_attempts",
+    "agent_attempt_events",
+    "artifact_bundles",
+    "runs",
+    "verification_attestations",
+    "contribution_receipts",
+    "receipt_credit_entries",
+    "oauth_access_tokens",
+  ]);
+  assert.ok(allowed.has(table));
+  const row = await d1.prepare(`SELECT COUNT(*) AS count FROM ${table}`).first();
+  return Number(row?.count ?? 0);
+}
+
+async function researchRowCounts(d1) {
+  return Object.fromEntries(await Promise.all([
+    "agent_attempts",
+    "agent_attempt_events",
+    "artifact_bundles",
+    "runs",
+    "verification_attestations",
+    "contribution_receipts",
+    "receipt_credit_entries",
+  ].map(async (table) => [table, await rowCount(d1, table)])));
 }
 
 function hiddenValue(html, name) {

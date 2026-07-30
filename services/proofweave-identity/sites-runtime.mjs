@@ -6,6 +6,10 @@ import {
 } from "./oauth.mjs";
 import { createSitesChatGPTSessionResolver } from "./sites-session.mjs";
 import { createProofweaveIdentityService } from "./worker.mjs";
+import {
+  controlPlaneOperationMode,
+  normalizeControlPlaneOperationMode,
+} from "../database/control-plane-operation-mode.mjs";
 
 export class SitesIdentityRuntimeConfigurationError extends Error {
   constructor(message) {
@@ -24,6 +28,10 @@ export class SitesIdentityRuntimeConfigurationError extends Error {
  *   resource?: string,
  *   issuer?: string,
  *   clientRegistrationAllowlistJson?: string | null,
+ *   operationMode?: string | null,
+ *   refreshTokenRotator?: {
+ *     rotateExistingRefreshToken(record: Record<string, string>): Promise<object | null>
+ *   } | null,
  * }} options
  */
 export function createD1SitesIdentityRuntime({
@@ -31,6 +39,8 @@ export function createD1SitesIdentityRuntime({
   resource,
   issuer,
   clientRegistrationAllowlistJson = null,
+  operationMode = controlPlaneOperationMode.readWrite,
+  refreshTokenRotator = null,
 }) {
   if (!database || typeof database.prepare !== "function") {
     throw new SitesIdentityRuntimeConfigurationError("Proofweave OAuth requires a D1 DB binding.");
@@ -38,7 +48,44 @@ export function createD1SitesIdentityRuntime({
   requireHttpsEndpointUrl(resource, "MCP_RESOURCE_URL");
   requireHttpsOrigin(issuer, "OAuth issuer");
   const clientRegistrationPolicy = parseClientRegistrationAllowlist(clientRegistrationAllowlistJson);
+  let normalizedOperationMode;
+  try {
+    normalizedOperationMode = normalizeControlPlaneOperationMode(operationMode);
+  } catch {
+    throw new SitesIdentityRuntimeConfigurationError(
+      "PROOFWEAVE_CONTROL_PLANE_MODE must be read_write or read_only.",
+    );
+  }
+  if (refreshTokenRotator !== null && (
+    typeof refreshTokenRotator !== "object"
+    || typeof refreshTokenRotator.rotateExistingRefreshToken !== "function"
+  )) {
+    throw new SitesIdentityRuntimeConfigurationError(
+      "Read-only OAuth token refresh requires a bounded rotation capability.",
+    );
+  }
 
+  return createIdentityService({
+    database,
+    resource,
+    issuer,
+    clientRegistrationPolicy,
+    operationMode: normalizedOperationMode,
+    refreshTokenRotator:
+      normalizedOperationMode === controlPlaneOperationMode.readOnly
+        ? refreshTokenRotator
+        : null,
+  });
+}
+
+function createIdentityService({
+  database,
+  resource,
+  issuer,
+  clientRegistrationPolicy,
+  operationMode,
+  refreshTokenRotator,
+}) {
   const store = new D1ProofweaveOAuthStore(database);
   return createProofweaveIdentityService({
     issuer,
@@ -47,6 +94,8 @@ export function createD1SitesIdentityRuntime({
       store,
       sessionResolver: createSitesChatGPTSessionResolver({ store }),
       consentResolver: createD1BrowserConsentResolver({ store }),
+      operationMode,
+      refreshTokenRotator,
       ...(clientRegistrationPolicy ? { clientRegistrationPolicy } : {}),
     }),
   });

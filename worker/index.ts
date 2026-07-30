@@ -1,7 +1,11 @@
 /** Cloudflare Worker entry point for the Proofweave web application. */
 import { handleImageOptimization, DEFAULT_DEVICE_SIZES, DEFAULT_IMAGE_SIZES } from "vinext/server/image-optimization";
 import handler from "vinext/server/app-router-entry";
-import { getD1 } from "../db";
+import {
+  getControlPlaneOperationState,
+  getD1,
+  getOAuthRefreshRotationCapability,
+} from "../db";
 import {
   createD1SitesIdentityRuntime,
   SitesIdentityRuntimeConfigurationError,
@@ -73,14 +77,28 @@ function fetchOAuthIdentity(request: Request, env: Env, url: URL): Promise<Respo
   if (env.OAUTH_ISSUER_URL && env.OAUTH_ISSUER_URL !== url.origin) {
     return unavailableIdentity();
   }
+  return fetchOAuthIdentityResponse(request, env, url);
+}
+
+async function fetchOAuthIdentityResponse(
+  request: Request,
+  env: Env,
+  url: URL,
+): Promise<Response> {
   try {
+    const operationState = getControlPlaneOperationState();
     const identity = createD1SitesIdentityRuntime({
       database: getD1(),
+      operationMode: operationState.mode,
+      refreshTokenRotator:
+        operationState.mode === "read_only"
+          ? getOAuthRefreshRotationCapability()
+          : null,
       resource: env.MCP_RESOURCE_URL ?? `${url.origin}/mcp`,
       issuer: url.origin,
       clientRegistrationAllowlistJson: env.OAUTH_CLIENT_REGISTRATION_ALLOWLIST_JSON,
     });
-    return identity.fetch(request);
+    return await identity.fetch(request);
   } catch (error) {
     if (error instanceof SitesIdentityRuntimeConfigurationError) return unavailableIdentity();
     return unavailableIdentity();

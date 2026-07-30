@@ -441,6 +441,10 @@ export class D1ProofweaveOAuthStore {
       : null;
   }
 
+  async rotateExistingRefreshToken(record) {
+    return rotateExistingRefreshToken(this.database, record);
+  }
+
   async registerClient(metadata) {
     const clientId = `pw_client:${await clientRegistrationFingerprint(metadata)}`;
     await this.database
@@ -457,6 +461,251 @@ export class D1ProofweaveOAuthStore {
       redirect_uris: metadata.redirectUris,
       token_endpoint_auth_method: metadata.tokenEndpointAuthMethod,
     };
+  }
+}
+
+/**
+ * Create the only database write capability exposed while the wider control
+ * plane is frozen. The returned object cannot prepare arbitrary SQL or expose
+ * the underlying database; it can only atomically rotate one existing,
+ * still-authorized OAuth refresh token.
+ */
+export function createD1OAuthRefreshRotationCapability(database) {
+  if (
+    !database
+    || typeof database.prepare !== "function"
+    || typeof database.batch !== "function"
+  ) {
+    throw new TypeError("OAuth refresh rotation requires a D1-compatible database.");
+  }
+  return Object.freeze({
+    rotateExistingRefreshToken(record) {
+      return rotateExistingRefreshToken(database, record);
+    },
+  });
+}
+
+async function rotateExistingRefreshToken(database, record) {
+  requireTokenRotationRecord(record);
+  const predicate = `
+    FROM oauth_refresh_tokens AS old
+    INNER JOIN oauth_clients AS client
+      ON client.id = old.client_id
+    INNER JOIN agent_installations AS installation
+      ON installation.id = old.agent_installation_id
+    INNER JOIN agents AS agent
+      ON agent.id = installation.agent_id
+    INNER JOIN delegation_certificates AS certificate
+      ON certificate.id = installation.delegation_certificate_id
+    INNER JOIN person_keys AS signer
+      ON signer.id = certificate.person_key_id
+    LEFT JOIN delegation_revocations AS revocation
+      ON revocation.delegation_certificate_id = certificate.id
+    LEFT JOIN person_key_revocations AS key_revocation
+      ON key_revocation.person_key_id = signer.id
+    WHERE old.token_hash = ?
+      AND old.client_id = ?
+      AND old.resource = ?
+      AND old.consumed_at IS NULL
+      AND old.revoked_at IS NULL
+      AND old.expires_at > ?
+      AND client.revoked_at IS NULL
+      AND installation.person_id = old.person_id
+      AND installation.client_id = old.client_id
+      AND installation.status = 'active'
+      AND installation.revoked_at IS NULL
+      AND agent.owner_person_id = installation.person_id
+      AND agent.status = 'active'
+      AND agent.revoked_at IS NULL
+      AND certificate.owner_person_id = installation.person_id
+      AND certificate.beneficiary_person_id = installation.person_id
+      AND certificate.agent_id = installation.agent_id
+      AND certificate.valid_from <= ?
+      AND certificate.valid_until > ?
+      AND revocation.id IS NULL
+      AND COALESCE(key_revocation.revoked_at, signer.revoked_at) IS NULL
+      AND json_valid(old.scopes_json) = 1
+      AND json_type(
+        CASE
+          WHEN json_valid(old.scopes_json) THEN old.scopes_json
+          ELSE 'null'
+        END
+      ) = 'array'
+      AND json_valid(certificate.scopes_json) = 1
+      AND json_type(
+        CASE
+          WHEN json_valid(certificate.scopes_json) THEN certificate.scopes_json
+          ELSE 'null'
+        END
+      ) = 'array'
+      AND NOT EXISTS (
+        SELECT 1 FROM json_each(
+          CASE
+            WHEN json_valid(old.scopes_json) THEN old.scopes_json
+            ELSE '[]'
+          END
+        )
+        WHERE typeof(value) != 'text'
+           OR value NOT IN (
+             'catalog:read', 'attempt:create', 'attempt:read',
+             'progress:write', 'artifact:write', 'run:request', 'run:read',
+             'run:cancel', 'verification:replay', 'verification:write'
+           )
+      )
+      AND (
+        NOT EXISTS (
+          SELECT 1 FROM json_each(
+            CASE
+              WHEN json_valid(old.scopes_json) THEN old.scopes_json
+              ELSE '[]'
+            END
+          )
+          WHERE value IN (
+            'attempt:create', 'attempt:read', 'progress:write',
+            'artifact:write', 'run:request', 'run:read', 'run:cancel'
+          )
+        )
+        OR EXISTS (
+          SELECT 1 FROM json_each(
+            CASE
+              WHEN json_valid(certificate.scopes_json) THEN certificate.scopes_json
+              ELSE '[]'
+            END
+          )
+          WHERE value IN ('formalize', 'prove')
+        )
+      )
+      AND (
+        NOT EXISTS (
+          SELECT 1 FROM json_each(
+            CASE
+              WHEN json_valid(old.scopes_json) THEN old.scopes_json
+              ELSE '[]'
+            END
+          )
+          WHERE value IN ('verification:write', 'verification:replay')
+        )
+        OR EXISTS (
+          SELECT 1 FROM json_each(
+            CASE
+              WHEN json_valid(certificate.scopes_json) THEN certificate.scopes_json
+              ELSE '[]'
+            END
+          )
+          WHERE value = 'review'
+        )
+      )`;
+  const predicateValues = [
+    record.previousRefreshTokenHash,
+    record.clientId,
+    record.resource,
+    record.issuedAt,
+    record.issuedAt,
+    record.issuedAt,
+  ];
+  const statements = [
+    database
+      .prepare(
+        `INSERT INTO oauth_access_tokens (
+          token_hash, client_id, resource, person_id, agent_installation_id,
+          scopes_json, issued_at, expires_at
+        )
+        SELECT ?, old.client_id, old.resource, old.person_id,
+               old.agent_installation_id, old.scopes_json, ?, ?
+        ${predicate}`,
+      )
+      .bind(
+        record.accessTokenHash,
+        record.issuedAt,
+        record.accessExpiresAt,
+        ...predicateValues,
+      ),
+    database
+      .prepare(
+        `INSERT INTO oauth_refresh_tokens (
+          token_hash, client_id, resource, person_id, agent_installation_id,
+          scopes_json, issued_at, expires_at
+        )
+        SELECT ?, old.client_id, old.resource, old.person_id,
+               old.agent_installation_id, old.scopes_json, ?, ?
+        ${predicate}`,
+      )
+      .bind(
+        record.refreshTokenHash,
+        record.issuedAt,
+        record.refreshExpiresAt,
+        ...predicateValues,
+      ),
+    database
+      .prepare(
+        `UPDATE oauth_refresh_tokens
+         SET consumed_at = ?
+         WHERE token_hash IN (
+           SELECT old.token_hash
+           ${predicate}
+         )`,
+      )
+      .bind(record.issuedAt, ...predicateValues),
+  ];
+  const results = await database.batch(statements);
+  if (
+    !Array.isArray(results)
+    || results.length !== 3
+    || results.some((result) => Number(result?.meta?.changes ?? 0) !== 1)
+  ) {
+    return null;
+  }
+  const issued = await database
+    .prepare(
+      `SELECT client_id, resource, person_id, agent_installation_id,
+              scopes_json, expires_at
+       FROM oauth_access_tokens
+       WHERE token_hash = ?`,
+    )
+    .bind(record.accessTokenHash)
+    .first();
+  const scopes = issued && parseStringArray(issued.scopes_json);
+  return issued && scopes
+    ? {
+        clientId: issued.client_id,
+        resource: issued.resource,
+        personId: issued.person_id,
+        agentInstallationId: issued.agent_installation_id,
+        scopes,
+        expiresAt: issued.expires_at,
+      }
+    : null;
+}
+
+function requireTokenRotationRecord(record) {
+  if (!record || typeof record !== "object" || Array.isArray(record)) {
+    throw new TypeError("OAuth refresh rotation record is required.");
+  }
+  for (const field of [
+    "previousRefreshTokenHash",
+    "accessTokenHash",
+    "refreshTokenHash",
+  ]) {
+    if (!/^[a-f0-9]{64}$/.test(record[field] ?? "")) {
+      throw new TypeError(`OAuth refresh rotation ${field} must be a SHA-256 hash.`);
+    }
+  }
+  for (const field of ["clientId", "resource"]) {
+    if (
+      typeof record[field] !== "string"
+      || record[field].length === 0
+      || record[field].length > 2_048
+    ) {
+      throw new TypeError(`OAuth refresh rotation ${field} must be bounded.`);
+    }
+  }
+  for (const field of ["issuedAt", "accessExpiresAt", "refreshExpiresAt"]) {
+    if (
+      typeof record[field] !== "string"
+      || !Number.isFinite(Date.parse(record[field]))
+    ) {
+      throw new TypeError(`OAuth refresh rotation ${field} must be an ISO timestamp.`);
+    }
   }
 }
 
