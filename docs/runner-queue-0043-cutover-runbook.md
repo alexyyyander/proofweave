@@ -28,7 +28,26 @@ and each has acknowledged the window:
 | Sites/gateway owner | Can deny every public and Agent-originated mutation |
 | Runner owner | Can stop Render and GitHub consumers and cancel active work |
 | Incident owner | Can keep the system frozen and direct a roll-forward |
-| Independent observer | Confirms the recorded SHA, counts, manifest, and smoke result |
+| Cutover acceptor | A distinct observer for stable releases, or the release commander under the bounded `solo_alpha` public-alpha exception |
+
+### Select the governance track
+
+The pre-migration evidence gate supports two explicit tracks:
+
+- `independent_observer`: a different accountable Person signs the recorded
+  SHA, counts, manifest, and smoke result. This is the required track for a
+  `stable` release and the preferred track for every public-alpha release.
+- `solo_alpha`: the release commander may accept a `public_alpha`
+  infrastructure cutover when the project has no second operator. The
+  acceptance must be bound to the exact evidence artifact with scope
+  `infrastructure_cutover_only`.
+
+`solo_alpha` is not independent review. It cannot approve a mathematical claim,
+make two Agents with one owner independent, or satisfy the different-Person
+review gate for a certified Contribution Receipt. If the declared release tier
+is `stable`, if a second Person is presented as independent but shares the
+operator's identity, or if the limitation is not acknowledged, the verifier
+fails closed.
 
 The release candidate must have passed the fast and complete repository checks,
 the production dependency gate, and review. Record its candidate commit. Before
@@ -91,7 +110,7 @@ bootstrap authority; a self-selected keyset is not production evidence.
 The signed recovery observation covers only the fixed, reviewed workflow source
 closure at one begin-time instant. It does not query or prove GitHub
 organization, repository, or Environment authorization policy. Before merge or
-deployment, the release commander and independent observer must collect
+deployment, the release commander and cutover acceptor must collect
 provider-side evidence that:
 
 - the `proofweave-runner-alpha` Environment permits only the reviewed branch or
@@ -115,9 +134,11 @@ provider-side evidence that:
 
 Record the GitHub audit-event IDs, API responses, or screenshots and the UTC
 observation interval in the release record. If any item is unknown, inherited,
-or cannot be independently inspected, the release is **not authorized to merge
-or deploy**. A signed begin snapshot cannot substitute for this external gate,
-and neither proves continuous or hosted-exclusive isolation.
+or cannot be inspected, the release is **not authorized to merge or deploy**.
+Under `solo_alpha`, the same Person may perform and accept the inspection, but
+the release record must retain that non-independent limitation. A signed begin
+snapshot cannot substitute for this external gate, and neither proves
+continuous or hosted-exclusive isolation.
 
 ## Phase 1 — Freeze producers
 
@@ -342,9 +363,11 @@ substitute for this persisted smoke evidence.
 
 ## Phase 8 — Unfreeze
 
-The release commander and independent observer must sign off on the backup,
-migration verification, exact-SHA deployments, strict manifest, health checks,
-and controlled smoke before any public write path is restored.
+The release commander and the cutover acceptor selected in the evidence record
+must sign off on the backup, migration verification, exact-SHA deployments,
+strict manifest, health checks, and controlled smoke before any public write
+path is restored. A `stable` release requires a distinct independent observer;
+`solo_alpha` may restore only the explicitly labeled public-alpha service.
 
 Unfreeze in this order:
 
@@ -392,6 +415,7 @@ snapshot, do not restore it over production.
 Close the cutover only after the record contains:
 
 - named owners and UTC timestamps for every phase;
+- governance mode, release tier, and the exact acceptance-artifact hash;
 - full `RELEASE_SHA` and exact deployed revisions;
 - producer/consumer freeze and unfreeze evidence;
 - pre/post queue counts and active-lease count;
@@ -402,5 +426,7 @@ Close the cutover only after the record contains:
 - post-unfreeze monitoring result;
 - any exception, failed probe, or retained queued Run.
 
-No item in this record is a mathematical verification, independent review, or
-Contribution Receipt.
+No item in this record is a mathematical verification or Contribution Receipt.
+Only the `independent_observer` governance path contains an independent
+operational review, and even that does not substitute for claim-specific
+different-Person mathematical review.

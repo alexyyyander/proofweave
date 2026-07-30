@@ -5,7 +5,11 @@ import { readFile } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
 
 export const cutoverEvidenceSchemaVersion =
+  "pw-production-contribution-cutover-evidence-v3";
+const legacyCutoverEvidenceSchemaVersion =
   "pw-production-contribution-cutover-evidence-v2";
+const governanceModes = new Set(["independent_observer", "solo_alpha"]);
+const releaseTiers = new Set(["public_alpha", "stable"]);
 
 const migration0043 = "0043_add_runner_queue_event_sequence.sql";
 const migration0042 = "0042_add_jacobian_counterexample_audit.sql";
@@ -52,13 +56,21 @@ export function verifyProductionContributionCutover(evidence) {
   }
 
   inspectForbiddenKeys(evidence, "$", add);
-  requireEqual(
-    evidence.schemaVersion,
-    cutoverEvidenceSchemaVersion,
-    "SCHEMA_VERSION_INVALID",
-    "schemaVersion",
-    add,
-  );
+  const legacyEvidence =
+    evidence.schemaVersion === legacyCutoverEvidenceSchemaVersion;
+  if (
+    evidence.schemaVersion !== cutoverEvidenceSchemaVersion
+    && !legacyEvidence
+  ) {
+    add(
+      "SCHEMA_VERSION_INVALID",
+      "schemaVersion",
+      `schemaVersion must equal ${JSON.stringify(cutoverEvidenceSchemaVersion)} or the legacy ${JSON.stringify(legacyCutoverEvidenceSchemaVersion)}.`,
+    );
+  }
+  const governanceMode = legacyEvidence
+    ? "independent_observer"
+    : verifyGovernance(evidence.governance, add);
   requireTimestamp(evidence.recordedAt, "recordedAt", add);
 
   verifyPitrClone(evidence.pitrClone, add);
@@ -82,6 +94,7 @@ export function verifyProductionContributionCutover(evidence) {
     evidence.owners,
     evidence.rollback,
     evidence,
+    governanceMode,
     add,
   );
 
@@ -90,9 +103,13 @@ export function verifyProductionContributionCutover(evidence) {
   }
 
   return Object.freeze({
-    schemaVersion: "pw-production-contribution-cutover-verdict-v2",
+    schemaVersion: "pw-production-contribution-cutover-verdict-v3",
     outcome: "passed",
     decision: "pre_migration_authorization_evidence_ready",
+    governanceMode,
+    releaseTier: legacyEvidence
+      ? "legacy_unspecified"
+      : evidence.governance.releaseTier,
     releaseSha: evidence.release.commitSha,
     migrationHead: evidence.migration.currentProductionHead,
     plannedMigration: evidence.migration.plannedMigration,
@@ -109,17 +126,67 @@ export function verifyProductionContributionCutover(evidence) {
       "single Turso control-plane authority",
       "read-only producer and frozen consumer boundary",
       "named release and rollback ownership",
+      governanceMode === "solo_alpha"
+        ? "solo-alpha operator acceptance without independent-review credit"
+        : "distinct independent-observer acceptance",
     ]),
     nextManualGate: Object.freeze([
       "apply 0043 to production while all writers remain frozen",
-      "capture and independently verify a separate post-migration evidence record",
+      governanceMode === "solo_alpha"
+        ? "capture and verify a separate post-migration evidence record under the same solo-alpha limitation"
+        : "capture and independently verify a separate post-migration evidence record",
       "deploy Sites, MCP/gateway, and Runner from the recorded SHA",
       "run the controlled persisted Runner smoke",
       "restore read_write only after explicit release sign-off",
     ]),
     limitations:
-      "Offline evidence consistency only; no provider, database, deployment, Runner, or public write path was contacted.",
+      governanceMode === "solo_alpha"
+        ? "Offline evidence consistency only. Solo-alpha operational acceptance is not independent mathematical review and cannot satisfy certified Receipt review gates; no provider, database, deployment, Runner, or public write path was contacted."
+        : "Offline evidence consistency only; no provider, database, deployment, Runner, or public write path was contacted.",
   });
+}
+
+function verifyGovernance(governance, add) {
+  if (!requireRecord(governance, "governance", add)) return null;
+  if (!governanceModes.has(governance.mode)) {
+    add(
+      "CUTOVER_GOVERNANCE_MODE_INVALID",
+      "governance.mode",
+      "Cutover governance must be independent_observer or solo_alpha.",
+    );
+  }
+  if (!releaseTiers.has(governance.releaseTier)) {
+    add(
+      "CUTOVER_RELEASE_TIER_INVALID",
+      "governance.releaseTier",
+      "Cutover release tier must be public_alpha or stable.",
+    );
+  }
+  if (
+    governance.mode === "solo_alpha"
+    && governance.releaseTier !== "public_alpha"
+  ) {
+    add(
+      "SOLO_ALPHA_RELEASE_TIER_INVALID",
+      "governance.releaseTier",
+      "Solo-alpha governance is restricted to public_alpha infrastructure cutovers.",
+    );
+  }
+  requireEqual(
+    governance.certifiedReceiptsRequireDifferentPersonReview,
+    true,
+    "INDEPENDENT_RECEIPT_BOUNDARY_NOT_ACKNOWLEDGED",
+    "governance.certifiedReceiptsRequireDifferentPersonReview",
+    add,
+  );
+  requireEqual(
+    governance.soloOperatorDoesNotSatisfyIndependentReview,
+    true,
+    "SOLO_REVIEW_LIMITATION_NOT_ACKNOWLEDGED",
+    "governance.soloOperatorDoesNotSatisfyIndependentReview",
+    add,
+  );
+  return governanceModes.has(governance.mode) ? governance.mode : null;
 }
 
 function verifyPitrClone(clone, add) {
@@ -418,7 +485,13 @@ function verifyControlPlane(controlPlane, release, add) {
   }
 }
 
-function verifyOwnersAndRollback(owners, rollback, evidence, add) {
+function verifyOwnersAndRollback(
+  owners,
+  rollback,
+  evidence,
+  governanceMode,
+  add,
+) {
   if (requireRecord(owners, "owners", add)) {
     const operatorKeys = [
       "releaseCommander",
@@ -436,29 +509,76 @@ function verifyOwnersAndRollback(owners, rollback, evidence, add) {
       );
       if (owner) operators.push(owner);
     }
-    const observer = verifyAccountableOwner(
-      owners.independentObserver,
-      "owners.independentObserver",
-      add,
-      { requireSignedAcceptance: true },
-    );
-    if (observer) {
+    if (governanceMode === "solo_alpha") {
+      if (isRecord(owners.independentObserver)) {
+        add(
+          "SOLO_ALPHA_CANNOT_CLAIM_INDEPENDENT_OBSERVER",
+          "owners.independentObserver",
+          "Solo-alpha cutover evidence must not label the operator as an independent observer.",
+        );
+      }
+      const acceptance = verifyAccountableOwner(
+        owners.soloOperatorAcceptance,
+        "owners.soloOperatorAcceptance",
+        add,
+        { requireAcknowledgedAcceptance: true },
+      );
       requireEqual(
-        observer.acceptanceArtifactHash,
-        productionCutoverAcceptanceArtifactHash(evidence),
-        "OBSERVER_ACCEPTANCE_ARTIFACT_MISMATCH",
-        "owners.independentObserver.acceptanceArtifactHash",
+        owners.soloOperatorAcceptance?.scope,
+        "infrastructure_cutover_only",
+        "SOLO_ACCEPTANCE_SCOPE_INVALID",
+        "owners.soloOperatorAcceptance.scope",
         add,
       );
-    }
-    if (observer && operators.some((owner) =>
-      owner.personId === observer.personId
-      || owner.accountId === observer.accountId)) {
-      add(
-        "INDEPENDENT_OBSERVER_NOT_DISTINCT",
-        "owners.independentObserver.personId",
-        "The independent observer must be a different accountable Person with a distinct account, not another account or role controlled by an operator.",
+      const commander = operators[0];
+      if (
+        acceptance
+        && commander
+        && (
+          acceptance.personId !== commander.personId
+          || acceptance.accountId !== commander.accountId
+        )
+      ) {
+        add(
+          "SOLO_OPERATOR_IDENTITY_MISMATCH",
+          "owners.soloOperatorAcceptance.personId",
+          "Solo-alpha acceptance must belong to the recorded release commander.",
+        );
+      }
+      if (acceptance) {
+        requireEqual(
+          acceptance.acceptanceArtifactHash,
+          productionCutoverAcceptanceArtifactHash(evidence),
+          "SOLO_ACCEPTANCE_ARTIFACT_MISMATCH",
+          "owners.soloOperatorAcceptance.acceptanceArtifactHash",
+          add,
+        );
+      }
+    } else {
+      const observer = verifyAccountableOwner(
+        owners.independentObserver,
+        "owners.independentObserver",
+        add,
+        { requireSignedAcceptance: true },
       );
+      if (observer) {
+        requireEqual(
+          observer.acceptanceArtifactHash,
+          productionCutoverAcceptanceArtifactHash(evidence),
+          "OBSERVER_ACCEPTANCE_ARTIFACT_MISMATCH",
+          "owners.independentObserver.acceptanceArtifactHash",
+          add,
+        );
+      }
+      if (observer && operators.some((owner) =>
+        owner.personId === observer.personId
+        || owner.accountId === observer.accountId)) {
+        add(
+          "INDEPENDENT_OBSERVER_NOT_DISTINCT",
+          "owners.independentObserver.personId",
+          "The independent observer must be a different accountable Person with a distinct account, not another account or role controlled by an operator.",
+        );
+      }
     }
   }
   if (!requireRecord(rollback, "rollback", add)) return;
@@ -495,6 +615,29 @@ export function productionCutoverAcceptanceArtifactHash(evidence) {
   const observer = isRecord(owners.independentObserver)
     ? owners.independentObserver
     : {};
+  const soloAcceptance = isRecord(owners.soloOperatorAcceptance)
+    ? owners.soloOperatorAcceptance
+    : {};
+  const ownersPayload = {
+    releaseCommander: owners.releaseCommander,
+    databaseOwner: owners.databaseOwner,
+    sitesMcpOwner: owners.sitesMcpOwner,
+    runnerOwner: owners.runnerOwner,
+    incidentOwner: owners.incidentOwner,
+    independentObserver: {
+      personId: observer.personId,
+      accountId: observer.accountId,
+      acceptedAt: observer.acceptedAt,
+    },
+  };
+  if (evidence?.schemaVersion === cutoverEvidenceSchemaVersion) {
+    ownersPayload.soloOperatorAcceptance = {
+      personId: soloAcceptance.personId,
+      accountId: soloAcceptance.accountId,
+      acceptedAt: soloAcceptance.acceptedAt,
+      scope: soloAcceptance.scope,
+    };
+  }
   const payload = {
     schemaVersion: evidence?.schemaVersion,
     recordedAt: evidence?.recordedAt,
@@ -502,20 +645,12 @@ export function productionCutoverAcceptanceArtifactHash(evidence) {
     migration: evidence?.migration,
     release: evidence?.release,
     controlPlane: evidence?.controlPlane,
-    owners: {
-      releaseCommander: owners.releaseCommander,
-      databaseOwner: owners.databaseOwner,
-      sitesMcpOwner: owners.sitesMcpOwner,
-      runnerOwner: owners.runnerOwner,
-      incidentOwner: owners.incidentOwner,
-      independentObserver: {
-        personId: observer.personId,
-        accountId: observer.accountId,
-        acceptedAt: observer.acceptedAt,
-      },
-    },
+    owners: ownersPayload,
     rollback: evidence?.rollback,
   };
+  if (evidence?.schemaVersion === cutoverEvidenceSchemaVersion) {
+    payload.governance = evidence?.governance;
+  }
   return `sha256:${createHash("sha256")
     .update(canonicalJson(payload))
     .digest("hex")}`;
@@ -525,7 +660,10 @@ function verifyAccountableOwner(
   value,
   path,
   add,
-  { requireSignedAcceptance = false } = {},
+  {
+    requireSignedAcceptance = false,
+    requireAcknowledgedAcceptance = false,
+  } = {},
 ) {
   if (!requireRecord(value, path, add)) return null;
   requireNonEmpty(
@@ -557,6 +695,22 @@ function verifyAccountableOwner(
       add,
     );
   }
+  if (requireAcknowledgedAcceptance) {
+    if (!hashPattern.test(value.acceptanceArtifactHash ?? "")) {
+      add(
+        "SOLO_ACCEPTANCE_ARTIFACT_INVALID",
+        `${path}.acceptanceArtifactHash`,
+        "Solo-alpha operator acceptance must bind to a sha256 evidence artifact.",
+      );
+    }
+    requireEqual(
+      value.acknowledged,
+      true,
+      "SOLO_ACCEPTANCE_NOT_ACKNOWLEDGED",
+      `${path}.acknowledged`,
+      add,
+    );
+  }
   return value;
 }
 
@@ -570,8 +724,11 @@ function verifyTimeline(evidence, add) {
   const secondObservedAt = parseTimestamp(
     evidence.migration?.secondObservedAt,
   );
-  const observerAcceptedAt = parseTimestamp(
-    evidence.owners?.independentObserver?.acceptedAt,
+  const acceptancePath = evidence.governance?.mode === "solo_alpha"
+    ? "soloOperatorAcceptance"
+    : "independentObserver";
+  const acceptanceAcceptedAt = parseTimestamp(
+    evidence.owners?.[acceptancePath]?.acceptedAt,
   );
   const operatorKeys = [
     "releaseCommander",
@@ -615,13 +772,13 @@ function verifyTimeline(evidence, add) {
   }
   if (
     secondObservedAt !== null
-    && observerAcceptedAt !== null
-    && secondObservedAt > observerAcceptedAt
+    && acceptanceAcceptedAt !== null
+    && secondObservedAt > acceptanceAcceptedAt
   ) {
     add(
       "CUTOVER_TIMELINE_INVALID",
-      "owners.independentObserver.acceptedAt",
-      "Independent acceptance must follow the completed pre-migration evidence capture.",
+      `owners.${acceptancePath}.acceptedAt`,
+      "Cutover acceptance must follow the completed pre-migration evidence capture.",
     );
   }
   for (const key of operatorKeys) {
@@ -630,25 +787,25 @@ function verifyTimeline(evidence, add) {
     );
     if (
       operatorAcceptedAt !== null
-      && observerAcceptedAt !== null
-      && operatorAcceptedAt > observerAcceptedAt
+      && acceptanceAcceptedAt !== null
+      && operatorAcceptedAt > acceptanceAcceptedAt
     ) {
       add(
         "CUTOVER_TIMELINE_INVALID",
         `owners.${key}.acceptedAt`,
-        `${key} must accept its responsibility before independent observer acceptance.`,
+        `${key} must accept its responsibility before final cutover acceptance.`,
       );
     }
   }
   if (
-    observerAcceptedAt !== null
+    acceptanceAcceptedAt !== null
     && recordedAt !== null
-    && observerAcceptedAt > recordedAt
+    && acceptanceAcceptedAt > recordedAt
   ) {
     add(
       "CUTOVER_TIMELINE_INVALID",
       "recordedAt",
-      "The evidence record cannot predate independent observer acceptance.",
+      "The evidence record cannot predate final cutover acceptance.",
     );
   }
 }
@@ -770,7 +927,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
       })
       .catch((error) => {
         process.stderr.write(`${JSON.stringify({
-          schemaVersion: "pw-production-contribution-cutover-verdict-v2",
+          schemaVersion: "pw-production-contribution-cutover-verdict-v3",
           outcome: "failed",
           errorCode:
             error instanceof ProductionContributionCutoverEvidenceError

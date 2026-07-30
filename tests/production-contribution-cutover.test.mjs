@@ -21,8 +21,99 @@ test("accepts complete frozen pre-migration evidence for a controlled 0043 cutov
   assert.equal(verdict.plannedMigration, head0043);
   assert.equal(verdict.currentSafetyMode, "read_only");
   assert.equal(verdict.targetMode, "read_write");
+  assert.equal(verdict.governanceMode, "independent_observer");
   assert.equal(verdict.rollbackOwner, "person:alex");
   assert.match(verdict.limitations, /no provider, database, deployment, Runner/i);
+});
+
+test("allows a solo developer to authorize alpha infrastructure without claiming independent review", () => {
+  const verdict = verifyProductionContributionCutover(
+    fixture({ governanceMode: "solo_alpha" }),
+  );
+
+  assert.equal(verdict.outcome, "passed");
+  assert.equal(verdict.governanceMode, "solo_alpha");
+  assert.equal(verdict.releaseTier, "public_alpha");
+  assert.match(verdict.limitations, /not independent mathematical review/i);
+  assert.match(verdict.limitations, /cannot satisfy certified Receipt review gates/i);
+  assert.match(verdict.nextManualGate[1], /same solo-alpha limitation/i);
+});
+
+test("solo-alpha governance fails closed on identity drift or review overclaim", () => {
+  const wrongIdentity = fixture({ governanceMode: "solo_alpha" });
+  wrongIdentity.owners.soloOperatorAcceptance.personId = "person:someone-else";
+  const identityError = captureFailure(wrongIdentity);
+  assertIssue(
+    identityError,
+    "SOLO_OPERATOR_IDENTITY_MISMATCH",
+    "owners.soloOperatorAcceptance.personId",
+  );
+
+  const overclaim = fixture({ governanceMode: "solo_alpha" });
+  overclaim.owners.independentObserver =
+    owner("person:alex", "github:alex");
+  const overclaimError = captureFailure(overclaim);
+  assertIssue(
+    overclaimError,
+    "SOLO_ALPHA_CANNOT_CLAIM_INDEPENDENT_OBSERVER",
+    "owners.independentObserver",
+  );
+
+  const missingBoundary = fixture({ governanceMode: "solo_alpha" });
+  missingBoundary.governance.soloOperatorDoesNotSatisfyIndependentReview =
+    false;
+  const boundaryError = captureFailure(missingBoundary);
+  assertIssue(
+    boundaryError,
+    "SOLO_REVIEW_LIMITATION_NOT_ACKNOWLEDGED",
+    "governance.soloOperatorDoesNotSatisfyIndependentReview",
+  );
+
+  const stableRelease = fixture({ governanceMode: "solo_alpha" });
+  stableRelease.governance.releaseTier = "stable";
+  const tierError = captureFailure(stableRelease);
+  assertIssue(
+    tierError,
+    "SOLO_ALPHA_RELEASE_TIER_INVALID",
+    "governance.releaseTier",
+  );
+
+  const wrongScope = fixture({ governanceMode: "solo_alpha" });
+  wrongScope.owners.soloOperatorAcceptance.scope = "independent_review";
+  const scopeError = captureFailure(wrongScope);
+  assertIssue(
+    scopeError,
+    "SOLO_ACCEPTANCE_SCOPE_INVALID",
+    "owners.soloOperatorAcceptance.scope",
+  );
+});
+
+test("continues to verify legacy v2 independent-observer evidence", () => {
+  const evidence = fixture();
+  evidence.schemaVersion = "pw-production-contribution-cutover-evidence-v2";
+  delete evidence.governance;
+  evidence.owners.independentObserver.acceptanceArtifactHash =
+    productionCutoverAcceptanceArtifactHash(evidence);
+
+  const verdict = verifyProductionContributionCutover(evidence);
+
+  assert.equal(verdict.outcome, "passed");
+  assert.equal(verdict.governanceMode, "independent_observer");
+  assert.equal(verdict.releaseTier, "legacy_unspecified");
+});
+
+test("allows a stable release only with the independent-observer path", () => {
+  const evidence = fixture();
+  evidence.governance.releaseTier = "stable";
+  evidence.owners.independentObserver.acceptanceArtifactHash =
+    productionCutoverAcceptanceArtifactHash(evidence);
+
+  const verdict = verifyProductionContributionCutover(evidence);
+
+  assert.equal(verdict.outcome, "passed");
+  assert.equal(verdict.governanceMode, "independent_observer");
+  assert.equal(verdict.releaseTier, "stable");
+  assert.match(verdict.nextManualGate[1], /independently verify/i);
 });
 
 test("fails closed when website, MCP, or Runner SHA drifts", () => {
@@ -144,7 +235,7 @@ test("keeps pre-migration observations chronological", () => {
   );
 });
 
-function fixture() {
+function fixture({ governanceMode = "independent_observer" } = {}) {
   const counts = {
     runs: 29,
     queueMessages: 29,
@@ -168,8 +259,14 @@ function fixture() {
   };
 
   const evidence = {
-    schemaVersion: "pw-production-contribution-cutover-evidence-v2",
+    schemaVersion: "pw-production-contribution-cutover-evidence-v3",
     recordedAt: "2026-07-29T05:00:00Z",
+    governance: {
+      mode: governanceMode,
+      releaseTier: "public_alpha",
+      certifiedReceiptsRequireDifferentPersonReview: true,
+      soloOperatorDoesNotSatisfyIndependentReview: true,
+    },
     pitrClone: {
       name: "proofweave-pre-0043-20260729t005627z",
       snapshotId: "pitr-20260729t005627z",
@@ -224,11 +321,6 @@ function fixture() {
       sitesMcpOwner: owner("person:alex", "github:alex"),
       runnerOwner: owner("person:alex", "github:alex"),
       incidentOwner: owner("person:alex", "github:alex"),
-      independentObserver: {
-        ...owner("person:observer", "github:observer", "2026-07-29T04:45:00Z"),
-        acceptanceArtifactHash: "",
-        signatureValid: true,
-      },
     },
     rollback: {
       ownerPersonId: "person:alex",
@@ -237,8 +329,28 @@ function fixture() {
       pitrRestoreOwnerPersonId: "person:alex",
     },
   };
-  evidence.owners.independentObserver.acceptanceArtifactHash =
-    productionCutoverAcceptanceArtifactHash(evidence);
+  if (governanceMode === "solo_alpha") {
+    evidence.owners.soloOperatorAcceptance = {
+      ...owner("person:alex", "github:alex", "2026-07-29T04:45:00Z"),
+      acceptanceArtifactHash: "",
+      acknowledged: true,
+      scope: "infrastructure_cutover_only",
+    };
+    evidence.owners.soloOperatorAcceptance.acceptanceArtifactHash =
+      productionCutoverAcceptanceArtifactHash(evidence);
+  } else {
+    evidence.owners.independentObserver = {
+      ...owner(
+        "person:observer",
+        "github:observer",
+        "2026-07-29T04:45:00Z",
+      ),
+      acceptanceArtifactHash: "",
+      signatureValid: true,
+    };
+    evidence.owners.independentObserver.acceptanceArtifactHash =
+      productionCutoverAcceptanceArtifactHash(evidence);
+  }
   return evidence;
 }
 

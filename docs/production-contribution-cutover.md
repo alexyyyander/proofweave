@@ -16,8 +16,8 @@ unfreeze a write route, or issue a contribution record.
 
 ## Run the offline verifier
 
-Create an ignored JSON evidence file from independently captured provider and
-database observations:
+Create an ignored JSON evidence file from captured provider and database
+observations:
 
 ```sh
 node scripts/check-production-contribution-cutover.mjs \
@@ -41,8 +41,28 @@ operational metadata.
 
 ## Required evidence
 
-The input has schema version
-`pw-production-contribution-cutover-evidence-v2` and contains:
+New evidence uses schema version
+`pw-production-contribution-cutover-evidence-v3`. Existing v2 evidence remains
+verifiable as an `independent_observer` record so an already signed release
+artifact does not become unverifiable. New v2 evidence must not be created.
+
+Every v3 record declares one governance mode:
+
+- `independent_observer` is the strong path. A distinct accountable Person
+  signs the exact evidence artifact. It is valid for `public_alpha` or `stable`
+  release tiers.
+- `solo_alpha` is an operational exception for a project that still has one
+  developer. It is valid only when `releaseTier` is `public_alpha`; the release
+  commander acknowledges the exact evidence artifact with scope
+  `infrastructure_cutover_only`.
+
+Both modes must explicitly acknowledge that certified Receipts still require a
+different-Person review and that a solo operator does not satisfy independent
+review. The governance exception changes who may authorize an infrastructure
+cutover; it does not weaken Agent ownership, review eligibility, Lean evidence,
+or Receipt issuance rules.
+
+The evidence also contains:
 
 - **PITR clone rehearsal:** clone and snapshot labels, PITR and completion
   timestamps, source database fingerprint, pre/post migration heads, outcome,
@@ -60,13 +80,16 @@ The input has schema version
   disabled; Runner execution is disabled. The declared target mode is
   `read_write`, but it must not be active at verification time.
 - **Named ownership:** every operator role records a stable Person ID, account
-  ID, and acceptance time. The independent observer records a different Person
-  ID and account ID, an acceptance time after the frozen observations, a
-  signed acceptance-artifact hash, and a valid-signature projection. The gate
-  deterministically recomputes the canonical hash of this exact v2 cutover
-  payload—excluding only the observer's hash/signature fields—and requires an
-  exact match. A valid signature from another release window cannot be reused.
-  A second account controlled by an operator does not satisfy this boundary.
+  ID, and acceptance time. In `independent_observer` mode, the observer records
+  a different Person ID and account ID, an acceptance time after the frozen
+  observations, a signed acceptance-artifact hash, and a valid-signature
+  projection. In `solo_alpha` mode, the release commander records a matching
+  Person/account identity, an acknowledged acceptance-artifact hash, and the
+  exact `infrastructure_cutover_only` scope. The gate deterministically
+  recomputes the canonical hash of the exact payload—excluding only the
+  acceptance hash and proof fields—and requires an exact match. Acceptance from
+  another release window cannot be reused. A second account controlled by an
+  operator never satisfies the independent-observer boundary.
 - **Recovery boundary:** acknowledged `roll_forward` strategy. After 0043
   succeeds, an old writer or a schema downgrade is not a safe rollback.
 
@@ -113,15 +136,18 @@ agrees on:
 5. one Turso authority and fingerprint;
 6. the current read-only/frozen state;
 7. named release, incident, and recovery responsibility; and
-8. a distinct observer's signed acceptance of this pre-migration evidence.
+8. the selected governance path's acceptance of this exact pre-migration
+   evidence.
 
-All operator role acceptances must precede the independent observer's
-acceptance, and observer acceptance must not postdate the evidence record.
+All operator role acceptances must precede final cutover acceptance, and that
+acceptance must not postdate the evidence record.
 
 It is not proof that the observations were honestly collected, are current, or
-came from production. Those properties require the release commander and an
-independent observer to inspect the original provider and database evidence.
-The verifier intentionally does not fetch that evidence itself.
+came from production. Those properties require the accepting party to inspect
+the original provider and database evidence. `independent_observer` adds a
+distinct Person to that inspection. `solo_alpha` does not, and the verdict
+states that limitation. The verifier intentionally does not fetch provider
+evidence itself.
 
 It is also not post-migration verification. After 0043 is applied, operators
 must capture a separate post-migration record before deploying or enabling any
@@ -135,8 +161,9 @@ A passing offline verdict is followed by human-controlled steps from
 
 1. Confirm all public producers and every Runner consumer remain frozen, with
    two unchanged count observations and zero active leases.
-2. Confirm the independent observer accepted the exact pre-migration evidence
-   artifact represented by the passing gate.
+2. Confirm the independent observer, or the scoped solo-alpha operator,
+   accepted the exact pre-migration evidence artifact represented by the
+   passing gate.
 3. Apply 0043 once against production while every writer remains
    frozen.
 4. Capture a separate post-migration record: head 0043, stable counts, schema
@@ -146,11 +173,13 @@ A passing offline verdict is followed by human-controlled steps from
 6. Recollect release diagnostics and run the strict release-manifest gate.
 7. Enable one controlled consumer and run one persisted, operator-owned Lean
    smoke. Verify positive consecutive event sequences and then freeze it again.
-8. Obtain explicit post-migration release and independent-observer sign-off.
+8. Obtain explicit post-migration sign-off under the same governance mode. A
+   stable release still requires a distinct independent observer.
 9. Restore consumers, gateway writes, and website writes in the documented
    order; monitor and refreeze immediately on an old-writer or NULL-sequence
    attempt.
 10. Run the separate credentialed ordinary-user smoke through Agent connection,
-   Attempt, Bundle, Runner, different-owner review, and Receipt.
+    Attempt, Bundle, and Runner. A certified Receipt remains blocked until a
+    genuinely different Person completes the required review.
 
 Until these steps finish, public contribution writes remain `read_only`.
