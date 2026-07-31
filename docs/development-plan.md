@@ -22,8 +22,9 @@ Status: historical implementation baseline, updated 2026-07-16
 > D1 migration history unchanged, a durable
 > lease queue with stale-worker fencing, and a trusted process behind the
 > no-egress E2B or Modal Sandbox adapter. The hosted trusted Runner on Render is
-> the current alpha reference controller; the protected GitHub Actions
-> one-shot workflow is retained for recovery, CI, and image-release support.
+> the current alpha reference controller. The former protected GitHub Actions
+> one-shot controller is retired; GitHub retains CI, credential-free image
+> release, and manual secretless isolation diagnostics only.
 > Historical sections below may describe earlier source-only deployment gates.
 
 ## 1. Alpha objective

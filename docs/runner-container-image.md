@@ -20,9 +20,12 @@ The workflow publishes a Linux/amd64 base and final image to GHCR, emits SBOM
 and build provenance, assembles the final image with Docker build networking
 disabled, and smoke-tests it with no network and the image's path-scoped
 filesystem permissions intact.
-It can optionally create the E2B template in a separate `packages: read` job
-after the protected environment has an `E2B_API_KEY`. The final image digest and E2B template id still need
-operator review before admission to the approved Runner registry.
+It never creates an E2B template and has no production Environment dependency.
+After image publication, the local operator command
+`npm run runner:e2b:template:build` creates the template from the exact reviewed
+digest using credentials held outside GitHub. The final image digest and E2B
+template/build identity still need operator review before admission to the
+approved Runner registry.
 
 The Core profile is intentionally limited to projects with no external Lake
 dependencies. Each Mathlib profile downloads and verifies dependencies only

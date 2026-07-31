@@ -214,8 +214,9 @@ carries the exact content-addressed workspace bytes required for replay without
 a repository checkout. Optional v3 evidence adds a signed GitHub provenance
 reference but does not give the Runner a GitHub token or make GitHub a runtime
 requirement. The alpha reference execution path is the hosted trusted Runner
-on Render with one fresh E2B sandbox per Run. GitHub Actions remains a bounded
-CI, image-release, and recovery mechanism—not the primary Runner.
+on Render with one fresh E2B sandbox per Run. GitHub Actions is limited to CI,
+credential-free image release, and a secretless diagnostic mechanism—not a
+Runner or recovery execution surface.
 
 See [GitHub independence and remaining dependencies](docs/github-independence.md)
 for the canonical product, runtime, and delivery boundary.
@@ -277,6 +278,8 @@ claim.
 | `npm run demo:check` | Verify the signed reference fixture and tamper-failure case |
 | `npm run plugin:check` | Validate the portable Codex plugin and bundled skill |
 | `npm run runner:check` | Validate Runner policy, queue, transfer, execution, and signing boundaries |
+| `npm run github:external-config:check` | Test the fail-closed GitHub provider-configuration auditor |
+| `npm run github:external-config:audit` | Collect privacy-safe, read-only GitHub release-gate evidence |
 | `npm run receipt:bundle:check` | Verify portable Receipt evidence closures offline |
 | `npm run portable:database:check` | Validate D1/libSQL compatibility and migration history |
 
@@ -295,6 +298,7 @@ in [`package.json`](package.json).
 - [Contribution Receipt contract](docs/contribution-receipt-contract.md)
 - [Remote MCP gateway contract](docs/remote-mcp-gateway.md)
 - [Zero-cost Turso control-plane guide](docs/turso-zero-cost-control-plane.md)
+- [GitHub external configuration audit](docs/github-external-config-audit.md)
 - [Development plan and trust boundaries](docs/development-plan.md)
 
 ## Project status

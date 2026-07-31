@@ -9,9 +9,10 @@ Turso/libSQL control-plane state, and one fresh private E2B Sandbox per Run.
 `PROOFWEAVE_RUNNER_PROVIDER` selects `e2b` or `modal`; provider selection is
 explicit and otherwise fails closed.
 
-GitHub Actions is not the primary Runner. It remains a bounded recovery,
-diagnostic, CI, and image-release mechanism. The canonical GitHub dependency
-boundary is in [`github-independence.md`](github-independence.md).
+GitHub Actions is not a Runner or recovery execution surface. It remains CI,
+credential-free image-release, and manual secretless diagnostic infrastructure.
+The canonical GitHub dependency boundary is in
+[`github-independence.md`](github-independence.md).
 
 ## Trust boundary
 
@@ -118,11 +119,24 @@ reviewed image build
 ```
 
 The current engineering pipeline uses
-`.github/workflows/build-e2b-lean-runner-image.yml` and GHCR for this release
-step. That is a build-time GitHub dependency, not a per-Run participant or
-runtime dependency. Runtime still verifies that the E2B version tag resolves
-to the recorded build UUID and that the requested Lean/Mathlib environment
-matches the approved image declaration.
+`.github/workflows/build-e2b-lean-runner-image.yml` and GHCR only to build,
+inspect, attest, and publish the credential-free image. GitHub stores no E2B,
+Turso, Runner-signing, control-plane, or Receipt authority.
+
+An operator creates the E2B template outside GitHub from that exact immutable
+image. Load `E2B_API_KEY` and any private-registry credentials from the local
+operator secret provider, never command-line arguments or the repository:
+
+```sh
+PROOFWEAVE_E2B_RUNNER_IMAGE='ghcr.io/alexyyyander/proofweave-lean-runner@sha256:REPLACE' \
+PROOFWEAVE_E2B_TEMPLATE_NAME='proofweave-runner:REVIEWED_VERSION' \
+npm run runner:e2b:template:build
+```
+
+Record the returned immutable template/build identity in the reviewed Render
+configuration. Runtime still verifies that the E2B version tag resolves to the
+recorded build UUID and that the requested Lean/Mathlib environment matches
+the approved image declaration.
 
 The checked-in core-alpha profile supports only Lean Core and records
 `mathlibRevision=none`; it must not verify a Bundle that declares Mathlib.
@@ -147,16 +161,16 @@ participant source over HTTP. Health readiness does not prove a completed Run:
 release evidence must show a current-instance wake and one terminal,
 correlation-linked result.
 
-## GitHub Actions recovery path
+## GitHub isolation diagnostics
 
-`.github/workflows/e2b-lean-runner.yml` is retained for manual recovery,
-bounded repository dispatch, and a six-hour safety sweep. It may claim at most
-one Turso lease and invoke one E2B Sandbox. Untrusted workspace bytes are never
-checked out or executed on the GitHub-hosted machine.
+The legacy `.github/workflows/e2b-lean-runner.yml` filename now contains only
+manual, secretless static diagnostics. It has no production Environment, no
+schedule or repository dispatch, no Turso queue access, and no E2B client. It
+must not be called a recovery Runner.
 
-Do not describe this workflow as the primary controller. Normal queue delivery
-must wake the hosted trusted Runner. Disabling the Actions workflow must not
-prevent the current-release acceptance fixture from reaching E2B.
+Normal and recovery queue delivery are operator-controlled hosted Runner
+operations. Disabling every non-CI GitHub workflow must not prevent the
+current-release acceptance fixture from reaching E2B.
 
 ## Database and delivery semantics
 
@@ -192,10 +206,11 @@ Receipt coordinator still requires the configured independent-review policy.
    provider template/build resolution, sandbox isolation, Lean execution,
    kernel acceptance, no-`sorry`, allowed-axiom audit, immutable outputs,
    result signature, and queue acknowledgement.
-8. Independently disable the live GitHub Actions recovery workflow through its
-   provider control, record that observation, and repeat the fixture. A local
-   `PROOFWEAVE_GITHUB_RECOVERY_ENABLED=false` value does not prove the external
-   workflow is stopped.
+8. Independently verify `proofweave-runner-alpha` has zero Environment secrets,
+   the legacy diagnostic workflow is disabled and idle, and the fixture still
+   closes through the hosted Runner. A local
+   `PROOFWEAVE_GITHUB_RECOVERY_ENABLED=false` value does not prove external
+   provider state.
 9. Exercise lease expiry, cancellation, output truncation, invalid-signature
    dead-lettering, maximum attempts, Sandbox kill, and key revocation.
 10. Close different-owner review and Receipt issuance before calling the
@@ -204,7 +219,7 @@ Receipt coordinator still requires the configured independent-review policy.
 ## Shutdown and incident response
 
 Set `RUNNER_EXECUTION_ENABLED=false`, reject new wake requests, stop the hosted
-consumer, and disable the Actions recovery workflow. Do not delete queue rows
+consumer, and keep the GitHub diagnostic workflow disabled. Do not delete queue rows
 or events. Revoke the credential at the compromised boundary: E2B, Turso,
 hosted wake, control-plane, registry, or Runner-result key. Keep affected Runs
 provisional until their exact evidence has been replayed by a different owner.

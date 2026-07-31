@@ -114,6 +114,8 @@ test("preflight binds the release to one explicit hosted consumer and remains re
     assert.equal(result.release.runnerExecutionBoundary, "isolated-sandbox-only");
     assert.deepEqual(result.release.runnerPolicy, readyRunnerPolicy());
     assert.equal(result.runner.executionEnabled, true);
+    assert.equal(result.runnerHealthMode, "live_execution");
+    assert.equal(result.leanVerificationObserved, false);
     assert.deepEqual(await readdir(directory), []);
     assert.equal(fixture.calls.database, 1);
     assert.equal(fixture.calls.live, 0);
@@ -140,6 +142,85 @@ test("preflight binds the release to one explicit hosted consumer and remains re
   } finally {
     await rm(directory, { recursive: true, force: true });
   }
+});
+
+test("Phase 6 inspection is explicitly paused, non-executing, and never production eligible", async () => {
+  const fixture = makeDrillFixture();
+  fixture.health.state = "paused";
+  fixture.health.executionEnabled = false;
+
+  const result = await fixture.drill.inspectPhase6({ environment: fixture.environment });
+  assert.equal(result.phase, "phase6");
+  assert.equal(result.outcome, "phase6_paused_health_passed");
+  assert.equal(result.productionEligible, false);
+  assert.equal(result.runnerHealthMode, "phase6_paused");
+  assert.equal(result.leanVerificationObserved, false);
+  assert.equal(result.release.runnerExecutionEnabled, false);
+  assert.equal(result.runner.state, "paused");
+  assert.equal(result.runner.executionEnabled, false);
+  assert.deepEqual(result.runner.releaseDiagnostics, readyReleaseDiagnostics());
+  assert.deepEqual(result.runner.runnerPolicy, readyRunnerPolicy());
+
+  const ready = makeDrillFixture();
+  await assert.rejects(
+    ready.drill.inspectPhase6({ environment: ready.environment }),
+    (error) => error.code === "RUNNER_HEALTH_MISMATCH",
+  );
+
+  await assert.rejects(
+    fixture.drill.preflight({ environment: fixture.environment }),
+    (error) => error.code === "RUNNER_HEALTH_MISMATCH",
+  );
+});
+
+test("begin, record, and finalize always require live execution health", async (context) => {
+  await context.test("begin", async () => {
+    const fixture = makeDrillFixture();
+    fixture.health.state = "paused";
+    fixture.health.executionEnabled = false;
+    const directory = await mkdtemp(join(tmpdir(), "proofweave-drill-paused-begin-"));
+    try {
+      await assert.rejects(
+        beginFixture(fixture, join(directory, "state.json")),
+        (error) => error.code === "RUNNER_HEALTH_MISMATCH",
+      );
+    } finally {
+      await rm(directory, { recursive: true, force: true });
+    }
+  });
+
+  await context.test("record", async () => {
+    const fixture = makeDrillFixture();
+    const directory = await mkdtemp(join(tmpdir(), "proofweave-drill-paused-record-"));
+    const statePath = join(directory, "state.json");
+    try {
+      await beginFixture(fixture, statePath);
+      fixture.health.state = "paused";
+      fixture.health.executionEnabled = false;
+      await assert.rejects(
+        recordFixture(fixture, statePath),
+        (error) => error.code === "RUNNER_HEALTH_MISMATCH",
+      );
+      assert.equal(fixture.calls.live, 0);
+    } finally {
+      await rm(directory, { recursive: true, force: true });
+    }
+  });
+
+  await context.test("finalize", async () => {
+    const setup = await recordedPortableFixture();
+    try {
+      setup.fixture.health.state = "paused";
+      setup.fixture.health.executionEnabled = false;
+      await assert.rejects(
+        finalizeFixture(setup),
+        (error) => error.code === "RUNNER_HEALTH_MISMATCH",
+      );
+      assert.equal(setup.fixture.calls.receiptVerifier, 0);
+    } finally {
+      await setup.cleanup();
+    }
+  });
 });
 
 test("preflight rejects recovery and published plugin drift before live evidence is read", async () => {
@@ -916,6 +997,21 @@ test("production CLI rejects the retired --issuer-keyset input before any networ
   assert.equal(JSON.parse(result.stdout).errorCode, "ARGUMENTS_INVALID");
 });
 
+test("production CLI help separates Phase 6 identity inspection from live execution", () => {
+  for (const flag of ["--help", "-h"]) {
+    const result = spawnSync(
+      process.execPath,
+      ["scripts/run-github-independent-production-drill.mjs", flag],
+      { cwd: process.cwd(), encoding: "utf8" },
+    );
+    assert.equal(result.status, 0);
+    assert.match(result.stdout, /phase6/);
+    assert.match(result.stdout, /paused Runner/);
+    assert.match(result.stdout, /does not run Lean or verify a proof/);
+    assert.match(result.stdout, /ready Runner with execution enabled/);
+  }
+});
+
 function makeDrillFixture({
   mutateDistribution = (value) => value,
   includeReceiptVerifierProbe = false,
@@ -1341,12 +1437,12 @@ async function createRecoveryIsolationEvidence({
   const workflows = [
     {
       path: ".github/workflows/build-week-live-receipt.yml",
-      role: "manual_queue_consumer",
+      role: "disabled_demo_queue_consumer",
       sourceSha256: sha("7"),
     },
     {
       path: ".github/workflows/e2b-lean-runner.yml",
-      role: "recovery_queue_consumer",
+      role: "secretless_isolation_diagnostic",
       sourceSha256: sha("8"),
     },
   ];

@@ -30,6 +30,7 @@ import {
   bindProductionAuthorityPolicy,
   inspectRunnerReleaseHealth,
   inspectSiteReleaseDiagnostics,
+  runnerReleaseHealthModes,
 } from "./lib/github-independent-live-release-binding.mjs";
 import {
   beginRecoveryIsolationSnapshot,
@@ -60,6 +61,20 @@ const revisionPattern = /^[a-f0-9]{40,64}$/;
 const identifierPattern = /^[A-Za-z0-9][A-Za-z0-9:._+/-]{0,511}$/;
 const forbiddenProductionMarker = /(mock|demo|smoke|fixture)/i;
 const maxPublicDownloadBytes = 40 * 1024 * 1024;
+export const githubIndependentDrillCliHelp = `Usage:
+  npm run runtime:github-independent:drill -- phase6
+  npm run runtime:github-independent:drill
+  npm run runtime:github-independent:drill -- preflight
+  npm run runtime:github-independent:drill -- begin --state PATH --confirm TEXT --correlation-id ID --person-id ID --agent-id ID --bundle-hash SHA256
+  npm run runtime:github-independent:drill -- record --state PATH --confirm TEXT --evidence PATH
+  npm run runtime:github-independent:drill -- finalize --state PATH --confirm TEXT --correlation-id ID --receipt-bundle PATH
+
+Modes:
+  phase6    Non-mutating release-identity inspection. Requires a paused Runner
+            with execution disabled. This does not run Lean or verify a proof.
+  preflight Requires a ready Runner with execution enabled. This is the default
+            and remains mandatory for begin, record, and finalize.
+`;
 
 export class GithubIndependentDrillError extends Error {
   constructor(code, options) {
@@ -117,7 +132,12 @@ export function createGithubIndependentProductionDrill(options = {}) {
     throw new GithubIndependentDrillError("DRILL_DEPENDENCY_INVALID");
   }
 
-  async function preflight({ environment = process.env } = {}) {
+  async function inspectRelease({
+    environment = process.env,
+    runnerHealthMode,
+    phase,
+    outcome,
+  }) {
     requireNoNodePreload(environment);
     requireRecoveryDisabled(environment);
     const releaseResult = await manifestProvider({
@@ -184,7 +204,10 @@ export function createGithubIndependentProductionDrill(options = {}) {
         imageDigest: manifest.runner.image.deployedDigest,
         leanToolchain: manifest.runner.image.leanToolchain,
         mathlibRevision: manifest.runner.image.mathlibRevision,
+        databaseFingerprint: manifest.database.runnerFingerprint,
+        ledgerHead: manifest.database.repositoryMigrationHead,
       },
+      mode: runnerHealthMode,
     });
     bindLiveReleaseAuthority({
       manifest,
@@ -207,12 +230,34 @@ export function createGithubIndependentProductionDrill(options = {}) {
     });
     return Object.freeze({
       schemaVersion: githubIndependentDrillSchemaVersion,
-      phase: "preflight",
-      outcome: "preflight_passed",
-      productionEligible: !injected,
+      phase,
+      outcome,
+      productionEligible: runnerHealthMode === runnerReleaseHealthModes.liveExecution
+        ? !injected
+        : false,
+      runnerHealthMode,
+      leanVerificationObserved: false,
       release,
       releaseFingerprint: await sha256Canonical(release),
       runner,
+    });
+  }
+
+  async function preflight({ environment = process.env } = {}) {
+    return inspectRelease({
+      environment,
+      runnerHealthMode: runnerReleaseHealthModes.liveExecution,
+      phase: "preflight",
+      outcome: "preflight_passed",
+    });
+  }
+
+  async function inspectPhase6({ environment = process.env } = {}) {
+    return inspectRelease({
+      environment,
+      runnerHealthMode: runnerReleaseHealthModes.phase6Paused,
+      phase: "phase6",
+      outcome: "phase6_paused_health_passed",
     });
   }
 
@@ -392,7 +437,7 @@ export function createGithubIndependentProductionDrill(options = {}) {
     return publicStateResult(next, outcome);
   }
 
-  return Object.freeze({ preflight, begin, record, finalize });
+  return Object.freeze({ inspectPhase6, preflight, begin, record, finalize });
 }
 
 async function probeTursoControlPlane({ environment, manifest }) {
@@ -1111,7 +1156,7 @@ function rejectExtraKeys(value, allowed, code) {
 function parseCliArguments(args) {
   const phase = args[0] && !args[0].startsWith("--") ? args[0] : "preflight";
   const offset = phase === "preflight" && args[0]?.startsWith("--") ? 0 : 1;
-  if (!["preflight", "begin", "record", "finalize"].includes(phase)) {
+  if (!["phase6", "preflight", "begin", "record", "finalize"].includes(phase)) {
     throw new GithubIndependentDrillError("ARGUMENTS_INVALID");
   }
   const values = {};
@@ -1126,6 +1171,7 @@ function parseCliArguments(args) {
     values[key] = value;
   }
   const allowed = {
+    phase6: new Set(),
     preflight: new Set(),
     begin: new Set(["state", "confirm", "correlation-id", "person-id", "agent-id", "bundle-hash"]),
     record: new Set(["state", "confirm", "evidence"]),
@@ -1150,11 +1196,18 @@ async function readJsonArgument(path, code, root = repositoryRoot) {
 async function runCli() {
   let phase = "preflight";
   try {
-    const parsed = parseCliArguments(process.argv.slice(2));
+    const args = process.argv.slice(2);
+    if (args.length === 1 && ["--help", "-h"].includes(args[0])) {
+      process.stdout.write(githubIndependentDrillCliHelp);
+      return;
+    }
+    const parsed = parseCliArguments(args);
     phase = parsed.phase;
     const drill = createGithubIndependentProductionDrill();
     let result;
-    if (phase === "preflight") {
+    if (phase === "phase6") {
+      result = await drill.inspectPhase6();
+    } else if (phase === "preflight") {
       result = await drill.preflight();
     } else if (phase === "begin") {
       result = await drill.begin({

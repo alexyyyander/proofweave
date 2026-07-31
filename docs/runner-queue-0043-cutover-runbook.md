@@ -67,9 +67,9 @@ Also confirm:
 - provider status pages show no active database or deployment incident;
 - the operator can freeze Sites participant and MCP gateway mutation routes
   independently of each other and independently of a source deployment;
-- the operator can disable Render auto-deploy, stop its Runner process, disable
-  the GitHub Runner workflow and repository dispatch source, and cancel active
-  runs;
+- the operator can disable Render auto-deploy, stop its Runner process, keep
+  the secretless GitHub diagnostic and historical demo workflows disabled,
+  and cancel any active diagnostic/demo runs;
 - no participant session depends on completing during the maintenance window;
 - the approved backup/restore procedure has been exercised against a
   non-production database.
@@ -93,13 +93,80 @@ repository API on 2026-07-28. It also fixes the canonical Runner origin
 fingerprint `3f9e7934a04a22ec`. The Runner health endpoint is derived as
 `/healthz`; it is not a separate resource identity.
 
-Policy version 3 enrolls the recovery operator key
-`release-operator:alexyu-20260728`. Its Ed25519 private JWK is generated outside
-this repository and kept in a regular mode-`0600` file; the repository contains
-only its canonical 32-byte base64url public key and deterministic fingerprint.
+Policy version 4 enrolls the public recovery operator key
+`release-operator:alexyu-20260731`. The repository contains only its canonical
+32-byte base64url public key and deterministic fingerprint; it cannot prove
+where the corresponding private JWK is held or whether it remains usable.
+Operational authority therefore requires a separately checked external,
+regular mode-`0600` private-key file.
 Any rotation must add or remove public keys through a separately reviewed pull
 request and pass the release-manifest and production-drill negative tests
 before the new policy hash is used in a release.
+
+Public enrollment does **not** prove that the corresponding private key still
+exists or is usable. Before authorizing a drill, the release commander must
+locate the external file and compare it to the reviewed policy without printing
+private bytes:
+
+```bash
+npm run runtime:github-independent:drill:key -- verify \
+  --key-id release-operator:alexyu-20260731 \
+  --private-key-file "$HOME/.proofweave/release-keys/release-operator-alexyu-20260731.private.jwk" \
+  --repository-root "$PWD"
+```
+
+Replace the example path with the actual operator custody path. The command
+fails unless the path is absolute and outside the repository, the
+file is a regular single-link file owned by the current user with mode `0600`,
+the Ed25519 private/public members match, and the derived public entry exactly
+matches the reviewed policy. Its stdout contains only the
+canonical private-file path, environment variable names, and public enrollment
+metadata. If the private file is unavailable, do not claim that recovery
+authority is ready and do not create a replacement under the same key ID. The
+unreleased `release-operator:alexyu-20260728` candidate was replaced before
+production because no corresponding private-key custody file could be found;
+it is not trusted by policy version 4.
+
+For a new operator or rotation, generate the key directly at its external
+destination:
+
+```bash
+npm run runtime:github-independent:drill:key -- generate \
+  --key-id release-operator:person-YYYYMMDD \
+  --private-key-file "$HOME/.proofweave/release-keys/release-operator-person-YYYYMMDD.private.jwk" \
+  --repository-root "$PWD"
+```
+
+The destination is created atomically and is never overwritten. To adopt an
+existing secure Ed25519 private JWK, use `import` with
+`--source-private-key-file`; import validates the source, creates a separate
+mode-`0600` destination without replacing either file, and prints the same
+public-only enrollment plan. Never paste JWK contents into a shell argument,
+environment variable, issue, PR, terminal transcript, or CI log.
+
+Rotation is a two-review change:
+
+1. Generate or import a new uniquely named external key and make two encrypted,
+   access-controlled offline backups. Restore one copy to a temporary
+   mode-`0600` file and run `verify` against the transitional policy; a backup
+   that has not been restored and
+   checked is not recovery evidence.
+2. In the first reviewed PR, increment `policyVersion` and add only the new
+   `policyEntry`, temporarily retaining the old public entry.
+3. Deploy that reviewed policy and complete a bounded recovery-isolation
+   preflight signed by the new key. This proves local operator-key possession;
+   it does not enable or authorize a GitHub Runner.
+4. In a second reviewed PR, remove the old public entry and increment
+   `policyVersion` again. Record the revocation time and policy hash.
+5. After the rollback window closes, securely destroy every online copy of the
+   retired private key according to the incident/retention policy. Keep no
+   retired private key in GitHub Actions, Sites, Render, Turso, repository
+   files, `.env` files, shared cloud-sync folders, or build artifacts.
+
+If a private key is lost, copied to an untrusted location, printed, committed,
+or exposed in telemetry, freeze recovery use immediately and perform the same
+add-new/remove-old reviewed rotation. Merely deleting or renaming the local
+file does not revoke its enrolled public authority.
 
 The drill CLI accepts only the external private-key file and key ID. It derives
 the public key and rejects it unless both ID and public bytes match the reviewed
@@ -114,19 +181,17 @@ organization, repository, or Environment authorization policy. Before merge or
 deployment, the release commander and cutover acceptor must collect
 provider-side evidence that:
 
-- the `proofweave-runner-alpha` Environment permits only the reviewed branch or
-  tag and requires the named production approver(s);
-- historical demo workflows use a distinct Environment and no demo or mocker
+- the `proofweave-runner-alpha` Environment contains zero secrets and permits
+  only the reviewed deployment branch or tag patterns;
+- historical demo workflows use a distinct, empty Environment and no demo,
+  mocker, Turso, E2B, queue-signing, Runner-result-signing, or Receipt-issuing
   private key is stored in `proofweave-runner-alpha`;
-- repository and Environment secrets that can reach Turso, E2B, queue signing,
-  Runner-result signing, or Receipt issuance are not available to unreviewed
-  workflows, reusable workflows, local actions, forks, or unrestricted
-  maintainers;
+- no checked-in executable workflow combines `proofweave-runner-alpha` with a
+  non-`GITHUB_TOKEN` secret reference;
 - no organization-level secret grants this repository a broader queue/runtime
   authority than the reviewed Environment policy;
-- `workflow_dispatch`, `repository_dispatch`, schedules, and Environment
-  approvals for both reviewed queue workflows are disabled or blocked for the
-  freeze, with zero active runs;
+- the manual secretless diagnostic and historical demo workflows are disabled
+  for the freeze, with zero active runs;
 - every third-party action in the reviewed workflows is pinned to an immutable
   full commit SHA; and
 - the scanner's reviewed full-file workflow hashes and fixed checked-in
@@ -138,8 +203,7 @@ observation interval in the release record. If any item is unknown, inherited,
 or cannot be inspected, the release is **not authorized to merge or deploy**.
 Under `solo_alpha`, the same Person may perform and accept the inspection, but
 the release record must retain that non-independent limitation. A signed begin
-snapshot cannot substitute for this external gate, and neither proves
-continuous or hosted-exclusive isolation.
+snapshot cannot substitute for this external gate. It neither proves continuous or hosted-exclusive isolation.
 
 ## Phase 1 — Freeze producers
 
@@ -208,8 +272,9 @@ events:
 1. Set `RUNNER_EXECUTION_ENABLED=false` for the hosted Runner.
 2. Stop or suspend the Render Runner service and cancel any in-progress Render
    deployment.
-3. Disable the GitHub `e2b-lean-runner` workflow, its schedule,
-   `workflow_dispatch`, and `repository_dispatch` producer; cancel active jobs.
+3. Keep the secretless GitHub `e2b-lean-runner` diagnostic and the historical
+   demo workflow disabled; cancel any active diagnostic/demo jobs. Neither is
+   a queue producer or Runner.
 4. Disable any Cloudflare Queue consumer or alternate Runner process.
 5. Confirm no process holds a live queue lease and repeat the queue counts
    after an observation interval. The counts must be unchanged.
@@ -314,7 +379,7 @@ Keep the master, MCP, and participant modes explicitly set to `read_only`.
 Deploying the split fences is not authorization to open either one.
 
 - Use a manual, SHA-pinned Render deployment. Do not re-enable auto-deploy.
-- Keep GitHub schedule, workflow dispatch, and repository dispatch disabled.
+- Keep the GitHub diagnostic and historical demo workflows disabled.
 - Confirm Sites, gateway, Render, Runner image, E2B template, and migration
   evidence all refer to the same release record.
 - Reject any deployment whose reported source revision is missing, abbreviated,
@@ -350,7 +415,25 @@ npm run release:manifest:strict
 It must exit zero with `validation.state` equal to `valid`. Preserve the
 manifest and its content hash in the release record.
 
-While execution remains disabled, verify:
+While execution remains disabled, run the explicitly paused Phase-6
+inspection:
+
+```bash
+npm run runtime:github-independent:drill -- phase6
+```
+
+This command accepts only Runner `state=paused` with
+`executionEnabled=false`. It still binds the complete Runner revision, Sites
+version and project, approved image, E2B template and build, Turso fingerprint,
+and live migration ledger to the strict release manifest. A `ready` Runner is
+rejected in this mode. The default `preflight`, plus `begin`, `record`, and
+`finalize`, continue to require `state=ready` and `executionEnabled=true`.
+
+The Phase-6 result is release-identity and non-mutating health evidence only.
+It does not run Lean, verify a proof, make a production closure eligible, or
+replace the controlled smoke and persisted evidence required in Phase 7.
+
+With the paused inspection, verify:
 
 - Sites public reads and authenticated read-only views;
 - OAuth discovery and gateway health;
@@ -389,9 +472,10 @@ ORDER BY event_sequence;
 ```
 
 Immediately set `RUNNER_EXECUTION_ENABLED=false` again and stop the controlled
-consumer. Re-run strict manifest mode and the non-mutating health checks. A
-Runner readiness response or a zero exit from repository tests is not a
-substitute for this persisted smoke evidence.
+consumer. Re-run strict manifest mode and
+`npm run runtime:github-independent:drill -- phase6`. A paused or ready Runner
+health response, a Phase-6 pass, or a zero exit from repository tests is not a
+substitute for the persisted smoke evidence.
 
 ## Phase 8 — Unfreeze
 
@@ -406,15 +490,16 @@ still-frozen next surface after every configuration change:
 
 1. Start the exact-SHA Render/hosted consumer with
    `RUNNER_EXECUTION_ENABLED=true`.
-2. Re-enable the reviewed GitHub recovery workflow and automatic dispatch
-   source only if both are still part of the approved topology.
+2. Keep the GitHub diagnostic and historical demo workflows disabled; they are
+   not production execution or recovery surfaces.
 3. Set the master ceiling to
    `PROOFWEAVE_CONTROL_PLANE_MODE=read_write` while both surface modes remain
    `read_only`. Verify that MCP and participant mutation probes still return
    503 and durable counts remain unchanged.
-4. Set `PROOFWEAVE_MCP_CONTROL_PLANE_MODE=read_write`. Verify one bounded MCP
-   mutation, confirm participant mutation remains blocked, and observe its
-   durable record.
+4. Set `PROOFWEAVE_MCP_CONTROL_PLANE_MODE=read_write`, restoring the
+   authenticated hosted-Runner wake route. Verify one bounded MCP mutation,
+   confirm participant mutation remains blocked, and observe its durable
+   record.
 5. Set `PROOFWEAVE_PARTICIPANT_CONTROL_PLANE_MODE=read_write`. Verify one
    bounded participant mutation and observe its durable record.
 6. Re-enable Render auto-deploy only after confirming it is pinned to the

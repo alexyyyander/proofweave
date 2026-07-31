@@ -12,24 +12,14 @@ on:
           - core-4.27
           - mathlib-4.27-a3a10
           - mathlib-4.31-9a948
-      build_e2b_template:
-        description: Build the private E2B template after publishing the reviewed image
-        required: true
-        default: false
-        type: boolean
-      existing_runner_image:
-        description: Optional reviewed Proofweave Runner digest for template-only recovery
-        required: false
-        default: ""
-        type: string
 
 permissions:
   contents: read
 
 concurrency:
   group: proofweave-reviewed-lean-runner-image
-  # A newer manually reviewed build supersedes an older queued or running one.
-  # This bounds the cost of repeated image-build or recovery attempts.
+  # A newer manually reviewed image build supersedes an older queued or running
+  # one. E2B template creation is deliberately outside GitHub.
   cancel-in-progress: true
 
 env:
@@ -39,7 +29,6 @@ env:
 
 jobs:
   build-and-inspect:
-    if: ${{ inputs.existing_runner_image == '' }}
     permissions:
       contents: read
       packages: write
@@ -51,9 +40,6 @@ jobs:
     # Keep the verification gates unchanged and give this image-build-only job
     # enough time to finish on a fresh GitHub-hosted runner.
     timeout-minutes: 180
-    environment: proofweave-runner-alpha
-    outputs:
-      runner_image: ${{ steps.coordinates.outputs.runner_image }}
     steps:
       - name: Check out the reviewed source
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
@@ -212,49 +198,3 @@ jobs:
           echo "leanToolchain=${{ steps.profile.outputs.lean_toolchain }}" >> "$GITHUB_STEP_SUMMARY"
           echo "mathlibRevision=${{ steps.profile.outputs.mathlib_revision }}" >> "$GITHUB_STEP_SUMMARY"
           echo '```' >> "$GITHUB_STEP_SUMMARY"
-
-  build-e2b-template:
-    if: ${{ always() && inputs.build_e2b_template && (needs.build-and-inspect.result == 'success' || inputs.existing_runner_image != '') }}
-    needs: build-and-inspect
-    permissions:
-      contents: read
-      packages: read
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    environment: proofweave-runner-alpha
-    steps:
-      - name: Check out the reviewed template builder
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-
-      - name: Use the repository Node version
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
-        with:
-          node-version: 22
-          cache: npm
-
-      - name: Install locked dependencies
-        run: npm ci --ignore-scripts
-
-      - name: Validate the reviewed Runner image source
-        env:
-          REVIEWED_RUNNER_IMAGE: ${{ inputs.existing_runner_image || needs.build-and-inspect.outputs.runner_image }}
-          REVIEWED_RUNNER_PREFIX: "ghcr.io/${{ github.repository_owner }}/proofweave-lean-runner@sha256:"
-        run: >-
-          node --input-type=module -e '
-          const [image, prefix] = process.argv.slice(1);
-          if (!image.startsWith(prefix)) throw new Error("Template recovery accepts only this repository owner Proofweave Runner image.");
-          ' "$REVIEWED_RUNNER_IMAGE" "$REVIEWED_RUNNER_PREFIX"
-
-      # This job has packages:read only. Its short-lived GITHUB_TOKEN lets E2B
-      # import the private image without exposing the package-write token used
-      # by the separate publication job or requiring a long-lived package PAT.
-      - name: Build the E2B template from the immutable private image
-        env:
-          E2B_API_KEY: ${{ secrets.E2B_API_KEY }}
-          PROOFWEAVE_E2B_RUNNER_IMAGE: ${{ inputs.existing_runner_image || needs.build-and-inspect.outputs.runner_image }}
-          PROOFWEAVE_E2B_TEMPLATE_NAME: proofweave-runner:${{ github.run_id }}
-          PROOFWEAVE_E2B_CPU: "2"
-          PROOFWEAVE_E2B_MEMORY_MB: "2048"
-          PROOFWEAVE_E2B_REGISTRY_USERNAME: ${{ github.actor }}
-          PROOFWEAVE_E2B_REGISTRY_PASSWORD: ${{ github.token }}
-        run: npm run runner:e2b:template:build
