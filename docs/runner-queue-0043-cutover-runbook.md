@@ -203,8 +203,7 @@ observation interval in the release record. If any item is unknown, inherited,
 or cannot be inspected, the release is **not authorized to merge or deploy**.
 Under `solo_alpha`, the same Person may perform and accept the inspection, but
 the release record must retain that non-independent limitation. A signed begin
-snapshot cannot substitute for this external gate, and neither proves
-continuous or hosted-exclusive isolation.
+snapshot cannot substitute for this external gate. It neither proves continuous or hosted-exclusive isolation.
 
 ## Phase 1 — Freeze producers
 
