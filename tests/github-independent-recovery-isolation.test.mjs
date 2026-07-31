@@ -51,9 +51,9 @@ test("checked-in production policy fixes resource identity and enrolls only the 
     "3f9e7934a04a22ec",
   );
   assert.deepEqual(policy.recoveryOperatorKeys, [{
-    keyId: "release-operator:alexyu-20260728",
-    publicKey: "i-0Y3KVtoeVA8U6F7WX2_jLjNCSTWGRK76-f3K48bsM",
-    keyFingerprint: "sha256:f2bbb9b62a10ab014030209be94679aa67d56e00700329e7b60a9686a8e7f162",
+    keyId: "release-operator:alexyu-20260731",
+    publicKey: "l0gfrqJjGLU00IlnVIaIOeSUH8kYmiXM3DNvxYYkSsU",
+    keyFingerprint: "sha256:17c76e1022444a6008bb7fb83385f1c5cf0f39b1e09521862d6f80a6cb89161b",
   }]);
   const configuration = await recoveryIsolationReleaseConfiguration({
     environment: {},

@@ -152,7 +152,7 @@ the release-reviewed `config/production-drill-policy.json`. Optional
 `PROOFWEAVE_DRILL_GITHUB_REPOSITORY_ID`, and
 `PROOFWEAVE_DRILL_RECOVERY_TRUSTED_KEYS_JSON` values are exact-match operator
 assertions; they cannot add authority. The checked-in policy enrolls only the
-reviewed public key `release-operator:alexyu-20260728`; its private JWK stays
+reviewed public key `release-operator:alexyu-20260731`; its private JWK stays
 outside the repository in a regular mode-`0600` file.
 
 The three canonical paths are mandatory; the list may contain up to five

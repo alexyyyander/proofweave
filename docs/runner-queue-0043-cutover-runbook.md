@@ -93,8 +93,8 @@ repository API on 2026-07-28. It also fixes the canonical Runner origin
 fingerprint `3f9e7934a04a22ec`. The Runner health endpoint is derived as
 `/healthz`; it is not a separate resource identity.
 
-Policy version 3 enrolls the public recovery operator key
-`release-operator:alexyu-20260728`. The repository contains only its canonical
+Policy version 4 enrolls the public recovery operator key
+`release-operator:alexyu-20260731`. The repository contains only its canonical
 32-byte base64url public key and deterministic fingerprint; it cannot prove
 where the corresponding private JWK is held or whether it remains usable.
 Operational authority therefore requires a separately checked external,
@@ -110,8 +110,8 @@ private bytes:
 
 ```bash
 npm run runtime:github-independent:drill:key -- verify \
-  --key-id release-operator:alexyu-20260728 \
-  --private-key-file "$HOME/.proofweave/release-keys/release-operator-alexyu-20260728.private.jwk" \
+  --key-id release-operator:alexyu-20260731 \
+  --private-key-file "$HOME/.proofweave/release-keys/release-operator-alexyu-20260731.private.jwk" \
   --repository-root "$PWD"
 ```
 
@@ -122,7 +122,10 @@ the Ed25519 private/public members match, and the derived public entry exactly
 matches the reviewed policy. Its stdout contains only the
 canonical private-file path, environment variable names, and public enrollment
 metadata. If the private file is unavailable, do not claim that recovery
-authority is ready and do not create a replacement under the same key ID.
+authority is ready and do not create a replacement under the same key ID. The
+unreleased `release-operator:alexyu-20260728` candidate was replaced before
+production because no corresponding private-key custody file could be found;
+it is not trusted by policy version 4.
 
 For a new operator or rotation, generate the key directly at its external
 destination:
