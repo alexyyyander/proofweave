@@ -417,7 +417,25 @@ npm run release:manifest:strict
 It must exit zero with `validation.state` equal to `valid`. Preserve the
 manifest and its content hash in the release record.
 
-While execution remains disabled, verify:
+While execution remains disabled, run the explicitly paused Phase-6
+inspection:
+
+```bash
+npm run runtime:github-independent:drill -- phase6
+```
+
+This command accepts only Runner `state=paused` with
+`executionEnabled=false`. It still binds the complete Runner revision, Sites
+version and project, approved image, E2B template and build, Turso fingerprint,
+and live migration ledger to the strict release manifest. A `ready` Runner is
+rejected in this mode. The default `preflight`, plus `begin`, `record`, and
+`finalize`, continue to require `state=ready` and `executionEnabled=true`.
+
+The Phase-6 result is release-identity and non-mutating health evidence only.
+It does not run Lean, verify a proof, make a production closure eligible, or
+replace the controlled smoke and persisted evidence required in Phase 7.
+
+With the paused inspection, verify:
 
 - Sites public reads and authenticated read-only views;
 - OAuth discovery and gateway health;
@@ -456,9 +474,10 @@ ORDER BY event_sequence;
 ```
 
 Immediately set `RUNNER_EXECUTION_ENABLED=false` again and stop the controlled
-consumer. Re-run strict manifest mode and the non-mutating health checks. A
-Runner readiness response or a zero exit from repository tests is not a
-substitute for this persisted smoke evidence.
+consumer. Re-run strict manifest mode and
+`npm run runtime:github-independent:drill -- phase6`. A paused or ready Runner
+health response, a Phase-6 pass, or a zero exit from repository tests is not a
+substitute for the persisted smoke evidence.
 
 ## Phase 8 — Unfreeze
 

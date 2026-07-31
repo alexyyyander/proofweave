@@ -31,6 +31,11 @@ const imageDigestPattern = /^[A-Za-z0-9][A-Za-z0-9./:_-]*@sha256:[a-f0-9]{64}$/;
 const publicLabelPattern = /^[A-Za-z0-9][A-Za-z0-9:._+/-]{0,319}$/;
 const maxJsonBytes = 65_536;
 
+export const runnerReleaseHealthModes = Object.freeze({
+  liveExecution: "live_execution",
+  phase6Paused: "phase6_paused",
+});
+
 export class GithubIndependentLiveReleaseBindingError extends Error {
   constructor(code, options) {
     super(code, options);
@@ -66,7 +71,9 @@ export async function inspectRunnerReleaseHealth({
   fetcher,
   runnerOrigin,
   expected,
+  mode = runnerReleaseHealthModes.liveExecution,
 } = {}) {
+  const lifecycle = runnerLifecycleForMode(mode);
   const url = fixedHttpsUrl(runnerOrigin, "/healthz", "RUNNER_ORIGIN_INVALID");
   const health = await fetchBoundedJson({
     fetcher,
@@ -77,10 +84,10 @@ export async function inspectRunnerReleaseHealth({
   if (
     !isRecord(health) ||
     health.service !== "proofweave-trusted-runner" ||
-    health.state !== "ready" ||
+    health.state !== lifecycle.state ||
     health.provider !== "e2b" ||
     health.revision !== expected?.revision ||
-    health.executionEnabled !== true ||
+    health.executionEnabled !== lifecycle.executionEnabled ||
     health.executionBoundary !== "isolated-sandbox-only" ||
     !Object.hasOwn(health, "lastWakeAt")
   ) {
@@ -99,18 +106,34 @@ export async function inspectRunnerReleaseHealth({
     },
     "RUNNER_RELEASE_IDENTITY_MISMATCH",
   );
+  if (
+    releaseDiagnostics.databaseFingerprint !== expected?.databaseFingerprint ||
+    releaseDiagnostics.ledgerHead !== expected?.ledgerHead
+  ) {
+    throw error("LIVE_RELEASE_AUTHORITY_MISMATCH");
+  }
   const runnerPolicy = normalizeRunnerPolicy(health.runnerPolicy, expected);
   return Object.freeze({
     service: health.service,
     state: health.state,
     provider: health.provider,
     revision: health.revision,
-    executionEnabled: true,
+    executionEnabled: lifecycle.executionEnabled,
     executionBoundary: health.executionBoundary,
     lastWakeAt: normalizeOptionalTimestamp(health.lastWakeAt),
     releaseDiagnostics,
     runnerPolicy,
   });
+}
+
+function runnerLifecycleForMode(mode) {
+  if (mode === runnerReleaseHealthModes.liveExecution) {
+    return Object.freeze({ state: "ready", executionEnabled: true });
+  }
+  if (mode === runnerReleaseHealthModes.phase6Paused) {
+    return Object.freeze({ state: "paused", executionEnabled: false });
+  }
+  throw error("RUNNER_HEALTH_MODE_INVALID");
 }
 
 export function bindLiveReleaseAuthority({

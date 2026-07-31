@@ -110,13 +110,28 @@ single current release completes the acceptance drill below.
 
 ## Acceptance drill
 
-The operator command is:
+Before enabling execution, the operator runs the explicit Phase-6
+non-mutating inspection:
+
+```sh
+npm run runtime:github-independent:drill -- phase6
+```
+
+It accepts only a `paused` Runner with execution disabled while still checking
+the complete release, database, template, image, and approved-policy identity.
+It reports `productionEligible=false` and does not run Lean or verify a proof.
+
+After the controlled Runner is deliberately enabled, the live operator command
+is:
 
 ```sh
 npm run runtime:github-independent:drill
 ```
 
-With no phase argument it is a read-only preflight. It fails unless
+With no phase argument it is a read-only live-execution preflight. It requires
+the Runner to be `ready` with execution enabled; `begin`, `record`, and
+`finalize` always use this live mode and cannot be switched to the paused mode.
+It fails unless
 `PROOFWEAVE_GITHUB_RECOVERY_ENABLED=false` and verifies:
 
 - the strict release manifest is valid and source, Site, gateway, and Runner
