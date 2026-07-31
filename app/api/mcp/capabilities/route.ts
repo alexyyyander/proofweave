@@ -2,6 +2,8 @@ import compatibilityContract from "@/packages/protocol/proofweave-client-compati
 import {
   getControlPlaneOperationState,
   getLiveControlPlaneDiagnostics,
+  getMcpOperationState,
+  getParticipantOperationState,
   type LiveControlPlaneDiagnostics,
 } from "@/db";
 
@@ -21,7 +23,23 @@ const distributionManifestPath = "/downloads/proofweave-research-marketplace.jso
 export async function GET(request: Request) {
   const distributionManifestUrl = new URL(distributionManifestPath, request.url).toString();
   const releaseDiagnostics = await safeReleaseDiagnostics();
-  const controlPlaneOperations = getControlPlaneOperationState();
+  const globalControlPlaneOperations = getControlPlaneOperationState();
+  const participantOperations = getParticipantOperationState();
+  const mcpOperations = getMcpOperationState();
+  // Preserve the original connector contract while exposing the richer
+  // per-surface states alongside it. Existing connectors only inspect mode and
+  // writesEnabled, but some installations also validate the schema version.
+  const controlPlaneOperations = {
+    schemaVersion: "pw-control-plane-operation-state-v1",
+    mode: participantOperations.mode,
+    writesEnabled: participantOperations.writesEnabled,
+    explicitlyConfigured:
+      participantOperations.global.explicitlyConfigured
+      && participantOperations.configuration.explicitlyConfigured,
+    failureCode: participantOperations.writesEnabled
+      ? null
+      : participantOperations.failureCodes[0] ?? "control_plane_read_only",
+  };
   return Response.json({
     protocolVersion: compatibilityContract.protocolVersion,
     toolSchemaVersion: compatibilityContract.toolSchemaVersion,
@@ -31,6 +49,9 @@ export async function GET(request: Request) {
     capabilities,
     releaseDiagnostics,
     controlPlaneOperations,
+    participantOperations,
+    globalControlPlaneOperations,
+    mcpOperations,
     updatePolicy: {
       liveWithoutRestart: [
         "server_workflow",

@@ -1,8 +1,10 @@
 import {
   MissingDatabaseBindingError,
-  getControlPlaneOperationState,
   getD1,
+  getMcpD1,
+  getMcpOperationState,
   getOAuthRefreshRotationCapability,
+  getParticipantOperationState,
 } from "@/db";
 import { createD1SitesIdentityRuntime } from "@/services/proofweave-identity/sites-runtime.mjs";
 import { ControlPlaneReadOnlyError } from "@/services/database/control-plane-operation-mode.mjs";
@@ -20,11 +22,11 @@ export function proofweaveMcpResource(request: Request): string {
 
 export async function handleRemoteMcp(request: Request): Promise<Response> {
   try {
-    const operationState = getControlPlaneOperationState();
+    const operationState = getMcpOperationState();
     const origin = new URL(request.url).origin;
     const settings = env as unknown as Record<string, string | undefined>;
     return await createD1RemoteMcpGatewayRuntime({
-      database: getD1(),
+      database: getMcpD1(),
       resource: `${origin}${proofweaveMcpPath}`,
       issuer: `${origin}/`,
       runnerQueueMode: settings.RUNNER_QUEUE_MODE,
@@ -48,7 +50,7 @@ export async function handleRemoteMcp(request: Request): Promise<Response> {
 
 export async function handleRemoteIdentity(request: Request): Promise<Response> {
   try {
-    const operationState = getControlPlaneOperationState();
+    const operationState = getParticipantOperationState();
     const origin = new URL(request.url).origin;
     return await createD1SitesIdentityRuntime({
       database: getD1(),

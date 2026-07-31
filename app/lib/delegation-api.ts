@@ -1,5 +1,5 @@
 import { getCurrentUser, toPersonIdentity } from "@/app/auth";
-import { getControlPlaneOperationState, MissingDatabaseBindingError } from "@/db";
+import { getParticipantOperationState, MissingDatabaseBindingError } from "@/db";
 import { ControlPlaneReadOnlyError } from "@/services/database/control-plane-operation-mode.mjs";
 import {
   DelegationAuthorizationError,
@@ -9,7 +9,7 @@ import {
 
 export async function currentDelegationIdentity() {
   try {
-    if (getControlPlaneOperationState().mode === "read_only") {
+    if (!getParticipantOperationState().writesEnabled) {
       return delegationFailure(new ControlPlaneReadOnlyError());
     }
     const user = await getCurrentUser();

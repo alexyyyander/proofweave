@@ -1,13 +1,13 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-import { getControlPlaneOperationState } from "@/db";
+import { getParticipantOperationState } from "@/db";
 import { Footer } from "../ui";
 import { Header } from "../header";
 import type { ActivePage } from "./navigation";
 
 export function personalWritesPaused(): boolean {
-  return !getControlPlaneOperationState().writesEnabled;
+  return !getParticipantOperationState().writesEnabled;
 }
 
 export function ReadOnlyPersonalSurface({

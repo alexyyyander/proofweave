@@ -39,7 +39,7 @@ export function createD1SitesIdentityRuntime({
   resource,
   issuer,
   clientRegistrationAllowlistJson = null,
-  operationMode = controlPlaneOperationMode.readWrite,
+  operationMode = controlPlaneOperationMode.readOnly,
   refreshTokenRotator = null,
 }) {
   if (!database || typeof database.prepare !== "function") {

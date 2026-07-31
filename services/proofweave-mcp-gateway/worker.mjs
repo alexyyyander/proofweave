@@ -25,7 +25,7 @@ export function createRemoteMcpGateway({
   identityProvider,
   store,
   rateLimiter = allowAllRemoteMcpRateLimiter,
-  operationMode = controlPlaneOperationMode.readWrite,
+  operationMode = controlPlaneOperationMode.readOnly,
 }) {
   if (!rateLimiter || typeof rateLimiter.enforce !== "function") {
     throw new TypeError("Proofweave MCP gateway requires a rate limiter with enforce().");

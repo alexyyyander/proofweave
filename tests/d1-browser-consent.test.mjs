@@ -45,6 +45,7 @@ test("browser consent creates a one-time, Person-bound Agent installation and PK
   const provider = createProofweaveOAuthProvider({
     resource,
     store,
+    operationMode: "read_write",
     sessionResolver: {
       async currentSession() { return { personId: "person:browser-consent" }; },
       authorizationRequired() { return new Response("Sign in", { status: 401 }); },
@@ -105,6 +106,7 @@ test("browser consent hides an Agent whose delegation does not cover the request
   const provider = createProofweaveOAuthProvider({
     resource,
     store,
+    operationMode: "read_write",
     sessionResolver: {
       async currentSession() { return { personId: "person:browser-consent" }; },
       authorizationRequired() { return new Response("Sign in", { status: 401 }); },
@@ -293,7 +295,12 @@ test("read-only Sites identity rotates an existing refresh token without opening
 });
 
 test("Sites identity exposes dynamic registration only from explicit deployment allowlist JSON", async () => {
-  const closed = createD1SitesIdentityRuntime({ database, resource, issuer });
+  const closed = createD1SitesIdentityRuntime({
+    database,
+    resource,
+    issuer,
+    operationMode: "read_write",
+  });
   const closedMetadata = await (await closed.fetch(new Request(`${issuer}/.well-known/oauth-authorization-server`))).json();
   assert.equal(Object.hasOwn(closedMetadata, "registration_endpoint"), false);
 
@@ -301,6 +308,7 @@ test("Sites identity exposes dynamic registration only from explicit deployment 
     database,
     resource,
     issuer,
+    operationMode: "read_write",
     clientRegistrationAllowlistJson: JSON.stringify([{
       client_name: "Approved Codex",
       redirect_uris: ["https://codex.example.test/callback"],

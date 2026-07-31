@@ -5,9 +5,7 @@ import { readFile } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
 
 export const cutoverEvidenceSchemaVersion =
-  "pw-production-contribution-cutover-evidence-v3";
-const legacyCutoverEvidenceSchemaVersion =
-  "pw-production-contribution-cutover-evidence-v2";
+  "pw-production-contribution-cutover-evidence-v4";
 const governanceModes = new Set(["independent_observer", "solo_alpha"]);
 const releaseTiers = new Set(["public_alpha", "stable"]);
 
@@ -56,24 +54,18 @@ export function verifyProductionContributionCutover(evidence) {
   }
 
   inspectForbiddenKeys(evidence, "$", add);
-  const legacyEvidence =
-    evidence.schemaVersion === legacyCutoverEvidenceSchemaVersion;
-  if (
-    evidence.schemaVersion !== cutoverEvidenceSchemaVersion
-    && !legacyEvidence
-  ) {
+  if (evidence.schemaVersion !== cutoverEvidenceSchemaVersion) {
     add(
       "SCHEMA_VERSION_INVALID",
       "schemaVersion",
-      `schemaVersion must equal ${JSON.stringify(cutoverEvidenceSchemaVersion)} or the legacy ${JSON.stringify(legacyCutoverEvidenceSchemaVersion)}.`,
+      `schemaVersion must equal ${JSON.stringify(cutoverEvidenceSchemaVersion)}. Earlier evidence may be retained as history but cannot authorize the independently fenced 0043 cutover.`,
     );
   }
-  const governanceMode = legacyEvidence
-    ? "independent_observer"
-    : verifyGovernance(evidence.governance, add);
+  const governanceMode = verifyGovernance(evidence.governance, add);
   requireTimestamp(evidence.recordedAt, "recordedAt", add);
 
   verifyPitrClone(evidence.pitrClone, add);
+  verifyProductionRecoveryPoint(evidence.productionRecoveryPoint, add);
   verifyMigrationAuthorization(evidence.migration, add);
   verifyTimeline(evidence, add);
   verifyRelease(evidence.release, add);
@@ -90,6 +82,18 @@ export function verifyProductionContributionCutover(evidence) {
       "PITR clone evidence is not bound to the recorded production control-plane fingerprint.",
     );
   }
+  if (
+    isRecord(evidence.productionRecoveryPoint)
+    && isRecord(evidence.controlPlane)
+    && evidence.productionRecoveryPoint.databaseFingerprint
+      !== evidence.controlPlane.databaseFingerprint
+  ) {
+    add(
+      "PRODUCTION_RECOVERY_AUTHORITY_DRIFT",
+      "productionRecoveryPoint.databaseFingerprint",
+      "The fresh production recovery point is not bound to the recorded production control-plane fingerprint.",
+    );
+  }
   verifyOwnersAndRollback(
     evidence.owners,
     evidence.rollback,
@@ -97,29 +101,40 @@ export function verifyProductionContributionCutover(evidence) {
     governanceMode,
     add,
   );
+  if (
+    isRecord(evidence.productionRecoveryPoint)
+    && isRecord(evidence.rollback)
+    && evidence.productionRecoveryPoint.restoreOwnerPersonId
+      !== evidence.rollback.pitrRestoreOwnerPersonId
+  ) {
+    add(
+      "PRODUCTION_RECOVERY_OWNER_DRIFT",
+      "productionRecoveryPoint.restoreOwnerPersonId",
+      "The fresh recovery point and roll-forward record must name the same PITR restore owner.",
+    );
+  }
 
   if (issues.length > 0) {
     throw new ProductionContributionCutoverEvidenceError(issues);
   }
 
   return Object.freeze({
-    schemaVersion: "pw-production-contribution-cutover-verdict-v3",
+    schemaVersion: "pw-production-contribution-cutover-verdict-v4",
     outcome: "passed",
     decision: "pre_migration_authorization_evidence_ready",
     governanceMode,
-    releaseTier: legacyEvidence
-      ? "legacy_unspecified"
-      : evidence.governance.releaseTier,
+    releaseTier: evidence.governance.releaseTier,
     releaseSha: evidence.release.commitSha,
     migrationHead: evidence.migration.currentProductionHead,
     plannedMigration: evidence.migration.plannedMigration,
-    targetMode: evidence.controlPlane.targetMode,
+    targetModes: Object.freeze({ ...evidence.controlPlane.targetModes }),
     currentSafetyMode: "read_only",
     authority: evidence.controlPlane.authority,
     databaseFingerprint: evidence.controlPlane.databaseFingerprint,
     rollbackOwner: evidence.rollback.ownerPersonId,
     checkedBoundaries: Object.freeze([
       "PITR clone rehearsal identity",
+      "fresh quiescent production recovery point and retention boundary",
       "0043 migration plan and pre-migration boundary",
       "stable pre-migration queue and Run counts",
       "Sites, MCP, and Runner release SHA identity",
@@ -137,7 +152,7 @@ export function verifyProductionContributionCutover(evidence) {
         : "capture and independently verify a separate post-migration evidence record",
       "deploy Sites, MCP/gateway, and Runner from the recorded SHA",
       "run the controlled persisted Runner smoke",
-      "restore read_write only after explicit release sign-off",
+      "restore the global write ceiling, MCP writes, and participant writes in three separately observed steps after explicit release sign-off",
     ]),
     limitations:
       governanceMode === "solo_alpha"
@@ -237,6 +252,58 @@ function verifyPitrClone(clone, add) {
     clone.eventSequenceSchema,
     clone.postMigrationCounts,
     "pitrClone",
+    add,
+  );
+}
+
+function verifyProductionRecoveryPoint(recovery, add) {
+  if (!requireRecord(recovery, "productionRecoveryPoint", add)) return;
+  requireNonEmpty(
+    recovery.snapshotId,
+    "PRODUCTION_RECOVERY_POINT_ID_MISSING",
+    "productionRecoveryPoint.snapshotId",
+    add,
+  );
+  requireTimestamp(
+    recovery.createdAt,
+    "productionRecoveryPoint.createdAt",
+    add,
+  );
+  requireTimestamp(
+    recovery.retentionDeadline,
+    "productionRecoveryPoint.retentionDeadline",
+    add,
+  );
+  requireFingerprint(
+    recovery.databaseFingerprint,
+    "productionRecoveryPoint.databaseFingerprint",
+    add,
+  );
+  requireEqual(
+    recovery.migrationHead,
+    migration0042,
+    "PRODUCTION_RECOVERY_HEAD_INVALID",
+    "productionRecoveryPoint.migrationHead",
+    add,
+  );
+  requireEqual(
+    recovery.state,
+    "complete",
+    "PRODUCTION_RECOVERY_POINT_INCOMPLETE",
+    "productionRecoveryPoint.state",
+    add,
+  );
+  requireEqual(
+    recovery.isolatedRestoreSupported,
+    true,
+    "PRODUCTION_RECOVERY_RESTORE_NOT_CONFIRMED",
+    "productionRecoveryPoint.isolatedRestoreSupported",
+    add,
+  );
+  requireNonEmpty(
+    recovery.restoreOwnerPersonId,
+    "PRODUCTION_RECOVERY_OWNER_MISSING",
+    "productionRecoveryPoint.restoreOwnerPersonId",
     add,
   );
 }
@@ -431,13 +498,60 @@ function verifyControlPlane(controlPlane, release, add) {
     "controlPlane.databaseFingerprint",
     add,
   );
-  requireEqual(
-    controlPlane.targetMode,
-    "read_write",
-    "CUTOVER_TARGET_MODE_INVALID",
-    "controlPlane.targetMode",
-    add,
-  );
+  if (requireRecord(controlPlane.targetModes, "controlPlane.targetModes", add)) {
+    requireEqual(
+      controlPlane.targetModes.global,
+      "read_write",
+      "CUTOVER_GLOBAL_TARGET_MODE_INVALID",
+      "controlPlane.targetModes.global",
+      add,
+    );
+    requireEqual(
+      controlPlane.targetModes.mcp,
+      "read_write",
+      "CUTOVER_MCP_TARGET_MODE_INVALID",
+      "controlPlane.targetModes.mcp",
+      add,
+    );
+    requireEqual(
+      controlPlane.targetModes.participant,
+      "read_write",
+      "CUTOVER_PARTICIPANT_TARGET_MODE_INVALID",
+      "controlPlane.targetModes.participant",
+      add,
+    );
+    requireEqual(
+      controlPlane.targetModes.runnerExecution,
+      true,
+      "CUTOVER_RUNNER_TARGET_MODE_INVALID",
+      "controlPlane.targetModes.runnerExecution",
+      add,
+    );
+  }
+
+  if (requireRecord(controlPlane.global, "controlPlane.global", add)) {
+    requireEqual(
+      controlPlane.global.mode,
+      "read_only",
+      "GLOBAL_WRITE_CEILING_NOT_FROZEN",
+      "controlPlane.global.mode",
+      add,
+    );
+    requireEqual(
+      controlPlane.global.writesEnabled,
+      false,
+      "GLOBAL_WRITE_CEILING_NOT_FROZEN",
+      "controlPlane.global.writesEnabled",
+      add,
+    );
+    requireEqual(
+      controlPlane.global.explicitlyConfigured,
+      true,
+      "GLOBAL_WRITE_CEILING_IMPLICIT",
+      "controlPlane.global.explicitlyConfigured",
+      add,
+    );
+  }
 
   for (const surface of ["website", "mcp", "runner"]) {
     const observed = controlPlane[surface];
@@ -475,12 +589,49 @@ function verifyControlPlane(controlPlane, release, add) {
         `${surface} must still report read_only with writesEnabled=false during offline cutover verification.`,
       );
     }
+    requireEqual(
+      observed.configurationMode,
+      "read_only",
+      "SURFACE_WRITE_FENCE_NOT_FROZEN",
+      `controlPlane.${surface}.configurationMode`,
+      add,
+    );
+    requireEqual(
+      observed.configurationExplicitlyConfigured,
+      true,
+      "SURFACE_WRITE_FENCE_IMPLICIT",
+      `controlPlane.${surface}.configurationExplicitlyConfigured`,
+      add,
+    );
+    requireEqual(
+      observed.independentFreezeControl,
+      true,
+      "SURFACE_FREEZE_CONTROL_NOT_INDEPENDENT",
+      `controlPlane.${surface}.independentFreezeControl`,
+      add,
+    );
+    requireEqual(
+      observed.mutationProbe,
+      "blocked_503",
+      "SURFACE_MUTATION_PROBE_NOT_BLOCKED",
+      `controlPlane.${surface}.mutationProbe`,
+      add,
+    );
   }
-  if (isRecord(controlPlane.runner) && controlPlane.runner.executionEnabled !== false) {
-    add(
-      "RUNNER_ENABLED_TOO_EARLY",
-      "controlPlane.runner.executionEnabled",
-      "Runner execution must remain frozen until controlled smoke authorization.",
+  if (isRecord(controlPlane.runner)) {
+    if (controlPlane.runner.executionEnabled !== false) {
+      add(
+        "RUNNER_ENABLED_TOO_EARLY",
+        "controlPlane.runner.executionEnabled",
+        "Runner execution must remain frozen until controlled smoke authorization.",
+      );
+    }
+    requireEqual(
+      controlPlane.runner.providerFreezeConfirmed,
+      true,
+      "RUNNER_PROVIDER_FREEZE_NOT_CONFIRMED",
+      "controlPlane.runner.providerFreezeConfirmed",
+      add,
     );
   }
 }
@@ -496,7 +647,8 @@ function verifyOwnersAndRollback(
     const operatorKeys = [
       "releaseCommander",
       "databaseOwner",
-      "sitesMcpOwner",
+      "sitesOwner",
+      "mcpOwner",
       "runnerOwner",
       "incidentOwner",
     ];
@@ -621,7 +773,8 @@ export function productionCutoverAcceptanceArtifactHash(evidence) {
   const ownersPayload = {
     releaseCommander: owners.releaseCommander,
     databaseOwner: owners.databaseOwner,
-    sitesMcpOwner: owners.sitesMcpOwner,
+    sitesOwner: owners.sitesOwner,
+    mcpOwner: owners.mcpOwner,
     runnerOwner: owners.runnerOwner,
     incidentOwner: owners.incidentOwner,
     independentObserver: {
@@ -647,10 +800,9 @@ export function productionCutoverAcceptanceArtifactHash(evidence) {
     controlPlane: evidence?.controlPlane,
     owners: ownersPayload,
     rollback: evidence?.rollback,
+    productionRecoveryPoint: evidence?.productionRecoveryPoint,
   };
-  if (evidence?.schemaVersion === cutoverEvidenceSchemaVersion) {
-    payload.governance = evidence?.governance;
-  }
+  payload.governance = evidence?.governance;
   return `sha256:${createHash("sha256")
     .update(canonicalJson(payload))
     .digest("hex")}`;
@@ -718,6 +870,12 @@ function verifyTimeline(evidence, add) {
   const recordedAt = parseTimestamp(evidence.recordedAt);
   const pitrTimestamp = parseTimestamp(evidence.pitrClone?.pitrTimestamp);
   const cloneCompletedAt = parseTimestamp(evidence.pitrClone?.completedAt);
+  const recoveryPointCreatedAt = parseTimestamp(
+    evidence.productionRecoveryPoint?.createdAt,
+  );
+  const recoveryPointRetentionDeadline = parseTimestamp(
+    evidence.productionRecoveryPoint?.retentionDeadline,
+  );
   const firstObservedAt = parseTimestamp(
     evidence.migration?.firstObservedAt,
   );
@@ -733,7 +891,8 @@ function verifyTimeline(evidence, add) {
   const operatorKeys = [
     "releaseCommander",
     "databaseOwner",
-    "sitesMcpOwner",
+    "sitesOwner",
+    "mcpOwner",
     "runnerOwner",
     "incidentOwner",
   ];
@@ -768,6 +927,50 @@ function verifyTimeline(evidence, add) {
       "CUTOVER_TIMELINE_INVALID",
       "migration.secondObservedAt",
       "The second frozen count observation cannot precede the first.",
+    );
+  }
+  if (
+    firstObservedAt !== null
+    && recoveryPointCreatedAt !== null
+    && firstObservedAt > recoveryPointCreatedAt
+  ) {
+    add(
+      "CUTOVER_TIMELINE_INVALID",
+      "productionRecoveryPoint.createdAt",
+      "The fresh production recovery point cannot predate the first frozen pre-migration count observation.",
+    );
+  }
+  if (
+    recoveryPointCreatedAt !== null
+    && secondObservedAt !== null
+    && recoveryPointCreatedAt > secondObservedAt
+  ) {
+    add(
+      "CUTOVER_TIMELINE_INVALID",
+      "migration.secondObservedAt",
+      "The second frozen count observation must follow creation of the fresh production recovery point.",
+    );
+  }
+  if (
+    recoveryPointCreatedAt !== null
+    && acceptanceAcceptedAt !== null
+    && recoveryPointCreatedAt > acceptanceAcceptedAt
+  ) {
+    add(
+      "CUTOVER_TIMELINE_INVALID",
+      `owners.${acceptancePath}.acceptedAt`,
+      "Cutover acceptance must follow completion of the fresh production recovery point.",
+    );
+  }
+  if (
+    recordedAt !== null
+    && recoveryPointRetentionDeadline !== null
+    && recoveryPointRetentionDeadline <= recordedAt
+  ) {
+    add(
+      "PRODUCTION_RECOVERY_RETENTION_EXPIRED",
+      "productionRecoveryPoint.retentionDeadline",
+      "The recovery point must remain inside provider retention when the authorization record is finalized.",
     );
   }
   if (
@@ -927,7 +1130,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
       })
       .catch((error) => {
         process.stderr.write(`${JSON.stringify({
-          schemaVersion: "pw-production-contribution-cutover-verdict-v3",
+          schemaVersion: "pw-production-contribution-cutover-verdict-v4",
           outcome: "failed",
           errorCode:
             error instanceof ProductionContributionCutoverEvidenceError

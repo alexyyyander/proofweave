@@ -1,6 +1,6 @@
 # Proofweave full contribution-chain release plan
 
-Status date: 2026-07-29
+Status date: 2026-07-31
 Release posture: production writes remain frozen until every release gate below
 has recorded evidence.
 
@@ -13,8 +13,8 @@ has recorded evidence.
 | Single-maintainer executable chain | Local Miniflare D1/R2, primary Lean Run, two fresh Lean replays, signed test reviews, and signed test Receipt pass through one bounded command | complete for isolated test only |
 | PITR clone rehearsal | 0043 applied and queue-sequence smoke passed on the isolated clone | complete for rehearsal only |
 | Production cutover evidence | Offline fail-closed verifier implemented; live evidence not yet collected | blocked |
-| Independent release observer | Must be a genuinely different accountable person; none is currently recorded | blocked |
-| Same-SHA read-only deployment | Sites v148 reports the candidate SHA and Turso fingerprint; the hosted Render Runner is suspended | incomplete |
+| Cutover acceptance | `solo_alpha` may authorize only a `public_alpha` infrastructure cutover; stable still requires a genuinely different accountable observer | bounded alpha path available |
+| Same-SHA read-only deployment | Must be recollected after the split-fence release is deployed; the hosted Render Runner remains a separate provider gate | incomplete |
 | Credentialed Person A → Person B smoke | Offline evidence-graph verifier implemented; no real production smoke performed | pending deployment and two people |
 | Public Receipt verification | Requires the real credentialed smoke | pending |
 
@@ -117,15 +117,19 @@ production, record named people for:
 
 - release commander;
 - database owner;
-- Sites/gateway owner;
 - Runner owner;
-- incident owner; and
-- independent observer.
+- incident owner;
+- Sites participant owner;
+- MCP gateway owner;
+- cutover acceptor.
 
-One person may perform several operator roles, but the independent observer
-must be a different accountable person who can inspect the recorded release
-evidence. A second GitHub account owned by the same person does not create
-independence.
+One person may perform several operator roles. For `solo_alpha`, the release
+commander may also be the cutover acceptor only for the explicitly labelled
+`public_alpha` infrastructure release, with the limitation bound to the exact
+evidence artifact. A `stable` release still requires an independent observer
+who is a different accountable Person. A second account owned by the same
+Person never creates independence, and neither governance path substitutes for
+different-Person mathematical review of a certified Receipt.
 
 ### Exit criteria
 
@@ -133,8 +137,10 @@ independence.
 - Run, queue-message, and queue-event counts remain stable;
 - active leases equal zero;
 - every consumer and alternate writer is frozen;
-- provider-side permissions and workflow closures have been inspected; and
-- the independent observer has accepted the release window.
+- provider-side permissions and workflow closures have been inspected;
+- the selected cutover acceptor has accepted the exact evidence artifact; and
+- `solo_alpha` evidence explicitly states that it authorizes infrastructure
+  only and does not constitute independent review.
 
 ## Phase 3 — Production migration
 
@@ -162,17 +168,18 @@ isolation. It is not the fresh recovery point required for a later production
 window.
 
 The production cutover gate is deliberately split at the migration boundary.
-Its v2 verdict authorizes only the next controlled action while production is
+Its v4 verdict authorizes only the next controlled action while production is
 still at 0042 and frozen. Applying 0043 requires that passing pre-migration
 record; deploying or enabling any writer additionally requires a new,
-independently inspected post-migration record. One evidence document cannot
-claim both states.
+separately accepted post-migration record under the same governance mode. One
+evidence document cannot claim both states.
 
 ## Phase 4 — Same-SHA deployment while read-only
 
 Deploy the website, OAuth/MCP gateway, hosted Runner, Runner image, and E2B
-template from one reviewed release record. Keep participant writes disabled
-and Runner execution off.
+template from one reviewed release record. Keep the explicit global write
+ceiling, MCP surface fence, and participant surface fence at `read_only`, and
+keep Runner execution off.
 
 ### Exit criteria
 
@@ -180,6 +187,8 @@ and Runner execution off.
 - Sites, gateway, and Runner report the same Turso database fingerprint;
 - live diagnostics report migration head `0043`;
 - the strict release manifest is valid;
+- the strict manifest records explicit valid values for the global, MCP, and
+  participant modes;
 - public reads, OAuth discovery, and health endpoints work; and
 - durable counts remain unchanged.
 
@@ -201,7 +210,24 @@ While public producers remain frozen:
 - strict release diagnostics remain valid; and
 - the correlation ID and non-secret evidence are preserved.
 
-## Phase 6 — Credentialed two-Person smoke
+## Phase 6 — Staged unfreeze
+
+After post-migration acceptance under the same governance mode, open production
+in separately observed steps:
+
+1. start the exact-SHA reviewed Runner consumer;
+2. set the global write ceiling to `read_write` while MCP and participant
+   surface modes remain `read_only`, and prove both write probes stay blocked;
+3. set MCP to `read_write`, perform one bounded Agent-originated mutation, and
+   prove participant mutation remains blocked; and
+4. set participant mode to `read_write`, perform one bounded browser mutation,
+   then begin the monitoring window.
+
+Any surface that opens before its step requires immediate refreeze. Automatic
+deployments remain disabled until this staged unfreeze and first-user smoke
+complete.
+
+## Phase 7 — Credentialed ordinary-user and two-Person smoke
 
 ### Researcher Person A
 
@@ -212,6 +238,11 @@ While public producers remain frozen:
 5. Record one owner-approved checkpoint.
 6. Stage one reproducible Artifact Bundle.
 7. Request and receive one isolated Lean result.
+
+Completion through this point establishes the bounded
+`ordinary-user research ready` state: a real user can connect an Agent, record
+approved evidence, and receive a truthful Lean result. It does not establish
+novelty, independent review, credit, or a Contribution Receipt.
 
 ### Reviewer Person B
 
@@ -236,12 +267,6 @@ While public producers remain frozen:
 - every state transition is durable and idempotent;
 - the Receipt is publicly re-verifiable; and
 - the evidence record contains no prompt, private workspace, token, or secret.
-
-## Phase 7 — Unfreeze and observe
-
-Unfreeze in the order defined by the 0043 runbook: reviewed consumer, gateway
-mutations, then Sites participant mutations. Re-enable automatic deployments
-only after their branch, Environment, and approval protections are confirmed.
 
 Observe queue depth, leases, sequencing failures, OAuth failures, Runner
 terminal events, review completion, and Receipt verification throughout the
@@ -270,5 +295,9 @@ The release is:
   SHA, database authority, migration head, or operation mode;
 - **read-only ready** when the same-SHA deployment and non-mutating checks
   pass; and
-- **ordinary-user ready** only after the credentialed two-Person smoke and
-  public Receipt verification both pass.
+- **ordinary-user research ready** only after a real Person A completes Agent
+  connection, Attempt, approved Bundle, and isolated Lean result against the
+  opened production release; and
+- **certified contribution ready** only after a genuinely different Person B
+  completes the required review and the resulting Receipt passes public
+  verification.

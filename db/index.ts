@@ -13,6 +13,7 @@ import {
 import {
   applyControlPlaneOperationMode,
   controlPlaneOperationState,
+  controlPlaneSurfaceOperationState,
 } from "@/services/database/control-plane-operation-mode.mjs";
 import { verifyLiveProofweaveControlPlane } from "@/services/database/libsql-migrations.mjs";
 import { createD1OAuthRefreshRotationCapability } from "@/services/proofweave-identity/d1-oauth-store.mjs";
@@ -48,7 +49,19 @@ export function getD1(): AnyD1Database {
   const values = env as unknown as Record<string, string | undefined>;
   return applyControlPlaneOperationMode(
     getConfiguredControlPlaneDatabase(values),
-    values.PROOFWEAVE_CONTROL_PLANE_MODE,
+    getParticipantOperationState(values).mode,
+  ) as unknown as AnyD1Database;
+}
+
+/**
+ * Return the shared control plane fenced by the independently configured MCP
+ * write mode. Browser/Sites handlers must continue to use getD1().
+ */
+export function getMcpD1(): AnyD1Database {
+  const values = env as unknown as Record<string, string | undefined>;
+  return applyControlPlaneOperationMode(
+    getConfiguredControlPlaneDatabase(values),
+    getMcpOperationState(values).mode,
   ) as unknown as AnyD1Database;
 }
 
@@ -89,6 +102,26 @@ function getConfiguredControlPlaneDatabase(
 export function getControlPlaneOperationState() {
   const values = env as unknown as Record<string, string | undefined>;
   return controlPlaneOperationState(values.PROOFWEAVE_CONTROL_PLANE_MODE);
+}
+
+export function getParticipantOperationState(
+  values = env as unknown as Record<string, string | undefined>,
+) {
+  return controlPlaneSurfaceOperationState({
+    globalValue: values.PROOFWEAVE_CONTROL_PLANE_MODE,
+    surfaceValue: values.PROOFWEAVE_PARTICIPANT_CONTROL_PLANE_MODE,
+    surface: "participant",
+  });
+}
+
+export function getMcpOperationState(
+  values = env as unknown as Record<string, string | undefined>,
+) {
+  return controlPlaneSurfaceOperationState({
+    globalValue: values.PROOFWEAVE_CONTROL_PLANE_MODE,
+    surfaceValue: values.PROOFWEAVE_MCP_CONTROL_PLANE_MODE,
+    surface: "mcp",
+  });
 }
 
 /**

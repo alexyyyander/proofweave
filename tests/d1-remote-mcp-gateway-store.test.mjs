@@ -87,6 +87,7 @@ test("partial Runner dispatch configuration fails closed before serving MCP", ()
       issuer: "https://auth.gateway.example.test",
       database,
       bucket: artifactBucket,
+      operationMode: "read_write",
       receiptIssuerKeyId: "issuer:partial",
     }),
     RemoteMcpRuntimeConfigurationError,
@@ -97,6 +98,7 @@ test("partial Runner dispatch configuration fails closed before serving MCP", ()
       issuer: "https://auth.gateway.example.test",
       database,
       bucket: artifactBucket,
+      operationMode: "read_write",
       runnerApprovedImagesJson: "[]",
     }),
     RemoteMcpRuntimeConfigurationError,
@@ -107,6 +109,7 @@ test("partial Runner dispatch configuration fails closed before serving MCP", ()
       issuer: "https://auth.gateway.example.test",
       database,
       bucket: artifactBucket,
+      operationMode: "read_write",
       runnerQueue: { async send() {} },
       runnerApprovedImagesJson: JSON.stringify([{
         imageDigest: `registry.example.test/proofweave/lean@sha256:${"f".repeat(64)}`,
@@ -213,6 +216,7 @@ test("provider-neutral gateway composes the durable database Runner queue only f
     issuer: "https://auth.gateway.example.test",
     database,
     bucket: artifactBucket,
+    operationMode: "read_write",
     runnerQueueMode: "d1",
     runnerApprovedImagesJson: JSON.stringify([{
       imageDigest: `registry.example.test/proofweave/lean@sha256:${"f".repeat(64)}`,
@@ -744,6 +748,7 @@ test("a verified OAuth token reaches catalog and Attempt D1 boundaries through M
     issuer: "https://auth.gateway.example.test",
     database,
     bucket: artifactBucket,
+    operationMode: "read_write",
   });
   const listed = await callGatewayTool(gateway, resource, accessToken, "list_frontier_problems", {});
   assert.equal(listed.result.isError, undefined);
@@ -803,6 +808,7 @@ test("a prove-delegated OAuth Agent stages a signed v2 Bundle and requests one i
     issuer: "https://auth.gateway.example.test",
     database,
     bucket: artifactBucket,
+    operationMode: "read_write",
     runnerQueue,
     runnerApprovedImagesJson: JSON.stringify([{
       imageDigest: `registry.example.test/proofweave/lean@sha256:${"f".repeat(64)}`,
@@ -866,6 +872,7 @@ test("a prove-delegated OAuth Agent stages a signed v2 Bundle and requests one i
     issuer: "https://auth.gateway.example.test",
     database,
     bucket: artifactBucket,
+    operationMode: "read_write",
   });
   const unavailable = await callGatewayTool(withoutRunner, resource, accessToken, "request_runner_run", {
     attemptId,
@@ -1009,6 +1016,7 @@ test("an accepted independent reviewer can queue and read only a fresh replay of
     issuer: "https://auth.gateway.example.test",
     database,
     bucket: artifactBucket,
+    operationMode: "read_write",
     runnerQueue,
     runnerApprovedImagesJson: JSON.stringify([{
       imageDigest: `registry.example.test/proofweave/lean@sha256:${"f".repeat(64)}`,
@@ -1284,6 +1292,8 @@ function boundGateway({ resource, issuer }) {
         ARTIFACTS: artifactBucket,
         MCP_RESOURCE_URL: resource,
         OAUTH_ISSUER_URL: issuer,
+        PROOFWEAVE_CONTROL_PLANE_MODE: "read_write",
+        PROOFWEAVE_MCP_CONTROL_PLANE_MODE: "read_write",
       });
     },
   };

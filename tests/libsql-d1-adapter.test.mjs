@@ -20,6 +20,7 @@ import {
   applyControlPlaneOperationMode,
   controlPlaneOperationMode,
   controlPlaneOperationState,
+  controlPlaneSurfaceOperationState,
   ControlPlaneOperationModeError,
   ControlPlaneReadOnlyError,
 } from "../services/database/control-plane-operation-mode.mjs";
@@ -122,22 +123,75 @@ test("control-plane operation mode is observable and invalid provider values fai
     mode: "read_only",
     writesEnabled: false,
     explicitlyConfigured: true,
+    failureCode: null,
   });
   assert.deepEqual(controlPlaneOperationState(), {
     schemaVersion: "pw-control-plane-operation-state-v1",
-    mode: "read_write",
-    writesEnabled: true,
+    mode: "read_only",
+    writesEnabled: false,
     explicitlyConfigured: false,
+    failureCode: "operation_mode_missing",
   });
   assert.deepEqual(controlPlaneOperationState("typo"), {
     schemaVersion: "pw-control-plane-operation-state-v1",
     mode: "invalid",
     writesEnabled: false,
     explicitlyConfigured: true,
+    failureCode: "operation_mode_invalid",
   });
   assert.throws(
     () => applyControlPlaneOperationMode(memoryDatabase(), "typo"),
     ControlPlaneOperationModeError,
+  );
+});
+
+test("MCP and participant operation modes are independently observable and fail closed", () => {
+  assert.deepEqual(
+    controlPlaneSurfaceOperationState({
+      globalValue: "read_write",
+      surfaceValue: "read_write",
+      surface: "mcp",
+    }),
+    {
+      schemaVersion: "pw-control-plane-surface-operation-state-v1",
+      surface: "mcp",
+      mode: "read_write",
+      writesEnabled: true,
+      failureCodes: [],
+      global: controlPlaneOperationState("read_write"),
+      configuration: controlPlaneOperationState("read_write"),
+    },
+  );
+  const missingParticipant = controlPlaneSurfaceOperationState({
+    globalValue: "read_write",
+    surfaceValue: undefined,
+    surface: "participant",
+  });
+  assert.equal(missingParticipant.mode, "read_only");
+  assert.equal(missingParticipant.writesEnabled, false);
+  assert.deepEqual(
+    missingParticipant.failureCodes,
+    ["participant_operation_mode_missing"],
+  );
+
+  const invalidMcp = controlPlaneSurfaceOperationState({
+    globalValue: "read_write",
+    surfaceValue: "typo",
+    surface: "mcp",
+  });
+  assert.equal(invalidMcp.mode, "read_only");
+  assert.equal(invalidMcp.writesEnabled, false);
+  assert.deepEqual(invalidMcp.failureCodes, ["mcp_operation_mode_invalid"]);
+
+  const globallyFrozenParticipant = controlPlaneSurfaceOperationState({
+    globalValue: "read_only",
+    surfaceValue: "read_write",
+    surface: "participant",
+  });
+  assert.equal(globallyFrozenParticipant.writesEnabled, false);
+  assert.deepEqual(
+    globallyFrozenParticipant.failureCodes,
+    ["global_operation_mode_read_only"],
   );
 });
 

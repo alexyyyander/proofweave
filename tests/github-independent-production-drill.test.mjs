@@ -176,6 +176,19 @@ test("preflight recomputes and rejects a stale production policy hash", async ()
   assert.equal(fixture.calls.fetch.length, 0);
 });
 
+test("preflight refuses a controlled drill after either public write surface is open", async () => {
+  for (const surface of ["mcp", "participant"]) {
+    const fixture = makeDrillFixture();
+    fixture.manifest.operationModes[surface] = "read_write";
+    await assert.rejects(
+      fixture.drill.preflight({ environment: fixture.environment }),
+      (error) => error.code === "RELEASE_MANIFEST_ALIGNMENT_FAILED",
+    );
+    assert.equal(fixture.calls.database, 0);
+    assert.equal(fixture.calls.fetch.length, 0);
+  }
+});
+
 test("preflight fails closed on un-enrolled or drifting reviewed production authorities", async (context) => {
   async function rejected({ mutatePolicy, mutateEnvironment }, expectedCode) {
     const fixture = makeDrillFixture();
@@ -1134,7 +1147,7 @@ function readyRunnerPolicy() {
 
 function releaseManifest() {
   return {
-    schemaVersion: "pw-release-manifest-v2",
+    schemaVersion: "pw-release-manifest-v3",
     source: {
       gitSha: revision,
       originMainSha: revision,
@@ -1169,6 +1182,11 @@ function releaseManifest() {
       runnerFingerprint: databaseFingerprint,
       repositoryMigrationHead: "0043_add_runner_queue_event_sequence.sql",
       deployedMigrationHead: "0043_add_runner_queue_event_sequence.sql",
+    },
+    operationModes: {
+      global: "read_only",
+      mcp: "read_only",
+      participant: "read_only",
     },
     productionDrill: {
       policy: productionDrillPolicy,

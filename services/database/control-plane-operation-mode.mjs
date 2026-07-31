@@ -24,7 +24,7 @@ export class ControlPlaneReadOnlyError extends Error {
 
 export function normalizeControlPlaneOperationMode(value) {
   if (value === undefined || value === null || value === "") {
-    return controlPlaneOperationMode.readWrite;
+    return controlPlaneOperationMode.readOnly;
   }
   if (
     value !== controlPlaneOperationMode.readWrite
@@ -38,13 +38,15 @@ export function normalizeControlPlaneOperationMode(value) {
 }
 
 export function controlPlaneOperationState(value) {
+  const explicitlyConfigured = value !== undefined && value !== null && value !== "";
   try {
     const mode = normalizeControlPlaneOperationMode(value);
     return Object.freeze({
       schemaVersion: "pw-control-plane-operation-state-v1",
       mode,
       writesEnabled: mode === controlPlaneOperationMode.readWrite,
-      explicitlyConfigured: value !== undefined && value !== null && value !== "",
+      explicitlyConfigured,
+      failureCode: explicitlyConfigured ? null : "operation_mode_missing",
     });
   } catch {
     return Object.freeze({
@@ -52,8 +54,55 @@ export function controlPlaneOperationState(value) {
       mode: "invalid",
       writesEnabled: false,
       explicitlyConfigured: true,
+      failureCode: "operation_mode_invalid",
     });
   }
+}
+
+/**
+ * Compute the effective mode for one write surface. The global mode is a
+ * master ceiling, while the surface mode lets operators freeze browser/Sites
+ * writes independently from MCP writes. Both variables must be explicitly and
+ * validly configured as read_write before this surface may mutate data.
+ *
+ * Invalid or missing configuration is reported separately but maps to an
+ * effective read_only mode so public reads and OAuth refresh-token maintenance
+ * remain usable while research writes fail closed.
+ */
+export function controlPlaneSurfaceOperationState({
+  globalValue,
+  surfaceValue,
+  surface,
+}) {
+  if (surface !== "mcp" && surface !== "participant") {
+    throw new ControlPlaneOperationModeError(
+      "Control-plane surface must be mcp or participant.",
+    );
+  }
+  const global = controlPlaneOperationState(globalValue);
+  const configuration = controlPlaneOperationState(surfaceValue);
+  const writesEnabled = global.writesEnabled && configuration.writesEnabled;
+  const failureCodes = [
+    global.failureCode && `global_${global.failureCode}`,
+    configuration.failureCode && `${surface}_${configuration.failureCode}`,
+    global.mode === controlPlaneOperationMode.readOnly
+      && global.failureCode === null
+      && "global_operation_mode_read_only",
+    configuration.mode === controlPlaneOperationMode.readOnly
+      && configuration.failureCode === null
+      && `${surface}_operation_mode_read_only`,
+  ].filter(Boolean);
+  return Object.freeze({
+    schemaVersion: "pw-control-plane-surface-operation-state-v1",
+    surface,
+    mode: writesEnabled
+      ? controlPlaneOperationMode.readWrite
+      : controlPlaneOperationMode.readOnly,
+    writesEnabled,
+    failureCodes: Object.freeze(failureCodes),
+    global,
+    configuration,
+  });
 }
 
 /**
