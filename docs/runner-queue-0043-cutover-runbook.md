@@ -93,13 +93,77 @@ repository API on 2026-07-28. It also fixes the canonical Runner origin
 fingerprint `3f9e7934a04a22ec`. The Runner health endpoint is derived as
 `/healthz`; it is not a separate resource identity.
 
-Policy version 3 enrolls the recovery operator key
-`release-operator:alexyu-20260728`. Its Ed25519 private JWK is generated outside
-this repository and kept in a regular mode-`0600` file; the repository contains
-only its canonical 32-byte base64url public key and deterministic fingerprint.
+Policy version 3 enrolls the public recovery operator key
+`release-operator:alexyu-20260728`. The repository contains only its canonical
+32-byte base64url public key and deterministic fingerprint; it cannot prove
+where the corresponding private JWK is held or whether it remains usable.
+Operational authority therefore requires a separately checked external,
+regular mode-`0600` private-key file.
 Any rotation must add or remove public keys through a separately reviewed pull
 request and pass the release-manifest and production-drill negative tests
 before the new policy hash is used in a release.
+
+Public enrollment does **not** prove that the corresponding private key still
+exists or is usable. Before authorizing a drill, the release commander must
+locate the external file and compare it to the reviewed policy without printing
+private bytes:
+
+```bash
+npm run runtime:github-independent:drill:key -- verify \
+  --key-id release-operator:alexyu-20260728 \
+  --private-key-file "$HOME/.proofweave/release-keys/release-operator-alexyu-20260728.private.jwk" \
+  --repository-root "$PWD"
+```
+
+Replace the example path with the actual operator custody path. The command
+fails unless the path is absolute and outside the repository, the
+file is a regular single-link file owned by the current user with mode `0600`,
+the Ed25519 private/public members match, and the derived public entry exactly
+matches the reviewed policy. Its stdout contains only the
+canonical private-file path, environment variable names, and public enrollment
+metadata. If the private file is unavailable, do not claim that recovery
+authority is ready and do not create a replacement under the same key ID.
+
+For a new operator or rotation, generate the key directly at its external
+destination:
+
+```bash
+npm run runtime:github-independent:drill:key -- generate \
+  --key-id release-operator:person-YYYYMMDD \
+  --private-key-file "$HOME/.proofweave/release-keys/release-operator-person-YYYYMMDD.private.jwk" \
+  --repository-root "$PWD"
+```
+
+The destination is created atomically and is never overwritten. To adopt an
+existing secure Ed25519 private JWK, use `import` with
+`--source-private-key-file`; import validates the source, creates a separate
+mode-`0600` destination without replacing either file, and prints the same
+public-only enrollment plan. Never paste JWK contents into a shell argument,
+environment variable, issue, PR, terminal transcript, or CI log.
+
+Rotation is a two-review change:
+
+1. Generate or import a new uniquely named external key and make two encrypted,
+   access-controlled offline backups. Restore one copy to a temporary
+   mode-`0600` file and run `verify` against the transitional policy; a backup
+   that has not been restored and
+   checked is not recovery evidence.
+2. In the first reviewed PR, increment `policyVersion` and add only the new
+   `policyEntry`, temporarily retaining the old public entry.
+3. Deploy that reviewed policy and complete a bounded recovery-isolation
+   preflight signed by the new key. Do not enable the recovery Runner merely to
+   test key possession.
+4. In a second reviewed PR, remove the old public entry and increment
+   `policyVersion` again. Record the revocation time and policy hash.
+5. After the rollback window closes, securely destroy every online copy of the
+   retired private key according to the incident/retention policy. Keep no
+   retired private key in GitHub Actions, Sites, Render, Turso, repository
+   files, `.env` files, shared cloud-sync folders, or build artifacts.
+
+If a private key is lost, copied to an untrusted location, printed, committed,
+or exposed in telemetry, freeze recovery use immediately and perform the same
+add-new/remove-old reviewed rotation. Merely deleting or renaming the local
+file does not revoke its enrolled public authority.
 
 The drill CLI accepts only the external private-key file and key ID. It derives
 the public key and rejects it unless both ID and public bytes match the reviewed
