@@ -41,12 +41,13 @@ operational metadata.
 
 ## Required evidence
 
-New evidence uses schema version
-`pw-production-contribution-cutover-evidence-v3`. Existing v2 evidence remains
-verifiable as an `independent_observer` record so an already signed release
-artifact does not become unverifiable. New v2 evidence must not be created.
+New authorizing evidence uses schema version
+`pw-production-contribution-cutover-evidence-v4`. Earlier evidence remains a
+historical release artifact, but it cannot authorize this cutover because it
+does not prove a fresh production recovery point and two independently
+configured MCP/participant write fences.
 
-Every v3 record declares one governance mode:
+Every v4 record declares one governance mode:
 
 - `independent_observer` is the strong path. A distinct accountable Person
   signs the exact evidence artifact. It is valid for `public_alpha` or `stable`
@@ -67,6 +68,11 @@ The evidence also contains:
 - **PITR clone rehearsal:** clone and snapshot labels, PITR and completion
   timestamps, source database fingerprint, pre/post migration heads, outcome,
   stable counts, and the verified `event_sequence` schema.
+- **Fresh production recovery point:** a completed provider snapshot/PITR
+  identifier created between the two identical frozen count observations,
+  still inside provider retention, bound to the production database fingerprint
+  and 0042 head, capable of restoring to an isolated target, with a named
+  restore owner.
 - **Production pre-migration boundary:** phase
   `pre_migration_authorization`, current head 0042, planned migration 0043,
   two ordered frozen observations with stable Run/queue counts, zero active
@@ -76,9 +82,11 @@ The evidence also contains:
   reported identically by the website, MCP/gateway, and Runner.
 - **One control-plane authority:** `turso` and one 16-character non-secret
   database fingerprint reported by all three surfaces.
-- **Frozen current state:** website and MCP report `read_only` with writes
-  disabled; Runner execution is disabled. The declared target mode is
-  `read_write`, but it must not be active at verification time.
+- **Frozen current state:** the global write ceiling and both independently
+  configured MCP and participant surface modes are explicit `read_only`; MCP
+  and participant mutation probes each return the expected 503; Runner
+  execution is provider-confirmed disabled. The declared target modes are
+  `read_write`, but none may be active at verification time.
 - **Named ownership:** every operator role records a stable Person ID, account
   ID, and acceptance time. In `independent_observer` mode, the observer records
   a different Person ID and account ID, an acceptance time after the frozen
@@ -90,7 +98,8 @@ The evidence also contains:
   acceptance hash and proof fields—and requires an exact match. Acceptance from
   another release window cannot be reused. A second account controlled by an
   operator never satisfies the independent-observer boundary.
-- **Recovery boundary:** acknowledged `roll_forward` strategy. After 0043
+- **Recovery boundary:** acknowledged `roll_forward` strategy with the same
+  named PITR restore owner as the fresh production recovery point. After 0043
   succeeds, an old writer or a schema downgrade is not a safe rollback.
 
 The stable count objects contain non-negative integer values for:
@@ -134,7 +143,7 @@ agrees on:
 3. stable data counts while production is still frozen before migration;
 4. one release SHA across all runtime surfaces;
 5. one Turso authority and fingerprint;
-6. the current read-only/frozen state;
+6. the explicit global, MCP, participant, and Runner frozen state;
 7. named release, incident, and recovery responsibility; and
 8. the selected governance path's acceptance of this exact pre-migration
    evidence.
@@ -161,7 +170,8 @@ A passing offline verdict is followed by human-controlled steps from
 
 1. Confirm all public producers and every Runner consumer remain frozen, with
    two unchanged count observations and zero active leases.
-2. Confirm the independent observer, or the scoped solo-alpha operator,
+2. Confirm the fresh production recovery point remains complete and inside
+   retention, then confirm the independent observer, or scoped solo-alpha operator,
    accepted the exact pre-migration evidence artifact represented by the
    passing gate.
 3. Apply 0043 once against production while every writer remains
@@ -175,9 +185,11 @@ A passing offline verdict is followed by human-controlled steps from
    smoke. Verify positive consecutive event sequences and then freeze it again.
 8. Obtain explicit post-migration sign-off under the same governance mode. A
    stable release still requires a distinct independent observer.
-9. Restore consumers, gateway writes, and website writes in the documented
-   order; monitor and refreeze immediately on an old-writer or NULL-sequence
-   attempt.
+9. Restore the reviewed consumer, then open the global master ceiling while
+   both surface fences remain closed, then restore MCP writes, then Sites
+   participant writes. Capture a negative probe of the still-frozen next
+   surface after every step; refreeze immediately on cross-surface leakage, an
+   old-writer attempt, or a NULL-sequence attempt.
 10. Run the separate credentialed ordinary-user smoke through Agent connection,
     Attempt, Bundle, and Runner. A certified Receipt remains blocked until a
     genuinely different Person completes the required review.

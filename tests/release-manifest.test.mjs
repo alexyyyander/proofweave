@@ -29,7 +29,7 @@ test("release manifest emits one complete stable non-secret revision set", async
     const second = createReleaseManifest(options);
 
     assert.equal(first.exitCode, 0);
-    assert.equal(first.manifest.schemaVersion, "pw-release-manifest-v2");
+    assert.equal(first.manifest.schemaVersion, "pw-release-manifest-v3");
     assert.equal(first.manifest.validation.mode, "release");
     assert.equal(first.manifest.validation.state, "valid");
     assert.deepEqual(first.manifest.validation.issues, []);
@@ -49,6 +49,11 @@ test("release manifest emits one complete stable non-secret revision set", async
     assert.equal(first.manifest.database.runnerFingerprint, databaseFingerprint);
     assert.equal(first.manifest.database.repositoryMigrationHead, migrationHead);
     assert.equal(first.manifest.database.deployedMigrationHead, migrationHead);
+    assert.deepEqual(first.manifest.operationModes, {
+      global: "read_only",
+      participant: "read_only",
+      mcp: "read_only",
+    });
     assert.equal(
       first.manifest.productionDrill.policy.githubRepository.fullName,
       "example/proofweave",
@@ -114,6 +119,9 @@ test("release strict mode fails closed when deployment fields are missing", asyn
     assert.equal(codes.has("GATEWAY_DATABASE_FINGERPRINT_MISSING"), true);
     assert.equal(codes.has("RUNNER_DATABASE_FINGERPRINT_MISSING"), true);
     assert.equal(codes.has("DEPLOYED_MIGRATION_HEAD_MISSING"), true);
+    assert.equal(codes.has("GLOBAL_OPERATION_MODE_MISSING"), true);
+    assert.equal(codes.has("PARTICIPANT_OPERATION_MODE_MISSING"), true);
+    assert.equal(codes.has("MCP_OPERATION_MODE_MISSING"), true);
   });
 });
 
@@ -231,6 +239,28 @@ test("release manifest never projects unrelated credential environment values", 
   });
 });
 
+test("release manifest fails closed when any write-surface mode is invalid or implicit", async () => {
+  await withFixture(async (root) => {
+    const environment = completeEnvironment();
+    delete environment.PROOFWEAVE_PARTICIPANT_CONTROL_PLANE_MODE;
+    environment.PROOFWEAVE_MCP_CONTROL_PLANE_MODE = "enabled";
+
+    const result = createReleaseManifest({
+      root,
+      mode: "release",
+      environment,
+      source: cleanSource(),
+    });
+
+    assert.equal(result.exitCode, 1);
+    assert.equal(result.manifest.operationModes.participant, null);
+    assert.equal(result.manifest.operationModes.mcp, null);
+    const codes = issueCodes(result);
+    assert.equal(codes.has("PARTICIPANT_OPERATION_MODE_MISSING"), true);
+    assert.equal(codes.has("MCP_OPERATION_MODE_MISSING"), true);
+  });
+});
+
 test("release manifest chooses the latest numbered SQL migration head", async () => {
   await withFixture(async (root) => {
     await writeFile(join(root, "drizzle", "0043_future_change.sql"), "-- future\n");
@@ -289,6 +319,9 @@ function completeEnvironment() {
     PROOFWEAVE_RELEASE_DATABASE_AUTHORITY: "turso",
     PROOFWEAVE_RELEASE_GATEWAY_FINGERPRINT: databaseFingerprint,
     PROOFWEAVE_RELEASE_RUNNER_FINGERPRINT: databaseFingerprint,
+    PROOFWEAVE_CONTROL_PLANE_MODE: "read_only",
+    PROOFWEAVE_PARTICIPANT_CONTROL_PLANE_MODE: "read_only",
+    PROOFWEAVE_MCP_CONTROL_PLANE_MODE: "read_only",
   };
 }
 

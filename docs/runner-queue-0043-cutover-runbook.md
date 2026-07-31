@@ -25,7 +25,8 @@ and each has acknowledged the window:
 | --- | --- |
 | Release commander | Owns the timeline, freeze decision, and final unfreeze |
 | Database owner | Owns the backup, migration plan, apply, and verification |
-| Sites/gateway owner | Can deny every public and Agent-originated mutation |
+| Sites participant owner | Can deny every browser/Sites participant mutation independently |
+| MCP gateway owner | Can deny every Agent-originated MCP mutation independently |
 | Runner owner | Can stop Render and GitHub consumers and cancel active work |
 | Incident owner | Can keep the system frozen and direct a roll-forward |
 | Cutover acceptor | A distinct observer for stable releases, or the release commander under the bounded `solo_alpha` public-alpha exception |
@@ -64,8 +65,8 @@ Also confirm:
 - the current migration ledger is readable and only `0043` (or an explicitly
   reviewed contiguous set ending at `0043`) is pending;
 - provider status pages show no active database or deployment incident;
-- the operator can freeze Sites and gateway mutation routes independently of a
-  source deployment;
+- the operator can freeze Sites participant and MCP gateway mutation routes
+  independently of each other and independently of a source deployment;
 - the operator can disable Render auto-deploy, stop its Runner process, disable
   the GitHub Runner workflow and repository dispatch source, and cancel active
   runs;
@@ -145,20 +146,31 @@ continuous or hosted-exclusive isolation.
 Record the UTC start time and expected `RELEASE_SHA`, then prevent creation of
 new Runs before stopping consumers:
 
-1. Deploy the reviewed Sites release candidate with
-   `PROOFWEAVE_CONTROL_PLANE_MODE=read_only`. Public catalog reads may remain
+1. Deploy the reviewed Sites release candidate with all three explicitly
+   configured fences:
+   `PROOFWEAVE_CONTROL_PLANE_MODE=read_only`,
+   `PROOFWEAVE_MCP_CONTROL_PLANE_MODE=read_only`, and
+   `PROOFWEAVE_PARTICIPANT_CONTROL_PLANE_MODE=read_only`. The first is a
+   master ceiling; the latter two are independently operated surface fences.
+   Missing or invalid values must fail closed. Public catalog reads may remain
    available. The public capability document at
    `/api/mcp/capabilities` must report
    `controlPlaneOperations.mode=read_only` and
    `controlPlaneOperations.writesEnabled=false`.
-2. Deny OAuth/MCP gateway methods that create or mutate Attempts, Bundles,
-   reviews, Runs, or queue messages. Keep health and read-only discovery
-   available.
-3. Disable the external repository-dispatch producer and any scheduled/manual
+2. Confirm the MCP diagnostics report its explicitly configured surface mode
+   as `read_only`. Deny methods that create or mutate Attempts, Bundles,
+   reviews, Runs, or queue messages while keeping health, OAuth refresh-token
+   maintenance, and read-only discovery available.
+3. Confirm the Sites/participant diagnostics independently report their
+   explicitly configured surface mode as `read_only`. Deny browser routes that
+   create or mutate Agent connections, Attempts, Bundles, reviews, Runs, or
+   Receipts.
+4. Disable the external repository-dispatch producer and any scheduled/manual
    automation that can enqueue a Run.
-4. Disable Render auto-deploy before the main merge. Do not allow a commit hook
+5. Disable Render auto-deploy before the main merge. Do not allow a commit hook
    to replace the process during the window.
-5. Probe each public mutation boundary with a non-production owner account and
+6. Probe the MCP and participant mutation boundaries separately with a
+   non-production owner account and
    record the expected HTTP 503 maintenance response. Confirm that the durable
    Run and queue-message counts do not increase during the observation
    interval. A capability response alone is not freeze evidence; the mutation
@@ -209,14 +221,17 @@ continue merely because one Runner reports disabled; all paths must be frozen.
 
 With all writers frozen:
 
-1. Create a provider-supported, restorable Turso backup or snapshot.
-2. Record its non-secret backup identifier, creation time, database
+1. Record the first frozen queue/Run counts, migration head, and schema-absence
+   observation.
+2. Create a provider-supported, restorable Turso backup or snapshot.
+3. Record its non-secret backup identifier, creation time, database
    fingerprint, migration head, retention deadline, and restore owner.
-3. Verify that the backup reports complete and that the documented restore
+4. Verify that the backup reports complete and that the documented restore
    procedure can target an isolated database. Do not test restore over
    production.
-4. Record queue state counts, the total number of legacy queue events, and
-   confirm that the new column is absent before the migration:
+5. Record the second frozen observation after the backup completes. It must
+   match the first observation, include the total number of legacy queue
+   events, and confirm that the new column is absent before the migration:
 
 ```sql
 SELECT COUNT(*) AS queue_event_count
@@ -230,6 +245,13 @@ WHERE name = 'event_sequence';
 Before `0043`, `event_sequence_column_count` must be zero. Do not probe the
 missing column with a query that aborts the operator's SQL batch, and do not
 change schema by hand.
+
+The production recovery point must be fresh for this exact frozen window,
+created between the two identical observations, still inside provider
+retention when cutover acceptance is recorded, and identify the Person
+responsible for an isolated restore. A successful PITR-clone rehearsal from an
+earlier window proves procedure only; it is not the production recovery point
+for this migration.
 
 ## Phase 4 — Plan, apply, and verify migration 0043
 
@@ -284,8 +306,12 @@ and must not be rewritten.
 ## Phase 5 — Deploy one SHA while writes remain frozen
 
 Deploy Sites, identity/gateway, and every Runner surface from the exact
-`RELEASE_SHA`. Keep Sites and gateway mutation controls frozen and keep
+`RELEASE_SHA`. Keep the MCP and participant mutation controls independently
+frozen and keep
 `RUNNER_EXECUTION_ENABLED=false`.
+
+Keep the master, MCP, and participant modes explicitly set to `read_only`.
+Deploying the split fences is not authorization to open either one.
 
 - Use a manual, SHA-pinned Render deployment. Do not re-enable auto-deploy.
 - Keep GitHub schedule, workflow dispatch, and repository dispatch disabled.
@@ -309,6 +335,11 @@ The Site deployment must receive `PROOFWEAVE_RELEASE_SITES_COMMIT_SHA` and
 version and reviewed `PROOFWEAVE_RELEASE_SITE_PROJECT_ID`. The production drill
 also remains blocked until the canonical Runner origin and Turso fingerprint
 are enrolled in `config/production-drill-policy.json`.
+The strict release manifest must also include explicit valid values for
+`PROOFWEAVE_CONTROL_PLANE_MODE`,
+`PROOFWEAVE_MCP_CONTROL_PLANE_MODE`, and
+`PROOFWEAVE_PARTICIPANT_CONTROL_PLANE_MODE`. An omitted value is invalid even
+though the runtime itself fails closed.
 
 Run strict mode from the clean `RELEASE_SHA` worktree:
 
@@ -333,7 +364,8 @@ While execution remains disabled, verify:
 
 ## Phase 7 — Controlled smoke while public producers stay frozen
 
-Keep public Sites/gateway mutation routes and automatic dispatch frozen. Enable
+Keep public MCP and Sites participant mutation routes independently frozen and
+keep automatic dispatch frozen. Enable
 exactly one controlled Runner consumer from `RELEASE_SHA`, submit one bounded
 operator-owned fixture through the approved internal path, and record one
 correlation ID.
@@ -369,15 +401,23 @@ strict manifest, health checks, and controlled smoke before any public write
 path is restored. A `stable` release requires a distinct independent observer;
 `solo_alpha` may restore only the explicitly labeled public-alpha service.
 
-Unfreeze in this order:
+Unfreeze in this order, capturing diagnostics and a negative probe of the
+still-frozen next surface after every configuration change:
 
 1. Start the exact-SHA Render/hosted consumer with
    `RUNNER_EXECUTION_ENABLED=true`.
 2. Re-enable the reviewed GitHub recovery workflow and automatic dispatch
    source only if both are still part of the approved topology.
-3. Restore gateway mutation and queue-dispatch methods.
-4. Restore Sites participant mutations.
-5. Re-enable Render auto-deploy only after confirming it is pinned to the
+3. Set the master ceiling to
+   `PROOFWEAVE_CONTROL_PLANE_MODE=read_write` while both surface modes remain
+   `read_only`. Verify that MCP and participant mutation probes still return
+   503 and durable counts remain unchanged.
+4. Set `PROOFWEAVE_MCP_CONTROL_PLANE_MODE=read_write`. Verify one bounded MCP
+   mutation, confirm participant mutation remains blocked, and observe its
+   durable record.
+5. Set `PROOFWEAVE_PARTICIPANT_CONTROL_PLANE_MODE=read_write`. Verify one
+   bounded participant mutation and observe its durable record.
+6. Re-enable Render auto-deploy only after confirming it is pinned to the
    reviewed main branch policy and cannot deploy an older commit.
 
 Observe queue depth, leases, trigger failures, sequencing conflicts, wake
@@ -397,6 +437,9 @@ schema downgrade.
 | Migration succeeds but deployment fails | Do not restart an old writer; repair or deploy a descendant of `RELEASE_SHA` that understands `event_sequence` |
 | Strict manifest is invalid | Remain frozen and correct the deployment or observation; do not override validation |
 | Controlled smoke fails | Disable the controlled consumer, preserve the Run and events, and roll forward from the sequenced schema |
+| Master ceiling opens both write surfaces | Immediately return the master ceiling to `read_only`; the split-fence release is invalid and must roll forward before retry |
+| MCP unfreeze changes participant behavior | Return MCP and master modes to `read_only`, preserve evidence, and repair the surface routing before retry |
+| Participant unfreeze fails | Return participant mode to `read_only`; keep the already reviewed MCP state only if incident ownership explicitly accepts that bounded state, otherwise refreeze the master ceiling |
 | Failure after public unfreeze | Refreeze producers then consumers, preserve all append-only evidence, and reconcile by existing idempotency keys |
 
 Once `0043` has succeeded, roll-forward is the default and safest recovery.
@@ -417,7 +460,8 @@ Close the cutover only after the record contains:
 - named owners and UTC timestamps for every phase;
 - governance mode, release tier, and the exact acceptance-artifact hash;
 - full `RELEASE_SHA` and exact deployed revisions;
-- producer/consumer freeze and unfreeze evidence;
+- producer/consumer freeze evidence and the separately observed master, MCP,
+  and participant unfreeze steps;
 - pre/post queue counts and active-lease count;
 - backup identifier and restore owner;
 - migration plan, apply, verify, schema-object, and anomaly-query results;

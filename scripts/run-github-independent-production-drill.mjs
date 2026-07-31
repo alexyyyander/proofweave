@@ -468,7 +468,7 @@ function requireStrictReleaseManifest(result) {
     result?.exitCode !== 0 ||
     manifest?.validation?.mode !== "release" ||
     manifest?.validation?.state !== "valid" ||
-    manifest?.schemaVersion !== "pw-release-manifest-v2" ||
+    manifest?.schemaVersion !== "pw-release-manifest-v3" ||
     !Array.isArray(manifest.validation.issues) ||
     manifest.validation.issues.length !== 0
   ) {
@@ -491,6 +491,9 @@ function requireStrictReleaseManifest(result) {
     manifest.database?.authority !== "turso" ||
     manifest.database.gatewayFingerprint !== manifest.database.runnerFingerprint ||
     manifest.database.repositoryMigrationHead !== manifest.database.deployedMigrationHead
+    || manifest.operationModes?.global !== "read_only"
+    || manifest.operationModes?.mcp !== "read_only"
+    || manifest.operationModes?.participant !== "read_only"
     || !manifest.productionDrill?.policy
     || !sha256Pattern.test(manifest.productionDrill.policyHash ?? "")
     || canonicalPolicyHash !== manifest.productionDrill.policyHash

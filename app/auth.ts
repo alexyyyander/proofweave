@@ -1,6 +1,6 @@
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { getControlPlaneOperationState, MissingDatabaseBindingError } from "@/db";
+import { getParticipantOperationState, MissingDatabaseBindingError } from "@/db";
 import { getAccountAuthRepository } from "@/db/repositories/account-auth";
 import type { PersonIdentity } from "@/db/repositories/delegation";
 import {
@@ -54,7 +54,7 @@ export async function getCurrentUser(): Promise<AuthUser | null> {
       : null;
   const subject = email.toLowerCase();
   const displayName = fullName ?? email;
-  if (!getControlPlaneOperationState().writesEnabled) {
+  if (!getParticipantOperationState().writesEnabled) {
     return {
       provider: "chatgpt",
       providerLabel: "ChatGPT",

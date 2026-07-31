@@ -67,7 +67,7 @@ export function createD1RemoteMcpGatewayRuntime({
   receiptIssuerPublicKey = null,
   receiptIssuerPrivateKeyJwkJson = null,
   receiptIssuerActivatedAt = null,
-  operationMode = controlPlaneOperationMode.readWrite,
+  operationMode = controlPlaneOperationMode.readOnly,
 }) {
   if (!database || typeof database.prepare !== "function") {
     throw new RemoteMcpRuntimeConfigurationError("Remote MCP requires a D1 DB binding.");

@@ -11,7 +11,7 @@ import {
   productionDrillPolicyHash,
 } from "./lib/production-drill-policy.mjs";
 
-export const releaseManifestSchemaVersion = "pw-release-manifest-v2";
+export const releaseManifestSchemaVersion = "pw-release-manifest-v3";
 
 const revisionPattern = /^[a-f0-9]{40,64}$/;
 const publicLabelPattern = /^[A-Za-z0-9][A-Za-z0-9:._+/-]{0,191}$/;
@@ -32,6 +32,9 @@ const releaseEnvironmentKeys = Object.freeze({
   databaseAuthority: "PROOFWEAVE_RELEASE_DATABASE_AUTHORITY",
   gatewayFingerprint: "PROOFWEAVE_RELEASE_GATEWAY_FINGERPRINT",
   runnerFingerprint: "PROOFWEAVE_RELEASE_RUNNER_FINGERPRINT",
+  globalOperationMode: "PROOFWEAVE_CONTROL_PLANE_MODE",
+  participantOperationMode: "PROOFWEAVE_PARTICIPANT_CONTROL_PLANE_MODE",
+  mcpOperationMode: "PROOFWEAVE_MCP_CONTROL_PLANE_MODE",
 });
 
 /**
@@ -95,6 +98,13 @@ export function collectReleaseManifest({
       runnerFingerprint: safeDatabaseFingerprint(environment[releaseEnvironmentKeys.runnerFingerprint]),
       repositoryMigrationHead: repositoryMigrationHead(resolve(root, "drizzle")),
       deployedMigrationHead: safeMigrationHead(environment[releaseEnvironmentKeys.migrationHead]),
+    },
+    operationModes: {
+      global: safeOperationMode(environment[releaseEnvironmentKeys.globalOperationMode]),
+      participant: safeOperationMode(
+        environment[releaseEnvironmentKeys.participantOperationMode],
+      ),
+      mcp: safeOperationMode(environment[releaseEnvironmentKeys.mcpOperationMode]),
     },
     productionDrill,
   };
@@ -242,6 +252,22 @@ export function validateReleaseManifest(manifest, { mode = "inspection" } = {}) 
     && manifest.database.repositoryMigrationHead !== manifest.database.deployedMigrationHead) {
     add("MIGRATION_HEAD_MISMATCH", "database.deployedMigrationHead");
   }
+
+  required(
+    manifest.operationModes?.global,
+    "GLOBAL_OPERATION_MODE_MISSING",
+    "operationModes.global",
+  );
+  required(
+    manifest.operationModes?.participant,
+    "PARTICIPANT_OPERATION_MODE_MISSING",
+    "operationModes.participant",
+  );
+  required(
+    manifest.operationModes?.mcp,
+    "MCP_OPERATION_MODE_MISSING",
+    "operationModes.mcp",
+  );
 
   required(
     manifest.productionDrill?.policy,
@@ -482,6 +508,10 @@ function safeMigrationHead(value) {
 
 function safeDatabaseAuthority(value) {
   return typeof value === "string" && databaseAuthorities.has(value) ? value : null;
+}
+
+function safeOperationMode(value) {
+  return value === "read_only" || value === "read_write" ? value : null;
 }
 
 function safeDatabaseFingerprint(value) {

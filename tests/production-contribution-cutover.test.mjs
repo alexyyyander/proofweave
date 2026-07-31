@@ -20,7 +20,12 @@ test("accepts complete frozen pre-migration evidence for a controlled 0043 cutov
   assert.equal(verdict.migrationHead, head0042);
   assert.equal(verdict.plannedMigration, head0043);
   assert.equal(verdict.currentSafetyMode, "read_only");
-  assert.equal(verdict.targetMode, "read_write");
+  assert.deepEqual(verdict.targetModes, {
+    global: "read_write",
+    mcp: "read_write",
+    participant: "read_write",
+    runnerExecution: true,
+  });
   assert.equal(verdict.governanceMode, "independent_observer");
   assert.equal(verdict.rollbackOwner, "person:alex");
   assert.match(verdict.limitations, /no provider, database, deployment, Runner/i);
@@ -88,18 +93,14 @@ test("solo-alpha governance fails closed on identity drift or review overclaim",
   );
 });
 
-test("continues to verify legacy v2 independent-observer evidence", () => {
+test("retains legacy evidence as history but refuses to use it for the independently fenced cutover", () => {
   const evidence = fixture();
-  evidence.schemaVersion = "pw-production-contribution-cutover-evidence-v2";
-  delete evidence.governance;
+  evidence.schemaVersion = "pw-production-contribution-cutover-evidence-v3";
   evidence.owners.independentObserver.acceptanceArtifactHash =
     productionCutoverAcceptanceArtifactHash(evidence);
 
-  const verdict = verifyProductionContributionCutover(evidence);
-
-  assert.equal(verdict.outcome, "passed");
-  assert.equal(verdict.governanceMode, "independent_observer");
-  assert.equal(verdict.releaseTier, "legacy_unspecified");
+  const error = captureFailure(evidence);
+  assertIssue(error, "SCHEMA_VERSION_INVALID", "schemaVersion");
 });
 
 test("allows a stable release only with the independent-observer path", () => {
@@ -149,6 +150,60 @@ test("fails closed if public writes or Runner execution are enabled too early", 
   const error = captureFailure(evidence);
   assertIssue(error, "READ_WRITE_ENABLED_TOO_EARLY", "controlPlane.website");
   assertIssue(error, "RUNNER_ENABLED_TOO_EARLY", "controlPlane.runner.executionEnabled");
+});
+
+test("fails closed unless global, MCP, and participant fences are explicit and independently frozen", () => {
+  const evidence = fixture();
+  evidence.controlPlane.global.explicitlyConfigured = false;
+  evidence.controlPlane.website.configurationMode = "read_write";
+  evidence.controlPlane.mcp.independentFreezeControl = false;
+  evidence.controlPlane.mcp.mutationProbe = "not_run";
+
+  const error = captureFailure(evidence);
+  assertIssue(
+    error,
+    "GLOBAL_WRITE_CEILING_IMPLICIT",
+    "controlPlane.global.explicitlyConfigured",
+  );
+  assertIssue(
+    error,
+    "SURFACE_WRITE_FENCE_NOT_FROZEN",
+    "controlPlane.website.configurationMode",
+  );
+  assertIssue(
+    error,
+    "SURFACE_FREEZE_CONTROL_NOT_INDEPENDENT",
+    "controlPlane.mcp.independentFreezeControl",
+  );
+  assertIssue(
+    error,
+    "SURFACE_MUTATION_PROBE_NOT_BLOCKED",
+    "controlPlane.mcp.mutationProbe",
+  );
+});
+
+test("requires a fresh restorable production recovery point inside provider retention", () => {
+  const evidence = fixture();
+  evidence.productionRecoveryPoint.state = "pending";
+  evidence.productionRecoveryPoint.isolatedRestoreSupported = false;
+  evidence.productionRecoveryPoint.retentionDeadline = "2026-07-29T04:59:59Z";
+
+  const error = captureFailure(evidence);
+  assertIssue(
+    error,
+    "PRODUCTION_RECOVERY_POINT_INCOMPLETE",
+    "productionRecoveryPoint.state",
+  );
+  assertIssue(
+    error,
+    "PRODUCTION_RECOVERY_RESTORE_NOT_CONFIRMED",
+    "productionRecoveryPoint.isolatedRestoreSupported",
+  );
+  assertIssue(
+    error,
+    "PRODUCTION_RECOVERY_RETENTION_EXPIRED",
+    "productionRecoveryPoint.retentionDeadline",
+  );
 });
 
 test("fails closed when a required owner or rollback acknowledgement is missing", () => {
@@ -259,7 +314,7 @@ function fixture({ governanceMode = "independent_observer" } = {}) {
   };
 
   const evidence = {
-    schemaVersion: "pw-production-contribution-cutover-evidence-v3",
+    schemaVersion: "pw-production-contribution-cutover-evidence-v4",
     recordedAt: "2026-07-29T05:00:00Z",
     governance: {
       mode: governanceMode,
@@ -280,6 +335,16 @@ function fixture({ governanceMode = "independent_observer" } = {}) {
       preMigrationCounts: { ...counts },
       postMigrationCounts: { ...counts },
     },
+    productionRecoveryPoint: {
+      snapshotId: "production-pitr-20260729t042500z",
+      createdAt: "2026-07-29T04:20:30Z",
+      retentionDeadline: "2026-08-05T04:20:30Z",
+      databaseFingerprint,
+      migrationHead: head0042,
+      state: "complete",
+      isolatedRestoreSupported: true,
+      restoreOwnerPersonId: "person:alex",
+    },
     migration: {
       phase: "pre_migration_authorization",
       currentProductionHead: head0042,
@@ -299,26 +364,46 @@ function fixture({ governanceMode = "independent_observer" } = {}) {
     controlPlane: {
       authority: "turso",
       databaseFingerprint,
-      targetMode: "read_write",
+      targetModes: {
+        global: "read_write",
+        mcp: "read_write",
+        participant: "read_write",
+        runnerExecution: true,
+      },
+      global: {
+        mode: "read_only",
+        writesEnabled: false,
+        explicitlyConfigured: true,
+      },
       website: {
         ...surface,
         mode: "read_only",
         writesEnabled: false,
+        configurationMode: "read_only",
+        configurationExplicitlyConfigured: true,
+        independentFreezeControl: true,
+        mutationProbe: "blocked_503",
       },
       mcp: {
         ...surface,
         mode: "read_only",
         writesEnabled: false,
+        configurationMode: "read_only",
+        configurationExplicitlyConfigured: true,
+        independentFreezeControl: true,
+        mutationProbe: "blocked_503",
       },
       runner: {
         ...surface,
         executionEnabled: false,
+        providerFreezeConfirmed: true,
       },
     },
     owners: {
       releaseCommander: owner("person:alex", "github:alex"),
       databaseOwner: owner("person:alex", "github:alex"),
-      sitesMcpOwner: owner("person:alex", "github:alex"),
+      sitesOwner: owner("person:alex", "github:alex"),
+      mcpOwner: owner("person:alex", "github:alex"),
       runnerOwner: owner("person:alex", "github:alex"),
       incidentOwner: owner("person:alex", "github:alex"),
     },

@@ -27,7 +27,7 @@ export function createProofweaveOAuthProvider({
   accessLifetimeSeconds = defaultAccessLifetimeSeconds,
   refreshLifetimeSeconds = defaultRefreshLifetimeSeconds,
   clientRegistrationPolicy = disabledClientRegistrationPolicy,
-  operationMode = controlPlaneOperationMode.readWrite,
+  operationMode = controlPlaneOperationMode.readOnly,
   refreshTokenRotator = null,
 }) {
   requireClientRegistrationPolicy(clientRegistrationPolicy);

@@ -3,7 +3,7 @@ import { Header } from "../header";
 import { IntegrationClient } from "./IntegrationClient";
 import { getCurrentUser, signInPath, toPersonIdentity, type AuthUser } from "../auth";
 import { safeRelativeReturnPath } from "../chatgpt-auth";
-import { getControlPlaneOperationState, MissingDatabaseBindingError } from "@/db";
+import { getParticipantOperationState, MissingDatabaseBindingError } from "@/db";
 import { getDelegationRepository } from "@/db/repositories/delegation";
 import { activeLocalCodexInstallation } from "../lib/local-agent-journey";
 import { loadCatalogTargets, requestedParentNodeId, requestedTargetSlug } from "../workbench/workbench-data";
@@ -18,7 +18,7 @@ export default async function IntegrationsPage({
   const targetSlug = requestedTargetSlug(query);
   const parentNodeId = requestedParentNodeId(query);
   const [user, targets] = await Promise.all([getCurrentUser(), loadCatalogTargets()]);
-  const controlPlane = getControlPlaneOperationState();
+  const controlPlane = getParticipantOperationState();
   const connection = controlPlane.writesEnabled ? await loadConnection(user) : null;
   const selectedTarget = targetSlug
     ? targets.find((candidate) => candidate.slug === targetSlug) ?? null

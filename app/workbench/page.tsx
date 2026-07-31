@@ -11,7 +11,7 @@ import {
   requestedParentNodeId,
   requestedTargetSlug,
 } from "./workbench-data";
-import { getControlPlaneOperationState } from "@/db";
+import { getParticipantOperationState } from "@/db";
 
 export const dynamic = "force-dynamic";
 
@@ -33,7 +33,7 @@ export default async function WorkbenchPage({
     : attemptId
       ? `/workbench?attempt=${encodeURIComponent(attemptId)}`
       : "/workbench";
-  const controlPlane = getControlPlaneOperationState();
+  const controlPlane = getParticipantOperationState();
 
   if (!controlPlane.writesEnabled) return <ReadOnlyWorkbench selectedTarget={selectedTarget} />;
   if (!user) return <SignedOutWorkbench signInHref={signInPath(returnTo)} selectedTarget={selectedTarget} />;

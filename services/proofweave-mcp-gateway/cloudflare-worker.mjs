@@ -6,6 +6,9 @@ import {
   createStructuredHttpAudit,
   emitStructuredConsole,
 } from "../../packages/observability/structured-audit.mjs";
+import {
+  controlPlaneSurfaceOperationState,
+} from "../database/control-plane-operation-mode.mjs";
 
 /**
  * Deployment entrypoint. It deliberately has no authorization-code or
@@ -22,6 +25,11 @@ export function createCloudflareGatewayWorker({ audit = defaultAudit() } = {}) {
     async fetch(request, env) {
       return audit.handle(request, async () => {
         try {
+          const operationState = controlPlaneSurfaceOperationState({
+            globalValue: env.PROOFWEAVE_CONTROL_PLANE_MODE,
+            surfaceValue: env.PROOFWEAVE_MCP_CONTROL_PLANE_MODE,
+            surface: "mcp",
+          });
           return await createD1RemoteMcpGatewayRuntime({
             database: env.DB,
             resource: env.MCP_RESOURCE_URL,
@@ -39,7 +47,7 @@ export function createCloudflareGatewayWorker({ audit = defaultAudit() } = {}) {
             receiptIssuerPublicKey: env.RECEIPT_ISSUER_PUBLIC_KEY,
             receiptIssuerPrivateKeyJwkJson: env.RECEIPT_ISSUER_PRIVATE_KEY_JWK,
             receiptIssuerActivatedAt: env.RECEIPT_ISSUER_ACTIVATED_AT,
-            operationMode: env.PROOFWEAVE_CONTROL_PLANE_MODE,
+            operationMode: operationState.mode,
           }).fetch(request);
         } catch (error) {
           if (error instanceof RemoteMcpRuntimeConfigurationError) {

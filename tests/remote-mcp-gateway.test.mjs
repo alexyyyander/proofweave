@@ -18,7 +18,7 @@ const issuer = "https://auth.example.test";
 
 function gatewayWith(identityProvider, store = fixtureStore(), {
   rateLimiter,
-  operationMode,
+  operationMode = "read_write",
 } = {}) {
   return createRemoteMcpGateway({
     resource,
@@ -26,7 +26,7 @@ function gatewayWith(identityProvider, store = fixtureStore(), {
     identityProvider,
     store,
     ...(rateLimiter ? { rateLimiter } : {}),
-    ...(operationMode ? { operationMode } : {}),
+    operationMode,
   });
 }
 
@@ -314,6 +314,7 @@ test("keeps dynamic OAuth client registration closed unless a fixed allowlist en
   const common = {
     resource,
     store,
+    operationMode: "read_write",
     sessionResolver: { async currentSession() { return null; }, authorizationRequired() { return new Response("Sign in", { status: 401 }); } },
     consentResolver: { async resolve() { return { approved: false }; } },
   };
@@ -365,6 +366,7 @@ test("issues PKCE-bound OAuth tokens for one authorized Agent installation and r
     issuer,
     resource,
     store,
+    operationMode: "read_write",
     sessionResolver: {
       async currentSession() { return { personId: "did:proofweave:alice" }; },
       authorizationRequired() { return new Response("Sign in", { status: 401 }); },
@@ -438,6 +440,7 @@ test("rejects an authorization code when its PKCE verifier is wrong", async () =
     issuer,
     resource,
     store,
+    operationMode: "read_write",
     sessionResolver: {
       async currentSession() { return { personId: "did:proofweave:alice" }; },
       authorizationRequired() { return new Response("Sign in", { status: 401 }); },

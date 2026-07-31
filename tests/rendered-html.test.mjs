@@ -51,6 +51,9 @@ before(async () => {
     bindings: {
       PROOFWEAVE_DEMO_AUTH_ENABLED: "true",
       PROOFWEAVE_DEMO_PERSON_LABEL: "Build Week Test Person",
+      PROOFWEAVE_CONTROL_PLANE_MODE: "read_write",
+      PROOFWEAVE_PARTICIPANT_CONTROL_PLANE_MODE: "read_write",
+      PROOFWEAVE_MCP_CONTROL_PLANE_MODE: "read_write",
     },
     serviceBindings: {
       ASSETS: async () => new Response("Not found", { status: 404 }),
@@ -126,12 +129,17 @@ test("publishes a public Connector compatibility contract", async () => {
     siteProjectId: "appgprj_6a54400d01a8819199224b722afae056",
     failureCode: "release_identity_missing",
   });
-  assert.deepEqual(contract.controlPlaneOperations, {
-    schemaVersion: "pw-control-plane-operation-state-v1",
-    mode: "read_write",
-    writesEnabled: true,
-    explicitlyConfigured: false,
-  });
+  assert.equal(contract.controlPlaneOperations.schemaVersion, "pw-control-plane-operation-state-v1");
+  assert.equal(contract.controlPlaneOperations.mode, "read_write");
+  assert.equal(contract.controlPlaneOperations.writesEnabled, true);
+  assert.equal(contract.controlPlaneOperations.explicitlyConfigured, true);
+  assert.equal(contract.participantOperations.schemaVersion, "pw-control-plane-surface-operation-state-v1");
+  assert.equal(contract.participantOperations.surface, "participant");
+  assert.equal(contract.participantOperations.writesEnabled, true);
+  assert.equal(contract.mcpOperations.surface, "mcp");
+  assert.equal(contract.mcpOperations.writesEnabled, true);
+  assert.equal(contract.globalControlPlaneOperations.mode, "read_write");
+  assert.equal(contract.globalControlPlaneOperations.explicitlyConfigured, true);
   assert.deepEqual(Object.keys(contract.releaseDiagnostics).sort(), [
     "authority",
     "databaseFingerprint",
@@ -1625,7 +1633,8 @@ test("does not expose unexpected delegation auth/runtime errors as client input"
     }),
   });
   const body = await response.text();
-  assert.equal(response.status, 500);
+  assert.equal(response.status, 503);
+  assert.equal(response.headers.get("cache-control"), "no-store");
   assert.doesNotMatch(body, /PROOFWEAVE_CONTROL_PLANE_MODE|unexpected_runtime_mode|read_write or read_only/i);
 });
 
