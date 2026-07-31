@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 import { sha256Canonical } from "../../packages/protocol/canonical-json.mjs";
 import { runtimeRecoveryIsolationActiveStates } from "../../packages/protocol/runtime-recovery-isolation.mjs";
 
-export const githubExternalConfigAuditSchemaVersion = "pw-github-external-config-audit-v1";
+export const githubExternalConfigAuditSchemaVersion = "pw-github-external-config-audit-v2";
 export const githubExternalConfigApiVersion = "2026-03-10";
 
 const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
@@ -17,6 +17,7 @@ const defaultRenderBlueprintPath = path.join(
   "render.yaml",
 );
 const fullCommitRevisionPattern = /^[a-f0-9]{40}$/;
+const dynamicWorkflowAuthority = "__dynamic__";
 
 export class GithubExternalConfigAuditError extends Error {
   constructor(code, message) {
@@ -126,18 +127,25 @@ export async function auditGithubExternalConfiguration(options = {}) {
 
   const findings = [];
   const repositoryEvidence = inspectRepository(repository, policy, findings);
+  const productionSecretBearingWorkflows = inspectWorkflowProductionAuthority({
+    workflowSources,
+    policy,
+    findings,
+  });
   const environmentEvidence = await inspectEnvironment({
     environment,
     branchPolicies,
     environmentVariables,
     environmentSecrets,
     expectedVariables,
+    protectionRequired: productionSecretBearingWorkflows.length > 0,
     policy,
     findings,
   });
   const actionsEvidence = inspectActionsPermissions({
     actionPermissions,
     workflowSources,
+    productionSecretBearingWorkflows,
     policy,
     findings,
   });
@@ -182,6 +190,7 @@ async function inspectEnvironment({
   environmentVariables,
   environmentSecrets,
   expectedVariables,
+  protectionRequired,
   policy,
   findings,
 }) {
@@ -192,7 +201,7 @@ async function inspectEnvironment({
   if (environment.name !== expected.name) {
     addFinding(findings, "ENVIRONMENT_IDENTITY_MISMATCH", "environment", expected.name);
   }
-  if (environment.can_admins_bypass !== expected.canAdminsBypass) {
+  if (protectionRequired && environment.can_admins_bypass !== expected.canAdminsBypass) {
     addFinding(findings, "ADMIN_BYPASS_POLICY_MISMATCH", "environment", expected.name);
   }
   if (!Array.isArray(environment.protection_rules)) {
@@ -202,18 +211,21 @@ async function inspectEnvironment({
   const requiredReviewerRules = environment.protection_rules.filter(
     (rule) => rule?.type === "required_reviewers",
   );
-  if (requiredReviewerRules.length !== 1 || !Array.isArray(requiredReviewerRules[0]?.reviewers)) {
+  if (
+    protectionRequired
+    && (requiredReviewerRules.length !== 1 || !Array.isArray(requiredReviewerRules[0]?.reviewers))
+  ) {
     addFinding(findings, "REQUIRED_REVIEWER_POLICY_MISSING", "environment", expected.name);
   }
   const preventSelfReview = requiredReviewerRules.length === 1
     && typeof requiredReviewerRules[0].prevent_self_review === "boolean"
     ? requiredReviewerRules[0].prevent_self_review
     : null;
-  if (preventSelfReview !== expected.preventSelfReview) {
+  if (protectionRequired && preventSelfReview !== expected.preventSelfReview) {
     addFinding(findings, "SELF_REVIEW_POLICY_MISMATCH", "environment", expected.name);
   }
   const reviewers = normalizeObservedReviewers(requiredReviewerRules[0]?.reviewers ?? []);
-  if (!sameJson(reviewers, expected.requiredReviewers)) {
+  if (protectionRequired && !sameJson(reviewers, expected.requiredReviewers)) {
     addFinding(findings, "REQUIRED_REVIEWER_POLICY_MISMATCH", "environment", expected.name);
   }
 
@@ -297,6 +309,12 @@ async function inspectEnvironment({
   const allowedSecretNames = new Set(expected.allowedSecretNames);
   const secretViolations = [];
   for (const name of secretNames) {
+    addFinding(
+      findings,
+      "PRODUCTION_ENVIRONMENT_SECRET_PRESENT",
+      "environment-secret",
+      name,
+    );
     const matchedMarkers = expected.forbiddenSecretNameMarkers.filter((marker) =>
       name.toUpperCase().includes(marker)
     );
@@ -330,6 +348,7 @@ async function inspectEnvironment({
 
   return {
     name: typeof environment.name === "string" ? environment.name : null,
+    productionProtectionRequired: protectionRequired,
     canAdminsBypass: booleanOrNull(environment.can_admins_bypass),
     preventSelfReview,
     requiredReviewers: reviewers,
@@ -367,6 +386,7 @@ function inspectRepository(repository, policy, findings) {
 function inspectActionsPermissions({
   actionPermissions,
   workflowSources,
+  productionSecretBearingWorkflows,
   policy,
   findings,
 }) {
@@ -403,8 +423,36 @@ function inspectActionsPermissions({
     allowedActions: actionPermissions.allowed_actions,
     shaPinningRequired: actionPermissions.sha_pinning_required,
     workflowInventory: workflowSources.workflows,
+    productionSecretBearingWorkflows,
     thirdPartyActions: workflowSources.actions,
   };
+}
+
+function inspectWorkflowProductionAuthority({ workflowSources, policy, findings }) {
+  const productionEnvironment = policy.environment.name;
+  const secretBearing = workflowSources.workflowSurfaces
+    .filter((entry) => (
+      entry.hasExecutableSteps
+      && (
+        entry.environmentNames.includes(productionEnvironment)
+        || entry.environmentNames.includes(dynamicWorkflowAuthority)
+      )
+      && entry.secretNames.some((name) => name !== "GITHUB_TOKEN")
+    ))
+    .map((entry) => ({
+      path: entry.path,
+      secretNames: entry.secretNames.filter((name) => name !== "GITHUB_TOKEN"),
+    }))
+    .sort((left, right) => compareStrings(left.path, right.path));
+  for (const entry of secretBearing) {
+    addFinding(
+      findings,
+      "PRODUCTION_SECRET_BEARING_WORKFLOW_PRESENT",
+      "workflow",
+      entry.path,
+    );
+  }
+  return secretBearing;
 }
 
 async function inspectRecoveryWorkflows({
@@ -500,13 +548,20 @@ export async function scanWorkflowActions({
   }
 
   const actions = [];
+  const workflowSurfaces = [];
   for (const workflowPath of workflows) {
     const source = await readBoundedUtf8(
       readFileImpl,
       path.join(repoRoot, workflowPath),
       "WORKFLOW_SCAN_FAILED",
     );
+    const {
+      environmentNames,
+      secretNames,
+    } = inspectWorkflowAuthorityReferences(source);
+    let hasExecutableSteps = false;
     for (const rawLine of source.split("\n")) {
+      if (/^\s+(?:-\s*)?(?:uses|run):\s*/.test(rawLine)) hasExecutableSteps = true;
       const match = rawLine.match(/^\s*(?:-\s*)?uses:\s*([^\s#]+)\s*(?:#.*)?$/);
       if (!match) continue;
       const reference = stripYamlQuotes(match[1]);
@@ -518,13 +573,73 @@ export async function scanWorkflowActions({
         pinned: parsed.pinned,
       });
     }
+    workflowSurfaces.push({
+      path: workflowPath,
+      environmentNames,
+      secretNames,
+      hasExecutableSteps,
+    });
   }
   actions.sort((left, right) => (
     compareStrings(left.workflowPath, right.workflowPath)
     || compareStrings(left.action, right.action)
     || compareStrings(left.revision ?? "", right.revision ?? "")
   ));
-  return deepFreeze({ workflows, actions });
+  workflowSurfaces.sort((left, right) => compareStrings(left.path, right.path));
+  return deepFreeze({ workflows, workflowSurfaces, actions });
+}
+
+function inspectWorkflowAuthorityReferences(source) {
+  const environmentNames = new Set();
+  const lines = source.split("\n");
+  for (let index = 0; index < lines.length; index += 1) {
+    const declaration = lines[index].match(/^(\s+)environment:\s*(.*?)\s*$/);
+    if (!declaration) continue;
+    const inline = declaration[2].replace(/\s+#.*$/, "").trim();
+    if (inline) {
+      environmentNames.add(normalizeWorkflowAuthorityName(inline));
+      continue;
+    }
+    const declarationIndent = declaration[1].length;
+    let foundName = false;
+    for (let cursor = index + 1; cursor < lines.length; cursor += 1) {
+      const candidate = lines[cursor];
+      if (!candidate.trim() || candidate.trimStart().startsWith("#")) continue;
+      const candidateIndent = candidate.match(/^\s*/)?.[0].length ?? 0;
+      if (candidateIndent <= declarationIndent) break;
+      const name = candidate.match(/^\s+name:\s*(.*?)\s*$/);
+      if (!name) continue;
+      environmentNames.add(normalizeWorkflowAuthorityName(
+        name[1].replace(/\s+#.*$/, "").trim(),
+      ));
+      foundName = true;
+      break;
+    }
+    if (!foundName) environmentNames.add(dynamicWorkflowAuthority);
+  }
+
+  const secretNames = new Set();
+  for (const expression of source.matchAll(/\$\{\{([\s\S]*?)\}\}/g)) {
+    if (!/\bsecrets\b/.test(expression[1])) continue;
+    let foundLiteral = false;
+    for (const secret of expression[1].matchAll(
+      /\bsecrets(?:\.([A-Z][A-Z0-9_]*)|\[\s*["']([A-Z][A-Z0-9_]*)["']\s*\])/g,
+    )) {
+      secretNames.add(secret[1] ?? secret[2]);
+      foundLiteral = true;
+    }
+    if (!foundLiteral) secretNames.add(dynamicWorkflowAuthority);
+  }
+
+  return {
+    environmentNames: [...environmentNames].sort(compareStrings),
+    secretNames: [...secretNames].sort(compareStrings),
+  };
+}
+
+function normalizeWorkflowAuthorityName(value) {
+  const unquoted = stripYamlQuotes(value);
+  return /^[A-Za-z0-9_.-]+$/.test(unquoted) ? unquoted : dynamicWorkflowAuthority;
 }
 
 function parseActionReference(reference) {
@@ -614,7 +729,7 @@ function parseYamlScalar(value) {
 function normalizePolicy(value) {
   if (
     !value
-    || value.schemaVersion !== "pw-github-external-config-policy-v1"
+    || value.schemaVersion !== "pw-github-external-config-policy-v2"
     || !value.repository
     || !Number.isSafeInteger(value.repository.id)
     || value.repository.id <= 0
@@ -630,7 +745,7 @@ function normalizePolicy(value) {
     || typeof value.environment.deploymentBranches.customBranchPolicies !== "boolean"
     || !uniqueBoundedStrings(value.environment.deploymentBranches.patterns)
     || !uniqueEnvironmentNames(value.environment.renderBoundVariables)
-    || !uniqueEnvironmentNames(value.environment.allowedSecretNames)
+    || !uniqueEnvironmentNamesAllowEmpty(value.environment.allowedSecretNames)
     || !uniqueEnvironmentNames(value.environment.forbiddenSecretNameMarkers)
     || !uniqueBoundedStrings(value.recoveryWorkflows)
     || value.recoveryWorkflows.length === 0
@@ -854,6 +969,12 @@ function stripYamlQuotes(value) {
 function uniqueEnvironmentNames(values) {
   return Array.isArray(values)
     && values.length > 0
+    && values.every(validEnvironmentName)
+    && new Set(values).size === values.length;
+}
+
+function uniqueEnvironmentNamesAllowEmpty(values) {
+  return Array.isArray(values)
     && values.every(validEnvironmentName)
     && new Set(values).size === values.length;
 }

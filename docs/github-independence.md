@@ -49,9 +49,10 @@ complete procedure is in
 | Artifact Bundle v3 provenance | Optional | Adds a signed GitHub repository/commit reference; the Runner still uses the included workspace |
 | Shared Attempt, evidence, review, Receipt, and Credit records | No | Turso/D1 control plane |
 | Alpha reference Runner execution | No at request time | Hosted trusted Runner on Render starts one E2B sandbox |
-| GitHub Actions Runner workflow | Recovery only | Bounded manual/event recovery path, not the primary controller |
+| GitHub isolation diagnostic workflow | Diagnostics only | Manual, secretless source-policy check; no queue or E2B authority |
 | CI, pull requests, source review, and release gates | Yes today | Engineering delivery, not participant research authority |
-| Runner image/template construction and GHCR publication | Yes today | Build-time supply chain; an already provisioned template does not contact GitHub per Run |
+| Runner image construction and GHCR publication | Yes today | Credential-free build-time supply chain using only the scoped `GITHUB_TOKEN` |
+| E2B template construction | No | Local operator action using credentials held outside GitHub |
 | Installing from a source checkout | Optional | Advanced development/audit path |
 
 ## Evidence formats
@@ -83,13 +84,12 @@ The hosted process owns the Turso, E2B, control-plane verification, and Runner
 result-signing credentials. Submitted Lean receives none of them. The
 participant workspace reaches E2B only through the immutable Bundle handoff.
 
-The GitHub Actions E2B workflow is retained for bounded recovery, diagnostics,
-and explicitly approved operator runs. It is not the alpha's normal scheduler
-or trusted controller. GitHub Actions also remains part of CI and reviewed
-image/template releases. The historical Build Week Receipt workflow is kept
-disabled in the separate `proofweave-demo-alpha` Environment. It must never
-inherit production Runner or Receipt-issuer secrets from
-`proofweave-runner-alpha`.
+The legacy GitHub Actions E2B filename is retained only for manual secretless
+isolation diagnostics. It cannot consume the queue or start E2B. GitHub Actions
+remains part of CI and credential-free reviewed image publication; template
+creation is a local operator action. The historical Build Week Receipt workflow
+is kept disabled in the separate empty `proofweave-demo-alpha` Environment.
+`proofweave-runner-alpha` must contain zero secrets.
 
 ## Failure boundary
 
@@ -100,7 +100,7 @@ If GitHub is unavailable after a release is already provisioned:
 - the hosted Runner and an existing approved E2B template do not need GitHub
   for each Run;
 - source checkout, pull-request checks, new releases, image rebuilds, GHCR
-  publication, and the Actions recovery path do stop; and
+  publication, and GitHub diagnostics do stop; and
 - a fresh install continues through the Proofweave-hosted archive as long as
   the Site download is available.
 
@@ -357,7 +357,8 @@ Until this passes against one aligned deployed revision, the truthful status is:
 - Say **“Bundle v2 is the provider-neutral executable default.”**
 - Say **“Bundle v3 adds optional GitHub provenance.”**
 - Say **“Hosted Runner + E2B is the alpha reference path.”**
-- Say **“GitHub Actions is CI, image-release, and recovery infrastructure.”**
+- Say **“GitHub Actions is CI, credential-free image release, and diagnostic
+  infrastructure.”**
 - Say **“The signed GitHub observation covers fixed reviewed workflow sources
   at drill begin; it is not continuous or exclusive isolation.”**
 - Do not say the entire product has no GitHub dependency while CI and the image

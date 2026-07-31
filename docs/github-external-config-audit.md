@@ -4,18 +4,25 @@ Checked-in workflow review cannot prove GitHub's server-side authorization
 state. Run this read-only audit before a release is merged, before a production
 drill begins, and again in the final same-SHA release record.
 
-The audit closes the external parts of the GitHub recovery gate:
+The audit closes the external parts of the GitHub zero-production-secret gate:
 
-- `proofweave-runner-alpha` requires the reviewed approver, denies administrator
-  bypass, and accepts only the reviewed deployment branch patterns;
-- the two reviewed recovery workflows are `disabled_manually` and have zero
+- `proofweave-runner-alpha` contains **zero secrets** and accepts only the
+  reviewed deployment branch patterns;
+- the reviewed diagnostic and historical demo workflows are
+  `disabled_manually` and have zero
   `in_progress`, `pending`, `queued`, `requested`, or `waiting` runs;
-- recovery Runner image, E2B template, template build, and approved-image
+- hosted Runner image, E2B template, template build, and approved-image
   variables exactly match the literal values in the Render Blueprint;
-- the production Environment contains only the allowlisted production secret
-  names and contains no `DEMO`, `MOCK`, `FIXTURE`, or `SMOKE` authority;
+- no checked-in executable workflow combines `proofweave-runner-alpha` with a
+  non-`GITHUB_TOKEN` secret reference;
 - repository Actions policy enforces immutable SHA references; and
 - every checked-in third-party Action is pinned to a full 40-character commit.
+
+Required-reviewer, self-review, and administrator-bypass controls are checked
+only if a checked-in executable workflow can read a production Environment
+secret. Such a workflow is itself a release-blocking finding. In the reviewed
+zero-secret topology, unavailable private-repository reviewer controls do not
+weaken the production boundary because GitHub stores no production authority.
 
 This is an instantaneous provider observation, not proof of continuous
 isolation. Keep its observation interval together with the release SHA and the
@@ -26,9 +33,9 @@ other freeze evidence described in
 
 The reviewed expectation is
 [`config/github-external-config-policy.json`](../config/github-external-config-policy.json).
-Changes to the repository identity, approver, deployment branches, secret-name
-allowlist, or recovery workflow set are release-policy changes and require
-independent review.
+Changes to the repository identity, deployment branches, zero-secret
+requirement, hypothetical reviewer policy, or observed workflow set are
+release-policy changes and require independent review.
 
 Expected non-secret Runner values are not duplicated in that file. The auditor
 reads them directly from
@@ -37,9 +44,10 @@ and compares their SHA-256 hashes with GitHub Environment variables. Raw
 variable values are never copied into evidence.
 
 The historical `build-week-live-receipt.yml` workflow belongs to
-`proofweave-demo-alpha`. It must still be disabled and idle during a production
-freeze, but demo/mocker keys must never be stored in
-`proofweave-runner-alpha`.
+`proofweave-demo-alpha`. It remains disabled and idle during a production
+freeze. The legacy `e2b-lean-runner.yml` filename now contains secretless
+isolation diagnostics only; it is not a recovery Runner and cannot consume the
+Turso queue or start E2B.
 
 ## Run
 
@@ -79,7 +87,7 @@ The JSON evidence contains:
 - UTC start and finish;
 - the full local commit SHA;
 - repository and workflow identifiers;
-- reviewer and branch-policy metadata;
+- conditional reviewer and branch-policy metadata;
 - Environment variable names with expected/observed value hashes;
 - Environment secret **names** and violation classifications;
 - Actions policy and pinned Action references; and
@@ -94,13 +102,19 @@ codes so an upstream exception cannot echo a credential into a release log.
 
 When the audit fails, remediate provider state rather than editing the evidence:
 
-1. cancel active recovery runs and manually disable both workflows;
-2. remove demo/mocker secrets from the production Environment after preserving
-   any still-needed demo authority in the separately reviewed demo Environment;
-3. align the four non-secret Runner values with the Render Blueprint;
-4. apply the reviewed required-reviewer, no-admin-bypass, and branch rules;
-5. require full-SHA pinning at repository level; and
+1. cancel active runs and manually disable the diagnostic and historical demo
+   workflows;
+2. move E2B template construction to the local operator runbook and confirm the
+   hosted Runner, Site, and gateway hold their own least-privilege credentials;
+3. remove and rotate every secret formerly stored in
+   `proofweave-runner-alpha`;
+4. align the four non-secret Runner values with the Render Blueprint;
+5. keep the reviewed deployment branches and full-SHA Actions policy; and
 6. rerun the audit from the clean release worktree.
+
+Do not treat `disabled_manually` as an irreversible authorization control:
+repository administrators can re-enable a workflow. Zero stored production
+secrets is the security boundary.
 
 Never place a secret value in an issue, pull request, terminal transcript, audit
 file, or command-line argument.

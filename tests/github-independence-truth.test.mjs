@@ -60,7 +60,9 @@ test("the evidence and Runner docs preserve the provider-neutral runtime boundar
   assert.match(canonical, /No step in this path requires the participant to have a GitHub account/i);
   assert.match(canonical, /Bundle v2 is the provider-neutral executable default/i);
   assert.match(canonical, /Hosted Runner \+ E2B is the alpha reference path/i);
-  assert.match(canonical, /GitHub Actions is CI, image-release, and recovery infrastructure/i);
+  assert.match(canonical, /GitHub Actions is CI, credential-free image release, and diagnostic\s+infrastructure/i);
+  assert.match(canonical, /GitHub isolation diagnostic workflow \| Diagnostics only/i);
+  assert.match(canonical, /E2B template construction \| No \| Local operator action/i);
   assert.match(canonical, /signed GitHub observation covers fixed reviewed workflow sources\s+at drill begin/i);
   assert.match(canonical, /not continuous or exclusive isolation/i);
   assert.match(canonical, /does not inspect GitHub Environment protection rules/i);
@@ -73,8 +75,8 @@ test("the evidence and Runner docs preserve the provider-neutral runtime boundar
   assert.doesNotMatch(bundle, /New executable Runs require v2 or GitHub-linked v3/i);
 
   assert.match(runner, /reference deployment uses a hosted Node control process on Render/i);
-  assert.match(runner, /GitHub Actions is not the primary Runner/i);
-  assert.match(runner, /GitHub Actions recovery path/i);
+  assert.match(runner, /GitHub Actions is not a Runner or recovery execution surface/i);
+  assert.match(runner, /manual, secretless static diagnostics/i);
   assert.match(runner, /configuration and control-plane readiness only/i);
   assert.match(runner, /first controlled smoke\s+must verify those provider properties/i);
   assert.doesNotMatch(runner, /protected GitHub Actions trusted Runner/i);
@@ -87,7 +89,8 @@ test("the evidence and Runner docs preserve the provider-neutral runtime boundar
   assert.match(e2bAdr, /Status: superseded as the active-controller decision/i);
   assert.match(e2bAdr, /hosted\s+trusted Runner on Render as the alpha reference path/i);
 
-  assert.match(recoveryWorkflow, /authenticated hosted Runner wake is the normal path/i);
-  assert.match(recoveryWorkflow, /not participant runtime dependencies/i);
-  assert.doesNotMatch(recoveryWorkflow, /repository dispatch are the normal paths/i);
+  assert.match(recoveryWorkflow, /no Environment, no production secret, no queue authority, and no E2B client/i);
+  assert.match(recoveryWorkflow, /Diagnostic only — no production Environment, Turso queue, or E2B authority/i);
+  assert.doesNotMatch(recoveryWorkflow, /\$\{\{\s*secrets\./);
+  assert.doesNotMatch(recoveryWorkflow, /^\s+environment:/m);
 });

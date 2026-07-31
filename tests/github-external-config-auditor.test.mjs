@@ -40,10 +40,9 @@ test("a reviewed provider snapshot produces privacy-safe passing evidence", asyn
     && entry.observedValueHash === entry.expectedValueHash
   )));
   assert.deepEqual(evidence.environment.secretNames, [
-    "E2B_API_KEY",
-    "RUNNER_RESULT_PRIVATE_KEY_JWK",
-    "TURSO_AUTH_TOKEN",
-    "TURSO_DATABASE_URL",
+  ]);
+  assert.equal(evidence.environment.productionProtectionRequired, false);
+  assert.deepEqual(evidence.repositoryActions.productionSecretBearingWorkflows, [
   ]);
   assert.equal(evidence.repositoryActions.shaPinningRequired, true);
   assert.ok(evidence.repositoryActions.thirdPartyActions.length > 0);
@@ -92,6 +91,7 @@ test("configuration drift is classified and fails closed", async () => {
     releaseCommit,
     repoRoot: root,
     fetchImpl,
+    readFileImpl: secretBearingWorkflowSource,
     now: sequenceClock("2026-07-31T03:00:00.000Z", "2026-07-31T03:00:01.000Z"),
   });
   const codes = new Set(evidence.findings.map((entry) => entry.code));
@@ -106,6 +106,8 @@ test("configuration drift is classified and fails closed", async () => {
     "DEPLOYMENT_BRANCH_POLICY_MISMATCH",
     "DEPLOYMENT_BRANCH_PATTERN_MISMATCH",
     "ENVIRONMENT_VARIABLE_VALUE_MISMATCH",
+    "PRODUCTION_ENVIRONMENT_SECRET_PRESENT",
+    "PRODUCTION_SECRET_BEARING_WORKFLOW_PRESENT",
     "NONPRODUCTION_SECRET_IN_PRODUCTION_ENVIRONMENT",
     "UNREVIEWED_PRODUCTION_SECRET",
     "ACTIONS_SHA_PINNING_NOT_ENFORCED",
@@ -115,22 +117,76 @@ test("configuration drift is classified and fails closed", async () => {
     assert.ok(codes.has(expectedCode), `missing finding ${expectedCode}`);
   }
   assert.deepEqual(
-    evidence.environment.secretViolations.map((entry) => ({
-      name: entry.name,
-      classification: entry.classification,
-    })),
-    [
-      {
-        name: "DEMO_MOCKER_1_AGENT_PRIVATE_KEY_JWK",
-        classification: "forbidden-nonproduction-marker",
-      },
-      {
-        name: "RUNNER_CONTROL_PLANE_PRIVATE_KEY_JWK",
-        classification: "not-allowlisted",
-      },
-    ],
+    evidence.environment.secretViolations.find(
+      (entry) => entry.name === "DEMO_MOCKER_1_AGENT_PRIVATE_KEY_JWK",
+    )?.classification,
+    "forbidden-nonproduction-marker",
   );
+  assert.ok(evidence.environment.secretViolations.every(
+    (entry) => entry.classification !== "required-secret-missing",
+  ));
   assert.equal(JSON.stringify(evidence).includes("stale-template"), false);
+});
+
+test("any production Environment secret fails even without executable recovery", async () => {
+  const evidence = await auditGithubExternalConfiguration({
+    githubToken,
+    releaseCommit,
+    repoRoot: root,
+    fetchImpl: githubFixture({
+      secrets: ["E2B_API_KEY"],
+    }),
+    now: sequenceClock("2026-07-31T03:00:00.000Z", "2026-07-31T03:00:01.000Z"),
+  });
+
+  assert.equal(evidence.passed, false);
+  assert.equal(evidence.environment.productionProtectionRequired, false);
+  assert.ok(evidence.findings.some(
+    (entry) => entry.code === "PRODUCTION_ENVIRONMENT_SECRET_PRESENT",
+  ));
+  assert.ok(!evidence.findings.some(
+    (entry) => entry.code === "REQUIRED_REVIEWER_POLICY_MISSING",
+  ));
+});
+
+test("mapped or dynamic Environment authority activates production protection checks", async (context) => {
+  for (const [label, environmentDeclaration] of [
+    ["mapped", "    environment:\n      name: proofweave-runner-alpha"],
+    ["dynamic", "    environment: ${{ inputs.environment_name }}"],
+  ]) {
+    await context.test(label, async () => {
+      const readFileImpl = async (filePath, encoding) => {
+        const source = await readFile(filePath, encoding);
+        if (!String(filePath).endsWith(".github/workflows/e2b-lean-runner.yml")) return source;
+        return source.replace(
+          "    runs-on: ubuntu-latest",
+          [
+            "    runs-on: ubuntu-latest",
+            environmentDeclaration,
+            "    env:",
+            "      E2B_API_KEY: ${{ secrets['E2B_API_KEY'] }}",
+          ].join("\n"),
+        );
+      };
+      const evidence = await auditGithubExternalConfiguration({
+        githubToken,
+        releaseCommit,
+        repoRoot: root,
+        fetchImpl: githubFixture(),
+        readFileImpl,
+        now: sequenceClock("2026-07-31T03:00:00.000Z", "2026-07-31T03:00:01.000Z"),
+      });
+
+      assert.equal(evidence.passed, false);
+      assert.equal(evidence.environment.productionProtectionRequired, true);
+      assert.ok(evidence.findings.some(
+        (entry) => entry.code === "PRODUCTION_SECRET_BEARING_WORKFLOW_PRESENT",
+      ));
+      assert.ok(evidence.findings.some(
+        (entry) => entry.code === "REQUIRED_REVIEWER_POLICY_MISSING",
+      ));
+    });
+  }
 });
 
 test("an unpinned checked-in action is reported without executing it", async () => {
@@ -224,9 +280,9 @@ function githubFixture(options = {}) {
   };
   const environment = {
     name: "proofweave-runner-alpha",
-    can_admins_bypass: false,
+    can_admins_bypass: true,
     prevent_self_review: false,
-    protection_rules: [reviewerRule],
+    protection_rules: [],
     deployment_branch_policy: {
       protected_branches: false,
       custom_branch_policies: true,
@@ -234,12 +290,8 @@ function githubFixture(options = {}) {
     ...(options.environment ?? {}),
   };
   const variables = options.variables ?? expectedVariables;
-  const secrets = options.secrets ?? [
-    "E2B_API_KEY",
-    "RUNNER_RESULT_PRIVATE_KEY_JWK",
-    "TURSO_AUTH_TOKEN",
-    "TURSO_DATABASE_URL",
-  ];
+  if (options.withReviewerRule) environment.protection_rules = [reviewerRule];
+  const secrets = options.secrets ?? [];
   const workflows = [
     {
       id: 101,
@@ -300,6 +352,20 @@ function githubFixture(options = {}) {
       headers: { "content-type": "application/json" },
     });
   };
+}
+
+async function secretBearingWorkflowSource(filePath, encoding) {
+  const source = await readFile(filePath, encoding);
+  if (!String(filePath).endsWith(".github/workflows/e2b-lean-runner.yml")) return source;
+  return source.replace(
+    "    runs-on: ubuntu-latest",
+    [
+      "    runs-on: ubuntu-latest",
+      "    environment: proofweave-runner-alpha",
+      "    env:",
+      "      E2B_API_KEY: ${{ secrets.E2B_API_KEY }}",
+    ].join("\n"),
+  );
 }
 
 function sequenceClock(...values) {

@@ -94,6 +94,79 @@ test("scanner fails closed for an unknown secret-bearing consumer wrapper", asyn
   }
 });
 
+test("scanner rejects every GitHub workflow that can read production Environment secrets", async () => {
+  const temporaryRoot = await copyReviewedWorkflows("proofweave-production-environment-authority-");
+  try {
+    const workflowDirectory = path.join(temporaryRoot, ".github", "workflows");
+    await writeFile(
+      path.join(workflowDirectory, "production-secret-reader.yml"),
+      [
+        "name: Forbidden production authority",
+        "jobs:",
+        "  read-secret:",
+        "    runs-on: ubuntu-latest",
+        "    environment: proofweave-runner-alpha",
+        "    env:",
+        "      AUTHORITY: ${{ secrets.E2B_API_KEY }}",
+        "    steps:",
+        "      - run: echo forbidden",
+        "",
+      ].join("\n"),
+    );
+    await assert.rejects(
+      scanGithubRecoverySurfaces({ repoRoot: temporaryRoot }),
+      (error) => error?.code === "PRODUCTION_GITHUB_AUTHORITY_PRESENT",
+    );
+  } finally {
+    await rm(temporaryRoot, { recursive: true, force: true });
+  }
+});
+
+test("scanner rejects mapped or dynamic production Environment secret authority", async (context) => {
+  for (const [label, environmentLines] of [
+    [
+      "mapped",
+      [
+        "    environment:",
+        "      name: proofweave-runner-alpha",
+      ],
+    ],
+    [
+      "dynamic",
+      [
+        "    environment: ${{ inputs.environment_name }}",
+      ],
+    ],
+  ]) {
+    await context.test(label, async () => {
+      const temporaryRoot = await copyReviewedWorkflows(`proofweave-${label}-environment-authority-`);
+      try {
+        await writeFile(
+          path.join(temporaryRoot, ".github", "workflows", "production-secret-reader.yml"),
+          [
+            "name: Forbidden production authority",
+            "jobs:",
+            "  read-secret:",
+            "    runs-on: ubuntu-latest",
+            ...environmentLines,
+            "    env:",
+            "      AUTHORITY: ${{ secrets['E2B_API_KEY'] }}",
+            "    steps:",
+            "      - run: echo forbidden",
+            "",
+          ].join("\n"),
+        );
+        await assert.rejects(
+          scanGithubRecoverySurfaces({ repoRoot: temporaryRoot }),
+          (error) => error?.code === "PRODUCTION_GITHUB_AUTHORITY_PRESENT",
+        );
+      } finally {
+        await rm(temporaryRoot, { recursive: true, force: true });
+      }
+    });
+  }
+});
+
 test("scanner fails closed for an unknown local action reference", async () => {
   const temporaryRoot = await copyReviewedWorkflows("proofweave-recovery-local-action-");
   try {
@@ -167,7 +240,10 @@ test("scanner fails closed when only reviewed workflow permissions or environmen
     },
     {
       name: "environment",
-      replace: ["environment: proofweave-runner-alpha", "environment: unreviewed-runner-environment"],
+      replace: [
+        "    runs-on: ubuntu-latest",
+        "    runs-on: ubuntu-latest\n    environment: unreviewed-diagnostics",
+      ],
     },
   ];
   for (const mutation of mutations) {

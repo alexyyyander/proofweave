@@ -1437,12 +1437,12 @@ async function createRecoveryIsolationEvidence({
   const workflows = [
     {
       path: ".github/workflows/build-week-live-receipt.yml",
-      role: "manual_queue_consumer",
+      role: "disabled_demo_queue_consumer",
       sourceSha256: sha("7"),
     },
     {
       path: ".github/workflows/e2b-lean-runner.yml",
-      role: "recovery_queue_consumer",
+      role: "secretless_isolation_diagnostic",
       sourceSha256: sha("8"),
     },
   ];

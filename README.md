@@ -214,8 +214,9 @@ carries the exact content-addressed workspace bytes required for replay without
 a repository checkout. Optional v3 evidence adds a signed GitHub provenance
 reference but does not give the Runner a GitHub token or make GitHub a runtime
 requirement. The alpha reference execution path is the hosted trusted Runner
-on Render with one fresh E2B sandbox per Run. GitHub Actions remains a bounded
-CI, image-release, and recovery mechanism—not the primary Runner.
+on Render with one fresh E2B sandbox per Run. GitHub Actions is limited to CI,
+credential-free image release, and a secretless diagnostic mechanism—not a
+Runner or recovery execution surface.
 
 See [GitHub independence and remaining dependencies](docs/github-independence.md)
 for the canonical product, runtime, and delivery boundary.

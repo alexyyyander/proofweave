@@ -95,10 +95,10 @@ npm run demo:release:check -- https://preview.example
 The normal execution path records one exact signed Bundle in Turso, sends an
 authenticated empty-body wake to the hosted trusted Runner on Render, and lets
 that trusted process claim the durable lease and create a fresh E2B sandbox.
-The GitHub Actions E2B workflow is recovery-only and must not be presented as
-the primary controller. The exact current-release live closure remains a
-release gate until a wake, terminal signed result, independent review, Receipt,
-and Credit share one persisted correlation trace.
+The legacy GitHub Actions E2B filename is secretless diagnostics only and must
+not be presented as a Runner. The exact current-release live closure remains a
+release gate until the hosted Runner wake, terminal signed result, independent
+review, Receipt, and Credit share one persisted correlation trace.
 
 Operators can prepare and finalize the labelled mock-review phase locally
 against an authorized shared store; execution itself should be observed through
@@ -109,10 +109,9 @@ npm run demo:live:prepare -- sha256:<bundle-hash>
 npm run demo:live:finalize -- sha256:<bundle-hash>
 ```
 
-The historical `Proofweave Build Week live Receipt` workflow may be used only
-for an explicitly approved recovery or diagnostic run. Any such use must be
-labelled as the recovery path and must not be evidence that the normal hosted
-wake path works.
+The historical `Proofweave Build Week live Receipt` workflow remains disabled
+in its empty demo Environment. It is retained as historical source, not as a
+supported recovery or diagnostic path.
 
 ## Three-minute walkthrough
 

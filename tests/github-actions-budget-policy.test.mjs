@@ -145,38 +145,30 @@ test("the fast gate covers static checks and core protocol tests without expensi
   assert.doesNotMatch(fast, /\b(?:miniflare|wrangler|d1-|turso|network)\b/i);
 });
 
-test("E2B verification is event-driven with only a six-hour recovery sweep", async () => {
+test("the legacy E2B workflow is manual-only, secretless isolation diagnostics", async () => {
   const { e2b } = await readWorkflows();
   const triggers = triggerBlock(e2b);
 
   assert.match(triggers, /^  workflow_dispatch:\s*$/m);
-  assert.match(
-    triggers,
-    /^  repository_dispatch:\n    types: \[proofweave_lean_run\]\s*$/m,
-  );
-  assert.match(triggers, /^\s+- cron: "23 \*\/6 \* \* \*"\s*$/m);
-  assert.doesNotMatch(triggers, /cron: "\*\/5 \* \* \* \*"/);
-  assert.doesNotMatch(triggers, /^  (push|pull_request):/m);
+  assert.doesNotMatch(triggers, /^  (push|pull_request|schedule|repository_dispatch):/m);
+  assert.match(e2b, /^name: Proofweave GitHub isolation diagnostics\s*$/m);
+  assert.match(e2b, /^\s+run: npm run runtime:recovery-isolation:check\s*$/m);
+  assert.doesNotMatch(e2b, /^\s+environment:/m);
+  assert.doesNotMatch(e2b, /\$\{\{\s*secrets\./);
+  assert.doesNotMatch(e2b, /\b(?:TURSO_|E2B_API_KEY|RUNNER_EXECUTION_ENABLED)\b/);
+  assert.doesNotMatch(e2b, /runner:trusted|run-trusted-lean-runner/);
 });
 
-test("the recovery workflow matches the reviewed Render E2B resource policy", async () => {
-  const [{ e2b }, renderBlueprint] = await Promise.all([
-    readWorkflows(),
-    readFile(renderBlueprintUrl, "utf8"),
-  ]);
+test("the reviewed image workflow publishes through GHCR without production authority", async () => {
+  const { image } = await readWorkflows();
+  const secretReferences = [...image.matchAll(/\$\{\{\s*secrets\.([A-Z0-9_]+)\s*\}\}/g)]
+    .map((match) => match[1]);
 
-  for (const key of [
-    "PROOFWEAVE_E2B_CPU",
-    "PROOFWEAVE_E2B_MEMORY_MB",
-    "PROOFWEAVE_E2B_TIMEOUT_MS",
-    "PROOFWEAVE_E2B_STARTUP_TIMEOUT_MS",
-  ]) {
-    assert.equal(
-      workflowEnvironmentValue(e2b, key),
-      renderEnvironmentValue(renderBlueprint, key),
-      `${key} must match between the primary Render Runner and GitHub recovery Runner`,
-    );
-  }
+  assert.deepEqual(secretReferences, ["GITHUB_TOKEN"]);
+  assert.doesNotMatch(image, /^\s+environment: proofweave-runner-alpha\s*$/m);
+  assert.doesNotMatch(image, /\b(?:E2B_API_KEY|TURSO_DATABASE_URL|TURSO_AUTH_TOKEN)\b/);
+  assert.doesNotMatch(image, /\b(?:build_e2b_template|existing_runner_image|build-e2b-template)\b/);
+  assert.doesNotMatch(image, /runner:e2b:template:build/);
 });
 
 test("the historical live demo is isolated from production and matches the reviewed E2B resource policy", async () => {

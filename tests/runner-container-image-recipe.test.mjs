@@ -97,15 +97,14 @@ test("Lean Runner image recipe fails closed and keeps its build context minimal"
   assert.match(imageWorkflow, /if: \$\{\{ github\.event\.repository\.visibility == 'public' \}\}/);
   assert.match(imageWorkflow, /registry-attached BuildKit SBOM and provenance remain the published image evidence/);
   assert.match(imageWorkflow, /actions\/attest-build-provenance@[a-f0-9]{40}/);
-  assert.match(imageWorkflow, /build-e2b-template:[\s\S]*?permissions:[\s\S]*?packages: read/);
-  assert.match(imageWorkflow, /PROOFWEAVE_E2B_REGISTRY_PASSWORD: \$\{\{ github\.token \}\}/);
-  assert.match(imageWorkflow, /PROOFWEAVE_E2B_TEMPLATE_NAME: proofweave-runner:\$\{\{ github\.run_id \}\}/);
-  assert.match(imageWorkflow, /existing_runner_image:/);
-  assert.match(imageWorkflow, /if: \$\{\{ inputs\.existing_runner_image == '' \}\}/);
-  assert.match(imageWorkflow, /inputs\.existing_runner_image \|\| needs\.build-and-inspect\.outputs\.runner_image/);
-  assert.match(imageWorkflow, /REVIEWED_RUNNER_PREFIX: ["']ghcr\.io\/\$\{\{ github\.repository_owner \}\}\/proofweave-lean-runner@sha256:["']/);
   assert.match(imageWorkflow, /build-and-inspect:[\s\S]*?permissions:[\s\S]*?packages: write/);
-  assert.doesNotMatch(imageWorkflow, /PROOFWEAVE_E2B_REGISTRY_PASSWORD: \$\{\{ secrets\.GITHUB_TOKEN \}\}/);
+  assert.match(imageWorkflow, /password: \$\{\{ secrets\.GITHUB_TOKEN \}\}/);
+  assert.doesNotMatch(imageWorkflow, /^\s+environment:/m);
+  assert.doesNotMatch(imageWorkflow, /\b(?:build-e2b-template|build_e2b_template|existing_runner_image)\b/);
+  assert.doesNotMatch(imageWorkflow, /\b(?:E2B_API_KEY|TURSO_DATABASE_URL|TURSO_AUTH_TOKEN)\b/);
+  assert.doesNotMatch(imageWorkflow, /runner:e2b:template:build/);
+  assert.match(contract, /It never creates an E2B template and has no production Environment dependency/);
+  assert.match(contract, /local operator command\s+`npm run runner:e2b:template:build`/);
 
   assert.match(dockerignore, /^\*$/m);
   assert.match(dockerignore, /^!packages\/\*\*$/m);

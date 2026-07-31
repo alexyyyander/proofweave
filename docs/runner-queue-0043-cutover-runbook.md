@@ -67,9 +67,9 @@ Also confirm:
 - provider status pages show no active database or deployment incident;
 - the operator can freeze Sites participant and MCP gateway mutation routes
   independently of each other and independently of a source deployment;
-- the operator can disable Render auto-deploy, stop its Runner process, disable
-  the GitHub Runner workflow and repository dispatch source, and cancel active
-  runs;
+- the operator can disable Render auto-deploy, stop its Runner process, keep
+  the secretless GitHub diagnostic and historical demo workflows disabled,
+  and cancel any active diagnostic/demo runs;
 - no participant session depends on completing during the maintenance window;
 - the approved backup/restore procedure has been exercised against a
   non-production database.
@@ -154,8 +154,8 @@ Rotation is a two-review change:
 2. In the first reviewed PR, increment `policyVersion` and add only the new
    `policyEntry`, temporarily retaining the old public entry.
 3. Deploy that reviewed policy and complete a bounded recovery-isolation
-   preflight signed by the new key. Do not enable the recovery Runner merely to
-   test key possession.
+   preflight signed by the new key. This proves local operator-key possession;
+   it does not enable or authorize a GitHub Runner.
 4. In a second reviewed PR, remove the old public entry and increment
    `policyVersion` again. Record the revocation time and policy hash.
 5. After the rollback window closes, securely destroy every online copy of the
@@ -181,19 +181,17 @@ organization, repository, or Environment authorization policy. Before merge or
 deployment, the release commander and cutover acceptor must collect
 provider-side evidence that:
 
-- the `proofweave-runner-alpha` Environment permits only the reviewed branch or
-  tag and requires the named production approver(s);
-- historical demo workflows use a distinct Environment and no demo or mocker
+- the `proofweave-runner-alpha` Environment contains zero secrets and permits
+  only the reviewed deployment branch or tag patterns;
+- historical demo workflows use a distinct, empty Environment and no demo,
+  mocker, Turso, E2B, queue-signing, Runner-result-signing, or Receipt-issuing
   private key is stored in `proofweave-runner-alpha`;
-- repository and Environment secrets that can reach Turso, E2B, queue signing,
-  Runner-result signing, or Receipt issuance are not available to unreviewed
-  workflows, reusable workflows, local actions, forks, or unrestricted
-  maintainers;
+- no checked-in executable workflow combines `proofweave-runner-alpha` with a
+  non-`GITHUB_TOKEN` secret reference;
 - no organization-level secret grants this repository a broader queue/runtime
   authority than the reviewed Environment policy;
-- `workflow_dispatch`, `repository_dispatch`, schedules, and Environment
-  approvals for both reviewed queue workflows are disabled or blocked for the
-  freeze, with zero active runs;
+- the manual secretless diagnostic and historical demo workflows are disabled
+  for the freeze, with zero active runs;
 - every third-party action in the reviewed workflows is pinned to an immutable
   full commit SHA; and
 - the scanner's reviewed full-file workflow hashes and fixed checked-in
@@ -275,8 +273,9 @@ events:
 1. Set `RUNNER_EXECUTION_ENABLED=false` for the hosted Runner.
 2. Stop or suspend the Render Runner service and cancel any in-progress Render
    deployment.
-3. Disable the GitHub `e2b-lean-runner` workflow, its schedule,
-   `workflow_dispatch`, and `repository_dispatch` producer; cancel active jobs.
+3. Keep the secretless GitHub `e2b-lean-runner` diagnostic and the historical
+   demo workflow disabled; cancel any active diagnostic/demo jobs. Neither is
+   a queue producer or Runner.
 4. Disable any Cloudflare Queue consumer or alternate Runner process.
 5. Confirm no process holds a live queue lease and repeat the queue counts
    after an observation interval. The counts must be unchanged.
@@ -381,7 +380,7 @@ Keep the master, MCP, and participant modes explicitly set to `read_only`.
 Deploying the split fences is not authorization to open either one.
 
 - Use a manual, SHA-pinned Render deployment. Do not re-enable auto-deploy.
-- Keep GitHub schedule, workflow dispatch, and repository dispatch disabled.
+- Keep the GitHub diagnostic and historical demo workflows disabled.
 - Confirm Sites, gateway, Render, Runner image, E2B template, and migration
   evidence all refer to the same release record.
 - Reject any deployment whose reported source revision is missing, abbreviated,
@@ -492,15 +491,16 @@ still-frozen next surface after every configuration change:
 
 1. Start the exact-SHA Render/hosted consumer with
    `RUNNER_EXECUTION_ENABLED=true`.
-2. Re-enable the reviewed GitHub recovery workflow and automatic dispatch
-   source only if both are still part of the approved topology.
+2. Keep the GitHub diagnostic and historical demo workflows disabled; they are
+   not production execution or recovery surfaces.
 3. Set the master ceiling to
    `PROOFWEAVE_CONTROL_PLANE_MODE=read_write` while both surface modes remain
    `read_only`. Verify that MCP and participant mutation probes still return
    503 and durable counts remain unchanged.
-4. Set `PROOFWEAVE_MCP_CONTROL_PLANE_MODE=read_write`. Verify one bounded MCP
-   mutation, confirm participant mutation remains blocked, and observe its
-   durable record.
+4. Set `PROOFWEAVE_MCP_CONTROL_PLANE_MODE=read_write`, restoring the
+   authenticated hosted-Runner wake route. Verify one bounded MCP mutation,
+   confirm participant mutation remains blocked, and observe its durable
+   record.
 5. Set `PROOFWEAVE_PARTICIPANT_CONTROL_PLANE_MODE=read_write`. Verify one
    bounded participant mutation and observe its durable record.
 6. Re-enable Render auto-deploy only after confirming it is pinned to the

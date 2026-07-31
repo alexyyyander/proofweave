@@ -4,8 +4,9 @@ Status: superseded as the active-controller decision, 2026-07-27
 
 The E2B isolation decisions below remain part of the current implementation.
 The protected GitHub Actions one-shot controller was superseded by the hosted
-trusted Runner on Render as the alpha reference path. GitHub Actions is now a
-bounded recovery, diagnostic, CI, and image-release path. See
+trusted Runner on Render as the alpha reference path and then retired. GitHub
+Actions now provides secretless diagnostics, CI, and credential-free image
+release only. See
 [`../github-independence.md`](../github-independence.md) and
 [`../runner-provider-neutral-deployment.md`](../runner-provider-neutral-deployment.md).
 The original decision is retained below as historical context.
@@ -46,6 +47,7 @@ protocols.
 - The historical controller depended on GitHub startup latency; the current
   hosted controller removes that dependency from the normal per-Run path.
 - An E2B account, API key, reviewed template, protected GitHub environment, and
-  one real hosted fixture were operational gates for this historical topology.
+  one real hosted fixture were operational gates for this historical topology;
+  production credentials are no longer stored in GitHub.
 - E2B execution is still only the kernel gate. Different-owner reviews and the
   Receipt issuer remain separate evidence boundaries.

@@ -13,8 +13,8 @@ import {
 export const githubRecoveryApiVersion = "2022-11-28";
 const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 export const expectedGithubRecoverySurfaces = Object.freeze({
-  ".github/workflows/build-week-live-receipt.yml": "manual_queue_consumer",
-  ".github/workflows/e2b-lean-runner.yml": "recovery_queue_consumer",
+  ".github/workflows/build-week-live-receipt.yml": "disabled_demo_queue_consumer",
+  ".github/workflows/e2b-lean-runner.yml": "secretless_isolation_diagnostic",
 });
 const reviewedGithubRecoveryWorkflowPolicies = Object.freeze({
   ".github/workflows/build-week-live-receipt.yml": Object.freeze({
@@ -33,17 +33,19 @@ const reviewedGithubRecoveryWorkflowPolicies = Object.freeze({
     ]),
   }),
   ".github/workflows/e2b-lean-runner.yml": Object.freeze({
-    sourceSha256: "sha256:0658db19a22e672c3c208f6d608c173109361ba6fed0a7d87902d8125b39d14e",
+    sourceSha256: "sha256:fcd7f91b9f2b5cc87bba710c184104691405d0c6cdbe00316ea045704b024eb9",
     allowedUses: Object.freeze([
       "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
       "actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
     ]),
     allowedRuns: Object.freeze([
       "npm ci --ignore-scripts",
-      "npm run runner:trusted:once",
+      "npm run runtime:recovery-isolation:check",
+      "echo \"Diagnostic only — no production Environment, Turso queue, or E2B authority.\" >> \"$GITHUB_STEP_SUMMARY\"",
     ]),
   }),
 });
+const productionEnvironmentName = "proofweave-runner-alpha";
 const queueAuthorityMarkers = Object.freeze([
   "TURSO_DATABASE_URL",
   "TURSO_AUTH_TOKEN",
@@ -106,7 +108,16 @@ export async function scanGithubRecoverySurfaces({
     const executionSurface = inspectWorkflowExecutionSurface(text);
     rejectUnclosedWorkflowReferences(workflowPath, executionSurface);
     const role = expectedGithubRecoverySurfaces[workflowPath];
-    if (!role && canReachKnownQueueAuthority(text)) {
+    if (canReachProductionEnvironmentAuthority(text)) {
+      throw inspectionError(
+        "PRODUCTION_GITHUB_AUTHORITY_PRESENT",
+        "A checked-in GitHub workflow can reach a production Environment secret.",
+      );
+    }
+    if (
+      canReachKnownQueueAuthority(text)
+      && role !== "disabled_demo_queue_consumer"
+    ) {
       throw inspectionError(
         "UNKNOWN_QUEUE_CONSUMER",
         "An unreviewed checked-in GitHub workflow may reach the production Runner queue authority.",
@@ -400,6 +411,56 @@ function canReachKnownQueueAuthority(source) {
     && runnerAuthorityMarkers.some((marker) => source.includes(marker))
   );
   return executesKnownConsumer || holdsControlPlaneCredentials;
+}
+
+function canReachProductionEnvironmentAuthority(source) {
+  return workflowCanReachNamedEnvironment(source, productionEnvironmentName)
+    && hasGithubSecretExpression(source);
+}
+
+function workflowCanReachNamedEnvironment(source, expectedName) {
+  const lines = source.split("\n");
+  for (let index = 0; index < lines.length; index += 1) {
+    const declaration = lines[index].match(/^(\s+)environment:\s*(.*?)\s*$/);
+    if (!declaration) continue;
+    const inline = stripYamlString(declaration[2].replace(/\s+#.*$/, "").trim());
+    if (inline) {
+      if (inline === expectedName || inline.includes("${{")) return true;
+      continue;
+    }
+    const declarationIndent = declaration[1].length;
+    let foundStaticName = false;
+    for (let cursor = index + 1; cursor < lines.length; cursor += 1) {
+      const candidate = lines[cursor];
+      if (!candidate.trim() || candidate.trimStart().startsWith("#")) continue;
+      const candidateIndent = candidate.match(/^\s*/)?.[0].length ?? 0;
+      if (candidateIndent <= declarationIndent) break;
+      const name = candidate.match(/^\s+name:\s*(.*?)\s*$/);
+      if (!name) continue;
+      const value = stripYamlString(name[1].replace(/\s+#.*$/, "").trim());
+      if (value === expectedName || value.includes("${{")) return true;
+      foundStaticName = true;
+      break;
+    }
+    if (!foundStaticName) return true;
+  }
+  return false;
+}
+
+function hasGithubSecretExpression(source) {
+  return [...source.matchAll(/\$\{\{([\s\S]*?)\}\}/g)]
+    .some((expression) => /\bsecrets\b/.test(expression[1]));
+}
+
+function stripYamlString(value) {
+  if (
+    value.length >= 2
+    && ((value.startsWith("\"") && value.endsWith("\""))
+      || (value.startsWith("'") && value.endsWith("'")))
+  ) {
+    return value.slice(1, -1);
+  }
+  return value;
 }
 
 function sameStrings(left, right) {
