@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import type { CatalogProblem } from "@/packages/domain/catalog";
+import type { CatalogProblemSummary } from "@/packages/domain/catalog";
 import { StatusStack } from "../ui";
 
 const opportunityFilters = [
@@ -30,7 +30,9 @@ type OpportunityFilter = (typeof opportunityFilters)[number]["id"];
 type ScopeFilter = (typeof scopeFilters)[number]["id"];
 type CatalogSort = "recommended" | "title" | "subject";
 
-export function ExploreCatalog({ projects }: { projects: readonly CatalogProblem[] }) {
+export type ExploreCatalogProblem = CatalogProblemSummary;
+
+export function ExploreCatalog({ projects }: { projects: readonly ExploreCatalogProblem[] }) {
   const [opportunityFilter, setOpportunityFilter] = useState<OpportunityFilter>("all");
   const [scopeFilter, setScopeFilter] = useState<ScopeFilter>("all");
   const [subjectFilter, setSubjectFilter] = useState("all");
@@ -39,7 +41,7 @@ export function ExploreCatalog({ projects }: { projects: readonly CatalogProblem
   const [visibleCount, setVisibleCount] = useState(pageSize);
 
   const subjects = useMemo(() => {
-    const unique = new Map<string, CatalogProblem["subjects"][number]>();
+    const unique = new Map<string, ExploreCatalogProblem["subjects"][number]>();
     for (const project of projects) {
       for (const subject of project.subjects) unique.set(subject.slug, subject);
     }
@@ -61,7 +63,7 @@ export function ExploreCatalog({ projects }: { projects: readonly CatalogProblem
   const starterProjects = useMemo(() => {
     const preferred = preferredStarterSlugs
       .map((slug) => projects.find((project) => project.slug === slug))
-      .filter((project): project is CatalogProblem => Boolean(project));
+      .filter((project): project is ExploreCatalogProblem => Boolean(project));
     const fallback = projects.filter((project) =>
       project.researchStatus === "research_solved" &&
       project.proofState === "admitted" &&
@@ -319,7 +321,7 @@ export function ExploreCatalog({ projects }: { projects: readonly CatalogProblem
   );
 }
 
-function ResearchOpportunityCard({ project }: { project: CatalogProblem }) {
+function ResearchOpportunityCard({ project }: { project: ExploreCatalogProblem }) {
   const canStart = project.proofState === "admitted";
   return (
     <article className="research-opportunity-card">
@@ -346,36 +348,36 @@ function ResearchOpportunityCard({ project }: { project: CatalogProblem }) {
   );
 }
 
-function collectionPosition(project: CatalogProblem, tier: "founding" | "grand") {
+function collectionPosition(project: ExploreCatalogProblem, tier: "founding" | "grand") {
   return project.collections.find((collection) => collection.tier === tier)?.position ?? Number.MAX_SAFE_INTEGER;
 }
 
-function opportunityKind(project: CatalogProblem): Exclude<OpportunityFilter, "all"> {
+function opportunityKind(project: ExploreCatalogProblem): Exclude<OpportunityFilter, "all"> {
   if (project.proofState === "proved") return "verified";
   if (project.researchStatus === "research_solved") return "formalize";
   return "advance";
 }
 
-function scopeKind(project: CatalogProblem): Exclude<ScopeFilter, "all"> | "program" {
+function scopeKind(project: ExploreCatalogProblem): Exclude<ScopeFilter, "all"> | "program" {
   if (project.collections.some((collection) => collection.role === "milestone")) return "bounded";
   if (project.collections.some((collection) => collection.tier === "grand" && collection.role === "headline")) return "long-horizon";
   return "program";
 }
 
-function neededNow(project: CatalogProblem) {
+function neededNow(project: ExploreCatalogProblem) {
   if (project.proofState === "proved") return "Inspect the checked proof and its evidence";
   if (project.researchStatus === "research_solved") return "Formalize an established mathematical result";
   return "Advance an open formal proof branch";
 }
 
-function scopeLabel(project: CatalogProblem) {
+function scopeLabel(project: ExploreCatalogProblem) {
   const kind = scopeKind(project);
   if (kind === "bounded") return "Bounded milestone";
   if (kind === "long-horizon") return "Long-horizon program";
   return "Open research program";
 }
 
-function workLabel(project: CatalogProblem) {
+function workLabel(project: ExploreCatalogProblem) {
   if (project.proofState === "proved") return "Lean proof available";
   if (project.researchStatus === "research_solved") return "Known result · Lean proof wanted";
   return "Open conjecture";

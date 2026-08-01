@@ -30,32 +30,43 @@ export async function loadWorkbenchData(user: AuthUser | null): Promise<Workbenc
   try {
     const profile = await getDelegationRepository().getProfile(toPersonIdentity(user));
     const mcp = getMcpRepository();
-    const [attempts, runs, reviews, evidence] = await Promise.all([
+    const [attempts, runs, reviews, evidence, provisionalLedger] = await Promise.all([
       mcp.listAttempts(profile.person.id),
       mcp.listRunSummaries(profile.person.id),
       getReviewAssignmentRepository().listForPerson(profile.person.id),
       getEvidenceRepository().listForPerson(profile.person.id),
+      loadProvisionalLedger(profile.person.id),
     ]);
     const reviewCount = reviews.filter((review) => review.status === "assigned" || review.status === "accepted").length;
-    try {
-      return {
-        profile,
-        attempts,
-        runs,
-        provisionalContributions: await getProvisionalContributionRepository().listForPerson(profile.person.id),
-        provisionalLedgerAvailable: true,
-        reviewCount,
-        evidenceCount: evidence.length,
-        storageAvailable: true,
-      };
-    } catch (error) {
-      if (error instanceof ProvisionalContributionSchemaUnavailableError) {
-        return { profile, attempts, runs, provisionalContributions: [], provisionalLedgerAvailable: false, reviewCount, evidenceCount: evidence.length, storageAvailable: true };
-      }
-      throw error;
-    }
+    return {
+      profile,
+      attempts,
+      runs,
+      provisionalContributions: provisionalLedger.contributions,
+      provisionalLedgerAvailable: provisionalLedger.available,
+      reviewCount,
+      evidenceCount: evidence.length,
+      storageAvailable: true,
+    };
   } catch (error) {
     if (error instanceof MissingDatabaseBindingError) return emptyWorkbenchData(false);
+    throw error;
+  }
+}
+
+async function loadProvisionalLedger(personId: string): Promise<Readonly<{
+  contributions: readonly ProvisionalContribution[];
+  available: boolean;
+}>> {
+  try {
+    return {
+      contributions: await getProvisionalContributionRepository().listForPerson(personId),
+      available: true,
+    };
+  } catch (error) {
+    if (error instanceof ProvisionalContributionSchemaUnavailableError) {
+      return { contributions: [], available: false };
+    }
     throw error;
   }
 }

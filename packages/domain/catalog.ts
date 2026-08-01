@@ -97,9 +97,29 @@ export type CatalogProblem = Readonly<{
   displayStatuses: readonly CatalogDisplayStatus[];
 }>;
 
+/**
+ * Public catalog-list projection. Full Lean source, provenance hashes,
+ * licenses, and claim evidence stay on the individual research record.
+ */
+export type CatalogProblemSummary = Readonly<{
+  id: string;
+  slug: string;
+  title: string;
+  projectTitle: string;
+  domain: string;
+  subjects: readonly Pick<CatalogSubject, "id" | "slug" | "name" | "amsCode">[];
+  collections: readonly Pick<CatalogCollection, "tier" | "role" | "position">[];
+  researchStatus: CatalogProblem["researchStatus"];
+  informalStatement: string;
+  proofState: CatalogProblem["proofState"];
+  declaration: Readonly<{ qualifiedName: string }>;
+  source: Readonly<{ upstreamName: string; revisionTag: string }>;
+  displayStatuses: readonly CatalogDisplayStatus[];
+}>;
+
 export function catalogDisplayStatuses(
   proofState: CatalogProblem["proofState"],
-  claims: readonly CatalogClaim[],
+  claims: readonly Pick<CatalogClaim, "type" | "status">[],
 ): CatalogDisplayStatus[] {
   const statuses: CatalogDisplayStatus[] = ["Formalized statement"];
 
