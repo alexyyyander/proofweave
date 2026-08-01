@@ -87,35 +87,19 @@ export function WorkbenchClient({
     setIsRefreshing(true);
     setRefreshError(null);
     try {
-      const [attemptResponse, contributionResponse, summaryResponse] = await Promise.all([
-        fetch("/api/me/attempts", { headers: { accept: "application/json" } }),
-        isProvisionalLedgerAvailable
-          ? fetch("/api/me/provisional-contributions", { headers: { accept: "application/json" } })
-          : Promise.resolve(null),
-        fetch("/api/me/workspace-summary", { headers: { accept: "application/json" } }),
-      ]);
-      const attemptPayload = await attemptResponse.json().catch(() => null);
-      if (!attemptResponse.ok || !Array.isArray(attemptPayload?.attempts) || !Array.isArray(attemptPayload?.runs)) {
-        throw new Error(attemptPayload?.error?.message ?? "Proofweave could not refresh the durable Attempt records.");
+      const response = await fetch("/api/me/workspace", { headers: { accept: "application/json" } });
+      const payload = await response.json().catch(() => null);
+      if (!response.ok || !Array.isArray(payload?.attempts) || !Array.isArray(payload?.runs)) {
+        throw new Error(payload?.error?.message ?? "Proofweave could not refresh the durable Workspace records.");
       }
-      setAttempts(attemptPayload.attempts as McpAttempt[]);
-      setRuns(attemptPayload.runs as McpRunSummary[]);
-      if (contributionResponse) {
-        const contributionPayload = await contributionResponse.json().catch(() => null);
-        if (contributionResponse.ok && Array.isArray(contributionPayload?.contributions)) {
-          setProvisionalContributions(contributionPayload.contributions as ProvisionalContribution[]);
-        } else if (contributionResponse.status === 503 && contributionPayload?.error?.code === "unavailable") {
-          setIsProvisionalLedgerAvailable(false);
-        } else {
-          throw new Error(contributionPayload?.error?.message ?? "Proofweave could not refresh the provisional evidence ledger.");
-        }
+      setAttempts(payload.attempts as McpAttempt[]);
+      setRuns(payload.runs as McpRunSummary[]);
+      if (Array.isArray(payload.provisionalContributions)) {
+        setProvisionalContributions(payload.provisionalContributions as ProvisionalContribution[]);
       }
-      if (summaryResponse.ok) {
-        const summaryPayload = await summaryResponse.json().catch(() => null);
-        const counts = summaryPayload?.summary?.counts;
-        if (typeof counts?.activeReviews === "number") setReviewCount(counts.activeReviews);
-        if (typeof counts?.evidence === "number") setEvidenceCount(counts.evidence);
-      }
+      setIsProvisionalLedgerAvailable(payload.provisionalLedgerAvailable === true);
+      setReviewCount(typeof payload.reviewCount === "number" ? payload.reviewCount : null);
+      setEvidenceCount(typeof payload.evidenceCount === "number" ? payload.evidenceCount : null);
       setRefreshedAt(new Date().toISOString());
     } catch (error) {
       setRefreshError(error instanceof Error ? error.message : "Proofweave could not refresh the durable Attempt records.");
@@ -123,7 +107,7 @@ export function WorkbenchClient({
       refreshInFlight.current = false;
       setIsRefreshing(false);
     }
-  }, [isAuthenticated, isProvisionalLedgerAvailable, storageAvailable]);
+  }, [isAuthenticated, storageAvailable]);
 
   const selectAttempt = (attemptId: string) => {
     const selected = attempts.find((attempt) => attempt.id === attemptId);

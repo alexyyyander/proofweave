@@ -959,6 +959,8 @@ test("serves the public research paths", async () => {
   assert.match(workbenchHtml, /Empty dashboards stay hidden/i);
   const anonymousWorkspaceSummary = await render("/api/me/workspace-summary");
   assert.equal(anonymousWorkspaceSummary.status, 401);
+  const anonymousWorkspaceRefresh = await render("/api/me/workspace");
+  assert.equal(anonymousWorkspaceRefresh.status, 401);
 
   const detail = await render("/explore/erdos-865");
   const detailHtml = await detail.text();
@@ -993,6 +995,7 @@ test("serves the public research paths", async () => {
   assert.match(exploreHtml, /P versus NP/i);
   assert.match(exploreHtml, /Smooth Poincaré conjecture in dimension four/i);
   assert.match(exploreHtml, /Number theory/i);
+  assert.doesNotMatch(exploreHtml, /∀ᶠ/, "the catalog list must not serialize full Lean statements");
   assert.match(exploreHtml, /Computer science/i);
   assert.match(exploreHtml, />MSC /i);
   assert.match(exploreHtml, /Known result · Lean proof wanted/i);
@@ -2906,6 +2909,16 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
   });
   assert.equal(ownerRuns.find((run) => run.id === "run:workbench-unreadable")?.evidenceState, "unreadable");
   assert.doesNotMatch(JSON.stringify(ownerRuns), /runnerSignature|canonicalResult|stdoutHash/i);
+
+  const ownerWorkspaceResponse = await render("/api/me/workspace", { headers: authHeaders });
+  assert.equal(ownerWorkspaceResponse.status, 200);
+  const ownerWorkspace = await ownerWorkspaceResponse.json();
+  assert.equal(ownerWorkspace.attempts.some((candidate) => candidate.id === ownerAttempt.id), true);
+  assert.equal(ownerWorkspace.runs.some((run) => run.id === runnerResult.jobId), true);
+  assert.equal(ownerWorkspace.provisionalContributions.length, 1);
+  assert.equal(ownerWorkspace.provisionalLedgerAvailable, true);
+  assert.ok(ownerWorkspace.evidenceCount >= 1);
+  assert.match(ownerWorkspace.note, /remain distinct claims/i);
 
   const otherAttemptsResponse = await render("/api/me/attempts", {
     headers: { "oai-authenticated-user-email": "other-owner@example.test" },

@@ -98,6 +98,7 @@ type EventRow = {
   progress_percent: number | null;
   occurred_at: string;
 };
+type AttemptEventRow = EventRow & { attempt_id: string };
 type EventWithIdempotencyRow = EventRow & { idempotency_key: string };
 type RunSummaryRow = {
   id: string;
@@ -546,26 +547,12 @@ class D1McpRepository implements McpRepository {
       .bind(attemptId)
       .all<EventRow>();
 
-    return {
-      id: row.id,
-      problemRevisionId: row.problem_revision_id,
-      problemSlug: row.problem_slug,
-      problemTitle: row.problem_title,
-      agentId: row.agent_id,
-      agentLabel: row.agent_label,
-      delegationCertificateId: row.delegation_certificate_id,
-      delegationScope: row.delegation_scope,
-      status: row.status,
-      lastProgressPercent: row.last_progress_percent,
-      createdAt: row.created_at,
-      updatedAt: row.updated_at,
-      events: (events.results ?? []).map(toEvent),
-      verificationState: agentReportedOnly,
-    };
+    return toAttempt(row, events.results ?? []);
   }
 
   async listAttempts(personId: string): Promise<McpAttempt[]> {
-    const rows = await getD1()
+    const database = getD1();
+    const rows = await database
       .prepare(
         `${attemptSelect}
          WHERE attempt.person_id = ?
@@ -573,8 +560,29 @@ class D1McpRepository implements McpRepository {
       )
       .bind(personId)
       .all<AttemptRow>();
-    const attempts = await Promise.all((rows.results ?? []).map((row: AttemptRow) => this.findAttempt(personId, row.id)));
-    return attempts.filter((attempt: McpAttempt | null): attempt is McpAttempt => attempt !== null);
+    const attemptRows: AttemptRow[] = rows.results ?? [];
+    if (attemptRows.length === 0) return [];
+
+    const events = await database
+      .prepare(
+        `SELECT attempt_event.attempt_id, attempt_event.id, attempt_event.sequence,
+                attempt_event.event_type, attempt_event.message,
+                attempt_event.progress_percent, attempt_event.occurred_at
+         FROM agent_attempt_events AS attempt_event
+         INNER JOIN agent_attempts AS attempt ON attempt.id = attempt_event.attempt_id
+         WHERE attempt.person_id = ?
+         ORDER BY attempt_event.attempt_id ASC, attempt_event.sequence ASC`,
+      )
+      .bind(personId)
+      .all<AttemptEventRow>();
+    const eventsByAttempt = new Map<string, AttemptEventRow[]>();
+    for (const event of events.results ?? []) {
+      const grouped = eventsByAttempt.get(event.attempt_id);
+      if (grouped) grouped.push(event);
+      else eventsByAttempt.set(event.attempt_id, [event]);
+    }
+
+    return attemptRows.map((row) => toAttempt(row, eventsByAttempt.get(row.id) ?? []));
   }
 
   /**
@@ -679,6 +687,25 @@ function toEvent(row: EventRow): McpAttemptEvent {
     message: row.message,
     progressPercent: row.progress_percent,
     occurredAt: row.occurred_at,
+  };
+}
+
+function toAttempt(row: AttemptRow, events: readonly EventRow[]): McpAttempt {
+  return {
+    id: row.id,
+    problemRevisionId: row.problem_revision_id,
+    problemSlug: row.problem_slug,
+    problemTitle: row.problem_title,
+    agentId: row.agent_id,
+    agentLabel: row.agent_label,
+    delegationCertificateId: row.delegation_certificate_id,
+    delegationScope: row.delegation_scope,
+    status: row.status,
+    lastProgressPercent: row.last_progress_percent,
+    createdAt: row.created_at,
+    updatedAt: row.updated_at,
+    events: events.map(toEvent),
+    verificationState: agentReportedOnly,
   };
 }
 

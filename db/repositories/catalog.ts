@@ -4,6 +4,7 @@ import {
   type CatalogClaim,
   type CatalogCollection,
   type CatalogProblem,
+  type CatalogProblemSummary,
   type CatalogRecordKind,
   type CatalogSubject,
   type VerificationClaimStatus,
@@ -70,8 +71,28 @@ type CollectionRow = {
   position: number;
 };
 
+type CatalogSummaryRow = {
+  problem_id: string;
+  problem_slug: string;
+  problem_title: string;
+  project_title: string;
+  domain: string;
+  research_status: CatalogProblem["researchStatus"];
+  informal_statement: string;
+  proof_state: CatalogProblem["proofState"];
+  declaration_name: string;
+  upstream_name: string;
+  revision_tag: string;
+  claim_type: VerificationClaimType;
+  claim_status: VerificationClaimStatus;
+};
+
+type SummarySubjectRow = Pick<SubjectRow, "problem_revision_id" | "id" | "slug" | "name" | "ams_code">;
+type SummaryCollectionRow = Pick<CollectionRow, "problem_revision_id" | "tier" | "role" | "position">;
+
 export interface CatalogReader {
   list(kind: CatalogRecordKind): Promise<CatalogProblem[]>;
+  listSummaries(kind: CatalogRecordKind): Promise<CatalogProblemSummary[]>;
   findBySlug(slug: string): Promise<CatalogProblem | null>;
 }
 
@@ -120,6 +141,29 @@ const selectCatalogRows = `
   INNER JOIN verification_claims AS claim ON claim.problem_revision_id = revision.id
 `;
 
+const selectCatalogSummaryRows = `
+  SELECT
+    revision.id AS problem_id,
+    revision.slug AS problem_slug,
+    revision.title AS problem_title,
+    project.title AS project_title,
+    revision.domain AS domain,
+    revision.research_status AS research_status,
+    revision.informal_statement AS informal_statement,
+    revision.proof_state AS proof_state,
+    declaration.qualified_name AS declaration_name,
+    snapshot.upstream_name AS upstream_name,
+    snapshot.revision_tag AS revision_tag,
+    claim.claim_type AS claim_type,
+    claim.status AS claim_status
+  FROM problem_revisions AS revision
+  INNER JOIN projects AS project ON project.id = revision.project_id
+  INNER JOIN source_snapshots AS snapshot ON snapshot.id = revision.source_snapshot_id
+  INNER JOIN declarations AS declaration
+    ON declaration.problem_revision_id = revision.id AND declaration.is_primary = 1
+  INNER JOIN verification_claims AS claim ON claim.problem_revision_id = revision.id
+`;
+
 class D1CatalogRepository implements CatalogReader {
   async list(kind: CatalogRecordKind): Promise<CatalogProblem[]> {
     const rows = await this.readRows(
@@ -130,6 +174,19 @@ class D1CatalogRepository implements CatalogReader {
     );
 
     return this.enrich(toCatalogProblems(rows));
+  }
+
+  async listSummaries(kind: CatalogRecordKind): Promise<CatalogProblemSummary[]> {
+    const result = await getD1()
+      .prepare(
+        `${selectCatalogSummaryRows}
+         WHERE project.kind = ? AND project.visibility = 'public'
+         ORDER BY revision.priority DESC, revision.title ASC, claim.claim_type ASC`,
+      )
+      .bind(kind)
+      .all<CatalogSummaryRow>();
+
+    return this.enrichSummaries(toCatalogProblemSummaries(result.results ?? []));
   }
 
   async findBySlug(slug: string): Promise<CatalogProblem | null> {
@@ -196,6 +253,47 @@ class D1CatalogRepository implements CatalogReader {
     const subjects = groupSubjects(subjectResult.results ?? []);
     const collections = groupCollections(collectionResult.results ?? []);
 
+    return problems.map((problem) => ({
+      ...problem,
+      subjects: subjects.get(problem.id) ?? [],
+      collections: collections.get(problem.id) ?? [],
+    }));
+  }
+
+  private async enrichSummaries(problems: CatalogProblemSummary[]): Promise<CatalogProblemSummary[]> {
+    if (problems.length === 0) return problems;
+
+    const ids = problems.map((problem) => problem.id);
+    const placeholders = ids.map(() => "?").join(", ");
+    const database = getD1();
+    const [subjectResult, collectionResult] = await Promise.all([
+      database
+        .prepare(`
+          SELECT membership.problem_revision_id, subject.id, subject.slug,
+                 subject.name, subject.ams_code
+          FROM problem_subjects AS membership
+          INNER JOIN catalog_subjects AS subject ON subject.id = membership.subject_id
+          WHERE membership.problem_revision_id IN (${placeholders})
+          ORDER BY membership.is_primary DESC, subject.sort_order ASC, subject.name ASC
+        `)
+        .bind(...ids)
+        .all<SummarySubjectRow>(),
+      database
+        .prepare(`
+          SELECT membership.problem_revision_id, collection.tier,
+                 membership.role, membership.position
+          FROM catalog_collection_members AS membership
+          INNER JOIN catalog_collections AS collection ON collection.id = membership.collection_id
+          WHERE membership.problem_revision_id IN (${placeholders})
+            AND collection.visibility = 'public'
+          ORDER BY collection.priority DESC, membership.position ASC
+        `)
+        .bind(...ids)
+        .all<SummaryCollectionRow>(),
+    ]);
+
+    const subjects = groupSummarySubjects(subjectResult.results ?? []);
+    const collections = groupSummaryCollections(collectionResult.results ?? []);
     return problems.map((problem) => ({
       ...problem,
       subjects: subjects.get(problem.id) ?? [],
@@ -273,6 +371,42 @@ function toCatalogProblems(rows: readonly CatalogRow[]): CatalogProblem[] {
   return [...records.values()];
 }
 
+function toCatalogProblemSummaries(rows: readonly CatalogSummaryRow[]): CatalogProblemSummary[] {
+  const records = new Map<string, Omit<CatalogProblemSummary, "displayStatuses">>();
+  const claims = new Map<string, Pick<CatalogClaim, "type" | "status">[]>();
+
+  for (const row of rows) {
+    if (!verificationClaimTypes.includes(row.claim_type)) {
+      throw new Error(`Unknown verification claim type: ${row.claim_type}`);
+    }
+    if (!records.has(row.problem_id)) {
+      records.set(row.problem_id, {
+        id: row.problem_id,
+        slug: row.problem_slug,
+        title: row.problem_title,
+        projectTitle: row.project_title,
+        domain: row.domain,
+        subjects: [],
+        collections: [],
+        researchStatus: row.research_status,
+        informalStatement: row.informal_statement,
+        proofState: row.proof_state,
+        declaration: { qualifiedName: row.declaration_name },
+        source: { upstreamName: row.upstream_name, revisionTag: row.revision_tag },
+      });
+    }
+    claims.set(row.problem_id, [
+      ...(claims.get(row.problem_id) ?? []),
+      { type: row.claim_type, status: row.claim_status },
+    ]);
+  }
+
+  return [...records.entries()].map(([id, problem]) => ({
+    ...problem,
+    displayStatuses: catalogDisplayStatuses(problem.proofState, claims.get(id) ?? []),
+  }));
+}
+
 function groupSubjects(rows: readonly SubjectRow[]): Map<string, CatalogSubject[]> {
   const grouped = new Map<string, CatalogSubject[]>();
   for (const row of rows) {
@@ -302,6 +436,32 @@ function groupCollections(rows: readonly CollectionRow[]): Map<string, CatalogCo
       position: row.position,
     };
     grouped.set(row.problem_revision_id, [...(grouped.get(row.problem_revision_id) ?? []), collection]);
+  }
+  return grouped;
+}
+
+function groupSummarySubjects(
+  rows: readonly SummarySubjectRow[],
+): Map<string, CatalogProblemSummary["subjects"]> {
+  const grouped = new Map<string, CatalogProblemSummary["subjects"]>();
+  for (const row of rows) {
+    grouped.set(row.problem_revision_id, [
+      ...(grouped.get(row.problem_revision_id) ?? []),
+      { id: row.id, slug: row.slug, name: row.name, amsCode: row.ams_code },
+    ]);
+  }
+  return grouped;
+}
+
+function groupSummaryCollections(
+  rows: readonly SummaryCollectionRow[],
+): Map<string, CatalogProblemSummary["collections"]> {
+  const grouped = new Map<string, CatalogProblemSummary["collections"]>();
+  for (const row of rows) {
+    grouped.set(row.problem_revision_id, [
+      ...(grouped.get(row.problem_revision_id) ?? []),
+      { tier: row.tier, role: row.role, position: row.position },
+    ]);
   }
   return grouped;
 }

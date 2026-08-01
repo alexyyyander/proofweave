@@ -7,7 +7,7 @@ import { Header } from "../header";
 export const dynamic = "force-dynamic";
 
 export default async function ExplorePage() {
-  const projects = await getCatalogRepository().list("frontier");
+  const projects = await getCatalogRepository().listSummaries("frontier");
   const subjectCount = new Set(projects.flatMap((project) => project.subjects.map((subject) => subject.id))).size;
 
   return (
