@@ -116,7 +116,11 @@ export class HostedTrustedRunnerService {
           this.emitAudit("paused");
           return;
         }
-        this.runtime = await this.runtimeFactory({ environment: this.environment });
+        this.runtime = await this.runtimeFactory({
+          environment: this.environment,
+          now: this.now,
+          emit: this.emit,
+        });
         if (
           !this.runtime ||
           typeof this.runtime.run !== "function" ||

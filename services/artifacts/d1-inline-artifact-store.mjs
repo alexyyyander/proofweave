@@ -44,19 +44,30 @@ export class D1InlineArtifactBucket {
       )
       .bind(objectKey)
       .first();
-    if (!row) return null;
-    const bytes = bytesFrom(row.bytes);
-    const stored = metadata(row);
-    if (bytes.byteLength !== stored.size) {
-      throw new ArtifactStoreConflictError("Inline artifact bytes do not match their immutable D1 metadata.");
+    return row ? inlineObject(row) : null;
+  }
+
+  /** Fetch a bounded immutable object set in one remote SQLite round trip. */
+  async getMany(objectKeys) {
+    if (
+      !Array.isArray(objectKeys) ||
+      objectKeys.length === 0 ||
+      objectKeys.length > 32 ||
+      new Set(objectKeys).size !== objectKeys.length
+    ) {
+      throw new ArtifactStoreValidationError("Inline artifact batch keys must be 1 to 32 unique object keys.");
     }
-    return Object.freeze({
-      ...stored,
-      body: oneChunkStream(bytes),
-      async arrayBuffer() {
-        return bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength);
-      },
-    });
+    objectKeys.forEach(requireObjectKey);
+    const result = await this.database
+      .prepare(
+        `SELECT object_key, content_hash, byte_length, content_type, bytes
+         FROM inline_artifact_bytes
+         WHERE object_key IN (${objectKeys.map(() => "?").join(", ")})`,
+      )
+      .bind(...objectKeys)
+      .all();
+    const rows = Array.isArray(result?.results) ? result.results : [];
+    return new Map(rows.map((row) => [row.object_key, inlineObject(row)]));
   }
 
   async put(objectKey, value, options = {}) {
@@ -93,6 +104,21 @@ export class D1InlineArtifactBucket {
     }
     return inserted.meta?.changes === 1 ? stored : null;
   }
+}
+
+function inlineObject(row) {
+  const bytes = bytesFrom(row.bytes);
+  const stored = metadata(row);
+  if (bytes.byteLength !== stored.size) {
+    throw new ArtifactStoreConflictError("Inline artifact bytes do not match their immutable D1 metadata.");
+  }
+  return Object.freeze({
+    ...stored,
+    body: oneChunkStream(bytes),
+    async arrayBuffer() {
+      return bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength);
+    },
+  });
 }
 
 /**

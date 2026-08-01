@@ -33,6 +33,8 @@ test("trusted Worker stages v2 workspace objects in a fixed private Container se
   assert.equal(declaration.workspace.tree.state, "after_patch_and_lake_manifest");
   assert.deepEqual(declaration.target, resolvedBundle.bundle.target);
   assert.deepEqual(declaration.policy, resolvedBundle.request.policy);
+  assert.equal(bucket.batchGets, 1);
+  assert.equal(bucket.singleGets, 0);
 });
 
 test("trusted Worker can idempotently restage immutable evidence for a running Run", async () => {
@@ -79,7 +81,25 @@ test("transfer fails closed when R2 metadata changes after Bundle resolution", a
     transfer.stage({ run: await fixtureRun(resolvedBundle), resolvedBundle, container }),
     RunnerWorkspaceTransferError,
   );
-  assert.equal(container.requests.some((request) => request.pathname.endsWith("/source-patch")), false);
+  assert.equal(container.requests.filter((request) => request.method === "PUT").length, 0);
+});
+
+test("transfer performs no artifact PUT when any batched object is missing", async () => {
+  const objects = fixtureObjects();
+  const bucket = new MemoryBucket(objects);
+  bucket.objects.delete(objects.lakeManifest.objectKey);
+  const container = new MemoryContainer();
+  const resolvedBundle = fixtureResolvedBundle(objects);
+
+  await assert.rejects(
+    new RunnerWorkspaceTransfer({ bucket }).stage({
+      run: await fixtureRun(resolvedBundle),
+      resolvedBundle,
+      container,
+    }),
+    /Lake manifest is missing/,
+  );
+  assert.equal(container.requests.filter((request) => request.method === "PUT").length, 0);
 });
 
 test("transfer reports a bounded privacy-safe stage and status class when the Container rejects bytes", async () => {
@@ -129,9 +149,21 @@ test("transfer diagnostics do not copy a private Container response body", async
 class MemoryBucket {
   constructor(objects) {
     this.objects = new Map(Object.values(objects).map((object) => [object.objectKey, object]));
+    this.batchGets = 0;
+    this.singleGets = 0;
   }
 
   async get(objectKey) {
+    this.singleGets += 1;
+    return this.object(objectKey);
+  }
+
+  async getMany(objectKeys) {
+    this.batchGets += 1;
+    return new Map(objectKeys.map((objectKey) => [objectKey, this.object(objectKey)]));
+  }
+
+  object(objectKey) {
     const object = this.objects.get(objectKey);
     if (!object) return null;
     return {
@@ -152,6 +184,7 @@ class MemoryContainer {
 
   async fetch(request) {
     this.requests.push({
+      method: request.method,
       pathname: new URL(request.url).pathname,
       headers: request.headers,
       body: request.body ? await request.text() : "",

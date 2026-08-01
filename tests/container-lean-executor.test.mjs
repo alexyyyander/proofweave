@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { cp, lstat, mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
+import { chmod, cp, lstat, mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import test from "node:test";
@@ -206,6 +206,59 @@ test("Container Lean executor builds imported workspace modules before checking 
     assert.equal((await lstat(join(workspaceDirectory, ".lake", "build", "lib", "lean", "MultiModule", "Dependency.olean"))).isFile(), true);
   } finally {
     await rm(workspaceDirectory, { recursive: true, force: true });
+  }
+});
+
+test("Container Lean executor builds dependencies once and audits the exact entry source once", async () => {
+  const root = await mkdtemp(join(tmpdir(), "proofweave-lean-command-count-"));
+  const workspaceDirectory = join(root, "workspace");
+  const executable = join(root, "lake");
+  try {
+    await mkdir(workspaceDirectory);
+    await writeFile(join(workspaceDirectory, "ProofweaveFixture.lean"), [
+      "namespace ProofweaveFixture",
+      "theorem true_is_inhabited : True := True.intro",
+      "end ProofweaveFixture",
+      "",
+    ].join("\n"));
+    await writeFile(executable, [
+      "#!/bin/sh",
+      "printf '%s\\n' \"$*\" >> .lake-invocations",
+      "if [ \"$1\" = \"env\" ]; then cp \"$3\" .captured-audit; echo \"'ProofweaveFixture.true_is_inhabited' does not depend on any axioms\"; fi",
+      "exit 0",
+      "",
+    ].join("\n"));
+    await chmod(executable, 0o755);
+    const request = fixtureRequest({ id: "command-count" });
+    const execution = await new ContainerLeanExecutor({
+      networkIsolated: true,
+      resourceLimitsEnforced: true,
+      executablePath: executable,
+    }).execute({
+      request,
+      workspace: {
+        jobId: request.jobId,
+        requestHash: await leanRunnerRequestHash(request),
+        workspaceDirectory,
+        treeHash: sha("f"),
+        entries: [{ path: "ProofweaveFixture.lean", mode: 0o644, contentHash: sha("e") }],
+        target: { declaration: "ProofweaveFixture.true_is_inhabited", statementHash: sha("d") },
+        policy: request.policy,
+        entryCommand: request.bundle.entryCommand,
+      },
+    });
+
+    assert.equal(execution.result.status, "succeeded");
+    assert.deepEqual(
+      (await readFile(join(workspaceDirectory, ".lake-invocations"), "utf8")).trim().split("\n"),
+      ["build ProofweaveFixture", "env lean .proofweave-axiom-audit.lean"],
+    );
+    const auditSource = await readFile(join(workspaceDirectory, ".captured-audit"), "utf8");
+    assert.match(auditSource, /theorem true_is_inhabited : True := True\.intro/);
+    assert.match(auditSource, /#print axioms ProofweaveFixture\.true_is_inhabited/);
+    assert.doesNotMatch(auditSource, /^import ProofweaveFixture$/m);
+  } finally {
+    await rm(root, { recursive: true, force: true });
   }
 });
 

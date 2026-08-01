@@ -58,6 +58,7 @@ test("Runner Worker sends only a Queue delivery count through its audit boundary
 
 test("Runner queue execution stages once, executes in the named private Container, then finalizes", async () => {
   const calls = [];
+  const phases = [];
   const execute = createRunnerQueueExecution({
     workspaceStager: {
       async executeAuthenticatedMessage(received, timestamps) {
@@ -84,6 +85,7 @@ test("Runner queue execution stages once, executes in the named private Containe
       },
     },
     now: () => new Date("2026-07-13T00:00:00Z"),
+    observePhase: (record) => phases.push(record),
   });
 
   assert.deepEqual(await execute(message, {
@@ -97,6 +99,37 @@ test("Runner queue execution stages once, executes in the named private Containe
   assert.equal(calls[3][0], "lease-fence");
   assert.equal(calls[4][0], "finalize");
   assert.equal(calls[4][1].runId, running.id);
+  assert.deepEqual(phases.map((record) => record.phase), [
+    "runner_execution_container",
+    "runner_lean_execution",
+    "runner_lease_fence",
+    "runner_durable_finalize",
+  ]);
+  assert.equal(phases.every((record) => !Object.hasOwn(record, "runId")), true);
+});
+
+test("Runner execution and signing remain correct when its optional timing clock is invalid", async () => {
+  const execute = createRunnerQueueExecution({
+    workspaceStager: {
+      async executeAuthenticatedMessage() {
+        return { action: "execute", run: running, message };
+      },
+    },
+    imageRegistry: { resolve() {} },
+    async getContainerForRun() { return { fetch() {} }; },
+    executionClient: {
+      async execute() { return { result: { jobId: running.id } }; },
+      async cancel() {},
+    },
+    finalizer: {
+      async finalize() { return { run: { ...running, state: "succeeded" } }; },
+    },
+    now: () => new Date("2026-07-13T00:00:00Z"),
+    monotonicNow: () => Number.NaN,
+    observePhase: () => assert.fail("an invalid clock must suppress optional timing"),
+  });
+
+  assert.deepEqual(await execute(message), { run: { ...running, state: "succeeded" } });
 });
 
 test("Runner queue retry resumes a running Run but never restarts a cancellation or terminal Run", async () => {
