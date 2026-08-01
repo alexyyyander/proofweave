@@ -14,13 +14,21 @@ export class RunnerExecutionFinalizerError extends Error {
  * 4. when this Run is a review replay, materialize its citeable replay
  *    evidence before the terminal projection;
  * 5. let D1RunStore accept the signed terminal projection.
+ * 6. only after a successful terminal projection, idempotently publish the
+ *    exact Bundle's independent verification work.
  *
  * No browser or Container can skip any preceding step. Idempotent retry is
  * delegated to each immutable store, so an interrupted Worker invocation does
- * not produce a second result identity.
+ * not produce a second result identity or duplicate verification jobs.
  */
 export class RunnerExecutionFinalizer {
-  constructor({ runStore, outputStore, resultSigner, replayEvidenceStore = null }) {
+  constructor({
+    runStore,
+    outputStore,
+    resultSigner,
+    replayEvidenceStore = null,
+    verificationJobPublisher = null,
+  }) {
     if (!runStore || typeof runStore.find !== "function" || typeof runStore.recordResult !== "function") {
       throw new TypeError("RunnerExecutionFinalizer requires a D1 Run store with find() and recordResult().");
     }
@@ -33,10 +41,19 @@ export class RunnerExecutionFinalizer {
     if (replayEvidenceStore !== null && typeof replayEvidenceStore.persist !== "function") {
       throw new TypeError("RunnerExecutionFinalizer replay evidence persistence must expose persist().");
     }
+    if (
+      verificationJobPublisher !== null
+      && typeof verificationJobPublisher.publishJobsForBundle !== "function"
+    ) {
+      throw new TypeError(
+        "RunnerExecutionFinalizer verification job publication must expose publishJobsForBundle().",
+      );
+    }
     this.runStore = runStore;
     this.outputStore = outputStore;
     this.resultSigner = resultSigner;
     this.replayEvidenceStore = replayEvidenceStore;
+    this.verificationJobPublisher = verificationJobPublisher;
   }
 
   async finalize({ runId, execution, receivedAt }) {
@@ -48,6 +65,26 @@ export class RunnerExecutionFinalizer {
       ? await this.replayEvidenceStore.persist({ run, result, receivedAt })
       : null;
     const finalizedRun = await this.runStore.recordResult(runId, result, receivedAt);
-    return Object.freeze({ run: finalizedRun, result, outputs, replayEvidence });
+    let verificationMarket = null;
+    if (finalizedRun.state === "succeeded" && this.verificationJobPublisher) {
+      try {
+        verificationMarket = await this.verificationJobPublisher.publishJobsForBundle(
+          finalizedRun.artifactBundleHash,
+          receivedAt,
+        );
+      } catch (cause) {
+        throw new RunnerExecutionFinalizerError(
+          "The successful Runner result is durable, but its verification work could not be published.",
+          { cause },
+        );
+      }
+    }
+    return Object.freeze({
+      run: finalizedRun,
+      result,
+      outputs,
+      replayEvidence,
+      verificationMarket,
+    });
   }
 }

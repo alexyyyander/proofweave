@@ -5,6 +5,7 @@ import { RunnerContainerExecutionClient } from "./runner-container-execution-cli
 import { RunnerExecutionFinalizer } from "./runner-execution-finalizer.mjs";
 import { RunnerExecutionResultSigner } from "./runner-execution-result-signer.mjs";
 import { D1InlineVerificationReplayEvidenceStore } from "../verification/d1-inline-verification-replay-evidence-store.mjs";
+import { D1VerificationMarketStore } from "../verification/d1-verification-market-store.mjs";
 import { PinnedRunnerImageRegistry } from "./runner-image-policy.mjs";
 import { RunnerJobPreflight } from "./runner-job-preflight.mjs";
 import { RunnerWorkspaceStager } from "./runner-workspace-stager.mjs";
@@ -97,6 +98,7 @@ export async function createRunnerRuntime({
     runStore,
     outputStore: new D1InlineRunnerOutputStore({ database: env.DB }),
     replayEvidenceStore: new D1InlineVerificationReplayEvidenceStore({ database: env.DB }),
+    verificationJobPublisher: new D1VerificationMarketStore(env.DB),
     resultSigner: new RunnerExecutionResultSigner({
       runnerKeyId: requireSetting(env, "RUNNER_RESULT_KEY_ID"),
       runnerPrivateKey: await importRunnerResultPrivateKey(requireSetting(env, "RUNNER_RESULT_PRIVATE_KEY_JWK")),
