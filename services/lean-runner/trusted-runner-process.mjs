@@ -9,6 +9,7 @@ import {
 } from "../../db/control-plane-authority.mjs";
 import { D1InlineArtifactBucket } from "../artifacts/d1-inline-artifact-store.mjs";
 import { D1InlineVerificationReplayEvidenceStore } from "../verification/d1-inline-verification-replay-evidence-store.mjs";
+import { D1VerificationMarketStore } from "../verification/d1-verification-market-store.mjs";
 import { D1InlineRunnerBundleResolver } from "./d1-inline-runner-bundle-resolver.mjs";
 import { D1InlineRunnerOutputStore } from "./d1-inline-runner-output-store.mjs";
 import { D1RunnerLeaseQueue } from "./d1-runner-lease-queue.mjs";
@@ -324,6 +325,7 @@ export async function createTrustedRunnerRuntime({
     runStore,
     outputStore: new D1InlineRunnerOutputStore({ database }),
     replayEvidenceStore: new D1InlineVerificationReplayEvidenceStore({ database }),
+    verificationJobPublisher: new D1VerificationMarketStore(database),
     resultSigner: new RunnerExecutionResultSigner({
       runnerKeyId: requireSetting(environment, "RUNNER_RESULT_KEY_ID"),
       runnerPrivateKey: await importRunnerResultPrivateKey(requireSetting(environment, "RUNNER_RESULT_PRIVATE_KEY_JWK")),
