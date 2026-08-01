@@ -12,7 +12,14 @@ export class RunnerWorkspaceStagerError extends Error {
  * the separate transition into `running`.
  */
 export class RunnerWorkspaceStager {
-  constructor({ preflight, workspaceTransfer, getContainer, restageRunning = false }) {
+  constructor({
+    preflight,
+    workspaceTransfer,
+    getContainer,
+    restageRunning = false,
+    monotonicNow = () => performance.now(),
+    observePhase = () => {},
+  }) {
     if (!preflight || typeof preflight.claimAuthenticatedMessage !== "function" || typeof preflight.startAfterWorkspaceStaged !== "function") {
       throw new TypeError("RunnerWorkspaceStager requires a RunnerJobPreflight preparation boundary.");
     }
@@ -28,29 +35,54 @@ export class RunnerWorkspaceStager {
     if (restageRunning && typeof preflight.recoverRunningAuthenticatedMessage !== "function") {
       throw new TypeError("RunnerWorkspaceStager recovery requires a running-Run preflight boundary.");
     }
+    if (typeof monotonicNow !== "function" || typeof observePhase !== "function") {
+      throw new TypeError("RunnerWorkspaceStager requires clock and phase observation functions.");
+    }
     this.preflight = preflight;
     this.workspaceTransfer = workspaceTransfer;
     this.getContainer = getContainer;
     this.restageRunning = restageRunning;
+    this.monotonicNow = monotonicNow;
+    this.observePhase = observePhase;
   }
 
   async executeAuthenticatedMessage(message, { preparingAt, startedAt }) {
-    let prepared = await this.preflight.claimAuthenticatedMessage(message, { preparingAt });
+    let prepared = await measurePhase({
+      phase: "runner_preflight",
+      monotonicNow: this.monotonicNow,
+      observePhase: this.observePhase,
+      operation: () => this.preflight.claimAuthenticatedMessage(message, { preparingAt }),
+    });
     if (prepared.action === "skip" && prepared.run?.state === "running" && this.restageRunning) {
-      prepared = await this.preflight.recoverRunningAuthenticatedMessage(message);
+      prepared = await measurePhase({
+        phase: "runner_recovery_preflight",
+        monotonicNow: this.monotonicNow,
+        observePhase: this.observePhase,
+        operation: () => this.preflight.recoverRunningAuthenticatedMessage(message),
+      });
     }
     if (prepared.action === "skip") return prepared;
     if (prepared.action !== "stage") {
       throw new RunnerWorkspaceStagerError("Runner preflight returned an unsupported workspace action.");
     }
-    const container = await this.getContainer(prepared.run.id);
+    const container = await measurePhase({
+      phase: "runner_sandbox_ready",
+      monotonicNow: this.monotonicNow,
+      observePhase: this.observePhase,
+      operation: () => this.getContainer(prepared.run.id),
+    });
     if (!container || typeof container.fetch !== "function") {
       throw new RunnerWorkspaceStagerError("Runner Container resolver returned no private fetch stub.");
     }
-    const transfer = await this.workspaceTransfer.stage({
-      run: prepared.run,
-      resolvedBundle: prepared.resolvedBundle,
-      container,
+    const transfer = await measurePhase({
+      phase: "runner_workspace_transfer",
+      monotonicNow: this.monotonicNow,
+      observePhase: this.observePhase,
+      operation: () => this.workspaceTransfer.stage({
+        run: prepared.run,
+        resolvedBundle: prepared.resolvedBundle,
+        container,
+      }),
     });
     if (prepared.run.state === "running") {
       return Object.freeze({
@@ -63,7 +95,14 @@ export class RunnerWorkspaceStager {
         recovered: true,
       });
     }
-    const started = await this.preflight.startAfterWorkspaceStaged(message, { startedAt });
+    const started = await measurePhase({
+      phase: "runner_start_transition",
+      monotonicNow: this.monotonicNow,
+      observePhase: this.observePhase,
+      operation: () => this.preflight.startAfterWorkspaceStaged(message, {
+        startedAt: typeof startedAt === "function" ? startedAt() : startedAt,
+      }),
+    });
     if (started.action === "skip") return started;
     if (started.action !== "execute") {
       throw new RunnerWorkspaceStagerError("Runner preflight did not start after workspace finalization.");
@@ -77,5 +116,42 @@ export class RunnerWorkspaceStager {
       transfer,
       recovered: false,
     });
+  }
+}
+
+async function measurePhase({ phase, monotonicNow, observePhase, operation }) {
+  const started = safeMonotonic(monotonicNow);
+  try {
+    const result = await operation();
+    safeMeasureAndObserve(observePhase, phase, started, monotonicNow, "completed");
+    return result;
+  } catch (error) {
+    safeMeasureAndObserve(observePhase, phase, started, monotonicNow, "failed");
+    throw error;
+  }
+}
+
+function safeMeasureAndObserve(observer, phase, started, monotonicNow, outcome) {
+  if (started === null) return;
+  const ended = safeMonotonic(monotonicNow);
+  if (ended === null) return;
+  safeObserve(observer, phase, Math.max(0, Math.min(86_400_000, Math.round(ended - started))), outcome);
+}
+
+function safeMonotonic(monotonicNow) {
+  try {
+    const value = monotonicNow();
+    return Number.isFinite(value) ? value : null;
+  } catch {
+    return null;
+  }
+}
+
+function safeObserve(observer, phase, durationMs, outcome) {
+  try {
+    const pending = observer(Object.freeze({ phase, durationMs, outcome }));
+    if (pending && typeof pending.then === "function") Promise.resolve(pending).catch(() => {});
+  } catch {
+    // Optional phase telemetry never changes Run preparation.
   }
 }

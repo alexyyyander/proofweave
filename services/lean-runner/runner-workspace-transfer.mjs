@@ -56,9 +56,14 @@ export class RunnerWorkspaceTransfer {
       "runner_workspace_declaration",
     );
 
-    const uploaded = [];
-    for (const transfer of transfers) {
-      const object = await this.bucket.get(transfer.object.objectKey);
+    const objectsByKey = typeof this.bucket.getMany === "function"
+      ? await this.bucket.getMany(transfers.map((transfer) => transfer.object.objectKey))
+      : new Map(await Promise.all(transfers.map(async (transfer) => [
+        transfer.object.objectKey,
+        await this.bucket.get(transfer.object.objectKey),
+      ])));
+    const preparedTransfers = transfers.map((transfer) => {
+      const object = objectsByKey.get(transfer.object.objectKey);
       if (!object) {
         throw new RunnerWorkspaceTransferError(`Runner workspace ${transfer.label} is missing from R2 at transfer time.`);
       }
@@ -66,6 +71,13 @@ export class RunnerWorkspaceTransfer {
       if (!object.body) {
         throw new RunnerWorkspaceTransferError(`Runner workspace ${transfer.label} has no readable R2 body.`);
       }
+      return { transfer, object };
+    });
+
+    const uploaded = [];
+    // Keep the private ingress order deterministic even though the three
+    // immutable database objects are fetched together above.
+    for (const { transfer, object } of preparedTransfers) {
       await expectAccepted(
         await container.fetch(streamRequest(`${baseUrl}/workspace/artifacts/${transfer.endpoint}`, object.body, {
           "content-type": transfer.object.contentType,

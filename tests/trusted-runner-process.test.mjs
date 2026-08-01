@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {
+  createTrustedRunnerPhaseObserver,
   createTrustedRunnerRuntimeFromEnvironment,
   TrustedRunnerProcess,
 } from "../services/lean-runner/trusted-runner-process.mjs";
@@ -17,6 +18,28 @@ test("one-shot Runner fails closed before connecting or claiming when execution 
     }),
     /RUNNER_EXECUTION_ENABLED=true/,
   );
+});
+
+test("trusted Runner phase audit records only bounded anonymous timing", async () => {
+  const records = [];
+  const observe = createTrustedRunnerPhaseObserver({
+    emit: (record) => records.push(record),
+    now: () => new Date("2026-07-13T00:00:01Z"),
+  });
+  observe({ phase: "runner_lean_execution", durationMs: 321, outcome: "completed", runId: "must-not-leak" });
+  observe({ phase: "../../unsafe", durationMs: 1, outcome: "completed" });
+  observe({ phase: "alice_email", durationMs: 1, outcome: "completed" });
+
+  assert.deepEqual(records, [{
+    schemaVersion: "pw-audit-v1",
+    kind: "trusted_runner_phase",
+    component: "trusted_lean_runner",
+    occurredAt: "2026-07-13T00:00:01.000Z",
+    phase: "runner_lean_execution",
+    durationMs: 321,
+    outcome: "completed",
+  }]);
+  assert.equal(JSON.stringify(records).includes("must-not-leak"), false);
 });
 
 test("trusted Runner wake interrupts a sixty-second idle poll without carrying work", async () => {

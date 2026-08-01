@@ -138,6 +138,8 @@ export function createRunnerQueueExecution({
   cancellationPollMilliseconds = 1_000,
   sleep = wait,
   now = () => new Date(),
+  monotonicNow = () => performance.now(),
+  observePhase = () => {},
 }) {
   if (!workspaceStager || typeof workspaceStager.executeAuthenticatedMessage !== "function") {
     throw new TypeError("Runner queue execution requires a RunnerWorkspaceStager.");
@@ -164,7 +166,9 @@ export function createRunnerQueueExecution({
     throw new TypeError("Runner cancellation polling must be an integer between 50 and 60000 milliseconds.");
   }
   if (typeof sleep !== "function") throw new TypeError("Runner queue execution requires a sleep function.");
-  if (typeof now !== "function") throw new TypeError("Runner queue execution requires a clock function.");
+  if (typeof now !== "function" || typeof monotonicNow !== "function" || typeof observePhase !== "function") {
+    throw new TypeError("Runner queue execution requires clock and phase observation functions.");
+  }
 
   return async function executeAuthenticatedMessage(message, { beforeFinalize = async () => {} } = {}) {
     if (typeof beforeFinalize !== "function") {
@@ -172,7 +176,10 @@ export function createRunnerQueueExecution({
     }
     const staged = await workspaceStager.executeAuthenticatedMessage(message, {
       preparingAt: timestamp(now),
-      startedAt: timestamp(now),
+      // Resolve the running transition only after Sandbox creation and
+      // workspace reconstruction complete, so durable timestamps no longer
+      // hide the startup/transfer portion of a Run.
+      startedAt: () => timestamp(now),
     });
     if (staged.action === "skip") {
       if (staged.run?.state !== "running") {
@@ -193,6 +200,8 @@ export function createRunnerQueueExecution({
         cancellationPollMilliseconds,
         sleep,
         now,
+        monotonicNow,
+        observePhase,
         beforeFinalize,
       });
     }
@@ -210,6 +219,8 @@ export function createRunnerQueueExecution({
       cancellationPollMilliseconds,
       sleep,
       now,
+      monotonicNow,
+      observePhase,
       beforeFinalize,
     });
   };
@@ -226,9 +237,16 @@ async function executeAndFinalize({
   cancellationPollMilliseconds,
   sleep,
   now,
+  monotonicNow,
+  observePhase,
   beforeFinalize,
 }) {
-  const container = await getContainerForRun(run.id);
+  const container = await measurePhase({
+    phase: "runner_execution_container",
+    monotonicNow,
+    observePhase,
+    operation: () => getContainerForRun(run.id),
+  });
   if (!container || typeof container.fetch !== "function") {
     throw new RunnerWorkerConfigurationError("Runner Container resolver returned no private fetch stub.");
   }
@@ -241,7 +259,12 @@ async function executeAndFinalize({
   });
   let execution;
   try {
-    execution = await executionClient.execute({ container, run, request: message.request });
+    execution = await measurePhase({
+      phase: "runner_lean_execution",
+      monotonicNow,
+      observePhase,
+      operation: () => executionClient.execute({ container, run, request: message.request }),
+    });
   } catch (cause) {
     // Preserve the primary execution error. The Queue will retry it; an
     // incidental failure while stopping the background state poll must not
@@ -259,8 +282,55 @@ async function executeAndFinalize({
   // execution/output retrieval but before operator signing or durable result
   // persistence. Cloudflare's binding can retain the default no-op because
   // its Queue delivery acknowledgement owns that provider's retry boundary.
-  await beforeFinalize();
-  return finalizer.finalize({ runId: run.id, execution, receivedAt: timestamp(now) });
+  await measurePhase({
+    phase: "runner_lease_fence",
+    monotonicNow,
+    observePhase,
+    operation: beforeFinalize,
+  });
+  return measurePhase({
+    phase: "runner_durable_finalize",
+    monotonicNow,
+    observePhase,
+    operation: () => finalizer.finalize({ runId: run.id, execution, receivedAt: timestamp(now) }),
+  });
+}
+
+async function measurePhase({ phase, monotonicNow, observePhase, operation }) {
+  const started = safeMonotonic(monotonicNow);
+  try {
+    const result = await operation();
+    safeMeasureAndObserve(observePhase, phase, started, monotonicNow, "completed");
+    return result;
+  } catch (error) {
+    safeMeasureAndObserve(observePhase, phase, started, monotonicNow, "failed");
+    throw error;
+  }
+}
+
+function safeMeasureAndObserve(observer, phase, started, monotonicNow, outcome) {
+  if (started === null) return;
+  const ended = safeMonotonic(monotonicNow);
+  if (ended === null) return;
+  safeObserve(observer, phase, Math.max(0, Math.min(86_400_000, Math.round(ended - started))), outcome);
+}
+
+function safeMonotonic(monotonicNow) {
+  try {
+    const value = monotonicNow();
+    return Number.isFinite(value) ? value : null;
+  } catch {
+    return null;
+  }
+}
+
+function safeObserve(observer, phase, durationMs, outcome) {
+  try {
+    const pending = observer(Object.freeze({ phase, durationMs, outcome }));
+    if (pending && typeof pending.then === "function") Promise.resolve(pending).catch(() => {});
+  } catch {
+    // Optional phase telemetry never changes execution or signing.
+  }
 }
 
 /**

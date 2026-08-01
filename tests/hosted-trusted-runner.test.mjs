@@ -26,6 +26,8 @@ test("checked-in Render defaults cannot auto-deploy or execute during a cutover"
 test("hosted Runner exposes health and authenticated wake without accepting work", async (t) => {
   let runStarted = false;
   let closeCount = 0;
+  let runtimeOptions;
+  const audits = [];
   const service = new HostedTrustedRunnerService({
     environment: {
       PORT: "0",
@@ -48,7 +50,9 @@ test("hosted Runner exposes health and authenticated wake without accepting work
       TURSO_DATABASE_URL: tursoUrl,
       TURSO_AUTH_TOKEN: tursoToken,
     },
-    runtimeFactory: async () => ({
+    runtimeFactory: async (options) => {
+      runtimeOptions = options;
+      return ({
       releaseDiagnostics: readyDiagnostics("47fa209a9aef5de9f76f5e2c04b9a1bfddb01872"),
       async run({ signal }) {
         runStarted = true;
@@ -56,11 +60,18 @@ test("hosted Runner exposes health and authenticated wake without accepting work
       },
       wake() {},
       async close() { closeCount += 1; },
-    }),
+      });
+    },
+    emit: (record) => audits.push(record),
   });
   t.after(() => service.close());
   await service.start();
   await waitFor(() => runStarted);
+  assert.equal(runtimeOptions.environment.RUNNER_EXECUTION_ENABLED, "true");
+  assert.equal(typeof runtimeOptions.emit, "function");
+  assert.equal(typeof runtimeOptions.now, "function");
+  runtimeOptions.emit({ kind: "phase-fixture" });
+  assert.equal(audits.some((record) => record.kind === "phase-fixture"), true);
   const origin = `http://127.0.0.1:${service.port}`;
 
   const health = await fetch(`${origin}/healthz`);

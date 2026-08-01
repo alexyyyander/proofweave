@@ -44,6 +44,8 @@ export class E2BSandboxContainerFactory {
     port = defaultPort,
     fetcher = globalThis.fetch,
     sleep = wait,
+    monotonicNow = () => performance.now(),
+    observePhase = () => {},
   } = {}) {
     if (!sandboxApi || typeof sandboxApi.create !== "function") {
       throw new E2BSandboxContainerError("E2B runner requires the official Sandbox API.");
@@ -66,22 +68,41 @@ export class E2BSandboxContainerFactory {
     if (!Number.isInteger(port) || port < 1 || port > 65_535) {
       throw new E2BSandboxContainerError("E2B runner port is invalid.");
     }
-    if (typeof fetcher !== "function" || typeof sleep !== "function") {
-      throw new E2BSandboxContainerError("E2B runner requires HTTPS fetch and bounded wait implementations.");
+    if (
+      typeof fetcher !== "function" ||
+      typeof sleep !== "function" ||
+      typeof monotonicNow !== "function" ||
+      typeof observePhase !== "function"
+    ) {
+      throw new E2BSandboxContainerError("E2B runner requires HTTPS fetch, bounded wait, clock, and phase observation implementations.");
     }
     this.sandboxApi = sandboxApi;
     this.templateApi = templateApi;
     this.port = port;
     this.fetcher = fetcher;
     this.sleep = sleep;
+    this.monotonicNow = monotonicNow;
+    this.observePhase = observePhase;
     this.active = new Map();
+    this.quarantined = new Map();
+    this.quarantineCleanup = null;
   }
 
   async get(runId) {
     const normalizedRunId = requireIdentifier(runId, "Run id", 240);
-    const existing = this.active.get(normalizedRunId);
+    let existing = this.active.get(normalizedRunId);
     if (existing) return existing;
-    if (this.active.size >= 1) {
+    if (this.quarantined.size > 0) {
+      if (!this.quarantineCleanup) {
+        this.quarantineCleanup = this.retryQuarantinedSandboxes().finally(() => {
+          this.quarantineCleanup = null;
+        });
+      }
+      await this.quarantineCleanup;
+      existing = this.active.get(normalizedRunId);
+      if (existing) return existing;
+    }
+    if (this.active.size + this.quarantined.size >= 1) {
       throw new E2BSandboxContainerError("Closed-alpha E2B runner permits only one active Sandbox.");
     }
     const creating = this.create(normalizedRunId).catch((error) => {
@@ -107,47 +128,104 @@ export class E2BSandboxContainerFactory {
     await Promise.allSettled(containers
       .filter((result) => result.status === "fulfilled")
       .map((result) => result.value.terminate()));
+    await Promise.allSettled([...this.quarantined.values()].map((state) => (
+      state.cleanupPromise && !state.sandbox
+        ? waitForCleanup(state.cleanupPromise, Math.min(10_000, this.startupTimeoutMs))
+        : Promise.resolve()
+    )));
+    await this.retryQuarantinedSandboxes();
   }
 
   async create(runId) {
     let sandbox;
+    let sandboxCreation;
+    const startupDeadline = finiteMonotonic(this.monotonicNow()) + this.startupTimeoutMs;
+    const startupController = new AbortController();
+    const startupTimer = setTimeout(
+      () => startupController.abort(startupTimeoutError()),
+      this.startupTimeoutMs,
+    );
     try {
-      await assertTemplateBuildReference(this.templateApi, {
-        apiKey: this.apiKey,
-        template: this.template,
-        buildId: this.templateBuildId,
-      });
       // E2B build UUID references are immutable. The reviewed tag remains a
       // human-readable release assertion, but must never be the creation
       // authority because a provider-side tag can move after it is checked.
-      sandbox = await this.sandboxApi.create(this.immutableTemplateReference, {
-        apiKey: this.apiKey,
-        secure: true,
-        allowInternetAccess: false,
-        network: {
-          allowPublicTraffic: false,
-          denyOut: [allTraffic],
-        },
-        lifecycle: { onTimeout: "kill" },
-        timeoutMs: Math.min(3_600_000, this.timeoutMs + 60_000),
-        requestTimeoutMs: this.startupTimeoutMs,
-        envs: {
-          PROOFWEAVE_NETWORK_ISOLATED: "true",
-          PROOFWEAVE_RESOURCE_LIMITS_ENFORCED: "true",
-          PROOFWEAVE_REQUEST_TIMEOUT_MS: String(this.timeoutMs),
-        },
-        metadata: {
-          component: "proofweave-lean-runner",
-          protocol: "pw-lean-runner-v1",
-        },
-      });
-      await assertSandboxIsolation(sandbox, {
-        templateId: this.template.id,
-        requestTimeoutMs: this.startupTimeoutMs,
-        cpuCount: this.cpuCount,
-        memoryMB: this.memoryMB,
-      });
-      await startSandboxServer(sandbox, this.timeoutMs, this.startupTimeoutMs);
+      // The independent tag assertion and immutable build creation can run in
+      // parallel. We still await both and kill an already-created Sandbox if
+      // either side fails, so acceleration cannot leave an orphan or bypass
+      // the reviewed release assertion.
+      const tagTask = abortStartupOnFailure(this.runStartupPhase("e2b_template_assert", () => assertTemplateBuildReference(this.templateApi, {
+          apiKey: this.apiKey,
+          template: this.template,
+          buildId: this.templateBuildId,
+          requestTimeoutMs: remainingStartupMilliseconds(startupDeadline, this.monotonicNow),
+          signal: startupController.signal,
+        }), { startupDeadline, startupController }), startupController);
+      sandboxCreation = Promise.resolve().then(() => this.sandboxApi.create(this.immutableTemplateReference, {
+          apiKey: this.apiKey,
+          secure: true,
+          allowInternetAccess: false,
+          network: {
+            allowPublicTraffic: false,
+            denyOut: [allTraffic],
+          },
+          lifecycle: { onTimeout: "kill" },
+          timeoutMs: Math.min(3_600_000, this.timeoutMs + 60_000),
+          requestTimeoutMs: remainingStartupMilliseconds(startupDeadline, this.monotonicNow),
+          signal: startupController.signal,
+          envs: {
+            PROOFWEAVE_NETWORK_ISOLATED: "true",
+            PROOFWEAVE_RESOURCE_LIMITS_ENFORCED: "true",
+            PROOFWEAVE_REQUEST_TIMEOUT_MS: String(this.timeoutMs),
+          },
+          metadata: {
+            component: "proofweave-lean-runner",
+            protocol: "pw-lean-runner-v1",
+          },
+        }));
+      sandboxCreation.then((created) => { sandbox = created; }, () => {});
+      const sandboxTask = abortStartupOnFailure(this.runStartupPhase(
+        "e2b_sandbox_create",
+        () => sandboxCreation,
+        { startupDeadline, startupController },
+      ), startupController);
+      const [tagResult, sandboxResult] = await Promise.allSettled([tagTask, sandboxTask]);
+      if (sandboxResult.status === "fulfilled") sandbox = sandboxResult.value;
+      if (tagResult.status === "rejected") throw tagResult.reason;
+      if (sandboxResult.status === "rejected") throw sandboxResult.reason;
+
+      const commandEnvironment = sandboxCommandEnvironment(this.timeoutMs);
+      // Provider metadata verification and the one fixed cache-marker repair
+      // touch no user bytes and are independent. Both must complete before the
+      // unprivileged server is started or any workspace can be accepted.
+      const [isolationResult, repairResult] = await Promise.allSettled([
+        abortStartupOnFailure(this.runStartupPhase("e2b_isolation_assert", () => assertSandboxIsolation(sandbox, {
+          templateId: this.template.id,
+          requestTimeoutMs: remainingStartupMilliseconds(startupDeadline, this.monotonicNow),
+          cpuCount: this.cpuCount,
+          memoryMB: this.memoryMB,
+          signal: startupController.signal,
+        }), { startupDeadline, startupController }), startupController),
+        abortStartupOnFailure(this.runStartupPhase("e2b_cache_marker_repair", () => prepareDependencyCache(sandbox, {
+          timeoutMs: this.timeoutMs,
+          requestTimeoutMs: remainingStartupMilliseconds(startupDeadline, this.monotonicNow),
+          commandEnvironment,
+          signal: startupController.signal,
+        }), { startupDeadline, startupController }), startupController),
+      ]);
+      if (isolationResult.status === "rejected") throw isolationResult.reason;
+      if (repairResult.status === "rejected") throw repairResult.reason;
+      await this.runStartupPhase("e2b_runtime_probe", () => probeSandboxRuntime(sandbox, {
+        timeoutMs: this.timeoutMs,
+        requestTimeoutMs: remainingStartupMilliseconds(startupDeadline, this.monotonicNow),
+        commandEnvironment,
+        signal: startupController.signal,
+      }), { startupDeadline, startupController });
+      await this.runStartupPhase("e2b_server_spawn", () => spawnSandboxServer(sandbox, {
+        timeoutMs: this.timeoutMs,
+        requestTimeoutMs: remainingStartupMilliseconds(startupDeadline, this.monotonicNow),
+        commandEnvironment,
+        signal: startupController.signal,
+      }), { startupDeadline, startupController });
       const container = new E2BSandboxContainer({
         sandbox,
         token: sandbox.trafficAccessToken,
@@ -156,20 +234,99 @@ export class E2BSandboxContainerFactory {
         requestTimeoutMs: this.startupTimeoutMs,
         fetcher: this.fetcher,
         sleep: this.sleep,
+        monotonicNow: this.monotonicNow,
         onTerminated: () => this.active.delete(runId),
+        onTerminationFailed: (failedSandbox) => {
+          this.active.delete(runId);
+          this.quarantined.set(runId, { sandbox: failedSandbox, cleanupPromise: null });
+        },
       });
-      await container.waitUntilReady(this.startupTimeoutMs);
+      await this.runStartupPhase(
+        "e2b_ready_wait",
+        () => container.waitUntilReady({ deadline: startupDeadline, signal: startupController.signal }),
+        { startupDeadline, startupController },
+      );
       this.active.set(runId, Promise.resolve(container));
       return container;
     } catch (error) {
-      await sandbox?.kill?.().catch(() => {});
+      startupController.abort(error);
+      if (sandbox) {
+        await this.quarantineAndKill(runId, sandbox);
+      } else if (sandboxCreation) {
+        this.trackLateSandbox(runId, sandboxCreation);
+      }
+      throw error;
+    } finally {
+      clearTimeout(startupTimer);
+    }
+  }
+
+  async runStartupPhase(phase, operation, { startupDeadline, startupController }) {
+    const result = await this.measurePhase(
+      phase,
+      () => raceAgainstStartupSignal(Promise.resolve().then(operation), startupController.signal),
+    );
+    remainingStartupMilliseconds(startupDeadline, this.monotonicNow);
+    return result;
+  }
+
+  trackLateSandbox(runId, sandboxCreation) {
+    if (this.quarantined.has(runId)) return;
+    const state = { sandbox: null, cleanupPromise: null };
+    this.quarantined.set(runId, state);
+    state.cleanupPromise = Promise.resolve(sandboxCreation).then(async (created) => {
+      state.sandbox = created;
+      await this.retryQuarantinedSandbox(runId, created);
+    }, () => {
+      this.quarantined.delete(runId);
+    });
+    state.cleanupPromise.catch(() => {});
+  }
+
+  async quarantineAndKill(runId, sandbox) {
+    const state = { sandbox, cleanupPromise: null };
+    this.quarantined.set(runId, state);
+    await this.retryQuarantinedSandbox(runId, sandbox);
+  }
+
+  async retryQuarantinedSandboxes() {
+    await Promise.allSettled([...this.quarantined.entries()].map(([runId, state]) => (
+      state.sandbox ? this.retryQuarantinedSandbox(runId, state.sandbox) : Promise.resolve(false)
+    )));
+  }
+
+  async retryQuarantinedSandbox(runId, sandbox) {
+    const killed = await boundedProviderKill(sandbox, Math.min(10_000, this.startupTimeoutMs));
+    if (killed) this.quarantined.delete(runId);
+    return killed;
+  }
+
+  async measurePhase(phase, operation) {
+    const started = finiteMonotonic(this.monotonicNow());
+    try {
+      const result = await operation();
+      safeObservePhase(this.observePhase, phase, elapsedMilliseconds(started, this.monotonicNow()), "completed");
+      return result;
+    } catch (error) {
+      safeObservePhase(this.observePhase, phase, elapsedMilliseconds(started, this.monotonicNow()), "failed");
       throw error;
     }
   }
 }
 
 export class E2BSandboxContainer {
-  constructor({ sandbox, token, runId, port, requestTimeoutMs, fetcher, sleep, onTerminated }) {
+  constructor({
+    sandbox,
+    token,
+    runId,
+    port,
+    requestTimeoutMs,
+    fetcher,
+    sleep,
+    monotonicNow = () => performance.now(),
+    onTerminated,
+    onTerminationFailed,
+  }) {
     if (!sandbox || typeof sandbox.kill !== "function" || typeof sandbox.getHost !== "function") {
       throw new E2BSandboxContainerError("E2B Sandbox handle is invalid.");
     }
@@ -180,24 +337,36 @@ export class E2BSandboxContainer {
     this.requestTimeoutMs = integerRange(requestTimeoutMs, "E2B private request timeout", 1_000, 120_000);
     this.fetcher = fetcher;
     this.sleep = sleep;
+    this.monotonicNow = monotonicNow;
     this.onTerminated = onTerminated;
+    this.onTerminationFailed = onTerminationFailed;
     this.terminated = false;
+    this.terminationPromise = null;
   }
 
-  async waitUntilReady(timeoutMs) {
-    const deadline = Date.now() + timeoutMs;
+  async waitUntilReady({ deadline, signal }) {
     let lastError;
-    while (Date.now() < deadline) {
+    while (!signal.aborted) {
+      const remaining = remainingStartupMilliseconds(deadline, this.monotonicNow);
       try {
-        const response = await this.forward(new Request(`${internalOrigin}/ready`));
-        if (response.status === 204) return;
+        const response = await this.forward(new Request(`${internalOrigin}/ready`, { signal }), {
+          timeoutMs: Math.min(this.requestTimeoutMs, remaining),
+        });
+        if (response.status === 204) {
+          remainingStartupMilliseconds(deadline, this.monotonicNow);
+          return;
+        }
         lastError = new Error(`status_${response.status}`);
       } catch (error) {
+        if (signal.aborted) throw startupTimeoutError(error);
         lastError = error;
       }
-      await this.sleep(Math.min(250, Math.max(1, deadline - Date.now())));
+      await raceAgainstStartupSignal(
+        Promise.resolve(this.sleep(Math.min(250, remainingStartupMilliseconds(deadline, this.monotonicNow)))),
+        signal,
+      );
     }
-    throw new E2BSandboxContainerError("E2B Lean Sandbox did not become ready before its bounded startup timeout.", { cause: lastError });
+    throw startupTimeoutError(lastError ?? signal.reason);
   }
 
   async fetch(request) {
@@ -220,7 +389,7 @@ export class E2BSandboxContainer {
     return response;
   }
 
-  async forward(request) {
+  async forward(request, { timeoutMs = this.requestTimeoutMs } = {}) {
     if (this.terminated) throw new E2BSandboxContainerError("E2B Sandbox is already terminated.");
     const source = new URL(request.url);
     const target = new URL(this.baseUrl);
@@ -230,10 +399,11 @@ export class E2BSandboxContainer {
     headers.set("e2b-traffic-access-token", this.token);
     const controller = new AbortController();
     const forwardAbort = () => controller.abort(request.signal.reason);
-    request.signal.addEventListener("abort", forwardAbort, { once: true });
+    if (request.signal.aborted) forwardAbort();
+    else request.signal.addEventListener("abort", forwardAbort, { once: true });
     const timeout = setTimeout(
       () => controller.abort(new Error("E2B authenticated Sandbox request exceeded its bounded timeout.")),
-      this.requestTimeoutMs,
+      boundedRequestTimeout(timeoutMs),
     );
     let response;
     try {
@@ -258,14 +428,22 @@ export class E2BSandboxContainer {
   }
 
   async terminate() {
-    if (this.terminated) return;
+    if (this.terminationPromise) return this.terminationPromise;
     this.terminated = true;
     this.token = "";
-    try {
-      await this.sandbox.kill();
-    } finally {
-      this.onTerminated?.();
-    }
+    this.terminationPromise = (async () => {
+      try {
+        const killed = await boundedProviderKill(this.sandbox, this.requestTimeoutMs);
+        if (!killed) {
+          throw new E2BSandboxContainerError("E2B Sandbox cleanup could not be confirmed.");
+        }
+        this.onTerminated?.();
+      } catch (error) {
+        this.onTerminationFailed?.(this.sandbox);
+        throw error;
+      }
+    })();
+    return this.terminationPromise;
   }
 }
 
@@ -275,6 +453,8 @@ export function createE2BSandboxContainerFactoryFromEnvironment({
   templateApi = Template,
   fetcher = globalThis.fetch,
   sleep = wait,
+  monotonicNow = () => performance.now(),
+  observePhase = () => {},
 } = {}) {
   return new E2BSandboxContainerFactory({
     sandboxApi,
@@ -290,13 +470,15 @@ export function createE2BSandboxContainerFactoryFromEnvironment({
     startupTimeoutMs: integerFromEnvironment(environment.PROOFWEAVE_E2B_STARTUP_TIMEOUT_MS, "PROOFWEAVE_E2B_STARTUP_TIMEOUT_MS"),
     fetcher,
     sleep,
+    monotonicNow,
+    observePhase,
   });
 }
 
-async function assertTemplateBuildReference(templateApi, { apiKey, template, buildId }) {
+async function assertTemplateBuildReference(templateApi, { apiKey, template, buildId, requestTimeoutMs, signal }) {
   let tags;
   try {
-    tags = await templateApi.getTags(template.id, { apiKey });
+    tags = await templateApi.getTags(template.id, { apiKey, requestTimeoutMs, signal });
   } catch (cause) {
     throw new E2BSandboxContainerError("E2B could not verify the reviewed template build tag.", { cause });
   }
@@ -309,11 +491,11 @@ async function assertTemplateBuildReference(templateApi, { apiKey, template, bui
   }
 }
 
-async function assertSandboxIsolation(sandbox, { templateId, requestTimeoutMs, cpuCount, memoryMB }) {
+async function assertSandboxIsolation(sandbox, { templateId, requestTimeoutMs, cpuCount, memoryMB, signal }) {
   if (!sandbox || typeof sandbox.getInfo !== "function") {
     throw new E2BSandboxContainerError("E2B Sandbox does not expose verifiable isolation metadata.");
   }
-  const info = await sandbox.getInfo({ requestTimeoutMs });
+  const info = await sandbox.getInfo({ requestTimeoutMs, signal });
   if (info?.templateId !== templateId) {
     throw new E2BSandboxContainerError("E2B Sandbox template does not match the reviewed immutable template id.");
   }
@@ -325,11 +507,8 @@ async function assertSandboxIsolation(sandbox, { templateId, requestTimeoutMs, c
   }
 }
 
-async function startSandboxServer(sandbox, timeoutMs, requestTimeoutMs) {
-  if (!sandbox?.commands || typeof sandbox.commands.run !== "function") {
-    throw new E2BSandboxContainerError("E2B Sandbox does not expose the reviewed command boundary.");
-  }
-  const commandEnvironment = {
+function sandboxCommandEnvironment(timeoutMs) {
+  return {
     HOME: runnerHome,
     PATH: runnerPath,
     PROOFWEAVE_LEAN_EXECUTABLE_PATH: runnerLeanExecutable,
@@ -338,6 +517,16 @@ async function startSandboxServer(sandbox, timeoutMs, requestTimeoutMs) {
     PROOFWEAVE_RESOURCE_LIMITS_ENFORCED: "true",
     PROOFWEAVE_REQUEST_TIMEOUT_MS: String(timeoutMs),
   };
+}
+
+function requireSandboxCommands(sandbox) {
+  if (!sandbox?.commands || typeof sandbox.commands.run !== "function") {
+    throw new E2BSandboxContainerError("E2B Sandbox does not expose the reviewed command boundary.");
+  }
+}
+
+async function prepareDependencyCache(sandbox, { timeoutMs, requestTimeoutMs, commandEnvironment, signal }) {
+  requireSandboxCommands(sandbox);
   // E2B can remap imported-image ownership. Mathlib's ProofWidgets target
   // refreshes this generated marker during `lake build`, so the trusted
   // startup boundary repairs only this exact file before dropping back to the
@@ -347,15 +536,25 @@ async function startSandboxServer(sandbox, timeoutMs, requestTimeoutMs) {
     user: "root",
     timeoutMs: Math.min(10_000, timeoutMs),
     requestTimeoutMs,
+    signal,
     envs: commandEnvironment,
   });
+}
+
+async function probeSandboxRuntime(sandbox, { timeoutMs, requestTimeoutMs, commandEnvironment, signal }) {
+  requireSandboxCommands(sandbox);
   await sandbox.commands.run(`${runnerLeanExecutable} --version`, {
     cwd: "/opt/proofweave",
     user: runnerUser,
     timeoutMs: Math.min(10_000, timeoutMs),
     requestTimeoutMs,
+    signal,
     envs: commandEnvironment,
   });
+}
+
+async function spawnSandboxServer(sandbox, { timeoutMs, requestTimeoutMs, commandEnvironment, signal }) {
+  requireSandboxCommands(sandbox);
   await sandbox.commands.run(
     "node /opt/proofweave/services/lean-runner/container-http-server.mjs",
     {
@@ -364,9 +563,105 @@ async function startSandboxServer(sandbox, timeoutMs, requestTimeoutMs) {
       user: runnerUser,
       timeoutMs: Math.min(3_600_000, timeoutMs + 30_000),
       requestTimeoutMs,
+      signal,
       envs: commandEnvironment,
     },
   );
+}
+
+function remainingStartupMilliseconds(deadline, monotonicNow) {
+  const remaining = Math.ceil(deadline - finiteMonotonic(monotonicNow()));
+  if (remaining <= 0) {
+    throw startupTimeoutError();
+  }
+  return Math.min(120_000, remaining);
+}
+
+function startupTimeoutError(cause) {
+  return new E2BSandboxContainerError("E2B Lean Sandbox exceeded its end-to-end startup timeout.", cause ? { cause } : undefined);
+}
+
+function abortStartupOnFailure(promise, controller) {
+  return Promise.resolve(promise).catch((error) => {
+    if (!controller.signal.aborted) controller.abort(error);
+    throw error;
+  });
+}
+
+function raceAgainstStartupSignal(promise, signal) {
+  if (signal.aborted) return Promise.reject(signal.reason ?? startupTimeoutError());
+  return new Promise((resolve, reject) => {
+    const onAbort = () => reject(signal.reason ?? startupTimeoutError());
+    signal.addEventListener("abort", onAbort, { once: true });
+    Promise.resolve(promise).then(resolve, reject).finally(() => {
+      signal.removeEventListener("abort", onAbort);
+    });
+  });
+}
+
+async function boundedProviderKill(sandbox, timeoutMs) {
+  if (!sandbox || typeof sandbox.kill !== "function") return false;
+  const controller = new AbortController();
+  const timeout = setTimeout(
+    () => controller.abort(new Error("E2B Sandbox cleanup exceeded its bounded timeout.")),
+    boundedRequestTimeout(timeoutMs),
+  );
+  try {
+    await Promise.race([
+      sandbox.kill({ requestTimeoutMs: boundedRequestTimeout(timeoutMs), signal: controller.signal }),
+      new Promise((_resolve, reject) => controller.signal.addEventListener(
+        "abort",
+        () => reject(controller.signal.reason),
+        { once: true },
+      )),
+    ]);
+    // E2B resolves `false` when the Sandbox is already absent. Both `true`
+    // and `false` therefore confirm that no live provider resource remains.
+    return true;
+  } catch {
+    return false;
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+async function waitForCleanup(cleanupPromise, timeoutMs) {
+  let timeout;
+  try {
+    await Promise.race([
+      cleanupPromise,
+      new Promise((resolve) => { timeout = setTimeout(resolve, timeoutMs); }),
+    ]);
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+function elapsedMilliseconds(started, value) {
+  return Math.max(0, Math.min(86_400_000, Math.round(finiteMonotonic(value) - started)));
+}
+
+function finiteMonotonic(value) {
+  if (!Number.isFinite(value)) {
+    throw new E2BSandboxContainerError("E2B runner clock returned an invalid monotonic timestamp.");
+  }
+  return value;
+}
+
+function boundedRequestTimeout(value) {
+  if (!Number.isFinite(value) || value <= 0) {
+    throw new E2BSandboxContainerError("E2B private request timeout is invalid.");
+  }
+  return Math.min(120_000, Math.max(1, Math.ceil(value)));
+}
+
+function safeObservePhase(observe, phase, durationMs, outcome) {
+  try {
+    const pending = observe(Object.freeze({ phase, durationMs, outcome }));
+    if (pending && typeof pending.then === "function") Promise.resolve(pending).catch(() => {});
+  } catch {
+    // Optional observability must never alter Sandbox creation.
+  }
 }
 
 function forwardedHeaders(source) {

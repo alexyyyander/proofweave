@@ -217,6 +217,42 @@ test("D1 inline storage keeps distinct logical keys when Runner outputs have ide
   ]);
 });
 
+test("D1 inline bucket reads a bounded artifact set in one batch", async () => {
+  const inlineBucket = new D1InlineArtifactBucket(database);
+  const fixtures = ["batch artifact one", "batch artifact two"];
+  const keys = [];
+  for (let index = 0; index < fixtures.length; index += 1) {
+    const bytes = new TextEncoder().encode(fixtures[index]);
+    const digest = new Uint8Array(await crypto.subtle.digest("SHA-256", bytes));
+    const contentHash = `sha256:${[...digest].map((byte) => byte.toString(16).padStart(2, "0")).join("")}`;
+    const objectKey = `bundles/sha256/${contentHash.slice("sha256:".length)}/batch-${index}.bin`;
+    await inlineBucket.put(objectKey, bytes, {
+      httpMetadata: { contentType: "application/octet-stream" },
+      customMetadata: { sha256: contentHash },
+    });
+    keys.push(objectKey);
+  }
+
+  const batch = await inlineBucket.getMany(keys);
+  assert.deepEqual([...batch.keys()].sort(), [...keys].sort());
+  assert.deepEqual(
+    await Promise.all(keys.map(async (key) => new TextDecoder().decode(await batch.get(key).arrayBuffer()))),
+    fixtures,
+  );
+  await assert.rejects(inlineBucket.getMany([keys[0], keys[0]]), /unique object keys/);
+
+  const missingKey = `bundles/sha256/${"e".repeat(64)}/missing.bin`;
+  assert.equal((await inlineBucket.getMany([keys[0], missingKey])).has(missingKey), false);
+
+  const corruptKey = `bundles/sha256/${"f".repeat(64)}/corrupt.bin`;
+  await database.prepare(
+    `INSERT INTO inline_artifact_bytes (
+       object_key, content_hash, byte_length, content_type, bytes
+     ) VALUES (?, ?, ?, ?, ?)`,
+  ).bind(corruptKey, sha("f"), 2, "application/octet-stream", new Uint8Array([1])).run();
+  await assert.rejects(inlineBucket.getMany([corruptKey]), /bytes do not match/);
+});
+
 test("rejects an Artifact Bundle event after its signer key is revoked", async () => {
   const store = new D1R2ArtifactStore({ database, bucket });
   const archive = await store.putObject({ bytes: "source archive after revocation", filename: "source.tar.zst", contentType: "application/zstd" });

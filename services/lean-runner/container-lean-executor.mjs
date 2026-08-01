@@ -73,9 +73,10 @@ export class ContainerLeanExecutor {
       () => auditNoSorry(workspace),
     );
 
-    const build = await diagnoseExecutorStage("lean_build_execution_failed", () => buildWorkspaceAndCheckEntry({
+    const entryModule = entryModuleFromCommand(normalizedRequest.bundle.entryCommand);
+    const build = await diagnoseExecutorStage("lean_build_execution_failed", () => buildWorkspaceEntry({
       command: this.executablePath,
-      entryArgs: normalizedRequest.bundle.entryCommand.slice(1),
+      entryModule,
       cwd: workspace.workspaceDirectory,
       collector,
       deadline,
@@ -170,20 +171,10 @@ export class ContainerLeanExecutor {
   }
 }
 
-async function buildWorkspaceAndCheckEntry({ command, entryArgs, cwd, collector, deadline, signal }) {
-  const entryModule = entryArgs[2].slice(0, -".lean".length).split("/").join(".");
-  const workspaceBuild = await runCommand({
-    command,
-    args: ["build", entryModule],
-    cwd,
-    collector,
-    deadline,
-    signal,
-  });
-  if (workspaceBuild.reason || workspaceBuild.code !== 0) return workspaceBuild;
+async function buildWorkspaceEntry({ command, entryModule, cwd, collector, deadline, signal }) {
   return runCommand({
     command,
-    args: entryArgs,
+    args: ["build", entryModule],
     cwd,
     collector,
     deadline,
@@ -221,6 +212,12 @@ async function mountPinnedLakePackages({ workspace, request, dependencyPackagesR
 
 async function auditAllowedAxioms({ workspace, request, command, collector, deadline, signal }) {
   const auditPath = join(workspace.workspaceDirectory, axiomAuditFile);
+  // Keep the exact Bundle-selected source file as the execution authority.
+  // `lake build <entryModule>` above prepares local dependency oleans, while
+  // this single source-copy audit both elaborates the submitted entry and
+  // reports the target's axiom dependency set. This removes the former extra
+  // direct entry invocation without trusting a lakefile target or module
+  // resolution in place of the reconstructed source bytes.
   const entrySource = await readFile(join(workspace.workspaceDirectory, ...workspace.entryCommand[3].split("/")), "utf8");
   const source = `${entrySource}\n#print axioms ${workspace.target.declaration}\n`;
   await writeFile(auditPath, source, { encoding: "utf8", mode: 0o600, flag: "wx" });
@@ -242,6 +239,14 @@ async function auditAllowedAxioms({ workspace, request, command, collector, dead
   } finally {
     await rm(auditPath, { force: true });
   }
+}
+
+function entryModuleFromCommand(entryCommand) {
+  const entryPath = entryCommand?.[3];
+  if (typeof entryPath !== "string" || !entryPath.endsWith(".lean")) {
+    throw new ContainerLeanExecutorError("Container entry command does not identify a Lean module.", { diagnosticCode: "lean_request_binding_failed" });
+  }
+  return entryPath.slice(0, -".lean".length).split("/").join(".");
 }
 
 async function auditNoSorry(workspace) {

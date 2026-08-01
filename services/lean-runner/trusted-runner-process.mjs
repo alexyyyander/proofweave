@@ -33,6 +33,25 @@ import {
   importRunnerResultPrivateKey,
 } from "./worker.mjs";
 
+const trustedRunnerPhases = new Set([
+  "e2b_template_assert",
+  "e2b_sandbox_create",
+  "e2b_isolation_assert",
+  "e2b_cache_marker_repair",
+  "e2b_runtime_probe",
+  "e2b_server_spawn",
+  "e2b_ready_wait",
+  "runner_preflight",
+  "runner_recovery_preflight",
+  "runner_sandbox_ready",
+  "runner_workspace_transfer",
+  "runner_start_transition",
+  "runner_execution_container",
+  "runner_lean_execution",
+  "runner_lease_fence",
+  "runner_durable_finalize",
+]);
+
 export class TrustedRunnerProcessConfigurationError extends Error {
   constructor(message, options) {
     super(message, options);
@@ -282,6 +301,8 @@ export async function createTrustedRunnerRuntime({
   now = () => new Date(),
   sleep = wait,
   emit = emitStructuredConsole,
+  monotonicNow = () => performance.now(),
+  observePhase = createTrustedRunnerPhaseObserver({ emit, now }),
 } = {}) {
   requireExecutionEnabled(environment);
   if (!database || typeof database.prepare !== "function" || typeof database.batch !== "function") {
@@ -320,6 +341,8 @@ export async function createTrustedRunnerRuntime({
     workspaceTransfer: new RunnerWorkspaceTransfer({ bucket: artifactBucket }),
     getContainer: getContainerForRun,
     restageRunning: true,
+    monotonicNow,
+    observePhase,
   });
   const finalizer = new RunnerExecutionFinalizer({
     runStore,
@@ -348,6 +371,8 @@ export async function createTrustedRunnerRuntime({
     finalizer,
     isCancellationRequested: async (runId) => (await runStore.find(runId))?.state === "cancel_requested",
     now,
+    monotonicNow,
+    observePhase,
   });
   const leaseDurationSeconds = integerSetting(environment, "RUNNER_LEASE_SECONDS", 300, 30, 3_600);
   const process = new TrustedRunnerProcess({
@@ -394,6 +419,8 @@ export function createTrustedRunnerContainerFactoryFromEnvironment({
   e2bTemplateApi,
   fetcher = globalThis.fetch,
   sleep = wait,
+  monotonicNow = () => performance.now(),
+  observePhase = () => {},
 } = {}) {
   const provider = requireSetting(environment, "PROOFWEAVE_RUNNER_PROVIDER").toLowerCase();
   if (provider === "modal") {
@@ -410,6 +437,8 @@ export function createTrustedRunnerContainerFactoryFromEnvironment({
       ...(e2bTemplateApi ? { templateApi: e2bTemplateApi } : {}),
       fetcher,
       sleep,
+      monotonicNow,
+      observePhase,
     });
   }
   throw new TrustedRunnerProcessConfigurationError("PROOFWEAVE_RUNNER_PROVIDER must be exactly modal or e2b.");
@@ -425,6 +454,7 @@ export async function createTrustedRunnerRuntimeFromEnvironment({
   now = () => new Date(),
   sleep = wait,
   emit = emitStructuredConsole,
+  monotonicNow = () => performance.now(),
 } = {}) {
   requireExecutionEnabled(environment);
   const databaseUrl = requireSetting(environment, "TURSO_DATABASE_URL");
@@ -443,6 +473,7 @@ export async function createTrustedRunnerRuntimeFromEnvironment({
         "Trusted Runner control-plane migration verification failed.",
       );
     }
+    const observePhase = createTrustedRunnerPhaseObserver({ emit, now });
     const containerFactory = createTrustedRunnerContainerFactoryFromEnvironment({
       environment,
       modalClient,
@@ -450,6 +481,8 @@ export async function createTrustedRunnerRuntimeFromEnvironment({
       e2bTemplateApi,
       fetcher,
       sleep,
+      monotonicNow,
+      observePhase,
     });
     const runtime = await createTrustedRunnerRuntime({
       database,
@@ -459,6 +492,8 @@ export async function createTrustedRunnerRuntimeFromEnvironment({
       now,
       sleep,
       emit,
+      monotonicNow,
+      observePhase,
     });
     return Object.freeze({
       ...runtime,
@@ -468,6 +503,40 @@ export async function createTrustedRunnerRuntimeFromEnvironment({
     database.close();
     throw error;
   }
+}
+
+/** Emit only bounded phase names and durations; never Run identity or payloads. */
+export function createTrustedRunnerPhaseObserver({ emit = emitStructuredConsole, now = () => new Date() } = {}) {
+  if (typeof emit !== "function" || typeof now !== "function") {
+    throw new TrustedRunnerProcessConfigurationError("Trusted Runner phase observation requires clock and audit functions.");
+  }
+  return function observeTrustedRunnerPhase(record) {
+    if (
+      !record ||
+      typeof record !== "object" ||
+      !trustedRunnerPhases.has(record.phase) ||
+      !Number.isSafeInteger(record.durationMs) ||
+      record.durationMs < 0 ||
+      record.durationMs > 86_400_000 ||
+      !["completed", "failed"].includes(record.outcome)
+    ) {
+      return;
+    }
+    try {
+      const pending = emit(Object.freeze({
+        schemaVersion: "pw-audit-v1",
+        kind: "trusted_runner_phase",
+        component: "trusted_lean_runner",
+        occurredAt: timestamp(now),
+        phase: record.phase,
+        durationMs: record.durationMs,
+        outcome: record.outcome,
+      }));
+      if (pending && typeof pending.then === "function") Promise.resolve(pending).catch(() => {});
+    } catch {
+      // Phase telemetry is deliberately outside execution correctness.
+    }
+  };
 }
 
 export async function verifyTrustedRunnerControlPlaneFromEnvironment({

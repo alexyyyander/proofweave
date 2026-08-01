@@ -84,6 +84,313 @@ test("E2B adapter creates one secure no-egress Sandbox and keeps control credent
   assert.equal(e2b.killed, 1);
 });
 
+test("E2B adapter overlaps independent startup checks and emits privacy-safe phase timings", async () => {
+  const e2b = fakeE2B();
+  const originalGetTags = e2b.templateApi.getTags;
+  const originalCreate = e2b.api.create;
+  const originalGetInfo = e2b.sandbox.getInfo;
+  const originalRun = e2b.sandbox.commands.run;
+  const tagStarted = deferred();
+  const createStarted = deferred();
+  const infoStarted = deferred();
+  const repairStarted = deferred();
+  e2b.templateApi.getTags = async (...args) => {
+    tagStarted.resolve();
+    await boundedBarrier(createStarted.promise);
+    return originalGetTags(...args);
+  };
+  e2b.api.create = async (...args) => {
+    createStarted.resolve();
+    await boundedBarrier(tagStarted.promise);
+    return originalCreate(...args);
+  };
+  e2b.sandbox.getInfo = async (...args) => {
+    infoStarted.resolve();
+    await boundedBarrier(repairStarted.promise);
+    return originalGetInfo(...args);
+  };
+  e2b.sandbox.commands.run = async (command, options) => {
+    if (command.startsWith("touch ")) {
+      repairStarted.resolve();
+      await boundedBarrier(infoStarted.promise);
+    }
+    return originalRun(command, options);
+  };
+  const phases = [];
+  const factory = new E2BSandboxContainerFactory({
+    sandboxApi: e2b.api,
+    templateApi: e2b.templateApi,
+    apiKey,
+    templateId: templateReference,
+    templateBuildId,
+    imageReference,
+    cpuCount: 2,
+    memoryMB: 2_048,
+    timeoutMs: 120_000,
+    startupTimeoutMs: 10_000,
+    resourcePolicyReviewed: true,
+    fetcher: async () => new Response(null, { status: 204 }),
+    observePhase: (record) => {
+      phases.push(record);
+      return Promise.reject(new Error("telemetry sink unavailable"));
+    },
+  });
+
+  await factory.get("run:e2b-parallel");
+  assert.deepEqual(new Set(phases.map((record) => record.phase)), new Set([
+    "e2b_template_assert",
+    "e2b_sandbox_create",
+    "e2b_isolation_assert",
+    "e2b_cache_marker_repair",
+    "e2b_runtime_probe",
+    "e2b_server_spawn",
+    "e2b_ready_wait",
+  ]));
+  assert.equal(phases.every((record) => Number.isSafeInteger(record.durationMs)), true);
+  assert.equal(phases.every((record) => record.outcome === "completed"), true);
+  assert.equal(JSON.stringify(phases).includes("run:e2b-parallel"), false);
+  await factory.close();
+});
+
+test("E2B adapter kills a concurrently created Sandbox when the reviewed tag drifts", async () => {
+  const e2b = fakeE2B();
+  e2b.templateApi.getTags = async () => [{ tag: templateTag, buildId: "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa" }];
+  const factory = new E2BSandboxContainerFactory({
+    sandboxApi: e2b.api,
+    templateApi: e2b.templateApi,
+    apiKey,
+    templateId: templateReference,
+    templateBuildId,
+    imageReference,
+    cpuCount: 2,
+    memoryMB: 2_048,
+    timeoutMs: 120_000,
+    startupTimeoutMs: 10_000,
+    resourcePolicyReviewed: true,
+    fetcher: async () => new Response(null, { status: 204 }),
+  });
+
+  await assert.rejects(factory.get("run:e2b-tag-drift"), /tag no longer resolves/);
+  assert.equal(e2b.killed, 1);
+  assert.equal(e2b.serverCommand, undefined);
+});
+
+test("E2B adapter enforces one end-to-end startup deadline and destroys the Sandbox on timeout", async () => {
+  const e2b = fakeE2B();
+  let clockReads = 0;
+  const factory = new E2BSandboxContainerFactory({
+    sandboxApi: e2b.api,
+    templateApi: e2b.templateApi,
+    apiKey,
+    templateId: templateReference,
+    templateBuildId,
+    imageReference,
+    cpuCount: 2,
+    memoryMB: 2_048,
+    timeoutMs: 120_000,
+    startupTimeoutMs: 1_000,
+    resourcePolicyReviewed: true,
+    monotonicNow: () => (clockReads++ < 5 ? 0 : 2_000),
+    fetcher: async () => new Response(null, { status: 204 }),
+  });
+
+  await assert.rejects(factory.get("run:e2b-startup-timeout"), /end-to-end startup timeout/);
+  assert.equal(e2b.killed, 1);
+  assert.equal(e2b.serverCommand, undefined);
+});
+
+test("E2B adapter aborts a hanging provider create at the total deadline and kills a late Sandbox", async () => {
+  const e2b = fakeE2B();
+  const originalCreate = e2b.api.create;
+  let releaseCreation;
+  e2b.api.create = async (requestedTemplateId, options) => {
+    e2b.templateId = requestedTemplateId;
+    e2b.createOptions = options;
+    return new Promise((resolve) => {
+      releaseCreation = () => resolve(e2b.sandbox);
+    });
+  };
+  const factory = new E2BSandboxContainerFactory({
+    sandboxApi: e2b.api,
+    templateApi: e2b.templateApi,
+    apiKey,
+    templateId: templateReference,
+    templateBuildId,
+    imageReference,
+    cpuCount: 2,
+    memoryMB: 2_048,
+    timeoutMs: 120_000,
+    startupTimeoutMs: 1_000,
+    resourcePolicyReviewed: true,
+    fetcher: async () => new Response(null, { status: 204 }),
+  });
+
+  await assert.rejects(factory.get("run:e2b-hanging-create"), /end-to-end startup timeout/);
+  await assert.rejects(factory.get("run:e2b-second"), /only one active Sandbox/);
+  releaseCreation();
+  await waitFor(() => e2b.killed === 1);
+  e2b.api.create = originalCreate;
+  await factory.get("run:e2b-after-cleanup");
+  await factory.close();
+});
+
+test("E2B adapter retains a fail-closed fence until failed cleanup is retried", async () => {
+  const e2b = fakeE2B();
+  const originalKill = e2b.sandbox.kill;
+  e2b.templateApi.getTags = async () => [{ tag: templateTag, buildId: "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa" }];
+  e2b.sandbox.kill = async () => { throw new Error("provider cleanup unavailable"); };
+  const factory = new E2BSandboxContainerFactory({
+    sandboxApi: e2b.api,
+    templateApi: e2b.templateApi,
+    apiKey,
+    templateId: templateReference,
+    templateBuildId,
+    imageReference,
+    cpuCount: 2,
+    memoryMB: 2_048,
+    timeoutMs: 120_000,
+    startupTimeoutMs: 10_000,
+    resourcePolicyReviewed: true,
+    fetcher: async () => new Response(null, { status: 204 }),
+  });
+
+  await assert.rejects(factory.get("run:e2b-cleanup-fence"), /tag no longer resolves/);
+  await assert.rejects(factory.get("run:e2b-blocked"), /only one active Sandbox/);
+  e2b.sandbox.kill = originalKill;
+  e2b.templateApi.getTags = async () => [{ tag: templateTag, buildId: templateBuildId }];
+  await factory.get("run:e2b-after-retry");
+  await factory.close();
+  assert.equal(e2b.killed, 2);
+});
+
+test("E2B adapter keeps the active fence when completion cleanup fails", async () => {
+  const e2b = fakeE2B();
+  const originalKill = e2b.sandbox.kill;
+  const factory = new E2BSandboxContainerFactory({
+    sandboxApi: e2b.api,
+    templateApi: e2b.templateApi,
+    apiKey,
+    templateId: templateReference,
+    templateBuildId,
+    imageReference,
+    cpuCount: 2,
+    memoryMB: 2_048,
+    timeoutMs: 120_000,
+    startupTimeoutMs: 10_000,
+    resourcePolicyReviewed: true,
+    fetcher: async () => new Response(null, { status: 204 }),
+  });
+  const container = await factory.get("run:e2b-complete-cleanup");
+  e2b.sandbox.kill = async () => { throw new Error("provider cleanup unavailable"); };
+
+  await assert.rejects(
+    container.fetch(new Request(
+      "https://proofweave-runner.internal/v1/runs/run%3Ae2b-complete-cleanup/workspace/complete",
+      { method: "POST" },
+    )),
+    /cleanup could not be confirmed/,
+  );
+  await assert.rejects(factory.get("run:e2b-complete-blocked"), /only one active Sandbox/);
+  e2b.sandbox.kill = originalKill;
+  await factory.get("run:e2b-complete-after-retry");
+  await factory.close();
+  assert.equal(e2b.killed, 2);
+});
+
+test("E2B adapter treats provider not-found cleanup as an already absent Sandbox", async () => {
+  const e2b = fakeE2B();
+  e2b.templateApi.getTags = async () => [{ tag: templateTag, buildId: "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa" }];
+  e2b.sandbox.kill = async () => false;
+  const factory = new E2BSandboxContainerFactory({
+    sandboxApi: e2b.api,
+    templateApi: e2b.templateApi,
+    apiKey,
+    templateId: templateReference,
+    templateBuildId,
+    imageReference,
+    cpuCount: 2,
+    memoryMB: 2_048,
+    timeoutMs: 120_000,
+    startupTimeoutMs: 10_000,
+    resourcePolicyReviewed: true,
+    fetcher: async () => new Response(null, { status: 204 }),
+  });
+
+  await assert.rejects(factory.get("run:e2b-not-found-cleanup"), /tag no longer resolves/);
+  e2b.templateApi.getTags = async () => [{ tag: templateTag, buildId: templateBuildId }];
+  await factory.get("run:e2b-not-found-after-cleanup");
+  await factory.close();
+  assert.equal(e2b.killed, 0);
+});
+
+test("E2B adapter single-flights concurrent completion and factory cleanup", async () => {
+  const e2b = fakeE2B();
+  const killStarted = deferred();
+  const releaseKill = deferred();
+  e2b.sandbox.kill = async () => {
+    killStarted.resolve();
+    return releaseKill.promise;
+  };
+  const factory = new E2BSandboxContainerFactory({
+    sandboxApi: e2b.api,
+    templateApi: e2b.templateApi,
+    apiKey,
+    templateId: templateReference,
+    templateBuildId,
+    imageReference,
+    cpuCount: 2,
+    memoryMB: 2_048,
+    timeoutMs: 120_000,
+    startupTimeoutMs: 10_000,
+    resourcePolicyReviewed: true,
+    fetcher: async () => new Response(null, { status: 204 }),
+  });
+  const container = await factory.get("run:e2b-single-flight");
+  const terminating = container.terminate();
+  await killStarted.promise;
+  let closeFinished = false;
+  const closing = factory.close().then(() => { closeFinished = true; });
+  await Promise.resolve();
+  assert.equal(closeFinished, false);
+  releaseKill.resolve(true);
+  await Promise.all([terminating, closing]);
+  assert.equal(closeFinished, true);
+});
+
+test("E2B adapter close retries a single-flight cleanup rejection through quarantine", async () => {
+  const e2b = fakeE2B();
+  const originalKill = e2b.sandbox.kill;
+  const killStarted = deferred();
+  const releaseKill = deferred();
+  e2b.sandbox.kill = async () => {
+    killStarted.resolve();
+    return releaseKill.promise;
+  };
+  const factory = new E2BSandboxContainerFactory({
+    sandboxApi: e2b.api,
+    templateApi: e2b.templateApi,
+    apiKey,
+    templateId: templateReference,
+    templateBuildId,
+    imageReference,
+    cpuCount: 2,
+    memoryMB: 2_048,
+    timeoutMs: 120_000,
+    startupTimeoutMs: 10_000,
+    resourcePolicyReviewed: true,
+    fetcher: async () => new Response(null, { status: 204 }),
+  });
+  const container = await factory.get("run:e2b-single-flight-retry");
+  const terminating = container.terminate();
+  await killStarted.promise;
+  e2b.sandbox.kill = originalKill;
+  const closing = factory.close();
+  releaseKill.reject(new Error("provider cleanup unavailable"));
+  await assert.rejects(terminating, /cleanup could not be confirmed/);
+  await closing;
+  assert.equal(e2b.killed, 1);
+});
+
 test("E2B adapter binds one Run, terminates on completion, and fails closed on provider isolation drift", async () => {
   const e2b = fakeE2B();
   const factory = new E2BSandboxContainerFactory({
@@ -302,6 +609,7 @@ function fakeE2B({
     },
     async kill() { state.killed += 1; return true; },
   };
+  state.sandbox = sandbox;
   state.api = {
     async create(templateId, options) {
       state.templateId = templateId;
@@ -310,4 +618,33 @@ function fakeE2B({
     },
   };
   return state;
+}
+
+function deferred() {
+  let resolve;
+  let reject;
+  const promise = new Promise((complete, fail) => { resolve = complete; reject = fail; });
+  return { promise, resolve, reject };
+}
+
+async function boundedBarrier(promise) {
+  let timer;
+  try {
+    await Promise.race([
+      promise,
+      new Promise((_resolve, reject) => {
+        timer = setTimeout(() => reject(new Error("startup phases did not overlap")), 250);
+      }),
+    ]);
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+async function waitFor(predicate, timeoutMs = 1_000) {
+  const deadline = Date.now() + timeoutMs;
+  while (!predicate()) {
+    if (Date.now() >= deadline) throw new Error("condition did not become true");
+    await new Promise((resolve) => setTimeout(resolve, 5));
+  }
 }

@@ -4,6 +4,7 @@ import { RunnerWorkspaceStager } from "../services/lean-runner/runner-workspace-
 
 test("workspace stager starts a Run only after private workspace transfer finalizes", async () => {
   const events = [];
+  const phases = [];
   const run = { id: "run:workspace-stager", state: "preparing" };
   const stager = new RunnerWorkspaceStager({
     preflight: {
@@ -11,8 +12,9 @@ test("workspace stager starts a Run only after private workspace transfer finali
         events.push("prepare");
         return { action: "stage", run, image: { imageDigest: "image" }, resolvedBundle: { bundle: {} } };
       },
-      async startAfterWorkspaceStaged() {
+      async startAfterWorkspaceStaged(_message, { startedAt }) {
         events.push("start");
+        assert.equal(startedAt, "2026-07-13T00:00:02Z");
         return { action: "execute", run: { ...run, state: "running" }, message: { runId: run.id } };
       },
     },
@@ -27,6 +29,44 @@ test("workspace stager starts a Run only after private workspace transfer finali
       events.push(`container:${runId}`);
       return { fetch: async () => new Response(null, { status: 204 }) };
     },
+    observePhase: (record) => phases.push(record),
+  });
+
+  const result = await stager.executeAuthenticatedMessage({ runId: run.id }, {
+    preparingAt: "2026-07-13T00:00:01Z",
+    startedAt: () => {
+      events.push("timestamp");
+      return "2026-07-13T00:00:02Z";
+    },
+  });
+  assert.equal(result.action, "execute");
+  assert.equal(result.run.state, "running");
+  assert.deepEqual(events, ["prepare", "container:run:workspace-stager", "transfer", "timestamp", "start"]);
+  assert.deepEqual(phases.map((record) => record.phase), [
+    "runner_preflight",
+    "runner_sandbox_ready",
+    "runner_workspace_transfer",
+    "runner_start_transition",
+  ]);
+  assert.equal(phases.every((record) => record.outcome === "completed"), true);
+  assert.equal(phases.every((record) => !Object.hasOwn(record, "runId")), true);
+});
+
+test("workspace staging remains correct when its optional timing clock fails", async () => {
+  const run = { id: "run:clock-failure", state: "preparing" };
+  const stager = new RunnerWorkspaceStager({
+    preflight: {
+      async claimAuthenticatedMessage() {
+        return { action: "stage", run, image: {}, resolvedBundle: {} };
+      },
+      async startAfterWorkspaceStaged() {
+        return { action: "execute", run: { ...run, state: "running" }, message: { runId: run.id } };
+      },
+    },
+    workspaceTransfer: { async stage() { return { uploaded: [] }; } },
+    getContainer: async () => ({ fetch: async () => new Response(null, { status: 204 }) }),
+    monotonicNow: () => { throw new Error("optional timing clock unavailable"); },
+    observePhase: () => assert.fail("an invalid clock must suppress optional timing"),
   });
 
   const result = await stager.executeAuthenticatedMessage({ runId: run.id }, {
@@ -35,7 +75,6 @@ test("workspace stager starts a Run only after private workspace transfer finali
   });
   assert.equal(result.action, "execute");
   assert.equal(result.run.state, "running");
-  assert.deepEqual(events, ["prepare", "container:run:workspace-stager", "transfer", "start"]);
 });
 
 test("a transfer failure never starts the Run and remains retryable through preflight", async () => {
