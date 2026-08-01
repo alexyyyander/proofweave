@@ -10,6 +10,7 @@ import {
 import { attemptIntegrationHref } from "../lib/attempt-integration-href";
 import { activeAttemptDelegation, activeLocalCodexInstallation, activeWorkDelegation, localAgentJourney } from "../lib/local-agent-journey";
 import { hasAcceptedKernelEvidence } from "./accepted-kernel-evidence";
+import { runnerWorkflowStatus } from "./runner-workflow-status";
 
 type GateState = "passed" | "waiting" | "required" | "failed";
 
@@ -390,7 +391,7 @@ export function ResearchWorkstation({ attempt, runs }: { attempt: McpAttempt | n
   const bundleStaged = Boolean(attempt?.events.some((event) => event.type === "bundle_staged"));
   const latestRun = latestRunForAttempt(attempt, runs);
   const runnerResult = latestRun?.result?.summary ?? null;
-  const runnerAccepted = hasAcceptedKernelEvidence(latestRun);
+  const runnerStatus = runnerWorkflowStatus(latestRun, bundleStaged);
   const evidenceHref = latestRun ? `/evidence/${encodeURIComponent(latestRun.artifactBundleHash)}` : "/evidence";
 
   return <section className="workstation-grid" id="evidence-workspace" aria-label="Research workstation">
@@ -412,10 +413,10 @@ export function ResearchWorkstation({ attempt, runs }: { attempt: McpAttempt | n
       <div className="context-footer">{attempt ? <><span>Opened {formatTimestamp(attempt.createdAt)}</span><span>Last updated {formatTimestamp(attempt.updatedAt)}</span></> : <><span>No source snapshot selected</span><span>No Agent activity recorded</span></>}</div>
     </article>
     <article className="workstation-panel source-panel">
-      <div className="workstation-heading"><span>02 / Evidence &amp; verification</span><span className={runnerAccepted ? "source-good" : "source-waiting"}>{runnerAccepted ? "Lean accepted" : bundleStaged ? "Evidence approved" : "Awaiting evidence"}</span></div>
-      <div className="source-state">
-        <strong>{runnerAccepted ? "Lean accepted the approved evidence." : bundleStaged ? "Your approved evidence is recorded and ready for verification." : "No evidence has been approved for verification."}</strong>
-        <p>{runnerAccepted ? "This confirms only the Lean check. Independent review and contribution credit remain separate." : bundleStaged ? "You can inspect exactly what was shared. Approval alone is not a Lean check or an accepted contribution." : "Private work and local previews do not move this step. Proofweave does not render a sample source file or a fictional compiler result in place of a complete, Agent-signed Bundle."}</p>
+      <div className="workstation-heading"><span>02 / Evidence &amp; verification</span><span className={`source-${runnerStatus.tone}`}>{runnerStatus.badge}</span></div>
+      <div className="source-state" aria-live="polite">
+        <strong>{runnerStatus.title}</strong>
+        <p>{runnerStatus.detail}</p>
         {attempt && <Link className="text-link source-link" href={evidenceHref}>View evidence <span>→</span></Link>}
       </div>
       <details className="local-agent-guide">
@@ -521,19 +522,11 @@ function runnerDotClass(run: McpRunSummary | null): string {
 }
 
 function runnerDiagnosticTitle(run: McpRunSummary | null): string {
-  if (!run) return "Lean kernel status · no Run recorded";
-  if (hasAcceptedKernelEvidence(run)) return "Lean kernel status · accepted";
-  if (run.evidenceState === "unreadable") return "Lean Runner result needs controlled inspection";
-  if (run.result?.summary) return `Lean Runner result · ${run.result.summary.status}`;
-  return `Lean Runner lifecycle · ${run.state}`;
+  return runnerWorkflowStatus(run, true).technicalTitle;
 }
 
 function runnerDiagnosticDetail(run: McpRunSummary | null): string {
-  if (!run) return "No isolated Lean Run is recorded for this Attempt. Only a Runner can record compiler diagnostics, a sorry audit, axioms, and kernel acceptance.";
-  if (hasAcceptedKernelEvidence(run)) return "The recorded signed result passed the network, sorry, axiom, and Lean build checks. Inspect controlled evidence for the complete immutable record.";
-  if (run.evidenceState === "unreadable") return "A stored result row could not be normalized and bound to this Run, so Proofweave will not show it as a Lean verdict. Inspect controlled evidence before acting on it.";
-  if (run.result?.summary) return "This terminal Runner result is recorded, but it did not meet the accepted Lean gate. A corrected Bundle or a new isolated Run may be required.";
-  return "This is lifecycle state only, not a Lean verdict. A terminal signed result must be recorded before kernel, axiom, and sorry checks can count.";
+  return runnerWorkflowStatus(run, true).technicalDetail;
 }
 
 function leanGateFor(run: McpRunSummary | null): { state: GateState; detail: string } {

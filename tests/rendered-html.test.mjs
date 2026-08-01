@@ -2196,6 +2196,8 @@ test("limits Bundle and Runner evidence to the Attempt owner or assigned reviewe
   const ownerPublishedPage = await render(`/evidence/${encodeURIComponent(fixture.manifestHash)}`, { headers: fixture.ownerHeaders });
   const ownerPublishedHtml = await ownerPublishedPage.text();
   assert.match(ownerPublishedHtml, /Independent review work is open/i);
+  assert.match(ownerPublishedHtml, /owned by different People/i);
+  assert.match(ownerPublishedHtml, /own research Agent cannot complete these jobs/i);
   assert.match(ownerPublishedHtml, /5(?:<!-- -->)? jobs/i);
 
   const ownerPatch = await render(`/api/me/evidence/bundles/${encodeURIComponent(fixture.manifestHash)}/artifacts/sourcePatch`, { headers: fixture.ownerHeaders });
