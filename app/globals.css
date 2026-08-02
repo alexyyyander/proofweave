@@ -253,8 +253,15 @@ h1, h2, h3, p { margin-top: 0; }
 
 /* The workbench shows only durable records. These states intentionally avoid
    mimicking a Lean editor or a successful compiler result. */
-.source-waiting { align-items: center; color: #f3d48b; display: inline-flex; font-size: 10px; font-weight: 500; gap: 6px; }
-.source-waiting::before { background: currentColor; border-radius: 50%; content: ""; height: 5px; width: 5px; }
+.source-pending, .source-waiting, .source-running, .source-accepted, .source-failed { align-items: center; display: inline-flex; font-size: 10px; font-weight: 500; gap: 6px; }
+.source-pending::before, .source-waiting::before, .source-running::before, .source-accepted::before, .source-failed::before { background: currentColor; border-radius: 50%; content: ""; height: 5px; width: 5px; }
+.source-pending { color: #9fb3dc; }
+.source-waiting { color: #f3d48b; }
+.source-running { color: #9fc4ff; }
+.source-accepted { color: #bce3ca; }
+.source-failed { color: #f2a39e; }
+.source-panel .workstation-heading { gap: 12px; }
+.source-panel .workstation-heading > :last-child { text-align: right; }
 .source-state { color: #d4def2; display: grid; gap: 12px; margin: 52px 0 auto; }
 .source-state strong { font-family: Georgia, "Times New Roman", serif; font-size: 26px; font-weight: 400; letter-spacing: -.035em; line-height: 1.08; }
 .source-state p { color: #b9c8e4; font-size: 12px; line-height: 1.6; margin: 0; }
