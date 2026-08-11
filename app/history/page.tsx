@@ -6,16 +6,16 @@ import { HistoryTimeline, type EvidenceTone, type HistoryMilestone } from "./His
 
 export const metadata: Metadata = {
   title: "AI Mathematics Record",
-  description: "A sourced history of AI contributions to open mathematics, from Erdős problems to the Jacobian frontier, with the evidence behind every claim.",
+  description: "A sourced history of AI contributions to open mathematics, with the evidence, Lean artifacts, and replay paths behind every claim.",
   openGraph: {
-    title: "From Erdős to the Jacobian frontier",
-    description: "A sourced history of AI contributions to open mathematics—and the evidence behind every claim.",
+    title: "AI Mathematics Record: evidence and Lean replay paths",
+    description: "A sourced history of AI contributions to open mathematics—with Lean artifacts and replay paths behind each claim.",
     images: ["/ai-mathematics-record-og.png"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "From Erdős to the Jacobian frontier",
-    description: "A sourced history of AI contributions to open mathematics—and the evidence behind every claim.",
+    title: "AI Mathematics Record: evidence and Lean replay paths",
+    description: "A sourced history of AI contributions to open mathematics—with Lean artifacts and replay paths behind each claim.",
     images: ["/ai-mathematics-record-og.png"],
   },
 };
@@ -138,8 +138,67 @@ const milestones: HistoryMilestone[] = [
       { label: "Mathematical discussion", href: "https://mathoverflow.net/questions/130777/could-the-jacobian-conjecture-be-undecidable/513385" },
     ],
     frontier: true,
+    special: "jacobian",
     timelineLane: "below",
     timelinePosition: "96%",
+  },
+  {
+    number: "08",
+    date: "01 AUG 2026",
+    title: "OpenAI publishes ten advances",
+    system: "OpenAI · internal Astra",
+    summary: "OpenAI published ten results spanning geometry, coding theory, group theory, operator algebras, quantum complexity, lattice cryptography, and extremal combinatorics.",
+    aiRole: "The internal Astra system generated the mathematical arguments and then formalized each one in a Lean certificate.",
+    humanRole: "OpenAI researchers prepared the manuscripts, selected the public record, and took responsibility for the formalized proofs.",
+    evidence: "Ten external Lean formalizations",
+    evidenceTone: "formal",
+    shortTitle: "Ten advances",
+    significance: "The unit of evidence changed from one headline result to a portfolio. The public repository makes all ten certificates available for independent Lake builds; Proofweave still treats them as external artifacts until a local replay receipt is submitted.",
+    sources: [
+      { label: "OpenAI publication", href: "https://openai.com/index/ten-advances-in-mathematics/" },
+      { label: "Ten Lean certificates", href: "https://github.com/openai/ten-proofs" },
+    ],
+    special: "openai-ten",
+    reproduction: {
+      label: "Open the ten Lean certificates",
+      detail: "The public repository lists one Lean 4 module for each result and documents `lake build All`.",
+      href: "https://github.com/openai/ten-proofs",
+      workspaceHref: "/explore",
+      workspaceLabel: "Search matching Proofweave targets",
+      command: "lake exe cache get · lake build All",
+    },
+    timelineLane: "above",
+    timelinePosition: "98%",
+  },
+  {
+    number: "09",
+    date: "10 AUG 2026",
+    title: "Claude improves a Riemann-zeta lower bound",
+    system: "Claude · unreleased research version",
+    summary: "Claude did not solve the Riemann Hypothesis, but Anthropic reports a new lower bound for the fraction of zeta zeros on the critical line: 41.6% to 67.2%.",
+    aiRole: "Claude searched, tested, criticized, and formalized the argument across coordinated research sessions.",
+    humanRole: "Anthropic mathematicians examined the paper, related it to prior work, and released the supporting note and formal artifact.",
+    evidence: "External Lean formalization",
+    evidenceTone: "formal",
+    shortTitle: "Riemann bound",
+    significance: "This is a substantial result about a related problem, not a proof of the Riemann Hypothesis. The exact formalization is now public and can be replayed independently; a Proofweave receipt is still not recorded.",
+    sources: [
+      { label: "Anthropic report", href: "https://www.anthropic.com/research/riemann-zeta" },
+      { label: "Zeta23 Lean project", href: "https://github.com/anthropics/zeta-23-lean" },
+    ],
+    frontier: true,
+    latest: true,
+    special: "riemann",
+    reproduction: {
+      label: "Open the Zeta23 Lean formalization",
+      detail: "The artifact documents a pinned Lean toolchain and headline theorems for the more-than-two-thirds result.",
+      href: "https://github.com/anthropics/zeta-23-lean",
+      workspaceHref: "/workbench?target=riemann-hypothesis#research-launcher",
+      workspaceLabel: "Start a bounded Proofweave replay",
+      command: "lake build · lake build Solution Solution.Multiplicity Solution.XiPrime",
+    },
+    timelineLane: "below",
+    timelinePosition: "99.5%",
   },
 ];
 
@@ -153,11 +212,13 @@ const evidenceLegend: Array<{ tone: EvidenceTone; label: string; detail: string 
 export default function HistoryPage() {
   return <div className="site-shell history-shell"><Header active="history" /><main id="main-content" tabIndex={-1}>
     <section className="history-hero">
-      <div className="history-hero-copy"><p className="eyebrow">AI × MATHEMATICS · PUBLIC RECORD</p><h1>From one Erdős problem to the Jacobian frontier.</h1><p>A sourced timeline of AI contributions to open mathematics—and the evidence behind each claim. This record separates discovery, human judgment, formal checking, and public announcement.</p><div className="history-hero-actions"><a className="button button-primary" href="#timeline">Read the timeline <span aria-hidden="true">↓</span></a><Link className="history-text-link" href="/demo">See executable evidence <span aria-hidden="true">→</span></Link></div></div>
-      <aside className="history-hero-index" aria-label="Record summary"><span>RECORD WINDOW</span><strong>JAN — JUL</strong><small>2026 · seven milestones</small><div className="history-pulse" aria-hidden="true"><i /><i /><i /><i /><i /><i /><i /></div><p>Updated 20 July 2026</p></aside>
+      <div className="history-hero-copy"><p className="eyebrow">AI × MATHEMATICS · PUBLIC RECORD</p><h1>From Erdős problems to a formalization frontier.</h1><p>A sourced timeline of AI contributions to open mathematics—and the evidence behind each claim. This record separates discovery, human judgment, formal checking, and public announcement.</p><div className="history-hero-actions"><a className="button button-primary" href="#timeline">Read the timeline <span aria-hidden="true">↓</span></a><Link className="history-text-link" href="#lean-replay">Open Lean replay paths <span aria-hidden="true">→</span></Link></div></div>
+      <aside className="history-hero-index" aria-label="Record summary"><span>RECORD WINDOW</span><strong>JAN — AUG</strong><small>2026 · {milestones.length} milestones</small><div className="history-pulse" aria-hidden="true">{milestones.map((item) => <i key={item.number} />)}</div><p>Updated 11 August 2026</p></aside>
     </section>
 
     <section className="history-legend" aria-labelledby="evidence-legend-title"><div><p className="eyebrow">How to read this record</p><h2 id="evidence-legend-title">“AI solved it” is not one evidence state.</h2></div><div className="history-legend-grid">{evidenceLegend.map((item) => <article key={item.label}><span className={`history-state is-${item.tone}`}>{item.label}</span><p>{item.detail}</p></article>)}</div></section>
+
+    <section className="history-replay" id="lean-replay" aria-labelledby="history-replay-title"><div className="history-replay-heading"><div><p className="eyebrow">Lean replay desk</p><h2 id="history-replay-title">Claim → source → executable check.</h2></div><p>These are the shortest honest paths from the public record to a kernel-checked artifact. External repositories are linked directly; Proofweave workspaces are entry points for a bounded local replay and do not imply that a result has already been verified here.</p></div><div className="history-replay-grid"><article><span className="history-replay-index">01 · OPENAI</span><h3>Ten advances</h3><p>Ten Lean 4 formalizations, with a documented all-project build and individual modules.</p><div className="history-replay-actions"><a href="https://github.com/openai/ten-proofs" rel="noreferrer" target="_blank">Open certificates <span aria-hidden="true">↗</span></a><Link href="/explore">Search matching targets <span aria-hidden="true">→</span></Link></div></article><article><span className="history-replay-index">02 · ANTHROPIC</span><h3>Zeta23</h3><p>A pinned Lean formalization for the more-than-two-thirds lower-bound result; it does not prove RH.</p><div className="history-replay-actions"><a href="https://github.com/anthropics/zeta-23-lean" rel="noreferrer" target="_blank">Open formalization <span aria-hidden="true">↗</span></a><Link href="/workbench?target=riemann-hypothesis#research-launcher">Start replay path <span aria-hidden="true">→</span></Link></div></article><article><span className="history-replay-index">03 · PROOFWEAVE</span><h3>Owner-approved replay</h3><p>Select a pinned target, connect a local Agent, run Lean locally, and publish only the checkpoint you approve.</p><div className="history-replay-actions"><Link href="/workbench?target=riemann-hypothesis#research-launcher">Open workspace <span aria-hidden="true">→</span></Link><Link href="/demo#verification-console">Inspect verification demo <span aria-hidden="true">→</span></Link></div></article></div></section>
 
     <HistoryTimeline milestones={milestones} />
 
