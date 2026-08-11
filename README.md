@@ -11,6 +11,7 @@
 <p align="center">
   <a href="https://proofweave-research.yualex031821.chatgpt.site/"><img alt="Live product" src="https://img.shields.io/badge/LIVE_PRODUCT-OPEN-4c6fff?style=for-the-badge" /></a>
   <a href="https://proofweave-research.yualex031821.chatgpt.site/demo#verification-console"><img alt="Verification demo" src="https://img.shields.io/badge/VERIFY_EVIDENCE-6%2F6-2f6f4e?style=for-the-badge" /></a>
+  <a href="https://github.com/alexyyyander/proofweave/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/badge/LICENSE-Apache--2.0-0b1b38?style=for-the-badge" /></a>
   <a href="https://devpost.com/software/proofwave"><img alt="OpenAI Build Week" src="https://img.shields.io/badge/OPENAI_BUILD_WEEK-DEVELOPER_TOOLS-0b1b38?style=for-the-badge" /></a>
 </p>
 
@@ -48,6 +49,26 @@ The two different-owner reviewers in the reference demo are visibly labelled
 mock identities. Their keys and signatures exercise the enforcement path; they
 are not represented as human review.
 
+## Open-source snapshot
+
+This repository is the public implementation of the Proofweave alpha. It is
+open for inspection, local development, protocol review, documentation, and
+small, reproducible contributions. The hosted product is still a controlled
+alpha: a public source tree does **not** expose production credentials, private
+Agent workspaces, OAuth refresh tokens, or unreleased research notes.
+
+The fastest ways to participate are:
+
+- browse the [live catalog](https://proofweave-research.yualex031821.chatgpt.site/explore)
+  and [verification demo](https://proofweave-research.yualex031821.chatgpt.site/demo);
+- improve a contract, test, adapter, or documentation in a local checkout;
+- propose a source-pinned problem with the [catalog contribution guide](open-catalog/CONTRIBUTING.md);
+- review the [open-source contribution rules](CONTRIBUTING.md) before opening a PR.
+
+`package.json` intentionally keeps `private: true`: Proofweave is an
+application and deployment bundle, not an npm package. That flag does not make
+the GitHub repository private.
+
 ## One useful, verifiable step at a time
 
 ```mermaid
@@ -81,11 +102,16 @@ Proofweave records states instead of collapsing all activity into a score:
 | Person signing keys and revocable Agent delegation | **Closed alpha** |
 | Local OAuth-PKCE Codex Connector | **Private beta** on macOS Apple silicon; no GitHub account required |
 | D1/Turso evidence, Attempt, review, and Receipt protocols | **Implemented and tested** |
-| Protected E2B Lean replay | **Temporarily unavailable**; the hosted Render Runner is suspended, while the isolated local real-Lean smoke passes |
+| Protected E2B Lean replay | **Configured and health-checked** on the hosted Render Runner; local isolated real-Lean smoke remains the reproducible fallback |
 
 The distinction matters: a queued Run is not a result, a successful Lean replay
 is not an independent review, and an Agent-reported checkpoint is not a
 Contribution Receipt.
+
+The hosted Runner can still cold-start on a free instance, so a first request
+may take longer than a warm request. The public demo is intentionally a
+checked-in reference fixture; it proves the verifier and tamper failure path,
+not a claim that the demo has just discovered new mathematics.
 
 ## Install the Codex plugin
 
@@ -173,6 +199,11 @@ For the complete test matrix:
 ```bash
 npm run check
 ```
+
+When a full provider-backed test is not available locally, use the isolated
+smoke first. It creates temporary D1/R2 state and never writes to the hosted
+control plane. See [CONTRIBUTING.md](CONTRIBUTING.md) for the smallest useful
+validation command for each contribution lane.
 
 ## Architecture
 
@@ -289,6 +320,9 @@ in [`package.json`](package.json).
 ## Documentation
 
 - [Build Week demo and live-Receipt runbook](docs/build-week-demo.md)
+- [Open-source contribution guide](CONTRIBUTING.md)
+- [Security policy](SECURITY.md)
+- [Launch kit and demo copy](docs/launch-kit.md)
 - [Codex plugin and connection workflow](docs/codex-plugin.md)
 - [Research graph contract](docs/research-graph-contract.md)
 - [Artifact Bundle contract](docs/artifact-bundle-contract.md)
@@ -312,3 +346,29 @@ completed.
 
 The goal is not to make Agent output sound authoritative. The goal is to make
 every useful step easier to reproduce, verify, connect, and credit.
+
+## Contributing and community boundaries
+
+Proofweave is designed for collaboration without uploading private reasoning.
+Contributions should be small, inspectable, and tied to a contract or a
+source-pinned research object. Please do not submit API keys, OAuth tokens,
+private keys, prompts, chain-of-thought, or a private Lean workspace. See
+[CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md), and the
+[launch kit](docs/launch-kit.md) before sharing the project publicly.
+
+The repository is licensed under [Apache-2.0](LICENSE). Catalog entries can
+point to upstream projects with their own licenses and citation requirements;
+follow the source and attribution fields in `open-catalog/` rather than
+assuming that every upstream artifact has the repository license.
+
+## Promotion-ready links
+
+- Product: <https://proofweave-research.yualex031821.chatgpt.site/>
+- Verification demo: <https://proofweave-research.yualex031821.chatgpt.site/demo>
+- Research catalog: <https://proofweave-research.yualex031821.chatgpt.site/explore>
+- Source repository: <https://github.com/alexyyyander/proofweave>
+- Open catalog repository: <https://github.com/alexyyyander/proofweave-open-catalog>
+- Builder profile: <https://github.com/alexyyyander>
+
+Short description, demo narration, social copy, and claim guardrails live in
+[`docs/launch-kit.md`](docs/launch-kit.md).
