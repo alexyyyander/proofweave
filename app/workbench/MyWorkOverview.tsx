@@ -46,6 +46,7 @@ export function MyWorkOverview({
 }) {
   const [attempts, setAttempts] = useState<readonly McpAttempt[]>(initialAttempts);
   const [showLauncher, setShowLauncher] = useState(Boolean(initialTargetSlug));
+  const [view, setView] = useState<AttemptBucket | "all">("all");
   const [writeAvailability, setWriteAvailability] = useState<ControlPlaneWriteAvailability>(
     storageAvailable ? "available" : "unavailable",
   );
@@ -59,6 +60,7 @@ export function MyWorkOverview({
   const attentionCount = grouped.get("needs-attention")?.length ?? 0;
   const localConnection = activeLocalCodexInstallation(profile);
   const maintenance = controlPlaneMaintenanceCopy(writeAvailability);
+  const nextRecord = grouped.get("needs-attention")?.[0] ?? grouped.get("active")?.[0] ?? grouped.get("waiting")?.[0] ?? null;
 
   useEffect(() => {
     const controller = new AbortController();
@@ -111,10 +113,22 @@ export function MyWorkOverview({
       <ResearchLauncher profile={profile} attempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={initialTargetSlug} initialParentNodeId={initialParentNodeId} onAttemptReady={onAttemptReady} isAuthenticated signInPath="/sign-in?returnTo=%2Fworkbench" storageAvailable={storageAvailable} writeAvailability={writeAvailability} />
     </section>}
 
+    {nextRecord && <section className="my-work-next-action" aria-labelledby="my-work-next-action-title">
+      <div><p className="eyebrow">Recommended next action</p><h2 id="my-work-next-action-title">{nextRecord.presentation.nextAction}</h2><p>{nextRecord.presentation.detail}</p></div>
+      <div className="my-work-next-action-meta"><span>{nextRecord.attempt.problemTitle}</span><Link className="button button-primary" href={`/workbench/attempts/${encodeURIComponent(nextRecord.attempt.id)}`}>Open task <span aria-hidden="true">→</span></Link></div>
+    </section>}
+
     {!storageAvailable ? <section className="my-work-empty"><p className="eyebrow">Workspace unavailable</p><h2>Your durable research records cannot be loaded.</h2><p>Proofweave does not substitute preview tasks when the accountable store is unavailable.</p></section>
       : attempts.length === 0 ? <section className="my-work-empty"><p className="eyebrow">No Attempts yet</p><h2>Choose one exact target for your Agent.</h2><p>Your first Attempt creates a bounded workspace. It does not claim that work has begun or that a result is verified.</p><div className="button-row"><Link className="button button-primary" href="/explore">Explore mathematics <span>→</span></Link><button className="button button-secondary" type="button" onClick={() => setShowLauncher(true)}>Open task launcher</button></div></section>
-        : <div className="my-work-sections">
-          {sections.map((section) => {
+        : <>
+          <section className="my-work-command" aria-label="Workspace task filters">
+            <div><span className="micro-label">Task queue</span><strong>Focus the worklist</strong><small>Filter by the action required from you now.</small></div>
+            <div className="my-work-view-tabs" role="tablist" aria-label="Filter workspace tasks">
+              {[{ bucket: "all" as const, label: "All" }, ...sections.map((section) => ({ bucket: section.bucket, label: section.title }))].map((item) => <button key={item.bucket} className={view === item.bucket ? "is-active" : ""} onClick={() => setView(item.bucket)} role="tab" aria-selected={view === item.bucket} type="button"><span>{item.label}</span><strong>{item.bucket === "all" ? records.length : grouped.get(item.bucket)?.length ?? 0}</strong></button>)}
+            </div>
+          </section>
+          <div className="my-work-sections">
+          {sections.filter((section) => view === "all" || view === section.bucket).map((section) => {
             const sectionRecords = grouped.get(section.bucket) ?? [];
             if (sectionRecords.length === 0) return null;
             return <section className={`my-work-section is-${section.bucket}`} key={section.bucket} aria-labelledby={`my-work-${section.bucket}`}>
@@ -134,7 +148,8 @@ export function MyWorkOverview({
               </div>
             </section>;
           })}
-        </div>}
+          </div>
+        </>}
   </>;
 }
 function formatTimestamp(value: string): string {

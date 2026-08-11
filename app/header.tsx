@@ -4,7 +4,6 @@ import { navigationGroups, primaryNavigation, type ActivePage } from "./lib/navi
 
 export async function Header({ active }: { active: ActivePage }) {
   const user = await getCurrentUser();
-  const workspaceActive = active === "workbench";
 
   return <>
     <a className="skip-link" href="#main-content">Skip to main content</a>
@@ -29,7 +28,6 @@ export async function Header({ active }: { active: ActivePage }) {
             </nav>
           </div>
         </details>
-        <Link className={workspaceActive ? "sign-in-link is-active" : "sign-in-link"} href="/workbench">Workspace</Link>
         {user
           ? <details className={active === "profile" || active === "settings" ? "account-menu is-active" : "account-menu"} name="header-overlays">
             <summary aria-label={`Open account menu for ${user.displayName}`}><span className="account-avatar" aria-hidden="true">{initials(user.displayName)}</span><span className="account-menu-name">{user.displayName}</span><span className="account-chevron" aria-hidden="true">⌄</span></summary>
@@ -56,6 +54,7 @@ function initials(value: string) {
 
 function navigationItemActive(active: ActivePage, href: string) {
   const activeHref: Partial<Record<ActivePage, string>> = {
+    home: "/",
     about: "/about",
     demo: "/demo",
     explore: "/explore",
