@@ -61,6 +61,8 @@ export function MyWorkOverview({
   const localConnection = activeLocalCodexInstallation(profile);
   const maintenance = controlPlaneMaintenanceCopy(writeAvailability);
   const nextRecord = grouped.get("needs-attention")?.[0] ?? grouped.get("active")?.[0] ?? grouped.get("waiting")?.[0] ?? null;
+  const visibleRecordCount = view === "all" ? records.length : grouped.get(view)?.length ?? 0;
+  const selectedView = view === "all" ? null : sections.find((section) => section.bucket === view);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -127,7 +129,12 @@ export function MyWorkOverview({
               {[{ bucket: "all" as const, label: "All" }, ...sections.map((section) => ({ bucket: section.bucket, label: section.title }))].map((item) => <button key={item.bucket} className={view === item.bucket ? "is-active" : ""} onClick={() => setView(item.bucket)} role="tab" aria-selected={view === item.bucket} type="button"><span>{item.label}</span><strong>{item.bucket === "all" ? records.length : grouped.get(item.bucket)?.length ?? 0}</strong></button>)}
             </div>
           </section>
-          <div className="my-work-sections">
+          {visibleRecordCount === 0 ? <section className="my-work-filter-empty" aria-live="polite">
+            <span className="micro-label">Queue clear</span>
+            <h2>{selectedView?.title ?? "No recorded tasks"}</h2>
+            <p>{selectedView?.bucket === "needs-attention" ? "There are no owner decisions waiting for you." : "There are no tasks in this queue yet."}</p>
+            <button className="button button-secondary" type="button" onClick={() => setView("all")}>View all tasks <span aria-hidden="true">→</span></button>
+          </section> : <div className="my-work-sections">
           {sections.filter((section) => view === "all" || view === section.bucket).map((section) => {
             const sectionRecords = grouped.get(section.bucket) ?? [];
             if (sectionRecords.length === 0) return null;
@@ -148,7 +155,7 @@ export function MyWorkOverview({
               </div>
             </section>;
           })}
-          </div>
+          </div>}
         </>}
   </>;
 }
