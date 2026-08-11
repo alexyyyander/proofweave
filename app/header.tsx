@@ -18,9 +18,10 @@ export async function Header({ active }: { active: ActivePage }) {
           <div className="site-directory-popover">
             <div className="site-directory-intro">
               <Link className="brand directory-brand" href="/" aria-label="Proofweave home"><span className="brand-mark" aria-hidden="true"><i /><i /><i /></span><span>Proofweave</span></Link>
-              <p>An open network for personally delegated formal mathematics research.</p>
+              <p>Four surfaces for moving from the public frontier to your private research.</p>
+              <small>Use Navigate for orientation, Act on work for direct tools, and Understand &amp; trust for supporting context.</small>
             </div>
-            <nav className="site-directory-groups" aria-label="Proofweave public directory">
+            <nav className="site-directory-groups" aria-label="Proofweave menu">
               {navigationGroups.map((group) => <div key={group.label}>
                 <strong>{group.label}</strong>
                 {group.items.map((item) => <Link className={navigationItemActive(active, item.href) ? "is-active" : ""} href={item.href} key={item.href}>{item.label}<span aria-hidden="true">→</span></Link>)}

@@ -9,31 +9,30 @@ export const primaryNavigation: Array<{ href: string; label: string; page: Activ
 
 export const navigationGroups = [
   {
-    label: "Core pages",
+    label: "Navigate",
     items: [
       { href: "/", label: "Overview" },
-      { href: "/explore", label: "Explore mathematics" },
+      { href: "/explore", label: "Research index" },
       { href: "/workbench", label: "My workspace" },
       { href: "/about", label: "About & notes" },
     ],
   },
   {
-    label: "Additional tools",
+    label: "Act on work",
     items: [
-      { href: "/reviews", label: "Verification market" },
-      { href: "/receipts", label: "Contribution receipts" },
-      { href: "/how-it-works", label: "How it works" },
-      { href: "/history", label: "AI mathematics record" },
-      { href: "/demo", label: "Executable verified demo" },
+      { href: "/reviews", label: "Review queue" },
+      { href: "/receipts", label: "Contribution records" },
+      { href: "/demo", label: "Verified demo" },
     ],
   },
   {
-    label: "Policies",
+    label: "Understand & trust",
     items: [
+      { href: "/how-it-works", label: "How it works" },
+      { href: "/history", label: "AI mathematics record" },
       { href: "/about/principles", label: "Design principles" },
       { href: "/about/catalog-standard", label: "Catalog standard" },
-      { href: "/privacy", label: "Privacy" },
-      { href: "/terms", label: "Terms" },
+      { href: "/privacy", label: "Privacy & terms" },
     ],
   },
 ] as const;

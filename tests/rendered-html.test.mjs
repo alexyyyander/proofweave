@@ -883,7 +883,7 @@ test("server-renders the Proofweave welcome page", async () => {
   );
   assert.match(html, /Advance mathematics through your Agent/i);
   assert.match(html, /Public alpha/i);
-  assert.match(html, /Executable verified demo/i);
+  assert.match(html, /Verified demo/i);
   assert.match(html, /Watch the proof journey/i);
   assert.match(html, /Contribution records/i);
   assert.match(html, /brand-mark/i);
@@ -904,7 +904,7 @@ test("serves the public research paths", async () => {
     ["/showcase", /See a proof become[\s\S]*public contribution/i],
     ["/demo", /Watch one Lean proof become/i],
     ["/history", /From one Erdős problem to the Jacobian frontier/i],
-    ["/explore", /Find where your Agent can make a useful contribution/i],
+    ["/explore", /Search the public frontier\. Choose one exact next action/i],
     ["/explore/erdos-865", /Erdős Problem 865/i],
     ["/how-it-works", /One shared frontier\. One useful step at a time/i],
     ["/how-it-works/research", /Move one bounded research task forward/i],
@@ -974,21 +974,13 @@ test("serves the public research paths", async () => {
 
   const explore = await render("/explore");
   const exploreHtml = await explore.text();
-  assert.match(exploreHtml, /Find where your Agent can make a useful contribution/i);
-  assert.match(exploreHtml, /What can your Agent contribute now/i);
-  assert.match(exploreHtml, /Formalize known mathematics/i);
-  assert.match(exploreHtml, /Advance an open branch/i);
-  assert.match(exploreHtml, /Verify submitted work/i);
-  assert.match(exploreHtml, /Founding Challenges/i);
-  assert.match(exploreHtml, /Grand Challenges/i);
-  assert.match(exploreHtml, /Recommended now · first contribution/i);
-  assert.match(exploreHtml, /Begin with bounded formalization/i);
-  assert.match(exploreHtml, /Start this contribution/i);
-  assert.match(exploreHtml, /workbench\?target=erdos-865-k2/i);
-  assert.match(exploreHtml, /Choose the next useful action/i);
+  assert.match(exploreHtml, /Search the public frontier\. Choose one exact next action/i);
+  assert.match(exploreHtml, /Formalize a known result, advance an open proof branch, or inspect an existing proof record/i);
+  assert.match(exploreHtml, /Searchable research index/i);
+  assert.match(exploreHtml, /Find the exact target you can act on/i);
   assert.match(exploreHtml, /Formalize known results/i);
   assert.match(exploreHtml, /Bounded milestones/i);
-  assert.match(exploreHtml, /Start with my Agent/i);
+  assert.match(exploreHtml, /Inspect proof/i);
   assert.doesNotMatch(exploreHtml, /Show Lean/i);
   assert.match(exploreHtml, /Hadwiger–Nelson Problem/i);
   assert.match(exploreHtml, /Navier–Stokes Existence and Smoothness/i);
@@ -998,7 +990,7 @@ test("serves the public research paths", async () => {
   assert.doesNotMatch(exploreHtml, /∀ᶠ/, "the catalog list must not serialize full Lean statements");
   assert.match(exploreHtml, /Computer science/i);
   assert.match(exploreHtml, />MSC /i);
-  assert.match(exploreHtml, /Known result · Lean proof wanted/i);
+  assert.match(exploreHtml, /(?:Open conjecture|Lean proof available)/i);
 
   const curatedDetail = await render("/explore/sunflower-conjecture");
   assert.equal(curatedDetail.status, 200);
@@ -1098,14 +1090,13 @@ test("keeps the public directory separate from the personal workspace", async ()
   assert.equal(page.status, 200);
   const html = await page.text();
   assert.match(html, /Open Proofweave directory/i);
-  assert.match(html, /Proofweave public directory/i);
-  assert.match(html, /An open network for personally delegated formal mathematics research/i);
-  assert.match(html, /href="\/explore"[^>]*>Explore<\/a>[\s\S]*href="\/reviews"[^>]*>Verify<\/a>[\s\S]*href="\/receipts"[^>]*>Contributions<\/a>[\s\S]*href="\/how-it-works"[^>]*>How it works<\/a>/i);
-  assert.match(html, /Participate[\s\S]*Verification market[\s\S]*Contribution receipts/i);
-  assert.match(html, /Learn[\s\S]*AI mathematics record[\s\S]*Proof journey[\s\S]*Executable verified demo/i);
-  assert.match(html, /Trust[\s\S]*Design principles[\s\S]*Catalog standard/i);
+  assert.match(html, /Proofweave menu/i);
+  assert.match(html, /Four surfaces for moving from the public frontier to your private research/i);
+  assert.match(html, /class="main-nav"[\s\S]*>Overview<\/a>[\s\S]*>Research index<\/a>[\s\S]*>My workspace<\/a>[\s\S]*>About &amp; notes<\/a>/i);
+  assert.match(html, /Navigate[\s\S]*Research index[\s\S]*My workspace[\s\S]*Act on work[\s\S]*Review queue[\s\S]*Contribution records[\s\S]*Verified demo/i);
+  assert.match(html, /Understand &amp; trust[\s\S]*How it works[\s\S]*AI mathematics record[\s\S]*Design principles[\s\S]*Catalog standard[\s\S]*Privacy &amp; terms/i);
   assert.doesNotMatch(html, /<strong>Workspace<\/strong>/i);
-  assert.match(html, /href="\/workbench"[^>]*>Workspace<\/a>/i);
+  assert.match(html, /href="\/workbench"[^>]*>My workspace<\/a>/i);
   assert.doesNotMatch(html, /aria-label="Footer navigation"/i);
 });
 
@@ -3185,7 +3176,7 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
 });
 
 test("keeps the production frontend free of the deleted starter preview", async () => {
-  const [page, layout, globals, researchGraphView, packageJson, workbench, delegationSetup, localAgentHandoff, browserKeyStore, sourceSkill, legacyContent] = await Promise.all([
+  const [page, layout, globals, researchGraphView, packageJson, workbench, runnerWorkflowStatus, delegationSetup, localAgentHandoff, browserKeyStore, sourceSkill, legacyContent] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
@@ -3193,6 +3184,10 @@ test("keeps the production frontend free of the deleted starter preview", async 
     readFile(new URL("../package.json", import.meta.url), "utf8"),
     readFile(
       new URL("../app/workbench/workbench-sections.tsx", import.meta.url),
+      "utf8",
+    ),
+    readFile(
+      new URL("../app/workbench/runner-workflow-status.ts", import.meta.url),
       "utf8",
     ),
     readFile(
@@ -3227,7 +3222,7 @@ test("keeps the production frontend free of the deleted starter preview", async 
   assert.match(researchGraphView, /Checkpoint evidence gates/);
   assert.match(researchGraphView, /Receipt recorded/);
   assert.match(workbench, /No simulated Agent work is created in this workspace/);
-  assert.match(workbench, /Proofweave does not render a sample source file or a fictional compiler result/);
+  assert.match(runnerWorkflowStatus, /Proofweave does not render a sample source file or a fictional compiler result/);
   assert.match(workbench, /Independent review/);
   assert.doesNotMatch(workbench, /Run next bounded step|Illustrative only|Example check result|Local preview/);
   assert.match(delegationSetup, /Connect an accountable research Agent/);
