@@ -18,8 +18,8 @@ export async function Header({ active }: { active: ActivePage }) {
           <div className="site-directory-popover">
             <div className="site-directory-intro">
               <Link className="brand directory-brand" href="/" aria-label="Proofweave home"><span className="brand-mark" aria-hidden="true"><i /><i /><i /></span><span>Proofweave</span></Link>
-              <p>Four surfaces for moving from the public frontier to your private research.</p>
-              <small>Use Navigate for orientation, Act on work for direct tools, and Understand &amp; trust for supporting context.</small>
+              <p>Core surfaces first. Supporting modules stay compact and task-oriented.</p>
+              <small>Use Core pages for orientation, Research tools for direct actions, and Reference for supporting context.</small>
             </div>
             <nav className="site-directory-groups" aria-label="Proofweave menu">
               {navigationGroups.map((group) => <div key={group.label}>

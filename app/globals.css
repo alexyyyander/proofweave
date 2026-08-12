@@ -3042,3 +3042,179 @@ a.auth-provider:hover, .auth-provider-button:hover { border-color: #8295d5; box-
   .site-directory-groups { gap: 18px; }
   .site-directory-groups a { min-height: 38px; padding: 8px 0; }
 }
+
+/* Module directory and cross-page hierarchy pass.
+   The menu is a directory of child modules, not another hero surface. */
+.site-directory-popover {
+  background: #f7f6f1;
+  border-color: #c9ced8;
+  display: block;
+  overflow: hidden;
+  width: min(920px, calc(100vw - 56px));
+}
+.site-directory-intro {
+  align-items: center;
+  background: transparent;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  display: grid;
+  gap: 18px;
+  grid-template-columns: auto minmax(220px, 1fr) minmax(210px, .75fr);
+  padding: 15px 18px;
+}
+.site-directory-intro .directory-brand {
+  color: var(--ink);
+  font-size: 11px;
+}
+.site-directory-intro .directory-brand .brand-mark::before { border-color: #abb3c1; }
+.site-directory-intro .directory-brand .brand-mark i { background: var(--indigo); }
+.site-directory-intro p {
+  color: var(--ink-soft);
+  font-family: inherit;
+  font-size: 11px;
+  line-height: 1.45;
+  margin: 0;
+  max-width: none;
+}
+.site-directory-intro small {
+  color: var(--ink-faint);
+  display: block;
+  font-size: 9px;
+  line-height: 1.45;
+  margin: 0;
+  max-width: none;
+  text-align: right;
+}
+.site-directory-groups {
+  background: #eeece5;
+  gap: 10px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: 12px;
+}
+.site-directory-groups > div {
+  align-content: start;
+  background: #fff;
+  border: 1px solid var(--line);
+  padding: 0 13px 7px;
+}
+.site-directory-groups strong {
+  border-bottom-color: var(--line);
+  color: var(--ink-faint);
+  font-size: 8px;
+  padding: 12px 0 9px;
+}
+.site-directory-groups a {
+  border-bottom-color: #e5e4de;
+  font-size: 10px;
+  min-height: 38px;
+  padding: 9px 0;
+}
+.site-directory-groups a:last-child { border-bottom: 0; }
+.site-directory-groups a:hover,
+.site-directory-groups a.is-active {
+  background: #f5f7fc;
+  color: var(--indigo);
+  margin: 0 -7px;
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+/* Supporting pages read as modules: a compact rail, one clear action, and
+   less competition with the primary Overview / Explore / Workspace surfaces. */
+.app-shell .page-main {
+  padding-bottom: 88px;
+  padding-top: 48px;
+}
+.information-hub-hero,
+.reading-hero,
+.legal-hero,
+.review-heading,
+.receipt-heading,
+.detail-heading,
+.settings-hero,
+.journey-hero {
+  padding-bottom: 30px;
+  padding-top: 26px;
+}
+.information-hub-hero h1,
+.reading-hero h1,
+.legal-hero h1,
+.review-heading h1,
+.receipt-heading h1,
+.detail-heading h1,
+.settings-hero h1,
+.journey-hero h1 {
+  font-size: clamp(38px, 4.2vw, 56px);
+  line-height: 1;
+}
+.information-hub-hero > p,
+.reading-hero > p:not(.eyebrow),
+.legal-hero > p:last-child,
+.review-heading p:not(.eyebrow),
+.receipt-heading p:not(.eyebrow),
+.detail-heading p:not(.eyebrow),
+.settings-hero > div > p:not(.eyebrow),
+.journey-hero > div > p:not(.eyebrow) {
+  font-size: 13px;
+  line-height: 1.58;
+}
+.information-path-grid { margin-bottom: 48px; margin-top: 38px; }
+.information-path-grid > a { min-height: 250px; }
+.information-path-grid h2 { margin-top: 36px; }
+.reading-steps,
+.principle-reading-grid,
+.catalog-reading-gates,
+.record-layer-list { padding-bottom: 44px; padding-top: 44px; }
+.reading-note { background: #f1f3f8; border-left: 2px solid #b9c5ea; }
+.public-section-nav,
+.explore-section-nav { margin-top: 18px; }
+.review-authority,
+.receipt-summary,
+.detail-main > .status-stack { margin-top: 18px; }
+.review-empty,
+.receipt-message { margin-top: 12px; }
+
+@media (max-width: 900px) {
+  .site-directory-intro {
+    align-items: start;
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .site-directory-intro small {
+    grid-column: 2;
+    text-align: left;
+  }
+  .site-directory-groups { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 620px) {
+  .site-directory-popover { width: calc(100vw - 36px); }
+  .site-directory-intro {
+    display: grid;
+    gap: 8px 13px;
+    padding: 14px;
+  }
+  .site-directory-intro p { grid-column: 1 / -1; }
+  .site-directory-intro small { grid-column: 1 / -1; }
+  .site-directory-groups { padding: 10px; }
+  .site-directory-groups > div { padding-left: 12px; padding-right: 12px; }
+  .site-directory-groups a { min-height: 40px; }
+  .app-shell .page-main { padding-bottom: 70px; padding-top: 30px; }
+  .information-hub-hero,
+  .reading-hero,
+  .legal-hero,
+  .review-heading,
+  .receipt-heading,
+  .detail-heading,
+  .settings-hero,
+  .journey-hero { padding-bottom: 24px; padding-top: 18px; }
+  .information-hub-hero h1,
+  .reading-hero h1,
+  .legal-hero h1,
+  .review-heading h1,
+  .receipt-heading h1,
+  .detail-heading h1,
+  .settings-hero h1,
+  .journey-hero h1 { font-size: 39px; }
+  .information-path-grid { margin-bottom: 34px; margin-top: 28px; }
+  .information-path-grid > a { min-height: 210px; }
+}

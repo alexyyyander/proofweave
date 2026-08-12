@@ -10,7 +10,7 @@ export const primaryNavigation: Array<{ href: string; label: string; page: Activ
 
 export const navigationGroups = [
   {
-    label: "Navigate",
+    label: "Core pages",
     items: [
       { href: "/", label: "Overview" },
       { href: "/explore", label: "Research index" },
@@ -20,7 +20,7 @@ export const navigationGroups = [
     ],
   },
   {
-    label: "Act on work",
+    label: "Research tools",
     items: [
       { href: "/reviews", label: "Review queue" },
       { href: "/receipts", label: "Contribution records" },
@@ -28,7 +28,7 @@ export const navigationGroups = [
     ],
   },
   {
-    label: "Understand & trust",
+    label: "Reference",
     items: [
       { href: "/how-it-works", label: "How it works" },
       { href: "/about/principles", label: "Design principles" },
