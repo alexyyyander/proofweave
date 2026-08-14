@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getCatalogRepository } from "@/db/repositories/catalog";
 import { verifyBuildWeekDemoFixture } from "@/app/lib/build-week-demo";
+import { DemoVerificationClient } from "@/app/demo/DemoVerificationClient";
 import { ShowcaseExperience } from "@/app/showcase/ShowcaseExperience";
 import { Footer, ProductStateBadge, StatusStack } from "./ui";
 import { Header } from "./header";
@@ -44,7 +45,7 @@ export default async function Home() {
               <div><dt>Publication</dt><dd>Owner-approved</dd></div>
               <div><dt>Reference run</dt><dd>{passedChecks}/{verification.checks.length} checks pass</dd></div>
             </dl>
-            <Link href="/demo#verification-console">Inspect the executable demo <span aria-hidden="true">→</span></Link>
+            <a href="#verification-console">Inspect executable verification <span aria-hidden="true">→</span></a>
           </aside>
         </section>
 
@@ -86,6 +87,21 @@ export default async function Home() {
 
         <ShowcaseExperience verification={verification} />
 
+        <section className="home-verification-section" aria-labelledby="home-verification-title">
+          <div className="home-verification-intro">
+            <div>
+              <p className="eyebrow">Executable verification · part of this overview</p>
+              <h2 id="home-verification-title">The evidence is inspectable in the same place.</h2>
+              <p>Overview tells the contribution story; this module lets you verify its reference evidence. Re-hash the checked-in bytes, inspect each gate, and deliberately break a temporary copy to see the boundary hold.</p>
+            </div>
+            <div className="home-verification-actions">
+              <ProductStateBadge tone="verified">{passedChecks}/{verification.checks.length} reference checks pass</ProductStateBadge>
+              <Link className="text-link" href="/demo">Open the dedicated audit view <span aria-hidden="true">↗</span></Link>
+            </div>
+          </div>
+          <DemoVerificationClient initial={verification} variant="console" />
+        </section>
+
         <section className="home-story-explanation" aria-labelledby="home-story-explanation-title">
           <div className="home-story-explanation-heading">
             <p className="eyebrow">Why the journey matters</p>
@@ -97,7 +113,7 @@ export default async function Home() {
             <article><span>03 · Durable attribution</span><h3>Credit follows the dependency graph.</h3><p>Useful intermediate work can remain attributable when it is reused downstream—not only when the final theorem closes.</p></article>
           </div>
           <div className="button-row">
-            <Link className="button button-primary" href="/demo#verification-console">Verify the complete chain <span aria-hidden="true">→</span></Link>
+            <a className="button button-primary" href="#verification-console">Verify the complete chain <span aria-hidden="true">→</span></a>
             <Link className="button button-secondary" href="/how-it-works">Understand the research model</Link>
           </div>
         </section>

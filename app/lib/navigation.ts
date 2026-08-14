@@ -24,7 +24,7 @@ export const navigationGroups = [
     items: [
       { href: "/reviews", label: "Review queue" },
       { href: "/receipts", label: "Contribution records" },
-      { href: "/demo", label: "Verified demo" },
+      { href: "/demo", label: "Verification console" },
     ],
   },
   {

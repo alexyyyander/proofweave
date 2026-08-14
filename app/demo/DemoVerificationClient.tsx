@@ -3,7 +3,13 @@
 import { useEffect, useRef, useState } from "react";
 import type { BuildWeekDemoVerification, DemoVerificationMode } from "@/app/lib/build-week-demo";
 
-export function DemoVerificationClient({ initial }: { initial: BuildWeekDemoVerification }) {
+export function DemoVerificationClient({
+  initial,
+  variant = "full",
+}: {
+  initial: BuildWeekDemoVerification;
+  variant?: "full" | "console";
+}) {
   const [verification, setVerification] = useState(initial);
   const [activeStageIndex, setActiveStageIndex] = useState(0);
   const [isChecking, setIsChecking] = useState(false);
@@ -68,7 +74,7 @@ export function DemoVerificationClient({ initial }: { initial: BuildWeekDemoVeri
 
   return (
     <>
-      <section className="demo-walkthrough" id="demo-walkthrough" aria-labelledby="walkthrough-title">
+      {variant === "full" && <section className="demo-walkthrough" id="demo-walkthrough" aria-labelledby="walkthrough-title">
         <div className="demo-walkthrough-heading">
           <div>
             <p className="eyebrow">Three-minute walkthrough</p>
@@ -133,7 +139,7 @@ export function DemoVerificationClient({ initial }: { initial: BuildWeekDemoVeri
             </div>
           </article>
         </div>
-      </section>
+      </section>}
 
       <section className="demo-console" id="verification-console" aria-labelledby="verification-title">
       <div className="demo-console-heading">
