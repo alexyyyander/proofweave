@@ -3402,3 +3402,114 @@ a.auth-provider:hover, .auth-provider-button:hover { border-color: #8295d5; box-
   .my-work-main { padding-top: 26px; }
   .my-work-card { min-height: 0; }
 }
+
+/* Second simplification pass: the dedicated Demo is a verification tool,
+   while About and Workspace stay compact supporting modules. */
+.demo-hero {
+  gap: 48px;
+  padding-bottom: 58px;
+  padding-top: 60px;
+}
+.demo-hero h1 {
+  font-size: clamp(42px, 4.5vw, 60px);
+  margin-bottom: 20px;
+  max-width: 620px;
+}
+.demo-hero .hero-lede {
+  font-size: 14px;
+  line-height: 1.55;
+  max-width: 620px;
+}
+.demo-chain {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  max-width: none;
+}
+.demo-chain li {
+  border-bottom: 0;
+  border-left: 1px solid rgba(222,231,255,.2);
+  display: grid;
+  gap: 9px;
+  grid-template-columns: 1fr;
+  padding: 12px;
+}
+.demo-chain li:first-child { border-left: 0; }
+.demo-chain li > span { font-size: 9px; }
+.demo-chain strong { font-size: 11px; margin-bottom: 3px; }
+.demo-chain p { font-size: 10px; line-height: 1.45; }
+.demo-boundary { padding-bottom: 16px; padding-top: 16px; }
+.demo-live-record { padding-bottom: 30px; padding-top: 30px; }
+.demo-live-record h2 { font-size: clamp(26px, 3vw, 38px); }
+.demo-walkthrough { padding-bottom: 8px; padding-top: 58px; }
+.demo-walkthrough h2,
+.demo-console h2 { font-size: clamp(32px, 3.6vw, 48px); }
+.demo-walkthrough-layout { margin-top: 28px; }
+.demo-stage-detail { min-height: 400px; padding: 32px; }
+.demo-stage-number { margin-top: 42px; }
+.demo-console { padding-bottom: 58px; padding-top: 58px; }
+.demo-console-grid { margin-top: 28px; }
+.demo-proof-section { gap: 40px; padding-bottom: 60px; padding-top: 60px; }
+.demo-source-panel { box-shadow: none; }
+.demo-source-panel pre { margin-top: 28px; }
+.demo-honesty-grid { padding-bottom: 60px; padding-top: 60px; }
+.demo-honesty-grid article { min-height: 0; padding: 22px; }
+.demo-honesty-grid h2 { font-size: 28px; margin-bottom: 12px; margin-top: 24px; }
+.demo-reproduce { gap: 40px; padding-bottom: 50px; padding-top: 50px; }
+.demo-reproduce h2 { font-size: clamp(30px, 3.2vw, 42px); }
+
+.information-path-grid > a { min-height: 196px; padding: 18px; }
+.information-path-grid h2 { margin-top: 24px; }
+.about-definition { gap: 38px; padding-bottom: 44px; padding-top: 44px; }
+.about-definition h2 { font-size: 34px; }
+.about-project-card { gap: 20px; padding-bottom: 28px; padding-top: 28px; }
+.hub-next-action { padding-bottom: 8px; padding-top: 42px; }
+.reading-hero { padding-bottom: 34px; padding-top: 34px; }
+.reading-hero h1 { font-size: clamp(38px, 4.2vw, 54px); }
+.reading-hero > p:not(.eyebrow) { font-size: 14px; line-height: 1.58; }
+.reading-steps { padding-bottom: 32px; padding-top: 32px; }
+.reading-steps > li { gap: 20px; padding-bottom: 18px; padding-top: 18px; }
+.reading-steps h2 { font-size: 24px; }
+.reading-note { gap: 30px; padding: 22px; }
+
+.my-work-hero h1 { font-size: clamp(40px, 4.5vw, 58px); }
+.my-work-summary > div,
+.my-work-summary > a { min-height: 82px; padding: 11px; }
+.my-work-summary strong { font-size: 25px; }
+.my-work-next-action { margin-bottom: 16px; margin-top: 14px; padding: 16px; }
+.my-work-section > header h2 { font-size: 24px; }
+.my-work-card { min-height: 240px; padding: 16px; }
+.my-work-card h3 { font-size: 22px; margin-top: 16px; }
+.my-work-card-actions { padding-top: 14px; }
+
+@media (max-width: 900px) {
+  .demo-chain { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .demo-chain li:nth-child(odd) { border-left: 0; }
+  .demo-chain li:nth-child(n + 3) { border-top: 1px solid rgba(222,231,255,.2); }
+}
+
+@media (max-width: 620px) {
+  .demo-hero { gap: 38px; padding-bottom: 48px; padding-top: 44px; }
+  .demo-hero h1 { font-size: 42px; }
+  .demo-chain { display: block; }
+  .demo-chain li,
+  .demo-chain li:nth-child(odd),
+  .demo-chain li:nth-child(n + 3) { border-left: 0; border-top: 0; border-bottom: 1px solid rgba(222,231,255,.2); grid-template-columns: 28px 1fr; padding: 13px 0; }
+  .demo-chain li:last-child { border-bottom: 0; }
+  .demo-chain li > span { grid-row: 1 / span 2; }
+  .demo-live-record { padding-bottom: 24px; padding-top: 24px; }
+  .demo-walkthrough { padding-bottom: 4px; padding-top: 44px; }
+  .demo-stage-detail { padding-bottom: 28px; padding-top: 28px; }
+  .demo-console { padding-bottom: 46px; padding-top: 46px; }
+  .demo-proof-section { padding-bottom: 46px; padding-top: 46px; }
+  .demo-honesty-grid { padding-bottom: 46px; padding-top: 46px; }
+  .demo-reproduce { padding-bottom: 40px; padding-top: 40px; }
+  .information-path-grid > a { min-height: 176px; }
+  .about-definition { padding-bottom: 38px; padding-top: 38px; }
+  .about-definition h2 { font-size: 31px; }
+  .reading-hero { padding-bottom: 28px; padding-top: 28px; }
+  .reading-hero h1 { font-size: 40px; }
+  .reading-steps { padding-bottom: 26px; padding-top: 26px; }
+  .reading-note { gap: 20px; padding: 18px; }
+  .my-work-summary > div,
+  .my-work-summary > a { padding: 11px 13px; }
+}
