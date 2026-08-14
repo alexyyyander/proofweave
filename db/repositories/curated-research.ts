@@ -1,4 +1,5 @@
-import { getD1 } from "@/db";
+import { env } from "cloudflare:workers";
+import type { AnyD1Database } from "drizzle-orm/d1";
 
 export type CuratedResearchRole =
   | "origin"
@@ -64,7 +65,12 @@ export interface CuratedResearchRepository {
 class D1CuratedResearchRepository implements CuratedResearchRepository {
   async findByProblemRevisionId(problemRevisionId: string) {
     try {
-      const result = await getD1().prepare(
+      // Curated literature is public site content. Keep it on the Sites D1
+      // binding rather than the shared Turso control plane used by Agent,
+      // Runner, Receipt, and verification state.
+      const database = (env as unknown as { DB?: AnyD1Database }).DB;
+      if (!database) throw new CuratedResearchSchemaUnavailableError();
+      const result = await database.prepare(
         `SELECT id, problem_revision_id, role, kind, title, authors, summary,
                 source_system, source_url, source_identifier, occurred_at,
                 curation_status, lean_repository_url, lean_commit,
