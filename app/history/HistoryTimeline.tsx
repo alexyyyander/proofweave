@@ -58,16 +58,17 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
       <div className="history-timeline-viewport">
         <div className="history-time-visual" role="tablist" aria-label="AI mathematics milestones from January to August 2026">
           <div className="history-time-axis" aria-hidden="true"><span className="is-jan">JAN</span><span className="is-mar">MAR</span><span className="is-may">MAY</span><span className="is-jul">JUL</span><span className="is-aug">AUG</span></div>
-          {distributeTimelineLabels(milestones).map(({ item, timelineTrack }, index) => {
+          {distributeTimelineLabels(milestones).map(({ item, timelineTrack, timelineNodeOffset }, index) => {
               const isActive = item.number === activeNumber;
               const position = Number.parseFloat(item.timelinePosition);
               const edgeClass = position >= 94 ? " is-edge-end" : position <= 6 ? " is-edge-start" : "";
+              const nodeClass = timelineNodeOffset < 0 ? " is-node-above" : timelineNodeOffset > 0 ? " is-node-below" : "";
               return (
                 <button
                   aria-controls={`history-panel-${item.number}`}
                   aria-label={`${item.date}: ${item.title}. ${item.evidence}`}
                   aria-selected={isActive}
-                  className={`history-timepoint is-${item.timelineLane} tone-${item.evidenceTone}${isActive ? " is-active" : ""}${item.latest ? " is-latest" : ""}${edgeClass}`}
+                  className={`history-timepoint is-${item.timelineLane} tone-${item.evidenceTone}${isActive ? " is-active" : ""}${item.latest ? " is-latest" : ""}${edgeClass}${nodeClass}`}
                   id={`history-tab-${item.number}`}
                   key={item.number}
                   onClick={() => setActiveNumber(item.number)}
@@ -88,7 +89,12 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
                   }}
                   ref={(element) => { tabRefs.current[index] = element; }}
                   role="tab"
-                  style={{ "--timeline-label-track": timelineTrack, left: item.timelinePosition } as CSSProperties}
+                  style={{
+                    "--timeline-label-track": timelineTrack,
+                    "--timeline-node-bridge": `${Math.max(Math.abs(timelineNodeOffset) - 18, 0)}px`,
+                    "--timeline-node-offset": `${timelineNodeOffset}px`,
+                    left: item.timelinePosition,
+                  } as CSSProperties}
                   tabIndex={isActive ? 0 : -1}
                   type="button"
                 >
@@ -141,7 +147,9 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
 
 function distributeTimelineLabels(milestones: HistoryMilestone[]) {
   const lastPositions: Record<HistoryMilestone["timelineLane"], number[]> = { above: [], below: [] };
+  const lastNodePositions: number[] = [];
   const minimumGap = 16.5;
+  const minimumNodeGap = 4.8;
 
   return milestones.map((item) => {
     const position = Number.parseFloat(item.timelinePosition);
@@ -149,6 +157,10 @@ function distributeTimelineLabels(milestones: HistoryMilestone[]) {
     let timelineTrack = tracks.findIndex((lastPosition) => position - lastPosition >= minimumGap);
     if (timelineTrack === -1) timelineTrack = tracks.length;
     tracks[timelineTrack] = position;
-    return { item, timelineTrack };
+    let nodeTrack = lastNodePositions.findIndex((lastPosition) => position - lastPosition >= minimumNodeGap);
+    if (nodeTrack === -1) nodeTrack = lastNodePositions.length;
+    lastNodePositions[nodeTrack] = position;
+    const timelineNodeOffset = nodeTrack === 0 ? 0 : nodeTrack % 2 === 1 ? -36 * Math.ceil(nodeTrack / 2) : 36 * Math.ceil(nodeTrack / 2);
+    return { item, timelineNodeOffset, timelineTrack };
   });
 }

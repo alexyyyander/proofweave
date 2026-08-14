@@ -2791,15 +2791,19 @@ a.auth-provider:hover, .auth-provider-button:hover { border-color: #8295d5; box-
 .history-timepoint-copy time { color: var(--ink-faint); font-family: var(--font-geist-mono), monospace; font-size: 7px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
 .history-timepoint-copy strong { font-family: Georgia, "Times New Roman", serif; font-size: 14px; font-weight: 400; letter-spacing: -.02em; line-height: 1.05; }
 .history-timepoint-copy em { color: #8b6315; font-size: 7px; font-style: normal; font-weight: 750; letter-spacing: .07em; text-transform: uppercase; }
-.history-timepoint-node { align-items: center; background: #e5eee8; border: 1px solid #78a286; border-radius: 50%; color: #315a43; display: flex; height: 36px; justify-content: center; transition: box-shadow .16s ease, transform .16s ease; width: 36px; }
+.history-timepoint-node { align-items: center; background: #e5eee8; border: 1px solid #78a286; border-radius: 50%; color: #315a43; display: flex; height: 36px; justify-content: center; position: relative; transform: translateY(var(--timeline-node-offset)); transition: box-shadow .16s ease, transform .16s ease; width: 36px; }
+.history-timepoint.is-node-above::before, .history-timepoint.is-node-below::before { display: none; }
+.history-timepoint.is-node-above .history-timepoint-node::after, .history-timepoint.is-node-below .history-timepoint-node::after { background: #b4b5b6; content: ""; left: 50%; position: absolute; width: 1px; }
+.history-timepoint.is-node-above .history-timepoint-node::after { height: var(--timeline-node-bridge); top: 100%; }
+.history-timepoint.is-node-below .history-timepoint-node::after { bottom: 100%; height: var(--timeline-node-bridge); }
 .history-timepoint-node b { font-family: var(--font-geist-mono), monospace; font-size: 8px; }
 .history-timepoint.tone-reviewed .history-timepoint-node { background: #e9edfb; border-color: #8fa0d6; color: #4057aa; }
 .history-timepoint.tone-reproduced .history-timepoint-node { background: #eeece4; border-color: #a59d89; color: #665f4d; }
 .history-timepoint.tone-announced .history-timepoint-node { background: #f4ddb0; border-color: #bd9142; color: #725115; }
-.history-timepoint:hover .history-timepoint-node { transform: scale(1.08); }
+.history-timepoint:hover .history-timepoint-node { transform: translateY(var(--timeline-node-offset)) scale(1.08); }
 .history-timepoint:focus-visible { outline: 0; }
 .history-timepoint:focus-visible .history-timepoint-node { outline: 2px solid var(--indigo); outline-offset: 3px; }
-.history-timepoint.is-active .history-timepoint-node { box-shadow: 0 0 0 5px #f4f1e9, 0 0 0 7px var(--navy); transform: scale(1.08); }
+.history-timepoint.is-active .history-timepoint-node { box-shadow: 0 0 0 5px #f4f1e9, 0 0 0 7px var(--navy); transform: translateY(var(--timeline-node-offset)) scale(1.08); }
 .history-timepoint.is-active .history-timepoint-copy strong { color: var(--indigo); }
 .history-panels { min-width: 0; }
 .history-panel { animation: history-panel-in .22s ease both; background: #fff; border: 1px solid #d6d4cc; min-height: 520px; padding: 32px; }
