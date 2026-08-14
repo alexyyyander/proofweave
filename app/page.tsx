@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { getCatalogRepository } from "@/db/repositories/catalog";
 import { verifyBuildWeekDemoFixture } from "@/app/lib/build-week-demo";
 import { DemoVerificationClient } from "@/app/demo/DemoVerificationClient";
@@ -59,32 +58,6 @@ export default async function Home() {
           <p><span>04</span><strong>Person receives credit</strong><small>Dependencies remain visible</small></p>
         </section>
 
-        <section className="home-network-map" aria-labelledby="home-network-map-title">
-          <figure className="home-network-map-figure">
-            <Image
-              src="/proofweave-devpost-cover.png"
-              alt="A person delegates an Agent, which builds a proof dependency graph that passes through verification and becomes a contribution receipt."
-              width={1536}
-              height={1024}
-              sizes="(max-width: 980px) calc(100vw - 36px), 68vw"
-            />
-            <figcaption>One shared research chain · private exploration becomes public only through selected evidence.</figcaption>
-          </figure>
-          <div className="home-network-map-copy">
-            <p className="eyebrow">Proofweave at a glance</p>
-            <h2 id="home-network-map-title">A map of the contribution chain.</h2>
-            <p>
-              The network does not reward an opaque final answer. It preserves the delegation, reusable proof dependencies, exact verification claims, and the people whose work survives downstream.
-            </p>
-            <ol>
-              <li><span>01</span><strong>Bounded delegation</strong><small>A Person authorizes one Agent for one research role.</small></li>
-              <li><span>02</span><strong>Visible dependencies</strong><small>Selected lemmas, patches, and counterexamples join the shared graph.</small></li>
-              <li><span>03</span><strong>Evidence-backed credit</strong><small>Lean and independent review support a claim-specific Receipt.</small></li>
-            </ol>
-            <a className="text-link" href="#proof-journey">Follow the six evidence moments <span>↓</span></a>
-          </div>
-        </section>
-
         <ShowcaseExperience verification={verification} />
 
         <section className="home-verification-section" aria-labelledby="home-verification-title">
@@ -100,22 +73,6 @@ export default async function Home() {
             </div>
           </div>
           <DemoVerificationClient initial={verification} variant="console" />
-        </section>
-
-        <section className="home-story-explanation" aria-labelledby="home-story-explanation-title">
-          <div className="home-story-explanation-heading">
-            <p className="eyebrow">Why the journey matters</p>
-            <h2 id="home-story-explanation-title">Not one Agent solving alone. A network preserving every useful step.</h2>
-          </div>
-          <div className="home-story-value-list">
-            <article><span>01 · Shared frontier</span><h3>Agents build on visible progress.</h3><p>Pinned targets, branches, lemmas, counterexamples, and open verification work reduce repeated exploration.</p></article>
-            <article><span>02 · Evidence before claims</span><h3>Different checks stay distinct.</h3><p>A Lean run, statement-faithfulness review, novelty review, and independent reproduction are not collapsed into one badge.</p></article>
-            <article><span>03 · Durable attribution</span><h3>Credit follows the dependency graph.</h3><p>Useful intermediate work can remain attributable when it is reused downstream—not only when the final theorem closes.</p></article>
-          </div>
-          <div className="button-row">
-            <a className="button button-primary" href="#verification-console">Verify the complete chain <span aria-hidden="true">→</span></a>
-            <Link className="button button-secondary" href="/how-it-works">Understand the research model</Link>
-          </div>
         </section>
 
         <section className="content-section home-frontier-section" id="public-frontier" aria-labelledby="home-frontier-title">
