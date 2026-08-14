@@ -3318,3 +3318,87 @@ a.auth-provider:hover, .auth-provider-button:hover { border-color: #8295d5; box-
   .information-path-grid { margin-bottom: 34px; margin-top: 28px; }
   .information-path-grid > a { min-height: 210px; }
 }
+
+/* Final visual simplification pass: fewer oversized blocks, clearer reading
+   measures, and one calmer density across the four primary surfaces. */
+.app-shell .page-main {
+  padding-bottom: 72px;
+  padding-top: 36px;
+}
+
+.home-story-hero {
+  gap: clamp(42px, 6vw, 84px);
+  min-height: 560px;
+  padding-bottom: 60px;
+  padding-top: 68px;
+}
+.home-story-hero h1 {
+  font-size: clamp(50px, 5.4vw, 74px);
+  line-height: .97;
+  max-width: 780px;
+}
+.home-story-lede { font-size: clamp(15px, 1.2vw, 18px); max-width: 650px; }
+.home-story-summary { max-width: 330px; }
+.home-network-map { padding-bottom: 60px; padding-top: 60px; }
+.home-story-explanation { padding-bottom: 68px; padding-top: 68px; }
+.home-story-explanation-heading { gap: 34px; margin-bottom: 36px; }
+.home-story-value-list article { min-height: 198px; padding: 20px; }
+.home-story-value-list h3 { margin-top: 30px; }
+
+.research-index-hero { gap: 46px; padding-bottom: 30px; padding-top: 34px; }
+.research-index-hero h1 { font-size: clamp(40px, 4.4vw, 62px); }
+.research-index-summary { margin-bottom: 30px; }
+.research-index-toolbar { background: #fff; border: 1px solid var(--line); padding: 12px; }
+.research-index-layout { gap: 14px; grid-template-columns: 220px minmax(0, 1fr); }
+.research-index-filters { top: 14px; }
+.research-result-list { gap: 8px; }
+.research-result-card { padding: 17px; }
+.research-result-title h3 { font-size: 24px; margin-top: 14px; }
+.research-result-statement { font-size: 12px; }
+.research-result-signals dd { font-size: 10px; }
+.research-result-footer .button { font-size: 10px; }
+
+.information-hub-hero { padding-bottom: 38px; padding-top: 40px; }
+.information-hub-hero h1 { font-size: clamp(43px, 4.6vw, 62px); }
+.information-path-grid { margin-bottom: 52px; margin-top: 34px; }
+.information-path-grid > a { min-height: 228px; padding: 20px; }
+.information-path-grid h2 { margin-top: 30px; }
+.about-definition { padding-bottom: 54px; padding-top: 54px; }
+.about-definition h2 { font-size: 38px; }
+.about-project-card { padding-bottom: 34px; padding-top: 34px; }
+.hub-next-action { padding-bottom: 12px; padding-top: 54px; }
+
+.my-work-main { padding-top: 38px; }
+.my-work-hero { gap: 30px; padding-bottom: 28px; }
+.my-work-summary { margin-top: 18px; }
+.my-work-summary > div, .my-work-summary > a { min-height: 90px; padding: 13px; }
+.my-work-summary strong { font-size: 27px; }
+.my-work-agent { margin-bottom: 22px; }
+.my-work-sections { gap: 26px; }
+.my-work-card { min-height: 280px; padding: 18px; }
+.my-work-card h3 { font-size: 24px; margin-top: 20px; }
+.my-work-card-meta { margin-bottom: 16px; }
+
+@media (max-width: 900px) {
+  .home-story-hero { min-height: 0; }
+  .research-index-layout { grid-template-columns: 190px minmax(0, 1fr); }
+  .information-hub-hero { padding-bottom: 32px; padding-top: 34px; }
+}
+
+@media (max-width: 620px) {
+  .app-shell .page-main { padding-bottom: 58px; padding-top: 24px; }
+  .home-story-hero { gap: 42px; padding-bottom: 50px; padding-top: 48px; }
+  .home-story-hero h1 { font-size: 46px; }
+  .home-network-map { padding-bottom: 46px; padding-top: 46px; }
+  .home-story-explanation { padding-bottom: 54px; padding-top: 54px; }
+  .research-index-hero { padding-bottom: 24px; padding-top: 26px; }
+  .research-index-hero h1 { font-size: 42px; }
+  .research-result-card { padding-bottom: 16px; padding-top: 16px; }
+  .information-hub-hero { padding-bottom: 30px; padding-top: 28px; }
+  .information-path-grid { margin-bottom: 38px; margin-top: 26px; }
+  .information-path-grid > a { min-height: 198px; }
+  .about-definition { padding-bottom: 42px; padding-top: 42px; }
+  .about-definition h2 { font-size: 34px; }
+  .my-work-main { padding-top: 26px; }
+  .my-work-card { min-height: 0; }
+}
