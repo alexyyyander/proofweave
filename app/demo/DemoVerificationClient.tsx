@@ -71,6 +71,7 @@ export function DemoVerificationClient({
     : isTamperResult && verification.status === "failed"
       ? "Tamper detected"
       : verification.status === "verified" ? "All checks passed" : "Verification failed";
+  const consoleClassName = variant === "console" ? "demo-console demo-console-compact" : "demo-console";
 
   return (
     <>
@@ -141,7 +142,7 @@ export function DemoVerificationClient({
         </div>
       </section>}
 
-      <section className="demo-console" id="verification-console" aria-labelledby="verification-title">
+      <section className={consoleClassName} id="verification-console" aria-labelledby="verification-title">
       <div className="demo-console-heading">
         <div>
           <p className="eyebrow">Live protocol verification</p>

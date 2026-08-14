@@ -2537,16 +2537,42 @@ a.auth-provider:hover, .auth-provider-button:hover { border-color: #8295d5; box-
 
 /* These sections used to cap the border box at 1240px, which made their
    content rail 56px narrower than the surrounding full-width sections. */
-.demo-walkthrough,
-.demo-console,
-.demo-honesty-grid,
-.demo-closing {
+.demo-shell .demo-walkthrough,
+.demo-shell .demo-console,
+.demo-shell .demo-honesty-grid,
+.demo-shell .demo-closing {
   margin-left: 0;
   margin-right: 0;
   max-width: none;
   padding-left: var(--demo-page-gutter);
   padding-right: var(--demo-page-gutter);
 }
+
+/* The homepage uses the same verification engine as /demo, but its control
+   surface belongs to the light Overview rail rather than the dark audit page. */
+.demo-console-compact { padding-bottom: 58px; padding-top: 42px; }
+.demo-console-compact .demo-console-heading { border-top: 1px solid var(--line); padding-top: 30px; }
+.demo-console-compact .demo-console-grid { margin-top: 32px; }
+.demo-console-compact .demo-record-card { background: #e7edf8; border: 1px solid #c9d3e9; color: var(--ink); }
+.demo-console-compact .demo-record-card .micro-label { color: var(--indigo); }
+.demo-console-compact .demo-record-card h3 { color: var(--ink); }
+.demo-console-compact .demo-record-card dl, .demo-console-compact .demo-record-card dl > div { border-color: #c9d3e9; }
+.demo-console-compact .demo-record-card dt { color: var(--ink-faint); }
+.demo-console-compact .demo-record-card dd { color: var(--ink-soft); }
+.demo-console-compact .demo-record-card code { color: var(--indigo); }
+.demo-console-compact .demo-execution-boundary { border-color: #8da3e8; }
+.demo-console-compact .demo-execution-boundary strong { color: var(--ink); }
+.demo-console-compact .demo-execution-boundary p { color: var(--ink-soft); }
+.demo-console-compact .demo-tamper-button { border-color: #b7c3da; color: var(--indigo); }
+.demo-console-compact .demo-tamper-button:hover { background: #dce5f8; border-color: var(--indigo); }
+.demo-console-compact .demo-tamper-note { color: var(--ink-faint); }
+.demo-console-compact .demo-tamper-result { border-color: #b84a42; }
+.demo-console-compact .demo-tamper-result span { color: #94332d; }
+.demo-console-compact .demo-tamper-result strong { color: var(--ink); }
+.demo-console-compact .demo-tamper-result p { color: var(--ink-soft); }
+.demo-console-compact .demo-report-links { border-color: #c9d3e9; }
+.demo-console-compact .demo-report-links a { color: var(--indigo); }
+.demo-console-compact .demo-report-links span { color: var(--ink-faint); }
 
 /* Local reproduction is an optional audit affordance, not a peer of the
    browser walkthrough and live verification flow. */
