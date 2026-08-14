@@ -194,7 +194,7 @@ function delegationLabel(scopes: PairingPreview["delegationScopes"]): string {
 function formatExpiry(value: string): string {
   const time = Date.parse(value);
   return Number.isFinite(time)
-    ? new Intl.DateTimeFormat(undefined, { timeStyle: "short" }).format(time)
+    ? new Intl.DateTimeFormat("en-US", { timeZone: "UTC", timeStyle: "short" }).format(time)
     : value;
 }
 

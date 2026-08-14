@@ -162,7 +162,7 @@ export function WorkspaceRecordLinks({
 
 function formatTimestamp(value: string): string {
   const date = new Date(value);
-  return Number.isNaN(date.getTime()) ? "Unknown" : new Intl.DateTimeFormat(undefined, { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" }).format(date);
+  return Number.isNaN(date.getTime()) ? "Unknown" : new Intl.DateTimeFormat("en-US", { timeZone: "UTC", day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" }).format(date);
 }
 
 function attemptStatusLabel(status: McpAttempt["status"]): string {

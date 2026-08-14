@@ -419,7 +419,7 @@ function activeDelegation(profile: DelegationProfile): StoredDelegation | null {
 function formatDate(value: string): string {
   const timestamp = Date.parse(value);
   return Number.isFinite(timestamp)
-    ? new Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(timestamp)
+    ? new Intl.DateTimeFormat("en-US", { timeZone: "UTC", dateStyle: "medium", timeStyle: "short" }).format(timestamp)
     : value;
 }
 

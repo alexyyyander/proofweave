@@ -170,7 +170,8 @@ function isWorkScope(scope: string): scope is AttemptScope {
 
 function formatTime(value: string): string {
   const date = new Date(value);
-  return Number.isNaN(date.getTime()) ? "unknown time" : new Intl.DateTimeFormat(undefined, {
+  return Number.isNaN(date.getTime()) ? "unknown time" : new Intl.DateTimeFormat("en-US", {
+    timeZone: "UTC",
     day: "2-digit",
     month: "short",
     hour: "2-digit",

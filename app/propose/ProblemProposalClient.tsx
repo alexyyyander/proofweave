@@ -106,5 +106,5 @@ export function ProblemProposalClient() {
 
 function formatDate(value: string) {
   const date = new Date(value);
-  return Number.isNaN(date.valueOf()) ? value : new Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(date);
+  return Number.isNaN(date.valueOf()) ? value : new Intl.DateTimeFormat("en-US", { timeZone: "UTC", dateStyle: "medium", timeStyle: "short" }).format(date);
 }
