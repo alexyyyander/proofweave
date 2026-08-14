@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import type { CSSProperties } from "react";
 
 export type EvidenceTone = "formal" | "reviewed" | "reproduced" | "announced";
 
@@ -57,14 +58,16 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
       <div className="history-timeline-viewport">
         <div className="history-time-visual" role="tablist" aria-label="AI mathematics milestones from January to August 2026">
           <div className="history-time-axis" aria-hidden="true"><span className="is-jan">JAN</span><span className="is-mar">MAR</span><span className="is-may">MAY</span><span className="is-jul">JUL</span><span className="is-aug">AUG</span></div>
-          {milestones.map((item, index) => {
+          {distributeTimelineLabels(milestones).map(({ item, timelineTrack }, index) => {
               const isActive = item.number === activeNumber;
+              const position = Number.parseFloat(item.timelinePosition);
+              const edgeClass = position >= 94 ? " is-edge-end" : position <= 6 ? " is-edge-start" : "";
               return (
                 <button
                   aria-controls={`history-panel-${item.number}`}
                   aria-label={`${item.date}: ${item.title}. ${item.evidence}`}
                   aria-selected={isActive}
-                  className={`history-timepoint is-${item.timelineLane} tone-${item.evidenceTone}${isActive ? " is-active" : ""}${item.latest ? " is-latest" : ""}`}
+                  className={`history-timepoint is-${item.timelineLane} tone-${item.evidenceTone}${isActive ? " is-active" : ""}${item.latest ? " is-latest" : ""}${edgeClass}`}
                   id={`history-tab-${item.number}`}
                   key={item.number}
                   onClick={() => setActiveNumber(item.number)}
@@ -85,7 +88,7 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
                   }}
                   ref={(element) => { tabRefs.current[index] = element; }}
                   role="tab"
-                  style={{ left: item.timelinePosition }}
+                  style={{ "--timeline-label-track": timelineTrack, left: item.timelinePosition } as CSSProperties}
                   tabIndex={isActive ? 0 : -1}
                   type="button"
                 >
@@ -134,4 +137,18 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
       </div>
     </section>
   );
+}
+
+function distributeTimelineLabels(milestones: HistoryMilestone[]) {
+  const lastPositions: Record<HistoryMilestone["timelineLane"], number[]> = { above: [], below: [] };
+  const minimumGap = 16.5;
+
+  return milestones.map((item) => {
+    const position = Number.parseFloat(item.timelinePosition);
+    const tracks = lastPositions[item.timelineLane];
+    let timelineTrack = tracks.findIndex((lastPosition) => position - lastPosition >= minimumGap);
+    if (timelineTrack === -1) timelineTrack = tracks.length;
+    tracks[timelineTrack] = position;
+    return { item, timelineTrack };
+  });
 }
