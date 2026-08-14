@@ -1059,6 +1059,83 @@ export const researchNodeCitations = sqliteTable(
   ],
 );
 
+// Curated public research records are deliberately separate from
+// Agent-signed research nodes. They preserve the scholarly chain around a
+// target without implying that an external paper, announcement, or
+// formalization has been verified by Proofweave.
+export const curatedResearchRecords = sqliteTable(
+  "curated_research_records",
+  {
+    id: text("id").primaryKey(),
+    problemRevisionId: text("problem_revision_id")
+      .notNull()
+      .references(() => problemRevisions.id, { onDelete: "restrict" }),
+    role: text("role", {
+      enum: [
+        "origin",
+        "definition",
+        "special_case",
+        "key_lemma",
+        "counterexample",
+        "negative_result",
+        "progress",
+        "formalization",
+        "reproduction",
+        "announcement",
+        "current_state",
+      ],
+    }).notNull(),
+    kind: text("kind", {
+      enum: [
+        "paper",
+        "preprint",
+        "repository",
+        "announcement",
+        "formalization",
+        "result",
+        "review",
+      ],
+    }).notNull(),
+    title: text("title").notNull(),
+    authors: text("authors").notNull(),
+    summary: text("summary").notNull(),
+    sourceSystem: text("source_system").notNull(),
+    sourceUrl: text("source_url").notNull(),
+    sourceIdentifier: text("source_identifier").notNull(),
+    occurredAt: text("occurred_at").notNull(),
+    curationStatus: text("curation_status", {
+      enum: [
+        "source_asserted",
+        "curator_reviewed",
+        "lean_reproduced",
+        "disputed",
+        "superseded",
+      ],
+    }).notNull(),
+    leanRepositoryUrl: text("lean_repository_url"),
+    leanCommit: text("lean_commit"),
+    leanDeclaration: text("lean_declaration"),
+    position: integer("position").notNull().default(0),
+    createdAt,
+  },
+  (table) => [
+    uniqueIndex("curated_research_records_source_idx").on(
+      table.problemRevisionId,
+      table.sourceSystem,
+      table.sourceIdentifier,
+    ),
+    index("curated_research_records_problem_time_idx").on(
+      table.problemRevisionId,
+      table.occurredAt,
+      table.position,
+    ),
+    index("curated_research_records_status_idx").on(
+      table.curationStatus,
+      table.occurredAt,
+    ),
+  ],
+);
+
 // A pool fixes a non-financial credit budget and policy for one immutable
 // problem revision. Its lifecycle is projected exclusively from append-only
 // events; compute and token usage never write to this ledger.
