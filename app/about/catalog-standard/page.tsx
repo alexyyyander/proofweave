@@ -15,7 +15,7 @@ const gates = [
 ] as const;
 
 export default function CatalogStandardPage() {
-  return <div className="site-shell app-shell"><Header active="about" /><main id="main-content" tabIndex={-1} className="page-main reading-main catalog-reading-main">
+  return <div className="site-shell app-shell"><Header active="about" activeHref="/about/catalog-standard" /><main id="main-content" tabIndex={-1} className="page-main reading-main catalog-reading-main">
     <div className="breadcrumb"><Link href="/about">About</Link><span> / </span><span>Catalog standard</span></div>
     <section className="reading-hero"><p className="eyebrow">Catalog standard</p><h1>Before a famous problem is presented as current.</h1><p>Uploading a Lean statement creates a source-pinned record. It does not establish that a problem is still open, canonically formulated, or updated with the newest result.</p></section>
     <PageSectionNav links={[{ href: "#catalog-gates", label: "Five catalog gates" }, { href: "#review-states", label: "Review states" }, { href: "#boundary", label: "Current boundary" }]} />

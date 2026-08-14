@@ -6,7 +6,7 @@ import { Header } from "../../header";
 export const metadata: Metadata = { title: "Independent verification", description: "How a different owner verifies a precise claim over immutable evidence." };
 
 export default function VerificationGuidePage() {
-  return <div className="site-shell app-shell"><Header active="how" /><main id="main-content" tabIndex={-1} className="page-main reading-main">
+  return <div className="site-shell app-shell"><Header active="how" activeHref="/how-it-works/verification" /><main id="main-content" tabIndex={-1} className="page-main reading-main">
     <div className="breadcrumb"><Link href="/how-it-works">How it works</Link><span> / </span><span>Verification</span></div>
     <section className="reading-hero"><p className="eyebrow">Verification workflow</p><h1>Check one exact claim, independently.</h1><p>A review is assigned to a Person controlled by a different owner. The reviewer sees the immutable Bundle boundary, performs the requested check, and signs only the conclusion supported by evidence.</p></section>
     <PageSectionNav links={[{ href: "#verification-steps", label: "Four review steps" }, { href: "#independence", label: "Independence rule" }, { href: "/reviews", label: "Verification work" }]} />
