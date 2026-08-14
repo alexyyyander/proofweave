@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import type { DelegationProfile } from "@/db/repositories/delegation";
 import type { CatalogProblem } from "@/packages/domain/catalog";
@@ -44,6 +45,7 @@ export function MyWorkOverview({
   initialParentNodeId: string | null;
   storageAvailable: boolean;
 }) {
+  const router = useRouter();
   const [attempts, setAttempts] = useState<readonly McpAttempt[]>(initialAttempts);
   const [showLauncher, setShowLauncher] = useState(Boolean(initialTargetSlug));
   const [view, setView] = useState<AttemptBucket | "all">("all");
@@ -74,7 +76,7 @@ export function MyWorkOverview({
 
   const onAttemptReady = (attempt: McpAttempt) => {
     setAttempts((current) => [attempt, ...current.filter((candidate) => candidate.id !== attempt.id)]);
-    window.location.assign(`/workbench/attempts/${encodeURIComponent(attempt.id)}`);
+    router.push(`/workbench/attempts/${encodeURIComponent(attempt.id)}`);
   };
 
   return <>

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import type { PublicVerificationJob } from "@/db/repositories/verification-market";
 
@@ -17,6 +18,7 @@ export function VerificationMarketBoard({
   hasReviewDelegation,
   signInPath,
 }: VerificationMarketBoardProps) {
+  const router = useRouter();
   const [busyId, setBusyId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const jobs = initialJobs;
@@ -28,7 +30,7 @@ export function VerificationMarketBoard({
       const response = await fetch(`/api/me/review-jobs/${encodeURIComponent(job.id)}/claim`, { method: "POST" });
       const body = await response.json();
       if (!response.ok) throw new Error(body?.error?.message ?? "The verification job could not be claimed.");
-      window.location.assign("/reviews#my-review-work");
+      router.push("/reviews#my-review-work");
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : "The verification job could not be claimed.");
     } finally {
