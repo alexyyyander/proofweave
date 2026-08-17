@@ -22,11 +22,15 @@ export class LibsqlD1AdapterConfigurationError extends Error {
  * OAuth consumption, Run transitions, review admission, and Receipt issue.
  */
 export class LibsqlD1Database {
-  constructor(client) {
-    if (!client || typeof client.execute !== "function" || typeof client.batch !== "function") {
+  constructor(client, { clientFactory = null } = {}) {
+    const hasClient = client
+      && typeof client.execute === "function"
+      && typeof client.batch === "function";
+    if (!hasClient && typeof clientFactory !== "function") {
       throw new LibsqlD1AdapterConfigurationError("libSQL D1 adapter requires a client with execute() and batch().");
     }
-    this.client = client;
+    this.client = hasClient ? client : null;
+    this.clientFactory = typeof clientFactory === "function" ? clientFactory : null;
     this.owner = Object.freeze({});
   }
 
@@ -48,7 +52,7 @@ export class LibsqlD1Database {
       }
       return { sql: statement[statementSql], args: statement[statementArgs] };
     });
-    const results = await this.client.batch(queries, "write");
+    const results = await this.withClient((client) => client.batch(queries, "write"));
     if (!Array.isArray(results) || results.length !== queries.length) {
       throw new LibsqlD1AdapterConfigurationError("libSQL returned an incomplete batch result.");
     }
@@ -56,7 +60,29 @@ export class LibsqlD1Database {
   }
 
   close() {
-    this.client.close?.();
+    this.client?.close?.();
+  }
+
+  async execute(sql, args) {
+    return this.withClient((client) => client.execute({ sql, args }));
+  }
+
+  async withClient(operation) {
+    const client = this.client ?? this.clientFactory?.();
+    if (!client || typeof client.execute !== "function" || typeof client.batch !== "function") {
+      throw new LibsqlD1AdapterConfigurationError("libSQL client factory returned an invalid client.");
+    }
+    try {
+      return await operation(client);
+    } finally {
+      if (this.client === null) {
+        try {
+          await client.close?.();
+        } catch {
+          // A failed close must not hide the database operation's result.
+        }
+      }
+    }
   }
 }
 
@@ -106,10 +132,7 @@ export class LibsqlD1PreparedStatement {
   }
 
   execute() {
-    return this.database.client.execute({
-      sql: this[statementSql],
-      args: this[statementArgs],
-    });
+    return this.database.execute(this[statementSql], this[statementArgs]);
   }
 }
 
@@ -134,11 +157,12 @@ export function createRemoteLibsqlD1Database({
   if (!allowLocal && (typeof authToken !== "string" || authToken.length < 16 || authToken.length > 16_384)) {
     throw new LibsqlD1AdapterConfigurationError("Remote libSQL requires a bounded authentication token.");
   }
-  const client = clientFactory({
-    url: normalizedUrl,
-    ...(authToken ? { authToken } : {}),
+  return new LibsqlD1Database(null, {
+    clientFactory: () => clientFactory({
+      url: normalizedUrl,
+      ...(authToken ? { authToken } : {}),
+    }),
   });
-  return new LibsqlD1Database(client);
 }
 
 function requireDatabaseUrl(value, { allowLocal }) {

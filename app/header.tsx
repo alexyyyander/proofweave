@@ -17,9 +17,9 @@ export async function Header({ active, activeHref }: { active: ActivePage; activ
           <summary aria-label="Open Proofweave directory"><span>Menu</span><i aria-hidden="true">⌄</i></summary>
           <div className="site-directory-popover">
             <div className="site-directory-intro">
-              <Link className="brand directory-brand" href="/" aria-label="Proofweave home"><span className="brand-mark" aria-hidden="true"><i /><i /><i /></span><span>Proofweave</span></Link>
-              <p>Core surfaces first. Supporting modules stay compact and task-oriented.</p>
-              <small>Use Core pages for orientation, Research tools for direct actions, and Reference for supporting context.</small>
+              <strong>Directory</strong>
+              <p>Five core surfaces. Supporting modules stay task-oriented.</p>
+              <small>Use the core pages to orient, act, inspect, and understand.</small>
             </div>
             <nav className="site-directory-groups" aria-label="Proofweave menu">
               {navigationGroups.map((group) => <div key={group.label}>
