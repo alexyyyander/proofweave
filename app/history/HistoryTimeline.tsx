@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import type { CSSProperties } from "react";
 
 export type EvidenceTone = "formal" | "reviewed" | "reproduced" | "announced";
 
@@ -16,7 +17,17 @@ export type HistoryMilestone = {
   evidenceTone: EvidenceTone;
   significance: string;
   sources: Array<{ label: string; href: string }>;
+  reproduction?: {
+    label: string;
+    detail: string;
+    href: string;
+    workspaceHref?: string;
+    workspaceLabel?: string;
+    command?: string;
+  };
   frontier?: boolean;
+  latest?: boolean;
+  special?: "jacobian" | "openai-ten" | "riemann";
   shortTitle: string;
   timelinePosition: string;
   timelineLane: "above" | "below";
@@ -38,23 +49,26 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
     <section className="history-timeline" id="timeline" aria-labelledby="timeline-title">
       <div className="history-timeline-heading">
         <div>
-          <p className="eyebrow">Seven moments · one accelerating frontier</p>
+          <p className="eyebrow">{milestones.length} moments · one accelerating frontier</p>
           <h2 id="timeline-title">Follow the record across 2026.</h2>
         </div>
         <p>Spacing follows publication or announcement time. Clustered nodes show activity accelerating—not stronger evidence. Month-only records sit at mid-month.</p>
       </div>
 
       <div className="history-timeline-viewport">
-        <div className="history-time-visual" role="tablist" aria-label="AI mathematics milestones from January to July 2026">
-          <div className="history-time-axis" aria-hidden="true"><span className="is-jan">JAN</span><span className="is-mar">MAR</span><span className="is-may">MAY</span><span className="is-jul">JUL</span></div>
-          {milestones.map((item, index) => {
+        <div className="history-time-visual" role="tablist" aria-label="AI mathematics milestones from January to August 2026">
+          <div className="history-time-axis" aria-hidden="true"><span className="is-jan">JAN</span><span className="is-mar">MAR</span><span className="is-may">MAY</span><span className="is-jul">JUL</span><span className="is-aug">AUG</span></div>
+          {distributeTimelineLabels(milestones).map(({ item, timelineTrack, timelineNodeOffset }, index) => {
               const isActive = item.number === activeNumber;
+              const position = Number.parseFloat(item.timelinePosition);
+              const edgeClass = position >= 94 ? " is-edge-end" : position <= 6 ? " is-edge-start" : "";
+              const nodeClass = timelineNodeOffset < 0 ? " is-node-above" : timelineNodeOffset > 0 ? " is-node-below" : "";
               return (
                 <button
                   aria-controls={`history-panel-${item.number}`}
                   aria-label={`${item.date}: ${item.title}. ${item.evidence}`}
                   aria-selected={isActive}
-                  className={`history-timepoint is-${item.timelineLane} tone-${item.evidenceTone}${isActive ? " is-active" : ""}${item.frontier ? " is-latest" : ""}`}
+                  className={`history-timepoint is-${item.timelineLane} tone-${item.evidenceTone}${isActive ? " is-active" : ""}${item.latest ? " is-latest" : ""}${edgeClass}${nodeClass}`}
                   id={`history-tab-${item.number}`}
                   key={item.number}
                   onClick={() => setActiveNumber(item.number)}
@@ -75,11 +89,16 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
                   }}
                   ref={(element) => { tabRefs.current[index] = element; }}
                   role="tab"
-                  style={{ left: item.timelinePosition }}
+                  style={{
+                    "--timeline-label-track": timelineTrack,
+                    "--timeline-node-bridge": `${Math.max(Math.abs(timelineNodeOffset) - 18, 0)}px`,
+                    "--timeline-node-offset": `${timelineNodeOffset}px`,
+                    left: item.timelinePosition,
+                  } as CSSProperties}
                   tabIndex={isActive ? 0 : -1}
                   type="button"
                 >
-                  <span className="history-timepoint-copy"><time>{item.date}</time><strong>{item.shortTitle}</strong>{item.frontier ? <em>Latest entry</em> : null}</span>
+                  <span className="history-timepoint-copy"><time>{item.date}</time><strong>{item.shortTitle}</strong>{item.latest ? <em>Latest entry</em> : null}</span>
                   <span className="history-timepoint-node"><b>{item.number}</b></span>
                 </button>
               );
@@ -106,14 +125,16 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
                 </header>
                 <p className="history-entry-summary">{item.summary}</p>
 
-                {item.frontier ? <>
+                {item.special === "jacobian" ? <>
                   <div className="history-jacobian-proof"><div><span>CONSTANT JACOBIAN</span><strong>det JF = −2</strong></div><div><span>NON-INJECTIVITY</span><strong>3 inputs → (−¼, 0, 0)</strong></div></div>
                   <details className="history-jacobian-formula"><summary>Inspect the exact polynomial map <span aria-hidden="true">+</span></summary><div><code>F₁ = (1 + xy)³z + y²(1 + xy)(4 + 3xy)</code><code>F₂ = y + 3x(1 + xy)²z + 3xy²(4 + 3xy)</code><code>F₃ = 2x − 3x²y − x³z</code><p><strong>Collision:</strong> (0, 0, −¼), (1, −3/2, 13/2), and (−1, 3/2, 13/2) all map to (−¼, 0, 0).</p></div></details>
-                </> : null}
+                </> : item.special === "openai-ten" ? <div className="history-ten-proofs"><div><span>PORTFOLIO</span><strong>10 results</strong></div><div><span>PUBLIC ARTIFACT</span><strong>Lean 4 modules</strong></div><details><summary>Show the ten result areas <span aria-hidden="true">+</span></summary><ol><li>Sphere packing</li><li>Binary and spherical codes</li><li>Non-sofic groups</li><li>Connes&apos;s rigidity</li><li>Arithmetic circuit complexity</li><li>Quantum parallel repetition</li><li>Closest vector problem</li><li>Ehrhart&apos;s volume conjecture</li><li>Multicolor Ramsey numbers</li><li>Extremal number conjectures</li></ol></details></div> : item.special === "riemann" ? <div className="history-riemann-proof"><div><span>KNOWN LOWER BOUND</span><strong>41.6% → 67.2%</strong></div><div><span>RH ITSELF</span><strong>Not proved</strong></div></div> : null}
+
+                {item.reproduction ? <div className="history-reproduction-inline"><div><span className="history-reproduction-label">Lean replay path</span><strong>{item.reproduction.label}</strong><p>{item.reproduction.detail}</p>{item.reproduction.command ? <code>{item.reproduction.command}</code> : null}</div><div className="history-reproduction-links"><a href={item.reproduction.href} rel="noreferrer" target="_blank">Open artifact <span aria-hidden="true">↗</span></a>{item.reproduction.workspaceHref && item.reproduction.workspaceLabel ? <a href={item.reproduction.workspaceHref}>{item.reproduction.workspaceLabel} <span aria-hidden="true">→</span></a> : null}</div></div> : null}
 
                 <dl className="history-role-grid"><div><dt>AI contribution</dt><dd>{item.aiRole}</dd></div><div><dt>Human contribution</dt><dd>{item.humanRole}</dd></div><div><dt>{item.frontier ? "Evidence today" : "Why it mattered"}</dt><dd>{item.significance}</dd></div></dl>
 
-                {item.frontier ? <div className="history-frontier-boundary"><strong>What this does—and does not—establish</strong><p>The displayed algebraic claims can be checked now. The scholarly publication and attribution record are still forming, and the two-dimensional Jacobian Conjecture remains open.</p></div> : null}
+                {item.frontier ? <div className="history-frontier-boundary"><strong>What this does—and does not—establish</strong><p>{item.special === "riemann" ? "This improves a lower bound for a related zeta-zero problem. It does not prove or disprove the Riemann Hypothesis; the formal artifact is public, while a Proofweave replay receipt is still pending." : "The displayed algebraic claims can be checked now. The scholarly publication and attribution record are still forming, and the two-dimensional Jacobian Conjecture remains open."}</p></div> : null}
 
                 <footer>{item.sources.map((source) => <a href={source.href} key={source.href} rel="noreferrer" target="_blank">{source.label} <span aria-hidden="true">↗</span></a>)}</footer>
               </article>
@@ -122,4 +143,24 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
       </div>
     </section>
   );
+}
+
+function distributeTimelineLabels(milestones: HistoryMilestone[]) {
+  const lastPositions: Record<HistoryMilestone["timelineLane"], number[]> = { above: [], below: [] };
+  const lastNodePositions: number[] = [];
+  const minimumGap = 16.5;
+  const minimumNodeGap = 4.8;
+
+  return milestones.map((item) => {
+    const position = Number.parseFloat(item.timelinePosition);
+    const tracks = lastPositions[item.timelineLane];
+    let timelineTrack = tracks.findIndex((lastPosition) => position - lastPosition >= minimumGap);
+    if (timelineTrack === -1) timelineTrack = tracks.length;
+    tracks[timelineTrack] = position;
+    let nodeTrack = lastNodePositions.findIndex((lastPosition) => position - lastPosition >= minimumNodeGap);
+    if (nodeTrack === -1) nodeTrack = lastNodePositions.length;
+    lastNodePositions[nodeTrack] = position;
+    const timelineNodeOffset = nodeTrack === 0 ? 0 : nodeTrack % 2 === 1 ? -36 * Math.ceil(nodeTrack / 2) : 36 * Math.ceil(nodeTrack / 2);
+    return { item, timelineNodeOffset, timelineTrack };
+  });
 }

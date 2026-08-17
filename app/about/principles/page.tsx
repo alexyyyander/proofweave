@@ -15,7 +15,7 @@ const principles = [
 ] as const;
 
 export default function PrinciplesPage() {
-  return <div className="site-shell app-shell"><Header active="about" /><main id="main-content" tabIndex={-1} className="page-main reading-main">
+  return <div className="site-shell app-shell"><Header active="about" activeHref="/about/principles" /><main id="main-content" tabIndex={-1} className="page-main reading-main">
     <div className="breadcrumb"><Link href="/about">About</Link><span> / </span><span>Design principles</span></div>
     <section className="reading-hero"><p className="eyebrow">Design principles</p><h1>Six rules that protect useful research.</h1><p>A kernel can verify a proof term. A research network must also preserve what was claimed, what was already known, who controlled the work, and which evidence supports each conclusion.</p></section>
     <PageSectionNav links={[{ href: "#principles", label: "Six principles" }, { href: "#boundary", label: "Contribution boundary" }, { href: "/about/catalog-standard", label: "Catalog standard" }]} />

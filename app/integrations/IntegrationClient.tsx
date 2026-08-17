@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import compatibilityContract from "@/packages/protocol/proofweave-client-compatibility.json";
 import {
@@ -46,6 +47,7 @@ export function IntegrationClient({
   selectedTarget: SelectedTarget | null;
   returnHref: string;
 }) {
+  const router = useRouter();
   const [watchingConnection, setWatchingConnection] = useState(false);
   const [connectionNotice, setConnectionNotice] = useState<string | null>(null);
   const pageHref = integrationRefreshHref({
@@ -70,7 +72,7 @@ export function IntegrationClient({
         if (response.ok && payload?.summary?.agent?.connected) {
           if (!cancelled) {
             setConnectionNotice("Connection approved. Returning to your selected research…");
-            window.location.assign(returnHref);
+            router.replace(returnHref);
           }
           return;
         }
@@ -90,7 +92,7 @@ export function IntegrationClient({
       cancelled = true;
       if (timer !== null) window.clearTimeout(timer);
     };
-  }, [connection, returnHref, watchingConnection]);
+  }, [connection, returnHref, router, watchingConnection]);
 
   return <>
     {selectedTarget && <section className="integration-target-context" aria-label="Selected research target">

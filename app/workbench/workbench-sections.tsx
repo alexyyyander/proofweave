@@ -157,7 +157,7 @@ export function DelegationSummary({ profile }: { profile: DelegationProfile | nu
   const certificate = active?.id ?? "No active certificate";
   const fingerprint = signingKey?.fingerprint ?? "No active signing key";
   const expiration = active
-    ? new Date(active.validUntil).toLocaleDateString(undefined, { day: "2-digit", month: "short", year: "numeric" })
+    ? new Date(active.validUntil).toLocaleDateString("en-US", { timeZone: "UTC", day: "2-digit", month: "short", year: "numeric" })
     : "Set up required";
 
   return <section className="delegation-summary" aria-label="Delegation certificate">
@@ -570,7 +570,7 @@ function eventStyle(type: McpAttemptEvent["type"]): "branch" | "evidence" | "che
 
 function formatTimestamp(value: string): string {
   const date = new Date(value);
-  return Number.isNaN(date.getTime()) ? "Unknown time" : new Intl.DateTimeFormat(undefined, { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" }).format(date);
+  return Number.isNaN(date.getTime()) ? "Unknown time" : new Intl.DateTimeFormat("en-US", { timeZone: "UTC", day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" }).format(date);
 }
 
 function activeDelegation(profile: DelegationProfile | null) {

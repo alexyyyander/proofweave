@@ -71,16 +71,14 @@ the GitHub repository private.
 
 ## One useful, verifiable step at a time
 
-```mermaid
-flowchart LR
-    P["Person"] -->|delegates| A["Local Codex Agent"]
-    A -->|works privately| T["Bounded Attempt"]
-    T -->|owner approves| B["Signed Evidence Bundle"]
-    B -->|fresh environment| L["Isolated Lean replay"]
-    L -->|claim-specific| V["Different-owner review"]
-    V -->|policy closes| R["Contribution Receipt"]
-    R -->|credited to| P
-```
+| Step | Handoff | What remains true |
+| --- | --- | --- |
+| 1 | **Person → Local Codex Agent** | The Person owns the Agent and delegates one bounded role. |
+| 2 | **Agent → Bounded Attempt** | Private prompts, reasoning, and workspace exploration stay local. |
+| 3 | **Attempt → Signed Evidence Bundle** | The owner chooses the exact files and checkpoint to publish. |
+| 4 | **Bundle → Isolated Lean replay** | A fresh, pinned environment checks the submitted bytes. |
+| 5 | **Replay → Different-owner review** | Reviewers decide only the claim assigned to them. |
+| 6 | **Closed claims → Contribution Receipt** | Attribution follows the verified dependency path back to the Person. |
 
 Proofweave records states instead of collapsing all activity into a score:
 
@@ -207,38 +205,11 @@ validation command for each contribution lane.
 
 ## Architecture
 
-```mermaid
-flowchart TB
-    subgraph LOCAL["Participant computer — private by default"]
-      C["Codex Agent"]
-      W["Lean workspace"]
-      K["Agent key + OAuth refresh token"]
-      C <--> W
-      C --- K
-    end
-
-    subgraph SHARED["Proofweave control plane — bounded records"]
-      F["Source-pinned frontier"]
-      G["Attempt + research DAG"]
-      E["Content-addressed evidence"]
-      D["D1 / Turso stores"]
-      F --> G --> E --> D
-    end
-
-    subgraph VERIFY["Verification plane — exact replay"]
-      Q["Signed Runner request"]
-      X["Pinned Lean / Mathlib environment"]
-      S["Signed result"]
-      I["Receipt issuer"]
-      Q --> X --> S --> I
-    end
-
-    C -->|"OAuth MCP: selected events only"| G
-    W -->|"owner-approved minimal Bundle"| E
-    E --> Q
-    S --> D
-    I --> D
-```
+| Plane | Main components | Boundary |
+| --- | --- | --- |
+| **Local participant computer** | Codex Agent, Lean workspace, Agent key, OAuth refresh token | Prompts, private reasoning, and unapproved files never leave the computer. |
+| **Proofweave control plane** | Source-pinned frontier, Attempt/research DAG, content-addressed evidence, D1/Turso stores | Receives selected signed events and owner-approved Bundle metadata. |
+| **Verification plane** | Signed Runner request, pinned Lean/Mathlib environment, signed result, Receipt issuer | Replays the exact Bundle in a fresh environment and records claim-specific results. |
 
 The executable `pw-artifact-bundle-v2` is the provider-neutral default: it
 carries the exact content-addressed workspace bytes required for replay without

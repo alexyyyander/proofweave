@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { CatalogProblemSummary } from "@/packages/domain/catalog";
 import { StatusStack } from "../ui";
 
@@ -27,12 +28,42 @@ type CatalogSort = "recommended" | "title" | "subject";
 export type ExploreCatalogProblem = CatalogProblemSummary;
 
 export function ExploreCatalog({ projects }: { projects: readonly ExploreCatalogProblem[] }) {
-  const [opportunityFilter, setOpportunityFilter] = useState<OpportunityFilter>("all");
-  const [scopeFilter, setScopeFilter] = useState<ScopeFilter>("all");
-  const [subjectFilter, setSubjectFilter] = useState("all");
-  const [query, setQuery] = useState("");
-  const [sort, setSort] = useState<CatalogSort>("recommended");
+  const searchParams = useSearchParams();
+  const requestedOpportunity = searchParams.get("kind");
+  const requestedScope = searchParams.get("scope");
+  const requestedSort = searchParams.get("sort");
+  const initialOpportunityFilter: OpportunityFilter = isOpportunityFilter(requestedOpportunity) ? requestedOpportunity : "all";
+  const initialScopeFilter: ScopeFilter = isScopeFilter(requestedScope) ? requestedScope : "all";
+  const initialSort: CatalogSort = isCatalogSort(requestedSort) ? requestedSort : "recommended";
+  const [opportunityFilter, setOpportunityFilter] = useState<OpportunityFilter>(initialOpportunityFilter);
+  const [scopeFilter, setScopeFilter] = useState<ScopeFilter>(initialScopeFilter);
+  const [subjectFilter, setSubjectFilter] = useState(searchParams.get("subject") ?? "all");
+  const [query, setQuery] = useState(searchParams.get("q") ?? "");
+  const [sort, setSort] = useState<CatalogSort>(initialSort);
   const [visibleCount, setVisibleCount] = useState(pageSize);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (query.trim()) params.set("q", query.trim());
+    if (opportunityFilter !== "all") params.set("kind", opportunityFilter);
+    if (scopeFilter !== "all") params.set("scope", scopeFilter);
+    if (subjectFilter !== "all") params.set("subject", subjectFilter);
+    if (sort !== "recommended") params.set("sort", sort);
+    const nextSearch = params.toString();
+    window.history.replaceState(window.history.state, "", `${window.location.pathname}${nextSearch ? `?${nextSearch}` : ""}${window.location.hash}`);
+  }, [query, opportunityFilter, scopeFilter, subjectFilter, sort]);
+
+  useEffect(() => {
+    const focusSearch = (event: KeyboardEvent) => {
+      const target = event.target as HTMLElement | null;
+      if (event.key !== "/" || target?.matches("input, textarea, select, [contenteditable=\"true\"]")) return;
+      event.preventDefault();
+      searchInputRef.current?.focus();
+    };
+    window.addEventListener("keydown", focusSearch);
+    return () => window.removeEventListener("keydown", focusSearch);
+  }, []);
 
   const subjects = useMemo(() => {
     const unique = new Map<string, ExploreCatalogProblem["subjects"][number]>();
@@ -101,7 +132,7 @@ export function ExploreCatalog({ projects }: { projects: readonly ExploreCatalog
     <div className="research-index-toolbar" aria-label="Research index controls">
       <label className="research-index-search">
         <span>Search title, subject, source, or Lean declaration</span>
-        <input value={query} onChange={(event) => { setQuery(event.target.value); setVisibleCount(pageSize); }} placeholder="Try “Erdos”, “topology”, or a declaration name" type="search" />
+        <input ref={searchInputRef} aria-keyshortcuts="/" value={query} onChange={(event) => { setQuery(event.target.value); setVisibleCount(pageSize); }} placeholder="Try “Erdos”, “topology”, or a declaration name" type="search" />
       </label>
       <label className="research-index-sort"><span>Sort</span><select value={sort} onChange={(event) => updateFilter(setSort, event.target.value as CatalogSort)}><option value="recommended">Recommended</option><option value="title">Title A–Z</option><option value="subject">MSC subject</option></select></label>
       <button className="button button-primary research-index-clear" onClick={resetResults} type="button" disabled={!query && activeFilterCount === 0 && sort === "recommended"}>Reset</button>
@@ -167,4 +198,16 @@ function workLabel(project: ExploreCatalogProblem) {
   if (project.proofState === "proved") return "Lean proof available";
   if (project.researchStatus === "research_solved") return "Known result · proof wanted";
   return "Open conjecture";
+}
+
+function isOpportunityFilter(value: string | null): value is OpportunityFilter {
+  return opportunityFilters.some((item) => item.id === value);
+}
+
+function isScopeFilter(value: string | null): value is ScopeFilter {
+  return scopeFilters.some((item) => item.id === value);
+}
+
+function isCatalogSort(value: string | null): value is CatalogSort {
+  return value === "recommended" || value === "title" || value === "subject";
 }

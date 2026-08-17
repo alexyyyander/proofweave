@@ -14,7 +14,7 @@ const records = [
 ] as const;
 
 export default function ContributionRecordsGuidePage() {
-  return <div className="site-shell app-shell"><Header active="how" /><main id="main-content" tabIndex={-1} className="page-main reading-main">
+  return <div className="site-shell app-shell"><Header active="how" activeHref="/how-it-works/contribution-records" /><main id="main-content" tabIndex={-1} className="page-main reading-main">
     <div className="breadcrumb"><Link href="/how-it-works">How it works</Link><span> / </span><span>Contribution records</span></div>
     <section className="reading-hero"><p className="eyebrow">Contribution records</p><h1>Credit the proof path, not just the last submitter.</h1><p>Proofweave keeps research activity, formal evidence, independent decisions, and final attribution in separate records so that useful intermediate work can survive downstream.</p></section>
     <PageSectionNav links={[{ href: "#record-layers", label: "Five record layers" }, { href: "#credit-boundary", label: "Credit boundary" }, { href: "/receipts", label: "Issued Receipts" }]} />

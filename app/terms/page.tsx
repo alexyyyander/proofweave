@@ -4,7 +4,7 @@ import { Header } from "../header";
 
 export default function TermsPage() {
   return <div className="site-shell app-shell">
-    <Header active="about" />
+      <Header active="about" activeHref="/privacy" />
     <main id="main-content" tabIndex={-1} className="page-main legal-main">
       <div className="breadcrumb"><Link href="/about">About</Link><span> / </span><span>Terms</span></div>
       <section className="legal-hero">

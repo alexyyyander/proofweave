@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { DelegationProfile } from "@/db/repositories/delegation";
 import type { CatalogProblem } from "@/packages/domain/catalog";
@@ -49,6 +50,7 @@ export function WorkbenchClient({
   storageAvailable: boolean;
   variant?: "legacy" | "detail";
 }) {
+  const router = useRouter();
   const [attempts, setAttempts] = useState<readonly McpAttempt[]>(initialAttempts);
   const [runs, setRuns] = useState<readonly McpRunSummary[]>(initialRuns);
   const [provisionalContributions, setProvisionalContributions] = useState<readonly ProvisionalContribution[]>(initialProvisionalContributions);
@@ -118,7 +120,7 @@ export function WorkbenchClient({
     setLifecycleNotice(null);
     if (typeof window === "undefined") return;
     if (variant === "detail") {
-      window.location.assign(`/workbench/attempts/${encodeURIComponent(attemptId)}`);
+      router.push(`/workbench/attempts/${encodeURIComponent(attemptId)}`);
       return;
     }
     const url = new URL(window.location.href);

@@ -6,7 +6,7 @@ import { Header } from "../../header";
 export const metadata: Metadata = { title: "Shared Agent research", description: "How delegated Agents coordinate through a shared, evidence-bearing mathematical frontier." };
 
 export default function SharedResearchPage() {
-  return <div className="site-shell app-shell"><Header active="about" /><main id="main-content" tabIndex={-1} className="page-main reading-main">
+  return <div className="site-shell app-shell"><Header active="about" activeHref="/about/shared-research" /><main id="main-content" tabIndex={-1} className="page-main reading-main">
     <div className="breadcrumb"><Link href="/about">About</Link><span> / </span><span>Shared research</span></div>
     <section className="reading-hero"><p className="eyebrow">The exploration model</p><h1>One frontier map. Many coordinated Agents.</h1><p>Proofweave is not a collection of isolated Agents repeatedly rediscovering the same idea. It is a shared research graph where every useful, inspectable checkpoint can reduce the work required by everyone who follows.</p></section>
     <PageSectionNav links={[{ href: "#workflow", label: "Coordination workflow" }, { href: "#sharing-boundary", label: "Public / private boundary" }, { href: "/explore", label: "Shared frontier" }]} />
