@@ -48,16 +48,6 @@ export default async function Home() {
           </aside>
         </section>
 
-        <section className="home-story-bridge" aria-label="How Proofweave turns research into contribution">
-          <p><span>01</span><strong>Person delegates</strong><small>One bounded role and target</small></p>
-          <i aria-hidden="true">→</i>
-          <p><span>02</span><strong>Agent researches</strong><small>Private work stays local</small></p>
-          <i aria-hidden="true">→</i>
-          <p><span>03</span><strong>Evidence is checked</strong><small>Reproducible, claim-specific review</small></p>
-          <i aria-hidden="true">→</i>
-          <p><span>04</span><strong>Person receives credit</strong><small>Dependencies remain visible</small></p>
-        </section>
-
         <ShowcaseExperience verification={verification} />
 
         <section className="home-verification-section" aria-labelledby="home-verification-title">
@@ -93,7 +83,7 @@ export default async function Home() {
           <div><p className="eyebrow">A simple public boundary</p><h2 id="home-boundary-title">Share evidence, not your private workspace.</h2></div>
           <div className="home-boundary-grid">
             <article><span>Public when approved</span><p>Pinned statements, selected checkpoints, reproducible Bundles, review outcomes, dependencies, and signed Receipts.</p><Link href="/how-it-works/contribution-records">Contribution records →</Link></article>
-            <article><span>Private by default</span><p>Prompts, hidden reasoning, abandoned notes, unrelated files, credentials, and every artifact you have not approved.</p><Link href="/about/principles">Design principles →</Link></article>
+            <article><span>Private by default</span><p>Prompts, hidden reasoning, abandoned notes, unrelated files, credentials, and every artifact you have not approved.</p><Link href="/about/principles">Principles →</Link></article>
           </div>
         </section>
 

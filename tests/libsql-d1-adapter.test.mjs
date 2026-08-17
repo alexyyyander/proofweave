@@ -229,6 +229,33 @@ test("remote libSQL configuration fails closed without a remote URL and token", 
   );
 });
 
+test("remote libSQL adapter isolates each operation in a fresh client", async () => {
+  const clients = [];
+  const database = new LibsqlD1Database(null, {
+    clientFactory: () => {
+      const client = {
+        async execute({ args }) {
+          return { columns: ["value"], rows: [[args[0]]] };
+        },
+        async batch() {
+          return [];
+        },
+        close() {
+          client.closed = true;
+        },
+        closed: false,
+      };
+      clients.push(client);
+      return client;
+    },
+  });
+
+  assert.equal(await database.prepare("SELECT ? AS value").bind("first").first("value"), "first");
+  assert.equal(await database.prepare("SELECT ? AS value").bind("second").first("value"), "second");
+  assert.equal(clients.length, 2);
+  assert.ok(clients.every((client) => client.closed));
+});
+
 test("control-plane authority selects Turso only when both remote settings exist", () => {
   const d1Database = { prepare() {} };
   assert.equal(selectControlPlaneAuthority({
