@@ -1,4 +1,8 @@
 <p align="center">
+  <strong>English</strong> | <a href="./README.zh-CN.md">中文</a>
+</p>
+
+<p align="center">
   <img src="./public/proofweave-devpost-cover.png" alt="Proofweave — a person delegates an Agent, research branches into evidence, verification closes the loop, and a contribution receipt is issued" width="100%" />
 </p>
 
