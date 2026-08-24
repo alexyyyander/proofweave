@@ -73,7 +73,7 @@ and log investigation:
 
 | Layer | Evidence on 2026-08-24 | Interpretation | Required state |
 | --- | --- | --- | --- |
-| Local source | `codex/mcp-runtime-health` at `1205228045e53e3469cce4f97bedde9dde0b9260`; remote feature branch has the same SHA | The MCP health fix is safely pushed on its feature branch | The configured production source branch, and repository `origin/main` under current policy, must point to this exact reviewed SHA before saving a Site version |
+| Local source | The tested MCP health implementation is commit `1205228045e53e3469cce4f97bedde9dde0b9260`, and the feature branch containing it is pushed | The implementation is preserved remotely, but the final release SHA must include any later reviewed recovery documentation or integration commits | The configured production source branch, and repository `origin/main` under current policy, must point to one exact reviewed integration SHA before saving a Site version |
 | Site identity | `.openai/hosting.json`, production policy, historical commits, and Runner config all name `appgprj_6a54400d01a8819199224b722afae056` | The local ID is not an accidental or newly invented value | The current OpenAI identity must be owner/editor of this exact project |
 | Sites control plane | `get_site` returns `Sites project not found` | Current workspace/account cannot resolve the canonical project; no safe deploy or log inspection can start | `get_site` must return project metadata, role, access policy, live URL, and version |
 | Public edge | `/` and `/api/mcp/capabilities` return Cloudflare HTTP `403`, `server: cloudflare`, and `__cf_bm` | Strongly consistent with an edge/challenge or Site audience block; origin logs are needed to distinguish the exact rule | Public pages and discovery routes must reach the deployed Worker |
@@ -176,8 +176,10 @@ and Render before invalidating old database tokens.
 
 ### Phase 3 — create one exact release candidate
 
-The candidate in this incident is
-`1205228045e53e3469cce4f97bedde9dde0b9260`. Before publishing:
+The tested MCP implementation entering the candidate is
+`1205228045e53e3469cce4f97bedde9dde0b9260`. Select the final candidate only
+after all reviewed integration and recovery-documentation commits are present
+on the production source branch. Before publishing:
 
 1. confirm that SHA is the reviewed source and is pushed to the Site's
    configured branch;
@@ -291,9 +293,10 @@ tokens, private JWKs, or local Agent private keys in a support ticket.
 ## Current truthful status
 
 - The local code fix and plugin package are complete and tested.
-- The feature branch is pushed at `1205228045e53e3469cce4f97bedde9dde0b9260`.
-- A push of that SHA to `origin/main` is not confirmed because GitHub network
-  access failed; `origin/main` is still observed locally at
+- The feature branch containing implementation commit
+  `1205228045e53e3469cce4f97bedde9dde0b9260` and this recovery runbook is
+  pushed.
+- As last verified while recording this incident, `origin/main` remains at
   `3d7cb8c95473bcb45e210f409ea042b26abc14a9`.
 - The existing Sites project is not visible to the current Sites connection,
   so no version has been saved or deployed during this recovery attempt.
@@ -302,4 +305,3 @@ tokens, private JWKs, or local Agent private keys in a support ticket.
   saved.
 - Runner execution remains correctly disabled while database/release
   verification is degraded.
-
