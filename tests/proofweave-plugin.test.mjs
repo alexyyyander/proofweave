@@ -37,6 +37,15 @@ test("connection_status distinguishes live-compatible updates from tool-schema r
   let toolSchemaVersion = 1;
   let responseStatus = 200;
   const server = createServer((request, response) => {
+    if (request.url === "/api/mcp") {
+      response.writeHead(200, { "content-type": "application/json" });
+      response.end(JSON.stringify({
+        jsonrpc: "2.0",
+        id: "fixture",
+        result: { content: [{ type: "text", text: JSON.stringify({ agent: { id: "urn:pw:agent:test" } }) }] },
+      }));
+      return;
+    }
     if (request.url !== "/api/mcp/capabilities") return response.writeHead(404).end();
     response.writeHead(responseStatus, {
       "cache-control": "no-store",
@@ -77,6 +86,7 @@ test("connection_status distinguishes live-compatible updates from tool-schema r
     const degradedResponse = await callConnectorTool("connection_status", {}, env);
     const degraded = JSON.parse(degradedResponse.result.content[0].text);
     assert.equal(degraded.connected, true);
+    assert.equal(degraded.liveConnection.state, "ready");
     assert.equal(degraded.compatibility.state, "unknown");
     assert.equal(degraded.compatibility.remote, null);
     assert.equal(degraded.distribution.state, "unknown");
@@ -84,6 +94,86 @@ test("connection_status distinguishes live-compatible updates from tool-schema r
     const saved = JSON.parse(await readFile(configPath, "utf8"));
     assert.equal(saved.accessToken, "access-test");
     assert.equal(saved.refreshToken, "refresh-test");
+  } finally {
+    await Promise.all([close(server), rm(fixtureRoot, { recursive: true, force: true })]);
+  }
+});
+
+test("connection_status reports an edge block without falsely asking the owner to reconnect", async () => {
+  const server = createServer((request, response) => {
+    if (request.url === "/api/mcp/capabilities" || request.url === "/token" || request.url === "/api/mcp") {
+      response.writeHead(403, { "content-type": "text/html" });
+      response.end("blocked by edge");
+      return;
+    }
+    response.writeHead(404).end();
+  });
+  const fixtureRoot = await mkdtemp(join(tmpdir(), "proofweave-connector-edge-block-"));
+  try {
+    const port = await listen(server);
+    const baseUrl = `http://127.0.0.1:${port}`;
+    const configPath = join(fixtureRoot, "connector.json");
+    await writeFile(configPath, JSON.stringify({
+      ...connectedFixtureConfig(baseUrl),
+      accessTokenExpiresAt: "2020-01-01T00:00:00.000Z",
+    }));
+    const result = JSON.parse((await callConnectorTool("connection_status", {}, {
+      ...process.env,
+      PROOFWEAVE_BASE_URL: baseUrl,
+      PROOFWEAVE_CONNECTOR_CONFIG: configPath,
+    })).result.content[0].text);
+    assert.equal(result.connected, false);
+    assert.equal(result.savedConnection, true);
+    assert.equal(result.compatibility.code, "edge_blocked");
+    assert.equal(result.compatibility.httpStatus, 403);
+    assert.equal(result.liveConnection.code, "edge_blocked");
+    assert.equal(result.liveConnection.httpStatus, 403);
+    assert.equal(result.reconnectRequired, false);
+    assert.match(result.message, /network edge.*403/i);
+  } finally {
+    await Promise.all([close(server), rm(fixtureRoot, { recursive: true, force: true })]);
+  }
+});
+
+test("connection_status distinguishes an invalid saved refresh token from an edge outage", async () => {
+  const server = createServer((request, response) => {
+    if (request.url === "/api/mcp/capabilities") {
+      response.writeHead(200, { "content-type": "application/json" });
+      response.end(JSON.stringify({
+        protocolVersion: "pw-local-connector-v1",
+        toolSchemaVersion: 1,
+        minimumConnectorApiVersion: 1,
+        recommendedConnectorApiVersion: 1,
+        capabilities: [],
+      }));
+      return;
+    }
+    if (request.url === "/token") {
+      response.writeHead(400, { "content-type": "application/json" });
+      response.end(JSON.stringify({ error: "invalid_grant", error_description: "refresh token expired" }));
+      return;
+    }
+    response.writeHead(404).end();
+  });
+  const fixtureRoot = await mkdtemp(join(tmpdir(), "proofweave-connector-invalid-refresh-"));
+  try {
+    const port = await listen(server);
+    const baseUrl = `http://127.0.0.1:${port}`;
+    const configPath = join(fixtureRoot, "connector.json");
+    await writeFile(configPath, JSON.stringify({
+      ...connectedFixtureConfig(baseUrl),
+      accessTokenExpiresAt: "2020-01-01T00:00:00.000Z",
+    }));
+    const result = JSON.parse((await callConnectorTool("connection_status", {}, {
+      ...process.env,
+      PROOFWEAVE_BASE_URL: baseUrl,
+      PROOFWEAVE_CONNECTOR_CONFIG: configPath,
+    })).result.content[0].text);
+    assert.equal(result.connected, false);
+    assert.equal(result.liveConnection.code, "refresh_token_invalid");
+    assert.equal(result.liveConnection.httpStatus, 400);
+    assert.equal(result.reconnectRequired, true);
+    assert.match(result.message, /connect_proofweave.*again/i);
   } finally {
     await Promise.all([close(server), rm(fixtureRoot, { recursive: true, force: true })]);
   }
@@ -138,6 +228,15 @@ test("connection_status discovers only the fixed same-origin plugin distribution
         distributionManifestUrl: mode === "malicious_url"
           ? "https://attacker.example/downloads/proofweave-research-marketplace.json"
           : `${baseUrl}/downloads/proofweave-research-marketplace.json`,
+      }));
+      return;
+    }
+    if (request.url === "/api/mcp") {
+      response.writeHead(200, { "content-type": "application/json" });
+      response.end(JSON.stringify({
+        jsonrpc: "2.0",
+        id: "fixture",
+        result: { content: [{ type: "text", text: JSON.stringify({ agent: { id: "urn:pw:agent:test" } }) }] },
       }));
       return;
     }
@@ -216,23 +315,30 @@ test("connection_status discovers only the fixed same-origin plugin distribution
       "the rejected cross-origin URL must never be fetched",
     );
     for (const request of requests) {
-      assert.equal(request.authorization, null);
+      if (request.url === "/api/mcp") {
+        assert.equal(request.authorization, "Bearer access-token-must-not-leak");
+      } else {
+        assert.equal(request.authorization, null);
+      }
       assert.equal(request.cookie, null);
       assert.equal(request.agentId, null);
       assert.ok(
         request.url === "/api/mcp/capabilities"
+          || request.url === "/api/mcp"
           || request.url === "/downloads/proofweave-research-marketplace.json",
       );
     }
-    const observedRequests = JSON.stringify(requests);
-    assert.doesNotMatch(observedRequests, /access-token-must-not-leak/);
-    assert.doesNotMatch(observedRequests, /refresh-token-must-not-leak/);
-    assert.doesNotMatch(observedRequests, /private-key-must-not-leak/);
-    assert.doesNotMatch(observedRequests, /private\/workspace\/must-not-leak/);
+    const publicRequests = JSON.stringify(requests.filter(({ url }) => url !== "/api/mcp"));
+    assert.doesNotMatch(publicRequests, /access-token-must-not-leak/);
+    assert.doesNotMatch(publicRequests, /refresh-token-must-not-leak/);
+    assert.doesNotMatch(publicRequests, /private-key-must-not-leak/);
+    assert.doesNotMatch(publicRequests, /private\/workspace\/must-not-leak/);
+    assert.doesNotMatch(JSON.stringify(current), /access-token-must-not-leak|refresh-token-must-not-leak|private-key-must-not-leak|private\/workspace\/must-not-leak/);
 
     await close(server);
     const unavailable = JSON.parse((await callConnectorTool("connection_status", {}, env)).result.content[0].text);
-    assert.equal(unavailable.connected, true);
+    assert.equal(unavailable.connected, false);
+    assert.equal(unavailable.liveConnection.state, "unavailable");
     assert.equal(unavailable.compatibility.state, "unknown");
     assert.equal(unavailable.distribution.state, "unknown");
     assert.match(unavailable.distribution.message, /saved OAuth connection is unchanged/i);
@@ -296,8 +402,32 @@ test("the private-beta plugin starts only a local PKCE Connector", async () => {
 
 test("the local Connector flags legacy connections for the artifact-write scope upgrade", async () => {
   const fixtureRoot = await mkdtemp(join(tmpdir(), "proofweave-connector-scopes-"));
+  const server = createServer((request, response) => {
+    if (request.url === "/api/mcp/capabilities") {
+      response.writeHead(200, { "content-type": "application/json" });
+      response.end(JSON.stringify({
+        protocolVersion: "pw-local-connector-v1",
+        toolSchemaVersion: 1,
+        minimumConnectorApiVersion: 1,
+        recommendedConnectorApiVersion: 1,
+        capabilities: [],
+      }));
+      return;
+    }
+    if (request.url === "/api/mcp") {
+      response.writeHead(200, { "content-type": "application/json" });
+      response.end(JSON.stringify({
+        jsonrpc: "2.0",
+        id: "fixture",
+        result: { content: [{ type: "text", text: JSON.stringify({ agent: { id: "urn:pw:agent:test" } }) }] },
+      }));
+      return;
+    }
+    response.writeHead(404).end();
+  });
   try {
-    const baseUrl = "https://proofweave.example.test";
+    const port = await listen(server);
+    const baseUrl = `http://127.0.0.1:${port}`;
     const configPath = join(fixtureRoot, "connector.json");
     const legacy = connectedFixtureConfig(baseUrl);
     await writeFile(configPath, JSON.stringify(legacy));
@@ -319,7 +449,7 @@ test("the local Connector flags legacy connections for the artifact-write scope 
     assert.equal(upgradedStatus.scopeUpgradeRequired, false);
     assert.deepEqual(upgradedStatus.missingScopes, []);
   } finally {
-    await rm(fixtureRoot, { recursive: true, force: true });
+    await Promise.all([close(server), rm(fixtureRoot, { recursive: true, force: true })]);
   }
 });
 

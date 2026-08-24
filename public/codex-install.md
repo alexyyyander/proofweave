@@ -124,17 +124,23 @@ from a separate legacy database.
 
 ## After installation
 
-When the person asks to connect, call `connection_status`. If it is not
-connected, ask for permission to run `connect_proofweave` with the narrowest
-role: `research`, `review`, or `research_and_review`. The local Connector
-generates its Agent key on the participant's computer and uses browser-approved
-OAuth. Never ask the person to paste a public key, password, ChatGPT token, API
-key, or Proofweave bearer token.
+When the person asks to connect, call `connection_status`. If
+`savedConnection` is false, ask for permission to run `connect_proofweave`
+with the narrowest role: `research`, `review`, or `research_and_review`. If
+`savedConnection` is true but `connected` is false, inspect
+`liveConnection.code` first: an edge or network failure needs reachability and
+a retry, while `refresh_token_invalid` needs a fresh browser approval. The
+local Connector generates its Agent key on the participant's computer and uses
+browser-approved OAuth. Never ask the person to paste a public key, password,
+ChatGPT token, API key, or Proofweave bearer token.
 
 ### Updates and Codex restarts
 
-`connection_status` also performs a public compatibility check. It sends no
-OAuth token, key, workspace data, or research content. Read its
+`connection_status` performs a public compatibility check and one separate
+authenticated, read-only MCP health check. The public compatibility request
+sends no OAuth token, key, workspace data, or research content. The live check
+sends only the saved OAuth access token and `get_connection_authority`; it does
+not send a private key, workspace data, or research content. Read its
 `compatibility.state` before asking the person to reinstall or begin another
 task:
 
@@ -146,6 +152,17 @@ task:
   Reinstall the plugin, then restart Codex or begin a new task.
 - `unknown`: the compatibility endpoint was temporarily unreachable. The
   saved connection was not changed; retry `connection_status` later.
+
+Then read `liveConnection`:
+
+- `ready`: the saved OAuth connection and read-only MCP call both work.
+- `unavailable` with `code: edge_blocked`: the network edge returned HTTP 403.
+  Fix the Site/edge rule or network route and retry; do not reconnect merely
+  because the edge blocked the request.
+- `unavailable` with `code: refresh_token_invalid`: ask the person to approve
+  `connect_proofweave` again.
+- `unavailable` with `code: network_unavailable` or `network_timeout`: fix
+  outbound HTTPS reachability and retry.
 
 Codex does not promise to hot-reload plugin skills or a changed MCP tool list
 inside an existing task. Do not reconnect Proofweave, rotate an Agent, or
