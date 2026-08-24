@@ -21,7 +21,7 @@ export async function PersonalWorkspaceFrame({ active, children }: { active: Per
           <strong>No active research</strong>
           <Link className="personal-workspace-start" href="/explore">Choose research <span>→</span></Link>
         </>}
-        <span className={summary.agent.connected ? "personal-agent-state is-connected" : "personal-agent-state"}><i aria-hidden="true" />{summary.agent.connected ? summary.agent.label ?? "Agent connected" : summary.available ? "Agent not connected" : "Status unavailable"}</span>
+        <span className={summary.agent.connected ? "personal-agent-state is-connected" : "personal-agent-state"}><i aria-hidden="true" />{summary.agent.connected ? summary.agent.label ?? "Website authorization active" : summary.available ? "Website authorization not recorded" : "Status unavailable"}</span>
       </section>
       <PersonalWorkspaceNavigation active={active} activeAttemptCount={summary.counts.activeAttempts} activeReviewCount={summary.counts.activeReviews} evidenceCount={summary.counts.evidence} />
     </aside>

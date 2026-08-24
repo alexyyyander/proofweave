@@ -8,9 +8,14 @@ local-token prototype must not be configured for participant use.
 
 ## Connector compatibility
 
-Call `connection_status` before connection repair or a plugin update. Its
-public compatibility request sends no token, key, workspace data, or research
-content. Interpret `compatibility.state` exactly:
+Call `connection_status` before connection repair or a plugin update. It has
+two deliberately separate checks: its public compatibility request sends no
+token, key, workspace data, or research content; its `liveConnection` check
+sends only the saved OAuth access token and one read-only
+`get_connection_authority` request. It never sends a private key, workspace,
+or research content. `connected: true` means the live OAuth/MCP check passed;
+`savedConnection: true` only means local OAuth configuration exists.
+Interpret `compatibility.state` exactly:
 
 - `compatible`: continue in the current Codex task. Server workflow, policy,
   Attempt lifecycle, and capability metadata already update live.
@@ -20,6 +25,22 @@ content. Interpret `compatibility.state` exactly:
   task because MCP tool names, input schemas, or plugin skills changed.
 - `unknown`: leave the saved connection intact and retry the status check when
   the service is reachable.
+
+Interpret `liveConnection` separately:
+
+- `ready`: OAuth and the read-only MCP authority check succeeded.
+- `unavailable` with `code: edge_blocked`: the public edge returned HTTP 403;
+  fix reachability or the Site/Cloudflare rule and retry. Do not reconnect just
+  because an edge is blocking the request.
+- `unavailable` with `code: refresh_token_invalid`: the saved browser approval
+  is no longer valid; ask before running `connect_proofweave` again.
+- `unavailable` with `code: network_unavailable` or `network_timeout`: the
+  endpoint could not be reached; retry after fixing the network route.
+
+The website's Agent installation record is not a live Connector health check.
+An authorized website page can therefore show a recorded authorization while
+`connection_status` correctly reports that this computer cannot currently use
+MCP.
 
 A compatible service update never requires a new Agent, a new delegation, or
 a replacement Attempt. Codex does not guarantee hot reload of a changed MCP

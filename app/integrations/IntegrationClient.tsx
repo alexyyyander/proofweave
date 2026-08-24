@@ -109,17 +109,17 @@ export function IntegrationClient({
 
     <section className="integration-grid integration-entry-grid" aria-label="Local Agent connection">
       <article className="integration-card integration-card-dark integration-primary-card integration-card-wide" id="codex-beta">
-        <span className="micro-label">{connection ? "Codex connected" : isAuthenticated ? "One-time setup" : "Sign in first"}</span>
-        <h2>{connection ? `${connection.agentLabel} is ready.` : "Approve your local Codex once."}</h2>
+        <span className="micro-label">{connection ? "Website authorization recorded" : isAuthenticated ? "One-time setup" : "Sign in first"}</span>
+        <h2>{connection ? `${connection.agentLabel} has active website authorization.` : "Approve your local Codex once."}</h2>
         <p>{connection
-          ? "Return to the Workspace to start or resume research. Your repository, private key, prompts, and unfinished reasoning remain on this computer."
+          ? "The website has an active Agent installation record. Run connection_status in Codex to verify this computer can still refresh OAuth before starting research."
           : isAuthenticated
             ? "Copy one setup request into Codex. Codex checks whether the plugin is already installed, requests each required approval, and returns you here when the connection is ready."
             : "Sign in with ChatGPT before connecting this computer. Your sign-in creates the Person identity that will own its Agent work."}</p>
 
         <ol className="integration-flow integration-flow-compact" aria-label="First research setup">
           <li><b>{selectedTarget ? "✓" : "1"}</b><span><strong>Choose a problem.</strong> {selectedTarget ? `${selectedTarget.title} is selected.` : "Browse the public catalog and select one exact target."}</span></li>
-          <li><b>{connection ? "✓" : "2"}</b><span><strong>Connect Codex once.</strong> {connection ? "This computer has revocable research authority." : "Codex handles installation checks and opens the approval page."}</span></li>
+          <li><b>{connection ? "✓" : "2"}</b><span><strong>Authorize the local Agent.</strong> {connection ? "The website has recorded revocable authority; Codex still performs the live OAuth check." : "Codex handles installation checks and opens the approval page."}</span></li>
           <li><b>3</b><span><strong>Return to your Workspace.</strong> Start or resume the saved research task for the selected problem.</span></li>
         </ol>
 
@@ -130,10 +130,10 @@ export function IntegrationClient({
 
         {connection ? <div className="integration-connected-callout integration-connected-callout-dark">
           <strong>{controlPlaneWritesEnabled
-            ? selectedTarget ? `Continue ${selectedTarget.title}` : "Your Workspace is ready"
+            ? selectedTarget ? `Target ready: ${selectedTarget.title}` : "Website authorization record ready"
             : "Your existing Workspace remains readable"}</strong>
           <p>{controlPlaneWritesEnabled
-            ? selectedTarget ? "Your selected target is preserved. Open the Workspace to start or resume its saved research task." : "Choose a target in Explore or open your Workspace to resume existing research."
+            ? selectedTarget ? "Your selected target is preserved. Confirm connection_status in Codex, then open the Workspace to start or resume its saved research task." : "Confirm connection_status in Codex, then choose a target or open your Workspace to resume existing research."
             : "You may inspect existing work now. Starting or updating research remains paused until maintenance ends."}</p>
           <Link className="button button-primary" href={returnHref}>{controlPlaneWritesEnabled
             ? selectedTarget ? "Return to selected research" : "Open my Workspace"
@@ -153,7 +153,7 @@ export function IntegrationClient({
         <div className="integration-inline-links">
           <Link href="/explore">Browse research first <span aria-hidden="true">→</span></Link>
         </div>
-        <p className="integration-note">Connection creates revocable authority only. It does not upload a workspace, run Lean, claim verification, or create contribution credit. Sign-in: ChatGPT available · Google {googleSignInAvailable ? "available" : "not yet available"}.</p>
+        <p className="integration-note">The website status reflects authorization records, not a live check of your local Connector. Run <code>connection_status</code> before working. Connection does not upload a workspace, run Lean, claim verification, or create contribution credit. Sign-in: ChatGPT available · Google {googleSignInAvailable ? "available" : "not yet available"}.</p>
       </article>
 
       <article className="integration-card integration-card-wide integration-advanced-card">

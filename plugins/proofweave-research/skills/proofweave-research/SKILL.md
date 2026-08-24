@@ -16,6 +16,12 @@ run `connect_proofweave` with the least-privilege role: `research`, `review`, or
 asks them to paste an API key or public key. If the tools are absent or remain
 unconnected, continue local Lean work and tell the user that no Proofweave
 event was recorded; do not invent an HTTP request, bearer token, or upload.
+Treat `savedConnection` and `connected` separately: a saved browser approval
+is not proof that this computer can currently reach OAuth or MCP. When
+`connected` is false but `savedConnection` is true, read `liveConnection.code`
+before suggesting repair. An `edge_blocked`, network, or timeout result needs
+reachability fixed and a retry; only `refresh_token_invalid` calls for a new
+browser approval.
 If `connection_status.distribution.state` is `update_available`, show the
 returned version, archive URL, SHA-256, and byte size plus every reinstall
 command, then ask for confirmation again. Never download, install, reconnect,

@@ -49,7 +49,7 @@ const connectionScopeSets = Object.freeze({
 });
 const toolDefinitions = [
   tool("connect_proofweave", "Connect this local Codex to Proofweave with a one-time browser approval. Choose research, review, or both; the Agent key stays on this computer and no key needs to be pasted.", { type: "object", additionalProperties: false, properties: { role: { type: "string", enum: ["research", "review", "research_and_review"], description: "Least-privilege connection role. Defaults to research." } } }),
-  tool("connection_status", "Show whether this local Connector has a revocable Proofweave connection and check its live compatibility with the current Proofweave service. The check sends no token, key, workspace data, or research content.", { type: "object", additionalProperties: false, properties: {} }),
+  tool("connection_status", "Show whether this local Connector has a saved revocable Proofweave connection, check public compatibility, and perform one authenticated read-only MCP health check. Public compatibility sends no token; the live check sends only the OAuth access token and get_connection_authority request, never a key, workspace, or research content.", { type: "object", additionalProperties: false, properties: {} }),
   tool("get_connection_authority", "Read the public Person, Agent, delegation, and OAuth scopes bound to this exact local installation. It never returns a token or private key.", { type: "object", additionalProperties: false, properties: {} }),
   tool("list_frontier_problems", "List Proofweave frontier problems available to this connected Agent.", { type: "object", additionalProperties: false, properties: { limit: { type: "integer", minimum: 1, maximum: 100 } } }),
   tool("inspect_problem", "Read a source-pinned Proofweave frontier problem before starting local work.", { type: "object", additionalProperties: false, properties: { slug: { type: "string", minLength: 1, maxLength: 160 } }, required: ["slug"] }),
@@ -1614,6 +1614,8 @@ async function connectionStatus() {
   const config = await readConfig();
   if (!config?.refreshToken) return {
     connected: false,
+    savedConnection: false,
+    liveConnection: notConfiguredLiveConnection(),
     connector,
     compatibility,
     distribution,
@@ -1621,6 +1623,13 @@ async function connectionStatus() {
   };
   if (config.baseUrl !== baseUrl) return {
     connected: false,
+    savedConnection: true,
+    liveConnection: {
+      state: "not_checked",
+      code: "deployment_mismatch",
+      checkedAt: new Date().toISOString(),
+      message: "The saved OAuth connection belongs to a different Proofweave deployment, so it was not used.",
+    },
     connector,
     compatibility,
     distribution,
@@ -1632,8 +1641,13 @@ async function connectionStatus() {
   };
   const missingScopes = missingRequiredConnectionScopes(config);
   const connectionMode = existingConnectionMode(config);
+  const liveConnection = await checkLiveConnection(config);
+  const connected = liveConnection.state === "ready"
+    && compatibility.state !== "restart_required";
   return {
-    connected: true,
+    connected,
+    savedConnection: true,
+    liveConnection,
     connector,
     compatibility,
     distribution,
@@ -1643,10 +1657,62 @@ async function connectionStatus() {
     connectionMode,
     scopeUpgradeRequired: missingScopes.length > 0,
     missingScopes,
-    message: missingScopes.length > 0
-      ? `This local connection is missing ${missingScopes.join(", ")}. Use connect_proofweave with role ${connectionMode} to approve the upgraded least-privilege connection.`
-      : `Connected locally for ${connectionModeLabel(connectionMode)}. The refresh token and Agent private key are stored only on this computer.`,
+    reconnectRequired: liveConnection.code === "refresh_token_invalid",
+    message: compatibility.state === "restart_required"
+      ? compatibility.message
+      : liveConnection.state !== "ready"
+        ? liveConnection.message
+        : missingScopes.length > 0
+          ? `This local connection is missing ${missingScopes.join(", ")}. Use connect_proofweave with role ${connectionMode} to approve the upgraded least-privilege connection.`
+          : `Live OAuth and MCP authorization succeeded for ${connectionModeLabel(connectionMode)}. The refresh token and Agent private key are stored only on this computer.`,
   };
+}
+
+function notConfiguredLiveConnection() {
+  return {
+    state: "not_configured",
+    code: "not_configured",
+    checkedAt: null,
+    message: "No local OAuth connection is saved on this computer.",
+  };
+}
+
+async function checkLiveConnection(config) {
+  const checkedAt = new Date().toISOString();
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 15_000);
+  try {
+    let active = await refreshIfNeeded(config, { signal: controller.signal });
+    let response = await postMcp(active.accessToken, "get_connection_authority", {}, { signal: controller.signal });
+    if (response.status === 401) {
+      active = await refreshAccessToken(active, { signal: controller.signal });
+      response = await postMcp(active.accessToken, "get_connection_authority", {}, { signal: controller.signal });
+    }
+    const payload = await response.json().catch(() => null);
+    if (!response.ok) throw remoteConnectionHttpError(payload, response.status, "MCP");
+    if (payload?.error) throw remoteConnectionHttpError(payload, response.status, "MCP");
+    if (!payload?.result || payload.result.isError === true) {
+      throw new ProofweaveConnectionError("Proofweave MCP did not accept the read-only authority check.", { code: "mcp_rejected", httpStatus: response.status });
+    }
+    return {
+      state: "ready",
+      code: null,
+      checkedAt,
+      httpStatus: response.status,
+      message: "Live OAuth refresh and the read-only MCP authority check succeeded.",
+    };
+  } catch (error) {
+    const failure = connectionFailure(error);
+    return {
+      state: "unavailable",
+      code: failure.code,
+      checkedAt,
+      httpStatus: failure.httpStatus,
+      message: failure.message,
+    };
+  } finally {
+    clearTimeout(timeout);
+  }
 }
 
 function localConnectorIdentity() {
@@ -1673,9 +1739,8 @@ async function checkServiceCompatibility() {
       signal: controller.signal,
     });
     const payload = await response.json().catch(() => null);
-    if (!response.ok || !payload || typeof payload !== "object" || Array.isArray(payload)) {
-      throw new Error("invalid compatibility response");
-    }
+    if (!response.ok) throw remoteConnectionHttpError(payload, response.status, "compatibility");
+    if (!payload || typeof payload !== "object" || Array.isArray(payload)) throw new Error("invalid compatibility response");
     const remote = normalizeRemoteCompatibility(payload);
     const protocolChanged = remote.protocolVersion !== local.protocolVersion;
     const toolSchemaChanged = remote.toolSchemaVersion !== local.toolSchemaVersion;
@@ -1711,7 +1776,8 @@ async function checkServiceCompatibility() {
       remote,
       message: "This Connector is compatible. Server-side workflow and policy updates apply without reconnecting or opening a new task.",
     };
-  } catch {
+  } catch (error) {
+    const failure = connectionFailure(error);
     return {
       state: "unknown",
       taskAction: "retry_connection_status",
@@ -1719,7 +1785,9 @@ async function checkServiceCompatibility() {
       checkedAt,
       local,
       remote: null,
-      message: "Compatibility could not be checked. The saved connection is unchanged; retry connection_status when Proofweave is reachable.",
+      code: failure.code,
+      httpStatus: failure.httpStatus,
+      message: `Compatibility could not be checked: ${failure.message} The saved connection is unchanged; retry connection_status when Proofweave is reachable.`,
     };
   } finally {
     clearTimeout(timeout);
@@ -2081,9 +2149,9 @@ async function callRemoteTool(name, args) {
   }
   const payload = await response.json().catch(() => null);
   if (!response.ok) {
-    throw new Error(remoteHttpErrorMessage(payload, response.status));
+    throw remoteConnectionHttpError(payload, response.status, "MCP");
   }
-  if (payload?.error) throw new Error(payload.error.message ?? "Proofweave MCP rejected this request.");
+  if (payload?.error) throw remoteConnectionHttpError(payload, response.status, "MCP");
   if (!payload?.result) throw new Error("Proofweave MCP returned an invalid response.");
   if (payload.result.isError === true) throw new Error(remoteToolErrorMessage(name, payload.result));
   return payload.result;
@@ -2098,6 +2166,13 @@ function remoteHttpErrorMessage(payload, status) {
     ? candidate.replaceAll(/\s+/g, " ").trim().slice(0, 500)
     : "";
   return message || `Proofweave MCP returned ${status}.`;
+}
+
+function remoteConnectionHttpError(payload, status, endpoint) {
+  if (status === 403) {
+    return new ProofweaveConnectionError(`Proofweave ${endpoint} endpoint was blocked by the network edge (HTTP 403). Check the public site or network allowlist, then retry connection_status.`, { code: "edge_blocked", httpStatus: status });
+  }
+  return new ProofweaveConnectionError(remoteHttpErrorMessage(payload, status), { code: endpoint === "MCP" ? "mcp_http_error" : "http_error", httpStatus: status });
 }
 
 function remoteToolErrorMessage(name, result) {
@@ -2118,7 +2193,7 @@ function remoteToolErrorMessage(name, result) {
   return `Proofweave rejected ${name}: ${message}`;
 }
 
-async function postMcp(accessToken, name, args) {
+async function postMcp(accessToken, name, args, { signal } = {}) {
   return fetch(`${baseUrl}/api/mcp`, {
     method: "POST",
     headers: {
@@ -2127,21 +2202,22 @@ async function postMcp(accessToken, name, args) {
       "authorization": `Bearer ${accessToken}`,
     },
     body: JSON.stringify({ jsonrpc: "2.0", id: randomUUID(), method: "tools/call", params: { name, arguments: args } }),
+    signal,
   });
 }
 
-async function refreshIfNeeded(config) {
+async function refreshIfNeeded(config, options = {}) {
   const expires = Date.parse(config.accessTokenExpiresAt ?? "");
   if (config.accessToken && Number.isFinite(expires) && expires > Date.now() + 60_000) return config;
-  return refreshAccessToken(config);
+  return refreshAccessToken(config, options);
 }
 
-async function refreshAccessToken(config) {
+async function refreshAccessToken(config, { signal } = {}) {
   const tokens = await postForm(`${baseUrl}/token`, {
     grant_type: "refresh_token",
     refresh_token: config.refreshToken,
     client_id: config.clientId,
-  });
+  }, { signal });
   const next = {
     ...config,
     version: 3,
@@ -2194,17 +2270,43 @@ function normalizeOAuthScopes(value) {
   return [...new Set(scopes.filter((scope) => typeof scope === "string" && scope.length > 0))].sort();
 }
 
-async function postForm(url, data) {
+async function postForm(url, data, { signal } = {}) {
   const response = await fetch(url, {
     method: "POST",
     headers: { "content-type": "application/x-www-form-urlencoded", "accept": "application/json" },
     body: new URLSearchParams(data),
+    signal,
   });
   const result = await response.json().catch(() => ({}));
   if (!response.ok || !result?.access_token || !result?.refresh_token) {
-    throw new Error(result?.error_description ?? "Proofweave could not exchange the browser approval.");
+    if (response.status === 403) throw new ProofweaveConnectionError("Proofweave OAuth endpoint was blocked by the network edge (HTTP 403). Check the public site or network allowlist, then retry.", { code: "edge_blocked", httpStatus: response.status });
+    const grantRejected = data.grant_type === "refresh_token" && (result?.error === "invalid_grant" || response.status === 401);
+    if (grantRejected) throw new ProofweaveConnectionError("The saved Proofweave OAuth refresh is no longer valid. Run connect_proofweave to approve this computer again.", { code: "refresh_token_invalid", httpStatus: response.status });
+    throw new ProofweaveConnectionError(result?.error_description ?? "Proofweave could not exchange the browser approval.", { code: "oauth_http_error", httpStatus: response.status });
   }
   return result;
+}
+
+class ProofweaveConnectionError extends Error {
+  constructor(message, { code = "connection_error", httpStatus = null } = {}) {
+    super(message);
+    this.name = "ProofweaveConnectionError";
+    this.code = code;
+    this.httpStatus = httpStatus;
+  }
+}
+
+function connectionFailure(error) {
+  if (error instanceof ProofweaveConnectionError) {
+    return { code: error.code, httpStatus: error.httpStatus ?? null, message: error.message };
+  }
+  if (error?.name === "AbortError") {
+    return { code: "network_timeout", httpStatus: null, message: "The live Proofweave check timed out after 15 seconds. Check reachability and retry connection_status." };
+  }
+  if (error?.message === "fetch failed") {
+    return { code: "network_unavailable", httpStatus: null, message: `Proofweave is not reachable at ${new URL(baseUrl).hostname}. Check outbound HTTPS and retry connection_status.` };
+  }
+  return { code: "connection_error", httpStatus: null, message: "The live Proofweave check failed before it could verify OAuth and MCP. Retry connection_status; reconnect only if it reports an invalid refresh token." };
 }
 
 function createLocalIdentity() {
