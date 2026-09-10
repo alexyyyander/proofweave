@@ -1106,7 +1106,12 @@ test("publishes a sourced AI mathematics record without flattening evidence stat
 
   assert.match(html, /one accelerating frontier/i);
   assert.match(html, /Follow the record across 2026/i);
-  assert.match(html, /Clustered nodes show activity accelerating—not stronger evidence/i);
+  assert.match(html, /Zoom in to separate busy days/i);
+  assert.match(html, /aria-label="Zoom out timeline"/i);
+  assert.match(html, /aria-label="Zoom in timeline"/i);
+  assert.match(html, /id="history-zoom"[^>]*type="range"[^>]*min="1"[^>]*max="32"/i);
+  assert.match(html, /Recent days/i);
+  assert.match(html, /Full record/i);
   assert.match(html, /role="tablist"/i);
   assert.match(html, /AI mathematics milestones from January to September 2026/i);
   assert.match(html, /role="tab"/i);
