@@ -1141,7 +1141,14 @@ test("publishes a sourced AI mathematics record without flattening evidence stat
   assert.match(html, /mathoverflow\.net\/questions\/130777/i);
   assert.doesNotMatch(html, /peer-reviewed Jacobian counterexample/i);
   assert.match(html, /Updated 10 September 2026/i);
-  assert.match(html, /25 August–10 September 2026/i);
+  assert.match(html, /19 August–10 September 2026/i);
+  assert.match(html, /arxiv\.org\/abs\/2608\.19068/i);
+  assert.match(html, /No generative-AI contribution is disclosed/i);
+  assert.match(html, /arxiv\.org\/abs\/2608\.19301/i);
+  assert.match(html, /cscK formulation/i);
+  assert.match(html, /github\.com\/plby\/HopfProblem/i);
+  assert.match(html, /Hodge conjecture: no verified resolution recorded/i);
+  assert.match(html, /not counted as a solved milestone/i);
   assert.match(html, /github\.com\/openai\/PrimeGaps186/i);
   assert.match(html, /three input axioms/i);
   assert.match(html, /Riemann–von Mangoldt and pair-correlation formulas/i);
@@ -1150,7 +1157,7 @@ test("publishes a sourced AI mathematics record without flattening evidence stat
   assert.match(html, /github\.com\/openai\/NavierStokesAndEuler/i);
   assert.match(html, /does not settle unforced Navier–Stokes/i);
   assert.match(html, /this update includes no new Proofweave Lean replay or receipt/i);
-  assert.equal((html.match(/role="tab"/g) ?? []).length, 16);
+  assert.equal((html.match(/role="tab"/g) ?? []).length, 19);
 });
 
 test("keeps public verification and contribution records outside personal workspace chrome", async () => {
