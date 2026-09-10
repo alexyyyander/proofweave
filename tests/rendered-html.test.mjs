@@ -883,14 +883,14 @@ test("server-renders the Proofweave welcome page", async () => {
   );
   assert.match(html, /Advance mathematics through your Agent/i);
   assert.match(html, /Public alpha/i);
-  assert.match(html, /Verified demo/i);
+  assert.match(html, /href="\/demo"/i);
   assert.match(html, /Watch the proof journey/i);
   assert.match(html, /Contribution records/i);
   assert.match(html, /brand-mark/i);
   assert.doesNotMatch(html, /proof-paper-mark/i);
   assert.match(html, /One theorem[\s\S]*Six evidence moments/i);
   assert.match(html, /id="proof-journey"/i);
-  assert.match(html, /Not one Agent solving alone/i);
+  assert.match(html, /Lean and an independent owner verify the claims/i);
 });
 
 test("guides a public visitor through the first accountable contribution path", async () => {
@@ -903,8 +903,8 @@ test("serves the public research paths", async () => {
   const expectedPageContent = new Map([
     ["/showcase", /See a proof become[\s\S]*public contribution/i],
     ["/demo", /Watch one Lean proof become/i],
-    ["/history", /From one Erdős problem to the Jacobian frontier/i],
-    ["/explore", /Search the public frontier\. Choose one exact next action/i],
+    ["/history", /From Erdős problems to a formalization frontier/i],
+    ["/explore", /Search the frontier\. Choose one exact next action/i],
     ["/explore/erdos-865", /Erdős Problem 865/i],
     ["/how-it-works", /One shared frontier\. One useful step at a time/i],
     ["/how-it-works/research", /Move one bounded research task forward/i],
@@ -974,8 +974,8 @@ test("serves the public research paths", async () => {
 
   const explore = await render("/explore");
   const exploreHtml = await explore.text();
-  assert.match(exploreHtml, /Search the public frontier\. Choose one exact next action/i);
-  assert.match(exploreHtml, /Formalize a known result, advance an open proof branch, or inspect an existing proof record/i);
+  assert.match(exploreHtml, /Search the frontier\. Choose one exact next action/i);
+  assert.match(exploreHtml, /Find a pinned target, inspect its prior work, or start a bounded Agent task/i);
   assert.match(exploreHtml, /Searchable research index/i);
   assert.match(exploreHtml, /Find the exact target you can act on/i);
   assert.match(exploreHtml, /Formalize known results/i);
@@ -1091,12 +1091,11 @@ test("keeps the public directory separate from the personal workspace", async ()
   const html = await page.text();
   assert.match(html, /Open Proofweave directory/i);
   assert.match(html, /Proofweave menu/i);
-  assert.match(html, /Four surfaces for moving from the public frontier to your private research/i);
-  assert.match(html, /class="main-nav"[\s\S]*>Overview<\/a>[\s\S]*>Research index<\/a>[\s\S]*>My workspace<\/a>[\s\S]*>About &amp; notes<\/a>/i);
-  assert.match(html, /Navigate[\s\S]*Research index[\s\S]*My workspace[\s\S]*Act on work[\s\S]*Review queue[\s\S]*Contribution records[\s\S]*Verified demo/i);
-  assert.match(html, /Understand &amp; trust[\s\S]*How it works[\s\S]*AI mathematics record[\s\S]*Design principles[\s\S]*Catalog standard[\s\S]*Privacy &amp; terms/i);
+  assert.match(html, /Five core surfaces/i);
+  assert.match(html, /class="main-nav"[\s\S]*href="\/explore"[\s\S]*href="\/workbench"[\s\S]*href="\/history"[\s\S]*href="\/about"/i);
+  assert.match(html, /Core pages[\s\S]*Research tools[\s\S]*Review queue[\s\S]*Contribution records[\s\S]*Reference/i);
   assert.doesNotMatch(html, /<strong>Workspace<\/strong>/i);
-  assert.match(html, /href="\/workbench"[^>]*>My workspace<\/a>/i);
+  assert.match(html, /href="\/workbench"[^>]*>Workspace<\/a>/i);
   assert.doesNotMatch(html, /aria-label="Footer navigation"/i);
 });
 
@@ -1109,7 +1108,7 @@ test("publishes a sourced AI mathematics record without flattening evidence stat
   assert.match(html, /Follow the record across 2026/i);
   assert.match(html, /Clustered nodes show activity accelerating—not stronger evidence/i);
   assert.match(html, /role="tablist"/i);
-  assert.match(html, /AI mathematics milestones from January to July 2026/i);
+  assert.match(html, /AI mathematics milestones from January to September 2026/i);
   assert.match(html, /role="tab"/i);
   assert.match(html, /aria-selected="true"/i);
   assert.match(html, /role="tabpanel"/i);
@@ -1136,6 +1135,17 @@ test("publishes a sourced AI mathematics record without flattening evidence stat
   assert.match(html, /openai\.com\/index\/model-disproves-discrete-geometry-conjecture/i);
   assert.match(html, /mathoverflow\.net\/questions\/130777/i);
   assert.doesNotMatch(html, /peer-reviewed Jacobian counterexample/i);
+  assert.match(html, /Updated 10 September 2026/i);
+  assert.match(html, /25 August–10 September 2026/i);
+  assert.match(html, /github\.com\/openai\/PrimeGaps186/i);
+  assert.match(html, /three input axioms/i);
+  assert.match(html, /Riemann–von Mangoldt and pair-correlation formulas/i);
+  assert.match(html, /github\.com\/anthropics\/fermats-last-theorem/i);
+  assert.match(html, /4 September is the public release date/i);
+  assert.match(html, /github\.com\/openai\/NavierStokesAndEuler/i);
+  assert.match(html, /does not settle unforced Navier–Stokes/i);
+  assert.match(html, /this update includes no new Proofweave Lean replay or receipt/i);
+  assert.equal((html.match(/role="tab"/g) ?? []).length, 16);
 });
 
 test("keeps public verification and contribution records outside personal workspace chrome", async () => {
@@ -1228,8 +1238,11 @@ test("records an attributed problem proposal without promoting it to a theorem o
   );
 });
 
-test("presents the verified reference as a dedicated visual proof journey", async () => {
-  const page = await render("/showcase");
+test("preserves the showcase URL as a redirect to the overview proof journey", async () => {
+  const redirect = await render("/showcase", { redirect: "manual" });
+  assert.equal(redirect.status, 307);
+  assert.match(redirect.headers.get("location") ?? "", /\/#proof-journey$/);
+  const page = await render("/");
   assert.equal(page.status, 200);
   const html = await page.text();
   assert.match(html, /One theorem · six evidence moments/i);
@@ -1238,8 +1251,8 @@ test("presents the verified reference as a dedicated visual proof journey", asyn
   assert.match(html, /Frontier question/i);
   assert.match(html, /Independent review/i);
   assert.match(html, /Contribution Receipt/i);
-  assert.match(html, /Verify the complete chain/i);
-  assert.match(html, /Inspect the executable demo/i);
+  assert.match(html, /href="#verification-console"/i);
+  assert.match(html, /id="verification-console"/i);
 });
 
 test("uses a Google app session for the same stable Person and private account boundary", async () => {

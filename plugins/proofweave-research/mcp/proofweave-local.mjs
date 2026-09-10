@@ -1550,8 +1550,16 @@ async function connect(args = {}) {
   const connectionMode = normalizeConnectionMode(args.role);
   const existing = await readConfig();
   const missingScopes = missingRequiredConnectionScopes(existing, connectionMode);
+  let reconnecting = false;
   if (existing?.refreshToken && existing.baseUrl === baseUrl && existingConnectionMode(existing) === connectionMode && missingScopes.length === 0) {
-    return { connected: true, connectionMode, message: `Already connected as ${existing.agentLabel} for ${connectionModeLabel(connectionMode)}. Revoke this connection in Proofweave Settings before reconnecting.` };
+    const liveConnection = await checkLiveConnection(existing);
+    if (liveConnection.state === "ready") {
+      return { connected: true, savedConnection: true, liveConnection, connectionMode, message: `Live OAuth and MCP authorization succeeded as ${existing.agentLabel} for ${connectionModeLabel(connectionMode)}.` };
+    }
+    if (liveConnection.code !== "refresh_token_invalid") {
+      return { connected: false, savedConnection: true, liveConnection, connectionMode, reconnectRequired: false, message: liveConnection.message };
+    }
+    reconnecting = true;
   }
   const upgrading = Boolean(existing?.refreshToken && existing.baseUrl === baseUrl);
   // Agent identities are scoped to one Proofweave control plane. Reusing an
@@ -1603,7 +1611,7 @@ async function connect(args = {}) {
     previousAgentPreserved: changingControlPlane,
     message: changingControlPlane
       ? `Connected as ${next.agentLabel} for ${connectionModeLabel(connectionMode)} with a fresh deployment-scoped Agent identity. The previous Agent and its records remain preserved on the earlier Proofweave deployment.`
-      : `${upgrading ? "Connection upgraded" : "Connected"} as ${next.agentLabel} for ${connectionModeLabel(connectionMode)}. You can revoke this installation in Proofweave Settings.`,
+      : `${reconnecting ? "Reconnected" : upgrading ? "Connection upgraded" : "Connected"} as ${next.agentLabel} for ${connectionModeLabel(connectionMode)}. You can revoke this installation in Proofweave Settings.`,
   };
 }
 

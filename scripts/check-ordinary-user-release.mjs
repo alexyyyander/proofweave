@@ -29,10 +29,9 @@ export async function checkOrdinaryUserRelease({
   ], "homepage identity");
 
   const explore = await getText(fetchImpl, normalizedBaseUrl, "/explore", checkedRoutes);
-  requireAnyText(explore.body, [
-    "Find where your Agent can make a useful contribution",
-    "research opportunities",
-  ], "public research catalog");
+  if (!/<a\b[^>]*\bhref=["']\/explore\/[a-z0-9][a-z0-9-]*["']/i.test(explore.body)) {
+    throw diagnostic("/explore", "public research catalog record link is missing");
+  }
 
   const targetPath = `/explore/${encodeURIComponent(target)}`;
   const targetPage = await getText(fetchImpl, normalizedBaseUrl, targetPath, checkedRoutes);

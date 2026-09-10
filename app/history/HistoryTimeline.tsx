@@ -26,16 +26,21 @@ export type HistoryMilestone = {
     command?: string;
   };
   frontier?: boolean;
+  boundary?: string;
   latest?: boolean;
   special?: "jacobian" | "openai-ten" | "riemann";
   shortTitle: string;
-  timelinePosition: string;
+  timelineDate: string;
   timelineLane: "above" | "below";
 };
 
 export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[] }) {
   const [activeNumber, setActiveNumber] = useState(milestones.at(-1)?.number ?? milestones[0]?.number);
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const layout = distributeTimelineLabels(milestones);
+  const tracksIn = (lane: HistoryMilestone["timelineLane"]) => Math.max(2, ...layout.filter(({ item }) => item.timelineLane === lane).map(({ timelineTrack }) => timelineTrack + 1));
+  const aboveTracks = tracksIn("above");
+  const belowTracks = tracksIn("below");
 
   function focusTab(index: number) {
     const nextIndex = (index + milestones.length) % milestones.length;
@@ -56,11 +61,11 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
       </div>
 
       <div className="history-timeline-viewport">
-        <div className="history-time-visual" role="tablist" aria-label="AI mathematics milestones from January to August 2026">
-          <div className="history-time-axis" aria-hidden="true"><span className="is-jan">JAN</span><span className="is-mar">MAR</span><span className="is-may">MAY</span><span className="is-jul">JUL</span><span className="is-aug">AUG</span></div>
-          {distributeTimelineLabels(milestones).map(({ item, timelineTrack, timelineNodeOffset }, index) => {
+        <div className="history-time-visual" role="tablist" aria-label="AI mathematics milestones from January to September 2026" style={{ "--timeline-axis-y": `${84 + aboveTracks * 58}px`, height: `${168 + (aboveTracks + belowTracks) * 58}px` } as CSSProperties}>
+          <div className="history-time-axis" aria-hidden="true">{[{ label: "JAN", date: "2026-01-01" }, { label: "MAR", date: "2026-03-01" }, { label: "MAY", date: "2026-05-01" }, { label: "JUL", date: "2026-07-01" }, { label: "SEP", date: "2026-09-01" }].map(({ label, date }) => <span key={label} style={{ left: `${timelinePosition(date)}%` }}>{label}</span>)}</div>
+          {layout.map(({ item, timelineTrack, timelineNodeOffset }, index) => {
               const isActive = item.number === activeNumber;
-              const position = Number.parseFloat(item.timelinePosition);
+              const position = timelinePosition(item.timelineDate);
               const edgeClass = position >= 94 ? " is-edge-end" : position <= 6 ? " is-edge-start" : "";
               const nodeClass = timelineNodeOffset < 0 ? " is-node-above" : timelineNodeOffset > 0 ? " is-node-below" : "";
               return (
@@ -93,12 +98,12 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
                     "--timeline-label-track": timelineTrack,
                     "--timeline-node-bridge": `${Math.max(Math.abs(timelineNodeOffset) - 18, 0)}px`,
                     "--timeline-node-offset": `${timelineNodeOffset}px`,
-                    left: item.timelinePosition,
+                    left: `${position}%`,
                   } as CSSProperties}
                   tabIndex={isActive ? 0 : -1}
                   type="button"
                 >
-                  <span className="history-timepoint-copy"><time>{item.date}</time><strong>{item.shortTitle}</strong>{item.latest ? <em>Latest entry</em> : null}</span>
+                  <span className="history-timepoint-copy"><time dateTime={item.timelineDate}>{item.date}</time><strong>{item.shortTitle}</strong>{item.latest ? <em>Latest entry</em> : null}</span>
                   <span className="history-timepoint-node"><b>{item.number}</b></span>
                 </button>
               );
@@ -134,7 +139,7 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
 
                 <dl className="history-role-grid"><div><dt>AI contribution</dt><dd>{item.aiRole}</dd></div><div><dt>Human contribution</dt><dd>{item.humanRole}</dd></div><div><dt>{item.frontier ? "Evidence today" : "Why it mattered"}</dt><dd>{item.significance}</dd></div></dl>
 
-                {item.frontier ? <div className="history-frontier-boundary"><strong>What this does—and does not—establish</strong><p>{item.special === "riemann" ? "This improves a lower bound for a related zeta-zero problem. It does not prove or disprove the Riemann Hypothesis; the formal artifact is public, while a Proofweave replay receipt is still pending." : "The displayed algebraic claims can be checked now. The scholarly publication and attribution record are still forming, and the two-dimensional Jacobian Conjecture remains open."}</p></div> : null}
+                {item.frontier ? <div className="history-frontier-boundary"><strong>What this does—and does not—establish</strong><p>{item.boundary ?? (item.special === "riemann" ? "This improves a lower bound for a related zeta-zero problem. It does not prove or disprove the Riemann Hypothesis; the formal artifact is public, while a Proofweave replay receipt is still pending." : "The displayed algebraic claims can be checked now. The scholarly publication and attribution record are still forming, and the two-dimensional Jacobian Conjecture remains open.")}</p></div> : null}
 
                 <footer>{item.sources.map((source) => <a href={source.href} key={source.href} rel="noreferrer" target="_blank">{source.label} <span aria-hidden="true">↗</span></a>)}</footer>
               </article>
@@ -148,11 +153,11 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
 function distributeTimelineLabels(milestones: HistoryMilestone[]) {
   const lastPositions: Record<HistoryMilestone["timelineLane"], number[]> = { above: [], below: [] };
   const lastNodePositions: number[] = [];
-  const minimumGap = 16.5;
-  const minimumNodeGap = 4.8;
+  const minimumGap = 12;
+  const minimumNodeGap = 3.6;
 
   return milestones.map((item) => {
-    const position = Number.parseFloat(item.timelinePosition);
+    const position = timelinePosition(item.timelineDate);
     const tracks = lastPositions[item.timelineLane];
     let timelineTrack = tracks.findIndex((lastPosition) => position - lastPosition >= minimumGap);
     if (timelineTrack === -1) timelineTrack = tracks.length;
@@ -163,4 +168,10 @@ function distributeTimelineLabels(milestones: HistoryMilestone[]) {
     const timelineNodeOffset = nodeTrack === 0 ? 0 : nodeTrack % 2 === 1 ? -36 * Math.ceil(nodeTrack / 2) : 36 * Math.ceil(nodeTrack / 2);
     return { item, timelineNodeOffset, timelineTrack };
   });
+}
+
+function timelinePosition(date: string) {
+  const start = Date.parse("2026-01-01T00:00:00Z");
+  const end = Date.parse("2026-09-30T00:00:00Z");
+  return 2 + 96 * (Date.parse(`${date}T00:00:00Z`) - start) / (end - start);
 }
