@@ -41,6 +41,7 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
   const tracksIn = (lane: HistoryMilestone["timelineLane"]) => Math.max(2, ...layout.filter(({ item }) => item.timelineLane === lane).map(({ timelineTrack }) => timelineTrack + 1));
   const aboveTracks = tracksIn("above");
   const belowTracks = tracksIn("below");
+  const nodeClearance = Math.max(0, ...layout.map(({ timelineNodeOffset }) => Math.abs(timelineNodeOffset)));
 
   function focusTab(index: number) {
     const nextIndex = (index + milestones.length) % milestones.length;
@@ -61,7 +62,7 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
       </div>
 
       <div className="history-timeline-viewport">
-        <div className="history-time-visual" role="tablist" aria-label="AI mathematics milestones from January to September 2026" style={{ "--timeline-axis-y": `${84 + aboveTracks * 58}px`, height: `${168 + (aboveTracks + belowTracks) * 58}px` } as CSSProperties}>
+        <div className="history-time-visual" role="tablist" aria-label="AI mathematics milestones from January to September 2026" style={{ "--timeline-axis-y": `${84 + nodeClearance + aboveTracks * 58}px`, "--timeline-node-clearance": `${nodeClearance}px`, height: `${168 + 2 * nodeClearance + (aboveTracks + belowTracks) * 58}px` } as CSSProperties}>
           <div className="history-time-axis" aria-hidden="true">{[{ label: "JAN", date: "2026-01-01" }, { label: "MAR", date: "2026-03-01" }, { label: "MAY", date: "2026-05-01" }, { label: "JUL", date: "2026-07-01" }, { label: "SEP", date: "2026-09-01" }].map(({ label, date }) => <span key={label} style={{ left: `${timelinePosition(date)}%` }}>{label}</span>)}</div>
           {layout.map(({ item, timelineTrack, timelineNodeOffset }, index) => {
               const isActive = item.number === activeNumber;
