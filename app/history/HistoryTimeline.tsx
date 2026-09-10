@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 
 export type EvidenceTone = "formal" | "reviewed" | "reproduced" | "announced";
@@ -37,7 +37,39 @@ export type HistoryMilestone = {
 export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[] }) {
   const [activeNumber, setActiveNumber] = useState(milestones.at(-1)?.number ?? milestones[0]?.number);
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
-  const layout = distributeTimelineLabels(milestones);
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const [zoom, setZoom] = useState(16);
+  const [viewportWidth, setViewportWidth] = useState(1120);
+  const centerRef = useRef(timelinePosition(milestones.at(-1)?.timelineDate ?? "2026-09-01") / 100);
+  const dragRef = useRef<{ pointerId: number; x: number; scrollLeft: number; moved: boolean } | null>(null);
+  const [dragging, setDragging] = useState(false);
+  const canvasWidth = Math.max(viewportWidth, 640) * zoom;
+  const layout = distributeTimelineLabels(milestones, canvasWidth);
+
+  useLayoutEffect(() => {
+    const viewport = viewportRef.current;
+    if (!viewport) return;
+    const observer = new ResizeObserver(() => setViewportWidth(viewport.clientWidth));
+    observer.observe(viewport);
+    return () => observer.disconnect();
+  }, []);
+
+  useLayoutEffect(() => {
+    const viewport = viewportRef.current;
+    if (viewport) viewport.scrollLeft = centerRef.current * canvasWidth - viewport.clientWidth / 2;
+  }, [canvasWidth]);
+
+  function changeZoom(value: number, center?: number) {
+    const viewport = viewportRef.current;
+    centerRef.current = center ?? (viewport ? (viewport.scrollLeft + viewport.clientWidth / 2) / canvasWidth : centerRef.current);
+    const nextZoom = Math.max(1, Math.min(32, value));
+    setZoom(nextZoom);
+    if (nextZoom === zoom && viewport) viewport.scrollLeft = centerRef.current * canvasWidth - viewport.clientWidth / 2;
+  }
+
+  function recentDays() {
+    changeZoom(16, timelinePosition(milestones.at(-1)?.timelineDate ?? "2026-09-01") / 100);
+  }
   const tracksIn = (lane: HistoryMilestone["timelineLane"]) => Math.max(2, ...layout.filter(({ item }) => item.timelineLane === lane).map(({ timelineTrack }) => timelineTrack + 1));
   const aboveTracks = tracksIn("above");
   const belowTracks = tracksIn("below");
@@ -48,7 +80,10 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
     const next = milestones[nextIndex];
     if (!next) return;
     setActiveNumber(next.number);
-    tabRefs.current[nextIndex]?.focus();
+    const tab = tabRefs.current[nextIndex];
+    tab?.focus({ preventScroll: true });
+    const viewport = viewportRef.current;
+    if (viewport) viewport.scrollLeft = timelinePosition(next.timelineDate) / 100 * canvasWidth - viewport.clientWidth / 2;
   }
 
   return (
@@ -58,12 +93,54 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
           <p className="eyebrow">{milestones.length} moments · one accelerating frontier</p>
           <h2 id="timeline-title">Follow the record across 2026.</h2>
         </div>
-        <p>Spacing follows publication or announcement time. Clustered nodes show activity accelerating—not stronger evidence. Month-only records sit at mid-month.</p>
+        <p>Zoom in to separate busy days. Drag the timeline or swipe sideways to explore. Records from the same day stay stacked; month-only records sit at mid-month.</p>
       </div>
 
-      <div className="history-timeline-viewport">
-        <div className="history-time-visual" role="tablist" aria-label="AI mathematics milestones from January to September 2026" style={{ "--timeline-axis-y": `${84 + nodeClearance + aboveTracks * 58}px`, "--timeline-node-clearance": `${nodeClearance}px`, height: `${168 + 2 * nodeClearance + (aboveTracks + belowTracks) * 58}px` } as CSSProperties}>
-          <div className="history-time-axis" aria-hidden="true">{[{ label: "JAN", date: "2026-01-01" }, { label: "MAR", date: "2026-03-01" }, { label: "MAY", date: "2026-05-01" }, { label: "JUL", date: "2026-07-01" }, { label: "SEP", date: "2026-09-01" }].map(({ label, date }) => <span key={label} style={{ left: `${timelinePosition(date)}%` }}>{label}</span>)}</div>
+      <div className="history-timeline-controls" aria-label="Timeline controls">
+        <div className="history-timeline-presets">
+          <button type="button" onClick={() => changeZoom(1, .5)}>Full record</button>
+          <button type="button" onClick={recentDays}>Recent days</button>
+        </div>
+        <div className="history-timeline-zoom">
+          <button type="button" aria-label="Zoom out timeline" disabled={zoom === 1} onClick={() => changeZoom(Math.max(1, Math.round(zoom / 1.5)))}>−</button>
+          <label htmlFor="history-zoom">Zoom</label>
+          <input id="history-zoom" type="range" min="1" max="32" step="1" value={zoom} aria-valuetext={`${zoom} times`} onChange={(event) => changeZoom(Number(event.target.value))} />
+          <output htmlFor="history-zoom">{zoom}×</output>
+          <button type="button" aria-label="Zoom in timeline" disabled={zoom === 32} onClick={() => changeZoom(Math.min(32, Math.ceil(zoom * 1.5)))}>+</button>
+        </div>
+        <div className="history-timeline-pan">
+          <button type="button" aria-label="Earlier dates" onClick={() => viewportRef.current?.scrollBy({ left: -viewportWidth * .7 })}>←</button>
+          <button type="button" aria-label="Later dates" onClick={() => viewportRef.current?.scrollBy({ left: viewportWidth * .7 })}>→</button>
+        </div>
+      </div>
+      <div
+        className={`history-timeline-viewport${dragging ? " is-dragging" : ""}`}
+        ref={viewportRef}
+        onPointerDown={(event) => {
+          if (event.pointerType !== "mouse" || event.button !== 0) return;
+          dragRef.current = { pointerId: event.pointerId, x: event.clientX, scrollLeft: event.currentTarget.scrollLeft, moved: false };
+        }}
+        onPointerMove={(event) => {
+          const drag = dragRef.current;
+          if (!drag || drag.pointerId !== event.pointerId || event.buttons !== 1) return;
+          const distance = event.clientX - drag.x;
+          if (!drag.moved && Math.abs(distance) < 5) return;
+          drag.moved = true;
+          setDragging(true);
+          event.currentTarget.setPointerCapture(event.pointerId);
+          event.currentTarget.scrollLeft = drag.scrollLeft - distance;
+        }}
+        onPointerUp={() => { setDragging(false); }}
+        onPointerCancel={() => { dragRef.current = null; setDragging(false); }}
+        onLostPointerCapture={() => setDragging(false)}
+        onClickCapture={(event) => {
+          if (event.detail !== 0 && dragRef.current?.moved) { event.preventDefault(); event.stopPropagation(); }
+          dragRef.current = null;
+        }}
+        onScroll={(event) => { centerRef.current = (event.currentTarget.scrollLeft + event.currentTarget.clientWidth / 2) / canvasWidth; }}
+      >
+        <div className="history-time-visual" role="tablist" aria-label="AI mathematics milestones from January to September 2026" style={{ width: `${canvasWidth}px`, "--timeline-axis-y": `${84 + nodeClearance + aboveTracks * 80}px`, "--timeline-node-clearance": `${nodeClearance}px`, height: `${168 + 2 * nodeClearance + (aboveTracks + belowTracks) * 80}px` } as CSSProperties}>
+          <div className="history-time-axis" aria-hidden="true">{timelineTicks(zoom).map(({ label, date }) => <span key={date} style={{ left: `${timelinePosition(date)}%` }}>{label}</span>)}</div>
           {layout.map(({ item, timelineTrack, timelineNodeOffset }, index) => {
               const isActive = item.number === activeNumber;
               const position = timelinePosition(item.timelineDate);
@@ -151,11 +228,11 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
   );
 }
 
-function distributeTimelineLabels(milestones: HistoryMilestone[]) {
+function distributeTimelineLabels(milestones: HistoryMilestone[], width: number) {
   const lastPositions: Record<HistoryMilestone["timelineLane"], number[]> = { above: [], below: [] };
   const lastNodePositions: number[] = [];
-  const minimumGap = 12;
-  const minimumNodeGap = 3.6;
+  const minimumGap = 188 / width * 100;
+  const minimumNodeGap = 48 / width * 100;
 
   return milestones.map((item) => {
     const position = timelinePosition(item.timelineDate);
@@ -166,7 +243,7 @@ function distributeTimelineLabels(milestones: HistoryMilestone[]) {
     let nodeTrack = lastNodePositions.findIndex((lastPosition) => position - lastPosition >= minimumNodeGap);
     if (nodeTrack === -1) nodeTrack = lastNodePositions.length;
     lastNodePositions[nodeTrack] = position;
-    const timelineNodeOffset = nodeTrack === 0 ? 0 : nodeTrack % 2 === 1 ? -36 * Math.ceil(nodeTrack / 2) : 36 * Math.ceil(nodeTrack / 2);
+    const timelineNodeOffset = nodeTrack === 0 ? 0 : nodeTrack % 2 === 1 ? -48 * Math.ceil(nodeTrack / 2) : 48 * Math.ceil(nodeTrack / 2);
     return { item, timelineNodeOffset, timelineTrack };
   });
 }
@@ -175,4 +252,16 @@ function timelinePosition(date: string) {
   const start = Date.parse("2026-01-01T00:00:00Z");
   const end = Date.parse("2026-09-30T00:00:00Z");
   return 2 + 96 * (Date.parse(`${date}T00:00:00Z`) - start) / (end - start);
+}
+
+function timelineTicks(zoom: number) {
+  const ticks: Array<{ date: string; label: string }> = [];
+  const step = zoom >= 12 ? 1 : zoom >= 4 ? 7 : 0;
+  const formatter = new Intl.DateTimeFormat("en", { month: "short", ...(step ? { day: "numeric" } as const : {}), timeZone: "UTC" });
+  for (let day = new Date("2026-01-01T00:00:00Z"); day <= new Date("2026-09-30T00:00:00Z");) {
+    ticks.push({ date: day.toISOString().slice(0, 10), label: formatter.format(day).toUpperCase() });
+    if (step) day.setUTCDate(day.getUTCDate() + step);
+    else day.setUTCMonth(day.getUTCMonth() + 1);
+  }
+  return ticks;
 }
