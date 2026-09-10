@@ -56,6 +56,17 @@ test("fails clearly when the selected target is lost during the start redirect",
   );
 });
 
+test("requires a real target link instead of accepting catalog marketing copy", async () => {
+  await assert.rejects(
+    checkOrdinaryUserRelease({
+      baseUrl,
+      expectMode: "read_only",
+      fetchImpl: createFetch({ mode: "read_only", missingCatalogTarget: true }),
+    }),
+    /public research catalog record link is missing/,
+  );
+});
+
 test("fails when the capability mode disagrees with the operator expectation", async () => {
   await assert.rejects(
     checkOrdinaryUserRelease({
@@ -83,6 +94,7 @@ function createFetch({
   capabilityMode = mode,
   googleAvailable = false,
   lostTarget = false,
+  missingCatalogTarget = false,
   leanReplay = "not_run_by_this_request",
   requests = [],
 }) {
@@ -91,7 +103,9 @@ function createFetch({
   const integrationsPath = `/integrations?target=${target}&return_to=${encodeURIComponent(returnTo)}`;
   const responses = new Map([
     ["/", html("Proofweave Advance mathematics through your Agent")],
-    ["/explore", html("Find where your Agent can make a useful contribution")],
+    ["/explore", html(missingCatalogTarget
+      ? "Find where your Agent can make a useful contribution"
+      : `<h1>Search the frontier.</h1><a href="/explore/${target}">Open record</a>`)],
     [`/explore/${target}`, html(`${target} Pinned source Start with my Agent`)],
     ["/demo", html("Watch one Lean proof become verifiable evidence. Re-verify signed evidence")],
     [`/start?target=${target}`, redirect(lostTarget

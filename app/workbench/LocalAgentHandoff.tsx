@@ -6,6 +6,7 @@ import type { DelegationProfile, StoredDelegation } from "@/db/repositories/dele
 import type { McpAttempt } from "@/packages/domain/mcp";
 import { ProductStateBadge } from "../ui";
 import {
+  controlPlaneAvailabilityLabel,
   controlPlaneMaintenanceCopy,
   type ControlPlaneWriteAvailability,
 } from "../lib/control-plane-write-capability";
@@ -66,7 +67,7 @@ export function LocalAgentHandoff({
           <h2 id="local-agent-title">{maintenance.title}</h2>
           <p>{maintenance.detail}</p>
         </div>
-        <ProductStateBadge tone="not-deployed">{writeAvailability === "checking" ? "Checking" : "Read only"}</ProductStateBadge>
+        <ProductStateBadge tone="not-deployed">{controlPlaneAvailabilityLabel(writeAvailability)}</ProductStateBadge>
       </div>
       <div className="local-agent-empty">
         <strong>Your existing research is safe and still readable.</strong>

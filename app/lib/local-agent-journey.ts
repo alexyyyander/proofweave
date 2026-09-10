@@ -4,7 +4,10 @@ import type {
   StoredDelegation,
 } from "@/db/repositories/delegation";
 import type { McpAttempt } from "@/packages/domain/mcp";
-import type { ControlPlaneWriteAvailability } from "./control-plane-write-capability";
+import {
+  controlPlaneMaintenanceCopy,
+  type ControlPlaneWriteAvailability,
+} from "./control-plane-write-capability";
 
 export type LocalAgentJourneyStage =
   | "sign_in"
@@ -140,12 +143,8 @@ export function localAgentJourney(input: Readonly<{
   if (!input.storageAvailable) return state("storage_unavailable", "Your account control plane is temporarily unavailable.", "Proofweave will not create a local fallback for Agent authority or contribution records while durable storage is unavailable.", "Browse public research", input.links.chooseTarget, null, null);
   if (input.writeAvailability !== "available") return state(
     "maintenance",
-    input.writeAvailability === "checking"
-      ? "Checking whether research updates are available."
-      : "Research updates are paused for maintenance.",
-    input.writeAvailability === "read_only"
-      ? "Your questions, activity, and evidence remain readable. Actions that create or change research will return after maintenance."
-      : "Existing records remain readable. Write actions stay closed until Proofweave can confirm the service is ready.",
+    controlPlaneMaintenanceCopy(input.writeAvailability).title,
+    controlPlaneMaintenanceCopy(input.writeAvailability).detail,
     "Browse public research",
     input.links.chooseTarget,
     null,

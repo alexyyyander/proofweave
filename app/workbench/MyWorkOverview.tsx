@@ -7,6 +7,7 @@ import type { DelegationProfile } from "@/db/repositories/delegation";
 import type { CatalogProblem } from "@/packages/domain/catalog";
 import type { McpAttempt, McpRunSummary } from "@/packages/domain/mcp";
 import {
+  controlPlaneAvailabilityLabel,
   controlPlaneMaintenanceCopy,
   loadControlPlaneWriteAvailability,
   type ControlPlaneWriteAvailability,
@@ -89,7 +90,7 @@ export function MyWorkOverview({
       <div className="my-work-actions">
         {writeAvailability === "available"
           ? <button className="button button-primary" type="button" onClick={() => setShowLauncher((current) => !current)}>{showLauncher ? "Hide new task" : "Start new research"}</button>
-          : <span className="button button-secondary" aria-disabled="true">{writeAvailability === "checking" ? "Checking research access…" : "Research updates paused"}</span>}
+          : <span className="button button-secondary" aria-disabled="true">{controlPlaneAvailabilityLabel(writeAvailability)}{writeAvailability === "checking" ? "…" : ""}</span>}
         <Link className="button button-secondary" href="/explore">Browse opportunities</Link>
       </div>
     </section>
@@ -114,7 +115,7 @@ export function MyWorkOverview({
     </div>
 
     {showLauncher && <section className="my-work-launcher" aria-label="Start new research">
-      <ResearchLauncher profile={profile} attempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={initialTargetSlug} initialParentNodeId={initialParentNodeId} onAttemptReady={onAttemptReady} isAuthenticated signInPath="/sign-in?returnTo=%2Fworkbench" storageAvailable={storageAvailable} writeAvailability={writeAvailability} />
+      <ResearchLauncher profile={profile} attempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={initialTargetSlug} initialParentNodeId={initialParentNodeId} onAttemptReady={onAttemptReady} isAuthenticated signInPath="/sign-in?return_to=%2Fworkbench" storageAvailable={storageAvailable} writeAvailability={writeAvailability} />
     </section>}
 
     {nextRecord && <section className="my-work-next-action" aria-labelledby="my-work-next-action-title">

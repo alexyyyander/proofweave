@@ -64,7 +64,7 @@ test("connection_status distinguishes live-compatible updates from tool-schema r
     const port = await listen(server);
     const baseUrl = `http://127.0.0.1:${port}`;
     const configPath = join(fixtureRoot, "connector.json");
-    await writeFile(configPath, JSON.stringify(connectedFixtureConfig(baseUrl)));
+    await writeFile(configPath, JSON.stringify(currentFixtureConfig(baseUrl)));
     const env = { ...process.env, PROOFWEAVE_BASE_URL: baseUrl, PROOFWEAVE_CONNECTOR_CONFIG: configPath };
 
     const compatibleResponse = await callConnectorTool("connection_status", {}, env);
@@ -74,6 +74,9 @@ test("connection_status distinguishes live-compatible updates from tool-schema r
     assert.equal(compatible.compatibility.restartRequired, false);
     assert.equal(compatible.connector.toolSchemaVersion, 1);
     assert.equal(compatible.compatibility.remote.capabilities[0], "stable_attempt_handoff");
+    const connected = JSON.parse((await callConnectorTool("connect_proofweave", {}, env)).result.content[0].text);
+    assert.equal(connected.connected, true);
+    assert.equal(connected.liveConnection.state, "ready");
 
     toolSchemaVersion = 2;
     const restartResponse = await callConnectorTool("connection_status", {}, env);
@@ -114,7 +117,7 @@ test("connection_status reports an edge block without falsely asking the owner t
     const baseUrl = `http://127.0.0.1:${port}`;
     const configPath = join(fixtureRoot, "connector.json");
     await writeFile(configPath, JSON.stringify({
-      ...connectedFixtureConfig(baseUrl),
+      ...currentFixtureConfig(baseUrl),
       accessTokenExpiresAt: "2020-01-01T00:00:00.000Z",
     }));
     const result = JSON.parse((await callConnectorTool("connection_status", {}, {
@@ -130,6 +133,13 @@ test("connection_status reports an edge block without falsely asking the owner t
     assert.equal(result.liveConnection.httpStatus, 403);
     assert.equal(result.reconnectRequired, false);
     assert.match(result.message, /network edge.*403/i);
+    const connectResult = JSON.parse((await callConnectorTool("connect_proofweave", {}, {
+      ...process.env, PROOFWEAVE_BASE_URL: baseUrl, PROOFWEAVE_CONNECTOR_CONFIG: configPath,
+    })).result.content[0].text);
+    assert.equal(connectResult.connected, false);
+    assert.equal(connectResult.reconnectRequired, false);
+    assert.equal(connectResult.liveConnection.code, "edge_blocked");
+    assert.equal(JSON.parse(await readFile(configPath, "utf8")).refreshToken, "refresh-test");
   } finally {
     await Promise.all([close(server), rm(fixtureRoot, { recursive: true, force: true })]);
   }
@@ -563,7 +573,9 @@ test("the local Connector refuses to treat a saved connection for another contro
   }
 });
 
-test("the local Connector rotates an Agent identity before approving a different control plane", async () => {
+for (const changingControlPlane of [true, false]) test(changingControlPlane
+  ? "the local Connector rotates an Agent identity before approving a different control plane"
+  : "the local Connector repairs an invalid refresh without replacing its Agent identity", async () => {
   const fixtureRoot = await mkdtemp(join(tmpdir(), "proofweave-connector-identity-rotation-"));
   let pairingPayload;
   let resolvePairing;
@@ -584,6 +596,11 @@ test("the local Connector rotates an Agent identity before approving a different
         resolvePairing();
         return;
       }
+      if (request.url === "/token" && new URLSearchParams(body).get("grant_type") === "refresh_token") {
+        response.writeHead(400, { "content-type": "application/json" });
+        response.end(JSON.stringify({ error: "invalid_grant" }));
+        return;
+      }
       if (request.url === "/token") {
         response.writeHead(200, { "content-type": "application/json" });
         response.end(JSON.stringify({
@@ -602,7 +619,7 @@ test("the local Connector rotates an Agent identity before approving a different
     const callbackPort = await availablePort();
     const baseUrl = `http://127.0.0.1:${port}`;
     const configPath = join(fixtureRoot, "connector.json");
-    const previous = connectedFixtureConfig("https://old-proofweave.example.test");
+    const previous = { ...currentFixtureConfig(changingControlPlane ? "https://old-proofweave.example.test" : baseUrl), accessTokenExpiresAt: "2020-01-01T00:00:00.000Z" };
     await writeFile(configPath, JSON.stringify(previous));
     const connectPromise = callConnectorTool("connect_proofweave", {}, {
       ...process.env,
@@ -613,20 +630,23 @@ test("the local Connector rotates an Agent identity before approving a different
     });
 
     await pairingReceived;
-    assert.notEqual(pairingPayload.agentId, previous.agentId);
-    assert.notEqual(pairingPayload.agentPublicKey, previous.agentPublicKey);
-    assert.match(pairingPayload.agentId, /^urn:pw:agent:codex-/);
+    assert.equal(pairingPayload.agentId === previous.agentId, !changingControlPlane);
+    assert.equal(pairingPayload.agentPublicKey === previous.agentPublicKey, !changingControlPlane);
+    assert.deepEqual(JSON.parse(await readFile(configPath, "utf8")), previous);
+    if (changingControlPlane) assert.match(pairingPayload.agentId, /^urn:pw:agent:codex-/);
     await fetchWithRetry(`http://127.0.0.1:${callbackPort}/callback?code=approved-code&state=${encodeURIComponent(pairingPayload.oauthState)}`);
 
     const response = await connectPromise;
     assert.equal(response.error, undefined);
     const result = JSON.parse(response.result.content[0].text);
     assert.equal(result.connected, true);
-    assert.equal(result.identityRotated, true);
-    assert.equal(result.previousAgentPreserved, true);
+    assert.equal(result.identityRotated, changingControlPlane);
+    assert.equal(result.previousAgentPreserved, changingControlPlane);
     const saved = JSON.parse(await readFile(configPath, "utf8"));
     assert.equal(saved.agentId, pairingPayload.agentId);
-    assert.notEqual(saved.agentId, previous.agentId);
+    assert.equal(saved.agentId === previous.agentId, !changingControlPlane);
+    if (!changingControlPlane) assert.deepEqual(saved.privateKeyJwk, previous.privateKeyJwk);
+    assert.equal(saved.refreshToken, "refresh-fresh-control-plane");
   } finally {
     await Promise.all([close(server), rm(fixtureRoot, { recursive: true, force: true })]);
   }
@@ -1484,4 +1504,11 @@ function sha256(value) {
 
 async function git(cwd, args) {
   await execFileAsync("git", args, { cwd });
+}
+
+function currentFixtureConfig(baseUrl) {
+  return {
+    ...connectedFixtureConfig(baseUrl), version: 3, connectionMode: "research",
+    grantedScopes: "catalog:read attempt:create attempt:read progress:write artifact:write run:request run:read run:cancel".split(" "),
+  };
 }

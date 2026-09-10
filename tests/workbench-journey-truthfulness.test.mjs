@@ -19,6 +19,10 @@ const integrationClient = await readFile(
   new URL("../app/integrations/IntegrationClient.tsx", import.meta.url),
   "utf8",
 );
+const controlPlaneCapability = await readFile(
+  new URL("../app/lib/control-plane-write-capability.ts", import.meta.url),
+  "utf8",
+);
 const globalStyles = await readFile(
   new URL("../app/globals.css", import.meta.url),
   "utf8",
@@ -80,4 +84,12 @@ test("the contribution rail remains readable on desktop and mobile", () => {
   const mobileBlock = globalStyles.match(/@media \(max-width: 620px\) \{([\s\S]*?)\n\}/)?.[1] ?? "";
   assert.doesNotMatch(mobileBlock, /\.first-contribution-path li (?:strong|small) \{[^}]*font-size:\s*(?:[0-9]|1[01])px/);
   assert.doesNotMatch(mobileBlock, /\.first-contribution-boundary \{[^}]*font-size:\s*(?:[0-9]|1[01])px/);
+});
+
+test("the ordinary-user surface distinguishes edge blocking from planned read-only maintenance", () => {
+  assert.match(controlPlaneCapability, /response\.status === 403\) return \"edge_blocked\"/);
+  assert.match(controlPlaneCapability, /return \"network_unavailable\"/);
+  assert.match(controlPlaneCapability, /title: \"Proofweave is blocked at its public edge\.\"/);
+  assert.match(controlPlaneCapability, /reconnecting or uploading files will not fix this service-side problem/i);
+  assert.match(controlPlaneCapability, /title: \"Research updates are paused for maintenance\.\"/);
 });
