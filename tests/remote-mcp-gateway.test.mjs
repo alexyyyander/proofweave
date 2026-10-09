@@ -6,6 +6,7 @@ import {
   createAllowlistedClientRegistrationPolicy,
   createOAuthAccessTokenAuthenticator,
   createProofweaveOAuthProvider,
+  OAuthProtocolError,
 } from "../services/proofweave-identity/oauth.mjs";
 import {
   createRemoteMcpGateway,
@@ -15,6 +16,37 @@ import {
 
 const resource = "https://mcp.example.test/mcp";
 const issuer = "https://auth.example.test";
+
+test("OAuth endpoints keep database failures private and preserve protocol errors", async () => {
+  for (const path of ["authorize", "token", "register"]) {
+    const failure = Object.assign(new Error("database credential expired: private diagnostic"), { code: "SERVER_ERROR" });
+    const identity = createProofweaveIdentityService({
+      issuer,
+      identityProvider: {
+        registrationEndpointEnabled: true,
+        async [path]() { throw failure; },
+      },
+    });
+    const response = await identity.fetch(new Request(`${issuer}/${path}`, { method: "POST" }));
+    assert.equal(response.status, 500);
+    assert.deepEqual(await response.json(), {
+      error: "server_error",
+      error_description: "Proofweave Identity could not complete the request.",
+    });
+  }
+  const identity = createProofweaveIdentityService({
+    issuer,
+    identityProvider: {
+      async token() { throw new OAuthProtocolError("invalid_request", "A required field is missing."); },
+    },
+  });
+  const response = await identity.fetch(new Request(`${issuer}/token`, { method: "POST" }));
+  assert.equal(response.status, 400);
+  assert.deepEqual(await response.json(), {
+    error: "invalid_request",
+    error_description: "A required field is missing.",
+  });
+});
 
 function gatewayWith(identityProvider, store = fixtureStore(), {
   rateLimiter,

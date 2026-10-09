@@ -1,4 +1,5 @@
 import { remoteMcpScopes } from "../../packages/protocol/remote-mcp-scopes.mjs";
+import { OAuthProtocolError } from "./oauth.mjs";
 import { UnconfiguredIdentityProvider } from "../proofweave-mcp-gateway/worker.mjs";
 
 /**
@@ -55,7 +56,7 @@ async function oauthEndpoint(handler) {
   try {
     return await handler();
   } catch (error) {
-    if (error && typeof error === "object" && "code" in error && "message" in error) {
+    if (error instanceof OAuthProtocolError) {
       return json(
         { error: error.code, error_description: error.message },
         400,
