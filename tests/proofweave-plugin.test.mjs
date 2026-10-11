@@ -383,7 +383,8 @@ test("the private-beta plugin starts only a local PKCE Connector", async () => {
     },
   });
   assert.match(connector, /\/api\/connect\/sessions/);
-  assert.match(connector, /proofweave-research\.yualex031821\.chatgpt\.site/);
+  assert.equal(manifest.homepage, "https://proofweave.org");
+  assert.match(connector, /PROOFWEAVE_BASE_URL \?\? productionOrigin/);
   assert.doesNotMatch(connector, /proofweave-public-demo\.proofweave-research\.workers\.dev/);
   assert.match(connector, /code_verifier/);
   assert.match(connector, /generateKeyPairSync\("ed25519"\)/);
@@ -573,11 +574,16 @@ test("the local Connector refuses to treat a saved connection for another contro
   }
 });
 
-for (const changingControlPlane of [true, false]) test(changingControlPlane
+for (const scenario of ["other_deployment", "refresh_repair", "production_domain"]) test(scenario === "production_domain"
+  ? "the production domain migration preserves the Agent key without forwarding old tokens"
+  : scenario === "other_deployment"
   ? "the local Connector rotates an Agent identity before approving a different control plane"
   : "the local Connector repairs an invalid refresh without replacing its Agent identity", async () => {
+  const changingControlPlane = scenario === "other_deployment";
+  const domainMigration = scenario === "production_domain";
   const fixtureRoot = await mkdtemp(join(tmpdir(), "proofweave-connector-identity-rotation-"));
   let pairingPayload;
+  const tokenForms = [];
   let resolvePairing;
   const pairingReceived = new Promise((resolve) => { resolvePairing = resolve; });
   const server = createServer((request, response) => {
@@ -585,6 +591,7 @@ for (const changingControlPlane of [true, false]) test(changingControlPlane
     request.setEncoding("utf8");
     request.on("data", (chunk) => { body += chunk; });
     request.on("end", () => {
+      if (request.url === "/token") tokenForms.push(new URLSearchParams(body));
       if (request.url === "/api/connect/sessions") {
         pairingPayload = JSON.parse(body);
         response.writeHead(201, { "content-type": "application/json" });
@@ -617,9 +624,20 @@ for (const changingControlPlane of [true, false]) test(changingControlPlane
   try {
     const port = await listen(server);
     const callbackPort = await availablePort();
-    const baseUrl = `http://127.0.0.1:${port}`;
+    const localOrigin = `http://127.0.0.1:${port}`;
+    const baseUrl = domainMigration ? "https://proofweave.org" : localOrigin;
+    const transportPath = join(fixtureRoot, "transport.mjs");
+    if (domainMigration) await writeFile(transportPath, `
+      const realFetch = globalThis.fetch;
+      globalThis.fetch = (input, init) => {
+        const url = new URL(input);
+        if (url.origin !== "https://proofweave.org") throw new Error("Unexpected test destination");
+        return realFetch(${JSON.stringify(localOrigin)} + url.pathname + url.search, init);
+      };
+    `);
     const configPath = join(fixtureRoot, "connector.json");
-    const previous = { ...currentFixtureConfig(changingControlPlane ? "https://old-proofweave.example.test" : baseUrl), accessTokenExpiresAt: "2020-01-01T00:00:00.000Z" };
+    const previousOrigin = domainMigration ? "https://proofweave-research.yualex031821.chatgpt.site" : changingControlPlane ? "https://old-proofweave.example.test" : baseUrl;
+    const previous = { ...currentFixtureConfig(previousOrigin), accessTokenExpiresAt: "2020-01-01T00:00:00.000Z" };
     await writeFile(configPath, JSON.stringify(previous));
     const connectPromise = callConnectorTool("connect_proofweave", {}, {
       ...process.env,
@@ -627,6 +645,7 @@ for (const changingControlPlane of [true, false]) test(changingControlPlane
       PROOFWEAVE_CONNECTOR_CONFIG: configPath,
       PROOFWEAVE_CALLBACK_PORT: String(callbackPort),
       PROOFWEAVE_DISABLE_BROWSER_OPEN: "1",
+      ...(domainMigration ? { NODE_OPTIONS: `${process.env.NODE_OPTIONS ?? ""} --import=${transportPath}` } : {}),
     });
 
     await pairingReceived;
@@ -641,12 +660,19 @@ for (const changingControlPlane of [true, false]) test(changingControlPlane
     const result = JSON.parse(response.result.content[0].text);
     assert.equal(result.connected, true);
     assert.equal(result.identityRotated, changingControlPlane);
+    assert.equal(result.domainMigrated, domainMigration);
     assert.equal(result.previousAgentPreserved, changingControlPlane);
     const saved = JSON.parse(await readFile(configPath, "utf8"));
     assert.equal(saved.agentId, pairingPayload.agentId);
     assert.equal(saved.agentId === previous.agentId, !changingControlPlane);
     if (!changingControlPlane) assert.deepEqual(saved.privateKeyJwk, previous.privateKeyJwk);
     assert.equal(saved.refreshToken, "refresh-fresh-control-plane");
+    assert.equal(saved.baseUrl, baseUrl);
+    if (domainMigration) {
+      assert.equal(tokenForms.length, 1);
+      assert.equal(tokenForms[0].get("grant_type"), "authorization_code");
+      assert.equal(tokenForms[0].has("refresh_token"), false);
+    }
   } finally {
     await Promise.all([close(server), rm(fixtureRoot, { recursive: true, force: true })]);
   }

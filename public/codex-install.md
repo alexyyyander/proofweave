@@ -16,8 +16,8 @@ The default installation does not use GitHub. Proofweave publishes a portable
 marketplace archive and its SHA-256 checksum at:
 
 ```text
-https://proofweave-research.yualex031821.chatgpt.site/downloads/proofweave-research-marketplace.tar
-https://proofweave-research.yualex031821.chatgpt.site/downloads/proofweave-research-marketplace.tar.sha256
+https://proofweave.org/downloads/proofweave-research-marketplace.tar
+https://proofweave.org/downloads/proofweave-research-marketplace.tar.sha256
 ```
 
 Before changing the person's computer, Codex must:
@@ -39,10 +39,10 @@ mkdir -p "$PROOFWEAVE_DOWNLOAD_DIR" "$PROOFWEAVE_MARKETPLACE_DIR"
 
 curl --fail --location \
   --output "$PROOFWEAVE_DOWNLOAD_DIR/proofweave-research-marketplace.tar" \
-  "https://proofweave-research.yualex031821.chatgpt.site/downloads/proofweave-research-marketplace.tar"
+  "https://proofweave.org/downloads/proofweave-research-marketplace.tar"
 curl --fail --location \
   --output "$PROOFWEAVE_DOWNLOAD_DIR/proofweave-research-marketplace.tar.sha256" \
-  "https://proofweave-research.yualex031821.chatgpt.site/downloads/proofweave-research-marketplace.tar.sha256"
+  "https://proofweave.org/downloads/proofweave-research-marketplace.tar.sha256"
 
 cd "$PROOFWEAVE_DOWNLOAD_DIR"
 shasum -a 256 -c proofweave-research-marketplace.tar.sha256
@@ -89,7 +89,7 @@ The local Connector needs one outbound HTTPS destination to begin a browser
 approval and later exchange bounded Proofweave MCP requests:
 
 ```text
-proofweave-research.yualex031821.chatgpt.site
+proofweave.org
 ```
 
 Most people do not need to configure anything else. If Codex says it cannot
@@ -107,7 +107,7 @@ extends = ":workspace"
 enabled = true
 
 [permissions.proofweave-connector.network.domains]
-"proofweave-research.yualex031821.chatgpt.site" = "allow"
+"proofweave.org" = "allow"
 ```
 
 Start a fresh Codex task after changing a permission profile. In a managed

@@ -77,6 +77,33 @@ after(async () => {
   ]);
 });
 
+test("domain migration serves separate OAuth authorities and redirects only public browsing", async () => {
+  const canonical = "https://proofweave.org";
+  const legacy = "https://proofweave-research.yualex031821.chatgpt.site";
+  const worker = await createWorker({ bindings: {
+    OAUTH_ISSUER_URL: canonical,
+    MCP_RESOURCE_URL: `${canonical}/api/mcp`,
+    OAUTH_LEGACY_ISSUER_URL: legacy,
+  } });
+  try {
+    for (const origin of [canonical, legacy]) {
+      const metadata = await worker.dispatchFetch(`${origin}/.well-known/oauth-authorization-server`);
+      assert.equal(metadata.status, 200);
+      const body = await metadata.json();
+      assert.equal(new URL(body.issuer).origin, origin);
+      assert.equal(body.token_endpoint, `${origin}/token`);
+      assert.equal(body.authorization_endpoint, `${origin}/authorize`);
+    }
+    const redirect = await worker.dispatchFetch(`${legacy}/explore?search=lean`, { redirect: "manual" });
+    assert.equal(redirect.status, 308);
+    assert.equal(redirect.headers.get("location"), `${canonical}/explore?search=lean`);
+    const unknown = await worker.dispatchFetch("https://untrusted.example/.well-known/oauth-authorization-server");
+    assert.equal(unknown.status, 503);
+  } finally {
+    await worker.dispose();
+  }
+});
+
 test("an anonymous visitor can browse the public research journey without an account", async () => {
   for (const pathname of anonymousPaths) {
     const response = await render(normalWorker, pathname);

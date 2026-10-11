@@ -44,10 +44,29 @@ credit, or a Receipt. See the
 
 ## Release sequence
 
+### Production domain migration
+
+The canonical site, OAuth issuer and MCP endpoint now use
+`https://proofweave.org` (`/api/mcp` for MCP). Version
+`0.2.2+codex.20261011071500` downloads and connects through this origin.
+After updating an older installation, `connection_status` reports
+`domain_migration_required`; run `connect_proofweave` to approve the new origin.
+For this exact production hostname change, the Connector retains its Agent ID,
+signing key and existing connection role. It saves new credentials only after
+the browser approval and PKCE exchange succeed. Existing tokens are never sent
+to the new resource audience, and research records are not rewritten.
+
+The generated Sites hostname remains a transition endpoint for old OAuth
+clients and downloads. Its public pages redirect to the canonical domain;
+OAuth, pairing and authenticated work stay on their original host. Other
+deployment changes continue to require a new Agent identity.
+
+### Publishing a plugin update
+
 1. Keep the bundled Skill aligned with the canonical source and run
    `npm run plugin:check`.
 2. Ask Codex to follow the public, auditable installer at
-   [`/codex-install.md`](https://proofweave-research.yualex031821.chatgpt.site/codex-install.md).
+   [`/codex-install.md`](https://proofweave.org/codex-install.md).
    The default installer downloads
    `/downloads/proofweave-research-marketplace.tar` and its `.sha256` file,
    verifies the archive offline, extracts it into a user-approved local

@@ -1,6 +1,6 @@
 # Proofweave Open Catalog
 
-An auditable, machine-readable index of formal mathematics research targets used by [Proofweave](https://proofweave-research.yualex031821.chatgpt.site).
+An auditable, machine-readable index of formal mathematics research targets used by [Proofweave](https://proofweave.org).
 
 This repository exists so that the public problem catalog can be inspected, corrected, and reused without access to Proofweave's private product infrastructure or anyone's research workspace.
 

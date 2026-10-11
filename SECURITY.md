@@ -31,5 +31,5 @@ Please include:
   boundaries. A failing or unavailable provider should fail closed rather than
   silently downgrade to an unverified result.
 
-See the [privacy notice](https://proofweave-research.yualex031821.chatgpt.site/privacy)
+See the [privacy notice](https://proofweave.org/privacy)
 for the hosted product's data boundary.

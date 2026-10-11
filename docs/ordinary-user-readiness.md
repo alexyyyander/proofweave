@@ -88,7 +88,7 @@ preflight against the exact release URL:
 
 ```sh
 npm run smoke:ordinary-user -- \
-  --base-url https://proofweave-research.yualex031821.chatgpt.site \
+  --base-url https://proofweave.org \
   --expect-mode read_only
 ```
 

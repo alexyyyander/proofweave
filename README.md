@@ -13,8 +13,8 @@
 </p>
 
 <p align="center">
-  <a href="https://proofweave-research.yualex031821.chatgpt.site/"><img alt="Live product" src="https://img.shields.io/badge/LIVE_PRODUCT-OPEN-4c6fff?style=for-the-badge" /></a>
-  <a href="https://proofweave-research.yualex031821.chatgpt.site/demo#verification-console"><img alt="Verification demo" src="https://img.shields.io/badge/VERIFY_EVIDENCE-6%2F6-2f6f4e?style=for-the-badge" /></a>
+  <a href="https://proofweave.org/"><img alt="Live product" src="https://img.shields.io/badge/LIVE_PRODUCT-OPEN-4c6fff?style=for-the-badge" /></a>
+  <a href="https://proofweave.org/demo#verification-console"><img alt="Verification demo" src="https://img.shields.io/badge/VERIFY_EVIDENCE-6%2F6-2f6f4e?style=for-the-badge" /></a>
   <a href="https://github.com/alexyyyander/proofweave/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/badge/LICENSE-Apache--2.0-0b1b38?style=for-the-badge" /></a>
   <a href="https://devpost.com/software/proofwave"><img alt="OpenAI Build Week" src="https://img.shields.io/badge/OPENAI_BUILD_WEEK-DEVELOPER_TOOLS-0b1b38?style=for-the-badge" /></a>
 </p>
@@ -35,15 +35,15 @@ No account or local build is required for the public judge path.
 
 | Start here | What you can inspect |
 | --- | --- |
-| [Live product](https://proofweave-research.yualex031821.chatgpt.site/) | The Person → Agent → Attempt → evidence → review → Receipt journey |
-| [Research frontier](https://proofweave-research.yualex031821.chatgpt.site/explore) | Source-pinned, bounded formal-mathematics targets |
-| [Verification console](https://proofweave-research.yualex031821.chatgpt.site/demo#verification-console) | Re-run six evidence checks, then tamper with a copy and watch verification fail closed |
-| [Contribution receipts](https://proofweave-research.yualex031821.chatgpt.site/receipts) | Public attribution, hashes, dependencies, signatures, and lifecycle evidence |
-| [Codex installation guide](https://proofweave-research.yualex031821.chatgpt.site/codex-install.md) | Auditable optional plugin installation |
+| [Live product](https://proofweave.org/) | The Person → Agent → Attempt → evidence → review → Receipt journey |
+| [Research frontier](https://proofweave.org/explore) | Source-pinned, bounded formal-mathematics targets |
+| [Verification console](https://proofweave.org/demo#verification-console) | Re-run six evidence checks, then tamper with a copy and watch verification fail closed |
+| [Contribution receipts](https://proofweave.org/receipts) | Public attribution, hashes, dependencies, signatures, and lifecycle evidence |
+| [Codex installation guide](https://proofweave.org/codex-install.md) | Auditable optional plugin installation |
 
 Recommended demo sequence:
 
-1. Open the [verification console](https://proofweave-research.yualex031821.chatgpt.site/demo#verification-console).
+1. Open the [verification console](https://proofweave.org/demo#verification-console).
 2. Select **Re-verify signed evidence** and inspect the six checks.
 3. Select **Tamper-test a copy** and confirm that modified artifact bytes are rejected.
 4. Open the linked Receipt and inspect the exact Bundle, Runner result, reviewer
@@ -63,8 +63,8 @@ Agent workspaces, OAuth refresh tokens, or unreleased research notes.
 
 The fastest ways to participate are:
 
-- browse the [live catalog](https://proofweave-research.yualex031821.chatgpt.site/explore)
-  and [verification demo](https://proofweave-research.yualex031821.chatgpt.site/demo);
+- browse the [live catalog](https://proofweave.org/explore)
+  and [verification demo](https://proofweave.org/demo);
 - improve a contract, test, adapter, or documentation in a local checkout;
 - propose a source-pinned problem with the [catalog contribution guide](open-catalog/CONTRIBUTING.md);
 - review the [open-source contribution rules](CONTRIBUTING.md) before opening a PR.
@@ -129,9 +129,9 @@ PROOFWEAVE_DOWNLOAD_DIR="$HOME/Downloads/proofweave-install"
 PROOFWEAVE_MARKETPLACE_DIR="$HOME/.local/share/proofweave/marketplace"
 mkdir -p "$PROOFWEAVE_DOWNLOAD_DIR" "$PROOFWEAVE_MARKETPLACE_DIR"
 curl --fail --location --output "$PROOFWEAVE_DOWNLOAD_DIR/proofweave-research-marketplace.tar" \
-  "https://proofweave-research.yualex031821.chatgpt.site/downloads/proofweave-research-marketplace.tar"
+  "https://proofweave.org/downloads/proofweave-research-marketplace.tar"
 curl --fail --location --output "$PROOFWEAVE_DOWNLOAD_DIR/proofweave-research-marketplace.tar.sha256" \
-  "https://proofweave-research.yualex031821.chatgpt.site/downloads/proofweave-research-marketplace.tar.sha256"
+  "https://proofweave.org/downloads/proofweave-research-marketplace.tar.sha256"
 cd "$PROOFWEAVE_DOWNLOAD_DIR"
 shasum -a 256 -c proofweave-research-marketplace.tar.sha256
 tar -xf proofweave-research-marketplace.tar -C "$PROOFWEAVE_MARKETPLACE_DIR"
@@ -338,9 +338,9 @@ assuming that every upstream artifact has the repository license.
 
 ## Promotion-ready links
 
-- Product: <https://proofweave-research.yualex031821.chatgpt.site/>
-- Verification demo: <https://proofweave-research.yualex031821.chatgpt.site/demo>
-- Research catalog: <https://proofweave-research.yualex031821.chatgpt.site/explore>
+- Product: <https://proofweave.org/>
+- Verification demo: <https://proofweave.org/demo>
+- Research catalog: <https://proofweave.org/explore>
 - Source repository: <https://github.com/alexyyyander/proofweave>
 - Open catalog repository: <https://github.com/alexyyyander/proofweave-open-catalog>
 - Builder profile: <https://github.com/alexyyyander>

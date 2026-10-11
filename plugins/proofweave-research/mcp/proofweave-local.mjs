@@ -17,6 +17,7 @@ import { spawn } from "node:child_process";
 import { pipeline } from "node:stream/promises";
 import * as zlib from "node:zlib";
 import readline from "node:readline";
+import { isProductionDomainMigration, productionOrigin } from "./deployment-origin.mjs";
 
 const localCompatibilityContract = Object.freeze(JSON.parse(
   await readFile(new URL("./proofweave-client-compatibility.json", import.meta.url), "utf8"),
@@ -24,7 +25,7 @@ const localCompatibilityContract = Object.freeze(JSON.parse(
 const pluginManifest = Object.freeze(JSON.parse(
   await readFile(new URL("../.codex-plugin/plugin.json", import.meta.url), "utf8"),
 ));
-const baseUrl = normalizeBaseUrl(process.env.PROOFWEAVE_BASE_URL ?? "https://proofweave-research.yualex031821.chatgpt.site");
+const baseUrl = normalizeBaseUrl(process.env.PROOFWEAVE_BASE_URL ?? productionOrigin);
 const distributionManifestPath = "/downloads/proofweave-research-marketplace.json";
 const distributionArchivePath = "/downloads/proofweave-research-marketplace.tar";
 const distributionArchiveFilename = "proofweave-research-marketplace.tar";
@@ -1547,8 +1548,9 @@ function canonicalJson(value) {
 }
 
 async function connect(args = {}) {
-  const connectionMode = normalizeConnectionMode(args.role);
   const existing = await readConfig();
+  const domainMigration = isProductionDomainMigration(existing?.baseUrl, baseUrl);
+  const connectionMode = normalizeConnectionMode(args.role ?? (domainMigration ? existingConnectionMode(existing) : undefined));
   const missingScopes = missingRequiredConnectionScopes(existing, connectionMode);
   let reconnecting = false;
   if (existing?.refreshToken && existing.baseUrl === baseUrl && existingConnectionMode(existing) === connectionMode && missingScopes.length === 0) {
@@ -1567,7 +1569,7 @@ async function connect(args = {}) {
   // Agent record already present on the destination. Keep the previous config
   // untouched until browser approval succeeds, but propose a fresh identity
   // for the destination deployment.
-  const changingControlPlane = Boolean(existing?.baseUrl && existing.baseUrl !== baseUrl);
+  const changingControlPlane = Boolean(existing?.baseUrl && existing.baseUrl !== baseUrl && !domainMigration);
   const identity = !changingControlPlane && existing?.privateKeyJwk && existing?.agentId && existing?.agentPublicKey
     ? existing
     : createLocalIdentity();
@@ -1608,6 +1610,7 @@ async function connect(args = {}) {
     connectionMode,
     scopeUpgradeRequired: false,
     identityRotated: changingControlPlane,
+    domainMigrated: domainMigration,
     previousAgentPreserved: changingControlPlane,
     message: changingControlPlane
       ? `Connected as ${next.agentLabel} for ${connectionModeLabel(connectionMode)} with a fresh deployment-scoped Agent identity. The previous Agent and its records remain preserved on the earlier Proofweave deployment.`
@@ -1629,24 +1632,32 @@ async function connectionStatus() {
     distribution,
     message: "Not connected. Use connect_proofweave to approve this local Codex.",
   };
-  if (config.baseUrl !== baseUrl) return {
-    connected: false,
-    savedConnection: true,
-    liveConnection: {
-      state: "not_checked",
-      code: "deployment_mismatch",
-      checkedAt: new Date().toISOString(),
-      message: "The saved OAuth connection belongs to a different Proofweave deployment, so it was not used.",
-    },
-    connector,
-    compatibility,
-    distribution,
-    reconnectRequired: true,
-    identityRotationRequired: true,
-    configuredBaseUrl: config.baseUrl,
-    expectedBaseUrl: baseUrl,
-    message: `This saved connection belongs to ${new URL(config.baseUrl).hostname}, but this plugin uses ${new URL(baseUrl).hostname}. Ask the owner to approve connect_proofweave. Approval creates a fresh Agent identity for this deployment while preserving the previous Agent and its records.`,
-  };
+  if (config.baseUrl !== baseUrl) {
+    const domainMigration = isProductionDomainMigration(config.baseUrl, baseUrl);
+    return {
+      connected: false,
+      savedConnection: true,
+      liveConnection: {
+        state: "not_checked",
+        code: domainMigration ? "domain_migration_required" : "deployment_mismatch",
+        checkedAt: new Date().toISOString(),
+        message: domainMigration
+          ? "The saved connection needs fresh authorization on proofweave.org. Existing tokens were not sent to the new origin."
+          : "The saved OAuth connection belongs to a different Proofweave deployment, so it was not used.",
+      },
+      connector,
+      compatibility,
+      distribution,
+      reconnectRequired: true,
+      identityRotationRequired: !domainMigration,
+      domainMigrationRequired: domainMigration,
+      configuredBaseUrl: config.baseUrl,
+      expectedBaseUrl: baseUrl,
+      message: domainMigration
+        ? "Proofweave has moved to proofweave.org. Run connect_proofweave with the existing connection role to approve the new domain. Your Agent identity, signing key and research history are preserved; the saved connection is replaced only after approval succeeds."
+        : `This saved connection belongs to ${new URL(config.baseUrl).hostname}, but this plugin uses ${new URL(baseUrl).hostname}. Ask the owner to approve connect_proofweave. Approval creates a fresh Agent identity for this deployment while preserving the previous Agent and its records.`,
+    };
+  }
   const missingScopes = missingRequiredConnectionScopes(config);
   const connectionMode = existingConnectionMode(config);
   const liveConnection = await checkLiveConnection(config);

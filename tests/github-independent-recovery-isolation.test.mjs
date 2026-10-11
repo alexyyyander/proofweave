@@ -36,7 +36,7 @@ test("checked-in production policy fixes resource identity and enrolls only the 
   assert.equal(policy.schemaVersion, "pw-production-drill-policy-v2");
   assert.equal(
     policy.productionAuthorities.site.origin,
-    "https://proofweave-research.yualex031821.chatgpt.site",
+    "https://proofweave.org",
   );
   assert.equal(
     policy.productionAuthorities.site.projectId,

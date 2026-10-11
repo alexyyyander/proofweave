@@ -116,7 +116,7 @@ test("requires the exact reviewed 0043 migration head", () => {
 test("rejects the production origin and production database fingerprint", () => {
   const productionOrigin = completeEvidence();
   productionOrigin.environment.origin =
-    "https://proofweave-research.yualex031821.chatgpt.site";
+    "https://proofweave.org";
   assert.throws(
     () => checkCredentialedContributionRelease(productionOrigin),
     (error) => error.code === "PRODUCTION_ORIGIN_FORBIDDEN"
