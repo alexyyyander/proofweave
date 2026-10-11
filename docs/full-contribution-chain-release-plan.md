@@ -1,10 +1,17 @@
 # Proofweave full contribution-chain release plan
 
-Status date: 2026-07-31
-Release posture: production writes remain frozen until every release gate below
-has recorded evidence.
+Historical plan — status recorded on 2026-07-31.
 
-## Active execution board
+The execution board and 0043 cutover instructions below preserve that release
+record; they are not current runtime status or instructions to rerun the old
+cutover. For the 2026-10-11 runtime observation and outstanding launch
+acceptance gates, see [ordinary-user-readiness.md](ordinary-user-readiness.md).
+Enabled production writes do not prove completion of the two-Person smoke.
+
+Original release posture: production writes remained frozen until every release
+gate below had recorded evidence.
+
+## Historical execution board
 
 | Gate | Current repository evidence | Decision |
 | --- | --- | --- |

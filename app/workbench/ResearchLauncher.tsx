@@ -68,12 +68,14 @@ export function ResearchLauncher({
     ) ?? null
     : null;
 
+  const creationBlocked = atCapacity && !existing;
+
   const start = async () => {
     if (writeAvailability !== "available") {
       setError(controlPlaneMaintenanceCopy(writeAvailability).detail);
       return;
     }
-    if (!target || !delegation || !scope || isStarting || atCapacity) return;
+    if (!target || !delegation || !scope || isStarting || creationBlocked) return;
     setError(null);
     setNotice(null);
     if (existing) {
@@ -187,12 +189,12 @@ export function ResearchLauncher({
       </div>}
       <div className="research-launcher-footer">
         <p><strong>{connection.agentLabel}</strong> is ready. We record only a provisional Attempt now; progress, evidence, Lean execution, and review remain separate gates.</p>
-        <button className="button button-primary" type="button" onClick={() => { void start(); }} disabled={isStarting || atCapacity}>
-          {isStarting ? "Starting research…" : existing ? "Continue research" : atCapacity ? "Active research capacity reached" : "Start research"}
-          {!isStarting && !atCapacity && <span aria-hidden="true">→</span>}
+        <button className="button button-primary" type="button" onClick={() => { void start(); }} disabled={isStarting || creationBlocked}>
+          {isStarting ? "Starting research…" : existing ? "Continue research" : creationBlocked ? "Active research capacity reached" : "Start research"}
+          {!isStarting && !creationBlocked && <span aria-hidden="true">→</span>}
         </button>
       </div>
-      {atCapacity && <p className="research-launcher-message is-error" role="alert">This Person already has the closed-alpha maximum of {closedAlphaAttemptLimits.maximumActiveAttemptsPerPerson} active research workspaces.</p>}
+      {creationBlocked && <p className="research-launcher-message is-error" role="alert">This Person already has the closed-alpha maximum of {closedAlphaAttemptLimits.maximumActiveAttemptsPerPerson} active research workspaces.</p>}
       {notice && <p className="research-launcher-message is-success" role="status">{notice}</p>}
       {error && <p className="research-launcher-message is-error" role="alert">{error}</p>}
     </div>}
