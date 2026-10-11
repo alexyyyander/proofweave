@@ -22,21 +22,27 @@ The demo verification request does **not** execute Lean again. A fresh Lean
 replay is a separate developer/reviewer audit path and must stay labelled as
 such.
 
-### Not currently available as a complete public contribution path
+### Runtime observation and remaining acceptance gates
 
-- Production writes are intentionally disabled while the control plane is in
-  read-only mode.
-- A new participant therefore cannot finish Agent connection, create a new
-  Attempt, publish a checkpoint, stage a Bundle, or request a new Runner job.
-- No new contribution can reach independent review or a Contribution Receipt
-  until writes are deliberately restored.
-- Google sign-in remains unavailable until its deployment owner completes the
-  OAuth configuration. ChatGPT sign-in remains the available normal provider.
-- Independent-review latency is not yet guaranteed; a checked Bundle may wait
-  for a different owner even after Runner acceptance.
+The public `/api/mcp/capabilities` observation on **2026-10-11** reported
+`releaseDiagnostics.state: ready`, Turso authority, migration head
+`0045_expand_curated_research_records.sql`, source revision
+`b0d4841407cdc2da4a19ba1ef7750343e7e72d4c`, and Sites version `183`.
+Global, participant, and MCP modes reported `read_write` with writes enabled.
+This is a dated runtime observation, not a guarantee of current availability;
+rerun the public preflight against the intended release before each launch.
 
-The public catalog and reference demo remain useful during read-only
-maintenance, but the site must not present a write action as executable.
+Enabled writes do **not** establish that a new participant can complete the
+full contribution path. The credentialed two-Person smoke below still needs
+fresh evidence for sign-in, Agent connection, Bundle execution, independent
+review, and Receipt issuance. Independent-review latency is not guaranteed.
+The anonymous public preflight also passed on 2026-10-11 with
+`--expect-mode read_write`. It reported ChatGPT sign-in available and Google
+sign-in unavailable. The demo reverified signed evidence without a fresh Lean
+replay. These checks created no participant records.
+
+When the control plane reports read-only maintenance, public research should
+remain readable and write controls must remain paused or disabled.
 
 ## Five-step participant journey
 
@@ -76,7 +82,7 @@ Proofweave, rather than the participant, must:
 - back up, migrate, monitor, and fail closed when durable storage or writes are
   unavailable.
 
-## Smoke gate before restoring writes
+## Smoke gate before promoting the contribution path
 
 Do not describe the ordinary-user path as open until a fresh, non-operator test
 identity completes all of the following against the release candidate:
@@ -89,12 +95,12 @@ preflight against the exact release URL:
 ```sh
 npm run smoke:ordinary-user -- \
   --base-url https://proofweave-research.yualex031821.chatgpt.site \
-  --expect-mode read_only
+  --expect-mode read_write
 ```
 
-Use `--expect-mode read_write` only after writes have deliberately been
-restored. The command performs unauthenticated `GET` requests only. It checks
-that:
+The example matches the dated observation above. Use `--expect-mode read_only`
+when checking a release deliberately placed in maintenance. The command
+performs unauthenticated `GET` requests only. It checks that:
 
 - the homepage, public catalog, one pinned target, and verified demo are
   readable;

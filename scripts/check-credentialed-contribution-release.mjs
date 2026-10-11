@@ -2,6 +2,7 @@
 
 import { lstat, readFile } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
+import { loadProofweaveMigrations } from "../services/database/libsql-migrations.mjs";
 
 export const credentialedReleaseEvidenceSchemaVersion =
   "pw-credentialed-contribution-release-evidence-v1";
@@ -12,8 +13,9 @@ const MAX_EVIDENCE_BYTES = 512 * 1024;
 const HASH_PATTERN = /^sha256:[a-f0-9]{64}$/;
 const REVISION_PATTERN = /^[a-f0-9]{40,64}$/;
 const DATABASE_FINGERPRINT_PATTERN = /^[a-f0-9]{16}$/;
-const REQUIRED_MIGRATION_HEAD =
-  "0043_add_runner_queue_event_sequence.sql";
+// Pin to the reviewed checkout, never to a caller-supplied expected head.
+// The shared loader validates the complete, contiguous migration history.
+const REQUIRED_MIGRATION_HEAD = (await loadProofweaveMigrations()).at(-1).name;
 const PRODUCTION_ORIGIN =
   "https://proofweave-research.yualex031821.chatgpt.site";
 const PRODUCTION_DATABASE_FINGERPRINT = "3f9e7934a04a22ec";
@@ -232,6 +234,7 @@ export function checkCredentialedContributionRelease(evidence) {
       writesEnabled: true,
       sameSitesGatewayRunnerRevision: true,
       sameDatabaseBeforeAndAfter: true,
+      migrationHead: before.migrationHead,
     },
     contribution: {
       attemptId: attempt.id,
@@ -485,7 +488,7 @@ function requiredMigrationHead(value, path) {
     fail(
       "MIGRATION_HEAD_REQUIRED",
       path,
-      `Credentialed cloud smoke requires ${REQUIRED_MIGRATION_HEAD}.`,
+      `Credentialed cloud smoke requires the reviewed checkout migration head ${REQUIRED_MIGRATION_HEAD}.`,
     );
   }
   return actual;

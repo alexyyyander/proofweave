@@ -3,10 +3,14 @@ import { mkdtemp, symlink, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import test from "node:test";
+import { loadProofweaveMigrations } from "../services/database/libsql-migrations.mjs";
+
 import {
   checkCredentialedContributionRelease,
   loadCredentialedContributionEvidence,
 } from "../scripts/check-credentialed-contribution-release.mjs";
+
+const repositoryMigrationHead = (await loadProofweaveMigrations()).at(-1).name;
 
 test("accepts one complete redacted two-Person evidence graph offline", () => {
   const evidence = completeEvidence();
@@ -15,6 +19,7 @@ test("accepts one complete redacted two-Person evidence graph offline", () => {
   assert.equal(result.outcome, "passed");
   assert.equal(result.executionMode, "offline_dry_run");
   assert.equal(result.release.controlPlaneMode, "read_write");
+  assert.equal(result.release.migrationHead, repositoryMigrationHead);
   assert.deepEqual(result.release.environment, {
     kind: "staging",
     name: "proofweave-credentialed-smoke",
@@ -95,11 +100,13 @@ test("rejects a different database or migration after the journey", () => {
   );
 });
 
-test("requires the exact reviewed 0043 migration head", () => {
+test("requires the exact reviewed checkout migration head", () => {
   for (const migrationHead of [
     "0042_add_jacobian_counterexample_audit.sql",
-    "0043_runner_lease_queue.sql",
-    "0044_future_migration.sql",
+    "0043_add_runner_queue_event_sequence.sql",
+    "0044_add_curated_research_registry.sql",
+    "0045_wrong_migration.sql",
+    "9999_future_migration.sql",
   ]) {
     const evidence = completeEvidence();
     evidence.release.before.migrationHead = migrationHead;
@@ -590,7 +597,7 @@ function observation({ revision, observedAt }) {
     runnerRevision: revision,
     databaseAuthority: "turso",
     databaseFingerprint: "0123456789abcdef",
-    migrationHead: "0043_add_runner_queue_event_sequence.sql",
+    migrationHead: repositoryMigrationHead,
   };
 }
 
