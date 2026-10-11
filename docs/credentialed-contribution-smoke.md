@@ -29,7 +29,7 @@ fail-closed:
 - it never turns fixture data or successful booleans into a real contribution.
 - it accepts only an explicitly identified `staging` environment;
 - it rejects the production origin
-  `https://proofweave-research.yualex031821.chatgpt.site` and production
+  `https://proofweave.org` and production
   database fingerprint `3f9e7934a04a22ec`; and
 - it requires migration head
   `0043_add_runner_queue_event_sequence.sql` before either release

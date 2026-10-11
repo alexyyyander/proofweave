@@ -9,14 +9,14 @@ stable Proofweave Person attribution root.
 1. In Google Cloud, configure the OAuth consent screen for the Proofweave
    public website.
 2. Use these public application links:
-   - home: `https://proofweave-research.yualex031821.chatgpt.site/`
-   - privacy: `https://proofweave-research.yualex031821.chatgpt.site/privacy`
-   - terms: `https://proofweave-research.yualex031821.chatgpt.site/terms`
+   - home: `https://proofweave.org/`
+   - privacy: `https://proofweave.org/privacy`
+   - terms: `https://proofweave.org/terms`
 3. Create an OAuth client with application type **Web application**.
 4. Add this exact authorized redirect URI, with no wildcard or trailing slash:
 
    ```text
-   https://proofweave-research.yualex031821.chatgpt.site/auth/google/callback
+   https://proofweave.org/auth/google/callback
    ```
 
 5. Complete Google's branding, contact, domain, and publication requirements

@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://proofweave.org"),
   title: {
     default: "Proofweave — Advance mathematics through your agent",
     template: "%s · Proofweave",

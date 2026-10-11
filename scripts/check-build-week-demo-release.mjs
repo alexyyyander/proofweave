@@ -1,6 +1,6 @@
 import { pathToFileURL } from "node:url";
 
-const DEFAULT_BASE_URL = "https://proofweave-research.yualex031821.chatgpt.site";
+const DEFAULT_BASE_URL = "https://proofweave.org";
 const EXPECTED_REFERENCE_CHECKS = 6;
 
 export async function checkBuildWeekDemoRelease({

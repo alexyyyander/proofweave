@@ -15,7 +15,7 @@ const DATABASE_FINGERPRINT_PATTERN = /^[a-f0-9]{16}$/;
 const REQUIRED_MIGRATION_HEAD =
   "0043_add_runner_queue_event_sequence.sql";
 const PRODUCTION_ORIGIN =
-  "https://proofweave-research.yualex031821.chatgpt.site";
+  "https://proofweave.org";
 const PRODUCTION_DATABASE_FINGERPRINT = "3f9e7934a04a22ec";
 const ENVIRONMENT_NAME_PATTERN = /^[a-z0-9][a-z0-9._-]{2,95}$/;
 const REQUIRED_CLAIMS = Object.freeze([

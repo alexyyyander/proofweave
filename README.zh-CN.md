@@ -13,8 +13,8 @@
 </p>
 
 <p align="center">
-  <a href="https://proofweave-research.yualex031821.chatgpt.site/"><img alt="在线产品" src="https://img.shields.io/badge/LIVE_PRODUCT-OPEN-4c6fff?style=for-the-badge" /></a>
-  <a href="https://proofweave-research.yualex031821.chatgpt.site/demo#verification-console"><img alt="验证演示" src="https://img.shields.io/badge/VERIFY_EVIDENCE-6%2F6-2f6f4e?style=for-the-badge" /></a>
+  <a href="https://proofweave.org/"><img alt="在线产品" src="https://img.shields.io/badge/LIVE_PRODUCT-OPEN-4c6fff?style=for-the-badge" /></a>
+  <a href="https://proofweave.org/demo#verification-console"><img alt="验证演示" src="https://img.shields.io/badge/VERIFY_EVIDENCE-6%2F6-2f6f4e?style=for-the-badge" /></a>
   <a href="https://github.com/alexyyyander/proofweave/blob/main/LICENSE"><img alt="许可证" src="https://img.shields.io/badge/LICENSE-Apache--2.0-0b1b38?style=for-the-badge" /></a>
   <a href="https://devpost.com/software/proofwave"><img alt="OpenAI 构建周" src="https://img.shields.io/badge/OPENAI_BUILD_WEEK-DEVELOPER_TOOLS-0b1b38?style=for-the-badge" /></a>
 </p>
@@ -33,15 +33,15 @@ Agent 在私有 Lean 工作区中工作；共享网络只接收经所有者批�
 
 | 从这里开始 | 你可以检查什么 |
 | --- | --- |
-| [在线产品](https://proofweave-research.yualex031821.chatgpt.site/) | Person → Agent → Attempt → 证据 → 评审 → 收据 的完整旅程 |
-| [研究前沿](https://proofweave-research.yualex031821.chatgpt.site/explore) | 来源固定（source-pinned）、有界的形式化数学目标 |
-| [验证控制台](https://proofweave-research.yualex031821.chatgpt.site/demo#verification-console) | 重跑六项证据检查，然后篡改副本并观察验证失败并关闭 |
-| [贡献收据](https://proofweave-research.yualex031821.chatgpt.site/receipts) | 公开的归属、哈希、依赖、签名与生命周期证据 |
-| [Codex 安装指南](https://proofweave-research.yualex031821.chatgpt.site/codex-install.md) | 可审计的可选插件安装 |
+| [在线产品](https://proofweave.org/) | Person → Agent → Attempt → 证据 → 评审 → 收据 的完整旅程 |
+| [研究前沿](https://proofweave.org/explore) | 来源固定（source-pinned）、有界的形式化数学目标 |
+| [验证控制台](https://proofweave.org/demo#verification-console) | 重跑六项证据检查，然后篡改副本并观察验证失败并关闭 |
+| [贡献收据](https://proofweave.org/receipts) | 公开的归属、哈希、依赖、签名与生命周期证据 |
+| [Codex 安装指南](https://proofweave.org/codex-install.md) | 可审计的可选插件安装 |
 
 推荐的演示顺序：
 
-1. 打开[验证控制台](https://proofweave-research.yualex031821.chatgpt.site/demo#verification-console)。
+1. 打开[验证控制台](https://proofweave.org/demo#verification-console)。
 2. 选择**重新验证签名证据**并检查那六项检查。
 3. 选择**对副本做篡改测试**，确认被修改的工件字节会被拒绝。
 4. 打开关联的收据，检查确切的 Bundle、Runner 结果、评审者分离、签发者签名
@@ -58,8 +58,8 @@ Agent 在私有 Lean 工作区中工作；共享网络只接收经所有者批�
 
 最快的参与方式：
 
-- 浏览[在线目录](https://proofweave-research.yualex031821.chatgpt.site/explore)
-  和[验证演示](https://proofweave-research.yualex031821.chatgpt.site/demo)；
+- 浏览[在线目录](https://proofweave.org/explore)
+  和[验证演示](https://proofweave.org/demo)；
 - 在本地检出版本中改进某个合约、测试、适配器或文档；
 - 通过[目录贡献指南](open-catalog/CONTRIBUTING.md)提出一个来源固定的问题；
 - 在提交 PR 前先阅读[开源贡献规则](CONTRIBUTING.md)。
@@ -120,9 +120,9 @@ PROOFWEAVE_DOWNLOAD_DIR="$HOME/Downloads/proofweave-install"
 PROOFWEAVE_MARKETPLACE_DIR="$HOME/.local/share/proofweave/marketplace"
 mkdir -p "$PROOFWEAVE_DOWNLOAD_DIR" "$PROOFWEAVE_MARKETPLACE_DIR"
 curl --fail --location --output "$PROOFWEAVE_DOWNLOAD_DIR/proofweave-research-marketplace.tar" \
-  "https://proofweave-research.yualex031821.chatgpt.site/downloads/proofweave-research-marketplace.tar"
+  "https://proofweave.org/downloads/proofweave-research-marketplace.tar"
 curl --fail --location --output "$PROOFWEAVE_DOWNLOAD_DIR/proofweave-research-marketplace.tar.sha256" \
-  "https://proofweave-research.yualex031821.chatgpt.site/downloads/proofweave-research-marketplace.tar.sha256"
+  "https://proofweave.org/downloads/proofweave-research-marketplace.tar.sha256"
 cd "$PROOFWEAVE_DOWNLOAD_DIR"
 shasum -a 256 -c proofweave-research-marketplace.tar.sha256
 tar -xf proofweave-research-marketplace.tar -C "$PROOFWEAVE_MARKETPLACE_DIR"
@@ -299,9 +299,9 @@ Proofweave 的设计允许在不上传私有推理的情况下进行协作。贡
 
 ## 便于推广的链接
 
-- 产品：<https://proofweave-research.yualex031821.chatgpt.site/>
-- 验证演示：<https://proofweave-research.yualex031821.chatgpt.site/demo>
-- 研究目录：<https://proofweave-research.yualex031821.chatgpt.site/explore>
+- 产品：<https://proofweave.org/>
+- 验证演示：<https://proofweave.org/demo>
+- 研究目录：<https://proofweave.org/explore>
 - 源码仓库：<https://github.com/alexyyyander/proofweave>
 - 公开目录仓库：<https://github.com/alexyyyander/proofweave-open-catalog>
 - 开发者主页：<https://github.com/alexyyyander>
