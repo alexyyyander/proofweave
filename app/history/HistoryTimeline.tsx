@@ -3,7 +3,7 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 
-export type EvidenceTone = "formal" | "reviewed" | "reproduced" | "announced";
+export type EvidenceTone = "formal" | "reviewed" | "reproduced" | "announced" | "corrected";
 
 export type HistoryMilestone = {
   number: string;
@@ -139,7 +139,7 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
         }}
         onScroll={(event) => { centerRef.current = (event.currentTarget.scrollLeft + event.currentTarget.clientWidth / 2) / canvasWidth; }}
       >
-        <div className="history-time-visual" role="tablist" aria-label="AI mathematics milestones from January to September 2026" style={{ width: `${canvasWidth}px`, "--timeline-axis-y": `${84 + nodeClearance + aboveTracks * 80}px`, "--timeline-node-clearance": `${nodeClearance}px`, height: `${168 + 2 * nodeClearance + (aboveTracks + belowTracks) * 80}px` } as CSSProperties}>
+        <div className="history-time-visual" role="tablist" aria-label="AI mathematics milestones from January to October 2026" style={{ width: `${canvasWidth}px`, "--timeline-axis-y": `${84 + nodeClearance + aboveTracks * 80}px`, "--timeline-node-clearance": `${nodeClearance}px`, height: `${168 + 2 * nodeClearance + (aboveTracks + belowTracks) * 80}px` } as CSSProperties}>
           <div className="history-time-axis" aria-hidden="true">{timelineTicks(zoom).map(({ label, date }) => <span key={date} style={{ left: `${timelinePosition(date)}%` }}>{label}</span>)}</div>
           {layout.map(({ item, timelineTrack, timelineNodeOffset }, index) => {
               const isActive = item.number === activeNumber;
@@ -250,7 +250,7 @@ function distributeTimelineLabels(milestones: HistoryMilestone[], width: number)
 
 function timelinePosition(date: string) {
   const start = Date.parse("2026-01-01T00:00:00Z");
-  const end = Date.parse("2026-09-30T00:00:00Z");
+  const end = Date.parse("2026-10-31T00:00:00Z");
   return 2 + 96 * (Date.parse(`${date}T00:00:00Z`) - start) / (end - start);
 }
 
@@ -258,7 +258,7 @@ function timelineTicks(zoom: number) {
   const ticks: Array<{ date: string; label: string }> = [];
   const step = zoom >= 12 ? 1 : zoom >= 4 ? 7 : 0;
   const formatter = new Intl.DateTimeFormat("en", { month: "short", ...(step ? { day: "numeric" } as const : {}), timeZone: "UTC" });
-  for (let day = new Date("2026-01-01T00:00:00Z"); day <= new Date("2026-09-30T00:00:00Z");) {
+  for (let day = new Date("2026-01-01T00:00:00Z"); day <= new Date("2026-10-31T00:00:00Z");) {
     ticks.push({ date: day.toISOString().slice(0, 10), label: formatter.format(day).toUpperCase() });
     if (step) day.setUTCDate(day.getUTCDate() + step);
     else day.setUTCMonth(day.getUTCMonth() + 1);
