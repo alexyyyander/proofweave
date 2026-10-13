@@ -351,6 +351,29 @@ test("Container workspace runtime reconstructs an allowlisted root .gitignore", 
   }
 });
 
+test("Container reconstructs a clean tracked snapshot with a new entry file and root dotfile", { skip: !hasNativeZstd }, async () => {
+  const root = await mkdtemp(join(tmpdir(), "proofweave-clean-snapshot-"));
+  const runtime = new ContainerWorkspaceRuntime({ stagingRoot: join(root, "stage"), workspaceRoot: join(root, "workspace") });
+  try {
+    const fixture = await validWorkspaceFixture({
+      rootDotfile: true,
+      archive: zlib.zstdCompressSync(makeTar([
+        { path: ".gitignore", contents: Buffer.from(".lake/\n") },
+        { path: "lake-manifest.json", contents: Buffer.from("{\"old\":true}\n") },
+      ])),
+      patch: Buffer.from("diff --git a/Proofweave/Main.lean b/Proofweave/Main.lean\n--- /dev/null\n+++ b/Proofweave/Main.lean\n@@ -0,0 +1,2 @@\n+theorem checked : True := by\n+  trivial\n"),
+    });
+    await stageAll(runtime, fixture);
+    const final = await runtime.finalize();
+    assert.equal(final.treeHash, fixture.declaration.workspace.tree.hash);
+    assert.equal(final.entries.length, 3);
+    assert.equal(await readFile(join(final.workspaceDirectory, "Proofweave/Main.lean"), "utf8"), "theorem checked : True := by\n  trivial\n");
+  } finally {
+    await runtime.cleanup();
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
 async function validWorkspaceFixture(overrides = {}) {
   const archiveEntries = [
     { path: "Proofweave/Main.lean", contents: Buffer.from("theorem initial : True := by\n  trivial\n", "utf8"), mode: overrides.includeGitPax ? 0o664 : 0o644 },

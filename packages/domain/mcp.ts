@@ -84,6 +84,7 @@ export type McpRunSummary = Readonly<{
   finishedAt: string | null;
   runnerResultHash: string | null;
   evidenceState: McpRunEvidenceState;
+  delivery?: Readonly<{ state: string; attempts: number; errorCode: string | null }> | null;
   result: Readonly<{
     resultHash: string;
     receivedAt: string;

@@ -765,12 +765,13 @@ function firstPatchToken(value) {
   return value.split("\t", 1)[0].split(" ", 1)[0];
 }
 
+// POSIX filename selection skips /dev/null additions. Paths were validated
+// above; retain batch, forward-only, and zero-fuzz application for new files.
 async function runPatch(command, patchPath, workspaceDirectory) {
   const child = spawn(command, [
     "--batch",
     "--forward",
     "--fuzz=0",
-    "--posix",
     "--strip=1",
     "--reject-file=-",
     "--input", patchPath,

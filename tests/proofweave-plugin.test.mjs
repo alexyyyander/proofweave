@@ -1309,6 +1309,39 @@ test("the local Connector prepares and stages one signed, hash-bound v2 Artifact
     }, env);
     assert.equal(workspaceStagedResponse.error, undefined);
     assert.equal(receivedObjects.length, receivedBeforeWorkspaceDraft + 3);
+
+    // A finished repository must reconstruct without an artificial source edit.
+    await git(workspaceRoot, ["add", "."]);
+    await git(workspaceRoot, ["commit", "-qm", "finished proof"]);
+    const cleanResponse = await callConnectorTool("prepare_workspace_bundle_v2", {
+      attemptId: "attempt:fixture", workspaceRoot, entryFile: "Main.lean",
+      ownerConfirmation: "I_CONFIRM_PREPARE_WORKSPACE_BUNDLE",
+    }, env);
+    assert.equal(cleanResponse.error, undefined);
+    const clean = JSON.parse(cleanResponse.result.content[0].text);
+    assert.equal(clean.workspace.preparationMode, "tracked_snapshot");
+    assert.deepEqual(clean.workspace.changedFiles, []);
+    assert.equal(clean.uploaded, false);
+    assert.equal(clean.bundle.workspace.tree.hash, workspaceDraft.bundle.workspace.tree.hash);
+    const snapshotPatch = await readFile(clean.stageInput.artifacts.patchPath, "utf8");
+    assert.match(snapshotPatch, /--- \/dev\/null\n\+\+\+ b\/Main\.lean/);
+    const reconstructed = join(fixtureRoot, "reconstructed");
+    await mkdir(reconstructed);
+    await execFileAsync("tar", ["-xf", clean.stageInput.artifacts.sourceArchivePath, "-C", reconstructed]);
+    await assert.rejects(readFile(join(reconstructed, "Main.lean")), { code: "ENOENT" });
+    await execFileAsync("patch", ["-p1", "--batch", "--fuzz=0", "--input", clean.stageInput.artifacts.patchPath], { cwd: reconstructed });
+    for (const name of [".gitignore", "Main.lean", "lake-manifest.json", "lean-toolchain"]) {
+      assert.deepEqual(await readFile(join(reconstructed, name)), await readFile(join(workspaceRoot, name)));
+    }
+    assert.equal((await execFileAsync("git", ["status", "--porcelain"], { cwd: workspaceRoot })).stdout, "");
+    await writeFile(join(workspaceRoot, "unapproved.lean"), "theorem extra : True := by trivial\n");
+    const untrackedResponse = await callConnectorTool("prepare_workspace_bundle_v2", {
+      attemptId: "attempt:fixture", workspaceRoot, entryFile: "Main.lean",
+      ownerConfirmation: "I_CONFIRM_PREPARE_WORKSPACE_BUNDLE",
+    }, env);
+    assert.match(untrackedResponse.error.message, /untracked/);
+    assert.equal(receivedObjects.length, receivedBeforeWorkspaceDraft + 3);
+    await rm(clean.workspace.stagingDirectory, { recursive: true, force: true });
   } finally {
     await Promise.all([close(server), rm(fixtureRoot, { recursive: true, force: true })]);
   }
