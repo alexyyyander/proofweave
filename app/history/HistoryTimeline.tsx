@@ -38,13 +38,15 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
   const [activeNumber, setActiveNumber] = useState(milestones.at(-1)?.number ?? milestones[0]?.number);
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const viewportRef = useRef<HTMLDivElement>(null);
-  const [zoom, setZoom] = useState(16);
+  const [zoom, setZoom] = useState(1);
   const [viewportWidth, setViewportWidth] = useState(1120);
-  const centerRef = useRef(timelinePosition(milestones.at(-1)?.timelineDate ?? "2026-09-01") / 100);
+  const centerRef = useRef(.5);
+  const wheelZoomRef = useRef({ zoom: 1, time: 0 });
   const dragRef = useRef<{ pointerId: number; x: number; scrollLeft: number; moved: boolean } | null>(null);
   const [dragging, setDragging] = useState(false);
-  const canvasWidth = Math.max(viewportWidth, 640) * zoom;
+  const canvasWidth = Math.max(viewportWidth, 1) * zoom;
   const layout = distributeTimelineLabels(milestones, canvasWidth);
+  const compact = zoom < 4;
 
   useLayoutEffect(() => {
     const viewport = viewportRef.current;
@@ -59,10 +61,36 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
     if (viewport) viewport.scrollLeft = centerRef.current * canvasWidth - viewport.clientWidth / 2;
   }, [canvasWidth]);
 
+  useLayoutEffect(() => {
+    const viewport = viewportRef.current;
+    if (!viewport) return;
+    function onWheel(event: WheelEvent) {
+      if (!viewport || event.deltaY === 0 || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+      if ((zoom === 1 && event.deltaY > 0) || (zoom === 32 && event.deltaY < 0)) return;
+      event.preventDefault();
+      const delta = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? viewport.clientHeight : 1);
+      const previous = wheelZoomRef.current;
+      const baseZoom = event.timeStamp - previous.time < 180 ? previous.zoom : zoom;
+      const targetZoom = Math.max(1, Math.min(32, baseZoom * Math.exp(-delta * .0025)));
+      wheelZoomRef.current = { zoom: targetZoom, time: event.timeStamp };
+      const nextZoom = Math.round(targetZoom * 4) / 4;
+      if (nextZoom === zoom) return;
+      const pointerX = Math.max(0, Math.min(viewport.clientWidth, event.clientX - viewport.getBoundingClientRect().left));
+      const position = (viewport.scrollLeft + pointerX) / canvasWidth;
+      const nextWidth = viewport.clientWidth * nextZoom;
+      centerRef.current = position + (viewport.clientWidth / 2 - pointerX) / nextWidth;
+      setZoom(nextZoom);
+    }
+    // A non-passive listener keeps wheel zoom from also scrolling the page.
+    viewport.addEventListener("wheel", onWheel, { passive: false });
+    return () => viewport.removeEventListener("wheel", onWheel);
+  }, [canvasWidth, zoom]);
+
   function changeZoom(value: number, center?: number) {
     const viewport = viewportRef.current;
     centerRef.current = center ?? (viewport ? (viewport.scrollLeft + viewport.clientWidth / 2) / canvasWidth : centerRef.current);
-    const nextZoom = Math.max(1, Math.min(32, value));
+    const nextZoom = Math.max(1, Math.min(32, Number.isFinite(value) ? value : 1));
+    wheelZoomRef.current = { zoom: nextZoom, time: 0 };
     setZoom(nextZoom);
     if (nextZoom === zoom && viewport) viewport.scrollLeft = centerRef.current * canvasWidth - viewport.clientWidth / 2;
   }
@@ -70,7 +98,7 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
   function recentDays() {
     changeZoom(16, timelinePosition(milestones.at(-1)?.timelineDate ?? "2026-09-01") / 100);
   }
-  const tracksIn = (lane: HistoryMilestone["timelineLane"]) => Math.max(2, ...layout.filter(({ item }) => item.timelineLane === lane).map(({ timelineTrack }) => timelineTrack + 1));
+  const tracksIn = (lane: HistoryMilestone["timelineLane"]) => compact ? 1 : Math.max(2, ...layout.filter(({ item }) => item.timelineLane === lane).map(({ timelineTrack }) => timelineTrack + 1));
   const aboveTracks = tracksIn("above");
   const belowTracks = tracksIn("below");
   const nodeClearance = Math.max(0, ...layout.map(({ timelineNodeOffset }) => Math.abs(timelineNodeOffset)));
@@ -93,22 +121,24 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
           <p className="eyebrow">{milestones.length} moments · one accelerating frontier</p>
           <h2 id="timeline-title">Follow the record across 2026.</h2>
         </div>
-        <p>Zoom in to separate busy days. Drag the timeline or swipe sideways to explore. Records from the same day stay stacked; month-only records sit at mid-month.</p>
+        <p>Use Spacing or scroll over the timeline: wheel up to stretch, down to compress around the pointer. Select a numbered point in the compact view; expand to 4× to show every title. Zoom in to separate busy days. First entry and Latest entry jump directly to a record.</p>
       </div>
 
       <div className="history-timeline-controls" aria-label="Timeline controls">
         <div className="history-timeline-presets">
-          <button type="button" onClick={() => changeZoom(1, .5)}>Full record</button>
+          <button type="button" aria-pressed={zoom === 1} onClick={() => changeZoom(1, .5)}>Full record</button>
           <button type="button" onClick={recentDays}>Recent days</button>
         </div>
         <div className="history-timeline-zoom">
           <button type="button" aria-label="Zoom out timeline" disabled={zoom === 1} onClick={() => changeZoom(Math.max(1, Math.round(zoom / 1.5)))}>−</button>
-          <label htmlFor="history-zoom">Zoom</label>
-          <input id="history-zoom" type="range" min="1" max="32" step="1" value={zoom} aria-valuetext={`${zoom} times`} onChange={(event) => changeZoom(Number(event.target.value))} />
+          <label htmlFor="history-zoom">Spacing</label>
+          <input id="history-zoom" type="range" min="1" max="32" step="0.25" value={zoom} aria-valuetext={`${zoom} times the full-record width`} onChange={(event) => changeZoom(Number(event.target.value))} />
           <output htmlFor="history-zoom">{zoom}×</output>
           <button type="button" aria-label="Zoom in timeline" disabled={zoom === 32} onClick={() => changeZoom(Math.min(32, Math.ceil(zoom * 1.5)))}>+</button>
         </div>
-        <div className="history-timeline-pan">
+        <div className="history-timeline-pan" style={{ flexWrap: "wrap", maxWidth: "100%" }}>
+          <button type="button" onClick={() => focusTab(0)}>First entry</button>
+          <button type="button" onClick={() => focusTab(milestones.length - 1)}>Latest entry</button>
           <button type="button" aria-label="Earlier dates" onClick={() => viewportRef.current?.scrollBy({ left: -viewportWidth * .7 })}>←</button>
           <button type="button" aria-label="Later dates" onClick={() => viewportRef.current?.scrollBy({ left: viewportWidth * .7 })}>→</button>
         </div>
@@ -150,6 +180,7 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
                 <button
                   aria-controls={`history-panel-${item.number}`}
                   aria-label={`${item.date}: ${item.title}. ${item.evidence}`}
+                  title={`${item.date}: ${item.title}`}
                   aria-selected={isActive}
                   className={`history-timepoint is-${item.timelineLane} tone-${item.evidenceTone}${isActive ? " is-active" : ""}${item.latest ? " is-latest" : ""}${edgeClass}${nodeClass}`}
                   id={`history-tab-${item.number}`}
@@ -173,7 +204,7 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
                   ref={(element) => { tabRefs.current[index] = element; }}
                   role="tab"
                   style={{
-                    "--timeline-label-track": timelineTrack,
+                    "--timeline-label-track": compact ? 0 : timelineTrack,
                     "--timeline-node-bridge": `${Math.max(Math.abs(timelineNodeOffset) - 18, 0)}px`,
                     "--timeline-node-offset": `${timelineNodeOffset}px`,
                     left: `${position}%`,
@@ -181,7 +212,7 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
                   tabIndex={isActive ? 0 : -1}
                   type="button"
                 >
-                  <span className="history-timepoint-copy"><time dateTime={item.timelineDate}>{item.date}</time><strong>{item.shortTitle}</strong>{item.latest ? <em>Latest entry</em> : null}</span>
+                  <span className="history-timepoint-copy" style={compact && !isActive ? { display: "none" } : undefined}><time dateTime={item.timelineDate}>{item.date}</time><strong>{item.shortTitle}</strong>{item.latest ? <em>Latest entry</em> : null}</span>
                   <span className="history-timepoint-node"><b>{item.number}</b></span>
                 </button>
               );
