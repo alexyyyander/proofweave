@@ -146,6 +146,21 @@ test("transfer diagnostics do not copy a private Container response body", async
   );
 });
 
+test("invalid evidence stops delivery while rate limits and server failures remain retryable", async () => {
+  const objects = fixtureObjects();
+  const resolvedBundle = fixtureResolvedBundle(objects);
+  for (const status of [400, 413, 415, 422, 408, 429, 503]) {
+    await assert.rejects(new RunnerWorkspaceTransfer({ bucket: new MemoryBucket(objects) }).stage({
+      run: await fixtureRun(resolvedBundle), resolvedBundle,
+      container: new MemoryContainer({ rejectRequest: 5, rejectStatus: status }),
+    }), (error) => {
+      assert.equal(error.retryable, ![400, 413, 415, 422].includes(status));
+      assert.equal(error.message, "Runner Container rejected workspace finalization.");
+      return true;
+    });
+  }
+});
+
 class MemoryBucket {
   constructor(objects) {
     this.objects = new Map(Object.values(objects).map((object) => [object.objectKey, object]));

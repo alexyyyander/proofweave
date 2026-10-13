@@ -5,6 +5,7 @@ import {
   createTrustedRunnerRuntimeFromEnvironment,
   TrustedRunnerProcess,
 } from "../services/lean-runner/trusted-runner-process.mjs";
+import { RunnerWorkspaceTransferError } from "../services/lean-runner/runner-workspace-transfer.mjs";
 import { RunnerJobAuthenticationError } from "../services/lean-runner/queue.mjs";
 
 test("one-shot Runner fails closed before connecting or claiming when execution is disabled", async () => {
@@ -173,6 +174,22 @@ test("trusted Runner preserves an allowlisted diagnostic stage without leaking i
   const result = await process.processNext();
   assert.equal(result.errorCode, "runner_container_execute_response_error");
   assert.equal(JSON.stringify(queue.released).includes("sensitive private response"), false);
+});
+
+test("trusted Runner stops a deterministic workspace rejection on its first delivery", async () => {
+  const queue = fakeQueue({ deliveryAttempt: 1 });
+  const process = new TrustedRunnerProcess({
+    queue, authenticator: { async authenticate(message) { return message; } },
+    async execute() { throw new RunnerWorkspaceTransferError("private rejection", { httpStatus: 400, diagnosticCode: "runner_workspace_finalization_rejected_4xx" }); },
+    consumerId: "runner:workspace-rejection", leaseDurationSeconds: 60, heartbeatSeconds: 10,
+    now: () => new Date("2026-10-13T00:00:00Z"), sleep: async () => new Promise(() => {}),
+  });
+  const result = await process.processNext();
+  assert.equal(result.outcome, "dead_lettered");
+  assert.equal(result.deliveryAttempt, 1);
+  assert.equal(queue.released.length, 0);
+  assert.equal(queue.acknowledged.length, 0);
+  assert.equal(result.errorCode, "runner_workspace_finalization_rejected_4xx");
 });
 
 test("trusted Runner dead-letters invalid signatures and exhausted deliveries", async () => {

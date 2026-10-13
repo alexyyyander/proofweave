@@ -10,6 +10,7 @@ import { D1VerificationMarketStore } from "../verification/d1-verification-marke
 import { D1R2ArtifactStore } from "../artifacts/d1-r2-artifact-store.mjs";
 import { maxInlineArtifactObjectBytes } from "../artifacts/d1-inline-artifact-store.mjs";
 import { D1RunStore } from "../lean-runner/d1-run-store.mjs";
+import { runnerDeliverySummary } from "../lean-runner/runner-delivery-summary.mjs";
 import { closedAlphaAttemptLimits } from "../../packages/domain/attempt-policy.mjs";
 import {
   D1ResearchGraphStore,
@@ -588,8 +589,12 @@ export class D1RemoteMcpGatewayStore {
     const attempt = await this.requireArtifactAttempt(principal, installation, input.attemptId);
     await this.requireInstallation(principal, attempt.delegationScope);
     const run = await this.requireRunForAttempt(input.runId, attempt.id);
+    const deliveryRow = await this.database.prepare(
+      "SELECT delivery_state, delivery_attempts, last_error_code FROM runner_queue_messages WHERE run_id = ?",
+    ).bind(run.id).first();
     return Object.freeze({
       run,
+      delivery: runnerDeliverySummary(deliveryRow),
       events: Object.freeze(await this.runStore.listEvents(run.id)),
       verificationState: run.runnerResultHash ? "runner_evidence_recorded" : "not_verified",
     });

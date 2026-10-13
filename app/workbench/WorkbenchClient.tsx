@@ -81,7 +81,7 @@ export function WorkbenchClient({
   const activeRuns = activeAttempt ? runs.filter((run) => run.attemptId === activeAttempt.id) : [];
   const showActiveWorkspace = mode === "active-research" || mode === "evidence-review";
   const canContinueLocally = writeAvailability === "available" && activeAttempt?.status === "active" && Boolean(selectedConnection);
-  const hasPendingRun = activeRuns.some((run) => ["queued", "preparing", "running", "cancel_requested"].includes(run.state));
+  const hasPendingRun = activeRuns.some((run) => run.delivery?.state !== "dead_letter" && ["queued", "preparing", "running", "cancel_requested"].includes(run.state));
 
   const refreshAttempts = useCallback(async () => {
     if (!isAuthenticated || !storageAvailable || refreshInFlight.current) return;

@@ -27,7 +27,7 @@ import {
   RunnerQueueProtocolError,
 } from "./queue.mjs";
 import { RunnerWorkspaceStager } from "./runner-workspace-stager.mjs";
-import { RunnerWorkspaceTransfer } from "./runner-workspace-transfer.mjs";
+import { RunnerWorkspaceTransfer, RunnerWorkspaceTransferError } from "./runner-workspace-transfer.mjs";
 import {
   createRunnerQueueExecution,
   importRunnerResultPrivateKey,
@@ -228,7 +228,8 @@ export class TrustedRunnerProcess {
     const occurredAt = timestamp(this.now);
     const errorCode = authenticationFailure ? "authentication_failed" : privacySafeErrorCode(error);
     try {
-      if (authenticationFailure || delivery.lease.deliveryAttempt >= this.maxDeliveryAttempts) {
+      const invalidWorkspace = error instanceof RunnerWorkspaceTransferError && error.retryable === false;
+      if (authenticationFailure || invalidWorkspace || delivery.lease.deliveryAttempt >= this.maxDeliveryAttempts) {
         await this.queue.deadLetter({
           runId: delivery.message.runId,
           leaseId: delivery.lease.id,
@@ -340,6 +341,7 @@ export async function createTrustedRunnerRuntime({
     }),
     workspaceTransfer: new RunnerWorkspaceTransfer({ bucket: artifactBucket }),
     getContainer: getContainerForRun,
+    discardContainer: discardContainerForRun,
     restageRunning: true,
     monotonicNow,
     observePhase,

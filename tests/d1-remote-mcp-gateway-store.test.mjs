@@ -920,6 +920,21 @@ test("a prove-delegated OAuth Agent stages a signed v2 Bundle and requests one i
   assert.deepEqual(visibleRun.events.map((event) => event.eventType), ["run_queued"]);
   assert.equal(visibleRun.verificationState, "not_verified");
 
+  assert.equal(visibleRun.delivery, null);
+  await database.prepare(`INSERT INTO runner_queue_messages (
+    run_id, attempt_id, idempotency_key, request_hash, canonical_message, delivery_state,
+    delivery_attempts, last_error_code, available_at, enqueued_at, updated_at
+  ) VALUES (?, ?, ?, ?, ?, 'dead_letter', 1, 'runner_workspace_finalization_rejected_4xx', ?, ?, ?)`).bind(
+    run.run.id, attemptId, run.run.idempotencyKey, run.run.requestHash, "private-envelope-must-not-leak",
+    run.run.queuedAt, run.run.queuedAt, run.run.queuedAt,
+  ).run();
+  const stopped = await callGatewayTool(gateway, resource, accessToken, "get_runner_run", { attemptId, runId: run.run.id });
+  const stoppedRun = JSON.parse(stopped.result.content[0].text);
+  assert.deepEqual(stoppedRun.delivery, { state: "dead_letter", attempts: 1, errorCode: "runner_workspace_finalization_rejected_4xx" });
+  assert.equal(stoppedRun.run.startedAt, null);
+  assert.equal(stoppedRun.verificationState, "not_verified");
+  assert.equal(JSON.stringify(stoppedRun).includes("private-envelope-must-not-leak"), false);
+
   const alternateProverAccessToken = "pw_at_gateway_alternate_prover_run_fixture";
   await oauthStore.issueTokenPair({
     accessTokenHash: await tokenHash(alternateProverAccessToken),
