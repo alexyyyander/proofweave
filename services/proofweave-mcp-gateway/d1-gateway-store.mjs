@@ -113,11 +113,11 @@ export class D1RemoteMcpGatewayStore {
         `SELECT revision.id, revision.slug, revision.title
          FROM problem_revisions AS revision
          INNER JOIN projects AS project ON project.id = revision.project_id
-         WHERE revision.slug = ? AND project.kind = 'frontier' AND project.visibility = 'public'`,
+         WHERE revision.slug = ? AND project.kind IN ('frontier', 'practice') AND project.visibility = 'public'`,
       )
       .bind(input.problemSlug)
       .first();
-    if (!problem) throw new GatewayStoreNotFoundError("Frontier problem not found.");
+    if (!problem) throw new GatewayStoreNotFoundError("Public research target not found.");
 
     const now = new Date().toISOString();
     const generatedId = `attempt:${crypto.randomUUID()}`;
@@ -232,7 +232,7 @@ export class D1RemoteMcpGatewayStore {
   async inspectResearchGraph(principal, slug) {
     assertPrincipalScope(principal, "catalog:read");
     const problem = await this.inspectProblem(principal, slug);
-    if (!problem) throw new GatewayStoreNotFoundError("Frontier problem not found.");
+    if (!problem) throw new GatewayStoreNotFoundError("Public research target not found.");
     return Object.freeze({
       problem: Object.freeze({ id: problem.id, slug: problem.slug, title: problem.title }),
       graph: await this.researchGraphStore.readProblemGraph(problem.id),
@@ -995,11 +995,12 @@ export class D1RemoteMcpGatewayStore {
          LEFT JOIN declarations AS declaration
            ON declaration.problem_revision_id = revision.id AND declaration.is_primary = 1
          LEFT JOIN verification_claims AS claim ON claim.problem_revision_id = revision.id
-         WHERE project.kind = 'frontier' AND project.visibility = 'public'
+         WHERE project.kind IN ('frontier', 'practice') AND project.visibility = 'public'
+           AND (? IS NOT NULL OR project.kind = 'frontier')
            AND (? IS NULL OR revision.slug = ?)
          ORDER BY revision.priority DESC, revision.title ASC, claim.claim_type ASC`,
       )
-      .bind(slug, slug)
+      .bind(slug, slug, slug)
       .all();
     return result.results ?? [];
   }

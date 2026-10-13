@@ -39,6 +39,8 @@ import {
 } from "../packages/protocol/research-checkpoint.mjs";
 import { applyControlPlaneOperationMode } from "../services/database/control-plane-operation-mode.mjs";
 
+import { prepareOddSumIntake, applyOddSumIntake } from "../scripts/seed-first-contribution-target.mjs";
+
 const migrationsRoot = new URL("../drizzle/", import.meta.url);
 let miniflare;
 let database;
@@ -1154,6 +1156,29 @@ async function signedAttestation({
   ));
   return attestation;
 }
+
+test("public practice targets support inspection and retry-safe Attempts without entering the frontier list", async () => {
+  const intake = await prepareOddSumIntake({ sourceCommit: "a".repeat(40), verifyCommittedFiles: false });
+  await applyOddSumIntake(database, intake);
+  const store = new D1RemoteMcpGatewayStore(database);
+  const principal = {
+    clientId: "client:gateway-codex", personId: "person:gateway-reviewer",
+    agentInstallationId: "installation:gateway-prover",
+    scopes: ["catalog:read", "attempt:create", "attempt:read", "progress:write"],
+  };
+  assert.equal((await store.inspectProblem(principal, "odd-sum-square")).kind, "practice");
+  assert.equal((await store.listFrontier(principal)).some((p) => p.slug === "odd-sum-square"), false);
+  assert.equal((await store.inspectResearchGraph(principal, "odd-sum-square")).problem.id, intake.problemRevisionId);
+  // Earlier capacity tests intentionally fill this shared mock Person's slots.
+  await database.prepare("UPDATE agent_attempts SET status='paused' WHERE person_id=?").bind(principal.personId).run();
+  const input = { problemSlug: "odd-sum-square", delegationScope: "formalize", idempotencyKey: "practice-attempt" };
+  const created = await store.createAttempt(principal, input);
+  assert.equal(created.attempt.problemSlug, "odd-sum-square");
+  assert.equal((await store.createAttempt(principal, input)).idempotentReplay, true);
+  await database.prepare("UPDATE projects SET visibility='private' WHERE id=?").bind("project:proofweave:odd-sum-square").run();
+  assert.equal(await store.inspectProblem(principal, "odd-sum-square"), null);
+  await assert.rejects(store.createAttempt(principal, {...input,idempotencyKey:"hidden-practice"}), GatewayStoreNotFoundError);
+});
 
 async function seedGatewayFixture(d1, { reviewerPublicKey, proverPublicKey, ownerProverPublicKey, alternateProverPublicKey }) {
   const statements = [
