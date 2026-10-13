@@ -637,7 +637,7 @@ async function prepareWorkspaceBundleV2(args) {
       uploaded: false,
       staged: false,
       verificationState: "not_recorded",
-      workspace: { trackedFiles: workspaceTree.length, changedFiles: generated.changedFiles, stagingDirectory: generated.stagingDirectory },
+      workspace: { trackedFiles: workspaceTree.length, changedFiles: generated.changedFiles, stagingDirectory: generated.stagingDirectory, preparationMode: generated.preparationMode },
       manifestHash,
       artifacts: bundleArtifactSummary(artifacts),
       bundle,
@@ -851,11 +851,16 @@ async function createWorkspaceBundleArtifacts({ workspaceRoot, entryFile }) {
     throw new Error(`The one-click alpha accepts a clean Git workspace with modified tracked files only. Commit, remove, or explicitly handle the first untracked path before preparing a Bundle: ${untracked[0]}`);
   }
   const changedFiles = parseModifiedPaths(await runLocalCommand("git", ["diff", "--name-status", "-z", "HEAD", "--"], { cwd: workspaceRoot }));
-  if (changedFiles.length === 0) {
-    throw new Error("The selected workspace has no tracked source modification to form the required non-empty normalized patch.");
+  const snapshot = changedFiles.length === 0;
+  if (snapshot && trackedFiles.find((file) => file.path === entryFile)?.mode !== 0o644) {
+    throw new Error("A clean snapshot requires a non-executable Lean entry file.");
   }
-
-  const patch = await runLocalCommand("git", ["diff", "--no-ext-diff", "--full-index", "--src-prefix=a/", "--dst-prefix=b/", "HEAD", "--"], { cwd: workspaceRoot, maxBytes: localEvidencePreviewLimits.maxFileBytes });
+  // A snapshot uses the real entry file as an addition to an archive of the
+  // other tracked files. It reconstructs the unchanged final tree with the
+  // existing v2 patch contract; it does not manufacture a source modification.
+  const patch = snapshot
+    ? await createSnapshotEntryPatch(workspaceRoot, entryFile)
+    : await runLocalCommand("git", ["diff", "--no-ext-diff", "--full-index", "--src-prefix=a/", "--dst-prefix=b/", "HEAD", "--"], { cwd: workspaceRoot, maxBytes: localEvidencePreviewLimits.maxFileBytes });
   assertNormalizedPatchContents(patch);
   const lakeManifestPath = join(workspaceRoot, "lake-manifest.json");
   await assertRegularWorkspaceFile(lakeManifestPath, "lake-manifest.json");
@@ -870,9 +875,9 @@ async function createWorkspaceBundleArtifacts({ workspaceRoot, entryFile }) {
     await Promise.all([
       writeFile(artifactPaths.patchPath, patch, { mode: 0o600 }),
       writeFile(artifactPaths.lakeManifestPath, lakeManifest, { mode: 0o600 }),
-      createZstdGitArchive(workspaceRoot, artifactPaths.sourceArchivePath),
+      createZstdGitArchive(workspaceRoot, artifactPaths.sourceArchivePath, snapshot ? entryFile : null),
     ]);
-    return { stagingDirectory, artifactPaths, trackedFiles, changedFiles };
+    return { stagingDirectory, artifactPaths, trackedFiles, changedFiles, preparationMode: snapshot ? "tracked_snapshot" : "tracked_diff" };
   } catch (error) {
     await rm(stagingDirectory, { recursive: true, force: true }).catch(() => {});
     throw error;
@@ -940,8 +945,35 @@ async function assertRegularWorkspaceFile(path, label) {
   return stats;
 }
 
-async function createZstdGitArchive(workspaceRoot, destination) {
-  const archive = spawn("git", ["-c", "tar.umask=0022", "archive", "--format=tar", "HEAD"], { cwd: workspaceRoot, stdio: ["ignore", "pipe", "pipe"], windowsHide: true });
+async function createSnapshotEntryPatch(workspaceRoot, entryFile) {
+  const source = await readFile(join(workspaceRoot, entryFile));
+  const text = source.toString("utf8");
+  if (source.length === 0 || source.length > localEvidencePreviewLimits.maxFileBytes ||
+      !Buffer.from(text, "utf8").equals(source) || text.includes("\0") || text.includes("\r")) {
+    throw new Error("A snapshot entry must be a non-empty, bounded LF-only UTF-8 Lean file.");
+  }
+  const lines = text.split("\n");
+  const finalNewline = lines.at(-1) === "";
+  if (finalNewline) lines.pop();
+  const patch = [
+    `diff --git a/${entryFile} b/${entryFile}`,
+    "--- /dev/null",
+    `+++ b/${entryFile}`,
+    `@@ -0,0 +1,${lines.length} @@`,
+    ...lines.map((line) => `+${line}`),
+    ...(!finalNewline ? ["\\ No newline at end of file"] : []),
+    "",
+  ].join("\n");
+  if (Buffer.byteLength(patch) > localEvidencePreviewLimits.maxFileBytes) {
+    throw new Error("The snapshot entry patch exceeds the local evidence byte limit.");
+  }
+  return Buffer.from(patch, "utf8");
+}
+
+async function createZstdGitArchive(workspaceRoot, destination, excludedEntry = null) {
+  const args = ["-c", "tar.umask=0022", "archive", "--format=tar", "HEAD"];
+  if (excludedEntry !== null) args.push("--", ".", `:(exclude)${excludedEntry}`);
+  const archive = spawn("git", args, { cwd: workspaceRoot, stdio: ["ignore", "pipe", "pipe"], windowsHide: true });
   const output = createWriteStream(destination, { flags: "wx", mode: 0o600 });
   if (typeof zlib.createZstdCompress === "function") {
     await Promise.all([
@@ -1045,7 +1077,7 @@ function assertNormalizedPatchContents(contents) {
       throw new Error("The generated patch contains a file operation not supported by the current one-click Bundle alpha.");
     }
     if (line.startsWith("--- ")) {
-      if (!file || sawOld || line.slice(4).split("\t", 1)[0] !== `a/${file}`) throw new Error("The generated patch has an invalid old-file header.");
+      if (!file || sawOld || (line.slice(4).split("\t", 1)[0] !== `a/${file}` && line.slice(4) !== "/dev/null")) throw new Error("The generated patch has an invalid old-file header.");
       sawOld = true;
     }
     if (line.startsWith("+++ ")) {
