@@ -2808,6 +2808,8 @@ a.auth-provider:hover, .auth-provider-button:hover { border-color: #8295d5; box-
 .history-state.is-reviewed { background: #e9edfb; border-color: #c3ceef; color: #4057aa; }
 .history-state.is-reproduced { background: #eeece4; border-color: #cfc9b9; color: #665f4d; }
 .history-state.is-announced { background: #fff3d8; border-color: #e1c47b; color: #7b5a18; }
+.history-state.is-corrected { background: #faeae5; border-color: #d6aaa0; color: #87392c; }
+.history-legend-grid article:last-child:nth-child(odd) { grid-column: 1 / -1; }
 
 .history-replay { border-bottom: 1px solid #d2d0c7; margin: 0 auto; max-width: 1240px; padding: 54px 28px 58px; }
 .history-replay-heading { align-items: end; display: grid; gap: 50px; grid-template-columns: minmax(0, 1fr) minmax(280px, .7fr); }
@@ -2851,6 +2853,7 @@ a.auth-provider:hover, .auth-provider-button:hover { border-color: #8295d5; box-
 .history-timepoint.tone-reviewed .history-timepoint-node { background: #e9edfb; border-color: #8fa0d6; color: #4057aa; }
 .history-timepoint.tone-reproduced .history-timepoint-node { background: #eeece4; border-color: #a59d89; color: #665f4d; }
 .history-timepoint.tone-announced .history-timepoint-node { background: #f4ddb0; border-color: #bd9142; color: #725115; }
+.history-timepoint.tone-corrected .history-timepoint-node { background: #f0cfc6; border-color: #af6959; color: #87392c; }
 .history-timepoint:hover .history-timepoint-node { transform: translateY(var(--timeline-node-offset)) scale(1.08); }
 .history-timepoint:focus-visible { outline: 0; }
 .history-timepoint:focus-visible .history-timepoint-node { outline: 2px solid var(--indigo); outline-offset: 3px; }

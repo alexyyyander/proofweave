@@ -1113,7 +1113,7 @@ test("publishes a sourced AI mathematics record without flattening evidence stat
   assert.match(html, /Recent days/i);
   assert.match(html, /Full record/i);
   assert.match(html, /role="tablist"/i);
-  assert.match(html, /AI mathematics milestones from January to September 2026/i);
+  assert.match(html, /AI mathematics milestones from January to October 2026/i);
   assert.match(html, /role="tab"/i);
   assert.match(html, /aria-selected="true"/i);
   assert.match(html, /role="tabpanel"/i);
@@ -1140,14 +1140,14 @@ test("publishes a sourced AI mathematics record without flattening evidence stat
   assert.match(html, /openai\.com\/index\/model-disproves-discrete-geometry-conjecture/i);
   assert.match(html, /mathoverflow\.net\/questions\/130777/i);
   assert.doesNotMatch(html, /peer-reviewed Jacobian counterexample/i);
-  assert.match(html, /Updated 10 September 2026/i);
-  assert.match(html, /19 August–10 September 2026/i);
+  assert.match(html, /Updated 13 October 2026/i);
+  assert.match(html, /Latest source review: 13 October 2026/i);
   assert.match(html, /arxiv\.org\/abs\/2608\.19068/i);
   assert.match(html, /No generative-AI contribution is disclosed/i);
   assert.match(html, /arxiv\.org\/abs\/2608\.19301/i);
   assert.match(html, /cscK formulation/i);
   assert.match(html, /github\.com\/plby\/HopfProblem/i);
-  assert.match(html, /Hodge conjecture: no verified resolution recorded/i);
+  assert.match(html, /Hodge conjecture: inspect the scope and corrections/i);
   assert.match(html, /not counted as a solved milestone/i);
   assert.match(html, /github\.com\/openai\/PrimeGaps186/i);
   assert.match(html, /three input axioms/i);
@@ -1157,7 +1157,18 @@ test("publishes a sourced AI mathematics record without flattening evidence stat
   assert.match(html, /github\.com\/openai\/NavierStokesAndEuler/i);
   assert.match(html, /does not settle unforced Navier–Stokes/i);
   assert.match(html, /this update includes no new Proofweave Lean replay or receipt/i);
-  assert.equal((html.match(/role="tab"/g) ?? []).length, 19);
+  assert.match(html, /OpenAI releases a large mathematics collection/i);
+  assert.match(html, /722 manuscripts in 372 related-result families/i);
+  assert.match(html, /719 manuscripts across 17 subjects/i);
+  assert.match(html, /Corrected \/ withdrawn/i);
+  assert.match(html, /three withdrawals after a sign error/i);
+  assert.match(html, /Plasma reports Erdős #809/i);
+  assert.match(html, /no outside human review/i);
+  assert.match(html, /href="\/publications"/i);
+  assert.equal((html.match(/role="tab"/g) ?? []).length, 22);
+  const newestPosition = html.match(/id="history-tab-22"[^>]*style="[^"]*left:([\d.]+)%/);
+  assert.ok(newestPosition, "The October record must have a timeline position");
+  assert.ok(Number(newestPosition[1]) >= 2 && Number(newestPosition[1]) <= 98, "October records must remain inside the timeline");
 });
 
 test("keeps public verification and contribution records outside personal workspace chrome", async () => {
