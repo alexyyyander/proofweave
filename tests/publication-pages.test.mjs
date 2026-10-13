@@ -1,0 +1,68 @@
+import assert from "node:assert/strict";
+import { readdir } from "node:fs/promises";
+import { after, before, test } from "node:test";
+import { fileURLToPath } from "node:url";
+import { Miniflare } from "miniflare";
+
+const workerRoot = new URL("../dist/server/", import.meta.url);
+let runtime;
+before(async () => {
+  async function modules(directory) {
+    const entries = await readdir(directory, { withFileTypes: true });
+    const results = await Promise.all(entries.map((entry) => {
+      const child = new URL(entry.name + (entry.isDirectory() ? "/" : ""), directory);
+      return entry.isDirectory() ? modules(child) : entry.name.endsWith(".js") ? [fileURLToPath(child)] : [];
+    }));
+    return results.flat();
+  }
+  const entrypoint = fileURLToPath(new URL("index.js", workerRoot));
+  runtime = new Miniflare({ modules: [{ type: "ESModule", path: entrypoint }, ...(await modules(workerRoot)).filter((path) => path !== entrypoint).map((path) => ({ type: "ESModule", path }))],
+    modulesRoot: fileURLToPath(workerRoot), compatibilityDate: "2026-05-15", compatibilityFlags: ["nodejs_compat"],
+    d1Databases: ["DB"], serviceBindings: { ASSETS: async () => new Response("Not found", { status: 404 }) },
+  });
+});
+after(async () => { await runtime?.dispose(); });
+
+const fetchPage = (path) => runtime.dispatchFetch(`http://localhost${path}`, { headers: { accept: "text/html" } });
+
+test("anonymous readers can browse the collection and use filters", async () => {
+  const response = await fetchPage("/publications");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.ok(html.includes("Mathematics publications"));
+  assert.ok(html.includes("719"));
+  assert.ok(html.includes('href="/publications/openai-math/001"'));
+  assert.ok(html.includes("Withdrawn manuscripts"));
+  const filtered = await fetchPage("/publications?q=cycle-decomposition&subject=Combinatorics&evidence=scope");
+  assert.equal(filtered.status, 200);
+  assert.ok((await filtered.text()).includes('href="/publications/openai-math/181"'));
+  const empty = await fetchPage("/publications?q=zzzz-no-such-result");
+  assert.ok((await empty.text()).includes("No results match these filters"));
+});
+
+test("family records expose citations and narrower Lean coverage without claiming a platform replay", async () => {
+  const response = await fetchPage("/publications/openai-math/084");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.ok(html.includes("dyadic case"));
+  assert.ok(html.includes("BibTeX citation from OpenAI"));
+  assert.ok(html.includes("Proofweave replay pending"));
+  assert.ok(html.includes("This manuscript is named in the family"));
+  assert.ok(html.includes("do not identify this manuscript"));
+  assert.equal((await fetchPage("/publications/openai-math/999")).status, 404);
+});
+
+test("Agents can download the complete catalog or one source-pinned family", async () => {
+  const response = await runtime.dispatchFetch("http://localhost/api/publications/openai-math?download=1");
+  assert.equal(response.status, 200);
+  assert.match(response.headers.get("content-disposition"), /attachment/);
+  const catalog = await response.json();
+  assert.equal(catalog.statistics.manuscripts, 719);
+  assert.equal(catalog.families.length, 372);
+  const family = await runtime.dispatchFetch("http://localhost/api/publications/openai-math/181?download=1");
+  assert.match(family.headers.get("content-disposition"), /181\.json/);
+  const record = await family.json();
+  assert.equal(record.source.revision, catalog.source.revision);
+  assert.equal(record.family.manuscripts[0].proofweaveReplay, "not_run");
+  assert.equal((await runtime.dispatchFetch("http://localhost/api/publications/openai-math/999")).status, 404);
+});
