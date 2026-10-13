@@ -5,6 +5,8 @@ import { DemoVerificationClient } from "@/app/demo/DemoVerificationClient";
 import { ShowcaseExperience } from "@/app/showcase/ShowcaseExperience";
 import { Footer, ProductStateBadge, StatusStack } from "./ui";
 import { Header } from "./header";
+import "./publications/publications.css";
+import publicationSummary from "@/data/publications/openai-math-summary.json";
 
 export const dynamic = "force-dynamic";
 
@@ -46,6 +48,11 @@ export default async function Home() {
             </dl>
             <a href="#verification-console">Inspect executable verification <span aria-hidden="true">→</span></a>
           </aside>
+        </section>
+
+        <section className="home-publications-entry" aria-labelledby="home-publications-title">
+          <div><p className="eyebrow">Mathematics publications</p><h2 id="home-publications-title">Explore the OpenAI mathematics release.</h2><p>{publicationSummary.statistics.manuscripts} manuscripts in {publicationSummary.statistics.families} result families. Read the papers, citations, and Lean proof scope.</p></div>
+          <Link className="button button-primary" href="/publications">Browse publications <span aria-hidden="true">→</span></Link>
         </section>
 
         <ShowcaseExperience verification={verification} />
