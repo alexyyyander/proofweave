@@ -502,9 +502,11 @@ export class D1AnchorStore {
     const expectedHeadVersion = Number(headRow?.version ?? 0);
     // In-transaction guard: re-inserting the current head version (whose row
     // is guaranteed to exist) fails with a PRIMARY KEY conflict and aborts the
-    // whole batch unless, at commit time, the batch still has no confirmed
-    // submission AND is still the log tip — abandoning a non-tip batch would
-    // otherwise erase its successors from the head log.
+    // whole batch unless, at commit time, the batch still has no submission
+    // (pending or confirmed) AND is still the log tip — abandoning a non-tip
+    // batch would otherwise erase its successors from the head log, and a
+    // submission racing in before abandonment must abort atomically instead
+    // of surviving as permanently-pending evidence on a failed batch.
     let results;
     try {
       results = await this.database.batch([
@@ -516,9 +518,10 @@ export class D1AnchorStore {
             `INSERT INTO anchor_log_head (version, head_batch_id, head_root, updated_at)
              SELECT ?, NULL, NULL, ?
              WHERE (SELECT COUNT(*) FROM anchor_submissions WHERE batch_id = ? AND status = 'confirmed') > 0
+                OR EXISTS (SELECT 1 FROM anchor_submissions WHERE batch_id = ? AND status = 'pending')
                 OR (SELECT head_batch_id FROM anchor_log_head ORDER BY version DESC LIMIT 1) IS NOT ?`,
           )
-          .bind(expectedHeadVersion, updatedAt, batchId, batchId),
+          .bind(expectedHeadVersion, updatedAt, batchId, batchId, batchId),
         this.database
           .prepare(
             "INSERT INTO anchor_log_head (version, head_batch_id, head_root, updated_at) VALUES (?, ?, ?, ?)",
@@ -537,7 +540,7 @@ export class D1AnchorStore {
     } catch (cause) {
       if (isUniqueConstraintError(cause)) {
         throw new AnchorStoreConflictError(
-          "Anchor batch abandonment lost the log head CAS race or is no longer the log tip.",
+          "Anchor batch abandonment lost the log head CAS race, is no longer the log tip, or raced an in-flight submission.",
           { cause },
         );
       }
