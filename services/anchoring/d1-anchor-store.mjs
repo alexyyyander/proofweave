@@ -66,14 +66,23 @@ export class D1AnchorStore {
     return rows.results ?? [];
   }
 
-  async createBatch({ id, root, leafCount, manifestHash, manifestKey, prevBatchId, prevRoot, chain, network, createdAt, leaves }) {
-    if (!Array.isArray(leaves) || leafCount !== leaves.length) {
+  async createBatch({ id, root, leafCount, manifestHash, manifestKey, prevBatchId, prevRoot, chain, network, createdAt, leaves, expectedHeadVersion = null }) {
+    if (!Array.isArray(leaves) || leaves.length === 0) {
+      throw new TypeError("Anchor batch must append at least one leaf; empty anchor batches are not allowed.");
+    }
+    if (leafCount !== leaves.length) {
       throw new TypeError("Anchor batch leafCount must equal the number of provided leaves.");
     }
-    const headRow = await this.database
-      .prepare("SELECT * FROM anchor_log_head ORDER BY version DESC LIMIT 1")
-      .first();
-    const expectedHeadVersion = Number(headRow?.version ?? 0);
+    if (expectedHeadVersion !== null && (!Number.isSafeInteger(expectedHeadVersion) || expectedHeadVersion < 0)) {
+      throw new TypeError("Anchor batch expectedHeadVersion must be a non-negative integer.");
+    }
+    let expectedVersion = expectedHeadVersion;
+    if (expectedVersion === null) {
+      const headRow = await this.database
+        .prepare("SELECT * FROM anchor_log_head ORDER BY version DESC LIMIT 1")
+        .first();
+      expectedVersion = Number(headRow?.version ?? 0);
+    }
     const batchInsert = this.database
       .prepare(
         `INSERT INTO anchor_batches (
@@ -91,18 +100,33 @@ export class D1AnchorStore {
         )
         .bind(id, leaf.record_type, leaf.record_id, leaf.record_hash),
     );
+    // CAS: the trailing head INSERT claims version = expectedVersion + 1; when a
+    // concurrent writer has already committed that version the PRIMARY KEY
+    // conflict fails the statement and D1 rolls back this entire batch
+    // atomically — that conflict IS the compare-and-swap. The guard below
+    // converts every other violated invariant into the same guaranteed
+    // conflict by re-inserting the expected version (whose row always
+    // exists): it trips when any leaf failed to bind to a pending record, or
+    // when the head row at commit time no longer matches the caller's
+    // observed (expectedHeadVersion, prevBatchId, prevRoot) triple — closing
+    // the silent fork where a stale prev pointer would otherwise commit
+    // cleanly on top of a log that already moved on.
     const leafGuard = this.database
       .prepare(
         `INSERT INTO anchor_log_head (version, head_batch_id, head_root, updated_at)
          SELECT ?, NULL, NULL, ?
-         WHERE (SELECT COUNT(*) FROM anchor_records WHERE batch_id = ?) != ?`,
+         WHERE (SELECT COUNT(*) FROM anchor_records WHERE batch_id = ?) != ?
+            OR NOT EXISTS (
+              SELECT 1 FROM anchor_log_head
+              WHERE version = ? AND head_batch_id IS ? AND head_root IS ?
+            )`,
       )
-      .bind(expectedHeadVersion, createdAt, id, leaves.length);
+      .bind(expectedVersion, createdAt, id, leaves.length, expectedVersion, prevBatchId, prevRoot);
     const headInsert = this.database
       .prepare(
         "INSERT INTO anchor_log_head (version, head_batch_id, head_root, updated_at) VALUES (?, ?, ?, ?)",
       )
-      .bind(expectedHeadVersion + 1, id, root, createdAt);
+      .bind(expectedVersion + 1, id, root, createdAt);
     const statements = [
       batchInsert,
       ...leafUpdates,
@@ -251,20 +275,50 @@ export class D1AnchorStore {
         `Anchor submission ${submissionId} has already left 'pending' status (found '${row.status}'); terminal transitions are immutable.`,
       );
     }
+    const parentBatch = await this.getBatch(row.batch_id);
+    if (parentBatch?.status === "failed") {
+      throw new AnchorStoreConflictError(
+        `Anchor batch ${row.batch_id} is failed; its submissions can no longer transition.`,
+      );
+    }
+    // The event id is status-independent so two transitions with different
+    // outcomes collide on the same event PRIMARY KEY; the house guarded-event
+    // pattern (INSERT...SELECT gated on the projection having landed) keeps
+    // evidence and projection atomically consistent, and the batch-status
+    // filter in the UPDATE refuses transitions for failed anchor batches.
+    const eventId = `anchor-batch-event:${row.batch_id}:submission_status:${submissionId}`;
+    const eventType = status === "confirmed" ? "submission_confirmed" : "submission_failed";
+    const payload = { submissionId, status, confirmations, blockRef };
     const results = await this.database.batch([
       this.database
         .prepare(
           `UPDATE anchor_submissions
            SET status = ?, confirmations = ?, block_ref = ?, updated_at = ?
-           WHERE id = ? AND status = 'pending'`,
+           WHERE id = ? AND status = 'pending'
+             AND batch_id IN (SELECT id FROM anchor_batches WHERE status != 'failed')`,
         )
         .bind(status, confirmations, blockRef, updatedAt, submissionId),
-      ...(await this.eventStatements(row.batch_id, status === "confirmed" ? "submission_confirmed" : "submission_failed", {
-        submissionId,
-        status,
-        confirmations,
-        blockRef,
-      }, updatedAt, { dedupeKey: submissionId })),
+      this.database
+        .prepare(
+          `INSERT INTO anchor_batch_events (
+            id, batch_id, event_type, payload_hash, canonical_payload, created_at
+          )
+          SELECT ?, ?, ?, ?, ?, ?
+          WHERE EXISTS (
+            SELECT 1 FROM anchor_submissions WHERE id = ? AND status = ? AND updated_at = ?
+          )`,
+        )
+        .bind(
+          eventId,
+          row.batch_id,
+          eventType,
+          await sha256Canonical(payload),
+          canonicalJson(payload),
+          updatedAt,
+          submissionId,
+          status,
+          updatedAt,
+        ),
     ]);
     if (results.some((result) => changes(result) !== 1)) {
       throw new AnchorStoreConflictError(
@@ -318,13 +372,77 @@ export class D1AnchorStore {
       .prepare(
         `SELECT * FROM anchor_submissions
          WHERE batch_id = ? AND submitter_kind = 'platform' AND status = 'confirmed'
+         ORDER BY submitted_at, id
          LIMIT 1`,
       )
       .bind(batchId)
       .first();
   }
 
+  async markBatchConfirmed(batchId, anchoredAt) {
+    const batch = await this.getBatch(batchId);
+    if (!batch) throw new AnchorStoreNotFoundError(batchId);
+    if (batch.status !== "submitted") {
+      throw new AnchorStoreConflictError(
+        `Anchor batch ${batchId} must be in 'submitted' status to confirm anchoring (found '${batch.status}').`,
+      );
+    }
+    const platform = await this.getConfirmedPlatformSubmission(batchId);
+    if (!platform) {
+      throw new AnchorStoreConflictError(
+        `Anchor batch ${batchId} has no confirmed platform submission; anchoring cannot be confirmed.`,
+      );
+    }
+    const headRow = await this.database
+      .prepare("SELECT * FROM anchor_log_head ORDER BY version DESC LIMIT 1")
+      .first();
+    const headVersion = Number(headRow?.version ?? 0);
+    // In-transaction guard: re-inserting the current head version (whose row
+    // always exists) fails with a PRIMARY KEY conflict — aborting the whole
+    // batch — unless the projection still reads 'submitted' at commit time,
+    // so a concurrent status change can never leave a confirmed projection
+    // without its immutable evidence.
+    let results;
+    try {
+      results = await this.database.batch([
+        this.database
+          .prepare(
+            `INSERT INTO anchor_log_head (version, head_batch_id, head_root, updated_at)
+             SELECT ?, NULL, NULL, ?
+             WHERE (SELECT status FROM anchor_batches WHERE id = ?) IS NOT 'submitted'`,
+          )
+          .bind(headVersion, anchoredAt, batchId),
+        this.database
+          .prepare(
+            "UPDATE anchor_batches SET status = 'confirmed', anchored_at = ? WHERE id = ? AND status = 'submitted'",
+          )
+          .bind(anchoredAt, batchId),
+        ...(await this.eventStatements(batchId, "batch_confirmed", {
+          batchId,
+          anchoredAt,
+          submissionId: platform.id,
+        }, anchoredAt)),
+      ]);
+    } catch (cause) {
+      if (isUniqueConstraintError(cause)) {
+        throw new AnchorStoreConflictError(
+          `Anchor batch ${batchId} confirmation raced a concurrent status change.`,
+          { cause },
+        );
+      }
+      throw cause;
+    }
+    if (changes(results[1]) !== 1 || changes(results[2]) !== 1) {
+      throw new AnchorStoreConflictError(
+        "Anchor batch confirmation did not persist its projection and immutable evidence together.",
+      );
+    }
+    return await this.getBatch(batchId);
+  }
+
   async syncWitnessCount(batchId, updatedAt) {
+    const batch = await this.getBatch(batchId);
+    if (!batch) throw new AnchorStoreNotFoundError(batchId);
     const row = await this.database
       .prepare(
         `SELECT COUNT(DISTINCT submitter_id) AS witness_count FROM anchor_submissions
@@ -356,6 +474,17 @@ export class D1AnchorStore {
         `Anchor batch ${batchId} cannot be abandoned from terminal status '${batch.status}'.`,
       );
     }
+    const pending = await this.database
+      .prepare(
+        "SELECT 1 AS pending FROM anchor_submissions WHERE batch_id = ? AND status = 'pending' LIMIT 1",
+      )
+      .bind(batchId)
+      .first();
+    if (pending) {
+      throw new AnchorStoreConflictError(
+        `Anchor batch ${batchId} has a pending submission and cannot be abandoned while an anchor is in flight.`,
+      );
+    }
     const confirmed = await this.database
       .prepare(
         "SELECT 1 AS confirmed FROM anchor_submissions WHERE batch_id = ? AND status = 'confirmed' LIMIT 1",
@@ -371,12 +500,25 @@ export class D1AnchorStore {
       .prepare("SELECT * FROM anchor_log_head ORDER BY version DESC LIMIT 1")
       .first();
     const expectedHeadVersion = Number(headRow?.version ?? 0);
+    // In-transaction guard: re-inserting the current head version (whose row
+    // is guaranteed to exist) fails with a PRIMARY KEY conflict and aborts the
+    // whole batch unless, at commit time, the batch still has no confirmed
+    // submission AND is still the log tip — abandoning a non-tip batch would
+    // otherwise erase its successors from the head log.
     let results;
     try {
       results = await this.database.batch([
         this.database
           .prepare("UPDATE anchor_records SET batch_id = NULL WHERE batch_id = ?")
           .bind(batchId),
+        this.database
+          .prepare(
+            `INSERT INTO anchor_log_head (version, head_batch_id, head_root, updated_at)
+             SELECT ?, NULL, NULL, ?
+             WHERE (SELECT COUNT(*) FROM anchor_submissions WHERE batch_id = ? AND status = 'confirmed') > 0
+                OR (SELECT head_batch_id FROM anchor_log_head ORDER BY version DESC LIMIT 1) IS NOT ?`,
+          )
+          .bind(expectedHeadVersion, updatedAt, batchId, batchId),
         this.database
           .prepare(
             "INSERT INTO anchor_log_head (version, head_batch_id, head_root, updated_at) VALUES (?, ?, ?, ?)",
@@ -395,7 +537,7 @@ export class D1AnchorStore {
     } catch (cause) {
       if (isUniqueConstraintError(cause)) {
         throw new AnchorStoreConflictError(
-          "Anchor batch abandonment lost the log head CAS race.",
+          "Anchor batch abandonment lost the log head CAS race or is no longer the log tip.",
           { cause },
         );
       }
@@ -403,7 +545,9 @@ export class D1AnchorStore {
     }
     if (
       changes(results[0]) !== batch.leaf_count ||
-      results.slice(1).some((result) => changes(result) !== 1)
+      changes(results[2]) !== 1 ||
+      changes(results[3]) !== 1 ||
+      changes(results[4]) !== 1
     ) {
       throw new AnchorStoreConflictError(
         "Anchor batch abandonment did not release records, restore the head, and fail the projection atomically.",
