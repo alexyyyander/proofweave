@@ -54,7 +54,12 @@ record types. Intake (`enqueueAnchorRecord` in
 [`services/anchoring/anchor-intake.mjs`](../services/anchoring/anchor-intake.mjs))
 computes the leaf hash at enqueue time and inserts idempotently on the
 `(recordType, recordId, recordHash)` unique constraint. Until a batch claims a
-record, `batch_id` stays `NULL` (pending).
+record, `batch_id` stays `NULL` (pending). Contribution Receipt issuance
+enqueues its leaf best-effort immediately after the receipt's own transaction
+commits
+([`services/receipts/d1-contribution-receipt-coordinator.mjs`](../services/receipts/d1-contribution-receipt-coordinator.mjs));
+an intake failure is recorded through the structured audit and never fails
+issuance, and the unique constraint keeps any later retry idempotent.
 
 ## Merkle tree and inclusion proofs
 
@@ -336,6 +341,32 @@ drives the coordinator's build, confirmation polling, and crash recovery;
 the cron schedule itself is deployment configuration. Crash recovery
 resubmits `built` batches (same root, new txRef as an additional platform
 submission).
+
+### The anchor tick script
+
+`scripts/anchor-tick.mjs` runs one **single-shot** tick, in order:
+`resumeUnfinishedBatches()` → `maybeBuildAndSubmit({ lastBatch })` (with the
+store's latest batch) → `pollConfirmations()`, then prints a JSON summary
+(`{ status: "ok", recoveredBatches, batchCreated, …, confirmedBatches,
+failedBatches }`) to stdout.
+
+- Anchoring is off exactly when `ANCHOR_ADAPTERS_JSON` is absent or blank:
+  the tick prints `{ status: "anchoring_disabled" }` and exits 0 without
+  reading the store.
+- A batch build that loses the log-head CAS race (`AnchorStoreConflictError`)
+  is never retried in-process: the tick prints a conflict summary
+  (`{ status: "conflict", … }`) and exits 0 — the next cron run is the retry.
+- The database is remote (`TURSO_DATABASE_URL` + `TURSO_AUTH_TOKEN`) or local
+  via `--local <dbPath>` for smoke testing; `.env.local` is loaded when
+  present, and the same threshold variables and defaults as the table above
+  apply.
+- The optional R2 `ANCHOR_MANIFEST_BUCKET` binding is a Worker binding; a
+  tick keeps manifests reconstructible from the immutable batch projection
+  (the same fallback the public manifest route uses). With multiple
+  configured adapters, the first `ANCHOR_ADAPTERS_JSON` entry is the
+  platform adapter that builds and confirms batches.
+- Exit codes: 0 when the tick ran (including conflict and disabled outcomes);
+  1 for argument, configuration, or IO errors.
 
 ### Enable/disable
 

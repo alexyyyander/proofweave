@@ -3,6 +3,9 @@ import {
   contributionReceiptRequiredClaimTypes,
 } from "../../packages/protocol/contribution-receipt.mjs";
 import { normalizeLeanRunnerResult } from "../../packages/protocol/lean-runner.mjs";
+import { emitStructuredConsole } from "../../packages/observability/structured-audit.mjs";
+import { D1AnchorStore } from "../anchoring/d1-anchor-store.mjs";
+import { createAnchorIntake } from "../anchoring/anchor-intake.mjs";
 import { D1ContributionReceiptIssuerKeyStore } from "./d1-contribution-receipt-issuer-key-store.mjs";
 import { D1ContributionReceiptStore } from "./d1-contribution-receipt-store.mjs";
 import { D1ReceiptCreditSettlement } from "../credits/d1-receipt-credit-settlement.mjs";
@@ -30,6 +33,7 @@ export class D1ContributionReceiptCoordinator {
     this.receipts = new D1ContributionReceiptStore(database);
     this.credits = new D1ReceiptCreditSettlement(database);
     this.issuerKeys = new D1ContributionReceiptIssuerKeyStore(database);
+    this.anchorIntake = createAnchorIntake(new D1AnchorStore(database));
     this.issuerPrivateKeyPromise = null;
   }
 
@@ -112,6 +116,7 @@ export class D1ContributionReceiptCoordinator {
       issuerPublicKey: this.issuer.publicKey,
       issuerPrivateKey: await this.importIssuerPrivateKey(),
     });
+    await this.enqueueReceiptForAnchoring(issued.receipt);
     const creditSettlement = await this.credits.settleReceipt(issued.receipt.id);
     return freezeClosure({
       state: "receipt_issued",
@@ -122,6 +127,32 @@ export class D1ContributionReceiptCoordinator {
       missingClaims: [],
       blockingDecisions: [],
     });
+  }
+
+  /**
+   * Best-effort anchor-intake enqueue for a freshly issued, persisted Receipt.
+   * The Receipt's own transaction has already committed, so an intake failure
+   * is only recorded through the structured audit and never fails issuance;
+   * the anchor store's unique (recordType, recordId, recordHash) constraint
+   * keeps any later retry idempotent.
+   */
+  async enqueueReceiptForAnchoring(receipt) {
+    try {
+      await this.anchorIntake.enqueueAnchorRecord({
+        recordType: "contribution_receipt",
+        recordId: receipt.id,
+        recordHash: await contributionReceiptHash(receipt),
+        createdAt: receipt.issuedAt,
+      });
+    } catch (error) {
+      emitStructuredConsole(Object.freeze({
+        schemaVersion: "pw-audit-v1",
+        kind: "anchor_intake_enqueue_failed",
+        component: "receipt_coordinator",
+        recordId: receipt.id,
+        outcome: error instanceof Error ? error.name : "unknown_error",
+      }));
+    }
   }
 
   async findEligibleRun(artifactBundleManifestHash) {
