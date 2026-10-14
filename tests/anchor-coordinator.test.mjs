@@ -161,6 +161,17 @@ test("witness flow enforces signature, chain truth, and independence", async () 
   });
   assert.equal(repeat.accepted, true);
   assert.equal((await store.getBatch(batch.id)).witness_count, 1);
+
+  // gate 0: signed payload must bind to the txRef actually submitted — payload for the real
+  // witness tx but submitted with the forged txRef → payload_mismatch (not counted)
+  const swappedTxRef = await coordinator.submitWitness({
+    batchId: batch.id, payload: witnessPayload(batch, witnessSubmission.txRef),
+    signature: await signAnchorWitness(witnessPayload(batch, witnessSubmission.txRef), witnessKeys.privateKey),
+    txRef: forgedTxRef,
+  });
+  assert.equal(swappedTxRef.accepted, false);
+  assert.equal(swappedTxRef.reason, "payload_mismatch");
+  assert.equal((await store.getBatch(batch.id)).witness_count, 1);
 });
 
 test("empty pending leaves no batch and reports created:false", async () => {

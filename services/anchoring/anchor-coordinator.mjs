@@ -19,7 +19,9 @@ const FAILED_CONFIRMATION_STATUSES = new Set(["failed", "reverted", "dropped"]);
  *
  * submitWitness rejection reasons:
  *   "unknown_batch"         — no batch row for the given batchId
- *   "invalid_signature"     — payload inconsistency or verifyWitnessAuthority failure
+ *   "payload_mismatch"      — signed payload does not attest the submitted txRef / batch row
+ *                             (protocolVersion, batchId, txRef, root, manifestHash must all match)
+ *   "invalid_signature"     — verifyWitnessAuthority failure
  *   "invalid_txref"         — txRef is not a <chain>:<network>:<txId> triple
  *   "network_mismatch"      — txRef chain:network differs from the batch's canonical network
  *   "chain_truth_mismatch"  — on-chain tx missing or does not carry the batch's anchor payload
@@ -33,7 +35,7 @@ export function createAnchorCoordinator({
   for (const [name, value] of Object.entries({ store, builder, manifestStorage, adapter, verifyWitnessAuthority })) {
     if (!value) throw new TypeError(`createAnchorCoordinator requires ${name}.`);
   }
-  for (const key of ["chain", "network", "minLeafCount", "maxIntervalSeconds", "confirmationThreshold"]) {
+  for (const key of ["minLeafCount", "maxIntervalSeconds", "confirmationThreshold"]) {
     if (config?.[key] === undefined) throw new TypeError(`createAnchorCoordinator requires config.${key}.`);
   }
 
@@ -167,7 +169,8 @@ export function createAnchorCoordinator({
 
     /**
      * Witness five gates (spec §2.4), in order:
-     * 0) batch row must exist ("unknown_batch"); payload protocolVersion/batchId must be self-consistent.
+     * 0) batch row must exist ("unknown_batch"); the signed payload must attest exactly what gets
+     *    recorded — protocolVersion/batchId/txRef/root/manifestHash all consistent ("payload_mismatch").
      * 1) verifyWitnessAuthority(payload, signature) → { submitterId }; the coordinator CATCHES its
      *    errors and maps them to { accepted: false, reason: "invalid_signature" }.
      * 2) parseTxRef(txRef) — malformed triples are rejected as "invalid_txref"; otherwise
@@ -184,8 +187,12 @@ export function createAnchorCoordinator({
       const batch = await store.getBatch(batchId);
       if (!batch) return { accepted: false, reason: "unknown_batch" };
       if (batch.status === "failed") return { accepted: false, reason: "batch_failed" };
-      if (payload?.protocolVersion !== anchorWitnessProtocolVersion || payload?.batchId !== batchId) {
-        return { accepted: false, reason: "invalid_signature" };
+      if (payload?.protocolVersion !== anchorWitnessProtocolVersion
+        || payload?.batchId !== batchId
+        || payload?.txRef !== txRef
+        || payload?.root !== batch.root
+        || payload?.manifestHash !== batch.manifest_hash) {
+        return { accepted: false, reason: "payload_mismatch" };
       }
 
       // Gate 1: authority (valid Person/Agent identity + delegation)
