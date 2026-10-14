@@ -16,10 +16,11 @@ import { artifactBundleHash } from "../packages/protocol/artifact-bundle.mjs";
 import { contributionReceiptHash } from "../packages/protocol/contribution-receipt.mjs";
 import { researchCheckpointHash } from "../packages/protocol/research-checkpoint.mjs";
 
-const hashersByRecordType = {
-  contribution_receipt: contributionReceiptHash,
-  research_checkpoint: researchCheckpointHash,
-  artifact_bundle: artifactBundleHash,
+const recordTypeContracts = {
+  contribution_receipt: { anchorType: "contribution_receipt", hasher: contributionReceiptHash },
+  research_checkpoint: { anchorType: "research_checkpoint", hasher: researchCheckpointHash },
+  artifact_bundle: { anchorType: "evidence_bundle", hasher: artifactBundleHash },
+  evidence_bundle: { anchorType: "evidence_bundle", hasher: artifactBundleHash },
 };
 
 const usage = `Usage:
@@ -27,7 +28,11 @@ const usage = `Usage:
     --record <record.json | - for stdin> [--batch <anchorBatchId>] [--local <dbPath>] [options]
 
 Options:
-  --type    Record type; selects the matching protocol hash function (required).
+  --type    Record type: contribution_receipt, research_checkpoint, or
+            artifact_bundle (the anchor-leaf spelling evidence_bundle is
+            accepted as an alias); selects the matching protocol hash
+            function (required). Bundle types map to leaf recordType
+            "evidence_bundle" for anchor-store lookups.
   --record  Path to the canonical record JSON (the full object for the given
             type), or "-" to read it from stdin (required).
   --batch   Anchor batch whose chain/network resolves the on-chain adapter;
@@ -61,24 +66,24 @@ async function main() {
   }
   const recordType = options.values.type;
   if (!recordType) {
-    return fail(`--type is required (one of ${Object.keys(hashersByRecordType).join(", ")}).\n\n${usage}`);
+    return fail(`--type is required (one of contribution_receipt, research_checkpoint, artifact_bundle or evidence_bundle).\n\n${usage}`);
   }
-  if (!Object.hasOwn(hashersByRecordType, recordType)) {
-    return fail(`Unknown --type ${JSON.stringify(recordType)}; expected one of ${Object.keys(hashersByRecordType).join(", ")}.\n\n${usage}`);
+  const contract = recordTypeContracts[recordType];
+  if (!contract) {
+    return fail(`Unknown --type ${JSON.stringify(recordType)}; expected one of contribution_receipt, research_checkpoint, artifact_bundle (or its alias evidence_bundle).\n\n${usage}`);
   }
   if (!options.values.record) {
     return fail(`--record is required (a JSON file path or "-" for stdin).\n\n${usage}`);
   }
   await loadEnvironmentFile(".env.local");
   const record = await readRecord(options.values.record);
-  const hasher = hashersByRecordType[recordType];
-  const recordHash = await hasher(record);
+  const recordHash = await contract.hasher(record);
   const store = new D1AnchorStore(createDatabase(options.values.local));
-  const row = await store.findRecord({ recordType, recordId: record.id, recordHash });
+  const row = await store.findRecord({ recordType: contract.anchorType, recordId: record.id, recordHash });
   const adapter = row
     ? await resolveConfiguredAdapter(store, options.values.batch ?? row.batch_id)
     : undefined;
-  const result = await verifyAnchorRecord({ recordType, record, hasher, store, adapter });
+  const result = await verifyAnchorRecord({ recordType: contract.anchorType, record, hasher: contract.hasher, store, adapter });
   const output = {};
   if (result.status !== undefined) output.status = result.status;
   if (result.reason !== undefined) output.reason = result.reason;

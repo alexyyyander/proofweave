@@ -274,8 +274,9 @@ node scripts/verify-anchor-proof.mjs --type <type> --record <path|-> [--batch <i
 ```
 
 - `--type` is `contribution_receipt`, `research_checkpoint`, or
-  `artifact_bundle`; `--record` is a canonical record JSON file or `-` for
-  stdin (the object must carry a non-empty string `id`).
+  `artifact_bundle` (`evidence_bundle` is accepted as an alias; bundle types
+  map to leaf recordType `evidence_bundle`); `--record` is a canonical record
+  JSON file or `-` for stdin (the object must carry a non-empty string `id`).
 - The store is a local SQLite/libSQL file via `--local`, or remote via
   `TURSO_DATABASE_URL` with `TURSO_AUTH_TOKEN` (required for remote mode);
   `.env.local` is loaded when present.
@@ -292,13 +293,12 @@ node scripts/verify-anchor-proof.mjs --type <type> --record <path|-> [--batch <i
 | 2 | mismatch |
 | 3 | pending or unanchored |
 
-Note: the CLI spells the bundle type `artifact_bundle` (the record protocol's
-own name), while anchor leaves store `recordType: "evidence_bundle"`
-(`packages/protocol/anchor-leaf.mjs`). The leaf protocol rejects
-`artifact_bundle`, so `--type artifact_bundle` lookups do not currently match
-bundle rows enqueued under the canonical type—use
-`/api/anchors/proof?type=evidence_bundle` for bundles until the CLI naming
-is aligned.
+Note: the CLI accepts the bundle type as `artifact_bundle` (the record
+protocol's own name) and translates it to the anchor-leaf spelling
+`recordType: "evidence_bundle"` (`packages/protocol/anchor-leaf.mjs`) for
+anchor-store lookups. `--type evidence_bundle` is accepted as an alias; both
+spellings hash the record with `artifactBundleHash` and match bundle rows
+stored under the canonical leaf type.
 
 ## Public API
 
