@@ -27,7 +27,7 @@ test("builder sorts leaves deterministically and verifies manifest root", async 
   const builder = createAnchorBatchBuilder({ store: fakeStoreWith(pending), chain: "mock", network: "local" });
   const result = await builder.buildNextBatch({ prevBatchId: null, prevRoot: null });
   assert.equal(result.created, true);
-  const [first, second] = result.manifest.leaves;
+  const [first] = result.manifest.leaves;
   assert.equal(first.recordId, "receipt:a"); // sorted by (type,id,hash)
   assert.equal(result.tree.root, result.manifest.root);
 });
