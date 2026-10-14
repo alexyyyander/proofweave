@@ -1982,3 +1982,99 @@ export const contributionReceiptLifecycleEvents = sqliteTable(
     index("contribution_receipt_lifecycle_events_replacement_idx").on(table.replacementReceiptId),
   ],
 );
+
+// Anchor tables: append-only anchoring of canonical record hashes (spec 2026-10-14).
+export const anchorBatches = sqliteTable(
+  "anchor_batches",
+  {
+    id: text("id").primaryKey(),
+    status: text("status").notNull().default("built"),
+    root: text("root").notNull(),
+    leafCount: integer("leaf_count").notNull(),
+    manifestHash: text("manifest_hash").notNull(),
+    manifestKey: text("manifest_key").notNull(),
+    prevBatchId: text("prev_batch_id"),
+    prevRoot: text("prev_root"),
+    chain: text("chain").notNull(),
+    network: text("network").notNull(),
+    witnessCount: integer("witness_count").notNull().default(0),
+    createdAt: text("created_at").notNull(),
+    anchoredAt: text("anchored_at"),
+  },
+  (table) => [
+    // Partial unique index: abandoned (failed) batches can be rebuilt from the
+    // same leaf set without conflict.
+    uniqueIndex("anchor_batches_root_idx")
+      .on(table.root)
+      .where(sql`${table.status} != 'failed'`),
+  ],
+);
+
+// Append-only head log: version is the CAS token; inserting prevVersion+1 with
+// a PK conflict atomically aborts a concurrent batch build.
+export const anchorLogHead = sqliteTable("anchor_log_head", {
+  version: integer("version").primaryKey(),
+  headBatchId: text("head_batch_id"),
+  headRoot: text("head_root"),
+  updatedAt: text("updated_at").notNull(),
+});
+
+export const anchorRecords = sqliteTable(
+  "anchor_records",
+  {
+    id: text("id").primaryKey(),
+    recordType: text("record_type").notNull(),
+    recordId: text("record_id").notNull(),
+    recordHash: text("record_hash").notNull(),
+    leafHash: text("leaf_hash").notNull(),
+    batchId: text("batch_id").references(() => anchorBatches.id, { onDelete: "set null" }),
+    createdAt: text("created_at").notNull(),
+  },
+  (table) => [
+    uniqueIndex("anchor_records_identity_idx").on(
+      table.recordType,
+      table.recordId,
+      table.recordHash,
+    ),
+    index("anchor_records_pending_idx").on(table.batchId),
+  ],
+);
+
+export const anchorSubmissions = sqliteTable(
+  "anchor_submissions",
+  {
+    id: text("id").primaryKey(),
+    batchId: text("batch_id")
+      .notNull()
+      .references(() => anchorBatches.id, { onDelete: "restrict" }),
+    submitterKind: text("submitter_kind").notNull(),
+    submitterId: text("submitter_id").notNull(),
+    chain: text("chain").notNull(),
+    network: text("network").notNull(),
+    txRef: text("tx_ref").notNull(),
+    status: text("status").notNull().default("pending"),
+    confirmations: integer("confirmations").notNull().default(0),
+    blockRef: text("block_ref"),
+    submittedAt: text("submitted_at").notNull(),
+    updatedAt: text("updated_at").notNull(),
+  },
+  (table) => [
+    uniqueIndex("anchor_submissions_tx_idx").on(table.chain, table.network, table.txRef),
+    index("anchor_submissions_batch_idx").on(table.batchId),
+  ],
+);
+
+export const anchorBatchEvents = sqliteTable(
+  "anchor_batch_events",
+  {
+    id: text("id").primaryKey(),
+    batchId: text("batch_id")
+      .notNull()
+      .references(() => anchorBatches.id, { onDelete: "restrict" }),
+    eventType: text("event_type").notNull(),
+    payloadHash: text("payload_hash").notNull(),
+    canonicalPayload: text("canonical_payload").notNull(),
+    createdAt: text("created_at").notNull(),
+  },
+  (table) => [index("anchor_batch_events_batch_idx").on(table.batchId)],
+);
