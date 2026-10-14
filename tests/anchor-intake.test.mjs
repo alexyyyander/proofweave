@@ -16,6 +16,8 @@ test("enqueue computes leafHash and rejects unknown record types", async () => {
     createdAt: "2026-10-14T00:00:00.000Z",
   });
   assert.match(inserted[0].leafHash, /^sha256:[a-f0-9]{64}$/);
+  assert.equal(result.created, true);
+  assert.equal(inserted[0].createdAt, "2026-10-14T00:00:00.000Z");
   await assert.rejects(
     () => intake.enqueueAnchorRecord({ recordType: "nope", recordId: "x", recordHash: `sha256:${"a".repeat(64)}` }),
     /recordType/,
