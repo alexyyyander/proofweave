@@ -334,6 +334,11 @@ git add packages/protocol/merkle-tree.mjs tests/anchor-merkle-tree.test.mjs
 git commit -m "Add RFC6962-style pre-hashed Merkle tree with inclusion proofs"
 ```
 
+> **实现修正记录（Task 2 执行时发现，以仓库实际代码为准）：**
+> 1. 测试夹具第 7 个叶子 `"g"` → `"1"`（`hex("g")` 非法 hex，格式校验会拒绝）。
+> 2. `walk()` 改为**先递归后 push**（叶子优先的路径顺序）；与 `verifyInclusionProof` 的正向迭代配套（原计划 root-first push 与正向验证不一致）。外部客户端看到的 `proof.path` 是**自叶向根**的兄弟序列——Task 17 契约文档需写明。
+> 3. `buildMerkleTree(["not-a-hash"])` 断言用 `await assert.rejects`（异步函数，`assert.throws` 捕获不到）。
+
 ### Task 3: `anchor-manifest.mjs`
 
 **Files:**
