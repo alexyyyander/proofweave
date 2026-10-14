@@ -102,7 +102,7 @@ anchor_records（待锚定叶子） ──► AnchorBatchBuilder
 ```
 
 - `txRef` 为链无关引用，形如 `<chain>:<network>:<txId>`（EVM 为交易哈希）。
-- 上链载荷为 `(root, manifestHash, leafCount, prevRoot)`，不含批次之外的任何数据。
+- 上链载荷为 `(root, manifestHash, leafCount, prevRoot)`，不含批次之外的任何数据。`submitRoot` 入参中的 `batchId` **不上链**，仅用于本地幂等与日志关联。
 - **EVM 适配器（先做）**：起步用 calldata memo，向固定 sink 地址发送一笔交易，calldata 为这四个字段的确定性编码；核验时从交易输入解析。后续可平滑替换为最小事件注册合约（发出 `Anchored(root, manifestHash, leafCount, prevRoot)` 事件），以便见证者与外部工具消费。
 - **创世批次编码**：`prevRoot = null` 在链上编码为 32 字节全零（`0x00…00`），使 `readAnchoredRoot` 判定无歧义。
 - **Solana 适配器（留桩）**：memo 指令承载四字段编码。
@@ -150,7 +150,8 @@ anchor_records（待锚定叶子） ──► AnchorBatchBuilder
 - 状态投影与事件必须原子写入，违反时抛出一致性错误（沿用 `d1-run-store.mjs` 等既有 store 的做法）。
 - 触发器不在数据库层实现；由 coordinator 按 §2.2 的 `N`/`T` 条件判定。
 - **记录更正生命周期**：记录内容改变会产生新的 `recordHash`，即新叶子，进入后续批次；旧叶子与旧批次保持不变（仅追加）。更正通过记录自身协议（如收据的 `contribution-receipt-lifecycle`）表达，锚定层只保证各版本哈希各自的存证，不解释更正语义。
-- **失败批次中已锁定记录的去向**：若批次永久失败且**没有任何已确认提交**，运营者可放弃该批次，将其记录的 `batch_id` 重置为 `null`（同时写不可变事件），使其可被后续批次重新选取；若已有任一确认提交，则**不得**释放，避免重复锚定，改为保留批次并按需重试提交。重试始终针对同一 `batchId`/`root`，幂等。
+- **失败批次中已锁定记录的去向**：若批次永久失败且**没有任何已确认提交**，运营者可放弃该批次，将其记录的 `batch_id` 重置为 `null`（同时写不可变事件），使其可被后续批次重新选取；**放弃时必须在同一事务内把 `anchor_log_head` 回滚到上一批（或创世状态）**，使失败批次退出追加链，`prevRoot` 只指向真实锚定过的批次，外部核验的“追加顺序”因此不含未上链的根。若已有任一确认提交，则**不得**释放或回滚，避免重复锚定，改为保留批次并按需重试提交。重试始终针对同一 `batchId`/`root`，幂等。
+- **批次状态流转**：`built → submitted → confirmed`，或 `submitted → failed`。链上交易回退（reverted）或被丢弃在达到确认阈值后仍判 `failed`，不计为确认；`built` 是建批后提交前的瞬时状态。
 
 ## 4. 组件与接口
 
@@ -178,7 +179,7 @@ anchor_records（待锚定叶子） ──► AnchorBatchBuilder
 | `d1-anchor-store.mjs` | D1/Turso 读写，投影与事件原子写入 |
 | `anchor-verifier.mjs` | 给定记录规范 JSON/哈希与批次，重算并核验（供接口与 CLI 复用） |
 
-### 4.3 公开接口（匿名只读，无 PII）
+### 4.3 公开接口（GET 匿名只读；POST 需身份与签名；均无 PII）
 
 | 方法 | 路径 | 返回 |
 | --- | --- | --- |
