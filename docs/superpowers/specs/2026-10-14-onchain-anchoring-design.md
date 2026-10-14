@@ -97,7 +97,7 @@ anchor_records（待锚定叶子） ──► AnchorBatchBuilder
   network,  // "base-sepolia" | "mainnet" | ...
   async submitRoot({ root, manifestHash, leafCount, prevRoot, batchId }) -> { txRef },
   async getConfirmation({ txRef }) -> { status, confirmations, blockRef },
-  async readAnchoredRoot({ txRef }) -> { root, manifestHash, leafCount, prevRoot } | null
+  async readAnchoredRoot({ txRef }) -> { root, manifestHash, leafCount, prevRoot, sender } | null
 }
 ```
 
@@ -116,6 +116,7 @@ anchor_records（待锚定叶子） ──► AnchorBatchBuilder
 - **见证者绑定与提交路径**（本子项目内实现，不留到后续）：
   - 见证者通过 `POST /api/anchors/:batchId/witness` 提交，携带其 Person/Agent 签名与 `txRef`。签名负载为 `canonicalJson({ protocolVersion: "pw-anchor-witness-v1", batchId, root, manifestHash, txRef })`，用仓库既有的 Ed25519 校验路径（参考 `db/repositories/delegation.ts` 的签名校验与 `packages/protocol/canonical-json.mjs`）验证，且提交方必须存在有效委派。校验失败返回明确错误。
   - **链上真值校验（强制）**：记录提交前，端点/coordinator 必须调用适配器 `readAnchoredRoot({ txRef })`，确认该交易在链上确实承载与该批次一致的 `root`、`manifestHash`、`leafCount`、`prevRoot`。只有链上一致性通过，才写入 `anchor_submissions` 并计入 `witness_count`。仅签名正确而链上不符的提交被拒绝。这防止持有有效身份者用任意 `txRef` 刷高见证计数。
+  - **独立性校验（强制）**：见证者提交的 `txRef` 不得与平台提交复用同一交易（由 `(chain, network, tx_ref)` 唯一约束保证），且 `readAnchoredRoot` 返回的 `sender` 必须与该批次平台提交的发送地址**不同**。否则视为非独立提交并拒绝。这使“见证者”必须自行完成一次真实链上锚定。
   - 同一 `(chain, network, tx_ref)` 唯一，重复提交去重；同一见证者对同一批次重复提交幂等。
   - `K`（独立见证者数量阈值）为托管配置。系统统计 `submitter_kind = witness` 且 `status = confirmed` 的**不同** `submitter_id` 数量。
 - **正交状态**：链上确认状态与见证状态是两个维度，分别记录，不塞进同一枚举：
@@ -135,18 +136,20 @@ anchor_records（待锚定叶子） ──► AnchorBatchBuilder
 - 只上链哈希，无 PII，无原始证据字节。
 - 运营密钥与任何链签名密钥按仓库既有托管密钥模式存放（参考 `RUNNER_CONTROL_PLANE_PRIVATE_KEY_JWK` 的 JWK 托管方式），绝不进入提交者的本地环境或 Lean 沙箱。
 - 锚定只建立“存在 + 自 T 起不变 + 追加顺序”，正确性仍由现有审阅与收据流程承担。
+- 锚定层信任入队路径（`anchor-intake`）传入的 `recordHash` 就是该记录的真实规范哈希；本层不反向读取各记录存储去复核。独立核验（§5 第 1 步）会从记录本身重算 `recordHash`，因此传入假哈希只会让对应核验失败，而不会产生“记录已被正确锚定”的可核验断言。
 
 ## 3. 数据模型（D1/Turso，追加式 + 投影）
 
 | 表 | 关键列 | 说明 |
 | --- | --- | --- |
 | `anchor_records` | `id, record_type, record_id, record_hash, leaf_hash, created_at, batch_id(nullable)` | 每条可锚定记录的叶子；唯一约束 `(record_type, record_id, record_hash)`。`batch_id` 为 `null` 表示待锚定。 |
-| `anchor_batches` | `id, status(built/submitted/confirmed/failed), root, leaf_count, manifest_hash, manifest_key, prev_batch_id, prev_root, witness_count, created_at, anchored_at` | 一个 Merkle 批次。`status` 只表示链上确认状态；`witness_count` 为独立见证者数量，`witnessed` 由 `witness_count >= K` 派生。 |
+| `anchor_batches` | `id, status(built/submitted/confirmed/failed), root, leaf_count, manifest_hash, manifest_key, prev_batch_id, prev_root, chain, network, witness_count, created_at, anchored_at` | 一个 Merkle 批次。`status` 只表示链上确认状态；`chain`+`network` 是该批次的唯一规范网络；`witness_count` 为独立见证者数量，`witnessed` 由 `witness_count >= K` 派生。 |
 | `anchor_submissions` | `id, batch_id, submitter_kind(platform/witness), submitter_id, chain, network, tx_ref, status(pending/confirmed/failed), confirmations, block_ref, submitted_at, updated_at` | 平台与见证者的链上提交；唯一约束 `(chain, network, tx_ref)`。 |
 | `anchor_batch_events` | `id, batch_id, event_type, payload_hash, canonical_payload, created_at` | 不可变事件日志，沿用仓库既有“投影 + 事件”模式。 |
 | `anchor_log_head` | `id(单行固定值), head_batch_id, head_root, version, updated_at` | 单行头记录，用于批次追加链串行化（比较并交换 `version`），保证无并发分叉。 |
 
 - 迁移：新增 `drizzle/0046_add_anchor_*.sql`（当前最新为 `0045_expand_curated_research_records.sql`，故从 `0046` 起）。
+- **数据归属**：锚定数据与收据、运行、审阅同属共享控制平面（生产为 Turso，本地/回退为 D1 兼容库）。`d1-anchor-store` 沿用仓库既有的 D1 兼容 SQL（本地可用、生产经 libSQL 适配器走 Turso），不在 Sites D1 另建一套锚定权威，防止与收据等事实分裂。
 - 状态投影与事件必须原子写入，违反时抛出一致性错误（沿用 `d1-run-store.mjs` 等既有 store 的做法）。
 - 触发器不在数据库层实现；由 coordinator 按 §2.2 的 `N`/`T` 条件判定。
 - **记录更正生命周期**：记录内容改变会产生新的 `recordHash`，即新叶子，进入后续批次；旧叶子与旧批次保持不变（仅追加）。更正通过记录自身协议（如收据的 `contribution-receipt-lifecycle`）表达，锚定层只保证各版本哈希各自的存证，不解释更正语义。
@@ -177,7 +180,7 @@ anchor_records（待锚定叶子） ──► AnchorBatchBuilder
 | `anchor-intake.mjs` | 入队接口：`enqueueAnchorRecord({ recordType, recordId, recordHash })`，写入/更新 `anchor_records`（幂等，唯一约束去重）。由收据、检查点、证据包各自的签发/落库路径在成功后调用；锚定层不反向读取各记录存储。 |
 | `anchor-coordinator.mjs` | 编排：建批 → 落库 → 内容寻址存储 → 平台提交 → 轮询确认 → 更新状态；处理见证者提交（校验签名/委派、去重、更新 `witness_count`）；幂等、可恢复 |
 | `d1-anchor-store.mjs` | D1/Turso 读写，投影与事件原子写入 |
-| `anchor-verifier.mjs` | 给定记录规范 JSON/哈希与批次，重算并核验（供接口与 CLI 复用） |
+| `anchor-verifier.mjs` | 给定记录规范 JSON/哈希与批次，重算并核验（供接口与 CLI 复用）；叶子在批内的下标由该批次 manifest 的确定性排序派生，再生成/校验包含证明 |
 
 ### 4.3 公开接口（GET 匿名只读；POST 需身份与签名；均无 PII）
 
@@ -221,7 +224,7 @@ anchor_records（待锚定叶子） ──► AnchorBatchBuilder
 - **nonce 管理**：每次提交顺序 nonce，冲突时重新读取并重发。
 - **链重组**：确认阈值可配（EVM 默认 12）；不足阈值标 `pending`，不标确认。
 - **gas**：单笔 gas 上限与预算告警；失败可重试；不静默吞掉失败。
-- **见证者**：同一 `root` 重复提交去重；提交方须有有效 Person/Agent 签名，否则拒绝。
+- **见证者**：同一 `root` 重复提交去重；提交方须有有效 Person/Agent 签名，否则拒绝。因见证必须先真实上链（出 gas），垃圾提交天然受限；仍在 `POST .../witness` 加每 Person/每分钟限频，沿用仓库既有限频组件（参考 `remote_mcp_rate_limit_buckets` / `d1-remote-mcp-rate-limiter.mjs`）。
 - **密钥轮换**：运营密钥以 JWK 托管；轮换不影响批次内容（交易只含根与 manifest 哈希）。
 - **关闭开关**：适配器未配置时，锚定整体关闭，所有接口返回 `anchoring_disabled`。这与“阈值配置值”是两件事：`存在=/关闭` 由适配器配置决定；`N`、`T`、确认数、`K` 是启用后各自的数值参数，缺失时使用文档化默认值，不隐式关闭。
 
