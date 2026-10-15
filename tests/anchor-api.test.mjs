@@ -3,6 +3,7 @@ import { after, before, test } from "node:test";
 import { readFile, readdir } from "node:fs/promises";
 import { Miniflare } from "miniflare";
 import {
+  AnchorListQueryError,
   anchorCoordinatorConfigFromSettings,
   buildAnchorAdapterRegistry,
   computeAnchorProof,
@@ -142,7 +143,7 @@ test("batch list reports anchoring_disabled when the batch table is empty and no
 
 test("batch list with adapters configured is enabled even with an empty batch table", async () => {
   const result = await listPublicAnchorBatches({ store, adaptersConfigured: true });
-  assert.deepEqual(result, { status: "ok", batches: [] });
+  assert.deepEqual(result, { status: "ok", batches: [], pagination: { limit: 50, offset: 0, total: 0 } });
   assert.equal(await detectAnchoringState({ store, adaptersConfigured: true }), "enabled");
 });
 
@@ -244,6 +245,56 @@ test("batch list projects batches newest-first with witness counts", async () =>
     "anchoredAt", "chain", "createdAt", "id", "leafCount", "manifestHash",
     "network", "prevBatchId", "prevRoot", "root", "status", "witnessCount",
   ]);
+});
+
+test("batch list supports pagination with totals", async () => {
+  const world = globalThis.anchorWorld;
+  // 第三个批次，让分页窗口可断言
+  await enqueueReceipt("receipt:api-d");
+  const third = await buildAndSubmitBatch({ confirm: false });
+  world.third = { batchId: third.batch.id };
+
+  const page1 = await listPublicAnchorBatches({ store, adaptersConfigured: true, query: { limit: 1, offset: 0 } });
+  assert.equal(page1.status, "ok");
+  assert.equal(page1.batches.length, 1);
+  assert.equal(page1.batches[0].id, third.batch.id); // newest first
+  assert.equal(page1.pagination.total, 3);
+  assert.equal(page1.pagination.limit, 1);
+  assert.equal(page1.pagination.offset, 0);
+
+  const page2 = await listPublicAnchorBatches({ store, adaptersConfigured: true, query: { limit: 1, offset: 1 } });
+  assert.equal(page2.batches[0].id, world.submitted.batchId);
+  assert.equal(page2.pagination.total, 3);
+
+  const everything = await listPublicAnchorBatches({ store, adaptersConfigured: true, query: { limit: 200 } });
+  assert.equal(everything.batches.length, 3);
+  assert.equal(everything.pagination.total, 3);
+  // 默认值：limit 50
+  const defaults = await listPublicAnchorBatches({ store, adaptersConfigured: true });
+  assert.equal(defaults.pagination.limit, 50);
+  assert.equal(defaults.pagination.offset, 0);
+});
+
+test("batch list filters by status and rejects invalid queries", async () => {
+  const world = globalThis.anchorWorld;
+  const confirmed = await listPublicAnchorBatches({ store, adaptersConfigured: true, query: { status: "confirmed" } });
+  assert.equal(confirmed.batches.length, 1);
+  assert.equal(confirmed.batches[0].id, world.confirmed.batchId);
+  assert.equal(confirmed.pagination.total, 1);
+
+  const submitted = await listPublicAnchorBatches({ store, adaptersConfigured: true, query: { status: "submitted", limit: 1, offset: 1 } });
+  assert.equal(submitted.batches.length, 1);
+  assert.equal(submitted.pagination.total, 2);
+
+  const combined = await listPublicAnchorBatches({ store, adaptersConfigured: true, query: { status: "submitted", limit: 1, offset: 0 } });
+  assert.equal(combined.batches[0].id, world.third.batchId);
+
+  for (const bad of [{ status: "bogus" }, { limit: 0 }, { limit: 201 }, { limit: "abc" }, { offset: -1 }]) {
+    await assert.rejects(
+      () => listPublicAnchorBatches({ store, adaptersConfigured: true, query: bad }),
+      AnchorListQueryError,
+    );
+  }
 });
 
 test("manifest is served from the bucket when it matches the batch", async () => {

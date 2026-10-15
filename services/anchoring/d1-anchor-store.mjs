@@ -174,12 +174,39 @@ export class D1AnchorStore {
     return await this.database.prepare("SELECT * FROM anchor_batches WHERE id = ?").bind(batchId).first();
   }
 
-  async listBatches({ limit = 50, offset = 0 } = {}) {
+  /**
+   * @param {{ limit?: number, offset?: number, status?: string }} [args]
+   * @returns {Promise<object[]>}
+   */
+  async listBatches({ limit = 50, offset = 0, status } = {}) {
+    if (status === undefined || status === null) {
+      const rows = await this.database
+        .prepare("SELECT * FROM anchor_batches ORDER BY created_at DESC, id DESC LIMIT ? OFFSET ?")
+        .bind(limit, offset)
+        .all();
+      return rows.results ?? [];
+    }
     const rows = await this.database
-      .prepare("SELECT * FROM anchor_batches ORDER BY created_at DESC, id DESC LIMIT ? OFFSET ?")
-      .bind(limit, offset)
+      .prepare("SELECT * FROM anchor_batches WHERE status = ? ORDER BY created_at DESC, id DESC LIMIT ? OFFSET ?")
+      .bind(status, limit, offset)
       .all();
     return rows.results ?? [];
+  }
+
+  /**
+   * @param {{ status?: string }} [args]
+   * @returns {Promise<number>}
+   */
+  async countBatches({ status } = {}) {
+    if (status === undefined || status === null) {
+      const row = await this.database.prepare("SELECT COUNT(*) AS count FROM anchor_batches").first();
+      return Number(row?.count ?? 0);
+    }
+    const row = await this.database
+      .prepare("SELECT COUNT(*) AS count FROM anchor_batches WHERE status = ?")
+      .bind(status)
+      .first();
+    return Number(row?.count ?? 0);
   }
 
   async getLatestBatch() {

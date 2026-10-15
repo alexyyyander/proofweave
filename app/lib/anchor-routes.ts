@@ -125,9 +125,15 @@ export type AnchorCoordinatorSettings = Readonly<{
   confirmationThreshold: number;
 }>;
 
+export type AnchorBatchListPagination = Readonly<{
+  limit: number;
+  offset: number;
+  total: number;
+}>;
+
 export type AnchorBatchListResult =
-  | Readonly<{ status: typeof anchoringDisabledStatus; batches: readonly AnchorBatchSummary[] }>
-  | Readonly<{ status: "ok"; batches: readonly AnchorBatchSummary[] }>;
+  | Readonly<{ status: typeof anchoringDisabledStatus; batches: readonly AnchorBatchSummary[]; pagination?: undefined }>
+  | Readonly<{ status: "ok"; batches: readonly AnchorBatchSummary[]; pagination: AnchorBatchListPagination }>;
 
 export type AnchorManifestResult =
   | Readonly<{ status: typeof anchoringDisabledStatus }>
@@ -217,16 +223,72 @@ export async function detectAnchoringState({ store, adaptersConfigured }: Readon
   return rows.length === 0 ? "anchoring_disabled" : "enabled";
 }
 
-export async function listPublicAnchorBatches({ store, adaptersConfigured }: Readonly<{
+export class AnchorListQueryError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "AnchorListQueryError";
+  }
+}
+
+const anchorBatchStatuses = new Set(["built", "submitted", "confirmed", "failed"]);
+const anchorListDefaultLimit = 50;
+const anchorListMaxLimit = 200;
+
+export type AnchorBatchListQuery = Readonly<{
+  limit?: number | string;
+  offset?: number | string;
+  status?: string;
+}>;
+
+/** Parse and validate /api/anchors list query params; throws AnchorListQueryError on invalid input. */
+export function parseAnchorBatchListQuery(query: AnchorBatchListQuery): Readonly<{
+  limit: number;
+  offset: number;
+  status?: string;
+}> {
+  let limit = anchorListDefaultLimit;
+  if (query.limit !== undefined) {
+    limit = Number(query.limit);
+    if (!Number.isInteger(limit) || limit < 1 || limit > anchorListMaxLimit) {
+      throw new AnchorListQueryError(`limit must be an integer between 1 and ${anchorListMaxLimit}.`);
+    }
+  }
+  let offset = 0;
+  if (query.offset !== undefined) {
+    offset = Number(query.offset);
+    if (!Number.isInteger(offset) || offset < 0) {
+      throw new AnchorListQueryError("offset must be a non-negative integer.");
+    }
+  }
+  let status: string | undefined;
+  if (query.status !== undefined) {
+    status = String(query.status);
+    if (!anchorBatchStatuses.has(status)) {
+      throw new AnchorListQueryError(`status must be one of ${[...anchorBatchStatuses].join(", ")}.`);
+    }
+  }
+  return Object.freeze({ limit, offset, status });
+}
+
+export async function listPublicAnchorBatches({ store, adaptersConfigured, query }: Readonly<{
   store: D1AnchorStore;
   adaptersConfigured: boolean;
+  query?: AnchorBatchListQuery;
 }>): Promise<AnchorBatchListResult> {
   const state = await detectAnchoringState({ store, adaptersConfigured });
   if (state === "anchoring_disabled") {
     return { status: anchoringDisabledStatus, batches: Object.freeze([]) };
   }
-  const rows = (await store.listBatches({ limit: 100 })) as AnchorBatchRow[];
-  return { status: "ok", batches: Object.freeze(rows.map(toBatchSummary)) };
+  const parsed = parseAnchorBatchListQuery(query ?? {});
+  const [rows, total] = await Promise.all([
+    store.listBatches({ limit: parsed.limit, offset: parsed.offset, status: parsed.status }),
+    store.countBatches({ status: parsed.status }),
+  ]);
+  return {
+    status: "ok",
+    batches: Object.freeze((rows as AnchorBatchRow[]).map(toBatchSummary)),
+    pagination: Object.freeze({ limit: parsed.limit, offset: parsed.offset, total }),
+  };
 }
 
 export async function loadAnchorManifest({ store, bucket, batchId, adaptersConfigured }: Readonly<{
