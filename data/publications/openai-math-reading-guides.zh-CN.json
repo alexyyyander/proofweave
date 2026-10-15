@@ -1,0 +1,648 @@
+{
+  "schemaVersion": "pw-publication-reading-guides-v1",
+  "language": "zh-CN",
+  "upstreamRevision": "1581d4cbdd69a0faf34b2089614fe2a814316a6a",
+  "preparedAt": "2026-10-15",
+  "attribution": "中文导读由 Proofweave 使用 AI 辅助整理；论文与上游证明材料署名仍归 OpenAI。",
+  "guides": [
+    {
+      "familyNumber": "026",
+      "titleZh": "大素数间隔：从“偶尔出现”到“正比例出现”",
+      "summaryZh": "论文研究相邻素数间隔出现的频率。对任意预先固定的阈值 C，大于 C 倍平均尺度的间隔，在每个充分长的素数序列前缀中都占一个正比例。这个比例可以依赖 C。",
+      "questionZh": "已知极大的素数间隔会出现，能否进一步控制这种间隔在素数下标中的出现频率？",
+      "paperClaimZh": "令 $p_n$ 为第 n 个素数。论文主定理给出：对每个固定的 $C>0$，存在 $c(C)>0$，使所有充分大的 N 都满足 $\\#\\{n\\le N:p_{n+1}-p_n>C\\log p_n\\}\\ge c(C)N$。并推出 $p_n/n$ 严格增加的下标集合具有正下渐近密度。",
+      "whyItMattersZh": "“存在任意大的间隔”和“有正比例的间隔超过固定阈值”是不同结论。这里按素数下标等权计数，不能用整数起点处空区间的比例直接替代。",
+      "proofRouteZh": [
+        "在相邻两个短区间上构造非负权：前一区间检测到素数，后一区间的加权素数数量受到抑制。",
+        "通过两次二阶矩控制，把加权信息转换为普通整数起点上的正比例。",
+        "用每个素数间隔对应起点数量的上界，转为对不同相邻素数间隔的计数；再借助素数定理推出比值增加的推论。"
+      ],
+      "scopeStatus": "documentation_mismatch",
+      "scopeLabelZh": "范围说明与对照声明存在差异",
+      "scopeNotesZh": "范围文档只说明了 p_n/n 增加的正密度推论；但 PrimeGaps.json 指定的 Comparator 和 RatioCorollary.lean 中，large_gaps_and_ratio_density 同时陈述大间隔计数与比值推论。这比范围说明的文字描述更广。",
+      "boundaryZh": "导读保留这处文档差异。尚未运行 Comparator，也没有核查导入依赖的全部证明，因此目前不能替任何一个版本给出平台验收结论。",
+      "terms": [
+        {
+          "term": "下渐近密度",
+          "explanationZh": "前 N 个正整数中所占比例的下极限；正下密度要求所有充分长前缀都有统一的正比例下界。"
+        },
+        {
+          "term": "平均间隔尺度",
+          "explanationZh": "素数 p 附近通常用 $\\log p$ 描述平均间隔尺度。阈值 C 固定后，密度常数可以随 C 改变。"
+        }
+      ],
+      "nextChecksZh": [
+        "核对 PrimeGaps.json、证明入口和范围文档描述的命题是否一致。",
+        "在匹配的 Lean 环境中复验依赖与 Comparator，并保留独立的运行证据。"
+      ],
+      "manuscriptIds": [
+        "Positive-lower-density-of-large-prime-gaps-September-25-2026"
+      ],
+      "readingLevel": "introduction_and_main_statements",
+      "editorialStatus": "ai_assisted_source_reading",
+      "limitationsZh": "已读论文引言、主定理与证明概述，核对 Lean 对照声明、配置及指定证明入口；未逐行审阅完整证明，未运行 Lean 或 Comparator，未进行独立数学审阅。",
+      "comparatorNoteZh": "Comparator .lean 文件中的 sorry 是对照声明占位；对应 JSON 指定实际证明入口。阅读这些文件不会产生验证结果。",
+      "sources": [
+        {
+          "role": "paper_introduction",
+          "label": "Positive lower density of large prime gaps · 引言与主定理",
+          "path": "preprints/Positive-lower-density-of-large-prime-gaps-September-25-2026/build/sections/01-introduction.tex",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Positive-lower-density-of-large-prime-gaps-September-25-2026/build/sections/01-introduction.tex#L1-L137",
+          "sha256": "e13e3666cb9af5043ec1397b039b96b53d4b47275bbfc4f1d11b469e38c7daf8",
+          "readLines": [
+            1,
+            137
+          ]
+        },
+        {
+          "role": "scope_document",
+          "label": "上游形式化范围说明",
+          "path": "lean/docs/026.md",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/docs/026.md#L1-L15",
+          "sha256": "f75ae21800250eb70265e6e2e77a59f6d54513b9494b9ad7488de2d3574b3959",
+          "readLines": [
+            1,
+            15
+          ]
+        },
+        {
+          "role": "comparator_statement",
+          "label": "PrimeGaps.lean · 对照声明",
+          "path": "lean/ComparatorChallenges/PrimeGaps.lean",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/ComparatorChallenges/PrimeGaps.lean#L1-L47",
+          "sha256": "a8822683e840bc0f92cb3573b85a6b1d847314b869e7262c4a863b5c33858aa5",
+          "readLines": [
+            1,
+            47
+          ]
+        },
+        {
+          "role": "comparator_configuration",
+          "label": "PrimeGaps.json · 对照配置",
+          "path": "lean/ComparatorChallenges/PrimeGaps.json",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/ComparatorChallenges/PrimeGaps.json#L1-L14",
+          "sha256": "fa8c98fa3d6180979015c747efd5193caa6863032116d6a0f103a7c73b99b334",
+          "readLines": [
+            1,
+            14
+          ]
+        },
+        {
+          "role": "solution_entry",
+          "label": "OAI/NumberTheory/PrimeGaps/RatioCorollary.lean · 配置指定入口",
+          "path": "lean/OAI/NumberTheory/PrimeGaps/RatioCorollary.lean",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/OAI/NumberTheory/PrimeGaps/RatioCorollary.lean#L1-L39",
+          "sha256": "5ca73692e29a4e98045c871b7d9eefec6fad63b81b3eeb26105f238d83735a35",
+          "readLines": [
+            1,
+            39
+          ]
+        }
+      ]
+    },
+    {
+      "familyNumber": "084",
+      "titleZh": "Erdős 相似性猜想：任意固定公比与二进特例",
+      "summaryZh": "本组包含两篇范围不同的论文：较早的一篇处理二进序列，较新的一篇处理任意预先固定的几何公比。它们构造测度接近 1 的紧集，避开该序列的所有非平凡仿射副本。",
+      "questionZh": "一个几乎填满单位区间的集合，能否同时避开某个无限序列的所有平移和非零倍缩放？",
+      "paperClaimZh": "2026 年 10 月稿件对每个固定 $q\\in(0,1)$ 和 $\\eta\\in(0,1)$，构造 $E_{q,\\eta}\\subset[0,1]$，使其测度大于 $1-\\eta$，且对任意实数 x 和非零实数 s，总有某个 $n\\ge1$ 满足 $x+s q^n\\notin E_{q,\\eta}$。集合可以随 q 改变；不要求同一集合同时避开全部公比。",
+      "whyItMattersZh": "结论既包括正缩放也包括负缩放。几何序列是一类特定的无限模式，论文对这类模式的结论不能自动延伸到任意无限集合。",
+      "proofRouteZh": [
+        "先构造密度很小的开放周期阻挡集，使其碰到每个平移后的、尺度归一化的几何序列副本。",
+        "用有限路由树和分离的序列下标窗口组织随机单元测试，控制连续尺度参数带来的测试数量。",
+        "用小的开放邻域修补例外中心，再通过可求和的缩放和反射处理任意非零尺度，取补集得到紧集。"
+      ],
+      "scopeStatus": "narrower_than_manuscript",
+      "scopeLabelZh": "现有 Lean 范围只覆盖二进特例",
+      "scopeNotesZh": "范围文档、DyadicAvoidance Comparator 及其配置指定的证明入口都使用 $q=1/2$，即序列 $2^{-n}$。它们包含所有平移和两种符号的非零缩放。",
+      "boundaryZh": "二进稿件的覆盖说明不能转移到同组较新的一般公比稿件。任意固定 q 的形式化覆盖仍需另查；平台尚未复验二进特例的完整依赖。",
+      "terms": [
+        {
+          "term": "非平凡仿射副本",
+          "explanationZh": "由同一个平移 x 和非零缩放 s 得到的整套点 $x+sA$；必须同时考虑序列中的全部点。"
+        },
+        {
+          "term": "测度接近 1",
+          "explanationZh": "对任意给定的小正数 η，都能把单位区间中被删去部分的长度控制在 η 以下。"
+        }
+      ],
+      "nextChecksZh": [
+        "把二进稿件与一般公比稿件分别绑定到实际被覆盖的 Lean 声明。",
+        "核对一般公比结论是否已有其他证明入口，再决定是补索引还是建立新的形式化任务。"
+      ],
+      "manuscriptIds": [
+        "The-geometric-case-of-the-Erdos-similarity-conjecture-October-5-2026",
+        "The-dyadic-case-of-the-Erdos-similarity-conjecture-September-25-2026"
+      ],
+      "readingLevel": "introduction_and_main_statements",
+      "editorialStatus": "ai_assisted_source_reading",
+      "limitationsZh": "已读论文引言、主定理与证明概述，核对 Lean 对照声明、配置及指定证明入口；未逐行审阅完整证明，未运行 Lean 或 Comparator，未进行独立数学审阅。",
+      "comparatorNoteZh": "Comparator .lean 文件中的 sorry 是对照声明占位；对应 JSON 指定实际证明入口。阅读这些文件不会产生验证结果。",
+      "sources": [
+        {
+          "role": "paper_introduction",
+          "label": "The geometric case of the Erdős similarity conjecture · 引言与主定理",
+          "path": "preprints/The-geometric-case-of-the-Erdos-similarity-conjecture-October-5-2026/build/sections/01-introduction.tex",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-geometric-case-of-the-Erdos-similarity-conjecture-October-5-2026/build/sections/01-introduction.tex#L1-L91",
+          "sha256": "d9d640fb2f76bcd727147e5fc9805ab6404eace4a01e0ede2e7cdf1d81f8f45a",
+          "readLines": [
+            1,
+            91
+          ]
+        },
+        {
+          "role": "paper_introduction",
+          "label": "The dyadic case of the Erdős similarity conjecture · 引言与主定理",
+          "path": "preprints/The-dyadic-case-of-the-Erdos-similarity-conjecture-September-25-2026/build/sections/introduction.tex",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-dyadic-case-of-the-Erdos-similarity-conjecture-September-25-2026/build/sections/introduction.tex#L1-L169",
+          "sha256": "c26e982dedb26a7a17b8fe91bc45c879d650e9c1fc346cbeffcc129c47df157f",
+          "readLines": [
+            1,
+            169
+          ]
+        },
+        {
+          "role": "scope_document",
+          "label": "上游形式化范围说明",
+          "path": "lean/docs/084.md",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/docs/084.md#L1-L15",
+          "sha256": "f99894e7555f06b3f19195bc893e910884cd473755286e6006a6b96aae5ec01f",
+          "readLines": [
+            1,
+            15
+          ]
+        },
+        {
+          "role": "comparator_statement",
+          "label": "DyadicAvoidance.lean · 对照声明",
+          "path": "lean/ComparatorChallenges/DyadicAvoidance.lean",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/ComparatorChallenges/DyadicAvoidance.lean#L1-L24",
+          "sha256": "3bea183a0716a2a82c045746478382b80b5a5af310fc2a30768a627722964fd7",
+          "readLines": [
+            1,
+            24
+          ]
+        },
+        {
+          "role": "comparator_configuration",
+          "label": "DyadicAvoidance.json · 对照配置",
+          "path": "lean/ComparatorChallenges/DyadicAvoidance.json",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/ComparatorChallenges/DyadicAvoidance.json#L1-L14",
+          "sha256": "6c9a6ed82b41903057288d067c578ebb58a6d4508b4855474268f41af2e781e7",
+          "readLines": [
+            1,
+            14
+          ]
+        },
+        {
+          "role": "solution_entry",
+          "label": "OAI/MeasureTheory/DyadicAvoidance/Main.lean · 配置指定入口",
+          "path": "lean/OAI/MeasureTheory/DyadicAvoidance/Main.lean",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/OAI/MeasureTheory/DyadicAvoidance/Main.lean#L1-L111",
+          "sha256": "99de9ff45ef040589e9d8a45dced4c1376ac8f4b304cabddb6044e0afd6dee77",
+          "readLines": [
+            1,
+            111
+          ]
+        }
+      ]
+    },
+    {
+      "familyNumber": "107",
+      "titleZh": "矩阵乘法：9/4 指数、矩形界与任意域界",
+      "summaryZh": "三篇稿件分别讨论复数域上的 9/4 平方矩阵指数、较早的平方与矩形界，以及任意固定域上的另一条界。导读区分计算模型、底层域与不同矩阵形状。",
+      "questionZh": "在矩阵规模趋于无穷时，计算矩阵乘积所需的域运算次数能达到怎样的指数？",
+      "paperClaimZh": "10 月稿件声称复数域上 $\\omega\\le9/4$，即对每个 $\\varepsilon>0$ 有 $O_\\varepsilon(n^{9/4+\\varepsilon})$ 的算术运算界。较早稿件还给出 $\\alpha>0.465$ 与 $\\omega(1,0.709,1)<2.092$。另一篇对每个固定域 F 给出 $\\omega(F)<2.371054886006746$。",
+      "whyItMattersZh": "这里计数加、减、乘等域运算，讨论渐近指数。定理没有给出位复杂度、工程实现速度或何时超过现有矩阵乘法程序的规模阈值。9/4 的结论也不能直接套到任意域。",
+      "proofRouteZh": [
+        "9/4 稿件用张量块分离，把在两个变量组上独立的结构转为完整直和，同时计入辅助构造的代价。",
+        "通过多项式乘法和谱方法研究离散增长，比较上下界以限制矩阵乘法指数；较早稿件另外分析矩形形状。",
+        "任意域稿件采用交错的张量提取与恢复，跨递归层合并容量，再以参数证书得到相应数值界。"
+      ],
+      "scopeStatus": "headline_statements_linked",
+      "scopeLabelZh": "已定位不同域和形状的主声明入口",
+      "scopeNotesZh": "MatrixMultiplication 配置选取复数域上的三个声明；MatrixFields 配置选取任意域上的界。对应对照声明显式定义有限无除法算术程序、运算成本与允许任意正指数余量的渐近模型。",
+      "boundaryZh": "本批只核对主声明、配置及指定的证明入口。没有复验张量构造、数值证书与完整依赖，也没有把这些渐近界转换成实际运行性能结论。",
+      "terms": [
+        {
+          "term": "矩阵乘法指数 ω",
+          "explanationZh": "衡量平方矩阵乘法渐近算术成本的指数下确界；指数陈述带任意正的 ε 余量。"
+        },
+        {
+          "term": "对偶指数 α",
+          "explanationZh": "考察 $n\\times n^a$ 与 $n^a\\times n$ 的乘法仍能达到指数 2 时，形状参数 a 的上确界。"
+        }
+      ],
+      "nextChecksZh": [
+        "分别复验复数域和任意域的 Comparator；不要合并它们的域假设。",
+        "核对数值证书和底层算术模型，并将工程性能评估作为另一项任务。"
+      ],
+      "manuscriptIds": [
+        "Matrix-Multiplication-Nine-Fourths-October-2-2026",
+        "Complex-Matrix-Multiplication-Below-2.258-and-Rectangular-Bounds-September-24-2026",
+        "Staggered-extraction-for-exact-matrix-multiplication-over-every-field-September-24-2026"
+      ],
+      "readingLevel": "introduction_and_main_statements",
+      "editorialStatus": "ai_assisted_source_reading",
+      "limitationsZh": "已读论文引言、主定理与证明概述，核对 Lean 对照声明、配置及指定证明入口；未逐行审阅完整证明，未运行 Lean 或 Comparator，未进行独立数学审阅。",
+      "comparatorNoteZh": "Comparator .lean 文件中的 sorry 是对照声明占位；对应 JSON 指定实际证明入口。阅读这些文件不会产生验证结果。",
+      "sources": [
+        {
+          "role": "paper_introduction",
+          "label": "An Upper Bound of 9/4 for the Matrix Multiplication Exponent · 引言与主定理",
+          "path": "preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/build/paper.tex",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/build/paper.tex#L1-L141",
+          "sha256": "c396f2580a711b8b9e51ecf1265cb0e691acd745943f81bfc14ec0df209e1028",
+          "readLines": [
+            1,
+            141
+          ]
+        },
+        {
+          "role": "paper_introduction",
+          "label": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds · 引言与主定理",
+          "path": "preprints/Complex-Matrix-Multiplication-Below-2.258-and-Rectangular-Bounds-September-24-2026/build/introduction.tex",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Complex-Matrix-Multiplication-Below-2.258-and-Rectangular-Bounds-September-24-2026/build/introduction.tex#L1-L185",
+          "sha256": "d8cdaf01471b51ac7b88fe576916180bd751fb8438717e155bab00d9b1b9f011",
+          "readLines": [
+            1,
+            185
+          ]
+        },
+        {
+          "role": "paper_introduction",
+          "label": "Staggered extraction for exact matrix multiplication over every field · 引言与主定理",
+          "path": "preprints/Staggered-extraction-for-exact-matrix-multiplication-over-every-field-September-24-2026/build/sections/introduction.tex",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Staggered-extraction-for-exact-matrix-multiplication-over-every-field-September-24-2026/build/sections/introduction.tex#L1-L150",
+          "sha256": "e3127684f7901c346b02ebd596bc94adafc5fc3d2472ff2c86e8188435fcfb99",
+          "readLines": [
+            1,
+            150
+          ]
+        },
+        {
+          "role": "scope_document",
+          "label": "上游形式化范围说明",
+          "path": "lean/docs/107.md",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/docs/107.md#L1-L19",
+          "sha256": "7c7263cfecc5a16d20165952ac3010598c3770b441d7d8fe2c5ceb8eda1c3347",
+          "readLines": [
+            1,
+            19
+          ]
+        },
+        {
+          "role": "comparator_statement",
+          "label": "MatrixMultiplication.lean · 对照声明",
+          "path": "lean/ComparatorChallenges/MatrixMultiplication.lean",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/ComparatorChallenges/MatrixMultiplication.lean#L1-L132",
+          "sha256": "9a411f75929179604218e1cf84de34792e05acf40b15096ad4178ba21defa8eb",
+          "readLines": [
+            1,
+            132
+          ]
+        },
+        {
+          "role": "comparator_statement",
+          "label": "MatrixFields.lean · 对照声明",
+          "path": "lean/ComparatorChallenges/MatrixFields.lean",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/ComparatorChallenges/MatrixFields.lean#L1-L116",
+          "sha256": "fe4f7ef409f69f7ef9542c6672e091c9cb6505e0d17c41cda01a2924c2729bc6",
+          "readLines": [
+            1,
+            116
+          ]
+        },
+        {
+          "role": "comparator_configuration",
+          "label": "MatrixMultiplication.json · 对照配置",
+          "path": "lean/ComparatorChallenges/MatrixMultiplication.json",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/ComparatorChallenges/MatrixMultiplication.json#L1-L16",
+          "sha256": "95a2e1557bef8931bdaa3da5c0ae969e5991f53199798b512d69e907f8a81288",
+          "readLines": [
+            1,
+            16
+          ]
+        },
+        {
+          "role": "comparator_configuration",
+          "label": "MatrixFields.json · 对照配置",
+          "path": "lean/ComparatorChallenges/MatrixFields.json",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/ComparatorChallenges/MatrixFields.json#L1-L14",
+          "sha256": "7982a57ecaab76e22ab14d62e1145f30e98672ae690101ff96f78bb2a311a72d",
+          "readLines": [
+            1,
+            14
+          ]
+        },
+        {
+          "role": "solution_entry",
+          "label": "OAI/LinearAlgebra/MatrixMultiplication/Main.lean · 配置指定入口",
+          "path": "lean/OAI/LinearAlgebra/MatrixMultiplication/Main.lean",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/OAI/LinearAlgebra/MatrixMultiplication/Main.lean#L1-L31",
+          "sha256": "9c2108c42436ad48ee6e348b4a18d9465a2caadd08dc6b8bb0915ef483eff816",
+          "readLines": [
+            1,
+            31
+          ]
+        },
+        {
+          "role": "solution_entry",
+          "label": "OAI/LinearAlgebra/MatrixFields/Main.lean · 配置指定入口",
+          "path": "lean/OAI/LinearAlgebra/MatrixFields/Main.lean",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/OAI/LinearAlgebra/MatrixFields/Main.lean#L1-L5",
+          "sha256": "470a03d05a0ce7b45c5e4d3fe4c3aefc59fe75138a8bfc2f421f9d8534069726",
+          "readLines": [
+            1,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "familyNumber": "159",
+      "titleZh": "倒数和发散如何迫使任意长等差数列出现",
+      "summaryZh": "论文从有限区间中不含 k 项等差数列的集合大小上界，推出倒数和发散的正整数集合包含任意长的非平凡等差数列。现有 Lean 范围说明选择的是后一个定性结论。",
+      "questionZh": "一个正整数集合即使密度为零，只要元素倒数之和发散，是否仍被迫含有任意长度的等差数列？",
+      "paperClaimZh": "对每个固定 $k\\ge3$，论文给出 $r_k(N)\\le C_k N\\exp(-c_k(\\log N)^{\\varepsilon_k})$，其中常数均为正且可以依赖 k。由此推出 $\\sum_{a\\in A}1/a=\\infty$ 的正整数集合 A 对每个有限长度都含公差为正的等差数列。",
+      "whyItMattersZh": "倒数和发散允许零密度集合，因此定性密度趋零的结论本身不够。引言中的关键桥梁是把有限区间估计放进二进区间求和，得到足以与倒数和发散矛盾的可求和上界。",
+      "proofRouteZh": [
+        "通过结构化区域上的密度增量，把无长等差数列的假设转换成逐步增加的局部密度。",
+        "对区域维数与不同权重层的精度损失作递降控制，使多次增量的总区间长度损失保持所需规模。",
+        "得到有限区间的定量界后，对二进区间求和，推出倒数和结论；这一步的逻辑方向是从定量界到定性推论。"
+      ],
+      "scopeStatus": "narrower_than_manuscript",
+      "scopeLabelZh": "Lean 选定倒数和推论，未覆盖该定量上界",
+      "scopeNotesZh": "ErdosReciprocal 的对照声明要求：倒数项不构成可求和级数时，对任意自然数长度 k，集合中存在公差 d>0 的等差数列。配置指向 Progressions.Main 作为证明入口。范围文档明确排除了论文对 r_k(N) 的定量上界。",
+      "boundaryZh": "核对或复验这个定性声明，不能据此报告定量上界也已经过 Lean 验证。本批未逐项审阅证明入口导入的大型依赖库。",
+      "terms": [
+        {
+          "term": "r_k(N)",
+          "explanationZh": "在 1 到 N 之间，能够不含公差非零的 k 项等差数列的集合，其最大元素个数。"
+        },
+        {
+          "term": "定性与定量",
+          "explanationZh": "定性结论说明等差数列一定存在；定量界进一步控制在多大的有限区间、达到多高密度时必须出现。"
+        }
+      ],
+      "nextChecksZh": [
+        "先复验选定的倒数和声明与其全部依赖。",
+        "如要验证定量主定理，另行固定 r_k(N) 的定义、常数依赖和相应证明入口。"
+      ],
+      "manuscriptIds": [
+        "Quasipolynomial-Bounds-for-Arithmetic-Progressions-September-23-2026"
+      ],
+      "readingLevel": "introduction_and_main_statements",
+      "editorialStatus": "ai_assisted_source_reading",
+      "limitationsZh": "已读论文引言、主定理与证明概述，核对 Lean 对照声明、配置及指定证明入口；未逐行审阅完整证明，未运行 Lean 或 Comparator，未进行独立数学审阅。",
+      "comparatorNoteZh": "Comparator .lean 文件中的 sorry 是对照声明占位；对应 JSON 指定实际证明入口。阅读这些文件不会产生验证结果。",
+      "sources": [
+        {
+          "role": "paper_introduction",
+          "label": "Quasipolynomial Bounds for Arithmetic Progressions · 引言与主定理",
+          "path": "preprints/Quasipolynomial-Bounds-for-Arithmetic-Progressions-September-23-2026/build/sections/00-introduction.tex",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Quasipolynomial-Bounds-for-Arithmetic-Progressions-September-23-2026/build/sections/00-introduction.tex#L1-L343",
+          "sha256": "20254cf37d610fb72ee665eba6b82b8e182817796915b1a2d117f3ea622da5bd",
+          "readLines": [
+            1,
+            343
+          ]
+        },
+        {
+          "role": "scope_document",
+          "label": "上游形式化范围说明",
+          "path": "lean/docs/159.md",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/docs/159.md#L1-L17",
+          "sha256": "747337764c8eddc074ba0400f11389a4678a38c63c4c608ccec72c347f1f2ab5",
+          "readLines": [
+            1,
+            17
+          ]
+        },
+        {
+          "role": "comparator_statement",
+          "label": "ErdosReciprocal.lean · 对照声明",
+          "path": "lean/ComparatorChallenges/ErdosReciprocal.lean",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/ComparatorChallenges/ErdosReciprocal.lean#L1-L36",
+          "sha256": "0df84b7d562a557f7bfc540d4c117f66c5352c564bf8e3b5f5f6d0d504ffbc3f",
+          "readLines": [
+            1,
+            36
+          ]
+        },
+        {
+          "role": "comparator_configuration",
+          "label": "ErdosReciprocal.json · 对照配置",
+          "path": "lean/ComparatorChallenges/ErdosReciprocal.json",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/ComparatorChallenges/ErdosReciprocal.json#L1-L14",
+          "sha256": "fc7ad13638f1f8aa6eca513e64c871a533a0b07a3b0eadd4ada0df6585eb4a2d",
+          "readLines": [
+            1,
+            14
+          ]
+        },
+        {
+          "role": "solution_entry",
+          "label": "OAI/Combinatorics/Progressions/Main.lean · 配置指定入口",
+          "path": "lean/OAI/Combinatorics/Progressions/Main.lean",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/OAI/Combinatorics/Progressions/Main.lean#L1-L98",
+          "sha256": "381ddc525bb1dce23b1b99c94fbc890ba7f017fdeaa3b6ef9a95da1982507570",
+          "readLines": [
+            1,
+            98
+          ]
+        }
+      ]
+    },
+    {
+      "familyNumber": "181",
+      "titleZh": "Erdős–Gallai：用线性数量的圈和单边划分全部边",
+      "summaryZh": "论文给出一个与图无关的正常数 C，使每个 n 个顶点的有限简单无向图，都能把全部边划分为至多 Cn 个简单圈或单边。各部分可以共用顶点，但不能共用边。",
+      "questionZh": "无论图多稠密，能否只用与顶点数成正比的圈和单边，恰好分配它的每一条边？",
+      "paperClaimZh": "存在绝对常数 $C>0$，使任意 n 顶点有限简单无向图的边集可划分为至多 $Cn$ 个部分，每个部分是一个简单圈的边集或一条单边。无边图允许空划分。",
+      "whyItMattersZh": "森林没有圈，必须允许单边。任意覆盖可能重复使用边，而这里要求每条边恰好属于一个部分。树需要 n−1 条单边，也说明一般情况下无法期待低于线性量级的部分数。",
+      "proofRouteZh": [
+        "按尺度切分图，并提取具有割扩张性质的子图，为后续路径连接预留边。",
+        "在选定层中配对并识别部分顶点，形成更小的商图，同时控制递归外的边分配成本。",
+        "递归处理商图，再用预留的边不交路径把圈提升回原图；通过顶点节省与加强的归纳界支付各尺度的开销。"
+      ],
+      "scopeStatus": "headline_statements_linked",
+      "scopeLabelZh": "主结论的量词与边划分要求已定位",
+      "scopeNotesZh": "CycleDecomposition 的 MainStatement 明确要求一个共同的 C 适用于所有 n 和所有 Fin n 上的简单图。各部分必须两两边不交，且它们的并集等于原边集；定义允许简单圈或单边。配置指定 CycleDecomposition.Main 中的 erdos_gallai。",
+      "boundaryZh": "现有范围不确定最优 C，也不自动覆盖论文中的其他更强推论。本批只做主声明与入口核对，没有核验完整归纳、路径连接及其依赖证明。",
+      "terms": [
+        {
+          "term": "边划分",
+          "explanationZh": "每条边出现且只出现一次；不同部分可以拥有相同顶点。"
+        },
+        {
+          "term": "绝对常数",
+          "explanationZh": "同一个 C 对所有图和规模都有效。结论的量词顺序是先存在 C，再对所有图成立。"
+        }
+      ],
+      "nextChecksZh": [
+        "复验主声明的空图、小图、圈与单边约定，以及指定证明入口。",
+        "继续检查递归成本界与商图提升过程，再开展独立审阅。"
+      ],
+      "manuscriptIds": [
+        "A-linear-cycle-and-edge-decomposition-of-every-graph-September-24-2026"
+      ],
+      "readingLevel": "introduction_and_main_statements",
+      "editorialStatus": "ai_assisted_source_reading",
+      "limitationsZh": "已读论文引言、主定理与证明概述，核对 Lean 对照声明、配置及指定证明入口；未逐行审阅完整证明，未运行 Lean 或 Comparator，未进行独立数学审阅。",
+      "comparatorNoteZh": "Comparator .lean 文件中的 sorry 是对照声明占位；对应 JSON 指定实际证明入口。阅读这些文件不会产生验证结果。",
+      "sources": [
+        {
+          "role": "paper_introduction",
+          "label": "A linear cycle-and-edge decomposition of every graph · 引言与主定理",
+          "path": "preprints/A-linear-cycle-and-edge-decomposition-of-every-graph-September-24-2026/build/main.tex",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-linear-cycle-and-edge-decomposition-of-every-graph-September-24-2026/build/main.tex#L1-L246",
+          "sha256": "4be805d7086ac702c41861ac3cc8cad418b38c41ab79eb1d5a21cbba542273ff",
+          "readLines": [
+            1,
+            246
+          ]
+        },
+        {
+          "role": "scope_document",
+          "label": "上游形式化范围说明",
+          "path": "lean/docs/181.md",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/docs/181.md#L1-L15",
+          "sha256": "2e322b0000ff85fbb7c09603243df922d38e51b22799f44cddb40ec8f5165285",
+          "readLines": [
+            1,
+            15
+          ]
+        },
+        {
+          "role": "comparator_statement",
+          "label": "CycleDecomposition.lean · 对照声明",
+          "path": "lean/ComparatorChallenges/CycleDecomposition.lean",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/ComparatorChallenges/CycleDecomposition.lean#L1-L38",
+          "sha256": "8c40255789147b218565654daa7d4f9ef39824b009d06ec9fb6beb7b45cae0f9",
+          "readLines": [
+            1,
+            38
+          ]
+        },
+        {
+          "role": "comparator_configuration",
+          "label": "CycleDecomposition.json · 对照配置",
+          "path": "lean/ComparatorChallenges/CycleDecomposition.json",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/ComparatorChallenges/CycleDecomposition.json#L1-L14",
+          "sha256": "f89705dba6bfbf27113cae83ae8000946bd6276b2afae4b19e28fa528dfb32d0",
+          "readLines": [
+            1,
+            14
+          ]
+        },
+        {
+          "role": "solution_entry",
+          "label": "OAI/Combinatorics/CycleDecomposition/Main.lean · 配置指定入口",
+          "path": "lean/OAI/Combinatorics/CycleDecomposition/Main.lean",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/OAI/Combinatorics/CycleDecomposition/Main.lean#L1-L226",
+          "sha256": "03edc7620d991daaa5629313c05395708b83ea44e5634a5ef69227ba2bcf77d9",
+          "readLines": [
+            1,
+            226
+          ]
+        }
+      ]
+    },
+    {
+      "familyNumber": "191",
+      "titleZh": "Heilbronn 三角形：任意大规模子序列与所有充分大规模",
+      "summaryZh": "论文构造单位正方形内的点集，使所有不同三点形成的三角形面积都有统一下界。稿件覆盖每个充分大的点数；现有 Lean 主声明则先给出点数趋于无穷的一列构造。",
+      "questionZh": "在单位正方形中放置 n 个点时，能把这些点决定的最小三角形面积做得多大？",
+      "paperClaimZh": "论文声称存在固定 $\\eta,c_1>0$，使每个充分大的 n 都存在 n 点集合，其所有三角形面积至少为 $c_1 n^{-2+\\eta}$。这能反驳“对任意正 ε，最终都有 $O(n^{-2+\\varepsilon})$ 上界”的表述。",
+      "whyItMattersZh": "需要控制全部不同三点组成的三角形，特别是排除共线三点。“任意大的一列 n”与“每个充分大的 n”覆盖范围不同，不过前者已经足以反驳一个对所有充分大 n 都成立的上界。",
+      "proofRouteZh": [
+        "把点表示为整数列向量的投影，用三列组成矩阵的行列式来表达三角形面积。",
+        "利用两套独立同余条件，分别控制小的非零行列式和零行列式；后者负责处理共线情形。",
+        "随机取样后删去异常点，得到保留集合的统一面积下界；稿件另用参数与插值步骤推广到每个充分大的点数。"
+      ],
+      "scopeStatus": "narrower_than_manuscript",
+      "scopeLabelZh": "Lean 覆盖无界规模序列，稿件结论更广",
+      "scopeNotesZh": "HeilbronnTriangle 的主声明构造 n(j) 趋于无穷的一列点数与相应点集，对全部不同三点给出固定正指数的面积下界；另一个声明据此反驳相应的最终上界。配置指定 HeilbronnTriangle.Main。",
+      "boundaryZh": "不能把这一列规模的声明写成“每个充分大的 n 都已形式化”。要扩大覆盖，需要另查稿件中规模插值步骤的形式化入口；完整证明及参数依赖仍待复验。",
+      "terms": [
+        {
+          "term": "最小三角形面积",
+          "explanationZh": "在点集所有互异三点组合中取面积最小值。存在共线三点时，这个最小值就是零。"
+        },
+        {
+          "term": "无界规模序列",
+          "explanationZh": "点数 n(j) 随 j 趋于无穷，但该声明不要求每一个充分大的整数都恰好等于某个 n(j)。"
+        }
+      ],
+      "nextChecksZh": [
+        "分别核对序列构造与反驳最终上界的两个声明。",
+        "把从特定规模推广到所有充分大规模的步骤单独列为覆盖核对项。"
+      ],
+      "manuscriptIds": [
+        "A-power-improvement-in-the-Heilbronn-triangle-lower-bound-September-25-2026"
+      ],
+      "readingLevel": "introduction_and_main_statements",
+      "editorialStatus": "ai_assisted_source_reading",
+      "limitationsZh": "已读论文引言、主定理与证明概述，核对 Lean 对照声明、配置及指定证明入口；未逐行审阅完整证明，未运行 Lean 或 Comparator，未进行独立数学审阅。",
+      "comparatorNoteZh": "Comparator .lean 文件中的 sorry 是对照声明占位；对应 JSON 指定实际证明入口。阅读这些文件不会产生验证结果。",
+      "sources": [
+        {
+          "role": "paper_introduction",
+          "label": "A power improvement in the Heilbronn triangle lower bound · 引言与主定理",
+          "path": "preprints/A-power-improvement-in-the-Heilbronn-triangle-lower-bound-September-25-2026/build/sections/01-introduction.tex",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-power-improvement-in-the-Heilbronn-triangle-lower-bound-September-25-2026/build/sections/01-introduction.tex#L1-L159",
+          "sha256": "d1441934fee324ecb09e9ddfaecbdf8d28c082976b4a6b8cf9dec33ad70115fe",
+          "readLines": [
+            1,
+            159
+          ]
+        },
+        {
+          "role": "scope_document",
+          "label": "上游形式化范围说明",
+          "path": "lean/docs/191.md",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/docs/191.md#L1-L15",
+          "sha256": "e2250c3010963320569247febbc795f9412f06a90d1fc6a408abb2ba93dcf721",
+          "readLines": [
+            1,
+            15
+          ]
+        },
+        {
+          "role": "comparator_statement",
+          "label": "HeilbronnTriangle.lean · 对照声明",
+          "path": "lean/ComparatorChallenges/HeilbronnTriangle.lean",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/ComparatorChallenges/HeilbronnTriangle.lean#L1-L68",
+          "sha256": "9e12bbd748dff7adf89cabd85e9e1c5321415d6827ce125755d13b4e17dcafa3",
+          "readLines": [
+            1,
+            68
+          ]
+        },
+        {
+          "role": "comparator_configuration",
+          "label": "HeilbronnTriangle.json · 对照配置",
+          "path": "lean/ComparatorChallenges/HeilbronnTriangle.json",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/ComparatorChallenges/HeilbronnTriangle.json#L1-L15",
+          "sha256": "92eda4dadad1f161e53de6b74b3cd22e4bd7eb5036bdacbbc4754d00c06f8006",
+          "readLines": [
+            1,
+            15
+          ]
+        },
+        {
+          "role": "solution_entry",
+          "label": "OAI/Geometry/HeilbronnTriangle/Main.lean · 配置指定入口",
+          "path": "lean/OAI/Geometry/HeilbronnTriangle/Main.lean",
+          "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/OAI/Geometry/HeilbronnTriangle/Main.lean#L1-L43",
+          "sha256": "19c4c5eb28c81636eb1e9aacd19a9475fe7a8eb5a0ead110944f66a9f366265e",
+          "readLines": [
+            1,
+            43
+          ]
+        }
+      ]
+    }
+  ]
+}

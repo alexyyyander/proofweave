@@ -40,3 +40,21 @@ Attempt is needed to browse this collection. API routes provide the complete
 catalog and one family at a time for other clients.
 
 See `NOTICE.txt` and `OPENAI-LICENSE.txt` for attribution and reuse terms.
+
+## Chinese reading notes
+
+`openai-math-reading-guides.zh-CN.json` adds AI-assisted notes for six families
+and nine manuscripts. Each note states its actual reading level: introduction,
+main statements, proof overview, Comparator configuration and solution entry.
+It is not a full proof audit, platform statement review, replay, or Receipt.
+The notes link 36 pinned source locations with SHA-256 and read line ranges.
+
+The runtime requires the notes to match the catalog revision and manuscript
+identities. An upstream refresh must therefore also review or remove the old
+notes. The original imported snapshot and its hashes stay unchanged. The API
+adds the notes and their counts to its existing catalog and family responses.
+Comparator challenge files contain deliberate `sorry` placeholders; their JSON
+configuration identifies the solution entry. Neither file replaces a successful
+Comparator run. In family 026, the scope prose describes only the ratio
+corollary while the configured statement also includes the large-gap count;
+this documentation discrepancy remains an explicit follow-up.
