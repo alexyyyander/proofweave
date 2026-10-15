@@ -76,6 +76,7 @@ export type AnchorBatchSummary = Readonly<{
   chain: string;
   network: string;
   witnessCount: number;
+  witnessState: "witnessed" | "none";
   createdAt: string;
   anchoredAt: string | null;
 }>;
@@ -231,20 +232,35 @@ export class AnchorListQueryError extends Error {
 }
 
 const anchorBatchStatuses = new Set(["built", "submitted", "confirmed", "failed"]);
+const anchorWitnessStates = new Set(["witnessed", "none"]);
 const anchorListDefaultLimit = 50;
 const anchorListMaxLimit = 200;
+const anchorWitnessDefaultThreshold = 1;
 
 export type AnchorBatchListQuery = Readonly<{
   limit?: number | string;
   offset?: number | string;
   status?: string;
+  witnessState?: string;
 }>;
+
+/** Parse ANCHOR_WITNESS_THRESHOLD with a safe fallback (default 1). */
+export function witnessThresholdFromSettings(value: unknown): number {
+  const threshold = Number(value);
+  if (!Number.isInteger(threshold) || threshold < 0) return anchorWitnessDefaultThreshold;
+  return threshold;
+}
+
+function deriveWitnessState(witnessCount: number, witnessThreshold: number): "witnessed" | "none" {
+  return witnessCount >= witnessThreshold ? "witnessed" : "none";
+}
 
 /** Parse and validate /api/anchors list query params; throws AnchorListQueryError on invalid input. */
 export function parseAnchorBatchListQuery(query: AnchorBatchListQuery): Readonly<{
   limit: number;
   offset: number;
   status?: string;
+  witnessState?: string;
 }> {
   let limit = anchorListDefaultLimit;
   if (query.limit !== undefined) {
@@ -267,26 +283,39 @@ export function parseAnchorBatchListQuery(query: AnchorBatchListQuery): Readonly
       throw new AnchorListQueryError(`status must be one of ${[...anchorBatchStatuses].join(", ")}.`);
     }
   }
-  return Object.freeze({ limit, offset, status });
+  let witnessState: string | undefined;
+  if (query.witnessState !== undefined) {
+    witnessState = String(query.witnessState);
+    if (!anchorWitnessStates.has(witnessState)) {
+      throw new AnchorListQueryError(`witnessState must be one of ${[...anchorWitnessStates].join(", ")}.`);
+    }
+  }
+  return Object.freeze({ limit, offset, status, witnessState });
 }
 
-export async function listPublicAnchorBatches({ store, adaptersConfigured, query }: Readonly<{
+export async function listPublicAnchorBatches({ store, adaptersConfigured, query, witnessThreshold = anchorWitnessDefaultThreshold }: Readonly<{
   store: D1AnchorStore;
   adaptersConfigured: boolean;
   query?: AnchorBatchListQuery;
+  witnessThreshold?: number;
 }>): Promise<AnchorBatchListResult> {
   const state = await detectAnchoringState({ store, adaptersConfigured });
   if (state === "anchoring_disabled") {
     return { status: anchoringDisabledStatus, batches: Object.freeze([]) };
   }
   const parsed = parseAnchorBatchListQuery(query ?? {});
+  // 见证状态筛选转成 witness_count 的 min/max（witnessed: >=K；none: <K）
+  const witnessMin = parsed.witnessState === "witnessed" ? witnessThreshold : undefined;
+  const witnessMax = parsed.witnessState === "none" ? witnessThreshold - 1 : undefined;
   const [rows, total] = await Promise.all([
-    store.listBatches({ limit: parsed.limit, offset: parsed.offset, status: parsed.status }),
-    store.countBatches({ status: parsed.status }),
+    store.listBatches({
+      limit: parsed.limit, offset: parsed.offset, status: parsed.status, witnessMin, witnessMax,
+    }),
+    store.countBatches({ status: parsed.status, witnessMin, witnessMax }),
   ]);
   return {
     status: "ok",
-    batches: Object.freeze((rows as AnchorBatchRow[]).map(toBatchSummary)),
+    batches: Object.freeze((rows as AnchorBatchRow[]).map((row) => toBatchSummary(row, witnessThreshold))),
     pagination: Object.freeze({ limit: parsed.limit, offset: parsed.offset, total }),
   };
 }
@@ -532,7 +561,7 @@ export function createVolatileManifestStorage(): Readonly<{
   };
 }
 
-function toBatchSummary(row: AnchorBatchRow): AnchorBatchSummary {
+function toBatchSummary(row: AnchorBatchRow, witnessThreshold: number): AnchorBatchSummary {
   return {
     id: row.id,
     status: row.status,
@@ -544,6 +573,7 @@ function toBatchSummary(row: AnchorBatchRow): AnchorBatchSummary {
     chain: row.chain,
     network: row.network,
     witnessCount: Number(row.witness_count),
+    witnessState: deriveWitnessState(Number(row.witness_count), witnessThreshold),
     createdAt: row.created_at,
     anchoredAt: row.anchored_at,
   };

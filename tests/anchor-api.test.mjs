@@ -16,6 +16,7 @@ import {
   witnessAuthorityCandidatesFromProfile,
   witnessRejectionErrorCode,
   witnessRejectionHttpStatus,
+  witnessThresholdFromSettings,
   WitnessAuthorityError,
 } from "../app/lib/anchor-routes.ts";
 import { D1AnchorStore } from "../services/anchoring/d1-anchor-store.mjs";
@@ -243,7 +244,7 @@ test("batch list projects batches newest-first with witness counts", async () =>
   assert.equal(confirmed.root, world.confirmed.batch.root);
   assert.deepEqual(Object.keys(confirmed).sort(), [
     "anchoredAt", "chain", "createdAt", "id", "leafCount", "manifestHash",
-    "network", "prevBatchId", "prevRoot", "root", "status", "witnessCount",
+    "network", "prevBatchId", "prevRoot", "root", "status", "witnessCount", "witnessState",
   ]);
 });
 
@@ -295,6 +296,44 @@ test("batch list filters by status and rejects invalid queries", async () => {
       AnchorListQueryError,
     );
   }
+});
+
+test("batch summary derives witness_state from ANCHOR_WITNESS_THRESHOLD", async () => {
+  const world = globalThis.anchorWorld;
+  // 默认 K=1：confirmed 批次 witness_count=1 → witnessed；submitted/third count=0 → none
+  const list = await listPublicAnchorBatches({ store, adaptersConfigured: true, witnessThreshold: 1 });
+  const confirmed = list.batches.find((batch) => batch.id === world.confirmed.batchId);
+  const submitted = list.batches.find((batch) => batch.id === world.submitted.batchId);
+  assert.equal(confirmed.witnessState, "witnessed");
+  assert.equal(submitted.witnessState, "none");
+  assert.deepEqual(Object.keys(confirmed).sort(), [
+    "anchoredAt", "chain", "createdAt", "id", "leafCount", "manifestHash",
+    "network", "prevBatchId", "prevRoot", "root", "status", "witnessCount", "witnessState",
+  ]);
+
+  // K=2：count=1 也不再是 witnessed
+  const strict = await listPublicAnchorBatches({ store, adaptersConfigured: true, witnessThreshold: 2 });
+  assert.equal(strict.batches.find((batch) => batch.id === world.confirmed.batchId).witnessState, "none");
+
+  // 见证状态筛选
+  const witnessed = await listPublicAnchorBatches({ store, adaptersConfigured: true, witnessThreshold: 1, query: { witnessState: "witnessed" } });
+  assert.deepEqual(witnessed.batches.map((batch) => batch.id), [world.confirmed.batchId]);
+  assert.equal(witnessed.pagination.total, 1);
+  const none = await listPublicAnchorBatches({ store, adaptersConfigured: true, witnessThreshold: 1, query: { witnessState: "none" } });
+  assert.equal(none.pagination.total, 2);
+  await assert.rejects(
+    () => listPublicAnchorBatches({ store, adaptersConfigured: true, query: { witnessState: "bogus" } }),
+    AnchorListQueryError,
+  );
+});
+
+test("witness threshold parses env values with safe fallback", () => {
+  assert.equal(witnessThresholdFromSettings(undefined), 1);
+  assert.equal(witnessThresholdFromSettings("3"), 3);
+  assert.equal(witnessThresholdFromSettings("0"), 0);
+  assert.equal(witnessThresholdFromSettings("abc"), 1);
+  assert.equal(witnessThresholdFromSettings("-2"), 1);
+  assert.equal(witnessThresholdFromSettings("1.5"), 1);
 });
 
 test("manifest is served from the bucket when it matches the batch", async () => {

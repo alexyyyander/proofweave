@@ -175,36 +175,55 @@ export class D1AnchorStore {
   }
 
   /**
-   * @param {{ limit?: number, offset?: number, status?: string }} [args]
+   * @param {{ limit?: number, offset?: number, status?: string, witnessMin?: number, witnessMax?: number }} [args]
    * @returns {Promise<object[]>}
    */
-  async listBatches({ limit = 50, offset = 0, status } = {}) {
-    if (status === undefined || status === null) {
-      const rows = await this.database
-        .prepare("SELECT * FROM anchor_batches ORDER BY created_at DESC, id DESC LIMIT ? OFFSET ?")
-        .bind(limit, offset)
-        .all();
-      return rows.results ?? [];
+  async listBatches({ limit = 50, offset = 0, status, witnessMin, witnessMax } = {}) {
+    const conditions = [];
+    const binds = [];
+    if (status !== undefined && status !== null) {
+      conditions.push("status = ?");
+      binds.push(status);
     }
+    if (witnessMin !== undefined && witnessMin !== null) {
+      conditions.push("witness_count >= ?");
+      binds.push(witnessMin);
+    }
+    if (witnessMax !== undefined && witnessMax !== null) {
+      conditions.push("witness_count <= ?");
+      binds.push(witnessMax);
+    }
+    const where = conditions.length > 0 ? `WHERE ${conditions.join(" AND ")}` : "";
     const rows = await this.database
-      .prepare("SELECT * FROM anchor_batches WHERE status = ? ORDER BY created_at DESC, id DESC LIMIT ? OFFSET ?")
-      .bind(status, limit, offset)
+      .prepare(`SELECT * FROM anchor_batches ${where} ORDER BY created_at DESC, id DESC LIMIT ? OFFSET ?`)
+      .bind(...binds, limit, offset)
       .all();
     return rows.results ?? [];
   }
 
   /**
-   * @param {{ status?: string }} [args]
+   * @param {{ status?: string, witnessMin?: number, witnessMax?: number }} [args]
    * @returns {Promise<number>}
    */
-  async countBatches({ status } = {}) {
-    if (status === undefined || status === null) {
-      const row = await this.database.prepare("SELECT COUNT(*) AS count FROM anchor_batches").first();
-      return Number(row?.count ?? 0);
+  async countBatches({ status, witnessMin, witnessMax } = {}) {
+    const conditions = [];
+    const binds = [];
+    if (status !== undefined && status !== null) {
+      conditions.push("status = ?");
+      binds.push(status);
     }
+    if (witnessMin !== undefined && witnessMin !== null) {
+      conditions.push("witness_count >= ?");
+      binds.push(witnessMin);
+    }
+    if (witnessMax !== undefined && witnessMax !== null) {
+      conditions.push("witness_count <= ?");
+      binds.push(witnessMax);
+    }
+    const where = conditions.length > 0 ? `WHERE ${conditions.join(" AND ")}` : "";
     const row = await this.database
-      .prepare("SELECT COUNT(*) AS count FROM anchor_batches WHERE status = ?")
-      .bind(status)
+      .prepare(`SELECT COUNT(*) AS count FROM anchor_batches ${where}`)
+      .bind(...binds)
       .first();
     return Number(row?.count ?? 0);
   }

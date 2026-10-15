@@ -4,6 +4,7 @@ import {
   anchorAdaptersConfigured,
   listPublicAnchorBatches,
   parseAnchorBatchListQuery,
+  witnessThresholdFromSettings,
 } from "@/app/lib/anchor-routes";
 import { D1AnchorStore } from "@/services/anchoring/d1-anchor-store.mjs";
 import { env } from "cloudflare:workers";
@@ -19,6 +20,7 @@ export async function GET(request: Request) {
       store,
       adaptersConfigured: anchorAdaptersConfigured(settings.ANCHOR_ADAPTERS_JSON),
       query,
+      witnessThreshold: witnessThresholdFromSettings(settings.ANCHOR_WITNESS_THRESHOLD),
     });
     if (result.status === "anchoring_disabled") {
       return Response.json({ status: result.status, batches: [] });
@@ -38,15 +40,17 @@ export async function GET(request: Request) {
   }
 }
 
-function anchorListQueryFromUrl(url: string): { limit?: string; offset?: string; status?: string } {
+function anchorListQueryFromUrl(url: string): { limit?: string; offset?: string; status?: string; witnessState?: string } {
   const params = new URL(url).searchParams;
-  const query: { limit?: string; offset?: string; status?: string } = {};
+  const query: { limit?: string; offset?: string; status?: string; witnessState?: string } = {};
   const limit = params.get("limit");
   if (limit !== null) query.limit = limit;
   const offset = params.get("offset");
   if (offset !== null) query.offset = offset;
   const status = params.get("status");
   if (status !== null) query.status = status;
+  const witnessState = params.get("witnessState");
+  if (witnessState !== null) query.witnessState = witnessState;
   return query;
 }
 
