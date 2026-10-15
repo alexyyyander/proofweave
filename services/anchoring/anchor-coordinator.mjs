@@ -109,41 +109,53 @@ export function createAnchorCoordinator({
      * then markBatchConfirmed for platform submissions (batch status is driven ONLY by platform
      * submissions) or syncWitnessCount for witness ones. failed/reverted/dropped → submission failed;
      * the batch row is left for operator action (e.g. abandonBatch) and only reported. Still-pending
-     * or below-threshold submissions are left untouched. Returns { confirmedBatches, failedBatches } —
+     * or below-threshold submissions are left untouched.
+     * 每个 submission 独立 try/catch：单个 RPC/持久化失败只记录到 errors，不阻塞其余提交
+     * （自愈靠下一次 cron tick 重试）。Returns { confirmedBatches, failedBatches, errors } —
      * confirmedBatches = batches whose PLATFORM submission reached confirmed this round.
      */
     async pollConfirmations() {
       const confirmedBatches = [];
       const failedBatches = [];
+      const errors = [];
       for (const submission of await store.listPendingSubmissions()) {
-        const info = await adapter.getConfirmation({ txRef: submission.tx_ref });
-        const confirmations = Number(info?.confirmations ?? 0);
-        const updatedAt = now();
-        if (info?.status === "confirmed" && confirmations >= config.confirmationThreshold) {
-          await store.updateSubmissionStatus({
-            submissionId: submission.id, status: "confirmed", confirmations, blockRef: info.blockRef ?? null, updatedAt,
-          });
-          if (submission.submitter_kind === "platform") {
-            // A recovered batch can carry two platform submissions; only the first confirmation flips status.
-            if ((await store.getBatch(submission.batch_id)).status === "submitted") {
-              await store.markBatchConfirmed(submission.batch_id, updatedAt);
-              confirmedBatches.push(submission.batch_id);
+        try {
+          const info = await adapter.getConfirmation({ txRef: submission.tx_ref });
+          const confirmations = Number(info?.confirmations ?? 0);
+          const updatedAt = now();
+          if (info?.status === "confirmed" && confirmations >= config.confirmationThreshold) {
+            await store.updateSubmissionStatus({
+              submissionId: submission.id, status: "confirmed", confirmations, blockRef: info.blockRef ?? null, updatedAt,
+            });
+            if (submission.submitter_kind === "platform") {
+              // A recovered batch can carry two platform submissions; only the first confirmation flips status.
+              if ((await store.getBatch(submission.batch_id)).status === "submitted") {
+                await store.markBatchConfirmed(submission.batch_id, updatedAt);
+                confirmedBatches.push(submission.batch_id);
+              }
+            } else {
+              await store.syncWitnessCount(submission.batch_id, updatedAt);
             }
-          } else {
-            await store.syncWitnessCount(submission.batch_id, updatedAt);
+          } else if (FAILED_CONFIRMATION_STATUSES.has(info?.status)) {
+            await store.updateSubmissionStatus({
+              submissionId: submission.id, status: "failed", confirmations, blockRef: info.blockRef ?? null, updatedAt,
+            });
+            if (submission.submitter_kind === "platform"
+              && (await store.getBatch(submission.batch_id)).status !== "confirmed") {
+              failedBatches.push(submission.batch_id);
+            }
           }
-        } else if (FAILED_CONFIRMATION_STATUSES.has(info?.status)) {
-          await store.updateSubmissionStatus({
-            submissionId: submission.id, status: "failed", confirmations, blockRef: info.blockRef ?? null, updatedAt,
+          // pending (or confirmed but below threshold) → leave for a later poll
+        } catch (error) {
+          errors.push({
+            submissionId: submission.id,
+            batchId: submission.batch_id,
+            txRef: submission.tx_ref,
+            message: error instanceof Error ? error.message : String(error),
           });
-          if (submission.submitter_kind === "platform"
-            && (await store.getBatch(submission.batch_id)).status !== "confirmed") {
-            failedBatches.push(submission.batch_id);
-          }
         }
-        // pending (or confirmed but below threshold) → leave for a later poll
       }
-      return { confirmedBatches, failedBatches };
+      return { confirmedBatches, failedBatches, errors };
     },
 
     /**

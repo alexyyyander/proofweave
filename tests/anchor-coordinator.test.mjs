@@ -54,9 +54,9 @@ class MemoryBucket {
   async get(key) { return this.map.get(key) ?? null; }
 }
 
-async function setupCoordinator({ minLeafCount = 100, maxIntervalSeconds = 86400, confirmationThreshold = 12 } = {}) {
+async function setupCoordinator({ minLeafCount = 100, maxIntervalSeconds = 86400, confirmationThreshold = 12, adapterOverride } = {}) {
   const store = new D1AnchorStore(database);
-  const adapter = sharedAdapter;
+  const adapter = adapterOverride ?? sharedAdapter;
   const bucket = new MemoryBucket();
   const manifestStorage = createManifestStorage({ bucket });
   const intake = createAnchorIntake(store);
@@ -107,6 +107,66 @@ test("builds and submits when threshold reached, then confirms", async () => {
   assert.equal(confirmed.confirmedBatches.length, 1);
   assert.equal((await store.getBatch(summary.batch.id)).status, "confirmed");
 });
+
+test("pollConfirmations isolates per-submission failures and reports them", async () => {
+  const { store, intake } = await setupCoordinator({ minLeafCount: 1, confirmationThreshold: 1 });
+  const a = await enqueueAndSubmitOneNoPoll(store, intake, 50);
+  const b = await enqueueAndSubmitOneNoPoll(store, intake, 51);
+
+  // flaky 适配器：A 的 txRef 抛 RPC 错误，B 正常确认
+  const flaky = {
+    id: sharedAdapter.id,
+    network: sharedAdapter.network,
+    operatorAddress: sharedAdapter.operatorAddress,
+    submitRoot: sharedAdapter.submitRoot.bind(sharedAdapter),
+    readAnchoredRoot: sharedAdapter.readAnchoredRoot.bind(sharedAdapter),
+    async getConfirmation({ txRef }) {
+      if (txRef === a.txRef) throw new Error("rpc down");
+      return sharedAdapter.getConfirmation({ txRef });
+    },
+  };
+  const flakyCoordinator = createAnchorCoordinator({
+    store,
+    builder: createAnchorBatchBuilder({ store, chain: "mock", network: "local" }),
+    manifestStorage: createManifestStorage({ bucket: new MemoryBucket() }),
+    adapter: flaky,
+    config: { minLeafCount: 1, maxIntervalSeconds: 86400, confirmationThreshold: 1 },
+    verifyWitnessAuthority: async () => ({ submitterId: "person:witness" }),
+  });
+
+  const result = await flakyCoordinator.pollConfirmations();
+  assert.deepEqual(result.confirmedBatches, [b.batch.id]); // B 不被 A 阻塞
+  assert.equal(result.errors.length, 1);
+  assert.equal(result.errors[0].txRef, a.txRef);
+  assert.match(result.errors[0].message, /rpc down/);
+  assert.equal((await store.getBatch(b.batch.id)).status, "confirmed");
+  assert.equal((await store.getBatch(a.batch.id)).status, "submitted"); // A 原样保留，下次 cron 重试
+
+  // 恢复后（换回健康适配器）A 也能确认
+  const healthy = await setupCoordinator({ minLeafCount: 1, confirmationThreshold: 1 });
+  const recovered = await healthy.coordinator.pollConfirmations();
+  assert.deepEqual(recovered.confirmedBatches, [a.batch.id]);
+  assert.equal(recovered.errors.length, 0);
+});
+
+async function enqueueAndSubmitOneNoPoll(targetStore, intake, i) {
+  const recordHash = `sha256:${String(i).padStart(64, "0")}`;
+  await intake.enqueueAnchorRecord({
+    recordType: "contribution_receipt", recordId: `receipt:${i}`, recordHash, createdAt: "2026-10-14T00:00:00.000Z",
+  });
+  const head = await targetStore.getLogHead();
+  const localBuilder = createAnchorBatchBuilder({ store: targetStore, chain: "mock", network: "local" });
+  const built = await localBuilder.buildNextBatch({
+    prevBatchId: head.headBatchId, prevRoot: head.headRoot, expectedHeadVersion: head.version,
+  });
+  assert.equal(built.created, true);
+  const { txRef } = await sharedAdapter.submitRoot({
+    root: built.batch.root, manifestHash: built.manifestHash, leafCount: built.batch.leaf_count,
+    prevRoot: built.batch.prev_root, batchId: built.batch.id,
+  });
+  await targetStore.markSubmitted(built.batch.id, txRef, "2026-10-14T00:00:00.000Z");
+  return { batch: built.batch, txRef };
+}
 
 test("witness flow enforces signature, chain truth, and independence", async () => {
   const { store, coordinator, adapter, intake, witnessKeys } = await setupCoordinator({ minLeafCount: 1, confirmationThreshold: 0 });
