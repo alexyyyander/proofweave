@@ -5,6 +5,7 @@ import { Header } from "@/app/header";
 import { Footer, PageSectionNav } from "@/app/ui";
 import { openaiMathCollection as collection, publicationFamily } from "@/app/lib/publications";
 import { MathText } from "../../MathText";
+import { ReadingGuide } from "../../ReadingGuide";
 import { CitationCopyButton } from "../../CitationCopyButton";
 import "../../publications.css";
 import "katex/dist/katex.min.css";
@@ -29,7 +30,9 @@ export default async function PublicationFamilyPage({ params }: Params) {
     <main id="main-content" tabIndex={-1} className="page-main publications-main publication-detail-main">
       <div className="breadcrumb"><Link href="/publications">Publications</Link><span> / </span><Link href={`/publications?subject=${encodeURIComponent(family.subject)}`}>{family.subject}</Link><span> / </span><span>OpenAI {family.number}</span></div>
       <section className="publication-detail-heading"><p className="eyebrow">OpenAI mathematics release · Result family {family.number}</p><h1><MathText text={family.title} /></h1><p className="publication-detail-claim"><span className="publication-claim-label">Result described by OpenAI</span><MathText text={family.claim} /></p><div className="publication-detail-status"><span>{family.manuscripts.length} {family.manuscripts.length === 1 ? "manuscript" : "manuscripts"}</span><span>{family.scope ? "Upstream Lean scope documented" : "Lean scope document not linked"}</span><span>Proofweave replay pending</span></div></section>
-      <PageSectionNav label="Publication record" links={[{ href: "#manuscripts", label: "Manuscripts & citations" }, { href: "#formalization", label: "Formalization scope" }, { href: "#provenance", label: "Source & environment" }]} />
+      <PageSectionNav label="Publication record" links={[...(family.readingGuide ? [{ href: "#reading-guide", label: "Reading guide" }] : []), { href: "#manuscripts", label: "Manuscripts & citations" }, { href: "#formalization", label: "Formalization scope" }, { href: "#provenance", label: "Source & environment" }]} />
+
+      {family.readingGuide && <ReadingGuide guide={family.readingGuide} />}
 
       <section id="manuscripts" className="publication-manuscripts" aria-labelledby="manuscripts-title"><div className="publication-browse-heading"><div><p className="eyebrow">Read the original work</p><h2 id="manuscripts-title">Manuscripts & citations</h2></div><a href={`/api/publications/openai-math/${family.number}?download=1`} download={`proofweave-openai-math-${family.number}.json`}>Download this record ↓</a></div>
         {family.manuscripts.map((paper, index) => <article className="publication-manuscript" key={paper.id} id={`manuscript-${index + 1}`}>
