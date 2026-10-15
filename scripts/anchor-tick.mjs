@@ -55,9 +55,7 @@ async function main() {
   const coordinator = createAnchorCoordinator({
     store,
     builder: createAnchorBatchBuilder({ store, ...platformChainOf(registry) }),
-    // The R2 manifest bucket is a Worker binding; a tick keeps manifests
-    // reconstructible from the immutable batch projection instead.
-    manifestStorage: createVolatileManifestStorage(),
+    manifestStorage: await manifestStorageFromEnvironment(),
     adapter: firstAdapterOf(registry),
     config: anchorCoordinatorConfigFromEnvironment(),
     // resume/build/poll never verify witness authority; ticks submit none.
@@ -169,6 +167,22 @@ function createVolatileManifestStorage() {
       return entries.get(key) ?? null;
     },
   };
+}
+
+/**
+ * R2 manifest persistence for the Node-side tick：配置了 R2_S3_* 四项时走 R2 的 S3 兼容 API
+ * （SigV4），否则退回 volatile 存储（manifest 仍可由批次投影重建，见 /api/anchors/:id）。
+ */
+async function manifestStorageFromEnvironment() {
+  const endpoint = (process.env.R2_S3_ENDPOINT ?? "").trim();
+  const bucket = (process.env.R2_MANIFEST_S3_BUCKET ?? "").trim();
+  const accessKeyId = (process.env.R2_S3_ACCESS_KEY_ID ?? "").trim();
+  const secretAccessKey = (process.env.R2_S3_SECRET_ACCESS_KEY ?? "").trim();
+  if (!endpoint || !bucket || !accessKeyId || !secretAccessKey) {
+    return createVolatileManifestStorage();
+  }
+  const { createS3ManifestStorage } = await import("../services/anchoring/anchor-manifest-s3-storage.mjs");
+  return createS3ManifestStorage({ endpoint, bucket, accessKeyId, secretAccessKey });
 }
 
 function createDatabase(localPath) {

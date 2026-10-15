@@ -360,11 +360,14 @@ failedBatches }`) to stdout.
   via `--local <dbPath>` for smoke testing; `.env.local` is loaded when
   present, and the same threshold variables and defaults as the table above
   apply.
-- The optional R2 `ANCHOR_MANIFEST_BUCKET` binding is a Worker binding; a
-  tick keeps manifests reconstructible from the immutable batch projection
-  (the same fallback the public manifest route uses). With multiple
-  configured adapters, the first `ANCHOR_ADAPTERS_JSON` entry is the
-  platform adapter that builds and confirms batches.
+- Manifest persistence from the Node-side tick: with all four `R2_S3_ENDPOINT`,
+  `R2_MANIFEST_S3_BUCKET`, `R2_S3_ACCESS_KEY_ID`, and `R2_S3_SECRET_ACCESS_KEY`
+  values set (R2's S3-compatible API, SigV4), the tick PUTs content-addressed
+  manifests to the same bucket exposed to Workers as the `ANCHOR_MANIFEST_BUCKET`
+  binding. Without them the tick keeps manifests reconstructible from the
+  immutable batch projection (the same fallback the public manifest route uses).
+  With multiple configured adapters, the first `ANCHOR_ADAPTERS_JSON` entry is
+  the platform adapter that builds and confirms batches.
 - Exit codes: 0 when the tick ran (including conflict and disabled outcomes);
   1 for argument, configuration, or IO errors.
 
