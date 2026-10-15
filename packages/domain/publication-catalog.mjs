@@ -10,7 +10,7 @@ export function searchPublicationFamilies(collection, { q = "", subject = "", ev
     if (selectedEvidence === "scope" && !family.scope) return false;
     if (selectedEvidence === "no-scope" && family.scope) return false;
     const haystack = normalize([family.number, family.title, family.subject, family.claim,
-      family.readingGuide?.titleZh ?? "", family.readingGuide?.summaryZh ?? "",
+      family.readingGuide?.title ?? "", family.readingGuide?.summary ?? "",
       ...family.manuscripts.flatMap((paper) => [paper.title, paper.abstract, ...paper.authors])].join(" "));
     return terms.every((term) => haystack.includes(term));
   });

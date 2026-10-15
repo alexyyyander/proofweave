@@ -1,5 +1,5 @@
 import snapshot from "@/data/publications/openai-math.json";
-import readingSnapshot from "@/data/publications/openai-math-reading-guides.zh-CN.json";
+import readingSnapshot from "@/data/publications/openai-math-reading-guides.json";
 import { withPublicationReadingGuides } from "@/packages/domain/publication-reading-guides.mjs";
 
 export type PublicationReadingGuide = (typeof readingSnapshot.guides)[number];
@@ -21,7 +21,7 @@ export type PublicationCollection = {
   schemaVersion: number; id: string; title: string; releaseDate: string; indexedAt: string;
   source: { repository: string; revision: string; license: string; licenseUrl: string; historyUrl: string; contentsUrl: string; announcementUrl: string };
   environment: { lean: string; mathlib: string; instructionsUrl: string };
-  statistics: { manuscripts: number; families: number; subjects: number; scopeDocuments: number; upstreamReportedFormalizedResults: number; proofweaveReplays: number; yamlIndexedManuscripts: number; chineseReadingGuides: number; guidedManuscripts: number };
+  statistics: { manuscripts: number; families: number; subjects: number; scopeDocuments: number; upstreamReportedFormalizedResults: number; proofweaveReplays: number; yamlIndexedManuscripts: number; readingGuideFamilies: number; guidedManuscripts: number };
   subjects: { name: string; families: number }[];
   readingGuides: { schemaVersion: string; language: string; preparedAt: string; attribution: string };
   families: PublicationFamily[];

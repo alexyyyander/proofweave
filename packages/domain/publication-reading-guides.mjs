@@ -15,9 +15,9 @@ export function withPublicationReadingGuides(collection, snapshot) {
         guide.manuscriptIds.some((id) => !family.manuscripts.some((paper) => paper.id === id))) {
       throw new Error("Reading guide manuscript does not belong to its family.");
     }
-    const required = ["titleZh", "summaryZh", "questionZh", "paperClaimZh", "whyItMattersZh", "scopeNotesZh", "boundaryZh", "limitationsZh", "comparatorNoteZh"];
+    const required = ["title", "summary", "question", "paperClaim", "whyItMatters", "scopeNotes", "boundary", "limitations", "comparatorNote"];
     if (required.some((key) => typeof guide[key] !== "string" || !guide[key].trim()) ||
-        !guide.proofRouteZh.length || !guide.sources.length) throw new Error("Reading guide is incomplete.");
+        !guide.proofRoute.length || !guide.sources.length) throw new Error("Reading guide is incomplete.");
     const roles = new Set();
     for (const source of guide.sources) {
       const [start, end] = source.readLines;
@@ -42,7 +42,7 @@ export function withPublicationReadingGuides(collection, snapshot) {
       schemaVersion: snapshot.schemaVersion, language: snapshot.language,
       preparedAt: snapshot.preparedAt, attribution: snapshot.attribution,
     },
-    statistics: { ...collection.statistics, chineseReadingGuides: byNumber.size, guidedManuscripts: manuscriptIds.size },
+    statistics: { ...collection.statistics, readingGuideFamilies: byNumber.size, guidedManuscripts: manuscriptIds.size },
     families: collection.families.map((family) => ({ ...family, readingGuide: byNumber.get(family.number) ?? null })),
   };
 }

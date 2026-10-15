@@ -41,9 +41,9 @@ catalog and one family at a time for other clients.
 
 See `NOTICE.txt` and `OPENAI-LICENSE.txt` for attribution and reuse terms.
 
-## Chinese reading notes
+## Reading notes
 
-`openai-math-reading-guides.zh-CN.json` adds AI-assisted notes for six families
+`openai-math-reading-guides.json` adds AI-assisted notes for six families
 and nine manuscripts. Each note states its actual reading level: introduction,
 main statements, proof overview, Comparator configuration and solution entry.
 It is not a full proof audit, platform statement review, replay, or Receipt.
