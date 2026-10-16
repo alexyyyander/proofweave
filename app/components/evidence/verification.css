@@ -1,0 +1,82 @@
+/* Shared by the homepage console and the dedicated Demo. */
+
+.demo-console-heading { align-items: center; gap: 24px; padding-top: 24px; }
+.demo-console-heading .eyebrow { margin-bottom: 10px; }
+.demo-console h2 { margin-bottom: 10px; text-wrap: initial; }
+.demo-console-heading p:not(.eyebrow) { font-size: 14px; max-width: 70ch; }
+.demo-verdict { border-radius: 8px; gap: 4px; min-width: 138px; }
+.demo-verdict span { color: currentColor; font-size: 11px; }
+.demo-verdict strong { font-family: var(--font-code); font-size: 26px; }
+.demo-verification-run { border-radius: 8px; gap: 16px; margin-top: 24px; }
+.demo-run-message p { font-size: 12px; line-height: 1.6; }
+.demo-verification-run dt { font-size: 10px; color: var(--ink-soft); }
+.demo-verification-run dd,
+.demo-verification-run code { font-size: 11px; }
+.demo-console-grid { align-items: start; gap: 28px; grid-template-columns: minmax(0, 1fr) 340px; }
+.demo-check-list li { gap: 12px; grid-template-columns: 24px minmax(0, 1fr) auto; padding-block: 20px; }
+.demo-check-list strong { font-size: 14px; font-weight: 600; }
+.demo-check-list p { font-size: 13px; line-height: 1.65; }
+.demo-check-state { border: 0; border-radius: 4px; font-size: 10px; letter-spacing: .02em; }
+.demo-check-evidence summary { font-size: 12px; font-weight: 500; letter-spacing: 0; padding-block: 4px; }
+.demo-check-evidence dt { color: var(--ink-soft); font-size: 11px; }
+.demo-check-evidence dd,
+.demo-check-evidence code { font-size: 12px; line-height: 1.6; }
+.demo-record-card { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; margin-inline: 0; max-width: none; min-width: 0; padding: 22px; }
+.demo-record-card h3 { margin-block: 16px 20px; }
+.demo-record-card dl,
+.demo-record-card dl > div,
+.demo-report-links { border-color: var(--line); }
+.demo-report-links { align-items: start; flex-direction: column; gap: 8px; }
+.demo-record-card dt { color: var(--ink-soft); font-size: 11px; letter-spacing: 0; text-transform: none; }
+.demo-record-card dd,
+.demo-record-card code { font-size: 12px; }
+.demo-execution-boundary strong { font-size: 11px; letter-spacing: 0; text-transform: none; }
+.demo-execution-boundary p { font-size: 12px; line-height: 1.6; }
+.demo-tamper-button { border-radius: 8px; font-size: 12px; min-height: 40px; }
+.demo-tamper-note,
+.demo-report-links a,
+.demo-report-links span { font-size: 11px; line-height: 1.5; }
+
+@media (max-width: 960px) {
+  .demo-console-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 960px) {
+  .demo-verification-run { grid-template-columns: auto minmax(0, 1fr); }
+}
+
+@media (max-width: 960px) {
+  .demo-verification-run > dl { grid-column: 2; min-width: 0; }
+}
+
+@media (max-width: 620px) {
+  .demo-console-heading { align-items: start; flex-direction: column; gap: 20px; }
+}
+
+@media (max-width: 620px) {
+  .demo-verdict { align-items: center; display: flex; gap: 16px; min-width: 0; padding: 10px 14px; }
+}
+
+@media (max-width: 620px) {
+  .demo-verdict strong { font-size: 22px; }
+}
+
+@media (max-width: 620px) {
+  .demo-verification-run { padding: 16px; }
+}
+
+@media (max-width: 620px) {
+  .demo-verification-run > dl { grid-column: 1 / -1; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 620px) {
+  .demo-check-list li { grid-template-columns: 20px minmax(0, 1fr); }
+}
+
+@media (max-width: 620px) {
+  .demo-check-state { grid-column: 2; justify-self: start; }
+}
+
+@media (max-width: 620px) {
+  .demo-record-card { padding: 20px; }
+}

@@ -1,7 +1,11 @@
+import { Breadcrumb } from "@/app/components/navigation/Breadcrumb";
+import { PageTitle, SectionTitle, Badge, Field, ActionLink, EmptyState, FieldList, SectionHeading, Surface } from "@/app/components/ui";
+
+import { SiteFrame } from "@/app/components/shell/SiteFrame";
+
 import Link from "next/link";
 import { getCurrentUser, signInPath, toPersonIdentity } from "@/app/auth";
-import { Footer } from "@/app/ui";
-import { Header } from "@/app/header";
+
 import { PersonalWorkspaceFrame } from "@/app/PersonalWorkspaceFrame";
 import { MissingDatabaseBindingError } from "@/db";
 import { getDelegationRepository } from "@/db/repositories/delegation";
@@ -25,17 +29,13 @@ export default async function EvidenceIndexPage() {
   const result = await loadEvidence(user);
   if (result.unavailable) return <EvidenceMessage unavailable />;
   const evidence = result.evidence;
-  return <div className="site-shell app-shell">
-    <Header active="workbench" />
-    <main id="main-content" tabIndex={-1} className="page-main evidence-main personal-workspace-main">
+  return <SiteFrame className="site-shell app-shell" active="workbench" mainClassName="page-main evidence-main personal-workspace-main">
       <PersonalWorkspaceFrame active="evidence">
-      <div className="breadcrumb"><Link href="/workbench">Workbench</Link><span> / </span><span>Evidence records</span></div>
-      <section className="review-heading"><div><p className="eyebrow">Controlled evidence access · closed alpha</p><h1>Inspect the record behind a proof attempt.</h1><p>Only your own Attempts and Bundles assigned to you for independent review appear here. Artifact downloads are hash-bound, D1-stored alpha objects; opening them never runs Lean again.</p></div><span className="record-chip">{evidence.length} records</span></section>
-      {evidence.length === 0 ? <section className="review-empty"><p className="eyebrow">No accessible evidence</p><h2>Your evidence inbox is clear.</h2><p>Your own staged Bundles and any assigned independent reviews will appear here. Local previews and individually stored artifact objects are preparation, not inspectable evidence records.</p><Link className="text-link" href="/workbench">Return to workspace <span>→</span></Link></section> : <section className="evidence-index-list" aria-label="Accessible evidence records">{evidence.map((record) => <EvidenceIndexCard key={record.artifactBundleManifestHash} record={record} />)}</section>}
+      <Breadcrumb><Link href="/workbench">Workbench</Link><span> / </span><span>Evidence records</span></Breadcrumb>
+      <SectionHeading as="section" className="review-heading"><div><p className="eyebrow">Controlled evidence access · closed alpha</p><PageTitle>Inspect the record behind a proof attempt.</PageTitle><p>Only your own Attempts and Bundles assigned to you for independent review appear here. Artifact downloads are hash-bound, D1-stored alpha objects; opening them never runs Lean again.</p></div><Badge className="record-chip">{evidence.length} records</Badge></SectionHeading>
+      {evidence.length === 0 ? <EmptyState as="section" className="review-empty"><p className="eyebrow">No accessible evidence</p><SectionTitle>Your evidence inbox is clear.</SectionTitle><p>Your own staged Bundles and any assigned independent reviews will appear here. Local previews and individually stored artifact objects are preparation, not inspectable evidence records.</p><Link className="text-link" href="/workbench">Return to workspace <span>→</span></Link></EmptyState> : <section className="evidence-index-list" aria-label="Accessible evidence records">{evidence.map((record) => <EvidenceIndexCard key={record.artifactBundleManifestHash} record={record} />)}</section>}
       </PersonalWorkspaceFrame>
-    </main>
-    <Footer />
-  </div>;
+    </SiteFrame>;
 }
 
 async function loadEvidence(user: Awaited<ReturnType<typeof getCurrentUser>>): Promise<{ evidence: readonly AttemptEvidenceSummary[]; unavailable: boolean }> {
@@ -50,13 +50,13 @@ async function loadEvidence(user: Awaited<ReturnType<typeof getCurrentUser>>): P
 }
 
 function EvidenceIndexCard({ record }: { record: AttemptEvidenceSummary }) {
-  return <article className="evidence-index-card">
+  return <Surface as="article" className="evidence-index-card">
     <div className="evidence-index-card-top"><span className="micro-label">{record.accessRole === "attempt_owner" ? "Your Attempt" : "Assigned independent review"}</span><span className="review-status is-accepted">{record.latestRunState ?? "No Run"}</span></div>
-    <h2>{record.target.title}</h2>
+    <SectionTitle>{record.target.title}</SectionTitle>
     <p><code>{record.target.declaration}</code></p>
-    <dl><div><dt>Submitting Agent</dt><dd>{record.agentLabel}</dd></div><div><dt>Bundle hash</dt><dd><code>{record.artifactBundleManifestHash}</code></dd></div><div><dt>Record updated</dt><dd>{record.updatedAt}</dd></div></dl>
-    <Link className="button button-primary evidence-inspect-link" href={`/evidence/${encodeURIComponent(record.artifactBundleManifestHash)}`}>Inspect evidence <span aria-hidden="true">→</span></Link>
-  </article>;
+    <FieldList><Field label="Submitting Agent">{record.agentLabel}</Field><Field label="Bundle hash"><code>{record.artifactBundleManifestHash}</code></Field><Field label="Record updated">{record.updatedAt}</Field></FieldList>
+    <ActionLink className="button button-primary evidence-inspect-link" href={`/evidence/${encodeURIComponent(record.artifactBundleManifestHash)}`}>Inspect evidence <span aria-hidden="true">→</span></ActionLink>
+  </Surface>;
 }
 
 function EvidenceMessage({ unauthenticated, unavailable }: { unauthenticated?: boolean; unavailable?: boolean }) {
@@ -64,9 +64,5 @@ function EvidenceMessage({ unauthenticated, unavailable }: { unauthenticated?: b
   const detail = unauthenticated
     ? "Evidence is addressed either to the Attempt owner or to the independently assigned reviewer. It is never a public bundle download."
     : "No unverified fallback evidence is shown while the control-plane store is unavailable.";
-  return <div className="site-shell app-shell">
-    <Header active="workbench" />
-    <main id="main-content" tabIndex={-1} className="page-main evidence-main personal-workspace-main"><PersonalWorkspaceFrame active="evidence"><div className="breadcrumb"><Link href="/workbench">Workbench</Link><span> / </span><span>Evidence records</span></div><section className="review-heading"><div><p className="eyebrow">Controlled evidence access</p><h1>{title}</h1><p>{detail}</p></div><span className="record-chip">{unavailable ? "Unavailable" : "Personal"}</span></section>{unauthenticated && <Link className="button button-primary review-sign-in" href={signInPath("/evidence")}>Sign in to inspect <span aria-hidden="true">→</span></Link>}</PersonalWorkspaceFrame></main>
-    <Footer />
-  </div>;
+  return <SiteFrame className="site-shell app-shell" active="workbench" mainClassName="page-main evidence-main personal-workspace-main"><PersonalWorkspaceFrame active="evidence"><Breadcrumb><Link href="/workbench">Workbench</Link><span> / </span><span>Evidence records</span></Breadcrumb><SectionHeading as="section" className="review-heading"><div><p className="eyebrow">Controlled evidence access</p><PageTitle>{title}</PageTitle><p>{detail}</p></div><Badge className="record-chip">{unavailable ? "Unavailable" : "Personal"}</Badge></SectionHeading>{unauthenticated && <ActionLink className="button button-primary review-sign-in" href={signInPath("/evidence")}>Sign in to inspect <span aria-hidden="true">→</span></ActionLink>}</PersonalWorkspaceFrame></SiteFrame>;
 }

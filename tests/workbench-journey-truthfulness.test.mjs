@@ -24,7 +24,7 @@ const controlPlaneCapability = await readFile(
   "utf8",
 );
 const globalStyles = await readFile(
-  new URL("../app/globals.css", import.meta.url),
+  new URL("../app/styles/workspace.css", import.meta.url),
   "utf8",
 );
 

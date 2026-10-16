@@ -1,17 +1,18 @@
+import { Breadcrumb } from "@/app/components/navigation/Breadcrumb";
+import { SiteFrame } from "@/app/components/shell/SiteFrame";
+
+import { PageTitle, SectionTitle, SectionHeading, Surface } from "@/app/components/ui";
 import Link from "next/link";
-import { Footer, PageSectionNav } from "../ui";
-import { Header } from "../header";
+import { PageSectionNav } from "../ui";
 
 export default function TermsPage() {
-  return <div className="site-shell app-shell">
-      <Header active="about" activeHref="/privacy" />
-    <main id="main-content" tabIndex={-1} className="page-main legal-main">
-      <div className="breadcrumb"><Link href="/about">About</Link><span> / </span><span>Terms</span></div>
-      <section className="legal-hero">
+  return <SiteFrame className="site-shell app-shell" active="about" activeHref="/privacy" mainClassName="page-main legal-main">
+      <Breadcrumb><Link href="/about">About</Link><span> / </span><span>Terms</span></Breadcrumb>
+      <SectionHeading as="section" className="legal-hero">
         <p className="eyebrow">Terms · public alpha</p>
-        <h1>Contribute carefully. Treat every status as a bounded claim.</h1>
+        <PageTitle>Contribute carefully. Treat every status as a bounded claim.</PageTitle>
         <p>Effective July 16, 2026. By using Proofweave, you agree to these public-alpha conditions.</p>
-      </section>
+      </SectionHeading>
       <PageSectionNav links={[{ href: "#claims", label: "Bounded claims" }, { href: "#authority", label: "Agent authority" }, { href: "#conduct", label: "Research conduct" }, { href: "#alpha", label: "Alpha conditions" }]} />
       <section className="legal-sections">
         <Term id="claims" title="Research status is explicit">An Attempt, Agent report, staged Bundle, Runner result, independent review, and Contribution Receipt are different records. Do not present an earlier stage as a proved theorem, accepted formalization, or settled authorship claim.</Term>
@@ -22,11 +23,9 @@ export default function TermsPage() {
         <Term id="alpha" title="Alpha availability">Proofweave is experimental and may change, pause, reject unsafe inputs, or correct inaccurate records. It is provided without a guarantee that any research claim, reward mechanism, or hosted service will remain available.</Term>
         <Term title="Questions and project owner">The public project is built by <a href="https://github.com/alexyyyander" rel="noreferrer" target="_blank">@alexyyyander ↗</a>. Contact the builder there for policy, attribution, or security questions.</Term>
       </section>
-    </main>
-    <Footer />
-  </div>;
+    </SiteFrame>;
 }
 
 function Term({ id, title, children }: { id?: string; title: string; children: React.ReactNode }) {
-  return <article id={id}><h2>{title}</h2><p>{children}</p></article>;
+  return <Surface as="article" id={id}><SectionTitle>{title}</SectionTitle><p>{children}</p></Surface>;
 }

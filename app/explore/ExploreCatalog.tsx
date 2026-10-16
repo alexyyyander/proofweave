@@ -1,10 +1,11 @@
 "use client";
 
-import Link from "next/link";
+import { SectionTitle, Button, EmptyState, Input, SectionHeading, Select } from "@/app/components/ui";
+
+import { ResearchCard, opportunityKind, scopeKind } from "@/app/components/research/ResearchCard";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
-import type { CatalogProblemSummary } from "@/packages/domain/catalog";
-import { StatusStack } from "../ui";
+import { type CatalogProblemSummary } from "@/packages/domain/catalog";
 
 const opportunityFilters = [
   { id: "all", label: "All work" },
@@ -117,6 +118,20 @@ export function ExploreCatalog({ projects }: { projects: readonly ExploreCatalog
   }
 
   return <section className="research-index" id="research-catalog" aria-labelledby="research-index-title">
+    <SectionHeading as="div" className="research-index-heading">
+      <div><p className="eyebrow">Searchable research index</p><SectionTitle id="research-index-title">Find the exact target you can act on.</SectionTitle></div>
+      <p>Use the controls to narrow by contribution type, scope, subject, or declaration. Every result links to its pinned source and the next available action.</p>
+    </SectionHeading>
+
+    <div className="research-index-toolbar" aria-label="Research index controls">
+      <label className="research-index-search">
+        <span>Search title, subject, source, or Lean declaration</span>
+        <Input ref={searchInputRef} aria-keyshortcuts="/" value={query} onChange={(event) => { setQuery(event.target.value); setVisibleCount(pageSize); }} placeholder="Try “Erdos”, “topology”, or a declaration name" type="search" />
+      </label>
+      <label className="research-index-sort"><span>Sort</span><Select value={sort} onChange={(event) => updateFilter(setSort, event.target.value as CatalogSort)}><option value="recommended">Recommended</option><option value="title">Title A–Z</option><option value="subject">MSC subject</option></Select></label>
+      <Button className="button button-secondary research-index-clear" onClick={resetResults} type="button" disabled={!query && activeFilterCount === 0 && sort === "recommended"}>Reset</Button>
+    </div>
+
     <div className="research-index-summary" aria-label="Research index summary">
       <div><span>Total targets</span><strong>{projects.length}</strong><small>pinned public records</small></div>
       <div><span>Bounded work</span><strong>{boundedCount}</strong><small>clear starting points</small></div>
@@ -124,80 +139,23 @@ export function ExploreCatalog({ projects }: { projects: readonly ExploreCatalog
       <div><span>Verified proofs</span><strong>{verifiedCount}</strong><small>inspectable evidence</small></div>
     </div>
 
-    <div className="research-index-heading">
-      <div><p className="eyebrow">Searchable research index</p><h2 id="research-index-title">Find the exact target you can act on.</h2></div>
-      <p>Use the controls to narrow by contribution type, scope, subject, or declaration. Every result links to its pinned source and the next available action.</p>
-    </div>
-
-    <div className="research-index-toolbar" aria-label="Research index controls">
-      <label className="research-index-search">
-        <span>Search title, subject, source, or Lean declaration</span>
-        <input ref={searchInputRef} aria-keyshortcuts="/" value={query} onChange={(event) => { setQuery(event.target.value); setVisibleCount(pageSize); }} placeholder="Try “Erdos”, “topology”, or a declaration name" type="search" />
-      </label>
-      <label className="research-index-sort"><span>Sort</span><select value={sort} onChange={(event) => updateFilter(setSort, event.target.value as CatalogSort)}><option value="recommended">Recommended</option><option value="title">Title A–Z</option><option value="subject">MSC subject</option></select></label>
-      <button className="button button-primary research-index-clear" onClick={resetResults} type="button" disabled={!query && activeFilterCount === 0 && sort === "recommended"}>Reset</button>
-    </div>
-
     <div className="research-index-layout">
       <aside className="research-index-filters" aria-label="Filter research targets">
         <div className="research-filter-heading"><span>Filters</span><strong>{filteredProjects.length} matches</strong></div>
-        <fieldset><legend>Contribution</legend>{opportunityFilters.map((item) => <button className={opportunityFilter === item.id ? "is-active" : ""} key={item.id} onClick={() => updateFilter(setOpportunityFilter, item.id)} type="button">{item.label}<span>{item.id === "all" ? projects.length : projects.filter((project) => opportunityKind(project) === item.id).length}</span></button>)}</fieldset>
-        <fieldset><legend>Scope</legend>{scopeFilters.map((item) => <button className={scopeFilter === item.id ? "is-active" : ""} key={item.id} onClick={() => updateFilter(setScopeFilter, item.id)} type="button">{item.label}</button>)}</fieldset>
-        <label className="research-subject-select"><span>MSC subject</span><select value={subjectFilter} onChange={(event) => updateFilter(setSubjectFilter, event.target.value)}><option value="all">All subjects</option>{subjects.map((subject) => <option value={subject.slug} key={subject.slug}>MSC {subject.amsCode} · {subject.name}</option>)}</select></label>
+        <fieldset><legend>Contribution</legend>{opportunityFilters.map((item) => <Button aria-pressed={opportunityFilter === item.id} className={opportunityFilter === item.id ? "is-active" : ""} key={item.id} onClick={() => updateFilter(setOpportunityFilter, item.id)} type="button">{item.label}<span>{item.id === "all" ? projects.length : projects.filter((project) => opportunityKind(project) === item.id).length}</span></Button>)}</fieldset>
+        <fieldset><legend>Scope</legend>{scopeFilters.map((item) => <Button aria-pressed={scopeFilter === item.id} className={scopeFilter === item.id ? "is-active" : ""} key={item.id} onClick={() => updateFilter(setScopeFilter, item.id)} type="button">{item.label}</Button>)}</fieldset>
+        <label className="research-subject-select"><span>MSC subject</span><Select value={subjectFilter} onChange={(event) => updateFilter(setSubjectFilter, event.target.value)}><option value="all">All subjects</option>{subjects.map((subject) => <option value={subject.slug} key={subject.slug}>MSC {subject.amsCode} · {subject.name}</option>)}</Select></label>
         <div className="research-filter-note"><strong>Record boundary</strong><p>Catalog status describes only the public record. It does not imply that an Agent has started work or that a proof is complete.</p></div>
       </aside>
 
       <div className="research-index-results">
-        <div className="research-results-meta" aria-live="polite"><span>{filteredProjects.length} matching targets · showing {displayedProjects.length}</span>{(query || activeFilterCount > 0) && <button onClick={resetResults} type="button">Clear filters</button>}</div>
-        {displayedProjects.length === 0 && <div className="catalog-empty"><strong>No targets match the current query.</strong><p>Clear one filter or try a broader title, subject, or declaration.</p><button className="button button-secondary" onClick={resetResults} type="button">Reset search</button></div>}
-        <div className="research-result-list">{displayedProjects.map((project) => <ResearchOpportunityCard project={project} key={project.slug} />)}</div>
-        {remainingCount > 0 && <div className="research-results-more"><p>Showing {displayedProjects.length} of {filteredProjects.length} matching targets.</p><button className="button button-secondary" onClick={() => setVisibleCount((count) => count + pageSize)} type="button">Load {Math.min(pageSize, remainingCount)} more</button></div>}
+        <div className="research-results-meta" aria-live="polite"><span>{filteredProjects.length} matching targets · showing {displayedProjects.length}</span>{(query || activeFilterCount > 0) && <Button onClick={resetResults} type="button">Clear filters</Button>}</div>
+        {displayedProjects.length === 0 && <EmptyState as="div" className="catalog-empty"><strong>No targets match the current query.</strong><p>Clear one filter or try a broader title, subject, or declaration.</p><Button className="button button-secondary" onClick={resetResults} type="button">Reset search</Button></EmptyState>}
+        <div className="research-result-list">{displayedProjects.map((project) => <ResearchCard project={project} key={project.slug} />)}</div>
+        {remainingCount > 0 && <div className="research-results-more"><p>Showing {displayedProjects.length} of {filteredProjects.length} matching targets.</p><Button className="button button-secondary" onClick={() => setVisibleCount((count) => count + pageSize)} type="button">Load {Math.min(pageSize, remainingCount)} more</Button></div>}
       </div>
     </div>
   </section>;
-}
-
-function ResearchOpportunityCard({ project }: { project: ExploreCatalogProblem }) {
-  const canStart = project.proofState === "admitted";
-  return <article className="research-result-card">
-    <div className="research-result-card-top"><div className="subject-row">{project.subjects.map((subject) => <span className="subject-chip" key={subject.slug}>MSC {subject.amsCode} · {subject.name}</span>)}</div><span className="record-chip">{workLabel(project)}</span></div>
-    <Link className="research-result-title" href={`/explore/${project.slug}`}><h3>{project.title}</h3></Link>
-    <p className="research-result-statement">{project.informalStatement}</p>
-    <dl className="research-result-signals"><div><dt>Next action</dt><dd>{neededNow(project)}</dd></div><div><dt>Scope</dt><dd>{scopeLabel(project)}</dd></div><div><dt>Source</dt><dd>{project.source.upstreamName} · {project.source.revisionTag}</dd></div></dl>
-    <div className="research-result-verification"><span>Public record</span><StatusStack statuses={project.displayStatuses} compact /></div>
-    <footer className="research-result-footer"><code>{project.declaration.qualifiedName}</code><div>{canStart && <Link className="button button-primary" href={`/workbench?target=${encodeURIComponent(project.slug)}#research-launcher`}>Start in workspace</Link>}<Link className={canStart ? "button button-secondary" : "button button-primary"} href={`/explore/${project.slug}`}>{canStart ? "Open record" : "Inspect proof"}<span aria-hidden="true">→</span></Link></div></footer>
-  </article>;
-}
-
-function opportunityKind(project: ExploreCatalogProblem): Exclude<OpportunityFilter, "all"> {
-  if (project.proofState === "proved") return "verified";
-  if (project.researchStatus === "research_solved") return "formalize";
-  return "advance";
-}
-
-function scopeKind(project: ExploreCatalogProblem): Exclude<ScopeFilter, "all"> | "program" {
-  if (project.collections.some((collection) => collection.role === "milestone")) return "bounded";
-  if (project.collections.some((collection) => collection.tier === "grand" && collection.role === "headline")) return "long-horizon";
-  return "program";
-}
-
-function neededNow(project: ExploreCatalogProblem) {
-  if (project.proofState === "proved") return "Inspect the checked proof and evidence";
-  if (project.researchStatus === "research_solved") return "Formalize the established result";
-  return "Advance an open formal proof branch";
-}
-
-function scopeLabel(project: ExploreCatalogProblem) {
-  const kind = scopeKind(project);
-  if (kind === "bounded") return "Bounded milestone";
-  if (kind === "long-horizon") return "Long-horizon program";
-  return "Open research program";
-}
-
-function workLabel(project: ExploreCatalogProblem) {
-  if (project.proofState === "proved") return "Lean proof available";
-  if (project.researchStatus === "research_solved") return "Known result · proof wanted";
-  return "Open conjecture";
 }
 
 function isOpportunityFilter(value: string | null): value is OpportunityFilter {

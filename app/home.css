@@ -1,0 +1,90 @@
+/* Homepage composition. Shared product tokens and evidence states stay global. */
+.home-showcase-shell {
+  --home-inset: max(24px, calc((100vw - 1120px) / 2));
+  --home-muted: #596476;
+  background: var(--paper);
+}
+
+.home-showcase-shell .site-header { padding-inline: var(--home-inset); }
+.home-showcase-shell .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .09em; }
+.home-showcase-shell .button { font-size: 13px; min-height: 44px; }
+.home-showcase-shell .button:hover { box-shadow: none; transform: none; }
+.home-showcase-shell .button:active { transform: scale(.98); }
+.home-showcase-shell a:focus-visible,
+.home-showcase-shell button:focus-visible,
+.home-showcase-shell summary:focus-visible { outline: 2px solid #6d83e6; outline-offset: 4px; }
+
+/* One section title, then a compact, scannable verification instrument. */
+.home-showcase-shell .home-verification-section { background: #f2f1eb; border: 0; }
+.home-showcase-shell .home-verification-intro { gap: 32px; max-width: none; padding: 60px var(--home-inset) 0; }
+.home-showcase-shell .home-verification-intro h2 { max-width: 23ch; text-wrap: initial; }
+.home-showcase-shell .home-verification-intro p:not(.eyebrow) { font-size: 15px; max-width: 64ch; }
+.home-showcase-shell .home-verification-actions .text-link { font-size: 12px; }
+.home-showcase-shell .home-verification-section .demo-console { max-width: none; padding: 32px var(--home-inset) 60px; }
+
+/* Research entries are reading cards; only their links advertise an action. */
+.home-showcase-shell .home-frontier-section { max-width: none; padding: 64px var(--home-inset); }
+.home-showcase-shell .home-frontier-section .section-heading { align-items: end; margin-bottom: 28px; }
+.home-showcase-shell .project-grid { gap: 20px; }
+.home-showcase-shell .card-topline { align-items: start; flex-wrap: wrap; gap: 8px; }
+.home-showcase-shell .status-stack span { font-size: 11px; padding: 4px 8px; }
+.home-showcase-shell .card-footer { align-items: start; flex-direction: column; gap: 12px; }
+.home-showcase-shell .card-footer > span { font-family: var(--font-code); font-size: 11px; overflow-wrap: anywhere; }
+.home-showcase-shell .card-footer a { font-size: 13px; }
+.home-showcase-shell .home-frontier-section .text-link { font-size: 13px; }
+
+.home-showcase-shell .home-boundary-section { --ink: #eef3ff; --home-muted: #b5c2d8; --line: rgba(220, 230, 255, .2); background: var(--navy); border-block: 1px solid var(--line); color: var(--ink); gap: 64px; padding: 48px var(--home-inset); }
+.home-showcase-shell .home-boundary-section .eyebrow { color: #9fb2e9; }
+.home-showcase-shell .home-boundary-section h2 { max-width: 20ch; text-wrap: initial; }
+.home-showcase-shell .home-boundary-grid,
+.home-showcase-shell .home-boundary-grid article { border-color: var(--line); }
+.home-showcase-shell .home-boundary-grid span { color: var(--ink); font-size: 12px; font-weight: 600; line-height: 1.5; text-transform: none; }
+.home-showcase-shell .home-boundary-grid p { color: var(--home-muted); }
+.home-showcase-shell .home-boundary-grid a { color: #aebfff; font-size: 12px; }
+.home-showcase-shell .closing-section { max-width: none; padding: 64px var(--home-inset); }
+.home-showcase-shell .closing-section h2 { max-width: 34ch; }
+.home-showcase-shell .site-footer { margin-inline: var(--home-inset); padding-inline: 0; }
+
+/* The publication directory is an auxiliary entry within the navy introduction. */
+.home-publications-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  margin: 0;
+  padding: 28px var(--home-inset);
+  background: var(--navy);
+  color: #eef3ff;
+  border-bottom: 1px solid rgba(220, 230, 255, .18);
+}
+.home-publications-entry > div { min-width: 0; max-width: 760px; }
+.home-publications-entry .eyebrow { color: #9fb2e9; margin: 0 0 8px; }
+.home-publications-entry h2 { color: inherit; margin: 0 0 10px; }
+.home-publications-entry p:last-child { color: #b5c2d8; font-size: 13px; line-height: 1.7; margin: 0; }
+.home-publications-entry .button-secondary { flex-shrink: 0; white-space: nowrap; color: #eef3ff; border-color: rgba(220, 230, 255, .24); background: rgba(220, 230, 255, .04); }
+.home-publications-entry .button-secondary:hover { background: rgba(220, 230, 255, .09); }
+@media (max-width: 760px) {
+  .home-publications-entry { flex-direction: column; align-items: flex-start; gap: 20px; }
+}
+
+@media (max-width: 960px) {
+  .home-showcase-shell .home-verification-actions { justify-items: start; }
+  .home-showcase-shell .project-grid { grid-template-columns: 1fr; }
+  .home-showcase-shell .card-footer { flex-direction: row; flex-wrap: wrap; justify-content: space-between; }
+}
+
+@media (max-width: 620px) {
+  .home-showcase-shell { --home-inset: 20px; }
+  .home-showcase-shell .home-verification-intro { padding-top: 40px; }
+  .home-showcase-shell .home-verification-section .demo-console { padding-block: 24px 40px; }
+  .home-showcase-shell .home-frontier-section,
+  .home-showcase-shell .home-boundary-section,
+  .home-showcase-shell .closing-section { padding-block: 40px; }
+  .home-showcase-shell .home-frontier-section .section-heading { align-items: start; gap: 18px; }
+  .home-showcase-shell .home-boundary-section { gap: 28px; }
+  .home-showcase-shell .home-boundary-grid article { gap: 10px; }
+}
+@media (max-width: 960px) {
+  .home-showcase-shell .home-verification-intro,
+  .home-showcase-shell .home-boundary-section { grid-template-columns: 1fr; }
+}

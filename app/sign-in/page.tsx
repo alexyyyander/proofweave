@@ -1,11 +1,12 @@
+import { SiteFrame } from "@/app/components/shell/SiteFrame";
+
+import { PageTitle, Button, Input, Surface } from "@/app/components/ui";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { chatGPTSignInPath, safeRelativeReturnPath } from "../chatgpt-auth";
 import { getCurrentUser } from "../auth";
 import { demoAuthConfig } from "../demo-auth-config";
 import { googleAuthConfig } from "../google-auth-config";
-import { Footer } from "../ui";
-import { Header } from "../header";
 
 export const dynamic = "force-dynamic";
 
@@ -22,22 +23,20 @@ export default async function SignInPage({ searchParams }: SignInPageProps) {
   const demo = demoAuthConfig();
   const error = signInError(query.error);
 
-  return <div className="site-shell app-shell">
-    <Header active="profile" />
-    <main id="main-content" tabIndex={-1} className="auth-main">
-      <section className="auth-card" aria-labelledby="auth-title">
+  return <SiteFrame className="site-shell app-shell" active="profile" mainClassName="auth-main">
+      <Surface as="section" className="auth-card" aria-labelledby="auth-title">
         <div className="auth-intro">
           <p className="eyebrow">Your Proofweave Person</p>
-          <h1 id="auth-title">Continue your mathematical contribution record.</h1>
+          <PageTitle id="auth-title">Continue your mathematical contribution record.</PageTitle>
           <p>Choose a private sign-in method. Your public work stays attached to one stable Person, not to a particular login provider.</p>
         </div>
         {error && <div className="auth-error" role="alert"><strong>Google sign-in did not finish.</strong><span>{error}</span></div>}
         <div className="auth-provider-list">
           {demo.enabled && <form method="post" action="/auth/demo/start">
-            <input type="hidden" name="return_to" value={returnTo} />
-            <button className="auth-provider auth-provider-button" type="submit">
+            <Input type="hidden" name="return_to" value={returnTo} />
+            <Button className="auth-provider auth-provider-button" type="submit">
               <span className="auth-provider-mark auth-provider-demo" aria-hidden="true">∴</span><span><strong>Continue with a temporary Demo Person</strong><small>No email or external account required; contributions remain clearly marked as demo data</small></span><i aria-hidden="true">→</i>
-            </button>
+            </Button>
           </form>}
           {google.configured
             ? <Link className="auth-provider auth-provider-google" href={`/auth/google/start?return_to=${encodeURIComponent(returnTo)}`}>
@@ -54,10 +53,8 @@ export default async function SignInPage({ searchParams }: SignInPageProps) {
           <strong>One Person, multiple sign-in methods.</strong>
           <p>If a new provider returns the same verified email, Proofweave links it to your existing Person. Email and account identifiers remain private; public contribution records expose only your chosen display name and Person ID.</p>
         </div>
-      </section>
-    </main>
-    <Footer />
-  </div>;
+      </Surface>
+    </SiteFrame>;
 }
 
 function GoogleMark() {
