@@ -22,9 +22,9 @@ export async function runHostedAnchorTick({ database, registry, bucket, config }
     const enqueued = await enqueuePublicAnchorRecords(database, store);
     const [[key, adapter]] = registry;
     const [chain, network] = key.split(":");
-    const guardedAdapter = { ...adapter, async submitRoot(payload) {
+    const guardedAdapter = { ...adapter, async broadcastPreparedRoot(prepared, payload) {
       await renew();
-      return adapter.submitRoot(payload);
+      return adapter.broadcastPreparedRoot(prepared, payload);
     } };
     const coordinator = createAnchorCoordinator({ store,
       builder: createAnchorBatchBuilder({ store, chain, network }),

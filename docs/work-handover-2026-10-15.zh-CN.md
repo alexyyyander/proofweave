@@ -1,5 +1,8 @@
 # 工作交接说明：链上锚定交付 + Web3 路线推进
 
+**2026-10-16 代码收尾**：既有 Nile 闭环实现已整理为工作分支提交 `c52e163`（线上 v193 的发布源码仍为 `6780e404`，两者基线不同）。新增 0048/outbox 修复先持久化签名交易与 txRef，再广播；恢复仅查询或重播同一笔交易。TRON 已过期且查不到的交易、EVM nonce 冲突、旧版本遗留的 built 批次均停止自动替换并要求人工核查。本次本地验证：锚定门禁 **115/115**、数据库与迁移门禁 **22/22**，修改文件 lint、隔离源码 typecheck 与构建通过。**尚未应用生产 0048、尚未部署**。暂停状态保持不变。
+
+
 **2026-10-16 运维更新**：用户已明确要求停止自动任务，`proofweave-nile` 当前为 PAUSED；下文 2026-10-15 的“已启用”仅为验收历史。生产锚定改用显式手工触发，不自动恢复调度。线上最后已验收版本为 v193 / `6780e404`，工作分支正在整理为独立提交；后续修复未发布前，不应视为线上已生效。
 
 
@@ -94,12 +97,12 @@
 
 按依赖序三阶段：did:web 标识符与文档（含平台根 DID `/.well-known/did.json`）→ 钱包登录（SIWE 链适配层、字节级消息比对、原子 nonce 消费、地址优先解析、`__Host-` cookie + 独立 `WALLET_FLOW_SECRET`）→ VC（收据 VC 服务端签发、**委派 VC 浏览器签发 + 服务端三重写校验防投毒**、信任边界：`trustedIssuerKeys` 必选）。
 
-评审结论：安全视角 2 Critical（VC 写路径投毒、无密钥信任源）+ 7 Important，集成视角 5 Important——**全部已修入 spec**；cryptosuite 诚实命名为 `proofweave-ed25519-2020`（W3C 通用验证器不能直接验，需 Proofweave 验证器）。迁移编号需顺延：0047 已用于 anchor tick lease，A 的 wallet auth / delegation_credentials 应在实施时占用下一组未使用编号。
+评审结论：安全视角 2 Critical（VC 写路径投毒、无密钥信任源）+ 7 Important，集成视角 5 Important——**全部已修入 spec**；cryptosuite 诚实命名为 `proofweave-ed25519-2020`（W3C 通用验证器不能直接验，需 Proofweave 验证器）。迁移编号需顺延：0047 已用于 anchor tick lease、0048 用于 submission outbox；A 的 wallet auth / delegation_credentials 暂排 0049/0050，实施时再次核对。
 
 ## 6. 常用命令
 
 ```bash
-npm run anchor:check          # 锚定全部门禁（当前 99 测试）
+npm run anchor:check          # 锚定全部门禁（当前 115 测试）
 npm run check:fast            # 仓库快速门禁（含 anchor:check）
 npm run anchor:tick           # 单次 tick（幂等；--local <db> 可本地测）
 node scripts/verify-anchor-proof.mjs --type contribution_receipt --record <r.json> [--local <db>]

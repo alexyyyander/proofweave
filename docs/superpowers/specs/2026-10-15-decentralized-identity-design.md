@@ -138,8 +138,8 @@ POST /auth/wallet/verify   → { message, signature }
 | `app/auth.ts`（修改） | `AuthUser.provider` 联合加 `"wallet"`；`email` 改为可空（`email: string \| null`）；`getCurrentUser` 放行 wallet 会话（现在只认 `google\|proofweave` 且要求 email 非空——不改此处钱包登录会**静默变匿名**）；`providerLabel = "Wallet"`；`toPersonIdentity` 对 wallet 不再强制 `emailVerified: true` |
 | `db/repositories/delegation.ts`（修改） | `PersonIdentity.provider` 联合加 `"wallet"` |
 | `db/schema.ts`（修改） | `persons.identityProvider` 枚举值加 `"wallet"` |
-| 迁移 `0047_add_wallet_auth.sql` | 新表 `wallet_auth_challenges`（`id, nonce_hash(唯一), created_at, expires_at, consumed_at`）；`person_identities` 加列 `wallet_address TEXT NULL` + 部分唯一索引（`WHERE provider='wallet'`） |
-| 迁移 `0048_add_delegation_credentials.sql` | 新表 `delegation_credentials`（`delegation_id(唯一), vc_payload_hash, canonical_vc, created_at`） |
+| 迁移 `0049_add_wallet_auth.sql` | 新表 `wallet_auth_challenges`（`id, nonce_hash(唯一), created_at, expires_at, consumed_at`）；`person_identities` 加列 `wallet_address TEXT NULL` + 部分唯一索引（`WHERE provider='wallet'`） |
+| 迁移 `0050_add_delegation_credentials.sql` | 新表 `delegation_credentials`（`delegation_id(唯一), vc_payload_hash, canonical_vc, created_at`） |
 | `app/auth/wallet/*` 限频与清理 | 过期 challenge 行定期清理（tick 或查询时顺带删除） |
 
 配置：`WALLET_LOGIN_ENABLED`（默认关）、`WALLET_ACCEPTED_CHAINS_JSON`（默认 `[8453,1]`）、`WALLET_CHALLENGE_TTL_SECONDS`（默认 600）、`WALLET_FLOW_SECRET`（flow cookie HMAC，独立密钥）。
@@ -187,7 +187,7 @@ export async function verifyVerifiableCredential(vc, { trustedIssuerKeys }) -> {
 | GET | `/api/delegations/:id/credential` | 委派 VC——与现有 `/api/delegations/[id]` 相同的公开可见性（该端点本就公开），响应 `no-store` |
 | POST | `/api/credentials/verify` | body `{ verifiableCredential, trustedIssuerKeys? }` → 结构+签名核验（密钥信任源必选，见 §4 信任边界）→ `{ valid, checks }`；HTTP 200（验证语义非资源错误） |
 
-数据模型：收据 VC 服务端实时投影（幂等，无新表）；**委派 VC 因客户端签名需持久化**——新表 `delegation_credentials`（`delegation_id(唯一), vc_payload_hash, canonical_vc, created_at`，迁移并入 0047）。
+数据模型：收据 VC 服务端实时投影（幂等，无新表）；**委派 VC 因客户端签名需持久化**——新表 `delegation_credentials`（`delegation_id(唯一), vc_payload_hash, canonical_vc, created_at`，迁移 0050）。
 
 ## 5. 错误处理汇总
 
@@ -219,9 +219,11 @@ export async function verifyVerifiableCredential(vc, { trustedIssuerKeys }) -> {
 
 ## 7. 实现顺序（供计划细化）
 
+2026-10-16 编号更新：0047 已用于锚定租约，0048 用于签名交易 outbox；以下 0049/0050 为下一组计划编号，实施前需再次核对迁移历史。
+
 1. 阶段 1 DID：`did-web.mjs` + multibase 工具 + `/.well-known/did.json` + 文档端点（纯函数先行）。
-2. 阶段 2 钱包登录：`signed-flow-cookie.mjs` 抽取 → 迁移 0047 → 适配器 + EVM SIWE → 三条路由 + `app/auth.ts`/类型联合扩展 → settings 绑定 → 登录页入口（门控）。
-3. 阶段 3 VC：`verifiable-credential.mjs`（含信任边界）→ 迁移 0048 + 委派 VC 浏览器签发与写入校验 → 收据 VC 端点 → 验证端点。
+2. 阶段 2 钱包登录：`signed-flow-cookie.mjs` 抽取 → 迁移 0049 → 适配器 + EVM SIWE → 三条路由 + `app/auth.ts`/类型联合扩展 → settings 绑定 → 登录页入口（门控）。
+3. 阶段 3 VC：`verifiable-credential.mjs`（含信任边界）→ 迁移 0050 + 委派 VC 浏览器签发与写入校验 → 收据 VC 端点 → 验证端点。
 4. 文档：`docs/did-contract.md`、README/登录页更新。
 
 ## 8. 部署与配置注意

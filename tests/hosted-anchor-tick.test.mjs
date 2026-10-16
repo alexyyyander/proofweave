@@ -10,7 +10,7 @@ import { researchCheckpointHash, researchCheckpointPayloadHash, researchCheckpoi
 import { canonicalJson } from "../packages/protocol/canonical-json.mjs";
 async function setup(t) {
  const db = new LibsqlD1Database(createClient({ url: "file::memory:" })); t.after(() => db.close());
- for (const name of ["0046_add_anchor_tables.sql", "0047_add_anchor_tick_lease.sql"]) {
+ for (const name of ["0046_add_anchor_tables.sql", "0047_add_anchor_tick_lease.sql", "0048_add_anchor_submission_outbox.sql"]) {
   for (const sql of (await readFile(new URL(`../drizzle/${name}`, import.meta.url), "utf8")).split("--> statement-breakpoint").filter(s=>s.trim())) await db.prepare(sql).run();
  }
  for (const sql of [
@@ -50,7 +50,7 @@ test("hosted tick anchors signed public checkpoint, excludes internal records an
  await database.prepare("INSERT INTO contribution_receipt_publications VALUES ('private','smoke_test','internal')").run();
  await database.prepare("INSERT INTO artifact_bundles VALUES ('staged', 'not-a-hash', '{}', 'today')").run();
  const objects = new Map(); const adapter = createMockAnchorAdapter(); let submits=0;
- const submit = adapter.submitRoot; adapter.submitRoot = async p => {submits++; return submit(p);};
+ const broadcast = adapter.broadcastPreparedRoot; adapter.broadcastPreparedRoot = async (p, payload) => {submits++; return broadcast(p, payload);};
  const options = {database, registry:new Map([["mock:local",adapter]]),bucket:{put:async(k,v)=>objects.set(k,v),get:async k=>objects.get(k)},config:{minLeafCount:100,maxIntervalSeconds:86400,confirmationThreshold:12}};
  const first = await runHostedAnchorTick(options);
  assert.equal(first.summary.enqueued,1); assert.equal(first.summary.leafCount,1);

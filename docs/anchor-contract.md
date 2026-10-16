@@ -203,7 +203,7 @@ bytes32 root | bytes32 manifestHash | uint256 leafCount | bytes32 prevRoot
   `tron` factory lazy-imports TronWeb 6.5.1. Only `solana` remains a stub.
 - TRON uses a 1 SUN transfer to the configured sink; `raw_data.data` contains
   the same 128 bytes as EVM calldata. The SDK constructs and signs the
-  transaction locally. A successful broadcast response is required before
+  transaction locally. A successful broadcast response or an exact-byte transaction lookup is required before
   returning `tron:<network>:<64 lowercase hex characters>`. If broadcast
   status is uncertain, inspect the transaction before retrying.
 - TRON confirmation requires a receipt and successful transaction from
@@ -214,7 +214,9 @@ bytes32 root | bytes32 manifestHash | uint256 leafCount | bytes32 prevRoot
   See [TRON confirmation semantics](https://developers.tron.network/docs/confirmation-semantics).
 - Read-only EVM and TRON adapters require only `network` and `rpcUrl` (plus an optional
   confirmation threshold). They read payloads and confirmations without a
-  wallet or private key. Only `submitRoot` requires a signing key and sink.
+  wallet or private key. `prepareRoot` (and the one-shot `submitRoot` helper)
+  requires a signing key and sink. Replaying a persisted transaction requires
+  the public operator and sink configuration, but no private key.
   An optional public `operatorAddress` supplies the platform identity for
   witness checks; witness admission fails closed if that identity is unknown.
   If both the public address and a signing key are configured, they must match.
@@ -376,8 +378,8 @@ has elapsed. Zero pending records → no batch (never an empty append). The
 deployment-level trigger is `npm run anchor:tick` once per interval, which
 drives the coordinator's build, confirmation polling, and crash recovery;
 the cron schedule itself is deployment configuration. Crash recovery
-resubmits `built` batches (same root, new txRef as an additional platform
-submission).
+recovers `built` batches using the same persisted signed transaction and txRef.
+It never creates a replacement signature for an existing outbox entry.
 
 ### The anchor tick script
 
@@ -406,7 +408,8 @@ failedBatches }`) to stdout.
   With multiple configured adapters, the first `ANCHOR_ADAPTERS_JSON` entry is
   the platform adapter that builds and confirms batches.
 - Exit codes: 0 when the tick ran (including conflict and disabled outcomes);
-  1 for argument, configuration, or IO errors.
+  1 for argument, configuration, IO, expired-transaction or legacy-recovery errors;
+  2 for confirmation polling errors or failed batches.
 
 ### Enable/disable
 
@@ -433,3 +436,31 @@ Every state change appends an immutable event row to `anchor_batch_events`
 (`batch_built`, `platform_submitted`, `submission_confirmed`,
 `submission_failed`, `witness_count_synced`, `batch_confirmed`,
 `batch_abandoned`), alongside the projection, in the same transaction.
+
+
+### Durable platform submission (migration 0048)
+
+The coordinator writes the canonical signed transaction and its txRef to
+`anchor_submission_outbox` before broadcasting. A batch has one immutable
+outbox entry. Concurrent preparers use the first persisted entry. A failed
+outbox write prevents broadcast, including when the write acknowledgement is
+lost. Recovery reads that entry, checks the transaction identity, operator,
+destination and complete anchor payload, then queries the chain or broadcasts
+the same signed transaction. EVM also validates the RPC chain ID.
+
+TRON transactions that have expired and cannot be found on-chain stop with an
+error. EVM nonce conflicts also stop without selecting a new nonce. A duplicate
+RPC error alone is not acceptance evidence; the adapter must find the expected
+transaction. The `submitRoot` helper remains a one-shot convenience and does not
+provide persistence guarantees; platform ticks must use the coordinator.
+
+Migration 0048 marks pre-existing `built` batches `legacy_unknown`, because an
+old worker may have broadcast without recording the transaction ID. These rows
+require manual chain reconciliation; automatic recovery fails rather than
+signing again. Pause all tick writers and let in-flight requests finish before
+applying 0048, then deploy the new worker before any tick resumes. Do not run an
+old worker against the new outbox protocol or remove an outbox row to retry.
+
+This prevents a database or response failure from producing a new transaction
+identity. It does not make the blockchain and database one atomic transaction,
+and it cannot guarantee progress through expired transactions or unavailable RPCs.

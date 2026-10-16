@@ -14,7 +14,7 @@ const FAILED_CONFIRMATION_STATUSES = new Set(["failed", "reverted", "dropped"]);
 
 /**
  * Orchestrates the anchoring pipeline: build → content-addressed manifest store →
- * platform submitRoot → markSubmitted, plus confirmation polling, crash recovery,
+ * persist prepared transaction → broadcast → markSubmitted, plus confirmation polling, crash recovery,
  * and the five-gate witness submission flow (spec §2.4).
  *
  * submitWitness rejection reasons:
@@ -61,17 +61,26 @@ export function createAnchorCoordinator({
     return manifest;
   }
 
-  /** Shared submission path: store manifest (idempotent, content-addressed) → submitRoot → markSubmitted. */
+  /** Persist the signed transaction before broadcast. Retries use the outbox winner. */
   async function submitBuiltBatch(batch, manifest = null) {
     const manifestToStore = manifest ?? await rebuildManifest(batch);
     const { key } = await manifestStorage.put(manifestToStore);
-    const { txRef } = await adapter.submitRoot({
+    if (typeof adapter.prepareRoot !== "function" || typeof adapter.broadcastPreparedRoot !== "function") {
+      throw new AnchorCoordinatorError("Platform adapter must support durable prepared submissions.");
+    }
+    const payload = {
       root: batch.root,
       manifestHash: batch.manifest_hash,
       leafCount: batch.leaf_count,
       prevRoot: batch.prev_root,
       batchId: batch.id,
-    });
+    };
+    let prepared = await store.getPreparedSubmission(batch.id);
+    if (!prepared) {
+      prepared = await store.savePreparedSubmission(batch.id, await adapter.prepareRoot(payload), now());
+    }
+    const { txRef } = await adapter.broadcastPreparedRoot(prepared, payload);
+    if (txRef !== prepared.txRef) throw new AnchorCoordinatorError("Broadcast transaction reference differs from the durable outbox.");
     await store.markSubmitted(batch.id, txRef, now());
     return { batch: await store.getBatch(batch.id), txRef, manifestKey: key };
   }
@@ -165,17 +174,14 @@ export function createAnchorCoordinator({
     },
 
     /**
-     * Crash recovery: status='built' batches (crashed between createBatch and markSubmitted) redo
-     * manifestStorage.put (idempotent, content-addressed same key — the manifest is rebuilt from the
-     * immutable batch projection and verified against its recorded hash) + adapter.submitRoot (new
-     * txRef, another platform submission row) + markSubmitted. Same batch can have multiple
-     * submissions; unique (chain,network,tx_ref) prevents txRef duplicates. Returns the number of
-     * recovered batches.
+     * Recover built batches using their persisted transaction: look it up or replay the
+     * same bytes, then repair the database projection. Never re-sign an existing outbox.
+     * Migration-marked legacy ambiguous attempts require manual reconciliation.
      */
     async resumeUnfinishedBatches() {
       let recovered = 0;
       for (;;) {
-        const built = (await store.listBatches({ limit: 500 })).filter((batch) => batch.status === "built");
+        const built = await store.listBatches({ limit: 500, status: "built" });
         if (built.length === 0) break;
         for (const batch of built) {
           await submitBuiltBatch(batch);

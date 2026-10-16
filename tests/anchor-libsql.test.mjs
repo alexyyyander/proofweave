@@ -14,8 +14,10 @@ import { verifyAnchorManifest } from "../packages/protocol/anchor-manifest.mjs";
 async function setup(t) {
   const db = new LibsqlD1Database(createClient({ url: "file::memory:" }));
   t.after(() => db.close());
-  const sql = await readFile(new URL("../drizzle/0046_add_anchor_tables.sql", import.meta.url), "utf8");
-  for (const statement of sql.split("--> statement-breakpoint").map((s) => s.trim()).filter(Boolean)) await db.prepare(statement).run();
+  for (const name of ["0046_add_anchor_tables.sql", "0048_add_anchor_submission_outbox.sql"]) {
+    const sql = await readFile(new URL(`../drizzle/${name}`, import.meta.url), "utf8");
+    for (const statement of sql.split("--> statement-breakpoint").map((s) => s.trim()).filter(Boolean)) await db.prepare(statement).run();
+  }
   const store = new D1AnchorStore(db);
   const intake = createAnchorIntake(store);
   const builder = createAnchorBatchBuilder({ store, chain: "mock", network: "local" });

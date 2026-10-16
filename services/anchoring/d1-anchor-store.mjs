@@ -301,6 +301,29 @@ export class D1AnchorStore {
     return { batch: await this.getBatch(batchId), submissionId };
   }
 
+  async getPreparedSubmission(batchId) {
+    const row = await this.database.prepare("SELECT * FROM anchor_submission_outbox WHERE batch_id = ?")
+      .bind(batchId).first();
+    if (!row) return null;
+    if (row.state !== "prepared") throw new Error("Legacy anchor submission needs manual chain reconciliation before recovery.");
+    const prepared = JSON.parse(row.prepared_json);
+    if (prepared.txRef !== row.tx_ref) throw new Error("Anchor outbox transaction reference mismatch.");
+    return prepared;
+  }
+
+  async savePreparedSubmission(batchId, prepared, createdAt) {
+    const batch = await this.getBatch(batchId);
+    if (!batch || batch.status !== "built") throw new AnchorStoreConflictError("Only built anchor batches can prepare a submission.");
+    if (typeof prepared?.txRef !== "string" || !prepared.txRef.startsWith(`${batch.chain}:${batch.network}:`)
+      || !prepared.signedTransaction) throw new TypeError("Prepared anchor transaction must match the batch network.");
+    // First writer wins. Every contender must load this winner before broadcast.
+    await this.database.prepare(`INSERT INTO anchor_submission_outbox
+      (batch_id, state, tx_ref, prepared_json, created_at) VALUES (?, 'prepared', ?, ?, ?)
+      ON CONFLICT(batch_id) DO NOTHING`)
+      .bind(batchId, prepared.txRef, canonicalJson(prepared), createdAt).run();
+    return this.getPreparedSubmission(batchId);
+  }
+
   async recordSubmission({ batchId, submitterKind, submitterId, chain, network, txRef, submittedAt }) {
     const result = await this.database
       .prepare(

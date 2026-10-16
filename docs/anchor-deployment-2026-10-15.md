@@ -111,3 +111,14 @@ node scripts/run-hosted-anchor-tick.mjs --credentials outputs/anchor-production-
 凭据文件权限 0600、忽略提交。已启用 Codex heartbeat 每 15 分钟调用，依赖本机和 Codex 可运行，不等同于全天候云 cron。公开 manifest 响应头 `x-anchor-manifest-source: bucket` 用于验证 R2 读取路径。链上记录证明内容绑定与存在性，不证明数学正确性，也不构成独立见证。
 
 异常边界：网络广播成功但本地提交投影写入失败，仍须先核查链上交易再决定恢复操作；租约防止并发调用，不提供跨链广播与数据库提交的原子性。
+
+
+## 9. 0048 outbox 修复上线前检查（本次未部署）
+
+本地新增 `0048_add_anchor_submission_outbox.sql`。发布前必须停止所有旧版本 tick 入口并等待在途请求结束，再应用迁移、部署新代码，最后手工验证；不要只停定时任务而继续允许旧 worker 被手工调用。迁移会将既有 built 批次标记为 legacy_unknown，防止历史广播状态不明时重新签名。已 submitted/confirmed 批次仍按原投影读取与确认。
+
+新路径：manifest → 签名交易持久化 → 查询/广播同一交易 → 写入 submitted → 确认。落库或响应中断不生成新 txRef。遇到过期 TRON 或未知旧批次，返回失败并等待运营核查；不能通过删除 outbox、换 nonce 或重签名自动绕过。新迁移尚未应用到生产，线上仍是此前验收的 v193。
+
+自动任务 `proofweave-nile` 已按用户要求暂停，后续发布也不应自动恢复。人工验收与是否需要持续调度是两个独立事项。
+
+本地验收：`anchor:check` 115/115，`portable:database:check` 22/22，修改文件 ESLint、隔离源码 typecheck 与构建通过。故障测试覆盖写入前失败、写入后响应丢失、广播响应丢失、广播后投影失败、投影提交后响应丢失、进程重启、并发写入、旧批次迁移隔离、TRON 过期和 EVM nonce 冲突。未用生产凭据或发送新的链上交易。

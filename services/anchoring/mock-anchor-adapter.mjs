@@ -3,15 +3,21 @@
 export function createMockAnchorAdapter({ network = "local", operatorAddress = "mock:operator", confirmations = 12 } = {}) {
   const txs = new Map();
   let counter = 0;
-  return {
+  const adapter = {
     id: "mock",
     network,
     operatorAddress,
-    async submitRoot({ root, manifestHash, leafCount, prevRoot, batchId, sender }) {
+    async prepareRoot({ root, manifestHash, leafCount, prevRoot, batchId, sender }) {
       const txId = `tx-${(counter += 1)}`;
       // sender is mock-only and defaults to operator; used by witness independence tests (real adapters ignore it).
-      txs.set(txId, { root, manifestHash, leafCount, prevRoot, batchId, sender: sender ?? operatorAddress });
-      return { txRef: `mock:${network}:${txId}` };
+      return { txRef: `mock:${network}:${txId}`, signedTransaction: { root, manifestHash, leafCount, prevRoot, batchId: batchId ?? null, sender: sender ?? operatorAddress } };
+    },
+    async broadcastPreparedRoot(prepared) {
+      txs.set(prepared.txRef.split(":").at(-1), prepared.signedTransaction);
+      return { txRef: prepared.txRef };
+    },
+    async submitRoot(payload) {
+      return adapter.broadcastPreparedRoot(await adapter.prepareRoot(payload), payload);
     },
     async getConfirmation() {
       return { status: "confirmed", confirmations, blockRef: `mock-block-${confirmations}` };
@@ -22,4 +28,5 @@ export function createMockAnchorAdapter({ network = "local", operatorAddress = "
       return tx ? { root: tx.root, manifestHash: tx.manifestHash, leafCount: tx.leafCount, prevRoot: tx.prevRoot, sender: tx.sender } : null;
     },
   };
+  return adapter;
 }

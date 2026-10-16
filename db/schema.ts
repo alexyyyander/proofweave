@@ -2085,3 +2085,12 @@ export const anchorTickLeases = sqliteTable("anchor_tick_leases", {
   owner: text("owner").notNull(),
   expiresAt: integer("expires_at").notNull(),
 });
+
+// Signed transactions contain no private key; retain them for exact-byte replay.
+export const anchorSubmissionOutbox = sqliteTable("anchor_submission_outbox", {
+  batchId: text("batch_id").primaryKey().references(() => anchorBatches.id, { onDelete: "restrict" }),
+  state: text("state", { enum: ["prepared", "legacy_unknown"] }).notNull(),
+  txRef: text("tx_ref").unique(),
+  preparedJson: text("prepared_json"),
+  createdAt: text("created_at").notNull(),
+});

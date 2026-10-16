@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { TronWeb, Trx, providers, utils } from "tronweb";
 import { createTronAnchorAdapter } from "../services/anchoring/tron-anchor-adapter.mjs";
+import { canonicalJson } from "../packages/protocol/canonical-json.mjs";
 import { encodeAnchorCalldata } from "../services/anchoring/evm-anchor-adapter.mjs";
 
 const privateKey = "1".padStart(64, "0");
@@ -64,9 +65,10 @@ test("TRON malformed memo and mismatched transaction IDs fail closed", async (t)
 });
 
 test("TRON builds and signs one-SUN memo locally and checks broadcast acceptance", async (t) => {
-  t.mock.method(Trx.prototype, "getCurrentRefBlockParams", async () => ({ ref_block_bytes: "1234", ref_block_hash: "12".repeat(8), timestamp: 1792060000000, expiration: 1792060060000 }));
+  t.mock.method(Trx.prototype, "getCurrentRefBlockParams", async () => ({ ref_block_bytes: "1234", ref_block_hash: "12".repeat(8), timestamp: Date.now(), expiration: Date.now() + 60000 }));
   let accepted = true;
   t.mock.method(providers.HttpProvider.prototype, "request", async (path, signed) => {
+    if (path === "wallet/gettransactionbyid") return {};
     assert.equal(path, "wallet/broadcasttransaction");
     assert.equal(signed.raw_data.data, encodeAnchorCalldata(payload).slice(2));
     assert.equal(signed.raw_data.contract.length, 1);
@@ -85,4 +87,72 @@ test("TRON rejects mismatched operator identity and invalid configuration", asyn
   await assert.rejects(() => createTronAnchorAdapter({ ...config, operatorPrivateKeyJwk: { ...jwk, d: "bad" } }), /JWK/);
   await assert.rejects(() => createTronAnchorAdapter({ ...config, confirmationThreshold: 0 }), /positive integer/);
   await assert.rejects(() => createTronAnchorAdapter({ ...config, network: "unknown" }), /network/);
+});
+
+function preparedRpc(t) {
+  t.mock.method(Trx.prototype, "getCurrentRefBlockParams", async () => ({
+    ref_block_bytes: "1234", ref_block_hash: "12".repeat(8), timestamp: Date.now(), expiration: Date.now() + 60000,
+  }));
+  const chain = new Map();
+  const attempts = [];
+  const state = { loseResponse: false, reject: false };
+  t.mock.method(providers.HttpProvider.prototype, "request", async (path, args) => {
+    if (path === "wallet/gettransactionbyid") return chain.get(args.value) ?? {};
+    assert.equal(path, "wallet/broadcasttransaction");
+    attempts.push(structuredClone(args));
+    if (state.reject) return { result: false, code: "BANDWIDTH_ERROR" };
+    chain.set(args.txID, structuredClone(args));
+    if (state.loseResponse) throw new Error("response lost");
+    return { result: true, txid: args.txID };
+  });
+  return { chain, attempts, state };
+}
+
+test("TRON reconciles lost broadcast response and restarts without re-signing", async t => {
+  const f = preparedRpc(t);
+  const writer = await createTronAnchorAdapter({ ...config, operatorPrivateKeyJwk: jwk });
+  const prepared = JSON.parse(canonicalJson(await writer.prepareRoot(payload)));
+  assert.equal(f.attempts.length, 0);
+  f.state.loseResponse = true;
+  assert.deepEqual(await writer.broadcastPreparedRoot(prepared, payload), { txRef: prepared.txRef });
+  const reader = await createTronAnchorAdapter(config);
+  assert.deepEqual(await reader.broadcastPreparedRoot(prepared, payload), { txRef: prepared.txRef });
+  assert.equal(f.attempts.length, 1);
+});
+
+test("TRON retries rejected broadcasts using identical signed bytes", async t => {
+  const f = preparedRpc(t);
+  const adapter = await createTronAnchorAdapter({ ...config, operatorPrivateKeyJwk: jwk });
+  const prepared = await adapter.prepareRoot(payload);
+  f.state.reject = true;
+  await assert.rejects(() => adapter.broadcastPreparedRoot(prepared, payload), /BANDWIDTH_ERROR/);
+  f.state.reject = false;
+  await adapter.broadcastPreparedRoot(JSON.parse(JSON.stringify(prepared)), payload);
+  assert.equal(f.attempts.length, 2);
+  assert.deepEqual(f.attempts[0], f.attempts[1]);
+});
+
+test("expired unknown TRON transaction stops; an already accepted expired transaction reconciles", async t => {
+  const f = preparedRpc(t);
+  const adapter = await createTronAnchorAdapter({ ...config, operatorPrivateKeyJwk: jwk });
+  const prepared = await adapter.prepareRoot(payload);
+  t.mock.method(Date, "now", () => prepared.signedTransaction.raw_data.expiration + 1);
+  await assert.rejects(() => adapter.broadcastPreparedRoot(prepared, payload), /expired.*manual reconciliation/);
+  assert.equal(f.attempts.length, 0);
+  f.chain.set(prepared.signedTransaction.txID, prepared.signedTransaction);
+  assert.equal((await adapter.broadcastPreparedRoot(prepared, payload)).txRef, prepared.txRef);
+  assert.equal(f.attempts.length, 0);
+});
+
+test("TRON rejects corrupted outbox bytes, wrong payload and mismatched destination before broadcast", async t => {
+  const f = preparedRpc(t);
+  const adapter = await createTronAnchorAdapter({ ...config, operatorPrivateKeyJwk: jwk });
+  const prepared = await adapter.prepareRoot(payload);
+  const corrupt = structuredClone(prepared);
+  corrupt.signedTransaction.raw_data.contract[0].parameter.value.amount = 2;
+  await assert.rejects(() => adapter.broadcastPreparedRoot(corrupt, payload), /does not match/);
+  await assert.rejects(() => adapter.broadcastPreparedRoot(prepared, { ...payload, leafCount: 3 }), /does not match/);
+  const moved = await createTronAnchorAdapter({ ...config, sinkAddress: owner });
+  await assert.rejects(() => moved.broadcastPreparedRoot(prepared, payload), /does not match/);
+  assert.equal(f.attempts.length, 0);
 });

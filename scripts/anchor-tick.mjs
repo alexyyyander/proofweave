@@ -60,24 +60,23 @@ async function main() {
   }
   const store = new D1AnchorStore(createDatabase(options.values.local));
   const { summary, exitCode } = await withAnchorTickLease(store.database, async (renew) => {
-  const adapter = firstAdapterOf(registry);
-  const coordinator = createAnchorCoordinator({
-    store,
-    builder: createAnchorBatchBuilder({ store, ...platformChainOf(registry) }),
-    manifestStorage: await manifestStorageFromEnvironment(),
-    adapter: { ...adapter, async submitRoot(payload) { await renew(); return adapter.submitRoot(payload); } },
-    config: anchorCoordinatorConfigFromEnvironment(),
-    // resume/build/poll never verify witness authority; ticks submit none.
-    verifyWitnessAuthority: async () => {
-      throw new Error("Anchor ticks do not submit witness evidence.");
-    },
-  });
-  return runAnchorTick(coordinator);
+    const adapter = firstAdapterOf(registry);
+    const coordinator = createAnchorCoordinator({
+      store,
+      builder: createAnchorBatchBuilder({ store, ...platformChainOf(registry) }),
+      manifestStorage: await manifestStorageFromEnvironment(),
+      adapter: { ...adapter, async broadcastPreparedRoot(prepared, payload) { await renew(); return adapter.broadcastPreparedRoot(prepared, payload); } },
+      config: anchorCoordinatorConfigFromEnvironment(),
+      // resume/build/poll never verify witness authority; ticks submit none.
+      verifyWitnessAuthority: async () => {
+        throw new Error("Anchor ticks do not submit witness evidence.");
+      },
+    });
+    return runAnchorTick(coordinator);
   });
   emitSummary(summary);
   process.exitCode = exitCode;
 }
-
 
 function parseArguments() {
   return parseArgs({
