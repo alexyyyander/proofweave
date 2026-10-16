@@ -1,5 +1,9 @@
 # 链上锚定部署清单（2026-10-15）
 
+**2026-10-16 12:28 CST 再发布与入口诊断**：已重新发布同一已验证版本 v194，部署 `appgdep_6ad1a7d6ee3c819199f5017e097a6277` 返回 succeeded，环境仍为 revision 53；未更改应用源码或新增迁移。刷新后的域名、提供商状态与 TLS 均为 active。官方服务鉴权探测仍返回 Cloudflare 403。再发布后平台 Worker 日志显示首页、工作台、研究页等 HTTP 200，但本机手工 tick 返回 `edge_blocked` / HTTP 403，Ray ID `a4b4534429175b4c-LAX`。现有工具没有 Cloudflare 边缘规则管理权限，需要 Sites 平台管理员按此 Ray ID 排查并修正适用的访问规则；尚未证明具体规则或触发条件。不能以重复部署代替入口修复，也未重新启用定时任务。
+
+本地运维脚本已修复非 JSON 响应诊断：保留 HTTP 状态、Content-Type 与 Ray ID，不输出 HTML 或传输异常中的敏感内容；不跟随重定向，不自动重试结果未知的 POST。新增回归测试 `node --test tests/run-hosted-anchor-tick.test.mjs` 7/7 通过。该改动属于本地手工调用工具，不改变已部署的 v194 Worker。
+
 **2026-10-16 12:15 CST 发布更新**：Sites **v194** / `1277892910b3bffdd61d7e34e2530d9bba4f0204` 已部署成功（环境 revision 53），生产 Turso 已应用并验证 `0048_add_anchor_submission_outbox.sql`（共 49 项迁移）。发布前取得共享维护锁，确认只有 1 个 confirmed 批次、无在途 tick；发布后解除维护锁，outbox 为空。原公开检查点再次经无私钥 Nile CLI 核验为 `verified`。生产基线合入后的锚定门禁 115/115、数据库门禁 22/22、构建通过。自动任务保持 PAUSED。
 
 **验收缺口**：本机访问自定义域名与 Sites 官方生产地址均收到 Cloudflare 403 HTML；浏览器也未能打开公开接口。本次未完成新版 hosted tick / R2 HTTP 验收，未产生新链上交易，不能将本次发布描述为新的端到端广播实测。入口恢复后，手工调用 tick 并检查 HTTP、status、batchCreated、confirmedBatches、failedBatches、errors，再检查公开 manifest。已有测试网存证不证明数学正确性。本机证据位于 `outputs/anchor-outbox-rollout-20261016/`。
