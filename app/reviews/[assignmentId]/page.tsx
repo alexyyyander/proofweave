@@ -1,9 +1,13 @@
+import { Breadcrumb } from "@/app/components/navigation/Breadcrumb";
+import { PageTitle, Badge, ActionLink, SectionHeading } from "@/app/components/ui";
+
+import { SiteFrame } from "@/app/components/shell/SiteFrame";
+
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getCurrentUser, signInPath, toPersonIdentity } from "@/app/auth";
 import { hasActiveReviewDelegation } from "@/app/lib/review-authority";
-import { Footer } from "@/app/ui";
-import { Header } from "@/app/header";
+
 import { PersonalWorkspaceFrame } from "@/app/PersonalWorkspaceFrame";
 import { MissingDatabaseBindingError } from "@/db";
 import { getDelegationRepository } from "@/db/repositories/delegation";
@@ -29,16 +33,12 @@ export default async function ReviewAssignmentPage({ params }: { params: Promise
   const result = await loadReviewAssignment(user, assignmentId);
   if (result.unavailable) return <ReviewAssignmentMessage unavailable />;
   if (!result.review) notFound();
-  return <div className="site-shell app-shell">
-    <Header active="review" />
-    <main id="main-content" tabIndex={-1} className="page-main review-main review-workspace-main personal-workspace-main">
+  return <SiteFrame className="site-shell app-shell" active="review" mainClassName="page-main review-main review-workspace-main personal-workspace-main">
       <PersonalWorkspaceFrame active="reviews">
-        <div className="breadcrumb"><Link href="/reviews">Verification market</Link><span> / </span><span>Review workspace</span></div>
+        <Breadcrumb><Link href="/reviews">Verification market</Link><span> / </span><span>Review workspace</span></Breadcrumb>
         <ReviewAssignmentWorkspace initialReview={result.review} hasReviewDelegation={result.hasReviewDelegation} />
       </PersonalWorkspaceFrame>
-    </main>
-    <Footer />
-  </div>;
+    </SiteFrame>;
 }
 
 async function loadReviewAssignment(user: NonNullable<Awaited<ReturnType<typeof getCurrentUser>>>, assignmentId: string) {
@@ -56,15 +56,11 @@ async function loadReviewAssignment(user: NonNullable<Awaited<ReturnType<typeof 
 }
 
 function ReviewAssignmentMessage({ signInPath: loginPath, unavailable }: { signInPath?: string; unavailable?: boolean }) {
-  return <div className="site-shell app-shell">
-    <Header active="review" />
-    <main id="main-content" tabIndex={-1} className="page-main review-main personal-workspace-main">
+  return <SiteFrame className="site-shell app-shell" active="review" mainClassName="page-main review-main personal-workspace-main">
       <PersonalWorkspaceFrame active="reviews">
-        <div className="breadcrumb"><Link href="/reviews">Verification market</Link><span> / </span><span>Controlled review</span></div>
-        <section className="review-heading"><div><p className="eyebrow">Person-addressed review</p><h1>{unavailable ? "Review work is temporarily unavailable." : "Sign in to open this review workspace."}</h1><p>{unavailable ? "No unverified fallback assignment is shown while storage is unavailable." : "Only the Person assigned to this independent review can inspect its Bundle, replay state, and immutable decision history."}</p></div><span className="record-chip">{unavailable ? "Unavailable" : "Personal"}</span></section>
-        {loginPath && <Link className="button button-primary review-sign-in" href={loginPath}>Sign in to continue <span aria-hidden="true">→</span></Link>}
+        <Breadcrumb><Link href="/reviews">Verification market</Link><span> / </span><span>Controlled review</span></Breadcrumb>
+        <SectionHeading as="section" className="review-heading"><div><p className="eyebrow">Person-addressed review</p><PageTitle>{unavailable ? "Review work is temporarily unavailable." : "Sign in to open this review workspace."}</PageTitle><p>{unavailable ? "No unverified fallback assignment is shown while storage is unavailable." : "Only the Person assigned to this independent review can inspect its Bundle, replay state, and immutable decision history."}</p></div><Badge className="record-chip">{unavailable ? "Unavailable" : "Personal"}</Badge></SectionHeading>
+        {loginPath && <ActionLink className="button button-primary review-sign-in" href={loginPath}>Sign in to continue <span aria-hidden="true">→</span></ActionLink>}
       </PersonalWorkspaceFrame>
-    </main>
-    <Footer />
-  </div>;
+    </SiteFrame>;
 }

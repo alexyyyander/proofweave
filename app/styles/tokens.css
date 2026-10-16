@@ -1,0 +1,87 @@
+/* Shared visual tokens. Feature layouts consume these without redefining the scale. */
+:root {
+  --type-card-title: 20px;
+  --type-body: 14px;
+  --type-caption: 12px;
+  --type-control: 14px;
+  --font-editorial: Georgia, "Times New Roman", serif;
+  --page-content-width: 1120px;
+  --type-page-title: 40px;
+  --type-page-description: 16px;
+  --type-page-label: 12px;
+  --type-page-meta: 13px;
+  --ink: #152239;
+  --ink-soft: #45546a;
+  --ink-faint: #718096;
+  --navy: #0b1830;
+  --paper: #fbfaf6;
+  --paper-deep: #f1efe7;
+  --line: #d9d8d1;
+  --indigo: #3d5fe6;
+  --indigo-soft: #e8edff;
+  --sage: #3b644f;
+  --sage-soft: #e6f0e9;
+  --amber: #795b20;
+  --amber-soft: #fcf2d8;
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --content-page-title-size: clamp(42px, 4.25vw, 58px);
+  --editorial-page-column-gap: 70px;
+  --editorial-page-max-width: 1240px;
+  --surface: #ffffff;
+  --surface-muted: #f1efe7;
+  --radius-control: 8px;
+  --radius-card: 12px;
+  --shadow-card: 0 1px 2px rgba(20, 34, 57, .05);
+  --surface-0: #f1efe7;
+  --surface-1: #fbfaf6;
+  --surface-2: #ffffff;
+  --surface-3: #ffffff;
+  --hairline: rgba(21, 34, 57, .16);
+  --ring: 0 0 0 1px var(--hairline);
+  --radius-pill: 999px;
+  --radius-sm: 6px;
+  --radius-panel: 10px;
+  --radius-overlay: 16px;
+  --shadow-overlay: 0 18px 48px rgba(5, 16, 36, .18);
+  --t-micro: 70ms;
+  --t-settle: 120ms;
+  --t-panel: 300ms;
+  --ease-out: cubic-bezier(.2, .8, .2, 1);
+  --ease-snap: cubic-bezier(.16, 1, .3, 1);
+  --text-3xs: 9px;
+  --text-2xs: 10px;
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-md: 13px;
+  --text-lg: 14px;
+  --text-xl: 16px;
+  --display-2xs: 18px;
+  --display-xs: 20px;
+  --display-sm: 22px;
+  --display-md: 24px;
+  --display-lg: 27px;
+  --display-xl: 31px;
+  --display-2xl: 36px;
+  --display-3xl: 40px;
+  --display-4xl: 46px;
+  --display-5xl: 58px;
+  --display-fluid-sm: clamp(29px, 3vw, 42px);
+  --display-fluid-md: clamp(34px, 4vw, 54px);
+  --display-fluid-lg: clamp(42px, 5vw, 68px);
+  --display-fluid-xl: clamp(48px, 5.8vw, 80px);
+  --display-fluid-2xl: clamp(56px, 7vw, 104px);
+  --type-reading-lead: clamp(1rem, 1.4vw, 1.125rem);
+  --type-landing-title: clamp(2.375rem, 4.4vw, 3.75rem);
+  --type-section-title: 24px;
+}
+
+@media (max-width: 620px) {
+  :root { --type-page-title: 32px; }
+}
+
+/* next/font variables live on body; aliases must resolve in that scope. */
+body {
+  --font-ui: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  --font-code: var(--font-geist-mono), monospace;
+}

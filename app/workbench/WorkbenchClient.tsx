@@ -3,18 +3,15 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { DelegationProfile } from "@/db/repositories/delegation";
-import type { CatalogProblem } from "@/packages/domain/catalog";
-import type { McpAttempt, McpRunSummary } from "@/packages/domain/mcp";
-import type { ProvisionalContribution } from "@/db/repositories/provisional-contributions";
+import { type DelegationProfile } from "@/db/repositories/delegation";
+import { type CatalogProblem } from "@/packages/domain/catalog";
+import { type McpAttempt, type McpRunSummary } from "@/packages/domain/mcp";
+import { type ProvisionalContribution } from "@/db/repositories/provisional-contributions";
 import { DelegationSummary, FirstContributionPath, FocusAction, ProvisionalContributionLedger, ResearchWorkstation, SubmissionReadiness, WorkspaceSettingsPrompt } from "./workbench-sections";
 import { buildCodexResearchBrief, LocalAgentHandoff } from "./LocalAgentHandoff";
 import { ResearchLauncher } from "./ResearchLauncher";
 import { activeAttemptDelegation, activeLocalAgentAttempt, activeLocalCodexInstallation } from "../lib/local-agent-journey";
-import {
-  loadControlPlaneWriteAvailability,
-  type ControlPlaneWriteAvailability,
-} from "../lib/control-plane-write-capability";
+import { loadControlPlaneWriteAvailability, type ControlPlaneWriteAvailability } from "../lib/control-plane-write-capability";
 import { deriveWorkspaceMode, WorkspaceRecordLinks, WorkspaceSidebar, WorkspaceTopbar } from "./WorkspaceShell";
 
 export function WorkbenchClient({

@@ -1,9 +1,11 @@
 "use client";
 
+import { SectionTitle, CardTitle, Badge, Field, ActionLink, Button, EmptyState, FieldList, SectionHeading, Surface } from "@/app/components/ui";
+
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import type { PublicVerificationJob } from "@/db/repositories/verification-market";
+import { type PublicVerificationJob } from "@/db/repositories/verification-market";
 
 type VerificationMarketBoardProps = {
   initialJobs: readonly PublicVerificationJob[];
@@ -39,32 +41,32 @@ export function VerificationMarketBoard({
   };
 
   return <section className="verification-market" id="open-review-work" aria-labelledby="verification-market-title">
-    <div className="verification-market-heading">
-      <div><p className="eyebrow">Open verification work</p><h2 id="verification-market-title">Choose an exact claim to check.</h2><p>Every job is pinned to one Lean-accepted Bundle and one active credit pool. Claiming creates an immutable accepted assignment; only a completed, evidence-bearing review can later share the verification bucket.</p></div>
-      <span className="record-chip">{jobs.length} open</span>
-    </div>
+    <SectionHeading as="div" className="verification-market-heading">
+      <div><p className="eyebrow">Open verification work</p><SectionTitle id="verification-market-title">Choose an exact claim to check.</SectionTitle><p>Every job is pinned to one Lean-accepted Bundle and one active credit pool. Claiming creates an immutable accepted assignment; only a completed, evidence-bearing review can later share the verification bucket.</p></div>
+      <Badge className="record-chip">{jobs.length} open</Badge>
+    </SectionHeading>
     {error && <p className="review-message is-error" role="status">{error}</p>}
     {jobs.length === 0
-      ? <div className="verification-market-empty"><strong>No open review work right now.</strong><p>Jobs appear here only after an active pool receives a complete Bundle with accepted isolated Lean evidence. Draft pools, staged-only Bundles, and provisional checkpoints never create public work.</p></div>
-      : <div className="verification-job-grid">{jobs.map((job) => <article className="verification-job-card" key={job.id}>
+      ? <EmptyState as="div" className="verification-market-empty"><strong>No open review work right now.</strong><p>Jobs appear here only after an active pool receives a complete Bundle with accepted isolated Lean evidence. Draft pools, staged-only Bundles, and provisional checkpoints never create public work.</p></EmptyState>
+      : <div className="verification-job-grid">{jobs.map((job) => <Surface as="article" className="verification-job-card" key={job.id}>
         <div className="verification-job-top"><span className="micro-label">{job.target.projectSlug} · {isReceiptGate(job.claimType) ? "Receipt gate" : "quality review"}</span><span className="review-share-chip">{job.rewardWeight} {job.rewardWeight === 1 ? "share" : "shares"}</span></div>
-        <h3>{job.label}</h3>
+        <CardTitle>{job.label}</CardTitle>
         <p className="verification-job-target">{job.target.title}</p>
-        <dl>
-          <div><dt>Evidence required</dt><dd>{job.evidenceRequirement}</dd></div>
-          <div><dt>Exact Bundle</dt><dd><code>{shortHash(job.artifactBundleManifestHash)}</code></dd></div>
-          <div><dt>Pool</dt><dd>{job.pool.totalCredits.toLocaleString()} credits · {job.pool.verificationBucketPercentage}% verification bucket</dd></div>
-          <div><dt>Submitted by</dt><dd>{job.submittingAgentLabel}</dd></div>
-        </dl>
+        <FieldList>
+          <Field label="Evidence required">{job.evidenceRequirement}</Field>
+          <Field label="Exact Bundle"><code>{shortHash(job.artifactBundleManifestHash)}</code></Field>
+          <Field label="Pool">{job.pool.totalCredits.toLocaleString()} credits · {job.pool.verificationBucketPercentage}% verification bucket</Field>
+          <Field label="Submitted by">{job.submittingAgentLabel}</Field>
+        </FieldList>
         <div className="verification-job-actions">
           <Link className="text-link" href={`/explore/${encodeURIComponent(job.target.problemSlug)}`}>Inspect target <span>→</span></Link>
           {!signedIn
-            ? <Link className="button button-primary verification-claim" href={signInPath}>Sign in to claim</Link>
+            ? <ActionLink className="button button-primary verification-claim" href={signInPath}>Sign in to claim</ActionLink>
             : hasReviewDelegation
-              ? <button className="button button-primary verification-claim" type="button" disabled={busyId === job.id} onClick={() => claim(job)}>{busyId === job.id ? "Claiming…" : "Claim review"}</button>
-              : <Link className="button button-primary verification-claim" href="/integrations#review-agent">Enable review Agent</Link>}
+              ? <Button className="button button-primary verification-claim" type="button" disabled={busyId === job.id} onClick={() => claim(job)}>{busyId === job.id ? "Claiming…" : "Claim review"}</Button>
+              : <ActionLink className="button button-primary verification-claim" href="/integrations#review-agent">Enable review Agent</ActionLink>}
         </div>
-      </article>)}</div>}
+      </Surface>)}</div>}
     <p className="verification-market-boundary"><strong>Settlement boundary.</strong> Shares are weights within a fixed review budget, not transferable assets or payment promises. Conflict declarations close work safely but do not earn a share; error bonuses require independent adjudication.</p>
   </section>;
 }
