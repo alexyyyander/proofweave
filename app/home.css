@@ -45,6 +45,28 @@
 .home-showcase-shell .closing-section h2 { max-width: 34ch; }
 .home-showcase-shell .site-footer { margin-inline: var(--home-inset); padding-inline: 0; }
 
+/* The publication directory is an auxiliary entry within the navy introduction. */
+.home-publications-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  margin: 0;
+  padding: 28px var(--home-inset);
+  background: var(--navy);
+  color: #eef3ff;
+  border-bottom: 1px solid rgba(220, 230, 255, .18);
+}
+.home-publications-entry > div { min-width: 0; max-width: 760px; }
+.home-publications-entry .eyebrow { color: #9fb2e9; margin: 0 0 8px; }
+.home-publications-entry h2 { color: inherit; margin: 0 0 10px; }
+.home-publications-entry p:last-child { color: #b5c2d8; font-size: 13px; line-height: 1.7; margin: 0; }
+.home-publications-entry .button-secondary { flex-shrink: 0; white-space: nowrap; color: #eef3ff; border-color: rgba(220, 230, 255, .24); background: rgba(220, 230, 255, .04); }
+.home-publications-entry .button-secondary:hover { background: rgba(220, 230, 255, .09); }
+@media (max-width: 760px) {
+  .home-publications-entry { flex-direction: column; align-items: flex-start; gap: 20px; }
+}
+
 @media (max-width: 960px) {
   .home-showcase-shell .home-verification-actions { justify-items: start; }
   .home-showcase-shell .project-grid { grid-template-columns: 1fr; }

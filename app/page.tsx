@@ -12,7 +12,6 @@ import { ShowcaseExperience } from "@/app/showcase/ShowcaseExperience";
 import { ProductStateBadge } from "./ui";
 
 import "./home.css";
-import "./publications/publications.css";
 import publicationSummary from "@/data/publications/openai-math-summary.json";
 
 export const dynamic = "force-dynamic";
@@ -35,7 +34,7 @@ export default async function Home() {
 
         <section className="home-publications-entry" aria-labelledby="home-publications-title">
           <div><p className="eyebrow">Mathematics publications</p><SectionTitle id="home-publications-title">Explore the OpenAI mathematics release.</SectionTitle><p>{publicationSummary.statistics.manuscripts} manuscripts in {publicationSummary.statistics.families} result families. Read the papers, citations, and Lean proof scope.</p></div>
-          <ActionLink className="button button-primary" href="/publications">Browse publications <span aria-hidden="true">→</span></ActionLink>
+          <ActionLink variant="secondary" href="/publications">Browse publications <span aria-hidden="true">→</span></ActionLink>
         </section>
 
         <ShowcaseExperience verification={verification} />
