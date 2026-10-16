@@ -1,9 +1,13 @@
 # 链上锚定部署清单（2026-10-15）
 
-**2026-10-16 运维更新**：用户已明确要求停止自动任务，`proofweave-nile` 当前为 PAUSED；下文 2026-10-15 的“已启用”仅为验收历史。生产锚定改用显式手工触发，不自动恢复调度。线上最后已验收版本为 v193 / `6780e404`，工作分支正在整理为独立提交；后续修复未发布前，不应视为线上已生效。
+**2026-10-16 12:15 CST 发布更新**：Sites **v194** / `1277892910b3bffdd61d7e34e2530d9bba4f0204` 已部署成功（环境 revision 53），生产 Turso 已应用并验证 `0048_add_anchor_submission_outbox.sql`（共 49 项迁移）。发布前取得共享维护锁，确认只有 1 个 confirmed 批次、无在途 tick；发布后解除维护锁，outbox 为空。原公开检查点再次经无私钥 Nile CLI 核验为 `verified`。生产基线合入后的锚定门禁 115/115、数据库门禁 22/22、构建通过。自动任务保持 PAUSED。
+
+**验收缺口**：本机访问自定义域名与 Sites 官方生产地址均收到 Cloudflare 403 HTML；浏览器也未能打开公开接口。本次未完成新版 hosted tick / R2 HTTP 验收，未产生新链上交易，不能将本次发布描述为新的端到端广播实测。入口恢复后，手工调用 tick 并检查 HTTP、status、batchCreated、confirmedBatches、failedBatches、errors，再检查公开 manifest。已有测试网存证不证明数学正确性。本机证据位于 `outputs/anchor-outbox-rollout-20261016/`。
+
+**2026-10-16 发布前运维记录**：用户已明确要求停止自动任务，`proofweave-nile` 当前为 PAUSED；下文 2026-10-15 的“已启用”仅为验收历史。生产锚定改用显式手工触发，不自动恢复调度。线上最后已验收版本为 v193 / `6780e404`，工作分支正在整理为独立提交；后续修复未发布前，不应视为线上已生效。
 
 
-**当前状态（2026-10-15 22:07 CST）**：已部署 Sites v193（`6780e404`，环境 revision 52），生产账本已到 0047。Nile 的真实公开检查点已完成入队→R2→广播→固化→独立验证；交易 [2513e836…734fe5689](https://nile.tronscan.org/#/transaction/2513e836ec425171a5013de7fddde39cc7179db4029ad5fa5e402be734fe5689)，区块 71847049，核验时 135 确认。公开 [manifest](https://proofweave.org/api/anchors/anchor-batch:ceaa9f2b-a45d-4933-9c4b-79b26954f7b9) 实际从 R2 读取，无私钥 CLI verified，重复 tick 不新建批次。Codex heartbeat `proofweave-nile` 已启用，每 15 分钟调用 hosted tick，依赖本机及 Codex 可运行。完整本机证据：`outputs/anchor-production-closure-20261015/report.json`。
+**历史验收状态（2026-10-15 22:07 CST）**：已部署 Sites v193（`6780e404`，环境 revision 52），生产账本已到 0047。Nile 的真实公开检查点已完成入队→R2→广播→固化→独立验证；交易 [2513e836…734fe5689](https://nile.tronscan.org/#/transaction/2513e836ec425171a5013de7fddde39cc7179db4029ad5fa5e402be734fe5689)，区块 71847049，核验时 135 确认。公开 [manifest](https://proofweave.org/api/anchors/anchor-batch:ceaa9f2b-a45d-4933-9c4b-79b26954f7b9) 实际从 R2 读取，无私钥 CLI verified，重复 tick 不新建批次。Codex heartbeat `proofweave-nile` 已启用，每 15 分钟调用 hosted tick，依赖本机及 Codex 可运行。完整本机证据：`outputs/anchor-production-closure-20261015/report.json`。
 
 §1–§7 保留此前 Base Sepolia 操作与隔离测试历史，不是当前生产待办；当前生产使用 §8 的 hosted Nile 路径，不要把旧 `.env.local` EVM 配置覆盖到线上。
 
@@ -113,12 +117,12 @@ node scripts/run-hosted-anchor-tick.mjs --credentials outputs/anchor-production-
 异常边界：网络广播成功但本地提交投影写入失败，仍须先核查链上交易再决定恢复操作；租约防止并发调用，不提供跨链广播与数据库提交的原子性。
 
 
-## 9. 0048 outbox 修复上线前检查（本次未部署）
+## 9. 0048 outbox 修复上线检查与执行记录
 
 本地新增 `0048_add_anchor_submission_outbox.sql`。发布前必须停止所有旧版本 tick 入口并等待在途请求结束，再应用迁移、部署新代码，最后手工验证；不要只停定时任务而继续允许旧 worker 被手工调用。迁移会将既有 built 批次标记为 legacy_unknown，防止历史广播状态不明时重新签名。已 submitted/confirmed 批次仍按原投影读取与确认。
 
-新路径：manifest → 签名交易持久化 → 查询/广播同一交易 → 写入 submitted → 确认。落库或响应中断不生成新 txRef。遇到过期 TRON 或未知旧批次，返回失败并等待运营核查；不能通过删除 outbox、换 nonce 或重签名自动绕过。新迁移尚未应用到生产，线上仍是此前验收的 v193。
+新路径：manifest → 签名交易持久化 → 查询/广播同一交易 → 写入 submitted → 确认。落库或响应中断不生成新 txRef。遇到过期 TRON 或未知旧批次，返回失败并等待运营核查；不能通过删除 outbox、换 nonce 或重签名自动绕过。2026-10-16 已在维护锁保护下完成生产迁移与 v194 发布；迁移时没有旧 built 批次。
 
 自动任务 `proofweave-nile` 已按用户要求暂停，后续发布也不应自动恢复。人工验收与是否需要持续调度是两个独立事项。
 
-本地验收：`anchor:check` 115/115，`portable:database:check` 22/22，修改文件 ESLint、隔离源码 typecheck 与构建通过。故障测试覆盖写入前失败、写入后响应丢失、广播响应丢失、广播后投影失败、投影提交后响应丢失、进程重启、并发写入、旧批次迁移隔离、TRON 过期和 EVM nonce 冲突。未用生产凭据或发送新的链上交易。
+本地验收：`anchor:check` 115/115，`portable:database:check` 22/22，修改文件 ESLint、隔离源码 typecheck 与构建通过。故障测试覆盖写入前失败、写入后响应丢失、广播响应丢失、广播后投影失败、投影提交后响应丢失、进程重启、并发写入、旧批次迁移隔离、TRON 过期和 EVM nonce 冲突。这些故障测试使用隔离数据库和模拟 RPC；本次生产发布只执行迁移、状态检查与历史存证只读核验，没有发送新的链上交易。

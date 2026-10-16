@@ -1,12 +1,16 @@
 # 工作交接说明：链上锚定交付 + Web3 路线推进
 
-**2026-10-16 代码收尾**：既有 Nile 闭环实现已整理为工作分支提交 `c52e163`（线上 v193 的发布源码仍为 `6780e404`，两者基线不同）。新增 0048/outbox 修复先持久化签名交易与 txRef，再广播；恢复仅查询或重播同一笔交易。TRON 已过期且查不到的交易、EVM nonce 冲突、旧版本遗留的 built 批次均停止自动替换并要求人工核查。本次本地验证：锚定门禁 **115/115**、数据库与迁移门禁 **22/22**，修改文件 lint、隔离源码 typecheck 与构建通过。**尚未应用生产 0048、尚未部署**。暂停状态保持不变。
+**2026-10-16 12:15 CST 发布更新**：Sites **v194** / `1277892910b3bffdd61d7e34e2530d9bba4f0204` 已部署成功（环境 revision 53），生产 Turso 已应用并验证 `0048_add_anchor_submission_outbox.sql`（共 49 项迁移）。发布前取得共享维护锁，确认只有 1 个 confirmed 批次、无在途 tick；发布后解除维护锁，outbox 为空。原公开检查点再次经无私钥 Nile CLI 核验为 `verified`。生产基线合入后的锚定门禁 115/115、数据库门禁 22/22、构建通过。自动任务保持 PAUSED。
+
+**验收缺口**：本机访问自定义域名与 Sites 官方生产地址均收到 Cloudflare 403 HTML；浏览器也未能打开公开接口。本次未完成新版 hosted tick / R2 HTTP 验收，未产生新链上交易，不能将本次发布描述为新的端到端广播实测。入口恢复后，手工调用 tick 并检查 HTTP、status、batchCreated、confirmedBatches、failedBatches、errors，再检查公开 manifest。已有测试网存证不证明数学正确性。本机证据位于 `outputs/anchor-outbox-rollout-20261016/`。
+
+**2026-10-16 发布前代码收尾记录**：既有 Nile 闭环实现已整理为工作分支提交 `c52e163`（线上 v193 的发布源码仍为 `6780e404`，两者基线不同）。新增 0048/outbox 修复先持久化签名交易与 txRef，再广播；恢复仅查询或重播同一笔交易。TRON 已过期且查不到的交易、EVM nonce 冲突、旧版本遗留的 built 批次均停止自动替换并要求人工核查。本次本地验证：锚定门禁 **115/115**、数据库与迁移门禁 **22/22**，修改文件 lint、隔离源码 typecheck 与构建通过。**尚未应用生产 0048、尚未部署**。暂停状态保持不变。
 
 
-**2026-10-16 运维更新**：用户已明确要求停止自动任务，`proofweave-nile` 当前为 PAUSED；下文 2026-10-15 的“已启用”仅为验收历史。生产锚定改用显式手工触发，不自动恢复调度。线上最后已验收版本为 v193 / `6780e404`，工作分支正在整理为独立提交；后续修复未发布前，不应视为线上已生效。
+**2026-10-16 发布前运维记录**：用户已明确要求停止自动任务，`proofweave-nile` 当前为 PAUSED；下文 2026-10-15 的“已启用”仅为验收历史。生产锚定改用显式手工触发，不自动恢复调度。线上最后已验收版本为 v193 / `6780e404`，工作分支正在整理为独立提交；后续修复未发布前，不应视为线上已生效。
 
 
-**当前验收状态（2026-10-15 22:07 CST）**：B 的生产业务闭环已完成。Sites **v193** / `6780e404accfad3e5e2c635bac71d7eab69e7ce9` 已部署；生产 Turso 迁移账本已到 `0047`；既有公开检查点入队后，经 R2 持久化、Nile 广播与固化确认，无私钥 CLI 返回 `verified`。实际交易见 [2513e836…734fe5689](https://nile.tronscan.org/#/transaction/2513e836ec425171a5013de7fddde39cc7179db4029ad5fa5e402be734fe5689)，核验时 135 确认，区块 71847049。公开批次只有 1 个、叶子只有 1 条，重复 tick 无新增交易；2 份内部 smoke-test 收据被排除。
+**历史验收状态（2026-10-15 22:07 CST）**：B 的生产业务闭环已完成。Sites **v193** / `6780e404accfad3e5e2c635bac71d7eab69e7ce9` 已部署；生产 Turso 迁移账本已到 `0047`；既有公开检查点入队后，经 R2 持久化、Nile 广播与固化确认，无私钥 CLI 返回 `verified`。实际交易见 [2513e836…734fe5689](https://nile.tronscan.org/#/transaction/2513e836ec425171a5013de7fddde39cc7179db4029ad5fa5e402be734fe5689)，核验时 135 确认，区块 71847049。公开批次只有 1 个、叶子只有 1 条，重复 tick 无新增交易；2 份内部 smoke-test 收据被排除。
 
 [公开 manifest](https://proofweave.org/api/anchors/anchor-batch:ceaa9f2b-a45d-4933-9c4b-79b26954f7b9) 的响应头 `x-anchor-manifest-source: bucket` 已实测；本机证据 `outputs/anchor-production-closure-20261015/report.json`。99 项锚定测试、9 项收据存储测试、范围 typecheck、构建通过。Codex heartbeat `proofweave-nile` 每 15 分钟执行；依赖本机及 Codex 可运行，尚非全天候云 cron。Nile 为测试网，witnessCount=0，锚定不证明数学正确性。
 
@@ -75,14 +79,14 @@
 
 | 项 | 状态 |
 | --- | --- |
-| Turso 迁移 | ✅ 0046 + 0047，后者为共享 tick 租约；已读取生产账本确认 |
-| 站点部署 | ✅ Sites v193，源码 `6780e404`，环境 revision 52；保留 v192 线上功能 |
+| Turso 迁移 | ✅ 已到 0048（签名交易 outbox），49 项迁移验证通过 |
+| 站点部署 | ✅ Sites v194，源码 `12778929`，环境 revision 53；保留 v193 线上功能 |
 | Nile 运营密钥 | ✅ 独立地址 `TNQnA4PbQNBixU7LWt48Vmr1wzFsJdxDZn`；签名配置存 Sites secret，本机私钥文件权限 0600 |
 | 测试币 | ✅ Nile 水龙头已领取；首笔生产锚定成功 |
 | 记录入队 | ✅ 公开检查点、research/public 收据及被公开证据引用的 bundle；排除内部 smoke tests 和未公开 staged bundle |
-| R2 | ✅ `ANCHOR_MANIFEST_BUCKET` 已绑定，公开 manifest 从 bucket 实际读取 |
+| R2 | `ANCHOR_MANIFEST_BUCKET` 保持绑定；v193 已实测 bucket 读取，v194 HTTP 复验受阻 |
 | 交易与投影 | ✅ 1 批次 / 1 叶子，Nile 固化且生产批次 confirmed，无私钥 CLI verified |
-| 鉴权与重复调用 | ✅ 未授权 401；重复 tick 无新增批次，共享租约防并发 |
+| 鉴权与重复调用 | v193 历史验收：未授权 401、重复 tick 无新增批次；v194 本次 HTTP 验收受 Cloudflare 403 阻挡 |
 | 周期调度 | 已按用户要求暂停（2026-10-16）；当前手工触发 |
 | 独立见证 | 未提供；witnessCount=0，不标为 witnessed |
 
