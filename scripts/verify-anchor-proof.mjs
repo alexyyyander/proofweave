@@ -46,6 +46,8 @@ On-chain adapters come from ANCHOR_ADAPTERS_JSON (a JSON array of adapter
 configurations). When no adapter is configured for the record's chain:network,
 a structurally valid anchor is reported as "pending" instead of "verified"
 (the record's leaf, batch, and merkle proof are still checked).
+Live confirmations must meet ANCHOR_CONFIRMATION_THRESHOLD (default 12) as well
+as the adapter's configured threshold. Database confirmation alone is insufficient.
 
 Output: a JSON object { status, reason?, batchId?, root?, txRef? } on stdout.
 Exit codes: 0 verified, 1 argument/IO error, 2 mismatch, 3 pending/unanchored.`;
@@ -83,7 +85,9 @@ async function main() {
   const adapter = row
     ? await resolveConfiguredAdapter(store, options.values.batch ?? row.batch_id)
     : undefined;
-  const result = await verifyAnchorRecord({ recordType: contract.anchorType, record, hasher: contract.hasher, store, adapter });
+  const configuredThreshold = Number.parseInt(process.env.ANCHOR_CONFIRMATION_THRESHOLD ?? "", 10);
+  const confirmationThreshold = Number.isSafeInteger(configuredThreshold) && configuredThreshold > 0 ? configuredThreshold : 12;
+  const result = await verifyAnchorRecord({ recordType: contract.anchorType, record, hasher: contract.hasher, store, adapter, confirmationThreshold });
   const output = {};
   if (result.status !== undefined) output.status = result.status;
   if (result.reason !== undefined) output.reason = result.reason;
@@ -174,6 +178,10 @@ async function buildAdapterRegistry() {
   if (configs.some((config) => config?.id === "evm")) {
     const { createEvmAnchorAdapter } = await import("../services/anchoring/evm-anchor-adapter.mjs");
     factories.evm = createEvmAnchorAdapter;
+  }
+  if (configs.some((config) => config?.id === "tron")) {
+    const { createTronAnchorAdapter } = await import("../services/anchoring/tron-anchor-adapter.mjs");
+    factories.tron = createTronAnchorAdapter;
   }
   const pending = adapterRegistryFromConfig(configs, factories);
   const registry = new Map();

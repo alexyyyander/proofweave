@@ -111,7 +111,11 @@ test("builds and submits when threshold reached, then confirms", async () => {
 test("pollConfirmations isolates per-submission failures and reports them", async () => {
   const { store, intake } = await setupCoordinator({ minLeafCount: 1, confirmationThreshold: 1 });
   const a = await enqueueAndSubmitOneNoPoll(store, intake, 50);
+  // Model a pre-upgrade log with multiple open batches to retain coverage of
+  // per-submission isolation. New writes can no longer produce this state.
+  await database.prepare("UPDATE anchor_batches SET status = 'confirmed' WHERE id = ?").bind(a.batch.id).run();
   const b = await enqueueAndSubmitOneNoPoll(store, intake, 51);
+  await database.prepare("UPDATE anchor_batches SET status = 'submitted' WHERE id = ?").bind(a.batch.id).run();
 
   // flaky 适配器：A 的 txRef 抛 RPC 错误，B 正常确认
   const flaky = {
@@ -232,6 +236,7 @@ test("witness flow enforces signature, chain truth, and independence", async () 
   assert.equal(swappedTxRef.accepted, false);
   assert.equal(swappedTxRef.reason, "payload_mismatch");
   assert.equal((await store.getBatch(batch.id)).witness_count, 1);
+  await coordinator.pollConfirmations();
 });
 
 test("empty pending leaves no batch and reports created:false", async () => {
@@ -272,4 +277,66 @@ test("resumeUnfinishedBatches submits built batches after a crash", async () => 
   assert.equal(stored.root, batch.root);
   // Re-running recovery is a no-op once nothing is left in 'built'.
   assert.equal(await coordinator.resumeUnfinishedBatches(), 0);
+  await coordinator.pollConfirmations();
+});
+
+test("a new coordinator repairs a batch after submission confirmation committed but batch update failed", async () => {
+  const { store, coordinator, intake } = await setupCoordinator({ minLeafCount: 1 });
+  const built = await enqueueAndSubmitOne(coordinator, intake, 300);
+  const markBatchConfirmed = store.markBatchConfirmed.bind(store);
+  store.markBatchConfirmed = async (id, time) => {
+    if (id === built.batch.id) throw new Error("database unavailable after submission commit");
+    return markBatchConfirmed(id, time);
+  };
+  const first = await coordinator.pollConfirmations();
+  assert.equal(first.errors.length, 1);
+  assert.equal((await store.listSubmissions(built.batch.id))[0].status, "confirmed");
+  assert.equal((await store.getBatch(built.batch.id)).status, "submitted");
+  assert.equal((await store.listPendingSubmissions()).length, 0);
+
+  const restarted = await setupCoordinator();
+  const repaired = await restarted.coordinator.pollConfirmations();
+  assert.deepEqual(repaired.confirmedBatches, [built.batch.id]);
+  assert.deepEqual(repaired.errors, []);
+  assert.equal((await store.getBatch(built.batch.id)).status, "confirmed");
+  assert.deepEqual(await restarted.store.listSubmissionsForReconciliation(), []);
+  assert.deepEqual((await restarted.coordinator.pollConfirmations()).confirmedBatches, []);
+  const events = await database.prepare("SELECT COUNT(*) AS count FROM anchor_batch_events WHERE batch_id = ? AND event_type = 'submission_confirmed'").bind(built.batch.id).first();
+  assert.equal(events.count, 1);
+});
+
+test("a new coordinator repairs witness count after the witness confirmation committed", async () => {
+  const { store, coordinator, intake, adapter, witnessKeys } = await setupCoordinator({ minLeafCount: 1 });
+  const built = await enqueueAndSubmitOne(coordinator, intake, 301);
+  await coordinator.pollConfirmations();
+  const batch = await store.getBatch(built.batch.id);
+  const { txRef } = await adapter.submitRoot({ root: batch.root, manifestHash: batch.manifest_hash,
+    leafCount: batch.leaf_count, prevRoot: batch.prev_root, batchId: batch.id, sender: "mock:repair-witness" });
+  const payload = witnessPayload(batch, txRef);
+  const signature = await signAnchorWitness(payload, witnessKeys.privateKey);
+  store.syncWitnessCount = async () => { throw new Error("witness projection unavailable"); };
+  await assert.rejects(() => coordinator.submitWitness({ batchId: batch.id, payload, signature, txRef }), /projection unavailable/);
+  assert.equal((await store.getBatch(batch.id)).witness_count, 0);
+  assert.equal((await store.listSubmissions(batch.id)).find((row) => row.tx_ref === txRef).status, "confirmed");
+
+  const restarted = await setupCoordinator();
+  assert.deepEqual((await restarted.coordinator.pollConfirmations()).errors, []);
+  assert.equal((await store.getBatch(batch.id)).witness_count, 1);
+  assert.deepEqual(await restarted.store.listSubmissionsForReconciliation(), []);
+  await restarted.coordinator.pollConfirmations();
+  assert.equal((await store.getBatch(batch.id)).witness_count, 1);
+});
+
+test("read-only adapters without a known platform address cannot admit witness evidence", async () => {
+  const { store, coordinator, intake, adapter, witnessKeys } = await setupCoordinator({
+    minLeafCount: 1, adapterOverride: { ...sharedAdapter, operatorAddress: null },
+  });
+  const built = await enqueueAndSubmitOne(coordinator, intake, 302);
+  const batch = await store.getBatch(built.batch.id);
+  const { txRef } = await adapter.submitRoot({ root: batch.root, manifestHash: batch.manifest_hash,
+    leafCount: batch.leaf_count, prevRoot: batch.prev_root, batchId: batch.id, sender: "mock:unknown-platform" });
+  const payload = witnessPayload(batch, txRef);
+  assert.deepEqual(await coordinator.submitWitness({ batchId: batch.id, txRef, payload,
+    signature: await signAnchorWitness(payload, witnessKeys.privateKey) }), { accepted: false, reason: "not_independent" });
+  assert.equal((await store.listSubmissions(batch.id)).length, 1);
 });

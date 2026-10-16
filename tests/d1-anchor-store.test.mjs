@@ -152,6 +152,7 @@ test("createBatch validates leaves and expectedHeadVersion before touching the d
 
 test("createBatch refuses a stale expectedHeadVersion and commits cleanly on retry", async () => {
   const store = new D1AnchorStore(database);
+  await store.markBatchConfirmed("anchor-batch:b2", "2026-10-14T00:07:00.000Z");
   await store.insertRecord({ ...recordFixture(7), createdAt: "2026-10-14T00:05:00.000Z" });
   const head = await store.getLogHead();
   const pendingCount = (await store.listPendingRecords()).length;
@@ -201,11 +202,12 @@ test("createBatch refuses a ghost prev pointer instead of forking the log", asyn
 test("markBatchConfirmed requires a submitted batch with a confirmed platform submission", async () => {
   const store = new D1AnchorStore(database);
   const anchoredAt = "2026-10-14T00:07:00.000Z";
-  const confirmed = await store.markBatchConfirmed("anchor-batch:b2", anchoredAt);
+  const confirmed = await store.getBatch("anchor-batch:b2");
   assert.equal(confirmed.status, "confirmed");
   assert.equal(confirmed.anchored_at, anchoredAt);
   assert.equal((await store.listBatchEvents("anchor-batch:b2")).filter((event) => event.event_type === "batch_confirmed").length, 1);
 
+  await store.abandonBatch("anchor-batch:stale-cas", anchoredAt);
   const head = await store.getLogHead();
   await store.insertRecord({ ...recordFixture(9), createdAt: "2026-10-14T00:07:01.000Z" });
   await store.createBatch({

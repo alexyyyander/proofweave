@@ -2078,3 +2078,10 @@ export const anchorBatchEvents = sqliteTable(
   },
   (table) => [index("anchor_batch_events_batch_idx").on(table.batchId)],
 );
+
+// Serializes platform anchor ticks across HTTP and CLI workers.
+export const anchorTickLeases = sqliteTable("anchor_tick_leases", {
+  id: text("id").primaryKey(),
+  owner: text("owner").notNull(),
+  expiresAt: integer("expires_at").notNull(),
+});

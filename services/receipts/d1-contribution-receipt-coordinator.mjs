@@ -138,6 +138,11 @@ export class D1ContributionReceiptCoordinator {
    */
   async enqueueReceiptForAnchoring(receipt) {
     try {
+      const publication = await this.database.prepare(
+        "SELECT receipt_id FROM contribution_receipt_publications WHERE receipt_id = ? AND record_class = 'research' AND visibility = 'public'",
+      ).bind(receipt.id).first();
+      if (!publication) return;
+
       await this.anchorIntake.enqueueAnchorRecord({
         recordType: "contribution_receipt",
         recordId: receipt.id,

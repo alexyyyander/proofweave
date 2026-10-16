@@ -252,7 +252,11 @@ test("batch list supports pagination with totals", async () => {
   const world = globalThis.anchorWorld;
   // 第三个批次，让分页窗口可断言
   await enqueueReceipt("receipt:api-d");
+  // Preserve an explicit pre-upgrade multiple-open-batch fixture for list/proof
+  // reads. The new transactional guard prevents creating this state normally.
+  await database.prepare("UPDATE anchor_batches SET status = 'confirmed' WHERE id = ?").bind(world.submitted.batchId).run();
   const third = await buildAndSubmitBatch({ confirm: false });
+  await database.prepare("UPDATE anchor_batches SET status = 'submitted' WHERE id = ?").bind(world.submitted.batchId).run();
   world.third = { batchId: third.batch.id };
 
   const page1 = await listPublicAnchorBatches({ store, adaptersConfigured: true, query: { limit: 1, offset: 0 } });

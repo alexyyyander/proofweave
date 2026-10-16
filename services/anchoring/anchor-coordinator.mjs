@@ -93,6 +93,9 @@ export function createAnchorCoordinator({
         || (Date.parse(now()) - Date.parse(previous.created_at)) / 1000 >= config.maxIntervalSeconds;
       if (!due) return { created: false, reason: "not_due" };
       const head = await store.getLogHead();
+      if (head.headBatchId && (await store.getBatch(head.headBatchId))?.status !== "confirmed") {
+        return { created: false, reason: "awaiting_predecessor", predecessorBatchId: head.headBatchId };
+      }
       const built = await builder.buildNextBatch({
         prevBatchId: head.headBatchId,
         prevRoot: head.headRoot,
@@ -104,7 +107,7 @@ export function createAnchorCoordinator({
     },
 
     /**
-     * Poll ALL pending on-chain submissions (platform AND witness — store.listPendingSubmissions()).
+     * Poll pending submissions and repair projections of already confirmed ones.
      * confirmed (status confirmed AND confirmations >= threshold) → updateSubmissionStatus confirmed,
      * then markBatchConfirmed for platform submissions (batch status is driven ONLY by platform
      * submissions) or syncWitnessCount for witness ones. failed/reverted/dropped → submission failed;
@@ -118,15 +121,18 @@ export function createAnchorCoordinator({
       const confirmedBatches = [];
       const failedBatches = [];
       const errors = [];
-      for (const submission of await store.listPendingSubmissions()) {
+      for (const submission of await store.listSubmissionsForReconciliation()) {
         try {
-          const info = await adapter.getConfirmation({ txRef: submission.tx_ref });
+          const alreadyConfirmed = submission.status === "confirmed";
+          const info = alreadyConfirmed ? null : await adapter.getConfirmation({ txRef: submission.tx_ref });
           const confirmations = Number(info?.confirmations ?? 0);
           const updatedAt = now();
-          if (info?.status === "confirmed" && confirmations >= config.confirmationThreshold) {
-            await store.updateSubmissionStatus({
-              submissionId: submission.id, status: "confirmed", confirmations, blockRef: info.blockRef ?? null, updatedAt,
-            });
+          if (alreadyConfirmed || (info?.status === "confirmed" && confirmations >= config.confirmationThreshold)) {
+            if (!alreadyConfirmed) {
+              await store.updateSubmissionStatus({
+                submissionId: submission.id, status: "confirmed", confirmations, blockRef: info.blockRef ?? null, updatedAt,
+              });
+            }
             if (submission.submitter_kind === "platform") {
               // A recovered batch can carry two platform submissions; only the first confirmation flips status.
               if ((await store.getBatch(submission.batch_id)).status === "submitted") {
@@ -242,7 +248,7 @@ export function createAnchorCoordinator({
       // Gate 4: independence
       const reusingPlatformTx = (await store.listSubmissions(batch.id)).some((row) =>
         row.submitter_kind === "platform" && row.chain === parsed.chain && row.network === parsed.network && row.tx_ref === txRef);
-      if (onChain.sender === adapter.operatorAddress || reusingPlatformTx) {
+      if (!adapter.operatorAddress || onChain.sender === adapter.operatorAddress || reusingPlatformTx) {
         return { accepted: false, reason: "not_independent" };
       }
 

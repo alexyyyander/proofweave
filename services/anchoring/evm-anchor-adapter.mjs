@@ -35,23 +35,28 @@ function sha256ToBytes32(value) {
 }
 
 /** Network side (submitRoot/getConfirmation/readAnchoredRoot) dynamically imports ethers v6 to keep protocol layers/tests dependency-free. */
-export async function createEvmAnchorAdapter({ network, rpcUrl, sinkAddress, operatorPrivateKeyJwk, confirmationThreshold = 12 }) {
-  const { Wallet, JsonRpcProvider } = await import("ethers");
-  const operatorPrivateKey = privateKeyHexFromJwk(operatorPrivateKeyJwk);
+export async function createEvmAnchorAdapter({ network, rpcUrl, sinkAddress, operatorPrivateKeyJwk, operatorAddress: configuredOperatorAddress, confirmationThreshold = 12 }) {
+  const { Wallet, JsonRpcProvider, getAddress } = await import("ethers");
   const provider = new JsonRpcProvider(rpcUrl);
-  const wallet = new Wallet(operatorPrivateKey, provider);
-  const operatorAddress = (await wallet.getAddress()).toLowerCase();
+  const wallet = operatorPrivateKeyJwk ? new Wallet(privateKeyHexFromJwk(operatorPrivateKeyJwk), provider) : null;
+  const publicOperator = configuredOperatorAddress ? getAddress(configuredOperatorAddress).toLowerCase() : null;
+  const operatorAddress = wallet ? (await wallet.getAddress()).toLowerCase() : publicOperator;
+  if (wallet && publicOperator && publicOperator !== operatorAddress) {
+    throw new EvmAnchorAdapterError("Configured operatorAddress does not match the signing key.");
+  }
   return {
     id: "evm",
     network,
     operatorAddress,
     async submitRoot({ root, manifestHash, leafCount, prevRoot, batchId }) {
+      if (!wallet) throw new EvmAnchorAdapterError("Submitting an anchor requires operatorPrivateKeyJwk; this adapter is read-only.");
+      if (!sinkAddress) throw new EvmAnchorAdapterError("Submitting an anchor requires sinkAddress.");
       const tx = await wallet.sendTransaction({ to: sinkAddress, data: encodeAnchorCalldata({ root, manifestHash, leafCount, prevRoot }) });
       void batchId; // not anchored on-chain; log correlation only
       return { txRef: `evm:${network}:${tx.hash}` };
     },
     async getConfirmation({ txRef }) {
-      const { txId } = splitTxRef(txRef);
+      const { txId } = splitTxRef(txRef, network);
       const receipt = await provider.getTransactionReceipt(txId);
       if (!receipt) return { status: "pending", confirmations: 0, blockRef: null };
       const head = await provider.getBlockNumber();
@@ -64,7 +69,7 @@ export async function createEvmAnchorAdapter({ network, rpcUrl, sinkAddress, ope
       };
     },
     async readAnchoredRoot({ txRef }) {
-      const { txId } = splitTxRef(txRef);
+      const { txId } = splitTxRef(txRef, network);
       const tx = await provider.getTransaction(txId);
       if (!tx) return null;
       try {
@@ -76,9 +81,10 @@ export async function createEvmAnchorAdapter({ network, rpcUrl, sinkAddress, ope
   };
 }
 
-function splitTxRef(txRef) {
+function splitTxRef(txRef, expectedNetwork) {
   const parts = String(txRef ?? "").split(":");
   if (parts.length !== 3 || parts[0] !== "evm") throw new EvmAnchorAdapterError(`txRef ${txRef} is not an evm anchor txRef.`);
+  if (parts[1] !== expectedNetwork) throw new EvmAnchorAdapterError("txRef network does not match this EVM adapter.");
   return { network: parts[1], txId: parts[2] };
 }
 

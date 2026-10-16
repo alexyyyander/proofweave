@@ -9,6 +9,7 @@ import { verifyAnchorRecord } from "../services/anchoring/anchor-verifier.mjs";
 import { anchorLeafHash, anchorLeafProtocolVersion } from "../packages/protocol/anchor-leaf.mjs";
 import { buildMerkleTree } from "../packages/protocol/merkle-tree.mjs";
 import { sha256Canonical } from "../packages/protocol/canonical-json.mjs";
+import { anchorManifestHash, anchorManifestProtocolVersion } from "../packages/protocol/anchor-manifest.mjs";
 
 const migrationsRoot = new URL("../drizzle/", import.meta.url);
 let miniflare;
@@ -85,11 +86,16 @@ async function anchorBatch({ id, leaves, root, submittedRoot = root, prevBatchId
   const head = await store.getLogHead();
   const chainPrevBatchId = prevBatchId === undefined ? head.headBatchId : prevBatchId;
   const chainPrevRoot = prevRoot === undefined ? head.headRoot : prevRoot;
-  const manifestHash = await sha256Canonical({ batch: id });
+  const createdAt = ts();
+  const manifestHash = await anchorManifestHash({
+    protocolVersion: anchorManifestProtocolVersion, batchId: id, root, leafCount: leaves.length,
+    prevBatchId: chainPrevBatchId, prevRoot: chainPrevRoot, createdAt,
+    leaves: leaves.map((leaf) => ({ recordType: leaf.record_type, recordId: leaf.record_id, recordHash: leaf.record_hash })),
+  });
   await store.createBatch({
     id, root, leafCount: leaves.length, manifestHash, manifestKey: `anchors/${id}`,
     prevBatchId: chainPrevBatchId, prevRoot: chainPrevRoot, chain: "mock", network: "local",
-    createdAt: ts(), leaves, expectedHeadVersion: expectedHeadVersion ?? head.version,
+    createdAt, leaves, expectedHeadVersion: expectedHeadVersion ?? head.version,
   });
   const { txRef } = await adapter.submitRoot({
     root: submittedRoot, manifestHash, leafCount: leaves.length, prevRoot: chainPrevRoot, batchId: id,
@@ -186,6 +192,10 @@ test("pending: batch submitted but not yet confirmed", async () => {
   assert.equal((await store.getBatch(batchId)).status, "submitted");
   const result = await verify(entry);
   assert.deepEqual(result, { status: "pending", batchId });
+  // Finish this batch before subsequent fixtures append to the shared log.
+  const [submission] = await store.listSubmissions(batchId);
+  await store.updateSubmissionStatus({ submissionId: submission.id, status: "confirmed", confirmations: 12, blockRef: "b", updatedAt: ts() });
+  await store.markBatchConfirmed(batchId, ts());
 });
 
 test("mismatch: prev_root does not chain to the previous batch root", async () => {
@@ -217,4 +227,63 @@ test("mismatch: prev_batch_id null but prev_root non-null (XOR edge)", async () 
   await database.prepare("UPDATE anchor_batches SET prev_batch_id = NULL WHERE id = ?").bind(batchId).run();
   const result = await verify(entry);
   assert.deepEqual(result, { status: "mismatch", reason: "prev_root_mismatch" });
+});
+
+test("verification rechecks live confirmations even when the database says confirmed", async () => {
+  const entry = await enqueueSubject(20);
+  const leaves = [leafRow(entry)];
+  await anchorBatch({ id: "anchor-batch:live-confirmations", leaves, root: await merkleRoot(leaves) });
+  for (const confirmation of [
+    { status: "pending", confirmations: 0 },
+    { status: "confirmed", confirmations: 1 },
+    { status: "confirmed", confirmations: NaN },
+    { status: "confirmed", confirmations: "12" },
+  ]) {
+    let calls = 0;
+    const result = await verify(entry, { adapter: { ...adapter, getConfirmation: async () => { calls++; return confirmation; } } });
+    assert.equal(result.status, "pending");
+    assert.equal(result.reason, "insufficient_chain_confirmations");
+    assert.equal(calls, 1);
+  }
+  for (const status of ["failed", "reverted", "dropped"]) {
+    const result = await verify(entry, { adapter: { ...adapter, getConfirmation: async () => ({ status, confirmations: 12 }) } });
+    assert.deepEqual(result, { status: "mismatch", reason: "chain_transaction_failed" });
+  }
+  const twoConfirmations = { ...adapter, getConfirmation: async () => ({ status: "confirmed", confirmations: 2 }) };
+  assert.equal((await verify(entry, { adapter: twoConfirmations, confirmationThreshold: 2 })).status, "verified");
+  await assert.rejects(() => verify(entry, { confirmationThreshold: 0 }), /positive integer/);
+  await assert.rejects(() => verify(entry, { adapter: { ...adapter, getConfirmation: async () => { throw new Error("RPC unavailable"); } } }), /RPC unavailable/);
+});
+
+test("verification binds both remaining calldata fields to the batch", async () => {
+  const entry = await enqueueSubject(21);
+  const leaves = [leafRow(entry)];
+  await anchorBatch({ id: "anchor-batch:payload", leaves, root: await merkleRoot(leaves) });
+  for (const changed of [{ leafCount: 99 }, { prevRoot: `sha256:${"f".repeat(64)}` }]) {
+    const result = await verify(entry, { adapter: {
+      ...adapter,
+      readAnchoredRoot: async (args) => ({ ...await adapter.readAnchoredRoot(args), ...changed }),
+    } });
+    assert.deepEqual(result, { status: "mismatch", reason: "chain_payload_mismatch" });
+  }
+});
+
+test("clearing both predecessor pointers cannot forge a new genesis", async () => {
+  const entry = await enqueueSubject(22);
+  const leaves = [leafRow(entry)];
+  const id = "anchor-batch:forged-genesis";
+  await anchorBatch({ id, leaves, root: await merkleRoot(leaves) });
+  assert.ok((await store.getBatch(id)).prev_root);
+  await database.prepare("UPDATE anchor_batches SET prev_batch_id = NULL, prev_root = NULL WHERE id = ?").bind(id).run();
+  assert.deepEqual(await verify(entry), { status: "mismatch", reason: "chain_payload_mismatch" });
+  assert.deepEqual(await verify(entry, { adapter: undefined }), { status: "mismatch", reason: "manifest_hash_mismatch" });
+});
+
+test("a manifest timestamp change fails even though leaf inclusion still passes", async () => {
+  const entry = await enqueueSubject(23);
+  const leaves = [leafRow(entry)];
+  const id = "anchor-batch:manifest-tamper";
+  await anchorBatch({ id, leaves, root: await merkleRoot(leaves) });
+  await database.prepare("UPDATE anchor_batches SET created_at = ? WHERE id = ?").bind("2026-01-01T00:00:00Z", id).run();
+  assert.deepEqual(await verify(entry), { status: "mismatch", reason: "manifest_hash_mismatch" });
 });

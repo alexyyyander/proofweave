@@ -8,9 +8,9 @@ were appended in an order the platform cannot rewrite retroactively. It does
 not prove mathematical correctness, novelty, or authorship, and no raw
 evidence bytes or personal data ever reach the chain—only SHA-256 hashes.
 
-The design is chain-agnostic. A pluggable adapter layer (`evm` today,
-`solana`/`tron` stubs) carries the same four-field payload; the EVM adapter
-sends a calldata memo to a sink address. The protocol implementation lives in
+The design is chain-agnostic. A pluggable adapter layer (`evm` and `tron`,
+with `solana` still a stub) carries the same four-field payload. EVM uses
+calldata; TRON uses a transfer memo. The protocol implementation lives in
 [`packages/protocol/anchor-leaf.mjs`](../packages/protocol/anchor-leaf.mjs),
 [`packages/protocol/merkle-tree.mjs`](../packages/protocol/merkle-tree.mjs),
 [`packages/protocol/anchor-manifest.mjs`](../packages/protocol/anchor-manifest.mjs),
@@ -143,7 +143,11 @@ row with no batch).
 
 Batch selection snapshots pending records inside the same transaction: only
 `batch_id IS NULL` rows are claimed, so a record is never covered by two
-batches. A builder takes at most 1000 pending records per batch, refuses
+batches. A builder takes at most 96 pending records per batch, keeping the
+96 leaf updates plus four metadata statements within libSQL's 100-statement
+transaction limit. The trigger threshold (default 100 pending records) is
+separate from this capacity: overflow stays pending until a later count/time
+trigger. The builder refuses
 empty batches, and the coordinator refuses to submit if rebuilding the
 manifest from the immutable projection does not round-trip to the recorded
 `manifest_hash`.
@@ -155,6 +159,15 @@ overrides or blocks the batch status.
 
 ### Abandoning a failed batch
 
+A new batch requires a confirmed predecessor. The coordinator returns
+`awaiting_predecessor` (including `predecessorBatchId`) while the log tip is
+unfinished; `force` cannot bypass this rule. The store enforces the same rule
+inside the build transaction, so direct or concurrent builders cannot bypass
+it. Confirmation polling continues while creation is deferred. After a failed
+tip has been inspected, the operator can use `abandonBatch` below and rerun
+the tick. This does not automatically rewrite pre-upgrade logs that already
+have successors of a failed batch; those require separate recovery review.
+
 `abandonBatch` is allowed only when the batch has **no pending and no
 confirmed submission**, and only when it is still the log tip. In one
 transaction it releases the batch's records back to pending, appends a new
@@ -164,7 +177,7 @@ append chain: `prevRoot` pointers only ever reference truly anchored batches.
 If any submission confirmed, abandonment is refused—retry targets the same
 `batchId`/`root` idempotently instead.
 
-## On-chain payload (EVM)
+## On-chain payload (EVM and TRON)
 
 The anchored payload is exactly four fields:
 
@@ -187,8 +200,25 @@ bytes32 root | bytes32 manifestHash | uint256 leafCount | bytes32 prevRoot
   (a JSON array of `{id, network, rpcUrl, sinkAddress,
   operatorPrivateKeyJwk, confirmationThreshold}`); the `evm` factory
   lazy-imports `ethers` v6 only when an `evm` config is present. The
-  `solana` and `tron` adapters are stubs that throw rather than silently
-  degrade.
+  `tron` factory lazy-imports TronWeb 6.5.1. Only `solana` remains a stub.
+- TRON uses a 1 SUN transfer to the configured sink; `raw_data.data` contains
+  the same 128 bytes as EVM calldata. The SDK constructs and signs the
+  transaction locally. A successful broadcast response is required before
+  returning `tron:<network>:<64 lowercase hex characters>`. If broadcast
+  status is uncertain, inspect the transaction before retrying.
+- TRON confirmation requires a receipt and successful transaction from
+  `/walletsolidity`, in addition to the configured depth measured from the
+  current full-node block. Full-node visibility alone is insufficient.
+  Supported network labels are `nile`, `shasta`, and `mainnet`; configure the
+  matching RPC endpoint. Public-testnet acceptance does not validate mainnet.
+  See [TRON confirmation semantics](https://developers.tron.network/docs/confirmation-semantics).
+- Read-only EVM and TRON adapters require only `network` and `rpcUrl` (plus an optional
+  confirmation threshold). They read payloads and confirmations without a
+  wallet or private key. Only `submitRoot` requires a signing key and sink.
+  An optional public `operatorAddress` supplies the platform identity for
+  witness checks; witness admission fails closed if that identity is unknown.
+  If both the public address and a signing key are configured, they must match.
+  Transaction references must name the adapter's configured network.
 - Confirmation has two layers: the adapter reports `confirmed` once
   confirmations reach its per-adapter `confirmationThreshold` (default 12),
   and the coordinator additionally requires the batch to meet
@@ -264,12 +294,19 @@ shared by the API and the CLI:
 2. Locate the anchor record by `(recordType, recordId, recordHash)`.
 3. Recompute `leafHash` and compare it to the stored leaf hash.
 4. Require the batch to be `confirmed` with a confirmed platform submission;
-   read the on-chain root from the submission's `txRef` and compare `root`
-   and `manifestHash`.
+   read the transaction from `txRef` and compare all four fields: `root`,
+   `manifestHash`, `leafCount`, and `prevRoot`. Query the current confirmation
+   state separately. A failed transaction returns `mismatch`; insufficient
+   confirmations return `pending`; RPC errors fail the CLI with exit code 1.
+   The CLI requires `ANCHOR_CONFIRMATION_THRESHOLD` (default 12) in addition
+   to the adapter's own confirmation threshold.
 5. Check `prevRoot` continuity against the previous batch (genesis: both
    prev pointers `NULL`).
 6. Rebuild the tree from the batch manifest leaves, derive the record's leaf
    index, generate the inclusion proof, and verify it against the batch root.
+   Reconstruct the complete canonical manifest and compare its hash with
+   `manifestHash`, binding the predecessor, batch ID, timestamp, and leaf count
+   as well as the leaves. This check also applies to the public proof endpoint.
 7. Output `verified`, `mismatch` (with a reason), or `pending`.
 
 ### CLI

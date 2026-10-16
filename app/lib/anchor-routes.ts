@@ -212,6 +212,10 @@ async function defaultAnchorAdapterFactories(configs: readonly unknown[]): Promi
     const { createEvmAnchorAdapter } = await import("../../services/anchoring/evm-anchor-adapter.mjs");
     factories.evm = createEvmAnchorAdapter as (config: unknown) => unknown;
   }
+  if (configs.some((config) => (config as { id?: unknown } | null)?.id === "tron")) {
+    const { createTronAnchorAdapter } = await import("../../services/anchoring/tron-anchor-adapter.mjs");
+    factories.tron = createTronAnchorAdapter as (config: unknown) => unknown;
+  }
   return factories;
 }
 

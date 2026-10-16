@@ -1,11 +1,12 @@
 // services/anchoring/anchor-batch-builder.mjs
 import { anchorManifestHash, anchorManifestProtocolVersion } from "../../packages/protocol/anchor-manifest.mjs";
 import { buildMerkleTree } from "../../packages/protocol/merkle-tree.mjs";
+import { anchorBatchMaxLeaves } from "./d1-anchor-store.mjs";
 
 export function createAnchorBatchBuilder({ store, chain, network, now = () => new Date().toISOString() }) {
   return {
     async buildNextBatch({ prevBatchId = null, prevRoot = null, expectedHeadVersion } = {}) {
-      const pending = await store.listPendingRecords(1000);
+      const pending = await store.listPendingRecords(anchorBatchMaxLeaves);
       if (pending.length === 0) return { created: false };
       const sorted = [...pending].sort(compareLeaves);
       const tree = await buildMerkleTree(sorted.map((row) => row.leaf_hash));

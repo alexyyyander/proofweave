@@ -40,7 +40,7 @@ export async function GET(
     }
     return Response.json(
       result.manifest,
-      { headers: { "cache-control": "public, max-age=300, s-maxage=86400, immutable" } },
+      { headers: { "cache-control": "public, max-age=300, s-maxage=86400, immutable", "x-anchor-manifest-source": result.source } },
     );
   } catch (error) {
     return anchorFailure(error);

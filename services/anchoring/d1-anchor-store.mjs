@@ -1,5 +1,9 @@
 import { canonicalJson, sha256Canonical } from "../../packages/protocol/canonical-json.mjs";
 
+// One leaf UPDATE each, plus batch, event, guard and head statements. Keep the
+// entire transaction within the portable libSQL adapter's 100-statement limit.
+export const anchorBatchMaxLeaves = 96;
+
 export class AnchorStoreConflictError extends Error {
   constructor(message, options) {
     super(message, options);
@@ -73,6 +77,9 @@ export class D1AnchorStore {
     if (leafCount !== leaves.length) {
       throw new TypeError("Anchor batch leafCount must equal the number of provided leaves.");
     }
+    if (leaves.length > anchorBatchMaxLeaves) {
+      throw new TypeError(`Anchor batches may contain at most ${anchorBatchMaxLeaves} leaves.`);
+    }
     if (expectedHeadVersion !== null && (!Number.isSafeInteger(expectedHeadVersion) || expectedHeadVersion < 0)) {
       throw new TypeError("Anchor batch expectedHeadVersion must be a non-negative integer.");
     }
@@ -119,9 +126,12 @@ export class D1AnchorStore {
             OR NOT EXISTS (
               SELECT 1 FROM anchor_log_head
               WHERE version = ? AND head_batch_id IS ? AND head_root IS ?
-            )`,
+            )
+            OR (? IS NOT NULL AND NOT EXISTS (
+              SELECT 1 FROM anchor_batches WHERE id = ? AND status = 'confirmed'
+            ))`,
       )
-      .bind(expectedVersion, createdAt, id, leaves.length, expectedVersion, prevBatchId, prevRoot);
+      .bind(expectedVersion, createdAt, id, leaves.length, expectedVersion, prevBatchId, prevRoot, prevBatchId, prevBatchId);
     const headInsert = this.database
       .prepare(
         "INSERT INTO anchor_log_head (version, head_batch_id, head_root, updated_at) VALUES (?, ?, ?, ?)",
@@ -394,6 +404,28 @@ export class D1AnchorStore {
          ORDER BY s.submitted_at, s.id`,
       )
       .all();
+    return rows.results ?? [];
+  }
+
+  // A terminal submission can outlive a failed batch/count projection write.
+  // Include that repair work after a restart, without replaying terminal events.
+  async listSubmissionsForReconciliation() {
+    const rows = await this.database.prepare(
+      `SELECT s.* FROM anchor_submissions s
+       JOIN anchor_batches b ON b.id = s.batch_id
+       WHERE b.status != 'failed' AND (
+         s.status = 'pending' OR (
+           s.status = 'confirmed' AND (
+             (s.submitter_kind = 'platform' AND b.status = 'submitted') OR
+             (s.submitter_kind = 'witness' AND b.witness_count != (
+               SELECT COUNT(DISTINCT w.submitter_id) FROM anchor_submissions w
+               WHERE w.batch_id = b.id AND w.submitter_kind = 'witness' AND w.status = 'confirmed'
+             ))
+           )
+         )
+       )
+       ORDER BY s.submitted_at, s.id`,
+    ).all();
     return rows.results ?? [];
   }
 

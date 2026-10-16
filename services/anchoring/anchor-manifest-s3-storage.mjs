@@ -28,11 +28,12 @@ export function createS3ManifestStorage({
       const manifestHash = await anchorManifestHash(manifest);
       const key = `${prefix}/${manifestHash}`;
       const body = canonicalUtf8(manifest);
-      await signedFetch({
+      const response = await signedFetch({
         method: "PUT",
         base, host, bucket, key, body,
         accessKeyId, secretAccessKey, region, service,
       });
+      if (!response.ok) throw new AnchorManifestS3Error(`S3 PUT failed with status ${response.status}.`);
       return { key, manifestHash };
     },
     async get(key) {
@@ -52,7 +53,11 @@ async function signedFetch({ method, base, host, bucket, key, body, accessKeyId,
   const now = new Date();
   const amzDate = `${now.toISOString().replaceAll("-", "").replaceAll(":", "").slice(0, 15)}Z`;
   const dateStamp = amzDate.slice(0, 8);
-  const canonical = buildCanonicalRequest({ method, path: `/${bucket}/${key}`, host, payloadHash, amzDate });
+  // Use the same encoded absolute path for signing and transport. Object keys
+  // retain '/' separators; reserved bytes such as ':' and '%' must be encoded.
+  const basePath = base.pathname.replace(/\/$/, "").split("/").map((part) => uriEncode(decodeURIComponent(part))).join("/");
+  const objectPath = `${basePath}/${uriEncode(bucket)}/${key.split("/").map(uriEncode).join("/")}`;
+  const canonical = buildCanonicalRequest({ method, path: objectPath, host, payloadHash, amzDate });
   const scope = `${dateStamp}/${region}/${service}/aws4_request`;
   const stringToSign = [
     "AWS4-HMAC-SHA256",
@@ -65,7 +70,6 @@ async function signedFetch({ method, base, host, bucket, key, body, accessKeyId,
   const authorization = `AWS4-HMAC-SHA256 Credential=${accessKeyId}/${scope}, `
     + "SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, "
     + `Signature=${signature}`;
-  const objectPath = `${base.pathname.replace(/\/$/, "")}/${bucket}/${key}`;
   return fetch(`${base.origin}${objectPath}`, {
     method,
     headers: {
@@ -76,6 +80,10 @@ async function signedFetch({ method, base, host, bucket, key, body, accessKeyId,
     },
     body: method === "PUT" ? body : undefined,
   });
+}
+
+function uriEncode(value) {
+  return encodeURIComponent(value).replace(/[!'()*]/g, (character) => `%${character.charCodeAt(0).toString(16).toUpperCase()}`);
 }
 
 /** Canonical request per SigV4: method \n path \n query(空) \n 排序头 \n 签名头列表 \n payload 哈希。 */

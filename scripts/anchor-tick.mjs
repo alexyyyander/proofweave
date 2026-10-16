@@ -1,10 +1,15 @@
 #!/usr/bin/env node
 
+import { withAnchorTickLease } from "../services/anchoring/anchor-tick-lease.mjs";
+import { runAnchorTick } from "../services/anchoring/anchor-tick.mjs";
+export { runAnchorTick };
+
 import { parseArgs } from "node:util";
 import { resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { loadEnvironmentFile } from "./lib/environment-file.mjs";
 import { createRemoteLibsqlD1Database } from "../services/database/libsql-d1-adapter.mjs";
-import { AnchorStoreConflictError, D1AnchorStore } from "../services/anchoring/d1-anchor-store.mjs";
+import { D1AnchorStore } from "../services/anchoring/d1-anchor-store.mjs";
 import { createAnchorBatchBuilder } from "../services/anchoring/anchor-batch-builder.mjs";
 import { createAnchorCoordinator } from "../services/anchoring/anchor-coordinator.mjs";
 import {
@@ -29,10 +34,12 @@ come from ANCHOR_ADAPTERS_JSON (a JSON array of adapter configurations);
 when it is absent or blank the tick prints
 { status: "anchoring_disabled" } and exits 0 without touching the store.
 
-Exit codes: 0 the tick ran (including conflict and anchoring_disabled),
-1 argument, configuration, or IO error.`;
+Exit codes: 0 a successful tick (including conflict and anchoring_disabled),
+1 argument, configuration, or IO error; 2 partial failure (poll errors or failed batches).`;
 
-main().catch((error) => fail(error instanceof Error ? error.message : String(error)));
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  main().catch((error) => fail(error instanceof Error ? error.message : String(error)));
+}
 
 async function main() {
   let options;
@@ -52,46 +59,25 @@ async function main() {
     return emitSummary({ status: "anchoring_disabled" });
   }
   const store = new D1AnchorStore(createDatabase(options.values.local));
+  const { summary, exitCode } = await withAnchorTickLease(store.database, async (renew) => {
+  const adapter = firstAdapterOf(registry);
   const coordinator = createAnchorCoordinator({
     store,
     builder: createAnchorBatchBuilder({ store, ...platformChainOf(registry) }),
     manifestStorage: await manifestStorageFromEnvironment(),
-    adapter: firstAdapterOf(registry),
+    adapter: { ...adapter, async submitRoot(payload) { await renew(); return adapter.submitRoot(payload); } },
     config: anchorCoordinatorConfigFromEnvironment(),
     // resume/build/poll never verify witness authority; ticks submit none.
     verifyWitnessAuthority: async () => {
       throw new Error("Anchor ticks do not submit witness evidence.");
     },
   });
-  let summary;
-  try {
-    const recoveredBatches = await coordinator.resumeUnfinishedBatches();
-    const built = await coordinator.maybeBuildAndSubmit({ lastBatch: await store.getLatestBatch() });
-    const { confirmedBatches, failedBatches } = await coordinator.pollConfirmations();
-    summary = {
-      status: "ok",
-      recoveredBatches,
-      batchCreated: built.created,
-      ...(built.created
-        ? {
-          batchId: built.batch.id,
-          root: built.batch.root,
-          leafCount: Number(built.batch.leaf_count),
-          txRef: built.txRef,
-          manifestKey: built.manifestKey,
-        }
-        : built.reason ? { reason: built.reason } : {}),
-      confirmedBatches,
-      failedBatches,
-    };
-  } catch (error) {
-    if (error instanceof AnchorStoreConflictError) {
-      return emitSummary({ status: "conflict", reason: error.message });
-    }
-    throw error;
-  }
+  return runAnchorTick(coordinator);
+  });
   emitSummary(summary);
+  process.exitCode = exitCode;
 }
+
 
 function parseArguments() {
   return parseArgs({
@@ -134,6 +120,10 @@ async function buildAdapterRegistry() {
   if (configs.some((config) => config?.id === "evm")) {
     const { createEvmAnchorAdapter } = await import("../services/anchoring/evm-anchor-adapter.mjs");
     factories.evm = createEvmAnchorAdapter;
+  }
+  if (configs.some((config) => config?.id === "tron")) {
+    const { createTronAnchorAdapter } = await import("../services/anchoring/tron-anchor-adapter.mjs");
+    factories.tron = createTronAnchorAdapter;
   }
   const pending = adapterRegistryFromConfig(configs, factories);
   const registry = new Map();
