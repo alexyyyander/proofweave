@@ -17,7 +17,7 @@ test("complete Proofweave migration history is atomically ledgered on libSQL", a
   t.after(() => database.close());
   const migrations = await loadProofweaveMigrations();
   assert.equal(migrations[0].name, "0000_busy_lester.sql");
-  assert.equal(migrations.at(-1).name, "0048_add_anchor_submission_outbox.sql");
+  assert.equal(migrations.at(-1).name, "0049_add_catalog_browse_index.sql");
 
   const initial = await planProofweaveMigrations({ database, migrations });
   assert.equal(initial.fresh, true);
@@ -34,7 +34,7 @@ test("complete Proofweave migration history is atomically ledgered on libSQL", a
   assert.equal(result.plan.pending.length, 0);
   assert.deepEqual(await verifyProofweaveControlPlane({ database, migrations }), {
     migrationCount: migrations.length,
-    latestMigration: "0048_add_anchor_submission_outbox.sql",
+    latestMigration: "0049_add_catalog_browse_index.sql",
     requiredTables: [
       "persons",
       "artifact_bundles",
@@ -51,7 +51,7 @@ test("complete Proofweave migration history is atomically ledgered on libSQL", a
   });
   assert.deepEqual(await verifyLiveProofweaveControlPlane({ database }), {
     migrationCount: migrations.length,
-    latestMigration: "0048_add_anchor_submission_outbox.sql",
+    latestMigration: "0049_add_catalog_browse_index.sql",
     requiredTables: [
       "persons",
       "artifact_bundles",
@@ -66,6 +66,72 @@ test("complete Proofweave migration history is atomically ledgered on libSQL", a
       "runner_queue_events",
     ],
   });
+});
+
+test("Runner history through 0049 verifies the deployed ledger without writes", async (t) => {
+  const database = memoryDatabase();
+  t.after(() => database.close());
+  const migrations = await loadProofweaveMigrations();
+  const catalogMigration = migrations.at(-1);
+  assert.equal(catalogMigration.name, "0049_add_catalog_browse_index.sql");
+  // Read-only production ledger check on 2026-10-19; preserve the exact identity.
+  assert.equal(catalogMigration.sha256, "3b980bfe26fa27810f31bea0b345de44418ee0ca70a6259a936e6556981ef668");
+  assert.equal(catalogMigration.statementCount, 38);
+  await applyProofweaveMigrations({ database, migrations });
+  const ledgerSql = `SELECT * FROM ${proofweaveMigrationLedgerTable} ORDER BY name`;
+  const before = await database.prepare(ledgerSql).all();
+  const readOnlyDatabase = {
+    prepare(sql) {
+      assert.match(sql, /^(?:SELECT|PRAGMA)\b/);
+      const statement = database.prepare(sql);
+      return {
+        all: statement.all.bind(statement),
+        first: statement.first.bind(statement),
+      };
+    },
+    batch() { assert.fail("Runner verification must not apply migrations"); },
+  };
+
+  await assert.rejects(
+    verifyProofweaveControlPlane({ database: readOnlyDatabase, migrations: migrations.slice(0, -1) }),
+    /unsupported history length/,
+  );
+  const verified = await verifyProofweaveControlPlane({ database: readOnlyDatabase, migrations });
+  assert.equal(verified.latestMigration, catalogMigration.name);
+  assert.equal(verified.migrationCount, 50);
+  assert.deepEqual(await database.prepare(ledgerSql).all(), before);
+});
+
+test("0049 verification still rejects altered identities and unknown later migrations", async (t) => {
+  const database = memoryDatabase();
+  t.after(() => database.close());
+  const migrations = await loadProofweaveMigrations();
+  const catalogMigration = migrations.at(-1);
+  await applyProofweaveMigrations({ database, migrations });
+
+  for (const [sha256, count] of [
+    ["0".repeat(64), catalogMigration.statementCount],
+    [catalogMigration.sha256, catalogMigration.statementCount + 1],
+  ]) {
+    await database.prepare(
+      `UPDATE ${proofweaveMigrationLedgerTable} SET sha256 = ?, statement_count = ? WHERE name = ?`,
+    ).bind(sha256, count, catalogMigration.name).run();
+    await assert.rejects(
+      verifyProofweaveControlPlane({ database, migrations }),
+      /integrity mismatch for 0049_add_catalog_browse_index.sql/,
+    );
+  }
+
+  await database.prepare(
+    `UPDATE ${proofweaveMigrationLedgerTable} SET statement_count = ? WHERE name = ?`,
+  ).bind(catalogMigration.statementCount, catalogMigration.name).run();
+  await database.prepare(
+    `INSERT INTO ${proofweaveMigrationLedgerTable} (name, sha256, applied_at, statement_count) VALUES (?, ?, ?, ?)`,
+  ).bind("0050_unrecognized.sql", "a".repeat(64), "2026-10-19T00:00:00.000Z", 1).run();
+  await assert.rejects(
+    verifyProofweaveControlPlane({ database, migrations }),
+    /unsupported history length/,
+  );
 });
 
 test("pending migrations resume only from an immutable contiguous ledger prefix", async (t) => {

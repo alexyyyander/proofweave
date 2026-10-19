@@ -62,6 +62,16 @@ isolate. Strict release collection separately compares `ledgerHead` with the
 repository migration head; the live projection alone does not prove source
 parity.
 
+The shared production ledger was read-only verified through
+`0049_add_catalog_browse_index.sql` on 2026-10-19 at 10:05 UTC. Its immutable
+identity is 38 statements and SHA-256
+`3b980bfe26fa27810f31bea0b345de44418ee0ca70a6259a936e6556981ef668`.
+Runner releases must include that exact SQL file. A release ending at `0048`
+rejects this ledger during startup, including when execution is disabled.
+Shipping `0049` restores source parity; it does not reapply the live migration
+or enable execution. Digest, statement-count and unknown-history checks remain
+strict. The existing bounded `0039` legacy identity is unchanged.
+
 With `RUNNER_EXECUTION_ENABLED=false`, the host performs the same database and
 release-identity verification, reports HTTP 200 with `state: paused` and
 `executionEnabled: false`, creates no lease consumer, and rejects wake
