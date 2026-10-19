@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { mkdtemp, readFile, rm } from "node:fs/promises";
+import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import test from "node:test";
@@ -370,6 +370,58 @@ test("Container reconstructs a clean tracked snapshot with a new entry file and 
     assert.equal(await readFile(join(final.workspaceDirectory, "Proofweave/Main.lean"), "utf8"), "theorem checked : True := by\n  trivial\n");
   } finally {
     await runtime.cleanup();
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("new-file patches have signed canonical modes under a private umask; existing modes stay strict", { skip: !hasNativeZstd }, async () => {
+  const root = await mkdtemp(join(tmpdir(), "proofweave-private-patch-mode-"));
+  try {
+    const fixture = await validWorkspaceFixture({
+      rootDotfile: true,
+      archive: zlib.zstdCompressSync(makeTar([
+        { path: ".gitignore", contents: Buffer.from(".lake/\n") },
+        { path: "lake-manifest.json", contents: Buffer.from("{\"old\":true}\n") },
+      ])),
+      patch: Buffer.from("diff --git a/Proofweave/Main.lean b/Proofweave/Main.lean\n--- /dev/null\n+++ b/Proofweave/Main.lean\n@@ -0,0 +1,2 @@\n+theorem checked : True := by\n+  trivial\n"),
+    });
+    for (const tamperExisting of [false, true]) {
+      const command = join(root, tamperExisting ? "tamper-patch" : "private-patch");
+      await writeFile(command, `#!/bin/sh\numask 077\npatch "$@" || exit $?\n${tamperExisting ? "chmod 0600 .gitignore\n" : ""}`, { mode: 0o700 });
+      const runtime = new ContainerWorkspaceRuntime({ stagingRoot: join(root, `stage-${tamperExisting}`), workspaceRoot: join(root, `workspace-${tamperExisting}`), patchCommand: command });
+      try {
+        await stageAll(runtime, fixture);
+        if (tamperExisting) {
+          await assert.rejects(runtime.finalize(), (error) => error.diagnosticCode === "runner_workspace_file_mode_rejected");
+        } else {
+          assert.equal((await runtime.finalize()).treeHash, fixture.declaration.workspace.tree.hash);
+        }
+      } finally {
+        await runtime.cleanup();
+      }
+    }
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("private finalization returns only an allowlisted stage code, never rejected patch text", { skip: !hasNativeZstd }, async () => {
+  const root = await mkdtemp(join(tmpdir(), "proofweave-finalization-code-"));
+  const fixture = await validWorkspaceFixture({ patch: Buffer.from("private proof detail must never be returned\n") });
+  const handler = createContainerWorkspaceHttpHandler({ stagingRoot: join(root, "stage"), workspaceRoot: join(root, "workspace") });
+  const base = `https://proofweave-runner.internal/v1/runs/${encodeURIComponent(fixture.declaration.jobId)}`;
+  try {
+    await handler(new Request(`${base}/workspace`, { method: "POST", body: JSON.stringify(fixture.declaration) }));
+    for (const [endpoint, id] of Object.entries({ "source-archive": "sourceArchive", "source-patch": "sourcePatch", "lake-manifest": "lakeManifest" })) {
+      const metadata = fixture.metadata[id];
+      assert.equal((await handler(new Request(`${base}/workspace/artifacts/${endpoint}`, { method: "PUT", headers: { "content-type": metadata.contentType, "content-length": String(metadata.byteLength), "x-proofweave-artifact-role": id, "x-proofweave-content-sha256": metadata.contentHash }, body: fixture.artifacts[id] }))).status, 204);
+    }
+    const response = await handler(new Request(`${base}/workspace/finalize`, { method: "POST" }));
+    assert.equal(response.status, 400);
+    assert.equal(response.headers.get("x-proofweave-error-code"), "runner_workspace_patch_rejected");
+    assert.deepEqual(await response.json(), { error: "workspace_rejected" });
+  } finally {
+    await handler.cleanup();
     await rm(root, { recursive: true, force: true });
   }
 });
