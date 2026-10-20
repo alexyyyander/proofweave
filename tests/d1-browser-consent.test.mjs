@@ -56,6 +56,9 @@ test("browser consent creates a one-time, Person-bound Agent installation and PK
     `${issuer}/authorize?response_type=code&client_id=codex-browser&redirect_uri=${encodeURIComponent("https://codex.example.test/callback")}&resource=${encodeURIComponent(resource)}&scope=attempt%3Acreate%20catalog%3Aread&state=state-123&code_challenge=pkce-challenge&code_challenge_method=S256`,
   ));
   assert.equal(response.status, 200);
+  assert.equal(response.headers.get('content-type'), 'text/html; charset=utf-8');
+  assert.match(response.headers.get('content-security-policy'), /form-action 'self' https:\/\/codex\.example\.test;/);
+  assert.ok(!response.headers.get('content-security-policy').includes('*'));
   assert.doesNotMatch(response.headers.get("content-security-policy") ?? "", /script-src/);
   const html = await response.text();
   assert.doesNotMatch(html, /<script/i);

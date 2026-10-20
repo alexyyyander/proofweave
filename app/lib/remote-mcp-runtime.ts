@@ -1,10 +1,10 @@
 import {
   MissingDatabaseBindingError,
-  getD1,
+  getOAuthD1,
   getMcpD1,
   getMcpOperationState,
   getOAuthRefreshRotationCapability,
-  getParticipantOperationState,
+  getOAuthOperationState,
 } from "@/db";
 import { createD1SitesIdentityRuntime } from "@/services/proofweave-identity/sites-runtime.mjs";
 import { ControlPlaneReadOnlyError } from "@/services/database/control-plane-operation-mode.mjs";
@@ -28,7 +28,7 @@ export async function handleRemoteMcp(request: Request): Promise<Response> {
     return await createD1RemoteMcpGatewayRuntime({
       database: getMcpD1(),
       resource: `${origin}${proofweaveMcpPath}`,
-      issuer: `${origin}/`,
+      issuer: origin,
       runnerQueueMode: settings.RUNNER_QUEUE_MODE,
       runnerApprovedImagesJson: settings.RUNNER_APPROVED_IMAGES_JSON,
       runnerControlPlaneKeyId: settings.RUNNER_CONTROL_PLANE_KEY_ID,
@@ -50,17 +50,17 @@ export async function handleRemoteMcp(request: Request): Promise<Response> {
 
 export async function handleRemoteIdentity(request: Request): Promise<Response> {
   try {
-    const operationState = getParticipantOperationState();
+    const operationState = getOAuthOperationState();
     const origin = new URL(request.url).origin;
     return await createD1SitesIdentityRuntime({
-      database: getD1(),
+      database: getOAuthD1(),
       operationMode: operationState.mode,
       refreshTokenRotator:
         operationState.mode === "read_only"
           ? getOAuthRefreshRotationCapability()
           : null,
       resource: `${origin}${proofweaveMcpPath}`,
-      issuer: `${origin}/`,
+      issuer: origin,
     }).fetch(request);
   } catch (error) {
     return remoteMcpFailure("identity", error);

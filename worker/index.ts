@@ -1,10 +1,11 @@
 /** Cloudflare Worker entry point for the Proofweave web application. */
 import { handleImageOptimization, DEFAULT_DEVICE_SIZES, DEFAULT_IMAGE_SIZES } from "vinext/server/image-optimization";
 import handler from "vinext/server/app-router-entry";
+import { handleSitesBridge } from "../services/auth/sites-login-bridge.mjs";
 import {
-  getD1,
+  getOAuthD1,
   getOAuthRefreshRotationCapability,
-  getParticipantOperationState,
+  getOAuthOperationState,
 } from "../db";
 import {
   createD1SitesIdentityRuntime,
@@ -45,6 +46,11 @@ interface ExecutionContext {
 const worker = {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
+
+    // Preserve the original Sites identity boundary and same-origin native sign-in.
+    if (url.pathname === "/login-bridge") {
+      return (await handleSitesBridge(request, env))!;
+    }
 
     if (isOAuthPath(url.pathname)) {
       return fetchOAuthIdentity(request, env, url);
@@ -90,9 +96,9 @@ async function fetchOAuthIdentityResponse(
   authority: { resource: string; issuer: string },
 ): Promise<Response> {
   try {
-    const operationState = getParticipantOperationState();
+    const operationState = getOAuthOperationState();
     const identity = createD1SitesIdentityRuntime({
-      database: getD1(),
+      database: getOAuthD1(),
       operationMode: operationState.mode,
       refreshTokenRotator:
         operationState.mode === "read_only"

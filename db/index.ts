@@ -12,12 +12,16 @@ import {
 } from "./control-plane-authority.mjs";
 import {
   applyControlPlaneOperationMode,
+  accountAuthOperationState,
+  oauthOperationState,
+  connectionOperationState,
   controlPlaneOperationState,
   controlPlaneSurfaceOperationState,
 } from "@/services/database/control-plane-operation-mode.mjs";
 import { verifyLiveProofweaveControlPlane } from "@/services/database/libsql-migrations.mjs";
 import { createD1OAuthRefreshRotationCapability } from "@/services/proofweave-identity/d1-oauth-store.mjs";
 import * as schema from "./schema";
+import { connectionWriteCapability } from "@/services/database/connection-write-capability.mjs";
 
 let remoteDatabase: AnyD1Database | null = null;
 let controlPlaneDiagnostics: Promise<LiveControlPlaneDiagnostics> | null = null;
@@ -31,6 +35,8 @@ export type LiveControlPlaneDiagnostics = Readonly<{
   sourceRevision: string | null;
   sitesVersion: string | null;
   siteProjectId: string | null;
+  hostingPlatform?: "cloudflare";
+  deploymentId?: string | null;
   failureCode: string | null;
 }>;
 
@@ -51,6 +57,42 @@ export function getD1(): AnyD1Database {
     getConfiguredControlPlaneDatabase(values),
     getParticipantOperationState(values).mode,
   ) as unknown as AnyD1Database;
+}
+
+/** Only account identity/session storage uses this independently fenced surface. */
+export function getAccountAuthD1(): AnyD1Database {
+  const values = env as unknown as Record<string, string | undefined>;
+  return applyControlPlaneOperationMode(
+    getConfiguredControlPlaneDatabase(values),
+    accountAuthOperationState(values).mode,
+  ) as unknown as AnyD1Database;
+}
+
+/** OAuth storage is independently fenced; participant research still uses getD1(). */
+export function getOAuthD1(): AnyD1Database {
+  const values = env as unknown as Record<string, string | undefined>;
+  return applyControlPlaneOperationMode(
+    getConfiguredControlPlaneDatabase(values),
+    oauthOperationState(values).mode,
+  ) as unknown as AnyD1Database;
+}
+
+/** Connection repositories cannot write research, Runs, reviews or receipts. */
+export function getConnectionD1(): AnyD1Database {
+  const values = env as unknown as Record<string, string | undefined>;
+  const database = applyControlPlaneOperationMode(
+    getConfiguredControlPlaneDatabase(values),
+    connectionOperationState(values).mode,
+  );
+  return connectionWriteCapability(database) as unknown as AnyD1Database;
+}
+
+export function getConnectionOperationState() {
+  return connectionOperationState(env as unknown as Record<string, string | undefined>);
+}
+
+export function getOAuthOperationState() {
+  return oauthOperationState(env as unknown as Record<string, string | undefined>);
 }
 
 /**
@@ -145,7 +187,14 @@ export function getLiveControlPlaneDiagnostics(): Promise<LiveControlPlaneDiagno
 
 async function inspectConfiguredControlPlane(): Promise<LiveControlPlaneDiagnostics> {
   const values = env as unknown as Record<string, string | undefined>;
-  const releaseIdentity = {
+  const versionMetadata = (env as unknown as {
+    CF_VERSION_METADATA?: { id?: string };
+  }).CF_VERSION_METADATA;
+  const releaseIdentity = values.PROOFWEAVE_HOSTING_PLATFORM === "cloudflare" ? {
+    hostingPlatform: "cloudflare",
+    sourceRevision: values.PROOFWEAVE_RELEASE_SOURCE_REVISION,
+    deploymentId: versionMetadata?.id,
+  } : {
     sourceRevision: values.PROOFWEAVE_RELEASE_SITES_COMMIT_SHA,
     sitesVersion: values.PROOFWEAVE_RELEASE_SITES_VERSION,
     siteProjectId: hostingConfiguration.project_id,

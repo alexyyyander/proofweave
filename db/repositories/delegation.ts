@@ -1,4 +1,4 @@
-import { getD1 } from "@/db";
+import { getD1, getConnectionD1 } from "@/db";
 import { getAccountAuthRepository } from "@/db/repositories/account-auth";
 import {
   assertDelegationAllows,
@@ -312,10 +312,12 @@ export interface DelegationRepository {
 }
 
 class D1DelegationRepository implements DelegationRepository {
+  constructor(private readonly database = getD1()) {}
+
   async getProfile(identity: PersonIdentity): Promise<DelegationProfile> {
     const person = await this.upsertPerson(identity);
     const [keys, agents, delegations, agentInstallations] = await Promise.all([
-      getD1()
+      this.database
         .prepare(
           `SELECT key.id, key.person_id, key.algorithm, key.public_key, key.fingerprint,
                   COALESCE(key_revocation.revoked_at, key.revoked_at) AS revoked_at,
@@ -328,13 +330,13 @@ class D1DelegationRepository implements DelegationRepository {
         )
         .bind(person.id)
         .all<KeyRow>(),
-      getD1()
+      this.database
         .prepare(
           "SELECT id, owner_person_id, label, public_key, key_fingerprint, status, revoked_at, created_at FROM agents WHERE owner_person_id = ? ORDER BY created_at DESC",
         )
         .bind(person.id)
         .all<AgentRow>(),
-      getD1()
+      this.database
         .prepare(
           `SELECT certificate.id, certificate.owner_person_id, certificate.agent_id,
                   certificate.person_key_id, certificate.agent_public_key,
@@ -355,7 +357,7 @@ class D1DelegationRepository implements DelegationRepository {
         )
         .bind(person.id)
         .all<DelegationRow>(),
-      getD1()
+      this.database
         .prepare(
           `SELECT installation.id, installation.agent_id, agent.label AS agent_label,
                   installation.delegation_certificate_id, certificate.scopes_json,
@@ -387,7 +389,7 @@ class D1DelegationRepository implements DelegationRepository {
 
   async getPublicDelegation(id: string): Promise<PublicDelegationRecord | null> {
     if (typeof id !== "string" || id.trim().length === 0 || id.length > 240) return null;
-    const row = await getD1()
+    const row = await this.database
       .prepare(
         `SELECT certificate.id, certificate.owner_person_id, certificate.agent_id,
                 certificate.person_key_id, certificate.agent_public_key,
@@ -439,13 +441,13 @@ class D1DelegationRepository implements DelegationRepository {
     normalizeDelegationCertificate(exampleCertificate({ agentPublicKey: publicKey }));
     const person = await this.upsertPerson(identity);
     const fingerprint = await keyFingerprint(publicKey);
-    const inserted = await getD1()
+    const inserted = await this.database
       .prepare(
         "INSERT OR IGNORE INTO person_keys (id, person_id, public_key, fingerprint) VALUES (?, ?, ?, ?)",
       )
       .bind(newId("person-key"), person.id, publicKey, fingerprint)
       .run();
-    const row = await getD1()
+    const row = await this.database
       .prepare(
         `SELECT key.id, key.person_id, key.algorithm, key.public_key, key.fingerprint,
                 COALESCE(key_revocation.revoked_at, key.revoked_at) AS revoked_at,
@@ -492,7 +494,7 @@ class D1DelegationRepository implements DelegationRepository {
     }
 
     const revokedAt = new Date().toISOString();
-    const inserted = await getD1()
+    const inserted = await this.database
       .prepare(
         `INSERT OR IGNORE INTO person_key_revocations (
           id, person_key_id, owner_person_id, revoked_at, reason
@@ -533,7 +535,7 @@ class D1DelegationRepository implements DelegationRepository {
     });
     const canonicalPayload = canonicalJson(personKeyProofChallengeSigningPayload(challenge));
     const payloadHash = await personKeyProofChallengePayloadHash(challenge);
-    await getD1()
+    await this.database
       .prepare(
         `INSERT INTO person_key_proof_challenges (
           id, person_id, person_key_id, nonce, issued_at, expires_at, canonical_payload, payload_hash
@@ -561,7 +563,7 @@ class D1DelegationRepository implements DelegationRepository {
     requireInputString(input.challengeId, "challengeId", 240);
     requireInputString(input.personSignature, "personSignature", 240);
     const person = await this.upsertPerson(identity);
-    const challengeRow = await getD1()
+    const challengeRow = await this.database
       .prepare(
         `SELECT challenge.id, challenge.person_id, challenge.person_key_id, challenge.nonce,
                 challenge.issued_at, challenge.expires_at, challenge.canonical_payload, challenge.payload_hash,
@@ -603,7 +605,7 @@ class D1DelegationRepository implements DelegationRepository {
     if (Date.parse(verifiedAt) > Date.parse(challenge.expiresAt)) {
       throw new DelegationConflictError("Person key proof challenge expired before it could be verified. Request a new one.");
     }
-    const inserted = await getD1()
+    const inserted = await this.database
       .prepare(
         `INSERT OR IGNORE INTO person_key_proof_events (
           id, challenge_id, person_id, person_key_id, protocol_version,
@@ -642,13 +644,13 @@ class D1DelegationRepository implements DelegationRepository {
     );
     const person = await this.upsertPerson(identity);
     const fingerprint = await keyFingerprint(input.publicKey);
-    const inserted = await getD1()
+    const inserted = await this.database
       .prepare(
         "INSERT OR IGNORE INTO agents (id, owner_person_id, label, public_key, key_fingerprint) VALUES (?, ?, ?, ?, ?)",
       )
       .bind(input.agentId, person.id, input.label.trim(), input.publicKey, fingerprint)
       .run();
-    const row = await getD1()
+    const row = await this.database
       .prepare(
         "SELECT id, owner_person_id, label, public_key, key_fingerprint, status, revoked_at, created_at FROM agents WHERE id = ?",
       )
@@ -680,7 +682,7 @@ class D1DelegationRepository implements DelegationRepository {
     }
 
     const [personKey, agent] = await Promise.all([
-      getD1()
+      this.database
         .prepare(
           `SELECT key.id, key.person_id, key.algorithm, key.public_key, key.fingerprint,
                   COALESCE(key_revocation.revoked_at, key.revoked_at) AS revoked_at,
@@ -692,7 +694,7 @@ class D1DelegationRepository implements DelegationRepository {
         )
         .bind(input.personKeyId)
         .first<KeyRow>(),
-      getD1()
+      this.database
         .prepare(
           "SELECT id, owner_person_id, label, public_key, key_fingerprint, status, revoked_at, created_at FROM agents WHERE id = ?",
         )
@@ -723,7 +725,7 @@ class D1DelegationRepository implements DelegationRepository {
 
     const payloadHash = await delegationPayloadHash(certificate);
     const canonicalPayload = canonicalJson(delegationSigningPayload(certificate));
-    const inserted = await getD1()
+    const inserted = await this.database
       .prepare(
         `INSERT OR IGNORE INTO delegation_certificates (
           id, owner_person_id, agent_id, person_key_id, agent_public_key,
@@ -778,7 +780,7 @@ class D1DelegationRepository implements DelegationRepository {
       }
       return toDelegation(certificate);
     }
-    await getD1()
+    await this.database
       .prepare(
         "INSERT OR IGNORE INTO delegation_revocations (id, delegation_certificate_id, owner_person_id, revoked_at, reason) VALUES (?, ?, ?, ?, ?)",
       )
@@ -814,15 +816,15 @@ class D1DelegationRepository implements DelegationRepository {
       return toAgentInstallation(await this.requireAgentInstallation(installation.id));
     }
 
-    await getD1().batch([
-      getD1()
+    await this.database.batch([
+      this.database
         .prepare(
           `INSERT OR IGNORE INTO agent_installation_revocations (
             id, agent_installation_id, owner_person_id, revoked_at, reason
           ) VALUES (?, ?, ?, ?, ?)`,
         )
         .bind(newId("agent-installation-revocation"), installation.id, person.id, input.revokedAt, input.reason.trim()),
-      getD1()
+      this.database
         .prepare(
           `UPDATE agent_installations
            SET status = 'revoked', revoked_at = ?
@@ -873,7 +875,7 @@ class D1DelegationRepository implements DelegationRepository {
   }
 
   private async findDelegation(id: string): Promise<DelegationRow | null> {
-    return getD1()
+    return this.database
       .prepare(
         `SELECT certificate.id, certificate.owner_person_id, certificate.agent_id,
                 certificate.person_key_id, certificate.agent_public_key,
@@ -896,21 +898,21 @@ class D1DelegationRepository implements DelegationRepository {
   }
 
   private async findAgentInstallation(id: string): Promise<{ id: string; person_id: string; revoked_at: string | null } | null> {
-    return getD1()
+    return this.database
       .prepare("SELECT id, person_id, revoked_at FROM agent_installations WHERE id = ?")
       .bind(id)
       .first<{ id: string; person_id: string; revoked_at: string | null }>();
   }
 
   private async findAgentInstallationRevocation(installationId: string): Promise<{ owner_person_id: string; revoked_at: string; reason: string } | null> {
-    return getD1()
+    return this.database
       .prepare("SELECT owner_person_id, revoked_at, reason FROM agent_installation_revocations WHERE agent_installation_id = ?")
       .bind(installationId)
       .first<{ owner_person_id: string; revoked_at: string; reason: string }>();
   }
 
   private async requireAgentInstallation(id: string): Promise<AgentInstallationRow> {
-    const row = await getD1()
+    const row = await this.database
       .prepare(
         `SELECT installation.id, installation.agent_id, agent.label AS agent_label,
                 installation.delegation_certificate_id, certificate.scopes_json,
@@ -931,7 +933,7 @@ class D1DelegationRepository implements DelegationRepository {
   }
 
   private async findPersonKey(id: string): Promise<KeyRow | null> {
-    return getD1()
+    return this.database
       .prepare(
         `SELECT key.id, key.person_id, key.algorithm, key.public_key, key.fingerprint,
                 COALESCE(key_revocation.revoked_at, key.revoked_at) AS revoked_at,
@@ -946,7 +948,7 @@ class D1DelegationRepository implements DelegationRepository {
   }
 
   private async findPersonKeyRevocation(keyId: string): Promise<KeyRevocationRow | null> {
-    return getD1()
+    return this.database
       .prepare(
         `SELECT id, person_key_id, owner_person_id, revoked_at, reason
          FROM person_key_revocations WHERE person_key_id = ?`,
@@ -956,7 +958,7 @@ class D1DelegationRepository implements DelegationRepository {
   }
 
   private async hasAlternativeVerifiedPersonKey(personId: string, excludedKeyId: string): Promise<boolean> {
-    const keys = await getD1()
+    const keys = await this.database
       .prepare(
         `SELECT key.id, key.person_id, key.algorithm, key.public_key, key.fingerprint,
                 COALESCE(key_revocation.revoked_at, key.revoked_at) AS revoked_at,
@@ -976,7 +978,7 @@ class D1DelegationRepository implements DelegationRepository {
   }
 
   private async findProofByChallenge(challengeId: string): Promise<ProofRow | null> {
-    return getD1()
+    return this.database
       .prepare(
         `SELECT id, challenge_id, person_id, person_key_id, protocol_version,
                 canonical_payload, payload_hash, person_signature, verified_at
@@ -987,7 +989,7 @@ class D1DelegationRepository implements DelegationRepository {
   }
 
   private async hasValidPersonKeyProof(key: KeyRow, personId: string): Promise<boolean> {
-    const row = await getD1()
+    const row = await this.database
       .prepare(
         `SELECT proof.id, proof.challenge_id, proof.person_id, proof.person_key_id, proof.protocol_version,
                 proof.canonical_payload, proof.payload_hash, proof.person_signature, proof.verified_at,
@@ -1070,6 +1072,10 @@ class D1DelegationRepository implements DelegationRepository {
       throw new Error("Stored Person key proof did not pass its integrity check.");
     }
   }
+}
+
+export function getConnectionDelegationRepository(): DelegationRepository {
+  return new D1DelegationRepository(getConnectionD1());
 }
 
 export function getDelegationRepository(): DelegationRepository {
