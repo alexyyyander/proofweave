@@ -62,12 +62,19 @@ export class AccountAuthRepository {
       .first<{ id: string; display_name: string }>();
 
     let personId = legacy?.id ?? input.existingPersonId ?? null;
+    // A Person already bound to an immutable Sites subject must not be
+    // claimed by another provider through a current or legacy email alias.
     if (!personId && input.linkVerifiedEmail !== false && normalized.emailVerified && normalized.emailNormalized) {
       const matches = await getD1()
         .prepare(
-          `SELECT DISTINCT person_id
-           FROM person_identities
-           WHERE email_normalized = ? AND email_verified_at IS NOT NULL
+          `SELECT DISTINCT identity.person_id
+           FROM person_identities AS identity
+           WHERE identity.email_normalized = ? AND identity.email_verified_at IS NOT NULL
+             AND NOT EXISTS (
+               SELECT 1 FROM person_identities AS bridge
+               WHERE bridge.person_id = identity.person_id
+                 AND bridge.provider = 'chatgpt' AND bridge.provider_subject LIKE 'sites:%'
+             )
            LIMIT 2`,
         )
         .bind(normalized.emailNormalized)
@@ -118,14 +125,27 @@ export class AccountAuthRepository {
 
   async resolveSitesBridgeIdentity(input: { siteId: string; userId: string; email: string; displayName: string }): Promise<ResolvedAccountIdentity> {
     const subject = `sites:${await sha256(JSON.stringify([input.siteId, input.userId]))}`;
+    const normalized = normalizeIdentity({ provider: "chatgpt", subject,
+      email: input.email, displayName: input.displayName, emailVerified: true });
     const existing = await this.findIdentity("chatgpt", subject);
-    if (existing) return toResolved(existing);
+    if (existing) {
+      // The stable Sites subject owns this Person; email is mutable metadata.
+      await this.updateIdentity(existing.identity_id, normalized);
+      return { ...toResolved(existing), email: normalized.email, displayName: normalized.displayName };
+    }
     // The original Site authenticated these exact legacy ChatGPT subjects.
     // Do not link to Google or other providers merely because email matches.
     const email = normalizeEmail(input.email);
     const candidates = await getD1().prepare(
-      `SELECT person_id FROM person_identities WHERE provider = 'chatgpt' AND provider_subject = ?
-       UNION SELECT id AS person_id FROM persons WHERE identity_provider = 'chatgpt' AND provider_subject = ?`,
+      `SELECT candidate.person_id FROM (
+         SELECT person_id FROM person_identities WHERE provider = 'chatgpt' AND provider_subject = ?
+         UNION SELECT id AS person_id FROM persons WHERE identity_provider = 'chatgpt' AND provider_subject = ?
+       ) AS candidate
+       WHERE NOT EXISTS (
+         SELECT 1 FROM person_identities AS bridge
+         WHERE bridge.person_id = candidate.person_id
+           AND bridge.provider = 'chatgpt' AND bridge.provider_subject LIKE 'sites:%'
+       )`,
     ).bind(email, email).all<{ person_id: string }>();
     const ids = [...new Set<string>(candidates.results.map((row: { person_id: string }) => row.person_id))];
     if (ids.length > 1) throw new AmbiguousVerifiedEmailError();
