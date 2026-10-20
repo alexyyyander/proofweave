@@ -1,3 +1,4 @@
+import { PageTitle, SectionHeading } from "@/app/components/ui";
 import { Footer } from "../ui";
 import { Header } from "../header";
 import { IntegrationClient } from "./IntegrationClient";
@@ -38,15 +39,15 @@ export default async function IntegrationsPage({
     <>
       <Header active="workbench" />
       <main id="main-content" tabIndex={-1} className="page-main integrations-main">
-        <section className="integrations-hero" aria-labelledby="integrations-title">
+        <SectionHeading as="section" className="integrations-hero" aria-labelledby="integrations-title">
           <p className="eyebrow">Step 2 of 3 · connect Codex once</p>
-          <h1 id="integrations-title">Connect once. Then return to your research.</h1>
+          <PageTitle id="integrations-title">Connect once. Then return to your research.</PageTitle>
           <p>
             Keep your research Agent on your computer. Proofweave records only
             the bounded work you explicitly approve—never your private
             workspace, prompts, or API keys.
           </p>
-        </section>
+        </SectionHeading>
         <IntegrationClient
           connection={connection}
           isAuthenticated={Boolean(user)}

@@ -1,17 +1,18 @@
+import { Breadcrumb } from "@/app/components/navigation/Breadcrumb";
+import { SiteFrame } from "@/app/components/shell/SiteFrame";
+
+import { PageTitle, SectionTitle, SectionHeading, Surface } from "@/app/components/ui";
 import Link from "next/link";
-import { Footer, PageSectionNav } from "../ui";
-import { Header } from "../header";
+import { PageSectionNav } from "../ui";
 
 export default function PrivacyPage() {
-  return <div className="site-shell app-shell">
-      <Header active="about" activeHref="/privacy" />
-    <main id="main-content" tabIndex={-1} className="page-main legal-main">
-      <div className="breadcrumb"><Link href="/about">About</Link><span> / </span><span>Privacy</span></div>
-      <section className="legal-hero">
+  return <SiteFrame className="site-shell app-shell" active="about" activeHref="/privacy" mainClassName="page-main legal-main">
+      <Breadcrumb><Link href="/about">About</Link><span> / </span><span>Privacy</span></Breadcrumb>
+      <SectionHeading as="section" className="legal-hero">
         <p className="eyebrow">Privacy · public alpha</p>
-        <h1>Your mathematical record can be public. Your login does not need to be.</h1>
+        <PageTitle>Your mathematical record can be public. Your login does not need to be.</PageTitle>
         <p>Effective July 16, 2026. This notice describes the Proofweave research website and its personally delegated Agent workflow.</p>
-      </section>
+      </SectionHeading>
       <PageSectionNav links={[{ href: "#identity", label: "Identity" }, { href: "#stored-data", label: "Stored data" }, { href: "#workspace-boundary", label: "Workspace boundary" }, { href: "#control", label: "Retention & control" }]} />
       <section className="legal-sections">
         <PolicySection id="identity" title="What sign-in provides">
@@ -33,11 +34,9 @@ export default function PrivacyPage() {
           <p>The application uses OpenAI Sites and Cloudflare-compatible storage and execution services. Provider sign-in is also subject to the selected provider’s policies. For an access, correction, deletion, or security request, contact the project builder through <a href="https://github.com/alexyyyander" rel="noreferrer" target="_blank">GitHub @alexyyyander ↗</a>.</p>
         </PolicySection>
       </section>
-    </main>
-    <Footer />
-  </div>;
+    </SiteFrame>;
 }
 
 function PolicySection({ id, title, children }: { id?: string; title: string; children: React.ReactNode }) {
-  return <article id={id}><h2>{title}</h2>{children}</article>;
+  return <Surface as="article" id={id}><SectionTitle>{title}</SectionTitle>{children}</Surface>;
 }

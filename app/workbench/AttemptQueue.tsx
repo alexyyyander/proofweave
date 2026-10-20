@@ -1,12 +1,15 @@
 "use client";
 
+import { SectionTitle, Badge, ActionLink, Button, EmptyState, SectionHeading, Select, Surface } from "@/app/components/ui";
+
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import type { DelegationProfile, StoredDelegation } from "@/db/repositories/delegation";
-import type { CatalogProblem } from "@/packages/domain/catalog";
-import type { McpAttempt } from "@/packages/domain/mcp";
+import { type DelegationProfile, type StoredDelegation } from "@/db/repositories/delegation";
+import { type CatalogProblem } from "@/packages/domain/catalog";
+import { type McpAttempt } from "@/packages/domain/mcp";
 import { closedAlphaAttemptLimits } from "@/packages/domain/attempt-policy.mjs";
 import { activeLocalCodexInstallation } from "../lib/local-agent-journey";
+import { ScrollFade } from "../scroll-fade";
 
 type AttemptScope = "formalize" | "prove";
 
@@ -79,40 +82,40 @@ export function AttemptQueue({
   };
 
   return <section className="attempt-queue" id="attempt-queue" aria-labelledby="attempt-queue-title">
-    <div className="attempt-queue-heading">
+    <SectionHeading as="div" className="attempt-queue-heading">
       <div>
         <p className="eyebrow">Closed-alpha work queue</p>
-        <h2 id="attempt-queue-title">Open a durable research Attempt.</h2>
+        <SectionTitle id="attempt-queue-title">Open a durable research Attempt.</SectionTitle>
         <p>Choose a source-pinned frontier target for your approved local Agent. This records only an owner-created workspace; a running Connector verifies the saved website address before any later Agent progress can arrive.</p>
       </div>
-      <span className="record-chip">Provisional only</span>
-    </div>
+      <Badge className="record-chip">Provisional only</Badge>
+    </SectionHeading>
 
-    {!isAuthenticated ? <div className="attempt-queue-empty">
+    {!isAuthenticated ? <EmptyState as="div" className="attempt-queue-empty">
       <strong>Sign in to open accountable work.</strong>
       <p>A durable Attempt is owned by the signed-in Person and bound to one of that Person’s active Agent delegations.</p>
-      <Link className="button button-primary" href={signInPath}>Sign in to your workspace</Link>
-    </div> : !storageAvailable ? <div className="attempt-queue-empty">
+      <ActionLink className="button button-primary" href={signInPath}>Sign in to your workspace</ActionLink>
+    </EmptyState> : !storageAvailable ? <EmptyState as="div" className="attempt-queue-empty">
       <strong>Work queue temporarily unavailable.</strong>
       <p>Delegated Attempt records require the closed-alpha D1 control plane. No local fallback is used for accountable work.</p>
-    </div> : catalogTargets.length === 0 ? <div className="attempt-queue-empty">
+    </EmptyState> : catalogTargets.length === 0 ? <EmptyState as="div" className="attempt-queue-empty">
       <strong>Frontier catalog temporarily unavailable.</strong>
       <p>No durable Attempt can be opened until a source-pinned public frontier target is available. Proofweave does not fall back to preview data for accountable work.</p>
       <Link className="quiet-action" href="/explore">Browse the public catalog</Link>
-    </div> : !connection ? <div className="attempt-queue-empty">
+    </EmptyState> : !connection ? <EmptyState as="div" className="attempt-queue-empty">
       <strong>Connect local Codex before opening accountable work.</strong>
       <p>The normal browser approval creates the local Agent identity and its scoped authority together. No public key needs to be pasted here.</p>
       <Link className="quiet-action" href="/integrations#codex-beta">Install or connect Codex</Link>
-    </div> : eligibleDelegations.length === 0 ? <div className="attempt-queue-empty">
+    </EmptyState> : eligibleDelegations.length === 0 ? <EmptyState as="div" className="attempt-queue-empty">
       <strong>Your local connection needs an active work delegation.</strong>
       <p>Reconnect the same local Agent. Proofweave reuses compatible authority when possible, or records renewed authority without replacing any stable Attempt id.</p>
       <Link className="quiet-action" href="/integrations#codex-beta">Reconnect local Codex</Link>
-    </div> : <div className="attempt-queue-grid">
+    </EmptyState> : <div className="attempt-queue-grid">
       <form className="attempt-open-form" onSubmit={(event) => { event.preventDefault(); void openAttempt(); }}>
         <label>Public frontier target
-          <select value={selectedTarget?.slug ?? ""} onChange={(event) => { setRequestedTargetSlug(event.target.value); setNotice(null); setError(null); }} disabled={isSubmitting}>
+          <Select value={selectedTarget?.slug ?? ""} onChange={(event) => { setRequestedTargetSlug(event.target.value); setNotice(null); setError(null); }} disabled={isSubmitting}>
             {catalogTargets.map((candidate) => <option value={candidate.slug} key={candidate.id}>{candidate.title} · {candidate.domain}</option>)}
-          </select>
+          </Select>
         </label>
         {selectedTarget && <div className="attempt-target"><span className="micro-label">Selected catalog target</span><strong>{selectedTarget.title}</strong><code>{selectedTarget.slug} · {selectedTarget.source.revisionTag} · {selectedTarget.source.leanToolchain}</code><p>{selectedTarget.informalStatement}</p><Link className="text-link" href={`/explore/${selectedTarget.slug}`}>Inspect pinned source target <span>→</span></Link></div>}
         <div className="attempt-target">
@@ -122,27 +125,29 @@ export function AttemptQueue({
           <p>This Attempt will be bound to the local Agent you approved in Codex. Change or revoke that connection in Settings.</p>
         </div>
         <label>Bounded work scope
-          <select value={scope} onChange={(event) => setRequestedScope(event.target.value as AttemptScope)} disabled={isSubmitting}>
+          <Select value={scope} onChange={(event) => setRequestedScope(event.target.value as AttemptScope)} disabled={isSubmitting}>
             {allowedScopes.map((candidate) => <option value={candidate} key={candidate}>{candidate}</option>)}
-          </select>
+          </Select>
         </label>
         <p className="attempt-form-note">Agent label and certificate binding are derived server-side. Opening work does not report mathematical progress. Closed alpha permits at most {closedAlphaAttemptLimits.maximumActiveAttemptsPerPerson} active Attempts per Person, regardless of Agent count.</p>
-        <button className="button button-primary" type="submit" disabled={isSubmitting || atAttemptCapacity}>{isSubmitting ? "Opening Attempt…" : atAttemptCapacity ? "Active Attempt capacity reached" : "Open durable Attempt"}</button>
+        <Button className="button button-primary" type="submit" disabled={isSubmitting || atAttemptCapacity}>{isSubmitting ? "Opening Attempt…" : atAttemptCapacity ? "Active Attempt capacity reached" : "Open durable Attempt"}</Button>
         {atAttemptCapacity && <p className="attempt-message attempt-message-error" role="alert">This Person has reached the closed-alpha active Attempt capacity. Existing work must become terminal before another Attempt can open.</p>}
         {notice && <p className="attempt-message attempt-message-success" role="status">{notice}</p>}
         {error && <p className="attempt-message attempt-message-error" role="alert">{error}</p>}
       </form>
-      <div className="attempt-list-panel">
+      <Surface as="div" className="attempt-list-panel">
         <div className="attempt-list-heading"><span className="micro-label">Your durable Attempts</span><span>{attempts.length === 0 ? "None yet" : `${activeAttemptCount}/${closedAlphaAttemptLimits.maximumActiveAttemptsPerPerson} active`}</span></div>
-        {attempts.length === 0 ? <p className="attempt-list-empty">No durable Attempt has been opened for this Person. Open one to create the first accountable activity record.</p> : <ol className="attempt-list">
+        {attempts.length === 0 ? <p className="attempt-list-empty">No durable Attempt has been opened for this Person. Open one to create the first accountable activity record.</p> : <ScrollFade maxHeight={420}>
+          <ol className="attempt-list">
           {attempts.slice(0, 6).map((attempt) => <li key={attempt.id}>
             <div><strong>{attempt.problemTitle}</strong><code>{attempt.id}</code></div>
             <div className="attempt-metadata"><span>{attempt.agentLabel}</span><span>{attempt.delegationScope ?? "legacy authority"}</span><span>{attempt.lastProgressPercent === null ? "No Agent-reported progress" : `${attempt.lastProgressPercent}% agent-reported`}</span></div>
             <p>{attempt.events.at(-1)?.message ?? "Attempt event unavailable."}</p>
             <small>Updated {formatTime(attempt.updatedAt)} · {attempt.verificationState.replaceAll("_", " ")}</small>
           </li>)}
-        </ol>}
-      </div>
+          </ol>
+        </ScrollFade>}
+      </Surface>
     </div>}
     <p className="attempt-queue-boundary">This queue never produces a Lean kernel result, an independent review, or a Contribution Receipt. Those require their own evidence and authorization gates.</p>
   </section>;
