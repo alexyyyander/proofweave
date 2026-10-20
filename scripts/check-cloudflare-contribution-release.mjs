@@ -19,7 +19,11 @@ export async function checkCloudflareContributionRelease({ evidence, manifest, e
   const after = await bindCloudflareReleaseEvidence({ manifest, expectedManifestHash, observation: release.after });
   if (Date.parse(before.observedAt) > Date.parse(after.observedAt)) throw new CloudflareReleaseEvidenceError("RELEASE_WINDOW_INVALID");
   if (manifest.modes.global !== "read_write" || manifest.modes.participant !== "read_write" || manifest.modes.mcp !== "read_write" || manifest.modes.runner !== "ready") throw new CloudflareReleaseEvidenceError("CONTRIBUTION_EXECUTION_EVIDENCE_REQUIRED");
-  const graph = checkCredentialedContributionGraph(evidence, { before: before.observedAt, after: after.observedAt });
+  const graph = checkCredentialedContributionGraph(evidence, {
+    before: before.observedAt,
+    // Contributions must finish before the after-probe begins, not midway through it.
+    after: after.collectionWindow?.startedAt ?? after.observedAt,
+  });
   return {
     schemaVersion: "pw-cloudflare-contribution-release-check-v2", outcome: "consistent", executionMode: "offline_dry_run",
     release: { manifestHash: expectedManifestHash, environment: manifest.environment, componentsIndependentlyBound: true, databaseFingerprint: before.databaseFingerprint, migrationHead: before.migrationHead },

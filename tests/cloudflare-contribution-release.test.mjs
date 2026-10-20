@@ -7,6 +7,7 @@ import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { checkCloudflareContributionRelease as check, cloudflareContributionSchema } from "../scripts/check-cloudflare-contribution-release.mjs";
 import { checkCredentialedContributionRelease } from "../scripts/check-credentialed-contribution-release.mjs";
+import { inspectCloudflareReleaseEvidence } from "../scripts/lib/cloudflare-release-evidence.mjs";
 import { releaseFixture } from "./fixtures/cloudflare-release-evidence.mjs";
 import { completeEvidence } from "./fixtures/credentialed-contribution-evidence.mjs";
 
@@ -100,4 +101,31 @@ test("CLI binding-only mode accepts paused records without treating them as a co
   const report = JSON.parse(result.stdout);
   assert.equal(report.binding.runnerState, "paused"); assert.equal(report.contribution, undefined);
   assert.equal(report.boundary.networkRequestsMade, false); assert.equal(report.boundary.releaseApproved, false);
+});
+
+
+test("fresh probes cannot be relabeled into the historical contribution window", async () => {
+  const f = await fixture();
+  const provider = structuredClone(f.observation);
+  provider.observedAt = "2026-10-20T10:00:00Z";
+  const inspected = await inspectCloudflareReleaseEvidence({ ...f, providerObservation: provider,
+    now: () => new Date("2026-10-20T10:00:01Z"),
+    fetcher: async url => Response.json(url.endsWith("/healthz") ? f.observation.runner.health : f.observation.cloudflare.capabilities) });
+  f.evidence.release.before = inspected.observation;
+  f.evidence.release.after = structuredClone(inspected.observation);
+  await assert.rejects(check(f), error => error.code === "EVENT_OUTSIDE_RELEASE_WINDOW");
+  f.evidence.release.before.observedAt = "2026-07-29T10:00:00Z";
+  f.evidence.release.after.observedAt = "2026-07-29T11:00:00Z";
+  await assert.rejects(check(f), /OBSERVATION_COLLECTION_TIME_MISMATCH/);
+});
+
+test("contribution completion must precede the after-probe start", async () => {
+  const f = await fixture();
+  const after = f.evidence.release.after;
+  after.collectionWindow = { providerObservedAt: "2026-07-29T10:49:40Z", startedAt: "2026-07-29T10:49:50Z", completedAt: "2026-07-29T10:50:10Z" };
+  after.observedAt = after.collectionWindow.completedAt;
+  await assert.rejects(check(f), error => error.code === "EVENT_OUTSIDE_RELEASE_WINDOW");
+  after.collectionWindow.startedAt = "2026-07-29T10:50:05Z";
+  const result = await check(f);
+  assert.equal(result.outcome, "consistent");
 });

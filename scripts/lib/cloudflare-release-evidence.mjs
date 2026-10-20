@@ -4,6 +4,10 @@ import { loadProofweaveMigrations, verifyProofweaveMigrationLedger } from "../..
 import { normalizeRunnerReleaseHealth, runnerReleaseHealthModes } from "./github-independent-live-release-binding.mjs";
 import { rejectCredentialMaterial } from "../check-credentialed-contribution-release.mjs";
 
+const maxProviderAgeMilliseconds = 5 * 60 * 1000;
+const maxCollectionMilliseconds = 30 * 1000;
+const systemClock = () => new Date();
+
 const head = "0049_add_catalog_browse_index.sql";
 const digest = /^sha256:[a-f0-9]{64}$/;
 const revision = /^[a-f0-9]{40}$/;
@@ -37,6 +41,24 @@ export function releaseObservationTime(v) {
   const normalized = new Date(v).toISOString();
   requireValue(normalized === v || normalized.replace(".000Z", "Z") === v, "OBSERVATION_TIME_INVALID");
   return v;
+}
+
+function collectionWindow(value) {
+  keys(value, "providerObservedAt startedAt completedAt", "COLLECTION_WINDOW_INVALID");
+  for (const timestamp of Object.values(value)) releaseObservationTime(timestamp);
+  const provider = Date.parse(value.providerObservedAt);
+  const start = Date.parse(value.startedAt);
+  const end = Date.parse(value.completedAt);
+  requireValue(provider <= start && start - provider <= maxProviderAgeMilliseconds, "PROVIDER_OBSERVATION_TIME_MISMATCH");
+  requireValue(end >= start && end - start <= maxCollectionMilliseconds, "COLLECTION_WINDOW_INVALID");
+  return value;
+}
+
+function clockTime(now) {
+  requireValue(typeof now === "function", "OBSERVATION_CLOCK_INVALID");
+  const date = now();
+  requireValue(date instanceof Date && Number.isFinite(date.getTime()), "OBSERVATION_CLOCK_INVALID");
+  return date.toISOString();
 }
 
 /** The hash must come from independent review; hashing an input is not approval. */
@@ -84,8 +106,13 @@ export async function bindCloudflareReleaseEvidence({ manifest, expectedManifest
   const m = structuredClone(validateCloudflareComponentManifest(manifest, expectedManifestHash));
   rejectCredentialMaterial(observation);
   observation = structuredClone(observation);
-  keys(observation, "observedAt cloudflare runner e2b loginBridge database", "OBSERVATION_INVALID");
+  const hasCollectionWindow = record(observation) && Object.hasOwn(observation, "collectionWindow");
+  keys(observation, "observedAt cloudflare runner e2b loginBridge database" + (hasCollectionWindow ? " collectionWindow" : ""), "OBSERVATION_INVALID");
   releaseObservationTime(observation.observedAt);
+  if (hasCollectionWindow) {
+    collectionWindow(observation.collectionWindow);
+    match(observation.observedAt, observation.collectionWindow.completedAt, "OBSERVATION_COLLECTION_TIME_MISMATCH");
+  }
   const migrations = await loadProofweaveMigrations();
   requireValue(migrations.length === 50 && migrations.at(-1).name === head, "REVIEWED_MIGRATION_HISTORY_CHANGED");
   keys(observation.database, "fingerprint ledger", "DATABASE_OBSERVATION_INVALID");
@@ -123,7 +150,8 @@ export async function bindCloudflareReleaseEvidence({ manifest, expectedManifest
   for (const [key, value] of Object.entries(m.e2b)) match(observation.e2b[key], value, "E2B_BUILD_MISMATCH");
   keys(observation.loginBridge, "origin sourceRevision sitesVersion siteProjectId artifactDigest", "BRIDGE_OBSERVATION_INVALID");
   for (const [key, value] of Object.entries(m.loginBridge)) match(observation.loginBridge[key], value, "BRIDGE_DEPLOYMENT_MISMATCH");
-  return { observedAt: observation.observedAt, manifestHash: expectedManifestHash, databaseFingerprint: m.database.fingerprint, migrationHead: head, runnerState: health.state };
+  return { observedAt: observation.observedAt, manifestHash: expectedManifestHash, databaseFingerprint: m.database.fingerprint, migrationHead: head, runnerState: health.state,
+    ...(hasCollectionWindow ? { collectionWindow: observation.collectionWindow } : {}) };
 }
 
 function checkModes(capabilities, expected) {
@@ -152,10 +180,14 @@ function checkModes(capabilities, expected) {
 }
 
 /** Fetch only two fixed public GETs; provider records and ledger must be collected separately. */
-export async function inspectCloudflareReleaseEvidence({ manifest, expectedManifestHash, providerObservation, fetcher = globalThis.fetch } = {}) {
+export async function inspectCloudflareReleaseEvidence({ manifest, expectedManifestHash, providerObservation, fetcher = globalThis.fetch, now = systemClock } = {}) {
   manifest = structuredClone(validateCloudflareComponentManifest(manifest, expectedManifestHash));
   rejectCredentialMaterial(providerObservation);
   providerObservation = structuredClone(providerObservation);
+  const startedAt = clockTime(now);
+  const providerObservedAt = releaseObservationTime(providerObservation?.observedAt);
+  // Reject stale or future provider records before making either public GET.
+  collectionWindow({ providerObservedAt, startedAt, completedAt: startedAt });
   const read = async (base, path) => {
     const url = base + path;
     let response;
@@ -174,10 +206,13 @@ export async function inspectCloudflareReleaseEvidence({ manifest, expectedManif
   const [capabilities, health] = await Promise.all([
     read(manifest.environment.origin, "/api/mcp/capabilities"), read(manifest.runner.origin, "/healthz"),
   ]);
-  const observation = { ...providerObservation,
+  const completedAt = clockTime(now);
+  const window = collectionWindow({ providerObservedAt, startedAt, completedAt });
+  const observation = { ...providerObservation, observedAt: completedAt, collectionWindow: window,
     cloudflare: { ...providerObservation?.cloudflare, capabilities },
     runner: { ...providerObservation?.runner, health },
   };
   const binding = await bindCloudflareReleaseEvidence({ manifest, expectedManifestHash, observation });
-  return { binding, observation, boundary: { publicGetRequestsOnly: true, providerRecordsIndependentlyRequired: true, executionAuthorized: false, liveProviderStateVerified: false } };
+  return { binding, observation, boundary: { publicGetRequestsOnly: true, providerRecordsIndependentlyRequired: true, executionAuthorized: false, liveProviderStateVerified: false,
+    fixtureOnly: fetcher !== globalThis.fetch || now !== systemClock } };
 }

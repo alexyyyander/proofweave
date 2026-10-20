@@ -36,6 +36,10 @@ Cloudflare `sourceKind=git_commit` 要求 40 位 Git SHA；`migration_snapshot` 
 
 ```text
 observedAt: UTC ISO-8601
+collectionWindow: 在线采集时必需；离线历史记录可不带
+  providerObservedAt: 提供商记录的原采集时间
+  startedAt: 实际公开探测开始时间
+  completedAt: 实际公开探测完成时间；必须等于 observedAt
 cloudflare:
   origin
   capabilities: 原始公开 capabilities JSON
@@ -50,6 +54,8 @@ database:
   fingerprint
   ledger: [{ name, sha256, applied_at, statement_count }, ...]
 ```
+
+在线入口使用系统时钟记录探测起止时间，不沿用输入的 observedAt。提供商采集时间必须不晚于探测开始，且最多早 5 分钟；否则在发出 GET 前拒绝。整个探测窗口最多 30 秒，时钟倒退也会拒绝。输出把原采集时间保存在 collectionWindow，并以探测完成时间作为 observedAt。离线校验会核对此时间关系；贡献窗口须开始于 before 探测完成之后，结束于 after 探测开始之前。离线保存的真实历史观测仍可按原时间检查，不触发网络请求。测试注入时钟或 HTTP 实现会明确标为 fixtureOnly，不构成真实生产证据。
 
 从发行记录、Cloudflare 部署、Render 部署、E2B 模板 build 和 Sites 登录桥版本分别采集各自记录，保留采集时间和只读审计来源。当前公开 API 没有提供的字段不能从另一个组件复制。只传无凭据投影，不导出 provider token、cookie、OAuth code 或私有研究内容。数据库仅导出 `_proofweave_migrations` 的上述四列，按 name 排序；采集动作不得应用迁移。
 

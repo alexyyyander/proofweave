@@ -120,7 +120,7 @@ test("rejects missing, altered, unknown and truncated migration identities even 
 
 test("public inspection performs only fixed GETs and binds independently supplied provider records", async () => {
   const f = await releaseFixture(); const calls = [];
-  const result = await inspect({ ...f, providerObservation: f.observation, fetcher: async (url, init) => {
+  const result = await inspect({ ...f, providerObservation: f.observation, now: () => new Date(f.observation.observedAt), fetcher: async (url, init) => {
     calls.push([url, init]);
     return Response.json(url.endsWith("/healthz") ? f.observation.runner.health : f.observation.cloudflare.capabilities);
   } });
@@ -140,7 +140,7 @@ test("public inspection rejects redirect, non-JSON, large or bad responses", asy
   ];
   for (const [i, response] of responses.entries()) await t.test(String(i), async () => {
     const f = await releaseFixture();
-    await assert.rejects(inspect({ ...f, providerObservation: f.observation, fetcher: response }));
+    await assert.rejects(inspect({ ...f, providerObservation: f.observation, now: () => new Date(f.observation.observedAt), fetcher: response }));
   });
   let calls = 0; const f = await releaseFixture();
   await assert.rejects(inspect({ ...f, expectedManifestHash: "bad", fetcher: async () => { calls++; } }));
@@ -166,4 +166,42 @@ test("async inspection snapshots reviewed inputs instead of accepting caller mut
   const result = await pending;
   assert.equal(result.runnerState, "paused");
   assert.notEqual(result.manifestHash, releaseEvidenceHash(f.manifest));
+});
+
+
+test("live inspection stamps its actual interval and separately retains provider collection time", async () => {
+  const f = await releaseFixture(); const snapshot = JSON.stringify(f.observation);
+  const ticks = ["2026-07-29T10:00:10.000Z", "2026-07-29T10:00:12.000Z"];
+  const result = await inspect({ ...f, providerObservation: f.observation, now: () => new Date(ticks.shift()),
+    fetcher: async url => Response.json(url.endsWith("/healthz") ? f.observation.runner.health : f.observation.cloudflare.capabilities) });
+  assert.equal(result.observation.observedAt, "2026-07-29T10:00:12.000Z");
+  assert.deepEqual(result.observation.collectionWindow, { providerObservedAt: f.observation.observedAt, startedAt: "2026-07-29T10:00:10.000Z", completedAt: "2026-07-29T10:00:12.000Z" });
+  assert.deepEqual(result.binding.collectionWindow, result.observation.collectionWindow);
+  assert.equal(result.boundary.fixtureOnly, true);
+  assert.equal(JSON.stringify(f.observation), snapshot);
+  await bind({ ...f, observation: result.observation });
+  result.observation.observedAt = f.observation.observedAt;
+  await assert.rejects(bind({ ...f, observation: result.observation }), /OBSERVATION_COLLECTION_TIME_MISMATCH/);
+});
+
+test("stale and future provider records cannot label fresh public probes with another time", async t => {
+  for (const timestamp of ["2026-10-20T10:00:00Z", "2026-07-29T09:59:59Z", "2026-07-29T10:05:00.001Z"]) {
+    await t.test(timestamp, async () => {
+      const f = await releaseFixture(); let calls = 0;
+      await assert.rejects(inspect({ ...f, providerObservation: f.observation, now: () => new Date(timestamp), fetcher: async () => { calls++; } }), /PROVIDER_OBSERVATION_TIME_MISMATCH/);
+      assert.equal(calls, 0);
+    });
+  }
+});
+
+test("collection clocks cannot move backwards or exceed the bounded probe interval", async t => {
+  for (const end of ["2026-07-29T09:59:59Z", "2026-07-29T10:00:30.001Z"]) {
+    await t.test(end, async () => {
+      const f = await releaseFixture(); const ticks = [f.observation.observedAt, end];
+      await assert.rejects(inspect({ ...f, providerObservation: f.observation, now: () => new Date(ticks.shift()),
+        fetcher: async url => Response.json(url.endsWith("/healthz") ? f.observation.runner.health : f.observation.cloudflare.capabilities) }), /COLLECTION_WINDOW_INVALID/);
+    });
+  }
+  const f = await releaseFixture();
+  await assert.rejects(inspect({ ...f, providerObservation: f.observation, now: () => new Date("invalid") }), /OBSERVATION_CLOCK_INVALID/);
 });
