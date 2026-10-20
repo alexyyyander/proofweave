@@ -1,5 +1,7 @@
 # Credentialed contribution release smoke
 
+This document describes the unchanged staging/0043 v1 gate. For the separate Cloudflare/0049 component evidence adapter, see [the v2 guide](cloudflare-0049-release-evidence.zh-CN.md). The new offline result does not authorize production execution.
+
 The credentialed release smoke is the final operator gate for one real
 Proofweave contribution path:
 
