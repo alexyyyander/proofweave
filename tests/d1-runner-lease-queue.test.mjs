@@ -491,6 +491,47 @@ test("durable Runner queue refuses to synthesize a missing enqueue event after l
   );
 });
 
+test("restricted claims never take an older job or fall through after the target finishes", async (t) => {
+  const database = await queueDatabase();
+  t.after(() => database.close());
+  const queue = new D1RunnerLeaseQueue({ database });
+  const other = (await fixtureMessage({ runId: "run:a-unapproved", idempotencyKey: "unapproved" })).message;
+  const target = (await fixtureMessage({ runId: "run:z-approved", idempotencyKey: "approved" })).message;
+  for (const message of [other, target]) {
+    await seedRun(database, message.runId);
+    await queue.enqueue(message);
+  }
+  const input = { consumerId: "runner:restricted", claimedAt: "2026-07-13T00:00:01Z", runId: target.runId };
+  assert.equal(await queue.claim({ ...input, runId: "run:missing" }), null);
+  await assert.rejects(queue.claim({ ...input, runId: "" }), RunnerQueueProtocolError);
+  const claimed = await queue.claim(input);
+  assert.equal(claimed.message.runId, target.runId);
+  await queue.acknowledge({ runId: target.runId, leaseId: claimed.lease.id, acknowledgedAt: "2026-07-13T00:00:02Z" });
+  assert.equal(await queue.claim(input), null);
+  assert.equal((await queue.find(other.runId)).deliveryAttempts, 0);
+  assert.deepEqual((await queue.listEvents(other.runId)).map(e => e.eventType), ["enqueued"]);
+  const unrestricted = await queue.claim({ consumerId: "runner:normal", claimedAt: input.claimedAt });
+  assert.equal(unrestricted.message.runId, other.runId);
+});
+
+test("restricted concurrent claims fence the target while leaving another expired lease untouched", async (t) => {
+  const database = await queueDatabase();
+  t.after(() => database.close());
+  const queue = new D1RunnerLeaseQueue({ database });
+  const other = (await fixtureMessage({ runId: "run:a-expired", idempotencyKey: "expired" })).message;
+  const target = (await fixtureMessage({ runId: "run:z-target", idempotencyKey: "target" })).message;
+  for (const message of [other, target]) {
+    await seedRun(database, message.runId);
+    await queue.enqueue(message);
+  }
+  const original = await queue.claim({ consumerId: "runner:old", claimedAt: "2026-07-13T00:00:01Z", leaseDurationSeconds: 30, runId: other.runId });
+  const claims = await Promise.all(["one", "two"].map(id => queue.claim({ consumerId: `runner:${id}`, claimedAt: "2026-07-13T00:01:00Z", runId: target.runId })));
+  assert.equal(claims.filter(Boolean).length, 1);
+  assert.equal(claims.find(Boolean).message.runId, target.runId);
+  assert.equal((await queue.find(other.runId)).lease.id, original.lease.id);
+  assert.equal((await queue.find(other.runId)).deliveryAttempts, 1);
+});
+
 async function queueDatabase() {
   const database = new LibsqlD1Database(createClient({ url: "file::memory:" }));
   await database.prepare("CREATE TABLE runs (id TEXT PRIMARY KEY NOT NULL)").run();

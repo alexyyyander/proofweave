@@ -70,6 +70,7 @@ export class TrustedRunnerProcess {
     authenticator,
     execute,
     consumerId,
+    onlyRunId,
     leaseDurationSeconds = 300,
     heartbeatSeconds = 60,
     retryDelaySeconds = 30,
@@ -87,6 +88,7 @@ export class TrustedRunnerProcess {
       throw new TrustedRunnerProcessConfigurationError("Trusted Runner requires an authenticated execution callback.");
     }
     requireIdentifier(consumerId, "RUNNER_CONSUMER_ID");
+    if (onlyRunId !== undefined) requireIdentifier(onlyRunId, "RUNNER_ONLY_RUN_ID");
     requireInteger(leaseDurationSeconds, "Runner lease duration", 30, 3_600);
     requireInteger(heartbeatSeconds, "Runner lease heartbeat", 1, leaseDurationSeconds - 1);
     requireInteger(retryDelaySeconds, "Runner retry delay", 1, 86_400);
@@ -99,6 +101,7 @@ export class TrustedRunnerProcess {
     this.authenticator = authenticator;
     this.execute = execute;
     this.consumerId = consumerId;
+    this.onlyRunId = onlyRunId;
     this.leaseDurationSeconds = leaseDurationSeconds;
     this.heartbeatSeconds = heartbeatSeconds;
     this.retryDelaySeconds = retryDelaySeconds;
@@ -117,6 +120,7 @@ export class TrustedRunnerProcess {
       consumerId: this.consumerId,
       claimedAt,
       leaseDurationSeconds: this.leaseDurationSeconds,
+      ...(this.onlyRunId === undefined ? {} : { runId: this.onlyRunId }),
     });
     if (!delivery) return Object.freeze({ outcome: "idle" });
 
@@ -305,6 +309,7 @@ export async function createTrustedRunnerRuntime({
   observePhase = createTrustedRunnerPhaseObserver({ emit, now }),
 } = {}) {
   requireExecutionEnabled(environment);
+  const onlyRunId = restrictedRunId(environment);
   if (!database || typeof database.prepare !== "function" || typeof database.batch !== "function") {
     throw new TrustedRunnerProcessConfigurationError("Trusted Runner runtime requires a D1-compatible database.");
   }
@@ -380,6 +385,7 @@ export async function createTrustedRunnerRuntime({
     authenticator,
     execute,
     consumerId: requireSetting(environment, "RUNNER_CONSUMER_ID"),
+    onlyRunId,
     leaseDurationSeconds,
     heartbeatSeconds: integerSetting(
       environment,
@@ -457,6 +463,7 @@ export async function createTrustedRunnerRuntimeFromEnvironment({
   monotonicNow = () => performance.now(),
 } = {}) {
   requireExecutionEnabled(environment);
+  restrictedRunId(environment);
   const databaseUrl = requireSetting(environment, "TURSO_DATABASE_URL");
   const database = createRemoteLibsqlD1Database({
     url: databaseUrl,
@@ -628,6 +635,12 @@ function requireExecutionEnabled(environment) {
   if (environment?.RUNNER_EXECUTION_ENABLED !== "true") {
     throw new TrustedRunnerProcessConfigurationError("Trusted Runner requires RUNNER_EXECUTION_ENABLED=true before it can execute leases.");
   }
+}
+
+function restrictedRunId(environment) {
+  const value = environment.RUNNER_ONLY_RUN_ID;
+  if (value !== undefined) requireIdentifier(value, "RUNNER_ONLY_RUN_ID");
+  return value;
 }
 
 function parseJsonSetting(environment, key) {

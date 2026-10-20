@@ -139,8 +139,9 @@ export class D1RunnerLeaseQueue {
     });
   }
 
-  async claim({ consumerId, claimedAt, leaseDurationSeconds = 300 }) {
+  async claim({ consumerId, claimedAt, leaseDurationSeconds = 300, runId }) {
     requireIdentifier(consumerId, "consumerId");
+    if (runId !== undefined) requireIdentifier(runId, "runId");
     requireUtcInstant(claimedAt, "claimedAt");
     requireDuration(leaseDurationSeconds, "leaseDurationSeconds", 30, 3_600);
     const effectiveClaimedAt = canonicalInstant(claimedAt);
@@ -149,14 +150,15 @@ export class D1RunnerLeaseQueue {
     for (let attempt = 0; attempt < this.claimRetries; attempt += 1) {
       const candidate = await this.database.prepare(
         `SELECT * FROM runner_queue_messages
-         WHERE (delivery_state = 'queued' AND available_at <= ?)
-            OR (delivery_state = 'leased' AND lease_expires_at <= ?)
+         WHERE ((delivery_state = 'queued' AND available_at <= ?)
+            OR (delivery_state = 'leased' AND lease_expires_at <= ?))
+           ${runId === undefined ? "" : "AND run_id = ?"}
          ORDER BY
            CASE delivery_state WHEN 'queued' THEN available_at ELSE lease_expires_at END,
            enqueued_at,
            run_id
          LIMIT 1`,
-      ).bind(effectiveClaimedAt, effectiveClaimedAt).first();
+      ).bind(effectiveClaimedAt, effectiveClaimedAt, ...(runId === undefined ? [] : [runId])).first();
       if (!candidate) return null;
 
       const leaseId = this.newIdentifier("lease");

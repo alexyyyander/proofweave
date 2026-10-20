@@ -1,6 +1,6 @@
 import { isExecutableArtifactBundle } from "../../packages/protocol/artifact-bundle.mjs";
 import { leanRunnerRequestHash } from "../../packages/protocol/lean-runner.mjs";
-import { runnerWorkspaceIngressProtocolVersion } from "./container-workspace-ingress.mjs";
+import { runnerWorkspaceIngressProtocolVersion, runnerWorkspaceFinalizationCodes } from "./container-workspace-ingress.mjs";
 
 export const runnerWorkspaceTransferProtocolVersion = runnerWorkspaceIngressProtocolVersion;
 
@@ -151,6 +151,10 @@ function assertR2Object(object, expected, label) {
 
 async function expectAccepted(response, label, diagnosticPrefix) {
   if (!response || !Number.isInteger(response.status) || response.status < 200 || response.status > 299) {
+    const privateCode = response?.headers?.get?.("x-proofweave-error-code");
+    if (diagnosticPrefix === "runner_workspace_finalization" && runnerWorkspaceFinalizationCodes.includes(privateCode)) {
+      throw new RunnerWorkspaceTransferError(`Runner Container rejected ${label}.`, { diagnosticCode: privateCode });
+    }
     const statusClass = Number.isInteger(response?.status)
       ? `${Math.floor(response.status / 100)}xx`
       : "response_error";
