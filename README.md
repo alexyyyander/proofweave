@@ -117,8 +117,8 @@ not a claim that the demo has just discovered new mathematics.
 
 ## Install the Codex plugin
 
-The optional plugin beta is tested with **Codex for macOS on Apple silicon** and
-Node.js `>=22.13.0`.
+The optional plugin beta is tested with **Codex for macOS on Apple silicon**.
+Use a Node.js version from the [supported range below](#local-development).
 
 The normal participant path downloads a checksum-published marketplace archive
 from the Proofweave site, verifies it before extraction, and registers the
@@ -162,15 +162,27 @@ again before reinstalling and restarting.
 
 ### Prerequisites
 
-- Node.js `>=22.13.0`
+- Node.js `^22.23.4 || ^24.22.1 || ^26.12.1`, matching `package.json`
 - npm
 - Lean/Lake only for the optional local Lean fixture checks
+
+Use the version pinned in [`.nvmrc`](.nvmrc) for local development and CI
+(currently `22.23.4`). The commands below assume nvm is installed and loaded in
+your shell. Run `nvm install` and `nvm use` from the repository root; both read
+`.nvmrc`. With another version manager, select the version in `.nvmrc` before
+running npm.
+
+Dependency installation uses `engine-strict=true`. Versions outside the
+supported range, including older Node 22 releases and Node 25, fail with
+`EBADENGINE`.
 
 ### Run the application
 
 ```bash
 git clone https://github.com/alexyyyander/proofweave.git
 cd proofweave
+nvm install
+nvm use
 npm install
 npm run dev
 ```
