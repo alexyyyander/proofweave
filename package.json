@@ -99,7 +99,7 @@
     "publications:check": "node --test tests/publication-catalog.test.mjs",
     "build:cloudflare": "node scripts/build-cloudflare.mjs",
     "build:cloudflare:release": "node scripts/build-cloudflare.mjs --release",
-    "cloudflare:check:unit": "node --test tests/cloudflare-build-identity.test.mjs tests/cloudflare-hosting-boundary.test.mjs tests/connection-write-capability.test.mjs tests/sites-login-bridge.test.mjs",
+    "cloudflare:check:unit": "node --test tests/cloudflare-build-identity.test.mjs tests/cloudflare-hosting-boundary.test.mjs tests/connection-write-capability.test.mjs tests/sites-login-bridge.test.mjs tests/sites-identity-concurrency.test.mjs",
     "cloudflare:check": "npm run cloudflare:check:unit && npm run build:cloudflare && node --test tests/cloudflare-connection-journey.test.mjs"
   },
   "dependencies": {

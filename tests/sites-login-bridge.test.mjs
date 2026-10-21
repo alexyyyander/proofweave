@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { before, after, test } from 'node:test';
-import { readFile } from 'node:fs/promises';
+import { readFile, readdir } from 'node:fs/promises';
 import { Miniflare } from 'miniflare';
 import ts from 'typescript';
 import { handleSitesBridge, transaction, sign, SitesBridgeTransaction } from '../services/auth/sites-login-bridge.mjs';
@@ -19,9 +19,12 @@ before(async () => {
   mf = new Miniflare({ modules: true, script: source + '\nexport default {fetch(){return new Response("ok")}};',
     compatibilityDate: '2026-07-16', durableObjects: { BRIDGE: { className: 'SitesBridgeTransaction', useSQLite: true } }, d1Databases: ['DB'] });
   ns = await mf.getDurableObjectNamespace('BRIDGE'); db = await mf.getD1Database('DB');
-  await db.exec('CREATE TABLE persons (id TEXT PRIMARY KEY, identity_provider TEXT, provider_subject TEXT, display_name TEXT, updated_at TEXT);');
-  await db.exec('CREATE TABLE person_identities (id TEXT PRIMARY KEY, person_id TEXT, provider TEXT, provider_subject TEXT, display_name TEXT, email TEXT, email_normalized TEXT, email_verified_at TEXT, updated_at TEXT, UNIQUE(provider,provider_subject));');
-  await db.exec('CREATE TABLE app_sessions (id TEXT PRIMARY KEY, person_id TEXT, identity_id TEXT, token_hash TEXT UNIQUE, expires_at TEXT, revoked_at TEXT, created_at TEXT, last_seen_at TEXT);');
+  const migrations = new URL('../drizzle/', import.meta.url);
+  for (const name of (await readdir(migrations)).filter(name => name.endsWith('.sql')).sort()) {
+    for (const sql of (await readFile(new URL(name, migrations), 'utf8')).split('--> statement-breakpoint').map(sql => sql.trim()).filter(Boolean)) {
+      await db.prepare(sql).run();
+    }
+  }
   globalThis.__bridgeTestDB = db;
   const repositorySource = (await readFile(new URL('../db/repositories/account-auth.ts', import.meta.url), 'utf8'))
     .replace('import { getAccountAuthD1 as getD1 } from "@/db";', 'const getD1 = () => globalThis.__bridgeTestDB;');
@@ -167,7 +170,7 @@ test('transaction expiry and wrong client prevent consumption', async () => {
   assert.equal((await result.json()).ok, false);
 });
 test('legacy same-Site ChatGPT identity retains Person; Google-only email is never auto-merged', async () => {
-  await db.prepare('INSERT INTO persons VALUES (?,?,?,?,?)').bind('person:legacy', 'chatgpt', 'legacy@example.test', 'Legacy', 'now').run();
+  await db.prepare('INSERT INTO persons (id,identity_provider,provider_subject,display_name,updated_at) VALUES (?,?,?,?,?)').bind('person:legacy', 'chatgpt', 'legacy@example.test', 'Legacy', 'now').run();
   const repo = new Repository();
   const input = { siteId: 'site:original', userId: 'User-A', email: 'legacy@example.test', displayName: 'Legacy' };
   const identity = await repo.resolveSitesBridgeIdentity(input);

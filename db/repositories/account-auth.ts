@@ -8,8 +8,6 @@ export type AccountIdentityInput = Readonly<{
   displayName: string;
   email?: string | null;
   emailVerified?: boolean;
-  /** Internal migration path; never taken from browser input. */
-  existingPersonId?: string;
   linkVerifiedEmail?: boolean;
 }>;
 
@@ -61,7 +59,7 @@ export class AccountAuthRepository {
       .bind(normalized.provider, normalized.subject)
       .first<{ id: string; display_name: string }>();
 
-    let personId = legacy?.id ?? input.existingPersonId ?? null;
+    let personId = legacy?.id ?? null;
     // A Person already bound to an immutable Sites subject must not be
     // claimed by another provider through a current or legacy email alias.
     if (!personId && input.linkVerifiedEmail !== false && normalized.emailVerified && normalized.emailNormalized) {
@@ -84,43 +82,7 @@ export class AccountAuthRepository {
       personId = personIds[0] ?? null;
     }
 
-    const now = new Date().toISOString();
-    if (!personId) {
-      personId = newId("person");
-      await getD1()
-        .prepare(
-          `INSERT INTO persons (id, identity_provider, provider_subject, display_name, updated_at)
-           VALUES (?, ?, ?, ?, ?)`,
-        )
-        .bind(personId, normalized.provider, normalized.subject, normalized.displayName, now)
-        .run();
-    }
-
-    const identityId = newId("identity");
-    await getD1()
-      .prepare(
-        `INSERT INTO person_identities (
-           id, person_id, provider, provider_subject, email, email_normalized,
-           display_name, email_verified_at, updated_at
-         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-         ON CONFLICT(provider, provider_subject) DO NOTHING`,
-      )
-      .bind(
-        identityId,
-        personId,
-        normalized.provider,
-        normalized.subject,
-        normalized.email,
-        normalized.emailNormalized,
-        normalized.displayName,
-        normalized.emailVerified ? now : null,
-        now,
-      )
-      .run();
-
-    const created = await this.findIdentity(normalized.provider, normalized.subject);
-    if (!created) throw new Error("Account identity mapping did not produce a readable record.");
-    return toResolved(created);
+    return this.insertIdentity(normalized, personId, !legacy);
   }
 
   async resolveSitesBridgeIdentity(input: { siteId: string; userId: string; email: string; displayName: string }): Promise<ResolvedAccountIdentity> {
@@ -149,8 +111,60 @@ export class AccountAuthRepository {
     ).bind(email, email).all<{ person_id: string }>();
     const ids = [...new Set<string>(candidates.results.map((row: { person_id: string }) => row.person_id))];
     if (ids.length > 1) throw new AmbiguousVerifiedEmailError();
-    return this.resolveIdentity({ provider: "chatgpt", subject, email, displayName: input.displayName,
-      emailVerified: true, linkVerifiedEmail: false, existingPersonId: ids[0] });
+    return this.insertIdentity(normalized, ids[0] ?? null, true);
+  }
+
+  private async insertIdentity(
+    normalized: ReturnType<typeof normalizeIdentity>,
+    candidatePersonId: string | null,
+    guardStableSites: boolean,
+  ): Promise<ResolvedAccountIdentity> {
+    const database = getD1();
+    const now = new Date().toISOString();
+    const identityId = newId("identity");
+    const personId = newId("person");
+    const statements = [];
+    if (candidatePersonId) {
+      // The earlier read finds candidates, but only this conditional write
+      // claims one. D1/libSQL serialize the guard and insert in the batch.
+      statements.push(database.prepare(
+        `INSERT INTO person_identities (
+           id, person_id, provider, provider_subject, email, email_normalized,
+           display_name, email_verified_at, updated_at
+         ) SELECT ?, ?, ?, ?, ?, ?, ?, ?, ?
+         WHERE ? = 0 OR NOT EXISTS (
+           SELECT 1 FROM person_identities
+           WHERE person_id = ? AND provider = 'chatgpt' AND provider_subject LIKE 'sites:%'
+         )
+         ON CONFLICT(provider, provider_subject) DO NOTHING`,
+      ).bind(identityId, candidatePersonId, normalized.provider, normalized.subject, normalized.email, normalized.emailNormalized,
+        normalized.displayName, normalized.emailVerified ? now : null, now, guardStableSites ? 1 : 0, candidatePersonId));
+    }
+    // A lost claim receives a separate Person. Same-subject retries reuse
+    // the winning mapping without creating orphan Persons or identities.
+    statements.push(database.prepare(
+      `INSERT INTO persons (id, identity_provider, provider_subject, display_name, updated_at)
+       SELECT ?, ?, ?, ?, ?
+       WHERE NOT EXISTS (
+         SELECT 1 FROM person_identities WHERE provider = ? AND provider_subject = ?
+       )
+       ON CONFLICT(identity_provider, provider_subject) DO NOTHING`,
+    ).bind(personId, normalized.provider, normalized.subject, normalized.displayName, now, normalized.provider, normalized.subject));
+    statements.push(database.prepare(
+      `INSERT INTO person_identities (
+         id, person_id, provider, provider_subject, email, email_normalized,
+         display_name, email_verified_at, updated_at
+       ) SELECT ?, person.id, ?, ?, ?, ?, ?, ?, ?
+       FROM persons AS person
+       WHERE person.identity_provider = ? AND person.provider_subject = ?
+       ON CONFLICT(provider, provider_subject) DO NOTHING`,
+    ).bind(identityId, normalized.provider, normalized.subject, normalized.email, normalized.emailNormalized,
+      normalized.displayName, normalized.emailVerified ? now : null, now, normalized.provider, normalized.subject));
+    await database.batch(statements);
+    const resolved = await this.findIdentity(normalized.provider, normalized.subject);
+    if (!resolved) throw new Error("Account identity mapping did not produce a readable record.");
+    await this.updateIdentity(resolved.identity_id, normalized);
+    return { ...toResolved(resolved), email: normalized.email, displayName: normalized.displayName };
   }
 
   async createSession(
