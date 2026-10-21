@@ -109,6 +109,35 @@ export function checkCredentialedContributionRelease(evidence) {
     "RELEASE_WINDOW_INVALID",
   );
 
+  const graph = checkCredentialedContributionGraph(root, {
+    before: before.observedAt, after: after.observedAt,
+  });
+
+  return {
+    schemaVersion: "pw-credentialed-contribution-release-check-v1",
+    outcome: "passed",
+    executionMode: "offline_dry_run",
+    release: {
+      gitSha: expectedGitSha,
+      environment: {
+        kind: environment.kind,
+        name: environment.name,
+        origin: environment.origin,
+        databaseFingerprint: environment.databaseFingerprint,
+      },
+      controlPlaneMode: "read_write",
+      writesEnabled: true,
+      sameSitesGatewayRunnerRevision: true,
+      sameDatabaseBeforeAndAfter: true,
+    },
+    ...graph,
+  };
+}
+
+/** Validate contribution links only. Callers must independently bind the release. */
+export function checkCredentialedContributionGraph(root, { before, after } = {}) {
+  rejectCredentialMaterial(root);
+  object(root, "$");
   const researcher = researcherEvidence(root.researcher);
   const attempt = attemptEvidence(root.attempt);
   equal(
@@ -206,33 +235,17 @@ export function checkCredentialedContributionRelease(evidence) {
   );
 
   requireChronology({
-    before: before.observedAt,
+    before: instant(before, "$.release.before.observedAt"),
     attempt: attempt.createdAt,
     bundle: bundle.stagedAt,
     runner: runner.finishedAt,
     reviews,
     receipt: receipt.issuedAt,
     publicVerification: publicVerification.checkedAt,
-    after: after.observedAt,
+    after: instant(after, "$.release.after.observedAt"),
   });
 
   return {
-    schemaVersion: "pw-credentialed-contribution-release-check-v1",
-    outcome: "passed",
-    executionMode: "offline_dry_run",
-    release: {
-      gitSha: expectedGitSha,
-      environment: {
-        kind: environment.kind,
-        name: environment.name,
-        origin: environment.origin,
-        databaseFingerprint: environment.databaseFingerprint,
-      },
-      controlPlaneMode: "read_write",
-      writesEnabled: true,
-      sameSitesGatewayRunnerRevision: true,
-      sameDatabaseBeforeAndAfter: true,
-    },
     contribution: {
       attemptId: attempt.id,
       artifactBundleHash: bundle.manifestHash,
@@ -1445,7 +1458,7 @@ function requireAtOrBefore(first, second, path, code) {
   }
 }
 
-function rejectCredentialMaterial(value, path = "$", seen = new Set()) {
+export function rejectCredentialMaterial(value, path = "$", seen = new Set()) {
   if (value === null || value === undefined) return;
   if (typeof value === "string") {
     for (const forbidden of FORBIDDEN_VALUE_PATTERNS) {
