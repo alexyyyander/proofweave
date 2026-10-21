@@ -1,4 +1,4 @@
-FROM node:22.13.1-bookworm-slim
+FROM node:22.23.4-bookworm-slim
 
 ENV NODE_ENV=production \
     HOST=0.0.0.0 \
@@ -6,7 +6,7 @@ ENV NODE_ENV=production \
 
 WORKDIR /app
 
-COPY package.json package-lock.json ./
+COPY package.json package-lock.json .npmrc ./
 RUN npm ci --omit=dev --ignore-scripts \
   && npm cache clean --force
 

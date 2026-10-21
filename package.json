@@ -4,7 +4,7 @@
   "description": "A verifiable network for personally delegated formal mathematics research.",
   "private": true,
   "engines": {
-    "node": ">=22.13.0"
+    "node": "^22.23.4 || ^24.22.1 || ^26.12.1"
   },
   "scripts": {
     "dev": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext dev",
@@ -21,9 +21,9 @@
     "smoke:credentialed-contribution:check": "node --check scripts/check-credentialed-contribution-release.mjs && node --test tests/credentialed-contribution-release.test.mjs && npm run release:cloudflare:evidence:check",
     "cutover:production:evidence": "node scripts/check-production-contribution-cutover.mjs",
     "cutover:production:evidence:check": "node --check scripts/check-production-contribution-cutover.mjs && node --test tests/production-contribution-cutover.test.mjs",
-    "security:dependencies": "npm audit --omit=dev --audit-level=high --registry=https://registry.npmjs.org",
-    "check:fast": "npm run lint && npm run typecheck && npm run cloudflare:check:unit && npm run release:manifest:check && npm run actions:policy:check && npm run github:external-config:check && npm run delegation:check && npm run identity:store:check && npm run artifact:check && node --test tests/runner-queue.test.mjs tests/run-state.test.mjs tests/mcp-run-summary.test.mjs tests/runner-workflow-status.test.mjs && npm run verification:check && npm run receipt:check && npm run smoke:solo-contribution:check && npm run smoke:credentialed-contribution:check && npm run cutover:production:evidence:check && node --check packages/protocol/research-checkpoint.mjs && node --test tests/research-checkpoint.test.mjs && npm run runtime:recovery-isolation:check && node --test tests/publication-catalog.test.mjs",
-    "check": "npm run lint && npm run typecheck && npm run cloudflare:check && npm run smoke:credentialed-contribution:check && npm run release:manifest:check && npm run actions:policy:check && npm run github:external-config:check && npm run auth:check && npm run demo:check && npm run jacobian:check && npm run plugin:check && npm run observability:check && npm run portable:database:check && npm run credit:market:check && npm run credit:receipts:check && npm run delegation:check && npm run identity:store:check && npm run artifact:check && npm run artifact:store:check && npm run modal:runner:check && npm run e2b:runner:check && npm run runner:check && npm run run:check && npm run run:store:check && npm run verification:check && npm run verification:store:check && npm run receipt:check && npm run receipt:bundle:check && npm run receipt:store:check && npm run alpha:evidence-flow:check && npm run mcp:check && npm run mcp:gateway:check && npm run security:dependencies && npm test",
+    "security:dependencies": "npm audit --omit=dev --audit-level=high --registry=https://registry.npmjs.org && npm --prefix deploy/huggingface-runner audit --omit=dev --audit-level=high --registry=https://registry.npmjs.org",
+    "check:fast": "npm run lint && npm run typecheck && npm run security:baseline:check && npm run cloudflare:check:unit && npm run release:manifest:check && npm run actions:policy:check && npm run github:external-config:check && npm run delegation:check && npm run identity:store:check && npm run artifact:check && node --test tests/runner-queue.test.mjs tests/run-state.test.mjs tests/mcp-run-summary.test.mjs tests/runner-workflow-status.test.mjs && npm run verification:check && npm run receipt:check && npm run smoke:solo-contribution:check && npm run smoke:credentialed-contribution:check && npm run cutover:production:evidence:check && node --check packages/protocol/research-checkpoint.mjs && node --test tests/research-checkpoint.test.mjs && npm run runtime:recovery-isolation:check && node --test tests/publication-catalog.test.mjs",
+    "check": "npm run lint && npm run typecheck && npm run security:baseline:check && npm run cloudflare:check && npm run smoke:credentialed-contribution:check && npm run release:manifest:check && npm run actions:policy:check && npm run github:external-config:check && npm run auth:check && npm run demo:check && npm run jacobian:check && npm run plugin:check && npm run observability:check && npm run portable:database:check && npm run credit:market:check && npm run credit:receipts:check && npm run delegation:check && npm run identity:store:check && npm run artifact:check && npm run artifact:store:check && npm run modal:runner:check && npm run e2b:runner:check && npm run runner:check && npm run run:check && npm run run:store:check && npm run verification:check && npm run verification:store:check && npm run receipt:check && npm run receipt:bundle:check && npm run receipt:store:check && npm run alpha:evidence-flow:check && npm run mcp:check && npm run mcp:gateway:check && npm run security:dependencies && npm test",
     "actions:policy:check": "node --test tests/github-actions-budget-policy.test.mjs",
     "release:manifest": "node scripts/print-release-manifest.mjs",
     "release:manifest:strict": "node scripts/print-release-manifest.mjs --strict",
@@ -102,7 +102,8 @@
     "cloudflare:check:unit": "node --test tests/cloudflare-build-identity.test.mjs tests/cloudflare-hosting-boundary.test.mjs tests/connection-write-capability.test.mjs tests/sites-login-bridge.test.mjs tests/sites-identity-concurrency.test.mjs",
     "cloudflare:check": "npm run cloudflare:check:unit && npm run build:cloudflare && node --test tests/cloudflare-connection-journey.test.mjs",
     "release:cloudflare:evidence": "node scripts/check-cloudflare-contribution-release.mjs",
-    "release:cloudflare:evidence:check": "node --test tests/cloudflare-release-evidence.test.mjs tests/cloudflare-contribution-release.test.mjs"
+    "release:cloudflare:evidence:check": "node --test tests/cloudflare-release-evidence.test.mjs tests/cloudflare-contribution-release.test.mjs",
+    "security:baseline:check": "node --test tests/security-baseline.test.mjs && node scripts/check-security-baseline.mjs"
   },
   "dependencies": {
     "@cloudflare/containers": "^0.3.7",
@@ -112,9 +113,9 @@
     "e2b": "^2.38.0",
     "katex": "0.19.0",
     "modal": "^0.9.0",
-    "next": "16.4.0",
-    "react": "19.2.8",
-    "react-dom": "19.2.8",
+    "next": "16.4.2",
+    "react": "19.2.9",
+    "react-dom": "19.2.9",
     "zod": "^4.4.3"
   },
   "devDependencies": {
@@ -127,19 +128,22 @@
     "@vitejs/plugin-rsc": "0.5.33",
     "drizzle-kit": "0.31.10",
     "eslint": "9.39.4",
-    "eslint-config-next": "16.2.12",
+    "eslint-config-next": "16.4.2",
     "miniflare": "4.20260710.0",
-    "react-server-dom-webpack": "19.2.8",
+    "react-server-dom-webpack": "19.2.9",
     "tailwindcss": "4.3.2",
     "typescript": "5.9.3",
     "vinext": "0.2.1",
-    "vite": "8.1.4",
+    "vite": "8.1.6",
     "wrangler": "4.111.0"
   },
   "overrides": {
     "postcss": "8.5.28",
     "sharp": "0.35.5",
-    "ws": "8.21.0"
+    "ws": "8.21.0",
+    "hono": "4.13.13",
+    "image-size": "2.0.4",
+    "undici": "^7.30.0"
   },
   "type": "module"
 }

@@ -18,7 +18,7 @@ export const expectedGithubRecoverySurfaces = Object.freeze({
 });
 const reviewedGithubRecoveryWorkflowPolicies = Object.freeze({
   ".github/workflows/build-week-live-receipt.yml": Object.freeze({
-    sourceSha256: "sha256:974bdf0b9588250fe4e788f739ac3826b2055f17c5cc6d9f5f125526afd6c796",
+    sourceSha256: "sha256:cb941df884c53c4bf1151155637f752854a966562f5487d1964f9f59a46a0d52",
     allowedUses: Object.freeze([
       "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
       "actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
@@ -33,7 +33,7 @@ const reviewedGithubRecoveryWorkflowPolicies = Object.freeze({
     ]),
   }),
   ".github/workflows/e2b-lean-runner.yml": Object.freeze({
-    sourceSha256: "sha256:fcd7f91b9f2b5cc87bba710c184104691405d0c6cdbe00316ea045704b024eb9",
+    sourceSha256: "sha256:c002a15a38b0cd3d67108d35d23c9db091d5e83e747e22c11e1aab2986304b11",
     allowedUses: Object.freeze([
       "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
       "actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
