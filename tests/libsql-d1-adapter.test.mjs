@@ -17,6 +17,8 @@ import {
   tursoDatabaseFingerprint,
 } from "../db/control-plane-authority.mjs";
 import {
+  accountAuthOperationState,
+  oauthOperationState,
   applyControlPlaneOperationMode,
   controlPlaneOperationMode,
   controlPlaneOperationState,
@@ -195,6 +197,53 @@ test("MCP and participant operation modes are independently observable and fail 
   );
 });
 
+test("account login writes do not unlock research and still obey the global freeze", async (t) => {
+  const database = memoryDatabase();
+  t.after(() => database.close());
+  await database.prepare("CREATE TABLE sessions (id TEXT PRIMARY KEY)").run();
+  const values = {
+    PROOFWEAVE_CONTROL_PLANE_MODE: "read_write",
+    PROOFWEAVE_PARTICIPANT_CONTROL_PLANE_MODE: "read_only",
+    PROOFWEAVE_MCP_CONTROL_PLANE_MODE: "read_only",
+    PROOFWEAVE_ACCOUNT_AUTH_MODE: "read_write",
+  };
+  const account = applyControlPlaneOperationMode(database, accountAuthOperationState(values).mode);
+  await account.prepare("INSERT INTO sessions (id) VALUES (?)").bind("session:test").run();
+  for (const surface of ["participant", "mcp"]) {
+    const state = controlPlaneSurfaceOperationState({
+      globalValue: values.PROOFWEAVE_CONTROL_PLANE_MODE, surfaceValue: "read_only", surface,
+    });
+    const research = applyControlPlaneOperationMode(database, state.mode);
+    assert.throws(() => research.prepare("DELETE FROM sessions"), ControlPlaneReadOnlyError);
+  }
+  for (const globalMode of [undefined, "read_only", "invalid"]) {
+    const mode = accountAuthOperationState({ ...values, PROOFWEAVE_CONTROL_PLANE_MODE: globalMode }).mode;
+    assert.throws(() => applyControlPlaneOperationMode(database, mode).prepare("DELETE FROM sessions"), ControlPlaneReadOnlyError);
+  }
+  assert.equal(accountAuthOperationState({ ...values, PROOFWEAVE_ACCOUNT_AUTH_MODE: undefined }).writesEnabled, false);
+  assert.equal(accountAuthOperationState({ ...values, PROOFWEAVE_ACCOUNT_AUTH_MODE: "typo" }).writesEnabled, false);
+  assert.equal(accountAuthOperationState({ ...values, PROOFWEAVE_ACCOUNT_AUTH_MODE: undefined, PROOFWEAVE_PARTICIPANT_CONTROL_PLANE_MODE: "read_write" }).writesEnabled, true);
+});
+
+test("OAuth lifecycle writes remain separate from research and obey the global freeze", async (t) => {
+  const database = memoryDatabase(); t.after(() => database.close());
+  await database.prepare("CREATE TABLE oauth_probe (id TEXT PRIMARY KEY)").run();
+  const values = { PROOFWEAVE_CONTROL_PLANE_MODE: 'read_write', PROOFWEAVE_OAUTH_CONTROL_PLANE_MODE: 'read_write',
+    PROOFWEAVE_PARTICIPANT_CONTROL_PLANE_MODE: 'read_only', PROOFWEAVE_MCP_CONTROL_PLANE_MODE: 'read_only' };
+  await applyControlPlaneOperationMode(database, oauthOperationState(values).mode).prepare("INSERT INTO oauth_probe VALUES ('consent')").run();
+  for (const surface of ['participant', 'mcp']) {
+    const state = controlPlaneSurfaceOperationState({ globalValue: values.PROOFWEAVE_CONTROL_PLANE_MODE, surfaceValue: 'read_only', surface });
+    assert.throws(() => applyControlPlaneOperationMode(database, state.mode).prepare('DELETE FROM oauth_probe'), ControlPlaneReadOnlyError);
+  }
+  for (const globalValue of [undefined, 'invalid', 'read_only']) {
+    assert.equal(oauthOperationState({ ...values, PROOFWEAVE_CONTROL_PLANE_MODE: globalValue }).writesEnabled, false);
+  }
+  for (const mode of [undefined, 'invalid', 'read_only']) {
+    assert.equal(oauthOperationState({ ...values, PROOFWEAVE_OAUTH_CONTROL_PLANE_MODE: mode }).writesEnabled, false);
+  }
+  assert.equal(oauthOperationState({ PROOFWEAVE_CONTROL_PLANE_MODE: 'read_write', PROOFWEAVE_PARTICIPANT_CONTROL_PLANE_MODE: 'read_write' }).writesEnabled, true);
+});
+
 test("the complete D1 migration history applies unchanged to local libSQL", async (t) => {
   const database = memoryDatabase();
   t.after(() => database.close());
@@ -321,6 +370,41 @@ test("live control-plane diagnostics expose only verified bounded release eviden
     "sourceRevision",
     "state",
   ]);
+});
+
+test("Cloudflare release diagnostics verify the ledger without claiming a Sites release", async () => {
+  const directIdentity = {
+    hostingPlatform: "cloudflare",
+    sourceRevision: "a".repeat(64),
+    deploymentId: "0ffb2e9b-4c09-4ef4-8b18-35cdbc6fabed",
+    sitesVersion: "194",
+    siteProjectId: releaseIdentity.siteProjectId,
+  };
+  let ledgerChecks = 0;
+  const inspect = (identity) => inspectLiveControlPlaneDiagnostics({
+    authority: controlPlaneAuthority.turso,
+    databaseUrl: "libsql://proofweave-live.example",
+    database: { prepare() {} },
+    releaseIdentity: identity,
+    verifyDatabase: async () => {
+      ledgerChecks += 1;
+      return { migrationCount: 44, latestMigration: "0043_add_runner_queue_event_sequence.sql" };
+    },
+  });
+  const valid = await inspect(directIdentity);
+  assert.equal(valid.state, "ready");
+  assert.equal(valid.hostingPlatform, "cloudflare");
+  assert.equal(valid.deploymentId, directIdentity.deploymentId);
+  assert.equal(valid.sitesVersion, null);
+  assert.equal(valid.siteProjectId, null);
+  assert.equal(ledgerChecks, 1);
+  for (const deploymentId of [undefined, "untrusted version", "194"]) {
+    const invalid = await inspect({ ...directIdentity, deploymentId });
+    assert.equal(invalid.state, "degraded");
+    assert.equal(invalid.failureCode, "release_identity_missing");
+    assert.equal(invalid.deploymentId, null);
+  }
+  assert.equal(ledgerChecks, 1);
 });
 
 test("live control-plane diagnostics fail closed for fallback, invalid URLs, and ledger failure", async () => {

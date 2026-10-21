@@ -20,6 +20,7 @@ export type AuthUser = Readonly<{
   displayName: string;
   email: string;
   fullName: string | null;
+  appSession?: boolean;
 }>;
 
 export async function getCurrentUser(): Promise<AuthUser | null> {
@@ -28,15 +29,16 @@ export async function getCurrentUser(): Promise<AuthUser | null> {
   if (token) {
     try {
       const session = await getAccountAuthRepository().findSession(token);
-      if ((session?.provider === "google" || session?.provider === "proofweave") && session.email) {
+      if (session && session.email) {
         return {
           provider: session.provider,
-          providerLabel: session.provider === "google" ? "Google" : "Demo",
+          providerLabel: session.provider === "google" ? "Google" : session.provider === "chatgpt" ? "ChatGPT" : "Demo",
           subject: session.subject,
           personId: session.personId,
           displayName: session.displayName,
           email: session.email,
           fullName: session.displayName,
+          appSession: true,
         };
       }
     } catch {
@@ -124,7 +126,7 @@ export function signOutPath(returnTo = "/"): string {
 }
 
 export function providerAwareSignOutPath(user: AuthUser, returnTo = "/"): string {
-  return user.provider === "chatgpt" ? chatGPTSignOutPath(returnTo) : signOutPath(returnTo);
+  return user.provider === "chatgpt" && !user.appSession ? chatGPTSignOutPath(returnTo) : signOutPath(returnTo);
 }
 
 function readCookie(header: string | null, name: string): string | null {

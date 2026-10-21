@@ -1,10 +1,10 @@
 import { Footer, ProductStateBadge } from "@/app/ui";
 import { Header } from "@/app/header";
-import { MissingDatabaseBindingError } from "@/db";
+import { MissingDatabaseBindingError, getConnectionOperationState } from "@/db";
 import { getDelegationRepository } from "@/db/repositories/delegation";
 import { getCurrentUser, signInPath, toPersonIdentity } from "@/app/auth";
 import { CodexPairingApproval } from "./CodexPairingApproval";
-import { personalWritesPaused, ReadOnlyPersonalSurface } from "@/app/lib/read-only-personal-surface";
+import { ReadOnlyPersonalSurface } from "@/app/lib/read-only-personal-surface";
 
 export const dynamic = "force-dynamic";
 
@@ -13,7 +13,7 @@ type ConnectCodexPageProps = {
 };
 
 export default async function ConnectCodexPage({ searchParams }: ConnectCodexPageProps) {
-  const readOnly = personalWritesPaused();
+  const readOnly = !getConnectionOperationState().writesEnabled;
   const query = await searchParams;
   const pairingId = typeof query.pairing === "string" ? query.pairing : "";
   const secret = typeof query.secret === "string" ? query.secret : "";
