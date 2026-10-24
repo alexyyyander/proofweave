@@ -25,3 +25,33 @@ test("rejects incomplete lockfiles and missing dependency versions", () => {
     assert.throws(() => checkSecurityLockfile(lock));
   }
 });
+
+test("enforces patched body-parser, undici and Zod release boundaries", () => {
+  for (const [name, versions] of Object.entries({
+    "body-parser": ["1.20.9", "2.4.0"], undici: ["6.29.1", "7.30.1", "8.12.2"], zod: ["4.6.6", "4.6.7"],
+  })) {
+    for (const version of versions) assert.doesNotThrow(() => assertSecurityVersion(name, version));
+  }
+  for (const [name, versions] of Object.entries({
+    "body-parser": ["1.20.8", "2.3.0"], undici: ["6.29.0", "7.29.1", "7.30.0", "8.11.2", "8.12.1"], zod: ["3.25.76", "4.4.3", "4.6.5", "4.6.6-rc.1"],
+  })) {
+    for (const version of versions) assert.throws(() => assertSecurityVersion(name, version), /Security baseline rejected/);
+  }
+});
+
+test("finds old dependencies in nested, optional and renamed lockfile entries", () => {
+  for (const [pathName, actualName, version, fixed] of [
+    ["body-parser", "body-parser", "2.3.0", "2.4.0"],
+    ["undici8", "undici", "8.11.2", "8.12.2"],
+    ["transport", "undici", "7.30.0", "7.30.1"],
+    ["schema", "zod", "4.6.5", "4.6.6"],
+  ]) {
+    const entry = { name: actualName, version, optional: true, dev: true };
+    const lock = { lockfileVersion: 3, packages: { [`node_modules/provider/node_modules/${pathName}`]: entry } };
+    assert.throws(() => checkSecurityLockfile(lock), /Security baseline rejected/);
+    entry.version = fixed;
+    assert.doesNotThrow(() => checkSecurityLockfile(lock));
+    delete entry.version;
+    assert.throws(() => checkSecurityLockfile(lock), /Security baseline rejected/);
+  }
+});

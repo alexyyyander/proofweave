@@ -14,4 +14,4 @@ const manifest = JSON.parse(await readFile(new URL("package.json", root), "utf8"
 if (new Set([manifest.dependencies.react, manifest.dependencies["react-dom"], manifest.devDependencies["react-server-dom-webpack"]]).size !== 1) {
   throw new Error("React client, DOM and server decoder releases must match");
 }
-console.log("October 2026 security baseline passed for Node, Next, RSC and sharp; no production access");
+console.log("October 2026 security baseline passed for Node, Next, RSC, sharp, body-parser, undici (including aliases) and Zod; no production access");
