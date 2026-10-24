@@ -32,8 +32,6 @@ export const navigationGroups = [
     label: "Reference",
     items: [
       { href: "/how-it-works", label: "How it works" },
-      { href: "/about/principles", label: "Principles" },
-      { href: "/about/catalog-standard", label: "Catalog standard" },
       { href: "/privacy", label: "Privacy & terms" },
     ],
   },
