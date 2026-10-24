@@ -12,20 +12,30 @@
 | Vite | 8.1.4 | 8.1.6 | 同一版本线的开发服务器安全补丁 |
 | Hono | 4.13.7 | 4.13.13 | MCP SDK 的间接依赖，通过 override 固定补丁 |
 | image-size | 2.0.2 | 2.0.4 | vinext 的间接图片解析依赖 |
-| undici | 根依赖树含 7.28.0 | >=7.30.0、<8 | 构建与本地 Worker 工具的间接 HTTP 依赖 |
+| undici 7 / undici8 别名 | 根树含 7.28.0；独立 Runner 7.29.1；别名 8.11.2 | 7.30.1 / 8.12.2 | 根项目、独立 Runner 和 E2B 可选 HTTP 实现 |
+| body-parser | 2.3.0 | 2.4.0 | MCP SDK 经 Express 引入的压缩请求解析器 |
+| Zod | 4.4.3 | 4.6.7（最低 4.6.6） | MCP 输入模式与 SDK 校验 |
 | sharp | 0.35.5 | 0.35.5 | 保留已有安全 override |
 
 Node 的最低版本限定为已修复的 22.23.4、24.22.1、26.12.1 分支，根项目和独立 Runner 均启用 `engine-strict`。CI 使用 `.nvmrc` 的精确版本。两个已固定哈希的隔离工作流仅修改 setup-node 版本输入，并同步更新校验器中的源码哈希；原有禁用条件、执行命令、权限与 secrets 边界保留。Runner 导出包含自己的 `.npmrc`，Docker 安装也复制该文件。
 
 未来 E2B 基础镜像使用官方 `node:22.23.4-bookworm` 的索引摘要 `sha256:2bd396628eceb5c999a6e43731fab69d5fb98b94ba9d9d90b5f64575c5178765`。已读取 linux/amd64 配置确认 `NODE_VERSION=22.23.4`；没有运行镜像构建或模板创建。
 
+## 2026-10-24 补充修复
+
+PR #169 的完整门禁在生产依赖审计处发现三项高危包。`undici` 原 override 只覆盖普通包名，未覆盖 E2B 2.55.0 在 Node >=22.19.0 时优先尝试的可选别名 `undici8`。现在为该别名单独固定 `npm:undici@8.12.2`，并将两个安装根的普通 undici override 最低版本提高到 7.30.1；保留独立 Runner 的 E2B 2.35.0。body-parser 固定 2.4.0，Zod 的直接依赖最低版本提高到 4.6.6，锁定当前 4.6.7。未升级 Next、vinext、E2B 或 Node 主版本，未降低审计门槛。
+
+真实依赖回归在隔离子进程中向回环服务器发送压缩尾随数据和过多 Content-Encoding 响应，验证解析/HTTP 客户端不会产生未处理错误终止进程，且后续正常请求可用；普通 undici 与 undici8 分别覆盖。Zod 测试覆盖数组、Set、Map 的同步/异步解析：超出已声明上限时不访问元素，正常小集合仍按原模式校验。测试只使用有界本地载荷，不访问外部服务。Zod 的补丁不代表任意无上限模式也获得了应用级输入限制。
+
 ## 校验
 
-`npm run security:baseline:check` 使用实际锁文件，检查 Node、Next、sharp 和所有嵌套 RSC 包。回归测试覆盖修复边界、旧补丁、非支持 Node 分支、预发行版本、嵌套且标为 dev 的旧 RSC 解码器，以及缺少版本的锁文件。该检查接入快速和完整 CI。
+`npm run security:baseline:check` 使用实际锁文件，检查 Node、Next、sharp、所有嵌套 RSC 包、body-parser、undici 和 Zod；同时检查 npm 别名的真实包名，包括可选或标为 dev 的条目。回归测试覆盖修复边界、旧补丁、非支持 Node 分支、预发行版本、嵌套且标为 dev 的旧 RSC 解码器，以及缺少版本的锁文件。该检查接入快速和完整 CI。
 
 `npm run security:dependencies` 分别审计根项目与独立 Runner 的生产依赖；RSC 即使归在 dev 依赖中，也由上述锁文件检查单独覆盖。生产审计不等同于构建工具审计。
 
-完整开发依赖仍可能包含未修复的 `braces <=3.0.3` 高危栈耗尽告警（上游暂无补丁），以及 drizzle-kit 旧加载器携带的 esbuild 开发服务器告警。本次不通过降级 Next/vinext、屏蔽审计或强制跨主版本升级处理。禁止将开发服务器暴露公网，构建输入只接受仓库受控内容；这些约束不是漏洞修复，告警仍需跟踪。
+2026-10-24 复核结果：根项目生产依赖审计为 0 高危、2 中危（fast-uri、ip-address），独立 Runner 为 0 告警；完整开发依赖审计为 0 高危、6 中危，另外四项来自 drizzle-kit 旧加载器的 esbuild 链。本次只修复指定的三项高危包，中危告警继续跟踪，没有屏蔽或提高审计阈值。此前记录的 8 项 braces 高危链已因[上游在 2026-10-23 撤回告警](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm)而不再计入；这不是本 PR 升级 braces 的结果。禁止将开发服务器暴露公网，构建输入只接受仓库受控内容；这些约束不是漏洞修复。
+
+本地使用 Node 22.23.4 完成干净 `npm ci`、快速检查和真实依赖回归。隔离旧版本对照中，body-parser 2.3.0 与 undici8 8.11.2 分别触发子进程未处理错误，Zod 4.4.3 遍历超限集合；相同测试在补丁版本全部通过。
 
 ## 发布边界
 
@@ -45,3 +55,7 @@ Node 的最低版本限定为已修复的 22.23.4、24.22.1、26.12.1 分支，�
 - [Vite/launch-editor Windows 命令执行](https://github.com/vitejs/launch-editor/security/advisories/GHSA-587h-7wmj-h5pm)
 - [image-size 修复提交](https://codeberg.org/image-size/image-size/commit/e6e83a5578961de81f6d5834d90fb7430d8f29a5)
 - [braces 尚无补丁的告警](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm)
+
+- [body-parser 压缩尾随数据导致进程崩溃](https://github.com/advisories/GHSA-27r3-jxmh-p828)
+- [undici 过多 Content-Encoding 的未处理错误](https://github.com/advisories/GHSA-xjj6-f33q-929c)
+- [Zod 超大集合资源耗尽](https://github.com/advisories/GHSA-mrhx-c7xc-m3w5)
