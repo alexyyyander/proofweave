@@ -1,0 +1,31 @@
+/* Consistent reading frame; focused workspaces keep their application grids. */
+.ui-site-frame > .site-header { padding-inline: max(24px, calc((100vw - var(--page-content-width)) / 2)); }
+.ui-site-frame .main-nav a { font-size: 13px; }
+.ui-site-frame > main.page-main { max-width: calc(var(--page-content-width) + 48px); margin-inline: auto; padding-inline: 24px; }
+.ui-site-frame > .site-footer { margin-inline: max(24px, calc((100vw - var(--page-content-width)) / 2)); padding-inline: 0; }
+.ui-site-frame .reading-hero,
+.ui-site-frame .legal-hero,
+.ui-site-frame .information-hub-hero { padding-block: 40px 32px; }
+.ui-site-frame .information-hub-hero { display: block; }
+.ui-site-frame .information-hub-hero > p { margin-top: 18px; }
+.ui-site-frame .information-path-grid { gap: 16px; }
+.ui-site-frame .information-path-grid > a { border: 1px solid var(--line); }
+.ui-site-frame .information-path-grid strong { padding-top: 18px; }
+.ui-site-frame .reading-steps p,
+.ui-site-frame .reading-note > p,
+.ui-site-frame .legal-sections p,
+.ui-site-frame .legal-sections li,
+.ui-site-frame .information-path-grid p,
+.ui-site-frame .simple-flow-section p { font-size: var(--type-body); line-height: 1.75; }
+.ui-site-frame .reading-steps h2,
+.ui-site-frame .reading-steps h3 { margin-bottom: 12px; }
+.ui-site-frame .breadcrumb,
+.ui-site-frame .page-section-nav a { font-size: var(--type-caption); }
+@media (max-width: 620px) {
+  .ui-site-frame > .site-header,
+  .ui-site-frame > main.page-main { padding-inline: 20px; }
+  .ui-site-frame > .site-footer { margin-inline: 20px; }
+  .ui-site-frame .reading-hero,
+  .ui-site-frame .legal-hero,
+  .ui-site-frame .information-hub-hero { padding-block: 28px 24px; }
+}

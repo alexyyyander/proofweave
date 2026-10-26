@@ -70,6 +70,15 @@ async function loadProvisionalLedger(personId: string): Promise<Readonly<{
     throw error;
   }
 }
+export async function loadSelectedCatalogTarget(slug: string) {
+  try {
+    return await getCatalogRepository().findBySlug(slug);
+  } catch (error) {
+    if (error instanceof MissingDatabaseBindingError) return null;
+    throw error;
+  }
+}
+
 export async function loadCatalogTargets(): Promise<readonly CatalogProblem[]> {
   try {
     return await getCatalogRepository().list("frontier");

@@ -1,15 +1,14 @@
 "use client";
 
+import { SectionTitle, Badge, ActionLink, Button, SectionHeading, Select } from "@/app/components/ui";
+
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import type { DelegationProfile, StoredDelegation } from "@/db/repositories/delegation";
-import type { CatalogProblem } from "@/packages/domain/catalog";
-import type { McpAttempt } from "@/packages/domain/mcp";
+import { type DelegationProfile, type StoredDelegation } from "@/db/repositories/delegation";
+import { type CatalogProblem } from "@/packages/domain/catalog";
+import { type McpAttempt } from "@/packages/domain/mcp";
 import { closedAlphaAttemptLimits } from "@/packages/domain/attempt-policy.mjs";
-import {
-  controlPlaneMaintenanceCopy,
-  type ControlPlaneWriteAvailability,
-} from "../lib/control-plane-write-capability";
+import { controlPlaneMaintenanceCopy, type ControlPlaneWriteAvailability } from "../lib/control-plane-write-capability";
 import { activeLocalCodexInstallation } from "../lib/local-agent-journey";
 
 type WorkScope = "formalize" | "prove";
@@ -114,14 +113,14 @@ export function ResearchLauncher({
   };
 
   return <section className="research-launcher" id="research-launcher" aria-labelledby="research-launcher-title">
-    <div className="research-launcher-heading">
+    <SectionHeading as="div" className="research-launcher-heading">
       <div>
         <p className="eyebrow">Research launcher</p>
-        <h2 id="research-launcher-title">Choose a question. Start with your Agent.</h2>
+        <SectionTitle id="research-launcher-title">Choose a question. Start with your Agent.</SectionTitle>
         <p>Proofweave binds the selected source revision to your connected Agent in the background. Your Lean workspace and private exploration stay on this computer.</p>
       </div>
-      <span className="record-chip">No files shared</span>
-    </div>
+      <Badge className="record-chip">No files shared</Badge>
+    </SectionHeading>
 
     {entryTarget && (!connection || !delegation || !scope) && <div className="research-entry-context">
       <div>
@@ -164,9 +163,9 @@ export function ResearchLauncher({
       action="Browse the catalog"
     /> : <div className="research-launcher-body">
       <label className="research-target-select">Research target
-        <select value={target?.slug ?? ""} onChange={(event) => { setTargetSlug(event.target.value); setNotice(null); setError(null); }} disabled={isStarting}>
+        <Select value={target?.slug ?? ""} onChange={(event) => { setTargetSlug(event.target.value); setNotice(null); setError(null); }} disabled={isStarting}>
           {catalogTargets.map((candidate) => <option value={candidate.slug} key={candidate.id}>{candidate.title} · {candidate.domain}</option>)}
-        </select>
+        </Select>
       </label>
       {target && <div className="research-target-summary">
         <div>
@@ -187,10 +186,10 @@ export function ResearchLauncher({
       </div>}
       <div className="research-launcher-footer">
         <p><strong>{connection.agentLabel}</strong> is ready. We record only a provisional Attempt now; progress, evidence, Lean execution, and review remain separate gates.</p>
-        <button className="button button-primary" type="button" onClick={() => { void start(); }} disabled={isStarting || atCapacity}>
+        <Button className="button button-primary" type="button" onClick={() => { void start(); }} disabled={isStarting || atCapacity}>
           {isStarting ? "Starting research…" : existing ? "Continue research" : atCapacity ? "Active research capacity reached" : "Start research"}
           {!isStarting && !atCapacity && <span aria-hidden="true">→</span>}
-        </button>
+        </Button>
       </div>
       {atCapacity && <p className="research-launcher-message is-error" role="alert">This Person already has the closed-alpha maximum of {closedAlphaAttemptLimits.maximumActiveAttemptsPerPerson} active research workspaces.</p>}
       {notice && <p className="research-launcher-message is-success" role="status">{notice}</p>}
@@ -203,7 +202,7 @@ export function ResearchLauncher({
 function LauncherState({ title, detail, href, action }: { title: string; detail: string; href: string; action: string }) {
   return <div className="research-launcher-state">
     <div><strong>{title}</strong><p>{detail}</p></div>
-    <Link className="button button-primary" href={href}>{action} <span aria-hidden="true">→</span></Link>
+    <ActionLink className="button button-primary" href={href}>{action} <span aria-hidden="true">→</span></ActionLink>
   </div>;
 }
 

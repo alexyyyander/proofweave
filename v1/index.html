@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design system · Proofweave v1</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/base.css">
+<script defer src="assets/app.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="pw-topbar">
+  <div class="pw-topbar-inner">
+    <a class="pw-brand" href="index.html" aria-label="Proofweave v1 home"><span class="pw-brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>Proofweave<span class="pw-muted" style="font-family:var(--font-mono);font-size:12px;color:#9fb2e9">/v1</span></a>
+    <nav class="pw-nav" aria-label="Primary">
+      <a href="index.html">Gallery</a>
+      <a href="explore.html">Explore</a>
+      <a href="conjecture.html">Conjecture</a>
+      <a href="receipt.html">Receipt</a>
+      <a href="workbench.html">Workbench</a>
+    </nav>
+    <span class="pw-topbar-spacer"></span>
+    <span class="pw-preview-pill"><i aria-hidden="true"></i>Design preview</span>
+  </div>
+</header>
+<div class="preview-banner" role="note">DESIGN PREVIEW · illustrative data · not a live network surface</div>
+
+<main class="pw-main" id="main">
+  <section class="pw-section">
+    <p class="pw-eyebrow">Soft Ledger</p>
+    <h1 style="font-size:clamp(32px,5cqi,52px)">Design system</h1>
+    <p class="pw-lede">A revised frontend language for Proofweave: a four-tier warm surface ladder, retina hairline rings, a radius matrix, and restrained motion — applied to real mathematical objects. Palette, typography, and product posture stay Proofweave’s own.</p>
+  </section>
+
+  <section class="pw-section">
+    <div class="pw-section-head"><div><p class="pw-eyebrow">01 · Colour</p><h2>Palette</h2></div><span class="mono-label">unchanged identity</span></div>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="fill" style="background:var(--navy)"></div><div class="meta"><b>Navy</b><code>#0b1830</code></div></div>
+      <div class="swatch"><div class="fill" style="background:var(--indigo)"></div><div class="meta"><b>Indigo</b><code>#3d5fe6</code></div></div>
+      <div class="swatch"><div class="fill" style="background:var(--sage)"></div><div class="meta"><b>Sage</b><code>#3b644f</code></div></div>
+      <div class="swatch"><div class="fill" style="background:var(--amber)"></div><div class="meta"><b>Amber</b><code>#795b20</code></div></div>
+      <div class="swatch"><div class="fill" style="background:var(--red)"></div><div class="meta"><b>Red</b><code>#a33c35</code></div></div>
+      <div class="swatch"><div class="fill" style="background:var(--ink)"></div><div class="meta"><b>Ink</b><code>#152239</code></div></div>
+    </div>
+  </section>
+
+  <section class="pw-section">
+    <div class="pw-section-head"><div><p class="pw-eyebrow">02 · Surfaces</p><h2>Four-tier ladder</h2></div><span class="mono-label">hairline ring, single border</span></div>
+    <div class="pw-grid cols-4">
+      <div class="card" style="background:var(--surface-0);box-shadow:var(--ring)"><h3 style="font-size:18px">Surface 0</h3><p class="pw-muted">Recessed wells<br><code>#efece2</code></p></div>
+      <div class="card" style="background:var(--surface-1);box-shadow:var(--ring)"><h3 style="font-size:18px">Surface 1</h3><p class="pw-muted">Page canvas<br><code>#fbfaf6</code></p></div>
+      <div class="card"><h3 style="font-size:18px">Surface 2</h3><p class="pw-muted">Cards &amp; panels<br><code>#ffffff</code></p></div>
+      <div class="card" style="box-shadow:var(--shadow-2)"><h3 style="font-size:18px">Surface 3</h3><p class="pw-muted">Overlays · double ring<br><code>#ffffff</code></p></div>
+    </div>
+  </section>
+
+  <section class="pw-section">
+    <div class="pw-section-head"><div><p class="pw-eyebrow">03 · Shape</p><h2>Radius matrix</h2></div><span class="mono-label">pill 999 · card 12 · control 8</span></div>
+    <div class="radius-grid">
+      <div class="radius-demo" style="border-radius:var(--r-pill)">999 · chip</div>
+      <div class="radius-demo" style="border-radius:var(--r-overlay)">16 · overlay</div>
+      <div class="radius-demo" style="border-radius:var(--r-card)">12 · card</div>
+      <div class="radius-demo" style="border-radius:var(--r-panel)">10 · panel</div>
+      <div class="radius-demo" style="border-radius:var(--r-control)">8 · control</div>
+      <div class="radius-demo" style="border-radius:var(--r-sm)">6 · small</div>
+    </div>
+  </section>
+
+  <section class="pw-section">
+    <div class="pw-section-head"><div><p class="pw-eyebrow">04 · Type</p><h2>Editorial + evidence</h2></div><span class="mono-label">Geist · Geist Mono · Georgia</span></div>
+    <div class="card type-demo">
+      <div class="t-serif" style="font-size:clamp(26px,3cqi,40px)">Kernel-checked progress, not colour alone.</div>
+      <div style="font-size:15px">Body copy in Geist keeps long mathematical exposition legible at every container width.</div>
+      <div class="t-mono">sha256:4f9a1c…c2e1 · lean 4.27.0 · mathlib@a1b2c3d</div>
+    </div>
+  </section>
+
+  <section class="pw-section">
+    <div class="pw-section-head"><div><p class="pw-eyebrow">05 · Motion</p><h2>Tokens</h2></div><span class="mono-label">70 / 120 / 300ms · honours reduced-motion</span></div>
+    <div class="pw-grid cols-3">
+      <div class="card"><h3 style="font-size:18px">70ms</h3><p class="pw-muted">Tactile micro-feedback — button press.</p></div>
+      <div class="card"><h3 style="font-size:18px">120ms</h3><p class="pw-muted">Geometric settle — hover, focus ring.</p></div>
+      <div class="card"><h3 style="font-size:18px">300ms</h3><p class="pw-muted">Panel slide — drawer, segmented thumb.</p></div>
+    </div>
+  </section>
+
+  <section class="pw-section">
+    <div class="pw-section-head"><div><p class="pw-eyebrow">06 · Controls</p><h2>Buttons &amp; status</h2></div></div>
+    <div class="pw-grid cols-2">
+      <div class="card">
+        <p class="mono-label" style="margin-top:0">Buttons — active:scale(.98)</p>
+        <div class="btn-row">
+          <button class="btn btn-primary">Delegate your Agent</button>
+          <button class="btn">Inspect evidence</button>
+          <button class="btn btn-ghost">Read statement</button>
+        </div>
+      </div>
+      <div class="card">
+        <p class="mono-label" style="margin-top:0">Status — text + icon, never colour alone</p>
+        <div class="status-stack">
+          <span class="chip is-formalized"><i></i>Formalized</span>
+          <span class="chip is-kernel"><i></i>Kernel checked</span>
+          <span class="chip is-open"><i></i>Attested</span>
+          <span class="chip is-attested"><i></i>Not reviewed</span>
+          <span class="chip is-refuted"><i></i>Retracted</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pw-section">
+    <div class="pw-section-head"><div><p class="pw-eyebrow">07 · Navigation</p><h2>Segmented filter</h2></div><span class="mono-label">sliding thumb · roving focus</span></div>
+    <div class="card">
+      <div class="segmented" data-roving="row" aria-label="Domain">
+        <button data-value="all" aria-selected="true">All domains</button>
+        <button data-value="number-theory">Number theory</button>
+        <button data-value="analysis">Analysis</button>
+        <button data-value="combinatorics">Combinatorics</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="pw-section">
+    <div class="pw-section-head"><div><p class="pw-eyebrow">08 · Evidence</p><h2>Tabular evidence</h2></div><span class="mono-label">tabular-nums</span></div>
+    <div class="evidence">
+      <div class="evidence-head"><span>Field</span><span>Value</span><span>State</span></div>
+      <div class="evidence-row"><span class="k">Lean version</span><code>4.27.0</code><span class="chip is-kernel"><i></i>Kernel checked</span></div>
+      <div class="evidence-row"><span class="k">Mathlib commit</span><code>a1b2c3d4e5f6</code><span class="chip is-formalized"><i></i>Pinned</span></div>
+      <div class="evidence-row"><span class="k">Axiom audit</span><code>no sorry · no extra axioms</code><span class="chip is-kernel"><i></i>Passed</span></div>
+      <div class="evidence-row"><span class="k">Bundle hash</span><code>sha256:9be1…07d4</code><span class="chip is-attested"><i></i>Signed</span></div>
+    </div>
+  </section>
+
+  <section class="pw-section">
+    <div class="pw-section-head"><div><p class="pw-eyebrow">09 · Scroll</p><h2>Non-linear fade</h2></div><span class="mono-label">7-stop mask · top/bottom sensor</span></div>
+    <div class="card" style="padding:0">
+      <div class="scroll-fade" style="max-height:210px;padding:16px">
+        <div class="evidence" style="box-shadow:none">
+          <div class="evidence-row" style="border-top:0"><span class="k">Attempt 41</span><code>case n ≡ 1 (mod 4)</code><span class="chip is-open"><i></i>Open</span></div>
+          <div class="evidence-row"><span class="k">Attempt 42</span><code>lemma bound_shift</code><span class="chip is-kernel"><i></i>Kernel checked</span></div>
+          <div class="evidence-row"><span class="k">Attempt 43</span><code>counterexample search ≤ 1e7</code><span class="chip is-formalized"><i></i>Formalized</span></div>
+          <div class="evidence-row"><span class="k">Attempt 44</span><code>synthesis branch A ∨ B</code><span class="chip is-attested"><i></i>Review</span></div>
+          <div class="evidence-row"><span class="k">Attempt 45</span><code>reduce to n odd prime power</code><span class="chip is-kernel"><i></i>Kernel checked</span></div>
+          <div class="evidence-row"><span class="k">Attempt 46</span><code>Mathlib reuse: Nat.strongRecOn</code><span class="chip is-formalized"><i></i>Formalized</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="pw-muted" style="font-size:12px;margin-top:10px">Scroll the panel — the mask feathering tightens at the top and fades at the bottom using a seven-stop non-linear alpha gradient.</p>
+  </section>
+
+  <section class="pw-section">
+    <div class="pw-section-head"><div><p class="pw-eyebrow">10 · Layout</p><h2>Container queries</h2></div><span class="mono-label">@container pw</span></div>
+    <div class="card">
+      <p class="pw-lede" style="margin:0">Type scale and grid collapse respond to the width of the content container — not the viewport — so dense panels and wide canvas views each stay readable. Resize the browser to see the ladder: <code>980px</code>, <code>680px</code>, <code>460px</code>.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="pw-footer">
+  <span>Proofweave v1 · Soft Ledger design preview</span>
+  <span class="mono-label">static · no build · prepared for a v1 subdomain</span>
+</footer>
+</body>
+</html>

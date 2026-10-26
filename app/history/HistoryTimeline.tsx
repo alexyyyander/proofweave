@@ -1,7 +1,8 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
-import type { CSSProperties } from "react";
+import { CardTitle, SectionTitle, Field, Button, FieldList, Input, SectionHeading, Surface } from "@/app/components/ui";
+
+import { useLayoutEffect, useRef, useState, type CSSProperties } from "react";
 
 export type EvidenceTone = "formal" | "reviewed" | "reproduced" | "announced";
 
@@ -88,29 +89,29 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
 
   return (
     <section className="history-timeline" id="timeline" aria-labelledby="timeline-title">
-      <div className="history-timeline-heading">
+      <SectionHeading as="div" className="history-timeline-heading">
         <div>
           <p className="eyebrow">{milestones.length} moments · one accelerating frontier</p>
-          <h2 id="timeline-title">Follow the record across 2026.</h2>
+          <SectionTitle id="timeline-title">Follow the record across 2026.</SectionTitle>
         </div>
         <p>Zoom in to separate busy days. Drag the timeline or swipe sideways to explore. Records from the same day stay stacked; month-only records sit at mid-month.</p>
-      </div>
+      </SectionHeading>
 
       <div className="history-timeline-controls" aria-label="Timeline controls">
         <div className="history-timeline-presets">
-          <button type="button" onClick={() => changeZoom(1, .5)}>Full record</button>
-          <button type="button" onClick={recentDays}>Recent days</button>
+          <Button type="button" onClick={() => changeZoom(1, .5)}>Full record</Button>
+          <Button type="button" onClick={recentDays}>Recent days</Button>
         </div>
         <div className="history-timeline-zoom">
-          <button type="button" aria-label="Zoom out timeline" disabled={zoom === 1} onClick={() => changeZoom(Math.max(1, Math.round(zoom / 1.5)))}>−</button>
+          <Button type="button" aria-label="Zoom out timeline" disabled={zoom === 1} onClick={() => changeZoom(Math.max(1, Math.round(zoom / 1.5)))}>−</Button>
           <label htmlFor="history-zoom">Zoom</label>
-          <input id="history-zoom" type="range" min="1" max="32" step="1" value={zoom} aria-valuetext={`${zoom} times`} onChange={(event) => changeZoom(Number(event.target.value))} />
+          <Input id="history-zoom" type="range" min="1" max="32" step="1" value={zoom} aria-valuetext={`${zoom} times`} onChange={(event) => changeZoom(Number(event.target.value))} />
           <output htmlFor="history-zoom">{zoom}×</output>
-          <button type="button" aria-label="Zoom in timeline" disabled={zoom === 32} onClick={() => changeZoom(Math.min(32, Math.ceil(zoom * 1.5)))}>+</button>
+          <Button type="button" aria-label="Zoom in timeline" disabled={zoom === 32} onClick={() => changeZoom(Math.min(32, Math.ceil(zoom * 1.5)))}>+</Button>
         </div>
         <div className="history-timeline-pan">
-          <button type="button" aria-label="Earlier dates" onClick={() => viewportRef.current?.scrollBy({ left: -viewportWidth * .7 })}>←</button>
-          <button type="button" aria-label="Later dates" onClick={() => viewportRef.current?.scrollBy({ left: viewportWidth * .7 })}>→</button>
+          <Button type="button" aria-label="Earlier dates" onClick={() => viewportRef.current?.scrollBy({ left: -viewportWidth * .7 })}>←</Button>
+          <Button type="button" aria-label="Later dates" onClick={() => viewportRef.current?.scrollBy({ left: viewportWidth * .7 })}>→</Button>
         </div>
       </div>
       <div
@@ -147,7 +148,7 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
               const edgeClass = position >= 94 ? " is-edge-end" : position <= 6 ? " is-edge-start" : "";
               const nodeClass = timelineNodeOffset < 0 ? " is-node-above" : timelineNodeOffset > 0 ? " is-node-below" : "";
               return (
-                <button
+                <Button
                   aria-controls={`history-panel-${item.number}`}
                   aria-label={`${item.date}: ${item.title}. ${item.evidence}`}
                   aria-selected={isActive}
@@ -183,7 +184,7 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
                 >
                   <span className="history-timepoint-copy"><time dateTime={item.timelineDate}>{item.date}</time><strong>{item.shortTitle}</strong>{item.latest ? <em>Latest entry</em> : null}</span>
                   <span className="history-timepoint-node"><b>{item.number}</b></span>
-                </button>
+                </Button>
               );
             })}
         </div>
@@ -193,7 +194,7 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
           {milestones.map((item) => {
             const isActive = item.number === activeNumber;
             return (
-              <article
+              <Surface as="article"
                 aria-labelledby={`history-tab-${item.number}`}
                 className={`history-panel${item.frontier ? " is-frontier" : ""}`}
                 hidden={!isActive}
@@ -203,7 +204,7 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
                 tabIndex={0}
               >
                 <header>
-                  <div><p className="history-system">{item.system}</p><h3>{item.title}</h3></div>
+                  <div><p className="history-system">{item.system}</p><CardTitle>{item.title}</CardTitle></div>
                   <span className={`history-state is-${item.evidenceTone}`}>{item.evidence}</span>
                 </header>
                 <p className="history-entry-summary">{item.summary}</p>
@@ -215,12 +216,12 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
 
                 {item.reproduction ? <div className="history-reproduction-inline"><div><span className="history-reproduction-label">Lean replay path</span><strong>{item.reproduction.label}</strong><p>{item.reproduction.detail}</p>{item.reproduction.command ? <code>{item.reproduction.command}</code> : null}</div><div className="history-reproduction-links"><a href={item.reproduction.href} rel="noreferrer" target="_blank">Open artifact <span aria-hidden="true">↗</span></a>{item.reproduction.workspaceHref && item.reproduction.workspaceLabel ? <a href={item.reproduction.workspaceHref}>{item.reproduction.workspaceLabel} <span aria-hidden="true">→</span></a> : null}</div></div> : null}
 
-                <dl className="history-role-grid"><div><dt>AI contribution</dt><dd>{item.aiRole}</dd></div><div><dt>Human contribution</dt><dd>{item.humanRole}</dd></div><div><dt>{item.frontier ? "Evidence today" : "Why it mattered"}</dt><dd>{item.significance}</dd></div></dl>
+                <FieldList layout="stacked" className="history-role-grid"><Field label="AI contribution">{item.aiRole}</Field><Field label="Human contribution">{item.humanRole}</Field><Field label={<>{item.frontier ? "Evidence today" : "Why it mattered"}</>}> {item.significance}</Field></FieldList>
 
                 {item.frontier ? <div className="history-frontier-boundary"><strong>What this does—and does not—establish</strong><p>{item.boundary ?? (item.special === "riemann" ? "This improves a lower bound for a related zeta-zero problem. It does not prove or disprove the Riemann Hypothesis; the formal artifact is public, while a Proofweave replay receipt is still pending." : "The displayed algebraic claims can be checked now. The scholarly publication and attribution record are still forming, and the two-dimensional Jacobian Conjecture remains open.")}</p></div> : null}
 
                 <footer>{item.sources.map((source) => <a href={source.href} key={source.href} rel="noreferrer" target="_blank">{source.label} <span aria-hidden="true">↗</span></a>)}</footer>
-              </article>
+              </Surface>
             );
           })}
       </div>

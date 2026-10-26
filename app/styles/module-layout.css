@@ -1,0 +1,228 @@
+/* Supporting pages read as modules: a compact rail, one clear action, and
+   less competition with the primary Overview / Explore / Workspace surfaces. */
+.app-shell .page-main {
+  padding-bottom: 88px;
+  padding-top: 48px;
+}
+.information-hub-hero,
+.reading-hero,
+.legal-hero,
+.review-heading,
+.receipt-heading,
+.detail-heading,
+.settings-hero,
+.journey-hero {
+  padding-bottom: 30px;
+  padding-top: 26px;
+}
+.information-hub-hero > p,
+.reading-hero > p:not(.eyebrow),
+.legal-hero > p:last-child,
+.review-heading p:not(.eyebrow),
+.receipt-heading p:not(.eyebrow),
+.detail-heading p:not(.eyebrow),
+.settings-hero > div > p:not(.eyebrow),
+.journey-hero > div > p:not(.eyebrow) {
+  font-size: var(--text-md);
+  line-height: 1.58;
+}
+.information-path-grid { margin-bottom: 48px; margin-top: 38px; }
+.information-path-grid > a { min-height: 250px; }
+.information-path-grid h2 { margin-top: 36px; }
+.reading-steps,
+.principle-reading-grid,
+.catalog-reading-gates,
+.record-layer-list { padding-bottom: 44px; padding-top: 44px; }
+.reading-note { background: #f1f3f8; border-left: 2px solid #b9c5ea; }
+.public-section-nav,
+.explore-section-nav { margin-top: 18px; }
+.review-authority,
+.receipt-summary,
+.detail-main > .status-stack { margin-top: 18px; }
+.review-empty,
+.receipt-message { margin-top: 12px; }
+
+@media (max-width: 900px) {
+  .site-directory-intro {
+    align-items: start;
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .site-directory-intro small {
+    grid-column: 2;
+    text-align: left;
+  }
+  .site-directory-groups { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 620px) {
+  .site-directory-popover { width: calc(100vw - 36px); }
+  .site-directory-intro {
+    display: grid;
+    gap: 8px 13px;
+    padding: 14px;
+  }
+  .site-directory-intro p { grid-column: 1 / -1; }
+  .site-directory-intro small { grid-column: 1 / -1; }
+  .site-directory-groups { padding: 10px; }
+  .site-directory-groups > div { padding-left: 12px; padding-right: 12px; }
+  .site-directory-groups a { min-height: 40px; }
+  .app-shell .page-main { padding-bottom: 70px; padding-top: 30px; }
+  .information-hub-hero,
+  .reading-hero,
+  .legal-hero,
+  .review-heading,
+  .receipt-heading,
+  .detail-heading,
+  .settings-hero,
+  .journey-hero { padding-bottom: 24px; padding-top: 18px; }
+  .information-path-grid { margin-bottom: 34px; margin-top: 28px; }
+  .information-path-grid > a { min-height: 210px; }
+}
+
+/* Final visual simplification pass: fewer oversized blocks, clearer reading
+   measures, and one calmer density across the four primary surfaces. */
+.app-shell .page-main {
+  padding-bottom: 72px;
+  padding-top: 36px;
+}
+.home-network-map { padding-bottom: 60px; padding-top: 60px; }
+.home-story-explanation { padding-bottom: 68px; padding-top: 68px; }
+.home-story-explanation-heading { gap: 34px; margin-bottom: 36px; }
+.home-story-value-list article { min-height: 198px; padding: 20px; }
+.home-story-value-list h3 { margin-top: 30px; }
+.research-index-summary { margin-bottom: 30px; }
+.research-index-toolbar { background: #fff; border: 1px solid var(--line); padding: 12px; }
+.research-index-layout { gap: 14px; grid-template-columns: 220px minmax(0, 1fr); }
+.research-index-filters { top: 14px; }
+.research-result-list { gap: 8px; }
+.research-result-card { padding: 17px; }
+.research-result-title h3 { margin-top: 14px; }
+.research-result-statement { font-size: var(--text-sm); }
+.research-result-signals dd { font-size: var(--text-2xs); }
+.research-result-footer .button { font-size: var(--text-2xs); }
+
+.information-hub-hero { padding-bottom: 38px; padding-top: 40px; }
+.information-path-grid { margin-bottom: 52px; margin-top: 34px; }
+.information-path-grid > a { min-height: 228px; padding: 20px; }
+.information-path-grid h2 { margin-top: 30px; }
+.about-definition { padding-bottom: 54px; padding-top: 54px; }
+.about-project-card { padding-bottom: 34px; padding-top: 34px; }
+.hub-next-action { padding-bottom: 12px; padding-top: 54px; }
+
+.my-work-main { padding-top: 38px; }
+.my-work-summary { margin-top: 18px; }
+.my-work-summary > div, .my-work-summary > a { min-height: 90px; padding: 13px; }
+.my-work-summary strong { font-size: var(--display-lg); }
+.my-work-agent { margin-bottom: 22px; }
+.my-work-sections { gap: 26px; }
+.my-work-card { min-height: 280px; padding: 18px; }
+.my-work-card h3 { margin-top: 20px; }
+.my-work-card-meta { margin-bottom: 16px; }
+
+@media (max-width: 900px) {
+  .research-index-layout { grid-template-columns: 190px minmax(0, 1fr); }
+  .information-hub-hero { padding-bottom: 32px; padding-top: 34px; }
+}
+
+@media (max-width: 620px) {
+  .app-shell .page-main { padding-bottom: 58px; padding-top: 24px; }
+  .home-network-map { padding-bottom: 46px; padding-top: 46px; }
+  .home-story-explanation { padding-bottom: 54px; padding-top: 54px; }
+  .research-result-card { padding-bottom: 16px; padding-top: 16px; }
+  .information-hub-hero { padding-bottom: 30px; padding-top: 28px; }
+  .information-path-grid { margin-bottom: 38px; margin-top: 26px; }
+  .information-path-grid > a { min-height: 198px; }
+  .about-definition { padding-bottom: 42px; padding-top: 42px; }
+  .my-work-main { padding-top: 26px; }
+  .my-work-card { min-height: 0; }
+}
+
+/* Second simplification pass: the dedicated Demo is a verification tool,
+   while About and Workspace stay compact supporting modules. */
+.demo-hero {
+  gap: 48px;
+  padding-bottom: 58px;
+  padding-top: 60px;
+}
+.demo-hero h1 {
+  margin-bottom: 20px;
+  max-width: 620px;
+}
+.demo-hero .hero-lede {
+  font-size: var(--type-page-description);
+  line-height: 1.7;
+  max-width: 620px;
+}
+.demo-hero .button-row .button { min-height: 44px; font-size: var(--type-control); }
+/* Read the evidence gates in order, with room for a heading and explanation. */
+.demo-chain {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  max-width: none;
+}
+.demo-chain li {
+  align-items: start;
+  border-bottom: 1px solid rgba(222,231,255,.2);
+  border-left: 0;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 32px minmax(0, 1fr);
+  padding: 14px 0;
+}
+.demo-chain li:last-child { border-bottom: 0; }
+.demo-chain li > span { font-family: var(--font-code); font-size: var(--type-caption); line-height: 1.5; padding-top: 3px; }
+.demo-chain strong { color: #f7f9ff; font-size: 16px; line-height: 1.4; margin-bottom: 4px; }
+.demo-chain p { color: #bdc9dc; font-size: var(--type-body); line-height: 1.6; }
+.demo-chain code { color: inherit; font-size: .95em; }
+.demo-boundary { padding-bottom: 16px; padding-top: 16px; }
+.demo-live-record { padding-bottom: 30px; padding-top: 30px; }
+.demo-walkthrough { padding-bottom: 8px; padding-top: 58px; }
+.demo-walkthrough-layout { margin-top: 28px; }
+.demo-stage-detail { min-height: 400px; padding: 32px; }
+.demo-stage-number { margin-top: 42px; }
+.demo-console { padding-bottom: 58px; padding-top: 58px; }
+.demo-console-grid { margin-top: 28px; }
+.demo-proof-section { gap: 40px; padding-bottom: 60px; padding-top: 60px; }
+.demo-source-panel { box-shadow: none; }
+.demo-source-panel pre { margin-top: 28px; }
+.demo-honesty-grid { padding-bottom: 60px; padding-top: 60px; }
+.demo-honesty-grid article { min-height: 0; padding: 22px; }
+.demo-honesty-grid h2 { margin-bottom: 12px; margin-top: 24px; }
+.demo-reproduce { gap: 40px; padding-bottom: 50px; padding-top: 50px; }
+
+.information-path-grid > a { min-height: 196px; padding: 18px; }
+.information-path-grid h2 { margin-top: 24px; }
+.about-definition { gap: 38px; padding-bottom: 44px; padding-top: 44px; }
+.about-project-card { gap: 20px; padding-bottom: 28px; padding-top: 28px; }
+.hub-next-action { padding-bottom: 8px; padding-top: 42px; }
+.reading-hero { padding-bottom: 34px; padding-top: 34px; }
+.reading-hero > p:not(.eyebrow) { font-size: var(--text-lg); line-height: 1.58; }
+.reading-steps { padding-bottom: 32px; padding-top: 32px; }
+.reading-steps > li { gap: 20px; padding-bottom: 18px; padding-top: 18px; }
+.reading-note { gap: 30px; padding: 22px; }
+.my-work-summary > div,
+.my-work-summary > a { min-height: 82px; padding: 11px; }
+.my-work-summary strong { font-size: var(--display-md); }
+.my-work-next-action { margin-bottom: 16px; margin-top: 14px; padding: 16px; }
+.my-work-card { min-height: 240px; padding: 16px; }
+.my-work-card h3 { margin-top: 16px; }
+.my-work-card-actions { padding-top: 14px; }
+
+@media (max-width: 620px) {
+  .demo-hero { gap: 38px; padding-bottom: 48px; padding-top: 44px; }
+  .demo-chain li { grid-template-columns: 28px minmax(0, 1fr); }
+  .demo-live-record { padding-bottom: 24px; padding-top: 24px; }
+  .demo-walkthrough { padding-bottom: 4px; padding-top: 44px; }
+  .demo-stage-detail { padding-bottom: 28px; padding-top: 28px; }
+  .demo-console { padding-bottom: 46px; padding-top: 46px; }
+  .demo-proof-section { padding-bottom: 46px; padding-top: 46px; }
+  .demo-honesty-grid { padding-bottom: 46px; padding-top: 46px; }
+  .demo-reproduce { padding-bottom: 40px; padding-top: 40px; }
+  .information-path-grid > a { min-height: 176px; }
+  .about-definition { padding-bottom: 38px; padding-top: 38px; }
+  .reading-hero { padding-bottom: 28px; padding-top: 28px; }
+  .reading-steps { padding-bottom: 26px; padding-top: 26px; }
+  .reading-note { gap: 20px; padding: 18px; }
+  .my-work-summary > div,
+  .my-work-summary > a { padding: 11px 13px; }
+}

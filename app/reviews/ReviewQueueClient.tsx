@@ -1,14 +1,12 @@
 "use client";
 
+import { CardTitle, SectionTitle, Badge, Field, ActionLink, Button, EmptyState, FieldList, Surface } from "@/app/components/ui";
+
 import Link from "next/link";
 import { useState } from "react";
-import type { ReviewAssignmentSummary } from "@/db/repositories/reviews";
+import { type ReviewAssignmentSummary } from "@/db/repositories/reviews";
 import { closedAlphaReviewLimits } from "@/packages/domain/attempt-policy.mjs";
-import {
-  reviewClaimLabel,
-  reviewDecisionLabel,
-  reviewStatusDetail,
-} from "./review-presentation";
+import { reviewClaimLabel, reviewDecisionLabel, reviewStatusDetail } from "./review-presentation";
 
 type ReviewQueueClientProps = {
   initialAssignments: readonly ReviewAssignmentSummary[];
@@ -45,11 +43,11 @@ export function ReviewQueueClient({ initialAssignments, hasReviewDelegation }: R
   return <>
     <section className="review-authority" aria-label="Review authority status">
       <div><p className="eyebrow">Your verification boundary</p><strong>{hasReviewDelegation ? "A scoped review delegation is active." : "No active review delegation yet."}</strong><p>{hasReviewDelegation ? "Your local review Agent can request a fresh replay, prepare its signed decision locally, and submit only the exact attestation you approve." : "You may inspect or respond to an assignment, but an Agent needs an active `review` delegation before any attestation can be accepted."} Closed alpha permits at most {closedAlphaReviewLimits.maximumActiveAssignmentsPerPerson} active independent reviews per Person, regardless of Agent count.</p></div>
-      <div className="review-authority-actions"><span className="record-chip" aria-label={`${activeAssignmentCount} of ${closedAlphaReviewLimits.maximumActiveAssignmentsPerPerson} active independent reviews`}>{activeAssignmentCount}/{closedAlphaReviewLimits.maximumActiveAssignmentsPerPerson} active</span><Link className="text-link" href={hasReviewDelegation ? "/settings#delegation-setup" : "/integrations#review-agent"}>{hasReviewDelegation ? "Manage Agent authority" : "Connect a review Agent"} <span>→</span></Link></div>
+      <div className="review-authority-actions"><Badge className="record-chip" aria-label={`${activeAssignmentCount} of ${closedAlphaReviewLimits.maximumActiveAssignmentsPerPerson} active independent reviews`}>{activeAssignmentCount}/{closedAlphaReviewLimits.maximumActiveAssignmentsPerPerson} active</Badge><Link className="text-link" href={hasReviewDelegation ? "/settings#delegation-setup" : "/integrations#review-agent"}>{hasReviewDelegation ? "Manage Agent authority" : "Connect a review Agent"} <span>→</span></Link></div>
     </section>
     {(notice || error) && <p className={error ? "review-message is-error" : "review-message"} role="status">{error ?? notice}</p>}
     {assignments.length === 0
-      ? <section className="review-empty"><p className="eyebrow">No assigned work</p><h2>Your review queue is clear.</h2><p>Independent review is assigned to a Person, never merely to an Agent. New assignments will appear here when an eligible Bundle is routed to you.</p><Link className="text-link" href="/explore">Explore current research targets <span>→</span></Link></section>
+      ? <EmptyState as="section" className="review-empty"><p className="eyebrow">No assigned work</p><SectionTitle>Your review queue is clear.</SectionTitle><p>Independent review is assigned to a Person, never merely to an Agent. New assignments will appear here when an eligible Bundle is routed to you.</p><Link className="text-link" href="/explore">Explore current research targets <span>→</span></Link></EmptyState>
       : <section className="review-list" aria-label="Assigned independent reviews">{assignments.map((assignment) => <ReviewCard assignment={assignment} busy={busyId === assignment.id} canAttest={hasReviewDelegation} onTransition={transition} key={assignment.id} />)}</section>}
   </>;
 }
@@ -61,23 +59,23 @@ function ReviewCard({ assignment, busy, canAttest, onTransition }: {
   onTransition: (assignment: ReviewAssignmentSummary, action: "accept" | "decline") => void;
 }) {
   const state = reviewStatusDetail(assignment, canAttest);
-  return <article className="review-card review-queue-card">
+  return <Surface as="article" className="review-card review-queue-card">
     <div className="review-card-top"><span className="micro-label">Independent review · {reviewClaimLabel(assignment.claimType)}</span><div className="review-card-badges">{assignment.market && <span className="review-share-chip">{assignment.market.rewardWeight} {assignment.market.rewardWeight === 1 ? "share" : "shares"}</span>}<span className={`review-status is-${state.tone}`}>{state.label}</span></div></div>
-    <div className="review-card-copy"><h2>{assignment.target.title}</h2><p><code>{assignment.target.declaration}</code></p></div>
-    <dl className="review-queue-facts">
-      <div><dt>Assigned</dt><dd>{formatReviewTime(assignment.assignedAt)}</dd></div>
-      <div><dt>Exact Bundle</dt><dd><code>{shortHash(assignment.artifactBundleManifestHash)}</code></dd></div>
-      <div><dt>Fresh replay</dt><dd>{assignment.freshReplayEvidenceCount > 0 ? `${assignment.freshReplayEvidenceCount} terminal evidence ready` : assignment.freshReplayCount > 0 ? "Running or awaiting evidence" : "Not started"}</dd></div>
+    <div className="review-card-copy"><CardTitle as="h2">{assignment.target.title}</CardTitle><p><code>{assignment.target.declaration}</code></p></div>
+    <FieldList layout="stacked" className="review-queue-facts">
+      <Field label="Assigned">{formatReviewTime(assignment.assignedAt)}</Field>
+      <Field label="Exact Bundle"><code>{shortHash(assignment.artifactBundleManifestHash)}</code></Field>
+      <Field label="Fresh replay">{assignment.freshReplayEvidenceCount > 0 ? `${assignment.freshReplayEvidenceCount} terminal evidence ready` : assignment.freshReplayCount > 0 ? "Running or awaiting evidence" : "Not started"}</Field>
       {assignment.attestation && <div><dt>Decision</dt><dd>{reviewDecisionLabel(assignment.attestation.decision)}</dd></div>}
-    </dl>
+    </FieldList>
     <div className="review-card-footer">
       <div><strong>{state.title}</strong><p>{state.detail}</p></div>
       <div className="review-actions">
-        <Link className="button button-secondary review-workspace-link" href={`/reviews/${encodeURIComponent(assignment.id)}`}>{assignment.status === "completed" || assignment.status === "declined" ? "Inspect review record" : "Open review workspace"} <span aria-hidden="true">→</span></Link>
-        {assignment.status === "assigned" && <div className="review-action-buttons"><button className="button button-primary review-accept" type="button" disabled={busy} onClick={() => onTransition(assignment, "accept")}>{busy ? "Updating…" : "Accept"}</button><button className="quiet-action" type="button" disabled={busy} onClick={() => onTransition(assignment, "decline")}>Decline</button></div>}
+        <ActionLink className="button button-secondary review-workspace-link" href={`/reviews/${encodeURIComponent(assignment.id)}`}>{assignment.status === "completed" || assignment.status === "declined" ? "Inspect review record" : "Open review workspace"} <span aria-hidden="true">→</span></ActionLink>
+        {assignment.status === "assigned" && <div className="review-action-buttons"><Button className="button button-primary review-accept" type="button" disabled={busy} onClick={() => onTransition(assignment, "accept")}>{busy ? "Updating…" : "Accept"}</Button><Button className="quiet-action" type="button" disabled={busy} onClick={() => onTransition(assignment, "decline")}>Decline</Button></div>}
       </div>
     </div>
-  </article>;
+  </Surface>;
 }
 
 function shortHash(value: string) {

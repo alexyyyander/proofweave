@@ -1,0 +1,79 @@
+/* Proofweave v1 — "Soft Ledger" design tokens.
+   Adapted from the open-claude-ui (MIT) surface/radius/motion ideas,
+   re-expressed in Proofweave's own palette and posture. */
+
+:root {
+  /* ---- surfaces (4-tier warm-neutral ladder) ---- */
+  --surface-0: #efece2; /* recessed wells, table headers */
+  --surface-1: #fbfaf6; /* page canvas */
+  --surface-2: #ffffff; /* cards, panels */
+  --surface-3: #ffffff; /* overlays/popovers (double-ring shadow) */
+
+  /* ---- ink ---- */
+  --ink: #152239;
+  --ink-soft: #45546a;
+  --ink-faint: #718096;
+
+  /* ---- brand / structural ---- */
+  --navy: #0b1830;
+  --navy-soft: #16294a;
+
+  /* ---- semantic accents ---- */
+  --indigo: #3d5fe6;
+  --indigo-soft: #e8edff;
+  --indigo-ink: #4055af;
+  --sage: #3b644f;
+  --sage-soft: #e6f0e9;
+  --amber: #795b20;
+  --amber-soft: #fcf2d8;
+  --red: #a33c35;
+  --red-soft: #fff0ee;
+
+  /* ---- lines ---- */
+  --line: #d9d8d1;
+  --hairline: rgba(21, 34, 57, 0.16);
+  --ring: 0 0 0 1px var(--hairline);
+
+  /* ---- radius matrix ---- */
+  --r-pill: 999px;
+  --r-card: 12px;
+  --r-panel: 10px;
+  --r-control: 8px;
+  --r-sm: 6px;
+  --r-overlay: 16px;
+
+  /* ---- elevation ---- */
+  --shadow-1: 0 1px 2px rgba(21, 34, 57, 0.06);
+  --shadow-2: 0 10px 30px rgba(21, 34, 57, 0.12), 0 0 0 0.5px rgba(21, 34, 57, 0.1);
+
+  /* ---- motion tokens ---- */
+  --t-micro: 70ms;
+  --t-settle: 120ms;
+  --t-panel: 300ms;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-snap: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ---- type ---- */
+  --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --font-serif: Georgia, "Times New Roman", serif;
+
+  /* ---- layout ---- */
+  --maxw: 1240px;
+  --gutter: clamp(18px, 4vw, 44px);
+}
+
+/* Retina hairline compensation: 0.5px on high-density displays. */
+@media (min-resolution: 2dppx) {
+  :root {
+    --ring: 0 0 0 0.5px var(--hairline);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --t-micro: 0ms;
+    --t-settle: 0ms;
+    --t-panel: 0ms;
+  }
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Workbench · Proofweave v1</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/base.css">
+<script defer src="assets/app.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="pw-topbar">
+  <div class="pw-topbar-inner">
+    <a class="pw-brand" href="index.html" aria-label="Proofweave v1 home"><span class="pw-brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>Proofweave<span class="pw-muted" style="font-family:var(--font-mono);font-size:12px;color:#9fb2e9">/v1</span></a>
+    <nav class="pw-nav" aria-label="Primary">
+      <a href="index.html">Gallery</a>
+      <a href="explore.html">Explore</a>
+      <a href="conjecture.html">Conjecture</a>
+      <a href="receipt.html">Receipt</a>
+      <a href="workbench.html">Workbench</a>
+    </nav>
+    <span class="pw-topbar-spacer"></span>
+    <span class="pw-preview-pill"><i aria-hidden="true"></i>Design preview</span>
+  </div>
+</header>
+<div class="preview-banner" role="note">DESIGN PREVIEW · illustrative data · not a live network surface</div>
+
+<main class="pw-main" id="main">
+  <section class="pw-section">
+    <p class="pw-eyebrow">Workbench · local preview</p>
+    <div class="pw-section-head" style="align-items:flex-start">
+      <div>
+        <h1 style="font-size:clamp(30px,4.6cqi,48px)">Supervise one delegated Agent</h1>
+        <p class="pw-lede">Scope and expiry are shown before the Agent runs. Submission produces a signed artifact bundle, never a chat transcript.</p>
+      </div>
+      <span class="chip is-kernel"><i></i>Agent live · Sieve</span>
+    </div>
+  </section>
+
+  <section class="pw-section">
+    <div class="workbench-grid">
+      <div class="card composer">
+        <div class="card-head"><h3>Bounded action</h3><span class="mono-label">goal: erdos_straus</span></div>
+        <p class="pw-muted" style="font-size:12px;margin:0">Delegation scope: <strong style="color:var(--ink)">propose-lemma, search-counterexample</strong> · expires 2026-11-01.</p>
+        <form data-composer>
+          <label class="mono-label" for="task">Instruction to Agent</label>
+          <textarea id="task" placeholder="Ask for one bounded step. Enter submits; Shift+Enter adds a line."></textarea>
+          <div class="composer-hint">
+            <span data-composer-note class="pw-muted"></span>
+            <span class="mono-label">CJK IME guarded</span>
+          </div>
+          <div class="btn-row" style="margin-top:10px">
+            <button class="btn btn-primary" type="submit">Submit signed attempt</button>
+            <button class="btn" type="button">Pause Agent</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3>Structured event stream</h3><span class="mono-label">scroll up to inspect — pinning yields</span></div>
+        <div class="scroll-fade" style="max-height:340px">
+          <ul class="event-stream" data-live-stream>
+            <li><time>09:14:02</time><div><strong>agent</strong><span>Loaded pinned environment lean4.27.0.</span></div></li>
+            <li><time>09:14:05</time><div><strong>search</strong><span>Querying Mathlib for unit-fraction lemmas.</span></div></li>
+            <li><time>09:14:11</time><div><strong>artifact</strong><span>Attached bundle sha256:9be1…07d4</span></div></li>
+            <li><time>09:14:19</time><div><strong>verify</strong><span>Kernel accepted lemma unit_fraction_bound.</span></div></li>
+            <li><time>09:14:26</time><div><strong>agent</strong><span>Proposed branch: reduce to n odd prime power.</span></div></li>
+          </ul>
+        </div>
+        <p class="pw-muted" style="font-size:11px;margin:12px 0 0">New events keep the viewport pinned to the bottom; a manual scroll up releases the pin for 150ms so review is never stolen.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pw-section">
+    <div class="pw-section-head"><div><p class="pw-eyebrow">Before submission</p><h2>Proposed change</h2></div><span class="chip is-open"><i></i>Awaiting review</span></div>
+    <div class="card" style="background:var(--navy);color:#eaf0ff;box-shadow:none">
+      <pre style="margin:0;overflow:auto;white-space:pre-wrap"><code><span style="color:#8fb0ff">+ lemma</span> unit_fraction_bound (m : ℕ) (hm : 0 &lt; m) :
+<span style="color:#8fb0ff">+   ∃ k ≤ 3 * m, … := by</span>
+<span style="color:#e58a8a">-   -- TODO: bound the denominator</span>
+<span style="color:#8fb0ff">+   exact Nat.strongRecOn m (fun _ ih =&gt; …)</span></code></pre>
+    </div>
+    <p class="pw-muted" style="font-size:12px;margin-top:10px">Axiom audit and <code>sorry</code> status are checked before the bundle can be signed.</p>
+  </section>
+</main>
+
+<footer class="pw-footer">
+  <span>Proofweave v1 · Soft Ledger design preview</span>
+  <span class="mono-label">static · no build · prepared for a v1 subdomain</span>
+</footer>
+</body>
+</html>
