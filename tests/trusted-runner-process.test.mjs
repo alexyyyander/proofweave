@@ -42,6 +42,32 @@ test("trusted Runner phase audit records only bounded anonymous timing", async (
   assert.equal(JSON.stringify(records).includes("must-not-leak"), false);
 });
 
+test("restricted Runner configuration fails closed before opening the production database", async () => {
+  for (const value of ["", " ", null, "run:ok OR 1=1", 1]) {
+    await assert.rejects(createTrustedRunnerRuntimeFromEnvironment({
+      environment: { RUNNER_EXECUTION_ENABLED: "true", RUNNER_ONLY_RUN_ID: value },
+    }), /RUNNER_ONLY_RUN_ID/);
+  }
+});
+
+test("restricted Runner keeps its exact Run filter on every claim, including idle polls", async () => {
+  const queue = fakeQueue({ deliveryAttempt: 1 });
+  const calls = [];
+  const claim = queue.claim.bind(queue);
+  queue.claim = async input => { calls.push(input); return claim(input); };
+  const process = new TrustedRunnerProcess({
+    queue,
+    authenticator: { async authenticate(message) { return message; } },
+    async execute(_message, { beforeFinalize }) { await beforeFinalize(); },
+    consumerId: "runner:restricted-test",
+    onlyRunId: "run:trusted-test",
+    sleep: async () => new Promise(() => {}),
+  });
+  assert.equal((await process.processNext()).outcome, "acknowledged");
+  assert.equal((await process.processNext()).outcome, "idle");
+  assert.deepEqual(calls.map(input => input.runId), ["run:trusted-test", "run:trusted-test"]);
+});
+
 test("trusted Runner wake interrupts a sixty-second idle poll without carrying work", async () => {
   const queue = fakeQueue({ deliveryAttempt: 1 });
   const originalClaim = queue.claim.bind(queue);

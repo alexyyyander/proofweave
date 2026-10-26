@@ -70,6 +70,20 @@ release still requires an explicit operator change to `true`, a redeploy, and
 the controlled smoke; `paused` is healthy infrastructure, not executable
 capacity.
 
+For a controlled production smoke, set `RUNNER_ONLY_RUN_ID` to the exact approved
+Run identifier before enabling execution. The durable queue filters candidates
+before acquiring a lease. A missing, unavailable, or completed target leaves the
+consumer idle; it never falls through to other queued or expired jobs. An empty
+or malformed configured identifier fails startup. Omit the variable only when
+the operator intends to enable the general queue consumer.
+
+The restriction does not create, approve, or enqueue a Run and does not bypass
+signature, image, lease, or cancellation checks. Delivery retries still apply;
+set `RUNNER_MAX_DELIVERY_ATTEMPTS=1` when the approved smoke permits only one
+delivery attempt. Keep participant writes and scheduled anchoring paused during
+the smoke, then restore `RUNNER_EXECUTION_ENABLED=false` after collecting the
+terminal result. Do not remove the Run restriction while execution is enabled.
+
 ## Required deployment values
 
 Start from `.env.example`. The hosted trusted process requires:
