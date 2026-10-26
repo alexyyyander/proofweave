@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "refreshHours": 24,
+  "arxiv": {
+    "id": "arxiv:formal-mathematics",
+    "query": "(ti:\"theorem proving\" OR ti:autoformalization OR ti:\"formalized mathematics\" OR ti:\"Lean 4\") AND (cat:cs.AI OR cat:cs.LO OR cat:math.LO)",
+    "limit": 50
+  },
+  "crossref": {
+    "id": "crossref:theorem-proving",
+    "query": "theorem proving autoformalization Lean",
+    "limit": 50
+  },
+  "repositories": [
+    { "name": "google-deepmind/formal-conjectures", "topics": ["Open problems", "Lean"] },
+    { "name": "leanprover-community/mathlib4", "topics": ["Mathematical libraries", "Lean"] },
+    { "name": "leanprover/lean4", "topics": ["Proof assistants", "Lean"] },
+    { "name": "lean-dojo/LeanDojo", "topics": ["AI theorem proving", "Lean"] },
+    { "name": "lean-dojo/LeanCopilot", "topics": ["AI theorem proving", "Lean"] },
+    { "name": "PatrickMassot/leanblueprint", "topics": ["Formalization projects", "Lean"] },
+    { "name": "trishullab/PutnamBench", "topics": ["Benchmarks", "Lean"] }
+  ]
+}
