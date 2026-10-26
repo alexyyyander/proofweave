@@ -33,6 +33,7 @@ export function createD1BrowserConsentResolver({ store, now = () => new Date() }
         csrfToken,
         requirements: delegationRequirementSummary(authorization.scopes),
         scopes: authorization.scopes,
+        redirectUri: authorization.redirectUri,
       });
     },
 
@@ -107,7 +108,7 @@ export function createD1BrowserConsentResolver({ store, now = () => new Date() }
   };
 }
 
-function consentPage({ agents, challengeId, clientName, csrfToken, requirements, scopes }) {
+function consentPage({ agents, challengeId, clientName, csrfToken, requirements, scopes, redirectUri }) {
   const hasEligibleAgent = agents.length > 0;
   const requirementsText = requirements.length > 0
     ? `This connection needs an active ${requirements.join(" and ")} delegation.`
@@ -148,8 +149,11 @@ function consentPage({ agents, challengeId, clientName, csrfToken, requirements,
   ${hasEligibleAgent ? `<p class="note">Approval creates or reuses one revocable installation for this Agent and this MCP client. The connection stops working if the Agent, its signing key, or its delegation is revoked.</p>` : ""}
 </main></body></html>`, {
     headers: {
+      "Content-Type": "text/html; charset=utf-8",
       "Cache-Control": "no-store",
-      "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'",
+      // The registered redirect is validated before consent is rendered. Chromium
+      // also checks form redirects against the initiating document's form-action.
+      "Content-Security-Policy": `default-src 'none'; style-src 'unsafe-inline'; form-action 'self' ${new URL(redirectUri).origin}; base-uri 'none'; frame-ancestors 'none'`,
       "Referrer-Policy": "no-referrer",
       "Set-Cookie": `${consentCookieName}=${csrfToken}; Max-Age=${consentLifetimeSeconds}; Path=/authorize; HttpOnly; Secure; SameSite=Lax`,
       "X-Frame-Options": "DENY",

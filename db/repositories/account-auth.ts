@@ -1,4 +1,4 @@
-import { getD1 } from "@/db";
+import { getAccountAuthD1 as getD1 } from "@/db";
 
 export type AccountProvider = "chatgpt" | "google" | "proofweave";
 
@@ -8,6 +8,9 @@ export type AccountIdentityInput = Readonly<{
   displayName: string;
   email?: string | null;
   emailVerified?: boolean;
+  /** Internal migration path; never taken from browser input. */
+  existingPersonId?: string;
+  linkVerifiedEmail?: boolean;
 }>;
 
 export type ResolvedAccountIdentity = Readonly<{
@@ -58,8 +61,8 @@ export class AccountAuthRepository {
       .bind(normalized.provider, normalized.subject)
       .first<{ id: string; display_name: string }>();
 
-    let personId = legacy?.id ?? null;
-    if (!personId && normalized.emailVerified && normalized.emailNormalized) {
+    let personId = legacy?.id ?? input.existingPersonId ?? null;
+    if (!personId && input.linkVerifiedEmail !== false && normalized.emailVerified && normalized.emailNormalized) {
       const matches = await getD1()
         .prepare(
           `SELECT DISTINCT person_id
@@ -111,6 +114,23 @@ export class AccountAuthRepository {
     const created = await this.findIdentity(normalized.provider, normalized.subject);
     if (!created) throw new Error("Account identity mapping did not produce a readable record.");
     return toResolved(created);
+  }
+
+  async resolveSitesBridgeIdentity(input: { siteId: string; userId: string; email: string; displayName: string }): Promise<ResolvedAccountIdentity> {
+    const subject = `sites:${await sha256(JSON.stringify([input.siteId, input.userId]))}`;
+    const existing = await this.findIdentity("chatgpt", subject);
+    if (existing) return toResolved(existing);
+    // The original Site authenticated these exact legacy ChatGPT subjects.
+    // Do not link to Google or other providers merely because email matches.
+    const email = normalizeEmail(input.email);
+    const candidates = await getD1().prepare(
+      `SELECT person_id FROM person_identities WHERE provider = 'chatgpt' AND provider_subject = ?
+       UNION SELECT id AS person_id FROM persons WHERE identity_provider = 'chatgpt' AND provider_subject = ?`,
+    ).bind(email, email).all<{ person_id: string }>();
+    const ids = [...new Set<string>(candidates.results.map((row: { person_id: string }) => row.person_id))];
+    if (ids.length > 1) throw new AmbiguousVerifiedEmailError();
+    return this.resolveIdentity({ provider: "chatgpt", subject, email, displayName: input.displayName,
+      emailVerified: true, linkVerifiedEmail: false, existingPersonId: ids[0] });
   }
 
   async createSession(
