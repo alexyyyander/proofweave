@@ -14,7 +14,6 @@ import { ShowcaseExperience } from "@/app/showcase/ShowcaseExperience";
 import { ProductStateBadge } from "./ui";
 
 import "./home.css";
-import "./publications/publications.css";
 import publicationSummary from "@/data/publications/openai-math-summary.json";
 
 export const dynamic = "force-dynamic";
