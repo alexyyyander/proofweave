@@ -12,6 +12,10 @@ import { maxInlineArtifactObjectBytes } from "../artifacts/d1-inline-artifact-st
 import { D1RunStore } from "../lean-runner/d1-run-store.mjs";
 import { closedAlphaAttemptLimits } from "../../packages/domain/attempt-policy.mjs";
 import {
+  assertResearchWriteAllowed,
+  researchWriteAllowlistValues,
+} from "../database/research-write-allowlist.mjs";
+import {
   D1ResearchGraphStore,
   ResearchGraphConflictError,
   ResearchGraphNotFoundError,
@@ -63,11 +67,12 @@ export class GatewayStoreRateLimitError extends Error {
  */
 export class D1RemoteMcpGatewayStore {
   constructor(databaseOrOptions) {
-    const { database, bucket, artifactStore, runnerDispatcher, receiptCoordinator } = normalizeGatewayBindings(databaseOrOptions);
+    const { database, bucket, artifactStore, runnerDispatcher, receiptCoordinator, researchWriteAllowlistJson } = normalizeGatewayBindings(databaseOrOptions);
     if (!database || typeof database.prepare !== "function") {
       throw new TypeError("D1RemoteMcpGatewayStore requires a D1 database binding.");
     }
     this.database = database;
+    this.researchWriteAllowlistJson = researchWriteAllowlistJson ?? null;
     this.verificationStore = new D1VerificationStore(database);
     this.verificationMarketStore = new D1VerificationMarketStore(database);
     this.artifactStore = artifactStore ?? (bucket ? new D1R2ArtifactStore({ database, bucket }) : null);
@@ -75,6 +80,18 @@ export class D1RemoteMcpGatewayStore {
     this.researchGraphStore = new D1ResearchGraphStore(database);
     this.runnerDispatcher = runnerDispatcher;
     this.receiptCoordinator = receiptCoordinator;
+  }
+
+  requireResearchWriteGate(principal, installation, operation, { required = ["person", "agent", "attempt"], attemptId = null } = {}) {
+    return assertResearchWriteAllowed({
+      values: researchWriteAllowlistValues("mcp", this.researchWriteAllowlistJson),
+      surface: "mcp",
+      operation,
+      required,
+      personId: principal.personId,
+      agentId: installation.agentId,
+      attemptId,
+    });
   }
 
   async getConnectionAuthority(principal) {
@@ -108,6 +125,7 @@ export class D1RemoteMcpGatewayStore {
     assertPrincipalScope(principal, "attempt:create");
     requireCreateAttemptInput(input);
     const installation = await this.requireInstallation(principal, input.delegationScope);
+    this.requireResearchWriteGate(principal, installation, "attempt:create", { required: ["person", "agent"] });
     const problem = await this.database
       .prepare(
         `SELECT revision.id, revision.slug, revision.title
@@ -190,6 +208,7 @@ export class D1RemoteMcpGatewayStore {
     const installation = await this.requireInstallation(principal);
     const attempt = await this.findAttemptForInstallation(principal, installation, input.attemptId);
     if (!attempt) throw new GatewayStoreNotFoundError("Attempt not found.");
+    this.requireResearchWriteGate(principal, installation, "progress:write", { attemptId: attempt.id });
     if (attempt.status !== "active") {
       throw new GatewayStoreConflictError("Progress can only be reported while an Attempt is active.");
     }
@@ -246,6 +265,7 @@ export class D1RemoteMcpGatewayStore {
     const installation = await this.requireInstallation(principal);
     const attempt = await this.findAttemptForInstallation(principal, installation, checkpoint.attemptId);
     if (!attempt) throw new GatewayStoreNotFoundError("Attempt not found.");
+    this.requireResearchWriteGate(principal, installation, "checkpoint:write", { attemptId: attempt.id });
     if (attempt.delegationScope !== "formalize" && attempt.delegationScope !== "prove") {
       throw new GatewayStoreValidationError("Attempt does not have delegated formalize or prove authority.");
     }
@@ -425,6 +445,7 @@ export class D1RemoteMcpGatewayStore {
     requireArtifactObjectInput(input);
     const installation = await this.requireInstallation(principal);
     const attempt = await this.requireArtifactAttempt(principal, installation, input.attemptId);
+    this.requireResearchWriteGate(principal, installation, "artifact:write", { attemptId: attempt.id });
     const currentAuthority = await this.requireInstallation(principal, attempt.delegationScope);
     await this.recordAttemptAuthorityRenewal(principal, currentAuthority, attempt);
     const object = await this.requireArtifactStore().putObject({
@@ -444,6 +465,7 @@ export class D1RemoteMcpGatewayStore {
     requireArtifactBundleInput(bundle);
     const installation = await this.requireInstallation(principal);
     const attempt = await this.requireArtifactAttempt(principal, installation, bundle.attemptId);
+    this.requireResearchWriteGate(principal, installation, "artifact:write", { attemptId: attempt.id });
     const currentAuthority = await this.requireInstallation(principal, attempt.delegationScope);
     await this.recordAttemptAuthorityRenewal(principal, currentAuthority, attempt);
     const staged = await this.requireArtifactStore().stageBundle(bundle, {
@@ -468,6 +490,7 @@ export class D1RemoteMcpGatewayStore {
     requireRunnerRequestInput(input);
     const installation = await this.requireInstallation(principal);
     const attempt = await this.requireArtifactAttempt(principal, installation, input.attemptId);
+    this.requireResearchWriteGate(principal, installation, "run:request", { attemptId: attempt.id });
     const currentAuthority = await this.requireInstallation(principal, attempt.delegationScope);
     await this.recordAttemptAuthorityRenewal(principal, currentAuthority, attempt);
     if (!this.runnerDispatcher || typeof this.runnerDispatcher.queueBundle !== "function") {
@@ -497,6 +520,7 @@ export class D1RemoteMcpGatewayStore {
     requireVerificationReplayRequestInput(input);
     const installation = await this.requireInstallation(principal, "review");
     const assignment = await this.requireAcceptedReplayAssignment(input.assignmentId, principal.personId);
+    this.requireResearchWriteGate(principal, installation, "review:replay", { attemptId: assignment.attempt.id });
     const existing = await this.findVerificationReplay({
       assignmentId: assignment.id,
       requesterAgentId: installation.agentId,
@@ -600,6 +624,7 @@ export class D1RemoteMcpGatewayStore {
     requireRunnerLookupInput(input);
     const installation = await this.requireInstallation(principal);
     const attempt = await this.requireArtifactAttempt(principal, installation, input.attemptId);
+    this.requireResearchWriteGate(principal, installation, "run:cancel", { attemptId: attempt.id });
     const currentAuthority = await this.requireInstallation(principal, attempt.delegationScope);
     await this.recordAttemptAuthorityRenewal(principal, currentAuthority, attempt);
     const run = await this.requireRunForAttempt(input.runId, attempt.id);
@@ -629,6 +654,8 @@ export class D1RemoteMcpGatewayStore {
       throw new GatewayStoreAuthorizationError("Verification Attestation does not match the authorized Agent installation.");
     }
     await this.requireAssignedVerifier(normalized.assignmentId, principal.personId);
+    const assignment = await this.requireReplayAssignmentForPerson(normalized.assignmentId, principal.personId);
+    this.requireResearchWriteGate(principal, installation, "attestation:write", { attemptId: assignment.attempt.id });
     try {
       const recorded = await this.verificationStore.recordAttestation(normalized);
       if (!this.receiptCoordinator) {
@@ -1231,9 +1258,10 @@ function normalizeGatewayBindings(value) {
       artifactStore: value.artifactStore ?? null,
       runnerDispatcher: value.runnerDispatcher ?? null,
       receiptCoordinator: value.receiptCoordinator ?? null,
+      researchWriteAllowlistJson: value.researchWriteAllowlistJson ?? null,
     };
   }
-  return { database: value, bucket: null, artifactStore: null, runnerDispatcher: null, receiptCoordinator: null };
+  return { database: value, bucket: null, artifactStore: null, runnerDispatcher: null, receiptCoordinator: null, researchWriteAllowlistJson: null };
 }
 
 async function verificationReplayIdentity({ assignmentId, requesterAgentId, delegationCertificateId, idempotencyKey }) {

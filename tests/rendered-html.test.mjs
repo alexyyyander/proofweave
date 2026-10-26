@@ -28,6 +28,22 @@ import { classifyReceiptPublication } from "../services/receipts/receipt-publica
 
 const repositoryRoot = new URL("../", import.meta.url);
 const migrationsRoot = new URL("../drizzle/", import.meta.url);
+const researchWriteAllowlist = JSON.stringify({
+  schemaVersion: "pw-research-write-allowlist-v1",
+  persons: [
+    "person:fixture-owner", "person:fixture-reviewer", "person:public-delegation",
+    "person:delegation-test", "person:catalog-test",
+    "person:rendered-proposer", "person:rendered-reviewer", "person:rendered-delegation-owner",
+    "person:rendered-evidence-owner", "person:rendered-evidence-reviewer",
+  ],
+  agents: [
+    "agent:fixture-prover", "agent:fixture-curator", "agent:fixture-reviewer",
+    "agent:public-delegation", "agent:delegation-test", "agent:rendered-review-decision",
+    "agent:controlled-evidence-reviewer", "urn:pw:agent:delegation-test",
+  ],
+  attempts: ["attempt:controlled-evidence", "attempt:fixture-public"],
+  allowNewAttempts: true,
+});
 const workerRoot = new URL("../dist/server/", import.meta.url);
 let miniflare;
 let database;
@@ -55,6 +71,8 @@ before(async () => {
       PROOFWEAVE_CONTROL_PLANE_MODE: "read_write",
       PROOFWEAVE_PARTICIPANT_CONTROL_PLANE_MODE: "read_write",
       PROOFWEAVE_MCP_CONTROL_PLANE_MODE: "read_write",
+      PROOFWEAVE_PARTICIPANT_RESEARCH_WRITE_ALLOWLIST_JSON: researchWriteAllowlist,
+      PROOFWEAVE_MCP_RESEARCH_WRITE_ALLOWLIST_JSON: researchWriteAllowlist,
     },
     serviceBindings: {
       ASSETS: async () => new Response("Not found", { status: 404 }),
@@ -62,6 +80,7 @@ before(async () => {
   });
   database = await miniflare.getD1Database("DB");
   await applyMigrations(database);
+  await seedDemoPersons(database);
 });
 
 after(async () => {
@@ -188,6 +207,24 @@ test("publishes a public Connector compatibility contract", async () => {
     "https://localhost/downloads/proofweave-research-marketplace.json",
   );
 });
+
+// The research write gate is fail-closed, so demo-only Person ids are seeded
+// before the worker starts and referenced by the test allowlist.
+async function seedDemoPersons(d1) {
+  const seededAt = "2026-07-13T00:00:00Z";
+  for (const [id, email, name] of [
+    ["person:rendered-proposer", "proposer@example.test", "Problem Proposer"],
+    ["person:rendered-reviewer", "reviewer@example.test", "Review Person"],
+    ["person:rendered-delegation-owner", "delegation-owner@example.test", "Delegation Owner"],
+    ["person:rendered-evidence-owner", "evidence-owner@example.test", "Evidence Owner"],
+    ["person:rendered-evidence-reviewer", "evidence-reviewer@example.test", "Evidence Reviewer"],
+  ]) {
+    await d1.prepare(
+      `INSERT OR IGNORE INTO persons (id, identity_provider, provider_subject, display_name, updated_at)
+       VALUES (?, 'chatgpt', ?, ?, ?)`,
+    ).bind(id, email, name, seededAt).run();
+  }
+}
 
 async function applyMigrations(d1, onlySeed = false) {
   const filenames = (await readdir(migrationsRoot))
@@ -3437,4 +3474,64 @@ test("anonymous workspace entry needs no catalog or account tables", async (t) =
   assert.match(html, /One private place for your Agent/);
   assert.match(html, /Sign in to begin/);
   assert.doesNotMatch(html, /no such table|Internal Server Error/);
+});
+
+test("research writes fail closed without a configured allowlist", async (t) => {
+  const entrypoint = fileURLToPath(new URL("index.js", workerRoot));
+  const modules = await listJavaScriptModules(workerRoot);
+  const worker = new Miniflare({
+    modules: [{ type: "ESModule", path: entrypoint }, ...modules.filter(path => path !== entrypoint).map(path => ({ type: "ESModule", path }))],
+    modulesRoot: fileURLToPath(workerRoot), compatibilityDate: "2026-05-15", compatibilityFlags: ["nodejs_compat"],
+    d1Databases: ["DB"],
+    bindings: { PROOFWEAVE_CONTROL_PLANE_MODE: "read_write", PROOFWEAVE_PARTICIPANT_CONTROL_PLANE_MODE: "read_write" },
+    serviceBindings: { ASSETS: async () => new Response("Not found", { status: 404 }) },
+  });
+  t.after(() => worker.dispose());
+  await applyMigrations(await worker.getD1Database("DB"));
+  const response = await worker.dispatchFetch("http://localhost/api/me/problem-proposals", {
+    method: "POST",
+    headers: {
+      accept: "application/json",
+      "content-type": "application/json",
+      "oai-authenticated-user-email": "unconfigured-window@example.test",
+      "oai-authenticated-user-full-name": "Unconfigured%20Window",
+      "oai-authenticated-user-full-name-encoding": "percent-encoded-utf-8",
+    },
+    body: JSON.stringify({
+      title: "Must not be written", domain: "Test",
+      informalStatement: "No write should occur.", motivation: "Fail closed.",
+      sourceUrl: null, idempotencyKey: "unconfigured-window-1",
+    }),
+  });
+  assert.equal(response.status, 503);
+  assert.equal((await response.json()).error.code, "unavailable");
+});
+
+test("a Person outside the write window is denied even when the allowlist is configured", async () => {
+  const response = await render("/api/me/problem-proposals", {
+    method: "POST",
+    headers: {
+      accept: "application/json",
+      "content-type": "application/json",
+      "oai-authenticated-user-email": "outside-window@example.test",
+      "oai-authenticated-user-full-name": "Outside%20Window",
+      "oai-authenticated-user-full-name-encoding": "percent-encoded-utf-8",
+    },
+    body: JSON.stringify({
+      title: "Must not be written", domain: "Test",
+      informalStatement: "No write should occur.", motivation: "Not in the window.",
+      sourceUrl: null, idempotencyKey: "outside-window-1",
+    }),
+  });
+  assert.equal(response.status, 403);
+  assert.equal((await response.json()).error.code, "forbidden");
+});
+
+test("capabilities publish the gate state without identifiers", async () => {
+  const response = await render("/api/mcp/capabilities", { headers: { accept: "application/json" } });
+  const body = await response.json();
+  assert.equal(body.researchWriteGate.participant.valid, true);
+  assert.equal(body.researchWriteGate.participant.allowNewAttempts, true);
+  assert.equal(body.researchWriteGate.participant.personCount > 0, true);
+  assert.equal(JSON.stringify(body.researchWriteGate).includes("person:fixture-owner"), false);
 });

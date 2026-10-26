@@ -4,8 +4,10 @@ import {
   getLiveControlPlaneDiagnostics,
   getMcpOperationState,
   getParticipantOperationState,
+  getResearchWriteAllowlistValues,
   type LiveControlPlaneDiagnostics,
 } from "@/db";
+import { researchWriteGateSummary } from "@/services/database/research-write-allowlist.mjs";
 
 export const dynamic = "force-dynamic";
 
@@ -26,6 +28,11 @@ export async function GET(request: Request) {
   const globalControlPlaneOperations = getControlPlaneOperationState();
   const participantOperations = getParticipantOperationState();
   const mcpOperations = getMcpOperationState();
+  const allowlistValues = getResearchWriteAllowlistValues();
+  const researchWriteGate = {
+    participant: researchWriteGateSummary(allowlistValues, "participant"),
+    mcp: researchWriteGateSummary(allowlistValues, "mcp"),
+  };
   // Preserve the original connector contract while exposing the richer
   // per-surface states alongside it. Existing connectors only inspect mode and
   // writesEnabled, but some installations also validate the schema version.
@@ -52,6 +59,7 @@ export async function GET(request: Request) {
     participantOperations,
     globalControlPlaneOperations,
     mcpOperations,
+    researchWriteGate,
     updatePolicy: {
       liveWithoutRestart: [
         "server_workflow",

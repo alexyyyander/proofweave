@@ -167,6 +167,15 @@ export function getMcpOperationState(
 }
 
 /**
+ * Raw runtime values for the research write gate. The gate module owns parsing
+ * and fail-closed semantics; this accessor only keeps `cloudflare:workers`
+ * imports out of the repository layer.
+ */
+export function getResearchWriteAllowlistValues(): Record<string, string | undefined> {
+  return env as unknown as Record<string, string | undefined>;
+}
+
+/**
  * Read the same cross-runtime control plane used by browser, MCP, Runner,
  * review, Receipt, and Credit paths. The explicit name documents that callers
  * are crossing process boundaries even though the backing database is shared.

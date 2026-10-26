@@ -1,4 +1,5 @@
-import { getD1 } from "@/db";
+import { getD1, getResearchWriteAllowlistValues } from "@/db";
+import { assertResearchWriteAllowed } from "@/services/database/research-write-allowlist.mjs";
 import {
   D1VerificationMarketStore,
   VerificationMarketConflictError,
@@ -87,6 +88,26 @@ class D1VerificationMarketRepository implements VerificationMarketRepository {
 
   async claimForPerson(personId: string, jobId: string, claimedAt: string): Promise<ClaimedVerificationJob> {
     try {
+      const job = await getD1()
+        .prepare(
+          `SELECT bundle.attempt_id AS attempt_id
+           FROM verification_market_jobs AS job
+           INNER JOIN artifact_bundles AS bundle
+             ON bundle.manifest_hash = job.artifact_bundle_manifest_hash
+           WHERE job.id = ?`,
+        )
+        .bind(jobId)
+        .first<{ attempt_id: string }>();
+      if (job?.attempt_id) {
+        assertResearchWriteAllowed({
+          values: getResearchWriteAllowlistValues(),
+          surface: "participant",
+          operation: "review:claim",
+          required: ["person", "attempt"],
+          personId,
+          attemptId: job.attempt_id,
+        });
+      }
       return await new D1VerificationMarketStore(getD1()).claimJob(jobId, personId, claimedAt) as ClaimedVerificationJob;
     } catch (error) {
       if (isMissingVerificationMarketTable(error)) throw new VerificationMarketSchemaUnavailableError();

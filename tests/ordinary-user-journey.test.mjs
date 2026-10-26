@@ -35,6 +35,13 @@ const authHeaders = {
   "oai-authenticated-user-full-name": "Ordinary%20User",
   "oai-authenticated-user-full-name-encoding": "percent-encoded-utf-8",
 };
+const ordinaryResearchWriteAllowlist = JSON.stringify({
+  schemaVersion: "pw-research-write-allowlist-v1",
+  persons: ["person:ordinary-user"],
+  agents: ["urn:pw:agent:ordinary-user"],
+  attempts: [],
+  allowNewAttempts: true,
+});
 
 let normalWorker;
 let readOnlyWorker;
@@ -44,11 +51,18 @@ before(async () => {
   normalWorker = await createWorker({
     bindings: {
       PROOFWEAVE_CONTROL_PLANE_MODE: "read_write",
+      PROOFWEAVE_PARTICIPANT_RESEARCH_WRITE_ALLOWLIST_JSON: ordinaryResearchWriteAllowlist,
+      PROOFWEAVE_MCP_RESEARCH_WRITE_ALLOWLIST_JSON: ordinaryResearchWriteAllowlist,
       MCP_RESOURCE_URL: "https://localhost/api/mcp",
       OAUTH_ISSUER_URL: "https://localhost",
     },
   });
-  await applyMigrations(await normalWorker.getD1Database("DB"));
+  const normalDatabase = await normalWorker.getD1Database("DB");
+  await applyMigrations(normalDatabase);
+  await normalDatabase.prepare(
+    `INSERT OR IGNORE INTO persons (id, identity_provider, provider_subject, display_name, updated_at)
+     VALUES (?, 'chatgpt', ?, ?, ?)`,
+  ).bind("person:ordinary-user", "ordinary-user@example.test", "Ordinary User", "2026-07-20T00:00:00.000Z").run();
 
   readOnlyWorker = await createWorker({
     bindings: {
@@ -206,7 +220,7 @@ test("a new ordinary Person connects an Agent and reaches a truthfully bounded r
   const agentPublicKey = base64Url(
     await crypto.subtle.exportKey("raw", agentKeys.publicKey),
   );
-  const agentId = `urn:pw:agent:ordinary-${crypto.randomUUID()}`;
+  const agentId = "urn:pw:agent:ordinary-user";
   const codeVerifier = base64Url(crypto.getRandomValues(new Uint8Array(32)));
   const codeChallenge = base64Url(
     await crypto.subtle.digest(
