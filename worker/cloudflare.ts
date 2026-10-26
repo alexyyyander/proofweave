@@ -14,7 +14,7 @@ type DirectEnv = ApplicationEnv & {
   PROOFWEAVE_HOSTING_PLATFORM?: string;
 };
 
-export default {
+const worker = {
   async fetch(request: Request, env: DirectEnv, ctx: Context): Promise<Response> {
     // Direct deployments never trust identity headers supplied by clients.
     const sanitized = directCloudflareRequest(request);
@@ -36,3 +36,5 @@ export default {
     return application.fetch(sanitized, env, ctx);
   },
 };
+
+export default worker;

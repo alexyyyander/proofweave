@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { before, after, test } from 'node:test';
-import { readFile } from 'node:fs/promises';
+import { readFile, readdir } from 'node:fs/promises';
 import { Miniflare } from 'miniflare';
 import ts from 'typescript';
 import { handleSitesBridge, transaction, sign, SitesBridgeTransaction } from '../services/auth/sites-login-bridge.mjs';
@@ -19,8 +19,12 @@ before(async () => {
   mf = new Miniflare({ modules: true, script: source + '\nexport default {fetch(){return new Response("ok")}};',
     compatibilityDate: '2026-07-16', durableObjects: { BRIDGE: { className: 'SitesBridgeTransaction', useSQLite: true } }, d1Databases: ['DB'] });
   ns = await mf.getDurableObjectNamespace('BRIDGE'); db = await mf.getD1Database('DB');
-  await db.exec('CREATE TABLE persons (id TEXT PRIMARY KEY, identity_provider TEXT, provider_subject TEXT, display_name TEXT, updated_at TEXT);');
-  await db.exec('CREATE TABLE person_identities (id TEXT PRIMARY KEY, person_id TEXT, provider TEXT, provider_subject TEXT, display_name TEXT, email TEXT, email_normalized TEXT, email_verified_at TEXT, updated_at TEXT, UNIQUE(provider,provider_subject));');
+  const migrations = new URL('../drizzle/', import.meta.url);
+  for (const name of (await readdir(migrations)).filter(name => name.endsWith('.sql')).sort()) {
+    for (const sql of (await readFile(new URL(name, migrations), 'utf8')).split('--> statement-breakpoint').map(sql => sql.trim()).filter(Boolean)) {
+      await db.prepare(sql).run();
+    }
+  }
   globalThis.__bridgeTestDB = db;
   const repositorySource = (await readFile(new URL('../db/repositories/account-auth.ts', import.meta.url), 'utf8'))
     .replace('import { getAccountAuthD1 as getD1 } from "@/db";', 'const getD1 = () => globalThis.__bridgeTestDB;');
@@ -166,7 +170,7 @@ test('transaction expiry and wrong client prevent consumption', async () => {
   assert.equal((await result.json()).ok, false);
 });
 test('legacy same-Site ChatGPT identity retains Person; Google-only email is never auto-merged', async () => {
-  await db.prepare('INSERT INTO persons VALUES (?,?,?,?,?)').bind('person:legacy', 'chatgpt', 'legacy@example.test', 'Legacy', 'now').run();
+  await db.prepare('INSERT INTO persons (id,identity_provider,provider_subject,display_name,updated_at) VALUES (?,?,?,?,?)').bind('person:legacy', 'chatgpt', 'legacy@example.test', 'Legacy', 'now').run();
   const repo = new Repository();
   const input = { siteId: 'site:original', userId: 'User-A', email: 'legacy@example.test', displayName: 'Legacy' };
   const identity = await repo.resolveSitesBridgeIdentity(input);
@@ -178,4 +182,43 @@ test('legacy same-Site ChatGPT identity retains Person; Google-only email is nev
   assert.notEqual(bridge.personId, google.personId);
   const caseVariant = await repo.resolveSitesBridgeIdentity({ ...input, userId: 'user-b', email: 'other@example.test' });
   assert.notEqual(bridge.subject, caseVariant.subject);
+});
+
+test('bridge refreshes mutable identity data without letting a new Google subject claim its Person', async () => {
+  const repo = new Repository();
+  const input = { siteId: 'site:original', userId: 'email-change-owner', email: 'reassigned@example.test', displayName: 'Before' };
+  const original = await repo.resolveSitesBridgeIdentity(input);
+  const changed = await repo.resolveSitesBridgeIdentity({ ...input, email: 'new-address@example.test', displayName: 'After' });
+  assert.equal(changed.personId, original.personId);
+  assert.equal(changed.identityId, original.identityId);
+  assert.equal(changed.subject, original.subject);
+  assert.equal(changed.email, 'new-address@example.test');
+  assert.equal(changed.displayName, 'After');
+  const session = await repo.createSession(changed);
+  assert.equal((await repo.findSession(session.token)).email, changed.email);
+  for (const [subject, email] of [['Google-reassigned', input.email], ['Google-same-email', changed.email]]) {
+    const other = await repo.resolveIdentity({ provider: 'google', subject, email, displayName: 'Other owner', emailVerified: true });
+    assert.notEqual(other.personId, original.personId);
+    const otherSession = await repo.createSession(other);
+    assert.equal((await repo.findSession(otherSession.token)).personId, other.personId);
+    assert.notEqual((await repo.findSession(otherSession.token)).personId, original.personId);
+    assert.equal((await repo.resolveIdentity({ provider: 'google', subject, email, displayName: 'Renamed', emailVerified: true })).personId, other.personId);
+  }
+});
+
+test('legacy verified email aliases cannot reclaim a migrated stable Sites Person', async () => {
+  const repo = new Repository();
+  const oldEmail = 'legacy-reassigned@example.test';
+  const legacy = await repo.resolveIdentity({ provider: 'chatgpt', subject: oldEmail, email: oldEmail, displayName: 'Legacy owner', emailVerified: true });
+  const migrated = await repo.resolveSitesBridgeIdentity({ siteId: 'site:original', userId: 'legacy-email-owner', email: oldEmail, displayName: 'Owner' });
+  assert.equal(migrated.personId, legacy.personId);
+  await repo.resolveSitesBridgeIdentity({ siteId: 'site:original', userId: 'legacy-email-owner', email: 'legacy-new@example.test', displayName: 'Owner renamed' });
+  const alias = await db.prepare('SELECT email_verified_at FROM person_identities WHERE id = ?').bind(legacy.identityId).first();
+  assert.ok(alias.email_verified_at, 'exercise the existing verified legacy alias');
+  const google = await repo.resolveIdentity({ provider: 'google', subject: 'Google-new-legacy-email-owner', email: oldEmail, displayName: 'New owner', emailVerified: true });
+  assert.notEqual(google.personId, migrated.personId);
+  const newBridge = await repo.resolveSitesBridgeIdentity({ siteId: 'site:original', userId: 'another-stable-sites-user', email: oldEmail, displayName: 'Another owner' });
+  assert.notEqual(newBridge.personId, migrated.personId);
+  assert.notEqual(newBridge.personId, google.personId);
+  assert.equal((await repo.resolveSitesBridgeIdentity({ siteId: 'site:original', userId: 'legacy-email-owner', email: 'legacy-new@example.test', displayName: 'Original owner' })).personId, migrated.personId);
 });

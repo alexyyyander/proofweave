@@ -1,4 +1,4 @@
-export type ActivePage = "none" | "home" | "showcase" | "demo" | "explore" | "how" | "history" | "about" | "profile" | "receipt" | "review" | "workbench" | "settings";
+export type ActivePage = "none" | "home" | "showcase" | "demo" | "explore" | "publications" | "how" | "history" | "about" | "profile" | "receipt" | "review" | "workbench" | "settings";
 
 export const primaryNavigation: Array<{ href: string; label: string; page: ActivePage }> = [
   { href: "/", label: "Overview", page: "home" },
@@ -22,6 +22,7 @@ export const navigationGroups = [
   {
     label: "Research tools",
     items: [
+      { href: "/publications", label: "Publications" },
       { href: "/reviews", label: "Review queue" },
       { href: "/receipts", label: "Contribution records" },
       { href: "/demo", label: "Verification" },

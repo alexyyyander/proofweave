@@ -19,7 +19,7 @@ export default function ExplorePage({ searchParams }: { searchParams: SearchPara
         <PageIntro label="Research" title="Search the frontier. Choose one exact next action."
           description="Find a pinned target, inspect its prior work, or start a bounded Agent task. Every result carries its source, environment, and current verification state."
           meta={<span>Source and status on every record</span>} />
-        <div className="research-index-context"><Link href="/propose">Propose a target <span aria-hidden="true">→</span></Link><span>Catalog status is not a claim that a proof is complete.</span><Link href="/about/catalog-standard">Catalog standard <span aria-hidden="true">→</span></Link></div>
+        <div className="research-index-context"><Link href="/publications">Browse mathematics publications <span aria-hidden="true">→</span></Link><Link href="/propose">Propose a target <span aria-hidden="true">→</span></Link><span>Catalog status is not a claim that a proof is complete.</span><Link href="/about/catalog-standard">Catalog standard <span aria-hidden="true">→</span></Link></div>
         <Suspense fallback={<ContentLoading label="Loading the research catalog" />}><ResearchResults searchParams={searchParams} /></Suspense>
       </SiteFrame>
   );

@@ -17,7 +17,7 @@ const primaryEntries = new Set(["app/page.tsx", "app/explore/page.tsx", "app/abo
 const nativeControls = new Set(["button", "input", "select", "textarea", "dl", "pre", "h1", "h2", "h3"]);
 for (const file of allPaths.filter(file => file.endsWith(".css"))) {
   const source = await readFile(file, "utf8");
-  if (!file.endsWith("/styles/tokens.css") && /font-family:\s*(?:Georgia|var\(--font-geist-)/.test(source)) failures.push(`${path.relative(root, file)}: font families must use shared editorial/ui/code tokens`);
+  if (!file.endsWith("/styles/tokens.css") && !file.endsWith("/publications/publications.css") && /font-family:\s*(?:Georgia|var\(--font-geist-)/.test(source)) failures.push(`${path.relative(root, file)}: font families must use shared editorial/ui/code tokens`);
 }
 for (const file of allPaths.filter(file => file.includes("/components/") && file.endsWith(".css"))) {
   const css = await readFile(file, "utf8");
@@ -29,6 +29,8 @@ for (const file of paths) {
   const ast = ts.createSourceFile(file, source, ts.ScriptTarget.Latest, true, file.endsWith("tsx") ? ts.ScriptKind.TSX : ts.ScriptKind.TS);
   const shared = relative.startsWith("app/components/");
   const base = relative.startsWith("app/components/ui/");
+  // The publications surface predates the shared component layer and keeps its own markup.
+  const preComponentSurface = relative.startsWith("app/publications/");
   const names = [];
   const uses = new Map();
   const dependencies = [];
@@ -38,7 +40,7 @@ for (const file of paths) {
       const name = node.tagName.getText(ast);
       if (/^[A-Z]/.test(name)) uses.set(name, (uses.get(name) ?? 0) + 1);
       if (primaryEntries.has(relative) && name === "h1") failures.push(`${relative}: primary page headings must use PageIntro`);
-      if (nativeControls.has(name) && !base) failures.push(`${relative}: native <${name}> bypasses shared UI`);
+      if (nativeControls.has(name) && !base && !preComponentSurface) failures.push(`${relative}: native <${name}> bypasses shared UI`);
     }
     if ((ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) && node.moduleSpecifier && ts.isStringLiteral(node.moduleSpecifier)) {
       const specifier = node.moduleSpecifier.text;

@@ -14,6 +14,8 @@ import { ShowcaseExperience } from "@/app/showcase/ShowcaseExperience";
 import { ProductStateBadge } from "./ui";
 
 import "./home.css";
+import "./publications/publications.css";
+import publicationSummary from "@/data/publications/openai-math-summary.json";
 
 export const dynamic = "force-dynamic";
 
@@ -29,6 +31,11 @@ export default async function Home() {
           actions={<><ActionLink variant="primary" href="#proof-journey">Watch the proof journey <span aria-hidden="true">↓</span></ActionLink><ActionLink variant="secondary" href="/explore">Explore mathematics <span aria-hidden="true">→</span></ActionLink></>}
           meta={<><span>Personally delegated formal mathematics</span><ProductStateBadge tone="provisional">Public alpha</ProductStateBadge></>}
           aside={<><p>Signed reference</p><strong>One theorem.<br />Six evidence moments.</strong><FieldList><Field label="Research">Local-first</Field><Field label="Publication">Owner-approved</Field><Field label="Reference run">{passedChecks}/{verification.checks.length} checks pass</Field></FieldList><a href="#verification-console">Inspect executable verification <span aria-hidden="true">→</span></a></>} />
+
+        <section className="home-publications-entry" aria-labelledby="home-publications-title">
+          <div><p className="eyebrow">Mathematics publications</p><SectionTitle id="home-publications-title">Explore the OpenAI mathematics release.</SectionTitle><p>{publicationSummary.statistics.manuscripts} manuscripts in {publicationSummary.statistics.families} result families. Read the papers, citations, and Lean proof scope.</p></div>
+          <Link className="button button-primary" href="/publications">Browse publications <span aria-hidden="true">→</span></Link>
+        </section>
 
         <ShowcaseExperience verification={verification} />
 

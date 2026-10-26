@@ -24,13 +24,13 @@
   "vars": {
     "PROOFWEAVE_HOSTING_PLATFORM": "cloudflare",
     "PROOFWEAVE_DEPLOYMENT_STAGE": "validation",
-    "PROOFWEAVE_CONTROL_PLANE_MODE": "read_only",
+    "PROOFWEAVE_CONTROL_PLANE_MODE": "read_write",
     "PROOFWEAVE_PARTICIPANT_CONTROL_PLANE_MODE": "read_only",
     "PROOFWEAVE_MCP_CONTROL_PLANE_MODE": "read_only",
     "PROOFWEAVE_DEMO_AUTH_ENABLED": "false",
-    "OAUTH_ISSUER_URL": "https://proofweave.proofweave-alexyu.workers.dev",
-    "MCP_RESOURCE_URL": "https://proofweave.proofweave-alexyu.workers.dev/api/mcp",
-    "GOOGLE_OAUTH_REDIRECT_URI": "https://proofweave.proofweave-alexyu.workers.dev/auth/google/callback",
+    "OAUTH_ISSUER_URL": "https://proofweave.org",
+    "MCP_RESOURCE_URL": "https://proofweave.org/api/mcp",
+    "GOOGLE_OAUTH_REDIRECT_URI": "https://proofweave.org/auth/google/callback",
     "ANCHOR_BATCH_MAX_INTERVAL_SECONDS": "86400",
     "ANCHOR_BATCH_MIN_LEAVES": "96",
     "ANCHOR_CONFIRMATION_THRESHOLD": "12",
@@ -43,8 +43,14 @@
     "RECEIPT_ISSUER_KEY_ID": "receipt-issuer:cloudflare-2026-10-16",
     "RECEIPT_ISSUER_PUBLIC_KEY": "wCKr1gD89vc5MbOqsbTYpvACAcxG6ATHEa0vdOKHeyA",
     "RECEIPT_ISSUER_ACTIVATED_AT": "2026-10-16T09:53:14.135Z",
-    "PROOFWEAVE_ACCOUNT_AUTH_MODE": "read_only",
-    "PROOFWEAVE_CONNECTION_CONTROL_PLANE_MODE": "read_only"
+    "PROOFWEAVE_ACCOUNT_AUTH_MODE": "read_write",
+    "SITES_BRIDGE_ROLE": "receiver",
+    "SITES_BRIDGE_SITE_ORIGIN": "https://proofweave-research.yualex031821.chatgpt.site",
+    "SITES_BRIDGE_SITE_ID": "appgprj_6a54400d01a8819199224b722afae056",
+    "SITES_BRIDGE_RECEIVER_ORIGIN": "https://proofweave.org",
+    "SITES_BRIDGE_CLIENT_ID": "proofweave-cloudflare",
+    "PROOFWEAVE_OAUTH_CONTROL_PLANE_MODE": "read_write",
+    "PROOFWEAVE_CONNECTION_CONTROL_PLANE_MODE": "read_write"
   },
   "observability": {
     "enabled": true
@@ -63,6 +69,13 @@
       "new_sqlite_classes": [
         "SitesBridgeTransaction"
       ]
+    }
+  ],
+  "routes": [
+    {
+      "pattern": "proofweave.org",
+      "zone_id": "48c944c40517742d48ad81bd180ea093",
+      "custom_domain": true
     }
   ]
 }
