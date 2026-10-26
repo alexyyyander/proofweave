@@ -3,126 +3,171 @@
 </p>
 
 <p align="center">
-  <img src="./public/proofweave-devpost-cover.png" alt="Proofweave — a person delegates an Agent, research branches into evidence, verification closes the loop, and a contribution receipt is issued" width="100%" />
+  <img src="./public/proofweave-devpost-cover.png" alt="Proofweave: a person delegates an agent, shares research evidence, and receives attribution after verification" width="100%" />
 </p>
 
 <h1 align="center">Proofweave</h1>
 
 <p align="center">
-  <strong>Delegate a local research Agent. Keep private reasoning local.<br />Publish only signed, reproducible mathematical evidence.</strong>
+  <strong>Verifiable collaboration for people and their agents.<br />Starting with formal mathematics.</strong>
 </p>
 
 <p align="center">
-  <a href="https://proofweave.org/"><img alt="Live product" src="https://img.shields.io/badge/LIVE_PRODUCT-OPEN-4c6fff?style=for-the-badge" /></a>
-  <a href="https://proofweave.org/demo#verification-console"><img alt="Verification demo" src="https://img.shields.io/badge/VERIFY_EVIDENCE-6%2F6-2f6f4e?style=for-the-badge" /></a>
+  <a href="https://proofweave.org/"><img alt="Public alpha" src="https://img.shields.io/badge/PRODUCT-ALPHA-4c6fff?style=for-the-badge" /></a>
+  <a href="https://proofweave.org/demo#verification-console"><img alt="Reference evidence demo" src="https://img.shields.io/badge/REFERENCE_EVIDENCE-DEMO-2f6f4e?style=for-the-badge" /></a>
   <a href="https://github.com/alexyyyander/proofweave/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/badge/LICENSE-Apache--2.0-0b1b38?style=for-the-badge" /></a>
-  <a href="https://devpost.com/software/proofwave"><img alt="OpenAI Build Week" src="https://img.shields.io/badge/OPENAI_BUILD_WEEK-DEVELOPER_TOOLS-0b1b38?style=for-the-badge" /></a>
 </p>
 
-Proofweave is a local-first research network for formal mathematics. A person
-delegates a Codex Agent to work in a private Lean workspace; the shared network
-receives only owner-approved checkpoints and the minimum signed evidence needed
-to reproduce a claim. An Agent report is progress—not truth. Verification and
-attribution close through explicit, inspectable evidence gates.
+Proofweave explores a network where people publish bounded tasks, work with
+their own AI agents, share useful intermediate results, and receive attribution
+through reproducible evidence and independent review.
 
-> **The product idea:** every person should be able to contribute to frontier
-> mathematics through a personally delegated research Agent, while every public
-> contribution remains reproducible, independently checkable, and attributable.
+**The current alpha focuses on formal mathematics.** It implements pinned Lean
+targets, delegated agents, signed research checkpoints, evidence bundles,
+isolated Lean replay, and contribution receipts. Research writes and review
+assignments remain controlled. Broader agent support, non-mathematical tasks,
+and monetary bounties are future work.
+
+The intended workflow is: **define a task → collaborate → submit evidence →
+verify independently → attribute contributions → apply a reward policy**.
+The final reward step currently has an experimental research-credit protocol;
+it is not a cash payout service.
 
 ## Try Proofweave in 60 seconds
 
-No account or local build is required for the public judge path.
+The public inspection path needs no account or local build.
 
-| Start here | What you can inspect |
-| --- | --- |
-| [Live product](https://proofweave.org/) | The Person → Agent → Attempt → evidence → review → Receipt journey |
-| [Research frontier](https://proofweave.org/explore) | Source-pinned, bounded formal-mathematics targets |
-| [Verification console](https://proofweave.org/demo#verification-console) | Re-run six evidence checks, then tamper with a copy and watch verification fail closed |
-| [Contribution receipts](https://proofweave.org/receipts) | Public attribution, hashes, dependencies, signatures, and lifecycle evidence |
-| [Codex installation guide](https://proofweave.org/codex-install.md) | Auditable optional plugin installation |
+1. Browse the [research catalog](https://proofweave.org/explore). Inspect a
+   target's source, pinned environment, and acceptance conditions.
+2. Open the [verification console](https://proofweave.org/demo#verification-console).
+   Select **Re-verify signed evidence**, then **Tamper-test a copy**.
+3. Inspect the reference Receipt's hashes, signatures, dependencies, and
+   lifecycle. Browse the [public receipt index](https://proofweave.org/receipts)
+   for published records; the index may be empty during alpha.
 
-Recommended demo sequence:
+The demo uses fixed reference evidence and explicitly labelled mock reviewer
+identities. Re-verification checks that evidence and its signatures; it does
+not run Lean again or establish new mathematical results. Real participation
+requires an enabled account, an authorized agent connection, and an available
+verification environment and review pool.
 
-1. Open the [verification console](https://proofweave.org/demo#verification-console).
-2. Select **Re-verify signed evidence** and inspect the six checks.
-3. Select **Tamper-test a copy** and confirm that modified artifact bytes are rejected.
-4. Open the linked Receipt and inspect the exact Bundle, Runner result, reviewer
-   separation, issuer signature, and portable verification closure.
+## Why Proofweave
 
-The two different-owner reviewers in the reference demo are visibly labelled
-mock identities. Their keys and signatures exercise the enforcement path; they
-are not represented as human review.
+A collaborative task can produce useful lemmas, reductions, counterexamples,
+and reproducibility fixes before anyone completes the final result. Proofweave
+records these intermediate steps and the dependencies between them.
 
-## Open-source snapshot
+The product aims to make four things inspectable:
 
-This repository is the public implementation of the Proofweave alpha. It is
-open for inspection, local development, protocol review, documentation, and
-small, reproducible contributions. The hosted product is still a controlled
-alpha: a public source tree does **not** expose production credentials, private
-Agent workspaces, OAuth refresh tokens, or unreleased research notes.
+- **Reusable progress:** a signed checkpoint can cite and build on earlier work.
+- **Reproducible evidence:** an exact submission can be replayed under a pinned policy.
+- **Independent review:** a different owner evaluates a bounded claim.
+- **Attribution:** a receipt links accepted evidence and dependencies to contributors.
 
-The fastest ways to participate are:
+These mechanisms are implemented first for Lean research. Their effect on
+collaboration quality and fair credit still needs evaluation with real
+participants. Extending them to other fields requires explicit acceptance
+criteria and suitable verification methods for each field.
 
-- browse the [live catalog](https://proofweave.org/explore)
-  and [verification demo](https://proofweave.org/demo);
-- improve a contract, test, adapter, or documentation in a local checkout;
-- propose a source-pinned problem with the [catalog contribution guide](open-catalog/CONTRIBUTING.md);
-- review the [open-source contribution rules](CONTRIBUTING.md) before opening a PR.
+## Open source and access
 
-`package.json` intentionally keeps `private: true`: Proofweave is an
-application and deployment bundle, not an npm package. That flag does not make
-the GitHub repository private.
+This repository contains the public alpha implementation under
+[Apache-2.0](LICENSE). You can inspect the protocols, run the application
+locally, and contribute code, documentation, or catalog proposals through the
+[contribution guide](CONTRIBUTING.md).
 
-## One useful, verifiable step at a time
+The hosted service has controlled write access. Public source does not grant
+access to production credentials, private workspaces, or restricted evidence.
+`package.json` uses `private: true` because this is an application and deployment
+bundle, not an npm package; the repository itself is public.
 
-| Step | Handoff | What remains true |
+## The participant journey
+
+A **Person** owns a delegated **Agent**. An **Attempt** records work on one
+pinned target. A **Bundle** contains the submitted evidence; a **Run** records
+its execution. A **Receipt** records attribution after the required checks close.
+
+The following is the current Lean workflow. Access, Runner capacity, and review
+availability determine which steps a participant can complete in the alpha.
+
+| Stage | Person and agent responsibilities | Sent to Proofweave | Received or downloaded |
+| --- | --- | --- | --- |
+| 1. Define or select a target | A proposer supplies a source and bounded claim; a participant selects an admitted target. General task publishing is planned. | A target proposal and source references, if proposing | Target brief, source references, pinned Lean/Mathlib versions, acceptance conditions |
+| 2. Connect and delegate | The person authorizes an agent and a research or review role in the browser. | Agent public key and scoped delegation metadata | Connection status and authorized task data; credentials are stored locally |
+| 3. Start an Attempt | The person chooses the target and local workspace; the agent obtains upstream sources and investigates. | Attempt metadata and any deliberately submitted private progress records | Attempt ID and relevant research graph; source files are obtained separately from upstream |
+| 4. Share progress | The agent drafts a checkpoint; the person approves its exact public content. | Signed summary, checkpoint kind, parent nodes, citations, and optional evidence hashes | Public checkpoint and branch references, initially `shared_unverified` |
+| 5. Submit evidence | The agent runs local checks and prepares a bundle; the person approves the selected files and submission. | Source archive, normalized patch, locked dependency manifest, signed bundle metadata, and Run request | Bundle and Run IDs, execution state, logs, and signed result when available |
+| 6. Review independently | After accepted Lean evidence, the author opens review. A different person accepts an assignment; their agent requests fresh replay and prepares a decision for owner approval. | A signed decision limited to the assigned claim and bound to replay evidence | Authorized reviewers can retrieve the assigned evidence and replay results |
+| 7. Inspect attribution | Contributors inspect the issued Receipt and its dependencies after all required gates pass. | Any later correction follows the signed lifecycle protocol | Receipt and portable verification JSON; experimental credit records where policy permits |
+
+On the current website, **Continue in Codex** copies a task brief for the local
+client. A Markdown download is also available. This handoff does not launch a
+local agent or upload a workspace. Support for other agents is planned;
+current client-specific setup is folded below.
+
+An executable v2 bundle contains `source.tar.zst`, `normalized.patch`, and
+`lake-manifest.json`. Signed metadata binds these bytes to the target,
+toolchain, entry command, workspace hashes, and execution policy. The alpha
+limits each artifact to **1,000,000 decoded bytes**. The standard local packer
+supports edits to existing tracked text files; other file changes require a
+supported, explicitly selected submission path. See the
+[bundle contract](docs/artifact-bundle-contract.md) for exact constraints.
+
+Raw source and artifact downloads are access-controlled to the owner and
+assigned reviewers. A public portable Receipt bundle contains verification
+records, signatures, and lifecycle evidence; it does not include private source
+archives. Public checkpoints contain only their approved publication payload.
+
+| Record | What it establishes | Remaining work |
 | --- | --- | --- |
-| 1 | **Person → Local Codex Agent** | The Person owns the Agent and delegates one bounded role. |
-| 2 | **Agent → Bounded Attempt** | Private prompts, reasoning, and workspace exploration stay local. |
-| 3 | **Attempt → Signed Evidence Bundle** | The owner chooses the exact files and checkpoint to publish. |
-| 4 | **Bundle → Isolated Lean replay** | A fresh, pinned environment checks the submitted bytes. |
-| 5 | **Replay → Different-owner review** | Reviewers decide only the claim assigned to them. |
-| 6 | **Closed claims → Contribution Receipt** | Attribution follows the verified dependency path back to the Person. |
-
-Proofweave records states instead of collapsing all activity into a score:
-
-| Record | What it means | What it does **not** mean |
-| --- | --- | --- |
-| Agent checkpoint | A signed, attributable research update | Lean verification or novelty |
-| Evidence Bundle | Exact source, patch, dependencies, toolchain, target, and workspace hashes | A successful proof |
-| Runner result | The exact Bundle replayed in an isolated Lean environment | Independent review |
-| Review attestation | A different owner signed one bounded verification claim | General endorsement |
-| Contribution Receipt | Required gates closed under an issuer-signed policy | A transferable token or universal authorship claim |
+| Signed checkpoint | Who signed a progress update | Check correctness, relevance, and originality |
+| Evidence Bundle | Exactly which bytes and environment were submitted | Execute and assess those bytes |
+| Successful Lean Run | Acceptance under the recorded Lean execution policy | Independently review reproducibility and project acceptance |
+| Review attestation | A different owner signed a bounded claim | Close the other required claims |
+| Contribution Receipt | Required evidence gates closed under the issuer's policy | Respect its scope, dependencies, and later lifecycle events |
 
 ## What works today
 
-| Surface | Current status |
+| Availability | Scope |
 | --- | --- |
-| Public research catalog and branch history | **Live** |
-| No-account signed reference verifier and tamper test | **Live** |
-| Public Receipt and portable evidence inspection | **Live demo path** |
-| Person signing keys and revocable Agent delegation | **Closed alpha** |
-| Local OAuth-PKCE Codex Connector | **Private beta** on macOS Apple silicon; no GitHub account required |
-| D1/Turso evidence, Attempt, review, and Receipt protocols | **Implemented and tested** |
-| Protected E2B Lean replay | **Configured and health-checked** on the hosted Render Runner; local isolated real-Lean smoke remains the reproducible fallback |
+| **Public inspection** | Catalog, research branches, signed reference verifier, tamper test, and public Receipt inspection routes |
+| **Controlled alpha / client beta** | Person identity, revocable delegation, local OAuth-PKCE connection, Attempt and checkpoint writes, evidence submission, and assigned reviews |
+| **Implemented protocol and tests** | D1/Turso evidence storage, Run lifecycle, owner separation, claim-specific review, signed Receipts, and portable verification bundles |
+| **Configured execution path** | Trusted hosted Runner with fresh E2B Lean sandboxes; actual use depends on live health, approved target environments, and capacity |
+| **Experimental attribution** | Receipt-derived, non-transferable research credits, verification-market policies, and settlement code; active rewards are not implied |
+| **Planned expansion** | More agent clients, general task publication, software and algorithm verification, additional verifier types, and funded bounties |
 
-The distinction matters: a queued Run is not a result, a successful Lean replay
-is not an independent review, and an Agent-reported checkpoint is not a
-Contribution Receipt.
+A queued Run still needs execution. A successful Lean Run still needs the
+required independent reviews. A checkpoint alone is not accepted evidence.
+The catalog is not a guarantee that every listed environment can currently run;
+check the target and connection status before submitting.
 
-The hosted Runner can still cold-start on a free instance, so a first request
-may take longer than a warm request. The public demo is intentionally a
-checked-in reference fixture; it proves the verifier and tamper failure path,
-not a claim that the demo has just discovered new mathematics.
+## Connect your agent
 
-## Install the Codex plugin
+The goal is to support any agent client that can implement Proofweave's
+connection and evidence requirements. The current tested packaged integration
+is the Codex private beta; universal agent compatibility is not yet available.
 
-The optional plugin beta is tested with **Codex for macOS on Apple silicon** and
-Node.js `>=22.13.0`.
+The remote MCP endpoint is `https://proofweave.org/api/mcp`. Inspect the
+[capability document](https://proofweave.org/api/mcp/capabilities) and
+[gateway contract](docs/remote-mcp-gateway.md) when building an integration.
+An MCP transport connection alone is insufficient: a client must also support
+browser authorization, delegated identity, local signing, owner approvals,
+version compatibility, and the evidence submission workflow.
 
-The normal participant path downloads a checksum-published marketplace archive
-from the Proofweave site, verifies it before extraction, and registers the
-unpacked local directory:
+Connection does not automatically send prompts, private reasoning, or workspace
+files to Proofweave. The chosen agent or model provider has its own data flow;
+using a cloud model can send content to that provider. The local connector
+stores its agent private key and OAuth refresh token on the participant's machine.
+
+<details>
+<summary>Current Codex adapter: installation, authorization, and updates</summary>
+
+The optional plugin beta is tested with **Codex for macOS on Apple silicon**
+and Node.js `>=22.13.0`. See the [published installation guide](https://proofweave.org/codex-install.md)
+and [plugin workflow](docs/codex-plugin.md).
+
+The normal installation verifies a published archive checksum before extraction:
 
 ```bash
 PROOFWEAVE_DOWNLOAD_DIR="$HOME/Downloads/proofweave-install"
@@ -139,32 +184,47 @@ codex plugin marketplace add "$PROOFWEAVE_MARKETPLACE_DIR"
 codex plugin add proofweave-research@proofweave-private-beta
 ```
 
-Codex must display the selected directories and every command, then receive
-your approval before running them. Never pipe downloaded content into a shell.
-Installation alone does not connect an account, create an Agent, or read a
-workspace. A separate browser OAuth approval creates a revocable connection.
-The Agent private key, refresh token, Lean workspace, model settings, and
-private reasoning remain on the participant's computer.
+Codex must show the selected directories and commands and receive approval
+before running them. Never pipe downloaded content into a shell. Installation
+alone does not authorize an account or workspace. Complete the separate browser
+OAuth approval and choose the permitted research or review role.
 
-See the [plugin and connection workflow](docs/codex-plugin.md) for the complete
-authority and privacy model. A GitHub source checkout remains available as an
-advanced development option, but GitHub access is not required for the normal
-installation or research flow.
+A GitHub account, source checkout, or GitHub token is not required for the normal
+participant connection. Source checkout remains an advanced development option.
 
-Later, `connection_status` compares the installed plugin version with the
-fixed same-origin public distribution manifest. It reports `current`,
-`update_available`, or `unknown` without sending OAuth credentials or workspace
-data. An available update is never installed automatically: Codex must show the
-archive URL, SHA-256, byte size, local paths, and commands, then ask for approval
-again before reinstalling and restarting.
+`connection_status` reports connection health and plugin compatibility. Its
+public distribution check reports `current`, `update_available`, or `unknown`
+without sending OAuth credentials or workspace data. Updates require a displayed
+archive URL, SHA-256, size, paths, and commands, followed by owner approval and
+restart; they are not installed automatically.
+
+</details>
+
+## Contributions and rewards
+
+Sharing a checkpoint, running an agent, or spending compute does not by itself
+create a reward entitlement. A Receipt records accepted evidence and attribution
+under a specific policy. It is not a payment or an unrestricted authorship claim.
+
+The implemented experimental credit protocol uses **non-transferable,
+non-financial research credits**. It includes allocation and settlement logic
+for final results, verified dependencies, independent verification, and a
+challenge reserve. Eligibility depends on valid Receipts and the applicable
+pool policy; intermediate work must meet the relevant verification and
+dependency conditions. This code does not establish that a funded or active
+reward pool is available. See the [credit-market design](docs/credit-market-v1.md).
+
+A general bounty service would also need sponsor budgets, task-specific
+acceptance rules, duplicate and dependency policies, conflicts of interest,
+dispute handling, and payment settlement. These are future product work;
+Proofweave currently makes no cash-payout promise.
 
 ## Local development
 
 ### Prerequisites
 
-- Node.js `>=22.13.0`
-- npm
-- Lean/Lake only for the optional local Lean fixture checks
+- Node.js `>=22.13.0` and npm
+- Lean/Lake for checks that execute Lean; follow the [smoke prerequisites](docs/solo-contribution-smoke.md)
 
 ### Run the application
 
@@ -184,166 +244,166 @@ npm run build
 npm run demo:release:check
 ```
 
-`npm run smoke:solo-contribution` is the single-maintainer executable gate. It
-uses temporary local D1/R2 state to run a signed Bundle through one primary Lean
-Run, two claim-specific fresh Lean replays, generated test reviewers, and a
-signed test Receipt. The mock identities exercise protocol owner separation but
-are not represented as independent human review or public contribution credit.
-See [the exact smoke contract](docs/solo-contribution-smoke.md) for its tested
-scope and the remaining cloud boundary.
+The solo smoke uses temporary local D1/R2 state, one primary Lean Run, two fresh
+claim-specific Lean replays, generated test reviewers, and a signed test
+Receipt. It does not write to the hosted control plane. The mock owners test
+identity separation; they do not establish independent human review or public
+contribution credit. See the [smoke contract](docs/solo-contribution-smoke.md)
+for prerequisites and the remaining cloud boundary.
 
-`npm run demo:check` re-hashes the checked-in reference objects, verifies the
-Person delegation, Agent Bundle, Runner result, review attestations, and
-Receipt, and confirms that a tampered copy is rejected.
-
-For the complete test matrix:
-
-```bash
-npm run check
-```
-
-When a full provider-backed test is not available locally, use the isolated
-smoke first. It creates temporary D1/R2 state and never writes to the hosted
-control plane. See [CONTRIBUTING.md](CONTRIBUTING.md) for the smallest useful
-validation command for each contribution lane.
+`demo:check` validates the fixed reference evidence and rejection of a tampered
+copy. `demo:release:check` checks the demo release conditions. Neither command
+establishes a new research result. For the full repository check, run
+`npm run check`; use [CONTRIBUTING.md](CONTRIBUTING.md) to select a smaller check
+when the change has a narrower scope.
 
 ## Architecture
 
-| Plane | Main components | Boundary |
+| Plane | Components | Data boundary |
 | --- | --- | --- |
-| **Local participant computer** | Codex Agent, Lean workspace, Agent key, OAuth refresh token | Prompts, private reasoning, and unapproved files never leave the computer. |
-| **Proofweave control plane** | Source-pinned frontier, Attempt/research DAG, content-addressed evidence, D1/Turso stores | Receives selected signed events and owner-approved Bundle metadata. |
-| **Verification plane** | Signed Runner request, pinned Lean/Mathlib environment, signed result, Receipt issuer | Replays the exact Bundle in a fresh environment and records claim-specific results. |
+| **Participant environment** | Agent client, workspace, local signer, OAuth refresh token | Sends only selected protocol records and approved submission content to Proofweave; model-provider traffic is separate |
+| **Control plane** | Catalog, Attempts, research graph, evidence storage, review assignments, Receipts, D1/Turso stores | Stores signed events, access-controlled artifacts, public projections, and attribution records |
+| **Verification plane** | Trusted Runner, isolated execution, claim-specific replay, signed results, Receipt issuer | Executes exact submitted bytes under approved policies and records bounded verification outcomes |
 
-The executable `pw-artifact-bundle-v2` is the provider-neutral default: it
-carries the exact content-addressed workspace bytes required for replay without
-a repository checkout. Optional v3 evidence adds a signed GitHub provenance
-reference but does not give the Runner a GitHub token or make GitHub a runtime
-requirement. The alpha reference execution path is the hosted trusted Runner
-on Render with one fresh E2B sandbox per Run. GitHub Actions is limited to CI,
-credential-free image release, and a secretless diagnostic mechanism—not a
-Runner or recovery execution surface.
+The current execution backend is **Lean-specific**. Task identity, evidence
+hashes, delegation, review, and attribution provide a basis for reuse, but a
+generic verifier interface is not yet a supported plug-and-play feature.
+A software test suite, simulation, or scientific experiment would require its
+own acceptance policy, evidence format, execution boundary, and review rules.
+A proof about a scientific model establishes a result within its assumptions;
+empirical validity still requires domain evidence.
 
-See [GitHub independence and remaining dependencies](docs/github-independence.md)
-for the canonical product, runtime, and delivery boundary.
+The default `pw-artifact-bundle-v2` carries the bytes needed for replay without
+a repository checkout. Optional v3 evidence adds GitHub provenance without
+giving the Runner a GitHub token. The hosted execution design uses a trusted
+Render Runner and a fresh E2B sandbox per Run. GitHub Actions supplies CI,
+image release, and secretless diagnostics. See the
+[GitHub dependency boundary](docs/github-independence.md) for remaining delivery dependencies.
 
 ### Design invariants
 
-- **Local-first inference:** prompts, private reasoning, and ordinary workspace
-  exploration are not platform records.
-- **Explicit delegation:** Agent authority is signed, scoped, expiring, and
-  revocable; multiplying Agents does not multiply owners.
-- **Content-addressed evidence:** source archives, normalized patches, manifests,
-  workspace trees, and results bind to cryptographic hashes.
-- **Fresh replay:** submitted Lean runs in an operator-approved, isolated,
-  credential-free environment with pinned dependencies.
-- **Owner separation:** Agents belonging to the same Person cannot manufacture
-  independent review.
-- **Append-only correction:** supersession and retraction preserve the original
-  Receipt and add signed lifecycle events.
-- **Credits are not tokens:** current Proof Credits are non-transferable signals
-  derived from verified Receipt data.
-
-## How Codex and GPT-5.6 were used
-
-Codex was the primary implementation environment for Proofweave's product
-architecture, frontend, OAuth-MCP connection, signed protocol boundaries,
-D1/Turso storage, protected E2B Runner integration, tests, pull requests, and
-Sites deployments.
-
-- **GPT-5.6 Sol** handled the longest multi-step architecture, implementation,
-  migration, verification-policy, and deployment decisions.
-- **GPT-5.6 Terra** handled faster repository inspection, focused implementation,
-  test support, and operational follow-up.
-
-The qualifying Codex Session ID is supplied privately in the Devpost submission.
-It is evidence of the development workflow—not a mathematical verification
-claim.
+- **Explicit delegation:** agent authority is scoped, expiring, and revocable.
+- **Owner-approved publication:** checkpoints and artifact submissions have explicit content boundaries.
+- **Content-addressed evidence:** hashes bind the source, patch, dependencies, workspace, and result.
+- **Fresh replay:** submitted Lean executes in an isolated, approved environment without control-plane credentials.
+- **Independent ownership:** two agents belonging to one Person cannot supply independent review of each other.
+- **Bounded claims:** a signature establishes who signed which bytes; correctness and project acceptance require their own checks.
+- **Append-only correction:** supersession and retraction retain the original Receipt and add signed lifecycle events.
+- **Non-financial credits:** experimental research credits are non-transferable and confer no payment right.
 
 ## Repository map
 
 | Path | Responsibility |
 | --- | --- |
 | [`app/`](app/) | Public product, workbench, review, evidence, Receipt, OAuth, and MCP routes |
-| [`packages/protocol/`](packages/protocol/) | Canonical signed evidence, verification, Run, and Receipt contracts |
-| [`services/lean-runner/`](services/lean-runner/) | Provider-neutral isolated Lean execution and result-signing boundary |
-| [`services/proofweave-mcp-gateway/`](services/proofweave-mcp-gateway/) | Remote Streamable HTTP MCP resource server |
-| [`services/proofweave-identity/`](services/proofweave-identity/) | OAuth 2.1 PKCE, consent, identity, and delegation policies |
-| [`services/receipts/`](services/receipts/) | Internal immutable Receipt issuance boundary |
-| [`plugins/proofweave-research/`](plugins/proofweave-research/) | Portable Codex plugin and local MCP Bridge |
-| [`drizzle/`](drizzle/) | Immutable D1/libSQL migration history and source-pinned catalog |
-| [`docs/`](docs/) | Runbooks, contracts, ADRs, and product plans |
+| [`packages/protocol/`](packages/protocol/) | Signed evidence, verification, Run, Receipt, and experimental credit contracts |
+| [`services/lean-runner/`](services/lean-runner/) | Isolated Lean execution and signed results |
+| [`services/proofweave-mcp-gateway/`](services/proofweave-mcp-gateway/) | Remote Streamable HTTP MCP server |
+| [`services/proofweave-identity/`](services/proofweave-identity/) | OAuth-PKCE, consent, identity, and delegation |
+| [`services/verification/`](services/verification/) | Review assignments, attestations, and replay evidence |
+| [`services/receipts/`](services/receipts/) | Receipt issuance and lifecycle |
+| [`services/credits/`](services/credits/) | Experimental Receipt-based credit settlement |
+| [`plugins/proofweave-research/`](plugins/proofweave-research/) | Current client plugin, local MCP bridge, and agent workflow |
+| [`open-catalog/`](open-catalog/) | Source-pinned research targets and catalog contribution rules |
+| [`drizzle/`](drizzle/) | D1/libSQL migrations and catalog data |
+| [`docs/`](docs/) | Contracts, runbooks, architecture decisions, and plans |
 
 ## Useful commands
 
-| Command | Purpose |
-| --- | --- |
-| `npm run dev` | Start local development |
-| `npm run build` | Build the Cloudflare Worker-compatible application |
-| `npm run check` | Run lint, typecheck, protocol tests, dependency audit, build, and route tests |
-| `npm run demo:check` | Verify the signed reference fixture and tamper-failure case |
-| `npm run plugin:check` | Validate the portable Codex plugin and bundled skill |
-| `npm run runner:check` | Validate Runner policy, queue, transfer, execution, and signing boundaries |
-| `npm run github:external-config:check` | Test the fail-closed GitHub provider-configuration auditor |
-| `npm run github:external-config:audit` | Collect privacy-safe, read-only GitHub release-gate evidence |
-| `npm run receipt:bundle:check` | Verify portable Receipt evidence closures offline |
-| `npm run portable:database:check` | Validate D1/libSQL compatibility and migration history |
+| Audience | Command | Purpose |
+| --- | --- | --- |
+| Developer | `npm run dev` | Start local development |
+| Developer | `npm run build` | Build the application |
+| Developer | `npm run check` | Run the repository's aggregate validation suite |
+| Verification | `npm run smoke:solo-contribution` | Exercise the local Lean submission path with mock reviewers |
+| Verification | `npm run demo:check` | Check reference evidence and tamper rejection |
+| Verification | `npm run receipt:bundle:check` | Test portable Receipt verification |
+| Verification | `npm run runner:check` | Check Runner policy, transfer, execution, and signing boundaries |
+| Integration | `npm run plugin:check` | Validate the current client plugin and bundled workflow |
+| Storage | `npm run portable:database:check` | Check D1/libSQL compatibility and migrations |
+| Experimental credits | `npm run credit:market:check` | Test credit and verification-market policies |
+| Operator | `npm run github:external-config:audit` | Read authenticated GitHub release configuration; requires operator access |
 
-The remaining operational commands are documented in the relevant runbooks and
-in [`package.json`](package.json).
+Operator commands are not participant setup steps. Read the
+[external configuration audit guide](docs/github-external-config-audit.md)
+before using the audit. Other commands and their requirements are listed in
+[`package.json`](package.json) and the relevant runbooks.
 
 ## Documentation
 
-- [Build Week demo and live-Receipt runbook](docs/build-week-demo.md)
-- [Open-source contribution guide](CONTRIBUTING.md)
-- [Security policy](SECURITY.md)
-- [Launch kit and demo copy](docs/launch-kit.md)
-- [Codex plugin and connection workflow](docs/codex-plugin.md)
-- [Research graph contract](docs/research-graph-contract.md)
-- [Artifact Bundle contract](docs/artifact-bundle-contract.md)
-- [Deterministic workspace-tree protocol](packages/protocol/workspace-tree.mjs)
-- [Lean Runner contract](docs/runner-contract.md)
-- [Independent verification contract](docs/verification-contract.md)
-- [Contribution Receipt contract](docs/contribution-receipt-contract.md)
-- [Remote MCP gateway contract](docs/remote-mcp-gateway.md)
-- [Zero-cost Turso control-plane guide](docs/turso-zero-cost-control-plane.md)
-- [GitHub external configuration audit](docs/github-external-config-audit.md)
-- [Development plan and trust boundaries](docs/development-plan.md)
+| Topic | References |
+| --- | --- |
+| Participation | [Contribution guide](CONTRIBUTING.md), [target proposals](open-catalog/CONTRIBUTING.md), [participant readiness](docs/ordinary-user-readiness.md), [security](SECURITY.md) |
+| Research and evidence | [Research graph](docs/research-graph-contract.md), [artifact bundles](docs/artifact-bundle-contract.md), [artifact storage](docs/artifact-storage-contract.md), [workspace-tree protocol](packages/protocol/workspace-tree.mjs) |
+| Verification and attribution | [Runner](docs/runner-contract.md), [independent review](docs/verification-contract.md), [Receipts](docs/contribution-receipt-contract.md), [local smoke](docs/solo-contribution-smoke.md) |
+| Integration and deployment | [MCP gateway](docs/remote-mcp-gateway.md), [Turso control plane](docs/turso-zero-cost-control-plane.md), [GitHub boundaries](docs/github-independence.md), [operator audit](docs/github-external-config-audit.md) |
+| Experimental work and roadmap | [Research credits](docs/credit-market-v1.md), [development plan](docs/development-plan.md) |
 
-## Project status
+## Project status and roadmap
 
-Proofweave is an OpenAI Build Week **Developer Tools** submission and a public
-product with closed-alpha write paths. The public catalog, reference verifier,
-tamper test, and evidence index are available without an account. Agent setup,
-research writes, review assignments, and evidence submission remain controlled
-while recovery, cross-platform acceptance, and participant Runner capacity are
-completed.
+Proofweave is a public alpha with controlled research and review writes. Public
+inspection and executable protocol tests provide an initial foundation; they
+do not establish an open, fully staffed research or bounty marketplace.
 
-The goal is not to make Agent output sound authoritative. The goal is to make
-every useful step easier to reproduce, verify, connect, and credit.
+| Stage | Focus | Completion evidence |
+| --- | --- | --- |
+| Current: Lean alpha | Pinned targets, signed submissions, isolated replay, independent review, attribution | Inspectable implementation, tests, and individually published records |
+| Next: reliable participation | Agent adapters, connection recovery, approved environment coverage, Runner capacity, and review availability | End-to-end sessions by real participants on each supported client |
+| Expansion: more task types | Software and algorithm tasks, then selected scientific models with suitable evidence | A working verifier and reviewed acceptance policy for each task type |
+| Future: funded challenges | Sponsor-defined tasks, budgets, dispute handling, contribution allocation, and payouts | Explicit published rules and an operational settlement process |
+
+This roadmap states priorities, not delivery dates. Supporting all compatible
+agents is the direction; each adapter must pass authorization, evidence,
+and review acceptance checks before it is listed as supported.
 
 ## Contributing and community boundaries
 
-Proofweave is designed for collaboration without uploading private reasoning.
-Contributions should be small, inspectable, and tied to a contract or a
-source-pinned research object. Please do not submit API keys, OAuth tokens,
-private keys, prompts, chain-of-thought, or a private Lean workspace. See
-[CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md), and the
-[launch kit](docs/launch-kit.md) before sharing the project publicly.
+| Contribution | A useful starting point |
+| --- | --- |
+| Code or documentation | A bounded issue, reproducible failure, protocol clarification, or client adapter with acceptance checks |
+| Research target | A cited source, pinned environment, exact claim, license, and acceptance conditions |
+| Research result | A small checkpoint or reproducible bundle with explicit dependencies and attribution |
+| Independent review | An authorized assignment, a fresh check, and a signed decision within the assigned scope |
 
-The repository is licensed under [Apache-2.0](LICENSE). Catalog entries can
-point to upstream projects with their own licenses and citation requirements;
-follow the source and attribution fields in `open-catalog/` rather than
-assuming that every upstream artifact has the repository license.
+Follow [CONTRIBUTING.md](CONTRIBUTING.md). Cite upstream work and reused
+checkpoints; disclose duplicate submissions and relevant conflicts of interest.
+A future reward policy must define how duplicates, disputes, and shared
+dependencies affect allocation. The current independent-owner check does not
+replace broader conflict-of-interest governance.
 
-## Promotion-ready links
+Keep API keys, OAuth tokens, private keys, and private reasoning out of public
+contributions. Upload only explicitly approved evidence through the designated
+path. See [SECURITY.md](SECURITY.md) for security reports.
 
-- Product: <https://proofweave.org/>
-- Verification demo: <https://proofweave.org/demo>
-- Research catalog: <https://proofweave.org/explore>
-- Source repository: <https://github.com/alexyyyander/proofweave>
-- Open catalog repository: <https://github.com/alexyyyander/proofweave-open-catalog>
-- Builder profile: <https://github.com/alexyyyander>
+The repository uses [Apache-2.0](LICENSE). Upstream catalog sources can have
+different licenses; follow each source's license and citation requirements.
 
-Short description, demo narration, social copy, and claim guardrails live in
-[`docs/launch-kit.md`](docs/launch-kit.md).
+<details>
+<summary>Development history: OpenAI Build Week, Codex, and GPT-5.6</summary>
+
+Proofweave was submitted to [OpenAI Build Week](https://devpost.com/software/proofwave)
+in the Developer Tools track. Codex was the primary development environment for
+architecture, frontend, OAuth-MCP, signed protocols, D1/Turso storage, Runner
+integration, tests, pull requests, and Sites deployments.
+
+- **GPT-5.6 Sol** supported multi-step architecture, implementation, migration,
+  verification-policy, and deployment work.
+- **GPT-5.6 Terra** supported repository inspection, focused implementation,
+  testing, and operational follow-up.
+
+These are development-history details, not runtime requirements or mathematical
+verification evidence. The qualifying session identifier was supplied privately
+with the submission. The [Build Week demo runbook](docs/build-week-demo.md)
+and [submission materials](docs/build-week-submission.md) retain that context.
+
+</details>
+
+## Project links
+
+- [Product](https://proofweave.org/) · [research catalog](https://proofweave.org/explore)
+- [Reference verification demo](https://proofweave.org/demo) · [public Receipts](https://proofweave.org/receipts)
+- [Source repository](https://github.com/alexyyyander/proofweave) · [open catalog](https://github.com/alexyyyander/proofweave-open-catalog)
+- [Builder profile](https://github.com/alexyyyander)
+
+Short description: **Proofweave explores verifiable collaboration between people
+and their AI agents, starting with formal mathematics.**

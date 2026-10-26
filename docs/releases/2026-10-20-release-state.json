@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "pw-release-status-note-v1",
+  "observedAt": "2026-10-20T08:26:26.903907+00:00",
+  "kind": "Observed component status; not a strict release manifest or execution authorization",
+  "researchExecutionAuthorized": false,
+  "researchWritesEnabled": false,
+  "main": {
+    "sha": "13c07955d7fc85e9ff6f47102d0a9d8806339aad",
+    "pullRequest": "https://github.com/alexyyyander/proofweave/pull/162",
+    "mergedAt": "2026-10-20T08:06:33Z",
+    "reviewer": "thudubdoo",
+    "signatureVerified": true,
+    "ci": "https://github.com/alexyyyander/proofweave/actions/runs/39391044158"
+  },
+  "runner": {
+    "service": "proofweave-trusted-runner",
+    "revision": "13c07955d7fc85e9ff6f47102d0a9d8806339aad",
+    "deployId": "dep-dbbi4fu1egvs7384b1n0",
+    "healthHttpStatus": 200,
+    "state": "paused",
+    "executionEnabled": false,
+    "autoDeploy": "no",
+    "templateId": "cbfjgbsrgtku0c7sliu5:workspace-modes-20261019-617de06",
+    "templateBuildId": "4fd0e92f-9513-4c3d-8af3-6492e86c3f24",
+    "declaredLegacySitesVersion": "192"
+  },
+  "cloudflare": {
+    "origin": "https://proofweave.org",
+    "deploymentId": "c7af9e77-3afc-40bc-8c49-5365d68874b0",
+    "sourceRevision": "c89246e42ab30e205a4d0ca52f65dfa76a3ec24ab7caa1479b52d32b4296cca1",
+    "sourceScheme": "pw-cloudflare-source-v2",
+    "historicalBaseCommitLabel": "6db52b2c11ace065591ed8848765d81dc804028f",
+    "baseSitesVersion": 196,
+    "overlayFileCount": 37,
+    "overlayHashesVerified": true,
+    "historicalBaseObjectAvailableLocally": false,
+    "sitesVersion": null,
+    "siteProjectId": null
+  },
+  "loginBridge": {
+    "historicallyVerifiedSitesVersion": 204,
+    "historicallyVerifiedEnvironmentRevision": 59,
+    "evidenceDate": "2026-10-19",
+    "browserLoginRepeatedToday": false
+  },
+  "database": {
+    "authority": "turso",
+    "fingerprint": "3f9e7934a04a22ec",
+    "ledgerHead": "0049_add_catalog_browse_index.sql",
+    "migration0049Sha256": "3b980bfe26fa27810f31bea0b345de44418ee0ca70a6259a936e6556981ef668",
+    "migration0049StatementCount": 38,
+    "migrationAppliedByCloseout": false
+  },
+  "operationModes": {
+    "global": "read_write",
+    "participant": "read_only",
+    "mcp": "read_only",
+    "runnerExecutionEnabled": false,
+    "scheduledTickRestartAuthorized": false
+  },
+  "workspace": {
+    "branch": "codex/public-research-aggregation",
+    "head": "f5a76b8ef3e93eee8c0eb8a9b74d21306ea98afd",
+    "fileCountBeforeCloseout": 204,
+    "groupCounts": {
+      "catalog_and_ingestion": 12,
+      "cloudflare_published_overlay": 37,
+      "documentation": 7,
+      "runner_reconcile_with_main": 11,
+      "shared_manual_hunk_split": 5,
+      "ui_and_remaining_product_changes": 132
+    }
+  },
+  "reopeningBlockers": [
+    "Cloudflare migration source is not yet integrated in a reviewed main-based source commit; two root files diverge from the published overlay.",
+    "Credentialed evidence verifier v1 accepts staging only and requires ledger 0043; production origin/fingerprint are intentionally forbidden.",
+    "Existing strict release binding assumes Sites identity; Cloudflare reports null Sites identity and uses a separate source digest.",
+    "A narrowly scoped Person/Agent/Attempt write gate has not been verified; broad read_write is not a canary allowlist.",
+    "Current-release two-Person contribution review, Receipt and Nile anchoring evidence is not complete."
+  ]
+}
