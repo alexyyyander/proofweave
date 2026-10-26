@@ -1,0 +1,115 @@
+{
+  "schemaVersion": "pw-claim-explanation-v1",
+  "familyNumber": "159",
+  "title": "Erdős’s reciprocal-sum conjecture and quasipolynomial Szemerédi bounds",
+  "level": "undergraduate",
+  "status": "draft",
+  "reviewStatus": "unreviewed",
+  "sourceRevision": "1581d4cbdd69a0faf34b2089614fe2a814316a6a",
+  "assumptions": [
+    "The considered set is a set of positive integers whose reciprocal sum diverges.",
+    "The progression length k ≥ 3 is fixed.",
+    "A subset of {1, …, N} is progression-free when it contains no nonconstant k-term arithmetic progression.",
+    "The constants C_k, c_k, and ε_k are positive and depend only on k."
+  ],
+  "conclusion": "Every set of positive integers with divergent reciprocal sum contains arithmetic progressions of every finite length. The paper additionally proves the quantitative bound r_k(N) ≤ C_k N exp(−c_k (log N)^{ε_k}).",
+  "notProven": [
+    "The selected Lean statement is the reciprocal-sum consequence only. The paper's quantitative upper bound on r_k(N) is explicitly outside the Lean statement in the upstream scope text.",
+    "No Proofweave replay or statement review is recorded for the manuscript (proofweaveReplay: not_run, statementReview: not_started), and there is no receipt.",
+    "The snapshot records no explicit values, ranges, or proofs for the constants C_k, c_k, and ε_k; the quantitative content is not formalized in the linked scope (needs review).",
+    "The Lean scope states existence of a progression with positive common difference for every requested length, but it does not restate the paper's counting bound."
+  ],
+  "scopeNote": "The paper proves a qualitative conjecture together with a quantitative upper bound. The upstream Lean scope selects the reciprocal-sum consequence; the quantitative bound is outside the formalized statement. This draft does not claim the quantitative part is verified.",
+  "scopeDiff": {
+    "paperStatement": "Proves Erdős's conjecture that every set of positive integers with divergent reciprocal sum contains arithmetic progressions of every finite length. Quantitatively, for each fixed <i>k</i> ≥ 3, every subset of $`\\{1,\\ldots,N\\}`$ with no nonconstant <i>k</i>-term progression has size at most $`C_kN\\exp[-c_k(\\log N)^{\\varepsilon_k}]`$, with positive constants depending only on <i>k</i>.",
+    "leanStatement": "Erdős's reciprocal-sum conjecture asks whether every set of positive integers with divergent reciprocal sum contains arithmetic progressions of every finite length. The formalization proves this statement: for every requested length, such a set contains a progression with positive common difference.\n\nThe selected theorem is the reciprocal-sum consequence. The paper's quantitative upper bound for the largest progression-free subset of $\\{1,\\ldots,N\\}$ is outside this statement.",
+    "leanStatementStatus": "recorded",
+    "gapNote": "Paper: qualitative conjecture plus a quantitative upper bound. Lean scope: the qualitative reciprocal-sum consequence only; the quantitative upper bound is explicitly outside the formalized statement.",
+    "platformStatus": "Not run: the manuscript reports proofweaveReplay not_run, statementReview not_started, and no receipt.",
+    "needsReview": false
+  },
+  "proofSteps": [
+    {
+      "id": "step-1",
+      "label": "Assume a divergent reciprocal sum",
+      "detail": "Start with a set of positive integers whose reciprocal sum diverges.",
+      "basis": "Family claim and upstream Lean scope statement.",
+      "dependsOn": []
+    },
+    {
+      "id": "step-2",
+      "label": "Produce progressions of every requested length",
+      "detail": "For every requested length, the set contains an arithmetic progression with positive common difference.",
+      "basis": "Upstream Lean scope statement from the pinned snapshot.",
+      "dependsOn": []
+    },
+    {
+      "id": "step-3",
+      "label": "Quantitative counting bound (paper only)",
+      "detail": "The paper bounds r_k(N) by C_k N exp(−c_k (log N)^{ε_k}). The upstream Lean scope explicitly places this bound outside the formalized statement.",
+      "basis": "Family claim and upstream Lean scope statement.",
+      "dependsOn": [],
+      "needsReview": true
+    }
+  ],
+  "leanAnnotations": [
+    {
+      "id": "lean-scope-document",
+      "file": "lean/docs/159.md",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/docs/159.md",
+      "excerpt": null,
+      "excerptStatus": "not_in_snapshot",
+      "annotation": "The upstream scope document distinguishes the reciprocal-sum consequence from the paper's quantitative upper bound. Its text is quoted in the scope comparison above; the full document is not included in the snapshot (needs review).",
+      "needsReview": true
+    },
+    {
+      "id": "lean-comparator",
+      "file": "lean/ComparatorChallenges/ErdosReciprocal.lean",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/ComparatorChallenges/ErdosReciprocal.lean",
+      "excerpt": null,
+      "excerptStatus": "not_in_snapshot",
+      "annotation": "The snapshot links this Comparator challenge file but does not include its Lean source. Read the linked file for the exact declaration; no Lean excerpt is reproduced here.",
+      "needsReview": true
+    }
+  ],
+  "glossary": [
+    {
+      "term": "Reciprocal sum",
+      "definition": "The sum of 1/n over the elements n of a set of positive integers."
+    },
+    {
+      "term": "Arithmetic progression",
+      "definition": "A set {a, a+d, …, a+(k−1)d} with common difference d. Nonconstant means d ≠ 0."
+    },
+    {
+      "term": "r_k(N)",
+      "definition": "The largest size of a subset of {1, …, N} containing no nonconstant k-term arithmetic progression."
+    },
+    {
+      "term": "Quasipolynomial bound",
+      "definition": "A bound of the form C_k N exp(−c_k (log N)^{ε_k}) with positive constants depending only on k."
+    }
+  ],
+  "sources": [
+    {
+      "label": "Quasipolynomial Bounds for Arithmetic Progressions — manuscript PDF",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Quasipolynomial-Bounds-for-Arithmetic-Progressions-September-23-2026/paper.pdf",
+      "kind": "manuscript"
+    },
+    {
+      "label": "Source and version notes for the manuscript",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Quasipolynomial-Bounds-for-Arithmetic-Progressions-September-23-2026/README.md",
+      "kind": "manuscript"
+    },
+    {
+      "label": "Upstream Lean scope statement for family 159",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/docs/159.md",
+      "kind": "scope"
+    },
+    {
+      "label": "ErdosReciprocal.lean Comparator challenge",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/ComparatorChallenges/ErdosReciprocal.lean",
+      "kind": "comparator"
+    }
+  ]
+}
