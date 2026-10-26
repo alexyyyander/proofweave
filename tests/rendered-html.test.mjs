@@ -3,6 +3,7 @@ import { access, readFile, readdir } from "node:fs/promises";
 import { after, before, test } from "node:test";
 import { fileURLToPath } from "node:url";
 import { Miniflare } from "miniflare";
+import { backfillCatalogBrowseBatch } from "../services/catalog/backfill.ts";
 import { delegationPayloadHash, delegationSigningPayload } from "../packages/domain/delegation.mjs";
 import { canonicalJson, sha256Canonical } from "../packages/protocol/canonical-json.mjs";
 import { verificationReplayEvidenceHash } from "../packages/protocol/verification-replay-evidence.mjs";
@@ -76,6 +77,28 @@ async function render(pathname = "/", init = {}) {
     },
   );
 }
+
+// Resolve local imports so stylesheet organization does not weaken visual contracts.
+async function readLocalStyles(url, seen = new Set()) {
+  if (seen.has(url.href)) return "";
+  seen.add(url.href);
+  const source = await readFile(url, "utf8");
+  const imports = [...source.matchAll(/@import\s+"(\.[^"]+)";/g)];
+  const children = await Promise.all(imports.map(match => readLocalStyles(new URL(match[1], url), seen)));
+  return source + "\n" + children.join("\n");
+}
+
+test("five primary destinations share a single accessible page introduction", async () => {
+  for (const [path, label] of [["/", "Overview"], ["/explore", "Research"], ["/workbench", "Workspace"], ["/history", "AI record"], ["/about", "About"]]) {
+    const response = await render(path);
+    assert.equal(response.status, 200, path);
+    const html = await response.text();
+    assert.equal((html.match(/<h1\b/g) ?? []).length, 1, `${path} must have one page heading`);
+    assert.match(html, /class="ui-page-title page-intro__title"/, path);
+    assert.ok(html.includes(`class="page-intro__label">${label}</p>`), path);
+    assert.match(html, /class="page-intro__description"/, path);
+  }
+});
 
 test("publishes one reachable Sites-safe MCP resource URL", async () => {
   const metadataResponse = await miniflare.dispatchFetch("https://localhost/.well-known/oauth-protected-resource", {
@@ -181,6 +204,14 @@ async function applyMigrations(d1, onlySeed = false) {
 
     for (const statement of statements) {
       await d1.prepare(statement).run();
+    }
+  }
+  if (!onlySeed) {
+    let afterId = "";
+    for (;;) {
+      const batch = await backfillCatalogBrowseBatch(d1, afterId);
+      if (!batch.nextId) break;
+      afterId = batch.nextId;
     }
   }
 }
@@ -926,11 +957,15 @@ test("serves the public research paths", async () => {
   for (const [pathname, expectedContent] of expectedPageContent) {
     const response = await render(pathname);
     assert.equal(response.status, 200, `${pathname} should respond with 200`);
+    const html = await response.text();
     assert.match(
-      await response.text(),
+      html,
       expectedContent,
       `${pathname} should render its heading`,
     );
+    const headings = html.match(/<h[1-3]\b[^>]*>/g) ?? [];
+    assert.equal(headings.filter(tag => tag.startsWith("<h1")).length, 1, `${pathname} should have one page title`);
+    for (const tag of headings) assert.match(tag, /class="[^"]*ui-(page|section|card)-title/, `${pathname} bypasses shared typography: ${tag}`);
   }
 
   const settings = await render("/settings");
@@ -977,13 +1012,16 @@ test("serves the public research paths", async () => {
   assert.match(exploreHtml, /Search the frontier\. Choose one exact next action/i);
   assert.match(exploreHtml, /Find a pinned target, inspect its prior work, or start a bounded Agent task/i);
   assert.match(exploreHtml, /Searchable research index/i);
+  assert.ok(exploreHtml.indexOf('aria-label="Research index controls"') < exploreHtml.indexOf('aria-label="Research index summary"'), "search precedes supporting statistics");
+  assert.match(exploreHtml, /aria-pressed="true"/, "selected filters expose their state");
   assert.match(exploreHtml, /Find the exact target you can act on/i);
   assert.match(exploreHtml, /Formalize known results/i);
   assert.match(exploreHtml, /Bounded milestones/i);
   assert.match(exploreHtml, /Inspect proof/i);
   assert.doesNotMatch(exploreHtml, /Show Lean/i);
   assert.match(exploreHtml, /Hadwiger–Nelson Problem/i);
-  assert.match(exploreHtml, /Navier–Stokes Existence and Smoothness/i);
+  const navierHtml = await (await render("/explore?q=Navier")).text();
+  assert.match(navierHtml, /Navier–Stokes Existence and Smoothness/i);
   assert.match(exploreHtml, /P versus NP/i);
   assert.match(exploreHtml, /Smooth Poincaré conjecture in dimension four/i);
   assert.match(exploreHtml, /Number theory/i);
@@ -1067,13 +1105,19 @@ test("uses Explore as the stable parent for public research work", async () => {
     const response = await render(pathname);
     assert.equal(response.status, 200, `${pathname} should respond with 200`);
     const html = await response.text();
-    assert.match(html, /class="breadcrumb"><a href="\/explore">Explore<\/a>/i);
+    assert.match(html, /<nav[^>]*class="breadcrumb"[^>]*aria-label="Breadcrumb"[^>]*><a href="\/explore">Explore<\/a>/i);
     assert.doesNotMatch(html, /<a href="\/explore">Research frontier<\/a>/i);
   }
 });
 
+test("keeps the component workshop out of the production UI", async () => {
+  const response = await render("/dev/components");
+  assert.equal(response.status, 404);
+  assert.doesNotMatch(await response.text(), /Shared components, in one place\./);
+});
+
 test("keeps information hubs content-driven across viewport heights", async () => {
-  const globals = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  const globals = await readLocalStyles(new URL("../app/globals.css", import.meta.url));
 
   assert.match(
     globals,
@@ -1258,11 +1302,11 @@ test("preserves the showcase URL as a redirect to the overview proof journey", a
   assert.equal(page.status, 200);
   const html = await page.text();
   assert.match(html, /One theorem · six evidence moments/i);
-  assert.match(html, /Private · this computer/i);
-  assert.match(html, /Public · minimum evidence/i);
+  assert.match(html, /Pinned declaration/i);
+  assert.match(html, /This story does not run Lean or publish work/i);
   assert.match(html, /Frontier question/i);
   assert.match(html, /Independent review/i);
-  assert.match(html, /Contribution Receipt/i);
+  assert.match(html, /aria-label="06 Receipt"/i);
   assert.match(html, /href="#verification-console"/i);
   assert.match(html, /id="verification-console"/i);
 });
@@ -2356,7 +2400,7 @@ test("scopes Runs, outputs, and review eligibility to one Bundle within a shared
 
   const ownerIndex = await render("/evidence", { headers: fixture.ownerHeaders });
   assert.equal(ownerIndex.status, 200);
-  const indexCards = (await ownerIndex.text()).split('<article class="evidence-index-card">').slice(1);
+  const indexCards = (await ownerIndex.text()).split(/<article class="[^"]*\bevidence-index-card\b[^"]*">/).slice(1);
   const acceptedCard = indexCards.find((card) => card.includes(fixture.manifestHash));
   const rejectedCard = indexCards.find((card) => card.includes(fixture.rejectedManifestHash));
   assert.ok(acceptedCard);
@@ -2984,19 +3028,19 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
 
   const persistedAttemptWorkbench = await render(`/workbench?attempt=${encodeURIComponent(ownerAttempt.id)}`, { headers: authHeaders });
   assert.equal(persistedAttemptWorkbench.status, 200);
-  assert.match(await persistedAttemptWorkbench.text(), /Current focus<\/span><h2>Erdős Problem 865<\/h2>/i);
+  assert.match(await persistedAttemptWorkbench.text(), /Current focus<\/span><h2 class="ui-section-title">Erdős Problem 865<\/h2>/i);
 
   const myWorkOverview = await render("/workbench", { headers: authHeaders });
   assert.equal(myWorkOverview.status, 200);
   const myWorkOverviewHtml = await myWorkOverview.text();
-  assert.match(myWorkOverviewHtml, /Personal research workspace[\s\S]*<h1[^>]*>My work<\/h1>/i);
+  assert.match(myWorkOverviewHtml, /class="page-intro__label">Workspace<\/p>[\s\S]*<h1[^>]*>My work<\/h1>/i);
   assert.match(myWorkOverviewHtml, /Active research|Needs attention|Waiting/i);
   assert.match(myWorkOverviewHtml, /href="\/workbench\/attempts\/[^\"]+"/i);
 
   const attemptDetail = await render(`/workbench/attempts/${encodeURIComponent(ownerAttempt.id)}`, { headers: authHeaders });
   assert.equal(attemptDetail.status, 200);
   const attemptDetailHtml = await attemptDetail.text();
-  assert.match(attemptDetailHtml, /My work[\s\S]*Current focus<\/span><h1>Erdős Problem 865<\/h1>/i);
+  assert.match(attemptDetailHtml, /My work[\s\S]*Current focus<\/span><h1 class="ui-page-title">Erdős Problem 865<\/h1>/i);
   assert.match(attemptDetailHtml, /Manage research/i);
 
   const evidenceWorkbench = await render("/workbench?target=erdos-865", { headers: authHeaders });
@@ -3204,7 +3248,7 @@ test("keeps the production frontend free of the deleted starter preview", async 
   const [page, layout, globals, researchGraphView, packageJson, workbench, runnerWorkflowStatus, delegationSetup, localAgentHandoff, browserKeyStore, sourceSkill, legacyContent] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
+    readLocalStyles(new URL("../app/globals.css", import.meta.url)),
     readFile(new URL("../app/explore/[slug]/ResearchGraphView.tsx", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
     readFile(
@@ -3312,3 +3356,74 @@ async function sha256Bytes(value) {
   const digest = await crypto.subtle.digest("SHA-256", value);
   return `sha256:${[...new Uint8Array(digest)].map((byte) => byte.toString(16).padStart(2, "0")).join("")}`;
 }
+
+
+test("Explore bounds SSR and API results and applies filters before pagination", async () => {
+  const records = (await (await render("/api/catalog")).json()).records;
+  const firstResponse = await render("/api/catalog/browse");
+  assert.equal(firstResponse.status, 200);
+  const first = await firstResponse.json();
+  assert.equal(first.records.length, 10);
+  assert.ok(first.nextCursor);
+  const html = await (await render("/explore")).text();
+  assert.equal((html.match(/class="[^"]*research-result-card"/g) ?? []).length, 10);
+  assert.match(html, /Next page/);
+  assert.match(html, /Previous page/);
+  const firstIds = new Set(first.records.map(record => record.id));
+  const offPage = records.find(record => !firstIds.has(record.id));
+  assert.ok(offPage);
+  assert.ok(!html.includes(`/explore/${offPage.slug}`), "off-page records must not appear in HTML or the RSC payload");
+
+  const seen = first.records.map(record => record.id);
+  let cursor = first.nextCursor;
+  while (cursor) {
+    const response = await render(`/api/catalog/browse?${new URLSearchParams({ cursor })}`);
+    assert.equal(response.status, 200);
+    const page = await response.json();
+    assert.ok(page.records.length <= 10);
+    seen.push(...page.records.map(record => record.id));
+    cursor = page.nextCursor;
+  }
+  assert.equal(new Set(seen).size, seen.length, "pages must not repeat records");
+  assert.deepEqual([...seen].sort(), records.map(record => record.id).sort());
+  const query = "q=Legendre&kind=formalize&sort=title";
+  const filtered = await (await render(`/api/catalog/browse?${query}`)).json();
+  assert.ok(filtered.records.length > 0);
+  assert.ok(filtered.records.every(record => /Legendre/i.test(record.title)));
+  const filteredHtml = await (await render(`/explore?${query}`)).text();
+  assert.equal((filteredHtml.match(/class="[^"]*research-result-card"/g) ?? []).length, filtered.records.length);
+  assert.ok(filteredHtml.includes(`/explore/${filtered.records[0].slug}`));
+  assert.equal((await render("/api/catalog/browse?cursor=malformed")).status, 400);
+  const mismatched = new URLSearchParams({ cursor: first.nextCursor, sort: "title" });
+  assert.equal((await render(`/api/catalog/browse?${mismatched}`)).status, 400);
+});
+
+test("homepage selects only three complete public research records", async () => {
+  const records = (await (await render("/api/catalog")).json()).records;
+  const html = await (await render("/")).text();
+  const cards = [...html.matchAll(/<article class="ui-surface ui-surface-plain project-card">([\s\S]*?)<\/article>/g)].map(match => match[1]);
+  assert.equal(cards.length, 3);
+  for (const [index, card] of cards.entries()) {
+    assert.ok(card.includes(`/explore/${records[index].slug}`));
+    for (const status of records[index].displayStatuses) assert.ok(card.includes(status), status);
+  }
+});
+
+test("anonymous workspace entry needs no catalog or account tables", async (t) => {
+  const entrypoint = fileURLToPath(new URL("index.js", workerRoot));
+  const modules = await listJavaScriptModules(workerRoot);
+  const emptyRuntime = new Miniflare({
+    modules: [{ type: "ESModule", path: entrypoint }, ...modules.filter(path => path !== entrypoint).map(path => ({ type: "ESModule", path }))],
+    modulesRoot: fileURLToPath(workerRoot), compatibilityDate: "2026-05-15", compatibilityFlags: ["nodejs_compat"],
+    d1Databases: ["DB"],
+    bindings: { PROOFWEAVE_CONTROL_PLANE_MODE: "read_write", PROOFWEAVE_PARTICIPANT_CONTROL_PLANE_MODE: "read_write" },
+    serviceBindings: { ASSETS: async () => new Response("Not found", { status: 404 }) },
+  });
+  t.after(() => emptyRuntime.dispose());
+  const response = await emptyRuntime.dispatchFetch("http://localhost/workbench", { headers: { accept: "text/html" } });
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /One private place for your Agent/);
+  assert.match(html, /Sign in to begin/);
+  assert.doesNotMatch(html, /no such table|Internal Server Error/);
+});
