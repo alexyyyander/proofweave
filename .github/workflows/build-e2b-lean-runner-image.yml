@@ -6,9 +6,10 @@ on:
       profile:
         description: Exact reviewed Lean environment to build
         required: true
-        default: core-4.27
+        default: mathlib-4.35-56a00
         type: choice
         options:
+          - mathlib-4.35-56a00
           - core-4.27
           - mathlib-4.27-a3a10
           - mathlib-4.31-9a948
@@ -50,6 +51,15 @@ jobs:
           SELECTED_PROFILE: ${{ inputs.profile }}
         run: |
           case "$SELECTED_PROFILE" in
+            mathlib-4.35-56a00)
+              echo "profile=mathlib-4.35-56a00" >> "$GITHUB_OUTPUT"
+              echo "base_dockerfile=services/lean-runner/Dockerfile.mathlib-base" >> "$GITHUB_OUTPUT"
+              echo "lean_toolchain=leanprover/lean4:v4.35.0" >> "$GITHUB_OUTPUT"
+              echo "mathlib_revision=56a005855ea17e0b0958f73ec801ae140b0a1679" >> "$GITHUB_OUTPUT"
+              echo "lean_release_url=https://github.com/leanprover/lean4/releases/download/v4.35.0/lean-4.35.0-linux.tar.zst" >> "$GITHUB_OUTPUT"
+              echo "lean_release_sha256=7289597a44543246c9227b8cae501767e095ce17f6d448b95fc4a8dc97268f6d" >> "$GITHUB_OUTPUT"
+              echo "lean_archive_root=lean-4.35.0-linux" >> "$GITHUB_OUTPUT"
+              ;;
             core-4.27)
               echo "profile=core-4.27" >> "$GITHUB_OUTPUT"
               echo "base_dockerfile=services/lean-runner/Dockerfile.core-alpha-base" >> "$GITHUB_OUTPUT"

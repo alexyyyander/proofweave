@@ -32,6 +32,7 @@ export function createCloudflareGatewayWorker({ audit = defaultAudit() } = {}) {
           });
           return await createD1RemoteMcpGatewayRuntime({
             database: env.DB,
+            bucket: env.ARTIFACT_BUCKET ?? null,
             resource: env.MCP_RESOURCE_URL,
             issuer: env.OAUTH_ISSUER_URL,
             runnerQueue: env.RUNNER_QUEUE,

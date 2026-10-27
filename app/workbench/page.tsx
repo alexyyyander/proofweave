@@ -3,6 +3,7 @@ import { SiteFrame } from "@/app/components/shell/SiteFrame";
 import Link from "next/link";
 
 import { getCurrentUser, signInPath } from "../auth";
+import { getResearchEligibilityForPerson } from "../lib/research-eligibility";
 import { WorkbenchClient } from "./WorkbenchClient";
 import { MyWorkOverview } from "./MyWorkOverview";
 import { loadCatalogTargets, loadSelectedCatalogTarget, loadWorkbenchData, requestedAttemptId, requestedParentNodeId, requestedTargetSlug } from "./workbench-data";
@@ -31,6 +32,9 @@ export default async function WorkbenchPage({
   if (!user) return <SignedOutWorkbench signInHref={signInPath(returnTo)} selectedTarget={selectedTarget} />;
 
   const [data, catalogTargets] = await Promise.all([loadWorkbenchData(user), loadCatalogTargets()]);
+  const eligibility = await getResearchEligibilityForPerson(
+    data.profile?.person.id ?? user.personId ?? null,
+  );
   const isLegacyFocusedEntry = Boolean(targetSlug || attemptId);
 
   return <SiteFrame className="site-shell app-shell primary-page" active="workbench" mainClassName={isLegacyFocusedEntry ? "workbench-main" : "workbench-main my-work-main"}>
@@ -49,6 +53,7 @@ export default async function WorkbenchPage({
         isAuthenticated
         signInPath={signInPath(returnTo)}
         storageAvailable={data.storageAvailable}
+        eligibility={eligibility}
       /> : <MyWorkOverview
         profile={data.profile}
         initialAttempts={data.attempts}
@@ -60,6 +65,7 @@ export default async function WorkbenchPage({
         initialTargetSlug={null}
         initialParentNodeId={null}
         storageAvailable={data.storageAvailable}
+        eligibility={eligibility}
       />}
     </SiteFrame>;
 }

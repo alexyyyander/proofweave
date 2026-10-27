@@ -7,7 +7,7 @@ import {
   VerificationStoreValidationError,
 } from "../verification/d1-verification-store.mjs";
 import { D1VerificationMarketStore } from "../verification/d1-verification-market-store.mjs";
-import { D1R2ArtifactStore } from "../artifacts/d1-r2-artifact-store.mjs";
+import { D1R2ArtifactStore, maxArtifactObjectBytes } from "../artifacts/d1-r2-artifact-store.mjs";
 import { maxInlineArtifactObjectBytes } from "../artifacts/d1-inline-artifact-store.mjs";
 import { D1RunStore } from "../lean-runner/d1-run-store.mjs";
 import { closedAlphaAttemptLimits } from "../../packages/domain/attempt-policy.mjs";
@@ -73,6 +73,7 @@ export class D1RemoteMcpGatewayStore {
     }
     this.database = database;
     this.researchWriteAllowlistJson = researchWriteAllowlistJson ?? null;
+    this.maxArtifactBytes = bucket ? maxArtifactObjectBytes : maxInlineArtifactObjectBytes;
     this.verificationStore = new D1VerificationStore(database);
     this.verificationMarketStore = new D1VerificationMarketStore(database);
     this.artifactStore = artifactStore ?? (bucket ? new D1R2ArtifactStore({ database, bucket }) : null);
@@ -442,14 +443,14 @@ export class D1RemoteMcpGatewayStore {
 
   async putArtifactObject(principal, input) {
     assertPrincipalScope(principal, "artifact:write");
-    requireArtifactObjectInput(input);
+    requireArtifactObjectInput(input, this.maxArtifactBytes);
     const installation = await this.requireInstallation(principal);
     const attempt = await this.requireArtifactAttempt(principal, installation, input.attemptId);
     this.requireResearchWriteGate(principal, installation, "artifact:write", { attemptId: attempt.id });
     const currentAuthority = await this.requireInstallation(principal, attempt.delegationScope);
     await this.recordAttemptAuthorityRenewal(principal, currentAuthority, attempt);
     const object = await this.requireArtifactStore().putObject({
-      bytes: decodeBase64Url(input.contentBase64Url),
+      bytes: decodeBase64Url(input.contentBase64Url, this.maxArtifactBytes),
       filename: input.filename,
       contentType: input.contentType,
     });
@@ -1167,7 +1168,7 @@ function requireProgressInput(input) {
   }
 }
 
-function requireArtifactObjectInput(input) {
+function requireArtifactObjectInput(input, maxBytes = maxInlineArtifactObjectBytes) {
   if (!input || typeof input !== "object") {
     throw new GatewayStoreValidationError("Artifact object input is required.");
   }
@@ -1181,7 +1182,7 @@ function requireArtifactObjectInput(input) {
   if (
     typeof input.contentBase64Url !== "string" ||
     input.contentBase64Url.length === 0 ||
-    input.contentBase64Url.length > base64UrlCharactersFor(maxInlineArtifactObjectBytes) ||
+    input.contentBase64Url.length > base64UrlCharactersFor(maxBytes) ||
     !/^[A-Za-z0-9_-]+$/.test(input.contentBase64Url)
   ) {
     throw new GatewayStoreValidationError("Artifact contentBase64Url must be unpadded base64url within the control-plane byte limit.");
@@ -1230,12 +1231,12 @@ function requireRunnerLookupInput(input) {
   requireIdentifier(input.runId, "Run id", 240);
 }
 
-function decodeBase64Url(value) {
+function decodeBase64Url(value, maxBytes = maxInlineArtifactObjectBytes) {
   try {
     const padded = `${value}${"=".repeat((4 - (value.length % 4)) % 4)}`;
     const binary = atob(padded.replaceAll("-", "+").replaceAll("_", "/"));
     const bytes = Uint8Array.from(binary, (character) => character.charCodeAt(0));
-    if (bytes.byteLength > maxInlineArtifactObjectBytes) {
+    if (bytes.byteLength > maxBytes) {
       throw new GatewayStoreValidationError("Artifact object exceeds the control-plane byte limit.");
     }
     return bytes;

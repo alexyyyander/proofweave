@@ -9,7 +9,9 @@ import { type CatalogProblem } from "@/packages/domain/catalog";
 import { type McpAttempt } from "@/packages/domain/mcp";
 import { closedAlphaAttemptLimits } from "@/packages/domain/attempt-policy.mjs";
 import { controlPlaneMaintenanceCopy, type ControlPlaneWriteAvailability } from "../lib/control-plane-write-capability";
+import type { ResearchEligibility } from "../lib/research-eligibility";
 import { activeLocalCodexInstallation } from "../lib/local-agent-journey";
+import { RESEARCH_WINDOW_REQUEST_ACCESS_HREF, researchWindowBlockedCopy } from "../components/research/ResearchWindowNotice";
 
 type WorkScope = "formalize" | "prove";
 
@@ -29,6 +31,7 @@ export function ResearchLauncher({
   signInPath,
   storageAvailable,
   writeAvailability,
+  eligibility,
 }: {
   profile: DelegationProfile | null;
   attempts: readonly McpAttempt[];
@@ -40,6 +43,7 @@ export function ResearchLauncher({
   signInPath: string;
   storageAvailable: boolean;
   writeAvailability: ControlPlaneWriteAvailability;
+  eligibility?: ResearchEligibility | null;
 }) {
   const connection = useMemo(() => activeLocalCodexInstallation(profile), [profile]);
   const delegation = useMemo(() => connectedWorkDelegation(profile, connection?.agentId, connection?.delegationCertificateId), [connection, profile]);
@@ -66,10 +70,56 @@ export function ResearchLauncher({
       attempt.delegationScope === scope,
     ) ?? null
     : null;
+  const creationBlockedByWindow = eligibility ? !eligibility.canCreateAttempt : false;
+  const connectedAgentAllowed = !eligibility || !connection
+    ? true
+    : eligibility.agentsAllowed.items.some((agent) => agent.id === connection.agentId && agent.allowed);
+  const connectedAgentBlocked = Boolean(eligibility && connection && !connectedAgentAllowed);
+  const existingCoverage = eligibility && existing
+    ? eligibility.attemptsAllowed.items.find((attempt) => attempt.id === existing.id) ?? null
+    : null;
+  // An Attempt created after this page rendered is not in the server snapshot.
+  // A valid creation window still covers it when this Person and connected
+  // Agent are allowed, matching the gate's attempt:write behavior.
+  const existingWritable = !eligibility || !existing
+    ? true
+    : existingCoverage
+      ? existingCoverage.covered
+      : Boolean(eligibility.window.valid
+        && eligibility.window.allowNewAttempts
+        && eligibility.personAllowed
+        && connectedAgentAllowed);
+  const continueBlocked = Boolean(eligibility && existing && !existingWritable);
+  const newAttemptBlocked = creationBlockedByWindow || connectedAgentBlocked;
+  const launcherBlocked = (newAttemptBlocked && !existing) || continueBlocked;
+  const connectedAgentCopy = {
+    title: "The Agent connected here is not in the research write window.",
+    detail: "Another of your Agents may be allowed, but this browser is connected to an Agent outside the window. Reconnect an allowed Agent or ask an operator to add this one.",
+  };
+  const windowBlocked = eligibility && launcherBlocked
+    ? continueBlocked
+      ? connectedAgentBlocked
+        ? connectedAgentCopy
+        : {
+          title: "This existing Attempt is not covered by the write window.",
+          detail: "The Attempt remains readable. Ask an operator to list it, include its Agent, or enable new Attempts before continuing it.",
+        }
+      : connectedAgentBlocked
+        ? connectedAgentCopy
+        : researchWindowBlockedCopy(eligibility)
+    : null;
 
   const start = async () => {
     if (writeAvailability !== "available") {
       setError(controlPlaneMaintenanceCopy(writeAvailability).detail);
+      return;
+    }
+    if (continueBlocked) {
+      setError(windowBlocked?.detail ?? "This existing Attempt is not covered by the current research write window.");
+      return;
+    }
+    if (newAttemptBlocked && !existing) {
+      setError(windowBlocked?.detail ?? "The current research write window does not allow creating a new Attempt.");
       return;
     }
     if (!target || !delegation || !scope || isStarting || atCapacity) return;
@@ -146,6 +196,12 @@ export function ResearchLauncher({
       detail={`${controlPlaneMaintenanceCopy(writeAvailability).detail} When updates return, you can connect Codex once before starting research.`}
       href="/explore"
       action="Browse public research"
+    /> : windowBlocked ? <LauncherState
+      title={windowBlocked.title}
+      detail={windowBlocked.detail}
+      href={RESEARCH_WINDOW_REQUEST_ACCESS_HREF}
+      action="Request access"
+      external
     /> : !connection ? <LauncherState
       title="Connect Codex once before starting research."
       detail={entryTarget ? `Connect once, then return to start or resume ${entryTarget.title}. Your target will not be discarded.` : "The one-time browser approval creates your local Agent identity and revocable authority. No public key, token, or workspace is pasted into Proofweave."}
@@ -186,7 +242,7 @@ export function ResearchLauncher({
       </div>}
       <div className="research-launcher-footer">
         <p><strong>{connection.agentLabel}</strong> is ready. We record only a provisional Attempt now; progress, evidence, Lean execution, and review remain separate gates.</p>
-        <Button className="button button-primary" type="button" onClick={() => { void start(); }} disabled={isStarting || atCapacity}>
+        <Button className="button button-primary" type="button" onClick={() => { void start(); }} disabled={isStarting || atCapacity || (newAttemptBlocked && !existing) || continueBlocked}>
           {isStarting ? "Starting research…" : existing ? "Continue research" : atCapacity ? "Active research capacity reached" : "Start research"}
           {!isStarting && !atCapacity && <span aria-hidden="true">→</span>}
         </Button>
@@ -199,10 +255,16 @@ export function ResearchLauncher({
   </section>;
 }
 
-function LauncherState({ title, detail, href, action }: { title: string; detail: string; href: string; action: string }) {
+function LauncherState({ title, detail, href, action, external = false }: {
+  title: string;
+  detail: string;
+  href: string;
+  action: string;
+  external?: boolean;
+}) {
   return <div className="research-launcher-state">
     <div><strong>{title}</strong><p>{detail}</p></div>
-    <ActionLink className="button button-primary" href={href}>{action} <span aria-hidden="true">→</span></ActionLink>
+    <ActionLink className="button button-primary" href={href} target={external ? "_blank" : undefined} rel={external ? "noreferrer" : undefined}>{action} <span aria-hidden="true">→</span></ActionLink>
   </div>;
 }
 

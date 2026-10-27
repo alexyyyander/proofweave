@@ -57,6 +57,7 @@ export default async function SignInPage({ searchParams }: SignInPageProps) {
         <div className="auth-boundary">
           <strong>One Person, multiple sign-in methods.</strong>
           <p>ChatGPT sign-in through the original site retains its existing Person. Other sign-in methods may use a separate Person; matching email alone does not guarantee account linking. Email and account identifiers remain private; public contribution records expose only your chosen display name and Person ID.</p>
+          <p>By continuing, you agree to the <Link href="/terms">Terms</Link> and the <Link href="/privacy">Privacy notice</Link>.</p>
         </div>
       </Surface>
     </SiteFrame>;

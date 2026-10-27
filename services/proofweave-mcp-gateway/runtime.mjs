@@ -7,7 +7,7 @@ import { createRemoteMcpGateway } from "./worker.mjs";
 import { CloudflareRunnerQueue } from "../lean-runner/cloudflare-queues.mjs";
 import { D1RunnerLeaseQueue } from "../lean-runner/d1-runner-lease-queue.mjs";
 import { PinnedRunnerImageRegistry } from "../lean-runner/runner-image-policy.mjs";
-import { D1InlineArtifactStore } from "../artifacts/d1-inline-artifact-store.mjs";
+import { D1InlineArtifactStore, D1HybridArtifactBucket } from "../artifacts/d1-inline-artifact-store.mjs";
 import { D1ContributionReceiptCoordinator } from "../receipts/d1-contribution-receipt-coordinator.mjs";
 import { HostedRunnerWakeClient } from "../lean-runner/hosted-runner-wake-client.mjs";
 import {
@@ -84,7 +84,8 @@ export function createD1RemoteMcpGatewayRuntime({
       "PROOFWEAVE_CONTROL_PLANE_MODE must be read_write or read_only.",
     );
   }
-  const artifactStore = bucket
+  const artifactBucket = bucket ? new D1HybridArtifactBucket({ database, bucket }) : null;
+  const artifactStore = artifactBucket
     ? null
     : new D1InlineArtifactStore({ database });
   // During a maintenance freeze, read tools must remain available even when
@@ -97,7 +98,7 @@ export function createD1RemoteMcpGatewayRuntime({
   const runnerDispatcher = writeComponentsEnabled
     ? createOptionalRunnerDispatcher({
       database,
-      bucket,
+      bucket: artifactBucket,
       artifactStore,
       runnerQueue: selectRunnerQueue({ database, runnerQueue, runnerQueueMode }),
       runnerApprovedImagesJson,
@@ -126,7 +127,7 @@ export function createD1RemoteMcpGatewayRuntime({
     resource,
     issuer,
     identityProvider: createOAuthAccessTokenAuthenticator({ store: oauthStore, resource }),
-    store: new D1RemoteMcpGatewayStore({ database, bucket, artifactStore, runnerDispatcher, receiptCoordinator, researchWriteAllowlistJson }),
+    store: new D1RemoteMcpGatewayStore({ database, bucket: artifactBucket, artifactStore, runnerDispatcher, receiptCoordinator, researchWriteAllowlistJson }),
     rateLimiter: new D1RemoteMcpRateLimiter({ database }),
     operationMode: normalizedOperationMode,
   });

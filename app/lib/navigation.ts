@@ -24,6 +24,7 @@ export const navigationGroups = [
     items: [
       { href: "/publications", label: "Publications" },
       { href: "/reviews", label: "Review queue" },
+      { href: "/reviewers", label: "Reviewers" },
       { href: "/receipts", label: "Contribution records" },
       { href: "/demo", label: "Verification" },
     ],
@@ -34,7 +35,9 @@ export const navigationGroups = [
       { href: "/how-it-works", label: "How it works" },
       { href: "/about/principles", label: "Principles" },
       { href: "/about/catalog-standard", label: "Catalog standard" },
-      { href: "/privacy", label: "Privacy & terms" },
+      { href: "/privacy", label: "Privacy" },
+      { href: "/terms", label: "Terms" },
+      { href: "/support", label: "Support" },
     ],
   },
 ] as const;

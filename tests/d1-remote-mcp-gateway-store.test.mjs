@@ -18,6 +18,7 @@ import { D1ProofweaveOAuthStore } from "../services/proofweave-identity/d1-oauth
 import { D1VerificationStore } from "../services/verification/d1-verification-store.mjs";
 import { D1R2VerificationReplayEvidenceStore } from "../services/verification/d1-r2-verification-replay-evidence-store.mjs";
 import { D1R2ArtifactStore } from "../services/artifacts/d1-r2-artifact-store.mjs";
+import { D1HybridArtifactBucket } from "../services/artifacts/d1-inline-artifact-store.mjs";
 import {
   verificationAttestationPayloadHash,
   verificationAttestationSigningPayload,
@@ -250,6 +251,25 @@ test("provider-neutral gateway composes the durable database Runner queue only f
     }),
   };
   assert.equal(typeof createD1RemoteMcpGatewayRuntime(complete).fetch, "function");
+  const largeOutputLimits = JSON.stringify({
+    cpuSeconds: 60,
+    wallSeconds: 120,
+    memoryMiB: 2_048,
+    diskMiB: 2_048,
+    outputBytes: 2_000_000,
+  });
+  assert.equal(typeof createD1RemoteMcpGatewayRuntime({
+    ...complete,
+    runnerDefaultLimitsJson: largeOutputLimits,
+  }).fetch, "function");
+  assert.throws(
+    () => createD1RemoteMcpGatewayRuntime({
+      ...complete,
+      bucket: null,
+      runnerDefaultLimitsJson: largeOutputLimits,
+    }),
+    /Runner dispatch configuration is invalid/,
+  );
   assert.throws(
     () => createD1RemoteMcpGatewayRuntime({ ...complete, runnerQueueMode: "memory" }),
     /RUNNER_QUEUE_MODE must be d1/,
@@ -985,7 +1005,10 @@ test("a prove-delegated OAuth Agent stages a signed v2 Bundle and requests one i
 });
 
 test("an accepted independent reviewer can queue and read only a fresh replay of the assigned Bundle", async () => {
-  const artifacts = new D1R2ArtifactStore({ database, bucket: artifactBucket });
+  const artifacts = new D1R2ArtifactStore({
+    database,
+    bucket: new D1HybridArtifactBucket({ database, bucket: artifactBucket }),
+  });
   const [archive, patch, lakeManifest] = await Promise.all([
     artifacts.putObject({ bytes: "replay fixture archive", filename: "source.tar.zst", contentType: "application/zstd" }),
     artifacts.putObject({ bytes: "diff --git a/Proofweave/Replay.lean b/Proofweave/Replay.lean\n", filename: "normalized.patch", contentType: "text/x-diff" }),

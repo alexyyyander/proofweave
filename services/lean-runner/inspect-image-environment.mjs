@@ -31,7 +31,7 @@ if (expectedMathlibRevision === "none") {
   if (!packagesRoot) throw new Error("Mathlib image does not declare its package closure.");
   const mathlibRoot = join(packagesRoot, "mathlib");
   const smokePath = "/tmp/proofweave/ProofweaveImageSmoke.lean";
-  await writeFile(smokePath, "import Mathlib\n#check Nat\n", "utf8");
+  await writeFile(smokePath, "module\nimport Mathlib\n#check Nat\n", "utf8");
   run("lake", ["env", "lean", smokePath], { cwd: mathlibRoot });
 }
 

@@ -87,6 +87,11 @@
 .footer-intro p { color: var(--ink-soft); font-size: var(--text-sm); line-height: 1.55; margin: 16px 0 0; max-width: 280px; }
 .site-footer-compact .footer-intro p { margin: 0; max-width: 430px; }
 .footer-compact-note { color: var(--ink-faint); font-size: var(--text-2xs) !important; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.site-footer-compact .footer-meta { display: grid; gap: 10px; justify-items: end; }
+.site-footer-compact .footer-legal-links { display: flex; flex-wrap: wrap; font-size: var(--text-xs); gap: 14px; justify-content: flex-end; }
+.site-footer-compact .footer-legal-links a { color: var(--ink-soft); }
+.site-footer-compact .footer-legal-links a:hover { color: var(--indigo); }
+@media (max-width: 620px) { .site-footer-compact .footer-meta { justify-items: start; }.site-footer-compact .footer-legal-links { justify-content: flex-start; } }
 
 .home-choice-section, .home-boundary-section { margin: 0 auto; max-width: 1240px; padding: 88px 28px; }
 .home-choice-section { border-bottom: 1px solid var(--line); }
