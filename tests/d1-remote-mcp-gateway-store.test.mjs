@@ -1486,3 +1486,84 @@ test("the MCP gate fails closed without an allowlist and denies an unlisted iden
     ResearchWriteNotAllowedError,
   );
 });
+
+test("cross-owner review writes require the author Attempt to be explicitly listed", async () => {
+  await database.prepare(
+    "INSERT INTO artifact_objects (content_hash, object_key, byte_length, content_type) VALUES (?, ?, ?, ?)",
+  ).bind(sha("c"), `bundles/sha256/${"c".repeat(64)}/bundle.json`, 2, "application/json").run();
+  await database.prepare(
+    `INSERT INTO artifact_bundles (
+       id, attempt_id, problem_revision_id, manifest_hash, manifest_key,
+       canonical_manifest, agent_event_id, agent_event_payload_hash
+     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+  ).bind(
+    "bundle:gateway-outside-window",
+    "attempt:gateway",
+    "revision:gateway",
+    sha("c"),
+    `bundles/sha256/${"c".repeat(64)}/bundle.json`,
+    "{}",
+    "agent-event:gateway-outside-window",
+    sha("d"),
+  ).run();
+  const verification = new D1VerificationStore(database);
+  await verification.assign({
+    id: "assignment:gateway-outside-window",
+    artifactBundleManifestHash: sha("c"),
+    claimType: "bundle_reproducible",
+    verifierPersonId: "person:gateway-reviewer",
+    assignedAt: "2026-07-13T00:00:30Z",
+  });
+  await verification.accept("assignment:gateway-outside-window", "person:gateway-reviewer", "2026-07-13T00:00:31Z");
+  await verification.assign({
+    id: "assignment:gateway-outside-window-attestation",
+    artifactBundleManifestHash: sha("c"),
+    claimType: "novelty_reviewed",
+    verifierPersonId: "person:gateway-reviewer",
+    assignedAt: "2026-07-13T00:00:32Z",
+  });
+  await verification.accept("assignment:gateway-outside-window-attestation", "person:gateway-reviewer", "2026-07-13T00:00:33Z");
+
+  // The reviewer Person + Agent are in the window and new Attempts are open,
+  // but the assignment's author Attempt is intentionally not listed.
+  const restrictive = new D1RemoteMcpGatewayStore({
+    database,
+    bucket: artifactBucket,
+    researchWriteAllowlistJson: JSON.stringify({
+      schemaVersion: "pw-research-write-allowlist-v1",
+      persons: ["person:gateway-reviewer"],
+      agents: ["agent:gateway-reviewer"],
+      attempts: [],
+      allowNewAttempts: true,
+    }),
+  });
+  const replayPrincipal = {
+    clientId: "client:gateway-codex",
+    personId: "person:gateway-reviewer",
+    agentInstallationId: "installation:gateway-reviewer",
+    scopes: ["verification:replay"],
+  };
+  await assert.rejects(
+    restrictive.requestVerificationReplay(replayPrincipal, {
+      assignmentId: "assignment:gateway-outside-window",
+      idempotencyKey: "outside-window-replay",
+    }),
+    ResearchWriteNotAllowedError,
+  );
+
+  const attestationPrincipal = {
+    clientId: "client:gateway-codex",
+    personId: "person:gateway-reviewer",
+    agentInstallationId: "installation:gateway-reviewer",
+    scopes: ["catalog:read", "verification:write"],
+  };
+  const attestation = await signedAttestation({
+    id: "attestation:gateway-outside-window",
+    assignmentId: "assignment:gateway-outside-window-attestation",
+    claimType: "novelty_reviewed",
+  });
+  await assert.rejects(
+    restrictive.submitVerificationAttestation(attestationPrincipal, attestation),
+    ResearchWriteNotAllowedError,
+  );
+});

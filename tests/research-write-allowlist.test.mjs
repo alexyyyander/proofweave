@@ -146,7 +146,19 @@ test("an allowed person and agent may work on their own new Attempt during a cre
     personId: "person:a",
     agentId: "agent:a",
     attemptId: "attempt:new",
+    attemptOwnershipVerified: true,
   }));
+  assert.throws(
+    () => assertResearchWriteAllowed({
+      values: values({ ...allowlist, allowNewAttempts: true, attempts: [] }),
+      surface: "participant",
+      operation: "progress:write",
+      personId: "person:a",
+      agentId: "agent:a",
+      attemptId: "attempt:new",
+    }),
+    (error) => error instanceof ResearchWriteNotAllowedError && error.dimension === "attempt",
+  );
   assert.throws(
     () => assertResearchWriteAllowed({
       values: values({ ...allowlist, allowNewAttempts: true, attempts: [] }),
@@ -155,6 +167,7 @@ test("an allowed person and agent may work on their own new Attempt during a cre
       personId: "person:b",
       agentId: "agent:a",
       attemptId: "attempt:new",
+      attemptOwnershipVerified: true,
     }),
     ResearchWriteNotAllowedError,
   );
@@ -166,9 +179,37 @@ test("an allowed person and agent may work on their own new Attempt during a cre
       personId: "person:a",
       agentId: "agent:a",
       attemptId: "attempt:new",
+      attemptOwnershipVerified: true,
     }),
     (error) => error instanceof ResearchWriteNotAllowedError && error.dimension === "attempt",
   );
+});
+
+test("cross-owner review operations cannot use the creation-window exception", () => {
+  const creationWindow = { ...allowlist, allowNewAttempts: true, attempts: [] };
+  for (const operation of ["review:replay", "attestation:write"]) {
+    assert.throws(
+      () => assertResearchWriteAllowed({
+        values: values(creationWindow, "mcp"),
+        surface: "mcp",
+        operation,
+        personId: "person:a",
+        agentId: "agent:a",
+        attemptId: "attempt:another-owner",
+        attemptOwnershipVerified: true,
+      }),
+      (error) => error instanceof ResearchWriteNotAllowedError && error.dimension === "attempt",
+      operation,
+    );
+    assert.doesNotThrow(() => assertResearchWriteAllowed({
+      values: values({ ...creationWindow, attempts: ["attempt:another-owner"] }, "mcp"),
+      surface: "mcp",
+      operation,
+      personId: "person:a",
+      agentId: "agent:a",
+      attemptId: "attempt:another-owner",
+    }), operation);
+  }
 });
 
 test("person-scoped operations do not require an Agent or Attempt", () => {

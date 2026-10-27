@@ -359,6 +359,7 @@ class D1McpRepository implements McpRepository {
       personId,
       agentId: attempt.agentId,
       attemptId: attempt.id,
+      attemptOwnershipVerified: true,
     });
 
     const existing = await this.findEvent(input.attemptId, input.idempotencyKey);
@@ -429,6 +430,7 @@ class D1McpRepository implements McpRepository {
       personId,
       agentId: current.agentId,
       attemptId: current.id,
+      attemptOwnershipVerified: true,
     });
 
     const now = new Date().toISOString();
@@ -497,6 +499,7 @@ class D1McpRepository implements McpRepository {
       personId,
       agentId: current.agentId,
       attemptId: current.id,
+      attemptOwnershipVerified: true,
     });
 
     const now = new Date().toISOString();

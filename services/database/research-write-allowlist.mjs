@@ -23,6 +23,19 @@ const allowedKeys = new Set(["schemaVersion", "persons", "agents", "attempts", "
 const dimensions = new Set(["person", "agent", "attempt"]);
 const maximumEntries = 100;
 
+// Only owner-side operations whose callers have verified that the stored
+// Attempt belongs to the allowed Person + Agent may use the creation window.
+// Cross-owner review operations (review:replay, attestation:write) must name
+// the target Attempt explicitly because the reviewer is not its owner.
+const creationWindowAttemptOperations = new Set([
+  "progress:write",
+  "attempt:lifecycle",
+  "checkpoint:write",
+  "artifact:write",
+  "run:request",
+  "run:cancel",
+]);
+
 export class ResearchWriteGateConfigurationError extends Error {
   constructor(message) {
     super(message);
@@ -128,6 +141,7 @@ export function researchWriteAllowlistState(values, surface) {
  *   personId?: string | null,
  *   agentId?: string | null,
  *   attemptId?: string | null,
+ *   attemptOwnershipVerified?: boolean,
  * }} input
  */
 export function assertResearchWriteAllowed({
@@ -138,6 +152,7 @@ export function assertResearchWriteAllowed({
   personId = null,
   agentId = null,
   attemptId = null,
+  attemptOwnershipVerified = false,
 }) {
   if (typeof operation !== "string" || operation.trim() === "") {
     throw new ResearchWriteGateConfigurationError("operation must be a non-empty string");
@@ -156,11 +171,16 @@ export function assertResearchWriteAllowed({
     }
     if (lists[dimension].includes(value)) continue;
     // A creation window covers Attempts owned by the allowed Person + Agent.
-    // Callers verify that ownership against the stored row before gating, so a
-    // newly created Attempt can be resumed without redeploying the allowlist.
+    // The caller must assert that it verified ownership against the stored row,
+    // and the operation must be an owner-side write. Cross-owner review
+    // operations therefore still require the target Attempt to be listed.
     // Once `allowNewAttempts` is false, only explicitly listed Attempts pass.
-    if (dimension === "attempt" && state.allowNewAttempts
-        && required.includes("person") && required.includes("agent")) {
+    if (dimension === "attempt"
+        && state.allowNewAttempts
+        && attemptOwnershipVerified === true
+        && creationWindowAttemptOperations.has(operation)
+        && required.includes("person")
+        && required.includes("agent")) {
       continue;
     }
     throw new ResearchWriteNotAllowedError(dimension);
