@@ -2,11 +2,41 @@
   <strong>English</strong> | <a href="./README.zh-CN.md">中文</a>
 </p>
 
+<h1 align="center">Proofweave</h1>
+
+## Let every mathematical contribution be seen
+
+The solution to a difficult mathematical problem begins long before the final
+line of its proof.
+
+Before an answer emerges, someone poses the question, someone tests its
+boundaries, and someone creates the mathematical tools it needs. Someone finds
+a promising path; someone else's unsuccessful attempt shows later researchers
+where a path does not work. Together, these efforts advance research, yet they
+are not always fully represented in the final result.
+
+**Proofweave exists for this collaboration.**
+
+We want to build an open mathematical research platform where problems,
+conjectures, lemmas, tools, reasoning steps, and verification results can be
+recorded, cited, and reused. Each advance can connect to the work it depends
+on, helping others continue from existing results and keeping contributors'
+names connected to the value they create.
+
+Through formal verification and traceable contribution records, we aim to
+reduce duplicated effort, improve collaboration, and provide a foundation for
+more transparent and fair recognition and reward allocation.
+
+Mathematics grows through connections between countless people's ideas.
+Proofweave aims to make these connections visible, so that every contribution
+that advances knowledge can be seen.
+
+**Proofweave: help mathematical collaboration keep growing, and let every
+contribution leave a trace.**
+
 <p align="center">
   <img src="./public/proofweave-devpost-cover.png" alt="Proofweave: a person delegates an agent, shares research evidence, and receives attribution after verification" width="100%" />
 </p>
-
-<h1 align="center">Proofweave</h1>
 
 <p align="center">
   <strong>Verifiable collaboration for people and their agents.<br />Starting with formal mathematics.</strong>
@@ -202,6 +232,63 @@ restart; they are not installed automatically.
 
 ## Contributions and rewards
 
+### A contribution network that grows through reuse
+
+The product goal is to connect new theorems, lemmas, methods, tools, and proof
+strategies to their contributors and to the later results that use them.
+A contribution can retain its attribution across tasks. Under a future
+participating reward policy, later accepted reuse can make its contributors
+eligible for a share of each new task's reward budget.
+
+Three records have different roles:
+
+| Record | Purpose |
+| --- | --- |
+| Contribution | Identifies a bounded result or method, its version, contributors, evidence, and acceptance status |
+| Reuse relationship | Records which accepted contribution a later result uses, where it is used, and the evidence supporting that relationship |
+| Reward settlement | Records the budget, policy, approved recipients and shares for one accepted task |
+
+For example, Alice proves lemma A, Bob uses A to develop method B, and Carol
+uses B with Dan's strategy C to solve problem P. A participating reward pool
+for P would consider the accepted work on A, B, C, and P. If another task Q
+later uses B, its own policy could allocate a new share to B and the eligible
+upstream work on A. Each pool must fund and approve its own allocation.
+
+### Proposed rules for contribution value and reward allocation
+
+These rules describe the intended extension; they are not an active payout
+policy or a completed allocation algorithm.
+
+- **Establish a baseline.** Existing mathematical knowledge, standard theorems,
+  and libraries remain cited foundations. Ordinary use does not automatically
+  earn reward shares. Missing historical attribution stays explicitly unknown;
+  older work needs evidence and review before admission to a reward policy.
+- **Record new contributions over time.** New results and methods receive
+  versioned attribution and evidence. Useful boundary checks and failed
+  approaches can be recorded; reward eligibility requires evidence of their
+  accepted scope and actual role in later work.
+- **Evaluate the work actually used.** A task proposes a bounded reward value
+  and budget. Allocation considers accepted contribution to the result,
+  criticality, available alternatives, the advance enabled, and supporting
+  evidence. Key ideas and indispensable steps can receive greater weight.
+  Formal dependency checks support this assessment; evaluating the influence
+  of a strategy also requires approved research records and review.
+- **Count distinct contributions.** Node count, path count, commit count,
+  Agent count, and compute spend do not determine value. A policy must handle
+  shared ancestors, equivalent contributions, and overlapping work so that
+  splitting or repeating a contribution cannot increase its total share.
+- **Approve each settlement.** Before activation, a task publishes its budget,
+  eligible contribution types, baseline, upstream scope, valuation procedure,
+  and dispute process. Locking records the exact dependency graph, reviewed
+  weights, recipients, and policy version. Shares must fit the fixed budget.
+  Contested allocations remain pending until adjudicated.
+- **Make continued participation explicit.** Future tasks can reward accepted
+  reuse again under their own policies. Attribution alone creates no automatic
+  royalty obligation for ordinary mathematical citation or external users.
+  Financial distributions require a funded program and approved payment rules.
+
+### Current implementation
+
 Sharing a checkpoint, running an agent, or spending compute does not by itself
 create a reward entitlement. A Receipt records accepted evidence and attribution
 under a specific policy. It is not a payment or an unrestricted authorship claim.
@@ -213,6 +300,19 @@ challenge reserve. Eligibility depends on valid Receipts and the applicable
 pool policy; intermediate work must meet the relevant verification and
 dependency conditions. This code does not establish that a funded or active
 reward pool is available. See the [credit-market design](docs/credit-market-v1.md).
+
+The [Receipt credit implementation](packages/protocol/receipt-credit.mjs)
+already records `downstream_impact` for the verified beneficiaries of dependency
+Receipts. These entries record reuse; their units do not measure mathematical
+value or specify a share of money. The v1 pool policy reserves 30% for the final
+result, 40% for verified dependencies, 20% for independent verification, and 10%
+for challenges. These bucket totals do not determine the relative value of
+individual upstream contributions.
+
+The next implementation work is to specify and test cross-task reward
+eligibility, reviewed contribution weights, shared-ancestor deduplication,
+multi-level allocation, and auditable settlement proposals. These rules need
+real collaboration examples and review before they govern funded tasks.
 
 A general bounty service would also need sponsor budgets, task-specific
 acceptance rules, duplicate and dependency policies, conflicts of interest,
