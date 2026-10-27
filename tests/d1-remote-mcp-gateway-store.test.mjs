@@ -1172,12 +1172,13 @@ async function signedAttestation({
   claimType = "kernel_accepted",
   attestedAt = "2026-07-13T00:00:02Z",
   evidenceHash = sha("b"),
+  artifactBundleHash = sha("a"),
 } = {}) {
   const attestation = {
     protocolVersion: "pw-verification-attestation-v1",
     id,
     assignmentId,
-    artifactBundleHash: sha("a"),
+    artifactBundleHash,
     claimType,
     verifierPersonId: "person:gateway-reviewer",
     verifierAgentId: "agent:gateway-reviewer",
@@ -1526,17 +1527,32 @@ test("cross-owner review writes require the author Attempt to be explicitly list
 
   // The reviewer Person + Agent are in the window and new Attempts are open,
   // but the assignment's author Attempt is intentionally not listed.
+  const window = {
+    schemaVersion: "pw-research-write-allowlist-v1",
+    persons: ["person:gateway-reviewer"],
+    agents: ["agent:gateway-reviewer"],
+    attempts: [],
+    allowNewAttempts: true,
+  };
+  let dispatchCalls = 0;
+  const runnerDispatcher = { async queueBundle() {
+    dispatchCalls += 1;
+    throw new Error("local replay dispatch reached");
+  } };
   const restrictive = new D1RemoteMcpGatewayStore({
     database,
     bucket: artifactBucket,
-    researchWriteAllowlistJson: JSON.stringify({
-      schemaVersion: "pw-research-write-allowlist-v1",
-      persons: ["person:gateway-reviewer"],
-      agents: ["agent:gateway-reviewer"],
-      attempts: [],
-      allowNewAttempts: true,
-    }),
+    runnerDispatcher,
+    researchWriteAllowlistJson: JSON.stringify(window),
   });
+  const snapshot = async () => ({
+    replays: await database.prepare("SELECT COUNT(*) AS count FROM verification_replays").first("count"),
+    attestations: await database.prepare("SELECT COUNT(*) AS count FROM verification_attestations").first("count"),
+    assignmentEvents: await database.prepare("SELECT COUNT(*) AS count FROM verification_assignment_events").first("count"),
+    queueMessages: await database.prepare("SELECT COUNT(*) AS count FROM runner_queue_messages").first("count"),
+  });
+  const before = await snapshot();
+  const outsideAttempt = error => error instanceof ResearchWriteNotAllowedError && error.dimension === "attempt";
   const replayPrincipal = {
     clientId: "client:gateway-codex",
     personId: "person:gateway-reviewer",
@@ -1548,8 +1564,10 @@ test("cross-owner review writes require the author Attempt to be explicitly list
       assignmentId: "assignment:gateway-outside-window",
       idempotencyKey: "outside-window-replay",
     }),
-    ResearchWriteNotAllowedError,
+    outsideAttempt,
   );
+  assert.equal(dispatchCalls, 0);
+  assert.deepEqual(await snapshot(), before);
 
   const attestationPrincipal = {
     clientId: "client:gateway-codex",
@@ -1561,9 +1579,57 @@ test("cross-owner review writes require the author Attempt to be explicitly list
     id: "attestation:gateway-outside-window",
     assignmentId: "assignment:gateway-outside-window-attestation",
     claimType: "novelty_reviewed",
+    artifactBundleHash: sha("c"),
+    attestedAt: "2026-07-13T00:00:34Z",
   });
   await assert.rejects(
     restrictive.submitVerificationAttestation(attestationPrincipal, attestation),
-    ResearchWriteNotAllowedError,
+    outsideAttempt,
   );
+  assert.deepEqual(await snapshot(), before);
+  assert.equal((await verification.requireAssignment("assignment:gateway-outside-window-attestation")).status, "accepted");
+
+  // The same accepted assignments and signed evidence become authorized only
+  // when the author's Attempt is explicitly included in the review window.
+  const listed = new D1RemoteMcpGatewayStore({
+    database, bucket: artifactBucket, runnerDispatcher,
+    researchWriteAllowlistJson: JSON.stringify({ ...window, attempts: ["attempt:gateway"] }),
+  });
+  await assert.rejects(listed.requestVerificationReplay(replayPrincipal, {
+    assignmentId: "assignment:gateway-outside-window",
+    idempotencyKey: "outside-window-replay",
+  }), /local replay dispatch reached/);
+  assert.equal(dispatchCalls, 1);
+  const recorded = await listed.submitVerificationAttestation(attestationPrincipal, attestation);
+  assert.equal(recorded.created, true);
+  assert.equal((await verification.requireAssignment("assignment:gateway-outside-window-attestation")).status, "completed");
+});
+
+test("an owner may resume an unlisted new Attempt only while creation remains open", async () => {
+  await database.prepare(`INSERT INTO agent_installations (
+    id, person_id, agent_id, delegation_certificate_id, client_id, label
+  ) VALUES (?, ?, ?, ?, ?, ?)`).bind(
+    "installation:gateway-owner-prover", "person:gateway-owner", "agent:gateway-owner-prover",
+    "delegation:gateway-owner-prover", "client:gateway-codex", "Owner window regression",
+  ).run();
+  const window = {
+    schemaVersion: "pw-research-write-allowlist-v1",
+    persons: ["person:gateway-owner"], agents: ["agent:gateway-owner-prover"],
+    attempts: [], allowNewAttempts: true,
+  };
+  const store = new D1RemoteMcpGatewayStore({ database, researchWriteAllowlistJson: JSON.stringify(window) });
+  const principal = {
+    clientId: "client:gateway-codex", personId: "person:gateway-owner",
+    agentInstallationId: "installation:gateway-owner-prover",
+    scopes: ["attempt:create", "attempt:read", "progress:write"],
+  };
+  const input = { problemSlug: "gateway-target", delegationScope: "prove", idempotencyKey: "owner-window-resumption" };
+  const created = await store.createAttempt(principal, input);
+  assert.equal(created.idempotentReplay, false);
+  assert.equal((await store.createAttempt(principal, input)).attempt.id, created.attempt.id);
+  const progress = { attemptId: created.attempt.id, message: "Continue owned research", progressPercent: 10, idempotencyKey: "owned-window-progress" };
+  assert.equal((await store.reportProgress(principal, progress)).idempotentReplay, false);
+  const closed = new D1RemoteMcpGatewayStore({ database, researchWriteAllowlistJson: JSON.stringify({ ...window, allowNewAttempts: false }) });
+  await assert.rejects(closed.reportProgress(principal, { ...progress, idempotencyKey: "closed-window-progress" }),
+    error => error instanceof ResearchWriteNotAllowedError && error.dimension === "attempt");
 });
