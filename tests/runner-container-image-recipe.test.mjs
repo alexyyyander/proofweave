@@ -1,6 +1,21 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { spawnSync } from "node:child_process";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import test from "node:test";
+import { assertReviewedRunnerNode } from "../services/lean-runner/runner-node-policy.mjs";
+
+test("Runner rejects vulnerable, missing, mismatched and unreviewed Node runtimes", () => {
+  assert.equal(assertReviewedRunnerNode("22.23.4", "22.23.4"), "22.23.4");
+  assert.equal(assertReviewedRunnerNode("22.24.0", "22.24.0"), "22.24.0");
+  for (const version of [undefined, "", "22.13.0", "22.23.1", "22.23.3", "24.0.0", "22.23.4-rc.1", "v22.23.4", "022.23.4"]) {
+    assert.throws(() => assertReviewedRunnerNode(version, version), /EXPECTED_NODE_VERSION/);
+  }
+  for (const actual of [undefined, "22.23.1", "22.23.3", "22.23.5", "24.0.0"]) {
+    assert.throws(() => assertReviewedRunnerNode(actual, "22.23.4"), /does not match/);
+  }
+});
 
 const dockerfileUrl = new URL("../services/lean-runner/Dockerfile", import.meta.url);
 const coreBaseDockerfileUrl = new URL("../services/lean-runner/Dockerfile.core-alpha-base", import.meta.url);
@@ -9,6 +24,44 @@ const dockerignoreUrl = new URL("../.dockerignore", import.meta.url);
 const imageContractUrl = new URL("../docs/runner-container-image.md", import.meta.url);
 const imageWorkflowUrl = new URL("../.github/workflows/build-e2b-lean-runner-image.yml", import.meta.url);
 const e2bTemplateBuildUrl = new URL("../scripts/build-e2b-lean-runner-template.mjs", import.meta.url);
+
+test("Image scan gate rejects high findings and missing or mismatched evidence", async () => {
+  const workflow = await readFile(imageWorkflowUrl, "utf8");
+  const scanStep = workflow.slice(workflow.indexOf("      - name: Scan the exact final image"), workflow.indexOf("      - name: Preserve image inspection evidence"));
+  const code = /node --input-type=module -e '([\s\S]*)'\s*$/.exec(scanStep)?.[1];
+  assert.ok(code, "exercise the exact scan gate executed by the workflow");
+  const image = `ghcr.io/example/runner@sha256:${"a".repeat(64)}`;
+  const cases = [
+    { name: "clean", report: { Metadata: { RepoDigests: [image] }, Results: [{ Vulnerabilities: [] }] }, approved: true },
+    { name: "high-unfixed", report: { Metadata: { RepoDigests: [image] }, Results: [{ Vulnerabilities: [{ Severity: "HIGH", VulnerabilityID: "CVE-test" }] }] }, approved: false, blocking: 1 },
+    { name: "critical", report: { Metadata: { RepoDigests: [image] }, Results: [{ Vulnerabilities: [{ Severity: "CRITICAL" }] }] }, approved: false, blocking: 1 },
+    { name: "no-results", report: { Metadata: { RepoDigests: [image] }, Results: [] }, approved: false },
+    { name: "wrong-image", report: { Metadata: { RepoDigests: [image.replace(/a/g, "b")] }, Results: [{}] }, approved: false },
+  ];
+  for (const fixture of cases) {
+    const directory = await mkdtemp(join(tmpdir(), "pw-image-scan-"));
+    try {
+      const evidenceRoot = join(directory, "runner-image-evidence");
+      await mkdir(evidenceRoot);
+      await writeFile(join(evidenceRoot, "trivy.json"), JSON.stringify(fixture.report));
+      const result = spawnSync(process.execPath, ["--input-type=module", "-e", code], {
+        cwd: directory,
+        env: { ...process.env, FINAL_RUNNER_IMAGE: image, GITHUB_SHA: "b".repeat(40), GITHUB_RUN_ID: "123" },
+        encoding: "utf8",
+      });
+      assert.equal(result.status === 0, fixture.approved, fixture.name + ": " + result.stderr);
+      if (fixture.approved || fixture.blocking) {
+        const evidence = JSON.parse(await readFile(join(evidenceRoot, "image-review.json"), "utf8"));
+        assert.equal(evidence.image, image);
+        assert.equal(evidence.blockingHighCritical, fixture.blocking ?? 0);
+        assert.equal(evidence.ignoredUnfixed, false);
+        assert.match(evidence.scanSha256, /^[a-f0-9]{64}$/);
+      }
+    } finally {
+      await rm(directory, { recursive: true, force: true });
+    }
+  }
+});
 
 test("Lean Runner image recipe fails closed and keeps its build context minimal", async () => {
   const [dockerfile, coreBaseDockerfile, mathlibBaseDockerfile, dockerignore, contract, imageWorkflow] = await Promise.all([
@@ -70,6 +123,23 @@ test("Lean Runner image recipe fails closed and keeps its build context minimal"
   assert.match(mathlibBaseDockerfile, /su -s \/bin\/sh proofweave -c 'cd \/tmp\/proofweave-external-smoke && lake build ProofweaveImageSmoke && lake env lean ProofweaveImageSmoke\.lean'/);
 
   assert.match(imageWorkflow, /node@sha256:[a-f0-9]{64}/);
+  assert.match(imageWorkflow, /EXPECTED_NODE_VERSION: 22\.23\.4/);
+  assert.equal(imageWorkflow.match(/EXPECTED_NODE_VERSION=\$\{\{ env\.EXPECTED_NODE_VERSION \}\}/g)?.length, 2);
+  assert.match(imageWorkflow, /-e EXPECTED_NODE_VERSION="\$EXPECTED_NODE_VERSION"/);
+  for (const recipe of [dockerfile, coreBaseDockerfile, mathlibBaseDockerfile]) {
+    assert.match(recipe, /^ARG EXPECTED_NODE_VERSION$/m);
+    assert.match(recipe, /assertReviewedRunnerNode\(process\.versions\.node, process\.env\.EXPECTED_NODE_VERSION\)/);
+  }
+  const inspector = await readFile(new URL("../services/lean-runner/inspect-image-environment.mjs", import.meta.url), "utf8");
+  assert.match(inspector, /assertReviewedRunnerNode\(process\.versions\.node, process\.env\.EXPECTED_NODE_VERSION\)/);
+  assert.match(imageWorkflow, /cancel-in-progress: false/);
+  assert.match(imageWorkflow, /trivy_0\.76\.1_Linux-64bit\.tar\.gz/);
+  assert.match(imageWorkflow, /c7cbe3137fb8a48a17574bede3dd6beb16742d1e9772929940fc90082c39d9c0/);
+  assert.match(imageWorkflow, /--scanners vuln --list-all-pkgs/);
+  assert.match(imageWorkflow, /RepoDigests\?\.includes\(process\.env\.FINAL_RUNNER_IMAGE\)/);
+  assert.doesNotMatch(imageWorkflow, /--ignore-unfixed|continue-on-error: true/);
+  assert.match(imageWorkflow, /actions\/upload-artifact@[a-f0-9]{40}/);
+  assert.match(inspector, /proofweave-image-dependency-inventory/);
   assert.match(imageWorkflow, /lean-4\.27\.0-linux\.zip/);
   assert.match(imageWorkflow, /mathlib-4\.27-a3a10/);
   assert.match(imageWorkflow, /mathlib-4\.31-9a948/);

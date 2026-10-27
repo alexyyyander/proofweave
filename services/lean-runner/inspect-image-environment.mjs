@@ -1,6 +1,9 @@
 import { spawnSync } from "node:child_process";
 import { readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
+import { assertReviewedRunnerNode } from "./runner-node-policy.mjs";
+
+assertReviewedRunnerNode(process.versions.node, process.env.EXPECTED_NODE_VERSION);
 
 const metadataPath = process.env.PROOFWEAVE_IMAGE_METADATA;
 const expectedLeanToolchain = process.env.EXPECTED_LEAN_TOOLCHAIN;
@@ -30,6 +33,14 @@ if (expectedMathlibRevision === "none") {
 } else {
   if (!packagesRoot) throw new Error("Mathlib image does not declare its package closure.");
   const mathlibRoot = join(packagesRoot, "mathlib");
+  const lakeManifest = JSON.parse(await readFile(join(mathlibRoot, "lake-manifest.json"), "utf8"));
+  process.stdout.write(`proofweave-image-dependency-inventory: ${JSON.stringify({
+    schemaVersion: "pw-lean-image-dependencies-v1",
+    nodeVersion: process.versions.node,
+    leanToolchain: expectedLeanToolchain,
+    mathlibRevision: expectedMathlibRevision,
+    lakeManifest,
+  })}\n`);
   const smokePath = "/tmp/proofweave/ProofweaveImageSmoke.lean";
   await writeFile(smokePath, "import Mathlib\n#check Nat\n", "utf8");
   run("lake", ["env", "lean", smokePath], { cwd: mathlibRoot });

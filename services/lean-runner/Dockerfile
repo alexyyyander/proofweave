@@ -9,9 +9,13 @@ ARG RUNNER_BASE_IMAGE
 FROM ${RUNNER_BASE_IMAGE}
 
 ARG RUNNER_BASE_IMAGE
+ARG EXPECTED_NODE_VERSION
 ARG EXPECTED_LEAN_TOOLCHAIN
 ARG EXPECTED_MATHLIB_REVISION
 ENV PROOFWEAVE_IMAGE_METADATA=/opt/proofweave/lean-environment.json
+
+COPY services/lean-runner/runner-node-policy.mjs /opt/proofweave/services/lean-runner/runner-node-policy.mjs
+RUN node --input-type=module -e 'import { assertReviewedRunnerNode } from "/opt/proofweave/services/lean-runner/runner-node-policy.mjs"; assertReviewedRunnerNode(process.versions.node, process.env.EXPECTED_NODE_VERSION)'
 
 # Fail closed if an operator supplies a mutable base tag, a base that lacks the
 # declared environment metadata, or a toolchain that cannot run without root.

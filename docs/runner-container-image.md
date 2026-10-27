@@ -5,7 +5,7 @@ Status: reproducible reviewed Lean environment build path, 2026-07-21
 This document defines the reproducible build input for the private Lean Runner
 Container. It does not approve a particular output digest or authorize a
 deployment. The final image must still pass the gates in
-[`runner-cloudflare-deployment.md`](runner-cloudflare-deployment.md).
+[`runner-provider-neutral-deployment.md`](runner-provider-neutral-deployment.md).
 
 ## Reviewed Runner profiles
 
@@ -15,6 +15,26 @@ Mathlib commit `a3a10db0e9d66acbebf76c5e6a135066525ac900` on Lean 4.27.0,
 and Mathlib commit `9a9483a92959bc92bd6a60176dd1fe597298c1f8` on Lean 4.31.0.
 Every profile pins the Node base by OCI digest and the official Lean archive
 by SHA-256.
+
+The reviewed Node base is Docker Official Image `node:22.23.4-bookworm`, pinned
+as `node@sha256:63538dfe497cc29dfafdda25ada09b46db68a3f4cc205abf1f5d6bf0913f3384`.
+Both base recipes, final assembly and offline smoke require
+`EXPECTED_NODE_VERSION=22.23.4` and compare it with the actual Node runtime.
+The policy rejects Node 22 versions below 22.23.4 and unreviewed Node majors.
+This replaces Node 22.23.1 after the
+[2026-10-21 security release](https://nodejs.org/en/blog/release/v22.23.4).
+It does not change the selected Lean release or Mathlib commit. Rebuilding
+produces a new image digest that still needs full-image vulnerability review,
+SBOM/provenance verification and E2B isolation checks before approval.
+
+The build scans the exact final digest with checksum-pinned Trivy 0.76.1.
+HIGH or CRITICAL findings, including unfixed findings, block the job; a scanner
+failure also blocks it. The image may already have been published as a candidate
+before this gate, so GHCR presence is not approval. The 30-day image-review
+artifact retains the full scan JSON, its SHA-256/source/run/image binding and
+the offline smoke log. For Mathlib profiles that log also includes the pinned
+Lake manifest, which supplements the SPDX package inventory. It does not make
+the SBOM itself a complete Lean dependency or license audit.
 
 The workflow publishes a Linux/amd64 base and final image to GHCR, emits SBOM
 and build provenance, assembles the final image with Docker build networking
@@ -51,7 +71,8 @@ inspected before it is used as a build input.
 Every independently built base must provide, on `PATH` for the unprivileged
 `proofweave` user:
 
-- Node.js 22.13 or newer;
+- the exact reviewed Node.js 22 version, at least 22.23.4, selected through
+  `EXPECTED_NODE_VERSION`;
 - `lake` and `lean` for the exact selected Lean toolchain;
 - `patch`, `tar`, and either Node native zstd or the `zstd` executable for the
   checked-in private workspace runtime;

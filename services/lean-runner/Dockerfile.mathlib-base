@@ -7,11 +7,15 @@ ARG NODE_BASE_IMAGE
 FROM ${NODE_BASE_IMAGE}
 
 ARG NODE_BASE_IMAGE
+ARG EXPECTED_NODE_VERSION
 ARG EXPECTED_LEAN_TOOLCHAIN
 ARG EXPECTED_MATHLIB_REVISION
 ARG LEAN_RELEASE_URL
 ARG LEAN_RELEASE_SHA256
 ARG LEAN_ARCHIVE_ROOT
+
+COPY services/lean-runner/runner-node-policy.mjs /opt/proofweave/services/lean-runner/runner-node-policy.mjs
+RUN node --input-type=module -e 'import { assertReviewedRunnerNode } from "/opt/proofweave/services/lean-runner/runner-node-policy.mjs"; assertReviewedRunnerNode(process.versions.node, process.env.EXPECTED_NODE_VERSION)'
 
 RUN node --input-type=module -e '\
   const [base, toolchain, mathlib, url, digest, root] = process.argv.slice(1); \

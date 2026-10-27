@@ -18,12 +18,14 @@ permissions:
 
 concurrency:
   group: proofweave-reviewed-lean-runner-image
-  # A newer manually reviewed image build supersedes an older queued or running
-  # one. E2B template creation is deliberately outside GitHub.
-  cancel-in-progress: true
+  # Preserve an existing build; publishing a candidate must not cancel another
+  # reviewed build. E2B template creation is deliberately outside GitHub.
+  cancel-in-progress: false
 
 env:
-  NODE_BASE_IMAGE: node@sha256:5647be709086c696ff32edaaf1c70cd26d1da6ab2b39c32f3c7b4c4a31957e37
+  # Docker Official Image node:22.23.4-bookworm, verified for linux/amd64.
+  NODE_BASE_IMAGE: node@sha256:63538dfe497cc29dfafdda25ada09b46db68a3f4cc205abf1f5d6bf0913f3384
+  EXPECTED_NODE_VERSION: 22.23.4
   BASE_IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/proofweave-lean-base
   RUNNER_IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/proofweave-lean-runner
 
@@ -127,6 +129,7 @@ jobs:
           tags: ${{ env.BASE_IMAGE_NAME }}:${{ github.sha }}-${{ steps.profile.outputs.profile }}
           build-args: |
             NODE_BASE_IMAGE=${{ env.NODE_BASE_IMAGE }}
+            EXPECTED_NODE_VERSION=${{ env.EXPECTED_NODE_VERSION }}
             EXPECTED_LEAN_TOOLCHAIN=${{ steps.profile.outputs.lean_toolchain }}
             EXPECTED_MATHLIB_REVISION=${{ steps.profile.outputs.mathlib_revision }}
             LEAN_RELEASE_URL=${{ steps.profile.outputs.lean_release_url }}
@@ -147,6 +150,7 @@ jobs:
           tags: ${{ env.RUNNER_IMAGE_NAME }}:${{ github.sha }}-${{ steps.profile.outputs.profile }}
           build-args: |
             RUNNER_BASE_IMAGE=${{ env.BASE_IMAGE_NAME }}@${{ steps.base.outputs.digest }}
+            EXPECTED_NODE_VERSION=${{ env.EXPECTED_NODE_VERSION }}
             EXPECTED_LEAN_TOOLCHAIN=${{ steps.profile.outputs.lean_toolchain }}
             EXPECTED_MATHLIB_REVISION=${{ steps.profile.outputs.mathlib_revision }}
 
@@ -164,13 +168,53 @@ jobs:
           FINAL_RUNNER_IMAGE: ${{ env.RUNNER_IMAGE_NAME }}@${{ steps.runner.outputs.digest }}
           LEAN_TOOLCHAIN: ${{ steps.profile.outputs.lean_toolchain }}
           MATHLIB_REVISION: ${{ steps.profile.outputs.mathlib_revision }}
-        run: >-
-          docker run --rm --network=none --cpus=2 --memory=2g
-          --pids-limit=128 --tmpfs /tmp/proofweave:rw,nosuid,nodev,size=1g,mode=1777
-          -e EXPECTED_LEAN_TOOLCHAIN="$LEAN_TOOLCHAIN"
-          -e EXPECTED_MATHLIB_REVISION="$MATHLIB_REVISION"
-          --entrypoint node "$FINAL_RUNNER_IMAGE"
-          /opt/proofweave/services/lean-runner/inspect-image-environment.mjs
+        run: |
+          mkdir -p runner-image-evidence
+          docker run --rm --network=none --cpus=2 --memory=2g \
+            --pids-limit=128 --tmpfs /tmp/proofweave:rw,nosuid,nodev,size=1g,mode=1777 \
+            -e EXPECTED_NODE_VERSION="$EXPECTED_NODE_VERSION" \
+            -e EXPECTED_LEAN_TOOLCHAIN="$LEAN_TOOLCHAIN" \
+            -e EXPECTED_MATHLIB_REVISION="$MATHLIB_REVISION" \
+            --entrypoint node "$FINAL_RUNNER_IMAGE" \
+            /opt/proofweave/services/lean-runner/inspect-image-environment.mjs \
+            | tee runner-image-evidence/offline-smoke.log
+
+      - name: Scan the exact final image for vulnerabilities
+        env:
+          FINAL_RUNNER_IMAGE: ${{ env.RUNNER_IMAGE_NAME }}@${{ steps.runner.outputs.digest }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/proofweave-trivy" runner-image-evidence
+          curl --proto '=https' --tlsv1.2 --fail --location --silent --show-error \
+            https://github.com/aquasecurity/trivy/releases/download/v0.76.1/trivy_0.76.1_Linux-64bit.tar.gz \
+            --output "$RUNNER_TEMP/proofweave-trivy/trivy.tar.gz"
+          echo "c7cbe3137fb8a48a17574bede3dd6beb16742d1e9772929940fc90082c39d9c0  $RUNNER_TEMP/proofweave-trivy/trivy.tar.gz" | sha256sum --check --strict
+          tar -xzf "$RUNNER_TEMP/proofweave-trivy/trivy.tar.gz" -C "$RUNNER_TEMP/proofweave-trivy" trivy
+          "$RUNNER_TEMP/proofweave-trivy/trivy" image --image-src docker \
+            --scanners vuln --list-all-pkgs --timeout 20m --format json \
+            --output runner-image-evidence/trivy.json "$FINAL_RUNNER_IMAGE"
+          node --input-type=module -e '
+            import { readFileSync, writeFileSync } from "node:fs";
+            import { createHash } from "node:crypto";
+            const bytes = readFileSync("runner-image-evidence/trivy.json");
+            const report = JSON.parse(bytes);
+            if (!Array.isArray(report.Results) || report.Results.length === 0) throw new Error("Missing vulnerability scan results.");
+            if (!report.Metadata?.RepoDigests?.includes(process.env.FINAL_RUNNER_IMAGE)) throw new Error("Scan does not bind the expected immutable image.");
+            const vulnerabilities = report.Results.flatMap(result => result.Vulnerabilities ?? []);
+            const blocking = vulnerabilities.filter(item => ["HIGH", "CRITICAL"].includes(item.Severity));
+            const evidence = { sourceSha: process.env.GITHUB_SHA, runId: process.env.GITHUB_RUN_ID, image: process.env.FINAL_RUNNER_IMAGE, scanner: "trivy 0.76.1", scanSha256: createHash("sha256").update(bytes).digest("hex"), vulnerabilityCount: vulnerabilities.length, blockingHighCritical: blocking.length, ignoredUnfixed: false };
+            writeFileSync("runner-image-evidence/image-review.json", JSON.stringify(evidence, null, 2) + "\n");
+            console.log(JSON.stringify(evidence));
+            if (blocking.length) throw new Error("Image requires HIGH/CRITICAL vulnerability triage; production approval is blocked.");
+          '
+
+      - name: Preserve image inspection evidence
+        if: ${{ always() && steps.runner.outcome == 'success' }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: runner-image-review-${{ github.sha }}-${{ inputs.profile }}
+          path: runner-image-evidence/
+          if-no-files-found: error
+          retention-days: 30
 
       - name: Attest the final Runner image in GitHub when supported
         if: ${{ github.event.repository.visibility == 'public' }}
