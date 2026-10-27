@@ -12,6 +12,53 @@ import {
 export const maxInlineArtifactObjectBytes = 1_000_000;
 
 /**
+ * Migration-safe bucket: small objects stay in D1, large objects go to R2.
+ * Reads check D1 first so existing inline evidence remains available after a
+ * deployment adds an R2 binding.
+ */
+export class D1HybridArtifactBucket {
+  constructor({ database, bucket, inlineLimit = maxInlineArtifactObjectBytes } = {}) {
+    if (!database || typeof database.prepare !== "function") {
+      throw new TypeError("D1HybridArtifactBucket requires a D1 database binding.");
+    }
+    if (!bucket || typeof bucket.head !== "function" || typeof bucket.get !== "function" || typeof bucket.put !== "function") {
+      throw new TypeError("D1HybridArtifactBucket requires an object-storage bucket.");
+    }
+    if (!Number.isSafeInteger(inlineLimit) || inlineLimit < 1) {
+      throw new TypeError("D1HybridArtifactBucket inlineLimit must be a positive integer.");
+    }
+    this.inline = new D1InlineArtifactBucket(database);
+    this.remote = bucket;
+    this.inlineLimit = inlineLimit;
+  }
+
+  async head(objectKey) {
+    return (await this.inline.head(objectKey)) ?? await this.remote.head(objectKey);
+  }
+
+  async get(objectKey) {
+    return (await this.inline.get(objectKey)) ?? await this.remote.get(objectKey);
+  }
+
+  async getMany(objectKeys) {
+    const inline = await this.inline.getMany(objectKeys);
+    const missing = objectKeys.filter((key) => !inline.has(key));
+    if (missing.length === 0) return inline;
+    for (const key of missing) {
+      const object = await this.remote.get(key);
+      if (object) inline.set(key, object);
+    }
+    return inline;
+  }
+
+  async put(objectKey, value, options = {}) {
+    const bytes = toBytes(value);
+    if (bytes.byteLength <= this.inlineLimit) return this.inline.put(objectKey, bytes, options);
+    return this.remote.put(objectKey, bytes, options);
+  }
+}
+
+/**
  * D1-only implementation of the narrow R2 object surface used by the
  * immutable artifact adapters. Keeping this surface R2-shaped means the
  * existing content-addressing, conditional-write, and provenance checks stay

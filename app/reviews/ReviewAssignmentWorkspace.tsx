@@ -1,17 +1,11 @@
 "use client";
 
+import { PageTitle, SectionTitle, Field, ActionLink, Button, FieldList, SectionHeading, Surface } from "@/app/components/ui";
+
 import Link from "next/link";
 import { useState } from "react";
-import type {
-  ReviewAssignmentDetail,
-  ReviewAssignmentSummary,
-} from "@/db/repositories/reviews";
-import {
-  reviewClaimLabel,
-  reviewDecisionLabel,
-  reviewEventLabel,
-  reviewStatusDetail,
-} from "./review-presentation";
+import { type ReviewAssignmentDetail, type ReviewAssignmentSummary } from "@/db/repositories/reviews";
+import { reviewClaimLabel, reviewDecisionLabel, reviewEventLabel, reviewStatusDetail } from "./review-presentation";
 
 type ReviewAssignmentWorkspaceProps = {
   initialReview: ReviewAssignmentDetail;
@@ -46,10 +40,10 @@ export function ReviewAssignmentWorkspace({ initialReview, hasReviewDelegation }
   };
 
   return <>
-    <section className="review-workspace-heading">
-      <div><p className="eyebrow">Independent review · {reviewClaimLabel(assignment.claimType)}</p><h1>{assignment.target.title}</h1><p><code>{assignment.target.declaration}</code></p></div>
-      <div className="review-workspace-heading-state"><span className={`review-status is-${state.tone}`}>{state.label}</span><button className="quiet-action" type="button" disabled={busy !== null} onClick={() => void loadReview()}>{busy === "refresh" ? "Refreshing…" : "Refresh status"}</button></div>
-    </section>
+    <SectionHeading as="section" className="review-workspace-heading">
+      <div><p className="eyebrow">Independent review · {reviewClaimLabel(assignment.claimType)}</p><PageTitle>{assignment.target.title}</PageTitle><p><code>{assignment.target.declaration}</code></p></div>
+      <div className="review-workspace-heading-state"><span className={`review-status is-${state.tone}`}>{state.label}</span><Button className="quiet-action" type="button" disabled={busy !== null} onClick={() => void loadReview()}>{busy === "refresh" ? "Refreshing…" : "Refresh status"}</Button></div>
+    </SectionHeading>
 
     {(notice || error) && <p className={error ? "review-message is-error" : "review-message"} role="status">{error ?? notice}</p>}
 
@@ -57,27 +51,27 @@ export function ReviewAssignmentWorkspace({ initialReview, hasReviewDelegation }
 
     <div className="review-workspace-grid">
       <div className="review-workspace-primary">
-        <section className="review-workspace-panel" aria-labelledby="review-evidence-title">
+        <Surface as="section" className="review-workspace-panel" aria-labelledby="review-evidence-title">
           <div className="panel-heading"><span>01 / Evidence brief</span><Link className="text-link" href={`/evidence/${encodeURIComponent(assignment.artifactBundleManifestHash)}`}>Inspect controlled Bundle <span>→</span></Link></div>
           <div className="review-evidence-brief">
-            <div><p className="eyebrow">Exact claim</p><h2 id="review-evidence-title">{reviewClaimLabel(assignment.claimType)}</h2><p>{claimRequirement(assignment.claimType)}</p></div>
+            <div><p className="eyebrow">Exact claim</p><SectionTitle id="review-evidence-title">{reviewClaimLabel(assignment.claimType)}</SectionTitle><p>{claimRequirement(assignment.claimType)}</p></div>
             <ul>{claimChecklist(assignment.claimType).map((item) => <li key={item}>{item}</li>)}</ul>
           </div>
-          <dl className="review-metadata review-workspace-metadata">
-            <div><dt>Assignment</dt><dd><code>{assignment.id}</code></dd></div>
-            <div><dt>Exact Bundle</dt><dd><code>{assignment.artifactBundleManifestHash}</code></dd></div>
-            <div><dt>Submitting Agent</dt><dd>{assignment.attempt.agentLabel ?? assignment.attempt.agentId ?? "Agent record unavailable"}</dd></div>
-            <div><dt>Assigned</dt><dd>{assignment.assignedAt}</dd></div>
-            <div><dt>Fresh replay requests</dt><dd>{assignment.freshReplayCount}</dd></div>
-            <div><dt>Terminal replay evidence</dt><dd>{assignment.freshReplayEvidenceCount}</dd></div>
-          </dl>
-        </section>
+          <FieldList className="review-metadata review-workspace-metadata">
+            <Field label="Assignment"><code>{assignment.id}</code></Field>
+            <Field label="Exact Bundle"><code>{assignment.artifactBundleManifestHash}</code></Field>
+            <Field label="Submitting Agent">{assignment.attempt.agentLabel ?? assignment.attempt.agentId ?? "Agent record unavailable"}</Field>
+            <Field label="Assigned">{assignment.assignedAt}</Field>
+            <Field label="Fresh replay requests">{assignment.freshReplayCount}</Field>
+            <Field label="Terminal replay evidence">{assignment.freshReplayEvidenceCount}</Field>
+          </FieldList>
+        </Surface>
 
-        <section className="review-workspace-panel" aria-labelledby="review-audit-title">
+        <Surface as="section" className="review-workspace-panel" aria-labelledby="review-audit-title">
           <div className="panel-heading"><span>02 / Immutable history</span><span>{review.events.length} events</span></div>
-          <h2 className="visually-hidden" id="review-audit-title">Immutable review history</h2>
+          <SectionTitle className="visually-hidden" id="review-audit-title">Immutable review history</SectionTitle>
           <ol className="review-audit-trail review-workspace-audit">{review.events.map((event) => <li key={event.id}><span>{event.sequence}</span><div><strong>{reviewEventLabel(event.eventType)}</strong><small>{event.occurredAt}</small></div><code>{event.payloadHash}</code></li>)}</ol>
-        </section>
+        </Surface>
       </div>
 
       <aside className="review-workspace-sidebar" aria-label="Recommended next action">
@@ -87,7 +81,7 @@ export function ReviewAssignmentWorkspace({ initialReview, hasReviewDelegation }
           busy={busy}
           onTransition={loadReview}
         />
-        <section className="review-boundary-card"><p className="eyebrow">Settlement boundary</p><strong>No decision, Receipt, or credit is created by opening this page.</strong><p>A completed signed review may become eligible for a fixed verification share only if the target later closes through a valid Contribution Receipt.</p></section>
+        <Surface as="section" className="review-boundary-card"><p className="eyebrow">Settlement boundary</p><strong>No decision, Receipt, or credit is created by opening this page.</strong><p>A completed signed review may become eligible for a fixed verification share only if the target later closes through a valid Contribution Receipt.</p></Surface>
       </aside>
     </div>
   </>;
@@ -112,15 +106,15 @@ function ReviewAction({ assignment, hasReviewDelegation, busy, onTransition }: {
   busy: "accept" | "decline" | "refresh" | null;
   onTransition: (action?: "accept" | "decline") => Promise<void>;
 }) {
-  if (assignment.status === "assigned") return <section className="review-next-action is-assigned"><p className="eyebrow">Recommended next action</p><h2>Accept this bounded review.</h2><p>Acceptance assigns the work to your Person record. It does not attest the claim or reserve credit.</p><div className="review-next-buttons"><button className="button button-primary" type="button" disabled={busy !== null} onClick={() => void onTransition("accept")}>{busy === "accept" ? "Accepting…" : "Accept review"}</button><button className="quiet-action" type="button" disabled={busy !== null} onClick={() => void onTransition("decline")}>{busy === "decline" ? "Declining…" : "Decline"}</button></div></section>;
+  if (assignment.status === "assigned") return <section className="review-next-action is-assigned"><p className="eyebrow">Recommended next action</p><SectionTitle>Accept this bounded review.</SectionTitle><p>Acceptance assigns the work to your Person record. It does not attest the claim or reserve credit.</p><div className="review-next-buttons"><Button className="button button-primary" type="button" disabled={busy !== null} onClick={() => void onTransition("accept")}>{busy === "accept" ? "Accepting…" : "Accept review"}</Button><Button className="quiet-action" type="button" disabled={busy !== null} onClick={() => void onTransition("decline")}>{busy === "decline" ? "Declining…" : "Decline"}</Button></div></section>;
 
-  if (assignment.status === "declined") return <section className="review-next-action is-terminal"><p className="eyebrow">Review closed</p><h2>This assignment was declined.</h2><p>The decision to decline remains in the immutable history. No mathematical claim or review share was created.</p><Link className="button button-secondary" href="/reviews">Return to review queue</Link></section>;
+  if (assignment.status === "declined") return <section className="review-next-action is-terminal"><p className="eyebrow">Review closed</p><SectionTitle>This assignment was declined.</SectionTitle><p>The decision to decline remains in the immutable history. No mathematical claim or review share was created.</p><ActionLink className="button button-secondary" href="/reviews">Return to review queue</ActionLink></section>;
 
-  if (assignment.status === "completed") return <section className="review-next-action is-complete"><p className="eyebrow">{assignment.receipt ? "Contribution closed" : "Signed decision recorded"}</p><h2>{assignment.receipt ? "Receipt issued." : assignment.attestation ? reviewDecisionLabel(assignment.attestation.decision) : "Review completed"}</h2><p>{assignment.receipt ? "The required independent claims are complete and the platform has bound this review into an issuer-signed contribution record." : assignment.attestation ? `Evidence ${assignment.attestation.evidenceHash} is bound to this exact claim. Other required Receipt gates may still be open.` : "The completed state has no readable attestation summary."}</p>{assignment.attestation && <dl><div><dt>Attestation</dt><dd><code>{assignment.attestation.id}</code></dd></div><div><dt>Recorded</dt><dd>{assignment.attestation.attestedAt}</dd></div>{assignment.receipt && <div><dt>Receipt hash</dt><dd><code>{assignment.receipt.receiptHash}</code></dd></div>}</dl>}{assignment.receipt ? <Link className="button button-primary" href={`/receipt/${encodeURIComponent(assignment.receipt.id)}`}>Open signed Receipt</Link> : <Link className="button button-secondary" href={`/evidence/${encodeURIComponent(assignment.artifactBundleManifestHash)}`}>Inspect evidence record</Link>}</section>;
+  if (assignment.status === "completed") return <section className="review-next-action is-complete"><p className="eyebrow">{assignment.receipt ? "Contribution closed" : "Signed decision recorded"}</p><SectionTitle>{assignment.receipt ? "Receipt issued." : assignment.attestation ? reviewDecisionLabel(assignment.attestation.decision) : "Review completed"}</SectionTitle><p>{assignment.receipt ? "The required independent claims are complete and the platform has bound this review into an issuer-signed contribution record." : assignment.attestation ? `Evidence ${assignment.attestation.evidenceHash} is bound to this exact claim. Other required Receipt gates may still be open.` : "The completed state has no readable attestation summary."}</p>{assignment.attestation && <FieldList><Field label="Attestation"><code>{assignment.attestation.id}</code></Field><Field label="Recorded">{assignment.attestation.attestedAt}</Field>{assignment.receipt && <div><dt>Receipt hash</dt><dd><code>{assignment.receipt.receiptHash}</code></dd></div>}</FieldList>}{assignment.receipt ? <ActionLink className="button button-primary" href={`/receipt/${encodeURIComponent(assignment.receipt.id)}`}>Open signed Receipt</ActionLink> : <ActionLink className="button button-secondary" href={`/evidence/${encodeURIComponent(assignment.artifactBundleManifestHash)}`}>Inspect evidence record</ActionLink>}</section>;
 
-  if (!hasReviewDelegation) return <section className="review-next-action"><p className="eyebrow">Agent authority required</p><h2>Connect a review-scoped Agent.</h2><p>The assigned Person must explicitly delegate review authority before an Agent can request a replay or sign a decision.</p><Link className="button button-primary" href="/integrations#review-agent">Connect review Agent <span aria-hidden="true">→</span></Link></section>;
+  if (!hasReviewDelegation) return <section className="review-next-action"><p className="eyebrow">Agent authority required</p><SectionTitle>Connect a review-scoped Agent.</SectionTitle><p>The assigned Person must explicitly delegate review authority before an Agent can request a replay or sign a decision.</p><ActionLink className="button button-primary" href="/integrations#review-agent">Connect review Agent <span aria-hidden="true">→</span></ActionLink></section>;
 
-  return <section className="review-next-action"><p className="eyebrow">Recommended next action</p><h2>{assignment.freshReplayEvidenceCount > 0 ? "Prepare the evidence-bound decision." : assignment.freshReplayCount > 0 ? "Check the fresh replay." : "Continue with your review Agent."}</h2><p>{assignment.freshReplayEvidenceCount > 0 ? "The infrastructure replay is terminal. Your Agent must still perform the requested claim check and show you the exact signed draft before submission." : assignment.freshReplayCount > 0 ? "A replay request exists but no terminal evidence is visible yet. Ask your Agent to inspect the exact replay state." : "Your Agent will inspect this assignment and Bundle first. It must wait for your approval before starting execution or preparing a signed conclusion."}</p><ReviewAgentPrompt assignment={assignment} /><Link className="text-link" href="/integrations#review-agent">Review Agent connection <span>→</span></Link></section>;
+  return <section className="review-next-action"><p className="eyebrow">Recommended next action</p><SectionTitle>{assignment.freshReplayEvidenceCount > 0 ? "Prepare the evidence-bound decision." : assignment.freshReplayCount > 0 ? "Check the fresh replay." : "Continue with your review Agent."}</SectionTitle><p>{assignment.freshReplayEvidenceCount > 0 ? "The infrastructure replay is terminal. Your Agent must still perform the requested claim check and show you the exact signed draft before submission." : assignment.freshReplayCount > 0 ? "A replay request exists but no terminal evidence is visible yet. Ask your Agent to inspect the exact replay state." : "Your Agent will inspect this assignment and Bundle first. It must wait for your approval before starting execution or preparing a signed conclusion."}</p><ReviewAgentPrompt assignment={assignment} /><Link className="text-link" href="/integrations#review-agent">Review Agent connection <span>→</span></Link></section>;
 }
 
 function ReviewAgentPrompt({ assignment }: { assignment: ReviewAssignmentSummary }) {
@@ -135,7 +129,7 @@ function ReviewAgentPrompt({ assignment }: { assignment: ReviewAssignmentSummary
       setCopied(false);
     }
   };
-  return <button className="button button-primary review-agent-prompt" type="button" onClick={() => void copy()}>{copied ? "Agent task copied" : assignment.freshReplayEvidenceCount > 0 ? "Copy decision task" : assignment.freshReplayCount > 0 ? "Copy replay check" : "Copy Agent task"}</button>;
+  return <Button className="button button-primary review-agent-prompt" type="button" onClick={() => void copy()}>{copied ? "Agent task copied" : assignment.freshReplayEvidenceCount > 0 ? "Copy decision task" : assignment.freshReplayCount > 0 ? "Copy replay check" : "Copy Agent task"}</Button>;
 }
 
 function reviewAgentPrompt(assignment: ReviewAssignmentSummary) {

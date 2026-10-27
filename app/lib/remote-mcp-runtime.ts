@@ -25,8 +25,10 @@ export async function handleRemoteMcp(request: Request): Promise<Response> {
     const operationState = getMcpOperationState();
     const origin = new URL(request.url).origin;
     const settings = env as unknown as Record<string, string | undefined>;
+    const artifactBucket = (env as unknown as { ARTIFACT_BUCKET?: unknown }).ARTIFACT_BUCKET ?? null;
     return await createD1RemoteMcpGatewayRuntime({
       database: getMcpD1(),
+      bucket: artifactBucket,
       resource: `${origin}${proofweaveMcpPath}`,
       issuer: origin,
       runnerQueueMode: settings.RUNNER_QUEUE_MODE,
@@ -42,6 +44,7 @@ export async function handleRemoteMcp(request: Request): Promise<Response> {
       receiptIssuerPrivateKeyJwkJson: settings.RECEIPT_ISSUER_PRIVATE_KEY_JWK,
       receiptIssuerActivatedAt: settings.RECEIPT_ISSUER_ACTIVATED_AT,
       operationMode: operationState.mode,
+      researchWriteAllowlistJson: settings.PROOFWEAVE_MCP_RESEARCH_WRITE_ALLOWLIST_JSON,
     }).fetch(request);
   } catch (error) {
     return remoteMcpFailure("mcp", error);

@@ -1,4 +1,6 @@
 import { getD1 } from "@/db";
+import { readCatalogMetadata, readCatalogPage } from "@/services/catalog/browser";
+import type { CatalogBrowseOptions, CatalogMetadata, CatalogPage } from "@/packages/domain/catalog-browser";
 import {
   catalogDisplayStatuses,
   type CatalogClaim,
@@ -91,8 +93,10 @@ type SummarySubjectRow = Pick<SubjectRow, "problem_revision_id" | "id" | "slug" 
 type SummaryCollectionRow = Pick<CollectionRow, "problem_revision_id" | "tier" | "role" | "position">;
 
 export interface CatalogReader {
-  list(kind: CatalogRecordKind): Promise<CatalogProblem[]>;
+  list(kind: CatalogRecordKind, limit?: number): Promise<CatalogProblem[]>;
   listSummaries(kind: CatalogRecordKind): Promise<CatalogProblemSummary[]>;
+  browse(options: CatalogBrowseOptions): Promise<CatalogPage>;
+  metadata(kind: CatalogRecordKind): Promise<CatalogMetadata>;
   findBySlug(slug: string): Promise<CatalogProblem | null>;
 }
 
@@ -165,12 +169,43 @@ const selectCatalogSummaryRows = `
 `;
 
 class D1CatalogRepository implements CatalogReader {
-  async list(kind: CatalogRecordKind): Promise<CatalogProblem[]> {
+  async browse(options: CatalogBrowseOptions): Promise<CatalogPage> {
+    const database = getD1();
+    const page = await readCatalogPage(database, options);
+    if (page.ids.length === 0) return { records: [], nextCursor: null };
+    // Limit revisions before joining claims, preserving every claim for this page.
+    const result = await database.prepare(`${selectCatalogSummaryRows}
+      WHERE revision.id IN (${page.ids.map(() => "?").join(", ")}) AND project.visibility = 'public'
+      ORDER BY claim.claim_type ASC`).bind(...page.ids).all<CatalogSummaryRow>();
+    const records = await this.enrichSummaries(toCatalogProblemSummaries(result.results ?? []));
+    const positions = new Map(page.ids.map((id, index) => [id, index]));
+    records.sort((a, b) => positions.get(a.id)! - positions.get(b.id)!);
+    return { records, nextCursor: page.nextCursor };
+  }
+
+  metadata(kind: CatalogRecordKind): Promise<CatalogMetadata> {
+    return readCatalogMetadata(getD1(), kind);
+  }
+
+  async list(kind: CatalogRecordKind, limit?: number): Promise<CatalogProblem[]> {
+    if (limit !== undefined && (!Number.isSafeInteger(limit) || limit < 1 || limit > 100)) {
+      throw new RangeError("Catalog limit must be an integer between 1 and 100");
+    }
+    // Bound revisions before joining claims so each selected record keeps all evidence.
+    const bounded = limit === undefined ? "" : `AND revision.id IN (
+      SELECT revision.id FROM problem_revisions AS revision
+      INNER JOIN projects AS project ON project.id = revision.project_id
+      INNER JOIN source_snapshots AS snapshot ON snapshot.id = revision.source_snapshot_id
+      WHERE project.kind = ? AND project.visibility = 'public'
+        AND EXISTS (SELECT 1 FROM declarations WHERE problem_revision_id = revision.id AND is_primary = 1)
+        AND EXISTS (SELECT 1 FROM verification_claims WHERE problem_revision_id = revision.id)
+      ORDER BY revision.priority DESC, revision.title ASC, revision.id ASC LIMIT ?
+    )`;
     const rows = await this.readRows(
       `${selectCatalogRows}
-       WHERE project.kind = ? AND project.visibility = 'public'
-       ORDER BY revision.priority DESC, revision.title ASC, claim.claim_type ASC`,
-      [kind],
+       WHERE project.kind = ? AND project.visibility = 'public' ${bounded}
+       ORDER BY revision.priority DESC, revision.title ASC, revision.id ASC, claim.claim_type ASC`,
+      limit === undefined ? [kind] : [kind, kind, limit],
     );
 
     return this.enrich(toCatalogProblems(rows));
@@ -199,7 +234,7 @@ class D1CatalogRepository implements CatalogReader {
     return (await this.enrich(toCatalogProblems(rows)))[0] ?? null;
   }
 
-  private async readRows(query: string, bindings: readonly string[]) {
+  private async readRows(query: string, bindings: readonly (string | number)[]) {
     const result = await getD1().prepare(query).bind(...bindings).all<CatalogRow>();
     return result.results ?? [];
   }

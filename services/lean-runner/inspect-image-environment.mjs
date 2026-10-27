@@ -45,7 +45,7 @@ if (expectedMathlibRevision === "none") {
     lakeManifest,
   })}\n`);
   const smokePath = "/tmp/proofweave/ProofweaveImageSmoke.lean";
-  await writeFile(smokePath, "import Mathlib\n#check Nat\n", "utf8");
+  await writeFile(smokePath, "module\nimport Mathlib\n#check Nat\n", "utf8");
   run("lake", ["env", "lean", smokePath], { cwd: mathlibRoot });
 }
 

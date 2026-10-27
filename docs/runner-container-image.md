@@ -10,11 +10,26 @@ deployment. The final image must still pass the gates in
 ## Reviewed Runner profiles
 
 `.github/workflows/build-e2b-lean-runner-image.yml` builds one explicitly
-selected environment at a time. The reviewed profiles are Lean Core 4.27.0,
+selected environment at a time. The default build profile is
+`mathlib-4.35-56a00`: Lean 4.35.0 with Mathlib commit
+`56a005855ea17e0b0958f73ec801ae140b0a1679` (the upstream `v4.35.0` tag).
+Its official Linux archive is pinned to SHA-256
+`7289597a44543246c9227b8cae501767e095ce17f6d448b95fc4a8dc97268f6d`.
+This is a build input, not an approved or deployed image. The root
+`lean-toolchain` selects the same release for new local work; existing
+source-pinned projects and historical fixtures keep their own toolchain.
+
+The historical build profiles remain available: Lean Core 4.27.0,
 Mathlib commit `a3a10db0e9d66acbebf76c5e6a135066525ac900` on Lean 4.27.0,
 and Mathlib commit `9a9483a92959bc92bd6a60176dd1fe597298c1f8` on Lean 4.31.0.
 Every profile pins the Node base by OCI digest and the official Lean archive
 by SHA-256.
+
+Changing the build default does not migrate catalog targets. Each migrated
+target needs a new source snapshot/revision and a successful compatibility
+check before an Attempt can select the new environment. Existing Attempts,
+Bundles, and Receipts retain their original Lean and Mathlib pins. See
+[`lean-upgrade-2026-10-27.zh-CN.md`](lean-upgrade-2026-10-27.zh-CN.md).
 
 The reviewed Node **build input** is Docker Official Image `node:22.23.4-bookworm`, pinned
 as `node@sha256:63538dfe497cc29dfafdda25ada09b46db68a3f4cc205abf1f5d6bf0913f3384`.

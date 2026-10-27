@@ -1,9 +1,11 @@
 "use client";
 
+import { SectionTitle, Badge, Button, EmptyState, Input, SectionHeading, Surface, Textarea } from "@/app/components/ui";
+
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import type { FormEvent } from "react";
-import type { ProblemProposal } from "@/db/repositories/problem-proposals";
+import { useEffect, useState, type FormEvent } from "react";
+
+import { type ProblemProposal } from "@/db/repositories/problem-proposals";
 
 export function ProblemProposalClient() {
   const [proposals, setProposals] = useState<readonly ProblemProposal[]>([]);
@@ -69,29 +71,29 @@ export function ProblemProposalClient() {
   }
 
   return <div className="proposal-layout">
-    <section className="proposal-form-panel" aria-labelledby="proposal-form-title">
-      <div className="proposal-panel-heading">
-        <div><p className="eyebrow">New curator request</p><h2 id="proposal-form-title">Describe the mathematical target.</h2></div>
-        <span className="record-chip">Person-attributed</span>
-      </div>
+    <Surface as="section" className="proposal-form-panel" aria-labelledby="proposal-form-title">
+      <SectionHeading as="div" className="proposal-panel-heading">
+        <div><p className="eyebrow">New curator request</p><SectionTitle id="proposal-form-title">Describe the mathematical target.</SectionTitle></div>
+        <Badge className="record-chip">Person-attributed</Badge>
+      </SectionHeading>
       <form className="proposal-form" onSubmit={submit}>
-        <label>Working title<input name="title" minLength={5} maxLength={240} required placeholder="A concise name for the conjecture or formalization target" /></label>
-        <label>Domain<input name="domain" minLength={2} maxLength={120} required placeholder="e.g. Algebraic geometry · MSC 14" /></label>
-        <label className="proposal-wide-field">Informal statement<textarea name="informalStatement" minLength={20} maxLength={8000} required rows={7} placeholder="State the claim precisely enough that a curator can identify its hypotheses, conclusion, and intended scope." /></label>
-        <label className="proposal-wide-field">Why this target matters<textarea name="motivation" minLength={10} maxLength={4000} required rows={4} placeholder="Explain the source, open gap, expected reuse, or why formal verification would be valuable." /></label>
-        <label className="proposal-wide-field">Primary source URL <span>Optional · HTTPS</span><input name="sourceUrl" type="url" maxLength={1000} pattern="https://.*" placeholder="https://arxiv.org/... or a stable published source" /></label>
+        <label>Working title<Input name="title" minLength={5} maxLength={240} required placeholder="A concise name for the conjecture or formalization target" /></label>
+        <label>Domain<Input name="domain" minLength={2} maxLength={120} required placeholder="e.g. Algebraic geometry · MSC 14" /></label>
+        <label className="proposal-wide-field">Informal statement<Textarea name="informalStatement" minLength={20} maxLength={8000} required rows={7} placeholder="State the claim precisely enough that a curator can identify its hypotheses, conclusion, and intended scope." /></label>
+        <label className="proposal-wide-field">Why this target matters<Textarea name="motivation" minLength={10} maxLength={4000} required rows={4} placeholder="Explain the source, open gap, expected reuse, or why formal verification would be valuable." /></label>
+        <label className="proposal-wide-field">Primary source URL <span>Optional · HTTPS</span><Input name="sourceUrl" type="url" maxLength={1000} pattern="https://.*" placeholder="https://arxiv.org/... or a stable published source" /></label>
         <div className="proposal-submit-row">
           <p>Submission creates an immutable proposal plus its first status event. Catalog acceptance, Lean replay, independent review, Receipt, and Credit remain separate steps.</p>
-          <button className="button button-primary" type="submit" disabled={submitting}>{submitting ? "Recording…" : "Submit for curation"}<span aria-hidden="true">→</span></button>
+          <Button className="button button-primary" type="submit" disabled={submitting}>{submitting ? "Recording…" : "Submit for curation"}<span aria-hidden="true">→</span></Button>
         </div>
         {notice ? <p className={`proposal-notice is-${notice.tone}`} role={notice.tone === "error" ? "alert" : "status"}>{notice.message}</p> : null}
       </form>
-    </section>
+    </Surface>
 
     <aside className="proposal-history" aria-labelledby="proposal-history-title">
-      <div className="proposal-panel-heading"><div><p className="eyebrow">Your submission ledger</p><h2 id="proposal-history-title">Proposal history</h2></div><span className="record-chip">{proposals.length}</span></div>
+      <SectionHeading as="div" className="proposal-panel-heading"><div><p className="eyebrow">Your submission ledger</p><SectionTitle id="proposal-history-title">Proposal history</SectionTitle></div><Badge className="record-chip">{proposals.length}</Badge></SectionHeading>
       {loading ? <p className="proposal-history-empty">Loading your attributed proposals…</p> : proposals.length === 0
-        ? <div className="proposal-history-empty"><strong>No proposals yet.</strong><p>Your first accepted proposal will later receive a pinned source snapshot and Lean environment before Agents can work on it.</p></div>
+        ? <EmptyState as="div" className="proposal-history-empty"><strong>No proposals yet.</strong><p>Your first accepted proposal will later receive a pinned source snapshot and Lean environment before Agents can work on it.</p></EmptyState>
         : <ol className="proposal-list">{proposals.map((proposal) => <li key={proposal.id}>
           <div><span className={`proposal-status is-${proposal.status.replace("_", "-")}`}>{proposal.status.replace("_", " ")}</span><time dateTime={proposal.submittedAt}>{formatDate(proposal.submittedAt)}</time></div>
           <strong>{proposal.title}</strong>

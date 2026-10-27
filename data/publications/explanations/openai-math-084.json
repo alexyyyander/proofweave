@@ -1,0 +1,123 @@
+{
+  "schemaVersion": "pw-claim-explanation-v1",
+  "familyNumber": "084",
+  "title": "The geometric case of the Erdős similarity conjecture",
+  "level": "plain",
+  "status": "draft",
+  "reviewStatus": "unreviewed",
+  "sourceRevision": "1581d4cbdd69a0faf34b2089614fe2a814316a6a",
+  "assumptions": [
+    "The ratio q is fixed and lies strictly between 0 and 1.",
+    "The pattern being avoided is the geometric progression {q^n : n ≥ 1}, up to translation and nontrivial dilation.",
+    "Dilations may have either sign.",
+    "The constructed set may depend on q; the result does not claim one set works for several ratios at once."
+  ],
+  "conclusion": "For every fixed q in (0,1) and every η in (0,1), the paper constructs a compact subset of [0,1] of measure greater than 1−η that contains no nontrivial affine copy of {q^n : n ≥ 1}. In the one case covered by the upstream Lean scope (q = 1/2), the same avoidance is stated for every translation and every nonzero real dilation.",
+  "notProven": [
+    "The upstream Lean scope covers only the dyadic sequence {2^-n : n ≥ 1}. The general ratio q in (0,1) is not covered by the linked Lean statement.",
+    "The paper does not assert one set that simultaneously avoids copies for different ratios; its set may depend on q.",
+    "No Proofweave replay is recorded for either manuscript (proofweaveReplay: not_run), and no statement review is recorded (statementReview: not_started).",
+    "The snapshot does not show whether the general-q argument has been formalized elsewhere upstream; that remains unknown (needs review).",
+    "The construction makes the measure arbitrarily close to one, not equal to one: the complement may have positive measure."
+  ],
+  "scopeNote": "The paper's stated result covers every fixed geometric ratio q in (0,1). The Lean scope document included in the pinned snapshot proves the dyadic case q = 1/2 only. This draft presents that gap as a scope difference; it does not claim that the general case has been platform-verified.",
+  "scopeDiff": {
+    "paperStatement": "For every fixed $`q\\in(0,1)`$, constructs compact subsets of $`[0,1]`$ with measure arbitrarily close to one containing no translated and nontrivially dilated copy of $`\\{q^n:n\\ge1\\}`$, with dilations of either sign. This resolves the geometric-progression case of the Erdős similarity conjecture for every ratio.",
+    "leanStatement": "The formalization proves the dyadic case of the Erdős similarity conjecture. For every $0<\\eta<1$, it constructs a compact set $E\\subset[0,1]$ of measure greater than $1-\\eta$ that contains no affine copy of $\\{2^{-n}:n\\ge1\\}$. Explicitly, for every translation $x$ and every nonzero real dilation $s$, some point $x+s2^{-n}$ lies outside $E$. Both signs of $s$ are included.",
+    "leanStatementStatus": "recorded",
+    "gapNote": "Paper: every fixed ratio q in (0,1). Lean scope: the dyadic ratio {2^-n} only, with both signs of dilation.",
+    "platformStatus": "Not run: both manuscripts report proofweaveReplay not_run, statementReview not_started, and no receipt.",
+    "needsReview": false
+  },
+  "proofSteps": [
+    {
+      "id": "step-1",
+      "label": "Fix the dyadic ratio",
+      "detail": "The Lean scope works with the sequence {2^-n : n ≥ 1}, the geometric case at q = 1/2.",
+      "basis": "Upstream Lean scope statement from the pinned snapshot.",
+      "dependsOn": []
+    },
+    {
+      "id": "step-2",
+      "label": "Construct a compact set with measure greater than 1−η",
+      "detail": "For each 0 < η < 1, construct a compact set E ⊆ [0,1] whose measure exceeds 1−η.",
+      "basis": "Upstream Lean scope statement and the dyadic manuscript abstract.",
+      "dependsOn": []
+    },
+    {
+      "id": "step-3",
+      "label": "Show that every affine copy escapes",
+      "detail": "For every translation x and every nonzero real dilation s, some point x + s·2^-n lies outside E. Both signs of s are included.",
+      "basis": "Upstream Lean scope statement from the pinned snapshot.",
+      "dependsOn": []
+    },
+    {
+      "id": "step-4",
+      "label": "General-ratio argument (paper only)",
+      "detail": "The paper states the construction for every fixed q in (0,1). The snapshot contains neither the general-ratio proof text nor a Lean statement for it, so this step is outside the linked formal scope.",
+      "basis": "Family claim and general-case manuscript abstract.",
+      "dependsOn": [],
+      "needsReview": true
+    }
+  ],
+  "leanAnnotations": [
+    {
+      "id": "lean-scope-document",
+      "file": "lean/docs/084.md",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/docs/084.md",
+      "excerpt": null,
+      "excerptStatus": "not_in_snapshot",
+      "annotation": "The upstream scope document describes the formalization in prose. Its text is quoted in the scope comparison above; the full document is not included in the snapshot (needs review).",
+      "needsReview": true
+    },
+    {
+      "id": "lean-comparator",
+      "file": "lean/ComparatorChallenges/DyadicAvoidance.lean",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/ComparatorChallenges/DyadicAvoidance.lean",
+      "excerpt": null,
+      "excerptStatus": "not_in_snapshot",
+      "annotation": "The snapshot links this Comparator challenge file but does not include its Lean source. Read the linked file for the exact declaration; no Lean excerpt is reproduced here.",
+      "needsReview": true
+    }
+  ],
+  "glossary": [
+    {
+      "term": "Geometric progression",
+      "definition": "A sequence of the form {q^n : n ≥ 1} for a fixed ratio q."
+    },
+    {
+      "term": "Affine copy",
+      "definition": "A set of the form x + sA = {x + s·a : a ∈ A} for a translation x and a dilation s."
+    },
+    {
+      "term": "Dyadic",
+      "definition": "Refers to powers of two, here the sequence {2^-n : n ≥ 1}."
+    },
+    {
+      "term": "Measure",
+      "definition": "Lebesgue measure on the interval [0,1]. Measure greater than 1−η means the complement is small but may be nonempty."
+    }
+  ],
+  "sources": [
+    {
+      "label": "The geometric case of the Erdős similarity conjecture — manuscript PDF",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-geometric-case-of-the-Erdos-similarity-conjecture-October-5-2026/geometric-erdos-similarity.pdf",
+      "kind": "manuscript"
+    },
+    {
+      "label": "The dyadic case of the Erdős similarity conjecture — manuscript PDF",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-dyadic-case-of-the-Erdos-similarity-conjecture-September-25-2026/paper.pdf",
+      "kind": "manuscript"
+    },
+    {
+      "label": "Upstream Lean scope statement for family 084",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/docs/084.md",
+      "kind": "scope"
+    },
+    {
+      "label": "DyadicAvoidance.lean Comparator challenge",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/ComparatorChallenges/DyadicAvoidance.lean",
+      "kind": "comparator"
+    }
+  ]
+}

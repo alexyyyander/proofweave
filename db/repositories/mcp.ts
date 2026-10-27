@@ -1,4 +1,5 @@
-import { getD1 } from "@/db";
+import { getD1, getResearchWriteAllowlistValues } from "@/db";
+import { assertResearchWriteAllowed } from "@/services/database/research-write-allowlist.mjs";
 import {
   agentReportedOnly,
   type McpAttempt,
@@ -246,6 +247,14 @@ class D1McpRepository implements McpRepository {
     if (delegated.agentId !== input.agentId) {
       throw new McpDelegationRequiredError("The delegation certificate does not authorize the requested Agent.");
     }
+    assertResearchWriteAllowed({
+      values: getResearchWriteAllowlistValues(),
+      surface: "participant",
+      operation: "attempt:create",
+      required: ["person", "agent"],
+      personId,
+      agentId: input.agentId,
+    });
     const generatedId = newId("attempt");
     const inserted = await getD1()
       .prepare(
@@ -343,6 +352,15 @@ class D1McpRepository implements McpRepository {
       }
       throw error;
     }
+    assertResearchWriteAllowed({
+      values: getResearchWriteAllowlistValues(),
+      surface: "participant",
+      operation: "progress:write",
+      personId,
+      agentId: attempt.agentId,
+      attemptId: attempt.id,
+      attemptOwnershipVerified: true,
+    });
 
     const existing = await this.findEvent(input.attemptId, input.idempotencyKey);
     if (existing) {
@@ -405,6 +423,16 @@ class D1McpRepository implements McpRepository {
       throw new McpAttemptNotActiveError("Only an active Attempt can be closed.");
     }
 
+    assertResearchWriteAllowed({
+      values: getResearchWriteAllowlistValues(),
+      surface: "participant",
+      operation: "attempt:lifecycle",
+      personId,
+      agentId: current.agentId,
+      attemptId: current.id,
+      attemptOwnershipVerified: true,
+    });
+
     const now = new Date().toISOString();
     const database = getD1();
     const [updated] = await database.batch([
@@ -463,6 +491,16 @@ class D1McpRepository implements McpRepository {
     if (!transition.fromStatuses.includes(current.status)) {
       throw new McpAttemptNotActiveError(transition.invalidMessage);
     }
+
+    assertResearchWriteAllowed({
+      values: getResearchWriteAllowlistValues(),
+      surface: "participant",
+      operation: "attempt:lifecycle",
+      personId,
+      agentId: current.agentId,
+      attemptId: current.id,
+      attemptOwnershipVerified: true,
+    });
 
     const now = new Date().toISOString();
     const database = getD1();

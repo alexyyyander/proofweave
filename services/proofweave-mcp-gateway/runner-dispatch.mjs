@@ -1,4 +1,4 @@
-import { D1R2ArtifactStore } from "../artifacts/d1-r2-artifact-store.mjs";
+import { D1R2ArtifactStore, maxArtifactObjectBytes } from "../artifacts/d1-r2-artifact-store.mjs";
 import { D1InlineArtifactStore, maxInlineArtifactObjectBytes } from "../artifacts/d1-inline-artifact-store.mjs";
 import { D1RunStore } from "../lean-runner/d1-run-store.mjs";
 import { RunnerOrchestrator } from "../lean-runner/orchestrator.mjs";
@@ -74,9 +74,12 @@ export class D1RemoteMcpRunnerDispatcher {
     this.controlPlanePrivateKeyJwk = controlPlanePrivateKeyJwk;
     this.defaultLimits = normalizeLeanRunnerLimits(defaultLimits);
     this.runnerWake = runnerWake;
-    if (this.defaultLimits.outputBytes > maxInlineArtifactObjectBytes) {
+    // R2-backed evidence can carry the full control-plane object ceiling.
+    // The inline D1 fallback keeps the smaller closed-alpha row limit.
+    const maximumOutputBytes = bucket ? maxArtifactObjectBytes : maxInlineArtifactObjectBytes;
+    if (this.defaultLimits.outputBytes > maximumOutputBytes) {
       throw new RemoteMcpRunnerDispatchConfigurationError(
-        `Runner outputBytes must not exceed the ${maxInlineArtifactObjectBytes} byte D1 inline-alpha evidence limit.`,
+        `Runner outputBytes must not exceed the ${maximumOutputBytes} byte ${bucket ? "R2" : "D1 inline-alpha"} evidence limit.`,
       );
     }
     this.now = now;

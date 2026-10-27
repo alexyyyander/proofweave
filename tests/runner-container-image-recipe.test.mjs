@@ -173,6 +173,11 @@ test("Lean Runner image recipe fails closed and keeps its build context minimal"
   assert.match(imageWorkflow, /lean-4\.27\.0-linux\.zip/);
   assert.match(imageWorkflow, /mathlib-4\.27-a3a10/);
   assert.match(imageWorkflow, /mathlib-4\.31-9a948/);
+  assert.match(imageWorkflow, /default: mathlib-4\.35-56a00/);
+  assert.match(imageWorkflow, /mathlib_revision=56a005855ea17e0b0958f73ec801ae140b0a1679/);
+  assert.match(imageWorkflow, /lean_release_sha256=7289597a44543246c9227b8cae501767e095ce17f6d448b95fc4a8dc97268f6d/);
+  assert.equal((await readFile(new URL("../lean-toolchain", import.meta.url), "utf8")).trim(), "leanprover/lean4:v4.35.0");
+  assert.equal(mathlibBaseDockerfile.match(/printf 'module\\nimport Mathlib\\n#check Nat\\n'/g)?.length, 2);
   assert.match(imageWorkflow, /a3a10db0e9d66acbebf76c5e6a135066525ac900/);
   assert.match(imageWorkflow, /9a9483a92959bc92bd6a60176dd1fe597298c1f8/);
   assert.match(imageWorkflow, /lean_release_sha256=[a-f0-9]{64}/);

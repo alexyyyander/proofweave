@@ -1,3 +1,5 @@
+import { researchWriteAllowlistState } from "../database/research-write-allowlist.mjs";
+
 /** Headers supplied by Sites dispatch must never authenticate a direct client. */
 export function directCloudflareRequest(request) {
   const headers = new Headers(request.headers);
@@ -8,6 +10,20 @@ export function directCloudflareRequest(request) {
     }
   }
   return new Request(request, { headers });
+}
+
+const researchWritePaths = [
+  /^\/api\/me\/attempts(?:$|\/)/,
+  /^\/api\/me\/problem-proposals$/,
+  /^\/api\/me\/research\/sources$/,
+  /^\/api\/me\/evidence\/bundles\/[^/]+\/submit-review$/,
+  /^\/api\/me\/review-jobs\/[^/]+\/claim$/,
+  /^\/api\/me\/review-assignments\/[^/]+\/(?:accept|decline)$/,
+  /^\/api\/v1\/mcp\/attempts(?:$|\/)/,
+];
+
+function researchWritePath(path) {
+  return researchWritePaths.some((pattern) => pattern.test(path));
 }
 
 /** Freeze research HTTP writes; account callbacks have their own database fence. */
@@ -29,6 +45,21 @@ export function cloudflareValidationResponse(request, settings) {
         settings.PROOFWEAVE_OAUTH_CONTROL_PLANE_MODE === "read_write") return null;
     if (path === "/api/mcp" && settings.PROOFWEAVE_MCP_CONTROL_PLANE_MODE === "read_only" &&
         ["read_only", "read_write"].includes(settings.PROOFWEAVE_CONTROL_PLANE_MODE)) return null;
+  }
+  if (settings.PROOFWEAVE_DEPLOYMENT_STAGE === "validation"
+      && ["POST", "PATCH", "DELETE"].includes(request.method)) {
+    const path = new URL(request.url).pathname;
+    // A research surface opens only when both the master ceiling and that
+    // surface are read_write and its Person/Agent/Attempt allowlist is valid.
+    // The repository/store gate remains the identity check.
+    if (path === "/api/mcp"
+        && settings.PROOFWEAVE_CONTROL_PLANE_MODE === "read_write"
+        && settings.PROOFWEAVE_MCP_CONTROL_PLANE_MODE === "read_write"
+        && researchWriteAllowlistState(settings, "mcp").valid) return null;
+    if (researchWritePath(path)
+        && settings.PROOFWEAVE_CONTROL_PLANE_MODE === "read_write"
+        && settings.PROOFWEAVE_PARTICIPANT_CONTROL_PLANE_MODE === "read_write"
+        && researchWriteAllowlistState(settings, "participant").valid) return null;
   }
   return Response.json({ error: "deployment_read_only" }, {
     status: 503, headers: { "Cache-Control": "no-store" },
