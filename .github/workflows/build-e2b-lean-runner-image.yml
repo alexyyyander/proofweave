@@ -107,14 +107,14 @@ jobs:
           df -h /
 
       - name: Log in to GHCR
-        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f
+        uses: docker/login-action@81c6f93d4bc991e510b342a00b419b3bb4efc5c6
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up the attestation-capable Buildx builder
-        uses: docker/setup-buildx-action@bb05f3f5519dd87d3ba754cc423b652a5edd6d2c
+        uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069
         with:
           driver: docker-container
 
@@ -169,7 +169,7 @@ jobs:
 
       - name: Build and publish the checksum-bound Lean base
         id: base
-        uses: docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc
         with:
           context: .
           file: ${{ steps.profile.outputs.base_dockerfile }}
@@ -190,7 +190,7 @@ jobs:
 
       - name: Assemble and publish the credential-free Runner
         id: runner
-        uses: docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc
         with:
           context: .
           file: services/lean-runner/Dockerfile
@@ -298,7 +298,7 @@ jobs:
 
       - name: Preserve image inspection evidence
         if: ${{ always() && (steps.runtime.outcome == 'success' || steps.runtime.outcome == 'failure' || steps.runner.outcome == 'success') }}
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: runner-image-review-${{ github.sha }}-${{ inputs.profile }}
           path: runner-image-evidence/
