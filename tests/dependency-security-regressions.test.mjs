@@ -7,14 +7,24 @@ import { createServer } from "node:http";
 import { once } from "node:events";
 import { Sandbox } from "e2b";
 import { readFile } from "node:fs/promises";
+import { assertReviewedRunnerNode } from "../services/lean-runner/runner-node-policy.mjs";
 
-test("Controller export uses the same reviewed SDK and Node range as the application", async () => {
-  const [application, controller] = await Promise.all([
+test("Controller Docker and Render exports use the reviewed SDK and Node runtime", async () => {
+  const [application, controller, blueprint, reviewedNode, dockerfile] = await Promise.all([
     readFile(new URL("../package.json", import.meta.url), "utf8").then(JSON.parse),
     readFile(new URL("../deploy/huggingface-runner/package.json", import.meta.url), "utf8").then(JSON.parse),
+    readFile(new URL("../deploy/huggingface-runner/render.yaml", import.meta.url), "utf8"),
+    readFile(new URL("../.nvmrc", import.meta.url), "utf8").then(value => value.trim()),
+    readFile(new URL("../deploy/huggingface-runner/Dockerfile", import.meta.url), "utf8"),
   ]);
   assert.equal(controller.dependencies.e2b, application.dependencies.e2b);
   assert.equal(controller.engines.node, application.engines.node);
+  assert.equal(controller.engines.node, `^${reviewedNode}`);
+  const renderNode = /key:\s*NODE_VERSION\s+value:\s*(\S+)/.exec(blueprint)?.[1];
+  assert.equal(assertReviewedRunnerNode(renderNode, reviewedNode), reviewedNode);
+  assert.ok(dockerfile.includes(`NODE_VERSION=${reviewedNode}`));
+  assert.match(blueprint, /autoDeployTrigger:\s*off/);
+  assert.match(blueprint, /key:\s*RUNNER_EXECUTION_ENABLED\s+value:\s*"false"/);
 });
 
 test("Updated E2B SDK preserves private no-egress creation on the wire", async () => {
