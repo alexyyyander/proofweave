@@ -19,12 +19,16 @@ permissions:
 
 concurrency:
   group: proofweave-reviewed-lean-runner-image
-  # A newer manually reviewed image build supersedes an older queued or running
-  # one. E2B template creation is deliberately outside GitHub.
-  cancel-in-progress: true
+  # Preserve an existing build; publishing a candidate must not cancel another
+  # reviewed build. E2B template creation is deliberately outside GitHub.
+  cancel-in-progress: false
 
 env:
-  NODE_BASE_IMAGE: node@sha256:5647be709086c696ff32edaaf1c70cd26d1da6ab2b39c32f3c7b4c4a31957e37
+  # Docker Official Image node:22.23.4-bookworm, verified for linux/amd64.
+  NODE_BASE_IMAGE: node@sha256:63538dfe497cc29dfafdda25ada09b46db68a3f4cc205abf1f5d6bf0913f3384
+  # E2B-supported Rocky 9 minimal, linux/amd64; no x86-64-v3 requirement.
+  RUNTIME_BASE_IMAGE: rockylinux/rockylinux@sha256:8c5ffaa82079057f9d5206379996763a491f0cea9ef0e27c1395557ecd0f5bef
+  EXPECTED_NODE_VERSION: 22.23.4
   BASE_IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/proofweave-lean-base
   RUNNER_IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/proofweave-lean-runner
 
@@ -124,6 +128,55 @@ jobs:
         with:
           driver: docker-container
 
+      - name: Install the checksum-pinned vulnerability scanner
+        run: |
+          mkdir -p "$RUNNER_TEMP/proofweave-trivy" runner-image-evidence
+          curl --proto '=https' --tlsv1.2 --fail --location --silent --show-error \
+            https://github.com/aquasecurity/trivy/releases/download/v0.76.1/trivy_0.76.1_Linux-64bit.tar.gz \
+            --output "$RUNNER_TEMP/proofweave-trivy/trivy.tar.gz"
+          echo "c7cbe3137fb8a48a17574bede3dd6beb16742d1e9772929940fc90082c39d9c0  $RUNNER_TEMP/proofweave-trivy/trivy.tar.gz" | sha256sum --check --strict
+          tar -xzf "$RUNNER_TEMP/proofweave-trivy/trivy.tar.gz" -C "$RUNNER_TEMP/proofweave-trivy" trivy
+
+      - name: Inspect the minimal execution runtime before building Lean
+        id: runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p runner-image-evidence
+          docker buildx build --load --platform linux/amd64 --target minimal-runtime \
+            --file "${{ steps.profile.outputs.base_dockerfile }}" \
+            --build-arg NODE_BASE_IMAGE="$NODE_BASE_IMAGE" \
+            --build-arg RUNTIME_BASE_IMAGE="$RUNTIME_BASE_IMAGE" \
+            --build-arg EXPECTED_NODE_VERSION="$EXPECTED_NODE_VERSION" \
+            --tag proofweave-runtime:inspection . 2>&1 | tee runner-image-evidence/runtime-build.log
+          docker run --rm --network=none --cpus=1 --memory=512m --pids-limit=128 --user proofweave \
+            --entrypoint node proofweave-runtime:inspection --input-type=module -e '
+              import assert from "node:assert/strict";
+              import { readFileSync } from "node:fs";
+              import { assertMinimalRuntimeTools, assertSupportedExecutionDistro } from "/opt/proofweave/services/lean-runner/runtime-tool-policy.mjs";
+              assertMinimalRuntimeTools(process.env.PATH);
+              assertSupportedExecutionDistro(readFileSync("/etc/os-release", "utf8"));
+              assert.equal(process.getuid(), 10001);
+              assert.equal(process.versions.node, "22.23.4");
+              console.log("runtime-offline-smoke: distro, Node, non-root and tool minimization passed");
+            ' | tee runner-image-evidence/runtime-smoke.log
+          export RUNTIME_IMAGE_ID="$(docker image inspect proofweave-runtime:inspection --format '{{.Id}}')"
+          "$RUNNER_TEMP/proofweave-trivy/trivy" image --image-src docker \
+            --scanners vuln --list-all-pkgs --timeout 20m --format json \
+            --output runner-image-evidence/runtime-trivy.json proofweave-runtime:inspection
+          node --input-type=module -e '
+            import { readFileSync, writeFileSync } from "node:fs";
+            import { createHash } from "node:crypto";
+            const bytes = readFileSync("runner-image-evidence/runtime-trivy.json");
+            const report = JSON.parse(bytes);
+            if (!report.Results?.length || report.Metadata?.ImageID !== process.env.RUNTIME_IMAGE_ID) throw new Error("Missing or mismatched runtime scan evidence.");
+            const blocking = report.Results.flatMap(result => result.Vulnerabilities ?? []).filter(item => ["HIGH", "CRITICAL"].includes(item.Severity));
+            const evidence = { sourceSha: process.env.GITHUB_SHA, runId: process.env.GITHUB_RUN_ID, imageId: process.env.RUNTIME_IMAGE_ID, scanSha256: createHash("sha256").update(bytes).digest("hex"), blockingHighCritical: blocking.length, published: false };
+            writeFileSync("runner-image-evidence/runtime-review.json", JSON.stringify(evidence, null, 2) + "\n");
+            console.log(JSON.stringify(evidence));
+            if (blocking.length) throw new Error("Runtime requires HIGH/CRITICAL vulnerability triage.");
+          '
+
       - name: Build and publish the checksum-bound Lean base
         id: base
         uses: docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a
@@ -137,6 +190,8 @@ jobs:
           tags: ${{ env.BASE_IMAGE_NAME }}:${{ github.sha }}-${{ steps.profile.outputs.profile }}
           build-args: |
             NODE_BASE_IMAGE=${{ env.NODE_BASE_IMAGE }}
+            RUNTIME_BASE_IMAGE=${{ env.RUNTIME_BASE_IMAGE }}
+            EXPECTED_NODE_VERSION=${{ env.EXPECTED_NODE_VERSION }}
             EXPECTED_LEAN_TOOLCHAIN=${{ steps.profile.outputs.lean_toolchain }}
             EXPECTED_MATHLIB_REVISION=${{ steps.profile.outputs.mathlib_revision }}
             LEAN_RELEASE_URL=${{ steps.profile.outputs.lean_release_url }}
@@ -157,6 +212,7 @@ jobs:
           tags: ${{ env.RUNNER_IMAGE_NAME }}:${{ github.sha }}-${{ steps.profile.outputs.profile }}
           build-args: |
             RUNNER_BASE_IMAGE=${{ env.BASE_IMAGE_NAME }}@${{ steps.base.outputs.digest }}
+            EXPECTED_NODE_VERSION=${{ env.EXPECTED_NODE_VERSION }}
             EXPECTED_LEAN_TOOLCHAIN=${{ steps.profile.outputs.lean_toolchain }}
             EXPECTED_MATHLIB_REVISION=${{ steps.profile.outputs.mathlib_revision }}
 
@@ -170,17 +226,94 @@ jobs:
           docker system df
 
       - name: Exercise the final image without network access
+        shell: bash
         env:
           FINAL_RUNNER_IMAGE: ${{ env.RUNNER_IMAGE_NAME }}@${{ steps.runner.outputs.digest }}
           LEAN_TOOLCHAIN: ${{ steps.profile.outputs.lean_toolchain }}
           MATHLIB_REVISION: ${{ steps.profile.outputs.mathlib_revision }}
-        run: >-
-          docker run --rm --network=none --cpus=2 --memory=2g
-          --pids-limit=128 --tmpfs /tmp/proofweave:rw,nosuid,nodev,size=1g,mode=1777
-          -e EXPECTED_LEAN_TOOLCHAIN="$LEAN_TOOLCHAIN"
-          -e EXPECTED_MATHLIB_REVISION="$MATHLIB_REVISION"
-          --entrypoint node "$FINAL_RUNNER_IMAGE"
-          /opt/proofweave/services/lean-runner/inspect-image-environment.mjs
+        run: |
+          set -euo pipefail
+          mkdir -p runner-image-evidence
+          docker run --rm --network=none --cpus=2 --memory=2g \
+            --pids-limit=128 --tmpfs /tmp/proofweave:rw,nosuid,nodev,size=1g,mode=1777 \
+            -e EXPECTED_NODE_VERSION="$EXPECTED_NODE_VERSION" \
+            -e EXPECTED_LEAN_TOOLCHAIN="$LEAN_TOOLCHAIN" \
+            -e EXPECTED_MATHLIB_REVISION="$MATHLIB_REVISION" \
+            --entrypoint node "$FINAL_RUNNER_IMAGE" \
+            /opt/proofweave/services/lean-runner/inspect-image-environment.mjs \
+            | tee runner-image-evidence/offline-smoke.log
+
+      - name: Scan the exact final image for vulnerabilities
+        env:
+          FINAL_RUNNER_IMAGE: ${{ env.RUNNER_IMAGE_NAME }}@${{ steps.runner.outputs.digest }}
+        run: |
+          mkdir -p runner-image-evidence
+          "$RUNNER_TEMP/proofweave-trivy/trivy" image --image-src docker \
+            --scanners vuln --list-all-pkgs --timeout 20m --format json \
+            --output runner-image-evidence/trivy.json "$FINAL_RUNNER_IMAGE"
+          node --input-type=module -e '
+            import { readFileSync, writeFileSync } from "node:fs";
+            import { createHash } from "node:crypto";
+            const bytes = readFileSync("runner-image-evidence/trivy.json");
+            const report = JSON.parse(bytes);
+            if (!Array.isArray(report.Results) || report.Results.length === 0) throw new Error("Missing vulnerability scan results.");
+            if (!report.Metadata?.RepoDigests?.includes(process.env.FINAL_RUNNER_IMAGE)) throw new Error("Scan does not bind the expected immutable image.");
+            const vulnerabilities = report.Results.flatMap(result => result.Vulnerabilities ?? []);
+            const blocking = vulnerabilities.filter(item => ["HIGH", "CRITICAL"].includes(item.Severity));
+            const evidence = { sourceSha: process.env.GITHUB_SHA, runId: process.env.GITHUB_RUN_ID, image: process.env.FINAL_RUNNER_IMAGE, scanner: "trivy 0.76.1", scanSha256: createHash("sha256").update(bytes).digest("hex"), vulnerabilityCount: vulnerabilities.length, blockingHighCritical: blocking.length, ignoredUnfixed: false };
+            writeFileSync("runner-image-evidence/image-review.json", JSON.stringify(evidence, null, 2) + "\n");
+            console.log(JSON.stringify(evidence));
+            if (blocking.length) throw new Error("Image requires HIGH/CRITICAL vulnerability triage; production approval is blocked.");
+          '
+
+      - name: Inspect the exported trusted controller without publishing it
+        shell: bash
+        run: |
+          set -euo pipefail
+          CONTROLLER_EXPORT="$RUNNER_TEMP/proofweave-controller-export"
+          node scripts/export-huggingface-runner-space.mjs "$CONTROLLER_EXPORT"
+          docker buildx build --load --platform linux/amd64 \
+            --tag proofweave-controller:inspection "$CONTROLLER_EXPORT"
+          docker run --rm --network=none --cpus=1 --memory=512m --pids-limit=128 \
+            --entrypoint node proofweave-controller:inspection --input-type=module -e '
+              import assert from "node:assert/strict";
+              import { existsSync } from "node:fs";
+              import { createClient } from "@libsql/client";
+              import { E2BSandboxContainerFactory } from "./services/lean-runner/e2b-sandbox-container.mjs";
+              assert.equal(process.versions.node, "22.23.4");
+              assert.equal(process.getuid(), 1000);
+              assert.equal(existsSync("/usr/local/lib/node_modules/npm"), false);
+              assert.equal(typeof E2BSandboxContainerFactory, "function");
+              const client = createClient({ url: "file:/tmp/controller-smoke.sqlite" });
+              try { assert.equal((await client.execute("SELECT 1 AS ok")).rows[0].ok, 1); }
+              finally { client.close(); }
+              console.log("controller-offline-smoke: Node, non-root SDK import and native SQLite passed");
+            ' | tee runner-image-evidence/controller-smoke.log
+          export CONTROLLER_IMAGE_ID="$(docker image inspect proofweave-controller:inspection --format '{{.Id}}')"
+          "$RUNNER_TEMP/proofweave-trivy/trivy" image --image-src docker \
+            --scanners vuln --list-all-pkgs --timeout 20m --format json \
+            --output runner-image-evidence/controller-trivy.json proofweave-controller:inspection
+          node --input-type=module -e '
+            import { readFileSync, writeFileSync } from "node:fs";
+            import { createHash } from "node:crypto";
+            const bytes = readFileSync("runner-image-evidence/controller-trivy.json");
+            const report = JSON.parse(bytes);
+            if (!report.Results?.length || report.Metadata?.ImageID !== process.env.CONTROLLER_IMAGE_ID) throw new Error("Missing or mismatched controller scan evidence.");
+            const blocking = report.Results.flatMap(result => result.Vulnerabilities ?? []).filter(item => ["HIGH", "CRITICAL"].includes(item.Severity));
+            const evidence = { sourceSha: process.env.GITHUB_SHA, runId: process.env.GITHUB_RUN_ID, imageId: process.env.CONTROLLER_IMAGE_ID, scanSha256: createHash("sha256").update(bytes).digest("hex"), blockingHighCritical: blocking.length, published: false };
+            writeFileSync("runner-image-evidence/controller-review.json", JSON.stringify(evidence, null, 2) + "\n");
+            console.log(JSON.stringify(evidence));
+            if (blocking.length) throw new Error("Controller image requires HIGH/CRITICAL vulnerability triage.");
+          '
+
+      - name: Preserve image inspection evidence
+        if: ${{ always() && (steps.runtime.outcome == 'success' || steps.runtime.outcome == 'failure' || steps.runner.outcome == 'success') }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: runner-image-review-${{ github.sha }}-${{ inputs.profile }}
+          path: runner-image-evidence/
+          if-no-files-found: error
+          retention-days: 30
 
       - name: Attest the final Runner image in GitHub when supported
         if: ${{ github.event.repository.visibility == 'public' }}
