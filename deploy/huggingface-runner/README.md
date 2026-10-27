@@ -18,6 +18,14 @@ The export contains only the runtime dependency graph: protocol packages,
 artifact/database/Runner/verification services, a minimal dependency lockfile,
 the Dockerfile, and the Space README.
 
+The source snapshot uses the same Node 22.23.4 floor and pinned E2B 2.61 SDK as
+the application. Its Dockerfile installs dependencies in a separate stage and
+copies only Node, application dependencies and service source into the pinned
+linux/amd64 Wolfi runtime; global npm/yarn and builder tools are excluded.
+The image-build workflow scans an exported controller candidate without
+publishing it. These source changes do not update an existing Render service
+or authorize enabling execution.
+
 ## Render free Web Service
 
 Push the exported directory to a dedicated private Git repository and create a

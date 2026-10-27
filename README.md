@@ -148,7 +148,7 @@ not a claim that the demo has just discovered new mathematics.
 ## Install the Codex plugin
 
 The optional plugin beta is tested with **Codex for macOS on Apple silicon** and
-Node.js `>=22.13.0`.
+Node.js 22.23.4 or a newer Node 22 patch/minor release (`^22.23.4`).
 
 The normal participant path downloads a checksum-published marketplace archive
 from the Proofweave site, verifies it before extraction, and registers the
@@ -282,7 +282,7 @@ Proofweave currently makes no cash-payout promise.
 
 ### Prerequisites
 
-- Node.js `>=22.13.0`
+- Node.js `^22.23.4` (use the checked-in `.nvmrc` for the reviewed version)
 - npm
 - Lean/Lake only for the optional local Lean fixture checks
 
@@ -291,7 +291,9 @@ Proofweave currently makes no cash-payout promise.
 ```bash
 git clone https://github.com/alexyyyander/proofweave.git
 cd proofweave
-npm install
+nvm install
+nvm use
+npm ci
 npm run dev
 ```
 
