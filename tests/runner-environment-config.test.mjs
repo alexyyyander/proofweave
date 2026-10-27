@@ -18,12 +18,12 @@ import {
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const scriptPath = path.join(root, "scripts", "check-runner-environments.mjs");
 const approvedDigest = "ghcr.io/alexyyyander/proofweave-lean-runner@sha256:ca896ab3945034079ab7f7cedfc7c5e665a601299c1745b51a72736420957393";
-const pendingDigest = "ghcr.io/alexyyyander/proofweave-lean-runner@sha256:373c7ee722c69869ddde41cf90d2923b70d23afcae63275bc787ef10d6485223";
+const pendingDigest = "ghcr.io/alexyyyander/proofweave-lean-runner@sha256:3a7e335f2f1acae3296f7e0c5933e5b160ccdc37fe4e363c2c81aa73118f86b0";
 const lean431 = "leanprover/lean4:v4.31.0";
 const lean427 = "leanprover/lean4:v4.27.0";
 const mathlib431 = "9a9483a92959bc92bd6a60176dd1fe597298c1f8";
 const mathlib427 = "a3a10db0e9d66acbebf76c5e6a135066525ac900";
-const pendingSourceCommit = "8bd7409db9ae95110043bacc42f4b336ce3eabaf";
+const pendingSourceCommit = "c3461cf0d3c81edda6b1f3bd12e9b76e18bfc3e1";
 
 function approvedEnvironment(overrides = {}) {
   return {
@@ -45,7 +45,7 @@ function pendingEnvironment(overrides = {}) {
     leanToolchain: lean427,
     mathlibRevision: mathlib427,
     state: "built_pending_template",
-    sourceRun: 40450516816,
+    sourceRun: 40469297704,
     sourceCommit: pendingSourceCommit,
     ...overrides,
   };
@@ -167,7 +167,7 @@ test("repository configuration registers 4.31 as approved and 4.27 as built pend
   assert.equal(pending.imageDigest, pendingDigest);
   assert.equal(pending.leanToolchain, lean427);
   assert.equal(pending.mathlibRevision, mathlib427);
-  assert.equal(pending.sourceRun, 40450516816);
+  assert.equal(pending.sourceRun, 40469297704);
   assert.equal(pending.sourceCommit, pendingSourceCommit);
   assert.equal(pending.admissible, false);
   assert.equal(pending.blocked, true);

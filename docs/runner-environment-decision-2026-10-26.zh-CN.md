@@ -7,6 +7,8 @@
 
 状态更新（2026-10-27）：4.27 镜像已构建，但尚未创建 E2B template，因此 **blocked，不可执行**。
 
+2026-10-27 第二次更新：4.27 镜像已用 Node 22.23.4 安全重建，当前登记 digest 为 `sha256:3a7e335f…`（workflow run `40469297704`，来源 commit `c3461cf…`）。下文 `40450516816` / `sha256:373c7ee…` 是更早的构建记录，保留作历史；`config/runner-environments.json` 以本文顶部的当前 digest 为准。
+
 ## 决策
 
 采用已评审的 `mathlib-4.27-a3a10` Runner 环境：
