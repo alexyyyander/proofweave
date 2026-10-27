@@ -4,7 +4,25 @@
 # deliberately not a Mathlib image: its environment declares the exact
 # sentinel revision `none`, and the approved Runner registry must do the same.
 ARG NODE_BASE_IMAGE
-FROM ${NODE_BASE_IMAGE}
+ARG RUNTIME_BASE_IMAGE
+FROM ${NODE_BASE_IMAGE} AS node-source
+
+# The runtime stage can be built independently with --target minimal-runtime.
+# Copy Node directly from its immutable source, before any dependency build runs.
+FROM ${RUNTIME_BASE_IMAGE} AS minimal-runtime
+ARG RUNTIME_BASE_IMAGE
+ARG EXPECTED_NODE_VERSION
+COPY services/lean-runner/prepare-minimal-runtime.sh /opt/proofweave/prepare-minimal-runtime.sh
+RUN /bin/sh /opt/proofweave/prepare-minimal-runtime.sh
+COPY --from=node-source /usr/local/bin/node /usr/local/bin/node
+COPY services/lean-runner/runner-node-policy.mjs /opt/proofweave/services/lean-runner/runner-node-policy.mjs
+COPY services/lean-runner/runtime-tool-policy.mjs /opt/proofweave/services/lean-runner/runtime-tool-policy.mjs
+ENV PATH="/opt/lean/bin:/usr/local/bin:${PATH}"
+ENV NODE_VERSION=${EXPECTED_NODE_VERSION}
+ENV PROOFWEAVE_IMAGE_METADATA=/opt/proofweave/lean-environment.json
+RUN node --input-type=module -e 'import { assertReviewedRunnerNode } from "/opt/proofweave/services/lean-runner/runner-node-policy.mjs"; assertReviewedRunnerNode(process.versions.node, process.env.EXPECTED_NODE_VERSION)'
+
+FROM node-source AS builder
 
 ARG NODE_BASE_IMAGE
 ARG EXPECTED_NODE_VERSION
@@ -67,6 +85,15 @@ RUN install -d -m 0755 /opt/proofweave \
   execFileSync("lake", ["--version"], { stdio: "inherit" }); \
   if (typeof zlib.createZstdDecompress !== "function") throw new Error("Pinned Node base must provide native zstd decompression."); \
 ' "$EXPECTED_LEAN_TOOLCHAIN"
+
+
+# Publish only the minimal runtime and the exact Lean environment.
+FROM minimal-runtime
+ARG EXPECTED_LEAN_TOOLCHAIN
+ARG EXPECTED_MATHLIB_REVISION
+COPY --from=builder /opt/lean /opt/lean
+COPY --from=builder /opt/proofweave/lean-environment.json /opt/proofweave/lean-environment.json
+RUN su -s /bin/sh proofweave -c "node --version && lake --version && lean --version"
 
 LABEL org.opencontainers.image.title="Proofweave Lean Core alpha base" \
       io.proofweave.lean-toolchain="${EXPECTED_LEAN_TOOLCHAIN}" \

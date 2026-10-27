@@ -1,6 +1,6 @@
 # Lean Runner Container image build contract
 
-Status: reproducible reviewed Lean environment build path, 2026-07-21
+Status: reviewed Lean environment build path, 2026-10-27
 
 This document defines the reproducible build input for the private Lean Runner
 Container. It does not approve a particular output digest or authorize a
@@ -16,7 +16,7 @@ and Mathlib commit `9a9483a92959bc92bd6a60176dd1fe597298c1f8` on Lean 4.31.0.
 Every profile pins the Node base by OCI digest and the official Lean archive
 by SHA-256.
 
-The reviewed Node base is Docker Official Image `node:22.23.4-bookworm`, pinned
+The reviewed Node **build input** is Docker Official Image `node:22.23.4-bookworm`, pinned
 as `node@sha256:63538dfe497cc29dfafdda25ada09b46db68a3f4cc205abf1f5d6bf0913f3384`.
 Both base recipes, final assembly and offline smoke require
 `EXPECTED_NODE_VERSION=22.23.4` and compare it with the actual Node runtime.
@@ -26,6 +26,34 @@ This replaces Node 22.23.1 after the
 It does not change the selected Lean release or Mathlib commit. Rebuilding
 produces a new image digest that still needs full-image vulnerability review,
 SBOM/provenance verification and E2B isolation checks before approval.
+
+The published runtime is built separately from the linux/amd64 Rocky Linux 9 minimal manifest
+`rockylinux/rockylinux@sha256:8c5ffaa82079057f9d5206379996763a491f0cea9ef0e27c1395557ecd0f5bef`.
+Only the Node binary is copied directly from its immutable source stage. The
+Lean toolchain, environment metadata and pinned Mathlib closure are copied from
+the builder. The shared runtime installer applies available signed RPM updates
+and installs only certificates, Git, patch and required shared libraries.
+It retains the RPM database and records installed versions for SBOM/scanner
+inspection. Package-manager access is confined to image construction; the
+execution Sandbox remains unprivileged with network access disabled.
+
+npm/yarn, system compiler packages, development headers and image-processing
+libraries stay outside the final image. Offline inspection rejects unexpected
+package managers/build tools on PATH. The runtime account has UID/GID 10001;
+the copied Lake closure is owned by that account. The external-project Lake
+build smoke runs **after** the runtime transition, so missing libraries or
+accidental dependence on builder tooling fail the build. E2B declares the Rocky family supported; Rocky 9 keeps the portable CPU
+baseline, whereas Rocky 10 requires x86-64-v3. The offline inspector rejects
+other distro identities. RPM's required curl CLI remains installed and scanned;
+its dependency records are preserved. Wolfi is used only for the Docker-hosted controller,
+not for E2B execution images. Provider-side template construction still needs
+separate authorization and validation. Each base recipe also
+supports `--target minimal-runtime` for a cheaper package/ABI preflight.
+
+The same workflow builds the exported trusted controller locally and scans it
+without publishing or deploying it. Its image ID and scan hash are retained
+alongside the Lean image evidence. Root and exported-controller dependency
+audits run in the full CI gate; Node installation uses the reviewed `.nvmrc`.
 
 The build scans the exact final digest with checksum-pinned Trivy 0.76.1.
 HIGH or CRITICAL findings, including unfixed findings, block the job; a scanner

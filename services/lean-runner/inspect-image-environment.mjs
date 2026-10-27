@@ -2,8 +2,11 @@ import { spawnSync } from "node:child_process";
 import { readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { assertReviewedRunnerNode } from "./runner-node-policy.mjs";
+import { assertMinimalRuntimeTools, assertSupportedExecutionDistro } from "./runtime-tool-policy.mjs";
 
 assertReviewedRunnerNode(process.versions.node, process.env.EXPECTED_NODE_VERSION);
+assertMinimalRuntimeTools(process.env.PATH);
+assertSupportedExecutionDistro(await readFile("/etc/os-release", "utf8"));
 
 const metadataPath = process.env.PROOFWEAVE_IMAGE_METADATA;
 const expectedLeanToolchain = process.env.EXPECTED_LEAN_TOOLCHAIN;

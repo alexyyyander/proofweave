@@ -5,6 +5,22 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import test from "node:test";
 import { assertReviewedRunnerNode } from "../services/lean-runner/runner-node-policy.mjs";
+import { assertMinimalRuntimeTools, assertSupportedExecutionDistro } from "../services/lean-runner/runtime-tool-policy.mjs";
+
+test("Execution image rejects unsupported distro identities and CPU-baseline changes", () => {
+  assert.doesNotThrow(() => assertSupportedExecutionDistro('ID="rocky"\nVERSION_ID="9.7"\n'));
+  for (const identity of ['ID=wolfi\nVERSION_ID=20230201', 'ID=debian\nVERSION_ID="13"', 'ID=rocky\nVERSION_ID="10.1"', 'ID_LIKE=rocky\nVERSION_ID="9"', 'ID=rocky\nVERSION_ID="90"']) {
+    assert.throws(() => assertSupportedExecutionDistro(identity), /reviewed Rocky 9/);
+  }
+});
+
+test("Runtime inspection rejects package managers and unrelated build tools", () => {
+  assert.doesNotThrow(() => assertMinimalRuntimeTools("/opt/lean/bin:/usr/local/bin:/usr/bin", () => false));
+  assert.throws(() => assertMinimalRuntimeTools(""), /PATH must be explicit/);
+  for (const name of ["npm", "npx", "yarn", "yarnpkg", "gcc", "g++", "make", "wget"]) {
+    assert.throws(() => assertMinimalRuntimeTools("/usr/bin", path => path === `/usr/bin/${name}`), /Unexpected build tools/);
+  }
+});
 
 test("Runner rejects vulnerable, missing, mismatched and unreviewed Node runtimes", () => {
   assert.equal(assertReviewedRunnerNode("22.23.4", "22.23.4"), "22.23.4");
@@ -27,7 +43,7 @@ const e2bTemplateBuildUrl = new URL("../scripts/build-e2b-lean-runner-template.m
 
 test("Image scan gate rejects high findings and missing or mismatched evidence", async () => {
   const workflow = await readFile(imageWorkflowUrl, "utf8");
-  const scanStep = workflow.slice(workflow.indexOf("      - name: Scan the exact final image"), workflow.indexOf("      - name: Preserve image inspection evidence"));
+  const scanStep = workflow.slice(workflow.indexOf("      - name: Scan the exact final image"), workflow.indexOf("      - name: Inspect the exported trusted controller"));
   const code = /node --input-type=module -e '([\s\S]*)'\s*$/.exec(scanStep)?.[1];
   assert.ok(code, "exercise the exact scan gate executed by the workflow");
   const image = `ghcr.io/example/runner@sha256:${"a".repeat(64)}`;
@@ -88,7 +104,8 @@ test("Lean Runner image recipe fails closed and keeps its build context minimal"
   assert.doesNotMatch(dockerfile, /ENV\s+PROOFWEAVE_(?:NETWORK_ISOLATED|RESOURCE_LIMITS_ENFORCED)/);
 
   assert.match(coreBaseDockerfile, /^ARG NODE_BASE_IMAGE$/m);
-  assert.match(coreBaseDockerfile, /^FROM \$\{NODE_BASE_IMAGE\}$/m);
+  assert.match(coreBaseDockerfile, /^FROM \$\{NODE_BASE_IMAGE\} AS node-source$/m);
+  assert.match(coreBaseDockerfile, /^FROM node-source AS builder$/m);
   assert.match(coreBaseDockerfile, /NODE_BASE_IMAGE must be pinned by sha256 digest/);
   assert.match(coreBaseDockerfile, /The core-alpha base cannot claim a Mathlib revision/);
   assert.match(coreBaseDockerfile, /github\.com\/leanprover\/lean4\/releases\/download/);
@@ -121,6 +138,19 @@ test("Lean Runner image recipe fails closed and keeps its build context minimal"
   assert.match(mathlibBaseDockerfile, /lean_lib ProofweaveImageSmoke/);
   assert.match(mathlibBaseDockerfile, /name: "proofweaveExternalSmoke", packages: \[mathlib, \.\.\.manifest\.packages\]/);
   assert.match(mathlibBaseDockerfile, /su -s \/bin\/sh proofweave -c 'cd \/tmp\/proofweave-external-smoke && lake build ProofweaveImageSmoke && lake env lean ProofweaveImageSmoke\.lean'/);
+  for (const recipe of [coreBaseDockerfile, mathlibBaseDockerfile]) {
+    assert.match(recipe, /^ARG RUNTIME_BASE_IMAGE$/m);
+    assert.match(recipe, /^FROM \$\{RUNTIME_BASE_IMAGE\} AS minimal-runtime$/m);
+    assert.match(recipe, /^FROM minimal-runtime$/m);
+    assert.match(recipe, /COPY --from=node-source \/usr\/local\/bin\/node \/usr\/local\/bin\/node/);
+    assert.match(recipe, /COPY --from=builder \/opt\/lean \/opt\/lean/);
+    assert.doesNotMatch(recipe, /COPY --from=builder \/usr\/local\s/);
+    assert.ok(recipe.indexOf("FROM minimal-runtime") < recipe.lastIndexOf("su -s /bin/sh proofweave"));
+  }
+  const runtimeSetup = await readFile(new URL("../services/lean-runner/prepare-minimal-runtime.sh", import.meta.url), "utf8");
+  assert.match(runtimeSetup, /microdnf upgrade -y/);
+  assert.match(runtimeSetup, /rpm -qa/);
+  assert.doesNotMatch(runtimeSetup, /rm\s+-rf.*(?:rpm|lib\/rpm)/);
 
   assert.match(imageWorkflow, /node@sha256:[a-f0-9]{64}/);
   assert.match(imageWorkflow, /EXPECTED_NODE_VERSION: 22\.23\.4/);

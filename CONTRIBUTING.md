@@ -41,11 +41,16 @@ source that supports them.
 ```bash
 git clone https://github.com/alexyyyander/proofweave.git
 cd proofweave
-npm install
+nvm install
+nvm use
+npm ci
 npm run dev
 ```
 
-The supported Node version is `>=22.13.0`. The repository is a web application,
+The supported Node range is `^22.23.4`. Run `nvm install` and `nvm use` from the
+repository root before installing dependencies; `.nvmrc` selects the reviewed
+Node 22.23.4 release. Other Node majors require a compatibility review.
+The repository is a web application,
 so `package.json` remains `private: true` intentionally; that is unrelated to
 the GitHub repository visibility.
 
