@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { ContentLoading } from "@/app/components/ui/ContentLoading";
 import { ResearchCard } from "@/app/components/research/ResearchCard";
 
-import { SectionTitle, Field, PageIntro, ActionLink, FieldList, SectionHeading, Surface } from "@/app/components/ui";
+import { CardTitle, SectionTitle, Field, PageIntro, ActionLink, FieldList, SectionHeading, Surface } from "@/app/components/ui";
 
 import { SiteFrame } from "@/app/components/shell/SiteFrame";
 
@@ -40,7 +40,7 @@ export default async function Home() {
         <section className="home-boundary-section home-math-section" id="latest-mathematics" aria-labelledby="latest-mathematics-title">
           <div><p className="eyebrow">26 October 2026 · research announcements</p><SectionTitle id="latest-mathematics-title">ETH, local smoothing, and Yang–Mills.</SectionTitle><p>Two public proof releases and one physics announcement with materials withheld. Independent verification remains open.</p><Link className="text-link" href="/history#timeline">Inspect all three claims and their limits →</Link></div>
           <div className="home-boundary-grid">{october26Milestones.map((item) => <Surface as="article" key={item.number}>
-            <h3>{item.shortTitle}</h3><span>{item.evidence}</span><p>{item.summary}</p>
+            <CardTitle>{item.shortTitle}</CardTitle><span>{item.evidence}</span><p>{item.summary}</p>
             <a href={item.sources[0].href} target="_blank" rel="noreferrer">Read the primary source ↗</a>
           </Surface>)}</div>
         </section>
