@@ -119,15 +119,15 @@ try {
   console.log(JSON.stringify({ stage: "acceptance_passed", report: join(root,"acceptance-report.json"), root, origin: runtime.origin, syntheticIdentities: true, productionAcceptance: false }));
   if (args.includes("--keep-open")) await new Promise(resolve => { process.once("SIGINT",resolve); process.once("SIGTERM",resolve); });
 } catch (error) {
+  console.error(error.stack); process.exitCode = 1;
   if (runtime) {
     const diagnostic = {};
     for (const table of ["verification_assignments", "verification_assignment_events", "verification_attestations", "verification_replays", "verification_replay_evidence"]) {
       try { diagnostic[table] = (await runtime.database.prepare(`SELECT * FROM ${table}`).all()).results; } catch { diagnostic[table] = { unavailable: true }; }
     }
-    await writeFile(join(root,"failure-review-evidence.json"), JSON.stringify(diagnostic,null,2), { mode: 0o600 });
+    await writeFile(join(root,"failure-review-evidence.json"), JSON.stringify(diagnostic,null,2), { mode: 0o600 }).catch(() => console.error("Could not persist failure evidence."));
   }
-  await writeFile(join(root,"failure.json"), JSON.stringify({ message: error.message, stack: error.stack, events, transcripts: clients.map(client => client.transcript) },null,2), { mode: 0o600 });
-  console.error(error.stack); process.exitCode = 1;
+  await writeFile(join(root,"failure.json"), JSON.stringify({ message: error.message, stack: error.stack, events, transcripts: clients.map(client => client.transcript) },null,2), { mode: 0o600 }).catch(() => console.error("Could not persist failure summary."));
 } finally {
   const cleanup = await Promise.allSettled([...clients.map(client => client.close()), runner?.close(), runtime?.close()]);
   if (cleanup.some(result => result.status === "rejected")) {
