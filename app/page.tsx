@@ -15,6 +15,7 @@ import { ProductStateBadge } from "./ui";
 
 import "./home.css";
 import publicationSummary from "@/data/publications/openai-math-summary.json";
+import { october26Milestones } from "./history/october26";
 
 export const dynamic = "force-dynamic";
 
@@ -32,8 +33,16 @@ export default async function Home() {
           aside={<><p>Signed reference</p><strong>One theorem.<br />Six evidence moments.</strong><FieldList><Field label="Research">Local-first</Field><Field label="Publication">Owner-approved</Field><Field label="Reference run">{passedChecks}/{verification.checks.length} checks pass</Field></FieldList><a href="#verification-console">Inspect executable verification <span aria-hidden="true">→</span></a></>} />
 
         <section className="home-publications-entry" aria-labelledby="home-publications-title">
-          <div><p className="eyebrow">Mathematics publications</p><SectionTitle id="home-publications-title">Explore the OpenAI mathematics release.</SectionTitle><p>{publicationSummary.statistics.manuscripts} manuscripts in {publicationSummary.statistics.families} result families. Read the papers, citations, and Lean proof scope.</p></div>
+          <div><p className="eyebrow">Mathematics publications</p><SectionTitle id="home-publications-title">Explore the OpenAI mathematics release.</SectionTitle><p>The 13 October snapshot: {publicationSummary.statistics.manuscripts} manuscripts in {publicationSummary.statistics.families} result families. Read the papers, citations, and Lean proof scope.</p></div>
           <Link className="button button-primary" href="/publications">Browse publications <span aria-hidden="true">→</span></Link>
+        </section>
+
+        <section className="home-boundary-section home-math-section" id="latest-mathematics" aria-labelledby="latest-mathematics-title">
+          <div><p className="eyebrow">26 October 2026 · research announcements</p><SectionTitle id="latest-mathematics-title">ETH, local smoothing, and Yang–Mills.</SectionTitle><p>Two public proof releases and one physics announcement with materials withheld. Independent verification remains open.</p><Link className="text-link" href="/history#timeline">Inspect all three claims and their limits →</Link></div>
+          <div className="home-boundary-grid">{october26Milestones.map((item) => <Surface as="article" key={item.number}>
+            <h3>{item.shortTitle}</h3><span>{item.evidence}</span><p>{item.summary}</p>
+            <a href={item.sources[0].href} target="_blank" rel="noreferrer">Read the primary source ↗</a>
+          </Surface>)}</div>
         </section>
 
         <ShowcaseExperience verification={verification} />
