@@ -9,7 +9,7 @@ import { deriveReceiptCreditSettlement } from '../../packages/protocol/receipt-c
 /** This driver only operates on an explicitly synthetic, isolated loopback server. */
 export function assertLocalReviewAcceptanceContext({ origin, syntheticOwner, ownerPersonId, reviewerPersonId }) {
   const url = new URL(origin);
-  assert.equal(url.protocol, 'http:', 'Local acceptance requires loopback HTTP');
+  assert.ok(['http:', 'https:'].includes(url.protocol), 'Local acceptance requires loopback HTTP or HTTPS');
   assert.ok(['127.0.0.1', '[::1]'].includes(url.hostname), 'Remote origins are forbidden');
   assert.equal(url.username + url.password + url.search + url.hash, '', 'Origin must not carry credentials or query data');
   assert.equal(url.pathname, '/', 'Pass an origin, not a route');

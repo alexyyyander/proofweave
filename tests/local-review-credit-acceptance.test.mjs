@@ -7,9 +7,14 @@ import { assertLocalReviewAcceptanceContext, runLocalReviewCreditAcceptance, see
 import { D1VerificationMarketStore } from '../services/verification/d1-verification-market-store.mjs';
 
 const context = {origin:'http://127.0.0.1:12345',syntheticOwner:true,ownerPersonId:'person:acceptance-author',reviewerPersonId:'person:acceptance-reviewer'};
-test('local acceptance cannot target production, remote HTTP, credentials or same-owner review', () => {
-  assert.equal(assertLocalReviewAcceptanceContext(context),context.origin);
-  for (const patch of [{origin:'https://proofweave.org'},{origin:'http://192.0.2.1:8080'},{origin:'http://proofweave.org'},{origin:'http://user:password@127.0.0.1:12345'},{origin:context.origin+'/api/mcp'},{syntheticOwner:false},{reviewerPersonId:context.ownerPersonId}]) assert.throws(()=>assertLocalReviewAcceptanceContext({...context,...patch}));
+test('local acceptance allows only explicit synthetic HTTP or HTTPS loopback origins', () => {
+  for (const origin of ['http://127.0.0.1:12345','https://127.0.0.1:12345','http://[::1]:12345','https://[::1]:12345']) {
+    assert.equal(assertLocalReviewAcceptanceContext({...context,origin}),origin);
+  }
+  for (const origin of ['https://proofweave.org','http://192.0.2.1:8080','https://192.0.2.1:8080','http://proofweave.org','https://localhost:12345','ftp://127.0.0.1:12345','http://user:password@127.0.0.1:12345','https://user:password@[::1]:12345',context.origin+'/api/mcp','https://127.0.0.1:12345/?token=private','https://[::1]:12345/#private']) {
+    assert.throws(()=>assertLocalReviewAcceptanceContext({...context,origin}));
+  }
+  for (const patch of [{syntheticOwner:false},{reviewerPersonId:context.ownerPersonId}]) assert.throws(()=>assertLocalReviewAcceptanceContext({...context,...patch}));
 });
 test('invalid local acceptance context fails before any Person or Connector request', async () => {
   let calls=0;
