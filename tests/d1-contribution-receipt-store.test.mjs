@@ -320,6 +320,25 @@ test("Receipt credit settlement derives immutable author, reviewer, and downstre
   );
 });
 
+test("an existing credit settlement cannot report active credit after Receipt retraction", async () => {
+  const store = new D1ContributionReceiptStore(database);
+  const credits = new D1ReceiptCreditSettlement(database);
+  const before = await credits.getSettlement("receipt:alice-credit");
+  assert.ok(before);
+  await store.recordLifecycleEvent({
+    id: "receipt-event:alice-credit-retracted",
+    receiptId: "receipt:alice-credit",
+    eventType: "retracted",
+    reasonHash: sha("e"),
+    occurredAt: "2026-07-13T00:05:00Z",
+    issuerKeyId: "issuer:closed-alpha-1",
+    issuerPublicKey,
+    issuerPrivateKey: issuerPair.privateKey,
+  });
+  await assert.rejects(credits.settleReceipt("receipt:alice-credit"), /Retracted or superseded/);
+  assert.deepEqual(await credits.getSettlement("receipt:alice-credit"), before, "The historical ledger remains immutable");
+});
+
 test("demo and smoke-test Receipts never mint research Credit", async () => {
   const receiptStore = new D1ContributionReceiptStore(database);
   const smoke = await receiptStore.issue({
