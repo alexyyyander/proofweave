@@ -320,6 +320,25 @@ test("Receipt credit settlement derives immutable author, reviewer, and downstre
   );
 });
 
+test("an existing credit settlement cannot report active credit after Receipt retraction", async () => {
+  const store = new D1ContributionReceiptStore(database);
+  const credits = new D1ReceiptCreditSettlement(database);
+  const before = await credits.getSettlement("receipt:alice-credit");
+  assert.ok(before);
+  await store.recordLifecycleEvent({
+    id: "receipt-event:alice-credit-retracted",
+    receiptId: "receipt:alice-credit",
+    eventType: "retracted",
+    reasonHash: sha("e"),
+    occurredAt: "2026-07-13T00:05:00Z",
+    issuerKeyId: "issuer:closed-alpha-1",
+    issuerPublicKey,
+    issuerPrivateKey: issuerPair.privateKey,
+  });
+  await assert.rejects(credits.settleReceipt("receipt:alice-credit"), /Retracted or superseded/);
+  assert.deepEqual(await credits.getSettlement("receipt:alice-credit"), before, "The historical ledger remains immutable");
+});
+
 test("demo and smoke-test Receipts never mint research Credit", async () => {
   const receiptStore = new D1ContributionReceiptStore(database);
   const smoke = await receiptStore.issue({
@@ -370,6 +389,23 @@ test("verification receipt credits the review Agent present in immutable attesta
     }),
     /must cover an attestation made by its credited review Agent/,
   );
+});
+
+test("Receipt review authority accepts SQLite UTC creation timestamps without accepting malformed or future times", async () => {
+  const store = new D1ContributionReceiptStore(database);
+  const original = await database.prepare("SELECT created_at FROM agents WHERE id = ?").bind("agent:bob-reviewer").first();
+  try {
+    for (const createdAt of ["2026-07-01 00:00:00","2026-07-01T00:00:00Z"]) {
+      await database.prepare("UPDATE agents SET created_at = ? WHERE id = ?").bind(createdAt,"agent:bob-reviewer").run();
+      assert.equal((await store.loadReviewEvidence(bundleHash)).length,3);
+    }
+    for (const createdAt of ["not-a-date","2026-02-30 00:00:00","2026-07-01 00:00:00+08:00","2026-07-01 25:00:00","2026-07-14 00:00:00"]) {
+      await database.prepare("UPDATE agents SET created_at = ? WHERE id = ?").bind(createdAt,"agent:bob-reviewer").run();
+      await assert.rejects(store.loadReviewEvidence(bundleHash), /UTC ISO-8601 instant|historical authority/);
+    }
+  } finally {
+    await database.prepare("UPDATE agents SET created_at = ? WHERE id = ?").bind(original.created_at,"agent:bob-reviewer").run();
+  }
 });
 
 test("Receipt closure fails closed on tampered, incomplete, expired, and same-owner review evidence", async () => {

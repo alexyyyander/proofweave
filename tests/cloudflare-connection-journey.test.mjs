@@ -47,9 +47,19 @@ test("real Worker pairs an Agent while research is frozen, then revokes its toke
       oauthState: "ordinary-user-oauth-state",
       codeChallenge,
       connectionMode: "research",
+      redirectUri: "http://127.0.0.1:44766/callback",
     }),
   });
   assert.equal(pairingResponse.response.status, 201);
+  const pairingCount = await database.prepare("SELECT COUNT(*) AS n FROM local_codex_pairing_sessions").first("n");
+  for (const redirectUri of ["https://example.test/callback", "http://127.0.0.1:44766/callback?redirect=elsewhere", "http://localhost:44766/callback"]) {
+    const rejected = await requestJson(normalWorker, "/api/connect/sessions", {
+      method: "POST", headers: { "content-type": "application/json", "cf-connecting-ip": "203.0.113.201" },
+      body: JSON.stringify({ agentId, agentLabel: "Invalid callback", agentPublicKey, oauthState: "ordinary-user-oauth-state", codeChallenge, redirectUri }),
+    });
+    assert.equal(rejected.response.status, 400);
+  }
+  assert.equal(await database.prepare("SELECT COUNT(*) AS n FROM local_codex_pairing_sessions").first("n"), pairingCount);
   const pairingUrl = new URL(pairingResponse.body.connectionUrl);
   const pairingId = pairingUrl.searchParams.get("pairing");
   const pairingSecret = pairingUrl.searchParams.get("secret");
@@ -172,7 +182,7 @@ test("real Worker pairs an Agent while research is frozen, then revokes its toke
   );
   assert.equal(approveResponse.response.status, 200);
   const callback = new URL(approveResponse.body.redirectUrl);
-  assert.equal(callback.origin, "http://127.0.0.1:44765");
+  assert.equal(callback.origin, "http://127.0.0.1:44766");
   assert.equal(callback.searchParams.get("state"), "ordinary-user-oauth-state");
 
   const tokenResponse = await normalWorker.dispatchFetch("https://localhost/token", {
@@ -181,7 +191,7 @@ test("real Worker pairs an Agent while research is frozen, then revokes its toke
     body: new URLSearchParams({
       grant_type: "authorization_code",
       code: callback.searchParams.get("code"),
-      redirect_uri: "http://127.0.0.1:44765/callback",
+      redirect_uri: "http://127.0.0.1:44766/callback",
       client_id: pairingResponse.body.clientId,
       code_verifier: codeVerifier,
     }),

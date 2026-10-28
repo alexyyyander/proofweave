@@ -1,9 +1,12 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { after, before, test } from "node:test";
 import { readFile, readdir } from "node:fs/promises";
 import { Miniflare } from "miniflare";
 import { canonicalJson, sha256Canonical } from "../packages/protocol/canonical-json.mjs";
 import { D1VerificationMarketStore } from "../services/verification/d1-verification-market-store.mjs";
+import { D1VerificationStore } from "../services/verification/d1-verification-store.mjs";
+import { verificationAttestationPayloadHash, verificationAttestationSigningPayload } from "../packages/protocol/verification-attestation.mjs";
 
 const migrationsRoot = new URL("../drizzle/", import.meta.url);
 const problemRevisionId = "problem-revision:formal-conjectures:erdos-865:k2:1";
@@ -12,8 +15,12 @@ const manifestHash = sha("a");
 let miniflare;
 let database;
 let store;
+let reviewerKeys;
+let reviewerPublicKey;
 
 before(async () => {
+  reviewerKeys = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
+  reviewerPublicKey = Buffer.from(await crypto.subtle.exportKey("raw", reviewerKeys.publicKey)).toString("base64url");
   miniflare = new Miniflare({
     modules: true,
     script: "export default { fetch() { return new Response('ok'); } }",
@@ -155,6 +162,68 @@ test("two concurrent reviewers can create only one immutable claim", async () =>
   assert.equal(Number(claimCount.count), 1);
 });
 
+test("market claim history supports signed attestation closure and exact retries", async () => {
+  const [job] = await store.listOpenJobs();
+  const claimed = await store.claimJob(job.id, "person:market-reviewer", "2026-07-15T08:03:00Z");
+  const verification = new D1VerificationStore(database);
+  await verification.accept(claimed.assignment.id, "person:market-reviewer", "2026-07-15T08:03:00Z");
+  const attestation = await marketAttestation(claimed.assignment);
+  assert.equal((await verification.recordAttestation(attestation)).created, true);
+  assert.equal((await verification.recordAttestation(attestation)).created, false);
+  assert.deepEqual((await verification.listEvents(claimed.assignment.id)).map(e => e.eventType), ["assignment_created","assignment_accepted","attestation_recorded"]);
+});
+
+test("legacy market history remains usable only for its immutable job claim", async () => {
+  const [job] = await store.listOpenJobs();
+  const claimed = await new D1VerificationMarketStore(legacyMarketWriter(job.id)).claimJob(job.id, "person:market-reviewer", "2026-07-15T08:03:00Z");
+  const verification = new D1VerificationStore(database);
+  await verification.accept(claimed.assignment.id, "person:market-reviewer", "2026-07-15T08:03:00Z");
+  const attestation = await marketAttestation(claimed.assignment);
+  assert.equal((await verification.recordAttestation(attestation)).created, true);
+  assert.equal((await verification.recordAttestation(attestation)).created, false);
+});
+
+test("legacy event hashes cannot authorize a different market job", async () => {
+  const [job] = await store.listOpenJobs();
+  const claimed = await new D1VerificationMarketStore(legacyMarketWriter("verification-job:wrong-job")).claimJob(job.id, "person:market-reviewer", "2026-07-15T08:03:00Z");
+  const verification = new D1VerificationStore(database);
+  await assert.rejects(verification.recordAttestation(await marketAttestation(claimed.assignment)), /canonical payload/);
+  assert.equal(await database.prepare("SELECT COUNT(*) AS count FROM verification_attestations WHERE assignment_id = ?").bind(claimed.assignment.id).first("count"), 0);
+  assert.equal((await verification.requireAssignment(claimed.assignment.id)).status, "accepted");
+});
+
+async function marketAttestation(assignment) {
+  const attestation = {
+    protocolVersion:"pw-verification-attestation-v1",id:`attestation:${assignment.id}`,
+    assignmentId:assignment.id,artifactBundleHash:manifestHash,claimType:assignment.claimType,
+    verifierPersonId:"person:market-reviewer",verifierAgentId:"agent:market-reviewer",
+    delegationCertificateId:"delegation:market-reviewer",verifierAgentPublicKey:reviewerPublicKey,
+    decision:"request_changes",evidenceHash:manifestHash,attestedAt:"2026-07-15T08:04:00Z",
+    payloadHash:sha("0"),signature:Buffer.alloc(64).toString("base64url"),
+  };
+  attestation.payloadHash = await verificationAttestationPayloadHash(attestation);
+  attestation.signature = Buffer.from(await crypto.subtle.sign("Ed25519",reviewerKeys.privateKey,new TextEncoder().encode(canonicalJson(verificationAttestationSigningPayload(attestation))))).toString("base64url");
+  return attestation;
+}
+
+// Emulate the previous market writer through real transactional D1 inserts.
+function legacyMarketWriter(marketJobId) {
+  return {
+    prepare(sql) {
+      const statement = database.prepare(sql);
+      if (!sql.includes("INSERT INTO verification_assignment_events")) return statement;
+      return {bind(...values) {
+        const payload = {...JSON.parse(values[6]),marketJobId};
+        values[0] = `verification-event:${values[1]}:${values[2]}`;
+        values[6] = canonicalJson(payload);
+        values[5] = `sha256:${createHash("sha256").update(values[6]).digest("hex")}`;
+        return statement.bind(...values);
+      }};
+    },
+    batch(statements) {return database.batch(statements);},
+  };
+}
+
 test("verification market jobs and claims cannot be rewritten or deleted", async () => {
   const row = await database.prepare("SELECT id FROM verification_market_jobs LIMIT 1").first();
   await assert.rejects(
@@ -255,7 +324,7 @@ async function seedSecondBundle(d1, hash) {
 }
 
 async function seedReviewDelegation(d1, suffix, personId, fingerprintCharacter) {
-  const publicKey = `agent-public-key-${suffix}`;
+  const publicKey = suffix === "market-reviewer" ? reviewerPublicKey : `agent-public-key-${suffix}`;
   await d1.batch([
     d1.prepare(
       "INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint) VALUES (?, ?, ?, ?, ?)",
