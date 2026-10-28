@@ -25,6 +25,7 @@ export async function POST(request: Request) {
       oauthState: typeof body?.oauthState === "string" ? body.oauthState : "",
       codeChallenge: typeof body?.codeChallenge === "string" ? body.codeChallenge : "",
       connectionMode: typeof body?.connectionMode === "string" ? body.connectionMode : undefined,
+      redirectUri: body?.redirectUri === undefined ? undefined : typeof body.redirectUri === "string" ? body.redirectUri : "",
     });
     const origin = new URL(request.url).origin;
     const connectionUrl = new URL("/connect/codex", origin);

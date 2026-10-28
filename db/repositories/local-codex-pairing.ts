@@ -2,8 +2,8 @@ import { getConnectionD1 } from "@/db";
 import type { PersonIdentity } from "./delegation";
 import { getAccountAuthRepository } from "./account-auth";
 import { D1ProofweaveOAuthStore } from "@/services/proofweave-identity/d1-oauth-store.mjs";
+import { localCodexCallbackUri } from "@/packages/protocol/local-codex-callback.mjs";
 
-const localCallbackUrl = "http://127.0.0.1:44765/callback";
 const localConnectorName = "Proofweave local Codex Connector";
 const connectionPolicies = {
   research: {
@@ -61,8 +61,12 @@ export async function createLocalCodexPairing(input: {
   oauthState: string;
   codeChallenge: string;
   connectionMode?: string;
+  redirectUri?: string;
 }): Promise<{ id: string; browserSecret: string; clientId: string; expiresAt: string }> {
   validateLocalAgent(input);
+  let localCallbackUrl: string;
+  try { localCallbackUrl = localCodexCallbackUri(input.redirectUri); }
+  catch (error) { throw new LocalCodexPairingError(error instanceof Error ? error.message : "Invalid local callback URI."); }
   const connectionMode = normalizeConnectionMode(input.connectionMode);
   const requestedScopes = connectionPolicies[connectionMode].oauthScopes;
   const issuedAt = new Date();
