@@ -23,7 +23,7 @@ const env = {
   NODE_EXTRA_CA_CERTS: profile.caPath,
 };
 const quoted = value => JSON.stringify(value);
-const config = `mcp_servers.proofweave_acceptance={command=${quoted(process.execPath)},args=[${quoted(connector)}],required=true,enabled_tools=["connection_status","get_connection_authority","list_review_assignments"],env={${Object.entries(env).map(([key,value]) => `${key}=${quoted(value)}`).join(",")}}}`;
+const config = `mcp_servers.proofweave_acceptance={command=${quoted(process.execPath)},args=[${quoted(connector)}],required=true,default_tools_approval_mode="approve",enabled_tools=["connection_status","get_connection_authority","list_review_assignments"],env={${Object.entries(env).map(([key,value]) => `${key}=${quoted(value)}`).join(",")}}}`;
 const outputDirectory = dirname(profilePath);
 const acceptance = JSON.parse(await readFile(join(outputDirectory,"acceptance-report.json"), "utf8"));
 assert.equal(acceptance.origin, profile.origin);
