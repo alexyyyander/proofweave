@@ -1,10 +1,13 @@
 import assert from 'node:assert/strict';
 import { createHash, randomUUID } from 'node:crypto';
 import { canonicalJson, sha256Canonical } from '../../packages/protocol/canonical-json.mjs';
-import { contributionReceiptRequiredClaimTypes, verifyContributionReceiptSignature } from '../../packages/protocol/contribution-receipt.mjs';
+import { contributionReceiptHash, contributionReceiptRequiredClaimTypes, verifyContributionReceiptSignature } from '../../packages/protocol/contribution-receipt.mjs';
 import { D1ContributionReceiptStore } from '../../services/receipts/d1-contribution-receipt-store.mjs';
 import { D1ReceiptCreditSettlement } from '../../services/credits/d1-receipt-credit-settlement.mjs';
 import { deriveReceiptCreditSettlement } from '../../packages/protocol/receipt-credit.mjs';
+import { verifyVerificationAttestationSignature } from '../../packages/protocol/verification-attestation.mjs';
+import { verificationReplayEvidenceHash } from '../../packages/protocol/verification-replay-evidence.mjs';
+import { verifyLeanRunnerResultSignature } from '../../packages/protocol/lean-runner.mjs';
 
 /** This driver only operates on an explicitly synthetic, isolated loopback server. */
 export function assertLocalReviewAcceptanceContext({ origin, syntheticOwner, ownerPersonId, reviewerPersonId }) {
@@ -55,6 +58,8 @@ export async function runLocalReviewCreditAcceptance(options) {
   assert.equal(sameOwner.status, 409, 'The author must not claim their own independent review');
   assert.match(sameOwner.body?.error?.message ?? '', /own Attempt/i);
   const claims = [];
+  const signedAttestations = [];
+  const replayEvidence = [];
   let lastSubmission;
   let lastSubmitInput;
   for (const job of jobs) {
@@ -108,6 +113,21 @@ export async function runLocalReviewCreditAcceptance(options) {
     lastSubmitInput = {attestation:prepared.attestation,expectedPayloadHash:prepared.payloadHash,ownerConfirmation:'I_CONFIRM_SUBMIT_VERIFICATION'};
     lastSubmission = await callReviewerTool('submit_prepared_verification_attestation', lastSubmitInput);
     assert.equal(lastSubmission.submitted, true);
+    const storedAttestation = await database.prepare('SELECT canonical_payload FROM verification_attestations WHERE id = ?').bind(lastSubmission.attestationId).first();
+    assert.equal(storedAttestation?.canonical_payload, canonicalJson(prepared.attestation), 'Stored attestation must match the exact signed submission');
+    assert.equal(await verifyVerificationAttestationSignature(prepared.attestation), true);
+    signedAttestations.push(prepared.attestation);
+    if (replay) {
+      const row = await database.prepare('SELECT canonical_evidence FROM verification_replay_evidence WHERE replay_id = ?').bind(replay.replay.id).first();
+      assert.ok(row, 'Replay must have durable canonical evidence');
+      const evidence = JSON.parse(row.canonical_evidence);
+      assert.equal(canonicalJson(evidence), row.canonical_evidence);
+      assert.equal(await verificationReplayEvidenceHash(evidence), prepared.attestation.evidenceHash);
+      assert.equal(evidence.assignmentId, assignmentId);
+      const signedRun = await exportSignedLocalRun(database, evidence.runId);
+      assert.deepEqual(evidence.runnerResult, signedRun.result);
+      replayEvidence.push({evidence,evidenceHash:prepared.attestation.evidenceHash,runnerPublicKey:signedRun.runnerPublicKey});
+    }
     const closure = lastSubmission.receiptClosure;
     if (claims.length < jobs.length - 1) assert.notEqual(closure?.state, 'receipt_issued', 'Receipt was issued before all required claims');
     claims.push({claimType:job.claimType,assignmentId,attestationId:lastSubmission.attestationId,evidenceHash,replayRunId:replay?.run.id ?? null});
@@ -126,6 +146,10 @@ export async function runLocalReviewCreditAcceptance(options) {
   const publicRecord = requireHttp(await personRequest(`/api/receipts/${encodeURIComponent(receiptId)}`, {method:'GET'}), 'public Receipt');
   assert.equal((publicRecord.receipt ?? publicRecord).id, receiptId);
   assert.equal(publicRecord.receiptHash, closure.receiptHash);
+  assert.deepEqual(publicRecord.receipt, receipt);
+  assert.equal(await contributionReceiptHash(receipt), closure.receiptHash);
+  const primaryRun = await exportSignedLocalRun(database, receipt.run.id);
+  assert.equal(primaryRun.resultHash, receipt.run.resultHash);
 
   const credit = await readLocalReceiptCredits(database, receiptId);
   assert.equal(credit.settlement.totalUnits, 5);
@@ -146,7 +170,25 @@ export async function runLocalReviewCreditAcceptance(options) {
     bundleHash,claims,receiptId,receiptHash:closure.receiptHash,signatureVerified:true,
     creditSettlement:credit.settlement,creditEntries:credit.entries,creditByPerson:credit.people,
     duplicateSubmissionAddedCredit:false,sameOwnerClaimRejected:true,
+    offlineEvidence:{
+      trustModel:'public_keys_from_this_synthetic_isolated_test_only',
+      receipt,receiptHash:closure.receiptHash,attestations:signedAttestations,
+      primaryRun,replays:replayEvidence,
+    },
   };
+}
+
+async function exportSignedLocalRun(database, runId) {
+  const row = await database.prepare('SELECT result_hash, canonical_result FROM run_results WHERE run_id = ?').bind(runId).first();
+  assert.ok(row, 'Run must have a durable signed result');
+  const result = JSON.parse(row.canonical_result);
+  assert.equal(result.jobId, runId);
+  assert.equal(canonicalJson(result), row.canonical_result);
+  assert.equal(await sha256Canonical(result), row.result_hash);
+  const key = await database.prepare("SELECT public_key FROM runner_keys WHERE id = ? AND status = 'active' AND revoked_at IS NULL").bind(result.runnerKeyId).first();
+  assert.ok(key, 'Signed result must have an active local Runner public key');
+  assert.equal(await verifyLeanRunnerResultSignature({result,runnerPublicKey:key.public_key}), true);
+  return {result,resultHash:row.result_hash,runnerPublicKey:key.public_key};
 }
 
 export async function readLocalReceiptCredits(database, receiptId) {
