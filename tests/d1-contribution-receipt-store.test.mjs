@@ -391,6 +391,23 @@ test("verification receipt credits the review Agent present in immutable attesta
   );
 });
 
+test("Receipt review authority accepts SQLite UTC creation timestamps without accepting malformed or future times", async () => {
+  const store = new D1ContributionReceiptStore(database);
+  const original = await database.prepare("SELECT created_at FROM agents WHERE id = ?").bind("agent:bob-reviewer").first();
+  try {
+    for (const createdAt of ["2026-07-01 00:00:00","2026-07-01T00:00:00Z"]) {
+      await database.prepare("UPDATE agents SET created_at = ? WHERE id = ?").bind(createdAt,"agent:bob-reviewer").run();
+      assert.equal((await store.loadReviewEvidence(bundleHash)).length,3);
+    }
+    for (const createdAt of ["not-a-date","2026-02-30 00:00:00","2026-07-01 00:00:00+08:00","2026-07-01 25:00:00","2026-07-14 00:00:00"]) {
+      await database.prepare("UPDATE agents SET created_at = ? WHERE id = ?").bind(createdAt,"agent:bob-reviewer").run();
+      await assert.rejects(store.loadReviewEvidence(bundleHash), /UTC ISO-8601 instant|historical authority/);
+    }
+  } finally {
+    await database.prepare("UPDATE agents SET created_at = ? WHERE id = ?").bind(original.created_at,"agent:bob-reviewer").run();
+  }
+});
+
 test("Receipt closure fails closed on tampered, incomplete, expired, and same-owner review evidence", async () => {
   const cases = [
     {

@@ -133,7 +133,7 @@ export async function runLocalReviewCreditAcceptance(options) {
     claims.push({claimType:job.claimType,assignmentId,attestationId:lastSubmission.attestationId,evidenceHash,replayRunId:replay?.run.id ?? null});
   }
   const closure = lastSubmission.receiptClosure;
-  assert.equal(closure?.state, 'receipt_issued');
+  assert.equal(closure?.state, 'receipt_issued', `Receipt closure: ${JSON.stringify(closure)}`);
   assert.equal(closure.creditSettlement?.eligible, true, 'Demo/smoke/internal evidence must not be relabelled to force credit');
   const receiptId = closure.receiptId;
   const receipt = await new D1ContributionReceiptStore(database).loadVerifiedReceipt(receiptId);

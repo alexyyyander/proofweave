@@ -648,7 +648,7 @@ export class D1ContributionReceiptStore {
           "Review Agent or Person signing key fingerprint does not match its public key.",
         );
       }
-      const agentCreatedAt = requireUtcInstant(row.agent_created_at, "review Agent createdAt");
+      const agentCreatedAt = requireAgentCreationInstant(row.agent_created_at);
       const agentRevokedAt = row.agent_revoked_at === null || row.agent_revoked_at === undefined
         ? null
         : requireUtcInstant(row.agent_revoked_at, "review Agent revokedAt");
@@ -883,6 +883,19 @@ function requireUtcInstant(value, label) {
     throw new ContributionReceiptStoreValidationError(`${label} must be a UTC ISO-8601 instant.`);
   }
   return Date.parse(value);
+}
+
+// agents.created_at historically used SQLite CURRENT_TIMESTAMP (UTC), while
+// signed protocol instants use ISO-8601. Normalize only this database field;
+// calendar roundtripping rejects overflow dates and ambiguous time zones.
+function requireAgentCreationInstant(value) {
+  if (typeof value === "string" && /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(value)) {
+    const iso = `${value.replace(" ", "T")}Z`;
+    const instant = new Date(iso);
+    if (Number.isFinite(instant.getTime()) && instant.toISOString() === iso.replace("Z", ".000Z")) return instant.getTime();
+    throw new ContributionReceiptStoreValidationError("review Agent createdAt must be a UTC ISO-8601 instant or canonical SQLite UTC timestamp.");
+  }
+  return requireUtcInstant(value, "review Agent createdAt");
 }
 
 function optionalUtcInstant(value, label) {

@@ -646,9 +646,9 @@ class D1DelegationRepository implements DelegationRepository {
     const fingerprint = await keyFingerprint(input.publicKey);
     const inserted = await this.database
       .prepare(
-        "INSERT OR IGNORE INTO agents (id, owner_person_id, label, public_key, key_fingerprint) VALUES (?, ?, ?, ?, ?)",
+        "INSERT OR IGNORE INTO agents (id, owner_person_id, label, public_key, key_fingerprint, created_at) VALUES (?, ?, ?, ?, ?, ?)",
       )
-      .bind(input.agentId, person.id, input.label.trim(), input.publicKey, fingerprint)
+      .bind(input.agentId, person.id, input.label.trim(), input.publicKey, fingerprint, new Date().toISOString())
       .run();
     const row = await this.database
       .prepare(
