@@ -529,7 +529,11 @@ export class D1VerificationStore {
       [evidence.runnerResultHash === row.runner_result_hash, "runner_result_hash"],
       [evidence.recordedAt === row.recorded_at, "recorded_at"],
       [canonicalJson(evidence.runnerResult) === row.canonical_result, "embedded_runner_result"],
-      [Date.parse(storedResult.startedAt) === Date.parse(row.run_started_at), "started_at_projection"],
+      // Run.startedAt records control-plane dispatch; the signed Container
+      // start follows it after transport. Keep both actual timestamps and
+      // enforce the same ordering as recordRunnerResult in the Run domain.
+      [Number.isFinite(Date.parse(row.run_started_at)) && Date.parse(row.run_started_at) >= Date.parse(row.replay_requested_at), "dispatch_started_after_request"],
+      [Date.parse(storedResult.startedAt) >= Date.parse(row.run_started_at), "execution_started_after_dispatch"],
       [Date.parse(storedResult.finishedAt) === Date.parse(row.run_finished_at), "finished_at_projection"],
       [Date.parse(storedResult.startedAt) >= Date.parse(row.replay_requested_at), "replay_started_after_request"],
       [Date.parse(storedResult.finishedAt) <= Date.parse(evidence.recordedAt), "evidence_recorded_after_finish"],
