@@ -107,10 +107,12 @@ try {
   const preview = await owner.client.call("preview_local_evidence", { attemptId, paths: [projectEvidencePath] });
   await owner.client.call("submit_local_evidence", { attemptId, paths: [projectEvidencePath], expectedSha256: [preview.files[0].sha256], ownerConfirmation: "I_CONFIRM_SUBMIT" });
   const reviewResult = await runLocalReviewCreditAcceptance({ origin: runtime.origin, syntheticOwner: true, database: runtime.database, ownerPersonId: owner.personId, reviewerPersonId: reviewer.personId, bundleHash: draft.manifestHash, reviewJobs, projectEvidenceHash: preview.files[0].sha256, callReviewerTool: (name,input) => reviewer.client.call(name,input), personRequest: runtime.personRequest, executeReplay: async ({ queued }) => { assert.ok(queued.run?.id); const result = await runner.executeNext({ runId: queued.run.id }); assert.equal(result.runId, queued.run.id); assert.equal(result.isolationVerified, primaryExecution.isolationVerified); return result; }, confirmPreparedAttestation: async prepared => { assert.equal(prepared.attestation.artifactBundleHash, draft.manifestHash); return true; }, onStage });
+  await writeFile(join(root,"review-evidence.json"), JSON.stringify(reviewResult,null,2), { mode: 0o600 });
   await runtime.setWindowAttempts([]);
   const closedPublish = await runtime.personRequest(`/api/me/evidence/bundles/${encodeURIComponent(draft.manifestHash)}/submit-review`, { method: "POST", body: {}, personId: owner.personId });
   assert.equal(closedPublish.status, 403);
-  assert.equal(closedPublish.body.error.code, "research_write_not_allowed");
+  assert.equal(closedPublish.body.error.code, "forbidden");
+  assert.match(closedPublish.body.error.message, /not in the current research write window/);
   await assert.rejects(owner.client.call("publish_prepared_research_checkpoint", { ...checkpoint.publishInput, ownerConfirmation: "I_CONFIRM_PUBLISH_CHECKPOINT" }), /not in the current research write window/);
   onStage({ stage: "window_closed_writes_rejected", participantHttpStatus: 403, mcpRejected: true });
   const report = { schemaVersion: "pw-local-mcp-acceptance-v1", mode: "isolated_test", storageMode: "d1_inline", closedWindowWritesRejected: true, syntheticIdentities: true, independentHumanReview: false, productionAcceptance: false, sourceRevision, sourceDirty, startedAt, completedAt: new Date().toISOString(), origin: runtime.origin, leanToolchain, imageDigest, checkpoint: { id: recordedCheckpoint.id, hash: recordedCheckpoint.checkpointHash, persisted: true }, attemptId, bundleHash: draft.manifestHash, primary: { runId: submission.run.id, execution: primaryExecution }, review: reviewResult, events, transcripts: actors.map(actor => ({ role: actor.role, tools: actor.client.transcript })) };
