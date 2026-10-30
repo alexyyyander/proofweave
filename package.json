@@ -86,6 +86,7 @@
     "runtime:recovery-isolation:check": "node --check packages/protocol/runtime-recovery-isolation.mjs && node --check scripts/lib/github-recovery-surface-inspector.mjs && node --test tests/runtime-recovery-isolation.test.mjs",
     "runner:huggingface:export": "node scripts/export-huggingface-runner-space.mjs",
     "runner:e2b:template:build": "node --env-file-if-exists=.env.local scripts/build-e2b-lean-runner-template.mjs",
+    "runner:environments:generate": "node scripts/generate-runner-environment-config.mjs",
     "runner:execution:check": "node --check services/lean-runner/container-lean-executor.mjs && node --test tests/container-lean-executor.test.mjs",
     "runner:e2e:check": "node --test tests/container-runner-e2e.test.mjs",
     "artifact:check": "node --check packages/protocol/workspace-tree.mjs && node --check packages/protocol/artifact-bundle.mjs && node --test tests/workspace-tree.test.mjs tests/artifact-bundle.test.mjs",

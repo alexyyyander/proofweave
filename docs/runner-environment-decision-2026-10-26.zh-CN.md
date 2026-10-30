@@ -40,16 +40,27 @@ GitHub Actions workflow run `40450516816`（profile `mathlib-4.27-a3a10`）已�
 
 ## 环境登记与校验
 
-`config/runner-environments.json`（schema `pw-runner-environments-v1`）登记两个环境，每个环境包含 `profile`、`imageDigest`、`leanToolchain`、`mathlibRevision`、`state`（`approved` | `built_pending_template`）、`sourceRun`、`sourceCommit`：
+`config/runner-environments.json`（schema `pw-runner-environments-v2`）登记每个环境及其 E2B template。每个环境包含 `profile`、`imageDigest`、`leanToolchain`、`mathlibRevision`、`state`、`sourceRun`、`sourceCommit` 与 `template`：
 
-- `mathlib-4.31-9a948` → `approved`
-- `mathlib-4.27-a3a10` → `built_pending_template`（附 run `40450516816` 与来源 commit）
+- `template` 为 `{ "id", "buildId", "sourceImageDigest" }`，其中 `sourceImageDigest` 必须等于该环境的 `imageDigest`；
+- `state` 只能是 `approved`、`template_ready` 或 `built_pending_template`；
+- `built_pending_template`：镜像已构建，但尚无 E2B template，`template` 必须为 `null`，且必须记录 `sourceRun` / `sourceCommit`；
+- `template_ready`：template ID / build ID 已登记，但尚未批准执行，`template` 必填，且必须记录来源；
+- `approved`：镜像与 template 均已评审，可部署执行，`template` 必填。
 
-`scripts/check-runner-environments.mjs` 只读解析 `wrangler.cloudflare.jsonc` 的 Worker `RUNNER_APPROVED_IMAGES_JSON`，以及 `deploy/huggingface-runner/render.yaml` 的 `RUNNER_APPROVED_IMAGES_JSON`、`PROOFWEAVE_E2B_RUNNER_IMAGE`、`PROOFWEAVE_E2B_TEMPLATE_ID`，校验 schema、digest 格式、环境对唯一性、profile 唯一性与 state 合法性，并报告：
+当前登记：
 
-- 当前批准列表与 pending 环境之间的差异；
-- 每个环境是否 admissible，以及 blockers（4.27 无 template 时为 `environment_state_pending` + `missing_e2b_template`）；
-- digest 与 source revision 的一致性，以及 deploy 配置与登记表的绑定是否一致。
+- `mathlib-4.31-9a948` → `approved`，template `cbfjgbsrgtku0c7sliu5:workspace-modes-20261019-617de06`（build `4fd0e92f…`）
+- `mathlib-4.27-a3a10` → `built_pending_template`，`template: null`（附 run `40469297704` 与来源 commit）
+
+`scripts/check-runner-environments.mjs` 只读解析 `wrangler.cloudflare.jsonc` 的 Worker `RUNNER_APPROVED_IMAGES_JSON`，以及 `deploy/huggingface-runner/render.yaml` 的 `RUNNER_APPROVED_IMAGES_JSON`、`PROOFWEAVE_E2B_RUNNER_IMAGE`、`PROOFWEAVE_E2B_TEMPLATE_ID`、`PROOFWEAVE_E2B_TEMPLATE_BUILD_ID`、`RUNNER_EXECUTION_ENABLED`，校验 schema、digest/template 格式、环境对唯一性、profile 唯一性、state 合法性与 template 来源绑定，并报告：
+
+- 每个环境是否 admissible，以及 blockers（例如 4.27 为 `environment_state_not_approved` + `missing_e2b_template`）；
+- Render 执行镜像的 template ID / build ID 是否与登记表完全一致；
+- Worker / Render 批准列表是否登记、是否绑定到相同的 Lean 与 Mathlib；
+- `template_ready` 环境只有在 `RUNNER_EXECUTION_ENABLED=false` 时才允许预置为 Render 执行镜像；执行开启时属于配置不一致。
+
+`approved` 环境不要求必须是当前执行镜像：多个已批准环境可以并存，只有 Render 实际选中的那个执行。admissibility 表示该环境自身可部署，而不是它正在执行。
 
 ```bash
 node scripts/check-runner-environments.mjs          # 人类可读
@@ -57,7 +68,30 @@ node scripts/check-runner-environments.mjs --json   # 机器可读
 node scripts/check-runner-environments.mjs --strict # 配置不一致时退出 1
 ```
 
-`--strict` 只在配置不一致、或 pending 环境被错误批准（出现在 Render 批准列表或成为 Render 执行镜像）时退出 1。4.27 当前 blocked 是登记表声明的预期状态，`--strict` 通过只表示配置自洽，**不代表 4.27 可执行**。该脚本不写入任何文件，也不修改部署配置。
+`--strict` 只在配置不一致、或 pending 环境被错误批准（出现在 Render 批准列表或成为 Render 执行镜像）、或 template_ready 环境在开启执行时仍被选中时退出 1。4.27 当前 blocked 是登记表声明的预期状态，`--strict` 通过只表示配置自洽，**不代表 4.27 可执行**。该脚本不写入任何文件，也不修改部署配置。
+
+## 部署值生成
+
+`scripts/generate-runner-environment-config.mjs` 从登记表生成部署所需的 env 值，避免手工复制 digest / template ID：
+
+```bash
+# 当前 4.31 执行面（与 render.yaml 一致）
+node scripts/generate-runner-environment-config.mjs \
+  --execution-profile mathlib-4.31-9a948 --surface render
+
+# 4.27 template 建好后：Worker / Render 同时预置两个环境，执行仍关闭
+node scripts/generate-runner-environment-config.mjs \
+  --profile mathlib-4.31-9a948 --profile mathlib-4.27-a3a10 \
+  --execution-profile mathlib-4.27-a3a10 --surface render
+```
+
+- 默认只选择全部 `approved` 环境，输出 `RUNNER_APPROVED_IMAGES_JSON`；
+- `--profile` 可显式加入 `template_ready` 环境，但拒绝尚未有 template 的 `built_pending_template`；
+- `--execution-profile` 额外输出 `PROOFWEAVE_E2B_RUNNER_IMAGE`、`PROOFWEAVE_E2B_TEMPLATE_ID`、`PROOFWEAVE_E2B_TEMPLATE_BUILD_ID`，并把该环境加入批准列表；
+- `--surface render` 要求 `--execution-profile`；`--surface worker` 不输出执行设置；
+- `--format env`（默认）输出 shell/dotenv 可用的 `KEY='value'` 行，`--format json` 输出结构化报告。
+
+npm 别名：`npm run runner:environments:generate -- --execution-profile mathlib-4.31-9a948 --surface render`。生成器只读取登记表，不读写凭据，也不修改部署配置。
 
 ## 依据
 
