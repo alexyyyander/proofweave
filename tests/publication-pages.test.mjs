@@ -79,6 +79,9 @@ test("the Landau–Siegel proof-evolution prototype renders with its caveats and
   assert.ok(html.includes("What the formalization actually contains"));
   assert.ok(html.includes("306"));
   assert.ok(html.includes("Module explorer"));
+  assert.ok(html.includes("How each proof actually reaches the result"));
+  assert.ok(html.includes("Argument map"));
+  assert.ok(html.includes("Wronskian"));
 });
 
 test("the Landau–Siegel family links to the proof-evolution prototype", async () => {

@@ -3,12 +3,14 @@ import { readFile } from "node:fs/promises";
 import { test } from "node:test";
 import {
   ProofEvolutionValidationError,
+  validateArgumentMap,
   validateLeanStructure,
   validateProofEvolution,
 } from "../packages/domain/proof-evolution.mjs";
 
 const data = JSON.parse(await readFile(new URL("../data/proof-evolution/landau-siegel.json", import.meta.url), "utf8"));
 const leanStructure = JSON.parse(await readFile(new URL("../data/proof-evolution/lean-structure.json", import.meta.url), "utf8"));
+const argumentMap = JSON.parse(await readFile(new URL("../data/proof-evolution/argument-map.json", import.meta.url), "utf8"));
 const byId = new Map(data.versions.map((version) => [version.id, version]));
 
 function clone() {
@@ -210,4 +212,80 @@ test("a Lean subsystem count mismatch is rejected", () => {
   const broken = JSON.parse(JSON.stringify(leanStructure));
   broken.subsystems[0].moduleCount += 1;
   assert.throws(() => validateLeanStructure(broken), ProofEvolutionValidationError, /moduleCount does not match/);
+});
+
+
+test("the cross-proof argument map validates and contains five same-theorem strategies", () => {
+  assert.equal(validateArgumentMap(argumentMap, data), argumentMap);
+  assert.equal(argumentMap.strategies.length, 7);
+  assert.equal(argumentMap.strategies.filter((strategy) => strategy.track === "same-theorem").length, 5);
+  assert.equal(argumentMap.strategies.filter((strategy) => strategy.track === "stronger-theorem").length, 2);
+  assert.equal(argumentMap.crossEdges.length, 29);
+  assert.equal(argumentMap.finalEdges.length, 8);
+  assert.equal(argumentMap.comparisons.length, 6);
+  assert.equal(argumentMap.extraNodes.length, 1);
+  assert.equal(argumentMap.result.id, "result:landau-siegel-zero-gap");
+});
+
+test("every proof step has a role and every strategy has a result node", () => {
+  const strategyIds = new Set(argumentMap.strategies.map((strategy) => strategy.versionId));
+  for (const strategy of argumentMap.strategies) {
+    const version = byId.get(strategy.versionId);
+    const roles = argumentMap.nodeRoles[strategy.versionId];
+    for (const step of version.proofSteps) assert.ok(roles[step.id], `missing role ${strategy.versionId}:${step.id}`);
+    const hasResult = Object.values(roles).includes("result") || argumentMap.extraNodes.some((node) => node.versionId === strategy.versionId && node.role === "result");
+    assert.ok(hasResult, `missing result node for ${strategy.versionId}`);
+    assert.ok(strategyIds.has(strategy.versionId));
+  }
+});
+
+test("the key cross-strategy relationships are explicit", () => {
+  const has = (from, to, type) => argumentMap.crossEdges.some((edge) => edge.from === from && edge.to === to && edge.type === type);
+  assert.ok(has("barreto-2026-10-19:wronskian", "green-2026-10-17:nonsingular", "replaces"));
+  assert.ok(has("barreto-2026-10-19:wronskian", "openai-2026-10-01:interpolation", "bypasses"));
+  assert.ok(has("barreto-2026-10-19:wronskian", "openai-2026-10-01:weighted-determinant", "bypasses"));
+  assert.ok(has("green-2026-10-17:nonsingular", "openai-2026-10-01:interpolation", "replaces"));
+  assert.ok(has("kerr-2026-10-15:masser", "openai-2026-10-01:weighted-determinant", "bypasses"));
+  assert.ok(has("openai-2026-10-01:prime-divisibility", "banks-2026-10-11:prime-powers", "same-role"));
+  assert.ok(has("green-2026-10-17:padic", "barreto-2026-10-19:divisibility", "same-role"));
+});
+
+test("the strongest comparison says what Barreto keeps and what it replaces", () => {
+  const comparison = argumentMap.comparisons.find((entry) => [entry.a, entry.b].sort().join("|") === "barreto-2026-10-19|openai-2026-10-01");
+  assert.ok(comparison);
+  assert.ok(comparison.summary.includes("Wronskian"));
+  assert.ok(comparison.sharedRoles.includes("padic"));
+  assert.ok(comparison.sharedRoles.includes("result"));
+  assert.ok(comparison.uniqueARoles.includes("determinant"));
+});
+
+test("the stronger-theorem strategies only imply the shared result", () => {
+  const stronger = new Set(argumentMap.strategies.filter((strategy) => strategy.track === "stronger-theorem").map((strategy) => strategy.versionId));
+  const implied = argumentMap.finalEdges.filter((edge) => stronger.has(edge.from.split(":")[0]));
+  assert.equal(implied.length, 2);
+  assert.ok(implied.every((edge) => edge.type === "implies" && edge.to === argumentMap.result.id));
+});
+
+test("an argument-map role outside the declared roles is rejected", () => {
+  const broken = JSON.parse(JSON.stringify(argumentMap));
+  broken.nodeRoles["openai-2026-10-01"]["prime-bias"] = "not-a-role";
+  assert.throws(() => validateArgumentMap(broken, data), ProofEvolutionValidationError, /unknown role/);
+});
+
+test("an argument-map cross edge with an unknown node is rejected", () => {
+  const broken = JSON.parse(JSON.stringify(argumentMap));
+  broken.crossEdges[0].to = "missing:node";
+  assert.throws(() => validateArgumentMap(broken, data), ProofEvolutionValidationError, /unknown node/);
+});
+
+test("an argument-map strategy missing a proof-step role is rejected", () => {
+  const broken = JSON.parse(JSON.stringify(argumentMap));
+  delete broken.nodeRoles["openai-2026-10-01"]["prime-bias"];
+  assert.throws(() => validateArgumentMap(broken, data), ProofEvolutionValidationError, /missing role/);
+});
+
+test("a duplicate argument-map comparison is rejected", () => {
+  const broken = JSON.parse(JSON.stringify(argumentMap));
+  broken.comparisons.push({ ...broken.comparisons[0] });
+  assert.throws(() => validateArgumentMap(broken, data), ProofEvolutionValidationError, /duplicate argument-map comparison/);
 });

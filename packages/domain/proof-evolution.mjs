@@ -357,3 +357,140 @@ export function validateLeanStructure(data) {
 
   return data;
 }
+
+export const ARGUMENT_MAP_SCHEMA_VERSION = "pw-argument-map-v1";
+
+export function validateArgumentMap(data, proofData) {
+  expectObject(data, "argument map data");
+  expectObject(proofData, "proof data for argument map");
+  if (data.schemaVersion !== ARGUMENT_MAP_SCHEMA_VERSION) fail(`argumentMap.schemaVersion must be ${ARGUMENT_MAP_SCHEMA_VERSION}`);
+  if (data.status !== "draft") fail('argumentMap.status must be "draft"');
+  if (data.reviewStatus !== "unreviewed") fail('argumentMap.reviewStatus must be "unreviewed"');
+
+  const result = expectObject(data.result, "argumentMap.result");
+  for (const field of ["id", "label", "statement", "source"]) expectString(result[field], `argumentMap.result.${field}`);
+
+  const roles = expectArray(data.roles, "argumentMap.roles");
+  if (roles.length === 0) fail("argumentMap.roles must not be empty");
+  const roleIds = new Set();
+  for (const [index, role] of roles.entries()) {
+    const label = `argumentMap.roles[${index}]`;
+    expectObject(role, label);
+    expectString(role.id, `${label}.id`);
+    expectString(role.label, `${label}.label`);
+    expectString(role.description, `${label}.description`);
+    if (roleIds.has(role.id)) fail(`duplicate argument-map role ${role.id}`);
+    roleIds.add(role.id);
+  }
+
+  const proofVersions = expectArray(proofData.versions, "proofData.versions");
+  const proofByVersion = new Map(proofVersions.map((version) => [version.id, version]));
+  const strategies = expectArray(data.strategies, "argumentMap.strategies");
+  if (strategies.length < 2) fail("argumentMap.strategies must contain at least two strategies");
+  const strategyIds = new Set();
+  for (const [index, strategy] of strategies.entries()) {
+    const label = `argumentMap.strategies[${index}]`;
+    expectObject(strategy, label);
+    expectString(strategy.versionId, `${label}.versionId`);
+    if (!proofByVersion.has(strategy.versionId)) fail(`${label}.versionId references unknown proof version ${strategy.versionId}`);
+    if (strategyIds.has(strategy.versionId)) fail(`duplicate argument-map strategy ${strategy.versionId}`);
+    strategyIds.add(strategy.versionId);
+    expectString(strategy.color, `${label}.color`);
+    if (!/^#[0-9a-f]{6}$/i.test(strategy.color)) fail(`${label}.color must be a six-digit hex color`);
+    expectEnum(strategy.track, new Set(["same-theorem", "stronger-theorem"]), `${label}.track`);
+    expectString(strategy.note, `${label}.note`);
+  }
+
+  const validNodeIds = new Set();
+  for (const strategy of strategies) {
+    const version = proofByVersion.get(strategy.versionId);
+    for (const step of version.proofSteps) validNodeIds.add(`${strategy.versionId}:${step.id}`);
+  }
+  const extraNodes = expectArray(data.extraNodes, "argumentMap.extraNodes");
+  for (const [index, node] of extraNodes.entries()) {
+    const label = `argumentMap.extraNodes[${index}]`;
+    expectObject(node, label);
+    for (const field of ["id", "versionId", "role", "label", "kind", "source", "statement"]) expectString(node[field], `${label}.${field}`);
+    if (!strategyIds.has(node.versionId)) fail(`${label}.versionId references unknown strategy ${node.versionId}`);
+    if (!roleIds.has(node.role)) fail(`${label}.role references unknown role ${node.role}`);
+    if (validNodeIds.has(node.id)) fail(`duplicate argument-map node id ${node.id}`);
+    validNodeIds.add(node.id);
+  }
+  validNodeIds.add(result.id);
+
+  const nodeRoles = expectObject(data.nodeRoles, "argumentMap.nodeRoles");
+  for (const strategy of strategies) {
+    const version = proofByVersion.get(strategy.versionId);
+    const map = expectObject(nodeRoles[strategy.versionId], `argumentMap.nodeRoles.${strategy.versionId}`);
+    const stepIds = new Set(version.proofSteps.map((step) => step.id));
+    for (const [stepId, role] of Object.entries(map)) {
+      if (!stepIds.has(stepId)) fail(`argumentMap.nodeRoles.${strategy.versionId} references unknown step ${stepId}`);
+      if (!roleIds.has(role)) fail(`argumentMap.nodeRoles.${strategy.versionId}.${stepId} references unknown role ${role}`);
+    }
+    for (const step of version.proofSteps) {
+      if (!map[step.id]) fail(`argumentMap.nodeRoles.${strategy.versionId} is missing role for step ${step.id}`);
+    }
+    const hasResult = Object.values(map).includes("result") || extraNodes.some((node) => node.versionId === strategy.versionId && node.role === "result");
+    if (!hasResult) fail(`argument map strategy ${strategy.versionId} has no result-role node`);
+  }
+
+  const finalEdges = expectArray(data.finalEdges, "argumentMap.finalEdges");
+  if (finalEdges.length === 0) fail("argumentMap.finalEdges must not be empty");
+  for (const [index, edge] of finalEdges.entries()) {
+    const label = `argumentMap.finalEdges[${index}]`;
+    expectObject(edge, label);
+    expectString(edge.from, `${label}.from`);
+    expectString(edge.to, `${label}.to`);
+    if (!validNodeIds.has(edge.from)) fail(`${label}.from references unknown node ${edge.from}`);
+    if (!validNodeIds.has(edge.to)) fail(`${label}.to references unknown node ${edge.to}`);
+    expectEnum(edge.type, new Set(["depends", "proves", "implies"]), `${label}.type`);
+    expectString(edge.label, `${label}.label`);
+    if (edge.from === edge.to) fail(`${label} must not be a self-edge`);
+  }
+  if (!finalEdges.some((edge) => edge.to === result.id)) fail("argumentMap.finalEdges must contain an edge to the shared result");
+
+  const crossEdges = expectArray(data.crossEdges, "argumentMap.crossEdges");
+  if (crossEdges.length === 0) fail("argumentMap.crossEdges must not be empty");
+  for (const [index, edge] of crossEdges.entries()) {
+    const label = `argumentMap.crossEdges[${index}]`;
+    expectObject(edge, label);
+    expectString(edge.from, `${label}.from`);
+    expectString(edge.to, `${label}.to`);
+    if (!validNodeIds.has(edge.from)) fail(`${label}.from references unknown node ${edge.from}`);
+    if (!validNodeIds.has(edge.to)) fail(`${label}.to references unknown node ${edge.to}`);
+    if (edge.from === edge.to) fail(`${label} must not be a self-edge`);
+    expectEnum(edge.type, new Set(["same-role", "replaces", "bypasses"]), `${label}.type`);
+    expectString(edge.label, `${label}.label`);
+    if (edge.note !== undefined) expectString(edge.note, `${label}.note`);
+    if (edge.directed !== undefined && typeof edge.directed !== "boolean") fail(`${label}.directed must be a boolean`);
+  }
+
+  const comparisons = expectArray(data.comparisons, "argumentMap.comparisons");
+  const comparisonKeys = new Set();
+  for (const [index, comparison] of comparisons.entries()) {
+    const label = `argumentMap.comparisons[${index}]`;
+    expectObject(comparison, label);
+    expectString(comparison.a, `${label}.a`);
+    expectString(comparison.b, `${label}.b`);
+    if (!strategyIds.has(comparison.a) || !strategyIds.has(comparison.b)) fail(`${label} references unknown strategy`);
+    if (comparison.a === comparison.b) fail(`${label} compares a strategy with itself`);
+    const key = [comparison.a, comparison.b].sort().join("|");
+    if (comparisonKeys.has(key)) fail(`duplicate argument-map comparison ${key}`);
+    comparisonKeys.add(key);
+    expectString(comparison.summary, `${label}.summary`);
+    for (const field of ["sharedRoles", "uniqueARoles", "uniqueBRoles"]) {
+      expectArray(comparison[field], `${label}.${field}`);
+      for (const role of comparison[field]) {
+        if (!roleIds.has(role)) fail(`${label}.${field} references unknown role ${role}`);
+      }
+    }
+  }
+
+  for (const field of ["sharedInputs", "caveats"]) {
+    const entries = expectArray(data[field], `argumentMap.${field}`);
+    if (entries.length === 0) fail(`argumentMap.${field} must not be empty`);
+    for (const [index, entry] of entries.entries()) expectString(entry, `argumentMap.${field}[${index}]`);
+  }
+
+  return data;
+}

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Badge, CardTitle, Field, FieldList, Surface, cx } from "@/app/components/ui";
 import { LeanStructureView } from "./LeanStructureView";
+import { ArgumentMapView } from "./ArgumentMapView";
 import {
   explicitConstantLabel,
   goalLabel,
@@ -12,6 +13,7 @@ import {
   trackById,
   versionById,
   versionsForTrack,
+  type ArgumentMapData,
   type LeanStructureData,
   type LedgerStatus,
   type LeanStatus,
@@ -63,7 +65,7 @@ function ledgerTone(status: LedgerStatus): "positive" | "neutral" | "warning" | 
   return "neutral";
 }
 
-export function ProofEvolutionClient({ data, leanStructure }: { data: ProofEvolutionData; leanStructure: LeanStructureData }) {
+export function ProofEvolutionClient({ data, leanStructure, argumentMap }: { data: ProofEvolutionData; leanStructure: LeanStructureData; argumentMap: ArgumentMapData }) {
   const [selectedId, setSelectedId] = useState("barreto-2026-10-19");
   const selected = versionById(data, selectedId) ?? data.versions[0];
   if (!selected) return null;
@@ -86,6 +88,16 @@ export function ProofEvolutionClient({ data, leanStructure }: { data: ProofEvolu
       </div>
       <VersionGraph data={data} selectedId={selected.id} onSelect={setSelectedId} />
       <p className="proof-evolution-graph-note">Scroll the graph horizontally to see all branches. Page counts come from the linked PDFs. Banks is longer because it adds explicit constants, not because it is a less successful simplification. Van Dijk also follows Kerr and Green; Guo is an explicit side branch. Both relations are recorded in the version details.</p>
+    </section>
+
+    <section id="argument-map" className="proof-evolution-section" aria-labelledby="argument-map-title">
+      <SectionHeading
+        id="argument-map-title"
+        eyebrow="Theorem dependencies · multiple strategies"
+        title="How each proof actually reaches the result"
+        description="Each lane is a proof strategy; each column is a mathematical role. Solid edges are proof dependencies; dotted and dashed edges show shared roles, replacements, and bypasses. Select two strategies to see what they share, what one replaces, and where the short route leaves the long route."
+      />
+      <ArgumentMapView data={data} argumentMap={argumentMap} />
     </section>
 
     <section id="detail" className="proof-evolution-section" aria-labelledby="detail-title">

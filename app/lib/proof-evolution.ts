@@ -131,6 +131,70 @@ export type LeanPaperAlignment = {
   note: string;
 };
 
+export type ArgumentMapRole = {
+  id: string;
+  label: string;
+  description: string;
+};
+
+export type ArgumentMapStrategy = {
+  versionId: string;
+  color: string;
+  track: "same-theorem" | "stronger-theorem";
+  note: string;
+};
+
+export type ArgumentMapExtraNode = {
+  id: string;
+  versionId: string;
+  role: string;
+  label: string;
+  kind: string;
+  source: string;
+  statement: string;
+};
+
+export type ArgumentMapEdgeType = "depends" | "proves" | "implies" | "same-role" | "replaces" | "bypasses";
+
+export type ArgumentMapEdge = {
+  from: string;
+  to: string;
+  type: ArgumentMapEdgeType;
+  label: string;
+  note?: string;
+  directed?: boolean;
+};
+
+export type ArgumentMapComparison = {
+  a: string;
+  b: string;
+  summary: string;
+  sharedRoles: string[];
+  uniqueARoles: string[];
+  uniqueBRoles: string[];
+};
+
+export type ArgumentMapData = {
+  schemaVersion: "pw-argument-map-v1";
+  status: "draft";
+  reviewStatus: "unreviewed";
+  result: {
+    id: string;
+    label: string;
+    statement: string;
+    source: string;
+  };
+  roles: ArgumentMapRole[];
+  strategies: ArgumentMapStrategy[];
+  nodeRoles: Record<string, Record<string, string>>;
+  extraNodes: ArgumentMapExtraNode[];
+  finalEdges: ArgumentMapEdge[];
+  crossEdges: ArgumentMapEdge[];
+  comparisons: ArgumentMapComparison[];
+  sharedInputs: string[];
+  caveats: string[];
+};
+
 export type LeanStructureData = {
   schemaVersion: "pw-lean-structure-v1";
   status: "draft";
