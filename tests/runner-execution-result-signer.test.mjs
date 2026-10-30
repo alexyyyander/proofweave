@@ -38,6 +38,43 @@ test("trusted Worker signer rejects output and Run substitutions from a Containe
   );
 });
 
+test("trusted Worker signer attests the request environment and Runner template", async () => {
+  const pair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
+  const signer = new RunnerExecutionResultSigner({
+    runnerKeyId: "runner-key:trusted",
+    runnerPrivateKey: pair.privateKey,
+    templateId: "template_proofweave:reviewed_runtime",
+    templateBuildId: "9420e83e-3c6d-48b8-94fe-a73807af5797",
+  });
+  const request = {
+    jobId: "run:signer",
+    attemptId: "attempt:signer",
+    environment: {
+      imageDigest: `ghcr.io/proofweave/lean-runner@sha256:${"e".repeat(64)}`,
+      leanToolchain: "leanprover/lean4:v4.27.0",
+      mathlibRevision: "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+      network: "disabled",
+    },
+  };
+  const signed = await signer.sign({ execution: await fixtureExecution(), run: fixtureRun(), request });
+
+  assert.deepEqual(signed.environment, {
+    imageDigest: request.environment.imageDigest,
+    leanToolchain: request.environment.leanToolchain,
+    mathlibRevision: request.environment.mathlibRevision,
+    templateId: "template_proofweave:reviewed_runtime",
+    templateBuildId: "9420e83e-3c6d-48b8-94fe-a73807af5797",
+  });
+  await assert.rejects(
+    signer.sign({
+      execution: await fixtureExecution(),
+      run: fixtureRun(),
+      request: { ...request, jobId: "run:other" },
+    }),
+    /does not match its persisted Run/,
+  );
+});
+
 async function fixtureExecution() {
   const stdout = new TextEncoder().encode("Lean completed\n");
   const stderr = new Uint8Array();

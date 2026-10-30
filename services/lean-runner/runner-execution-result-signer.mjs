@@ -1,4 +1,7 @@
-import { signLeanRunnerResult } from "../../packages/protocol/lean-runner.mjs";
+import {
+  normalizeRunnerEnvironmentEvidence,
+  signLeanRunnerResult,
+} from "../../packages/protocol/lean-runner.mjs";
 
 export class RunnerExecutionResultSignerError extends Error {
   constructor(message, options) {
@@ -15,21 +18,64 @@ export class RunnerExecutionResultSignerError extends Error {
  * atomically by a deployment-specific R2 adapter before D1 accepts the result.
  */
 export class RunnerExecutionResultSigner {
-  constructor({ runnerKeyId, runnerPrivateKey }) {
+  constructor({
+    runnerKeyId,
+    runnerPrivateKey,
+    templateId = null,
+    templateBuildId = null,
+    environment = null,
+  }) {
     if (typeof runnerKeyId !== "string" || runnerKeyId.trim().length === 0 || runnerKeyId.length > 240) {
       throw new TypeError("RunnerExecutionResultSigner requires a bounded runner key id.");
     }
     if (!runnerPrivateKey) throw new TypeError("RunnerExecutionResultSigner requires an operator-held private key.");
+    if ((templateId === null) !== (templateBuildId === null)) {
+      throw new TypeError("RunnerExecutionResultSigner requires templateId and templateBuildId together.");
+    }
+    if (templateId !== null && (typeof templateId !== "string" || templateId.length === 0)) {
+      throw new TypeError("RunnerExecutionResultSigner templateId must be a bounded string.");
+    }
+    if (templateBuildId !== null && (typeof templateBuildId !== "string" || templateBuildId.length === 0)) {
+      throw new TypeError("RunnerExecutionResultSigner templateBuildId must be a bounded string.");
+    }
     this.runnerKeyId = runnerKeyId;
     this.runnerPrivateKey = runnerPrivateKey;
+    this.templateId = templateId;
+    this.templateBuildId = templateBuildId;
+    this.environment = environment === null
+      ? null
+      : normalizeRunnerEnvironmentEvidence(environment);
   }
 
-  async sign({ execution, run }) {
+  async sign({ execution, run, request = null }) {
     const normalized = await normalizeContainerExecution(execution);
     assertBoundToRun(normalized.result, run);
+    const environment = this.resolveEnvironment({ request, run });
     return signLeanRunnerResult({
-      result: { ...normalized.result, runnerKeyId: this.runnerKeyId },
+      result: {
+        ...normalized.result,
+        runnerKeyId: this.runnerKeyId,
+        ...(environment === null ? {} : { environment }),
+      },
       runnerPrivateKey: this.runnerPrivateKey,
+    });
+  }
+
+  resolveEnvironment({ request, run }) {
+    if (request === null || request === undefined) return this.environment;
+    if (
+      !request.environment ||
+      request.jobId !== run.id ||
+      request.attemptId !== run.attemptId
+    ) {
+      throw new RunnerExecutionResultSignerError("Runner signing request does not match its persisted Run.");
+    }
+    return normalizeRunnerEnvironmentEvidence({
+      imageDigest: request.environment.imageDigest,
+      leanToolchain: request.environment.leanToolchain,
+      mathlibRevision: request.environment.mathlibRevision,
+      templateId: this.templateId,
+      templateBuildId: this.templateBuildId,
     });
   }
 }

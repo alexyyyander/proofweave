@@ -88,6 +88,7 @@ Person A 固定目标
   - 工作区哈希、工具链 4.27、Mathlib `a3a10db…`；
   - Lean accepted；`noSorry`、allowed axioms、lean build 四项检查；
   - 结果签名、输出哈希、acknowledged 终态；
+  - 签名结果中的 `environment` 块包含 4.27 image digest 与 E2B template ID/build；
   - 没有其他 Run 被消费。
 - 无论结果如何，立即把 4.27 Runner 恢复为 `executionEnabled=false` 并回读暂停状态。
 - Run 通过后把 4.27 从 `template_ready` 晋升为 `approved`，移除 `RUNNER_ONLY_RUN_ID`；再回读 4.27 的 `executing=1`。
@@ -100,6 +101,7 @@ Person A 固定目标
 - 当前 review 动作受 research allowlist 限制；首案采用**受控方式**：把 B 的 Person、Agent 和该 author Attempt 临时加入 allowlist，完成评审后再移除。长期方案见 P5。
 - B 领取 accepted assignment，执行全新 replay，签署 claim-specific attestation。
 - 收据协调器在全部必需声明满足后签发 Receipt；公开入口回验签名、哈希、依赖与所有权分离。
+- Receipt 的 `run.environment` 必须与 Bundle 的 Lean/Mathlib pin 一致，并保留 image digest 与 E2B template ID/build；不一致时拒绝签发。
 
 **验收**：一次真实 Person A → Person B → Receipt 的 live 记录；不在评审过程中使用同一 Person 的两个 Agent。
 

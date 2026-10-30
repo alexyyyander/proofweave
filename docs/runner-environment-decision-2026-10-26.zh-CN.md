@@ -73,6 +73,25 @@ checker 的 `--render` 可以重复传入；每个文件可以包含一个或多
 
 `RUNNER_WAKE_ROUTES_JSON` 是一个最多 8 项的数组，每项为 `{ leanToolchain, mathlibRevision, url, wakeToken, hostAuthorizationToken? }`；`url` 必须是精确的 HTTPS `/v1/wake` 端点。未配置时回退到单一 `RUNNER_WAKE_URL`。
 
+## 版本证据绑定
+
+新的签名 Runner result 可以携带 `environment` 块：
+
+```json
+{
+  "imageDigest": "ghcr.io/alexyyyander/proofweave-lean-runner@sha256:...",
+  "leanToolchain": "leanprover/lean4:v4.27.0",
+  "mathlibRevision": "a3a10db...",
+  "templateId": "cbfjgbsrgtku0c7sliu5:...",
+  "templateBuildId": "4fd0e92f-..."
+}
+```
+
+- Runner Worker 从认证 request 取 image / Lean / Mathlib，从 E2B factory 取 template ID/build，并把该块放进签名 payload；签名覆盖整个环境，篡改任一项都会使签名失效。
+- `run_results.canonical_result` 和 fresh-review replay evidence 会原样嵌入该块；公开 Run summary 和证据页也会显示。
+- Contribution Receipt 的 `run.environment` 复制该块；Receipt store 在签发前校验它的 Lean/Mathlib 与 Artifact Bundle 的 pin 完全一致，不一致就拒绝。
+- 历史结果没有该块仍然有效；新 Runner 的结果会带它。需要模板身份的回放应把 `templateId`/`templateBuildId` 一起核对。
+
 ```bash
 node scripts/check-runner-environments.mjs          # 人类可读
 node scripts/check-runner-environments.mjs --json   # 机器可读

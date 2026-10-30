@@ -437,6 +437,15 @@ export class D1ContributionReceiptStore {
     if (row.runner_result_hash !== row.result_hash || runnerResult.status !== row.run_state) {
       throw new ContributionReceiptStoreValidationError("Stored Run projection does not match its immutable runner result.");
     }
+    if (
+      runnerResult.environment &&
+      (runnerResult.environment.leanToolchain !== bundle.environment.leanToolchain ||
+        runnerResult.environment.mathlibRevision !== bundle.environment.mathlibRevision)
+    ) {
+      throw new ContributionReceiptStoreValidationError(
+        "Runner environment evidence does not match the Artifact Bundle Lean environment.",
+      );
+    }
     const claims = await this.loadAttestedClaims(artifactBundleManifestHash);
     return {
       attempt: {
@@ -462,6 +471,7 @@ export class D1ContributionReceiptStore {
         resultHash: row.result_hash,
         status: row.run_state,
         kernelStatus: runnerResult.kernelStatus,
+        ...(runnerResult.environment ? { environment: runnerResult.environment } : {}),
       },
       claims,
     };

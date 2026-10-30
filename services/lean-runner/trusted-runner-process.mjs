@@ -361,6 +361,12 @@ export async function createTrustedRunnerRuntime({
     monotonicNow,
     observePhase,
   });
+  const templateId = typeof containerFactory.template?.reference === "string"
+    ? containerFactory.template.reference
+    : null;
+  const templateBuildId = typeof containerFactory.templateBuildId === "string"
+    ? containerFactory.templateBuildId
+    : null;
   const finalizer = new RunnerExecutionFinalizer({
     runStore,
     outputStore: new D1InlineRunnerOutputStore({ database }),
@@ -369,6 +375,8 @@ export async function createTrustedRunnerRuntime({
     resultSigner: new RunnerExecutionResultSigner({
       runnerKeyId: requireSetting(environment, "RUNNER_RESULT_KEY_ID"),
       runnerPrivateKey: await importRunnerResultPrivateKey(requireSetting(environment, "RUNNER_RESULT_PRIVATE_KEY_JWK")),
+      templateId,
+      templateBuildId,
     }),
   });
   const execute = createRunnerQueueExecution({

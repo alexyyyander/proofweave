@@ -99,6 +99,45 @@ export function runnerEnvironmentKey(environment = {}) {
   return key;
 }
 
+/**
+ * Immutable environment evidence attached to a signed Runner result. The
+ * image, Lean toolchain, and Mathlib revision come from the authenticated
+ * request; the E2B template identity comes from the Runner process that
+ * actually served it. Historical results may omit this block.
+ */
+export function normalizeRunnerEnvironmentEvidence(value) {
+  requireRecord(value, "Runner environment evidence");
+  const extra = Object.keys(value).find((key) => ![
+    "imageDigest", "leanToolchain", "mathlibRevision", "templateId", "templateBuildId",
+  ].includes(key));
+  if (extra) {
+    throw new LeanRunnerProtocolError(`Runner environment evidence contains unsupported field ${extra}.`);
+  }
+  requireSha256Digest(value.imageDigest, "Runner environment evidence imageDigest");
+  requireString(value.leanToolchain, "Runner environment evidence leanToolchain", 240);
+  requireString(value.mathlibRevision, "Runner environment evidence mathlibRevision", 160);
+  const templateId = value.templateId ?? null;
+  const templateBuildId = value.templateBuildId ?? null;
+  if ((templateId === null) !== (templateBuildId === null)) {
+    throw new LeanRunnerProtocolError("Runner environment evidence must record templateId and templateBuildId together.");
+  }
+  if (templateId !== null) {
+    if (typeof templateId !== "string" || !/^[a-z0-9][a-z0-9_-]{2,63}(?::[A-Za-z0-9._-]{1,64})?$/.test(templateId)) {
+      throw new LeanRunnerProtocolError("Runner environment evidence templateId is invalid.");
+    }
+    if (typeof templateBuildId !== "string" || !/^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/.test(templateBuildId)) {
+      throw new LeanRunnerProtocolError("Runner environment evidence templateBuildId is invalid.");
+    }
+  }
+  return Object.freeze({
+    imageDigest: value.imageDigest,
+    leanToolchain: value.leanToolchain,
+    mathlibRevision: value.mathlibRevision,
+    templateId,
+    templateBuildId,
+  });
+}
+
 /** Validate deployment-owned Runner limits before they can enter a request. */
 export function normalizeLeanRunnerLimits(value) {
   requireRecord(value, "limits");
@@ -199,6 +238,9 @@ export function normalizeLeanRunnerResult(result) {
   requireSha256(result.artifacts.manifestHash, "result artifacts.manifestHash");
   requireSha256(result.artifacts.stdoutHash, "result artifacts.stdoutHash");
   requireSha256(result.artifacts.stderrHash, "result artifacts.stderrHash");
+  const environment = result.environment === undefined || result.environment === null
+    ? null
+    : normalizeRunnerEnvironmentEvidence(result.environment);
 
   if (result.status === "succeeded") {
     if (result.exitCode !== 0 || result.kernelStatus !== "accepted" || Object.values(checks).some((value) => value !== "passed")) {
@@ -229,6 +271,7 @@ export function normalizeLeanRunnerResult(result) {
     kernelStatus: result.kernelStatus,
     checks: Object.freeze(checks),
     artifacts: Object.freeze({ ...result.artifacts }),
+    ...(environment === null ? {} : { environment }),
   });
 }
 
@@ -248,6 +291,7 @@ export function runnerResultSigningPayload(result) {
     kernelStatus: normalized.kernelStatus,
     checks: normalized.checks,
     artifacts: normalized.artifacts,
+    ...(normalized.environment ? { environment: normalized.environment } : {}),
   };
 }
 
