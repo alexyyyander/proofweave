@@ -55,16 +55,22 @@ Person A 固定目标
 ### P2 Worker 与 Render 批准（0.5 天）
 
 - 扩展 `config/runner-environments.json`：允许 `template_ready` 状态，登记 template ID/build ID（schema v2，已由 checker 校验）。
-- 用 `scripts/generate-runner-environment-config.mjs` 从登记表生成 Worker/Render env 值，不手工复制 digest/template ID。
-- Worker `RUNNER_APPROVED_IMAGES_JSON` 加入 4.27（4.31 保留，两个环境唯一）。
+- 用 `scripts/generate-runner-environment-config.mjs` 从登记表生成 Worker/Render env 值，不手工复制 digest/template ID：
+  `node scripts/generate-runner-environment-config.mjs --execution-profile mathlib-4.27-a3a10 --surface render`。
+- **单执行环境规则**：当前 trusted Runner 进程只服务一个 E2B template/镜像（`trusted-runner-process.mjs` 要求 Render 的批准列表恰好一个镜像且等于 Sandbox 镜像）。因此：
+  - Worker `RUNNER_APPROVED_IMAGES_JSON` = 4.27 单镜像；
+  - Render `RUNNER_APPROVED_IMAGES_JSON` = 4.27 单镜像；
+  - 4.31 保留在 registry 的 `approved` 状态，但不进入本轮 Worker/Render 部署列表；
+  - 切换后 4.31 的 Run 请求会在分发前被拒绝，而不是排队等待；这是单执行环境窗口的预期行为；
+  - 不要生成 "4.27 + 4.31" 的 Render 列表：这会在开启执行时让 Runner 启动失败；也不能只把 4.27 加进 Worker，否则 4.27 的 Run 会由 4.31 Runner 领取并重试到 dead-letter。
 - Render env：
   - `PROOFWEAVE_E2B_RUNNER_IMAGE` = 4.27 digest
-  - `RUNNER_APPROVED_IMAGES_JSON` = 4.27 + 4.31
+  - `RUNNER_APPROVED_IMAGES_JSON` = 4.27
   - `PROOFWEAVE_E2B_TEMPLATE_ID` / `PROOFWEAVE_E2B_TEMPLATE_BUILD_ID` = 新 template
   - `RUNNER_EXECUTION_ENABLED=false`（先 preflight）
 - 部署 Worker；确认 `/api/mcp/capabilities` 与 `/healthz` 回读一致。
 
-**验收**：Runner `runnerPolicy.sandboxImageDigest` 为 4.27、`executionEnabled=false`、approved 列表含两个环境；Worker 与 Render 的 digest 一致。
+**验收**：Runner `runnerPolicy.sandboxImageDigest` 为 4.27、`executionEnabled=false`、approved 列表**恰好一个**环境（4.27）；4.31 仅保留在 registry；Worker 与 Render 的 digest 一致；`check-runner-environments.mjs --strict` 退出 0，`dispatchable=1`、`selected=1`、`executing=0`。
 
 ### P3 单 Run 受控验收（1 天）
 
@@ -73,12 +79,14 @@ Person A 固定目标
   - `RUNNER_ONLY_RUN_ID=<run>`
   - `RUNNER_MAX_DELIVERY_ATTEMPTS=1`
 - 临时启用该一个 Run 的消费者，发送一次 wake；不开放普通队列。
+- checker 只有在 `RUNNER_EXECUTION_ENABLED=true` 与 `RUNNER_ONLY_RUN_ID` 同时存在时，才允许 `template_ready` 环境执行；缺少任一条件时 `--strict` 会拒绝。
 - 验证：
   - 工作区哈希、工具链 4.27、Mathlib `a3a10db…`；
   - Lean accepted；`noSorry`、allowed axioms、lean build 四项检查；
   - 结果签名、输出哈希、acknowledged 终态；
   - 没有其他 Run 被消费。
 - 无论结果如何，立即恢复 `executionEnabled=false` 并回读暂停状态。
+- Run 通过后把 4.27 从 `template_ready` 晋升为 `approved`，移除 `RUNNER_ONLY_RUN_ID`；再回读 `executing=1`。
 
 **验收**：唯一 Run 的真实终态与无凭据证据；不声称数学正确性、独立评审或 Receipt。
 

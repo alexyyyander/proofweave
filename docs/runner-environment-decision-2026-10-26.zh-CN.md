@@ -53,14 +53,18 @@ GitHub Actions workflow run `40450516816`（profile `mathlib-4.27-a3a10`）已�
 - `mathlib-4.31-9a948` → `approved`，template `cbfjgbsrgtku0c7sliu5:workspace-modes-20261019-617de06`（build `4fd0e92f…`）
 - `mathlib-4.27-a3a10` → `built_pending_template`，`template: null`（附 run `40469297704` 与来源 commit）
 
-`scripts/check-runner-environments.mjs` 只读解析 `wrangler.cloudflare.jsonc` 的 Worker `RUNNER_APPROVED_IMAGES_JSON`，以及 `deploy/huggingface-runner/render.yaml` 的 `RUNNER_APPROVED_IMAGES_JSON`、`PROOFWEAVE_E2B_RUNNER_IMAGE`、`PROOFWEAVE_E2B_TEMPLATE_ID`、`PROOFWEAVE_E2B_TEMPLATE_BUILD_ID`、`RUNNER_EXECUTION_ENABLED`，校验 schema、digest/template 格式、环境对唯一性、profile 唯一性、state 合法性与 template 来源绑定，并报告：
+`scripts/check-runner-environments.mjs` 只读解析 `wrangler.cloudflare.jsonc` 的 Worker `RUNNER_APPROVED_IMAGES_JSON`，以及 `deploy/huggingface-runner/render.yaml` 的 `RUNNER_APPROVED_IMAGES_JSON`、`PROOFWEAVE_E2B_RUNNER_IMAGE`、`PROOFWEAVE_E2B_TEMPLATE_ID`、`PROOFWEAVE_E2B_TEMPLATE_BUILD_ID`、`RUNNER_EXECUTION_ENABLED`、`RUNNER_ONLY_RUN_ID`，校验 schema、digest/template 格式、环境对唯一性、profile 唯一性、state 合法性与 template 来源绑定，并报告：
 
-- 每个环境是否 admissible，以及 blockers（例如 4.27 为 `environment_state_not_approved` + `missing_e2b_template`）；
+- 每个环境是否 `ready`（approved + template 已登记）、`dispatchable`（在 Worker 列表）、`executionSelected`（Render 选中的执行镜像且 template 匹配）、`executing`（已允许执行），以及 `executionBlockers`；
 - Render 执行镜像的 template ID / build ID 是否与登记表完全一致；
-- Worker / Render 批准列表是否登记、是否绑定到相同的 Lean 与 Mathlib；
-- `template_ready` 环境只有在 `RUNNER_EXECUTION_ENABLED=false` 时才允许预置为 Render 执行镜像；执行开启时属于配置不一致。
+- Worker / Render 批准列表是否绑定到相同的 Lean 与 Mathlib。
 
-`approved` 环境不要求必须是当前执行镜像：多个已批准环境可以并存，只有 Render 实际选中的那个执行。admissibility 表示该环境自身可部署，而不是它正在执行。
+**单执行环境约束**：当前 trusted Runner 进程只服务一个 E2B template/镜像，`trusted-runner-process.mjs` 要求 Render 的批准列表恰好一个镜像且等于 Sandbox 镜像。因此：
+
+- Render `RUNNER_APPROVED_IMAGES_JSON` 必须恰好一个镜像，且等于 `PROOFWEAVE_E2B_RUNNER_IMAGE`；
+- Worker `RUNNER_APPROVED_IMAGES_JSON` 在当前拓扑下也必须是同一个执行镜像；把其他已批准环境放进 Worker 会让 Runs 被错误的 Runner 领取并重试到 dead-letter；
+- registry 中可以同时存在多个 `approved` 环境，但同一时间只有一个部署为执行面；其余环境报告为 `ready` 但 `dispatchable=false`，这不是配置不一致；
+- `template_ready` 环境可以作为执行镜像预置，但只在 `RUNNER_EXECUTION_ENABLED=false` 时；开启执行时必须同时设置 `RUNNER_ONLY_RUN_ID` 作为受控单 Run 窗口，否则属于配置不一致。
 
 ```bash
 node scripts/check-runner-environments.mjs          # 人类可读
@@ -68,7 +72,7 @@ node scripts/check-runner-environments.mjs --json   # 机器可读
 node scripts/check-runner-environments.mjs --strict # 配置不一致时退出 1
 ```
 
-`--strict` 只在配置不一致、或 pending 环境被错误批准（出现在 Render 批准列表或成为 Render 执行镜像）、或 template_ready 环境在开启执行时仍被选中时退出 1。4.27 当前 blocked 是登记表声明的预期状态，`--strict` 通过只表示配置自洽，**不代表 4.27 可执行**。该脚本不写入任何文件，也不修改部署配置。
+`--strict` 在以下情况退出 1：Render 列表不是恰好一个镜像、Render 列表与执行镜像不一致、Worker 列表包含非执行环境或缺少执行镜像、pending 环境出现在任何部署列表/执行镜像、template ID/build 不匹配、template_ready 环境在开启执行时缺少 `RUNNER_ONLY_RUN_ID`。4.27 当前 blocked 是登记表声明的预期状态，`--strict` 通过只表示配置自洽，**不代表 4.27 可执行**。该脚本不写入任何文件，也不修改部署配置。
 
 ## 部署值生成
 
@@ -79,15 +83,15 @@ node scripts/check-runner-environments.mjs --strict # 配置不一致时退出 1
 node scripts/generate-runner-environment-config.mjs \
   --execution-profile mathlib-4.31-9a948 --surface render
 
-# 4.27 template 建好后：Worker / Render 同时预置两个环境，执行仍关闭
+# 4.27 template 建好后：切换单执行环境，执行仍关闭
 node scripts/generate-runner-environment-config.mjs \
-  --profile mathlib-4.31-9a948 --profile mathlib-4.27-a3a10 \
   --execution-profile mathlib-4.27-a3a10 --surface render
 ```
 
 - 默认只选择全部 `approved` 环境，输出 `RUNNER_APPROVED_IMAGES_JSON`；
 - `--profile` 可显式加入 `template_ready` 环境，但拒绝尚未有 template 的 `built_pending_template`；
 - `--execution-profile` 额外输出 `PROOFWEAVE_E2B_RUNNER_IMAGE`、`PROOFWEAVE_E2B_TEMPLATE_ID`、`PROOFWEAVE_E2B_TEMPLATE_BUILD_ID`，并把该环境加入批准列表；
+- 当前单 Runner 拓扑部署时，Worker 与 Render 都只使用 `--execution-profile` 生成的单环境值；不要额外 `--profile` 加入其他环境，否则 checker 会报 `dispatch_environment_not_executing`；
 - `--surface render` 要求 `--execution-profile`；`--surface worker` 不输出执行设置；
 - `--format env`（默认）输出 shell/dotenv 可用的 `KEY='value'` 行，`--format json` 输出结构化报告。
 
@@ -102,13 +106,14 @@ npm 别名：`npm run runner:environments:generate -- --execution-profile mathli
 ## 发布链
 
 ```text
-GitHub Actions (profile=mathlib-4.27-a3a10)            已完成：run 40450516816
-  → GHCR proofweave-lean-runner@sha256:373c7ee…       已发布
-  → Worker RUNNER_APPROVED_IMAGES_JSON（4.27 + 4.31 可并存）
-  → E2B template（从 digest 构建，需 E2B_API_KEY）     当前缺口
-  → Render runner env（PROOFWEAVE_E2B_RUNNER_IMAGE、RUNNER_APPROVED_IMAGES_JSON）
+GitHub Actions (profile=mathlib-4.27-a3a10)            已完成：run 40469297704
+  → GHCR proofweave-lean-runner@sha256:3a7e335f…       已发布
+  → config/runner-environments.json（built_pending_template）
+  → E2B template（从 digest 构建，需 E2B_API_KEY）      当前缺口
+  → 登记 template ID/build 并晋升 template_ready
+  → Worker/Render 批准列表 = 当前单一执行环境（4.27）    切换后 4.31 仅留在 registry
   → 一次受控 Run（RUNNER_ONLY_RUN_ID / 单次投递）
-  → 环境验收后再开放 MCP/participant 研究窗口
+  → 环境验收后晋升 approved，再开放 MCP/participant 研究窗口
 ```
 
 构建命令（已完成，保留以复现）：
@@ -120,7 +125,7 @@ gh workflow run build-e2b-lean-runner-image.yml -f profile=mathlib-4.27-a3a10
 ## 当前状态与阻塞
 
 - 生产窗口 stage 1 已上线：Worker `cd1d7480`，participant `read_write`，MCP `read_only`，gate 对 2 Person / 2 Agent / 4 Attempt 有效。线上无未授权写入（未登录返回 401）。
-- **4.27 镜像构建已完成**：run `40450516816`，digest `sha256:373c7ee…`，来源 commit `8bd7409…`；SBOM 与 provenance 以该 run 产物为准。
+- **4.27 镜像构建已完成**：run `40469297704`（Node 22.23.4 安全重建），digest `sha256:3a7e335f…`，来源 commit `c3461cf…`；SBOM 与 provenance 以该 run 产物为准。
 - **4.27 仍被 template 阻塞**：没有 4.27 的 E2B template，Render 执行镜像与批准列表仍是 4.31，因此不能执行 4.27 Run。
 - GHCR 包是私有的；本机 GitHub token 没有 `read:packages`，Docker 也未登录 GHCR。digest 来自 workflow 结果，本机无法独立回读 manifest；需要 `read:packages` token、`docker login ghcr.io` 或构建日志/SBOM/provenance 复核。
 - `.env.local` 中没有 `E2B_API_KEY`，也没有 Render API 凭据；E2B template 和 Render 环境更新需要操作者控制台或凭据。

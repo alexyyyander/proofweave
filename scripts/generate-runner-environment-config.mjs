@@ -35,30 +35,6 @@ export function generateRunnerEnvironmentConfig({
   }
   const byProfile = new Map(environments.map((environment) => [environment.profile, environment]));
   const requestedProfiles = [...new Set(profiles)];
-  const selectedProfiles = new Set();
-  if (requestedProfiles.length === 0) {
-    for (const environment of environments) {
-      if (environment.state === "approved") selectedProfiles.add(environment.profile);
-    }
-    if (selectedProfiles.size === 0) {
-      throw new RunnerEnvironmentGenerationError(
-        "No approved Runner environment is registered; pass --profile to stage a template_ready environment.",
-      );
-    }
-  } else {
-    for (const profile of requestedProfiles) {
-      const environment = byProfile.get(profile);
-      if (!environment) {
-        throw new RunnerEnvironmentGenerationError(`Unknown Runner environment profile ${profile}.`);
-      }
-      if (environment.state === "built_pending_template") {
-        throw new RunnerEnvironmentGenerationError(
-          `Runner environment ${profile} is built_pending_template and has no E2B template; build and register the template first.`,
-        );
-      }
-      selectedProfiles.add(profile);
-    }
-  }
 
   let execution = null;
   if (executionProfile !== null) {
@@ -74,11 +50,43 @@ export function generateRunnerEnvironmentConfig({
         `Runner environment ${executionProfile} has no E2B template; execution requires a template_ready or approved environment.`,
       );
     }
-    selectedProfiles.add(execution.profile);
   }
   if (surface === "render" && execution === null) {
     throw new RunnerEnvironmentGenerationError("--surface render requires --execution-profile.");
   }
+
+  const selectedProfiles = new Set();
+  if (requestedProfiles.length === 0) {
+    if (execution !== null) {
+      // The trusted Runner serves one E2B template at a time. Unless the
+      // operator names additional profiles explicitly, an execution profile
+      // selects only itself so the emitted allowlist stays a single image.
+      selectedProfiles.add(execution.profile);
+    } else {
+      for (const environment of environments) {
+        if (environment.state === "approved") selectedProfiles.add(environment.profile);
+      }
+      if (selectedProfiles.size === 0) {
+        throw new RunnerEnvironmentGenerationError(
+          "No approved Runner environment is registered; pass --profile to stage a template_ready environment.",
+        );
+      }
+    }
+  } else {
+    for (const profile of requestedProfiles) {
+      const environment = byProfile.get(profile);
+      if (!environment) {
+        throw new RunnerEnvironmentGenerationError(`Unknown Runner environment profile ${profile}.`);
+      }
+      if (environment.state === "built_pending_template") {
+        throw new RunnerEnvironmentGenerationError(
+          `Runner environment ${profile} is built_pending_template and has no E2B template; build and register the template first.`,
+        );
+      }
+      selectedProfiles.add(profile);
+    }
+  }
+  if (execution !== null) selectedProfiles.add(execution.profile);
 
   const selected = environments.filter((environment) => selectedProfiles.has(environment.profile));
   const approvedImages = selected.map((environment) => Object.freeze({

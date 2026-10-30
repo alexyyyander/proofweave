@@ -5,7 +5,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { parseApprovedImages, parseJsonc } from "./check-target-environments.mjs";
 
 export const schemaVersion = "pw-runner-environments-v2";
-export const reportSchemaVersion = "pw-runner-environment-report-v2";
+export const reportSchemaVersion = "pw-runner-environment-report-v3";
 export const runnerEnvironmentStates = Object.freeze(["approved", "template_ready", "built_pending_template"]);
 
 const imageDigestPattern = /^[a-z0-9][a-z0-9./:_-]*@sha256:[a-f0-9]{64}$/;
@@ -226,6 +226,7 @@ export function buildRunnerEnvironmentReport({
   renderTemplateId = null,
   renderTemplateBuildId = null,
   renderExecutionEnabled = null,
+  renderOnlyRunId = null,
 } = {}) {
   const environments = validateRunnerEnvironmentsConfig(config);
   if (typeof renderExecutionImage !== "string" || !imageDigestPattern.test(renderExecutionImage)) {
@@ -242,6 +243,10 @@ export function buildRunnerEnvironmentReport({
   if (renderExecutionEnabled !== null && !["true", "false"].includes(renderExecutionEnabled)) {
     throw new RunnerEnvironmentConfigError("render.yaml RUNNER_EXECUTION_ENABLED must be true or false when configured.");
   }
+  if (renderOnlyRunId !== null && (typeof renderOnlyRunId !== "string" || renderOnlyRunId.trim() === "")) {
+    throw new RunnerEnvironmentConfigError("render.yaml RUNNER_ONLY_RUN_ID must be a non-empty identifier when configured.");
+  }
+  const controlledSingleRun = renderOnlyRunId !== null;
   const worker = indexApprovedImages(workerApprovedImages, "Worker");
   const render = indexApprovedImages(renderApprovedImages, "Render");
   const environmentsByDigest = new Map(environments.map((environment) => [environment.imageDigest, environment]));
@@ -288,6 +293,42 @@ export function buildRunnerEnvironmentReport({
       `Render execution image ${shortDigest(renderExecutionImage)} is not declared in config/runner-environments.json.`,
     );
   }
+
+  // The trusted Runner process serves exactly one E2B template built from one
+  // image. The Worker may approve several reviewed environments over time, but
+  // every dispatchable environment needs a Runner that can claim its Runs;
+  // otherwise the single Runner claims the message, rejects it, and retries
+  // until dead-letter. Until per-environment routing exists, the Worker
+  // allowlist must be exactly the Render execution image.
+  const renderDigests = [...render.byDigest.keys()];
+  if (renderApprovedImages.length !== 1) {
+    addInconsistency(
+      "render_allowlist_not_single",
+      `Render RUNNER_APPROVED_IMAGES_JSON must contain exactly one execution image, but declares ${renderApprovedImages.length}.`,
+    );
+  } else if (renderDigests[0] !== renderExecutionImage) {
+    addInconsistency(
+      "render_execution_image_mismatch",
+      `Render approves ${shortDigest(renderDigests[0])}, but PROOFWEAVE_E2B_RUNNER_IMAGE is ${shortDigest(renderExecutionImage)}.`,
+    );
+  }
+  if (!worker.byDigest.has(renderExecutionImage)) {
+    addInconsistency(
+      "execution_image_not_dispatchable",
+      `Worker RUNNER_APPROVED_IMAGES_JSON does not include the Render execution image ${shortDigest(renderExecutionImage)};`
+        + " run requests for it are rejected before enqueue.",
+    );
+  }
+  for (const digest of worker.byDigest.keys()) {
+    if (digest === renderExecutionImage) continue;
+    addInconsistency(
+      "dispatch_environment_not_executing",
+      `Worker approves ${shortDigest(digest)}, but the single Render runner executes ${shortDigest(renderExecutionImage)};`
+        + " such Runs would be claimed by the wrong Runner and dead-letter.",
+      environmentsByDigest.get(digest)?.profile ?? null,
+    );
+  }
+
   if (executionEnvironment?.template) {
     if (renderTemplateId !== executionEnvironment.template.id) {
       addInconsistency(
@@ -334,38 +375,44 @@ export function buildRunnerEnvironmentReport({
       && renderTemplateBuildId === environment.template.buildId;
     const renderTemplateMatches = executionImageMatch && renderTemplateIdMatch && renderTemplateBuildIdMatch;
 
-    const blockers = [];
-    if (environment.state !== "approved") blockers.push("environment_state_not_approved");
-    if (!templateRegistered) blockers.push("missing_e2b_template");
-    if (!workerApproved) blockers.push("missing_worker_approval");
-    if (!renderApproved) blockers.push("missing_render_approval");
+    const ready = environment.state === "approved" && templateRegistered;
+    const dispatchable = workerApproved;
+    const executionSelected = executionImageMatch && renderApproved && renderTemplateMatches;
+    const executionPermitted = executionSelected
+      && (environment.state === "approved" || controlledSingleRun);
+    const executing = executionPermitted && renderExecutionEnabled === "true";
+
+    const executionBlockers = [];
+    if (environment.state !== "approved") executionBlockers.push("environment_state_not_approved");
+    if (!templateRegistered) executionBlockers.push("missing_e2b_template");
+    if (!workerApproved) executionBlockers.push("not_in_worker_allowlist");
+    if (!renderApproved) executionBlockers.push("not_in_render_allowlist");
+    if (!executionImageMatch) executionBlockers.push("not_execution_image");
     if (executionImageMatch && environment.template !== null && !renderTemplateIdMatch) {
-      blockers.push("render_template_id_mismatch");
+      executionBlockers.push("render_template_id_mismatch");
     }
     if (executionImageMatch && environment.template !== null && !renderTemplateBuildIdMatch) {
-      blockers.push("render_template_build_id_mismatch");
+      executionBlockers.push("render_template_build_id_mismatch");
     }
 
-    const admissible = environment.state === "approved" && blockers.length === 0;
-    if (environment.state === "approved" && !admissible) {
-      addInconsistency(
-        "approved_environment_not_admissible",
-        `Approved environment ${environment.profile} is not deployable: ${blockers.join(", ")}.`,
-        environment.profile,
-      );
-    }
-    if (environment.state === "built_pending_template" && (renderApproved || executionImageMatch)) {
+    if (environment.state === "built_pending_template" && (workerApproved || renderApproved || executionImageMatch)) {
       addInconsistency(
         "pending_environment_approved",
-        `Pending environment ${environment.profile} must not be approved for Render execution before its E2B template exists.`,
+        `Pending environment ${environment.profile} must not appear in deployment allowlists or be the execution image`
+          + " before its E2B template exists.",
         environment.profile,
       );
     }
-    if (environment.state === "template_ready" && executionImageMatch && renderExecutionEnabled === "true") {
+    if (
+      environment.state === "template_ready"
+      && executionImageMatch
+      && renderExecutionEnabled === "true"
+      && !controlledSingleRun
+    ) {
       addInconsistency(
         "execution_image_not_approved",
         `Render executes template_ready environment ${environment.profile} with RUNNER_EXECUTION_ENABLED=true;`
-          + " promote the environment to approved first.",
+          + " promote it to approved or set RUNNER_ONLY_RUN_ID for a controlled single-Run window.",
         environment.profile,
       );
     }
@@ -386,9 +433,11 @@ export function buildRunnerEnvironmentReport({
         e2bTemplateRegistered: templateRegistered,
         renderTemplateMatches,
       },
-      admissible,
-      blocked: !admissible,
-      blockers,
+      ready,
+      dispatchable,
+      executionSelected,
+      executing,
+      executionBlockers,
     };
   });
 
@@ -397,8 +446,9 @@ export function buildRunnerEnvironmentReport({
     approved: rows.filter((row) => row.state === "approved").length,
     templateReady: rows.filter((row) => row.state === "template_ready").length,
     pending: rows.filter((row) => row.state === "built_pending_template").length,
-    admissible: rows.filter((row) => row.admissible).length,
-    blocked: rows.filter((row) => !row.admissible).length,
+    dispatchable: rows.filter((row) => row.dispatchable).length,
+    selected: rows.filter((row) => row.executionSelected).length,
+    executing: rows.filter((row) => row.executing).length,
     inconsistencies: inconsistencies.length,
   };
 
@@ -418,6 +468,8 @@ export function buildRunnerEnvironmentReport({
             && renderTemplateBuildId === executionEnvironment.template.buildId
           : false,
         executionEnabled: renderExecutionEnabled,
+        controlledSingleRun,
+        onlyRunId: renderOnlyRunId,
       },
     },
     environments: rows,
@@ -448,6 +500,7 @@ export async function buildRunnerEnvironmentReportFromFiles({
     renderTemplateId: optionalRenderEnvValue(renderEnvVars, "PROOFWEAVE_E2B_TEMPLATE_ID"),
     renderTemplateBuildId: optionalRenderEnvValue(renderEnvVars, "PROOFWEAVE_E2B_TEMPLATE_BUILD_ID"),
     renderExecutionEnabled: optionalRenderEnvValue(renderEnvVars, "RUNNER_EXECUTION_ENABLED"),
+    renderOnlyRunId: optionalRenderEnvValue(renderEnvVars, "RUNNER_ONLY_RUN_ID"),
   });
 }
 
@@ -528,12 +581,13 @@ function yesNo(value) {
 export function formatHumanReport(report) {
   const lines = [
     `Runner environment registry check (${report.configSchemaVersion})`,
-    `Worker approved images: ${report.deployment.worker.approvedImages.length}`
-      + ` | Render approved images: ${report.deployment.render.approvedImages.length}`,
+    `Worker dispatch images: ${report.deployment.worker.approvedImages.length}`
+      + ` | Render execution images: ${report.deployment.render.approvedImages.length} (must be 1)`,
     `Render execution image: ${shortDigest(report.deployment.render.executionImage)}`
       + ` | environment: ${report.deployment.render.executionEnvironment ?? "unregistered"}`
       + ` | E2B template: ${report.deployment.render.templateId ?? "not configured"}`
-      + ` | RUNNER_EXECUTION_ENABLED: ${report.deployment.render.executionEnabled ?? "unset"}`,
+      + ` | RUNNER_EXECUTION_ENABLED: ${report.deployment.render.executionEnabled ?? "unset"}`
+      + ` | controlled single run: ${yesNo(report.deployment.render.controlledSingleRun)}`,
     "",
   ];
   for (const environment of report.environments) {
@@ -556,11 +610,16 @@ export function formatHumanReport(report) {
         + ` | render allowlist: ${yesNo(environment.deployment.renderApproved)}`
         + ` | execution image: ${yesNo(environment.deployment.executionImage)}`
         + ` | template registered: ${yesNo(environment.deployment.e2bTemplateRegistered)}`
-        + ` | render template matches: ${yesNo(environment.deployment.renderTemplateMatches)}`
-        + ` | admissible: ${yesNo(environment.admissible)}`,
+        + ` | render template matches: ${yesNo(environment.deployment.renderTemplateMatches)}`,
     );
-    if (environment.blockers.length > 0) {
-      lines.push(`  blockers: ${environment.blockers.join(", ")}`);
+    lines.push(
+      `  ready: ${yesNo(environment.ready)}`
+        + ` | dispatchable: ${yesNo(environment.dispatchable)}`
+        + ` | execution selected: ${yesNo(environment.executionSelected)}`
+        + ` | executing: ${yesNo(environment.executing)}`,
+    );
+    if (environment.executionBlockers.length > 0) {
+      lines.push(`  execution blockers: ${environment.executionBlockers.join(", ")}`);
     }
   }
   if (report.inconsistencies.length === 0) {
@@ -578,8 +637,9 @@ export function formatHumanReport(report) {
       + ` | approved ${report.summary.approved}`
       + ` | template_ready ${report.summary.templateReady}`
       + ` | pending ${report.summary.pending}`
-      + ` | admissible ${report.summary.admissible}`
-      + ` | blocked ${report.summary.blocked}`
+      + ` | dispatchable ${report.summary.dispatchable}`
+      + ` | selected ${report.summary.selected}`
+      + ` | executing ${report.summary.executing}`
       + ` | inconsistencies ${report.summary.inconsistencies}`,
   );
   return `${lines.join("\n")}\n`;

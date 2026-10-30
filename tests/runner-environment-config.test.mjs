@@ -116,6 +116,7 @@ async function writeFixture(t, {
   renderTemplateId = approvedTemplate.id,
   renderTemplateBuildId = approvedTemplate.buildId,
   renderExecutionEnabled = "false",
+  renderOnlyRunId = null,
 }) {
   const dir = await createFixtureDir(t);
   const fixtureConfigPath = path.join(dir, "runner-environments.json");
@@ -132,11 +133,19 @@ async function writeFixture(t, {
     "    envVars:",
     "      - key: RUNNER_EXECUTION_ENABLED",
     `        value: "${renderExecutionEnabled}"`,
+  ];
+  if (renderOnlyRunId !== null) {
+    renderLines.push(
+      "      - key: RUNNER_ONLY_RUN_ID",
+      `        value: ${renderOnlyRunId}`,
+    );
+  }
+  renderLines.push(
     "      - key: RUNNER_APPROVED_IMAGES_JSON",
     `        value: '${JSON.stringify(renderApprovedImages).replaceAll("'", "''")}'`,
     "      - key: PROOFWEAVE_E2B_RUNNER_IMAGE",
     `        value: ${renderExecutionImage}`,
-  ];
+  );
   if (renderTemplateId !== null) {
     renderLines.push(
       "      - key: PROOFWEAVE_E2B_TEMPLATE_ID",
@@ -175,8 +184,9 @@ test("repository configuration registers 4.31 as approved with its template and 
   assert.equal(report.summary.approved, 1);
   assert.equal(report.summary.templateReady, 0);
   assert.equal(report.summary.pending, 1);
-  assert.equal(report.summary.admissible, 1);
-  assert.equal(report.summary.blocked, 1);
+  assert.equal(report.summary.dispatchable, 1);
+  assert.equal(report.summary.selected, 1);
+  assert.equal(report.summary.executing, 0);
   assert.equal(report.ok, true);
   assert.deepEqual(report.inconsistencies, []);
 
@@ -188,6 +198,8 @@ test("repository configuration registers 4.31 as approved with its template and 
   assert.equal(report.deployment.render.templateBuildId, approvedTemplate.buildId);
   assert.equal(report.deployment.render.templateMatchesRegistry, true);
   assert.equal(report.deployment.render.executionEnabled, "false");
+  assert.equal(report.deployment.render.controlledSingleRun, false);
+  assert.equal(report.deployment.render.onlyRunId, null);
 
   const approved = report.environments.find((entry) => entry.profile === "mathlib-4.31-9a948");
   assert.ok(approved);
@@ -196,9 +208,11 @@ test("repository configuration registers 4.31 as approved with its template and 
   assert.equal(approved.leanToolchain, lean431);
   assert.equal(approved.mathlibRevision, mathlib431);
   assert.deepEqual(approved.template, approvedTemplate);
-  assert.equal(approved.admissible, true);
-  assert.equal(approved.blocked, false);
-  assert.deepEqual(approved.blockers, []);
+  assert.equal(approved.ready, true);
+  assert.equal(approved.dispatchable, true);
+  assert.equal(approved.executionSelected, true);
+  assert.equal(approved.executing, false);
+  assert.deepEqual(approved.executionBlockers, []);
   assert.deepEqual(approved.deployment, {
     workerApproved: true,
     renderApproved: true,
@@ -216,12 +230,15 @@ test("repository configuration registers 4.31 as approved with its template and 
   assert.equal(pending.sourceRun, 40469297704);
   assert.equal(pending.sourceCommit, pendingSourceCommit);
   assert.equal(pending.template, null);
-  assert.equal(pending.admissible, false);
-  assert.equal(pending.blocked, true);
-  assert.ok(pending.blockers.includes("environment_state_not_approved"));
-  assert.ok(pending.blockers.includes("missing_e2b_template"));
-  assert.ok(pending.blockers.includes("missing_worker_approval"));
-  assert.ok(pending.blockers.includes("missing_render_approval"));
+  assert.equal(pending.ready, false);
+  assert.equal(pending.dispatchable, false);
+  assert.equal(pending.executionSelected, false);
+  assert.equal(pending.executing, false);
+  assert.ok(pending.executionBlockers.includes("environment_state_not_approved"));
+  assert.ok(pending.executionBlockers.includes("missing_e2b_template"));
+  assert.ok(pending.executionBlockers.includes("not_in_worker_allowlist"));
+  assert.ok(pending.executionBlockers.includes("not_in_render_allowlist"));
+  assert.ok(pending.executionBlockers.includes("not_execution_image"));
   assert.equal(pending.deployment.workerApproved, false);
   assert.equal(pending.deployment.renderApproved, false);
   assert.equal(pending.deployment.executionImage, false);
@@ -232,6 +249,7 @@ test("repository configuration registers 4.31 as approved with its template and 
   assert.match(human, /built_pending_template/);
   assert.match(human, /environment_state_not_approved/);
   assert.match(human, /template registered: yes/);
+  assert.match(human, /executing: no/);
   assert.match(human, /Inconsistencies: none/);
 });
 
@@ -366,11 +384,11 @@ test("configuration validation rejects schema, digest, template, and state viola
   );
 });
 
-test("an approved environment that is not the current execution image is still admissible", () => {
+test("an approved environment that is not the deployed execution image remains ready but not dispatchable", () => {
   const report = buildRunnerEnvironmentReport({
     config: fixtureConfig([approvedEnvironment(), templateReadyEnvironment({ state: "approved" })]),
-    workerApprovedImages: [approvedImageBinding(), pendingImageBinding()],
-    renderApprovedImages: [approvedImageBinding(), pendingImageBinding()],
+    workerApprovedImages: [approvedImageBinding()],
+    renderApprovedImages: [approvedImageBinding()],
     renderExecutionImage: approvedDigest,
     renderTemplateId: approvedTemplate.id,
     renderTemplateBuildId: approvedTemplate.buildId,
@@ -380,15 +398,22 @@ test("an approved environment that is not the current execution image is still a
   assert.equal(report.ok, true);
   assert.deepEqual(report.inconsistencies, []);
   assert.equal(report.summary.approved, 2);
-  assert.equal(report.summary.admissible, 2);
+  assert.equal(report.summary.dispatchable, 1);
+  assert.equal(report.summary.selected, 1);
+  assert.equal(report.summary.executing, 0);
+
   const second = report.environments.find((entry) => entry.profile === "mathlib-4.27-a3a10");
-  assert.equal(second.deployment.executionImage, false);
+  assert.equal(second.ready, true);
+  assert.equal(second.dispatchable, false);
+  assert.equal(second.executionSelected, false);
+  assert.equal(second.executing, false);
   assert.equal(second.deployment.e2bTemplateRegistered, true);
-  assert.equal(second.admissible, true);
-  assert.deepEqual(second.blockers, []);
+  assert.ok(second.executionBlockers.includes("not_in_worker_allowlist"));
+  assert.ok(second.executionBlockers.includes("not_in_render_allowlist"));
+  assert.ok(second.executionBlockers.includes("not_execution_image"));
 });
 
-test("a pending environment pre-approved only in the Worker allowlist remains blocked", () => {
+test("a pending environment in the Worker allowlist is an inconsistency", () => {
   const report = buildRunnerEnvironmentReport({
     config: fixtureConfig(),
     workerApprovedImages: [approvedImageBinding(), pendingImageBinding()],
@@ -398,22 +423,22 @@ test("a pending environment pre-approved only in the Worker allowlist remains bl
     renderTemplateBuildId: approvedTemplate.buildId,
   });
 
+  assert.equal(report.ok, false);
+  assert.ok(report.inconsistencies.some((entry) => entry.code === "pending_environment_approved"));
+  assert.ok(report.inconsistencies.some((entry) => entry.code === "dispatch_environment_not_executing"));
   const pending = report.environments.find((entry) => entry.profile === "mathlib-4.27-a3a10");
   assert.equal(pending.deployment.workerApproved, true);
-  assert.equal(pending.deployment.renderApproved, false);
-  assert.equal(pending.deployment.executionImage, false);
-  assert.equal(pending.admissible, false);
-  assert.ok(pending.blockers.includes("missing_e2b_template"));
-  assert.ok(!pending.blockers.includes("missing_worker_approval"));
-  assert.equal(report.ok, true);
-  assert.deepEqual(report.inconsistencies, []);
+  assert.equal(pending.dispatchable, true);
+  assert.equal(pending.ready, false);
+  assert.equal(pending.executionSelected, false);
+  assert.ok(pending.executionBlockers.includes("missing_e2b_template"));
 });
 
 test("a pending environment approved for Render execution is an inconsistency", () => {
   const report = buildRunnerEnvironmentReport({
     config: fixtureConfig(),
-    workerApprovedImages: [approvedImageBinding(), pendingImageBinding()],
-    renderApprovedImages: [approvedImageBinding(), pendingImageBinding()],
+    workerApprovedImages: [pendingImageBinding()],
+    renderApprovedImages: [pendingImageBinding()],
     renderExecutionImage: pendingDigest,
     renderTemplateId: approvedTemplate.id,
     renderTemplateBuildId: approvedTemplate.buildId,
@@ -423,16 +448,17 @@ test("a pending environment approved for Render execution is an inconsistency", 
   assert.ok(report.inconsistencies.some((entry) => entry.code === "pending_environment_approved"));
   assert.ok(report.inconsistencies.some((entry) => entry.code === "render_template_unregistered"));
   const pending = report.environments.find((entry) => entry.profile === "mathlib-4.27-a3a10");
-  assert.equal(pending.admissible, false);
-  assert.ok(pending.blockers.includes("environment_state_not_approved"));
-  assert.ok(pending.blockers.includes("missing_e2b_template"));
+  assert.equal(pending.ready, false);
+  assert.equal(pending.executionSelected, false);
+  assert.ok(pending.executionBlockers.includes("environment_state_not_approved"));
+  assert.ok(pending.executionBlockers.includes("missing_e2b_template"));
 });
 
 test("a template_ready environment pre-staged as the disabled execution image is consistent", () => {
   const report = buildRunnerEnvironmentReport({
     config: fixtureConfig([approvedEnvironment(), templateReadyEnvironment()]),
-    workerApprovedImages: [approvedImageBinding(), pendingImageBinding()],
-    renderApprovedImages: [approvedImageBinding(), pendingImageBinding()],
+    workerApprovedImages: [pendingImageBinding()],
+    renderApprovedImages: [pendingImageBinding()],
     renderExecutionImage: pendingDigest,
     renderTemplateId: pendingTemplate.id,
     renderTemplateBuildId: pendingTemplate.buildId,
@@ -443,23 +469,25 @@ test("a template_ready environment pre-staged as the disabled execution image is
   assert.deepEqual(report.inconsistencies, []);
   assert.equal(report.summary.approved, 1);
   assert.equal(report.summary.templateReady, 1);
-  assert.equal(report.summary.admissible, 1);
+  assert.equal(report.summary.dispatchable, 1);
+  assert.equal(report.summary.selected, 1);
+  assert.equal(report.summary.executing, 0);
   assert.equal(report.deployment.render.executionEnvironment, "mathlib-4.27-a3a10");
   assert.equal(report.deployment.render.templateMatchesRegistry, true);
 
   const staged = report.environments.find((entry) => entry.profile === "mathlib-4.27-a3a10");
-  assert.equal(staged.deployment.executionImage, true);
-  assert.equal(staged.deployment.e2bTemplateRegistered, true);
-  assert.equal(staged.deployment.renderTemplateMatches, true);
-  assert.equal(staged.admissible, false);
-  assert.deepEqual(staged.blockers, ["environment_state_not_approved"]);
+  assert.equal(staged.ready, false);
+  assert.equal(staged.dispatchable, true);
+  assert.equal(staged.executionSelected, true);
+  assert.equal(staged.executing, false);
+  assert.deepEqual(staged.executionBlockers, ["environment_state_not_approved"]);
 });
 
 test("a template_ready environment executing with execution enabled is an inconsistency", () => {
   const report = buildRunnerEnvironmentReport({
     config: fixtureConfig([approvedEnvironment(), templateReadyEnvironment()]),
-    workerApprovedImages: [approvedImageBinding(), pendingImageBinding()],
-    renderApprovedImages: [approvedImageBinding(), pendingImageBinding()],
+    workerApprovedImages: [pendingImageBinding()],
+    renderApprovedImages: [pendingImageBinding()],
     renderExecutionImage: pendingDigest,
     renderTemplateId: pendingTemplate.id,
     renderTemplateBuildId: pendingTemplate.buildId,
@@ -468,6 +496,71 @@ test("a template_ready environment executing with execution enabled is an incons
 
   assert.equal(report.ok, false);
   assert.ok(report.inconsistencies.some((entry) => entry.code === "execution_image_not_approved"));
+});
+
+test("a controlled single Run permits a template_ready execution environment", () => {
+  const report = buildRunnerEnvironmentReport({
+    config: fixtureConfig([approvedEnvironment(), templateReadyEnvironment()]),
+    workerApprovedImages: [pendingImageBinding()],
+    renderApprovedImages: [pendingImageBinding()],
+    renderExecutionImage: pendingDigest,
+    renderTemplateId: pendingTemplate.id,
+    renderTemplateBuildId: pendingTemplate.buildId,
+    renderExecutionEnabled: "true",
+    renderOnlyRunId: "run:first-closure",
+  });
+
+  assert.equal(report.ok, true);
+  assert.deepEqual(report.inconsistencies, []);
+  assert.equal(report.deployment.render.controlledSingleRun, true);
+  assert.equal(report.deployment.render.onlyRunId, "run:first-closure");
+  assert.equal(report.summary.executing, 1);
+  const staged = report.environments.find((entry) => entry.profile === "mathlib-4.27-a3a10");
+  assert.equal(staged.executionSelected, true);
+  assert.equal(staged.executing, true);
+});
+
+test("a Render allowlist with more than one image is an inconsistency", () => {
+  const report = buildRunnerEnvironmentReport({
+    config: fixtureConfig([approvedEnvironment(), templateReadyEnvironment({ state: "approved" })]),
+    workerApprovedImages: [approvedImageBinding()],
+    renderApprovedImages: [approvedImageBinding(), pendingImageBinding()],
+    renderExecutionImage: approvedDigest,
+    renderTemplateId: approvedTemplate.id,
+    renderTemplateBuildId: approvedTemplate.buildId,
+  });
+
+  assert.equal(report.ok, false);
+  assert.ok(report.inconsistencies.some((entry) => entry.code === "render_allowlist_not_single"));
+});
+
+test("a Render execution image that differs from the single Render-approved image is an inconsistency", () => {
+  const report = buildRunnerEnvironmentReport({
+    config: fixtureConfig([approvedEnvironment(), templateReadyEnvironment({ state: "approved" })]),
+    workerApprovedImages: [approvedImageBinding()],
+    renderApprovedImages: [pendingImageBinding()],
+    renderExecutionImage: approvedDigest,
+    renderTemplateId: approvedTemplate.id,
+    renderTemplateBuildId: approvedTemplate.buildId,
+  });
+
+  assert.equal(report.ok, false);
+  assert.ok(report.inconsistencies.some((entry) => entry.code === "render_execution_image_mismatch"));
+});
+
+test("a Worker allowlist that omits the execution image is an inconsistency", () => {
+  const report = buildRunnerEnvironmentReport({
+    config: fixtureConfig([approvedEnvironment(), templateReadyEnvironment({ state: "approved" })]),
+    workerApprovedImages: [pendingImageBinding()],
+    renderApprovedImages: [approvedImageBinding()],
+    renderExecutionImage: approvedDigest,
+    renderTemplateId: approvedTemplate.id,
+    renderTemplateBuildId: approvedTemplate.buildId,
+  });
+
+  assert.equal(report.ok, false);
+  assert.ok(report.inconsistencies.some((entry) => entry.code === "execution_image_not_dispatchable"));
+  assert.ok(report.inconsistencies.some((entry) => entry.code === "dispatch_environment_not_executing"));
 });
 
 test("a Render template that does not match the registry is an inconsistency", () => {
@@ -484,23 +577,25 @@ test("a Render template that does not match the registry is an inconsistency", (
   assert.ok(report.inconsistencies.some((entry) => entry.code === "render_template_id_mismatch"));
   assert.ok(report.inconsistencies.some((entry) => entry.code === "render_template_build_id_mismatch"));
   const approved = report.environments.find((entry) => entry.profile === "mathlib-4.31-9a948");
-  assert.equal(approved.admissible, false);
-  assert.ok(approved.blockers.includes("render_template_id_mismatch"));
-  assert.ok(approved.blockers.includes("render_template_build_id_mismatch"));
+  assert.equal(approved.executionSelected, false);
+  assert.equal(approved.executing, false);
+  assert.ok(approved.executionBlockers.includes("render_template_id_mismatch"));
+  assert.ok(approved.executionBlockers.includes("render_template_build_id_mismatch"));
 });
 
 test("strict mode exits 0 on the repository configuration and --json emits a report", () => {
   const result = runCli(["--strict", "--json"]);
   assert.equal(result.status, 0, result.stderr);
   const report = JSON.parse(result.stdout);
-  assert.equal(report.reportSchemaVersion, "pw-runner-environment-report-v2");
+  assert.equal(report.reportSchemaVersion, "pw-runner-environment-report-v3");
   assert.deepEqual(report.summary, {
     environments: 2,
     approved: 1,
     templateReady: 0,
     pending: 1,
-    admissible: 1,
-    blocked: 1,
+    dispatchable: 1,
+    selected: 1,
+    executing: 0,
     inconsistencies: 0,
   });
   assert.equal(report.ok, true);
@@ -509,8 +604,8 @@ test("strict mode exits 0 on the repository configuration and --json emits a rep
 test("strict mode exits 1 when a pending environment is approved for Render execution", async (t) => {
   const paths = await writeFixture(t, {
     config: fixtureConfig(),
-    workerApprovedImages: [approvedImageBinding(), pendingImageBinding()],
-    renderApprovedImages: [approvedImageBinding(), pendingImageBinding()],
+    workerApprovedImages: [pendingImageBinding()],
+    renderApprovedImages: [pendingImageBinding()],
     renderExecutionImage: pendingDigest,
   });
 
@@ -524,18 +619,17 @@ test("strict mode exits 1 when a pending environment is approved for Render exec
   assert.match(strict.stdout, /pending_environment_approved/);
 });
 
-test("strict mode exits 1 when an approved environment is missing from a deployment allowlist", async (t) => {
+test("strict mode exits 1 when a Worker dispatch environment is not the execution environment", async (t) => {
   const paths = await writeFixture(t, {
     config: fixtureConfig(),
-    workerApprovedImages: [pendingImageBinding()],
+    workerApprovedImages: [approvedImageBinding(), pendingImageBinding()],
     renderApprovedImages: [approvedImageBinding()],
     renderExecutionImage: approvedDigest,
   });
 
   const strict = runCli([...fixtureArgs(paths), "--strict"]);
   assert.equal(strict.status, 1);
-  assert.match(strict.stdout, /approved_environment_not_admissible/);
-  assert.match(strict.stdout, /missing_worker_approval/);
+  assert.match(strict.stdout, /dispatch_environment_not_executing/);
 });
 
 test("strict mode exits 1 when a deployment approves an unregistered image", async (t) => {
@@ -550,6 +644,7 @@ test("strict mode exits 1 when a deployment approves an unregistered image", asy
   const strict = runCli([...fixtureArgs(paths), "--strict"]);
   assert.equal(strict.status, 1);
   assert.match(strict.stdout, /unregistered_approved_image/);
+  assert.match(strict.stdout, /render_allowlist_not_single/);
 });
 
 test("strict mode exits 1 when a deployment binds a digest to a different Lean environment", async (t) => {
@@ -616,6 +711,18 @@ test("generator emits the execution image and template identity from the registr
   assert.equal(values.get("PROOFWEAVE_E2B_RUNNER_IMAGE").value, report.values.PROOFWEAVE_E2B_RUNNER_IMAGE);
   assert.equal(values.get("PROOFWEAVE_E2B_TEMPLATE_ID").value, report.values.PROOFWEAVE_E2B_TEMPLATE_ID);
   assert.equal(values.get("PROOFWEAVE_E2B_TEMPLATE_BUILD_ID").value, report.values.PROOFWEAVE_E2B_TEMPLATE_BUILD_ID);
+});
+
+test("generator emits only the execution environment unless additional profiles are explicit", () => {
+  const report = generateRunnerEnvironmentConfig({
+    config: fixtureConfig([approvedEnvironment(), templateReadyEnvironment()]),
+    executionProfile: "mathlib-4.27-a3a10",
+    surface: "render",
+  });
+
+  assert.deepEqual(report.profiles, ["mathlib-4.27-a3a10"]);
+  assert.deepEqual(report.values.RUNNER_APPROVED_IMAGES_JSON, [pendingImageBinding()]);
+  assert.equal(report.values.PROOFWEAVE_E2B_RUNNER_IMAGE, pendingDigest);
 });
 
 test("generator stages a template_ready environment but refuses built_pending_template", async () => {
