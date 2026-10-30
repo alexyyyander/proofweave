@@ -10,6 +10,7 @@ import { PinnedRunnerImageRegistry } from "../lean-runner/runner-image-policy.mj
 import { D1InlineArtifactStore, D1HybridArtifactBucket } from "../artifacts/d1-inline-artifact-store.mjs";
 import { D1ContributionReceiptCoordinator } from "../receipts/d1-contribution-receipt-coordinator.mjs";
 import { HostedRunnerWakeClient } from "../lean-runner/hosted-runner-wake-client.mjs";
+import { runnerEnvironmentKey } from "../../packages/protocol/lean-runner.mjs";
 import {
   controlPlaneOperationMode,
   normalizeControlPlaneOperationMode,
@@ -42,6 +43,7 @@ export class RemoteMcpRuntimeConfigurationError extends Error {
  *   runnerWakeUrl?: string | null,
  *   runnerWakeToken?: string | null,
  *   runnerWakeHostAuthorizationToken?: string | null,
+ *   runnerWakeRoutesJson?: string | null,
  *   receiptIssuerKeyId?: string | null,
  *   receiptIssuerPublicKey?: string | null,
  *   receiptIssuerPrivateKeyJwkJson?: string | null,
@@ -64,6 +66,7 @@ export function createD1RemoteMcpGatewayRuntime({
   runnerWakeUrl = null,
   runnerWakeToken = null,
   runnerWakeHostAuthorizationToken = null,
+  runnerWakeRoutesJson = null,
   receiptIssuerKeyId = null,
   receiptIssuerPublicKey = null,
   receiptIssuerPrivateKeyJwkJson = null,
@@ -110,6 +113,7 @@ export function createD1RemoteMcpGatewayRuntime({
         runnerWakeToken,
         runnerWakeHostAuthorizationToken,
       }),
+      runnerWakeRoutes: createOptionalRunnerWakeRoutes(runnerWakeRoutesJson),
     })
     : null;
   const receiptCoordinator = writeComponentsEnabled
@@ -191,6 +195,7 @@ function createOptionalRunnerDispatcher({
   runnerControlPlanePrivateKeyJwkJson,
   runnerDefaultLimitsJson,
   runnerWake,
+  runnerWakeRoutes,
 }) {
   const settings = [
     runnerQueue,
@@ -221,6 +226,7 @@ function createOptionalRunnerDispatcher({
       ),
       defaultLimits: parseDeploymentJson(runnerDefaultLimitsJson, "RUNNER_DEFAULT_LIMITS_JSON"),
       runnerWake,
+      runnerWakeRoutes,
     });
   } catch (error) {
     if (error instanceof RemoteMcpRuntimeConfigurationError) throw error;
@@ -255,6 +261,51 @@ function createOptionalRunnerWakeClient({
   } catch {
     throw new RemoteMcpRuntimeConfigurationError("Runner wake configuration is invalid.");
   }
+}
+
+function createOptionalRunnerWakeRoutes(value) {
+  if (!isConfigured(value)) return null;
+  let parsed;
+  try {
+    parsed = JSON.parse(value);
+  } catch {
+    throw new RemoteMcpRuntimeConfigurationError("RUNNER_WAKE_ROUTES_JSON must be valid JSON.");
+  }
+  if (!Array.isArray(parsed) || parsed.length === 0 || parsed.length > 8) {
+    throw new RemoteMcpRuntimeConfigurationError("RUNNER_WAKE_ROUTES_JSON must contain 1 to 8 Runner wake routes.");
+  }
+  const allowed = ["leanToolchain", "mathlibRevision", "url", "wakeToken", "hostAuthorizationToken"];
+  const routes = new Map();
+  for (const route of parsed) {
+    if (!route || typeof route !== "object" || Array.isArray(route)) {
+      throw new RemoteMcpRuntimeConfigurationError("Runner wake route must be an object.");
+    }
+    const extra = Object.keys(route).find((key) => !allowed.includes(key));
+    if (extra) {
+      throw new RemoteMcpRuntimeConfigurationError("Runner wake route contains an unsupported field.");
+    }
+    let environmentKey;
+    try {
+      environmentKey = runnerEnvironmentKey(route);
+    } catch {
+      throw new RemoteMcpRuntimeConfigurationError("Runner wake route Lean environment is invalid.");
+    }
+    if (routes.has(environmentKey)) {
+      throw new RemoteMcpRuntimeConfigurationError("Runner wake routes must be unique per Lean environment.");
+    }
+    try {
+      routes.set(environmentKey, new HostedRunnerWakeClient({
+        url: route.url,
+        wakeToken: route.wakeToken,
+        hostAuthorizationToken: isConfigured(route.hostAuthorizationToken)
+          ? route.hostAuthorizationToken
+          : null,
+      }));
+    } catch {
+      throw new RemoteMcpRuntimeConfigurationError("Runner wake route is invalid.");
+    }
+  }
+  return routes;
 }
 
 function providerNeutralRunnerQueue(value) {

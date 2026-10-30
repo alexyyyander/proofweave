@@ -54,39 +54,43 @@ Person A 固定目标
 
 ### P2 Worker 与 Render 批准（0.5 天）
 
+- 先应用迁移 `0050_add_runner_queue_environment.sql`（Turso 控制面）；Runner 启动会校验 migration ledger，未应用会 fail closed。
 - 扩展 `config/runner-environments.json`：允许 `template_ready` 状态，登记 template ID/build ID（schema v2，已由 checker 校验）。
 - 用 `scripts/generate-runner-environment-config.mjs` 从登记表生成 Worker/Render env 值，不手工复制 digest/template ID：
   `node scripts/generate-runner-environment-config.mjs --execution-profile mathlib-4.27-a3a10 --surface render`。
-- **单执行环境规则**：当前 trusted Runner 进程只服务一个 E2B template/镜像（`trusted-runner-process.mjs` 要求 Render 的批准列表恰好一个镜像且等于 Sandbox 镜像）。因此：
-  - Worker `RUNNER_APPROVED_IMAGES_JSON` = 4.27 单镜像；
-  - Render `RUNNER_APPROVED_IMAGES_JSON` = 4.27 单镜像；
-  - 4.31 保留在 registry 的 `approved` 状态，但不进入本轮 Worker/Render 部署列表；
-  - 切换后 4.31 的 Run 请求会在分发前被拒绝，而不是排队等待；这是单执行环境窗口的预期行为；
-  - 不要生成 "4.27 + 4.31" 的 Render 列表：这会在开启执行时让 Runner 启动失败；也不能只把 4.27 加进 Worker，否则 4.27 的 Run 会由 4.31 Runner 领取并重试到 dead-letter。
-- Render env：
+- **每环境一个 Runner + 队列路由**：每个 trusted Runner 仍只服务一个 E2B template/镜像，但部署可以同时包含多个 Runner；队列消息携带从签名 request 派生的 `runner_environment_key`，每个 Runner 只 claim 自己的环境。
+  - Worker `RUNNER_APPROVED_IMAGES_JSON` = 4.27 + 4.31（前提是两个环境都有对应 Runner）：
+    `node scripts/generate-runner-environment-config.mjs --profile mathlib-4.31-9a948 --profile mathlib-4.27-a3a10 --surface worker`；
+  - 新增一个 4.27 Render 服务，`RUNNER_APPROVED_IMAGES_JSON` = 4.27 单镜像；
+  - 现有 4.31 Render 服务保持 `RUNNER_APPROVED_IMAGES_JSON` = 4.31 单镜像；
+  - 不要在一个 Runner 里放两个镜像：它仍会启动失败；多环境必须通过多个 Runner + 队列路由实现。
+- 4.27 Render env：
   - `PROOFWEAVE_E2B_RUNNER_IMAGE` = 4.27 digest
   - `RUNNER_APPROVED_IMAGES_JSON` = 4.27
   - `PROOFWEAVE_E2B_TEMPLATE_ID` / `PROOFWEAVE_E2B_TEMPLATE_BUILD_ID` = 新 template
   - `RUNNER_EXECUTION_ENABLED=false`（先 preflight）
-- 部署 Worker；确认 `/api/mcp/capabilities` 与 `/healthz` 回读一致。
+- 4.31 Runner 可保持原状态；Worker 同时分发两个环境，队列按环境路由，不再有 4.27 Run 被 4.31 Runner 领取后 dead-letter 的问题。
+- 配置 Worker `RUNNER_WAKE_ROUTES_JSON`，把两个 Lean 环境映射到各自的 `/v1/wake` 与 token；未配置时只有单一 `RUNNER_WAKE_URL`，另一个 Runner 仍能通过轮询取到任务，但唤醒延迟更高。
+- `/api/mcp/capabilities` 与各 Runner `/healthz` 回读一致。
 
-**验收**：Runner `runnerPolicy.sandboxImageDigest` 为 4.27、`executionEnabled=false`、approved 列表**恰好一个**环境（4.27）；4.31 仅保留在 registry；Worker 与 Render 的 digest 一致；`check-runner-environments.mjs --strict` 退出 0，`dispatchable=1`、`selected=1`、`executing=0`。
+**验收**：两个 Runner 的 `runnerPolicy.sandboxImageDigest` 分别为 4.27 / 4.31；4.27 `executionEnabled=false`；Worker 批准列表包含两个环境；`check-runner-environments.mjs --strict --render deploy/huggingface-runner/render.yaml`（两个 service 在同一文件）退出 0，`runners=2`、`dispatchable=2`、`routed=2`、`selected=2`，4.27 为 `executing=0`。
 
 ### P3 单 Run 受控验收（1 天）
 
 - Person A 用固定 4.27 目标创建有界 Attempt，准备并 stage 一个真实 Bundle（不是 fixture）。
-- 在执行关闭时配置：
+- 只对 4.27 Runner 配置：
   - `RUNNER_ONLY_RUN_ID=<run>`
   - `RUNNER_MAX_DELIVERY_ATTEMPTS=1`
-- 临时启用该一个 Run 的消费者，发送一次 wake；不开放普通队列。
+- 临时启用 4.27 Runner 的消费者，发送一次 wake；4.31 Runner 不受影响，不开放普通队列。
+- 队列按 `runner_environment_key` 路由，4.27 Run 只会被 4.27 Runner claim；4.31 Runner 不会领取它。
 - checker 只有在 `RUNNER_EXECUTION_ENABLED=true` 与 `RUNNER_ONLY_RUN_ID` 同时存在时，才允许 `template_ready` 环境执行；缺少任一条件时 `--strict` 会拒绝。
 - 验证：
   - 工作区哈希、工具链 4.27、Mathlib `a3a10db…`；
   - Lean accepted；`noSorry`、allowed axioms、lean build 四项检查；
   - 结果签名、输出哈希、acknowledged 终态；
   - 没有其他 Run 被消费。
-- 无论结果如何，立即恢复 `executionEnabled=false` 并回读暂停状态。
-- Run 通过后把 4.27 从 `template_ready` 晋升为 `approved`，移除 `RUNNER_ONLY_RUN_ID`；再回读 `executing=1`。
+- 无论结果如何，立即把 4.27 Runner 恢复为 `executionEnabled=false` 并回读暂停状态。
+- Run 通过后把 4.27 从 `template_ready` 晋升为 `approved`，移除 `RUNNER_ONLY_RUN_ID`；再回读 4.27 的 `executing=1`。
 
 **验收**：唯一 Run 的真实终态与无凭据证据；不声称数学正确性、独立评审或 Receipt。
 

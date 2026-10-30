@@ -55,16 +55,23 @@ GitHub Actions workflow run `40450516816`（profile `mathlib-4.27-a3a10`）已�
 
 `scripts/check-runner-environments.mjs` 只读解析 `wrangler.cloudflare.jsonc` 的 Worker `RUNNER_APPROVED_IMAGES_JSON`，以及 `deploy/huggingface-runner/render.yaml` 的 `RUNNER_APPROVED_IMAGES_JSON`、`PROOFWEAVE_E2B_RUNNER_IMAGE`、`PROOFWEAVE_E2B_TEMPLATE_ID`、`PROOFWEAVE_E2B_TEMPLATE_BUILD_ID`、`RUNNER_EXECUTION_ENABLED`、`RUNNER_ONLY_RUN_ID`，校验 schema、digest/template 格式、环境对唯一性、profile 唯一性、state 合法性与 template 来源绑定，并报告：
 
-- 每个环境是否 `ready`（approved + template 已登记）、`dispatchable`（在 Worker 列表）、`executionSelected`（Render 选中的执行镜像且 template 匹配）、`executing`（已允许执行），以及 `executionBlockers`；
+- 每个环境是否 `ready`（approved + template 已登记）、`dispatchable`（在 Worker 列表）、`routed`（至少一个 Runner 部署服务该环境）、`executionSelected`（Runner 选中的执行镜像且 template 匹配）、`executing`（已允许执行），以及 `executionBlockers`；
 - Render 执行镜像的 template ID / build ID 是否与登记表完全一致；
 - Worker / Render 批准列表是否绑定到相同的 Lean 与 Mathlib。
 
-**单执行环境约束**：当前 trusted Runner 进程只服务一个 E2B template/镜像，`trusted-runner-process.mjs` 要求 Render 的批准列表恰好一个镜像且等于 Sandbox 镜像。因此：
+**每环境一个 Runner 与队列路由**：每个 trusted Runner 进程仍只服务一个 E2B template/镜像，但部署可以包含多个 Runner；每个 Render 配置的 `RUNNER_APPROVED_IMAGES_JSON` 恰好一个镜像且等于它自己的执行镜像。队列消息在入队时从签名 request 派生 `runner_environment_key`（Lean toolchain + Mathlib revision 的规范化 JSON），Runner 每次 claim 都带自己的 key，D1 队列只返回 key 匹配或历史 NULL 的行。因此：
 
-- Render `RUNNER_APPROVED_IMAGES_JSON` 必须恰好一个镜像，且等于 `PROOFWEAVE_E2B_RUNNER_IMAGE`；
-- Worker `RUNNER_APPROVED_IMAGES_JSON` 在当前拓扑下也必须是同一个执行镜像；把其他已批准环境放进 Worker 会让 Runs 被错误的 Runner 领取并重试到 dead-letter；
-- registry 中可以同时存在多个 `approved` 环境，但同一时间只有一个部署为执行面；其余环境报告为 `ready` 但 `dispatchable=false`，这不是配置不一致；
-- `template_ready` 环境可以作为执行镜像预置，但只在 `RUNNER_EXECUTION_ENABLED=false` 时；开启执行时必须同时设置 `RUNNER_ONLY_RUN_ID` 作为受控单 Run 窗口，否则属于配置不一致。
+- Worker `RUNNER_APPROVED_IMAGES_JSON` 可以包含多个已部署环境；每个条目必须有对应的 Runner，否则 checker 报 `dispatch_environment_without_runner`；
+- 每个 Runner 的执行镜像必须出现在 Worker 分发列表中，否则 `runner_not_in_worker_allowlist`；
+- registry 中 `approved` 但未部署的环境报告为 `ready=true`、`routed=false`，这不是配置不一致；
+- 同一环境不能有两个 Runner（`duplicate_runner_environment`），同一镜像也不能被两个 Runner 复用；
+- `template_ready` Runner 只在 `RUNNER_EXECUTION_ENABLED=false` 或 `RUNNER_ONLY_RUN_ID` 受控单 Run 窗口下允许执行，否则属于配置不一致。
+
+checker 的 `--render` 可以重复传入；每个文件可以包含一个或多个 Render `services`，每个 service 代表一个 Runner 配置。多个 `--render` / service 会一起校验 Runner 数量、Worker 分发集合、template 绑定和重复环境。
+
+实现对应：`0050_add_runner_queue_environment.sql` 为 `runner_queue_messages` 增加派生 key；`D1RunnerLeaseQueue.claim` 按 key 过滤；Runner 从允许列表中的单一镜像派生 key；Worker 可选配置 `RUNNER_WAKE_ROUTES_JSON`，按环境选择正确的 wake 端点。迁移必须在 Runner 启动前应用到 Turso 控制面。
+
+`RUNNER_WAKE_ROUTES_JSON` 是一个最多 8 项的数组，每项为 `{ leanToolchain, mathlibRevision, url, wakeToken, hostAuthorizationToken? }`；`url` 必须是精确的 HTTPS `/v1/wake` 端点。未配置时回退到单一 `RUNNER_WAKE_URL`。
 
 ```bash
 node scripts/check-runner-environments.mjs          # 人类可读
@@ -72,7 +79,7 @@ node scripts/check-runner-environments.mjs --json   # 机器可读
 node scripts/check-runner-environments.mjs --strict # 配置不一致时退出 1
 ```
 
-`--strict` 在以下情况退出 1：Render 列表不是恰好一个镜像、Render 列表与执行镜像不一致、Worker 列表包含非执行环境或缺少执行镜像、pending 环境出现在任何部署列表/执行镜像、template ID/build 不匹配、template_ready 环境在开启执行时缺少 `RUNNER_ONLY_RUN_ID`。4.27 当前 blocked 是登记表声明的预期状态，`--strict` 通过只表示配置自洽，**不代表 4.27 可执行**。该脚本不写入任何文件，也不修改部署配置。
+`--strict` 在以下情况退出 1：某个 Runner 的批准列表不是恰好一个镜像、Runner 的批准列表与其执行镜像不一致、Worker 分发的环境没有对应 Runner、Runner 执行镜像不在 Worker 列表、pending 环境出现在任何部署列表/执行镜像、template ID/build 不匹配、template_ready Runner 在开启执行时缺少 `RUNNER_ONLY_RUN_ID`、或同一环境/镜像被多个 Runner 复用。4.27 当前 blocked 是登记表声明的预期状态，`--strict` 通过只表示配置自洽，**不代表 4.27 可执行**。该脚本不写入任何文件，也不修改部署配置。
 
 ## 部署值生成
 
@@ -83,15 +90,20 @@ node scripts/check-runner-environments.mjs --strict # 配置不一致时退出 1
 node scripts/generate-runner-environment-config.mjs \
   --execution-profile mathlib-4.31-9a948 --surface render
 
-# 4.27 template 建好后：切换单执行环境，执行仍关闭
+# 4.27 template 建好后：为 4.27 Runner 生成单镜像配置
 node scripts/generate-runner-environment-config.mjs \
   --execution-profile mathlib-4.27-a3a10 --surface render
+
+# Worker 同时分发两个已部署环境
+node scripts/generate-runner-environment-config.mjs \
+  --profile mathlib-4.31-9a948 --profile mathlib-4.27-a3a10 --surface worker
 ```
 
 - 默认只选择全部 `approved` 环境，输出 `RUNNER_APPROVED_IMAGES_JSON`；
 - `--profile` 可显式加入 `template_ready` 环境，但拒绝尚未有 template 的 `built_pending_template`；
 - `--execution-profile` 额外输出 `PROOFWEAVE_E2B_RUNNER_IMAGE`、`PROOFWEAVE_E2B_TEMPLATE_ID`、`PROOFWEAVE_E2B_TEMPLATE_BUILD_ID`，并把该环境加入批准列表；
-- 当前单 Runner 拓扑部署时，Worker 与 Render 都只使用 `--execution-profile` 生成的单环境值；不要额外 `--profile` 加入其他环境，否则 checker 会报 `dispatch_environment_not_executing`；
+- 多 Runner 部署时，每个 Render 服务用 `--execution-profile <profile> --surface render` 生成该 Runner 的单镜像值；Worker 用 `--profile <profile-a> --profile <profile-b> --surface worker` 生成与已部署 Runner 集合一致的分发列表；
+- 只传 `--execution-profile` 时生成器只选择该环境，避免把其他 approved 环境误放进同一个 Runner 的列表；
 - `--surface render` 要求 `--execution-profile`；`--surface worker` 不输出执行设置；
 - `--format env`（默认）输出 shell/dotenv 可用的 `KEY='value'` 行，`--format json` 输出结构化报告。
 
@@ -111,7 +123,8 @@ GitHub Actions (profile=mathlib-4.27-a3a10)            已完成：run 404692977
   → config/runner-environments.json（built_pending_template）
   → E2B template（从 digest 构建，需 E2B_API_KEY）      当前缺口
   → 登记 template ID/build 并晋升 template_ready
-  → Worker/Render 批准列表 = 当前单一执行环境（4.27）    切换后 4.31 仅留在 registry
+  → Worker 分发列表 = 已部署 Runner 的环境集合
+  → 每个 Runner 的批准列表 = 自己的单一执行镜像（4.27 / 4.31 各一个 Runner）
   → 一次受控 Run（RUNNER_ONLY_RUN_ID / 单次投递）
   → 环境验收后晋升 approved，再开放 MCP/participant 研究窗口
 ```

@@ -8,7 +8,7 @@ const maxProviderAgeMilliseconds = 5 * 60 * 1000;
 const maxCollectionMilliseconds = 30 * 1000;
 const systemClock = () => new Date();
 
-const head = "0049_add_catalog_browse_index.sql";
+const head = "0050_add_runner_queue_environment.sql";
 const digest = /^sha256:[a-f0-9]{64}$/;
 const revision = /^[a-f0-9]{40}$/;
 const sourceDigest = /^[a-f0-9]{64}$/;

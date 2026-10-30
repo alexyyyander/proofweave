@@ -3,7 +3,10 @@ import { D1InlineArtifactStore, maxInlineArtifactObjectBytes } from "../artifact
 import { D1RunStore } from "../lean-runner/d1-run-store.mjs";
 import { RunnerOrchestrator } from "../lean-runner/orchestrator.mjs";
 import { PinnedRunnerImageRegistry } from "../lean-runner/runner-image-policy.mjs";
-import { normalizeLeanRunnerLimits } from "../../packages/protocol/lean-runner.mjs";
+import {
+  normalizeLeanRunnerLimits,
+  runnerEnvironmentKey,
+} from "../../packages/protocol/lean-runner.mjs";
 import { isExecutableArtifactBundle } from "../../packages/protocol/artifact-bundle.mjs";
 
 export class RemoteMcpRunnerDispatchConfigurationError extends Error {
@@ -18,6 +21,16 @@ export class RemoteMcpRunnerDispatchValidationError extends Error {
     super(message);
     this.name = "RemoteMcpRunnerDispatchValidationError";
   }
+}
+
+/**
+ * Wake the Runner that serves this exact Lean environment. A configured route
+ * wins; the single wake client remains a fallback for tests and single-Runner
+ * deployments.
+ */
+export function selectRunnerWake({ environment, runnerWake = null, runnerWakeRoutes = null }) {
+  if (runnerWakeRoutes === null) return runnerWake;
+  return runnerWakeRoutes.get(runnerEnvironmentKey(environment)) ?? runnerWake;
 }
 
 /**
@@ -38,6 +51,7 @@ export class D1RemoteMcpRunnerDispatcher {
     controlPlanePrivateKeyJwk,
     defaultLimits,
     runnerWake = null,
+    runnerWakeRoutes = null,
     now = () => new Date(),
   } = {}) {
     if (!database || typeof database.prepare !== "function") {
@@ -63,6 +77,16 @@ export class D1RemoteMcpRunnerDispatcher {
     if (runnerWake !== null && typeof runnerWake?.wake !== "function") {
       throw new RemoteMcpRunnerDispatchConfigurationError("Runner dispatch wake client must expose wake().");
     }
+    if (runnerWakeRoutes !== null) {
+      if (!(runnerWakeRoutes instanceof Map)) {
+        throw new RemoteMcpRunnerDispatchConfigurationError("Runner dispatch wake routes must be a Map keyed by Runner environment.");
+      }
+      for (const [key, client] of runnerWakeRoutes) {
+        if (typeof key !== "string" || key.length === 0 || typeof client?.wake !== "function") {
+          throw new RemoteMcpRunnerDispatchConfigurationError("Runner dispatch wake routes require derived environment keys and wake clients.");
+        }
+      }
+    }
 
     this.artifactStore = artifactStore ?? (bucket
       ? new D1R2ArtifactStore({ database, bucket })
@@ -74,6 +98,7 @@ export class D1RemoteMcpRunnerDispatcher {
     this.controlPlanePrivateKeyJwk = controlPlanePrivateKeyJwk;
     this.defaultLimits = normalizeLeanRunnerLimits(defaultLimits);
     this.runnerWake = runnerWake;
+    this.runnerWakeRoutes = runnerWakeRoutes;
     // R2-backed evidence can carry the full control-plane object ceiling.
     // The inline D1 fallback keeps the smaller closed-alpha row limit.
     const maximumOutputBytes = bucket ? maxArtifactObjectBytes : maxInlineArtifactObjectBytes;
@@ -121,9 +146,14 @@ export class D1RemoteMcpRunnerDispatcher {
       queuedAt: isoInstant(this.now()),
       beforeDispatch,
     });
-    if (!queued.delivery || !this.runnerWake) return Object.freeze({ ...queued, runnerWake: null });
+    const wake = selectRunnerWake({
+      environment: loaded.bundle.environment,
+      runnerWake: this.runnerWake,
+      runnerWakeRoutes: this.runnerWakeRoutes,
+    });
+    if (!queued.delivery || !wake) return Object.freeze({ ...queued, runnerWake: null });
     try {
-      const runnerWake = await this.runnerWake.wake();
+      const runnerWake = await wake.wake();
       return Object.freeze({ ...queued, runnerWake });
     } catch (error) {
       const errorCode = privacySafeErrorCode(error);

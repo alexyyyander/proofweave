@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 import { readFile } from "node:fs/promises";
+import { basename } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 import { parseApprovedImages, parseJsonc } from "./check-target-environments.mjs";
 
 export const schemaVersion = "pw-runner-environments-v2";
-export const reportSchemaVersion = "pw-runner-environment-report-v3";
+export const reportSchemaVersion = "pw-runner-environment-report-v4";
 export const runnerEnvironmentStates = Object.freeze(["approved", "template_ready", "built_pending_template"]);
 
 const imageDigestPattern = /^[a-z0-9][a-z0-9./:_-]*@sha256:[a-f0-9]{64}$/;
@@ -160,51 +161,79 @@ function normalizeTemplate(template, label) {
 }
 
 /**
- * Minimal, dependency-free reader for the single `envVars` list in the
- * Render blueprint. It extracts literal `key`/`value` pairs and treats
- * `sync: false` secrets as having no local value. This is a read-only
+ * Minimal, dependency-free reader for the `services` list in a Render
+ * blueprint. It extracts each service's literal `key`/`value` env pairs and
+ * treats `sync: false` secrets as having no local value. This is a read-only
  * inspection of deploy configuration, not a deployment.
  */
-export function parseRenderYamlEnvVars(text) {
-  const values = new Map();
+export function parseRenderServices(text) {
+  const services = [];
   let current = null;
-  let inEnvVars = false;
-  let envVarsIndent = -1;
-  const flush = () => {
-    if (current && current.key) values.set(current.key, Object.freeze({ value: current.value, sync: current.sync }));
-    current = null;
+  let envVarsIndent = null;
+  let currentVar = null;
+  const flushVar = () => {
+    if (currentVar && currentVar.key) {
+      current.envVars.set(currentVar.key, Object.freeze({ value: currentVar.value, sync: currentVar.sync }));
+    }
+    currentVar = null;
   };
   for (const rawLine of String(text).split(/\r?\n/)) {
     const line = rawLine.replace(/\t/g, "  ");
     if (line.trim() === "" || /^\s*#/.test(line)) continue;
     const indent = line.length - line.trimStart().length;
-    if (!inEnvVars) {
-      if (/^envVars:\s*$/.test(line.trim())) {
-        inEnvVars = true;
-        envVarsIndent = indent;
-      }
-      continue;
-    }
-    if (indent <= envVarsIndent && !/^\s*-/.test(line)) {
-      flush();
-      inEnvVars = false;
-      continue;
-    }
-    const keyMatch = line.match(/^\s*-\s+key:\s*(.*)$/);
-    if (keyMatch) {
-      flush();
-      current = { key: unquoteYamlScalar(keyMatch[1]), value: null, sync: null };
+    const serviceMatch = line.match(/^\s*-\s+type:\s*(\S+)\s*$/);
+    if (serviceMatch) {
+      flushVar();
+      current = { type: unquoteYamlScalar(serviceMatch[1]), name: null, envVars: new Map() };
+      services.push(current);
+      envVarsIndent = null;
       continue;
     }
     if (!current) continue;
-    const propertyMatch = line.match(/^\s*([A-Za-z][A-Za-z0-9_]*):\s*(.*)$/);
-    if (!propertyMatch) continue;
-    const [, property, rawValue] = propertyMatch;
-    if (property === "value") current.value = unquoteYamlScalar(rawValue);
-    if (property === "sync") current.sync = unquoteYamlScalar(rawValue);
+    if (indent === 0 && !/^services:\s*$/.test(line.trim())) {
+      flushVar();
+      current = null;
+      envVarsIndent = null;
+      continue;
+    }
+    if (/^envVars:\s*$/.test(line.trim())) {
+      flushVar();
+      envVarsIndent = indent;
+      continue;
+    }
+    if (envVarsIndent !== null && indent <= envVarsIndent && !/^\s*-/.test(line)) {
+      flushVar();
+      envVarsIndent = null;
+    }
+    if (envVarsIndent !== null) {
+      const keyMatch = line.match(/^\s*-\s+key:\s*(.*)$/);
+      if (keyMatch) {
+        flushVar();
+        currentVar = { key: unquoteYamlScalar(keyMatch[1]), value: null, sync: null };
+        continue;
+      }
+      if (!currentVar) continue;
+      const propertyMatch = line.match(/^\s*([A-Za-z][A-Za-z0-9_]*):\s*(.*)$/);
+      if (!propertyMatch) continue;
+      const [, property, rawValue] = propertyMatch;
+      if (property === "value") currentVar.value = unquoteYamlScalar(rawValue);
+      if (property === "sync") currentVar.sync = unquoteYamlScalar(rawValue);
+      continue;
+    }
+    const nameMatch = line.match(/^\s*name:\s*(.*)$/);
+    if (nameMatch) current.name = unquoteYamlScalar(nameMatch[1]);
   }
-  flush();
-  return values;
+  flushVar();
+  return Object.freeze(services.map((service) => Object.freeze({
+    type: service.type,
+    name: service.name,
+    envVars: service.envVars,
+  })));
+}
+
+/** Backward-compatible single-service view used by tests and callers. */
+export function parseRenderYamlEnvVars(text) {
+  return parseRenderServices(text)[0]?.envVars ?? new Map();
 }
 
 function unquoteYamlScalar(rawValue) {
@@ -221,34 +250,16 @@ function unquoteYamlScalar(rawValue) {
 export function buildRunnerEnvironmentReport({
   config,
   workerApprovedImages,
-  renderApprovedImages,
-  renderExecutionImage,
+  runners = null,
+  renderApprovedImages = null,
+  renderExecutionImage = null,
   renderTemplateId = null,
   renderTemplateBuildId = null,
   renderExecutionEnabled = null,
   renderOnlyRunId = null,
 } = {}) {
   const environments = validateRunnerEnvironmentsConfig(config);
-  if (typeof renderExecutionImage !== "string" || !imageDigestPattern.test(renderExecutionImage)) {
-    throw new RunnerEnvironmentConfigError(
-      "render.yaml PROOFWEAVE_E2B_RUNNER_IMAGE must be an immutable image reference pinned by @sha256:<64 lowercase hex>.",
-    );
-  }
-  if (renderTemplateId !== null && (typeof renderTemplateId !== "string" || renderTemplateId.trim() === "")) {
-    throw new RunnerEnvironmentConfigError("render.yaml PROOFWEAVE_E2B_TEMPLATE_ID must be a non-empty string when configured.");
-  }
-  if (renderTemplateBuildId !== null && (typeof renderTemplateBuildId !== "string" || renderTemplateBuildId.trim() === "")) {
-    throw new RunnerEnvironmentConfigError("render.yaml PROOFWEAVE_E2B_TEMPLATE_BUILD_ID must be a non-empty string when configured.");
-  }
-  if (renderExecutionEnabled !== null && !["true", "false"].includes(renderExecutionEnabled)) {
-    throw new RunnerEnvironmentConfigError("render.yaml RUNNER_EXECUTION_ENABLED must be true or false when configured.");
-  }
-  if (renderOnlyRunId !== null && (typeof renderOnlyRunId !== "string" || renderOnlyRunId.trim() === "")) {
-    throw new RunnerEnvironmentConfigError("render.yaml RUNNER_ONLY_RUN_ID must be a non-empty identifier when configured.");
-  }
-  const controlledSingleRun = renderOnlyRunId !== null;
   const worker = indexApprovedImages(workerApprovedImages, "Worker");
-  const render = indexApprovedImages(renderApprovedImages, "Render");
   const environmentsByDigest = new Map(environments.map((environment) => [environment.imageDigest, environment]));
   const inconsistencies = [];
   const addInconsistency = (code, message, profile = null) => {
@@ -257,164 +268,96 @@ export function buildRunnerEnvironmentReport({
     }
   };
 
-  for (const [label, index] of [["Worker", worker], ["Render", render]]) {
-    for (const digest of index.duplicates) {
-      addInconsistency(
-        "duplicate_approved_image",
-        `${label} RUNNER_APPROVED_IMAGES_JSON repeats ${shortDigest(digest)}.`,
-      );
-    }
-    for (const [digest, image] of index.byDigest) {
-      const environment = environmentsByDigest.get(digest);
-      if (!environment) {
-        addInconsistency(
-          "unregistered_approved_image",
-          `${label} approves ${shortDigest(digest)}, which is not declared in config/runner-environments.json.`,
-        );
-        continue;
-      }
-      if (
-        image.leanToolchain !== environment.leanToolchain ||
-        image.mathlibRevision !== environment.mathlibRevision
-      ) {
-        addInconsistency(
-          "approved_image_environment_mismatch",
-          `${label} binds ${shortDigest(digest)} to Lean ${image.leanToolchain} + Mathlib ${short(image.mathlibRevision)},`
-            + ` but config declares Lean ${environment.leanToolchain} + Mathlib ${short(environment.mathlibRevision)}.`,
-          environment.profile,
-        );
-      }
-    }
-  }
-  const executionEnvironment = environmentsByDigest.get(renderExecutionImage) ?? null;
-  if (!executionEnvironment) {
-    addInconsistency(
-      "unknown_execution_image",
-      `Render execution image ${shortDigest(renderExecutionImage)} is not declared in config/runner-environments.json.`,
-    );
-  }
+  const runnerInputs = runners ?? [{
+    label: "render",
+    approvedImages: renderApprovedImages,
+    executionImage: renderExecutionImage,
+    templateId: renderTemplateId,
+    templateBuildId: renderTemplateBuildId,
+    executionEnabled: renderExecutionEnabled,
+    onlyRunId: renderOnlyRunId,
+  }];
+  const normalizedRunners = normalizeRunnerInputs(runnerInputs, environmentsByDigest, addInconsistency);
 
-  // The trusted Runner process serves exactly one E2B template built from one
-  // image. The Worker may approve several reviewed environments over time, but
-  // every dispatchable environment needs a Runner that can claim its Runs;
-  // otherwise the single Runner claims the message, rejects it, and retries
-  // until dead-letter. Until per-environment routing exists, the Worker
-  // allowlist must be exactly the Render execution image.
-  const renderDigests = [...render.byDigest.keys()];
-  if (renderApprovedImages.length !== 1) {
+  for (const digest of worker.duplicates) {
     addInconsistency(
-      "render_allowlist_not_single",
-      `Render RUNNER_APPROVED_IMAGES_JSON must contain exactly one execution image, but declares ${renderApprovedImages.length}.`,
-    );
-  } else if (renderDigests[0] !== renderExecutionImage) {
-    addInconsistency(
-      "render_execution_image_mismatch",
-      `Render approves ${shortDigest(renderDigests[0])}, but PROOFWEAVE_E2B_RUNNER_IMAGE is ${shortDigest(renderExecutionImage)}.`,
+      "duplicate_approved_image",
+      `Worker RUNNER_APPROVED_IMAGES_JSON repeats ${shortDigest(digest)}.`,
     );
   }
-  if (!worker.byDigest.has(renderExecutionImage)) {
-    addInconsistency(
-      "execution_image_not_dispatchable",
-      `Worker RUNNER_APPROVED_IMAGES_JSON does not include the Render execution image ${shortDigest(renderExecutionImage)};`
-        + " run requests for it are rejected before enqueue.",
-    );
-  }
-  for (const digest of worker.byDigest.keys()) {
-    if (digest === renderExecutionImage) continue;
-    addInconsistency(
-      "dispatch_environment_not_executing",
-      `Worker approves ${shortDigest(digest)}, but the single Render runner executes ${shortDigest(renderExecutionImage)};`
-        + " such Runs would be claimed by the wrong Runner and dead-letter.",
-      environmentsByDigest.get(digest)?.profile ?? null,
-    );
-  }
-
-  if (executionEnvironment?.template) {
-    if (renderTemplateId !== executionEnvironment.template.id) {
+  for (const [digest, image] of worker.byDigest) {
+    const environment = environmentsByDigest.get(digest);
+    if (!environment) {
       addInconsistency(
-        "render_template_id_mismatch",
-        `render.yaml PROOFWEAVE_E2B_TEMPLATE_ID is ${renderTemplateId ?? "unset"},`
-          + ` but ${executionEnvironment.profile} records ${executionEnvironment.template.id}.`,
-        executionEnvironment.profile,
+        "unregistered_approved_image",
+        `Worker approves ${shortDigest(digest)}, which is not declared in config/runner-environments.json.`,
+      );
+      continue;
+    }
+    if (
+      image.leanToolchain !== environment.leanToolchain ||
+      image.mathlibRevision !== environment.mathlibRevision
+    ) {
+      addInconsistency(
+        "approved_image_environment_mismatch",
+        `Worker binds ${shortDigest(digest)} to Lean ${image.leanToolchain} + Mathlib ${short(image.mathlibRevision)},`
+          + ` but config declares Lean ${environment.leanToolchain} + Mathlib ${short(environment.mathlibRevision)}.`,
+        environment.profile,
       );
     }
-    if (renderTemplateBuildId !== executionEnvironment.template.buildId) {
+    if (environment.state === "built_pending_template") {
       addInconsistency(
-        "render_template_build_id_mismatch",
-        `render.yaml PROOFWEAVE_E2B_TEMPLATE_BUILD_ID is ${renderTemplateBuildId ?? "unset"},`
-          + ` but ${executionEnvironment.profile} records ${executionEnvironment.template.buildId}.`,
-        executionEnvironment.profile,
+        "pending_environment_approved",
+        `Pending environment ${environment.profile} must not appear in the Worker dispatch allowlist before its E2B template exists.`,
+        environment.profile,
       );
     }
-  } else if (renderTemplateId !== null || renderTemplateBuildId !== null) {
-    addInconsistency(
-      "render_template_unregistered",
-      "render.yaml configures an E2B template but the Render execution image has no registered template.",
-      executionEnvironment?.profile ?? null,
-    );
+    if (!normalizedRunners.some((runner) => runner.executionImage === digest)) {
+      addInconsistency(
+        "dispatch_environment_without_runner",
+        `Worker dispatches ${environment.profile}, but no Runner deployment serves ${shortDigest(digest)}; its Runs would stay queued.`,
+        environment.profile,
+      );
+    }
+  }
+  for (const runner of normalizedRunners) {
+    if (!worker.byDigest.has(runner.executionImage)) {
+      addInconsistency(
+        "runner_not_in_worker_allowlist",
+        `Runner ${runner.label} executes ${shortDigest(runner.executionImage)}, but the Worker dispatch allowlist does not contain it;`
+          + " no Runs can reach it.",
+        runner.environment?.profile ?? null,
+      );
+    }
   }
 
   const rows = environments.map((environment) => {
     const workerImage = worker.byDigest.get(environment.imageDigest) ?? null;
-    const renderImage = render.byDigest.get(environment.imageDigest) ?? null;
     const workerApproved = Boolean(
       workerImage &&
       workerImage.leanToolchain === environment.leanToolchain &&
       workerImage.mathlibRevision === environment.mathlibRevision,
     );
-    const renderApproved = Boolean(
-      renderImage &&
-      renderImage.leanToolchain === environment.leanToolchain &&
-      renderImage.mathlibRevision === environment.mathlibRevision,
-    );
-    const executionImageMatch = renderExecutionImage === environment.imageDigest;
+    const environmentRunners = normalizedRunners.filter((runner) => runner.executionImage === environment.imageDigest);
+    const runnerLabels = environmentRunners.map((runner) => runner.label);
     const templateRegistered = environment.template !== null
       && environment.template.sourceImageDigest === environment.imageDigest;
-    const renderTemplateIdMatch = environment.template !== null && renderTemplateId === environment.template.id;
-    const renderTemplateBuildIdMatch = environment.template !== null
-      && renderTemplateBuildId === environment.template.buildId;
-    const renderTemplateMatches = executionImageMatch && renderTemplateIdMatch && renderTemplateBuildIdMatch;
-
     const ready = environment.state === "approved" && templateRegistered;
     const dispatchable = workerApproved;
-    const executionSelected = executionImageMatch && renderApproved && renderTemplateMatches;
-    const executionPermitted = executionSelected
-      && (environment.state === "approved" || controlledSingleRun);
-    const executing = executionPermitted && renderExecutionEnabled === "true";
+    const routed = environmentRunners.length > 0;
+    const executionSelected = environmentRunners.some((runner) => runner.executionSelected);
+    const executing = environmentRunners.some((runner) => runner.executing);
 
     const executionBlockers = [];
     if (environment.state !== "approved") executionBlockers.push("environment_state_not_approved");
     if (!templateRegistered) executionBlockers.push("missing_e2b_template");
     if (!workerApproved) executionBlockers.push("not_in_worker_allowlist");
-    if (!renderApproved) executionBlockers.push("not_in_render_allowlist");
-    if (!executionImageMatch) executionBlockers.push("not_execution_image");
-    if (executionImageMatch && environment.template !== null && !renderTemplateIdMatch) {
-      executionBlockers.push("render_template_id_mismatch");
+    if (!routed) executionBlockers.push("no_runner_deployment");
+    if (routed && !executionSelected && environmentRunners.some((runner) => !runner.templateMatchesRegistry)) {
+      executionBlockers.push("runner_template_mismatch");
     }
-    if (executionImageMatch && environment.template !== null && !renderTemplateBuildIdMatch) {
-      executionBlockers.push("render_template_build_id_mismatch");
-    }
-
-    if (environment.state === "built_pending_template" && (workerApproved || renderApproved || executionImageMatch)) {
-      addInconsistency(
-        "pending_environment_approved",
-        `Pending environment ${environment.profile} must not appear in deployment allowlists or be the execution image`
-          + " before its E2B template exists.",
-        environment.profile,
-      );
-    }
-    if (
-      environment.state === "template_ready"
-      && executionImageMatch
-      && renderExecutionEnabled === "true"
-      && !controlledSingleRun
-    ) {
-      addInconsistency(
-        "execution_image_not_approved",
-        `Render executes template_ready environment ${environment.profile} with RUNNER_EXECUTION_ENABLED=true;`
-          + " promote it to approved or set RUNNER_ONLY_RUN_ID for a controlled single-Run window.",
-        environment.profile,
-      );
+    if (routed && executionSelected && !executing && environmentRunners.every((runner) => runner.executionEnabled !== "true")) {
+      executionBlockers.push("runner_execution_disabled");
     }
 
     return {
@@ -428,25 +371,40 @@ export function buildRunnerEnvironmentReport({
       template: environment.template,
       deployment: {
         workerApproved,
-        renderApproved,
-        executionImage: executionImageMatch,
-        e2bTemplateRegistered: templateRegistered,
-        renderTemplateMatches,
+        runnerLabels,
+        executionSelected,
+        executing,
       },
       ready,
       dispatchable,
+      routed,
       executionSelected,
       executing,
       executionBlockers,
     };
   });
 
+  const runnerReports = normalizedRunners.map((runner) => ({
+    label: runner.label,
+    approvedImages: runner.approvedImages.map(pickImageBinding),
+    executionImage: runner.executionImage,
+    executionEnvironment: runner.environment?.profile ?? null,
+    templateId: runner.templateId,
+    templateBuildId: runner.templateBuildId,
+    templateMatchesRegistry: runner.templateMatchesRegistry,
+    executionEnabled: runner.executionEnabled,
+    controlledSingleRun: runner.controlledSingleRun,
+    onlyRunId: runner.onlyRunId,
+  }));
+
   const summary = {
     environments: rows.length,
     approved: rows.filter((row) => row.state === "approved").length,
     templateReady: rows.filter((row) => row.state === "template_ready").length,
     pending: rows.filter((row) => row.state === "built_pending_template").length,
+    runners: runnerReports.length,
     dispatchable: rows.filter((row) => row.dispatchable).length,
+    routed: rows.filter((row) => row.routed).length,
     selected: rows.filter((row) => row.executionSelected).length,
     executing: rows.filter((row) => row.executing).length,
     inconsistencies: inconsistencies.length,
@@ -457,20 +415,8 @@ export function buildRunnerEnvironmentReport({
     configSchemaVersion: schemaVersion,
     deployment: {
       worker: { approvedImages: workerApprovedImages.map(pickImageBinding) },
-      render: {
-        approvedImages: renderApprovedImages.map(pickImageBinding),
-        executionImage: renderExecutionImage,
-        executionEnvironment: executionEnvironment?.profile ?? null,
-        templateId: renderTemplateId,
-        templateBuildId: renderTemplateBuildId,
-        templateMatchesRegistry: executionEnvironment?.template
-          ? renderTemplateId === executionEnvironment.template.id
-            && renderTemplateBuildId === executionEnvironment.template.buildId
-          : false,
-        executionEnabled: renderExecutionEnabled,
-        controlledSingleRun,
-        onlyRunId: renderOnlyRunId,
-      },
+      runners: runnerReports,
+      render: runnerReports[0],
     },
     environments: rows,
     inconsistencies,
@@ -479,29 +425,239 @@ export function buildRunnerEnvironmentReport({
   };
 }
 
+function normalizeRunnerInputs(inputs, environmentsByDigest, addInconsistency) {
+  if (!Array.isArray(inputs) || inputs.length === 0 || inputs.length > 8) {
+    throw new RunnerEnvironmentConfigError("Runner deployments must contain 1 to 8 render configurations.");
+  }
+  const labels = new Set();
+  const environmentOwners = new Map();
+  const imageOwners = new Map();
+  return Object.freeze(inputs.map((input, index) => {
+    if (!input || typeof input !== "object" || Array.isArray(input)) {
+      throw new RunnerEnvironmentConfigError(`runners[${index}] must be an object.`);
+    }
+    const label = boundedString(input.label ?? `runner-${index + 1}`, `runners[${index}].label`, 64);
+    if (!/^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/.test(label)) {
+      throw new RunnerEnvironmentConfigError(`runners[${index}].label must be a bounded runner label.`);
+    }
+    if (labels.has(label)) {
+      throw new RunnerEnvironmentConfigError(`Runner deployment labels must be unique (duplicate ${label}).`);
+    }
+    labels.add(label);
+    if (typeof input.executionImage !== "string" || !imageDigestPattern.test(input.executionImage)) {
+      throw new RunnerEnvironmentConfigError(
+        `Runner ${label} execution image must be an immutable image reference pinned by @sha256:<64 lowercase hex>.`,
+      );
+    }
+    const executionImage = input.executionImage;
+    const approvedImages = input.approvedImages;
+    const approvedIndex = indexApprovedImages(approvedImages, `Runner ${label}`);
+    if (input.templateId !== null && input.templateId !== undefined
+      && (typeof input.templateId !== "string" || input.templateId.trim() === "")) {
+      throw new RunnerEnvironmentConfigError(`Runner ${label} E2B template id must be a non-empty string when configured.`);
+    }
+    if (input.templateBuildId !== null && input.templateBuildId !== undefined
+      && (typeof input.templateBuildId !== "string" || input.templateBuildId.trim() === "")) {
+      throw new RunnerEnvironmentConfigError(`Runner ${label} E2B template build id must be a non-empty string when configured.`);
+    }
+    if (input.executionEnabled !== null && input.executionEnabled !== undefined
+      && !["true", "false"].includes(input.executionEnabled)) {
+      throw new RunnerEnvironmentConfigError(`Runner ${label} RUNNER_EXECUTION_ENABLED must be true or false when configured.`);
+    }
+    if (input.onlyRunId !== null && input.onlyRunId !== undefined
+      && (typeof input.onlyRunId !== "string" || input.onlyRunId.trim() === "")) {
+      throw new RunnerEnvironmentConfigError(`Runner ${label} RUNNER_ONLY_RUN_ID must be a non-empty identifier when configured.`);
+    }
+    const templateId = input.templateId ?? null;
+    const templateBuildId = input.templateBuildId ?? null;
+    const executionEnabled = input.executionEnabled ?? null;
+    const onlyRunId = input.onlyRunId ?? null;
+    const environment = environmentsByDigest.get(executionImage) ?? null;
+    const templateMatchesRegistry = Boolean(
+      environment?.template &&
+      templateId === environment.template.id &&
+      templateBuildId === environment.template.buildId,
+    );
+    const controlledSingleRun = onlyRunId !== null;
+    const executionSelected = Boolean(
+      environment &&
+      approvedIndex.byDigest.has(executionImage) &&
+      templateMatchesRegistry,
+    );
+    const executionPermitted = executionSelected && (environment.state === "approved" || controlledSingleRun);
+    const executing = executionPermitted && executionEnabled === "true";
+
+    for (const digest of approvedIndex.duplicates) {
+      addInconsistency(
+        "duplicate_approved_image",
+        `Runner ${label} RUNNER_APPROVED_IMAGES_JSON repeats ${shortDigest(digest)}.`,
+        environment?.profile ?? null,
+      );
+    }
+    for (const [digest, image] of approvedIndex.byDigest) {
+      const approvedEnvironment = environmentsByDigest.get(digest);
+      if (!approvedEnvironment) {
+        addInconsistency(
+          "unregistered_approved_image",
+          `Runner ${label} approves ${shortDigest(digest)}, which is not declared in config/runner-environments.json.`,
+        );
+        continue;
+      }
+      if (
+        image.leanToolchain !== approvedEnvironment.leanToolchain ||
+        image.mathlibRevision !== approvedEnvironment.mathlibRevision
+      ) {
+        addInconsistency(
+          "approved_image_environment_mismatch",
+          `Runner ${label} binds ${shortDigest(digest)} to Lean ${image.leanToolchain} + Mathlib ${short(image.mathlibRevision)},`
+            + ` but config declares Lean ${approvedEnvironment.leanToolchain} + Mathlib ${short(approvedEnvironment.mathlibRevision)}.`,
+          approvedEnvironment.profile,
+        );
+      }
+    }
+    if (approvedImages.length !== 1) {
+      addInconsistency(
+        "runner_allowlist_not_single",
+        `Runner ${label} RUNNER_APPROVED_IMAGES_JSON must contain exactly one execution image, but declares ${approvedImages.length}.`,
+        environment?.profile ?? null,
+      );
+    } else if ([...approvedIndex.byDigest.keys()][0] !== executionImage) {
+      addInconsistency(
+        "runner_execution_image_mismatch",
+        `Runner ${label} approves ${shortDigest([...approvedIndex.byDigest.keys()][0])}, but its execution image is ${shortDigest(executionImage)}.`,
+        environment?.profile ?? null,
+      );
+    }
+    if (!environment) {
+      addInconsistency(
+        "runner_unknown_execution_image",
+        `Runner ${label} execution image ${shortDigest(executionImage)} is not declared in config/runner-environments.json.`,
+      );
+    } else {
+      if (environment.template) {
+        if (templateId !== environment.template.id) {
+          addInconsistency(
+            "runner_template_id_mismatch",
+            `Runner ${label} PROOFWEAVE_E2B_TEMPLATE_ID is ${templateId ?? "unset"},`
+              + ` but ${environment.profile} records ${environment.template.id}.`,
+            environment.profile,
+          );
+        }
+        if (templateBuildId !== environment.template.buildId) {
+          addInconsistency(
+            "runner_template_build_id_mismatch",
+            `Runner ${label} PROOFWEAVE_E2B_TEMPLATE_BUILD_ID is ${templateBuildId ?? "unset"},`
+              + ` but ${environment.profile} records ${environment.template.buildId}.`,
+            environment.profile,
+          );
+        }
+      } else if (templateId !== null || templateBuildId !== null) {
+        addInconsistency(
+          "runner_template_unregistered",
+          `Runner ${label} configures an E2B template but ${environment.profile} has no registered template.`,
+          environment.profile,
+        );
+      }
+      if (environment.state === "built_pending_template") {
+        addInconsistency(
+          "pending_environment_approved",
+          `Runner ${label} executes pending environment ${environment.profile} before its E2B template exists.`,
+          environment.profile,
+        );
+      }
+      if (environment.state === "template_ready" && executionEnabled === "true" && !controlledSingleRun) {
+        addInconsistency(
+          "execution_image_not_approved",
+          `Runner ${label} executes template_ready environment ${environment.profile} with RUNNER_EXECUTION_ENABLED=true;`
+            + " promote it to approved or set RUNNER_ONLY_RUN_ID for a controlled single-Run window.",
+          environment.profile,
+        );
+      }
+      if (environmentOwners.has(environment.profile)) {
+        addInconsistency(
+          "duplicate_runner_environment",
+          `Runner ${label} duplicates runner ${environmentOwners.get(environment.profile)} for ${environment.profile}.`,
+          environment.profile,
+        );
+      } else {
+        environmentOwners.set(environment.profile, label);
+      }
+    }
+    if (imageOwners.has(executionImage)) {
+      addInconsistency(
+        "duplicate_runner_execution_image",
+        `Runner ${label} reuses the execution image of runner ${imageOwners.get(executionImage)}.`,
+        environment?.profile ?? null,
+      );
+    } else {
+      imageOwners.set(executionImage, label);
+    }
+
+    return Object.freeze({
+      label,
+      approvedImages,
+      executionImage,
+      templateId,
+      templateBuildId,
+      executionEnabled,
+      onlyRunId,
+      environment,
+      templateMatchesRegistry,
+      controlledSingleRun,
+      executionSelected,
+      executionPermitted,
+      executing,
+    });
+  }));
+}
 export async function buildRunnerEnvironmentReportFromFiles({
   configPath = defaultConfigPath,
   wranglerPath = defaultWranglerPath,
+  renderPaths = null,
   renderPath = defaultRenderPath,
 } = {}) {
+  const paths = renderPaths ?? [renderPath];
+  if (!Array.isArray(paths) || paths.length === 0) {
+    throw new RunnerEnvironmentConfigError("At least one Render configuration path is required.");
+  }
   const config = JSON.parse(await readFile(configPath, "utf8"));
   const wrangler = parseJsonc(await readFile(wranglerPath, "utf8"));
   const workerApprovedImages = parseApprovedImages(wrangler?.vars?.RUNNER_APPROVED_IMAGES_JSON);
-  const renderEnvVars = parseRenderYamlEnvVars(await readFile(renderPath, "utf8"));
-  const renderApprovedImages = parseApprovedImages(
-    requireRenderEnvValue(renderEnvVars, "RUNNER_APPROVED_IMAGES_JSON"),
-  );
-  const renderExecutionImage = requireRenderEnvValue(renderEnvVars, "PROOFWEAVE_E2B_RUNNER_IMAGE");
-  return buildRunnerEnvironmentReport({
-    config,
-    workerApprovedImages,
-    renderApprovedImages,
-    renderExecutionImage,
-    renderTemplateId: optionalRenderEnvValue(renderEnvVars, "PROOFWEAVE_E2B_TEMPLATE_ID"),
-    renderTemplateBuildId: optionalRenderEnvValue(renderEnvVars, "PROOFWEAVE_E2B_TEMPLATE_BUILD_ID"),
-    renderExecutionEnabled: optionalRenderEnvValue(renderEnvVars, "RUNNER_EXECUTION_ENABLED"),
-    renderOnlyRunId: optionalRenderEnvValue(renderEnvVars, "RUNNER_ONLY_RUN_ID"),
-  });
+  const runners = [];
+  for (const path of paths) {
+    const services = parseRenderServices(await readFile(path, "utf8"));
+    const renderServices = services.length > 0 ? services : [Object.freeze({ name: null, envVars: new Map() })];
+    for (const service of renderServices) {
+      const envVars = service.envVars;
+      runners.push({
+        label: service.name
+          ? sanitizeRunnerLabel(service.name) ?? runnerLabelFromPath(path)
+          : runnerLabelFromPath(path),
+        approvedImages: parseApprovedImages(
+          requireRenderEnvValue(envVars, "RUNNER_APPROVED_IMAGES_JSON"),
+        ),
+        executionImage: requireRenderEnvValue(envVars, "PROOFWEAVE_E2B_RUNNER_IMAGE"),
+        templateId: optionalRenderEnvValue(envVars, "PROOFWEAVE_E2B_TEMPLATE_ID"),
+        templateBuildId: optionalRenderEnvValue(envVars, "PROOFWEAVE_E2B_TEMPLATE_BUILD_ID"),
+        executionEnabled: optionalRenderEnvValue(envVars, "RUNNER_EXECUTION_ENABLED"),
+        onlyRunId: optionalRenderEnvValue(envVars, "RUNNER_ONLY_RUN_ID"),
+      });
+    }
+  }
+  return buildRunnerEnvironmentReport({ config, workerApprovedImages, runners });
+}
+
+function runnerLabelFromPath(path) {
+  const name = basename(String(path)).replace(/\.ya?ml$/i, "");
+  return name || "render";
+}
+
+function sanitizeRunnerLabel(value) {
+  const label = String(value)
+    .replace(/[^A-Za-z0-9._-]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 64);
+  return label || null;
 }
 
 function indexApprovedImages(images, label) {
@@ -579,17 +735,23 @@ function yesNo(value) {
 }
 
 export function formatHumanReport(report) {
+  const runners = report.deployment.runners ?? (report.deployment.render ? [report.deployment.render] : []);
   const lines = [
     `Runner environment registry check (${report.configSchemaVersion})`,
     `Worker dispatch images: ${report.deployment.worker.approvedImages.length}`
-      + ` | Render execution images: ${report.deployment.render.approvedImages.length} (must be 1)`,
-    `Render execution image: ${shortDigest(report.deployment.render.executionImage)}`
-      + ` | environment: ${report.deployment.render.executionEnvironment ?? "unregistered"}`
-      + ` | E2B template: ${report.deployment.render.templateId ?? "not configured"}`
-      + ` | RUNNER_EXECUTION_ENABLED: ${report.deployment.render.executionEnabled ?? "unset"}`
-      + ` | controlled single run: ${yesNo(report.deployment.render.controlledSingleRun)}`,
-    "",
+      + ` | Runner deployments: ${runners.length}`,
   ];
+  for (const runner of runners) {
+    lines.push(
+      `- runner ${runner.label}`
+        + ` | image ${shortDigest(runner.executionImage)}`
+        + ` | environment: ${runner.executionEnvironment ?? "unregistered"}`
+        + ` | E2B template: ${runner.templateId ?? "not configured"}`
+        + ` | RUNNER_EXECUTION_ENABLED: ${runner.executionEnabled ?? "unset"}`
+        + ` | controlled single run: ${yesNo(runner.controlledSingleRun)}`,
+    );
+  }
+  lines.push("");
   for (const environment of report.environments) {
     const source = `source run ${environment.sourceRun ?? "n/a"}`
       + ` | commit ${environment.sourceCommit ? `${environment.sourceCommit.slice(0, 12)}…` : "n/a"}`;
@@ -607,14 +769,16 @@ export function formatHumanReport(report) {
     );
     lines.push(
       `  worker allowlist: ${yesNo(environment.deployment.workerApproved)}`
-        + ` | render allowlist: ${yesNo(environment.deployment.renderApproved)}`
-        + ` | execution image: ${yesNo(environment.deployment.executionImage)}`
-        + ` | template registered: ${yesNo(environment.deployment.e2bTemplateRegistered)}`
-        + ` | render template matches: ${yesNo(environment.deployment.renderTemplateMatches)}`,
+        + ` | runner deployments: ${environment.deployment.runnerLabels.length > 0
+          ? environment.deployment.runnerLabels.join(", ")
+          : "none"}`
+        + ` | template registered: ${yesNo(environment.template !== null
+          && environment.template.sourceImageDigest === environment.imageDigest)}`,
     );
     lines.push(
       `  ready: ${yesNo(environment.ready)}`
         + ` | dispatchable: ${yesNo(environment.dispatchable)}`
+        + ` | routed: ${yesNo(environment.routed)}`
         + ` | execution selected: ${yesNo(environment.executionSelected)}`
         + ` | executing: ${yesNo(environment.executing)}`,
     );
@@ -637,7 +801,9 @@ export function formatHumanReport(report) {
       + ` | approved ${report.summary.approved}`
       + ` | template_ready ${report.summary.templateReady}`
       + ` | pending ${report.summary.pending}`
+      + ` | runners ${report.summary.runners}`
       + ` | dispatchable ${report.summary.dispatchable}`
+      + ` | routed ${report.summary.routed}`
       + ` | selected ${report.summary.selected}`
       + ` | executing ${report.summary.executing}`
       + ` | inconsistencies ${report.summary.inconsistencies}`,
@@ -647,10 +813,11 @@ export function formatHumanReport(report) {
 
 async function main() {
   const args = new Set(process.argv.slice(2));
+  const renderPaths = readFlags("--render");
   const report = await buildRunnerEnvironmentReportFromFiles({
     configPath: readFlag("--config") ?? defaultConfigPath,
     wranglerPath: readFlag("--wrangler") ?? defaultWranglerPath,
-    renderPath: readFlag("--render") ?? defaultRenderPath,
+    ...(renderPaths.length === 0 ? {} : { renderPaths }),
   });
   if (args.has("--json")) {
     process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
@@ -668,6 +835,18 @@ function readFlag(name) {
   const value = process.argv[index + 1];
   if (!value || value.startsWith("--")) throw new Error(`${name} requires a path`);
   return value;
+}
+
+function readFlags(name) {
+  const values = [];
+  for (let index = 0; index < process.argv.length; index += 1) {
+    if (process.argv[index] !== name) continue;
+    const value = process.argv[index + 1];
+    if (!value || value.startsWith("--")) throw new Error(`${name} requires a path`);
+    values.push(value);
+    index += 1;
+  }
+  return values;
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

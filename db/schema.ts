@@ -1237,6 +1237,9 @@ export const runnerQueueMessages = sqliteTable(
     idempotencyKey: text("idempotency_key").notNull(),
     requestHash: text("request_hash").notNull(),
     canonicalMessage: text("canonical_message").notNull(),
+    // Derived from the signed request environment; nullable only for rows
+    // created before the per-environment Runner routing migration.
+    runnerEnvironmentKey: text("runner_environment_key"),
     deliveryState: text("delivery_state", {
       enum: ["queued", "leased", "acknowledged", "cancelled", "dead_letter"],
     })
@@ -1260,6 +1263,12 @@ export const runnerQueueMessages = sqliteTable(
     uniqueIndex("runner_queue_attempt_idempotency_idx").on(table.attemptId, table.idempotencyKey),
     index("runner_queue_available_idx").on(table.deliveryState, table.availableAt, table.enqueuedAt),
     index("runner_queue_lease_expiry_idx").on(table.deliveryState, table.leaseExpiresAt),
+    index("runner_queue_environment_idx").on(
+      table.runnerEnvironmentKey,
+      table.deliveryState,
+      table.availableAt,
+      table.enqueuedAt,
+    ),
   ],
 );
 

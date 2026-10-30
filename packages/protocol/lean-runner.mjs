@@ -7,6 +7,7 @@ import {
 } from "./artifact-bundle.mjs";
 
 export const leanRunnerProtocolVersion = "pw-lean-runner-v1";
+export const runnerEnvironmentKeyMaxLength = 512;
 
 export class LeanRunnerProtocolError extends Error {
   constructor(message) {
@@ -78,6 +79,24 @@ export function normalizeLeanRunnerRequest(request) {
       allowedAxioms: Object.freeze([...request.policy.allowedAxioms].sort()),
     }),
   });
+}
+
+/**
+ * Stable routing key for the exact Lean and Mathlib environment a Runner
+ * serves. Durable queue adapters store it beside the signed envelope and
+ * filter claims by it, so a Runner built from one toolchain never claims a
+ * Run that needs another. The key is always re-derived from the signed
+ * request; a stored column is never trusted on its own.
+ */
+export function runnerEnvironmentKey(environment = {}) {
+  requireRecord(environment, "Runner environment");
+  requireString(environment.leanToolchain, "Runner environment leanToolchain", 240);
+  requireString(environment.mathlibRevision, "Runner environment mathlibRevision", 160);
+  const key = JSON.stringify([environment.leanToolchain, environment.mathlibRevision]);
+  if (key.length > runnerEnvironmentKeyMaxLength) {
+    throw new LeanRunnerProtocolError("Runner environment key exceeds its bounded length.");
+  }
+  return key;
 }
 
 /** Validate deployment-owned Runner limits before they can enter a request. */

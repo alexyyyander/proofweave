@@ -230,9 +230,9 @@ test("hosted Runner remains degraded when the actual Turso ledger cannot be veri
 });
 
 for (const scenario of [
-  { name: "current 0049 history", status: 200 },
+  { name: "current 0050 history", status: 200 },
   {
-    name: "0049 history with the bounded 0039 legacy identity",
+    name: "0050 history with the bounded 0039 legacy identity",
     status: 200,
     async prepare(database) {
       await database.prepare(
@@ -240,32 +240,32 @@ for (const scenario of [
       ).bind("03f7f5819c18255fb8264b8fe3c0c4c4d7458dd050b7bd1a6b8a8249cefe001c", 12, "0039_decouple_attempt_authority.sql").run();
     },
   },
-  { name: "missing 0049 migration", status: 503, omitLatest: true, error: /not current: 49 applied, 1 pending/ },
+  { name: "missing 0050 migration", status: 503, omitLatest: true, error: /not current: 50 applied, 1 pending/ },
   {
-    name: "altered 0049 hash",
+    name: "altered 0050 hash",
     status: 503,
-    error: /integrity mismatch for 0049_add_catalog_browse_index.sql/,
+    error: /integrity mismatch for 0050_add_runner_queue_environment.sql/,
     async prepare(database) {
       await database.prepare("UPDATE _proofweave_migrations SET sha256 = ? WHERE name = ?")
-        .bind("0".repeat(64), "0049_add_catalog_browse_index.sql").run();
+        .bind("0".repeat(64), "0050_add_runner_queue_environment.sql").run();
     },
   },
   {
-    name: "altered 0049 statement count",
+    name: "altered 0050 statement count",
     status: 503,
-    error: /integrity mismatch for 0049_add_catalog_browse_index.sql/,
+    error: /integrity mismatch for 0050_add_runner_queue_environment.sql/,
     async prepare(database) {
       await database.prepare("UPDATE _proofweave_migrations SET statement_count = statement_count + 1 WHERE name = ?")
-        .bind("0049_add_catalog_browse_index.sql").run();
+        .bind("0050_add_runner_queue_environment.sql").run();
     },
   },
   {
-    name: "unknown 0050 migration",
+    name: "unknown 0051 migration",
     status: 503,
     error: /unsupported history length/,
     async prepare(database) {
       await database.prepare("INSERT INTO _proofweave_migrations (name, sha256, applied_at, statement_count) VALUES (?, ?, ?, ?)")
-        .bind("0050_unknown.sql", "a".repeat(64), "2026-10-19T00:00:00.000Z", 1).run();
+        .bind("0051_unknown.sql", "a".repeat(64), "2026-10-19T00:00:00.000Z", 1).run();
     },
   },
   {
@@ -285,7 +285,7 @@ for (const scenario of [
       try { await service?.close(); } finally { database.close(); }
     });
     const migrations = await loadProofweaveMigrations();
-    assert.equal(migrations.at(-1).name, "0049_add_catalog_browse_index.sql");
+    assert.equal(migrations.at(-1).name, "0050_add_runner_queue_environment.sql");
     await applyProofweaveMigrations({ database, migrations: scenario.omitLatest ? migrations.slice(0, -1) : migrations });
     await scenario.prepare?.(database);
     const ledgerSql = "SELECT * FROM _proofweave_migrations ORDER BY name";
