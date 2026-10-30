@@ -73,6 +73,21 @@ checker 的 `--render` 可以重复传入；每个文件可以包含一个或多
 
 `RUNNER_WAKE_ROUTES_JSON` 是一个最多 8 项的数组，每项为 `{ leanToolchain, mathlibRevision, url, wakeToken, hostAuthorizationToken? }`；`url` 必须是精确的 HTTPS `/v1/wake` 端点。未配置时回退到单一 `RUNNER_WAKE_URL`。
 
+## Runner 可用性
+
+Worker 的 `RUNNER_EXECUTION_ENVIRONMENTS_JSON` 声明已部署 Runner 及其执行开关：
+
+```json
+[
+  { "leanToolchain": "leanprover/lean4:v4.31.0", "mathlibRevision": "9a9483…", "executionEnabled": false }
+]
+```
+
+- `/api/mcp/capabilities` 的 `runnerEnvironments` 返回 `configured` / `unconfigured` / `invalid`、每个环境是否有已批准镜像、是否已部署、是否允许执行。
+- 目标页与 Workbench 的目标摘要显示 `Hosted Runner ready` / `paused` / `not deployed` / `not configured`；这只是托管执行的可用性，不阻止本地准备工作。
+- 分发前会检查该声明：未部署或执行关闭的环境返回稳定前缀 `runner_environment_unavailable`，而不是把 Run 排队到错误的 Runner 或产生模糊的内部错误。
+- 未配置该变量时保持旧的单 Runner 行为；多个 Runner 必须声明，否则 checker 报 `execution_declaration_missing`。
+
 ## 版本证据绑定
 
 新的签名 Runner result 可以携带 `environment` 块：

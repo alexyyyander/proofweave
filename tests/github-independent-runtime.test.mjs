@@ -75,6 +75,17 @@ test("Render wake contract has no per-Run GitHub runtime dependency", async (t) 
   assert.equal(fixture.service.lastWakeAt !== null, true);
 });
 
+test("dispatch refuses a paused Runner environment with a typed error", async (t) => {
+  const fixture = await createFixture({ resultMode: "valid", executionEnabled: false });
+  t.after(() => fixture.close());
+
+  await assert.rejects(
+    fixture.dispatch(),
+    (error) => error.code === "runner_environment_unavailable" && error.reason === "execution_disabled",
+  );
+  assert.equal(fixture.provider.createCalls, 0);
+});
+
 test("invalid E2B result evidence is retried without a signed or terminal projection", async (t) => {
   const fixture = await createFixture({ resultMode: "mismatched" });
   t.after(() => fixture.close());
@@ -102,7 +113,7 @@ test("invalid E2B result evidence is retried without a signed or terminal projec
   assert.equal(fixture.provider.killed, 1);
 });
 
-async function createFixture({ resultMode }) {
+async function createFixture({ resultMode, executionEnabled = true }) {
   const database = new LibsqlD1Database(createClient({ url: "file::memory:" }));
   await applyMigrations(database);
   const [agentKeys, controlPlaneKeys, runnerKeys] = await Promise.all(
@@ -232,13 +243,19 @@ async function createFixture({ resultMode }) {
   });
   const queue = new D1RunnerLeaseQueue({ database });
   const runStore = new D1RunStore(database);
+  const approvedImages = JSON.parse(environment.RUNNER_APPROVED_IMAGES_JSON);
   const dispatcher = new D1RemoteMcpRunnerDispatcher({
     database,
     artifactStore,
     runnerQueue: queue,
     approvedImages: new PinnedRunnerImageRegistry({
-      images: JSON.parse(environment.RUNNER_APPROVED_IMAGES_JSON),
+      images: approvedImages,
     }),
+    executionEnvironments: approvedImages.map((image) => ({
+      leanToolchain: image.leanToolchain,
+      mathlibRevision: image.mathlibRevision,
+      executionEnabled,
+    })),
     controlPlaneKeyId,
     controlPlanePrivateKeyJwk: await crypto.subtle.exportKey("jwk", controlPlaneKeys.privateKey),
     defaultLimits: {

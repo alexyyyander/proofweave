@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { type DelegationProfile } from "@/db/repositories/delegation";
-import { type CatalogProblem } from "@/packages/domain/catalog";
+import { type WorkbenchCatalogTarget } from "../lib/runner-availability";
 import { type McpAttempt, type McpRunSummary } from "@/packages/domain/mcp";
 import { type ProvisionalContribution } from "@/db/repositories/provisional-contributions";
 import { DelegationSummary, FirstContributionPath, FocusAction, ProvisionalContributionLedger, ResearchWorkstation, SubmissionReadiness, WorkspaceSettingsPrompt } from "./workbench-sections";
@@ -41,7 +41,7 @@ export function WorkbenchClient({
   provisionalLedgerAvailable: boolean;
   initialReviewCount: number | null;
   initialEvidenceCount: number | null;
-  catalogTargets: readonly CatalogProblem[];
+  catalogTargets: readonly WorkbenchCatalogTarget[];
   initialAttemptId: string | null;
   initialTargetSlug: string | null;
   initialParentNodeId: string | null;

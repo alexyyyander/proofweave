@@ -593,9 +593,14 @@ async function withScope(principal, scope, operation, rateLimiter, action) {
       : error instanceof ResearchWriteGateUnconfiguredError
         ? "research_write_gate_unconfigured"
         : null;
+    const errorCode = gatePrefix ?? (
+      error && typeof error === "object" && error.code === "runner_environment_unavailable"
+        ? "runner_environment_unavailable"
+        : null
+    );
     return {
-      error: gatePrefix
-        ? `${gatePrefix}: ${error.message}`
+      error: errorCode
+        ? `${errorCode}: ${error.message}`
         : error instanceof Error
           ? error.message
           : "The Proofweave control plane could not complete the request.",

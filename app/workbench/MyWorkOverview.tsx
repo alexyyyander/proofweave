@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { type DelegationProfile } from "@/db/repositories/delegation";
-import { type CatalogProblem } from "@/packages/domain/catalog";
+import { type WorkbenchCatalogTarget } from "../lib/runner-availability";
 import { type McpAttempt, type McpRunSummary } from "@/packages/domain/mcp";
 import { controlPlaneAvailabilityLabel, controlPlaneMaintenanceCopy, loadControlPlaneWriteAvailability, type ControlPlaneWriteAvailability } from "../lib/control-plane-write-capability";
 import { activeAttemptDelegation, activeLocalCodexInstallation } from "../lib/local-agent-journey";
@@ -41,7 +41,7 @@ export function MyWorkOverview({
   reviewCount: number | null;
   evidenceCount: number | null;
   provisionalContributionCount: number;
-  catalogTargets: readonly CatalogProblem[];
+  catalogTargets: readonly WorkbenchCatalogTarget[];
   initialTargetSlug: string | null;
   initialParentNodeId: string | null;
   storageAvailable: boolean;

@@ -11,6 +11,7 @@ import { D1InlineArtifactStore, D1HybridArtifactBucket } from "../artifacts/d1-i
 import { D1ContributionReceiptCoordinator } from "../receipts/d1-contribution-receipt-coordinator.mjs";
 import { HostedRunnerWakeClient } from "../lean-runner/hosted-runner-wake-client.mjs";
 import { runnerEnvironmentKey } from "../../packages/protocol/lean-runner.mjs";
+import { parseRunnerExecutionEnvironmentsJson } from "../lean-runner/runner-availability.mjs";
 import {
   controlPlaneOperationMode,
   normalizeControlPlaneOperationMode,
@@ -44,6 +45,7 @@ export class RemoteMcpRuntimeConfigurationError extends Error {
  *   runnerWakeToken?: string | null,
  *   runnerWakeHostAuthorizationToken?: string | null,
  *   runnerWakeRoutesJson?: string | null,
+ *   runnerExecutionEnvironmentsJson?: string | null,
  *   receiptIssuerKeyId?: string | null,
  *   receiptIssuerPublicKey?: string | null,
  *   receiptIssuerPrivateKeyJwkJson?: string | null,
@@ -67,6 +69,7 @@ export function createD1RemoteMcpGatewayRuntime({
   runnerWakeToken = null,
   runnerWakeHostAuthorizationToken = null,
   runnerWakeRoutesJson = null,
+  runnerExecutionEnvironmentsJson = null,
   receiptIssuerKeyId = null,
   receiptIssuerPublicKey = null,
   receiptIssuerPrivateKeyJwkJson = null,
@@ -114,6 +117,7 @@ export function createD1RemoteMcpGatewayRuntime({
         runnerWakeHostAuthorizationToken,
       }),
       runnerWakeRoutes: createOptionalRunnerWakeRoutes(runnerWakeRoutesJson),
+      executionEnvironments: parseExecutionEnvironments(runnerExecutionEnvironmentsJson),
     })
     : null;
   const receiptCoordinator = writeComponentsEnabled
@@ -196,6 +200,7 @@ function createOptionalRunnerDispatcher({
   runnerDefaultLimitsJson,
   runnerWake,
   runnerWakeRoutes,
+  executionEnvironments,
 }) {
   const settings = [
     runnerQueue,
@@ -227,6 +232,7 @@ function createOptionalRunnerDispatcher({
       defaultLimits: parseDeploymentJson(runnerDefaultLimitsJson, "RUNNER_DEFAULT_LIMITS_JSON"),
       runnerWake,
       runnerWakeRoutes,
+      executionEnvironments,
     });
   } catch (error) {
     if (error instanceof RemoteMcpRuntimeConfigurationError) throw error;
@@ -306,6 +312,14 @@ function createOptionalRunnerWakeRoutes(value) {
     }
   }
   return routes;
+}
+
+function parseExecutionEnvironments(value) {
+  try {
+    return parseRunnerExecutionEnvironmentsJson(value);
+  } catch {
+    throw new RemoteMcpRuntimeConfigurationError("Runner execution environment configuration is invalid.");
+  }
 }
 
 function providerNeutralRunnerQueue(value) {

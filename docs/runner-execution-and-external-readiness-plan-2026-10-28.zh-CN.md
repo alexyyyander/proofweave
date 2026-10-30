@@ -61,6 +61,7 @@ Person A 固定目标
 - **每环境一个 Runner + 队列路由**：每个 trusted Runner 仍只服务一个 E2B template/镜像，但部署可以同时包含多个 Runner；队列消息携带从签名 request 派生的 `runner_environment_key`，每个 Runner 只 claim 自己的环境。
   - Worker `RUNNER_APPROVED_IMAGES_JSON` = 4.27 + 4.31（前提是两个环境都有对应 Runner）：
     `node scripts/generate-runner-environment-config.mjs --profile mathlib-4.31-9a948 --profile mathlib-4.27-a3a10 --surface worker`；
+  - Worker `RUNNER_EXECUTION_ENVIRONMENTS_JSON` = 4.31（`executionEnabled:false`）+ 4.27（`executionEnabled:false`）。它驱动 capabilities、目标页状态和分发前的 typed error；未声明的环境会以 `runner_environment_unavailable` 拒绝；
   - 新增一个 4.27 Render 服务，`RUNNER_APPROVED_IMAGES_JSON` = 4.27 单镜像；
   - 现有 4.31 Render 服务保持 `RUNNER_APPROVED_IMAGES_JSON` = 4.31 单镜像；
   - 不要在一个 Runner 里放两个镜像：它仍会启动失败；多环境必须通过多个 Runner + 队列路由实现。
@@ -81,6 +82,7 @@ Person A 固定目标
 - 只对 4.27 Runner 配置：
   - `RUNNER_ONLY_RUN_ID=<run>`
   - `RUNNER_MAX_DELIVERY_ATTEMPTS=1`
+- Worker 的 `RUNNER_EXECUTION_ENVIRONMENTS_JSON` 把 4.27 的 `executionEnabled` 设为 `true`（4.31 保持 `false`）；4.27 Runner 只消费指定 Run，其他 4.27 请求会排队但不会被消费。
 - 临时启用 4.27 Runner 的消费者，发送一次 wake；4.31 Runner 不受影响，不开放普通队列。
 - 队列按 `runner_environment_key` 路由，4.27 Run 只会被 4.27 Runner claim；4.31 Runner 不会领取它。
 - checker 只有在 `RUNNER_EXECUTION_ENABLED=true` 与 `RUNNER_ONLY_RUN_ID` 同时存在时，才允许 `template_ready` 环境执行；缺少任一条件时 `--strict` 会拒绝。
@@ -91,7 +93,7 @@ Person A 固定目标
   - 签名结果中的 `environment` 块包含 4.27 image digest 与 E2B template ID/build；
   - 没有其他 Run 被消费。
 - 无论结果如何，立即把 4.27 Runner 恢复为 `executionEnabled=false` 并回读暂停状态。
-- Run 通过后把 4.27 从 `template_ready` 晋升为 `approved`，移除 `RUNNER_ONLY_RUN_ID`；再回读 4.27 的 `executing=1`。
+- Run 通过后把 4.27 从 `template_ready` 晋升为 `approved`，移除 `RUNNER_ONLY_RUN_ID`；Worker 声明保持 4.27 `executionEnabled:true`，再回读 4.27 的 `executing=1`。
 
 **验收**：唯一 Run 的真实终态与无凭据证据；不声称数学正确性、独立评审或 Receipt。
 

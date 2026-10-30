@@ -8,8 +8,32 @@ import {
 import { canonicalJson } from "../packages/protocol/canonical-json.mjs";
 import { RunnerOrchestrator, RunnerDispatchError } from "../services/lean-runner/orchestrator.mjs";
 import { InMemoryRunnerQueue, RunnerJobAuthenticator } from "../services/lean-runner/queue.mjs";
-import { selectRunnerWake } from "../services/proofweave-mcp-gateway/runner-dispatch.mjs";
+import { selectRunnerWake, RunnerEnvironmentUnavailableError } from "../services/proofweave-mcp-gateway/runner-dispatch.mjs";
 import { runnerEnvironmentKey } from "../packages/protocol/lean-runner.mjs";
+
+test("Runner environment refusals expose a stable typed code", () => {
+  const error = new RunnerEnvironmentUnavailableError({
+    reason: "execution_disabled",
+    environment: {
+      leanToolchain: "leanprover/lean4:v4.27.0",
+      mathlibRevision: "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+    },
+    availableEnvironments: [{
+      leanToolchain: "leanprover/lean4:v4.27.0",
+      mathlibRevision: "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+      executionEnabled: false,
+    }],
+  });
+
+  assert.equal(error.code, "runner_environment_unavailable");
+  assert.equal(error.reason, "execution_disabled");
+  assert.match(error.message, /execution is disabled/i);
+  assert.deepEqual(error.availableEnvironments, [{
+    leanToolchain: "leanprover/lean4:v4.27.0",
+    mathlibRevision: "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+    executionEnabled: false,
+  }]);
+});
 
 test("Runner wake routing selects the client for the bundle's exact Lean environment", () => {
   const four27 = {

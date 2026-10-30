@@ -118,6 +118,7 @@ async function writeFixture(t, {
   renderTemplateBuildId = approvedTemplate.buildId,
   renderExecutionEnabled = "false",
   renderOnlyRunId = null,
+  executionEnvironments = null,
 }) {
   const dir = await createFixtureDir(t);
   const fixtureConfigPath = path.join(dir, "runner-environments.json");
@@ -125,7 +126,12 @@ async function writeFixture(t, {
   const renderPath = path.join(dir, "render.yaml");
   await writeFile(fixtureConfigPath, `${JSON.stringify(config, null, 2)}\n`);
   await writeFile(wranglerPath, `${JSON.stringify({
-    vars: { RUNNER_APPROVED_IMAGES_JSON: JSON.stringify(workerApprovedImages) },
+    vars: {
+      RUNNER_APPROVED_IMAGES_JSON: JSON.stringify(workerApprovedImages),
+      ...(executionEnvironments === null
+        ? {}
+        : { RUNNER_EXECUTION_ENVIRONMENTS_JSON: JSON.stringify(executionEnvironments) }),
+    },
   }, null, 2)}\n`);
   const renderLines = [
     "services:",
@@ -194,6 +200,12 @@ test("repository configuration registers 4.31 as approved with its template and 
   assert.deepEqual(report.inconsistencies, []);
 
   assert.deepEqual(report.deployment.worker.approvedImages, [approvedImageBinding()]);
+  assert.equal(report.deployment.worker.executionDeclared, true);
+  assert.deepEqual(report.deployment.worker.executionEnvironments, [{
+    leanToolchain: lean431,
+    mathlibRevision: mathlib431,
+    executionEnabled: false,
+  }]);
   assert.deepEqual(report.deployment.render.approvedImages, [approvedImageBinding()]);
   assert.equal(report.deployment.render.executionImage, approvedDigest);
   assert.equal(report.deployment.render.executionEnvironment, "mathlib-4.31-9a948");
@@ -499,6 +511,9 @@ test("a template_ready environment pre-staged as the disabled execution image is
     renderTemplateId: pendingTemplate.id,
     renderTemplateBuildId: pendingTemplate.buildId,
     renderExecutionEnabled: "false",
+    executionEnvironments: [
+      { leanToolchain: lean427, mathlibRevision: mathlib427, executionEnabled: false },
+    ],
   });
 
   assert.equal(report.ok, true);
@@ -681,6 +696,10 @@ test("two Runner deployments can serve two approved environments with routed dis
         executionEnabled: "true",
       },
     ],
+    executionEnvironments: [
+      { leanToolchain: lean431, mathlibRevision: mathlib431, executionEnabled: false },
+      { leanToolchain: lean427, mathlibRevision: mathlib427, executionEnabled: true },
+    ],
   });
 
   assert.equal(report.ok, true);
@@ -782,6 +801,10 @@ test("strict mode validates multiple Render runner configurations", async (t) =>
     renderApprovedImages: [approvedImageBinding()],
     renderExecutionImage: approvedDigest,
     renderExecutionEnabled: "false",
+    executionEnvironments: [
+      { leanToolchain: lean431, mathlibRevision: mathlib431, executionEnabled: false },
+      { leanToolchain: lean427, mathlibRevision: mathlib427, executionEnabled: true },
+    ],
   });
   const secondRenderPath = path.join(path.dirname(paths.renderPath), "render-4.27.yaml");
   await writeFile(secondRenderPath, [
@@ -814,6 +837,104 @@ test("strict mode validates multiple Render runner configurations", async (t) =>
   assert.equal(report.summary.runners, 2);
   assert.equal(report.summary.routed, 2);
   assert.equal(report.summary.executing, 1);
+});
+
+test("an execution declaration whose enabled flag disagrees with its Runner is an inconsistency", () => {
+  const report = buildRunnerEnvironmentReport({
+    config: fixtureConfig(),
+    workerApprovedImages: [approvedImageBinding()],
+    renderApprovedImages: [approvedImageBinding()],
+    renderExecutionImage: approvedDigest,
+    renderTemplateId: approvedTemplate.id,
+    renderTemplateBuildId: approvedTemplate.buildId,
+    renderExecutionEnabled: "false",
+    executionEnvironments: [{
+      leanToolchain: lean431,
+      mathlibRevision: mathlib431,
+      executionEnabled: true,
+    }],
+  });
+
+  assert.equal(report.ok, false);
+  assert.ok(report.inconsistencies.some((entry) => entry.code === "execution_environment_flag_mismatch"));
+});
+
+test("an execution declaration without a deployed Runner is an inconsistency", () => {
+  const report = buildRunnerEnvironmentReport({
+    config: fixtureConfig([approvedEnvironment(), templateReadyEnvironment({ state: "approved" })]),
+    workerApprovedImages: [approvedImageBinding()],
+    renderApprovedImages: [approvedImageBinding()],
+    renderExecutionImage: approvedDigest,
+    renderTemplateId: approvedTemplate.id,
+    renderTemplateBuildId: approvedTemplate.buildId,
+    renderExecutionEnabled: "false",
+    executionEnvironments: [
+      { leanToolchain: lean431, mathlibRevision: mathlib431, executionEnabled: false },
+      { leanToolchain: lean427, mathlibRevision: mathlib427, executionEnabled: false },
+    ],
+  });
+
+  assert.equal(report.ok, false);
+  assert.ok(report.inconsistencies.some((entry) => entry.code === "execution_environment_not_deployed"));
+});
+
+test("a deployed Runner missing from the execution declaration is an inconsistency", () => {
+  const report = buildRunnerEnvironmentReport({
+    config: fixtureConfig([approvedEnvironment(), templateReadyEnvironment({ state: "approved" })]),
+    workerApprovedImages: [approvedImageBinding(), pendingImageBinding()],
+    runners: [
+      {
+        label: "runner-4.31",
+        approvedImages: [approvedImageBinding()],
+        executionImage: approvedDigest,
+        templateId: approvedTemplate.id,
+        templateBuildId: approvedTemplate.buildId,
+        executionEnabled: "false",
+      },
+      {
+        label: "runner-4.27",
+        approvedImages: [pendingImageBinding()],
+        executionImage: pendingDigest,
+        templateId: pendingTemplate.id,
+        templateBuildId: pendingTemplate.buildId,
+        executionEnabled: "false",
+      },
+    ],
+    executionEnvironments: [
+      { leanToolchain: lean431, mathlibRevision: mathlib431, executionEnabled: false },
+    ],
+  });
+
+  assert.equal(report.ok, false);
+  assert.ok(report.inconsistencies.some((entry) => entry.code === "runner_missing_execution_declaration"));
+});
+
+test("multiple Runner deployments require an execution declaration", () => {
+  const report = buildRunnerEnvironmentReport({
+    config: fixtureConfig([approvedEnvironment(), templateReadyEnvironment({ state: "approved" })]),
+    workerApprovedImages: [approvedImageBinding(), pendingImageBinding()],
+    runners: [
+      {
+        label: "runner-4.31",
+        approvedImages: [approvedImageBinding()],
+        executionImage: approvedDigest,
+        templateId: approvedTemplate.id,
+        templateBuildId: approvedTemplate.buildId,
+        executionEnabled: "false",
+      },
+      {
+        label: "runner-4.27",
+        approvedImages: [pendingImageBinding()],
+        executionImage: pendingDigest,
+        templateId: pendingTemplate.id,
+        templateBuildId: pendingTemplate.buildId,
+        executionEnabled: "false",
+      },
+    ],
+  });
+
+  assert.equal(report.ok, false);
+  assert.ok(report.inconsistencies.some((entry) => entry.code === "execution_declaration_missing"));
 });
 
 test("strict mode exits 1 when a Worker dispatch environment is not the execution environment", async (t) => {

@@ -4,6 +4,11 @@ import { basename } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 import { parseApprovedImages, parseJsonc } from "./check-target-environments.mjs";
+import { runnerEnvironmentKey } from "../packages/protocol/lean-runner.mjs";
+import {
+  normalizeRunnerExecutionEnvironments,
+  parseRunnerExecutionEnvironmentsJson,
+} from "../services/lean-runner/runner-availability.mjs";
 
 export const schemaVersion = "pw-runner-environments-v2";
 export const reportSchemaVersion = "pw-runner-environment-report-v4";
@@ -257,10 +262,20 @@ export function buildRunnerEnvironmentReport({
   renderTemplateBuildId = null,
   renderExecutionEnabled = null,
   renderOnlyRunId = null,
+  executionEnvironments = null,
 } = {}) {
   const environments = validateRunnerEnvironmentsConfig(config);
+  let normalizedExecutionEnvironments;
+  try {
+    normalizedExecutionEnvironments = executionEnvironments === null
+      ? null
+      : normalizeRunnerExecutionEnvironments(executionEnvironments);
+  } catch (error) {
+    throw new RunnerEnvironmentConfigError(error instanceof Error ? error.message : "Runner execution environments are invalid.");
+  }
   const worker = indexApprovedImages(workerApprovedImages, "Worker");
   const environmentsByDigest = new Map(environments.map((environment) => [environment.imageDigest, environment]));
+  const environmentsByKey = new Map(environments.map((environment) => [runnerEnvironmentKey(environment), environment]));
   const inconsistencies = [];
   const addInconsistency = (code, message, profile = null) => {
     if (!inconsistencies.some((entry) => entry.code === code && entry.message === message)) {
@@ -328,6 +343,67 @@ export function buildRunnerEnvironmentReport({
           + " no Runs can reach it.",
         runner.environment?.profile ?? null,
       );
+    }
+  }
+
+  if (normalizedExecutionEnvironments === null) {
+    if (normalizedRunners.length > 1) {
+      addInconsistency(
+        "execution_declaration_missing",
+        "Multiple Runner deployments require RUNNER_EXECUTION_ENVIRONMENTS_JSON so dispatch can distinguish deployed and executing environments.",
+      );
+    }
+  } else {
+    const declaredKeys = new Set();
+    for (const declaration of normalizedExecutionEnvironments) {
+      const key = runnerEnvironmentKey(declaration);
+      declaredKeys.add(key);
+      const environment = environmentsByKey.get(key);
+      if (!environment) {
+        addInconsistency(
+          "execution_environment_unregistered",
+          `RUNNER_EXECUTION_ENVIRONMENTS_JSON declares ${declaration.leanToolchain} + Mathlib ${short(declaration.mathlibRevision)},`
+            + " which is not registered in config/runner-environments.json.",
+        );
+        continue;
+      }
+      if (
+        environment.state === "built_pending_template" ||
+        (environment.state === "template_ready" && declaration.executionEnabled)
+      ) {
+        addInconsistency(
+          "execution_environment_not_approved",
+          `RUNNER_EXECUTION_ENVIRONMENTS_JSON declares ${environment.profile} while its registry state is ${environment.state}.`,
+          environment.profile,
+        );
+      }
+      const runner = normalizedRunners.find((candidate) => candidate.environment?.profile === environment.profile);
+      if (!runner) {
+        addInconsistency(
+          "execution_environment_not_deployed",
+          `RUNNER_EXECUTION_ENVIRONMENTS_JSON declares ${environment.profile}, but no Runner deployment serves it.`,
+          environment.profile,
+        );
+        continue;
+      }
+      if ((runner.executionEnabled === "true") !== declaration.executionEnabled) {
+        addInconsistency(
+          "execution_environment_flag_mismatch",
+          `RUNNER_EXECUTION_ENVIRONMENTS_JSON says ${environment.profile} executionEnabled=${declaration.executionEnabled},`
+            + ` but Runner ${runner.label} declares ${runner.executionEnabled}.`,
+          environment.profile,
+        );
+      }
+    }
+    for (const runner of normalizedRunners) {
+      if (!runner.environment) continue;
+      if (!declaredKeys.has(runnerEnvironmentKey(runner.environment))) {
+        addInconsistency(
+          "runner_missing_execution_declaration",
+          `Runner ${runner.label} serves ${runner.environment.profile}, but RUNNER_EXECUTION_ENVIRONMENTS_JSON does not declare it.`,
+          runner.environment.profile,
+        );
+      }
     }
   }
 
@@ -414,7 +490,11 @@ export function buildRunnerEnvironmentReport({
     reportSchemaVersion,
     configSchemaVersion: schemaVersion,
     deployment: {
-      worker: { approvedImages: workerApprovedImages.map(pickImageBinding) },
+      worker: {
+        approvedImages: workerApprovedImages.map(pickImageBinding),
+        executionEnvironments: normalizedExecutionEnvironments,
+        executionDeclared: normalizedExecutionEnvironments !== null,
+      },
       runners: runnerReports,
       render: runnerReports[0],
     },
@@ -623,6 +703,9 @@ export async function buildRunnerEnvironmentReportFromFiles({
   const config = JSON.parse(await readFile(configPath, "utf8"));
   const wrangler = parseJsonc(await readFile(wranglerPath, "utf8"));
   const workerApprovedImages = parseApprovedImages(wrangler?.vars?.RUNNER_APPROVED_IMAGES_JSON);
+  const executionEnvironments = parseRunnerExecutionEnvironmentsJson(
+    wrangler?.vars?.RUNNER_EXECUTION_ENVIRONMENTS_JSON ?? null,
+  );
   const runners = [];
   for (const path of paths) {
     const services = parseRenderServices(await readFile(path, "utf8"));
@@ -644,7 +727,7 @@ export async function buildRunnerEnvironmentReportFromFiles({
       });
     }
   }
-  return buildRunnerEnvironmentReport({ config, workerApprovedImages, runners });
+  return buildRunnerEnvironmentReport({ config, workerApprovedImages, runners, executionEnvironments });
 }
 
 function runnerLabelFromPath(path) {
@@ -739,6 +822,9 @@ export function formatHumanReport(report) {
   const lines = [
     `Runner environment registry check (${report.configSchemaVersion})`,
     `Worker dispatch images: ${report.deployment.worker.approvedImages.length}`
+      + ` | execution declarations: ${report.deployment.worker.executionDeclared
+        ? report.deployment.worker.executionEnvironments.length
+        : "not declared"}`
       + ` | Runner deployments: ${runners.length}`,
   ];
   for (const runner of runners) {

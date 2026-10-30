@@ -7,7 +7,12 @@ import {
   getResearchWriteAllowlistValues,
   type LiveControlPlaneDiagnostics,
 } from "@/db";
+import { env } from "cloudflare:workers";
 import { researchWriteGateSummary } from "@/services/database/research-write-allowlist.mjs";
+import {
+  parseRunnerAvailability,
+  runnerAvailabilitySchemaVersion,
+} from "@/services/lean-runner/runner-availability.mjs";
 
 export const dynamic = "force-dynamic";
 
@@ -60,6 +65,7 @@ export async function GET(request: Request) {
     globalControlPlaneOperations,
     mcpOperations,
     researchWriteGate,
+    runnerEnvironments: runnerEnvironmentsSummary(),
     updatePolicy: {
       liveWithoutRestart: [
         "server_workflow",
@@ -80,6 +86,29 @@ export async function GET(request: Request) {
       "content-type": "application/json; charset=utf-8",
     },
   });
+}
+
+function runnerEnvironmentsSummary() {
+  const settings = env as unknown as Record<string, string | undefined>;
+  try {
+    const availability = parseRunnerAvailability({
+      approvedImagesJson: settings.RUNNER_APPROVED_IMAGES_JSON,
+      executionEnvironmentsJson: settings.RUNNER_EXECUTION_ENVIRONMENTS_JSON,
+    });
+    return {
+      schemaVersion: availability.schemaVersion,
+      state: availability.state,
+      executionDeclared: availability.executionDeclared,
+      environments: availability.environments,
+    };
+  } catch {
+    return {
+      schemaVersion: runnerAvailabilitySchemaVersion,
+      state: "invalid",
+      executionDeclared: false,
+      environments: [],
+    };
+  }
 }
 
 async function safeReleaseDiagnostics(): Promise<LiveControlPlaneDiagnostics> {

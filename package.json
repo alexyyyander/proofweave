@@ -111,7 +111,7 @@
     "build:cloudflare": "node scripts/build-cloudflare.mjs",
     "build:cloudflare:release": "node scripts/build-cloudflare.mjs --release",
     "cloudflare:check:unit": "node --test tests/cloudflare-build-identity.test.mjs tests/cloudflare-hosting-boundary.test.mjs tests/connection-write-capability.test.mjs tests/sites-login-bridge.test.mjs tests/sites-identity-concurrency.test.mjs tests/research-write-allowlist.test.mjs",
-    "external:check": "node --test tests/research-eligibility.test.mjs tests/research-window-tool.test.mjs tests/runner-environment-config.test.mjs tests/hybrid-artifact-store.test.mjs",
+    "external:check": "node --test tests/research-eligibility.test.mjs tests/research-window-tool.test.mjs tests/runner-environment-config.test.mjs tests/runner-availability.test.mjs tests/hybrid-artifact-store.test.mjs",
     "external:surfaces:check": "node --test tests/external-user-surfaces.test.mjs",
     "cloudflare:check": "npm run cloudflare:check:unit && npm run build:cloudflare && node --test tests/cloudflare-connection-journey.test.mjs",
     "release:cloudflare:evidence": "node scripts/check-cloudflare-contribution-release.mjs",

@@ -13,6 +13,7 @@ import { MissingDatabaseBindingError } from "@/db";
 import type { CatalogProblem } from "@/packages/domain/catalog";
 import { buildReuseIndex } from "@/services/research/reuse-index.mjs";
 import { getCurrentUser, signInPath } from "../../auth";
+import { targetRunnerAvailability } from "../../lib/runner-availability.server";
 import { PageSectionNav, StatusStack } from "../../ui";
 
 import { CreditMarketPanel } from "./CreditMarketPanel";
@@ -26,6 +27,7 @@ export default async function ConjecturePage({ params }: { params: Promise<{ slu
   const { slug } = await params;
   const project = await getCatalogRepository().findBySlug(slug);
   if (!project) notFound();
+  const runnerAvailability = targetRunnerAvailability(project.source);
   const [graph, user, curatedResearch, catalogTargets] = await Promise.all([
     loadResearchGraph(project.id),
     getCurrentUser(),
@@ -52,7 +54,7 @@ export default async function ConjecturePage({ params }: { params: Promise<{ slu
         <Breadcrumb><Link href="/explore">Explore</Link><span> / </span><span>{primarySubject?.name ?? project.domain}</span></Breadcrumb>
         <SectionHeading as="section" className="detail-heading">
           <div><div className="subject-row detail-subjects">{project.subjects.map((subject) => <Badge className="subject-chip" key={subject.slug}>MSC {subject.amsCode} · {subject.name}</Badge>)}<Badge className="record-chip">{workLabel}</Badge></div><p className="eyebrow">{project.collections[0]?.title ?? "Public research catalog"} · {project.source.upstreamName}</p><PageTitle>{project.title}</PageTitle><p>{project.projectSummary}</p></div>
-          <div className="detail-environment"><span>Environment</span><code>{project.source.leanToolchain}<br />mathlib:{project.source.mathlibRevision.slice(0, 12)}</code></div>
+          <div className="detail-environment"><span>Environment</span><code>{project.source.leanToolchain}<br />mathlib:{project.source.mathlibRevision.slice(0, 12)}</code><span className={`runner-availability is-${runnerAvailability.status}`} title={runnerAvailability.detail}>{runnerAvailability.label}</span></div>
         </SectionHeading>
         <StatusStack statuses={project.displayStatuses} />
         <PageSectionNav label="Research record" links={[{ href: "#statements", label: "Statements & source" }, { href: "#research-chain", label: "Prior work chain" }, { href: "#reuse-index", label: "Reuse index" }, { href: "#credit-market", label: "Credit market" }, { href: "#research-graph", label: "Research graph" }, { href: `/workbench?target=${encodeURIComponent(project.slug)}#research-launcher`, label: "Start with my Agent" }]} />
