@@ -47,7 +47,7 @@ export default async function PublicationsPage({ searchParams }: { searchParams:
 
       <nav className="publication-collection-bar" aria-label="Collection resources">
         <span>OpenAI · Indexed {collection.indexedAt.slice(0, 10)}</span>
-        <div><a href="#collection-notes">Collection notes</a><a href="#withdrawals">{collection.withdrawals.length} withdrawals</a><a href="/api/publications/openai-math?download=1" download="proofweave-openai-math.json">Download catalog JSON ↓</a></div>
+        <div><a href="#collection-notes">Collection notes</a><a href="#withdrawals">{collection.withdrawals.length} withdrawals</a><Link href="/proof-evolution/landau-siegel">Landau–Siegel proof evolution →</Link><a href="/api/publications/openai-math?download=1" download="proofweave-openai-math.json">Download catalog JSON ↓</a></div>
       </nav>
 
       <section aria-labelledby="publication-browse-title" className="publication-browser" id="browse">

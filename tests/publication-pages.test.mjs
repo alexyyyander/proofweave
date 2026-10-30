@@ -66,3 +66,22 @@ test("Agents can download the complete catalog or one source-pinned family", asy
   assert.equal(record.family.manuscripts[0].proofweaveReplay, "not_run");
   assert.equal((await runtime.dispatchFetch("http://localhost/api/publications/openai-math/999")).status, 404);
 });
+
+test("the Landau–Siegel proof-evolution prototype renders with its caveats and Lean gap", async () => {
+  const response = await fetchPage("/proof-evolution/landau-siegel");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.ok(html.includes("How a nine-page proof became a three-page proof"));
+  assert.ok(html.includes("Draft · unreviewed"));
+  assert.ok(html.includes("Barreto"));
+  assert.ok(html.includes("The shortest human proof is not the formalized proof"));
+  assert.ok(html.includes("OAI.NumberTheory.SiegelZeros.Main"));
+});
+
+test("the Landau–Siegel family links to the proof-evolution prototype", async () => {
+  const response = await fetchPage("/publications/openai-math/003");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.ok(html.includes("Proof evolution prototype"));
+  assert.ok(html.includes('href="/proof-evolution/landau-siegel"'));
+});
