@@ -83,6 +83,91 @@ export type ProofEvolutionSource = {
   kind: string;
 };
 
+export type LeanStructureModule = {
+  id: string;
+  subsystem: string;
+  lines: number;
+  declarations: number;
+  importsOai: number;
+  importsExternal: number;
+  url: string;
+};
+
+export type LeanSubsystem = {
+  id: string;
+  label: string;
+  moduleCount: number;
+  lines: number;
+  declarations: number;
+  modules: string[];
+};
+
+export type LeanSubsystemEdge = {
+  from: string;
+  to: string;
+  count: number;
+};
+
+export type LeanAnchor = {
+  id: string;
+  declaration: string;
+  fullName: string;
+  kind: string;
+  module: string | null;
+  line: number | null;
+  paperStepId: string;
+  role: string;
+  note: string;
+  url: string | null;
+};
+
+export type LeanPaperAlignment = {
+  versionId: string;
+  stepId: string;
+  subsystems: string[];
+  modules: string[];
+  anchors: string[];
+  confidence: "source-anchored" | "inferred";
+  note: string;
+};
+
+export type LeanStructureData = {
+  schemaVersion: "pw-lean-structure-v1";
+  status: "draft";
+  reviewStatus: "unreviewed";
+  generatedAt: string;
+  root: string;
+  commit: string;
+  sourceNote: string;
+  summary: {
+    fetchedModules: number;
+    oaiModules: number;
+    totalLines: number;
+    declarations: number;
+    sorry: number;
+    axioms: number;
+    mathlibImports: number;
+    pntImports: number;
+    leanImports: number;
+    failedModules: Array<{ module: string; status: number; path: string; error?: string }>;
+    truncated: boolean;
+  };
+  subsystems: LeanSubsystem[];
+  modules: LeanStructureModule[];
+  subsystemEdges: LeanSubsystemEdge[];
+  topLevelModules: string[];
+  anchors: LeanAnchor[];
+  paperAlignments: LeanPaperAlignment[];
+  externalImports: {
+    mathlibCount: number;
+    mathlibPrefixes: Array<{ prefix: string; count: number }>;
+    pnt: string[];
+    lean: string[];
+  };
+  formalizedVersionId: string;
+  caveats: string[];
+};
+
 export type ProofEvolutionData = {
   schemaVersion: typeof PROOF_EVOLUTION_SCHEMA_VERSION;
   status: "draft";

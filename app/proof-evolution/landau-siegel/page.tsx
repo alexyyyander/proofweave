@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { PageIntro, Badge, Field, FieldList, ActionLink } from "@/app/components/ui";
 import { SiteFrame } from "@/app/components/shell/SiteFrame";
-import type { ProofEvolutionData } from "@/app/lib/proof-evolution";
+import type { LeanStructureData, ProofEvolutionData } from "@/app/lib/proof-evolution";
 import proofEvolution from "@/data/proof-evolution/landau-siegel.json";
+import leanStructure from "@/data/proof-evolution/lean-structure.json";
 import { ProofEvolutionClient } from "./ProofEvolutionClient";
 import "./proof-evolution.css";
 
@@ -29,7 +30,8 @@ export default function LandauSiegelProofEvolutionPage() {
           <span>{data.versions.length} versions · {data.tracks.length} theorem tracks</span>
         </>}
         actions={<>
-          <ActionLink variant="primary" href="#lean">Jump to Lean coverage</ActionLink>
+          <ActionLink variant="primary" href="#lean-structure">Inspect the Lean structure</ActionLink>
+          <ActionLink variant="secondary" href="#lean">Jump to Lean coverage</ActionLink>
           <ActionLink variant="secondary" href="/publications">Back to publications</ActionLink>
         </>}
         aside={<>
@@ -43,7 +45,7 @@ export default function LandauSiegelProofEvolutionPage() {
           <Badge tone="warning">Draft · unreviewed</Badge>
         </>}
       />
-      <ProofEvolutionClient data={data} />
+      <ProofEvolutionClient data={data} leanStructure={leanStructure as LeanStructureData} />
     </SiteFrame>
   );
 }

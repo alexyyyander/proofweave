@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Badge, CardTitle, Field, FieldList, Surface, cx } from "@/app/components/ui";
+import { LeanStructureView } from "./LeanStructureView";
 import {
   explicitConstantLabel,
   goalLabel,
@@ -11,6 +12,7 @@ import {
   trackById,
   versionById,
   versionsForTrack,
+  type LeanStructureData,
   type LedgerStatus,
   type LeanStatus,
   type ProofDetailLevel,
@@ -61,7 +63,7 @@ function ledgerTone(status: LedgerStatus): "positive" | "neutral" | "warning" | 
   return "neutral";
 }
 
-export function ProofEvolutionClient({ data }: { data: ProofEvolutionData }) {
+export function ProofEvolutionClient({ data, leanStructure }: { data: ProofEvolutionData; leanStructure: LeanStructureData }) {
   const [selectedId, setSelectedId] = useState("barreto-2026-10-19");
   const selected = versionById(data, selectedId) ?? data.versions[0];
   if (!selected) return null;
@@ -114,6 +116,16 @@ export function ProofEvolutionClient({ data }: { data: ProofEvolutionData }) {
         description="The upstream Lean solution follows OpenAI's longer interpolation-determinant route. Barreto's 3-page Wronskian proof has no Lean artifact in this prototype's source set."
       />
       <LeanCoveragePanel data={data} />
+    </section>
+
+    <section id="lean-structure" className="proof-evolution-section" aria-labelledby="lean-structure-title">
+      <SectionHeading
+        id="lean-structure-title"
+        eyebrow="Lean structure · source-derived"
+        title="What the formalization actually contains"
+        description={`The fetched closure contains ${leanStructure.summary.oaiModules.toLocaleString("en-US")} modules, ${leanStructure.summary.totalLines.toLocaleString("en-US")} lines, and ${leanStructure.summary.declarations.toLocaleString("en-US")} declarations. This view combines the proof chain with the real import graph: select a version to see its steps, select a step to see its Lean alignment, and expand a subsystem to inspect the modules.`}
+      />
+      <LeanStructureView data={data} lean={leanStructure} selectedVersion={selected} onSelectVersion={setSelectedId} />
     </section>
 
     <section id="sources" className="proof-evolution-section" aria-labelledby="sources-title">

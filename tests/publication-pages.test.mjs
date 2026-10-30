@@ -76,6 +76,9 @@ test("the Landau–Siegel proof-evolution prototype renders with its caveats and
   assert.ok(html.includes("Barreto"));
   assert.ok(html.includes("The shortest human proof is not the formalized proof"));
   assert.ok(html.includes("OAI.NumberTheory.SiegelZeros.Main"));
+  assert.ok(html.includes("What the formalization actually contains"));
+  assert.ok(html.includes("306"));
+  assert.ok(html.includes("Module explorer"));
 });
 
 test("the Landau–Siegel family links to the proof-evolution prototype", async () => {

@@ -219,3 +219,141 @@ export function validateProofEvolution(data) {
 
   return data;
 }
+
+
+export const LEAN_STRUCTURE_SCHEMA_VERSION = "pw-lean-structure-v1";
+
+export function validateLeanStructure(data) {
+  expectObject(data, "lean structure data");
+  if (data.schemaVersion !== LEAN_STRUCTURE_SCHEMA_VERSION) fail(`leanStructure.schemaVersion must be ${LEAN_STRUCTURE_SCHEMA_VERSION}`);
+  if (data.status !== "draft") fail('leanStructure.status must be "draft"');
+  if (data.reviewStatus !== "unreviewed") fail('leanStructure.reviewStatus must be "unreviewed"');
+  expectDate(data.generatedAt, "leanStructure.generatedAt");
+  expectString(data.root, "leanStructure.root");
+  expectString(data.commit, "leanStructure.commit");
+  expectString(data.sourceNote, "leanStructure.sourceNote");
+
+  const summary = expectObject(data.summary, "leanStructure.summary");
+  for (const field of ["fetchedModules", "oaiModules", "totalLines", "declarations", "sorry", "axioms", "mathlibImports", "pntImports", "leanImports"]) {
+    if (!Number.isInteger(summary[field]) || summary[field] < 0) fail(`leanStructure.summary.${field} must be a non-negative integer`);
+  }
+  if (summary.fetchedModules < 1) fail("leanStructure.summary.fetchedModules must be positive");
+  expectArray(summary.failedModules, "leanStructure.summary.failedModules");
+  if (typeof summary.truncated !== "boolean") fail("leanStructure.summary.truncated must be a boolean");
+
+  const subsystems = expectArray(data.subsystems, "leanStructure.subsystems");
+  if (subsystems.length === 0) fail("leanStructure.subsystems must not be empty");
+  const subsystemIds = new Set();
+  let subsystemModuleCount = 0;
+  for (const [index, subsystem] of subsystems.entries()) {
+    const label = `leanStructure.subsystems[${index}]`;
+    expectObject(subsystem, label);
+    expectString(subsystem.id, `${label}.id`);
+    expectString(subsystem.label, `${label}.label`);
+    if (subsystemIds.has(subsystem.id)) fail(`duplicate Lean subsystem id ${subsystem.id}`);
+    subsystemIds.add(subsystem.id);
+    expectPositiveInteger(subsystem.moduleCount, `${label}.moduleCount`, 1000);
+    expectPositiveInteger(subsystem.lines, `${label}.lines`, 1000000);
+    if (!Number.isInteger(subsystem.declarations) || subsystem.declarations < 0) fail(`${label}.declarations must be a non-negative integer`);
+    expectArray(subsystem.modules, `${label}.modules`);
+    if (subsystem.modules.length !== subsystem.moduleCount) fail(`${label}.moduleCount does not match modules.length`);
+    subsystemModuleCount += subsystem.moduleCount;
+  }
+  if (subsystemModuleCount !== summary.oaiModules) fail("Lean subsystem module counts do not sum to summary.oaiModules");
+
+  const modules = expectArray(data.modules, "leanStructure.modules");
+  if (modules.length !== summary.oaiModules) fail("leanStructure.modules length does not match summary.oaiModules");
+  const moduleIds = new Set();
+  for (const [index, module] of modules.entries()) {
+    const label = `leanStructure.modules[${index}]`;
+    expectObject(module, label);
+    expectString(module.id, `${label}.id`);
+    if (moduleIds.has(module.id)) fail(`duplicate Lean module id ${module.id}`);
+    moduleIds.add(module.id);
+    if (!subsystemIds.has(module.subsystem)) fail(`${label}.subsystem references unknown subsystem ${module.subsystem}`);
+    expectPositiveInteger(module.lines, `${label}.lines`, 1000000);
+    if (!Number.isInteger(module.declarations) || module.declarations < 0) fail(`${label}.declarations must be a non-negative integer`);
+    if (!Number.isInteger(module.importsOai) || module.importsOai < 0) fail(`${label}.importsOai must be a non-negative integer`);
+    if (!Number.isInteger(module.importsExternal) || module.importsExternal < 0) fail(`${label}.importsExternal must be a non-negative integer`);
+    expectHttpsUrl(module.url, `${label}.url`);
+  }
+
+  const edges = expectArray(data.subsystemEdges, "leanStructure.subsystemEdges");
+  for (const [index, edge] of edges.entries()) {
+    const label = `leanStructure.subsystemEdges[${index}]`;
+    expectObject(edge, label);
+    expectString(edge.from, `${label}.from`);
+    expectString(edge.to, `${label}.to`);
+    if (!subsystemIds.has(edge.from)) fail(`${label}.from references unknown subsystem ${edge.from}`);
+    if (!subsystemIds.has(edge.to)) fail(`${label}.to references unknown subsystem ${edge.to}`);
+    expectPositiveInteger(edge.count, `${label}.count`, 1000000);
+  }
+
+  const topLevelModules = expectArray(data.topLevelModules, "leanStructure.topLevelModules");
+  if (topLevelModules.length === 0) fail("leanStructure.topLevelModules must not be empty");
+  for (const [index, id] of topLevelModules.entries()) {
+    expectString(id, `leanStructure.topLevelModules[${index}]`);
+    if (!moduleIds.has(id)) fail(`leanStructure.topLevelModules references unknown module ${id}`);
+  }
+
+  const anchors = expectArray(data.anchors, "leanStructure.anchors");
+  if (anchors.length === 0) fail("leanStructure.anchors must not be empty");
+  const anchorIds = new Set();
+  for (const [index, anchor] of anchors.entries()) {
+    const label = `leanStructure.anchors[${index}]`;
+    expectObject(anchor, label);
+    for (const field of ["id", "declaration", "fullName", "kind", "paperStepId", "role", "note"]) expectString(anchor[field], `${label}.${field}`);
+    if (anchorIds.has(anchor.id)) fail(`duplicate Lean anchor id ${anchor.id}`);
+    anchorIds.add(anchor.id);
+    if (anchor.module !== null) {
+      expectString(anchor.module, `${label}.module`);
+      if (!moduleIds.has(anchor.module)) fail(`${label}.module references unknown module ${anchor.module}`);
+    }
+    if (anchor.line !== null && (!Number.isInteger(anchor.line) || anchor.line < 1)) fail(`${label}.line must be a positive integer or null`);
+    if (anchor.url !== null) expectHttpsUrl(anchor.url, `${label}.url`);
+  }
+
+  const alignments = expectArray(data.paperAlignments, "leanStructure.paperAlignments");
+  if (alignments.length === 0) fail("leanStructure.paperAlignments must not be empty");
+  for (const [index, alignment] of alignments.entries()) {
+    const label = `leanStructure.paperAlignments[${index}]`;
+    expectObject(alignment, label);
+    expectString(alignment.versionId, `${label}.versionId`);
+    expectString(alignment.stepId, `${label}.stepId`);
+    expectEnum(alignment.confidence, new Set(["source-anchored", "inferred"]), `${label}.confidence`);
+    expectString(alignment.note, `${label}.note`);
+    expectArray(alignment.subsystems, `${label}.subsystems`);
+    for (const subsystem of alignment.subsystems) {
+      if (!subsystemIds.has(subsystem)) fail(`${label}.subsystems references unknown subsystem ${subsystem}`);
+    }
+    expectArray(alignment.modules, `${label}.modules`);
+    for (const moduleId of alignment.modules) {
+      if (moduleId !== null && !moduleIds.has(moduleId)) fail(`${label}.modules references unknown module ${moduleId}`);
+    }
+    expectArray(alignment.anchors, `${label}.anchors`);
+    for (const anchorId of alignment.anchors) {
+      if (!anchorIds.has(anchorId)) fail(`${label}.anchors references unknown anchor ${anchorId}`);
+    }
+  }
+
+  const external = expectObject(data.externalImports, "leanStructure.externalImports");
+  if (!Number.isInteger(external.mathlibCount) || external.mathlibCount < 0) fail("leanStructure.externalImports.mathlibCount must be non-negative");
+  expectArray(external.mathlibPrefixes, "leanStructure.externalImports.mathlibPrefixes");
+  for (const [index, prefix] of external.mathlibPrefixes.entries()) {
+    const label = `leanStructure.externalImports.mathlibPrefixes[${index}]`;
+    expectObject(prefix, label);
+    expectString(prefix.prefix, `${label}.prefix`);
+    expectPositiveInteger(prefix.count, `${label}.count`, 1000000);
+  }
+  for (const field of ["pnt", "lean"]) {
+    expectArray(external[field], `leanStructure.externalImports.${field}`);
+    for (const [index, value] of external[field].entries()) expectString(value, `leanStructure.externalImports.${field}[${index}]`);
+  }
+
+  expectString(data.formalizedVersionId, "leanStructure.formalizedVersionId");
+  const caveats = expectArray(data.caveats, "leanStructure.caveats");
+  if (caveats.length === 0) fail("leanStructure.caveats must not be empty");
+  for (const [index, caveat] of caveats.entries()) expectString(caveat, `leanStructure.caveats[${index}]`);
+
+  return data;
+}

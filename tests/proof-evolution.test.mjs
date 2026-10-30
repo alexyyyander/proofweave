@@ -3,10 +3,12 @@ import { readFile } from "node:fs/promises";
 import { test } from "node:test";
 import {
   ProofEvolutionValidationError,
+  validateLeanStructure,
   validateProofEvolution,
 } from "../packages/domain/proof-evolution.mjs";
 
 const data = JSON.parse(await readFile(new URL("../data/proof-evolution/landau-siegel.json", import.meta.url), "utf8"));
+const leanStructure = JSON.parse(await readFile(new URL("../data/proof-evolution/lean-structure.json", import.meta.url), "utf8"));
 const byId = new Map(data.versions.map((version) => [version.id, version]));
 
 function clone() {
@@ -129,4 +131,83 @@ test("a version cannot silently claim a non-draft status", () => {
   const broken = clone();
   broken.status = "verified";
   assert.throws(() => validateProofEvolution(broken), ProofEvolutionValidationError, /status must be "draft"/);
+});
+
+
+test("the Lean structure dataset validates and records the actual closure", () => {
+  assert.equal(validateLeanStructure(leanStructure), leanStructure);
+  assert.equal(leanStructure.summary.oaiModules, 306);
+  assert.equal(leanStructure.summary.totalLines, 69818);
+  assert.equal(leanStructure.summary.declarations, 4222);
+  assert.equal(leanStructure.summary.sorry, 0);
+  assert.equal(leanStructure.summary.axioms, 0);
+  assert.equal(leanStructure.subsystems.length, 13);
+  assert.equal(leanStructure.modules.length, 306);
+  assert.equal(leanStructure.topLevelModules.length, 21);
+  assert.equal(leanStructure.anchors.length, 12);
+  assert.equal(leanStructure.paperAlignments.length, 8);
+  assert.equal(leanStructure.summary.failedModules[0].module, "PrimeNumberTheoremAnd.SiegelZeros.HadamardSupport");
+});
+
+test("Lean subsystem totals sum to the closure and the top import edge is real", () => {
+  const totalModules = leanStructure.subsystems.reduce((total, subsystem) => total + subsystem.moduleCount, 0);
+  assert.equal(totalModules, leanStructure.summary.oaiModules);
+  assert.equal(leanStructure.subsystemEdges.length, 88);
+  const top = [...leanStructure.subsystemEdges].sort((a, b) => b.count - a.count)[0];
+  assert.deepEqual(top, { from: "LocalAlgebra", to: "Structure", count: 26 });
+});
+
+test("the final theorem and W50/W22 anchors are located in the upstream source", () => {
+  const anchors = new Map(leanStructure.anchors.map((anchor) => [anchor.id, anchor]));
+  assert.equal(anchors.get("final-theorem").module, "OAI.NumberTheory.SiegelZeros.Conclusions.Theorem");
+  assert.equal(anchors.get("final-theorem").line, 11);
+  assert.equal(anchors.get("w50").module, "OAI.NumberTheory.SiegelZeros.Intersection.BezoutBoundary");
+  assert.equal(anchors.get("w22").module, "OAI.NumberTheory.SiegelZeros.Intersection.IsolatedBezoutFromRegularSelection");
+  assert.equal(anchors.get("prime-bias").module, "OAI.NumberTheory.SiegelZeros.Characters.NormLogDerivLFunctionNegLogDerivZeta");
+  assert.equal(anchors.get("prime-divisibility").module, "OAI.NumberTheory.SiegelZeros.Determinants.Divisibility");
+  assert.equal(anchors.get("pivot-bounds").module, "OAI.NumberTheory.SiegelZeros.Selection.PivotBounds");
+});
+
+test("paper-to-Lean alignments are explicitly source-anchored or inferred", () => {
+  const openai = byId.get("openai-2026-10-01");
+  const stepIds = new Set(openai.proofSteps.map((step) => step.id));
+  const subsystemIds = new Set(leanStructure.subsystems.map((subsystem) => subsystem.id));
+  for (const alignment of leanStructure.paperAlignments) {
+    assert.equal(alignment.versionId, "openai-2026-10-01");
+    assert.ok(stepIds.has(alignment.stepId), `unknown OpenAI step ${alignment.stepId}`);
+    assert.ok(alignment.subsystems.every((id) => subsystemIds.has(id)));
+    assert.match(alignment.confidence, /^(source-anchored|inferred)$/);
+  }
+  assert.equal(leanStructure.paperAlignments.filter((alignment) => alignment.confidence === "source-anchored").length, 6);
+  assert.equal(leanStructure.paperAlignments.filter((alignment) => alignment.confidence === "inferred").length, 2);
+});
+
+test("the Lean structure view does not claim a kernel check", () => {
+  assert.ok(leanStructure.caveats.some((caveat) => /not a kernel dependency graph/.test(caveat)));
+  assert.ok(leanStructure.caveats.some((caveat) => /No Lean build/.test(caveat)));
+  assert.ok(!JSON.stringify(leanStructure).includes("Proofweave verified"));
+});
+
+test("a Lean module with an unknown subsystem is rejected", () => {
+  const broken = JSON.parse(JSON.stringify(leanStructure));
+  broken.modules[0].subsystem = "NotARealSubsystem";
+  assert.throws(() => validateLeanStructure(broken), ProofEvolutionValidationError, /unknown subsystem/);
+});
+
+test("a Lean subsystem edge outside the declared subsystems is rejected", () => {
+  const broken = JSON.parse(JSON.stringify(leanStructure));
+  broken.subsystemEdges[0].to = "NotARealSubsystem";
+  assert.throws(() => validateLeanStructure(broken), ProofEvolutionValidationError, /unknown subsystem/);
+});
+
+test("a Lean module URL must be https", () => {
+  const broken = JSON.parse(JSON.stringify(leanStructure));
+  broken.modules[0].url = "http://example.org/module.lean";
+  assert.throws(() => validateLeanStructure(broken), ProofEvolutionValidationError, /must use https/);
+});
+
+test("a Lean subsystem count mismatch is rejected", () => {
+  const broken = JSON.parse(JSON.stringify(leanStructure));
+  broken.subsystems[0].moduleCount += 1;
+  assert.throws(() => validateLeanStructure(broken), ProofEvolutionValidationError, /moduleCount does not match/);
 });
