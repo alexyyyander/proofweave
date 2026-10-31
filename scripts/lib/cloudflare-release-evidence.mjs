@@ -114,7 +114,7 @@ export async function bindCloudflareReleaseEvidence({ manifest, expectedManifest
     match(observation.observedAt, observation.collectionWindow.completedAt, "OBSERVATION_COLLECTION_TIME_MISMATCH");
   }
   const migrations = await loadProofweaveMigrations();
-  requireValue(migrations.length === 50 && migrations.at(-1).name === head, "REVIEWED_MIGRATION_HISTORY_CHANGED");
+  requireValue(migrations.length === 51 && migrations.at(-1).name === head, "REVIEWED_MIGRATION_HISTORY_CHANGED");
   keys(observation.database, "fingerprint ledger", "DATABASE_OBSERVATION_INVALID");
   match(observation.database.fingerprint, m.database.fingerprint, "DATABASE_FINGERPRINT_MISMATCH");
   const ledger = observation.database.ledger;
