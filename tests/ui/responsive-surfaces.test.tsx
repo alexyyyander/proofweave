@@ -4,9 +4,9 @@ import { test } from "node:test";
 
 /**
  * The two home doors and the receipt verification panel cannot be checked in a
- * real browser in this environment, so their small-screen contract is pinned
- * here: one column where the content stops fitting, long identifiers that wrap
- * instead of overflowing, and label colours that clear WCAG AA for small text.
+ * real browser in this environment, so their small-screen layout contract is
+ * pinned here. Colour is covered by contrast.test.tsx, which resolves tokens
+ * and literals alike.
  */
 const homeCss = await readFile(new URL("../../app/home.css", import.meta.url), "utf8");
 const receiptCss = await readFile(new URL("../../app/styles/receipt.css", import.meta.url), "utf8");
@@ -40,26 +40,6 @@ function mediaBlock(css: string, query: string): string {
     }
   }
   throw new Error(`unterminated @media (${query})`);
-}
-
-function hex(value: string): string {
-  const match = value.match(/^#([0-9a-f]{3}|[0-9a-f]{6})$/i);
-  assert.ok(match, `expected a literal colour, received ${value}`);
-  const digits = match[1].length === 3 ? [...match[1]].map((digit) => digit + digit).join("") : match[1];
-  return `#${digits.toLowerCase()}`;
-}
-
-function luminance(color: string): number {
-  const [r, g, b] = [1, 3, 5].map((offset) => {
-    const channel = Number.parseInt(color.slice(offset, offset + 2), 16) / 255;
-    return channel <= 0.03928 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4;
-  });
-  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
-}
-
-function contrast(foreground: string, background: string): number {
-  const [lighter, darker] = [luminance(foreground), luminance(background)].sort((left, right) => right - left);
-  return (lighter + 0.05) / (darker + 0.05);
 }
 
 test("the home doors collapse to one column before they get too narrow", () => {
@@ -97,26 +77,4 @@ test("long identifiers wrap instead of widening the page", () => {
   ] as const) {
     assert.match(declaration(rule(css, selector), "overflow-wrap"), /anywhere/);
   }
-});
-
-test("small labels keep WCAG AA contrast on their own backgrounds", () => {
-  const pairs = [
-    [homeCss, "home door body", ".home-door p", ".home-door"],
-    [homeCss, "home door note", ".home-door__note", ".home-door"],
-    [homeCss, "home door action", ".home-door__action", ".home-door"],
-    [receiptCss, "receipt gate copy", ".receipt-verify-gate-copy p", ".receipt-verify-panel"],
-    [receiptCss, "receipt gate state", ".receipt-verify-state", ".receipt-verify-panel"],
-    [receiptCss, "receipt boundary heading", ".receipt-boundary-column .receipt-boundary-column-title", ".receipt-boundary"],
-    [receiptCss, "receipt claim note", ".receipt-claim-coverage-copy p:not(.eyebrow)", ".receipt-boundary"],
-    [receiptCss, "receipt claim requirement", ".receipt-claim-coverage small", ".receipt-boundary"],
-  ] as const;
-  for (const [css, label, textSelector, surfaceSelector] of pairs) {
-    const text = hex(declaration(rule(css, textSelector), "color"));
-    const surface = hex(declaration(rule(css, surfaceSelector), "background"));
-    const ratio = contrast(text, surface);
-    assert.ok(ratio >= 4.5, `${label}: ${text} on ${surface} is ${ratio.toFixed(2)}:1`);
-  }
-  const missing = rule(receiptCss, ".receipt-claim-coverage li.is-missing .receipt-claim-state");
-  const ratio = contrast(hex(declaration(missing, "color")), hex(declaration(missing, "background")));
-  assert.ok(ratio >= 4.5, `missing claim state is ${ratio.toFixed(2)}:1`);
 });

@@ -31,7 +31,7 @@
 .receipt-boundary-column { padding: 22px 26px 4px 0; }
 .receipt-boundary-column + .receipt-boundary-column { border-left: 1px solid var(--line); padding-left: 26px; }
 .receipt-boundary-column .receipt-boundary-column-title {
-  color: #5b6678;
+  color: var(--ink-faint);
   font-family: inherit;
   font-size: var(--text-2xs);
   font-weight: 750;
@@ -70,7 +70,7 @@
   padding-top: 22px;
 }
 .receipt-claim-coverage-copy p:not(.eyebrow) {
-  color: #5b6678;
+  color: var(--ink-faint);
   font-size: var(--text-xs);
   line-height: 1.55;
   margin: 6px 0 0;
@@ -96,11 +96,11 @@
   text-transform: uppercase;
 }
 .receipt-claim-coverage li.is-attested .receipt-claim-state { background: var(--sage-soft); border-color: #b9d5c3; color: var(--sage); }
-.receipt-claim-coverage li.is-missing .receipt-claim-state { background: #f4f2ea; border-color: #d9d4c4; color: #5b6678; }
+.receipt-claim-coverage li.is-missing .receipt-claim-state { background: var(--paper-deep); border-color: #d9d4c4; color: var(--ink-faint); }
 .receipt-claim-label { color: var(--ink-soft); font-size: var(--text-xs); line-height: 1.45; overflow-wrap: anywhere; }
-.receipt-claim-coverage li.is-missing .receipt-claim-label { color: #5b6678; }
+.receipt-claim-coverage li.is-missing .receipt-claim-label { color: var(--ink-faint); }
 .receipt-claim-coverage small {
-  color: #5b6678;
+  color: var(--ink-faint);
   font-size: var(--text-3xs);
   letter-spacing: .05em;
   text-transform: uppercase;
