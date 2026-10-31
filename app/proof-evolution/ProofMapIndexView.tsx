@@ -21,6 +21,7 @@ export function ProofMapIndexView({ entries, subjects, summary }: {
   const [search, setSearch] = useState("");
   const [subject, setSubject] = useState("");
   const [status, setStatus] = useState<"all" | ProofMapStatus>("all");
+  const [leanStatus, setLeanStatus] = useState<"all" | "extracted" | "none">("all");
   const [page, setPage] = useState(1);
 
   const filtered = useMemo(() => {
@@ -28,19 +29,22 @@ export function ProofMapIndexView({ entries, subjects, summary }: {
     return entries.filter((entry) => {
       if (subject && entry.subject !== subject) return false;
       if (status !== "all" && entry.status !== status) return false;
+      if (leanStatus === "extracted" && entry.lean.status !== "extracted" && entry.lean.status !== "partial") return false;
+      if (leanStatus === "none" && (entry.lean.status === "extracted" || entry.lean.status === "partial")) return false;
       if (query && !entry.searchText.includes(query)) return false;
       return true;
     });
-  }, [entries, search, subject, status]);
+  }, [entries, search, subject, status, leanStatus]);
   const pageCount = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
   const safePage = Math.min(page, pageCount);
   const visible = filtered.slice((safePage - 1) * PER_PAGE, safePage * PER_PAGE);
-  const activeFilters = Boolean(search.trim() || subject || status !== "all");
+  const activeFilters = Boolean(search.trim() || subject || status !== "all" || leanStatus !== "all");
 
   const updateSearch = (value: string) => { setSearch(value); setPage(1); };
   const updateSubject = (value: string) => { setSubject(value); setPage(1); };
   const updateStatus = (value: "all" | ProofMapStatus) => { setStatus(value); setPage(1); };
-  const reset = () => { setSearch(""); setSubject(""); setStatus("all"); setPage(1); };
+  const updateLeanStatus = (value: "all" | "extracted" | "none") => { setLeanStatus(value); setPage(1); };
+  const reset = () => { setSearch(""); setSubject(""); setStatus("all"); setLeanStatus("all"); setPage(1); };
 
   return <section className="proof-map-browser" aria-labelledby="proof-map-browser-title">
     <div className="proof-map-browser-heading">
@@ -69,6 +73,13 @@ export function ProofMapIndexView({ entries, subjects, summary }: {
           <option value="scaffold">Metadata scaffold ({summary.scaffold})</option>
         </select>
       </label>
+      <label>Lean structure
+        <select value={leanStatus} onChange={(event) => updateLeanStatus(event.target.value as "all" | "extracted" | "none")}>
+          <option value="all">All Lean coverage</option>
+          <option value="extracted">Extracted</option>
+          <option value="none">Not extracted</option>
+        </select>
+      </label>
       {activeFilters && <button type="button" className="proof-map-reset" onClick={reset}>Clear filters</button>}
     </div>
 
@@ -89,7 +100,7 @@ export function ProofMapIndexView({ entries, subjects, summary }: {
         <div className="proof-map-card-meta">
           <span>{entry.manuscriptCount} {entry.manuscriptCount === 1 ? "manuscript" : "manuscripts"}</span>
           <span>{entry.scopeDocument ? "Lean scope documented" : "No Lean scope linked"}</span>
-          {entry.comparatorCount > 0 && <span>{entry.comparatorCount} comparator {entry.comparatorCount === 1 ? "link" : "links"}</span>}
+          <span>{entry.lean.status === "none" ? "No Lean structure" : `${entry.lean.solutions}/${entry.lean.comparators} Lean modules`}</span>
           {entry.formalizedManuscripts > 0 && <span>{entry.formalizedManuscripts} upstream-linked</span>}
           <span className="proof-map-replay">Replay not run</span>
         </div>

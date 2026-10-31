@@ -62,3 +62,29 @@ catalog snapshot
 ```
 
 每周用 `npm run proof:maps:report` 检查 deep/draft/scaffold 数量和 scope 覆盖；优先挑 `scopeDocument=true` 的 scaffold，因为它们已经有 Lean scope 可作为对齐起点。
+
+## 6. Lean 结构批量抽取（2026-10-31）
+
+`data/proof-maps/lean-coverage.json` 是从 pinned OpenAI repository 批量抽取的 comparator/solution 结构：
+
+- 242 个 family 有 comparator;
+- 426 个 comparator links（416 个唯一 challenge URL，部分 comparator 被多个 family 复用）;
+- 426 个 comparator JSON、challenge `.lean`、solution module 全部成功抓取;
+- 536 个 theorem names;
+- solution module 的直接 imports、行数、declaration 摘要；
+- textual sorry / axiom 统计为 0 / 0（这是源码文本扫描，不是 kernel 审计）。
+
+生成命令：
+
+```bash
+npm run proof:maps:lean:build
+```
+
+数据只记录 **direct imports**，不展开完整传递闭包，也不运行 Lean build、`#print axioms` 或 comparator。页面上必须保持 `extracted`、`partial`、`missing` 三种状态，不能把 “solution module fetched” 写成 “kernel verified”。
+
+下一阶段：
+
+1. 对每个 comparator solution module 递归展开 OAI imports，形成 family 级 module graph；
+2. 在可构建的 Lean 环境中跑 comparator / `#print axioms`，记录真实 kernel 状态；
+3. 把 paper lemma 与 theorem_names/declaration 做人工对齐；
+4. 优先处理 3 个 draft（032/084/159）和 110 个多论文 + comparator family。

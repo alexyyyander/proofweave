@@ -4,7 +4,9 @@ import { buildProofMapIndex } from "../packages/domain/proof-map-index.mjs";
 const base = new URL("../", import.meta.url);
 const collection = JSON.parse(await readFile(new URL("data/publications/openai-math.json", base), "utf8"));
 const manifest = JSON.parse(await readFile(new URL("data/proof-maps/manifest.json", base), "utf8"));
-const index = buildProofMapIndex(collection, manifest);
+const leanResponse = await readFile(new URL("data/proof-maps/lean-coverage.json", base), "utf8").catch(() => null);
+const lean = leanResponse ? JSON.parse(leanResponse) : null;
+const index = buildProofMapIndex(collection, manifest, lean);
 const json = process.argv.includes("--json");
 
 if (json) {
@@ -19,6 +21,9 @@ if (json) {
   console.log(`  families with Lean scope: ${index.summary.scopeFamilies}/${index.summary.families}`);
   console.log(`  comparator links: ${index.summary.comparatorLinks}`);
   console.log(`  upstream linked manuscripts: ${index.summary.formalizedManuscripts}`);
+  console.log(`  families with extracted Lean structure: ${index.summary.leanFamilies}`);
+  console.log(`  Lean solution modules: ${index.summary.leanSolutionModules}`);
+  console.log(`  Lean theorem names: ${index.summary.leanTheoremNames}`);
   console.log("");
   console.log("Curated families:");
   for (const entry of index.entries.filter((candidate) => candidate.status !== "scaffold")) {

@@ -4,8 +4,9 @@ import { notFound, redirect } from "next/navigation";
 import { ActionLink, Badge, Field, FieldList, PageIntro, Surface } from "@/app/components/ui";
 import { SiteFrame } from "@/app/components/shell/SiteFrame";
 import { openaiMathCollection, publicationFamily } from "@/app/lib/publications";
-import type { ProofMapIndex, ProofMapIndexEntry } from "@/app/lib/proof-map";
+import type { LeanCoverageData, LeanCoverageFamily, ProofMapIndex, ProofMapIndexEntry } from "@/app/lib/proof-map";
 import manifest from "@/data/proof-maps/manifest.json";
+import leanCoverageData from "@/data/proof-maps/lean-coverage.json";
 import { buildProofMapIndex } from "@/packages/domain/proof-map-index.mjs";
 import {
   ClaimCard,
@@ -52,9 +53,11 @@ export default async function ProofMapFamilyPage({ params }: Params) {
   if (!family) notFound();
   if (family.number === "003") redirect("/proof-evolution/landau-siegel");
 
-  const index = buildProofMapIndex(openaiMathCollection, manifest) as ProofMapIndex;
+  const leanCoverage = leanCoverageData as LeanCoverageData;
+  const index = buildProofMapIndex(openaiMathCollection, manifest, leanCoverage) as ProofMapIndex;
   const entry = index.entries.find((candidate) => candidate.familyNumber === family.number);
   if (!entry) notFound();
+  const leanFamily = leanCoverage.families.find((candidate) => candidate.familyNumber === family.number);
 
   const explanation = entry.status === "draft" ? explanationForFamily(family.number, explanationArtifacts) : undefined;
   const isDraft = Boolean(explanation);
@@ -94,6 +97,8 @@ export default async function ProofMapFamilyPage({ params }: Params) {
         <ManuscriptSection family={family} />
         <ScopeSection family={family} entry={entry} />
       </div>
+
+      {leanFamily && <LeanStructureSection family={leanFamily} />}
 
       <NextSteps entry={entry} isDraft={isDraft} />
     </div>
@@ -203,6 +208,58 @@ function ScopeSection({ family, entry }: { family: NonNullable<ReturnType<typeof
     </FieldList>
     {family.scope && <p className="proof-map-evidence-note">Scope text describes upstream coverage. It is not a Proofweave replay, review, or receipt.</p>}
   </Surface>;
+}
+
+function LeanStructureSection({ family }: { family: LeanCoverageFamily }) {
+  return <section id="lean-structure" className="proof-map-lean-section" aria-labelledby="lean-structure-title">
+    <div className="proof-map-family-section-heading">
+      <div><p className="eyebrow">Upstream Lean · extracted structure</p><h2 id="lean-structure-title">Comparator-linked modules and declarations</h2></div>
+      <span><Badge tone={family.leanStructureStatus === "extracted" ? "positive" : family.leanStructureStatus === "partial" ? "warning" : "neutral"}>{family.leanStructureStatus}</Badge></span>
+    </div>
+    <div className="proof-map-lean-stats">
+      <div><span>Comparators</span><strong>{family.comparatorCount}</strong><small>{family.solutionFetched} solution modules fetched</small></div>
+      <div><span>Theorem names</span><strong>{family.theoremNames.length}</strong><small>from comparator JSON</small></div>
+      <div><span>Textual sorry</span><strong>{family.textualSorry}</strong><small>solution modules · direct scan</small></div>
+      <div><span>Textual axioms</span><strong>{family.textualAxioms}</strong><small>solution modules · direct scan</small></div>
+    </div>
+    <div className="proof-map-lean-list">
+      {family.comparators.map((comparator) => <details className="proof-map-lean-entry" key={comparator.label}>
+        <summary>
+          <div>
+            <strong>{comparator.label}</strong>
+            <span>{comparator.solutionModule ?? "No solution module"} · {comparator.theoremNames.length} {comparator.theoremNames.length === 1 ? "theorem" : "theorems"} · {comparator.solutionLines} lines</span>
+          </div>
+          <Badge tone={comparator.solutionStatus === 200 ? "positive" : "warning"}>{comparator.solutionStatus === 200 ? "solution fetched" : `status ${comparator.solutionStatus}`}</Badge>
+        </summary>
+        <div className="proof-map-lean-body">
+          <div className="proof-map-lean-links">
+            <a href={comparator.challengeUrl} target="_blank" rel="noreferrer">Challenge .lean ↗</a>
+            <a href={comparator.jsonUrl} target="_blank" rel="noreferrer">Comparator .json ↗</a>
+            {comparator.solutionUrl && <a href={comparator.solutionUrl} target="_blank" rel="noreferrer">Solution module ↗</a>}
+          </div>
+          <div className="proof-map-lean-row">
+            <span>Theorem names</span>
+            {comparator.theoremNames.length > 0 ? <ul>{comparator.theoremNames.map((name) => <li key={name}><code>{name}</code></li>)}</ul> : <small>No theorem names recorded in the comparator JSON.</small>}
+          </div>
+          <div className="proof-map-lean-row">
+            <span>Permitted axioms</span>
+            <div>{comparator.permittedAxioms.map((axiom) => <Badge key={axiom}>{axiom}</Badge>)}</div>
+          </div>
+          <div className="proof-map-lean-row">
+            <span>Solution module</span>
+            <code>{comparator.solutionModule ?? "unavailable"}</code>
+            <small>{comparator.solutionLines} lines · {comparator.solutionImports.length} direct imports · solution sorry {comparator.solutionSorry} · solution axiom {comparator.solutionAxioms} · challenge sorry {comparator.challengeSorry}</small>
+          </div>
+          <div className="proof-map-lean-row">
+            <span>Direct imports</span>
+            {comparator.solutionImports.length > 0 ? <ul>{comparator.solutionImports.map((module) => <li key={module}><code>{module}</code></li>)}</ul> : <small>No direct imports parsed.</small>}
+          </div>
+          <p className="proof-map-lean-note">Comparator challenge files contain a <code>sorry</code> by design; the solution module is the fetched proof file. This extraction records direct imports, theorem names, and textual sorry/axiom counts. It is not a kernel build, <code>#print axioms</code> run, or Proofweave replay.</p>
+        </div>
+      </details>)}
+    </div>
+    <p className="proof-map-lean-caveat">Structure extracted from the pinned OpenAI repository revision. Direct imports only; transitive dependency closure and kernel acceptance remain separate curation steps.</p>
+  </section>;
 }
 
 function NextSteps({ entry, isDraft }: { entry: ProofMapIndexEntry; isDraft: boolean }) {

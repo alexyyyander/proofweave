@@ -123,3 +123,33 @@ test("the proof-map index, scaffold, draft, and API render with explicit status"
   assert.equal(payload.summary.deep, 1);
   assert.equal(payload.summary.scaffold, 368);
 });
+
+
+test("the Lean coverage index, family section, and API expose real modules", async () => {
+  const index = await fetchPage("/proof-evolution");
+  assert.equal(index.status, 200);
+  const indexHtml = await index.text();
+  assert.ok(indexHtml.includes("Lean structures"));
+  assert.ok(indexHtml.includes("536"));
+
+  const family = await fetchPage("/proof-evolution/openai-math/238");
+  assert.equal(family.status, 200);
+  const familyHtml = await family.text();
+  assert.ok(familyHtml.includes("Comparator-linked modules and declarations"));
+  assert.ok(familyHtml.includes("OAI.Thorp.Current.first_reciprocal_main"));
+  assert.ok(familyHtml.includes("OAI.Probability.ThorpShuffle.FirstMain"));
+
+  const api = await runtime.dispatchFetch("http://localhost/api/proof-maps");
+  assert.equal(api.status, 200);
+  const payload = await api.json();
+  assert.equal(payload.summary.leanFamilies, 242);
+  assert.equal(payload.summary.leanSolutionModules, 426);
+  assert.equal(payload.summary.leanTheoremNames, 536);
+
+  const leanApi = await runtime.dispatchFetch("http://localhost/api/proof-maps/lean");
+  assert.equal(leanApi.status, 200);
+  const leanPayload = await leanApi.json();
+  assert.equal(leanPayload.summary.familiesWithComparators, 242);
+  assert.equal(leanPayload.summary.comparatorLinks, 426);
+  assert.equal(leanPayload.summary.solutionFetched, 426);
+});

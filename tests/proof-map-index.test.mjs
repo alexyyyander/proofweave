@@ -10,7 +10,8 @@ import {
 const base = new URL("../", import.meta.url);
 const collection = JSON.parse(await readFile(new URL("data/publications/openai-math.json", base), "utf8"));
 const manifest = JSON.parse(await readFile(new URL("data/proof-maps/manifest.json", base), "utf8"));
-const index = buildProofMapIndex(collection, manifest);
+const lean = JSON.parse(await readFile(new URL("data/proof-maps/lean-coverage.json", base), "utf8"));
+const index = buildProofMapIndex(collection, manifest, lean);
 
 test("the proof-map index covers every catalog family exactly once", () => {
   assert.equal(index.entries.length, 372);
@@ -34,6 +35,9 @@ test("the coverage summary is truthful and statuses are explicit", () => {
   assert.equal(index.summary.comparatorLinks, 426);
   assert.equal(index.summary.formalizedManuscripts, 339);
   assert.equal(index.summary.proofweaveReplays, 0);
+  assert.equal(index.summary.leanFamilies, 242);
+  assert.equal(index.summary.leanSolutionModules, 426);
+  assert.equal(index.summary.leanTheoremNames, 536);
   assert.deepEqual(index.statusCounts, { deep: 1, draft: 3, scaffold: 368 });
   assert.equal(index.entries.filter((entry) => entry.status === "scaffold").every((entry) => entry.reviewStatus === "not_started"), true);
   assert.equal(index.entries.filter((entry) => entry.status !== "scaffold").every((entry) => entry.reviewStatus === "unreviewed"), true);
@@ -53,6 +57,11 @@ test("the curated families have the expected routes and labels", () => {
   assert.equal(byNumber.get("001").route, "/proof-evolution/openai-math/001");
   assert.equal(byNumber.get("001").statusLabel, "Metadata scaffold");
   assert.match(byNumber.get("001").nextStep, /Extract theorem\/lemma statements/);
+  assert.equal(byNumber.get("238").lean.status, "extracted");
+  assert.equal(byNumber.get("238").lean.comparators, 13);
+  assert.equal(byNumber.get("238").lean.solutions, 13);
+  assert.equal(byNumber.get("238").lean.theoremNames, 15);
+  assert.equal(byNumber.get("001").lean.status, "none");
 });
 
 test("claim snippets are plain text and carry no markup or TeX delimiters", () => {

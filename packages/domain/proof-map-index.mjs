@@ -84,8 +84,107 @@ function nextStepFor(status) {
   return "Extract theorem/lemma statements, build the argument map, align Lean declarations, then open independent review.";
 }
 
-export function buildProofMapIndex(collection, manifest) {
+export const LEAN_COVERAGE_SCHEMA_VERSION = "pw-lean-coverage-v1";
+
+function validateHttps(value, label) {
+  if (typeof value !== "string" || !/^https:\/\//.test(value)) fail(`${label} must be an https URL`);
+}
+
+export function validateLeanCoverage(data, collection) {
+  if (!isObject(data)) fail("leanCoverage must be an object");
+  if (data.schemaVersion !== LEAN_COVERAGE_SCHEMA_VERSION) fail(`leanCoverage.schemaVersion must be ${LEAN_COVERAGE_SCHEMA_VERSION}`);
+  if (data.status !== "draft") fail('leanCoverage.status must be "draft"');
+  if (data.reviewStatus !== "unreviewed") fail('leanCoverage.reviewStatus must be "unreviewed"');
+  if (typeof data.generatedAt !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(data.generatedAt)) fail("leanCoverage.generatedAt must be YYYY-MM-DD");
+  if (typeof data.commit !== "string" || data.commit.length < 8) fail("leanCoverage.commit must be a pinned revision");
+  if (data.commit !== collection.source?.revision) fail("leanCoverage.commit must match the catalog source revision");
+  if (typeof data.sourceNote !== "string" || data.sourceNote.trim() === "") fail("leanCoverage.sourceNote must not be empty");
+  if (!isObject(collection) || !Array.isArray(collection.families)) fail("collection must contain families");
+
+  if (!isObject(data.summary)) fail("leanCoverage.summary must be an object");
+  for (const field of ["familiesWithComparators", "comparatorLinks", "jsonFetched", "challengeFetched", "solutionFetched", "solutionMissing", "theoremNames", "textualSorry", "textualAxioms"]) {
+    if (!Number.isInteger(data.summary[field]) || data.summary[field] < 0) fail(`leanCoverage.summary.${field} must be a non-negative integer`);
+  }
+
+  const families = Array.isArray(data.families) ? data.families : fail("leanCoverage.families must be an array");
+  const familyNumbers = new Set();
+  const comparatorUrls = new Set();
+  const allComparators = [];
+  for (const [index, family] of families.entries()) {
+    const label = `leanCoverage.families[${index}]`;
+    if (!isObject(family)) fail(`${label} must be an object`);
+    if (!isFamilyNumber(family.familyNumber)) fail(`${label}.familyNumber must be three digits`);
+    if (familyNumbers.has(family.familyNumber)) fail(`duplicate leanCoverage family ${family.familyNumber}`);
+    familyNumbers.add(family.familyNumber);
+    if (!Array.isArray(family.comparators) || family.comparators.length === 0) fail(`${label}.comparators must not be empty`);
+    if (family.comparatorCount !== family.comparators.length) fail(`${label}.comparatorCount must match comparators.length`);
+    if (!Number.isInteger(family.solutionFetched) || !Number.isInteger(family.jsonFetched) || !Number.isInteger(family.challengeFetched) || !Number.isInteger(family.solutionMissing)) fail(`${label} counts must be integers`);
+    if (family.solutionFetched + family.solutionMissing !== family.comparatorCount) fail(`${label} solution counts do not sum to comparatorCount`);
+    if (!["extracted", "partial", "missing"].includes(family.leanStructureStatus)) fail(`${label}.leanStructureStatus is invalid`);
+    const expectedStatus = family.solutionFetched === family.comparatorCount ? "extracted" : family.solutionFetched > 0 ? "partial" : "missing";
+    if (family.leanStructureStatus !== expectedStatus) fail(`${label}.leanStructureStatus does not match solutionFetched`);
+    for (const [cIndex, comparator] of family.comparators.entries()) {
+      const cLabel = `${label}.comparators[${cIndex}]`;
+      if (!isObject(comparator)) fail(`${cLabel} must be an object`);
+      if (comparator.familyNumber !== family.familyNumber) fail(`${cLabel}.familyNumber mismatch`);
+      if (typeof comparator.label !== "string" || comparator.label.trim() === "") fail(`${cLabel}.label must not be empty`);
+      validateHttps(comparator.challengeUrl, `${cLabel}.challengeUrl`);
+      validateHttps(comparator.jsonUrl, `${cLabel}.jsonUrl`);
+      if (comparator.solutionUrl !== null) validateHttps(comparator.solutionUrl, `${cLabel}.solutionUrl`);
+      if (!Array.isArray(comparator.theoremNames)) fail(`${cLabel}.theoremNames must be an array`);
+      for (const theorem of comparator.theoremNames) if (typeof theorem !== "string" || theorem.trim() === "") fail(`${cLabel}.theoremNames contains an empty name`);
+      if (!Array.isArray(comparator.permittedAxioms)) fail(`${cLabel}.permittedAxioms must be an array`);
+      if (!Array.isArray(comparator.solutionImports)) fail(`${cLabel}.solutionImports must be an array`);
+      for (const imported of comparator.solutionImports) if (typeof imported !== "string" || imported.trim() === "") fail(`${cLabel}.solutionImports contains an empty module`);
+      if (!Number.isInteger(comparator.solutionStatus) || comparator.solutionStatus < 0) fail(`${cLabel}.solutionStatus must be a non-negative integer`);
+      if (!Number.isInteger(comparator.solutionSorry) || comparator.solutionSorry < 0) fail(`${cLabel}.solutionSorry must be a non-negative integer`);
+      if (!Number.isInteger(comparator.solutionAxioms) || comparator.solutionAxioms < 0) fail(`${cLabel}.solutionAxioms must be a non-negative integer`);
+      if (comparator.solutionStatus === 200) {
+        if (typeof comparator.solutionModule !== "string" || comparator.solutionModule.trim() === "") fail(`${cLabel}.solutionModule is required when fetched`);
+        if (typeof comparator.solutionPath !== "string" || comparator.solutionPath.trim() === "") fail(`${cLabel}.solutionPath is required when fetched`);
+        validateHttps(comparator.solutionUrl, `${cLabel}.solutionUrl`);
+      }
+      allComparators.push(comparator);
+      comparatorUrls.add(comparator.challengeUrl);
+    }
+  }
+
+  const expectedFamilies = collection.families.filter((family) => (family.scope?.comparatorLinks?.length ?? 0) > 0);
+  if (families.length !== expectedFamilies.length) fail(`leanCoverage must contain ${expectedFamilies.length} comparator families, found ${families.length}`);
+  for (const family of expectedFamilies) {
+    if (!familyNumbers.has(family.number)) fail(`leanCoverage is missing comparator family ${family.number}`);
+    for (const link of family.scope.comparatorLinks) {
+      if (!comparatorUrls.has(link.url)) fail(`leanCoverage is missing comparator ${link.url}`);
+    }
+  }
+
+  const recomputed = {
+    familiesWithComparators: families.length,
+    comparatorLinks: allComparators.length,
+    jsonFetched: allComparators.filter((entry) => entry.jsonStatus === 200).length,
+    challengeFetched: allComparators.filter((entry) => entry.challengeStatus === 200).length,
+    solutionFetched: allComparators.filter((entry) => entry.solutionStatus === 200).length,
+    solutionMissing: allComparators.filter((entry) => entry.solutionStatus !== 200).length,
+    theoremNames: new Set(allComparators.flatMap((entry) => entry.theoremNames)).size,
+    textualSorry: allComparators.reduce((total, entry) => total + entry.solutionSorry, 0),
+    textualAxioms: allComparators.reduce((total, entry) => total + entry.solutionAxioms, 0),
+  };
+  for (const [field, value] of Object.entries(recomputed)) {
+    if (data.summary[field] !== value) fail(`leanCoverage.summary.${field} should be ${value}`);
+  }
+  return data;
+}
+
+/**
+ * @param {any} collection
+ * @param {any} manifest
+ * @param {any} [leanCoverage]
+ * @returns {any}
+ */
+export function buildProofMapIndex(collection, manifest, leanCoverage = null) {
   validateProofMapManifest(manifest, collection);
+  if (leanCoverage) validateLeanCoverage(leanCoverage, collection);
+  const leanByFamily = new Map((leanCoverage?.families ?? []).map((family) => [family.familyNumber, family]));
   const deep = new Map(manifest.deep.map((entry) => [entry.familyNumber, entry]));
   const draft = new Map(manifest.draft.map((entry) => [entry.familyNumber, entry]));
   const stageLabels = new Map(manifest.stages.map((stage) => [stage.id, stage.label]));
@@ -101,6 +200,7 @@ export function buildProofMapIndex(collection, manifest) {
     const comparatorCount = family.scope?.comparatorLinks?.length ?? 0;
     const formalizedManuscripts = family.manuscripts.filter((manuscript) => manuscript.citedByScopeDocument || manuscript.listedInFormalizationIndex).length;
     const manuscriptCount = family.manuscripts.length;
+    const leanFamily = leanByFamily.get(family.number);
     return {
       familyNumber: family.number,
       title: titleText,
@@ -119,6 +219,14 @@ export function buildProofMapIndex(collection, manifest) {
       manifestLabel: curated?.label ?? null,
       nextStep: nextStepFor(status),
       searchText: `${family.number} ${titleText} ${claimText} ${family.subject}`.toLowerCase(),
+      lean: leanFamily ? {
+        comparators: leanFamily.comparatorCount,
+        solutions: leanFamily.solutionFetched,
+        theoremNames: leanFamily.theoremNames.length,
+        status: leanFamily.leanStructureStatus,
+        textualSorry: leanFamily.textualSorry,
+        textualAxioms: leanFamily.textualAxioms,
+      } : { comparators: 0, solutions: 0, theoremNames: 0, status: "none", textualSorry: 0, textualAxioms: 0 },
     };
   });
 
@@ -135,6 +243,9 @@ export function buildProofMapIndex(collection, manifest) {
     draft: statusCounts.draft,
     scaffold: statusCounts.scaffold,
     proofweaveReplays: 0,
+    leanFamilies: entries.filter((entry) => entry.lean.status === "extracted" || entry.lean.status === "partial").length,
+    leanSolutionModules: entries.reduce((total, entry) => total + entry.lean.solutions, 0),
+    leanTheoremNames: entries.reduce((total, entry) => total + entry.lean.theoremNames, 0),
   };
 
   return {

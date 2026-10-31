@@ -3,8 +3,9 @@ import Link from "next/link";
 import { ActionLink, Badge, PageIntro } from "@/app/components/ui";
 import { SiteFrame } from "@/app/components/shell/SiteFrame";
 import { openaiMathCollection } from "@/app/lib/publications";
-import type { ProofMapIndex } from "@/app/lib/proof-map";
+import type { LeanCoverageData, ProofMapIndex } from "@/app/lib/proof-map";
 import manifest from "@/data/proof-maps/manifest.json";
+import leanCoverage from "@/data/proof-maps/lean-coverage.json";
 import { buildProofMapIndex } from "@/packages/domain/proof-map-index.mjs";
 import { ProofMapIndexView } from "./ProofMapIndexView";
 import "./proof-map.css";
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
 };
 
 export default function ProofMapIndexPage() {
-  const index = buildProofMapIndex(openaiMathCollection, manifest) as ProofMapIndex;
+  const index = buildProofMapIndex(openaiMathCollection, manifest, leanCoverage as LeanCoverageData) as ProofMapIndex;
   return <SiteFrame
     active="publications"
     activeHref="/proof-evolution"
@@ -25,7 +26,7 @@ export default function ProofMapIndexPage() {
     <PageIntro
       label="Proof maps · all mathematics"
       title="Every result gets a structure."
-      description="The same structure now covers the whole OpenAI mathematics release: claim, source manuscripts, upstream Lean scope, and evidence state. Deep and draft structures add theorem-level proof dependencies; every remaining family gets a source-linked scaffold with an explicit next curation step."
+      description="The same structure now covers the whole OpenAI mathematics release: claim, source manuscripts, upstream Lean scope, extracted comparator/solution modules, and evidence state. Deep and draft structures add theorem-level proof dependencies; every remaining family gets a source-linked scaffold with an explicit next curation step."
       meta={<>
         <span>{index.summary.families} result families</span>
         <span>{index.summary.manuscripts} manuscripts</span>
@@ -44,7 +45,7 @@ export default function ProofMapIndexPage() {
           <span><b>{index.summary.draft}</b> draft</span>
           <span><b>{index.summary.scaffold}</b> scaffold</span>
         </div>
-        <p>Deep maps are curated. Draft chains are unreviewed. Scaffolds are source-linked metadata with no theorem-level chain yet.</p>
+        <p>Deep maps are curated. Draft chains are unreviewed. Scaffolds are source-linked metadata with no theorem-level chain yet. Lean structures are extracted from comparator/solution modules, not kernel-checked by Proofweave.</p>
         <Link href="/about/catalog-standard">How the catalog records evidence →</Link>
       </>}
     />
@@ -54,6 +55,8 @@ export default function ProofMapIndexPage() {
         <CoverageStat label="Result families" value={index.summary.families} detail={`${index.summary.subjects} subjects`} />
         <CoverageStat label="Source manuscripts" value={index.summary.manuscripts} detail={`${index.summary.scopeDocuments} families with Lean scope`} />
         <CoverageStat label="Upstream linked" value={index.summary.formalizedManuscripts} detail={`manuscripts named in scope/index · ${index.summary.comparatorLinks} comparator links`} />
+        <CoverageStat label="Lean structures" value={index.summary.leanFamilies} detail={`${index.summary.leanSolutionModules} solution modules extracted`} />
+        <CoverageStat label="Lean theorem names" value={index.summary.leanTheoremNames} detail="comparator declarations · textual sorry/axiom 0" />
         <CoverageStat label="Deep maps" value={index.summary.deep} detail="curated theorem dependencies" />
         <CoverageStat label="Draft chains" value={index.summary.draft} detail="unreviewed explanations" />
         <CoverageStat label="Scaffolds" value={index.summary.scaffold} detail="the curation queue" />
