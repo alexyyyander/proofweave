@@ -58,6 +58,13 @@ export type EvidenceRunnerResultSummary = Readonly<{
     allowedAxioms: string;
     leanBuild: string;
   }>;
+  environment?: Readonly<{
+    imageDigest: string;
+    leanToolchain: string;
+    mathlibRevision: string;
+    templateId: string | null;
+    templateBuildId: string | null;
+  }>;
 }>;
 
 export type EvidenceBundleReview = Readonly<{
@@ -648,6 +655,9 @@ function runnerResultSummary(canonicalResult: string): EvidenceRunnerResultSumma
       exitCode: result.exitCode,
       kernelStatus: result.kernelStatus,
       checks: Object.freeze({ ...result.checks }),
+      ...(result.environment
+        ? { environment: Object.freeze({ ...result.environment }) }
+        : {}),
     });
   } catch {
     // Historical or fixture-only result rows remain downloadable as canonical

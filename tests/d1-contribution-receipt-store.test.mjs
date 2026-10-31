@@ -74,6 +74,7 @@ test("D1 Receipt store derives, signs, retries, and freezes a certified contribu
   assert.equal(retry.created, false);
   assert.equal(first.receipt.beneficiary.personId, "person:alice");
   assert.equal(first.receipt.claims.length, 3);
+  assert.deepEqual(first.receipt.run.environment, fixtureRunnerEnvironment());
   assert.equal(await verifyContributionReceiptSignature(first.receipt), true);
   assert.deepEqual(await store.get("receipt:alice-lemma"), first.receipt);
 
@@ -783,6 +784,7 @@ async function fixtureUpstreamReceipt() {
         resultHash: runResultHash,
         status: "succeeded",
         kernelStatus: "accepted",
+        environment: fixtureRunnerEnvironment(),
       },
       claims: [
         fixtureReceiptClaim("bundle_reproducible", "bob"),
@@ -813,6 +815,16 @@ function fixtureReceiptClaim(claimType, reviewer) {
   };
 }
 
+function fixtureRunnerEnvironment() {
+  return {
+    imageDigest: `ghcr.io/proofweave/lean-runner@sha256:${"c".repeat(64)}`,
+    leanToolchain: "leanprover/lean4:v4.27.0",
+    mathlibRevision: "a3a10db0e9d6",
+    templateId: "template_proofweave:reviewed_runtime",
+    templateBuildId: "9420e83e-3c6d-48b8-94fe-a73807af5797",
+  };
+}
+
 function fixtureRunnerResult() {
   return {
     protocolVersion: "pw-lean-runner-v1", jobId: "run:receipt-fixture", attemptId: "attempt:receipt", requestHash: runRequestHash,
@@ -820,6 +832,7 @@ function fixtureRunnerResult() {
     startedAt: "2026-07-13T00:00:01Z", finishedAt: "2026-07-13T00:00:02Z", kernelStatus: "accepted",
     checks: { network: "passed", noSorry: "passed", allowedAxioms: "passed", leanBuild: "passed" },
     artifacts: { manifestHash: sha("7"), stdoutHash: sha("8"), stderrHash: sha("9") },
+    environment: fixtureRunnerEnvironment(),
   };
 }
 

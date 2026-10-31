@@ -5,7 +5,7 @@ import { SectionTitle, Badge, ActionLink, Button, SectionHeading, Select } from 
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { type DelegationProfile, type StoredDelegation } from "@/db/repositories/delegation";
-import { type CatalogProblem } from "@/packages/domain/catalog";
+import { type WorkbenchCatalogTarget } from "../lib/runner-availability";
 import { type McpAttempt } from "@/packages/domain/mcp";
 import { closedAlphaAttemptLimits } from "@/packages/domain/attempt-policy.mjs";
 import { controlPlaneMaintenanceCopy, type ControlPlaneWriteAvailability } from "../lib/control-plane-write-capability";
@@ -35,7 +35,7 @@ export function ResearchLauncher({
 }: {
   profile: DelegationProfile | null;
   attempts: readonly McpAttempt[];
-  catalogTargets: readonly CatalogProblem[];
+  catalogTargets: readonly WorkbenchCatalogTarget[];
   initialTargetSlug: string | null;
   initialParentNodeId: string | null;
   onAttemptReady: (attempt: McpAttempt) => void;
@@ -232,6 +232,7 @@ export function ResearchLauncher({
         <div className="research-target-meta">
           <span>{scope === "formalize" ? "Formalization" : "Proof"}</span>
           <span>{target.source.leanToolchain}</span>
+          <p className={`research-target-runner is-${target.runnerAvailability.status}`} title={target.runnerAvailability.detail}>{target.runnerAvailability.label}</p>
           <Link href={`/explore/${target.slug}`}>Inspect source <span aria-hidden="true">→</span></Link>
         </div>
       </div>}

@@ -8,7 +8,7 @@ const maxProviderAgeMilliseconds = 5 * 60 * 1000;
 const maxCollectionMilliseconds = 30 * 1000;
 const systemClock = () => new Date();
 
-const head = "0049_add_catalog_browse_index.sql";
+const head = "0050_add_runner_queue_environment.sql";
 const digest = /^sha256:[a-f0-9]{64}$/;
 const revision = /^[a-f0-9]{40}$/;
 const sourceDigest = /^[a-f0-9]{64}$/;
@@ -114,7 +114,7 @@ export async function bindCloudflareReleaseEvidence({ manifest, expectedManifest
     match(observation.observedAt, observation.collectionWindow.completedAt, "OBSERVATION_COLLECTION_TIME_MISMATCH");
   }
   const migrations = await loadProofweaveMigrations();
-  requireValue(migrations.length === 50 && migrations.at(-1).name === head, "REVIEWED_MIGRATION_HISTORY_CHANGED");
+  requireValue(migrations.length === 51 && migrations.at(-1).name === head, "REVIEWED_MIGRATION_HISTORY_CHANGED");
   keys(observation.database, "fingerprint ledger", "DATABASE_OBSERVATION_INVALID");
   match(observation.database.fingerprint, m.database.fingerprint, "DATABASE_FINGERPRINT_MISMATCH");
   const ledger = observation.database.ledger;

@@ -1041,6 +1041,7 @@ test("serves the public research paths", async () => {
   assert.match(detailHtml, /Policy first\. Pool second\./i);
   assert.match(detailHtml, /Token or compute spend never mints mathematical credit/i);
   assert.match(detailHtml, /No public research checkpoint yet/i);
+  assert.match(detailHtml, /Hosted Runner not configured/i);
   assert.match(detailHtml, /Start with my Agent/i);
   assert.match(detailHtml, /workbench\?target=erdos-865/i);
 
@@ -3543,4 +3544,6 @@ test("capabilities publish the gate state without identifiers", async () => {
   assert.equal(body.researchWriteGate.participant.allowNewAttempts, true);
   assert.equal(body.researchWriteGate.participant.personCount > 0, true);
   assert.equal(JSON.stringify(body.researchWriteGate).includes("person:fixture-owner"), false);
+  assert.equal(body.runnerEnvironments.state, "unconfigured");
+  assert.deepEqual(body.runnerEnvironments.environments, []);
 });

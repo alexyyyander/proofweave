@@ -2,8 +2,12 @@ import { D1R2ArtifactStore, maxArtifactObjectBytes } from "../artifacts/d1-r2-ar
 import { D1InlineArtifactStore, maxInlineArtifactObjectBytes } from "../artifacts/d1-inline-artifact-store.mjs";
 import { D1RunStore } from "../lean-runner/d1-run-store.mjs";
 import { RunnerOrchestrator } from "../lean-runner/orchestrator.mjs";
-import { PinnedRunnerImageRegistry } from "../lean-runner/runner-image-policy.mjs";
-import { normalizeLeanRunnerLimits } from "../../packages/protocol/lean-runner.mjs";
+import { PinnedRunnerImageRegistry, RunnerImagePolicyError } from "../lean-runner/runner-image-policy.mjs";
+import { normalizeLeanRunnerLimits, runnerEnvironmentKey } from "../../packages/protocol/lean-runner.mjs";
+import {
+  normalizeRunnerExecutionEnvironments,
+  runnerEnvironmentDispatchDecision,
+} from "../lean-runner/runner-availability.mjs";
 import { isExecutableArtifactBundle } from "../../packages/protocol/artifact-bundle.mjs";
 
 export class RemoteMcpRunnerDispatchConfigurationError extends Error {
@@ -18,6 +22,45 @@ export class RemoteMcpRunnerDispatchValidationError extends Error {
     super(message);
     this.name = "RemoteMcpRunnerDispatchValidationError";
   }
+}
+
+/**
+ * Stable, user-facing refusal for a Run whose exact Lean environment has no
+ * approved image, no deployed Runner, or disabled execution. The MCP tool
+ * surface prefixes the message with `code` so clients can distinguish this
+ * from a transient control-plane failure.
+ */
+export class RunnerEnvironmentUnavailableError extends Error {
+  constructor({ reason, environment, availableEnvironments = [] }) {
+    const label = `Lean ${environment.leanToolchain} + Mathlib ${environment.mathlibRevision}`;
+    super(reason === "not_approved"
+      ? `No approved hosted Runner image exists for ${label}.`
+      : reason === "not_deployed"
+        ? `No hosted Runner is deployed for ${label}.`
+        : `Hosted Runner execution is disabled for ${label}. Prepare locally, or wait for the environment to be enabled.`);
+    this.name = "RunnerEnvironmentUnavailableError";
+    this.code = "runner_environment_unavailable";
+    this.reason = reason;
+    this.environment = Object.freeze({
+      leanToolchain: environment.leanToolchain,
+      mathlibRevision: environment.mathlibRevision,
+    });
+    this.availableEnvironments = Object.freeze(availableEnvironments.map((entry) => Object.freeze({
+      leanToolchain: entry.leanToolchain,
+      mathlibRevision: entry.mathlibRevision,
+      executionEnabled: entry.executionEnabled,
+    })));
+  }
+}
+
+/**
+ * Wake the Runner that serves this exact Lean environment. A configured route
+ * wins; the single wake client remains a fallback for tests and single-Runner
+ * deployments.
+ */
+export function selectRunnerWake({ environment, runnerWake = null, runnerWakeRoutes = null }) {
+  if (runnerWakeRoutes === null) return runnerWake;
+  return runnerWakeRoutes.get(runnerEnvironmentKey(environment)) ?? runnerWake;
 }
 
 /**
@@ -38,6 +81,8 @@ export class D1RemoteMcpRunnerDispatcher {
     controlPlanePrivateKeyJwk,
     defaultLimits,
     runnerWake = null,
+    runnerWakeRoutes = null,
+    executionEnvironments = null,
     now = () => new Date(),
   } = {}) {
     if (!database || typeof database.prepare !== "function") {
@@ -63,6 +108,19 @@ export class D1RemoteMcpRunnerDispatcher {
     if (runnerWake !== null && typeof runnerWake?.wake !== "function") {
       throw new RemoteMcpRunnerDispatchConfigurationError("Runner dispatch wake client must expose wake().");
     }
+    if (runnerWakeRoutes !== null) {
+      if (!(runnerWakeRoutes instanceof Map)) {
+        throw new RemoteMcpRunnerDispatchConfigurationError("Runner dispatch wake routes must be a Map keyed by Runner environment.");
+      }
+      for (const [key, client] of runnerWakeRoutes) {
+        if (typeof key !== "string" || key.length === 0 || typeof client?.wake !== "function") {
+          throw new RemoteMcpRunnerDispatchConfigurationError("Runner dispatch wake routes require derived environment keys and wake clients.");
+        }
+      }
+    }
+    const normalizedExecutionEnvironments = executionEnvironments === null
+      ? null
+      : normalizeRunnerExecutionEnvironments(executionEnvironments);
 
     this.artifactStore = artifactStore ?? (bucket
       ? new D1R2ArtifactStore({ database, bucket })
@@ -74,6 +132,8 @@ export class D1RemoteMcpRunnerDispatcher {
     this.controlPlanePrivateKeyJwk = controlPlanePrivateKeyJwk;
     this.defaultLimits = normalizeLeanRunnerLimits(defaultLimits);
     this.runnerWake = runnerWake;
+    this.runnerWakeRoutes = runnerWakeRoutes;
+    this.executionEnvironments = normalizedExecutionEnvironments;
     // R2-backed evidence can carry the full control-plane object ceiling.
     // The inline D1 fallback keeps the smaller closed-alpha row limit.
     const maximumOutputBytes = bucket ? maxArtifactObjectBytes : maxInlineArtifactObjectBytes;
@@ -105,7 +165,28 @@ export class D1RemoteMcpRunnerDispatcher {
       throw new RemoteMcpRunnerDispatchValidationError("Runner dispatch requires executable pw-artifact-bundle-v2 or pw-artifact-bundle-v3 workspace evidence.");
     }
 
-    const image = this.approvedImages.resolveEnvironment(loaded.bundle.environment);
+    const environmentDecision = runnerEnvironmentDispatchDecision({
+      executionEnvironments: this.executionEnvironments,
+      environment: loaded.bundle.environment,
+    });
+    if (!environmentDecision.allowed) {
+      throw new RunnerEnvironmentUnavailableError({
+        reason: environmentDecision.reason,
+        environment: loaded.bundle.environment,
+        availableEnvironments: this.executionEnvironments ?? [],
+      });
+    }
+    let image;
+    try {
+      image = this.approvedImages.resolveEnvironment(loaded.bundle.environment);
+    } catch (error) {
+      if (!(error instanceof RunnerImagePolicyError)) throw error;
+      throw new RunnerEnvironmentUnavailableError({
+        reason: "not_approved",
+        environment: loaded.bundle.environment,
+        availableEnvironments: this.executionEnvironments ?? [],
+      });
+    }
     const orchestrator = new RunnerOrchestrator({
       runStore: this.runStore,
       runnerQueue: this.runnerQueue,
@@ -121,9 +202,14 @@ export class D1RemoteMcpRunnerDispatcher {
       queuedAt: isoInstant(this.now()),
       beforeDispatch,
     });
-    if (!queued.delivery || !this.runnerWake) return Object.freeze({ ...queued, runnerWake: null });
+    const wake = selectRunnerWake({
+      environment: loaded.bundle.environment,
+      runnerWake: this.runnerWake,
+      runnerWakeRoutes: this.runnerWakeRoutes,
+    });
+    if (!queued.delivery || !wake) return Object.freeze({ ...queued, runnerWake: null });
     try {
-      const runnerWake = await this.runnerWake.wake();
+      const runnerWake = await wake.wake();
       return Object.freeze({ ...queued, runnerWake });
     } catch (error) {
       const errorCode = privacySafeErrorCode(error);

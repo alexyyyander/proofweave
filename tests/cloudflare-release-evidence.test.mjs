@@ -10,7 +10,7 @@ test("binds separate Cloudflare, Runner, E2B and Sites bridge identities while p
   const fixture = await releaseFixture({ production: true });
   const result = await bind(fixture);
   assert.equal(result.runnerState, "paused");
-  assert.equal(result.migrationHead, "0049_add_catalog_browse_index.sql");
+  assert.equal(result.migrationHead, "0050_add_runner_queue_environment.sql");
   assert.notEqual(fixture.manifest.cloudflare.sourceRevision, fixture.manifest.runner.revision);
   assert.notEqual(fixture.manifest.runner.sitesVersion, fixture.manifest.loginBridge.sitesVersion);
   assert.equal(fixture.observation.cloudflare.capabilities.releaseDiagnostics.sitesVersion, null);

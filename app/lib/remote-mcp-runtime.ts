@@ -39,6 +39,8 @@ export async function handleRemoteMcp(request: Request): Promise<Response> {
       runnerWakeUrl: settings.RUNNER_WAKE_URL,
       runnerWakeToken: settings.RUNNER_WAKE_TOKEN,
       runnerWakeHostAuthorizationToken: settings.RUNNER_WAKE_HOST_AUTHORIZATION_TOKEN,
+      runnerWakeRoutesJson: settings.RUNNER_WAKE_ROUTES_JSON,
+      runnerExecutionEnvironmentsJson: settings.RUNNER_EXECUTION_ENVIRONMENTS_JSON,
       receiptIssuerKeyId: settings.RECEIPT_ISSUER_KEY_ID,
       receiptIssuerPublicKey: settings.RECEIPT_ISSUER_PUBLIC_KEY,
       receiptIssuerPrivateKeyJwkJson: settings.RECEIPT_ISSUER_PRIVATE_KEY_JWK,

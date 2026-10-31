@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "pw-runner-environments-v1",
+  "schemaVersion": "pw-runner-environments-v2",
   "environments": [
     {
       "profile": "mathlib-4.31-9a948",
@@ -8,7 +8,12 @@
       "mathlibRevision": "9a9483a92959bc92bd6a60176dd1fe597298c1f8",
       "state": "approved",
       "sourceRun": null,
-      "sourceCommit": null
+      "sourceCommit": null,
+      "template": {
+        "id": "cbfjgbsrgtku0c7sliu5:workspace-modes-20261019-617de06",
+        "buildId": "4fd0e92f-9513-4c3d-8af3-6492e86c3f24",
+        "sourceImageDigest": "ghcr.io/alexyyyander/proofweave-lean-runner@sha256:ca896ab3945034079ab7f7cedfc7c5e665a601299c1745b51a72736420957393"
+      }
     },
     {
       "profile": "mathlib-4.27-a3a10",
@@ -17,7 +22,8 @@
       "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900",
       "state": "built_pending_template",
       "sourceRun": 40469297704,
-      "sourceCommit": "c3461cf0d3c81edda6b1f3bd12e9b76e18bfc3e1"
+      "sourceCommit": "c3461cf0d3c81edda6b1f3bd12e9b76e18bfc3e1",
+      "template": null
     }
   ]
 }

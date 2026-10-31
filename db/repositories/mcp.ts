@@ -824,6 +824,9 @@ function runnerSummary(result: ReturnType<typeof normalizeLeanRunnerResult>): Mc
     exitCode: result.exitCode,
     kernelStatus: result.kernelStatus,
     checks: Object.freeze({ ...result.checks }),
+    ...(result.environment
+      ? { environment: Object.freeze({ ...result.environment }) }
+      : {}),
   });
 }
 

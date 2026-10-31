@@ -40,16 +40,99 @@ GitHub Actions workflow run `40450516816`（profile `mathlib-4.27-a3a10`）已�
 
 ## 环境登记与校验
 
-`config/runner-environments.json`（schema `pw-runner-environments-v1`）登记两个环境，每个环境包含 `profile`、`imageDigest`、`leanToolchain`、`mathlibRevision`、`state`（`approved` | `built_pending_template`）、`sourceRun`、`sourceCommit`：
+`config/runner-environments.json`（schema `pw-runner-environments-v2`）登记每个环境及其 E2B template。每个环境包含 `profile`、`imageDigest`、`leanToolchain`、`mathlibRevision`、`state`、`sourceRun`、`sourceCommit` 与 `template`：
 
-- `mathlib-4.31-9a948` → `approved`
-- `mathlib-4.27-a3a10` → `built_pending_template`（附 run `40450516816` 与来源 commit）
+- `template` 为 `{ "id", "buildId", "sourceImageDigest" }`，其中 `sourceImageDigest` 必须等于该环境的 `imageDigest`；
+- `state` 只能是 `approved`、`template_ready` 或 `built_pending_template`；
+- `built_pending_template`：镜像已构建，但尚无 E2B template，`template` 必须为 `null`，且必须记录 `sourceRun` / `sourceCommit`；
+- `template_ready`：template ID / build ID 已登记，但尚未批准执行，`template` 必填，且必须记录来源；
+- `approved`：镜像与 template 均已评审，可部署执行，`template` 必填。
 
-`scripts/check-runner-environments.mjs` 只读解析 `wrangler.cloudflare.jsonc` 的 Worker `RUNNER_APPROVED_IMAGES_JSON`，以及 `deploy/huggingface-runner/render.yaml` 的 `RUNNER_APPROVED_IMAGES_JSON`、`PROOFWEAVE_E2B_RUNNER_IMAGE`、`PROOFWEAVE_E2B_TEMPLATE_ID`，校验 schema、digest 格式、环境对唯一性、profile 唯一性与 state 合法性，并报告：
+当前登记：
 
-- 当前批准列表与 pending 环境之间的差异；
-- 每个环境是否 admissible，以及 blockers（4.27 无 template 时为 `environment_state_pending` + `missing_e2b_template`）；
-- digest 与 source revision 的一致性，以及 deploy 配置与登记表的绑定是否一致。
+- `mathlib-4.31-9a948` → `approved`，template `cbfjgbsrgtku0c7sliu5:workspace-modes-20261019-617de06`（build `4fd0e92f…`）
+- `mathlib-4.27-a3a10` → `built_pending_template`，`template: null`（附 run `40469297704` 与来源 commit）
+
+`scripts/check-runner-environments.mjs` 只读解析 `wrangler.cloudflare.jsonc` 的 Worker `RUNNER_APPROVED_IMAGES_JSON`，以及 `deploy/huggingface-runner/render.yaml` 的 `RUNNER_APPROVED_IMAGES_JSON`、`PROOFWEAVE_E2B_RUNNER_IMAGE`、`PROOFWEAVE_E2B_TEMPLATE_ID`、`PROOFWEAVE_E2B_TEMPLATE_BUILD_ID`、`RUNNER_EXECUTION_ENABLED`、`RUNNER_ONLY_RUN_ID`，校验 schema、digest/template 格式、环境对唯一性、profile 唯一性、state 合法性与 template 来源绑定，并报告：
+
+- 每个环境是否 `ready`（approved + template 已登记）、`dispatchable`（在 Worker 列表）、`routed`（至少一个 Runner 部署服务该环境）、`executionSelected`（Runner 选中的执行镜像且 template 匹配）、`executing`（已允许执行），以及 `executionBlockers`；
+- Render 执行镜像的 template ID / build ID 是否与登记表完全一致；
+- Worker / Render 批准列表是否绑定到相同的 Lean 与 Mathlib。
+
+**每环境一个 Runner 与队列路由**：每个 trusted Runner 进程仍只服务一个 E2B template/镜像，但部署可以包含多个 Runner；每个 Render 配置的 `RUNNER_APPROVED_IMAGES_JSON` 恰好一个镜像且等于它自己的执行镜像。队列消息在入队时从签名 request 派生 `runner_environment_key`（Lean toolchain + Mathlib revision 的规范化 JSON），Runner 每次 claim 都带自己的 key，D1 队列只返回 key 匹配或历史 NULL 的行。因此：
+
+- Worker `RUNNER_APPROVED_IMAGES_JSON` 可以包含多个已部署环境；每个条目必须有对应的 Runner，否则 checker 报 `dispatch_environment_without_runner`；
+- 每个 Runner 的执行镜像必须出现在 Worker 分发列表中，否则 `runner_not_in_worker_allowlist`；
+- registry 中 `approved` 但未部署的环境报告为 `ready=true`、`routed=false`，这不是配置不一致；
+- 同一环境不能有两个 Runner（`duplicate_runner_environment`），同一镜像也不能被两个 Runner 复用；
+- `template_ready` Runner 只在 `RUNNER_EXECUTION_ENABLED=false` 或 `RUNNER_ONLY_RUN_ID` 受控单 Run 窗口下允许执行，否则属于配置不一致。
+
+checker 的 `--render` 可以重复传入；每个文件可以包含一个或多个 Render `services`，每个 service 代表一个 Runner 配置。多个 `--render` / service 会一起校验 Runner 数量、Worker 分发集合、template 绑定和重复环境。
+
+实现对应：`0050_add_runner_queue_environment.sql` 为 `runner_queue_messages` 增加派生 key；`D1RunnerLeaseQueue.claim` 按 key 过滤；Runner 从允许列表中的单一镜像派生 key；Worker 可选配置 `RUNNER_WAKE_ROUTES_JSON`，按环境选择正确的 wake 端点。迁移必须在 Runner 启动前应用到 Turso 控制面。
+
+`RUNNER_WAKE_ROUTES_JSON` 是一个最多 8 项的数组，每项为 `{ leanToolchain, mathlibRevision, url, wakeToken, hostAuthorizationToken? }`；`url` 必须是精确的 HTTPS `/v1/wake` 端点。未配置时回退到单一 `RUNNER_WAKE_URL`。
+
+## Runner 可用性
+
+Worker 的 `RUNNER_EXECUTION_ENVIRONMENTS_JSON` 声明已部署 Runner 及其执行开关：
+
+```json
+[
+  { "leanToolchain": "leanprover/lean4:v4.31.0", "mathlibRevision": "9a9483…", "executionEnabled": false }
+]
+```
+
+- `/api/mcp/capabilities` 的 `runnerEnvironments` 返回 `configured` / `unconfigured` / `invalid`、每个环境是否有已批准镜像、是否已部署、是否允许执行。
+- 目标页与 Workbench 的目标摘要显示 `Hosted Runner ready` / `paused` / `not deployed` / `not configured`；这只是托管执行的可用性，不阻止本地准备工作。
+- 分发前会检查该声明：未部署或执行关闭的环境返回稳定前缀 `runner_environment_unavailable`，而不是把 Run 排队到错误的 Runner 或产生模糊的内部错误。
+- 未配置该变量时保持旧的单 Runner 行为；多个 Runner 必须声明，否则 checker 报 `execution_declaration_missing`。
+
+## 镜像 conformance
+
+`services/lean-runner/conformance-fixtures.mjs` 定义按版本执行的 fixture 集；`run-image-conformance.mjs` 在镜像内重建最小 Lake workspace，并通过真实的 `ContainerLeanExecutor` 跑：
+
+- 正常证明 `succeeded/accepted`；
+- `sorry` 被 `noSorry` 拒绝；
+- 编译错误 `failed/not_run`；
+- `Classical.choice` 公理审计（允许时通过）；
+- `_root_.` 目标名、跨模块 import、Mathlib import；
+- `native_decide` 的实际公理名（当前版本会产生 per-theorem 生成公理，默认策略因此拒绝）；
+- 4.35 专属的 `module` 语法用例（其他工具链标记 skipped）。
+
+镜像构建 workflow 在无网络容器中运行该脚本，并把 `runner-image-evidence/conformance.json` 一并上传。报告 schema 为 `pw-runner-conformance-report-v1`，包含 `fixtureSetHash`、`imageDigest`、每个 case 的 expected/observed，以及覆盖全部内容的 `reportHash`。
+
+登记表可在环境上记录：
+
+```json
+"conformance": {
+  "imageDigest": "ghcr.io/alexyyyander/proofweave-lean-runner@sha256:...",
+  "fixtureSetHash": "sha256:...",
+  "reportHash": "sha256:...",
+  "state": "passed"
+}
+```
+
+checker 校验 `imageDigest` 必须等于环境的 `imageDigest`、fixture set 哈希必须是当前仓库的 fixture 集、state 必须是 `passed`；失败或 fixture 集漂移会报 `conformance_failed` / `conformance_fixture_set_mismatch`。未记录 conformance 的环境在报告中显示 `missing`，新环境批准前应先补齐报告；旧环境不会被追溯伪造。
+
+## 版本证据绑定
+
+新的签名 Runner result 可以携带 `environment` 块：
+
+```json
+{
+  "imageDigest": "ghcr.io/alexyyyander/proofweave-lean-runner@sha256:...",
+  "leanToolchain": "leanprover/lean4:v4.27.0",
+  "mathlibRevision": "a3a10db...",
+  "templateId": "cbfjgbsrgtku0c7sliu5:...",
+  "templateBuildId": "4fd0e92f-..."
+}
+```
+
+- Runner Worker 从认证 request 取 image / Lean / Mathlib，从 E2B factory 取 template ID/build，并把该块放进签名 payload；签名覆盖整个环境，篡改任一项都会使签名失效。
+- `run_results.canonical_result` 和 fresh-review replay evidence 会原样嵌入该块；公开 Run summary 和证据页也会显示。
+- Contribution Receipt 的 `run.environment` 复制该块；Receipt store 在签发前校验它的 Lean/Mathlib 与 Artifact Bundle 的 pin 完全一致，不一致就拒绝。
+- 历史结果没有该块仍然有效；新 Runner 的结果会带它。需要模板身份的回放应把 `templateId`/`templateBuildId` 一起核对。
 
 ```bash
 node scripts/check-runner-environments.mjs          # 人类可读
@@ -57,7 +140,35 @@ node scripts/check-runner-environments.mjs --json   # 机器可读
 node scripts/check-runner-environments.mjs --strict # 配置不一致时退出 1
 ```
 
-`--strict` 只在配置不一致、或 pending 环境被错误批准（出现在 Render 批准列表或成为 Render 执行镜像）时退出 1。4.27 当前 blocked 是登记表声明的预期状态，`--strict` 通过只表示配置自洽，**不代表 4.27 可执行**。该脚本不写入任何文件，也不修改部署配置。
+`--strict` 在以下情况退出 1：某个 Runner 的批准列表不是恰好一个镜像、Runner 的批准列表与其执行镜像不一致、Worker 分发的环境没有对应 Runner、Runner 执行镜像不在 Worker 列表、pending 环境出现在任何部署列表/执行镜像、template ID/build 不匹配、template_ready Runner 在开启执行时缺少 `RUNNER_ONLY_RUN_ID`、或同一环境/镜像被多个 Runner 复用。4.27 当前 blocked 是登记表声明的预期状态，`--strict` 通过只表示配置自洽，**不代表 4.27 可执行**。该脚本不写入任何文件，也不修改部署配置。
+
+## 部署值生成
+
+`scripts/generate-runner-environment-config.mjs` 从登记表生成部署所需的 env 值，避免手工复制 digest / template ID：
+
+```bash
+# 当前 4.31 执行面（与 render.yaml 一致）
+node scripts/generate-runner-environment-config.mjs \
+  --execution-profile mathlib-4.31-9a948 --surface render
+
+# 4.27 template 建好后：为 4.27 Runner 生成单镜像配置
+node scripts/generate-runner-environment-config.mjs \
+  --execution-profile mathlib-4.27-a3a10 --surface render
+
+# Worker 同时分发两个已部署环境
+node scripts/generate-runner-environment-config.mjs \
+  --profile mathlib-4.31-9a948 --profile mathlib-4.27-a3a10 --surface worker
+```
+
+- 默认只选择全部 `approved` 环境，输出 `RUNNER_APPROVED_IMAGES_JSON`；
+- `--profile` 可显式加入 `template_ready` 环境，但拒绝尚未有 template 的 `built_pending_template`；
+- `--execution-profile` 额外输出 `PROOFWEAVE_E2B_RUNNER_IMAGE`、`PROOFWEAVE_E2B_TEMPLATE_ID`、`PROOFWEAVE_E2B_TEMPLATE_BUILD_ID`，并把该环境加入批准列表；
+- 多 Runner 部署时，每个 Render 服务用 `--execution-profile <profile> --surface render` 生成该 Runner 的单镜像值；Worker 用 `--profile <profile-a> --profile <profile-b> --surface worker` 生成与已部署 Runner 集合一致的分发列表；
+- 只传 `--execution-profile` 时生成器只选择该环境，避免把其他 approved 环境误放进同一个 Runner 的列表；
+- `--surface render` 要求 `--execution-profile`；`--surface worker` 不输出执行设置；
+- `--format env`（默认）输出 shell/dotenv 可用的 `KEY='value'` 行，`--format json` 输出结构化报告。
+
+npm 别名：`npm run runner:environments:generate -- --execution-profile mathlib-4.31-9a948 --surface render`。生成器只读取登记表，不读写凭据，也不修改部署配置。
 
 ## 依据
 
@@ -68,13 +179,15 @@ node scripts/check-runner-environments.mjs --strict # 配置不一致时退出 1
 ## 发布链
 
 ```text
-GitHub Actions (profile=mathlib-4.27-a3a10)            已完成：run 40450516816
-  → GHCR proofweave-lean-runner@sha256:373c7ee…       已发布
-  → Worker RUNNER_APPROVED_IMAGES_JSON（4.27 + 4.31 可并存）
-  → E2B template（从 digest 构建，需 E2B_API_KEY）     当前缺口
-  → Render runner env（PROOFWEAVE_E2B_RUNNER_IMAGE、RUNNER_APPROVED_IMAGES_JSON）
+GitHub Actions (profile=mathlib-4.27-a3a10)            已完成：run 40469297704
+  → GHCR proofweave-lean-runner@sha256:3a7e335f…       已发布
+  → config/runner-environments.json（built_pending_template）
+  → E2B template（从 digest 构建，需 E2B_API_KEY）      当前缺口
+  → 登记 template ID/build 并晋升 template_ready
+  → Worker 分发列表 = 已部署 Runner 的环境集合
+  → 每个 Runner 的批准列表 = 自己的单一执行镜像（4.27 / 4.31 各一个 Runner）
   → 一次受控 Run（RUNNER_ONLY_RUN_ID / 单次投递）
-  → 环境验收后再开放 MCP/participant 研究窗口
+  → 环境验收后晋升 approved，再开放 MCP/participant 研究窗口
 ```
 
 构建命令（已完成，保留以复现）：
@@ -86,7 +199,7 @@ gh workflow run build-e2b-lean-runner-image.yml -f profile=mathlib-4.27-a3a10
 ## 当前状态与阻塞
 
 - 生产窗口 stage 1 已上线：Worker `cd1d7480`，participant `read_write`，MCP `read_only`，gate 对 2 Person / 2 Agent / 4 Attempt 有效。线上无未授权写入（未登录返回 401）。
-- **4.27 镜像构建已完成**：run `40450516816`，digest `sha256:373c7ee…`，来源 commit `8bd7409…`；SBOM 与 provenance 以该 run 产物为准。
+- **4.27 镜像构建已完成**：run `40469297704`（Node 22.23.4 安全重建），digest `sha256:3a7e335f…`，来源 commit `c3461cf…`；SBOM 与 provenance 以该 run 产物为准。
 - **4.27 仍被 template 阻塞**：没有 4.27 的 E2B template，Render 执行镜像与批准列表仍是 4.31，因此不能执行 4.27 Run。
 - GHCR 包是私有的；本机 GitHub token 没有 `read:packages`，Docker 也未登录 GHCR。digest 来自 workflow 结果，本机无法独立回读 manifest；需要 `read:packages` token、`docker login ghcr.io` 或构建日志/SBOM/provenance 复核。
 - `.env.local` 中没有 `E2B_API_KEY`，也没有 Render API 凭据；E2B template 和 Render 环境更新需要操作者控制台或凭据。

@@ -11,6 +11,9 @@ import { getReviewAssignmentRepository } from "@/db/repositories/reviews";
 import { MissingDatabaseBindingError } from "@/db";
 import type { CatalogProblem } from "@/packages/domain/catalog";
 import type { McpAttempt, McpRunSummary } from "@/packages/domain/mcp";
+import { runnerEnvironmentAvailability } from "@/services/lean-runner/runner-availability.mjs";
+import { loadRunnerAvailability } from "../lib/runner-availability.server";
+import type { WorkbenchCatalogTarget } from "../lib/runner-availability";
 import { toPersonIdentity, type AuthUser } from "../auth";
 
 export type WorkbenchData = Readonly<{
@@ -70,22 +73,35 @@ async function loadProvisionalLedger(personId: string): Promise<Readonly<{
     throw error;
   }
 }
-export async function loadSelectedCatalogTarget(slug: string) {
+export async function loadSelectedCatalogTarget(slug: string): Promise<WorkbenchCatalogTarget | null> {
   try {
-    return await getCatalogRepository().findBySlug(slug);
+    const target = await getCatalogRepository().findBySlug(slug);
+    return target ? withRunnerAvailability(target) : null;
   } catch (error) {
     if (error instanceof MissingDatabaseBindingError) return null;
     throw error;
   }
 }
 
-export async function loadCatalogTargets(): Promise<readonly CatalogProblem[]> {
+export async function loadCatalogTargets(): Promise<readonly WorkbenchCatalogTarget[]> {
   try {
-    return await getCatalogRepository().list("frontier");
+    const targets = await getCatalogRepository().list("frontier");
+    const availability = loadRunnerAvailability();
+    return Object.freeze(targets.map((target) => Object.freeze({
+      ...target,
+      runnerAvailability: runnerEnvironmentAvailability(availability, target.source),
+    })));
   } catch (error) {
     if (error instanceof MissingDatabaseBindingError) return [];
     throw error;
   }
+}
+
+function withRunnerAvailability(target: CatalogProblem): WorkbenchCatalogTarget {
+  return Object.freeze({
+    ...target,
+    runnerAvailability: runnerEnvironmentAvailability(loadRunnerAvailability(), target.source),
+  });
 }
 
 export function requestedTargetSlug(searchParams: { target?: string | string[] }): string | null {

@@ -6,6 +6,7 @@ import {
   TrustedRunnerProcess,
 } from "../services/lean-runner/trusted-runner-process.mjs";
 import { RunnerJobAuthenticationError } from "../services/lean-runner/queue.mjs";
+import { runnerEnvironmentKey } from "../packages/protocol/lean-runner.mjs";
 
 test("one-shot Runner fails closed before connecting or claiming when execution is disabled", async () => {
   await assert.rejects(
@@ -66,6 +67,28 @@ test("restricted Runner keeps its exact Run filter on every claim, including idl
   assert.equal((await process.processNext()).outcome, "acknowledged");
   assert.equal((await process.processNext()).outcome, "idle");
   assert.deepEqual(calls.map(input => input.runId), ["run:trusted-test", "run:trusted-test"]);
+});
+
+test("Runner keeps its derived environment filter on every claim, including idle polls", async () => {
+  const environmentKey = runnerEnvironmentKey({
+    leanToolchain: "leanprover/lean4:v4.27.0",
+    mathlibRevision: "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+  });
+  const queue = fakeQueue({ deliveryAttempt: 1 });
+  const calls = [];
+  const claim = queue.claim.bind(queue);
+  queue.claim = async input => { calls.push(input); return claim(input); };
+  const process = new TrustedRunnerProcess({
+    queue,
+    authenticator: { async authenticate(message) { return message; } },
+    async execute(_message, { beforeFinalize }) { await beforeFinalize(); },
+    consumerId: "runner:environment-test",
+    environmentKey,
+    sleep: async () => new Promise(() => {}),
+  });
+  assert.equal((await process.processNext()).outcome, "acknowledged");
+  assert.equal((await process.processNext()).outcome, "idle");
+  assert.deepEqual(calls.map(input => input.environmentKey), [environmentKey, environmentKey]);
 });
 
 test("trusted Runner wake interrupts a sixty-second idle poll without carrying work", async () => {
