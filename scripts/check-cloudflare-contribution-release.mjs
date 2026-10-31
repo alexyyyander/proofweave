@@ -25,9 +25,9 @@ export async function checkCloudflareContributionRelease({ evidence, manifest, e
     after: after.collectionWindow?.startedAt ?? after.observedAt,
   });
   return {
+    ...graph,
     schemaVersion: "pw-cloudflare-contribution-release-check-v2", outcome: "consistent", executionMode: "offline_dry_run",
     release: { manifestHash: expectedManifestHash, environment: manifest.environment, componentsIndependentlyBound: true, databaseFingerprint: before.databaseFingerprint, migrationHead: before.migrationHead },
-    ...graph,
     boundary: { ...graph.boundary, executionAuthorized: false, releaseApproved: false, liveProviderStateVerified: false, fineGrainedWriteGateVerified: false, statement: "Offline evidence consistency only; not authorization, cryptographic signature verification, live provider attestation, or proof of a Person/Agent/Attempt write gate." },
   };
 }
