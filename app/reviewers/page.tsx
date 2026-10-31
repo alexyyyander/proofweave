@@ -64,7 +64,7 @@ export default function ReviewersPage() {
 
     <div className="reading-actions">
       <ActionLink className="button button-primary" href="/reviews">Open the review queue <span aria-hidden="true">→</span></ActionLink>
-      <ActionLink className="button button-secondary" href="/how-it-works/verification">How verification works</ActionLink>
+      <ActionLink className="button button-secondary" href="/how-it-works#verification">How verification works</ActionLink>
       <ActionLink className="button button-secondary" href="/workbench">Connect a review Agent</ActionLink>
     </div>
   </SiteFrame>;

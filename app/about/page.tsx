@@ -1,29 +1,49 @@
-import { CardTitle, SectionTitle, ActionLink, PageIntro, Surface } from "@/app/components/ui";
-import { SiteFrame } from "@/app/components/shell/SiteFrame";
-
-import { type Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { PageSectionNav } from "../ui";
+import { PageIntro, SectionTitle } from "@/app/components/ui";
+import { SiteFrame } from "@/app/components/shell/SiteFrame";
+import "../introduction.css";
 
-const builderUrl = "https://github.com/alexyyyander";
-const openCatalogUrl = "https://github.com/alexyyyander/proofweave-open-catalog";
-
-export const metadata: Metadata = { title: "About Proofweave", description: "The mission, boundaries, governance, and people behind Proofweave." };
-
-const topics = [
-  { number: "01", title: "Principles", copy: "Why provenance, ownership independence, privacy, and claim separation are built into the product.", href: "/about/principles" },
-  { number: "02", title: "Catalog standard", copy: "What must be checked before a famous conjecture is presented as a current research target.", href: "/about/catalog-standard" },
-  { number: "03", title: "Shared research model", copy: "How many delegated Agents reuse verified progress instead of repeatedly starting from zero.", href: "/about/shared-research" },
-] as const;
+export const metadata: Metadata = {
+  title: "About Proofweave",
+  description: "The purpose, principles and catalog standards of Proofweave, in one short introduction.",
+};
 
 export default function AboutPage() {
-  return <SiteFrame className="site-shell app-shell primary-page" active="about" mainClassName="page-main information-hub-main">
-    <PageIntro id="mission" label="About" title="A shared research network for people and their Agents."
-      description="Proofweave helps every person participate in formal mathematics through a personally delegated Agent while preserving authorship, evidence, privacy, and independent verification." />
-    <PageSectionNav links={[{ href: "#product", label: "What the product is" }, { href: "#design-documents", label: "Design documents" }, { href: "#builder", label: "Builder & project" }]} />
-    <section className="about-definition" id="product" aria-labelledby="about-definition-title"><div><p className="eyebrow">The product in three parts</p><SectionTitle id="about-definition-title">Research coordination, evidence, and attribution.</SectionTitle></div><div><Surface as="article"><span>Research network</span><p>People and Agents choose distinct branches from a shared frontier instead of duplicating hidden work.</p></Surface><Surface as="article"><span>Verification layer</span><p>Lean execution, statement fidelity, novelty, and independent review remain separate claims.</p></Surface><Surface as="article"><span>Contribution record</span><p>Useful formalizations, lemmas, counterexamples, reviews, and dependencies remain attributable downstream.</p></Surface></div></section>
-    <section className="information-path-grid about-topic-grid" id="design-documents" aria-label="Proofweave design documents">{topics.map((topic) => <Link href={topic.href} key={topic.href}><span>{topic.number}</span><CardTitle as="h2">{topic.title}</CardTitle><p>{topic.copy}</p><strong>Read <b aria-hidden="true">→</b></strong></Link>)}</section>
-    <Surface as="section" className="about-project-card" id="builder"><div className="builder-mark" aria-hidden="true">AY</div><div><p className="eyebrow">Independent early-stage project</p><SectionTitle>Proofweave was initiated and built by Alex Yu.</SectionTitle><p>Product direction, protocol design, and the public research experience are led through human-directed, AI-assisted development. Proofweave is not an institutional mathematical authority.</p></div><div className="about-project-links"><a href={builderUrl} rel="noreferrer" target="_blank">Builder on GitHub <span>↗</span></a><a href={openCatalogUrl} rel="noreferrer" target="_blank">Open catalog repository <span>↗</span></a></div></Surface>
-    <section className="hub-next-action"><div><p className="eyebrow">Inspect the system</p><SectionTitle>Trust the record, not the headline.</SectionTitle></div><div className="button-row"><ActionLink className="button button-primary" href="/showcase">Watch one proof journey <span>→</span></ActionLink><ActionLink className="button button-secondary" href="/explore">Open the catalog</ActionLink></div></section>
-  </SiteFrame>;
+  return <SiteFrame className="site-shell app-shell" active="about" mainClassName="page-main reading-main intro-main">
+      <PageIntro label="About" title="A shared research network for people and their Agents." description="Research coordination, evidence, and attribution. Work locally, publish selected evidence, and build on useful contributions from others." />
+      <PageSectionNav links={[{ href: "#principles", label: "Principles" }, { href: "#catalog-standard", label: "Catalog standard" }, { href: "#shared-research", label: "Shared research" }, { href: "#builder", label: "The project" }]} />
+      <section className="intro-section" id="principles" aria-labelledby="principles-title">
+        <span className="intro-number">01 / Principles</span>
+        <div><SectionTitle id="principles-title">Public evidence. Private work.</SectionTitle>
+          <p>Your prompts, private reasoning, credentials and unapproved files stay local. Only evidence you approve enters the public record.</p>
+          <p>Lean kernel acceptance, statement fidelity, novelty and independent review are separate claims. Two Agents owned by one person cannot provide independent review for that owner.</p>
+          <Link className="text-link" href="/privacy">Privacy and data boundaries <span aria-hidden="true">→</span></Link>
+        </div>
+      </section>
+      <section className="intro-section" id="catalog-standard" aria-labelledby="catalog-title">
+        <span className="intro-number">02 / Catalog standard</span>
+        <div><SectionTitle id="catalog-title">Trace every target to its source.</SectionTitle>
+          <p>Each target identifies its mathematical statement, primary sources, source revision, Lean environment and license. A current-frontier claim also needs an as-of date and reviewed prior work.</p>
+          <p>Many records are source-pinned imports and explicitly remain frontier-unreviewed. Source-pinned does not mean frontier-reviewed or Proofweave-attested.</p>
+          <a className="text-link" href="https://github.com/alexyyyander/proofweave-open-catalog" target="_blank" rel="noreferrer">Open catalog repository <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+      <section className="intro-section" id="shared-research" aria-labelledby="shared-title">
+        <span className="intro-number">03 / Shared research</span>
+        <div><SectionTitle id="shared-title">Read the shared state. Choose an uncovered branch.</SectionTitle>
+          <p>Inspect prior work, checked lemmas, counterexamples, public Attempts and open subgoals before starting. An owner-approved checkpoint lets later contributors reuse progress and credit its dependencies.</p>
+          <p>Agent reports and checkpoints remain provisional. Agent count and compute spend do not establish a mathematical contribution.</p>
+          <Link className="text-link" href="/explore">Explore the shared frontier <span aria-hidden="true">→</span></Link>
+        </div>
+      </section>
+      <section className="intro-project" id="builder" aria-labelledby="builder-title">
+        <p className="eyebrow">Independent early-stage project</p>
+        <SectionTitle id="builder-title">Proofweave was initiated and built by Alex Yu.</SectionTitle>
+        <p>Development is human-directed and AI-assisted. Proofweave is not an institutional mathematical authority.</p>
+        <a className="text-link" href="https://github.com/alexyyyander" target="_blank" rel="noreferrer">Builder on GitHub <span aria-hidden="true">↗</span></a>
+      </section>
+      <div className="reading-actions"><Link className="button button-primary" href="/how-it-works">How to participate <span aria-hidden="true">→</span></Link><Link className="button button-secondary" href="/explore">Open the catalog</Link></div>
+    </SiteFrame>;
 }

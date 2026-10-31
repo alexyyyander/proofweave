@@ -46,7 +46,7 @@ export default function ProofMapIndexPage() {
           <span><b>{index.summary.scaffold}</b> scaffold</span>
         </div>
         <p>Deep maps are curated. Draft chains are unreviewed. Scaffolds are source-linked metadata with no theorem-level chain yet. Lean structures are extracted from comparator/solution modules, not kernel-checked by Proofweave.</p>
-        <Link href="/about/catalog-standard">How the catalog records evidence →</Link>
+        <Link href="/about#catalog-standard">How the catalog records evidence →</Link>
       </>}
     />
 

@@ -33,7 +33,7 @@ export default async function ReviewsPage() {
       <section className="workspace-onboarding-boundary" aria-label="Verification information">
         <strong>Verification remains inspectable.</strong>
         <p>Learn how Bundle evidence, independent ownership, and claim-specific decisions remain separate from a Lean execution result.</p>
-        <Link href="/how-it-works/verification">How verification works <span aria-hidden="true">→</span></Link>
+        <Link href="/how-it-works#verification">How verification works <span aria-hidden="true">→</span></Link>
       </section>
     </ReadOnlyPersonalSurface>;
   }
@@ -48,7 +48,7 @@ export default async function ReviewsPage() {
       <nav className="public-section-nav" aria-label="Verification page">
         <a href="#open-review-work"><span>Open work</span><b>{result.jobs.length}</b></a>
         <a href="#my-review-work"><span>My reviews</span><b>{user ? activeAssignments : "Sign in"}</b></a>
-        <Link href="/how-it-works/verification"><span>How verification works</span><b aria-hidden="true">→</b></Link>
+        <Link href="/how-it-works#verification"><span>How verification works</span><b aria-hidden="true">→</b></Link>
       </nav>
       <VerificationMarketBoard
         initialJobs={result.jobs}
