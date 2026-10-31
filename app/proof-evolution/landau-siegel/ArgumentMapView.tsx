@@ -6,6 +6,7 @@ import {
   type ArgumentMapComparison,
   type ArgumentMapData,
   type ArgumentMapEdge,
+  type LeanStructureData,
   type ProofEvolutionData,
   type ProofVersion,
 } from "@/app/lib/proof-evolution";
@@ -170,7 +171,7 @@ function roleLabel(roles: ArgumentMapData["roles"], roleId: string) {
   return roles.find((role) => role.id === roleId)?.label ?? roleId;
 }
 
-export function ArgumentMapView({ data, argumentMap }: { data: ProofEvolutionData; argumentMap: ArgumentMapData }) {
+export function ArgumentMapView({ data, argumentMap, lean }: { data: ProofEvolutionData; argumentMap: ArgumentMapData; lean: LeanStructureData }) {
   const model = useMemo(() => buildModel(data, argumentMap), [data, argumentMap]);
   const primary = model.strategies.filter((strategy) => strategy.strategy.track === "same-theorem");
   const stronger = model.strategies.filter((strategy) => strategy.strategy.track === "stronger-theorem");
@@ -271,7 +272,7 @@ export function ArgumentMapView({ data, argumentMap }: { data: ProofEvolutionDat
       <span><i className="is-bypasses" />Bypasses</span>
       <span>same-role is not a logical dependency</span>
     </div>
-    <p className="argument-map-scroll-hint">Scroll horizontally to follow the chain: input → row existence → determinant → p-adic → bounds → assembly → result.</p>
+    <p className="argument-map-scroll-hint">Scroll horizontally to follow the chain: input → row existence → determinant → p-adic → bounds → assembly → result. Click any node for its proof detail.</p>
 
     <div className="argument-map-body">
       <div className="argument-map-labels" style={{ paddingTop: HEADER_H + 12 }}>
@@ -368,7 +369,7 @@ export function ArgumentMapView({ data, argumentMap }: { data: ProofEvolutionDat
       sharedInputs={argumentMap.sharedInputs}
     />}
 
-    {selectedNode && <NodeDetail node={selectedNode} argumentMap={argumentMap} model={model} onClose={() => setSelectedNodeId(null)} />}
+    {selectedNode && <NodeDrawer node={selectedNode} argumentMap={argumentMap} model={model} lean={lean} onClose={() => setSelectedNodeId(null)} onSelectNode={setSelectedNodeId} />}
   </div>;
 }
 
@@ -432,28 +433,150 @@ function ComparePanel({ a, b, comparison, argumentMap, model, crossLinks, shared
   </Surface>;
 }
 
-function NodeDetail({ node, argumentMap, model, onClose }: { node: MapNode; argumentMap: ArgumentMapData; model: Model; onClose: () => void }) {
+function moduleShort(id: string) {
+  return id.replace(/^OAI\.NumberTheory\.SiegelZeros\./, "").replace(/^OAI\.NumberTheory\./, "");
+}
+
+function pathToResult(node: MapNode, model: Model, strategy?: StrategyModel) {
+  if (node.id === model.resultNode.id) return [model.resultNode];
+  const edges = strategy?.edges ?? [];
+  const parent = new Map<string, string | null>([[node.id, null]]);
+  const queue = [node.id];
+  while (queue.length > 0) {
+    const current = queue.shift();
+    if (!current) break;
+    if (current === model.resultNode.id) break;
+    for (const edge of edges.filter((candidate) => candidate.from === current)) {
+      if (!parent.has(edge.to)) {
+        parent.set(edge.to, current);
+        queue.push(edge.to);
+      }
+    }
+  }
+  if (!parent.has(model.resultNode.id)) return [];
+  const path: MapNode[] = [];
+  let current: string | null = model.resultNode.id;
+  while (current) {
+    const item = model.nodesById.get(current);
+    if (item) path.unshift(item);
+    current = parent.get(current) ?? null;
+  }
+  return path;
+}
+
+function NodeDrawer({ node, argumentMap, model, lean, onClose, onSelectNode }: {
+  node: MapNode;
+  argumentMap: ArgumentMapData;
+  model: Model;
+  lean: LeanStructureData;
+  onClose: () => void;
+  onSelectNode: (id: string) => void;
+}) {
   const strategy = node.versionId ? model.strategyById.get(node.versionId) : undefined;
+  const role = argumentMap.roles.find((candidate) => candidate.id === node.role);
+  const isSharedResult = node.id === argumentMap.result.id;
   const baseEdges = node.isResult ? model.strategies.flatMap((entry) => entry.edges) : strategy?.edges ?? [];
-  const incoming = [...baseEdges, ...model.crossEdges].filter((edge) => edge.to === node.id);
-  const outgoing = [...baseEdges, ...model.crossEdges].filter((edge) => edge.from === node.id);
-  return <Surface tone="card" className="argument-node-detail">
-    <div className="argument-node-detail-heading">
+  const dependencies = node.dependencies.map((id) => model.nodesById.get(id)).filter((entry): entry is MapNode => Boolean(entry));
+  const usedBy = baseEdges.filter((edge) => edge.from === node.id);
+  const crossRelations = model.crossEdges.filter((edge) => edge.from === node.id || edge.to === node.id);
+  const path = pathToResult(node, model, strategy);
+  const alignment = node.versionId && node.stepId ? lean.paperAlignments.find((candidate) => candidate.versionId === node.versionId && candidate.stepId === node.stepId) : undefined;
+  const anchors = alignment ? alignment.anchors.map((id) => lean.anchors.find((anchor) => anchor.id === id)).filter((anchor): anchor is NonNullable<typeof anchor> => Boolean(anchor)) : [];
+  const converging = isSharedResult ? model.strategies.flatMap((entry) => entry.edges.filter((edge) => edge.to === node.id).map((edge) => ({ strategy: entry, edge }))) : [];
+
+  return <Surface as="aside" tone="card" className="argument-detail-drawer" aria-label={`Proof detail for ${node.fullLabel}`}>
+    <header className="argument-drawer-header">
       <div>
-        <span className="argument-map-eyebrow">{node.isResult ? "Shared result" : `${roleLabel(argumentMap.roles, node.role)} · ${strategy?.version.label ?? "external"}`}</span>
+        <span className="argument-map-eyebrow">{isSharedResult ? "Shared result" : `${role?.label ?? node.role} · ${strategy?.version.label ?? "external"}`}</span>
         <h3>{node.fullLabel}</h3>
+        <div className="argument-drawer-badges">
+          <Badge>{node.kind}</Badge>
+          {strategy && <Badge>{strategy.version.pages} pages</Badge>}
+          {isSharedResult && <Badge tone="positive">all strategies converge</Badge>}
+        </div>
       </div>
-      <button type="button" onClick={onClose} aria-label="Close node detail">×</button>
+      <button type="button" className="argument-drawer-close" onClick={onClose} aria-label="Close proof detail">×</button>
+    </header>
+
+    <section className="argument-drawer-section">
+      <span>Proof detail</span>
+      <p>{node.detail}</p>
+    </section>
+
+    <section className="argument-drawer-section">
+      <span>Role in the argument</span>
+      <p>{isSharedResult ? "Shared target of the same-theorem strategies. The 11/12 and 7/8 tracks are stronger theorems that imply it." : role?.description ?? "No role description recorded."}</p>
+      {strategy && <p className="argument-drawer-note">{strategy.strategy.note}</p>}
+    </section>
+
+    {!isSharedResult && path.length > 0 && <section className="argument-drawer-section">
+      <span>Path to the result</span>
+      <div className="argument-drawer-path">
+        {path.map((entry, index) => <span key={entry.id}>
+          <button type="button" className={cx(entry.id === node.id && "is-current")} onClick={() => onSelectNode(entry.id)}>{entry.label}</button>
+          {index < path.length - 1 && <i aria-hidden="true">→</i>}
+        </span>)}
+      </div>
+    </section>}
+
+    <div className="argument-drawer-columns">
+      <section className="argument-drawer-section">
+        <span>Depends on</span>
+        {dependencies.length > 0 ? <div className="argument-drawer-links">{dependencies.map((entry) => <button type="button" key={entry.id} onClick={() => onSelectNode(entry.id)}>{entry.label}</button>)}</div> : <p>No recorded internal dependency.</p>}
+      </section>
+      <section className="argument-drawer-section">
+        <span>Used by</span>
+        {usedBy.length > 0 ? <div className="argument-drawer-links">{usedBy.map((edge) => {
+          const target = model.nodesById.get(edge.to);
+          return target ? <button type="button" key={`${edge.from}-${edge.to}-${edge.type}`} onClick={() => onSelectNode(target.id)}>{target.label}</button> : null;
+        })}</div> : <p>No recorded downstream use in this strategy.</p>}
+      </section>
     </div>
-    <p>{node.detail}</p>
-    <div className="argument-node-detail-meta">
-      <span>Source: {node.source}</span>
-      {strategy && <a href={strategy.version.sourceUrl} target="_blank" rel="noreferrer">Open paper ↗</a>}
-    </div>
-    <div className="argument-node-relations">
-      <div><span>Depends on</span>{node.dependencies.length ? node.dependencies.map((id) => <code key={id}>{model.nodesById.get(id)?.label ?? id}</code>) : <small>no internal dependency</small>}</div>
-      <div><span>Incoming links</span>{incoming.length ? incoming.map((edge) => <small key={`${edge.from}-${edge.to}-${edge.type}`}>{edge.type}: {model.nodesById.get(edge.from)?.label ?? edge.from}</small>) : <small>none</small>}</div>
-      <div><span>Outgoing links</span>{outgoing.length ? outgoing.map((edge) => <small key={`${edge.from}-${edge.to}-${edge.type}`}>{edge.type}: {model.nodesById.get(edge.to)?.label ?? edge.to}</small>) : <small>none</small>}</div>
-    </div>
+
+    <section className="argument-drawer-section">
+      <span>Cross-solution relations</span>
+      {crossRelations.length > 0 ? <ul className="argument-drawer-relations">{crossRelations.map((edge) => {
+        const otherId = edge.from === node.id ? edge.to : edge.from;
+        const other = model.nodesById.get(otherId);
+        return other ? <li key={`${edge.from}-${edge.to}-${edge.type}`}>
+          <Badge tone={edge.type === "bypasses" ? "warning" : edge.type === "replaces" ? "warning" : "neutral"}>{edge.type}</Badge>
+          <span>{edge.from === node.id ? "→" : "←"}</span>
+          <button type="button" onClick={() => onSelectNode(other.id)}>{other.label}</button>
+          <small>{edge.note ?? edge.label}</small>
+        </li> : null;
+      })}</ul> : <p>No direct cross-solution relation recorded.</p>}
+    </section>
+
+    {isSharedResult && <section className="argument-drawer-section">
+      <span>Strategies converging here</span>
+      <ul className="argument-drawer-relations">{converging.map(({ strategy: source, edge }) => <li key={`${source.strategy.versionId}-${edge.from}`}>
+        <Badge tone={source.strategy.track === "stronger-theorem" ? "neutral" : "positive"}>{source.version.label}</Badge>
+        <button type="button" onClick={() => onSelectNode(edge.from)}>{model.nodesById.get(edge.from)?.label ?? edge.from}</button>
+        <small>{edge.type} · {edge.label}</small>
+      </li>)}</ul>
+    </section>}
+
+    <section className="argument-drawer-section">
+      <span>Lean alignment</span>
+      {alignment ? <div className="argument-drawer-lean">
+        <div className="argument-drawer-badges">
+          <Badge tone={alignment.confidence === "source-anchored" ? "positive" : "warning"}>{alignment.confidence}</Badge>
+          {alignment.subsystems.map((id) => <Badge key={id}>{id}</Badge>)}
+        </div>
+        {anchors.length > 0 ? <ul>{anchors.map((anchor) => <li key={anchor.id}>
+          <a href={anchor.url ?? "#"} target="_blank" rel="noreferrer">{anchor.role} ↗</a>
+          <code>{anchor.fullName}</code>
+          <small>{anchor.module ? `${moduleShort(anchor.module)}:${anchor.line}` : "module not located"}</small>
+        </li>)}</ul> : <p>No declaration anchor recorded for this step.</p>}
+        <p className="argument-drawer-note">{alignment.note}</p>
+      </div> : <p>No step-level Lean alignment is recorded for this node. The formalized route is the OpenAI 9-page proof.</p>}
+    </section>
+
+    <section className="argument-drawer-section argument-drawer-source">
+      <span>Source</span>
+      <p>{node.source}</p>
+      {strategy && <a href={strategy.version.sourceUrl} target="_blank" rel="noreferrer">Open {strategy.version.sourceLabel} ↗</a>}
+      <small>Curated theorem-level detail; the linked paper remains authoritative.</small>
+    </section>
   </Surface>;
 }

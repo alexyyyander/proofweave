@@ -97,7 +97,7 @@ export function ProofEvolutionClient({ data, leanStructure, argumentMap }: { dat
         title="How each proof actually reaches the result"
         description="Each lane is a proof strategy; each column is a mathematical role. Solid edges are proof dependencies; dotted and dashed edges show shared roles, replacements, and bypasses. Select two strategies to see what they share, what one replaces, and where the short route leaves the long route."
       />
-      <ArgumentMapView data={data} argumentMap={argumentMap} />
+      <ArgumentMapView data={data} argumentMap={argumentMap} lean={leanStructure} />
     </section>
 
     <section id="detail" className="proof-evolution-section" aria-labelledby="detail-title">

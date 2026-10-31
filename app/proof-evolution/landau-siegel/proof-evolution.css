@@ -621,3 +621,73 @@
   .argument-compare-stats > div { min-width: 0; padding-left: 8px; }
   .argument-compare-stats strong { font-size: 22px; }
 }
+
+/* Immediate proof-detail drawer for argument-map nodes. */
+.ui-surface.argument-detail-drawer {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 18px 48px rgba(5, 16, 36, .22);
+  max-height: calc(100vh - 108px);
+  overflow: auto;
+  padding: 18px 20px;
+  position: fixed;
+  right: 24px;
+  top: 84px;
+  width: min(400px, calc(100vw - 32px));
+  z-index: 80;
+}
+.argument-drawer-header { align-items: flex-start; display: flex; gap: 12px; justify-content: space-between; }
+.argument-drawer-header h3 { font-family: var(--font-editorial); font-size: 23px; font-weight: 400; line-height: 1.15; margin: 4px 0 8px; }
+.argument-drawer-badges { display: flex; flex-wrap: wrap; gap: 5px; }
+.argument-drawer-close { appearance: none; background: transparent; border: 1px solid var(--line); border-radius: 50%; color: var(--ink-faint); cursor: pointer; flex: 0 0 auto; font-size: 15px; height: 28px; line-height: 1; width: 28px; }
+.argument-drawer-close:hover { background: var(--paper-deep); color: var(--ink); }
+.argument-drawer-section { border-top: 1px solid var(--line); margin-top: 12px; padding-top: 10px; }
+.argument-drawer-section > span:first-child { color: var(--ink-faint); display: block; font-size: 8px; font-weight: 700; letter-spacing: .06em; margin-bottom: 5px; text-transform: uppercase; }
+.argument-drawer-section p { color: var(--ink-soft); font-size: 11px; line-height: 1.7; margin: 0; }
+.argument-drawer-note { color: var(--ink-faint) !important; font-size: 9px !important; line-height: 1.6 !important; margin-top: 5px !important; }
+.argument-drawer-path { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+.argument-drawer-path > span { align-items: center; display: inline-flex; gap: 4px; }
+.argument-drawer-path button, .argument-drawer-links button, .argument-drawer-relations button {
+  appearance: none;
+  background: var(--paper-deep);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: var(--ink);
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 9px;
+  line-height: 1.35;
+  padding: 3px 5px;
+  text-align: left;
+}
+.argument-drawer-path button:hover, .argument-drawer-links button:hover, .argument-drawer-relations button:hover { border-color: var(--indigo); color: var(--indigo); }
+.argument-drawer-path button.is-current { background: var(--indigo-soft); color: var(--indigo); }
+.argument-drawer-path i { color: var(--ink-faint); font-style: normal; font-size: 9px; }
+.argument-drawer-columns { display: grid; gap: 12px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.argument-drawer-links { display: flex; flex-wrap: wrap; gap: 4px; }
+.argument-drawer-relations { display: grid; gap: 6px; list-style: none; margin: 0; padding: 0; }
+.argument-drawer-relations li { align-items: baseline; display: flex; flex-wrap: wrap; gap: 4px 6px; }
+.argument-drawer-relations li > span { color: var(--ink-faint); font-size: 9px; }
+.argument-drawer-relations li > small { color: var(--ink-faint); flex-basis: 100%; font-size: 8px; line-height: 1.5; }
+.argument-drawer-lean { display: grid; gap: 6px; }
+.argument-drawer-lean ul { display: grid; gap: 5px; list-style: none; margin: 0; padding: 0; }
+.argument-drawer-lean li { border-top: 1px solid rgba(21, 34, 57, .07); display: grid; gap: 2px; padding-top: 5px; }
+.argument-drawer-lean a { color: var(--indigo); font-size: 9px; }
+.argument-drawer-lean code { font-family: var(--font-code); font-size: 8px; overflow-wrap: anywhere; }
+.argument-drawer-lean small { color: var(--ink-faint); font-size: 8px; }
+.argument-drawer-source a { color: var(--indigo); display: inline-block; font-size: 9px; margin-top: 4px; }
+.argument-drawer-source small { color: var(--ink-faint); display: block; font-size: 8px; line-height: 1.5; margin-top: 5px; }
+
+@media (max-width: 760px) {
+  .ui-surface.argument-detail-drawer {
+    bottom: 10px;
+    left: 10px;
+    max-height: 72vh;
+    right: 10px;
+    top: auto;
+    width: auto;
+  }
+  .argument-drawer-columns { grid-template-columns: 1fr; }
+  .argument-drawer-header h3 { font-size: 21px; }
+}
