@@ -5,8 +5,12 @@ import { ActionLink, Badge, Field, FieldList, PageIntro, Surface } from "@/app/c
 import { SiteFrame } from "@/app/components/shell/SiteFrame";
 import { openaiMathCollection, publicationFamily } from "@/app/lib/publications";
 import type { LeanCoverageData, LeanCoverageFamily, ProofMapIndex, ProofMapIndexEntry } from "@/app/lib/proof-map";
+import type { DeepProofMapData } from "@/app/lib/deep-proof-map";
 import manifest from "@/data/proof-maps/manifest.json";
 import leanCoverageData from "@/data/proof-maps/lean-coverage.json";
+import deep032 from "@/data/proof-maps/deep/032.json";
+import deep084 from "@/data/proof-maps/deep/084.json";
+import deep159 from "@/data/proof-maps/deep/159.json";
 import { buildProofMapIndex } from "@/packages/domain/proof-map-index.mjs";
 import {
   ClaimCard,
@@ -20,6 +24,7 @@ import explanation032 from "@/data/publications/explanations/openai-math-032.jso
 import explanation084 from "@/data/publications/explanations/openai-math-084.json";
 import explanation159 from "@/data/publications/explanations/openai-math-159.json";
 import { MathText } from "../../../publications/MathText";
+import { DeepProofMapView } from "../../DeepProofMap";
 import "katex/dist/katex.min.css";
 import "../../proof-map.css";
 
@@ -29,6 +34,12 @@ const explanationArtifacts: Record<string, ClaimExplanation> = {
   "032": explanation032 as ClaimExplanation,
   "084": explanation084 as ClaimExplanation,
   "159": explanation159 as ClaimExplanation,
+};
+
+const deepProofMaps: Record<string, DeepProofMapData> = {
+  "032": deep032 as unknown as DeepProofMapData,
+  "084": deep084 as unknown as DeepProofMapData,
+  "159": deep159 as unknown as DeepProofMapData,
 };
 
 type Params = { params: Promise<{ number: string }> };
@@ -59,8 +70,10 @@ export default async function ProofMapFamilyPage({ params }: Params) {
   if (!entry) notFound();
   const leanFamily = leanCoverage.families.find((candidate) => candidate.familyNumber === family.number);
 
+  const deep = deepProofMaps[family.number];
   const explanation = entry.status === "draft" ? explanationForFamily(family.number, explanationArtifacts) : undefined;
   const isDraft = Boolean(explanation);
+  const isDeep = Boolean(deep);
 
   return <SiteFrame
     active="publications"
@@ -71,27 +84,31 @@ export default async function ProofMapFamilyPage({ params }: Params) {
     <PageIntro
       label={`Proof map · ${entry.statusLabel}`}
       title={<MathText text={family.title} />}
-      description={isDraft
-        ? "A draft explanation chain is recorded for this family. It is unreviewed, may be reading order rather than a verified dependency graph, and is not a Proofweave replay."
-        : "This family is indexed with its source-pinned claim, manuscripts, citations, and any upstream Lean scope. No theorem-level proof chain has been curated yet; the structure below is a metadata scaffold, not a claim of proof dependencies."}
+      description={isDeep
+        ? "A curated theorem-level argument map: nodes are the paper’s key theorems, lemmas, and constructions, and edges are their proof dependencies. It is unreviewed and is not a Proofweave replay, kernel check, or independent review."
+        : isDraft
+          ? "A draft explanation chain is recorded for this family. It is unreviewed, may be reading order rather than a verified dependency graph, and is not a Proofweave replay."
+          : "This family is indexed with its source-pinned claim, manuscripts, citations, and any upstream Lean scope. No theorem-level proof chain has been curated yet; the structure below is a metadata scaffold, not a claim of proof dependencies."}
       meta={<>
         <span>Family {family.number}</span>
         <span>{family.subject}</span>
         <span>{family.manuscripts.length} {family.manuscripts.length === 1 ? "manuscript" : "manuscripts"}</span>
         <span>{family.scope ? "Lean scope documented" : "No Lean scope linked"}</span>
+        {deep && <span>{deep.strategies.length} {deep.strategies.length === 1 ? "strategy" : "strategies"} · {deep.strategies.reduce((total, strategy) => total + strategy.nodes.length, 0)} nodes</span>}
         <span>Proofweave replay not run</span>
       </>}
       actions={<>
         <ActionLink variant="primary" href={`/publications/openai-math/${family.number}`}>Publication record</ActionLink>
+        {isDeep ? <ActionLink variant="secondary" href="#argument-map">Open the argument map</ActionLink> : null}
         <ActionLink variant="secondary" href="/proof-evolution">All proof maps</ActionLink>
         {isDraft && <ActionLink variant="secondary" href={`/publications/openai-math/${family.number}#explanations`}>Read the draft explanation</ActionLink>}
       </>}
     />
 
     <div className="proof-map-family-content">
-      <StatusBanner entry={entry} isDraft={isDraft} />
+      <StatusBanner entry={entry} isDraft={isDraft} isDeep={isDeep} />
 
-      {explanation ? <DraftChain familyNumber={family.number} explanation={explanation} family={family} /> : <ScaffoldMap entry={entry} />}
+      {deep ? <DeepProofMapView deep={deep} subject={family.subject} revision={openaiMathCollection.source.revision} /> : explanation ? <DraftChain familyNumber={family.number} explanation={explanation} family={family} /> : <ScaffoldMap entry={entry} />}
 
       <div className="proof-map-family-grid">
         <ManuscriptSection family={family} />
@@ -100,17 +117,19 @@ export default async function ProofMapFamilyPage({ params }: Params) {
 
       {leanFamily && <LeanStructureSection family={leanFamily} />}
 
-      <NextSteps entry={entry} isDraft={isDraft} />
+      <NextSteps entry={entry} isDraft={isDraft} isDeep={isDeep} />
     </div>
   </SiteFrame>;
 }
 
-function StatusBanner({ entry, isDraft }: { entry: ProofMapIndexEntry; isDraft: boolean }) {
+function StatusBanner({ entry, isDraft, isDeep }: { entry: ProofMapIndexEntry; isDraft: boolean; isDeep: boolean }) {
   return <div className="proof-map-family-status">
-    <Badge tone={isDraft ? "warning" : "neutral"}>{entry.statusLabel}</Badge>
-    <p>{isDraft
-      ? "Draft proof chain: unreviewed, no platform replay, no independent review. The numbered steps are not automatically a proof DAG."
-      : "Metadata scaffold: the source record exists, but theorem statements, proof edges, Lean declaration alignment, and cross-solution relations still need curation."}</p>
+    <Badge tone={isDeep ? "positive" : isDraft ? "warning" : "neutral"}>{entry.statusLabel}</Badge>
+    <p>{isDeep
+      ? "Deep argument map: theorem-level dependencies are curated and source-located, but the map is unreviewed. It is not a platform replay, kernel check, statement review, or independent review."
+      : isDraft
+        ? "Draft proof chain: unreviewed, no platform replay, no independent review. The numbered steps are not automatically a proof DAG."
+        : "Metadata scaffold: the source record exists, but theorem statements, proof edges, Lean declaration alignment, and cross-solution relations still need curation."}</p>
     <small>{entry.nextStep}</small>
   </div>;
 }
@@ -262,20 +281,25 @@ function LeanStructureSection({ family }: { family: LeanCoverageFamily }) {
   </section>;
 }
 
-function NextSteps({ entry, isDraft }: { entry: ProofMapIndexEntry; isDraft: boolean }) {
+function NextSteps({ entry, isDraft, isDeep }: { entry: ProofMapIndexEntry; isDraft: boolean; isDeep: boolean }) {
   return <Surface tone="card" className="proof-map-next-steps">
     <div className="proof-map-family-section-heading">
-      <div><p className="eyebrow">Continuous curation</p><h2>What to fill next</h2></div>
+      <div><p className="eyebrow">Continuous curation</p><h2>{isDeep ? "What to verify next" : "What to fill next"}</h2></div>
       <span>Status: {entry.statusLabel}</span>
     </div>
-    <ol>
+    {isDeep ? <ol>
+      <li><strong>Review each statement.</strong> Check the theorem, lemma, and construction labels against the paper at the cited section; the paper remains authoritative.</li>
+      <li><strong>Check every dependency edge.</strong> Remove any edge the proof does not use; add lemma-level nodes only with a source location.</li>
+      <li><strong>Extend Lean alignment.</strong> Map more paper nodes to comparator declarations where the upstream module supports it, and record toolchain, axioms, and kernel results when a build exists.</li>
+      <li><strong>Review and record evidence.</strong> Statement review, independent review, replay, and receipt are separate gates; this deep map satisfies none of them yet.</li>
+    </ol> : <ol>
       <li><strong>Extract theorem/lemma statements.</strong> Pin each statement to a paper, section, and page; do not paraphrase a dependency that the paper does not state.</li>
       <li><strong>Build the argument map.</strong> Add a node for each theorem/lemma/construction, then add directed `depends` edges only where the proof uses it.</li>
       <li><strong>Align Lean.</strong> Map each node to declarations, comparator statements, or mark it `unmapped`; record toolchain, Mathlib revision, and axioms when a kernel check exists.</li>
       <li><strong>Add cross-solution relations.</strong> Use `same-role`, `replaces`, and `bypasses` only after review; never treat a shared role as logical equivalence.</li>
       <li><strong>Review and record evidence.</strong> Independent review, replay, and receipt are separate gates; a scaffold or draft does not satisfy them.</li>
-    </ol>
-    <p className="proof-map-next-step">{isDraft ? "Promote this draft chain to a theorem-level map, then review it." : entry.nextStep}</p>
+    </ol>}
+    <p className="proof-map-next-step">{isDeep ? "Deep argument maps are unreviewed until a named reviewer checks the statements, edges, and Lean alignment." : isDraft ? "Promote this draft chain to a theorem-level map, then review it." : entry.nextStep}</p>
     <div className="proof-map-next-actions">
       <Link href="/proof-evolution">Back to all proof maps</Link>
       <Link href={`/publications/openai-math/${entry.familyNumber}`}>Open the publication record</Link>

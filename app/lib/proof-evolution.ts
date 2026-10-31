@@ -183,6 +183,8 @@ export type ArgumentMapData = {
     label: string;
     statement: string;
     source: string;
+    detail?: string;
+    roleNote?: string;
   };
   roles: ArgumentMapRole[];
   strategies: ArgumentMapStrategy[];
@@ -193,6 +195,8 @@ export type ArgumentMapData = {
   comparisons: ArgumentMapComparison[];
   sharedInputs: string[];
   caveats: string[];
+  summaryNote?: string;
+  scrollHint?: string;
 };
 
 export type LeanStructureData = {
@@ -203,6 +207,7 @@ export type LeanStructureData = {
   root: string;
   commit: string;
   sourceNote: string;
+  noAlignmentNote?: string;
   summary: {
     fetchedModules: number;
     oaiModules: number;

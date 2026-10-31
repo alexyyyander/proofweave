@@ -38,7 +38,7 @@ test("the coverage summary is truthful and statuses are explicit", () => {
   assert.equal(index.summary.leanFamilies, 242);
   assert.equal(index.summary.leanSolutionModules, 426);
   assert.equal(index.summary.leanTheoremNames, 536);
-  assert.deepEqual(index.statusCounts, { deep: 1, draft: 3, scaffold: 368 });
+  assert.deepEqual(index.statusCounts, { deep: 4, draft: 0, scaffold: 368 });
   assert.equal(index.entries.filter((entry) => entry.status === "scaffold").every((entry) => entry.reviewStatus === "not_started"), true);
   assert.equal(index.entries.filter((entry) => entry.status !== "scaffold").every((entry) => entry.reviewStatus === "unreviewed"), true);
 });
@@ -49,9 +49,10 @@ test("the curated families have the expected routes and labels", () => {
   assert.equal(byNumber.get("003").route, "/proof-evolution/landau-siegel");
   assert.equal(byNumber.get("003").statusLabel, "Deep argument map");
   for (const number of ["032", "084", "159"]) {
-    assert.equal(byNumber.get(number).status, "draft");
+    assert.equal(byNumber.get(number).status, "deep");
     assert.equal(byNumber.get(number).route, `/proof-evolution/openai-math/${number}`);
-    assert.equal(byNumber.get(number).statusLabel, "Draft proof chain");
+    assert.equal(byNumber.get(number).statusLabel, "Deep argument map");
+    assert.equal(byNumber.get(number).reviewStatus, "unreviewed");
   }
   assert.equal(byNumber.get("001").status, "scaffold");
   assert.equal(byNumber.get("001").route, "/proof-evolution/openai-math/001");

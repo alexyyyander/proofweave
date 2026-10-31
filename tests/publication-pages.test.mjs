@@ -93,7 +93,7 @@ test("the Landau–Siegel family links to the proof-evolution prototype", async 
 });
 
 
-test("the proof-map index, scaffold, draft, and API render with explicit status", async () => {
+test("the proof-map index, scaffold, deep maps, and API render with explicit status", async () => {
   const index = await fetchPage("/proof-evolution");
   assert.equal(index.status, 200);
   const indexHtml = await index.text();
@@ -109,18 +109,23 @@ test("the proof-map index, scaffold, draft, and API render with explicit status"
   assert.ok(scaffoldHtml.includes("Structure skeleton"));
   assert.ok(scaffoldHtml.includes("No theorem-level proof chain has been curated yet"));
 
-  const draft = await fetchPage("/proof-evolution/openai-math/032");
-  assert.equal(draft.status, 200);
-  const draftHtml = await draft.text();
-  assert.ok(draftHtml.includes("Draft proof chain"));
-  assert.ok(draftHtml.includes("Recorded proof steps"));
-  assert.ok(draftHtml.includes("Draft · unreviewed"));
+  const deep = await fetchPage("/proof-evolution/openai-math/032");
+  assert.equal(deep.status, 200);
+  const deepHtml = await deep.text();
+  assert.ok(deepHtml.includes("Deep argument map"));
+  assert.ok(deepHtml.includes("Theorem dependencies"));
+  assert.ok(deepHtml.includes("How the argument reaches the result"));
+  assert.ok(deepHtml.includes("Four-factor switch"));
+  assert.ok(deepHtml.includes("Deep · unreviewed"));
+  assert.ok(deepHtml.includes("No Lean comparator is linked"));
+  assert.ok(deepHtml.includes("cited context"));
 
   const api = await runtime.dispatchFetch("http://localhost/api/proof-maps");
   assert.equal(api.status, 200);
   const payload = await api.json();
   assert.equal(payload.entries.length, 372);
-  assert.equal(payload.summary.deep, 1);
+  assert.equal(payload.summary.deep, 4);
+  assert.equal(payload.summary.draft, 0);
   assert.equal(payload.summary.scaffold, 368);
 });
 
@@ -138,6 +143,21 @@ test("the Lean coverage index, family section, and API expose real modules", asy
   assert.ok(familyHtml.includes("Comparator-linked modules and declarations"));
   assert.ok(familyHtml.includes("OAI.Thorp.Current.first_reciprocal_main"));
   assert.ok(familyHtml.includes("OAI.Probability.ThorpShuffle.FirstMain"));
+
+  const dyadic = await fetchPage("/proof-evolution/openai-math/084");
+  assert.equal(dyadic.status, 200);
+  const dyadicHtml = await dyadic.text();
+  assert.ok(dyadicHtml.includes("General q"));
+  assert.ok(dyadicHtml.includes("Dyadic q = 1/2"));
+  assert.ok(dyadicHtml.includes("OAI.Problem310.dyadic_affine_avoidance"));
+  assert.ok(dyadicHtml.includes("Lean comparator formalizes the dyadic case only"));
+
+  const reciprocal = await fetchPage("/proof-evolution/openai-math/159");
+  assert.equal(reciprocal.status, 200);
+  const reciprocalHtml = await reciprocal.text();
+  assert.ok(reciprocalHtml.includes("Triangular increment"));
+  assert.ok(reciprocalHtml.includes("OAI.Erdos3.manuscriptReciprocalProgressionTheorem"));
+  assert.ok(reciprocalHtml.includes("quantitative density bound is outside this alignment"));
 
   const api = await runtime.dispatchFetch("http://localhost/api/proof-maps");
   assert.equal(api.status, 200);

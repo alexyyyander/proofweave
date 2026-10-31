@@ -185,11 +185,12 @@ export function ArgumentMapView({ data, argumentMap, lean }: { data: ProofEvolut
   const [focusedStrategyId, setFocusedStrategyId] = useState<string | null>(null);
 
   const compareBEffective = compareA === compareB ? (primary.find((strategy) => strategy.strategy.versionId !== compareA)?.strategy.versionId ?? compareB) : compareB;
-  const visibleStrategies = mode === "compare"
+  const canCompare = primary.length > 1;
+  const visibleStrategies = mode === "compare" && canCompare
     ? [model.strategyById.get(compareA), model.strategyById.get(compareBEffective)].filter((strategy): strategy is StrategyModel => Boolean(strategy))
     : [...primary, ...(showStronger ? stronger : [])];
   const visibleIds = new Set(visibleStrategies.map((strategy) => strategy.strategy.versionId));
-  const comparison = mode === "compare" ? argumentMap.comparisons.find((entry) => {
+  const comparison = mode === "compare" && canCompare ? argumentMap.comparisons.find((entry) => {
     const pair = [entry.a, entry.b].sort().join("|");
     return pair === [compareA, compareBEffective].sort().join("|");
   }) : undefined;
@@ -246,21 +247,23 @@ export function ArgumentMapView({ data, argumentMap, lean }: { data: ProofEvolut
     <div className="argument-map-toolbar">
       <div className="argument-map-modes" role="group" aria-label="Argument map mode">
         <button type="button" className={cx("argument-map-mode", mode === "all" && "is-selected")} aria-pressed={mode === "all"} onClick={() => setMode("all")}>All strategies</button>
-        <button type="button" className={cx("argument-map-mode", mode === "compare" && "is-selected")} aria-pressed={mode === "compare"} onClick={() => setMode("compare")}>Compare two</button>
+        <button type="button" className={cx("argument-map-mode", mode === "compare" && canCompare && "is-selected")} aria-pressed={mode === "compare" && canCompare} onClick={() => setMode("compare")} disabled={!canCompare} title={canCompare ? "Compare two strategies" : "This family has a single curated strategy"}>Compare two</button>
       </div>
-      {mode === "all" ? <>
-        <label className="argument-map-toggle"><input type="checkbox" checked={showStronger} onChange={(event) => setShowStronger(event.target.checked)} /> Stronger theorem track</label>
-        <label className="argument-map-toggle"><input type="checkbox" checked={showCrossLinks} onChange={(event) => setShowCrossLinks(event.target.checked)} /> Cross-links</label>
+      {mode === "all" || !canCompare ? <>
+        {stronger.length > 0 && <label className="argument-map-toggle"><input type="checkbox" checked={showStronger} onChange={(event) => setShowStronger(event.target.checked)} /> Stronger theorem track</label>}
+        {model.crossEdges.length > 0 && <label className="argument-map-toggle"><input type="checkbox" checked={showCrossLinks} onChange={(event) => setShowCrossLinks(event.target.checked)} /> Cross-links</label>}
       </> : <>
         <label className="argument-map-select">A<select value={compareA} onChange={(event) => setCompareA(event.target.value)}>{model.strategies.map((strategy) => <option key={strategy.strategy.versionId} value={strategy.strategy.versionId}>{strategy.version.label} · {strategy.version.pages} pp</option>)}</select></label>
         <label className="argument-map-select">B<select value={compareBEffective} onChange={(event) => setCompareB(event.target.value)}>{model.strategies.filter((strategy) => strategy.strategy.versionId !== compareA).map((strategy) => <option key={strategy.strategy.versionId} value={strategy.strategy.versionId}>{strategy.version.label} · {strategy.version.pages} pp</option>)}</select></label>
       </>}
     </div>
 
-    {mode === "all" && <div className="argument-map-summary">
-      <span><Badge tone="positive">Shortest</Badge> {shortest?.version.label} · {shortest?.version.pages} pages · {shortest?.nodes.length} nodes</span>
-      <span><Badge>Longest</Badge> {longest?.version.label} · {longest?.version.pages} pages · {longest?.nodes.length} nodes</span>
-      <span className="argument-map-summary-note">The shortest path is not a compressed long path: it replaces the interpolation/determinant machinery. Cross-links show what each route shares, replaces, or bypasses.</span>
+    {(mode === "all" || !canCompare) && <div className="argument-map-summary">
+      {visibleStrategies.length > 1 ? <>
+        <span><Badge tone="positive">Shortest</Badge> {shortest?.version.label} · {shortest?.version.pages} pages · {shortest?.nodes.length} nodes</span>
+        <span><Badge>Longest</Badge> {longest?.version.label} · {longest?.version.pages} pages · {longest?.nodes.length} nodes</span>
+      </> : visibleStrategies[0] ? <span><Badge>Strategy</Badge> {visibleStrategies[0].version.label} · {visibleStrategies[0].version.pages} pages · {visibleStrategies[0].nodes.length} nodes</span> : null}
+      <span className="argument-map-summary-note">{argumentMap.summaryNote ?? "The shortest path is not a compressed long path: it replaces the interpolation/determinant machinery. Cross-links show what each route shares, replaces, or bypasses."}</span>
       {showStronger && <span className="argument-map-summary-note">The stronger-theorem lanes are different theorems. Their arrows to the shared result are implications, not alternative proofs of the same statement.</span>}
     </div>}
 
@@ -272,7 +275,7 @@ export function ArgumentMapView({ data, argumentMap, lean }: { data: ProofEvolut
       <span><i className="is-bypasses" />Bypasses</span>
       <span>same-role is not a logical dependency</span>
     </div>
-    <p className="argument-map-scroll-hint">Scroll horizontally to follow the chain: input → row existence → determinant → p-adic → bounds → assembly → result. Click any node for its proof detail.</p>
+    <p className="argument-map-scroll-hint">{argumentMap.scrollHint ?? "Scroll horizontally to follow the chain from inputs to the shared result. Click any node for its proof detail."}</p>
 
     <div className="argument-map-body">
       <div className="argument-map-labels" style={{ paddingTop: HEADER_H + 12 }}>
@@ -434,7 +437,7 @@ function ComparePanel({ a, b, comparison, argumentMap, model, crossLinks, shared
 }
 
 function moduleShort(id: string) {
-  return id.replace(/^OAI\.NumberTheory\.SiegelZeros\./, "").replace(/^OAI\.NumberTheory\./, "");
+  return id.split(".").slice(-2).join(".");
 }
 
 function pathToResult(node: MapNode, model: Model, strategy?: StrategyModel) {
@@ -505,7 +508,7 @@ function NodeDrawer({ node, argumentMap, model, lean, onClose, onSelectNode }: {
 
     <section className="argument-drawer-section">
       <span>Role in the argument</span>
-      <p>{isSharedResult ? "Shared target of the same-theorem strategies. The 11/12 and 7/8 tracks are stronger theorems that imply it." : role?.description ?? "No role description recorded."}</p>
+      <p>{isSharedResult ? argumentMap.result.roleNote ?? "Shared target of the same-theorem strategies. The 11/12 and 7/8 tracks are stronger theorems that imply it." : role?.description ?? "No role description recorded."}</p>
       {strategy && <p className="argument-drawer-note">{strategy.strategy.note}</p>}
     </section>
 
@@ -547,6 +550,11 @@ function NodeDrawer({ node, argumentMap, model, lean, onClose, onSelectNode }: {
       })}</ul> : <p>No direct cross-solution relation recorded.</p>}
     </section>
 
+    {argumentMap.result.detail && isSharedResult && <section className="argument-drawer-section">
+      <span>Result boundary</span>
+      <p>{argumentMap.result.detail}</p>
+    </section>}
+
     {isSharedResult && <section className="argument-drawer-section">
       <span>Strategies converging here</span>
       <ul className="argument-drawer-relations">{converging.map(({ strategy: source, edge }) => <li key={`${source.strategy.versionId}-${edge.from}`}>
@@ -566,10 +574,10 @@ function NodeDrawer({ node, argumentMap, model, lean, onClose, onSelectNode }: {
         {anchors.length > 0 ? <ul>{anchors.map((anchor) => <li key={anchor.id}>
           <a href={anchor.url ?? "#"} target="_blank" rel="noreferrer">{anchor.role} ↗</a>
           <code>{anchor.fullName}</code>
-          <small>{anchor.module ? `${moduleShort(anchor.module)}:${anchor.line}` : "module not located"}</small>
+          <small>{anchor.module ? `${moduleShort(anchor.module)}${anchor.line !== null ? `:${anchor.line}` : ""}` : "module not located"}</small>
         </li>)}</ul> : <p>No declaration anchor recorded for this step.</p>}
         <p className="argument-drawer-note">{alignment.note}</p>
-      </div> : <p>No step-level Lean alignment is recorded for this node. The formalized route is the OpenAI 9-page proof.</p>}
+      </div> : <p>{lean.noAlignmentNote ?? "No step-level Lean alignment is recorded for this node. The formalized route is the OpenAI 9-page proof."}</p>}
     </section>
 
     <section className="argument-drawer-section argument-drawer-source">
