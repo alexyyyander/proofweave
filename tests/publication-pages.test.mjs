@@ -88,6 +88,38 @@ test("the Landau–Siegel family links to the proof-evolution prototype", async 
   const response = await fetchPage("/publications/openai-math/003");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.ok(html.includes("Proof evolution prototype"));
+  assert.ok(html.includes("Proof map"));
   assert.ok(html.includes('href="/proof-evolution/landau-siegel"'));
+});
+
+
+test("the proof-map index, scaffold, draft, and API render with explicit status", async () => {
+  const index = await fetchPage("/proof-evolution");
+  assert.equal(index.status, 200);
+  const indexHtml = await index.text();
+  assert.ok(indexHtml.includes("Every result gets a structure"));
+  assert.ok(indexHtml.includes("372"));
+  assert.ok(indexHtml.includes("Deep argument map"));
+  assert.ok(indexHtml.includes("Metadata scaffold"));
+
+  const scaffold = await fetchPage("/proof-evolution/openai-math/001");
+  assert.equal(scaffold.status, 200);
+  const scaffoldHtml = await scaffold.text();
+  assert.ok(scaffoldHtml.includes("Metadata scaffold"));
+  assert.ok(scaffoldHtml.includes("Structure skeleton"));
+  assert.ok(scaffoldHtml.includes("No theorem-level proof chain has been curated yet"));
+
+  const draft = await fetchPage("/proof-evolution/openai-math/032");
+  assert.equal(draft.status, 200);
+  const draftHtml = await draft.text();
+  assert.ok(draftHtml.includes("Draft proof chain"));
+  assert.ok(draftHtml.includes("Recorded proof steps"));
+  assert.ok(draftHtml.includes("Draft · unreviewed"));
+
+  const api = await runtime.dispatchFetch("http://localhost/api/proof-maps");
+  assert.equal(api.status, 200);
+  const payload = await api.json();
+  assert.equal(payload.entries.length, 372);
+  assert.equal(payload.summary.deep, 1);
+  assert.equal(payload.summary.scaffold, 368);
 });
