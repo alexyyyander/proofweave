@@ -27,11 +27,23 @@ import { MathText } from "../../../publications/MathText";
 import { DeepProofMapView } from "../../DeepProofMap";
 import { getI18n } from "@/app/i18n/server";
 import type { Locale } from "@/app/i18n/config";
-import type { Translator } from "@/app/i18n/translate";
+import type { TranslationKey, Translator } from "@/app/i18n/translate";
 import "katex/dist/katex.min.css";
 import "../../proof-map.css";
 
 export const dynamic = "force-dynamic";
+
+const statusKeys: Record<ProofMapIndexEntry["status"], TranslationKey> = {
+  deep: "proofMaps.index.statusDeep",
+  draft: "proofMaps.index.statusDraft",
+  scaffold: "proofMaps.index.statusScaffold",
+};
+
+const leanStatusKeys: Record<LeanCoverageFamily["leanStructureStatus"], TranslationKey> = {
+  extracted: "proofMaps.family.leanStatus.extracted",
+  partial: "proofMaps.family.leanStatus.partial",
+  missing: "proofMaps.family.leanStatus.missing",
+};
 
 const explanationArtifacts: Record<string, ClaimExplanation> = {
   "032": explanation032 as ClaimExplanation,
@@ -48,16 +60,19 @@ const deepProofMaps: Record<string, DeepProofMapData> = {
 type Params = { params: Promise<{ number: string }> };
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const { t } = await getI18n();
   const { number } = await params;
   const family = publicationFamily(number);
-  if (!family) return { title: "Proof map not found" };
+  if (!family) return { title: t("proofMaps.family.metaTitleMissing") };
   const index = buildProofMapIndex(openaiMathCollection, manifest) as ProofMapIndex;
   const entry = index.entries.find((candidate) => candidate.familyNumber === number);
   return {
-    title: entry ? `Proof map ${number}: ${family.title.replace(/<[^>]*>/g, "")}` : "Proof map",
+    title: entry
+      ? t("proofMaps.family.metaTitle", { number, title: family.title.replace(/<[^>]*>/g, "") })
+      : t("proofMaps.family.metaTitleGeneric"),
     description: entry
-      ? `${entry.statusLabel} for OpenAI result family ${number}. ${entry.nextStep}`
-      : "Source-linked proof map for an OpenAI mathematics result family.",
+      ? t("proofMaps.family.metaDescription", { status: t(statusKeys[entry.status]), number, nextStep: entry.nextStep })
+      : t("proofMaps.family.metaDescriptionGeneric"),
   };
 }
 
@@ -86,74 +101,74 @@ export default async function ProofMapFamilyPage({ params }: Params) {
     mainClassName="page-main proof-map-family-main"
   >
     <PageIntro
-      label={`Proof map · ${entry.statusLabel}`}
+      label={t("proofMaps.family.label", { status: t(statusKeys[entry.status]) })}
       title={<MathText text={family.title} />}
       description={isDeep
-        ? "A curated theorem-level argument map: nodes are the paper’s key theorems, lemmas, and constructions, and edges are their proof dependencies. It is unreviewed and is not a Proofweave replay, kernel check, or independent review."
+        ? t("proofMaps.family.descriptionDeep")
         : isDraft
-          ? "A draft explanation chain is recorded for this family. It is unreviewed, may be reading order rather than a verified dependency graph, and is not a Proofweave replay."
-          : "This family is indexed with its source-pinned claim, manuscripts, citations, and any upstream Lean scope. No theorem-level proof chain has been curated yet; the structure below is a metadata scaffold, not a claim of proof dependencies."}
+          ? t("proofMaps.family.descriptionDraft")
+          : t("proofMaps.family.descriptionScaffold")}
       meta={<>
-        <span>Family {family.number}</span>
+        <span>{t("proofMaps.family.metaFamily", { number: family.number })}</span>
         <span>{family.subject}</span>
-        <span>{family.manuscripts.length} {family.manuscripts.length === 1 ? "manuscript" : "manuscripts"}</span>
-        <span>{family.scope ? "Lean scope documented" : "No Lean scope linked"}</span>
-        {deep && <span>{deep.strategies.length} {deep.strategies.length === 1 ? "strategy" : "strategies"} · {deep.strategies.reduce((total, strategy) => total + strategy.nodes.length, 0)} nodes</span>}
-        <span>Proofweave replay not run</span>
+        <span>{family.manuscripts.length === 1 ? t("proofMaps.browser.manuscriptOne", { count: family.manuscripts.length }) : t("proofMaps.browser.manuscriptOther", { count: family.manuscripts.length })}</span>
+        <span>{family.scope ? t("proofMaps.browser.scopeDocumented") : t("proofMaps.browser.scopeMissing")}</span>
+        {deep && <span>{deep.strategies.length === 1 ? t("proofMaps.family.metaDeepOne", { strategies: deep.strategies.length, nodes: deep.strategies.reduce((total, strategy) => total + strategy.nodes.length, 0) }) : t("proofMaps.family.metaDeepOther", { strategies: deep.strategies.length, nodes: deep.strategies.reduce((total, strategy) => total + strategy.nodes.length, 0) })}</span>}
+        <span>{t("proofMaps.family.metaReplay")}</span>
       </>}
       actions={<>
-        <ActionLink variant="primary" href={`/publications/openai-math/${family.number}`}>Publication record</ActionLink>
-        {isDeep ? <ActionLink variant="secondary" href="#argument-map">Open the argument map</ActionLink> : null}
-        <ActionLink variant="secondary" href="/proof-evolution">All proof maps</ActionLink>
-        {isDraft && <ActionLink variant="secondary" href={`/publications/openai-math/${family.number}#explanations`}>Read the draft explanation</ActionLink>}
+        <ActionLink variant="primary" href={`/publications/openai-math/${family.number}`}>{t("proofMaps.browser.publicationRecord")}</ActionLink>
+        {isDeep ? <ActionLink variant="secondary" href="#argument-map">{t("proofMaps.landau.actionArgumentMap")}</ActionLink> : null}
+        <ActionLink variant="secondary" href="/proof-evolution">{t("proofMaps.family.actionAllMaps")}</ActionLink>
+        {isDraft && <ActionLink variant="secondary" href={`/publications/openai-math/${family.number}#explanations`}>{t("proofMaps.family.actionDraftExplanation")}</ActionLink>}
       </>}
     />
 
     <div className="proof-map-family-content">
-      <StatusBanner entry={entry} isDraft={isDraft} isDeep={isDeep} />
+      <StatusBanner entry={entry} isDraft={isDraft} isDeep={isDeep} t={t} />
 
-      {deep ? <DeepProofMapView deep={deep} subject={family.subject} revision={openaiMathCollection.source.revision} /> : explanation ? <DraftChain familyNumber={family.number} explanation={explanation} family={family} t={t} locale={locale} /> : <ScaffoldMap entry={entry} />}
+      {deep ? <DeepProofMapView deep={deep} subject={family.subject} revision={openaiMathCollection.source.revision} /> : explanation ? <DraftChain familyNumber={family.number} explanation={explanation} family={family} t={t} locale={locale} /> : <ScaffoldMap entry={entry} t={t} />}
 
       <div className="proof-map-family-grid">
-        <ManuscriptSection family={family} />
-        <ScopeSection family={family} entry={entry} />
+        <ManuscriptSection family={family} t={t} />
+        <ScopeSection family={family} entry={entry} t={t} />
       </div>
 
-      {leanFamily && <LeanStructureSection family={leanFamily} />}
+      {leanFamily && <LeanStructureSection family={leanFamily} t={t} />}
 
-      <NextSteps entry={entry} isDraft={isDraft} isDeep={isDeep} />
+      <NextSteps entry={entry} isDraft={isDraft} isDeep={isDeep} t={t} />
     </div>
   </SiteFrame>;
 }
 
-function StatusBanner({ entry, isDraft, isDeep }: { entry: ProofMapIndexEntry; isDraft: boolean; isDeep: boolean }) {
+function StatusBanner({ entry, isDraft, isDeep, t }: { entry: ProofMapIndexEntry; isDraft: boolean; isDeep: boolean; t: Translator }) {
   return <div className="proof-map-family-status">
-    <Badge tone={isDeep ? "positive" : isDraft ? "warning" : "neutral"}>{entry.statusLabel}</Badge>
+    <Badge tone={isDeep ? "positive" : isDraft ? "warning" : "neutral"}>{t(statusKeys[entry.status])}</Badge>
     <p>{isDeep
-      ? "Deep argument map: theorem-level dependencies are curated and source-located, but the map is unreviewed. It is not a platform replay, kernel check, statement review, or independent review."
+      ? t("proofMaps.family.statusDeep")
       : isDraft
-        ? "Draft proof chain: unreviewed, no platform replay, no independent review. The numbered steps are not automatically a proof DAG."
-        : "Metadata scaffold: the source record exists, but theorem statements, proof edges, Lean declaration alignment, and cross-solution relations still need curation."}</p>
+        ? t("proofMaps.family.statusDraft")
+        : t("proofMaps.family.statusScaffold")}</p>
     <small>{entry.nextStep}</small>
   </div>;
 }
 
-function ScaffoldMap({ entry }: { entry: ProofMapIndexEntry }) {
+function ScaffoldMap({ entry, t }: { entry: ProofMapIndexEntry; t: Translator }) {
   return <section className="proof-map-scaffold" aria-labelledby="scaffold-map-title">
     <div className="proof-map-family-section-heading">
-      <div><p className="eyebrow">Structure skeleton</p><h2 id="scaffold-map-title">What exists, before a proof chain exists.</h2></div>
-      <span>Metadata only · no theorem edges invented</span>
+      <div><p className="eyebrow">{t("proofMaps.family.scaffoldEyebrow")}</p><h2 id="scaffold-map-title">{t("proofMaps.family.scaffoldTitle")}</h2></div>
+      <span>{t("proofMaps.family.scaffoldMeta")}</span>
     </div>
-    <div className="proof-map-skeleton" aria-label="Metadata scaffold stages">
-      <SkeletonNode index="01" label="Claim" value="Source-pinned" detail={entry.claimSnippet} />
+    <div className="proof-map-skeleton" aria-label={t("proofMaps.family.scaffoldAria")}>
+      <SkeletonNode index="01" label={t("proofMaps.family.skeletonClaim")} value={t("proofMaps.family.skeletonSourcePinned")} detail={entry.claimSnippet} />
       <i aria-hidden="true">→</i>
-      <SkeletonNode index="02" label="Manuscripts" value={`${entry.manuscriptCount}`} detail="PDF, abstract, citation, and version notes" />
+      <SkeletonNode index="02" label={t("proofMaps.family.skeletonManuscripts")} value={`${entry.manuscriptCount}`} detail={t("proofMaps.family.skeletonManuscriptsDetail")} />
       <i aria-hidden="true">→</i>
-      <SkeletonNode index="03" label="Upstream Lean" value={entry.scopeDocument ? "Scope documented" : "Not linked"} detail={entry.scopeDocument ? `${entry.comparatorCount} comparator links · ${entry.formalizedManuscripts} formalized manuscripts` : "No scope document or comparator proven in the pinned snapshot"} />
+      <SkeletonNode index="03" label={t("proofMaps.family.skeletonLean")} value={entry.scopeDocument ? t("proofMaps.family.skeletonScopeDocumented") : t("proofMaps.family.skeletonNotLinked")} detail={entry.scopeDocument ? t("proofMaps.family.skeletonLeanDetail", { comparators: entry.comparatorCount, manuscripts: entry.formalizedManuscripts }) : t("proofMaps.family.skeletonLeanMissing")} />
       <i aria-hidden="true">→</i>
-      <SkeletonNode index="04" label="Proofweave evidence" value="Replay not run" detail="No statement review, independent review, or receipt" />
+      <SkeletonNode index="04" label={t("proofMaps.family.skeletonEvidence")} value={t("proofMaps.browser.replayNotRun")} detail={t("proofMaps.family.skeletonEvidenceDetail")} />
     </div>
-    <p className="proof-map-skeleton-note">The arrows above describe the source record and evidence gates. They are not theorem-to-theorem dependencies. A theorem-level map is added only after the paper&apos;s statements are extracted and reviewed.</p>
+    <p className="proof-map-skeleton-note">{t("proofMaps.family.skeletonNote")}</p>
   </section>;
 }
 
@@ -168,8 +183,8 @@ function SkeletonNode({ index, label, value, detail }: { index: string; label: s
 function DraftChain({ familyNumber, explanation, family, t, locale }: { familyNumber: string; explanation: ClaimExplanation; family: NonNullable<ReturnType<typeof publicationFamily>>; t: Translator; locale: Locale }) {
   return <section className="proof-map-draft" aria-labelledby="draft-chain-title">
     <div className="proof-map-family-section-heading">
-      <div><p className="eyebrow">Draft explanation</p><h2 id="draft-chain-title">Recorded proof steps, with an explicit draft boundary.</h2></div>
-      <span><Badge tone="warning">Draft · unreviewed</Badge></span>
+      <div><p className="eyebrow">{t("proofMaps.family.draftEyebrow")}</p><h2 id="draft-chain-title">{t("proofMaps.family.draftTitle")}</h2></div>
+      <span><Badge tone="warning">{t("proofMaps.family.draftBadge")}</Badge></span>
     </div>
     <div className="explanation-grid">
       <ClaimCard explanation={explanation} t={t} />
@@ -177,15 +192,15 @@ function DraftChain({ familyNumber, explanation, family, t, locale }: { familyNu
       <ProofMap explanation={explanation} t={t} />
       <LeanCompanion explanation={explanation} t={t} />
     </div>
-    <p className="proof-map-draft-note">This chain is an explanation artifact, not the theorem-level argument map. Dependency edges appear only where the draft records them; the remaining order is reading order. The publication record for family {familyNumber} carries the full source context.</p>
+    <p className="proof-map-draft-note">{t("proofMaps.family.draftNote", { number: familyNumber })}</p>
   </section>;
 }
 
-function ManuscriptSection({ family }: { family: NonNullable<ReturnType<typeof publicationFamily>> }) {
+function ManuscriptSection({ family, t }: { family: NonNullable<ReturnType<typeof publicationFamily>>; t: Translator }) {
   return <Surface tone="card" className="proof-map-source-section">
     <div className="proof-map-family-section-heading">
-      <div><p className="eyebrow">Source record</p><h2>Manuscripts</h2></div>
-      <span>{family.manuscripts.length} {family.manuscripts.length === 1 ? "manuscript" : "manuscripts"}</span>
+      <div><p className="eyebrow">{t("proofMaps.family.manuscriptsEyebrow")}</p><h2>{t("proofMaps.family.manuscriptsTitle")}</h2></div>
+      <span>{family.manuscripts.length === 1 ? t("proofMaps.browser.manuscriptOne", { count: family.manuscripts.length }) : t("proofMaps.browser.manuscriptOther", { count: family.manuscripts.length })}</span>
     </div>
     <div className="proof-map-manuscript-list">
       {family.manuscripts.map((manuscript) => <article key={manuscript.id}>
@@ -193,121 +208,121 @@ function ManuscriptSection({ family }: { family: NonNullable<ReturnType<typeof p
         <h3><MathText text={manuscript.title} /></h3>
         <p className="proof-map-manuscript-abstract"><MathText text={manuscript.abstract} /></p>
         <div className="proof-map-manuscript-links">
-          <a href={manuscript.pdfUrl} target="_blank" rel="noreferrer">Open PDF ↗</a>
-          <a href={manuscript.readmeUrl} target="_blank" rel="noreferrer">Source & version notes ↗</a>
-          <span>{manuscript.citedByScopeDocument ? "Named in Lean scope" : manuscript.listedInFormalizationIndex ? "Listed in formalization index" : "No formalization link"}</span>
+          <a href={manuscript.pdfUrl} target="_blank" rel="noreferrer">{t("proofMaps.deep.openPdf")}</a>
+          <a href={manuscript.readmeUrl} target="_blank" rel="noreferrer">{t("proofMaps.deep.sourceNotes")}</a>
+          <span>{manuscript.citedByScopeDocument ? t("proofMaps.family.namedInScope") : manuscript.listedInFormalizationIndex ? t("proofMaps.family.listedInIndex") : t("proofMaps.family.noFormalizationLink")}</span>
         </div>
       </article>)}
     </div>
   </Surface>;
 }
 
-function ScopeSection({ family, entry }: { family: NonNullable<ReturnType<typeof publicationFamily>>; entry: ProofMapIndexEntry }) {
+function ScopeSection({ family, entry, t }: { family: NonNullable<ReturnType<typeof publicationFamily>>; entry: ProofMapIndexEntry; t: Translator }) {
   return <Surface tone="card" className="proof-map-source-section">
     <div className="proof-map-family-section-heading">
-      <div><p className="eyebrow">Upstream Lean</p><h2>Scope & evidence</h2></div>
-      <span>{family.scope ? `${entry.comparatorCount} comparator links` : "Not linked"}</span>
+      <div><p className="eyebrow">{t("proofMaps.family.scopeEyebrow")}</p><h2>{t("proofMaps.family.scopeTitle")}</h2></div>
+      <span>{family.scope ? t("proofMaps.family.comparatorLinks", { count: entry.comparatorCount }) : t("proofMaps.family.notLinked")}</span>
     </div>
     {family.scope ? <>
       <div className="proof-map-scope-text">
         {family.scope.text.split(/\n\s*\n/).map((paragraph, index) => <p key={index}><MathText text={paragraph} /></p>)}
       </div>
       <div className="proof-map-scope-links">
-        <a href={family.scope.url} target="_blank" rel="noreferrer">Open scope document ↗</a>
+        <a href={family.scope.url} target="_blank" rel="noreferrer">{t("proofMaps.family.openScope")}</a>
         {family.scope.paperLinks.map((link) => <a href={link.url} target="_blank" rel="noreferrer" key={`paper-${link.url}`}>{link.label} ↗</a>)}
         {family.scope.comparatorLinks.map((link) => <a href={link.url} target="_blank" rel="noreferrer" key={`comparator-${link.url}`}>{link.label} ↗</a>)}
       </div>
     </> : <div className="proof-map-scope-empty">
-      <strong>No Lean scope document is linked for this family.</strong>
-      <p>That absence is not evidence that no Lean code exists. It means this pinned snapshot does not connect a scope statement or comparator to the result.</p>
-      <a href={openaiMathCollection.environment.instructionsUrl} target="_blank" rel="noreferrer">Upstream verification instructions ↗</a>
+      <strong>{t("proofMaps.family.scopeEmptyTitle")}</strong>
+      <p>{t("proofMaps.family.scopeEmptyBody")}</p>
+      <a href={openaiMathCollection.environment.instructionsUrl} target="_blank" rel="noreferrer">{t("proofMaps.family.upstreamInstructions")}</a>
     </div>}
     <FieldList layout="stacked" className="proof-map-evidence-fields">
-      <Field label="Proofweave replay">{entry.proofweaveReplay === "not_run" ? "Not run" : entry.proofweaveReplay}</Field>
-      <Field label="Statement review">Not started for this family</Field>
-      <Field label="Independent review">Not recorded</Field>
-      <Field label="Receipt">None</Field>
-      <Field label="Upstream linked">{entry.formalizedManuscripts} {entry.formalizedManuscripts === 1 ? "manuscript" : "manuscripts"} named in the Lean scope or formalization index</Field>
+      <Field label={t("proofMaps.family.fieldReplay")}>{entry.proofweaveReplay === "not_run" ? t("proofMaps.family.replayNotRun") : entry.proofweaveReplay}</Field>
+      <Field label={t("proofMaps.family.fieldStatementReview")}>{t("proofMaps.family.statementReviewNotStarted")}</Field>
+      <Field label={t("proofMaps.family.fieldIndependentReview")}>{t("proofMaps.family.independentReviewNotRecorded")}</Field>
+      <Field label={t("proofMaps.family.fieldReceipt")}>{t("proofMaps.family.none")}</Field>
+      <Field label={t("proofMaps.family.fieldUpstreamLinked")}>{entry.formalizedManuscripts === 1 ? t("proofMaps.family.upstreamLinkedOne", { count: entry.formalizedManuscripts }) : t("proofMaps.family.upstreamLinkedOther", { count: entry.formalizedManuscripts })}</Field>
     </FieldList>
-    {family.scope && <p className="proof-map-evidence-note">Scope text describes upstream coverage. It is not a Proofweave replay, review, or receipt.</p>}
+    {family.scope && <p className="proof-map-evidence-note">{t("proofMaps.family.evidenceNote")}</p>}
   </Surface>;
 }
 
-function LeanStructureSection({ family }: { family: LeanCoverageFamily }) {
+function LeanStructureSection({ family, t }: { family: LeanCoverageFamily; t: Translator }) {
   return <section id="lean-structure" className="proof-map-lean-section" aria-labelledby="lean-structure-title">
     <div className="proof-map-family-section-heading">
-      <div><p className="eyebrow">Upstream Lean · extracted structure</p><h2 id="lean-structure-title">Comparator-linked modules and declarations</h2></div>
-      <span><Badge tone={family.leanStructureStatus === "extracted" ? "positive" : family.leanStructureStatus === "partial" ? "warning" : "neutral"}>{family.leanStructureStatus}</Badge></span>
+      <div><p className="eyebrow">{t("proofMaps.family.leanEyebrow")}</p><h2 id="lean-structure-title">{t("proofMaps.family.leanTitle")}</h2></div>
+      <span><Badge tone={family.leanStructureStatus === "extracted" ? "positive" : family.leanStructureStatus === "partial" ? "warning" : "neutral"}>{t(leanStatusKeys[family.leanStructureStatus])}</Badge></span>
     </div>
     <div className="proof-map-lean-stats">
-      <div><span>Comparators</span><strong>{family.comparatorCount}</strong><small>{family.solutionFetched} solution modules fetched</small></div>
-      <div><span>Theorem names</span><strong>{family.theoremNames.length}</strong><small>from comparator JSON</small></div>
-      <div><span>Textual sorry</span><strong>{family.textualSorry}</strong><small>solution modules · direct scan</small></div>
-      <div><span>Textual axioms</span><strong>{family.textualAxioms}</strong><small>solution modules · direct scan</small></div>
+      <div><span>{t("proofMaps.family.statComparators")}</span><strong>{family.comparatorCount}</strong><small>{t("proofMaps.family.statComparatorsDetail", { count: family.solutionFetched })}</small></div>
+      <div><span>{t("proofMaps.family.statTheoremNames")}</span><strong>{family.theoremNames.length}</strong><small>{t("proofMaps.family.statTheoremNamesDetail")}</small></div>
+      <div><span>{t("proofMaps.family.statSorry")}</span><strong>{family.textualSorry}</strong><small>{t("proofMaps.family.statScanDetail")}</small></div>
+      <div><span>{t("proofMaps.family.statAxioms")}</span><strong>{family.textualAxioms}</strong><small>{t("proofMaps.family.statScanDetail")}</small></div>
     </div>
     <div className="proof-map-lean-list">
       {family.comparators.map((comparator) => <details className="proof-map-lean-entry" key={comparator.label}>
         <summary>
           <div>
             <strong>{comparator.label}</strong>
-            <span>{comparator.solutionModule ?? "No solution module"} · {comparator.theoremNames.length} {comparator.theoremNames.length === 1 ? "theorem" : "theorems"} · {comparator.solutionLines} lines</span>
+            <span>{comparator.solutionModule ?? t("proofMaps.family.noSolutionModule")} · {comparator.theoremNames.length === 1 ? t("proofMaps.family.theoremCountOne", { count: comparator.theoremNames.length }) : t("proofMaps.family.theoremCountOther", { count: comparator.theoremNames.length })} · {t("proofMaps.family.linesCount", { count: comparator.solutionLines })}</span>
           </div>
-          <Badge tone={comparator.solutionStatus === 200 ? "positive" : "warning"}>{comparator.solutionStatus === 200 ? "solution fetched" : `status ${comparator.solutionStatus}`}</Badge>
+          <Badge tone={comparator.solutionStatus === 200 ? "positive" : "warning"}>{comparator.solutionStatus === 200 ? t("proofMaps.family.solutionFetched") : t("proofMaps.family.solutionStatus", { code: comparator.solutionStatus })}</Badge>
         </summary>
         <div className="proof-map-lean-body">
           <div className="proof-map-lean-links">
-            <a href={comparator.challengeUrl} target="_blank" rel="noreferrer">Challenge .lean ↗</a>
-            <a href={comparator.jsonUrl} target="_blank" rel="noreferrer">Comparator .json ↗</a>
-            {comparator.solutionUrl && <a href={comparator.solutionUrl} target="_blank" rel="noreferrer">Solution module ↗</a>}
+            <a href={comparator.challengeUrl} target="_blank" rel="noreferrer">{t("proofMaps.family.challengeLink")}</a>
+            <a href={comparator.jsonUrl} target="_blank" rel="noreferrer">{t("proofMaps.family.comparatorJson")}</a>
+            {comparator.solutionUrl && <a href={comparator.solutionUrl} target="_blank" rel="noreferrer">{t("proofMaps.family.solutionLink")}</a>}
           </div>
           <div className="proof-map-lean-row">
-            <span>Theorem names</span>
-            {comparator.theoremNames.length > 0 ? <ul>{comparator.theoremNames.map((name) => <li key={name}><code>{name}</code></li>)}</ul> : <small>No theorem names recorded in the comparator JSON.</small>}
+            <span>{t("proofMaps.family.rowTheoremNames")}</span>
+            {comparator.theoremNames.length > 0 ? <ul>{comparator.theoremNames.map((name) => <li key={name}><code>{name}</code></li>)}</ul> : <small>{t("proofMaps.family.noTheoremNames")}</small>}
           </div>
           <div className="proof-map-lean-row">
-            <span>Permitted axioms</span>
+            <span>{t("proofMaps.family.permittedAxioms")}</span>
             <div>{comparator.permittedAxioms.map((axiom) => <Badge key={axiom}>{axiom}</Badge>)}</div>
           </div>
           <div className="proof-map-lean-row">
-            <span>Solution module</span>
-            <code>{comparator.solutionModule ?? "unavailable"}</code>
-            <small>{comparator.solutionLines} lines · {comparator.solutionImports.length} direct imports · solution sorry {comparator.solutionSorry} · solution axiom {comparator.solutionAxioms} · challenge sorry {comparator.challengeSorry}</small>
+            <span>{t("proofMaps.family.rowSolutionModule")}</span>
+            <code>{comparator.solutionModule ?? t("proofMaps.family.unavailable")}</code>
+            <small>{t("proofMaps.family.solutionMeta", { lines: comparator.solutionLines, imports: comparator.solutionImports.length, solutionSorry: comparator.solutionSorry, solutionAxioms: comparator.solutionAxioms, challengeSorry: comparator.challengeSorry })}</small>
           </div>
           <div className="proof-map-lean-row">
-            <span>Direct imports</span>
-            {comparator.solutionImports.length > 0 ? <ul>{comparator.solutionImports.map((module) => <li key={module}><code>{module}</code></li>)}</ul> : <small>No direct imports parsed.</small>}
+            <span>{t("proofMaps.family.directImports")}</span>
+            {comparator.solutionImports.length > 0 ? <ul>{comparator.solutionImports.map((module) => <li key={module}><code>{module}</code></li>)}</ul> : <small>{t("proofMaps.family.noDirectImports")}</small>}
           </div>
-          <p className="proof-map-lean-note">Comparator challenge files contain a <code>sorry</code> by design; the solution module is the fetched proof file. This extraction records direct imports, theorem names, and textual sorry/axiom counts. It is not a kernel build, <code>#print axioms</code> run, or Proofweave replay.</p>
+          <p className="proof-map-lean-note">{t("proofMaps.family.leanNoteA")}<code>sorry</code>{t("proofMaps.family.leanNoteB")}<code>#print axioms</code>{t("proofMaps.family.leanNoteC")}</p>
         </div>
       </details>)}
     </div>
-    <p className="proof-map-lean-caveat">Structure extracted from the pinned OpenAI repository revision. Direct imports only; transitive dependency closure and kernel acceptance remain separate curation steps.</p>
+    <p className="proof-map-lean-caveat">{t("proofMaps.family.leanCaveat")}</p>
   </section>;
 }
 
-function NextSteps({ entry, isDraft, isDeep }: { entry: ProofMapIndexEntry; isDraft: boolean; isDeep: boolean }) {
+function NextSteps({ entry, isDraft, isDeep, t }: { entry: ProofMapIndexEntry; isDraft: boolean; isDeep: boolean; t: Translator }) {
   return <Surface tone="card" className="proof-map-next-steps">
     <div className="proof-map-family-section-heading">
-      <div><p className="eyebrow">Continuous curation</p><h2>{isDeep ? "What to verify next" : "What to fill next"}</h2></div>
-      <span>Status: {entry.statusLabel}</span>
+      <div><p className="eyebrow">{t("proofMaps.family.nextEyebrow")}</p><h2>{isDeep ? t("proofMaps.family.nextTitleVerify") : t("proofMaps.family.nextTitleFill")}</h2></div>
+      <span>{t("proofMaps.family.nextStatus", { status: t(statusKeys[entry.status]) })}</span>
     </div>
     {isDeep ? <ol>
-      <li><strong>Review each statement.</strong> Check the theorem, lemma, and construction labels against the paper at the cited section; the paper remains authoritative.</li>
-      <li><strong>Check every dependency edge.</strong> Remove any edge the proof does not use; add lemma-level nodes only with a source location.</li>
-      <li><strong>Extend Lean alignment.</strong> Map more paper nodes to comparator declarations where the upstream module supports it, and record toolchain, axioms, and kernel results when a build exists.</li>
-      <li><strong>Review and record evidence.</strong> Statement review, independent review, replay, and receipt are separate gates; this deep map satisfies none of them yet.</li>
+      <li><strong>{t("proofMaps.family.verifyStep1Title")}</strong> {t("proofMaps.family.verifyStep1Body")}</li>
+      <li><strong>{t("proofMaps.family.verifyStep2Title")}</strong> {t("proofMaps.family.verifyStep2Body")}</li>
+      <li><strong>{t("proofMaps.family.verifyStep3Title")}</strong> {t("proofMaps.family.verifyStep3Body")}</li>
+      <li><strong>{t("proofMaps.family.verifyStep4Title")}</strong> {t("proofMaps.family.verifyStep4Body")}</li>
     </ol> : <ol>
-      <li><strong>Extract theorem/lemma statements.</strong> Pin each statement to a paper, section, and page; do not paraphrase a dependency that the paper does not state.</li>
-      <li><strong>Build the argument map.</strong> Add a node for each theorem/lemma/construction, then add directed `depends` edges only where the proof uses it.</li>
-      <li><strong>Align Lean.</strong> Map each node to declarations, comparator statements, or mark it `unmapped`; record toolchain, Mathlib revision, and axioms when a kernel check exists.</li>
-      <li><strong>Add cross-solution relations.</strong> Use `same-role`, `replaces`, and `bypasses` only after review; never treat a shared role as logical equivalence.</li>
-      <li><strong>Review and record evidence.</strong> Independent review, replay, and receipt are separate gates; a scaffold or draft does not satisfy them.</li>
+      <li><strong>{t("proofMaps.family.fillStep1Title")}</strong> {t("proofMaps.family.fillStep1Body")}</li>
+      <li><strong>{t("proofMaps.family.fillStep2Title")}</strong> {t("proofMaps.family.fillStep2Body")}</li>
+      <li><strong>{t("proofMaps.family.fillStep3Title")}</strong> {t("proofMaps.family.fillStep3Body")}</li>
+      <li><strong>{t("proofMaps.family.fillStep4Title")}</strong> {t("proofMaps.family.fillStep4Body")}</li>
+      <li><strong>{t("proofMaps.family.fillStep5Title")}</strong> {t("proofMaps.family.fillStep5Body")}</li>
     </ol>}
-    <p className="proof-map-next-step">{isDeep ? "Deep argument maps are unreviewed until a named reviewer checks the statements, edges, and Lean alignment." : isDraft ? "Promote this draft chain to a theorem-level map, then review it." : entry.nextStep}</p>
+    <p className="proof-map-next-step">{isDeep ? t("proofMaps.family.nextNoteDeep") : isDraft ? t("proofMaps.family.nextNoteDraft") : entry.nextStep}</p>
     <div className="proof-map-next-actions">
-      <Link href="/proof-evolution">Back to all proof maps</Link>
-      <Link href={`/publications/openai-math/${entry.familyNumber}`}>Open the publication record</Link>
-      <Link href="/support">Contribute or request a review</Link>
+      <Link href="/proof-evolution">{t("proofMaps.family.actionAllMapsBack")}</Link>
+      <Link href={`/publications/openai-math/${entry.familyNumber}`}>{t("proofMaps.family.actionPublicationRecord")}</Link>
+      <Link href="/support">{t("proofMaps.family.actionContribute")}</Link>
     </div>
   </Surface>;
 }

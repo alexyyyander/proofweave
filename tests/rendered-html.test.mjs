@@ -1311,6 +1311,11 @@ test("serves the localized shell and translated information pages", async () => 
   assert.match(landauSiegelHtml, /版本谱系/);
   assert.match(landauSiegelHtml, /压缩账本/);
 
+  const proofFamily = await render("/proof-evolution/openai-math/032", localizedHeaders);
+  const proofFamilyHtml = await proofFamily.text();
+  assert.match(proofFamilyHtml, /深度论证地图：定理级依赖已策展并定位到源码/);
+  assert.match(proofFamilyHtml, /<title>证明地图 032/);
+
   const switchResponse = await render("/api/locale?to=zh-CN", {
     headers: { referer: "http://localhost/about" },
     redirect: "manual",
