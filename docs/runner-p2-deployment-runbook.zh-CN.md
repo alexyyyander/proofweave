@@ -73,19 +73,12 @@ node scripts/generate-runner-environment-config.mjs \
 node scripts/generate-runner-environment-config.mjs \
   --execution-profile mathlib-4.27-a3a10 --surface render
 
-# Worker 分发列表：两个已部署环境
+# Worker 分发列表与执行声明：两个已部署环境
 node scripts/generate-runner-environment-config.mjs \
   --profile mathlib-4.31-9a948 --profile mathlib-4.27-a3a10 --surface worker
 ```
 
-Worker 还需要执行声明（4.27 先关闭）：
-
-```json
-[
-  { "leanToolchain": "leanprover/lean4:v4.31.0", "mathlibRevision": "9a9483a92959bc92bd6a60176dd1fe597298c1f8", "executionEnabled": false },
-  { "leanToolchain": "leanprover/lean4:v4.27.0", "mathlibRevision": "a3a10db0e9d66acbebf76c5e6a135066525ac900", "executionEnabled": false }
-]
-```
+`--surface worker` 会同时输出 `RUNNER_APPROVED_IMAGES_JSON` 与 `RUNNER_EXECUTION_ENVIRONMENTS_JSON`，执行声明默认全部 `executionEnabled=false`，不要手工复制。只有已 `approved` 的环境才能用 `--enable-execution <profile>` 打开执行；`template_ready` 的受控单 Run 窗口仍需按 §6 手工临时改 Worker 声明。
 
 ## 4. Render 增加 4.27 服务
 
@@ -123,6 +116,7 @@ node scripts/check-runner-environments.mjs --strict \
 
 - `runners=2`、`dispatchable=2`、`routed=2`、`selected=2`
 - 4.27 / 4.31 都 `executing=0`（P2 执行关闭）
+- Runner 行显示 `RUNNER_MAX_DELIVERY_ATTEMPTS: unset`；P3 单 Run 窗口必须同时设置 `RUNNER_ONLY_RUN_ID` 与 `RUNNER_MAX_DELIVERY_ATTEMPTS=1`，否则 checker 报 `controlled_run_delivery_unbounded`
 - `Inconsistencies: none`
 - 4.27 `conformance` 若是 `missing`，先补第 2 步 workflow 产出的 `conformance.json`（`imageDigest`、`fixtureSetHash`、`reportHash`、`state: passed`）
 

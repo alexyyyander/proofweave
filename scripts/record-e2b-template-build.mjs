@@ -90,7 +90,7 @@ async function main() {
   try {
     config = JSON.parse(await readFile(configPath, "utf8"));
     report = JSON.parse(await readFile(reportPath, "utf8"));
-  } catch (error) {
+  } catch {
     throw new RunnerTemplateRecordError("Unable to read the Runner registry or E2B template build report.");
   }
   const profile = readFlag("--profile") ?? singlePendingProfile(config);
