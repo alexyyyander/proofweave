@@ -1342,6 +1342,22 @@ test("serves the localized shell and translated information pages", async () => 
   assert.match(rejectedSwitch.headers.get("location") ?? "", /^http:\/\/localhost\/$/);
 });
 
+test("the home doors reflect the deployment write window and published receipts", async () => {
+  const response = await render("/");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  // This harness runs the participant surface with writes enabled and has not
+  // published a receipt yet, so the first door must fall back to the reference
+  // console and the second must open the research launcher.
+  assert.match(html, /class="home-door" href="\/workbench#research-launcher"/);
+  assert.match(html, /Open the research launcher/);
+  assert.match(html, /Private by default · you decide what is published/);
+  assert.match(html, /class="home-door" href="#verification-console"/);
+  assert.match(html, /Open the verification console/);
+  assert.match(html, /Reference run: \d+\/\d+ checks pass/);
+  assert.doesNotMatch(html, /Browse pinned targets/);
+});
+
 test("uses Explore as the stable parent for public research work", async () => {
   for (const pathname of ["/receipts", "/reviews"]) {
     const response = await render(pathname);

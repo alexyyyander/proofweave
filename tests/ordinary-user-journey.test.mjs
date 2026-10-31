@@ -169,6 +169,16 @@ test("a selected target survives start, sign-in, and the ChatGPT handoff", async
   );
 });
 
+test("the home entry offers browsing only while participant writes are paused", async () => {
+  const response = await render(readOnlyWorker, "/");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /class="home-door" href="\/explore"/);
+  assert.match(html, /Browse pinned targets/);
+  assert.match(html, /Read-only · targets and evidence stay readable/);
+  assert.doesNotMatch(html, /Open the research launcher/);
+});
+
 test("the first-run path uses action language instead of protocol vocabulary", async () => {
   const welcome = defaultVisibleText(await (await render(normalWorker, "/")).text());
   assert.match(welcome, /Explore without an account/i);
