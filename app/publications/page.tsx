@@ -51,7 +51,7 @@ export default async function PublicationsPage({ searchParams }: { searchParams:
 
       <nav className="publication-collection-bar" aria-label={t("publications.bar.aria")}>
         <span>{t("publications.bar.indexed", { date: collection.indexedAt.slice(0, 10) })}</span>
-        <div><a href="#collection-notes">{t("publications.bar.notes")}</a><a href="#withdrawals">{t("publications.bar.withdrawals", { count: collection.withdrawals.length })}</a><a href="/api/publications/openai-math?download=1" download="proofweave-openai-math.json">{t("publications.bar.download")} ↓</a></div>
+        <div><a href="#collection-notes">{t("publications.bar.notes")}</a><a href="#withdrawals">{t("publications.bar.withdrawals", { count: collection.withdrawals.length })}</a><Link href="/proof-evolution">{t("publications.bar.proofMaps")}</Link><Link href="/proof-evolution/landau-siegel">{t("publications.bar.landauSiegel")}</Link><a href="/api/publications/openai-math?download=1" download="proofweave-openai-math.json">{t("publications.bar.download")} ↓</a></div>
       </nav>
 
       <section aria-labelledby="publication-browse-title" className="publication-browser" id="browse">

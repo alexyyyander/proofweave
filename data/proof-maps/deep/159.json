@@ -1,0 +1,282 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-10-31",
+  "familyNumber": "159",
+  "title": "Erdős’s reciprocal-sum conjecture and quasipolynomial Szemerédi bounds",
+  "result": {
+    "id": "result:erdos-reciprocal-progressions",
+    "label": "Erdős reciprocal-sum conjecture and quasipolynomial density bounds",
+    "statement": "Every set A of positive integers with divergent reciprocal sum contains nonconstant arithmetic progressions of every finite length. Quantitatively, for every fixed k≥3 there are constants C_k, c_k, ε_k > 0 such that r_k(N) ≤ C_k N exp(−c_k(log N)^(ε_k)), where r_k(N) is the largest size of a subset of {1,…,N} with no nonconstant k-term progression.",
+    "source": "Family claim; Theorem 1.1 and Corollary 1.2.",
+    "detail": "Corollary 1.2 is the reciprocal-sum consequence of Theorem 1.1. The Lean comparator is named for the reciprocal-sum theorem; the quantitative density bound has no alignment recorded here.",
+    "roleNote": "The density bound is the main theorem. The reciprocal-sum statement is its corollary, obtained by summing the bound over dyadic intervals."
+  },
+  "roles": [
+    {
+      "id": "input",
+      "label": "External inputs",
+      "description": "Analytic theorems from other papers used inside the increment proof."
+    },
+    {
+      "id": "detection",
+      "label": "Detection",
+      "description": "Pathwise and forward detection estimates that turn a certificate into an absolute increment."
+    },
+    {
+      "id": "return",
+      "label": "Preparation and return",
+      "description": "Rank cuts, comparison, active replacement, and extraction that retain precision and constraints through a round."
+    },
+    {
+      "id": "increment",
+      "label": "Triangular increment",
+      "description": "The central density-increment theorem on triangular polynomial cells."
+    },
+    {
+      "id": "iteration",
+      "label": "Iteration",
+      "description": "Close the dimension, width, and finite-horizon recurrences and iterate the increment."
+    },
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The density bound and its reciprocal-sum corollary."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "main",
+      "label": "Main paper · 198 pp",
+      "title": "Quasipolynomial Bounds for Arithmetic Progressions",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 198,
+      "color": "#6b7fd7",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Quasipolynomial-Bounds-for-Arithmetic-Progressions-September-23-2026/paper.pdf",
+      "sourceLabel": "main paper",
+      "note": "Section-level spine: §2 states the triangular increment; §§3–9 prove its ingredients; §10 closes the recurrences; §11 derives the weighted consequences.",
+      "proofDetail": "section",
+      "leanStatus": "formalized_upstream",
+      "leanLabel": "OAI.Erdos3.manuscriptReciprocalProgressionTheorem",
+      "leanUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/OAI/Combinatorics/Progressions/Main.lean",
+      "leanNote": "The comparator is named for the reciprocal-sum theorem. It does not formalize the quantitative density bound as stated in Theorem 1.1.",
+      "nodes": [
+        {
+          "id": "inverse-theorem",
+          "role": "input",
+          "label": "Interval inverse theorem",
+          "fullLabel": "External input · Leng–Sah–Sawhney interval inverse theorem",
+          "kind": "external",
+          "source": "§1.5 and §7; cited as [35]",
+          "detail": "A quantitative interval inverse theorem for the uniformity norm, used in the comparison and return estimates of §7. It is an external analytic input, not proved in this paper.",
+          "dependsOn": []
+        },
+        {
+          "id": "almost-periodicity",
+          "role": "input",
+          "label": "Radius-sensitive almost periodicity",
+          "fullLabel": "External input · Schoen–Sisask almost periodicity",
+          "kind": "external",
+          "source": "§1.5 and §7; cited as [43]",
+          "detail": "The radius-sensitive almost-periodicity theorem supplies the shift comparison used in §7. It is an external analytic input, not proved in this paper.",
+          "dependsOn": []
+        },
+        {
+          "id": "detection",
+          "role": "detection",
+          "label": "Pathwise detection",
+          "fullLabel": "Theorem 3.4 · Pathwise detection and approximation",
+          "kind": "theorem",
+          "source": "§3, Theorem 3.4",
+          "detail": "Prescribes finitely many testing degrees for a constrained path law and detects a positive density increment along active paths, with approximation in the mixed ambient cube norm.",
+          "dependsOn": []
+        },
+        {
+          "id": "prepare",
+          "role": "return",
+          "label": "Prepared system by rank cuts",
+          "fullLabel": "Proposition 4.1 · Prepared system with triangular costs",
+          "kind": "theorem",
+          "source": "§4, Proposition 4.1; Lemmas 4.2–4.7",
+          "detail": "Rank cuts prepare a triangular two-box certificate while preserving the box certificate and controlling the relative loss of each width. Backward rank transfer and relative rank-cut transactions are the main inputs.",
+          "dependsOn": []
+        },
+        {
+          "id": "width",
+          "role": "detection",
+          "label": "Detection independent of width",
+          "fullLabel": "§5 · Detection independent of the current width",
+          "kind": "lemma",
+          "source": "§5, Lemmas 5.1–5.3",
+          "detail": "Bounded-grid moments and relative cube detection densify without paying the chart mass, so the detection estimate does not depend on the current width.",
+          "dependsOn": []
+        },
+        {
+          "id": "forward",
+          "role": "detection",
+          "label": "Forward mass",
+          "fullLabel": "Proposition 6.2 · Forward mass",
+          "kind": "theorem",
+          "source": "§6, Proposition 6.2; Lemma 6.1",
+          "detail": "Forward sampling of a prepared cell transfers the density certificate to terminal boxes and yields an absolute increment, with the selected planes and flags kept under control.",
+          "dependsOn": [
+            "prepare",
+            "width"
+          ]
+        },
+        {
+          "id": "return",
+          "role": "return",
+          "label": "Scalar comparison and return",
+          "fullLabel": "Proposition 7.4 · Scalar comparison",
+          "kind": "theorem",
+          "source": "§7, Proposition 7.4; Lemmas 7.5–7.8; Corollary 7.9",
+          "detail": "Comparison measure, forecasts, and passive-layer returns quantify the relative width loss while preserving old equations. The interval inverse theorem and radius-sensitive almost periodicity enter the comparison machinery here.",
+          "dependsOn": [
+            "forward",
+            "inverse-theorem",
+            "almost-periodicity"
+          ]
+        },
+        {
+          "id": "active",
+          "role": "return",
+          "label": "Active replacement",
+          "fullLabel": "Theorem 8.2 · Active replacement",
+          "kind": "theorem",
+          "source": "§8, Theorem 8.2",
+          "detail": "Active globalization replaces the active modulus and produces an exact marked projection, preserving the structural data needed for the next round.",
+          "dependsOn": [
+            "return"
+          ]
+        },
+        {
+          "id": "extraction",
+          "role": "return",
+          "label": "One-layer extraction",
+          "fullLabel": "Proposition 9.1 · One-layer extraction",
+          "kind": "theorem",
+          "source": "§9, Proposition 9.1; Lemmas 9.2–9.4",
+          "detail": "Extracts the next cell, preserves old equations, and controls the new width budgets. Flags and inactive equations are removed, with real pivots and boundary losses localized.",
+          "dependsOn": [
+            "active",
+            "prepare"
+          ]
+        },
+        {
+          "id": "increment",
+          "role": "increment",
+          "label": "Triangular increment",
+          "fullLabel": "Theorem 2.1 · Triangular increment",
+          "kind": "theorem",
+          "source": "§2.3, Theorem 2.1; Lemma 2.2",
+          "detail": "A density certificate on a triangular cell yields a new cell with fresh absolute slots and controlled precision and width loss. The absolute starting rule adds only polynomially many determining coordinates, so the fresh rank is dimension-independent.",
+          "dependsOn": [
+            "detection",
+            "prepare",
+            "width",
+            "forward",
+            "return",
+            "active",
+            "extraction"
+          ]
+        },
+        {
+          "id": "iteration",
+          "role": "iteration",
+          "label": "Triangular iteration",
+          "fullLabel": "§10 · Triangular iteration and closure",
+          "kind": "assembly",
+          "source": "§10, Propositions 10.2–10.4",
+          "detail": "Iterates the increment, closes the triangular dimension, width, and finite-horizon recurrences, and derives the density contradiction at the endpoint.",
+          "dependsOn": [
+            "increment"
+          ]
+        },
+        {
+          "id": "density",
+          "role": "result",
+          "label": "Quasipolynomial density bound",
+          "fullLabel": "Theorem 1.1 · Quasipolynomial density bound",
+          "kind": "theorem",
+          "source": "§1, Theorem 1.1; §10 proof",
+          "detail": "For each fixed k≥3 there are constants C_k, c_k, ε_k > 0 such that r_k(N) ≤ C_k N exp(−c_k(log N)^(ε_k)) for every N≥2.",
+          "dependsOn": [
+            "iteration"
+          ]
+        },
+        {
+          "id": "reciprocal",
+          "role": "result",
+          "label": "Divergent reciprocal sums",
+          "fullLabel": "Corollary 1.2 · Divergent reciprocal sums",
+          "kind": "corollary",
+          "source": "§1, Corollary 1.2",
+          "detail": "Every set A of positive integers with divergent reciprocal sum contains nonconstant arithmetic progressions of every finite length. The proof sums the density bound over dyadic intervals [2^m,2^(m+1)).",
+          "dependsOn": [
+            "density"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "main:density",
+      "to": "result:erdos-reciprocal-progressions",
+      "type": "proves",
+      "label": "Theorem 1.1"
+    },
+    {
+      "from": "main:reciprocal",
+      "to": "result:erdos-reciprocal-progressions",
+      "type": "proves",
+      "label": "Corollary 1.2 (Lean-formalized)"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [
+    "Triangular polynomial cells and density certificates",
+    "Precision and width budgets indexed by weight",
+    "The constrained path law and its detection estimates",
+    "The interval inverse theorem and radius-sensitive almost periodicity"
+  ],
+  "summaryNote": "A section-level spine of a 198-page proof. The density bound is the main theorem; the reciprocal-sum corollary is the consequence formalized upstream. Many internal lemmas and appendices are intentionally grouped.",
+  "relatedManuscripts": [],
+  "leanAlignments": [
+    {
+      "strategyId": "main",
+      "nodeId": "reciprocal",
+      "theoremNames": [
+        "OAI.Erdos3.manuscriptReciprocalProgressionTheorem"
+      ],
+      "solutionModule": "OAI.Combinatorics.Progressions.Main",
+      "solutionUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/OAI/Combinatorics/Progressions/Main.lean",
+      "confidence": "inferred",
+      "note": "The comparator theorem name matches the paper's reciprocal-sum corollary. The Lean statement and proof were not kernel-checked or independently reviewed here; the quantitative density bound is outside this alignment."
+    }
+  ],
+  "caveats": [
+    "Section-level map of a 198-page proof. Nodes group many lemmas and appendices; the paper remains authoritative.",
+    "The interval inverse theorem and radius-sensitive almost periodicity are external analytic inputs. Their cited statements and hypotheses are not re-proved or independently reviewed here.",
+    "The Lean comparator is aligned to the reciprocal-sum corollary, not to the quantitative density bound. Fetching the module is not a kernel build or a Proofweave replay.",
+    "Unreviewed: no statement review, independent review, or contribution receipt."
+  ],
+  "sources": [
+    {
+      "label": "Main paper",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Quasipolynomial-Bounds-for-Arithmetic-Progressions-September-23-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Lean solution module",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/OAI/Combinatorics/Progressions/Main.lean",
+      "kind": "lean"
+    }
+  ]
+}

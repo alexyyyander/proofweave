@@ -51,6 +51,17 @@ export default async function PublicationFamilyPage({ params }: Params) {
       <section className="publication-detail-heading"><p className="eyebrow">{t("publicationDetail.eyebrow", { number: family.number })}</p><h1><MathText text={family.title} /></h1><p className="publication-detail-claim"><span className="publication-claim-label">{t("publications.card.claimLabel")}</span><MathText text={family.claim} /></p><div className="publication-detail-status"><span>{manuscriptCount(family.manuscripts.length)}</span><span>{family.scope ? t("publicationDetail.status.scopeDocumented") : t("publicationDetail.status.noScope")}</span><span>{t("publicationDetail.status.replayPending")}</span></div></section>
       <PageSectionNav label={t("publicationDetail.navAria")} links={[{ href: "#explanations", label: t("publicationDetail.nav.explanation") }, ...(claims ? [{ href: "#claims", label: t("publicationDetail.nav.claims") }] : []), { href: "#manuscripts", label: t("publicationDetail.nav.manuscripts") }, { href: "#formalization", label: t("publicationDetail.nav.formalization") }, { href: "#provenance", label: t("publicationDetail.nav.provenance") }]} />
 
+      {(() => {
+        const proofMapHref = family.number === "003" ? "/proof-evolution/landau-siegel" : `/proof-evolution/openai-math/${family.number}`;
+        return <section className="publication-replay-note" aria-label={t("publicationDetail.proofMap.aria")}>
+          <strong>{t("publicationDetail.proofMap.title")}</strong>
+          <p>{family.number === "003"
+            ? t("publicationDetail.proofMap.landauSiegelBody")
+            : t("publicationDetail.proofMap.body")}</p>
+          <Link href={proofMapHref}>{t("publicationDetail.proofMap.open")}</Link>
+        </section>;
+      })()}
+
       <section id="explanations" className="publication-explanations" aria-labelledby="explanations-title">
         <div className="publication-browse-heading"><div><p className="eyebrow">{t("publicationDetail.explanations.eyebrow")}</p><h2 id="explanations-title">{t("publicationDetail.explanations.title")}</h2></div>{explanation ? <div className="publication-explanations-heading-badges"><Badge tone="warning">{t("publicationDetail.explanations.draftBadge")}</Badge><span>{t("publicationDetail.explanations.draftNote")}</span></div> : <span>{t("publicationDetail.explanations.none")}</span>}</div>
         {explanation ? <div className="explanation-grid">

@@ -1,0 +1,1113 @@
+{
+  "schemaVersion": "pw-proof-evolution-v1",
+  "status": "draft",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-10-30",
+  "theorem": {
+    "id": "landau-siegel-real-zero-gap",
+    "title": "Uniform exclusion of Landau–Siegel zeros",
+    "statement": "There is an absolute constant c > 0 such that every real zero β ∈ (0,1) of every primitive nonprincipal real Dirichlet L-function of conductor q ≥ 3 satisfies (1 − β) log q ≥ c.",
+    "scopeNote": "This is the real-zero logarithmic gap. It does not give a zero-free half-plane, a numerical value of c, or the stronger quasi-Riemann statements.",
+    "sourceNote": "Statement paraphrased from the OpenAI paper, Theorem 1. The linked sources retain their original wording."
+  },
+  "tracks": [
+    {
+      "id": "same-theorem",
+      "label": "Same theorem · real-zero gap",
+      "description": "These versions prove the same Landau–Siegel real-zero statement. Solid edges simplify an argument; dashed edges make constants explicit; dotted edges recombine ideas."
+    },
+    {
+      "id": "stronger-theorem",
+      "label": "Stronger theorem · zero-free half-planes",
+      "description": "These papers prove stronger quasi-Riemann statements by different analytic methods. They are not the old version of the 3-page proof."
+    }
+  ],
+  "versions": [
+    {
+      "id": "openai-2026-10-01",
+      "trackId": "same-theorem",
+      "label": "OpenAI",
+      "title": "Uniform exclusion of Landau–Siegel zeros",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-01",
+      "releaseDate": "2026-10-06",
+      "pages": 9,
+      "goal": "origin",
+      "method": "Biquadratic field + interpolation determinant",
+      "field": "Q(√d, √2)",
+      "explicitConstant": "existential",
+      "aiAssistance": "OpenAI release; upstream Lean solution in the OpenAI math repository",
+      "summary": "The original short proof. A real zero close to 1 forces a shortage of primes with χ(p)=1; the complementary primes feed a weighted determinant whose Archimedean size is smaller than its forced p-adic divisibility.",
+      "changeSummary": "Origin of this lineage. It proves the real-zero gap but gives no numerical value for c.",
+      "lean": {
+        "status": "formalized_upstream",
+        "label": "OAI.NumberTheory.SiegelZeros.Main",
+        "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/OAI/NumberTheory/SiegelZeros/Main.lean",
+        "note": "The solution module exists upstream. The comparator file SiegelZeros.lean is a challenge statement ending in `sorry`; the solution module is the proof. Proofweave has not re-run the kernel or the comparator."
+      },
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Uniform-exclusion-of-Landau-Siegel-zeros-October-1-2026/paper.pdf",
+      "sourceLabel": "OpenAI math release · paper.pdf",
+      "proofDetail": "lemma",
+      "layout": {
+        "x": 20,
+        "y": 300
+      },
+      "proofSteps": [
+        {
+          "id": "theorem-1",
+          "label": "Theorem 1 · uniform real-zero gap",
+          "kind": "theorem",
+          "detail": "Every real zero β ∈ (0,1) of a primitive nonprincipal real Dirichlet L-function of conductor q ≥ 3 satisfies (1 − β) log q ≥ c for an absolute c > 0.",
+          "source": "§1, Theorem 1",
+          "dependsOn": [
+            "assembly"
+          ]
+        },
+        {
+          "id": "prime-bias",
+          "label": "Lemma 2 · prime bias",
+          "kind": "lemma",
+          "detail": "A real zero close to 1 forces a shortage of primes with χ(p)=1. For X ≥ 3, the sum over χ(p)=1 is bounded by ℓ + δ(log X)²/ℓ; the primes with χ(p)=−1 carry the remaining logarithmic mass.",
+          "source": "§2, Lemma 2",
+          "dependsOn": []
+        },
+        {
+          "id": "interpolation",
+          "label": "Lemma 3 · interpolation on a projected box",
+          "kind": "lemma",
+          "detail": "For a surjective A: C⁴ → C³ whose kernel is spanned by a Q-linearly independent vector, monomials of bounded separate degrees evaluate surjectively on the projected integer box.",
+          "source": "§3, Lemma 3",
+          "dependsOn": []
+        },
+        {
+          "id": "spanning-rows",
+          "label": "Corollary 4 · spanning rows",
+          "kind": "corollary",
+          "detail": "Rows with degrees α₁ ≤ 32H²ᐟ³U and α₂, α₃ ≤ 32H⁻¹ᐟ³U span the evaluation space.",
+          "source": "§3, Corollary 4",
+          "dependsOn": [
+            "interpolation"
+          ]
+        },
+        {
+          "id": "weighted-determinant",
+          "label": "§4 · weighted determinant",
+          "kind": "construction",
+          "detail": "Order rows by α₁ + Hα₂ + Hα₃, retain a spanning subset, and form a nonzero determinant Δ. Lemma 6 gives S₁ ≥ c₀MH²ᐟ³U and S₂ ≤ C₀MH⁻¹ᐟ³U.",
+          "source": "§4, Lemma 6",
+          "dependsOn": [
+            "spanning-rows"
+          ]
+        },
+        {
+          "id": "archimedean",
+          "label": "§5 · Archimedean bound",
+          "kind": "bound",
+          "detail": "Hadamard's inequality bounds |N(Δ)| from above using the four complex embeddings of the biquadratic field.",
+          "source": "§5, equation (5.1)",
+          "dependsOn": [
+            "weighted-determinant"
+          ]
+        },
+        {
+          "id": "prime-divisibility",
+          "label": "Lemma 7 · p-adic divisibility",
+          "kind": "lemma",
+          "detail": "For primes p with χ(p)=−1, Frobenius congruence and the row-replacement identity force p^{E_p} | Δ. Taking norms gives the lower bound.",
+          "source": "§5, Lemma 7",
+          "dependsOn": [
+            "weighted-determinant",
+            "prime-bias"
+          ]
+        },
+        {
+          "id": "assembly",
+          "label": "§6 · parameter assembly",
+          "kind": "assembly",
+          "detail": "Choose H so S₂/S₁ ≤ 1/12 and a large fixed γ with N = ⌈q^γ⌉. Combining the two bounds gives 1 ≤ 13/16 + 1/16 = 7/8, a contradiction.",
+          "source": "§6, equation (6.2)",
+          "dependsOn": [
+            "prime-bias",
+            "archimedean",
+            "prime-divisibility"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "banks-2026-10-11",
+      "trackId": "same-theorem",
+      "label": "Banks",
+      "title": "On the OpenAI proof that Landau–Siegel zeros do not exist",
+      "authors": [
+        "William D. Banks"
+      ],
+      "date": "2026-10-11",
+      "pages": 19,
+      "goal": "explicitize",
+      "method": "Direct proof with explicit constants; same interpolation determinant",
+      "field": "Q(√d, √2)",
+      "explicitConstant": "explicit",
+      "aiAssistance": "Claude used for an initial report and draft; the author rewrote and verified every line",
+      "summary": "A line-by-line exposition of the OpenAI argument with explicit constants q₀ = 10¹⁰ and δ₀ = 3.0 × 10⁻³, plus a dependency diagram. The author explicitly claims no new ideas.",
+      "changeSummary": "Not a shorter proof: it trades brevity for explicit constants, direct contradiction, and a readable dependency graph.",
+      "lean": {
+        "status": "not_formalized",
+        "label": "No upstream Lean artifact found",
+        "url": null,
+        "note": "This prototype found no Lean formalization of the Banks exposition. The upstream solution formalizes the OpenAI route, not this explicit-constant presentation."
+      },
+      "sourceUrl": "https://arxiv.org/abs/2610.15483",
+      "sourceLabel": "arXiv:2610.15483",
+      "proofDetail": "grouped",
+      "layout": {
+        "x": 260,
+        "y": 180
+      },
+      "proofSteps": [
+        {
+          "id": "theorem-1-1",
+          "label": "Theorem 1.1 · explicit gap",
+          "kind": "theorem",
+          "detail": "There are absolute q₀ ≥ 9 and δ₀ > 0 such that every primitive real Dirichlet character of conductor q ≥ q₀ and every real zero β ∈ (0,1) satisfy (1 − β) log q ≥ δ₀. One can take q₀ = 10¹⁰ and δ₀ = 3.0 × 10⁻³.",
+          "source": "§1.2, Theorem 1.1",
+          "dependsOn": [
+            "archimedean",
+            "pivot-bounds",
+            "lower-bound"
+          ]
+        },
+        {
+          "id": "prime-bias",
+          "label": "Lemma 2.1 · prime bias",
+          "kind": "lemma",
+          "detail": "A zero with δ = (1 − β) log q small forces χ(p)=−1 for most primes. The lemma makes the loss explicit with constants C₁ and C₂.",
+          "source": "§2, Lemma 2.1",
+          "dependsOn": []
+        },
+        {
+          "id": "interpolation-chain",
+          "label": "§3 · interpolation chain",
+          "kind": "construction",
+          "detail": "Lemma 3.1 nearest point → Lemma 3.2 faces of a polytope → Lemma 3.3 nonvanishing on Z⁴ → Proposition 3.4 interpolation → Corollary 3.5 spanning rows.",
+          "source": "§3, Lemmas 3.1–3.3; Proposition 3.4; Corollary 3.5",
+          "dependsOn": []
+        },
+        {
+          "id": "greedy",
+          "label": "Lemma 4.1 · greedy selection",
+          "kind": "construction",
+          "detail": "Order rows by weight and retain a row exactly when it increases the span. The retained rows form a nonzero determinant Δ.",
+          "source": "§4.3, Lemma 4.1",
+          "dependsOn": [
+            "interpolation-chain"
+          ]
+        },
+        {
+          "id": "pivot-bounds",
+          "label": "Lemma 4.2 · S₁ and S₂₃",
+          "kind": "bound",
+          "detail": "The retained rows put almost all degree in the first variable: S₁ ≥ N⁴M and S₂₃ ≤ S₁/12 for a suitable fixed H.",
+          "source": "§4.3, Lemma 4.2",
+          "dependsOn": [
+            "greedy"
+          ]
+        },
+        {
+          "id": "archimedean",
+          "label": "Lemma 5.1 · upper bound",
+          "kind": "bound",
+          "detail": "Every conjugate of θₙ is below 8N√q; Hadamard's inequality gives the Archimedean upper bound for |N(Δ)|.",
+          "source": "§5, Lemma 5.1",
+          "dependsOn": [
+            "greedy"
+          ]
+        },
+        {
+          "id": "frobenius",
+          "label": "Lemma 6.1 · Frobenius congruence",
+          "kind": "lemma",
+          "detail": "For odd p with χ(p)=−1, θᵖ ≡ g_p(θ) mod pZ[a,b], where g_p is σ or στ. This is the congruence that makes the determinant divisible.",
+          "source": "§6, Lemma 6.1",
+          "dependsOn": []
+        },
+        {
+          "id": "prime-powers",
+          "label": "Lemma 6.2 · prime powers in Δ",
+          "kind": "lemma",
+          "detail": "Row replacement preserves Δ and shows p^{E_p} | Δ for each admissible prime p > H.",
+          "source": "§6, Lemma 6.2",
+          "dependsOn": [
+            "frobenius",
+            "greedy"
+          ]
+        },
+        {
+          "id": "lower-bound",
+          "label": "Corollary 6.3 · lower bound",
+          "kind": "corollary",
+          "detail": "Summing the prime-power divisibility over p ≤ M gives the p-adic lower bound for |N(Δ)|.",
+          "source": "§6, Corollary 6.3",
+          "dependsOn": [
+            "prime-bias",
+            "prime-powers"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kerr-2026-10-15",
+      "trackId": "same-theorem",
+      "label": "Kerr",
+      "title": "A simpler proof that there are no Landau–Siegel zeros",
+      "authors": [
+        "Bryce Kerr"
+      ],
+      "date": "2026-10-15",
+      "pages": 6,
+      "goal": "simplify",
+      "method": "Pigeonhole + Masser's zero estimate",
+      "field": "Q(√q, √2)",
+      "explicitConstant": "existential",
+      "aiAssistance": "ChatGPT assisted with the mathematical development and preparation; Banks shared a draft of his exposition",
+      "summary": "Replaces the interpolation and determinant analysis with a pigeonhole argument that finds a bounded-degree polynomial vanishing modulo many primes. Masser's zero estimate contradicts the degree bound.",
+      "changeSummary": "Removes the interpolation lemma, greedy selection, and determinant construction. It keeps the biquadratic field and adds Masser's theorem as the nonvanishing input.",
+      "lean": {
+        "status": "not_formalized",
+        "label": "No upstream Lean artifact found",
+        "url": null,
+        "note": "This prototype found no Lean formalization of Kerr's pigeonhole/Masser proof."
+      },
+      "sourceUrl": "https://arxiv.org/abs/2610.21099",
+      "sourceLabel": "arXiv:2610.21099",
+      "proofDetail": "lemma",
+      "layout": {
+        "x": 260,
+        "y": 480
+      },
+      "proofSteps": [
+        {
+          "id": "theorem-1",
+          "label": "Theorem 1 · no Landau–Siegel zeros",
+          "kind": "theorem",
+          "detail": "There is an absolute c > 0 such that every real zero β ∈ (0,1) of every primitive nonprincipal real Dirichlet L-function of conductor q satisfies (1 − β) log |q| ≥ c.",
+          "source": "§1, Theorem 1",
+          "dependsOn": [
+            "masser",
+            "analytic-input"
+          ]
+        },
+        {
+          "id": "analytic-input",
+          "label": "Lemma 1 · prime bias",
+          "kind": "lemma",
+          "detail": "For X ≥ 3, the sum of log p / p over primes with χ(p)=1 is ≪ log|q| + (1−β)(log X)².",
+          "source": "§1, Lemma 1",
+          "dependsOn": []
+        },
+        {
+          "id": "polynomial-basis",
+          "label": "Lemma 2 · alternative basis",
+          "kind": "lemma",
+          "detail": "The polynomials G_{i,j,k} = x₁^v (x₁^p − x_ℓ)^e x₂^j x₃^k form a triangular basis of the lattice L_D.",
+          "source": "§2, Lemma 2",
+          "dependsOn": []
+        },
+        {
+          "id": "count",
+          "label": "Lemma 3 · counting polynomials",
+          "kind": "lemma",
+          "detail": "The number of coefficient vectors with bounded height is at least the product of the coordinate-box sizes.",
+          "source": "§2, Lemma 3",
+          "dependsOn": []
+        },
+        {
+          "id": "vanishing",
+          "label": "Lemma 4 · vanishing modulo primes",
+          "kind": "lemma",
+          "detail": "For a finite set of primes with χ(p)=−1, the number of possible value vectors modulo P is at most P^{4r} ∏ p^{−4E_p}.",
+          "source": "§3, Lemma 4",
+          "dependsOn": [
+            "polynomial-basis"
+          ]
+        },
+        {
+          "id": "pigeonhole",
+          "label": "Lemma 5 · bounded-degree polynomial",
+          "kind": "construction",
+          "detail": "If the primes with χ(p)=−1 carry enough mass, pigeonhole produces a nonzero F ∈ L_D vanishing at every grid point.",
+          "source": "§3, Lemma 5",
+          "dependsOn": [
+            "count",
+            "vanishing"
+          ]
+        },
+        {
+          "id": "masser",
+          "label": "Masser's zero estimate",
+          "kind": "external",
+          "detail": "Masser's theorem gives deg F ≥ ((N−1)/3)^{4/3}. Lemma 7 supplies μ(π(Z⁴)) ≥ 4/3, so deg F > D, contradicting F ∈ L_D.",
+          "source": "§5, Lemmas 6–7",
+          "dependsOn": [
+            "pigeonhole"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "green-2026-10-17",
+      "trackId": "same-theorem",
+      "label": "Green",
+      "title": "On Landau–Siegel zeros",
+      "authors": [
+        "Ben Green"
+      ],
+      "date": "2026-10-17",
+      "pages": 5,
+      "goal": "simplify",
+      "method": "Q(√d) only; Gram matrix + resultants",
+      "field": "Q(√d)",
+      "explicitConstant": "existential",
+      "aiAssistance": "ChatGPT 6 Astra “vibemathing” session; rewritten by the author; no human originality claimed",
+      "summary": "Avoids the biquadratic field entirely. A Gram matrix is nonsingular because the rows are independent; resultants prove row independence, and the Archimedean and p-adic bounds compare the determinant.",
+      "changeSummary": "Removes the biquadratic field and the interpolation lemma. It replaces them with a Gram-matrix/resultant argument in Q(√d).",
+      "lean": {
+        "status": "not_formalized",
+        "label": "No upstream Lean artifact found",
+        "url": null,
+        "note": "This prototype found no Lean formalization of Green's Q(√d) Gram/resultant proof."
+      },
+      "sourceUrl": "https://hexagonmath.org/pdf/2610.00311v2",
+      "sourceLabel": "Hexagon:2610.00311v2",
+      "proofDetail": "lemma",
+      "layout": {
+        "x": 500,
+        "y": 300
+      },
+      "proofSteps": [
+        {
+          "id": "theorem-1-1",
+          "label": "Theorem 1.1 · prime sum bound",
+          "kind": "theorem",
+          "detail": "With X := q^C, the sum of log p / p over primes p ≤ X with χ(p)=−1 is at most (1/2 + O(1/C)) log X + O_C(1).",
+          "source": "§1, Theorem 1.1",
+          "dependsOn": [
+            "compare"
+          ]
+        },
+        {
+          "id": "nonsingular",
+          "label": "Lemma 3.1 · row independence",
+          "kind": "lemma",
+          "detail": "If the points satisfy a Schwarz–Zippel bound and nJ > 2RS + J(R+S), the rows v_{r,s} are linearly independent. The proof factors a polynomial and uses resultants.",
+          "source": "§3, Lemma 3.1",
+          "dependsOn": []
+        },
+        {
+          "id": "archimedean",
+          "label": "§4 · Hadamard bound",
+          "kind": "bound",
+          "detail": "The entries of v_{r,s} are bounded by RJ(2N√q)^{r+s}; Hadamard gives log det G ≤ R²S(1/2 + O(1/C)) log X + O(X³).",
+          "source": "§4, equation (4.2)",
+          "dependsOn": [
+            "nonsingular"
+          ]
+        },
+        {
+          "id": "padic",
+          "label": "§5 · p-adic valuation",
+          "kind": "bound",
+          "detail": "If χ(p)=−1, the Frobenius relation z^p ≡ z′ shows that p^{e_p} divides det G, with e_p bounded below by the row count.",
+          "source": "§5, Lemma 5.1",
+          "dependsOn": [
+            "nonsingular"
+          ]
+        },
+        {
+          "id": "compare",
+          "label": "§2 · determinant comparison",
+          "kind": "assembly",
+          "detail": "Since det G is a positive integer, the product of the prime powers divides it. Comparing the lower and upper bounds gives Theorem 1.1.",
+          "source": "§2 and §5",
+          "dependsOn": [
+            "nonsingular",
+            "archimedean",
+            "padic"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "barreto-2026-10-19",
+      "trackId": "same-theorem",
+      "label": "Barreto",
+      "title": "An elementary proof of the non-existence of Landau–Siegel zeros",
+      "authors": [
+        "Kevin Barreto"
+      ],
+      "date": "2026-10-19",
+      "pages": 3,
+      "goal": "simplify",
+      "method": "Wronskian row independence replaces resultants",
+      "field": "Q(√d)",
+      "explicitConstant": "existential",
+      "aiAssistance": "GPT-6 Astra proposed the simplification and checked the text",
+      "summary": "A 3-page variant of Green's proof. The Wronskian of the polynomial basis proves row independence; Frobenius congruence gives divisibility, and the determinant bounds prove the prime-sum estimate and the real-zero corollary.",
+      "changeSummary": "Removes Green's resultant calculation and replaces it with a Wronskian. The paper says the proof is suitable for an introductory course in analytic number theory.",
+      "lean": {
+        "status": "not_formalized",
+        "label": "No upstream Lean artifact found",
+        "url": null,
+        "note": "No Lean formalization of Barreto's 3-page Wronskian proof was found. The upstream Lean solution follows the longer OpenAI route."
+      },
+      "sourceUrl": "https://x.com/AcerFur/status/2112239827077026128",
+      "sourceLabel": "3-page manuscript shared as images on X; cited by van Dijk (Hexagon:2610.00409v2)",
+      "proofDetail": "lemma",
+      "layout": {
+        "x": 740,
+        "y": 300
+      },
+      "proofSteps": [
+        {
+          "id": "theorem-1",
+          "label": "Theorem 1 · prime sum bound",
+          "kind": "theorem",
+          "detail": "Uniformly for x ≥ 2, the sum of log p / p over p ≤ x with χ(p)=−1 is at most (1/2) log x + (1/4) log q + log log(3x) + O(1).",
+          "source": "§1, Theorem 1",
+          "dependsOn": [
+            "wronskian",
+            "divisibility",
+            "size",
+            "analytic-input"
+          ]
+        },
+        {
+          "id": "analytic-input",
+          "label": "Chebyshev + Mertens",
+          "kind": "external",
+          "detail": "The proof uses Chebyshev's bound, Mertens' estimate, and the elementary prime-counting bounds recorded in Montgomery–Vaughan.",
+          "source": "§1, first paragraph",
+          "dependsOn": []
+        },
+        {
+          "id": "wronskian",
+          "label": "Wronskian row independence",
+          "kind": "lemma",
+          "detail": "The rows are indexed by monomials z^r w^s. Their Wronskian has degree < ℓx; the determinant of the leading coefficients is nonzero because the polynomials a!(t choose a) have distinct degrees. Hence the rows are independent.",
+          "source": "§1, pages 1–2",
+          "dependsOn": []
+        },
+        {
+          "id": "frobenius",
+          "label": "Frobenius congruence",
+          "kind": "lemma",
+          "detail": "For an odd prime p with χ(p)=−1, α_i^p ≡ ᾱ_i (mod pZ[√d]). Thus z^p − w vanishes at every point, and every positive z-derivative is divisible by p.",
+          "source": "§1, page 2",
+          "dependsOn": []
+        },
+        {
+          "id": "divisibility",
+          "label": "p-adic divisibility",
+          "kind": "lemma",
+          "detail": "Replace z^r w^s by z^{r−ph}(z^p − w)^h w^s. The replacement is unitriangular, preserves the minor D, and forces p^{Σ⌊r/p⌋} | D.",
+          "source": "§1, page 2",
+          "dependsOn": [
+            "frobenius",
+            "wronskian"
+          ]
+        },
+        {
+          "id": "size",
+          "label": "Determinant size bound",
+          "kind": "bound",
+          "detail": "Both conjugates of every entry are bounded by B = 2√(2x) q^{1/4}. The determinant expansion, the prime divisibility, and the choice k = ⌊log² B⌋ give the final bound.",
+          "source": "§1, page 2",
+          "dependsOn": [
+            "wronskian"
+          ]
+        },
+        {
+          "id": "corollary-2",
+          "label": "Corollary 2 · real zeros",
+          "kind": "corollary",
+          "detail": "Partial summation, Jensen's inequality, the Euler product, and the Hadamard product give (1 − β) log q ≥ 1 − O(log log(3q)/log q), hence an absolute c > 0.",
+          "source": "§2, Corollary 2",
+          "dependsOn": [
+            "theorem-1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vandijk-2026-10-20",
+      "trackId": "same-theorem",
+      "label": "van Dijk",
+      "title": "A Frobenius determinant proof of the non-existence of Landau–Siegel zeros",
+      "authors": [
+        "Roelof van Dijk"
+      ],
+      "date": "2026-10-20",
+      "pages": 6,
+      "goal": "recombine",
+      "method": "Frobenius determinant + polynomial root count",
+      "field": "Q(√d)",
+      "explicitConstant": "effective",
+      "aiAssistance": "GPT-6 Astra and Opus 5.5; the author attributes the new arguments to the models",
+      "summary": "Follows Kerr, Green, and Barreto. Reduction modulo the largest inert prime turns nonvanishing into a polynomial root count, replacing both resultants and Wronskians.",
+      "changeSummary": "A recombination branch: it keeps the Frobenius determinant idea but replaces the row-independence tool with a root count, and gets an effective asymptotic constant.",
+      "lean": {
+        "status": "not_formalized",
+        "label": "No upstream Lean artifact found",
+        "url": null,
+        "note": "This prototype found no Lean formalization of van Dijk's root-count proof."
+      },
+      "sourceUrl": "https://hexagonmath.org/pdf/2610.00409v2",
+      "sourceLabel": "Hexagon:2610.00409v2",
+      "proofDetail": "summary",
+      "layout": {
+        "x": 980,
+        "y": 180
+      },
+      "proofSteps": [
+        {
+          "id": "theorem-1",
+          "label": "Theorem 1 · prime sum bound",
+          "kind": "theorem",
+          "detail": "There is an absolute effective C such that I_d(x) ≤ (1/2) log x + (1/4) log|d| + log log(3x) + C.",
+          "source": "§1, Theorem 1",
+          "dependsOn": [
+            "nonvanishing",
+            "divisibility",
+            "size"
+          ]
+        },
+        {
+          "id": "nonvanishing",
+          "label": "Nonvanishing via root count",
+          "kind": "lemma",
+          "detail": "Modulo the largest inert prime R, a row dependence would produce a nonzero polynomial of degree < RS with R distinct roots of multiplicity ≥ S, impossible.",
+          "source": "§1, page 1",
+          "dependsOn": []
+        },
+        {
+          "id": "divisibility",
+          "label": "Frobenius divisibility",
+          "kind": "lemma",
+          "detail": "For an odd inert prime p, z^p − w vanishes at the chosen points; row replacement gives p^{2E_p} | N.",
+          "source": "§1, page 1",
+          "dependsOn": []
+        },
+        {
+          "id": "size",
+          "label": "Size comparison",
+          "kind": "bound",
+          "detail": "The determinant expansion and the prime-power lower bound are compared; Appendix A supplies the numerical estimates for the explicit constant.",
+          "source": "§1, page 2; Appendix A",
+          "dependsOn": [
+            "nonvanishing"
+          ]
+        },
+        {
+          "id": "corollary-1",
+          "label": "Corollary 1 · real zeros",
+          "kind": "corollary",
+          "detail": "Every real zero β ∈ (0,1) of a primitive nonprincipal real Dirichlet character satisfies (1 − β) log q ≥ 1 − O(log log(3q)/log q), hence an absolute effective c > 0.",
+          "source": "§1, Corollary 1",
+          "dependsOn": [
+            "theorem-1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "guo-2026-10-21",
+      "trackId": "same-theorem",
+      "label": "Guo",
+      "title": "An explicit elementary proof of no Landau–Siegel zeros",
+      "authors": [
+        "Victor Zhenyu Guo"
+      ],
+      "date": "2026-10-21",
+      "pages": 17,
+      "goal": "elementary",
+      "method": "Explicit elementary constants; c = 1/100",
+      "field": "Quadratic Dirichlet characters",
+      "explicitConstant": "explicit",
+      "aiAssistance": "No AI disclosure found in the abstract",
+      "summary": "A different track: an elementary proof with an explicit numerical constant c = 1/100, using integer coefficient counting, polynomial congruences, a paired-tail hyperbola estimate, and a weighted comparison of positive sums.",
+      "changeSummary": "Not part of the shortest lineage: it trades brevity for explicit constants and elementary real-variable estimates.",
+      "lean": {
+        "status": "not_formalized",
+        "label": "No upstream Lean artifact found",
+        "url": null,
+        "note": "This prototype found no Lean formalization of Guo's explicit elementary proof."
+      },
+      "sourceUrl": "https://arxiv.org/abs/2610.30476",
+      "sourceLabel": "arXiv:2610.30476",
+      "proofDetail": "summary",
+      "layout": {
+        "x": 740,
+        "y": 500
+      },
+      "proofSteps": [
+        {
+          "id": "theorem-1-1",
+          "label": "Theorem 1.1 · explicit c = 1/100",
+          "kind": "theorem",
+          "detail": "For every primitive quadratic Dirichlet character of conductor q ≥ 3, every real zero β ∈ (0,1) of L(s,χ) satisfies (1 − β) log q > 1/100.",
+          "source": "§1, Theorem 1.1",
+          "dependsOn": [
+            "coefficient-count",
+            "congruences",
+            "hyperbola",
+            "comparison"
+          ]
+        },
+        {
+          "id": "coefficient-count",
+          "label": "Integer coefficient counting",
+          "kind": "construction",
+          "detail": "Count integer coefficient vectors and quadratic factors modulo a prime to obtain injectivity.",
+          "source": "Abstract summary; proof sections not mapped in this prototype",
+          "dependsOn": []
+        },
+        {
+          "id": "congruences",
+          "label": "Polynomial congruences",
+          "kind": "lemma",
+          "detail": "Use polynomial congruences to force divisibility at many primes.",
+          "source": "Abstract summary; proof sections not mapped in this prototype",
+          "dependsOn": []
+        },
+        {
+          "id": "hyperbola",
+          "label": "Paired-tail hyperbola estimate",
+          "kind": "bound",
+          "detail": "Pair character tails before estimating them.",
+          "source": "Abstract summary; proof sections not mapped in this prototype",
+          "dependsOn": []
+        },
+        {
+          "id": "comparison",
+          "label": "Weighted comparison",
+          "kind": "assembly",
+          "detail": "Compare logarithmically weighted positive sums to obtain c = 1/100.",
+          "source": "Abstract summary; proof sections not mapped in this prototype",
+          "dependsOn": [
+            "hyperbola"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quasi-11-12-2026-10-05",
+      "trackId": "stronger-theorem",
+      "label": "OpenAI · 11/12",
+      "title": "The Quasi-Riemann Hypothesis (alternate 11/12 proof)",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-05",
+      "pages": 49,
+      "goal": "stronger",
+      "method": "Mean-square estimate + cubic Gauss sums",
+      "field": "Hecke L-functions over Q(√−3)",
+      "explicitConstant": "existential",
+      "aiAssistance": "OpenAI release",
+      "summary": "Proves a zero-free half-plane Re(s) > 11/12 for all Dirichlet L-functions and finite-order Hecke L-functions over Q(√−3). It implies the real-zero gap but proves a stronger theorem by a different method.",
+      "changeSummary": "Not a simplification of the 3-page proof. It is a stronger theorem on a separate track.",
+      "lean": {
+        "status": "not_separately_formalized",
+        "label": "No separate Lean artifact for the 11/12 proof",
+        "url": null,
+        "note": "The upstream 7/8 formalization is a stronger statement but not a formalization of this 11/12 proof."
+      },
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Quasi-Riemann-Hypothesis-October-5-2026/paper2.pdf",
+      "sourceLabel": "OpenAI math release · paper2.pdf",
+      "proofDetail": "section",
+      "layout": {
+        "x": 220,
+        "y": 24
+      },
+      "proofSteps": [
+        {
+          "id": "theorem-1-1",
+          "label": "Theorem 1.1 · Re(s) > 11/12",
+          "kind": "theorem",
+          "detail": "Every finite-order Hecke L-function over Q(√−3), and hence every Dirichlet L-function, has no zeros in Re(s) > 11/12.",
+          "source": "§1, Theorem 1.1",
+          "dependsOn": [
+            "transfer"
+          ]
+        },
+        {
+          "id": "mean-square",
+          "label": "Mean-square estimate",
+          "kind": "lemma",
+          "detail": "A power-saving mean-square estimate for twisted Möbius sums is the analytic input.",
+          "source": "§3 and §6",
+          "dependsOn": []
+        },
+        {
+          "id": "poisson",
+          "label": "Poisson summation / dual mean square",
+          "kind": "construction",
+          "detail": "Poisson summation produces cubic Gauss sums and a dual mean-square estimate.",
+          "source": "§4",
+          "dependsOn": [
+            "mean-square"
+          ]
+        },
+        {
+          "id": "iteration",
+          "label": "Iteration of the dual estimate",
+          "kind": "assembly",
+          "detail": "Iterate the dual mean-square estimate to complete the mean-square bound.",
+          "source": "§5",
+          "dependsOn": [
+            "poisson"
+          ]
+        },
+        {
+          "id": "transfer",
+          "label": "Transfer to Dirichlet L-functions",
+          "kind": "corollary",
+          "detail": "Transfer the Hecke half-plane to Dirichlet L-functions by composing with the norm and factoring the L-function.",
+          "source": "§7",
+          "dependsOn": [
+            "iteration"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quasi-7-8-2026-09-30",
+      "trackId": "stronger-theorem",
+      "label": "OpenAI · 7/8",
+      "title": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane Re(s) > 7/8",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-30",
+      "pages": 199,
+      "goal": "stronger",
+      "method": "Common continuation principle + sextic large sieve",
+      "field": "Hecke L-functions over Q(√−3)",
+      "explicitConstant": "existential",
+      "aiAssistance": "OpenAI release; upstream Lean formalization documented",
+      "summary": "Proves the strongest half-plane in this release: Re(s) > 7/8 for all Dirichlet L-functions and finite-order Hecke L-functions over Q(√−3). It implies the real-zero gap but is a different, much stronger theorem.",
+      "changeSummary": "Not the old version of the 3-page proof. It is a stronger theorem on a separate track; comparing page counts across tracks is misleading.",
+      "lean": {
+        "status": "formalized_upstream",
+        "label": "OAI.NumberTheory.DirichletL.Nonvanishing",
+        "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/OAI/NumberTheory/DirichletL/Nonvanishing.lean",
+        "note": "The upstream scope document says the 7/8 statement is formalized. Proofweave has not re-run the kernel; the 11/12 proof has no separate formalization."
+      },
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Quasi-Riemann-Hypothesis-September-30-2026/paper.pdf",
+      "sourceLabel": "OpenAI math release · paper.pdf",
+      "proofDetail": "section",
+      "layout": {
+        "x": 760,
+        "y": 24
+      },
+      "proofSteps": [
+        {
+          "id": "theorem-1-1",
+          "label": "Theorem 1.1 · Re(s) > 7/8",
+          "kind": "theorem",
+          "detail": "Every finite-order Hecke L-function over Q(√−3), and hence every Dirichlet L-function, has no zeros in Re(s) > 7/8, with the principal pole at s = 1 allowed.",
+          "source": "§1, Theorem 1.1",
+          "dependsOn": [
+            "compensated-probe",
+            "sextic-sieve"
+          ]
+        },
+        {
+          "id": "common-continuation",
+          "label": "Common continuation principle",
+          "kind": "construction",
+          "detail": "A common continuation principle compares a normalized character sum with a Mellin integral containing 1/L.",
+          "source": "§2",
+          "dependsOn": []
+        },
+        {
+          "id": "completed-sum",
+          "label": "Completed sum and cubic reflection",
+          "kind": "construction",
+          "detail": "The completed sum has a reflection representation and a Poisson representation.",
+          "source": "§4–§5",
+          "dependsOn": [
+            "common-continuation"
+          ]
+        },
+        {
+          "id": "poisson",
+          "label": "Poisson representation and Euler factors",
+          "kind": "construction",
+          "detail": "The Poisson representation expresses each row through a quotient of Hecke L-functions and a controlled Euler product.",
+          "source": "§7",
+          "dependsOn": [
+            "completed-sum"
+          ]
+        },
+        {
+          "id": "zero-detector",
+          "label": "Zero detector with saturated witnesses",
+          "kind": "lemma",
+          "detail": "A zero detector assigns zero-free rectangles and produces large Dirichlet polynomials.",
+          "source": "§8",
+          "dependsOn": [
+            "poisson"
+          ]
+        },
+        {
+          "id": "sextic-sieve",
+          "label": "Sextic large sieve",
+          "kind": "lemma",
+          "detail": "A sextic large sieve counts the relevant rows.",
+          "source": "§9",
+          "dependsOn": [
+            "zero-detector"
+          ]
+        },
+        {
+          "id": "compensated-probe",
+          "label": "Compensated probe and inverse moment",
+          "kind": "construction",
+          "detail": "Part II introduces prime compensation, asymmetric scales, and inverse-moment estimates to move the boundary from 11/12 to 7/8.",
+          "source": "§12–§20",
+          "dependsOn": [
+            "sextic-sieve"
+          ]
+        }
+      ]
+    }
+  ],
+  "versionEdges": [
+    {
+      "from": "openai-2026-10-01",
+      "to": "banks-2026-10-11",
+      "relation": "explicitizes",
+      "label": "explicit constants + line-by-line proof"
+    },
+    {
+      "from": "openai-2026-10-01",
+      "to": "kerr-2026-10-15",
+      "relation": "simplifies",
+      "label": "pigeonhole + Masser"
+    },
+    {
+      "from": "openai-2026-10-01",
+      "to": "green-2026-10-17",
+      "relation": "simplifies",
+      "label": "Q(√d) + Gram/resultants"
+    },
+    {
+      "from": "green-2026-10-17",
+      "to": "barreto-2026-10-19",
+      "relation": "simplifies",
+      "label": "Wronskian replaces resultants"
+    },
+    {
+      "from": "barreto-2026-10-19",
+      "to": "vandijk-2026-10-20",
+      "relation": "recombines",
+      "label": "Frobenius determinant + root count"
+    },
+    {
+      "from": "kerr-2026-10-15",
+      "to": "vandijk-2026-10-20",
+      "relation": "recombines",
+      "label": "secondary influence",
+      "secondary": true,
+      "visible": false
+    },
+    {
+      "from": "green-2026-10-17",
+      "to": "vandijk-2026-10-20",
+      "relation": "recombines",
+      "label": "secondary influence",
+      "secondary": true,
+      "visible": false
+    },
+    {
+      "from": "openai-2026-10-01",
+      "to": "guo-2026-10-21",
+      "relation": "explicitizes",
+      "label": "explicit elementary c = 1/100",
+      "visible": false
+    }
+  ],
+  "ledger": {
+    "columns": [
+      "openai-2026-10-01",
+      "banks-2026-10-11",
+      "kerr-2026-10-15",
+      "green-2026-10-17",
+      "barreto-2026-10-19",
+      "vandijk-2026-10-20"
+    ],
+    "rows": [
+      {
+        "id": "biquadratic-field",
+        "label": "Biquadratic field Q(√d, √2)",
+        "cells": {
+          "openai-2026-10-01": "used",
+          "banks-2026-10-11": "used",
+          "kerr-2026-10-15": "used",
+          "green-2026-10-17": "removed",
+          "barreto-2026-10-19": "removed",
+          "vandijk-2026-10-20": "removed"
+        }
+      },
+      {
+        "id": "interpolation",
+        "label": "Interpolation determinant",
+        "cells": {
+          "openai-2026-10-01": "used",
+          "banks-2026-10-11": "used",
+          "kerr-2026-10-15": "replaced",
+          "green-2026-10-17": "replaced",
+          "barreto-2026-10-19": "replaced",
+          "vandijk-2026-10-20": "replaced"
+        }
+      },
+      {
+        "id": "greedy",
+        "label": "Greedy row selection",
+        "cells": {
+          "openai-2026-10-01": "used",
+          "banks-2026-10-11": "used",
+          "kerr-2026-10-15": "removed",
+          "green-2026-10-17": "removed",
+          "barreto-2026-10-19": "removed",
+          "vandijk-2026-10-20": "removed"
+        }
+      },
+      {
+        "id": "masser",
+        "label": "Masser's zero estimate",
+        "cells": {
+          "openai-2026-10-01": "not_used",
+          "banks-2026-10-11": "not_used",
+          "kerr-2026-10-15": "used",
+          "green-2026-10-17": "not_used",
+          "barreto-2026-10-19": "not_used",
+          "vandijk-2026-10-20": "not_used"
+        }
+      },
+      {
+        "id": "resultant",
+        "label": "Resultant row independence",
+        "cells": {
+          "openai-2026-10-01": "not_used",
+          "banks-2026-10-11": "not_used",
+          "kerr-2026-10-15": "not_used",
+          "green-2026-10-17": "used",
+          "barreto-2026-10-19": "replaced",
+          "vandijk-2026-10-20": "replaced"
+        }
+      },
+      {
+        "id": "wronskian",
+        "label": "Wronskian row independence",
+        "cells": {
+          "openai-2026-10-01": "not_used",
+          "banks-2026-10-11": "not_used",
+          "kerr-2026-10-15": "not_used",
+          "green-2026-10-17": "not_used",
+          "barreto-2026-10-19": "used",
+          "vandijk-2026-10-20": "replaced"
+        }
+      },
+      {
+        "id": "explicit-constants",
+        "label": "Numerical constants",
+        "cells": {
+          "openai-2026-10-01": "existential",
+          "banks-2026-10-11": "explicit",
+          "kerr-2026-10-15": "existential",
+          "green-2026-10-17": "existential",
+          "barreto-2026-10-19": "existential",
+          "vandijk-2026-10-20": "effective"
+        }
+      }
+    ]
+  },
+  "caveats": [
+    "This is a curated prototype, not a Proofweave verification, replay, or receipt.",
+    "Page counts come from the linked PDFs; the Barreto manuscript is a 3-page image post cited by van Dijk.",
+    "Lean status reflects upstream artifacts. Proofweave has not re-run the kernel or the comparator.",
+    "The 199-page and 49-page papers prove stronger theorems. They are not the old version of the 3-page proof.",
+    "No version in this prototype has been peer-reviewed by Proofweave."
+  ],
+  "sources": [
+    {
+      "label": "OpenAI · Uniform exclusion of Landau–Siegel zeros",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Uniform-exclusion-of-Landau-Siegel-zeros-October-1-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Banks · On the OpenAI proof that Landau–Siegel zeros do not exist",
+      "url": "https://arxiv.org/abs/2610.15483",
+      "kind": "paper"
+    },
+    {
+      "label": "Kerr · A simpler proof that there are no Landau–Siegel zeros",
+      "url": "https://arxiv.org/abs/2610.21099",
+      "kind": "paper"
+    },
+    {
+      "label": "Green · On Landau–Siegel zeros (Hexagon)",
+      "url": "https://hexagonmath.org/pdf/2610.00311v2",
+      "kind": "paper"
+    },
+    {
+      "label": "Barreto · 3-page manuscript (images on X)",
+      "url": "https://x.com/AcerFur/status/2112239827077026128",
+      "kind": "manuscript"
+    },
+    {
+      "label": "Tao · A sketch of the proof of non-existence of Siegel zeroes",
+      "url": "https://terrytao.wordpress.com/2026/10/19/a-sketch-of-the-proof-of-non-existence-of-siegel-zeroes/",
+      "kind": "exposition"
+    },
+    {
+      "label": "van Dijk · A Frobenius determinant proof",
+      "url": "https://hexagonmath.org/pdf/2610.00409v2",
+      "kind": "paper"
+    },
+    {
+      "label": "Guo · An explicit elementary proof of no Landau–Siegel zeros",
+      "url": "https://arxiv.org/abs/2610.30476",
+      "kind": "paper"
+    },
+    {
+      "label": "OpenAI · The Quasi-Riemann Hypothesis (11/12 proof)",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Quasi-Riemann-Hypothesis-October-5-2026/paper2.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "OpenAI · The Quasi-Riemann Hypothesis (7/8 paper)",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Quasi-Riemann-Hypothesis-September-30-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Lean comparator · SiegelZeros.json",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/ComparatorChallenges/SiegelZeros.json",
+      "kind": "lean"
+    },
+    {
+      "label": "Lean solution · SiegelZeros/Main.lean",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/OAI/NumberTheory/SiegelZeros/Main.lean",
+      "kind": "lean"
+    },
+    {
+      "label": "Lean scope · docs/003.md",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/docs/003.md",
+      "kind": "lean"
+    }
+  ]
+}
