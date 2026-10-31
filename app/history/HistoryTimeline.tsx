@@ -1,9 +1,10 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
-import type { CSSProperties } from "react";
+import { CardTitle, SectionTitle, Field, Button, FieldList, Input, SectionHeading, Surface } from "@/app/components/ui";
 
-export type EvidenceTone = "formal" | "reviewed" | "reproduced" | "announced";
+import { useLayoutEffect, useRef, useState, type CSSProperties } from "react";
+
+export type EvidenceTone = "formal" | "reviewed" | "reproduced" | "announced" | "corrected";
 
 export type HistoryMilestone = {
   number: string;
@@ -38,13 +39,15 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
   const [activeNumber, setActiveNumber] = useState(milestones.at(-1)?.number ?? milestones[0]?.number);
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const viewportRef = useRef<HTMLDivElement>(null);
-  const [zoom, setZoom] = useState(16);
+  const [zoom, setZoom] = useState(1);
   const [viewportWidth, setViewportWidth] = useState(1120);
-  const centerRef = useRef(timelinePosition(milestones.at(-1)?.timelineDate ?? "2026-09-01") / 100);
+  const centerRef = useRef(.5);
+  const wheelZoomRef = useRef({ zoom: 1, time: 0 });
   const dragRef = useRef<{ pointerId: number; x: number; scrollLeft: number; moved: boolean } | null>(null);
   const [dragging, setDragging] = useState(false);
-  const canvasWidth = Math.max(viewportWidth, 640) * zoom;
+  const canvasWidth = Math.max(viewportWidth, 1) * zoom;
   const layout = distributeTimelineLabels(milestones, canvasWidth);
+  const compact = zoom < 4;
 
   useLayoutEffect(() => {
     const viewport = viewportRef.current;
@@ -59,10 +62,36 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
     if (viewport) viewport.scrollLeft = centerRef.current * canvasWidth - viewport.clientWidth / 2;
   }, [canvasWidth]);
 
+  useLayoutEffect(() => {
+    const viewport = viewportRef.current;
+    if (!viewport) return;
+    function onWheel(event: WheelEvent) {
+      if (!viewport || event.deltaY === 0 || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+      if ((zoom === 1 && event.deltaY > 0) || (zoom === 32 && event.deltaY < 0)) return;
+      event.preventDefault();
+      const delta = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? viewport.clientHeight : 1);
+      const previous = wheelZoomRef.current;
+      const baseZoom = event.timeStamp - previous.time < 180 ? previous.zoom : zoom;
+      const targetZoom = Math.max(1, Math.min(32, baseZoom * Math.exp(-delta * .0025)));
+      wheelZoomRef.current = { zoom: targetZoom, time: event.timeStamp };
+      const nextZoom = Math.round(targetZoom * 4) / 4;
+      if (nextZoom === zoom) return;
+      const pointerX = Math.max(0, Math.min(viewport.clientWidth, event.clientX - viewport.getBoundingClientRect().left));
+      const position = (viewport.scrollLeft + pointerX) / canvasWidth;
+      const nextWidth = viewport.clientWidth * nextZoom;
+      centerRef.current = position + (viewport.clientWidth / 2 - pointerX) / nextWidth;
+      setZoom(nextZoom);
+    }
+    // A non-passive listener keeps wheel zoom from also scrolling the page.
+    viewport.addEventListener("wheel", onWheel, { passive: false });
+    return () => viewport.removeEventListener("wheel", onWheel);
+  }, [canvasWidth, zoom]);
+
   function changeZoom(value: number, center?: number) {
     const viewport = viewportRef.current;
     centerRef.current = center ?? (viewport ? (viewport.scrollLeft + viewport.clientWidth / 2) / canvasWidth : centerRef.current);
-    const nextZoom = Math.max(1, Math.min(32, value));
+    const nextZoom = Math.max(1, Math.min(32, Number.isFinite(value) ? value : 1));
+    wheelZoomRef.current = { zoom: nextZoom, time: 0 };
     setZoom(nextZoom);
     if (nextZoom === zoom && viewport) viewport.scrollLeft = centerRef.current * canvasWidth - viewport.clientWidth / 2;
   }
@@ -70,7 +99,7 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
   function recentDays() {
     changeZoom(16, timelinePosition(milestones.at(-1)?.timelineDate ?? "2026-09-01") / 100);
   }
-  const tracksIn = (lane: HistoryMilestone["timelineLane"]) => Math.max(2, ...layout.filter(({ item }) => item.timelineLane === lane).map(({ timelineTrack }) => timelineTrack + 1));
+  const tracksIn = (lane: HistoryMilestone["timelineLane"]) => compact ? 1 : Math.max(2, ...layout.filter(({ item }) => item.timelineLane === lane).map(({ timelineTrack }) => timelineTrack + 1));
   const aboveTracks = tracksIn("above");
   const belowTracks = tracksIn("below");
   const nodeClearance = Math.max(0, ...layout.map(({ timelineNodeOffset }) => Math.abs(timelineNodeOffset)));
@@ -88,29 +117,31 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
 
   return (
     <section className="history-timeline" id="timeline" aria-labelledby="timeline-title">
-      <div className="history-timeline-heading">
+      <SectionHeading as="div" className="history-timeline-heading">
         <div>
           <p className="eyebrow">{milestones.length} moments · one accelerating frontier</p>
-          <h2 id="timeline-title">Follow the record across 2026.</h2>
+          <SectionTitle id="timeline-title">Follow the record across 2026.</SectionTitle>
         </div>
-        <p>Zoom in to separate busy days. Drag the timeline or swipe sideways to explore. Records from the same day stay stacked; month-only records sit at mid-month.</p>
-      </div>
+        <p>Use Spacing or scroll over the timeline: wheel up to stretch, down to compress around the pointer. Select a numbered point in the compact view; expand to 4× to show every title. Zoom in to separate busy days. First entry and Latest entry jump directly to a record.</p>
+      </SectionHeading>
 
       <div className="history-timeline-controls" aria-label="Timeline controls">
         <div className="history-timeline-presets">
-          <button type="button" onClick={() => changeZoom(1, .5)}>Full record</button>
-          <button type="button" onClick={recentDays}>Recent days</button>
+          <Button type="button" aria-pressed={zoom === 1} onClick={() => changeZoom(1, .5)}>Full record</Button>
+          <Button type="button" onClick={recentDays}>Recent days</Button>
         </div>
         <div className="history-timeline-zoom">
-          <button type="button" aria-label="Zoom out timeline" disabled={zoom === 1} onClick={() => changeZoom(Math.max(1, Math.round(zoom / 1.5)))}>−</button>
-          <label htmlFor="history-zoom">Zoom</label>
-          <input id="history-zoom" type="range" min="1" max="32" step="1" value={zoom} aria-valuetext={`${zoom} times`} onChange={(event) => changeZoom(Number(event.target.value))} />
+          <Button type="button" aria-label="Zoom out timeline" disabled={zoom === 1} onClick={() => changeZoom(Math.max(1, Math.round(zoom / 1.5)))}>−</Button>
+          <label htmlFor="history-zoom">Spacing</label>
+          <Input id="history-zoom" type="range" min="1" max="32" step="0.25" value={zoom} aria-valuetext={`${zoom} times the full-record width`} onChange={(event) => changeZoom(Number(event.target.value))} />
           <output htmlFor="history-zoom">{zoom}×</output>
-          <button type="button" aria-label="Zoom in timeline" disabled={zoom === 32} onClick={() => changeZoom(Math.min(32, Math.ceil(zoom * 1.5)))}>+</button>
+          <Button type="button" aria-label="Zoom in timeline" disabled={zoom === 32} onClick={() => changeZoom(Math.min(32, Math.ceil(zoom * 1.5)))}>+</Button>
         </div>
-        <div className="history-timeline-pan">
-          <button type="button" aria-label="Earlier dates" onClick={() => viewportRef.current?.scrollBy({ left: -viewportWidth * .7 })}>←</button>
-          <button type="button" aria-label="Later dates" onClick={() => viewportRef.current?.scrollBy({ left: viewportWidth * .7 })}>→</button>
+        <div className="history-timeline-pan" style={{ flexWrap: "wrap", maxWidth: "100%" }}>
+          <Button type="button" onClick={() => focusTab(0)}>First entry</Button>
+          <Button type="button" onClick={() => focusTab(milestones.length - 1)}>Latest entry</Button>
+          <Button type="button" aria-label="Earlier dates" onClick={() => viewportRef.current?.scrollBy({ left: -viewportWidth * .7 })}>←</Button>
+          <Button type="button" aria-label="Later dates" onClick={() => viewportRef.current?.scrollBy({ left: viewportWidth * .7 })}>→</Button>
         </div>
       </div>
       <div
@@ -139,7 +170,7 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
         }}
         onScroll={(event) => { centerRef.current = (event.currentTarget.scrollLeft + event.currentTarget.clientWidth / 2) / canvasWidth; }}
       >
-        <div className="history-time-visual" role="tablist" aria-label="AI mathematics milestones from January to September 2026" style={{ width: `${canvasWidth}px`, "--timeline-axis-y": `${84 + nodeClearance + aboveTracks * 80}px`, "--timeline-node-clearance": `${nodeClearance}px`, height: `${168 + 2 * nodeClearance + (aboveTracks + belowTracks) * 80}px` } as CSSProperties}>
+        <div className="history-time-visual" role="tablist" aria-label="AI mathematics milestones from January to October 2026" style={{ width: `${canvasWidth}px`, "--timeline-axis-y": `${84 + nodeClearance + aboveTracks * 80}px`, "--timeline-node-clearance": `${nodeClearance}px`, height: `${168 + 2 * nodeClearance + (aboveTracks + belowTracks) * 80}px` } as CSSProperties}>
           <div className="history-time-axis" aria-hidden="true">{timelineTicks(zoom).map(({ label, date }) => <span key={date} style={{ left: `${timelinePosition(date)}%` }}>{label}</span>)}</div>
           {layout.map(({ item, timelineTrack, timelineNodeOffset }, index) => {
               const isActive = item.number === activeNumber;
@@ -147,9 +178,10 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
               const edgeClass = position >= 94 ? " is-edge-end" : position <= 6 ? " is-edge-start" : "";
               const nodeClass = timelineNodeOffset < 0 ? " is-node-above" : timelineNodeOffset > 0 ? " is-node-below" : "";
               return (
-                <button
+                <Button
                   aria-controls={`history-panel-${item.number}`}
                   aria-label={`${item.date}: ${item.title}. ${item.evidence}`}
+                  title={`${item.date}: ${item.title}`}
                   aria-selected={isActive}
                   className={`history-timepoint is-${item.timelineLane} tone-${item.evidenceTone}${isActive ? " is-active" : ""}${item.latest ? " is-latest" : ""}${edgeClass}${nodeClass}`}
                   id={`history-tab-${item.number}`}
@@ -173,7 +205,7 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
                   ref={(element) => { tabRefs.current[index] = element; }}
                   role="tab"
                   style={{
-                    "--timeline-label-track": timelineTrack,
+                    "--timeline-label-track": compact ? 0 : timelineTrack,
                     "--timeline-node-bridge": `${Math.max(Math.abs(timelineNodeOffset) - 18, 0)}px`,
                     "--timeline-node-offset": `${timelineNodeOffset}px`,
                     left: `${position}%`,
@@ -181,9 +213,9 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
                   tabIndex={isActive ? 0 : -1}
                   type="button"
                 >
-                  <span className="history-timepoint-copy"><time dateTime={item.timelineDate}>{item.date}</time><strong>{item.shortTitle}</strong>{item.latest ? <em>Latest entry</em> : null}</span>
+                  <span className="history-timepoint-copy" style={compact && !isActive ? { display: "none" } : undefined}><time dateTime={item.timelineDate}>{item.date}</time><strong>{item.shortTitle}</strong>{item.latest ? <em>Latest entry</em> : null}</span>
                   <span className="history-timepoint-node"><b>{item.number}</b></span>
-                </button>
+                </Button>
               );
             })}
         </div>
@@ -193,7 +225,7 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
           {milestones.map((item) => {
             const isActive = item.number === activeNumber;
             return (
-              <article
+              <Surface as="article"
                 aria-labelledby={`history-tab-${item.number}`}
                 className={`history-panel${item.frontier ? " is-frontier" : ""}`}
                 hidden={!isActive}
@@ -203,7 +235,7 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
                 tabIndex={0}
               >
                 <header>
-                  <div><p className="history-system">{item.system}</p><h3>{item.title}</h3></div>
+                  <div><p className="history-system">{item.system}</p><CardTitle>{item.title}</CardTitle></div>
                   <span className={`history-state is-${item.evidenceTone}`}>{item.evidence}</span>
                 </header>
                 <p className="history-entry-summary">{item.summary}</p>
@@ -215,12 +247,12 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
 
                 {item.reproduction ? <div className="history-reproduction-inline"><div><span className="history-reproduction-label">Lean replay path</span><strong>{item.reproduction.label}</strong><p>{item.reproduction.detail}</p>{item.reproduction.command ? <code>{item.reproduction.command}</code> : null}</div><div className="history-reproduction-links"><a href={item.reproduction.href} rel="noreferrer" target="_blank">Open artifact <span aria-hidden="true">↗</span></a>{item.reproduction.workspaceHref && item.reproduction.workspaceLabel ? <a href={item.reproduction.workspaceHref}>{item.reproduction.workspaceLabel} <span aria-hidden="true">→</span></a> : null}</div></div> : null}
 
-                <dl className="history-role-grid"><div><dt>AI contribution</dt><dd>{item.aiRole}</dd></div><div><dt>Human contribution</dt><dd>{item.humanRole}</dd></div><div><dt>{item.frontier ? "Evidence today" : "Why it mattered"}</dt><dd>{item.significance}</dd></div></dl>
+                <FieldList layout="stacked" className="history-role-grid"><Field label="AI contribution">{item.aiRole}</Field><Field label="Human contribution">{item.humanRole}</Field><Field label={<>{item.frontier ? "Evidence today" : "Why it mattered"}</>}> {item.significance}</Field></FieldList>
 
                 {item.frontier ? <div className="history-frontier-boundary"><strong>What this does—and does not—establish</strong><p>{item.boundary ?? (item.special === "riemann" ? "This improves a lower bound for a related zeta-zero problem. It does not prove or disprove the Riemann Hypothesis; the formal artifact is public, while a Proofweave replay receipt is still pending." : "The displayed algebraic claims can be checked now. The scholarly publication and attribution record are still forming, and the two-dimensional Jacobian Conjecture remains open.")}</p></div> : null}
 
                 <footer>{item.sources.map((source) => <a href={source.href} key={source.href} rel="noreferrer" target="_blank">{source.label} <span aria-hidden="true">↗</span></a>)}</footer>
-              </article>
+              </Surface>
             );
           })}
       </div>
@@ -250,7 +282,7 @@ function distributeTimelineLabels(milestones: HistoryMilestone[], width: number)
 
 function timelinePosition(date: string) {
   const start = Date.parse("2026-01-01T00:00:00Z");
-  const end = Date.parse("2026-09-30T00:00:00Z");
+  const end = Date.parse("2026-10-31T00:00:00Z");
   return 2 + 96 * (Date.parse(`${date}T00:00:00Z`) - start) / (end - start);
 }
 
@@ -258,7 +290,7 @@ function timelineTicks(zoom: number) {
   const ticks: Array<{ date: string; label: string }> = [];
   const step = zoom >= 12 ? 1 : zoom >= 4 ? 7 : 0;
   const formatter = new Intl.DateTimeFormat("en", { month: "short", ...(step ? { day: "numeric" } as const : {}), timeZone: "UTC" });
-  for (let day = new Date("2026-01-01T00:00:00Z"); day <= new Date("2026-09-30T00:00:00Z");) {
+  for (let day = new Date("2026-01-01T00:00:00Z"); day <= new Date("2026-10-31T00:00:00Z");) {
     ticks.push({ date: day.toISOString().slice(0, 10), label: formatter.format(day).toUpperCase() });
     if (step) day.setUTCDate(day.getUTCDate() + step);
     else day.setUTCMonth(day.getUTCMonth() + 1);

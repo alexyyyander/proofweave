@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -108,9 +108,20 @@ function launcher(overrides) {
       require(specifier) {
         if (specifier === "react") return { ...react, useMemo: (fn) => fn(), useState: (value) => [value, () => {}] };
         if (specifier === "next/link") return { __esModule: true, default: "a" };
+        if (specifier === "@/app/components/ui") return {
+          Button: "button",
+          Select: "select",
+          ActionLink: "a",
+          Badge: "span",
+          SectionTitle: "h2",
+          SectionHeading: "section",
+        };
         if (specifier.startsWith(".") || specifier.startsWith("@/")) {
           const path = specifier.startsWith("@/") ? resolve(root, specifier.slice(2)) : resolve(dirname(filename), specifier);
-          return path.endsWith(".mjs") ? require(path) : load(`${path}.ts`);
+          if (path.endsWith(".mjs")) return require(path);
+          if (existsSync(`${path}/index.ts`)) return load(`${path}/index.ts`);
+          if (existsSync(`${path}.tsx`)) return load(`${path}.tsx`);
+          return load(`${path}.ts`);
         }
         return require(specifier);
       },
@@ -126,7 +137,7 @@ function launcher(overrides) {
         validFrom: "2000-01-01T00:00:00Z", validUntil: "2100-01-01T00:00:00Z" }],
       agentInstallations: [{ agentId: "agent", agentLabel: "My Agent", status: "active", delegationCertificateId: "delegation" }],
     },
-    catalogTargets: [{ id: "target", slug: "target-0", title: "Selected question", source: { leanToolchain: "lean" } }],
+    catalogTargets: [{ id: "target", slug: "target-0", title: "Selected question", source: { leanToolchain: "lean" }, runnerAvailability: { status: "executable", label: "Runner ready", detail: "The exact Lean environment is ready." } }],
     initialTargetSlug: "target-0", initialParentNodeId: null,
     isAuthenticated: true, storageAvailable: true, writeAvailability: "available", signInPath: "/sign-in",
     onAttemptReady: (attempt) => selected.push(attempt), ...overrides,

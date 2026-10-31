@@ -17,6 +17,7 @@ import { spawn } from "node:child_process";
 import { pipeline } from "node:stream/promises";
 import * as zlib from "node:zlib";
 import readline from "node:readline";
+import { isProductionDomainMigration, productionOrigin } from "./deployment-origin.mjs";
 
 const localCompatibilityContract = Object.freeze(JSON.parse(
   await readFile(new URL("./proofweave-client-compatibility.json", import.meta.url), "utf8"),
@@ -24,7 +25,7 @@ const localCompatibilityContract = Object.freeze(JSON.parse(
 const pluginManifest = Object.freeze(JSON.parse(
   await readFile(new URL("../.codex-plugin/plugin.json", import.meta.url), "utf8"),
 ));
-const baseUrl = normalizeBaseUrl(process.env.PROOFWEAVE_BASE_URL ?? "https://proofweave-research.yualex031821.chatgpt.site");
+const baseUrl = normalizeBaseUrl(process.env.PROOFWEAVE_BASE_URL ?? productionOrigin);
 const distributionManifestPath = "/downloads/proofweave-research-marketplace.json";
 const distributionArchivePath = "/downloads/proofweave-research-marketplace.tar";
 const distributionArchiveFilename = "proofweave-research-marketplace.tar";
@@ -48,7 +49,7 @@ const connectionScopeSets = Object.freeze({
   research_and_review: Object.freeze([...legacyConnectionScopes, "artifact:write", "run:request", "run:read", "run:cancel", "verification:replay", "verification:write"]),
 });
 const toolDefinitions = [
-  tool("connect_proofweave", "Connect this local Codex to Proofweave with a one-time browser approval. Choose research, review, or both; the Agent key stays on this computer and no key needs to be pasted.", { type: "object", additionalProperties: false, properties: { role: { type: "string", enum: ["research", "review", "research_and_review"], description: "Least-privilege connection role. Defaults to research." } } }),
+  tool("connect_proofweave", "Start one-time browser approval and return pendingApproval with approvalUrl promptly. Keep the Connector running, approve in the browser, then call connection_status. Choose research, review, or both; the Agent key stays on this computer and no key needs to be pasted.", { type: "object", additionalProperties: false, properties: { role: { type: "string", enum: ["research", "review", "research_and_review"], description: "Least-privilege connection role. Defaults to research." } } }),
   tool("connection_status", "Show whether this local Connector has a saved revocable Proofweave connection, check public compatibility, and perform one authenticated read-only MCP health check. Public compatibility sends no token; the live check sends only the OAuth access token and get_connection_authority request, never a key, workspace, or research content.", { type: "object", additionalProperties: false, properties: {} }),
   tool("get_connection_authority", "Read the public Person, Agent, delegation, and OAuth scopes bound to this exact local installation. It never returns a token or private key.", { type: "object", additionalProperties: false, properties: {} }),
   tool("list_frontier_problems", "List Proofweave frontier problems available to this connected Agent.", { type: "object", additionalProperties: false, properties: { limit: { type: "integer", minimum: 1, maximum: 100 } } }),
@@ -79,8 +80,14 @@ const toolDefinitions = [
   tool("submit_prepared_verification_attestation", "Submit the exact locally signed review attestation only after the owner confirms its payload hash, decision, claim, and evidence hash. This records one claim; the client cannot request a Receipt, but the platform may automatically close the Bundle if this is the last required valid gate.", { type: "object", additionalProperties: false, properties: { attestation: { type: "object" }, expectedPayloadHash: { type: "string", pattern: "^sha256:[a-f0-9]{64}$" }, ownerConfirmation: { type: "string", enum: ["I_CONFIRM_SUBMIT_VERIFICATION"] } }, required: ["attestation", "expectedPayloadHash", "ownerConfirmation"] }),
 ];
 
+let connectionStart = null;
+let pairingState = null;
+let cancelApproval = null;
+let inputClosed = false;
+
 const rl = readline.createInterface({ input: process.stdin, crlfDelay: Infinity });
 rl.on("line", (line) => { void handleLine(line); });
+rl.on("close", () => { inputClosed = true; cancelApproval?.(); });
 
 async function handleLine(line) {
   let request;
@@ -1547,10 +1554,26 @@ function canonicalJson(value) {
 }
 
 async function connect(args = {}) {
-  const connectionMode = normalizeConnectionMode(args.role);
+  // Concurrent tool calls share one startup and one browser approval session.
+  if (connectionStart) {
+    await connectionStart;
+    return connect(args);
+  }
+  connectionStart = startConnection(args);
+  try { return await connectionStart; } finally { connectionStart = null; }
+}
+
+async function startConnection(args) {
   const existing = await readConfig();
+  const domainMigration = isProductionDomainMigration(existing?.baseUrl, baseUrl);
+  const connectionMode = normalizeConnectionMode(args.role ?? (domainMigration ? existingConnectionMode(existing) : undefined));
+  if (pairingState?.state === "pending") {
+    if (pairingState.connectionMode !== connectionMode) {
+      throw new Error(`A ${pairingState.connectionMode} browser approval is already pending. Complete it or wait for it to expire before changing roles.`);
+    }
+    return pairingStatus(existing);
+  }
   const missingScopes = missingRequiredConnectionScopes(existing, connectionMode);
-  let reconnecting = false;
   if (existing?.refreshToken && existing.baseUrl === baseUrl && existingConnectionMode(existing) === connectionMode && missingScopes.length === 0) {
     const liveConnection = await checkLiveConnection(existing);
     if (liveConnection.state === "ready") {
@@ -1559,15 +1582,8 @@ async function connect(args = {}) {
     if (liveConnection.code !== "refresh_token_invalid") {
       return { connected: false, savedConnection: true, liveConnection, connectionMode, reconnectRequired: false, message: liveConnection.message };
     }
-    reconnecting = true;
   }
-  const upgrading = Boolean(existing?.refreshToken && existing.baseUrl === baseUrl);
-  // Agent identities are scoped to one Proofweave control plane. Reusing an
-  // id/key pair while moving between deployments can collide with a Person or
-  // Agent record already present on the destination. Keep the previous config
-  // untouched until browser approval succeeds, but propose a fresh identity
-  // for the destination deployment.
-  const changingControlPlane = Boolean(existing?.baseUrl && existing.baseUrl !== baseUrl);
+  const changingControlPlane = Boolean(existing?.baseUrl && existing.baseUrl !== baseUrl && !domainMigration);
   const identity = !changingControlPlane && existing?.privateKeyJwk && existing?.agentId && existing?.agentPublicKey
     ? existing
     : createLocalIdentity();
@@ -1581,41 +1597,70 @@ async function connect(args = {}) {
     oauthState: state,
     codeChallenge,
     connectionMode,
+    redirectUri,
   });
-  const tokens = await waitForCallback({ connectionUrl: session.connectionUrl, state, verifier, clientId: session.clientId });
-  const grantedScopes = normalizeOAuthScopes(tokens.scope);
-  const missingGrantedScopes = scopesForConnectionMode(connectionMode).filter((scope) => !grantedScopes.includes(scope));
-  if (missingGrantedScopes.length > 0) {
-    throw new Error(`Proofweave browser approval did not grant the required Connector scopes: ${missingGrantedScopes.join(", ")}.`);
-  }
-  const next = {
-    version: 3,
-    baseUrl,
-    agentId: identity.agentId,
-    agentLabel: identity.agentLabel,
-    agentPublicKey: identity.agentPublicKey,
-    privateKeyJwk: identity.privateKeyJwk,
-    clientId: session.clientId,
-    accessToken: tokens.access_token,
-    refreshToken: tokens.refresh_token,
-    accessTokenExpiresAt: new Date(Date.now() + Number(tokens.expires_in) * 1_000).toISOString(),
-    grantedScopes,
-    connectionMode,
-  };
-  await writeConfig(next);
-  return {
-    connected: true,
-    connectionMode,
-    scopeUpgradeRequired: false,
-    identityRotated: changingControlPlane,
+  const pending = {
+    state: "pending", connectionMode,
+    approvalUrl: session.connectionUrl, expiresAt: session.expiresAt,
+    identityRotated: changingControlPlane, domainMigrated: domainMigration,
     previousAgentPreserved: changingControlPlane,
-    message: changingControlPlane
-      ? `Connected as ${next.agentLabel} for ${connectionModeLabel(connectionMode)} with a fresh deployment-scoped Agent identity. The previous Agent and its records remain preserved on the earlier Proofweave deployment.`
-      : `${reconnecting ? "Reconnected" : upgrading ? "Connection upgraded" : "Connected"} as ${next.agentLabel} for ${connectionModeLabel(connectionMode)}. You can revoke this installation in Proofweave Settings.`,
+  };
+  const listener = await listenForApproval({
+    state, expiresAt: session.expiresAt,
+    onAuthorization: async (code, { signal, beforeCommit }) => {
+      let tokens;
+      try { tokens = await exchangeCode({ code, verifier, clientId: session.clientId, signal }); }
+      catch (error) { throw pairingFailure(error, "token_exchange_failed"); }
+      const grantedScopes = normalizeOAuthScopes(tokens.scope);
+      const missing = scopesForConnectionMode(connectionMode).filter((scope) => !grantedScopes.includes(scope));
+      if (missing.length > 0) throw new ProofweaveConnectionError("Browser approval did not grant the required Connector scopes.", { code: "approval_scope_missing" });
+      if (typeof tokens.access_token !== "string" || !tokens.access_token || typeof tokens.refresh_token !== "string" || !tokens.refresh_token
+        || !Number.isFinite(Number(tokens.expires_in)) || Number(tokens.expires_in) <= 0) throw new ProofweaveConnectionError("Invalid OAuth token response.", { code: "approval_token_invalid" });
+      beforeCommit();
+      try { await writeConfig({
+        version: 3, baseUrl,
+        agentId: identity.agentId, agentLabel: identity.agentLabel,
+        agentPublicKey: identity.agentPublicKey, privateKeyJwk: identity.privateKeyJwk,
+        clientId: session.clientId,
+        accessToken: tokens.access_token, refreshToken: tokens.refresh_token,
+        accessTokenExpiresAt: new Date(Date.now() + Number(tokens.expires_in) * 1_000).toISOString(),
+        grantedScopes, connectionMode,
+      }); } catch { throw new ProofweaveConnectionError("The approved connection could not be saved locally.", { code: "approval_config_write_failed" }); }
+    },
+  });
+  pairingState = pending;
+  cancelApproval = listener.cancel;
+  if (inputClosed) listener.cancel();
+  void listener.completion.then((outcome) => {
+    Object.assign(pending, outcome);
+    delete pending.approvalUrl;
+    if (pairingState === pending) cancelApproval = null;
+  });
+  openBrowser(session.connectionUrl);
+  return pairingStatus(existing);
+}
+
+function pairingStatus(config) {
+  const pending = pairingState.state === "pending";
+  return {
+    connected: false,
+    savedConnection: Boolean(config?.refreshToken),
+    pendingApproval: pending,
+    pairing: { ...pairingState },
+    ...(pending ? { approvalUrl: pairingState.approvalUrl, expiresAt: pairingState.expiresAt } : {}),
+    connectionMode: pairingState.connectionMode,
+    liveConnection: {
+      state: "not_checked", code: pending ? "approval_pending" : pairingState.state === "expired" ? "approval_expired" : "approval_failed",
+      checkedAt: new Date().toISOString(),
+    },
+    message: pending
+      ? "Browser approval is pending. Open approvalUrl on this computer, approve the connection, then call connection_status. Keep this Connector running; no credentials have been replaced yet."
+      : "Browser approval did not complete. The previous connection is unchanged. Run connect_proofweave to start a fresh approval.",
   };
 }
 
 async function connectionStatus() {
+  if (pairingState && pairingState.state !== "completed") return { ...pairingStatus(await readConfig()), connector: localConnectorIdentity() };
   const compatibility = await checkServiceCompatibility();
   const distribution = await checkPluginDistribution(compatibility);
   const connector = localConnectorIdentity();
@@ -1629,24 +1674,32 @@ async function connectionStatus() {
     distribution,
     message: "Not connected. Use connect_proofweave to approve this local Codex.",
   };
-  if (config.baseUrl !== baseUrl) return {
-    connected: false,
-    savedConnection: true,
-    liveConnection: {
-      state: "not_checked",
-      code: "deployment_mismatch",
-      checkedAt: new Date().toISOString(),
-      message: "The saved OAuth connection belongs to a different Proofweave deployment, so it was not used.",
-    },
-    connector,
-    compatibility,
-    distribution,
-    reconnectRequired: true,
-    identityRotationRequired: true,
-    configuredBaseUrl: config.baseUrl,
-    expectedBaseUrl: baseUrl,
-    message: `This saved connection belongs to ${new URL(config.baseUrl).hostname}, but this plugin uses ${new URL(baseUrl).hostname}. Ask the owner to approve connect_proofweave. Approval creates a fresh Agent identity for this deployment while preserving the previous Agent and its records.`,
-  };
+  if (config.baseUrl !== baseUrl) {
+    const domainMigration = isProductionDomainMigration(config.baseUrl, baseUrl);
+    return {
+      connected: false,
+      savedConnection: true,
+      liveConnection: {
+        state: "not_checked",
+        code: domainMigration ? "domain_migration_required" : "deployment_mismatch",
+        checkedAt: new Date().toISOString(),
+        message: domainMigration
+          ? "The saved connection needs fresh authorization on proofweave.org. Existing tokens were not sent to the new origin."
+          : "The saved OAuth connection belongs to a different Proofweave deployment, so it was not used.",
+      },
+      connector,
+      compatibility,
+      distribution,
+      reconnectRequired: true,
+      identityRotationRequired: !domainMigration,
+      domainMigrationRequired: domainMigration,
+      configuredBaseUrl: config.baseUrl,
+      expectedBaseUrl: baseUrl,
+      message: domainMigration
+        ? "Proofweave has moved to proofweave.org. Run connect_proofweave with the existing connection role to approve the new domain. Your Agent identity, signing key and research history are preserved; the saved connection is replaced only after approval succeeds."
+        : `This saved connection belongs to ${new URL(config.baseUrl).hostname}, but this plugin uses ${new URL(baseUrl).hostname}. Ask the owner to approve connect_proofweave. Approval creates a fresh Agent identity for this deployment while preserving the previous Agent and its records.`,
+    };
+  }
   const missingScopes = missingRequiredConnectionScopes(config);
   const connectionMode = existingConnectionMode(config);
   const liveConnection = await checkLiveConnection(config);
@@ -1654,6 +1707,7 @@ async function connectionStatus() {
     && compatibility.state !== "restart_required";
   return {
     connected,
+    ...(pairingState?.state === "completed" ? { pairing: { ...pairingState }, pendingApproval: false } : {}),
     savedConnection: true,
     liveConnection,
     connector,
@@ -2082,69 +2136,110 @@ async function startPairing(payload) {
     method: "POST",
     headers: { "content-type": "application/json", "accept": "application/json" },
     body: JSON.stringify(payload),
+    signal: AbortSignal.timeout(15_000),
   });
   const result = await response.json().catch(() => ({}));
   if (!response.ok || !result?.connectionUrl || !result?.clientId) {
     throw new Error(result?.error?.message ?? "Proofweave could not start the local connection.");
   }
-  return result;
+  let approval;
+  try { approval = new URL(result.connectionUrl); } catch { throw new Error("Invalid Proofweave browser approval URL."); }
+  if (approval.origin !== baseUrl || approval.pathname !== "/connect/codex" || approval.username || approval.password || approval.hash) {
+    throw new Error("The browser approval URL must remain on this Proofweave deployment.");
+  }
+  const deadline = Date.parse(result.expiresAt);
+  if (!Number.isFinite(deadline) || deadline <= Date.now()) throw new Error("Invalid or expired Proofweave browser approval session.");
+  return { ...result, expiresAt: new Date(Math.min(deadline, Date.now() + 10 * 60 * 1_000)).toISOString() };
 }
 
-async function waitForCallback({ connectionUrl, state, verifier, clientId }) {
+async function listenForApproval({ state, expiresAt, onAuthorization }) {
+  const deadline = Date.parse(expiresAt);
+  if (!Number.isFinite(deadline) || deadline <= Date.now()) throw new Error("The browser approval session has already expired.");
   const server = createServer();
-  const callback = new Promise((resolve, reject) => {
-    let settled = false;
-    const finish = (handler, value) => {
-      if (settled) return;
-      settled = true;
-      clearTimeout(timeout);
-      server.close();
-      handler(value);
-    };
-    const timeout = setTimeout(() => finish(reject, new Error("Browser approval timed out after 10 minutes. Run connect_proofweave again.")), 10 * 60 * 1_000);
-    server.once("error", (error) => finish(reject, error.code === "EADDRINUSE"
-      ? new Error(`Local callback port ${callbackPort} is already in use. Close the other Proofweave Connector and try again.`)
-      : error));
-    server.on("request", (request, response) => {
-      void (async () => {
-        try {
-          const url = new URL(request.url ?? "/", redirectUri);
-          if (url.pathname !== callbackPath) {
-            response.writeHead(404).end("Not found");
-            return;
-          }
-          const error = url.searchParams.get("error");
-          const code = url.searchParams.get("code");
-          const returnedState = url.searchParams.get("state");
-          if (error || !code || returnedState !== state) {
-            response.writeHead(400, { "content-type": "text/html; charset=utf-8" }).end("<h1>Proofweave connection was not approved.</h1><p>You can close this tab and return to Codex.</p>");
-            finish(reject, new Error(error ? `Proofweave authorization failed: ${error}` : "The browser approval did not match this local connection."));
-            return;
-          }
-          const tokens = await exchangeCode({ code, verifier, clientId });
-          response.writeHead(200, { "content-type": "text/html; charset=utf-8" }).end("<h1>Proofweave is connected.</h1><p>You can close this tab and return to Codex.</p>");
-          finish(resolve, tokens);
-        } catch (cause) {
-          response.writeHead(500, { "content-type": "text/html; charset=utf-8" }).end("<h1>Proofweave connection could not finish.</h1><p>Return to Codex and try again.</p>");
-          finish(reject, cause);
-        }
-      })();
-    });
+  const controller = new AbortController();
+  let settled = false;
+  let processing = false;
+  let timer;
+  let resolveCompletion;
+  const completion = new Promise((resolve) => { resolveCompletion = resolve; });
+  const finish = (outcome, diagnostic = {}) => {
+    if (settled) return;
+    settled = true;
+    clearTimeout(timer);
+    controller.abort();
+    server.close();
+    resolveCompletion({ state: outcome, ...diagnostic, completedAt: new Date().toISOString() });
+  };
+  server.on("request", (request, response) => {
+    void (async () => {
+      response.setHeader("Cache-Control", "no-store");
+      let url;
+      try { url = new URL(request.url ?? "/", redirectUri); }
+      catch { response.writeHead(400).end("Invalid callback URL."); return; }
+      if (request.method !== "GET" || request.headers.host !== new URL(redirectUri).host
+        || url.origin !== new URL(redirectUri).origin || url.pathname !== callbackPath) {
+        response.writeHead(404).end("Not found"); return;
+      }
+      // Unrelated loopback requests cannot consume or cancel a valid approval.
+      if (url.searchParams.getAll("state").length !== 1 || url.searchParams.get("state") !== state) {
+        response.writeHead(400).end("The approval state did not match."); return;
+      }
+      if (processing || settled) { response.writeHead(409).end("Approval already processing."); return; }
+      if (url.searchParams.has("error") || url.searchParams.getAll("code").length !== 1 || !url.searchParams.get("code")) {
+        response.writeHead(400).end("Proofweave approval was not completed."); finish("failed"); return;
+      }
+      processing = true;
+      try {
+        await onAuthorization(url.searchParams.get("code"), {
+          signal: controller.signal,
+          beforeCommit() {
+            if (settled || Date.now() >= deadline) throw new Error("Approval expired before credentials could be saved.");
+            // The grant is complete and validated. Finish the atomic local write.
+            clearTimeout(timer);
+          },
+        });
+        response.writeHead(200, { "content-type": "text/html; charset=utf-8" }).end("<h1>Proofweave approval saved.</h1><p>Return to Codex and check connection_status to verify the live connection.</p>");
+        finish("completed");
+      } catch (error) {
+        response.writeHead(500, { "content-type": "text/html; charset=utf-8" }).end("<h1>Proofweave connection could not finish.</h1><p>Return to Codex and start a new approval.</p>");
+        const failure = pairingFailure(error, "approval_processing_failed");
+        finish(Date.now() >= deadline ? "expired" : "failed", { failureCode: failure.code, httpStatus: failure.httpStatus });
+      }
+    })();
   });
-  await new Promise((resolve, reject) => server.listen(callbackPort, callbackHost, (error) => error ? reject(error) : resolve()));
-  const opened = openBrowser(connectionUrl);
-  if (!opened) process.stderr.write(`Open this Proofweave approval link in your browser: ${connectionUrl}\n`);
-  return callback;
+  await new Promise((resolve, reject) => {
+    const failed = (error) => {
+      server.close();
+      reject(error.code === "EADDRINUSE"
+        ? new Error(`Local callback port ${callbackPort} is already in use. Choose a different PROOFWEAVE_CALLBACK_PORT for this Connector.`)
+        : error);
+    };
+    server.once("error", failed);
+    server.listen(callbackPort, callbackHost, () => { server.off("error", failed); resolve(); });
+  });
+  server.on("error", () => finish("failed"));
+  timer = setTimeout(() => finish("expired"), Math.min(deadline - Date.now(), 10 * 60 * 1_000));
+  return { completion, cancel: () => finish("cancelled") };
 }
 
-async function exchangeCode({ code, verifier, clientId }) {
+// Only local enumerated codes and numeric HTTP status reach pairing diagnostics.
+// Provider error descriptions may contain sensitive request data and stay private.
+function pairingFailure(error, fallback) {
+  const known = ["edge_blocked", "oauth_http_error", "oauth_invalid_grant", "oauth_invalid_request", "oauth_temporarily_unavailable", "approval_scope_missing", "approval_token_invalid", "approval_config_write_failed", "token_exchange_failed", "approval_network_timeout", "approval_network_unavailable"];
+  const code = known.includes(error?.code) ? error.code
+    : ["AbortError", "TimeoutError"].includes(error?.name) ? "approval_network_timeout"
+    : error?.message === "fetch failed" ? "approval_network_unavailable" : fallback;
+  return new ProofweaveConnectionError("Browser approval could not complete.", { code, httpStatus: Number.isInteger(error?.httpStatus) ? error.httpStatus : null });
+}
+
+async function exchangeCode({ code, verifier, clientId, signal }) {
   return postForm(`${baseUrl}/token`, {
     grant_type: "authorization_code",
     code,
     client_id: clientId,
     redirect_uri: redirectUri,
     code_verifier: verifier,
-  });
+  }, { signal: signal ? AbortSignal.any([signal, AbortSignal.timeout(15_000)]) : AbortSignal.timeout(15_000) });
 }
 
 async function callRemoteTool(name, args) {
@@ -2290,7 +2385,8 @@ async function postForm(url, data, { signal } = {}) {
     if (response.status === 403) throw new ProofweaveConnectionError("Proofweave OAuth endpoint was blocked by the network edge (HTTP 403). Check the public site or network allowlist, then retry.", { code: "edge_blocked", httpStatus: response.status });
     const grantRejected = data.grant_type === "refresh_token" && (result?.error === "invalid_grant" || response.status === 401);
     if (grantRejected) throw new ProofweaveConnectionError("The saved Proofweave OAuth refresh is no longer valid. Run connect_proofweave to approve this computer again.", { code: "refresh_token_invalid", httpStatus: response.status });
-    throw new ProofweaveConnectionError(result?.error_description ?? "Proofweave could not exchange the browser approval.", { code: "oauth_http_error", httpStatus: response.status });
+    const code = ["invalid_grant", "invalid_request", "temporarily_unavailable"].includes(result?.error) ? `oauth_${result.error}` : "oauth_http_error";
+    throw new ProofweaveConnectionError("Proofweave could not exchange the browser approval.", { code, httpStatus: response.status });
   }
   return result;
 }
@@ -2367,6 +2463,7 @@ function openBrowser(url) {
   const target = platform() === "darwin" ? ["open", [url]] : platform() === "win32" ? ["cmd", ["/c", "start", "", url]] : ["xdg-open", [url]];
   try {
     const child = spawn(target[0], target[1], { detached: true, stdio: "ignore" });
+    child.once("error", () => { /* The returned approval URL remains available for manual opening. */ });
     child.unref();
     return true;
   } catch {

@@ -1,20 +1,83 @@
 # Lean Runner Container image build contract
 
-Status: reproducible reviewed Lean environment build path, 2026-07-21
+Status: reviewed Lean environment build path, 2026-10-27
 
 This document defines the reproducible build input for the private Lean Runner
 Container. It does not approve a particular output digest or authorize a
 deployment. The final image must still pass the gates in
-[`runner-cloudflare-deployment.md`](runner-cloudflare-deployment.md).
+[`runner-provider-neutral-deployment.md`](runner-provider-neutral-deployment.md).
 
 ## Reviewed Runner profiles
 
 `.github/workflows/build-e2b-lean-runner-image.yml` builds one explicitly
-selected environment at a time. The reviewed profiles are Lean Core 4.27.0,
+selected environment at a time. The default build profile is
+`mathlib-4.35-56a00`: Lean 4.35.0 with Mathlib commit
+`56a005855ea17e0b0958f73ec801ae140b0a1679` (the upstream `v4.35.0` tag).
+Its official Linux archive is pinned to SHA-256
+`7289597a44543246c9227b8cae501767e095ce17f6d448b95fc4a8dc97268f6d`.
+This is a build input, not an approved or deployed image. The root
+`lean-toolchain` selects the same release for new local work; existing
+source-pinned projects and historical fixtures keep their own toolchain.
+
+The historical build profiles remain available: Lean Core 4.27.0,
 Mathlib commit `a3a10db0e9d66acbebf76c5e6a135066525ac900` on Lean 4.27.0,
 and Mathlib commit `9a9483a92959bc92bd6a60176dd1fe597298c1f8` on Lean 4.31.0.
 Every profile pins the Node base by OCI digest and the official Lean archive
 by SHA-256.
+
+Changing the build default does not migrate catalog targets. Each migrated
+target needs a new source snapshot/revision and a successful compatibility
+check before an Attempt can select the new environment. Existing Attempts,
+Bundles, and Receipts retain their original Lean and Mathlib pins. See
+[`lean-upgrade-2026-10-27.zh-CN.md`](lean-upgrade-2026-10-27.zh-CN.md).
+
+The reviewed Node **build input** is Docker Official Image `node:22.23.4-bookworm`, pinned
+as `node@sha256:63538dfe497cc29dfafdda25ada09b46db68a3f4cc205abf1f5d6bf0913f3384`.
+Both base recipes, final assembly and offline smoke require
+`EXPECTED_NODE_VERSION=22.23.4` and compare it with the actual Node runtime.
+The policy rejects Node 22 versions below 22.23.4 and unreviewed Node majors.
+This replaces Node 22.23.1 after the
+[2026-10-21 security release](https://nodejs.org/en/blog/release/v22.23.4).
+It does not change the selected Lean release or Mathlib commit. Rebuilding
+produces a new image digest that still needs full-image vulnerability review,
+SBOM/provenance verification and E2B isolation checks before approval.
+
+The published runtime is built separately from the linux/amd64 Rocky Linux 9 minimal manifest
+`rockylinux/rockylinux@sha256:8c5ffaa82079057f9d5206379996763a491f0cea9ef0e27c1395557ecd0f5bef`.
+Only the Node binary is copied directly from its immutable source stage. The
+Lean toolchain, environment metadata and pinned Mathlib closure are copied from
+the builder. The shared runtime installer applies available signed RPM updates
+and installs only certificates, Git, patch and required shared libraries.
+It retains the RPM database and records installed versions for SBOM/scanner
+inspection. Package-manager access is confined to image construction; the
+execution Sandbox remains unprivileged with network access disabled.
+
+npm/yarn, system compiler packages, development headers and image-processing
+libraries stay outside the final image. Offline inspection rejects unexpected
+package managers/build tools on PATH. The runtime account has UID/GID 10001;
+the copied Lake closure is owned by that account. The external-project Lake
+build smoke runs **after** the runtime transition, so missing libraries or
+accidental dependence on builder tooling fail the build. E2B declares the Rocky family supported; Rocky 9 keeps the portable CPU
+baseline, whereas Rocky 10 requires x86-64-v3. The offline inspector rejects
+other distro identities. RPM's required curl CLI remains installed and scanned;
+its dependency records are preserved. Wolfi is used only for the Docker-hosted controller,
+not for E2B execution images. Provider-side template construction still needs
+separate authorization and validation. Each base recipe also
+supports `--target minimal-runtime` for a cheaper package/ABI preflight.
+
+The same workflow builds the exported trusted controller locally and scans it
+without publishing or deploying it. Its image ID and scan hash are retained
+alongside the Lean image evidence. Root and exported-controller dependency
+audits run in the full CI gate; Node installation uses the reviewed `.nvmrc`.
+
+The build scans the exact final digest with checksum-pinned Trivy 0.76.1.
+HIGH or CRITICAL findings, including unfixed findings, block the job; a scanner
+failure also blocks it. The image may already have been published as a candidate
+before this gate, so GHCR presence is not approval. The 30-day image-review
+artifact retains the full scan JSON, its SHA-256/source/run/image binding and
+the offline smoke log. For Mathlib profiles that log also includes the pinned
+Lake manifest, which supplements the SPDX package inventory. It does not make
+the SBOM itself a complete Lean dependency or license audit.
 
 The workflow publishes a Linux/amd64 base and final image to GHCR, emits SBOM
 and build provenance, assembles the final image with Docker build networking
@@ -51,7 +114,8 @@ inspected before it is used as a build input.
 Every independently built base must provide, on `PATH` for the unprivileged
 `proofweave` user:
 
-- Node.js 22.13 or newer;
+- the exact reviewed Node.js 22 version, at least 22.23.4, selected through
+  `EXPECTED_NODE_VERSION`;
 - `lake` and `lean` for the exact selected Lean toolchain;
 - `patch`, `tar`, and either Node native zstd or the `zstd` executable for the
   checked-in private workspace runtime;

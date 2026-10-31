@@ -383,7 +383,8 @@ test("the private-beta plugin starts only a local PKCE Connector", async () => {
     },
   });
   assert.match(connector, /\/api\/connect\/sessions/);
-  assert.match(connector, /proofweave-research\.yualex031821\.chatgpt\.site/);
+  assert.equal(manifest.homepage, "https://proofweave.org");
+  assert.match(connector, /PROOFWEAVE_BASE_URL \?\? productionOrigin/);
   assert.doesNotMatch(connector, /proofweave-public-demo\.proofweave-research\.workers\.dev/);
   assert.match(connector, /code_verifier/);
   assert.match(connector, /generateKeyPairSync\("ed25519"\)/);
@@ -406,7 +407,7 @@ test("the private-beta plugin starts only a local PKCE Connector", async () => {
   assert.match(connector, /likely credential or private key/);
   assert.match(connector, /changingControlPlane/);
   assert.match(connector, /previousAgentPreserved/);
-  assert.match(connector, /fresh deployment-scoped Agent identity/);
+  assert.match(connector, /identityRotated: changingControlPlane/);
   assert.doesNotMatch(connector, /PROOFWEAVE_API_TOKEN/);
 });
 
@@ -573,11 +574,16 @@ test("the local Connector refuses to treat a saved connection for another contro
   }
 });
 
-for (const changingControlPlane of [true, false]) test(changingControlPlane
+for (const scenario of ["other_deployment", "refresh_repair", "production_domain"]) test(scenario === "production_domain"
+  ? "the production domain migration preserves the Agent key without forwarding old tokens"
+  : scenario === "other_deployment"
   ? "the local Connector rotates an Agent identity before approving a different control plane"
-  : "the local Connector repairs an invalid refresh without replacing its Agent identity", async () => {
+  : "the local Connector repairs an invalid refresh without replacing its Agent identity", async (t) => {
+  const changingControlPlane = scenario === "other_deployment";
+  const domainMigration = scenario === "production_domain";
   const fixtureRoot = await mkdtemp(join(tmpdir(), "proofweave-connector-identity-rotation-"));
   let pairingPayload;
+  const tokenForms = [];
   let resolvePairing;
   const pairingReceived = new Promise((resolve) => { resolvePairing = resolve; });
   const server = createServer((request, response) => {
@@ -585,12 +591,13 @@ for (const changingControlPlane of [true, false]) test(changingControlPlane
     request.setEncoding("utf8");
     request.on("data", (chunk) => { body += chunk; });
     request.on("end", () => {
+      if (request.url === "/token") tokenForms.push(new URLSearchParams(body));
       if (request.url === "/api/connect/sessions") {
         pairingPayload = JSON.parse(body);
         response.writeHead(201, { "content-type": "application/json" });
         response.end(JSON.stringify({
           clientId: "client:fresh-control-plane",
-          connectionUrl: "http://127.0.0.1:9/approval-is-suppressed-in-this-test",
+          connectionUrl: `${domainMigration ? "https://proofweave.org" : `http://127.0.0.1:${server.address().port}`}/connect/codex?pairing=fixture`,
           expiresAt: new Date(Date.now() + 10 * 60 * 1_000).toISOString(),
         }));
         resolvePairing();
@@ -599,6 +606,11 @@ for (const changingControlPlane of [true, false]) test(changingControlPlane
       if (request.url === "/token" && new URLSearchParams(body).get("grant_type") === "refresh_token") {
         response.writeHead(400, { "content-type": "application/json" });
         response.end(JSON.stringify({ error: "invalid_grant" }));
+        return;
+      }
+      if (request.url === "/api/mcp") {
+        response.writeHead(200, { "content-type": "application/json" });
+        response.end(JSON.stringify({ jsonrpc: "2.0", id: 1, result: { content: [{ type: "text", text: "{}" }] } }));
         return;
       }
       if (request.url === "/token") {
@@ -617,40 +629,169 @@ for (const changingControlPlane of [true, false]) test(changingControlPlane
   try {
     const port = await listen(server);
     const callbackPort = await availablePort();
-    const baseUrl = `http://127.0.0.1:${port}`;
+    const localOrigin = `http://127.0.0.1:${port}`;
+    const baseUrl = domainMigration ? "https://proofweave.org" : localOrigin;
+    const transportPath = join(fixtureRoot, "transport.mjs");
+    if (domainMigration) await writeFile(transportPath, `
+      const realFetch = globalThis.fetch;
+      globalThis.fetch = (input, init) => {
+        const url = new URL(input);
+        if (url.origin !== "https://proofweave.org") throw new Error("Unexpected test destination");
+        return realFetch(${JSON.stringify(localOrigin)} + url.pathname + url.search, init);
+      };
+    `);
     const configPath = join(fixtureRoot, "connector.json");
-    const previous = { ...currentFixtureConfig(changingControlPlane ? "https://old-proofweave.example.test" : baseUrl), accessTokenExpiresAt: "2020-01-01T00:00:00.000Z" };
+    const previousOrigin = domainMigration ? "https://proofweave-research.yualex031821.chatgpt.site" : changingControlPlane ? "https://old-proofweave.example.test" : baseUrl;
+    const previous = { ...currentFixtureConfig(previousOrigin), accessTokenExpiresAt: "2020-01-01T00:00:00.000Z" };
     await writeFile(configPath, JSON.stringify(previous));
-    const connectPromise = callConnectorTool("connect_proofweave", {}, {
+    const client = startConnectorClient({
       ...process.env,
       PROOFWEAVE_BASE_URL: baseUrl,
       PROOFWEAVE_CONNECTOR_CONFIG: configPath,
       PROOFWEAVE_CALLBACK_PORT: String(callbackPort),
       PROOFWEAVE_DISABLE_BROWSER_OPEN: "1",
+      ...(domainMigration ? { NODE_OPTIONS: `${process.env.NODE_OPTIONS ?? ""} --import=${transportPath}` } : {}),
     });
 
+    t.after(() => client.close());
+    const response = await client.call("connect_proofweave", {});
+    assert.equal(response.error, undefined);
+    const pending = JSON.parse(response.result.content[0].text);
+    assert.equal(pending.connected, false);
+    assert.equal(pending.pendingApproval, true);
     await pairingReceived;
+    assert.equal(pairingPayload.redirectUri, `http://127.0.0.1:${callbackPort}/callback`);
     assert.equal(pairingPayload.agentId === previous.agentId, !changingControlPlane);
     assert.equal(pairingPayload.agentPublicKey === previous.agentPublicKey, !changingControlPlane);
     assert.deepEqual(JSON.parse(await readFile(configPath, "utf8")), previous);
     if (changingControlPlane) assert.match(pairingPayload.agentId, /^urn:pw:agent:codex-/);
     await fetchWithRetry(`http://127.0.0.1:${callbackPort}/callback?code=approved-code&state=${encodeURIComponent(pairingPayload.oauthState)}`);
 
-    const response = await connectPromise;
-    assert.equal(response.error, undefined);
-    const result = JSON.parse(response.result.content[0].text);
+    const completed = await client.call("connection_status", {});
+    const result = JSON.parse(completed.result.content[0].text);
     assert.equal(result.connected, true);
-    assert.equal(result.identityRotated, changingControlPlane);
-    assert.equal(result.previousAgentPreserved, changingControlPlane);
+    assert.equal(result.pairing.identityRotated, changingControlPlane);
+    assert.equal(result.pairing.domainMigrated, domainMigration);
+    assert.equal(result.pairing.previousAgentPreserved, changingControlPlane);
+    await client.close();
     const saved = JSON.parse(await readFile(configPath, "utf8"));
     assert.equal(saved.agentId, pairingPayload.agentId);
     assert.equal(saved.agentId === previous.agentId, !changingControlPlane);
     if (!changingControlPlane) assert.deepEqual(saved.privateKeyJwk, previous.privateKeyJwk);
     assert.equal(saved.refreshToken, "refresh-fresh-control-plane");
+    assert.equal(saved.baseUrl, baseUrl);
+    if (domainMigration) {
+      assert.equal(tokenForms.length, 1);
+      assert.equal(tokenForms[0].get("grant_type"), "authorization_code");
+      assert.equal(tokenForms[0].has("refresh_token"), false);
+    }
   } finally {
     await Promise.all([close(server), rm(fixtureRoot, { recursive: true, force: true })]);
   }
 });
+
+test("browser approval returns promptly, shares concurrent starts, and ignores unrelated callbacks", async (t) => {
+  const fixture = await createPairingFixture(t);
+  const replies = await Promise.all([fixture.client.call("connect_proofweave"), fixture.client.call("connect_proofweave")]);
+  const pending = replies.map((reply) => JSON.parse(reply.result.content[0].text));
+  assert.equal(fixture.pairings.length, 1);
+  assert.equal(pending[0].connected, false);
+  assert.equal(pending[0].pendingApproval, true);
+  assert.equal(pending[0].approvalUrl, pending[1].approvalUrl);
+  assert.equal(fixture.pairings[0].redirectUri, fixture.callback);
+  const otherRole = await fixture.client.call("connect_proofweave", { role: "review" });
+  assert.match(otherRole.error.message, /already pending/);
+  assert.equal(fixture.pairings.length, 1);
+  const unrelated = await fetch(`${fixture.callback}?code=approved&state=wrong-state`);
+  assert.equal(unrelated.status, 400);
+  const stillPending = JSON.parse((await fixture.client.call("connection_status")).result.content[0].text);
+  assert.equal(stillPending.pendingApproval, true);
+  assert.equal(stillPending.liveConnection.code, "approval_pending");
+  assert.equal(fixture.grants.length, 0);
+  assert.equal(await readFile(fixture.configPath, "utf8"), fixture.previousBytes);
+  assert.doesNotMatch(JSON.stringify(stillPending), /refresh-test|privateKeyJwk|access-test/);
+
+  const callback = await fetch(`${fixture.callback}?code=approved&state=${fixture.pairings[0].oauthState}`);
+  assert.equal(callback.status, 200);
+  const status = JSON.parse((await fixture.client.call("connection_status")).result.content[0].text);
+  assert.equal(status.connected, true);
+  assert.equal(status.pairing.state, "completed");
+  assert.equal(status.pairing.approvalUrl, undefined);
+  const saved = JSON.parse(await readFile(fixture.configPath, "utf8"));
+  assert.equal(saved.refreshToken, "approved-refresh");
+  assert.deepEqual(saved.privateKeyJwk, JSON.parse(fixture.previousBytes).privateKeyJwk);
+  assert.equal(fixture.grants[0].get("redirect_uri"), fixture.callback);
+});
+
+for (const failure of ["token_failure", "token_unavailable", "missing_scope", "expired"]) test(`failed browser approval preserves saved credentials: ${failure}`, async (t) => {
+  const fixture = await createPairingFixture(t, { failure });
+  const pending = JSON.parse((await fixture.client.call("connect_proofweave")).result.content[0].text);
+  assert.equal(pending.pendingApproval, true);
+  if (failure === "expired") {
+    await new Promise((resolve) => setTimeout(resolve, 650));
+  } else {
+    const callback = await fetch(`${fixture.callback}?code=approved&state=${fixture.pairings[0].oauthState}`);
+    assert.equal(callback.status, 500);
+  }
+  const status = JSON.parse((await fixture.client.call("connection_status")).result.content[0].text);
+  assert.equal(status.connected, false);
+  assert.equal(status.pendingApproval, false);
+  assert.equal(status.pairing.state, failure === "expired" ? "expired" : "failed");
+  assert.equal(status.approvalUrl, undefined);
+  if (failure !== "expired") {
+    assert.equal(status.pairing.failureCode, { token_failure: "oauth_http_error", token_unavailable: "oauth_temporarily_unavailable", missing_scope: "approval_scope_missing" }[failure]);
+    assert.equal(status.pairing.httpStatus, failure === "token_failure" ? 500 : failure === "token_unavailable" ? 503 : null);
+  }
+  assert.doesNotMatch(JSON.stringify(status), /must-never-leak|approved-access|approved-refresh|code_verifier|privateKeyJwk/);
+  assert.equal(await readFile(fixture.configPath, "utf8"), fixture.previousBytes);
+});
+
+test("a conflicting callback listener fails without hanging or replacing credentials", async (t) => {
+  const occupied = createServer((_request, response) => response.end("occupied"));
+  const port = await listen(occupied);
+  t.after(() => close(occupied));
+  const fixture = await createPairingFixture(t, { callbackPort: port });
+  const reply = await fixture.client.call("connect_proofweave");
+  assert.match(reply.error.message, /callback port .* already in use/);
+  assert.equal(await readFile(fixture.configPath, "utf8"), fixture.previousBytes);
+});
+
+async function createPairingFixture(t, { failure, callbackPort } = {}) {
+  const fixtureRoot = await mkdtemp(join(tmpdir(), "proofweave-pending-approval-"));
+  const pairings = [];
+  const grants = [];
+  let origin;
+  const server = createServer((request, response) => {
+    let body = "";
+    request.setEncoding("utf8");
+    request.on("data", (chunk) => { body += chunk; });
+    request.on("end", () => {
+      response.setHeader("content-type", "application/json");
+      if (request.url === "/api/connect/sessions") {
+        pairings.push(JSON.parse(body));
+        response.writeHead(201).end(JSON.stringify({ clientId: "pending-client", connectionUrl: `${origin}/connect/codex?pairing=fixture`, expiresAt: new Date(Date.now() + (failure === "expired" ? 500 : 600_000)).toISOString() }));
+      } else if (request.url === "/token") {
+        const form = new URLSearchParams(body);
+        if (form.get("grant_type") === "refresh_token") return response.writeHead(400).end(JSON.stringify({ error: "invalid_grant" }));
+        grants.push(form);
+        if (failure === "token_failure") return response.writeHead(500).end(JSON.stringify({ error: "server_error", error_description: "must-never-leak:" + body }));
+        if (failure === "token_unavailable") return response.writeHead(503).end(JSON.stringify({ error: "temporarily_unavailable", error_description: "must-never-leak:" + body }));
+        response.end(JSON.stringify({ access_token: "approved-access", refresh_token: "approved-refresh", expires_in: 3600, scope: failure === "missing_scope" ? "catalog:read" : "catalog:read attempt:create attempt:read progress:write artifact:write run:request run:read run:cancel" }));
+      } else if (request.url === "/api/mcp") {
+        response.end(JSON.stringify({ jsonrpc: "2.0", id: 1, result: { content: [{ type: "text", text: "{}" }] } }));
+      } else response.writeHead(404).end("{}");
+    });
+  });
+  origin = `http://127.0.0.1:${await listen(server)}`;
+  const port = callbackPort ?? await availablePort();
+  const callback = `http://127.0.0.1:${port}/callback`;
+  const configPath = join(fixtureRoot, "connector.json");
+  const previousBytes = JSON.stringify({ ...currentFixtureConfig(origin), accessTokenExpiresAt: "2020-01-01T00:00:00.000Z" });
+  await writeFile(configPath, previousBytes);
+  const client = startConnectorClient({ ...process.env, PROOFWEAVE_BASE_URL: origin, PROOFWEAVE_CONNECTOR_CONFIG: configPath, PROOFWEAVE_CALLBACK_PORT: String(port), PROOFWEAVE_DISABLE_BROWSER_OPEN: "1" });
+  t.after(async () => { await client.close(); await close(server); await rm(fixtureRoot, { recursive: true, force: true }); });
+  return { client, pairings, grants, callback, configPath, previousBytes };
+}
 
 test("the local Connector exposes connection and bounded research tools over STDIO", async () => {
   const connector = resolve(pluginRoot, "mcp/proofweave-local.mjs");
@@ -1398,6 +1539,45 @@ test("the local Connector prepares and submits only an owner-confirmed review-Ag
     await Promise.all([close(server), rm(fixtureRoot, { recursive: true, force: true })]);
   }
 });
+
+function startConnectorClient(env) {
+  const connector = resolve(pluginRoot, "mcp/proofweave-local.mjs");
+  const child = spawn(process.execPath, [connector], { cwd: root, env, stdio: ["pipe", "pipe", "pipe"] });
+  let buffer = "";
+  let nextId = 1;
+  let closed = false;
+  const pending = new Map();
+  child.stdout.setEncoding("utf8");
+  child.stderr.resume();
+  child.stdout.on("data", (chunk) => {
+    buffer += chunk;
+    for (;;) {
+      const newline = buffer.indexOf("\n");
+      if (newline < 0) break;
+      const line = buffer.slice(0, newline); buffer = buffer.slice(newline + 1);
+      if (!line.trim()) continue;
+      const result = JSON.parse(line);
+      const waiter = pending.get(result.id);
+      if (waiter) { pending.delete(result.id); clearTimeout(waiter.timer); waiter.resolve(result); }
+    }
+  });
+  const exited = new Promise((resolve) => child.once("close", () => {
+    closed = true;
+    for (const { reject, timer } of pending.values()) { clearTimeout(timer); reject(new Error("Connector exited")); }
+    pending.clear(); resolve();
+  }));
+  return {
+    call(name, args = {}) {
+      const id = nextId++;
+      return new Promise((resolve, reject) => {
+        const timer = setTimeout(() => { pending.delete(id); reject(new Error(`Connector tool ${name} did not return promptly`)); }, 5_000);
+        pending.set(id, { resolve, reject, timer });
+        child.stdin.write(JSON.stringify({ jsonrpc: "2.0", id, method: "tools/call", params: { name, arguments: args } }) + "\n");
+      });
+    },
+    async close() { if (!closed) child.kill("SIGTERM"); await exited; },
+  };
+}
 
 async function callConnectorTool(name, args, env) {
   const connector = resolve(pluginRoot, "mcp/proofweave-local.mjs");

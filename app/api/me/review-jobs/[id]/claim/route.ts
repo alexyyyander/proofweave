@@ -1,4 +1,5 @@
 import { currentReviewPersonId } from "@/app/lib/review-api";
+import { researchWriteGateFailure } from "@/app/lib/research-write-gate";
 import { MissingDatabaseBindingError } from "@/db";
 import {
   getVerificationMarketRepository,
@@ -22,6 +23,8 @@ export async function POST(_request: Request, context: { params: Promise<{ id: s
     );
     return Response.json({ claim });
   } catch (error) {
+    const gate = researchWriteGateFailure(error);
+    if (gate) return gate;
     if (error instanceof VerificationMarketNotFoundError) {
       return Response.json(
         { error: { code: "not_found", message: "Verification job not found." } },

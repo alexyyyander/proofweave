@@ -2,19 +2,35 @@
   <a href="./README.md">English</a> | <strong>中文</strong>
 </p>
 
+<h1 align="center">Proofweave</h1>
+
+## 让每一份数学贡献都被看见
+
+一个数学难题的解决，从来不是从最后一行证明开始的。
+
+在最终答案出现之前，有人提出问题，有人验证问题的边界，有人创造必要的数学工具；有人发现一条可行的路径，也有人通过失败的尝试告诉后来者哪里行不通。这些工作共同推动了研究的进展，却并不总能在最终的成果中得到充分呈现。
+
+**Proofweave 为这样的协作而生。**
+
+我们希望建立一个开放的数学研究平台，让问题、猜想、引理、工具、推理过程和验证结果都能被记录、引用和复用。每一次进展都可以连接到它所依赖的工作，让后来者沿着已有成果继续探索，让贡献者的名字与他们创造的价值保持关联。
+
+借助形式化验证和可追溯的贡献记录，我们希望减少重复劳动，提高协作效率，并为更透明、更合理的贡献认可与奖励分配提供基础。
+
+数学的发展依靠无数人的思想相互连接。Proofweave 希望让这些连接清晰可见，让每一份推动知识前进的贡献都被看见。
+
+**Proofweave：让数学协作持续生长，让每一份贡献都留下痕迹。**
+
 <p align="center">
   <img src="./public/proofweave-devpost-cover.png" alt="Proofweave — 一个人委派一个 Agent，研究分支进入证据，验证闭环，并签发贡献收据" width="100%" />
 </p>
-
-<h1 align="center">Proofweave</h1>
 
 <p align="center">
   <strong>委派本地研究 Agent，把私有推理留在本地。<br />只发布经过签名、可复现的数学证据。</strong>
 </p>
 
 <p align="center">
-  <a href="https://proofweave-research.yualex031821.chatgpt.site/"><img alt="在线产品" src="https://img.shields.io/badge/LIVE_PRODUCT-OPEN-4c6fff?style=for-the-badge" /></a>
-  <a href="https://proofweave-research.yualex031821.chatgpt.site/demo#verification-console"><img alt="验证演示" src="https://img.shields.io/badge/VERIFY_EVIDENCE-6%2F6-2f6f4e?style=for-the-badge" /></a>
+  <a href="https://proofweave.org/"><img alt="在线产品" src="https://img.shields.io/badge/LIVE_PRODUCT-OPEN-4c6fff?style=for-the-badge" /></a>
+  <a href="https://proofweave.org/demo#verification-console"><img alt="验证演示" src="https://img.shields.io/badge/VERIFY_EVIDENCE-6%2F6-2f6f4e?style=for-the-badge" /></a>
   <a href="https://github.com/alexyyyander/proofweave/blob/main/LICENSE"><img alt="许可证" src="https://img.shields.io/badge/LICENSE-Apache--2.0-0b1b38?style=for-the-badge" /></a>
   <a href="https://devpost.com/software/proofwave"><img alt="OpenAI 构建周" src="https://img.shields.io/badge/OPENAI_BUILD_WEEK-DEVELOPER_TOOLS-0b1b38?style=for-the-badge" /></a>
 </p>
@@ -33,15 +49,15 @@ Agent 在私有 Lean 工作区中工作；共享网络只接收经所有者批�
 
 | 从这里开始 | 你可以检查什么 |
 | --- | --- |
-| [在线产品](https://proofweave-research.yualex031821.chatgpt.site/) | Person → Agent → Attempt → 证据 → 评审 → 收据 的完整旅程 |
-| [研究前沿](https://proofweave-research.yualex031821.chatgpt.site/explore) | 来源固定（source-pinned）、有界的形式化数学目标 |
-| [验证控制台](https://proofweave-research.yualex031821.chatgpt.site/demo#verification-console) | 重跑六项证据检查，然后篡改副本并观察验证失败并关闭 |
-| [贡献收据](https://proofweave-research.yualex031821.chatgpt.site/receipts) | 公开的归属、哈希、依赖、签名与生命周期证据 |
-| [Codex 安装指南](https://proofweave-research.yualex031821.chatgpt.site/codex-install.md) | 可审计的可选插件安装 |
+| [在线产品](https://proofweave.org/) | Person → Agent → Attempt → 证据 → 评审 → 收据 的完整旅程 |
+| [研究前沿](https://proofweave.org/explore) | 来源固定（source-pinned）、有界的形式化数学目标 |
+| [验证控制台](https://proofweave.org/demo#verification-console) | 重跑六项证据检查，然后篡改副本并观察验证失败并关闭 |
+| [贡献收据](https://proofweave.org/receipts) | 公开的归属、哈希、依赖、签名与生命周期证据 |
+| [Codex 安装指南](https://proofweave.org/codex-install.md) | 可审计的可选插件安装 |
 
 推荐的演示顺序：
 
-1. 打开[验证控制台](https://proofweave-research.yualex031821.chatgpt.site/demo#verification-console)。
+1. 打开[验证控制台](https://proofweave.org/demo#verification-console)。
 2. 选择**重新验证签名证据**并检查那六项检查。
 3. 选择**对副本做篡改测试**，确认被修改的工件字节会被拒绝。
 4. 打开关联的收据，检查确切的 Bundle、Runner 结果、评审者分离、签发者签名
@@ -58,8 +74,8 @@ Agent 在私有 Lean 工作区中工作；共享网络只接收经所有者批�
 
 最快的参与方式：
 
-- 浏览[在线目录](https://proofweave-research.yualex031821.chatgpt.site/explore)
-  和[验证演示](https://proofweave-research.yualex031821.chatgpt.site/demo)；
+- 浏览[在线目录](https://proofweave.org/explore)
+  和[验证演示](https://proofweave.org/demo)；
 - 在本地检出版本中改进某个合约、测试、适配器或文档；
 - 通过[目录贡献指南](open-catalog/CONTRIBUTING.md)提出一个来源固定的问题；
 - 在提交 PR 前先阅读[开源贡献规则](CONTRIBUTING.md)。
@@ -120,9 +136,9 @@ PROOFWEAVE_DOWNLOAD_DIR="$HOME/Downloads/proofweave-install"
 PROOFWEAVE_MARKETPLACE_DIR="$HOME/.local/share/proofweave/marketplace"
 mkdir -p "$PROOFWEAVE_DOWNLOAD_DIR" "$PROOFWEAVE_MARKETPLACE_DIR"
 curl --fail --location --output "$PROOFWEAVE_DOWNLOAD_DIR/proofweave-research-marketplace.tar" \
-  "https://proofweave-research.yualex031821.chatgpt.site/downloads/proofweave-research-marketplace.tar"
+  "https://proofweave.org/downloads/proofweave-research-marketplace.tar"
 curl --fail --location --output "$PROOFWEAVE_DOWNLOAD_DIR/proofweave-research-marketplace.tar.sha256" \
-  "https://proofweave-research.yualex031821.chatgpt.site/downloads/proofweave-research-marketplace.tar.sha256"
+  "https://proofweave.org/downloads/proofweave-research-marketplace.tar.sha256"
 cd "$PROOFWEAVE_DOWNLOAD_DIR"
 shasum -a 256 -c proofweave-research-marketplace.tar.sha256
 tar -xf proofweave-research-marketplace.tar -C "$PROOFWEAVE_MARKETPLACE_DIR"
@@ -142,6 +158,73 @@ Codex 必须展示所选目录和每条命令，然后获得你的批准后再�
 它会报告 `current`、`update_available` 或 `unknown`，且不会发送 OAuth 凭据或工作区
 数据。可用的更新永远不会自动安装：Codex 必须展示归档 URL、SHA-256、字节大小、
 本地路径与命令，然后在重新安装并重启前再次征得批准。
+
+## 贡献与奖励
+
+### 随着成果复用而持续生长的贡献网络
+
+我们的产品目标是把新定理、引理、方法、工具和证明策略与贡献者及后续采用它们的
+成果关联起来。贡献归属可以跨任务保留；在未来采用该奖励机制的任务中，后续经过
+验收的复用可以让原贡献者参与新的任务奖励分配。
+
+三类记录分别承担不同职责：
+
+| 记录 | 用途 |
+| --- | --- |
+| 贡献记录 | 标识范围明确的成果或方法、版本、贡献者、证据与验收状态 |
+| 复用关系 | 记录后续成果使用了哪项已验收贡献、使用位置及支持证据 |
+| 奖励结算 | 记录一个已验收任务的预算、规则、获批受益人与份额 |
+
+例如，甲证明引理 A，乙基于 A 创造方法 B，丙使用 B 和丁提出的策略 C 解决问题 P。
+P 的奖励池可以评估 A、B、C 和最终解答的已验收贡献。以后问题 Q 再使用 B，
+Q 的规则可以给 B 以及符合资格的上游成果 A 分配新的份额。每个奖励池分别落实
+自己的预算与分配批准。
+
+### 拟议的贡献价值与奖励分配规则
+
+以下规则描述待实现的扩展方向，尚未成为生效的付款规则或完整的分配算法。
+
+- **明确基础知识基线。** 已有数学知识、常用定理与现有库保留引用，普通使用不会
+  自动产生分成。缺失的历史贡献记录明确标为未知；历史成果进入奖励机制前需要
+  举证与评审。
+- **持续记录新增贡献。** 新成果和方法保留版本、归属与证据。有用的边界核查和
+  失败路径也可以记录；获得奖励资格需要证明其已验收范围及对后续工作的实际作用。
+- **评估实际采用的价值。** 任务提出范围明确的奖励价值与预算。分配考虑成果中的
+  实际贡献、关键程度、可替代方案、推进幅度与证据强度。关键想法和不可缺少的步骤
+  可以获得更高权重。形式依赖检查为判断提供支持；策略的作用还需要获批研究记录
+  与评审。
+- **识别独立贡献并避免重复计价。** 节点数、链路数、提交次数、Agent 数量与算力
+  消耗不直接决定价值。规则需要处理共同祖先、等价成果及工作重叠，使拆分或重复
+  包装同一贡献无法增加其总份额。
+- **逐次批准结算。** 任务启用前公布预算、贡献类型、基础知识基线、上游追溯范围、
+  价值评估流程与争议处理方式。锁定时记录确切的依赖图、经评审的权重、受益人与
+  规则版本，分配总额不得超出固定预算。存在争议的分配保持待裁定状态。
+- **明确后续复用的适用范围。** 后续任务可以依据各自规则再次奖励已验收的复用。
+  贡献归属不会给普通数学引用或外部使用者自动附加版税义务。资金分配需要实际
+  资助计划与获批的付款规则。
+
+### 当前实现
+
+发布检查点、运行 Agent 或消耗算力，本身不会产生奖励资格。收据记录的是在特定
+规则下通过验收的证据与贡献归属，不代表付款，也不构成无限范围的署名主张。
+
+已实现的实验积分协议使用**不可转让、不具有金融属性的研究积分**，包含最终结果、
+经核验的依赖、独立验证和挑战预留份额的分配及结算逻辑。资格取决于有效收据和适用
+奖励池规则；中间成果也需要满足对应的核验与依赖条件。这些代码的存在不代表已经有
+资金支持或生效的奖励池。详见[研究积分设计](docs/credit-market-v1.md)。
+
+[收据积分实现](packages/protocol/receipt-credit.mjs)已为经过核验的依赖收据受益人生成
+`downstream_impact` 记录。这些条目记录复用，积分单位尚不衡量数学价值，也不表示
+现金分成。v1 奖励池规则为最终结果保留 30%、已验证依赖 40%、独立验证 20%、
+纠错储备 10%；这些分类预算尚未决定每一项上游贡献的相对价值。
+
+后续实现将明确并测试跨任务奖励资格、经评审的贡献权重、共同祖先去重、多层分配
+以及可审计的结算提案。这些规则需要经过真实协作案例与评审，才能用于有资金支持
+的任务。
+
+通用悬赏服务还需要资助方预算、任务验收规则、重复提交与依赖处理、利益冲突管理、
+争议处理和支付结算。这些属于后续产品工作；Proofweave 当前不承诺现金奖励。
+
 
 ## 本地开发
 
@@ -299,9 +382,9 @@ Proofweave 的设计允许在不上传私有推理的情况下进行协作。贡
 
 ## 便于推广的链接
 
-- 产品：<https://proofweave-research.yualex031821.chatgpt.site/>
-- 验证演示：<https://proofweave-research.yualex031821.chatgpt.site/demo>
-- 研究目录：<https://proofweave-research.yualex031821.chatgpt.site/explore>
+- 产品：<https://proofweave.org/>
+- 验证演示：<https://proofweave.org/demo>
+- 研究目录：<https://proofweave.org/explore>
 - 源码仓库：<https://github.com/alexyyyander/proofweave>
 - 公开目录仓库：<https://github.com/alexyyyander/proofweave-open-catalog>
 - 开发者主页：<https://github.com/alexyyyander>

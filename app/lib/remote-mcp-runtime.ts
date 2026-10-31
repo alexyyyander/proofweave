@@ -1,10 +1,10 @@
 import {
   MissingDatabaseBindingError,
-  getD1,
+  getOAuthD1,
   getMcpD1,
   getMcpOperationState,
   getOAuthRefreshRotationCapability,
-  getParticipantOperationState,
+  getOAuthOperationState,
 } from "@/db";
 import { createD1SitesIdentityRuntime } from "@/services/proofweave-identity/sites-runtime.mjs";
 import { ControlPlaneReadOnlyError } from "@/services/database/control-plane-operation-mode.mjs";
@@ -25,10 +25,12 @@ export async function handleRemoteMcp(request: Request): Promise<Response> {
     const operationState = getMcpOperationState();
     const origin = new URL(request.url).origin;
     const settings = env as unknown as Record<string, string | undefined>;
+    const artifactBucket = (env as unknown as { ARTIFACT_BUCKET?: unknown }).ARTIFACT_BUCKET ?? null;
     return await createD1RemoteMcpGatewayRuntime({
       database: getMcpD1(),
+      bucket: artifactBucket,
       resource: `${origin}${proofweaveMcpPath}`,
-      issuer: `${origin}/`,
+      issuer: origin,
       runnerQueueMode: settings.RUNNER_QUEUE_MODE,
       runnerApprovedImagesJson: settings.RUNNER_APPROVED_IMAGES_JSON,
       runnerControlPlaneKeyId: settings.RUNNER_CONTROL_PLANE_KEY_ID,
@@ -37,11 +39,14 @@ export async function handleRemoteMcp(request: Request): Promise<Response> {
       runnerWakeUrl: settings.RUNNER_WAKE_URL,
       runnerWakeToken: settings.RUNNER_WAKE_TOKEN,
       runnerWakeHostAuthorizationToken: settings.RUNNER_WAKE_HOST_AUTHORIZATION_TOKEN,
+      runnerWakeRoutesJson: settings.RUNNER_WAKE_ROUTES_JSON,
+      runnerExecutionEnvironmentsJson: settings.RUNNER_EXECUTION_ENVIRONMENTS_JSON,
       receiptIssuerKeyId: settings.RECEIPT_ISSUER_KEY_ID,
       receiptIssuerPublicKey: settings.RECEIPT_ISSUER_PUBLIC_KEY,
       receiptIssuerPrivateKeyJwkJson: settings.RECEIPT_ISSUER_PRIVATE_KEY_JWK,
       receiptIssuerActivatedAt: settings.RECEIPT_ISSUER_ACTIVATED_AT,
       operationMode: operationState.mode,
+      researchWriteAllowlistJson: settings.PROOFWEAVE_MCP_RESEARCH_WRITE_ALLOWLIST_JSON,
     }).fetch(request);
   } catch (error) {
     return remoteMcpFailure("mcp", error);
@@ -50,17 +55,17 @@ export async function handleRemoteMcp(request: Request): Promise<Response> {
 
 export async function handleRemoteIdentity(request: Request): Promise<Response> {
   try {
-    const operationState = getParticipantOperationState();
+    const operationState = getOAuthOperationState();
     const origin = new URL(request.url).origin;
     return await createD1SitesIdentityRuntime({
-      database: getD1(),
+      database: getOAuthD1(),
       operationMode: operationState.mode,
       refreshTokenRotator:
         operationState.mode === "read_only"
           ? getOAuthRefreshRotationCapability()
           : null,
       resource: `${origin}${proofweaveMcpPath}`,
-      issuer: `${origin}/`,
+      issuer: origin,
     }).fetch(request);
   } catch (error) {
     return remoteMcpFailure("identity", error);

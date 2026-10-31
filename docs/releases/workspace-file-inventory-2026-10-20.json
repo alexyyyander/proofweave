@@ -1,0 +1,1689 @@
+{
+  "schemaVersion": "pw-workspace-triage-note-v1",
+  "observedAt": "2026-10-20T08:26:26.903907+00:00",
+  "purpose": "Non-authorizing inventory; no runtime source was modified or staged.",
+  "sourceBranch": "codex/public-research-aggregation",
+  "sourceHead": "f5a76b8ef3e93eee8c0eb8a9b74d21306ea98afd",
+  "comparisonMain": "13c07955d7fc85e9ff6f47102d0a9d8806339aad",
+  "fileCount": 204,
+  "groupCounts": {
+    "catalog_and_ingestion": 12,
+    "cloudflare_published_overlay": 37,
+    "documentation": 7,
+    "runner_reconcile_with_main": 11,
+    "shared_manual_hunk_split": 5,
+    "ui_and_remaining_product_changes": 132
+  },
+  "classification": "Published-overlay membership is manifest-derived; other groups are review suggestions, not dependency closure.",
+  "files": [
+    {
+      "status": " M",
+      "path": ".env.example",
+      "bytes": 7728,
+      "sha256": "480f30932e231164a7d5265057a81504d21ee27c64f568a8ffe585a7a53e25f1",
+      "group": "shared_manual_hunk_split",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "README.md",
+      "bytes": 25808,
+      "sha256": "fbbbeeedcced8a400983b1c58c2be4f2d6fbc1604b5f87b61ef5216777ebebbb",
+      "group": "documentation",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "README.zh-CN.md",
+      "bytes": 23233,
+      "sha256": "e1bbfe14d87a90b1c050d9837238f64ac942435735455b72dcfa97695f97ecd9",
+      "group": "documentation",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/PersonalWorkspaceFrame.tsx",
+      "bytes": 2806,
+      "sha256": "00a4756df76541ea6bfa508affce36d6a06b821367cef327f39cdf32feaedabe",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/about/catalog-standard/page.tsx",
+      "bytes": 3905,
+      "sha256": "d98796691ac97b7e9e337dd469163208bd87bde5c7f1f698d12da339f48745bc",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/about/page.tsx",
+      "bytes": 4080,
+      "sha256": "81aebf6bc31fcdf965bea995e357e58936d2fc8a001a78111a1f9775401741b7",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/about/principles/page.tsx",
+      "bytes": 3333,
+      "sha256": "d7d28319d741cbcf3851a8f10aa5a5ea9701719786bcfc04355827a201e173cb",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/about/shared-research/page.tsx",
+      "bytes": 3040,
+      "sha256": "58fdc1b28976d717ca15cae90fbdfdc43f7f39e6c0d292e3ec8a5bba68ba8501",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/api/connect/sessions/[id]/approve/route.ts",
+      "bytes": 1933,
+      "sha256": "2f2fd703a1e9f9dc525cc4e048cefb8e311e2814381fe41f428edcb8445a78db",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "different",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "app/api/connect/sessions/route.ts",
+      "bytes": 5782,
+      "sha256": "8cfef3f47997eed076bd8e47167b46695a07881eaca2904a5b399301b4fcb63c",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "different",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "app/api/me/agent-installations/[id]/revoke/route.ts",
+      "bytes": 949,
+      "sha256": "639ac874b20dac8b39f1d789fd358d3e8f4e6c4178d6cff5574caefeb1a3a463",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "different",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "app/api/me/agents/route.ts",
+      "bytes": 909,
+      "sha256": "3dcaece88d95c0241ae5018cf4c395d7a38d4ef1a5dd5aaad801a3907a99bf48",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "different",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "app/api/me/delegation/route.ts",
+      "bytes": 525,
+      "sha256": "3f76c45ddbe1699cf07779d181654b7185ebf87e90962bc4db9f81838560ff12",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "different",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "app/api/me/delegations/[id]/revoke/route.ts",
+      "bytes": 900,
+      "sha256": "68ffa0cb9776b5c569f2b1f94774e2ae6a657461abcfc0ab62210c21ca8ede7e",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "different",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "app/api/me/delegations/route.ts",
+      "bytes": 944,
+      "sha256": "269e186eb619f33310d98fa838e3943f4b346364c15ce0fbe05e0ab81d6ebcfe",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "different",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "app/api/me/keys/[id]/proof-challenge/route.ts",
+      "bytes": 695,
+      "sha256": "c5a868830a7f124c3d481a84d240798ab6c7b2391868038988dd01ff22b1456f",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "different",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "app/api/me/keys/[id]/proof/route.ts",
+      "bytes": 1007,
+      "sha256": "12f4c8abfeddac6e9c85a560046101f689bc9ab74f9f9c4a4791379462ca27b5",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "different",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "app/api/me/keys/[id]/revoke/route.ts",
+      "bytes": 946,
+      "sha256": "be11fb0f37f6609002c0ac18039b96316492edf420304ade367cf9bfdabf9424",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "different",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "app/api/me/keys/route.ts",
+      "bytes": 782,
+      "sha256": "6c89ed5fb145d8b536e357884532c7251b6a2e924f2bb3a543b96c2a7c9c94e6",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "different",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "app/auth.ts",
+      "bytes": 4950,
+      "sha256": "fde7c329f0c15ebd0e1bb0a219b6354214279d6e0b9abcb39009a81704db1006",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "different",
+      "publishedSnapshotComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/connect/codex/CodexPairingApproval.tsx",
+      "bytes": 10899,
+      "sha256": "30a91d271c937902f758965d205f71bbd4c93aabf0d68a291ff52906c52b1e6e",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/connect/codex/page.tsx",
+      "bytes": 3617,
+      "sha256": "b61d98882d86587511e6a04861467a884066296547dc5a8890e362ace92493c9",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "different",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "app/delegations/[id]/page.tsx",
+      "bytes": 7572,
+      "sha256": "f0d2aecb1ac6d62c8a13d0af825842adaaa0b0dc7cf29f17287395d6df983c7f",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/demo/DemoVerificationClient.tsx",
+      "bytes": 14311,
+      "sha256": "af4764bb2362e082ffdfc77bf0e2a14c84b38c3915911603aa06cd9c808cb53f",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/demo/page.tsx",
+      "bytes": 9136,
+      "sha256": "07df557732d7880b58823f1b35fc265c326636123a94834c43c43662725574dc",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/evidence/IndependentReviewHandoff.tsx",
+      "bytes": 4463,
+      "sha256": "e00cf2d4ce03f75b4d7c480a2e4d5a749cdaa42d5417990c87c544e3db01af51",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/evidence/SourceDiffPreview.tsx",
+      "bytes": 2235,
+      "sha256": "d5973c27b1d3b0ae20f359a06e835d80fdfab9b7538c1823f76fa1f968f87df0",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/evidence/[attemptId]/page.tsx",
+      "bytes": 16197,
+      "sha256": "0a86c2d8d89c1c3c2cda0bfe40513ea522239e09fda1c6320a27d90e1683df0b",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/evidence/page.tsx",
+      "bytes": 5913,
+      "sha256": "e4a8a965aaad27de2de5fa663358d4b05b408aef529e796f5a8229b2dcc4d928",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/explore/ExploreCatalog.tsx",
+      "bytes": 10554,
+      "sha256": "8e2e8f891604fb8bc2746352151ee98bb3de9227d959f6e2d6adbd7264a00d62",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/explore/[slug]/CreditMarketPanel.tsx",
+      "bytes": 5609,
+      "sha256": "c10fb0b56b0101076be14e6b60824ac2721de93232bd538f9f274adebc07db0a",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/explore/[slug]/HistoricalSourceImporter.tsx",
+      "bytes": 4634,
+      "sha256": "a23fe168d58d68ff9550588c3769505fd5a21e065239aee0be1d0757dc439d00",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/explore/[slug]/PriorWorkChain.tsx",
+      "bytes": 5814,
+      "sha256": "a2624e137421f36ec02d16149e717e2ce0b66b35a41ef937214e4e6870791600",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/explore/[slug]/ResearchGraphView.tsx",
+      "bytes": 9997,
+      "sha256": "4bc304a07dc734541a8a6be1b4762f2a0648896dd2c150bb11d848eed3a65409",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/explore/[slug]/page.tsx",
+      "bytes": 7759,
+      "sha256": "d01deb25a2635549c3153f4772c967e33dfe9cb014d3032a7f14e17c136fc269",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/explore/page.tsx",
+      "bytes": 2290,
+      "sha256": "c035a8c4352d7049efb1ffe86d55ebf8624398f469a4b6eb162ce4dbb93144a8",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/globals.css",
+      "bytes": 1111,
+      "sha256": "71974d91fe13f41f01f338d09448af399700ab8055caeb59e5322c2c20de9e91",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/header.tsx",
+      "bytes": 52,
+      "sha256": "a76eed2209f44c89502abf439d914ed8a5224b0207a5c7ed81c6ca8919362f54",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/history/HistoryTimeline.tsx",
+      "bytes": 16370,
+      "sha256": "f4af51645f48b03e5ee329a2f8c5fe663a86cf85d7c06d779e07a007ed5a23b9",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/history/page.tsx",
+      "bytes": 7764,
+      "sha256": "a0bca0de497e13252429d867a8e521544a8644bf95423665efaa61e947e7eee0",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/how-it-works/contribution-records/page.tsx",
+      "bytes": 2973,
+      "sha256": "513f57dc3a9cf7d1c89893522ca6f33fa88afbd2235ddf330eeb83f1f291025e",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/how-it-works/page.tsx",
+      "bytes": 3490,
+      "sha256": "bdeffece9e41348ddc36c42aad4dbd44f73e0a7b68a3b5f4a608043f2c65876d",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/how-it-works/research/page.tsx",
+      "bytes": 3196,
+      "sha256": "415a29573bb4b54c2a50fe186c729a046fcf9c943f27ac5ce0dddbb58a9946a5",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/how-it-works/verification/page.tsx",
+      "bytes": 3062,
+      "sha256": "852947471ba31b9371adcdb8a14e327f61306ec40a5fb4dc6eb5345e0f16e098",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/integrations/CodexInstallPrompt.tsx",
+      "bytes": 6997,
+      "sha256": "52cf5a7f89db367b953954e973dc67b5e37deb90c97a7896e5af48760e7a020e",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/integrations/IntegrationClient.tsx",
+      "bytes": 13342,
+      "sha256": "37954428bcffe511dc3ea7a0ea0084873bb5c4f00bee8af3945599ea76137615",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/integrations/page.tsx",
+      "bytes": 3881,
+      "sha256": "cb695f90b64311bb70d211c76ec943e8f6c2bdf6035216dc01d1915d61e06cc1",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/layout.tsx",
+      "bytes": 1237,
+      "sha256": "fd3fe797342db1cc99ff7dde95d0fd53c35eeacaa5d7a51ddcff8bccba542003",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/lib/delegation-api.ts",
+      "bytes": 2333,
+      "sha256": "b077724359d382234086f8110c39340a567e14bdd17b08e5e205c8b86a63e874",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "different",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "app/lib/navigation.ts",
+      "bytes": 1390,
+      "sha256": "5e7292fb83719307b523b6c88af266e89076e712f53806267f35d93471148108",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/lib/read-only-personal-surface.tsx",
+      "bytes": 2052,
+      "sha256": "30d9d41badad4c90f22e472ead2b8e12c45bcacdb90864d5e68fc291d2e717b9",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/lib/remote-mcp-runtime.ts",
+      "bytes": 4739,
+      "sha256": "3c35d11c83226b30a075f88449ec806d67b22f0ee8d5c6b09dfd54d1f1fee8bb",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "different",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "app/page.tsx",
+      "bytes": 5637,
+      "sha256": "94fe05b070ecd0b3ead89db08c329c784fc8886755346708d47043cb60792b84",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/people/[id]/page.tsx",
+      "bytes": 8167,
+      "sha256": "cd66d0d1977d7a24ef8d88421d7cf4b755efd40b169a5f1052cd9c5816eeb212",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/privacy/page.tsx",
+      "bytes": 4063,
+      "sha256": "1d27926dfd20cd65b9076046bce4532143f2a64e4c5845793cc3f00d294f4f3c",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/profile/page.tsx",
+      "bytes": 11968,
+      "sha256": "2859b8bec148de0c484db944acc40384f42962f5bfef2c6cadecc8cd435e7027",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/propose/ProblemProposalClient.tsx",
+      "bytes": 6967,
+      "sha256": "c5045d9579023a0d7f3a5169b2c643e071113097fba832c2523d040c1f64313b",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/propose/page.tsx",
+      "bytes": 1329,
+      "sha256": "0346925bbf601d22c2b8d321a23d0db94c7d3d1a90798782c12e9f7a56c30cce",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/receipt/[id]/page.tsx",
+      "bytes": 10353,
+      "sha256": "701e33170abbe488a821f231d2fe9325bfb4ef178e38261cdf57c5f875c2c165",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/receipts/page.tsx",
+      "bytes": 4782,
+      "sha256": "d00cb745b539e19c78ff74252386839a910a09970211df81f3103b6756483004",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/reviews/ReviewAssignmentWorkspace.tsx",
+      "bytes": 15141,
+      "sha256": "2b7052a97572a56d94a1de1e23b84dafcd566665fd61d69c5e15e79f2b943ff4",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/reviews/ReviewQueueClient.tsx",
+      "bytes": 7062,
+      "sha256": "8a7d8b01dcb981698c46c4f9c0a1e99b92b1874461757dd64561be857974e5be",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/reviews/VerificationMarketBoard.tsx",
+      "bytes": 4849,
+      "sha256": "fc72d20717be098a5f11060399a58091c6961ccad35e8bbcc9df74e910edde60",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/reviews/[assignmentId]/page.tsx",
+      "bytes": 4210,
+      "sha256": "37d28f7eafb09aa91958eaaeef93ef6cd04f55297ffd8ae13e54dd835d0f8539",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/reviews/page.tsx",
+      "bytes": 7253,
+      "sha256": "0fed6585280aa3fca902bd53fa97da8107af85d5500c4370fc68f315d2a3e03d",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/settings/page.tsx",
+      "bytes": 4803,
+      "sha256": "adda9681e53a9c25e79c483f76c055d38e2e9655d9bea8a5fbeeb91d5a8bd0bb",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/showcase/ShowcaseExperience.tsx",
+      "bytes": 10925,
+      "sha256": "93a07f471d9ff1b7247bb3846518c383bd82666a39f26c3dbe427396b9bad0f6",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/showcase/page.tsx",
+      "bytes": 369,
+      "sha256": "33194a2f62d2d58e40f0b75ba25527554a3f8456c14540202c1045a2e3079bd9",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/sign-in/page.tsx",
+      "bytes": 5266,
+      "sha256": "b22896deb93a5d249efe42ef178d3c0333a316f76ee1ab082317425c28a055d9",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "different",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "app/terms/page.tsx",
+      "bytes": 3374,
+      "sha256": "18f783da0a75b451155a872efd338b14d95833b25f01bbae1184b73e47646a6e",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/ui.tsx",
+      "bytes": 327,
+      "sha256": "e4ab23278cba18f9f78b5e12c4569b6f2d75f820c86a9fd7ea52da6b32008cc1",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/workbench/AgentConnections.tsx",
+      "bytes": 3591,
+      "sha256": "7cab036410f3bca86251a20fa213c98d491cc69e6f0b88e8504808c71057b7f4",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/workbench/AttemptQueue.tsx",
+      "bytes": 11562,
+      "sha256": "651ae293a1149a2d0fe97be870ee436d19188c0203c257eec41c4305965ad7cd",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/workbench/DelegationSetup.tsx",
+      "bytes": 23621,
+      "sha256": "dd60d63ffb92cccd6d0a2f3cae6bbf636b826d2b8c14db4b7694e79cdde65994",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/workbench/LocalAgentHandoff.tsx",
+      "bytes": 17284,
+      "sha256": "0aad7e612828c4539feb3a0faadf6404530f3a549285b322f9043b066a5ef024",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/workbench/MyWorkOverview.tsx",
+      "bytes": 12298,
+      "sha256": "583c8adfbdfdd1ce07db523eaba7500812aba804eb4d6aab712a664301db8c6f",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/workbench/ResearchLauncher.tsx",
+      "bytes": 12441,
+      "sha256": "64c2c10a285a504548df66770f70c2a4a875e08092e8702eac25cbc920bf28de",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/workbench/WorkbenchClient.tsx",
+      "bytes": 19414,
+      "sha256": "268ee8f0f2c72af80c6b39230343ea56d7d17bf0eda31a7ecfa3a3a23d562d0e",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/workbench/WorkspaceShell.tsx",
+      "bytes": 7840,
+      "sha256": "346e2ad803ec1d2a98198b353eedd4556941419f45982fb1c70d2f3f399f24e2",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/workbench/attempt-presentation.tsx",
+      "bytes": 3707,
+      "sha256": "e1d6cca849f91d7093d398c9e0667ca02ee52de050ad6da47aff43d8c73c6683",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/workbench/attempts/[id]/page.tsx",
+      "bytes": 3416,
+      "sha256": "b7cad27fdb23bf11a7d8508637c1c608f5ea5a5c0d10b22335e7843e4ca9400f",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/workbench/page.tsx",
+      "bytes": 7366,
+      "sha256": "0c80cbc3f31c370fc2767dbd20b69bce72bc2b38cbd1c0f7cd4c33c5ae5f2205",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/workbench/workbench-data.ts",
+      "bytes": 4358,
+      "sha256": "1558b7d669160194214c8d59561aa1ca5b55b10944d4bbeddb6cfb9122596f2f",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "app/workbench/workbench-sections.tsx",
+      "bytes": 37135,
+      "sha256": "3e2c5f953d2f432ad550a7cc8c97a160b01659b5c935db921a5d430ab52a6cff",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "db/control-plane-authority.mjs",
+      "bytes": 7329,
+      "sha256": "acd2bc3cb22867303e84d06eefe6af91169acb8983a31fe6b0ea4fe59e62a1eb",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "different",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "db/index.ts",
+      "bytes": 9536,
+      "sha256": "936c77a7c11cd470f190c6e27a37e87bf33d64f2d8d3b5eecd96c751290c8287",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "different",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "db/repositories/account-auth.ts",
+      "bytes": 10411,
+      "sha256": "ffb065c77284b340fef0d47062e23aab1ff14c0fc8f7dbdb86a7b53d3f05ae8c",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "different",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "db/repositories/catalog.ts",
+      "bytes": 18983,
+      "sha256": "610150c925cdf509b069a900c406f054450aadcb3cccb94900a049deadea3b10",
+      "group": "catalog_and_ingestion",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "db/repositories/delegation.ts",
+      "bytes": 50338,
+      "sha256": "7267f0b58593392c5723454ef865fd4ca6cc2bb63c6f0ac7c002e547ddbb7e46",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "different",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "db/repositories/local-codex-pairing.ts",
+      "bytes": 11820,
+      "sha256": "c1c86ee2c634c4c0369bbac0df7460ea6ee4795d4defa1be8cfc07645c9620ee",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "different",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "docs/runner-provider-neutral-deployment.md",
+      "bytes": 11767,
+      "sha256": "fdd78785b0d1474050d7d6799aee4f99f89e4a466882ddf91f5715910fd5782c",
+      "group": "runner_reconcile_with_main",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "package.json",
+      "bytes": 22537,
+      "sha256": "9760b70cf5a66163da31da2024898e6cd4d99d9039d69a617b87a2b4ff49ab97",
+      "group": "shared_manual_hunk_split",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "scripts/ingest/README.md",
+      "bytes": 2717,
+      "sha256": "0c7b93183098c3167326ed561a3624610348c9d538ffb787f21784dad71f35c6",
+      "group": "catalog_and_ingestion",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "services/database/control-plane-operation-mode.mjs",
+      "bytes": 7895,
+      "sha256": "d8fb31cde24e603771ea77ea9216e600da09b68bc090de7a91a9b85f45b9036c",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "different",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "services/lean-runner/container-workspace-ingress.mjs",
+      "bytes": 8806,
+      "sha256": "8c06c477d6d86e088be18bb0dfcd45178ae55f64eac7492db1e9b0560e1f3cb4",
+      "group": "runner_reconcile_with_main",
+      "mainComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "services/lean-runner/container-workspace-runtime.mjs",
+      "bytes": 43500,
+      "sha256": "a27da6bc6586853e6886fb7e48e16c722e2c8ccb8906c64a9aa0bb412c5d6374",
+      "group": "runner_reconcile_with_main",
+      "mainComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "services/lean-runner/d1-runner-lease-queue.mjs",
+      "bytes": 27599,
+      "sha256": "5d5cf2863ac57a0063047fa08127ad9a20e12841c9e63f0772203ba6adafa64d",
+      "group": "runner_reconcile_with_main",
+      "mainComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "services/lean-runner/runner-workspace-transfer.mjs",
+      "bytes": 7866,
+      "sha256": "13176ee41db66005536314564db96d69c61a41d674c7f3a2b87e5cfca40523ae",
+      "group": "runner_reconcile_with_main",
+      "mainComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "services/lean-runner/trusted-runner-process.mjs",
+      "bytes": 25654,
+      "sha256": "b7d3520111b87e156b8f68a8c6c80679110d885f0233c4d0b537d6a962f7a30d",
+      "group": "runner_reconcile_with_main",
+      "mainComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "services/proofweave-identity/browser-consent.mjs",
+      "bytes": 10715,
+      "sha256": "0a0eaf22c854a1bb6e0cad7bd1b0e0a4da160d01313cc189982cf2ccc67a52df",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "different",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "tests/container-workspace-runtime.test.mjs",
+      "bytes": 26373,
+      "sha256": "f518877607d3d2b37286481530444925c38d9516fcf9a3a134b47d46bd4f5bee",
+      "group": "runner_reconcile_with_main",
+      "mainComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "tests/d1-browser-consent.test.mjs",
+      "bytes": 18720,
+      "sha256": "635ebab3c7a502da56cab5161c1951b42a9b91d62aa09d4afaacda5ec027e18f",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "different",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "tests/d1-runner-lease-queue.test.mjs",
+      "bytes": 21526,
+      "sha256": "7d2e3b1cca5d05eb2ae74c819764572802bb87eeccfc732c14d2fada167c2281",
+      "group": "runner_reconcile_with_main",
+      "mainComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "tests/libsql-d1-adapter.test.mjs",
+      "bytes": 18748,
+      "sha256": "3fb402c4569ddc6cc28585efd90840d22d8c575d53a3bffa7fa8a39fd7334ec4",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "different",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "tests/libsql-migrations.test.mjs",
+      "bytes": 6463,
+      "sha256": "f27792cf3e1e6529af7c88b1e620261f3dd320e6fcef1854690c34d6f90229a1",
+      "group": "shared_manual_hunk_split",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "tests/rendered-html.test.mjs",
+      "bytes": 167741,
+      "sha256": "9f85b4bad08508f73c7444af436088c5b3c0bfe4a96bdebde695af17b0eb352d",
+      "group": "shared_manual_hunk_split",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "tests/runner-workspace-transfer.test.mjs",
+      "bytes": 10570,
+      "sha256": "54a555267cc16e54ef44a4f02e4361b514048876ddc3b3854fe73b6d944e51de",
+      "group": "runner_reconcile_with_main",
+      "mainComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "tests/trusted-runner-process.test.mjs",
+      "bytes": 10945,
+      "sha256": "d0aa628bdffef0be18ac828bc9368b135b1ad68f6548f4298caee18d8d0b00e5",
+      "group": "runner_reconcile_with_main",
+      "mainComparison": "identical"
+    },
+    {
+      "status": " M",
+      "path": "tests/workbench-journey-truthfulness.test.mjs",
+      "bytes": 4591,
+      "sha256": "3fd542a0fe55d5e8dd6a8a1716b8628ec3a5affc41ad7dfb9741f57a5fb8f989",
+      "group": "shared_manual_hunk_split",
+      "mainComparison": "different"
+    },
+    {
+      "status": " M",
+      "path": "worker/index.ts",
+      "bytes": 4446,
+      "sha256": "5d62cc8ca1d447daa7fcc0bc760f17af6a547af83b59a6798294977f84183711",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "different",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": "??",
+      "path": "app/api/catalog/browse/route.ts",
+      "bytes": 967,
+      "sha256": "54c368e289c4e9ff4437a6d489e326c159ef92e41655bb64cf4603362d1cd2d5",
+      "group": "catalog_and_ingestion",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/components/evidence/Status.tsx",
+      "bytes": 1229,
+      "sha256": "0e03b225752427cd75286a6fbc8c9ae56eedaab9f06ce7fc351753c7f39bdc81",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/components/evidence/verification.css",
+      "bytes": 3485,
+      "sha256": "ef15d4885c8a720250325827b943f5486902214c5e61c4e5121bf557b9101300",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/components/navigation/Breadcrumb.tsx",
+      "bytes": 609,
+      "sha256": "b6ec0db2a9651cacf9ec808ca245fd314e48d3de5350a140feb974074e996bde",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/components/navigation/PageSectionNav.tsx",
+      "bytes": 466,
+      "sha256": "ffe1eaa89596908ca8e4af467cc3a434fa8d1bbe4cef2463fe9d10a4c403d846",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/components/navigation/StepNavigation.tsx",
+      "bytes": 1669,
+      "sha256": "bbb64cad8e02466478f309f2e01972851b5e02b695e5ab6bed0cc634f067ce13",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/components/navigation/navigation.css",
+      "bytes": 616,
+      "sha256": "08251cbacc7c6744decc2ba3e869dd96523bb8b1f22daedfd903a5f0e59b944c",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/components/research/ResearchCard.tsx",
+      "bytes": 3844,
+      "sha256": "88399067081ff1aae30f4c14e0dd671e41c1c42461dd672d625087aafac3192f",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/components/research/research-card.css",
+      "bytes": 1205,
+      "sha256": "1ae2e978dc4a939d4796fc7642c9c75be74518d7a7fe96de051491a98ffebc0e",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/components/shell/Footer.tsx",
+      "bytes": 470,
+      "sha256": "3507e6a4e102f37521167cbe9f4299ae9b275cb85555b4128de818bdcab206d1",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/components/shell/Header.tsx",
+      "bytes": 4386,
+      "sha256": "06ec421590a0d4a68a278d7a2c3f1a5627159c974ecdb7553acda7052f5a529a",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/components/shell/PageLoading.tsx",
+      "bytes": 497,
+      "sha256": "82d9d3be22f727613e11e85e927917a359332597a71964e6b9acfaee689c6c37",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/components/shell/SiteFrame.tsx",
+      "bytes": 625,
+      "sha256": "6c66b7384dad617f385ed00e70e704fafff971bb40e6bdbefb8d580ed50e6005",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/components/shell/site-frame.css",
+      "bytes": 1705,
+      "sha256": "b78a1f6f8dc818dfb413d1e504e1537b711caa30cdc94e801c948fa80ca49958",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/components/ui/ActionLink.tsx",
+      "bytes": 396,
+      "sha256": "2bfaec28babfacafbd5a79f528a22b8db2bf0d40f7cbe69773bb95ce95c3850e",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/components/ui/ContentLoading.tsx",
+      "bytes": 378,
+      "sha256": "5facbc3e34235f8e0576c724a74da92f7de48b0083803fedcf50aaad257fb395",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/components/ui/NavigationLink.tsx",
+      "bytes": 646,
+      "sha256": "a407f70caaf04cddb372dcf6b5ecd1dc10a19c4fd1a4407b611b507cefbc6be5",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/components/ui/PageIntro.tsx",
+      "bytes": 1161,
+      "sha256": "91a7c7c6a01bb64307a58ff6fb94cdbffa2751db2fb083008d92934003b030d3",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/components/ui/PaperSurface.tsx",
+      "bytes": 987,
+      "sha256": "d6d51e646ca27b449946232034e1bce2308a807e571b532e7fe40e1f81529efe",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/components/ui/ScrollArea.tsx",
+      "bytes": 1261,
+      "sha256": "ee6213d7941f88525b12136e14024dd0567cfefcb6c58c975140a50ee00d8c2f",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/components/ui/index.ts",
+      "bytes": 419,
+      "sha256": "b0841f977c270106b631423f119bfa05586dfe9c0104afdeb2d2b0c91fe5f1f4",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/components/ui/page-intro.css",
+      "bytes": 2917,
+      "sha256": "aba3abee737fe260220bcd1a5c86af8f0ca9d8a5b5ba1ca016ffa06b816d1c0e",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/components/ui/paper.css",
+      "bytes": 3275,
+      "sha256": "51710bce0e4ddd71033cc8c54cb8b5cdce7cd03cf9bd9eb9521028ed79547e21",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/components/ui/primitives.css",
+      "bytes": 5652,
+      "sha256": "c78507c990ba805ceb470dc69a34af7b9060c2d99fd5976e9837f5a60ed3f56e",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/components/ui/primitives.tsx",
+      "bytes": 3734,
+      "sha256": "2fab74be2bf80489056931006bef8a1e5dc9931922b3c8582ae9fce72f873566",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/components/ui/typography.css",
+      "bytes": 1265,
+      "sha256": "6de2204ae091332111501a61c15fe99e4703ed7ad9c8bb8029f55f414034cea3",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/demo/loading.tsx",
+      "bytes": 166,
+      "sha256": "44ccf24662a118e1d678be873d08184ebeecb00ef242e93b2ce2c8b82ac9d3c1",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/dev/components/ComponentGallery.tsx",
+      "bytes": 6177,
+      "sha256": "be80bf398e2bbee574344356ee757400c98f87a14712827521247595d50080d5",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/dev/components/gallery.css",
+      "bytes": 1879,
+      "sha256": "7acf0d6fd79c1abddb4f6489d29e03d66c2358f7161168a3a4776b6f30ce9937",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/dev/components/page.tsx",
+      "bytes": 574,
+      "sha256": "ba1bd03071163d729b458a69144a9bb5b679575246d49fba32a4fa7e75a957d1",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/explore/loading.tsx",
+      "bytes": 165,
+      "sha256": "df705faab46e582ef034e72b92eafc0c41515d0f83745bd939176f1ceed3a1be",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/home.css",
+      "bytes": 4412,
+      "sha256": "8296136adb9ac433f222571b91042a2c6082be768c99e8f59e53bc485e8fcca1",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/hooks/useStepPlayback.ts",
+      "bytes": 2240,
+      "sha256": "efaaf03544226e4e70ebf19d20318e840c5507517e945da0ecbf4e70d456f87a",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/hosting-config.ts",
+      "bytes": 361,
+      "sha256": "f1e96366018566a435065dfef89c79d7ff9750a97be542f38ea8751f30c1f64e",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "absent",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": "??",
+      "path": "app/loading.tsx",
+      "bytes": 158,
+      "sha256": "8c4c1db87b57f953b9382a9b5834e4606a35b2372832d85423c3b09064593a83",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/scroll-fade.tsx",
+      "bytes": 129,
+      "sha256": "a3ff8051125a0cdf35fab75ab56effe6dcdcea4efe8c7f822f3c808ca80e8afe",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/showcase/ShowcaseExperience.module.css",
+      "bytes": 7701,
+      "sha256": "0bb5a6143b42cb353e7ac54fc864aa1df1a18bc526f40098e9d4c111974e8fde",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/styles/account.css",
+      "bytes": 19421,
+      "sha256": "0d95525a04df33291e6889c5d79e7577df90c7c3aa84c24d47a1616841d8ec08",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/styles/catalog.css",
+      "bytes": 19490,
+      "sha256": "e486d429743df3c2c2ad81a294dc940fd2c7bc8a27f256b1595405e3cdff15b7",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/styles/composition.css",
+      "bytes": 19127,
+      "sha256": "a34b756ed9a3a03f98dd37bb1f7911fe1d7bab79a896f2ce735c49756accade0",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/styles/editorial.css",
+      "bytes": 9994,
+      "sha256": "dc03c8f539a15fa7b2818e5e50e4ec72e6602d587d795f1d19be399a7d009a24",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/styles/foundation.css",
+      "bytes": 82622,
+      "sha256": "af6a0962940bf17a344699a3ee215257e6741fdc06bc085a55a69aebdb23ffd5",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/styles/history.css",
+      "bytes": 15183,
+      "sha256": "6ffe6544403fa3ff13cbee248182d8ac546b7d07d40664a7c34376dff3d6f150",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/styles/module-layout.css",
+      "bytes": 9257,
+      "sha256": "ed9d18ded5480a7dc1afe6fe09efda7bbdb745829301c37e9f62edf7a2ef9aac",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/styles/navigation.css",
+      "bytes": 20141,
+      "sha256": "9870f72351564533a0bb99e33c2f521d696687341f47d7007aeeaea7404645c8",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/styles/onboarding.css",
+      "bytes": 30157,
+      "sha256": "a21b923b8b8d8baa2fbdccd08a600f7f69862088c6c2ea569121057bdbab8b77",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/styles/orientation.css",
+      "bytes": 8467,
+      "sha256": "af430a5843014af1ff5bbf16762bc2d43c40c12f9ef3ab1ea3c78f5c2ffe102c",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/styles/primary-pages.css",
+      "bytes": 3802,
+      "sha256": "e3d815ac19a8b2083898f44434d4f7754bd87da77e036225ccf589ba4e840fa8",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/styles/public-layout.css",
+      "bytes": 26049,
+      "sha256": "b40c39242f24cfd7aa5d93c102e94678d14aa4a7bd1d493f69564f57d15e2cc2",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/styles/research.css",
+      "bytes": 27509,
+      "sha256": "c038a2c4e5d2b6e3c9a39a639c4977eb6f2a1f50ca00cee9cd112d9500584282",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/styles/shared-controls.css",
+      "bytes": 5846,
+      "sha256": "123572c66b07091ee8022a6dca7106ddf7b9b4f8648e6445812954bc1cf33dda",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/styles/surface-layout.css",
+      "bytes": 8418,
+      "sha256": "8b780038eedc2c589aa000c59d8d75bc0765121280c0e26637a7edbf74799e27",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/styles/tokens.css",
+      "bytes": 2541,
+      "sha256": "12f246a2bf0ea7985d577d6705f310a17424cb4b27b22893e9f15fd540257610",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/styles/verification.css",
+      "bytes": 33619,
+      "sha256": "bf73eaa2cc6e88554d4e946cff048ed6786da1b4f40b76d1fbd87fd19eb2d574",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/styles/workspace.css",
+      "bytes": 20277,
+      "sha256": "5751bcab99bcf3d99881954ba3cc2e0470643dabc6dd5162025cfd3f9d91525f",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "app/workbench/loading.tsx",
+      "bytes": 168,
+      "sha256": "1b1e97543bf65526b5b0cf2e74aed211f0d6fdc749e994812bcba0d838ff5c07",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "config/public-research-sources.json",
+      "bytes": 1020,
+      "sha256": "c54d670e3960493eaf1f9d54ecde798e97ae34608111fe665a6852b4971d0de5",
+      "group": "catalog_and_ingestion",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "docs/architecture-and-roadmap-2026-10-13.zh-CN.md",
+      "bytes": 32907,
+      "sha256": "bb511dd157e5000b196f5ab9bb864382b716f60311ea3862db8b0eb050781adc",
+      "group": "documentation",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "docs/cloudflare-key-rotation-2026-10-16.zh-CN.md",
+      "bytes": 5790,
+      "sha256": "ea5e391ca0b2d65fc72471c8a56a36e52f4ed9bafaa2c1f2f1a240076505c7b9",
+      "group": "documentation",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "docs/cloudflare-migration-2026-10-16.zh-CN.md",
+      "bytes": 43418,
+      "sha256": "bcd84a175364fc4a21f0c6ede1ad746b459a812e56e342125b43c871f90417cf",
+      "group": "documentation",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "docs/frontend-components.md",
+      "bytes": 24074,
+      "sha256": "9195581244e771dfe4af87a1a2f73c9a44a3e0326e85649c153e36c55cd8e597",
+      "group": "documentation",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "docs/sites-edge-incident-2026-10-16.zh-CN.md",
+      "bytes": 7133,
+      "sha256": "0c5696f6fde49f37983966f19b62e0e09e64d6aa3468e6222c18b09d5c9e9868",
+      "group": "documentation",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "drizzle/0049_add_catalog_browse_index.sql",
+      "bytes": 16992,
+      "sha256": "3b980bfe26fa27810f31bea0b345de44418ee0ca70a6259a936e6556981ef668",
+      "group": "runner_reconcile_with_main",
+      "mainComparison": "identical"
+    },
+    {
+      "status": "??",
+      "path": "packages/domain/catalog-browser.ts",
+      "bytes": 1959,
+      "sha256": "75ddb2475fcfd6763b189190b3bf85144312f0ca33469cf3ffa3538c9087de03",
+      "group": "catalog_and_ingestion",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "scripts/backfill-catalog-browse.mjs",
+      "bytes": 2921,
+      "sha256": "6c3bf4ac7235f93a32319d08d533af10c704efff9945215d69f283986d3e865d",
+      "group": "catalog_and_ingestion",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "scripts/ingest/collect-public-research.py",
+      "bytes": 14920,
+      "sha256": "9ac219d47d605d6faaa62682823d61643fa5e36b2482f7c3d3b4303e5f6f12d3",
+      "group": "catalog_and_ingestion",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "scripts/ingest/render-public-research.mjs",
+      "bytes": 8850,
+      "sha256": "a0f392c40c587f6149a98bcb5b08b4c016bdb21f7ea299c2b5f5a9c096e2d8ab",
+      "group": "catalog_and_ingestion",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "scripts/ui/audit-components.mjs",
+      "bytes": 5768,
+      "sha256": "a3698b052f4c430399f434bdf3e3acbef0d5c65badfe4b1557dc2cd608d27fd6",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "services/auth/sites-login-bridge.mjs",
+      "bytes": 17292,
+      "sha256": "e66fbc89779279f0286152c4d85bdcc1368617d104c02e5852ed69f888ff79fb",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "absent",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": "??",
+      "path": "services/catalog/backfill.ts",
+      "bytes": 1290,
+      "sha256": "7b0403aff5b1fa314e7841e8a73cd27e10e3b63718c44da8542f0514b6671ac5",
+      "group": "catalog_and_ingestion",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "services/catalog/browser.ts",
+      "bytes": 5823,
+      "sha256": "f233f8de72a6a52b21947cc9a6233ab2e9285e15078b7c0c4c42fad5ca24ccf5",
+      "group": "catalog_and_ingestion",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "services/database/connection-write-capability.mjs",
+      "bytes": 2311,
+      "sha256": "05388793f5b035a8bb6654e696677b9545735fb81e41c4791ac35cb8109e8120",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "absent",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": "??",
+      "path": "services/hosting/cloudflare-boundary.mjs",
+      "bytes": 2218,
+      "sha256": "9538cd53a304117d15dc8a4bfed4d225ca8964f53b9626474eaa4794ba6c76e4",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "absent",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": "??",
+      "path": "tests/catalog-browser.test.mjs",
+      "bytes": 13780,
+      "sha256": "1d6cab204d7eb326005b8b18ae7d5bba5b6ba04364dd5efe022f8c3427dba753",
+      "group": "catalog_and_ingestion",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "tests/cloudflare-connection-journey.test.mjs",
+      "bytes": 13317,
+      "sha256": "8b6c0698eeb202571f72cb845679e3e46181f36e2ae2560c7a60b662005dc6e4",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "absent",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": "??",
+      "path": "tests/cloudflare-hosting-boundary.test.mjs",
+      "bytes": 5825,
+      "sha256": "86997e7bc7e3cbe01512f9bca413792f6b9f7d4a710918bc40be4001a15880ef",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "absent",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": "??",
+      "path": "tests/connection-write-capability.test.mjs",
+      "bytes": 2993,
+      "sha256": "8fff5da6de79b45f69ed8f61463fc37647a956676c5c14617da71001018d4c68",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "absent",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": "??",
+      "path": "tests/public-research-ingestion.test.py",
+      "bytes": 6716,
+      "sha256": "f4725a4cfd732dc6845583f07d351dd5ebc1c89b5a317754ec10edb0f5e1fdfb",
+      "group": "catalog_and_ingestion",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "tests/sites-login-bridge.test.mjs",
+      "bytes": 14590,
+      "sha256": "d724b503f63c1eaeef0df9114e51b3098937e831be0fea70762dfc761e3c0573",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "absent",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": "??",
+      "path": "tests/ui/primitives.test.tsx",
+      "bytes": 4282,
+      "sha256": "73cad216eb525d12db64975f118198a0732a236ef7a7aaa393c88b11681664bd",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "tsconfig.ui.json",
+      "bytes": 224,
+      "sha256": "cff42e2c0b80baab4207ea95225574e05678bccad4b21f957f18674e5a8ce54a",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "v1/README.md",
+      "bytes": 2185,
+      "sha256": "00146aa731dc25302cfaeb7078a340784e1ebcb04ff5d40fed5d8da5ffa1fa15",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "v1/assets/app.js",
+      "bytes": 8672,
+      "sha256": "5a332e9531e60ae8e7d0bd5cab0aea940e537cc2d847f5e89535d90778e0bf2a",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "v1/assets/base.css",
+      "bytes": 17296,
+      "sha256": "e0ee0b2c0797aaa4fc8c6e884e822c63f88ee191f558b624ae89846a5fba500e",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "v1/assets/tokens.css",
+      "bytes": 2110,
+      "sha256": "31327c9d4a09944d5a1dd836c4e6d52fb86c04549d9a9eb90e813b10e58f46fc",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "v1/conjecture.html",
+      "bytes": 6380,
+      "sha256": "935a2196a2ee65ec14044c401e5fb9b037958b36294f5b889bef948fcbbc9fa5",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "v1/explore.html",
+      "bytes": 6745,
+      "sha256": "658a049f72aeb084791eb13d430c05a4fb18249a32dfdc9ba9ab15b763201690",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "v1/index.html",
+      "bytes": 10880,
+      "sha256": "8d0378165f07ad2db6a29c5573dac254d0e068deffdc783257ffe47e7aaace09",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "v1/receipt.html",
+      "bytes": 4277,
+      "sha256": "a63e253579fea0f6a856d4c2a57a4c166b17a1f3afc3f0cacee846f0e3c29402",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "v1/serve.mjs",
+      "bytes": 1831,
+      "sha256": "474530cc71a18214d5e13b298323ecec6a2bbfee83e300f8a2bd692365406715",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "v1/workbench.html",
+      "bytes": 5136,
+      "sha256": "814b2c5ccfc735064bd7ba0e4de11c7586858c9e44df9524e3b1130de6163a8b",
+      "group": "ui_and_remaining_product_changes",
+      "mainComparison": "absent"
+    },
+    {
+      "status": "??",
+      "path": "vite.cloudflare.config.ts",
+      "bytes": 596,
+      "sha256": "bf1bbd86277b64dbcd449eb95078c8db4728e495d8cfd26de1c6fd2bff1bef48",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "absent",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": "??",
+      "path": "worker/cloudflare.ts",
+      "bytes": 1696,
+      "sha256": "2172d9bd46ba3d3c3d2ada503d97460d772621d16f8528d24c67bd8be039156b",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "absent",
+      "publishedSnapshotComparison": "identical"
+    },
+    {
+      "status": "??",
+      "path": "wrangler.cloudflare.jsonc",
+      "bytes": 2644,
+      "sha256": "57d1e9e6199cab7d77547803f2cc63a8a15f960f61326112815968060699335d",
+      "group": "cloudflare_published_overlay",
+      "mainComparison": "absent",
+      "publishedSnapshotComparison": "different"
+    }
+  ]
+}

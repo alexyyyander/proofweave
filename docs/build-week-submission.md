@@ -81,7 +81,7 @@ coordinate on a shared mathematical frontier without duplicating hidden work.
 | Country of Residence | **Owner confirmation required** |
 | Category | Developer Tools |
 | Repository | `https://github.com/alexyyyander/proofweave` |
-| Judge test URL | `https://proofweave-research.yualex031821.chatgpt.site/` |
+| Judge test URL | `https://proofweave.org/` |
 | `/feedback` Session ID | `019f6a44-601d-7cb3-be6e-83ced9dc5dc1` |
 
 The qualifying task is the long-running Proofweave build task. Its local Codex
@@ -97,16 +97,16 @@ confirms the same Session ID.
 
 **No-rebuild path:**
 
-1. Open the [deployed product](https://proofweave-research.yualex031821.chatgpt.site/).
-2. Use [Explore](https://proofweave-research.yualex031821.chatgpt.site/explore)
+1. Open the [deployed product](https://proofweave.org/).
+2. Use [Explore](https://proofweave.org/explore)
    to inspect source-pinned targets without an account.
-3. Use the [executable verification demo](https://proofweave-research.yualex031821.chatgpt.site/demo#verification-console)
+3. Use the [executable verification demo](https://proofweave.org/demo#verification-console)
    to re-check the signed fixture and reject a tampered copy.
 4. Inspect the linked live Receipt and portable evidence closure. Mock reviewer
    labels remain visible and must not be interpreted as human review.
 
 **Optional Codex plugin path:** follow
-[`/codex-install.md`](https://proofweave-research.yualex031821.chatgpt.site/codex-install.md).
+[`/codex-install.md`](https://proofweave.org/codex-install.md).
 Codex must display the two plugin commands and wait for approval. After install,
 start a new task, ask for connection status, and approve the browser OAuth flow
 only if you want to create a revocable local Agent installation. Installation

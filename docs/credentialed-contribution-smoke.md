@@ -1,5 +1,7 @@
 # Credentialed contribution release smoke
 
+This document describes the unchanged staging/0043 v1 gate. For the separate Cloudflare/0049 component evidence adapter, see [the v2 guide](cloudflare-0049-release-evidence.zh-CN.md). The new offline result does not authorize production execution.
+
 The credentialed release smoke is the final operator gate for one real
 Proofweave contribution path:
 
@@ -29,7 +31,7 @@ fail-closed:
 - it never turns fixture data or successful booleans into a real contribution.
 - it accepts only an explicitly identified `staging` environment;
 - it rejects the production origin
-  `https://proofweave-research.yualex031821.chatgpt.site` and production
+  `https://proofweave.org` and production
   database fingerprint `3f9e7934a04a22ec`; and
 - it requires the exact latest migration in the reviewed checkout before
   either release observation can be accepted. The shared migration loader

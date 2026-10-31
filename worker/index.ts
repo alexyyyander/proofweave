@@ -1,15 +1,17 @@
 /** Cloudflare Worker entry point for the Proofweave web application. */
 import { handleImageOptimization, DEFAULT_DEVICE_SIZES, DEFAULT_IMAGE_SIZES } from "vinext/server/image-optimization";
 import handler from "vinext/server/app-router-entry";
+import { handleSitesBridge } from "../services/auth/sites-login-bridge.mjs";
 import {
-  getD1,
+  getOAuthD1,
   getOAuthRefreshRotationCapability,
-  getParticipantOperationState,
+  getOAuthOperationState,
 } from "../db";
 import {
   createD1SitesIdentityRuntime,
   SitesIdentityRuntimeConfigurationError,
 } from "../services/proofweave-identity/sites-runtime.mjs";
+import { canonicalPublicRedirect, resolveSitesOAuthAuthority } from "../services/proofweave-identity/sites-authority.mjs";
 
 interface AssetFetcher {
   fetch(request: Request): Promise<Response>;
@@ -19,6 +21,7 @@ interface Env {
   ASSETS: AssetFetcher;
   MCP_RESOURCE_URL?: string;
   OAUTH_ISSUER_URL?: string;
+  OAUTH_LEGACY_ISSUER_URL?: string;
   OAUTH_CLIENT_REGISTRATION_ALLOWLIST_JSON?: string;
   IMAGES?: {
     input(stream: ReadableStream): {
@@ -44,9 +47,17 @@ const worker = {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
 
+    // Preserve the original Sites identity boundary and same-origin native sign-in.
+    if (url.pathname === "/login-bridge") {
+      return (await handleSitesBridge(request, env))!;
+    }
+
     if (isOAuthPath(url.pathname)) {
       return fetchOAuthIdentity(request, env, url);
     }
+
+    const canonicalUrl = canonicalPublicRedirect(request, env);
+    if (canonicalUrl) return Response.redirect(canonicalUrl, 308);
 
     const images = env.IMAGES;
     if (url.pathname === "/_vinext/image" && images) {
@@ -74,28 +85,27 @@ function isOAuthPath(pathname: string): boolean {
 }
 
 function fetchOAuthIdentity(request: Request, env: Env, url: URL): Promise<Response> | Response {
-  if (env.OAUTH_ISSUER_URL && env.OAUTH_ISSUER_URL !== url.origin) {
-    return unavailableIdentity();
-  }
-  return fetchOAuthIdentityResponse(request, env, url);
+  const authority = resolveSitesOAuthAuthority(url, env);
+  if (!authority) return unavailableIdentity();
+  return fetchOAuthIdentityResponse(request, env, authority);
 }
 
 async function fetchOAuthIdentityResponse(
   request: Request,
   env: Env,
-  url: URL,
+  authority: { resource: string; issuer: string },
 ): Promise<Response> {
   try {
-    const operationState = getParticipantOperationState();
+    const operationState = getOAuthOperationState();
     const identity = createD1SitesIdentityRuntime({
-      database: getD1(),
+      database: getOAuthD1(),
       operationMode: operationState.mode,
       refreshTokenRotator:
         operationState.mode === "read_only"
           ? getOAuthRefreshRotationCapability()
           : null,
-      resource: env.MCP_RESOURCE_URL ?? `${url.origin}/mcp`,
-      issuer: url.origin,
+      resource: authority.resource,
+      issuer: authority.issuer,
       clientRegistrationAllowlistJson: env.OAUTH_CLIENT_REGISTRATION_ALLOWLIST_JSON,
     });
     return await identity.fetch(request);

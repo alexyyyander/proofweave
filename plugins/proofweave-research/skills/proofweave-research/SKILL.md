@@ -16,6 +16,19 @@ run `connect_proofweave` with the least-privilege role: `research`, `review`, or
 asks them to paste an API key or public key. If the tools are absent or remain
 unconnected, continue local Lean work and tell the user that no Proofweave
 event was recorded; do not invent an HTTP request, bearer token, or upload.
+`connect_proofweave` returns promptly with `pendingApproval: true`, an
+`approvalUrl`, and `expiresAt` while the browser decision is outstanding. This
+is not a successful connection. Open that exact same-origin URL on this computer,
+keep the Connector running, and let the owner approve it. Then call
+`connection_status` until it reports the completed live OAuth/MCP check; a
+`pairing.state` of `failed`, `expired`, or `cancelled` requires a fresh connection
+attempt. Repeating the same-role connect call returns the existing pending
+session. Never infer approval from the browser opening or from a saved config.
+For two simultaneous local clients, use separate `PROOFWEAVE_CONNECTOR_CONFIG`
+files and distinct `PROOFWEAVE_CALLBACK_PORT` values. The server binds each
+canonical loopback callback to its OAuth client and session; do not share keys
+or overwrite another client's configuration.
+
 Treat `savedConnection` and `connected` separately: a saved browser approval
 is not proof that this computer can currently reach OAuth or MCP. When
 `connected` is false but `savedConnection` is true, read `liveConnection.code`

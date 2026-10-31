@@ -1,17 +1,19 @@
 # Proofweave full contribution-chain release plan
 
-Historical plan — status recorded on 2026-07-31.
+## Current status — 2026-10-20
 
-The execution board and 0043 cutover instructions below preserve that release
-record; they are not current runtime status or instructions to rerun the old
-cutover. For the 2026-10-11 runtime observation and outstanding launch
-acceptance gates, see [ordinary-user-readiness.md](ordinary-user-readiness.md).
-Enabled production writes do not prove completion of the two-Person smoke.
+The July plan below is retained as historical design and cutover context. Production now reports migration 0049, and PR #162 is merged and deployed as a healthy paused Runner at `13c0795`. Participant/MCP research writes and Runner execution remain disabled.
 
-Original release posture: production writes remained frozen until every release
-gate below had recorded evidence.
+Use the [current component record](releases/2026-10-20-release-state.json), [migration summary](cloudflare-migration-2026-10-16.zh-CN.md), and [controlled reopening plan](research-reopening-acceptance-2026-10-20.zh-CN.md) for current preparation. Do not replay the historical 0042→0043 production migration procedure.
 
-## Historical execution board
+The existing credentialed contribution checker v1 is staging-only, requires 0043 and intentionally rejects the production origin/database. The existing strict live binding also assumes Sites identity. Those checks do not certify the present Cloudflare/0049 topology. Their guards remain intact; a reviewed, versioned evidence path is required before reopening research. No current-release two-Person contribution/Receipt/Nile acceptance is claimed here.
+
+
+Status date: 2026-07-31
+Release posture: production writes remain frozen until every release gate below
+has recorded evidence.
+
+## Historical execution board (2026-07-31)
 
 | Gate | Current repository evidence | Decision |
 | --- | --- | --- |
@@ -78,7 +80,7 @@ Pinned target
 A readable website, a successful repository test, a pre-existing demo, or a
 Lean-accepted Run is not sufficient on its own.
 
-## Current recorded state
+## Historical recorded state (2026-07-31)
 
 The repository currently records:
 

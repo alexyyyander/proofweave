@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, Input, Select } from "@/app/components/ui";
+
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
 
@@ -61,16 +63,16 @@ export function HistoricalSourceImporter({ problemSlug, canImport, signInPath }:
     <form onSubmit={(event) => { void submit(event); }}>
       <p>This preserves the original source and contributor name. It does not create Proofweave verification, delegation, novelty, contribution credit, or a Receipt.</p>
       <div className="historical-source-fields">
-        <label>Source URL<input name="sourceUrl" type="url" required placeholder="https://doi.org/… or repository URL" /></label>
-        <label>Title<input name="title" required maxLength={500} /></label>
-        <label>Exact revision<input name="sourceRevision" required maxLength={240} placeholder="DOI version, commit SHA, or release tag" /></label>
-        <label>Content SHA-256<input name="contentHash" required pattern="sha256:[a-f0-9]{64}" placeholder="sha256:…" /></label>
-        <label>Source license<input name="sourceLicense" required maxLength={160} placeholder="For example, MIT or CC BY 4.0" /></label>
-        <label>Contributor name<input name="contributorName" required maxLength={240} /></label>
-        <label>Contributor role<select name="contributorRole" defaultValue="author"><option value="author">Author</option><option value="formalizer">Formalizer</option><option value="prover">Prover</option><option value="reviewer">Reviewer</option><option value="maintainer">Maintainer</option></select></label>
-        <label>Attribution evidence URL<input name="contributorEvidenceUrl" type="url" placeholder="Defaults to source URL" /></label>
+        <label>Source URL<Input name="sourceUrl" type="url" required placeholder="https://doi.org/… or repository URL" /></label>
+        <label>Title<Input name="title" required maxLength={500} /></label>
+        <label>Exact revision<Input name="sourceRevision" required maxLength={240} placeholder="DOI version, commit SHA, or release tag" /></label>
+        <label>Content SHA-256<Input name="contentHash" required pattern="sha256:[a-f0-9]{64}" placeholder="sha256:…" /></label>
+        <label>Source license<Input name="sourceLicense" required maxLength={160} placeholder="For example, MIT or CC BY 4.0" /></label>
+        <label>Contributor name<Input name="contributorName" required maxLength={240} /></label>
+        <label>Contributor role<Select name="contributorRole" defaultValue="author"><option value="author">Author</option><option value="formalizer">Formalizer</option><option value="prover">Prover</option><option value="reviewer">Reviewer</option><option value="maintainer">Maintainer</option></Select></label>
+        <label>Attribution evidence URL<Input name="contributorEvidenceUrl" type="url" placeholder="Defaults to source URL" /></label>
       </div>
-      <button className="button button-secondary" disabled={isSubmitting} type="submit">{isSubmitting ? "Linking source…" : "Link prior work"}</button>
+      <Button className="button button-secondary" disabled={isSubmitting} type="submit">{isSubmitting ? "Linking source…" : "Link prior work"}</Button>
       {status && <p className="historical-source-message is-success" role="status">{status}</p>}
       {error && <p className="historical-source-message is-error" role="alert">{error}</p>}
     </form>

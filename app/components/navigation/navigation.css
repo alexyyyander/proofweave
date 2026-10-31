@@ -1,0 +1,8 @@
+/* Section navigation is a row of links, not a chain of rounded chips. */
+.page-section-nav a { border-radius: 0; border-left: 0; border-right: 0; }
+.page-section-nav a:hover { background: var(--indigo-soft); }
+.page-section-nav-dark a:hover { background: rgba(160, 178, 240, .12); }
+.page-section-nav a:focus-visible, .breadcrumb a:focus-visible { outline: 2px solid var(--indigo); outline-offset: -3px; }
+.page-section-nav > div { scrollbar-width: thin; }
+.page-section-nav > div::-webkit-scrollbar { display: block; height: 3px; }
+.page-section-nav > div::-webkit-scrollbar-thumb { background: var(--hairline); }

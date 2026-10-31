@@ -155,7 +155,7 @@ Set these non-secret drill values in the operator environment:
 
 ```text
 PROOFWEAVE_GITHUB_RECOVERY_ENABLED=false
-PROOFWEAVE_DRILL_SITE_ORIGIN=https://proofweave-research.yualex031821.chatgpt.site
+PROOFWEAVE_DRILL_SITE_ORIGIN=https://proofweave.org
 PROOFWEAVE_RUNNER_URL=https://proofweave-trusted-runner.onrender.com
 PROOFWEAVE_DRILL_EXPECTED_RUNNER_CONSUMER_ID=consumer:your-hosted-runner
 PROOFWEAVE_DRILL_PLUGIN_DOWNLOADS_JSON=["/downloads/proofweave-research-marketplace.tar","/downloads/proofweave-research-marketplace.tar.sha256","/downloads/proofweave-research-marketplace.json"]

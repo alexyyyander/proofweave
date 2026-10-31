@@ -1,0 +1,83 @@
+import type { HistoryMilestone } from "./HistoryTimeline";
+
+const announcement = "https://openai.com/index/building-scientific-understanding-with-academic-communities/";
+const snapshot = "https://github.com/openai/math/blob/7ef5c0cc5ca4b0e072b7a050fca09ab24bc6fa3a";
+
+export const october26Milestones: HistoryMilestone[] = [
+  {
+    number: "23",
+    date: "26 OCT 2026",
+    timelineDate: "2026-10-26",
+    title: "OpenAI releases an ETH refutation claim",
+    shortTitle: "ETH refutation",
+    system: "OpenAI · internal research model",
+    summary: "A proposed deterministic algorithm counts fixed-width CNF solutions in subexponential time and polynomial space. Its 3-SAT case would refute the Exponential Time Hypothesis.",
+    aiRole: "Produced the argument and accompanying formalization.",
+    humanRole: "An independent group led by Russell Impagliazzo, Ramamohan Paturi, and Ryan Williams will examine and explain the result.",
+    evidence: "Public paper + external Lean scope",
+    evidenceTone: "announced",
+    significance: "The scope document gives a subexponential bound with a squared log-log factor in the exponent; the manuscript reports sharper bounds. Both distinguish fixed clause width from unrestricted SAT.",
+    boundary: "Refuting ETH does not establish P = NP or a practical fast SAT solver. The strongest manuscript bounds are not all covered by the stated Lean scope. Proofweave has not replayed the proof or completed statement review.",
+    sources: [
+      { label: "26 October announcement", href: announcement },
+      { label: "ETH manuscript", href: `${snapshot}/preprints/The-Exponential-Time-Hypothesis-is-False-October-25-2026/paper.pdf` },
+      { label: "Exact formalization scope · family 378", href: `${snapshot}/lean/docs/378.md` },
+    ],
+    reproduction: {
+      label: "Inspect the SAT comparator",
+      detail: "Compare the canonical input encoding, runtime, and space bounds with the paper before attempting a pinned replay.",
+      href: `${snapshot}/lean/ComparatorChallenges/SubexponentialSAT.lean`,
+    },
+    frontier: true,
+    timelineLane: "above",
+  },
+  {
+    number: "24",
+    date: "26 OCT 2026",
+    timelineDate: "2026-10-26",
+    title: "OpenAI releases an all-dimensional local smoothing claim",
+    shortTitle: "Local smoothing / Kakeya",
+    system: "OpenAI · internal research model",
+    summary: "The new wave-equation argument claims Sogge local smoothing in every spatial dimension at least two, with consequences for Kakeya sets and spherical restriction.",
+    aiRole: "Developed an auxiliary PDE argument and a formalization released with the manuscript.",
+    humanRole: "The materials are public for researchers to inspect and explain.",
+    evidence: "Public paper + external Lean scope",
+    evidenceTone: "announced",
+    significance: "The scope includes full Hausdorff dimension for Euclidean Kakeya sets, a Kakeya maximal estimate with arbitrarily small power loss, and spherical extension estimates in the strict range.",
+    boundary: "Strict-range restriction estimates do not establish every endpoint. Local smoothing allows positive Sobolev loss except at p = 2. Proofweave has not replayed the proof or independently checked that the formal statements match the claimed conjectures.",
+    sources: [
+      { label: "Dated release history", href: `${snapshot}/history.md` },
+      { label: "Euclidean wave manuscript", href: `${snapshot}/preprints/Local-smoothing-for-the-Euclidean-wave-equation-October-25-2026/paper.pdf` },
+      { label: "Exact formalization scope · family 079", href: `${snapshot}/lean/docs/079.md` },
+    ],
+    reproduction: {
+      label: "Inspect the local smoothing comparators",
+      detail: "Check each estimate's dimension, exponent range, and allowed loss against its comparator statement.",
+      href: `${snapshot}/lean/ComparatorChallenges/LocalSmoothing.lean`,
+    },
+    frontier: true,
+    timelineLane: "below",
+  },
+  {
+    number: "25",
+    date: "26 OCT 2026",
+    timelineDate: "2026-10-26",
+    title: "OpenAI announces Yang–Mills existence work",
+    shortTitle: "Yang–Mills existence",
+    system: "OpenAI · internal research model",
+    summary: "OpenAI announces four-dimensional quantum-field existence results, including QCD and pure Yang–Mills. The physics collaboration is withholding the AI artifacts while preparing its account.",
+    aiRole: "OpenAI reports model-generated arguments and a completed Yang–Mills existence formalization.",
+    humanRole: "David Gross leads the group with Michael Douglas, Arthur Jaffe, Igor Klebanov, and Nikita Nekrasov.",
+    evidence: "Announcement · proof artifacts not public",
+    evidenceTone: "announced",
+    significance: "The announcement reports Yang–Mills proof work on 9 September and formalization on 16 October. This entry records the public announcement date, not an independent verification.",
+    boundary: "Existence alone does not solve the Yang–Mills existence and mass gap Millennium problem: Clay also requires a positive mass gap. No public proof artifact or Proofweave replay receipt is available for this announcement.",
+    sources: [
+      { label: "Physics announcement and release policy", href: announcement },
+      { label: "Clay's precise existence and mass gap problem", href: "https://www.claymath.org/wp-content/uploads/2022/06/yangmills.pdf" },
+    ],
+    frontier: true,
+    latest: true,
+    timelineLane: "above",
+  },
+];

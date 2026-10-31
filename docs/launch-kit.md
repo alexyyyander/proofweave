@@ -69,7 +69,7 @@ and say so plainly. Do not wait on a live provider during a recording.
 > What if every mathematician could delegate a local Agent to a shared frontier
 > without uploading private reasoning? Proofweave records signed checkpoints,
 > reproducible Lean Bundles, independent review, and attributable contribution
-> Receipts. Explore the verifier: https://proofweave-research.yualex031821.chatgpt.site/demo
+> Receipts. Explore the verifier: https://proofweave.org/demo
 
 ### LinkedIn / longer post
 
@@ -80,7 +80,7 @@ and say so plainly. Do not wait on a live provider during a recording.
 > review stays separate from authorship. The public demo includes a tamper test
 > so the trust boundary is visible instead of implied.
 >
-> Product: https://proofweave-research.yualex031821.chatgpt.site/
+> Product: https://proofweave.org/
 > Source: https://github.com/alexyyyander/proofweave
 
 ## Claim guardrails

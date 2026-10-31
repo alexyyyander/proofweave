@@ -195,12 +195,12 @@ test("the historical live demo is isolated from production and matches the revie
   }
 });
 
-test("a newer reviewed image build cancels the superseded run", async () => {
+test("a reviewed image build preserves an existing run in the shared build group", async () => {
   const { image } = await readWorkflows();
 
   assert.match(
     image,
-    /^concurrency:\n  group: proofweave-reviewed-lean-runner-image\n(?:  #.*\n)*  cancel-in-progress: true\s*$/m,
+    /^concurrency:\n  group: proofweave-reviewed-lean-runner-image\n(?:  #.*\n)*  cancel-in-progress: false\s*$/m,
   );
 });
 

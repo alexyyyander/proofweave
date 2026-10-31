@@ -32,6 +32,10 @@ import {
   createRunnerQueueExecution,
   importRunnerResultPrivateKey,
 } from "./worker.mjs";
+import {
+  runnerEnvironmentKey,
+  runnerEnvironmentKeyMaxLength,
+} from "../../packages/protocol/lean-runner.mjs";
 
 const trustedRunnerPhases = new Set([
   "e2b_template_assert",
@@ -70,6 +74,8 @@ export class TrustedRunnerProcess {
     authenticator,
     execute,
     consumerId,
+    onlyRunId,
+    environmentKey,
     leaseDurationSeconds = 300,
     heartbeatSeconds = 60,
     retryDelaySeconds = 30,
@@ -87,6 +93,8 @@ export class TrustedRunnerProcess {
       throw new TrustedRunnerProcessConfigurationError("Trusted Runner requires an authenticated execution callback.");
     }
     requireIdentifier(consumerId, "RUNNER_CONSUMER_ID");
+    if (onlyRunId !== undefined) requireIdentifier(onlyRunId, "RUNNER_ONLY_RUN_ID");
+    if (environmentKey !== undefined) requireEnvironmentKey(environmentKey, "Runner environment key");
     requireInteger(leaseDurationSeconds, "Runner lease duration", 30, 3_600);
     requireInteger(heartbeatSeconds, "Runner lease heartbeat", 1, leaseDurationSeconds - 1);
     requireInteger(retryDelaySeconds, "Runner retry delay", 1, 86_400);
@@ -99,6 +107,8 @@ export class TrustedRunnerProcess {
     this.authenticator = authenticator;
     this.execute = execute;
     this.consumerId = consumerId;
+    this.onlyRunId = onlyRunId;
+    this.environmentKey = environmentKey;
     this.leaseDurationSeconds = leaseDurationSeconds;
     this.heartbeatSeconds = heartbeatSeconds;
     this.retryDelaySeconds = retryDelaySeconds;
@@ -117,6 +127,8 @@ export class TrustedRunnerProcess {
       consumerId: this.consumerId,
       claimedAt,
       leaseDurationSeconds: this.leaseDurationSeconds,
+      ...(this.onlyRunId === undefined ? {} : { runId: this.onlyRunId }),
+      ...(this.environmentKey === undefined ? {} : { environmentKey: this.environmentKey }),
     });
     if (!delivery) return Object.freeze({ outcome: "idle" });
 
@@ -305,6 +317,7 @@ export async function createTrustedRunnerRuntime({
   observePhase = createTrustedRunnerPhaseObserver({ emit, now }),
 } = {}) {
   requireExecutionEnabled(environment);
+  const onlyRunId = restrictedRunId(environment);
   if (!database || typeof database.prepare !== "function" || typeof database.batch !== "function") {
     throw new TrustedRunnerProcessConfigurationError("Trusted Runner runtime requires a D1-compatible database.");
   }
@@ -320,6 +333,10 @@ export async function createTrustedRunnerRuntime({
   ) {
     throw new TrustedRunnerProcessConfigurationError("The Sandbox image must be the single image in the Runner allowlist.");
   }
+  const [runnerImage] = imageRegistry.images.values();
+  const environmentKey = typeof containerFactory.imageReference === "string" && imageRegistry.images.size === 1
+    ? runnerEnvironmentKey(runnerImage)
+    : undefined;
   const authenticator = new RunnerJobAuthenticator({
     issuerKeys: parseJsonSetting(environment, "RUNNER_CONTROL_PLANE_ISSUER_KEYS_JSON"),
   });
@@ -344,6 +361,12 @@ export async function createTrustedRunnerRuntime({
     monotonicNow,
     observePhase,
   });
+  const templateId = typeof containerFactory.template?.reference === "string"
+    ? containerFactory.template.reference
+    : null;
+  const templateBuildId = typeof containerFactory.templateBuildId === "string"
+    ? containerFactory.templateBuildId
+    : null;
   const finalizer = new RunnerExecutionFinalizer({
     runStore,
     outputStore: new D1InlineRunnerOutputStore({ database }),
@@ -352,6 +375,8 @@ export async function createTrustedRunnerRuntime({
     resultSigner: new RunnerExecutionResultSigner({
       runnerKeyId: requireSetting(environment, "RUNNER_RESULT_KEY_ID"),
       runnerPrivateKey: await importRunnerResultPrivateKey(requireSetting(environment, "RUNNER_RESULT_PRIVATE_KEY_JWK")),
+      templateId,
+      templateBuildId,
     }),
   });
   const execute = createRunnerQueueExecution({
@@ -380,6 +405,8 @@ export async function createTrustedRunnerRuntime({
     authenticator,
     execute,
     consumerId: requireSetting(environment, "RUNNER_CONSUMER_ID"),
+    onlyRunId,
+    environmentKey,
     leaseDurationSeconds,
     heartbeatSeconds: integerSetting(
       environment,
@@ -457,6 +484,7 @@ export async function createTrustedRunnerRuntimeFromEnvironment({
   monotonicNow = () => performance.now(),
 } = {}) {
   requireExecutionEnabled(environment);
+  restrictedRunId(environment);
   const databaseUrl = requireSetting(environment, "TURSO_DATABASE_URL");
   const database = createRemoteLibsqlD1Database({
     url: databaseUrl,
@@ -630,6 +658,12 @@ function requireExecutionEnabled(environment) {
   }
 }
 
+function restrictedRunId(environment) {
+  const value = environment.RUNNER_ONLY_RUN_ID;
+  if (value !== undefined) requireIdentifier(value, "RUNNER_ONLY_RUN_ID");
+  return value;
+}
+
 function parseJsonSetting(environment, key) {
   const serialized = requireSetting(environment, key);
   if (serialized.length > 32_768) {
@@ -670,6 +704,12 @@ function requireInteger(value, label, minimum, maximum) {
 function requireIdentifier(value, label) {
   if (typeof value !== "string" || !/^[A-Za-z0-9][A-Za-z0-9:._-]{2,191}$/.test(value)) {
     throw new TrustedRunnerProcessConfigurationError(`${label} must be a bounded identifier.`);
+  }
+}
+
+function requireEnvironmentKey(value, label) {
+  if (typeof value !== "string" || value.length === 0 || value.length > runnerEnvironmentKeyMaxLength) {
+    throw new TrustedRunnerProcessConfigurationError(`${label} must be a bounded derived environment key.`);
   }
 }
 

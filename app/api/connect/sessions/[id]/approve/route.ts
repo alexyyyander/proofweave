@@ -1,4 +1,4 @@
-import { currentDelegationIdentity } from "@/app/lib/delegation-api";
+import { currentConnectionIdentity } from "@/app/lib/delegation-api";
 import { MissingDatabaseBindingError } from "@/db";
 import { LocalCodexPairingError, approveLocalCodexPairing } from "@/db/repositories/local-codex-pairing";
 import { proofweaveMcpResource } from "@/app/lib/remote-mcp-runtime";
@@ -7,7 +7,7 @@ import { ControlPlaneReadOnlyError } from "@/services/database/control-plane-ope
 export const dynamic = "force-dynamic";
 
 export async function POST(request: Request, context: { params: Promise<{ id: string }> }) {
-  const identity = await currentDelegationIdentity();
+  const identity = await currentConnectionIdentity();
   if (identity instanceof Response) return identity;
   try {
     const { id } = await context.params;

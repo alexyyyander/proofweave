@@ -30,6 +30,55 @@ test("a Contribution Receipt signs all attributed evidence and hashes determinis
   );
 });
 
+test("a Contribution Receipt carries the exact Runner environment when recorded", async () => {
+  const pair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
+  const issuerPublicKey = base64Url(await crypto.subtle.exportKey("raw", pair.publicKey));
+  const environment = {
+    imageDigest: `ghcr.io/proofweave/lean-runner@sha256:${"e".repeat(64)}`,
+    leanToolchain: "leanprover/lean4:v4.27.0",
+    mathlibRevision: "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+    templateId: "template_proofweave:reviewed_runtime",
+    templateBuildId: "9420e83e-3c6d-48b8-94fe-a73807af5797",
+  };
+  const receipt = await createContributionReceipt({
+    receipt: fixtureReceipt({
+      issuerPublicKey,
+      run: {
+        id: "run:fixture-1",
+        requestHash: sha("d"),
+        resultHash: sha("e"),
+        status: "succeeded",
+        kernelStatus: "accepted",
+        environment,
+      },
+    }),
+    issuerPrivateKey: pair.privateKey,
+  });
+
+  assert.deepEqual(receipt.run.environment, environment);
+  assert.equal(await verifyContributionReceiptSignature(receipt), true);
+  assert.notEqual(
+    await contributionReceiptHash(receipt),
+    await contributionReceiptHash({
+      ...receipt,
+      run: { ...receipt.run, environment: { ...environment, templateBuildId: "00000000-0000-0000-0000-000000000000" } },
+    }),
+  );
+  await assert.rejects(
+    createContributionReceipt({
+      receipt: fixtureReceipt({
+        issuerPublicKey,
+        run: {
+          ...receipt.run,
+          environment: { ...environment, templateBuildId: null },
+        },
+      }),
+      issuerPrivateKey: pair.privateKey,
+    }),
+    /templateId and templateBuildId together/,
+  );
+});
+
 test("certified primary contribution receipts require all independent gates", async () => {
   const pair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
   const receipt = await createContributionReceipt({
@@ -79,6 +128,7 @@ function fixtureReceipt({
     fixtureClaim("kernel_accepted"),
     fixtureClaim("project_accepted"),
   ],
+  run = { id: "run:fixture-1", requestHash: sha("d"), resultHash: sha("e"), status: "succeeded", kernelStatus: "accepted" },
 } = {}) {
   return {
     protocolVersion: "pw-contribution-receipt-v1",
@@ -95,7 +145,7 @@ function fixtureReceipt({
     target: { declaration: "Proofweave.Fixture.target", statementHash: sha("a") },
     artifactBundleHash: sha("b"),
     bundle: { manifestHash: sha("b"), dependencyReceipts: [{ receiptId: "receipt:upstream-1", receiptHash: sha("c") }] },
-    run: { id: "run:fixture-1", requestHash: sha("d"), resultHash: sha("e"), status: "succeeded", kernelStatus: "accepted" },
+    run,
     claims,
     issuedAt: "2026-07-13T00:00:00Z",
     policyVersion: "pw-receipt-policy-v1",

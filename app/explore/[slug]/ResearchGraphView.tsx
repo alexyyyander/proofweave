@@ -1,6 +1,8 @@
+import { CardTitle, SectionTitle, Field, ActionLink, EmptyState, FieldList, SectionHeading, Surface } from "@/app/components/ui";
+
 import Link from "next/link";
-import type { CSSProperties } from "react";
-import type { PublicResearchGraph, PublicResearchNode } from "@/db/repositories/research-graph";
+import { type CSSProperties } from "react";
+import { type PublicResearchGraph, type PublicResearchNode } from "@/db/repositories/research-graph";
 import { HistoricalSourceImporter } from "./HistoricalSourceImporter";
 
 export function ResearchGraphView({
@@ -46,26 +48,26 @@ export function ResearchGraphView({
       <div className="research-foundation-heading">
         <div>
           <span className="micro-label">00 · Prior work</span>
-          <h3>Start from the record, not from zero.</h3>
+          <CardTitle>Start from the record, not from zero.</CardTitle>
         </div>
         <span>{graph.externalWorks.length} source{graph.externalWorks.length === 1 ? "" : "s"}</span>
       </div>
       {graph.externalWorks.length > 0 ? <div className="historical-source-list">
-        {graph.externalWorks.map((work) => <article className="historical-source-card" key={work.id}>
+        {graph.externalWorks.map((work) => <Surface as="article" className="historical-source-card" key={work.id}>
           <div><span>{work.sourceSystem}</span><span>{work.sourceRevision}</span></div>
           <h4><a href={work.sourceUrl} rel="noreferrer" target="_blank">{work.title}</a></h4>
           <p>{work.attributions.map((entry) => `${entry.displayName} · ${entry.role}`).join("; ")}</p>
           <small>{work.citedBy.length > 0 ? `Cited by ${work.citedBy.length} shared checkpoint${work.citedBy.length === 1 ? "" : "s"}` : "Linked as prior work; not cited by a checkpoint yet"}</small>
-        </article>)}
+        </Surface>)}
       </div> : <p className="research-foundation-empty">No historical work has been linked to this exact problem revision yet. Adding a source preserves its original names and provenance; it does not mint Proofweave credit.</p>}
       <HistoricalSourceImporter problemSlug={problemSlug} canImport={canImportSources} signInPath={signInPath} />
     </div>
 
-    {graph.nodes.length === 0 ? <div className="research-graph-empty">
+    {graph.nodes.length === 0 ? <EmptyState as="div" className="research-graph-empty">
       <strong>No public research checkpoint yet.</strong>
       <p>The first Agent can publish a concise formalization, lemma, counterexample, proof state, or other material milestone without exposing private reasoning.</p>
-      <Link className="button button-primary" href={`/workbench?target=${encodeURIComponent(problemSlug)}#research-launcher`}>Open the first branch <span aria-hidden="true">→</span></Link>
-    </div> : <div className="research-graph-scroll" tabIndex={0} aria-label="Research checkpoint graph">
+      <ActionLink className="button button-primary" href={`/workbench?target=${encodeURIComponent(problemSlug)}#research-launcher`}>Open the first branch <span aria-hidden="true">→</span></ActionLink>
+    </EmptyState> : <div className="research-graph-scroll" tabIndex={0} aria-label="Research checkpoint graph">
       <div className="research-graph-layers" style={{ "--research-layer-count": Math.max(layers.length, 1) } as CSSProperties}>
         {layers.map((nodes, layerIndex) => <section className="research-graph-layer" key={layerIndex} aria-label={`Research layer ${layerIndex + 1}`}>
           <div className="research-layer-heading"><span>{String(layerIndex + 1).padStart(2, "0")}</span><strong>{layerIndex === 0 ? "Starting points" : `Derived step ${layerIndex}`}</strong></div>
@@ -86,17 +88,17 @@ export function ResearchGraphView({
 }
 
 function GraphHeading({ nodeCount, branchCount }: { nodeCount: number; branchCount: number }) {
-  return <div className="research-graph-heading">
+  return <SectionHeading as="div" className="research-graph-heading">
     <div>
       <p className="eyebrow">Open research graph</p>
-      <h2 id="research-graph-title">See what has been tried. Continue what matters.</h2>
+      <SectionTitle id="research-graph-title">See what has been tried. Continue what matters.</SectionTitle>
       <p>Material milestones form an append-only DAG: derive a child from an existing checkpoint, open an independent branch, or synthesize two or more branches. Raw chain-of-thought stays local.</p>
     </div>
-    <dl>
-      <div><dt>Checkpoints</dt><dd>{nodeCount}</dd></div>
-      <div><dt>Open tips</dt><dd>{branchCount}</dd></div>
-    </dl>
-  </div>;
+    <FieldList layout="stacked">
+      <Field label="Checkpoints">{nodeCount}</Field>
+      <Field label="Open tips">{branchCount}</Field>
+    </FieldList>
+  </SectionHeading>;
 }
 
 function ResearchNodeCard({
@@ -110,7 +112,7 @@ function ResearchNodeCard({
   problemSlug: string;
   isTip: boolean;
 }) {
-  return <article className={`research-node-card kind-${node.kind}`}>
+  return <Surface as="article" className={`research-node-card kind-${node.kind}`}>
     <div className="research-node-top">
       <span>{node.kind.replaceAll("_", " ")}</span>
       {isTip && <span className="research-tip-chip">Open tip</span>}
@@ -123,7 +125,7 @@ function ResearchNodeCard({
       <code>{shortId(node.id)}</code>
       <Link href={`/workbench?target=${encodeURIComponent(problemSlug)}&parent=${encodeURIComponent(node.id)}#research-launcher`}>Continue branch <span aria-hidden="true">→</span></Link>
     </div>
-  </article>;
+  </Surface>;
 }
 
 function ResearchNodeEvidence({ node }: { node: PublicResearchNode }) {

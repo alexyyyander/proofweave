@@ -1,7 +1,9 @@
 "use client";
 
+import { Field, Button, EmptyState, FieldList, Select } from "@/app/components/ui";
+
 import Link from "next/link";
-import type { McpAttempt } from "@/packages/domain/mcp";
+import { type McpAttempt } from "@/packages/domain/mcp";
 import { PersonalWorkspaceNavigation } from "../PersonalWorkspaceNavigation";
 
 export type WorkspaceMode =
@@ -72,7 +74,7 @@ export function WorkspaceTopbar({
     </div>
     <label className="workspace-attempt-switcher">
       <span>Current Attempt</span>
-      <select
+      <Select
         aria-label="Current research Attempt"
         value={selectedAttemptId ?? ""}
         onChange={(event) => onSelectAttempt(event.target.value)}
@@ -82,13 +84,13 @@ export function WorkspaceTopbar({
           {activeAttempts.length > 0 && <optgroup label="Active research">{activeAttempts.map((attempt) => <option value={attempt.id} key={attempt.id}>{attempt.problemTitle} · {attempt.delegationScope ?? "research"}</option>)}</optgroup>}
           {historicalAttempts.length > 0 && <optgroup label="History">{historicalAttempts.map((attempt) => <option value={attempt.id} key={attempt.id}>{attempt.problemTitle} · {attemptStatusLabel(attempt.status)}</option>)}</optgroup>}
         </>}
-      </select>
+      </Select>
     </label>
     <div className="workspace-topbar-status">
       <span className={isAgentConnected ? "workspace-agent-state is-connected" : "workspace-agent-state"}><i aria-hidden="true" />{isAgentConnected ? `${agentLabel ?? "Agent"} approval active` : "No active Agent approval"}</span>
-      <button type="button" className="workspace-sync-button" onClick={onRefresh} disabled={isRefreshing || !canRefresh}>
+      <Button type="button" className="workspace-sync-button" onClick={onRefresh} disabled={isRefreshing || !canRefresh}>
         {isRefreshing ? "Syncing…" : "Refresh records"}
-      </button>
+      </Button>
       <small>{canRefresh ? `Auto-sync · ${refreshedAt ? `updated ${formatTimestamp(refreshedAt)}` : "current session"}` : "Current session"}</small>
     </div>
   </header>;
@@ -119,17 +121,17 @@ export function WorkspaceSidebar({
     <section>
       <div className="workspace-sidebar-heading"><span>Research</span><b>{activeAttempts.length}</b></div>
       <div className="workspace-attempt-filters" role="tablist" aria-label="Research Attempt state">
-        <button type="button" role="tab" aria-selected={view === "active"} className={view === "active" ? "is-selected" : ""} onClick={() => onViewChange("active")}>Active <span>{activeAttempts.length}</span></button>
-        <button type="button" role="tab" aria-selected={view === "history"} className={view === "history" ? "is-selected" : ""} onClick={() => onViewChange("history")}>History <span>{historicalAttempts.length}</span></button>
+        <Button type="button" role="tab" aria-selected={view === "active"} className={view === "active" ? "is-selected" : ""} onClick={() => onViewChange("active")}>Active <span>{activeAttempts.length}</span></Button>
+        <Button type="button" role="tab" aria-selected={view === "history"} className={view === "history" ? "is-selected" : ""} onClick={() => onViewChange("history")}>History <span>{historicalAttempts.length}</span></Button>
       </div>
       {visibleAttempts.length === 0
-        ? <div className="workspace-sidebar-empty"><p>{view === "active" ? "No active research Attempt." : "Completed and closed Attempts will remain here."}</p>{view === "active" && <Link href="/explore">Explore problems <span>→</span></Link>}</div>
+        ? <EmptyState as="div" className="workspace-sidebar-empty"><p>{view === "active" ? "No active research Attempt." : "Completed and closed Attempts will remain here."}</p>{view === "active" && <Link href="/explore">Explore problems <span>→</span></Link>}</EmptyState>
         : <ol className="workspace-attempt-list">{visibleAttempts.map((attempt) => <li key={attempt.id}>
-          <button type="button" className={attempt.id === selectedAttemptId ? "is-selected" : ""} onClick={() => onSelectAttempt(attempt.id)} aria-pressed={attempt.id === selectedAttemptId}>
+          <Button type="button" className={attempt.id === selectedAttemptId ? "is-selected" : ""} onClick={() => onSelectAttempt(attempt.id)} aria-pressed={attempt.id === selectedAttemptId}>
             <span>{attemptStatusLabel(attempt.status)}</span>
             <strong>{attempt.problemTitle}</strong>
             <small>{attempt.delegationScope ?? "research"} · {formatTimestamp(attempt.updatedAt)}</small>
-          </button>
+          </Button>
         </li>)}</ol>}
       <Link className="workspace-choose-link" href="/explore">Choose research <span>→</span></Link>
     </section>
@@ -148,11 +150,11 @@ export function WorkspaceRecordLinks({
 }) {
   return <section className="workspace-record-links" aria-labelledby="workspace-record-links-title">
     <div className="workspace-rail-heading"><span className="micro-label">Recorded work</span><strong id="workspace-record-links-title">Research records</strong></div>
-    <dl>
-      <div><dt>Agent events</dt><dd>{eventCount}</dd></div>
-      <div><dt>Runner records</dt><dd>{runCount}</dd></div>
-      <div><dt>Staged evidence</dt><dd>{contributionCount}</dd></div>
-    </dl>
+    <FieldList>
+      <Field label="Agent events">{eventCount}</Field>
+      <Field label="Runner records">{runCount}</Field>
+      <Field label="Staged evidence">{contributionCount}</Field>
+    </FieldList>
     <div className="workspace-record-actions">
       <Link href="/evidence">Inspect evidence <span>→</span></Link>
       <Link href="/reviews">Open review queue <span>→</span></Link>

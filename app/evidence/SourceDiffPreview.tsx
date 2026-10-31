@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, CodeBlock } from "@/app/components/ui";
+
 import { useState } from "react";
 
 const maximumPreviewBytes = 1_000_000;
@@ -38,7 +40,7 @@ export function SourceDiffPreview({ href }: { href: string }) {
   };
 
   if (state.kind === "ready") {
-    return <details className="evidence-result" open><summary>Normalized source diff</summary><pre><code>{state.text}</code></pre></details>;
+    return <details className="evidence-result" open><summary>Normalized source diff</summary><CodeBlock><code>{state.text}</code></CodeBlock></details>;
   }
-  return <div className="evidence-preview-action"><button className="quiet-action" type="button" onClick={showPreview} disabled={state.kind === "loading"}>{state.kind === "loading" ? "Loading diff…" : "Preview source diff"}</button>{state.kind === "unavailable" && <p role="status">{state.message}</p>}</div>;
+  return <div className="evidence-preview-action"><Button className="quiet-action" type="button" onClick={showPreview} disabled={state.kind === "loading"}>{state.kind === "loading" ? "Loading diff…" : "Preview source diff"}</Button>{state.kind === "unavailable" && <p role="status">{state.message}</p>}</div>;
 }

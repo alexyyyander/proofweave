@@ -58,6 +58,13 @@ export type EvidenceRunnerResultSummary = Readonly<{
     allowedAxioms: string;
     leanBuild: string;
   }>;
+  environment?: Readonly<{
+    imageDigest: string;
+    leanToolchain: string;
+    mathlibRevision: string;
+    templateId: string | null;
+    templateBuildId: string | null;
+  }>;
 }>;
 
 export type EvidenceBundleReview = Readonly<{
@@ -101,6 +108,7 @@ export type EvidenceReviewOutcome = Readonly<{
 
 export type AttemptEvidenceSummary = Readonly<{
   attemptId: string;
+  agentId: string | null;
   accessRole: EvidenceAccessRole;
   agentLabel: string;
   artifactBundleManifestHash: string;
@@ -134,6 +142,7 @@ export type AttemptEvidence = Readonly<{
 
 type BaseRow = {
   attempt_id: string;
+  agent_id: string | null;
   agent_label: string;
   updated_at: string;
   bundle_id: string;
@@ -555,7 +564,7 @@ class D1EvidenceRepository implements EvidenceRepository {
 }
 
 const baseSelect = `SELECT
-  attempt.id AS attempt_id, attempt.agent_label, attempt.updated_at,
+  attempt.id AS attempt_id, attempt.agent_id, attempt.agent_label, attempt.updated_at,
   bundle.id AS bundle_id, bundle.manifest_hash, bundle.manifest_key,
   bundle.canonical_manifest, bundle.agent_event_id, bundle.agent_event_payload_hash,
   project.slug AS project_slug, revision.slug AS problem_slug,
@@ -591,6 +600,7 @@ export function getEvidenceRepository(): EvidenceRepository {
 function summaryFrom(row: BaseRow, latestRunState: string | null): AttemptEvidenceSummary {
   return Object.freeze({
     attemptId: row.attempt_id,
+    agentId: row.agent_id ?? null,
     accessRole: row.access_role,
     agentLabel: row.agent_label,
     artifactBundleManifestHash: row.manifest_hash,
@@ -645,6 +655,9 @@ function runnerResultSummary(canonicalResult: string): EvidenceRunnerResultSumma
       exitCode: result.exitCode,
       kernelStatus: result.kernelStatus,
       checks: Object.freeze({ ...result.checks }),
+      ...(result.environment
+        ? { environment: Object.freeze({ ...result.environment }) }
+        : {}),
     });
   } catch {
     // Historical or fixture-only result rows remain downloadable as canonical

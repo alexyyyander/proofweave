@@ -35,6 +35,13 @@ const authHeaders = {
   "oai-authenticated-user-full-name": "Ordinary%20User",
   "oai-authenticated-user-full-name-encoding": "percent-encoded-utf-8",
 };
+const ordinaryResearchWriteAllowlist = JSON.stringify({
+  schemaVersion: "pw-research-write-allowlist-v1",
+  persons: ["person:ordinary-user"],
+  agents: ["urn:pw:agent:ordinary-user"],
+  attempts: [],
+  allowNewAttempts: true,
+});
 
 let normalWorker;
 let readOnlyWorker;
@@ -44,11 +51,18 @@ before(async () => {
   normalWorker = await createWorker({
     bindings: {
       PROOFWEAVE_CONTROL_PLANE_MODE: "read_write",
+      PROOFWEAVE_PARTICIPANT_RESEARCH_WRITE_ALLOWLIST_JSON: ordinaryResearchWriteAllowlist,
+      PROOFWEAVE_MCP_RESEARCH_WRITE_ALLOWLIST_JSON: ordinaryResearchWriteAllowlist,
       MCP_RESOURCE_URL: "https://localhost/api/mcp",
       OAUTH_ISSUER_URL: "https://localhost",
     },
   });
-  await applyMigrations(await normalWorker.getD1Database("DB"));
+  const normalDatabase = await normalWorker.getD1Database("DB");
+  await applyMigrations(normalDatabase);
+  await normalDatabase.prepare(
+    `INSERT OR IGNORE INTO persons (id, identity_provider, provider_subject, display_name, updated_at)
+     VALUES (?, 'chatgpt', ?, ?, ?)`,
+  ).bind("person:ordinary-user", "ordinary-user@example.test", "Ordinary User", "2026-07-20T00:00:00.000Z").run();
 
   readOnlyWorker = await createWorker({
     bindings: {
@@ -75,6 +89,33 @@ after(async () => {
     readOnlyWorker?.dispose(),
     storageUnavailableWorker?.dispose(),
   ]);
+});
+
+test("domain migration serves separate OAuth authorities and redirects only public browsing", async () => {
+  const canonical = "https://proofweave.org";
+  const legacy = "https://proofweave-research.yualex031821.chatgpt.site";
+  const worker = await createWorker({ bindings: {
+    OAUTH_ISSUER_URL: canonical,
+    MCP_RESOURCE_URL: `${canonical}/api/mcp`,
+    OAUTH_LEGACY_ISSUER_URL: legacy,
+  } });
+  try {
+    for (const origin of [canonical, legacy]) {
+      const metadata = await worker.dispatchFetch(`${origin}/.well-known/oauth-authorization-server`);
+      assert.equal(metadata.status, 200);
+      const body = await metadata.json();
+      assert.equal(new URL(body.issuer).origin, origin);
+      assert.equal(body.token_endpoint, `${origin}/token`);
+      assert.equal(body.authorization_endpoint, `${origin}/authorize`);
+    }
+    const redirect = await worker.dispatchFetch(`${legacy}/explore?search=lean`, { redirect: "manual" });
+    assert.equal(redirect.status, 308);
+    assert.equal(redirect.headers.get("location"), `${canonical}/explore?search=lean`);
+    const unknown = await worker.dispatchFetch("https://untrusted.example/.well-known/oauth-authorization-server");
+    assert.equal(unknown.status, 503);
+  } finally {
+    await worker.dispose();
+  }
 });
 
 test("an anonymous visitor can browse the public research journey without an account", async () => {
@@ -179,7 +220,7 @@ test("a new ordinary Person connects an Agent and reaches a truthfully bounded r
   const agentPublicKey = base64Url(
     await crypto.subtle.exportKey("raw", agentKeys.publicKey),
   );
-  const agentId = `urn:pw:agent:ordinary-${crypto.randomUUID()}`;
+  const agentId = "urn:pw:agent:ordinary-user";
   const codeVerifier = base64Url(crypto.getRandomValues(new Uint8Array(32)));
   const codeChallenge = base64Url(
     await crypto.subtle.digest(

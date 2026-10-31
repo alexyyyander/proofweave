@@ -1,6 +1,8 @@
 import {
   leanRunnerRequestHash,
   normalizeLeanRunnerRequest,
+  runnerEnvironmentKey,
+  runnerEnvironmentKeyMaxLength,
 } from "../../packages/protocol/lean-runner.mjs";
 import { canonicalUtf8 } from "../../packages/protocol/canonical-json.mjs";
 
@@ -168,7 +170,7 @@ export class RunnerJobAuthenticator {
 export const runnerQueueInterface = Object.freeze({
   enqueue: "enqueue(message) -> { message, created, deliveryState }",
   find: "find(runId) -> { deliveryState, message } | null",
-  claim: "claim({ consumerId, claimedAt, leaseDurationSeconds }) -> { message, lease } | null",
+  claim: "claim({ consumerId, claimedAt, leaseDurationSeconds, runId?, environmentKey? }) -> { message, lease } | null",
   renew: "renew({ runId, leaseId, renewedAt, leaseDurationSeconds }) -> lease",
   acknowledge: "acknowledge({ runId, leaseId, acknowledgedAt }) -> message",
   release: "release({ runId, leaseId, releasedAt, availableAt?, errorCode? }) -> message",
@@ -233,17 +235,27 @@ export class InMemoryRunnerQueue {
       : null;
   }
 
-  async claim({ consumerId, claimedAt, leaseDurationSeconds = 300 }) {
+  async claim({ consumerId, claimedAt, leaseDurationSeconds = 300, runId, environmentKey }) {
     requireIdentifier(consumerId, "consumerId");
+    if (runId !== undefined) requireIdentifier(runId, "runId");
+    if (environmentKey !== undefined) requireEnvironmentKey(environmentKey);
     requireUtcInstant(claimedAt, "claimedAt");
     requireDuration(leaseDurationSeconds, "leaseDurationSeconds");
     const record = this.order
-      .map((runId) => this.byRunId.get(runId))
-      .find((candidate) => (
-        candidate?.deliveryState === "queued" && Date.parse(candidate.availableAt) <= Date.parse(claimedAt)
-      ) || (
-        candidate?.deliveryState === "leased" && Date.parse(candidate.lease.expiresAt) <= Date.parse(claimedAt)
-      ));
+      .map((candidateRunId) => this.byRunId.get(candidateRunId))
+      .find((candidate) => {
+        if (!candidate) return false;
+        if (runId !== undefined && candidate.message.runId !== runId) return false;
+        if (
+          environmentKey !== undefined &&
+          runnerEnvironmentKey(candidate.message.request.environment) !== environmentKey
+        ) return false;
+        return (
+          candidate.deliveryState === "queued" && Date.parse(candidate.availableAt) <= Date.parse(claimedAt)
+        ) || (
+          candidate.deliveryState === "leased" && Date.parse(candidate.lease.expiresAt) <= Date.parse(claimedAt)
+        );
+      });
     if (!record) return null;
 
     record.deliveryAttempts += 1;
@@ -371,6 +383,12 @@ function rejectExtraKeys(value, allowed, label) {
 function requireIdentifier(value, label) {
   if (typeof value !== "string" || !/^[A-Za-z0-9][A-Za-z0-9:._-]{2,191}$/.test(value)) {
     throw new RunnerQueueProtocolError(`${label} must be a bounded identifier.`);
+  }
+}
+
+function requireEnvironmentKey(value) {
+  if (typeof value !== "string" || value.length === 0 || value.length > runnerEnvironmentKeyMaxLength) {
+    throw new RunnerQueueProtocolError("RunnerQueue environmentKey must be a bounded derived environment key.");
   }
 }
 
