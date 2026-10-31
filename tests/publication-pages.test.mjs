@@ -119,6 +119,8 @@ test("the proof-map index, scaffold, deep maps, and API render with explicit sta
   assert.ok(deepHtml.includes("Deep · unreviewed"));
   assert.ok(deepHtml.includes("No Lean comparator is linked"));
   assert.ok(deepHtml.includes("cited context"));
+  assert.ok(deepHtml.includes("Network"));
+  assert.ok(deepHtml.includes("Matrix"));
 
   const api = await runtime.dispatchFetch("http://localhost/api/proof-maps");
   assert.equal(api.status, 200);
@@ -151,6 +153,7 @@ test("the Lean coverage index, family section, and API expose real modules", asy
   assert.ok(dyadicHtml.includes("Dyadic q = 1/2"));
   assert.ok(dyadicHtml.includes("OAI.Problem310.dyadic_affine_avoidance"));
   assert.ok(dyadicHtml.includes("Lean comparator formalizes the dyadic case only"));
+  assert.ok(dyadicHtml.includes("Network"));
 
   const reciprocal = await fetchPage("/proof-evolution/openai-math/159");
   assert.equal(reciprocal.status, 200);

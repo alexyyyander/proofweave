@@ -693,3 +693,16 @@
 }
 
 .argument-map-mode:disabled { cursor: not-allowed; opacity: .45; }
+
+/* Argument network view, reusing the proof-network canvas shell. */
+.argument-network { display: grid; gap: 10px; min-width: 0; }
+.argument-network .proof-network-toolbar { border-top: 1px solid var(--line); padding-top: 9px; }
+.argument-network .proof-network-stage canvas { height: 620px; }
+.proof-network-legend i.is-network-edge { background: none !important; border-radius: 0; border-top: 2px solid #7f93d8; height: 0; width: 22px; }
+.proof-network-legend i.is-network-edge.is-final { border-color: #e8b35a; }
+.proof-network-legend i.is-network-edge.is-cross { border-color: #b7a6d9; border-top-style: dashed; }
+.argument-network-selected { color: var(--ink-faint); font-size: 9px; line-height: 1.5; }
+@media (max-width: 620px) {
+  .argument-network .proof-network-stage canvas { height: 520px; }
+}
+.proof-network-legend i.is-strategy { background: linear-gradient(90deg, #4f9d8a, #c58a4a, #8b75c9, #6b7fd7); }

@@ -17,7 +17,7 @@
 - 全站索引：`/proof-evolution`
 - family 页：`/proof-evolution/openai-math/{number}`
 - family 003 的深图：`/proof-evolution/landau-siegel`
-- family 032/084/159 的深图：`/proof-evolution/openai-math/{number}`
+- family 032/084/159 的深图：`/proof-evolution/openai-math/{number}`（Matrix / Network 两种视图；Network 为力导向图，视觉语言对齐 family 003 的 Lean structure 章节）
 - 机器可读索引：`/api/proof-maps`
 - 目录快照：`data/publications/openai-math.json`
 - 状态登记：`data/proof-maps/manifest.json`

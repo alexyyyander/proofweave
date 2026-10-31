@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { Badge, Surface, cx } from "@/app/components/ui";
+import { ArgumentNetworkGraph, type ArgumentNetworkEdge, type ArgumentNetworkNode } from "./ArgumentNetworkGraph";
 import {
   type ArgumentMapComparison,
   type ArgumentMapData,
@@ -64,6 +65,11 @@ type Model = {
 function shortLabel(value: string) {
   const compact = value.replace(/\s*·\s*/g, " · ");
   return compact.length > 26 ? `${compact.slice(0, 24)}…` : compact;
+}
+
+function shortNetworkLabel(value: string) {
+  const compact = value.replace(/\s*·\s*/g, " · ");
+  return compact.length > 15 ? `${compact.slice(0, 13)}…` : compact;
 }
 
 function buildModel(data: ProofEvolutionData, argumentMap: ArgumentMapData): Model {
@@ -176,6 +182,7 @@ export function ArgumentMapView({ data, argumentMap, lean }: { data: ProofEvolut
   const primary = model.strategies.filter((strategy) => strategy.strategy.track === "same-theorem");
   const stronger = model.strategies.filter((strategy) => strategy.strategy.track === "stronger-theorem");
   const [mode, setMode] = useState<"all" | "compare">("all");
+  const [view, setView] = useState<"matrix" | "network">("matrix");
   const [showStronger, setShowStronger] = useState(false);
   const [showCrossLinks, setShowCrossLinks] = useState(true);
   const [compareA, setCompareA] = useState(primary[0]?.strategy.versionId ?? "");
@@ -201,6 +208,71 @@ export function ArgumentMapView({ data, argumentMap, lean }: { data: ProofEvolut
     : [];
   const neighborIds = new Set(focusedEdges.flatMap((edge) => [edge.from, edge.to]));
   const canShowCrossLinks = mode === "compare" || showCrossLinks;
+
+  const visibleStrategyKey = visibleStrategies.map((strategy) => strategy.strategy.versionId).join("|");
+  const networkGraph = useMemo(() => {
+    const nodes: ArgumentNetworkNode[] = [];
+    const edges: ArgumentNetworkEdge[] = [];
+    const nodeIds = new Set<string>();
+    const strategies = visibleStrategyKey
+      .split("|")
+      .filter(Boolean)
+      .map((id) => model.strategyById.get(id))
+      .filter((strategy): strategy is StrategyModel => Boolean(strategy));
+    for (const strategy of strategies) {
+      const resultNode = strategy.nodes.find((node) => node.isResult);
+      nodes.push({
+        id: `strategy:${strategy.strategy.versionId}`,
+        type: "strategy",
+        label: strategy.version.label,
+        sublabel: `${strategy.version.pages} pp`,
+        color: strategy.color,
+        role: "strategy",
+        meta: { nodeId: resultNode?.id, strategyId: strategy.strategy.versionId },
+      });
+      nodeIds.add(`strategy:${strategy.strategy.versionId}`);
+      for (const node of strategy.nodes) {
+        nodes.push({
+          id: node.id,
+          type: node.isResult ? "result" : "step",
+          label: shortNetworkLabel(node.fullLabel),
+          sublabel: node.kind,
+          color: node.color,
+          role: node.role,
+          meta: { nodeId: node.id, strategyId: strategy.strategy.versionId },
+        });
+        nodeIds.add(node.id);
+        edges.push({ source: `strategy:${strategy.strategy.versionId}`, target: node.id, type: "strategy" });
+      }
+      for (const edge of strategy.edges) {
+        edges.push({
+          source: edge.from,
+          target: edge.to,
+          type: edge.type === "depends" ? "depends" : edge.type === "proves" || edge.type === "implies" ? "final" : "depends",
+          label: edge.label,
+        });
+      }
+    }
+    nodes.push({
+      id: model.resultNode.id,
+      type: "result",
+      label: "Shared result",
+      sublabel: model.resultNode.fullLabel,
+      color: "#f2d27a",
+      role: "result",
+      meta: { nodeId: model.resultNode.id },
+    });
+    nodeIds.add(model.resultNode.id);
+    if (canShowCrossLinks) {
+      for (const edge of model.crossEdges) {
+        if (nodeIds.has(edge.from) && nodeIds.has(edge.to)) {
+          edges.push({ source: edge.from, target: edge.to, type: "cross", label: edge.label });
+        }
+      }
+    }
+    return { nodes, edges };
+  }, [model, visibleStrategyKey, canShowCrossLinks]);
+  const networkKey = `${visibleStrategyKey}|${canShowCrossLinks}`;
 
   const roleBlocks = new Map<string, { start: number; width: number }>();
   let cursor = 16;
@@ -249,6 +321,10 @@ export function ArgumentMapView({ data, argumentMap, lean }: { data: ProofEvolut
         <button type="button" className={cx("argument-map-mode", mode === "all" && "is-selected")} aria-pressed={mode === "all"} onClick={() => setMode("all")}>All strategies</button>
         <button type="button" className={cx("argument-map-mode", mode === "compare" && canCompare && "is-selected")} aria-pressed={mode === "compare" && canCompare} onClick={() => setMode("compare")} disabled={!canCompare} title={canCompare ? "Compare two strategies" : "This family has a single curated strategy"}>Compare two</button>
       </div>
+      <div className="argument-map-modes" role="group" aria-label="Argument map view">
+        <button type="button" className={cx("argument-map-mode", view === "matrix" && "is-selected")} aria-pressed={view === "matrix"} onClick={() => setView("matrix")}>Matrix</button>
+        <button type="button" className={cx("argument-map-mode", view === "network" && "is-selected")} aria-pressed={view === "network"} onClick={() => setView("network")}>Network</button>
+      </div>
       {mode === "all" || !canCompare ? <>
         {stronger.length > 0 && <label className="argument-map-toggle"><input type="checkbox" checked={showStronger} onChange={(event) => setShowStronger(event.target.checked)} /> Stronger theorem track</label>}
         {model.crossEdges.length > 0 && <label className="argument-map-toggle"><input type="checkbox" checked={showCrossLinks} onChange={(event) => setShowCrossLinks(event.target.checked)} /> Cross-links</label>}
@@ -267,15 +343,23 @@ export function ArgumentMapView({ data, argumentMap, lean }: { data: ProofEvolut
       {showStronger && <span className="argument-map-summary-note">The stronger-theorem lanes are different theorems. Their arrows to the shared result are implications, not alternative proofs of the same statement.</span>}
     </div>}
 
-    <div className="argument-map-legend" aria-label="Argument edge legend">
+    {view === "matrix" && <div className="argument-map-legend" aria-label="Argument edge legend">
       <span><i className="is-depends" />Proof dependency</span>
       <span><i className="is-proves" />Proves / implies</span>
       <span><i className="is-same-role" />Same mathematical role</span>
       <span><i className="is-replaces" />Replaces</span>
       <span><i className="is-bypasses" />Bypasses</span>
       <span>same-role is not a logical dependency</span>
-    </div>
-    <p className="argument-map-scroll-hint">{argumentMap.scrollHint ?? "Scroll horizontally to follow the chain from inputs to the shared result. Click any node for its proof detail."}</p>
+    </div>}
+    {view === "network" ? <ArgumentNetworkGraph
+      nodes={networkGraph.nodes}
+      edges={networkGraph.edges}
+      graphKey={networkKey}
+      roles={argumentMap.roles}
+      selectedNodeId={selectedNodeId}
+      onSelectNode={setSelectedNodeId}
+    /> : <>
+      <p className="argument-map-scroll-hint">{argumentMap.scrollHint ?? "Scroll horizontally to follow the chain from inputs to the shared result. Click any node for its proof detail."}</p>
 
     <div className="argument-map-body">
       <div className="argument-map-labels" style={{ paddingTop: HEADER_H + 12 }}>
@@ -361,6 +445,7 @@ export function ArgumentMapView({ data, argumentMap, lean }: { data: ProofEvolut
         </div>
       </div>
     </div>
+    </>}
 
     {mode === "compare" && <ComparePanel
       a={model.strategyById.get(compareA)}

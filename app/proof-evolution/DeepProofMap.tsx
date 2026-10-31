@@ -20,7 +20,7 @@ export function DeepProofMapView({ deep, subject, revision }: {
         <span><Badge tone="warning">Deep · unreviewed</Badge></span>
       </div>
       <p className="deep-proof-map-intro">
-        Each lane is a proof strategy. Each column is a mathematical role. Solid edges are dependencies stated or directly indicated in the paper; dotted and dashed edges compare roles across strategies. Select a node to read its proof detail, dependencies, and any Lean alignment.
+        Matrix groups the argument by proof strategy and mathematical role; Network lays the same nodes out as a force-directed graph. Solid edges are dependencies stated or directly indicated in the paper; dotted and dashed edges compare roles across strategies. Select a node in either view to read its proof detail, dependencies, and any Lean alignment.
       </p>
       <Surface tone="card" className="deep-proof-map-result">
         <span>Shared result</span>
