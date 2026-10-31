@@ -33,12 +33,13 @@ export default async function PublicationsPage({ searchParams }: { searchParams:
           <p className="eyebrow">Mathematics publications</p>
           <h1>Read the mathematics.<br /><span>Inspect the evidence.</span></h1>
           <p className="publications-lede">A source-linked library of mathematical results, manuscripts, and formal proofs. Start with a subject, read a result, and see exactly what its proof artifacts cover.</p>
+          <p><Link href="/history#timeline">26 October updates: ETH, local smoothing, and Yang–Mills →</Link></p>
           <div className="publications-facts"><span><strong>{collection.statistics.manuscripts}</strong> manuscripts</span><span><strong>{collection.statistics.families}</strong> result families</span><span><strong>{collection.statistics.subjects}</strong> subjects</span></div>
         </div>
         <aside className="publication-collection-note">
           <span className="micro-label">First collection</span>
           <h2>OpenAI mathematics release</h2>
-          <p>Released 6 October 2026. Related papers stay together, with citations, revised editions, and formalization scope attached.</p>
+          <p>Released 6 October 2026; this catalog is the 13 October snapshot. Related papers stay together, with citations, revised editions, and formalization scope attached.</p>
           <div className="publication-source-status">Upstream results · Proofweave replay pending</div>
           <a className="text-link" href={collection.source.announcementUrl} target="_blank" rel="noreferrer">Read the release announcement ↗</a>
         </aside>
@@ -46,7 +47,7 @@ export default async function PublicationsPage({ searchParams }: { searchParams:
 
       <nav className="publication-collection-bar" aria-label="Collection resources">
         <span>OpenAI · Indexed {collection.indexedAt.slice(0, 10)}</span>
-        <div><a href="#collection-notes">Collection notes</a><a href="#withdrawals">{collection.withdrawals.length} withdrawals</a><a href="/api/publications/openai-math?download=1" download="proofweave-openai-math.json">Download catalog JSON ↓</a></div>
+        <div><a href="#collection-notes">Collection notes</a><a href="#withdrawals">{collection.withdrawals.length} withdrawals</a><Link href="/proof-evolution">Proof maps →</Link><Link href="/proof-evolution/landau-siegel">Landau–Siegel deep map →</Link><a href="/api/publications/openai-math?download=1" download="proofweave-openai-math.json">Download catalog JSON ↓</a></div>
       </nav>
 
       <section aria-labelledby="publication-browse-title" className="publication-browser" id="browse">

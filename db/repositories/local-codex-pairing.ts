@@ -1,9 +1,9 @@
-import { getD1 } from "@/db";
+import { getConnectionD1 } from "@/db";
 import type { PersonIdentity } from "./delegation";
 import { getAccountAuthRepository } from "./account-auth";
 import { D1ProofweaveOAuthStore } from "@/services/proofweave-identity/d1-oauth-store.mjs";
+import { localCodexCallbackUri } from "@/packages/protocol/local-codex-callback.mjs";
 
-const localCallbackUrl = "http://127.0.0.1:44765/callback";
 const localConnectorName = "Proofweave local Codex Connector";
 const connectionPolicies = {
   research: {
@@ -61,21 +61,25 @@ export async function createLocalCodexPairing(input: {
   oauthState: string;
   codeChallenge: string;
   connectionMode?: string;
+  redirectUri?: string;
 }): Promise<{ id: string; browserSecret: string; clientId: string; expiresAt: string }> {
   validateLocalAgent(input);
+  let localCallbackUrl: string;
+  try { localCallbackUrl = localCodexCallbackUri(input.redirectUri); }
+  catch (error) { throw new LocalCodexPairingError(error instanceof Error ? error.message : "Invalid local callback URI."); }
   const connectionMode = normalizeConnectionMode(input.connectionMode);
   const requestedScopes = connectionPolicies[connectionMode].oauthScopes;
   const issuedAt = new Date();
   const expiresAt = new Date(issuedAt.getTime() + pairingLifetimeMs).toISOString();
   const browserSecret = randomBase64Url(32);
-  const store = new D1ProofweaveOAuthStore(getD1());
+  const store = new D1ProofweaveOAuthStore(getConnectionD1());
   const client = await store.registerClient({
     clientName: localConnectorName,
     redirectUris: [localCallbackUrl],
     tokenEndpointAuthMethod: "none",
   });
   const id = `pw:codex-pairing:${crypto.randomUUID()}`;
-  await getD1()
+  await getConnectionD1()
     .prepare(
       `INSERT INTO local_codex_pairing_sessions (
         id, browser_secret_hash, agent_id, agent_label, agent_public_key,
@@ -130,7 +134,7 @@ export async function approveLocalCodexPairing(input: {
   const row = await requirePendingPairing({ pairingId: input.pairingId, browserSecret: input.browserSecret });
   const connectionMode = connectionModeForStoredScopes(row.requested_scopes_json);
   const requestedScopes = connectionPolicies[connectionMode].oauthScopes;
-  const store = new D1ProofweaveOAuthStore(getD1());
+  const store = new D1ProofweaveOAuthStore(getConnectionD1());
   const account = await getAccountAuthRepository().resolveIdentity(input.identity);
   const person = { id: account.personId };
 
@@ -156,7 +160,7 @@ export async function approveLocalCodexPairing(input: {
   if (!installation) throw new LocalCodexPairingError("The approved Agent installation is no longer available.");
 
   const approvedAt = new Date().toISOString();
-  const changed = await getD1()
+  const changed = await getConnectionD1()
     .prepare(
       `UPDATE local_codex_pairing_sessions
        SET approved_at = ?, person_id = ?, delegation_certificate_id = ?, agent_installation_id = ?
@@ -198,7 +202,7 @@ export async function approveLocalCodexPairing(input: {
 async function loadPairing(input: { pairingId: string; browserSecret: string }): Promise<PairingRow> {
   boundedString(input.pairingId, "pairingId", 240);
   boundedString(input.browserSecret, "browserSecret", 256);
-  const row = await getD1()
+  const row = await getConnectionD1()
     .prepare(
       `SELECT id, browser_secret_hash, agent_id, agent_label, agent_public_key,
               redirect_uri, oauth_client_id, oauth_state, code_challenge,

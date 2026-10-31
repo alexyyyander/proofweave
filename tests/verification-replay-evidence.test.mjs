@@ -14,6 +14,9 @@ test("canonical fresh replay evidence binds one signed Runner result to its repl
 
   assert.equal(normalized.runnerResult.jobId, "run:fresh-replay");
   assert.equal(normalized.runnerResult.artifacts.manifestHash, sha("a"));
+  assert.equal(normalized.runnerResult.environment.imageDigest, `ghcr.io/proofweave/lean-runner@sha256:${"e".repeat(64)}`);
+  assert.equal(normalized.runnerResult.environment.templateId, "template_proofweave:reviewed_runtime");
+  assert.equal(normalized.runnerResult.environment.templateBuildId, "9420e83e-3c6d-48b8-94fe-a73807af5797");
   assert.equal(await verificationReplayEvidenceHash(normalized), await sha256Canonical(normalized));
   assert.equal(await canonicalVerificationReplayEvidence(normalized), canonicalJson(normalized));
 });
@@ -62,6 +65,13 @@ function fixtureRunnerResult() {
     kernelStatus: "accepted",
     checks: { network: "passed", noSorry: "passed", allowedAxioms: "passed", leanBuild: "passed" },
     artifacts: { manifestHash: sha("a"), stdoutHash: sha("c"), stderrHash: sha("d") },
+    environment: {
+      imageDigest: `ghcr.io/proofweave/lean-runner@sha256:${"e".repeat(64)}`,
+      leanToolchain: "leanprover/lean4:v4.27.0",
+      mathlibRevision: "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+      templateId: "template_proofweave:reviewed_runtime",
+      templateBuildId: "9420e83e-3c6d-48b8-94fe-a73807af5797",
+    },
   };
 }
 

@@ -1,0 +1,22 @@
+.component-gallery { max-width: 1180px; margin: auto; padding: 40px 28px 72px; }
+.component-gallery > section { margin-block: 40px; }
+.component-gallery .ui-section-heading { margin-bottom: 24px; }
+.gallery-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 24px; }
+.gallery-form { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 24px; }
+.gallery-form label { display: grid; gap: 8px; font-size: 13px; }
+.gallery-form :is(input, select, textarea) { background: var(--paper); border: 1px solid var(--line); padding: 10px 12px; }
+.gallery-form button { align-self: end; justify-self: start; }
+.gallery-paper { padding: 28px; background: var(--navy); border-radius: 12px; }
+.gallery-paper h2 { color: #e3eafa; }
+.gallery-paper .ui-paper-stack { max-width: 720px; margin-bottom: 12px; }
+.gallery-paper .ui-paper-body p { max-width: 60ch; line-height: 1.7; }
+.component-gallery .ui-fields { margin-block: 20px; }
+.component-gallery .ui-fields > div { padding-block: 10px; border-bottom: 1px solid var(--line); }
+.component-gallery .ui-code { padding: 20px; background: var(--surface-0); }
+.component-gallery .ui-steps button { padding: 10px 18px; border: 1px solid var(--line); border-radius: 6px; background: transparent; }
+.component-gallery .ui-steps button[aria-current] { background: var(--indigo-soft); border-color: var(--indigo); }
+.component-gallery .ui-steps button > span { margin-right: 10px; }
+.component-gallery .scroll-fade { margin-top: 20px; border: 1px solid var(--line); padding-inline: 16px; }
+.component-gallery .scroll-fade li { padding-block: 10px; }
+@media (max-width: 620px) { .gallery-form { grid-template-columns: 1fr; } .component-gallery { padding-inline: 20px; } .gallery-paper { padding: 16px; } }

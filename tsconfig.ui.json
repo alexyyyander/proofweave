@@ -1,0 +1,6 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "incremental": false },
+  "include": ["next-env.d.ts", "cloudflare-workers.d.ts", "app/**/*.ts", "app/**/*.tsx", "tests/ui/**/*.tsx"],
+  "exclude": ["node_modules"]
+}

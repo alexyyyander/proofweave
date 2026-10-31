@@ -46,9 +46,6 @@ export class D1ReceiptCreditSettlement {
         categoryUnits: Object.freeze([]),
       });
     }
-    const existing = await this.getSettlement(receiptId);
-    if (existing) return Object.freeze({ ...existing, created: false });
-
     const receipt = await this.receipts.loadVerifiedReceipt(receiptId);
     await this.assertReceiptActive(receipt.id);
     const receiptHash = await contributionReceiptHash(receipt);
@@ -65,6 +62,16 @@ export class D1ReceiptCreditSettlement {
         receiptHash: upstreamHash,
         personId: upstream.beneficiary.personId,
       }));
+    }
+
+    // Idempotency preserves the historical ledger, but it must not bypass a
+    // later Receipt/dependency retraction or current signature verification.
+    const existing = await this.getSettlement(receiptId);
+    if (existing) {
+      if (existing.receiptHash !== receiptHash) {
+        throw new ReceiptCreditSettlementError("Stored settlement does not match the verified Receipt.");
+      }
+      return Object.freeze({ ...existing, created: false });
     }
 
     const settlement = await deriveReceiptCreditSettlement({ receipt, receiptHash, dependencyBeneficiaries });

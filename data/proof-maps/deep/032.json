@@ -1,0 +1,339 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-10-31",
+  "familyNumber": "032",
+  "title": "The rational Hodge conjecture for CM abelian varieties",
+  "result": {
+    "id": "result:cm-rational-hodge",
+    "label": "Rational Hodge for CM abelian varieties, with stated consequences",
+    "statement": "Let A be a complex CM abelian variety. For every integer p≥0, the Betti cycle-class map cl_B: CH^p(A)_Q → H^(2p)(A,Q) ∩ H^(p,p)(A) is surjective. The family also states the generalized Hodge conjecture for CM abelian varieties, the Tate conjecture for abelian varieties over finite fields, and the Hodge standard conjecture for abelian varieties in arbitrary characteristic.",
+    "source": "Theorem 1.1 and Corollaries 8.2–8.4.",
+    "detail": "The main spine constructs algebraic representatives for four-factor tensors, assembles them into arbitrary balanced CM tensors, and then derives the three stated consequences. The companion manuscripts are related work, not premises in this spine.",
+    "roleNote": "Theorem 1.1 is the direct result. Corollaries 8.2–8.4 are consequences derived from it through Milne’s theorems and the generalized-Hodge correspondence argument; they are not alternative proofs of the main theorem."
+  },
+  "roles": [
+    {
+      "id": "context",
+      "label": "Cited context",
+      "description": "External reductions cited for orientation. They are shown without dependency edges and are not treated as unproved steps in the selected spine."
+    },
+    {
+      "id": "reduction",
+      "label": "Scalar descent",
+      "description": "Descend Galois-stable complex algebraic classes to rational coefficients, and realize degree-one Hodge maps by morphisms."
+    },
+    {
+      "id": "surface",
+      "label": "Surface criterion",
+      "description": "Convert four degree-one classes with a nonzero cup-product integral into an algebraic cycle on the exact four-factor line."
+    },
+    {
+      "id": "theta",
+      "label": "Theta period",
+      "description": "Construct a nonzero mixed period with two holomorphic and two antiholomorphic factors on an arithmetic ball quotient."
+    },
+    {
+      "id": "arithmetic",
+      "label": "CM sources",
+      "description": "Use Hecke operators, a Frobenius polynomial, and scalar descent to identify theta classes with prescribed rational CM sources."
+    },
+    {
+      "id": "assembly",
+      "label": "Four-factor assembly",
+      "description": "Complete the surface construction, prove the four-factor switch, and assemble arbitrary balanced tensors."
+    },
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The main theorem and its stated consequences."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "main",
+      "label": "Main paper · 53 pp",
+      "title": "The rational Hodge conjecture for CM abelian varieties",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-06",
+      "pages": 53,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-rational-Hodge-conjecture-for-CM-abelian-varieties-October-6-2026/paper.pdf",
+      "sourceLabel": "main paper",
+      "note": "The selected spine follows the paper: §2 reduces to four-factor switches, §§3–6 build a surface period with prescribed CM sources, §7 completes the switch, and §8 derives the consequences.",
+      "proofDetail": "section",
+      "leanStatus": "not_formalized",
+      "leanLabel": "No Lean comparator linked",
+      "leanUrl": null,
+      "leanNote": "No Lean scope document or comparator is linked for this family in the pinned snapshot. That absence is not evidence that no Lean code exists.",
+      "nodes": [
+        {
+          "id": "andre-context",
+          "role": "context",
+          "label": "André/Deligne reduction",
+          "fullLabel": "Cited context · Split-Weil reduction",
+          "kind": "external",
+          "source": "§1.1; references [2], [10], [28]",
+          "detail": "The introduction cites Deligne and André for the reduction of a CM Hodge class to a sum of pullbacks of split Weil classes. That reduction identifies classes whose algebraicity would suffice; it does not construct the cycles. This node is orientation only and has no edge into the paper’s spine.",
+          "dependsOn": []
+        },
+        {
+          "id": "hazama-context",
+          "role": "context",
+          "label": "Hazama four-label relations",
+          "fullLabel": "Cited context · Hazama arrangement relations",
+          "kind": "external",
+          "source": "§1.1; [16, Theorem 7.13, Corollary 7.14.1]",
+          "detail": "Hazama’s arrangement method spans its rational balance kernel by antipodal pairs and four-label square relations. The introduction cites this as motivation; §2.3 proves the tensor reduction used here. This node has no edge into the selected spine.",
+          "dependsOn": []
+        },
+        {
+          "id": "scalar-descent",
+          "role": "reduction",
+          "label": "Scalar descent",
+          "fullLabel": "Lemma 2.1 · Scalar descent",
+          "kind": "lemma",
+          "source": "§2.1, Lemma 2.1",
+          "detail": "If a rational vector t has every Galois conjugate in a complex-linear subspace P, then t lies in (T∩P)⊗Q Q. The same assertion applies to maps of a fixed Hodge type in a Hom space.",
+          "dependsOn": []
+        },
+        {
+          "id": "degree-one",
+          "role": "surface",
+          "label": "Degree-one realization",
+          "fullLabel": "Lemma 2.2 · Realization in degree one",
+          "kind": "lemma",
+          "source": "§2.1, Lemma 2.2",
+          "detail": "Pullback identifies Hom(A,B)⊗Q with rational Hodge maps from H^1(B,Q) to H^1(A,Q). A rational Hodge map from a smooth projective surface S to B is an integer multiple of a morphism S→B after composing with the Albanese map.",
+          "dependsOn": []
+        },
+        {
+          "id": "surface-criterion",
+          "role": "surface",
+          "label": "Surface criterion",
+          "fullLabel": "Proposition 3.1 · Surface criterion",
+          "kind": "theorem",
+          "source": "§3, Proposition 3.1; Corollary 3.2",
+          "detail": "Four rational Hodge maps h_i: U(v_i)→H^1(S,Q) and vectors α_i on the prescribed embedding lines with nonzero cup-product integral force the four-factor Künneth line to be algebraic. Four divisor kernels convert the surface functional into a vector on that exact line.",
+          "dependsOn": [
+            "degree-one",
+            "scalar-descent"
+          ]
+        },
+        {
+          "id": "theta",
+          "role": "theta",
+          "label": "Nonzero mixed theta period",
+          "fullLabel": "§4 · Theta differentials and a nonzero mixed period",
+          "kind": "construction",
+          "source": "§4, Lemma 4.1–Corollary 4.7",
+          "detail": "Constructs a nonzero mixed period with two holomorphic and two antiholomorphic factors on a compact arithmetic quotient of the complex two-ball. The finite theta input and quotient stay fixed while compact-place data vary, and the rank-two theta tensor packages the wedges.",
+          "dependsOn": []
+        },
+        {
+          "id": "cm",
+          "role": "arithmetic",
+          "label": "CM extraction",
+          "fullLabel": "Theorem 5.1 and Corollary 6.7 · CM extraction",
+          "kind": "theorem",
+          "source": "§5, Theorem 5.1; §6, Corollary 6.7",
+          "detail": "Degree-one CM extraction and finite-family CM extraction identify theta one-form classes with spans of rational Hodge maps from the selected CM lines. Algebraic Hecke operators, a Frobenius polynomial, ordinary isogeny neighbors, and scalar descent supply the arithmetic identification.",
+          "dependsOn": [
+            "scalar-descent"
+          ]
+        },
+        {
+          "id": "construction",
+          "role": "assembly",
+          "label": "Four-factor construction",
+          "fullLabel": "§7 · Completion of the four-factor construction",
+          "kind": "assembly",
+          "source": "§7",
+          "detail": "Places the finitely many theta families on one projective surface, expands the nonzero period over the finite family, and applies the surface criterion. This produces the algebraic four-factor line for each required quadruple.",
+          "dependsOn": [
+            "surface-criterion",
+            "theta",
+            "cm"
+          ]
+        },
+        {
+          "id": "switch",
+          "role": "assembly",
+          "label": "Four-factor switch",
+          "fullLabel": "Theorem 2.5 · Four-factor switch",
+          "kind": "theorem",
+          "source": "§2.3, Theorem 2.5; §7",
+          "detail": "Let E be a Galois CM field and let odd sign functions v_1,…,v_4 satisfy v_1+v_2=v_3+v_4. Under the Künneth inclusion, the line U(v_1)_1 ⊗ U(v_2)_1 ⊗ U(v_3)_c ⊗ U(v_4)_c is algebraic. Section 7 proves this via the surface construction.",
+          "dependsOn": [
+            "construction"
+          ]
+        },
+        {
+          "id": "tensor",
+          "role": "assembly",
+          "label": "Assembly from four factors",
+          "fullLabel": "Proposition 2.6 · Assembly from four factors",
+          "kind": "theorem",
+          "source": "§2.3, Proposition 2.6; Lemma 2.7",
+          "detail": "If the four-factor switch holds for every Galois CM field and every balanced quadruple, then every rational Hodge class on every complex CM abelian variety is algebraic. Two-row switches connect lists with the same type sum; algebraic polarization pairings contract intermediate factors; scalar descent returns the coefficient field to Q.",
+          "dependsOn": [
+            "switch",
+            "scalar-descent"
+          ]
+        },
+        {
+          "id": "main",
+          "role": "result",
+          "label": "Rational Hodge for CM varieties",
+          "fullLabel": "Theorem 1.1 · Rational Hodge for CM abelian varieties",
+          "kind": "theorem",
+          "source": "§1, Theorem 1.1; §7",
+          "detail": "For every complex CM abelian variety A and every p≥0, the Betti cycle-class map from rational Chow classes to rational Hodge classes of type (p,p) is surjective.",
+          "dependsOn": [
+            "tensor"
+          ]
+        },
+        {
+          "id": "generalized-hodge",
+          "role": "result",
+          "label": "Generalized Hodge",
+          "fullLabel": "Corollary 8.2 · Generalized Hodge conjecture",
+          "kind": "corollary",
+          "source": "§8.1, Corollary 8.2",
+          "detail": "For a rational Hodge substructure W of H^k(A,Q) with W(r) effective, there is a closed algebraic subset Z of codimension at least r whose complement has W in the kernel of the restriction map.",
+          "dependsOn": [
+            "main"
+          ]
+        },
+        {
+          "id": "tate",
+          "role": "result",
+          "label": "Tate conjecture",
+          "fullLabel": "Corollary 8.3 · Tate conjecture",
+          "kind": "corollary",
+          "source": "§8.2, Corollary 8.3",
+          "detail": "For every abelian variety over a finite field, every codimension, and every prime different from the characteristic, the cycle-class map from rational Chow classes to Galois-invariant ℓ-adic classes is surjective; numerical and homological equivalence coincide.",
+          "dependsOn": [
+            "main"
+          ]
+        },
+        {
+          "id": "hodge-standard",
+          "role": "result",
+          "label": "Hodge standard conjecture",
+          "fullLabel": "Corollary 8.4 · Hodge standard conjecture",
+          "kind": "corollary",
+          "source": "§8.3, Corollary 8.4",
+          "detail": "For an abelian variety over an algebraically closed field, numerical and ℓ-adic homological equivalence coincide on rational algebraic cycles, and the intersection form on primitive classes is positive definite after extension to R.",
+          "dependsOn": [
+            "main"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "main:main",
+      "to": "result:cm-rational-hodge",
+      "type": "proves",
+      "label": "Theorem 1.1"
+    },
+    {
+      "from": "main:generalized-hodge",
+      "to": "result:cm-rational-hodge",
+      "type": "proves",
+      "label": "Corollary 8.2"
+    },
+    {
+      "from": "main:tate",
+      "to": "result:cm-rational-hodge",
+      "type": "proves",
+      "label": "Corollary 8.3"
+    },
+    {
+      "from": "main:hodge-standard",
+      "to": "result:cm-rational-hodge",
+      "type": "proves",
+      "label": "Corollary 8.4"
+    }
+  ],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [
+    "Galois CM fields and odd sign functions",
+    "Degree-one rational Hodge maps from a surface",
+    "Theta one-forms and a nonzero mixed period",
+    "Hecke/Frobenius projectors and scalar descent"
+  ],
+  "summaryNote": "The map follows the paper’s main spine. André/Deligne and Hazama are cited context nodes with no dependency edge; the paper’s own Proposition 2.6 and Theorem 2.5 are the reduction and switch used. Companion manuscripts are related work, not premises.",
+  "relatedManuscripts": [
+    {
+      "title": "Algebraic Kuga–Satake correspondences and Hodge conjectures on a K3 quadratic locus",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-30",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Algebraic-Kuga-Satake-correspondences-and-Hodge-conjectures-on-a-K3-quadratic-locus-September-30-2026/paper.pdf",
+      "readmeUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Algebraic-Kuga-Satake-correspondences-and-Hodge-conjectures-on-a-K3-quadratic-locus-September-30-2026/README.md",
+      "relation": "Companion manuscript",
+      "note": "Related work in the same release. It is not represented as a proof node for Theorem 1.1."
+    },
+    {
+      "title": "Weil classes and Hodge classes on abelian powers",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-06",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Weil-classes-and-Hodge-classes-on-abelian-powers-October-6-2026/paper.pdf",
+      "readmeUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Weil-classes-and-Hodge-classes-on-abelian-powers-October-6-2026/README.md",
+      "relation": "Related manuscript",
+      "note": "A related manuscript about Weil and Hodge classes on abelian powers. It is not used as a premise in the selected spine."
+    },
+    {
+      "title": "Abelian covers, Gale correspondences, and the Hodge conjecture for powers",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-06",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Abelian-covers-Gale-correspondences-and-the-Hodge-conjecture-for-powers-October-6-2026/paper.pdf",
+      "readmeUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Abelian-covers-Gale-correspondences-and-the-Hodge-conjecture-for-powers-October-6-2026/README.md",
+      "relation": "Related manuscript",
+      "note": "A related manuscript on abelian covers and powers. It is not represented as a dependency of Theorem 1.1."
+    },
+    {
+      "title": "A Conditional Reduction for Algebraic Kuga–Satake Correspondences",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-10",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Conditional-Reduction-for-Algebraic-Kuga-Satake-Correspondences-September-10-2026/paper.pdf",
+      "readmeUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Conditional-Reduction-for-Algebraic-Kuga-Satake-Correspondences-September-10-2026/README.md",
+      "relation": "Conditional related reduction",
+      "note": "A conditional reduction, not an unconditional premise for Theorem 1.1 and not a proof node here."
+    }
+  ],
+  "leanAlignments": [],
+  "caveats": [
+    "Section-level, theorem-group map. Nodes group lemmas and constructions by their role in the proof; the paper remains authoritative.",
+    "André/Deligne and Hazama appear as cited context with no dependency edges. They motivate the reduction, but the paper’s own Proposition 2.6 and Theorem 2.5 are the steps used here.",
+    "The four companion manuscripts are related applications or reductions. They are not used as premises for Theorem 1.1 in this map.",
+    "No Lean scope document or comparator is linked for this family in the pinned snapshot. That absence is not evidence that no Lean code exists.",
+    "Unreviewed: no statement review, independent review, kernel check, or contribution receipt."
+  ],
+  "sources": [
+    {
+      "label": "Main paper",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-rational-Hodge-conjecture-for-CM-abelian-varieties-October-6-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "OpenAI mathematics repository",
+      "url": "https://github.com/openai/math/tree/1581d4cbdd69a0faf34b2089614fe2a814316a6a",
+      "kind": "repository"
+    }
+  ]
+}

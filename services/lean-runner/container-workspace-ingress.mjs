@@ -4,6 +4,14 @@ import {
 } from "../../packages/protocol/artifact-bundle.mjs";
 
 export const runnerWorkspaceIngressProtocolVersion = "pw-runner-workspace-transfer-v1";
+export const runnerWorkspaceFinalizationCodes = Object.freeze([
+  "runner_workspace_archive_rejected",
+  "runner_workspace_patch_rejected",
+  "runner_workspace_manifest_rejected",
+  "runner_workspace_tree_rejected",
+  "runner_workspace_file_mode_rejected",
+  "runner_workspace_tree_hash_mismatch",
+]);
 
 export class RunnerWorkspaceIngressError extends Error {
   constructor(message) {

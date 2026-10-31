@@ -1,5 +1,6 @@
 import { getCurrentUser, toPersonIdentity } from "@/app/auth";
-import { getParticipantOperationState, MissingDatabaseBindingError } from "@/db";
+import { researchWriteGateFailure } from "@/app/lib/research-write-gate";
+import { getParticipantOperationState, getConnectionOperationState, MissingDatabaseBindingError } from "@/db";
 import { ControlPlaneReadOnlyError } from "@/services/database/control-plane-operation-mode.mjs";
 import {
   DelegationAuthorizationError,
@@ -8,8 +9,16 @@ import {
 } from "@/db/repositories/delegation";
 
 export async function currentDelegationIdentity() {
+  return currentIdentity(getParticipantOperationState().writesEnabled);
+}
+
+export async function currentConnectionIdentity() {
+  return currentIdentity(getConnectionOperationState().writesEnabled);
+}
+
+async function currentIdentity(writesEnabled: boolean) {
   try {
-    if (!getParticipantOperationState().writesEnabled) {
+    if (!writesEnabled) {
       return delegationFailure(new ControlPlaneReadOnlyError());
     }
     const user = await getCurrentUser();
@@ -33,6 +42,8 @@ export async function currentDelegationIdentity() {
 }
 
 export function delegationFailure(error: unknown) {
+  const gate = researchWriteGateFailure(error);
+  if (gate) return gate;
   const headers = { "Cache-Control": "no-store" };
   if (
     error instanceof MissingDatabaseBindingError

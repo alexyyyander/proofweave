@@ -1,10 +1,10 @@
-import Link from "next/link";
-import type { ReactNode } from "react";
+import { PageTitle, ActionLink } from "@/app/components/ui";
+import { SiteFrame } from "@/app/components/shell/SiteFrame";
+import { type ReactNode } from "react";
 
 import { getParticipantOperationState } from "@/db";
-import { Footer } from "../ui";
-import { Header } from "../header";
-import type { ActivePage } from "./navigation";
+
+import { type ActivePage } from "./navigation";
 
 export function personalWritesPaused(): boolean {
   return !getParticipantOperationState().writesEnabled;
@@ -23,17 +23,15 @@ export function ReadOnlyPersonalSurface({
   detail: string;
   children?: ReactNode;
 }) {
-  return <div className="site-shell app-shell">
-    <Header active={active} />
-    <main id="main-content" tabIndex={-1} className="workbench-main signed-out-workbench">
+  return <SiteFrame className="site-shell app-shell" active={active} mainClassName="workbench-main signed-out-workbench">
       <section className="workspace-onboarding" aria-labelledby="read-only-personal-title">
         <div className="workspace-onboarding-copy">
           <p className="eyebrow">{eyebrow}</p>
-          <h1 id="read-only-personal-title">{title}</h1>
+          <PageTitle id="read-only-personal-title">{title}</PageTitle>
           <p>{detail}</p>
           <div className="button-row">
-            <Link className="button button-primary" href="/explore">Browse public research <span aria-hidden="true">→</span></Link>
-            <Link className="button button-secondary" href="/demo">Open verified demo</Link>
+            <ActionLink className="button button-primary" href="/explore">Browse public research <span aria-hidden="true">→</span></ActionLink>
+            <ActionLink className="button button-secondary" href="/demo">Open verified demo</ActionLink>
           </div>
         </div>
         <ol className="workspace-onboarding-steps" aria-label="What remains available">
@@ -43,7 +41,5 @@ export function ReadOnlyPersonalSurface({
         </ol>
       </section>
       {children}
-    </main>
-    <Footer />
-  </div>;
+    </SiteFrame>;
 }

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Explore · Proofweave v1</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/base.css">
+<script defer src="assets/app.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="pw-topbar">
+  <div class="pw-topbar-inner">
+    <a class="pw-brand" href="index.html" aria-label="Proofweave v1 home"><span class="pw-brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>Proofweave<span class="pw-muted" style="font-family:var(--font-mono);font-size:12px;color:#9fb2e9">/v1</span></a>
+    <nav class="pw-nav" aria-label="Primary">
+      <a href="index.html">Gallery</a>
+      <a href="explore.html">Explore</a>
+      <a href="conjecture.html">Conjecture</a>
+      <a href="receipt.html">Receipt</a>
+      <a href="workbench.html">Workbench</a>
+    </nav>
+    <span class="pw-topbar-spacer"></span>
+    <span class="pw-preview-pill"><i aria-hidden="true"></i>Design preview</span>
+  </div>
+</header>
+<div class="preview-banner" role="note">DESIGN PREVIEW · illustrative data · not a live network surface</div>
+
+<main class="pw-main" id="main">
+  <section class="pw-section">
+    <p class="pw-eyebrow">Public research catalog</p>
+    <div class="pw-section-head">
+      <h1 style="font-size:clamp(32px,5cqi,52px)">Open mathematics</h1>
+      <span class="mono-label" id="catalog-count">6 shown</span>
+    </div>
+    <p class="pw-lede">Choose a problem, then inspect its statement, dependencies, and evidence. Status is always explicit — never a single green badge.</p>
+  </section>
+
+  <section class="pw-section" style="margin-top:28px">
+    <div class="segmented" data-roving="row" data-filter-target="#catalog" data-filter-count="#catalog-count" aria-label="Domain">
+      <button data-value="all" aria-selected="true">All domains</button>
+      <button data-value="number-theory">Number theory</button>
+      <button data-value="analysis">Analysis</button>
+      <button data-value="combinatorics">Combinatorics</button>
+    </div>
+  </section>
+
+  <section class="pw-section">
+    <div class="pw-grid cols-3" id="catalog" data-roving="grid" data-cols="3" role="list">
+      <a class="card conj-card" href="conjecture.html" data-subject="number-theory" data-roving-item role="listitem">
+        <div class="subject-row"><span class="subject-chip">11 · Number theory</span><span class="subject-chip">proposed</span></div>
+        <h2>Erdős–Straus conjecture</h2>
+        <p class="pw-muted">Every integer n ≥ 2 can be written as 4/n = 1/x + 1/y + 1/z in positive integers.</p>
+        <div class="status-stack">
+          <span class="chip is-formalized"><i></i>Formalized</span>
+          <span class="chip is-open"><i></i>Kernel checked</span>
+          <span class="chip is-attested"><i></i>Attested</span>
+        </div>
+        <div class="conj-foot"><code>sha256:4f9a…c2e1</code><span class="pw-muted">Inspect →</span></div>
+      </a>
+
+      <a class="card conj-card" href="conjecture.html" data-subject="number-theory" data-roving-item role="listitem">
+        <div class="subject-row"><span class="subject-chip">11 · Number theory</span><span class="subject-chip">active</span></div>
+        <h2>Collatz conjecture</h2>
+        <p class="pw-muted">The 3n + 1 map reaches 1 for every positive integer start.</p>
+        <div class="status-stack">
+          <span class="chip is-formalized"><i></i>Formalized</span>
+          <span class="chip is-attested"><i></i>Kernel checked</span>
+        </div>
+        <div class="conj-foot"><code>sha256:1c0d…9ab3</code><span class="pw-muted">Inspect →</span></div>
+      </a>
+
+      <a class="card conj-card" href="conjecture.html" data-subject="analysis" data-roving-item role="listitem">
+        <div class="subject-row"><span class="subject-chip">26 · Analysis</span><span class="subject-chip">active</span></div>
+        <h2>Riemann hypothesis</h2>
+        <p class="pw-muted">Every non-trivial zero of ζ has real part one half.</p>
+        <div class="status-stack">
+          <span class="chip is-formalized"><i></i>Formalized</span>
+          <span class="chip is-attested"><i></i>Kernel checked</span>
+        </div>
+        <div class="conj-foot"><code>sha256:77aa…e210</code><span class="pw-muted">Inspect →</span></div>
+      </a>
+
+      <a class="card conj-card" href="conjecture.html" data-subject="combinatorics" data-roving-item role="listitem">
+        <div class="subject-row"><span class="subject-chip">05 · Combinatorics</span><span class="subject-chip">kernel-checked</span></div>
+        <h2>Sums of distinct unit fractions</h2>
+        <p class="pw-muted">A reusable lemma bounding the number of terms needed to express a rational.</p>
+        <div class="status-stack">
+          <span class="chip is-kernel"><i></i>Kernel checked</span>
+          <span class="chip is-attested"><i></i>Attested</span>
+        </div>
+        <div class="conj-foot"><code>sha256:9be1…07d4</code><span class="pw-muted">Inspect →</span></div>
+      </a>
+
+      <a class="card conj-card" href="conjecture.html" data-subject="number-theory" data-roving-item role="listitem">
+        <div class="subject-row"><span class="subject-chip">11 · Number theory</span><span class="subject-chip">proposed</span></div>
+        <h2>Goldbach’s conjecture</h2>
+        <p class="pw-muted">Every even integer greater than 2 is the sum of two primes.</p>
+        <div class="status-stack">
+          <span class="chip is-formalized"><i></i>Formalized</span>
+          <span class="chip is-attested"><i></i>Kernel checked</span>
+        </div>
+        <div class="conj-foot"><code>sha256:33f0…b881</code><span class="pw-muted">Inspect →</span></div>
+      </a>
+
+      <a class="card conj-card" href="conjecture.html" data-subject="analysis" data-roving-item role="listitem">
+        <div class="subject-row"><span class="subject-chip">26 · Analysis</span><span class="subject-chip">proposed</span></div>
+        <h2>Navier–Stokes existence</h2>
+        <p class="pw-muted">Smoothness and global existence of solutions in three dimensions.</p>
+        <div class="status-stack">
+          <span class="chip is-attested"><i></i>Formalized</span>
+        </div>
+        <div class="conj-foot"><code>sha256:5d2c…4410</code><span class="pw-muted">Inspect →</span></div>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="pw-footer">
+  <span>Proofweave v1 · Soft Ledger design preview</span>
+  <span class="mono-label">static · no build · prepared for a v1 subdomain</span>
+</footer>
+</body>
+</html>

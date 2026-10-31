@@ -7,11 +7,15 @@ import {
   VerificationStoreValidationError,
 } from "../verification/d1-verification-store.mjs";
 import { D1VerificationMarketStore } from "../verification/d1-verification-market-store.mjs";
-import { D1R2ArtifactStore } from "../artifacts/d1-r2-artifact-store.mjs";
+import { D1R2ArtifactStore, maxArtifactObjectBytes } from "../artifacts/d1-r2-artifact-store.mjs";
 import { maxInlineArtifactObjectBytes } from "../artifacts/d1-inline-artifact-store.mjs";
 import { D1RunStore } from "../lean-runner/d1-run-store.mjs";
 import { runnerDeliverySummary } from "../lean-runner/runner-delivery-summary.mjs";
 import { closedAlphaAttemptLimits } from "../../packages/domain/attempt-policy.mjs";
+import {
+  assertResearchWriteAllowed,
+  researchWriteAllowlistValues,
+} from "../database/research-write-allowlist.mjs";
 import {
   D1ResearchGraphStore,
   ResearchGraphConflictError,
@@ -64,11 +68,13 @@ export class GatewayStoreRateLimitError extends Error {
  */
 export class D1RemoteMcpGatewayStore {
   constructor(databaseOrOptions) {
-    const { database, bucket, artifactStore, runnerDispatcher, receiptCoordinator } = normalizeGatewayBindings(databaseOrOptions);
+    const { database, bucket, artifactStore, runnerDispatcher, receiptCoordinator, researchWriteAllowlistJson } = normalizeGatewayBindings(databaseOrOptions);
     if (!database || typeof database.prepare !== "function") {
       throw new TypeError("D1RemoteMcpGatewayStore requires a D1 database binding.");
     }
     this.database = database;
+    this.researchWriteAllowlistJson = researchWriteAllowlistJson ?? null;
+    this.maxArtifactBytes = bucket ? maxArtifactObjectBytes : maxInlineArtifactObjectBytes;
     this.verificationStore = new D1VerificationStore(database);
     this.verificationMarketStore = new D1VerificationMarketStore(database);
     this.artifactStore = artifactStore ?? (bucket ? new D1R2ArtifactStore({ database, bucket }) : null);
@@ -76,6 +82,19 @@ export class D1RemoteMcpGatewayStore {
     this.researchGraphStore = new D1ResearchGraphStore(database);
     this.runnerDispatcher = runnerDispatcher;
     this.receiptCoordinator = receiptCoordinator;
+  }
+
+  requireResearchWriteGate(principal, installation, operation, { required = ["person", "agent", "attempt"], attemptId = null, attemptOwnershipVerified = false } = {}) {
+    return assertResearchWriteAllowed({
+      values: researchWriteAllowlistValues("mcp", this.researchWriteAllowlistJson),
+      surface: "mcp",
+      operation,
+      required,
+      personId: principal.personId,
+      agentId: installation.agentId,
+      attemptId,
+      attemptOwnershipVerified,
+    });
   }
 
   async getConnectionAuthority(principal) {
@@ -109,6 +128,7 @@ export class D1RemoteMcpGatewayStore {
     assertPrincipalScope(principal, "attempt:create");
     requireCreateAttemptInput(input);
     const installation = await this.requireInstallation(principal, input.delegationScope);
+    this.requireResearchWriteGate(principal, installation, "attempt:create", { required: ["person", "agent"] });
     const problem = await this.database
       .prepare(
         `SELECT revision.id, revision.slug, revision.title
@@ -191,6 +211,7 @@ export class D1RemoteMcpGatewayStore {
     const installation = await this.requireInstallation(principal);
     const attempt = await this.findAttemptForInstallation(principal, installation, input.attemptId);
     if (!attempt) throw new GatewayStoreNotFoundError("Attempt not found.");
+    this.requireResearchWriteGate(principal, installation, "progress:write", { attemptId: attempt.id, attemptOwnershipVerified: true });
     if (attempt.status !== "active") {
       throw new GatewayStoreConflictError("Progress can only be reported while an Attempt is active.");
     }
@@ -247,6 +268,7 @@ export class D1RemoteMcpGatewayStore {
     const installation = await this.requireInstallation(principal);
     const attempt = await this.findAttemptForInstallation(principal, installation, checkpoint.attemptId);
     if (!attempt) throw new GatewayStoreNotFoundError("Attempt not found.");
+    this.requireResearchWriteGate(principal, installation, "checkpoint:write", { attemptId: attempt.id, attemptOwnershipVerified: true });
     if (attempt.delegationScope !== "formalize" && attempt.delegationScope !== "prove") {
       throw new GatewayStoreValidationError("Attempt does not have delegated formalize or prove authority.");
     }
@@ -423,13 +445,14 @@ export class D1RemoteMcpGatewayStore {
 
   async putArtifactObject(principal, input) {
     assertPrincipalScope(principal, "artifact:write");
-    requireArtifactObjectInput(input);
+    requireArtifactObjectInput(input, this.maxArtifactBytes);
     const installation = await this.requireInstallation(principal);
     const attempt = await this.requireArtifactAttempt(principal, installation, input.attemptId);
+    this.requireResearchWriteGate(principal, installation, "artifact:write", { attemptId: attempt.id, attemptOwnershipVerified: true });
     const currentAuthority = await this.requireInstallation(principal, attempt.delegationScope);
     await this.recordAttemptAuthorityRenewal(principal, currentAuthority, attempt);
     const object = await this.requireArtifactStore().putObject({
-      bytes: decodeBase64Url(input.contentBase64Url),
+      bytes: decodeBase64Url(input.contentBase64Url, this.maxArtifactBytes),
       filename: input.filename,
       contentType: input.contentType,
     });
@@ -445,6 +468,7 @@ export class D1RemoteMcpGatewayStore {
     requireArtifactBundleInput(bundle);
     const installation = await this.requireInstallation(principal);
     const attempt = await this.requireArtifactAttempt(principal, installation, bundle.attemptId);
+    this.requireResearchWriteGate(principal, installation, "artifact:write", { attemptId: attempt.id, attemptOwnershipVerified: true });
     const currentAuthority = await this.requireInstallation(principal, attempt.delegationScope);
     await this.recordAttemptAuthorityRenewal(principal, currentAuthority, attempt);
     const staged = await this.requireArtifactStore().stageBundle(bundle, {
@@ -469,6 +493,7 @@ export class D1RemoteMcpGatewayStore {
     requireRunnerRequestInput(input);
     const installation = await this.requireInstallation(principal);
     const attempt = await this.requireArtifactAttempt(principal, installation, input.attemptId);
+    this.requireResearchWriteGate(principal, installation, "run:request", { attemptId: attempt.id, attemptOwnershipVerified: true });
     const currentAuthority = await this.requireInstallation(principal, attempt.delegationScope);
     await this.recordAttemptAuthorityRenewal(principal, currentAuthority, attempt);
     if (!this.runnerDispatcher || typeof this.runnerDispatcher.queueBundle !== "function") {
@@ -498,6 +523,7 @@ export class D1RemoteMcpGatewayStore {
     requireVerificationReplayRequestInput(input);
     const installation = await this.requireInstallation(principal, "review");
     const assignment = await this.requireAcceptedReplayAssignment(input.assignmentId, principal.personId);
+    this.requireResearchWriteGate(principal, installation, "review:replay", { attemptId: assignment.attempt.id });
     const existing = await this.findVerificationReplay({
       assignmentId: assignment.id,
       requesterAgentId: installation.agentId,
@@ -605,6 +631,7 @@ export class D1RemoteMcpGatewayStore {
     requireRunnerLookupInput(input);
     const installation = await this.requireInstallation(principal);
     const attempt = await this.requireArtifactAttempt(principal, installation, input.attemptId);
+    this.requireResearchWriteGate(principal, installation, "run:cancel", { attemptId: attempt.id, attemptOwnershipVerified: true });
     const currentAuthority = await this.requireInstallation(principal, attempt.delegationScope);
     await this.recordAttemptAuthorityRenewal(principal, currentAuthority, attempt);
     const run = await this.requireRunForAttempt(input.runId, attempt.id);
@@ -634,6 +661,8 @@ export class D1RemoteMcpGatewayStore {
       throw new GatewayStoreAuthorizationError("Verification Attestation does not match the authorized Agent installation.");
     }
     await this.requireAssignedVerifier(normalized.assignmentId, principal.personId);
+    const assignment = await this.requireReplayAssignmentForPerson(normalized.assignmentId, principal.personId);
+    this.requireResearchWriteGate(principal, installation, "attestation:write", { attemptId: assignment.attempt.id });
     try {
       const recorded = await this.verificationStore.recordAttestation(normalized);
       if (!this.receiptCoordinator) {
@@ -1146,7 +1175,7 @@ function requireProgressInput(input) {
   }
 }
 
-function requireArtifactObjectInput(input) {
+function requireArtifactObjectInput(input, maxBytes = maxInlineArtifactObjectBytes) {
   if (!input || typeof input !== "object") {
     throw new GatewayStoreValidationError("Artifact object input is required.");
   }
@@ -1160,7 +1189,7 @@ function requireArtifactObjectInput(input) {
   if (
     typeof input.contentBase64Url !== "string" ||
     input.contentBase64Url.length === 0 ||
-    input.contentBase64Url.length > base64UrlCharactersFor(maxInlineArtifactObjectBytes) ||
+    input.contentBase64Url.length > base64UrlCharactersFor(maxBytes) ||
     !/^[A-Za-z0-9_-]+$/.test(input.contentBase64Url)
   ) {
     throw new GatewayStoreValidationError("Artifact contentBase64Url must be unpadded base64url within the control-plane byte limit.");
@@ -1209,12 +1238,12 @@ function requireRunnerLookupInput(input) {
   requireIdentifier(input.runId, "Run id", 240);
 }
 
-function decodeBase64Url(value) {
+function decodeBase64Url(value, maxBytes = maxInlineArtifactObjectBytes) {
   try {
     const padded = `${value}${"=".repeat((4 - (value.length % 4)) % 4)}`;
     const binary = atob(padded.replaceAll("-", "+").replaceAll("_", "/"));
     const bytes = Uint8Array.from(binary, (character) => character.charCodeAt(0));
-    if (bytes.byteLength > maxInlineArtifactObjectBytes) {
+    if (bytes.byteLength > maxBytes) {
       throw new GatewayStoreValidationError("Artifact object exceeds the control-plane byte limit.");
     }
     return bytes;
@@ -1237,9 +1266,10 @@ function normalizeGatewayBindings(value) {
       artifactStore: value.artifactStore ?? null,
       runnerDispatcher: value.runnerDispatcher ?? null,
       receiptCoordinator: value.receiptCoordinator ?? null,
+      researchWriteAllowlistJson: value.researchWriteAllowlistJson ?? null,
     };
   }
-  return { database: value, bucket: null, artifactStore: null, runnerDispatcher: null, receiptCoordinator: null };
+  return { database: value, bucket: null, artifactStore: null, runnerDispatcher: null, receiptCoordinator: null, researchWriteAllowlistJson: null };
 }
 
 async function verificationReplayIdentity({ assignmentId, requesterAgentId, delegationCertificateId, idempotencyKey }) {

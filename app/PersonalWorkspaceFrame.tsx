@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { ReactNode } from "react";
+import { type ReactNode } from "react";
 import { getCurrentUser } from "./auth";
 import { loadPersonalWorkspaceSummary } from "./lib/personal-workspace-summary";
 import { PersonalWorkspaceNavigation, type PersonalWorkspacePage } from "./PersonalWorkspaceNavigation";

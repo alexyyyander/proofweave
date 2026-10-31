@@ -72,6 +72,13 @@ export type McpRunnerResultSummary = Readonly<{
     allowedAxioms: "passed" | "failed" | "not_run";
     leanBuild: "passed" | "failed" | "not_run";
   }>;
+  environment?: Readonly<{
+    imageDigest: string;
+    leanToolchain: string;
+    mathlibRevision: string;
+    templateId: string | null;
+    templateBuildId: string | null;
+  }>;
 }>;
 
 export type McpRunSummary = Readonly<{

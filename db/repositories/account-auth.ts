@@ -1,4 +1,4 @@
-import { getD1 } from "@/db";
+import { getAccountAuthD1 as getD1 } from "@/db";
 
 export type AccountProvider = "chatgpt" | "google" | "proofweave";
 
@@ -8,6 +8,7 @@ export type AccountIdentityInput = Readonly<{
   displayName: string;
   email?: string | null;
   emailVerified?: boolean;
+  linkVerifiedEmail?: boolean;
 }>;
 
 export type ResolvedAccountIdentity = Readonly<{
@@ -59,12 +60,19 @@ export class AccountAuthRepository {
       .first<{ id: string; display_name: string }>();
 
     let personId = legacy?.id ?? null;
-    if (!personId && normalized.emailVerified && normalized.emailNormalized) {
+    // A Person already bound to an immutable Sites subject must not be
+    // claimed by another provider through a current or legacy email alias.
+    if (!personId && input.linkVerifiedEmail !== false && normalized.emailVerified && normalized.emailNormalized) {
       const matches = await getD1()
         .prepare(
-          `SELECT DISTINCT person_id
-           FROM person_identities
-           WHERE email_normalized = ? AND email_verified_at IS NOT NULL
+          `SELECT DISTINCT identity.person_id
+           FROM person_identities AS identity
+           WHERE identity.email_normalized = ? AND identity.email_verified_at IS NOT NULL
+             AND NOT EXISTS (
+               SELECT 1 FROM person_identities AS bridge
+               WHERE bridge.person_id = identity.person_id
+                 AND bridge.provider = 'chatgpt' AND bridge.provider_subject LIKE 'sites:%'
+             )
            LIMIT 2`,
         )
         .bind(normalized.emailNormalized)
@@ -74,43 +82,89 @@ export class AccountAuthRepository {
       personId = personIds[0] ?? null;
     }
 
-    const now = new Date().toISOString();
-    if (!personId) {
-      personId = newId("person");
-      await getD1()
-        .prepare(
-          `INSERT INTO persons (id, identity_provider, provider_subject, display_name, updated_at)
-           VALUES (?, ?, ?, ?, ?)`,
-        )
-        .bind(personId, normalized.provider, normalized.subject, normalized.displayName, now)
-        .run();
-    }
+    return this.insertIdentity(normalized, personId, !legacy);
+  }
 
+  async resolveSitesBridgeIdentity(input: { siteId: string; userId: string; email: string; displayName: string }): Promise<ResolvedAccountIdentity> {
+    const subject = `sites:${await sha256(JSON.stringify([input.siteId, input.userId]))}`;
+    const normalized = normalizeIdentity({ provider: "chatgpt", subject,
+      email: input.email, displayName: input.displayName, emailVerified: true });
+    const existing = await this.findIdentity("chatgpt", subject);
+    if (existing) {
+      // The stable Sites subject owns this Person; email is mutable metadata.
+      await this.updateIdentity(existing.identity_id, normalized);
+      return { ...toResolved(existing), email: normalized.email, displayName: normalized.displayName };
+    }
+    // The original Site authenticated these exact legacy ChatGPT subjects.
+    // Do not link to Google or other providers merely because email matches.
+    const email = normalizeEmail(input.email);
+    const candidates = await getD1().prepare(
+      `SELECT candidate.person_id FROM (
+         SELECT person_id FROM person_identities WHERE provider = 'chatgpt' AND provider_subject = ?
+         UNION SELECT id AS person_id FROM persons WHERE identity_provider = 'chatgpt' AND provider_subject = ?
+       ) AS candidate
+       WHERE NOT EXISTS (
+         SELECT 1 FROM person_identities AS bridge
+         WHERE bridge.person_id = candidate.person_id
+           AND bridge.provider = 'chatgpt' AND bridge.provider_subject LIKE 'sites:%'
+       )`,
+    ).bind(email, email).all<{ person_id: string }>();
+    const ids = [...new Set<string>(candidates.results.map((row: { person_id: string }) => row.person_id))];
+    if (ids.length > 1) throw new AmbiguousVerifiedEmailError();
+    return this.insertIdentity(normalized, ids[0] ?? null, true);
+  }
+
+  private async insertIdentity(
+    normalized: ReturnType<typeof normalizeIdentity>,
+    candidatePersonId: string | null,
+    guardStableSites: boolean,
+  ): Promise<ResolvedAccountIdentity> {
+    const database = getD1();
+    const now = new Date().toISOString();
     const identityId = newId("identity");
-    await getD1()
-      .prepare(
+    const personId = newId("person");
+    const statements = [];
+    if (candidatePersonId) {
+      // The earlier read finds candidates, but only this conditional write
+      // claims one. D1/libSQL serialize the guard and insert in the batch.
+      statements.push(database.prepare(
         `INSERT INTO person_identities (
            id, person_id, provider, provider_subject, email, email_normalized,
            display_name, email_verified_at, updated_at
-         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+         ) SELECT ?, ?, ?, ?, ?, ?, ?, ?, ?
+         WHERE ? = 0 OR NOT EXISTS (
+           SELECT 1 FROM person_identities
+           WHERE person_id = ? AND provider = 'chatgpt' AND provider_subject LIKE 'sites:%'
+         )
          ON CONFLICT(provider, provider_subject) DO NOTHING`,
-      )
-      .bind(
-        identityId,
-        personId,
-        normalized.provider,
-        normalized.subject,
-        normalized.email,
-        normalized.emailNormalized,
-        normalized.displayName,
-        normalized.emailVerified ? now : null,
-        now,
-      )
-      .run();
-
-    const created = await this.findIdentity(normalized.provider, normalized.subject);
-    if (!created) throw new Error("Account identity mapping did not produce a readable record.");
-    return toResolved(created);
+      ).bind(identityId, candidatePersonId, normalized.provider, normalized.subject, normalized.email, normalized.emailNormalized,
+        normalized.displayName, normalized.emailVerified ? now : null, now, guardStableSites ? 1 : 0, candidatePersonId));
+    }
+    // A lost claim receives a separate Person. Same-subject retries reuse
+    // the winning mapping without creating orphan Persons or identities.
+    statements.push(database.prepare(
+      `INSERT INTO persons (id, identity_provider, provider_subject, display_name, updated_at)
+       SELECT ?, ?, ?, ?, ?
+       WHERE NOT EXISTS (
+         SELECT 1 FROM person_identities WHERE provider = ? AND provider_subject = ?
+       )
+       ON CONFLICT(identity_provider, provider_subject) DO NOTHING`,
+    ).bind(personId, normalized.provider, normalized.subject, normalized.displayName, now, normalized.provider, normalized.subject));
+    statements.push(database.prepare(
+      `INSERT INTO person_identities (
+         id, person_id, provider, provider_subject, email, email_normalized,
+         display_name, email_verified_at, updated_at
+       ) SELECT ?, person.id, ?, ?, ?, ?, ?, ?, ?
+       FROM persons AS person
+       WHERE person.identity_provider = ? AND person.provider_subject = ?
+       ON CONFLICT(provider, provider_subject) DO NOTHING`,
+    ).bind(identityId, normalized.provider, normalized.subject, normalized.email, normalized.emailNormalized,
+      normalized.displayName, normalized.emailVerified ? now : null, now, normalized.provider, normalized.subject));
+    await database.batch(statements);
+    const resolved = await this.findIdentity(normalized.provider, normalized.subject);
+    if (!resolved) throw new Error("Account identity mapping did not produce a readable record.");
+    await this.updateIdentity(resolved.identity_id, normalized);
+    return { ...toResolved(resolved), email: normalized.email, displayName: normalized.displayName };
   }
 
   async createSession(

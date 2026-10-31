@@ -239,7 +239,6 @@ export class D1VerificationMarketStore {
         artifactBundleManifestHash: job.artifact_bundle_manifest_hash,
         claimType: job.claim_type,
         verifierPersonId,
-        marketJobId: jobId,
       },
     });
     const assignmentAcceptedEvent = await assignmentEvent({
@@ -247,7 +246,7 @@ export class D1VerificationMarketStore {
       sequence: 2,
       eventType: "assignment_accepted",
       occurredAt: claimedAt,
-      payload: { verifierPersonId, marketJobId: jobId },
+      payload: { verifierPersonId },
     });
     const claimedEvent = await jobEvent({
       jobId,
@@ -534,7 +533,7 @@ async function assignmentEvent({ assignment, sequence, eventType, occurredAt, pa
     ...payload,
   };
   return Object.freeze({
-    id: `verification-event:${assignment.id}:${sequence}`,
+    id: `verification-event:${assignment.id}:${eventType === "assignment_created" ? "assigned" : "accepted"}`,
     assignmentId: assignment.id,
     sequence,
     eventType,

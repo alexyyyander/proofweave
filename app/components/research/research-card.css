@@ -1,0 +1,26 @@
+
+.ui-surface.project-card { background: #fffefa; border: 1px solid var(--line); border-radius: 10px; box-shadow: none; min-width: 0; padding: 24px; }
+.ui-surface.project-card:hover { box-shadow: none; transform: none; }
+.ui-surface.project-card h3 { margin-block: 24px 12px; }
+.ui-surface.project-card > p { color: var(--ink-soft); }
+
+@media (max-width: 960px) {
+  .ui-surface.project-card { min-height: 0; }
+}
+
+@media (max-width: 960px) {
+  .ui-surface.project-card .card-footer { margin-top: 20px; }
+}
+
+@media (max-width: 620px) {
+  .ui-surface.project-card { padding: 20px; }
+}
+
+/* Both research compositions use the same reading and action scale. */
+.ui-surface.project-card > p,
+.ui-surface .research-result-statement { font-size: var(--type-body); line-height: 1.7; }
+.ui-surface .research-result-signals dt { font-size: var(--type-caption); }
+.ui-surface .research-result-signals dd { font-size: 13px; line-height: 1.6; }
+.ui-surface .research-result-footer .button { font-size: 13px; min-height: 40px; }
+.ui-surface .research-result-verification > span { font-size: var(--type-caption); }
+.ui-surface .research-result-footer code { font-family: var(--font-code); font-size: var(--type-caption); }

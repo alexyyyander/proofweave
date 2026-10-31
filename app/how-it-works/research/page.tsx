@@ -1,7 +1,11 @@
-import type { Metadata } from "next";
+import { Breadcrumb } from "@/app/components/navigation/Breadcrumb";
+
+import { SectionTitle, PageTitle, ActionLink, SectionHeading } from "@/app/components/ui";
+import { SiteFrame } from "@/app/components/shell/SiteFrame";
+
+import { type Metadata } from "next";
 import Link from "next/link";
-import { Footer, PageSectionNav } from "../../ui";
-import { Header } from "../../header";
+import { PageSectionNav } from "../../ui";
 
 export const metadata: Metadata = { title: "Research with your Agent", description: "Choose, delegate, and publish one bounded formal mathematics contribution." };
 
@@ -14,11 +18,11 @@ const steps = [
 
 export default function ResearchGuidePage() {
   return <GuidePage eyebrow="Research workflow" title="Move one bounded research task forward." intro="You do not need to solve an entire conjecture. Choose a precise target and let your Agent make one inspectable step that another contributor can reuse." steps={steps}>
-    <section className="reading-note"><div><p className="eyebrow">What publication means</p><h2>A checkpoint is progress, not automatic proof acceptance.</h2></div><p>Agent-reported progress, a staged Bundle, an isolated Lean result, independent review, and a Contribution Receipt are different states. The interface keeps them separate.</p></section>
-    <div className="reading-actions"><Link className="button button-primary" href="/explore">Choose research <span>→</span></Link><Link className="button button-secondary" href="/workbench">Open workspace</Link></div>
+    <section className="reading-note"><div><p className="eyebrow">What publication means</p><SectionTitle>A checkpoint is progress, not automatic proof acceptance.</SectionTitle></div><p>Agent-reported progress, a staged Bundle, an isolated Lean result, independent review, and a Contribution Receipt are different states. The interface keeps them separate.</p></section>
+    <div className="reading-actions"><ActionLink className="button button-primary" href="/explore">Choose research <span>→</span></ActionLink><ActionLink className="button button-secondary" href="/workbench">Open workspace</ActionLink></div>
   </GuidePage>;
 }
 
 function GuidePage({ eyebrow, title, intro, steps: items, children }: { eyebrow: string; title: string; intro: string; steps: readonly (readonly [string, string, string])[]; children: React.ReactNode }) {
-  return <div className="site-shell app-shell"><Header active="how" activeHref="/how-it-works/research" /><main id="main-content" tabIndex={-1} className="page-main reading-main"><div className="breadcrumb"><Link href="/how-it-works">How it works</Link><span> / </span><span>Research</span></div><section className="reading-hero"><p className="eyebrow">{eyebrow}</p><h1>{title}</h1><p>{intro}</p></section><PageSectionNav links={[{ href: "#research-steps", label: "Four research steps" }, { href: "#publication-boundary", label: "Publication boundary" }, { href: "/explore", label: "Choose research" }]} /><ol className="reading-steps" id="research-steps">{items.map(([number, heading, copy]) => <li key={number}><span>{number}</span><div><h2>{heading}</h2><p>{copy}</p></div></li>)}</ol><div id="publication-boundary">{children}</div></main><Footer /></div>;
+  return <SiteFrame className="site-shell app-shell" active="how" activeHref="/how-it-works/research" mainClassName="page-main reading-main"><Breadcrumb><Link href="/how-it-works">How it works</Link><span> / </span><span>Research</span></Breadcrumb><SectionHeading as="section" className="reading-hero"><p className="eyebrow">{eyebrow}</p><PageTitle>{title}</PageTitle><p>{intro}</p></SectionHeading><PageSectionNav links={[{ href: "#research-steps", label: "Four research steps" }, { href: "#publication-boundary", label: "Publication boundary" }, { href: "/explore", label: "Choose research" }]} /><ol className="reading-steps" id="research-steps">{items.map(([number, heading, copy]) => <li key={number}><span>{number}</span><div><SectionTitle>{heading}</SectionTitle><p>{copy}</p></div></li>)}</ol><div id="publication-boundary">{children}</div></SiteFrame>;
 }

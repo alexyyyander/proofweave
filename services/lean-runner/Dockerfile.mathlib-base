@@ -4,14 +4,36 @@
 # available only while this independently inspectable base is assembled. The
 # final credential-free Runner image is still built with --network=none.
 ARG NODE_BASE_IMAGE
-FROM ${NODE_BASE_IMAGE}
+ARG RUNTIME_BASE_IMAGE
+FROM ${NODE_BASE_IMAGE} AS node-source
+
+# The runtime stage can be built independently with --target minimal-runtime.
+# Copy Node directly from its immutable source, before any dependency build runs.
+FROM ${RUNTIME_BASE_IMAGE} AS minimal-runtime
+ARG RUNTIME_BASE_IMAGE
+ARG EXPECTED_NODE_VERSION
+COPY services/lean-runner/prepare-minimal-runtime.sh /opt/proofweave/prepare-minimal-runtime.sh
+RUN /bin/sh /opt/proofweave/prepare-minimal-runtime.sh
+COPY --from=node-source /usr/local/bin/node /usr/local/bin/node
+COPY services/lean-runner/runner-node-policy.mjs /opt/proofweave/services/lean-runner/runner-node-policy.mjs
+COPY services/lean-runner/runtime-tool-policy.mjs /opt/proofweave/services/lean-runner/runtime-tool-policy.mjs
+ENV PATH="/opt/lean/bin:/usr/local/bin:${PATH}"
+ENV NODE_VERSION=${EXPECTED_NODE_VERSION}
+ENV PROOFWEAVE_IMAGE_METADATA=/opt/proofweave/lean-environment.json
+RUN node --input-type=module -e 'import { assertReviewedRunnerNode } from "/opt/proofweave/services/lean-runner/runner-node-policy.mjs"; assertReviewedRunnerNode(process.versions.node, process.env.EXPECTED_NODE_VERSION)'
+
+FROM node-source AS builder
 
 ARG NODE_BASE_IMAGE
+ARG EXPECTED_NODE_VERSION
 ARG EXPECTED_LEAN_TOOLCHAIN
 ARG EXPECTED_MATHLIB_REVISION
 ARG LEAN_RELEASE_URL
 ARG LEAN_RELEASE_SHA256
 ARG LEAN_ARCHIVE_ROOT
+
+COPY services/lean-runner/runner-node-policy.mjs /opt/proofweave/services/lean-runner/runner-node-policy.mjs
+RUN node --input-type=module -e 'import { assertReviewedRunnerNode } from "/opt/proofweave/services/lean-runner/runner-node-policy.mjs"; assertReviewedRunnerNode(process.versions.node, process.env.EXPECTED_NODE_VERSION)'
 
 RUN node --input-type=module -e '\
   const [base, toolchain, mathlib, url, digest, root] = process.argv.slice(1); \
@@ -73,7 +95,7 @@ RUN git clone --filter=blob:none --no-checkout https://github.com/leanprover-com
  && cd /tmp/mathlib \
  && lake exe cache get \
  && lake build Mathlib \
- && printf 'import Mathlib\n#check Nat\n' > ProofweaveImageSmoke.lean \
+ && printf 'module\nimport Mathlib\n#check Nat\n' > ProofweaveImageSmoke.lean \
  && lake build proofwidgets/widgetPackageLock \
  && lake env lean ProofweaveImageSmoke.lean \
  && rm ProofweaveImageSmoke.lean \
@@ -89,27 +111,6 @@ RUN git clone --filter=blob:none --no-checkout https://github.com/leanprover-com
  && find /opt/proofweave/lake-packages -path '*/.lake/config/*' -type f -exec chmod a+rw {} + \
  && su -s /bin/sh nobody -c 'test -z "$(find /opt/proofweave/lake-packages \( -type f ! -readable -o -type d ! -readable -o -type d ! -executable \) -print -quit)"'
 
-# Exercise the full Lake build graph from an external project, exactly like a
-# staged Bundle. The image build above must have materialized dependency-owned
-# generated targets (including ProofWidgets package-lock metadata) before the
-# package closure became read-only. A source-only `lake env lean` smoke would
-# not detect a missing generated target that Lake later tries to create.
-RUN install -d -o proofweave -g proofweave -m 0700 /tmp/proofweave-external-smoke/.lake \
- && ln -s /opt/proofweave/lake-packages /tmp/proofweave-external-smoke/.lake/packages \
- && printf 'import Lake\nopen Lake DSL\npackage proofweaveExternalSmoke\nrequire mathlib from git "https://github.com/leanprover-community/mathlib4.git" @ "%s"\n@[default_target]\nlean_lib ProofweaveImageSmoke\n' "$EXPECTED_MATHLIB_REVISION" > /tmp/proofweave-external-smoke/lakefile.lean \
- && printf '%s\n' "$EXPECTED_LEAN_TOOLCHAIN" > /tmp/proofweave-external-smoke/lean-toolchain \
- && printf 'import Mathlib\n#check Nat\n' > /tmp/proofweave-external-smoke/ProofweaveImageSmoke.lean \
- && node --input-type=module -e '\
-      import { readFile, writeFile } from "node:fs/promises"; \
-      const [source, destination, revision] = process.argv.slice(1); \
-      const manifest = JSON.parse(await readFile(source, "utf8")); \
-      const mathlib = { url: "https://github.com/leanprover-community/mathlib4.git", type: "git", subDir: null, scope: "", rev: revision, name: "mathlib", manifestFile: "lake-manifest.json", inputRev: revision, inherited: false, configFile: "lakefile.lean" }; \
-      await writeFile(destination, `${JSON.stringify({ ...manifest, name: "proofweaveExternalSmoke", packages: [mathlib, ...manifest.packages] }, null, 2)}\n`); \
-    ' /opt/proofweave/lake-packages/mathlib/lake-manifest.json /tmp/proofweave-external-smoke/lake-manifest.json "$EXPECTED_MATHLIB_REVISION" \
- && chown -R proofweave:proofweave /tmp/proofweave-external-smoke \
- && su -s /bin/sh proofweave -c 'cd /tmp/proofweave-external-smoke && lake build ProofweaveImageSmoke && lake env lean ProofweaveImageSmoke.lean' \
- && rm -rf /tmp/proofweave-external-smoke
-
 RUN install -d -m 0755 /opt/proofweave \
  && node --input-type=module -e '\
   import { writeFile } from "node:fs/promises"; \
@@ -122,6 +123,37 @@ RUN install -d -m 0755 /opt/proofweave \
     leanReleaseSha256, \
   }, null, 2)}\n`, { encoding: "utf8", mode: 0o644 }); \
 ' "$PROOFWEAVE_IMAGE_METADATA" "$EXPECTED_LEAN_TOOLCHAIN" "$EXPECTED_MATHLIB_REVISION" "$LEAN_RELEASE_SHA256"
+
+
+# Publish only the minimal runtime and the exact Lean environment.
+FROM minimal-runtime
+ARG EXPECTED_LEAN_TOOLCHAIN
+ARG EXPECTED_MATHLIB_REVISION
+COPY --from=builder /opt/lean /opt/lean
+COPY --from=builder /opt/proofweave/lean-environment.json /opt/proofweave/lean-environment.json
+COPY --from=builder --chown=proofweave:proofweave /opt/proofweave/lake-packages /opt/proofweave/lake-packages
+ENV PROOFWEAVE_LAKE_PACKAGES_ROOT=/opt/proofweave/lake-packages
+
+# Exercise the full Lake build graph from an external project, exactly like a
+# staged Bundle. The image build above must have materialized dependency-owned
+# generated targets (including ProofWidgets package-lock metadata) before the
+# package closure became read-only. A source-only `lake env lean` smoke would
+# not detect a missing generated target that Lake later tries to create.
+RUN install -d -o proofweave -g proofweave -m 0700 /tmp/proofweave-external-smoke/.lake \
+ && ln -s /opt/proofweave/lake-packages /tmp/proofweave-external-smoke/.lake/packages \
+ && printf 'import Lake\nopen Lake DSL\npackage proofweaveExternalSmoke\nrequire mathlib from git "https://github.com/leanprover-community/mathlib4.git" @ "%s"\n@[default_target]\nlean_lib ProofweaveImageSmoke\n' "$EXPECTED_MATHLIB_REVISION" > /tmp/proofweave-external-smoke/lakefile.lean \
+ && printf '%s\n' "$EXPECTED_LEAN_TOOLCHAIN" > /tmp/proofweave-external-smoke/lean-toolchain \
+ && printf 'module\nimport Mathlib\n#check Nat\n' > /tmp/proofweave-external-smoke/ProofweaveImageSmoke.lean \
+ && node --input-type=module -e '\
+      import { readFile, writeFile } from "node:fs/promises"; \
+      const [source, destination, revision] = process.argv.slice(1); \
+      const manifest = JSON.parse(await readFile(source, "utf8")); \
+      const mathlib = { url: "https://github.com/leanprover-community/mathlib4.git", type: "git", subDir: null, scope: "", rev: revision, name: "mathlib", manifestFile: "lake-manifest.json", inputRev: revision, inherited: false, configFile: "lakefile.lean" }; \
+      await writeFile(destination, `${JSON.stringify({ ...manifest, name: "proofweaveExternalSmoke", packages: [mathlib, ...manifest.packages] }, null, 2)}\n`); \
+    ' /opt/proofweave/lake-packages/mathlib/lake-manifest.json /tmp/proofweave-external-smoke/lake-manifest.json "$EXPECTED_MATHLIB_REVISION" \
+ && chown -R proofweave:proofweave /tmp/proofweave-external-smoke \
+ && su -s /bin/sh proofweave -c 'cd /tmp/proofweave-external-smoke && lake build ProofweaveImageSmoke && lake env lean ProofweaveImageSmoke.lean' \
+ && rm -rf /tmp/proofweave-external-smoke
 
 LABEL org.opencontainers.image.title="Proofweave pinned Mathlib base" \
       io.proofweave.lean-toolchain="${EXPECTED_LEAN_TOOLCHAIN}" \

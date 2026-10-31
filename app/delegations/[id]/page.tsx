@@ -1,11 +1,10 @@
+import { Breadcrumb } from "@/app/components/navigation/Breadcrumb";
+import { PageTitle, Badge, Field, EmptyState, FieldList, SectionHeading, Surface } from "@/app/components/ui";
+import { SiteFrame } from "@/app/components/shell/SiteFrame";
+
 import Link from "next/link";
 import { MissingDatabaseBindingError } from "@/db";
-import {
-  getDelegationRepository,
-  type PublicDelegationRecord,
-} from "@/db/repositories/delegation";
-import { Footer } from "../../ui";
-import { Header } from "../../header";
+import { getDelegationRepository, type PublicDelegationRecord } from "@/db/repositories/delegation";
 
 export const dynamic = "force-dynamic";
 
@@ -28,18 +27,16 @@ function DelegationDocument({ delegation }: { delegation: PublicDelegationRecord
   const status = delegationStatus(delegation);
   const { certificate, evidence, signer } = delegation;
   return (
-    <div className="site-shell app-shell">
-      <Header active="workbench" />
-      <main id="main-content" tabIndex={-1} className="page-main receipt-main">
-        <div className="breadcrumb"><Link href="/workbench">Workbench</Link><span> / </span><span>Delegation certificate</span></div>
-        <section className="receipt-heading">
+    <SiteFrame className="site-shell app-shell" active="workbench" mainClassName="page-main receipt-main">
+        <Breadcrumb><Link href="/workbench">Workbench</Link><span> / </span><span>Delegation certificate</span></Breadcrumb>
+        <SectionHeading as="section" className="receipt-heading">
           <div>
             <p className="eyebrow">Public delegation record · signature rechecked</p>
-            <h1>Delegation certificate</h1>
+            <PageTitle>Delegation certificate</PageTitle>
             <p>This is a signed authority record for one Person and Agent. It is not a proof result, independent review, or Contribution Receipt.</p>
           </div>
-          <span className="record-chip">{status.label}</span>
-        </section>
+          <Badge className="record-chip">{status.label}</Badge>
+        </SectionHeading>
         <section className="receipt-summary">
           <div><span>Certificate</span><code>{certificate.id}</code></div>
           <div><span>Attributed Person</span><code>{certificate.attributionPolicy.beneficiaryPersonId}</code></div>
@@ -47,7 +44,7 @@ function DelegationDocument({ delegation }: { delegation: PublicDelegationRecord
           <div><span>Authority window</span><strong>{certificate.validFrom} → {certificate.validUntil}</strong></div>
         </section>
         <section className="receipt-grid">
-          <article className="receipt-card">
+          <Surface as="article" className="receipt-card">
             <p className="eyebrow">Authority and status</p>
             <DelegationGate label="Signed certificate" detail="Canonical payload and Ed25519 signature verified" />
             <DelegationGate label="Granted scopes" detail={certificate.scopes.join(" · ")} />
@@ -55,25 +52,23 @@ function DelegationDocument({ delegation }: { delegation: PublicDelegationRecord
             <DelegationGate label="Current authority" detail={status.detail} state={status.revoked ? "revoked" : "verified"} />
             {delegation.revocation && <div className="delegation-revocation-record"><span className="micro-label">Recorded revocation</span><strong>{delegation.revocation.revokedAt}</strong><p>{delegation.revocation.reason}</p></div>}
             {signer.keyRevocation && <div className="delegation-revocation-record"><span className="micro-label">Signer key revocation</span><strong>{signer.keyRevocation.revokedAt}</strong><p>{signer.keyRevocation.reason ?? "Historical key state is recorded without a public reason."}</p></div>}
-          </article>
-          <article className="receipt-card receipt-machine">
+          </Surface>
+          <Surface as="article" className="receipt-card receipt-machine">
             <p className="eyebrow">Machine-verifiable evidence</p>
-            <dl>
-              <div><dt>Protocol</dt><dd><code>{delegation.protocolVersion}</code></dd></div>
-              <div><dt>Signer fingerprint</dt><dd><code>{signer.fingerprint}</code></dd></div>
-              <div><dt>Signer public key</dt><dd><code>{signer.publicKey}</code></dd></div>
-              <div><dt>Agent public key</dt><dd><code>{certificate.agentPublicKey}</code></dd></div>
-              <div><dt>Payload hash</dt><dd><code>{evidence.payloadHash}</code></dd></div>
-              <div><dt>Person signature</dt><dd><code>{evidence.personSignature}</code></dd></div>
-              <div><dt>Recorded</dt><dd><code>{delegation.recordedAt}</code></dd></div>
-              <div><dt>Canonical JSON</dt><dd><Link className="text-link" href={`/api/delegations/${encodeURIComponent(certificate.id)}`}>Open delegation JSON <span>→</span></Link></dd></div>
-            </dl>
-          </article>
+            <FieldList>
+              <Field label="Protocol"><code>{delegation.protocolVersion}</code></Field>
+              <Field label="Signer fingerprint"><code>{signer.fingerprint}</code></Field>
+              <Field label="Signer public key"><code>{signer.publicKey}</code></Field>
+              <Field label="Agent public key"><code>{certificate.agentPublicKey}</code></Field>
+              <Field label="Payload hash"><code>{evidence.payloadHash}</code></Field>
+              <Field label="Person signature"><code>{evidence.personSignature}</code></Field>
+              <Field label="Recorded"><code>{delegation.recordedAt}</code></Field>
+              <Field label="Canonical JSON"><Link className="text-link" href={`/api/delegations/${encodeURIComponent(certificate.id)}`}>Open delegation JSON <span>→</span></Link></Field>
+            </FieldList>
+          </Surface>
         </section>
         <p className="receipt-note">The JSON representation includes the exact canonical payload and public signer key needed to verify the signature. It deliberately omits provider identities, display names, private keys, Agent credentials, and private reasoning.</p>
-      </main>
-      <Footer />
-    </div>
+      </SiteFrame>
   );
 }
 
@@ -91,15 +86,11 @@ function DelegationUnavailable({ unavailable }: { unavailable: boolean }) {
 
 function DelegationMessage({ title, detail, id }: { title: string; detail: string; id?: string }) {
   return (
-    <div className="site-shell app-shell">
-      <Header active="workbench" />
-      <main id="main-content" tabIndex={-1} className="page-main receipt-main">
-        <div className="breadcrumb"><Link href="/workbench">Workbench</Link><span> / </span><span>Delegation certificate</span></div>
-        <section className="receipt-heading"><div><p className="eyebrow">Public delegation record</p><h1>{title}</h1><p>{detail}</p></div><span className="record-chip">{id ? "Not found" : "Unavailable"}</span></section>
-        {id && <section className="receipt-card receipt-message"><p className="eyebrow">Requested certificate ID</p><code>{id}</code><Link className="text-link" href="/how-it-works">Read the delegation model <span>→</span></Link></section>}
-      </main>
-      <Footer />
-    </div>
+    <SiteFrame className="site-shell app-shell" active="workbench" mainClassName="page-main receipt-main">
+        <Breadcrumb><Link href="/workbench">Workbench</Link><span> / </span><span>Delegation certificate</span></Breadcrumb>
+        <SectionHeading as="section" className="receipt-heading"><div><p className="eyebrow">Public delegation record</p><PageTitle>{title}</PageTitle><p>{detail}</p></div><Badge className="record-chip">{id ? "Not found" : "Unavailable"}</Badge></SectionHeading>
+        {id && <EmptyState as="section" className="receipt-card receipt-message"><p className="eyebrow">Requested certificate ID</p><code>{id}</code><Link className="text-link" href="/how-it-works">Read the delegation model <span>→</span></Link></EmptyState>}
+      </SiteFrame>
   );
 }
 
