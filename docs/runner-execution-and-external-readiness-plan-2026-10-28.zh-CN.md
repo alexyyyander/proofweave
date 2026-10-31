@@ -2,6 +2,8 @@
 
 本文把“让一次真实研究闭环跑起来，再扩大到外部用户”拆成可执行阶段。它不是发布授权；Runner 执行、E2B/Render 变更、生产写入范围和链上交易仍需各自批准。
 
+> 2026-10-31 状态：Turso 已应用 `0050_add_runner_queue_environment.sql`（51 migrations）；36 条队列消息全部回填环境 key，且没有 queued/leased 旧消息。4.27 E2B template 与 Render 更新仍受 `E2B_API_KEY` / Render 凭据阻塞；4.31 Runner healthz 当前超时。详见 [P2 runbook](runner-p2-deployment-runbook.zh-CN.md)。
+
 ## 0. 当前基线
 
 - `main` = `544dfac`；线上部署源码与该提交一致。
