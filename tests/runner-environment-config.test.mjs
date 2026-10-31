@@ -22,6 +22,7 @@ import {
   generationSchemaVersion,
   RunnerEnvironmentGenerationError,
 } from "../scripts/generate-runner-environment-config.mjs";
+import { conformanceFixtureSetHash } from "../services/lean-runner/conformance-fixtures.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const scriptPath = path.join(root, "scripts", "check-runner-environments.mjs");
@@ -196,6 +197,7 @@ test("repository configuration registers 4.31 as approved with its template and 
   assert.equal(report.summary.routed, 1);
   assert.equal(report.summary.selected, 1);
   assert.equal(report.summary.executing, 0);
+  assert.equal(report.summary.conformancePassed, 0);
   assert.equal(report.ok, true);
   assert.deepEqual(report.inconsistencies, []);
 
@@ -429,6 +431,68 @@ test("configuration validation rejects schema, digest, template, and state viola
   );
 });
 
+test("conformance reports bind to the reviewed fixture set and failed reports are inconsistencies", async () => {
+  const fixtureSetHash = await conformanceFixtureSetHash();
+  const reportHash = `sha256:${"a".repeat(64)}`;
+  const base = {
+    workerApprovedImages: [approvedImageBinding()],
+    renderApprovedImages: [approvedImageBinding()],
+    renderExecutionImage: approvedDigest,
+    renderTemplateId: approvedTemplate.id,
+    renderTemplateBuildId: approvedTemplate.buildId,
+    renderExecutionEnabled: "false",
+  };
+
+  const passed = buildRunnerEnvironmentReport({
+    ...base,
+    config: fixtureConfig([approvedEnvironment({
+      conformance: { imageDigest: approvedDigest, fixtureSetHash, reportHash, state: "passed" },
+    })]),
+  });
+  assert.equal(passed.ok, true);
+  assert.equal(passed.summary.conformancePassed, 1);
+  assert.equal(passed.environments[0].conformanceState, "passed");
+
+  const failed = buildRunnerEnvironmentReport({
+    ...base,
+    config: fixtureConfig([approvedEnvironment({
+      conformance: { imageDigest: approvedDigest, fixtureSetHash, reportHash, state: "failed" },
+    })]),
+  });
+  assert.equal(failed.ok, false);
+  assert.ok(failed.inconsistencies.some((entry) => entry.code === "conformance_failed"));
+
+  const stale = buildRunnerEnvironmentReport({
+    ...base,
+    config: fixtureConfig([approvedEnvironment({
+      conformance: { imageDigest: approvedDigest, fixtureSetHash: `sha256:${"b".repeat(64)}`, reportHash, state: "passed" },
+    })]),
+  });
+  assert.equal(stale.ok, false);
+  assert.ok(stale.inconsistencies.some((entry) => entry.code === "conformance_fixture_set_mismatch"));
+});
+
+test("configuration validation rejects malformed conformance evidence", () => {
+  assert.throws(
+    () => validateRunnerEnvironmentsConfig(fixtureConfig([approvedEnvironment({
+      conformance: { imageDigest: approvedDigest, fixtureSetHash: "bad", reportHash: `sha256:${"a".repeat(64)}`, state: "passed" },
+    })])),
+    /conformance/,
+  );
+  assert.throws(
+    () => validateRunnerEnvironmentsConfig(fixtureConfig([approvedEnvironment({
+      conformance: { imageDigest: approvedDigest, fixtureSetHash: `sha256:${"a".repeat(64)}`, reportHash: `sha256:${"a".repeat(64)}`, state: "unknown" },
+    })])),
+    /conformance.state/,
+  );
+  assert.throws(
+    () => validateRunnerEnvironmentsConfig(fixtureConfig([approvedEnvironment({
+      conformance: { imageDigest: approvedDigest, fixtureSetHash: `sha256:${"a".repeat(64)}`, reportHash: `sha256:${"a".repeat(64)}`, state: "passed", extra: true },
+    })])),
+    /conformance contains unsupported field/,
+  );
+});
+
 test("an approved environment that is not the deployed execution image remains ready but not dispatchable", () => {
   const report = buildRunnerEnvironmentReport({
     config: fixtureConfig([approvedEnvironment(), templateReadyEnvironment({ state: "approved" })]),
@@ -651,6 +715,7 @@ test("strict mode exits 0 on the repository configuration and --json emits a rep
     routed: 1,
     selected: 1,
     executing: 0,
+    conformancePassed: 0,
     inconsistencies: 0,
   });
   assert.equal(report.ok, true);

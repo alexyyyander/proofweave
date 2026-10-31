@@ -88,6 +88,33 @@ Worker 的 `RUNNER_EXECUTION_ENVIRONMENTS_JSON` 声明已部署 Runner 及其执
 - 分发前会检查该声明：未部署或执行关闭的环境返回稳定前缀 `runner_environment_unavailable`，而不是把 Run 排队到错误的 Runner 或产生模糊的内部错误。
 - 未配置该变量时保持旧的单 Runner 行为；多个 Runner 必须声明，否则 checker 报 `execution_declaration_missing`。
 
+## 镜像 conformance
+
+`services/lean-runner/conformance-fixtures.mjs` 定义按版本执行的 fixture 集；`run-image-conformance.mjs` 在镜像内重建最小 Lake workspace，并通过真实的 `ContainerLeanExecutor` 跑：
+
+- 正常证明 `succeeded/accepted`；
+- `sorry` 被 `noSorry` 拒绝；
+- 编译错误 `failed/not_run`；
+- `Classical.choice` 公理审计（允许时通过）；
+- `_root_.` 目标名、跨模块 import、Mathlib import；
+- `native_decide` 的实际公理名（当前版本会产生 per-theorem 生成公理，默认策略因此拒绝）；
+- 4.35 专属的 `module` 语法用例（其他工具链标记 skipped）。
+
+镜像构建 workflow 在无网络容器中运行该脚本，并把 `runner-image-evidence/conformance.json` 一并上传。报告 schema 为 `pw-runner-conformance-report-v1`，包含 `fixtureSetHash`、`imageDigest`、每个 case 的 expected/observed，以及覆盖全部内容的 `reportHash`。
+
+登记表可在环境上记录：
+
+```json
+"conformance": {
+  "imageDigest": "ghcr.io/alexyyyander/proofweave-lean-runner@sha256:...",
+  "fixtureSetHash": "sha256:...",
+  "reportHash": "sha256:...",
+  "state": "passed"
+}
+```
+
+checker 校验 `imageDigest` 必须等于环境的 `imageDigest`、fixture set 哈希必须是当前仓库的 fixture 集、state 必须是 `passed`；失败或 fixture 集漂移会报 `conformance_failed` / `conformance_fixture_set_mismatch`。未记录 conformance 的环境在报告中显示 `missing`，新环境批准前应先补齐报告；旧环境不会被追溯伪造。
+
 ## 版本证据绑定
 
 新的签名 Runner result 可以携带 `environment` 块：

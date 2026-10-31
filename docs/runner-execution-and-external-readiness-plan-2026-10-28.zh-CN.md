@@ -48,9 +48,10 @@ Person A 固定目标
 - 使用当前 4.27 digest：`ghcr.io/alexyyyander/proofweave-lean-runner@sha256:3a7e335f…`。
 - 通过 `npm run runner:e2b:template:build` 从该 digest 构建 template；记录 immutable template ID 与 build ID。
 - 回读确认 template 的来源镜像就是 4.27 digest；保留 SBOM、provenance、离线 smoke 结果。
+- 回读 workflow 产出的 `runner-image-evidence/conformance.json`；把 `fixtureSetHash`、`reportHash`、`state: "passed"` 写入 4.27 环境的 `conformance` 块。
 - 如果本机磁盘不足（约 6 GiB），在有足够磁盘/凭据的环境构建，不要跳过检查。
 
-**验收**：template ID/build ID 已记录；来源 digest 可核对；4.27 environment 在 registry 中从 `built_pending_template` 变为 `template_ready`。
+**验收**：template ID/build ID 已记录；来源 digest 可核对；4.27 conformance 报告通过并绑定当前 fixture set；4.27 environment 在 registry 中从 `built_pending_template` 变为 `template_ready`。
 
 ### P2 Worker 与 Render 批准（0.5 天）
 

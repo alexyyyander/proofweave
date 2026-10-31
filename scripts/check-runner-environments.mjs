@@ -9,6 +9,9 @@ import {
   normalizeRunnerExecutionEnvironments,
   parseRunnerExecutionEnvironmentsJson,
 } from "../services/lean-runner/runner-availability.mjs";
+import { conformanceFixtureSetHash } from "../services/lean-runner/conformance-fixtures.mjs";
+
+const currentConformanceFixtureSetHash = await conformanceFixtureSetHash();
 
 export const schemaVersion = "pw-runner-environments-v2";
 export const reportSchemaVersion = "pw-runner-environment-report-v4";
@@ -86,7 +89,7 @@ function normalizeEnvironment(environment, index) {
     throw new RunnerEnvironmentConfigError(`${label} must be an object.`);
   }
   const allowedFields = [
-    "profile", "imageDigest", "leanToolchain", "mathlibRevision", "state", "sourceRun", "sourceCommit", "template",
+    "profile", "imageDigest", "leanToolchain", "mathlibRevision", "state", "sourceRun", "sourceCommit", "template", "conformance",
   ];
   const extraFields = Object.keys(environment).filter((key) => !allowedFields.includes(key));
   if (extraFields.length > 0) {
@@ -133,7 +136,37 @@ function normalizeEnvironment(environment, index) {
   if (template !== null && template.sourceImageDigest !== imageDigest) {
     throw new RunnerEnvironmentConfigError(`${label}.template.sourceImageDigest must equal ${label}.imageDigest.`);
   }
-  return { profile, imageDigest, leanToolchain, mathlibRevision, state, sourceRun, sourceCommit, template };
+  const conformance = normalizeConformance(environment.conformance, label);
+  if (conformance !== null && conformance.imageDigest !== imageDigest) {
+    throw new RunnerEnvironmentConfigError(`${label}.conformance.imageDigest must equal ${label}.imageDigest.`);
+  }
+  return { profile, imageDigest, leanToolchain, mathlibRevision, state, sourceRun, sourceCommit, template, conformance };
+}
+
+function normalizeConformance(value, label) {
+  if (value === undefined || value === null) return null;
+  if (typeof value !== "object" || Array.isArray(value)) {
+    throw new RunnerEnvironmentConfigError(`${label}.conformance must be an object or null.`);
+  }
+  const allowedFields = ["imageDigest", "fixtureSetHash", "reportHash", "state"];
+  const extraFields = Object.keys(value).filter((key) => !allowedFields.includes(key));
+  if (extraFields.length > 0) {
+    throw new RunnerEnvironmentConfigError(`${label}.conformance contains unsupported field ${extraFields[0]}.`);
+  }
+  const imageDigest = boundedString(value.imageDigest, `${label}.conformance.imageDigest`, 512);
+  const fixtureSetHash = boundedString(value.fixtureSetHash, `${label}.conformance.fixtureSetHash`, 80);
+  const reportHash = boundedString(value.reportHash, `${label}.conformance.reportHash`, 80);
+  if (
+    !imageDigestPattern.test(imageDigest) ||
+    !/^sha256:[a-f0-9]{64}$/.test(fixtureSetHash) ||
+    !/^sha256:[a-f0-9]{64}$/.test(reportHash)
+  ) {
+    throw new RunnerEnvironmentConfigError(`${label}.conformance must bind an image digest and sha256 evidence hashes.`);
+  }
+  if (!["passed", "failed"].includes(value.state)) {
+    throw new RunnerEnvironmentConfigError(`${label}.conformance.state must be passed or failed.`);
+  }
+  return Object.freeze({ imageDigest, fixtureSetHash, reportHash, state: value.state });
 }
 
 function normalizeTemplate(template, label) {
@@ -436,6 +469,28 @@ export function buildRunnerEnvironmentReport({
       executionBlockers.push("runner_execution_disabled");
     }
 
+    const conformanceState = environment.conformance === null
+      ? "missing"
+      : environment.conformance.state !== "passed"
+        ? "failed"
+        : environment.conformance.fixtureSetHash !== currentConformanceFixtureSetHash
+          ? "fixture_mismatch"
+          : "passed";
+    if (conformanceState === "failed") {
+      addInconsistency(
+        "conformance_failed",
+        `Environment ${environment.profile} recorded a failed image conformance report.`,
+        environment.profile,
+      );
+    }
+    if (conformanceState === "fixture_mismatch") {
+      addInconsistency(
+        "conformance_fixture_set_mismatch",
+        `Environment ${environment.profile} conformance was produced for a different fixture set.`,
+        environment.profile,
+      );
+    }
+
     return {
       profile: environment.profile,
       state: environment.state,
@@ -445,6 +500,8 @@ export function buildRunnerEnvironmentReport({
       sourceRun: environment.sourceRun,
       sourceCommit: environment.sourceCommit,
       template: environment.template,
+      conformance: environment.conformance,
+      conformanceState,
       deployment: {
         workerApproved,
         runnerLabels,
@@ -483,6 +540,7 @@ export function buildRunnerEnvironmentReport({
     routed: rows.filter((row) => row.routed).length,
     selected: rows.filter((row) => row.executionSelected).length,
     executing: rows.filter((row) => row.executing).length,
+    conformancePassed: rows.filter((row) => row.conformanceState === "passed").length,
     inconsistencies: inconsistencies.length,
   };
 
@@ -854,6 +912,10 @@ export function formatHumanReport(report) {
         : "none"}`,
     );
     lines.push(
+      `  conformance: ${environment.conformanceState}`
+        + (environment.conformance ? ` | report ${environment.conformance.reportHash.slice(0, 20)}…` : ""),
+    );
+    lines.push(
       `  worker allowlist: ${yesNo(environment.deployment.workerApproved)}`
         + ` | runner deployments: ${environment.deployment.runnerLabels.length > 0
           ? environment.deployment.runnerLabels.join(", ")
@@ -892,6 +954,7 @@ export function formatHumanReport(report) {
       + ` | routed ${report.summary.routed}`
       + ` | selected ${report.summary.selected}`
       + ` | executing ${report.summary.executing}`
+      + ` | conformance passed ${report.summary.conformancePassed}`
       + ` | inconsistencies ${report.summary.inconsistencies}`,
   );
   return `${lines.join("\n")}\n`;

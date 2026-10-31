@@ -243,6 +243,29 @@ jobs:
             /opt/proofweave/services/lean-runner/inspect-image-environment.mjs \
             | tee runner-image-evidence/offline-smoke.log
 
+      - name: Run version conformance fixtures without network
+        shell: bash
+        env:
+          FINAL_RUNNER_IMAGE: ${{ env.RUNNER_IMAGE_NAME }}@${{ steps.runner.outputs.digest }}
+          LEAN_TOOLCHAIN: ${{ steps.profile.outputs.lean_toolchain }}
+          MATHLIB_REVISION: ${{ steps.profile.outputs.mathlib_revision }}
+        run: |
+          set -euo pipefail
+          docker run --rm --network=none --cpus=2 --memory=3g \
+            --pids-limit=128 --tmpfs /tmp/proofweave:rw,nosuid,nodev,size=2g,mode=1777 \
+            -e EXPECTED_NODE_VERSION="$EXPECTED_NODE_VERSION" \
+            -e EXPECTED_LEAN_TOOLCHAIN="$LEAN_TOOLCHAIN" \
+            -e EXPECTED_MATHLIB_REVISION="$MATHLIB_REVISION" \
+            -e PROOFWEAVE_IMAGE_DIGEST="$FINAL_RUNNER_IMAGE" \
+            --entrypoint node "$FINAL_RUNNER_IMAGE" \
+            /opt/proofweave/services/lean-runner/run-image-conformance.mjs \
+            | tee runner-image-evidence/conformance.json
+          node --input-type=module -e '
+            import { readFileSync } from "node:fs";
+            const report = JSON.parse(readFileSync("runner-image-evidence/conformance.json", "utf8"));
+            if (report.passed !== true) throw new Error("Image conformance fixtures did not pass.");
+          '
+
       - name: Scan the exact final image for vulnerabilities
         env:
           FINAL_RUNNER_IMAGE: ${{ env.RUNNER_IMAGE_NAME }}@${{ steps.runner.outputs.digest }}
