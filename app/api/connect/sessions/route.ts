@@ -1,4 +1,4 @@
-import { MissingDatabaseBindingError, getD1 } from "@/db";
+import { MissingDatabaseBindingError, getConnectionD1 } from "@/db";
 import { LocalCodexPairingError, createLocalCodexPairing } from "@/db/repositories/local-codex-pairing";
 import { ControlPlaneReadOnlyError } from "@/services/database/control-plane-operation-mode.mjs";
 import {
@@ -25,6 +25,7 @@ export async function POST(request: Request) {
       oauthState: typeof body?.oauthState === "string" ? body.oauthState : "",
       codeChallenge: typeof body?.codeChallenge === "string" ? body.codeChallenge : "",
       connectionMode: typeof body?.connectionMode === "string" ? body.connectionMode : undefined,
+      redirectUri: body?.redirectUri === undefined ? undefined : typeof body.redirectUri === "string" ? body.redirectUri : "",
     });
     const origin = new URL(request.url).origin;
     const connectionUrl = new URL("/connect/codex", origin);
@@ -75,7 +76,7 @@ function pairingFailure(error: unknown): Response {
 
 async function enforcePairingRateLimit(request: Request) {
   const limiter = new D1RemoteMcpRateLimiter({
-    database: getD1(),
+    database: getConnectionD1(),
     policies: pairingRateLimitPolicies,
     retentionSeconds: 3_600,
   });

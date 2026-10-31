@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "pw-publication-claims-v1",
+  "familyNumber": "181",
+  "claims": [
+    {
+      "id": "181-c1",
+      "statement": "Proves that the edges of every finite simple undirected graph on <i>n</i> vertices can be partitioned into at most $`Cn`$ simple cycles and single edges, for an absolute constant <i>C</i>. This resolves the Erdős–Gallai cycle-decomposition conjecture, bounding the number of pieces linearly even for dense graphs.",
+      "assumptions": [
+        "The graph is finite, simple, and undirected.",
+        "The graph has n vertices.",
+        "C is an absolute positive constant independent of n."
+      ],
+      "conclusion": "The edge set has an edge-disjoint partition into at most Cn simple cycles and single edges; edgeless and small graphs are included.",
+      "sourceManuscriptIds": [
+        "A-linear-cycle-and-edge-decomposition-of-every-graph-September-24-2026"
+      ],
+      "sourceLocation": "unknown",
+      "leanDeclaration": {
+        "file": "lean/ComparatorChallenges/CycleDecomposition.lean",
+        "statement": "every finite simple graph on $n$ vertices has an edge-disjoint decomposition into at most $Cn$ cycles or singleton edges",
+        "status": "documented"
+      },
+      "coverage": {
+        "status": "documented",
+        "scopeExcerpt": "The Erdős–Gallai cycle-decomposition conjecture asks for a linear bound on the number of cycles and single edges needed to partition a graph's edges. The formalized result gives one absolute constant $C>0$ such that every finite simple graph on $n$ vertices has an edge-disjoint decomposition into at most $Cn$ cycles or singleton edges. Edgeless and small graphs are included. The optimal value of $C$ is not determined.",
+        "note": "The upstream scope document states the linear bound with an absolute constant C and notes that the optimal value of C is not determined. The Lean declaration name and the source section and page are unknown upstream. The source manuscript is listed in the upstream formalization index. Proofweave has not replayed the declaration. No fixed Proofweave target is mapped for this claim."
+      },
+      "target": {
+        "status": "unmapped"
+      },
+      "verification": {
+        "status": "not_run",
+        "note": "Proofweave has not run a replay for this claim; this record maps the upstream claim and is not a platform verification."
+      }
+    }
+  ]
+}

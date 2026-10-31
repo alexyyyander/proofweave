@@ -1,4 +1,6 @@
-import { PageTitle, SectionTitle, Field, ActionLink, CodeBlock, FieldList, SectionHeading, Surface } from "@/app/components/ui";
+import { Suspense } from "react";
+import { ContentLoading } from "@/app/components/ui/ContentLoading";
+import { PageTitle, SectionTitle, Field, ActionLink, CodeBlock, FieldList, Surface } from "@/app/components/ui";
 
 import { SiteFrame } from "@/app/components/shell/SiteFrame";
 
@@ -20,20 +22,19 @@ export default async function DemoPage({
     mode: params?.tamper === "artifact" ? "tampered_copy" : "reference",
     stableRun: true,
   });
-  const liveClosure = await latestLiveBuildWeekClosure().catch(() => null);
 
   return (
     <SiteFrame className="site-shell demo-shell" active="demo">
-        <SectionHeading as="section" className="demo-hero">
-          <SectionHeading as="div" className="demo-hero-copy">
+        <section className="demo-hero" aria-labelledby="demo-page-title">
+          <div className="demo-hero-copy">
             <p className="eyebrow">Verified reference · no Proofweave setup required</p>
-            <PageTitle>Watch one Lean proof become <span>verifiable evidence.</span></PageTitle>
+            <PageTitle id="demo-page-title">Watch one Lean proof become <span>verifiable evidence.</span></PageTitle>
             <p className="hero-lede">A Person delegates a local Codex Agent. The Agent signs a reproducible Lean workspace. Two clearly labelled mock owners split the independent review gates, and Proofweave verifies every cryptographic boundary.</p>
             <div className="button-row">
-              <a className="button button-primary" href="#demo-walkthrough">Run the walkthrough <span aria-hidden="true">↓</span></a>
+              <ActionLink className="button button-primary" href="#demo-walkthrough">Run the walkthrough <span aria-hidden="true">↓</span></ActionLink>
               <ActionLink className="button button-secondary" href="/start">Start with my Agent</ActionLink>
             </div>
-          </SectionHeading>
+          </div>
           <ol className="demo-chain" aria-label="Reference contribution chain">
             <li><span>01</span><div><strong>Person delegates</strong><p>A signed certificate grants one Agent formalize and prove scope.</p></div></li>
             <li><span>02</span><div><strong>Agent signs</strong><p>The target, Git commit, workspace and Lean policy become immutable.</p></div></li>
@@ -41,7 +42,7 @@ export default async function DemoPage({
             <li><span>04</span><div><strong>Mock owners review</strong><p>Two simulated Persons own distinct real keys and split replay, kernel, and project claims.</p></div></li>
             <li><span>05</span><div><strong>Person is credited</strong><p>The reference receipt binds attribution to all preceding evidence.</p></div></li>
           </ol>
-        </SectionHeading>
+        </section>
 
         <section className="demo-boundary" aria-label="Demo boundary">
           <strong>What you are seeing</strong>
@@ -49,24 +50,7 @@ export default async function DemoPage({
           <ProductStateBadge tone="verified">Local fixture + 2 mock owners</ProductStateBadge>
         </section>
 
-        <section className={`demo-live-record ${liveClosure ? "is-issued" : "is-pending"}`} id="live-network-record" aria-labelledby="demo-live-record-title">
-          <div>
-            <p className="eyebrow">Separate live protocol run</p>
-            <SectionTitle id="demo-live-record-title">{liveClosure ? "A real cloud replay produced an internal test Receipt." : "Live cloud closure has not been recorded yet."}</SectionTitle>
-            <p>{liveClosure
-              ? `The protocol run covers ${liveClosure.target}. Its ${liveClosure.reviewerCount} different-owner mock reviewer${liveClosure.reviewerCount === 1 ? " is" : "s are"} clearly labelled. The replay, ${liveClosure.attestationCount} Agent signatures, and issuer-signed Receipt remain auditable test evidence—not a public math contribution or Research Credit.`
-              : "The interactive console below verifies a checked reference fixture. It does not claim that a hosted replay or network Receipt exists until this separate panel can resolve one from shared storage."}</p>
-          </div>
-          {liveClosure ? <div className="demo-live-record-proof">
-            <FieldList>
-              <Field label="Replay"><code>{shortHash(liveClosure.replayRunId)}</code></Field>
-              <Field label="Evidence"><code>{shortHash(liveClosure.replayEvidenceHash)}</code></Field>
-              <Field label="Mock owners">{liveClosure.reviewerCount} distinct</Field>
-              <Field label="Receipt"><code>{shortHash(liveClosure.receiptHash)}</code></Field>
-            </FieldList>
-            <a className="button button-primary" href="#verification-console">Inspect verification boundary <span aria-hidden="true">↓</span></a>
-          </div> : <ProductStateBadge tone="provisional">Reference only</ProductStateBadge>}
-        </section>
+        <Suspense fallback={<ContentLoading label="Loading the live protocol record" />}><LiveProtocolRecord /></Suspense>
 
         <PageSectionNav
           tone="dark"
@@ -129,4 +113,26 @@ export default async function DemoPage({
 function shortHash(value: string) {
   const normalized = value.replace(/^sha256:/, "");
   return normalized.length > 22 ? `${normalized.slice(0, 10)}…${normalized.slice(-8)}` : value;
+}
+
+async function LiveProtocolRecord() {
+  const liveClosure = await latestLiveBuildWeekClosure().catch(() => null);
+  return (<section className={`demo-live-record ${liveClosure ? "is-issued" : "is-pending"}`} id="live-network-record" aria-labelledby="demo-live-record-title">
+          <div>
+            <p className="eyebrow">Separate live protocol run</p>
+            <SectionTitle id="demo-live-record-title">{liveClosure ? "A real cloud replay produced an internal test Receipt." : "Live cloud closure has not been recorded yet."}</SectionTitle>
+            <p>{liveClosure
+              ? `The protocol run covers ${liveClosure.target}. Its ${liveClosure.reviewerCount} different-owner mock reviewer${liveClosure.reviewerCount === 1 ? " is" : "s are"} clearly labelled. The replay, ${liveClosure.attestationCount} Agent signatures, and issuer-signed Receipt remain auditable test evidence—not a public math contribution or Research Credit.`
+              : "The interactive console below verifies a checked reference fixture. It does not claim that a hosted replay or network Receipt exists until this separate panel can resolve one from shared storage."}</p>
+          </div>
+          {liveClosure ? <div className="demo-live-record-proof">
+            <FieldList>
+              <Field label="Replay"><code>{shortHash(liveClosure.replayRunId)}</code></Field>
+              <Field label="Evidence"><code>{shortHash(liveClosure.replayEvidenceHash)}</code></Field>
+              <Field label="Mock owners">{liveClosure.reviewerCount} distinct</Field>
+              <Field label="Receipt"><code>{shortHash(liveClosure.receiptHash)}</code></Field>
+            </FieldList>
+            <a className="button button-primary" href="#verification-console">Inspect verification boundary <span aria-hidden="true">↓</span></a>
+          </div> : <ProductStateBadge tone="provisional">Reference only</ProductStateBadge>}
+        </section>);
 }

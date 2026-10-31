@@ -3,6 +3,7 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 import { createClient } from "@libsql/client";
 import { canonicalJson } from "../packages/protocol/canonical-json.mjs";
+import { runnerEnvironmentKey } from "../packages/protocol/lean-runner.mjs";
 import { LibsqlD1Database } from "../services/database/libsql-d1-adapter.mjs";
 import {
   D1RunnerLeaseQueue,
@@ -94,6 +95,73 @@ test("durable Runner queue fences concurrent and expired leases", async (t) => {
     "acknowledged",
   ]);
   assert.deepEqual(events.map((event) => event.eventSequence), [1, 2, 3, 4, 5, 6, 7]);
+});
+
+test("durable Runner queue routes claims by the signed Lean environment", async (t) => {
+  const database = await queueDatabase();
+  t.after(() => database.close());
+  const queue = new D1RunnerLeaseQueue({ database });
+  const four27 = await fixtureMessage({
+    runId: "run:queue-427",
+    idempotencyKey: "queue-427",
+    leanToolchain: "leanprover/lean4:v4.27.0",
+    mathlibRevision: "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+  });
+  const four31 = await fixtureMessage({
+    runId: "run:queue-431",
+    idempotencyKey: "queue-431",
+    leanToolchain: "leanprover/lean4:v4.31.0",
+    mathlibRevision: "9a9483a92959bc92bd6a60176dd1fe597298c1f8",
+  });
+  await seedRun(database, four27.message.runId);
+  await seedRun(database, four31.message.runId);
+  await queue.enqueue(four27.message);
+  await queue.enqueue(four31.message);
+
+  const key27 = runnerEnvironmentKey(four27.message.request.environment);
+  const key31 = runnerEnvironmentKey(four31.message.request.environment);
+  assert.notEqual(key27, key31);
+
+  const claimed27 = await queue.claim({
+    consumerId: "runner:427",
+    claimedAt: "2026-07-13T00:00:01Z",
+    leaseDurationSeconds: 30,
+    environmentKey: key27,
+  });
+  assert.equal(claimed27.message.runId, four27.message.runId);
+  assert.equal(await queue.claim({
+    consumerId: "runner:427",
+    claimedAt: "2026-07-13T00:00:02Z",
+    leaseDurationSeconds: 30,
+    environmentKey: key27,
+  }), null, "the 4.27 Runner must not claim the 4.31 Run");
+
+  const claimed31 = await queue.claim({
+    consumerId: "runner:431",
+    claimedAt: "2026-07-13T00:00:03Z",
+    leaseDurationSeconds: 30,
+    environmentKey: key31,
+  });
+  assert.equal(claimed31.message.runId, four31.message.runId);
+
+  const stored = await database.prepare(
+    "SELECT runner_environment_key FROM runner_queue_messages WHERE run_id = ?",
+  ).bind(four31.message.runId).first();
+  assert.equal(stored.runner_environment_key, key31);
+});
+
+test("durable Runner queue rejects a stored environment key that disagrees with the signed request", async (t) => {
+  const database = await queueDatabase();
+  t.after(() => database.close());
+  const queue = new D1RunnerLeaseQueue({ database });
+  const { message } = await fixtureMessage();
+  await seedRun(database, message.runId);
+  await queue.enqueue(message);
+  await database.prepare(
+    "UPDATE runner_queue_messages SET runner_environment_key = ? WHERE run_id = ?",
+  ).bind(JSON.stringify(["leanprover/lean4:v4.35.0", "wrong"]), message.runId).run();
+
+  await assert.rejects(queue.find(message.runId), RunnerQueueProtocolError);
 });
 
 test("durable Runner queue preserves idempotency, cancellation, and dead letters", async (t) => {
@@ -491,11 +559,53 @@ test("durable Runner queue refuses to synthesize a missing enqueue event after l
   );
 });
 
+test("restricted claims never take an older job or fall through after the target finishes", async (t) => {
+  const database = await queueDatabase();
+  t.after(() => database.close());
+  const queue = new D1RunnerLeaseQueue({ database });
+  const other = (await fixtureMessage({ runId: "run:a-unapproved", idempotencyKey: "unapproved" })).message;
+  const target = (await fixtureMessage({ runId: "run:z-approved", idempotencyKey: "approved" })).message;
+  for (const message of [other, target]) {
+    await seedRun(database, message.runId);
+    await queue.enqueue(message);
+  }
+  const input = { consumerId: "runner:restricted", claimedAt: "2026-07-13T00:00:01Z", runId: target.runId };
+  assert.equal(await queue.claim({ ...input, runId: "run:missing" }), null);
+  await assert.rejects(queue.claim({ ...input, runId: "" }), RunnerQueueProtocolError);
+  const claimed = await queue.claim(input);
+  assert.equal(claimed.message.runId, target.runId);
+  await queue.acknowledge({ runId: target.runId, leaseId: claimed.lease.id, acknowledgedAt: "2026-07-13T00:00:02Z" });
+  assert.equal(await queue.claim(input), null);
+  assert.equal((await queue.find(other.runId)).deliveryAttempts, 0);
+  assert.deepEqual((await queue.listEvents(other.runId)).map(e => e.eventType), ["enqueued"]);
+  const unrestricted = await queue.claim({ consumerId: "runner:normal", claimedAt: input.claimedAt });
+  assert.equal(unrestricted.message.runId, other.runId);
+});
+
+test("restricted concurrent claims fence the target while leaving another expired lease untouched", async (t) => {
+  const database = await queueDatabase();
+  t.after(() => database.close());
+  const queue = new D1RunnerLeaseQueue({ database });
+  const other = (await fixtureMessage({ runId: "run:a-expired", idempotencyKey: "expired" })).message;
+  const target = (await fixtureMessage({ runId: "run:z-target", idempotencyKey: "target" })).message;
+  for (const message of [other, target]) {
+    await seedRun(database, message.runId);
+    await queue.enqueue(message);
+  }
+  const original = await queue.claim({ consumerId: "runner:old", claimedAt: "2026-07-13T00:00:01Z", leaseDurationSeconds: 30, runId: other.runId });
+  const claims = await Promise.all(["one", "two"].map(id => queue.claim({ consumerId: `runner:${id}`, claimedAt: "2026-07-13T00:01:00Z", runId: target.runId })));
+  assert.equal(claims.filter(Boolean).length, 1);
+  assert.equal(claims.find(Boolean).message.runId, target.runId);
+  assert.equal((await queue.find(other.runId)).lease.id, original.lease.id);
+  assert.equal((await queue.find(other.runId)).deliveryAttempts, 1);
+});
+
 async function queueDatabase() {
   const database = new LibsqlD1Database(createClient({ url: "file::memory:" }));
   await database.prepare("CREATE TABLE runs (id TEXT PRIMARY KEY NOT NULL)").run();
   await applyMigration(database, "0032_add_runner_queue_leases.sql");
   await applyMigration(database, "0043_add_runner_queue_event_sequence.sql");
+  await applyMigration(database, "0050_add_runner_queue_environment.sql");
   return database;
 }
 
@@ -514,6 +624,8 @@ async function fixtureMessage({
   runId = "run:queue-fixture-1",
   idempotencyKey = "queue-fixture-1",
   cpuSeconds = 60,
+  leanToolchain = "leanprover/lean4:v4.30.0",
+  mathlibRevision = "fixture-no-mathlib",
 } = {}) {
   const pair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
   const message = await createRunnerQueueMessage({
@@ -525,7 +637,7 @@ async function fixtureMessage({
       protocolVersion: "pw-lean-runner-v1",
       jobId: runId,
       idempotencyKey,
-      attemptId: "attempt:queue-fixture-1",
+      attemptId: `attempt:${idempotencyKey}`,
       bundle: {
         objectKey: `bundles/sha256/${"a".repeat(64)}/bundle.json`,
         contentHash: sha("a"),
@@ -534,8 +646,8 @@ async function fixtureMessage({
       },
       environment: {
         imageDigest: `ghcr.io/proofweave/lean-runner@sha256:${"c".repeat(64)}`,
-        leanToolchain: "leanprover/lean4:v4.30.0",
-        mathlibRevision: "fixture-no-mathlib",
+        leanToolchain,
+        mathlibRevision,
         network: "disabled",
       },
       limits: { cpuSeconds, wallSeconds: 120, memoryMiB: 2_048, diskMiB: 2_048, outputBytes: 1_000_000 },

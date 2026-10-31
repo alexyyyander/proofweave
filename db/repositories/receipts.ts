@@ -48,6 +48,13 @@ export type PublicContributionReceipt = Readonly<{
     resultHash: string;
     status: "succeeded";
     kernelStatus: "accepted";
+    environment?: Readonly<{
+      imageDigest: string;
+      leanToolchain: string;
+      mathlibRevision: string;
+      templateId: string | null;
+      templateBuildId: string | null;
+    }>;
   }>;
   claims: readonly Readonly<{
     claimType: string;

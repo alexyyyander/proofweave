@@ -1,4 +1,5 @@
-import { getD1 } from "@/db";
+import { getD1, getResearchWriteAllowlistValues } from "@/db";
+import { assertResearchWriteAllowed } from "@/services/database/research-write-allowlist.mjs";
 import { canonicalJson, sha256Canonical } from "@/packages/protocol/canonical-json.mjs";
 
 export type ProblemProposalStatus = "submitted" | "under_review" | "accepted" | "rejected" | "withdrawn";
@@ -87,6 +88,13 @@ class D1ProblemProposalRepository {
   async create(personId: string, input: ProblemProposalInput): Promise<Readonly<{ proposal: ProblemProposal; created: boolean }>> {
     try {
       const normalized = normalizeInput(input);
+      assertResearchWriteAllowed({
+        values: getResearchWriteAllowlistValues(),
+        surface: "participant",
+        operation: "proposal:write",
+        required: ["person"],
+        personId,
+      });
       const requestHash = await sha256Canonical({
         title: normalized.title,
         domain: normalized.domain,

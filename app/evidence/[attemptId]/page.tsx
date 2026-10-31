@@ -124,7 +124,7 @@ function reviewDecisionDetail(decision: EvidenceReviewOutcome["decision"]) {
 }
 
 function RunnerResultSummary({ summary }: { summary: EvidenceRunnerResultSummary }) {
-  return <FieldList className="evidence-metadata evidence-run-summary"><Field label="Build status">{summary.status} · exit {summary.exitCode}</Field><Field label="Kernel">{summary.kernelStatus}</Field><Field label="Network">{summary.checks.network}</Field><Field label={<><code>sorry</code> audit</>}> {summary.checks.noSorry}</Field><Field label="Axiom policy">{summary.checks.allowedAxioms}</Field><Field label="Lean build">{summary.checks.leanBuild}</Field></FieldList>;
+  return <FieldList className="evidence-metadata evidence-run-summary"><Field label="Build status">{summary.status} · exit {summary.exitCode}</Field><Field label="Kernel">{summary.kernelStatus}</Field><Field label="Network">{summary.checks.network}</Field><Field label={<><code>sorry</code> audit</>}> {summary.checks.noSorry}</Field><Field label="Axiom policy">{summary.checks.allowedAxioms}</Field><Field label="Lean build">{summary.checks.leanBuild}</Field>{summary.environment && <><Field label="Runner image"><code>{summary.environment.imageDigest}</code></Field><Field label="Runner Lean"><code>{summary.environment.leanToolchain}</code> · mathlib:{summary.environment.mathlibRevision.slice(0, 12)}</Field><Field label="E2B template">{summary.environment.templateId ? <code>{summary.environment.templateId}</code> : "Not recorded"}</Field><Field label="Template build">{summary.environment.templateBuildId ? <code>{summary.environment.templateBuildId}</code> : "Not recorded"}</Field></>}</FieldList>;
 }
 
 function artifactHref(bundleManifestHash: string, artifactId: string) {

@@ -35,6 +35,20 @@ Proofweave 保留深蓝与靛蓝、温暖纸张、学术衬线标题和可检查
 
 `PageIntro` 明确提供 label/title/description/actions/meta/aside 插槽，不提供页面级 className 改写首屏字体。`SectionHeading` 继续负责内容组合；真正的分区标题使用 `SectionTitle`。组件审计禁止基础 UI 之外自行输出 h1/h2/h3；五个主入口必须使用 PageIntro，详情、账号、阅读与任务页面使用 PageTitle。SectionTitle 可选择 h2/h3；CardTitle 可选择 h2/h3/h4，HTML 语义与视觉职责分开。页面渲染测试检查主入口和二级路由只有一个主标题，且所有标题使用共享角色。
 
+## Explore 的数据量边界
+
+`/explore` 首次只读取并序列化 10 条摘要。后续搜索、筛选和排序使用 `/api/catalog/browse`，浏览器只保留当前页卡片；上一页记录只保存游标。筛选条件保存在 URL，直接打开链接时由服务端读取第一页。搜索等待输入停顿 300 毫秒，并取消旧请求。
+
+`services/catalog/browser.ts` 通过目录读取表 `catalog_browse` 查询。推荐、标题和学科排序均有索引，游标包含排序字段和记录 ID，避免深页 `OFFSET` 扫描。SQL 读取 11 个 ID 来判断是否还有下一页，再查询其中 10 条记录的全部状态和关联信息。页面只显示当前页条数，不为每次筛选执行全量精确计数。
+
+总数和贡献类型统计存放在 `catalog_browse_counts`。迁移 `0049_add_catalog_browse_index.sql` 创建结构和触发器，`scripts/backfill-catalog-browse.mjs` 分批回填现有公开目录。数据库触发器同步新增、修改、删除、公开状态、学科和集合变化。应用只修改原始目录表，不直接写读取表。读取表的整数主键也作为 FTS 文档 ID，保证数据库整理后关联稳定。
+
+搜索使用 FTS5 词前缀索引：忽略大小写和拉丁字母变音符号，多词按 AND 匹配；Lean 声明的点号和下划线按分词边界处理。它支持词首补全，不执行任意位置的子串匹配。此行为参见 [SQLite FTS5 前缀查询与索引](https://www.sqlite.org/fts5.html)。[D1 支持 FTS5](https://developers.cloudflare.com/d1/sql-api/sql-statements/)，同一查询也在本地 libSQL 上验证。
+
+首屏传输量和卡片数量不随目录总量增长；默认无筛选翻页使用索引定位。宽泛关键词、多个条件组合和大量匹配后的排序仍可能增加数据库工作量，不能把所有查询都视为常数时间。后续扩容应依据真实数据的查询计划、数据库读取量和接口 P95 延迟决定是否增加组合索引或独立搜索服务。
+
+部署顺序：先在实际目录数据库应用并验证 `0049`，再运行 `node scripts/backfill-catalog-browse.mjs apply` 分批回填并验证，最后部署页面代码。回填可安全重跑，每批最多扫描 100 条修订；迁移本身不执行全量回填。Turso 使用现有的 `npm run turso:plan`、`npm run turso:migrate` 和 `npm run turso:verify` 流程。执行 `npm run catalog:browse:check` 验证回填、同步、游标和 25,000 条记录的索引定位；构建后的 `tests/rendered-html.test.mjs` 另有首屏数据边界及分页 API 测试。
+
 ## 依赖方向
 
 ```text
@@ -91,10 +105,6 @@ Proofweave 保留深蓝与靛蓝、温暖纸张、学术衬线标题和可检查
 - 主页面正文说明提升为可读的 14px，辅助说明 12px；图表密集标签和代码仍按各自场景处理，不全局机械放大。
 - 保留深蓝、靛蓝、纸张与学术衬线风格，不套用外部产品的整套视觉。
 
-## 与现有主分支集成
-
-保留 main 的数学出版物目录、十月记录、纠错状态和时间线滚轮缩放；出版物页面与详情、BibTeX 复制操作也使用共享标题及控件。`tsx` 显式固定为开发依赖；UI 类型、组件依赖和语义检查进入既有 check / check:fast 门禁。部署需以当前 Sites 源码为底稿合入前端，不直接用 GitHub main 覆盖站点尚未同步的功能。
-
 ## 检查与扩展
 
 - 开发工作台：`/dev/components`。展示共享件、状态、纸张、键盘步骤、动态列表、两种研究卡。生产模式返回 404。
@@ -103,7 +113,7 @@ Proofweave 保留深蓝与靛蓝、温暖纸张、学术衬线标题和可检查
 - `npm run build` 与 `node --test --test-concurrency=1 tests/rendered-html.test.mjs`：生产构建和页面/权限回归。Miniflare 需要本地监听端口。
 - `node scripts/ui/audit-components.mjs --markdown`：更新下面的清单。
 
-本轮验收：前端类型检查、组件审计、7 项组件测试、53 项页面、出版物与用户流程回归、生产构建及 lint 均通过。内置浏览器检查了 1280px 横屏与 390px 窄屏下的代表性页面，包括首页、研究详情、登录、流程指南、历史、审核维护态和隐私页；未发现页面横向溢出。真实 Chrome 自动化连接不可用，不能把这些结果当作真实 Chrome 的验收。登录后权限与完整操作流程由隔离测试数据验证；本地页面仍遵守原有维护模式。
+本轮验收：前端类型检查、组件审计、7 项组件测试、50 项页面与用户流程回归、生产构建及 lint 均通过。内置浏览器检查了 1280px 横屏与 390px 窄屏下的代表性页面，包括首页、研究详情、登录、流程指南、历史、审核维护态和隐私页；未发现页面横向溢出。真实 Chrome 自动化连接不可用，不能把这些结果当作真实 Chrome 的验收。登录后权限与完整操作流程由隔离测试数据验证；本地页面仍遵守原有维护模式。
 
 为新需求选最小层级：仅排版复用 ui；重复领域展示放在 components 对应领域；数据获取、授权和提交留在 feature/route。不要在共享层导入页面或复制一套按钮、表单、纸张。
 
@@ -168,10 +178,6 @@ Proofweave 保留深蓝与靛蓝、温暖纸张、学术衬线标题和可检查
 | [app/profile/page.tsx](../app/profile/page.tsx) | route | server-compatible | ProfilePage, ProfileStat, ProfileEmpty, ProfileUnavailable |
 | [app/propose/page.tsx](../app/propose/page.tsx) | route | server-compatible | ProposePage |
 | [app/propose/ProblemProposalClient.tsx](../app/propose/ProblemProposalClient.tsx) | feature | client | ProblemProposalClient |
-| [app/publications/CitationCopyButton.tsx](../app/publications/CitationCopyButton.tsx) | feature | client | CitationCopyButton |
-| [app/publications/MathText.tsx](../app/publications/MathText.tsx) | feature | server-compatible | MathText |
-| [app/publications/openai-math/[number]/page.tsx](../app/publications/openai-math/[number]/page.tsx) | route | server-compatible | PublicationFamilyPage |
-| [app/publications/page.tsx](../app/publications/page.tsx) | route | server-compatible | PublicationsPage |
 | [app/receipt/[id]/page.tsx](../app/receipt/[id]/page.tsx) | route | server-compatible | ReceiptPage, IssuedReceipt, ReceiptGate, ReceiptNotIssued, ReceiptUnavailable, ReceiptMessage |
 | [app/receipts/page.tsx](../app/receipts/page.tsx) | route | server-compatible | ReceiptsPage, ReceiptIndexCard |
 | [app/reviews/[assignmentId]/page.tsx](../app/reviews/[assignmentId]/page.tsx) | route | server-compatible | ReviewAssignmentPage, ReviewAssignmentMessage |

@@ -3,9 +3,10 @@ import { SiteFrame } from "@/app/components/shell/SiteFrame";
 import Link from "next/link";
 
 import { getCurrentUser, signInPath } from "../auth";
+import { getResearchEligibilityForPerson } from "../lib/research-eligibility";
 import { WorkbenchClient } from "./WorkbenchClient";
 import { MyWorkOverview } from "./MyWorkOverview";
-import { loadCatalogTargets, loadWorkbenchData, requestedAttemptId, requestedParentNodeId, requestedTargetSlug } from "./workbench-data";
+import { loadCatalogTargets, loadSelectedCatalogTarget, loadWorkbenchData, requestedAttemptId, requestedParentNodeId, requestedTargetSlug } from "./workbench-data";
 import { getParticipantOperationState } from "@/db";
 
 export const dynamic = "force-dynamic";
@@ -19,21 +20,21 @@ export default async function WorkbenchPage({
   const targetSlug = requestedTargetSlug(resolvedSearchParams);
   const parentNodeId = requestedParentNodeId(resolvedSearchParams);
   const attemptId = requestedAttemptId(resolvedSearchParams);
-  const [user, catalogTargets] = await Promise.all([getCurrentUser(), loadCatalogTargets()]);
-  const selectedTarget = targetSlug
-    ? catalogTargets.find((candidate) => candidate.slug === targetSlug) ?? null
-    : null;
+  const controlPlane = getParticipantOperationState();
+  const selectedTargetPromise = targetSlug ? loadSelectedCatalogTarget(targetSlug) : Promise.resolve(null);
+  if (!controlPlane.writesEnabled) return <ReadOnlyWorkbench selectedTarget={await selectedTargetPromise} />;
+  const [user, selectedTarget] = await Promise.all([getCurrentUser(), selectedTargetPromise]);
   const returnTo = targetSlug
     ? `/workbench?target=${encodeURIComponent(targetSlug)}${parentNodeId ? `&parent=${encodeURIComponent(parentNodeId)}` : ""}#research-launcher`
     : attemptId
       ? `/workbench?attempt=${encodeURIComponent(attemptId)}`
       : "/workbench";
-  const controlPlane = getParticipantOperationState();
-
-  if (!controlPlane.writesEnabled) return <ReadOnlyWorkbench selectedTarget={selectedTarget} />;
   if (!user) return <SignedOutWorkbench signInHref={signInPath(returnTo)} selectedTarget={selectedTarget} />;
 
-  const data = await loadWorkbenchData(user);
+  const [data, catalogTargets] = await Promise.all([loadWorkbenchData(user), loadCatalogTargets()]);
+  const eligibility = await getResearchEligibilityForPerson(
+    data.profile?.person.id ?? user.personId ?? null,
+  );
   const isLegacyFocusedEntry = Boolean(targetSlug || attemptId);
 
   return <SiteFrame className="site-shell app-shell primary-page" active="workbench" mainClassName={isLegacyFocusedEntry ? "workbench-main" : "workbench-main my-work-main"}>
@@ -52,6 +53,7 @@ export default async function WorkbenchPage({
         isAuthenticated
         signInPath={signInPath(returnTo)}
         storageAvailable={data.storageAvailable}
+        eligibility={eligibility}
       /> : <MyWorkOverview
         profile={data.profile}
         initialAttempts={data.attempts}
@@ -63,6 +65,7 @@ export default async function WorkbenchPage({
         initialTargetSlug={null}
         initialParentNodeId={null}
         storageAvailable={data.storageAvailable}
+        eligibility={eligibility}
       />}
     </SiteFrame>;
 }

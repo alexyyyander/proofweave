@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "../ui/NavigationLink";
 import { type ComponentProps } from "react";
 import { cx } from "./primitives";
 

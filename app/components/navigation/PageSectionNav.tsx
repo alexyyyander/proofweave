@@ -17,3 +17,4 @@ export function PageSectionNav({
     <div>{links.map((link) => <a href={link.href} key={link.href}>{link.label}</a>)}</div>
   </nav>;
 }
+

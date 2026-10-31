@@ -1,10 +1,19 @@
 # Proofweave full contribution-chain release plan
 
+## Current status — 2026-10-20
+
+The July plan below is retained as historical design and cutover context. Production now reports migration 0049, and PR #162 is merged and deployed as a healthy paused Runner at `13c0795`. Participant/MCP research writes and Runner execution remain disabled.
+
+Use the [current component record](releases/2026-10-20-release-state.json), [migration summary](cloudflare-migration-2026-10-16.zh-CN.md), and [controlled reopening plan](research-reopening-acceptance-2026-10-20.zh-CN.md) for current preparation. Do not replay the historical 0042→0043 production migration procedure.
+
+The existing credentialed contribution checker v1 is staging-only, requires 0043 and intentionally rejects the production origin/database. The existing strict live binding also assumes Sites identity. Those checks do not certify the present Cloudflare/0049 topology. Their guards remain intact; a reviewed, versioned evidence path is required before reopening research. No current-release two-Person contribution/Receipt/Nile acceptance is claimed here.
+
+
 Status date: 2026-07-31
 Release posture: production writes remain frozen until every release gate below
 has recorded evidence.
 
-## Active execution board
+## Historical execution board (2026-07-31)
 
 | Gate | Current repository evidence | Decision |
 | --- | --- | --- |
@@ -71,7 +80,7 @@ Pinned target
 A readable website, a successful repository test, a pre-existing demo, or a
 Lean-accepted Run is not sufficient on its own.
 
-## Current recorded state
+## Historical recorded state (2026-07-31)
 
 The repository currently records:
 

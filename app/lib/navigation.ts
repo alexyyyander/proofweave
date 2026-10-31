@@ -1,4 +1,4 @@
-export type ActivePage = "home" | "showcase" | "demo" | "explore" | "publications" | "how" | "history" | "about" | "profile" | "receipt" | "review" | "workbench" | "settings";
+export type ActivePage = "none" | "home" | "showcase" | "demo" | "explore" | "publications" | "how" | "history" | "about" | "profile" | "receipt" | "review" | "workbench" | "settings";
 
 export const primaryNavigation: Array<{ href: string; label: string; page: ActivePage }> = [
   { href: "/", label: "Overview", page: "home" },
@@ -23,7 +23,9 @@ export const navigationGroups = [
     label: "Research tools",
     items: [
       { href: "/publications", label: "Publications" },
+      { href: "/proof-evolution", label: "Proof maps" },
       { href: "/reviews", label: "Review queue" },
+      { href: "/reviewers", label: "Reviewers" },
       { href: "/receipts", label: "Contribution records" },
       { href: "/demo", label: "Verification" },
     ],
@@ -34,7 +36,9 @@ export const navigationGroups = [
       { href: "/how-it-works", label: "How it works" },
       { href: "/about/principles", label: "Principles" },
       { href: "/about/catalog-standard", label: "Catalog standard" },
-      { href: "/privacy", label: "Privacy & terms" },
+      { href: "/privacy", label: "Privacy" },
+      { href: "/terms", label: "Terms" },
+      { href: "/support", label: "Support" },
     ],
   },
 ] as const;

@@ -62,6 +62,16 @@ isolate. Strict release collection separately compares `ledgerHead` with the
 repository migration head; the live projection alone does not prove source
 parity.
 
+The shared production ledger was read-only verified through
+`0049_add_catalog_browse_index.sql` on 2026-10-19 at 10:05 UTC. Its immutable
+identity is 38 statements and SHA-256
+`3b980bfe26fa27810f31bea0b345de44418ee0ca70a6259a936e6556981ef668`.
+Runner releases must include that exact SQL file. A release ending at `0048`
+rejects this ledger during startup, including when execution is disabled.
+Shipping `0049` restores source parity; it does not reapply the live migration
+or enable execution. Digest, statement-count and unknown-history checks remain
+strict. The existing bounded `0039` legacy identity is unchanged.
+
 With `RUNNER_EXECUTION_ENABLED=false`, the host performs the same database and
 release-identity verification, reports HTTP 200 with `state: paused` and
 `executionEnabled: false`, creates no lease consumer, and rejects wake
@@ -69,6 +79,20 @@ requests. This is the safe migration/deployment posture. A participant-ready
 release still requires an explicit operator change to `true`, a redeploy, and
 the controlled smoke; `paused` is healthy infrastructure, not executable
 capacity.
+
+For a controlled production smoke, set `RUNNER_ONLY_RUN_ID` to the exact approved
+Run identifier before enabling execution. The durable queue filters candidates
+before acquiring a lease. A missing, unavailable, or completed target leaves the
+consumer idle; it never falls through to other queued or expired jobs. An empty
+or malformed configured identifier fails startup. Omit the variable only when
+the operator intends to enable the general queue consumer.
+
+The restriction does not create, approve, or enqueue a Run and does not bypass
+signature, image, lease, or cancellation checks. Delivery retries still apply;
+set `RUNNER_MAX_DELIVERY_ATTEMPTS=1` when the approved smoke permits only one
+delivery attempt. Keep participant writes and scheduled anchoring paused during
+the smoke, then restore `RUNNER_EXECUTION_ENABLED=false` after collecting the
+terminal result. Do not remove the Run restriction while execution is enabled.
 
 ## Required deployment values
 

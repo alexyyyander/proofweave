@@ -56,11 +56,11 @@ export class RunnerExecutionFinalizer {
     this.verificationJobPublisher = verificationJobPublisher;
   }
 
-  async finalize({ runId, execution, receivedAt }) {
+  async finalize({ runId, execution, request = null, receivedAt }) {
     const run = await this.runStore.find(runId);
     if (!run) throw new RunnerExecutionFinalizerError("Container execution has no persisted Run.");
     const outputs = await this.outputStore.persist({ run, execution });
-    const result = await this.resultSigner.sign({ execution, run });
+    const result = await this.resultSigner.sign({ execution, run, request });
     const replayEvidence = this.replayEvidenceStore
       ? await this.replayEvidenceStore.persist({ run, result, receivedAt })
       : null;

@@ -5,7 +5,7 @@
 body { line-height: 1.45; }
 .site-header {
   gap: 18px;
-  min-height: 68px;
+  min-height: var(--site-header-height);
 }
 .brand { font-size: var(--text-lg); }
 .main-nav { gap: 20px; }
@@ -123,7 +123,7 @@ textarea { border-radius: var(--radius-control); }
 }
 
 @media (max-width: 620px) {
-  .site-header { min-height: 64px; }
+  .site-header { min-height: var(--site-header-height); }
   .site-directory-popover { width: calc(100vw - 36px); }
   .site-directory-intro { display: grid; gap: 7px 12px; padding: 13px 14px; }
   .site-directory-intro > strong { grid-column: 1 / -1; }

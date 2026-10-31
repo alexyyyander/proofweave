@@ -1,4 +1,5 @@
 import { MissingDatabaseBindingError } from "@/db";
+import { researchWriteGateFailure } from "@/app/lib/research-write-gate";
 import { ControlPlaneReadOnlyError } from "@/services/database/control-plane-operation-mode.mjs";
 import {
   getMcpRepository,
@@ -57,6 +58,8 @@ export async function requireMcpPrincipal(
 }
 
 export function mcpFailure(error: unknown): Response {
+  const gate = researchWriteGateFailure(error);
+  if (gate) return gate;
   if (
     error instanceof MissingDatabaseBindingError
     || error instanceof ControlPlaneReadOnlyError

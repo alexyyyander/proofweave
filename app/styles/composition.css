@@ -278,7 +278,7 @@
 .attempt-detail-breadcrumb { align-items: center; color: var(--ink-faint); display: flex; font-size: var(--text-2xs); gap: 8px; margin-bottom: 14px; }
 .attempt-detail-breadcrumb a { color: var(--indigo); font-weight: 700; }
 .attempt-detail-layout { align-items: start; display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr) 300px; }
-.attempt-detail-layout .workspace-status-rail { position: sticky; top: 94px; }
+.attempt-detail-layout .workspace-status-rail { position: sticky; top: calc(var(--site-header-height) + 94px); }
 .attempt-detail-layout .focus-summary { padding: 24px; }
 .attempt-detail-layout .focus-summary h1 { margin: 10px 0 14px; }
 .attempt-detail-layout .next-action-card { min-height: 190px; }

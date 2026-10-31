@@ -1,6 +1,8 @@
 import { currentEvidencePersonId, evidenceFailure } from "@/app/lib/evidence-api";
 import { hasAcceptedLeanEvidence } from "@/app/lib/evidence-eligibility";
-import { MissingDatabaseBindingError } from "@/db";
+import { researchWriteGateFailure } from "@/app/lib/research-write-gate";
+import { MissingDatabaseBindingError, getResearchWriteAllowlistValues } from "@/db";
+import { assertResearchWriteAllowed } from "@/services/database/research-write-allowlist.mjs";
 import { getEvidenceRepository } from "@/db/repositories/evidence";
 import {
   getVerificationMarketRepository,
@@ -25,6 +27,14 @@ export async function POST(_request: Request, { params }: { params: Promise<{ id
     if (!hasAcceptedLeanEvidence(evidence)) {
       return jsonError(409, "lean_not_accepted", "A complete isolated Lean Runner acceptance is required before independent review can open.");
     }
+    assertResearchWriteAllowed({
+      values: getResearchWriteAllowlistValues(),
+      surface: "participant",
+      operation: "review:publish",
+      required: ["person", "attempt"],
+      personId,
+      attemptId: evidence.summary.attemptId,
+    });
 
     const reviewMarket = await getVerificationMarketRepository().publishForBundle(
       evidence.bundle.manifestHash,
@@ -45,6 +55,8 @@ export async function POST(_request: Request, { params }: { params: Promise<{ id
     }
     return Response.json({ reviewMarket }, { headers: privateHeaders });
   } catch (error) {
+    const gate = researchWriteGateFailure(error);
+    if (gate) return gate;
     if (
       error instanceof MissingDatabaseBindingError ||
       error instanceof VerificationMarketSchemaUnavailableError

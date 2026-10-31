@@ -1,9 +1,8 @@
 "use client";
-import { Button, Input, FieldList, SectionTitle, CardTitle } from "@/app/components/ui";
 
+import { CardTitle, SectionTitle, Field, Button, FieldList, Input, SectionHeading, Surface } from "@/app/components/ui";
 
-import { useLayoutEffect, useRef, useState } from "react";
-import type { CSSProperties } from "react";
+import { useLayoutEffect, useRef, useState, type CSSProperties } from "react";
 
 export type EvidenceTone = "formal" | "reviewed" | "reproduced" | "announced" | "corrected";
 
@@ -118,13 +117,13 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
 
   return (
     <section className="history-timeline" id="timeline" aria-labelledby="timeline-title">
-      <div className="history-timeline-heading">
+      <SectionHeading as="div" className="history-timeline-heading">
         <div>
           <p className="eyebrow">{milestones.length} moments · one accelerating frontier</p>
           <SectionTitle id="timeline-title">Follow the record across 2026.</SectionTitle>
         </div>
         <p>Use Spacing or scroll over the timeline: wheel up to stretch, down to compress around the pointer. Select a numbered point in the compact view; expand to 4× to show every title. Zoom in to separate busy days. First entry and Latest entry jump directly to a record.</p>
-      </div>
+      </SectionHeading>
 
       <div className="history-timeline-controls" aria-label="Timeline controls">
         <div className="history-timeline-presets">
@@ -226,7 +225,7 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
           {milestones.map((item) => {
             const isActive = item.number === activeNumber;
             return (
-              <article
+              <Surface as="article"
                 aria-labelledby={`history-tab-${item.number}`}
                 className={`history-panel${item.frontier ? " is-frontier" : ""}`}
                 hidden={!isActive}
@@ -248,12 +247,12 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
 
                 {item.reproduction ? <div className="history-reproduction-inline"><div><span className="history-reproduction-label">Lean replay path</span><strong>{item.reproduction.label}</strong><p>{item.reproduction.detail}</p>{item.reproduction.command ? <code>{item.reproduction.command}</code> : null}</div><div className="history-reproduction-links"><a href={item.reproduction.href} rel="noreferrer" target="_blank">Open artifact <span aria-hidden="true">↗</span></a>{item.reproduction.workspaceHref && item.reproduction.workspaceLabel ? <a href={item.reproduction.workspaceHref}>{item.reproduction.workspaceLabel} <span aria-hidden="true">→</span></a> : null}</div></div> : null}
 
-                <FieldList layout="stacked" className="history-role-grid"><div><dt>AI contribution</dt><dd>{item.aiRole}</dd></div><div><dt>Human contribution</dt><dd>{item.humanRole}</dd></div><div><dt>{item.frontier ? "Evidence today" : "Why it mattered"}</dt><dd>{item.significance}</dd></div></FieldList>
+                <FieldList layout="stacked" className="history-role-grid"><Field label="AI contribution">{item.aiRole}</Field><Field label="Human contribution">{item.humanRole}</Field><Field label={<>{item.frontier ? "Evidence today" : "Why it mattered"}</>}> {item.significance}</Field></FieldList>
 
                 {item.frontier ? <div className="history-frontier-boundary"><strong>What this does—and does not—establish</strong><p>{item.boundary ?? (item.special === "riemann" ? "This improves a lower bound for a related zeta-zero problem. It does not prove or disprove the Riemann Hypothesis; the formal artifact is public, while a Proofweave replay receipt is still pending." : "The displayed algebraic claims can be checked now. The scholarly publication and attribution record are still forming, and the two-dimensional Jacobian Conjecture remains open.")}</p></div> : null}
 
                 <footer>{item.sources.map((source) => <a href={source.href} key={source.href} rel="noreferrer" target="_blank">{source.label} <span aria-hidden="true">↗</span></a>)}</footer>
-              </article>
+              </Surface>
             );
           })}
       </div>

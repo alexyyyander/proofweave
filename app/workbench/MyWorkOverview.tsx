@@ -6,10 +6,12 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { type DelegationProfile } from "@/db/repositories/delegation";
-import { type CatalogProblem } from "@/packages/domain/catalog";
+import { type WorkbenchCatalogTarget } from "../lib/runner-availability";
 import { type McpAttempt, type McpRunSummary } from "@/packages/domain/mcp";
 import { controlPlaneAvailabilityLabel, controlPlaneMaintenanceCopy, loadControlPlaneWriteAvailability, type ControlPlaneWriteAvailability } from "../lib/control-plane-write-capability";
 import { activeAttemptDelegation, activeLocalCodexInstallation } from "../lib/local-agent-journey";
+import type { ResearchEligibility } from "../lib/research-eligibility";
+import { ResearchWindowNotice } from "../components/research/ResearchWindowNotice";
 import { ResearchLauncher } from "./ResearchLauncher";
 import { AttemptStatusBadge, deriveAttemptPresentation, type AttemptBucket } from "./attempt-presentation";
 
@@ -31,6 +33,7 @@ export function MyWorkOverview({
   initialTargetSlug,
   initialParentNodeId,
   storageAvailable,
+  eligibility,
 }: {
   profile: DelegationProfile | null;
   initialAttempts: readonly McpAttempt[];
@@ -38,10 +41,11 @@ export function MyWorkOverview({
   reviewCount: number | null;
   evidenceCount: number | null;
   provisionalContributionCount: number;
-  catalogTargets: readonly CatalogProblem[];
+  catalogTargets: readonly WorkbenchCatalogTarget[];
   initialTargetSlug: string | null;
   initialParentNodeId: string | null;
   storageAvailable: boolean;
+  eligibility?: ResearchEligibility | null;
 }) {
   const router = useRouter();
   const [attempts, setAttempts] = useState<readonly McpAttempt[]>(initialAttempts);
@@ -60,6 +64,14 @@ export function MyWorkOverview({
   const attentionCount = grouped.get("needs-attention")?.length ?? 0;
   const localConnection = activeLocalCodexInstallation(profile);
   const maintenance = controlPlaneMaintenanceCopy(writeAvailability);
+  const creationBlockedByWindow = eligibility ? !eligibility.canCreateAttempt : false;
+  const connectedAgentAllowed = !eligibility || !localConnection
+    ? true
+    : eligibility.agentsAllowed.items.some((agent) => agent.id === localConnection.agentId && agent.allowed);
+  const creationBlocked = creationBlockedByWindow || (Boolean(eligibility && localConnection) && !connectedAgentAllowed);
+  const creationBlockedLabel = eligibility && localConnection && !connectedAgentAllowed
+    ? "Agent not in window"
+    : eligibility?.canWrite ? "New Attempts closed" : "Research window closed";
   const nextRecord = grouped.get("needs-attention")?.[0] ?? grouped.get("active")?.[0] ?? grouped.get("waiting")?.[0] ?? null;
   const visibleRecordCount = view === "all" ? records.length : grouped.get(view)?.length ?? 0;
   const selectedView = view === "all" ? null : sections.find((section) => section.bucket === view);
@@ -82,10 +94,12 @@ export function MyWorkOverview({
       description="See what needs you, what your Agent can continue, and which contributions are waiting for verification."
       actions={<>
         {writeAvailability === "available"
-          ? <Button variant="primary" type="button" onClick={() => setShowLauncher((current) => !current)}>{showLauncher ? "Hide new task" : "Start new research"}</Button>
+          ? <Button variant="primary" type="button" disabled={creationBlocked} onClick={() => setShowLauncher((current) => !current)}>{creationBlocked ? creationBlockedLabel : showLauncher ? "Hide new task" : "Start new research"}</Button>
           : <Button variant="secondary" disabled>{controlPlaneAvailabilityLabel(writeAvailability)}{writeAvailability === "checking" ? "…" : ""}</Button>}
         <ActionLink variant="secondary" href="/explore">Browse opportunities</ActionLink>
       </>} />
+
+    {eligibility && <div className="research-window-notice-wrap" style={{ marginBottom: 20 }}><ResearchWindowNotice eligibility={eligibility} /></div>}
 
     {writeAvailability !== "available" && <EmptyState as="section" className="my-work-empty" aria-live="polite">
       <p className="eyebrow">Read-only workspace</p>
@@ -107,7 +121,7 @@ export function MyWorkOverview({
     </div>
 
     {showLauncher && <section className="my-work-launcher" aria-label="Start new research">
-      <ResearchLauncher profile={profile} attempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={initialTargetSlug} initialParentNodeId={initialParentNodeId} onAttemptReady={onAttemptReady} isAuthenticated signInPath="/sign-in?return_to=%2Fworkbench" storageAvailable={storageAvailable} writeAvailability={writeAvailability} />
+      <ResearchLauncher profile={profile} attempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={initialTargetSlug} initialParentNodeId={initialParentNodeId} onAttemptReady={onAttemptReady} isAuthenticated signInPath="/sign-in?return_to=%2Fworkbench" storageAvailable={storageAvailable} writeAvailability={writeAvailability} eligibility={eligibility} />
     </section>}
 
     {nextRecord && <section className="my-work-next-action" aria-labelledby="my-work-next-action-title">
@@ -116,7 +130,7 @@ export function MyWorkOverview({
     </section>}
 
     {!storageAvailable ? <EmptyState as="section" className="my-work-empty"><p className="eyebrow">Workspace unavailable</p><SectionTitle>Your durable research records cannot be loaded.</SectionTitle><p>Proofweave does not substitute preview tasks when the accountable store is unavailable.</p></EmptyState>
-      : attempts.length === 0 ? <EmptyState as="section" className="my-work-empty"><p className="eyebrow">No Attempts yet</p><SectionTitle>Choose one exact target for your Agent.</SectionTitle><p>Your first Attempt creates a bounded workspace. It does not claim that work has begun or that a result is verified.</p><div className="button-row"><ActionLink className="button button-primary" href="/explore">Explore mathematics <span>→</span></ActionLink><Button className="button button-secondary" type="button" onClick={() => setShowLauncher(true)}>Open task launcher</Button></div></EmptyState>
+      : attempts.length === 0 ? <EmptyState as="section" className="my-work-empty"><p className="eyebrow">No Attempts yet</p><SectionTitle>Choose one exact target for your Agent.</SectionTitle><p>Your first Attempt creates a bounded workspace. It does not claim that work has begun or that a result is verified.</p><div className="button-row"><ActionLink className="button button-primary" href="/explore">Explore mathematics <span>→</span></ActionLink><Button className="button button-secondary" type="button" disabled={creationBlocked} onClick={() => setShowLauncher(true)}>{creationBlocked ? creationBlockedLabel : "Open task launcher"}</Button></div></EmptyState>
         : <>
           <section className="my-work-command" aria-label="Workspace task filters">
             <div><span className="micro-label">Task queue</span><strong>Focus the worklist</strong><small>Filter by the action required from you now.</small></div>

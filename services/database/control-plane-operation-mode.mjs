@@ -74,9 +74,9 @@ export function controlPlaneSurfaceOperationState({
   surfaceValue,
   surface,
 }) {
-  if (surface !== "mcp" && surface !== "participant") {
+  if (!["mcp", "participant", "account", "oauth", "connection"].includes(surface)) {
     throw new ControlPlaneOperationModeError(
-      "Control-plane surface must be mcp or participant.",
+      "Control-plane surface must be mcp, participant, account, oauth, or connection.",
     );
   }
   const global = controlPlaneOperationState(globalValue);
@@ -102,6 +102,36 @@ export function controlPlaneSurfaceOperationState({
     failureCodes: Object.freeze(failureCodes),
     global,
     configuration,
+  });
+}
+
+/** Account sessions may remain available while research writes are frozen. */
+export function accountAuthOperationState(values) {
+  return controlPlaneSurfaceOperationState({
+    globalValue: values.PROOFWEAVE_CONTROL_PLANE_MODE,
+    surfaceValue: values.PROOFWEAVE_ACCOUNT_AUTH_MODE
+      ?? values.PROOFWEAVE_PARTICIPANT_CONTROL_PLANE_MODE,
+    surface: "account",
+  });
+}
+
+/** Connection consent and token lifecycle may remain available during a research freeze. */
+export function oauthOperationState(values) {
+  return controlPlaneSurfaceOperationState({
+    globalValue: values.PROOFWEAVE_CONTROL_PLANE_MODE,
+    surfaceValue: values.PROOFWEAVE_OAUTH_CONTROL_PLANE_MODE
+      ?? values.PROOFWEAVE_PARTICIPANT_CONTROL_PLANE_MODE,
+    surface: "oauth",
+  });
+}
+
+/** Agent connection lifecycle can remain writable while research is frozen. */
+export function connectionOperationState(values) {
+  return controlPlaneSurfaceOperationState({
+    globalValue: values.PROOFWEAVE_CONTROL_PLANE_MODE,
+    surfaceValue: values.PROOFWEAVE_CONNECTION_CONTROL_PLANE_MODE
+      ?? values.PROOFWEAVE_PARTICIPANT_CONTROL_PLANE_MODE,
+    surface: "connection",
   });
 }
 
@@ -173,7 +203,7 @@ export function applyControlPlaneOperationMode(database, value) {
   });
 }
 
-function assertReadOnlySql(value) {
+export function assertReadOnlySql(value) {
   if (
     typeof value !== "string"
     || value.length === 0

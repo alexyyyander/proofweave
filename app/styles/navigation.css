@@ -23,7 +23,7 @@
 .research-index-clear { border: 0; border-radius: 2px; cursor: pointer; min-height: 41px; padding: 0 17px; }
 .research-index-clear:disabled { background: #aab2c5; cursor: default; opacity: .58; }
 .research-index-layout { align-items: start; display: grid; gap: 18px; grid-template-columns: 235px minmax(0, 1fr); }
-.research-index-filters { background: #fff; border: 1px solid var(--line); position: sticky; top: 18px; }
+.research-index-filters { background: #fff; border: 1px solid var(--line); position: sticky; top: calc(var(--site-header-height) + 18px); }
 .research-filter-heading { align-items: center; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; padding: 14px; }
 .research-filter-heading span { font-size: var(--text-sm); font-weight: 750; }
 .research-filter-heading strong { color: var(--indigo); font-size: var(--text-2xs); }
@@ -269,3 +269,21 @@
   padding-left: 7px;
   padding-right: 7px;
 }
+
+/* Route feedback and streamed section placeholders. */
+.navigation-progress { position: fixed; inset: 0 0 auto; height: 2px; z-index: 1000; pointer-events: none; overflow: hidden; background: rgba(156, 172, 246, .2); }
+.navigation-progress::after { content: ""; display: block; width: 35%; height: 100%; background: #aab8ff; animation: navigation-travel 1.2s ease-in-out infinite; }
+.navigation-status-text { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.content-loading { min-height: 240px; padding: 32px 0; color: inherit; opacity: .65; font: 400 14px/1.5 var(--font-ui); }
+.content-loading-lines { display: grid; gap: 16px; margin-top: 24px; }
+.content-loading-lines i { display: block; height: 14px; max-width: 640px; background: currentColor; opacity: .12; border-radius: 4px; }
+.content-loading-lines i:nth-child(2) { width: 85%; }
+.content-loading-lines i:nth-child(3) { width: 60%; }
+.account-loading { display: block; width: 78px; height: 36px; border-radius: 7px; background: rgba(156, 172, 246, .12); }
+.catalog-result-count { margin: 12px 0 24px; color: var(--muted); font-size: 14px; }
+@keyframes navigation-travel { from { transform: translateX(-100%); } to { transform: translateX(386%); } }
+@media (prefers-reduced-motion: reduce) { .navigation-progress::after { animation: none; width: 100%; } }
+
+.route-loading { min-height: 100svh; background: #0b1830; color: #e7ecfa; }
+
+.route-loading-content { padding: 64px max(24px, calc((100vw - 1120px) / 2)); }

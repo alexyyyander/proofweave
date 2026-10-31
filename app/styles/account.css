@@ -175,7 +175,7 @@ a.auth-provider:hover, .auth-provider-button:hover { border-color: #8295d5; box-
   .header-sign-in { font-size: var(--text-xs); padding: 8px 11px; }
   .account-avatar { height: 29px; width: 29px; }
   .account-chevron { display: none; }
-  .account-popover { position: fixed; right: 12px; top: 59px; width: min(290px, calc(100vw - 24px)); }
+  .account-popover { position: fixed; right: 12px; top: calc(var(--site-header-height) + 8px); width: min(290px, calc(100vw - 24px)); }
   .profile-main, .public-profile-main { padding-top: 42px; }
   .profile-hero { margin-left: -18px; margin-right: -18px; padding: 24px 18px; }
   .profile-avatar { font-size: var(--display-md); height: 64px; width: 64px; }

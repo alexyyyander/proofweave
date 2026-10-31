@@ -3,6 +3,7 @@ import { access, readFile, readdir } from "node:fs/promises";
 import { after, before, test } from "node:test";
 import { fileURLToPath } from "node:url";
 import { Miniflare } from "miniflare";
+import { backfillCatalogBrowseBatch } from "../services/catalog/backfill.ts";
 import { delegationPayloadHash, delegationSigningPayload } from "../packages/domain/delegation.mjs";
 import { canonicalJson, sha256Canonical } from "../packages/protocol/canonical-json.mjs";
 import { verificationReplayEvidenceHash } from "../packages/protocol/verification-replay-evidence.mjs";
@@ -27,6 +28,22 @@ import { classifyReceiptPublication } from "../services/receipts/receipt-publica
 
 const repositoryRoot = new URL("../", import.meta.url);
 const migrationsRoot = new URL("../drizzle/", import.meta.url);
+const researchWriteAllowlist = JSON.stringify({
+  schemaVersion: "pw-research-write-allowlist-v1",
+  persons: [
+    "person:fixture-owner", "person:fixture-reviewer", "person:public-delegation",
+    "person:delegation-test", "person:catalog-test",
+    "person:rendered-proposer", "person:rendered-reviewer", "person:rendered-delegation-owner",
+    "person:rendered-evidence-owner", "person:rendered-evidence-reviewer",
+  ],
+  agents: [
+    "agent:fixture-prover", "agent:fixture-curator", "agent:fixture-reviewer",
+    "agent:public-delegation", "agent:delegation-test", "agent:rendered-review-decision",
+    "agent:controlled-evidence-reviewer", "urn:pw:agent:delegation-test",
+  ],
+  attempts: ["attempt:controlled-evidence", "attempt:fixture-public"],
+  allowNewAttempts: true,
+});
 const workerRoot = new URL("../dist/server/", import.meta.url);
 let miniflare;
 let database;
@@ -54,6 +71,8 @@ before(async () => {
       PROOFWEAVE_CONTROL_PLANE_MODE: "read_write",
       PROOFWEAVE_PARTICIPANT_CONTROL_PLANE_MODE: "read_write",
       PROOFWEAVE_MCP_CONTROL_PLANE_MODE: "read_write",
+      PROOFWEAVE_PARTICIPANT_RESEARCH_WRITE_ALLOWLIST_JSON: researchWriteAllowlist,
+      PROOFWEAVE_MCP_RESEARCH_WRITE_ALLOWLIST_JSON: researchWriteAllowlist,
     },
     serviceBindings: {
       ASSETS: async () => new Response("Not found", { status: 404 }),
@@ -61,6 +80,7 @@ before(async () => {
   });
   database = await miniflare.getD1Database("DB");
   await applyMigrations(database);
+  await seedDemoPersons(database);
 });
 
 after(async () => {
@@ -188,6 +208,24 @@ test("publishes a public Connector compatibility contract", async () => {
   );
 });
 
+// The research write gate is fail-closed, so demo-only Person ids are seeded
+// before the worker starts and referenced by the test allowlist.
+async function seedDemoPersons(d1) {
+  const seededAt = "2026-07-13T00:00:00Z";
+  for (const [id, email, name] of [
+    ["person:rendered-proposer", "proposer@example.test", "Problem Proposer"],
+    ["person:rendered-reviewer", "reviewer@example.test", "Review Person"],
+    ["person:rendered-delegation-owner", "delegation-owner@example.test", "Delegation Owner"],
+    ["person:rendered-evidence-owner", "evidence-owner@example.test", "Evidence Owner"],
+    ["person:rendered-evidence-reviewer", "evidence-reviewer@example.test", "Evidence Reviewer"],
+  ]) {
+    await d1.prepare(
+      `INSERT OR IGNORE INTO persons (id, identity_provider, provider_subject, display_name, updated_at)
+       VALUES (?, 'chatgpt', ?, ?, ?)`,
+    ).bind(id, email, name, seededAt).run();
+  }
+}
+
 async function applyMigrations(d1, onlySeed = false) {
   const filenames = (await readdir(migrationsRoot))
     .filter((filename) => filename.endsWith(".sql"))
@@ -203,6 +241,14 @@ async function applyMigrations(d1, onlySeed = false) {
 
     for (const statement of statements) {
       await d1.prepare(statement).run();
+    }
+  }
+  if (!onlySeed) {
+    let afterId = "";
+    for (;;) {
+      const batch = await backfillCatalogBrowseBatch(d1, afterId);
+      if (!batch.nextId) break;
+      afterId = batch.nextId;
     }
   }
 }
@@ -995,6 +1041,7 @@ test("serves the public research paths", async () => {
   assert.match(detailHtml, /Policy first\. Pool second\./i);
   assert.match(detailHtml, /Token or compute spend never mints mathematical credit/i);
   assert.match(detailHtml, /No public research checkpoint yet/i);
+  assert.match(detailHtml, /Hosted Runner not configured/i);
   assert.match(detailHtml, /Start with my Agent/i);
   assert.match(detailHtml, /workbench\?target=erdos-865/i);
 
@@ -1011,7 +1058,8 @@ test("serves the public research paths", async () => {
   assert.match(exploreHtml, /Inspect proof/i);
   assert.doesNotMatch(exploreHtml, /Show Lean/i);
   assert.match(exploreHtml, /Hadwiger–Nelson Problem/i);
-  assert.match(exploreHtml, /Navier–Stokes Existence and Smoothness/i);
+  const navierHtml = await (await render("/explore?q=Navier")).text();
+  assert.match(navierHtml, /Navier–Stokes Existence and Smoothness/i);
   assert.match(exploreHtml, /P versus NP/i);
   assert.match(exploreHtml, /Smooth Poincaré conjecture in dimension four/i);
   assert.match(exploreHtml, /Number theory/i);
@@ -1174,8 +1222,8 @@ test("publishes a sourced AI mathematics record without flattening evidence stat
   assert.match(html, /openai\.com\/index\/model-disproves-discrete-geometry-conjecture/i);
   assert.match(html, /mathoverflow\.net\/questions\/130777/i);
   assert.doesNotMatch(html, /peer-reviewed Jacobian counterexample/i);
-  assert.match(html, /Updated 13 October 2026/i);
-  assert.match(html, /Latest source review: 13 October 2026/i);
+  assert.match(html, /Updated 28 October 2026/i);
+  assert.match(html, /Latest source review: 28 October 2026/i);
   assert.match(html, /arxiv\.org\/abs\/2608\.19068/i);
   assert.match(html, /No generative-AI contribution is disclosed/i);
   assert.match(html, /arxiv\.org\/abs\/2608\.19301/i);
@@ -1198,9 +1246,18 @@ test("publishes a sourced AI mathematics record without flattening evidence stat
   assert.match(html, /three withdrawals after a sign error/i);
   assert.match(html, /Plasma reports Erdős #809/i);
   assert.match(html, /no outside human review/i);
+  assert.match(html, /OpenAI releases an ETH refutation claim/i);
+  assert.match(html, /strongest manuscript bounds are not all covered/i);
+  assert.match(html, /all-dimensional local smoothing claim/i);
+  assert.match(html, /Strict-range restriction estimates do not establish every endpoint/i);
+  assert.match(html, /OpenAI announces Yang–Mills existence work/i);
+  assert.match(html, /proof artifacts not public/i);
+  assert.match(html, /Clay also requires a positive mass gap/i);
+  assert.match(html, /7ef5c0cc5ca4b0e072b7a050fca09ab24bc6fa3a\/lean\/docs\/378.md/i);
+  assert.match(html, /7ef5c0cc5ca4b0e072b7a050fca09ab24bc6fa3a\/lean\/docs\/079.md/i);
   assert.match(html, /href="\/publications"/i);
-  assert.equal((html.match(/role="tab"/g) ?? []).length, 22);
-  const newestPosition = html.match(/id="history-tab-22"[^>]*style="[^"]*left:([\d.]+)%/);
+  assert.equal((html.match(/role="tab"/g) ?? []).length, 25);
+  const newestPosition = html.match(/id="history-tab-25"[^>]*style="[^"]*left:([\d.]+)%/);
   assert.ok(newestPosition, "The October record must have a timeline position");
   assert.ok(Number(newestPosition[1]) >= 2 && Number(newestPosition[1]) <= 98, "October records must remain inside the timeline");
 });
@@ -3357,3 +3414,136 @@ async function sha256Bytes(value) {
   const digest = await crypto.subtle.digest("SHA-256", value);
   return `sha256:${[...new Uint8Array(digest)].map((byte) => byte.toString(16).padStart(2, "0")).join("")}`;
 }
+
+
+test("Explore bounds SSR and API results and applies filters before pagination", async () => {
+  const records = (await (await render("/api/catalog")).json()).records;
+  const firstResponse = await render("/api/catalog/browse");
+  assert.equal(firstResponse.status, 200);
+  const first = await firstResponse.json();
+  assert.equal(first.records.length, 10);
+  assert.ok(first.nextCursor);
+  const html = await (await render("/explore")).text();
+  assert.equal((html.match(/class="[^"]*research-result-card"/g) ?? []).length, 10);
+  assert.match(html, /Next page/);
+  assert.match(html, /Previous page/);
+  const firstIds = new Set(first.records.map(record => record.id));
+  const offPage = records.find(record => !firstIds.has(record.id));
+  assert.ok(offPage);
+  assert.ok(!html.includes(`/explore/${offPage.slug}`), "off-page records must not appear in HTML or the RSC payload");
+
+  const seen = first.records.map(record => record.id);
+  let cursor = first.nextCursor;
+  while (cursor) {
+    const response = await render(`/api/catalog/browse?${new URLSearchParams({ cursor })}`);
+    assert.equal(response.status, 200);
+    const page = await response.json();
+    assert.ok(page.records.length <= 10);
+    seen.push(...page.records.map(record => record.id));
+    cursor = page.nextCursor;
+  }
+  assert.equal(new Set(seen).size, seen.length, "pages must not repeat records");
+  assert.deepEqual([...seen].sort(), records.map(record => record.id).sort());
+  const query = "q=Legendre&kind=formalize&sort=title";
+  const filtered = await (await render(`/api/catalog/browse?${query}`)).json();
+  assert.ok(filtered.records.length > 0);
+  assert.ok(filtered.records.every(record => /Legendre/i.test(record.title)));
+  const filteredHtml = await (await render(`/explore?${query}`)).text();
+  assert.equal((filteredHtml.match(/class="[^"]*research-result-card"/g) ?? []).length, filtered.records.length);
+  assert.ok(filteredHtml.includes(`/explore/${filtered.records[0].slug}`));
+  assert.equal((await render("/api/catalog/browse?cursor=malformed")).status, 400);
+  const mismatched = new URLSearchParams({ cursor: first.nextCursor, sort: "title" });
+  assert.equal((await render(`/api/catalog/browse?${mismatched}`)).status, 400);
+});
+
+test("homepage selects only three complete public research records", async () => {
+  const records = (await (await render("/api/catalog")).json()).records;
+  const html = await (await render("/")).text();
+  const cards = [...html.matchAll(/<article class="ui-surface ui-surface-plain project-card">([\s\S]*?)<\/article>/g)].map(match => match[1]);
+  assert.equal(cards.length, 3);
+  for (const [index, card] of cards.entries()) {
+    assert.ok(card.includes(`/explore/${records[index].slug}`));
+    for (const status of records[index].displayStatuses) assert.ok(card.includes(status), status);
+  }
+});
+
+test("anonymous workspace entry needs no catalog or account tables", async (t) => {
+  const entrypoint = fileURLToPath(new URL("index.js", workerRoot));
+  const modules = await listJavaScriptModules(workerRoot);
+  const emptyRuntime = new Miniflare({
+    modules: [{ type: "ESModule", path: entrypoint }, ...modules.filter(path => path !== entrypoint).map(path => ({ type: "ESModule", path }))],
+    modulesRoot: fileURLToPath(workerRoot), compatibilityDate: "2026-05-15", compatibilityFlags: ["nodejs_compat"],
+    d1Databases: ["DB"],
+    bindings: { PROOFWEAVE_CONTROL_PLANE_MODE: "read_write", PROOFWEAVE_PARTICIPANT_CONTROL_PLANE_MODE: "read_write" },
+    serviceBindings: { ASSETS: async () => new Response("Not found", { status: 404 }) },
+  });
+  t.after(() => emptyRuntime.dispose());
+  const response = await emptyRuntime.dispatchFetch("http://localhost/workbench", { headers: { accept: "text/html" } });
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /One private place for your Agent/);
+  assert.match(html, /Sign in to begin/);
+  assert.doesNotMatch(html, /no such table|Internal Server Error/);
+});
+
+test("research writes fail closed without a configured allowlist", async (t) => {
+  const entrypoint = fileURLToPath(new URL("index.js", workerRoot));
+  const modules = await listJavaScriptModules(workerRoot);
+  const worker = new Miniflare({
+    modules: [{ type: "ESModule", path: entrypoint }, ...modules.filter(path => path !== entrypoint).map(path => ({ type: "ESModule", path }))],
+    modulesRoot: fileURLToPath(workerRoot), compatibilityDate: "2026-05-15", compatibilityFlags: ["nodejs_compat"],
+    d1Databases: ["DB"],
+    bindings: { PROOFWEAVE_CONTROL_PLANE_MODE: "read_write", PROOFWEAVE_PARTICIPANT_CONTROL_PLANE_MODE: "read_write" },
+    serviceBindings: { ASSETS: async () => new Response("Not found", { status: 404 }) },
+  });
+  t.after(() => worker.dispose());
+  await applyMigrations(await worker.getD1Database("DB"));
+  const response = await worker.dispatchFetch("http://localhost/api/me/problem-proposals", {
+    method: "POST",
+    headers: {
+      accept: "application/json",
+      "content-type": "application/json",
+      "oai-authenticated-user-email": "unconfigured-window@example.test",
+      "oai-authenticated-user-full-name": "Unconfigured%20Window",
+      "oai-authenticated-user-full-name-encoding": "percent-encoded-utf-8",
+    },
+    body: JSON.stringify({
+      title: "Must not be written", domain: "Test",
+      informalStatement: "No write should occur.", motivation: "Fail closed.",
+      sourceUrl: null, idempotencyKey: "unconfigured-window-1",
+    }),
+  });
+  assert.equal(response.status, 503);
+  assert.equal((await response.json()).error.code, "unavailable");
+});
+
+test("a Person outside the write window is denied even when the allowlist is configured", async () => {
+  const response = await render("/api/me/problem-proposals", {
+    method: "POST",
+    headers: {
+      accept: "application/json",
+      "content-type": "application/json",
+      "oai-authenticated-user-email": "outside-window@example.test",
+      "oai-authenticated-user-full-name": "Outside%20Window",
+      "oai-authenticated-user-full-name-encoding": "percent-encoded-utf-8",
+    },
+    body: JSON.stringify({
+      title: "Must not be written", domain: "Test",
+      informalStatement: "No write should occur.", motivation: "Not in the window.",
+      sourceUrl: null, idempotencyKey: "outside-window-1",
+    }),
+  });
+  assert.equal(response.status, 403);
+  assert.equal((await response.json()).error.code, "forbidden");
+});
+
+test("capabilities publish the gate state without identifiers", async () => {
+  const response = await render("/api/mcp/capabilities", { headers: { accept: "application/json" } });
+  const body = await response.json();
+  assert.equal(body.researchWriteGate.participant.valid, true);
+  assert.equal(body.researchWriteGate.participant.allowNewAttempts, true);
+  assert.equal(body.researchWriteGate.participant.personCount > 0, true);
+  assert.equal(JSON.stringify(body.researchWriteGate).includes("person:fixture-owner"), false);
+  assert.equal(body.runnerEnvironments.state, "unconfigured");
+  assert.deepEqual(body.runnerEnvironments.environments, []);
+});

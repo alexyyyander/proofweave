@@ -1,5 +1,6 @@
 /* Shared visual tokens. Feature layouts consume these without redefining the scale. */
 :root {
+  --site-header-height: 68px;
   --type-card-title: 20px;
   --type-body: 14px;
   --type-caption: 12px;
@@ -77,7 +78,7 @@
 }
 
 @media (max-width: 620px) {
-  :root { --type-page-title: 32px; }
+  :root { --type-page-title: 32px; --site-header-height: 64px; }
 }
 
 /* next/font variables live on body; aliases must resolve in that scope. */

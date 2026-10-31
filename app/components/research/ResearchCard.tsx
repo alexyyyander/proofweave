@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "../ui/NavigationLink";
 import { type CatalogProblemSummary } from "@/packages/domain/catalog";
 import { CardTitle, Surface, FieldList, Field, Badge, ActionLink } from "../ui";
 import { StatusStack } from "../evidence/Status";
@@ -50,3 +50,4 @@ function workLabel(project: CatalogProblemSummary) {
   if (project.researchStatus === "research_solved") return "Known result · proof wanted";
   return "Open conjecture";
 }
+

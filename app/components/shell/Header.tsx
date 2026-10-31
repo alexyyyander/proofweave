@@ -1,13 +1,13 @@
-import Link from "next/link";
+import { Suspense } from "react";
+import Link from "../ui/NavigationLink";
 import { BrandMark } from "../ui";
 import { getCurrentUser, providerAwareSignOutPath, signInPath } from "@/app/auth";
 import { navigationGroups, primaryNavigation, type ActivePage } from "@/app/lib/navigation";
 
-export async function Header({ active, activeHref }: { active: ActivePage; activeHref?: string }) {
-  const user = await getCurrentUser();
+export function Header({ active, activeHref, skipTarget = "main-content" }: { active: ActivePage; activeHref?: string; skipTarget?: string }) {
 
   return <>
-    <a className="skip-link" href="#main-content">Skip to main content</a>
+    <a className="skip-link" href={`#${skipTarget}`}>Skip to main content</a>
     <header className="site-header">
       <Link className="brand" href="/" aria-label="Proofweave home"><BrandMark /><span>Proofweave</span></Link>
       <nav className="main-nav" aria-label="Primary navigation">
@@ -33,18 +33,7 @@ export async function Header({ active, activeHref }: { active: ActivePage; activ
             </nav>
           </div>
         </details>
-        {user
-          ? <details className={active === "profile" || active === "settings" ? "account-menu is-active" : "account-menu"} name="header-overlays">
-            <summary aria-label={`Open account menu for ${user.displayName}`}><span className="account-avatar" aria-hidden="true">{initials(user.displayName)}</span><span className="account-menu-name">{user.displayName}</span><span className="account-chevron" aria-hidden="true">⌄</span></summary>
-            <div className="account-popover">
-              <div className="account-popover-identity"><strong>{user.displayName}</strong><span>{user.email} · {user.providerLabel}</span></div>
-              <Link href="/profile">My profile <span>→</span></Link>
-              <Link href="/reviews">My reviews <span>→</span></Link>
-              <Link href="/settings">Agent settings <span>→</span></Link>
-              <Link className="account-sign-out" href={providerAwareSignOutPath(user, "/")}>Sign out <span>→</span></Link>
-            </div>
-          </details>
-          : <Link className="header-sign-in" href={signInPath("/profile")}>Sign in</Link>}
+        <Suspense fallback={<span className="account-loading" role="status" aria-label="Loading account" />}><AccountMenu active={active} /></Suspense>
       </div>
     </header>
   </>;
@@ -64,7 +53,6 @@ function navigationItemActive(active: ActivePage, href: string, activeHref?: str
     about: "/about",
     demo: "/demo",
     explore: "/explore",
-    publications: "/publications",
     history: "/history",
     how: "/how-it-works",
     profile: "/profile",
@@ -75,4 +63,20 @@ function navigationItemActive(active: ActivePage, href: string, activeHref?: str
     workbench: "/workbench",
   };
   return activeRootHref[active] === href;
+}
+
+async function AccountMenu({ active }: { active: ActivePage }) {
+  const user = await getCurrentUser();
+  return (user
+          ? <details className={active === "profile" || active === "settings" ? "account-menu is-active" : "account-menu"} name="header-overlays">
+            <summary aria-label={`Open account menu for ${user.displayName}`}><span className="account-avatar" aria-hidden="true">{initials(user.displayName)}</span><span className="account-menu-name">{user.displayName}</span><span className="account-chevron" aria-hidden="true">⌄</span></summary>
+            <div className="account-popover">
+              <div className="account-popover-identity"><strong>{user.displayName}</strong><span>{user.email} · {user.providerLabel}</span></div>
+              <Link href="/profile">My profile <span>→</span></Link>
+              <Link href="/reviews">My reviews <span>→</span></Link>
+              <Link href="/settings">Agent settings <span>→</span></Link>
+              <Link className="account-sign-out" href={providerAwareSignOutPath(user, "/")}>Sign out <span>→</span></Link>
+            </div>
+          </details>
+          : <Link className="header-sign-in" href={signInPath("/profile")}>Sign in</Link>);
 }

@@ -1,4 +1,5 @@
 import type { HistoryMilestone } from "./HistoryTimeline";
+import { october26Milestones } from "./october26";
 
 export const milestones: HistoryMilestone[] = [
   {
@@ -474,7 +475,7 @@ export const milestones: HistoryMilestone[] = [
       command: "lake exe cache get · lake build Solution",
     },
     frontier: true,
-    latest: true,
     timelineLane: "below",
   },
+  ...october26Milestones,
 ];

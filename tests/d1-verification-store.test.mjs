@@ -308,6 +308,34 @@ test("positive kernel acceptance requires this reviewer Agent's successful exact
   assert.equal((await store.requireAssignment("assignment:kernel-truth-boundary")).status, "completed");
 });
 
+test("fresh replay preserves dispatch and execution times while rejecting invalid chronology", async () => {
+  const store = new D1VerificationStore(database);
+  for (const claimType of ["bundle_reproducible", "kernel_accepted"]) {
+    const bundleHash = await seedAdditionalBundle(database, `transport-latency-${claimType}`);
+    const assignmentId = `assignment:transport-latency-${claimType}`;
+    await store.assign({id:assignmentId,artifactBundleManifestHash:bundleHash,claimType,verifierPersonId:"person:bob",assignedAt:"2026-07-13T02:00:00Z"});
+    await store.accept(assignmentId,"person:bob","2026-07-13T02:00:01Z");
+    const times = {requestedAt:"2026-07-13T02:00:02Z",runStartedAt:"2026-07-13T02:00:03Z",startedAt:"2026-07-13T02:00:04Z",finishedAt:"2026-07-13T02:00:05Z",recordedAt:"2026-07-13T02:00:06Z"};
+    for (const [tag,patch] of [
+      ["execution-before-dispatch",{startedAt:"2026-07-13T02:00:02.500Z"}],
+      ["dispatch-before-request",{runStartedAt:"2026-07-13T02:00:01.500Z"}],
+      ["invalid-dispatch-time",{runStartedAt:"invalid-time"}],
+      ["altered-finish-projection",{runFinishedAt:"2026-07-13T02:00:05.500Z"}],
+    ]) {
+      const replay = await seedReplayEvidence(database,{assignmentId,bundleHash,tag:`${claimType}-${tag}`,...times,...patch});
+      await assert.rejects(store.recordAttestation(await signedAttestation({id:`attestation:${claimType}-${tag}`,assignmentId,artifactBundleHash:bundleHash,claimType,evidenceHash:replay.evidenceHash,attestedAt:"2026-07-13T02:00:07Z"})), /exact immutable projection/);
+      assert.equal(await database.prepare("SELECT COUNT(*) AS count FROM verification_attestations WHERE assignment_id = ?").bind(assignmentId).first("count"),0);
+      assert.equal((await store.requireAssignment(assignmentId)).status,"accepted");
+    }
+    const replay = await seedReplayEvidence(database,{assignmentId,bundleHash,tag:`${claimType}-valid-transport-latency`,...times});
+    const attestation = await signedAttestation({id:`attestation:${claimType}-valid-transport-latency`,assignmentId,artifactBundleHash:bundleHash,claimType,evidenceHash:replay.evidenceHash,attestedAt:"2026-07-13T02:00:07Z"});
+    assert.equal((await store.recordAttestation(attestation)).created,true);
+    assert.equal((await store.recordAttestation(attestation)).created,false);
+    const run = await database.prepare("SELECT started_at FROM runs WHERE id = ?").bind(replay.runId).first();
+    assert.equal(run.started_at,times.runStartedAt);
+  }
+});
+
 test("attestation closure is atomic and canonical retries repair only exact legacy partial state", async () => {
   const store = new D1VerificationStore(database);
   const atomicBundleHash = await seedAdditionalBundle(database, "atomic-attestation");
@@ -1021,6 +1049,8 @@ async function seedReplayEvidence(d1, {
   startedAt = "2026-07-13T01:00:01Z",
   finishedAt = "2026-07-13T01:00:01Z",
   recordedAt = "2026-07-13T01:00:01Z",
+  runStartedAt,
+  runFinishedAt,
 }) {
   const runId = `run:verification-replay:${tag}`;
   const replayId = `verification-replay:${tag}`;
@@ -1094,8 +1124,8 @@ async function seedReplayEvidence(d1, {
         `verification-replay:${tag}`,
         runnerResult.status,
         requestedAt,
-        runnerResult.startedAt,
-        runnerResult.finishedAt,
+        runStartedAt ?? runnerResult.startedAt,
+        runFinishedAt ?? runnerResult.finishedAt,
         runnerResultHash,
         runnerResult.finishedAt,
       ),

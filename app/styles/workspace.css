@@ -2,7 +2,7 @@
    center, personal records stay discoverable at left, and verification remains
    visible without forcing every lifecycle section into one long document. */
 .workbench-main { max-width: 1510px; padding-top: 32px; }
-.workspace-topbar { align-items: center; background: #fff; border: 1px solid var(--line); display: grid; gap: 18px; grid-template-columns: 210px minmax(280px, 1fr) auto; margin-bottom: 16px; min-height: 78px; padding: 13px 16px; position: sticky; top: 0; z-index: 1; }
+.workspace-topbar { align-items: center; background: #fff; border: 1px solid var(--line); display: grid; gap: 18px; grid-template-columns: 210px minmax(280px, 1fr) auto; margin-bottom: 16px; min-height: 78px; padding: 13px 16px; position: sticky; top: var(--site-header-height); z-index: 1; }
 .workspace-topbar-title { display: grid; gap: 5px; }
 .workspace-topbar-title .micro-label { color: var(--indigo); margin: 0; }
 .workspace-topbar-title > strong { font-family: var(--font-editorial); font-size: var(--display-xs); font-weight: 400; letter-spacing: -.025em; line-height: 1.1; margin: 0; }
@@ -43,7 +43,7 @@
 .first-contribution-boundary { color: var(--ink-faint); font-size: 12px; line-height: 1.5; margin: 10px 0 0; }
 
 .workspace-shell { align-items: start; display: grid; gap: 16px; grid-template-columns: 220px minmax(0, 1fr) 300px; }
-.workspace-sidebar, .workspace-status-rail { position: sticky; top: 94px; }
+.workspace-sidebar, .workspace-status-rail { position: sticky; top: calc(var(--site-header-height) + 94px); }
 .workspace-sidebar { background: #fff; border: 1px solid var(--line); min-width: 0; }
 .workspace-sidebar > section { padding: 15px; }
 .workspace-sidebar-heading { align-items: center; color: var(--ink-faint); display: flex; font-size: var(--text-2xs); font-weight: 700; justify-content: space-between; letter-spacing: .06em; text-transform: uppercase; }
@@ -177,7 +177,7 @@
    and Agent settings retain the same research context and aggregate counts. */
 .personal-workspace-main { max-width: 1510px; }
 .personal-workspace-frame { align-items: start; display: grid; gap: 22px; grid-template-columns: 220px minmax(0, 1fr); }
-.personal-workspace-frame-sidebar { background: #fff; border: 1px solid var(--line); position: sticky; top: 20px; }
+.personal-workspace-frame-sidebar { background: #fff; border: 1px solid var(--line); position: sticky; top: calc(var(--site-header-height) + 20px); }
 .personal-workspace-current { background: var(--navy); color: #eef3ff; display: grid; gap: 8px; padding: 17px 15px; }
 .personal-workspace-current .micro-label { color: #9eb1da; margin: 0; }
 .personal-workspace-current > a:not(.personal-workspace-start) { color: #f5f7ff; font-family: var(--font-editorial); font-size: var(--display-xs); letter-spacing: -.025em; line-height: 1.12; }

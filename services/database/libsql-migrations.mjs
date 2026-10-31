@@ -224,6 +224,16 @@ function freezePlan({ history, applied, ledgerPresent, fresh }) {
   });
 }
 
+/** Offline identity check of a complete exported ledger; this proves no live DB state. */
+export function verifyProofweaveMigrationLedger({ migrations, rows } = {}) {
+  const history = requireMigrationHistory(migrations);
+  const applied = validateAppliedRows(rows, history);
+  if (applied.length !== history.length) {
+    throw new ProofweaveMigrationError("Migration ledger is incomplete.");
+  }
+  return Object.freeze({ migrationCount: applied.length, latestMigration: applied.at(-1).name });
+}
+
 function validateAppliedRows(rows, history) {
   if (!Array.isArray(rows) || rows.length > history.length) {
     throw new ProofweaveMigrationError("Migration ledger contains an unsupported history length.");

@@ -256,9 +256,70 @@ test("Container Lean executor builds dependencies once and audits the exact entr
     const auditSource = await readFile(join(workspaceDirectory, ".captured-audit"), "utf8");
     assert.match(auditSource, /theorem true_is_inhabited : True := True\.intro/);
     assert.match(auditSource, /#print axioms ProofweaveFixture\.true_is_inhabited/);
+    assert.match(auditSource, /set_option pp\.fullNames true in\n#print axioms/);
     assert.doesNotMatch(auditSource, /^import ProofweaveFixture$/m);
   } finally {
     await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("Container Lean executor binds real multi-declaration axiom reports to the selected target", async (t) => {
+  const source = [
+    "namespace AxiomFixture",
+    "axiom firstFact : True",
+    "axiom secondFact : True",
+    "theorem independent : True := True.intro",
+    "theorem firstDependent : True := firstFact",
+    "theorem secondDependent : True := secondFact",
+    "#print axioms independent",
+    "#print axioms firstDependent",
+    "#print axioms secondDependent",
+    "end AxiomFixture",
+    "",
+  ].join("\n");
+  for (const fixture of [
+    { id: "second-not-first", declaration: "AxiomFixture.secondDependent", allowed: ["AxiomFixture.firstFact"], expected: "rejected" },
+    { id: "first-not-empty", declaration: "AxiomFixture.firstDependent", allowed: [], expected: "rejected" },
+    { id: "independent-target", declaration: "AxiomFixture.independent", allowed: [], expected: "succeeded" },
+    { id: "matching-dependency", declaration: "AxiomFixture.secondDependent", allowed: ["AxiomFixture.secondFact"], expected: "succeeded" },
+  ]) {
+    await t.test(fixture.id, async () => {
+      const execution = await executeAxiomFixture({ ...fixture, source });
+      assert.equal(execution.result.status, fixture.expected, execution.stdout.toString("utf8"));
+      assert.equal(execution.result.checks.allowedAxioms, fixture.expected === "succeeded" ? "passed" : "failed");
+      assert.equal(execution.result.checks.noSorry, "passed");
+      assert.equal(execution.result.checks.leanBuild, "passed");
+      assert.equal(execution.result.kernelStatus, fixture.expected === "succeeded" ? "accepted" : "rejected");
+    });
+  }
+});
+
+test("Container Lean executor requires a complete exact-target axiom report", async (t) => {
+  const target = "AxiomFixture.selected";
+  const independent = `'${target}' does not depend on any axioms\n`;
+  const dependent = `'${target}' depends on axioms: [AxiomFixture.firstFact]\n`;
+  for (const fixture of [
+    { id: "missing-target", output: "'AxiomFixture.other' does not depend on any axioms\n", expected: "rejected" },
+    { id: "qualified-name-mismatch", output: "'AxiomFixture.selectedExtra' does not depend on any axioms\n", expected: "rejected" },
+    { id: "unrelated-independent", output: "'AxiomFixture.other' does not depend on any axioms\n" + dependent, expected: "rejected" },
+    { id: "unrelated-dependent", output: "'AxiomFixture.other' depends on axioms: [AxiomFixture.firstFact]\n" + independent, expected: "succeeded" },
+    { id: "incomplete-list", output: `'${target}' depends on axioms: [AxiomFixture.firstFact\n`, expected: "rejected" },
+    { id: "invalid-name", output: `'${target}' depends on axioms: [not-an-axiom]\n`, expected: "rejected" },
+    { id: "empty-list-entry", output: `'${target}' depends on axioms: [AxiomFixture.firstFact,]\n`, allowed: ["AxiomFixture.firstFact"], expected: "rejected" },
+    { id: "wrapped-list", output: `'${target}' depends on axioms: [AxiomFixture.firstFact,\n AxiomFixture.secondFact]\n`, allowed: ["AxiomFixture.firstFact", "AxiomFixture.secondFact"], expected: "succeeded" },
+    { id: "final-independent", output: dependent + independent, expected: "succeeded" },
+    { id: "later-dependency", output: independent + dependent, expected: "rejected" },
+    { id: "final-incomplete", output: independent + `'${target}' depends on axioms: [\n`, expected: "rejected" },
+    { id: "stderr-not-report", output: "'AxiomFixture.other' does not depend on any axioms\n", stderr: independent, expected: "rejected" },
+    { id: "stderr-does-not-replace-target", output: dependent, stderr: independent, expected: "rejected" },
+    { id: "repeated-independent", output: independent + independent, expected: "succeeded" },
+    { id: "root-qualified-target", declaration: "_root_.AxiomFixture.selected", output: independent, expected: "succeeded" },
+  ]) {
+    await t.test(fixture.id, async () => {
+      const execution = await executeAxiomFixture({ ...fixture, declaration: fixture.declaration ?? target });
+      assert.equal(execution.result.status, fixture.expected);
+      assert.equal(execution.result.checks.allowedAxioms, fixture.expected === "succeeded" ? "passed" : "failed");
+    });
   }
 });
 
@@ -300,6 +361,41 @@ test("Container Lean executor returns normal unsigned cancellation evidence for 
     await rm(workspaceDirectory, { recursive: true, force: true });
   }
 });
+
+async function executeAxiomFixture({ id, declaration, source, output, stderr = "", allowed = [] }) {
+  const root = await mkdtemp(join(tmpdir(), "proofweave-axiom-target-"));
+  const workspaceDirectory = join(root, "workspace");
+  try {
+    await cp(fileURLToPath(new URL("core-success/", fixturesRoot)), workspaceDirectory, { recursive: true });
+    if (source !== undefined) await writeFile(join(workspaceDirectory, "ProofweaveFixture.lean"), source);
+    const executablePath = output === undefined ? "lake" : join(root, "lake");
+    if (output !== undefined) {
+      await writeFile(executablePath, `#!/usr/bin/env node\nif (process.argv[2] === "env") { process.stdout.write(${JSON.stringify(output)}); process.stderr.write(${JSON.stringify(stderr)}); }\n`);
+      await chmod(executablePath, 0o755);
+    }
+    const request = fixtureRequest({ id });
+    request.policy.allowedAxioms = allowed;
+    return await new ContainerLeanExecutor({
+      networkIsolated: true,
+      resourceLimitsEnforced: true,
+      executablePath,
+    }).execute({
+      request,
+      workspace: {
+        jobId: request.jobId,
+        requestHash: await leanRunnerRequestHash(request),
+        workspaceDirectory,
+        treeHash: sha("f"),
+        entries: [{ path: "ProofweaveFixture.lean", mode: 0o644, contentHash: sha("e") }],
+        target: { declaration, statementHash: sha("d") },
+        policy: request.policy,
+        entryCommand: request.bundle.entryCommand,
+      },
+    });
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+}
 
 function fixtureRequest({ id, mathlibRevision = "none" }) {
   return {
