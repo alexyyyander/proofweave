@@ -400,9 +400,11 @@ export function buildRunnerEnvironmentReport({
         );
         continue;
       }
+      const runner = normalizedRunners.find((candidate) => candidate.environment?.profile === environment.profile);
+      const controlledSingleRun = runner?.controlledSingleRun === true && runner.executionEnabled === "true";
       if (
         environment.state === "built_pending_template" ||
-        (environment.state === "template_ready" && declaration.executionEnabled)
+        (environment.state === "template_ready" && declaration.executionEnabled && !controlledSingleRun)
       ) {
         addInconsistency(
           "execution_environment_not_approved",
@@ -410,7 +412,6 @@ export function buildRunnerEnvironmentReport({
           environment.profile,
         );
       }
-      const runner = normalizedRunners.find((candidate) => candidate.environment?.profile === environment.profile);
       if (!runner) {
         addInconsistency(
           "execution_environment_not_deployed",

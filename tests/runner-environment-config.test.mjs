@@ -626,6 +626,9 @@ test("a controlled single Run permits a template_ready execution environment", (
     renderTemplateBuildId: pendingTemplate.buildId,
     renderExecutionEnabled: "true",
     renderOnlyRunId: "run:first-closure",
+    executionEnvironments: [
+      { leanToolchain: lean427, mathlibRevision: mathlib427, executionEnabled: true },
+    ],
   });
 
   assert.equal(report.ok, true);
@@ -636,6 +639,25 @@ test("a controlled single Run permits a template_ready execution environment", (
   const staged = report.environments.find((entry) => entry.profile === "mathlib-4.27-a3a10");
   assert.equal(staged.executionSelected, true);
   assert.equal(staged.executing, true);
+});
+
+test("a template_ready execution declaration without an exact Run remains an inconsistency", () => {
+  const report = buildRunnerEnvironmentReport({
+    config: fixtureConfig([approvedEnvironment(), templateReadyEnvironment()]),
+    workerApprovedImages: [pendingImageBinding()],
+    renderApprovedImages: [pendingImageBinding()],
+    renderExecutionImage: pendingDigest,
+    renderTemplateId: pendingTemplate.id,
+    renderTemplateBuildId: pendingTemplate.buildId,
+    renderExecutionEnabled: "true",
+    executionEnvironments: [
+      { leanToolchain: lean427, mathlibRevision: mathlib427, executionEnabled: true },
+    ],
+  });
+
+  assert.equal(report.ok, false);
+  assert.ok(report.inconsistencies.some((entry) => entry.code === "execution_environment_not_approved"));
+  assert.ok(report.inconsistencies.some((entry) => entry.code === "execution_image_not_approved"));
 });
 
 test("a Render allowlist with more than one image is an inconsistency", () => {
