@@ -1,0 +1,219 @@
+/* The receipt reads as a claim first and as machine evidence second: one
+   boundary block a reader can quote, one check they can run themselves. */
+.receipt-boundary {
+  background: #fff;
+  border: 1px solid var(--line);
+  margin-top: 16px;
+  padding: 28px;
+}
+.receipt-boundary-heading {
+  align-items: end;
+  display: grid;
+  gap: 24px 40px;
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+.receipt-boundary-heading > div { max-width: 780px; }
+.receipt-boundary-heading h2 { margin: 10px 0 12px; }
+.receipt-boundary-heading p:not(.eyebrow) {
+  color: var(--ink-soft);
+  font-size: var(--text-md);
+  line-height: 1.6;
+  margin: 0;
+}
+.receipt-boundary-heading .button { flex: 0 0 auto; }
+
+.receipt-boundary-grid {
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 26px;
+}
+.receipt-boundary-column { padding: 22px 26px 4px 0; }
+.receipt-boundary-column + .receipt-boundary-column { border-left: 1px solid var(--line); padding-left: 26px; }
+.receipt-boundary-column .receipt-boundary-column-title {
+  color: var(--ink-faint);
+  font-family: inherit;
+  font-size: var(--text-2xs);
+  font-weight: 750;
+  letter-spacing: .07em;
+  margin: 0 0 14px;
+  text-transform: uppercase;
+}
+.receipt-boundary-column ul { display: grid; gap: 11px; list-style: none; margin: 0; padding: 0; }
+.receipt-boundary-column li {
+  color: var(--ink-soft);
+  font-size: var(--text-sm);
+  line-height: 1.55;
+  padding-left: 17px;
+  position: relative;
+}
+.receipt-boundary-column li::before {
+  background: var(--sage);
+  border-radius: 50%;
+  content: "";
+  height: 5px;
+  left: 0;
+  position: absolute;
+  top: 8px;
+  width: 5px;
+}
+.receipt-boundary-column.is-limits li::before { background: var(--amber); }
+.receipt-boundary-column li code { font-size: var(--text-2xs); overflow-wrap: anywhere; }
+
+.receipt-claim-coverage {
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 24px 40px;
+  grid-template-columns: minmax(0, .55fr) minmax(0, 1fr);
+  margin-top: 20px;
+  padding-top: 22px;
+}
+.receipt-claim-coverage-copy p:not(.eyebrow) {
+  color: var(--ink-faint);
+  font-size: var(--text-xs);
+  line-height: 1.55;
+  margin: 6px 0 0;
+  max-width: 420px;
+}
+.receipt-claim-coverage ul { display: grid; list-style: none; margin: 0; padding: 0; }
+.receipt-claim-coverage li {
+  align-items: center;
+  border-top: 1px solid #eceae1;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 84px minmax(0, 1fr) auto;
+  padding: 9px 0;
+}
+.receipt-claim-coverage li:first-child { border-top: 0; }
+.receipt-claim-state {
+  border: 1px solid currentColor;
+  font-size: var(--text-3xs);
+  font-weight: 750;
+  letter-spacing: .05em;
+  padding: 4px 6px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.receipt-claim-coverage li.is-attested .receipt-claim-state { background: var(--sage-soft); border-color: #b9d5c3; color: var(--sage); }
+.receipt-claim-coverage li.is-missing .receipt-claim-state { background: #f4f2ea; border-color: #d9d4c4; color: var(--ink-faint); }
+.receipt-claim-label { color: var(--ink-soft); font-size: var(--text-xs); line-height: 1.45; }
+.receipt-claim-coverage li.is-missing .receipt-claim-label { color: var(--ink-faint); }
+.receipt-claim-coverage small {
+  color: var(--ink-faint);
+  font-size: var(--text-3xs);
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.receipt-verify {
+  background: #0d1b33;
+  color: #edf2ff;
+  display: grid;
+  gap: 40px;
+  grid-template-columns: minmax(0, .85fr) minmax(340px, 1fr);
+  margin-top: 16px;
+  padding: 30px;
+  scroll-margin-top: 24px;
+}
+.receipt-verify .eyebrow { color: #9eb3ff; }
+.receipt-verify h2 { color: #f2f6ff; margin: 12px 0 14px; }
+.receipt-verify-copy > p:not(.eyebrow) {
+  color: #aebbd0;
+  font-size: var(--text-sm);
+  line-height: 1.65;
+  margin: 0;
+  max-width: 560px;
+}
+.receipt-verify-actions { align-items: center; display: flex; flex-wrap: wrap; gap: 16px; margin-top: 24px; }
+.receipt-verify-actions .button { border: 0; }
+.receipt-verify-actions .button:disabled { cursor: wait; opacity: .62; }
+.receipt-verify-actions a {
+  color: #b9c7ff;
+  font-size: var(--text-2xs);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.receipt-verify-copy > p.receipt-verify-error { color: #ffcbc6; font-size: var(--text-xs); margin-top: 16px; }
+
+.receipt-verify-panel {
+  align-content: start;
+  background: #101e35;
+  border: 1px solid rgba(178, 200, 244, .2);
+  display: grid;
+  padding: 18px 20px 20px;
+}
+.receipt-verify-verdict {
+  align-items: start;
+  border-bottom: 1px solid rgba(205, 218, 244, .18);
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 30px minmax(0, 1fr);
+  padding-bottom: 16px;
+}
+.receipt-verify-verdict strong { color: #f4f7ff; display: block; font-size: var(--text-sm); line-height: 1.4; }
+.receipt-verify-verdict p { color: #9fb0cf; font-size: var(--text-2xs); line-height: 1.5; margin: 6px 0 0; }
+.receipt-verify-verdict small { color: #8ea2c8; display: block; font-size: var(--text-3xs); margin-top: 10px; }
+.receipt-verify-verdict code { color: #cdd8f2; font-size: var(--text-3xs); }
+.receipt-verify-signal {
+  align-items: center;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  display: inline-flex;
+  font-size: var(--text-md);
+  font-weight: 700;
+  height: 26px;
+  justify-content: center;
+  width: 26px;
+}
+.receipt-verify-verdict.is-passed { color: #8fd8ad; }
+.receipt-verify-verdict.is-partial { color: #f3d48b; }
+.receipt-verify-verdict.is-failed { color: #f0a59e; }
+
+.receipt-verify-gates { display: grid; list-style: none; margin: 0; padding: 0; }
+.receipt-verify-gates li {
+  align-items: start;
+  border-bottom: 1px solid rgba(205, 218, 244, .14);
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 26px minmax(0, 1fr) auto;
+  padding: 12px 0;
+}
+.receipt-verify-gates li:last-child { border-bottom: 0; }
+.receipt-verify-index { color: #7d93bd; font-size: var(--text-3xs); font-weight: 700; letter-spacing: .06em; padding-top: 3px; }
+.receipt-verify-gate-copy strong { color: #dce6fa; display: block; font-size: var(--text-xs); }
+.receipt-verify-gate-copy p { color: #8ea2c8; font-size: var(--text-3xs); line-height: 1.45; margin: 3px 0 0; overflow-wrap: anywhere; }
+.receipt-verify-state {
+  border: 1px solid currentColor;
+  color: #7d93bd;
+  font-size: var(--text-3xs);
+  font-weight: 750;
+  letter-spacing: .05em;
+  padding: 3px 6px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.receipt-verify-gates li.is-passed .receipt-verify-state { color: #8fd8ad; }
+.receipt-verify-gates li.is-running .receipt-verify-state { color: #9eb3ff; }
+.receipt-verify-gates li.is-unavailable .receipt-verify-state { color: #f3d48b; }
+.receipt-verify-gates li.is-failed .receipt-verify-state { color: #f0a59e; }
+.receipt-verify-gates li.is-failed { box-shadow: inset 2px 0 #b84a42; padding-left: 10px; }
+.receipt-verify-reason { margin-top: 6px; }
+.receipt-verify-reason summary { color: #b9c7ff; cursor: pointer; font-size: var(--text-3xs); text-decoration: underline; text-underline-offset: 3px; }
+.receipt-verify-reason code { color: #ffcbc6; display: block; font-size: var(--text-3xs); line-height: 1.5; margin-top: 6px; overflow-wrap: anywhere; }
+
+@media (max-width: 1020px) {
+  .receipt-boundary-grid { grid-template-columns: 1fr; }
+  .receipt-boundary-column { padding: 18px 0; }
+  .receipt-boundary-column + .receipt-boundary-column { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; }
+  .receipt-claim-coverage { grid-template-columns: 1fr; }
+  .receipt-verify { gap: 28px; grid-template-columns: 1fr; }
+}
+@media (max-width: 620px) {
+  .receipt-boundary { margin-left: -18px; margin-right: -18px; padding: 22px 18px; }
+  .receipt-boundary-heading { grid-template-columns: 1fr; }
+  .receipt-boundary-heading .button { justify-self: start; }
+  .receipt-claim-coverage li { gap: 8px; grid-template-columns: 78px minmax(0, 1fr) auto; }
+  .receipt-verify { margin-left: -18px; margin-right: -18px; padding: 22px 18px; }
+  .receipt-verify-gates li { gap: 8px; grid-template-columns: 22px minmax(0, 1fr) auto; }
+}

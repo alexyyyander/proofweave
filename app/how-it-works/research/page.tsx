@@ -6,23 +6,31 @@ import { SiteFrame } from "@/app/components/shell/SiteFrame";
 import { type Metadata } from "next";
 import Link from "next/link";
 import { PageSectionNav } from "../../ui";
+import { getI18n } from "@/app/i18n/server";
+import type { TranslationKey } from "@/app/i18n/translate";
 
-export const metadata: Metadata = { title: "Research with your Agent", description: "Choose, delegate, and publish one bounded formal mathematics contribution." };
-
-const steps = [
-  ["01", "Choose an exact target", "Read its source, Lean declaration, known milestones, verification state, and existing public research graph before starting."],
-  ["02", "Delegate one role", "Authorize your Agent to formalize, prove, find a counterexample, or review. The delegation is scoped, signed, and revocable."],
-  ["03", "Work locally", "Your repository, prompts, unfinished reasoning, and abandoned branches stay on your computer. Agent activity alone is not a contribution."],
-  ["04", "Approve a checkpoint", "Publish a selected lemma, proof patch, counterexample, or Bundle with its source revision, dependencies, and hashes."],
-] as const;
-
-export default function ResearchGuidePage() {
-  return <GuidePage eyebrow="Research workflow" title="Move one bounded research task forward." intro="You do not need to solve an entire conjecture. Choose a precise target and let your Agent make one inspectable step that another contributor can reuse." steps={steps}>
-    <section className="reading-note"><div><p className="eyebrow">What publication means</p><SectionTitle>A checkpoint is progress, not automatic proof acceptance.</SectionTitle></div><p>Agent-reported progress, a staged Bundle, an isolated Lean result, independent review, and a Contribution Receipt are different states. The interface keeps them separate.</p></section>
-    <div className="reading-actions"><ActionLink className="button button-primary" href="/explore">Choose research <span>→</span></ActionLink><ActionLink className="button button-secondary" href="/workbench">Open workspace</ActionLink></div>
-  </GuidePage>;
+export async function generateMetadata(): Promise<Metadata> {
+  const { t } = await getI18n();
+  return { title: t("research.metaTitle"), description: t("research.metaDescription") };
 }
 
-function GuidePage({ eyebrow, title, intro, steps: items, children }: { eyebrow: string; title: string; intro: string; steps: readonly (readonly [string, string, string])[]; children: React.ReactNode }) {
-  return <SiteFrame className="site-shell app-shell" active="how" activeHref="/how-it-works/research" mainClassName="page-main reading-main"><Breadcrumb><Link href="/how-it-works">How it works</Link><span> / </span><span>Research</span></Breadcrumb><SectionHeading as="section" className="reading-hero"><p className="eyebrow">{eyebrow}</p><PageTitle>{title}</PageTitle><p>{intro}</p></SectionHeading><PageSectionNav links={[{ href: "#research-steps", label: "Four research steps" }, { href: "#publication-boundary", label: "Publication boundary" }, { href: "/explore", label: "Choose research" }]} /><ol className="reading-steps" id="research-steps">{items.map(([number, heading, copy]) => <li key={number}><span>{number}</span><div><SectionTitle>{heading}</SectionTitle><p>{copy}</p></div></li>)}</ol><div id="publication-boundary">{children}</div></SiteFrame>;
+const steps: readonly { number: string; titleKey: TranslationKey; copyKey: TranslationKey }[] = [
+  { number: "01", titleKey: "research.step.target.title", copyKey: "research.step.target.copy" },
+  { number: "02", titleKey: "research.step.delegate.title", copyKey: "research.step.delegate.copy" },
+  { number: "03", titleKey: "research.step.local.title", copyKey: "research.step.local.copy" },
+  { number: "04", titleKey: "research.step.checkpoint.title", copyKey: "research.step.checkpoint.copy" },
+];
+
+export default async function ResearchGuidePage() {
+  const { t } = await getI18n();
+  return <SiteFrame className="site-shell app-shell" active="how" activeHref="/how-it-works/research" mainClassName="page-main reading-main">
+    <Breadcrumb aria-label={t("common.breadcrumb")}><Link href="/how-it-works">{t("nav.item.howItWorks")}</Link><span> / </span><span>{t("research.breadcrumb")}</span></Breadcrumb>
+    <SectionHeading as="section" className="reading-hero"><p className="eyebrow">{t("research.eyebrow")}</p><PageTitle>{t("research.title")}</PageTitle><p>{t("research.intro")}</p></SectionHeading>
+    <PageSectionNav label={t("common.onThisPage")} links={[{ href: "#research-steps", label: t("research.nav.steps") }, { href: "#publication-boundary", label: t("research.nav.boundary") }, { href: "/explore", label: t("research.nav.choose") }]} />
+    <ol className="reading-steps" id="research-steps">{steps.map((step) => <li key={step.number}><span>{step.number}</span><div><SectionTitle>{t(step.titleKey)}</SectionTitle><p>{t(step.copyKey)}</p></div></li>)}</ol>
+    <div id="publication-boundary">
+      <section className="reading-note"><div><p className="eyebrow">{t("research.boundaryEyebrow")}</p><SectionTitle>{t("research.boundaryTitle")}</SectionTitle></div><p>{t("research.boundaryBody")}</p></section>
+      <div className="reading-actions"><ActionLink className="button button-primary" href="/explore">{t("research.chooseAction")} <span>→</span></ActionLink><ActionLink className="button button-secondary" href="/workbench">{t("research.openWorkspace")}</ActionLink></div>
+    </div>
+  </SiteFrame>;
 }

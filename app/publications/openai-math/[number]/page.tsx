@@ -13,6 +13,7 @@ import explanation084 from "@/data/publications/explanations/openai-math-084.jso
 import explanation159 from "@/data/publications/explanations/openai-math-159.json";
 import { MathText } from "../../MathText";
 import { CitationCopyButton } from "../../CitationCopyButton";
+import { getI18n } from "@/app/i18n/server";
 import "../../publications.css";
 import "katex/dist/katex.min.css";
 
@@ -26,12 +27,14 @@ const explanationArtifacts: Record<string, ClaimExplanation> = {
 };
 type Params = { params: Promise<{ number: string }> };
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const { t } = await getI18n();
   const { number } = await params;
   const family = publicationFamily(number);
-  return { title: family ? `OpenAI ${number}: ${family.title.replace(/<[^>]*>/g, "")}` : "Publication not found" };
+  return { title: family ? `OpenAI ${number}: ${family.title.replace(/<[^>]*>/g, "")}` : t("publicationDetail.notFound") };
 }
 
 export default async function PublicationFamilyPage({ params }: Params) {
+  const { t, locale } = await getI18n();
   const { number } = await params;
   const family = publicationFamily(number);
   if (!family) notFound();
@@ -40,59 +43,60 @@ export default async function PublicationFamilyPage({ params }: Params) {
   const adjacent = collection.families.indexOf(family);
   const previous = collection.families[adjacent - 1];
   const next = collection.families[adjacent + 1];
+  const manuscriptCount = (count: number) => t(count === 1 ? "publicationDetail.status.manuscript.one" : "publicationDetail.status.manuscript.other", { count });
   return <div className="site-shell app-shell">
     <Header active="publications" />
     <main id="main-content" tabIndex={-1} className="page-main publications-main publication-detail-main">
-      <div className="breadcrumb"><Link href="/publications">Publications</Link><span> / </span><Link href={`/publications?subject=${encodeURIComponent(family.subject)}`}>{family.subject}</Link><span> / </span><span>OpenAI {family.number}</span></div>
-      <section className="publication-detail-heading"><p className="eyebrow">OpenAI mathematics release · Result family {family.number}</p><h1><MathText text={family.title} /></h1><p className="publication-detail-claim"><span className="publication-claim-label">Result described by OpenAI</span><MathText text={family.claim} /></p><div className="publication-detail-status"><span>{family.manuscripts.length} {family.manuscripts.length === 1 ? "manuscript" : "manuscripts"}</span><span>{family.scope ? "Upstream Lean scope documented" : "Lean scope document not linked"}</span><span>Proofweave replay pending</span></div></section>
-      <PageSectionNav label="Publication record" links={[{ href: "#explanations", label: "Explanation" }, ...(claims ? [{ href: "#claims", label: "Per-conclusion map" }] : []), { href: "#manuscripts", label: "Manuscripts & citations" }, { href: "#formalization", label: "Formalization scope" }, { href: "#provenance", label: "Source & environment" }]} />
+      <div className="breadcrumb"><Link href="/publications">{t("nav.item.publications")}</Link><span> / </span><Link href={`/publications?subject=${encodeURIComponent(family.subject)}`}>{family.subject}</Link><span> / </span><span>OpenAI {family.number}</span></div>
+      <section className="publication-detail-heading"><p className="eyebrow">{t("publicationDetail.eyebrow", { number: family.number })}</p><h1><MathText text={family.title} /></h1><p className="publication-detail-claim"><span className="publication-claim-label">{t("publications.card.claimLabel")}</span><MathText text={family.claim} /></p><div className="publication-detail-status"><span>{manuscriptCount(family.manuscripts.length)}</span><span>{family.scope ? t("publicationDetail.status.scopeDocumented") : t("publicationDetail.status.noScope")}</span><span>{t("publicationDetail.status.replayPending")}</span></div></section>
+      <PageSectionNav label={t("publicationDetail.navAria")} links={[{ href: "#explanations", label: t("publicationDetail.nav.explanation") }, ...(claims ? [{ href: "#claims", label: t("publicationDetail.nav.claims") }] : []), { href: "#manuscripts", label: t("publicationDetail.nav.manuscripts") }, { href: "#formalization", label: t("publicationDetail.nav.formalization") }, { href: "#provenance", label: t("publicationDetail.nav.provenance") }]} />
 
       <section id="explanations" className="publication-explanations" aria-labelledby="explanations-title">
-        <div className="publication-browse-heading"><div><p className="eyebrow">Read what is proved, and what is not</p><h2 id="explanations-title">Explanation</h2></div>{explanation ? <div className="publication-explanations-heading-badges"><Badge tone="warning">Draft · unreviewed</Badge><span>Model-drafted · no platform verification</span></div> : <span>No reviewed artifact</span>}</div>
+        <div className="publication-browse-heading"><div><p className="eyebrow">{t("publicationDetail.explanations.eyebrow")}</p><h2 id="explanations-title">{t("publicationDetail.explanations.title")}</h2></div>{explanation ? <div className="publication-explanations-heading-badges"><Badge tone="warning">{t("publicationDetail.explanations.draftBadge")}</Badge><span>{t("publicationDetail.explanations.draftNote")}</span></div> : <span>{t("publicationDetail.explanations.none")}</span>}</div>
         {explanation ? <div className="explanation-grid">
-          <ClaimCard explanation={explanation} />
-          <ScopeDiff explanation={explanation} family={family} renderText={(text) => <MathText text={text} />} />
-          <ProofMap explanation={explanation} />
-          <LeanCompanion explanation={explanation} />
-        </div> : <EmptyState className="publication-explanations-empty"><strong lang="zh-CN">暂无经审阅的解释工件</strong><p>No reviewed explanation artifact is available for this family. This empty slot is not evidence that the result is unproven; it means no explanation draft has been prepared and reviewed for this snapshot.</p></EmptyState>}
+          <ClaimCard explanation={explanation} t={t} />
+          <ScopeDiff explanation={explanation} family={family} t={t} locale={locale} renderText={(text) => <MathText text={text} />} />
+          <ProofMap explanation={explanation} t={t} />
+          <LeanCompanion explanation={explanation} t={t} />
+        </div> : <EmptyState className="publication-explanations-empty"><strong>{t("publicationDetail.explanations.emptyTitle")}</strong><p>{t("publicationDetail.explanations.emptyBody")}</p></EmptyState>}
       </section>
 
       {claims && <section className="publication-formalization" id="claims" aria-labelledby="claims-title">
-        <div className="publication-browse-heading"><div><p className="eyebrow">Per-conclusion map · draft</p><h2 id="claims-title">Every conclusion, with its coverage and verification state</h2></div><span>Upstream mapping · not a replay</span></div>
+        <div className="publication-browse-heading"><div><p className="eyebrow">{t("publicationDetail.claims.eyebrow")}</p><h2 id="claims-title">{t("publicationDetail.claims.title")}</h2></div><span>{t("publicationDetail.claims.hint")}</span></div>
         <div className="publication-scope-prose">
-          <p><strong>{claims.claims.length}</strong> {claims.claims.length === 1 ? "conclusion is" : "conclusions are"} mapped from the pinned upstream snapshot. Coverage describes the upstream Lean scope; platform verification remains <strong>not run</strong> for every claim.</p>
+          <p>{t(claims.claims.length === 1 ? "publicationDetail.claims.count.one" : "publicationDetail.claims.count.other", { count: claims.claims.length })}</p>
           {claims.claims.map((claim: { id: string; conclusion: string; coverage: { status: string; note: string }; verification: { status: string }; target: { status: string } }) => <div className="publication-paper-scope" key={claim.id}>
             <strong><MathText text={claim.conclusion} /></strong>
             <p>{claim.coverage.note}</p>
-            <p><span className="publication-claim-label">Coverage</span> {claim.coverage.status} · <span className="publication-claim-label">Verification</span> {claim.verification.status} · <span className="publication-claim-label">Target</span> {claim.target.status}</p>
+            <p><span className="publication-claim-label">{t("publicationDetail.claims.coverage")}</span> {claim.coverage.status} · <span className="publication-claim-label">{t("publicationDetail.claims.verification")}</span> {claim.verification.status} · <span className="publication-claim-label">{t("publicationDetail.claims.target")}</span> {claim.target.status}</p>
           </div>)}
         </div>
-        <div className="publication-scope-links"><a className="text-link" href={`/api/publications/openai-math/${family.number}/claims`}>Open machine-readable claims JSON ↗</a></div>
+        <div className="publication-scope-links"><a className="text-link" href={`/api/publications/openai-math/${family.number}/claims`}>{t("publicationDetail.claims.openJson")} ↗</a></div>
       </section>}
 
-      <section id="manuscripts" className="publication-manuscripts" aria-labelledby="manuscripts-title"><div className="publication-browse-heading"><div><p className="eyebrow">Read the original work</p><h2 id="manuscripts-title">Manuscripts & citations</h2></div><a href={`/api/publications/openai-math/${family.number}?download=1`} download={`proofweave-openai-math-${family.number}.json`}>Download this record ↓</a></div>
+      <section id="manuscripts" className="publication-manuscripts" aria-labelledby="manuscripts-title"><div className="publication-browse-heading"><div><p className="eyebrow">{t("publicationDetail.manuscripts.eyebrow")}</p><h2 id="manuscripts-title">{t("publicationDetail.manuscripts.title")}</h2></div><a href={`/api/publications/openai-math/${family.number}?download=1`} download={`proofweave-openai-math-${family.number}.json`}>{t("publicationDetail.manuscripts.download")} ↓</a></div>
         {family.manuscripts.map((paper, index) => <article className="publication-manuscript" key={paper.id} id={`manuscript-${index + 1}`}>
-          <div className="publication-manuscript-top"><span>Manuscript {index + 1}</span><span>{paper.authors.join(", ")} · {paper.date}</span></div>
+          <div className="publication-manuscript-top"><span>{t("publicationDetail.manuscript.number", { number: index + 1 })}</span><span>{paper.authors.join(", ")} · {paper.date}</span></div>
           <h3><MathText text={paper.title} /></h3>
-          <div className="publication-manuscript-actions"><a className="button button-primary" href={paper.pdfUrl} target="_blank" rel="noreferrer">Read manuscript ↗</a><a className="button button-secondary" href={paper.downloadUrl} target="_blank" rel="noreferrer">Open PDF ↗</a><a href={paper.readmeUrl} target="_blank" rel="noreferrer">Source & version notes ↗</a></div>
-          <p className="publication-abstract"><span className="publication-claim-label">Abstract from the source</span><MathText text={paper.abstract} /></p>
-          <div className="publication-paper-scope"><strong>Formalization evidence</strong><p>{paper.citedByScopeDocument ? "This manuscript is named in the family’s scope document. Read the scope below for the exact conclusions covered." : paper.listedInFormalizationIndex ? "This manuscript is listed in the upstream formalization index. Check the source for the exact theorem coverage." : "The imported scope documents and formalization index do not identify this manuscript’s coverage. Other upstream proof artifacts may exist."}</p></div>
-          {paper.versionNote && <div className="publication-version-note"><strong>Version note from OpenAI</strong><p>{paper.versionNote}</p><div>{paper.versionLinks.map((link) => <a href={link.url} target="_blank" rel="noreferrer" key={link.url}>{link.label} ↗</a>)}</div></div>}
-          <details className="publication-citation"><summary>BibTeX citation from OpenAI</summary><CitationCopyButton citation={paper.citation} /><pre><code>{paper.citation}</code></pre><p>Source snapshot: <code>{collection.source.revision.slice(0, 12)}</code>. The citation above retains OpenAI’s original wording.</p></details>
+          <div className="publication-manuscript-actions"><a className="button button-primary" href={paper.pdfUrl} target="_blank" rel="noreferrer">{t("publicationDetail.manuscript.read")} ↗</a><a className="button button-secondary" href={paper.downloadUrl} target="_blank" rel="noreferrer">{t("publicationDetail.manuscript.openPdf")} ↗</a><a href={paper.readmeUrl} target="_blank" rel="noreferrer">{t("publicationDetail.manuscript.notes")} ↗</a></div>
+          <p className="publication-abstract"><span className="publication-claim-label">{t("publicationDetail.manuscript.abstract")}</span><MathText text={paper.abstract} /></p>
+          <div className="publication-paper-scope"><strong>{t("publicationDetail.manuscript.evidence")}</strong><p>{paper.citedByScopeDocument ? t("publicationDetail.manuscript.citedByScope") : paper.listedInFormalizationIndex ? t("publicationDetail.manuscript.listedInIndex") : t("publicationDetail.manuscript.unknownCoverage")}</p></div>
+          {paper.versionNote && <div className="publication-version-note"><strong>{t("publicationDetail.manuscript.versionNote")}</strong><p>{paper.versionNote}</p><div>{paper.versionLinks.map((link) => <a href={link.url} target="_blank" rel="noreferrer" key={link.url}>{link.label} ↗</a>)}</div></div>}
+          <details className="publication-citation"><summary>{t("publicationDetail.manuscript.citation")}</summary><CitationCopyButton citation={paper.citation} /><pre><code>{paper.citation}</code></pre><p>{t("publicationDetail.manuscript.citationSnapshot", { revision: collection.source.revision.slice(0, 12) })}</p></details>
         </article>)}
       </section>
 
       <section className="publication-formalization" id="formalization" aria-labelledby="formalization-title">
-        <div className="publication-browse-heading"><div><p className="eyebrow">Inspect what was formalized</p><h2 id="formalization-title">Lean proof scope</h2></div><span>Described by OpenAI · not replayed by Proofweave</span></div>
+        <div className="publication-browse-heading"><div><p className="eyebrow">{t("publicationDetail.formalization.eyebrow")}</p><h2 id="formalization-title">{t("publicationDetail.formalization.title")}</h2></div><span>{t("publicationDetail.formalization.hint")}</span></div>
         {family.scope ? <>
-          <div className="publication-scope-prose"><span className="publication-claim-label">Scope statement from the source</span>{family.scope.text.split(/\n\s*\n/).map((paragraph, index) => <p key={index}><MathText text={paragraph} /></p>)}</div>
-          <div className="publication-scope-links"><a className="text-link" href={family.scope.url} target="_blank" rel="noreferrer">Read complete scope document ↗</a>{family.scope.comparatorLinks.map((link, index) => <a href={link.url} target="_blank" rel="noreferrer" key={`${link.url}-${index}`}>{link.label} ↗</a>)}</div>
-        </> : <div className="publication-scope-prose"><p>The upstream manuscript map does not link a scope document for this family. Proofweave has not established its formalization coverage.</p><a className="text-link" href={collection.source.contentsUrl} target="_blank" rel="noreferrer">Inspect the upstream manuscript map ↗</a></div>}
-        <div className="publication-replay-note"><strong>Proofweave verification: pending</strong><p>These records describe upstream evidence. A platform replay, a review of the theorem’s meaning, and an independent review still need their own evidence.</p><Link href="/how-it-works/verification">How Proofweave verification works →</Link></div>
+          <div className="publication-scope-prose"><span className="publication-claim-label">{t("publicationDetail.formalization.scopeLabel")}</span>{family.scope.text.split(/\n\s*\n/).map((paragraph, index) => <p key={index}><MathText text={paragraph} /></p>)}</div>
+          <div className="publication-scope-links"><a className="text-link" href={family.scope.url} target="_blank" rel="noreferrer">{t("publicationDetail.formalization.readScope")} ↗</a>{family.scope.comparatorLinks.map((link, index) => <a href={link.url} target="_blank" rel="noreferrer" key={`${link.url}-${index}`}>{link.label} ↗</a>)}</div>
+        </> : <div className="publication-scope-prose"><p>{t("publicationDetail.formalization.noScope")}</p><a className="text-link" href={collection.source.contentsUrl} target="_blank" rel="noreferrer">{t("publicationDetail.formalization.inspectMap")} ↗</a></div>}
+        <div className="publication-replay-note"><strong>{t("publicationDetail.formalization.replayTitle")}</strong><p>{t("publicationDetail.formalization.replayBody")}</p><Link href="/how-it-works/verification">{t("publicationDetail.formalization.replayLink")} →</Link></div>
       </section>
 
-      <section id="provenance" className="publication-provenance" aria-labelledby="provenance-title"><div><p className="eyebrow">Pinned source</p><h2 id="provenance-title">Source & environment</h2><p>The proofs share a large library. OpenAI recommends compiling selected portions at a time. Use the pinned environment and inspect the Comparator instructions before attempting a replay.</p><a className="text-link" href={collection.environment.instructionsUrl} target="_blank" rel="noreferrer">Upstream verification instructions ↗</a></div><dl><div><dt>Repository</dt><dd><a href={collection.source.repository} target="_blank" rel="noreferrer">openai/math ↗</a></dd></div><div><dt>Source revision</dt><dd><code>{collection.source.revision}</code></dd></div><div><dt>Lean toolchain</dt><dd><code>{collection.environment.lean}</code></dd></div><div><dt>Mathlib revision</dt><dd><code>{collection.environment.mathlib}</code></dd></div><div><dt>License</dt><dd><a href={collection.source.licenseUrl} target="_blank" rel="noreferrer">{collection.source.license} ↗</a></dd></div><div><dt>Indexed</dt><dd>{collection.indexedAt.slice(0, 10)}</dd></div></dl></section>
-      <nav className="publication-pagination" aria-label="Adjacent result families">{previous ? <Link href={`/publications/openai-math/${previous.number}`}>← Family {previous.number}</Link> : <span />}<Link href="/publications">Back to publications</Link>{next ? <Link href={`/publications/openai-math/${next.number}`}>Family {next.number} →</Link> : <span />}</nav>
+      <section id="provenance" className="publication-provenance" aria-labelledby="provenance-title"><div><p className="eyebrow">{t("publicationDetail.provenance.eyebrow")}</p><h2 id="provenance-title">{t("publicationDetail.provenance.title")}</h2><p>{t("publicationDetail.provenance.body")}</p><a className="text-link" href={collection.environment.instructionsUrl} target="_blank" rel="noreferrer">{t("publicationDetail.provenance.instructions")} ↗</a></div><dl><div><dt>{t("publicationDetail.provenance.repository")}</dt><dd><a href={collection.source.repository} target="_blank" rel="noreferrer">openai/math ↗</a></dd></div><div><dt>{t("publicationDetail.provenance.sourceRevision")}</dt><dd><code>{collection.source.revision}</code></dd></div><div><dt>{t("publicationDetail.provenance.leanToolchain")}</dt><dd><code>{collection.environment.lean}</code></dd></div><div><dt>{t("publicationDetail.provenance.mathlibRevision")}</dt><dd><code>{collection.environment.mathlib}</code></dd></div><div><dt>{t("publicationDetail.provenance.license")}</dt><dd><a href={collection.source.licenseUrl} target="_blank" rel="noreferrer">{collection.source.license} ↗</a></dd></div><div><dt>{t("publicationDetail.provenance.indexed")}</dt><dd>{collection.indexedAt.slice(0, 10)}</dd></div></dl></section>
+      <nav className="publication-pagination" aria-label={t("publicationDetail.paginationAria")}>{previous ? <Link href={`/publications/openai-math/${previous.number}`}>← {t("publicationDetail.family", { number: previous.number })}</Link> : <span />}<Link href="/publications">{t("publicationDetail.back")}</Link>{next ? <Link href={`/publications/openai-math/${next.number}`}>{t("publicationDetail.family", { number: next.number })} →</Link> : <span />}</nav>
     </main><Footer />
   </div>;
 }

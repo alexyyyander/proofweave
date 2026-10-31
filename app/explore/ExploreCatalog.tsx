@@ -3,23 +3,26 @@
 import { SectionTitle, Button, EmptyState, Input, SectionHeading, Select } from "@/app/components/ui";
 
 import { ResearchCard } from "@/app/components/research/ResearchCard";
+import { researchCardCopy } from "@/app/lib/research-card-copy";
+import { useI18n } from "@/app/i18n/client";
+import type { TranslationKey } from "@/app/i18n/translate";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { type CatalogProblemSummary } from "@/packages/domain/catalog";
 import { catalogQueryParams, type CatalogMetadata, type CatalogPage, type CatalogQuery,
   type CatalogSort } from "@/packages/domain/catalog-browser";
 
-const opportunityFilters = [
-  { id: "all", label: "All work" },
-  { id: "formalize", label: "Formalize known results" },
-  { id: "advance", label: "Advance open branches" },
-  { id: "verified", label: "Inspect verified proofs" },
-] as const;
+const opportunityFilters: readonly { id: "all" | "formalize" | "advance" | "verified"; labelKey: TranslationKey }[] = [
+  { id: "all", labelKey: "explore.filter.allWork" },
+  { id: "formalize", labelKey: "explore.filter.formalize" },
+  { id: "advance", labelKey: "explore.filter.advance" },
+  { id: "verified", labelKey: "explore.filter.verified" },
+];
 
-const scopeFilters = [
-  { id: "all", label: "All scopes" },
-  { id: "bounded", label: "Bounded milestones" },
-  { id: "long-horizon", label: "Long-horizon programs" },
-] as const;
+const scopeFilters: readonly { id: "all" | "bounded" | "long-horizon"; labelKey: TranslationKey }[] = [
+  { id: "all", labelKey: "explore.filter.allScopes" },
+  { id: "bounded", labelKey: "explore.filter.bounded" },
+  { id: "long-horizon", labelKey: "explore.filter.longHorizon" },
+];
 
 export type ExploreCatalogProblem = CatalogProblemSummary;
 
@@ -28,6 +31,8 @@ type PageRequest = { criteria: CatalogQuery; cursor: string | null; previous: (s
 export function ExploreCatalog({ initialPage, metadata, initialQuery }: {
   initialPage: CatalogPage; metadata: CatalogMetadata; initialQuery: CatalogQuery;
 }) {
+  const { t } = useI18n();
+  const cardCopy = researchCardCopy(t);
   const [criteria, setCriteria] = useState(initialQuery);
   const { opportunity: opportunityFilter, scope: scopeFilter, subject: subjectFilter, q: query, sort } = criteria;
   const [page, setPage] = useState(initialPage);
@@ -115,44 +120,44 @@ export function ExploreCatalog({ initialPage, metadata, initialQuery }: {
 
   return <section className="research-index" id="research-catalog" aria-labelledby="research-index-title">
     <SectionHeading as="div" className="research-index-heading">
-      <div><p className="eyebrow">Searchable research index</p><SectionTitle id="research-index-title">Find the exact target you can act on.</SectionTitle></div>
-      <p>Use the controls to narrow by contribution type, scope, subject, or declaration. Every result links to its pinned source and the next available action.</p>
+      <div><p className="eyebrow">{t("explore.index.eyebrow")}</p><SectionTitle id="research-index-title">{t("explore.index.title")}</SectionTitle></div>
+      <p>{t("explore.index.body")}</p>
     </SectionHeading>
 
-    <div className="research-index-toolbar" aria-label="Research index controls">
+    <div className="research-index-toolbar" aria-label={t("explore.controlsAria")}>
       <label className="research-index-search">
-        <span>Search title, subject, source, or Lean declaration</span>
-        <Input ref={searchInputRef} aria-keyshortcuts="/" value={query} onChange={(event) => updateFilter("q", event.target.value)} maxLength={200} placeholder="Try “Erdos”, “topology”, or a declaration name" type="search" />
-        <small>Search words or the beginning of a name. Add words to narrow the results.</small>
+        <span>{t("explore.search.label")}</span>
+        <Input ref={searchInputRef} aria-keyshortcuts="/" value={query} onChange={(event) => updateFilter("q", event.target.value)} maxLength={200} placeholder={t("explore.search.placeholder")} type="search" />
+        <small>{t("explore.search.hint")}</small>
       </label>
-      <label className="research-index-sort"><span>Sort</span><Select value={sort} onChange={(event) => updateFilter("sort", event.target.value as CatalogSort)}><option value="recommended">Recommended</option><option value="title">Title A–Z</option><option value="subject">MSC subject</option></Select></label>
-      <Button className="button button-secondary research-index-clear" onClick={resetResults} type="button" disabled={!query && activeFilterCount === 0 && sort === "recommended"}>Reset</Button>
+      <label className="research-index-sort"><span>{t("explore.sort.label")}</span><Select value={sort} onChange={(event) => updateFilter("sort", event.target.value as CatalogSort)}><option value="recommended">{t("explore.sort.recommended")}</option><option value="title">{t("explore.sort.title")}</option><option value="subject">{t("explore.sort.subject")}</option></Select></label>
+      <Button className="button button-secondary research-index-clear" onClick={resetResults} type="button" disabled={!query && activeFilterCount === 0 && sort === "recommended"}>{t("explore.reset")}</Button>
     </div>
 
-    <div className="research-index-summary" aria-label="Research index summary">
-      <div><span>Total targets</span><strong>{metadata.total}</strong><small>pinned public records</small></div>
-      <div><span>Bounded work</span><strong>{metadata.bounded}</strong><small>clear starting points</small></div>
-      <div><span>Open branches</span><strong>{metadata.opportunities.advance}</strong><small>cumulative research</small></div>
-      <div><span>Verified proofs</span><strong>{metadata.opportunities.verified}</strong><small>inspectable evidence</small></div>
+    <div className="research-index-summary" aria-label={t("explore.summaryAria")}>
+      <div><span>{t("explore.summary.total")}</span><strong>{metadata.total}</strong><small>{t("explore.summary.totalNote")}</small></div>
+      <div><span>{t("explore.summary.bounded")}</span><strong>{metadata.bounded}</strong><small>{t("explore.summary.boundedNote")}</small></div>
+      <div><span>{t("explore.summary.open")}</span><strong>{metadata.opportunities.advance}</strong><small>{t("explore.summary.openNote")}</small></div>
+      <div><span>{t("explore.summary.verified")}</span><strong>{metadata.opportunities.verified}</strong><small>{t("explore.summary.verifiedNote")}</small></div>
     </div>
 
     <div className="research-index-layout">
-      <aside className="research-index-filters" aria-label="Filter research targets">
-        <div className="research-filter-heading"><span>Filters</span><strong>{pending ? "Updating…" : `Page ${previous.length + 1}`}</strong></div>
-        <fieldset><legend>Contribution</legend>{opportunityFilters.map((item) => <Button aria-pressed={opportunityFilter === item.id} className={opportunityFilter === item.id ? "is-active" : ""} key={item.id} onClick={() => updateFilter("opportunity", item.id)} type="button">{item.label}<span>{item.id === "all" ? metadata.total : metadata.opportunities[item.id]}</span></Button>)}</fieldset>
-        <fieldset><legend>Scope</legend>{scopeFilters.map((item) => <Button aria-pressed={scopeFilter === item.id} className={scopeFilter === item.id ? "is-active" : ""} key={item.id} onClick={() => updateFilter("scope", item.id)} type="button">{item.label}</Button>)}</fieldset>
-        <label className="research-subject-select"><span>MSC subject</span><Select value={subjectFilter} onChange={(event) => updateFilter("subject", event.target.value)}><option value="all">All subjects</option>{subjects.map((subject) => <option value={subject.slug} key={subject.slug}>MSC {subject.amsCode} · {subject.name}</option>)}</Select></label>
-        <div className="research-filter-note"><strong>Record boundary</strong><p>Catalog status describes only the public record. It does not imply that an Agent has started work or that a proof is complete.</p></div>
+      <aside className="research-index-filters" aria-label={t("explore.filtersAria")}>
+        <div className="research-filter-heading"><span>{t("explore.filters.title")}</span><strong>{pending ? t("explore.filters.updating") : t("explore.filters.page", { page: previous.length + 1 })}</strong></div>
+        <fieldset><legend>{t("explore.filters.contribution")}</legend>{opportunityFilters.map((item) => <Button aria-pressed={opportunityFilter === item.id} className={opportunityFilter === item.id ? "is-active" : ""} key={item.id} onClick={() => updateFilter("opportunity", item.id)} type="button">{t(item.labelKey)}<span>{item.id === "all" ? metadata.total : metadata.opportunities[item.id]}</span></Button>)}</fieldset>
+        <fieldset><legend>{t("explore.filters.scope")}</legend>{scopeFilters.map((item) => <Button aria-pressed={scopeFilter === item.id} className={scopeFilter === item.id ? "is-active" : ""} key={item.id} onClick={() => updateFilter("scope", item.id)} type="button">{t(item.labelKey)}</Button>)}</fieldset>
+        <label className="research-subject-select"><span>{t("explore.filters.subject")}</span><Select value={subjectFilter} onChange={(event) => updateFilter("subject", event.target.value)}><option value="all">{t("explore.filter.allSubjects")}</option>{subjects.map((subject) => <option value={subject.slug} key={subject.slug}>MSC {subject.amsCode} · {subject.name}</option>)}</Select></label>
+        <div className="research-filter-note"><strong>{t("explore.boundary.title")}</strong><p>{t("explore.boundary.body")}</p></div>
       </aside>
 
       <div className="research-index-results" aria-busy={pending}>
-        <div className="research-results-meta" aria-live="polite"><span>{pending ? "Updating results…" : error ? "Results unavailable" : `Page ${previous.length + 1} · ${page.records.length} targets`}</span>{(query || activeFilterCount > 0) && <Button onClick={resetResults} type="button">Clear filters</Button>}</div>
-        {error && <EmptyState as="div" className="catalog-empty"><strong>Unable to load the research catalog.</strong><p>Please try again.</p><Button className="button button-secondary" disabled={pending} onClick={() => void requestPage(failedRequest.current)} type="button">Retry</Button><Button onClick={resetResults} type="button">Restart search</Button></EmptyState>}
-        {!error && !pending && page.records.length === 0 && <EmptyState as="div" className="catalog-empty"><strong>No targets match the current query.</strong><p>Clear one filter or try a broader title, subject, or declaration.</p><Button className="button button-secondary" onClick={resetResults} type="button">Reset search</Button></EmptyState>}
-        {!error && <div className="research-result-list">{page.records.map((project) => <ResearchCard project={project} key={project.slug} />)}</div>}
-        <nav className="research-results-more" aria-label="Research results pages">
-          <Button className="button button-secondary" disabled={pending || error || previous.length === 0} onClick={() => void requestPage({ criteria, cursor: previous[previous.length - 1], previous: previous.slice(0, -1) })} type="button">Previous page</Button>
-          <Button className="button button-secondary" disabled={pending || error || !page.nextCursor} onClick={() => void requestPage({ criteria, cursor: page.nextCursor, previous: [...previous, pageCursor] })} type="button">Next page</Button>
+        <div className="research-results-meta" aria-live="polite"><span>{pending ? t("explore.results.updating") : error ? t("explore.results.unavailable") : t("explore.results.page", { page: previous.length + 1, count: page.records.length })}</span>{(query || activeFilterCount > 0) && <Button onClick={resetResults} type="button">{t("explore.results.clear")}</Button>}</div>
+        {error && <EmptyState as="div" className="catalog-empty"><strong>{t("explore.error.title")}</strong><p>{t("explore.error.body")}</p><Button className="button button-secondary" disabled={pending} onClick={() => void requestPage(failedRequest.current)} type="button">{t("explore.error.retry")}</Button><Button onClick={resetResults} type="button">{t("explore.error.restart")}</Button></EmptyState>}
+        {!error && !pending && page.records.length === 0 && <EmptyState as="div" className="catalog-empty"><strong>{t("explore.empty.title")}</strong><p>{t("explore.empty.body")}</p><Button className="button button-secondary" onClick={resetResults} type="button">{t("explore.empty.reset")}</Button></EmptyState>}
+        {!error && <div className="research-result-list">{page.records.map((project) => <ResearchCard project={project} copy={cardCopy} key={project.slug} />)}</div>}
+        <nav className="research-results-more" aria-label={t("explore.paginationAria")}>
+          <Button className="button button-secondary" disabled={pending || error || previous.length === 0} onClick={() => void requestPage({ criteria, cursor: previous[previous.length - 1], previous: previous.slice(0, -1) })} type="button">{t("explore.pagination.previous")}</Button>
+          <Button className="button button-secondary" disabled={pending || error || !page.nextCursor} onClick={() => void requestPage({ criteria, cursor: page.nextCursor, previous: [...previous, pageCursor] })} type="button">{t("explore.pagination.next")}</Button>
         </nav>
       </div>
     </div>

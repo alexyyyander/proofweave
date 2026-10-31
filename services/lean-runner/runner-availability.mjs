@@ -146,6 +146,7 @@ export function runnerEnvironmentAvailability(availability, environment) {
   if (availability?.state === "invalid") {
     return Object.freeze({
       status: "unavailable",
+      reason: "invalid_configuration",
       label: "Hosted Runner configuration invalid",
       detail: "The deployment's Runner availability declaration is invalid; hosted execution cannot be promised.",
     });
@@ -153,6 +154,7 @@ export function runnerEnvironmentAvailability(availability, environment) {
   if (!availability || availability.state !== "configured") {
     return Object.freeze({
       status: "unavailable",
+      reason: "not_configured",
       label: "Hosted Runner not configured",
       detail: "No approved hosted Lean Runner image is available for this deployment.",
     });
@@ -162,6 +164,7 @@ export function runnerEnvironmentAvailability(availability, environment) {
   if (!entry) {
     return Object.freeze({
       status: "unavailable",
+      reason: "no_image",
       label: "No hosted Runner image",
       detail: "This exact Lean and Mathlib pin has no approved hosted Runner image.",
     });
@@ -169,6 +172,7 @@ export function runnerEnvironmentAvailability(availability, environment) {
   if (entry.deployed && entry.executionEnabled === true) {
     return Object.freeze({
       status: "executable",
+      reason: "executable",
       label: "Hosted Runner ready",
       detail: "A Runner for this exact Lean and Mathlib pin is deployed and execution is enabled.",
     });
@@ -176,6 +180,7 @@ export function runnerEnvironmentAvailability(availability, environment) {
   if (entry.deployed) {
     return Object.freeze({
       status: "paused",
+      reason: "paused",
       label: "Hosted Runner paused",
       detail: "A Runner for this pin is deployed, but execution is disabled. You can prepare locally; a hosted Run will be rejected until execution is enabled.",
     });
@@ -183,12 +188,14 @@ export function runnerEnvironmentAvailability(availability, environment) {
   if (availability.executionDeclared) {
     return Object.freeze({
       status: "unavailable",
+      reason: "not_deployed",
       label: "Hosted Runner not deployed",
       detail: "This pin is approved in the registry but no Runner is currently deployed for it.",
     });
   }
   return Object.freeze({
     status: "approved",
+    reason: "approved",
     label: "Hosted Runner approved",
     detail: "This pin has an approved Runner image, but the deployment has not declared its live execution status.",
   });

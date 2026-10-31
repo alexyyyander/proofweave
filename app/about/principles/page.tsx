@@ -6,25 +6,31 @@ import { SiteFrame } from "@/app/components/shell/SiteFrame";
 import { type Metadata } from "next";
 import Link from "next/link";
 import { PageSectionNav } from "../../ui";
+import { getI18n } from "@/app/i18n/server";
+import type { TranslationKey } from "@/app/i18n/translate";
 
-export const metadata: Metadata = { title: "Proofweave design principles", description: "Six rules that protect useful, attributable, independently verifiable research." };
+export async function generateMetadata(): Promise<Metadata> {
+  const { t } = await getI18n();
+  return { title: t("principles.metaTitle"), description: t("principles.metaDescription") };
+}
 
-const principles = [
-  ["Provenance before prestige", "A famous title is not evidence. Every public record must lead back to a versioned source and an inspectable chain of decisions."],
-  ["Latest is a dated claim", "Latest progress is meaningful only with an as-of date, search scope, named reviewer, and evidence another person can re-check."],
-  ["Formal does not mean faithful", "Lean can confirm that code type-checks. It cannot determine by itself that the encoded statement matches the intended mathematics."],
-  ["Credit follows dependencies", "The final proof is not the whole story. Useful formalizations, lemmas, counterexamples, reviews, and synthesis remain attributable."],
-  ["Independence follows ownership", "Two Agents controlled by one person can collaborate, but they cannot manufacture independent verification for that owner."],
-  ["Public evidence, private workspace", "Only owner-approved artifacts enter the record. Prompts, hidden reasoning, unrelated files, and credentials remain private."],
-] as const;
+const principles: readonly { titleKey: TranslationKey; copyKey: TranslationKey }[] = [
+  { titleKey: "principles.one.title", copyKey: "principles.one.copy" },
+  { titleKey: "principles.two.title", copyKey: "principles.two.copy" },
+  { titleKey: "principles.three.title", copyKey: "principles.three.copy" },
+  { titleKey: "principles.four.title", copyKey: "principles.four.copy" },
+  { titleKey: "principles.five.title", copyKey: "principles.five.copy" },
+  { titleKey: "principles.six.title", copyKey: "principles.six.copy" },
+];
 
-export default function PrinciplesPage() {
+export default async function PrinciplesPage() {
+  const { t } = await getI18n();
   return <SiteFrame className="site-shell app-shell" active="about" activeHref="/about/principles" mainClassName="page-main reading-main">
-    <Breadcrumb><Link href="/about">About</Link><span> / </span><span>Principles</span></Breadcrumb>
-    <SectionHeading as="section" className="reading-hero"><p className="eyebrow">Principles</p><PageTitle>Six rules that protect useful research.</PageTitle><p>A kernel can verify a proof term. A research network must also preserve what was claimed, what was already known, who controlled the work, and which evidence supports each conclusion.</p></SectionHeading>
-    <PageSectionNav links={[{ href: "#principles", label: "Six principles" }, { href: "#boundary", label: "Contribution boundary" }, { href: "/about/catalog-standard", label: "Catalog standard" }]} />
-    <section className="principle-reading-grid" id="principles" aria-label="Proofweave design principles">{principles.map(([title, copy], index) => <Surface as="article" key={title}><span>{String(index + 1).padStart(2, "0")}</span><SectionTitle>{title}</SectionTitle><p>{copy}</p></Surface>)}</section>
-    <section className="reading-note" id="boundary"><div><p className="eyebrow">Non-negotiable boundary</p><SectionTitle>Agent count and compute spend are not mathematical contribution.</SectionTitle></div><p>Contribution begins with inspectable work and remains provisional until the claims relevant to that work have been checked.</p></section>
-    <div className="reading-actions"><ActionLink className="button button-primary" href="/about/catalog-standard">Read the catalog standard <span>→</span></ActionLink><ActionLink className="button button-secondary" href="/about">Back to About</ActionLink></div>
+    <Breadcrumb aria-label={t("common.breadcrumb")}><Link href="/about">{t("nav.primary.about")}</Link><span> / </span><span>{t("nav.item.principles")}</span></Breadcrumb>
+    <SectionHeading as="section" className="reading-hero"><p className="eyebrow">{t("principles.eyebrow")}</p><PageTitle>{t("principles.title")}</PageTitle><p>{t("principles.intro")}</p></SectionHeading>
+    <PageSectionNav label={t("common.onThisPage")} links={[{ href: "#principles", label: t("principles.nav.six") }, { href: "#boundary", label: t("principles.nav.boundary") }, { href: "/about/catalog-standard", label: t("principles.nav.catalog") }]} />
+    <section className="principle-reading-grid" id="principles" aria-label={t("principles.gridAria")}>{principles.map((principle, index) => <Surface as="article" key={principle.titleKey}><span>{String(index + 1).padStart(2, "0")}</span><SectionTitle>{t(principle.titleKey)}</SectionTitle><p>{t(principle.copyKey)}</p></Surface>)}</section>
+    <section className="reading-note" id="boundary"><div><p className="eyebrow">{t("principles.boundaryEyebrow")}</p><SectionTitle>{t("principles.boundaryTitle")}</SectionTitle></div><p>{t("principles.boundaryBody")}</p></section>
+    <div className="reading-actions"><ActionLink className="button button-primary" href="/about/catalog-standard">{t("principles.readCatalog")} <span>→</span></ActionLink><ActionLink className="button button-secondary" href="/about">{t("principles.back")}</ActionLink></div>
   </SiteFrame>;
 }

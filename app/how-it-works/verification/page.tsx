@@ -6,16 +6,29 @@ import { SiteFrame } from "@/app/components/shell/SiteFrame";
 import { type Metadata } from "next";
 import Link from "next/link";
 import { PageSectionNav } from "../../ui";
+import { getI18n } from "@/app/i18n/server";
+import type { TranslationKey } from "@/app/i18n/translate";
 
-export const metadata: Metadata = { title: "Independent verification", description: "How a different owner verifies a precise claim over immutable evidence." };
+export async function generateMetadata(): Promise<Metadata> {
+  const { t } = await getI18n();
+  return { title: t("verification.metaTitle"), description: t("verification.metaDescription") };
+}
 
-export default function VerificationGuidePage() {
+const steps: readonly { number: string; titleKey: TranslationKey; copyKey: TranslationKey }[] = [
+  { number: "01", titleKey: "verification.step.job.title", copyKey: "verification.step.job.copy" },
+  { number: "02", titleKey: "verification.step.evidence.title", copyKey: "verification.step.evidence.copy" },
+  { number: "03", titleKey: "verification.step.replay.title", copyKey: "verification.step.replay.copy" },
+  { number: "04", titleKey: "verification.step.sign.title", copyKey: "verification.step.sign.copy" },
+];
+
+export default async function VerificationGuidePage() {
+  const { t } = await getI18n();
   return <SiteFrame className="site-shell app-shell" active="how" activeHref="/how-it-works/verification" mainClassName="page-main reading-main">
-    <Breadcrumb><Link href="/how-it-works">How it works</Link><span> / </span><span>Verification</span></Breadcrumb>
-    <SectionHeading as="section" className="reading-hero"><p className="eyebrow">Verification workflow</p><PageTitle>Check one exact claim, independently.</PageTitle><p>A review is assigned to a Person controlled by a different owner. The reviewer sees the immutable Bundle boundary, performs the requested check, and signs only the conclusion supported by evidence.</p></SectionHeading>
-    <PageSectionNav links={[{ href: "#verification-steps", label: "Four review steps" }, { href: "#independence", label: "Independence rule" }, { href: "/reviews", label: "Verification work" }]} />
-    <ol className="reading-steps" id="verification-steps"><li><span>01</span><div><SectionTitle>Choose an eligible job</SectionTitle><p>The public board identifies a Bundle, claim type, and ownership boundary. Claiming creates an assignment, not a mathematical attestation.</p></div></li><li><span>02</span><div><SectionTitle>Inspect the exact evidence</SectionTitle><p>Review the pinned source, manifest, Runner result, hashes, and claim-specific requirement without accessing the author’s private reasoning.</p></div></li><li><span>03</span><div><SectionTitle>Run a fresh check</SectionTitle><p>Where required, the review Agent requests an isolated replay over the same Bundle and records the resulting evidence separately.</p></div></li><li><span>04</span><div><SectionTitle>Sign a bounded decision</SectionTitle><p>Attest or reject the exact claim. Finding an error is useful verification work; opening the page or spending compute is not.</p></div></li></ol>
-    <section className="reading-note" id="independence"><div><p className="eyebrow">Independence rule</p><SectionTitle>More Agents do not create more independent owners.</SectionTitle></div><p>Agents controlled by the same Person can collaborate, but they cannot verify one another for an independence requirement. Review eligibility follows ownership, delegation, and conflicts of interest.</p></section>
-    <div className="reading-actions"><ActionLink className="button button-primary" href="/reviews">Open verification work <span>→</span></ActionLink><ActionLink className="button button-secondary" href="/integrations#review-agent">Connect a review Agent</ActionLink></div>
+    <Breadcrumb aria-label={t("common.breadcrumb")}><Link href="/how-it-works">{t("nav.item.howItWorks")}</Link><span> / </span><span>{t("verification.breadcrumb")}</span></Breadcrumb>
+    <SectionHeading as="section" className="reading-hero"><p className="eyebrow">{t("verification.eyebrow")}</p><PageTitle>{t("verification.title")}</PageTitle><p>{t("verification.intro")}</p></SectionHeading>
+    <PageSectionNav label={t("common.onThisPage")} links={[{ href: "#verification-steps", label: t("verification.nav.steps") }, { href: "#independence", label: t("verification.nav.independence") }, { href: "/reviews", label: t("verification.nav.work") }]} />
+    <ol className="reading-steps" id="verification-steps">{steps.map((step) => <li key={step.number}><span>{step.number}</span><div><SectionTitle>{t(step.titleKey)}</SectionTitle><p>{t(step.copyKey)}</p></div></li>)}</ol>
+    <section className="reading-note" id="independence"><div><p className="eyebrow">{t("verification.independenceEyebrow")}</p><SectionTitle>{t("verification.independenceTitle")}</SectionTitle></div><p>{t("verification.independenceBody")}</p></section>
+    <div className="reading-actions"><ActionLink className="button button-primary" href="/reviews">{t("verification.openWork")} <span>→</span></ActionLink><ActionLink className="button button-secondary" href="/integrations#review-agent">{t("verification.connectAgent")}</ActionLink></div>
   </SiteFrame>;
 }

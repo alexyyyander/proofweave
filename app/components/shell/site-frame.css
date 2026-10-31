@@ -29,3 +29,37 @@
   .ui-site-frame .legal-hero,
   .ui-site-frame .information-hub-hero { padding-block: 28px 24px; }
 }
+
+/* Language menu — mirrors the directory menu's disclosure behavior. */
+.locale-menu { position: relative; }
+.locale-menu > summary { align-items: center; color: #d7e0ef; cursor: pointer; display: flex; font-size: var(--text-xs); font-weight: 700; gap: 6px; letter-spacing: .04em; list-style: none; padding: 10px 0; }
+.locale-menu > summary::-webkit-details-marker { display: none; }
+.locale-menu > summary i { color: #8595b1; font-size: var(--text-2xs); font-style: normal; transition: transform .18s ease; }
+.locale-menu[open] > summary i { transform: rotate(180deg); }
+.locale-menu > summary:hover, .locale-menu[open] > summary { color: #fff; }
+.locale-menu > summary:focus-visible { border-radius: 2px; outline: 2px solid #f3d48b; outline-offset: 4px; }
+.locale-popover { background: #f7f6f1; border: 1px solid #c9ced8; box-shadow: 0 26px 70px rgba(5,16,36,.28); color: var(--ink); display: grid; gap: 12px; margin-top: 8px; min-width: 250px; padding: 18px; position: absolute; right: 0; top: 100%; z-index: 120; }
+.locale-popover > strong { color: var(--ink-faint); font-size: var(--text-2xs); letter-spacing: .1em; text-transform: uppercase; }
+.locale-options { border-top: 1px solid var(--line); display: grid; }
+.locale-options a { align-items: center; border-bottom: 1px solid var(--line); color: var(--ink-soft); display: flex; font-size: var(--text-sm); gap: 12px; justify-content: space-between; padding: 11px 0; }
+.locale-options a:hover, .locale-options a[aria-current="true"] { color: var(--indigo); }
+.locale-options a:focus-visible { outline: 2px solid var(--indigo); outline-offset: 3px; }
+.locale-options a small { color: var(--ink-faint); font-size: var(--text-2xs); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.locale-popover p { color: var(--ink-faint); font-size: var(--text-2xs); line-height: 1.55; margin: 0; max-width: 260px; }
+
+/* Chinese typography: the Latin display tracking is too tight for Han glyphs. */
+html[lang="zh-CN"] h1,
+html[lang="zh-CN"] h2,
+html[lang="zh-CN"] h3,
+html[lang="zh-CN"] h4,
+html[lang="zh-CN"] .ui-page-title,
+html[lang="zh-CN"] .ui-section-title,
+html[lang="zh-CN"] .ui-card-title { letter-spacing: 0; }
+html[lang="zh-CN"] p,
+html[lang="zh-CN"] li,
+html[lang="zh-CN"] dd { text-wrap: pretty; }
+.locale-popover { min-width: min(250px, calc(100vw - 32px)); }
+@media (max-width: 620px) {
+  .locale-menu > summary { font-size: var(--text-xs); padding: 8px 0; }
+  .locale-popover { padding: 14px; }
+}

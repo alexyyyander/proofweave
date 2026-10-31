@@ -2,10 +2,31 @@ import { CardTitle, SectionTitle, Field, ActionLink, EmptyState, FieldList, Sect
 
 import Link from "next/link";
 import { type CSSProperties } from "react";
-import { type PublicResearchGraph, type PublicResearchNode } from "@/db/repositories/research-graph";
+import { type PublicResearchGraph, type PublicResearchNode, type ResearchNodeKind } from "@/db/repositories/research-graph";
+import { getI18n } from "@/app/i18n/server";
+import type { TranslationKey, Translator } from "@/app/i18n/translate";
 import { HistoricalSourceImporter } from "./HistoricalSourceImporter";
 
-export function ResearchGraphView({
+const kindKeys: Record<ResearchNodeKind, TranslationKey> = {
+  formalization: "explore.graph.kind.formalization",
+  hypothesis: "explore.graph.kind.hypothesis",
+  lemma: "explore.graph.kind.lemma",
+  proof_state: "explore.graph.kind.proof_state",
+  proof_patch: "explore.graph.kind.proof_patch",
+  counterexample: "explore.graph.kind.counterexample",
+  negative_result: "explore.graph.kind.negative_result",
+  synthesis: "explore.graph.kind.synthesis",
+};
+
+const stageKeys: Record<PublicResearchNode["evidence"]["stage"], TranslationKey> = {
+  shared: "explore.graph.stage.shared",
+  bundle_staged: "explore.graph.stage.bundle_staged",
+  kernel_accepted: "explore.graph.stage.kernel_accepted",
+  review_recorded: "explore.graph.stage.review_recorded",
+  receipt_recorded: "explore.graph.stage.receipt_recorded",
+};
+
+export async function ResearchGraphView({
   graph,
   problemSlug,
   canImportSources,
@@ -16,12 +37,13 @@ export function ResearchGraphView({
   canImportSources: boolean;
   signInPath: string;
 }) {
+  const { t } = await getI18n();
   if (!graph) {
     return <section className="research-graph-section" aria-labelledby="research-graph-title">
-      <GraphHeading nodeCount={0} branchCount={0} />
+      <GraphHeading nodeCount={0} branchCount={0} t={t} />
       <div className="research-graph-unavailable">
-        <strong>Research graph activation is pending.</strong>
-        <p>The source-pinned conjecture remains available, but its checkpoint schema is not active in this control plane yet.</p>
+        <strong>{t("explore.graph.pendingTitle")}</strong>
+        <p>{t("explore.graph.pendingBody")}</p>
       </div>
     </section>;
   }
@@ -37,40 +59,40 @@ export function ResearchGraphView({
   }
 
   return <section className="research-graph-section" aria-labelledby="research-graph-title">
-    <GraphHeading nodeCount={graph.nodes.length} branchCount={branchCount} />
+    <GraphHeading nodeCount={graph.nodes.length} branchCount={branchCount} t={t} />
     <div className="research-graph-boundary">
-      <span>Public checkpoint</span>
-      <span>Agent-signed</span>
-      <span className="is-boundary">Checkpoint state and evidence gates stay separate</span>
+      <span>{t("explore.graph.boundary.public")}</span>
+      <span>{t("explore.graph.boundary.signed")}</span>
+      <span className="is-boundary">{t("explore.graph.boundary.separate")}</span>
     </div>
 
     <div className="research-foundation">
       <div className="research-foundation-heading">
         <div>
-          <span className="micro-label">00 · Prior work</span>
-          <CardTitle>Start from the record, not from zero.</CardTitle>
+          <span className="micro-label">{t("explore.graph.prior.label")}</span>
+          <CardTitle>{t("explore.graph.prior.title")}</CardTitle>
         </div>
-        <span>{graph.externalWorks.length} source{graph.externalWorks.length === 1 ? "" : "s"}</span>
+        <span>{t("explore.graph.prior.sources", { count: graph.externalWorks.length })}</span>
       </div>
       {graph.externalWorks.length > 0 ? <div className="historical-source-list">
         {graph.externalWorks.map((work) => <Surface as="article" className="historical-source-card" key={work.id}>
           <div><span>{work.sourceSystem}</span><span>{work.sourceRevision}</span></div>
           <h4><a href={work.sourceUrl} rel="noreferrer" target="_blank">{work.title}</a></h4>
           <p>{work.attributions.map((entry) => `${entry.displayName} · ${entry.role}`).join("; ")}</p>
-          <small>{work.citedBy.length > 0 ? `Cited by ${work.citedBy.length} shared checkpoint${work.citedBy.length === 1 ? "" : "s"}` : "Linked as prior work; not cited by a checkpoint yet"}</small>
+          <small>{work.citedBy.length > 0 ? t("explore.graph.prior.cited", { count: work.citedBy.length }) : t("explore.graph.prior.linked")}</small>
         </Surface>)}
-      </div> : <p className="research-foundation-empty">No historical work has been linked to this exact problem revision yet. Adding a source preserves its original names and provenance; it does not mint Proofweave credit.</p>}
+      </div> : <p className="research-foundation-empty">{t("explore.graph.prior.empty")}</p>}
       <HistoricalSourceImporter problemSlug={problemSlug} canImport={canImportSources} signInPath={signInPath} />
     </div>
 
     {graph.nodes.length === 0 ? <EmptyState as="div" className="research-graph-empty">
-      <strong>No public research checkpoint yet.</strong>
-      <p>The first Agent can publish a concise formalization, lemma, counterexample, proof state, or other material milestone without exposing private reasoning.</p>
-      <ActionLink className="button button-primary" href={`/workbench?target=${encodeURIComponent(problemSlug)}#research-launcher`}>Open the first branch <span aria-hidden="true">→</span></ActionLink>
-    </EmptyState> : <div className="research-graph-scroll" tabIndex={0} aria-label="Research checkpoint graph">
+      <strong>{t("explore.graph.empty.title")}</strong>
+      <p>{t("explore.graph.empty.body")}</p>
+      <ActionLink className="button button-primary" href={`/workbench?target=${encodeURIComponent(problemSlug)}#research-launcher`}>{t("explore.graph.empty.action")} <span aria-hidden="true">→</span></ActionLink>
+    </EmptyState> : <div className="research-graph-scroll" tabIndex={0} aria-label={t("explore.graph.aria")}>
       <div className="research-graph-layers" style={{ "--research-layer-count": Math.max(layers.length, 1) } as CSSProperties}>
-        {layers.map((nodes, layerIndex) => <section className="research-graph-layer" key={layerIndex} aria-label={`Research layer ${layerIndex + 1}`}>
-          <div className="research-layer-heading"><span>{String(layerIndex + 1).padStart(2, "0")}</span><strong>{layerIndex === 0 ? "Starting points" : `Derived step ${layerIndex}`}</strong></div>
+        {layers.map((nodes, layerIndex) => <section className="research-graph-layer" key={layerIndex} aria-label={t("explore.graph.layerAria", { number: layerIndex + 1 })}>
+          <div className="research-layer-heading"><span>{String(layerIndex + 1).padStart(2, "0")}</span><strong>{layerIndex === 0 ? t("explore.graph.startingPoints") : t("explore.graph.derived", { number: layerIndex })}</strong></div>
           <div className="research-layer-nodes">
             {nodes.map((node) => <ResearchNodeCard
               key={node.id}
@@ -78,25 +100,26 @@ export function ResearchGraphView({
               parentIds={parentsByChild.get(node.id) ?? []}
               problemSlug={problemSlug}
               isTip={!parentIds.has(node.id)}
+              t={t}
             />)}
           </div>
         </section>)}
       </div>
     </div>}
-    {graph.truncated && <p className="research-graph-truncated">This view is capped at the first 300 checkpoints. The API retains explicit node and edge identifiers for paginated graph clients.</p>}
+    {graph.truncated && <p className="research-graph-truncated">{t("explore.graph.truncated")}</p>}
   </section>;
 }
 
-function GraphHeading({ nodeCount, branchCount }: { nodeCount: number; branchCount: number }) {
+function GraphHeading({ nodeCount, branchCount, t }: { nodeCount: number; branchCount: number; t: Translator }) {
   return <SectionHeading as="div" className="research-graph-heading">
     <div>
-      <p className="eyebrow">Open research graph</p>
-      <SectionTitle id="research-graph-title">See what has been tried. Continue what matters.</SectionTitle>
-      <p>Material milestones form an append-only DAG: derive a child from an existing checkpoint, open an independent branch, or synthesize two or more branches. Raw chain-of-thought stays local.</p>
+      <p className="eyebrow">{t("explore.graph.heading.eyebrow")}</p>
+      <SectionTitle id="research-graph-title">{t("explore.graph.heading.title")}</SectionTitle>
+      <p>{t("explore.graph.heading.body")}</p>
     </div>
     <FieldList layout="stacked">
-      <Field label="Checkpoints">{nodeCount}</Field>
-      <Field label="Open tips">{branchCount}</Field>
+      <Field label={t("explore.graph.field.checkpoints")}>{nodeCount}</Field>
+      <Field label={t("explore.graph.field.openTips")}>{branchCount}</Field>
     </FieldList>
   </SectionHeading>;
 }
@@ -106,56 +129,48 @@ function ResearchNodeCard({
   parentIds,
   problemSlug,
   isTip,
+  t,
 }: {
   node: PublicResearchNode;
   parentIds: readonly string[];
   problemSlug: string;
   isTip: boolean;
+  t: Translator;
 }) {
   return <Surface as="article" className={`research-node-card kind-${node.kind}`}>
     <div className="research-node-top">
-      <span>{node.kind.replaceAll("_", " ")}</span>
-      {isTip && <span className="research-tip-chip">Open tip</span>}
+      <span>{t(kindKeys[node.kind])}</span>
+      {isTip && <span className="research-tip-chip">{t("explore.graph.node.openTip")}</span>}
     </div>
     <p>{node.summary}</p>
-    {parentIds.length > 0 && <div className="research-node-parents"><span>From</span>{parentIds.map((id) => <code key={id}>{shortId(id)}</code>)}</div>}
-    <ResearchNodeEvidence node={node} />
-    <div className="research-node-author"><Link href={`/people/${encodeURIComponent(node.creator.personId)}`}>{node.creator.displayName}</Link><small>via {node.creator.agentLabel} · {formatDate(node.occurredAt)}</small></div>
+    {parentIds.length > 0 && <div className="research-node-parents"><span>{t("explore.graph.node.from")}</span>{parentIds.map((id) => <code key={id}>{shortId(id)}</code>)}</div>}
+    <ResearchNodeEvidence node={node} t={t} />
+    <div className="research-node-author"><Link href={`/people/${encodeURIComponent(node.creator.personId)}`}>{node.creator.displayName}</Link><small>{t("explore.graph.node.via")} {node.creator.agentLabel} · {formatDate(node.occurredAt)}</small></div>
     <div className="research-node-footer">
       <code>{shortId(node.id)}</code>
-      <Link href={`/workbench?target=${encodeURIComponent(problemSlug)}&parent=${encodeURIComponent(node.id)}#research-launcher`}>Continue branch <span aria-hidden="true">→</span></Link>
+      <Link href={`/workbench?target=${encodeURIComponent(problemSlug)}&parent=${encodeURIComponent(node.id)}#research-launcher`}>{t("explore.graph.node.continue")} <span aria-hidden="true">→</span></Link>
     </div>
   </Surface>;
 }
 
-function ResearchNodeEvidence({ node }: { node: PublicResearchNode }) {
+function ResearchNodeEvidence({ node, t }: { node: PublicResearchNode; t: Translator }) {
   const evidence = node.evidence;
   return <div className={`research-node-evidence stage-${evidence.stage}`}>
-    <div className="research-evidence-heading"><span>Evidence</span><strong>{evidenceStageLabel(evidence.stage)}</strong></div>
-    <ol aria-label="Checkpoint evidence gates">
-      <EvidenceGate label="Shared" active />
-      <EvidenceGate label="Bundle" active={Boolean(evidence.bundle)} />
-      <EvidenceGate label="Lean" active={Boolean(evidence.lean)} />
-      <EvidenceGate label="Review" active={Boolean(evidence.review)} />
-      <EvidenceGate label="Receipt" active={Boolean(evidence.receipt)} />
+    <div className="research-evidence-heading"><span>{t("explore.graph.evidence.title")}</span><strong>{t(stageKeys[evidence.stage])}</strong></div>
+    <ol aria-label={t("explore.graph.evidence.gatesAria")}>
+      <EvidenceGate label={t("explore.graph.gate.shared")} active />
+      <EvidenceGate label={t("explore.graph.gate.bundle")} active={Boolean(evidence.bundle)} />
+      <EvidenceGate label={t("explore.graph.gate.lean")} active={Boolean(evidence.lean)} />
+      <EvidenceGate label={t("explore.graph.gate.review")} active={Boolean(evidence.review)} />
+      <EvidenceGate label={t("explore.graph.gate.receipt")} active={Boolean(evidence.receipt)} />
     </ol>
-    {evidence.review && <small>{evidence.review.attestationCount} signed claim{evidence.review.attestationCount === 1 ? "" : "s"} · {evidence.review.reviewerCount} independent owner{evidence.review.reviewerCount === 1 ? "" : "s"}</small>}
-    {evidence.receipt && <Link className="research-evidence-receipt" href={`/receipt/${encodeURIComponent(evidence.receipt.id)}`}>Open signed Receipt <span aria-hidden="true">→</span></Link>}
+    {evidence.review && <small>{t("explore.graph.review.summary", { claims: evidence.review.attestationCount, owners: evidence.review.reviewerCount })}</small>}
+    {evidence.receipt && <Link className="research-evidence-receipt" href={`/receipt/${encodeURIComponent(evidence.receipt.id)}`}>{t("explore.graph.receipt.open")} <span aria-hidden="true">→</span></Link>}
   </div>;
 }
 
 function EvidenceGate({ label, active }: { label: string; active: boolean }) {
   return <li className={active ? "is-recorded" : ""}><i aria-hidden="true" /><span>{label}</span></li>;
-}
-
-function evidenceStageLabel(stage: PublicResearchNode["evidence"]["stage"]) {
-  return {
-    shared: "Shared only",
-    bundle_staged: "Bundle staged",
-    kernel_accepted: "Kernel accepted",
-    review_recorded: "Review recorded",
-    receipt_recorded: "Receipt recorded",
-  }[stage];
 }
 
 function layerNodes(graph: PublicResearchGraph): PublicResearchNode[][] {

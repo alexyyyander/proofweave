@@ -1,11 +1,13 @@
 "use client";
 import { useState } from "react";
+import { useI18n } from "@/app/i18n/client";
 
 export function CitationCopyButton({ citation }: { citation: string }) {
+  const { t } = useI18n();
   const [status, setStatus] = useState("");
   async function copy() {
-    try { await navigator.clipboard.writeText(citation); setStatus("Copied"); }
-    catch { setStatus("Select and copy the citation below."); }
+    try { await navigator.clipboard.writeText(citation); setStatus(t("publicationDetail.copy.copied")); }
+    catch { setStatus(t("publicationDetail.copy.manual")); }
   }
-  return <span className="publication-copy-action"><button type="button" onClick={copy}>Copy BibTeX</button><span role="status">{status}</span></span>;
+  return <span className="publication-copy-action"><button type="button" onClick={copy}>{t("publicationDetail.copy.action")}</button><span role="status">{status}</span></span>;
 }

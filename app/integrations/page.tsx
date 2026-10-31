@@ -9,12 +9,20 @@ import { getDelegationRepository } from "@/db/repositories/delegation";
 import { activeLocalCodexInstallation } from "../lib/local-agent-journey";
 import { loadCatalogTargets, requestedParentNodeId, requestedTargetSlug } from "../workbench/workbench-data";
 import { googleAuthConfig } from "../google-auth-config";
+import { getI18n } from "@/app/i18n/server";
+import type { Metadata } from "next";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { t } = await getI18n();
+  return { title: t("integrations.metaTitle"), description: t("integrations.metaDescription") };
+}
 
 export default async function IntegrationsPage({
   searchParams,
 }: {
   searchParams: Promise<{ target?: string | string[]; parent?: string | string[]; return_to?: string | string[] }>;
 }) {
+  const { t } = await getI18n();
   const query = await searchParams;
   const targetSlug = requestedTargetSlug(query);
   const parentNodeId = requestedParentNodeId(query);
@@ -40,13 +48,9 @@ export default async function IntegrationsPage({
       <Header active="workbench" />
       <main id="main-content" tabIndex={-1} className="page-main integrations-main">
         <SectionHeading as="section" className="integrations-hero" aria-labelledby="integrations-title">
-          <p className="eyebrow">Step 2 of 3 · connect Codex once</p>
-          <PageTitle id="integrations-title">Connect once. Then return to your research.</PageTitle>
-          <p>
-            Keep your research Agent on your computer. Proofweave records only
-            the bounded work you explicitly approve—never your private
-            workspace, prompts, or API keys.
-          </p>
+          <p className="eyebrow">{t("integrations.hero.eyebrow")}</p>
+          <PageTitle id="integrations-title">{t("integrations.hero.title")}</PageTitle>
+          <p>{t("integrations.hero.body")}</p>
         </SectionHeading>
         <IntegrationClient
           connection={connection}

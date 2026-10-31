@@ -15,40 +15,41 @@ import { hasActiveReviewDelegation } from "../lib/review-authority";
 import { ReviewQueueClient } from "./ReviewQueueClient";
 import { VerificationMarketBoard } from "./VerificationMarketBoard";
 import { personalWritesPaused, ReadOnlyPersonalSurface } from "../lib/read-only-personal-surface";
+import { getI18n } from "@/app/i18n/server";
+import type { Translator } from "@/app/i18n/translate";
 
 export const dynamic = "force-dynamic";
 
 export default async function ReviewsPage() {
+  const { t } = await getI18n();
   const readOnly = personalWritesPaused();
   const user = await getCurrentUser();
   if (readOnly) {
     return <ReadOnlyPersonalSurface
       active="review"
-      eyebrow="Verification market · read-only maintenance"
-      title="Review assignments are temporarily paused."
-      detail={user
-        ? "Public questions and published verification records remain readable. Your private review queue is not loaded, and claiming, accepting, declining, or submitting a review is unavailable during maintenance."
-        : "Public questions and published verification records remain readable. Claiming review work and opening a personal review queue will return after maintenance."}
+      eyebrow={t("reviews.readOnly.eyebrow")}
+      title={t("reviews.readOnly.title")}
+      detail={user ? t("reviews.readOnly.detailSignedIn") : t("reviews.readOnly.detailSignedOut")}
     >
-      <section className="workspace-onboarding-boundary" aria-label="Verification information">
-        <strong>Verification remains inspectable.</strong>
-        <p>Learn how Bundle evidence, independent ownership, and claim-specific decisions remain separate from a Lean execution result.</p>
-        <Link href="/how-it-works/verification">How verification works <span aria-hidden="true">→</span></Link>
+      <section className="workspace-onboarding-boundary" aria-label={t("reviews.readOnly.infoTitle")}>
+        <strong>{t("reviews.readOnly.infoTitle")}</strong>
+        <p>{t("reviews.readOnly.infoBody")}</p>
+        <Link href="/how-it-works/verification">{t("reviews.readOnly.infoLink")} <span aria-hidden="true">→</span></Link>
       </section>
     </ReadOnlyPersonalSurface>;
   }
   const result = await loadReviews(user);
-  if (!result.storageAvailable) return <ReviewMessage unavailable />;
+  if (!result.storageAvailable) return <ReviewMessage unavailable t={t} />;
 
   const activeAssignments = result.assignments.filter((assignment) => assignment.status === "assigned" || assignment.status === "accepted").length;
   const hasReviewDelegation = hasActiveReviewDelegation(result.profile);
   return <SiteFrame className="site-shell app-shell" active="review" mainClassName="page-main review-main">
-      <Breadcrumb><Link href="/explore">Explore</Link><span> / </span><span>Verification market</span></Breadcrumb>
-      <SectionHeading as="section" className="review-heading"><div><p className="eyebrow">Verification market · public work board</p><PageTitle>Verify evidence. Become eligible for review credit.</PageTitle><p>Choose a claim pinned to another Person’s staged Bundle. Your review Agent performs the check and signs the decision; eligibility becomes settled credit only if the target later closes through a valid Receipt.</p></div><Badge className="record-chip">{result.jobs.length} open</Badge></SectionHeading>
-      <nav className="public-section-nav" aria-label="Verification page">
-        <a href="#open-review-work"><span>Open work</span><b>{result.jobs.length}</b></a>
-        <a href="#my-review-work"><span>My reviews</span><b>{user ? activeAssignments : "Sign in"}</b></a>
-        <Link href="/how-it-works/verification"><span>How verification works</span><b aria-hidden="true">→</b></Link>
+      <Breadcrumb aria-label={t("common.breadcrumb")}><Link href="/explore">{t("explore.breadcrumb")}</Link><span> / </span><span>{t("reviews.breadcrumb.market")}</span></Breadcrumb>
+      <SectionHeading as="section" className="review-heading"><div><p className="eyebrow">{t("reviews.hero.eyebrow")}</p><PageTitle>{t("reviews.hero.title")}</PageTitle><p>{t("reviews.hero.body")}</p></div><Badge className="record-chip">{t("reviews.hero.open", { count: result.jobs.length })}</Badge></SectionHeading>
+      <nav className="public-section-nav" aria-label={t("reviews.nav.aria")}>
+        <a href="#open-review-work"><span>{t("reviews.nav.open")}</span><b>{result.jobs.length}</b></a>
+        <a href="#my-review-work"><span>{t("reviews.nav.my")}</span><b>{user ? activeAssignments : t("reviews.nav.signIn")}</b></a>
+        <Link href="/how-it-works/verification"><span>{t("reviews.nav.how")}</span><b aria-hidden="true">→</b></Link>
       </nav>
       <VerificationMarketBoard
         initialJobs={result.jobs}
@@ -57,12 +58,12 @@ export default async function ReviewsPage() {
         signInPath={signInPath("/reviews")}
       />
       <SectionHeading as="section" className="personal-review-heading" id="my-review-work" aria-labelledby="personal-review-title">
-        <div><p className="eyebrow">Personal workspace</p><SectionTitle id="personal-review-title">{user ? "Your accepted and assigned reviews." : "Sign in to claim and complete reviews."}</SectionTitle><p>{user ? "Assignments belong to your Person identity. Multiple Agents do not increase capacity or satisfy independent-owner rules." : "The public board is visible without an account. Signing in establishes the Person identity used for ownership separation, assignment history, and contribution attribution."}</p></div>
-        <Badge className="record-chip">{user ? `${activeAssignments}/${closedAlphaReviewLimits.maximumActiveAssignmentsPerPerson} active` : "Person-scoped"}</Badge>
+        <div><p className="eyebrow">{t("reviews.personal.eyebrow")}</p><SectionTitle id="personal-review-title">{user ? t("reviews.personal.titleSignedIn") : t("reviews.personal.titleSignedOut")}</SectionTitle><p>{user ? t("reviews.personal.bodySignedIn") : t("reviews.personal.bodySignedOut")}</p></div>
+        <Badge className="record-chip">{user ? t("reviews.personal.active", { active: activeAssignments, max: closedAlphaReviewLimits.maximumActiveAssignmentsPerPerson }) : t("reviews.personal.scoped")}</Badge>
       </SectionHeading>
       {user
         ? <ReviewQueueClient initialAssignments={result.assignments} hasReviewDelegation={hasReviewDelegation} />
-        : <EmptyState as="section" className="review-empty review-sign-in-panel"><p className="eyebrow">Personal queue</p><SectionTitle>No anonymous assignments.</SectionTitle><p>Sign in first, then activate a review-scoped Agent delegation. Claiming a job creates an accepted assignment immediately, but never fabricates a mathematical attestation.</p><ActionLink className="button button-primary review-sign-in" href={signInPath("/reviews")}>Sign in to review <span aria-hidden="true">→</span></ActionLink></EmptyState>}
+        : <EmptyState as="section" className="review-empty review-sign-in-panel"><p className="eyebrow">{t("reviews.queueEmpty.eyebrow")}</p><SectionTitle>{t("reviews.queueEmpty.title")}</SectionTitle><p>{t("reviews.queueEmpty.body")}</p><ActionLink className="button button-primary review-sign-in" href={signInPath("/reviews")}>{t("reviews.queueEmpty.action")} <span aria-hidden="true">→</span></ActionLink></EmptyState>}
     </SiteFrame>;
 }
 
@@ -85,11 +86,9 @@ async function loadReviews(user: AuthUser | null): Promise<{ profile: Delegation
   }
 }
 
-function ReviewMessage({ unavailable }: { unavailable?: boolean }) {
-  const title = "Verification work is temporarily unavailable.";
-  const detail = "No market claim or review action was taken while the control plane was unavailable.";
+function ReviewMessage({ unavailable, t }: { unavailable?: boolean; t: Translator }) {
   return <SiteFrame className="site-shell app-shell" active="review" mainClassName="page-main review-main">
-      <Breadcrumb><Link href="/explore">Explore</Link><span> / </span><span>Verification market</span></Breadcrumb>
-      <SectionHeading as="section" className="review-heading"><div><p className="eyebrow">Verification queue</p><PageTitle>{title}</PageTitle><p>{detail}</p></div><Badge className="record-chip">{unavailable ? "Unavailable" : "Personal"}</Badge></SectionHeading>
+      <Breadcrumb aria-label={t("common.breadcrumb")}><Link href="/explore">{t("explore.breadcrumb")}</Link><span> / </span><span>{t("reviews.breadcrumb.market")}</span></Breadcrumb>
+      <SectionHeading as="section" className="review-heading"><div><p className="eyebrow">{t("reviews.message.eyebrow")}</p><PageTitle>{t("reviews.message.title")}</PageTitle><p>{t("reviews.message.detail")}</p></div><Badge className="record-chip">{unavailable ? t("reviews.message.unavailable") : t("reviews.message.personal")}</Badge></SectionHeading>
     </SiteFrame>;
 }

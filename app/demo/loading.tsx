@@ -1,5 +1,5 @@
 import { PageLoading } from "@/app/components/shell/PageLoading";
 
 export default function Loading() {
-  return <PageLoading active="demo" label="Verification" />;
+  return <PageLoading active="demo" labelKey="common.loadingVerification" />;
 }

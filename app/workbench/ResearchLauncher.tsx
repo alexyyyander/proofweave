@@ -11,7 +11,9 @@ import { closedAlphaAttemptLimits } from "@/packages/domain/attempt-policy.mjs";
 import { controlPlaneMaintenanceCopy, type ControlPlaneWriteAvailability } from "../lib/control-plane-write-capability";
 import type { ResearchEligibility } from "../lib/research-eligibility";
 import { activeLocalCodexInstallation } from "../lib/local-agent-journey";
-import { RESEARCH_WINDOW_REQUEST_ACCESS_HREF, researchWindowBlockedCopy } from "../components/research/ResearchWindowNotice";
+import { RESEARCH_WINDOW_REQUEST_ACCESS_HREF, researchWindowBlockedCopy } from "./ResearchWindowNotice";
+import { useI18n } from "@/app/i18n/client";
+import { runnerAvailabilityKeys } from "../lib/runner-availability";
 
 type WorkScope = "formalize" | "prove";
 
@@ -45,6 +47,7 @@ export function ResearchLauncher({
   writeAvailability: ControlPlaneWriteAvailability;
   eligibility?: ResearchEligibility | null;
 }) {
+  const { t } = useI18n();
   const connection = useMemo(() => activeLocalCodexInstallation(profile), [profile]);
   const delegation = useMemo(() => connectedWorkDelegation(profile, connection?.agentId, connection?.delegationCertificateId), [connection, profile]);
   const [targetSlug, setTargetSlug] = useState(initialTargetSlug ?? "");
@@ -93,33 +96,33 @@ export function ResearchLauncher({
   const newAttemptBlocked = creationBlockedByWindow || connectedAgentBlocked;
   const launcherBlocked = (newAttemptBlocked && !existing) || continueBlocked;
   const connectedAgentCopy = {
-    title: "The Agent connected here is not in the research write window.",
-    detail: "Another of your Agents may be allowed, but this browser is connected to an Agent outside the window. Reconnect an allowed Agent or ask an operator to add this one.",
+    title: t("researchLauncher.window.agent.title"),
+    detail: t("researchLauncher.window.agent.detail"),
   };
   const windowBlocked = eligibility && launcherBlocked
     ? continueBlocked
       ? connectedAgentBlocked
         ? connectedAgentCopy
         : {
-          title: "This existing Attempt is not covered by the write window.",
-          detail: "The Attempt remains readable. Ask an operator to list it, include its Agent, or enable new Attempts before continuing it.",
+          title: t("researchLauncher.window.attempt.title"),
+          detail: t("researchLauncher.window.attempt.detail"),
         }
       : connectedAgentBlocked
         ? connectedAgentCopy
-        : researchWindowBlockedCopy(eligibility)
+        : researchWindowBlockedCopy(eligibility, t)
     : null;
 
   const start = async () => {
     if (writeAvailability !== "available") {
-      setError(controlPlaneMaintenanceCopy(writeAvailability).detail);
+      setError(controlPlaneMaintenanceCopy(writeAvailability, t).detail);
       return;
     }
     if (continueBlocked) {
-      setError(windowBlocked?.detail ?? "This existing Attempt is not covered by the current research write window.");
+      setError(windowBlocked?.detail ?? t("researchLauncher.error.existingWindow"));
       return;
     }
     if (newAttemptBlocked && !existing) {
-      setError(windowBlocked?.detail ?? "The current research write window does not allow creating a new Attempt.");
+      setError(windowBlocked?.detail ?? t("researchLauncher.error.newWindow"));
       return;
     }
     if (!target || !delegation || !scope || isStarting || atCapacity) return;
@@ -128,9 +131,7 @@ export function ResearchLauncher({
     if (existing) {
       onAttemptReady(existing);
       activateLocalResearch();
-      setNotice(initialParentNodeId
-        ? "This research is already active. The local handoff below names the exact shared checkpoint you chose to continue."
-        : "This research is already active. In Codex, say “Continue my Proofweave research” to resume the same bounded target.");
+      setNotice(initialParentNodeId ? t("researchLauncher.notice.existingParent") : t("researchLauncher.notice.existing"));
       return;
     }
 
@@ -148,15 +149,13 @@ export function ResearchLauncher({
       });
       const payload = await response.json().catch(() => null);
       if (!response.ok || !payload?.attempt) {
-        throw new Error(payload?.error?.message ?? "Proofweave could not start this research workspace.");
+        throw new Error(payload?.error?.message ?? t("researchLauncher.error.start"));
       }
       onAttemptReady(payload.attempt as McpAttempt);
       activateLocalResearch();
-      setNotice(initialParentNodeId
-        ? "Research is ready. The local handoff below names the exact shared checkpoint you chose to continue."
-        : "Research is ready. In Codex, say “Continue my Proofweave research” — the plugin will recover this exact target automatically.");
+      setNotice(initialParentNodeId ? t("researchLauncher.notice.readyParent") : t("researchLauncher.notice.ready"));
     } catch (cause) {
-      setError(cause instanceof Error ? cause.message : "Proofweave could not start this research workspace.");
+      setError(cause instanceof Error ? cause.message : t("researchLauncher.error.start"));
     } finally {
       setIsStarting(false);
     }
@@ -165,94 +164,94 @@ export function ResearchLauncher({
   return <section className="research-launcher" id="research-launcher" aria-labelledby="research-launcher-title">
     <SectionHeading as="div" className="research-launcher-heading">
       <div>
-        <p className="eyebrow">Research launcher</p>
-        <SectionTitle id="research-launcher-title">Choose a question. Start with your Agent.</SectionTitle>
-        <p>Proofweave binds the selected source revision to your connected Agent in the background. Your Lean workspace and private exploration stay on this computer.</p>
+        <p className="eyebrow">{t("researchLauncher.eyebrow")}</p>
+        <SectionTitle id="research-launcher-title">{t("researchLauncher.title")}</SectionTitle>
+        <p>{t("researchLauncher.body")}</p>
       </div>
-      <Badge className="record-chip">No files shared</Badge>
+      <Badge className="record-chip">{t("researchLauncher.badge")}</Badge>
     </SectionHeading>
 
     {entryTarget && (!connection || !delegation || !scope) && <div className="research-entry-context">
       <div>
-        <span className="micro-label">Your selected research stays here</span>
+        <span className="micro-label">{t("researchLauncher.entry.label")}</span>
         <strong>{entryTarget.title}</strong>
         <p>{entryTarget.informalStatement}</p>
       </div>
-      <Link href={`/explore/${entryTarget.slug}`}>Inspect target <span aria-hidden="true">→</span></Link>
+      <Link href={`/explore/${entryTarget.slug}`}>{t("researchLauncher.entry.inspect")} <span aria-hidden="true">→</span></Link>
     </div>}
 
     {!isAuthenticated ? <LauncherState
-      title="Keep the work on your computer."
-      detail="Local-first research starts with a private sign-in. Creating an Attempt establishes a Person-owned record for your delegated Agent without uploading a workspace."
+      title={t("researchLauncher.state.signIn.title")}
+      detail={t("researchLauncher.state.signIn.detail")}
       href={signInPath}
-      action="Sign in to start"
+      action={t("researchLauncher.state.signIn.action")}
     /> : !storageAvailable ? <LauncherState
-      title="Research setup is temporarily unavailable."
-      detail="Proofweave will not substitute an untracked local record while its accountable control plane is unavailable."
+      title={t("researchLauncher.state.storage.title")}
+      detail={t("researchLauncher.state.storage.detail")}
       href="/explore"
-      action="Browse the frontier"
+      action={t("researchLauncher.state.storage.action")}
     /> : writeAvailability !== "available" ? <LauncherState
-      title={controlPlaneMaintenanceCopy(writeAvailability).title}
-      detail={`${controlPlaneMaintenanceCopy(writeAvailability).detail} When updates return, you can connect Codex once before starting research.`}
+      title={controlPlaneMaintenanceCopy(writeAvailability, t).title}
+      detail={`${controlPlaneMaintenanceCopy(writeAvailability, t).detail} ${t("researchLauncher.state.maintenanceSuffix")}`}
       href="/explore"
-      action="Browse public research"
+      action={t("researchLauncher.state.maintenanceAction")}
     /> : windowBlocked ? <LauncherState
       title={windowBlocked.title}
       detail={windowBlocked.detail}
       href={RESEARCH_WINDOW_REQUEST_ACCESS_HREF}
-      action="Request access"
+      action={t("researchLauncher.state.window.action")}
       external
     /> : !connection ? <LauncherState
-      title="Connect Codex once before starting research."
-      detail={entryTarget ? `Connect once, then return to start or resume ${entryTarget.title}. Your target will not be discarded.` : "The one-time browser approval creates your local Agent identity and revocable authority. No public key, token, or workspace is pasted into Proofweave."}
+      title={t("researchLauncher.state.connect.title")}
+      detail={entryTarget ? t("researchLauncher.state.connect.detailTarget", { title: entryTarget.title }) : t("researchLauncher.state.connect.detail")}
       href={integrationHref}
-      action="Connect and return"
+      action={t("researchLauncher.state.connect.action")}
     /> : !delegation || !scope ? <LauncherState
-      title="This local Agent needs an active research delegation."
-      detail={entryTarget ? `Reconnect the research authority, then return to ${entryTarget.title}.` : "Reconnect your local Codex to refresh a formalize or prove approval before starting a bounded target."}
+      title={t("researchLauncher.state.delegation.title")}
+      detail={entryTarget ? t("researchLauncher.state.delegation.detailTarget", { title: entryTarget.title }) : t("researchLauncher.state.delegation.detail")}
       href={integrationHref}
-      action="Reconnect Codex"
+      action={t("researchLauncher.state.delegation.action")}
     /> : catalogTargets.length === 0 ? <LauncherState
-      title="The public frontier is temporarily unavailable."
-      detail="Proofweave only opens work against a source-pinned public target; it does not fall back to sample mathematics."
+      title={t("researchLauncher.state.catalog.title")}
+      detail={t("researchLauncher.state.catalog.detail")}
       href="/explore"
-      action="Browse the catalog"
+      action={t("researchLauncher.state.catalog.action")}
     /> : <div className="research-launcher-body">
-      <label className="research-target-select">Research target
+      <label className="research-target-select">{t("researchLauncher.target.label")}
         <Select value={target?.slug ?? ""} onChange={(event) => { setTargetSlug(event.target.value); setNotice(null); setError(null); }} disabled={isStarting}>
           {catalogTargets.map((candidate) => <option value={candidate.slug} key={candidate.id}>{candidate.title} · {candidate.domain}</option>)}
         </Select>
       </label>
       {target && <div className="research-target-summary">
         <div>
-          <span className="micro-label">Selected target</span>
+          <span className="micro-label">{t("researchLauncher.target.selected")}</span>
           <strong>{target.title}</strong>
           <p>{target.informalStatement}</p>
         </div>
         <div className="research-target-meta">
-          <span>{scope === "formalize" ? "Formalization" : "Proof"}</span>
+          <span>{scope === "formalize" ? t("researchLauncher.target.formalization") : t("researchLauncher.target.proof")}</span>
           <span>{target.source.leanToolchain}</span>
-          <p className={`research-target-runner is-${target.runnerAvailability.status}`} title={target.runnerAvailability.detail}>{target.runnerAvailability.label}</p>
-          <Link href={`/explore/${target.slug}`}>Inspect source <span aria-hidden="true">→</span></Link>
+          <p className={`research-target-runner is-${target.runnerAvailability.status}`} title={t(runnerAvailabilityKeys[target.runnerAvailability.reason].detail)}>{t(runnerAvailabilityKeys[target.runnerAvailability.reason].label)}</p>
+          <Link href={`/explore/${target.slug}`}>{t("researchLauncher.target.inspect")} <span aria-hidden="true">→</span></Link>
         </div>
       </div>}
       {initialParentNodeId && <div className="research-branch-selection">
-        <span className="micro-label">Selected branch parent</span>
+        <span className="micro-label">{t("researchLauncher.branch.label")}</span>
         <code>{initialParentNodeId}</code>
-        <p>Your new public checkpoint can derive from this node. The parent is only declared when you review and approve the locally signed checkpoint draft.</p>
+        <p>{t("researchLauncher.branch.body")}</p>
       </div>}
       <div className="research-launcher-footer">
-        <p><strong>{connection.agentLabel}</strong> is ready. We record only a provisional Attempt now; progress, evidence, Lean execution, and review remain separate gates.</p>
+        <p>{t("researchLauncher.footer.ready", { agent: connection.agentLabel })}</p>
         <Button className="button button-primary" type="button" onClick={() => { void start(); }} disabled={isStarting || atCapacity || (newAttemptBlocked && !existing) || continueBlocked}>
-          {isStarting ? "Starting research…" : existing ? "Continue research" : atCapacity ? "Active research capacity reached" : "Start research"}
+          {isStarting ? t("researchLauncher.footer.starting") : existing ? t("researchLauncher.footer.continue") : atCapacity ? t("researchLauncher.footer.capacity") : t("researchLauncher.footer.start")}
           {!isStarting && !atCapacity && <span aria-hidden="true">→</span>}
         </Button>
       </div>
-      {atCapacity && <p className="research-launcher-message is-error" role="alert">This Person already has the closed-alpha maximum of {closedAlphaAttemptLimits.maximumActiveAttemptsPerPerson} active research workspaces.</p>}
+      {atCapacity && <p className="research-launcher-message is-error" role="alert">{t("researchLauncher.capacity", { max: closedAlphaAttemptLimits.maximumActiveAttemptsPerPerson })}</p>}
       {notice && <p className="research-launcher-message is-success" role="status">{notice}</p>}
       {error && <p className="research-launcher-message is-error" role="alert">{error}</p>}
     </div>}
-    <p className="research-launcher-boundary">Starting research never uploads files, runs Lean, records a theorem, or creates contribution credit.</p>
+    <p className="research-launcher-boundary">{t("researchLauncher.boundary")}</p>
   </section>;
 }
 

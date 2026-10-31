@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
 import { Badge, CardTitle, Surface } from "@/app/components/ui";
 import type { ClaimExplanation, ExplanationFamily } from "./explanations";
+import type { Locale } from "@/app/i18n/config";
+import type { Translator } from "@/app/i18n/translate";
 import "./explanation.css";
 
 /**
@@ -9,9 +11,11 @@ import "./explanation.css";
  * rather than being inferred from the paper's claim. The route supplies
  * `renderText` so source formatting stays outside the shared component layer.
  */
-export function ScopeDiff({ explanation, family, renderText = (text) => text }: {
+export function ScopeDiff({ explanation, family, t, locale, renderText = (text) => text }: {
   explanation: ClaimExplanation;
   family?: ExplanationFamily;
+  t: Translator;
+  locale: Locale;
   renderText?: (text: string) => ReactNode;
 }) {
   const paperStatement = explanation.scopeDiff?.paperStatement ?? family?.claim ?? "";
@@ -21,63 +25,67 @@ export function ScopeDiff({ explanation, family, renderText = (text) => text }: 
   const leanStatus = explanation.scopeDiff?.leanStatementStatus ?? (leanStatement ? "recorded" : "unknown");
   const needsReview = explanation.scopeDiff?.needsReview ?? !leanStatement;
   const gapNote = explanation.scopeDiff?.gapNote;
-  const platformStatus = explanation.scopeDiff?.platformStatus ?? derivedPlatformStatus(family);
+  // The artifact's platform-status sentence is English source prose. Other
+  // locales derive an equivalent sentence from structured manuscript state.
+  const platformStatus = explanation.scopeDiff?.platformStatus && locale === "en"
+    ? explanation.scopeDiff.platformStatus
+    : derivedPlatformStatus(family, t);
   const scopeUrl = family?.scope?.url;
 
   return <Surface as="article" tone="card" className="explanation-card explanation-scope-diff">
     <header className="explanation-card-header">
-      <span className="explanation-eyebrow">Scope difference</span>
+      <span className="explanation-eyebrow">{t("explanation.scope.eyebrow")}</span>
       <div className="explanation-badges">
-        <Badge tone="warning">Draft · unreviewed</Badge>
+        <Badge tone="warning">{t("explanation.draft")}</Badge>
         <Badge tone={leanStatement ? "neutral" : "warning"}>
-          {leanStatement ? "Lean statement recorded" : "Lean coverage unknown"}
+          {leanStatement ? t("explanation.scope.leanRecorded") : t("explanation.scope.leanUnknown")}
         </Badge>
-        {needsReview && <Badge tone="warning">Needs review</Badge>}
+        {needsReview && <Badge tone="warning">{t("explanation.scope.needsReview")}</Badge>}
       </div>
     </header>
-    <CardTitle>Paper statement vs Lean coverage</CardTitle>
+    <CardTitle>{t("explanation.scope.title")}</CardTitle>
 
     <div className="scope-diff-grid">
-      <section className="scope-diff-column" aria-label="Paper statement">
-        <span className="scope-diff-label">Paper’s statement</span>
+      <section className="scope-diff-column" aria-label={t("explanation.scope.paperAria")}>
+        <span className="scope-diff-label">{t("explanation.scope.paperLabel")}</span>
         {paperStatement
           ? <div className="scope-diff-quote">{renderText(paperStatement)}</div>
-          : <p className="scope-diff-unknown">No paper statement is available in this snapshot.</p>}
-        <small>Source wording from the pinned OpenAI snapshot, not a Proofweave paraphrase.</small>
+          : <p className="scope-diff-unknown">{t("explanation.scope.noPaper")}</p>}
+        <small>{t("explanation.scope.paperNote")}</small>
       </section>
-      <section className="scope-diff-column" aria-label="Lean coverage">
-        <span className="scope-diff-label">Lean coverage</span>
+      <section className="scope-diff-column" aria-label={t("explanation.scope.leanAria")}>
+        <span className="scope-diff-label">{t("explanation.scope.leanLabel")}</span>
         {leanStatement
           ? <div className="scope-diff-quote">{leanStatement.split(/\n\s*\n/).map((paragraph, index) => <p key={index}>{renderText(paragraph)}</p>)}</div>
-          : <p className="scope-diff-unknown">The pinned snapshot links no Lean statement for this family. Formal coverage is unknown (needs review).</p>}
+          : <p className="scope-diff-unknown">{t("explanation.scope.noLean")}</p>}
         <small>
-          Upstream scope text, not a platform replay.
-          {scopeUrl && <> <a href={scopeUrl} target="_blank" rel="noreferrer">Open scope document ↗</a></>}
+          {t("explanation.scope.leanNote")}
+          {scopeUrl && <> <a href={scopeUrl} target="_blank" rel="noreferrer">{t("explanation.scope.openScope")} ↗</a></>}
         </small>
       </section>
-      <section className="scope-diff-column" aria-label="Platform status">
-        <span className="scope-diff-label">Platform status</span>
+      <section className="scope-diff-column" aria-label={t("explanation.scope.platformAria")}>
+        <span className="scope-diff-label">{t("explanation.scope.platformLabel")}</span>
         <p className="scope-diff-platform">{platformStatus}</p>
-        <small>Proofweave has not verified this family. A draft explanation does not change evidence status.</small>
+        <small>{t("explanation.scope.platformNote")}</small>
       </section>
     </div>
 
-    {gapNote && <p className="scope-diff-gap"><strong>Gap:</strong> {gapNote}</p>}
+    {gapNote && <p className="scope-diff-gap"><strong>{t("explanation.scope.gap")}</strong> {gapNote}</p>}
     {leanStatus !== "recorded" && <p className="scope-diff-footnote">
-      Lean coverage status: <code>{leanStatus}</code>. This draft records the absence explicitly instead of assuming coverage.
+      {t("explanation.scope.leanStatus", { status: leanStatus })}
     </p>}
   </Surface>;
 }
 
-function derivedPlatformStatus(family?: ExplanationFamily) {
-  if (!family) return "Platform status is unavailable in this view.";
+function derivedPlatformStatus(family: ExplanationFamily | undefined, t: Translator) {
+  if (!family) return t("explanation.scope.statusUnavailable");
   if (family.manuscripts.some((manuscript) => manuscript.receipt !== null && manuscript.receipt !== undefined)) {
-    return "A receipt exists for at least one manuscript; this draft does not treat it as verification of the whole family.";
+    return t("explanation.scope.statusReceipt");
   }
   const replays = [...new Set(family.manuscripts.map((manuscript) => manuscript.proofweaveReplay))];
   const reviews = [...new Set(family.manuscripts.map((manuscript) => manuscript.statementReview))];
   if (replays.every((value) => value === "not_run") && reviews.every((value) => value === "not_started")) {
-    return "Not verified: no Proofweave replay, no statement review, and no receipt for this family.";
+    return t("explanation.scope.statusNotVerified");
   }
-  return `Manuscript records: replay ${replays.join(", ")}; statement review ${reviews.join(", ")}.`;
+  return t("explanation.scope.statusManuscripts", { replays: replays.join(", "), reviews: reviews.join(", ") });
 }

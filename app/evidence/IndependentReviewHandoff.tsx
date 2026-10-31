@@ -4,6 +4,7 @@ import { SectionTitle, ActionLink, Button } from "@/app/components/ui";
 
 import { useState } from "react";
 import { type BundleVerificationMarketStatus } from "@/db/repositories/verification-market";
+import { useI18n } from "@/app/i18n/client";
 
 type IndependentReviewHandoffProps = {
   bundleManifestHash: string;
@@ -20,6 +21,7 @@ export function IndependentReviewHandoff({
   unavailable,
   receipt,
 }: IndependentReviewHandoffProps) {
+  const { t, locale } = useI18n();
   const [status, setStatus] = useState(initialStatus);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -34,26 +36,26 @@ export function IndependentReviewHandoff({
         { method: "POST" },
       );
       const body = await response.json();
-      if (!response.ok) throw new Error(body?.error?.message ?? "Independent review work could not be opened.");
+      if (!response.ok) throw new Error(locale === "en" ? body?.error?.message ?? "Independent review work could not be opened." : t("handoff.error"));
       setStatus(body.reviewMarket.status);
     } catch (cause) {
-      setError(cause instanceof Error ? cause.message : "Independent review work could not be opened.");
+      setError(locale === "en" && cause instanceof Error ? cause.message : t("handoff.error"));
     } finally {
       setBusy(false);
     }
   };
 
   return <section className="evidence-runs evidence-review-handoff" aria-labelledby="review-handoff-title">
-    <div className="panel-heading"><span>04 / Independent review handoff</span><span>{receipt ? "Receipt issued" : published ? `${status?.completedJobs ?? 0}/${status?.totalJobs ?? 0} completed` : eligible ? "Ready to open" : "Lean gate required"}</span></div>
+    <div className="panel-heading"><span>{t("handoff.panel")}</span><span>{receipt ? t("handoff.statusReceipt") : published ? t("handoff.statusProgress", { done: status?.completedJobs ?? 0, total: status?.totalJobs ?? 0 }) : eligible ? t("handoff.statusReady") : t("handoff.statusLeanGate")}</span></div>
     <div className="evidence-review-handoff-body">
-      <div><p className="eyebrow">Different-owner verification</p><SectionTitle id="review-handoff-title">{receipt ? "This contribution completed the evidence chain." : published ? "Independent review work is open." : eligible ? "Send this exact Bundle to independent review." : "Finish the isolated Lean gate first."}</SectionTitle><p>{receipt ? "The Bundle, accepted Lean Run, required signed reviews, Person attribution, and issuer signature now resolve to one public Receipt." : published ? "Three Receipt gates and two optional quality reviews are visible only to eligible review Agents owned by different People. Your own research Agent cannot complete these jobs." : eligible ? "This creates claim-specific review jobs over the immutable Bundle. A different Person must decide them; opening the jobs does not verify the mathematics or issue credit." : "A staged Bundle or provisional Agent report cannot enter the public review queue. A complete, hash-bound accepted Runner result is required."}</p></div>
+      <div><p className="eyebrow">{t("handoff.eyebrow")}</p><SectionTitle id="review-handoff-title">{receipt ? t("handoff.titleReceipt") : published ? t("handoff.titlePublished") : eligible ? t("handoff.titleEligible") : t("handoff.titleNeedsLean")}</SectionTitle><p>{receipt ? t("handoff.bodyReceipt") : published ? t("handoff.bodyPublished") : eligible ? t("handoff.bodyEligible") : t("handoff.bodyNeedsLean")}</p></div>
       {receipt
-        ? <div className="evidence-review-status" aria-label="Contribution Receipt"><strong>Certified</strong><span><code>{receipt.receiptHash}</code></span><ActionLink className="button button-primary" href={`/receipt/${encodeURIComponent(receipt.id)}`}>Open signed Receipt</ActionLink></div>
+        ? <div className="evidence-review-status" aria-label={t("handoff.statusReceipt")}><strong>{t("handoff.certified")}</strong><span><code>{receipt.receiptHash}</code></span><ActionLink className="button button-primary" href={`/receipt/${encodeURIComponent(receipt.id)}`}>{t("handoff.openReceipt")}</ActionLink></div>
         : published
-        ? <div className="evidence-review-status" aria-label="Independent review job status"><strong>{status?.totalJobs} jobs</strong><span>{status?.openJobs} open · {status?.claimedJobs} claimed · {status?.completedJobs} completed</span><ActionLink className="button button-primary" href="/reviews">View review board</ActionLink></div>
-        : <div className="evidence-review-action"><Button className="button button-primary" type="button" disabled={!eligible || unavailable || busy} onClick={submit}>{busy ? "Opening review…" : unavailable ? "Review market unavailable" : eligible ? "Open independent review" : "Awaiting Lean acceptance"}</Button><small>Publishing review work is idempotent. Repeating it cannot create duplicate jobs or credit.</small></div>}
+        ? <div className="evidence-review-status" aria-label={t("handoff.statusPublished")}><strong>{t("handoff.jobs", { count: status?.totalJobs ?? 0 })}</strong><span>{t("handoff.jobStatus", { open: status?.openJobs ?? 0, claimed: status?.claimedJobs ?? 0, completed: status?.completedJobs ?? 0 })}</span><ActionLink className="button button-primary" href="/reviews">{t("handoff.viewBoard")}</ActionLink></div>
+        : <div className="evidence-review-action"><Button className="button button-primary" type="button" disabled={!eligible || unavailable || busy} onClick={submit}>{busy ? t("handoff.opening") : unavailable ? t("handoff.unavailable") : eligible ? t("handoff.open") : t("handoff.awaiting")}</Button><small>{t("handoff.idempotent")}</small></div>}
     </div>
     {error && <p className="review-message is-error" role="status">{error}</p>}
-    <p className="evidence-review-boundary"><strong>Boundary.</strong> {receipt ? "This link appears only for an issuer-signed Receipt reconstructed from stored evidence; UI completion state alone cannot create it." : "An open or claimed job is not a signed review decision. A Receipt appears only after every required gate closes over the same immutable Bundle."}</p>
+    <p className="evidence-review-boundary"><strong>{t("handoff.boundaryTitle")}</strong> {receipt ? t("handoff.boundaryReceipt") : t("handoff.boundaryDefault")}</p>
   </section>;
 }

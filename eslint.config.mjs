@@ -12,6 +12,13 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Generated output, archived release evidence, and local worktrees are not
+    // source: linting them is slow and can surface errors from other branches.
+    "dist/**",
+    "outputs/**",
+    "work/**",
+    ".wrangler/**",
+    ".claude/**",
   ]),
 ]);
 

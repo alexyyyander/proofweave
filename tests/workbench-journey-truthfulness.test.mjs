@@ -27,11 +27,19 @@ const globalStyles = await readFile(
   new URL("../app/styles/workspace.css", import.meta.url),
   "utf8",
 );
+const englishDictionary = await readFile(
+  new URL("../app/i18n/dictionaries/en.ts", import.meta.url),
+  "utf8",
+);
 
 test("the owner-side journey ends truthfully at Lean verification", () => {
-  assert.match(workbenchSections, /\["Lean verification", leanAccepted \? "Kernel accepted · review remains" : "Isolated Lean check"\]/);
-  assert.match(workbenchSections, /\{completed\} \/ \{steps\.length\} owner steps complete/);
-  assert.match(workbenchSections, /five owner-side steps end at Lean acceptance; they do not issue contribution credit/i);
+  assert.match(workbenchSections, /\[t\("firstPath\.step\.lean"\), leanAccepted \? t\("firstPath\.step\.leanAcceptedDetail"\) : t\("firstPath\.step\.leanDetail"\)\]/);
+  assert.match(englishDictionary, /"firstPath\.step\.lean": "Lean verification"/);
+  assert.match(englishDictionary, /"firstPath\.step\.leanAcceptedDetail": "Kernel accepted · review remains"/);
+  assert.match(englishDictionary, /"firstPath\.step\.leanDetail": "Isolated Lean check"/);
+  assert.match(workbenchSections, /t\("firstPath\.progress", \{ done: completed, total: steps\.length \}\)/);
+  assert.match(englishDictionary, /"firstPath\.progress": "\{done\} \/ \{total\} owner steps complete"/);
+  assert.match(englishDictionary, /"firstPath\.boundary": "These five owner-side steps end at Lean acceptance; they do not issue contribution credit\.[^"]*"/i);
   assert.doesNotMatch(workbenchSections, /\["Verification & credit"/);
 });
 
@@ -42,11 +50,11 @@ test("every existing-Attempt reconnect preserves target and exact return path", 
   );
   assert.match(
     workbenchSections,
-    /const attemptReconnectHref = attempt \? attemptIntegrationHref\(attempt\) : "\/integrations#codex-beta"[\s\S]*!agentConnected[\s\S]*href: attemptReconnectHref[\s\S]*label: "Connect Agent"/,
+    /const attemptReconnectHref = attempt \? attemptIntegrationHref\(attempt\) : "\/integrations#codex-beta"[\s\S]*!agentConnected[\s\S]*href: attemptReconnectHref[\s\S]*label: t\("firstPath\.next\.connect"\)/,
   );
   assert.match(
     workbenchSections,
-    /needsAttemptConnection[\s\S]*const attemptReconnectHref = attempt \? attemptIntegrationHref\(attempt\) : "\/integrations#codex-beta"[\s\S]*label: "Review Agent connection"[\s\S]*href: attemptReconnectHref/,
+    /needsAttemptConnection[\s\S]*const attemptReconnectHref = attempt \? attemptIntegrationHref\(attempt\) : "\/integrations#codex-beta"[\s\S]*label: t\("focus\.reviewConnection"\)[\s\S]*href: attemptReconnectHref/,
   );
   assert.match(
     localAgentHandoff,
@@ -89,7 +97,10 @@ test("the contribution rail remains readable on desktop and mobile", () => {
 test("the ordinary-user surface distinguishes edge blocking from planned read-only maintenance", () => {
   assert.match(controlPlaneCapability, /response\.status === 403\) return \"edge_blocked\"/);
   assert.match(controlPlaneCapability, /return \"network_unavailable\"/);
-  assert.match(controlPlaneCapability, /title: \"Proofweave is blocked at its public edge\.\"/);
-  assert.match(controlPlaneCapability, /reconnecting or uploading files will not fix this service-side problem/i);
-  assert.match(controlPlaneCapability, /title: \"Research updates are paused for maintenance\.\"/);
+  assert.match(controlPlaneCapability, /t\("controlPlane\.edgeBlocked\.title"\)/);
+  assert.match(controlPlaneCapability, /t\("controlPlane\.edgeBlocked\.detail"\)/);
+  assert.match(controlPlaneCapability, /t\("controlPlane\.readOnly\.title"\)/);
+  assert.match(englishDictionary, /"controlPlane\.edgeBlocked\.title": "Proofweave is blocked at its public edge\."/);
+  assert.match(englishDictionary, /reconnecting or uploading files will not fix this service-side problem/i);
+  assert.match(englishDictionary, /"controlPlane\.readOnly\.title": "Research updates are paused for maintenance\."/);
 });

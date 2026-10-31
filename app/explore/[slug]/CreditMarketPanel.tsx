@@ -2,93 +2,105 @@ import { CardTitle, SectionTitle, ActionLink, FieldList, SectionHeading, Surface
 
 import Link from "next/link";
 import { type PublicCreditMarket } from "@/db/repositories/credit-market";
+import { getI18n } from "@/app/i18n/server";
+import type { Locale } from "@/app/i18n/config";
+import type { TranslationKey, Translator } from "@/app/i18n/translate";
 
-export function CreditMarketPanel({
+const poolStateKeys: Record<NonNullable<PublicCreditMarket["pool"]>["state"], TranslationKey> = {
+  draft: "explore.market.pool.draft",
+  active: "explore.market.pool.active",
+  locked: "explore.market.pool.locked",
+  settled: "explore.market.pool.settled",
+  cancelled: "explore.market.pool.cancelled",
+};
+
+export async function CreditMarketPanel({
   market,
 }: {
   market: PublicCreditMarket | null;
 }) {
+  const { t, locale } = await getI18n();
   if (!market) {
     return <section className="credit-market-section" aria-labelledby="credit-market-title">
-      <MarketHeading />
+      <MarketHeading t={t} />
       <div className="credit-market-unavailable">
-        <strong>Credit market activation is pending.</strong>
-        <p>The target and its evidence graph remain available. No reward is implied until the append-only pool schema and policy projection are active.</p>
+        <strong>{t("explore.market.inactive.title")}</strong>
+        <p>{t("explore.market.inactive.body")}</p>
       </div>
     </section>;
   }
 
-  const poolState = market.pool ? poolStateLabel(market.pool.state) : "No pool activated";
+  const poolState = market.pool ? t(poolStateKeys[market.pool.state]) : t("explore.market.noPool");
   return <section className="credit-market-section" aria-labelledby="credit-market-title">
-    <MarketHeading />
+    <MarketHeading t={t} />
     <div className="credit-market-board">
       <Surface as="article" className="credit-market-summary">
         <div className="credit-market-summary-top">
           <span className={`credit-market-state ${market.pool ? `state-${market.pool.state}` : "state-inactive"}`}>{poolState}</span>
           <code>{market.policy.version}</code>
         </div>
-        <p className="micro-label">Fixed target budget</p>
-        <CardTitle>{market.pool ? `${formatCredits(market.pool.totalCredits)} research credits` : "Policy first. Pool second."}</CardTitle>
+        <p className="micro-label">{t("explore.market.budgetLabel")}</p>
+        <CardTitle>{market.pool ? t("explore.market.poolCredits", { credits: formatCredits(market.pool.totalCredits, locale) }) : t("explore.market.policyFirst")}</CardTitle>
         <p>{market.pool
-          ? `${market.pool.sponsorLabel} fixed this target's budget before settlement. Credits remain non-transferable and have no monetary value.`
-          : "The allocation and eligibility rules are public, but this target is not reward-bearing yet. A future sponsor must fix the total budget before the market can activate."}</p>
+          ? t("explore.market.poolBody", { sponsor: market.pool.sponsorLabel })
+          : t("explore.market.noPoolBody")}</p>
         <div className="credit-market-actions">
-          <ActionLink className="button button-primary" href="#research-graph">Inspect contribution graph <span aria-hidden="true">↓</span></ActionLink>
-          <Link className="text-link" href="/reviews">Open review queue <span>→</span></Link>
+          <ActionLink className="button button-primary" href="#research-graph">{t("explore.market.inspectGraph")} <span aria-hidden="true">↓</span></ActionLink>
+          <Link className="text-link" href="/reviews">{t("explore.market.openQueue")} <span>→</span></Link>
         </div>
       </Surface>
 
-      <div className="credit-market-buckets" aria-label="Credit allocation policy">
+      <div className="credit-market-buckets" aria-label={t("explore.market.allocationAria")}>
         {market.policy.buckets.map((bucket, index) => <Surface as="article" key={bucket.key}>
           <div><span>{String(index + 1).padStart(2, "0")}</span><strong>{bucket.percentage}%</strong></div>
           <h4>{bucket.label}</h4>
           <p>{bucket.description}</p>
-          <small>{bucket.credits === null ? "Share fixed by policy" : `${formatCredits(bucket.credits)} credits reserved`}</small>
+          <small>{bucket.credits === null ? t("explore.market.shareFixed") : t("explore.market.creditsReserved", { credits: formatCredits(bucket.credits, locale) })}</small>
         </Surface>)}
       </div>
     </div>
 
     <div className="credit-market-evidence">
       <div className="credit-market-activity">
-        <p className="micro-label">Evidence on this revision</p>
+        <p className="micro-label">{t("explore.market.evidenceLabel")}</p>
         <FieldList layout="stacked">
-          <MarketMetric label="Shared" value={market.activity.sharedCheckpoints} />
-          <MarketMetric label="Bundle" value={market.activity.bundleBackedCheckpoints} />
-          <MarketMetric label="Kernel" value={market.activity.kernelAcceptedCheckpoints} />
-          <MarketMetric label="Reviewed" value={market.activity.independentlyReviewedCheckpoints} />
-          <MarketMetric label="Eligible" value={market.activity.settlementEligibleCheckpoints} />
+          <MarketMetric label={t("explore.market.metric.shared")} value={market.activity.sharedCheckpoints} />
+          <MarketMetric label={t("explore.market.metric.bundle")} value={market.activity.bundleBackedCheckpoints} />
+          <MarketMetric label={t("explore.market.metric.kernel")} value={market.activity.kernelAcceptedCheckpoints} />
+          <MarketMetric label={t("explore.market.metric.reviewed")} value={market.activity.independentlyReviewedCheckpoints} />
+          <MarketMetric label={t("explore.market.metric.eligible")} value={market.activity.settlementEligibleCheckpoints} />
         </FieldList>
         <p>{market.activity.openReviewAssignments > 0
-          ? `${market.activity.openReviewAssignments} independent review assignment${market.activity.openReviewAssignments === 1 ? " is" : "s are"} currently open.`
-          : "Review work opens only after a material Bundle and explicit claim exist."}</p>
+          ? t(market.activity.openReviewAssignments === 1 ? "explore.market.openReviews.one" : "explore.market.openReviews.other", { count: market.activity.openReviewAssignments })
+          : t("explore.market.noReviews")}</p>
       </div>
       <div className="credit-eligibility-rail">
-        <p className="micro-label">How a step becomes eligible</p>
+        <p className="micro-label">{t("explore.market.eligibilityLabel")}</p>
         <ol>
           {market.policy.eligibilityStages.map((stage, index) => <li className={stage.eligible ? "is-eligible" : ""} key={stage.key}>
             <span>{String(index + 1).padStart(2, "0")}</span>
             <strong>{stage.label}</strong>
-            <small>{stage.eligible ? "Settlement eligible" : "Evidence gate"}</small>
+            <small>{stage.eligible ? t("explore.market.eligible") : t("explore.market.gate")}</small>
           </li>)}
         </ol>
       </div>
     </div>
 
     <div className="credit-market-boundary">
-      <strong>Evidence, not expenditure.</strong>
-      <p>Token or compute spend never mints mathematical credit. Same-owner Agents cannot verify each other. A valid rejection is rewarded from the challenge reserve; unsupported work simply remains unsettled rather than creating author debt.</p>
+      <strong>{t("explore.market.boundaryTitle")}</strong>
+      <p>{t("explore.market.boundaryBody")}</p>
     </div>
   </section>;
 }
 
-function MarketHeading() {
+function MarketHeading({ t }: { t: Translator }) {
   return <SectionHeading as="div" className="credit-market-heading">
     <div>
-      <p className="eyebrow">Verification market · v1</p>
-      <SectionTitle id="credit-market-title">Reward the proof path, not just the finish.</SectionTitle>
-      <p>A fixed pool can reward the accepted result, Receipt-backed dependencies, independent reviewers, and decisive challenges under one auditable policy.</p>
+      <p className="eyebrow">{t("explore.market.eyebrow")}</p>
+      <SectionTitle id="credit-market-title">{t("explore.market.title")}</SectionTitle>
+      <p>{t("explore.market.body")}</p>
     </div>
-    <span>Non-financial research credit</span>
+    <span>{t("explore.market.nonFinancial")}</span>
   </SectionHeading>;
 }
 
@@ -96,16 +108,6 @@ function MarketMetric({ label, value }: { label: string; value: number }) {
   return <div><dt>{label}</dt><dd>{value}</dd></div>;
 }
 
-function formatCredits(value: number) {
-  return new Intl.NumberFormat("en-US").format(value);
-}
-
-function poolStateLabel(state: NonNullable<PublicCreditMarket["pool"]>["state"]) {
-  return {
-    draft: "Draft pool",
-    active: "Active pool",
-    locked: "Dependency closure locked",
-    settled: "Settled",
-    cancelled: "Cancelled",
-  }[state];
+function formatCredits(value: number, locale: Locale) {
+  return new Intl.NumberFormat(locale).format(value);
 }

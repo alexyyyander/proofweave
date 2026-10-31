@@ -1,6 +1,10 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { en } from "../app/i18n/dictionaries/en.ts";
+import { createTranslator } from "../app/i18n/translate.ts";
 import { runnerWorkflowStatus } from "../app/workbench/runner-workflow-status.ts";
+
+const t = createTranslator(en);
 
 const baseRun = {
   id: "run:status",
@@ -16,7 +20,7 @@ const baseRun = {
 };
 
 test("a staged Bundle without a Run is presented as ready, not verified", () => {
-  const status = runnerWorkflowStatus(null, true);
+  const status = runnerWorkflowStatus(null, true, t);
   assert.equal(status.tone, "pending");
   assert.equal(status.badge, "Runner needed");
   assert.match(status.detail, /no Runner request exists yet/i);
@@ -24,7 +28,7 @@ test("a staged Bundle without a Run is presented as ready, not verified", () => 
 });
 
 test("a queued Run reassures the owner that immutable evidence is safely waiting", () => {
-  const status = runnerWorkflowStatus(baseRun, true);
+  const status = runnerWorkflowStatus(baseRun, true, t);
   assert.equal(status.tone, "waiting");
   assert.equal(status.badge, "Bundle safely queued");
   assert.match(status.detail, /Do not resubmit/i);
@@ -32,9 +36,14 @@ test("a queued Run reassures the owner that immutable evidence is safely waiting
   assert.doesNotMatch(status.detail, /accepted/i);
 });
 
+test("a pending cancellation keeps the human-readable lifecycle label", () => {
+  const cancelling = runnerWorkflowStatus({ ...baseRun, state: "cancel_requested" }, true, t);
+  assert.equal(cancelling.technicalTitle, "Lean Runner lifecycle · cancel requested");
+});
+
 test("preparing and running states communicate progress without creating a Lean claim", () => {
-  const preparing = runnerWorkflowStatus({ ...baseRun, state: "preparing" }, true);
-  const running = runnerWorkflowStatus({ ...baseRun, state: "running" }, true);
+  const preparing = runnerWorkflowStatus({ ...baseRun, state: "preparing" }, true, t);
+  const running = runnerWorkflowStatus({ ...baseRun, state: "running" }, true, t);
   assert.equal(preparing.tone, "running");
   assert.match(preparing.title, /preparing an isolated Lean workspace/i);
   assert.equal(running.tone, "running");
@@ -60,7 +69,7 @@ test("only the fully accepted signed result advances to the review handoff", () 
         checks: { network: "passed", noSorry: "passed", allowedAxioms: "passed", leanBuild: "passed" },
       },
     },
-  }, true);
+  }, true, t);
   assert.equal(accepted.tone, "accepted");
   assert.equal(accepted.badge, "Lean accepted");
   assert.match(accepted.detail, /different owner must still independently review/i);
@@ -68,12 +77,12 @@ test("only the fully accepted signed result advances to the review handoff", () 
 });
 
 test("terminal non-accepted runs do not look like proof success", () => {
-  const failed = runnerWorkflowStatus({ ...baseRun, state: "timed_out" }, true);
+  const failed = runnerWorkflowStatus({ ...baseRun, state: "timed_out" }, true, t);
   assert.equal(failed.tone, "failed");
   assert.match(failed.title, /did not complete successfully/i);
   assert.match(failed.detail, /No Lean acceptance was recorded/i);
 
-  const unreadable = runnerWorkflowStatus({ ...baseRun, evidenceState: "unreadable" }, true);
+  const unreadable = runnerWorkflowStatus({ ...baseRun, evidenceState: "unreadable" }, true, t);
   assert.equal(unreadable.tone, "failed");
   assert.match(unreadable.title, /controlled inspection/i);
 });

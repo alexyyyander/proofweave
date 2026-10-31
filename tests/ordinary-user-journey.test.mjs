@@ -172,7 +172,7 @@ test("a selected target survives start, sign-in, and the ChatGPT handoff", async
 test("the first-run path uses action language instead of protocol vocabulary", async () => {
   const welcome = defaultVisibleText(await (await render(normalWorker, "/")).text());
   assert.match(welcome, /Explore without an account/i);
-  assert.match(welcome, /Watch the proof journey/i);
+  assert.match(welcome, /Verify a claim/i);
 
   const detail = defaultVisibleText(
     await (await render(normalWorker, "/explore/erdos-865-k2")).text(),

@@ -4,28 +4,42 @@ import { PageTitle, SectionTitle, ActionLink, SectionHeading } from "@/app/compo
 import { SiteFrame } from "@/app/components/shell/SiteFrame";
 
 import { type Metadata } from "next";
+import { Fragment } from "react";
 import Link from "next/link";
 import { PageSectionNav } from "../../ui";
+import { getI18n } from "@/app/i18n/server";
+import type { TranslationKey } from "@/app/i18n/translate";
 
 const openCatalogUrl = "https://github.com/alexyyyander/proofweave-open-catalog";
-export const metadata: Metadata = { title: "Proofweave catalog standard", description: "The provenance and freshness gates for public formal mathematics targets." };
 
-const gates = [
-  ["01", "Identify the mathematical object", "Name the canonical problem, origin, accepted variants, and exact informal statement. Similar names must not collapse different conjectures.", "Canonical name · variant · source"],
-  ["02", "Map the work that came before", "Record the original source, best known results, solved cases, nearby counterexamples, and references contributors should read first.", "Prior-work map · milestone DAG"],
-  ["03", "Check the frontier is current", "Attach an as-of date, searched primary sources, reviewer, and unresolved conflicts. A stale review remains visibly stale.", "Freshness date · review evidence"],
-  ["04", "Pin the formal target", "Freeze the Lean declaration, source revision, toolchain, dependencies, hashes, and license; then review statement fidelity.", "Statement hash · Lean environment"],
-  ["05", "Keep every claim separate", "Kernel acceptance, statement fidelity, literature novelty, independent review, and usefulness answer different questions.", "Claim-by-claim attestations"],
-] as const;
+export async function generateMetadata(): Promise<Metadata> {
+  const { t } = await getI18n();
+  return { title: t("catalog.metaTitle"), description: t("catalog.metaDescription") };
+}
 
-export default function CatalogStandardPage() {
+const gates: readonly { number: string; titleKey: TranslationKey; copyKey: TranslationKey; outputKey: TranslationKey }[] = [
+  { number: "01", titleKey: "catalog.gate.identify.title", copyKey: "catalog.gate.identify.copy", outputKey: "catalog.gate.identify.output" },
+  { number: "02", titleKey: "catalog.gate.priorWork.title", copyKey: "catalog.gate.priorWork.copy", outputKey: "catalog.gate.priorWork.output" },
+  { number: "03", titleKey: "catalog.gate.freshness.title", copyKey: "catalog.gate.freshness.copy", outputKey: "catalog.gate.freshness.output" },
+  { number: "04", titleKey: "catalog.gate.pin.title", copyKey: "catalog.gate.pin.copy", outputKey: "catalog.gate.pin.output" },
+  { number: "05", titleKey: "catalog.gate.claims.title", copyKey: "catalog.gate.claims.copy", outputKey: "catalog.gate.claims.output" },
+];
+
+const states: readonly { titleKey: TranslationKey; copyKey: TranslationKey }[] = [
+  { titleKey: "catalog.state.sourcePinned.title", copyKey: "catalog.state.sourcePinned.copy" },
+  { titleKey: "catalog.state.frontierReviewed.title", copyKey: "catalog.state.frontierReviewed.copy" },
+  { titleKey: "catalog.state.attested.title", copyKey: "catalog.state.attested.copy" },
+];
+
+export default async function CatalogStandardPage() {
+  const { t } = await getI18n();
   return <SiteFrame className="site-shell app-shell" active="about" activeHref="/about/catalog-standard" mainClassName="page-main reading-main catalog-reading-main">
-    <Breadcrumb><Link href="/about">About</Link><span> / </span><span>Catalog standard</span></Breadcrumb>
-    <SectionHeading as="section" className="reading-hero"><p className="eyebrow">Catalog standard</p><PageTitle>Before a famous problem is presented as current.</PageTitle><p>Uploading a Lean statement creates a source-pinned record. It does not establish that a problem is still open, canonically formulated, or updated with the newest result.</p></SectionHeading>
-    <PageSectionNav links={[{ href: "#catalog-gates", label: "Five catalog gates" }, { href: "#review-states", label: "Review states" }, { href: "#boundary", label: "Current boundary" }]} />
-    <ol className="catalog-reading-gates" id="catalog-gates">{gates.map(([number, title, copy, output]) => <li key={number}><span>{number}</span><div><SectionTitle>{title}</SectionTitle><p>{copy}</p></div><strong>{output}</strong></li>)}</ol>
-    <section className="catalog-state-ladder" id="review-states" aria-label="Catalog review states"><div><span>Source-pinned</span><p>Statement and environment are reproducible.</p></div><b aria-hidden="true">→</b><div><span>Frontier-reviewed</span><p>Prior work and status were checked as of a stated date.</p></div><b aria-hidden="true">→</b><div><span>Proofweave-attested</span><p>Specific formal and review claims carry independent evidence.</p></div></section>
-    <section className="reading-note" id="boundary"><div><p className="eyebrow">Current boundary</p><SectionTitle>Source-pinned does not mean frontier-reviewed.</SectionTitle></div><p>Many records are source-pinned imports and explicitly remain frontier-unreviewed. Proofweave does not convert upstream labels into its own mathematical attestation.</p></section>
-    <div className="reading-actions"><a className="button button-primary" href={openCatalogUrl} rel="noreferrer" target="_blank">Open catalog repository <span>↗</span></a><ActionLink className="button button-secondary" href="/explore">Inspect live records</ActionLink></div>
+    <Breadcrumb aria-label={t("common.breadcrumb")}><Link href="/about">{t("nav.primary.about")}</Link><span> / </span><span>{t("nav.item.catalogStandard")}</span></Breadcrumb>
+    <SectionHeading as="section" className="reading-hero"><p className="eyebrow">{t("catalog.eyebrow")}</p><PageTitle>{t("catalog.title")}</PageTitle><p>{t("catalog.intro")}</p></SectionHeading>
+    <PageSectionNav label={t("common.onThisPage")} links={[{ href: "#catalog-gates", label: t("catalog.nav.gates") }, { href: "#review-states", label: t("catalog.nav.states") }, { href: "#boundary", label: t("catalog.nav.boundary") }]} />
+    <ol className="catalog-reading-gates" id="catalog-gates">{gates.map((gate) => <li key={gate.number}><span>{gate.number}</span><div><SectionTitle>{t(gate.titleKey)}</SectionTitle><p>{t(gate.copyKey)}</p></div><strong>{t(gate.outputKey)}</strong></li>)}</ol>
+    <section className="catalog-state-ladder" id="review-states" aria-label={t("catalog.statesAria")}>{states.map((state, index) => <Fragment key={state.titleKey}><div><span>{t(state.titleKey)}</span><p>{t(state.copyKey)}</p></div>{index < states.length - 1 ? <b aria-hidden="true">→</b> : null}</Fragment>)}</section>
+    <section className="reading-note" id="boundary"><div><p className="eyebrow">{t("catalog.boundaryEyebrow")}</p><SectionTitle>{t("catalog.boundaryTitle")}</SectionTitle></div><p>{t("catalog.boundaryBody")}</p></section>
+    <div className="reading-actions"><a className="button button-primary" href={openCatalogUrl} rel="noreferrer" target="_blank">{t("catalog.openRepository")} <span>↗</span></a><ActionLink className="button button-secondary" href="/explore">{t("catalog.inspectLive")}</ActionLink></div>
   </SiteFrame>;
 }

@@ -10,11 +10,12 @@ import { type ProvisionalContribution } from "@/db/repositories/provisional-cont
 import { DelegationSummary, FirstContributionPath, FocusAction, ProvisionalContributionLedger, ResearchWorkstation, SubmissionReadiness, WorkspaceSettingsPrompt } from "./workbench-sections";
 import { buildCodexResearchBrief, LocalAgentHandoff } from "./LocalAgentHandoff";
 import { ResearchLauncher } from "./ResearchLauncher";
-import { ResearchWindowNotice } from "../components/research/ResearchWindowNotice";
+import { ResearchWindowNotice } from "./ResearchWindowNotice";
 import { activeAttemptDelegation, activeLocalAgentAttempt, activeLocalCodexInstallation } from "../lib/local-agent-journey";
 import { loadControlPlaneWriteAvailability, type ControlPlaneWriteAvailability } from "../lib/control-plane-write-capability";
 import type { ResearchEligibility } from "../lib/research-eligibility";
 import { deriveWorkspaceMode, WorkspaceRecordLinks, WorkspaceSidebar, WorkspaceTopbar } from "./WorkspaceShell";
+import { useI18n } from "@/app/i18n/client";
 
 export function WorkbenchClient({
   profile,
@@ -51,6 +52,7 @@ export function WorkbenchClient({
   eligibility?: ResearchEligibility | null;
   variant?: "legacy" | "detail";
 }) {
+  const { t, locale } = useI18n();
   const router = useRouter();
   const [attempts, setAttempts] = useState<readonly McpAttempt[]>(initialAttempts);
   const [runs, setRuns] = useState<readonly McpRunSummary[]>(initialRuns);
@@ -227,52 +229,52 @@ export function WorkbenchClient({
   };
 
   if (variant === "detail") return <>
-    <nav className="attempt-detail-breadcrumb" aria-label="Breadcrumb"><Link href="/workbench">My work</Link><span>/</span><span>{activeAttempt?.problemTitle ?? "Attempt"}</span></nav>
+    <nav className="attempt-detail-breadcrumb" aria-label={t("common.breadcrumb")}><Link href="/workbench">{t("workbenchClient.myWork")}</Link><span>/</span><span>{activeAttempt?.problemTitle ?? t("workbenchClient.attemptFallback")}</span></nav>
     <WorkspaceTopbar attempts={attempts} selectedAttemptId={activeAttempt?.id ?? null} onSelectAttempt={selectAttempt} agentLabel={selectedConnection?.agentLabel ?? null} isAgentConnected={Boolean(selectedConnection)} mode={mode} isRefreshing={isRefreshing} canRefresh={isAuthenticated && storageAvailable} refreshedAt={refreshedAt} onRefresh={() => { void refreshAttempts(); }} />
-    <FirstContributionPath attempt={activeAttempt} profile={profile} runs={runs} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} writeAvailability={writeAvailability} />
+    <FirstContributionPath attempt={activeAttempt} profile={profile} runs={runs} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} writeAvailability={writeAvailability} t={t} />
     <div className="attempt-detail-layout">
-      <section className="workspace-task-canvas" aria-label="Current research work">
-        <FocusAction profile={profile} attempt={activeAttempt} canContinueLocally={canContinueLocally} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} writeAvailability={writeAvailability} refreshError={refreshError} refreshedAt={refreshedAt} handoffNotice={handoffNotice} lifecycleNotice={lifecycleNotice} lifecycleAction={lifecycleAction} onCopyCodexBrief={() => { void copyCodexBrief(); }} onLifecycleAction={(action) => { void updateAttemptLifecycle(action); }} isPageHeading />
+      <section className="workspace-task-canvas" aria-label={t("workbenchClient.currentWorkAria")}>
+        <FocusAction profile={profile} attempt={activeAttempt} canContinueLocally={canContinueLocally} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} writeAvailability={writeAvailability} refreshError={refreshError} refreshedAt={refreshedAt} handoffNotice={handoffNotice} lifecycleNotice={lifecycleNotice} lifecycleAction={lifecycleAction} onCopyCodexBrief={() => { void copyCodexBrief(); }} onLifecycleAction={(action) => { void updateAttemptLifecycle(action); }} isPageHeading t={t} locale={locale} />
         {activeAttempt?.status === "active" && selectedConnection && <LocalAgentHandoff profile={profile} attempt={activeAttempt} initialParentNodeId={initialParentNodeId} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} writeAvailability={writeAvailability} isRefreshing={isRefreshing} onRefresh={() => { void refreshAttempts(); }} />}
-        <ResearchWorkstation attempt={activeAttempt} runs={runs} />
+        <ResearchWorkstation attempt={activeAttempt} runs={runs} t={t} locale={locale} />
       </section>
-      <aside className="workspace-status-rail" aria-label="Verification and record status">
-        <SubmissionReadiness attempt={activeAttempt} profile={profile} runs={runs} writeAvailability={writeAvailability} compact />
+      <aside className="workspace-status-rail" aria-label={t("workbenchClient.statusRailAria")}>
+        <SubmissionReadiness attempt={activeAttempt} profile={profile} runs={runs} writeAvailability={writeAvailability} compact t={t} />
         <WorkspaceRecordLinks eventCount={activeAttempt?.events.length ?? 0} runCount={activeRuns.length} contributionCount={provisionalContributions.length} />
       </aside>
     </div>
-    {(provisionalContributions.length > 0 || mode === "evidence-review") && <ProvisionalContributionLedger profile={profile} contributions={provisionalContributions} isAuthenticated={isAuthenticated} ledgerAvailable={isProvisionalLedgerAvailable} />}
-    <details className="workbench-account-details"><summary>Agent connection and authority</summary><DelegationSummary profile={profile} /><WorkspaceSettingsPrompt profile={profile} isAuthenticated={isAuthenticated} storageAvailable={storageAvailable} /></details>
+    {(provisionalContributions.length > 0 || mode === "evidence-review") && <ProvisionalContributionLedger profile={profile} contributions={provisionalContributions} isAuthenticated={isAuthenticated} ledgerAvailable={isProvisionalLedgerAvailable} t={t} locale={locale} />}
+    <details className="workbench-account-details"><summary>{t("workbenchClient.accountDetails")}</summary><DelegationSummary profile={profile} t={t} locale={locale} /><WorkspaceSettingsPrompt profile={profile} isAuthenticated={isAuthenticated} storageAvailable={storageAvailable} t={t} /></details>
   </>;
 
   return <>
     <WorkspaceTopbar attempts={attempts} selectedAttemptId={activeAttempt?.id ?? null} onSelectAttempt={selectAttempt} agentLabel={selectedConnection?.agentLabel ?? null} isAgentConnected={Boolean(selectedConnection)} mode={mode} isRefreshing={isRefreshing} canRefresh={isAuthenticated && storageAvailable} refreshedAt={refreshedAt} onRefresh={() => { void refreshAttempts(); }} />
-    <FirstContributionPath attempt={activeAttempt} profile={profile} runs={runs} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} writeAvailability={writeAvailability} />
+    <FirstContributionPath attempt={activeAttempt} profile={profile} runs={runs} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} writeAvailability={writeAvailability} t={t} />
     {eligibility && <div className="research-window-notice-wrap" style={{ marginBottom: 20 }}><ResearchWindowNotice eligibility={eligibility} /></div>}
     <div className={`workspace-shell mode-${mode}`}>
       <WorkspaceSidebar attempts={attempts} selectedAttemptId={activeAttempt?.id ?? null} onSelectAttempt={selectAttempt} view={attemptListView} onViewChange={setAttemptListView} reviewCount={reviewCount} evidenceCount={evidenceCount} />
-      <section className="workspace-task-canvas" aria-label="Current research work">
-        <FocusAction profile={profile} attempt={activeAttempt} canContinueLocally={canContinueLocally} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} writeAvailability={writeAvailability} refreshError={refreshError} refreshedAt={refreshedAt} handoffNotice={handoffNotice} lifecycleNotice={lifecycleNotice} lifecycleAction={lifecycleAction} onCopyCodexBrief={() => { void copyCodexBrief(); }} onLifecycleAction={(action) => { void updateAttemptLifecycle(action); }} />
+      <section className="workspace-task-canvas" aria-label={t("workbenchClient.currentWorkAria")}>
+        <FocusAction profile={profile} attempt={activeAttempt} canContinueLocally={canContinueLocally} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} writeAvailability={writeAvailability} refreshError={refreshError} refreshedAt={refreshedAt} handoffNotice={handoffNotice} lifecycleNotice={lifecycleNotice} lifecycleAction={lifecycleAction} onCopyCodexBrief={() => { void copyCodexBrief(); }} onLifecycleAction={(action) => { void updateAttemptLifecycle(action); }} t={t} locale={locale} />
         {!showActiveWorkspace && <ResearchLauncher profile={profile} attempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={initialTargetSlug} initialParentNodeId={initialParentNodeId} onAttemptReady={onAttemptReady} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} writeAvailability={writeAvailability} eligibility={eligibility} />}
         {showActiveWorkspace && <>
           {activeAttempt?.status === "active" && selectedConnection && <LocalAgentHandoff profile={profile} attempt={activeAttempt} initialParentNodeId={initialParentNodeId} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} writeAvailability={writeAvailability} isRefreshing={isRefreshing} onRefresh={() => { void refreshAttempts(); }} />}
-          <ResearchWorkstation attempt={activeAttempt} runs={runs} />
+          <ResearchWorkstation attempt={activeAttempt} runs={runs} t={t} locale={locale} />
           <details className="workspace-new-research">
-            <summary>Start another research target</summary>
+            <summary>{t("workbenchClient.startAnother")}</summary>
             <ResearchLauncher profile={profile} attempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={initialTargetSlug} initialParentNodeId={initialParentNodeId} onAttemptReady={onAttemptReady} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} writeAvailability={writeAvailability} eligibility={eligibility} />
           </details>
         </>}
       </section>
-      <aside className="workspace-status-rail" aria-label="Verification and record status">
-        <SubmissionReadiness attempt={activeAttempt} profile={profile} runs={runs} writeAvailability={writeAvailability} compact />
+      <aside className="workspace-status-rail" aria-label={t("workbenchClient.statusRailAria")}>
+        <SubmissionReadiness attempt={activeAttempt} profile={profile} runs={runs} writeAvailability={writeAvailability} compact t={t} />
         <WorkspaceRecordLinks eventCount={activeAttempt?.events.length ?? 0} runCount={activeRuns.length} contributionCount={provisionalContributions.length} />
       </aside>
     </div>
-    {(provisionalContributions.length > 0 || mode === "evidence-review") && <ProvisionalContributionLedger profile={profile} contributions={provisionalContributions} isAuthenticated={isAuthenticated} ledgerAvailable={isProvisionalLedgerAvailable} />}
+    {(provisionalContributions.length > 0 || mode === "evidence-review") && <ProvisionalContributionLedger profile={profile} contributions={provisionalContributions} isAuthenticated={isAuthenticated} ledgerAvailable={isProvisionalLedgerAvailable} t={t} locale={locale} />}
     <details className="workbench-account-details">
-      <summary>Agent connection and authority</summary>
-      <DelegationSummary profile={profile} />
-      <WorkspaceSettingsPrompt profile={profile} isAuthenticated={isAuthenticated} storageAvailable={storageAvailable} />
+      <summary>{t("workbenchClient.accountDetails")}</summary>
+      <DelegationSummary profile={profile} t={t} locale={locale} />
+      <WorkspaceSettingsPrompt profile={profile} isAuthenticated={isAuthenticated} storageAvailable={storageAvailable} t={t} />
     </details>
   </>;
 }

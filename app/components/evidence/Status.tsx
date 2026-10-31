@@ -17,6 +17,11 @@ const stateClass: Record<CatalogDisplayStatus, string> = {
   "No Proofweave attestation": "state-unverified",
 };
 
-export function StatusStack({ statuses, compact = false }: { statuses: readonly CatalogDisplayStatus[]; compact?: boolean }) {
-  return <div className={compact ? "status-stack compact" : "status-stack"} aria-label="Verification states">{statuses.map((status) => <Badge className={stateClass[status]} key={status}><i aria-hidden="true" />{status}</Badge>)}</div>;
+export function StatusStack({ statuses, compact = false, labels, ariaLabel = "Verification states" }: {
+  statuses: readonly CatalogDisplayStatus[];
+  compact?: boolean;
+  labels?: Partial<Record<CatalogDisplayStatus, string>>;
+  ariaLabel?: string;
+}) {
+  return <div className={compact ? "status-stack compact" : "status-stack"} aria-label={ariaLabel}>{statuses.map((status) => <Badge className={stateClass[status]} key={status}><i aria-hidden="true" />{labels?.[status] ?? status}</Badge>)}</div>;
 }

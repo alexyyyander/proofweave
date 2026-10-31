@@ -5,6 +5,9 @@ import { Field, Button, EmptyState, FieldList, Select } from "@/app/components/u
 import Link from "next/link";
 import { type McpAttempt } from "@/packages/domain/mcp";
 import { PersonalWorkspaceNavigation } from "../PersonalWorkspaceNavigation";
+import { useI18n } from "@/app/i18n/client";
+import type { Locale } from "@/app/i18n/config";
+import type { TranslationKey, Translator } from "@/app/i18n/translate";
 
 export type WorkspaceMode =
   | "signed-out"
@@ -14,13 +17,13 @@ export type WorkspaceMode =
   | "active-research"
   | "evidence-review";
 
-const modeLabels: Record<WorkspaceMode, string> = {
-  "signed-out": "Sign in to begin",
-  unavailable: "Service unavailable",
-  "connect-agent": "Connect your Agent",
-  "choose-research": "Choose research",
-  "active-research": "Research in progress",
-  "evidence-review": "Evidence and review",
+const modeKeys: Record<WorkspaceMode, TranslationKey> = {
+  "signed-out": "workspaceShell.mode.signed-out",
+  unavailable: "workspaceShell.mode.unavailable",
+  "connect-agent": "workspaceShell.mode.connect-agent",
+  "choose-research": "workspaceShell.mode.choose-research",
+  "active-research": "workspaceShell.mode.active-research",
+  "evidence-review": "workspaceShell.mode.evidence-review",
 };
 
 export function deriveWorkspaceMode({
@@ -65,33 +68,34 @@ export function WorkspaceTopbar({
   refreshedAt: string | null;
   onRefresh: () => void;
 }) {
+  const { t, locale } = useI18n();
   const activeAttempts = attempts.filter(isLiveAttempt);
   const historicalAttempts = attempts.filter((attempt) => !isLiveAttempt(attempt));
   return <header className="workspace-topbar">
     <div className="workspace-topbar-title">
-      <span className="micro-label">Personal workspace</span>
-      <strong>{modeLabels[mode]}</strong>
+      <span className="micro-label">{t("workspaceShell.personalLabel")}</span>
+      <strong>{t(modeKeys[mode])}</strong>
     </div>
     <label className="workspace-attempt-switcher">
-      <span>Current Attempt</span>
+      <span>{t("workspaceShell.currentAttempt")}</span>
       <Select
-        aria-label="Current research Attempt"
+        aria-label={t("workspaceShell.currentAttemptAria")}
         value={selectedAttemptId ?? ""}
         onChange={(event) => onSelectAttempt(event.target.value)}
         disabled={attempts.length === 0}
       >
-        {attempts.length === 0 ? <option value="">No Attempt yet</option> : <>
-          {activeAttempts.length > 0 && <optgroup label="Active research">{activeAttempts.map((attempt) => <option value={attempt.id} key={attempt.id}>{attempt.problemTitle} · {attempt.delegationScope ?? "research"}</option>)}</optgroup>}
-          {historicalAttempts.length > 0 && <optgroup label="History">{historicalAttempts.map((attempt) => <option value={attempt.id} key={attempt.id}>{attempt.problemTitle} · {attemptStatusLabel(attempt.status)}</option>)}</optgroup>}
+        {attempts.length === 0 ? <option value="">{t("workspaceShell.noAttempt")}</option> : <>
+          {activeAttempts.length > 0 && <optgroup label={t("workspaceShell.activeGroup")}>{activeAttempts.map((attempt) => <option value={attempt.id} key={attempt.id}>{attempt.problemTitle} · {attempt.delegationScope ?? "research"}</option>)}</optgroup>}
+          {historicalAttempts.length > 0 && <optgroup label={t("workspaceShell.historyGroup")}>{historicalAttempts.map((attempt) => <option value={attempt.id} key={attempt.id}>{attempt.problemTitle} · {attemptStatusLabel(attempt.status, t)}</option>)}</optgroup>}
         </>}
       </Select>
     </label>
     <div className="workspace-topbar-status">
-      <span className={isAgentConnected ? "workspace-agent-state is-connected" : "workspace-agent-state"}><i aria-hidden="true" />{isAgentConnected ? `${agentLabel ?? "Agent"} approval active` : "No active Agent approval"}</span>
+      <span className={isAgentConnected ? "workspace-agent-state is-connected" : "workspace-agent-state"}><i aria-hidden="true" />{isAgentConnected ? t("workspaceShell.agentApproval", { agent: agentLabel ?? "Agent" }) : t("workspaceShell.noAgent")}</span>
       <Button type="button" className="workspace-sync-button" onClick={onRefresh} disabled={isRefreshing || !canRefresh}>
-        {isRefreshing ? "Syncing…" : "Refresh records"}
+        {isRefreshing ? t("workspaceShell.syncing") : t("workspaceShell.refresh")}
       </Button>
-      <small>{canRefresh ? `Auto-sync · ${refreshedAt ? `updated ${formatTimestamp(refreshedAt)}` : "current session"}` : "Current session"}</small>
+      <small>{canRefresh ? refreshedAt ? t("workspaceShell.autoSync", { time: formatTimestamp(refreshedAt, locale) }) : t("workspaceShell.autoSyncCurrent") : t("workspaceShell.session")}</small>
     </div>
   </header>;
 }
@@ -113,27 +117,28 @@ export function WorkspaceSidebar({
   reviewCount: number | null;
   evidenceCount: number | null;
 }) {
+  const { t, locale } = useI18n();
   const activeAttempts = attempts.filter(isLiveAttempt);
   const historicalAttempts = attempts.filter((attempt) => !isLiveAttempt(attempt));
   const visibleAttempts = view === "active" ? activeAttempts : historicalAttempts;
 
-  return <aside className="workspace-sidebar" aria-label="Personal workspace navigation">
+  return <aside className="workspace-sidebar" aria-label={t("workspaceShell.navAria")}>
     <section>
-      <div className="workspace-sidebar-heading"><span>Research</span><b>{activeAttempts.length}</b></div>
-      <div className="workspace-attempt-filters" role="tablist" aria-label="Research Attempt state">
-        <Button type="button" role="tab" aria-selected={view === "active"} className={view === "active" ? "is-selected" : ""} onClick={() => onViewChange("active")}>Active <span>{activeAttempts.length}</span></Button>
-        <Button type="button" role="tab" aria-selected={view === "history"} className={view === "history" ? "is-selected" : ""} onClick={() => onViewChange("history")}>History <span>{historicalAttempts.length}</span></Button>
+      <div className="workspace-sidebar-heading"><span>{t("workspaceShell.research")}</span><b>{activeAttempts.length}</b></div>
+      <div className="workspace-attempt-filters" role="tablist" aria-label={t("workspaceShell.filterAria")}>
+        <Button type="button" role="tab" aria-selected={view === "active"} className={view === "active" ? "is-selected" : ""} onClick={() => onViewChange("active")}>{t("workspaceShell.active")} <span>{activeAttempts.length}</span></Button>
+        <Button type="button" role="tab" aria-selected={view === "history"} className={view === "history" ? "is-selected" : ""} onClick={() => onViewChange("history")}>{t("workspaceShell.history")} <span>{historicalAttempts.length}</span></Button>
       </div>
       {visibleAttempts.length === 0
-        ? <EmptyState as="div" className="workspace-sidebar-empty"><p>{view === "active" ? "No active research Attempt." : "Completed and closed Attempts will remain here."}</p>{view === "active" && <Link href="/explore">Explore problems <span>→</span></Link>}</EmptyState>
+        ? <EmptyState as="div" className="workspace-sidebar-empty"><p>{view === "active" ? t("workspaceShell.emptyActive") : t("workspaceShell.emptyHistory")}</p>{view === "active" && <Link href="/explore">{t("workspaceShell.exploreProblems")} <span>→</span></Link>}</EmptyState>
         : <ol className="workspace-attempt-list">{visibleAttempts.map((attempt) => <li key={attempt.id}>
           <Button type="button" className={attempt.id === selectedAttemptId ? "is-selected" : ""} onClick={() => onSelectAttempt(attempt.id)} aria-pressed={attempt.id === selectedAttemptId}>
-            <span>{attemptStatusLabel(attempt.status)}</span>
+            <span>{attemptStatusLabel(attempt.status, t)}</span>
             <strong>{attempt.problemTitle}</strong>
-            <small>{attempt.delegationScope ?? "research"} · {formatTimestamp(attempt.updatedAt)}</small>
+            <small>{attempt.delegationScope ?? "research"} · {formatTimestamp(attempt.updatedAt, locale)}</small>
           </Button>
         </li>)}</ol>}
-      <Link className="workspace-choose-link" href="/explore">Choose research <span>→</span></Link>
+      <Link className="workspace-choose-link" href="/explore">{t("workspace.chooseResearch")} <span>→</span></Link>
     </section>
     <PersonalWorkspaceNavigation active="workbench" activeAttemptCount={attempts.filter(isLiveAttempt).length} activeReviewCount={reviewCount} evidenceCount={evidenceCount} />
   </aside>;
@@ -148,31 +153,32 @@ export function WorkspaceRecordLinks({
   runCount: number;
   contributionCount: number;
 }) {
+  const { t } = useI18n();
   return <section className="workspace-record-links" aria-labelledby="workspace-record-links-title">
-    <div className="workspace-rail-heading"><span className="micro-label">Recorded work</span><strong id="workspace-record-links-title">Research records</strong></div>
+    <div className="workspace-rail-heading"><span className="micro-label">{t("workspaceShell.recordedWork")}</span><strong id="workspace-record-links-title">{t("workspaceShell.records")}</strong></div>
     <FieldList>
-      <Field label="Agent events">{eventCount}</Field>
-      <Field label="Runner records">{runCount}</Field>
-      <Field label="Staged evidence">{contributionCount}</Field>
+      <Field label={t("workspaceShell.agentEvents")}>{eventCount}</Field>
+      <Field label={t("workspaceShell.runnerRecords")}>{runCount}</Field>
+      <Field label={t("workspaceShell.stagedEvidence")}>{contributionCount}</Field>
     </FieldList>
     <div className="workspace-record-actions">
-      <Link href="/evidence">Inspect evidence <span>→</span></Link>
-      <Link href="/reviews">Open review queue <span>→</span></Link>
+      <Link href="/evidence">{t("workspaceShell.inspectEvidence")} <span>→</span></Link>
+      <Link href="/reviews">{t("workspaceShell.openQueue")} <span>→</span></Link>
     </div>
   </section>;
 }
 
-function formatTimestamp(value: string): string {
+function formatTimestamp(value: string, locale: Locale): string {
   const date = new Date(value);
-  return Number.isNaN(date.getTime()) ? "Unknown" : new Intl.DateTimeFormat("en-US", { timeZone: "UTC", day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" }).format(date);
+  return Number.isNaN(date.getTime()) ? "—" : new Intl.DateTimeFormat(locale, { timeZone: "UTC", day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" }).format(date);
 }
 
-function attemptStatusLabel(status: McpAttempt["status"]): string {
-  if (status === "active") return "Active";
-  if (status === "paused") return "Paused";
-  if (status === "submitted") return "Submitted";
-  if (status === "completed") return "Completed";
-  return "Abandoned";
+function attemptStatusLabel(status: McpAttempt["status"], t: Translator): string {
+  if (status === "active") return t("workspaceShell.status.active");
+  if (status === "paused") return t("workspaceShell.status.paused");
+  if (status === "submitted") return t("workspaceShell.status.submitted");
+  if (status === "completed") return t("workspaceShell.status.completed");
+  return t("workspaceShell.status.abandoned");
 }
 
 function isLiveAttempt(attempt: McpAttempt): boolean {

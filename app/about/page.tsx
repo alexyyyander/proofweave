@@ -4,26 +4,31 @@ import { SiteFrame } from "@/app/components/shell/SiteFrame";
 import { type Metadata } from "next";
 import Link from "next/link";
 import { PageSectionNav } from "../ui";
+import { getI18n } from "@/app/i18n/server";
+import type { TranslationKey } from "@/app/i18n/translate";
 
 const builderUrl = "https://github.com/alexyyyander";
 const openCatalogUrl = "https://github.com/alexyyyander/proofweave-open-catalog";
 
-export const metadata: Metadata = { title: "About Proofweave", description: "The mission, boundaries, governance, and people behind Proofweave." };
+export async function generateMetadata(): Promise<Metadata> {
+  const { t } = await getI18n();
+  return { title: t("about.metaTitle"), description: t("about.metaDescription") };
+}
 
-const topics = [
-  { number: "01", title: "Principles", copy: "Why provenance, ownership independence, privacy, and claim separation are built into the product.", href: "/about/principles" },
-  { number: "02", title: "Catalog standard", copy: "What must be checked before a famous conjecture is presented as a current research target.", href: "/about/catalog-standard" },
-  { number: "03", title: "Shared research model", copy: "How many delegated Agents reuse verified progress instead of repeatedly starting from zero.", href: "/about/shared-research" },
-] as const;
+const topics: readonly { number: string; titleKey: TranslationKey; copyKey: TranslationKey; href: string }[] = [
+  { number: "01", titleKey: "about.topic.principles.title", copyKey: "about.topic.principles.copy", href: "/about/principles" },
+  { number: "02", titleKey: "about.topic.catalogStandard.title", copyKey: "about.topic.catalogStandard.copy", href: "/about/catalog-standard" },
+  { number: "03", titleKey: "about.topic.sharedResearch.title", copyKey: "about.topic.sharedResearch.copy", href: "/about/shared-research" },
+];
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const { t } = await getI18n();
   return <SiteFrame className="site-shell app-shell primary-page" active="about" mainClassName="page-main information-hub-main">
-    <PageIntro id="mission" label="About" title="A shared research network for people and their Agents."
-      description="Proofweave helps every person participate in formal mathematics through a personally delegated Agent while preserving authorship, evidence, privacy, and independent verification." />
-    <PageSectionNav links={[{ href: "#product", label: "What the product is" }, { href: "#design-documents", label: "Design documents" }, { href: "#builder", label: "Builder & project" }]} />
-    <section className="about-definition" id="product" aria-labelledby="about-definition-title"><div><p className="eyebrow">The product in three parts</p><SectionTitle id="about-definition-title">Research coordination, evidence, and attribution.</SectionTitle></div><div><Surface as="article"><span>Research network</span><p>People and Agents choose distinct branches from a shared frontier instead of duplicating hidden work.</p></Surface><Surface as="article"><span>Verification layer</span><p>Lean execution, statement fidelity, novelty, and independent review remain separate claims.</p></Surface><Surface as="article"><span>Contribution record</span><p>Useful formalizations, lemmas, counterexamples, reviews, and dependencies remain attributable downstream.</p></Surface></div></section>
-    <section className="information-path-grid about-topic-grid" id="design-documents" aria-label="Proofweave design documents">{topics.map((topic) => <Link href={topic.href} key={topic.href}><span>{topic.number}</span><CardTitle as="h2">{topic.title}</CardTitle><p>{topic.copy}</p><strong>Read <b aria-hidden="true">→</b></strong></Link>)}</section>
-    <Surface as="section" className="about-project-card" id="builder"><div className="builder-mark" aria-hidden="true">AY</div><div><p className="eyebrow">Independent early-stage project</p><SectionTitle>Proofweave was initiated and built by Alex Yu.</SectionTitle><p>Product direction, protocol design, and the public research experience are led through human-directed, AI-assisted development. Proofweave is not an institutional mathematical authority.</p></div><div className="about-project-links"><a href={builderUrl} rel="noreferrer" target="_blank">Builder on GitHub <span>↗</span></a><a href={openCatalogUrl} rel="noreferrer" target="_blank">Open catalog repository <span>↗</span></a></div></Surface>
-    <section className="hub-next-action"><div><p className="eyebrow">Inspect the system</p><SectionTitle>Trust the record, not the headline.</SectionTitle></div><div className="button-row"><ActionLink className="button button-primary" href="/showcase">Watch one proof journey <span>→</span></ActionLink><ActionLink className="button button-secondary" href="/explore">Open the catalog</ActionLink></div></section>
+    <PageIntro id="mission" label={t("about.label")} title={t("about.title")} description={t("about.description")} />
+    <PageSectionNav label={t("common.onThisPage")} links={[{ href: "#product", label: t("about.nav.product") }, { href: "#design-documents", label: t("about.nav.documents") }, { href: "#builder", label: t("about.nav.builder") }]} />
+    <section className="about-definition" id="product" aria-labelledby="about-definition-title"><div><p className="eyebrow">{t("about.productEyebrow")}</p><SectionTitle id="about-definition-title">{t("about.productTitle")}</SectionTitle></div><div><Surface as="article"><span>{t("about.network.title")}</span><p>{t("about.network.copy")}</p></Surface><Surface as="article"><span>{t("about.verification.title")}</span><p>{t("about.verification.copy")}</p></Surface><Surface as="article"><span>{t("about.record.title")}</span><p>{t("about.record.copy")}</p></Surface></div></section>
+    <section className="information-path-grid about-topic-grid" id="design-documents" aria-label={t("about.documentsAria")}>{topics.map((topic) => <Link href={topic.href} key={topic.href}><span>{topic.number}</span><CardTitle as="h2">{t(topic.titleKey)}</CardTitle><p>{t(topic.copyKey)}</p><strong>{t("about.topic.read")} <b aria-hidden="true">→</b></strong></Link>)}</section>
+    <Surface as="section" className="about-project-card" id="builder"><div className="builder-mark" aria-hidden="true">AY</div><div><p className="eyebrow">{t("about.builderEyebrow")}</p><SectionTitle>{t("about.builderTitle")}</SectionTitle><p>{t("about.builderBody")}</p></div><div className="about-project-links"><a href={builderUrl} rel="noreferrer" target="_blank">{t("about.builderGithub")} <span>↗</span></a><a href={openCatalogUrl} rel="noreferrer" target="_blank">{t("about.builderCatalog")} <span>↗</span></a></div></Surface>
+    <section className="hub-next-action"><div><p className="eyebrow">{t("about.nextEyebrow")}</p><SectionTitle>{t("about.nextTitle")}</SectionTitle></div><div className="button-row"><ActionLink className="button button-primary" href="/showcase">{t("about.watchJourney")} <span>→</span></ActionLink><ActionLink className="button button-secondary" href="/explore">{t("about.openCatalog")}</ActionLink></div></section>
   </SiteFrame>;
 }

@@ -4,46 +4,50 @@ import { SiteFrame } from "@/app/components/shell/SiteFrame";
 import { PageTitle, SectionTitle, SectionHeading, Surface, ActionLink } from "@/app/components/ui";
 import Link from "next/link";
 import { PageSectionNav } from "../ui";
+import { getI18n } from "@/app/i18n/server";
+import type { Metadata } from "next";
+import type { TranslationKey } from "@/app/i18n/translate";
 
-export const metadata = {
-  title: "Support, abuse, and security",
-  description: "Where to ask for help, report abuse, request account deletion, or disclose a security issue during the Proofweave public alpha.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { t } = await getI18n();
+  return { title: t("support.metaTitle"), description: t("support.metaDescription") };
+}
 
-const channels = [
-  ["General support", "Use the public issue tracker for access questions, bugs, documentation problems, and non-sensitive account requests. Do not include tokens, keys, private workspace contents, or another person’s data.", "https://github.com/alexyyyander/proofweave/issues", "Open the issue tracker ↗"],
-  ["Security disclosure", "Report vulnerabilities, credential exposure, or a suspected integrity failure privately through GitHub Security Advisories. Do not open a public issue for an active vulnerability.", "https://github.com/alexyyyander/proofweave/security/advisories/new", "Open a private advisory ↗"],
-  ["Privacy or account request", "Deletion, export, correction, and other requests that contain personal data should use the private security advisory channel rather than a public issue.", "https://github.com/alexyyyander/proofweave/security/advisories/new", "Request privately ↗"],
-  ["Abuse or impersonation", "Report impersonation, fabricated evidence, review manipulation, or unlawful content. Include links and dates, but not private evidence or credentials. Sensitive reports should use the private advisory channel.", "https://github.com/alexyyyander/proofweave/issues", "Report abuse ↗"],
-] as const;
+const channels: readonly { titleKey: TranslationKey; copyKey: TranslationKey; actionKey: TranslationKey; href: string }[] = [
+  { titleKey: "support.channels.general.title", copyKey: "support.channels.general.copy", actionKey: "support.channels.general.action", href: "https://github.com/alexyyyander/proofweave/issues" },
+  { titleKey: "support.channels.security.title", copyKey: "support.channels.security.copy", actionKey: "support.channels.security.action", href: "https://github.com/alexyyyander/proofweave/security/advisories/new" },
+  { titleKey: "support.channels.privacy.title", copyKey: "support.channels.privacy.copy", actionKey: "support.channels.privacy.action", href: "https://github.com/alexyyyander/proofweave/security/advisories/new" },
+  { titleKey: "support.channels.abuse.title", copyKey: "support.channels.abuse.copy", actionKey: "support.channels.abuse.action", href: "https://github.com/alexyyyander/proofweave/issues" },
+];
 
-export default function SupportPage() {
+export default async function SupportPage() {
+  const { t } = await getI18n();
   return <SiteFrame className="site-shell app-shell" active="about" mainClassName="page-main legal-main">
-    <Breadcrumb><Link href="/about">About</Link><span> / </span><span>Support</span></Breadcrumb>
+    <Breadcrumb aria-label={t("common.breadcrumb")}><Link href="/about">{t("nav.primary.about")}</Link><span> / </span><span>{t("nav.item.support")}</span></Breadcrumb>
     <SectionHeading as="section" className="legal-hero">
-      <p className="eyebrow">Support · public alpha</p>
-      <PageTitle>Ask, report, or disclose through a channel we actually monitor.</PageTitle>
-      <p>Proofweave is an experimental public alpha. Support is best-effort and has no guaranteed response time; there is no separate status page yet.</p>
+      <p className="eyebrow">{t("support.eyebrow")}</p>
+      <PageTitle>{t("support.title")}</PageTitle>
+      <p>{t("support.intro")}</p>
     </SectionHeading>
-    <PageSectionNav links={[{ href: "#channels", label: "Channels" }, { href: "#response", label: "Response" }, { href: "/privacy", label: "Privacy" }, { href: "/terms", label: "Terms" }]} />
+    <PageSectionNav label={t("common.onThisPage")} links={[{ href: "#channels", label: t("support.nav.channels") }, { href: "#response", label: t("support.nav.response") }, { href: "/privacy", label: t("nav.item.privacy") }, { href: "/terms", label: t("nav.item.terms") }]} />
 
     <section className="legal-sections" id="channels">
-      {channels.map(([title, copy, href, label]) => <Surface as="article" key={title}>
-        <SectionTitle>{title}</SectionTitle>
-        <p>{copy}</p>
-        <a className="text-link" href={href} rel="noreferrer" target="_blank">{label}</a>
+      {channels.map((channel) => <Surface as="article" key={channel.titleKey}>
+        <SectionTitle>{t(channel.titleKey)}</SectionTitle>
+        <p>{t(channel.copyKey)}</p>
+        <a className="text-link" href={channel.href} rel="noreferrer" target="_blank">{t(channel.actionKey)} ↗</a>
       </Surface>)}
     </section>
 
     <section className="reading-note" id="response">
-      <div><p className="eyebrow">What to expect</p><SectionTitle>No SLA, but explicit handling.</SectionTitle></div>
-      <p>Access requests are reviewed against the current research write window. Security and privacy reports are handled privately. Abuse reports may lead to content removal, suspension of write access, or a correction record. During the alpha, response times vary with operator availability.</p>
-      <p>Account deletion removes or anonymizes account identifiers. Published contribution records, reviews, and receipts may be retained as audit history; display names are replaced where feasible. Export requests use the same private channel.</p>
+      <div><p className="eyebrow">{t("support.response.eyebrow")}</p><SectionTitle>{t("support.response.title")}</SectionTitle></div>
+      <p>{t("support.response.bodyA")}</p>
+      <p>{t("support.response.bodyB")}</p>
     </section>
 
     <div className="reading-actions">
-      <ActionLink className="button button-primary" href="https://github.com/alexyyyander/proofweave/issues" rel="noreferrer" target="_blank">Open the issue tracker <span aria-hidden="true">↗</span></ActionLink>
-      <ActionLink className="button button-secondary" href="https://github.com/alexyyyander/proofweave/security/advisories/new" rel="noreferrer" target="_blank">Private security advisory</ActionLink>
+      <ActionLink className="button button-primary" href="https://github.com/alexyyyander/proofweave/issues" rel="noreferrer" target="_blank">{t("support.action.issues")} <span aria-hidden="true">↗</span></ActionLink>
+      <ActionLink className="button button-secondary" href="https://github.com/alexyyyander/proofweave/security/advisories/new" rel="noreferrer" target="_blank">{t("support.action.advisory")}</ActionLink>
     </div>
   </SiteFrame>;
 }

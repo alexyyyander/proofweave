@@ -8,6 +8,7 @@ import { WorkbenchClient } from "./WorkbenchClient";
 import { MyWorkOverview } from "./MyWorkOverview";
 import { loadCatalogTargets, loadSelectedCatalogTarget, loadWorkbenchData, requestedAttemptId, requestedParentNodeId, requestedTargetSlug } from "./workbench-data";
 import { getParticipantOperationState } from "@/db";
+import { getI18n } from "@/app/i18n/server";
 
 export const dynamic = "force-dynamic";
 
@@ -70,48 +71,50 @@ export default async function WorkbenchPage({
     </SiteFrame>;
 }
 
-function ReadOnlyWorkbench({ selectedTarget }: {
+async function ReadOnlyWorkbench({ selectedTarget }: {
   selectedTarget: Awaited<ReturnType<typeof loadCatalogTargets>>[number] | null;
 }) {
+  const { t } = await getI18n();
   return <SiteFrame className="site-shell app-shell primary-page" active="workbench" mainClassName="workbench-main signed-out-workbench">
-      <PageIntro label="Workspace" title="Research updates are temporarily paused." titleId="workspace-maintenance-title"
-        description="Public questions and verification records remain available. Connecting an Agent, starting or managing research, and submitting evidence will return after maintenance."
-        actions={<><ActionLink variant="primary" href={selectedTarget ? `/explore/${selectedTarget.slug}` : "/explore"}>{selectedTarget ? "View selected question" : "Browse public research"} <span aria-hidden="true">→</span></ActionLink><ActionLink variant="secondary" href="/demo">Open verified demo</ActionLink></>}>
+      <PageIntro label={t("workbench.launch.label")} title={t("workbench.launch.maintenanceTitle")} titleId="workspace-maintenance-title"
+        description={t("workbench.launch.maintenanceDescription")}
+        actions={<><ActionLink variant="primary" href={selectedTarget ? `/explore/${selectedTarget.slug}` : "/explore"}>{selectedTarget ? t("workbench.launch.viewSelected") : t("workbench.launch.browsePublic")} <span aria-hidden="true">→</span></ActionLink><ActionLink variant="secondary" href="/demo">{t("workbench.launch.openDemo")}</ActionLink></>}>
           {selectedTarget && <div className="workspace-onboarding-selection">
-            <span className="micro-label">Your selected question is preserved</span>
+            <span className="micro-label">{t("workbench.launch.selectedPreserved")}</span>
             <strong>{selectedTarget.title}</strong>
             <p>{selectedTarget.informalStatement}</p>
-            <span>Return to this question when research updates resume.</span>
+            <span>{t("workbench.launch.selectedResume")}</span>
           </div>}
       </PageIntro>
-        <ol className="workspace-onboarding-steps workspace-entry-steps" aria-label="What remains available">
-          <li><span>01</span><div><strong>Browse public questions</strong><p>Statements, sources, and existing verification states remain readable.</p></div></li>
-          <li><span>02</span><div><strong>Inspect the evidence model</strong><p>The public Demo continues to verify its signed reference evidence.</p></div></li>
-          <li><span>03</span><div><strong>Resume after maintenance</strong><p>Write controls remain closed rather than risking an incomplete research record.</p></div></li>
+        <ol className="workspace-onboarding-steps workspace-entry-steps" aria-label={t("workbench.launch.maintenanceStepsAria")}>
+          <li><span>01</span><div><strong>{t("workbench.launch.maintenanceStep1.title")}</strong><p>{t("workbench.launch.maintenanceStep1.body")}</p></div></li>
+          <li><span>02</span><div><strong>{t("workbench.launch.maintenanceStep2.title")}</strong><p>{t("workbench.launch.maintenanceStep2.body")}</p></div></li>
+          <li><span>03</span><div><strong>{t("workbench.launch.maintenanceStep3.title")}</strong><p>{t("workbench.launch.maintenanceStep3.body")}</p></div></li>
         </ol>
     </SiteFrame>;
 }
 
-function SignedOutWorkbench({ signInHref, selectedTarget }: {
+async function SignedOutWorkbench({ signInHref, selectedTarget }: {
   signInHref: string;
   selectedTarget: Awaited<ReturnType<typeof loadCatalogTargets>>[number] | null;
 }) {
+  const { t } = await getI18n();
   return <SiteFrame className="site-shell app-shell primary-page" active="workbench" mainClassName="workbench-main signed-out-workbench">
-      <PageIntro label="Workspace" title="One private place for your Agent's research." titleId="workspace-onboarding-title"
-        description="Sign in to connect a local Agent, open bounded Attempts, and publish only the evidence you approve. Empty dashboards stay hidden until you have real work to show."
-        actions={<><ActionLink variant="primary" href={signInHref}>Sign in to begin <span aria-hidden="true">→</span></ActionLink><ActionLink variant="secondary" href="/explore">Explore first</ActionLink></>}>
+      <PageIntro label={t("workbench.launch.label")} title={t("workbench.launch.signedOutTitle")} titleId="workspace-onboarding-title"
+        description={t("workbench.launch.signedOutDescription")}
+        actions={<><ActionLink variant="primary" href={signInHref}>{t("workbench.launch.signIn")} <span aria-hidden="true">→</span></ActionLink><ActionLink variant="secondary" href="/explore">{t("workbench.launch.exploreFirst")}</ActionLink></>}>
           {selectedTarget && <div className="workspace-onboarding-selection">
-            <span className="micro-label">Selected target</span>
+            <span className="micro-label">{t("workbench.launch.selectedLabel")}</span>
             <strong>{selectedTarget.title}</strong>
             <p>{selectedTarget.informalStatement}</p>
-            <span>Your exact target and source revision stay selected after sign-in.</span>
+            <span>{t("workbench.launch.selectedNote")}</span>
           </div>}
       </PageIntro>
-        <ol className="workspace-onboarding-steps workspace-entry-steps" aria-label="Workspace setup steps">
-          <li><span>01</span><div><strong>Choose one exact target</strong><p>Start from a pinned statement instead of an unbounded prompt.</p></div></li>
-          <li><span>02</span><div><strong>Connect your local Agent</strong><p>Your repository and unfinished reasoning remain on your computer.</p></div></li>
-          <li><span>03</span><div><strong>Approve evidence for review</strong><p>Only selected checkpoints become attributable public records.</p></div></li>
+        <ol className="workspace-onboarding-steps workspace-entry-steps" aria-label={t("workbench.launch.setupStepsAria")}>
+          <li><span>01</span><div><strong>{t("workbench.launch.setupStep1.title")}</strong><p>{t("workbench.launch.setupStep1.body")}</p></div></li>
+          <li><span>02</span><div><strong>{t("workbench.launch.setupStep2.title")}</strong><p>{t("workbench.launch.setupStep2.body")}</p></div></li>
+          <li><span>03</span><div><strong>{t("workbench.launch.setupStep3.title")}</strong><p>{t("workbench.launch.setupStep3.body")}</p></div></li>
         </ol>
-      <section className="workspace-onboarding-boundary" aria-label="Workspace privacy boundary"><strong>Private by default.</strong><p>Signing in creates a stable Person identity for attribution. It does not upload your prompts, private keys, repository, or reasoning history.</p><Link href="/privacy">Read the privacy boundary <span aria-hidden="true">→</span></Link></section>
+      <section className="workspace-onboarding-boundary" aria-label={t("workbench.launch.privacyAria")}><strong>{t("workbench.launch.privacyTitle")}</strong><p>{t("workbench.launch.privacyBody")}</p><Link href="/privacy">{t("workbench.launch.privacyLink")} <span aria-hidden="true">→</span></Link></section>
     </SiteFrame>;
 }

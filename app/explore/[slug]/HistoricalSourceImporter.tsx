@@ -4,14 +4,16 @@ import { Button, Input, Select } from "@/app/components/ui";
 
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
+import { useI18n } from "@/app/i18n/client";
 
 export function HistoricalSourceImporter({ problemSlug, canImport, signInPath }: { problemSlug: string; canImport: boolean; signInPath: string }) {
+  const { t } = useI18n();
   const [status, setStatus] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   if (!canImport) {
-    return <p className="historical-source-signin"><Link href={signInPath}>Sign in</Link> to link source-backed prior work to this problem.</p>;
+    return <p className="historical-source-signin"><Link href={signInPath}>{t("explore.import.signIn")}</Link> {t("explore.import.signInBody")}</p>;
   }
 
   const submit = async (event: FormEvent<HTMLFormElement>) => {
@@ -48,31 +50,31 @@ export function HistoricalSourceImporter({ problemSlug, canImport, signInPath }:
         }),
       });
       const payload = await response.json().catch(() => null);
-      if (!response.ok) throw new Error(payload?.error?.message ?? "Proofweave could not link this historical source.");
-      setStatus(payload?.created ? "Prior work linked with source-backed attribution. Refresh to see it in the graph." : "This exact source revision was already known; its problem link and attribution are now recorded.");
+      if (!response.ok) throw new Error(payload?.error?.message ?? t("explore.import.error"));
+      setStatus(payload?.created ? t("explore.import.created") : t("explore.import.known"));
       formElement.reset();
     } catch (cause) {
-      setError(cause instanceof Error ? cause.message : "Proofweave could not link this historical source.");
+      setError(cause instanceof Error ? cause.message : t("explore.import.error"));
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return <details className="historical-source-importer">
-    <summary>Add source-backed prior work</summary>
+    <summary>{t("explore.import.summary")}</summary>
     <form onSubmit={(event) => { void submit(event); }}>
-      <p>This preserves the original source and contributor name. It does not create Proofweave verification, delegation, novelty, contribution credit, or a Receipt.</p>
+      <p>{t("explore.import.note")}</p>
       <div className="historical-source-fields">
-        <label>Source URL<Input name="sourceUrl" type="url" required placeholder="https://doi.org/… or repository URL" /></label>
-        <label>Title<Input name="title" required maxLength={500} /></label>
-        <label>Exact revision<Input name="sourceRevision" required maxLength={240} placeholder="DOI version, commit SHA, or release tag" /></label>
-        <label>Content SHA-256<Input name="contentHash" required pattern="sha256:[a-f0-9]{64}" placeholder="sha256:…" /></label>
-        <label>Source license<Input name="sourceLicense" required maxLength={160} placeholder="For example, MIT or CC BY 4.0" /></label>
-        <label>Contributor name<Input name="contributorName" required maxLength={240} /></label>
-        <label>Contributor role<Select name="contributorRole" defaultValue="author"><option value="author">Author</option><option value="formalizer">Formalizer</option><option value="prover">Prover</option><option value="reviewer">Reviewer</option><option value="maintainer">Maintainer</option></Select></label>
-        <label>Attribution evidence URL<Input name="contributorEvidenceUrl" type="url" placeholder="Defaults to source URL" /></label>
+        <label>{t("explore.import.sourceUrl")}<Input name="sourceUrl" type="url" required placeholder={t("explore.import.sourceUrlPlaceholder")} /></label>
+        <label>{t("explore.import.title")}<Input name="title" required maxLength={500} /></label>
+        <label>{t("explore.import.revision")}<Input name="sourceRevision" required maxLength={240} placeholder={t("explore.import.revisionPlaceholder")} /></label>
+        <label>{t("explore.import.contentHash")}<Input name="contentHash" required pattern="sha256:[a-f0-9]{64}" placeholder="sha256:…" /></label>
+        <label>{t("explore.import.license")}<Input name="sourceLicense" required maxLength={160} placeholder={t("explore.import.licensePlaceholder")} /></label>
+        <label>{t("explore.import.contributorName")}<Input name="contributorName" required maxLength={240} /></label>
+        <label>{t("explore.import.contributorRole")}<Select name="contributorRole" defaultValue="author"><option value="author">{t("explore.import.role.author")}</option><option value="formalizer">{t("explore.import.role.formalizer")}</option><option value="prover">{t("explore.import.role.prover")}</option><option value="reviewer">{t("explore.import.role.reviewer")}</option><option value="maintainer">{t("explore.import.role.maintainer")}</option></Select></label>
+        <label>{t("explore.import.evidenceUrl")}<Input name="contributorEvidenceUrl" type="url" placeholder={t("explore.import.evidenceUrlPlaceholder")} /></label>
       </div>
-      <Button className="button button-secondary" disabled={isSubmitting} type="submit">{isSubmitting ? "Linking source…" : "Link prior work"}</Button>
+      <Button className="button button-secondary" disabled={isSubmitting} type="submit">{isSubmitting ? t("explore.import.submitting") : t("explore.import.submit")}</Button>
       {status && <p className="historical-source-message is-success" role="status">{status}</p>}
       {error && <p className="historical-source-message is-error" role="alert">{error}</p>}
     </form>
