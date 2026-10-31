@@ -11,6 +11,10 @@ import {
   remoteMcpReadOnlyToolNames,
   remoteMcpRequestIsReadOnly,
 } from "./read-only-policy.mjs";
+import {
+  ResearchWriteGateUnconfiguredError,
+  ResearchWriteNotAllowedError,
+} from "../database/research-write-allowlist.mjs";
 
 export { remoteMcpReadOnlyToolNames, remoteMcpScopes };
 
@@ -584,9 +588,20 @@ async function withScope(principal, scope, operation, rateLimiter, action) {
     await rateLimiter.enforce(principal, operation);
     return { value: await action() };
   } catch (error) {
+    const gatePrefix = error instanceof ResearchWriteNotAllowedError
+      ? "research_write_not_allowed"
+      : error instanceof ResearchWriteGateUnconfiguredError
+        ? "research_write_gate_unconfigured"
+        : null;
+    const errorCode = gatePrefix ?? (
+      error && typeof error === "object" && error.code === "runner_environment_unavailable"
+        ? "runner_environment_unavailable"
+        : null
+    );
     return {
-      error:
-        error instanceof Error
+      error: errorCode
+        ? `${errorCode}: ${error.message}`
+        : error instanceof Error
           ? error.message
           : "The Proofweave control plane could not complete the request.",
     };

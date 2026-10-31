@@ -4,6 +4,13 @@ import { notFound } from "next/navigation";
 import { Header } from "@/app/header";
 import { Footer, PageSectionNav } from "@/app/ui";
 import { openaiMathCollection as collection, publicationFamily } from "@/app/lib/publications";
+import claimsCollection from "@/data/publications/claims/openai-math-claims.json";
+import { lookupClaimsByFamily } from "@/packages/domain/publication-claims.mjs";
+import { ClaimCard, LeanCompanion, ProofMap, ScopeDiff, explanationForFamily, type ClaimExplanation } from "@/app/components/explanation";
+import { Badge, EmptyState } from "@/app/components/ui";
+import explanation032 from "@/data/publications/explanations/openai-math-032.json";
+import explanation084 from "@/data/publications/explanations/openai-math-084.json";
+import explanation159 from "@/data/publications/explanations/openai-math-159.json";
 import { MathText } from "../../MathText";
 import { ReadingGuide } from "../../ReadingGuide";
 import { CitationCopyButton } from "../../CitationCopyButton";
@@ -11,6 +18,13 @@ import "../../publications.css";
 import "katex/dist/katex.min.css";
 
 export const dynamic = "force-dynamic";
+// Draft artifacts are loaded at the route surface; the shared component layer
+// stays independent of publication data files.
+const explanationArtifacts: Record<string, ClaimExplanation> = {
+  "032": explanation032 as ClaimExplanation,
+  "084": explanation084 as ClaimExplanation,
+  "159": explanation159 as ClaimExplanation,
+};
 type Params = { params: Promise<{ number: string }> };
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { number } = await params;
@@ -22,6 +36,8 @@ export default async function PublicationFamilyPage({ params }: Params) {
   const { number } = await params;
   const family = publicationFamily(number);
   if (!family) notFound();
+  const explanation = explanationForFamily(family.number, explanationArtifacts);
+  const claims = lookupClaimsByFamily(claimsCollection, family.number);
   const adjacent = collection.families.indexOf(family);
   const previous = collection.families[adjacent - 1];
   const next = collection.families[adjacent + 1];
@@ -30,9 +46,43 @@ export default async function PublicationFamilyPage({ params }: Params) {
     <main id="main-content" tabIndex={-1} className="page-main publications-main publication-detail-main">
       <div className="breadcrumb"><Link href="/publications">Publications</Link><span> / </span><Link href={`/publications?subject=${encodeURIComponent(family.subject)}`}>{family.subject}</Link><span> / </span><span>OpenAI {family.number}</span></div>
       <section className="publication-detail-heading"><p className="eyebrow">OpenAI mathematics release · Result family {family.number}</p><h1><MathText text={family.title} /></h1><p className="publication-detail-claim"><span className="publication-claim-label">Result described by OpenAI</span><MathText text={family.claim} /></p><div className="publication-detail-status"><span>{family.manuscripts.length} {family.manuscripts.length === 1 ? "manuscript" : "manuscripts"}</span><span>{family.scope ? "Upstream Lean scope documented" : "Lean scope document not linked"}</span><span>Proofweave replay pending</span></div></section>
-      <PageSectionNav label="Publication record" links={[...(family.readingGuide ? [{ href: "#reading-guide", label: "Reading guide" }] : []), { href: "#manuscripts", label: "Manuscripts & citations" }, { href: "#formalization", label: "Formalization scope" }, { href: "#provenance", label: "Source & environment" }]} />
+      <PageSectionNav label="Publication record" links={[...(family.readingGuide ? [{ href: "#reading-guide", label: "Reading guide" }] : []), { href: "#explanations", label: "Explanation" }, ...(claims ? [{ href: "#claims", label: "Per-conclusion map" }] : []), { href: "#manuscripts", label: "Manuscripts & citations" }, { href: "#formalization", label: "Formalization scope" }, { href: "#provenance", label: "Source & environment" }]} />
 
       {family.readingGuide && <ReadingGuide guide={family.readingGuide} />}
+
+      {(() => {
+        const proofMapHref = family.number === "003" ? "/proof-evolution/landau-siegel" : `/proof-evolution/openai-math/${family.number}`;
+        return <section className="publication-replay-note" aria-label="Proof map">
+          <strong>Proof map</strong>
+          <p>{family.number === "003"
+            ? "This family has a 9-page OpenAI proof, a 3-page Barreto variant, and several intermediate simplifications. Compare the versions, what each one replaced, and the Lean coverage."
+            : "See the recorded structure for this family: a deep argument map, a draft proof chain, or a source-linked metadata scaffold."}</p>
+          <Link href={proofMapHref}>Open the proof map →</Link>
+        </section>;
+      })()}
+
+      <section id="explanations" className="publication-explanations" aria-labelledby="explanations-title">
+        <div className="publication-browse-heading"><div><p className="eyebrow">Read what is proved, and what is not</p><h2 id="explanations-title">Explanation</h2></div>{explanation ? <div className="publication-explanations-heading-badges"><Badge tone="warning">Draft · unreviewed</Badge><span>Model-drafted · no platform verification</span></div> : <span>No reviewed artifact</span>}</div>
+        {explanation ? <div className="explanation-grid">
+          <ClaimCard explanation={explanation} />
+          <ScopeDiff explanation={explanation} family={family} renderText={(text) => <MathText text={text} />} />
+          <ProofMap explanation={explanation} />
+          <LeanCompanion explanation={explanation} />
+        </div> : <EmptyState className="publication-explanations-empty"><strong lang="zh-CN">暂无经审阅的解释工件</strong><p>No reviewed explanation artifact is available for this family. This empty slot is not evidence that the result is unproven; it means no explanation draft has been prepared and reviewed for this snapshot.</p></EmptyState>}
+      </section>
+
+      {claims && <section className="publication-formalization" id="claims" aria-labelledby="claims-title">
+        <div className="publication-browse-heading"><div><p className="eyebrow">Per-conclusion map · draft</p><h2 id="claims-title">Every conclusion, with its coverage and verification state</h2></div><span>Upstream mapping · not a replay</span></div>
+        <div className="publication-scope-prose">
+          <p><strong>{claims.claims.length}</strong> {claims.claims.length === 1 ? "conclusion is" : "conclusions are"} mapped from the pinned upstream snapshot. Coverage describes the upstream Lean scope; platform verification remains <strong>not run</strong> for every claim.</p>
+          {claims.claims.map((claim: { id: string; conclusion: string; coverage: { status: string; note: string }; verification: { status: string }; target: { status: string } }) => <div className="publication-paper-scope" key={claim.id}>
+            <strong><MathText text={claim.conclusion} /></strong>
+            <p>{claim.coverage.note}</p>
+            <p><span className="publication-claim-label">Coverage</span> {claim.coverage.status} · <span className="publication-claim-label">Verification</span> {claim.verification.status} · <span className="publication-claim-label">Target</span> {claim.target.status}</p>
+          </div>)}
+        </div>
+        <div className="publication-scope-links"><a className="text-link" href={`/api/publications/openai-math/${family.number}/claims`}>Open machine-readable claims JSON ↗</a></div>
+      </section>}
 
       <section id="manuscripts" className="publication-manuscripts" aria-labelledby="manuscripts-title"><div className="publication-browse-heading"><div><p className="eyebrow">Read the original work</p><h2 id="manuscripts-title">Manuscripts & citations</h2></div><a href={`/api/publications/openai-math/${family.number}?download=1`} download={`proofweave-openai-math-${family.number}.json`}>Download this record ↓</a></div>
         {family.manuscripts.map((paper, index) => <article className="publication-manuscript" key={paper.id} id={`manuscript-${index + 1}`}>

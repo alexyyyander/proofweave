@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { getParticipantOperationState, MissingDatabaseBindingError } from "@/db";
@@ -20,23 +21,26 @@ export type AuthUser = Readonly<{
   displayName: string;
   email: string;
   fullName: string | null;
+  appSession?: boolean;
 }>;
 
-export async function getCurrentUser(): Promise<AuthUser | null> {
+// React cache is scoped to this server render, never shared between visitors.
+export const getCurrentUser = cache(async function getCurrentUser(): Promise<AuthUser | null> {
   const requestHeaders = await headers();
   const token = readCookie(requestHeaders.get("cookie"), APP_SESSION_COOKIE);
   if (token) {
     try {
       const session = await getAccountAuthRepository().findSession(token);
-      if ((session?.provider === "google" || session?.provider === "proofweave") && session.email) {
+      if (session && session.email) {
         return {
           provider: session.provider,
-          providerLabel: session.provider === "google" ? "Google" : "Demo",
+          providerLabel: session.provider === "google" ? "Google" : session.provider === "chatgpt" ? "ChatGPT" : "Demo",
           subject: session.subject,
           personId: session.personId,
           displayName: session.displayName,
           email: session.email,
           fullName: session.displayName,
+          appSession: true,
         };
       }
     } catch {
@@ -97,7 +101,7 @@ export async function getCurrentUser(): Promise<AuthUser | null> {
     email: subject,
     fullName,
   };
-}
+});
 
 export async function requireUser(returnTo: string): Promise<AuthUser> {
   const user = await getCurrentUser();
@@ -124,7 +128,7 @@ export function signOutPath(returnTo = "/"): string {
 }
 
 export function providerAwareSignOutPath(user: AuthUser, returnTo = "/"): string {
-  return user.provider === "chatgpt" ? chatGPTSignOutPath(returnTo) : signOutPath(returnTo);
+  return user.provider === "chatgpt" && !user.appSession ? chatGPTSignOutPath(returnTo) : signOutPath(returnTo);
 }
 
 function readCookie(header: string | null, name: string): string | null {

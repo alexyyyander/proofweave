@@ -146,16 +146,14 @@ test("transfer diagnostics do not copy a private Container response body", async
   );
 });
 
-test("invalid evidence stops delivery while rate limits and server failures remain retryable", async () => {
-  const objects = fixtureObjects();
-  const resolvedBundle = fixtureResolvedBundle(objects);
-  for (const status of [400, 413, 415, 422, 408, 429, 503]) {
-    await assert.rejects(new RunnerWorkspaceTransfer({ bucket: new MemoryBucket(objects) }).stage({
-      run: await fixtureRun(resolvedBundle), resolvedBundle,
-      container: new MemoryContainer({ rejectRequest: 5, rejectStatus: status }),
-    }), (error) => {
-      assert.equal(error.retryable, ![400, 413, 415, 422].includes(status));
-      assert.equal(error.message, "Runner Container rejected workspace finalization.");
+test("finalization diagnostics propagate only enumerated private stage codes", async () => {
+  for (const code of ["runner_workspace_file_mode_rejected", "runner_workspace_tree_hash_mismatch", "runner_workspace_user_secret_value"]) {
+    const objects = fixtureObjects();
+    const resolvedBundle = fixtureResolvedBundle(objects);
+    const container = new MemoryContainer({ rejectRequest: 5, rejectBody: "private proof detail", rejectCode: code });
+    await assert.rejects(new RunnerWorkspaceTransfer({ bucket: new MemoryBucket(objects) }).stage({ run: await fixtureRun(resolvedBundle), resolvedBundle, container }), (error) => {
+      assert.equal(error.diagnosticCode, code.endsWith("secret_value") ? "runner_workspace_finalization_rejected_4xx" : code);
+      assert.equal(JSON.stringify(error).includes("private proof detail"), false);
       return true;
     });
   }
@@ -190,11 +188,12 @@ class MemoryBucket {
 }
 
 class MemoryContainer {
-  constructor({ rejectRequest = null, rejectStatus = 400, rejectBody = null } = {}) {
+  constructor({ rejectRequest = null, rejectStatus = 400, rejectBody = null, rejectCode = null } = {}) {
     this.requests = [];
     this.rejectRequest = rejectRequest;
     this.rejectStatus = rejectStatus;
     this.rejectBody = rejectBody;
+    this.rejectCode = rejectCode;
   }
 
   async fetch(request) {
@@ -205,7 +204,7 @@ class MemoryContainer {
       body: request.body ? await request.text() : "",
     });
     if (this.requests.length === this.rejectRequest) {
-      return new Response(this.rejectBody, { status: this.rejectStatus });
+      return new Response(this.rejectBody, { status: this.rejectStatus, headers: this.rejectCode ? { "x-proofweave-error-code": this.rejectCode } : {} });
     }
     return new Response(null, { status: 204 });
   }

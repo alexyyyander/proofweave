@@ -73,7 +73,7 @@ export async function inspectRunnerReleaseHealth({
   expected,
   mode = runnerReleaseHealthModes.liveExecution,
 } = {}) {
-  const lifecycle = runnerLifecycleForMode(mode);
+  runnerLifecycleForMode(mode);
   const url = fixedHttpsUrl(runnerOrigin, "/healthz", "RUNNER_ORIGIN_INVALID");
   const health = await fetchBoundedJson({
     fetcher,
@@ -81,6 +81,14 @@ export async function inspectRunnerReleaseHealth({
     timeoutMilliseconds: 15_000,
     prefix: "RUNNER_HEALTH",
   });
+  return normalizeRunnerReleaseHealth(health, { expected, mode });
+}
+
+/** Validate a captured health response without making a network request. */
+export function normalizeRunnerReleaseHealth(health, {
+  expected, mode = runnerReleaseHealthModes.liveExecution,
+} = {}) {
+  const lifecycle = runnerLifecycleForMode(mode);
   if (
     !isRecord(health) ||
     health.service !== "proofweave-trusted-runner" ||

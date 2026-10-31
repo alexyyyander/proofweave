@@ -1,8 +1,14 @@
 "use client";
 
+import { SectionTitle, Field, Button, CodeBlock, FieldList, Surface, PaperSurface } from "@/app/components/ui";
+
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
-import type { BuildWeekDemoVerification, DemoJourneyStage } from "@/app/lib/build-week-demo";
+import { useMemo } from "react";
+
+import { StepNavigation } from "@/app/components/navigation/StepNavigation";
+import { useStepPlayback } from "@/app/hooks/useStepPlayback";
+import { type BuildWeekDemoVerification, type DemoJourneyStage } from "@/app/lib/build-week-demo";
+import styles from "./ShowcaseExperience.module.css";
 
 type ShowcaseStage = {
   id: "frontier" | DemoJourneyStage["id"];
@@ -13,153 +19,127 @@ type ShowcaseStage = {
   actor: string;
   evidence: string;
   state: string;
+  passed: boolean;
 };
+
+const stepNames = ["Target", "Delegate", "Bundle", "Verify", "Review", "Receipt"];
+const artifactNames = ["Pinned declaration", "Personal delegation", "Reproducible bundle", "Recorded Lean result", "Independent attestations", "Contribution receipt"];
 
 export function ShowcaseExperience({ verification }: { verification: BuildWeekDemoVerification }) {
   const stages = useMemo(() => buildStages(verification), [verification]);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [reducedMotion, setReducedMotion] = useState(false);
-
-  useEffect(() => {
-    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update = () => {
-      setReducedMotion(media.matches);
-      if (media.matches) setIsPlaying(false);
-    };
-    update();
-    media.addEventListener("change", update);
-    return () => media.removeEventListener("change", update);
-  }, []);
-
-  useEffect(() => {
-    if (!isPlaying || reducedMotion) return;
-    const timer = window.setTimeout(() => {
-      setActiveIndex((current) => (current + 1) % stages.length);
-    }, 5_400);
-    return () => window.clearTimeout(timer);
-  }, [activeIndex, isPlaying, reducedMotion, stages.length]);
-
+  const { activeIndex, isPlaying, reducedMotion, sectionRef, select: selectStage, toggle } = useStepPlayback(stages.length);
   const activeStage = stages[activeIndex];
-  const sourceLines = verification.record.source.split("\n").filter(Boolean).slice(0, 7);
-
-  const selectStage = (index: number) => {
-    setActiveIndex(index);
-    setIsPlaying(false);
-  };
 
   return (
-    <section className="showcase-experience" id="proof-journey" aria-labelledby="showcase-journey-title">
-      <div className="showcase-experience-topline">
+    <section ref={sectionRef} className={styles.root} id="proof-journey" aria-labelledby="showcase-journey-title">
+      <header className={styles.heading}>
         <div>
           <p className="eyebrow">One theorem · six evidence moments</p>
-          <h2 id="showcase-journey-title">A contribution must carry its evidence.</h2>
+          <SectionTitle id="showcase-journey-title">A contribution must carry its evidence.</SectionTitle>
         </div>
-        <div className="showcase-playback-status" aria-live="polite">
-          <i className={isPlaying ? "is-playing" : ""} aria-hidden="true" />
-          <span>{reducedMotion ? "Motion reduced" : isPlaying ? "Story playing" : "Story paused"}</span>
-        </div>
-      </div>
-
-      <div className="showcase-progress" aria-hidden="true">
-        <span style={{ width: `${((activeIndex + 1) / stages.length) * 100}%` }} />
-      </div>
-
-      <div className="showcase-layout">
-        <div className="showcase-visual-column">
-          <div className="showcase-canvas" data-stage={activeStage.id} aria-hidden="true">
-            <div className="showcase-grid-plane" />
-            <div className="showcase-boundary showcase-boundary-local"><span>Private · this computer</span></div>
-            <div className="showcase-boundary showcase-boundary-public"><span>Public · minimum evidence</span></div>
-
-            <div className="showcase-person-node"><i /><span>Person</span></div>
-            <div className="showcase-agent-node"><i>∴</i><span>Local Agent</span></div>
-            <div className="showcase-review-node"><i>R</i><span>Different owner</span></div>
-
-            <div className="showcase-evidence-line showcase-line-person" />
-            <div className="showcase-evidence-line showcase-line-review" />
-
-            <div className="showcase-paper-stack">
-              <div className="showcase-paper-shadow showcase-paper-shadow-one" />
-              <div className="showcase-paper-shadow showcase-paper-shadow-two" />
-              <article className="showcase-proof-paper">
-                <div className="showcase-paper-heading"><span>PW / LEAN EVIDENCE</span><i>{activeStage.number}</i></div>
-                <div className="showcase-paper-title">{verification.record.target}</div>
-                <div className="showcase-source-lines">
-                  {sourceLines.map((line, index) => <span key={`${line}-${index}`} style={{ width: `${Math.max(42, 94 - index * 7)}%` }}>{line}</span>)}
-                </div>
-                <div className="showcase-branch-graph">
-                  <i className="branch-line branch-line-a" /><i className="branch-line branch-line-b" /><i className="branch-line branch-line-c" /><i className="branch-line branch-line-d" />
-                  <span className="branch-node branch-node-root" /><span className="branch-node branch-node-a" /><span className="branch-node branch-node-b" /><span className="branch-node branch-node-c" /><span className="branch-node branch-node-d" />
-                </div>
-                <div className="showcase-kernel-scan" />
-                <div className="showcase-kernel-seal"><span>✓</span><small>Kernel accepted</small></div>
-                <div className="showcase-bundle-band"><span>Signed bundle</span><code>{shortHash(verification.record.bundleHash)}</code></div>
-              </article>
-              <div className="showcase-review-copy"><span>Independent replay</span><i>✓</i></div>
-            </div>
-
-            <div className="showcase-receipt-card">
-              <div><span>CONTRIBUTION RECEIPT</span><i>PW</i></div>
-              <strong>Credited to Person</strong>
-              <p>{verification.record.owner}</p>
-              <code>{shortHash(verification.record.receiptHash)}</code>
-              <small>Signed · reproducible · attributable</small>
-            </div>
+        <span className={styles.reference}>Signed reference · Lean {shortLeanVersion(verification.record.leanVersion)}</span>
+      </header>
+      <StepNavigation className={styles.steps} label="Proof journey stages"
+        items={stages.map((stage, index) => ({ id: stage.id, number: stage.number, label: stepNames[index], accessibleLabel: stage.number + " " + stepNames[index] }))}
+        activeIndex={activeIndex} onSelect={selectStage} />
+      <div className={styles.exhibit}>
+        <PaperSurface pageKey={activeStage.id} aria-label={artifactNames[activeIndex]}
+          heading={artifactNames[activeIndex]}
+          meta={<>{activeIndex === 0 ? ".lean" : "signed record"} <span className={styles.pageNumber}>{activeStage.number} / 06</span></>}
+          bodyClassName={styles.scene}
+          footer={<><span>{activeIndex === 0 ? "Git commit" : "Evidence fingerprint"}</span><code>{shortHash(activeStage.evidence)}</code></>}>
+          <EvidenceScene stage={activeStage} verification={verification} />
+        </PaperSurface>
+        <div className={styles.narrative}>
+          <Surface as="article" key={activeStage.id} className={styles.copy} aria-live={isPlaying ? "off" : "polite"}>
+            <p className={styles.moment}>Moment {activeStage.number} / 06 <span>— {activeStage.kicker}</span></p>
+            <SectionTitle as="h3">{activeStage.title}</SectionTitle>
+            <p className={styles.detail}>{activeStage.detail}</p>
+            <div className={styles.actor}><span>Actor</span><strong>{activeStage.actor}</strong></div>
+            <p className={styles.verdict} data-passed={activeStage.passed}>
+              <span aria-hidden="true">{activeStage.passed ? "✓" : "!"}</span>{activeStage.state}
+            </p>
+          </Surface>
+          <div className={styles.controls}>
+            <Button type="button" className={styles.play} disabled={reducedMotion} onClick={toggle}>
+              <span aria-hidden="true">{isPlaying ? "Ⅱ" : "▷"}</span>
+              {reducedMotion ? "Manual exploration" : isPlaying ? "Pause story" : activeIndex === stages.length - 1 ? "Replay story" : "Play story"}
+            </Button>
+            <span className={styles.counter}>{activeStage.number} / 06</span>
+            <Button type="button" aria-label="Previous moment" disabled={activeIndex === 0} onClick={() => selectStage(activeIndex - 1)}>←</Button>
+            <Button type="button" aria-label="Next moment" disabled={activeIndex === stages.length - 1} onClick={() => selectStage(activeIndex + 1)}>→</Button>
           </div>
-          <p className="showcase-visual-caption"><span>Checked reference</span> The animation is driven by the same verified fixture used by the public Demo; live network evidence is shown separately in the Demo.</p>
-        </div>
-
-        <div className="showcase-story-column">
-          <ol className="showcase-stage-rail" aria-label="Proof journey stages">
-            {stages.map((stage, index) => (
-              <li key={stage.id}>
-                <button
-                  type="button"
-                  className={index === activeIndex ? "is-active" : index < activeIndex ? "is-complete" : ""}
-                  aria-current={index === activeIndex ? "step" : undefined}
-                  onClick={() => selectStage(index)}
-                  onKeyDown={(event) => {
-                    if (event.key === "ArrowRight" || event.key === "ArrowDown") {
-                      event.preventDefault();
-                      selectStage((index + 1) % stages.length);
-                    }
-                    if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
-                      event.preventDefault();
-                      selectStage((index - 1 + stages.length) % stages.length);
-                    }
-                  }}
-                >
-                  <span>{stage.number}</span><strong>{stage.kicker}</strong><i aria-hidden="true" />
-                </button>
-              </li>
-            ))}
-          </ol>
-
-          <article className="showcase-stage-copy" aria-live="polite">
-            <div className="showcase-stage-label"><span>{activeStage.kicker}</span><strong>{activeStage.state}</strong></div>
-            <p className="showcase-stage-index">Moment {activeStage.number}</p>
-            <h3>{activeStage.title}</h3>
-            <p>{activeStage.detail}</p>
-            <dl>
-              <div><dt>Actor</dt><dd>{activeStage.actor}</dd></div>
-              <div><dt>Bound record</dt><dd><code>{shortHash(activeStage.evidence)}</code></dd></div>
-            </dl>
-            <div className="showcase-controls">
-              <button type="button" aria-label="Previous moment" onClick={() => selectStage((activeIndex - 1 + stages.length) % stages.length)}>←</button>
-              <button className="showcase-play-button" type="button" onClick={() => setIsPlaying((value) => !value)} disabled={reducedMotion}>
-                {isPlaying ? "Pause story" : "Play story"}
-              </button>
-              <button type="button" aria-label="Next moment" onClick={() => selectStage((activeIndex + 1) % stages.length)}>→</button>
-            </div>
-            {activeStage.id === "receipt" && <div className="showcase-final-actions">
-              <Link href="/demo#verification-console">Verify this Receipt <span>→</span></Link>
-              <Link href="/start">Start with my Agent <span>→</span></Link>
-            </div>}
-          </article>
         </div>
       </div>
+      <footer className={styles.footer}>
+        <p>Checked reference fixture. This story does not run Lean or publish work.</p>
+        <div className={styles.actions}>
+          <Link href="/demo#verification-console">Inspect the evidence <span aria-hidden="true">↗</span></Link>
+          {activeStage.id === "receipt" && <Link href="/start">Start with my Agent <span aria-hidden="true">→</span></Link>}
+        </div>
+      </footer>
     </section>
+  );
+}
+
+function EvidenceScene({ stage, verification }: { stage: ShowcaseStage; verification: BuildWeekDemoVerification }) {
+  const record = verification.record;
+  const checkIds: Record<ShowcaseStage["id"], string[]> = {
+    frontier: [], delegate: ["delegation"], bundle: ["bundle", "objects"],
+    lean: ["runner"], review: ["review"], receipt: ["receipt"],
+  };
+  return (
+    <>
+      {stage.id === "frontier" ? <>
+        <p className={styles.sceneLabel}>The target stays fixed.</p>
+        <h4 className={styles.target}>{record.target}</h4>
+        <CodeBlock className={styles.source}><code>{record.source.trim().split("\n").filter((line) => line.trim()).join("\n")}</code></CodeBlock>
+        <p className={styles.sceneNote}>Lean {shortLeanVersion(record.leanVersion)} · pinned repository snapshot</p>
+      </> : stage.id === "delegate" ? <>
+        <p className={styles.sceneLabel}>One person. One bounded delegation.</p>
+        <div className={styles.handoff}>
+          <div><span>Person</span><code>{record.owner}</code></div>
+          <span className={styles.arrow} aria-hidden="true">→</span>
+          <div><span>Local Agent</span><code>{record.agent}</code></div>
+        </div>
+        <FieldList className={styles.fields}><Field label="Granted scope">formalize · prove</Field><Field label="Boundary">Time-bounded, signed by the Person</Field></FieldList>
+      </> : stage.id === "bundle" ? <>
+        <p className={styles.sceneLabel}>A reproducible workspace, bound together.</p>
+        <h4 className={styles.target}>{record.target}</h4>
+        <FieldList className={styles.fields}>
+          <Field label="Repository">{record.repository}</Field>
+          <Field label="Commit"><code>{shortHash(record.commitSha)}</code></Field>
+          <Field label="Environment">Lean {shortLeanVersion(record.leanVersion)}</Field>
+          <Field label="Contents">Source · patch · Lake manifest</Field>
+        </FieldList>
+      </> : stage.id === "lean" ? <>
+        <p className={styles.sceneLabel}>The exact workspace. The recorded result.</p>
+        <div className={styles.result} data-passed={stage.passed}>
+          <span aria-hidden="true">{stage.passed ? "✓" : "!"}</span>
+          <div><h4>{stage.passed ? "Kernel accepted" : "Result verification failed"}</h4><p>Lean {shortLeanVersion(record.leanVersion)} · signed historical run</p></div>
+        </div>
+        <FieldList className={styles.fields}><Field label="Target">{record.target}</Field><Field label="Replay">Recorded local execution; Lean is not rerun here.</Field></FieldList>
+      </> : stage.id === "review" ? <>
+        <p className={styles.sceneLabel}>Different owners. Independently signed claims.</p>
+        <FieldList className={styles.fields}>
+          <Field label="Researcher"><code>{record.owner}</code></Field>
+          {record.reviewers.map((owner, index) => <div key={owner}><dt>Reviewer {index + 1}</dt><dd><code>{owner}</code></dd></div>)}
+        </FieldList>
+        <p className={styles.sceneNote}>Demo accounts are simulated; protocol signatures are real.</p>
+      </> : <>
+        <p className={styles.sceneLabel}>The evidence becomes an attributable record.</p>
+        <div className={styles.result} data-passed={stage.passed}>
+          <span aria-hidden="true">{stage.passed ? "✓" : "!"}</span>
+          <div><h4>{stage.passed ? "Contribution recorded" : "Receipt verification failed"}</h4><p>{record.owner}</p></div>
+        </div>
+        <FieldList className={styles.fields}><Field label="Target">{record.target}</Field><Field label="Bound bundle"><code>{shortHash(record.bundleHash)}</code></Field><Field label="Attribution">Person · Agent · independent review owners</Field></FieldList>
+      </>}
+      {verification.checks.filter((check) => checkIds[stage.id].includes(check.id)).map((check) => (
+        <p className={styles.check} data-passed={check.passed} key={check.id}>
+          <span aria-hidden="true">{check.passed ? "✓" : "!"}</span>{check.result}
+        </p>
+      ))}
+    </>
   );
 }
 
@@ -187,6 +167,7 @@ function buildStages(verification: BuildWeekDemoVerification): ShowcaseStage[] {
       actor: "Public frontier catalog",
       evidence: verification.record.commitSha,
       state: "Source pinned",
+      passed: true,
     },
     fromJourney(delegate, "02", "Personal delegation", "Give one local Agent bounded authority."),
     fromJourney(bundle, "03", "Minimum evidence", "Select the reproducible work—not the private reasoning."),
@@ -206,10 +187,15 @@ function fromJourney(stage: DemoJourneyStage, number: string, kicker: string, ti
     actor: stage.actor,
     evidence: stage.evidence,
     state: stage.passed ? "Evidence passed" : "Evidence failed",
+    passed: stage.passed,
   };
 }
 
 function shortHash(value: string) {
   const normalized = value.replace(/^sha256:/, "");
   return `${normalized.slice(0, 10)}…${normalized.slice(-8)}`;
+}
+
+function shortLeanVersion(value: string) {
+  return value.match(/Lean \(version ([^,]+)/)?.[1] ?? value;
 }

@@ -311,7 +311,18 @@ test("a local evidence-chain fixture reaches a signed receipt without crossing t
       activatedAt: "2026-07-13T00:00:00Z",
     },
   });
-  const gateway = new D1RemoteMcpGatewayStore({ database, receiptCoordinator: coordinator });
+  const unconfiguredGateway = new D1RemoteMcpGatewayStore({ database, receiptCoordinator: coordinator });
+  const gateway = new D1RemoteMcpGatewayStore({
+    database,
+    receiptCoordinator: coordinator,
+    researchWriteAllowlistJson: JSON.stringify({
+      schemaVersion: "pw-research-write-allowlist-v1",
+      persons: ["person:bob", "person:carol"],
+      agents: ["agent:bob-reviewer", "agent:carol-curator"],
+      attempts: ["attempt:closed-alpha"],
+      allowNewAttempts: false,
+    }),
+  });
   let finalClosure = null;
   const closureStates = [];
   for (const [claimType, reviewer, evidence, assignmentId] of reviewInputs) {
@@ -334,12 +345,17 @@ test("a local evidence-chain fixture reaches a signed receipt without crossing t
       keys,
       attestedAt: "2026-07-13T00:00:15Z",
     });
-    const recorded = await gateway.submitVerificationAttestation({
+    const principal = {
       clientId: "client:closed-alpha-reviewer",
       personId: `person:${reviewer}`,
       agentInstallationId: `installation:closed-alpha-${reviewer}-reviewer`,
       scopes: ["verification:write"],
-    }, attestation);
+    };
+    await assert.rejects(
+      () => unconfiguredGateway.submitVerificationAttestation(principal, attestation),
+      { code: "research_write_gate_unconfigured" },
+    );
+    const recorded = await gateway.submitVerificationAttestation(principal, attestation);
     assert.equal(recorded.created, true);
     finalClosure = recorded.closure;
     closureStates.push(recorded.closure);

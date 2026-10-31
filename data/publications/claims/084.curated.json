@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "pw-publication-claims-v1",
+  "familyNumber": "084",
+  "claims": [
+    {
+      "id": "084-c1",
+      "statement": "For every fixed $`q\\in(0,1)`$, constructs compact subsets of $`[0,1]`$ with measure arbitrarily close to one containing no translated and nontrivially dilated copy of $`\\{q^n:n\\ge1\\}`$, with dilations of either sign.",
+      "assumptions": [
+        "q is a fixed real number in (0,1).",
+        "Translations are arbitrary real numbers.",
+        "Dilations are nonzero real numbers of either sign."
+      ],
+      "conclusion": "For every eta in (0,1), there is a compact set E_{q,eta} contained in [0,1] of measure greater than 1-eta that contains no nontrivial affine copy of {q^n : n >= 1}, for any translation and either sign of nonzero dilation.",
+      "sourceManuscriptIds": [
+        "The-geometric-case-of-the-Erdos-similarity-conjecture-October-5-2026"
+      ],
+      "sourceLocation": "unknown",
+      "leanDeclaration": {
+        "file": "lean/ComparatorChallenges/DyadicAvoidance.lean",
+        "statement": "For every $0<\\eta<1$, it constructs a compact set $E\\subset[0,1]$ of measure greater than $1-\\eta$ that contains no affine copy of $\\{2^{-n}:n\\ge1\\}$.",
+        "status": "partial"
+      },
+      "coverage": {
+        "status": "partial",
+        "scopeExcerpt": "The formalization proves the dyadic case of the Erdős similarity conjecture. For every $0<\\eta<1$, it constructs a compact set $E\\subset[0,1]$ of measure greater than $1-\\eta$ that contains no affine copy of $\\{2^{-n}:n\\ge1\\}$.",
+        "note": "The upstream scope document records Lean coverage only for the dyadic case q = 1/2. The paper's claim for an arbitrary geometric ratio q in (0,1) is therefore outside the Lean declaration; this documented scope difference is not a platform verification. The Lean declaration name and the source section and page are unknown upstream. No fixed Proofweave target is mapped for this claim."
+      },
+      "target": {
+        "status": "unmapped"
+      },
+      "verification": {
+        "status": "not_run",
+        "note": "Proofweave has not run a replay for this claim; this record maps the upstream claim and is not a platform verification."
+      }
+    },
+    {
+      "id": "084-c2",
+      "statement": "We construct a compact subset of the unit interval, of measure arbitrarily close to one, that contains no affine copy of the dyadic sequence $`\\{2^{-n}:n\\ge1\\}`$. The conclusion holds for every translation and every nonzero real dilation, of either sign, proving the dyadic case of the Erdős similarity conjecture.",
+      "assumptions": [
+        "The sequence is the dyadic sequence {2^{-n} : n >= 1}.",
+        "Translations are arbitrary real numbers.",
+        "Dilations are nonzero real numbers of either sign."
+      ],
+      "conclusion": "There is a compact set E contained in [0,1] with measure arbitrarily close to one that contains no affine copy of {2^{-n} : n >= 1}.",
+      "sourceManuscriptIds": [
+        "The-dyadic-case-of-the-Erdos-similarity-conjecture-September-25-2026"
+      ],
+      "sourceLocation": "unknown",
+      "leanDeclaration": {
+        "file": "lean/ComparatorChallenges/DyadicAvoidance.lean",
+        "statement": "For every $0<\\eta<1$, it constructs a compact set $E\\subset[0,1]$ of measure greater than $1-\\eta$ that contains no affine copy of $\\{2^{-n}:n\\ge1\\}$.",
+        "status": "documented"
+      },
+      "coverage": {
+        "status": "documented",
+        "scopeExcerpt": "The formalization proves the dyadic case of the Erdős similarity conjecture. For every $0<\\eta<1$, it constructs a compact set $E\\subset[0,1]$ of measure greater than $1-\\eta$ that contains no affine copy of $\\{2^{-n}:n\\ge1\\}$. Explicitly, for every translation $x$ and every nonzero real dilation $s$, some point $x+s2^{-n}$ lies outside $E$. Both signs of $s$ are included.",
+        "note": "The upstream scope document states that the formalization proves the dyadic case, including both signs of nonzero dilation. The Lean declaration name and the source section and page are unknown upstream. The source manuscript is cited by the family scope document. Proofweave has not replayed the declaration. No fixed Proofweave target is mapped for this claim."
+      },
+      "target": {
+        "status": "unmapped"
+      },
+      "verification": {
+        "status": "not_run",
+        "note": "Proofweave has not run a replay for this claim; this record maps the upstream claim and is not a platform verification."
+      }
+    }
+  ]
+}

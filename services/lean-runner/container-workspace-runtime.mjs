@@ -26,6 +26,7 @@ import {
 import {
   RunnerWorkspaceIngress,
   normalizeRunnerWorkspaceIngressDeclaration,
+  runnerWorkspaceFinalizationCodes,
 } from "./container-workspace-ingress.mjs";
 
 const maxIngressArtifactBytes = 32 * 1024 * 1024;
@@ -43,6 +44,12 @@ export class ContainerWorkspaceRuntimeError extends Error {
   constructor(message, options) {
     super(message, options);
     this.name = "ContainerWorkspaceRuntimeError";
+    if (options?.diagnosticCode !== undefined) {
+      if (!runnerWorkspaceFinalizationCodes.includes(options.diagnosticCode)) {
+        throw new TypeError("Unsupported workspace finalization diagnostic code.");
+      }
+      this.diagnosticCode = options.diagnosticCode;
+    }
   }
 }
 
@@ -148,23 +155,24 @@ export class ContainerWorkspaceRuntime {
   async finalizeOnce() {
     const finalization = this.ingress.finalize();
     const { workspace } = finalization;
-    const extraction = await extractZstdTar(this.artifactPaths.sourceArchive, this.workspaceDirectory, {
+    const extraction = await finalizationStep("runner_workspace_archive_rejected", () => extractZstdTar(this.artifactPaths.sourceArchive, this.workspaceDirectory, {
       maxExpandedBytes: workspace.archive.maxExpandedBytes,
       maxFileCount: workspace.archive.maxFileCount,
-    });
-    await applyNormalizedPatch({
+    }));
+    await finalizationStep("runner_workspace_patch_rejected", () => applyNormalizedPatch({
       patchPath: this.artifactPaths.sourcePatch,
       workspaceDirectory: this.workspaceDirectory,
       command: this.patchCommand,
-    });
-    await replaceLakeManifest({
+    }));
+    await finalizationStep("runner_workspace_manifest_rejected", () => replaceLakeManifest({
       lakeManifestPath: this.artifactPaths.lakeManifest,
       workspaceDirectory: this.workspaceDirectory,
-    });
-    const entries = await readWorkspaceTree(this.workspaceDirectory, {
+    }));
+    const entries = await finalizationStep("runner_workspace_tree_rejected", () => finalizeWorkspaceTree(this.workspaceDirectory, {
       maxExpandedBytes: workspace.archive.maxExpandedBytes,
       maxFileCount: workspace.archive.maxFileCount,
-    });
+      archivedFilePaths: new Set(extraction.entries.map((entry) => entry.path)),
+    }));
     const treeHash = await workspaceTreeHash(entries);
     const verifiedTreeHash = treeHash === workspace.tree.hash
       ? treeHash
@@ -172,7 +180,7 @@ export class ContainerWorkspaceRuntime {
         ? workspace.tree.hash
         : null;
     if (verifiedTreeHash === null) {
-      throw new ContainerWorkspaceRuntimeError("Reconstructed workspace tree does not match the immutable v2 Bundle tree hash.");
+      throw new ContainerWorkspaceRuntimeError("Reconstructed workspace tree does not match the immutable v2 Bundle tree hash.", { diagnosticCode: "runner_workspace_tree_hash_mismatch" });
     }
     return Object.freeze({
       jobId: finalization.jobId,
@@ -807,7 +815,7 @@ async function replaceLakeManifest({ lakeManifestPath, workspaceDirectory }) {
   await chmod(destination, 0o644);
 }
 
-async function readWorkspaceTree(workspaceDirectory, { maxExpandedBytes, maxFileCount }) {
+async function finalizeWorkspaceTree(workspaceDirectory, { maxExpandedBytes, maxFileCount, archivedFilePaths }) {
   const entries = [];
   let expandedBytes = 0;
   await visit(workspaceDirectory, "");
@@ -828,9 +836,16 @@ async function readWorkspaceTree(workspaceDirectory, { maxExpandedBytes, maxFile
       if (!stats.isFile()) {
         throw new ContainerWorkspaceRuntimeError("Reconstructed workspace may contain only regular files and directories.");
       }
-      const mode = stats.mode & 0o777;
+      let mode = stats.mode & 0o777;
+      if (!archivedFilePaths.has(path)) {
+        // Content-only new-file patches have canonical non-executable mode.
+        // A private host umask may create 0600 files; normalize only additions,
+        // keeping existing archive modes strict and the signed tree unchanged.
+        await chmod(absolute, 0o644);
+        mode = 0o644;
+      }
       if (![0o644, 0o755].includes(mode)) {
-        throw new ContainerWorkspaceRuntimeError("Reconstructed workspace file mode must be 0644 or 0755.");
+        throw new ContainerWorkspaceRuntimeError("Reconstructed workspace file mode must be 0644 or 0755.", { diagnosticCode: "runner_workspace_file_mode_rejected" });
       }
       if (entries.length >= maxFileCount || stats.size > maxExpandedBytes - expandedBytes) {
         throw new ContainerWorkspaceRuntimeError("Reconstructed workspace exceeds the declared archive limits.");
@@ -992,11 +1007,23 @@ function rejectionResponse(error, diagnosticCode = null) {
 }
 
 function privateContainerFailureCode(cause, route) {
+  if (route?.kind === "finalize" && runnerWorkspaceFinalizationCodes.includes(cause?.diagnosticCode)) {
+    return cause.diagnosticCode;
+  }
   if (route?.kind !== "execute") return null;
   if (typeof cause?.diagnosticCode === "string" && /^lean_[a-z0-9_]{3,48}$/.test(cause.diagnosticCode)) {
     return cause.diagnosticCode;
   }
   return "lean_execution_internal_failed";
+}
+
+async function finalizationStep(diagnosticCode, operation) {
+  try {
+    return await operation();
+  } catch (cause) {
+    if (runnerWorkspaceFinalizationCodes.includes(cause?.diagnosticCode)) throw cause;
+    throw new ContainerWorkspaceRuntimeError(cause instanceof Error ? cause.message : "Workspace finalization failed.", { cause, diagnosticCode });
+  }
 }
 
 function methodNotAllowed(allow) {

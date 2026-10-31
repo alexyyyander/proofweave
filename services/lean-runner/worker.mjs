@@ -292,7 +292,12 @@ async function executeAndFinalize({
     phase: "runner_durable_finalize",
     monotonicNow,
     observePhase,
-    operation: () => finalizer.finalize({ runId: run.id, execution, receivedAt: timestamp(now) }),
+    operation: () => finalizer.finalize({
+      runId: run.id,
+      execution,
+      request: message.request,
+      receivedAt: timestamp(now),
+    }),
   });
 }
 

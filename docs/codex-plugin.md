@@ -48,7 +48,7 @@ credit, or a Receipt. See the
 
 The canonical site, OAuth issuer and MCP endpoint now use
 `https://proofweave.org` (`/api/mcp` for MCP). Version
-`0.2.2+codex.20261011071500` downloads and connects through this origin.
+`0.2.3+codex.20261028090000` downloads and connects through this origin.
 After updating an older installation, `connection_status` reports
 `domain_migration_required`; run `connect_proofweave` to approve the new origin.
 For this exact production hostname change, the Connector retains its Agent ID,

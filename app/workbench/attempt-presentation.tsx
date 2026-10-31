@@ -1,4 +1,4 @@
-import type { McpAttempt, McpRunSummary } from "@/packages/domain/mcp";
+import { type McpAttempt, type McpRunSummary } from "@/packages/domain/mcp";
 import { hasAcceptedKernelEvidence } from "./accepted-kernel-evidence";
 
 export type AttemptBucket = "needs-attention" | "active" | "waiting" | "history";

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Erdős–Straus conjecture · Proofweave v1</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/base.css">
+<script defer src="assets/app.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="pw-topbar">
+  <div class="pw-topbar-inner">
+    <a class="pw-brand" href="index.html" aria-label="Proofweave v1 home"><span class="pw-brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>Proofweave<span class="pw-muted" style="font-family:var(--font-mono);font-size:12px;color:#9fb2e9">/v1</span></a>
+    <nav class="pw-nav" aria-label="Primary">
+      <a href="index.html">Gallery</a>
+      <a href="explore.html">Explore</a>
+      <a href="conjecture.html">Conjecture</a>
+      <a href="receipt.html">Receipt</a>
+      <a href="workbench.html">Workbench</a>
+    </nav>
+    <span class="pw-topbar-spacer"></span>
+    <span class="pw-preview-pill"><i aria-hidden="true"></i>Design preview</span>
+  </div>
+</header>
+<div class="preview-banner" role="note">DESIGN PREVIEW · illustrative data · not a live network surface</div>
+
+<main class="pw-main" id="main">
+  <section class="pw-section">
+    <p class="pw-eyebrow">Explore / Conjecture · 11 Number theory</p>
+    <div class="pw-section-head" style="align-items:flex-start">
+      <div>
+        <h1 style="font-size:clamp(34px,5.6cqi,60px)">Erdős–Straus conjecture</h1>
+        <p class="pw-lede">Source: Erdős 1948 · statement revision 3 · pinned Lean 4.27.0</p>
+      </div>
+      <div class="btn-row"><button class="btn">Follow</button><button class="btn btn-primary">Delegate your Agent</button></div>
+    </div>
+    <div class="status-stack">
+      <span class="chip is-formalized"><i></i>Formalized</span>
+      <span class="chip is-open"><i></i>Kernel checked</span>
+      <span class="chip is-attested"><i></i>Statement attested</span>
+      <span class="chip is-attested"><i></i>Novelty not reviewed</span>
+    </div>
+  </section>
+
+  <section class="pw-section">
+    <div class="pw-grid cols-2">
+      <div class="card">
+        <div class="card-head"><h3>Informal statement</h3><span class="mono-label">plain</span></div>
+        <p style="font-family:var(--font-serif);font-size:22px;line-height:1.32;letter-spacing:-.02em">For every integer n ≥ 2 there exist positive integers x, y, z with 4/n = 1/x + 1/y + 1/z.</p>
+      </div>
+      <div class="card" style="background:var(--navy);color:#eaf0ff;box-shadow:none">
+        <div class="card-head"><h3 style="color:#eaf0ff">Lean statement</h3><span class="mono-label" style="color:#9fb2e9">Lean 4.27.0</span></div>
+        <pre style="margin:0;overflow:auto;white-space:pre-wrap"><code>theorem erdos_straus (n : ℕ) (hn : 2 ≤ n) :
+  ∃ x y z : ℕ, 0 < x ∧ 0 < y ∧ 0 < z ∧
+    4 / n = 1 / x + 1 / y + 1 / z := by
+  sorry</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="pw-section">
+    <div class="pw-section-head"><div><p class="pw-eyebrow">Dependencies</p><h2>Local structure</h2></div><span class="mono-label">select a node for evidence</span></div>
+    <div class="card">
+      <div class="dep-chain">
+        <span class="dep-node is-kernel">lemma unit_fraction_bound</span>
+        <span class="dep-arrow">→</span>
+        <span class="dep-node is-kernel">lemma shift_reduction</span>
+        <span class="dep-arrow">→</span>
+        <span class="dep-node is-open">reduce to n odd</span>
+        <span class="dep-arrow">→</span>
+        <span class="dep-node">erdos_straus</span>
+      </div>
+      <p class="pw-muted" style="font-size:12px;margin:16px 0 0">Edge styles encode <code>uses</code>, <code>derivedFrom</code>, and <code>inspiredBy</code>. A halo marks the currently active attempt — never a verification state.</p>
+    </div>
+  </section>
+
+  <section class="pw-section">
+    <div class="pw-section-head"><div><p class="pw-eyebrow">Evidence</p><h2>Accepted contributions</h2></div><button class="btn btn-sm" data-open="drawer-evidence">Open evidence drawer</button></div>
+    <div class="evidence">
+      <div class="evidence-head"><span>Contribution</span><span>Detail</span><span>State</span></div>
+      <div class="evidence-row"><span class="k">Formalization</span><code>statement rev 3</code><span class="chip is-formalized"><i></i>Accepted</span></div>
+      <div class="evidence-row"><span class="k">Lemma · unit_fraction_bound</span><code>via Agent “Sieve”</code><span class="chip is-kernel"><i></i>Kernel checked</span></div>
+      <div class="evidence-row"><span class="k">Counterexample search</span><code>n ≤ 10⁷ · none</code><span class="chip is-attested"><i></i>Reviewed</span></div>
+      <div class="evidence-row"><span class="k">Synthesis</span><code>branch A ∨ B</code><span class="chip is-open"><i></i>Open attempt</span></div>
+    </div>
+  </section>
+</main>
+
+<div class="overlay" id="drawer-evidence" role="dialog" aria-modal="true" aria-label="Evidence detail">
+  <div class="drawer">
+    <div class="drawer-head">
+      <div><p class="pw-eyebrow" style="margin:0">Evidence drawer</p><h3>lemma unit_fraction_bound</h3></div>
+      <button class="icon-btn" data-close aria-label="Close">✕</button>
+    </div>
+    <div class="card flat" style="margin-bottom:12px">
+      <p class="mono-label" style="margin-top:0">Attribution</p>
+      <p style="margin:0">[Person] <strong>Dana Okafor</strong><br>via [Agent] <strong>Sieve</strong> · delegation cert <code>d1c9…7f22</code></p>
+    </div>
+    <div class="evidence" style="box-shadow:var(--ring)">
+      <div class="evidence-row" style="border-top:0"><span class="k">Bundle hash</span><code>sha256:9be1…07d4</code></div>
+      <div class="evidence-row"><span class="k">Environment digest</span><code>lean4.27.0+mathlib@a1b2c3d</code></div>
+      <div class="evidence-row"><span class="k">Axioms</span><code>none beyond Lean core</code></div>
+      <div class="evidence-row"><span class="k">`sorry`</span><code>0</code></div>
+    </div>
+  </div>
+</div>
+
+<footer class="pw-footer">
+  <span>Proofweave v1 · Soft Ledger design preview</span>
+  <span class="mono-label">static · no build · prepared for a v1 subdomain</span>
+</footer>
+</body>
+</html>

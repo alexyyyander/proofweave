@@ -1,15 +1,12 @@
 "use client";
 
-import Link from "next/link";
+import { SectionTitle, ActionLink, Button, EmptyState, SectionHeading } from "@/app/components/ui";
+
 import { useState } from "react";
-import type { DelegationProfile, StoredDelegation } from "@/db/repositories/delegation";
-import type { McpAttempt } from "@/packages/domain/mcp";
+import { type DelegationProfile, type StoredDelegation } from "@/db/repositories/delegation";
+import { type McpAttempt } from "@/packages/domain/mcp";
 import { ProductStateBadge } from "../ui";
-import {
-  controlPlaneAvailabilityLabel,
-  controlPlaneMaintenanceCopy,
-  type ControlPlaneWriteAvailability,
-} from "../lib/control-plane-write-capability";
+import { controlPlaneAvailabilityLabel, controlPlaneMaintenanceCopy, type ControlPlaneWriteAvailability } from "../lib/control-plane-write-capability";
 import { attemptIntegrationHref } from "../lib/attempt-integration-href";
 import { activeAttemptDelegation, activeLocalCodexInstallation, activeWorkDelegation } from "../lib/local-agent-journey";
 
@@ -42,75 +39,75 @@ export function LocalAgentHandoff({
   if (!isAuthenticated || !storageAvailable) {
     const state = unavailableState({ active, attempt, isAuthenticated, signInPath, storageAvailable });
     return <section className="local-agent-section local-agent-unavailable" id="local-agent" aria-labelledby="local-agent-title">
-      <div className="local-agent-heading">
+      <SectionHeading as="div" className="local-agent-heading">
         <div>
           <p className="eyebrow">Local-first research</p>
-          <h2 id="local-agent-title">Keep the work on your computer.</h2>
+          <SectionTitle id="local-agent-title">Keep the work on your computer.</SectionTitle>
           <p>Proofweave will only receive reviewable evidence. It never needs your private workspace, model credentials, or raw reasoning.</p>
         </div>
         <ProductStateBadge tone="provisional">Setup needed</ProductStateBadge>
-      </div>
-      <div className="local-agent-empty">
+      </SectionHeading>
+      <EmptyState as="div" className="local-agent-empty">
         <strong>{state.title}</strong>
         <p>{state.detail}</p>
-        <Link className="button button-primary" href={state.href}>{state.label} <span aria-hidden="true">→</span></Link>
-      </div>
+        <ActionLink className="button button-primary" href={state.href}>{state.label} <span aria-hidden="true">→</span></ActionLink>
+      </EmptyState>
     </section>;
   }
 
   if (writeAvailability !== "available") {
     const maintenance = controlPlaneMaintenanceCopy(writeAvailability);
     return <section className="local-agent-section local-agent-unavailable" id="local-agent" aria-labelledby="local-agent-title">
-      <div className="local-agent-heading">
+      <SectionHeading as="div" className="local-agent-heading">
         <div>
           <p className="eyebrow">Research locally</p>
-          <h2 id="local-agent-title">{maintenance.title}</h2>
+          <SectionTitle id="local-agent-title">{maintenance.title}</SectionTitle>
           <p>{maintenance.detail}</p>
         </div>
         <ProductStateBadge tone="not-deployed">{controlPlaneAvailabilityLabel(writeAvailability)}</ProductStateBadge>
-      </div>
-      <div className="local-agent-empty">
+      </SectionHeading>
+      <EmptyState as="div" className="local-agent-empty">
         <strong>Your existing research is safe and still readable.</strong>
         <p>Proofweave will not offer a button that appears to submit work while updates are paused.</p>
-        <Link className="button button-secondary" href={attempt ? `/explore/${attempt.problemSlug}` : "/explore"}>{attempt ? "View public question" : "Browse public research"} <span aria-hidden="true">→</span></Link>
-      </div>
+        <ActionLink className="button button-secondary" href={attempt ? `/explore/${attempt.problemSlug}` : "/explore"}>{attempt ? "View public question" : "Browse public research"} <span aria-hidden="true">→</span></ActionLink>
+      </EmptyState>
     </section>;
   }
 
   if (!active || !agent || !attempt) {
     const state = unavailableState({ active, attempt, isAuthenticated, signInPath, storageAvailable });
     return <section className="local-agent-section local-agent-unavailable" id="local-agent" aria-labelledby="local-agent-title">
-      <div className="local-agent-heading">
+      <SectionHeading as="div" className="local-agent-heading">
         <div>
           <p className="eyebrow">Local-first research</p>
-          <h2 id="local-agent-title">Keep the work on your computer.</h2>
+          <SectionTitle id="local-agent-title">Keep the work on your computer.</SectionTitle>
           <p>Proofweave will only receive reviewable evidence. It never needs your private workspace, model credentials, or raw reasoning.</p>
         </div>
         <ProductStateBadge tone="provisional">Setup needed</ProductStateBadge>
-      </div>
-      <div className="local-agent-empty">
+      </SectionHeading>
+      <EmptyState as="div" className="local-agent-empty">
         <strong>{state.title}</strong>
         <p>{state.detail}</p>
-        <Link className="button button-primary" href={state.href}>{state.label} <span aria-hidden="true">→</span></Link>
-      </div>
+        <ActionLink className="button button-primary" href={state.href}>{state.label} <span aria-hidden="true">→</span></ActionLink>
+      </EmptyState>
     </section>;
   }
 
   if (!connection) {
     return <section className="local-agent-section local-agent-unavailable" id="local-agent" aria-labelledby="local-agent-title">
-      <div className="local-agent-heading">
+      <SectionHeading as="div" className="local-agent-heading">
         <div>
           <p className="eyebrow">Connect Agent</p>
-          <h2 id="local-agent-title">Connect this research task to Codex.</h2>
+          <SectionTitle id="local-agent-title">Connect this research task to Codex.</SectionTitle>
           <p>Your question is saved. Connect the Agent assigned to it before continuing local research.</p>
         </div>
         <ProductStateBadge tone="provisional">Connection needed</ProductStateBadge>
-      </div>
-      <div className="local-agent-empty">
+      </SectionHeading>
+      <EmptyState as="div" className="local-agent-empty">
         <strong>One private approval connects this Agent.</strong>
         <p>No API key, public key, private workspace, or model credentials are pasted into Proofweave.</p>
-        <Link className="button button-primary" href={attemptIntegrationHref(attempt)}>Connect Agent <span aria-hidden="true">→</span></Link>
-      </div>
+        <ActionLink className="button button-primary" href={attemptIntegrationHref(attempt)}>Connect Agent <span aria-hidden="true">→</span></ActionLink>
+      </EmptyState>
     </section>;
   }
 
@@ -131,16 +128,16 @@ export function LocalAgentHandoff({
   };
 
   return <section className="local-agent-section" id="local-agent" aria-labelledby="local-agent-title">
-    <div className="local-agent-heading">
+    <SectionHeading as="div" className="local-agent-heading">
       <div>
         <p className="eyebrow">Research locally</p>
-          <h2 id="local-agent-title">Continue in Codex.</h2>
+          <SectionTitle id="local-agent-title">Continue in Codex.</SectionTitle>
           <p>Your Lean project, model choice, and unfinished exploration stay on this computer. You decide whether a useful milestone becomes a Proofweave record.</p>
         </div>
         <div className="local-agent-badges">
           <ProductStateBadge tone="available">Agent connected</ProductStateBadge>
       </div>
-    </div>
+    </SectionHeading>
 
     <div className="local-agent-actions">
       <div>
@@ -149,7 +146,7 @@ export function LocalAgentHandoff({
         <p>Codex resumes this question, keeps private work local, and asks before recording progress or sharing evidence.</p>
       </div>
       <div className="local-agent-buttons">
-        <button className="workspace-secondary-button" type="button" disabled={isRefreshing} onClick={onRefresh}>{isRefreshing ? "Checking…" : "Check recorded progress"}</button>
+        <Button className="workspace-secondary-button" type="button" disabled={isRefreshing} onClick={onRefresh}>{isRefreshing ? "Checking…" : "Check recorded progress"}</Button>
       </div>
     </div>
     {notice && <p className="local-agent-notice" role="status">{notice}</p>}
@@ -178,7 +175,7 @@ export function LocalAgentHandoff({
           <strong>{attempt.problemTitle}</strong>
           <p>{agent.label} · {attempt.delegationScope ?? "formalize"} authority · stable record {attempt.id}</p>
         </div>
-        <button className="workspace-secondary-button" type="button" onClick={downloadCodexInstruction}>Download technical brief</button>
+        <Button className="workspace-secondary-button" type="button" onClick={downloadCodexInstruction}>Download technical brief</Button>
       </div>
     </details>
     <p className="local-agent-boundary">The website cannot access your computer, run Codex, or read private reasoning. It records only the Agent approval and the progress or evidence you explicitly confirm. Lean verification, independent review, and contribution credit remain separate later results.</p>

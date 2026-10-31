@@ -1,4 +1,5 @@
 import { canonicalJson, canonicalUtf8, sha256Canonical } from "./canonical-json.mjs";
+import { normalizeRunnerEnvironmentEvidence } from "./lean-runner.mjs";
 import { verificationClaimTypes } from "./verification-attestation.mjs";
 
 export const contributionReceiptProtocolVersion = "pw-contribution-receipt-v1";
@@ -258,7 +259,7 @@ function normalizeBundle(value) {
 
 function normalizeRun(value) {
   requireRecord(value, "Contribution Receipt run");
-  rejectExtraKeys(value, ["id", "requestHash", "resultHash", "status", "kernelStatus"], "Contribution Receipt run");
+  rejectExtraKeys(value, ["id", "requestHash", "resultHash", "status", "kernelStatus", "environment"], "Contribution Receipt run");
   requireIdentifier(value.id, "Contribution Receipt run id");
   requireSha256(value.requestHash, "Contribution Receipt run requestHash");
   requireSha256(value.resultHash, "Contribution Receipt run resultHash");
@@ -270,7 +271,17 @@ function normalizeRun(value) {
   if (!["accepted", "rejected", "not_run"].includes(value.kernelStatus)) {
     throw new ContributionReceiptProtocolError("Contribution Receipt run kernelStatus is invalid.");
   }
-  return Object.freeze({ ...value });
+  const environment = value.environment === undefined || value.environment === null
+    ? null
+    : normalizeRunnerEnvironmentEvidence(value.environment);
+  return Object.freeze({
+    id: value.id,
+    requestHash: value.requestHash,
+    resultHash: value.resultHash,
+    status: value.status,
+    kernelStatus: value.kernelStatus,
+    ...(environment === null ? {} : { environment }),
+  });
 }
 
 function normalizeClaims(value, artifactBundleHash) {

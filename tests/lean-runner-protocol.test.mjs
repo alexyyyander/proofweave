@@ -107,6 +107,38 @@ test("runner results are signed by a selected runner key", async () => {
   );
 });
 
+test("signed runner results bind the exact image and E2B template evidence", async () => {
+  const pair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
+  const publicKey = base64Url(await crypto.subtle.exportKey("raw", pair.publicKey));
+  const unsignedResult = { ...fixtureResult() };
+  delete unsignedResult.runnerSignature;
+  const environment = {
+    imageDigest: `ghcr.io/proofweave/lean-runner@sha256:${"e".repeat(64)}`,
+    leanToolchain: "leanprover/lean4:v4.27.0",
+    mathlibRevision: "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+    templateId: "template_proofweave:reviewed_runtime",
+    templateBuildId: "9420e83e-3c6d-48b8-94fe-a73807af5797",
+  };
+  const signed = await signLeanRunnerResult({
+    result: { ...unsignedResult, environment },
+    runnerPrivateKey: pair.privateKey,
+  });
+
+  assert.deepEqual(normalizeLeanRunnerResult(signed).environment, environment);
+  assert.equal(await verifyLeanRunnerResultSignature({ result: signed, runnerPublicKey: publicKey }), true);
+  assert.equal(await verifyLeanRunnerResultSignature({
+    result: { ...signed, environment: { ...environment, imageDigest: `ghcr.io/proofweave/lean-runner@sha256:${"f".repeat(64)}` } },
+    runnerPublicKey: publicKey,
+  }), false);
+  assert.throws(
+    () => normalizeLeanRunnerResult({
+      ...signed,
+      environment: { ...environment, templateBuildId: null },
+    }),
+    /templateId and templateBuildId together/,
+  );
+});
+
 function fixtureRequest() {
   return {
     protocolVersion: "pw-lean-runner-v1",

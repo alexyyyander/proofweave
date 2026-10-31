@@ -75,6 +75,7 @@ export function createDegradedControlPlaneDiagnostics({
     sourceRevision: identity.sourceRevision,
     sitesVersion: identity.sitesVersion,
     siteProjectId: identity.siteProjectId,
+    ...cloudflareReleaseFields(identity),
     failureCode: safeFailureCode,
   });
 }
@@ -146,6 +147,7 @@ export async function inspectLiveControlPlaneDiagnostics({
       sourceRevision: identity.sourceRevision,
       sitesVersion: identity.sitesVersion,
       siteProjectId: identity.siteProjectId,
+      ...cloudflareReleaseFields(identity),
       failureCode: null,
     });
   } catch {
@@ -162,6 +164,15 @@ export function normalizeReleaseIdentity(value) {
   const sourceRevision = revisionPattern.test(value?.sourceRevision ?? "")
     ? value.sourceRevision
     : null;
+  if (value?.hostingPlatform === "cloudflare") {
+    const deploymentId = /^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/.test(value?.deploymentId ?? "")
+      ? value.deploymentId : null;
+    return Object.freeze({
+      sourceRevision, sitesVersion: null, siteProjectId: null,
+      hostingPlatform: "cloudflare", deploymentId,
+      ready: Boolean(sourceRevision && deploymentId),
+    });
+  }
   const sitesVersion = publicVersionPattern.test(value?.sitesVersion ?? "")
     ? value.sitesVersion
     : null;
@@ -174,6 +185,12 @@ export function normalizeReleaseIdentity(value) {
     siteProjectId,
     ready: Boolean(sourceRevision && sitesVersion && siteProjectId),
   });
+}
+
+function cloudflareReleaseFields(identity) {
+  return identity.hostingPlatform === "cloudflare"
+    ? { hostingPlatform: "cloudflare", deploymentId: identity.deploymentId }
+    : {};
 }
 
 export function tursoDatabaseFingerprint(value) {
