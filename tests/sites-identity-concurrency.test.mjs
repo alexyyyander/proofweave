@@ -26,7 +26,7 @@ async function fixture(t, backend) {
     database = new LibsqlD1Database(createClient({ url: "file::memory:" }));
     t.after(() => database.close());
   }
-  assert.equal(migrationNames.length, 50);
+  assert.equal(migrationNames.length, 51);
   for (const sql of migrationStatements) await database.prepare(sql).run();
   globalThis.__identityConcurrencyDB = database;
   t.after(() => { delete globalThis.__identityConcurrencyDB; });

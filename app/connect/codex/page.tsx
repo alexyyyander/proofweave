@@ -1,5 +1,8 @@
-import { Footer, ProductStateBadge } from "@/app/ui";
-import { Header } from "@/app/header";
+import { SiteFrame } from "@/app/components/shell/SiteFrame";
+
+import { PageTitle, Surface } from "@/app/components/ui";
+import { ProductStateBadge } from "@/app/ui";
+
 import { MissingDatabaseBindingError, getConnectionOperationState } from "@/db";
 import { getDelegationRepository } from "@/db/repositories/delegation";
 import { getCurrentUser, signInPath, toPersonIdentity } from "@/app/auth";
@@ -20,18 +23,14 @@ export default async function ConnectCodexPage({ searchParams }: ConnectCodexPag
   const returnTo = `/connect/codex?pairing=${encodeURIComponent(pairingId)}&secret=${encodeURIComponent(secret)}`;
   const user = await getCurrentUser();
   if (!user) {
-    return <div className="site-shell app-shell">
-      <Header active="settings" />
-      <main id="main-content" tabIndex={-1} className="connect-codex-main">
-        <section className="connect-codex-card connect-codex-signin">
+    return <SiteFrame className="site-shell app-shell" active="settings" mainClassName="connect-codex-main">
+        <Surface as="section" className="connect-codex-card connect-codex-signin">
           <p className="eyebrow">Proofweave local connection</p>
-          <h1>Sign in to approve this local Codex.</h1>
+          <PageTitle>Sign in to approve this local Codex.</PageTitle>
           <p>The browser approval is tied to your Proofweave profile. It never shares your ChatGPT session, password, or API key with the local Connector.</p>
           <a className="button button-primary" href={signInPath(returnTo)}>Choose a sign-in method <span aria-hidden="true">→</span></a>
-        </section>
-      </main>
-      <Footer />
-    </div>;
+        </Surface>
+      </SiteFrame>;
   }
 
   if (readOnly) {
@@ -50,25 +49,21 @@ export default async function ConnectCodexPage({ searchParams }: ConnectCodexPag
     if (!(error instanceof MissingDatabaseBindingError)) throw error;
   }
 
-  return <div className="site-shell app-shell">
-    <Header active="settings" />
-    <main id="main-content" tabIndex={-1} className="connect-codex-main">
+  return <SiteFrame className="site-shell app-shell" active="settings" mainClassName="connect-codex-main">
       {profile ? <>
         <section className="connect-codex-intro">
           <div>
             <p className="eyebrow">Proofweave local connection · private beta</p>
-            <h1>Approve this Codex on your computer.</h1>
+            <PageTitle>Approve this Codex on your computer.</PageTitle>
             <p>One approval creates a public Agent identity, a scoped delegation, and a revocable local installation. Your Agent key and research workspace stay on this computer.</p>
           </div>
           <ProductStateBadge tone="provisional">No workspace files are requested</ProductStateBadge>
         </section>
         <CodexPairingApproval profile={profile} pairingId={pairingId} secret={secret} />
-      </> : <section className="connect-codex-card">
+      </> : <Surface as="section" className="connect-codex-card">
         <p className="eyebrow">Proofweave local connection</p>
-        <h1>Connection storage is not ready.</h1>
+        <PageTitle>Connection storage is not ready.</PageTitle>
         <p>This Beta needs its D1 control-plane migrations before a local Codex can be approved. No local key or workspace data was sent.</p>
-      </section>}
-    </main>
-    <Footer />
-  </div>;
+      </Surface>}
+    </SiteFrame>;
 }

@@ -1,0 +1,77 @@
+/* Shared interaction and reading contracts. Route classes control composition. */
+:where(.ui-button, .ui-action-link) {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: color var(--t-settle) var(--ease-out), background-color var(--t-settle) var(--ease-out), border-color var(--t-settle) var(--ease-out);
+}
+.ui-button:disabled { cursor: default; }
+.ui-button[aria-busy="true"] { cursor: progress; }
+.ui-button:disabled:not([aria-busy="true"]) { opacity: .5; }
+:where(.ui-button, .ui-action-link, .ui-input, .ui-select, .ui-textarea):focus-visible {
+  outline: 2px solid var(--indigo);
+  outline-offset: 3px;
+}
+:where(.ui-input, .ui-select, .ui-textarea) {
+  font: inherit; font-size: var(--text-lg); color: inherit; min-width: 0;
+  accent-color: var(--indigo); border-radius: var(--radius-control);
+}
+:where(.ui-input:not([type="checkbox"]):not([type="radio"]):not([type="range"]), .ui-select) { min-height: 40px; }
+:where(.ui-textarea) { min-height: 96px; resize: vertical; line-height: 1.6; }
+:where(.ui-input, .ui-select, .ui-textarea):disabled { cursor: not-allowed; opacity: .6; }
+:where(.ui-input, .ui-select, .ui-textarea)[aria-invalid="true"] { border-color: #a54337; }
+.ui-fields { min-width: 0; }
+.ui-fields dd { min-width: 0; overflow-wrap: anywhere; }
+.ui-fields-stacked > div { display: block; min-width: 0; }
+.ui-fields-stacked dt { overflow-wrap: anywhere; }
+:where(.ui-fields) > div { display: grid; grid-template-columns: minmax(80px, .35fr) minmax(0, 1fr); gap: 12px; }
+:where(.ui-fields) dt { color: var(--ink-soft); font-size: var(--text-sm); line-height: 1.6; }
+:where(.ui-fields) dd { margin: 0; font-size: var(--text-md); line-height: 1.6; }
+.ui-code { max-width: 100%; overflow: auto; overscroll-behavior-inline: contain; tab-size: 2; }
+:where(.ui-code) { font-family: var(--font-code); font-size: var(--text-sm); line-height: 1.7; border-radius: var(--radius-panel); }
+:where(.ui-surface) { min-width: 0; }
+:where(.ui-surface-card) { background: var(--surface-1); border: 1px solid var(--hairline); border-radius: var(--radius-card); padding: 24px; }
+:where(.ui-surface-inset) { background: var(--surface-0); border-radius: var(--radius-panel); padding: 16px; }
+:where(.ui-section-heading) h1 { font-size: clamp(28px, 3vw, 42px); line-height: 1.15; letter-spacing: -.035em; text-wrap: balance; }
+:where(.ui-section-heading) h2 { font-size: var(--type-section-title); line-height: 1.2; letter-spacing: -.025em; }
+:where(.ui-section-heading) p:not(.eyebrow) { max-width: 70ch; line-height: 1.65; }
+:where(.ui-empty-state) { border: 1px solid var(--line); border-radius: var(--radius-panel); padding: 24px; }
+:where(.ui-empty-state) p { max-width: 65ch; line-height: 1.65; }
+:where(.ui-empty-state) h2, :where(.ui-empty-state) strong { font-size: var(--display-xs); line-height: 1.35; }
+@media (max-width: 620px) {
+  :where(.ui-input:not([type="checkbox"]):not([type="radio"]):not([type="range"]), .ui-select, .ui-textarea) { font-size: 16px; }
+  :where(.ui-surface-card, .ui-empty-state) { padding: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ui-button, .ui-action-link { transition: none; }
+}
+
+:where(.ui-badge) { display: inline-flex; align-items: center; gap: 6px; max-width: 100%; font-size: var(--text-sm); line-height: 1.5; border-radius: var(--radius-pill); padding: 3px 8px; border: 1px solid var(--hairline); }
+:where(.ui-badge[data-tone="positive"]) { color: var(--sage); background: var(--sage-soft); }
+:where(.ui-badge[data-tone="warning"]) { color: var(--amber); background: var(--amber-soft); }
+:where(.ui-badge[data-tone="negative"]) { color: #943a30; background: #f9e9e5; }
+:where(.ui-steps) { list-style: none; padding: 0; display: flex; gap: 8px; }
+:where(.ui-steps) > li { min-width: 0; }
+:where(.ui-steps) button { min-height: 40px; }
+.ui-steps button:focus-visible { outline: 2px solid var(--indigo); outline-offset: 3px; }
+.breadcrumb [aria-current="page"] { color: var(--ink); overflow-wrap: anywhere; }
+.ui-surface.project-card:hover, .ui-surface.research-result-card:hover, .ui-surface.integration-card:hover { transform: none; box-shadow: var(--ring); }
+.ui-button.button:hover, .ui-action-link.button:hover { box-shadow: none; }
+
+:where(.ui-button.button, .ui-action-link.button) { min-height: 40px; }
+.ui-button.button-quiet, .ui-action-link.button-quiet { background: transparent; color: var(--ink-soft); }
+.ui-button.button-quiet:hover:not(:disabled), .ui-action-link.button-quiet:hover { background: var(--surface-0); color: var(--ink); }
+.ui-button:disabled:hover { transform: none; }
+:where(.ui-steps) { flex-wrap: wrap; }
+:where(.ui-steps button) { border: 1px solid var(--line); padding: 8px 12px; border-radius: var(--radius-control); text-align: left; }
+:where(.ui-steps button[aria-current="step"]) { background: var(--indigo-soft); border-color: var(--indigo); color: var(--indigo); }
+:where(.ui-steps button > span) { margin-right: 8px; }
+.scroll-fade:focus-visible { outline: 2px solid var(--indigo); outline-offset: -2px; }
+
+/* Shared controls remain readable in dense task layouts. */
+:root .ui-button.button, :root .ui-action-link.button { font-family: var(--font-ui); font-size: var(--type-control); min-height: 40px; line-height: 1.4; }
+:root .ui-input:not([type="hidden"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+:root .ui-select, :root .ui-textarea { font-family: var(--font-ui); font-size: var(--type-control); }
+@media (max-width: 620px) {
+  :root .ui-input:not([type="hidden"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+  :root .ui-select, :root .ui-textarea { font-size: 16px; }
+}

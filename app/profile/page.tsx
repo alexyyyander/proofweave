@@ -1,17 +1,18 @@
+import { Breadcrumb } from "@/app/components/navigation/Breadcrumb";
+import { PageTitle, SectionTitle, Badge, Field, ActionLink, EmptyState, FieldList, SectionHeading, Surface } from "@/app/components/ui";
+
+import { SiteFrame } from "@/app/components/shell/SiteFrame";
+
 import Link from "next/link";
 import { MissingDatabaseBindingError } from "@/db";
 import { getDelegationRepository } from "@/db/repositories/delegation";
 import { getMcpRepository } from "@/db/repositories/mcp";
 import { getPersonProfileRepository, type PublicPersonProfile } from "@/db/repositories/profiles";
-import {
-  getProvisionalContributionRepository,
-  ProvisionalContributionSchemaUnavailableError,
-} from "@/db/repositories/provisional-contributions";
+import { getProvisionalContributionRepository, ProvisionalContributionSchemaUnavailableError } from "@/db/repositories/provisional-contributions";
 import { getReviewAssignmentRepository } from "@/db/repositories/reviews";
-import type { McpAttempt } from "@/packages/domain/mcp";
+import { type McpAttempt } from "@/packages/domain/mcp";
 import { providerAwareSignOutPath, requireUser, toPersonIdentity, type AuthUser } from "../auth";
-import { Footer } from "../ui";
-import { Header } from "../header";
+
 import { PersonalWorkspaceFrame } from "../PersonalWorkspaceFrame";
 import { personalWritesPaused, ReadOnlyPersonalSurface } from "../lib/read-only-personal-surface";
 
@@ -38,16 +39,14 @@ export default async function ProfilePage() {
   const completedReviews = reviews.filter((review) => review.status === "completed").length;
   const activities = recentActivity({ attempts, reviews, publicProfile });
 
-  return <div className="site-shell app-shell">
-    <Header active="profile" />
-    <main id="main-content" tabIndex={-1} className="page-main profile-main personal-workspace-main">
+  return <SiteFrame className="site-shell app-shell" active="profile" mainClassName="page-main profile-main personal-workspace-main">
       <PersonalWorkspaceFrame active="profile">
-      <div className="breadcrumb"><Link href="/workbench">Workspace</Link><span> / </span><span>My profile</span></div>
-      <section className="profile-hero">
+      <Breadcrumb><Link href="/workbench">Workspace</Link><span> / </span><span>My profile</span></Breadcrumb>
+      <SectionHeading as="section" className="profile-hero">
         <div className="profile-avatar" aria-hidden="true">{initials(user.displayName)}</div>
-        <div className="profile-hero-copy"><p className="eyebrow">Your Proofweave Person</p><h1>{user.displayName}</h1><p>{user.email}</p><code>{delegation.person.id}</code></div>
-        <div className="profile-hero-actions"><Link className="button profile-public-button" href={`/people/${encodeURIComponent(delegation.person.id)}`}>View public contribution record <span>↗</span></Link><Link className="text-link" href={providerAwareSignOutPath(user, "/")}>Sign out <span>→</span></Link></div>
-      </section>
+        <SectionHeading as="div" className="profile-hero-copy"><p className="eyebrow">Your Proofweave Person</p><PageTitle>{user.displayName}</PageTitle><p>{user.email}</p><code>{delegation.person.id}</code></SectionHeading>
+        <div className="profile-hero-actions"><ActionLink className="button profile-public-button" href={`/people/${encodeURIComponent(delegation.person.id)}`}>View public contribution record <span>↗</span></ActionLink><Link className="text-link" href={providerAwareSignOutPath(user, "/")}>Sign out <span>→</span></Link></div>
+      </SectionHeading>
 
       <section className="profile-assurance" aria-label="Identity assurance">
         <div><span>Authenticated as</span><strong>{user.providerLabel} account</strong><p>{user.provider === "proofweave" ? "This temporary Build Week identity is isolated from external accounts and is explicitly demo-only." : "Your verified email identifies this private session and is never shown on the public profile."}</p></div>
@@ -56,7 +55,7 @@ export default async function ProfilePage() {
       </section>
 
       <section className="profile-section" aria-labelledby="profile-overview-title">
-        <div className="profile-section-heading"><div><p className="eyebrow">Personal overview</p><h2 id="profile-overview-title">Your research identity at a glance.</h2></div><span className="record-chip">Private view</span></div>
+        <SectionHeading as="div" className="profile-section-heading"><div><p className="eyebrow">Personal overview</p><SectionTitle id="profile-overview-title">Your research identity at a glance.</SectionTitle></div><Badge className="record-chip">Private view</Badge></SectionHeading>
         <div className="profile-stat-grid">
           <ProfileStat value={activeAttempts} label="Active Attempts" detail={`${attempts.length} total research attempts`} />
           <ProfileStat value={publicProfile.summary.sharedCheckpoints} label="Shared checkpoints" detail="Public, Agent-signed progress" />
@@ -70,22 +69,20 @@ export default async function ProfilePage() {
 
       <div className="profile-two-column">
         <section className="profile-section profile-activity" aria-labelledby="profile-activity-title">
-          <div className="profile-section-heading compact"><div><p className="eyebrow">Recent activity</p><h2 id="profile-activity-title">What your Person and Agents did.</h2></div><Link className="text-link" href="/workbench">Open workspace <span>→</span></Link></div>
+          <SectionHeading as="div" className="profile-section-heading compact"><div><p className="eyebrow">Recent activity</p><SectionTitle id="profile-activity-title">What your Person and Agents did.</SectionTitle></div><Link className="text-link" href="/workbench">Open workspace <span>→</span></Link></SectionHeading>
           {activities.length === 0 ? <ProfileEmpty title="No recorded activity yet." detail="Choose a public target and start an accountable Attempt with your delegated Agent." action="Explore targets" href="/explore" /> : <ol className="profile-activity-list">{activities.map((activity) => <li key={activity.id}><span className={`profile-activity-mark is-${activity.tone}`} aria-hidden="true" /><div><strong>{activity.title}</strong><p>{activity.detail}</p></div><time dateTime={activity.occurredAt}>{formatDate(activity.occurredAt)}</time></li>)}</ol>}
         </section>
 
         <aside className="profile-control-card">
-          <p className="eyebrow">Agent authority</p><h2>{activeAgents > 0 && activeDelegations > 0 ? "Your Agent authority is active." : "Finish connecting your research Agent."}</h2><p>{activeAgents > 0 ? `${activeAgents} active Agent${activeAgents === 1 ? "" : "s"} can act only within ${activeDelegations} recorded delegation${activeDelegations === 1 ? "" : "s"}.` : "Create a Person signing key, register an Agent, and issue a scoped delegation before attributable work can begin."}</p>
-          <dl><div><dt>Signing keys</dt><dd>{delegation.signingKeys.length}</dd></div><div><dt>Connections</dt><dd>{delegation.agentInstallations.filter((item) => item.status === "active").length}</dd></div><div><dt>Credit settlement</dt><dd>{publicProfile.credits.active ? `${publicProfile.credits.totalUnits} settled` : "Unavailable"}</dd></div></dl>
-          <Link className="button button-primary" href="/settings">Manage Agent and security <span>→</span></Link>
+          <p className="eyebrow">Agent authority</p><SectionTitle>{activeAgents > 0 && activeDelegations > 0 ? "Your Agent authority is active." : "Finish connecting your research Agent."}</SectionTitle><p>{activeAgents > 0 ? `${activeAgents} active Agent${activeAgents === 1 ? "" : "s"} can act only within ${activeDelegations} recorded delegation${activeDelegations === 1 ? "" : "s"}.` : "Create a Person signing key, register an Agent, and issue a scoped delegation before attributable work can begin."}</p>
+          <FieldList><Field label="Signing keys">{delegation.signingKeys.length}</Field><Field label="Connections">{delegation.agentInstallations.filter((item) => item.status === "active").length}</Field><Field label="Credit settlement">{publicProfile.credits.active ? `${publicProfile.credits.totalUnits} settled` : "Unavailable"}</Field></FieldList>
+          <ActionLink className="button button-primary" href="/settings">Manage Agent and security <span>→</span></ActionLink>
         </aside>
       </div>
 
-      <section className="profile-privacy-boundary"><div><p className="eyebrow">Public / private boundary</p><h2>Your contribution record is public. Your account is not.</h2></div><p>The public page contains only your display name, Person ID, public research checkpoints, signed Receipts, and aggregate review outcomes. Email, provider subject, private evidence, prompts, keys, connection credentials, and unshared workspace data remain private.</p></section>
+      <section className="profile-privacy-boundary"><div><p className="eyebrow">Public / private boundary</p><SectionTitle>Your contribution record is public. Your account is not.</SectionTitle></div><p>The public page contains only your display name, Person ID, public research checkpoints, signed Receipts, and aggregate review outcomes. Email, provider subject, private evidence, prompts, keys, connection credentials, and unshared workspace data remain private.</p></section>
       </PersonalWorkspaceFrame>
-    </main>
-    <Footer />
-  </div>;
+    </SiteFrame>;
 }
 
 async function loadProfile(user: AuthUser) {
@@ -106,11 +103,11 @@ async function loadProfile(user: AuthUser) {
 }
 
 function ProfileStat({ value, label, detail }: { value: number; label: string; detail: string }) {
-  return <article><strong>{value}</strong><span>{label}</span><p>{detail}</p></article>;
+  return <Surface as="article"><strong>{value}</strong><span>{label}</span><p>{detail}</p></Surface>;
 }
 
 function ProfileEmpty({ title, detail, action, href }: { title: string; detail: string; action: string; href: string }) {
-  return <div className="profile-empty"><strong>{title}</strong><p>{detail}</p><Link className="text-link" href={href}>{action} <span>→</span></Link></div>;
+  return <EmptyState as="div" className="profile-empty"><strong>{title}</strong><p>{detail}</p><Link className="text-link" href={href}>{action} <span>→</span></Link></EmptyState>;
 }
 
 function recentActivity({ attempts, reviews, publicProfile }: {
@@ -140,5 +137,5 @@ function formatDate(value: string) {
 }
 
 function ProfileUnavailable() {
-  return <div className="site-shell app-shell"><Header active="profile" /><main id="main-content" tabIndex={-1} className="page-main profile-main personal-workspace-main"><PersonalWorkspaceFrame active="profile"><section className="review-heading"><div><p className="eyebrow">Personal profile</p><h1>Your profile is temporarily unavailable.</h1><p>No identity, contribution, or Agent record was changed. Please try again when the account control plane is available.</p></div><span className="record-chip">Unavailable</span></section></PersonalWorkspaceFrame></main><Footer /></div>;
+  return <SiteFrame className="site-shell app-shell" active="profile" mainClassName="page-main profile-main personal-workspace-main"><PersonalWorkspaceFrame active="profile"><SectionHeading as="section" className="review-heading"><div><p className="eyebrow">Personal profile</p><PageTitle>Your profile is temporarily unavailable.</PageTitle><p>No identity, contribution, or Agent record was changed. Please try again when the account control plane is available.</p></div><Badge className="record-chip">Unavailable</Badge></SectionHeading></PersonalWorkspaceFrame></SiteFrame>;
 }

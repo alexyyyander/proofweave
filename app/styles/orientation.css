@@ -1,0 +1,107 @@
+/* Shared long-page orientation */
+.page-section-nav { align-items: center; background: rgba(248,247,243,.97); border-bottom: 1px solid var(--line); border-top: 1px solid var(--line); display: flex; gap: 30px; min-height: 52px; padding: 0 16px; position: sticky; top: var(--site-header-height); z-index: 12; }
+.page-section-nav > span { color: var(--ink-faint); flex: 0 0 auto; font-size: var(--text-2xs); font-weight: 750; letter-spacing: .08em; text-transform: uppercase; }
+.page-section-nav > div { align-items: stretch; display: flex; flex: 1; justify-content: flex-end; min-width: 0; }
+.page-section-nav a { align-items: center; border-left: 1px solid var(--line); color: var(--ink-soft); display: inline-flex; font-size: var(--text-2xs); font-weight: 650; min-height: 51px; padding: 0 16px; white-space: nowrap; }
+.page-section-nav a:hover { background: #eef1f8; color: var(--indigo); }
+.page-section-nav a:focus-visible { outline: 2px solid var(--indigo); outline-offset: -2px; }
+.app-shell main [id], .history-shell main [id] { scroll-margin-top: 72px; }
+.page-section-nav-dark { background: rgba(9,24,48,.97); border-color: rgba(216,226,246,.18); color: #eef3ff; }
+.page-section-nav-dark > span { color: #8595b2; }
+.page-section-nav-dark a { border-color: rgba(216,226,246,.16); color: #c6d2e7; }
+.page-section-nav-dark a:hover { background: rgba(255,255,255,.06); color: #fff; }
+main section[id], main ol[id], main div[id] { scroll-margin-top: 68px; }
+.public-section-nav { background: rgba(255,255,255,.97); box-shadow: 0 10px 24px rgba(18,31,54,.05); position: sticky; top: calc(var(--site-header-height) + 10px); z-index: 9; }
+
+@keyframes demo-verification-spin { to { transform: rotate(360deg); } }
+@keyframes demo-check-pulse { 50% { opacity: .55; } }
+@keyframes demo-report-arrive { from { opacity: .25; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 900px) {
+  .demo-hero, .demo-proof-section { grid-template-columns: 1fr; }
+  .demo-live-record { align-items: start; grid-template-columns: 1fr; }
+  .demo-live-record-proof { border-left: 0; border-top: 1px solid #b9cbbd; padding-left: 0; padding-top: 18px; }
+  .demo-live-record > .product-state { justify-self: start; }
+  .demo-reproduce { align-items: start; grid-template-columns: 1fr; }
+  .demo-walkthrough-layout { grid-template-columns: minmax(270px, .68fr) minmax(0, 1.32fr); }
+  .demo-chain { max-width: 680px; }
+  .demo-boundary { align-items: start; grid-template-columns: auto 1fr; }
+  .demo-boundary span { grid-column: 1 / -1; justify-self: start; }
+  .demo-console-heading { align-items: start; }
+  .demo-console-grid { grid-template-columns: 1fr; }
+  .demo-record-card { max-width: 560px; }
+  .demo-verification-run { align-items: start; grid-template-columns: auto 1fr; }
+  .demo-verification-run > dl { grid-column: 2; min-width: 0; width: 100%; }
+}
+
+@media (max-width: 620px) {
+  .demo-hero, .demo-live-record, .demo-walkthrough, .demo-console, .demo-proof-section, .demo-honesty-grid, .demo-reproduce { padding-left: 18px; padding-right: 18px; }
+  .demo-hero { gap: 52px; padding-bottom: 62px; padding-top: 56px; }
+  .demo-boundary { gap: 9px; grid-template-columns: 1fr; padding: 20px 18px; }
+  .demo-boundary span { grid-column: auto; white-space: normal; }
+  .demo-walkthrough { padding-top: 72px; }
+  .demo-walkthrough-heading { align-items: start; flex-direction: column; }
+  .demo-walkthrough-layout { border-left: 0; border-right: 0; grid-template-columns: 1fr; margin-left: -18px; margin-right: -18px; }
+  .demo-stage-tabs { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); overflow-x: auto; }
+  .demo-stage-tabs li + li { border-left: 1px solid var(--line); border-top: 0; }
+  .demo-stage-tabs button { display: flex; min-width: 105px; padding: 13px 10px; }
+  .demo-stage-tabs button strong, .demo-stage-tabs button i { display: none; }
+  .demo-stage-detail { min-height: 0; padding: 34px 18px 40px; }
+  .demo-stage-number { margin-top: 46px; }
+  .demo-credit-preview { grid-template-columns: 1fr; }
+  .demo-credit-preview p { grid-column: auto; }
+  .demo-console { padding-bottom: 72px; padding-top: 72px; }
+  .demo-console-heading { flex-direction: column; }
+  .demo-verdict { width: 100%; }
+  .demo-verification-run { grid-template-columns: 1fr; padding: 18px; }
+  .demo-run-signal { height: 31px; width: 31px; }
+  .demo-verification-run > dl { grid-column: auto; grid-template-columns: 1fr 1fr; }
+  .demo-check-list li { gap: 10px; grid-template-columns: 27px 1fr; }
+  .demo-check-state { grid-column: 2; justify-self: start; }
+  .demo-check-evidence dl > div { gap: 5px; grid-template-columns: 1fr; }
+  .demo-record-card { margin-left: -18px; margin-right: -18px; padding: 22px 18px; }
+  .demo-proof-section { gap: 38px; padding-bottom: 68px; padding-top: 68px; }
+  .demo-source-panel { margin-left: -18px; margin-right: -18px; padding: 18px; }
+  .demo-source-panel code { font-size: var(--text-xs); }
+  .demo-honesty-grid { grid-template-columns: 1fr; padding-bottom: 72px; padding-top: 72px; }
+  .demo-honesty-grid article + article { border-left: 1px solid var(--line); border-top: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .demo-verification-run, .demo-verification-run.is-running .demo-run-signal, .demo-check-list .is-running .demo-check-state { animation: none; }
+}
+
+/* Public-alpha product hierarchy. These shared states keep availability,
+   provisional work, verified evidence, and undeployed infrastructure visibly
+   distinct without changing the established editorial design language. */
+.product-state { align-items: center; border: 1px solid currentColor; display: inline-flex; font-size: var(--text-2xs); font-weight: 700; letter-spacing: .055em; line-height: 1; padding: 6px 8px; text-transform: uppercase; white-space: nowrap; width: fit-content; }
+.product-state-available { background: var(--indigo-soft); border-color: #c5d0ff; color: #4055af; }
+.product-state-provisional { background: var(--amber-soft); border-color: #e5d18b; color: var(--amber); }
+.product-state-verified { background: var(--sage-soft); border-color: #b9d5c3; color: var(--sage); }
+.product-state-not-deployed { background: #f0efea; border-color: #cfcec8; color: #5e6673; }
+.hero-status-line { align-items: center; color: #b6c7ff; display: flex; flex-wrap: wrap; font-size: var(--text-xs); font-weight: 700; gap: 12px; letter-spacing: .13em; margin: 0 0 18px; text-transform: uppercase; }
+.hero-status-line .product-state-provisional { background: rgba(243, 212, 139, .12); border-color: rgba(243, 212, 139, .48); color: #f3d48b; }
+.demo-boundary > .product-state { justify-self: end; }
+.integration-endpoint .product-state { justify-self: start; }
+.integration-status-ready { color: var(--sage); }
+
+/* Desktop navigation stays editorial and non-repetitive. The verified Demo
+   returns as a compact action only when the full navigation collapses. */
+.mobile-demo-link { align-items: center; border: 1px solid rgba(218,227,255,.42); border-radius: 999px; color: #fff; display: none; font-size: var(--text-xs); justify-content: center; padding: 8px 11px; }
+.mobile-demo-link:hover, .mobile-demo-link.is-active { background: rgba(168,187,255,.16); border-color: #a8bbff; }
+.mobile-demo-link-short { display: none; }
+
+/* The workspace reads in one direction: current research, required action,
+   then evidence and credit history. */
+.workspace-path { border-bottom: 1px solid var(--line); display: grid; grid-template-columns: repeat(3, minmax(160px, 1fr)); margin-bottom: 20px; overflow-x: auto; }
+.workspace-path a { align-items: center; border-right: 1px solid var(--line); color: var(--ink-soft); display: grid; gap: 10px; grid-template-columns: 28px 1fr; min-height: 64px; padding: 13px 16px; }
+.workspace-path a:last-child { border-right: 0; }
+.workspace-path a:hover { background: #eeede7; color: var(--ink); }
+.workspace-path span { color: var(--indigo); font-size: var(--text-xs); font-weight: 700; letter-spacing: .06em; }
+.workspace-path strong { font-size: var(--text-sm); font-weight: 600; }
+.delegation-summary { background: transparent; border-left: 0; border-right: 0; margin: 0 0 20px; }
+.focus-layout { margin-bottom: 42px; scroll-margin-top: 24px; }
+.next-action-card, #evidence-workspace, #contribution-gates { scroll-margin-top: 24px; }
+.delegation-setup, .agent-connections { margin-top: 0; }
+.submission-section { margin-top: 18px; }
+.provisional-ledger { margin-top: 18px; }

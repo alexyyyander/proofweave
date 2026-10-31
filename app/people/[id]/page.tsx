@@ -1,10 +1,12 @@
+import { Breadcrumb } from "@/app/components/navigation/Breadcrumb";
+import { PageTitle, SectionTitle, CardTitle, Badge, Field, EmptyState, FieldList, SectionHeading, Surface } from "@/app/components/ui";
+import { SiteFrame } from "@/app/components/shell/SiteFrame";
+
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MissingDatabaseBindingError } from "@/db";
 import { getPersonProfileRepository, type PublicPersonProfile } from "@/db/repositories/profiles";
-import type { ContributionReceiptKind } from "@/db/repositories/receipts";
-import { Footer } from "../../ui";
-import { Header } from "../../header";
+import { type ContributionReceiptKind } from "@/db/repositories/receipts";
 
 export const dynamic = "force-dynamic";
 
@@ -19,15 +21,13 @@ export default async function PublicPersonPage({ params }: { params: Promise<{ i
   }
   if (!profile) notFound();
 
-  return <div className="site-shell app-shell">
-    <Header active="profile" />
-    <main id="main-content" tabIndex={-1} className="page-main public-profile-main">
-      <div className="breadcrumb"><Link href="/receipts">Contribution Receipts</Link><span> / </span><span>Person record</span></div>
-      <section className="public-profile-hero">
+  return <SiteFrame className="site-shell app-shell" active="profile" mainClassName="page-main public-profile-main">
+      <Breadcrumb><Link href="/receipts">Contribution Receipts</Link><span> / </span><span>Person record</span></Breadcrumb>
+      <SectionHeading as="section" className="public-profile-hero">
         <div className="profile-avatar is-public" aria-hidden="true">{initials(profile.person.displayName)}</div>
-        <div><p className="eyebrow">Public mathematical contribution record</p><h1>{profile.person.displayName}</h1><code>{profile.person.id}</code><p>Joined {formatDate(profile.person.joinedAt)} · contributions attributed through personally delegated research Agents.</p></div>
-        <span className="record-chip">Public evidence only</span>
-      </section>
+        <div><p className="eyebrow">Public mathematical contribution record</p><PageTitle>{profile.person.displayName}</PageTitle><code>{profile.person.id}</code><p>Joined {formatDate(profile.person.joinedAt)} · contributions attributed through personally delegated research Agents.</p></div>
+        <Badge className="record-chip">Public evidence only</Badge>
+      </SectionHeading>
 
       <section className="public-profile-stats" aria-label="Public contribution summary">
         <ProfileStat value={profile.summary.verifiedReceipts} label="Verified Receipts" />
@@ -46,27 +46,25 @@ export default async function PublicPersonPage({ params }: { params: Promise<{ i
       <p className="public-profile-disclosure">Receipt counts represent issuer-signed mathematical contributions. Shared checkpoints are Agent-signed research progress and are shown separately; they are not automatically Lean-verified, novel, or credit-eligible.</p>
 
       <section className="public-profile-section" aria-labelledby="public-receipts-title">
-        <div className="profile-section-heading"><div><p className="eyebrow">Certified contributions</p><h2 id="public-receipts-title">Signed Contribution Receipts.</h2></div><span className="record-chip">{profile.receipts.length} records</span></div>
-        {profile.receipts.length === 0 ? <PublicEmpty title="No signed Receipts yet." detail="This Person may have public research checkpoints, but no contribution has completed every Receipt gate." /> : <div className="public-receipt-grid">{profile.receipts.map((receipt) => <article key={receipt.id}><div><span className="micro-label">{receiptKindLabel(receipt.kind)}</span><span className={`receipt-index-status is-${receipt.lifecycleStatus}`}>{receipt.lifecycleStatus}</span></div><h3>{receipt.target.declaration}</h3><dl><div><dt>Issued</dt><dd>{formatDate(receipt.issuedAt)}</dd></div><div><dt>Dependencies</dt><dd>{receipt.dependencyCount}</dd></div><div><dt>Receipt hash</dt><dd><code>{shortHash(receipt.receiptHash)}</code></dd></div></dl><Link className="text-link" href={`/receipt/${encodeURIComponent(receipt.id)}`}>Inspect signed evidence <span>→</span></Link></article>)}</div>}
+        <SectionHeading as="div" className="profile-section-heading"><div><p className="eyebrow">Certified contributions</p><SectionTitle id="public-receipts-title">Signed Contribution Receipts.</SectionTitle></div><Badge className="record-chip">{profile.receipts.length} records</Badge></SectionHeading>
+        {profile.receipts.length === 0 ? <PublicEmpty title="No signed Receipts yet." detail="This Person may have public research checkpoints, but no contribution has completed every Receipt gate." /> : <div className="public-receipt-grid">{profile.receipts.map((receipt) => <Surface as="article" key={receipt.id}><div><span className="micro-label">{receiptKindLabel(receipt.kind)}</span><span className={`receipt-index-status is-${receipt.lifecycleStatus}`}>{receipt.lifecycleStatus}</span></div><CardTitle>{receipt.target.declaration}</CardTitle><FieldList><Field label="Issued">{formatDate(receipt.issuedAt)}</Field><Field label="Dependencies">{receipt.dependencyCount}</Field><Field label="Receipt hash"><code>{shortHash(receipt.receiptHash)}</code></Field></FieldList><Link className="text-link" href={`/receipt/${encodeURIComponent(receipt.id)}`}>Inspect signed evidence <span>→</span></Link></Surface>)}</div>}
       </section>
 
       <section className="public-profile-section" aria-labelledby="public-checkpoints-title">
-        <div className="profile-section-heading"><div><p className="eyebrow">Research trail</p><h2 id="public-checkpoints-title">Recent shared checkpoints.</h2></div><span className="record-chip">Provisional</span></div>
-        {profile.recentCheckpoints.length === 0 ? <PublicEmpty title="No public checkpoints yet." detail="Private workspace activity is never used as a fallback for this public record." /> : <div className="public-checkpoint-list">{profile.recentCheckpoints.map((checkpoint) => <article key={checkpoint.id}><div><span>{checkpoint.kind.replaceAll("_", " ")}</span><time dateTime={checkpoint.occurredAt}>{formatDate(checkpoint.occurredAt)}</time></div><h3>{checkpoint.summary}</h3><p>{checkpoint.target.title}</p><footer><span>via {checkpoint.agentLabel}</span><Link href={`/explore/${encodeURIComponent(checkpoint.target.slug)}#research-graph`}>Open research graph →</Link></footer></article>)}</div>}
+        <SectionHeading as="div" className="profile-section-heading"><div><p className="eyebrow">Research trail</p><SectionTitle id="public-checkpoints-title">Recent shared checkpoints.</SectionTitle></div><Badge className="record-chip">Provisional</Badge></SectionHeading>
+        {profile.recentCheckpoints.length === 0 ? <PublicEmpty title="No public checkpoints yet." detail="Private workspace activity is never used as a fallback for this public record." /> : <div className="public-checkpoint-list">{profile.recentCheckpoints.map((checkpoint) => <Surface as="article" key={checkpoint.id}><div><span>{checkpoint.kind.replaceAll("_", " ")}</span><time dateTime={checkpoint.occurredAt}>{formatDate(checkpoint.occurredAt)}</time></div><CardTitle>{checkpoint.summary}</CardTitle><p>{checkpoint.target.title}</p><footer><span>via {checkpoint.agentLabel}</span><Link href={`/explore/${encodeURIComponent(checkpoint.target.slug)}#research-graph`}>Open research graph →</Link></footer></Surface>)}</div>}
       </section>
 
       <section className="public-profile-boundary"><strong>Privacy boundary</strong><p>This page never exposes email, login provider subject, private Evidence, prompts, signing keys, API credentials, Agent connections, or unshared Attempts. It is a projection of public network evidence, not a social score.</p></section>
-    </main>
-    <Footer />
-  </div>;
+    </SiteFrame>;
 }
 
 function ProfileStat({ value, label }: { value: number; label: string }) {
-  return <article><strong>{value}</strong><span>{label}</span></article>;
+  return <Surface as="article"><strong>{value}</strong><span>{label}</span></Surface>;
 }
 
 function PublicEmpty({ title, detail }: { title: string; detail: string }) {
-  return <div className="public-profile-empty"><strong>{title}</strong><p>{detail}</p></div>;
+  return <EmptyState as="div" className="public-profile-empty"><strong>{title}</strong><p>{detail}</p></EmptyState>;
 }
 
 function receiptKindLabel(kind: ContributionReceiptKind) {
@@ -91,5 +89,5 @@ function shortHash(value: string) {
 }
 
 function PublicProfileUnavailable() {
-  return <div className="site-shell app-shell"><Header active="profile" /><main id="main-content" tabIndex={-1} className="page-main public-profile-main"><section className="review-heading"><div><p className="eyebrow">Public Person record</p><h1>Contribution record unavailable.</h1><p>No unverified identity or contribution data is shown while the public ledger cannot be read.</p></div><span className="record-chip">Unavailable</span></section></main><Footer /></div>;
+  return <SiteFrame className="site-shell app-shell" active="profile" mainClassName="page-main public-profile-main"><SectionHeading as="section" className="review-heading"><div><p className="eyebrow">Public Person record</p><PageTitle>Contribution record unavailable.</PageTitle><p>No unverified identity or contribution data is shown while the public ledger cannot be read.</p></div><Badge className="record-chip">Unavailable</Badge></SectionHeading></SiteFrame>;
 }

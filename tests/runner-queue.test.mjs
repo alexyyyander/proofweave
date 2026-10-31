@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { runnerEnvironmentKey } from "../packages/protocol/lean-runner.mjs";
 import {
   createRunnerQueueMessage,
   InMemoryRunnerQueue,
@@ -83,7 +84,50 @@ test("a queued job can be removed but a leased job remains the runner's cancella
   assert.equal((await queue.cancelQueued({ runId: second.runId, cancelledAt: "2026-07-13T00:00:04Z" })).deliveryState, "leased");
 });
 
-async function fixtureMessage({ runId = "run:queue-fixture-1", idempotencyKey = "queue-fixture-1" } = {}) {
+test("in-memory RunnerQueue filters claims by the signed Lean environment", async () => {
+  const queue = new InMemoryRunnerQueue();
+  const { message: four27 } = await fixtureMessage({
+    runId: "run:queue-427",
+    idempotencyKey: "queue-427",
+    leanToolchain: "leanprover/lean4:v4.27.0",
+    mathlibRevision: "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+  });
+  const { message: four31 } = await fixtureMessage({
+    runId: "run:queue-431",
+    idempotencyKey: "queue-431",
+    leanToolchain: "leanprover/lean4:v4.31.0",
+    mathlibRevision: "9a9483a92959bc92bd6a60176dd1fe597298c1f8",
+  });
+  await queue.enqueue(four27);
+  await queue.enqueue(four31);
+
+  const key27 = runnerEnvironmentKey(four27.request.environment);
+  const key31 = runnerEnvironmentKey(four31.request.environment);
+  const claimed27 = await queue.claim({
+    consumerId: "runner:427",
+    claimedAt: "2026-07-13T00:00:01Z",
+    environmentKey: key27,
+  });
+  assert.equal(claimed27.message.runId, four27.runId);
+  assert.equal(await queue.claim({
+    consumerId: "runner:427",
+    claimedAt: "2026-07-13T00:00:02Z",
+    environmentKey: key27,
+  }), null);
+  const claimed31 = await queue.claim({
+    consumerId: "runner:431",
+    claimedAt: "2026-07-13T00:00:03Z",
+    environmentKey: key31,
+  });
+  assert.equal(claimed31.message.runId, four31.runId);
+});
+
+async function fixtureMessage({
+  runId = "run:queue-fixture-1",
+  idempotencyKey = "queue-fixture-1",
+  leanToolchain = "leanprover/lean4:v4.30.0",
+  mathlibRevision = "fixture-no-mathlib",
+} = {}) {
   const pair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
   const publicKey = base64Url(await crypto.subtle.exportKey("raw", pair.publicKey));
   const message = await createRunnerQueueMessage({
@@ -104,8 +148,8 @@ async function fixtureMessage({ runId = "run:queue-fixture-1", idempotencyKey = 
       },
       environment: {
         imageDigest: `ghcr.io/proofweave/lean-runner@sha256:${"c".repeat(64)}`,
-        leanToolchain: "leanprover/lean4:v4.30.0",
-        mathlibRevision: "fixture-no-mathlib",
+        leanToolchain,
+        mathlibRevision,
         network: "disabled",
       },
       limits: { cpuSeconds: 60, wallSeconds: 120, memoryMiB: 2_048, diskMiB: 2_048, outputBytes: 1_000_000 },

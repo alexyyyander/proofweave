@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/app/components/ui";
+
 import { useState } from "react";
 
 const installationRequest = `Install the Proofweave Research plugin by following the public, auditable instructions at https://proofweave.org/codex-install.md.
@@ -38,9 +40,9 @@ If Proofweave reports maintenance or read-only mode, stop and tell me that conne
     }
   }
 
-  return <button className="button button-primary" type="button" onClick={copySetupRequest}>
+  return <Button className="button button-primary" type="button" onClick={copySetupRequest}>
     {copied ? "Setup request copied" : "Continue in Codex"}
-  </button>;
+  </Button>;
 }
 
 export function CodexInstallPrompt() {
@@ -68,9 +70,9 @@ export function CodexInstallPrompt() {
         </p>
       </div>
       <div className="codex-install-actions">
-        <button className="button button-primary" type="button" onClick={copyInstallRequest}>
+        <Button className="button button-primary" type="button" onClick={copyInstallRequest}>
           {copied ? "Install request copied" : "Copy request for Codex"}
-        </button>
+        </Button>
         <a className="text-link" href="/codex-install.md" target="_blank" rel="noreferrer">
           Read the install guide <span>→</span>
         </a>
@@ -117,9 +119,9 @@ After connection succeeds, tell me to return to ${destination}${targetTitle ? ` 
     }
   }
 
-  return <button className="button button-primary" type="button" onClick={copyConnectionRequest}>
+  return <Button className="button button-primary" type="button" onClick={copyConnectionRequest}>
     {copied ? "Request copied" : role === "review" ? "Copy review connection request" : "Copy connection request"}
-  </button>;
+  </Button>;
 }
 
 const workflowRequests = {
@@ -140,7 +142,7 @@ export function CodexWorkflowPrompt({ workflow }: { workflow: keyof typeof workf
     }
   }
 
-  return <button className="button button-secondary" type="button" onClick={copyWorkflowRequest}>
+  return <Button className="button button-secondary" type="button" onClick={copyWorkflowRequest}>
     {copied ? "Request copied" : workflow === "review_queue" ? "Copy “show my reviews”" : "Copy submission request"}
-  </button>;
+  </Button>;
 }

@@ -1,4 +1,5 @@
 import { currentReviewPersonId } from "@/app/lib/review-api";
+import { researchWriteGateFailure } from "@/app/lib/research-write-gate";
 import { MissingDatabaseBindingError } from "@/db";
 import { EvidenceIntegrityError } from "@/db/repositories/evidence";
 import { ControlPlaneReadOnlyError } from "@/services/database/control-plane-operation-mode.mjs";
@@ -8,6 +9,8 @@ export async function currentEvidencePersonId(): Promise<string | Response> {
 }
 
 export function evidenceFailure(error: unknown): Response {
+  const gate = researchWriteGateFailure(error);
+  if (gate) return gate;
   if (
     error instanceof MissingDatabaseBindingError
     || error instanceof ControlPlaneReadOnlyError

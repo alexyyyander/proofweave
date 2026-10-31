@@ -32,6 +32,10 @@ import {
   createRunnerQueueExecution,
   importRunnerResultPrivateKey,
 } from "./worker.mjs";
+import {
+  runnerEnvironmentKey,
+  runnerEnvironmentKeyMaxLength,
+} from "../../packages/protocol/lean-runner.mjs";
 
 const trustedRunnerPhases = new Set([
   "e2b_template_assert",
@@ -71,6 +75,7 @@ export class TrustedRunnerProcess {
     execute,
     consumerId,
     onlyRunId,
+    environmentKey,
     leaseDurationSeconds = 300,
     heartbeatSeconds = 60,
     retryDelaySeconds = 30,
@@ -89,6 +94,7 @@ export class TrustedRunnerProcess {
     }
     requireIdentifier(consumerId, "RUNNER_CONSUMER_ID");
     if (onlyRunId !== undefined) requireIdentifier(onlyRunId, "RUNNER_ONLY_RUN_ID");
+    if (environmentKey !== undefined) requireEnvironmentKey(environmentKey, "Runner environment key");
     requireInteger(leaseDurationSeconds, "Runner lease duration", 30, 3_600);
     requireInteger(heartbeatSeconds, "Runner lease heartbeat", 1, leaseDurationSeconds - 1);
     requireInteger(retryDelaySeconds, "Runner retry delay", 1, 86_400);
@@ -102,6 +108,7 @@ export class TrustedRunnerProcess {
     this.execute = execute;
     this.consumerId = consumerId;
     this.onlyRunId = onlyRunId;
+    this.environmentKey = environmentKey;
     this.leaseDurationSeconds = leaseDurationSeconds;
     this.heartbeatSeconds = heartbeatSeconds;
     this.retryDelaySeconds = retryDelaySeconds;
@@ -121,6 +128,7 @@ export class TrustedRunnerProcess {
       claimedAt,
       leaseDurationSeconds: this.leaseDurationSeconds,
       ...(this.onlyRunId === undefined ? {} : { runId: this.onlyRunId }),
+      ...(this.environmentKey === undefined ? {} : { environmentKey: this.environmentKey }),
     });
     if (!delivery) return Object.freeze({ outcome: "idle" });
 
@@ -325,6 +333,10 @@ export async function createTrustedRunnerRuntime({
   ) {
     throw new TrustedRunnerProcessConfigurationError("The Sandbox image must be the single image in the Runner allowlist.");
   }
+  const [runnerImage] = imageRegistry.images.values();
+  const environmentKey = typeof containerFactory.imageReference === "string" && imageRegistry.images.size === 1
+    ? runnerEnvironmentKey(runnerImage)
+    : undefined;
   const authenticator = new RunnerJobAuthenticator({
     issuerKeys: parseJsonSetting(environment, "RUNNER_CONTROL_PLANE_ISSUER_KEYS_JSON"),
   });
@@ -349,6 +361,12 @@ export async function createTrustedRunnerRuntime({
     monotonicNow,
     observePhase,
   });
+  const templateId = typeof containerFactory.template?.reference === "string"
+    ? containerFactory.template.reference
+    : null;
+  const templateBuildId = typeof containerFactory.templateBuildId === "string"
+    ? containerFactory.templateBuildId
+    : null;
   const finalizer = new RunnerExecutionFinalizer({
     runStore,
     outputStore: new D1InlineRunnerOutputStore({ database }),
@@ -357,6 +375,8 @@ export async function createTrustedRunnerRuntime({
     resultSigner: new RunnerExecutionResultSigner({
       runnerKeyId: requireSetting(environment, "RUNNER_RESULT_KEY_ID"),
       runnerPrivateKey: await importRunnerResultPrivateKey(requireSetting(environment, "RUNNER_RESULT_PRIVATE_KEY_JWK")),
+      templateId,
+      templateBuildId,
     }),
   });
   const execute = createRunnerQueueExecution({
@@ -386,6 +406,7 @@ export async function createTrustedRunnerRuntime({
     execute,
     consumerId: requireSetting(environment, "RUNNER_CONSUMER_ID"),
     onlyRunId,
+    environmentKey,
     leaseDurationSeconds,
     heartbeatSeconds: integerSetting(
       environment,
@@ -683,6 +704,12 @@ function requireInteger(value, label, minimum, maximum) {
 function requireIdentifier(value, label) {
   if (typeof value !== "string" || !/^[A-Za-z0-9][A-Za-z0-9:._-]{2,191}$/.test(value)) {
     throw new TrustedRunnerProcessConfigurationError(`${label} must be a bounded identifier.`);
+  }
+}
+
+function requireEnvironmentKey(value, label) {
+  if (typeof value !== "string" || value.length === 0 || value.length > runnerEnvironmentKeyMaxLength) {
+    throw new TrustedRunnerProcessConfigurationError(`${label} must be a bounded derived environment key.`);
   }
 }
 

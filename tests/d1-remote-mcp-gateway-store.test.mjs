@@ -18,6 +18,7 @@ import { D1ProofweaveOAuthStore } from "../services/proofweave-identity/d1-oauth
 import { D1VerificationStore } from "../services/verification/d1-verification-store.mjs";
 import { D1R2VerificationReplayEvidenceStore } from "../services/verification/d1-r2-verification-replay-evidence-store.mjs";
 import { D1R2ArtifactStore } from "../services/artifacts/d1-r2-artifact-store.mjs";
+import { D1HybridArtifactBucket } from "../services/artifacts/d1-inline-artifact-store.mjs";
 import {
   verificationAttestationPayloadHash,
   verificationAttestationSigningPayload,
@@ -38,8 +39,22 @@ import {
   researchCheckpointSigningPayload,
 } from "../packages/protocol/research-checkpoint.mjs";
 import { applyControlPlaneOperationMode } from "../services/database/control-plane-operation-mode.mjs";
+import {
+  ResearchWriteGateUnconfiguredError,
+  ResearchWriteNotAllowedError,
+} from "../services/database/research-write-allowlist.mjs";
 
 const migrationsRoot = new URL("../drizzle/", import.meta.url);
+const researchWriteAllowlist = JSON.stringify({
+  schemaVersion: "pw-research-write-allowlist-v1",
+  persons: ["person:gateway-owner", "person:gateway-reviewer"],
+  agents: ["agent:gateway-owner-prover", "agent:gateway-prover", "agent:gateway-prover-alt", "agent:gateway-reviewer"],
+  attempts: ["attempt:gateway", "attempt:gateway-owner-replay"],
+  allowNewAttempts: true,
+});
+function gatewayStore(database, bucket = null) {
+  return new D1RemoteMcpGatewayStore({ database, bucket, researchWriteAllowlistJson: researchWriteAllowlist });
+}
 let miniflare;
 let database;
 let reviewerKeyPair;
@@ -152,6 +167,7 @@ test("read-only D1 runtime serves reads without validating write-only bindings a
     issuer: "https://auth.gateway.example.test",
     database: readOnlyDatabase,
     operationMode: "read_only",
+    researchWriteAllowlistJson: researchWriteAllowlist,
     runnerQueueMode: "invalid-write-only-mode",
     runnerApprovedImagesJson: JSON.stringify([
       `registry.example.test/proofweave/lean@sha256:${"f".repeat(64)}`,
@@ -217,6 +233,7 @@ test("provider-neutral gateway composes the durable database Runner queue only f
     database,
     bucket: artifactBucket,
     operationMode: "read_write",
+    researchWriteAllowlistJson: researchWriteAllowlist,
     runnerQueueMode: "d1",
     runnerApprovedImagesJson: JSON.stringify([{
       imageDigest: `registry.example.test/proofweave/lean@sha256:${"f".repeat(64)}`,
@@ -234,6 +251,25 @@ test("provider-neutral gateway composes the durable database Runner queue only f
     }),
   };
   assert.equal(typeof createD1RemoteMcpGatewayRuntime(complete).fetch, "function");
+  const largeOutputLimits = JSON.stringify({
+    cpuSeconds: 60,
+    wallSeconds: 120,
+    memoryMiB: 2_048,
+    diskMiB: 2_048,
+    outputBytes: 2_000_000,
+  });
+  assert.equal(typeof createD1RemoteMcpGatewayRuntime({
+    ...complete,
+    runnerDefaultLimitsJson: largeOutputLimits,
+  }).fetch, "function");
+  assert.throws(
+    () => createD1RemoteMcpGatewayRuntime({
+      ...complete,
+      bucket: null,
+      runnerDefaultLimitsJson: largeOutputLimits,
+    }),
+    /Runner dispatch configuration is invalid/,
+  );
   assert.throws(
     () => createD1RemoteMcpGatewayRuntime({ ...complete, runnerQueueMode: "memory" }),
     /RUNNER_QUEUE_MODE must be d1/,
@@ -369,7 +405,7 @@ test("remote MCP gateway store binds a signed review attestation to its OAuth in
     ),
   ]);
 
-  const store = new D1RemoteMcpGatewayStore(database);
+  const store = gatewayStore(database);
   const principal = {
     clientId: "client:gateway-codex",
     personId: "person:gateway-reviewer",
@@ -398,7 +434,7 @@ test("remote MCP gateway store rejects an Attestation that is not the selected r
     assignedAt: "2026-07-13T00:00:02Z",
   });
   await verification.accept("assignment:gateway-binding", "person:gateway-reviewer", "2026-07-13T00:00:03Z");
-  const store = new D1RemoteMcpGatewayStore(database);
+  const store = gatewayStore(database);
   const principal = {
     clientId: "client:gateway-codex",
     personId: "person:gateway-reviewer",
@@ -427,7 +463,7 @@ test("a review Agent can discover only its Person-addressed assignments and cont
     assignedAt: "2026-07-13T00:00:10Z",
   });
   await verification.accept("assignment:gateway-discovery", "person:gateway-reviewer", "2026-07-13T00:00:11Z");
-  const store = new D1RemoteMcpGatewayStore(database);
+  const store = gatewayStore(database);
   const principal = {
     clientId: "client:gateway-codex",
     personId: "person:gateway-reviewer",
@@ -465,7 +501,7 @@ test("a review Agent can discover only its Person-addressed assignments and cont
 });
 
 test("remote MCP D1 store pins catalog and Attempt work to the selected delegated Agent", async () => {
-  const store = new D1RemoteMcpGatewayStore(database);
+  const store = gatewayStore(database);
   const principal = {
     clientId: "client:gateway-codex",
     personId: "person:gateway-reviewer",
@@ -749,6 +785,7 @@ test("a verified OAuth token reaches catalog and Attempt D1 boundaries through M
     database,
     bucket: artifactBucket,
     operationMode: "read_write",
+    researchWriteAllowlistJson: researchWriteAllowlist,
   });
   const listed = await callGatewayTool(gateway, resource, accessToken, "list_frontier_problems", {});
   assert.equal(listed.result.isError, undefined);
@@ -809,6 +846,7 @@ test("a prove-delegated OAuth Agent stages a signed v2 Bundle and requests one i
     database,
     bucket: artifactBucket,
     operationMode: "read_write",
+    researchWriteAllowlistJson: researchWriteAllowlist,
     runnerQueue,
     runnerApprovedImagesJson: JSON.stringify([{
       imageDigest: `registry.example.test/proofweave/lean@sha256:${"f".repeat(64)}`,
@@ -858,7 +896,7 @@ test("a prove-delegated OAuth Agent stages a signed v2 Bundle and requests one i
   const stageReplay = await callGatewayTool(gateway, resource, accessToken, "stage_artifact_bundle", { bundle });
   const second = JSON.parse(stageReplay.result.content[0].text);
   assert.equal(second.created, false);
-  const loaded = await new D1RemoteMcpGatewayStore({ database, bucket: artifactBucket }).getAttempt({
+  const loaded = await gatewayStore(database, artifactBucket).getAttempt({
     clientId: "client:gateway-codex",
     personId: "person:gateway-reviewer",
     agentInstallationId: "installation:gateway-prover",
@@ -873,6 +911,7 @@ test("a prove-delegated OAuth Agent stages a signed v2 Bundle and requests one i
     database,
     bucket: artifactBucket,
     operationMode: "read_write",
+    researchWriteAllowlistJson: researchWriteAllowlist,
   });
   const unavailable = await callGatewayTool(withoutRunner, resource, accessToken, "request_runner_run", {
     attemptId,
@@ -966,7 +1005,10 @@ test("a prove-delegated OAuth Agent stages a signed v2 Bundle and requests one i
 });
 
 test("an accepted independent reviewer can queue and read only a fresh replay of the assigned Bundle", async () => {
-  const artifacts = new D1R2ArtifactStore({ database, bucket: artifactBucket });
+  const artifacts = new D1R2ArtifactStore({
+    database,
+    bucket: new D1HybridArtifactBucket({ database, bucket: artifactBucket }),
+  });
   const [archive, patch, lakeManifest] = await Promise.all([
     artifacts.putObject({ bytes: "replay fixture archive", filename: "source.tar.zst", contentType: "application/zstd" }),
     artifacts.putObject({ bytes: "diff --git a/Proofweave/Replay.lean b/Proofweave/Replay.lean\n", filename: "normalized.patch", contentType: "text/x-diff" }),
@@ -1017,6 +1059,7 @@ test("an accepted independent reviewer can queue and read only a fresh replay of
     database,
     bucket: artifactBucket,
     operationMode: "read_write",
+    researchWriteAllowlistJson: researchWriteAllowlist,
     runnerQueue,
     runnerApprovedImagesJson: JSON.stringify([{
       imageDigest: `registry.example.test/proofweave/lean@sha256:${"f".repeat(64)}`,
@@ -1106,7 +1149,7 @@ test("remote MCP capacity is shared by every Agent owned by the same Person", as
       .run();
   }
 
-  const store = new D1RemoteMcpGatewayStore(database);
+  const store = gatewayStore(database);
   const principal = {
     clientId: "client:gateway-codex",
     personId: "person:gateway-reviewer",
@@ -1129,12 +1172,13 @@ async function signedAttestation({
   claimType = "kernel_accepted",
   attestedAt = "2026-07-13T00:00:02Z",
   evidenceHash = sha("b"),
+  artifactBundleHash = sha("a"),
 } = {}) {
   const attestation = {
     protocolVersion: "pw-verification-attestation-v1",
     id,
     assignmentId,
-    artifactBundleHash: sha("a"),
+    artifactBundleHash,
     claimType,
     verifierPersonId: "person:gateway-reviewer",
     verifierAgentId: "agent:gateway-reviewer",
@@ -1294,6 +1338,7 @@ function boundGateway({ resource, issuer }) {
         OAUTH_ISSUER_URL: issuer,
         PROOFWEAVE_CONTROL_PLANE_MODE: "read_write",
         PROOFWEAVE_MCP_CONTROL_PLANE_MODE: "read_write",
+        PROOFWEAVE_MCP_RESEARCH_WRITE_ALLOWLIST_JSON: researchWriteAllowlist,
       });
     },
   };
@@ -1409,3 +1454,182 @@ async function signedResearchCheckpoint({
   ));
   return checkpoint;
 }
+
+test("the MCP gate fails closed without an allowlist and denies an unlisted identity", () => {
+  const unconfigured = new D1RemoteMcpGatewayStore({ database });
+  assert.throws(
+    () => unconfigured.requireResearchWriteGate(
+      { personId: "person:gateway-owner" },
+      { agentId: "agent:gateway-prover" },
+      "progress:write",
+      { attemptId: "attempt:gateway" },
+    ),
+    ResearchWriteGateUnconfiguredError,
+  );
+
+  const restricted = new D1RemoteMcpGatewayStore({
+    database,
+    researchWriteAllowlistJson: JSON.stringify({
+      schemaVersion: "pw-research-write-allowlist-v1",
+      persons: ["person:gateway-reviewer"],
+      agents: ["agent:gateway-reviewer"],
+      attempts: [],
+      allowNewAttempts: false,
+    }),
+  });
+  assert.throws(
+    () => restricted.requireResearchWriteGate(
+      { personId: "person:gateway-owner" },
+      { agentId: "agent:gateway-prover" },
+      "progress:write",
+      { attemptId: "attempt:gateway" },
+    ),
+    ResearchWriteNotAllowedError,
+  );
+});
+
+test("cross-owner review writes require the author Attempt to be explicitly listed", async () => {
+  await database.prepare(
+    "INSERT INTO artifact_objects (content_hash, object_key, byte_length, content_type) VALUES (?, ?, ?, ?)",
+  ).bind(sha("c"), `bundles/sha256/${"c".repeat(64)}/bundle.json`, 2, "application/json").run();
+  await database.prepare(
+    `INSERT INTO artifact_bundles (
+       id, attempt_id, problem_revision_id, manifest_hash, manifest_key,
+       canonical_manifest, agent_event_id, agent_event_payload_hash
+     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+  ).bind(
+    "bundle:gateway-outside-window",
+    "attempt:gateway",
+    "revision:gateway",
+    sha("c"),
+    `bundles/sha256/${"c".repeat(64)}/bundle.json`,
+    "{}",
+    "agent-event:gateway-outside-window",
+    sha("d"),
+  ).run();
+  const verification = new D1VerificationStore(database);
+  await verification.assign({
+    id: "assignment:gateway-outside-window",
+    artifactBundleManifestHash: sha("c"),
+    claimType: "bundle_reproducible",
+    verifierPersonId: "person:gateway-reviewer",
+    assignedAt: "2026-07-13T00:00:30Z",
+  });
+  await verification.accept("assignment:gateway-outside-window", "person:gateway-reviewer", "2026-07-13T00:00:31Z");
+  await verification.assign({
+    id: "assignment:gateway-outside-window-attestation",
+    artifactBundleManifestHash: sha("c"),
+    claimType: "novelty_reviewed",
+    verifierPersonId: "person:gateway-reviewer",
+    assignedAt: "2026-07-13T00:00:32Z",
+  });
+  await verification.accept("assignment:gateway-outside-window-attestation", "person:gateway-reviewer", "2026-07-13T00:00:33Z");
+
+  // The reviewer Person + Agent are in the window and new Attempts are open,
+  // but the assignment's author Attempt is intentionally not listed.
+  const window = {
+    schemaVersion: "pw-research-write-allowlist-v1",
+    persons: ["person:gateway-reviewer"],
+    agents: ["agent:gateway-reviewer"],
+    attempts: [],
+    allowNewAttempts: true,
+  };
+  let dispatchCalls = 0;
+  const runnerDispatcher = { async queueBundle() {
+    dispatchCalls += 1;
+    throw new Error("local replay dispatch reached");
+  } };
+  const restrictive = new D1RemoteMcpGatewayStore({
+    database,
+    bucket: artifactBucket,
+    runnerDispatcher,
+    researchWriteAllowlistJson: JSON.stringify(window),
+  });
+  const snapshot = async () => ({
+    replays: await database.prepare("SELECT COUNT(*) AS count FROM verification_replays").first("count"),
+    attestations: await database.prepare("SELECT COUNT(*) AS count FROM verification_attestations").first("count"),
+    assignmentEvents: await database.prepare("SELECT COUNT(*) AS count FROM verification_assignment_events").first("count"),
+    queueMessages: await database.prepare("SELECT COUNT(*) AS count FROM runner_queue_messages").first("count"),
+  });
+  const before = await snapshot();
+  const outsideAttempt = error => error instanceof ResearchWriteNotAllowedError && error.dimension === "attempt";
+  const replayPrincipal = {
+    clientId: "client:gateway-codex",
+    personId: "person:gateway-reviewer",
+    agentInstallationId: "installation:gateway-reviewer",
+    scopes: ["verification:replay"],
+  };
+  await assert.rejects(
+    restrictive.requestVerificationReplay(replayPrincipal, {
+      assignmentId: "assignment:gateway-outside-window",
+      idempotencyKey: "outside-window-replay",
+    }),
+    outsideAttempt,
+  );
+  assert.equal(dispatchCalls, 0);
+  assert.deepEqual(await snapshot(), before);
+
+  const attestationPrincipal = {
+    clientId: "client:gateway-codex",
+    personId: "person:gateway-reviewer",
+    agentInstallationId: "installation:gateway-reviewer",
+    scopes: ["catalog:read", "verification:write"],
+  };
+  const attestation = await signedAttestation({
+    id: "attestation:gateway-outside-window",
+    assignmentId: "assignment:gateway-outside-window-attestation",
+    claimType: "novelty_reviewed",
+    artifactBundleHash: sha("c"),
+    attestedAt: "2026-07-13T00:00:34Z",
+  });
+  await assert.rejects(
+    restrictive.submitVerificationAttestation(attestationPrincipal, attestation),
+    outsideAttempt,
+  );
+  assert.deepEqual(await snapshot(), before);
+  assert.equal((await verification.requireAssignment("assignment:gateway-outside-window-attestation")).status, "accepted");
+
+  // The same accepted assignments and signed evidence become authorized only
+  // when the author's Attempt is explicitly included in the review window.
+  const listed = new D1RemoteMcpGatewayStore({
+    database, bucket: artifactBucket, runnerDispatcher,
+    researchWriteAllowlistJson: JSON.stringify({ ...window, attempts: ["attempt:gateway"] }),
+  });
+  await assert.rejects(listed.requestVerificationReplay(replayPrincipal, {
+    assignmentId: "assignment:gateway-outside-window",
+    idempotencyKey: "outside-window-replay",
+  }), /local replay dispatch reached/);
+  assert.equal(dispatchCalls, 1);
+  const recorded = await listed.submitVerificationAttestation(attestationPrincipal, attestation);
+  assert.equal(recorded.created, true);
+  assert.equal((await verification.requireAssignment("assignment:gateway-outside-window-attestation")).status, "completed");
+});
+
+test("an owner may resume an unlisted new Attempt only while creation remains open", async () => {
+  await database.prepare(`INSERT INTO agent_installations (
+    id, person_id, agent_id, delegation_certificate_id, client_id, label
+  ) VALUES (?, ?, ?, ?, ?, ?)`).bind(
+    "installation:gateway-owner-prover", "person:gateway-owner", "agent:gateway-owner-prover",
+    "delegation:gateway-owner-prover", "client:gateway-codex", "Owner window regression",
+  ).run();
+  const window = {
+    schemaVersion: "pw-research-write-allowlist-v1",
+    persons: ["person:gateway-owner"], agents: ["agent:gateway-owner-prover"],
+    attempts: [], allowNewAttempts: true,
+  };
+  const store = new D1RemoteMcpGatewayStore({ database, researchWriteAllowlistJson: JSON.stringify(window) });
+  const principal = {
+    clientId: "client:gateway-codex", personId: "person:gateway-owner",
+    agentInstallationId: "installation:gateway-owner-prover",
+    scopes: ["attempt:create", "attempt:read", "progress:write"],
+  };
+  const input = { problemSlug: "gateway-target", delegationScope: "prove", idempotencyKey: "owner-window-resumption" };
+  const created = await store.createAttempt(principal, input);
+  assert.equal(created.idempotentReplay, false);
+  assert.equal((await store.createAttempt(principal, input)).attempt.id, created.attempt.id);
+  const progress = { attemptId: created.attempt.id, message: "Continue owned research", progressPercent: 10, idempotencyKey: "owned-window-progress" };
+  assert.equal((await store.reportProgress(principal, progress)).idempotentReplay, false);
+  const closed = new D1RemoteMcpGatewayStore({ database, researchWriteAllowlistJson: JSON.stringify({ ...window, allowNewAttempts: false }) });
+  await assert.rejects(closed.reportProgress(principal, { ...progress, idempotencyKey: "closed-window-progress" }),
+    error => error instanceof ResearchWriteNotAllowedError && error.dimension === "attempt");
+});

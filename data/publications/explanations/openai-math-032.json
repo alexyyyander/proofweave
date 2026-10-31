@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "pw-claim-explanation-v1",
+  "familyNumber": "032",
+  "title": "The rational Hodge conjecture for CM abelian varieties",
+  "level": "expert",
+  "status": "draft",
+  "reviewStatus": "unreviewed",
+  "sourceRevision": "1581d4cbdd69a0faf34b2089614fe2a814316a6a",
+  "assumptions": [
+    "The abelian variety is defined over the complex numbers and has complex multiplication (CM).",
+    "Only rational Hodge classes are considered; integral Hodge classes are outside the quoted claim.",
+    "Algebraic cycle classes are taken with rational coefficients."
+  ],
+  "conclusion": "Every rational Hodge class on a complex CM abelian variety is a rational linear combination of algebraic cycle classes, in every dimension and codimension.",
+  "notProven": [
+    "The pinned snapshot links no Lean scope document or Comparator file for this family, so the formal statement and its coverage are unknown (needs review).",
+    "Proofweave has not replayed any manuscript in this family; every manuscript record reports proofweaveReplay: not_run.",
+    "No statement review or independent review is recorded; every manuscript reports statementReview: not_started and no receipt.",
+    "The Tate conjecture and Hodge standard conjecture consequences are described as following through Milne's theorems. Those auxiliary theorems are not included or checked in this snapshot."
+  ],
+  "scopeNote": "This draft explains the family-level claim as recorded in the pinned OpenAI snapshot. Because no Lean scope statement is linked, this artifact cannot compare paper wording with a formal statement and does not assert any formalization coverage.",
+  "scopeDiff": {
+    "paperStatement": "Proves the rational Hodge conjecture for every complex CM abelian variety, in every dimension and codimension. Through Milne's theorems, this also gives the Tate conjecture for all abelian varieties over finite fields and the Hodge standard conjecture for abelian varieties in every characteristic.",
+    "leanStatement": null,
+    "leanStatementStatus": "unknown",
+    "gapNote": "No upstream Lean scope statement is linked for this family. Formal coverage is unknown, not established by this explanation.",
+    "platformStatus": "Not run: all five manuscripts report proofweaveReplay not_run, statementReview not_started, and no receipt.",
+    "needsReview": true
+  },
+  "proofSteps": [
+    {
+      "id": "step-1",
+      "label": "Set up the CM abelian variety",
+      "detail": "Work with a complex abelian variety that has complex multiplication, in arbitrary dimension.",
+      "basis": "Family claim and first manuscript abstract from the pinned snapshot.",
+      "dependsOn": []
+    },
+    {
+      "id": "step-2",
+      "label": "Identify rational Hodge classes with algebraic cycle classes",
+      "detail": "The first manuscript abstract states that every rational Hodge class is a rational linear combination of algebraic cycle classes.",
+      "basis": "First manuscript abstract from the pinned snapshot.",
+      "dependsOn": []
+    },
+    {
+      "id": "step-3",
+      "label": "Record the stated consequences",
+      "detail": "The family claim obtains the Tate conjecture and the Hodge standard conjecture through Milne's theorems. The auxiliary theorems themselves are not reproduced in the snapshot.",
+      "basis": "Family claim from the pinned snapshot.",
+      "dependsOn": [],
+      "needsReview": true
+    }
+  ],
+  "leanAnnotations": [
+    {
+      "id": "lean-registry",
+      "file": null,
+      "url": null,
+      "excerpt": null,
+      "excerptStatus": "not_in_snapshot",
+      "annotation": "The pinned snapshot provides no Lean scope document, Comparator file, or Lean source excerpt for this family. No formal statement is shown, and coverage is unknown (needs review).",
+      "needsReview": true
+    }
+  ],
+  "glossary": [
+    {
+      "term": "Complex multiplication (CM)",
+      "definition": "A property of an abelian variety: its endomorphism algebra contains a number field of degree twice the variety's dimension."
+    },
+    {
+      "term": "Hodge class",
+      "definition": "A rational cohomology class of Hodge type (p,p) on a smooth projective complex variety."
+    },
+    {
+      "term": "Algebraic cycle class",
+      "definition": "The cohomology class of a formal rational linear combination of algebraic subvarieties."
+    },
+    {
+      "term": "Tate conjecture",
+      "definition": "A conjecture relating algebraic cycles over a finite field to Galois-invariant cohomology classes."
+    }
+  ],
+  "sources": [
+    {
+      "label": "The rational Hodge conjecture for CM abelian varieties — manuscript PDF",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-rational-Hodge-conjecture-for-CM-abelian-varieties-October-6-2026/paper.pdf",
+      "kind": "manuscript"
+    },
+    {
+      "label": "Source and version notes for the first manuscript",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-rational-Hodge-conjecture-for-CM-abelian-varieties-October-6-2026/README.md",
+      "kind": "manuscript"
+    },
+    {
+      "label": "OpenAI math release contents at the pinned revision",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/CONTENTS.md",
+      "kind": "snapshot"
+    }
+  ]
+}
