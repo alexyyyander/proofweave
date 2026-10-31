@@ -1,0 +1,353 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-10-31",
+  "familyNumber": "084",
+  "title": "The geometric case of the Erdős similarity conjecture",
+  "result": {
+    "id": "result:erdos-similarity-geometric",
+    "label": "Erdős similarity: geometric-progression case",
+    "statement": "For every fixed q in (0,1) and every η in (0,1), there is a compact set E ⊂ [0,1] with measure greater than 1−η that contains no nontrivial affine copy x+s{q^n : n≥1}, for any translation x and either sign of nonzero dilation s.",
+    "source": "Family claim; the general-q Theorem 1.1 and the dyadic Theorem 1.1.",
+    "detail": "The general-q theorem proves the full family claim. The dyadic theorem proves the q=1/2 special case and is the case formalized upstream.",
+    "roleNote": "The two strategies prove the same claim at different scope: every fixed ratio versus the dyadic ratio. The general theorem is a paper result, not a formalization claim."
+  },
+  "roles": [
+    {
+      "id": "windows",
+      "label": "Index windows",
+      "description": "Assign separated index windows to a finite ordered tree so earlier routing decisions are preserved and each window controls the grids below it."
+    },
+    {
+      "id": "routing",
+      "label": "Random routing",
+      "description": "Route each center to a leaf with independent binary tests and expose independent terminal tests at a fixed scale."
+    },
+    {
+      "id": "scales",
+      "label": "All scales",
+      "description": "Control every normalized scale and repair the exceptional centers by an open neighborhood."
+    },
+    {
+      "id": "periodic",
+      "label": "Periodic hitting set",
+      "description": "Construct an open 1-periodic set of small density that meets every normalized translate of the geometric progression."
+    },
+    {
+      "id": "assembly",
+      "label": "Global rescaling",
+      "description": "Rescale and reflect the periodic sets over all dyadic dilation factors and take the compact complement."
+    },
+    {
+      "id": "result",
+      "label": "Result",
+      "description": "The theorem proved by the strategy."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "general",
+      "label": "General q · 13 pp",
+      "title": "The geometric case of the Erdős similarity conjecture",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-05",
+      "pages": 13,
+      "color": "#4f9d8a",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-geometric-case-of-the-Erdos-similarity-conjecture-October-5-2026/geometric-erdos-similarity.pdf",
+      "sourceLabel": "general-q paper",
+      "note": "Proposition 2.1 is proved in §§3–5; §2 turns it into every signed dilation by rescaling and reflection.",
+      "proofDetail": "section",
+      "leanStatus": "not_formalized",
+      "leanLabel": "No comparator for general q",
+      "leanUrl": null,
+      "leanNote": "The upstream comparator formalizes the dyadic case only. No formalization of the general-q theorem is asserted here.",
+      "nodes": [
+        {
+          "id": "periodic",
+          "role": "periodic",
+          "label": "Periodic hitting for G_q",
+          "fullLabel": "Proposition 2.1 · Periodic hitting set",
+          "kind": "theorem",
+          "source": "§2, Proposition 2.1",
+          "detail": "For every p in (0,1) there is an open 1-periodic set H with density at most 6p such that every x in R and t in [1,2] have x+tq^n in H for some n≥1. Sections 3–5 prove this proposition.",
+          "dependsOn": [
+            "scales"
+          ]
+        },
+        {
+          "id": "windows",
+          "role": "windows",
+          "label": "q-dependent grids and windows",
+          "fullLabel": "§3 · Grids, preorder windows, and stable centers",
+          "kind": "construction",
+          "source": "§3, Lemmas 3.1–3.3",
+          "detail": "Retains nested dyadic grids with resolutions comparable to q^(−b/(1−q)) at index b. Preorder index windows leave gaps and make each edge's window at least as long as the following gap and child subtree. Stability bounds the centers at which a translation can change an earlier grid key.",
+          "dependsOn": []
+        },
+        {
+          "id": "routing",
+          "role": "routing",
+          "label": "Finite routing and independent tests",
+          "fullLabel": "§4 · Random routing and independent tests",
+          "kind": "construction",
+          "source": "§4, Lemmas 4.1–4.3",
+          "detail": "A finite ordered tree, independent binary tables, first-success routing with a last-child default, and a terminal selection table. At a stable center and fixed scale, the terminal tests used by the route are pairwise independent and each fails with probability at most 1−p/2.",
+          "dependsOn": [
+            "windows"
+          ]
+        },
+        {
+          "id": "scales",
+          "role": "scales",
+          "label": "All normalized scales",
+          "fullLabel": "§5 · All normalized scales and all centers",
+          "kind": "lemma",
+          "source": "§5, Lemma 5.1; proof of Proposition 2.1",
+          "detail": "A finite set of boundary representatives controls every t in [1,2], and a union bound over center-exposure atoms gives miss probability at most 2p. Exceptional centers are covered by an open neighborhood because tq^n tends to zero.",
+          "dependsOn": [
+            "windows",
+            "routing"
+          ]
+        },
+        {
+          "id": "global",
+          "role": "assembly",
+          "label": "All signed dilations",
+          "fullLabel": "§2 · Global deduction and compact complement",
+          "kind": "assembly",
+          "source": "§2, proof of Theorem 1.1",
+          "detail": "Choose p_k = η·4^(−|k|)/64, rescale the periodic sets 2^k H_k and their reflections, and let E be the complement in [0,1] of their union. The removed measure is less than η; every nonzero signed dilation is normalized to [1,2] and then hits the union.",
+          "dependsOn": [
+            "periodic"
+          ]
+        },
+        {
+          "id": "theorem",
+          "role": "result",
+          "label": "General-q theorem",
+          "fullLabel": "Theorem 1.1 · Every fixed q",
+          "kind": "theorem",
+          "source": "§1, Theorem 1.1",
+          "detail": "For every q in (0,1) and η in (0,1), the compact set E_q,η has measure greater than 1−η and avoids every nontrivial affine copy of {q^n : n≥1}.",
+          "dependsOn": [
+            "global"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dyadic",
+      "label": "Dyadic q = 1/2 · 16 pp",
+      "title": "The dyadic case of the Erdős similarity conjecture",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 16,
+      "color": "#c58a4a",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-dyadic-case-of-the-Erdos-similarity-conjecture-September-25-2026/paper.pdf",
+      "sourceLabel": "dyadic paper",
+      "note": "Lemma 2.1 is proved in §§3–5; §6 rescales and reflects the periodic sets, then takes the compact complement.",
+      "proofDetail": "section",
+      "leanStatus": "formalized_upstream",
+      "leanLabel": "OAI.Problem310.dyadic_affine_avoidance",
+      "leanUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/OAI/MeasureTheory/DyadicAvoidance/Main.lean",
+      "leanNote": "The comparator names the dyadic theorem; the module is fetched, not kernel-checked here.",
+      "nodes": [
+        {
+          "id": "periodic",
+          "role": "periodic",
+          "label": "Periodic hitting sets",
+          "fullLabel": "Lemma 2.1 · Periodic hitting sets",
+          "kind": "lemma",
+          "source": "§2, Lemma 2.1",
+          "detail": "For every p in (0,1) there is an open 1-periodic set H with density at most 6p such that every x in R and t in [1,2] have x+t2^(−n) in H for some n≥1. Sections 3–5 prove the lemma.",
+          "dependsOn": [
+            "scales"
+          ]
+        },
+        {
+          "id": "windows",
+          "role": "windows",
+          "label": "Separated index windows",
+          "fullLabel": "§3 · Separated index windows",
+          "kind": "construction",
+          "source": "§3, Lemmas 3.1–3.3",
+          "detail": "Assigns a finite block of dyadic indices to every edge of an ordered tree. Gaps preserve earlier grid cells, and each block is long enough to control the resolutions needed below its child.",
+          "dependsOn": []
+        },
+        {
+          "id": "routing",
+          "role": "routing",
+          "label": "Random routing and independent tests",
+          "fullLabel": "§4 · Random routing and independent tests",
+          "kind": "construction",
+          "source": "§4, Lemmas 4.1–4.3",
+          "detail": "Independent binary tables route each center to a leaf; the first default supplies many independent terminal tests at a fixed scale. The fixed-scale failure probability is at most 1−p/2 per test.",
+          "dependsOn": [
+            "windows"
+          ]
+        },
+        {
+          "id": "scales",
+          "role": "scales",
+          "label": "All scales and centers",
+          "fullLabel": "§5 · All normalized scales and all centers",
+          "kind": "lemma",
+          "source": "§5, Lemma 5.1 and Proposition 5.2",
+          "detail": "A finite union bound over scale representatives controls every t in [1,2]. Exceptional centers are repaired by an open neighborhood, since x+t2^(−n) converges to x.",
+          "dependsOn": [
+            "windows",
+            "routing"
+          ]
+        },
+        {
+          "id": "global",
+          "role": "assembly",
+          "label": "Dyadic rescaling and reflection",
+          "fullLabel": "§6 · The compact avoiding set",
+          "kind": "assembly",
+          "source": "§6",
+          "detail": "Rescales the periodic sets by powers of two, includes their reflections, and takes the complement in [0,1]. The total removed measure is bounded by a summable density budget.",
+          "dependsOn": [
+            "periodic"
+          ]
+        },
+        {
+          "id": "theorem",
+          "role": "result",
+          "label": "Dyadic theorem",
+          "fullLabel": "Theorem 1.1 · Dyadic case",
+          "kind": "theorem",
+          "source": "§1, Theorem 1.1",
+          "detail": "For every η in (0,1), there is a compact set E_η ⊂ [0,1] with measure greater than 1−η that avoids every signed affine copy of {2^(−n) : n≥1}.",
+          "dependsOn": [
+            "global"
+          ]
+        }
+      ]
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "general:theorem",
+      "to": "result:erdos-similarity-geometric",
+      "type": "proves",
+      "label": "every fixed q"
+    },
+    {
+      "from": "dyadic:theorem",
+      "to": "result:erdos-similarity-geometric",
+      "type": "proves",
+      "label": "q = 1/2 special case"
+    }
+  ],
+  "crossEdges": [
+    {
+      "from": "general:periodic",
+      "to": "dyadic:periodic",
+      "type": "same-role",
+      "label": "periodic hitting set",
+      "note": "The general construction specializes to q=1/2; it is proved on q-dependent grids."
+    },
+    {
+      "from": "general:windows",
+      "to": "dyadic:windows",
+      "type": "replaces",
+      "label": "q-dependent grid resolutions",
+      "note": "General q keeps dyadic nesting but replaces the dyadic resolution scale by a q-dependent one."
+    },
+    {
+      "from": "general:routing",
+      "to": "dyadic:routing",
+      "type": "same-role",
+      "label": "finite routing mechanism",
+      "note": "The finite ordered-tree routing is reused; the branching number may depend on q."
+    },
+    {
+      "from": "general:scales",
+      "to": "dyadic:scales",
+      "type": "same-role",
+      "label": "scale and center control",
+      "note": "Both routes control all normalized scales and repair exceptional centers by an open neighborhood."
+    },
+    {
+      "from": "general:global",
+      "to": "dyadic:global",
+      "type": "same-role",
+      "label": "dyadic rescaling and reflection",
+      "note": "The global deduction uses the same dyadic rescaling and reflection in both papers."
+    },
+    {
+      "from": "general:theorem",
+      "to": "dyadic:theorem",
+      "type": "same-role",
+      "label": "q = 1/2 special case",
+      "note": "The general theorem implies the dyadic theorem. The Lean comparator covers the dyadic theorem only."
+    }
+  ],
+  "comparisons": [
+    {
+      "a": "general",
+      "b": "dyadic",
+      "summary": "Both routes build a periodic hitting set, separate index windows, route centers through independent tests, and control all normalized scales. The general-q paper replaces the dyadic resolution scale by a q-dependent grid and lets the branching number depend on q; the dyadic paper is the q=1/2 special case and the only case formalized upstream.",
+      "sharedRoles": [
+        "periodic",
+        "windows",
+        "routing",
+        "scales",
+        "assembly",
+        "result"
+      ],
+      "uniqueARoles": [],
+      "uniqueBRoles": []
+    }
+  ],
+  "sharedInputs": [
+    "A random periodic hitting set with a density budget p",
+    "Preorder index windows with a gap-and-length condition",
+    "Independent terminal tests at a fixed center and scale",
+    "Open-neighborhood repair for exceptional centers"
+  ],
+  "summaryNote": "Two scope levels of the same claim: the general-q theorem proves every fixed ratio, while the dyadic theorem is the q=1/2 case. The Lean comparator covers the dyadic case, not the full theorem.",
+  "relatedManuscripts": [],
+  "leanAlignments": [
+    {
+      "strategyId": "dyadic",
+      "nodeId": "theorem",
+      "theoremNames": [
+        "OAI.Problem310.dyadic_affine_avoidance"
+      ],
+      "solutionModule": "OAI.MeasureTheory.DyadicAvoidance.Main",
+      "solutionUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/OAI/MeasureTheory/DyadicAvoidance/Main.lean",
+      "confidence": "inferred",
+      "note": "The comparator theorem name identifies the dyadic case. The Lean statement and proof were not kernel-checked or independently reviewed here."
+    }
+  ],
+  "caveats": [
+    "Section-level map. Nodes group lemmas and constructions by their role in the paper; the paper remains authoritative.",
+    "The general-q theorem is the full family claim. The dyadic theorem is the q=1/2 special case; a proof of the special case is not a proof of the general theorem.",
+    "The Lean comparator formalizes the dyadic case only. Fetching the module is not a kernel build or a Proofweave replay.",
+    "Unreviewed: no statement review, independent review, or contribution receipt."
+  ],
+  "sources": [
+    {
+      "label": "General-q paper",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-geometric-case-of-the-Erdos-similarity-conjecture-October-5-2026/geometric-erdos-similarity.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Dyadic paper",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-dyadic-case-of-the-Erdos-similarity-conjecture-September-25-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Lean solution module",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/OAI/MeasureTheory/DyadicAvoidance/Main.lean",
+      "kind": "lean"
+    }
+  ]
+}

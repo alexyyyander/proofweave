@@ -23,6 +23,7 @@ export const navigationGroups = [
     label: "Research tools",
     items: [
       { href: "/publications", label: "Publications" },
+      { href: "/proof-evolution", label: "Proof maps" },
       { href: "/reviews", label: "Review queue" },
       { href: "/reviewers", label: "Reviewers" },
       { href: "/receipts", label: "Contribution records" },

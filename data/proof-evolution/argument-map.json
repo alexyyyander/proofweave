@@ -1,0 +1,561 @@
+{
+  "schemaVersion": "pw-argument-map-v1",
+  "status": "draft",
+  "reviewStatus": "unreviewed",
+  "result": {
+    "id": "result:landau-siegel-zero-gap",
+    "label": "Uniform exclusion of Landau–Siegel zeros",
+    "statement": "There is an absolute c > 0 such that every real zero β ∈ (0,1) of every primitive nonprincipal real Dirichlet L-function of conductor q ≥ 3 satisfies (1−β) log q ≥ c.",
+    "source": "Shared target of the same-theorem strategies."
+  },
+  "roles": [
+    {
+      "id": "input",
+      "label": "Analytic input",
+      "description": "Prime bias, Mertens/Chebyshev, or the starting analytic estimate."
+    },
+    {
+      "id": "row",
+      "label": "Row existence / interpolation",
+      "description": "Interpolation, spanning rows, Gram/resultant/Wronskian row independence, or pigeonhole."
+    },
+    {
+      "id": "determinant",
+      "label": "Determinant / comparison",
+      "description": "Weighted determinant, Gram determinant, resultant, or the main comparison estimate."
+    },
+    {
+      "id": "padic",
+      "label": "p-adic divisibility",
+      "description": "Frobenius congruence and the resulting p-adic divisibility."
+    },
+    {
+      "id": "bounds",
+      "label": "Archimedean / size bounds",
+      "description": "Archimedean, Hadamard, or determinant size bounds."
+    },
+    {
+      "id": "assembly",
+      "label": "Assembly / contradiction",
+      "description": "Parameter choices, final comparison, and contradiction."
+    },
+    {
+      "id": "result",
+      "label": "Final theorem",
+      "description": "The statement reached by this strategy."
+    }
+  ],
+  "strategies": [
+    {
+      "versionId": "openai-2026-10-01",
+      "color": "#6f86e8",
+      "track": "same-theorem",
+      "note": "Biquadratic interpolation determinant; the original 9-page route."
+    },
+    {
+      "versionId": "banks-2026-10-11",
+      "color": "#d9a95d",
+      "track": "same-theorem",
+      "note": "Explicit-constant direct proof; same route, longer because constants are written out."
+    },
+    {
+      "versionId": "kerr-2026-10-15",
+      "color": "#7fc9a0",
+      "track": "same-theorem",
+      "note": "Pigeonhole plus Masser; removes interpolation and the determinant analysis."
+    },
+    {
+      "versionId": "green-2026-10-17",
+      "color": "#e48a7c",
+      "track": "same-theorem",
+      "note": "Q(√d) Gram matrix and resultants; removes the biquadratic field."
+    },
+    {
+      "versionId": "barreto-2026-10-19",
+      "color": "#c084fc",
+      "track": "same-theorem",
+      "note": "Wronskian row independence replaces resultants; the shortest same-theorem route."
+    },
+    {
+      "versionId": "quasi-11-12-2026-10-05",
+      "color": "#8b9bb4",
+      "track": "stronger-theorem",
+      "note": "Re(s)>11/12 by mean-square/cubic Gauss-sum methods; a stronger, different theorem."
+    },
+    {
+      "versionId": "quasi-7-8-2026-09-30",
+      "color": "#5b6b86",
+      "track": "stronger-theorem",
+      "note": "Re(s)>7/8; the strongest theorem in the release, not the old version of the 3-page proof."
+    }
+  ],
+  "nodeRoles": {
+    "openai-2026-10-01": {
+      "theorem-1": "result",
+      "prime-bias": "input",
+      "interpolation": "row",
+      "spanning-rows": "row",
+      "weighted-determinant": "determinant",
+      "archimedean": "bounds",
+      "prime-divisibility": "padic",
+      "assembly": "assembly"
+    },
+    "banks-2026-10-11": {
+      "theorem-1-1": "result",
+      "prime-bias": "input",
+      "interpolation-chain": "row",
+      "greedy": "determinant",
+      "pivot-bounds": "bounds",
+      "archimedean": "bounds",
+      "frobenius": "padic",
+      "prime-powers": "padic",
+      "lower-bound": "assembly"
+    },
+    "kerr-2026-10-15": {
+      "theorem-1": "result",
+      "analytic-input": "input",
+      "polynomial-basis": "row",
+      "count": "row",
+      "vanishing": "padic",
+      "pigeonhole": "row",
+      "masser": "assembly"
+    },
+    "green-2026-10-17": {
+      "theorem-1-1": "assembly",
+      "nonsingular": "row",
+      "archimedean": "bounds",
+      "padic": "padic",
+      "compare": "determinant"
+    },
+    "barreto-2026-10-19": {
+      "theorem-1": "assembly",
+      "analytic-input": "input",
+      "wronskian": "row",
+      "frobenius": "padic",
+      "divisibility": "padic",
+      "size": "bounds",
+      "corollary-2": "result"
+    },
+    "quasi-11-12-2026-10-05": {
+      "theorem-1-1": "result",
+      "mean-square": "input",
+      "poisson": "row",
+      "iteration": "determinant",
+      "transfer": "assembly"
+    },
+    "quasi-7-8-2026-09-30": {
+      "theorem-1-1": "result",
+      "common-continuation": "input",
+      "completed-sum": "row",
+      "poisson": "row",
+      "zero-detector": "padic",
+      "sextic-sieve": "determinant",
+      "compensated-probe": "assembly"
+    }
+  },
+  "extraNodes": [
+    {
+      "id": "green-2026-10-17:implication",
+      "versionId": "green-2026-10-17",
+      "role": "result",
+      "label": "Standard analytic implication",
+      "kind": "assembly",
+      "source": "Green §1, after Theorem 1.1",
+      "statement": "The prime-sum bound implies that no Landau–Siegel zero exists; this is the standard analytic-number-theory step described in the paper."
+    }
+  ],
+  "finalEdges": [
+    {
+      "from": "openai-2026-10-01:theorem-1",
+      "to": "result:landau-siegel-zero-gap",
+      "type": "proves",
+      "label": "Theorem 1"
+    },
+    {
+      "from": "banks-2026-10-11:theorem-1-1",
+      "to": "result:landau-siegel-zero-gap",
+      "type": "proves",
+      "label": "Theorem 1.1"
+    },
+    {
+      "from": "kerr-2026-10-15:theorem-1",
+      "to": "result:landau-siegel-zero-gap",
+      "type": "proves",
+      "label": "Theorem 1"
+    },
+    {
+      "from": "green-2026-10-17:theorem-1-1",
+      "to": "green-2026-10-17:implication",
+      "type": "depends",
+      "label": "standard implication"
+    },
+    {
+      "from": "green-2026-10-17:implication",
+      "to": "result:landau-siegel-zero-gap",
+      "type": "proves",
+      "label": "no Landau–Siegel zero"
+    },
+    {
+      "from": "barreto-2026-10-19:corollary-2",
+      "to": "result:landau-siegel-zero-gap",
+      "type": "proves",
+      "label": "Corollary 2"
+    },
+    {
+      "from": "quasi-11-12-2026-10-05:theorem-1-1",
+      "to": "result:landau-siegel-zero-gap",
+      "type": "implies",
+      "label": "Re(s)>11/12 implies the gap"
+    },
+    {
+      "from": "quasi-7-8-2026-09-30:theorem-1-1",
+      "to": "result:landau-siegel-zero-gap",
+      "type": "implies",
+      "label": "Re(s)>7/8 implies the gap"
+    }
+  ],
+  "crossEdges": [
+    {
+      "from": "openai-2026-10-01:prime-bias",
+      "to": "banks-2026-10-11:prime-bias",
+      "type": "same-role",
+      "label": "prime bias",
+      "note": "Both expose the same prime-bias input.",
+      "directed": false
+    },
+    {
+      "from": "openai-2026-10-01:prime-bias",
+      "to": "kerr-2026-10-15:analytic-input",
+      "type": "same-role",
+      "label": "prime bias",
+      "note": "Kerr uses the same log-derivative prime-bias input.",
+      "directed": false
+    },
+    {
+      "from": "banks-2026-10-11:prime-bias",
+      "to": "kerr-2026-10-15:analytic-input",
+      "type": "same-role",
+      "label": "prime bias",
+      "note": "Same input, different presentation.",
+      "directed": false
+    },
+    {
+      "from": "barreto-2026-10-19:analytic-input",
+      "to": "openai-2026-10-01:prime-bias",
+      "type": "same-role",
+      "label": "analytic baseline",
+      "note": "Barreto uses Chebyshev/Mertens as the analytic baseline; this is not the same zero-forced prime-bias lemma.",
+      "directed": false
+    },
+    {
+      "from": "openai-2026-10-01:interpolation",
+      "to": "banks-2026-10-11:interpolation-chain",
+      "type": "same-role",
+      "label": "interpolation",
+      "note": "Banks expands the same interpolation/interpolation-chain argument.",
+      "directed": false
+    },
+    {
+      "from": "openai-2026-10-01:spanning-rows",
+      "to": "banks-2026-10-11:interpolation-chain",
+      "type": "same-role",
+      "label": "spanning rows",
+      "note": "Banks groups the same interpolation and spanning-row chain.",
+      "directed": false
+    },
+    {
+      "from": "green-2026-10-17:nonsingular",
+      "to": "barreto-2026-10-19:wronskian",
+      "type": "same-role",
+      "label": "row independence",
+      "note": "Both prove row independence; Green uses resultants, Barreto uses a Wronskian.",
+      "directed": false
+    },
+    {
+      "from": "openai-2026-10-01:weighted-determinant",
+      "to": "banks-2026-10-11:greedy",
+      "type": "same-role",
+      "label": "weighted determinant",
+      "note": "Banks writes out the greedy selection that builds the same determinant.",
+      "directed": false
+    },
+    {
+      "from": "openai-2026-10-01:weighted-determinant",
+      "to": "green-2026-10-17:compare",
+      "type": "same-role",
+      "label": "determinant comparison",
+      "note": "OpenAI compares the weighted determinant; Green compares the Gram determinant.",
+      "directed": false
+    },
+    {
+      "from": "openai-2026-10-01:prime-divisibility",
+      "to": "banks-2026-10-11:prime-powers",
+      "type": "same-role",
+      "label": "p-adic divisibility",
+      "note": "Both use Frobenius congruence to force prime powers into the determinant.",
+      "directed": false
+    },
+    {
+      "from": "banks-2026-10-11:prime-powers",
+      "to": "kerr-2026-10-15:vanishing",
+      "type": "same-role",
+      "label": "p-adic vanishing",
+      "note": "Both use Frobenius/congruence information at the bad primes.",
+      "directed": false
+    },
+    {
+      "from": "kerr-2026-10-15:vanishing",
+      "to": "green-2026-10-17:padic",
+      "type": "same-role",
+      "label": "p-adic divisibility",
+      "note": "Kerr and Green both turn the bad-prime congruence into a lower bound.",
+      "directed": false
+    },
+    {
+      "from": "green-2026-10-17:padic",
+      "to": "barreto-2026-10-19:divisibility",
+      "type": "same-role",
+      "label": "p-adic divisibility",
+      "note": "Barreto keeps Green’s p-adic skeleton and changes the row-independence proof.",
+      "directed": false
+    },
+    {
+      "from": "openai-2026-10-01:archimedean",
+      "to": "banks-2026-10-11:archimedean",
+      "type": "same-role",
+      "label": "Archimedean bound",
+      "note": "Same Hadamard/Archimedean upper bound.",
+      "directed": false
+    },
+    {
+      "from": "openai-2026-10-01:archimedean",
+      "to": "green-2026-10-17:archimedean",
+      "type": "same-role",
+      "label": "Archimedean bound",
+      "note": "Both use a Hadamard-type size bound; Green works in Q(√d).",
+      "directed": false
+    },
+    {
+      "from": "green-2026-10-17:archimedean",
+      "to": "barreto-2026-10-19:size",
+      "type": "same-role",
+      "label": "size bound",
+      "note": "Barreto reuses the size-bound role with a Wronskian determinant.",
+      "directed": false
+    },
+    {
+      "from": "banks-2026-10-11:pivot-bounds",
+      "to": "barreto-2026-10-19:size",
+      "type": "same-role",
+      "label": "size bounds",
+      "note": "Both bound the determinant size; the constants and determinant differ.",
+      "directed": false
+    },
+    {
+      "from": "openai-2026-10-01:assembly",
+      "to": "kerr-2026-10-15:masser",
+      "type": "same-role",
+      "label": "final contradiction",
+      "note": "Both close the proof by contradiction; Kerr uses Masser’s zero estimate.",
+      "directed": false
+    },
+    {
+      "from": "openai-2026-10-01:assembly",
+      "to": "barreto-2026-10-19:theorem-1",
+      "type": "same-role",
+      "label": "final comparison",
+      "note": "Both assemble the prime-sum bound; Barreto’s version is determinant-based.",
+      "directed": false
+    },
+    {
+      "from": "kerr-2026-10-15:pigeonhole",
+      "to": "openai-2026-10-01:interpolation",
+      "type": "replaces",
+      "label": "pigeonhole replaces interpolation",
+      "note": "Kerr replaces the interpolation lemma with a pigeonhole argument.",
+      "directed": true
+    },
+    {
+      "from": "kerr-2026-10-15:pigeonhole",
+      "to": "openai-2026-10-01:spanning-rows",
+      "type": "replaces",
+      "label": "pigeonhole replaces spanning rows",
+      "note": "The polynomial is found by pigeonhole rather than by spanning rows.",
+      "directed": true
+    },
+    {
+      "from": "kerr-2026-10-15:masser",
+      "to": "openai-2026-10-01:weighted-determinant",
+      "type": "bypasses",
+      "label": "Masser bypasses the determinant",
+      "note": "Kerr has no weighted determinant; Masser’s zero estimate gives the contradiction.",
+      "directed": true
+    },
+    {
+      "from": "green-2026-10-17:nonsingular",
+      "to": "openai-2026-10-01:interpolation",
+      "type": "replaces",
+      "label": "resultants replace interpolation",
+      "note": "Green removes the biquadratic interpolation and proves row independence with resultants.",
+      "directed": true
+    },
+    {
+      "from": "green-2026-10-17:nonsingular",
+      "to": "openai-2026-10-01:spanning-rows",
+      "type": "replaces",
+      "label": "resultants replace spanning rows",
+      "note": "The Gram matrix is nonsingular; no spanning-row interpolation is needed.",
+      "directed": true
+    },
+    {
+      "from": "green-2026-10-17:compare",
+      "to": "openai-2026-10-01:weighted-determinant",
+      "type": "replaces",
+      "label": "Gram determinant replaces weighted determinant",
+      "note": "Green compares a Gram determinant in Q(√d).",
+      "directed": true
+    },
+    {
+      "from": "barreto-2026-10-19:wronskian",
+      "to": "green-2026-10-17:nonsingular",
+      "type": "replaces",
+      "label": "Wronskian replaces resultants",
+      "note": "Barreto keeps Q(√d) and replaces the resultant calculation with a Wronskian.",
+      "directed": true
+    },
+    {
+      "from": "barreto-2026-10-19:wronskian",
+      "to": "openai-2026-10-01:interpolation",
+      "type": "bypasses",
+      "label": "bypasses interpolation",
+      "note": "Barreto never enters the biquadratic interpolation argument.",
+      "directed": true
+    },
+    {
+      "from": "barreto-2026-10-19:wronskian",
+      "to": "openai-2026-10-01:weighted-determinant",
+      "type": "bypasses",
+      "label": "bypasses weighted determinant",
+      "note": "The Wronskian proves row independence; no greedy weighted determinant is built.",
+      "directed": true
+    },
+    {
+      "from": "barreto-2026-10-19:divisibility",
+      "to": "green-2026-10-17:padic",
+      "type": "same-role",
+      "label": "shared p-adic divisibility",
+      "note": "Barreto reuses the p-adic divisibility idea from Green.",
+      "directed": false
+    }
+  ],
+  "comparisons": [
+    {
+      "a": "openai-2026-10-01",
+      "b": "barreto-2026-10-19",
+      "summary": "Barreto keeps the p-adic divisibility and size-bound skeleton but replaces the biquadratic interpolation determinant with a Wronskian. No intermediate theorem is shared by name.",
+      "sharedRoles": [
+        "padic",
+        "bounds",
+        "assembly",
+        "result"
+      ],
+      "uniqueARoles": [
+        "determinant"
+      ],
+      "uniqueBRoles": []
+    },
+    {
+      "a": "openai-2026-10-01",
+      "b": "kerr-2026-10-15",
+      "summary": "Kerr keeps the biquadratic field and prime bias, but replaces interpolation/spanning rows with a pigeonhole polynomial and the weighted determinant with Masser’s zero estimate.",
+      "sharedRoles": [
+        "input",
+        "padic",
+        "result"
+      ],
+      "uniqueARoles": [
+        "determinant",
+        "bounds"
+      ],
+      "uniqueBRoles": []
+    },
+    {
+      "a": "openai-2026-10-01",
+      "b": "green-2026-10-17",
+      "summary": "Green removes the biquadratic field and the interpolation lemma; resultants and a Gram determinant replace them in Q(√d).",
+      "sharedRoles": [
+        "padic",
+        "bounds",
+        "result"
+      ],
+      "uniqueARoles": [
+        "input",
+        "determinant"
+      ],
+      "uniqueBRoles": []
+    },
+    {
+      "a": "green-2026-10-17",
+      "b": "barreto-2026-10-19",
+      "summary": "Barreto is a direct descendant of Green: both work in Q(√d), and Barreto replaces the resultant row-independence proof with a Wronskian.",
+      "sharedRoles": [
+        "row",
+        "padic",
+        "bounds",
+        "assembly",
+        "result"
+      ],
+      "uniqueARoles": [
+        "determinant"
+      ],
+      "uniqueBRoles": []
+    },
+    {
+      "a": "banks-2026-10-11",
+      "b": "openai-2026-10-01",
+      "summary": "Banks is the same interpolation-determinant route with explicit constants and a direct contradiction. It is longer, not conceptually different.",
+      "sharedRoles": [
+        "input",
+        "row",
+        "determinant",
+        "padic",
+        "bounds",
+        "assembly",
+        "result"
+      ],
+      "uniqueARoles": [],
+      "uniqueBRoles": []
+    },
+    {
+      "a": "kerr-2026-10-15",
+      "b": "green-2026-10-17",
+      "summary": "Both avoid the interpolation determinant, but by different tools: Kerr uses pigeonhole plus Masser; Green uses resultants and a Gram determinant.",
+      "sharedRoles": [
+        "input",
+        "row",
+        "padic",
+        "result"
+      ],
+      "uniqueARoles": [
+        "assembly"
+      ],
+      "uniqueBRoles": [
+        "determinant",
+        "bounds"
+      ]
+    }
+  ],
+  "sharedInputs": [
+    "All five same-theorem strategies end at the same real-zero gap.",
+    "The short and long polynomial-method routes share the p-adic divisibility idea and a determinant-size comparison, but not the same intermediate theorem by name.",
+    "Green and Barreto share Q(√d); Barreto is a descendant of Green rather than an independent theory.",
+    "The 11/12 and 7/8 papers prove stronger theorems by analytic methods; their arrows to the shared result are implications, not proof steps of the same argument."
+  ],
+  "caveats": [
+    "This is a curated theorem-level argument map, not a kernel dependency graph.",
+    "Within-strategy edges come from the proof-step dependencies recorded in the prototype; cross-strategy same-role/replaces/bypasses edges are curatorial and do not assert logical equivalence.",
+    "A same-role edge means two lemmas play a similar mathematical role; it does not mean one implies the other.",
+    "The stronger 11/12 and 7/8 papers are different theorems. Their edges to the shared result are implications, not alternative proofs of the same statement.",
+    "The map does not claim peer review, a Proofweave replay, or a Lean kernel check."
+  ]
+}

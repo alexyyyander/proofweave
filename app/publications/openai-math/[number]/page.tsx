@@ -47,6 +47,17 @@ export default async function PublicationFamilyPage({ params }: Params) {
       <section className="publication-detail-heading"><p className="eyebrow">OpenAI mathematics release · Result family {family.number}</p><h1><MathText text={family.title} /></h1><p className="publication-detail-claim"><span className="publication-claim-label">Result described by OpenAI</span><MathText text={family.claim} /></p><div className="publication-detail-status"><span>{family.manuscripts.length} {family.manuscripts.length === 1 ? "manuscript" : "manuscripts"}</span><span>{family.scope ? "Upstream Lean scope documented" : "Lean scope document not linked"}</span><span>Proofweave replay pending</span></div></section>
       <PageSectionNav label="Publication record" links={[{ href: "#explanations", label: "Explanation" }, ...(claims ? [{ href: "#claims", label: "Per-conclusion map" }] : []), { href: "#manuscripts", label: "Manuscripts & citations" }, { href: "#formalization", label: "Formalization scope" }, { href: "#provenance", label: "Source & environment" }]} />
 
+      {(() => {
+        const proofMapHref = family.number === "003" ? "/proof-evolution/landau-siegel" : `/proof-evolution/openai-math/${family.number}`;
+        return <section className="publication-replay-note" aria-label="Proof map">
+          <strong>Proof map</strong>
+          <p>{family.number === "003"
+            ? "This family has a 9-page OpenAI proof, a 3-page Barreto variant, and several intermediate simplifications. Compare the versions, what each one replaced, and the Lean coverage."
+            : "See the recorded structure for this family: a deep argument map, a draft proof chain, or a source-linked metadata scaffold."}</p>
+          <Link href={proofMapHref}>Open the proof map →</Link>
+        </section>;
+      })()}
+
       <section id="explanations" className="publication-explanations" aria-labelledby="explanations-title">
         <div className="publication-browse-heading"><div><p className="eyebrow">Read what is proved, and what is not</p><h2 id="explanations-title">Explanation</h2></div>{explanation ? <div className="publication-explanations-heading-badges"><Badge tone="warning">Draft · unreviewed</Badge><span>Model-drafted · no platform verification</span></div> : <span>No reviewed artifact</span>}</div>
         {explanation ? <div className="explanation-grid">
