@@ -1299,6 +1299,18 @@ test("serves the localized shell and translated information pages", async () => 
   assert.equal(dottedNotFound.status, 404);
   assert.match(await dottedNotFound.text(), /<link rel="canonical" href="https:\/\/proofweave\.org\/publications\/openai-math\/1\.0"/);
 
+  const proofMaps = await render("/proof-evolution", localizedHeaders);
+  const proofMapsHtml = await proofMaps.text();
+  assert.match(proofMapsHtml, /每个结果都有结构。/);
+  assert.match(proofMapsHtml, /深度论证地图/);
+  assert.match(proofMapsHtml, /元数据骨架/);
+
+  const landauSiegel = await render("/proof-evolution/landau-siegel", localizedHeaders);
+  const landauSiegelHtml = await landauSiegel.text();
+  assert.match(landauSiegelHtml, /九页证明如何变成三页证明/);
+  assert.match(landauSiegelHtml, /版本谱系/);
+  assert.match(landauSiegelHtml, /压缩账本/);
+
   const switchResponse = await render("/api/locale?to=zh-CN", {
     headers: { referer: "http://localhost/about" },
     redirect: "manual",

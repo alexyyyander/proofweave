@@ -2,25 +2,27 @@
 
 import { useState } from "react";
 import { Badge, CardTitle, Field, FieldList, Surface, cx } from "@/app/components/ui";
+import { useI18n } from "@/app/i18n/client";
+import type { Locale } from "@/app/i18n/config";
+import type { TranslationKey, Translator } from "@/app/i18n/translate";
 import { LeanStructureView } from "./LeanStructureView";
 import { ArgumentMapView } from "./ArgumentMapView";
 import {
-  explicitConstantLabel,
-  goalLabel,
-  leanStatusLabel,
-  ledgerStatusLabel,
-  relationLabel,
   trackById,
   versionById,
   versionsForTrack,
   type ArgumentMapData,
+  type ExplicitConstant,
+  type LeanStatus,
   type LeanStructureData,
   type LedgerStatus,
-  type LeanStatus,
   type ProofDetailLevel,
   type ProofEvolutionData,
+  type ProofEvolutionGoal,
   type ProofStep,
+  type ProofStepKind,
   type ProofVersion,
+  type VersionEdgeRelation,
 } from "@/app/lib/proof-evolution";
 
 const VERSION_NODE_WIDTH = 190;
@@ -30,26 +32,73 @@ const STEP_NODE_HEIGHT = 96;
 const STEP_COLUMN_WIDTH = 250;
 const STEP_ROW_HEIGHT = 118;
 
-const detailLevelLabel: Record<ProofDetailLevel, string> = {
-  lemma: "Lemma-level map",
-  grouped: "Grouped lemma map",
-  summary: "Summary map",
-  section: "Section-level map",
+const goalKeys: Record<ProofEvolutionGoal, TranslationKey> = {
+  origin: "proofMaps.label.goal.origin",
+  simplify: "proofMaps.label.goal.simplify",
+  explicitize: "proofMaps.label.goal.explicitize",
+  elementary: "proofMaps.label.goal.elementary",
+  recombine: "proofMaps.label.goal.recombine",
+  stronger: "proofMaps.label.goal.stronger",
 };
 
-const detailLevelNote: Record<ProofDetailLevel, string> = {
-  lemma: "Nodes are curated at the theorem/lemma level; the linked source remains authoritative.",
-  grouped: "Some adjacent lemmas are grouped into one node to keep the map readable.",
-  summary: "This is a summary-level map, not a full lemma-by-lemma extraction.",
-  section: "This is a section-level map of a longer proof, not a full lemma DAG.",
+const explicitConstantKeys: Record<ExplicitConstant, TranslationKey> = {
+  existential: "proofMaps.label.explicitConstant.existential",
+  explicit: "proofMaps.label.explicitConstant.explicit",
+  effective: "proofMaps.label.explicitConstant.effective",
+  asymptotic: "proofMaps.label.explicitConstant.asymptotic",
 };
 
-const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const leanStatusKeys: Record<LeanStatus, TranslationKey> = {
+  formalized_upstream: "proofMaps.label.leanStatus.formalized_upstream",
+  not_formalized: "proofMaps.label.leanStatus.not_formalized",
+  not_separately_formalized: "proofMaps.label.leanStatus.not_separately_formalized",
+};
 
-function formatDate(value: string) {
+const relationKeys: Record<VersionEdgeRelation, TranslationKey> = {
+  simplifies: "proofMaps.label.relation.simplifies",
+  explicitizes: "proofMaps.label.relation.explicitizes",
+  recombines: "proofMaps.label.relation.recombines",
+  stronger: "proofMaps.label.relation.stronger",
+};
+
+const ledgerStatusKeys: Record<LedgerStatus, TranslationKey> = {
+  used: "proofMaps.label.ledgerStatus.used",
+  replaced: "proofMaps.label.ledgerStatus.replaced",
+  removed: "proofMaps.label.ledgerStatus.removed",
+  not_used: "proofMaps.label.ledgerStatus.not_used",
+  explicit: "proofMaps.label.ledgerStatus.explicit",
+  existential: "proofMaps.label.ledgerStatus.existential",
+  effective: "proofMaps.label.ledgerStatus.effective",
+};
+
+const detailLevelKeys: Record<ProofDetailLevel, TranslationKey> = {
+  lemma: "proofMaps.label.detailLevel.lemma",
+  grouped: "proofMaps.label.detailLevel.grouped",
+  summary: "proofMaps.label.detailLevel.summary",
+  section: "proofMaps.label.detailLevel.section",
+};
+
+const detailLevelNoteKeys: Record<ProofDetailLevel, TranslationKey> = {
+  lemma: "proofMaps.label.detailLevelNote.lemma",
+  grouped: "proofMaps.label.detailLevelNote.grouped",
+  summary: "proofMaps.label.detailLevelNote.summary",
+  section: "proofMaps.label.detailLevelNote.section",
+};
+
+const stepKindKeys: Record<ProofStepKind, TranslationKey> = {
+  theorem: "proofMaps.label.kind.theorem",
+  lemma: "proofMaps.label.kind.lemma",
+  corollary: "proofMaps.label.kind.corollary",
+  construction: "proofMaps.label.kind.construction",
+  bound: "proofMaps.label.kind.bound",
+  assembly: "proofMaps.label.kind.assembly",
+  external: "proofMaps.label.kind.external",
+};
+
+function formatDate(value: string, locale: Locale) {
   const [year, month, day] = value.split("-").map(Number);
   if (!year || !month || !day || month < 1 || month > 12) return value;
-  return `${monthNames[month - 1]} ${day}, ${year}`;
+  return new Intl.DateTimeFormat(locale, { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(Date.UTC(year, month - 1, day)));
 }
 
 function leanTone(status: LeanStatus): "positive" | "neutral" | "warning" {
@@ -66,36 +115,37 @@ function ledgerTone(status: LedgerStatus): "positive" | "neutral" | "warning" | 
 }
 
 export function ProofEvolutionClient({ data, leanStructure, argumentMap }: { data: ProofEvolutionData; leanStructure: LeanStructureData; argumentMap: ArgumentMapData }) {
+  const { t, locale } = useI18n();
   const [selectedId, setSelectedId] = useState("barreto-2026-10-19");
   const selected = versionById(data, selectedId) ?? data.versions[0];
   if (!selected) return null;
 
   return <div className="proof-evolution-content">
-    <CaveatPanel caveats={data.caveats} />
+    <CaveatPanel caveats={data.caveats} t={t} />
 
     <section id="evolution" className="proof-evolution-section" aria-labelledby="evolution-title">
       <SectionHeading
         id="evolution-title"
-        eyebrow="Version lineage"
-        title="Two theorem tracks, one simplification story"
-        description="Read left to right. Solid edges simplify an argument; dashed edges make constants explicit; dotted edges recombine ideas. The stronger-theorem track is separate: its page counts are not the old version of the 3-page proof."
+        eyebrow={t("proofMaps.evolution.evolutionEyebrow")}
+        title={t("proofMaps.evolution.evolutionTitle")}
+        description={t("proofMaps.evolution.evolutionDescription")}
       />
-      <div className="proof-evolution-legend" aria-label="Edge legend">
-        <span><i className="proof-legend-line is-simplifies" aria-hidden="true" />Simplifies</span>
-        <span><i className="proof-legend-line is-explicitizes" aria-hidden="true" />Explicitizes</span>
-        <span><i className="proof-legend-line is-recombines" aria-hidden="true" />Recombines</span>
-        <span className="proof-evolution-legend-note">Solid line = same theorem; separated band = stronger theorem</span>
+      <div className="proof-evolution-legend" aria-label={t("proofMaps.evolution.legendAria")}>
+        <span><i className="proof-legend-line is-simplifies" aria-hidden="true" />{t("proofMaps.evolution.legendSimplifies")}</span>
+        <span><i className="proof-legend-line is-explicitizes" aria-hidden="true" />{t("proofMaps.evolution.legendExplicitizes")}</span>
+        <span><i className="proof-legend-line is-recombines" aria-hidden="true" />{t("proofMaps.evolution.legendRecombines")}</span>
+        <span className="proof-evolution-legend-note">{t("proofMaps.evolution.legendNote")}</span>
       </div>
-      <VersionGraph data={data} selectedId={selected.id} onSelect={setSelectedId} />
-      <p className="proof-evolution-graph-note">Scroll the graph horizontally to see all branches. Page counts come from the linked PDFs. Banks is longer because it adds explicit constants, not because it is a less successful simplification. Van Dijk also follows Kerr and Green; Guo is an explicit side branch. Both relations are recorded in the version details.</p>
+      <VersionGraph data={data} selectedId={selected.id} onSelect={setSelectedId} t={t} locale={locale} />
+      <p className="proof-evolution-graph-note">{t("proofMaps.evolution.graphNote")}</p>
     </section>
 
     <section id="argument-map" className="proof-evolution-section" aria-labelledby="argument-map-title">
       <SectionHeading
         id="argument-map-title"
-        eyebrow="Theorem dependencies · multiple strategies"
-        title="How each proof actually reaches the result"
-        description="Each lane is a proof strategy; each column is a mathematical role. Solid edges are proof dependencies; dotted and dashed edges show shared roles, replacements, and bypasses. Select two strategies to see what they share, what one replaces, and where the short route leaves the long route."
+        eyebrow={t("proofMaps.evolution.argumentEyebrow")}
+        title={t("proofMaps.evolution.argumentTitle")}
+        description={t("proofMaps.evolution.argumentDescription")}
       />
       <ArgumentMapView data={data} argumentMap={argumentMap} lean={leanStructure} />
     </section>
@@ -103,39 +153,43 @@ export function ProofEvolutionClient({ data, leanStructure, argumentMap }: { dat
     <section id="detail" className="proof-evolution-section" aria-labelledby="detail-title">
       <SectionHeading
         id="detail-title"
-        eyebrow="Selected version"
-        title="Inside the proof"
-        description="Select any version in the lineage to inspect its internal proof map, what it changed, and its Lean status."
+        eyebrow={t("proofMaps.evolution.detailEyebrow")}
+        title={t("proofMaps.evolution.detailTitle")}
+        description={t("proofMaps.evolution.detailDescription")}
       />
-      <VersionDetail version={selected} data={data} />
+      <VersionDetail version={selected} data={data} t={t} locale={locale} />
     </section>
 
     <section id="ledger" className="proof-evolution-section" aria-labelledby="ledger-title">
       <SectionHeading
         id="ledger-title"
-        eyebrow="Compression ledger"
-        title="What each simplification removed, replaced, or made explicit"
-        description="A shorter proof is not just fewer pages. The ledger records which machinery disappears, which tool replaces it, and which versions pay for explicitness."
+        eyebrow={t("proofMaps.evolution.ledgerEyebrow")}
+        title={t("proofMaps.evolution.ledgerTitle")}
+        description={t("proofMaps.evolution.ledgerDescription")}
       />
-      <CompressionLedger data={data} />
+      <CompressionLedger data={data} t={t} />
     </section>
 
     <section id="lean" className="proof-evolution-section" aria-labelledby="lean-title">
       <SectionHeading
         id="lean-title"
-        eyebrow="Lean coverage"
-        title="The shortest human proof is not the formalized proof"
-        description="The upstream Lean solution follows OpenAI's longer interpolation-determinant route. Barreto's 3-page Wronskian proof has no Lean artifact in this prototype's source set."
+        eyebrow={t("proofMaps.evolution.leanEyebrow")}
+        title={t("proofMaps.evolution.leanTitle")}
+        description={t("proofMaps.evolution.leanDescription")}
       />
-      <LeanCoveragePanel data={data} />
+      <LeanCoveragePanel data={data} t={t} />
     </section>
 
     <section id="lean-structure" className="proof-evolution-section" aria-labelledby="lean-structure-title">
       <SectionHeading
         id="lean-structure-title"
-        eyebrow="Lean structure · source-derived"
-        title="What the formalization actually contains"
-        description={`The fetched closure contains ${leanStructure.summary.oaiModules.toLocaleString("en-US")} modules, ${leanStructure.summary.totalLines.toLocaleString("en-US")} lines, and ${leanStructure.summary.declarations.toLocaleString("en-US")} declarations. This view combines the proof chain with the real import graph: select a version to see its steps, select a step to see its Lean alignment, and expand a subsystem to inspect the modules.`}
+        eyebrow={t("proofMaps.evolution.leanStructureEyebrow")}
+        title={t("proofMaps.evolution.leanStructureTitle")}
+        description={t("proofMaps.evolution.leanStructureDescription", {
+          modules: leanStructure.summary.oaiModules.toLocaleString(locale),
+          lines: leanStructure.summary.totalLines.toLocaleString(locale),
+          declarations: leanStructure.summary.declarations.toLocaleString(locale),
+        })}
       />
       <LeanStructureView data={data} lean={leanStructure} selectedVersion={selected} onSelectVersion={setSelectedId} />
     </section>
@@ -143,20 +197,20 @@ export function ProofEvolutionClient({ data, leanStructure, argumentMap }: { dat
     <section id="sources" className="proof-evolution-section" aria-labelledby="sources-title">
       <SectionHeading
         id="sources-title"
-        eyebrow="Sources"
-        title="Primary sources and upstream artifacts"
-        description="Links point to the papers, the 3-page manuscript, the expositions, and the upstream Lean files. None of these links is a Proofweave verification."
+        eyebrow={t("proofMaps.evolution.sourcesEyebrow")}
+        title={t("proofMaps.evolution.sourcesTitle")}
+        description={t("proofMaps.evolution.sourcesDescription")}
       />
-      <SourcesPanel data={data} />
+      <SourcesPanel data={data} t={t} />
     </section>
   </div>;
 }
 
-function CaveatPanel({ caveats }: { caveats: string[] }) {
+function CaveatPanel({ caveats, t }: { caveats: string[]; t: Translator }) {
   return <Surface tone="inset" className="proof-evolution-caveat">
     <div className="proof-evolution-caveat-heading">
-      <Badge tone="warning">Draft · unreviewed</Badge>
-      <strong>What this prototype is, and is not</strong>
+      <Badge tone="warning">{t("proofMaps.evolution.caveatBadge")}</Badge>
+      <strong>{t("proofMaps.evolution.caveatTitle")}</strong>
     </div>
     <ul>
       {caveats.map((caveat) => <li key={caveat}>{caveat}</li>)}
@@ -172,22 +226,24 @@ function SectionHeading({ id, eyebrow, title, description }: { id: string; eyebr
   </div>;
 }
 
-function VersionGraph({ data, selectedId, onSelect }: {
+function VersionGraph({ data, selectedId, onSelect, t, locale }: {
   data: ProofEvolutionData;
   selectedId: string;
   onSelect: (id: string) => void;
+  t: Translator;
+  locale: Locale;
 }) {
   const byId = new Map(data.versions.map((version) => [version.id, version]));
   const width = 1200;
   const height = 640;
   return <>
-    <div className="proof-evolution-graph-scroll" tabIndex={0} aria-label="Proof evolution graph; select a version to inspect it">
+    <div className="proof-evolution-graph-scroll" tabIndex={0} aria-label={t("proofMaps.evolution.graphScrollAria")}>
     <div className="proof-evolution-graph" style={{ width, height }}>
       <div className="proof-track-band proof-track-band-stronger" style={{ left: 20, top: 0, width: width - 40, height: 140 }}>
-        <span>Stronger theorem · different analytic track</span>
+        <span>{t("proofMaps.evolution.bandStronger")}</span>
       </div>
       <div className="proof-track-band proof-track-band-same" style={{ left: 20, top: 160, width: width - 40, height: 460 }}>
-        <span>Same theorem · Landau–Siegel real-zero gap</span>
+        <span>{t("proofMaps.evolution.bandSame")}</span>
       </div>
       <svg className="proof-evolution-edges" viewBox={`0 0 ${width} ${height}`} aria-hidden="true">
         <defs>
@@ -205,7 +261,7 @@ function VersionGraph({ data, selectedId, onSelect }: {
             className={cx("proof-edge", `is-${edge.relation}`, edge.secondary && "is-secondary")}
             markerEnd="url(#proof-arrow)"
           >
-            <title>{`${from.label} ${relationLabel[edge.relation]} ${to.label}: ${edge.label}`}</title>
+            <title>{`${from.label} ${t(relationKeys[edge.relation])} ${to.label}: ${edge.label}`}</title>
           </path>;
         })}
       </svg>
@@ -217,25 +273,25 @@ function VersionGraph({ data, selectedId, onSelect }: {
           className={cx("proof-version-node", selected && "is-selected", version.trackId === "stronger-theorem" && "is-stronger")}
           style={{ left: version.layout.x, top: version.layout.y, width: VERSION_NODE_WIDTH, height: VERSION_NODE_HEIGHT }}
           aria-pressed={selected}
-          aria-label={`${version.label}: ${version.pages} pages, ${version.method}, ${leanStatusLabel[version.lean.status]}`}
+          aria-label={t("proofMaps.evolution.versionAria", { label: version.label, pages: version.pages, method: version.method, leanStatus: t(leanStatusKeys[version.lean.status]) })}
           onClick={() => onSelect(version.id)}
         >
           <span className="proof-version-node-top">
-            <span className="proof-version-goal">{version.trackId === "stronger-theorem" ? "Stronger theorem" : goalLabel[version.goal]}</span>
-            <span className="proof-version-pages">{version.pages} pp</span>
+            <span className="proof-version-goal">{version.trackId === "stronger-theorem" ? t("proofMaps.evolution.strongerTheorem") : t(goalKeys[version.goal])}</span>
+            <span className="proof-version-pages">{t("proofMaps.evolution.pages", { count: version.pages })}</span>
           </span>
           <strong className="proof-version-node-label">{version.label}</strong>
           <span className="proof-version-node-method">{version.method}</span>
           <span className="proof-version-node-foot">
             <span className={cx("proof-lean-dot", version.lean.status === "formalized_upstream" ? "is-formalized" : "is-missing")} aria-hidden="true" />
-            <span>{version.lean.status === "formalized_upstream" ? "Lean" : "No Lean"}</span>
-            <span>{formatDate(version.date)}</span>
+            <span>{version.lean.status === "formalized_upstream" ? t("proofMaps.evolution.lean") : t("proofMaps.evolution.noLean")}</span>
+            <span>{formatDate(version.date, locale)}</span>
           </span>
         </button>;
       })}
       </div>
     </div>
-    <div className="proof-version-index" aria-label="Version index">
+    <div className="proof-version-index" aria-label={t("proofMaps.evolution.versionIndexAria")}>
       {data.versions.map((version) => <button
         type="button"
         key={version.id}
@@ -244,7 +300,7 @@ function VersionGraph({ data, selectedId, onSelect }: {
         onClick={() => onSelect(version.id)}
       >
         <span>{version.label}</span>
-        <small>{version.pages} pp · {goalLabel[version.goal]}</small>
+        <small>{t("proofMaps.evolution.pages", { count: version.pages })} · {t(goalKeys[version.goal])}</small>
       </button>)}
     </div>
   </>;
@@ -259,7 +315,7 @@ function versionEdgePath(from: ProofVersion, to: ProofVersion) {
   return `M ${x1} ${y1} C ${x1 + dx} ${y1}, ${x2 - dx} ${y2}, ${x2} ${y2}`;
 }
 
-function VersionDetail({ version, data }: { version: ProofVersion; data: ProofEvolutionData }) {
+function VersionDetail({ version, data, t, locale }: { version: ProofVersion; data: ProofEvolutionData; t: Translator; locale: Locale }) {
   const track = trackById(data, version.trackId);
   return <Surface tone="card" className="proof-evolution-detail">
     <header className="proof-detail-header">
@@ -269,9 +325,9 @@ function VersionDetail({ version, data }: { version: ProofVersion; data: ProofEv
         <p>{version.summary}</p>
       </div>
       <div className="proof-detail-badges">
-        <Badge>{version.pages} pages</Badge>
-        <Badge tone={leanTone(version.lean.status)}>{leanStatusLabel[version.lean.status]}</Badge>
-        <Badge>{goalLabel[version.goal]}</Badge>
+        <Badge>{t("proofMaps.evolution.pagesBadge", { count: version.pages })}</Badge>
+        <Badge tone={leanTone(version.lean.status)}>{t(leanStatusKeys[version.lean.status])}</Badge>
+        <Badge>{t(goalKeys[version.goal])}</Badge>
       </div>
     </header>
 
@@ -279,56 +335,56 @@ function VersionDetail({ version, data }: { version: ProofVersion; data: ProofEv
       <div className="proof-detail-graph">
         <div className="proof-detail-subheading">
           <div>
-            <span className="proof-detail-label">Internal proof map</span>
-            <strong>{detailLevelLabel[version.proofDetail]}</strong>
+            <span className="proof-detail-label">{t("proofMaps.evolution.internalProofMap")}</span>
+            <strong>{t(detailLevelKeys[version.proofDetail])}</strong>
           </div>
-          <Badge tone="neutral">{version.proofSteps.length} nodes</Badge>
+          <Badge tone="neutral">{t("proofMaps.evolution.nodesBadge", { count: version.proofSteps.length })}</Badge>
         </div>
-        <InternalProofGraph version={version} />
-        <p className="proof-detail-scroll-hint">Scroll the graph horizontally for the full map; the full step list follows.</p>
-        <p className="proof-detail-note">{detailLevelNote[version.proofDetail]}</p>
+        <InternalProofGraph version={version} t={t} />
+        <p className="proof-detail-scroll-hint">{t("proofMaps.evolution.scrollHint")}</p>
+        <p className="proof-detail-note">{t(detailLevelNoteKeys[version.proofDetail])}</p>
       </div>
 
       <aside className="proof-detail-meta">
         <FieldList layout="stacked">
-          <Field label="Authors">{version.authors.join(", ")}</Field>
-          <Field label="Date">{formatDate(version.date)}{version.releaseDate ? ` · release ${formatDate(version.releaseDate)}` : ""}</Field>
-          <Field label="Method">{version.method}</Field>
-          <Field label="Field">{version.field}</Field>
-          <Field label="Constant">{explicitConstantLabel[version.explicitConstant]}</Field>
-          <Field label="AI / provenance">{version.aiAssistance}</Field>
-          <Field label="Source"><a href={version.sourceUrl} target="_blank" rel="noreferrer">{version.sourceLabel} ↗</a></Field>
+          <Field label={t("proofMaps.evolution.fieldAuthors")}>{version.authors.join(", ")}</Field>
+          <Field label={t("proofMaps.evolution.fieldDate")}>{formatDate(version.date, locale)}{version.releaseDate ? t("proofMaps.evolution.release", { date: formatDate(version.releaseDate, locale) }) : ""}</Field>
+          <Field label={t("proofMaps.evolution.fieldMethod")}>{version.method}</Field>
+          <Field label={t("proofMaps.evolution.fieldField")}>{version.field}</Field>
+          <Field label={t("proofMaps.evolution.fieldConstant")}>{t(explicitConstantKeys[version.explicitConstant])}</Field>
+          <Field label={t("proofMaps.evolution.fieldProvenance")}>{version.aiAssistance}</Field>
+          <Field label={t("proofMaps.evolution.fieldSource")}><a href={version.sourceUrl} target="_blank" rel="noreferrer">{version.sourceLabel} ↗</a></Field>
         </FieldList>
         <div className="proof-detail-change">
-          <span>What changed</span>
+          <span>{t("proofMaps.evolution.whatChanged")}</span>
           <p>{version.changeSummary}</p>
         </div>
         <div className={cx("proof-detail-lean", version.lean.status === "formalized_upstream" ? "is-formalized" : "is-missing")}>
-          <span>Lean</span>
+          <span>{t("proofMaps.evolution.leanSection")}</span>
           <strong>{version.lean.label}</strong>
           <p>{version.lean.note}</p>
-          {version.lean.url && <a href={version.lean.url} target="_blank" rel="noreferrer">Open Lean source ↗</a>}
+          {version.lean.url && <a href={version.lean.url} target="_blank" rel="noreferrer">{t("proofMaps.evolution.openLeanSource")}</a>}
         </div>
       </aside>
     </div>
 
-    <div className="proof-step-list" aria-label={`Proof steps for ${version.label}`}>
+    <div className="proof-step-list" aria-label={t("proofMaps.evolution.stepListAria", { label: version.label })}>
       {version.proofSteps.map((step) => <article className="proof-step-card" key={step.id}>
         <div className="proof-step-card-top">
-          <Badge>{step.kind}</Badge>
+          <Badge>{t(stepKindKeys[step.kind])}</Badge>
           <code>{step.source}</code>
         </div>
         <strong>{step.label}</strong>
         <p>{step.detail}</p>
-        {step.dependsOn.length > 0 && <small>Depends on: {step.dependsOn.join(", ")}</small>}
+        {step.dependsOn.length > 0 && <small>{t("proofMaps.evolution.dependsOn", { items: step.dependsOn.join(", ") })}</small>}
       </article>)}
     </div>
   </Surface>;
 }
 
-function InternalProofGraph({ version }: { version: ProofVersion }) {
+function InternalProofGraph({ version, t }: { version: ProofVersion; t: Translator }) {
   const layout = layoutProofSteps(version.proofSteps);
-  return <div className="proof-internal-graph-scroll" tabIndex={0} aria-label={`${version.label} internal proof graph; the full step list follows`}>
+  return <div className="proof-internal-graph-scroll" tabIndex={0} aria-label={t("proofMaps.evolution.graphAria", { label: version.label })}>
     <div className="proof-internal-graph" style={{ width: layout.width, height: layout.height }}>
       <svg className="proof-internal-edges" viewBox={`0 0 ${layout.width} ${layout.height}`} aria-hidden="true">
         <defs>
@@ -356,7 +412,7 @@ function InternalProofGraph({ version }: { version: ProofVersion }) {
           key={step.id}
           style={{ left: position.x, top: position.y, width: STEP_NODE_WIDTH, height: STEP_NODE_HEIGHT }}
         >
-          <span className="proof-step-node-kind">{step.kind}</span>
+          <span className="proof-step-node-kind">{t(stepKindKeys[step.kind])}</span>
           <strong>{step.label}</strong>
           <small>{step.source}</small>
         </div>;
@@ -410,19 +466,19 @@ function stepEdgePath(from: { x: number; y: number }, to: { x: number; y: number
   return `M ${x1} ${y1} C ${x1 + dx} ${y1}, ${x2 - dx} ${y2}, ${x2} ${y2}`;
 }
 
-function CompressionLedger({ data }: { data: ProofEvolutionData }) {
+function CompressionLedger({ data, t }: { data: ProofEvolutionData; t: Translator }) {
   const versions = data.ledger.columns
     .map((id) => versionById(data, id))
     .filter((version): version is ProofVersion => Boolean(version));
   return <Surface tone="card" className="proof-ledger-panel">
-    <div className="proof-ledger-scroll" tabIndex={0} aria-label="Compression ledger">
+    <div className="proof-ledger-scroll" tabIndex={0} aria-label={t("proofMaps.evolution.ledgerAria")}>
       <table className="proof-ledger">
         <thead>
           <tr>
-            <th scope="col">Machinery</th>
+            <th scope="col">{t("proofMaps.evolution.machinery")}</th>
             {versions.map((version) => <th scope="col" key={version.id}>
               <span>{version.label}</span>
-              <small>{version.pages} pp</small>
+              <small>{t("proofMaps.evolution.pages", { count: version.pages })}</small>
             </th>)}
           </tr>
         </thead>
@@ -432,71 +488,71 @@ function CompressionLedger({ data }: { data: ProofEvolutionData }) {
             {versions.map((version) => {
               const status = row.cells[version.id];
               return <td key={`${row.id}-${version.id}`}>
-                <Badge tone={ledgerTone(status)}>{ledgerStatusLabel[status]}</Badge>
+                <Badge tone={ledgerTone(status)}>{t(ledgerStatusKeys[status])}</Badge>
               </td>;
             })}
           </tr>)}
         </tbody>
       </table>
     </div>
-    <div className="proof-ledger-legend" aria-label="Ledger status legend">
-      <span><Badge tone="positive">Used</Badge> present in this proof</span>
-      <span><Badge tone="warning">Replaced</Badge> replaced by another tool</span>
-      <span><Badge tone="negative">Removed</Badge> not used in this version</span>
-      <span><Badge tone="neutral">Not used</Badge> never part of this route</span>
-      <span><Badge tone="neutral">Existential</Badge> absolute but no numeric value</span>
-      <span><Badge tone="positive">Explicit</Badge> numeric constant stated</span>
+    <div className="proof-ledger-legend" aria-label={t("proofMaps.evolution.ledgerLegendAria")}>
+      <span><Badge tone="positive">{t("proofMaps.evolution.ledgerUsed")}</Badge> {t("proofMaps.evolution.ledgerUsedNote")}</span>
+      <span><Badge tone="warning">{t("proofMaps.evolution.ledgerReplaced")}</Badge> {t("proofMaps.evolution.ledgerReplacedNote")}</span>
+      <span><Badge tone="negative">{t("proofMaps.evolution.ledgerRemoved")}</Badge> {t("proofMaps.evolution.ledgerRemovedNote")}</span>
+      <span><Badge tone="neutral">{t("proofMaps.evolution.ledgerNotUsed")}</Badge> {t("proofMaps.evolution.ledgerNotUsedNote")}</span>
+      <span><Badge tone="neutral">{t("proofMaps.evolution.ledgerExistential")}</Badge> {t("proofMaps.evolution.ledgerExistentialNote")}</span>
+      <span><Badge tone="positive">{t("proofMaps.evolution.ledgerExplicit")}</Badge> {t("proofMaps.evolution.ledgerExplicitNote")}</span>
     </div>
   </Surface>;
 }
 
-function LeanCoveragePanel({ data }: { data: ProofEvolutionData }) {
+function LeanCoveragePanel({ data, t }: { data: ProofEvolutionData; t: Translator }) {
   const sameTheorem = versionsForTrack(data, "same-theorem");
   const shortest = [...sameTheorem].sort((a, b) => a.pages - b.pages)[0];
   const formalizedSameTheorem = sameTheorem.find((version) => version.lean.status === "formalized_upstream");
   return <div className="proof-lean-panel">
     <div className="proof-lean-gap">
       <div className="proof-lean-gap-card is-human">
-        <span>Shortest human proof</span>
-        <strong>{shortest ? `${shortest.pages} pages` : "—"}</strong>
-        <small>{shortest ? `${shortest.label} · ${shortest.lean.status === "formalized_upstream" ? "formalized" : "not formalized"}` : "No version"}</small>
+        <span>{t("proofMaps.evolution.shortestHuman")}</span>
+        <strong>{shortest ? t("proofMaps.evolution.pagesValue", { count: shortest.pages }) : "—"}</strong>
+        <small>{shortest ? `${shortest.label} · ${shortest.lean.status === "formalized_upstream" ? t("proofMaps.evolution.formalized") : t("proofMaps.evolution.notFormalized")}` : t("proofMaps.evolution.noVersion")}</small>
       </div>
       <div className="proof-lean-gap-mark" aria-hidden="true">≠</div>
       <div className="proof-lean-gap-card is-machine">
-        <span>Formalized same-theorem route</span>
-        <strong>{formalizedSameTheorem ? `${formalizedSameTheorem.pages} pages` : "—"}</strong>
-        <small>{formalizedSameTheorem ? `${formalizedSameTheorem.label} · upstream solution` : "No upstream solution found"}</small>
+        <span>{t("proofMaps.evolution.formalizedRoute")}</span>
+        <strong>{formalizedSameTheorem ? t("proofMaps.evolution.pagesValue", { count: formalizedSameTheorem.pages }) : "—"}</strong>
+        <small>{formalizedSameTheorem ? `${formalizedSameTheorem.label} · ${t("proofMaps.evolution.upstreamSolution")}` : t("proofMaps.evolution.noUpstream")}</small>
       </div>
     </div>
     <Surface tone="card" className="proof-lean-table-panel">
-      <div className="proof-ledger-scroll" tabIndex={0} aria-label="Lean coverage by version">
+      <div className="proof-ledger-scroll" tabIndex={0} aria-label={t("proofMaps.evolution.leanTableAria")}>
         <table className="proof-lean-table">
           <thead>
-            <tr><th scope="col">Version</th><th scope="col">Pages</th><th scope="col">Lean status</th><th scope="col">Evidence</th></tr>
+            <tr><th scope="col">{t("proofMaps.evolution.colVersion")}</th><th scope="col">{t("proofMaps.evolution.colPages")}</th><th scope="col">{t("proofMaps.evolution.colLeanStatus")}</th><th scope="col">{t("proofMaps.evolution.colEvidence")}</th></tr>
           </thead>
           <tbody>
             {data.versions.map((version) => <tr key={version.id}>
               <th scope="row">{version.label}<small>{version.date}</small></th>
               <td>{version.pages}</td>
-              <td><Badge tone={leanTone(version.lean.status)}>{leanStatusLabel[version.lean.status]}</Badge></td>
+              <td><Badge tone={leanTone(version.lean.status)}>{t(leanStatusKeys[version.lean.status])}</Badge></td>
               <td className="proof-lean-evidence">
                 <strong>{version.lean.label}</strong>
                 <span>{version.lean.note}</span>
-                {version.lean.url && <a href={version.lean.url} target="_blank" rel="noreferrer">Open Lean source ↗</a>}
+                {version.lean.url && <a href={version.lean.url} target="_blank" rel="noreferrer">{t("proofMaps.evolution.openLeanSource")}</a>}
               </td>
             </tr>)}
           </tbody>
         </table>
       </div>
       <div className="proof-lean-note">
-        <strong>Comparator caveat</strong>
-        <p><code>SiegelZeros.lean</code> is a comparator challenge statement ending in <code>sorry</code>; the solution module <code>OAI.NumberTheory.SiegelZeros.Main</code> is the proof. Proofweave has not re-run the kernel or the comparator for this prototype.</p>
+        <strong>{t("proofMaps.evolution.comparatorCaveat")}</strong>
+        <p><code>SiegelZeros.lean</code>{t("proofMaps.evolution.comparatorBodyA")}<code>sorry</code>{t("proofMaps.evolution.comparatorBodyB")}<code>OAI.NumberTheory.SiegelZeros.Main</code>{t("proofMaps.evolution.comparatorBodyC")}</p>
       </div>
     </Surface>
   </div>;
 }
 
-function SourcesPanel({ data }: { data: ProofEvolutionData }) {
+function SourcesPanel({ data, t }: { data: ProofEvolutionData; t: Translator }) {
   return <Surface tone="card" className="proof-sources-panel">
     <ul className="proof-sources-list">
       {data.sources.map((source) => <li key={source.url}>
@@ -504,6 +560,6 @@ function SourcesPanel({ data }: { data: ProofEvolutionData }) {
         <a href={source.url} target="_blank" rel="noreferrer">{source.label} ↗</a>
       </li>)}
     </ul>
-    <p className="proof-sources-note">This prototype is curated from the sources above. It does not claim that any version has been peer-reviewed by Proofweave, replayed, or kernel-checked.</p>
+    <p className="proof-sources-note">{t("proofMaps.evolution.sourcesNote")}</p>
   </Surface>;
 }

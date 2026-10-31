@@ -2,6 +2,9 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Surface } from "@/app/components/ui";
+import { useI18n } from "@/app/i18n/client";
+import type { Locale } from "@/app/i18n/config";
+import type { TranslationKey, Translator } from "@/app/i18n/translate";
 import {
   type LeanStructureData,
   type ProofEvolutionData,
@@ -49,45 +52,56 @@ const COLORS: Record<NetworkNodeType, string> = {
   external: "#7d8ba3",
 };
 
-const STEP_LABELS: Record<string, string> = {
-  "theorem-1": "Theorem 1",
-  "prime-bias": "Prime bias",
-  interpolation: "Interpolation",
-  "spanning-rows": "Spanning rows",
-  "weighted-determinant": "Determinant",
-  archimedean: "Archimedean",
-  "prime-divisibility": "p-divisibility",
-  assembly: "Assembly",
-  "theorem-1-1": "Explicit gap",
-  "interpolation-chain": "Interpolation",
-  greedy: "Greedy",
-  "pivot-bounds": "Pivot bounds",
-  frobenius: "Frobenius",
-  "prime-powers": "Prime powers",
-  "lower-bound": "Lower bound",
-  masser: "Masser",
-  pigeonhole: "Pigeonhole",
-  vanishing: "Vanishing mod p",
-  "analytic-input": "Prime bias",
-  "polynomial-basis": "Basis",
-  count: "Counting",
-  "nonsingular": "Row independence",
-  padic: "p-adic",
-  compare: "Comparison",
-  wronskian: "Wronskian",
-  divisibility: "Divisibility",
-  size: "Size bound",
-  "corollary-2": "Corollary 2",
-  "corollary-1": "Corollary 1",
-  "nonvanishing": "Nonvanishing",
-  "coefficient-count": "Coefficient count",
-  congruences: "Congruences",
-  hyperbola: "Hyperbola",
-  comparison: "Comparison",
+const STEP_LABEL_KEYS: Record<string, TranslationKey> = {
+  "theorem-1": "proofMaps.stepLabel.theorem-1",
+  "prime-bias": "proofMaps.stepLabel.prime-bias",
+  interpolation: "proofMaps.stepLabel.interpolation",
+  "spanning-rows": "proofMaps.stepLabel.spanning-rows",
+  "weighted-determinant": "proofMaps.stepLabel.weighted-determinant",
+  archimedean: "proofMaps.stepLabel.archimedean",
+  "prime-divisibility": "proofMaps.stepLabel.prime-divisibility",
+  assembly: "proofMaps.stepLabel.assembly",
+  "theorem-1-1": "proofMaps.stepLabel.theorem-1-1",
+  "interpolation-chain": "proofMaps.stepLabel.interpolation-chain",
+  greedy: "proofMaps.stepLabel.greedy",
+  "pivot-bounds": "proofMaps.stepLabel.pivot-bounds",
+  frobenius: "proofMaps.stepLabel.frobenius",
+  "prime-powers": "proofMaps.stepLabel.prime-powers",
+  "lower-bound": "proofMaps.stepLabel.lower-bound",
+  masser: "proofMaps.stepLabel.masser",
+  pigeonhole: "proofMaps.stepLabel.pigeonhole",
+  vanishing: "proofMaps.stepLabel.vanishing",
+  "analytic-input": "proofMaps.stepLabel.analytic-input",
+  "polynomial-basis": "proofMaps.stepLabel.polynomial-basis",
+  count: "proofMaps.stepLabel.count",
+  nonsingular: "proofMaps.stepLabel.nonsingular",
+  padic: "proofMaps.stepLabel.padic",
+  compare: "proofMaps.stepLabel.compare",
+  wronskian: "proofMaps.stepLabel.wronskian",
+  divisibility: "proofMaps.stepLabel.divisibility",
+  size: "proofMaps.stepLabel.size",
+  "corollary-2": "proofMaps.stepLabel.corollary-2",
+  "corollary-1": "proofMaps.stepLabel.corollary-1",
+  nonvanishing: "proofMaps.stepLabel.nonvanishing",
+  "coefficient-count": "proofMaps.stepLabel.coefficient-count",
+  congruences: "proofMaps.stepLabel.congruences",
+  hyperbola: "proofMaps.stepLabel.hyperbola",
+  comparison: "proofMaps.stepLabel.comparison",
 };
 
-function shortStep(step: { id: string; label: string }) {
-  if (STEP_LABELS[step.id]) return STEP_LABELS[step.id];
+const nodeTypeKeys: Record<NetworkNodeType, TranslationKey> = {
+  version: "proofMaps.network.typeVersion",
+  step: "proofMaps.network.typeStep",
+  subsystem: "proofMaps.network.typeSubsystem",
+  anchor: "proofMaps.network.typeAnchor",
+  module: "proofMaps.network.typeModule",
+  entry: "proofMaps.network.typeEntry",
+  external: "proofMaps.network.typeExternal",
+};
+
+function shortStep(step: { id: string; label: string }, t: Translator) {
+  const key = STEP_LABEL_KEYS[step.id];
+  if (key) return t(key);
   const compact = step.label.replace(/\s*·\s*/g, " · ");
   return compact.length > 24 ? `${compact.slice(0, 22)}…` : compact;
 }
@@ -111,7 +125,7 @@ function clusterPosition(type: NetworkNodeType, index: number, count: number) {
   return { x: c.cx + Math.cos(angle) * c.rx, y: c.cy + Math.sin(angle) * c.ry };
 }
 
-function buildGraph(data: ProofEvolutionData, lean: LeanStructureData, selectedVersion: ProofVersion, options: {
+function buildGraph(data: ProofEvolutionData, lean: LeanStructureData, selectedVersion: ProofVersion, t: Translator, options: {
   showSteps: boolean;
   showAnchors: boolean;
   showModules: boolean;
@@ -166,7 +180,7 @@ function buildGraph(data: ProofEvolutionData, lean: LeanStructureData, selectedV
       addNode({
         id: `step:${step.id}`,
         type: "step",
-        label: shortStep(step),
+        label: shortStep(step, t),
         sublabel: step.kind,
         r: 7,
         color: COLORS.step,
@@ -299,14 +313,15 @@ export function ProofNetworkGraph({ data, lean, selectedVersion, selectedStepId,
   onSelectStep: (id: string) => void;
   onSelectSubsystem: (id: string) => void;
 }) {
+  const { t, locale } = useI18n();
   const [showSteps, setShowSteps] = useState(true);
   const [showAnchors, setShowAnchors] = useState(true);
   const [showModules, setShowModules] = useState(false);
   const [showExternal, setShowExternal] = useState(false);
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(selectedStepId ? `step:${selectedStepId}` : selectedSubsystemId ? `subsystem:${selectedSubsystemId}` : `version:${selectedVersion.id}`);
   const graph = useMemo(
-    () => buildGraph(data, lean, selectedVersion, { showSteps, showAnchors, showModules, showExternal }),
-    [data, lean, selectedVersion, showSteps, showAnchors, showModules, showExternal],
+    () => buildGraph(data, lean, selectedVersion, t, { showSteps, showAnchors, showModules, showExternal }),
+    [data, lean, selectedVersion, t, showSteps, showAnchors, showModules, showExternal],
   );
   const effectiveSelectedNodeId = selectedNodeId && graph.nodes.some((node) => node.id === selectedNodeId) ? selectedNodeId : `version:${selectedVersion.id}`;
   const selectedNode = graph.nodes.find((node) => node.id === effectiveSelectedNodeId) ?? null;
@@ -657,37 +672,37 @@ export function ProofNetworkGraph({ data, lean, selectedVersion, selectedStepId,
 
   return <div className="proof-network">
     <div className="proof-network-toolbar">
-      <div className="proof-network-filters" aria-label="Network layers">
-        <label><input type="checkbox" checked={showSteps} onChange={(event) => setShowSteps(event.target.checked)} /> Proof steps</label>
-        <label><input type="checkbox" checked={showAnchors} onChange={(event) => setShowAnchors(event.target.checked)} /> Lean anchors</label>
-        <label><input type="checkbox" checked={showModules} onChange={(event) => setShowModules(event.target.checked)} /> Top-level modules</label>
-        <label><input type="checkbox" checked={showExternal} onChange={(event) => setShowExternal(event.target.checked)} /> External libs</label>
+      <div className="proof-network-filters" aria-label={t("proofMaps.network.layersAria")}>
+        <label><input type="checkbox" checked={showSteps} onChange={(event) => setShowSteps(event.target.checked)} /> {t("proofMaps.network.proofSteps")}</label>
+        <label><input type="checkbox" checked={showAnchors} onChange={(event) => setShowAnchors(event.target.checked)} /> {t("proofMaps.network.leanAnchors")}</label>
+        <label><input type="checkbox" checked={showModules} onChange={(event) => setShowModules(event.target.checked)} /> {t("proofMaps.network.topLevelModules")}</label>
+        <label><input type="checkbox" checked={showExternal} onChange={(event) => setShowExternal(event.target.checked)} /> {t("proofMaps.network.externalLibs")}</label>
       </div>
       <div className="proof-network-actions">
-        <button type="button" onClick={() => controlRef.current?.zoomIn()}>Zoom +</button>
-        <button type="button" onClick={() => controlRef.current?.zoomOut()}>Zoom −</button>
-        <button type="button" onClick={() => controlRef.current?.reheat()}>Reheat</button>
-        <button type="button" onClick={() => controlRef.current?.reset()}>Reset view</button>
+        <button type="button" onClick={() => controlRef.current?.zoomIn()}>{t("proofMaps.common.zoomIn")}</button>
+        <button type="button" onClick={() => controlRef.current?.zoomOut()}>{t("proofMaps.common.zoomOut")}</button>
+        <button type="button" onClick={() => controlRef.current?.reheat()}>{t("proofMaps.common.reheat")}</button>
+        <button type="button" onClick={() => controlRef.current?.reset()}>{t("proofMaps.common.resetView")}</button>
       </div>
-      <span className="proof-network-mobile-note">On small screens, use Layered or the module tables below for the full structure.</span>
+      <span className="proof-network-mobile-note">{t("proofMaps.network.mobileNote")}</span>
     </div>
     <div className="proof-network-stage" ref={containerRef}>
-      <canvas ref={canvasRef} aria-label="Interactive proof and Lean structure network; the tables below are the accessible full view." />
-      <div className="proof-network-hint">Drag nodes · scroll to zoom · click to focus · hover for labels</div>
+      <canvas ref={canvasRef} aria-label={t("proofMaps.network.canvasAria")} />
+      <div className="proof-network-hint">{t("proofMaps.network.hint")}</div>
     </div>
-    <div className="proof-network-legend" aria-label="Network legend">
-      <span><i style={{ background: COLORS.version }} />Version</span>
-      <span><i style={{ background: COLORS.step }} />Paper step</span>
-      <span><i style={{ background: COLORS.subsystem }} />Lean subsystem</span>
-      <span><i style={{ background: COLORS.anchor }} />Declaration anchor</span>
-      <span><i className="is-module" style={{ background: COLORS.module }} />Module</span>
-      <span><i className="is-external" style={{ background: COLORS.external }} />External</span>
-      <span>solid = source-anchored · dashed amber = inferred · thin = imports</span>
+    <div className="proof-network-legend" aria-label={t("proofMaps.network.legendAria")}>
+      <span><i style={{ background: COLORS.version }} />{t("proofMaps.network.legendVersion")}</span>
+      <span><i style={{ background: COLORS.step }} />{t("proofMaps.network.legendStep")}</span>
+      <span><i style={{ background: COLORS.subsystem }} />{t("proofMaps.network.legendSubsystem")}</span>
+      <span><i style={{ background: COLORS.anchor }} />{t("proofMaps.network.legendAnchor")}</span>
+      <span><i className="is-module" style={{ background: COLORS.module }} />{t("proofMaps.network.legendModule")}</span>
+      <span><i className="is-external" style={{ background: COLORS.external }} />{t("proofMaps.network.legendExternal")}</span>
+      <span>{t("proofMaps.network.legendNote")}</span>
     </div>
     {selectedNode && <Surface tone="card" className="proof-network-detail">
-      <span className="proof-network-detail-type">{selectedNode.type}</span>
+      <span className="proof-network-detail-type">{t(nodeTypeKeys[selectedNode.type])}</span>
       <h3>{selectedNode.label}</h3>
-      <p>{networkDetail(selectedNode, data, lean, selectedVersion)}</p>
+      <p>{networkDetail(selectedNode, data, lean, selectedVersion, t, locale)}</p>
       {selectedNode.meta.anchorId && (() => {
         const anchor = lean.anchors.find((candidate) => candidate.id === selectedNode.meta.anchorId);
         return anchor ? <div className="proof-network-detail-meta">
@@ -700,38 +715,50 @@ export function ProofNetworkGraph({ data, lean, selectedVersion, selectedStepId,
         const moduleInfo = lean.modules.find((candidate) => candidate.id === selectedNode.meta.moduleId);
         return moduleInfo ? <div className="proof-network-detail-meta">
           <code>{shortModule(moduleInfo.id)}</code>
-          <a href={moduleInfo.url} target="_blank" rel="noreferrer">Open source ↗</a>
-          <span>{moduleInfo.lines} lines · {moduleInfo.declarations} declarations · {moduleInfo.importsOai} OAI imports · {moduleInfo.importsExternal} external imports</span>
+          <a href={moduleInfo.url} target="_blank" rel="noreferrer">{t("proofMaps.network.openSource")}</a>
+          <span>{t("proofMaps.network.detailMeta", { lines: moduleInfo.lines.toLocaleString(locale), declarations: moduleInfo.declarations.toLocaleString(locale), importsOai: moduleInfo.importsOai.toLocaleString(locale), importsExternal: moduleInfo.importsExternal.toLocaleString(locale) })}</span>
         </div> : null;
       })()}
     </Surface>}
   </div>;
 }
 
-function networkDetail(node: NetworkNode, data: ProofEvolutionData, lean: LeanStructureData, selectedVersion: ProofVersion) {
+function networkDetail(node: NetworkNode, data: ProofEvolutionData, lean: LeanStructureData, selectedVersion: ProofVersion, t: Translator, locale: Locale) {
   if (node.type === "version") {
     const version = data.versions.find((candidate) => candidate.id === node.meta.versionId);
-    return version ? `${version.pages} pages · ${version.method} · ${version.lean.status === "formalized_upstream" ? "Lean formalized upstream" : "no Lean formalization found"}` : "";
+    return version ? t("proofMaps.network.versionDetail", {
+      pages: version.pages,
+      method: version.method,
+      lean: version.lean.status === "formalized_upstream" ? t("proofMaps.network.leanFormalized") : t("proofMaps.network.leanMissing"),
+    }) : "";
   }
   if (node.type === "step") {
     const step = selectedVersion.proofSteps.find((candidate) => candidate.id === node.meta.stepId);
     const alignment = lean.paperAlignments.find((candidate) => candidate.versionId === selectedVersion.id && candidate.stepId === node.meta.stepId);
-    return step ? `${step.source} · ${alignment ? `Lean alignment: ${alignment.subsystems.join(", ")} (${alignment.confidence})` : "no Lean alignment for this version"}` : "";
+    if (!step) return "";
+    return alignment
+      ? t("proofMaps.network.stepDetailA", { source: step.source, subsystems: alignment.subsystems.join(", "), confidence: alignment.confidence })
+      : t("proofMaps.network.stepDetailB", { source: step.source });
   }
   if (node.type === "subsystem") {
     const subsystem = lean.subsystems.find((candidate) => candidate.id === node.meta.subsystemId);
     if (!subsystem) return "";
     const imports = lean.subsystemEdges.filter((edge) => edge.from === subsystem.id && edge.to !== subsystem.id).sort((a, b) => b.count - a.count).slice(0, 3);
-    return `${subsystem.moduleCount} modules · ${subsystem.lines.toLocaleString("en-US")} lines · ${subsystem.declarations.toLocaleString("en-US")} declarations · imports ${imports.map((edge) => `${edge.to} (${edge.count})`).join(", ") || "none"}.`;
+    return t("proofMaps.network.subsystemDetail", {
+      modules: subsystem.moduleCount.toLocaleString(locale),
+      lines: subsystem.lines.toLocaleString(locale),
+      declarations: subsystem.declarations.toLocaleString(locale),
+      imports: imports.map((edge) => `${edge.to} (${edge.count})`).join(", ") || t("proofMaps.network.subsystemImportsNone"),
+    });
   }
   if (node.type === "anchor") {
     const anchor = lean.anchors.find((candidate) => candidate.id === node.meta.anchorId);
-    return anchor ? `${anchor.role} · ${anchor.paperStepId} · source-located declaration` : "";
+    return anchor ? t("proofMaps.network.anchorDetail", { role: anchor.role, step: anchor.paperStepId }) : "";
   }
   if (node.type === "module") {
     const moduleInfo = lean.modules.find((candidate) => candidate.id === node.meta.moduleId);
-    return moduleInfo ? `${moduleInfo.subsystem} · ${moduleInfo.lines} lines · ${moduleInfo.declarations} declarations` : "";
+    return moduleInfo ? t("proofMaps.network.moduleDetail", { subsystem: moduleInfo.subsystem, lines: moduleInfo.lines.toLocaleString(locale), declarations: moduleInfo.declarations.toLocaleString(locale) }) : "";
   }
-  if (node.type === "entry") return `${lean.topLevelModules.length} direct imports of Main.lean. Turn off filters to see the full module list below.`;
-  return node.type === "external" ? `External import node · Mathlib: ${lean.externalImports.mathlibCount} · PNT: ${lean.externalImports.pnt.length} (not fetched).` : "";
+  if (node.type === "entry") return t("proofMaps.network.entryDetail", { count: lean.topLevelModules.length.toLocaleString(locale) });
+  return node.type === "external" ? t("proofMaps.network.externalDetail", { mathlib: lean.externalImports.mathlibCount.toLocaleString(locale), pnt: lean.externalImports.pnt.length.toLocaleString(locale) }) : "";
 }
