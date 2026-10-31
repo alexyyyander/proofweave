@@ -77,3 +77,14 @@ test("terminal non-accepted runs do not look like proof success", () => {
   assert.equal(unreadable.tone, "failed");
   assert.match(unreadable.title, /controlled inspection/i);
 });
+
+test("dead-lettered preparation is visible as a service failure without a Lean verdict", () => {
+  const status = runnerWorkflowStatus({ ...baseRun, state: "preparing", delivery: { state: "dead_letter", attempts: 1, errorCode: "runner_workspace_finalization_rejected_4xx" } }, true);
+  assert.equal(status.tone, "failed");
+  assert.equal(status.badge, "Runner needs repair");
+  assert.match(status.title, /before Lean could start/);
+  assert.match(status.detail, /evidence is preserved/);
+  assert.match(status.technicalDetail, /runner_workspace_finalization_rejected_4xx/);
+  const retrying = runnerWorkflowStatus({ ...baseRun, state: "preparing", delivery: { state: "queued", attempts: 1, errorCode: "runner_workspace_finalization_rejected_5xx" } }, true);
+  assert.equal(retrying.tone, "running");
+});

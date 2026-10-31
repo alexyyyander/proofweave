@@ -8,6 +8,9 @@ export class RunnerWorkspaceTransferError extends Error {
   constructor(message, options = {}) {
     super(message, options);
     this.name = "RunnerWorkspaceTransferError";
+    // Only explicit invalid-evidence responses stop delivery. Network errors,
+    // rate limits, and server failures remain eligible for bounded retries.
+    this.retryable = ![400, 413, 415, 422].includes(options.httpStatus);
     if (options.diagnosticCode !== undefined) {
       this.diagnosticCode = requireDiagnosticCode(options.diagnosticCode);
     }
@@ -160,6 +163,7 @@ async function expectAccepted(response, label, diagnosticPrefix) {
       : "response_error";
     throw new RunnerWorkspaceTransferError(`Runner Container rejected ${label}.`, {
       diagnosticCode: `${diagnosticPrefix}_rejected_${statusClass}`,
+      httpStatus: response?.status,
     });
   }
 }

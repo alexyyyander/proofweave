@@ -44,6 +44,8 @@ import {
   ResearchWriteNotAllowedError,
 } from "../services/database/research-write-allowlist.mjs";
 
+import { prepareOddSumIntake, applyOddSumIntake } from "../scripts/seed-first-contribution-target.mjs";
+
 const migrationsRoot = new URL("../drizzle/", import.meta.url);
 const researchWriteAllowlist = JSON.stringify({
   schemaVersion: "pw-research-write-allowlist-v1",
@@ -957,6 +959,21 @@ test("a prove-delegated OAuth Agent stages a signed v2 Bundle and requests one i
   assert.deepEqual(visibleRun.events.map((event) => event.eventType), ["run_queued"]);
   assert.equal(visibleRun.verificationState, "not_verified");
 
+  assert.equal(visibleRun.delivery, null);
+  await database.prepare(`INSERT INTO runner_queue_messages (
+    run_id, attempt_id, idempotency_key, request_hash, canonical_message, delivery_state,
+    delivery_attempts, last_error_code, available_at, enqueued_at, updated_at
+  ) VALUES (?, ?, ?, ?, ?, 'dead_letter', 1, 'runner_workspace_finalization_rejected_4xx', ?, ?, ?)`).bind(
+    run.run.id, attemptId, run.run.idempotencyKey, run.run.requestHash, "private-envelope-must-not-leak",
+    run.run.queuedAt, run.run.queuedAt, run.run.queuedAt,
+  ).run();
+  const stopped = await callGatewayTool(gateway, resource, accessToken, "get_runner_run", { attemptId, runId: run.run.id });
+  const stoppedRun = JSON.parse(stopped.result.content[0].text);
+  assert.deepEqual(stoppedRun.delivery, { state: "dead_letter", attempts: 1, errorCode: "runner_workspace_finalization_rejected_4xx" });
+  assert.equal(stoppedRun.run.startedAt, null);
+  assert.equal(stoppedRun.verificationState, "not_verified");
+  assert.equal(JSON.stringify(stoppedRun).includes("private-envelope-must-not-leak"), false);
+
   const alternateProverAccessToken = "pw_at_gateway_alternate_prover_run_fixture";
   await oauthStore.issueTokenPair({
     accessTokenHash: await tokenHash(alternateProverAccessToken),
@@ -1198,6 +1215,29 @@ async function signedAttestation({
   ));
   return attestation;
 }
+
+test("public practice targets support inspection and retry-safe Attempts without entering the frontier list", async () => {
+  const intake = await prepareOddSumIntake({ sourceCommit: "a".repeat(40), verifyCommittedFiles: false });
+  await applyOddSumIntake(database, intake);
+  const store = new D1RemoteMcpGatewayStore(database);
+  const principal = {
+    clientId: "client:gateway-codex", personId: "person:gateway-reviewer",
+    agentInstallationId: "installation:gateway-prover",
+    scopes: ["catalog:read", "attempt:create", "attempt:read", "progress:write"],
+  };
+  assert.equal((await store.inspectProblem(principal, "odd-sum-square")).kind, "practice");
+  assert.equal((await store.listFrontier(principal)).some((p) => p.slug === "odd-sum-square"), false);
+  assert.equal((await store.inspectResearchGraph(principal, "odd-sum-square")).problem.id, intake.problemRevisionId);
+  // Earlier capacity tests intentionally fill this shared mock Person's slots.
+  await database.prepare("UPDATE agent_attempts SET status='paused' WHERE person_id=?").bind(principal.personId).run();
+  const input = { problemSlug: "odd-sum-square", delegationScope: "formalize", idempotencyKey: "practice-attempt" };
+  const created = await store.createAttempt(principal, input);
+  assert.equal(created.attempt.problemSlug, "odd-sum-square");
+  assert.equal((await store.createAttempt(principal, input)).idempotentReplay, true);
+  await database.prepare("UPDATE projects SET visibility='private' WHERE id=?").bind("project:proofweave:odd-sum-square").run();
+  assert.equal(await store.inspectProblem(principal, "odd-sum-square"), null);
+  await assert.rejects(store.createAttempt(principal, {...input,idempotencyKey:"hidden-practice"}), GatewayStoreNotFoundError);
+});
 
 async function seedGatewayFixture(d1, { reviewerPublicKey, proverPublicKey, ownerProverPublicKey, alternateProverPublicKey }) {
   const statements = [

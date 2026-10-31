@@ -10,6 +10,7 @@ import { D1VerificationMarketStore } from "../verification/d1-verification-marke
 import { D1R2ArtifactStore, maxArtifactObjectBytes } from "../artifacts/d1-r2-artifact-store.mjs";
 import { maxInlineArtifactObjectBytes } from "../artifacts/d1-inline-artifact-store.mjs";
 import { D1RunStore } from "../lean-runner/d1-run-store.mjs";
+import { runnerDeliverySummary } from "../lean-runner/runner-delivery-summary.mjs";
 import { closedAlphaAttemptLimits } from "../../packages/domain/attempt-policy.mjs";
 import {
   assertResearchWriteAllowed,
@@ -133,11 +134,11 @@ export class D1RemoteMcpGatewayStore {
         `SELECT revision.id, revision.slug, revision.title
          FROM problem_revisions AS revision
          INNER JOIN projects AS project ON project.id = revision.project_id
-         WHERE revision.slug = ? AND project.kind = 'frontier' AND project.visibility = 'public'`,
+         WHERE revision.slug = ? AND project.kind IN ('frontier', 'practice') AND project.visibility = 'public'`,
       )
       .bind(input.problemSlug)
       .first();
-    if (!problem) throw new GatewayStoreNotFoundError("Frontier problem not found.");
+    if (!problem) throw new GatewayStoreNotFoundError("Public research target not found.");
 
     const now = new Date().toISOString();
     const generatedId = `attempt:${crypto.randomUUID()}`;
@@ -253,7 +254,7 @@ export class D1RemoteMcpGatewayStore {
   async inspectResearchGraph(principal, slug) {
     assertPrincipalScope(principal, "catalog:read");
     const problem = await this.inspectProblem(principal, slug);
-    if (!problem) throw new GatewayStoreNotFoundError("Frontier problem not found.");
+    if (!problem) throw new GatewayStoreNotFoundError("Public research target not found.");
     return Object.freeze({
       problem: Object.freeze({ id: problem.id, slug: problem.slug, title: problem.title }),
       graph: await this.researchGraphStore.readProblemGraph(problem.id),
@@ -614,8 +615,12 @@ export class D1RemoteMcpGatewayStore {
     const attempt = await this.requireArtifactAttempt(principal, installation, input.attemptId);
     await this.requireInstallation(principal, attempt.delegationScope);
     const run = await this.requireRunForAttempt(input.runId, attempt.id);
+    const deliveryRow = await this.database.prepare(
+      "SELECT delivery_state, delivery_attempts, last_error_code FROM runner_queue_messages WHERE run_id = ?",
+    ).bind(run.id).first();
     return Object.freeze({
       run,
+      delivery: runnerDeliverySummary(deliveryRow),
       events: Object.freeze(await this.runStore.listEvents(run.id)),
       verificationState: run.runnerResultHash ? "runner_evidence_recorded" : "not_verified",
     });
@@ -1024,11 +1029,12 @@ export class D1RemoteMcpGatewayStore {
          LEFT JOIN declarations AS declaration
            ON declaration.problem_revision_id = revision.id AND declaration.is_primary = 1
          LEFT JOIN verification_claims AS claim ON claim.problem_revision_id = revision.id
-         WHERE project.kind = 'frontier' AND project.visibility = 'public'
+         WHERE project.kind IN ('frontier', 'practice') AND project.visibility = 'public'
+           AND (? IS NOT NULL OR project.kind = 'frontier')
            AND (? IS NULL OR revision.slug = ?)
          ORDER BY revision.priority DESC, revision.title ASC, claim.claim_type ASC`,
       )
-      .bind(slug, slug)
+      .bind(slug, slug, slug)
       .all();
     return result.results ?? [];
   }

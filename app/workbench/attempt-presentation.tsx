@@ -44,8 +44,9 @@ export function deriveAttemptPresentation({
     .sort((left, right) => Date.parse(right.queuedAt) - Date.parse(left.queuedAt))[0] ?? null;
   const hasBundle = attempt.events.some((event) => event.type === "bundle_staged");
   const hasProgress = attempt.events.some((event) => event.type === "agent_reported");
-  const runPending = Boolean(latestRun && ["queued", "preparing", "running", "cancel_requested"].includes(latestRun.state));
-  const runFailed = Boolean(latestRun && ["failed", "timed_out", "rejected", "cancelled"].includes(latestRun.state));
+  const deliveryStopped = Boolean(latestRun && ["queued", "preparing", "running"].includes(latestRun.state) && latestRun.delivery?.state === "dead_letter");
+  const runPending = Boolean(latestRun && !deliveryStopped && ["queued", "preparing", "running", "cancel_requested"].includes(latestRun.state));
+  const runFailed = Boolean(latestRun && (deliveryStopped || ["failed", "timed_out", "rejected", "cancelled"].includes(latestRun.state)));
   const kernelAccepted = hasAcceptedKernelEvidence(latestRun);
 
   if (!agentConnected) return {
@@ -57,10 +58,10 @@ export function deriveAttemptPresentation({
   };
   if (runFailed) return {
     bucket: "needs-attention",
-    label: "Lean check needs attention",
+    label: deliveryStopped ? "Runner needs repair" : "Lean check needs attention",
     tone: "attention",
     nextAction: "Inspect the failed Run",
-    detail: "The latest isolated Run ended without an accepted kernel result.",
+    detail: deliveryStopped ? "Runner delivery stopped before an accepted kernel result was recorded. The approved evidence remains available." : "The latest isolated Run ended without an accepted kernel result.",
   };
   if (runPending) return {
     bucket: "waiting",

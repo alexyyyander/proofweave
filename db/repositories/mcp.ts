@@ -9,6 +9,7 @@ import {
   type McpRunState,
   type McpRunnerResultSummary,
 } from "@/packages/domain/mcp";
+import { runnerDeliverySummary } from "@/services/lean-runner/runner-delivery-summary.mjs";
 import { closedAlphaAttemptLimits } from "@/packages/domain/attempt-policy.mjs";
 import { canonicalJson, sha256Canonical } from "@/packages/protocol/canonical-json.mjs";
 import {
@@ -102,6 +103,9 @@ type EventRow = {
 type AttemptEventRow = EventRow & { attempt_id: string };
 type EventWithIdempotencyRow = EventRow & { idempotency_key: string };
 type RunSummaryRow = {
+  delivery_state: string | null;
+  delivery_attempts: number | null;
+  last_error_code: string | null;
   id: string;
   attempt_id: string;
   artifact_bundle_hash: string;
@@ -634,10 +638,12 @@ class D1McpRepository implements McpRepository {
         `SELECT run.id, run.attempt_id, run.artifact_bundle_hash, run.request_hash,
                 run.state, run.queued_at, run.started_at, run.finished_at,
                 run.runner_result_hash, result.result_hash, result.canonical_result,
-                result.received_at
+                result.received_at, delivery.delivery_state, delivery.delivery_attempts,
+                delivery.last_error_code
          FROM runs AS run
          INNER JOIN agent_attempts AS attempt ON attempt.id = run.attempt_id
          LEFT JOIN run_results AS result ON result.run_id = run.id
+         LEFT JOIN runner_queue_messages AS delivery ON delivery.run_id = run.id
          WHERE attempt.person_id = ?
            AND NOT EXISTS (
              SELECT 1 FROM verification_replays AS replay
@@ -757,6 +763,7 @@ async function toRunSummary(row: RunSummaryRow): Promise<McpRunSummary> {
     startedAt: row.started_at,
     finishedAt: row.finished_at,
     runnerResultHash: row.runner_result_hash,
+    delivery: runnerDeliverySummary(row),
   } as const;
 
   const hasNoResult = !row.runner_result_hash && !row.result_hash && !row.canonical_result && !row.received_at;
