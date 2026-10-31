@@ -1,6 +1,7 @@
-import { readFile, writeFile, mkdir, stat } from "node:fs/promises";
-import { dirname, join } from "node:path";
+import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { createLeanSourceFetcher } from "./lib/proof-map-lean-cache.mjs";
 
 const root = new URL("../", import.meta.url);
 const catalog = JSON.parse(await readFile(new URL("data/publications/openai-math.json", root), "utf8"));
@@ -14,7 +15,8 @@ const outPath = option("--out", fileURLToPath(new URL("data/proof-maps/lean-cove
 const cacheDir = option("--cache", "/tmp/proof-map-lean-cache");
 const concurrency = Math.max(1, Math.min(12, Number(option("--concurrency", "6")) || 6));
 const limit = Number(option("--limit", "0")) || 0;
-const rawBase = `https://raw.githubusercontent.com/openai/math/${commit}/lean/`;
+const repository = "openai/math";
+const rawBase = `https://raw.githubusercontent.com/${repository}/${commit}/lean/`;
 
 const jobs = [];
 for (const family of catalog.families) {
@@ -24,29 +26,7 @@ for (const family of catalog.families) {
 }
 const selected = limit > 0 ? jobs.slice(0, limit) : jobs;
 
-async function fetchText(path) {
-  const cachePath = join(cacheDir, path.replaceAll("/", "__"));
-  try {
-    const info = await stat(cachePath);
-    if (info.isFile()) return { status: 200, text: await readFile(cachePath, "utf8"), cached: true };
-  } catch {}
-  let lastError = null;
-  for (let attempt = 0; attempt < 3; attempt += 1) {
-    try {
-      const response = await fetch(rawBase + path, { headers: { "user-agent": "proofweave-proof-map-lean-index" } });
-      if (response.status === 404) return { status: 404, text: "", cached: false };
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      const text = await response.text();
-      await mkdir(dirname(cachePath), { recursive: true });
-      await writeFile(cachePath, text);
-      return { status: 200, text, cached: false };
-    } catch (error) {
-      lastError = error;
-      await new Promise((resolve) => setTimeout(resolve, 350 * (attempt + 1)));
-    }
-  }
-  return { status: 0, text: "", error: String(lastError), cached: false };
-}
+const fetchText = createLeanSourceFetcher({ cacheDir, rawBase, repository, revision: commit });
 
 function modulePath(moduleName) {
   return `${moduleName.replaceAll(".", "/")}.lean`;
