@@ -9,7 +9,9 @@ for (const path of ["package-lock.json", "deploy/huggingface-runner/package-lock
 const render = await readFile(new URL("deploy/huggingface-runner/render.yaml", root), "utf8");
 assertSecurityVersion("node", /key: NODE_VERSION\s+value: ([^\s]+)/.exec(render)?.[1]);
 const dockerfile = await readFile(new URL("deploy/huggingface-runner/Dockerfile", root), "utf8");
-assertSecurityVersion("node", /^FROM node:([0-9.]+)-/.exec(dockerfile)?.[1]);
+const dockerfileNode = /NODE_VERSION=([0-9.]+)/.exec(dockerfile)?.[1]
+  ?? /^FROM node:([0-9.]+)-/m.exec(dockerfile)?.[1];
+assertSecurityVersion("node", dockerfileNode);
 const manifest = JSON.parse(await readFile(new URL("package.json", root), "utf8"));
 if (new Set([manifest.dependencies.react, manifest.dependencies["react-dom"], manifest.devDependencies["react-server-dom-webpack"]]).size !== 1) {
   throw new Error("React client, DOM and server decoder releases must match");
