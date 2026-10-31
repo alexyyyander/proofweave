@@ -88,3 +88,49 @@ test("validation allows connection lifecycle only with an explicit switch; resea
   }
   assert.equal(cloudflareValidationResponse(new Request('https://example.test/api/connect/sessions', { method: 'POST' }), { ...settings, PROOFWEAVE_CONTROL_PLANE_MODE: 'read_only' }).status, 503);
 });
+
+test("validation opens research transports only with read_write surfaces and a valid allowlist", () => {
+  const allowlist = JSON.stringify({
+    schemaVersion: "pw-research-write-allowlist-v1",
+    persons: ["person:a"],
+    agents: ["agent:a"],
+    attempts: [],
+    allowNewAttempts: true,
+  });
+  const settings = {
+    PROOFWEAVE_DEPLOYMENT_STAGE: "validation",
+    PROOFWEAVE_CONTROL_PLANE_MODE: "read_write",
+    PROOFWEAVE_PARTICIPANT_CONTROL_PLANE_MODE: "read_write",
+    PROOFWEAVE_MCP_CONTROL_PLANE_MODE: "read_write",
+    PROOFWEAVE_PARTICIPANT_RESEARCH_WRITE_ALLOWLIST_JSON: allowlist,
+    PROOFWEAVE_MCP_RESEARCH_WRITE_ALLOWLIST_JSON: allowlist,
+  };
+  for (const [path, method] of [
+    ["/api/me/attempts", "POST"],
+    ["/api/me/attempts/attempt%3Aa", "PATCH"],
+    ["/api/me/problem-proposals", "POST"],
+    ["/api/me/research/sources", "POST"],
+    ["/api/me/evidence/bundles/sha%3Aabc/submit-review", "POST"],
+    ["/api/me/review-jobs/job%3A1/claim", "POST"],
+    ["/api/me/review-assignments/assignment%3A1/accept", "POST"],
+    ["/api/me/review-assignments/assignment%3A1/decline", "POST"],
+    ["/api/v1/mcp/attempts", "POST"],
+  ]) {
+    assert.equal(cloudflareValidationResponse(new Request(`https://example.test${path}`, { method }), settings), null, `${method} ${path}`);
+  }
+  assert.equal(cloudflareValidationResponse(new Request("https://example.test/api/mcp", { method: "POST" }), settings), null);
+
+  const withoutAllowlist = { ...settings };
+  delete withoutAllowlist.PROOFWEAVE_PARTICIPANT_RESEARCH_WRITE_ALLOWLIST_JSON;
+  delete withoutAllowlist.PROOFWEAVE_MCP_RESEARCH_WRITE_ALLOWLIST_JSON;
+  for (const path of ["/api/me/attempts", "/api/mcp"]) {
+    assert.equal(cloudflareValidationResponse(new Request(`https://example.test${path}`, { method: "POST" }), withoutAllowlist).status, 503, path);
+  }
+  assert.equal(cloudflareValidationResponse(new Request("https://example.test/api/me/attempts", { method: "POST" }), {
+    ...settings, PROOFWEAVE_PARTICIPANT_CONTROL_PLANE_MODE: "read_only",
+  }).status, 503);
+  assert.equal(cloudflareValidationResponse(new Request("https://example.test/api/me/attempts", { method: "POST" }), {
+    ...settings, PROOFWEAVE_CONTROL_PLANE_MODE: "read_only",
+  }).status, 503);
+  assert.equal(cloudflareValidationResponse(new Request("https://example.test/api/internal/anchors/tick", { method: "POST" }), settings).status, 503);
+});

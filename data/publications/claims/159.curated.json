@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "pw-publication-claims-v1",
+  "familyNumber": "159",
+  "claims": [
+    {
+      "id": "159-c1",
+      "statement": "Proves Erdős's conjecture that every set of positive integers with divergent reciprocal sum contains arithmetic progressions of every finite length.",
+      "assumptions": [
+        "The set consists of positive integers.",
+        "The sum of reciprocals over the set diverges."
+      ],
+      "conclusion": "For every requested finite length, the set contains an arithmetic progression with positive common difference.",
+      "sourceManuscriptIds": [
+        "Quasipolynomial-Bounds-for-Arithmetic-Progressions-September-23-2026"
+      ],
+      "sourceLocation": "unknown",
+      "leanDeclaration": {
+        "file": "lean/ComparatorChallenges/ErdosReciprocal.lean",
+        "statement": "for every requested length, such a set contains a progression with positive common difference",
+        "status": "documented"
+      },
+      "coverage": {
+        "status": "documented",
+        "scopeExcerpt": "The formalization proves this statement: for every requested length, such a set contains a progression with positive common difference.\n\nThe selected theorem is the reciprocal-sum consequence.",
+        "note": "The upstream scope document identifies the reciprocal-sum consequence as the selected formalized theorem. The Lean declaration name and the source section and page are unknown upstream. The source manuscript is cited by the family scope document. Proofweave has not replayed the declaration. No fixed Proofweave target is mapped for this claim."
+      },
+      "target": {
+        "status": "unmapped"
+      },
+      "verification": {
+        "status": "not_run",
+        "note": "Proofweave has not run a replay for this claim; this record maps the upstream claim and is not a platform verification."
+      }
+    },
+    {
+      "id": "159-c2",
+      "statement": "Quantitatively, for each fixed <i>k</i> ≥ 3, every subset of $`\\{1,\\ldots,N\\}`$ with no nonconstant <i>k</i>-term progression has size at most $`C_kN\\exp[-c_k(\\log N)^{\\varepsilon_k}]`$, with positive constants depending only on <i>k</i>.",
+      "assumptions": [
+        "k >= 3 is a fixed integer.",
+        "The subset of {1,...,N} contains no nonconstant k-term arithmetic progression.",
+        "C_k, c_k, and epsilon_k are positive constants depending only on k."
+      ],
+      "conclusion": "r_k(N) <= C_k N exp(-c_k (log N)^{epsilon_k}), where r_k(N) is the largest size of a subset of {1,...,N} with no nonconstant k-term arithmetic progression.",
+      "sourceManuscriptIds": [
+        "Quasipolynomial-Bounds-for-Arithmetic-Progressions-September-23-2026"
+      ],
+      "sourceLocation": "unknown",
+      "leanDeclaration": {
+        "status": "unknown"
+      },
+      "coverage": {
+        "status": "unmapped",
+        "scopeExcerpt": "The paper's quantitative upper bound for the largest progression-free subset of $\\{1,\\ldots,N\\}$ is outside this statement.",
+        "note": "The upstream scope document explicitly places the paper's quantitative quasipolynomial upper bound outside the formalized statement; Lean coverage is limited to the qualitative reciprocal-sum consequence. The Lean declaration name and file and the source section and page are unknown upstream. No fixed Proofweave target is mapped for this claim."
+      },
+      "target": {
+        "status": "unmapped"
+      },
+      "verification": {
+        "status": "not_run",
+        "note": "Proofweave has not run a replay for this claim; this record maps the upstream claim and is not a platform verification."
+      }
+    }
+  ]
+}

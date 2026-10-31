@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { getParticipantOperationState, MissingDatabaseBindingError } from "@/db";
@@ -23,7 +24,8 @@ export type AuthUser = Readonly<{
   appSession?: boolean;
 }>;
 
-export async function getCurrentUser(): Promise<AuthUser | null> {
+// React cache is scoped to this server render, never shared between visitors.
+export const getCurrentUser = cache(async function getCurrentUser(): Promise<AuthUser | null> {
   const requestHeaders = await headers();
   const token = readCookie(requestHeaders.get("cookie"), APP_SESSION_COOKIE);
   if (token) {
@@ -99,7 +101,7 @@ export async function getCurrentUser(): Promise<AuthUser | null> {
     email: subject,
     fullName,
   };
-}
+});
 
 export async function requireUser(returnTo: string): Promise<AuthUser> {
   const user = await getCurrentUser();

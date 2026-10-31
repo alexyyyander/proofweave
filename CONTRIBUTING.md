@@ -38,27 +38,21 @@ source that supports them.
 
 ## Local setup
 
-Supported Node.js releases match `package.json`:
-`^22.23.4 || ^24.22.1 || ^26.12.1`. Use the version pinned in [`.nvmrc`](.nvmrc)
-for local development and CI (currently `22.23.4`).
-
-The commands below assume nvm is installed and loaded in your shell. Run
-`nvm install` and `nvm use` from the repository root; both read `.nvmrc`. With
-another version manager, select the version in `.nvmrc` before running npm.
-Dependency installation uses `engine-strict=true`; unsupported versions,
-including older Node 22 releases and Node 25, fail with `EBADENGINE`.
-
 ```bash
 git clone https://github.com/alexyyyander/proofweave.git
 cd proofweave
 nvm install
 nvm use
-npm install
+npm ci
 npm run dev
 ```
 
-The repository is a web application, so `package.json` remains `private: true`
-intentionally; that is unrelated to the GitHub repository visibility.
+The supported Node range is `^22.23.4`. Run `nvm install` and `nvm use` from the
+repository root before installing dependencies; `.nvmrc` selects the reviewed
+Node 22.23.4 release. Other Node majors require a compatibility review.
+The repository is a web application,
+so `package.json` remains `private: true` intentionally; that is unrelated to
+the GitHub repository visibility.
 
 Run the smallest relevant checks first:
 

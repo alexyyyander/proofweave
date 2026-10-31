@@ -529,7 +529,11 @@ export class D1VerificationStore {
       [evidence.runnerResultHash === row.runner_result_hash, "runner_result_hash"],
       [evidence.recordedAt === row.recorded_at, "recorded_at"],
       [canonicalJson(evidence.runnerResult) === row.canonical_result, "embedded_runner_result"],
-      [Date.parse(storedResult.startedAt) === Date.parse(row.run_started_at), "started_at_projection"],
+      // Run.startedAt records control-plane dispatch; the signed Container
+      // start follows it after transport. Keep both actual timestamps and
+      // enforce the same ordering as recordRunnerResult in the Run domain.
+      [Number.isFinite(Date.parse(row.run_started_at)) && Date.parse(row.run_started_at) >= Date.parse(row.replay_requested_at), "dispatch_started_after_request"],
+      [Date.parse(storedResult.startedAt) >= Date.parse(row.run_started_at), "execution_started_after_dispatch"],
       [Date.parse(storedResult.finishedAt) === Date.parse(row.run_finished_at), "finished_at_projection"],
       [Date.parse(storedResult.startedAt) >= Date.parse(row.replay_requested_at), "replay_started_after_request"],
       [Date.parse(storedResult.finishedAt) <= Date.parse(evidence.recordedAt), "evidence_recorded_after_finish"],
@@ -623,6 +627,14 @@ export class D1VerificationStore {
       .prepare("SELECT * FROM verification_assignment_events WHERE assignment_id = ? ORDER BY sequence ASC")
       .bind(assignment.id)
       .all();
+    if (!existing && expectedStatus === "accepted" && (history.results ?? []).length === 2) {
+      try {
+        await this.assertCanonicalAcceptanceHistory(assignment);
+      } catch (cause) {
+        throw new VerificationStoreConflictError(`Canonical accepted repair is unsafe: ${cause.message}`);
+      }
+      return;
+    }
     if (existing) {
       if ((history.results ?? []).length !== 2) {
         throw new VerificationStoreConflictError(
@@ -698,7 +710,7 @@ export class D1VerificationStore {
       payload: { verifierPersonId: assignment.verifierPersonId },
     });
     try {
-      assertStoredEventProjection(history.results[1], expected);
+      await this.assertStoredAssignmentHistoryEvent(assignment, history.results[1], expected);
     } catch {
       throw new VerificationStoreConflictError(
         "Verification attestation requires the canonical immutable assignment acceptance event.",
@@ -741,7 +753,7 @@ export class D1VerificationStore {
       occurredAt: assignment.acceptedAt,
       payload: { verifierPersonId: assignment.verifierPersonId },
     });
-    assertStoredEventProjection(history.results[1], acceptedEvent);
+    await this.assertStoredAssignmentHistoryEvent(assignment, history.results[1], acceptedEvent);
     const attestationEvent = await createEvent({
       id: `verification-event:${assignment.id}:attestation`,
       assignment,
@@ -778,15 +790,52 @@ export class D1VerificationStore {
       },
     });
     const stored = row ?? await this.database
-      .prepare("SELECT * FROM verification_assignment_events WHERE id = ?")
-      .bind(expected.id)
+      .prepare("SELECT * FROM verification_assignment_events WHERE assignment_id = ? AND sequence = 1")
+      .bind(assignment.id)
       .first();
     if (!stored) {
       throw new VerificationStoreConflictError(
         "Verification assignment is missing its canonical immutable creation event.",
       );
     }
-    assertStoredEventProjection(stored, expected);
+    await this.assertStoredAssignmentHistoryEvent(assignment, stored, expected);
+  }
+
+  async assertStoredAssignmentHistoryEvent(assignment, row, expected) {
+    try {
+      assertStoredEventProjection(row, expected);
+      return;
+    } catch (canonicalError) {
+      // The former market writer used numeric event IDs and included the job
+      // ID in its payload. Accept only that exact historical encoding, bound
+      // to its immutable claim; do not trust a job ID supplied by the event.
+      const claim = await this.database.prepare(`
+        SELECT claim.id, claim.job_id, claim.verifier_person_id, claim.claimed_at,
+               job.artifact_bundle_manifest_hash, job.claim_type,
+               job.attempt_owner_person_id, job.policy_version
+        FROM verification_market_job_claims AS claim
+        INNER JOIN verification_market_jobs AS job ON job.id = claim.job_id
+        WHERE claim.assignment_id = ?
+      `).bind(assignment.id).first();
+      if (!claim || claim.verifier_person_id !== assignment.verifierPersonId ||
+          claim.artifact_bundle_manifest_hash !== assignment.artifactBundleManifestHash ||
+          claim.claim_type !== assignment.claimType ||
+          claim.attempt_owner_person_id !== assignment.attemptOwnerPersonId ||
+          claim.policy_version !== "pw-verification-market-v1" ||
+          claim.claimed_at !== assignment.assignedAt ||
+          claim.claimed_at !== assignment.acceptedAt) throw canonicalError;
+      const identity = await sha256Canonical({
+        protocolVersion: "pw-verification-market-v1", jobId: claim.job_id,
+        verifierPersonId: assignment.verifierPersonId,
+      });
+      if (assignment.id !== `verification-assignment:${identity.slice("sha256:".length)}` ||
+          claim.id !== `verification-job-claim:${identity.slice("sha256:".length)}`) throw canonicalError;
+      const payload = {...JSON.parse(expected.canonicalPayload), marketJobId:claim.job_id};
+      assertStoredEventProjection(row, {
+        ...expected, id:`verification-event:${assignment.id}:${expected.sequence}`,
+        payloadHash:await sha256Canonical(payload),canonicalPayload:canonicalJson(payload),
+      });
+    }
   }
 }
 

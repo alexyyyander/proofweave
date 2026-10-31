@@ -16,8 +16,8 @@ const githubToken = "github-token-that-must-never-be-evidence";
 const expectedVariables = Object.freeze({
   PROOFWEAVE_E2B_RUNNER_IMAGE:
     "ghcr.io/alexyyyander/proofweave-lean-runner@sha256:ca896ab3945034079ab7f7cedfc7c5e665a601299c1745b51a72736420957393",
-  PROOFWEAVE_E2B_TEMPLATE_BUILD_ID: "c07bbdf8-db5f-4464-911a-89ad0e564399",
-  PROOFWEAVE_E2B_TEMPLATE_ID: "cbfjgbsrgtku0c7sliu5:root-dotfiles-20260727g",
+  PROOFWEAVE_E2B_TEMPLATE_BUILD_ID: "4fd0e92f-9513-4c3d-8af3-6492e86c3f24",
+  PROOFWEAVE_E2B_TEMPLATE_ID: "cbfjgbsrgtku0c7sliu5:workspace-modes-20261019-617de06",
   RUNNER_APPROVED_IMAGES_JSON:
     '[{"imageDigest":"ghcr.io/alexyyyander/proofweave-lean-runner@sha256:ca896ab3945034079ab7f7cedfc7c5e665a601299c1745b51a72736420957393","leanToolchain":"leanprover/lean4:v4.31.0","mathlibRevision":"9a9483a92959bc92bd6a60176dd1fe597298c1f8"}]',
 });

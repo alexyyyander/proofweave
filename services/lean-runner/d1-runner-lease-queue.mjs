@@ -1,5 +1,9 @@
 import { canonicalJson, canonicalUtf8 } from "../../packages/protocol/canonical-json.mjs";
 import {
+  runnerEnvironmentKey,
+  runnerEnvironmentKeyMaxLength,
+} from "../../packages/protocol/lean-runner.mjs";
+import {
   normalizeRunnerQueueMessage,
   RunnerQueueProtocolError,
 } from "./queue.mjs";
@@ -20,7 +24,10 @@ export class D1RunnerLeaseQueueConfigurationError extends Error {
  * acknowledgement, cancellation, and dead-lettering change only a delivery
  * projection and append a privacy-minimal event. Every mutating operation is
  * conditional on the active lease id, so a worker whose lease expired cannot
- * acknowledge or release a newer delivery.
+ * acknowledge or release a newer delivery. A derived `runner_environment_key`
+ * lets each single-environment Runner claim only Runs for its exact Lean and
+ * Mathlib pair; legacy NULL rows remain claimable and are still verified by
+ * preflight.
  */
 export class D1RunnerLeaseQueue {
   constructor({ database, createId = () => crypto.randomUUID(), claimRetries = 8 } = {}) {
@@ -42,6 +49,7 @@ export class D1RunnerLeaseQueue {
     const normalized = await normalizeRunnerQueueMessage(message);
     const canonicalMessage = canonicalJson(normalized);
     const enqueuedAt = canonicalInstant(normalized.enqueuedAt);
+    const environmentKey = runnerEnvironmentKey(normalized.request.environment);
     if (canonicalUtf8(normalized).byteLength >= durableRunnerQueueMaxMessageBytes) {
       throw new RunnerQueueProtocolError("Signed RunnerQueue message exceeds the durable queue message limit.");
     }
@@ -66,14 +74,15 @@ export class D1RunnerLeaseQueue {
       this.database.prepare(
         `INSERT INTO runner_queue_messages (
           run_id, attempt_id, idempotency_key, request_hash, canonical_message,
-          delivery_state, available_at, delivery_attempts, enqueued_at, updated_at
-        ) VALUES (?, ?, ?, ?, ?, 'queued', ?, 0, ?, ?)`,
+          runner_environment_key, delivery_state, available_at, delivery_attempts, enqueued_at, updated_at
+        ) VALUES (?, ?, ?, ?, ?, ?, 'queued', ?, 0, ?, ?)`,
       ).bind(
         normalized.runId,
         normalized.request.attemptId,
         normalized.request.idempotencyKey,
         normalized.requestHash,
         canonicalMessage,
+        environmentKey,
         enqueuedAt,
         enqueuedAt,
         enqueuedAt,
@@ -139,26 +148,37 @@ export class D1RunnerLeaseQueue {
     });
   }
 
-  async claim({ consumerId, claimedAt, leaseDurationSeconds = 300, runId }) {
+  async claim({ consumerId, claimedAt, leaseDurationSeconds = 300, runId, environmentKey }) {
     requireIdentifier(consumerId, "consumerId");
     if (runId !== undefined) requireIdentifier(runId, "runId");
+    if (environmentKey !== undefined) requireEnvironmentKey(environmentKey);
     requireUtcInstant(claimedAt, "claimedAt");
     requireDuration(leaseDurationSeconds, "leaseDurationSeconds", 30, 3_600);
     const effectiveClaimedAt = canonicalInstant(claimedAt);
     const leaseExpiresAt = addSeconds(effectiveClaimedAt, leaseDurationSeconds);
+    const conditions = [
+      "((delivery_state = 'queued' AND available_at <= ?) OR (delivery_state = 'leased' AND lease_expires_at <= ?))",
+    ];
+    const conditionBindings = [effectiveClaimedAt, effectiveClaimedAt];
+    if (runId !== undefined) {
+      conditions.push("run_id = ?");
+      conditionBindings.push(runId);
+    }
+    if (environmentKey !== undefined) {
+      conditions.push("(runner_environment_key IS NULL OR runner_environment_key = ?)");
+      conditionBindings.push(environmentKey);
+    }
 
     for (let attempt = 0; attempt < this.claimRetries; attempt += 1) {
       const candidate = await this.database.prepare(
         `SELECT * FROM runner_queue_messages
-         WHERE ((delivery_state = 'queued' AND available_at <= ?)
-            OR (delivery_state = 'leased' AND lease_expires_at <= ?))
-           ${runId === undefined ? "" : "AND run_id = ?"}
+         WHERE ${conditions.join(" AND ")}
          ORDER BY
            CASE delivery_state WHEN 'queued' THEN available_at ELSE lease_expires_at END,
            enqueued_at,
            run_id
          LIMIT 1`,
-      ).bind(effectiveClaimedAt, effectiveClaimedAt, ...(runId === undefined ? [] : [runId])).first();
+      ).bind(...conditionBindings).first();
       if (!candidate) return null;
 
       const leaseId = this.newIdentifier("lease");
@@ -176,7 +196,8 @@ export class D1RunnerLeaseQueue {
            WHERE run_id = ? AND delivery_attempts = ? AND (
              (delivery_state = 'queued' AND available_at <= ?)
              OR (delivery_state = 'leased' AND lease_expires_at <= ?)
-           )`,
+           )
+           ${environmentKey === undefined ? "" : "AND (runner_environment_key IS NULL OR runner_environment_key = ?)"}`,
         ).bind(
           leaseId,
           consumerId,
@@ -187,6 +208,7 @@ export class D1RunnerLeaseQueue {
           candidate.delivery_attempts,
           effectiveClaimedAt,
           effectiveClaimedAt,
+          ...(environmentKey === undefined ? [] : [environmentKey]),
         ),
         this.eventInsert({
           eventId,
@@ -616,12 +638,15 @@ async function hydrateRecord(row) {
     throw new RunnerQueueProtocolError("Durable RunnerQueue message is not valid JSON.", { cause });
   }
   const message = await normalizeRunnerQueueMessage(decoded);
+  const environmentKey = runnerEnvironmentKey(message.request.environment);
   if (
     message.runId !== row.run_id ||
     message.request.attemptId !== row.attempt_id ||
     message.request.idempotencyKey !== row.idempotency_key ||
     message.requestHash !== row.request_hash ||
-    canonicalJson(message) !== row.canonical_message
+    canonicalJson(message) !== row.canonical_message ||
+    (row.runner_environment_key !== null && row.runner_environment_key !== undefined
+      && row.runner_environment_key !== environmentKey)
   ) {
     throw new RunnerQueueProtocolError("Durable RunnerQueue columns do not match the signed canonical message.");
   }
@@ -713,6 +738,12 @@ function nullableEventSequence(value) {
 function requireIdentifier(value, label) {
   if (typeof value !== "string" || !/^[A-Za-z0-9][A-Za-z0-9:._-]{2,191}$/.test(value)) {
     throw new RunnerQueueProtocolError(`${label} must be a bounded identifier.`);
+  }
+}
+
+function requireEnvironmentKey(value) {
+  if (typeof value !== "string" || value.length === 0 || value.length > runnerEnvironmentKeyMaxLength) {
+    throw new RunnerQueueProtocolError("Durable RunnerQueue environmentKey must be a bounded derived environment key.");
   }
 }
 

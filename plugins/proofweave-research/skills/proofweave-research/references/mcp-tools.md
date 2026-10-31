@@ -6,6 +6,28 @@ Run `connection_status`, then `connect_proofweave` with role `research`,
 computer. The Connector uses browser OAuth PKCE; the retired
 local-token prototype must not be configured for participant use.
 
+## Browser approval lifecycle
+
+`connect_proofweave` starts a two-phase connection and promptly returns
+`connected: false`, `pendingApproval: true`, `approvalUrl`, and `expiresAt`.
+The callback listener is ready before the response. Open the exact URL on the
+same computer and obtain the owner's browser approval. Keep the Connector
+process running and use `connection_status` to inspect the result. Pending,
+failed, expired, and cancelled approvals never count as connected. The old
+saved credentials remain unchanged until token exchange and scope validation
+succeed and the new configuration is atomically saved. A completed pairing
+still needs the live OAuth/MCP health check before `connected` can be true.
+
+Concurrent same-role connect calls reuse one pending session. A role change is
+rejected while that session is pending. For multiple local clients, select
+separate config files using `PROOFWEAVE_CONNECTOR_CONFIG` and separate callback
+ports using `PROOFWEAVE_CALLBACK_PORT`; no global Codex configuration change is
+required. The default remains port 44765. Supported redirects have exactly the
+form `http://127.0.0.1:<1024-65535>/callback`; other hosts, URL components, and
+normalization aliases are rejected by the server before a pairing is created.
+The approval URL is a temporary browser capability: do not publish it in a
+checkpoint, issue, or research artifact.
+
 ## Connector compatibility
 
 Call `connection_status` before connection repair or a plugin update. It has
@@ -181,3 +203,7 @@ normalized patch, and Lake manifest. The local Connector accepts at most 1 MB
 per selected file and 3 MB combined, so it is intentionally suitable for small
 reproducible fixtures only; larger real Lean projects need the planned object
 storage ingress. It is not a resumable file-transfer protocol.
+
+Failed browser approval may include `pairing.failureCode` and `pairing.httpStatus`.
+These bounded diagnostics identify token exchange, missing scope, invalid response,
+or local save failures without returning OAuth codes, tokens, or provider error text.

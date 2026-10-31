@@ -1,4 +1,5 @@
 import { getCurrentUser, toPersonIdentity } from "@/app/auth";
+import { researchWriteGateFailure } from "@/app/lib/research-write-gate";
 import { getParticipantOperationState, getConnectionOperationState, MissingDatabaseBindingError } from "@/db";
 import { ControlPlaneReadOnlyError } from "@/services/database/control-plane-operation-mode.mjs";
 import {
@@ -41,6 +42,8 @@ async function currentIdentity(writesEnabled: boolean) {
 }
 
 export function delegationFailure(error: unknown) {
+  const gate = researchWriteGateFailure(error);
+  if (gate) return gate;
   const headers = { "Cache-Control": "no-store" };
   if (
     error instanceof MissingDatabaseBindingError

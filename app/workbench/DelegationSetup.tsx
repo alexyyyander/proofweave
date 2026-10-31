@@ -1,26 +1,16 @@
 "use client";
 
+import { SectionTitle, CardTitle, ActionLink, Button, Input, SectionHeading, Select, Surface } from "@/app/components/ui";
+
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import type { DelegationProfile, PersonSigningKey, RegisteredAgent, StoredDelegation } from "@/db/repositories/delegation";
+import { type DelegationProfile, type PersonSigningKey, type RegisteredAgent, type StoredDelegation } from "@/db/repositories/delegation";
 import { delegationSigningPayload } from "@/packages/domain/delegation.mjs";
 import { canonicalUtf8 } from "@/packages/protocol/canonical-json.mjs";
 import { personKeyProofChallengeSigningPayload } from "@/packages/protocol/person-key-proof.mjs";
-import {
-  createDevicePersonKey,
-  hasDevicePersonKey,
-  removeDevicePersonKey,
-  signDevicePersonPayload,
-} from "./browser-signing-key";
-import {
-  issueDelegation,
-  issuePersonKeyProofChallenge,
-  registerPersonKey,
-  revokeDelegation,
-  revokePersonKey,
-  submitPersonKeyProof,
-} from "./delegation-control-api";
+import { createDevicePersonKey, hasDevicePersonKey, removeDevicePersonKey, signDevicePersonPayload } from "./browser-signing-key";
+import { issueDelegation, issuePersonKeyProofChallenge, registerPersonKey, revokeDelegation, revokePersonKey, submitPersonKeyProof } from "./delegation-control-api";
 import { activeLocalCodexInstallation } from "../lib/local-agent-journey";
 
 const scopes = ["formalize", "prove", "review"] as const;
@@ -38,17 +28,17 @@ export function DelegationSetup({ profile, isAuthenticated, signInPath, storageA
     return <section className="delegation-setup delegation-setup-callout" id="delegation-setup" aria-labelledby="delegation-setup-title">
       <div>
         <p className="eyebrow">Personal attribution</p>
-        <h2 id="delegation-setup-title">Sign in before you delegate research work.</h2>
+        <SectionTitle id="delegation-setup-title">Sign in before you delegate research work.</SectionTitle>
         <p>A public preview can show the workbench, but only a signed-in Person can create the key, Agent, and revocable certificate that credits a real contribution.</p>
       </div>
-      <Link className="button button-primary" href={signInPath}>Sign in to set up an Agent <span aria-hidden="true">→</span></Link>
+      <ActionLink className="button button-primary" href={signInPath}>Sign in to set up an Agent <span aria-hidden="true">→</span></ActionLink>
     </section>;
   }
 
   if (!storageAvailable || !profile) {
     return <section className="delegation-setup delegation-setup-unavailable" id="delegation-setup" aria-labelledby="delegation-setup-title">
       <p className="eyebrow">Personal attribution</p>
-      <h2 id="delegation-setup-title">Delegation storage is temporarily unavailable.</h2>
+      <SectionTitle id="delegation-setup-title">Delegation storage is temporarily unavailable.</SectionTitle>
       <p>Your research preview remains local. No key, Agent, or delegation was created while the control plane is unavailable.</p>
     </section>;
   }
@@ -185,14 +175,14 @@ function DelegationSetupFlow({ profile }: { profile: DelegationProfile }) {
   </div>;
 
   return <section className="delegation-setup" id="delegation-setup" aria-labelledby="delegation-setup-title">
-    <div className="delegation-setup-heading">
+    <SectionHeading as="div" className="delegation-setup-heading">
       <div>
         <p className="eyebrow">Personal attribution · closed alpha</p>
-        <h2 id="delegation-setup-title">{connection ? "Manage your connected research Agent" : "Connect an accountable research Agent"}</h2>
+        <SectionTitle id="delegation-setup-title">{connection ? "Manage your connected research Agent" : "Connect an accountable research Agent"}</SectionTitle>
         <p>Proofweave records the Person, the Agent key, and a signed certificate separately. Creating more Agents never creates more independent reviewers.</p>
       </div>
       <span className={connection ? "setup-status is-ready" : "setup-status"}>{connection ? "Website approval active" : "Connection required"}</span>
-    </div>
+    </SectionHeading>
 
     {notice && <p className="setup-message setup-message-success" role="status">{notice}</p>}
     {error && <p className="setup-message setup-message-error" role="alert">{error}</p>}
@@ -203,7 +193,7 @@ function DelegationSetupFlow({ profile }: { profile: DelegationProfile }) {
         <strong>Let the local Connector create the right authority.</strong>
         <p>Install Proofweave Research in Codex, then choose Connect Proofweave. One browser approval creates the device-held Person key when needed, registers the local Agent public key, and signs a 30-day formalize/prove delegation.</p>
       </div>
-      <Link className="button button-primary" href="/integrations#codex-beta">Install or connect Codex <span aria-hidden="true">→</span></Link>
+      <ActionLink className="button button-primary" href="/integrations#codex-beta">Install or connect Codex <span aria-hidden="true">→</span></ActionLink>
     </div>}
 
     {connection ? manualControls : <details className="advanced-agent-controls"><summary>Advanced: manage an existing key or Agent manually</summary><p>Use this only for an Agent that already generated its own key outside the normal local Codex connection. Manual setup records authority; it does not create a live connection.</p>{manualControls}</details>}
@@ -246,11 +236,11 @@ function PersonKeyStep({ keys, deviceKeys, loading, busy, onCreate, onProve, onR
     setReason("");
     setEmergency(false);
   };
-  return <article className="delegation-step">
+  return <Surface as="article" className="delegation-step">
     <span className="step-number">01</span>
     <div>
       <span className="micro-label">Person signing key</span>
-      <h3>{hasVerifiedDeviceKey ? "A possession-verified signing key is ready." : hasDeviceKey ? "Verify that this device holds its signing key." : "Create a signing key on this device."}</h3>
+      <CardTitle>{hasVerifiedDeviceKey ? "A possession-verified signing key is ready." : hasDeviceKey ? "Verify that this device holds its signing key." : "Create a signing key on this device."}</CardTitle>
       <p>{hasDeviceKey
         ? "Only its public fingerprint is in Proofweave. The private signing key remains in this browser’s protected key store; a one-time challenge records that this device can sign with it."
         : keys.length > 0
@@ -266,50 +256,50 @@ function PersonKeyStep({ keys, deviceKeys, loading, busy, onCreate, onProve, onR
             : deviceHeld
               ? "Possession proof required before delegation"
               : "Held on another device; this browser cannot prove or use it"}</small>
-          {deviceHeld && !key.possessionVerifiedAt && <button className="button button-secondary setup-action" type="button" disabled={busy} onClick={() => void onProve(key)}>{busy ? "Verifying device key…" : "Verify device key"}</button>}
-          {!revoking && <button className="key-revoke-trigger" type="button" disabled={busy} onClick={() => setRevokeKeyId(key.id)}>Replace or revoke key</button>}
+          {deviceHeld && !key.possessionVerifiedAt && <Button className="button button-secondary setup-action" type="button" disabled={busy} onClick={() => void onProve(key)}>{busy ? "Verifying device key…" : "Verify device key"}</Button>}
+          {!revoking && <Button className="key-revoke-trigger" type="button" disabled={busy} onClick={() => setRevokeKeyId(key.id)}>Replace or revoke key</Button>}
           {revoking && <form className="key-revocation-form" onSubmit={(event) => {
             event.preventDefault();
             void onRevoke({ key, reason, emergency, deviceHeld }).then((revoked) => {
               if (revoked) resetRevocation();
             });
           }}>
-            <label>Revocation reason<input required maxLength={1000} value={reason} onChange={(event) => setReason(event.target.value)} placeholder="For example: device lost" /></label>
-            <label className="emergency-key-option"><input type="checkbox" checked={emergency} onChange={(event) => setEmergency(event.target.checked)} />Emergency: revoke even though no other verified device key is ready</label>
+            <label>Revocation reason<Input required maxLength={1000} value={reason} onChange={(event) => setReason(event.target.value)} placeholder="For example: device lost" /></label>
+            <label className="emergency-key-option"><Input type="checkbox" checked={emergency} onChange={(event) => setEmergency(event.target.checked)} />Emergency: revoke even though no other verified device key is ready</label>
             <small>{emergency
               ? "This blocks authority signed by this key immediately and removes this device key after success."
               : "For a safe replacement, prove another device key first; this preserves a usable signing path."}</small>
-            <div><button className="button button-danger" type="submit" disabled={busy}>{busy ? "Revoking key…" : emergency ? "Emergency revoke key" : "Revoke replaced key"}</button><button className="key-revoke-cancel" type="button" disabled={busy} onClick={resetRevocation}>Cancel</button></div>
+            <div><Button className="button button-danger" type="submit" disabled={busy}>{busy ? "Revoking key…" : emergency ? "Emergency revoke key" : "Revoke replaced key"}</Button><Button className="key-revoke-cancel" type="button" disabled={busy} onClick={resetRevocation}>Cancel</Button></div>
           </form>}
         </div>;
       })}</div>}
-      {!hasDeviceKey && <button className="button button-secondary setup-action" type="button" disabled={loading || busy} onClick={() => void onCreate()}>{busy ? "Creating device key…" : loading ? "Checking device key…" : "Create device signing key"}</button>}
+      {!hasDeviceKey && <Button className="button button-secondary setup-action" type="button" disabled={loading || busy} onClick={() => void onCreate()}>{busy ? "Creating device key…" : loading ? "Checking device key…" : "Create device signing key"}</Button>}
     </div>
-  </article>;
+  </Surface>;
 }
 
 function AgentStep({ agents }: { agents: readonly RegisteredAgent[] }) {
   const activeAgents = agents.filter((agent) => agent.status === "active" && agent.revokedAt === null);
 
-  return <article className="delegation-step">
+  return <Surface as="article" className="delegation-step">
     <span className="step-number">02</span>
     <div>
       <span className="micro-label">Local Agent</span>
-      <h3>{activeAgents.length > 0 ? `${activeAgents.length} Agent${activeAgents.length === 1 ? "" : "s"} identity${activeAgents.length === 1 ? " is" : " identities are"} recorded.` : "Connect Codex with one browser approval."}</h3>
+      <CardTitle>{activeAgents.length > 0 ? `${activeAgents.length} Agent${activeAgents.length === 1 ? "" : "s"} identity${activeAgents.length === 1 ? " is" : " identities are"} recorded.` : "Connect Codex with one browser approval."}</CardTitle>
       <p>{activeAgents.length > 0
         ? "Each public identity belongs to a local Agent key. Proofweave still cannot start Codex or inspect project files; only the local Connector can request bounded network actions."
         : "Install the Proofweave Research plugin in Codex, then run Connect Proofweave. The Connector creates its own key on your computer and opens a single approval page—nothing to paste."}</p>
       {activeAgents.length > 0 && <ul className="registered-agent-list">{activeAgents.map((agent) => <li key={agent.id}><strong>{agent.label}</strong><code>{agent.id}</code><small>{agent.keyFingerprint}</small></li>)}</ul>}
-      <div className="local-agent-connection-card">
+      <Surface as="div" className="local-agent-connection-card">
         <div>
           <span className="connection-card-status"><i aria-hidden="true" />Private Beta · local-first</span>
           <strong>{activeAgents.length > 0 ? "Add another local Codex only when you need it." : "No public key or API key is required."}</strong>
           <p>Proofweave never asks for your ChatGPT password, API key, private key, or workspace. You can later revoke the connection independently from its delegation.</p>
         </div>
-        <Link className="button button-primary setup-action" href="/integrations#codex-beta">Install or connect Codex <span aria-hidden="true">→</span></Link>
-      </div>
+        <ActionLink className="button button-primary setup-action" href="/integrations#codex-beta">Install or connect Codex <span aria-hidden="true">→</span></ActionLink>
+      </Surface>
     </div>
-  </article>;
+  </Surface>;
 }
 
 function CertificateStep({ profile, active, deviceKeys, busy, onIssue }: {
@@ -334,15 +324,15 @@ function CertificateStep({ profile, active, deviceKeys, busy, onIssue }: {
     ? current.filter((value) => value !== scope)
     : [...current, scope]);
 
-  return <article className="delegation-step">
+  return <Surface as="article" className="delegation-step">
     <span className="step-number">03</span>
     <div>
       <span className="micro-label">Revocable delegation</span>
-      <h3>{active
+      <CardTitle>{active
         ? "An active certificate already governs this Agent."
         : needsAgentIdentity
           ? "Connect a local Codex before granting authority."
-          : "Sign the scope and expiry you are granting."}</h3>
+          : "Sign the scope and expiry you are granting."}</CardTitle>
       <p>{active
         ? "Creating another certificate is intentionally paused while one is active. Revoke it first if the Agent or authority needs to change."
         : needsAgentIdentity
@@ -356,15 +346,15 @@ function CertificateStep({ profile, active, deviceKeys, busy, onIssue }: {
         event.preventDefault();
         if (signingKey && agent) void onIssue({ signingKey, agent, selectedScopes, days: Number(days) });
       }}>
-        <label>Person signing key<select value={signingKey?.id ?? ""} onChange={(event) => setSigningKeyId(event.target.value)} disabled={verifiedDeviceKeys.length === 0}>{verifiedDeviceKeys.length === 0 ? <option>No possession-verified device key</option> : verifiedDeviceKeys.map((key) => <option value={key.id} key={key.id}>{key.fingerprint}</option>)}</select></label>
-        <label>Delegated Agent<select value={agent?.id ?? ""} onChange={(event) => setAgentId(event.target.value)} disabled={availableAgents.length === 0}>{availableAgents.length === 0 ? <option>No registered Agent available</option> : availableAgents.map((candidate) => <option value={candidate.id} key={candidate.id}>{candidate.label}</option>)}</select></label>
-        <fieldset><legend>Allowed work</legend><div className="scope-checks">{scopes.map((scope) => <label key={scope}><input type="checkbox" checked={selectedScopes.includes(scope)} onChange={() => toggleScope(scope)} />{scope}</label>)}</div></fieldset>
-        <label>Validity<select value={days} onChange={(event) => setDays(event.target.value)}><option value="30">30 days</option><option value="90">90 days</option><option value="365">1 year</option></select></label>
-        <button className="button button-primary setup-action" type="submit" disabled={!canIssue || busy}>{busy ? "Signing certificate…" : "Sign and activate delegation"}</button>
+        <label>Person signing key<Select value={signingKey?.id ?? ""} onChange={(event) => setSigningKeyId(event.target.value)} disabled={verifiedDeviceKeys.length === 0}>{verifiedDeviceKeys.length === 0 ? <option>No possession-verified device key</option> : verifiedDeviceKeys.map((key) => <option value={key.id} key={key.id}>{key.fingerprint}</option>)}</Select></label>
+        <label>Delegated Agent<Select value={agent?.id ?? ""} onChange={(event) => setAgentId(event.target.value)} disabled={availableAgents.length === 0}>{availableAgents.length === 0 ? <option>No registered Agent available</option> : availableAgents.map((candidate) => <option value={candidate.id} key={candidate.id}>{candidate.label}</option>)}</Select></label>
+        <fieldset><legend>Allowed work</legend><div className="scope-checks">{scopes.map((scope) => <label key={scope}><Input type="checkbox" checked={selectedScopes.includes(scope)} onChange={() => toggleScope(scope)} />{scope}</label>)}</div></fieldset>
+        <label>Validity<Select value={days} onChange={(event) => setDays(event.target.value)}><option value="30">30 days</option><option value="90">90 days</option><option value="365">1 year</option></Select></label>
+        <Button className="button button-primary setup-action" type="submit" disabled={!canIssue || busy}>{busy ? "Signing certificate…" : "Sign and activate delegation"}</Button>
         {!canIssue && <small className="form-hint">A possession-verified device key, registered Agent, and at least one scope are required.</small>}
       </form>}
     </div>
-  </article>;
+  </Surface>;
 }
 
 function RevocationStep({ active, busy, onRevoke }: {
@@ -373,13 +363,13 @@ function RevocationStep({ active, busy, onRevoke }: {
   onRevoke: (reason: string) => Promise<void>;
 }) {
   const [reason, setReason] = useState("");
-  return <div className="revocation-panel">
+  return <Surface as="div" className="revocation-panel">
     <div><span className="micro-label">Authority control</span><strong>Revoke {active.id}</strong><p>Revocation blocks new Agent-reported progress at the recorded time. It does not delete earlier signed history; the reason becomes part of its public audit record.</p></div>
     <form onSubmit={(event) => { event.preventDefault(); void onRevoke(reason); }}>
-      <label>Public reason<input required maxLength={1000} value={reason} onChange={(event) => setReason(event.target.value)} placeholder="For example: Agent key rotated" /></label>
-      <button className="button button-danger" type="submit" disabled={busy}>{busy ? "Revoking…" : "Revoke active delegation"}</button>
+      <label>Public reason<Input required maxLength={1000} value={reason} onChange={(event) => setReason(event.target.value)} placeholder="For example: Agent key rotated" /></label>
+      <Button className="button button-danger" type="submit" disabled={busy}>{busy ? "Revoking…" : "Revoke active delegation"}</Button>
     </form>
-  </div>;
+  </Surface>;
 }
 
 function certificateFor(

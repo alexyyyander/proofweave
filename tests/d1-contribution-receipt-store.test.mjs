@@ -74,6 +74,7 @@ test("D1 Receipt store derives, signs, retries, and freezes a certified contribu
   assert.equal(retry.created, false);
   assert.equal(first.receipt.beneficiary.personId, "person:alice");
   assert.equal(first.receipt.claims.length, 3);
+  assert.deepEqual(first.receipt.run.environment, fixtureRunnerEnvironment());
   assert.equal(await verifyContributionReceiptSignature(first.receipt), true);
   assert.deepEqual(await store.get("receipt:alice-lemma"), first.receipt);
 
@@ -320,6 +321,25 @@ test("Receipt credit settlement derives immutable author, reviewer, and downstre
   );
 });
 
+test("an existing credit settlement cannot report active credit after Receipt retraction", async () => {
+  const store = new D1ContributionReceiptStore(database);
+  const credits = new D1ReceiptCreditSettlement(database);
+  const before = await credits.getSettlement("receipt:alice-credit");
+  assert.ok(before);
+  await store.recordLifecycleEvent({
+    id: "receipt-event:alice-credit-retracted",
+    receiptId: "receipt:alice-credit",
+    eventType: "retracted",
+    reasonHash: sha("e"),
+    occurredAt: "2026-07-13T00:05:00Z",
+    issuerKeyId: "issuer:closed-alpha-1",
+    issuerPublicKey,
+    issuerPrivateKey: issuerPair.privateKey,
+  });
+  await assert.rejects(credits.settleReceipt("receipt:alice-credit"), /Retracted or superseded/);
+  assert.deepEqual(await credits.getSettlement("receipt:alice-credit"), before, "The historical ledger remains immutable");
+});
+
 test("demo and smoke-test Receipts never mint research Credit", async () => {
   const receiptStore = new D1ContributionReceiptStore(database);
   const smoke = await receiptStore.issue({
@@ -370,6 +390,23 @@ test("verification receipt credits the review Agent present in immutable attesta
     }),
     /must cover an attestation made by its credited review Agent/,
   );
+});
+
+test("Receipt review authority accepts SQLite UTC creation timestamps without accepting malformed or future times", async () => {
+  const store = new D1ContributionReceiptStore(database);
+  const original = await database.prepare("SELECT created_at FROM agents WHERE id = ?").bind("agent:bob-reviewer").first();
+  try {
+    for (const createdAt of ["2026-07-01 00:00:00","2026-07-01T00:00:00Z"]) {
+      await database.prepare("UPDATE agents SET created_at = ? WHERE id = ?").bind(createdAt,"agent:bob-reviewer").run();
+      assert.equal((await store.loadReviewEvidence(bundleHash)).length,3);
+    }
+    for (const createdAt of ["not-a-date","2026-02-30 00:00:00","2026-07-01 00:00:00+08:00","2026-07-01 25:00:00","2026-07-14 00:00:00"]) {
+      await database.prepare("UPDATE agents SET created_at = ? WHERE id = ?").bind(createdAt,"agent:bob-reviewer").run();
+      await assert.rejects(store.loadReviewEvidence(bundleHash), /UTC ISO-8601 instant|historical authority/);
+    }
+  } finally {
+    await database.prepare("UPDATE agents SET created_at = ? WHERE id = ?").bind(original.created_at,"agent:bob-reviewer").run();
+  }
 });
 
 test("Receipt closure fails closed on tampered, incomplete, expired, and same-owner review evidence", async () => {
@@ -747,6 +784,7 @@ async function fixtureUpstreamReceipt() {
         resultHash: runResultHash,
         status: "succeeded",
         kernelStatus: "accepted",
+        environment: fixtureRunnerEnvironment(),
       },
       claims: [
         fixtureReceiptClaim("bundle_reproducible", "bob"),
@@ -777,6 +815,16 @@ function fixtureReceiptClaim(claimType, reviewer) {
   };
 }
 
+function fixtureRunnerEnvironment() {
+  return {
+    imageDigest: `ghcr.io/proofweave/lean-runner@sha256:${"c".repeat(64)}`,
+    leanToolchain: "leanprover/lean4:v4.27.0",
+    mathlibRevision: "a3a10db0e9d6",
+    templateId: "template_proofweave:reviewed_runtime",
+    templateBuildId: "9420e83e-3c6d-48b8-94fe-a73807af5797",
+  };
+}
+
 function fixtureRunnerResult() {
   return {
     protocolVersion: "pw-lean-runner-v1", jobId: "run:receipt-fixture", attemptId: "attempt:receipt", requestHash: runRequestHash,
@@ -784,6 +832,7 @@ function fixtureRunnerResult() {
     startedAt: "2026-07-13T00:00:01Z", finishedAt: "2026-07-13T00:00:02Z", kernelStatus: "accepted",
     checks: { network: "passed", noSorry: "passed", allowedAxioms: "passed", leanBuild: "passed" },
     artifacts: { manifestHash: sha("7"), stdoutHash: sha("8"), stderrHash: sha("9") },
+    environment: fixtureRunnerEnvironment(),
   };
 }
 

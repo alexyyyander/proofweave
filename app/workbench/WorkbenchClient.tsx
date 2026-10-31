@@ -3,18 +3,17 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { DelegationProfile } from "@/db/repositories/delegation";
-import type { CatalogProblem } from "@/packages/domain/catalog";
-import type { McpAttempt, McpRunSummary } from "@/packages/domain/mcp";
-import type { ProvisionalContribution } from "@/db/repositories/provisional-contributions";
+import { type DelegationProfile } from "@/db/repositories/delegation";
+import { type WorkbenchCatalogTarget } from "../lib/runner-availability";
+import { type McpAttempt, type McpRunSummary } from "@/packages/domain/mcp";
+import { type ProvisionalContribution } from "@/db/repositories/provisional-contributions";
 import { DelegationSummary, FirstContributionPath, FocusAction, ProvisionalContributionLedger, ResearchWorkstation, SubmissionReadiness, WorkspaceSettingsPrompt } from "./workbench-sections";
 import { buildCodexResearchBrief, LocalAgentHandoff } from "./LocalAgentHandoff";
 import { ResearchLauncher } from "./ResearchLauncher";
+import { ResearchWindowNotice } from "../components/research/ResearchWindowNotice";
 import { activeAttemptDelegation, activeLocalAgentAttempt, activeLocalCodexInstallation } from "../lib/local-agent-journey";
-import {
-  loadControlPlaneWriteAvailability,
-  type ControlPlaneWriteAvailability,
-} from "../lib/control-plane-write-capability";
+import { loadControlPlaneWriteAvailability, type ControlPlaneWriteAvailability } from "../lib/control-plane-write-capability";
+import type { ResearchEligibility } from "../lib/research-eligibility";
 import { deriveWorkspaceMode, WorkspaceRecordLinks, WorkspaceSidebar, WorkspaceTopbar } from "./WorkspaceShell";
 
 export function WorkbenchClient({
@@ -32,6 +31,7 @@ export function WorkbenchClient({
   isAuthenticated,
   signInPath,
   storageAvailable,
+  eligibility,
   variant = "legacy",
 }: {
   profile: DelegationProfile | null;
@@ -41,13 +41,14 @@ export function WorkbenchClient({
   provisionalLedgerAvailable: boolean;
   initialReviewCount: number | null;
   initialEvidenceCount: number | null;
-  catalogTargets: readonly CatalogProblem[];
+  catalogTargets: readonly WorkbenchCatalogTarget[];
   initialAttemptId: string | null;
   initialTargetSlug: string | null;
   initialParentNodeId: string | null;
   isAuthenticated: boolean;
   signInPath: string;
   storageAvailable: boolean;
+  eligibility?: ResearchEligibility | null;
   variant?: "legacy" | "detail";
 }) {
   const router = useRouter();
@@ -247,17 +248,18 @@ export function WorkbenchClient({
   return <>
     <WorkspaceTopbar attempts={attempts} selectedAttemptId={activeAttempt?.id ?? null} onSelectAttempt={selectAttempt} agentLabel={selectedConnection?.agentLabel ?? null} isAgentConnected={Boolean(selectedConnection)} mode={mode} isRefreshing={isRefreshing} canRefresh={isAuthenticated && storageAvailable} refreshedAt={refreshedAt} onRefresh={() => { void refreshAttempts(); }} />
     <FirstContributionPath attempt={activeAttempt} profile={profile} runs={runs} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} writeAvailability={writeAvailability} />
+    {eligibility && <div className="research-window-notice-wrap" style={{ marginBottom: 20 }}><ResearchWindowNotice eligibility={eligibility} /></div>}
     <div className={`workspace-shell mode-${mode}`}>
       <WorkspaceSidebar attempts={attempts} selectedAttemptId={activeAttempt?.id ?? null} onSelectAttempt={selectAttempt} view={attemptListView} onViewChange={setAttemptListView} reviewCount={reviewCount} evidenceCount={evidenceCount} />
       <section className="workspace-task-canvas" aria-label="Current research work">
         <FocusAction profile={profile} attempt={activeAttempt} canContinueLocally={canContinueLocally} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} writeAvailability={writeAvailability} refreshError={refreshError} refreshedAt={refreshedAt} handoffNotice={handoffNotice} lifecycleNotice={lifecycleNotice} lifecycleAction={lifecycleAction} onCopyCodexBrief={() => { void copyCodexBrief(); }} onLifecycleAction={(action) => { void updateAttemptLifecycle(action); }} />
-        {!showActiveWorkspace && <ResearchLauncher profile={profile} attempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={initialTargetSlug} initialParentNodeId={initialParentNodeId} onAttemptReady={onAttemptReady} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} writeAvailability={writeAvailability} />}
+        {!showActiveWorkspace && <ResearchLauncher profile={profile} attempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={initialTargetSlug} initialParentNodeId={initialParentNodeId} onAttemptReady={onAttemptReady} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} writeAvailability={writeAvailability} eligibility={eligibility} />}
         {showActiveWorkspace && <>
           {activeAttempt?.status === "active" && selectedConnection && <LocalAgentHandoff profile={profile} attempt={activeAttempt} initialParentNodeId={initialParentNodeId} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} writeAvailability={writeAvailability} isRefreshing={isRefreshing} onRefresh={() => { void refreshAttempts(); }} />}
           <ResearchWorkstation attempt={activeAttempt} runs={runs} />
           <details className="workspace-new-research">
             <summary>Start another research target</summary>
-            <ResearchLauncher profile={profile} attempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={initialTargetSlug} initialParentNodeId={initialParentNodeId} onAttemptReady={onAttemptReady} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} writeAvailability={writeAvailability} />
+            <ResearchLauncher profile={profile} attempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={initialTargetSlug} initialParentNodeId={initialParentNodeId} onAttemptReady={onAttemptReady} isAuthenticated={isAuthenticated} signInPath={signInPath} storageAvailable={storageAvailable} writeAvailability={writeAvailability} eligibility={eligibility} />
           </details>
         </>}
       </section>

@@ -1,16 +1,16 @@
+import { Breadcrumb } from "@/app/components/navigation/Breadcrumb";
+import { PageTitle, SectionTitle, Badge, ActionLink, EmptyState, SectionHeading } from "@/app/components/ui";
+
+import { SiteFrame } from "@/app/components/shell/SiteFrame";
+
 import Link from "next/link";
 import { MissingDatabaseBindingError } from "@/db";
 import { getDelegationRepository, type DelegationProfile } from "@/db/repositories/delegation";
 import { getReviewAssignmentRepository, type ReviewAssignmentSummary } from "@/db/repositories/reviews";
-import {
-  getVerificationMarketRepository,
-  type PublicVerificationJob,
-  VerificationMarketSchemaUnavailableError,
-} from "@/db/repositories/verification-market";
+import { getVerificationMarketRepository, type PublicVerificationJob, VerificationMarketSchemaUnavailableError } from "@/db/repositories/verification-market";
 import { closedAlphaReviewLimits } from "@/packages/domain/attempt-policy.mjs";
 import { getCurrentUser, signInPath, toPersonIdentity, type AuthUser } from "../auth";
-import { Footer } from "../ui";
-import { Header } from "../header";
+
 import { hasActiveReviewDelegation } from "../lib/review-authority";
 import { ReviewQueueClient } from "./ReviewQueueClient";
 import { VerificationMarketBoard } from "./VerificationMarketBoard";
@@ -42,11 +42,9 @@ export default async function ReviewsPage() {
 
   const activeAssignments = result.assignments.filter((assignment) => assignment.status === "assigned" || assignment.status === "accepted").length;
   const hasReviewDelegation = hasActiveReviewDelegation(result.profile);
-  return <div className="site-shell app-shell">
-    <Header active="review" />
-    <main id="main-content" tabIndex={-1} className="page-main review-main">
-      <div className="breadcrumb"><Link href="/explore">Explore</Link><span> / </span><span>Verification market</span></div>
-      <section className="review-heading"><div><p className="eyebrow">Verification market · public work board</p><h1>Verify evidence. Become eligible for review credit.</h1><p>Choose a claim pinned to another Person’s staged Bundle. Your review Agent performs the check and signs the decision; eligibility becomes settled credit only if the target later closes through a valid Receipt.</p></div><span className="record-chip">{result.jobs.length} open</span></section>
+  return <SiteFrame className="site-shell app-shell" active="review" mainClassName="page-main review-main">
+      <Breadcrumb><Link href="/explore">Explore</Link><span> / </span><span>Verification market</span></Breadcrumb>
+      <SectionHeading as="section" className="review-heading"><div><p className="eyebrow">Verification market · public work board</p><PageTitle>Verify evidence. Become eligible for review credit.</PageTitle><p>Choose a claim pinned to another Person’s staged Bundle. Your review Agent performs the check and signs the decision; eligibility becomes settled credit only if the target later closes through a valid Receipt.</p></div><Badge className="record-chip">{result.jobs.length} open</Badge></SectionHeading>
       <nav className="public-section-nav" aria-label="Verification page">
         <a href="#open-review-work"><span>Open work</span><b>{result.jobs.length}</b></a>
         <a href="#my-review-work"><span>My reviews</span><b>{user ? activeAssignments : "Sign in"}</b></a>
@@ -58,16 +56,14 @@ export default async function ReviewsPage() {
         hasReviewDelegation={hasReviewDelegation}
         signInPath={signInPath("/reviews")}
       />
-      <section className="personal-review-heading" id="my-review-work" aria-labelledby="personal-review-title">
-        <div><p className="eyebrow">Personal workspace</p><h2 id="personal-review-title">{user ? "Your accepted and assigned reviews." : "Sign in to claim and complete reviews."}</h2><p>{user ? "Assignments belong to your Person identity. Multiple Agents do not increase capacity or satisfy independent-owner rules." : "The public board is visible without an account. Signing in establishes the Person identity used for ownership separation, assignment history, and contribution attribution."}</p></div>
-        <span className="record-chip">{user ? `${activeAssignments}/${closedAlphaReviewLimits.maximumActiveAssignmentsPerPerson} active` : "Person-scoped"}</span>
-      </section>
+      <SectionHeading as="section" className="personal-review-heading" id="my-review-work" aria-labelledby="personal-review-title">
+        <div><p className="eyebrow">Personal workspace</p><SectionTitle id="personal-review-title">{user ? "Your accepted and assigned reviews." : "Sign in to claim and complete reviews."}</SectionTitle><p>{user ? "Assignments belong to your Person identity. Multiple Agents do not increase capacity or satisfy independent-owner rules." : "The public board is visible without an account. Signing in establishes the Person identity used for ownership separation, assignment history, and contribution attribution."}</p></div>
+        <Badge className="record-chip">{user ? `${activeAssignments}/${closedAlphaReviewLimits.maximumActiveAssignmentsPerPerson} active` : "Person-scoped"}</Badge>
+      </SectionHeading>
       {user
         ? <ReviewQueueClient initialAssignments={result.assignments} hasReviewDelegation={hasReviewDelegation} />
-        : <section className="review-empty review-sign-in-panel"><p className="eyebrow">Personal queue</p><h2>No anonymous assignments.</h2><p>Sign in first, then activate a review-scoped Agent delegation. Claiming a job creates an accepted assignment immediately, but never fabricates a mathematical attestation.</p><Link className="button button-primary review-sign-in" href={signInPath("/reviews")}>Sign in to review <span aria-hidden="true">→</span></Link></section>}
-    </main>
-    <Footer />
-  </div>;
+        : <EmptyState as="section" className="review-empty review-sign-in-panel"><p className="eyebrow">Personal queue</p><SectionTitle>No anonymous assignments.</SectionTitle><p>Sign in first, then activate a review-scoped Agent delegation. Claiming a job creates an accepted assignment immediately, but never fabricates a mathematical attestation.</p><ActionLink className="button button-primary review-sign-in" href={signInPath("/reviews")}>Sign in to review <span aria-hidden="true">→</span></ActionLink></EmptyState>}
+    </SiteFrame>;
 }
 
 async function loadReviews(user: AuthUser | null): Promise<{ profile: DelegationProfile | null; assignments: readonly ReviewAssignmentSummary[]; jobs: readonly PublicVerificationJob[]; storageAvailable: boolean }> {
@@ -92,12 +88,8 @@ async function loadReviews(user: AuthUser | null): Promise<{ profile: Delegation
 function ReviewMessage({ unavailable }: { unavailable?: boolean }) {
   const title = "Verification work is temporarily unavailable.";
   const detail = "No market claim or review action was taken while the control plane was unavailable.";
-  return <div className="site-shell app-shell">
-    <Header active="review" />
-    <main id="main-content" tabIndex={-1} className="page-main review-main">
-      <div className="breadcrumb"><Link href="/explore">Explore</Link><span> / </span><span>Verification market</span></div>
-      <section className="review-heading"><div><p className="eyebrow">Verification queue</p><h1>{title}</h1><p>{detail}</p></div><span className="record-chip">{unavailable ? "Unavailable" : "Personal"}</span></section>
-    </main>
-    <Footer />
-  </div>;
+  return <SiteFrame className="site-shell app-shell" active="review" mainClassName="page-main review-main">
+      <Breadcrumb><Link href="/explore">Explore</Link><span> / </span><span>Verification market</span></Breadcrumb>
+      <SectionHeading as="section" className="review-heading"><div><p className="eyebrow">Verification queue</p><PageTitle>{title}</PageTitle><p>{detail}</p></div><Badge className="record-chip">{unavailable ? "Unavailable" : "Personal"}</Badge></SectionHeading>
+    </SiteFrame>;
 }

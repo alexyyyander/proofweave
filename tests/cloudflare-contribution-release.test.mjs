@@ -73,7 +73,7 @@ test("the legacy checker still rejects production and any migration head other t
   f.environment.databaseFingerprint = "3f9e7934a04a22ec";
   assert.throws(() => checkCredentialedContributionRelease(f), e => e.code === "PRODUCTION_DATABASE_FINGERPRINT_FORBIDDEN");
   f.environment.databaseFingerprint = "0123456789abcdef";
-  f.release.before.migrationHead = "0049_add_catalog_browse_index.sql";
+  f.release.before.migrationHead = "0050_add_runner_queue_environment.sql";
   assert.throws(() => checkCredentialedContributionRelease(f), e => e.code === "MIGRATION_HEAD_REQUIRED");
 });
 

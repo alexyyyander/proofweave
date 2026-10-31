@@ -1,15 +1,12 @@
 "use client";
 
+import { SectionTitle, Field, ActionLink, Button, FieldList, Surface } from "@/app/components/ui";
+
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import compatibilityContract from "@/packages/protocol/proofweave-client-compatibility.json";
-import {
-  CodexConnectPrompt,
-  CodexInstallPrompt,
-  CodexSetupPrompt,
-  CodexWorkflowPrompt,
-} from "./CodexInstallPrompt";
+import { CodexConnectPrompt, CodexInstallPrompt, CodexSetupPrompt, CodexWorkflowPrompt } from "./CodexInstallPrompt";
 import { integrationRefreshHref } from "@/packages/protocol/integration-return-href.mjs";
 
 const authorizedScopes = [
@@ -108,9 +105,9 @@ export function IntegrationClient({
     </section>}
 
     <section className="integration-grid integration-entry-grid" aria-label="Local Agent connection">
-      <article className="integration-card integration-card-dark integration-primary-card integration-card-wide" id="codex-beta">
+      <Surface as="article" className="integration-card integration-card-dark integration-primary-card integration-card-wide" id="codex-beta">
         <span className="micro-label">{connection ? "Website authorization recorded" : isAuthenticated ? "One-time setup" : "Sign in first"}</span>
-        <h2>{connection ? `${connection.agentLabel} has active website authorization.` : "Approve your local Codex once."}</h2>
+        <SectionTitle>{connection ? `${connection.agentLabel} has active website authorization.` : "Approve your local Codex once."}</SectionTitle>
         <p>{connection
           ? "The website has an active Agent installation record. Run connection_status in Codex to verify this computer can still refresh OAuth before starting research."
           : isAuthenticated
@@ -135,11 +132,11 @@ export function IntegrationClient({
           <p>{controlPlaneWritesEnabled
             ? selectedTarget ? "Your selected target is preserved. Confirm connection_status in Codex, then open the Workspace to start or resume its saved research task." : "Confirm connection_status in Codex, then choose a target or open your Workspace to resume existing research."
             : "You may inspect existing work now. Starting or updating research remains paused until maintenance ends."}</p>
-          <Link className="button button-primary" href={returnHref}>{controlPlaneWritesEnabled
+          <ActionLink className="button button-primary" href={returnHref}>{controlPlaneWritesEnabled
             ? selectedTarget ? "Return to selected research" : "Open my Workspace"
-            : "View my Workspace"} <span aria-hidden="true">→</span></Link>
-        </div> : !controlPlaneWritesEnabled ? <button className="button button-primary" type="button" disabled>Connection temporarily paused</button> : !isAuthenticated ? <div className="integration-connect-action">
-          <Link className="button button-primary" href={signInHref}>Continue with ChatGPT <span aria-hidden="true">→</span></Link>
+            : "View my Workspace"} <span aria-hidden="true">→</span></ActionLink>
+        </div> : !controlPlaneWritesEnabled ? <Button className="button button-primary" type="button" disabled>Connection temporarily paused</Button> : !isAuthenticated ? <div className="integration-connect-action">
+          <ActionLink className="button button-primary" href={signInHref}>Continue with ChatGPT <span aria-hidden="true">→</span></ActionLink>
           <p>ChatGPT sign-in is available. Google sign-in is {googleSignInAvailable ? "also available" : "not available yet"}.</p>
         </div> : <div className="integration-connect-action">
           <CodexSetupPrompt targetTitle={selectedTarget?.title} returnHref={returnHref} onRequestCopied={() => setWatchingConnection(true)} />
@@ -154,11 +151,11 @@ export function IntegrationClient({
           <Link href="/explore">Browse research first <span aria-hidden="true">→</span></Link>
         </div>
         <p className="integration-note">The website status reflects authorization records, not a live check of your local Connector. Run <code>connection_status</code> before working. Connection does not upload a workspace, run Lean, claim verification, or create contribution credit. Sign-in: ChatGPT available · Google {googleSignInAvailable ? "available" : "not yet available"}.</p>
-      </article>
+      </Surface>
 
-      <article className="integration-card integration-card-wide integration-advanced-card">
+      <Surface as="article" className="integration-card integration-card-wide integration-advanced-card">
         <span className="micro-label">Optional details</span>
-        <h2>Inspect installation, permissions, and privacy.</h2>
+        <SectionTitle>Inspect installation, permissions, and privacy.</SectionTitle>
         <div className="integration-disclosures">
           <details>
             <summary>If the Proofweave plugin is missing</summary>
@@ -181,11 +178,11 @@ export function IntegrationClient({
                 <span className="micro-label">Live compatibility</span>
                 <strong>Protocol v{compatibilityContract.connectorApiVersion} · tool schema v{compatibilityContract.toolSchemaVersion}</strong>
               </div>
-              <dl>
-                <div><dt>Normal service updates</dt><dd>Continue this task</dd></div>
-                <div><dt>Published plugin update</dt><dd>Review checksum and commands</dd></div>
-                <div><dt>After an approved reinstall</dt><dd>Restart Codex</dd></div>
-              </dl>
+              <FieldList>
+                <Field label="Normal service updates">Continue this task</Field>
+                <Field label="Published plugin update">Review checksum and commands</Field>
+                <Field label="After an approved reinstall">Restart Codex</Field>
+              </FieldList>
               <p>Ask Codex to run <code>connection_status</code>. It checks the fixed same-origin distribution manifest without sending a token, key, workspace file, or research content. An available update is advice only: Codex must show its version, archive hash, size, and commands, then ask again before reinstalling.</p>
             </div>
           </details>
@@ -215,7 +212,7 @@ export function IntegrationClient({
           <a className="text-link" href="/codex-install.md" target="_blank" rel="noreferrer">Read the complete connection guide <span>→</span></a>
           <Link className="text-link" href="/privacy">Read the privacy boundary <span>→</span></Link>
         </div>
-      </article>
+      </Surface>
     </section>
   </>;
 }

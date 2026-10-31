@@ -1,4 +1,5 @@
-import { getD1 } from "@/db";
+import { getD1, getResearchWriteAllowlistValues } from "@/db";
+import { assertResearchWriteAllowed } from "@/services/database/research-write-allowlist.mjs";
 import {
   D1VerificationStore,
   VerificationStoreCapacityError,
@@ -161,6 +162,14 @@ class D1ReviewAssignmentRepository implements ReviewAssignmentRepository {
   async acceptForPerson(personId: string, assignmentId: string, acceptedAt: string): Promise<ReviewAssignmentDetail> {
     const current = await this.getForPerson(personId, assignmentId);
     if (!current) throw new ReviewAssignmentNotFoundError();
+    assertResearchWriteAllowed({
+      values: getResearchWriteAllowlistValues(),
+      surface: "participant",
+      operation: "review:transition",
+      required: ["person", "attempt"],
+      personId,
+      attemptId: current.assignment.attempt.id,
+    });
     if (current.assignment.status === "accepted") return current;
     if (current.assignment.status !== "assigned") {
       throw new ReviewAssignmentConflictError(`Review assignment cannot be accepted from ${current.assignment.status}.`);
@@ -174,6 +183,14 @@ class D1ReviewAssignmentRepository implements ReviewAssignmentRepository {
   async declineForPerson(personId: string, assignmentId: string, declinedAt: string): Promise<ReviewAssignmentDetail> {
     const current = await this.getForPerson(personId, assignmentId);
     if (!current) throw new ReviewAssignmentNotFoundError();
+    assertResearchWriteAllowed({
+      values: getResearchWriteAllowlistValues(),
+      surface: "participant",
+      operation: "review:transition",
+      required: ["person", "attempt"],
+      personId,
+      attemptId: current.assignment.attempt.id,
+    });
     if (current.assignment.status === "declined") return current;
     if (current.assignment.status !== "assigned") {
       throw new ReviewAssignmentConflictError(`Review assignment cannot be declined from ${current.assignment.status}.`);

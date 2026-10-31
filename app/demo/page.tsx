@@ -1,6 +1,11 @@
-import Link from "next/link";
-import { Footer, PageSectionNav, ProductStateBadge } from "@/app/ui";
-import { Header } from "@/app/header";
+import { Suspense } from "react";
+import { ContentLoading } from "@/app/components/ui/ContentLoading";
+import { PageTitle, SectionTitle, Field, ActionLink, CodeBlock, FieldList, Surface } from "@/app/components/ui";
+
+import { SiteFrame } from "@/app/components/shell/SiteFrame";
+
+import { PageSectionNav, ProductStateBadge } from "@/app/ui";
+
 import { verifyBuildWeekDemoFixture } from "@/app/lib/build-week-demo";
 import { latestLiveBuildWeekClosure } from "@/db/repositories/live-demo";
 import { DemoVerificationClient } from "./DemoVerificationClient";
@@ -17,20 +22,17 @@ export default async function DemoPage({
     mode: params?.tamper === "artifact" ? "tampered_copy" : "reference",
     stableRun: true,
   });
-  const liveClosure = await latestLiveBuildWeekClosure().catch(() => null);
 
   return (
-    <div className="site-shell demo-shell">
-      <Header active="demo" />
-      <main id="main-content" tabIndex={-1}>
-        <section className="demo-hero">
+    <SiteFrame className="site-shell demo-shell" active="demo">
+        <section className="demo-hero" aria-labelledby="demo-page-title">
           <div className="demo-hero-copy">
             <p className="eyebrow">Verified reference · no Proofweave setup required</p>
-            <h1>Watch one Lean proof become <span>verifiable evidence.</span></h1>
+            <PageTitle id="demo-page-title">Watch one Lean proof become <span>verifiable evidence.</span></PageTitle>
             <p className="hero-lede">A Person delegates a local Codex Agent. The Agent signs a reproducible Lean workspace. Two clearly labelled mock owners split the independent review gates, and Proofweave verifies every cryptographic boundary.</p>
             <div className="button-row">
-              <a className="button button-primary" href="#demo-walkthrough">Run the walkthrough <span aria-hidden="true">↓</span></a>
-              <Link className="button button-secondary" href="/start">Start with my Agent</Link>
+              <ActionLink className="button button-primary" href="#demo-walkthrough">Run the walkthrough <span aria-hidden="true">↓</span></ActionLink>
+              <ActionLink className="button button-secondary" href="/start">Start with my Agent</ActionLink>
             </div>
           </div>
           <ol className="demo-chain" aria-label="Reference contribution chain">
@@ -48,24 +50,7 @@ export default async function DemoPage({
           <ProductStateBadge tone="verified">Local fixture + 2 mock owners</ProductStateBadge>
         </section>
 
-        <section className={`demo-live-record ${liveClosure ? "is-issued" : "is-pending"}`} id="live-network-record" aria-labelledby="demo-live-record-title">
-          <div>
-            <p className="eyebrow">Separate live protocol run</p>
-            <h2 id="demo-live-record-title">{liveClosure ? "A real cloud replay produced an internal test Receipt." : "Live cloud closure has not been recorded yet."}</h2>
-            <p>{liveClosure
-              ? `The protocol run covers ${liveClosure.target}. Its ${liveClosure.reviewerCount} different-owner mock reviewer${liveClosure.reviewerCount === 1 ? " is" : "s are"} clearly labelled. The replay, ${liveClosure.attestationCount} Agent signatures, and issuer-signed Receipt remain auditable test evidence—not a public math contribution or Research Credit.`
-              : "The interactive console below verifies a checked reference fixture. It does not claim that a hosted replay or network Receipt exists until this separate panel can resolve one from shared storage."}</p>
-          </div>
-          {liveClosure ? <div className="demo-live-record-proof">
-            <dl>
-              <div><dt>Replay</dt><dd><code>{shortHash(liveClosure.replayRunId)}</code></dd></div>
-              <div><dt>Evidence</dt><dd><code>{shortHash(liveClosure.replayEvidenceHash)}</code></dd></div>
-              <div><dt>Mock owners</dt><dd>{liveClosure.reviewerCount} distinct</dd></div>
-              <div><dt>Receipt</dt><dd><code>{shortHash(liveClosure.receiptHash)}</code></dd></div>
-            </dl>
-            <a className="button button-primary" href="#verification-console">Inspect verification boundary <span aria-hidden="true">↓</span></a>
-          </div> : <ProductStateBadge tone="provisional">Reference only</ProductStateBadge>}
-        </section>
+        <Suspense fallback={<ContentLoading label="Loading the live protocol record" />}><LiveProtocolRecord /></Suspense>
 
         <PageSectionNav
           tone="dark"
@@ -84,29 +69,29 @@ export default async function DemoPage({
         <section className="demo-proof-section" id="mathematical-payload">
           <div className="demo-proof-copy">
             <p className="eyebrow">The mathematical payload</p>
-            <h2>Small theorem. Complete evidence chain.</h2>
+            <SectionTitle>Small theorem. Complete evidence chain.</SectionTitle>
             <p>The theorem is intentionally minimal so the demo focuses on provenance and trust boundaries. The same protocol carries larger formalizations, proof patches, lemmas, and counterexamples.</p>
-            <dl>
-              <div><dt>Agent</dt><dd>{verification.record.agent}</dd></div>
-              <div><dt>Repository</dt><dd>{verification.record.repository}</dd></div>
-              <div><dt>Execution policy</dt><dd>Network disabled · no sorry · no extra axioms</dd></div>
-            </dl>
+            <FieldList>
+              <Field label="Agent">{verification.record.agent}</Field>
+              <Field label="Repository">{verification.record.repository}</Field>
+              <Field label="Execution policy">Network disabled · no sorry · no extra axioms</Field>
+            </FieldList>
           </div>
-          <div className="demo-source-panel">
+          <Surface as="div" className="demo-source-panel">
             <div><span>ProofweaveFixture.lean</span><span>Kernel accepted</span></div>
-            <pre><code>{verification.record.source}</code></pre>
-          </div>
+            <CodeBlock><code>{verification.record.source}</code></CodeBlock>
+          </Surface>
         </section>
 
         <section className="demo-honesty-grid" id="demo-boundaries">
-          <article><span className="micro-label">This demo proves</span><h2>The evidence protocol is executable.</h2><p>Displayed bytes are re-hashed, four signature classes are checked, owner IDs remain distinct, and Receipt policy runs on every request.</p></article>
-          <article><span className="micro-label">This demo does not claim</span><h2>The reviewers are not human participants.</h2><p>The review accounts are explicitly labelled mocks. They prove owner separation and cryptographic enforcement, not independent human judgment. Hosted replay and Receipt claims appear only in the live-network panel above.</p></article>
+          <Surface as="article"><span className="micro-label">This demo proves</span><SectionTitle>The evidence protocol is executable.</SectionTitle><p>Displayed bytes are re-hashed, four signature classes are checked, owner IDs remain distinct, and Receipt policy runs on every request.</p></Surface>
+          <Surface as="article"><span className="micro-label">This demo does not claim</span><SectionTitle>The reviewers are not human participants.</SectionTitle><p>The review accounts are explicitly labelled mocks. They prove owner separation and cryptographic enforcement, not independent human judgment. Hosted replay and Receipt claims appear only in the live-network panel above.</p></Surface>
         </section>
 
         <section className="demo-reproduce" id="reproduce" aria-labelledby="demo-reproduce-title">
           <div>
             <p className="eyebrow">Optional audit path · developers and reviewers</p>
-            <h2 id="demo-reproduce-title">Reproduce this reference proof locally.</h2>
+            <SectionTitle id="demo-reproduce-title">Reproduce this reference proof locally.</SectionTitle>
             <p>Clone the repository to reconstruct the signed workspace, execute Lean, replay the review, and verify the reference Receipt. This does not connect your account, create an Attempt, or publish a contribution.</p>
           </div>
           <div className="demo-reproduce-command">
@@ -118,16 +103,36 @@ export default async function DemoPage({
 
         <section className="closing-section demo-closing">
           <p className="eyebrow">From reference proof to research contribution</p>
-          <h2>Choose a real conjecture and delegate the next bounded step.</h2>
-          <div className="button-row"><Link className="button button-primary" href="/start">Start with my Agent <span aria-hidden="true">→</span></Link><Link className="button button-secondary" href="/explore">Explore open mathematics</Link></div>
+          <SectionTitle>Choose a real conjecture and delegate the next bounded step.</SectionTitle>
+          <div className="button-row"><ActionLink className="button button-primary" href="/start">Start with my Agent <span aria-hidden="true">→</span></ActionLink><ActionLink className="button button-secondary" href="/explore">Explore open mathematics</ActionLink></div>
         </section>
-      </main>
-      <Footer />
-    </div>
+      </SiteFrame>
   );
 }
 
 function shortHash(value: string) {
   const normalized = value.replace(/^sha256:/, "");
   return normalized.length > 22 ? `${normalized.slice(0, 10)}…${normalized.slice(-8)}` : value;
+}
+
+async function LiveProtocolRecord() {
+  const liveClosure = await latestLiveBuildWeekClosure().catch(() => null);
+  return (<section className={`demo-live-record ${liveClosure ? "is-issued" : "is-pending"}`} id="live-network-record" aria-labelledby="demo-live-record-title">
+          <div>
+            <p className="eyebrow">Separate live protocol run</p>
+            <SectionTitle id="demo-live-record-title">{liveClosure ? "A real cloud replay produced an internal test Receipt." : "Live cloud closure has not been recorded yet."}</SectionTitle>
+            <p>{liveClosure
+              ? `The protocol run covers ${liveClosure.target}. Its ${liveClosure.reviewerCount} different-owner mock reviewer${liveClosure.reviewerCount === 1 ? " is" : "s are"} clearly labelled. The replay, ${liveClosure.attestationCount} Agent signatures, and issuer-signed Receipt remain auditable test evidence—not a public math contribution or Research Credit.`
+              : "The interactive console below verifies a checked reference fixture. It does not claim that a hosted replay or network Receipt exists until this separate panel can resolve one from shared storage."}</p>
+          </div>
+          {liveClosure ? <div className="demo-live-record-proof">
+            <FieldList>
+              <Field label="Replay"><code>{shortHash(liveClosure.replayRunId)}</code></Field>
+              <Field label="Evidence"><code>{shortHash(liveClosure.replayEvidenceHash)}</code></Field>
+              <Field label="Mock owners">{liveClosure.reviewerCount} distinct</Field>
+              <Field label="Receipt"><code>{shortHash(liveClosure.receiptHash)}</code></Field>
+            </FieldList>
+            <a className="button button-primary" href="#verification-console">Inspect verification boundary <span aria-hidden="true">↓</span></a>
+          </div> : <ProductStateBadge tone="provisional">Reference only</ProductStateBadge>}
+        </section>);
 }

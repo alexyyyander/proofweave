@@ -1,58 +1,48 @@
+import { Suspense } from "react";
+import { ContentLoading } from "@/app/components/ui/ContentLoading";
+import { ResearchCard } from "@/app/components/research/ResearchCard";
+
+import { CardTitle, SectionTitle, Field, PageIntro, ActionLink, FieldList, SectionHeading, Surface } from "@/app/components/ui";
+
+import { SiteFrame } from "@/app/components/shell/SiteFrame";
+
 import Link from "next/link";
 import { getCatalogRepository } from "@/db/repositories/catalog";
 import { verifyBuildWeekDemoFixture } from "@/app/lib/build-week-demo";
 import { DemoVerificationClient } from "@/app/demo/DemoVerificationClient";
 import { ShowcaseExperience } from "@/app/showcase/ShowcaseExperience";
-import { Footer, ProductStateBadge, StatusStack } from "./ui";
-import { Header } from "./header";
-import "./publications/publications.css";
+import { ProductStateBadge } from "./ui";
+
+import "./home.css";
 import publicationSummary from "@/data/publications/openai-math-summary.json";
+import { october26Milestones } from "./history/october26";
 
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const [projects, verification] = await Promise.all([
-    getCatalogRepository().list("frontier"),
-    verifyBuildWeekDemoFixture({ stableRun: true }),
-  ]);
+  const verification = await verifyBuildWeekDemoFixture({ stableRun: true });
   const passedChecks = verification.checks.filter((check) => check.passed).length;
 
   return (
-    <div className="site-shell public-shell home-showcase-shell">
-      <Header active="home" />
-      <main id="main-content" tabIndex={-1}>
-        <section className="home-story-hero" aria-labelledby="home-story-title">
-          <div className="home-story-copy">
-            <div className="hero-status-line">
-              <ProductStateBadge tone="provisional">Public alpha</ProductStateBadge>
-              <span>Personally delegated formal mathematics</span>
-            </div>
-            <p className="eyebrow">Advance mathematics through your Agent</p>
-            <h1 id="home-story-title">See a proof become <span>public contribution.</span></h1>
-            <p className="home-story-lede">
-              Your Agent researches locally. You choose what to publish. Lean and an independent owner verify the claims before useful work becomes an attributable record.
-            </p>
-            <div className="button-row">
-              <a className="button button-primary" href="#proof-journey">Watch the proof journey <span aria-hidden="true">↓</span></a>
-              <Link className="button button-secondary" href="/explore">Explore mathematics</Link>
-            </div>
-          </div>
-
-          <aside className="home-story-summary" aria-label="Reference proof status">
-            <p>Live reference evidence</p>
-            <strong>One theorem.<br />Six evidence moments.</strong>
-            <dl>
-              <div><dt>Research</dt><dd>Local-first</dd></div>
-              <div><dt>Publication</dt><dd>Owner-approved</dd></div>
-              <div><dt>Reference run</dt><dd>{passedChecks}/{verification.checks.length} checks pass</dd></div>
-            </dl>
-            <a href="#verification-console">Inspect executable verification <span aria-hidden="true">→</span></a>
-          </aside>
-        </section>
+    <SiteFrame className="site-shell public-shell home-showcase-shell primary-page" active="home">
+        <PageIntro tone="navy" label="Overview" titleId="home-story-title"
+          title={<>See a proof become <span>public contribution.</span></>}
+          description="Your Agent researches locally. You choose what to publish. Lean and an independent owner verify the claims before useful work becomes an attributable record."
+          actions={<><ActionLink variant="primary" href="#proof-journey">Watch the proof journey <span aria-hidden="true">↓</span></ActionLink><ActionLink variant="secondary" href="/explore">Explore mathematics <span aria-hidden="true">→</span></ActionLink></>}
+          meta={<><span>Personally delegated formal mathematics</span><ProductStateBadge tone="provisional">Public alpha</ProductStateBadge></>}
+          aside={<><p>Signed reference</p><strong>One theorem.<br />Six evidence moments.</strong><FieldList><Field label="Research">Local-first</Field><Field label="Publication">Owner-approved</Field><Field label="Reference run">{passedChecks}/{verification.checks.length} checks pass</Field></FieldList><a href="#verification-console">Inspect executable verification <span aria-hidden="true">→</span></a></>} />
 
         <section className="home-publications-entry" aria-labelledby="home-publications-title">
-          <div><p className="eyebrow">Mathematics publications</p><h2 id="home-publications-title">Explore the OpenAI mathematics release.</h2><p>{publicationSummary.statistics.manuscripts} manuscripts in {publicationSummary.statistics.families} result families. Read the papers, citations, and Lean proof scope.</p></div>
+          <div><p className="eyebrow">Mathematics publications</p><SectionTitle id="home-publications-title">Explore the OpenAI mathematics release.</SectionTitle><p>The 13 October snapshot: {publicationSummary.statistics.manuscripts} manuscripts in {publicationSummary.statistics.families} result families. Read the papers, citations, and Lean proof scope.</p></div>
           <Link className="button button-primary" href="/publications">Browse publications <span aria-hidden="true">→</span></Link>
+        </section>
+
+        <section className="home-boundary-section home-math-section" id="latest-mathematics" aria-labelledby="latest-mathematics-title">
+          <div><p className="eyebrow">26 October 2026 · research announcements</p><SectionTitle id="latest-mathematics-title">ETH, local smoothing, and Yang–Mills.</SectionTitle><p>Two public proof releases and one physics announcement with materials withheld. Independent verification remains open.</p><Link className="text-link" href="/history#timeline">Inspect all three claims and their limits →</Link></div>
+          <div className="home-boundary-grid">{october26Milestones.map((item) => <Surface as="article" key={item.number}>
+            <CardTitle>{item.shortTitle}</CardTitle><span>{item.evidence}</span><p>{item.summary}</p>
+            <a href={item.sources[0].href} target="_blank" rel="noreferrer">Read the primary source ↗</a>
+          </Surface>)}</div>
         </section>
 
         <ShowcaseExperience verification={verification} />
@@ -61,7 +51,7 @@ export default async function Home() {
           <div className="home-verification-intro">
             <div>
               <p className="eyebrow">Executable verification · part of this overview</p>
-              <h2 id="home-verification-title">The evidence is inspectable in the same place.</h2>
+              <SectionTitle id="home-verification-title">The evidence is inspectable in the same place.</SectionTitle>
               <p>Overview tells the contribution story; this module lets you verify its reference evidence. Re-hash the checked-in bytes, inspect each gate, and deliberately break a temporary copy to see the boundary hold.</p>
             </div>
             <div className="home-verification-actions">
@@ -73,33 +63,30 @@ export default async function Home() {
         </section>
 
         <section className="content-section home-frontier-section" id="public-frontier" aria-labelledby="home-frontier-title">
-          <div className="section-heading">
-            <div><p className="eyebrow">Enter the shared frontier</p><h2 id="home-frontier-title">Choose one useful next step.</h2></div>
+          <SectionHeading as="div" className="section-heading">
+            <div><p className="eyebrow">Enter the shared frontier</p><SectionTitle id="home-frontier-title">Choose one useful next step.</SectionTitle></div>
             <Link className="text-link" href="/explore">View the complete catalog <span>→</span></Link>
-          </div>
-          <div className="project-grid">
-            {projects.slice(0, 3).map((project) => <article className="project-card" key={project.slug}>
-              <div className="card-topline"><span className="micro-label">{project.domain}</span><span className="record-chip">Pinned source</span></div>
-              <h3>{project.title}</h3><p>{project.informalStatement}</p><StatusStack statuses={project.displayStatuses} compact />
-              <div className="card-footer"><span>{project.source.revisionTag}</span><Link href={`/explore/${project.slug}`}>View opportunity <span>→</span></Link></div>
-            </article>)}
-          </div>
+          </SectionHeading>
+          <Suspense fallback={<ContentLoading label="Loading research targets" />}><HomeFrontier /></Suspense>
         </section>
 
         <section className="home-boundary-section" aria-labelledby="home-boundary-title">
-          <div><p className="eyebrow">A simple public boundary</p><h2 id="home-boundary-title">Share evidence, not your private workspace.</h2></div>
+          <div><p className="eyebrow">A simple public boundary</p><SectionTitle id="home-boundary-title">Share evidence, not your private workspace.</SectionTitle></div>
           <div className="home-boundary-grid">
-            <article><span>Public when approved</span><p>Pinned statements, selected checkpoints, reproducible Bundles, review outcomes, dependencies, and signed Receipts.</p><Link href="/how-it-works#contribution-records">Contribution records →</Link></article>
-            <article><span>Private by default</span><p>Prompts, hidden reasoning, abandoned notes, unrelated files, credentials, and every artifact you have not approved.</p><Link href="/about#principles">Principles →</Link></article>
+            <Surface as="article"><span>Public when approved</span><p>Pinned statements, selected checkpoints, reproducible Bundles, review outcomes, dependencies, and signed Receipts.</p><Link href="/how-it-works#contribution-records">Contribution records →</Link></Surface>
+            <Surface as="article"><span>Private by default</span><p>Prompts, hidden reasoning, abandoned notes, unrelated files, credentials, and every artifact you have not approved.</p><Link href="/about#principles">Principles →</Link></Surface>
           </div>
         </section>
 
         <section className="closing-section">
-          <p className="eyebrow">Your first contribution</p><h2>Read what exists. Choose one bounded task. Let your Agent continue from there.</h2>
-          <div className="button-row"><Link className="button button-primary" href="/explore">Explore without an account <span>→</span></Link><Link className="button button-secondary" href="/about">About Proofweave</Link></div>
+          <p className="eyebrow">Your first contribution</p><SectionTitle>Read what exists. Choose one bounded task. Let your Agent continue from there.</SectionTitle>
+          <div className="button-row"><ActionLink className="button button-primary" href="/explore">Explore without an account <span>→</span></ActionLink><ActionLink className="button button-secondary" href="/about">About Proofweave</ActionLink></div>
         </section>
-      </main>
-      <Footer />
-    </div>
+      </SiteFrame>
   );
+}
+
+async function HomeFrontier() {
+  const projects = await getCatalogRepository().list("frontier", 3);
+  return <div className="project-grid">{projects.map((project) => <ResearchCard project={project} variant="summary" key={project.slug} />)}</div>;
 }

@@ -1,10 +1,13 @@
+import { SiteFrame } from "@/app/components/shell/SiteFrame";
+
+import { PageTitle, SectionHeading } from "@/app/components/ui";
 import Link from "next/link";
 
 import { MissingDatabaseBindingError } from "@/db";
 import { getDelegationRepository, type DelegationProfile } from "@/db/repositories/delegation";
 import { getCurrentUser, providerAwareSignOutPath, signInPath, toPersonIdentity, type AuthUser } from "../auth";
-import { Footer, ProductStateBadge } from "../ui";
-import { Header } from "../header";
+import { ProductStateBadge } from "../ui";
+
 import { PersonalWorkspaceFrame } from "../PersonalWorkspaceFrame";
 import { AgentConnections } from "../workbench/AgentConnections";
 import { DelegationSetup } from "../workbench/DelegationSetup";
@@ -39,14 +42,12 @@ export default async function SettingsPage() {
           ? { tone: "provisional" as const, label: "Codex connection required" }
         : { tone: "provisional" as const, label: "Setup required" };
 
-  return <div className="site-shell app-shell">
-    <Header active="settings" />
-    <main id="main-content" tabIndex={-1} className="settings-main personal-workspace-main">
+  return <SiteFrame className="site-shell app-shell" active="settings" mainClassName="settings-main personal-workspace-main">
       <PersonalWorkspaceFrame active="settings">
-      <section className="settings-hero" aria-labelledby="settings-title">
+      <SectionHeading as="section" className="settings-hero" aria-labelledby="settings-title">
         <div>
           <p className="eyebrow">Account and Agent controls</p>
-          <h1 id="settings-title">Manage your research Agent.</h1>
+          <PageTitle id="settings-title">Manage your research Agent.</PageTitle>
           <p>Keep identity, keys, delegated authority, and Agent connections separate from the mathematical work happening in your Workspace.</p>
         </div>
         <div className="settings-hero-status">
@@ -60,7 +61,7 @@ export default async function SettingsPage() {
             <span aria-hidden="true">→</span>
           </Link>
         </div>
-      </section>
+      </SectionHeading>
 
       <section className="settings-guide" aria-label="Settings purpose">
         <div><span>01</span><strong>Identity</strong><p>Your private Person signing key remains on this device.</p></div>
@@ -72,9 +73,7 @@ export default async function SettingsPage() {
       <DelegationSetup profile={profile} isAuthenticated={Boolean(user)} signInPath={signInPath("/settings#delegation-setup")} storageAvailable={storageAvailable} />
       {profile && <AgentConnections installations={profile.agentInstallations} />}
       </PersonalWorkspaceFrame>
-    </main>
-    <Footer />
-  </div>;
+    </SiteFrame>;
 }
 
 async function loadSettingsProfile(user: AuthUser | null): Promise<{ profile: DelegationProfile | null; storageAvailable: boolean }> {

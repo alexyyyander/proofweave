@@ -1,23 +1,14 @@
 "use client";
 
-import Link from "next/link";
+import { ActionLink, Button, Surface } from "@/app/components/ui";
+
 import { useEffect, useMemo, useState } from "react";
-import type { DelegationProfile, PersonSigningKey } from "@/db/repositories/delegation";
+import { type DelegationProfile, type PersonSigningKey } from "@/db/repositories/delegation";
 import { delegationSigningPayload } from "@/packages/domain/delegation.mjs";
 import { canonicalUtf8 } from "@/packages/protocol/canonical-json.mjs";
 import { personKeyProofChallengeSigningPayload } from "@/packages/protocol/person-key-proof.mjs";
-import {
-  createDevicePersonKey,
-  hasDevicePersonKey,
-  signDevicePersonPayload,
-} from "@/app/workbench/browser-signing-key";
-import {
-  issueDelegation,
-  issuePersonKeyProofChallenge,
-  registerAgent,
-  registerPersonKey,
-  submitPersonKeyProof,
-} from "@/app/workbench/delegation-control-api";
+import { createDevicePersonKey, hasDevicePersonKey, signDevicePersonPayload } from "@/app/workbench/browser-signing-key";
+import { issueDelegation, issuePersonKeyProofChallenge, registerAgent, registerPersonKey, submitPersonKeyProof } from "@/app/workbench/delegation-control-api";
 import { reusableAgentDelegation } from "@/app/lib/local-agent-journey";
 
 type PairingPreview = {
@@ -130,7 +121,7 @@ export function CodexPairingApproval({ profile, pairingId, secret }: {
     return registered;
   }
 
-  return <section className="connect-codex-card" aria-live="polite">
+  return <Surface as="section" className="connect-codex-card" aria-live="polite">
     <div className="connect-codex-device">
       <span className="micro-label">This local Agent</span>
       <strong>{pairing?.agentLabel ?? "Reading local connection…"}</strong>
@@ -148,14 +139,14 @@ export function CodexPairingApproval({ profile, pairingId, secret }: {
       {keyState === "ready" && <p className="connect-codex-status">Your protected Person signing key is ready to approve this local Agent.</p>}
     </>}
     {(inputError ?? error) && <p className="setup-message setup-message-error" role="alert">{inputError ?? error}</p>}
-    {pairing?.status === "approved" ? <Link className="button button-primary connect-codex-approve" href="/workbench">Open my work <span aria-hidden="true">→</span></Link>
-      : pairing?.status === "expired" ? <Link className="button button-primary connect-codex-approve" href="/integrations#codex-beta">Create a fresh link in Codex <span aria-hidden="true">→</span></Link>
-        : <button className="button button-primary connect-codex-approve" type="button" disabled={!pairing || busy || (!reusableDelegation && keyState === "checking")} onClick={() => void approve()}>
+    {pairing?.status === "approved" ? <ActionLink className="button button-primary connect-codex-approve" href="/workbench">Open my work <span aria-hidden="true">→</span></ActionLink>
+      : pairing?.status === "expired" ? <ActionLink className="button button-primary connect-codex-approve" href="/integrations#codex-beta">Create a fresh link in Codex <span aria-hidden="true">→</span></ActionLink>
+        : <Button className="button button-primary connect-codex-approve" type="button" disabled={!pairing || busy || (!reusableDelegation && keyState === "checking")} onClick={() => void approve()}>
           {busy ? "Creating secure connection…" : reusableDelegation ? "Reconnect existing Agent" : keyState === "missing" ? "Create key and approve local Codex" : "Approve local Codex"}
           {!busy && <span aria-hidden="true">→</span>}
-        </button>}
+        </Button>}
     <p className="connect-codex-note">You can revoke this connection or its delegation later in Settings. Approval does not claim Lean verification or create a contribution receipt.</p>
-  </section>;
+  </Surface>;
 }
 
 function certificateFor(input: {

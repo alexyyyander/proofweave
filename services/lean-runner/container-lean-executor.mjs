@@ -219,7 +219,7 @@ async function auditAllowedAxioms({ workspace, request, command, collector, dead
   // direct entry invocation without trusting a lakefile target or module
   // resolution in place of the reconstructed source bytes.
   const entrySource = await readFile(join(workspace.workspaceDirectory, ...workspace.entryCommand[3].split("/")), "utf8");
-  const source = `${entrySource}\n#print axioms ${workspace.target.declaration}\n`;
+  const source = `${entrySource}\nset_option pp.fullNames true in\n#print axioms ${workspace.target.declaration}\n`;
   await writeFile(auditPath, source, { encoding: "utf8", mode: 0o600, flag: "wx" });
   try {
     const execution = await runCommand({
@@ -232,7 +232,10 @@ async function auditAllowedAxioms({ workspace, request, command, collector, dead
     });
     if (execution.reason) return { check: "failed", reason: execution.reason };
     if (execution.code !== 0) return { check: "failed", reason: null };
-    const axioms = parseAxiomOutput(Buffer.concat([execution.stdout, execution.stderr]).toString("utf8"));
+    const axioms = parseAxiomOutput(
+      execution.stdout.toString("utf8"),
+      workspace.target.declaration,
+    );
     if (!axioms) return { check: "failed", reason: null };
     const allowed = new Set(request.policy.allowedAxioms);
     return { check: axioms.every((axiom) => allowed.has(axiom)) ? "passed" : "failed", reason: null };
@@ -310,12 +313,23 @@ function containsLeanSorry(source) {
   return false;
 }
 
-function parseAxiomOutput(output) {
-  if (/does not depend on any axioms/m.test(output)) return [];
-  const match = /depends on axioms:\s*\[([^\]]*)\]/m.exec(output);
+function parseAxiomOutput(output, declaration) {
+  // Lean prints canonical names without the optional root qualifier. Other
+  // declarations' diagnostics must never determine the selected target's check.
+  const target = declaration.replace(/^_root_\./, "");
+  // The appended #print is the final report for this declaration on stdout.
+  // Earlier reports may use namespace-relative axiom names or local options.
+  // Stderr remains diagnostic output, not an axiom-report channel.
+  let report = null;
+  for (const match of output.matchAll(/^'([^\r\n]+)' /gm)) {
+    if (match[1] !== target) continue;
+    report = output.slice(match.index + match[0].length);
+  }
+  if (report === null) return null;
+  if (/^does not depend on any axioms[ \t]*(?:\r?\n|$)/.test(report)) return [];
+  const match = /^depends on axioms:\s*\[([^\]]*)\][ \t]*(?:\r?\n|$)/.exec(report);
   if (!match) return null;
-  if (match[1].trim() === "") return [];
-  const axioms = match[1].split(",").map((value) => value.trim()).filter(Boolean);
+  const axioms = match[1].trim() === "" ? [] : match[1].split(",").map((value) => value.trim());
   return axioms.every((axiom) => /^[A-Za-z_][A-Za-z0-9_'.]*(?:\.[A-Za-z_][A-Za-z0-9_'.]*)*$/.test(axiom)) ? axioms : null;
 }
 

@@ -1,10 +1,7 @@
+import { SectionTitle, CardTitle, Field, ActionLink, EmptyState, FieldList, SectionHeading, Surface } from "@/app/components/ui";
+
 import Link from "next/link";
-import type {
-  CuratedResearchKind,
-  CuratedResearchRole,
-  CuratedResearchStatus,
-  PublicCuratedResearchRecord,
-} from "@/db/repositories/curated-research";
+import { type CuratedResearchKind, type CuratedResearchRole, type CuratedResearchStatus, type PublicCuratedResearchRecord } from "@/db/repositories/curated-research";
 
 export function PriorWorkChain({
   records,
@@ -19,19 +16,19 @@ export function PriorWorkChain({
 
   return (
     <section className="curated-research-section" id="research-chain" aria-labelledby="curated-research-title">
-      <div className="curated-research-heading">
+      <SectionHeading as="div" className="curated-research-heading">
         <div>
           <p className="eyebrow">Curated research record</p>
-          <h2 id="curated-research-title">Start from the chain, not from zero.</h2>
+          <SectionTitle id="curated-research-title">Start from the chain, not from zero.</SectionTitle>
           <p>Papers, special cases, key lemmas, counterexamples, and formalization repositories are archived per conjecture. Every record keeps its source and evidence state; external material does not become a Proofweave proof automatically.</p>
         </div>
-        <dl className="curated-research-stats">
-          <div><dt>Records</dt><dd>{records.length}</dd></div>
-          <div><dt>Papers</dt><dd>{paperCount}</dd></div>
-          <div><dt>Lean paths</dt><dd>{formalizationCount}</dd></div>
-          <div><dt>Reviewed</dt><dd>{reviewedCount}</dd></div>
-        </dl>
-      </div>
+        <FieldList layout="stacked" className="curated-research-stats">
+          <Field label="Records">{records.length}</Field>
+          <Field label="Papers">{paperCount}</Field>
+          <Field label="Lean paths">{formalizationCount}</Field>
+          <Field label="Reviewed">{reviewedCount}</Field>
+        </FieldList>
+      </SectionHeading>
 
       <div className="curated-research-boundary">
         <span>Source-backed</span>
@@ -47,13 +44,13 @@ export function PriorWorkChain({
           ))}
         </div>
       ) : (
-        <div className="curated-research-empty">
+        <EmptyState as="div" className="curated-research-empty">
           <div>
             <strong>This conjecture has no curated prior-work entries yet.</strong>
             <p>The target remains searchable and its Agent research graph is independent. Add a source-backed record when a paper, result, or formalization has been checked into the public research record.</p>
           </div>
-          <Link className="button button-secondary" href="/about#catalog-standard">Read the curation standard <span aria-hidden="true">→</span></Link>
-        </div>
+          <ActionLink className="button button-secondary" href="/about#catalog-standard">Read the curation standard <span aria-hidden="true">→</span></ActionLink>
+        </EmptyState>
       )}
     </section>
   );
@@ -69,14 +66,14 @@ function ResearchRecordCard({
   problemSlug: string;
 }) {
   return (
-    <article className={`curated-research-record is-${record.curationStatus}`}>
+    <Surface as="article" className={`curated-research-record is-${record.curationStatus}`}>
       <div className="curated-research-record-index"><span>{String(index).padStart(2, "0")}</span><i aria-hidden="true" /></div>
       <div className="curated-research-record-body">
         <div className="curated-research-record-top">
           <span className="curated-research-role">{roleLabel(record.role)}</span>
           <span className="curated-research-kind">{kindLabel(record.kind)}</span>
         </div>
-        <h3><a href={record.sourceUrl} rel="noreferrer" target="_blank">{record.title}<span aria-hidden="true">↗</span></a></h3>
+        <CardTitle><a href={record.sourceUrl} rel="noreferrer" target="_blank">{record.title}<span aria-hidden="true">↗</span></a></CardTitle>
         <p className="curated-research-authors">{record.authors} · {formatDate(record.occurredAt)}</p>
         <p className="curated-research-summary">{record.summary}</p>
         <div className="curated-research-record-footer">
@@ -88,7 +85,7 @@ function ResearchRecordCard({
         {record.leanRepositoryUrl && <a href={record.leanRepositoryUrl} rel="noreferrer" target="_blank">Open Lean path <span aria-hidden="true">↗</span></a>}
         <Link href={`/workbench?target=${encodeURIComponent(problemSlug)}#research-launcher`}>Replay in workspace <span aria-hidden="true">→</span></Link>
       </div>
-    </article>
+    </Surface>
   );
 }
 

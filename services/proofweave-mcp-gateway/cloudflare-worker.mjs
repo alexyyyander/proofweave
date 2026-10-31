@@ -32,6 +32,7 @@ export function createCloudflareGatewayWorker({ audit = defaultAudit() } = {}) {
           });
           return await createD1RemoteMcpGatewayRuntime({
             database: env.DB,
+            bucket: env.ARTIFACT_BUCKET ?? null,
             resource: env.MCP_RESOURCE_URL,
             issuer: env.OAUTH_ISSUER_URL,
             runnerQueue: env.RUNNER_QUEUE,
@@ -48,6 +49,7 @@ export function createCloudflareGatewayWorker({ audit = defaultAudit() } = {}) {
             receiptIssuerPrivateKeyJwkJson: env.RECEIPT_ISSUER_PRIVATE_KEY_JWK,
             receiptIssuerActivatedAt: env.RECEIPT_ISSUER_ACTIVATED_AT,
             operationMode: operationState.mode,
+            researchWriteAllowlistJson: env.PROOFWEAVE_MCP_RESEARCH_WRITE_ALLOWLIST_JSON,
           }).fetch(request);
         } catch (error) {
           if (error instanceof RemoteMcpRuntimeConfigurationError) {

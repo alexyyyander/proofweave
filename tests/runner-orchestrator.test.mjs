@@ -8,6 +8,62 @@ import {
 import { canonicalJson } from "../packages/protocol/canonical-json.mjs";
 import { RunnerOrchestrator, RunnerDispatchError } from "../services/lean-runner/orchestrator.mjs";
 import { InMemoryRunnerQueue, RunnerJobAuthenticator } from "../services/lean-runner/queue.mjs";
+import { selectRunnerWake, RunnerEnvironmentUnavailableError } from "../services/proofweave-mcp-gateway/runner-dispatch.mjs";
+import { runnerEnvironmentKey } from "../packages/protocol/lean-runner.mjs";
+
+test("Runner environment refusals expose a stable typed code", () => {
+  const error = new RunnerEnvironmentUnavailableError({
+    reason: "execution_disabled",
+    environment: {
+      leanToolchain: "leanprover/lean4:v4.27.0",
+      mathlibRevision: "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+    },
+    availableEnvironments: [{
+      leanToolchain: "leanprover/lean4:v4.27.0",
+      mathlibRevision: "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+      executionEnabled: false,
+    }],
+  });
+
+  assert.equal(error.code, "runner_environment_unavailable");
+  assert.equal(error.reason, "execution_disabled");
+  assert.match(error.message, /execution is disabled/i);
+  assert.deepEqual(error.availableEnvironments, [{
+    leanToolchain: "leanprover/lean4:v4.27.0",
+    mathlibRevision: "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+    executionEnabled: false,
+  }]);
+});
+
+test("Runner wake routing selects the client for the bundle's exact Lean environment", () => {
+  const four27 = {
+    leanToolchain: "leanprover/lean4:v4.27.0",
+    mathlibRevision: "a3a10db0e9d66acbebf76c5e6a135066525ac900",
+  };
+  const four31 = {
+    leanToolchain: "leanprover/lean4:v4.31.0",
+    mathlibRevision: "9a9483a92959bc92bd6a60176dd1fe597298c1f8",
+  };
+  const fallback = { async wake() { return { state: "fallback" }; } };
+  const route27 = { async wake() { return { state: "27" }; } };
+  const route31 = { async wake() { return { state: "31" }; } };
+  const routes = new Map([
+    [runnerEnvironmentKey(four27), route27],
+    [runnerEnvironmentKey(four31), route31],
+  ]);
+
+  assert.equal(selectRunnerWake({ environment: four27, runnerWake: fallback, runnerWakeRoutes: routes }), route27);
+  assert.equal(selectRunnerWake({ environment: four31, runnerWake: fallback, runnerWakeRoutes: routes }), route31);
+  assert.equal(selectRunnerWake({
+    environment: {
+      leanToolchain: "leanprover/lean4:v4.35.0",
+      mathlibRevision: "56a005855ea17e0b0958f73ec801ae140b0a1679",
+    },
+    runnerWake: fallback,
+    runnerWakeRoutes: routes,
+  }), fallback);
+  assert.equal(selectRunnerWake({ environment: four27, runnerWake: null, runnerWakeRoutes: null }), null);
+});
 
 test("orchestrator binds one signed Artifact Bundle to an idempotent Run and authenticated queue message", async () => {
   const pair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
