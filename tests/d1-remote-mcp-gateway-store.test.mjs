@@ -1219,7 +1219,7 @@ async function signedAttestation({
 test("public practice targets support inspection and retry-safe Attempts without entering the frontier list", async () => {
   const intake = await prepareOddSumIntake({ sourceCommit: "a".repeat(40), verifyCommittedFiles: false });
   await applyOddSumIntake(database, intake);
-  const store = new D1RemoteMcpGatewayStore(database);
+  const store = gatewayStore(database);
   const principal = {
     clientId: "client:gateway-codex", personId: "person:gateway-reviewer",
     agentInstallationId: "installation:gateway-prover",
