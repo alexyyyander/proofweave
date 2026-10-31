@@ -66,14 +66,14 @@ test("v2 retains independent review, replay, signature flags, Receipt linkage an
   });
 });
 
-test("the legacy checker still rejects production and any migration head other than 0043", () => {
+test("the legacy checker still rejects production and any migration head other than the reviewed checkout head", () => {
   const f = completeEvidence(); f.environment.origin = "https://proofweave.org";
   assert.throws(() => checkCredentialedContributionRelease(f), e => e.code === "PRODUCTION_ORIGIN_FORBIDDEN");
   f.environment.origin = "https://staging.example";
   f.environment.databaseFingerprint = "3f9e7934a04a22ec";
   assert.throws(() => checkCredentialedContributionRelease(f), e => e.code === "PRODUCTION_DATABASE_FINGERPRINT_FORBIDDEN");
   f.environment.databaseFingerprint = "0123456789abcdef";
-  f.release.before.migrationHead = "0050_add_runner_queue_environment.sql";
+  f.release.before.migrationHead = "0051_future_migration.sql";
   assert.throws(() => checkCredentialedContributionRelease(f), e => e.code === "MIGRATION_HEAD_REQUIRED");
 });
 

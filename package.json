@@ -10,7 +10,7 @@
     "dev": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext dev",
     "build": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext build",
     "start": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext start",
-    "test": "npm run build && node --test --test-concurrency=1 tests/rendered-html.test.mjs && node --test tests/external-user-surfaces.test.mjs && node --test --test-concurrency=1 tests/ordinary-user-journey.test.mjs && node --test tests/ordinary-user-release-preflight.test.mjs tests/workbench-journey-truthfulness.test.mjs tests/mcp-run-summary.test.mjs tests/runner-workflow-status.test.mjs tests/credentialed-contribution-release.test.mjs tests/production-contribution-cutover.test.mjs tests/publication-catalog.test.mjs tests/publication-pages.test.mjs",
+    "test": "npm run build && node --test --test-concurrency=1 tests/rendered-html.test.mjs && node --test tests/external-user-surfaces.test.mjs && node --test --test-concurrency=1 tests/ordinary-user-journey.test.mjs && node --test tests/ordinary-user-release-preflight.test.mjs tests/workbench-journey-truthfulness.test.mjs tests/research-launcher.test.mjs tests/mcp-run-summary.test.mjs tests/runner-workflow-status.test.mjs tests/credentialed-contribution-release.test.mjs tests/production-contribution-cutover.test.mjs tests/publication-catalog.test.mjs tests/publication-pages.test.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "typecheck": "tsc --noEmit",
     "ui:check": "tsc --project tsconfig.ui.json --noEmit && node scripts/ui/audit-components.mjs && node --import tsx --test tests/ui/*.test.tsx",

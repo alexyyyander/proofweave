@@ -173,7 +173,7 @@ function observation({ revision, observedAt }) {
     runnerRevision: revision,
     databaseAuthority: "turso",
     databaseFingerprint: "0123456789abcdef",
-    migrationHead: "0043_add_runner_queue_event_sequence.sql",
+    migrationHead: "0050_add_runner_queue_environment.sql",
   };
 }
 
