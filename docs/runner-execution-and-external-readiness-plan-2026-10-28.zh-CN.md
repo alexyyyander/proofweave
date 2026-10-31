@@ -55,6 +55,7 @@ Person A 固定目标
 
 ### P2 Worker 与 Render 批准（0.5 天）
 
+- 详细部署清单见 [`runner-p2-deployment-runbook.zh-CN.md`](runner-p2-deployment-runbook.zh-CN.md)；0050 迁移已应用，template/Render 仍受凭据阻塞。
 - 先应用迁移 `0050_add_runner_queue_environment.sql`（Turso 控制面）；Runner 启动会校验 migration ledger，未应用会 fail closed。
 - 扩展 `config/runner-environments.json`：允许 `template_ready` 状态，登记 template ID/build ID（schema v2，已由 checker 校验）。
 - 用 `scripts/generate-runner-environment-config.mjs` 从登记表生成 Worker/Render env 值，不手工复制 digest/template ID：
