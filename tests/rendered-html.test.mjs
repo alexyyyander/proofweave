@@ -2247,6 +2247,9 @@ test("renders only a hash-checked, issuer-signed receipt from D1", async () => {
 
   const issuerKeys = await render("/api/receipts/issuer-keys");
   assert.equal(issuerKeys.status, 200);
+  // Readers run a revocation check against this response, so it must not be
+  // served from a shared cache while it claims to be current.
+  assert.match(issuerKeys.headers.get("cache-control") ?? "", /no-store/i);
   assert.deepEqual(await issuerKeys.json(), {
     issuerKeys: [{
       id: receipt.issuerKeyId,
