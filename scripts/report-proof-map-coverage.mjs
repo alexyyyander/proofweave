@@ -16,6 +16,7 @@ if (json) {
   console.log(`  families: ${index.summary.families}`);
   console.log(`  deep: ${index.summary.deep}`);
   console.log(`  draft: ${index.summary.draft}`);
+  console.log(`  lean-derived: ${index.summary.lean}`);
   console.log(`  scaffold: ${index.summary.scaffold}`);
   console.log(`  manuscripts: ${index.summary.manuscripts}`);
   console.log(`  families with Lean scope: ${index.summary.scopeFamilies}/${index.summary.families}`);
@@ -26,9 +27,9 @@ if (json) {
   console.log(`  Lean theorem names: ${index.summary.leanTheoremNames}`);
   console.log("");
   console.log("Curated families:");
-  for (const entry of index.entries.filter((candidate) => candidate.status !== "scaffold")) {
+  for (const entry of index.entries.filter((candidate) => candidate.status === "deep" || candidate.status === "draft")) {
     console.log(`  ${entry.familyNumber}  ${entry.status.padEnd(7)}  ${entry.title}`);
   }
   console.log("");
-  console.log("Next work queue: use status=scaffold in /proof-evolution; each entry names the next curation step.");
+  console.log("Next work queue: use status=lean or status=scaffold in /proof-evolution; each entry names the next curation step.");
 }

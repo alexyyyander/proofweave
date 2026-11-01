@@ -24,6 +24,9 @@ before(async () => {
 after(async () => { await runtime?.dispose(); });
 
 const fetchPage = (path) => runtime.dispatchFetch(`http://localhost${path}`, { headers: { accept: "text/html" } });
+// The RSC payload carries the route's client dictionary, so absence checks
+// must look at rendered text rather than the raw HTML.
+const visibleText = (html) => html.replace(/<script\b[\s\S]*?<\/script>/gi, " ").replace(/<style\b[\s\S]*?<\/style>/gi, " ");
 
 test("anonymous readers can browse the collection and use filters", async () => {
   const response = await fetchPage("/publications");
@@ -109,6 +112,14 @@ test("the proof-map index, scaffold, deep maps, and API render with explicit sta
   assert.ok(scaffoldHtml.includes("Structure skeleton"));
   assert.ok(scaffoldHtml.includes("No theorem-level proof chain has been curated yet"));
 
+  const derived = await fetchPage("/proof-evolution/openai-math/005");
+  assert.equal(derived.status, 200);
+  const derivedHtml = await derived.text();
+  assert.ok(derivedHtml.includes("Lean-derived structure"));
+  assert.ok(derivedHtml.includes("What the pinned Lean closure records for this family."));
+  assert.ok(derivedHtml.includes("Formal target"));
+  assert.ok(!visibleText(derivedHtml).includes("Theorem dependencies · deep map"));
+
   const deep = await fetchPage("/proof-evolution/openai-math/032");
   assert.equal(deep.status, 200);
   const deepHtml = await deep.text();
@@ -128,7 +139,8 @@ test("the proof-map index, scaffold, deep maps, and API render with explicit sta
   assert.equal(payload.entries.length, 372);
   assert.equal(payload.summary.deep, 4);
   assert.equal(payload.summary.draft, 0);
-  assert.equal(payload.summary.scaffold, 368);
+  assert.equal(payload.summary.lean, 238);
+  assert.equal(payload.summary.scaffold, 130);
 });
 
 

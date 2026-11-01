@@ -49,6 +49,7 @@ export default async function ProofMapIndexPage() {
         <div className="proof-map-aside-stats">
           <span><b>{index.summary.deep}</b> {t("proofMaps.index.asideDeep")}</span>
           <span><b>{index.summary.draft}</b> {t("proofMaps.index.asideDraft")}</span>
+          <span><b>{index.summary.lean}</b> {t("proofMaps.index.asideLean")}</span>
           <span><b>{index.summary.scaffold}</b> {t("proofMaps.index.asideScaffold")}</span>
         </div>
         <p>{t("proofMaps.index.asideBody")}</p>
@@ -65,6 +66,7 @@ export default async function ProofMapIndexPage() {
         <CoverageStat locale={locale} label={t("proofMaps.index.coverage.theoremNames.label")} value={index.summary.leanTheoremNames} detail={t("proofMaps.index.coverage.theoremNames.detail")} />
         <CoverageStat locale={locale} label={t("proofMaps.index.coverage.deep.label")} value={index.summary.deep} detail={t("proofMaps.index.coverage.deep.detail")} />
         <CoverageStat locale={locale} label={t("proofMaps.index.coverage.draft.label")} value={index.summary.draft} detail={t("proofMaps.index.coverage.draft.detail")} />
+        <CoverageStat locale={locale} label={t("proofMaps.index.coverage.lean.label")} value={index.summary.lean} detail={t("proofMaps.index.coverage.lean.detail")} />
         <CoverageStat locale={locale} label={t("proofMaps.index.coverage.scaffolds.label")} value={index.summary.scaffold} detail={t("proofMaps.index.coverage.scaffolds.detail")} />
       </section>
 
@@ -78,6 +80,11 @@ export default async function ProofMapIndexPage() {
           <Badge tone="warning">{t("proofMaps.index.statusDraft")}</Badge>
           <strong>{index.summary.draft}</strong>
           <p>{t("proofMaps.index.draftBody")}</p>
+        </article>
+        <article className="status-lean">
+          <Badge>{t("proofMaps.index.statusLean")}</Badge>
+          <strong>{index.summary.lean}</strong>
+          <p>{t("proofMaps.index.leanBody")}</p>
         </article>
         <article className="status-scaffold">
           <Badge>{t("proofMaps.index.statusScaffold")}</Badge>

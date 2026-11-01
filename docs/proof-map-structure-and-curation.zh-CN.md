@@ -2,15 +2,18 @@
 
 本文说明网站上的 proof-map 结构、状态等级和持续补全流程。它不是发布授权；任何 replay、评审、Receipt 或部署仍需各自证据。
 
-## 1. 三类结构
+## 1. 四类结构
 
 | 状态 | 含义 | 当前数量 |
 | --- | --- | --- |
 | `deep` | 已整理的 theorem-level argument map，含版本、依赖、跨解法关系、Lean 对齐和来源定位 | 4（003、032、084、159） |
 | `draft` | 已有的 draft explanation，含 proof steps / Lean annotations，但未评审，步骤顺序不自动等于依赖 DAG | 0 |
-| `scaffold` | 只登记 claim、manuscripts、citations、upstream Lean scope；没有 theorem-level proof chain | 368 |
+| `lean` | 从 pinned comparator/solution 机器抽取的结构：形式化目标 → 求解定理 → 允许公理；不是定理级依赖图，未经评审 | 238 |
+| `scaffold` | 只登记 claim、manuscripts、citations、upstream Lean scope；没有定理级证明链，也没有可抽取的 Lean 结构 | 130 |
 
 `scaffold` 不是“证明完成”，也不是“没有数学”。它表示来源记录已入索引，但定理陈述、证明依赖和 Lean 对齐尚未整理。
+
+`lean` 也不是“证明已完成”。它只陈述固定提交里 comparator 的挑战命题、solution 模块的具名定理和允许公理；页面不得把它写成引理级依赖、kernel 验证或 Proofweave 重放。
 
 ## 2. URL 与数据
 
@@ -22,6 +25,7 @@
 - 目录快照：`data/publications/openai-math.json`
 - 状态登记：`data/proof-maps/manifest.json`
 - 深图数据：`data/proof-maps/deep/{number}.json`
+- Lean 派生结构：不单独存数据文件，由 family 页从 `lean-coverage.json` 的 comparators 渲染（≥1 个具名定理的族进入 `lean` 状态）
 - 深图校验器：`packages/domain/deep-proof-map.mjs`
 - 索引生成器：`packages/domain/proof-map-index.mjs`
 - 覆盖率报告：`npm run proof:maps:report`（`--json` 输出完整索引）
@@ -36,6 +40,10 @@
 4. 在 `data/publications/explanations/` 新增 artifact，并登记到 manifest 的 `draft`。
 5. 保持 `status: draft`、`reviewStatus: unreviewed`。
 
+### lean → deep
+
+`lean` 是自动状态（有 pinned comparator 且至少一个具名定理即进入），不需要人工登记。要离开 `lean` 进入 `deep`，必须按上一节从论文补出定理级节点与依赖，而不是从 Lean 结构反推证明顺序。
+
 ### draft → deep
 
 1. 为每条证明策略建立 theorem-level 节点和 `depends` 边；区分 `uses`、`cites`、`background`。
@@ -47,6 +55,7 @@
 ## 4. 不允许的捷径
 
 - 不要从标题/摘要自动编造 proof steps。
+- 不要把 Lean-derived 结构写成定理级依赖或证明 DAG；它只记录“形式化目标 → 求解定理 → 允许公理”。
 - 不要把 citation graph 当作 proof dependency graph。
 - 不要把 `same-role` 写成 logical implication。
 - 不要把上游 Lean scope 写成 Proofweave replay。
@@ -58,13 +67,14 @@
 ```text
 catalog snapshot
   → scaffold entry (claim, manuscripts, scope, evidence gates)
+  → lean-derived structure (pinned comparator → theorems → axioms, automatic)
   → draft explanation (proof steps + Lean annotations)
   → deep argument map (theorem edges + cross-solution links + Lean anchors)
   → independent review
   → replay / Receipt (separate gates)
 ```
 
-每周用 `npm run proof:maps:report` 检查 deep/draft/scaffold 数量和 scope 覆盖；优先挑 `scopeDocument=true` 的 scaffold，因为它们已经有 Lean scope 可作为对齐起点。深图数据用 `validateDeepProofMap` 校验节点引用、依赖无环、每条策略都有 final edge，并核对 Lean alignment 的 theorem name 与 module 确实出现在 `lean-coverage.json` 中。
+每周用 `npm run proof:maps:report` 检查 deep/lean/draft/scaffold 数量和 scope 覆盖；优先挑 `scopeDocument=true` 的 scaffold，因为它们已经有 Lean scope 可作为对齐起点。深图数据用 `validateDeepProofMap` 校验节点引用、依赖无环、每条策略都有 final edge，并核对 Lean alignment 的 theorem name 与 module 确实出现在 `lean-coverage.json` 中。
 
 ## 6. Lean 结构批量抽取（2026-10-31）
 

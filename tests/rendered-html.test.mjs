@@ -1303,6 +1303,7 @@ test("serves the localized shell and translated information pages", async () => 
   const proofMapsHtml = await proofMaps.text();
   assert.match(proofMapsHtml, /每个结果都有结构。/);
   assert.match(proofMapsHtml, /深度论证地图/);
+  assert.match(proofMapsHtml, /Lean 派生结构/);
   assert.match(proofMapsHtml, /元数据骨架/);
 
   const landauSiegel = await render("/proof-evolution/landau-siegel", localizedHeaders);
@@ -1315,6 +1316,12 @@ test("serves the localized shell and translated information pages", async () => 
   const proofFamilyHtml = await proofFamily.text();
   assert.match(proofFamilyHtml, /深度论证地图：定理级依赖已策展并定位到源码/);
   assert.match(proofFamilyHtml, /<title>证明地图 032/);
+
+  const derivedFamily = await render("/proof-evolution/openai-math/005", localizedHeaders);
+  const derivedFamilyHtml = await derivedFamily.text();
+  assert.match(derivedFamilyHtml, /固定提交的 Lean 闭包记录了哪些结构。/);
+  assert.match(derivedFamilyHtml, /形式化目标/);
+  assert.match(derivedFamilyHtml, /Lean 派生结构/);
 
   const switchResponse = await render("/api/locale?to=zh-CN", {
     headers: { referer: "http://localhost/about" },

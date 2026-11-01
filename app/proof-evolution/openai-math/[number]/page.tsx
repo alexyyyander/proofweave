@@ -25,6 +25,7 @@ import explanation084 from "@/data/publications/explanations/openai-math-084.jso
 import explanation159 from "@/data/publications/explanations/openai-math-159.json";
 import { MathText } from "../../../publications/MathText";
 import { DeepProofMapView } from "../../DeepProofMap";
+import { LeanDerivedMap } from "../../LeanDerivedMap";
 import { getI18n } from "@/app/i18n/server";
 import type { Locale } from "@/app/i18n/config";
 import type { TranslationKey, Translator } from "@/app/i18n/translate";
@@ -36,6 +37,7 @@ export const dynamic = "force-dynamic";
 const statusKeys: Record<ProofMapIndexEntry["status"], TranslationKey> = {
   deep: "proofMaps.index.statusDeep",
   draft: "proofMaps.index.statusDraft",
+  lean: "proofMaps.index.statusLean",
   scaffold: "proofMaps.index.statusScaffold",
 };
 
@@ -93,6 +95,7 @@ export default async function ProofMapFamilyPage({ params }: Params) {
   const explanation = entry.status === "draft" ? explanationForFamily(family.number, explanationArtifacts) : undefined;
   const isDraft = Boolean(explanation);
   const isDeep = Boolean(deep);
+  const isLean = entry.status === "lean" && Boolean(leanFamily);
 
   return <SiteFrame
     active="publications"
@@ -107,7 +110,9 @@ export default async function ProofMapFamilyPage({ params }: Params) {
         ? t("proofMaps.family.descriptionDeep")
         : isDraft
           ? t("proofMaps.family.descriptionDraft")
-          : t("proofMaps.family.descriptionScaffold")}
+          : isLean
+            ? t("proofMaps.family.descriptionLean")
+            : t("proofMaps.family.descriptionScaffold")}
       meta={<>
         <span>{t("proofMaps.family.metaFamily", { number: family.number })}</span>
         <span>{family.subject}</span>
@@ -119,15 +124,16 @@ export default async function ProofMapFamilyPage({ params }: Params) {
       actions={<>
         <ActionLink variant="primary" href={`/publications/openai-math/${family.number}`}>{t("proofMaps.browser.publicationRecord")}</ActionLink>
         {isDeep ? <ActionLink variant="secondary" href="#argument-map">{t("proofMaps.landau.actionArgumentMap")}</ActionLink> : null}
+        {isLean ? <ActionLink variant="secondary" href="#lean-derived-map">{t("proofMaps.family.actionLeanMap")}</ActionLink> : null}
         <ActionLink variant="secondary" href="/proof-evolution">{t("proofMaps.family.actionAllMaps")}</ActionLink>
         {isDraft && <ActionLink variant="secondary" href={`/publications/openai-math/${family.number}#explanations`}>{t("proofMaps.family.actionDraftExplanation")}</ActionLink>}
       </>}
     />
 
     <div className="proof-map-family-content">
-      <StatusBanner entry={entry} isDraft={isDraft} isDeep={isDeep} t={t} />
+      <StatusBanner entry={entry} isDraft={isDraft} isDeep={isDeep} isLean={isLean} t={t} />
 
-      {deep ? <DeepProofMapView deep={deep} subject={family.subject} revision={openaiMathCollection.source.revision} /> : explanation ? <DraftChain familyNumber={family.number} explanation={explanation} family={family} t={t} locale={locale} /> : <ScaffoldMap entry={entry} t={t} />}
+      {deep ? <DeepProofMapView deep={deep} subject={family.subject} revision={openaiMathCollection.source.revision} /> : explanation ? <DraftChain familyNumber={family.number} explanation={explanation} family={family} t={t} locale={locale} /> : isLean && leanFamily ? <LeanDerivedMap family={leanFamily} entry={entry} t={t} /> : <ScaffoldMap entry={entry} t={t} />}
 
       <div className="proof-map-family-grid">
         <ManuscriptSection family={family} t={t} />
@@ -136,19 +142,21 @@ export default async function ProofMapFamilyPage({ params }: Params) {
 
       {leanFamily && <LeanStructureSection family={leanFamily} t={t} />}
 
-      <NextSteps entry={entry} isDraft={isDraft} isDeep={isDeep} t={t} />
+      <NextSteps entry={entry} isDraft={isDraft} isDeep={isDeep} isLean={isLean} t={t} />
     </div>
   </SiteFrame>;
 }
 
-function StatusBanner({ entry, isDraft, isDeep, t }: { entry: ProofMapIndexEntry; isDraft: boolean; isDeep: boolean; t: Translator }) {
+function StatusBanner({ entry, isDraft, isDeep, isLean, t }: { entry: ProofMapIndexEntry; isDraft: boolean; isDeep: boolean; isLean: boolean; t: Translator }) {
   return <div className="proof-map-family-status">
     <Badge tone={isDeep ? "positive" : isDraft ? "warning" : "neutral"}>{t(statusKeys[entry.status])}</Badge>
     <p>{isDeep
       ? t("proofMaps.family.statusDeep")
       : isDraft
         ? t("proofMaps.family.statusDraft")
-        : t("proofMaps.family.statusScaffold")}</p>
+        : isLean
+          ? t("proofMaps.family.statusLean")
+          : t("proofMaps.family.statusScaffold")}</p>
     <small>{entry.nextStep}</small>
   </div>;
 }
@@ -300,7 +308,7 @@ function LeanStructureSection({ family, t }: { family: LeanCoverageFamily; t: Tr
   </section>;
 }
 
-function NextSteps({ entry, isDraft, isDeep, t }: { entry: ProofMapIndexEntry; isDraft: boolean; isDeep: boolean; t: Translator }) {
+function NextSteps({ entry, isDraft, isDeep, isLean, t }: { entry: ProofMapIndexEntry; isDraft: boolean; isDeep: boolean; isLean: boolean; t: Translator }) {
   return <Surface tone="card" className="proof-map-next-steps">
     <div className="proof-map-family-section-heading">
       <div><p className="eyebrow">{t("proofMaps.family.nextEyebrow")}</p><h2>{isDeep ? t("proofMaps.family.nextTitleVerify") : t("proofMaps.family.nextTitleFill")}</h2></div>
@@ -311,6 +319,10 @@ function NextSteps({ entry, isDraft, isDeep, t }: { entry: ProofMapIndexEntry; i
       <li><strong>{t("proofMaps.family.verifyStep2Title")}</strong> {t("proofMaps.family.verifyStep2Body")}</li>
       <li><strong>{t("proofMaps.family.verifyStep3Title")}</strong> {t("proofMaps.family.verifyStep3Body")}</li>
       <li><strong>{t("proofMaps.family.verifyStep4Title")}</strong> {t("proofMaps.family.verifyStep4Body")}</li>
+    </ol> : isLean ? <ol>
+      <li><strong>{t("proofMaps.family.leanStep1Title")}</strong> {t("proofMaps.family.leanStep1Body")}</li>
+      <li><strong>{t("proofMaps.family.leanStep2Title")}</strong> {t("proofMaps.family.leanStep2Body")}</li>
+      <li><strong>{t("proofMaps.family.leanStep3Title")}</strong> {t("proofMaps.family.leanStep3Body")}</li>
     </ol> : <ol>
       <li><strong>{t("proofMaps.family.fillStep1Title")}</strong> {t("proofMaps.family.fillStep1Body")}</li>
       <li><strong>{t("proofMaps.family.fillStep2Title")}</strong> {t("proofMaps.family.fillStep2Body")}</li>

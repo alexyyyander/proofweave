@@ -38,7 +38,9 @@ test("the coverage summary is truthful and statuses are explicit", () => {
   assert.equal(index.summary.leanFamilies, 242);
   assert.equal(index.summary.leanSolutionModules, 426);
   assert.equal(index.summary.leanTheoremNames, 536);
-  assert.deepEqual(index.statusCounts, { deep: 4, draft: 0, scaffold: 368 });
+  assert.deepEqual(index.statusCounts, { deep: 4, draft: 0, lean: 238, scaffold: 130 });
+  assert.equal(index.summary.lean, 238);
+  assert.equal(index.summary.scaffold, 130);
   assert.equal(index.entries.filter((entry) => entry.status === "scaffold").every((entry) => entry.reviewStatus === "not_started"), true);
   assert.equal(index.entries.filter((entry) => entry.status !== "scaffold").every((entry) => entry.reviewStatus === "unreviewed"), true);
 });
@@ -78,8 +80,29 @@ test("claim snippets are plain text and carry no markup or TeX delimiters", () =
 test("subjects preserve the catalog family totals", () => {
   assert.equal(index.subjects.length, 17);
   assert.equal(index.subjects.reduce((total, subject) => total + subject.families, 0), 372);
-  const statuses = index.subjects.reduce((total, subject) => total + subject.deep + subject.draft + subject.scaffold, 0);
+  const statuses = index.subjects.reduce((total, subject) => total + subject.deep + subject.draft + subject.lean + subject.scaffold, 0);
   assert.equal(statuses, 372);
+});
+
+test("families with a pinned comparator but no curated spine are lean-derived, not deep", () => {
+  const byNumber = new Map(index.entries.map((entry) => [entry.familyNumber, entry]));
+  const lean = byNumber.get("005");
+  assert.equal(lean.status, "lean");
+  assert.equal(lean.statusLabel, "Lean-derived structure");
+  assert.equal(lean.route, "/proof-evolution/openai-math/005");
+  assert.equal(lean.reviewStatus, "unreviewed");
+  assert.match(lean.nextStep, /Replace the machine-extracted structure/);
+  assert.equal(lean.manifestLabel, null);
+  for (const entry of index.entries.filter((candidate) => candidate.status === "lean")) {
+    assert.ok(entry.lean.theoremNames > 0, `${entry.familyNumber} must name at least one theorem`);
+    assert.equal(entry.reviewStatus, "unreviewed");
+  }
+  assert.equal(
+    index.entries.filter((entry) => entry.status === "deep").length
+      + index.entries.filter((entry) => entry.status === "lean").length
+      + index.entries.filter((entry) => entry.status === "scaffold").length,
+    372,
+  );
 });
 
 test("the manifest rejects unknown families, duplicates, and bad routes", () => {

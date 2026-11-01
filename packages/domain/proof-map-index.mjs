@@ -1,6 +1,6 @@
 export const PROOF_MAP_MANIFEST_SCHEMA_VERSION = "pw-proof-map-manifest-v1";
 export const PROOF_MAP_INDEX_SCHEMA_VERSION = "pw-proof-map-index-v1";
-export const PROOF_MAP_STATUSES = ["deep", "draft", "scaffold"];
+export const PROOF_MAP_STATUSES = ["deep", "draft", "lean", "scaffold"];
 
 function fail(message) {
   throw new Error(`Proof map index: ${message}`);
@@ -81,6 +81,7 @@ export function validateProofMapManifest(manifest, collection) {
 function nextStepFor(status) {
   if (status === "deep") return "Extend version coverage, Lean declaration alignment, and independent review.";
   if (status === "draft") return "Promote the draft chain to a theorem-level argument map; verify dependencies and add Lean alignment.";
+  if (status === "lean") return "Replace the machine-extracted structure with a curated theorem-level proof spine, then open independent review.";
   return "Extract theorem/lemma statements, build the argument map, align Lean declarations, then open independent review.";
 }
 
@@ -192,7 +193,11 @@ export function buildProofMapIndex(collection, manifest, leanCoverage = null) {
   const entries = collection.families.map((family) => {
     const deepEntry = deep.get(family.number);
     const draftEntry = draft.get(family.number);
-    const status = deepEntry ? "deep" : draftEntry ? "draft" : "scaffold";
+    const leanFamily = leanByFamily.get(family.number);
+    // A machine-extracted structure needs at least one pinned comparator with a
+    // named proving theorem; a solution module alone cannot describe a chain.
+    const leanEntry = Boolean(leanFamily?.comparators?.some((comparator) => comparator.theoremNames.length > 0));
+    const status = deepEntry ? "deep" : draftEntry ? "draft" : leanEntry ? "lean" : "scaffold";
     const curated = deepEntry ?? draftEntry;
     const claimText = publicationPlainText(family.claim);
     const titleText = publicationPlainText(family.title);
@@ -200,7 +205,6 @@ export function buildProofMapIndex(collection, manifest, leanCoverage = null) {
     const comparatorCount = family.scope?.comparatorLinks?.length ?? 0;
     const formalizedManuscripts = family.manuscripts.filter((manuscript) => manuscript.citedByScopeDocument || manuscript.listedInFormalizationIndex).length;
     const manuscriptCount = family.manuscripts.length;
-    const leanFamily = leanByFamily.get(family.number);
     return {
       familyNumber: family.number,
       title: titleText,
@@ -241,6 +245,7 @@ export function buildProofMapIndex(collection, manifest, leanCoverage = null) {
     formalizedManuscripts: entries.reduce((total, entry) => total + entry.formalizedManuscripts, 0),
     deep: statusCounts.deep,
     draft: statusCounts.draft,
+    lean: statusCounts.lean,
     scaffold: statusCounts.scaffold,
     proofweaveReplays: 0,
     leanFamilies: entries.filter((entry) => entry.lean.status === "extracted" || entry.lean.status === "partial").length,
@@ -264,6 +269,7 @@ export function buildProofMapIndex(collection, manifest, leanCoverage = null) {
       families: subject.families,
       deep: entries.filter((entry) => entry.subject === subject.name && entry.status === "deep").length,
       draft: entries.filter((entry) => entry.subject === subject.name && entry.status === "draft").length,
+      lean: entries.filter((entry) => entry.subject === subject.name && entry.status === "lean").length,
       scaffold: entries.filter((entry) => entry.subject === subject.name && entry.status === "scaffold").length,
     })),
     entries,

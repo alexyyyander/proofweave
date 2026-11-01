@@ -1,4 +1,4 @@
-export type ProofMapStatus = "deep" | "draft" | "scaffold";
+export type ProofMapStatus = "deep" | "draft" | "lean" | "scaffold";
 
 export type ProofMapIndexEntry = {
   familyNumber: string;
@@ -33,6 +33,7 @@ export type ProofMapIndexSubject = {
   families: number;
   deep: number;
   draft: number;
+  lean: number;
   scaffold: number;
 };
 
@@ -46,6 +47,7 @@ export type ProofMapIndexSummary = {
   formalizedManuscripts: number;
   deep: number;
   draft: number;
+  lean: number;
   scaffold: number;
   proofweaveReplays: number;
   leanFamilies: number;
