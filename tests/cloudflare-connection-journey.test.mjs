@@ -10,6 +10,14 @@ import { personKeyProofChallengeSigningPayload } from "../packages/protocol/pers
 const workerRoot = new URL("../dist/server/", import.meta.url);
 const migrationsRoot = new URL("../drizzle/", import.meta.url);
 const authHeaders = { cookie: "__Host-pw_session=connection-isolated-test-session" };
+
+// The RSC payload in <script> tags carries the route's client dictionary; the
+// paused copy can legitimately be present there while the visible approval
+// branch is correct, so absence checks run on rendered text only.
+function visibleText(html) {
+  return html.replace(/<script\b[\s\S]*?<\/script>/gi, " ").replace(/<style\b[\s\S]*?<\/style>/gi, " ");
+}
+
 test("real Worker pairs an Agent while research is frozen, then revokes its tokens", async (t) => {
   const normalWorker = await createWorker();
   t.after(() => normalWorker.dispose());
@@ -80,7 +88,7 @@ test("real Worker pairs an Agent while research is frozen, then revokes its toke
     { headers: authHeaders },
   );
   assert.equal(approvalPage.status, 200);
-  assert.doesNotMatch(await approvalPage.text(), /Approving a local Codex is temporarily paused/);
+  assert.doesNotMatch(visibleText(await approvalPage.text()), /Approving a local Codex is temporarily paused/);
 
   const profileResponse = await requestJson(normalWorker, "/api/me/delegation", {
     headers: authHeaders,
