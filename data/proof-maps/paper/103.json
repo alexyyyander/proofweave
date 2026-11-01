@@ -1,0 +1,987 @@
+{
+  "familyNumber": "103",
+  "familyTitle": "Exact derandomization of logarithmic space: ` L=RL=BPL`",
+  "manuscripts": [
+    {
+      "id": "Exact-Derandomization-of-Logarithmic-Space-L-equals-RL-equals-BPL-September-23-2026",
+      "title": "Exact derandomization of logarithmic space: L = RL = BPL",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Exact-Derandomization-of-Logarithmic-Space-L-equals-RL-equals-BPL-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "The transition model and resource parameters",
+    "Rank channels for retained vertex sets",
+    "The exact correction and copy hierarchy",
+    "Stochastic atoms and their interfaces",
+    "Conditional averaging in the shared environment",
+    "Additive estimation and conditional prefix bounds",
+    "Compression of additive row estimates",
+    "Adaptive fingerprints within budget blocks",
+    "Finite numerical queries with bounded suspended storage",
+    "Uniform controller implementation",
+    "Derandomization and quantitative consequences",
+    "The effective compiler"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Exact logarithmic-space derandomization",
+      "statement": "[Exact logarithmic-space derandomization] \\[ ==. \\]",
+      "section": "Introduction",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-thm-probability",
+      "kind": "theorem",
+      "label": "Acceptance-probability approximation",
+      "statement": "[Acceptance-probability approximation] Fix a randomized machine M with polynomial worst-case running time and O((n+2)) work space. Let p_ M (x) be its acceptance probability on an input x of length n…",
+      "section": "Introduction",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-model-reduction",
+      "kind": "lemma",
+      "label": "Configuration reduction",
+      "statement": "[Configuration reduction] Fix a polynomial-time randomized machine using O((n+2)) work space. On an input of length n one can specify, uniformly in logarithmic space, a polynomial-size vertex set V_0…",
+      "section": "The transition model and resource parameters",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-env-ranks",
+      "kind": "lemma",
+      "label": "Rank-channel estimates",
+      "statement": "[Rank-channel estimates] There are positive constants c_,C_,C_ pair ,C_ var , depending only on H,h_0 , with the following properties in every admissible finite range. A specified identifier is…",
+      "section": "Rank channels for retained vertex sets",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-hier-fixed-point",
+      "kind": "lemma",
+      "label": "Fixed point and factorial truncation",
+      "statement": "[Fixed point and factorial truncation] For every fixed column multiplier 0 g1 , there is a unique strictly forward nonnegative solution of E_*(x,y)=fQ((C+E_*C)(x,y)/f)g(y). For the recurrence in…",
+      "section": "The exact correction and copy hierarchy",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-hier-pilot-bounds",
+      "kind": "lemma",
+      "label": "Elementary pilot bounds",
+      "statement": "[Elementary pilot bounds] All pilot and actual inputs and corrections are nonnegative and strictly forward. For 1 i k_* , G_i 1,\\ E_i 1, \\ G'_i 1,\\ E_i 1& i 1,\\\\ G_i(x,y),\\ E_i(x,y), \\ G'_i(x,y),\\…",
+      "section": "The exact correction and copy hierarchy",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-hier-column-test",
+      "kind": "lemma",
+      "label": "The detector bounds overloaded columns",
+      "statement": "[The detector bounds overloaded columns] Let \\[ D_ row =1+C_ pair k_*/_-. \\] Choose the integer K160D_ row , increasing it if necessary for the other finitely many row-gate estimates. For any fixed…",
+      "section": "The exact correction and copy hierarchy",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-hier-residual",
+      "kind": "lemma",
+      "label": "Residual bounds and unsigned-term domination",
+      "statement": "[Residual bounds and unsigned-term domination] For the k_* chosen in Lemma~ , put \\[ K_*=k_*+1, _ good =_2+q^ -1 /32<q^ -1 /16, c_ dom =_1/(2k_*). \\] The matrix D in Equation~ is nonnegative,…",
+      "section": "The exact correction and copy hierarchy",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-prop-hier-copy-step",
+      "kind": "proposition",
+      "label": "One-stage density and active-count reduction",
+      "statement": "[One-stage density and active-count reduction] Choose the detector rank J large enough that J2C_ (D_0-1)k_*(k_*+1) _0 , and then choose R_* as in Equation~ . The matrix C^+ is strictly forward and…",
+      "section": "The exact correction and copy hierarchy",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-prop-hier-reward-target",
+      "kind": "proposition",
+      "label": "Reward identity and a shallow target",
+      "statement": "[Reward identity and a shallow target] For every stage, C_lP_l^c=P_l^c-B_l(I-S). The vectors W_l=B_le satisfy 0 W_l1, W_l=P_l^cp_0-C_lP_l^cp_0, and their updates are W_ l+1…",
+      "section": "The exact correction and copy hierarchy",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-atom-dense",
+      "kind": "lemma",
+      "label": "Dense atom identity",
+      "statement": "[Dense atom identity] For sufficiently large fixed K , the table B_a(x,y)= 1_ \\ Y_t(y)=1\\ k_a(d_y)R c(q_y) on retained starts has bounded values and row support. On the slice X_u(x)=Y_t(y)=1 its…",
+      "section": "Stochastic atoms and their interfaces",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-hier-bin-products",
+      "kind": "lemma",
+      "label": "Bounds for a fine product contribution",
+      "statement": "[Bounds for a fine product contribution] Let C be the transition matrix at the current stage, and let F be any finite pilot or actual correction there. If a matrix A_b0 on the same vertex set…",
+      "section": "Stochastic atoms and their interfaces",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-atom-correction",
+      "kind": "lemma",
+      "label": "Correction atom identity, including zero multipliers",
+      "statement": "[Correction atom identity, including zero multipliers] For sufficiently large fixed K and then K_c , the conditional mean of f F(x,y) on X_u(x)=Y_t(y)=1 is exactly F(x,y) . On a true position with…",
+      "section": "Stochastic atoms and their interfaces",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-atom-margins",
+      "kind": "lemma",
+      "label": "Support margins and exposed row classes",
+      "statement": "[Support margins and exposed row classes] Suppose a bounded nonnegative main function k(v) vanishes for v . Its product k(v)R_ () and the preparatory product h_ (v)R_ () have at most K-1 nonzero real…",
+      "section": "Stochastic atoms and their interfaces",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-atom-ports",
+      "kind": "lemma",
+      "label": "Port contract",
+      "statement": "[Port contract] All main and preparatory row tables, auxiliary scores, and the smooth witnesses just constructed have bounded values and bounded row support. Every row access class used for a main or…",
+      "section": "Stochastic atoms and their interfaces",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-atom-assembly",
+      "kind": "lemma",
+      "label": "Assembly comparisons",
+      "statement": "[Assembly comparisons] Compare two versions with the same environment, rates, and task tuple. For a sparse normalized output write H=P T g and H'=P'T'g' , where P,P' are the pre-incoming…",
+      "section": "Stochastic atoms and their interfaces",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-env-affine",
+      "kind": "lemma",
+      "label": "A uniform affine spectral gap",
+      "statement": "[A uniform affine spectral gap] Let G_H=SL_H( Z) Z^H , with fixed H3 . There is a fixed finite symmetric generating multiset and a lazy rational random walk on it whose action on every finite…",
+      "section": "Conditional averaging in the shared environment",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-env-gap",
+      "kind": "lemma",
+      "label": "Conditional averaging",
+      "statement": "[Conditional averaging] Consider the fixed product of rank channels, conditioned on retention of one specified identifier per conditioned channel. Include any designated set of independent uniform…",
+      "section": "Conditional averaging in the shared environment",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-env-variants",
+      "kind": "lemma",
+      "label": "Validated walk variants",
+      "statement": "[Validated walk variants] A length- d word in the walk of Lemma~ can be expanded into a bounded-alphabet family of variants described by O(d) bits such that: each fixed variant acts bijectively and…",
+      "section": "Conditional averaging in the shared environment",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-est-true-means",
+      "kind": "lemma",
+      "label": "True sample means",
+      "statement": "[True sample means] Using true stochastic tables in Equations~ -- gives, after the indicated conditional averages, the prescribed raw inputs and vector values on their conditioning slices, with the…",
+      "section": "Additive estimation and conditional prefix bounds",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-est-loss",
+      "kind": "lemma",
+      "label": "Homogeneous loss",
+      "statement": "[Homogeneous loss] The loss in Equation~ is comparable, by constants depending only on s , to |H^ 1/s -(H')^ 1/s |^s . It contracts under sums and nonnegative mixtures. If H C_0G for a nonnegative G…",
+      "section": "Additive estimation and conditional prefix bounds",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-est-mean-comparison",
+      "kind": "lemma",
+      "label": "Scale and domain comparison",
+      "statement": "[Scale and domain comparison] Compare a budget- m sample term with the same term using true stochastic inputs. For a first-channel mean contribution use its clipped relative error against 1+d_y . In…",
+      "section": "Additive estimation and conditional prefix bounds",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-est-omission",
+      "kind": "lemma",
+      "label": "Fine omission",
+      "statement": "[Fine omission] If one fine bin is omitted, the norm of its normalized contribution is at most C(b/a)^ (s-1)/s . This applies to direct terms, routed terms, and correction--bin products.",
+      "section": "Additive estimation and conditional prefix bounds",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-est-paths",
+      "kind": "lemma",
+      "label": "Immediate paths",
+      "statement": "[Immediate paths] At a row group of slack d , immediate candidates have descriptions of O(d) bits. With exact endpoint grouping their sums equal the specified conditional-walk increments. A product…",
+      "section": "Additive estimation and conditional prefix bounds",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-est-mean-prefix",
+      "kind": "lemma",
+      "label": "Mean prefixes",
+      "statement": "[Mean prefixes] Assume all earlier table and vector bounds with coefficient C_b . For an active task there is a fixed B_1 , independent of the later choice of A_* , such that every mean prefix has…",
+      "section": "Additive estimation and conditional prefix bounds",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-est-raw-difference",
+      "kind": "lemma",
+      "label": "Absolute differences",
+      "statement": "[Absolute differences] At a slack- d group, the ordinary raw norm of an unaveraged paired difference is at most C C_b\\,2^ -p-A_*+C_0d , where C_0 is fixed independently of the walk length…",
+      "section": "Additive estimation and conditional prefix bounds",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-est-prefix",
+      "kind": "lemma",
+      "label": "Conditional prefix bounds",
+      "statement": "[Conditional prefix bounds] Assume exact local grouping, the earlier task error bounds, and that the sample functions depend only on variables varied by the conditional walk. Their uniform slice…",
+      "section": "Additive estimation and conditional prefix bounds",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-buf-update",
+      "kind": "lemma",
+      "label": "Local compression properties",
+      "statement": "[Local compression properties] The update has the following properties. It replaces every position of size at most 2u_0 by the new default, is identity at every position of size at least 3u_0 , and…",
+      "section": "Compression of additive row estimates",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-buf-reference",
+      "kind": "lemma",
+      "label": "Preloss and stationary reference",
+      "statement": "[Preloss and stationary reference] Let L_ j-1 =T_ j-1 -S_ j-1 before the first overflow at j . Then \\|L_ j-1 \\|_6_ i<j _i , and at every endpoint with d_y , _|L_ j-1 ^(y)| C_ i<j _i e_i(y). Start a…",
+      "section": "Compression of additive row estimates",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-buf-relative-stability",
+      "kind": "lemma",
+      "label": "Stability after the first overflow",
+      "statement": "[Stability after the first overflow] At a first overflow in group j , the discrepancy of final row-root outputs from the stationary reference of Lemma~ is at most C_ i j C_1^ m_*-i+1 e_i. The…",
+      "section": "Compression of additive row estimates",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-buf-rarity",
+      "kind": "lemma",
+      "label": "Conditional rarity of a true heavy count",
+      "statement": "[Conditional rarity of a true heavy count] At every specified endpoint, P(_j X_u(x)=Y_a(y)=1) C n_j_j . The same bound holds with the narrower endpoint condition Y_t(y)=1 . Moreover, for every prefix…",
+      "section": "Compression of additive row estimates",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-prop-buf-error",
+      "kind": "proposition",
+      "label": "Integrated compression bound",
+      "statement": "[Integrated compression bound] For fixed sufficiently large c_1 , then c_2 , and sufficiently rapid prefix-noise decay K_n , compression preserves the prescribed row error budget, with an arbitrarily…",
+      "section": "Compression of additive row estimates",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-buf-clamping",
+      "kind": "lemma",
+      "label": "Range clamping",
+      "statement": "[Range clamping] For fixed common increments satisfying Equation~ , these clamps do not change the final relevant row functions. Each clamp is sup-norm nonexpansive, so in comparisons of two…",
+      "section": "Compression of additive row estimates",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-prop-est-clean",
+      "kind": "proposition",
+      "label": "Error reserve with exact endpoint grouping",
+      "statement": "[Error reserve with exact endpoint grouping] Suppose the earlier row and vector tasks have error bound C_b2^ -p' and the support and common-parameter properties of the atom section. Use exact…",
+      "section": "Compression of additive row estimates",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-fp-hash",
+      "kind": "lemma",
+      "label": "Short fingerprints",
+      "statement": "[Short fingerprints] Suppose every endpoint has an injective, fixed-length binary encoding of length L c_ ID B . There is a uniform construction from O( B) independent fair bits of a map k:\\ endpoint…",
+      "section": "Adaptive fingerprints within budget blocks",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-fp-clean",
+      "kind": "lemma",
+      "label": "Independence of the clean block",
+      "statement": "[Independence of the clean block] Every clean value and structural choice for block b is independent of that block's effective salt and of later effective salts. In a task of budget M I_b , the…",
+      "section": "Adaptive fingerprints within budget blocks",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-fp-envelope",
+      "kind": "lemma",
+      "label": "Size and independence of the envelope",
+      "statement": "[Size and independence of the envelope] The set E_x is independent of the present salt and has size at most 2^ C_Eh_* for a fixed C_E . All clean nondefault representatives in the small groups belong…",
+      "section": "Adaptive fingerprints within budget blocks",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-fp-escape",
+      "kind": "lemma",
+      "label": "Charging an escaped candidate",
+      "statement": "[Charging an escaped candidate] Suppose actual--clean child discrepancies at budget m have their prescribed metric bounds 2^ -p_m _m . The contribution of F_x to any bounded final pre-incoming row…",
+      "section": "Adaptive fingerprints within budget blocks",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-fp-buckets",
+      "kind": "lemma",
+      "label": "Only increments are aliased",
+      "statement": "[Only increments are aliased] Consider one small group on F_x^c . Let _ ac (y),_ cl (y) be its unaliased increments, namely its true-ID sums using actual and clean children, respectively. Let k_d2^ C…",
+      "section": "Adaptive fingerprints within budget blocks",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-fp-direct",
+      "kind": "lemma",
+      "label": "Direct cost of collisions",
+      "statement": "[Direct cost of collisions] The direct collision contribution to any final pre-incoming output has norm at most 2^ -p \\,2^ C h_* B^ -1/(2s) , for a fixed C independent of D_1,D_2, introduced below.…",
+      "section": "Adaptive fingerprints within budget blocks",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-prop-fp-coupling",
+      "kind": "proposition",
+      "label": "Uniform block coupling",
+      "statement": "[Uniform block coupling] The fixed constants can be chosen so that, for every task of budget M I_b and precision p , each prescribed actual--clean output discrepancy, including every pre-incoming…",
+      "section": "Adaptive fingerprints within budget blocks",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-thm-fp-estimators",
+      "kind": "theorem",
+      "label": "Error bounds for the actual estimators",
+      "statement": "[Error bounds for the actual estimators] For every allowed task, with precision p defined in Equation~ , the actual row outputs, including the pre-incoming scores and support witnesses, satisfy \\[ d_…",
+      "section": "Adaptive fingerprints within budget blocks",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-fp-catalytic",
+      "kind": "lemma",
+      "label": "Restoring equality test",
+      "statement": "[Restoring equality test] Let V\\ 0,1\\ ^B be a shared vector with arbitrary initial contents. Suppose an excursion to either of two deterministically specified endpoints returns the cursor, and its…",
+      "section": "Adaptive fingerprints within budget blocks",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-arith-residue-stream",
+      "kind": "lemma",
+      "label": "Exact streams from approximation residues",
+      "statement": "[Exact streams from approximation residues] Suppose |z|1 and, for each t0 , a deterministic integer N_t(z) satisfies |N_t(z)-2^tz|<2. Set z_0=N_0(z), z_t=N_t(z)-2N_ t-1 (z)(t1). Then z_t A and these…",
+      "section": "Finite numerical queries with bounded suspended storage",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-arith-gate-evaluation",
+      "kind": "lemma",
+      "label": "Evaluation from regenerated gate addresses",
+      "statement": "[Evaluation from regenerated gate addresses] Consider a finite Boolean circuit of bounded fan-in, with a specified output gate. Conditional gates may evaluate their selector first and then only their…",
+      "section": "Finite numerical queries with bounded suspended storage",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-arith-elementary",
+      "kind": "lemma",
+      "label": "Finite comparisons and bounded elementary operations",
+      "statement": "[Finite comparisons and bounded elementary operations] The normalized operations of taking a pair average, a maximum or minimum, and a fixed binary shift admit deterministic integers satisfying…",
+      "section": "Finite numerical queries with bounded suspended storage",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-arith-multiplication",
+      "kind": "lemma",
+      "label": "Multiplication",
+      "statement": "[Multiplication] For normalized exact input streams x and y , multiplication has all the conclusions of Lemma~ . In particular, its suspended storage at an operand place j is O(1)+c(t-j) , despite…",
+      "section": "Finite numerical queries with bounded suspended storage",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-arith-reciprocal",
+      "kind": "lemma",
+      "label": "Reciprocal on a positive compact interval",
+      "statement": "[Reciprocal on a positive compact interval] Fix constants 0<a b . On inputs x , a reciprocal, after a fixed known normalization, has the same operand-clock, suspended-record, and intrinsic-space…",
+      "section": "Finite numerical queries with bounded suspended storage",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-arith-rank",
+      "kind": "lemma",
+      "label": "Indexed finite ranks",
+      "statement": "[Indexed finite ranks] Fix >0 and d1 . Consider at most 2^ d normalized values, indexed by descriptors of length at most d , and an order statistic specified by an O(d) -bit index. The semantic list…",
+      "section": "Finite numerical queries with bounded suspended storage",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-arith-sums-scales",
+      "kind": "lemma",
+      "label": "Bounded sums and known scales",
+      "statement": "[Bounded sums and known scales] Suppose an immediate descriptor domain has at most 2^ d terms, all required binary scale exponents have magnitude at most d , and every intermediate output has a known…",
+      "section": "Finite numerical queries with bounded suspended storage",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-arith-buffered-test",
+      "kind": "lemma",
+      "label": "Finite buffered tests",
+      "statement": "[Finite buffered tests] Let d1 , let s and u have known magnitude bound 2^ d , and suppose u2^ - d . There is a deterministic finite test that accepts every s>2u and accepts only s>u . It uses O(d)…",
+      "section": "Finite numerical queries with bounded suspended storage",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-thm-arith-interface",
+      "kind": "theorem",
+      "label": "Uniform numerical interface",
+      "statement": "[Uniform numerical interface] Fix the digit alphabet, positive reciprocal intervals, and constants bounding the following recipe class. A recipe at slack d1 has a fixed number of stages built from…",
+      "section": "Finite numerical queries with bounded suspended storage",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-thm-ctrl-realization",
+      "kind": "theorem",
+      "label": "Realization of the estimator interfaces",
+      "statement": "[Realization of the estimator interfaces] Fix the construction constants and an admissible top budget M_ top =O(B) . For every actual task tuple reachable from it, the row, vector and prefix…",
+      "section": "Uniform controller implementation",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-ctrl-local-graph",
+      "kind": "lemma",
+      "label": "Guarded local graph",
+      "statement": "[Guarded local graph] Suppose a fixed terminal recipe uses the preceding instruction types, has regenerable records, and obeys on its designated executions. Suppose all its opaque transition queries…",
+      "section": "Uniform controller implementation",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-ctrl-tour",
+      "kind": "lemma",
+      "label": "Inverse contour",
+      "statement": "[Inverse contour] Let a finite deterministic graph of the form in Lemma~ have a specified canonical success halt. Its undirected component is a tree directed toward that halt. There are mutually…",
+      "section": "Uniform controller implementation",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-ctrl-cap",
+      "kind": "lemma",
+      "label": "Capped incoming ports",
+      "statement": "[Capped incoming ports] Let a fixed row class have a constant port alphabet, distinct entries within each row, and a deterministic terminal program which maps its valid row ports to their endpoints.…",
+      "section": "Uniform controller implementation",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-ctrl-score-rank",
+      "kind": "lemma",
+      "label": "Incoming score rank",
+      "statement": "[Incoming score rank] Let a constant-size forward row class cover every positive entry of a bounded nonnegative score table, with distinct entries in each row. Suppose pre-incoming score digits are…",
+      "section": "Uniform controller implementation",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-ctrl-paths",
+      "kind": "lemma",
+      "label": "Ordered terminal paths and excursions",
+      "statement": "[Ordered terminal paths and excursions] Every unbalanced path required by the estimator has the following ordered form: restoring selection and validity tests; local label maps and, if necessary, a…",
+      "section": "Uniform controller implementation",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-ctrl-equality",
+      "kind": "lemma",
+      "label": "Implemented endpoint comparison",
+      "statement": "[Implemented endpoint comparison] At slack d , comparisons of two valid candidate or old-list endpoints are restoring, catalyst-independent tests with O(d) suspended structural control, in addition…",
+      "section": "Uniform controller implementation",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-ctrl-recipes",
+      "kind": "lemma",
+      "label": "Concrete recipe certificates",
+      "statement": "[Concrete recipe certificates] All actual estimator operations admit regenerable records and a fixed finite ordering of operation strata. At a prefix of slack d , each ordinary layer has O(d)…",
+      "section": "Uniform controller implementation",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-ctrl-replay",
+      "kind": "lemma",
+      "label": "Parameter replay and salt visibility",
+      "statement": "[Parameter replay and salt visibility] The records in Lemma~ are regenerable in the sense of Definition~ . With respect to their own effective environments, actual procedures at a budget in block b…",
+      "section": "Uniform controller implementation",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-thm-fixed-precision",
+      "kind": "theorem",
+      "label": "Fixed inverse-polynomial accuracy",
+      "statement": "[Fixed inverse-polynomial accuracy] Fix a randomized machine M with polynomial worst-case running time and O((n+2)) work space, and fix an integer d1 . There is a uniform deterministic transducer…",
+      "section": "Derandomization and quantitative consequences",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-final-majority",
+      "kind": "lemma",
+      "label": "Conditioning on one start",
+      "statement": "[Conditioning on one start] Let W^V , and suppose an estimator satisfies \\[ 1N E_ v V X_f(v)f | W(v)-W(v)|^8 C_b^8 2^ -8p . \\] For any specified z V and every >0 , E & N f _f C_b^8 2^ -8p , \\\\ & N f…",
+      "section": "Derandomization and quantitative consequences",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-cor-promise-bpl",
+      "kind": "corollary",
+      "label": "Under these conventions, PromiseBPL=PromiseL .",
+      "statement": "Under these conventions, PromiseBPL=PromiseL .",
+      "section": "Derandomization and quantitative consequences",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-cor-certified-search",
+      "kind": "corollary",
+      "label": "Certified accepting computations",
+      "statement": "[Certified accepting computations] Fix a randomized logarithmic-space machine M that halts within a fixed polynomial bound T(n)1 on every input and every coin sequence, and fix an integer c0 . There…",
+      "section": "Derandomization and quantitative consequences",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-thm-effective-simulation",
+      "kind": "theorem",
+      "label": "Effective simulation with explicit bounds",
+      "statement": "[Effective simulation with explicit bounds] There is a terminating algorithm which, given a finite randomized machine description M and positive integers a,b , emits a deterministic machine D_M and…",
+      "section": "The effective compiler",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    },
+    {
+      "id": "m1-lem-compiler-interpreter",
+      "kind": "lemma",
+      "label": "A total resource-capped interpreter",
+      "statement": "[A total resource-capped interpreter] There is one fixed randomized Turing machine U with polynomial worst-case running time and O((m+2)) counted work bits on every binary input of length m , with…",
+      "section": "The effective compiler",
+      "manuscript": "Exact derandomization of logarithmic space: L = RL = BPL"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-hier-pilot-bounds",
+      "to": "m1-lem-hier-column-test"
+    },
+    {
+      "from": "m1-lem-hier-pilot-bounds",
+      "to": "m1-lem-hier-residual"
+    },
+    {
+      "from": "m1-lem-hier-residual",
+      "to": "m1-prop-hier-copy-step"
+    },
+    {
+      "from": "m1-lem-hier-column-test",
+      "to": "m1-prop-hier-copy-step"
+    },
+    {
+      "from": "m1-lem-hier-pilot-bounds",
+      "to": "m1-prop-hier-copy-step"
+    },
+    {
+      "from": "m1-prop-hier-copy-step",
+      "to": "m1-prop-hier-reward-target"
+    },
+    {
+      "from": "m1-lem-env-ranks",
+      "to": "m1-lem-atom-dense"
+    },
+    {
+      "from": "m1-lem-hier-pilot-bounds",
+      "to": "m1-lem-hier-bin-products"
+    },
+    {
+      "from": "m1-lem-atom-dense",
+      "to": "m1-lem-atom-correction"
+    },
+    {
+      "from": "m1-lem-atom-margins",
+      "to": "m1-lem-atom-ports"
+    },
+    {
+      "from": "m1-lem-atom-ports",
+      "to": "m1-lem-atom-assembly"
+    },
+    {
+      "from": "m1-lem-env-affine",
+      "to": "m1-lem-env-gap"
+    },
+    {
+      "from": "m1-thm-ctrl-realization",
+      "to": "m1-lem-env-variants"
+    },
+    {
+      "from": "m1-lem-env-ranks",
+      "to": "m1-lem-est-true-means"
+    },
+    {
+      "from": "m1-lem-est-loss",
+      "to": "m1-lem-est-mean-comparison"
+    },
+    {
+      "from": "m1-lem-hier-bin-products",
+      "to": "m1-lem-est-omission"
+    },
+    {
+      "from": "m1-lem-env-variants",
+      "to": "m1-lem-est-paths"
+    },
+    {
+      "from": "m1-lem-atom-ports",
+      "to": "m1-lem-est-paths"
+    },
+    {
+      "from": "m1-lem-est-omission",
+      "to": "m1-lem-est-mean-prefix"
+    },
+    {
+      "from": "m1-lem-est-mean-comparison",
+      "to": "m1-lem-est-raw-difference"
+    },
+    {
+      "from": "m1-lem-est-mean-prefix",
+      "to": "m1-lem-est-prefix"
+    },
+    {
+      "from": "m1-lem-env-gap",
+      "to": "m1-lem-est-prefix"
+    },
+    {
+      "from": "m1-lem-est-raw-difference",
+      "to": "m1-lem-est-prefix"
+    },
+    {
+      "from": "m1-lem-buf-reference",
+      "to": "m1-lem-buf-relative-stability"
+    },
+    {
+      "from": "m1-lem-buf-update",
+      "to": "m1-lem-buf-relative-stability"
+    },
+    {
+      "from": "m1-lem-env-ranks",
+      "to": "m1-lem-buf-rarity"
+    },
+    {
+      "from": "m1-lem-buf-relative-stability",
+      "to": "m1-prop-buf-error"
+    },
+    {
+      "from": "m1-prop-buf-error",
+      "to": "m1-prop-est-clean"
+    },
+    {
+      "from": "m1-lem-est-prefix",
+      "to": "m1-prop-est-clean"
+    },
+    {
+      "from": "m1-lem-buf-clamping",
+      "to": "m1-prop-est-clean"
+    },
+    {
+      "from": "m1-lem-atom-assembly",
+      "to": "m1-prop-est-clean"
+    },
+    {
+      "from": "m1-lem-ctrl-replay",
+      "to": "m1-lem-fp-clean"
+    },
+    {
+      "from": "m1-lem-env-gap",
+      "to": "m1-lem-fp-clean"
+    },
+    {
+      "from": "m1-lem-env-variants",
+      "to": "m1-lem-fp-clean"
+    },
+    {
+      "from": "m1-prop-est-clean",
+      "to": "m1-lem-fp-clean"
+    },
+    {
+      "from": "m1-lem-fp-clean",
+      "to": "m1-lem-fp-envelope"
+    },
+    {
+      "from": "m1-lem-fp-hash",
+      "to": "m1-lem-fp-envelope"
+    },
+    {
+      "from": "m1-lem-env-variants",
+      "to": "m1-lem-fp-escape"
+    },
+    {
+      "from": "m1-lem-est-raw-difference",
+      "to": "m1-lem-fp-escape"
+    },
+    {
+      "from": "m1-lem-est-raw-difference",
+      "to": "m1-lem-fp-direct"
+    },
+    {
+      "from": "m1-lem-buf-update",
+      "to": "m1-lem-fp-direct"
+    },
+    {
+      "from": "m1-lem-buf-clamping",
+      "to": "m1-lem-fp-direct"
+    },
+    {
+      "from": "m1-lem-fp-buckets",
+      "to": "m1-lem-fp-direct"
+    },
+    {
+      "from": "m1-lem-fp-clean",
+      "to": "m1-prop-fp-coupling"
+    },
+    {
+      "from": "m1-prop-est-clean",
+      "to": "m1-prop-fp-coupling"
+    },
+    {
+      "from": "m1-lem-fp-escape",
+      "to": "m1-prop-fp-coupling"
+    },
+    {
+      "from": "m1-lem-fp-direct",
+      "to": "m1-prop-fp-coupling"
+    },
+    {
+      "from": "m1-lem-atom-assembly",
+      "to": "m1-prop-fp-coupling"
+    },
+    {
+      "from": "m1-lem-fp-hash",
+      "to": "m1-prop-fp-coupling"
+    },
+    {
+      "from": "m1-prop-fp-coupling",
+      "to": "m1-thm-fp-estimators"
+    },
+    {
+      "from": "m1-prop-est-clean",
+      "to": "m1-thm-fp-estimators"
+    },
+    {
+      "from": "m1-lem-arith-gate-evaluation",
+      "to": "m1-lem-arith-elementary"
+    },
+    {
+      "from": "m1-lem-arith-gate-evaluation",
+      "to": "m1-lem-arith-multiplication"
+    },
+    {
+      "from": "m1-lem-arith-elementary",
+      "to": "m1-lem-arith-reciprocal"
+    },
+    {
+      "from": "m1-lem-arith-multiplication",
+      "to": "m1-lem-arith-reciprocal"
+    },
+    {
+      "from": "m1-lem-arith-residue-stream",
+      "to": "m1-lem-arith-reciprocal"
+    },
+    {
+      "from": "m1-lem-arith-elementary",
+      "to": "m1-lem-arith-rank"
+    },
+    {
+      "from": "m1-lem-arith-gate-evaluation",
+      "to": "m1-lem-arith-rank"
+    },
+    {
+      "from": "m1-lem-arith-elementary",
+      "to": "m1-lem-arith-sums-scales"
+    },
+    {
+      "from": "m1-lem-arith-residue-stream",
+      "to": "m1-thm-arith-interface"
+    },
+    {
+      "from": "m1-lem-arith-sums-scales",
+      "to": "m1-thm-arith-interface"
+    },
+    {
+      "from": "m1-lem-arith-reciprocal",
+      "to": "m1-thm-arith-interface"
+    },
+    {
+      "from": "m1-lem-arith-buffered-test",
+      "to": "m1-thm-arith-interface"
+    },
+    {
+      "from": "m1-lem-arith-gate-evaluation",
+      "to": "m1-thm-arith-interface"
+    },
+    {
+      "from": "m1-lem-ctrl-local-graph",
+      "to": "m1-lem-ctrl-tour"
+    },
+    {
+      "from": "m1-lem-ctrl-local-graph",
+      "to": "m1-lem-ctrl-cap"
+    },
+    {
+      "from": "m1-lem-ctrl-local-graph",
+      "to": "m1-lem-ctrl-score-rank"
+    },
+    {
+      "from": "m1-lem-est-paths",
+      "to": "m1-lem-ctrl-paths"
+    },
+    {
+      "from": "m1-lem-ctrl-paths",
+      "to": "m1-lem-ctrl-equality"
+    },
+    {
+      "from": "m1-lem-fp-catalytic",
+      "to": "m1-lem-ctrl-equality"
+    },
+    {
+      "from": "m1-lem-est-paths",
+      "to": "m1-lem-ctrl-recipes"
+    },
+    {
+      "from": "m1-lem-ctrl-paths",
+      "to": "m1-lem-ctrl-recipes"
+    },
+    {
+      "from": "m1-thm-arith-interface",
+      "to": "m1-lem-ctrl-recipes"
+    },
+    {
+      "from": "m1-lem-fp-buckets",
+      "to": "m1-lem-ctrl-recipes"
+    },
+    {
+      "from": "m1-lem-buf-update",
+      "to": "m1-lem-ctrl-recipes"
+    },
+    {
+      "from": "m1-lem-buf-clamping",
+      "to": "m1-lem-ctrl-recipes"
+    },
+    {
+      "from": "m1-lem-atom-margins",
+      "to": "m1-lem-ctrl-recipes"
+    },
+    {
+      "from": "m1-lem-ctrl-cap",
+      "to": "m1-lem-ctrl-recipes"
+    },
+    {
+      "from": "m1-lem-atom-ports",
+      "to": "m1-lem-ctrl-recipes"
+    },
+    {
+      "from": "m1-lem-ctrl-score-rank",
+      "to": "m1-lem-ctrl-recipes"
+    },
+    {
+      "from": "m1-lem-atom-ports",
+      "to": "m1-lem-ctrl-replay"
+    },
+    {
+      "from": "m1-lem-est-paths",
+      "to": "m1-lem-ctrl-replay"
+    },
+    {
+      "from": "m1-thm-arith-interface",
+      "to": "m1-lem-ctrl-replay"
+    },
+    {
+      "from": "m1-lem-fp-clean",
+      "to": "m1-lem-ctrl-replay"
+    },
+    {
+      "from": "m1-thm-ctrl-realization",
+      "to": "m1-lem-ctrl-replay"
+    },
+    {
+      "from": "m1-lem-ctrl-recipes",
+      "to": "m1-lem-ctrl-replay"
+    },
+    {
+      "from": "m1-lem-ctrl-local-graph",
+      "to": "m1-lem-ctrl-replay"
+    },
+    {
+      "from": "m1-lem-ctrl-paths",
+      "to": "m1-lem-ctrl-replay"
+    },
+    {
+      "from": "m1-lem-ctrl-equality",
+      "to": "m1-lem-ctrl-replay"
+    },
+    {
+      "from": "m1-lem-ctrl-tour",
+      "to": "m1-lem-ctrl-replay"
+    },
+    {
+      "from": "m1-lem-ctrl-cap",
+      "to": "m1-lem-ctrl-replay"
+    },
+    {
+      "from": "m1-lem-ctrl-score-rank",
+      "to": "m1-lem-ctrl-replay"
+    },
+    {
+      "from": "m1-thm-fixed-precision",
+      "to": "m1-lem-final-majority"
+    },
+    {
+      "from": "m1-lem-model-reduction",
+      "to": "m1-lem-final-majority"
+    },
+    {
+      "from": "m1-prop-hier-reward-target",
+      "to": "m1-lem-final-majority"
+    },
+    {
+      "from": "m1-lem-env-ranks",
+      "to": "m1-lem-final-majority"
+    },
+    {
+      "from": "m1-thm-fp-estimators",
+      "to": "m1-lem-final-majority"
+    },
+    {
+      "from": "m1-thm-arith-interface",
+      "to": "m1-lem-final-majority"
+    },
+    {
+      "from": "m1-thm-ctrl-realization",
+      "to": "m1-lem-final-majority"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-lem-final-majority"
+    },
+    {
+      "from": "m1-thm-probability",
+      "to": "m1-cor-promise-bpl"
+    },
+    {
+      "from": "m1-thm-fixed-precision",
+      "to": "m1-cor-promise-bpl"
+    },
+    {
+      "from": "m1-thm-fixed-precision",
+      "to": "m1-cor-certified-search"
+    },
+    {
+      "from": "m1-thm-effective-simulation",
+      "to": "m1-lem-compiler-interpreter"
+    },
+    {
+      "from": "m1-thm-fixed-precision",
+      "to": "m1-lem-compiler-interpreter"
+    }
+  ]
+}

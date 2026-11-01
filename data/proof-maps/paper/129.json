@@ -1,0 +1,385 @@
+{
+  "familyNumber": "129",
+  "familyTitle": "Exponential state costs for two-way automata",
+  "manuscripts": [
+    {
+      "id": "An-exponential-state-lower-bound-for-two-way-nondeterministic-complementation-September-25-2026",
+      "title": "An exponential state lower bound for two-way nondeterministic complementation",
+      "date": "2026-09-25",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-exponential-state-lower-bound-for-two-way-nondeterministic-complementation-September-25-2026/paper.pdf"
+    },
+    {
+      "id": "An-exponential-two-way-deterministic-state-lower-bound-for-one-way-liveness-September-25-2026",
+      "title": "An exponential two-way deterministic state lower bound for one-way liveness",
+      "date": "2026-09-25",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-exponential-two-way-deterministic-state-lower-bound-for-one-way-liveness-September-25-2026/main.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Path diagrams and missing recurrent classes",
+    "A loss budget for nested idempotents",
+    "An exponential bound for order-reversing images",
+    "Finite computations and the main lower bound",
+    "Matching and relation corners",
+    "An exponential rank-loss bound",
+    "Local matching representation of deterministic machines",
+    "From relation products to the state lower bound"
+  ],
+  "nodes": [
+    {
+      "id": "m1-main-theorem",
+      "kind": "theorem",
+      "label": "For every integer n4 , set H=\\ 1,,n-2\\ and _n= R_H . There is an n -state 2NFA…",
+      "statement": "For every integer n4 , set H=\\ 1,,n-2\\ and _n= R_H . There is an n -state 2NFA A_n recognizing L_H such that every 2NFA recognizing _n^* L(A_n) has at least \\[ 12\\,2^ (n-4)/127 -1 \\] states. In…",
+      "section": "Introduction",
+      "manuscript": "An exponential state lower bound for two-way nondeterministic complementation"
+    },
+    {
+      "id": "m1-amp-image",
+      "kind": "theorem",
+      "label": "Order-reversing image bound",
+      "statement": "[Order-reversing image bound] Let m1 , let H be a finite set of cardinality h2 , and let S_0 be a submonoid of T_m . Suppose that a surjective multiplicative map _0:S_0 R_H satisfies z w _0(w)_0(z)…",
+      "section": "Path diagrams and missing recurrent classes",
+      "manuscript": "An exponential state lower bound for two-way nondeterministic complementation"
+    },
+    {
+      "id": "m1-auto-representation",
+      "kind": "lemma",
+      "label": "Let B be an s -state 2NFA over a finite alphabet in the model fixed in the…",
+      "statement": "Let B be an s -state 2NFA over a finite alphabet in the model fixed in the introduction. There are a monoid homomorphism \\[ :^* T_ s+1 , \\] two fixed endmarker diagrams , T_ s+1 , and fixed positive…",
+      "section": "Path diagrams and missing recurrent classes",
+      "manuscript": "An exponential state lower bound for two-way nondeterministic complementation"
+    },
+    {
+      "id": "m1-auto-order-reversal",
+      "kind": "proposition",
+      "label": "Let H be a finite set with at least two elements. If an s -state 2NFA…",
+      "statement": "Let H be a finite set with at least two elements. If an s -state 2NFA recognizes _H^* L_H , then a submonoid of T_ s+1 admits a surjective unital homomorphism onto R_H satisfying z z' (z')(z).",
+      "section": "Path diagrams and missing recurrent classes",
+      "manuscript": "An exponential state lower bound for two-way nondeterministic complementation"
+    },
+    {
+      "id": "m1-diag-missing",
+      "kind": "lemma",
+      "label": "Products of missing sets",
+      "statement": "[Products of missing sets] Let e T_m be idempotent. For z,w e T_me , \\[ M_e(zw) M_e(z) M_e(w), M_e(e)=. \\] In particular, M_e(z^k) M_e(z) for every positive integer k .",
+      "section": "Path diagrams and missing recurrent classes",
+      "manuscript": "An exponential state lower bound for two-way nondeterministic complementation"
+    },
+    {
+      "id": "m1-diag-rectangles",
+      "kind": "lemma",
+      "label": "Rectangles of through edges",
+      "statement": "[Rectangles of through edges] Let e T_m be idempotent and let z e T_me . For a positive recurrent class C C_e and any p C , set \\[ A_C=\\ u:u(F_eK_e)p\\ , B_C=\\ v:p(K_eF_e)v\\ . \\] The rectangle A_C B_C…",
+      "section": "Path diagrams and missing recurrent classes",
+      "manuscript": "An exponential state lower bound for two-way nondeterministic complementation"
+    },
+    {
+      "id": "m1-diag-transport",
+      "kind": "lemma",
+      "label": "Transport",
+      "statement": "[Transport] Let e,d T_m be idempotents and let u,v T_m satisfy uev=d . For every J C_e there exists a single set J' C_d , with |J'|2|J| , such that \\[ M_d(uzv) J' \\] for every z e T_me satisfying…",
+      "section": "Path diagrams and missing recurrent classes",
+      "manuscript": "An exponential state lower bound for two-way nondeterministic complementation"
+    },
+    {
+      "id": "m1-nest-absorption",
+      "kind": "lemma",
+      "label": "Absorption under nesting",
+      "statement": "[Absorption under nesting] Let d,e T_m be idempotents with d e . For either sign , \\[ K_e^ K_d^, P_e^ P_d^ P_d^, P_d^ P_e^ P_d^. \\] In the positive sign one also has F_eP_d^+ P_d^+, P_d^+F_e P_d^+.…",
+      "section": "A loss budget for nested idempotents",
+      "manuscript": "An exponential state lower bound for two-way nondeterministic complementation"
+    },
+    {
+      "id": "m1-nest-containment",
+      "kind": "lemma",
+      "label": "Containment of recurrent classes",
+      "statement": "[Containment of recurrent classes] Let d,e T_m be idempotents with d e . Every class in C_d contains either a whole class in C_e M_e(d) ; or two distinct whole classes in C_e . All classes in either…",
+      "section": "A loss budget for nested idempotents",
+      "manuscript": "An exponential state lower bound for two-way nondeterministic complementation"
+    },
+    {
+      "id": "m1-nest-chain",
+      "kind": "proposition",
+      "label": "Chain bound",
+      "statement": "[Chain bound] Let b_0,b_1,,b_k T_m be idempotents such that b_j b_ j-1 for 1 j k . Suppose a single set J_0 C_ b_0 satisfies \\[ M_ b_0 (b_j) J_0 (0 j k). \\] Then _ j=1 ^k| M_ b_ j-1 (b_j)| 2|J_0|.",
+      "section": "A loss budget for nested idempotents",
+      "manuscript": "An exponential state lower bound for two-way nondeterministic complementation"
+    },
+    {
+      "id": "m1-amp-minimal-corner",
+      "kind": "lemma",
+      "label": "Minimal idempotent corners",
+      "statement": "[Minimal idempotent corners] Let A be a finite semigroup, let M be a monoid, and let :A M be a surjective multiplicative map. For every idempotent q M , there is an idempotent d A with (d)=q that is…",
+      "section": "An exponential bound for order-reversing images",
+      "manuscript": "An exponential state lower bound for two-way nondeterministic complementation"
+    },
+    {
+      "id": "m1-amp-relation-corner",
+      "kind": "lemma",
+      "label": "Restriction of a relation corner",
+      "statement": "[Restriction of a relation corner] Let P R_H be idempotent, let F H , and put i=I_F . Suppose that iPi=i , and define Q=PiP . Then Q is idempotent, Q P , and restriction is a unital monoid…",
+      "section": "An exponential bound for order-reversing images",
+      "manuscript": "An exponential state lower bound for two-way nondeterministic complementation"
+    },
+    {
+      "id": "m1-amp-single-edge",
+      "kind": "proposition",
+      "label": "Cost of one added pair",
+      "statement": "[Cost of one added pair] Let m1 , let e T_m be idempotent, and let S e T_me be a submonoid with identity e . Let H be a finite set of cardinality h2 . Suppose that :S R_H is a unital surjective…",
+      "section": "An exponential bound for order-reversing images",
+      "manuscript": "An exponential state lower bound for two-way nondeterministic complementation"
+    },
+    {
+      "id": "m1-auto-source",
+      "kind": "lemma",
+      "label": "The language L_H is recognized by a 2NFA with exactly h+2 states.",
+      "statement": "The language L_H is recognized by a 2NFA with exactly h+2 states.",
+      "section": "Finite computations and the main lower bound",
+      "manuscript": "An exponential state lower bound for two-way nondeterministic complementation"
+    },
+    {
+      "id": "m1-auto-determinization",
+      "kind": "corollary",
+      "label": "There are absolute constants c>0 and n_0 such that, for every n n_0 , every…",
+      "statement": "There are absolute constants c>0 and n_0 such that, for every n n_0 , every 2DFA recognizing the language of the n -state 2NFA A_n in Theorem~ has at least \\[ c\\,2^ (n-4)/127 \\] states. Hence no…",
+      "section": "Finite computations and the main lower bound",
+      "manuscript": "An exponential state lower bound for two-way nondeterministic complementation"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "For every integer h2 , the language _h is recognized by a nondeterministic…",
+      "statement": "For every integer h2 , the language _h is recognized by a nondeterministic automaton with h+3 states using no left moves. Every equivalent deterministic two-way automaton with s states satisfies…",
+      "section": "Introduction",
+      "manuscript": "An exponential two-way deterministic state lower bound for one-way liveness"
+    },
+    {
+      "id": "m2-cor-no-polynomial",
+      "kind": "corollary",
+      "label": "There are no absolute constants C,c>0 such that every n -state two-way…",
+      "statement": "There are no absolute constants C,c>0 such that every n -state two-way nondeterministic automaton over every finite alphabet has an equivalent two-way deterministic automaton with at most Cn^c states.",
+      "section": "Introduction",
+      "manuscript": "An exponential two-way deterministic state lower bound for one-way liveness"
+    },
+    {
+      "id": "m2-lem-rank-basic",
+      "kind": "lemma",
+      "label": "Rank and support",
+      "statement": "[Rank and support] For a,bm , \\[ (ab) \\ (a),(b)\\ , m-(a) |(a)|. \\] The units of m are exactly its rank- m diagrams, which are the permutation diagrams. The only rank- m idempotent is _m . Conjugation…",
+      "section": "Matching and relation corners",
+      "manuscript": "An exponential two-way deterministic state lower bound for one-way liveness"
+    },
+    {
+      "id": "m2-lem-corners",
+      "kind": "lemma",
+      "label": "Matching corners",
+      "statement": "[Matching corners] Let em be idempotent and let r=(e) . [label=()] There is a unital injective homomorphism \\[ R_e:emer \\] satisfying (R_e(z))=(z) for all z eme . The idempotent satisfies \\[ |(e)|…",
+      "section": "Matching and relation corners",
+      "manuscript": "An exponential two-way deterministic state lower bound for one-way liveness"
+    },
+    {
+      "id": "m2-lem-unit-lifts",
+      "kind": "lemma",
+      "label": "Unit lifts from a minimum-rank corner",
+      "statement": "[Unit lifts from a minimum-rank corner] Let Sm be nonempty and closed under multiplication, and let :S M be an onto multiplicative map to a monoid M . Let q M be idempotent. There is an idempotent e…",
+      "section": "Matching and relation corners",
+      "manuscript": "An exponential two-way deterministic state lower bound for one-way liveness"
+    },
+    {
+      "id": "m2-lem-relation-corner",
+      "kind": "lemma",
+      "label": "A relation corner",
+      "statement": "[A relation corner] Let PH be idempotent, and let F H satisfy FPF=F . Put i=F and Q=PiP . Then Q is idempotent, PQ=QP=Q , and restriction is a unital isomorphism \\[ :QHQF, (Z)=iZi. \\] Its inverse…",
+      "section": "Matching and relation corners",
+      "manuscript": "An exponential two-way deterministic state lower bound for one-way liveness"
+    },
+    {
+      "id": "m2-thm-rank-loss",
+      "kind": "theorem",
+      "label": "Rank loss for a single relation addition",
+      "statement": "[Rank loss for a single relation addition] Let H be a finite set of size h2 , let m0 , and let Sm be a submonoid containing . Suppose that :SH is a unital surjection and that every permutation of H…",
+      "section": "An exponential rank-loss bound",
+      "manuscript": "An exponential two-way deterministic state lower bound for one-way liveness"
+    },
+    {
+      "id": "m2-cor-divisor-degree",
+      "kind": "corollary",
+      "label": "Degree bound for a unital relation-monoid divisor",
+      "statement": "[Degree bound for a unital relation-monoid divisor] Let H be a finite set of size h2 . If an identity-containing submonoid Sk admits a unital surjection :SH , then \\[ k(h)=2^ (h-2)/31 . \\] No…",
+      "section": "An exponential rank-loss bound",
+      "manuscript": "An exponential two-way deterministic state lower bound for one-way liveness"
+    },
+    {
+      "id": "m2-thm-machine-diagrams",
+      "kind": "theorem",
+      "label": "Local matching representation",
+      "statement": "[Local matching representation] For every s -state deterministic machine in this model, there is a map \\[ :\\ ,\\ k, k=4(s+1)^2, \\] with the following property. Designate ports 1,2 on each of the two…",
+      "section": "Local matching representation of deterministic machines",
+      "manuscript": "An exponential two-way deterministic state lower bound for one-way liveness"
+    },
+    {
+      "id": "m2-lem-sink-tree",
+      "kind": "lemma",
+      "label": "Sink component",
+      "statement": "[Sink component] Let V be finite, let :V V be a partial function, and let t V have no successor. Make an undirected multigraph on V with one edge for each defined successor v(v) , retaining…",
+      "section": "Local matching representation of deterministic machines",
+      "manuscript": "An exponential two-way deterministic state lower bound for one-way liveness"
+    },
+    {
+      "id": "m2-lem-tree-tour",
+      "kind": "lemma",
+      "label": "Tree tour",
+      "statement": "[Tree tour] For a finite tree with at least one edge, this rule has a single cycle on its directed edge traversals, for every choice of cyclic orders. If the two joins at two distinct leaves are…",
+      "section": "Local matching representation of deterministic machines",
+      "manuscript": "An exponential two-way deterministic state lower bound for one-way liveness"
+    },
+    {
+      "id": "m2-prop-small-nfa",
+      "kind": "proposition",
+      "label": "For h2 , the language _h has a nondeterministic automaton with h+3 states, with…",
+      "statement": "For h2 , the language _h has a nondeterministic automaton with h+3 states, with no left moves.",
+      "section": "From relation products to the state lower bound",
+      "manuscript": "An exponential two-way deterministic state lower bound for one-way liveness"
+    },
+    {
+      "id": "m2-lem-syntactic-quotient",
+      "kind": "lemma",
+      "label": "Let H be a nonempty finite set. Suppose a deterministic automaton recognizing…",
+      "statement": "Let H be a nonempty finite set. Suppose a deterministic automaton recognizing nonzero relation products over H has a symbol-diagram representation in k as in Theorem~ . Let Sk be the submonoid…",
+      "section": "From relation products to the state lower bound",
+      "manuscript": "An exponential two-way deterministic state lower bound for one-way liveness"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-auto-representation",
+      "to": "m1-auto-order-reversal"
+    },
+    {
+      "from": "m1-diag-rectangles",
+      "to": "m1-diag-transport"
+    },
+    {
+      "from": "m1-diag-rectangles",
+      "to": "m1-nest-containment"
+    },
+    {
+      "from": "m1-nest-absorption",
+      "to": "m1-nest-containment"
+    },
+    {
+      "from": "m1-nest-absorption",
+      "to": "m1-nest-chain"
+    },
+    {
+      "from": "m1-nest-containment",
+      "to": "m1-nest-chain"
+    },
+    {
+      "from": "m1-diag-rectangles",
+      "to": "m1-amp-single-edge"
+    },
+    {
+      "from": "m1-diag-transport",
+      "to": "m1-amp-single-edge"
+    },
+    {
+      "from": "m1-diag-missing",
+      "to": "m1-amp-single-edge"
+    },
+    {
+      "from": "m1-nest-chain",
+      "to": "m1-amp-single-edge"
+    },
+    {
+      "from": "m1-amp-relation-corner",
+      "to": "m1-amp-single-edge"
+    },
+    {
+      "from": "m1-amp-minimal-corner",
+      "to": "m1-amp-single-edge"
+    },
+    {
+      "from": "m1-amp-image",
+      "to": "m1-amp-single-edge"
+    },
+    {
+      "from": "m1-auto-representation",
+      "to": "m1-auto-source"
+    },
+    {
+      "from": "m1-main-theorem",
+      "to": "m1-auto-source"
+    },
+    {
+      "from": "m1-auto-order-reversal",
+      "to": "m1-auto-source"
+    },
+    {
+      "from": "m1-amp-image",
+      "to": "m1-auto-source"
+    },
+    {
+      "from": "m1-main-theorem",
+      "to": "m1-auto-determinization"
+    },
+    {
+      "from": "m2-thm-main",
+      "to": "m2-cor-no-polynomial"
+    },
+    {
+      "from": "m2-lem-corners",
+      "to": "m2-lem-unit-lifts"
+    },
+    {
+      "from": "m2-lem-corners",
+      "to": "m2-thm-rank-loss"
+    },
+    {
+      "from": "m2-lem-rank-basic",
+      "to": "m2-thm-rank-loss"
+    },
+    {
+      "from": "m2-lem-unit-lifts",
+      "to": "m2-thm-rank-loss"
+    },
+    {
+      "from": "m2-lem-relation-corner",
+      "to": "m2-thm-rank-loss"
+    },
+    {
+      "from": "m2-lem-corners",
+      "to": "m2-cor-divisor-degree"
+    },
+    {
+      "from": "m2-lem-unit-lifts",
+      "to": "m2-cor-divisor-degree"
+    },
+    {
+      "from": "m2-thm-rank-loss",
+      "to": "m2-cor-divisor-degree"
+    },
+    {
+      "from": "m2-thm-machine-diagrams",
+      "to": "m2-lem-tree-tour"
+    },
+    {
+      "from": "m2-thm-main",
+      "to": "m2-lem-syntactic-quotient"
+    },
+    {
+      "from": "m2-prop-small-nfa",
+      "to": "m2-lem-syntactic-quotient"
+    },
+    {
+      "from": "m2-thm-machine-diagrams",
+      "to": "m2-lem-syntactic-quotient"
+    },
+    {
+      "from": "m2-cor-divisor-degree",
+      "to": "m2-lem-syntactic-quotient"
+    }
+  ]
+}

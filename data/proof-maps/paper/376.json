@@ -1,0 +1,251 @@
+{
+  "familyNumber": "376",
+  "familyTitle": "Universal computation in forced Navier–Stokes flows",
+  "manuscripts": [
+    {
+      "id": "Finite-Instructions-and-Solenoidal-Shear-Flows-September-27-2026",
+      "title": "Finite Instructions and Solenoidal Shear Flows",
+      "date": "2026-09-27",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Finite-Instructions-and-Solenoidal-Shear-Flows-September-27-2026/manuscript.pdf"
+    },
+    {
+      "id": "A-Fixed-Particle-Test-for-Computation-in-a-Forced-Viscous-Flow-September-27-2026",
+      "title": "A Fixed Particle Test for Computation in a Forced Viscous Flow",
+      "date": "2026-09-27",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Fixed-Particle-Test-for-Computation-in-a-Forced-Viscous-Flow-September-27-2026/manuscript.pdf"
+    },
+    {
+      "id": "Universal-Computation-with-Eventually-Stationary-Navier-Stokes-Forcing-September-27-2026",
+      "title": "Universal Computation with Eventually Stationary Navier–Stokes Forcing",
+      "date": "2026-09-27",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Universal-Computation-with-Eventually-Stationary-Navier-Stokes-Forcing-September-27-2026/manuscript.pdf"
+    }
+  ],
+  "sections": [
+    "From finite instructions to a fluid experiment",
+    "A recorder with an inverse on its full domain",
+    "A smooth realization by seven shear stages",
+    "Closed rectangles, initialization, and the all-time event",
+    "The statement and the history invariant",
+    "Slowing the gates and obtaining the force",
+    "Comparison on noncompact domains and Fourier identification",
+    "Introduction and result",
+    "Effective profiles and analytic realization",
+    "A finite reversible rule table",
+    "An area-preserving planar processor",
+    "An autonomous spatial clock and a steady force",
+    "A slow clock with infinite accumulated time"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-initialized",
+      "kind": "theorem",
+      "label": "Initialized computation by a solenoidal force",
+      "statement": "[Initialized computation by a solenoidal force] Fix a positive computable viscosity on the unit flat torus ^3 . There is an algorithm taking a deterministic one-tape machine M with head moves in \\…",
+      "section": "From finite instructions to a fluid experiment",
+      "manuscript": "Finite Instructions and Solenoidal Shear Flows"
+    },
+    {
+      "id": "m1-lem-recorder",
+      "kind": "lemma",
+      "label": "Finite recording table",
+      "statement": "[Finite recording table] For the machine just specified there is a finite partial one-head transition table satisfying these properties on its entire allowed domain: [label=(),nosep] Each destination…",
+      "section": "A recorder with an inverse on its full domain",
+      "manuscript": "Finite Instructions and Solenoidal Shear Flows"
+    },
+    {
+      "id": "m1-lem-excursion",
+      "kind": "lemma",
+      "label": "Let ,h>0 and suppose that \\[ |r|,\\ |s|,\\ | r|,\\ |s/| h. \\] The four shears, in…",
+      "statement": "Let ,h>0 and suppose that \\[ |r|,\\ |s|,\\ | r|,\\ |s/| h. \\] The four shears, in chronological order, Y(-), X(^ -1 -1), Y(1), X(-1) send (r,s) to ( r,s/) . At every intermediate endpoint, and…",
+      "section": "A smooth realization by seven shear stages",
+      "manuscript": "Finite Instructions and Solenoidal Shear Flows"
+    },
+    {
+      "id": "m1-thm-shears",
+      "kind": "theorem",
+      "label": "Reciprocal affine maps by shears",
+      "statement": "[Reciprocal affine maps by shears] For 1 i N , let P_i,Q_i be closed axis-parallel rectangles with rational endpoints and positive side lengths in the planar chart of _L^3 . Let their centers be…",
+      "section": "A smooth realization by seven shear stages",
+      "manuscript": "Finite Instructions and Solenoidal Shear Flows"
+    },
+    {
+      "id": "m1-cor-observer",
+      "kind": "corollary",
+      "label": "Under Theorem~ , suppose a branch satisfies p_ i,1 ,q_ i,1 a . Every point…",
+      "statement": "Under Theorem~ , suppose a branch satisfies p_ i,1 ,q_ i,1 a . Every point starting in P_i\\ z_0\\ has first coordinate at most a+2h throughout the period. If instead both centers are at least a , its…",
+      "section": "A smooth realization by seven shear stages",
+      "manuscript": "Finite Instructions and Solenoidal Shear Flows"
+    },
+    {
+      "id": "m1-lem-b-gap",
+      "kind": "lemma",
+      "label": "Separate source and target gaps",
+      "statement": "[Separate source and target gaps] The finite families (P_i) and (Q_i) are separately pairwise positively separated, with gap at least /B^2 in some coordinate for every pair. Their side lengths are…",
+      "section": "Closed rectangles, initialization, and the all-time event",
+      "manuscript": "Finite Instructions and Solenoidal Shear Flows"
+    },
+    {
+      "id": "m1-corollary-7",
+      "kind": "corollary",
+      "label": "Undecidability of the fixed particle event",
+      "statement": "[Undecidability of the fixed particle event] No algorithm decides the event of Theorem~ for every finite force prescription produced by its compiler.",
+      "section": "Closed rectangles, initialization, and the all-time event",
+      "manuscript": "Finite Instructions and Solenoidal Shear Flows"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "There is an algorithm taking a deterministic single-tape machine M and a finite…",
+      "statement": "There is an algorithm taking a deterministic single-tape machine M and a finite word w to an effective smooth mean-zero force f_ M,w for , with the following properties. The equation has a global…",
+      "section": "The statement and the history invariant",
+      "manuscript": "A Fixed Particle Test for Computation in a Forced Viscous Flow"
+    },
+    {
+      "id": "m2-lem-profiles",
+      "kind": "lemma",
+      "label": "Effective smooth profiles",
+      "statement": "[Effective smooth profiles] The functions , defined in Section~ and their finite products, sums, translations, and positive rescalings by computable parameters have effective evaluations of every…",
+      "section": "Slowing the gates and obtaining the force",
+      "manuscript": "A Fixed Particle Test for Computation in a Forced Viscous Flow"
+    },
+    {
+      "id": "m2-corollary-3",
+      "kind": "corollary",
+      "label": "No algorithm decides the fixed particle event for every force description…",
+      "statement": "No algorithm decides the fixed particle event for every force description produced by this construction.",
+      "section": "Slowing the gates and obtaining the force",
+      "manuscript": "A Fixed Particle Test for Computation in a Forced Viscous Flow"
+    },
+    {
+      "id": "m2-lem-projection",
+      "kind": "lemma",
+      "label": "Effective periodic projection",
+      "statement": "[Effective periodic projection] Let g be a smooth mean-zero vector field on [0,)^3 , effectively evaluable together with all mixed derivatives and with effective bounds for those derivatives on every…",
+      "section": "Slowing the gates and obtaining the force",
+      "manuscript": "A Fixed Particle Test for Computation in a Forced Viscous Flow"
+    },
+    {
+      "id": "m2-lem-realization",
+      "kind": "lemma",
+      "label": "Prescribed motion and uniqueness",
+      "statement": "[Prescribed motion and uniqueness] Fix >0 and \\ ^3,^3,^2\\ . Let U be smooth and divergence free on [0,) , with U(0)=0 , and suppose U and U are bounded on every finite closed time cylinder. In the…",
+      "section": "Comparison on noncompact domains and Fourier identification",
+      "manuscript": "A Fixed Particle Test for Computation in a Forced Viscous Flow"
+    },
+    {
+      "id": "m3-thm-main",
+      "kind": "theorem",
+      "label": "Eventually steady forcing",
+      "statement": "[Eventually steady forcing] Fix a positive computable viscosity . There is an effective procedure taking a deterministic Turing machine and finite input to a body force f on the flat torus T^3 , such…",
+      "section": "Introduction and result",
+      "manuscript": "Universal Computation with Eventually Stationary Navier–Stokes Forcing"
+    },
+    {
+      "id": "m3-lem-profiles",
+      "kind": "lemma",
+      "label": "Flat profiles",
+      "statement": "[Flat profiles] Put E(t)=e^ -1/t for t>0 and E(t)=0 for t0 , and put (t)=E(t)/(E(t)+E(1-t)) . These functions are computably smooth. The function is zero for t0 , one for t1 , and satisfies…",
+      "section": "Effective profiles and analytic realization",
+      "manuscript": "Universal Computation with Eventually Stationary Navier–Stokes Forcing"
+    },
+    {
+      "id": "m3-lem-realization",
+      "kind": "lemma",
+      "label": "Prescribed velocity and comparison",
+      "statement": "[Prescribed velocity and comparison] Let U be a smooth divergence-free velocity on [0,)^3 with U(0)=0 . Define F=U_t+(U)U- U. Then (U,0) is a global smooth solution of with force F , unique in the…",
+      "section": "Effective profiles and analytic realization",
+      "manuscript": "Universal Computation with Eventually Stationary Navier–Stokes Forcing"
+    },
+    {
+      "id": "m3-lem-projection",
+      "kind": "lemma",
+      "label": "Solenoidal projection",
+      "statement": "[Solenoidal projection] A computably smooth mean-zero force F on ^3 , with effective spatial derivative bounds, can be replaced by a computably smooth mean-zero solenoidal force F- , where = F and =0…",
+      "section": "Effective profiles and analytic realization",
+      "manuscript": "Universal Computation with Eventually Stationary Navier–Stokes Forcing"
+    },
+    {
+      "id": "m3-lem-compiler",
+      "kind": "lemma",
+      "label": "An injective local compiler",
+      "statement": "[An injective local compiler] From a deterministic machine and its finite input one can effectively construct a finite partial one-head transition table and an initial tape which differs from a…",
+      "section": "A finite reversible rule table",
+      "manuscript": "Universal Computation with Eventually Stationary Navier–Stokes Forcing"
+    },
+    {
+      "id": "m3-thm-planar-processor",
+      "kind": "theorem",
+      "label": "A smooth planar processor",
+      "statement": "[A smooth planar processor] From the machine and input one can effectively construct a smooth field V(s,X,Y) on R T^2 with the following properties. V is 1 -periodic in s , vanishes on neighborhoods…",
+      "section": "An area-preserving planar processor",
+      "manuscript": "Universal Computation with Eventually Stationary Navier–Stokes Forcing"
+    },
+    {
+      "id": "m3-cor-periodic",
+      "kind": "corollary",
+      "label": "Periodic forcing from time zero",
+      "statement": "[Periodic forcing from time zero] There is also an effective construction with zero initial velocity on T^3 , a smooth mean-zero force of period one in time with all mixed derivatives bounded, and…",
+      "section": "An autonomous spatial clock and a steady force",
+      "manuscript": "Universal Computation with Eventually Stationary Navier–Stokes Forcing"
+    },
+    {
+      "id": "m3-prop-scalar-clock",
+      "kind": "proposition",
+      "label": "Scalar clock",
+      "statement": "[Scalar clock] Let W be the field . Suppose a:[0,) is a smooth mean-zero forcing construction with bounded mixed derivatives, zero initial velocity and the same fixed-particle event as Theorem~ . Its…",
+      "section": "A slow clock with infinite accumulated time",
+      "manuscript": "Universal Computation with Eventually Stationary Navier–Stokes Forcing"
+    },
+    {
+      "id": "m3-corollary-9",
+      "kind": "corollary",
+      "label": "Undecidable fixed-particle reachability",
+      "statement": "[Undecidable fixed-particle reachability] No algorithm decides the particle event for all finite force descriptions constructed in Theorem~ .",
+      "section": "A slow clock with infinite accumulated time",
+      "manuscript": "Universal Computation with Eventually Stationary Navier–Stokes Forcing"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-excursion",
+      "to": "m1-thm-shears"
+    },
+    {
+      "from": "m1-lem-recorder",
+      "to": "m1-lem-b-gap"
+    },
+    {
+      "from": "m2-thm-main",
+      "to": "m2-corollary-3"
+    },
+    {
+      "from": "m3-lem-compiler",
+      "to": "m3-thm-planar-processor"
+    },
+    {
+      "from": "m3-lem-profiles",
+      "to": "m3-thm-planar-processor"
+    },
+    {
+      "from": "m3-thm-main",
+      "to": "m3-thm-planar-processor"
+    },
+    {
+      "from": "m3-lem-realization",
+      "to": "m3-thm-planar-processor"
+    },
+    {
+      "from": "m3-thm-planar-processor",
+      "to": "m3-cor-periodic"
+    },
+    {
+      "from": "m3-lem-realization",
+      "to": "m3-cor-periodic"
+    },
+    {
+      "from": "m3-lem-realization",
+      "to": "m3-prop-scalar-clock"
+    }
+  ]
+}

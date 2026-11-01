@@ -1,0 +1,1029 @@
+{
+  "familyNumber": "368",
+  "familyTitle": "The three-dimensional Ball–Evans approximation problem",
+  "manuscripts": [
+    {
+      "id": "Strong-diffeomorphic-approximation-in-three-dimensions-for-1-le-p-le-2-September-24-2026",
+      "title": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Strong-diffeomorphic-approximation-in-three-dimensions-for-1-le-p-le-2-September-24-2026/main.pdf"
+    },
+    {
+      "id": "Strong-diffeomorphic-approximation-in-three-dimensions-for-p-gt-2-September-24-2026",
+      "title": "Strong diffeomorphic approximation in three dimensions for p>2",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Strong-diffeomorphic-approximation-in-three-dimensions-for-p-gt-2-September-24-2026/main.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction and conventions",
+    "Qualitative topology and strong smoothing",
+    "Parametrization, topology, and trace budgets for the low exponents",
+    "Approximation for the low exponents",
+    "Retained rank data and an exact carrier",
+    "Convex product quantizers and the exterior carrier",
+    "Wall routing, guard barriers, and realization",
+    "Meshes and wall neighborhoods",
+    "Calibrated islands and sharp parameter estimates"
+  ],
+  "nodes": [
+    {
+      "id": "m1-main-theorem",
+      "kind": "theorem",
+      "label": "Let ,^3 be nonempty bounded connected open sets, let 1 p2 , and let f: be a…",
+      "statement": "Let ,^3 be nonempty bounded connected open sets, let 1 p2 , and let f: be a homeomorphism in W^ 1,p (;^3) . There exist C^ diffeomorphisms f_j: , each belonging to W^ 1,p (;^3) , such that _(…",
+      "section": "Introduction and conventions",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m1-pre-local-tolerances",
+      "kind": "lemma",
+      "label": "Local tolerances",
+      "statement": "[Local tolerances] Let U^n be open and let a:U(0,) be continuous. For every L>0 there is a positive L -Lipschitz function d on U such that \\[ d(x) \\ a(x),1,L(x,^n U)\\ . \\] There are also positive…",
+      "section": "Introduction and conventions",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m1-sm-smoothing",
+      "kind": "theorem",
+      "label": "Strong smoothing of locally bi-Lipschitz maps",
+      "statement": "[Strong smoothing of locally bi-Lipschitz maps] Let ,'^3 be bounded domains, let 1 p< , and let H:' be a locally bi-Lipschitz homeomorphism in W^ 1,p (;^3) . For every >0 and every continuous…",
+      "section": "Qualitative topology and strong smoothing",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m1-sm-relative-pl",
+      "kind": "lemma",
+      "label": "Fine relative PL approximation",
+      "statement": "[Fine relative PL approximation] Let M,N be PL three-manifolds without boundary, with N metrized, and let f:M N be a homeomorphism. Suppose that K M is closed and that f is PL on an open neighborhood…",
+      "section": "Qualitative topology and strong smoothing",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m1-sm-local-extension",
+      "kind": "lemma",
+      "label": "Small local ambient extension",
+      "statement": "[Small local ambient extension] Fix a closed Euclidean cube B^3 , compact sets C,D B with CintB , and an open neighborhood O of C D B . For every >0 there is a >0 , depending only on these source…",
+      "section": "Qualitative topology and strong smoothing",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m1-sm-proper-degree",
+      "kind": "lemma",
+      "label": "Fine control, properness, and the target",
+      "statement": "[Fine control, properness, and the target] Let h:' be an orientation-preserving homeomorphism between bounded domains, and let g:^3 be a smooth map with Dg>0 . If |g(x)-h(x)|<12(h(x),^3') (x), then g…",
+      "section": "Qualitative topology and strong smoothing",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m1-sm-pl-smoothing",
+      "kind": "proposition",
+      "label": "Strong PL smoothing",
+      "statement": "[Strong PL smoothing] The conclusion of Theorem~ holds if H is replaced by a locally finite PL homeomorphism h:' in W^ 1,p (;^3) .",
+      "section": "Qualitative topology and strong smoothing",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m1-sm-mesh",
+      "kind": "lemma",
+      "label": "Adapted dyadic meshes",
+      "statement": "[Adapted dyadic meshes] There is an absolute integer n_0 with the following property. Given arbitrary positive local upper bounds on the fine scale, there is a locally finite dyadic cube…",
+      "section": "Qualitative topology and strong smoothing",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m1-sm-insertion",
+      "kind": "lemma",
+      "label": "Insertion with protected cores",
+      "statement": "[Insertion with protected cores] Consider a patch Q and a finite collection of older protected boxes with the relative sizes and positions provided by Lemma~ . For every older box prescribe a larger…",
+      "section": "Qualitative topology and strong smoothing",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m1-sm-bilip-pl",
+      "kind": "proposition",
+      "label": "Strong PL approximation of a locally bi-Lipschitz map",
+      "statement": "[Strong PL approximation of a locally bi-Lipschitz map] Under the hypotheses of Theorem~ , there is a locally finite PL homeomorphism G:' satisfying \\[ G-H_ W^ 1,p () <, |G(x)-H(x)|<(x)(x). \\]",
+      "section": "Qualitative topology and strong smoothing",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m1-lt-closed-pieces",
+      "kind": "lemma",
+      "label": "Compatibility of finite closed-piece formulas",
+      "statement": "[Compatibility of finite closed-piece formulas] A continuous Lipschitz map given on a compact parameter manifold by finitely many C^1 formulas extending to neighborhoods of their closed pieces has…",
+      "section": "Parametrization, topology, and trace budgets for the low exponents",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m1-lt-disk",
+      "kind": "lemma",
+      "label": "Boundary-parametrized disk estimate",
+      "statement": "[Boundary-parametrized disk estimate] Put Q=[-1/2,1/2]^2 . Let h:Q^d be a bi-Lipschitz embedding having essential tangential compatibility, and put \\[ A(h)=_Q J_2Dh, L(h)=_ Q |D_t h|^2. \\] For every…",
+      "section": "Parametrization, topology, and trace budgets for the low exponents",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m1-lt-collapse",
+      "kind": "lemma",
+      "label": "Cell collapse",
+      "statement": "[Cell collapse] Let m\\ 2,3\\ and 1 p<m . Let D^m be a convex polyhedral cell of scale , with inradius bounded below by c and diameter bounded above by C . Suppose H:D^d is a bi-Lipschitz embedding…",
+      "section": "Parametrization, topology, and trace budgets for the low exponents",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m1-lt-clean-crossing",
+      "kind": "lemma",
+      "label": "Cleaning an isolated crossing",
+      "statement": "[Cleaning an isolated crossing] Let P be a locally flat embedded surface disk and let I be an interval which is straight in specified local topological coordinates. Suppose that z P I is interior to…",
+      "section": "Parametrization, topology, and trace budgets for the low exponents",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m1-lt-affine-crossing",
+      "kind": "corollary",
+      "label": "Affine germs at cleaned crossings",
+      "statement": "[Affine germs at cleaned crossings] Let h be a homeomorphism between open three-manifolds. A crossing of a regular source surface with the preimage of a target line can be cleaned by applying Lemma~…",
+      "section": "Parametrization, topology, and trace budgets for the low exponents",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m1-lt-unknot-cut",
+      "kind": "lemma",
+      "label": "A two-point cut of an unknot",
+      "statement": "[A two-point cut of an unknot] Let K be a tame unknot in the three-sphere and let B be a locally flat ball whose boundary meets K in exactly two standard transverse crossings. Then the proper arc K B…",
+      "section": "Parametrization, topology, and trace budgets for the low exponents",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m1-lt-punctured-product",
+      "kind": "lemma",
+      "label": "A sphere crossing radial strands once",
+      "statement": "[A sphere crossing radial strands once] Let 0<a<b , let v_1,,v_n S^2 be distinct, with n3 , and put \\[ M=\\ x^3:a |x| b\\ , L_i=\\ t v_i:a t b\\ . \\] Suppose that SintM is a locally flat embedded sphere…",
+      "section": "Parametrization, topology, and trace budgets for the low exponents",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m1-lt-star-replacement",
+      "kind": "proposition",
+      "label": "Replacement at a star center",
+      "statement": "[Replacement at a star center] Use centered Euclidean coordinates in the source and target of a local homeomorphism h , with h(0)=0 . Let \\[ D=\\ v_1,,v_n\\ S^2, n3, R_i=\\ t v_i:t0\\ , \\] be distinct…",
+      "section": "Parametrization, topology, and trace budgets for the low exponents",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m1-lt-relative-germs",
+      "kind": "lemma",
+      "label": "Relative regularization with protected germs",
+      "statement": "[Relative regularization with protected germs] Suppose a homeomorphism has been made affine in specified C^1 coordinates near a disjoint locally finite family of crossing points, and has prescribed…",
+      "section": "Parametrization, topology, and trace budgets for the low exponents",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m1-lt-trace-slicing",
+      "kind": "lemma",
+      "label": "Generic trace properties",
+      "statement": "[Generic trace properties] Let f:' be a homeomorphism of open subsets of ^3 with f W^ 1,p _ loc , 1 p2 . Consider locally finite families of compact Lipschitz semialgebraic parametrizations of…",
+      "section": "Parametrization, topology, and trace budgets for the low exponents",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m1-lt-target-mesh",
+      "kind": "lemma",
+      "label": "Target mesh with lattice patches",
+      "statement": "[Target mesh with lattice patches] In an open subset V^3 , prescribe finitely many separated compact patches with buffers. In a deep part of each patch one may require a rotated rectangular lattice…",
+      "section": "Parametrization, topology, and trace budgets for the low exponents",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m1-lt-squeeze",
+      "kind": "lemma",
+      "label": "Compatible simplex squeezing",
+      "statement": "[Compatible simplex squeezing] Let T be a locally finite triangulation of a three-dimensional open domain. Assign constants 0<b_1 to its tetrahedra, and to every nonempty face assign the minimum of…",
+      "section": "Parametrization, topology, and trace budgets for the low exponents",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m1-lt-budget-transfer",
+      "kind": "proposition",
+      "label": "Topological transfer of trace budgets",
+      "statement": "[Topological transfer of trace budgets] Fix generic trace data as in Lemma~ and a sufficiently fine generic mesh from Lemma~ . There is an onto locally bi-Lipschitz homeomorphism H_0:' , locally…",
+      "section": "Parametrization, topology, and trace budgets for the low exponents",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m1-lt-budget-expectation",
+      "kind": "lemma",
+      "label": "Expected budgets",
+      "statement": "[Expected budgets] For an m -trace with finite image measure, the meshes in Lemma~ satisfy E\\, B_m() C_K J_mD(f P), with parameter multiplicity understood. The constant is universal outside enlarged…",
+      "section": "Parametrization, topology, and trace budgets for the low exponents",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m1-lt-curve-probability",
+      "kind": "lemma",
+      "label": "Length budgets with arbitrarily high probability",
+      "statement": "[Length budgets with arbitrarily high probability] For any compact rectifiable measured curve of finite length, any >0 , and any e>0 , sufficiently small local mesh upper bounds make B_1()…",
+      "section": "Parametrization, topology, and trace budgets for the low exponents",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m1-lt-sharp-grid",
+      "kind": "lemma",
+      "label": "Sharp costs along a thin-grid subspace",
+      "statement": "[Sharp costs along a thin-grid subspace] In a deep lattice patch adapted to a fixed k -plane E , use side d along E and side d along E^ , where k\\ 1,2\\ . For m=k , the translation-averaged tie-budget…",
+      "section": "Parametrization, topology, and trace budgets for the low exponents",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m1-lt-source-mesh",
+      "kind": "lemma",
+      "label": "Shape-controlled source sampling",
+      "statement": "[Shape-controlled source sampling] There are locally finite source meshes of uniform shape with arbitrarily small local upper size bounds, preserving finitely many separated deep cubical lattice…",
+      "section": "Parametrization, topology, and trace budgets for the low exponents",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m1-la-approximation",
+      "kind": "theorem",
+      "label": "Low-exponent approximation",
+      "statement": "[Low-exponent approximation] Let ,'^3 be bounded domains, let 1 p2 , and let f:' be a homeomorphism in W^ 1,p (;^3) . For every >0 there is a locally bi-Lipschitz homeomorphism H:' such that _…",
+      "section": "Approximation for the low exponents",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m1-la-composition-limit",
+      "kind": "lemma",
+      "label": "Tangential composition limit",
+      "statement": "[Tangential composition limit] Let D be a compact Lipschitz parameter piece of dimension d , and let q_j,q_0:D U be Lipschitz maps into an open subset of a Euclidean space. Suppose that their images…",
+      "section": "Approximation for the low exponents",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m1-la-radial-blocks",
+      "kind": "lemma",
+      "label": "Radial block construction",
+      "statement": "[Radial block construction] Fix finitely many separated compact configurations satisfying , and fix l . For sufficiently small h one can retain candidate blocks with the following properties. The…",
+      "section": "Approximation for the low exponents",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m1-la-jet-selection",
+      "kind": "lemma",
+      "label": "Finite compact jet selection",
+      "statement": "[Finite compact jet selection] Given _0>0 , one can choose M< and finitely many pairwise disjoint compact sets K_i , of ranks k_i\\ 1,2,3\\ , such that _ _iK_i |Df|^p<_0. On their nonzero singular…",
+      "section": "Approximation for the low exponents",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m1-la-kernel-selection",
+      "kind": "lemma",
+      "label": "Successful kernel blocks",
+      "statement": "[Successful kernel blocks] For fixed M,l, , the total expected volume of candidate rank-one or rank-two blocks failing these trace tests tends to zero as first 0 and then h0 , with sufficiently small…",
+      "section": "Approximation for the low exponents",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m1-la-cell-completion",
+      "kind": "lemma",
+      "label": "Completion of uncontrolled cells",
+      "statement": "[Completion of uncontrolled cells] Let D be an uncontrolled source three-cell of scale H in the construction. Its base embedding v:D^3 is bi-Lipschitz and is given by finitely many C^1 formulas…",
+      "section": "Approximation for the low exponents",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for 1≤p≤2"
+    },
+    {
+      "id": "m2-main-theorem",
+      "kind": "theorem",
+      "label": "Let ,^3 be bounded domains, let 2<p< , and let f: be a homeomorphism in W^ 1,p…",
+      "statement": "Let ,^3 be bounded domains, let 2<p< , and let f: be a homeomorphism in W^ 1,p (;^3) . There exist C^ diffeomorphisms f_j: , each belonging to W^ 1,p (;^3) , such that _( |f_j-f|^p+|Df_j-Df|^p)\\,dx0.",
+      "section": "Introduction and conventions",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-pre-local-tolerances",
+      "kind": "lemma",
+      "label": "Local tolerances",
+      "statement": "[Local tolerances] Let U^n be open and let a:U(0,) be continuous. For every L>0 there is a positive L -Lipschitz function d on U such that \\[ d(x) \\ a(x),1,L(x,^n U)\\ . \\] There are also positive…",
+      "section": "Introduction and conventions",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-hp-regularity",
+      "kind": "lemma",
+      "label": "Regular points of a Sobolev homeomorphism",
+      "statement": "[Regular points of a Sobolev homeomorphism] Let u:G G' be a homeomorphism between open subsets of ^3 , with u W^ 1,p _ loc (G;^3) and p>2 . There is a Borel set R_u G of full measure such that, for x…",
+      "section": "Retained rank data and an exact carrier",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-hp-transported-bundle",
+      "kind": "lemma",
+      "label": "A forbidden cone for the transported measure",
+      "statement": "[A forbidden cone for the transported measure] Let V(,y) be the decomposability bundle of . Then imDf(x) V(,f(x)) for almost every x. Moreover, V(,y)^3 for -almost every y f(D) . Consequently, for…",
+      "section": "Retained rank data and an exact carrier",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-hp-cone-null",
+      "kind": "lemma",
+      "label": "A simultaneous graph-null set",
+      "statement": "[A simultaneous graph-null set] Fix orthogonal coordinates (h,v)^2 and 0<<1 . Suppose a finite measure is concentrated on a Borel set A and is absolutely continuous with respect to , and that V(,y)…",
+      "section": "Retained rank data and an exact carrier",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-hp-thin-bands",
+      "kind": "lemma",
+      "label": "Finite thin bands",
+      "statement": "[Finite thin bands] Let K be a compact subset of the interior of a rectangular chart H I^2 , and assume that K satisfies . For every >0 , there are finitely many piecewise affine functions g_1,,g_N…",
+      "section": "Retained rank data and an exact carrier",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-hp-flattening",
+      "kind": "proposition",
+      "label": "Target flattening",
+      "statement": "[Target flattening] Given >0 , 0<<1/100 , and a positive continuous fine tolerance a on , one can retain a compact set K D with (D K)< and construct a Lipschitz map S_0: with the following…",
+      "section": "Retained rank data and an exact carrier",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-hp-wells",
+      "kind": "lemma",
+      "label": "Protected wells",
+      "statement": "[Protected wells] Let finitely many separated compact pieces of the retained F_0 -image lie on flat plates, with relatively compact disjoint ambient chart neighborhoods. Let a positive continuous…",
+      "section": "Retained rank data and an exact carrier",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-hp-immersed-skeleton",
+      "kind": "lemma",
+      "label": "An immersed cubical skeleton",
+      "statement": "[An immersed cubical skeleton] There are positive constants b,C_0,C_1 and, for every sufficiently small dyadic s , a locally finite conforming triangulation T_s of \\ 0<t<2s\\ with the following…",
+      "section": "Retained rank data and an exact carrier",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-hp-cutoff",
+      "kind": "lemma",
+      "label": "Cubical cutoff",
+      "statement": "[Cubical cutoff] There are constants C>2 and c>0 with the following property. Let 1 p< , let s be sufficiently small and dyadic, and let h be a homeomorphism on an open neighborhood of B_ Cs , onto…",
+      "section": "Retained rank data and an exact carrier",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-hp-opening",
+      "kind": "lemma",
+      "label": "Relative opening",
+      "statement": "[Relative opening] Let F: be a continuous proper onto map obtained by locally finite image-preserving applications of Lemma~ in genuine homeomorphic neighborhoods. Assume that subsequent applications…",
+      "section": "Retained rank data and an exact carrier",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-hp-exceptional-boxes",
+      "kind": "lemma",
+      "label": "Exceptional inverse data",
+      "statement": "[Exceptional inverse data] Let E be a compact source null set contained in finitely many genuine homeomorphic neighborhoods of a continuous W^ 1,p _ loc map F , where p>2 . Let be a finite measure…",
+      "section": "Retained rank data and an exact carrier",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-hp-regular-implant",
+      "kind": "lemma",
+      "label": "Regular affine implantation",
+      "statement": "[Regular affine implantation] Let F be a positively oriented W^ 1,p _ loc homeomorphism on a neighborhood of a compact set of regular full-rank source points. Suppose its jets and inverse jets are…",
+      "section": "Retained rank data and an exact carrier",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-hp-carrier",
+      "kind": "proposition",
+      "label": "Two-round exact carrier",
+      "statement": "[Two-round exact carrier] Prescribe a positive continuous source value tolerance a:(0,) before applying Proposition~ . Use there a target tolerance a_ satisfying \\[ a_(y)14 a(f^ -1 (y)), \\] and then…",
+      "section": "Retained rank data and an exact carrier",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-hp-smooth-cutoff",
+      "kind": "lemma",
+      "label": "Smooth cubical cutoff",
+      "statement": "[Smooth cubical cutoff] Under the hypotheses of Lemma~ , suppose in addition that h and its inverse are smooth on the neighborhoods in use. For every _0>0 there is instead a locally bi-Lipschitz…",
+      "section": "Retained rank data and an exact carrier",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-hp-full-rank-correction",
+      "kind": "proposition",
+      "label": "Postponed full-rank correction",
+      "statement": "[Postponed full-rank correction] Let p>2 and let f: be an orientation-preserving Sobolev homeomorphism between bounded domains. Let R be the set of its regular differentiation points at which Df has…",
+      "section": "Retained rank data and an exact carrier",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-hp-hide-cubes",
+      "kind": "lemma",
+      "label": "Subcritical marked-cube compression",
+      "statement": "[Subcritical marked-cube compression] Suppose 2<p<3 , and let U and w_U be the marked cubes and collars of Proposition~ . Fix any additional error _0>0 . Let k: be a locally bi-Lipschitz…",
+      "section": "Retained rank data and an exact carrier",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-qt-poisson",
+      "kind": "lemma",
+      "label": "Excluding contacts by a Poisson perturbation",
+      "statement": "[Excluding contacts by a Poisson perturbation] Let b_1 be the protected-well perturbation of Lemma~ . Fix a positive 1 -Lipschitz function on , extended by zero outside, with (,^3) . The well sizes…",
+      "section": "Convex product quantizers and the exterior carrier",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-qt-contact",
+      "kind": "lemma",
+      "label": "Contact curvature and dual separation",
+      "statement": "[Contact curvature and dual separation] Let be the lower convex envelope of from Lemma~ , and let \\[ F(q)=^*(q)=_x\\ q x-(x)\\ . \\] There is an absolute C_0 such that is C^ 1,1 and 0 D^2 C_0 I in the…",
+      "section": "Convex product quantizers and the exterior carrier",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-qt-quantizer",
+      "kind": "proposition",
+      "label": "A proper product quantizer",
+      "statement": "[A proper product quantizer] Fix 0<c<m with c<1 . One can choose a locally finite family of interior sites in , with one contact at each ordinary site and the two protected contacts at each paired…",
+      "section": "Convex product quantizers and the exterior carrier",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-qt-calibration",
+      "kind": "lemma",
+      "label": "Paired arrays, redistribution, and phase calibration",
+      "statement": "[Paired arrays, redistribution, and phase calibration] The choices in Proposition~ can be made together with a locally bi-Lipschitz homeomorphism J: , equal to the identity near every closed X_i ,…",
+      "section": "Convex product quantizers and the exterior carrier",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-qt-strict",
+      "kind": "lemma",
+      "label": "Strict quantizers",
+      "statement": "[Strict quantizers] The map T has proper locally bi-Lipschitz approximations T_: with the same target. Given any positive continuous local tolerance _0(y) , they can be chosen with \\[…",
+      "section": "Convex product quantizers and the exterior carrier",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-qt-subdivision",
+      "kind": "lemma",
+      "label": "Subdividing the true faces",
+      "statement": "[Subdividing the true faces] The true two-faces of the quantizer diagram have locally finite, conforming subdivisions into convex polygonal subcells D with chosen centers d_D . Protected rectangular…",
+      "section": "Convex product quantizers and the exterior carrier",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-qt-polar",
+      "kind": "lemma",
+      "label": "Polar coordinates and their sharp rectangular bound",
+      "statement": "[Polar coordinates and their sharp rectangular bound] For each subcell D , put \\[ R_ D,e (t,s)=d_D+r(_e(s)-d_D), r=(t/L_D), \\] where _e is arclength on a perimeter subedge and the same arclength…",
+      "section": "Convex product quantizers and the exterior carrier",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-qt-exterior",
+      "kind": "proposition",
+      "label": "The graph exterior and its two colours",
+      "statement": "[The graph exterior and its two colours] Choose a small r_ u,D >0 in every subcell. In input target coordinates remove the full closed blocks X_i and the open cores of the interval prisms over d_D+r_…",
+      "section": "Convex product quantizers and the exterior carrier",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-qt-central-carrier",
+      "kind": "lemma",
+      "label": "A carrier exact on the central tubes",
+      "statement": "[A carrier exact on the central tubes] Let p>2 . Let T: have the properties of Proposition~ , and let F: have the carrier properties retained in Lemma~ . In particular, F is a proper continuous W^…",
+      "section": "Convex product quantizers and the exterior carrier",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-qt-edge-matching",
+      "kind": "lemma",
+      "label": "Exact edge matching when opening the central carrier",
+      "statement": "[Exact edge matching when opening the central carrier] Use the carrier and exterior of Lemma~ . Let E be a locally finite family of mesh edges in M_x , and let W be a locally finite family of sampled…",
+      "section": "Convex product quantizers and the exterior carrier",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-wl-stairs",
+      "kind": "lemma",
+      "label": "Stairs and sampling",
+      "statement": "[Stairs and sampling] On a feature interval of length , one can choose N equal weights w_j=w with Nw/=1+O() , and construct an endpoint-fixing nondecreasing stair S , constant outside the selected…",
+      "section": "Wall routing, guard barriers, and realization",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-wl-routing",
+      "kind": "proposition",
+      "label": "Routing and good parameters",
+      "statement": "[Routing and good parameters] For every pre-stack root j , outside a null subset of (0,w_j) , the diagonal rule constructs a connected, oriented, properly embedded surface L_ j, whose boundary, with…",
+      "section": "Wall routing, guard barriers, and realization",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-wl-period",
+      "kind": "proposition",
+      "label": "Conservation of oriented periods",
+      "statement": "[Conservation of oriented periods] Let L=L_ j, be a good routed surface. Let W_ j, M_x be the pullback by h_* of the standard cut at the exact affine label corresponding to (0,w_j) . Give both…",
+      "section": "Wall routing, guard barriers, and realization",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-wl-crossing-bound",
+      "kind": "lemma",
+      "label": "Crossing lower bound",
+      "statement": "[Crossing lower bound] Assume the pre-stack hypotheses of Definition~ and its slope majorant G , and let the pre-stacks avoid the guards. Suppose a guard label has physical distance at least >0 from…",
+      "section": "Wall routing, guard barriers, and realization",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-wl-sphere",
+      "kind": "lemma",
+      "label": "Spherical path estimate",
+      "statement": "[Spherical path estimate] Let p>2 , and let _R be a sphere of radius R , either whole or intersected with a closed half-space containing its center. There is a constant C_p such that, for any two…",
+      "section": "Wall routing, guard barriers, and realization",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-wl-barrier",
+      "kind": "proposition",
+      "label": "Guard barrier",
+      "statement": "[Guard barrier] Fix the data of Definition~ , the capacities C_a and a positive continuous local layer-support accuracy. There are sufficiently fine net spacings and sufficiently small approximation…",
+      "section": "Wall routing, guard barriers, and realization",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-wl-stable",
+      "kind": "lemma",
+      "label": "Stable intervals",
+      "statement": "[Stable intervals] Under these confinement choices, a good routed layer is a compact disk or annulus of its root type. For every root j and every >0 one can choose finitely many separated closed…",
+      "section": "Wall routing, guard barriers, and realization",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-wl-realization",
+      "kind": "theorem",
+      "label": "Conditional wall realization",
+      "statement": "[Conditional wall realization] Fix the quantizer, carrier, exterior and boundary data above. Fix 0<<1 , c_*>0 , the requested locally positive label and value accuracies, and locally finite buffered…",
+      "section": "Wall routing, guard barriers, and realization",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-wl-parameter-cost",
+      "kind": "proposition",
+      "label": "Parameter cost after realization",
+      "statement": "[Parameter cost after realization] On occupied pre-stack pieces, a final active root parameter has local differential du_j . On a routed circle box it has local differential…",
+      "section": "Wall routing, guard barriers, and realization",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-wl-strict",
+      "kind": "proposition",
+      "label": "Strict target compositions",
+      "statement": "[Strict target compositions] For a fixed realization h as above, the singular composition P_0Th admits locally bi-Lipschitz homeomorphic approximations P^ T_ h with arbitrarily small prescribed local…",
+      "section": "Wall routing, guard barriers, and realization",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-ms-meshes",
+      "kind": "lemma",
+      "label": "Fine meshes and prescribed lattice cores",
+      "statement": "[Fine meshes and prescribed lattice cores] Fix the working polyhedral structure and a boundary product collar. There are arbitrarily fine, locally finite triangulations with the following properties.…",
+      "section": "Meshes and wall neighborhoods",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-ms-boundary-collar",
+      "kind": "lemma",
+      "label": "Boundary trace preparation",
+      "statement": "[Boundary trace preparation] The boundary mesh and the central wall traces can be arranged so that: each central trace in a boundary triangle is a straight normal arc with at most one hit on an…",
+      "section": "Meshes and wall neighborhoods",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-ms-edge-tests",
+      "kind": "lemma",
+      "label": "Generic edges and conditional count charging",
+      "statement": "[Generic edges and conditional count charging] Away from the constrained boundary collar, the meshes above admit shape-preserving ambient jitter for which their edges are Sobolev ACL edges with the…",
+      "section": "Meshes and wall neighborhoods",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-wl-relative-pl",
+      "kind": "lemma",
+      "label": "Relative PL preparation with edge counts",
+      "statement": "[Relative PL preparation with edge counts] Let M be a three-dimensional PL manifold, possibly with boundary, with a locally finite triangulation. Physical coordinates on M may be obtained from its PL…",
+      "section": "Meshes and wall neighborhoods",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-wl-normalization",
+      "kind": "proposition",
+      "label": "Normalization with individual edge bounds",
+      "statement": "[Normalization with individual edge bounds] Let M be an orientable irreducible PL three-manifold with a locally finite triangulation. Let (S_j) be a locally finite family of pairwise disjoint,…",
+      "section": "Meshes and wall neighborhoods",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-ms-normal-templates",
+      "kind": "lemma",
+      "label": "Normal templates",
+      "statement": "[Normal templates] In a normalized tetrahedron fix an endpoint margin >0 . For every normal disk type use its triangle, or the two triangles of a quadrilateral on one chosen combinatorial diagonal.…",
+      "section": "Meshes and wall neighborhoods",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-wl-pattern",
+      "kind": "lemma",
+      "label": "A sufficient pattern-triviality test",
+      "statement": "[A sufficient pattern-triviality test] Let be a compact smooth disk or annulus, let J be a compact interval, and let E: J C be bi-Lipschitz. For finitely many indices k , suppose that a Lipschitz…",
+      "section": "Meshes and wall neighborhoods",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-ms-weak-templates",
+      "kind": "lemma",
+      "label": "Uniform weak templates",
+      "statement": "[Uniform weak templates] After the separate-colour normalizations, all normal disks can be thickened into pre-stacks satisfying Definition~ , with the boundary data of Lemma~ . On a physical…",
+      "section": "Meshes and wall neighborhoods",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-ms-slots",
+      "kind": "lemma",
+      "label": "Slots, slab slopes, and gaps",
+      "statement": "[Slots, slab slopes, and gaps] Fix a small slot-loss tolerance >0 . Choose the tolerances in sufficiently small relative to . Central hits on eligible inter-edges can be placed in consecutive slots…",
+      "section": "Calibrated islands and sharp parameter estimates",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    },
+    {
+      "id": "m2-ms-majorant",
+      "kind": "lemma",
+      "label": "A neighboring majorant",
+      "statement": "[A neighboring majorant] On a finite enlarged lattice region containing the equal-weight island and its clustered buffer, give original tetrahedra their star-neighbor graph. Its degree is bounded by…",
+      "section": "Calibrated islands and sharp parameter estimates",
+      "manuscript": "Strong diffeomorphic approximation in three dimensions for p>2"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-pre-local-tolerances",
+      "to": "m1-sm-pl-smoothing"
+    },
+    {
+      "from": "m1-sm-proper-degree",
+      "to": "m1-sm-pl-smoothing"
+    },
+    {
+      "from": "m1-pre-local-tolerances",
+      "to": "m1-sm-mesh"
+    },
+    {
+      "from": "m1-sm-local-extension",
+      "to": "m1-sm-insertion"
+    },
+    {
+      "from": "m1-sm-mesh",
+      "to": "m1-sm-bilip-pl"
+    },
+    {
+      "from": "m1-sm-insertion",
+      "to": "m1-sm-bilip-pl"
+    },
+    {
+      "from": "m1-sm-relative-pl",
+      "to": "m1-sm-bilip-pl"
+    },
+    {
+      "from": "m1-sm-smoothing",
+      "to": "m1-sm-bilip-pl"
+    },
+    {
+      "from": "m1-sm-pl-smoothing",
+      "to": "m1-sm-bilip-pl"
+    },
+    {
+      "from": "m1-sm-local-extension",
+      "to": "m1-lt-clean-crossing"
+    },
+    {
+      "from": "m1-lt-clean-crossing",
+      "to": "m1-lt-star-replacement"
+    },
+    {
+      "from": "m1-lt-unknot-cut",
+      "to": "m1-lt-star-replacement"
+    },
+    {
+      "from": "m1-lt-punctured-product",
+      "to": "m1-lt-star-replacement"
+    },
+    {
+      "from": "m1-sm-relative-pl",
+      "to": "m1-lt-relative-germs"
+    },
+    {
+      "from": "m1-lt-clean-crossing",
+      "to": "m1-lt-budget-transfer"
+    },
+    {
+      "from": "m1-lt-affine-crossing",
+      "to": "m1-lt-budget-transfer"
+    },
+    {
+      "from": "m1-lt-relative-germs",
+      "to": "m1-lt-budget-transfer"
+    },
+    {
+      "from": "m1-lt-squeeze",
+      "to": "m1-lt-budget-transfer"
+    },
+    {
+      "from": "m1-lt-budget-expectation",
+      "to": "m1-lt-curve-probability"
+    },
+    {
+      "from": "m1-lt-squeeze",
+      "to": "m1-lt-sharp-grid"
+    },
+    {
+      "from": "m1-lt-curve-probability",
+      "to": "m1-lt-sharp-grid"
+    },
+    {
+      "from": "m1-lt-target-mesh",
+      "to": "m1-lt-source-mesh"
+    },
+    {
+      "from": "m1-lt-relative-germs",
+      "to": "m1-la-radial-blocks"
+    },
+    {
+      "from": "m1-lt-budget-transfer",
+      "to": "m1-la-radial-blocks"
+    },
+    {
+      "from": "m1-lt-trace-slicing",
+      "to": "m1-la-radial-blocks"
+    },
+    {
+      "from": "m1-lt-budget-expectation",
+      "to": "m1-la-radial-blocks"
+    },
+    {
+      "from": "m1-lt-trace-slicing",
+      "to": "m1-la-kernel-selection"
+    },
+    {
+      "from": "m1-lt-curve-probability",
+      "to": "m1-la-kernel-selection"
+    },
+    {
+      "from": "m1-lt-budget-expectation",
+      "to": "m1-la-kernel-selection"
+    },
+    {
+      "from": "m1-lt-collapse",
+      "to": "m1-la-cell-completion"
+    },
+    {
+      "from": "m1-lt-disk",
+      "to": "m1-la-cell-completion"
+    },
+    {
+      "from": "m1-la-approximation",
+      "to": "m1-la-cell-completion"
+    },
+    {
+      "from": "m1-la-jet-selection",
+      "to": "m1-la-cell-completion"
+    },
+    {
+      "from": "m1-lt-budget-transfer",
+      "to": "m1-la-cell-completion"
+    },
+    {
+      "from": "m1-lt-budget-expectation",
+      "to": "m1-la-cell-completion"
+    },
+    {
+      "from": "m1-lt-curve-probability",
+      "to": "m1-la-cell-completion"
+    },
+    {
+      "from": "m1-lt-sharp-grid",
+      "to": "m1-la-cell-completion"
+    },
+    {
+      "from": "m1-pre-local-tolerances",
+      "to": "m1-la-cell-completion"
+    },
+    {
+      "from": "m1-la-radial-blocks",
+      "to": "m1-la-cell-completion"
+    },
+    {
+      "from": "m1-la-kernel-selection",
+      "to": "m1-la-cell-completion"
+    },
+    {
+      "from": "m1-main-theorem",
+      "to": "m1-la-cell-completion"
+    },
+    {
+      "from": "m1-sm-smoothing",
+      "to": "m1-la-cell-completion"
+    },
+    {
+      "from": "m1-sm-proper-degree",
+      "to": "m1-la-cell-completion"
+    },
+    {
+      "from": "m2-hp-regularity",
+      "to": "m2-hp-transported-bundle"
+    },
+    {
+      "from": "m2-hp-transported-bundle",
+      "to": "m2-hp-flattening"
+    },
+    {
+      "from": "m2-hp-cone-null",
+      "to": "m2-hp-flattening"
+    },
+    {
+      "from": "m2-hp-thin-bands",
+      "to": "m2-hp-flattening"
+    },
+    {
+      "from": "m2-hp-regularity",
+      "to": "m2-hp-flattening"
+    },
+    {
+      "from": "m2-hp-flattening",
+      "to": "m2-hp-wells"
+    },
+    {
+      "from": "m2-hp-immersed-skeleton",
+      "to": "m2-hp-cutoff"
+    },
+    {
+      "from": "m2-hp-cutoff",
+      "to": "m2-hp-opening"
+    },
+    {
+      "from": "m2-hp-regularity",
+      "to": "m2-hp-exceptional-boxes"
+    },
+    {
+      "from": "m2-hp-cutoff",
+      "to": "m2-hp-regular-implant"
+    },
+    {
+      "from": "m2-pre-local-tolerances",
+      "to": "m2-hp-carrier"
+    },
+    {
+      "from": "m2-hp-wells",
+      "to": "m2-hp-carrier"
+    },
+    {
+      "from": "m2-hp-exceptional-boxes",
+      "to": "m2-hp-carrier"
+    },
+    {
+      "from": "m2-hp-regularity",
+      "to": "m2-hp-carrier"
+    },
+    {
+      "from": "m2-hp-regular-implant",
+      "to": "m2-hp-carrier"
+    },
+    {
+      "from": "m2-hp-cutoff",
+      "to": "m2-hp-carrier"
+    },
+    {
+      "from": "m2-hp-flattening",
+      "to": "m2-hp-carrier"
+    },
+    {
+      "from": "m2-hp-opening",
+      "to": "m2-hp-carrier"
+    },
+    {
+      "from": "m2-hp-cutoff",
+      "to": "m2-hp-smooth-cutoff"
+    },
+    {
+      "from": "m2-hp-smooth-cutoff",
+      "to": "m2-hp-full-rank-correction"
+    },
+    {
+      "from": "m2-hp-wells",
+      "to": "m2-qt-poisson"
+    },
+    {
+      "from": "m2-hp-carrier",
+      "to": "m2-qt-poisson"
+    },
+    {
+      "from": "m2-qt-quantizer",
+      "to": "m2-qt-strict"
+    },
+    {
+      "from": "m2-qt-calibration",
+      "to": "m2-qt-subdivision"
+    },
+    {
+      "from": "m2-qt-quantizer",
+      "to": "m2-qt-exterior"
+    },
+    {
+      "from": "m2-hp-cutoff",
+      "to": "m2-qt-central-carrier"
+    },
+    {
+      "from": "m2-hp-opening",
+      "to": "m2-qt-central-carrier"
+    },
+    {
+      "from": "m2-hp-immersed-skeleton",
+      "to": "m2-qt-central-carrier"
+    },
+    {
+      "from": "m2-hp-opening",
+      "to": "m2-qt-edge-matching"
+    },
+    {
+      "from": "m2-wl-stairs",
+      "to": "m2-wl-crossing-bound"
+    },
+    {
+      "from": "m2-wl-period",
+      "to": "m2-wl-crossing-bound"
+    },
+    {
+      "from": "m2-wl-routing",
+      "to": "m2-wl-crossing-bound"
+    },
+    {
+      "from": "m2-wl-crossing-bound",
+      "to": "m2-wl-barrier"
+    },
+    {
+      "from": "m2-wl-sphere",
+      "to": "m2-wl-barrier"
+    },
+    {
+      "from": "m2-wl-stable",
+      "to": "m2-wl-realization"
+    },
+    {
+      "from": "m2-qt-exterior",
+      "to": "m2-wl-realization"
+    },
+    {
+      "from": "m2-wl-stairs",
+      "to": "m2-wl-realization"
+    },
+    {
+      "from": "m2-wl-crossing-bound",
+      "to": "m2-wl-realization"
+    },
+    {
+      "from": "m2-wl-barrier",
+      "to": "m2-wl-realization"
+    },
+    {
+      "from": "m2-wl-stairs",
+      "to": "m2-wl-parameter-cost"
+    },
+    {
+      "from": "m2-qt-strict",
+      "to": "m2-wl-strict"
+    },
+    {
+      "from": "m2-ms-boundary-collar",
+      "to": "m2-ms-edge-tests"
+    },
+    {
+      "from": "m2-wl-pattern",
+      "to": "m2-ms-weak-templates"
+    },
+    {
+      "from": "m2-ms-boundary-collar",
+      "to": "m2-ms-weak-templates"
+    },
+    {
+      "from": "m2-ms-weak-templates",
+      "to": "m2-ms-slots"
+    },
+    {
+      "from": "m2-ms-normal-templates",
+      "to": "m2-ms-slots"
+    }
+  ]
+}

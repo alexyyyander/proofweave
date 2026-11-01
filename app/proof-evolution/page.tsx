@@ -3,9 +3,10 @@ import Link from "next/link";
 import { ActionLink, Badge, PageIntro } from "@/app/components/ui";
 import { SiteFrame } from "@/app/components/shell/SiteFrame";
 import { openaiMathCollection } from "@/app/lib/publications";
-import type { LeanCoverageData, ProofMapIndex } from "@/app/lib/proof-map";
+import type { LeanCoverageData, PaperCoverageData, ProofMapIndex } from "@/app/lib/proof-map";
 import manifest from "@/data/proof-maps/manifest.json";
 import leanCoverage from "@/data/proof-maps/lean-coverage.json";
+import paperCoverage from "@/data/proof-maps/paper-coverage.json";
 import { buildProofMapIndex } from "@/packages/domain/proof-map-index.mjs";
 import { getI18n } from "@/app/i18n/server";
 import type { Locale } from "@/app/i18n/config";
@@ -22,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function ProofMapIndexPage() {
   const { t, locale } = await getI18n();
-  const index = buildProofMapIndex(openaiMathCollection, manifest, leanCoverage as LeanCoverageData) as ProofMapIndex;
+  const index = buildProofMapIndex(openaiMathCollection, manifest, leanCoverage as LeanCoverageData, paperCoverage as PaperCoverageData) as ProofMapIndex;
   return <SiteFrame
     active="publications"
     activeHref="/proof-evolution"
@@ -49,6 +50,7 @@ export default async function ProofMapIndexPage() {
         <div className="proof-map-aside-stats">
           <span><b>{index.summary.deep}</b> {t("proofMaps.index.asideDeep")}</span>
           <span><b>{index.summary.draft}</b> {t("proofMaps.index.asideDraft")}</span>
+          <span><b>{index.summary.paper}</b> {t("proofMaps.index.asidePaper")}</span>
           <span><b>{index.summary.lean}</b> {t("proofMaps.index.asideLean")}</span>
           <span><b>{index.summary.scaffold}</b> {t("proofMaps.index.asideScaffold")}</span>
         </div>
@@ -66,6 +68,7 @@ export default async function ProofMapIndexPage() {
         <CoverageStat locale={locale} label={t("proofMaps.index.coverage.theoremNames.label")} value={index.summary.leanTheoremNames} detail={t("proofMaps.index.coverage.theoremNames.detail")} />
         <CoverageStat locale={locale} label={t("proofMaps.index.coverage.deep.label")} value={index.summary.deep} detail={t("proofMaps.index.coverage.deep.detail")} />
         <CoverageStat locale={locale} label={t("proofMaps.index.coverage.draft.label")} value={index.summary.draft} detail={t("proofMaps.index.coverage.draft.detail")} />
+        <CoverageStat locale={locale} label={t("proofMaps.index.coverage.paper.label")} value={index.summary.paper} detail={t("proofMaps.index.coverage.paper.detail", { statements: index.summary.paperStatements, edges: index.summary.paperEdges })} />
         <CoverageStat locale={locale} label={t("proofMaps.index.coverage.lean.label")} value={index.summary.lean} detail={t("proofMaps.index.coverage.lean.detail")} />
         <CoverageStat locale={locale} label={t("proofMaps.index.coverage.scaffolds.label")} value={index.summary.scaffold} detail={t("proofMaps.index.coverage.scaffolds.detail")} />
       </section>
@@ -80,6 +83,11 @@ export default async function ProofMapIndexPage() {
           <Badge tone="warning">{t("proofMaps.index.statusDraft")}</Badge>
           <strong>{index.summary.draft}</strong>
           <p>{t("proofMaps.index.draftBody")}</p>
+        </article>
+        <article className="status-paper">
+          <Badge>{t("proofMaps.index.statusPaper")}</Badge>
+          <strong>{index.summary.paper}</strong>
+          <p>{t("proofMaps.index.paperBody")}</p>
         </article>
         <article className="status-lean">
           <Badge>{t("proofMaps.index.statusLean")}</Badge>

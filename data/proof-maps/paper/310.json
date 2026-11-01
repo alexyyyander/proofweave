@@ -1,0 +1,450 @@
+{
+  "familyNumber": "310",
+  "familyTitle": "Quillen's conjecture in rational homology",
+  "manuscripts": [
+    {
+      "id": "Rational-homology-and-Quillens-conjecture-September-24-2026",
+      "title": "Rational homology and Quillen's conjecture",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Rational-homology-and-Quillens-conjecture-September-24-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Conventions and the reduction theorems",
+    "Propagation from a faithful component extension",
+    "Cycles from frames and a dimension estimate",
+    "Decorations and restriction of cycles",
+    "Linear and unitary components",
+    "Symplectic components at two",
+    "Orthogonal components"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For every finite group G and every prime p , if (G)=1 , then \\[ H_*((G);)0. \\]…",
+      "statement": "For every finite group G and every prime p , if (G)=1 , then \\[ H_*((G);)0. \\] Here reduced homology is augmented, so that the empty poset has H_ -1 (;)= .",
+      "section": "Introduction",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-thm-reduction-two",
+      "kind": "theorem",
+      "label": "Reduction at two",
+      "statement": "[Reduction at two] Let G be a minimal-order counterexample to for p=2 . Then G has a simple component L in the following list, where the field parameter q has characteristic at least five: \\[ ll…",
+      "section": "Conventions and the reduction theorems",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-thm-reduction-odd",
+      "kind": "theorem",
+      "label": "Odd-prime reduction",
+      "statement": "[Odd-prime reduction] Suppose that, for every odd prime p , every odd prime power q with p q+1 , and every simple L=_n(q) with n5 , each elementary p -extension of L inside (L) has the Quillen…",
+      "section": "Conventions and the reduction theorems",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-lem-component-core",
+      "kind": "lemma",
+      "label": "Let G be a finite group, let p be a prime, and let L be a nonabelian simple…",
+      "statement": "Let G be a finite group, let p be a prime, and let L be a nonabelian simple component of G . If (G)=1 , then \\[ (C_G(L))=1. \\]",
+      "section": "Propagation from a faithful component extension",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-lem-faithfulness-upgrade",
+      "kind": "lemma",
+      "label": "Let A be a faithful configuration for a nonabelian simple component L of G .…",
+      "statement": "Let A be a faithful configuration for a nonabelian simple component L of G . Suppose every element of order p in C_L(A) belongs to A . If D(G) contains A , then D N_G(L) . Moreover, \\[ C_D(L)=1 C_ LD…",
+      "section": "Propagation from a faithful component extension",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-lem-saturated-residue",
+      "kind": "lemma",
+      "label": "Saturated residue",
+      "statement": "[Saturated residue] Let X be a subposet of (G) , and suppose X contains the flag \\[ =[A_1<<A_r=A], (A_i)=i. \\] Define a linear map \\[ R_: C_n( X;) C_ n-r ( X_ >A ;) \\] as follows: a chain containing…",
+      "section": "Propagation from a faithful component extension",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-lem-product-shuffle",
+      "kind": "lemma",
+      "label": "Product shuffle",
+      "statement": "[Product shuffle] With this notation there is a bilinear operation \\[ : C_a( X;) C_b( Y;) C_ a+b+1 ( P(H,K);) \\] for a,b-1 , satisfying (u v) =( u) v+(-1)^ a+1 u v. It is the chain construction for…",
+      "section": "Propagation from a faithful component extension",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-lem-propagation",
+      "kind": "lemma",
+      "label": "Propagation",
+      "statement": "[Propagation] Let G be a finite group and p a prime. Assume that every proper subgroup T<G with (T)=1 satisfies \\[ H_*((T);)0. \\] Let L be a nonabelian simple component of G with p |L| , and let A be…",
+      "section": "Propagation from a faithful component extension",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-cor-maximal-family",
+      "kind": "corollary",
+      "label": "Assume the inductive hypothesis on proper subgroups of G in Lemma~ , and let L…",
+      "statement": "Assume the inductive hypothesis on proper subgroups of G in Lemma~ , and let L be a nonabelian simple component with p|L| . Let F be a nonempty family of faithful configurations for L in G such that…",
+      "section": "Propagation from a faithful component extension",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-thm-frame-bound",
+      "kind": "theorem",
+      "label": "Frame coefficient bound",
+      "statement": "[Frame coefficient bound] Let W have dimension h2 and one of the four structures above, and suppose that W admits an allowed frame. The space Z(W)_ D F(W) V_ D consists of cycles of degree h-2 , each…",
+      "section": "Cycles from frames and a dimension estimate",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-lem-merger-coefficients",
+      "kind": "lemma",
+      "label": "Merger coefficients",
+      "statement": "[Merger coefficients] For a full flag in D(W) ending at a frame D , complete its sequence of binary mergers by the final, implicit merger to the one-block partition. Its coefficient in _w f(w)a_w is,…",
+      "section": "Cycles from frames and a dimension estimate",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-lem-frame-lie-identification",
+      "kind": "lemma",
+      "label": "Identification with coefficient assignments",
+      "statement": "[Identification with coefficient assignments] For every admissible W of dimension at least two, the coefficient construction has image of dimension P(W) : \\[ Z(W)= P(W). \\]",
+      "section": "Cycles from frames and a dimension estimate",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-lem-frame-marked-factor",
+      "kind": "lemma",
+      "label": "Marked-factor inequality",
+      "statement": "[Marked-factor inequality] The nonnegative series above satisfy D C\\ \\ (D P) C coefficientwise in every isometry type.",
+      "section": "Cycles from frames and a dimension estimate",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-lem-decorations",
+      "kind": "lemma",
+      "label": "Ordinary decorations",
+      "statement": "[Ordinary decorations] Let M be a finite group, let p be a prime, and let h2 and t0 . Consider a finite nonempty set X of data \\[ ( F,), =(D_1,,D_t), \\] where S_ F M is a projective sign group of…",
+      "section": "Decorations and restriction of cycles",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-lem-quaternion-decoration",
+      "kind": "lemma",
+      "label": "Quaternion decoration",
+      "statement": "[Quaternion decoration] Let M be a finite group, h2 , r=h-1 , and \\ 0,1\\ . Consider a finite nonempty set X of data ( F,T) if =0 , or ( F,T,B) if =1 , where \\[ E=S_ F T B, S_ F =r, T C_2^2, B=. \\]…",
+      "section": "Decorations and restriction of cycles",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-lem-opposite-chamber",
+      "kind": "lemma",
+      "label": "A supported opposite chamber",
+      "statement": "[A supported opposite chamber] Let V be an m -dimensional vector space over _p , with m1 , and let B(V) be its poset of proper nonzero subspaces. Let \\[ 0=F_0<F_1<<F_m=V, F_j=j, \\] be a fixed full…",
+      "section": "Decorations and restriction of cycles",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-lem-restriction",
+      "kind": "lemma",
+      "label": "Restriction at a maximal index",
+      "statement": "[Restriction at a maximal index] Let M be a finite group, H M , and p a prime. Let m1 and let C_ m-1 ((M)) be a cycle supported on full flags ending at rank- m elementary abelian groups. Denote by…",
+      "section": "Decorations and restriction of cycles",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-lem-projective-rank",
+      "kind": "lemma",
+      "label": "Let D be an elementary abelian p -subgroup of (V) , where V=n and the…",
+      "statement": "Let D be an elementary abelian p -subgroup of (V) , where V=n and the characteristic of the field is different from p . The scalar commutators of representatives define an alternating bilinear…",
+      "section": "Linear and unitary components",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-lem-linear-sign-centralizer",
+      "kind": "lemma",
+      "label": "Suppose q is odd and n5 . Set S=S( D) and S_L=S L for a line frame as above,…",
+      "statement": "Suppose q is odd and n5 . Set S=S( D) and S_L=S L for a line frame as above, using p=2 . Every automorphism centralizing S_L preserves each line of D , or matches it with the corresponding line of…",
+      "section": "Linear and unitary components",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-prop-linear-two",
+      "kind": "proposition",
+      "label": "Let G have least order among finite groups with O_2(G)=1 and H_*( A_2(G);)=0 .…",
+      "statement": "Let G have least order among finite groups with O_2(G)=1 and H_*( A_2(G);)=0 . Then G has no simple component isomorphic to _n(q) or _n(q) with n5 and q of characteristic at least five.",
+      "section": "Linear and unitary components",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-prop-unitary-odd",
+      "kind": "proposition",
+      "label": "Let p be an odd prime, let q be odd with p q+1 , and let L=_n(q) with n5 . If L…",
+      "statement": "Let p be an odd prime, let q be odd with p q+1 , and let L=_n(q) with n5 . If L H(L) and H/L is elementary abelian of p -power order, then \\[ H_ m_p(H)-1 ((H);)0. \\] Here m_p(H) denotes the maximum…",
+      "section": "Linear and unitary components",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-prop-symplectic",
+      "kind": "proposition",
+      "label": "A minimal-order counterexample to at p=2 cannot have a simple component…",
+      "statement": "A minimal-order counterexample to at p=2 cannot have a simple component isomorphic to _ 2n (q) , where n3 and q has characteristic at least five.",
+      "section": "Symplectic components at two",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-lem-symp-centralizer",
+      "kind": "lemma",
+      "label": "For n3 and a pair ( D,T) as above, \\[ C_M(A_0( D,T))=A_0( D,T). \\] Every…",
+      "statement": "For n3 and a pair ( D,T) as above, \\[ C_M(A_0( D,T))=A_0( D,T). \\] Every semilinear projective transformation centralizing S( D) preserves each plane of D individually.",
+      "section": "Symplectic components at two",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-lem-symp-descent",
+      "kind": "lemma",
+      "label": "Let T= I, J satisfy , and let the projective semilinear involution b centralize…",
+      "statement": "Let T= I, J satisfy , and let the projective semilinear involution b centralize S( D)T and induce (_q/_s) , where q=s^2 . Replacing b by tb for some t T leaves S( D),T,b unchanged and permits a…",
+      "section": "Symplectic components at two",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-lem-symp-completions",
+      "kind": "lemma",
+      "label": "Let u be as in , and let _u denote the quadratic character of _u^ . A fixed…",
+      "statement": "Let u be as in , and let _u denote the quadratic character of _u^ . A fixed plane frame and retained line of a compatible quaternion four-group, together with a fixed admissible field axis when…",
+      "section": "Symplectic components at two",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-prop-orthogonal",
+      "kind": "proposition",
+      "label": "Let G be a minimal-order counterexample to rational augmented reduced homology…",
+      "statement": "Let G be a minimal-order counterexample to rational augmented reduced homology nonvanishing at the prime two. Thus O_2(G)=1 and H_*( A_2(G);)=0 , whereas the asserted nonvanishing holds for smaller…",
+      "section": "Orthogonal components",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-lem-orthogonal-centralizer",
+      "kind": "lemma",
+      "label": "Let T=T( D) distinguish all N positions and satisfy T>N/2 . Then every natural…",
+      "statement": "Let T=T( D) distinguish all N positions and satisfy T>N/2 . Then every natural semilinear similarity centralizing T projectively preserves each line of D . Its linear centralizer is exactly S( D) .…",
+      "section": "Orthogonal components",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-lem-orthogonal-eight-naturality",
+      "kind": "lemma",
+      "label": "Let V be a nondegenerate symmetric space of dimension eight over _q , with…",
+      "statement": "Let V be a nondegenerate symmetric space of dimension eight over _q , with defining characteristic at least five, and put L= P(V) . If V has minus type, every automorphism of L is induced by a…",
+      "section": "Orthogonal components",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-lem-orthogonal-descent",
+      "kind": "lemma",
+      "label": "Suppose an involution b of the natural projective semilinear group has…",
+      "statement": "Suppose an involution b of the natural projective semilinear group has nontrivial field action and preserves every line of a nondegenerate orthogonal frame of V . Then q=s^2 , and after scalar…",
+      "section": "Orthogonal components",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-lem-orthogonal-five-colors",
+      "kind": "lemma",
+      "label": "Let V be a square-determinant symmetric space over _5 , of odd dimension N5 or…",
+      "statement": "Let V be a square-determinant symmetric space over _5 , of odd dimension N5 or even dimension N8 . The space of actual sign cycle coefficients produced by Theorem~ contains an assignment with a…",
+      "section": "Orthogonal components",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-lem-psl45-intermediate-core",
+      "kind": "lemma",
+      "label": "Let J H G be finite groups, and suppose that H/J is a p -group. If…",
+      "statement": "Let J H G be finite groups, and suppose that H/J is a p -group. If O_p(C_G(H))=1 , then O_p(C_G(J))=1 .",
+      "section": "Orthogonal components",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-lem-psl45-homology",
+      "kind": "lemma",
+      "label": "For L=_4(5) , \\[ ( A_2(L))-15. \\] In particular H_*( A_2(L);)0 .",
+      "statement": "For L=_4(5) , \\[ ( A_2(L))-15. \\] In particular H_*( A_2(L);)0 .",
+      "section": "Orthogonal components",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-thm-psl45-equivalent-poset",
+      "kind": "theorem",
+      "label": "Equivalent poset for a centerless component",
+      "statement": "[Equivalent poset for a centerless component] Let G be a finite group, let p be a prime, and let L be a centerless component of G with p |L| . Put K=C_G(L) and \\[ Q= (( A_p(L)\\ 1\\ ) ( A_p(K)\\ 1\\ ))\\…",
+      "section": "Orthogonal components",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    },
+    {
+      "id": "m1-prop-psl45",
+      "kind": "proposition",
+      "label": "A minimal-order counterexample to the rational homological implication at p=2…",
+      "statement": "A minimal-order counterexample to the rational homological implication at p=2 has no simple component isomorphic to _4(5) .",
+      "section": "Orthogonal components",
+      "manuscript": "Rational homology and Quillen's conjecture"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-saturated-residue",
+      "to": "m1-lem-propagation"
+    },
+    {
+      "from": "m1-lem-faithfulness-upgrade",
+      "to": "m1-lem-propagation"
+    },
+    {
+      "from": "m1-lem-product-shuffle",
+      "to": "m1-lem-propagation"
+    },
+    {
+      "from": "m1-lem-propagation",
+      "to": "m1-cor-maximal-family"
+    },
+    {
+      "from": "m1-lem-faithfulness-upgrade",
+      "to": "m1-cor-maximal-family"
+    },
+    {
+      "from": "m1-lem-merger-coefficients",
+      "to": "m1-lem-frame-lie-identification"
+    },
+    {
+      "from": "m1-lem-opposite-chamber",
+      "to": "m1-lem-restriction"
+    },
+    {
+      "from": "m1-lem-saturated-residue",
+      "to": "m1-lem-restriction"
+    },
+    {
+      "from": "m1-lem-component-core",
+      "to": "m1-prop-linear-two"
+    },
+    {
+      "from": "m1-lem-linear-sign-centralizer",
+      "to": "m1-prop-linear-two"
+    },
+    {
+      "from": "m1-thm-frame-bound",
+      "to": "m1-prop-linear-two"
+    },
+    {
+      "from": "m1-lem-decorations",
+      "to": "m1-prop-linear-two"
+    },
+    {
+      "from": "m1-lem-restriction",
+      "to": "m1-prop-linear-two"
+    },
+    {
+      "from": "m1-cor-maximal-family",
+      "to": "m1-prop-linear-two"
+    },
+    {
+      "from": "m1-lem-projective-rank",
+      "to": "m1-prop-unitary-odd"
+    },
+    {
+      "from": "m1-thm-frame-bound",
+      "to": "m1-prop-unitary-odd"
+    },
+    {
+      "from": "m1-lem-restriction",
+      "to": "m1-prop-unitary-odd"
+    },
+    {
+      "from": "m1-lem-decorations",
+      "to": "m1-prop-unitary-odd"
+    },
+    {
+      "from": "m1-lem-symp-centralizer",
+      "to": "m1-lem-symp-descent"
+    },
+    {
+      "from": "m1-lem-symp-descent",
+      "to": "m1-lem-symp-completions"
+    },
+    {
+      "from": "m1-lem-orthogonal-eight-naturality",
+      "to": "m1-lem-orthogonal-centralizer"
+    },
+    {
+      "from": "m1-lem-projective-rank",
+      "to": "m1-lem-psl45-homology"
+    },
+    {
+      "from": "m1-lem-propagation",
+      "to": "m1-prop-psl45"
+    },
+    {
+      "from": "m1-thm-frame-bound",
+      "to": "m1-prop-psl45"
+    },
+    {
+      "from": "m1-lem-restriction",
+      "to": "m1-prop-psl45"
+    },
+    {
+      "from": "m1-lem-psl45-intermediate-core",
+      "to": "m1-prop-psl45"
+    },
+    {
+      "from": "m1-lem-decorations",
+      "to": "m1-prop-psl45"
+    },
+    {
+      "from": "m1-lem-component-core",
+      "to": "m1-prop-psl45"
+    },
+    {
+      "from": "m1-thm-psl45-equivalent-poset",
+      "to": "m1-prop-psl45"
+    },
+    {
+      "from": "m1-lem-product-shuffle",
+      "to": "m1-prop-psl45"
+    },
+    {
+      "from": "m1-lem-psl45-homology",
+      "to": "m1-prop-psl45"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-prop-psl45"
+    },
+    {
+      "from": "m1-prop-unitary-odd",
+      "to": "m1-prop-psl45"
+    },
+    {
+      "from": "m1-thm-reduction-odd",
+      "to": "m1-prop-psl45"
+    },
+    {
+      "from": "m1-thm-reduction-two",
+      "to": "m1-prop-psl45"
+    },
+    {
+      "from": "m1-prop-linear-two",
+      "to": "m1-prop-psl45"
+    },
+    {
+      "from": "m1-prop-symplectic",
+      "to": "m1-prop-psl45"
+    },
+    {
+      "from": "m1-prop-orthogonal",
+      "to": "m1-prop-psl45"
+    }
+  ]
+}

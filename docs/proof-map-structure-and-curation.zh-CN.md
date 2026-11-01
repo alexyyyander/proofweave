@@ -2,18 +2,21 @@
 
 本文说明网站上的 proof-map 结构、状态等级和持续补全流程。它不是发布授权；任何 replay、评审、Receipt 或部署仍需各自证据。
 
-## 1. 四类结构
+## 1. 五类结构
 
 | 状态 | 含义 | 当前数量 |
 | --- | --- | --- |
 | `deep` | 已整理的 theorem-level argument map，含版本、依赖、跨解法关系、Lean 对齐和来源定位 | 4（003、032、084、159） |
 | `draft` | 已有的 draft explanation，含 proof steps / Lean annotations，但未评审，步骤顺序不自动等于依赖 DAG | 0 |
-| `lean` | 从 pinned comparator/solution 机器抽取的结构：形式化目标 → 求解定理 → 允许公理；不是定理级依赖图，未经评审 | 238 |
-| `scaffold` | 只登记 claim、manuscripts、citations、upstream Lean scope；没有定理级证明链，也没有可抽取的 Lean 结构 | 130 |
+| `paper` | 从 pinned 论文 LaTeX 机器抽取：定理型陈述为节点，证明正文里的显式引用为边；引用不等于经验证的依赖，未经评审 | 343 |
+| `lean` | 从 pinned comparator/solution 机器抽取的结构：形式化目标 → 求解定理 → 允许公理；不是定理级依赖图，未经评审 | 18 |
+| `scaffold` | 只登记 claim、manuscripts、citations、upstream Lean scope；没有定理级证明链，也没有可抽取的论文/Lean 结构 | 7 |
+
+论文派生结构当前覆盖 343 个族、548 篇论文、13,629 个陈述与 14,401 条引用边；另有 25 个族没有可解析的 LaTeX（18 个保留 Lean 派生结构，7 个保持骨架）。
 
 `scaffold` 不是“证明完成”，也不是“没有数学”。它表示来源记录已入索引，但定理陈述、证明依赖和 Lean 对齐尚未整理。
 
-`lean` 也不是“证明已完成”。它只陈述固定提交里 comparator 的挑战命题、solution 模块的具名定理和允许公理；页面不得把它写成引理级依赖、kernel 验证或 Proofweave 重放。
+`paper` 也不是“证明已完成”。节点是论文的定理型陈述，边是证明环境中的显式 `\\ref` 引用；引用可能是背景、上下文或重复引用，页面不得把引用图写成经验证的证明依赖，也不得写成重放或评审。
 
 ## 2. URL 与数据
 
@@ -26,6 +29,8 @@
 - 状态登记：`data/proof-maps/manifest.json`
 - 深图数据：`data/proof-maps/deep/{number}.json`
 - Lean 派生结构：不单独存数据文件，由 family 页从 `lean-coverage.json` 的 comparators 渲染（≥1 个具名定理的族进入 `lean` 状态）
+- 论文派生结构：汇总 `data/proof-maps/paper-coverage.json`（计数），每族结构在 `data/proof-maps/paper/{number}.json`
+- 论文结构抽取器：`scripts/build-proof-map-paper-index.mjs`（`npm run proof:maps:paper:build`）
 - 深图校验器：`packages/domain/deep-proof-map.mjs`
 - 索引生成器：`packages/domain/proof-map-index.mjs`
 - 覆盖率报告：`npm run proof:maps:report`（`--json` 输出完整索引）
@@ -40,9 +45,13 @@
 4. 在 `data/publications/explanations/` 新增 artifact，并登记到 manifest 的 `draft`。
 5. 保持 `status: draft`、`reviewStatus: unreviewed`。
 
+### paper → deep
+
+`paper` 是自动状态（论文 LaTeX 至少解析出一个定理型陈述即进入），优先级高于 `lean`。要进入 `deep`，必须逐条核对证明里的引用：保留真正的证明依赖，删除背景/上下文引用，补角色、策略、跨解法关系与 Lean 对齐，再用 `validateDeepProofMap` 校验并登记到 manifest 的 `deep`。
+
 ### lean → deep
 
-`lean` 是自动状态（有 pinned comparator 且至少一个具名定理即进入），不需要人工登记。要离开 `lean` 进入 `deep`，必须按上一节从论文补出定理级节点与依赖，而不是从 Lean 结构反推证明顺序。
+没有可解析论文的 `lean` 族仍可按上一节从论文补出定理级节点与依赖，而不是从 Lean 结构反推证明顺序。
 
 ### draft → deep
 
@@ -56,6 +65,7 @@
 
 - 不要从标题/摘要自动编造 proof steps。
 - 不要把 Lean-derived 结构写成定理级依赖或证明 DAG；它只记录“形式化目标 → 求解定理 → 允许公理”。
+- 不要把论文的引用图写成证明依赖图；`\ref` 可能指向背景、定义或重复引用。
 - 不要把 citation graph 当作 proof dependency graph。
 - 不要把 `same-role` 写成 logical implication。
 - 不要把上游 Lean scope 写成 Proofweave replay。
@@ -67,6 +77,7 @@
 ```text
 catalog snapshot
   → scaffold entry (claim, manuscripts, scope, evidence gates)
+  → paper-derived structure (statements + proof references, automatic)
   → lean-derived structure (pinned comparator → theorems → axioms, automatic)
   → draft explanation (proof steps + Lean annotations)
   → deep argument map (theorem edges + cross-solution links + Lean anchors)
@@ -111,3 +122,23 @@ npm run proof:maps:lean:build
 - **159 · Erdős reciprocal sums**：单条 section-level 主策略；§2 的 triangular increment 由 §§3–9 的 detection/return/extraction 支撑，§10 迭代得到 Theorem 1.1，Corollary 1.2 是 Lean comparator 对齐的 reciprocal-sum consequence。外部 inverse theorem 与 almost-periodicity 标为 external input；quantitative bound 明确标注在 Lean alignment 之外。
 
 这三个深图仍是 `reviewStatus: unreviewed`。它们没有 statement review、independent review、kernel check、Proofweave replay 或 Receipt；页面和 caveats 不得省略这一点。
+
+## 8. 论文结构批量抽取（2026-11-02）
+
+`data/proof-maps/paper-coverage.json` 与 `data/proof-maps/paper/{number}.json` 来自 pinned OpenAI repository 的 LaTeX 源：
+
+- 从每篇论文的 `build/main.tex`、`paper.tex` 等入口递归读取 `\input` 的 section 文件；
+- 节点是 `theorem` / `lemma` / `proposition` / `corollary` 环境，保留 label、标题、陈述摘要与所在 section；
+- 边是 `proof` 环境里的 `\ref` 引用，方向为“被引用陈述 → 引用它的陈述”；
+- 当前覆盖 347 个族、548 篇论文、13,629 个陈述、14,401 条引用边；25 个族没有可解析的 LaTeX；
+- 抽取是纯文本解析，不运行 Lean、不验证引用是否真的是证明前提。
+
+生成命令：
+
+```bash
+npm run proof:maps:paper:build
+```
+
+缓存位于 `/tmp/proof-map-tex-cache`，按 repository + pinned revision 分目录；数据只对固定 revision 有效，换 revision 必须重跑。
+
+已知边界：部分论文用单文件 LaTeX（如 `paper.tex`），部分 statement 没有 label（用合成 id，无法被其他论文内部引用）；数学公式在陈述摘要里会退化为近似纯文本。页面必须保持 `paper` 状态，不得写成 `deep`、replay 或评审。

@@ -1,0 +1,119 @@
+{
+  "familyNumber": "241",
+  "familyTitle": "Rigidity of the Turing degrees",
+  "manuscripts": [
+    {
+      "id": "Rigidity-of-the-Turing-degrees-September-24-2026",
+      "title": "Rigidity of the Turing degrees",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Rigidity-of-the-Turing-degrees-September-24-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Computability and category",
+    "Representing an arbitrary automorphism",
+    "Recovery from four values",
+    "Rigidity and biinterpretability"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-rigidity",
+      "kind": "theorem",
+      "label": "Every order automorphism of the full Turing-degree structure is the identity:…",
+      "statement": "Every order automorphism of the full Turing-degree structure is the identity: \\[ (,)\\ a ( a)= a. \\]",
+      "section": "Introduction",
+      "manuscript": "Rigidity of the Turing degrees"
+    },
+    {
+      "id": "m1-lem-cuts",
+      "kind": "lemma",
+      "label": "The cut map C:2^ is Borel and injective. If c_0,,c_k and x_1,,x_k , with k1 ,…",
+      "statement": "The cut map C:2^ is Borel and injective. If c_0,,c_k and x_1,,x_k , with k1 , then \\[ d(c_0+_ i=1 ^k c_ix_i) _ i=1 ^k d(x_i). \\] Every noncomputable degree equals d(t) for some irrational t(0,1) .",
+      "section": "Computability and category",
+      "manuscript": "Rigidity of the Turing degrees"
+    },
+    {
+      "id": "m1-lem-continuity",
+      "kind": "lemma",
+      "label": "If X is Polish, Y is second countable, and f:X Y is Borel, there is a comeager…",
+      "statement": "If X is Polish, Y is second countable, and f:X Y is Borel, there is a comeager set D X such that f|D is continuous.",
+      "section": "Computability and category",
+      "manuscript": "Rigidity of the Turing degrees"
+    },
+    {
+      "id": "m1-lem-avoidance",
+      "kind": "lemma",
+      "label": "Category avoidance",
+      "statement": "[Category avoidance] Let A,Y with Y A . Then \\[ \\ (u,v)^2:Y A C(u) C(v)\\ \\] is meager.",
+      "section": "Computability and category",
+      "manuscript": "Rigidity of the Turing degrees"
+    },
+    {
+      "id": "m1-thm-representation",
+      "kind": "theorem",
+      "label": "Slaman--Woodin",
+      "statement": "[Slaman--Woodin] For every (,) there is an arithmetic function F:2^2^ such that \\[ F(A)=( A) for every A. \\]",
+      "section": "Representing an arbitrary automorphism",
+      "manuscript": "Rigidity of the Turing degrees"
+    },
+    {
+      "id": "m1-lem-lift",
+      "kind": "lemma",
+      "label": "For an arbitrary (,) there is a Borel function F:2^ with countable fibers such…",
+      "statement": "For an arbitrary (,) there is a Borel function F:2^ with countable fibers such that F(x)&=(d(x))(x), \\\\ F(x+y)& F(x) F(y)(x,y).",
+      "section": "Representing an arbitrary automorphism",
+      "manuscript": "Rigidity of the Turing degrees"
+    },
+    {
+      "id": "m1-prop-recovery",
+      "kind": "proposition",
+      "label": "Recovery from four values",
+      "statement": "[Recovery from four values] Let F:2^ be Borel with countable fibers, and suppose \\[ F(x+y) F(x) F(y)(x,y). \\] For every irrational t(0,1) there is a comeager set G_t^2 such that for each (u,v) G_t…",
+      "section": "Recovery from four values",
+      "manuscript": "Rigidity of the Turing degrees"
+    },
+    {
+      "id": "m1-cor-biinterpretability",
+      "kind": "corollary",
+      "label": "The Turing-degree ordering is biinterpretable without parameters with full…",
+      "statement": "The Turing-degree ordering is biinterpretable without parameters with full second-order arithmetic, in the sense of .",
+      "section": "Rigidity and biinterpretability",
+      "manuscript": "Rigidity of the Turing degrees"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-thm-representation",
+      "to": "m1-lem-lift"
+    },
+    {
+      "from": "m1-lem-cuts",
+      "to": "m1-lem-lift"
+    },
+    {
+      "from": "m1-lem-continuity",
+      "to": "m1-prop-recovery"
+    },
+    {
+      "from": "m1-thm-rigidity",
+      "to": "m1-prop-recovery"
+    },
+    {
+      "from": "m1-lem-lift",
+      "to": "m1-prop-recovery"
+    },
+    {
+      "from": "m1-lem-cuts",
+      "to": "m1-prop-recovery"
+    },
+    {
+      "from": "m1-lem-avoidance",
+      "to": "m1-prop-recovery"
+    },
+    {
+      "from": "m1-thm-rigidity",
+      "to": "m1-cor-biinterpretability"
+    }
+  ]
+}

@@ -1,0 +1,755 @@
+{
+  "familyNumber": "170",
+  "familyTitle": "Sharp logarithmic exponents for off-diagonal Ramsey numbers",
+  "manuscripts": [
+    {
+      "id": "The-Sharp-Logarithmic-Exponent-of-r-5-t-September-24-2026",
+      "title": "The sharp logarithmic exponent of r(5,t)",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Sharp-Logarithmic-Exponent-of-r-5-t-September-24-2026/paper.pdf"
+    },
+    {
+      "id": "Sharp-Logarithmic-Exponents-for-Fixed-Off-Diagonal-Ramsey-Numbers-September-24-2026",
+      "title": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Sharp-Logarithmic-Exponents-for-Fixed-Off-Diagonal-Ramsey-Numbers-September-24-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "The classical upper bound",
+    "Projective flags and selected-stream entropy",
+    "Describing a sparse incidence pair",
+    "Preparing a consistent tuple for compression",
+    "Compression along a tree of windows",
+    "Preparing the sparse-pair description",
+    "Rich lines and overlapping hyperplanes",
+    "The Poisson score",
+    "Flags, incidence, and selected-tuple entropy",
+    "Describing sparse pairs: validation and geometry",
+    "Learning a sparse support from a short row",
+    "Marking and representative laws",
+    "Replacing the context by a shorter description",
+    "Completion of the construction and the Ramsey bounds"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "There is an absolute constant \\(C>0\\) such that, for every \\(>0\\), all…",
+      "statement": "There is an absolute constant \\(C>0\\) such that, for every \\(>0\\), all sufficiently large integers \\(t\\) satisfy \\[ t^4 ( t)^ 3+ \\ \\ r(5,t)\\ \\ Ct^4 ( t)^3 . \\] The threshold for \\(t\\) may depend on…",
+      "section": "Introduction",
+      "manuscript": "The sharp logarithmic exponent of r(5,t)"
+    },
+    {
+      "id": "m1-thm-upper",
+      "kind": "theorem",
+      "label": "There is an absolute constant C such that, for every integer t2 , \\[ r(5,t)…",
+      "statement": "There is an absolute constant C such that, for every integer t2 , \\[ r(5,t) Ct^4 ( t)^3 . \\]",
+      "section": "The classical upper bound",
+      "manuscript": "The sharp logarithmic exponent of r(5,t)"
+    },
+    {
+      "id": "m1-lem-occupancy",
+      "kind": "lemma",
+      "label": "Let H be a finite triangle-free graph on n vertices, and let D1 be a real upper…",
+      "statement": "Let H be a finite triangle-free graph on n vertices, and let D1 be a real upper bound on its maximum degree. Then \\[ (H)n (D+1) 8(D+1) . \\]",
+      "section": "The classical upper bound",
+      "manuscript": "The sharp logarithmic exponent of r(5,t)"
+    },
+    {
+      "id": "m1-lem-sample-triangle-free",
+      "kind": "lemma",
+      "label": "Let G be a finite graph on n vertices with maximum degree d>0 . Suppose every…",
+      "statement": "Let G be a finite graph on n vertices with maximum degree d>0 . Suppose every adjacent pair has at most m common neighbors, where m>0 , dm1 , and p=(dm)^ -1/2 satisfies pd1 . Then G has an induced…",
+      "section": "The classical upper bound",
+      "manuscript": "The sharp logarithmic exponent of r(5,t)"
+    },
+    {
+      "id": "m1-lem-incidence",
+      "kind": "lemma",
+      "label": "Incidence and variance",
+      "statement": "[Incidence and variance] Let \\(d2\\), and put \\(p_d=Q_ d-1 /Q_d=(1-1/Q_d)/q\\). For real weights \\(w_a\\) on \\( P_d\\), set \\(W(b)=_ a b w_a\\) and \\(w=_a w_a\\). Then \\[ 1 Q_d _b W(b)=p_dw,…",
+      "section": "Projective flags and selected-stream entropy",
+      "manuscript": "The sharp logarithmic exponent of r(5,t)"
+    },
+    {
+      "id": "m1-lem-clique-free",
+      "kind": "lemma",
+      "label": "Every stream graph is \\(K_5\\)-free.",
+      "statement": "Every stream graph is \\(K_5\\)-free.",
+      "section": "Projective flags and selected-stream entropy",
+      "manuscript": "The sharp logarithmic exponent of r(5,t)"
+    },
+    {
+      "id": "m1-lem-rectangles",
+      "kind": "lemma",
+      "label": "Rectangle occupancy",
+      "statement": "[Rectangle occupancy] With probability \\(1-o(1)\\), the following holds simultaneously for every vector subspace \\(V(_q^5)^*\\) in the dual space: \\[ \\#\\ i:X_i R(V)\\ C, R(V)=\\ (a,b):b V,\\ a V^\\ . \\]…",
+      "section": "Projective flags and selected-stream entropy",
+      "manuscript": "The sharp logarithmic exponent of r(5,t)"
+    },
+    {
+      "id": "m1-lem-stream-entropy",
+      "kind": "lemma",
+      "label": "Entropy of an extracted tuple",
+      "statement": "[Entropy of an extracted tuple] Suppose the stream law has density at most \\(C_0\\), where \\(C_0\\) is independent of \\(q\\). By any rule, possibly using auxiliary randomness, extract a tuple \\(F\\) of…",
+      "section": "Projective flags and selected-stream entropy",
+      "manuscript": "The sharp logarithmic exponent of r(5,t)"
+    },
+    {
+      "id": "m1-thm-predictor",
+      "kind": "theorem",
+      "label": "Sparse-pair description",
+      "statement": "[Sparse-pair description] Fix \\(0<<1/10\\), set \\(=/10^7\\), and let \\(q\\) be a sufficiently large prime. Write \\(= q\\), and suppose \\[ ^ D^ 1-/2 , L=D^ 8 , R2 N, P=LR. \\] Let \\(2 d4\\), and let \\(S U_S…",
+      "section": "Describing a sparse incidence pair",
+      "manuscript": "The sharp logarithmic exponent of r(5,t)"
+    },
+    {
+      "id": "m1-lem-marking",
+      "kind": "lemma",
+      "label": "Marking",
+      "statement": "[Marking] There is a message , consisting of constant-alphabet masks and O(q) full flags, with the following properties. Given ( C,) , every unspecified flag belongs to a known set of at most C_1q^4…",
+      "section": "Preparing a consistent tuple for compression",
+      "manuscript": "The sharp logarithmic exponent of r(5,t)"
+    },
+    {
+      "id": "m1-lem-decoupling",
+      "kind": "lemma",
+      "label": "Pre-round decoupling",
+      "statement": "[Pre-round decoupling] After exposing a deterministic number of rounds of older representatives, one can draw one fresh uniform unused position from each representative block, without exposing their…",
+      "section": "Preparing a consistent tuple for compression",
+      "manuscript": "The sharp logarithmic exponent of r(5,t)"
+    },
+    {
+      "id": "m1-lem-low-conflict",
+      "kind": "lemma",
+      "label": "Low-conflict geometry",
+      "statement": "[Low-conflict geometry] For i<j , write the two flags as (a,b),(c,y) and compare their actual joint law with the independent product of their conditional marginals. In a reciprocal class, or the high…",
+      "section": "Preparing a consistent tuple for compression",
+      "manuscript": "The sharp logarithmic exponent of r(5,t)"
+    },
+    {
+      "id": "m1-lem-high-ranks",
+      "kind": "lemma",
+      "label": "High ranks",
+      "statement": "[High ranks] The retained class cannot be high. In the rank-four case, the stated assumptions instead directly produce an encoding contradicting Lemma~ .",
+      "section": "Preparing a consistent tuple for compression",
+      "manuscript": "The sharp logarithmic exponent of r(5,t)"
+    },
+    {
+      "id": "m1-lem-flat-levels",
+      "kind": "lemma",
+      "label": "Endpoint levels",
+      "statement": "[Endpoint levels] At every good index there are independent auxiliary choices of first and second endpoint supports, each consisting of good endpoints, such that a chosen support A satisfies \\[ 12 A_…",
+      "section": "Preparing a consistent tuple for compression",
+      "manuscript": "The sharp logarithmic exponent of r(5,t)"
+    },
+    {
+      "id": "m1-lem-fresh-test",
+      "kind": "lemma",
+      "label": "Validation and its conditional law",
+      "statement": "[Validation and its conditional law] Suppose nonempty supports A U_A and B U_B satisfy \\[ |A||B| q^5e^ -b , |\\ (a,b') A B:a b'\\ | |A||B| q , \\] where b=O(K_*) and C^ -1000 . Put n_A=|A| , n_B=|B| and…",
+      "section": "Compression along a tree of windows",
+      "manuscript": "The sharp logarithmic exponent of r(5,t)"
+    },
+    {
+      "id": "m1-lem-pivot-retention",
+      "kind": "lemma",
+      "label": "Tree retention",
+      "statement": "[Tree retention] The expected number of windows lost by this construction and the preceding deletions is o(w) , where w is the deterministic window count before deletions. Among the middle targets,…",
+      "section": "Compression along a tree of windows",
+      "manuscript": "The sharp logarithmic exponent of r(5,t)"
+    },
+    {
+      "id": "m1-lem-pivot-compression",
+      "kind": "lemma",
+      "label": "Cost of the new context",
+      "statement": "[Cost of the new context] The output of Lemma~ has a new context satisfying ' CqP(w+2)(+wP)+Cw, ' CK_*. These are deterministic bounds. After fixing public tables and conditioning on retention of the…",
+      "section": "Compression along a tree of windows",
+      "manuscript": "The sharp logarithmic exponent of r(5,t)"
+    },
+    {
+      "id": "m1-prop-compression-stage",
+      "kind": "proposition",
+      "label": "One compression stage",
+      "statement": "[One compression stage] Suppose a selected consistent tuple and context satisfy -- , with deterministic =(k) and bounded stream-marginal density, and suppose the rectangle-occupancy event of Lemma~…",
+      "section": "Compression along a tree of windows",
+      "manuscript": "The sharp logarithmic exponent of r(5,t)"
+    },
+    {
+      "id": "m1-thm-stream",
+      "kind": "theorem",
+      "label": "A stream with no long consistent subsequence",
+      "statement": "[A stream with no long consistent subsequence] For every fixed 0<<1/10 and every sufficiently large prime q , there is a stream of N= q^4 q flags whose ordered flag graph is K_5 -free and has…",
+      "section": "Compression along a tree of windows",
+      "manuscript": "The sharp logarithmic exponent of r(5,t)"
+    },
+    {
+      "id": "m1-lem-training",
+      "kind": "lemma",
+      "label": "Training data",
+      "statement": "[Training data] The construction has \\(n/4 n' n\\). If the hyperplane list or plane list is present, its length satisfies \\[ J_h n/q^2, J_p n/K_p=q^ 1/2 (-2g_0/15), \\] respectively. If both lists are…",
+      "section": "Preparing the sparse-pair description",
+      "manuscript": "The sharp logarithmic exponent of r(5,t)"
+    },
+    {
+      "id": "m1-lem-rich-lines",
+      "kind": "lemma",
+      "label": "Rich lines with a plane cap",
+      "statement": "[Rich lines with a plane cap] Suppose n=q^ 1+v , v 3/2+O(1/) , n/4 n' n , g_0>_0 , and e^ -g_0/20 <a2 . Put \\[ M=n'a q , K=n^ 4/3 q^ -1 e^ -g_0/5 . \\] Let X be a set of at most n points of PG(d,q) ,…",
+      "section": "Rich lines and overlapping hyperplanes",
+      "manuscript": "The sharp logarithmic exponent of r(5,t)"
+    },
+    {
+      "id": "m1-lem-overlap-geometry",
+      "kind": "lemma",
+      "label": "Geometry of the training set",
+      "statement": "[Geometry of the training set] Let 3 d4 , 100qP<n=q^ 1+v Cq^ (d+1)/2 , and let S'PG(d,q) be the training set in the small-cell case of Lemma~ , with n'=|S'| . For each query point x , let O_x be the…",
+      "section": "Rich lines and overlapping hyperplanes",
+      "manuscript": "The sharp logarithmic exponent of r(5,t)"
+    },
+    {
+      "id": "m1-lem-score-procedure",
+      "kind": "lemma",
+      "label": "Score procedure",
+      "statement": "[Score procedure] Assume the small-cell conclusions of Lemma~ and, when \\(d3\\), the estimates of Lemma~ for outside-own radial lines and hyperplane pairs. Assume also \\[ |S||T| q^ d+1 e^ -b , e(S,T)…",
+      "section": "The Poisson score",
+      "manuscript": "The sharp logarithmic exponent of r(5,t)"
+    },
+    {
+      "id": "m2-intro-main",
+      "kind": "theorem",
+      "label": "For every fixed integer s6 there is a constant C_s>0 such that, for every >0…",
+      "statement": "For every fixed integer s6 there is a constant C_s>0 such that, for every >0 and every sufficiently large integer t , \\[ t^ s-1 ( t)^ s-2+ r(s,t) C_s t^ s-1 ( t)^ s-2 . \\] In particular, \\[ _ t (s-1)…",
+      "section": "Introduction",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-intro-prime-construction",
+      "kind": "theorem",
+      "label": "Fix an integer d5 and a real number 0<<1/10 . For every sufficiently large…",
+      "statement": "Fix an integer d5 and a real number 0<<1/10 . For every sufficiently large prime q , with = q , there is a graph G such that \\[ |V(G)|= q^d, K_ d+1 G, (G)< q^ 1+ . \\]",
+      "section": "Introduction",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-base-incidence",
+      "kind": "lemma",
+      "label": "Weighted incidence estimates",
+      "statement": "[Weighted incidence estimates] Let j2 , and put p_j=Q_ j-1 /Q_j=(1-Q_j^ -1 )/q . For any real weights w_x on one of the two projective spaces, _y(_ x y w_x-p_j_xw_x)^2 =q^ j-1 (_xw_x^2-( _xw_x)^2 Q_j…",
+      "section": "Flags, incidence, and selected-tuple entropy",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-base-flag-graph",
+      "kind": "lemma",
+      "label": "Flag graph",
+      "statement": "[Flag graph] Every graph defined by Equation~ is K_ d+1 -free. Its independent sets, in increasing position order, are exactly its consistent subtuples. Reversing a consistent tuple and interchanging…",
+      "section": "Flags, incidence, and selected-tuple entropy",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-base-rectangles",
+      "kind": "lemma",
+      "label": "Simultaneous rectangle occupancy",
+      "statement": "[Simultaneous rectangle occupancy] There is a constant C_d such that, with probability 1-o(1) , every R(U) contains at most C_d positions of the uniform stream. The same event controls rectangles…",
+      "section": "Flags, incidence, and selected-tuple entropy",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-base-selection-entropy",
+      "kind": "lemma",
+      "label": "Selected-tuple entropy",
+      "statement": "[Selected-tuple entropy] Let a random stream have law dominated by C_0 times the iid uniform flag-stream law, where C_0 is independent of q . From this stream, using arbitrary dependent auxiliary…",
+      "section": "Flags, incidence, and selected-tuple entropy",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-base-event-transfer",
+      "kind": "lemma",
+      "label": "Transferring a rare event",
+      "statement": "[Transferring a rare event] For two probability laws P,Q on the same finite or countable space and an event E , Q(E) (P Q)+P(E) 1-e^ -1 .",
+      "section": "Flags, incidence, and selected-tuple entropy",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-base-tails",
+      "kind": "lemma",
+      "label": "Elementary sampling tails",
+      "statement": "[Elementary sampling tails] If X is binomial or Poisson with mean , then e^ tX ((e^t-1)) for every real t . For each fixed 0<<1 there is c_>0 such that \\[ (|X-|)2e^ -c_ . \\] For h e>0 , \\[ (X…",
+      "section": "Flags, incidence, and selected-tuple entropy",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-base-scale-comparisons",
+      "kind": "lemma",
+      "label": "Separation of scales",
+      "statement": "[Separation of scales] Uniformly over the interval for D in Equation~ , \\[ K_*=o(L), L=o(P), P=o(), R L+=o(P). \\] Moreover, for sufficiently large q , D^ 9 P4D^ 9 .",
+      "section": "Flags, incidence, and selected-tuple entropy",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-geom-description",
+      "kind": "lemma",
+      "label": "Sparse-pair description",
+      "statement": "[Sparse-pair description] Let 2 j d . Let S,T be nonempty sets in opposite point systems of (j,q) , contained in decoder-known sets U_S,U_T . Suppose, for a fixed constant C_b , that |S||T| q^ j+1 e^…",
+      "section": "Describing sparse pairs: validation and geometry",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-geom-validation",
+      "kind": "lemma",
+      "label": "Fresh validation",
+      "statement": "[Fresh validation] Under , suppose a decoder-known W U_S satisfies . Further independent tables and a message of length CqP(d_S+d_T+1) produce caps U_T' U_T and U_S' U_S , with additional failure…",
+      "section": "Describing sparse pairs: validation and geometry",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-geom-produced-test",
+      "kind": "lemma",
+      "label": "The law of a produced test",
+      "statement": "[The law of a produced test] Consider either test in Lemma~ , conditional on all data making that test ready, but not on any later event. Suppose its hidden source X_0 is a subset of an original…",
+      "section": "Describing sparse pairs: validation and geometry",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-geom-projection",
+      "kind": "proposition",
+      "label": "Repeated projection",
+      "statement": "[Repeated projection] For j4 , assume Lemma~ in projective dimension j-1 , for every fixed value of its hypothesis constant. Then the lemma holds in dimension j .",
+      "section": "Describing sparse pairs: validation and geometry",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-geom-preparation",
+      "kind": "proposition",
+      "label": "Low-dimensional preparation",
+      "statement": "[Low-dimensional preparation] Suppose holds with j\\ 2,3\\ and n=|S||T| . Either enumeration already proves Lemma~ , or the following preparation costs O(q+) bits. In dimension three there is also a…",
+      "section": "Describing sparse pairs: validation and geometry",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-geom-rich-lines",
+      "kind": "lemma",
+      "label": "Rich lines with a plane cap",
+      "statement": "[Rich lines with a plane cap] Let q run through sufficiently large primes. Let S be at most n Cq^2 points of (3,q) , with at most K_p points in every projective plane. Let M>0 satisfy M^3 n , M^2 K_p…",
+      "section": "Describing sparse pairs: validation and geometry",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-geom-radial",
+      "kind": "lemma",
+      "label": "Radial rich lines",
+      "statement": "[Radial rich lines] Consider the dimension-three output of Proposition~ . A line through a query point x has strength \\[ a_(x)=q|X_x|/n'. \\] Outside one exceptional set of o(n) ambient points,…",
+      "section": "Describing sparse pairs: validation and geometry",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-geom-overlap",
+      "kind": "lemma",
+      "label": "Overlap bounds for pencils",
+      "statement": "[Overlap bounds for pencils] Use the prepared data of Proposition~ in dimension j=2 or 3 . For a query point x , let H_x be any family of hyperplanes through x such that \\[ '_H:=q|X_x H|/n'2(H H_x).…",
+      "section": "Describing sparse pairs: validation and geometry",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-learn-short-row",
+      "kind": "proposition",
+      "label": "Short-row description",
+      "statement": "[Short-row description] Fix the constants in , the bound on b/K_* , the bound on ^ 100 , and C_0 . For every sufficiently large prime q , the prepared input just specified has the following…",
+      "section": "Learning a sparse support from a short row",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-learn-regular-pencils",
+      "kind": "lemma",
+      "label": "Regular pencils",
+      "statement": "[Regular pencils] There is a deterministic set D_2 of size o(n) such that, for x D_2 , its pencil contains at most Be^ exceptional hyperplanes and satisfies \\[ _ H x \\ 1,(_H-1)^2\\ Be^, _ H x \\ 1,(_…",
+      "section": "Learning a sparse support from a short row",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-learn-empty-exceptional",
+      "kind": "lemma",
+      "label": "The empty exceptional set",
+      "statement": "[The empty exceptional set] There is a fixed c_0>0 such that, with probability at least c e^ -8P , z z_ :=c_0qB e^ -b-8P , _ H Z _H .001z. For every Z satisfying these two inequalities, at least…",
+      "section": "Learning a sparse support from a short row",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-learn-second-moment",
+      "kind": "lemma",
+      "label": "Second moment",
+      "statement": "[Second moment] If x D_0 D_2 , then, conditional on O_x , \\[ ((T_x^*)^2 O_x) B^2e^ -.6P . \\] This assertion does not exclude the set D_1 .",
+      "section": "Learning a sparse support from a short row",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-learn-high-moment",
+      "kind": "lemma",
+      "label": "High moment",
+      "statement": "[High moment] If x D_0 D_1 D_2 , then, conditional on O_x , \\[ ((T_x^*)^p O_x) B^p e^ -.1pP . \\]",
+      "section": "Learning a sparse support from a short row",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-learn-row-success",
+      "kind": "lemma",
+      "label": "A successful true-law row",
+      "statement": "[A successful true-law row] For the Poisson batches sampled from S' , with probability at least c e^ -8P their total size is at most 2qP and the test , including all sampled points, captures at least…",
+      "section": "Learning a sparse support from a short row",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-learn-implementation",
+      "kind": "lemma",
+      "label": "Implementation by proposals",
+      "statement": "[Implementation by proposals] The true-law success in Lemma~ gives the description scheme of Proposition~ .",
+      "section": "Learning a sparse support from a short row",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-mark-marking",
+      "kind": "lemma",
+      "label": "Marking and entropy budget",
+      "statement": "[Marking and entropy budget] Under , both scans together mark at most h Cq positions expensive. The old context, the two rank and type masks, and the values of all positions expensive in either scan…",
+      "section": "Marking and representative laws",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-mark-representatives",
+      "kind": "lemma",
+      "label": "Representative exposure",
+      "statement": "[Representative exposure] There is a deterministic round t<T_1 , depending only on the current joint law, such that, with =_t , U=U_t , and E=E_t , _ i U _i& B,& _ i U M_i& C B/T_1,\\\\ _ i E _i& C…",
+      "section": "Marking and representative laws",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-mark-endpoint-mass",
+      "kind": "lemma",
+      "label": "Endpoint mass",
+      "statement": "[Endpoint mass] At every fixed history and unexposed slot i , the probability that either specified endpoint is not good is at most C(e^ -K + _i+1 K ). This holds for both reciprocal and high…",
+      "section": "Marking and representative laws",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-mark-collision",
+      "kind": "lemma",
+      "label": "Reciprocal incidence and collisions",
+      "statement": "[Reciprocal incidence and collisions] Fix a history in the selected pre-round. For unexposed slots i<j in a reciprocal class, write their flags as (a,b) and (c,y) . There are symmetric nonnegative…",
+      "section": "Marking and representative laws",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-mark-good-indices",
+      "kind": "proposition",
+      "label": "Good-index fractions",
+      "statement": "[Good-index fractions] In every selected class, the expected proportion of bad unexposed indices is o(1) , and so is the expected proportion of bad fresh representatives. At every good index each…",
+      "section": "Marking and representative laws",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-comp-step",
+      "kind": "lemma",
+      "label": "One compression step",
+      "statement": "[One compression step] Let \\(F\\) be a consistent tuple of deterministic length \\(c_0k k\\), for a fixed \\(c_0>0\\), extracted in one of the two orientations from the flag stream. Suppose that the…",
+      "section": "Replacing the context by a shorter description",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-comp-rich-union",
+      "kind": "lemma",
+      "label": "Write \\((d,q)=(_q^ d+1 )\\). Let \\(X(d,q)\\) and \\(0<1\\). Let \\( V\\) be any…",
+      "statement": "Write \\((d,q)=(_q^ d+1 )\\). Let \\(X(d,q)\\) and \\(0<1\\). Let \\( V\\) be any family of nonzero vector subspaces of \\(_q^ d+1 \\) satisfying \\[ |X(V)||(V)|(V V). \\] Then \\[ |_ V V (V)| C_d^ -(d+1) |X|. \\]",
+      "section": "Replacing the context by a shorter description",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-comp-high-rank",
+      "kind": "lemma",
+      "label": "Suppose the preparation in Section~ produces a high-rank class with fixed…",
+      "statement": "Suppose the preparation in Section~ produces a high-rank class with fixed vector ranks \\(r,r'\\), where \\(r+r'>d+1\\), and one window of length \\((k)\\). There is a new context of length \\(O(q^ 1+ )\\)…",
+      "section": "Replacing the context by a shorter description",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-comp-supports",
+      "kind": "lemma",
+      "label": "At every good index in a reciprocal class, there are auxiliary choices of first…",
+      "statement": "At every good index in a reciprocal class, there are auxiliary choices of first and second supports consisting entirely of good endpoints. If \\(A\\) is the first support and \\(p_i^A\\) the conditional…",
+      "section": "Replacing the context by a shorter description",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-comp-tree-loss",
+      "kind": "lemma",
+      "label": "The expected number of middle targets lost through the pre-tree deletions,…",
+      "statement": "The expected number of middle targets lost through the pre-tree deletions, deleted subtrees, or exclusion by the produced caps is \\(o(k)\\). In particular, a prescribed deterministic number \\((k)\\) of…",
+      "section": "Replacing the context by a shorter description",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-end-prime-interval",
+      "kind": "lemma",
+      "label": "A prime in a fixed-ratio interval",
+      "statement": "[A prime in a fixed-ratio interval] There is a constant c_0>0 such that, for every sufficiently large real x , a prime q satisfies c_0x q x .",
+      "section": "Completion of the construction and the Ramsey bounds",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-end-triangle-free",
+      "kind": "lemma",
+      "label": "Independent sets in a triangle-free graph",
+      "statement": "[Independent sets in a triangle-free graph] If a triangle-free graph H has n>0 vertices and maximum degree at most a real number D_01 , then \\[ (H)n (D_0+1) 8(D_0+1) . \\]",
+      "section": "Completion of the construction and the Ramsey bounds",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    },
+    {
+      "id": "m2-end-upper-bound",
+      "kind": "proposition",
+      "label": "Upper Ramsey estimate",
+      "statement": "[Upper Ramsey estimate] For every fixed integer s2 there is a constant C_s such that for all sufficiently large integers t , \\[ r(s,t) C_s t^ s-1 ( t)^ s-2 . \\]",
+      "section": "Completion of the construction and the Ramsey bounds",
+      "manuscript": "Sharp logarithmic exponents for fixed off-diagonal Ramsey numbers"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-thm-upper",
+      "to": "m1-lem-sample-triangle-free"
+    },
+    {
+      "from": "m1-lem-occupancy",
+      "to": "m1-lem-sample-triangle-free"
+    },
+    {
+      "from": "m1-lem-incidence",
+      "to": "m1-lem-marking"
+    },
+    {
+      "from": "m1-lem-stream-entropy",
+      "to": "m1-lem-marking"
+    },
+    {
+      "from": "m1-lem-rectangles",
+      "to": "m1-lem-low-conflict"
+    },
+    {
+      "from": "m1-lem-stream-entropy",
+      "to": "m1-lem-high-ranks"
+    },
+    {
+      "from": "m1-lem-flat-levels",
+      "to": "m1-lem-pivot-retention"
+    },
+    {
+      "from": "m1-lem-fresh-test",
+      "to": "m1-lem-pivot-retention"
+    },
+    {
+      "from": "m1-thm-predictor",
+      "to": "m1-lem-pivot-compression"
+    },
+    {
+      "from": "m1-lem-fresh-test",
+      "to": "m1-lem-pivot-compression"
+    },
+    {
+      "from": "m1-lem-pivot-retention",
+      "to": "m1-lem-pivot-compression"
+    },
+    {
+      "from": "m1-lem-marking",
+      "to": "m1-prop-compression-stage"
+    },
+    {
+      "from": "m1-lem-decoupling",
+      "to": "m1-prop-compression-stage"
+    },
+    {
+      "from": "m1-lem-high-ranks",
+      "to": "m1-prop-compression-stage"
+    },
+    {
+      "from": "m1-lem-flat-levels",
+      "to": "m1-prop-compression-stage"
+    },
+    {
+      "from": "m1-lem-pivot-retention",
+      "to": "m1-prop-compression-stage"
+    },
+    {
+      "from": "m1-lem-pivot-compression",
+      "to": "m1-prop-compression-stage"
+    },
+    {
+      "from": "m1-lem-rectangles",
+      "to": "m1-thm-stream"
+    },
+    {
+      "from": "m1-lem-stream-entropy",
+      "to": "m1-thm-stream"
+    },
+    {
+      "from": "m1-lem-rich-lines",
+      "to": "m1-lem-overlap-geometry"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-lem-score-procedure"
+    },
+    {
+      "from": "m1-thm-stream",
+      "to": "m1-lem-score-procedure"
+    },
+    {
+      "from": "m1-thm-upper",
+      "to": "m1-lem-score-procedure"
+    },
+    {
+      "from": "m2-base-incidence",
+      "to": "m2-geom-validation"
+    },
+    {
+      "from": "m2-geom-validation",
+      "to": "m2-geom-projection"
+    },
+    {
+      "from": "m2-geom-validation",
+      "to": "m2-geom-preparation"
+    },
+    {
+      "from": "m2-geom-rich-lines",
+      "to": "m2-geom-radial"
+    },
+    {
+      "from": "m2-geom-radial",
+      "to": "m2-geom-overlap"
+    },
+    {
+      "from": "m2-base-incidence",
+      "to": "m2-learn-regular-pencils"
+    },
+    {
+      "from": "m2-learn-high-moment",
+      "to": "m2-learn-row-success"
+    },
+    {
+      "from": "m2-learn-second-moment",
+      "to": "m2-learn-row-success"
+    },
+    {
+      "from": "m2-base-tails",
+      "to": "m2-learn-row-success"
+    },
+    {
+      "from": "m2-learn-empty-exceptional",
+      "to": "m2-learn-row-success"
+    },
+    {
+      "from": "m2-learn-row-success",
+      "to": "m2-learn-implementation"
+    },
+    {
+      "from": "m2-learn-short-row",
+      "to": "m2-learn-implementation"
+    },
+    {
+      "from": "m2-geom-description",
+      "to": "m2-learn-implementation"
+    },
+    {
+      "from": "m2-geom-preparation",
+      "to": "m2-learn-implementation"
+    },
+    {
+      "from": "m2-geom-projection",
+      "to": "m2-learn-implementation"
+    },
+    {
+      "from": "m2-base-incidence",
+      "to": "m2-mark-marking"
+    },
+    {
+      "from": "m2-base-selection-entropy",
+      "to": "m2-mark-marking"
+    },
+    {
+      "from": "m2-base-event-transfer",
+      "to": "m2-mark-collision"
+    },
+    {
+      "from": "m2-mark-representatives",
+      "to": "m2-mark-good-indices"
+    },
+    {
+      "from": "m2-mark-endpoint-mass",
+      "to": "m2-mark-good-indices"
+    },
+    {
+      "from": "m2-mark-endpoint-mass",
+      "to": "m2-comp-high-rank"
+    },
+    {
+      "from": "m2-base-incidence",
+      "to": "m2-comp-high-rank"
+    },
+    {
+      "from": "m2-base-event-transfer",
+      "to": "m2-comp-high-rank"
+    },
+    {
+      "from": "m2-comp-rich-union",
+      "to": "m2-comp-high-rank"
+    },
+    {
+      "from": "m2-geom-validation",
+      "to": "m2-comp-tree-loss"
+    },
+    {
+      "from": "m2-geom-produced-test",
+      "to": "m2-comp-tree-loss"
+    },
+    {
+      "from": "m2-mark-good-indices",
+      "to": "m2-comp-tree-loss"
+    },
+    {
+      "from": "m2-mark-endpoint-mass",
+      "to": "m2-comp-tree-loss"
+    },
+    {
+      "from": "m2-comp-step",
+      "to": "m2-comp-tree-loss"
+    },
+    {
+      "from": "m2-comp-high-rank",
+      "to": "m2-comp-tree-loss"
+    },
+    {
+      "from": "m2-intro-prime-construction",
+      "to": "m2-comp-tree-loss"
+    },
+    {
+      "from": "m2-base-rectangles",
+      "to": "m2-comp-tree-loss"
+    },
+    {
+      "from": "m2-base-selection-entropy",
+      "to": "m2-comp-tree-loss"
+    },
+    {
+      "from": "m2-base-flag-graph",
+      "to": "m2-comp-tree-loss"
+    },
+    {
+      "from": "m2-end-triangle-free",
+      "to": "m2-end-upper-bound"
+    },
+    {
+      "from": "m2-intro-main",
+      "to": "m2-end-upper-bound"
+    }
+  ]
+}

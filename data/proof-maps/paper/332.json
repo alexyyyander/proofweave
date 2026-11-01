@@ -1,0 +1,95 @@
+{
+  "familyNumber": "332",
+  "familyTitle": "Metric Markov cotype of <i>ℓ</i><sub>1</sub> and Hilbert-space Lipschitz extension",
+  "manuscripts": [
+    {
+      "id": "Metric-Markov-Cotype-Two-of-l1-October-5-2026",
+      "title": "Metric Markov Cotype Two of <i>ℓ</i><sub>1</sub>",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Metric-Markov-Cotype-Two-of-l1-October-5-2026/l1-markov-cotype.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Finite cuts and reconstruction",
+    "A flat map and a quartic potential",
+    "Geometric and Ces\\`aro endpoint costs",
+    "Complex scalars and Lipschitz extension"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "The real space _1 satisfies \\[ N_2(_1)1221. \\]",
+      "statement": "The real space _1 satisfies \\[ N_2(_1)1221. \\]",
+      "section": "Introduction",
+      "manuscript": "Metric Markov Cotype Two of <i>ℓ</i><sub>1</sub>"
+    },
+    {
+      "id": "m1-lem-cuts",
+      "kind": "lemma",
+      "label": "Given x_1,,x_n_1 , either all the points coincide, or there exist a finite set…",
+      "statement": "Given x_1,,x_n_1 , either all the points coincide, or there exist a finite set B , positive weights (w_B)_ B B , binary vectors z_i\\ 0,1\\ ^ B , and an affine map T:^ B _1 with the following…",
+      "section": "Finite cuts and reconstruction",
+      "manuscript": "Metric Markov Cotype Two of <i>ℓ</i><sub>1</sub>"
+    },
+    {
+      "id": "m1-lem-flat",
+      "kind": "lemma",
+      "label": "For u,u' Q and e\\ 0,1\\ ^ B , put a=u-e , =u'-u , and F_e(u)=\\|u-e\\|_H^4 . Then…",
+      "statement": "For u,u' Q and e\\ 0,1\\ ^ B , put a=u-e , =u'-u , and F_e(u)=\\|u-e\\|_H^4 . Then \\|(u')-(u)\\|_ 1,w ^2 108(F_e(u')-F_e(u) -4\\|a\\|_H^2 a,_H).",
+      "section": "A flat map and a quartic potential",
+      "manuscript": "Metric Markov Cotype Two of <i>ℓ</i><sub>1</sub>"
+    },
+    {
+      "id": "m1-cor-martingale",
+      "kind": "corollary",
+      "label": "Let (M_m)_ m0 be an H -valued martingale with respect to a filtration (_m) ,…",
+      "statement": "Let (M_m)_ m0 be an H -valued martingale with respect to a filtration (_m) , taking values in Q and converging almost surely to M_ . If e is an _0 -measurable binary vector, then _ m=0 ^ \\|(M_ m+1…",
+      "section": "A flat map and a quartic potential",
+      "manuscript": "Metric Markov Cotype Two of <i>ℓ</i><sub>1</sub>"
+    },
+    {
+      "id": "m1-lem-comparison",
+      "kind": "lemma",
+      "label": "Let (X_s)_ s0 be a stationary Markov chain on [n] , and let x_1,,x_n lie in a…",
+      "statement": "Let (X_s)_ s0 be a stationary Markov chain on [n] , and let x_1,,x_n lie in a metric space (X,d) . For t , set p=1/(t+1) and q=1-p . If S is independent of the walk and (S=s)=pq^s for s0 , then d(x_…",
+      "section": "Geometric and Ces\\`aro endpoint costs",
+      "manuscript": "Metric Markov Cotype Two of <i>ℓ</i><sub>1</sub>"
+    },
+    {
+      "id": "m1-cor-complex",
+      "kind": "corollary",
+      "label": "For complex scalars, N_2(_1( C))1242 .",
+      "statement": "For complex scalars, N_2(_1( C))1242 .",
+      "section": "Complex scalars and Lipschitz extension",
+      "manuscript": "Metric Markov Cotype Two of <i>ℓ</i><sub>1</sub>"
+    },
+    {
+      "id": "m1-cor-extension",
+      "kind": "corollary",
+      "label": "There is a universal constant K< such that, for every real Hilbert space H ,…",
+      "statement": "There is a universal constant K< such that, for every real Hilbert space H , every subset S H , and every Lipschitz map f:S_1 , there is an extension F: H_1 with (F) K(f) .",
+      "section": "Complex scalars and Lipschitz extension",
+      "manuscript": "Metric Markov Cotype Two of <i>ℓ</i><sub>1</sub>"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-flat",
+      "to": "m1-cor-martingale"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-lem-comparison"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-cor-complex"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-cor-extension"
+    }
+  ]
+}

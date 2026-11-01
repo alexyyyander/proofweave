@@ -1,0 +1,447 @@
+{
+  "familyNumber": "268",
+  "familyTitle": "The spin-one Haldane gap",
+  "manuscripts": [
+    {
+      "id": "The-periodic-spin-one-Haldane-gap-September-24-2026",
+      "title": "The periodic spin-one Haldane gap",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-periodic-spin-one-Haldane-gap-September-24-2026/paper.pdf"
+    },
+    {
+      "id": "A-boundary-field-gap-for-the-spin-one-Heisenberg-chain-September-24-2026",
+      "title": "A boundary-field gap for the spin-one Heisenberg chain",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-boundary-field-gap-for-the-spin-one-Heisenberg-chain-September-24-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "The Hamiltonian and its auxiliary twists",
+    "Partition functions as spatial moments",
+    "From two purities to a uniform gap",
+    "Two finite initializations",
+    "Proof of the gap theorem",
+    "Two variational inputs",
+    "Spatial transfer with endpoint fields",
+    "Periodic concentration estimates",
+    "Concentration of boundary-weighted moments",
+    "Finite initialization and quadratic improvement",
+    "Same fields, odd lengths, and the physical gap",
+    "The boundary-selected infinite-volume state",
+    "Certified short-chain thermal moments",
+    "Exact trial vectors for opposite fields"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For the Hamiltonians , the ground state is unique for every even L60 , and…",
+      "statement": "For the Hamiltonians , the ground state is unique for every even L60 , and _L&>4 105 80 79 &&for every even L60, \\\\ _L&> 20 784 &&for every even L2304. Consequently \\[ _1 20 784 >0. \\] The spectral…",
+      "section": "Introduction",
+      "manuscript": "The periodic spin-one Haldane gap"
+    },
+    {
+      "id": "m1-lem-representation",
+      "kind": "lemma",
+      "label": "Choice of representation",
+      "statement": "[Choice of representation] Let S^x,S^y,S^z M_3() satisfy \\[ [S^,S^] =i__ S^, _(S^)^2=2I. \\] They are simultaneously similar to the standard self-adjoint spin-one matrices. If the original matrices…",
+      "section": "The Hamiltonian and its auxiliary twists",
+      "manuscript": "The periodic spin-one Haldane gap"
+    },
+    {
+      "id": "m1-lem-energy",
+      "kind": "lemma",
+      "label": "Energy bounds",
+      "statement": "[Energy bounds] For every n4 and every g SO(3) , -3n 2 I H_n(g) nI.",
+      "section": "The Hamiltonian and its auxiliary twists",
+      "manuscript": "The periodic spin-one Haldane gap"
+    },
+    {
+      "id": "m1-prop-transfer",
+      "kind": "proposition",
+      "label": "Spatial transfer",
+      "statement": "[Spatial transfer] For each b>0 there are a Hilbert space K_b , a compact self-adjoint operator X_b , and a unitary representation g U_g of G commuting with X_b , such that Z_n(b,g)=(X_b^nU_g) (n4,\\…",
+      "section": "Partition functions as spatial moments",
+      "manuscript": "The periodic spin-one Haldane gap"
+    },
+    {
+      "id": "m1-lem-sectors",
+      "kind": "lemma",
+      "label": "Sector moments",
+      "statement": "[Sector moments] Fix b>0 and let X_b,U_g be as in Proposition~ . There are real eigenvalue lists, counted with multiplicity, whose integer moments I_k,O_k,N_k converge absolutely for k2 , with…",
+      "section": "Partition functions as spatial moments",
+      "manuscript": "The periodic spin-one Haldane gap"
+    },
+    {
+      "id": "m1-lem-purity",
+      "kind": "lemma",
+      "label": "Squaring probabilities",
+      "statement": "[Squaring probabilities] Let (w_i) be a finite or countable family of nonnegative numbers with _iw_i=1 . Its purity P=_iw_i^2 lies in (0,1] . The normalized squares w_i^2/P have purity P' satisfying…",
+      "section": "From two purities to a uniform gap",
+      "manuscript": "The periodic spin-one Haldane gap"
+    },
+    {
+      "id": "m1-lem-rounded-update",
+      "kind": "lemma",
+      "label": "Coupled update",
+      "statement": "[Coupled update] Suppose n4 is even, b>0 , and p,q If p_+,q_+",
+      "section": "From two purities to a uniform gap",
+      "manuscript": "The periodic spin-one Haldane gap"
+    },
+    {
+      "id": "m1-prop-bootstrap",
+      "kind": "proposition",
+      "label": "Uniform gap from two initial purities",
+      "statement": "[Uniform gap from two initial purities] For every even L4 , let H_L be a non-scalar finite-dimensional self-adjoint Hamiltonian. Suppose that a and, for each b>0 , a real finite or countable list…",
+      "section": "From two purities to a uniform gap",
+      "manuscript": "The periodic spin-one Haldane gap"
+    },
+    {
+      "id": "m1-lem-thermal-inputs",
+      "kind": "lemma",
+      "label": "Finite thermal inputs",
+      "statement": "[Finite thermal inputs] For a=700741/500000 , the following tables give centers for the shifted partition functions Z_n(b,g) in units 10^ -6 . The absolute errors are less than 10^ -5 at b=21/2 and…",
+      "section": "Two finite initializations",
+      "manuscript": "The periodic spin-one Haldane gap"
+    },
+    {
+      "id": "m1-lem-cappedmass",
+      "kind": "lemma",
+      "label": "Capped masses",
+      "statement": "[Capped masses] Let (t_i) be a finite or countable family with 0 t_i h and _i t_i m , where h>0 and m0 . For r1 , put C(m,h,r)=q h^r+(m-qh)^r, q= m/h. Then _i t_i^r C(m,h,r) . Without the individual…",
+      "section": "Two finite initializations",
+      "manuscript": "The periodic spin-one Haldane gap"
+    },
+    {
+      "id": "m1-lem-polynomial-filter",
+      "kind": "lemma",
+      "label": "Polynomial filter",
+      "statement": "[Polynomial filter] Let 0 , v>0 , and let (_i) be a real eigenvalue list with moments M_j=_i_i^j , and suppose |M_j-c_j| for the indices occurring in a polynomial F(x)=_j f_jx^j . Assume these…",
+      "section": "Two finite initializations",
+      "manuscript": "The periodic spin-one Haldane gap"
+    },
+    {
+      "id": "m1-prop-seed60",
+      "kind": "proposition",
+      "label": "At inverse temperature b=105/4 , \\[ S(60,b)>78, T(120,b)>78. \\]",
+      "statement": "At inverse temperature b=105/4 , \\[ S(60,b)>78, T(120,b)>78. \\]",
+      "section": "Two finite initializations",
+      "manuscript": "The periodic spin-one Haldane gap"
+    },
+    {
+      "id": "m1-prop-seed2304",
+      "kind": "proposition",
+      "label": "At inverse temperature b=784 , \\[ 1-S(2304,b)84513 10^7 <1 100 ,…",
+      "statement": "At inverse temperature b=784 , \\[ 1-S(2304,b)84513 10^7 <1 100 , 1-T(4608,b)27493 510^6 <1 100 . \\]",
+      "section": "Two finite initializations",
+      "manuscript": "The periodic spin-one Haldane gap"
+    },
+    {
+      "id": "m1-cor-boundary-inputs",
+      "kind": "corollary",
+      "label": "Periodic inputs for boundary estimates",
+      "statement": "[Periodic inputs for boundary estimates] Let X_b be the spatial transfer operator of Proposition~ , with the shift a=700741/500000 , and put \\[ b_0=49/4, b_1=49/2,\\\\ =999/1000, U=100139/100000,…",
+      "section": "Two finite initializations",
+      "manuscript": "The periodic spin-one Haldane gap"
+    },
+    {
+      "id": "m1-cor-local-limit",
+      "kind": "corollary",
+      "label": "For the self-adjoint Hamiltonians , the normalized ground states of the even…",
+      "statement": "For the self-adjoint Hamiltonians , the normalized ground states of the even periodic rings have a subsequence, as L , converging on every local operator to a state . Every such limit satisfies…",
+      "section": "Proof of the gap theorem",
+      "manuscript": "The periodic spin-one Haldane gap"
+    },
+    {
+      "id": "m1-lem-trial-contraction",
+      "kind": "lemma",
+      "label": "Let N4 and D1 be integers, and let A_ -1 ,A_0,A_1 M_D() . Define _N,T,O by…",
+      "statement": "Let N4 and D1 be integers, and let A_ -1 ,A_0,A_1 M_D() . Define _N,T,O by Equations~ -- . For the periodic spin-one Heisenberg Hamiltonian H_N , set \\[ V_N=(T^N), U_N=(T^ N-2 O). \\] Then \\[…",
+      "section": "Two variational inputs",
+      "manuscript": "The periodic spin-one Haldane gap"
+    },
+    {
+      "id": "m1-lem-trial-inputs",
+      "kind": "lemma",
+      "label": "For the untwisted periodic spin-one Heisenberg Hamiltonian and a=700741/500000…",
+      "statement": "For the untwisted periodic spin-one Heisenberg Hamiltonian and a=700741/500000 , \\[ E_0(72)<-72a, E_0(120)<-120a. \\] Consequently Z_ 72 (b)>1 and Z_ 120 (b)>1 for every b>0 .",
+      "section": "Two variational inputs",
+      "manuscript": "The periodic spin-one Haldane gap"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "For the Hamiltonian , with the spin normalization above, \\[…",
+      "statement": "For the Hamiltonian , with the spin normalization above, \\[ E_1(L,3/5)-E_0(L,3/5)> 10 392 for every integer L960. \\]",
+      "section": "Introduction",
+      "manuscript": "A boundary-field gap for the spin-one Heisenberg chain"
+    },
+    {
+      "id": "m2-tr-boundary",
+      "kind": "proposition",
+      "label": "Open-chain transfer",
+      "statement": "[Open-chain transfer] For b>0 , n2 , and g G , the pairing v_b,X_b^nU_gv_b is the shifted partition function of the open chain with left field -hS_0^z and right field +hS_ n-1 ^ ge_z . Consequently…",
+      "section": "Spatial transfer with endpoint fields",
+      "manuscript": "A boundary-field gap for the spin-one Heisenberg chain"
+    },
+    {
+      "id": "m2-per-purity",
+      "kind": "lemma",
+      "label": "Squaring and concentration",
+      "statement": "[Squaring and concentration] Let (w_i) be a finite or countable probability list, and suppose its purity is at least 1-u , where 0 u<1 . Normalizing the squares w_i^2 gives a list with purity defect…",
+      "section": "Periodic concentration estimates",
+      "manuscript": "A boundary-field gap for the spin-one Heisenberg chain"
+    },
+    {
+      "id": "m2-per-coupled",
+      "kind": "lemma",
+      "label": "Coupled update",
+      "statement": "[Coupled update] Suppose that n4 is even, b>0 , and S(n,b) s , T(2n,b) t , with 0<s,t1 . Set \\[ p_+=f(1-s^2t). \\] If p_+<1 , then 1-S(2n,2b) p_+, 1-T(4n,2b) f(1-t^2(1-p_+)). Either upper defect bound…",
+      "section": "Periodic concentration estimates",
+      "manuscript": "A boundary-field gap for the spin-one Heisenberg chain"
+    },
+    {
+      "id": "m2-per-native",
+      "kind": "proposition",
+      "label": "Finite periodic inputs from~",
+      "statement": "[Finite periodic inputs from~ ] Set =.999, U=1.00139, V=.872, m_J=1.0657205, m_N=.2783155. At b_0=49/4 , the spatial eigenvalue list decomposes as one list J and three identical lists N . Here J is…",
+      "section": "Periodic concentration estimates",
+      "manuscript": "A boundary-field gap for the spin-one Heisenberg chain"
+    },
+    {
+      "id": "m2-per-concentration",
+      "kind": "proposition",
+      "label": "Concentration at the doubling scales",
+      "statement": "[Concentration at the doubling scales] For every j0 , X_ b_j has a unique simple eigenvalue of largest modulus. This eigenvalue is positive; denote it by _j=\\|X_ b_j \\| . Its eigenspace is fixed…",
+      "section": "Periodic concentration estimates",
+      "manuscript": "A boundary-field gap for the spin-one Heisenberg chain"
+    },
+    {
+      "id": "m2-be-recurrence",
+      "kind": "lemma",
+      "label": "Transfer between temperatures",
+      "statement": "[Transfer between temperatures] Let j0 and let m>k2 be even. Suppose e_k(j)<1 and 0<q<1 with q_ j+1 ^ m-k . Define, for 0 e<1 and 0<t1 , F(q,e,t)=q 1-q (1 (1-e)^2t -1). Then e_m(j+1)…",
+      "section": "Concentration of boundary-weighted moments",
+      "manuscript": "A boundary-field gap for the spin-one Heisenberg chain"
+    },
+    {
+      "id": "m2-be-coupled",
+      "kind": "proposition",
+      "label": "Coupled boundary update",
+      "statement": "[Coupled boundary update] Suppose j2 , 0 E_j,_j<1 , and \\[ e_ k_j (j) E_j, A(M_j,j)1-_j. \\] Let E_ j+1 ,_ j+1 [0,1) satisfy E_ j+1 & F(d(u_ j+1 )^ (M_j-k_j)/M_j ,E_j,1-_j), \\\\ _ j+1 &…",
+      "section": "Concentration of boundary-weighted moments",
+      "manuscript": "A boundary-field gap for the spin-one Heisenberg chain"
+    },
+    {
+      "id": "m2-in-finite",
+      "kind": "proposition",
+      "label": "Finite boundary data",
+      "statement": "[Finite boundary data] Let =.4042 and P_*(x)=x^3-.14x^2-.18x . For the opposite-field Hamiltonian , E_0(H_m^ opp )+am<(m=34,78,142,240). At inverse temperature b_0 , Y_6(b_0)<.027,…",
+      "section": "Finite initialization and quadratic improvement",
+      "manuscript": "A boundary-field gap for the spin-one Heisenberg chain"
+    },
+    {
+      "id": "m2-in-seedbounds",
+      "kind": "lemma",
+      "label": "At these four lengths, e_m(0)(m), A(m,j)(1+R(m)^ 2^j )^ -2 (j0).",
+      "statement": "At these four lengths, e_m(0)(m), A(m,j)(1+R(m)^ 2^j )^ -2 (j0).",
+      "section": "Finite initialization and quadratic improvement",
+      "manuscript": "A boundary-field gap for the spin-one Heisenberg chain"
+    },
+    {
+      "id": "m2-in-quadratic",
+      "kind": "proposition",
+      "label": "Define x_5=.01 and x_ j+1 =10x_j^2 for j5 . Then, for every j5 , u_j x_j, e_…",
+      "statement": "Define x_5=.01 and x_ j+1 =10x_j^2 for j5 . Then, for every j5 , u_j x_j, e_ k_j (j) x_j, 1-A(M_j,j) x_j. In particular x_j=10^ -1-2^ j-5 .",
+      "section": "Finite initialization and quadratic improvement",
+      "manuscript": "A boundary-field gap for the spin-one Heisenberg chain"
+    },
+    {
+      "id": "m2-co-signed",
+      "kind": "lemma",
+      "label": "Signed boundary comparison",
+      "statement": "[Signed boundary comparison] For j0 , an even M2 , and any integer n M , define Q_j(n)=Y_n^ s (b_j)/_j^n . Then |Q_j(n)-c_j| B_M(j)-c_j.",
+      "section": "Same fields, odd lengths, and the physical gap",
+      "manuscript": "A boundary-field gap for the spin-one Heisenberg chain"
+    },
+    {
+      "id": "m2-co-purity",
+      "kind": "proposition",
+      "label": "For j5 and every integer n with M_j n2M_j , Y_n^ s (b_ j+1 ) Y_n^ s (b_j)^2…",
+      "statement": "For j5 and every integer n with M_j n2M_j , Y_n^ s (b_ j+1 ) Y_n^ s (b_j)^2 1-4x_j.",
+      "section": "Same fields, odd lengths, and the physical gap",
+      "manuscript": "A boundary-field gap for the spin-one Heisenberg chain"
+    },
+    {
+      "id": "m2-cor-topology",
+      "kind": "corollary",
+      "label": "Every boundary-selected state is invariant under uniform rotations about the z…",
+      "statement": "Every boundary-selected state is invariant under uniform rotations about the z axis and under reflection j-j . With _*=(10)/392 , it satisfies (A^*[H_ bulk ,A]) _*((A^*A)-|(A)|^2) for every local A.…",
+      "section": "The boundary-selected infinite-volume state",
+      "manuscript": "A boundary-field gap for the spin-one Heisenberg chain"
+    },
+    {
+      "id": "m2-appth-bounds",
+      "kind": "proposition",
+      "label": "Let _0 be the positive leading eigenvalue of X_ b_0 , and let c_0 be the…",
+      "statement": "Let _0 be the positive leading eigenvalue of X_ b_0 , and let c_0 be the squared norm of the projection of v_ b_0 onto its eigenspace. For \\[ P_*(x)=x^3-.14x^2-.18x, \\] one has Y_6(b_0)<.027,…",
+      "section": "Certified short-chain thermal moments",
+      "manuscript": "A boundary-field gap for the spin-one Heisenberg chain"
+    },
+    {
+      "id": "m2-appth-matrix-error",
+      "kind": "lemma",
+      "label": "For every pair (n,g) in , \\[ \\| E-\\|_ F <210^ -10 . \\]",
+      "statement": "For every pair (n,g) in , \\[ \\| E-\\|_ F <210^ -10 . \\]",
+      "section": "Certified short-chain thermal moments",
+      "manuscript": "A boundary-field gap for the spin-one Heisenberg chain"
+    },
+    {
+      "id": "m2-apptr-bound",
+      "kind": "proposition",
+      "label": "Let E_0^ opp (m) be the smallest eigenvalue of H_m^ opp . Then E_0^ opp (m)+am<…",
+      "statement": "Let E_0^ opp (m) be the smallest eigenvalue of H_m^ opp . Then E_0^ opp (m)+am< for m\\ 34,78,142,240\\ .",
+      "section": "Exact trial vectors for opposite fields",
+      "manuscript": "A boundary-field gap for the spin-one Heisenberg chain"
+    },
+    {
+      "id": "m2-apptr-contractions",
+      "kind": "lemma",
+      "label": "With the data above, the norm V_m=_m,_m and the scaled shifted energy numerator…",
+      "statement": "With the data above, the norm V_m=_m,_m and the scaled shifted energy numerator \\[ H_m^*=500000\\, _m,(H_m^ opp +am)_m \\] satisfy V_m&=L_mu, \\\\ H_m^*&=500000_ r=0 ^ m-2 L_0T_*^rO_*T_*^ m-2-r u…",
+      "section": "Exact trial vectors for opposite fields",
+      "manuscript": "A boundary-field gap for the spin-one Heisenberg chain"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-purity",
+      "to": "m1-lem-rounded-update"
+    },
+    {
+      "from": "m1-lem-rounded-update",
+      "to": "m1-prop-bootstrap"
+    },
+    {
+      "from": "m1-lem-thermal-inputs",
+      "to": "m1-prop-seed60"
+    },
+    {
+      "from": "m1-lem-polynomial-filter",
+      "to": "m1-prop-seed60"
+    },
+    {
+      "from": "m1-lem-cappedmass",
+      "to": "m1-prop-seed60"
+    },
+    {
+      "from": "m1-lem-polynomial-filter",
+      "to": "m1-prop-seed2304"
+    },
+    {
+      "from": "m1-lem-cappedmass",
+      "to": "m1-prop-seed2304"
+    },
+    {
+      "from": "m1-lem-rounded-update",
+      "to": "m1-prop-seed2304"
+    },
+    {
+      "from": "m1-lem-sectors",
+      "to": "m1-cor-boundary-inputs"
+    },
+    {
+      "from": "m1-prop-seed2304",
+      "to": "m1-cor-boundary-inputs"
+    },
+    {
+      "from": "m1-lem-trial-inputs",
+      "to": "m1-cor-boundary-inputs"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-cor-boundary-inputs"
+    },
+    {
+      "from": "m1-prop-transfer",
+      "to": "m1-cor-boundary-inputs"
+    },
+    {
+      "from": "m1-prop-seed60",
+      "to": "m1-cor-boundary-inputs"
+    },
+    {
+      "from": "m1-prop-bootstrap",
+      "to": "m1-cor-boundary-inputs"
+    },
+    {
+      "from": "m1-lem-representation",
+      "to": "m1-cor-boundary-inputs"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-cor-local-limit"
+    },
+    {
+      "from": "m1-lem-trial-contraction",
+      "to": "m1-lem-trial-inputs"
+    },
+    {
+      "from": "m2-per-purity",
+      "to": "m2-per-coupled"
+    },
+    {
+      "from": "m2-per-purity",
+      "to": "m2-per-concentration"
+    },
+    {
+      "from": "m2-per-native",
+      "to": "m2-per-concentration"
+    },
+    {
+      "from": "m2-per-coupled",
+      "to": "m2-per-concentration"
+    },
+    {
+      "from": "m2-be-recurrence",
+      "to": "m2-be-coupled"
+    },
+    {
+      "from": "m2-per-concentration",
+      "to": "m2-be-coupled"
+    },
+    {
+      "from": "m2-per-purity",
+      "to": "m2-be-coupled"
+    },
+    {
+      "from": "m2-apptr-bound",
+      "to": "m2-in-finite"
+    },
+    {
+      "from": "m2-appth-bounds",
+      "to": "m2-in-finite"
+    },
+    {
+      "from": "m2-co-signed",
+      "to": "m2-co-purity"
+    },
+    {
+      "from": "m2-in-quadratic",
+      "to": "m2-co-purity"
+    },
+    {
+      "from": "m2-thm-main",
+      "to": "m2-co-purity"
+    },
+    {
+      "from": "m2-thm-main",
+      "to": "m2-cor-topology"
+    },
+    {
+      "from": "m2-apptr-bound",
+      "to": "m2-apptr-contractions"
+    }
+  ]
+}

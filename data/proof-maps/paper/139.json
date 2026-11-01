@@ -1,0 +1,515 @@
+{
+  "familyNumber": "139",
+  "familyTitle": "Subpolynomial query complexity for log-concave sampling",
+  "manuscripts": [
+    {
+      "id": "Subpolynomial-query-complexity-for-well-conditioned-log-concave-sampling-September-26-2026",
+      "title": "Subpolynomial query complexity for well-conditioned log-concave sampling",
+      "date": "2026-09-26",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Subpolynomial-query-complexity-for-well-conditioned-log-concave-sampling-September-26-2026/article.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "The near-quadratic sampling problem",
+    "Gaussian transport and tensor derivatives",
+    "Dimension bounds for material derivatives",
+    "A stationary flow for noisy means",
+    "Finite formulas for the two flows",
+    "Finite evaluation of nested conditional means",
+    "From noisy conditional samples to the target law",
+    "A logarithmic oracle lower bound"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "In the oracle model above, for every \\(>0\\) there is \\(C_<\\) such that \\[ Q(d)…",
+      "statement": "In the oracle model above, for every \\(>0\\) there is \\(C_<\\) such that \\[ Q(d) C_ d^ (d2). \\] There are also absolute constants \\(c>0\\) and \\(d_0\\) such that \\[ Q(d) c d(d d_0). \\] The lower bound…",
+      "section": "Introduction",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-thm-primitive",
+      "kind": "theorem",
+      "label": "Noisy near-quadratic sampling",
+      "statement": "[Noisy near-quadratic sampling] Fix \\(0<e<1\\), an integer \\(K_02\\), and \\(t>0\\) satisfying 40(K_0+2)t<14. There are constants and a dimension threshold depending only on \\(e,K_0,t\\) with the…",
+      "section": "The near-quadratic sampling problem",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-lem-convex-preliminaries",
+      "kind": "lemma",
+      "label": "Uniformly convex laws",
+      "statement": "[Uniformly convex laws] Let \\(H C^2(^n)\\) satisfy \\(mI^2H MI\\), with \\(0<m M<\\). Write \\((dx) e^ -H(x) dx\\), and let \\(z_0\\) be its unique mode. Then \\[ _|X-z_0|^2 n/m, _ h m^ -1 _| h|^2. \\] The…",
+      "section": "The near-quadratic sampling problem",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-lem-coupling-smoothing",
+      "kind": "lemma",
+      "label": "Conditional comparisons and smoothing",
+      "statement": "[Conditional comparisons and smoothing] Let \\((_z)\\) and \\((_z)\\) be probability kernels on finite-dimensional Euclidean spaces, and let \\(Z\\) have law \\(\\). Whenever the relevant second moments are…",
+      "section": "The near-quadratic sampling problem",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-lem-appell-cumulants",
+      "kind": "lemma",
+      "label": "All-split cumulant bound",
+      "statement": "[All-split cumulant bound] Let S be a random vector in ^D whose moment-generating function is finite in a neighborhood of zero. Suppose that, for some 0 , \\[ (P(S))| P(S)|^2 \\] for every polynomial P…",
+      "section": "Gaussian transport and tensor derivatives",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-prop-gaussian-jets",
+      "kind": "proposition",
+      "label": "Gaussian jet bounds",
+      "statement": "[Gaussian jet bounds] Under the assumptions above, in particular l1/2 , define for each integer q1 \\[ U_q(,y)=^ -q ^q M_(y)(>0). \\] These tensors extend smoothly to =0 . There is an absolute constant…",
+      "section": "Gaussian transport and tensor derivatives",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-prop-transport",
+      "kind": "proposition",
+      "label": "Probability transport",
+      "statement": "[Probability transport] The ordinary differential equation dY_ d =-rM_(Y_) transports _0=N(0,I_d) to _ for every <1 . Its velocity is globally Cl -Lipschitz in space. On every compact…",
+      "section": "Gaussian transport and tensor derivatives",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-lem-material-identities",
+      "kind": "lemma",
+      "label": "The mean and its jets satisfy D M&=^*U_1, \\\\ ( D U_q)_ i,I &= (^*U_ q+1 )_ i,I…",
+      "statement": "The mean and its jets satisfy D M&=^*U_1, \\\\ ( D U_q)_ i,I &= (^*U_ q+1 )_ i,I +2r_ S I (U_ |S| )_ k,S (U_ q-|S|+1 )_ i,k,I S , q1. In the second identity I is a labeled list of q derivative slots;…",
+      "section": "Dimension bounds for material derivatives",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-lem-split-contraction",
+      "kind": "lemma",
+      "label": "A single contraction",
+      "statement": "[A single contraction] Let A and B be tensors, and contract one slot of A with one slot of B , leaving at least one free slot in each. For any nontrivial split of the resulting free slots there are…",
+      "section": "Dimension bounds for material derivatives",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-thm-tensor-divergence",
+      "kind": "theorem",
+      "label": "Tensor divergence bound",
+      "statement": "[Tensor divergence bound] Let E be a tensor expression of weight k in Definition~ . There is a constant C_E1 , depending only on that finite formula, such that for every integer j0 , every real 2 p<…",
+      "section": "Dimension bounds for material derivatives",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-lem-divergence-l2",
+      "kind": "lemma",
+      "label": "Frobenius divergence estimate",
+      "statement": "[Frobenius divergence estimate] Let (dy) e^ -H(y) dy , where H C^2(^d) has bounded Hessian and has Gaussian tails. Let V be a smooth tensor field with a distinguished divergence slot and with V, V…",
+      "section": "Dimension bounds for material derivatives",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-cor-path-derivatives",
+      "kind": "corollary",
+      "label": "Derivatives along transported paths",
+      "statement": "[Derivatives along transported paths] For each fixed integer m1 , \\| D^mM_\\|_ L^2(_) (d)L d\\,a^ -m . For fixed integers q1 , m0 , and fixed real 2 p< , every nontrivial split satisfies \\|\\,| D^mU_q|_…",
+      "section": "Dimension bounds for material derivatives",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-lem-transport-derivatives",
+      "kind": "lemma",
+      "label": "Transport derivatives",
+      "statement": "[Transport derivatives] For each fixed k1 , the order- k spatial derivatives of any transport between two times in [0,b_*] , after subtracting the identity map, have all nontrivial split norms at…",
+      "section": "A stationary flow for noisy means",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-lem-centering-kernel",
+      "kind": "lemma",
+      "label": "The centering kernel",
+      "statement": "[The centering kernel] The field K is smooth and satisfies \\[ _ _* ^*K=M_*-u, \\|K(y)\\|_ CL. \\] For each fixed j1 , every nontrivial split norm of ^jK is bounded pointwise by C_jLR^ -j .",
+      "section": "A stationary flow for noisy means",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-prop-centering-law",
+      "kind": "proposition",
+      "label": "A noisy mean from a path integral",
+      "statement": "[A noisy mean from a path integral] For s>0 , let (Y_0,G_0) have law _* N(0,I_d) and solve Y_t=-K(Y_t)^TG_t/s, G_t=(M_*(Y_t)-u)/s. The solution exists for every finite time, and its law remains _*…",
+      "section": "A stationary flow for noisy means",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-lem-stationary-derivatives",
+      "kind": "lemma",
+      "label": "Stationary time derivatives",
+      "statement": "[Stationary time derivatives] Fix 0<R1 . Let a smooth probability density on ^n , with n Cd , have Gaussian tails and negative logarithm H . Assume its Hessian is bounded and that every…",
+      "section": "A stationary flow for noisy means",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-prop-probability-circuit",
+      "kind": "proposition",
+      "label": "Probability-flow circuit",
+      "statement": "[Probability-flow circuit] If the input position has marginal law _ _ in , then after N_p iterations the maximum, over all state nodes, of the RMS error relative to the exact transport is at most…",
+      "section": "Finite formulas for the two flows",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-lem-kernel-angle-errors",
+      "kind": "lemma",
+      "label": "Errors in the angle computation",
+      "statement": "[Errors in the angle computation] Let y_* and G N(0,I_d) independently. The exact-input angle differentiation in has RMS truncation error at most C_m l d\\,^ m-1 R^ -2m =C_ml d\\,^ 2tm-4t . Before…",
+      "section": "Finite formulas for the two flows",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-lem-kernel-endpoint-quadrature",
+      "kind": "lemma",
+      "label": "Derivative quadrature at zero",
+      "statement": "[Derivative quadrature at zero] Let y_* and G N(0,I_d) independently. For exact values of C_(y)G , the RMS error of this quadrature for _0^ b_* B'_(y)G\\,d/ is at most \\[ C_m(d)\\,l d\\,h_0^ m-2 . \\]…",
+      "section": "Finite formulas for the two flows",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-prop-kernel-circuit",
+      "kind": "proposition",
+      "label": "Kernel-action circuit",
+      "statement": "[Kernel-action circuit] On the stationary product input law, the RMS error of v=( v_Y, v_G) relative to is bounded by (d) times & L d \\\\ &12mm+^ -4t-w (C_ml)^ N_p-1 r L D. It is globally Lipschitz,…",
+      "section": "Finite formulas for the two flows",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-prop-mean-circuit",
+      "kind": "proposition",
+      "label": "Mean-flow circuit",
+      "statement": "[Mean-flow circuit] For ideal independent anchors Y_0_* and G_0 N(0,I_d) , and every fixed J1 , the circuit can be chosen to differ in RMS by at most (d)^J D from the exact path integral . The…",
+      "section": "Finite formulas for the two flows",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-prop-exact-mean-circuits",
+      "kind": "corollary",
+      "label": "Accuracy without increasing dependency depth",
+      "statement": "[Accuracy without increasing dependency depth] Fix J1 . In all the probability, harmonic, and centering integrations above, one may take at most \\[ N=10(J+2) \\] Picard layers. After any fixed w(0,t)…",
+      "section": "Finite formulas for the two flows",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-thm-numerical-interface",
+      "kind": "theorem",
+      "label": "Numerical circuit interface",
+      "statement": "[Numerical circuit interface] Fix J1 , the parameters , and N=10(J+2) . Choose the fixed interpolation order by . For all sufficiently large d , the maps -- have the following properties.…",
+      "section": "Finite formulas for the two flows",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-lem-compiler-absorption",
+      "kind": "lemma",
+      "label": "Absorbing a Gaussian center displacement",
+      "statement": "[Absorbing a Gaussian center displacement] Let D_s>0 , and let Q satisfy , with \\|v\\|_2 D_s . Put \\[ n= r 2D_s , P=(I_m-vv^T 4D_s^2 )^ 1/2 . \\] For a deterministic x^d , let Z,G_1,,G_m be independent…",
+      "section": "Finite evaluation of nested conditional means",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-lem-compiler-height",
+      "kind": "lemma",
+      "label": "Bounded routine height",
+      "statement": "[Bounded routine height] Starting at (b,p)=(1,K_0) , the rules give a finite routine tree of height at most a constant H=H(K_0,t) . Every reachable label satisfies b>1/2 .",
+      "section": "Finite evaluation of nested conditional means",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-lem-compiler-count",
+      "kind": "lemma",
+      "label": "Well-defined construction and query cap",
+      "statement": "[Well-defined construction and query cap] One can choose w>0 , depending only on K_0,t and the fixed Picard counts, and then choose the interpolation orders, so that the entire construction is well…",
+      "section": "Finite evaluation of nested conditional means",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-lem-compiler-terminal",
+      "kind": "lemma",
+      "label": "Terminal accuracy",
+      "statement": "[Terminal accuracy] In standalone use, a terminal call satisfying obeys W_2( L( M),N(u,^2I_d)) &(d)^pD(x),\\\\ W_2( L( S_ pre ), _ x,r *N(0,3^2I_d/4)) &(d)^pD(x), where S_ pre is the output before…",
+      "section": "Finite evaluation of nested conditional means",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-lem-compiler-sizes",
+      "kind": "lemma",
+      "label": "Size conditions descend through the routine tree",
+      "statement": "[Size conditions descend through the routine tree] Starting with a top call satisfying , every descendant satisfies that condition with its assigned labels, up to a uniform polylogarithmic factor. At…",
+      "section": "Finite evaluation of nested conditional means",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-lem-compiler-lipschitz",
+      "kind": "lemma",
+      "label": "Fixed-seed stability",
+      "statement": "[Fixed-seed stability] For every seed array, including correlated or transformed arrays, the compiled M output is a function of x with Lipschitz constant at most (d) ; the normalized S output has…",
+      "section": "Finite evaluation of nested conditional means",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-prop-compiler-accuracy",
+      "kind": "proposition",
+      "label": "Accuracy of the compiled routines",
+      "statement": "[Accuracy of the compiled routines] For every call reached from the top labels, the standalone routines satisfy W_2( L( M),N(u,^2I_d)) &(d)^pD(x),\\\\ W_2( L( S_ pre ), _ x,r *N(0,3^2I_d/4))…",
+      "section": "Finite evaluation of nested conditional means",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-lem-proximal-contraction",
+      "kind": "lemma",
+      "label": "Proximal contraction",
+      "statement": "[Proximal contraction] The law is invariant for P_h , and \\[ (_ y_1 ,_ y_2 ) |y_1-y_2| 1+h . \\] Consequently, for input laws , of finite second moment, \\[ ( P_h, P_h) ( , ) 1+h . \\]",
+      "section": "From noisy conditional samples to the target law",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-prop-noised-mixing",
+      "kind": "proposition",
+      "label": "Mixing of the approximate noised chain",
+      "statement": "[Mixing of the approximate noised chain] With K_0>2+1/e and t chosen above, start the P_h -chain at zero and run Ch^ -1 d+1 steps. For a sufficiently large fixed C , its output has total-variation…",
+      "section": "From noisy conditional samples to the target law",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-lem-descent-moments",
+      "kind": "lemma",
+      "label": "Moments along the ideal descent",
+      "statement": "[Moments along the ideal descent] If y and every conditioning observation preceding level j is ideal, then \\[ b_j:=(|g_y(x_j)|^2)^ 1/2 C d (0 j J), \\] with an absolute C for all sufficiently large d .",
+      "section": "From noisy conditional samples to the target law",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-lem-mode-gaussian",
+      "kind": "lemma",
+      "label": "Mode-centered Gaussian approximation",
+      "statement": "[Mode-centered Gaussian approximation] For any F C^2(^d) with ( F) , center x , and scale 0<r1 such that l= r^21/2 , let z_0 be the mode of _ x,r . Then \\[ _ x,r -N(z_0,I_d) _ Cl d. \\]",
+      "section": "From noisy conditional samples to the target law",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-thm-upper",
+      "kind": "theorem",
+      "label": "Subpolynomial upper bound",
+      "statement": "[Subpolynomial upper bound] For every fixed >0 , there is C_< such that, for every integer d2 , a measurable algorithm using the exact value-and-gradient oracle makes at most C_ d^ queries on every…",
+      "section": "From noisy conditional samples to the target law",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-thm-lower",
+      "kind": "theorem",
+      "label": "There are absolute constants c>0 and d_0 such that Q(d) c d for every d d_0 .…",
+      "statement": "There are absolute constants c>0 and d_0 such that Q(d) c d for every d d_0 . This bound holds even when the inputs are restricted to potentials V(x)=x^TAx/2 with I A2I . The query cap is imposed on…",
+      "section": "A logarithmic oracle lower bound",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-lem-deferred-haar",
+      "kind": "lemma",
+      "label": "Deferred rotation",
+      "statement": "[Deferred rotation] Let be a fixed real diagonal d d matrix, let O be Haar distributed on the orthogonal group, and set A=O O^T . Consider any measurable randomized algorithm, with private randomness…",
+      "section": "A logarithmic oracle lower bound",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-lem-lower-span-statistic",
+      "kind": "lemma",
+      "label": "Suppose 4q+1<2d , and let g_1,,g_ q+1 be independent standard Gaussian vectors.…",
+      "statement": "Suppose 4q+1<2d , and let g_1,,g_ q+1 be independent standard Gaussian vectors. Set \\[ K_q=span \\ ^j g_i:1 i q+1,\\ 0 j q\\ , _d=40(q+1)^2 d . \\] If _d1/2 , then, with probability at least 0.99 ,…",
+      "section": "A logarithmic oracle lower bound",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    },
+    {
+      "id": "m1-lem-lower-target-statistic",
+      "kind": "lemma",
+      "label": "Let U N(0,^ -1 ) , with from , and suppose n=2q+1<d . Then _ d,q := &= d 2…",
+      "statement": "Let U N(0,^ -1 ) , with from , and suppose n=2q+1<d . Then _ d,q := &= d 2 (-)^n+R_ d,q , & |R_ d,q |& 2\\,d\\,^ 2d-n 1- , \\\\ (U^TD_pU)&2d, & |U|^2& d, (|U|^2)2d.",
+      "section": "A logarithmic oracle lower bound",
+      "manuscript": "Subpolynomial query complexity for well-conditioned log-concave sampling"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-convex-preliminaries",
+      "to": "m1-prop-gaussian-jets"
+    },
+    {
+      "from": "m1-lem-appell-cumulants",
+      "to": "m1-prop-gaussian-jets"
+    },
+    {
+      "from": "m1-prop-transport",
+      "to": "m1-lem-material-identities"
+    },
+    {
+      "from": "m1-prop-gaussian-jets",
+      "to": "m1-lem-material-identities"
+    },
+    {
+      "from": "m1-prop-gaussian-jets",
+      "to": "m1-thm-tensor-divergence"
+    },
+    {
+      "from": "m1-lem-split-contraction",
+      "to": "m1-thm-tensor-divergence"
+    },
+    {
+      "from": "m1-lem-material-identities",
+      "to": "m1-cor-path-derivatives"
+    },
+    {
+      "from": "m1-thm-tensor-divergence",
+      "to": "m1-cor-path-derivatives"
+    },
+    {
+      "from": "m1-lem-divergence-l2",
+      "to": "m1-cor-path-derivatives"
+    },
+    {
+      "from": "m1-lem-split-contraction",
+      "to": "m1-lem-transport-derivatives"
+    },
+    {
+      "from": "m1-lem-material-identities",
+      "to": "m1-lem-centering-kernel"
+    },
+    {
+      "from": "m1-lem-transport-derivatives",
+      "to": "m1-lem-centering-kernel"
+    },
+    {
+      "from": "m1-prop-transport",
+      "to": "m1-prop-probability-circuit"
+    },
+    {
+      "from": "m1-lem-stationary-derivatives",
+      "to": "m1-lem-kernel-angle-errors"
+    },
+    {
+      "from": "m1-lem-transport-derivatives",
+      "to": "m1-lem-kernel-angle-errors"
+    },
+    {
+      "from": "m1-prop-probability-circuit",
+      "to": "m1-lem-kernel-angle-errors"
+    },
+    {
+      "from": "m1-lem-transport-derivatives",
+      "to": "m1-lem-kernel-endpoint-quadrature"
+    },
+    {
+      "from": "m1-lem-kernel-angle-errors",
+      "to": "m1-prop-kernel-circuit"
+    },
+    {
+      "from": "m1-lem-kernel-endpoint-quadrature",
+      "to": "m1-prop-kernel-circuit"
+    },
+    {
+      "from": "m1-lem-stationary-derivatives",
+      "to": "m1-prop-mean-circuit"
+    },
+    {
+      "from": "m1-prop-kernel-circuit",
+      "to": "m1-prop-mean-circuit"
+    },
+    {
+      "from": "m1-prop-kernel-circuit",
+      "to": "m1-prop-exact-mean-circuits"
+    },
+    {
+      "from": "m1-prop-exact-mean-circuits",
+      "to": "m1-thm-numerical-interface"
+    },
+    {
+      "from": "m1-prop-centering-law",
+      "to": "m1-thm-numerical-interface"
+    },
+    {
+      "from": "m1-thm-numerical-interface",
+      "to": "m1-lem-compiler-count"
+    },
+    {
+      "from": "m1-lem-compiler-height",
+      "to": "m1-lem-compiler-count"
+    },
+    {
+      "from": "m1-lem-convex-preliminaries",
+      "to": "m1-lem-compiler-terminal"
+    },
+    {
+      "from": "m1-lem-compiler-terminal",
+      "to": "m1-lem-compiler-lipschitz"
+    },
+    {
+      "from": "m1-lem-compiler-terminal",
+      "to": "m1-prop-compiler-accuracy"
+    },
+    {
+      "from": "m1-lem-compiler-lipschitz",
+      "to": "m1-prop-compiler-accuracy"
+    },
+    {
+      "from": "m1-thm-numerical-interface",
+      "to": "m1-prop-compiler-accuracy"
+    },
+    {
+      "from": "m1-lem-compiler-absorption",
+      "to": "m1-prop-compiler-accuracy"
+    },
+    {
+      "from": "m1-lem-compiler-sizes",
+      "to": "m1-prop-compiler-accuracy"
+    },
+    {
+      "from": "m1-thm-primitive",
+      "to": "m1-prop-compiler-accuracy"
+    },
+    {
+      "from": "m1-lem-compiler-count",
+      "to": "m1-prop-compiler-accuracy"
+    },
+    {
+      "from": "m1-lem-coupling-smoothing",
+      "to": "m1-lem-proximal-contraction"
+    },
+    {
+      "from": "m1-lem-convex-preliminaries",
+      "to": "m1-prop-noised-mixing"
+    },
+    {
+      "from": "m1-lem-proximal-contraction",
+      "to": "m1-prop-noised-mixing"
+    },
+    {
+      "from": "m1-lem-coupling-smoothing",
+      "to": "m1-prop-noised-mixing"
+    },
+    {
+      "from": "m1-lem-convex-preliminaries",
+      "to": "m1-lem-mode-gaussian"
+    },
+    {
+      "from": "m1-thm-primitive",
+      "to": "m1-thm-upper"
+    },
+    {
+      "from": "m1-thm-lower",
+      "to": "m1-lem-lower-target-statistic"
+    },
+    {
+      "from": "m1-lem-deferred-haar",
+      "to": "m1-lem-lower-target-statistic"
+    },
+    {
+      "from": "m1-lem-lower-span-statistic",
+      "to": "m1-lem-lower-target-statistic"
+    }
+  ]
+}

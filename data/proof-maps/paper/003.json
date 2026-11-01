@@ -1,0 +1,954 @@
+{
+  "familyNumber": "003",
+  "familyTitle": "The quasi-Riemann hypothesis",
+  "manuscripts": [
+    {
+      "id": "The-Quasi-Riemann-Hypothesis-September-30-2026",
+      "title": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$",
+      "date": "2026-09-30",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Quasi-Riemann-Hypothesis-September-30-2026/paper.pdf"
+    },
+    {
+      "id": "Uniform-exclusion-of-Landau-Siegel-zeros-October-1-2026",
+      "title": "Uniform exclusion of Landau–Siegel zeros",
+      "date": "2026-10-01",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Uniform-exclusion-of-Landau-Siegel-zeros-October-1-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "From a common signal to a zero-free half-plane",
+    "A first zero-free half-plane",
+    "Arithmetic and analytic preliminaries",
+    "Completed cubic reflection and unmarked row energy",
+    "The base probe and its balanced low estimate",
+    "The Poisson representation and its Euler factors",
+    "A zero detector with saturated witnesses",
+    "A sextic-sieve row count",
+    "Analytic estimates for the high expansion",
+    "Coefficient conventions and finite correlations",
+    "Marked completion and reflected row energy",
+    "The compensated low estimate",
+    "The local compensation and its errors",
+    "The inverse moment with prime factors",
+    "Fourth moments with short prime factors",
+    "Prime amplitudes and refined row counts",
+    "The seven-eighths bound",
+    "The prime bias forced by a real zero",
+    "Interpolation on a projected integer box",
+    "A weighted determinant of conjugates",
+    "Two bounds for the determinant"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Every finite-order Hecke L -function over F= Q(-3) has no zero in s>7/8 . The…",
+      "statement": "Every finite-order Hecke L -function over F= Q(-3) has no zero in s>7/8 . The same holds for every Dirichlet L -function, including (s) . A pole at s=1 for a principal character is allowed.",
+      "section": "Introduction",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-cor-nonresidues-square-roots",
+      "kind": "corollary",
+      "label": "There are absolute constants A,C>0 such that, for every odd prime p , the least…",
+      "statement": "There are absolute constants A,C>0 such that, for every odd prime p , the least positive quadratic nonresidue n(p) satisfies \\[ n(p) C( p)^A. \\] In particular, n(p)_ p^ for every >0 , proving…",
+      "section": "Introduction",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-continuation-criterion",
+      "kind": "proposition",
+      "label": "Continuation from a common signal",
+      "statement": "[Continuation from a common signal] Fix _0(1/2,1) and suppose _0=_*-_0>0 . Let C(s)=s+c , where c R is fixed. Suppose that numbers , satisfying \\[ 0<<_0, >0 \\] can be chosen independently of the…",
+      "section": "From a common signal to a zero-free half-plane",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-thm-eleven-twelfths",
+      "kind": "theorem",
+      "label": "The 11/12 half-plane",
+      "statement": "[The 11/12 half-plane] Every finite-order Hecke L -function over F= Q(-3) has no zero in s>11/12 . The same holds for every Dirichlet L -function, including (s) . A pole at s=1 for a principal…",
+      "section": "A first zero-free half-plane",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-fixed-numerator-ray",
+      "kind": "lemma",
+      "label": "Fixed numerators give ray characters",
+      "statement": "[Fixed numerators give ray characters] Fix 0 a O . At a prime ideal p6a , let (a/ p)_6 be the unique sixth root of unity congruent to a^ (q_ p -1)/6 p ; at a prime outside S this is _p(a) . The…",
+      "section": "Arithmetic and analytic preliminaries",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-prime-gauss-identities",
+      "kind": "lemma",
+      "label": "Prime Gauss identities",
+      "statement": "[Prime Gauss identities] Let p be the primary generator of a prime ideal outside S , and put H=_p and P=q_p . Then \\[ _2(p)^3=-(p), _1(p)_2(p) =H(4)_3(p)_2(p)^3. \\] For j06 , one has |_j(p)|=1 .",
+      "section": "Arithmetic and analytic preliminaries",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-quadratic-four-term",
+      "kind": "lemma",
+      "label": "Quadratic four-term formula",
+      "statement": "[Quadratic four-term formula] For a nonzero odd c O , define \\[ (c)=|c|^ -1 _ x c e(x^2/c). \\] Then (c)=12_ y2 O e(-cy^2/4). For c=a+b the right side is (1+i^ -b +i^a+i^ b-a )/2 . In particular…",
+      "section": "Arithmetic and analytic preliminaries",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-fixed-gauss-phase",
+      "kind": "lemma",
+      "label": "Sextic reciprocity and the fixed Gauss phase",
+      "statement": "[Sextic reciprocity and the fixed Gauss phase] For coprime primary a,b outside S , \\[ _b(a)= R(a,b)_a(b), R(a,b)= r(a,b). \\] On all primary pairs outside S , including noncoprime pairs, define R by…",
+      "section": "Arithmetic and analytic preliminaries",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-smooth-calculus",
+      "kind": "lemma",
+      "label": "Smooth calculus",
+      "statement": "[Smooth calculus] For integers J0 , \\[ \\|w\\|_ J,sep _ J,d, p_ J+d+2 (w). \\] Logarithmic Fourier inversion separates any fixed norm monomial. More precisely, if x_j=c_j_ =1 ^r y_^ a_ j with c_j,y_>0…",
+      "section": "Arithmetic and analytic preliminaries",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-gaussian-annular",
+      "kind": "lemma",
+      "label": "Gaussian annular decomposition",
+      "statement": "[Gaussian annular decomposition] Put \\[ W_ G (y)=1 2 (-14( y)^2). \\] This function is not annular. Choose a fixed C_c^( R) such that _ k Z (u-k)=1 , and define \\[ W_ G ,k (y)=W_ G (y)( y-k),…",
+      "section": "Arithmetic and analytic preliminaries",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-kernel-seminorms",
+      "kind": "lemma",
+      "label": "Finite seminorms for Fourier and Mellin kernels",
+      "statement": "[Finite seminorms for Fourier and Mellin kernels] For a Schwartz function f on R^d , put \\[ s_j(f)=_ ||,|| j \\|x^^ f(x)\\|_ L^1( R^d) . \\] For every A0 and multi-index , the ordinary Fourier transform…",
+      "section": "Arithmetic and analytic preliminaries",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-hecke-strip-growth",
+      "kind": "lemma",
+      "label": "Hecke strip growth",
+      "statement": "[Hecke strip growth] Let be a primitive nonprincipal finite-order Hecke character of F , with conductor norm Q . Then |L(+it,)| Q^ 3/5 (3+|t|)^2, -1/1011/10. For the principal character, the same…",
+      "section": "Arithmetic and analytic preliminaries",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-logarithmic-control",
+      "kind": "lemma",
+      "label": "Logarithmic control",
+      "statement": "[Logarithmic control] Let be a primitive nonprincipal finite-order Hecke character of conductor norm Q , and put L(s)=L(s,) . For the principal character put Q=1 and L(s)=(s-1)_F(s)/(s+1) , with its…",
+      "section": "Arithmetic and analytic preliminaries",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-deleted-euler-factors",
+      "kind": "lemma",
+      "label": "Deleted Euler factors",
+      "statement": "[Deleted Euler factors] Let R be a squarefree ideal and let |a_p|1 for p R . Put D_R(s)=_ p R (1-a_pq_p^ -s ) . For fixed _0>0 and every >0 , \\[ |D_R(s)|+|D_R(s)^ -1 |_ _0, q_R^ ( s_0). \\] On a…",
+      "section": "Arithmetic and analytic preliminaries",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-prop-completed-reflection",
+      "kind": "proposition",
+      "label": "Completed cubic reflection",
+      "statement": "[Completed cubic reflection] Fix a finite family X of finite-ray characters whose conductors are supported on S . Choose one fixed integral modulus E with prime support exactly S , divisible by every…",
+      "section": "Completed cubic reflection and unmarked row energy",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-reflection-row-sectors",
+      "kind": "lemma",
+      "label": "Fixed ray sectors for nonzero rows",
+      "statement": "[Fixed ray sectors for nonzero rows] Let _ base range over a fixed finite family of finite-ray characters with conductors supported on S , extended by zero off the primary elements prime to S . Use…",
+      "section": "Completed cubic reflection and unmarked row energy",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-reflection-common-profile",
+      "kind": "lemma",
+      "label": "Common annular kernel profile",
+      "statement": "[Common annular kernel profile] Let V satisfy the hypotheses of Proposition~ . Fix an integer d1 , a compact set R^d , and real exponents a_1,,a_d . Let W be one smooth profile with logarithmic…",
+      "section": "Completed cubic reflection and unmarked row energy",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-lattice-kernel-tail",
+      "kind": "lemma",
+      "label": "Lattice kernel tails",
+      "statement": "[Lattice kernel tails] Let be either O or ^ -4 O . Suppose K:(0,) C satisfies |K(x)| C_Ax^ -A for x1 , where A>1 . Then, for a>0 and U1 , _ 0 \\ q_ >U |K(aq_)| _A C_A(1+a^ -1 )U^ 1-A . For K=V^ one…",
+      "section": "Completed cubic reflection and unmarked row energy",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-completed-quadratic-reduction",
+      "kind": "lemma",
+      "label": "Quadratic reduction for completed indices",
+      "statement": "[Quadratic reduction for completed indices] Let K,N,B1 . Let I be any set of squarefree primary good ideals k with q_k K . Let n range over squarefree primary ideals with q_n N , and let b range over…",
+      "section": "Completed cubic reflection and unmarked row energy",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-unmarked-reflected-block",
+      "kind": "lemma",
+      "label": "Unmarked reflected block",
+      "statement": "[Unmarked reflected block] For an unmarked reflected block, set \\[ T_0=2H+2A_0-N-N_0-3B_0, _0= v2+_b+e_ 3 +S_0+B_0 2 . \\] Let all these log-lengths range over fixed bounded sets. Put \\[ Y= q_…",
+      "section": "Completed cubic reflection and unmarked row energy",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-unmarked-completed-moment",
+      "kind": "lemma",
+      "label": "Unmarked completed-row moment",
+      "statement": "[Unmarked completed-row moment] Let range over a fixed finite family of multiplicative finite-ray characters with conductors supported on S , all extended by zero away from the primary elements prime…",
+      "section": "Completed cubic reflection and unmarked row energy",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-planar-additive-sieve",
+      "kind": "lemma",
+      "label": "Planar additive large sieve",
+      "statement": "[Planar additive large sieve] Let 0<1 , let Q1 , and let z_1,,z_J be a finite set of points in C/ O satisfying \\[ _ n O |z_j-z_k-n| (j k). \\] Then, for arbitrary complex numbers a_1,,a_J , \\[ _ m O\\…",
+      "section": "The base probe and its balanced low estimate",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-balanced-additive-norm",
+      "kind": "lemma",
+      "label": "The balanced additive norm",
+      "statement": "[The balanced additive norm] Fix the arithmetic data of the probe, the annular weight W_1 , a ray class T , and a row-ball constant C>0 . For Y,Q1 and every real v , the polynomial A_ m,,v (Y)…",
+      "section": "The base probe and its balanced low estimate",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-prop-balanced-low",
+      "kind": "proposition",
+      "label": "Balanced low estimate",
+      "statement": "[Balanced low estimate] Fix the arithmetic data and smooth weights used to define I_ . For every >0 , as Z , \\[ |I_(Z^ 1/2 ,Z^ 1/2 ,Z)| _ A, Z^ 1/4+ . \\] The exponent is independent of the target…",
+      "section": "The base probe and its balanced low estimate",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-local-euler",
+      "kind": "lemma",
+      "label": "The complete local identity",
+      "statement": "[The complete local identity] For every nonzero sixth-power-free u with (u,S)=1 and every prime p S , the factors just defined are P_p^*&=1 1-R \\ R(1-Q^ -1 )-(p)(Q-1) Q^ -x-w V^ 1_ j1 1-V +J_j\\ ,\\\\…",
+      "section": "The Poisson representation and its Euler factors",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-buffered-bins",
+      "kind": "lemma",
+      "label": "Buffered zero-free bins",
+      "statement": "[Buffered zero-free bins] For every retained row \\(u\\), there are an index \\(i\\ 1,,I-1\\ \\) and a grid point \\[ a(51/100+e Z_ 0 ) \\] with the following properties. For \\(j=1,,I\\), set \\[ M_j(u)=(\\…",
+      "section": "A zero detector with saturated witnesses",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-detector-dyads",
+      "kind": "lemma",
+      "label": "Pointwise dyadic estimates",
+      "statement": "[Pointwise dyadic estimates] Fix bounded nonnegative ranges for \\(r,m\\), and let \\[ M_r=M_(r;W_M), S_m=S_(m;W_S) \\] denote the polynomials of Equations~ and , now at base \\(U\\). Suppose \\( X_u\\), the…",
+      "section": "A zero detector with saturated witnesses",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-prop-detector-witness",
+      "kind": "proposition",
+      "label": "Two saturated witnesses",
+      "statement": "[Two saturated witnesses] Let \\(u\\) have a bin \\((i,a)\\) with \\(a>51/100\\), and assume the loss and height hypotheses of Lemma~ . For every \\(t\\), and every prescribed \\(>0\\), after reducing its…",
+      "section": "A zero detector with saturated witnesses",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-sextic-large-sieve",
+      "kind": "lemma",
+      "label": "Sextic large sieve",
+      "statement": "[Sextic large sieve] Let K,D1 , let \\ -1,1\\ , and let (c_n) be any sequence of complex numbers indexed by the squarefree ideals outside S . The sequence is fixed independently of the row k . For…",
+      "section": "A sextic-sieve row count",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-prop-sextic-row-count",
+      "kind": "proposition",
+      "label": "Sextic-sieve row envelope",
+      "statement": "[Sextic-sieve row envelope] Fix the arithmetic data A , the bounded physical range d_ d d_ , and the height and loss hypotheses of Lemmas~ and~ . Put U=Z^d and retain the notation T_1 of those…",
+      "section": "A sextic-sieve row count",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-external-contour-tails",
+      "kind": "lemma",
+      "label": "External integrated and trace tails",
+      "statement": "[External integrated and trace tails] Let m2 , let K be a compact set of real contour parameters, and, for r K and Z2 , let K_ r,Z be a nonnegative Borel measurable kernel on R^m . Suppose it is…",
+      "section": "Analytic estimates for the high expansion",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-fixed-bin-contour",
+      "kind": "lemma",
+      "label": "Contour transformation for a fixed bin",
+      "statement": "[Contour transformation for a fixed bin] Assume Definition~ . Fix _0[7/8,1) with _*>_0 , put z_0=17/50 , and let U=Z^d with 0<d_ d d_ < . Let B be a finite set of retained physical rows q_u U in one…",
+      "section": "Analytic estimates for the high expansion",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-bin-contour-accounting",
+      "kind": "lemma",
+      "label": "A retained integral and its exponent",
+      "statement": "[A retained integral and its exponent] Assume the data of Definition~ . Fix _0 where is finite, nonempty and fixed before Z . This equality is required only on the retained contours; the summands…",
+      "section": "Analytic estimates for the high expansion",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-principal-residue-interface",
+      "kind": "lemma",
+      "label": "Extraction of the principal signal",
+      "statement": "[Extraction of the principal signal] Assume Definition~ and Equation~ . Fix _0 one has | H_ ,1,Z (s,w,z)| _ ,e, Z^ z+ (1+| s|+| w|+| z|)^ J_ ,e, , with finite J_ ,e, fixed before any external tail…",
+      "section": "Analytic estimates for the high expansion",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-outer-row-tails",
+      "kind": "lemma",
+      "label": "Outer row norms",
+      "statement": "[Outer row norms] Assume Definition~ . Fix _0[7/8,1) with _*>_0 , 0<e<10^ -3 , z_0=17/50 , and d_ >0 . For a dyadic number U1 , let R_(U;Z) denote the contribution in Equation~ of physical rows U…",
+      "section": "Analytic estimates for the high expansion",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-late-height-closure",
+      "kind": "lemma",
+      "label": "Late choice of height and external order",
+      "statement": "[Late choice of height and external order] Fix _0(1/2,1) with _0=_*-_0>0 and an affine function C(s)=s+c . Suppose that all real parameters and finite structural choices in an application have been…",
+      "section": "Analytic estimates for the high expansion",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-prop-balanced-high",
+      "kind": "proposition",
+      "label": "Balanced high estimate",
+      "statement": "[Balanced high estimate] Under the supposition _1>0 , for every primitive finite-order target and all sufficiently large Z , \\[ |J_ I, (Z)-f_ I, (Z)| _ Z^ C_ I (_*)-1/4800 . \\] The displayed saving…",
+      "section": "Analytic estimates for the high expansion",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-prop-hecke-dirichlet-transfer",
+      "kind": "proposition",
+      "label": "Quadratic transfer",
+      "statement": "[Quadratic transfer] Let _0[1/2,1) . Suppose every primitive finite-order Hecke L -function over F= Q(-3) is zero-free on s>_0 , with its principal pole at one allowed. Then every finite-order Hecke…",
+      "section": "Analytic estimates for the high expansion",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-ray-prime-normalizer",
+      "kind": "lemma",
+      "label": "Fixed-ray prime normalizer",
+      "statement": "[Fixed-ray prime normalizer] Let T be a fixed quotient of a ray class group of F , and write p1_T when the image of an unramified prime ideal is the identity. For a fixed nonnegative, nonzero smooth…",
+      "section": "Coefficient conventions and finite correlations",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-prime-power-fourier",
+      "kind": "lemma",
+      "label": "Prime-power Fourier sums",
+      "statement": "[Prime-power Fourier sums] For P=q_p and every integer a1 , |G(p^a,k)|&=P^ (a-1)/2 1_ v_p(k)=a-1 ,&&6 a,\\\\ G(p^a,k)&=P^ a/2 1_ p^a k -P^ a/2-1 1_ p^ a-1 k ,&&6 a.",
+      "section": "Coefficient conventions and finite correlations",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-full-correlation",
+      "kind": "lemma",
+      "label": "Full correlation and common factors",
+      "statement": "[Full correlation and common factors] For primary moduli u,v outside S and j O , put F(u,v;j) =_ x u,\\ y v\\\\ vx-uy juv _u(x) _v(y). Then \\[ F(u,v;j)=1 q_uq_v _ h uv G(u,h)G(v,h)e(-jh/(uv)). \\] At…",
+      "section": "Coefficient conventions and finite correlations",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-complete-support-correlation",
+      "kind": "lemma",
+      "label": "Complete-common-support correlation",
+      "statement": "[Complete-common-support correlation] Suppose u=Da , v=Eb are primary and outside S , with (a,b)=1 and (ab,DE)=1 . Then, for every j O , F(Da,Eb;j)= &F(D,E;j) R(a,E) R(b,D) R(a,b)\\\\ &8mm_a(j) _b(-j).…",
+      "section": "Coefficient conventions and finite correlations",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-cor-marked-reflection",
+      "kind": "corollary",
+      "label": "Completed reflection with whole-index marks",
+      "statement": "[Completed reflection with whole-index marks] Fix an invocation of Proposition~ , with base local prime set \\( P_0\\), powers \\(j_p\\), fixed multiplier \\(\\), and test \\(V\\). Put \\(M_ ref =^ 12 L^4\\)…",
+      "section": "Marked completion and reflected row energy",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-hybrid-energy",
+      "kind": "lemma",
+      "label": "A quadratic--cubic norm bound",
+      "statement": "[A quadratic--cubic norm bound] Let \\(K,N,B,L1\\). Let \\(k,n,P\\) be squarefree primary ideals with \\(q_k K\\), \\(q_n N\\), and \\(q_P L\\); let \\(b\\) be any primary ideal with \\(q_b B\\). The ideals…",
+      "section": "Marked completion and reflected row energy",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-reflected-energy",
+      "kind": "lemma",
+      "label": "Reflected energy",
+      "statement": "[Reflected energy] Retain the reflected block data above. Let \\(Z2\\), and suppose their log-lengths range over fixed bounded sets. In the completed sum of Equation~ , the fixed character, puncture,…",
+      "section": "Marked completion and reflected row energy",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-probe-row-norm",
+      "kind": "lemma",
+      "label": "The compensated completed-row norm",
+      "statement": "[The compensated completed-row norm] For every >0 , every fixed rescaled subset J , and every T , with Q=q_ b_* X'Y' Z^ M' , _ 0<q_m Q |B^J_ m, (Z)|^2 Z^ M'+((d-1/6)/4)_++ =Z^ M'+ . The bound is…",
+      "section": "The compensated low estimate",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-prop-probe-gram",
+      "kind": "proposition",
+      "label": "A quantitative additive Gram bound",
+      "statement": "[A quantitative additive Gram bound] Fix the arithmetic data S,T,b_*, , the annular weight W_1 , and a ray class T . Let Q,Y'1 be in fixed polynomial ranges in Z , and suppose \\[ P_a=Y'^2/Q1. \\] For…",
+      "section": "The compensated low estimate",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-prop-probe-low",
+      "kind": "proposition",
+      "label": "The compensated low estimate",
+      "statement": "[The compensated low estimate] For the probe in Equation~ , the geometry in Equation~ , and every >0 , |I_ ,modified (Z)| Z^ l_x/2+b/12+ =Z^ 3/16+ . The exponent is independent of the target and the…",
+      "section": "The compensated low estimate",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-prop-probe-errors",
+      "kind": "proposition",
+      "label": "Dynamic local errors and conductor allocation",
+      "statement": "[Dynamic local errors and conductor allocation] Let 51/100 a1 , 0<e10^ -3 , and take \\[ x_r=a+16e, w_r=1-a-6e, z_r=17/50. \\] Choose P_0 sufficiently large in terms of e and the fixed data. For U,T_11…",
+      "section": "The local compensation and its errors",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-compensated-absolute-local-bounds",
+      "kind": "lemma",
+      "label": "Absolute local tuple bounds",
+      "statement": "[Absolute local tuple bounds] Let Z2 , and let u be a nonzero sixth-power-free row with (u,S)=1 and q_u U1 , with fixed comparison constants. Retain the fixed physical slot system of Section~ . The…",
+      "section": "The local compensation and its errors",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-marked",
+      "kind": "lemma",
+      "label": "Marked inverse moment",
+      "statement": "[Marked inverse moment] Fix bounded ranges for the nonnegative parameters \\(m,r,z_i\\), a bound for \\(|I|\\), and positive constants \\(c_1,c_2\\). Suppose \\[ r+2z m-c_1, 2r+8z3m-c_2. \\] Then, for every…",
+      "section": "The inverse moment with prime factors",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-canonical-moment",
+      "kind": "lemma",
+      "label": "Canonical marked estimate",
+      "statement": "[Canonical marked estimate] Fix bounded nonnegative ranges for \\(M,N,V,z_0\\), a bound for the number of slots, and \\(c_*>0\\). Let \\(f\\) range over squarefree ideals outside \\(S\\) with \\(q_f Z^V\\).…",
+      "section": "The inverse moment with prime factors",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-finite-seminorm-propagation",
+      "kind": "lemma",
+      "label": "Finite seminorm propagation",
+      "statement": "[Finite seminorm propagation] Suppose that at each vertex there is a terminal bound \\[ T_v(Z, w, t) C_v Z^ a_v p_ j_v ( w)^ b_v t^ h_v \\] with fixed real a_v and finite nonnegative j_v,b_v,h_v .…",
+      "section": "The inverse moment with prime factors",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-cor-indexed-seminorm-propagation",
+      "kind": "corollary",
+      "label": "Indexed finite propagation",
+      "statement": "[Indexed finite propagation] In Lemma~ , let denote any admissible length and outer labels at a vertex v , and let _v() be its desired norm exponent. Suppose the terminal bound, after division by Z^…",
+      "section": "The inverse moment with prime factors",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-masked-poisson",
+      "kind": "lemma",
+      "label": "Masked primitive Poisson",
+      "statement": "[Masked primitive Poisson] Let \\(\\) be a primitive finite character modulo an ideal \\(m\\), extended by zero on nonunits, and let \\(R\\) be any ideal. Let \\((q_z)\\) be a radial Schwartz function on \\(…",
+      "section": "The inverse moment with prime factors",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-inverse-amplification",
+      "kind": "lemma",
+      "label": "Sixth-power amplification",
+      "statement": "[Sixth-power amplification] Let \\(,W,_\\) and the zero extensions be as in Lemma~ , with no prime slots. Let \\(U,D1\\), and sum over elements \\(u\\) with \\(q_u U\\) such that every prime valuation of the…",
+      "section": "The inverse moment with prime factors",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-plain",
+      "kind": "lemma",
+      "label": "Fourth moment with short prime factors",
+      "statement": "[Fourth moment with short prime factors] Let \\(3/41\\). Let \\(n_1,n_20\\), and let \\(Q=_ i I Q_ _k,i \\) be a finite product of the prime polynomials in Equation~ , of lengths \\(z_i0\\) and total length…",
+      "section": "Fourth moments with short prime factors",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-centered-coefficient-invariant",
+      "kind": "lemma",
+      "label": "Common coefficient under complete extraction",
+      "statement": "[Common coefficient under complete extraction] For a centered input, the two transforms and the intervening Gauss-row enlargement just constructed preserve the following coefficient data. Each Gauss…",
+      "section": "Fourth moments with short prime factors",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-centered-lattice-cancellation",
+      "kind": "lemma",
+      "label": "Masked rectangle cancellation",
+      "statement": "[Masked rectangle cancellation] Let \\(\\) range over a fixed finite set of finite-order ray characters with conductor primes in \\( S\\). Let \\( R_*\\) be squarefree with \\(q_ R_* Z^ B_* \\) for a fixed…",
+      "section": "Fourth moments with short prime factors",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-bin-prime-bound",
+      "kind": "lemma",
+      "label": "Prime bound in a bin",
+      "statement": "[Prime bound in a bin] Under the hypotheses of Lemma~ , with the prime-annulus Mellin frequency included in its cumulative allowance, for every \\(_1>0\\) \\[ |Q_i(u;z)|_ A,e,_1 U^ _1 P_i^ a-1/2+O(e) .…",
+      "section": "Prime amplitudes and refined row counts",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-prop-detector-counts",
+      "kind": "proposition",
+      "label": "Row counts from the witnesses",
+      "statement": "[Row counts from the witnesses] Let \\( B\\) be a fixed dynamic and amplitude bin of retained sixth-power-free physical rows \\(q_u U=Z^d\\), with \\(a>51/100\\), \\(0<=2a-1\\), and mean amplitude \\(q\\). Put…",
+      "section": "Prime amplitudes and refined row counts",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-high-bin",
+      "kind": "lemma",
+      "label": "A high exponent for one row bin",
+      "statement": "[A high exponent for one row bin] Let \\(0<d_ <d_ <\\), let \\(U=Z^d\\) with \\(d_ d d_ \\), and let \\( B\\) be the finite set of retained nonprincipal physical rows \\(q_u U\\) in one fixed dynamic bin…",
+      "section": "The seven-eighths bound",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-lem-balanced-endpoint",
+      "kind": "lemma",
+      "label": "Compensated endpoint certificate",
+      "statement": "[Compensated endpoint certificate] For \\(05/6\\) and \\(0 x1/2\\), define \\( J,t,R_*\\) by Equation~ where \\( J>0\\), and let \\(E_*\\) be \\(E(h)\\) with \\(q=x\\) and \\(R=R_*\\). Then \\[ -E_*49 440640 >1 10000…",
+      "section": "The seven-eighths bound",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m1-prop-parameter-order",
+      "kind": "proposition",
+      "label": "Order of choices",
+      "statement": "[Order of choices] Under the contradiction in Equation~ , there are numbers \\[ 0<<, >0 \\] and a fixed geometry, moment losses, capacity decrements, slot system, amplitude width, bin width \\(e>0\\),…",
+      "section": "The seven-eighths bound",
+      "manuscript": "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane $`\\Re s\\gt 7/8`$"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "There is an absolute constant c>0 such that every real zero (0,1) of every…",
+      "statement": "There is an absolute constant c>0 such that every real zero (0,1) of every primitive nonprincipal real Dirichlet L -function of conductor q3 satisfies (1-) q c.",
+      "section": "Introduction",
+      "manuscript": "Uniform exclusion of Landau–Siegel zeros"
+    },
+    {
+      "id": "m2-lem-primebias",
+      "kind": "lemma",
+      "label": "For X3 , _ p X\\\\ (p)=1 p p + ( X)^2 . Consequently, for each integer H2 , _ H<p…",
+      "statement": "For X3 , _ p X\\\\ (p)=1 p p + ( X)^2 . Consequently, for each integer H2 , _ H<p X\\ 2q\\\\ (p)=-1 p p X-C-C ( X)^2 -C_H, where C is absolute and C_H depends only on H .",
+      "section": "The prime bias forced by a real zero",
+      "manuscript": "Uniform exclusion of Landau–Siegel zeros"
+    },
+    {
+      "id": "m2-lem-interpolation",
+      "kind": "lemma",
+      "label": "Let A:^4^3 be a surjective linear map, with A= c , where the four coordinates…",
+      "statement": "Let A:^4^3 be a surjective linear map, with A= c , where the four coordinates of c are linearly independent over . Let N1 and t_1,t_2,t_3 be integers satisfying t_j3(N-1)(1 j3), _ j=1…",
+      "section": "Interpolation on a projected integer box",
+      "manuscript": "Uniform exclusion of Landau–Siegel zeros"
+    },
+    {
+      "id": "m2-cor-rectangle",
+      "kind": "corollary",
+      "label": "Let A satisfy the hypotheses of Lemma~ . For integers 1 H N , set \\[ U=N^ 4/3 ,…",
+      "statement": "Let A satisfy the hypotheses of Lemma~ . For integers 1 H N , set \\[ U=N^ 4/3 , T_1=32H^ 2/3 U, T_2=T_3=32H^ -1/3 U. \\] The rows ((An)_1^ _1 (An)_2^ _2 (An)_3^ _3 )_ n E_N , with ^3 and _j T_j , span…",
+      "section": "Interpolation on a projected integer box",
+      "manuscript": "Uniform exclusion of Landau–Siegel zeros"
+    },
+    {
+      "id": "m2-lem-exponents",
+      "kind": "lemma",
+      "label": "There are absolute constants c_0,C_0>0 such that for every fixed integer H1 and…",
+      "statement": "There are absolute constants c_0,C_0>0 such that for every fixed integer H1 and all sufficiently large N in terms of H alone, S_1 c_0MH^ 2/3 U, S_2 C_0MH^ -1/3 U. In particular, S_2/S_1(C_0/c_0)/H .",
+      "section": "A weighted determinant of conjugates",
+      "manuscript": "Uniform exclusion of Landau–Siegel zeros"
+    },
+    {
+      "id": "m2-lem-divisibility",
+      "kind": "lemma",
+      "label": "For every admissible prime p , p^ E_p , E_p=_ _1 p .",
+      "statement": "For every admissible prime p , p^ E_p , E_p=_ _1 p .",
+      "section": "Two bounds for the determinant",
+      "manuscript": "Uniform exclusion of Landau–Siegel zeros"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-thm-main",
+      "to": "m1-cor-nonresidues-square-roots"
+    },
+    {
+      "from": "m1-lem-prime-gauss-identities",
+      "to": "m1-lem-fixed-gauss-phase"
+    },
+    {
+      "from": "m1-lem-smooth-calculus",
+      "to": "m1-lem-gaussian-annular"
+    },
+    {
+      "from": "m1-lem-hecke-strip-growth",
+      "to": "m1-lem-logarithmic-control"
+    },
+    {
+      "from": "m1-lem-fixed-gauss-phase",
+      "to": "m1-lem-reflection-row-sectors"
+    },
+    {
+      "from": "m1-lem-fixed-numerator-ray",
+      "to": "m1-lem-reflection-row-sectors"
+    },
+    {
+      "from": "m1-lem-smooth-calculus",
+      "to": "m1-lem-reflection-common-profile"
+    },
+    {
+      "from": "m1-prop-completed-reflection",
+      "to": "m1-lem-unmarked-reflected-block"
+    },
+    {
+      "from": "m1-lem-reflection-common-profile",
+      "to": "m1-lem-unmarked-reflected-block"
+    },
+    {
+      "from": "m1-lem-reflection-row-sectors",
+      "to": "m1-lem-unmarked-completed-moment"
+    },
+    {
+      "from": "m1-lem-unmarked-reflected-block",
+      "to": "m1-lem-unmarked-completed-moment"
+    },
+    {
+      "from": "m1-prop-completed-reflection",
+      "to": "m1-lem-unmarked-completed-moment"
+    },
+    {
+      "from": "m1-lem-planar-additive-sieve",
+      "to": "m1-lem-balanced-additive-norm"
+    },
+    {
+      "from": "m1-lem-unmarked-completed-moment",
+      "to": "m1-prop-balanced-low"
+    },
+    {
+      "from": "m1-lem-balanced-additive-norm",
+      "to": "m1-prop-balanced-low"
+    },
+    {
+      "from": "m1-lem-logarithmic-control",
+      "to": "m1-lem-buffered-bins"
+    },
+    {
+      "from": "m1-lem-hecke-strip-growth",
+      "to": "m1-lem-buffered-bins"
+    },
+    {
+      "from": "m1-lem-smooth-calculus",
+      "to": "m1-lem-detector-dyads"
+    },
+    {
+      "from": "m1-lem-buffered-bins",
+      "to": "m1-lem-detector-dyads"
+    },
+    {
+      "from": "m1-lem-detector-dyads",
+      "to": "m1-prop-detector-witness"
+    },
+    {
+      "from": "m1-lem-smooth-calculus",
+      "to": "m1-prop-detector-witness"
+    },
+    {
+      "from": "m1-lem-fixed-gauss-phase",
+      "to": "m1-lem-sextic-large-sieve"
+    },
+    {
+      "from": "m1-lem-planar-additive-sieve",
+      "to": "m1-lem-sextic-large-sieve"
+    },
+    {
+      "from": "m1-prop-detector-witness",
+      "to": "m1-prop-sextic-row-count"
+    },
+    {
+      "from": "m1-lem-sextic-large-sieve",
+      "to": "m1-prop-sextic-row-count"
+    },
+    {
+      "from": "m1-lem-smooth-calculus",
+      "to": "m1-prop-sextic-row-count"
+    },
+    {
+      "from": "m1-lem-logarithmic-control",
+      "to": "m1-lem-fixed-bin-contour"
+    },
+    {
+      "from": "m1-lem-deleted-euler-factors",
+      "to": "m1-lem-fixed-bin-contour"
+    },
+    {
+      "from": "m1-lem-external-contour-tails",
+      "to": "m1-lem-fixed-bin-contour"
+    },
+    {
+      "from": "m1-lem-buffered-bins",
+      "to": "m1-lem-fixed-bin-contour"
+    },
+    {
+      "from": "m1-lem-fixed-bin-contour",
+      "to": "m1-lem-bin-contour-accounting"
+    },
+    {
+      "from": "m1-lem-buffered-bins",
+      "to": "m1-lem-bin-contour-accounting"
+    },
+    {
+      "from": "m1-lem-external-contour-tails",
+      "to": "m1-lem-principal-residue-interface"
+    },
+    {
+      "from": "m1-lem-logarithmic-control",
+      "to": "m1-lem-principal-residue-interface"
+    },
+    {
+      "from": "m1-lem-deleted-euler-factors",
+      "to": "m1-lem-principal-residue-interface"
+    },
+    {
+      "from": "m1-lem-local-euler",
+      "to": "m1-lem-principal-residue-interface"
+    },
+    {
+      "from": "m1-lem-principal-residue-interface",
+      "to": "m1-lem-outer-row-tails"
+    },
+    {
+      "from": "m1-lem-logarithmic-control",
+      "to": "m1-lem-outer-row-tails"
+    },
+    {
+      "from": "m1-lem-deleted-euler-factors",
+      "to": "m1-lem-outer-row-tails"
+    },
+    {
+      "from": "m1-lem-external-contour-tails",
+      "to": "m1-lem-outer-row-tails"
+    },
+    {
+      "from": "m1-prop-sextic-row-count",
+      "to": "m1-prop-balanced-high"
+    },
+    {
+      "from": "m1-lem-detector-dyads",
+      "to": "m1-prop-balanced-high"
+    },
+    {
+      "from": "m1-lem-fixed-bin-contour",
+      "to": "m1-prop-balanced-high"
+    },
+    {
+      "from": "m1-prop-balanced-low",
+      "to": "m1-prop-balanced-high"
+    },
+    {
+      "from": "m1-lem-late-height-closure",
+      "to": "m1-prop-balanced-high"
+    },
+    {
+      "from": "m1-thm-eleven-twelfths",
+      "to": "m1-prop-hecke-dirichlet-transfer"
+    },
+    {
+      "from": "m1-lem-local-euler",
+      "to": "m1-prop-hecke-dirichlet-transfer"
+    },
+    {
+      "from": "m1-prop-balanced-high",
+      "to": "m1-prop-hecke-dirichlet-transfer"
+    },
+    {
+      "from": "m1-lem-continuation-criterion",
+      "to": "m1-prop-hecke-dirichlet-transfer"
+    },
+    {
+      "from": "m1-prop-completed-reflection",
+      "to": "m1-cor-marked-reflection"
+    },
+    {
+      "from": "m1-cor-marked-reflection",
+      "to": "m1-lem-reflected-energy"
+    },
+    {
+      "from": "m1-lem-reflection-common-profile",
+      "to": "m1-lem-reflected-energy"
+    },
+    {
+      "from": "m1-lem-lattice-kernel-tail",
+      "to": "m1-lem-reflected-energy"
+    },
+    {
+      "from": "m1-lem-hybrid-energy",
+      "to": "m1-lem-reflected-energy"
+    },
+    {
+      "from": "m1-lem-gaussian-annular",
+      "to": "m1-lem-probe-row-norm"
+    },
+    {
+      "from": "m1-lem-smooth-calculus",
+      "to": "m1-lem-probe-row-norm"
+    },
+    {
+      "from": "m1-lem-reflection-row-sectors",
+      "to": "m1-lem-probe-row-norm"
+    },
+    {
+      "from": "m1-lem-reflected-energy",
+      "to": "m1-lem-probe-row-norm"
+    },
+    {
+      "from": "m1-lem-fixed-numerator-ray",
+      "to": "m1-prop-probe-gram"
+    },
+    {
+      "from": "m1-prop-probe-gram",
+      "to": "m1-prop-probe-low"
+    },
+    {
+      "from": "m1-lem-probe-row-norm",
+      "to": "m1-prop-probe-low"
+    },
+    {
+      "from": "m1-lem-local-euler",
+      "to": "m1-prop-probe-errors"
+    },
+    {
+      "from": "m1-lem-fixed-numerator-ray",
+      "to": "m1-prop-probe-errors"
+    },
+    {
+      "from": "m1-lem-finite-seminorm-propagation",
+      "to": "m1-cor-indexed-seminorm-propagation"
+    },
+    {
+      "from": "m1-lem-canonical-moment",
+      "to": "m1-lem-masked-poisson"
+    },
+    {
+      "from": "m1-cor-indexed-seminorm-propagation",
+      "to": "m1-lem-masked-poisson"
+    },
+    {
+      "from": "m1-lem-reflected-energy",
+      "to": "m1-lem-masked-poisson"
+    },
+    {
+      "from": "m1-lem-smooth-calculus",
+      "to": "m1-lem-masked-poisson"
+    },
+    {
+      "from": "m1-lem-kernel-seminorms",
+      "to": "m1-lem-masked-poisson"
+    },
+    {
+      "from": "m1-lem-marked",
+      "to": "m1-lem-masked-poisson"
+    },
+    {
+      "from": "m1-lem-smooth-calculus",
+      "to": "m1-lem-inverse-amplification"
+    },
+    {
+      "from": "m1-lem-logarithmic-control",
+      "to": "m1-lem-bin-prime-bound"
+    },
+    {
+      "from": "m1-prop-detector-witness",
+      "to": "m1-prop-detector-counts"
+    },
+    {
+      "from": "m1-lem-marked",
+      "to": "m1-prop-detector-counts"
+    },
+    {
+      "from": "m1-lem-plain",
+      "to": "m1-prop-detector-counts"
+    },
+    {
+      "from": "m1-lem-inverse-amplification",
+      "to": "m1-prop-detector-counts"
+    },
+    {
+      "from": "m1-lem-bin-contour-accounting",
+      "to": "m1-lem-high-bin"
+    },
+    {
+      "from": "m1-prop-probe-errors",
+      "to": "m1-lem-high-bin"
+    },
+    {
+      "from": "m1-lem-deleted-euler-factors",
+      "to": "m1-lem-high-bin"
+    },
+    {
+      "from": "m1-prop-detector-counts",
+      "to": "m1-prop-parameter-order"
+    },
+    {
+      "from": "m1-lem-plain",
+      "to": "m1-prop-parameter-order"
+    },
+    {
+      "from": "m1-lem-detector-dyads",
+      "to": "m1-prop-parameter-order"
+    },
+    {
+      "from": "m1-prop-probe-errors",
+      "to": "m1-prop-parameter-order"
+    },
+    {
+      "from": "m1-lem-high-bin",
+      "to": "m1-prop-parameter-order"
+    },
+    {
+      "from": "m1-lem-principal-residue-interface",
+      "to": "m1-prop-parameter-order"
+    },
+    {
+      "from": "m1-lem-late-height-closure",
+      "to": "m1-prop-parameter-order"
+    },
+    {
+      "from": "m2-lem-interpolation",
+      "to": "m2-cor-rectangle"
+    }
+  ]
+}

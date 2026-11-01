@@ -1,0 +1,126 @@
+{
+  "familyNumber": "175",
+  "familyTitle": "Talagrand’s expectation thresholds, discrete convexity, and graph decompositions",
+  "manuscripts": [
+    {
+      "id": "Graph-Decompositions-at-the-Integral-Expectation-Threshold-October-5-2026",
+      "title": "Graph Decompositions at the Integral Expectation Threshold",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Graph-Decompositions-at-the-Integral-Expectation-Threshold-October-5-2026/graph-threshold-decompositions.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Covering input and elementary estimates",
+    "Uniform neighborhood transfer",
+    "Direct embedding lemmas"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "There exist an absolute integer k2 and an absolute constant L1 such that, for…",
+      "statement": "There exist an absolute integer k2 and an absolute constant L1 such that, for every n2 and every graph H on at most n vertices, the edges of H admit a partition \\[ E(H)=E(H_1)\\,\\,\\,\\,E(H_k) with…",
+      "section": "Introduction",
+      "manuscript": "Graph Decompositions at the Integral Expectation Threshold"
+    },
+    {
+      "id": "m1-thm-discrete",
+      "kind": "theorem",
+      "label": "Discrete convexity, [Theorem~1.1",
+      "statement": "[Discrete convexity, ] Set K_0=2^ 75 . For every nonempty finite set X , every r(0,1) , and every family 2^X with _r()1-1/K_0 , the family \\[ E_ K_0 ()= \\ S X:S D_1 D_ K_0 for every D_1,,D_ K_0 \\ \\]…",
+      "section": "Covering input and elementary estimates",
+      "manuscript": "Graph Decompositions at the Integral Expectation Threshold"
+    },
+    {
+      "id": "m1-cor-typical-cover",
+      "kind": "corollary",
+      "label": "Let n2 , let H have an edge and at most n vertices, and suppose q(H;n)<r<1 . If…",
+      "statement": "Let n2 , let H have an edge and at most n vertices, and suppose q(H;n)<r<1 . If a family of graphs on [n] satisfies _r()1-1/K_0 , then some copy of H has its edges contained in the union of K_0…",
+      "section": "Covering input and elementary estimates",
+      "manuscript": "Graph Decompositions at the Integral Expectation Threshold"
+    },
+    {
+      "id": "m1-lem-q-lower",
+      "kind": "lemma",
+      "label": "If H has an edge, |V(H)| n , and d=(H) , then q(H;n)1 2 n2 , q(H;n)12 n^ -2/d .",
+      "statement": "If H has an edge, |V(H)| n , and d=(H) , then q(H;n)1 2 n2 , q(H;n)12 n^ -2/d .",
+      "section": "Covering input and elementary estimates",
+      "manuscript": "Graph Decompositions at the Integral Expectation Threshold"
+    },
+    {
+      "id": "m1-lem-split",
+      "kind": "lemma",
+      "label": "Degeneracy splitting",
+      "statement": "[Degeneracy splitting] For every positive integer m , the edges of a d -degenerate graph can be partitioned into m graphs, each of degeneracy at most d/m .",
+      "section": "Covering input and elementary estimates",
+      "manuscript": "Graph Decompositions at the Integral Expectation Threshold"
+    },
+    {
+      "id": "m1-lem-compression",
+      "kind": "lemma",
+      "label": "Compression after a random extension",
+      "statement": "[Compression after a random extension] Let Y be finite, r(0,1) , and s1 an integer. For every nonempty family \\[ \\ T Y:1|T| s\\ \\] there is a nonempty subfamily with ||2r^ -s such that S satisfies f_…",
+      "section": "Uniform neighborhood transfer",
+      "manuscript": "Graph Decompositions at the Integral Expectation Threshold"
+    },
+    {
+      "id": "m1-prop-transfer",
+      "kind": "proposition",
+      "label": "Neighborhood transfer",
+      "statement": "[Neighborhood transfer] There is an absolute integer N_1 such that the following holds for every n N_1 and every r,s satisfying . There exists =(n,r,s)2^ E(K_n) with _r()1-1/K_0 such that, whenever Y…",
+      "section": "Uniform neighborhood transfer",
+      "manuscript": "Graph Decompositions at the Integral Expectation Threshold"
+    },
+    {
+      "id": "m1-prop-degree-embedding",
+      "kind": "proposition",
+      "label": "There is an absolute integer N_2 such that, for n N_2 and r,s satisfying ,…",
+      "statement": "There is an absolute integer N_2 such that, for n N_2 and r,s satisfying , every graph J with \\[ |V_+(J)| n/4, (J) s, (J) n^ 2/3 \\] and at most n vertices satisfies p_c(J;n) r .",
+      "section": "Direct embedding lemmas",
+      "manuscript": "Graph Decompositions at the Integral Expectation Threshold"
+    },
+    {
+      "id": "m1-prop-stars",
+      "kind": "proposition",
+      "label": "Put A=400e^4 . There is an absolute integer N_3 such that, for every n N_3 and…",
+      "statement": "Put A=400e^4 . There is an absolute integer N_3 such that, for every n N_3 and every star forest J on at most n vertices with |V_+(J)| n/100 , p_c(J;n)2Aq(J;n). If q(J;n)<1/(2A) , the stronger bound…",
+      "section": "Direct embedding lemmas",
+      "manuscript": "Graph Decompositions at the Integral Expectation Threshold"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-thm-discrete",
+      "to": "m1-cor-typical-cover"
+    },
+    {
+      "from": "m1-lem-compression",
+      "to": "m1-prop-transfer"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-prop-stars"
+    },
+    {
+      "from": "m1-prop-transfer",
+      "to": "m1-prop-stars"
+    },
+    {
+      "from": "m1-prop-degree-embedding",
+      "to": "m1-prop-stars"
+    },
+    {
+      "from": "m1-lem-q-lower",
+      "to": "m1-prop-stars"
+    },
+    {
+      "from": "m1-cor-typical-cover",
+      "to": "m1-prop-stars"
+    },
+    {
+      "from": "m1-lem-split",
+      "to": "m1-prop-stars"
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "familyNumber": "330",
+  "familyTitle": "A uniformly discrete counterexample to bounded approximation in Lipschitz-free spaces",
+  "manuscripts": [
+    {
+      "id": "Failure-of-Bounded-Approximation-in-a-Lipschitz-Free-Space-over-a-Uniformly-Discrete-Metric-Space-September-26-2026",
+      "title": "A uniformly discrete counterexample to bounded approximation in Lipschitz-free spaces",
+      "date": "2026-09-26",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Failure-of-Bounded-Approximation-in-a-Lipschitz-Free-Space-over-a-Uniformly-Discrete-Metric-Space-September-26-2026/main.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "From bounded blocks to AP without BAP",
+    "Colored graphs and the bounded block",
+    "Finite-rank operators and signed measures",
+    "Rare matched walks and continuation records",
+    "Scalar tests and incidence averaging"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "There is a countable, unbounded, nonproper pointed metric space (M,d,o) such…",
+      "statement": "There is a countable, unbounded, nonproper pointed metric space (M,d,o) such that d(x,y)1 for distinct points and (M) has AP but fails -BAP for every finite 1 .",
+      "section": "Introduction",
+      "manuscript": "A uniformly discrete counterexample to bounded approximation in Lipschitz-free spaces"
+    },
+    {
+      "id": "m1-thm-blocks",
+      "kind": "theorem",
+      "label": "For each integer p1 , there are a bounded countably infinite pointed metric…",
+      "statement": "For each integer p1 , there are a bounded countably infinite pointed metric space (M_p,d_p,o) and a finite set A_p M_p containing o such that \\[ d_p(x,y)1(x y), diamM_p B_p:=300p^2+150p+5, \\] and…",
+      "section": "Introduction",
+      "manuscript": "A uniformly discrete counterexample to bounded approximation in Lipschitz-free spaces"
+    },
+    {
+      "id": "m1-cor-renorming",
+      "kind": "corollary",
+      "label": "For each integer p1 , real _1 has an equivalent norm _p such that \\[ 12c_1c_p…",
+      "statement": "For each integer p1 , real _1 has an equivalent norm _p such that \\[ 12c_1c_p B_pc_1, \\] and (_1, _p) has 2B_p -BAP but fails p -BAP. For p=1 , this norm fails MAP.",
+      "section": "Introduction",
+      "manuscript": "A uniformly discrete counterexample to bounded approximation in Lipschitz-free spaces"
+    },
+    {
+      "id": "m1-prop-coefficients",
+      "kind": "proposition",
+      "label": "Let (N,d,o) be a countable pointed metric space such that d(x,y)1 for distinct…",
+      "statement": "Let (N,d,o) be a countable pointed metric space such that d(x,y)1 for distinct points and diamN B< . The map \\[ J:_1(N\\ o\\ )(N), Jc=_ x o c_x_x, \\] is a linear isomorphism onto (N) and satisfies…",
+      "section": "From bounded blocks to AP without BAP",
+      "manuscript": "A uniformly discrete counterexample to bounded approximation in Lipschitz-free spaces"
+    },
+    {
+      "id": "m1-lem-local-limit",
+      "kind": "lemma",
+      "label": "For every even integer 4 and positive integer k , there is a deterministic…",
+      "statement": "For every even integer 4 and positive integer k , there is a deterministic sequence of nonempty finite -regular multigraphs G_m , with vertices colored by \\ 1,,k\\ , such that, for every fixed integer…",
+      "section": "Colored graphs and the bounded block",
+      "manuscript": "A uniformly discrete counterexample to bounded approximation in Lipschitz-free spaces"
+    },
+    {
+      "id": "m1-lem-block-geometry",
+      "kind": "lemma",
+      "label": "The preceding construction has the following properties. [label=( *)]…",
+      "statement": "The preceding construction has the following properties. [label=( *)] (M_p,d_p,o) is a countably infinite pointed metric space with separation at least one and diameter at most B=B_p . The anchor set…",
+      "section": "Colored graphs and the bounded block",
+      "manuscript": "A uniformly discrete counterexample to bounded approximation in Lipschitz-free spaces"
+    },
+    {
+      "id": "m1-lem-finite-support",
+      "kind": "lemma",
+      "label": "Suppose that a bounded finite-rank linear operator T_0:(M_p)(M_p) satisfies T_0…",
+      "statement": "Suppose that a bounded finite-rank linear operator T_0:(M_p)(M_p) satisfies T_0 p and \\[ T_0 _a- _a<12(a A_p). \\] Then there are a finite set S M_p containing o and a bounded finite-rank linear…",
+      "section": "Finite-rank operators and signed measures",
+      "manuscript": "A uniformly discrete counterexample to bounded approximation in Lipschitz-free spaces"
+    },
+    {
+      "id": "m1-lem-measure-bounds",
+      "kind": "lemma",
+      "label": "Let S M_p be finite and contain o , and let T:(M_p)(M_p) be a bounded linear…",
+      "statement": "Let S M_p be finite and contain o , and let T:(M_p)(M_p) be a bounded linear operator satisfying . There is a family (_x)_ x M_p of signed measures on S , each of total mass one, such that…",
+      "section": "Finite-rank operators and signed measures",
+      "manuscript": "A uniformly discrete counterexample to bounded approximation in Lipschitz-free spaces"
+    },
+    {
+      "id": "m1-lem-rare-walks",
+      "kind": "lemma",
+      "label": "For a fixed integer n1 , let _m be the fraction of vertices of G_m from which a…",
+      "statement": "For a fixed integer n1 , let _m be the fraction of vertices of G_m from which a matched walk of length n starts. Then _ m _m |S| Hk( QH k )^n. Consequently one can choose n2 and then m so that…",
+      "section": "Rare matched walks and continuation records",
+      "manuscript": "A uniformly discrete counterexample to bounded approximation in Lipschitz-free spaces"
+    },
+    {
+      "id": "m1-lem-exceptional-directions",
+      "kind": "lemma",
+      "label": "Let e:x y be an incidence of G and let j,j' S be states. If (x,j) and (y,j')…",
+      "statement": "Let e:x y be an incidence of G and let j,j' S be states. If (x,j) and (y,j') are compatible and d_p(j,j')2L , then j E_e or j' E_ e .",
+      "section": "Rare matched walks and continuation records",
+      "manuscript": "A uniformly discrete counterexample to bounded approximation in Lipschitz-free spaces"
+    },
+    {
+      "id": "m1-lem-edge-test",
+      "kind": "lemma",
+      "label": "For every incidence e:x y of G , there is a 1 -Lipschitz function f_e:M_p such…",
+      "statement": "For every incidence e:x y of G , there is a 1 -Lipschitz function f_e:M_p such that \\[ f_e(j)=b_x(j)(j S E_e), f_e(j')=-b_y(j')(j' S E_ e ). \\]",
+      "section": "Scalar tests and incidence averaging",
+      "manuscript": "A uniformly discrete counterexample to bounded approximation in Lipschitz-free spaces"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-cor-renorming",
+      "to": "m1-prop-coefficients"
+    },
+    {
+      "from": "m1-thm-blocks",
+      "to": "m1-prop-coefficients"
+    },
+    {
+      "from": "m1-lem-block-geometry",
+      "to": "m1-lem-measure-bounds"
+    },
+    {
+      "from": "m1-lem-block-geometry",
+      "to": "m1-lem-rare-walks"
+    },
+    {
+      "from": "m1-lem-local-limit",
+      "to": "m1-lem-rare-walks"
+    },
+    {
+      "from": "m1-lem-block-geometry",
+      "to": "m1-lem-edge-test"
+    },
+    {
+      "from": "m1-lem-exceptional-directions",
+      "to": "m1-lem-edge-test"
+    },
+    {
+      "from": "m1-thm-blocks",
+      "to": "m1-lem-edge-test"
+    },
+    {
+      "from": "m1-lem-finite-support",
+      "to": "m1-lem-edge-test"
+    },
+    {
+      "from": "m1-lem-measure-bounds",
+      "to": "m1-lem-edge-test"
+    },
+    {
+      "from": "m1-lem-rare-walks",
+      "to": "m1-lem-edge-test"
+    }
+  ]
+}

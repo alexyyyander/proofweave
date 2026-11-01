@@ -1,0 +1,849 @@
+{
+  "familyNumber": "206",
+  "familyTitle": "Finite lattice representation and undecidability",
+  "manuscripts": [
+    {
+      "id": "Finite-Congruence-Lattices-Characterization-and-Undecidability-September-24-2026",
+      "title": "Finite congruence lattices: characterization and undecidability",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Finite-Congruence-Lattices-Characterization-and-Undecidability-September-24-2026/paper.pdf"
+    },
+    {
+      "id": "A-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026",
+      "title": "A negative solution to the finite lattice representation problem",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Negative-Solution-to-the-Finite-Lattice-Representation-Problem-September-24-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "A finite colored-graph characterization",
+    "Representations through seven elements",
+    "Affine test lattices and almost simple intervals",
+    "Simultaneous path pruning and affine witness patterns",
+    "Pruning inside a high-rank classical ancestor",
+    "Pruning inside an alternating ancestor",
+    "Excluding bounded algebraic types",
+    "Protections and the length of high-type paths"
+  ],
+  "nodes": [
+    {
+      "id": "m1-m-main",
+      "kind": "theorem",
+      "label": "The following statements hold. [label=( *)] A finite nonempty lattice is…",
+      "statement": "The following statements hold. [label=( *)] A finite nonempty lattice is representable if and only if it satisfies the finite colored-graph criterion in . For each candidate graph size the criterion…",
+      "section": "Introduction",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-f-criterion",
+      "kind": "theorem",
+      "label": "Graph criterion",
+      "statement": "[Graph criterion] The lattice L is the full congruence lattice of a finite algebra if and only if there is an L -colored complete graph (A,d) satisfying all three conditions below. [label=( *)] If p…",
+      "section": "A finite colored-graph characterization",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-f-cor-witness-bound",
+      "kind": "corollary",
+      "label": "Enumeration and bounds",
+      "statement": "[Enumeration and bounds] Representability is semidecidable. Moreover, a total algorithm deciding representability of finite lattice order tables exists if and only if there is a total computable…",
+      "section": "A finite colored-graph characterization",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-f-prop-l7-interval",
+      "kind": "proposition",
+      "label": "With their usual subfield inclusion, the groups \\[ H=PGL_2( F_2) G=PGL_2( F_ 64…",
+      "statement": "With their usual subfield inclusion, the groups \\[ H=PGL_2( F_2) G=PGL_2( F_ 64 ) \\] have subgroup interval [H,G] L_7 .",
+      "section": "Representations through seven elements",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-f-lem-coset",
+      "kind": "lemma",
+      "label": "Coset-action correspondence",
+      "statement": "[Coset-action correspondence] For finite groups H G , the full congruence lattice of the unary algebra given by the left G -action on G/H is isomorphic to [H,G] .",
+      "section": "Representations through seven elements",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-f-small-lattices",
+      "kind": "theorem",
+      "label": "Every finite nonempty lattice of at most seven elements is representable.",
+      "statement": "Every finite nonempty lattice of at most seven elements is representable.",
+      "section": "Representations through seven elements",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-f-negative-family",
+      "kind": "theorem",
+      "label": "There are choices of the finite parameters in for which the resulting finite…",
+      "statement": "There are choices of the finite parameters in for which the resulting finite lattice is not the congruence lattice of any finite algebra.",
+      "section": "Affine test lattices and almost simple intervals",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-f-prop-chart-properties",
+      "kind": "proposition",
+      "label": "Geometry of the test lattice",
+      "statement": "[Geometry of the test lattice] The construction in gives a finite self-dual lattice L . It is graded of length n+2 , atomistic, coatomistic, and simple. Any two charts intersect in a flat of each, of…",
+      "section": "Affine test lattices and almost simple intervals",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-f-prop-prepared-links",
+      "kind": "proposition",
+      "label": "Prepared reverse links",
+      "statement": "[Prepared reverse links] If X is a nonempty flat of rank at most m in a trunk chart, the reverse ideal with top X , denoted [0,X] , is graded, atomistic, and coatomistic. Its strict interior has at…",
+      "section": "Affine test lattices and almost simple intervals",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-f-lem-subdirect",
+      "kind": "lemma",
+      "label": "Subdirect products of simple groups",
+      "statement": "[Subdirect products of simple groups] A subdirect subgroup of a finite power of a nonabelian simple group is a product of full, possibly automorphism-twisted, diagonal subgroups on disjoint parts…",
+      "section": "Affine test lattices and almost simple intervals",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-f-prop-ordinary-interval",
+      "kind": "proposition",
+      "label": "If the test lattice L is representable by a finite algebra, it is isomorphic to…",
+      "statement": "If the test lattice L is representable by a finite algebra, it is isomorphic to an ordinary subgroup interval of a finite group.",
+      "section": "Affine test lattices and almost simple intervals",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-f-prop-monolith",
+      "kind": "proposition",
+      "label": "Normal supplements",
+      "statement": "[Normal supplements] Suppose [H,G] is isomorphic either to L or to a prepared reverse link. After quotienting by core_G(H) , every nontrivial normal subgroup is supplemented by H . The quotient has a…",
+      "section": "Affine test lattices and almost simple intervals",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-f-lem-extension-description",
+      "kind": "lemma",
+      "label": "Extension description",
+      "statement": "[Extension description] Suppose H acts by automorphisms on S^s , transitively on the simple coordinates. Fix a coordinate o , identify its group with S , and let A_0 H be its stabilizer, with induced…",
+      "section": "Affine test lattices and almost simple intervals",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-f-prop-interval-cases",
+      "kind": "proposition",
+      "label": "Cases for a prepared interval",
+      "statement": "[Cases for a prepared interval] Use the notation of , in the core quotient. Let Aut(S) be the image of a coordinate stabilizer in H , and put I= S , identifying S with its inner automorphisms. The…",
+      "section": "Affine test lattices and almost simple intervals",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-f-lem-purity",
+      "kind": "lemma",
+      "label": "Purity and kernel joins",
+      "statement": "[Purity and kernel joins] If the full extension poset with artificial top of is isomorphic to L , every proper label is pure. These labels are then parametrized by all H -normalized subgroups E K…",
+      "section": "Affine test lattices and almost simple intervals",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-f-lem-lower-grid",
+      "kind": "lemma",
+      "label": "Lower-grid obstruction",
+      "statement": "[Lower-grid obstruction] Fix an extension datum as in , and an affine four-space over a finite field with at least three elements. Suppose each nonempty flat X of dimension at most two supplies a…",
+      "section": "Affine test lattices and almost simple intervals",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-f-thm-almost-simple-reduction",
+      "kind": "theorem",
+      "label": "Ordinary almost simple starting interval",
+      "statement": "[Ordinary almost simple starting interval] If the test lattice L is representable, then either the whole L or a prepared reverse link with top an initial trunk point has an ordinary almost simple…",
+      "section": "Affine test lattices and almost simple intervals",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-ancestor-socles",
+      "kind": "lemma",
+      "label": "Compatibility of ancestor socles",
+      "statement": "[Compatibility of ancestor socles] Suppose H K K_W , and a local conclusion in K_W/C_W supplies a nonabelian simple normal subgroup B K/C_W contained in the image of B_W . Suppose also that (H/C_W)…",
+      "section": "Simultaneous path pruning and affine witness patterns",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-prepared-witness",
+      "kind": "lemma",
+      "label": "Prepared full-stabilizer witnesses",
+      "statement": "[Prepared full-stabilizer witnesses] Suppose K_W already avoids the final exclusion list relative to every strict ancestor. A failed test at U supplies an actual label K_X with \\[ W' X U, X W, \\]…",
+      "section": "Simultaneous path pruning and affine witness patterns",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-failed-pattern",
+      "kind": "lemma",
+      "label": "Affine patterns in failed charts",
+      "statement": "[Affine patterns in failed charts] Suppose every increment- s test in a sufficiently large available flat fails, all trial ranks lie below m , and a witness X(U) U , with X(U) W , is chosen for each…",
+      "section": "Simultaneous path pruning and affine witness patterns",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-pruning-schedule",
+      "kind": "proposition",
+      "label": "Finite schedule of simultaneous exclusions",
+      "statement": "[Finite schedule of simultaneous exclusions] Suppose that the local exclusions below prohibit their prescribed failed patterns with absolute case and chart-loss bounds. For a bounded path length,…",
+      "section": "Simultaneous path pruning and affine witness patterns",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-parameter-order",
+      "kind": "proposition",
+      "label": "Order of the finite parameter choices",
+      "statement": "[Order of the finite parameter choices] The test-lattice parameters can be chosen in an order that meets all the pattern requirements and all the later path requirements. In particular the initial…",
+      "section": "Simultaneous path pruning and affine witness patterns",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-proper-stabilizers",
+      "kind": "lemma",
+      "label": "Properness of the stabilizers used below",
+      "statement": "[Properness of the stabilizers used below] For sufficiently large ambient natural degree, each nontrivial structure used in the exclusions below has proper full stabilizer. The same properness check…",
+      "section": "Pruning inside a high-rank classical ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-linear-subspaces",
+      "kind": "proposition",
+      "label": "Linear subspaces, signed flags and idempotents",
+      "statement": "[Linear subspaces, signed flags and idempotents] In linear type, the initial round excludes stabilizers of proper nonzero subspaces when there are no anti-actions. In the presence of anti-actions it…",
+      "section": "Pruning inside a high-rank classical ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-isometry-subspaces",
+      "kind": "proposition",
+      "label": "Singular and nondegenerate subspaces",
+      "statement": "[Singular and nondegenerate subspaces] In isometry type, the initial round excludes stabilizers of nonzero totally singular subspaces, proper nonzero nondegenerate subspaces, and nonsingular radical…",
+      "section": "Pruning inside a high-rank classical ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-orbit-bound",
+      "kind": "lemma",
+      "label": "Two rich permutation actions",
+      "statement": "[Two rich permutation actions] Suppose a finite group has two permutation actions, each preserving a partition into at most two classes and inducing at least the independent alternating groups on its…",
+      "section": "Pruning inside a high-rank classical ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-direct-lines",
+      "kind": "lemma",
+      "label": "Direct line systems",
+      "statement": "[Direct line systems] Under , the full stabilizers of direct line systems are excluded. The only possible distinct linear systems reduce to matchings over \\( F_3\\); the corresponding…",
+      "section": "Pruning inside a high-rank classical ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-direct-block-groups",
+      "kind": "lemma",
+      "label": "Supported block groups and exceptional planes",
+      "statement": "[Supported block groups and exceptional planes] For direct blocks of dimension \\(k2\\), the supported special groups described below give a normal projective product \\(Y\\), with retained block…",
+      "section": "Pruning inside a high-rank classical ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-supported-anchor-groups",
+      "kind": "lemma",
+      "label": "Supported groups in a prepared anchor",
+      "statement": "[Supported groups in a prepared anchor] For every remaining direct system, each block \\(a\\) has an actually supported matrix subgroup \\(R_a\\), projectively contained in \\(E^+\\), of order greater than…",
+      "section": "Pruning inside a high-rank classical ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-direct-compatibility",
+      "kind": "lemma",
+      "label": "Compatibility of direct systems",
+      "statement": "[Compatibility of direct systems] Any two remaining direct systems in one homogeneous pattern have commuting projectors and hence a common direct refinement.",
+      "section": "Pruning inside a high-rank classical ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-direct-pruning",
+      "kind": "proposition",
+      "label": "Completion of direct-system pruning",
+      "statement": "[Completion of direct-system pruning] The remaining direct systems are excluded, both when their supported normal product is retained and when it is missing. The bounds are absolute, independently of…",
+      "section": "Pruning inside a high-rank classical ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-tensor-forms",
+      "kind": "lemma",
+      "label": "Ordered factors and their forms",
+      "statement": "[Ordered factors and their forms] Let \\(A\\) be a unital proper nonscalar central simple \\(F\\)-subfactor of \\( A=End_F(V)\\), normalized by the current previously good anchor. Then \\(V=X_FY\\), with…",
+      "section": "Pruning inside a high-rank classical ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-tensor-order",
+      "kind": "lemma",
+      "label": "Uniform tensor order obstruction",
+      "statement": "[Uniform tensor order obstruction] For sufficiently large dimension \\(m\\), a full supported perfect natural classical group cannot normalize a proper nonscalar tensor factor or a system of at least…",
+      "section": "Pruning inside a high-rank classical ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-linear-fields",
+      "kind": "proposition",
+      "label": "Prime-degree field algebras in linear type",
+      "statement": "[Prime-degree field algebras in linear type] After the direct-system exclusions, the full normalizers of field algebras \\(D/F\\) of prime relative degree are excluded in linear type, including when…",
+      "section": "Pruning inside a high-rank classical ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-linear-factors",
+      "kind": "proposition",
+      "label": "Ordered factors in linear type",
+      "statement": "[Ordered factors in linear type] After , the full stabilizers of proper nonscalar ordered central simple factors are excluded in linear type.",
+      "section": "Pruning inside a high-rank classical ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-partial-isometry-factors",
+      "kind": "proposition",
+      "label": "Ordered factors apart from two retained plane types",
+      "statement": "[Ordered factors apart from two retained plane types] In isometry type, after the direct-system exclusions, the full stabilizers of ordered proper nonscalar selfadjoint central simple factors are…",
+      "section": "Pruning inside a high-rank classical ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-field-transfer",
+      "kind": "lemma",
+      "label": "Transferred forms",
+      "statement": "[Transferred forms] Let \\(D/F A\\) be a normalized selfadjoint field algebra, of arbitrary finite degree, and put \\(=*|_D\\). In the prepared irreducible-anchor configuration there is a nondegenerate…",
+      "section": "Pruning inside a high-rank classical ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-transfer-centralizer",
+      "kind": "lemma",
+      "label": "Centralizers of perfect transfer groups",
+      "statement": "[Centralizers of perfect transfer groups] Suppose the field normalizer in is nonsoluble and the total ground-field dimension is sufficiently large. There is a perfect natural classical group \\(P_D\\),…",
+      "section": "Pruning inside a high-rank classical ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-paired-transfer",
+      "kind": "lemma",
+      "label": "Paired transfer spaces",
+      "statement": "[Paired transfer spaces] In the high-dimensional prime-degree setting of , suppose an unordered complementary pair \\(e,e^*=1-e\\), normalized by \\(E\\), commutes with \\(D_i\\). Its two spaces are dually…",
+      "section": "Pruning inside a high-rank classical ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-isometry-fields",
+      "kind": "proposition",
+      "label": "Prime-degree selfadjoint fields",
+      "statement": "[Prime-degree selfadjoint fields] After direct-system pruning and the partial ordered-factor exclusion of , the full stabilizers of selfadjoint field algebras of prime relative degree are excluded.…",
+      "section": "Pruning inside a high-rank classical ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-remaining-factors",
+      "kind": "proposition",
+      "label": "Completion of the algebra exclusions",
+      "statement": "[Completion of the algebra exclusions] After , the full stabilizers of unordered proper idempotent pairs \\(e,e^*=1-e\\) are excluded. The two remaining retained-plane types in are then impossible,…",
+      "section": "Pruning inside a high-rank classical ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-full-spanning",
+      "kind": "lemma",
+      "label": "Full spanning",
+      "statement": "[Full spanning] After the subspace, direct-system, field, ordered-factor and paired-idempotent exclusions, every nontrivial projective subgroup \\(P S\\) normalized by a previously good anchor…",
+      "section": "Pruning inside a high-rank classical ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-elementary-normalizers",
+      "kind": "proposition",
+      "label": "Elementary abelian normalizers",
+      "statement": "[Elementary abelian normalizers] Under the full-spanning conclusion of , full normalizers of nontrivial elementary abelian subgroups of \\(S\\) are excluded.",
+      "section": "Pruning inside a high-rank classical ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-tensor-simple-slots",
+      "kind": "lemma",
+      "label": "Reduction to one simple group per tensor slot",
+      "statement": "[Reduction to one simple group per tensor slot] After the preceding exclusions, a tensor system has transitive equal-dimensional slots and the appropriate tensor forms. Its stabilizer induces at…",
+      "section": "Pruning inside a high-rank classical ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-tensor-products",
+      "kind": "lemma",
+      "label": "Retained and missing tensor products",
+      "statement": "[Retained and missing tensor products] Retained products from give at most one system in a pattern. For a homogeneous missing pattern, every \\(N_i=E Y_i\\) is a nontrivial slotwise product \\(_aR_ i,a…",
+      "section": "Pruning inside a high-rank classical ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-tensor-refinement",
+      "kind": "lemma",
+      "label": "Common refinement of missing tensor systems",
+      "statement": "[Common refinement of missing tensor systems] A finite pattern line of the missing systems in has a common tensor refinement formed from the lift algebras of tuple intersections \\(_iR_ i,a_i \\).…",
+      "section": "Pruning inside a high-rank classical ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-tensor-pruning",
+      "kind": "proposition",
+      "label": "Completion of tensor-system pruning",
+      "statement": "[Completion of tensor-system pruning] The missing tensor systems of are excluded by an absolute bound on the possible invariant partitions of their common fine slots. Hence all tensor systems are…",
+      "section": "Pruning inside a high-rank classical ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-classical-conclusion",
+      "kind": "theorem",
+      "label": "The next classical-ancestor socle",
+      "statement": "[The next classical-ancestor socle] Let \\(K\\) be a tested descendant with a prepared interval, good for all the exclusions in this section, or containing the final good anchor. There is an actual…",
+      "section": "Pruning inside a high-rank classical ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-alternating-orbits",
+      "kind": "lemma",
+      "label": "Two alternating permutation images",
+      "statement": "[Two alternating permutation images] If a group acts on two finite sets, inducing at least the alternating group on each, then its number of orbits on ordered pairs of pairs, one coordinate from each…",
+      "section": "Pruning inside an alternating ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-alternating-primitivity",
+      "kind": "proposition",
+      "label": "Subsets and equal-block partitions",
+      "statement": "[Subsets and equal-block partitions] In the prepared alternating configuration, full stabilizers of proper nonempty subsets and nontrivial equal-block-size partitions are excluded. Subsequent good…",
+      "section": "Pruning inside an alternating ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-alternating-affine",
+      "kind": "proposition",
+      "label": "Elementary abelian regular groups",
+      "statement": "[Elementary abelian regular groups] For a primitive previously good anchor, normalizers of elementary abelian regular groups are excluded.",
+      "section": "Pruning inside an alternating ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-cartesian-retained",
+      "kind": "lemma",
+      "label": "Retained Cartesian products",
+      "statement": "[Retained Cartesian products] For a primitive anchor avoiding the affine exclusion, a normalized nontrivial Cartesian decomposition has transitive slots of common size \\(k5\\). Its full stabilizer has…",
+      "section": "Pruning inside an alternating ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-primitive-product-interval",
+      "kind": "lemma",
+      "label": "Missing normal powers with primitive factor action",
+      "statement": "[Missing normal powers with primitive factor action] Let \\([H,K_i]\\) be a prepared interval and \\(Y_i K_i\\) a direct power of nonabelian simple groups with \\(HY_i=K_i\\). If the action of \\(H\\) on its…",
+      "section": "Pruning inside an alternating ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-cartesian-refinement",
+      "kind": "lemma",
+      "label": "Common Cartesian refinement",
+      "statement": "[Common Cartesian refinement] A finite pattern line of missing Cartesian labels has a common refinement into finite coordinate sets. It is constructed from the tuple intersections of the slotwise…",
+      "section": "Pruning inside an alternating ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-cartesian-pruning",
+      "kind": "proposition",
+      "label": "Completion of Cartesian pruning",
+      "statement": "[Completion of Cartesian pruning] Missing Cartesian labels are excluded. Together with , this excludes all nontrivial Cartesian decompositions.",
+      "section": "Pruning inside an alternating ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-primitive-diagonal",
+      "kind": "lemma",
+      "label": "Primitive groups after Cartesian pruning",
+      "statement": "[Primitive groups after Cartesian pruning] Let \\(E_0\\) be a primitive group satisfying the preceding affine and Cartesian exclusions. If it is not almost simple, it normalizes a transitive group…",
+      "section": "Pruning inside an alternating ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-diagonal-pruning",
+      "kind": "proposition",
+      "label": "Diagonal normalizers",
+      "statement": "[Diagonal normalizers] Under the successively primitive, non-affine and non-Cartesian anchor hypotheses, the full normalizers of the groups \\(Y\\) in are excluded. Both retained and missing normal…",
+      "section": "Pruning inside an alternating ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-c-alternating-conclusion",
+      "kind": "theorem",
+      "label": "The next alternating-ancestor socle",
+      "statement": "[The next alternating-ancestor socle] After the exclusions, every tested descendant with its prepared interval is primitive almost simple. Its actual simple socle is transitive, lies in \\(A_v\\), and…",
+      "section": "Pruning inside an alternating ancestor",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-w-lp",
+      "kind": "theorem",
+      "label": "Sufficiently general finite subgroups",
+      "statement": "[Sufficiently general finite subgroups] For the fixed finite list of simple adjoint types, there is a uniform degree bound d_0 with the following property. If a finite subgroup G(k) , where k= F_p ,…",
+      "section": "Excluding bounded algebraic types",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-w-height-rigidity",
+      "kind": "lemma",
+      "label": "Order, degree, and pointwise rigidity",
+      "statement": "[Order, degree, and pointwise rigidity] For the finite type list, let b= G and B()=(G^)' . For sufficiently large parameter P=^ ht() , the following hold. B() is simple, and its order exceeds |G^|…",
+      "section": "Excluding bounded algebraic types",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-w-witness",
+      "kind": "lemma",
+      "label": "A bounded-complexity failure witness",
+      "statement": "[A bounded-complexity failure witness] Let H K<M be a tested overgroup with =K S1 , and suppose fails the sufficient-generality hypothesis of . For sufficiently large parameter of S , there is a…",
+      "section": "Excluding bounded algebraic types",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-w-bounded-exclusion",
+      "kind": "proposition",
+      "label": "No bounded-type parent with a stage remaining",
+      "statement": "[No bounded-type parent with a stage remaining] Fix the finite list of bounded root systems. There is a fixed trial increment t such that a prepared current parent with a remaining private-chart…",
+      "section": "Excluding bounded algebraic types",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-w-min-degree",
+      "kind": "lemma",
+      "label": "A lower bound for projective degree",
+      "statement": "[A lower bound for projective degree] There is an absolute constant c_0>0 such that every nontrivial projective representation in defining characteristic of a sufficiently high-rank simple classical…",
+      "section": "Protections and the length of high-type paths",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-w-alternating-switch",
+      "kind": "lemma",
+      "label": "Alternating subsequences",
+      "statement": "[Alternating subsequences] A prepared path contains at most two alternating socles of sufficiently large degree.",
+      "section": "Protections and the length of high-type paths",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-w-characteristic-switch",
+      "kind": "lemma",
+      "label": "Changes of defining characteristic",
+      "statement": "[Changes of defining characteristic] For a classical ancestor i and classical descendant j in a prepared path with distinct defining characteristics, there is an absolute c>0 such that \\[ v_i P_j^ c…",
+      "section": "Protections and the length of high-type paths",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-w-atoms",
+      "kind": "lemma",
+      "label": "Canonical tensor atoms",
+      "statement": "[Canonical tensor atoms] Let S_i be a high classical ancestor, and let B be a candidate simple subgroup of high classical type in the same defining characteristic. Assume that B acts projectively…",
+      "section": "Protections and the length of high-type paths",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-w-atom-cycle",
+      "kind": "lemma",
+      "label": "Descent and the single Frobenius cycle",
+      "statement": "[Descent and the single Frobenius cycle] Retain the hypotheses of , and assume the candidate label has the ancestor tensor-system exclusion in . Let be arithmetic Frobenius for the ancestor ground…",
+      "section": "Protections and the length of high-type paths",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-w-coarsening-count",
+      "kind": "proposition",
+      "label": "Counting prime tensor coarsenings",
+      "statement": "[Counting prime tensor coarsenings] Under the hypotheses of , each prime s t(B) defines a canonical congruence coarsening P_s into s matrix factors, normalized by the candidate label. Its full…",
+      "section": "Protections and the length of high-type paths",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-w-root-count",
+      "kind": "proposition",
+      "label": "Counting fixing prime roots",
+      "statement": "[Counting fixing prime roots] Let B be as in , in the high classical ancestor with adjoint group G_i and ordinary Steinberg map _i of height f_i . Consider pairs (s,) where s is prime, \\[ ^s=_i,…",
+      "section": "Protections and the length of high-type paths",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-w-natural-root",
+      "kind": "corollary",
+      "label": "Equal natural modules force a fixing root",
+      "statement": "[Equal natural modules force a fixing root] Suppose B<S_i is a same-series high classical candidate of the same natural dimension as S_i , and its projective action on V_i is its own natural module,…",
+      "section": "Protections and the length of high-type paths",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-w-selection",
+      "kind": "proposition",
+      "label": "Selecting all ancestor protections",
+      "statement": "[Selecting all ancestor protections] Assume that the current same-characteristic classical run is already protected through its current node W . Fix an upper bound D on the number of path steps and a…",
+      "section": "Protections and the length of high-type paths",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-w-h1-injective",
+      "kind": "lemma",
+      "label": "Restriction is injective in degree-one cohomology",
+      "statement": "[Restriction is injective in degree-one cohomology] Let J be a simply connected simple classical algebraic group in the high-rank range of , over k= F_p . Let =Fr_p^f be an ordinary pinned…",
+      "section": "Protections and the length of high-type paths",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-w-quadratic",
+      "kind": "lemma",
+      "label": "The quadratic form in characteristic two",
+      "statement": "[The quadratic form in characteristic two] Let J be simply connected of sufficiently high type D_e in characteristic two, with ordinary pinned map =Fr_2^f , f1 . Let 0 be 2 -restricted, and consider…",
+      "section": "Protections and the length of high-type paths",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-w-rational-composition",
+      "kind": "proposition",
+      "label": "Composing the rational highest-weight actions",
+      "statement": "[Composing the rational highest-weight actions] Let i<j<l lie in one protected run, and suppose these three nodes have the same series A, B, C, or D. Use consistent natural realizations and simply…",
+      "section": "Protections and the length of high-type paths",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-w-universal-cuts",
+      "kind": "lemma",
+      "label": "Chamber maxima and universal cuts",
+      "statement": "[Chamber maxima and universal cuts] Use the triple, groups, and weights of . Let be the full weight multiset of L_J() , with every multiplicity retained. After mapping a maximal torus of J into one…",
+      "section": "Protections and the length of high-type paths",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-w-a-word-cuts",
+      "kind": "lemma",
+      "label": "Type A orbit cuts",
+      "statement": "[Type A orbit cuts] Let J have sufficiently high type A_ e-1 , and let 0 be p -restricted. Suppose a nonempty proper universal cut of the full weight multiset of L_J() is given as in . Replace the…",
+      "section": "Protections and the length of high-type paths",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-w-a-obstruction",
+      "kind": "proposition",
+      "label": "No homogeneous type A configuration",
+      "statement": "[No homogeneous type A configuration] Four nodes of a protected run of type A cannot have all pair edges of one color in the preceding palette.",
+      "section": "Protections and the length of high-type paths",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-w-signed-cuts",
+      "kind": "lemma",
+      "label": "Signed orbit cuts",
+      "statement": "[Signed orbit cuts] Let J have sufficiently high type B, C, or D, and suppose L_J() is self-dual, with 0 restricted. In type D suppose for this lemma that no spin node of is active. Let a signed…",
+      "section": "Protections and the length of high-type paths",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-w-signed-obstruction",
+      "kind": "proposition",
+      "label": "No homogeneous signed configuration",
+      "statement": "[No homogeneous signed configuration] Four nodes of a protected run having one fixed series B, C, or D cannot have all pair edges of one color in the preceding palette.",
+      "section": "Protections and the length of high-type paths",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    },
+    {
+      "id": "m1-w-path-bound",
+      "kind": "theorem",
+      "label": "Bound on protected high-type paths",
+      "statement": "[Bound on protected high-type paths] There is an absolute constant D_0 such that a prepared path all of whose socles are of high alternating or high classical type, and whose consecutive…",
+      "section": "Protections and the length of high-type paths",
+      "manuscript": "Finite congruence lattices: characterization and undecidability"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-f-lem-subdirect",
+      "to": "m1-f-prop-ordinary-interval"
+    },
+    {
+      "from": "m1-f-lem-subdirect",
+      "to": "m1-f-lem-extension-description"
+    },
+    {
+      "from": "m1-f-lem-coset",
+      "to": "m1-f-prop-interval-cases"
+    },
+    {
+      "from": "m1-f-prop-prepared-links",
+      "to": "m1-f-prop-interval-cases"
+    },
+    {
+      "from": "m1-f-lem-extension-description",
+      "to": "m1-f-prop-interval-cases"
+    },
+    {
+      "from": "m1-f-prop-prepared-links",
+      "to": "m1-f-lem-purity"
+    },
+    {
+      "from": "m1-f-prop-ordinary-interval",
+      "to": "m1-f-thm-almost-simple-reduction"
+    },
+    {
+      "from": "m1-f-prop-interval-cases",
+      "to": "m1-f-thm-almost-simple-reduction"
+    },
+    {
+      "from": "m1-f-lem-purity",
+      "to": "m1-f-thm-almost-simple-reduction"
+    },
+    {
+      "from": "m1-f-lem-lower-grid",
+      "to": "m1-f-thm-almost-simple-reduction"
+    },
+    {
+      "from": "m1-f-prop-monolith",
+      "to": "m1-f-thm-almost-simple-reduction"
+    },
+    {
+      "from": "m1-f-prop-prepared-links",
+      "to": "m1-c-prepared-witness"
+    },
+    {
+      "from": "m1-w-selection",
+      "to": "m1-c-pruning-schedule"
+    },
+    {
+      "from": "m1-w-bounded-exclusion",
+      "to": "m1-c-pruning-schedule"
+    },
+    {
+      "from": "m1-f-prop-interval-cases",
+      "to": "m1-c-supported-anchor-groups"
+    },
+    {
+      "from": "m1-c-orbit-bound",
+      "to": "m1-c-direct-pruning"
+    },
+    {
+      "from": "m1-c-full-spanning",
+      "to": "m1-c-tensor-refinement"
+    },
+    {
+      "from": "m1-c-tensor-order",
+      "to": "m1-c-tensor-pruning"
+    },
+    {
+      "from": "m1-c-orbit-bound",
+      "to": "m1-c-tensor-pruning"
+    },
+    {
+      "from": "m1-c-tensor-refinement",
+      "to": "m1-c-tensor-pruning"
+    },
+    {
+      "from": "m1-c-alternating-orbits",
+      "to": "m1-c-alternating-primitivity"
+    },
+    {
+      "from": "m1-f-prop-interval-cases",
+      "to": "m1-c-primitive-product-interval"
+    },
+    {
+      "from": "m1-c-tensor-refinement",
+      "to": "m1-c-cartesian-refinement"
+    },
+    {
+      "from": "m1-c-alternating-orbits",
+      "to": "m1-c-cartesian-pruning"
+    },
+    {
+      "from": "m1-c-cartesian-refinement",
+      "to": "m1-c-cartesian-pruning"
+    },
+    {
+      "from": "m1-w-witness",
+      "to": "m1-w-bounded-exclusion"
+    },
+    {
+      "from": "m1-w-height-rigidity",
+      "to": "m1-w-bounded-exclusion"
+    },
+    {
+      "from": "m1-w-min-degree",
+      "to": "m1-w-atom-cycle"
+    },
+    {
+      "from": "m1-w-atom-cycle",
+      "to": "m1-w-coarsening-count"
+    },
+    {
+      "from": "m1-w-min-degree",
+      "to": "m1-w-coarsening-count"
+    },
+    {
+      "from": "m1-w-h1-injective",
+      "to": "m1-w-quadratic"
+    },
+    {
+      "from": "m1-w-quadratic",
+      "to": "m1-w-rational-composition"
+    },
+    {
+      "from": "m1-w-rational-composition",
+      "to": "m1-w-a-obstruction"
+    },
+    {
+      "from": "m1-w-universal-cuts",
+      "to": "m1-w-a-obstruction"
+    },
+    {
+      "from": "m1-w-a-word-cuts",
+      "to": "m1-w-a-obstruction"
+    },
+    {
+      "from": "m1-w-natural-root",
+      "to": "m1-w-a-obstruction"
+    },
+    {
+      "from": "m1-w-rational-composition",
+      "to": "m1-w-signed-obstruction"
+    },
+    {
+      "from": "m1-w-universal-cuts",
+      "to": "m1-w-signed-obstruction"
+    },
+    {
+      "from": "m1-w-alternating-switch",
+      "to": "m1-w-path-bound"
+    },
+    {
+      "from": "m1-w-characteristic-switch",
+      "to": "m1-w-path-bound"
+    },
+    {
+      "from": "m1-f-negative-family",
+      "to": "m1-w-path-bound"
+    },
+    {
+      "from": "m1-f-thm-almost-simple-reduction",
+      "to": "m1-w-path-bound"
+    },
+    {
+      "from": "m1-w-selection",
+      "to": "m1-w-path-bound"
+    },
+    {
+      "from": "m1-w-bounded-exclusion",
+      "to": "m1-w-path-bound"
+    }
+  ]
+}

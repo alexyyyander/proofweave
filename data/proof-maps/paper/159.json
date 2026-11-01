@@ -1,0 +1,545 @@
+{
+  "familyNumber": "159",
+  "familyTitle": "Erdős’s reciprocal-sum conjecture and quasipolynomial Szemerédi bounds",
+  "manuscripts": [
+    {
+      "id": "Quasipolynomial-Bounds-for-Arithmetic-Progressions-September-23-2026",
+      "title": "Quasipolynomial Bounds for Arithmetic Progressions",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Quasipolynomial-Bounds-for-Arithmetic-Progressions-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Polynomial cells and the increment theorem",
+    "Constrained paths and their detection estimates",
+    "Preparing a cell by rank cuts",
+    "Detection independent of the current width",
+    "Forward sampling of a prepared cell",
+    "Returning the increment: comparison and passive layers",
+    "Active globalization with exact marking",
+    "Parameter extraction and exact restoration",
+    "Triangular iteration",
+    "Weighted consequences"
+  ],
+  "nodes": [
+    {
+      "id": "m1-ap-main",
+      "kind": "theorem",
+      "label": "For each fixed integer k3 there are constants C_k,c_k,_k>0 such that, for every…",
+      "statement": "For each fixed integer k3 there are constants C_k,c_k,_k>0 such that, for every N2 , r_k(N) C_kN(-c_k( N)^ _k ). Equivalently, there is A_k1 such that an -dense subset of [N] contains a nonconstant k…",
+      "section": "Introduction",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-reciprocal",
+      "kind": "corollary",
+      "label": "Divergent reciprocal sums",
+      "statement": "[Divergent reciprocal sums] Every set A N with _ a A a^ -1 = contains nonconstant arithmetic progressions of every finite length.",
+      "section": "Introduction",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-increment",
+      "kind": "theorem",
+      "label": "Triangular increment",
+      "statement": "[Triangular increment] There are fixed D=D_k , =_k>0 , and polynomials with degrees depending only on k having the following property. Suppose p2 , a e^ -p , and a progression-free input on a…",
+      "section": "Polynomial cells and the increment theorem",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-absolute",
+      "kind": "lemma",
+      "label": "Dimension-independent fresh rank",
+      "statement": "[Dimension-independent fresh rank] There are >0 and C=C_k with the following property. Let p2 , and let f be a progression-free [0,1] -valued function of mean at least a e^ -p on a box of positive…",
+      "section": "Polynomial cells and the increment theorem",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-path-chart",
+      "kind": "lemma",
+      "label": "Chart mass and normalized coordinates",
+      "statement": "[Chart mass and normalized coordinates] The quantities m_j and m_j^ -1 have cold-pre bounds independent of the height of W . On a buffered chart the coordinates y_W/v and z_i/k_i have…",
+      "section": "Constrained paths and their detection estimates",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-path-ensemble",
+      "kind": "lemma",
+      "label": "The normalized one-layer ensemble",
+      "statement": "[The normalized one-layer ensemble] For the law just defined, sufficiently large permitted rank and parent side cutoffs give the following conclusions, uniformly in the center. Z_c=1+o(1) , and on…",
+      "section": "Constrained paths and their detection estimates",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-path-comparison",
+      "kind": "lemma",
+      "label": "Cube comparison in chart units",
+      "statement": "[Cube comparison in chart units] Fix slice costs, a fixed cube order q , and a requested accuracy. For a fixed permitted parameter slice B , the sampled functional \\[ (P_)_ __ tCub_q(B) _ \\ 0,1\\ ^q…",
+      "section": "Constrained paths and their detection estimates",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-path-detection",
+      "kind": "theorem",
+      "label": "Pathwise detection and approximation",
+      "statement": "[Pathwise detection and approximation] Prescribe finitely many testing degrees in the fixed allowed range, local test complexities, slice costs, input caps, and accuracies. The later parameters of…",
+      "section": "Constrained paths and their detection estimates",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-major-preparation",
+      "kind": "proposition",
+      "label": "Prepared system with triangular costs",
+      "statement": "[Prepared system with triangular costs] Given a triangular two-box certificate, forecast dimension bounds and descending numerical budgets in the sense of Definition~ . After polynomially many…",
+      "section": "Preparing a cell by rank cuts",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-major-backward",
+      "kind": "lemma",
+      "label": "Backward rank transfer",
+      "statement": "[Backward rank transfer] Suppose the actual stopped sampling procedure fails the rank test at block h with probability larger than the prescribed small bound at that block. Then there is an integral…",
+      "section": "Preparing a cell by rank cuts",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-major-transaction",
+      "kind": "lemma",
+      "label": "Relative rank-cut transaction",
+      "statement": "[Relative rank-cut transaction] Suppose a triangular two-box certificate \\[ f B^- > a B^+ \\] has a relation with nonzero on W_h . After a spatial slice, lower residual refinements, and a prescribed…",
+      "section": "Preparing a cell by rank cuts",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-major-real-recovery",
+      "kind": "lemma",
+      "label": "Normalized real recovery",
+      "statement": "[Normalized real recovery] Let a_j be the common normalized spatial scale of the kernel blocks. On the space of weighted homogeneous polynomials of any prescribed bounded degree, substitution by has…",
+      "section": "Preparing a cell by rank cuts",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-major-padic",
+      "kind": "lemma",
+      "label": "Prime-power polynomial test",
+      "statement": "[Prime-power polynomial test] For each fixed r there are constants c_r,C_r>0 such that, for every prime p , integer e1 , and polynomial P over /p^e of total degree at most r with at least one unit…",
+      "section": "Preparing a cell by rank cuts",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-major-denominator",
+      "kind": "lemma",
+      "label": "Simultaneous denominator recovery",
+      "statement": "[Simultaneous denominator recovery] Prescribe a cold-pre upper bound H for the least common denominator of the coefficients of a rational polynomial of bounded degree, and an exceptional probability…",
+      "section": "Preparing a cell by rank cuts",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-major-refinement",
+      "kind": "lemma",
+      "label": "Relative major refinement",
+      "statement": "[Relative major refinement] Let D(u,b) be a fixed weighted homogeneous scalar polynomial of bounded degree on ^n K , with no coefficient bound. Suppose that on at least a prescribed cold-pre fraction…",
+      "section": "Preparing a cell by rank cuts",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-path-grid",
+      "kind": "lemma",
+      "label": "Bounded-grid moments",
+      "statement": "[Bounded-grid moments] For 1 q j and any bounded Cartesian grid of distinct choice vectors S , the late rank and side choices can ensure _ S (_ a=1 ^q x_ a,_a )=1+o(1), where all x_ a,b are…",
+      "section": "Detection independent of the current width",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-path-relative-cube",
+      "kind": "lemma",
+      "label": "Relative cube detection",
+      "statement": "[Relative cube detection] Suppose a mixed q -cube average as in Equation~ has absolute value at least , and write its factors as F_=P_ J_/m_j , where |P_|1 and J_ are warm normalized site twists…",
+      "section": "Detection independent of the current width",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-path-weighted-separation",
+      "kind": "lemma",
+      "label": "Weighted detection implies approximation",
+      "statement": "[Weighted detection implies approximation] Lemma~ remains valid with any positive probability measure on a finite set in place of its uniform measure. Its coefficient-mass and atom-count bounds…",
+      "section": "Detection independent of the current width",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-scalar-flags",
+      "kind": "lemma",
+      "label": "Selected planes and flags",
+      "statement": "[Selected planes and flags] Let x be a vector of v_f pure-free columns and let r_0 be the vector of additional coefficient-one linear inactive columns. Fix all other parameter entries. Put =m_b+ r_0…",
+      "section": "Forward sampling of a prepared cell",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-scalar-forward",
+      "kind": "proposition",
+      "label": "Forward mass",
+      "statement": "[Forward mass] For any sufficiently small fixed >0 , a prepared certificate at threshold a gives a surviving set of terminal injective paths whose expected terminal input mean, with stopped paths…",
+      "section": "Forward sampling of a prepared cell",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-ascent-paired-cutoffs",
+      "kind": "lemma",
+      "label": "Pairing the absolute patch",
+      "statement": "[Pairing the absolute patch] The absolute patch on a productive terminal path may be replaced by a pair of product cutoffs as above, after a small proportional decrease of its target. The resulting…",
+      "section": "Returning the increment: comparison and passive layers",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-scalar-measure",
+      "kind": "lemma",
+      "label": "Comparison measure and forecasting weights",
+      "statement": "[Comparison measure and forecasting weights] For site functions alone these are the normalized-chart forecasting weights of Equation~ . The unrestricted site weight is at most B m_j^ -1 for a warm B…",
+      "section": "Returning the increment: comparison and passive layers",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-scalar-comparison",
+      "kind": "proposition",
+      "label": "Scalar comparison",
+      "statement": "[Scalar comparison] Suppose a set of productive modular-good paths has probability at least , with (1/) pre bounded, and each has a specified pre-cost slice. Consider bounded scores depending on site…",
+      "section": "Returning the increment: comparison and passive layers",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-ascent-representation",
+      "kind": "lemma",
+      "label": "Representation with exact determining projection",
+      "statement": "[Representation with exact determining projection] At a fixed parent and feasible center, the ascent data admit the following representation, after pigeonholing warm structural data. At a passive…",
+      "section": "Returning the increment: comparison and passive layers",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-lifting-refiltration",
+      "kind": "lemma",
+      "label": "Refiltration under a strong projection",
+      "statement": "[Refiltration under a strong projection] Let :G F be a rational homomorphism of connected simply connected filtered nilpotent Lie groups such that (G_i)=F_i for every i . Let v be a graded rational…",
+      "section": "Returning the increment: comparison and passive layers",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-passive-warm-matching",
+      "kind": "lemma",
+      "label": "Warm ordinary matching",
+      "statement": "[Warm ordinary matching] Fix j>s and 1 d s . Consider polynomially many fixed weighted homogeneous scalar forms of degree d whose leading path evaluations have slow-plus-rational decompositions with…",
+      "section": "Returning the increment: comparison and passive layers",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-passive-replacement",
+      "kind": "proposition",
+      "label": "Passive micro replacement",
+      "statement": "[Passive micro replacement] Suppose j>s and the ascent format holds on a warm-inverse fraction of paths at a fixed parent and feasible center. Use the group and the two fields of Lemma~ . There is a…",
+      "section": "Returning the increment: comparison and passive layers",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-passive-scalar-return",
+      "kind": "corollary",
+      "label": "Passive scalar return",
+      "statement": "[Passive scalar return] After Proposition~ , one can select a modular-good path and its retained warm-cost subslice for which the forecasting measure K of Lemma~ has a signed surplus of warm size.…",
+      "section": "Returning the increment: comparison and passive layers",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-active-replacement",
+      "kind": "theorem",
+      "label": "Active replacement",
+      "statement": "[Active replacement] Fix the prepared parent and a feasible center at a layer j s . Assume the modified sampler, scalar comparison, and major-decomposition contracts established above. Let G^0 be a…",
+      "section": "Active globalization with exact marking",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-macro-extraction",
+      "kind": "proposition",
+      "label": "One-layer extraction",
+      "statement": "[One-layer extraction] Under these hypotheses, after a prescribed small proportional discount of the target, one obtains a parent slice and a pair of cutoff boxes which add the current raw block b_j…",
+      "section": "Parameter extraction and exact restoration",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-macro-boundary",
+      "kind": "lemma",
+      "label": "Exceptional domains",
+      "statement": "[Exceptional domains] One may discard small-determinant choices from both payoffs, and narrow the positive domain by removing small boundary strips for all real pivot interval tests. One may also…",
+      "section": "Parameter extraction and exact restoration",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-macro-sections",
+      "kind": "lemma",
+      "label": "Affine-plane sections",
+      "statement": "[Affine-plane sections] Fix all residue parameters except the pure-free vector x(/M)^ v_f , and fix all inactive parameters except their extra linear columns r . Put m_b= b and l=m_b+ r . The…",
+      "section": "Parameter extraction and exact restoration",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-macro-localization",
+      "kind": "lemma",
+      "label": "Warm domain localization",
+      "statement": "[Warm domain localization] There is a common normalized cell scale with warm (1/) such that a spatial residue subbox, a warm-cost congruence class for , and a translated pair of current-slot cutoffs…",
+      "section": "Parameter extraction and exact restoration",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-iteration-compression",
+      "kind": "lemma",
+      "label": "Root compression",
+      "statement": "[Root compression] The root return of Section~ can be converted to the simultaneous two-box certificate of Theorem~ , with a further arbitrarily small proportional discount of its target. The…",
+      "section": "Triangular iteration",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-iteration-dimensions",
+      "kind": "proposition",
+      "label": "Triangular dimension bounds",
+      "statement": "[Triangular dimension bounds] For one round, the increase in the dimension of weight i is bounded by d_0 plus a fixed polynomial in the incoming dimensions strictly above i . The number of…",
+      "section": "Triangular iteration",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-iteration-widths",
+      "kind": "proposition",
+      "label": "Triangular width bounds",
+      "statement": "[Triangular width bounds] The choices above can be made with fixed polynomial logarithmic bounds. They give, in one round, Q_j^ out q_j+P_j(p,d_*,q_ >j ). where P_j is a fixed polynomial independent…",
+      "section": "Triangular iteration",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-iteration-closure",
+      "kind": "proposition",
+      "label": "Finite-horizon closure",
+      "statement": "[Finite-horizon closure] There are constants C_k>0 and A_k1 such that a progression-free subset of [N] of density >0 cannot satisfy \\[ N C_k(2+(1/))^ A_k . \\]",
+      "section": "Triangular iteration",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-weighted-dyadic",
+      "kind": "proposition",
+      "label": "Dyadic weighted summation",
+      "statement": "[Dyadic weighted summation] For w: N If A N contains no nonconstant k -term progression, then \\[ _ a A w(a) S_k(w). \\] Consequently, whenever S_k(w)< , divergence of the weighted sum forces a…",
+      "section": "Weighted consequences",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-weighted-harmonic",
+      "kind": "corollary",
+      "label": "Uniform harmonic bound",
+      "statement": "[Uniform harmonic bound] There is H_k< such that every k -term-progression-free A N satisfies \\[ _ a A 1a H_k. \\] One may take H_k=_ m0 2^ -m r_k(2^m) .",
+      "section": "Weighted consequences",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-weighted-stretched",
+      "kind": "corollary",
+      "label": "Stretched-exponential weights",
+      "statement": "[Stretched-exponential weights] Every k -term-progression-free set has a uniformly bounded sum for each of the weights w_a(n)&= (a( n)^ ) n , &&0<a<c,\\\\ w_ *, (n)&= (c( n)^ ) n n\\,( n)^ 1+ , &&>0.…",
+      "section": "Weighted consequences",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-weighted-logarithmic",
+      "kind": "corollary",
+      "label": "Logarithmic weights and every length",
+      "statement": "[Logarithmic weights and every length] For every fixed B0 , if A N satisfies \\[ _ a A ( (2+a))^B a =, \\] then A contains nonconstant arithmetic progressions of every finite length.",
+      "section": "Weighted consequences",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    },
+    {
+      "id": "m1-ap-weighted-tail",
+      "kind": "corollary",
+      "label": "Harmonic tails",
+      "statement": "[Harmonic tails] There is C'_k>0 such that every k -term-progression-free set A N satisfies, for all sufficiently large real x , \\[ _ a A\\ >x 1a C'_k( x)^ 1-_k e^ -c_k( x)^ _k . \\] In particular, for…",
+      "section": "Weighted consequences",
+      "manuscript": "Quasipolynomial Bounds for Arithmetic Progressions"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-ap-main",
+      "to": "m1-ap-reciprocal"
+    },
+    {
+      "from": "m1-ap-path-chart",
+      "to": "m1-ap-path-ensemble"
+    },
+    {
+      "from": "m1-ap-path-comparison",
+      "to": "m1-ap-path-detection"
+    },
+    {
+      "from": "m1-ap-path-ensemble",
+      "to": "m1-ap-path-detection"
+    },
+    {
+      "from": "m1-ap-major-padic",
+      "to": "m1-ap-major-denominator"
+    },
+    {
+      "from": "m1-ap-path-ensemble",
+      "to": "m1-ap-major-refinement"
+    },
+    {
+      "from": "m1-ap-path-detection",
+      "to": "m1-ap-major-refinement"
+    },
+    {
+      "from": "m1-ap-major-real-recovery",
+      "to": "m1-ap-major-refinement"
+    },
+    {
+      "from": "m1-ap-major-denominator",
+      "to": "m1-ap-major-refinement"
+    },
+    {
+      "from": "m1-ap-major-backward",
+      "to": "m1-ap-major-refinement"
+    },
+    {
+      "from": "m1-ap-major-preparation",
+      "to": "m1-ap-major-refinement"
+    },
+    {
+      "from": "m1-ap-major-transaction",
+      "to": "m1-ap-major-refinement"
+    },
+    {
+      "from": "m1-ap-path-grid",
+      "to": "m1-ap-path-relative-cube"
+    },
+    {
+      "from": "m1-ap-path-detection",
+      "to": "m1-ap-path-weighted-separation"
+    },
+    {
+      "from": "m1-ap-path-comparison",
+      "to": "m1-ap-path-weighted-separation"
+    },
+    {
+      "from": "m1-ap-path-relative-cube",
+      "to": "m1-ap-path-weighted-separation"
+    },
+    {
+      "from": "m1-ap-path-ensemble",
+      "to": "m1-ap-path-weighted-separation"
+    },
+    {
+      "from": "m1-ap-path-ensemble",
+      "to": "m1-ap-scalar-forward"
+    },
+    {
+      "from": "m1-ap-scalar-flags",
+      "to": "m1-ap-scalar-forward"
+    },
+    {
+      "from": "m1-ap-path-grid",
+      "to": "m1-ap-scalar-forward"
+    },
+    {
+      "from": "m1-ap-scalar-flags",
+      "to": "m1-ap-scalar-measure"
+    },
+    {
+      "from": "m1-ap-path-ensemble",
+      "to": "m1-ap-scalar-measure"
+    },
+    {
+      "from": "m1-ap-scalar-measure",
+      "to": "m1-ap-scalar-comparison"
+    },
+    {
+      "from": "m1-ap-path-detection",
+      "to": "m1-ap-scalar-comparison"
+    },
+    {
+      "from": "m1-ap-scalar-flags",
+      "to": "m1-ap-scalar-comparison"
+    },
+    {
+      "from": "m1-ap-major-refinement",
+      "to": "m1-ap-passive-warm-matching"
+    },
+    {
+      "from": "m1-ap-major-denominator",
+      "to": "m1-ap-passive-warm-matching"
+    },
+    {
+      "from": "m1-ap-path-detection",
+      "to": "m1-ap-passive-replacement"
+    },
+    {
+      "from": "m1-ap-passive-warm-matching",
+      "to": "m1-ap-passive-replacement"
+    },
+    {
+      "from": "m1-ap-scalar-comparison",
+      "to": "m1-ap-passive-scalar-return"
+    },
+    {
+      "from": "m1-ap-scalar-comparison",
+      "to": "m1-ap-active-replacement"
+    },
+    {
+      "from": "m1-ap-scalar-flags",
+      "to": "m1-ap-active-replacement"
+    },
+    {
+      "from": "m1-lifting-refiltration",
+      "to": "m1-ap-active-replacement"
+    },
+    {
+      "from": "m1-ap-scalar-flags",
+      "to": "m1-ap-macro-sections"
+    },
+    {
+      "from": "m1-ap-iteration-dimensions",
+      "to": "m1-ap-iteration-widths"
+    },
+    {
+      "from": "m1-ap-increment",
+      "to": "m1-ap-iteration-widths"
+    },
+    {
+      "from": "m1-ap-scalar-forward",
+      "to": "m1-ap-iteration-widths"
+    },
+    {
+      "from": "m1-ap-absolute",
+      "to": "m1-ap-iteration-widths"
+    },
+    {
+      "from": "m1-ap-iteration-compression",
+      "to": "m1-ap-iteration-widths"
+    },
+    {
+      "from": "m1-ap-iteration-dimensions",
+      "to": "m1-ap-iteration-closure"
+    },
+    {
+      "from": "m1-ap-iteration-widths",
+      "to": "m1-ap-iteration-closure"
+    },
+    {
+      "from": "m1-ap-main",
+      "to": "m1-ap-iteration-closure"
+    },
+    {
+      "from": "m1-ap-weighted-dyadic",
+      "to": "m1-ap-weighted-harmonic"
+    },
+    {
+      "from": "m1-ap-weighted-dyadic",
+      "to": "m1-ap-weighted-stretched"
+    },
+    {
+      "from": "m1-ap-weighted-dyadic",
+      "to": "m1-ap-weighted-logarithmic"
+    }
+  ]
+}

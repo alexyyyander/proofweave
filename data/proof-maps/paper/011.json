@@ -1,0 +1,877 @@
+{
+  "familyNumber": "011",
+  "familyTitle": "Prime-factor statistics of `p-1`",
+  "manuscripts": [
+    {
+      "id": "Weighted-Dilation-Graphs-Smooth-Shifted-Primes-and-Totient-Fibers-September-24-2026",
+      "title": "Weighted dilation graphs, smooth shifted primes and totient fibers",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Weighted-Dilation-Graphs-Smooth-Shifted-Primes-and-Totient-Fibers-September-24-2026/paper.pdf"
+    },
+    {
+      "id": "The-Poisson-Dirichlet-Law-for-Prime-Predecessors-September-24-2026",
+      "title": "The Poisson-Dirichlet law for prime predecessors",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Poisson-Dirichlet-Law-for-Prime-Predecessors-September-24-2026/paper.pdf"
+    },
+    {
+      "id": "Prime-Predecessors-with-an-Even-Number-of-Prime-Factors-September-17-2026",
+      "title": "Prime Predecessors with an Even Number of Prime Factors",
+      "date": "2026-09-17",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Prime-Predecessors-with-an-Even-Number-of-Prime-Factors-September-17-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Notation and preliminary estimates",
+    "Transference for dilation graphs",
+    "Small ideal kernels at every frequency",
+    "Lifted shifted correlations",
+    "A Type II estimate",
+    "Extracting primes with smooth predecessors",
+    "Large fibers of the totient function",
+    "Conventions and analytic inputs",
+    "A determinant estimate with marks on one side",
+    "Signed memory and the determinant moment",
+    "The major term of the determinant estimate",
+    "Two-sided marked correlations",
+    "Extraction of the prime statistic",
+    "Prime polynomials and logarithmic phases",
+    "Conventions and classical estimates",
+    "A long prime polynomial",
+    "A prime-slot shifted correlation with a common parity twist",
+    "Candidate weights and their mass"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-totient",
+      "kind": "theorem",
+      "label": "For every real >0 , there are infinitely many positive integers n such that \\[…",
+      "statement": "For every real >0 , there are infinitely many positive integers n such that \\[ g(n)>n^ 1- . \\]",
+      "section": "Introduction",
+      "manuscript": "Weighted dilation graphs, smooth shifted primes and totient fibers"
+    },
+    {
+      "id": "m1-thm-smooth",
+      "kind": "theorem",
+      "label": "For every fixed 0<<1/4 , as x , \\#\\ p:\\ p prime,\\ 2x<p5x, \\ P^+(p-1) x^\\ x^…",
+      "statement": "For every fixed 0<<1/4 , as x , \\#\\ p:\\ p prime,\\ 2x<p5x, \\ P^+(p-1) x^\\ x^ 1-o(1) . The quantity o(1) may depend on .",
+      "section": "Introduction",
+      "manuscript": "Weighted dilation graphs, smooth shifted primes and totient fibers"
+    },
+    {
+      "id": "m1-thm-sw",
+      "kind": "theorem",
+      "label": "Siegel--Walfisz",
+      "statement": "[Siegel--Walfisz] For fixed A,C>0 , uniformly for (a,r)=1 and 1 r( y)^C , \\[ \\#\\ p y:p a r\\ = (y) (r) +O_ A,C \\!(y ( y)^A ). \\] The constants, which need not be effective, are independent of y,a,r .",
+      "section": "Notation and preliminary estimates",
+      "manuscript": "Weighted dilation graphs, smooth shifted primes and totient fibers"
+    },
+    {
+      "id": "m1-thm-large-sieve",
+      "kind": "theorem",
+      "label": "Multiplicative large sieve",
+      "statement": "[Multiplicative large sieve] Let I be a real interval of length H , let a_n be complex numbers supported on I , and let R1 . Then \\[ _ r R r (r) _ r ^ * |_ n I a_n(n)|^2 (H+1+R^2)_n|a_n|^2, \\] where…",
+      "section": "Notation and preliminary estimates",
+      "manuscript": "Weighted dilation graphs, smooth shifted primes and totient fibers"
+    },
+    {
+      "id": "m1-cor-harmonic-sw",
+      "kind": "corollary",
+      "label": "Harmonic character estimates",
+      "statement": "[Harmonic character estimates] Fix c,C,B,A>0 . If is nonprincipal modulo r L^B , then, uniformly for real |t| L^B and intervals I , \\[ _ p I (p)p^ it p_ c,C,B,A L^ -A . \\] The same conclusion holds…",
+      "section": "Notation and preliminary estimates",
+      "manuscript": "Weighted dilation graphs, smooth shifted primes and totient fibers"
+    },
+    {
+      "id": "m1-lem-divisor-moments",
+      "kind": "lemma",
+      "label": "Fixed divisor moments",
+      "statement": "[Fixed divisor moments] For each fixed nonnegative integer k , \\[ _ n Y (n)^k n _k((2Y))^ C_k , _ n Y (n)^k_k Y((2Y))^ C_k \\] for a constant C_k . Consequently, a convolution of a fixed number of…",
+      "section": "Notation and preliminary estimates",
+      "manuscript": "Weighted dilation graphs, smooth shifted primes and totient fibers"
+    },
+    {
+      "id": "m1-lem-dirichlet-mean",
+      "kind": "lemma",
+      "label": "Mean squares",
+      "statement": "[Mean squares] If P(t)=_ n Y c_n n^ it and I is an interval of length H , then \\[ _I|P(t)|^2\\,dt (H+Y(2Y))_n|c_n|^2. \\] For a set T of real points at mutual distance at least one, contained in an…",
+      "section": "Notation and preliminary estimates",
+      "manuscript": "Weighted dilation graphs, smooth shifted primes and totient fibers"
+    },
+    {
+      "id": "m1-lem-derivative-tests",
+      "kind": "lemma",
+      "label": "Derivative tests",
+      "statement": "[Derivative tests] Let f be real-valued on an interval containing H consecutive integers. If f' is monotone and stays in [j+,j+1-] for some integer j and 0<1/2 , then _n e(f(n))^ -1 . If f is twice…",
+      "section": "Notation and preliminary estimates",
+      "manuscript": "Weighted dilation graphs, smooth shifted primes and totient fibers"
+    },
+    {
+      "id": "m1-lem-fourier-separation",
+      "kind": "lemma",
+      "label": "Fourier separation",
+      "statement": "[Fourier separation] Let F be smooth, supported in a fixed bounded box in ^b , where b is fixed. Suppose that for every nonnegative integer j its derivatives of order j are bounded by C_jL^ C(j+1) .…",
+      "section": "Notation and preliminary estimates",
+      "manuscript": "Weighted dilation graphs, smooth shifted primes and totient fibers"
+    },
+    {
+      "id": "m1-lem-sieve",
+      "kind": "lemma",
+      "label": "Block sieve",
+      "statement": "[Block sieve] Consider a finite set of objects with nonnegative weights. For some primes p z , let a bad condition be specified. If d is a squarefree product of these primes, suppose the weight of…",
+      "section": "Notation and preliminary estimates",
+      "manuscript": "Weighted dilation graphs, smooth shifted primes and totient fibers"
+    },
+    {
+      "id": "m1-lem-rough-sieve-polynomial",
+      "kind": "corollary",
+      "label": "A polynomial for rough integers",
+      "statement": "[A polynomial for rough integers] For the ordinary bad conditions p n at primes p z , let U(n)=_ d n _d be the upper polynomial in , and put D=z^ 4h+2 . Then \\[ U(n)_ (n)>z 0, |_d|1, _d=0unless d D…",
+      "section": "Notation and preliminary estimates",
+      "manuscript": "Weighted dilation graphs, smooth shifted primes and totient fibers"
+    },
+    {
+      "id": "m1-lem-physical-schur",
+      "kind": "lemma",
+      "label": "Absolute physical bounds",
+      "statement": "[Absolute physical bounds] Replace the coefficients of each row transition of A by their absolute values before adding patterns or averaging permutations. The resulting operator and its adjoint have…",
+      "section": "Transference for dilation graphs",
+      "manuscript": "Weighted dilation graphs, smooth shifted primes and totient fibers"
+    },
+    {
+      "id": "m1-thm-transference",
+      "kind": "theorem",
+      "label": "Local transference",
+      "statement": "[Local transference] For every fixed E>0 there is E_ id >0 , depending only on E and the fixed data in , with the following property. Assume _ T( ) L^ -E_ id . Then, for every sufficiently large…",
+      "section": "Transference for dilation graphs",
+      "manuscript": "Weighted dilation graphs, smooth shifted primes and totient fibers"
+    },
+    {
+      "id": "m1-lem-transference-crt",
+      "kind": "lemma",
+      "label": "Uniform residue replacement",
+      "statement": "[Uniform residue replacement] For each compatible fixed path and every fixed A>0 , the average of over I equals its expectation under independent uniform residues at all group primes, multiplied by…",
+      "section": "Transference for dilation graphs",
+      "manuscript": "Weighted dilation graphs, smooth shifted primes and totient fibers"
+    },
+    {
+      "id": "m1-lem-memory-identity",
+      "kind": "lemma",
+      "label": "Exact memory identity",
+      "statement": "[Exact memory identity] With the distinct-birth rule, the independent-residue path expression with the phase in equals (_ p\\ big b_p) 1_, G_0 E_0G_1 E_ N-1 G_N 1__ distinct . The subscript means that…",
+      "section": "Transference for dilation graphs",
+      "manuscript": "Weighted dilation graphs, smooth shifted primes and totient fibers"
+    },
+    {
+      "id": "m1-lem-memory-absolute",
+      "kind": "lemma",
+      "label": "Absolute memory bounds",
+      "statement": "[Absolute memory bounds] There is C_a , allowed to depend on m,C_1 but independent of J , such that every absolute edge has weighted row and column bounds L^ C_a . These bounds and persist under…",
+      "section": "Transference for dilation graphs",
+      "manuscript": "Weighted dilation graphs, smooth shifted primes and totient fibers"
+    },
+    {
+      "id": "m1-lem-rare-transfer",
+      "kind": "lemma",
+      "label": "Rare transfer",
+      "statement": "[Rare transfer] With the memory truncation in , the aggregate of all dirty terms of any edge has norm at most 2L^ C_a ( B D )^ 1/2 , after enlarging C_a independently of J if necessary.",
+      "section": "Transference for dilation graphs",
+      "manuscript": "Weighted dilation graphs, smooth shifted primes and totient fibers"
+    },
+    {
+      "id": "m1-lem-clean-norm",
+      "kind": "lemma",
+      "label": "Clean norm",
+      "statement": "[Clean norm] There is C_s , depending only on the fixed data in , such that the clean part of every edge satisfies E_ i, clean 2L^ -E_ id +C_s for all sufficiently large x , under . In particular C_s…",
+      "section": "Transference for dilation graphs",
+      "manuscript": "Weighted dilation graphs, smooth shifted primes and totient fibers"
+    },
+    {
+      "id": "m1-cor-transference-pairing",
+      "kind": "corollary",
+      "label": "Under the hypotheses and choices of , let f H_ ph be supported on positions…",
+      "statement": "Under the hypotheses and choices of , let f H_ ph be supported on positions I=[X,2X) and independent of the chosen marks, with value f_n at position n . Suppose \\[ _ n I |f_n|(O( L)), f, g X^ 1/2 L^…",
+      "section": "Transference for dilation graphs",
+      "manuscript": "Weighted dilation graphs, smooth shifted primes and totient fibers"
+    },
+    {
+      "id": "m1-thm-ideal",
+      "kind": "theorem",
+      "label": "Construction of the residual ideal operator",
+      "statement": "[Construction of the residual ideal operator] Fix E_ id >0 and a fixed frequency exponent C_40 . There are fixed integers m,J_0 and a fixed constant C_1 , depending only on these parameters, , and…",
+      "section": "Small ideal kernels at every frequency",
+      "manuscript": "Weighted dilation graphs, smooth shifted primes and totient fibers"
+    },
+    {
+      "id": "m1-lem-bilinear",
+      "kind": "lemma",
+      "label": "Integer bilinear estimate",
+      "statement": "[Integer bilinear estimate] Let U,V1 . Suppose a_n,b_t are supported in integer intervals of lengths at most C U,C V , respectively, where C is fixed. If \\[ =u/r+, (u,r)=1, r1, || r^ -2 , \\] then |_…",
+      "section": "Small ideal kernels at every frequency",
+      "manuscript": "Weighted dilation graphs, smooth shifted primes and totient fibers"
+    },
+    {
+      "id": "m1-lem-comparison-kernel",
+      "kind": "lemma",
+      "label": "Comparison kernel",
+      "statement": "[Comparison kernel] Fix m , A_0>0 , and C_40 . There are fixed powers Q,h^ -1 ,^ -1 of L , independent of J , such that the kernels in have the following property. Let A,B be nonempty sets of slots,…",
+      "section": "Small ideal kernels at every frequency",
+      "manuscript": "Weighted dilation graphs, smooth shifted primes and totient fibers"
+    },
+    {
+      "id": "m1-thm-shift",
+      "kind": "theorem",
+      "label": "Lifted shift cancellation",
+      "statement": "[Lifted shift cancellation] Fix all the group and endpoint bounds above. Fix D_0,C>0 and a fixed compact interval [c_,C_](0,) . Suppose 0<|k| L^C is integral, xL^ -C Z xL^C , |a_1|,|a_2| L^C , and is…",
+      "section": "Lifted shifted correlations",
+      "manuscript": "Weighted dilation graphs, smooth shifted primes and totient fibers"
+    },
+    {
+      "id": "m1-lem-exceptional-times",
+      "kind": "lemma",
+      "label": "Number of exceptional unit intervals",
+      "statement": "[Number of exceptional unit intervals] The set E meets at most \\[ \\!(O(L^b+L^ 1-a L))=Y^ o(1) \\] intervals [j,j+1] , uniformly in the bounded coefficients b_s .",
+      "section": "Lifted shifted correlations",
+      "manuscript": "Weighted dilation graphs, smooth shifted primes and totient fibers"
+    },
+    {
+      "id": "m1-lem-sparse-residual",
+      "kind": "lemma",
+      "label": "Sparse residual mean square",
+      "statement": "[Sparse residual mean square] For the occupied unit intervals I_j in , \\[ _j_ t I_j | R(t)|^2 L^ C_ 12 . \\]",
+      "section": "Lifted shifted correlations",
+      "manuscript": "Weighted dilation graphs, smooth shifted primes and totient fibers"
+    },
+    {
+      "id": "m1-lem-long-rough-polynomial",
+      "kind": "lemma",
+      "label": "Long rough-integer polynomial",
+      "statement": "[Long rough-integer polynomial] Fix >0 , <1/4 , C>0 , and A>0 . Let x^/2 P' x^ , let J' be an interval, and let have modulus at most L^C . If || L^C , then, for a sufficiently large fixed B_0 ,…",
+      "section": "Lifted shifted correlations",
+      "manuscript": "Weighted dilation graphs, smooth shifted primes and totient fibers"
+    },
+    {
+      "id": "m1-thm-typeii",
+      "kind": "theorem",
+      "label": "Type II",
+      "statement": "[Type II] Fix D_*>0 , b_*>0 , and C>0 , and require _*<b_*/4 in . Let U,V be dyadic scales satisfying \\[ UV x, x^ b_* U,V x^ 1-b_* . \\] Let be a fixed smooth function with compact support in a fixed…",
+      "section": "A Type II estimate",
+      "manuscript": "Weighted dilation graphs, smooth shifted primes and totient fibers"
+    },
+    {
+      "id": "m1-prop-candidate-mass",
+      "kind": "proposition",
+      "label": "Candidate mass",
+      "statement": "[Candidate mass] Put \\[ X_A=_u A(u)(u/x), H_Q=_va_Q(v)v, H_P=_ r:r_*=1 W_1(r)r. \\] There are constants C,C_A depending only on the early candidate choices such that, for sufficiently large x after…",
+      "section": "Extracting primes with smooth predecessors",
+      "manuscript": "Weighted dilation graphs, smooth shifted primes and totient fibers"
+    },
+    {
+      "id": "m1-prop-typei",
+      "kind": "proposition",
+      "label": "Type I distribution",
+      "statement": "[Type I distribution] For every fixed <1/2 and D>0 , _ d x^\\ odd and squarefree |r(d)| xL^ -D +X_AL^ -18 .",
+      "section": "Extracting primes with smooth predecessors",
+      "manuscript": "Weighted dilation graphs, smooth shifted primes and totient fibers"
+    },
+    {
+      "id": "m1-lem-proxy-discrepancy",
+      "kind": "lemma",
+      "label": "Proxy discrepancy",
+      "statement": "[Proxy discrepancy] The denominators in are positive for large x . Moreover 0 B_I1 . Given any fixed discrepancy exponent B , taking S>2B+3 makes \\[ _m=(I(m)-B_I(m))_ m K \\] satisfy , uniformly for…",
+      "section": "Extracting primes with smooth predecessors",
+      "manuscript": "Weighted dilation graphs, smooth shifted primes and totient fibers"
+    },
+    {
+      "id": "m1-lem-proxy-densities",
+      "kind": "lemma",
+      "label": "Proxy density bounds",
+      "statement": "[Proxy density bounds] For the prime proxy in the interval x^ 1/2-2 m x^ 1/2+2 , c_ pr (m)C LV(W) , where C is absolute for 0<<1/50 . If mn=N_u on the support of (u/x) and n/L(,'] , then c_(m) _ a'…",
+      "section": "Extracting primes with smooth predecessors",
+      "manuscript": "Weighted dilation graphs, smooth shifted primes and totient fibers"
+    },
+    {
+      "id": "m1-lem-finite-totient-fibers",
+      "kind": "lemma",
+      "label": "For each positive integer n , the set of positive integers m with (m)=n is…",
+      "statement": "For each positive integer n , the set of positive integers m with (m)=n is finite. For every >0 , \\[ g(n)_ n^ 1+ . \\]",
+      "section": "Large fibers of the totient function",
+      "manuscript": "Weighted dilation graphs, smooth shifted primes and totient fibers"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "For every fixed k1 and every bounded continuous function F:[0,1]^k , _ x 1…",
+      "statement": "For every fixed k1 and every bounded continuous function F:[0,1]^k , _ x 1 (x)-1 _ 3 p x\\ prime F(V_1(p),,V_k(p)) = F(L_1,,L_k). The limit holds through all real x and uses ordinary equal weighting…",
+      "section": "Introduction",
+      "manuscript": "The Poisson-Dirichlet law for prime predecessors"
+    },
+    {
+      "id": "m2-lem-prime-estimates",
+      "kind": "lemma",
+      "label": "Prime estimates",
+      "statement": "[Prime estimates] The prime number theorem holds with an error smaller than every fixed negative power of the logarithm. In particular, as y , \\[ _ p y 1p= y+c_M+o(1), _ p y (1-1p) e^ -_E y , \\]…",
+      "section": "Conventions and analytic inputs",
+      "manuscript": "The Poisson-Dirichlet law for prime predecessors"
+    },
+    {
+      "id": "m2-lem-moment-bounds",
+      "kind": "lemma",
+      "label": "Divisor moments and Dirichlet mean squares",
+      "statement": "[Divisor moments and Dirichlet mean squares] For every fixed nonnegative integer k there is C_k such that \\[ _ n Y (n)^k_k Y((2Y))^ C_k , _ n Y (n)^k n _k((2Y))^ C_k . \\] Let P(t)=_ n Y c_n n^ it .…",
+      "section": "Conventions and analytic inputs",
+      "manuscript": "The Poisson-Dirichlet law for prime predecessors"
+    },
+    {
+      "id": "m2-lem-long-prime",
+      "kind": "lemma",
+      "label": "Long prime polynomial",
+      "statement": "[Long prime polynomial] Fix 0<<<1 and C,A>0 . There is B_0=B_0(,,C,A) such that, uniformly for \\[ x^ 2 N x^, q L^C, L^ B_0 |t| x^2, \\] every Dirichlet character modulo q and every interval I satisfy…",
+      "section": "Conventions and analytic inputs",
+      "manuscript": "The Poisson-Dirichlet law for prime predecessors"
+    },
+    {
+      "id": "m2-lem-log-phase",
+      "kind": "lemma",
+      "label": "Logarithmic phases on progressions",
+      "statement": "[Logarithmic phases on progressions] Fix C>0 . There is an absolute constant C_3>0 such that, for sufficiently large x in terms of C , the following holds uniformly: \\[ \\!(L ( L)^2 ) N2x^5, q L^C,…",
+      "section": "Conventions and analytic inputs",
+      "manuscript": "The Poisson-Dirichlet law for prime predecessors"
+    },
+    {
+      "id": "m2-lem-rough-counts",
+      "kind": "lemma",
+      "label": "Rough integers in long intervals",
+      "statement": "[Rough integers in long intervals] Fix >0 , C>0 , 0<a<1 and A>0 . Suppose x^ H x^C and I is an interval. Then \\#\\ n I:P^-(n)>W\\ =V(W)|I|+O(HL^ -A ). If d(L^a) and every prime divisor of d exceeds W ,…",
+      "section": "Conventions and analytic inputs",
+      "manuscript": "The Poisson-Dirichlet law for prime predecessors"
+    },
+    {
+      "id": "m2-lem-block-sieve",
+      "kind": "lemma",
+      "label": "Block sieve",
+      "statement": "[Block sieve] Consider finitely many objects with nonnegative weights and a bad condition at each of some designated primes p z . Suppose that the total weight on which all conditions indexed by the…",
+      "section": "Conventions and analytic inputs",
+      "manuscript": "The Poisson-Dirichlet law for prime predecessors"
+    },
+    {
+      "id": "m2-thm-type-ii",
+      "kind": "theorem",
+      "label": "One-sided marked Type II estimate",
+      "statement": "[One-sided marked Type II estimate] Fix ,C,D_*>0 and q(0,1) . Suppose H_m,H_n x^ and X=H_mH_n x . Let F satisfy |F(h)|1 and F(ph)=F(h) for every prime in the groups . Let _m be supported on an…",
+      "section": "A determinant estimate with marks on one side",
+      "manuscript": "The Poisson-Dirichlet law for prime predecessors"
+    },
+    {
+      "id": "m2-det-good-state",
+      "kind": "lemma",
+      "label": "For any fixed lists, the set of r/ failing goodness has Lebesgue measure at…",
+      "statement": "For any fixed lists, the set of r/ failing goodness has Lebesgue measure at most (-cL^ 0.1 ) , for some c>0 and all sufficiently large x .",
+      "section": "A determinant estimate with marks on one side",
+      "manuscript": "The Poisson-Dirichlet law for prime predecessors"
+    },
+    {
+      "id": "m2-lem-root-residue",
+      "kind": "lemma",
+      "label": "Root residues",
+      "statement": "[Root residues] There is c_>0 such that the following holds. Let S be squarefree with S(C_KL^ 0.98 ) , and prescribe g_0SL_2(/S) . If I_1,I_2,I_3 are intervals in [1,16],[1,2],[0,1] , respectively,…",
+      "section": "A determinant estimate with marks on one side",
+      "manuscript": "The Poisson-Dirichlet law for prime predecessors"
+    },
+    {
+      "id": "m2-det-root-replacement",
+      "kind": "lemma",
+      "label": "Replacement of the root average",
+      "statement": "[Replacement of the root average] In the normalized path expansion of , one may replace the root average by \\[ 1 (2) _ [1,16] (u/U)\\,(v/V)\\, r \\] and by independent uniformly distributed lines in…",
+      "section": "A determinant estimate with marks on one side",
+      "manuscript": "The Poisson-Dirichlet law for prime predecessors"
+    },
+    {
+      "id": "m2-prop-minor-moment",
+      "kind": "proposition",
+      "label": "The minor-arc moment",
+      "statement": "[The minor-arc moment] For every fixed E_0>0 , one can choose A_0 sufficiently large and then K sufficiently large, in terms of E_0,q and the fixed parameters of Theorem~ , so that the operator with…",
+      "section": "Signed memory and the determinant moment",
+      "manuscript": "The Poisson-Dirichlet law for prime predecessors"
+    },
+    {
+      "id": "m2-prop-major-term",
+      "kind": "proposition",
+      "label": "The determinant major term",
+      "statement": "[The determinant major term] For every fixed D>0 , the unrestricted major sum Q_Y^ maj = & (_ i=1 ^K V_i^ -2 ) _ a,b,m,n,r,s (a/Y)(b/Y)_m _r _n _s\\, H_ M (bmn-ars;a,b) satisfies | Q_Y^ maj |_D XYL^…",
+      "section": "The major term of the determinant estimate",
+      "manuscript": "The Poisson-Dirichlet law for prime predecessors"
+    },
+    {
+      "id": "m2-maj-long-coefficient",
+      "kind": "lemma",
+      "label": "The long coefficient",
+      "statement": "[The long coefficient] Fix A_0,B,A>0 . For every character of modulus at most L^ A_0 , put M_(t)=1 H_m _m_m(m)m^ it . Then, uniformly for |t| 2XL^B , |M_(t)|_A L^ -A . The assertion also holds with…",
+      "section": "The major term of the determinant estimate",
+      "manuscript": "The Poisson-Dirichlet law for prime predecessors"
+    },
+    {
+      "id": "m2-maj-sparse-frequency",
+      "kind": "lemma",
+      "label": "A small prime factor and sparse frequencies",
+      "statement": "[A small prime factor and sparse frequencies] Let P satisfy cL^ 0.1 P C_1L^ 0.2 , and let P be any set of primes in [P,2P] . For any real and any character , put \\[ P_s(t)=P^ -1 _ p P (p)p^ i(t+) .…",
+      "section": "The major term of the determinant estimate",
+      "manuscript": "The Poisson-Dirichlet law for prime predecessors"
+    },
+    {
+      "id": "m2-thm-two-sided",
+      "kind": "theorem",
+      "label": "Two-sided correlation",
+      "statement": "[Two-sided correlation] Fix d1 , >0 , and intervals I_1,,I_d whose lower endpoints are at least x^ and whose upper endpoints have product at most x^ 1- . Let l=(l_1,,l_d) run over ordered tuples of…",
+      "section": "Two-sided marked correlations",
+      "manuscript": "The Poisson-Dirichlet law for prime predecessors"
+    },
+    {
+      "id": "m2-prop-graph-transfer",
+      "kind": "proposition",
+      "label": "General graph transference input",
+      "statement": "[General graph transference input] Assume _|K_| L^ C_1 , where m_0,C_1 are fixed independently of J . For every fixed E>0 there is E_ id >0 , depending only on E and the fixed group data, such that…",
+      "section": "Two-sided marked correlations",
+      "manuscript": "The Poisson-Dirichlet law for prime predecessors"
+    },
+    {
+      "id": "m2-prop-ideal-family",
+      "kind": "proposition",
+      "label": "Residual ideal family input",
+      "statement": "[Residual ideal family input] For every E_ id >0 and fixed C_40 , there are fixed m_0,J_0,C_1 such that, for each fixed J J_0 , a family consisting of the raw pattern C_g= , K_0=1 , and signed…",
+      "section": "Two-sided marked correlations",
+      "manuscript": "The Poisson-Dirichlet law for prime predecessors"
+    },
+    {
+      "id": "m2-lem-local-mellin",
+      "kind": "lemma",
+      "label": "Local Mellin energy",
+      "statement": "[Local Mellin energy] Let a_w be supported on w Y , where Y=x^ 1+o(1) , and suppose H=x^ o(1) . For every fixed integer j1 , _ || H^ -1 | a()|^2\\, _j1Y_ (1+H|t|/Y)^ -j |_w a_ww^ it |^2\\, t +(…",
+      "section": "Two-sided marked correlations",
+      "manuscript": "The Poisson-Dirichlet law for prime predecessors"
+    },
+    {
+      "id": "m2-lem-divisor-model",
+      "kind": "lemma",
+      "label": "Truncated divisor model",
+      "statement": "[Truncated divisor model] Let H_ marks (n)= W(n)W_ t ^ b (n) , where 0 t_g m' for fixed m' and | b|1 . In particular, zero values of t_g are allowed; these occur when a small mark is removed below.…",
+      "section": "Two-sided marked correlations",
+      "manuscript": "The Poisson-Dirichlet law for prime predecessors"
+    },
+    {
+      "id": "m2-thm-interior",
+      "kind": "theorem",
+      "label": "Interior prime statistic",
+      "statement": "[Interior prime statistic] For every nonnegative C_c^((0,)) , _ p prime ((p-1)/x) (f_x(p-1)-C_x)=o(x/ x). The limit holds through all real x for the slot intervals just described.",
+      "section": "Extraction of the prime statistic",
+      "manuscript": "The Poisson-Dirichlet law for prime predecessors"
+    },
+    {
+      "id": "m2-lem-progressions",
+      "kind": "lemma",
+      "label": "Summed progression remainder",
+      "statement": "[Summed progression remainder] Choose 0<c_0</2 . Let H be a weight from a fixed finite collection of disjoint arrays, a product of two such weights (allowing a repeated array), a constant, or a…",
+      "section": "Extraction of the prime statistic",
+      "manuscript": "The Poisson-Dirichlet law for prime predecessors"
+    },
+    {
+      "id": "m2-lp-prime-polynomial",
+      "kind": "lemma",
+      "label": "Long prime polynomial",
+      "statement": "[Long prime polynomial] Fix 0<<<1 , C>0 , and A>0 . There is a constant B_0=B_0(,,C,A) such that, uniformly for \\[ x^ 2 N x^, q L^C, L^ B_0 |t| x^2, \\] every Dirichlet character modulo q and every…",
+      "section": "Prime polynomials and logarithmic phases",
+      "manuscript": "The Poisson-Dirichlet law for prime predecessors"
+    },
+    {
+      "id": "m2-lp-pre-primes",
+      "kind": "lemma",
+      "label": "Primes for the congruence iteration",
+      "statement": "[Primes for the congruence iteration] There is an absolute constant A_1>0 such that, for every integer k2 and every real y A_1k^6 , the interval [y,2y] contains at least 2k^3+5 primes, all greater…",
+      "section": "Prime polynomials and logarithmic phases",
+      "manuscript": "The Poisson-Dirichlet law for prime predecessors"
+    },
+    {
+      "id": "m2-lp-pre-derivatives",
+      "kind": "lemma",
+      "label": "Monotone first derivative estimate",
+      "statement": "[Monotone first derivative estimate] Let f be real-valued and continuously differentiable on an interval. Suppose f' is monotone and takes values in [j+,j+1-] for an integer j and 0<1/2 . Then, on…",
+      "section": "Prime polynomials and logarithmic phases",
+      "manuscript": "The Poisson-Dirichlet law for prime predecessors"
+    },
+    {
+      "id": "m2-lp-mean-value",
+      "kind": "lemma",
+      "label": "A quantitative power-sum bound",
+      "statement": "[A quantitative power-sum bound] There are absolute constants C_1,C_2>0 such that, for every integer k2 , some integer s with k s C_1k^4 satisfies J_ s,k (M) (C_1k^ C_2 )M^ 2s-K+1/100 (M1).",
+      "section": "Prime polynomials and logarithmic phases",
+      "manuscript": "The Poisson-Dirichlet law for prime predecessors"
+    },
+    {
+      "id": "m2-lp-log-phase",
+      "kind": "lemma",
+      "label": "A logarithmic phase on progressions",
+      "statement": "[A logarithmic phase on progressions] Fix C>0 . There is an absolute constant C_3>0 such that, for sufficiently large x in terms of C , the following holds uniformly: \\[ (L/T^2) N'2x^5, q L^C,…",
+      "section": "Prime polynomials and logarithmic phases",
+      "manuscript": "The Poisson-Dirichlet law for prime predecessors"
+    },
+    {
+      "id": "m2-lp-l-upper",
+      "kind": "lemma",
+      "label": "A bound near the line Res=1",
+      "statement": "[A bound near the line Res=1 ] Fix C>0 and put r_*=T^4/L . Uniformly for q L^C , |D(+iv,)|_C T^2 (|-1|10r_*, 12|v|3x^3).",
+      "section": "Prime polynomials and logarithmic phases",
+      "manuscript": "The Poisson-Dirichlet law for prime predecessors"
+    },
+    {
+      "id": "m2-lp-local-log-derivative",
+      "kind": "lemma",
+      "label": "Local logarithmic derivative",
+      "statement": "[Local logarithmic derivative] Fix C>0 , let q L^C , and put s_0=1+r_*+iv , where 1|v|52x^3 . There is a radius R with 4r_* R5r_* , with no zero on its boundary, for which D' D (s,) =_ |-s_0|<R 1 s-…",
+      "section": "Prime polynomials and logarithmic phases",
+      "manuscript": "The Poisson-Dirichlet law for prime predecessors"
+    },
+    {
+      "id": "m2-lp-zero-free",
+      "kind": "lemma",
+      "label": "A zero-free strip at large height",
+      "statement": "[A zero-free strip at large height] For each fixed C>0 there is c=c(C)>0 such that every character of modulus at most L^C has no zero in Res1-cT^2/L, 1|Ims| x^3. Moreover, |D'D(s,)|_C L (1-cT^2 2L…",
+      "section": "Prime polynomials and logarithmic phases",
+      "manuscript": "The Poisson-Dirichlet law for prime predecessors"
+    },
+    {
+      "id": "m3-thm-main",
+      "kind": "theorem",
+      "label": "There are infinitely many primes p such that p-1 is squarefree and (p-1) is…",
+      "statement": "There are infinitely many primes p such that p-1 is squarefree and (p-1) is even. In particular, there are infinitely many such primes under either convention for counting prime factors.",
+      "section": "Introduction",
+      "manuscript": "Prime Predecessors with an Even Number of Prime Factors"
+    },
+    {
+      "id": "m3-pre-primes",
+      "kind": "proposition",
+      "label": "Prime estimates",
+      "statement": "[Prime estimates] The prime number theorem holds with an error smaller than every fixed negative logarithmic power. Mertens' estimates give \\[ _ p y 1p= y+O(1), _ p y (1-1p) e^ -_E y , \\] where _E is…",
+      "section": "Conventions and classical estimates",
+      "manuscript": "Prime Predecessors with an Even Number of Prime Factors"
+    },
+    {
+      "id": "m3-pre-moments",
+      "kind": "proposition",
+      "label": "Large sieve and moment bounds",
+      "statement": "[Large sieve and moment bounds] For arbitrary coefficients supported on the integers of an interval of length H , \\[ _ r R r (r) _ r ^ * |_n a_n(n)|^2 (H+1+R^2)_n|a_n|^2. \\] The asterisk denotes…",
+      "section": "Conventions and classical estimates",
+      "manuscript": "Prime Predecessors with an Even Number of Prime Factors"
+    },
+    {
+      "id": "m3-pre-derivatives",
+      "kind": "proposition",
+      "label": "Derivative tests",
+      "statement": "[Derivative tests] Let f be real-valued on an interval containing H consecutive integers. If f' is monotone and remains in [j+,j+1-] for an integer j and 0<1/2 , then \\[ _n(f(n))^ -1 . \\] If instead…",
+      "section": "Conventions and classical estimates",
+      "manuscript": "Prime Predecessors with an Even Number of Prime Factors"
+    },
+    {
+      "id": "m3-pre-separation",
+      "kind": "lemma",
+      "label": "Smooth separation",
+      "statement": "[Smooth separation] Let F be smooth and supported on a fixed bounded box in ^b , with b fixed. Suppose all derivatives of order j are bounded by C_jL^ C(j+1) . Fourier inversion separates its…",
+      "section": "Conventions and classical estimates",
+      "manuscript": "Prime Predecessors with an Even Number of Prime Factors"
+    },
+    {
+      "id": "m3-lp-prime-polynomial",
+      "kind": "lemma",
+      "label": "Long prime polynomial",
+      "statement": "[Long prime polynomial] Fix 0<<<1 , C>0 , and A>0 . There is a constant B_0=B_0(,,C,A) such that, uniformly for \\[ x^ 2 N x^, q L^C, L^ B_0 |t| x^2, \\] every Dirichlet character modulo q and every…",
+      "section": "A long prime polynomial",
+      "manuscript": "Prime Predecessors with an Even Number of Prime Factors"
+    },
+    {
+      "id": "m3-lp-mean-value",
+      "kind": "lemma",
+      "label": "A quantitative power-sum bound",
+      "statement": "[A quantitative power-sum bound] There are absolute constants C_1,C_2>0 such that, for every integer k2 , some integer s with k s C_1k^4 satisfies J_ s,k (M) (C_1k^ C_2 )M^ 2s-K+1/100 (M1).",
+      "section": "A long prime polynomial",
+      "manuscript": "Prime Predecessors with an Even Number of Prime Factors"
+    },
+    {
+      "id": "m3-lp-log-phase",
+      "kind": "lemma",
+      "label": "A logarithmic phase on progressions",
+      "statement": "[A logarithmic phase on progressions] Fix C>0 . There is an absolute constant C_3>0 such that, for sufficiently large x in terms of C , the following holds uniformly: \\[ (L/T^2) N'2x^5, q L^C,…",
+      "section": "A long prime polynomial",
+      "manuscript": "Prime Predecessors with an Even Number of Prime Factors"
+    },
+    {
+      "id": "m3-lp-l-upper",
+      "kind": "lemma",
+      "label": "A bound near the line Res=1",
+      "statement": "[A bound near the line Res=1 ] Fix C>0 and put r_*=T^4/L . Uniformly for q L^C , |D(+iv,)|_C T^2 (|-1|10r_*, 12|v|3x^3).",
+      "section": "A long prime polynomial",
+      "manuscript": "Prime Predecessors with an Even Number of Prime Factors"
+    },
+    {
+      "id": "m3-lp-local-log-derivative",
+      "kind": "lemma",
+      "label": "Local logarithmic derivative",
+      "statement": "[Local logarithmic derivative] Fix C>0 , let q L^C , and put s_0=1+r_*+iv , where 1|v|52x^3 . There is a radius R with 4r_* R5r_* , with no zero on its boundary, for which D' D (s,) =_ |-s_0|<R 1 s-…",
+      "section": "A long prime polynomial",
+      "manuscript": "Prime Predecessors with an Even Number of Prime Factors"
+    },
+    {
+      "id": "m3-lp-zero-free",
+      "kind": "lemma",
+      "label": "A zero-free strip at large height",
+      "statement": "[A zero-free strip at large height] For each fixed C>0 there is c=c(C)>0 such that every character of modulus at most L^C has no zero in Res1-cT^2/L, 1|Ims| x^3. Moreover, |D'D(s,)|_C L (1-cT^2 2L…",
+      "section": "A long prime polynomial",
+      "manuscript": "Prime Predecessors with an Even Number of Prime Factors"
+    },
+    {
+      "id": "m3-sh-correlation",
+      "kind": "theorem",
+      "label": "Twisted prime-slot correlation",
+      "statement": "[Twisted prime-slot correlation] Let F,G have the form , with possibly different coefficients, characters, intervals, and frequencies, subject to fixed bounds as above. For every fixed D_0>0 there is…",
+      "section": "A prime-slot shifted correlation with a common parity twist",
+      "manuscript": "Prime Predecessors with an Even Number of Prime Factors"
+    },
+    {
+      "id": "m3-sh-transference",
+      "kind": "proposition",
+      "label": "Transference input",
+      "statement": "[Transference input] The following are the Local Transference Theorem, its Endpoint Pairing Corollary, and the Absolute Physical Bounds Lemma of . Assume _|K_| L^ C_1 , where m_0,C_1 are fixed…",
+      "section": "A prime-slot shifted correlation with a common parity twist",
+      "manuscript": "Prime Predecessors with an Even Number of Prime Factors"
+    },
+    {
+      "id": "m3-sh-ideal",
+      "kind": "proposition",
+      "label": "Residual ideal family and comparison kernels",
+      "statement": "[Residual ideal family and comparison kernels] The following are the Residual Ideal Operator Theorem and Comparison Kernel Lemma of . For every prescribed E_ id >0 and fixed C_40 , there are fixed…",
+      "section": "A prime-slot shifted correlation with a common parity twist",
+      "manuscript": "Prime Predecessors with an Even Number of Prime Factors"
+    },
+    {
+      "id": "m3-sh-mellin-energy",
+      "kind": "lemma",
+      "label": "Local Mellin energy",
+      "statement": "[Local Mellin energy] Let a_w be supported on w Y , where Y=x^ 1+o(1) , and let H=x^ o(1) tend to infinity. For every fixed j1 , _ ||1/H | a()|^2\\,d _j 1Y_ R (1+H|t|/Y)^ -j |_w a_ww^ it |^2dt +(…",
+      "section": "A prime-slot shifted correlation with a common parity twist",
+      "manuscript": "Prime Predecessors with an Even Number of Prime Factors"
+    },
+    {
+      "id": "m3-wt-tail",
+      "kind": "lemma",
+      "label": "Tail of the group part",
+      "statement": "[Tail of the group part] There is a fixed C such that, for each fixed >0 , \\[ _ r>x^ \\ _*=1 W_1(r)r L^C(- L^ 3/5 ) \\] for all sufficiently large x .",
+      "section": "Candidate weights and their mass",
+      "manuscript": "Prime Predecessors with an Even Number of Prime Factors"
+    },
+    {
+      "id": "m3-wt-mass",
+      "kind": "lemma",
+      "label": "Total candidate mass",
+      "statement": "[Total candidate mass] There is a fixed C_A such that \\[ X_Ax L H_QH_P, X_A xL^ -C_A . \\] The implied constants and C_A depend only on the fixed geometry and on .",
+      "section": "Candidate weights and their mass",
+      "manuscript": "Prime Predecessors with an Even Number of Prime Factors"
+    },
+    {
+      "id": "m3-wt-squarefree",
+      "kind": "lemma",
+      "label": "Squarefree loss",
+      "statement": "[Squarefree loss] The mass of nonsquarefree predecessors satisfies \\[ _ u1\\\\2u\\ not\\ squarefree A(u)(u/x)=o(X_A/L). \\]",
+      "section": "Candidate weights and their mass",
+      "manuscript": "Prime Predecessors with an Even Number of Prime Factors"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-thm-sw",
+      "to": "m1-cor-harmonic-sw"
+    },
+    {
+      "from": "m1-lem-memory-absolute",
+      "to": "m1-lem-rare-transfer"
+    },
+    {
+      "from": "m1-thm-transference",
+      "to": "m1-lem-clean-norm"
+    },
+    {
+      "from": "m1-thm-sw",
+      "to": "m1-lem-comparison-kernel"
+    },
+    {
+      "from": "m1-thm-ideal",
+      "to": "m1-lem-comparison-kernel"
+    },
+    {
+      "from": "m1-thm-transference",
+      "to": "m1-lem-comparison-kernel"
+    },
+    {
+      "from": "m1-lem-dirichlet-mean",
+      "to": "m1-lem-exceptional-times"
+    },
+    {
+      "from": "m1-lem-derivative-tests",
+      "to": "m1-lem-sparse-residual"
+    },
+    {
+      "from": "m1-lem-rough-sieve-polynomial",
+      "to": "m1-lem-long-rough-polynomial"
+    },
+    {
+      "from": "m1-lem-divisor-moments",
+      "to": "m1-thm-typeii"
+    },
+    {
+      "from": "m1-lem-fourier-separation",
+      "to": "m1-thm-typeii"
+    },
+    {
+      "from": "m1-thm-shift",
+      "to": "m1-thm-typeii"
+    },
+    {
+      "from": "m1-prop-candidate-mass",
+      "to": "m1-prop-typei"
+    },
+    {
+      "from": "m1-thm-large-sieve",
+      "to": "m1-prop-typei"
+    },
+    {
+      "from": "m1-lem-divisor-moments",
+      "to": "m1-prop-typei"
+    },
+    {
+      "from": "m1-thm-sw",
+      "to": "m1-prop-typei"
+    },
+    {
+      "from": "m1-lem-sieve",
+      "to": "m1-lem-proxy-discrepancy"
+    },
+    {
+      "from": "m1-thm-sw",
+      "to": "m1-lem-proxy-discrepancy"
+    },
+    {
+      "from": "m1-lem-sieve",
+      "to": "m1-lem-proxy-densities"
+    },
+    {
+      "from": "m1-thm-totient",
+      "to": "m1-lem-finite-totient-fibers"
+    },
+    {
+      "from": "m1-thm-smooth",
+      "to": "m1-lem-finite-totient-fibers"
+    },
+    {
+      "from": "m2-lem-root-residue",
+      "to": "m2-det-root-replacement"
+    },
+    {
+      "from": "m2-lem-log-phase",
+      "to": "m2-maj-long-coefficient"
+    },
+    {
+      "from": "m2-lem-long-prime",
+      "to": "m2-maj-long-coefficient"
+    },
+    {
+      "from": "m2-lem-rough-counts",
+      "to": "m2-maj-long-coefficient"
+    },
+    {
+      "from": "m2-lem-prime-estimates",
+      "to": "m2-maj-long-coefficient"
+    },
+    {
+      "from": "m2-lem-moment-bounds",
+      "to": "m2-maj-sparse-frequency"
+    },
+    {
+      "from": "m2-lem-log-phase",
+      "to": "m2-maj-sparse-frequency"
+    },
+    {
+      "from": "m2-prop-major-term",
+      "to": "m2-maj-sparse-frequency"
+    },
+    {
+      "from": "m2-maj-long-coefficient",
+      "to": "m2-maj-sparse-frequency"
+    },
+    {
+      "from": "m2-thm-type-ii",
+      "to": "m2-maj-sparse-frequency"
+    },
+    {
+      "from": "m2-prop-minor-moment",
+      "to": "m2-maj-sparse-frequency"
+    },
+    {
+      "from": "m2-thm-main",
+      "to": "m2-lem-progressions"
+    },
+    {
+      "from": "m2-lp-pre-primes",
+      "to": "m2-lp-mean-value"
+    },
+    {
+      "from": "m2-lp-pre-derivatives",
+      "to": "m2-lp-log-phase"
+    },
+    {
+      "from": "m2-lp-mean-value",
+      "to": "m2-lp-log-phase"
+    },
+    {
+      "from": "m2-lp-l-upper",
+      "to": "m2-lp-local-log-derivative"
+    },
+    {
+      "from": "m2-lp-local-log-derivative",
+      "to": "m2-lp-zero-free"
+    },
+    {
+      "from": "m2-lp-prime-polynomial",
+      "to": "m2-lp-zero-free"
+    },
+    {
+      "from": "m3-pre-primes",
+      "to": "m3-lp-mean-value"
+    },
+    {
+      "from": "m3-pre-derivatives",
+      "to": "m3-lp-log-phase"
+    },
+    {
+      "from": "m3-lp-mean-value",
+      "to": "m3-lp-log-phase"
+    },
+    {
+      "from": "m3-lp-l-upper",
+      "to": "m3-lp-local-log-derivative"
+    },
+    {
+      "from": "m3-lp-local-log-derivative",
+      "to": "m3-lp-zero-free"
+    },
+    {
+      "from": "m3-lp-prime-polynomial",
+      "to": "m3-lp-zero-free"
+    },
+    {
+      "from": "m3-wt-tail",
+      "to": "m3-wt-mass"
+    },
+    {
+      "from": "m3-wt-mass",
+      "to": "m3-wt-squarefree"
+    }
+  ]
+}

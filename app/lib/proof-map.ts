@@ -1,4 +1,51 @@
-export type ProofMapStatus = "deep" | "draft" | "lean" | "scaffold";
+export type ProofMapStatus = "deep" | "draft" | "paper" | "lean" | "scaffold";
+
+export type PaperStructureNode = {
+  id: string;
+  kind: "theorem" | "lemma" | "proposition" | "corollary";
+  label: string;
+  statement: string;
+  section: string | null;
+  manuscript?: string;
+};
+
+export type PaperStructureEdge = { from: string; to: string };
+
+export type PaperStructure = {
+  familyNumber: string;
+  familyTitle: string;
+  manuscripts: Array<{ id: string; title: string; date: string; pdfUrl: string }>;
+  sections: string[];
+  nodes: PaperStructureNode[];
+  edges: PaperStructureEdge[];
+};
+
+export type PaperCoverageFamily = {
+  familyNumber: string;
+  familyTitle: string;
+  manuscripts: number;
+  sections: number;
+  statements: number;
+  edges: number;
+};
+
+export type PaperCoverageData = {
+  schemaVersion: "pw-paper-coverage-v1";
+  status: "draft";
+  reviewStatus: "unreviewed";
+  generatedAt: string;
+  commit: string;
+  sourceNote: string;
+  summary: {
+    families: number;
+    familiesWithStructure: number;
+    papers: number;
+    sections: number;
+    statements: number;
+    edges: number;
+  };
+  families: PaperCoverageFamily[];
+};
 
 export type ProofMapIndexEntry = {
   familyNumber: string;
@@ -26,6 +73,12 @@ export type ProofMapIndexEntry = {
     textualSorry: number;
     textualAxioms: number;
   };
+  paper: {
+    manuscripts: number;
+    sections: number;
+    statements: number;
+    edges: number;
+  };
 };
 
 export type ProofMapIndexSubject = {
@@ -33,6 +86,7 @@ export type ProofMapIndexSubject = {
   families: number;
   deep: number;
   draft: number;
+  paper: number;
   lean: number;
   scaffold: number;
 };
@@ -47,6 +101,9 @@ export type ProofMapIndexSummary = {
   formalizedManuscripts: number;
   deep: number;
   draft: number;
+  paper: number;
+  paperStatements: number;
+  paperEdges: number;
   lean: number;
   scaffold: number;
   proofweaveReplays: number;

@@ -1,0 +1,84 @@
+{
+  "familyNumber": "098",
+  "familyTitle": "Compact counterexamples to bi-Lipschitz dimension reduction",
+  "manuscripts": [
+    {
+      "id": "A-doubling-Hilbert-subset-with-no-finite-dimensional-bi-Lipschitz-embedding-September-25-2026",
+      "title": "A doubling Hilbert subset with no finite-dimensional bi-Lipschitz embedding",
+      "date": "2026-09-25",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-doubling-Hilbert-subset-with-no-finite-dimensional-bi-Lipschitz-embedding-September-25-2026/main.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "The subset and its doubling bound",
+    "Sheets and extremal derivatives",
+    "Near-extremal rectangles and two energy estimates",
+    "Crossings force a packing contradiction",
+    "Compact obstructions in infinite-dimensional Banach spaces"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "There is a fixed subset S of real _2 , equipped with its induced Hilbert…",
+      "statement": "There is a fixed subset S of real _2 , equipped with its induced Hilbert distance, whose doubling constant is at most 76800 and which admits no bi-Lipschitz embedding into ^k for any positive integer…",
+      "section": "Introduction",
+      "manuscript": "A doubling Hilbert subset with no finite-dimensional bi-Lipschitz embedding"
+    },
+    {
+      "id": "m1-prop-doubling",
+      "kind": "proposition",
+      "label": "The doubling constant of S is at most 30016^2=76800 .",
+      "statement": "The doubling constant of S is at most 30016^2=76800 .",
+      "section": "The subset and its doubling bound",
+      "manuscript": "A doubling Hilbert subset with no finite-dimensional bi-Lipschitz embedding"
+    },
+    {
+      "id": "m1-lem-compact",
+      "kind": "lemma",
+      "label": "Near the lexicographic maximum",
+      "statement": "[Near the lexicographic maximum] Let D>0 , let K^2 be nonempty and compact, and define A=\\ s:(s,t) K\\ and B=\\ t:(A,t) K\\ . For every >0 there is >0 such that \\[ (s,t) K, s>A- t B+. \\] Consequently,…",
+      "section": "Sheets and extremal derivatives",
+      "manuscript": "A doubling Hilbert subset with no finite-dimensional bi-Lipschitz embedding"
+    },
+    {
+      "id": "m1-prop-energy",
+      "kind": "proposition",
+      "label": "Anisotropic energy estimates",
+      "statement": "[Anisotropic energy estimates] For each n , let F,F_i,Q,u,v,r and the selected derivative fields be chosen as above, satisfying -- . Then, as n , n^2G_H^x-F_x^2_Q&0, \\\\ G_V^y-F_y^2_Q&0.",
+      "section": "Near-extremal rectangles and two energy estimates",
+      "manuscript": "A doubling Hilbert subset with no finite-dimensional bi-Lipschitz embedding"
+    },
+    {
+      "id": "m1-cor-lp",
+      "kind": "corollary",
+      "label": "Finite- p function-space obstruction",
+      "statement": "[Finite- p function-space obstruction] For every real 1 p< , the fixed metric space S of Theorem~ is isometric to a subset S_p of L_p([0,1];) , where [0,1] carries Lebesgue measure. With its induced…",
+      "section": "Crossings force a packing contradiction",
+      "manuscript": "A doubling Hilbert subset with no finite-dimensional bi-Lipschitz embedding"
+    },
+    {
+      "id": "m1-cor-banach",
+      "kind": "corollary",
+      "label": "Compact Banach-space obstruction",
+      "statement": "[Compact Banach-space obstruction] There is a universal constant such that every infinite-dimensional real Banach space B contains a compact subset K_B whose doubling constant is at most and which…",
+      "section": "Compact obstructions in infinite-dimensional Banach spaces",
+      "manuscript": "A doubling Hilbert subset with no finite-dimensional bi-Lipschitz embedding"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-compact",
+      "to": "m1-prop-energy"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-cor-lp"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-cor-banach"
+    }
+  ]
+}

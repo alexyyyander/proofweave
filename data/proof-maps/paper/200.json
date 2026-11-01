@@ -1,0 +1,583 @@
+{
+  "familyNumber": "200",
+  "familyTitle": "Eisenbud–Green–Harris and lex-plus-powers",
+  "manuscripts": [
+    {
+      "id": "The-Artinian-Lex-Plus-Powers-Betti-Theorem-September-23-2026",
+      "title": "The Artinian Lex-Plus-Powers Betti Theorem",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Artinian-Lex-Plus-Powers-Betti-Theorem-September-23-2026/paper.pdf"
+    },
+    {
+      "id": "Commuting-Division-Coefficient-Forms-and-the-Artinian-Eisenbud-Green-Harris-Conjecture-September-23-2026",
+      "title": "Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Commuting-Division-Coefficient-Forms-and-the-Artinian-Eisenbud-Green-Harris-Conjecture-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Commuting forms with division coefficients",
+    "Graded resolutions and leading coefficient spaces",
+    "A monomial bound containing the prescribed powers",
+    "Stabilization inside the exponent box",
+    "Shadows and end slices in an exponent box",
+    "Betti bounds for stable ideals",
+    "Division coefficients and monomial ideals",
+    "Low relations and simple factors",
+    "The parameter complete intersections",
+    "Curves realizing binary power addition",
+    "Coherent descent and Euler characteristics",
+    "The equivariant index calculation",
+    "Construction of the triangular power identities",
+    "Generality and consequences"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For every \\(n1\\), every ordered degree sequence \\(2 a_1 a_n\\), and every…",
+      "statement": "For every \\(n1\\), every ordered degree sequence \\(2 a_1 a_n\\), and every homogeneous ideal \\(I\\) containing a regular sequence of these degrees, the spaces in exist and \\(J=_ d0 J_d\\) is a…",
+      "section": "Introduction",
+      "manuscript": "The Artinian Lex-Plus-Powers Betti Theorem"
+    },
+    {
+      "id": "m1-cor-characteristic-zero",
+      "kind": "corollary",
+      "label": "Eisenbud--Green--Harris and lex-plus-powers in characteristic zero",
+      "statement": "[Eisenbud--Green--Harris and lex-plus-powers in characteristic zero] Let \\(F\\) be a field of characteristic zero, let \\[ S_F=F[x_1,,x_n], 1 c n, 2 a_1 a_c, P_F=(x_1^ a_1 ,,x_c^ a_c ), \\] with the…",
+      "section": "Introduction",
+      "manuscript": "The Artinian Lex-Plus-Powers Betti Theorem"
+    },
+    {
+      "id": "m1-thm-forms",
+      "kind": "theorem",
+      "label": "Commuting-form construction, [Theorem~1.1",
+      "statement": "[Commuting-form construction, ] Let \\(f_1,,f_n\\) be a homogeneous regular sequence in \\(\\), of degrees \\(2 a_1 a_n\\). There are a field extension \\(k/\\), a central division \\(k\\)-algebra \\(\\), and a…",
+      "section": "Commuting forms with division coefficients",
+      "manuscript": "The Artinian Lex-Plus-Powers Betti Theorem"
+    },
+    {
+      "id": "m1-filt-minimal",
+      "kind": "lemma",
+      "label": "Minimal graded resolutions",
+      "statement": "[Minimal graded resolutions] Every finitely generated graded A -module B has a graded free resolution whose differentials have entries in A_ >0 . In such a resolution, the number of free generators…",
+      "section": "Graded resolutions and leading coefficient spaces",
+      "manuscript": "The Artinian Lex-Plus-Powers Betti Theorem"
+    },
+    {
+      "id": "m1-filt-koszul",
+      "kind": "lemma",
+      "label": "Koszul calculation",
+      "statement": "[Koszul calculation] Let K_(B) be the Koszul complex on y_1,,y_r with coefficients in B . Its term of internal degree j in position p is \\[ K_p(B)_j=_ \\ 1,,r\\ \\\\ ||=p B_ j-p e_, \\] where e_ has…",
+      "section": "Graded resolutions and leading coefficient spaces",
+      "manuscript": "The Artinian Lex-Plus-Powers Betti Theorem"
+    },
+    {
+      "id": "m1-filt-comparison",
+      "kind": "proposition",
+      "label": "Leading-submodule comparison",
+      "statement": "[Leading-submodule comparison] With A,V,E,W and as above, for every d , every p0 , and every j one has _F(E/W)_d &=_F(E/in_ W)_d, \\\\ ^A_ p,j (E/W) &^A_ p,j (E/in_ W).",
+      "section": "Graded resolutions and leading coefficient spaces",
+      "manuscript": "The Artinian Lex-Plus-Powers Betti Theorem"
+    },
+    {
+      "id": "m1-mono-transfer",
+      "kind": "lemma",
+      "label": "Transfer of a minimal resolution",
+      "statement": "[Transfer of a minimal resolution] Let S= , let k be a field containing , and let be a finite-dimensional central division k -algebra. Put m=_k and N= , where the x_i are central. Suppose that…",
+      "section": "A monomial bound containing the prescribed powers",
+      "manuscript": "The Artinian Lex-Plus-Powers Betti Theorem"
+    },
+    {
+      "id": "m1-mono-bound",
+      "kind": "proposition",
+      "label": "Monomial reduction",
+      "statement": "[Monomial reduction] Let S= , let 2 a_1 a_n , and let I S be a homogeneous ideal containing a homogeneous regular sequence f_1,,f_n with f_h=a_h . Put P=(x_1^ a_1 ,,x_n^ a_n ) . There is a monomial…",
+      "section": "A monomial bound containing the prescribed powers",
+      "manuscript": "The Artinian Lex-Plus-Powers Betti Theorem"
+    },
+    {
+      "id": "m1-stab-distraction",
+      "kind": "lemma",
+      "label": "For every monomial ideal K S , its vector-space image D(K) is a homogeneous…",
+      "statement": "For every monomial ideal K S , its vector-space image D(K) is a homogeneous ideal. Moreover, _(S/D(K))_d=_(S/K)_d (d),\\\\ ^S_ p,j (S/D(K))=^S_ p,j (S/K) (p0,\\ j). The map also satisfies D(P)=P .",
+      "section": "Stabilization inside the exponent box",
+      "manuscript": "The Artinian Lex-Plus-Powers Betti Theorem"
+    },
+    {
+      "id": "m1-stab-main",
+      "kind": "proposition",
+      "label": "Let S= , let 2 a_1 a_n , and put P=(x_1^ a_1 ,,x_n^ a_n ) . For every monomial…",
+      "statement": "Let S= , let 2 a_1 a_n , and put P=(x_1^ a_1 ,,x_n^ a_n ) . For every monomial ideal K P , there is a monomial ideal H P stable in the box such that \\[ _(S/H)_d=_(S/K)_d(d) \\] and \\[ ^S_ p,j (S/K)^S_…",
+      "section": "Stabilization inside the exponent box",
+      "manuscript": "The Artinian Lex-Plus-Powers Betti Theorem"
+    },
+    {
+      "id": "m1-box-inequalities",
+      "kind": "lemma",
+      "label": "Shadows and end slices",
+      "statement": "[Shadows and end slices] Let \\(r1\\), let \\(b_1,,b_r\\) be positive integers, and let \\(d\\). If \\(X B_r(d)\\) is stable and \\(Y=Lex(X)\\), then \\( Y\\) is a lex segment and | X|| Y|, |X(0)||Y(0)|,…",
+      "section": "Shadows and end slices in an exponent box",
+      "manuscript": "The Artinian Lex-Plus-Powers Betti Theorem"
+    },
+    {
+      "id": "m1-box-ideal",
+      "kind": "proposition",
+      "label": "Lex replacement is an ideal",
+      "statement": "[Lex replacement is an ideal] Let \\(b_1,,b_r\\) be positive integers, and let \\(H\\) be a monomial ideal containing \\(P_r=(x_1^ b_1+1 ,,x_r^ b_r+1 )\\) and stable in the box sense. Then the subspace \\(…",
+      "section": "Shadows and end slices in an exponent box",
+      "manuscript": "The Artinian Lex-Plus-Powers Betti Theorem"
+    },
+    {
+      "id": "m1-tor-deficit",
+      "kind": "lemma",
+      "label": "For every p0 and j , the quantity D^R_ p,j (B) is the sum of the ranks of the…",
+      "statement": "For every p0 and j , the quantity D^R_ p,j (B) is the sum of the ranks of the two Koszul differentials adjacent to K^R_p(B)_j . If U B is a graded submodule and V is a graded quotient of B , then \\[…",
+      "section": "Betti bounds for stable ideals",
+      "manuscript": "The Artinian Lex-Plus-Powers Betti Theorem"
+    },
+    {
+      "id": "m1-tor-stable",
+      "kind": "theorem",
+      "label": "Let r1 , let 2 a_1 a_r , and let A= . Suppose that H A is a monomial ideal…",
+      "statement": "Let r1 , let 2 a_1 a_r , and let A= . Suppose that H A is a monomial ideal containing (x_1^ a_1 ,,x_r^ a_r ) and is stable in the box. Let G= H be its degreewise lex replacement inside the box,…",
+      "section": "Betti bounds for stable ideals",
+      "manuscript": "The Artinian Lex-Plus-Powers Betti Theorem"
+    },
+    {
+      "id": "m2-thm-construction",
+      "kind": "theorem",
+      "label": "Commuting-form construction",
+      "statement": "[Commuting-form construction] Let n1 , let 2 a_1 a_n , and let f_1,,f_n be a homogeneous regular sequence in with f_i=a_i . There exist a finitely generated field extension k/ , a finite-dimensional…",
+      "section": "Introduction",
+      "manuscript": "Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "corollary",
+      "label": "Artinian Eisenbud--Green--Harris",
+      "statement": "[Artinian Eisenbud--Green--Harris] Let n1 and 2 a_1 a_n . Suppose that a homogeneous ideal I contains a regular sequence f_1,,f_n with f_i=a_i . There is a monomial ideal J such that \\[ x_i^ a_i J(1…",
+      "section": "Introduction",
+      "manuscript": "Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture"
+    },
+    {
+      "id": "m2-cor-characteristic-zero",
+      "kind": "corollary",
+      "label": "Eisenbud--Green--Harris in characteristic zero",
+      "statement": "[Eisenbud--Green--Harris in characteristic zero] Let \\(F\\) be a field of characteristic zero, let \\(S_F=F[x_1,,x_n]\\) be standard graded, and let \\[ 1 c n, 2 a_1 a_c. \\] If a homogeneous ideal \\(I…",
+      "section": "Introduction",
+      "manuscript": "Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture"
+    },
+    {
+      "id": "m2-lem-ordered-basis",
+      "kind": "lemma",
+      "label": "Ordered-basis criterion",
+      "statement": "[Ordered-basis criterion] Let \\(f_1,,f_n\\) be a homogeneous regular sequence in \\(S=\\), with \\( f_i=a_i>0\\). Suppose that a field extension \\(k/\\) and a finite-dimensional central division…",
+      "section": "Division coefficients and monomial ideals",
+      "manuscript": "Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture"
+    },
+    {
+      "id": "m2-prop-monomial-reduction",
+      "kind": "proposition",
+      "label": "Monomial extraction",
+      "statement": "[Monomial extraction] Let \\(f_1,,f_n\\), \\(k\\), \\(\\), \\(A\\), and \\(t_1,,t_n\\) satisfy the hypotheses of Lemma~ . For every homogeneous ideal \\(I S=\\) containing the \\(f_i\\), there is one monomial…",
+      "section": "Division coefficients and monomial ideals",
+      "manuscript": "Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture"
+    },
+    {
+      "id": "m2-lem-stage-basepoint",
+      "kind": "lemma",
+      "label": "The space \\( j_b\\) is base-point-free on \\((U^)\\).",
+      "statement": "The space \\( j_b\\) is base-point-free on \\((U^)\\).",
+      "section": "Low relations and simple factors",
+      "manuscript": "Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture"
+    },
+    {
+      "id": "m2-lem-simple-factor",
+      "kind": "lemma",
+      "label": "Let \\(U\\) be a vector space of dimension at least three over a…",
+      "statement": "Let \\(U\\) be a vector space of dimension at least three over a characteristic-zero field, and let \\(b2\\). Suppose that \\(Q U\\) is generated in degrees one and two, and that its geometric…",
+      "section": "Low relations and simple factors",
+      "manuscript": "Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture"
+    },
+    {
+      "id": "m2-lem-bounded-curve-field",
+      "kind": "lemma",
+      "label": "For integers \\(n2\\) and \\(D1\\), there is an integer \\(d_*(n,D)\\) with the…",
+      "statement": "For integers \\(n2\\) and \\(D1\\), there is an integer \\(d_*(n,D)\\) with the following property. If \\(\\) is an algebraically closed extension of \\(\\) and \\(Z^ n-1 _\\) is an integral curve of degree at…",
+      "section": "Low relations and simple factors",
+      "manuscript": "Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture"
+    },
+    {
+      "id": "m2-prop-initial-data",
+      "kind": "proposition",
+      "label": "For every \\(n1\\) and \\(D1\\), there exist data \\(k,_0,U,Q\\) satisfying…",
+      "statement": "For every \\(n1\\) and \\(D1\\), there exist data \\(k,_0,U,Q\\) satisfying conditions (i)--(iii) above and the condition on \\( C(Q)\\). They may be chosen with \\[ U= x_1,,x_n,s_1,,s_m_k, Q=(s_^2-q_(x):1…",
+      "section": "Low relations and simple factors",
+      "manuscript": "Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture"
+    },
+    {
+      "id": "m2-lem-sparsity-preserved",
+      "kind": "lemma",
+      "label": "Let \\(U U\\) be finite-dimensional vector spaces over a field, and let \\(Q U\\)…",
+      "statement": "Let \\(U U\\) be finite-dimensional vector spaces over a field, and let \\(Q U\\) and \\( Q U\\) be homogeneous ideals, with \\(Q Q\\). Suppose that \\( U/ Q\\) is finite over \\( U/Q\\). Then the induced…",
+      "section": "Low relations and simple factors",
+      "manuscript": "Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture"
+    },
+    {
+      "id": "m2-lem-homogeneous-joins",
+      "kind": "lemma",
+      "label": "Nonzero levels and joins",
+      "statement": "[Nonzero levels and joins] Let \\(w\\) be a nonzero homogeneous polynomial of degree \\(b2\\) on a complex vector space \\(U\\). Suppose that some irreducible factor of \\(w\\) has multiplicity one. Then…",
+      "section": "The parameter complete intersections",
+      "manuscript": "Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture"
+    },
+    {
+      "id": "m2-thm-parameters",
+      "kind": "theorem",
+      "label": "The parameter spaces",
+      "statement": "[The parameter spaces] Let \\(k\\) be a field admitting an embedding into \\(\\), let \\(U\\) be a finite-dimensional \\(k\\)-vector space with \\( U3\\), and let \\[ W^b(U^), b2, s= W. \\] Assume that every…",
+      "section": "The parameter complete intersections",
+      "manuscript": "Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture"
+    },
+    {
+      "id": "m2-prop-binary-curves",
+      "kind": "proposition",
+      "label": "Binary addition data",
+      "statement": "[Binary addition data] Let \\(b2\\), fix a primitive \\(b\\)-th root \\(\\), and put \\[ G=(_b^b/_b)(/b), e=b^b, \\] where the denominator is the diagonal subgroup and \\(/b\\) permutes the \\(b\\) factors…",
+      "section": "Curves realizing binary power addition",
+      "manuscript": "Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture"
+    },
+    {
+      "id": "m2-lem-binary-cover",
+      "kind": "lemma",
+      "label": "There are curves, a cover, and a linearized line bundle satisfying parts (i)…",
+      "statement": "There are curves, a cover, and a linearized line bundle satisfying parts (i) and (ii) of Proposition~ .",
+      "section": "Curves realizing binary power addition",
+      "manuscript": "Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture"
+    },
+    {
+      "id": "m2-lem-binary-matrices",
+      "kind": "lemma",
+      "label": "For the curve and line bundle of Lemma~ , part (iii) of Proposition~ holds.",
+      "statement": "For the curve and line bundle of Lemma~ , part (iii) of Proposition~ holds.",
+      "section": "Curves realizing binary power addition",
+      "manuscript": "Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture"
+    },
+    {
+      "id": "m2-lem-picard-free",
+      "kind": "lemma",
+      "label": "If a finite group \\(G\\) acts freely on a smooth connected projective complex…",
+      "statement": "If a finite group \\(G\\) acts freely on a smooth connected projective complex curve \\(C\\), then its induced action on \\(^1(C)\\) is free.",
+      "section": "Curves realizing binary power addition",
+      "manuscript": "Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture"
+    },
+    {
+      "id": "m2-lem-picard-character-maps",
+      "kind": "lemma",
+      "label": "Let \\(q:C T\\) be a connected \\'etale \\(G\\)-cover of smooth connected projective…",
+      "statement": "Let \\(q:C T\\) be a connected \\'etale \\(G\\)-cover of smooth connected projective complex curves. For every character \\(:G_b\\), there is a continuous map \\[ f_:^1(C) S^1, f_(g_*A)=(g)f_(A). \\]",
+      "section": "Curves realizing binary power addition",
+      "manuscript": "Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture"
+    },
+    {
+      "id": "m2-thm-division",
+      "kind": "theorem",
+      "label": "Let \\(k\\) be a finitely generated extension of the original field \\(\\), and let…",
+      "statement": "Let \\(k\\) be a finitely generated extension of the original field \\(\\), and let \\(_0\\) be a central division algebra over \\(k\\) of degree \\(e_0\\). Fix an integer \\(b2\\), a \\(k\\)-vector space \\(U\\) of…",
+      "section": "Coherent descent and Euler characteristics",
+      "manuscript": "Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture"
+    },
+    {
+      "id": "m2-prop-rank-to-euler",
+      "kind": "proposition",
+      "label": "For the data of Theorem~ and a right \\(\\)-module of reduced rank \\(r\\), there…",
+      "statement": "For the data of Theorem~ and a right \\(\\)-module of reduced rank \\(r\\), there is a class \\(\\) of \\(H\\)-equivariant coherent sheaves on \\(Z X\\), with a commuting right \\(_0\\)-action, having the…",
+      "section": "Coherent descent and Euler characteristics",
+      "manuscript": "Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture"
+    },
+    {
+      "id": "m2-lem-twisted-extension",
+      "kind": "lemma",
+      "label": "The generic module \\(_\\) extends to a coherent \\(_0\\)-module \\(\\) on \\(T\\) with…",
+      "statement": "The generic module \\(_\\) extends to a coherent \\(_0\\)-module \\(\\) on \\(T\\) with compatible isomorphisms \\(J_g g_*\\).",
+      "section": "Coherent descent and Euler characteristics",
+      "manuscript": "Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture"
+    },
+    {
+      "id": "m2-lem-determinant-descent",
+      "kind": "lemma",
+      "label": "The sheaf \\(\\) on \\(Z X R\\) has a genuine \\(H\\)-equivariant structure commuting…",
+      "statement": "The sheaf \\(\\) on \\(Z X R\\) has a genuine \\(H\\)-equivariant structure commuting with \\(_0\\). Its derived restriction to \\(R=0\\) defines an equivariant coherent class \\(\\) on \\(Z X\\). Nonequivariantly…",
+      "section": "Coherent descent and Euler characteristics",
+      "manuscript": "Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture"
+    },
+    {
+      "id": "m2-lem-mixed-picard-pairing",
+      "kind": "lemma",
+      "label": "For any class \\( K^0(B)\\), \\[ _Z(pr_B^*)(Z) =, \\] where the sign is independent…",
+      "statement": "For any class \\( K^0(B)\\), \\[ _Z(pr_B^*)(Z) =, \\] where the sign is independent of \\(\\).",
+      "section": "Coherent descent and Euler characteristics",
+      "manuscript": "Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture"
+    },
+    {
+      "id": "m2-lem-torsor-euler",
+      "kind": "lemma",
+      "label": "Let \\(Q\\) be a projective scheme over a field, and let \\(:T' Q\\) be a torsor…",
+      "statement": "Let \\(Q\\) be a projective scheme over a field, and let \\(:T' Q\\) be a torsor under a constant finite group of order \\(a\\). For every coherent-sheaf class \\(\\) on \\(Q\\), \\[ (T',^*)=a\\,(Q,). \\]",
+      "section": "Coherent descent and Euler characteristics",
+      "manuscript": "Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture"
+    },
+    {
+      "id": "m2-lem-index-equivariant-map",
+      "kind": "lemma",
+      "label": "There is an \\(H'\\)-equivariant map \\[ : T^h() X_ , \\] where \\(H'\\) acts by…",
+      "statement": "There is an \\(H'\\)-equivariant map \\[ : T^h() X_ , \\] where \\(H'\\) acts by translation on \\( T\\) and trivially on \\(^h()\\). It has an \\(H' S^1\\)-equivariant lift \\[ : T S^ 2h+1 Y_1. \\] If \\(t_0 T\\)…",
+      "section": "The equivariant index calculation",
+      "manuscript": "Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture"
+    },
+    {
+      "id": "m2-lem-index-integral-pushforward",
+      "kind": "lemma",
+      "label": "Let \\(V\\) be a smooth complex projective variety and let \\( K^0(V^h())\\). There…",
+      "statement": "Let \\(V\\) be a smooth complex projective variety and let \\( K^0(V^h())\\). There is a unique \\(I_V() K^0(^h())\\) such that (I_V()) =_V()(T_V). The integral on the right is integration over the…",
+      "section": "The equivariant index calculation",
+      "manuscript": "Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture"
+    },
+    {
+      "id": "m2-prop-index-test",
+      "kind": "proposition",
+      "label": "In the setting of Theorem~ , let \\(r\\) be the reduced rank of any finite right…",
+      "statement": "In the setting of Theorem~ , let \\(r\\) be the reduced rank of any finite right \\(\\)-module. There is a smooth \\(h\\)-dimensional linear section \\(D_0 X_ \\), a complete intersection of \\(s\\)…",
+      "section": "The equivariant index calculation",
+      "manuscript": "Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture"
+    },
+    {
+      "id": "m2-lem-index-padic-truncation",
+      "kind": "lemma",
+      "label": "Let \\(p\\) be a prime, let \\(v1\\), and let \\(A,Q\\). Suppose the reduction of…",
+      "statement": "Let \\(p\\) be a prime, let \\(v1\\), and let \\(A,Q\\). Suppose the reduction of \\(A\\) modulo \\(p\\) has exact order \\(0\\) at \\(u=0\\). If \\(h v\\) and \\[ A(u)Q(u)=0 (p^v,u^ h+1 ) , \\] then \\(p^v Q(0)\\).",
+      "section": "The equivariant index calculation",
+      "manuscript": "Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture"
+    },
+    {
+      "id": "m2-lem-veronese-extension",
+      "kind": "lemma",
+      "label": "Finite extension from the Veronese relations",
+      "statement": "[Finite extension from the Veronese relations] Let \\(b2\\), let \\(k\\) contain a primitive \\(b\\)-th root of unity \\(\\), and let \\(A\\) be a commutative \\(k\\)-algebra with elements \\(u,v\\). Introduce…",
+      "section": "Construction of the triangular power identities",
+      "manuscript": "Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture"
+    },
+    {
+      "id": "m2-prop-induction-step",
+      "kind": "proposition",
+      "label": "The induction step",
+      "statement": "[The induction step] Fix \\(1 i n\\). Suppose that a field \\(k\\), a central division algebra \\(_0\\) over \\(k\\), a formal space \\(U\\), and a low-relation ideal \\(Q_k U\\) satisfy the induction conditions…",
+      "section": "Construction of the triangular power identities",
+      "manuscript": "Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture"
+    },
+    {
+      "id": "m2-cor-local-cohomology",
+      "kind": "corollary",
+      "label": "Lex-plus-powers extremality for local cohomology",
+      "statement": "[Lex-plus-powers extremality for local cohomology] Let \\(F\\) be a field of characteristic zero, let \\(S_F=F[x_1,,x_n]\\) be standard graded, and put \\( m=(x_1,,x_n)\\). Let \\[ 1 c n, 2 a_1 a_c,…",
+      "section": "Generality and consequences",
+      "manuscript": "Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture"
+    },
+    {
+      "id": "m2-cor-quadratic-cayley-bacharach",
+      "kind": "corollary",
+      "label": "Quadratic Cayley--Bacharach",
+      "statement": "[Quadratic Cayley--Bacharach] Let \\(F\\) have characteristic zero, let \\(r1\\), and let \\(^r_F\\) be a zero-dimensional scheme-theoretic complete intersection of \\(r\\) quadrics, of degree \\(2^r\\). For…",
+      "section": "Generality and consequences",
+      "manuscript": "Commuting Division-Coefficient Forms and the Artinian Eisenbud--Green--Harris Conjecture"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-filt-koszul",
+      "to": "m1-filt-comparison"
+    },
+    {
+      "from": "m1-filt-minimal",
+      "to": "m1-mono-transfer"
+    },
+    {
+      "from": "m1-thm-forms",
+      "to": "m1-mono-bound"
+    },
+    {
+      "from": "m1-mono-transfer",
+      "to": "m1-mono-bound"
+    },
+    {
+      "from": "m1-filt-comparison",
+      "to": "m1-mono-bound"
+    },
+    {
+      "from": "m1-filt-minimal",
+      "to": "m1-stab-distraction"
+    },
+    {
+      "from": "m1-stab-distraction",
+      "to": "m1-stab-main"
+    },
+    {
+      "from": "m1-filt-comparison",
+      "to": "m1-stab-main"
+    },
+    {
+      "from": "m1-box-inequalities",
+      "to": "m1-box-ideal"
+    },
+    {
+      "from": "m1-box-ideal",
+      "to": "m1-tor-stable"
+    },
+    {
+      "from": "m1-filt-minimal",
+      "to": "m1-tor-stable"
+    },
+    {
+      "from": "m1-tor-deficit",
+      "to": "m1-tor-stable"
+    },
+    {
+      "from": "m1-box-inequalities",
+      "to": "m1-tor-stable"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-tor-stable"
+    },
+    {
+      "from": "m1-mono-bound",
+      "to": "m1-tor-stable"
+    },
+    {
+      "from": "m1-stab-main",
+      "to": "m1-tor-stable"
+    },
+    {
+      "from": "m1-cor-characteristic-zero",
+      "to": "m1-tor-stable"
+    },
+    {
+      "from": "m2-lem-ordered-basis",
+      "to": "m2-prop-monomial-reduction"
+    },
+    {
+      "from": "m2-lem-bounded-curve-field",
+      "to": "m2-prop-initial-data"
+    },
+    {
+      "from": "m2-lem-homogeneous-joins",
+      "to": "m2-thm-parameters"
+    },
+    {
+      "from": "m2-prop-binary-curves",
+      "to": "m2-lem-picard-character-maps"
+    },
+    {
+      "from": "m2-lem-binary-cover",
+      "to": "m2-lem-picard-character-maps"
+    },
+    {
+      "from": "m2-lem-binary-matrices",
+      "to": "m2-lem-picard-character-maps"
+    },
+    {
+      "from": "m2-lem-picard-free",
+      "to": "m2-lem-picard-character-maps"
+    },
+    {
+      "from": "m2-prop-rank-to-euler",
+      "to": "m2-lem-torsor-euler"
+    },
+    {
+      "from": "m2-prop-binary-curves",
+      "to": "m2-lem-torsor-euler"
+    },
+    {
+      "from": "m2-lem-picard-character-maps",
+      "to": "m2-lem-index-equivariant-map"
+    },
+    {
+      "from": "m2-lem-index-integral-pushforward",
+      "to": "m2-prop-index-test"
+    },
+    {
+      "from": "m2-lem-index-equivariant-map",
+      "to": "m2-prop-index-test"
+    },
+    {
+      "from": "m2-thm-parameters",
+      "to": "m2-prop-index-test"
+    },
+    {
+      "from": "m2-thm-division",
+      "to": "m2-lem-index-padic-truncation"
+    },
+    {
+      "from": "m2-lem-stage-basepoint",
+      "to": "m2-prop-induction-step"
+    },
+    {
+      "from": "m2-lem-simple-factor",
+      "to": "m2-prop-induction-step"
+    },
+    {
+      "from": "m2-thm-parameters",
+      "to": "m2-prop-induction-step"
+    },
+    {
+      "from": "m2-prop-binary-curves",
+      "to": "m2-prop-induction-step"
+    },
+    {
+      "from": "m2-thm-division",
+      "to": "m2-prop-induction-step"
+    },
+    {
+      "from": "m2-lem-veronese-extension",
+      "to": "m2-prop-induction-step"
+    },
+    {
+      "from": "m2-lem-sparsity-preserved",
+      "to": "m2-prop-induction-step"
+    },
+    {
+      "from": "m2-thm-construction",
+      "to": "m2-prop-induction-step"
+    },
+    {
+      "from": "m2-prop-initial-data",
+      "to": "m2-prop-induction-step"
+    },
+    {
+      "from": "m2-lem-ordered-basis",
+      "to": "m2-prop-induction-step"
+    },
+    {
+      "from": "m2-thm-main",
+      "to": "m2-prop-induction-step"
+    },
+    {
+      "from": "m2-prop-monomial-reduction",
+      "to": "m2-prop-induction-step"
+    },
+    {
+      "from": "m2-cor-characteristic-zero",
+      "to": "m2-prop-induction-step"
+    },
+    {
+      "from": "m2-cor-characteristic-zero",
+      "to": "m2-cor-local-cohomology"
+    },
+    {
+      "from": "m2-cor-characteristic-zero",
+      "to": "m2-cor-quadratic-cayley-bacharach"
+    }
+  ]
+}

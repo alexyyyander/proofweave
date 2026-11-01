@@ -1,0 +1,1305 @@
+{
+  "familyNumber": "232",
+  "familyTitle": "Gaussian fields and interfaces for triangular-lattice Lipschitz heights",
+  "manuscripts": [
+    {
+      "id": "Gaussian-free-field-limits-of-weighted-integer-Lipschitz-heights-October-6-2026",
+      "title": "Gaussian free-field limits of weighted integer Lipschitz heights",
+      "date": "2026-10-06",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Gaussian-free-field-limits-of-weighted-integer-Lipschitz-heights-October-6-2026/paper.pdf"
+    },
+    {
+      "id": "The-Gaussian-free-field-limit-of-integer-Lipschitz-heights-with-two-arc-boundary-data-October-6-2026",
+      "title": "The Gaussian free field limit of integer Lipschitz heights with two-arc boundary data",
+      "date": "2026-10-06",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Gaussian-free-field-limit-of-integer-Lipschitz-heights-with-two-arc-boundary-data-October-6-2026/paper.pdf"
+    },
+    {
+      "id": "Uniform-real-Lipschitz-surfaces-on-the-triangular-lattice-October-6-2026",
+      "title": "Uniform real Lipschitz surfaces on the triangular lattice",
+      "date": "2026-10-06",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Uniform-real-Lipschitz-surfaces-on-the-triangular-lattice-October-6-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Exact cuts and conditional comparison",
+    "Shell counts and smearing moments",
+    "Reflection and the plane normalization",
+    "Separated pins and transfer to boundary brackets",
+    "Boundary attachments and vanishing boundary effects",
+    "Identification of the limiting field",
+    "Scalar spectral measures",
+    "The weighted annulus estimate",
+    "Heights, two spins, and exact cuts",
+    "Buffered circuits, mixing, and rare pins"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For every fixed x there exists (x)(0,) , independent of D and of the inside…",
+      "statement": "For every fixed x there exists (x)(0,) , independent of D and of the inside approximation in Definition~ , such that \\[ h_ (x) \\ \\ _D in D'(D). \\] In particular, the fields are tight as random…",
+      "section": "Introduction",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-lem-spin-lift",
+      "kind": "lemma",
+      "label": "Integer lift",
+      "statement": "[Integer lift] Every coherent pair on G has an integer Lipschitz lift, unique up to addition of a multiple of four once the correspondence is fixed. For the oriented edge uv its increment is…",
+      "section": "Exact cuts and conditional comparison",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-lem-cell-cut",
+      "kind": "lemma",
+      "label": "Open-cell cut",
+      "statement": "[Open-cell cut] Let be a simple honeycomb circuit strictly inside the ambient graph. Prescribe _y=s at every y Y . Suppose no edge of E_0 crosses . Conditional on these prescriptions and any…",
+      "section": "Exact cuts and conditional comparison",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-thm-circuit-input",
+      "kind": "theorem",
+      "label": "Annulus circuit estimate",
+      "statement": "[Annulus circuit estimate] For r0 , let _r be the ball of radius r in the triangular graph metric, with its bounding honeycomb contour; thus _r=_ r . For a>1 and an integer n , consider on _ an the…",
+      "section": "Exact cuts and conditional comparison",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-prop-history-order",
+      "kind": "proposition",
+      "label": "Association and conditional order",
+      "statement": "[Association and conditional order] For every feasible history, the unobserved (B,) variables are positively associated. Two laws with ordered histories and common E_0 are stochastically ordered,…",
+      "section": "Exact cuts and conditional comparison",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-discrete-ising-partition",
+      "kind": "lemma",
+      "label": "The complementary-spin partition sum",
+      "statement": "[The complementary-spin partition sum] For a^E define Z(a)=_ \\ -,+\\ ^ V _ e=uv E a_e^ \\ _u_v\\ , 0^0=1. Then Z is increasing in every coordinate and is log-supermodular: Z(a b)Z(a b) Z(a)Z(b).",
+      "section": "Exact cuts and conditional comparison",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-discrete-online",
+      "kind": "lemma",
+      "label": "Conditional kernels at a joint record",
+      "statement": "[Conditional kernels at a joint record] Consider two finite-volume laws ordered as in Proposition~ . There is an online exploration coupling with the following invariant: conditional on every full…",
+      "section": "Exact cuts and conditional comparison",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-lem-buffer-circuits",
+      "kind": "lemma",
+      "label": "Buffered circuits and paths",
+      "statement": "[Buffered circuits and paths] Fix a finite collection of annuli and tubes in a bounded planar region, each with a positive-width buffer and with prescribed geometric clearance. At mesh , suppose the…",
+      "section": "Exact cuts and conditional comparison",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-prop-local-mixing",
+      "kind": "proposition",
+      "label": "Local matching and the free plane law",
+      "statement": "[Local matching and the free plane law] There are C,>0 with the following property. Suppose a finite ambient graph contains a ball of radius L together with its interaction cells, and its law has…",
+      "section": "Exact cuts and conditional comparison",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-cor-conditional-plane-matching",
+      "kind": "corollary",
+      "label": "Plane matching after a stopped cut",
+      "statement": "[Plane matching after a stopped cut] Let R be an exterior record, and let G be its successful-search event, determined by that record. Suppose that on every successful record a good circuit surrounds…",
+      "section": "Exact cuts and conditional comparison",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-prop-rare-pins",
+      "kind": "proposition",
+      "label": "Separated rare pins",
+      "statement": "[Separated rare pins] Fix k bounded filled simply connected neighborhoods U_1,,U_k with disjoint closures. In each U_i let P_i prescribe arbitrary first spins on a finite site set and prescribe…",
+      "section": "Exact cuts and conditional comparison",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-lem-collar-switch",
+      "kind": "lemma",
+      "label": "Protected component switch",
+      "statement": "[Protected component switch] Suppose two nested good circuits have opposite first-spin signs. Between and on the two circuits assume there are no second-spin equality constraints or prescribed…",
+      "section": "Exact cuts and conditional comparison",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-lem-height-order",
+      "kind": "lemma",
+      "label": "Height comparison and flat loops",
+      "statement": "[Height comparison and flat loops] Let the free sites be in bounded faces of a connected triangular-lattice skeleton of fixed integer trace. Include all neighbors of free sites up to that trace. The…",
+      "section": "Exact cuts and conditional comparison",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-lem-shell-moments",
+      "kind": "lemma",
+      "label": "Geometric tails for shell counts",
+      "statement": "[Geometric tails for shell counts] In a finite constant-boundary height problem, let N_d(z) be the number of level loops surrounding a site z whose Euclidean closest approach to z belongs to [d,2d) ,…",
+      "section": "Shell counts and smearing moments",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-moments-covariance",
+      "kind": "lemma",
+      "label": "Common loops and the logarithmic covariance bound",
+      "statement": "[Common loops and the logarithmic covariance bound] Let the flat trace be zero, let n be the distance from z_0 to its bounding skeleton, and let z,w B(z_0,a) , where 1 a c_0n for a sufficiently small…",
+      "section": "Shell counts and smearing moments",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-thm-midpoint",
+      "kind": "theorem",
+      "label": "Discrete midpoint inequality",
+      "statement": "[Discrete midpoint inequality] Let f,g,u,v:^m then \\[ ( f)( g) ( u)( v). \\]",
+      "section": "Shell counts and smearing moments",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-moments-weighted-midpoints",
+      "kind": "lemma",
+      "label": "Admissibility and energy at rounded midpoints",
+      "statement": "[Admissibility and energy at rounded midpoints] Let S be the integer 1 -Lipschitz arrays on a finite connected graph, with fixed integer heights on a nonempty set of vertices. Set \\[ W(h)=_ \\ h S\\ x^…",
+      "section": "Shell counts and smearing moments",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-lem-midpoint-amplification",
+      "kind": "lemma",
+      "label": "Central mass in finitely many classes",
+      "statement": "[Central mass in finitely many classes] Let (h)= W(h)/Z be a finite probability measure on integer arrays. Partition its support into at most J classes. Suppose that two arrays from the same class…",
+      "section": "Shell counts and smearing moments",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-prop-smearing",
+      "kind": "proposition",
+      "label": "Smearing with bounded boundary values",
+      "statement": "[Smearing with bounded boundary values] In a bounded height problem as specified above, suppose its fixed trace has absolute value at most K . Let n be the distance from the smearing center to the…",
+      "section": "Shell counts and smearing moments",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-prop-plane-moments",
+      "kind": "proposition",
+      "label": "Uniform plane moments for zero-total smearings",
+      "statement": "[Uniform plane moments for zero-total smearings] For the infinite-volume increment law furnished by Proposition~ , every zero-total smearing~ satisfies \\|_uw_uH(u)\\|_p C_ p,A (1 p<). The constants…",
+      "section": "Shell counts and smearing moments",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-lem-nondegeneracy",
+      "kind": "lemma",
+      "label": "Nondegeneracy between two disks",
+      "statement": "[Nondegeneracy between two disks] Let U_1,U_2 be two fixed disjoint round disks with disjoint closures, and let f_i0 be smooth functions supported compactly in U_i , with f_i=1 . Form their exact…",
+      "section": "Shell counts and smearing moments",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-prop-plane-covariance",
+      "kind": "proposition",
+      "label": "Plane covariance and normalization",
+      "statement": "[Plane covariance and normalization] There is a constant v=v(x)(0,) , depending only on the fixed weight x , such that for every pair of real zero-integral tests f,g C_c^(^2) , _ 0 &=v (2)^2 _ ^2…",
+      "section": "Reflection and the plane normalization",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-prop-reflection-transfer",
+      "kind": "proposition",
+      "label": "Positive normal transfer",
+      "statement": "[Positive normal transfer] Let be any row of lattice sites parallel to one of the three unoriented nearest-neighbor directions, and choose one of its closed half-planes. The plane pair is reflection…",
+      "section": "Reflection and the plane normalization",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-plane-lem-spectrum",
+      "kind": "lemma",
+      "label": "Punctured spectral measure",
+      "statement": "[Punctured spectral measure] There is a positive, locally finite measure C on \\ 0\\ , invariant under the lattice rotations and reflections, such that every finitely supported real array (b_u) with…",
+      "section": "Reflection and the plane normalization",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-plane-lem-mixture",
+      "kind": "lemma",
+      "label": "Positive Cauchy mixture and exceptional sets",
+      "statement": "[Positive Cauchy mixture and exceptional sets] On k0 in the rectangular torus there is a positive measure ( k, s) such that C'( k, l)=_ [0,] Q_s( l)\\,( k, s). The measure is finite on horizontal…",
+      "section": "Reflection and the plane normalization",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-plane-lem-defect",
+      "kind": "lemma",
+      "label": "Angular identity and summable defect",
+      "statement": "[Angular identity and summable defect] Uniformly for s and sufficiently small k0 , (k,l)Q_s( l)=D(k,s)+O(|k|). For some fixed >0 , _ 0<|k|< D(k,s)\\,( k, s)<. There is also K_1< such that, for all…",
+      "section": "Reflection and the plane normalization",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-lem-endcaps",
+      "kind": "lemma",
+      "label": "Endcaps",
+      "statement": "[Endcaps] After decreasing r_0 if necessary, there is K_3< such that C\\ b<|p|2b,\\ |k| h\\ K_3 hb (0<b<r_0,0<h<b/10). The same bound holds in each rotated chart. In particular, rescaling cannot create…",
+      "section": "Reflection and the plane normalization",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-plane-lem-subsequences",
+      "kind": "lemma",
+      "label": "Form of every subsequential spectrum",
+      "statement": "[Form of every subsequential spectrum] Every vague subsequential limit is M( p)=c p |p|^2 for some finite c0 , at this point possibly depending on the subsequence. This identity holds on the entire…",
+      "section": "Reflection and the plane normalization",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-plane-lem-unique",
+      "kind": "lemma",
+      "label": "A cutoff identity determining the coefficient",
+      "statement": "[A cutoff identity determining the coefficient] There is a single c0 such that C_ converges vaguely to c p/|p|^2 as 0 .",
+      "section": "Reflection and the plane normalization",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-prop-reflection-null",
+      "kind": "proposition",
+      "label": "Reflection-null Laplace insertion",
+      "statement": "[Reflection-null Laplace insertion] Fix one of the three row directions. Let _ be site rows of converging to a line in that direction, and choose the same side of each row. Suppose that real _ in…",
+      "section": "Reflection and the plane normalization",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-lem-boundary-walk",
+      "kind": "lemma",
+      "label": "Inner boundary walk",
+      "statement": "[Inner boundary walk] There is a closed walk S_ 0, of adjacent triangular-lattice face centers, with repeated vertices and edges allowed, whose vertex set is exactly the boundary face layer F_ . Its…",
+      "section": "Separated pins and transfer to boundary brackets",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-pins-label-count",
+      "kind": "lemma",
+      "label": "Bounded label count",
+      "statement": "[Bounded label count] At fixed L and , the number of connected components used to form A_ , is bounded by a constant M( L,) independent of sufficiently small .",
+      "section": "Separated pins and transfer to boundary brackets",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-pins-bracket-order",
+      "kind": "lemma",
+      "label": "Integer traces and order",
+      "statement": "[Integer traces and order] The bracket traces are actual integer heights satisfying H_^ +, \\ 0,1\\ , H_^ -, \\ -1,0\\ on S_ 0, , H_^ , =0on A_ , . Conditional on either trace, the free interior has the…",
+      "section": "Separated pins and transfer to boundary brackets",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-pins-marker-checks",
+      "kind": "lemma",
+      "label": "Marker checks",
+      "statement": "[Marker checks] For every fixed a, and separated placement of the groups, (P_ loc P)1. The assertion holds also after any fixed rigid translations or lattice reflections of the groups, and along…",
+      "section": "Separated pins and transfer to boundary brackets",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-prop-pin-moments",
+      "kind": "proposition",
+      "label": "Checked pin moments",
+      "statement": "[Checked pin moments] Consider any of the fixed separated arrangements above, including arrangements enlarged by reflected copies. Let Y_=H_(f) , where f is a real smooth zero-integral test supported…",
+      "section": "Separated pins and transfer to boundary brackets",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-pins-side-norm",
+      "kind": "lemma",
+      "label": "Normalized side norm",
+      "statement": "[Normalized side norm] Suppose a family of checked obstacles and factors lies strictly on one side of a site row. Their filled neighborhoods and all needed check paths lie on that side; unbounded…",
+      "section": "Separated pins and transfer to boundary brackets",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-lem-analytic-translation",
+      "kind": "lemma",
+      "label": "Analytic translation",
+      "statement": "[Analytic translation] Partition a finite arrangement of the preceding checked obstacles and local factors into two families separated strictly in projection on a lattice reflection normal n . At…",
+      "section": "Separated pins and transfer to boundary brackets",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-pins-local-geometry",
+      "kind": "lemma",
+      "label": "A local choice of the grid",
+      "statement": "[A local choice of the grid] Fix z_0 D , B(z_0, ) D , and an integer q0 . One can choose a finite grid of regular horizontal levels, depending only on z_0,,q , with the following property. If K_0…",
+      "section": "Separated pins and transfer to boundary brackets",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-pins-three-moves",
+      "kind": "lemma",
+      "label": "Separated insertion",
+      "statement": "[Separated insertion] At fixed positive gaps satisfying , and for any product _ of local Haar-phase factors at the representatives with fixed frequencies, J_^ -1 0. This holds for every converging…",
+      "section": "Separated pins and transfer to boundary brackets",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-pins-gap-closing",
+      "kind": "lemma",
+      "label": "Gap closing",
+      "statement": "[Gap closing] There is a function (a)0 as a0 such that _ 0 (P_=^c P)&(a), \\\\ _ 0 \\|_ ,a ^ = |_ I_ -_ ,0 |_ I_ \\|_ &(a), \\\\ _ 0 _ _ ,a ^ = |X_|^p & C_p(1 p<), where I_ is the joint increment…",
+      "section": "Separated pins and transfer to boundary brackets",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-prop-bracket-insertion",
+      "kind": "proposition",
+      "label": "Bracket insertion identity",
+      "statement": "[Bracket insertion identity] Fix a grid, windows, and local factors as in . Suppose two grid levels strictly bracket K_0 , miss every spectator disk, and give the strict middle-strip geometry for the…",
+      "section": "Separated pins and transfer to boundary brackets",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-boundary-synthetic-trace",
+      "kind": "lemma",
+      "label": "Synthetic trace",
+      "statement": "[Synthetic trace] Fix finitely many high and low boundary arcs, separated by transition neighborhoods of positive length, with both types present. The high cores and all their transition…",
+      "section": "Boundary attachments and vanishing boundary effects",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-boundary-extremal",
+      "kind": "lemma",
+      "label": "Extremal site circuits",
+      "statement": "[Extremal site circuits] In a specified finite annular strip, consider the simple open site circuits surrounding a fixed connected inner box. If one exists, there is an innermost and an outermost…",
+      "section": "Boundary attachments and vanishing boundary effects",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-lem-boundary-attachment",
+      "kind": "lemma",
+      "label": "Attachment to a clean arc",
+      "statement": "[Attachment to a clean arc] There are constants >0 and a_0>0 , depending only on x , with the following property. Fix b>0 and put s= b . Suppose a retained height problem has a connected bounding…",
+      "section": "Boundary attachments and vanishing boundary effects",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-boundary-bulk-tubes",
+      "kind": "lemma",
+      "label": "Nonnegative paths through bulk tubes",
+      "statement": "[Nonnegative paths through bulk tubes] Consider a bounded face of a connected fixed skeleton, with its weighted height law and usable trace at least -2 . Fix a finite network of tubes in that face…",
+      "section": "Boundary attachments and vanishing boundary effects",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-prop-boundary-arch",
+      "kind": "proposition",
+      "label": "Boundary arch estimate",
+      "statement": "[Boundary arch estimate] There are constants L>100 , c,C>0 and a positive slope tolerance such that the following holds. Fix p D and a local radius R satisfying that tolerance. Suppose the actual…",
+      "section": "Boundary attachments and vanishing boundary effects",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-prop-bracket-collapse",
+      "kind": "proposition",
+      "label": "Vanishing bracket means",
+      "statement": "[Vanishing bracket means] Fix a finite regular grid as in Definition~ . For every f C_c^(D) , the upper and lower bracket fields satisfy _ 0 \\ _ 0 | H_^ , (f)|=0.",
+      "section": "Boundary attachments and vanishing boundary effects",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-prop-boundary-moments",
+      "kind": "proposition",
+      "label": "Boundary moments with exterior spectators",
+      "statement": "[Boundary moments with exterior spectators] Fix a nonnegative smooth radial bump , supported in the unit disk, with integral one, and fix a sufficiently small >0 . For z D write d(z)=(z, D) and \\[…",
+      "section": "Boundary attachments and vanishing boundary effects",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-prop-tightness",
+      "kind": "proposition",
+      "label": "Tightness and moment convergence",
+      "statement": "[Tightness and moment convergence] For every \\(t>1\\), the true fields are tight in \\(H^ -t _ loc (D)\\). The same holds for the upper and lower brackets, uniformly in their exceptional windows. Every…",
+      "section": "Identification of the limiting field",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-limit-transfer",
+      "kind": "lemma",
+      "label": "Transfer to the chosen field",
+      "statement": "[Transfer to the chosen field] The field \\(H\\) satisfies the limiting insertion identity of Proposition~ in every disk arrangement allowed there: =0, g_=0, where each \\(g_\\) is supported in its…",
+      "section": "Identification of the limiting field",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-limit-references",
+      "kind": "lemma",
+      "label": "Vanishing references",
+      "statement": "[Vanishing references] There are finite averages \\(R_m\\) of unit radial pairings of \\(H\\), supported arbitrarily near the boundary, such that \\[ \\|R_m\\|_ L^p 0 for every p<. \\] Each \\(R_m\\) uses…",
+      "section": "Identification of the limiting field",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-prop-harmonic-moments",
+      "kind": "proposition",
+      "label": "Harmonic moments",
+      "statement": "[Harmonic moments] Let \\[ C_j=\\ (z_1,,z_j) D^j: z_i z_k for i k\\ . \\] On \\( C_j\\), \\(T_j\\) is a smooth function and is harmonic in each variable separately.",
+      "section": "Identification of the limiting field",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-lem-no-diagonal",
+      "kind": "lemma",
+      "label": "No distributions supported on collisions",
+      "statement": "[No distributions supported on collisions] On every compact subset of \\(D^j\\), the off-diagonal function from Proposition~ is locally integrable and represents all of \\(T_j\\). For \\(j2\\), if \\(d(…",
+      "section": "Identification of the limiting field",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-limit-puncture",
+      "kind": "lemma",
+      "label": "Punctured harmonic expansion",
+      "statement": "[Punctured harmonic expansion] Let \\(j2\\). Fix a collision point \\(y D\\) and distinct spectators \\( z=(z_3,,z_j)\\), all separated from \\(y\\). For \\(x\\) in a sufficiently small punctured disk about…",
+      "section": "Identification of the limiting field",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-prop-collision",
+      "kind": "proposition",
+      "label": "Collision coefficient",
+      "statement": "[Collision coefficient] In , L(y, z)=v 2 T_ j-2 ( z). The convention \\(T_0=1\\) applies when \\(j=2\\).",
+      "section": "Identification of the limiting field",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-thm-wick",
+      "kind": "theorem",
+      "label": "Moment identification and the full field law",
+      "statement": "[Moment identification and the full field law] For every \\(j2\\) and distinct \\(x,y_2,,y_j D\\), T_j(x,y_2,,y_j) =v_ i=2 ^j G_D(x,y_i)\\, T_ j-2 (y_2,,y_i,,y_j). Together with \\(T_0=1\\) and \\(T_1=0\\),…",
+      "section": "Identification of the limiting field",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-spectra-unitary",
+      "kind": "lemma",
+      "label": "Commuting translations",
+      "statement": "[Commuting translations] Let V_1,,V_d be commuting unitaries on a complex Hilbert space. For vectors a,b there is a unique finite complex measure _ a,b on the d -torus such that \\[ e^ i n \\,_ a,b ()…",
+      "section": "Scalar spectral measures",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-spectra-transfer",
+      "kind": "lemma",
+      "label": "A unitary and a positive contraction",
+      "statement": "[A unitary and a positive contraction] Let U be unitary and S a positive self-adjoint contraction, with US=SU . For vectors a,b there is a unique finite complex measure _ a,b on the circle times…",
+      "section": "Scalar spectral measures",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-spectra-analytic",
+      "kind": "corollary",
+      "label": "Bounded analytic matrix elements",
+      "statement": "[Bounded analytic matrix elements] For the positive contraction S above and vectors a,b , there is a bounded holomorphic function F_ a,b on w>0 such that \\[ F_ a,b (j)= a,S^jb(j=1,2,), |F_ a,b…",
+      "section": "Scalar spectral measures",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-annulus-ambient",
+      "kind": "lemma",
+      "label": "Ambient extension",
+      "statement": "[Ambient extension] Take a finite triangulation of the sphere containing a periodic triangular lattice cylinder. Choose any edge-disjoint family of elementary triangles in that cylinder, make each a…",
+      "section": "The weighted annulus estimate",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-annulus-one-white",
+      "kind": "lemma",
+      "label": "One complementary-color cut",
+      "statement": "[One complementary-color cut] The comparison of Lemma~ for B and signed B statuses remains valid with one prescribed open W winding contour of fixed sign, provided that its cells are disjoint from…",
+      "section": "The weighted annulus estimate",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-annulus-slide",
+      "kind": "lemma",
+      "label": "Boundary slides",
+      "statement": "[Boundary slides] Let _ a,b be the law between a lower open-minus B contour a and an upper open-plus B contour b . If the contours are ordered from bottom to top as \\[ a_1<a_0<supp(A)<b_1<b_0, \\]…",
+      "section": "The weighted annulus estimate",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-annulus-search",
+      "kind": "lemma",
+      "label": "Exterior search for a winding cut",
+      "statement": "[Exterior search for a winding cut] In a cylindrical band, search from below for an authorized winding contour of a specified class, color, and sign. The search can be arranged so that, conditional…",
+      "section": "The weighted annulus estimate",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-annulus-duality",
+      "kind": "lemma",
+      "label": "Signed band alternative",
+      "statement": "[Signed band alternative] In a cylindrical band augmented in either class T , at least one of the following events occurs: a vertical occupied B+ crossing, a vertical occupied B- crossing, an…",
+      "section": "The weighted annulus estimate",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-annulus-ports",
+      "kind": "lemma",
+      "label": "Finite boundary ports",
+      "statement": "[Finite boundary ports] Consider a cell law with no prescribed complementary-spin labels. Suppose that, after a first-spin/status history is fixed outside a retained set, every complementary-spin…",
+      "section": "The weighted annulus estimate",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-annulus-patch",
+      "kind": "lemma",
+      "label": "Compatible finite boundary patches",
+      "statement": "[Compatible finite boundary patches] Fix x and a bound M on the number of cells and sites of a patch. Keep the first-spin/status history outside the patch fixed, and reveal no complementary-spin…",
+      "section": "The weighted annulus estimate",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-annulus-plus-equalities",
+      "kind": "lemma",
+      "label": "Equalities on a fixed plus layer",
+      "statement": "[Equalities on a fixed plus layer] In the law of Lemma~ , fix a permitted history and an equality set E_0 . Let F be a set of edges both of whose endpoints are pinned B=+ . Adding the equalities…",
+      "section": "The weighted annulus estimate",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-annulus-straight-short",
+      "kind": "lemma",
+      "label": "A straight short-direction crossing",
+      "statement": "[A straight short-direction crossing] Fix a cell class T and 0<<1/2 . In triangular coordinates let P=[0,3r] . Give its long sides open-plus B cuts and its short sides open-minus B cuts, exclude…",
+      "section": "The weighted annulus estimate",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-annulus-gluing",
+      "kind": "lemma",
+      "label": "A separated-path crossing",
+      "statement": "[A separated-path crossing] Use triangular coordinates (u,v) , with u horizontal, and a fixed cell class T . Let \\[ P_L=[0,6], P_R=[,7] \\] be embedded parallelograms in a matching mixed cylinder. Let…",
+      "section": "The weighted annulus estimate",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-annulus-first-seed",
+      "kind": "lemma",
+      "label": "Seed with a matching class",
+      "statement": "[Seed with a matching class] There is c=c(x,C)>0 such that, for each sufficiently large n , one of T=Y,Z has a seed of occupied B -plus cells, under the matching mixed law P_T , in a band of height…",
+      "section": "The weighted annulus estimate",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-annulus-winding",
+      "kind": "lemma",
+      "label": "Winding from the matching seed",
+      "statement": "[Winding from the matching seed] Under P_Z , the horizontal seed above implies a positive lower bound for an occupied B -plus winding of class Z in a thin neighborhood of height .71H , entirely below…",
+      "section": "The weighted annulus estimate",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m1-annulus-seed",
+      "kind": "proposition",
+      "label": "The mixed-cylinder seed estimate",
+      "statement": "[The mixed-cylinder seed estimate] For every fixed C3 there is =(x,C)>0 such that, for all sufficiently large n , P_Y( H_Y^+([-2n,2n])) on the mixed cylinder Cyl_ Cn,5n of , with the same lattice…",
+      "section": "The weighted annulus estimate",
+      "manuscript": "Gaussian free-field limits of weighted integer Lipschitz heights"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "Let D be a bounded smooth simply connected planar domain with two distinct…",
+      "statement": "Let D be a bounded smooth simply connected planar domain with two distinct marked boundary points. Let D_ be simply connected triangular-lattice polygonal approximations with uniformly converging…",
+      "section": "Introduction",
+      "manuscript": "The Gaussian free field limit of integer Lipschitz heights with two-arc boundary data"
+    },
+    {
+      "id": "m2-lem-gray",
+      "kind": "lemma",
+      "label": "The lift and the loop representation",
+      "statement": "[The lift and the loop representation] On a simply connected triangular domain, a coherent pair determines integer height increments dH(x,y)=W_xB_y-B_xW_y 2 . They have zero curl. Fixing the height…",
+      "section": "Heights, two spins, and exact cuts",
+      "manuscript": "The Gaussian free field limit of integer Lipschitz heights with two-arc boundary data"
+    },
+    {
+      "id": "m2-lem-spin-fkg",
+      "kind": "lemma",
+      "label": "Spin FKG with equality constraints",
+      "statement": "[Spin FKG with equality constraints] The B marginal of ^ E_0, satisfies the FKG lattice condition. The assertion remains true after any further B pinnings. In particular, fixing additional B spins to…",
+      "section": "Heights, two spins, and exact cuts",
+      "manuscript": "The Gaussian free field limit of integer Lipschitz heights with two-arc boundary data"
+    },
+    {
+      "id": "m2-lem-double-cut",
+      "kind": "lemma",
+      "label": "Exact cut law",
+      "statement": "[Exact cut law] Let C be a simple double- B circuit of sign t . Suppose that no edge of E_0 crosses C . Conditional on the exterior pair configuration and on the B=t values on the inner boundary…",
+      "section": "Heights, two spins, and exact cuts",
+      "manuscript": "The Gaussian free field limit of integer Lipschitz heights with two-arc boundary data"
+    },
+    {
+      "id": "m2-lem-local-circuit",
+      "kind": "lemma",
+      "label": "Local double circuits",
+      "statement": "[Local double circuits] There are R>3 , p>0 , and r_0< with the following property. In a constrained coherent-pair law, suppose that the radius- Rr face-ball patch about z , including the two layers…",
+      "section": "Buffered circuits, mixing, and rare pins",
+      "manuscript": "The Gaussian free field limit of integer Lipschitz heights with two-arc boundary data"
+    },
+    {
+      "id": "m2-lem-worst-cut",
+      "kind": "lemma",
+      "label": "A circuit under the opposite cut condition",
+      "statement": "[A circuit under the opposite cut condition] There are fixed K< and c>0 with the following property. Inside a regular dual cut of radius Kn , fix B=-t on the inner boundary layer and leave W free.…",
+      "section": "Buffered circuits, mixing, and rare pins",
+      "manuscript": "The Gaussian free field limit of integer Lipschitz heights with two-arc boundary data"
+    },
+    {
+      "id": "m2-lem-buffer-circuits",
+      "kind": "lemma",
+      "label": "Circuits in buffers",
+      "statement": "[Circuits in buffers] Consider a fixed positive-width polygonal collar, or a fixed positive-width tube following a polygonal arc. Suppose it has a buffer disjoint from E_0 and from all prescribed B…",
+      "section": "Buffered circuits, mixing, and rare pins",
+      "manuscript": "The Gaussian free field limit of integer Lipschitz heights with two-arc boundary data"
+    },
+    {
+      "id": "m2-prop-loop-estimates",
+      "kind": "proposition",
+      "label": "Loop estimates",
+      "statement": "[Loop estimates] There are constants c_0>0 and 0<<1 such that, for all sufficiently large integer n , the following statements hold. [label=()] If the interior of a simple contour L contains _ 2n (z)…",
+      "section": "Buffered circuits, mixing, and rare pins",
+      "manuscript": "The Gaussian free field limit of integer Lipschitz heights with two-arc boundary data"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-spin-lift",
+      "to": "m1-lem-cell-cut"
+    },
+    {
+      "from": "m1-prop-history-order",
+      "to": "m1-discrete-ising-partition"
+    },
+    {
+      "from": "m1-prop-history-order",
+      "to": "m1-discrete-online"
+    },
+    {
+      "from": "m1-prop-history-order",
+      "to": "m1-lem-buffer-circuits"
+    },
+    {
+      "from": "m1-lem-cell-cut",
+      "to": "m1-lem-buffer-circuits"
+    },
+    {
+      "from": "m1-thm-circuit-input",
+      "to": "m1-lem-buffer-circuits"
+    },
+    {
+      "from": "m1-lem-buffer-circuits",
+      "to": "m1-prop-local-mixing"
+    },
+    {
+      "from": "m1-discrete-online",
+      "to": "m1-prop-local-mixing"
+    },
+    {
+      "from": "m1-prop-history-order",
+      "to": "m1-cor-conditional-plane-matching"
+    },
+    {
+      "from": "m1-prop-local-mixing",
+      "to": "m1-cor-conditional-plane-matching"
+    },
+    {
+      "from": "m1-discrete-online",
+      "to": "m1-cor-conditional-plane-matching"
+    },
+    {
+      "from": "m1-lem-cell-cut",
+      "to": "m1-cor-conditional-plane-matching"
+    },
+    {
+      "from": "m1-lem-cell-cut",
+      "to": "m1-prop-rare-pins"
+    },
+    {
+      "from": "m1-lem-buffer-circuits",
+      "to": "m1-lem-collar-switch"
+    },
+    {
+      "from": "m1-prop-history-order",
+      "to": "m1-lem-height-order"
+    },
+    {
+      "from": "m1-lem-spin-lift",
+      "to": "m1-lem-height-order"
+    },
+    {
+      "from": "m1-lem-height-order",
+      "to": "m1-lem-shell-moments"
+    },
+    {
+      "from": "m1-discrete-online",
+      "to": "m1-lem-shell-moments"
+    },
+    {
+      "from": "m1-lem-cell-cut",
+      "to": "m1-lem-shell-moments"
+    },
+    {
+      "from": "m1-lem-buffer-circuits",
+      "to": "m1-lem-shell-moments"
+    },
+    {
+      "from": "m1-prop-history-order",
+      "to": "m1-lem-shell-moments"
+    },
+    {
+      "from": "m1-lem-buffer-circuits",
+      "to": "m1-moments-covariance"
+    },
+    {
+      "from": "m1-lem-shell-moments",
+      "to": "m1-moments-covariance"
+    },
+    {
+      "from": "m1-thm-midpoint",
+      "to": "m1-lem-midpoint-amplification"
+    },
+    {
+      "from": "m1-moments-covariance",
+      "to": "m1-prop-smearing"
+    },
+    {
+      "from": "m1-moments-weighted-midpoints",
+      "to": "m1-prop-smearing"
+    },
+    {
+      "from": "m1-lem-midpoint-amplification",
+      "to": "m1-prop-smearing"
+    },
+    {
+      "from": "m1-lem-height-order",
+      "to": "m1-prop-smearing"
+    },
+    {
+      "from": "m1-lem-cell-cut",
+      "to": "m1-prop-smearing"
+    },
+    {
+      "from": "m1-lem-buffer-circuits",
+      "to": "m1-prop-plane-moments"
+    },
+    {
+      "from": "m1-prop-smearing",
+      "to": "m1-prop-plane-moments"
+    },
+    {
+      "from": "m1-lem-spin-lift",
+      "to": "m1-prop-plane-moments"
+    },
+    {
+      "from": "m1-moments-weighted-midpoints",
+      "to": "m1-prop-plane-moments"
+    },
+    {
+      "from": "m1-lem-midpoint-amplification",
+      "to": "m1-prop-plane-moments"
+    },
+    {
+      "from": "m1-prop-local-mixing",
+      "to": "m1-prop-plane-moments"
+    },
+    {
+      "from": "m1-lem-buffer-circuits",
+      "to": "m1-lem-nondegeneracy"
+    },
+    {
+      "from": "m1-discrete-online",
+      "to": "m1-lem-nondegeneracy"
+    },
+    {
+      "from": "m1-lem-collar-switch",
+      "to": "m1-lem-nondegeneracy"
+    },
+    {
+      "from": "m1-prop-plane-moments",
+      "to": "m1-lem-nondegeneracy"
+    },
+    {
+      "from": "m1-spectra-unitary",
+      "to": "m1-plane-lem-spectrum"
+    },
+    {
+      "from": "m1-prop-plane-moments",
+      "to": "m1-plane-lem-spectrum"
+    },
+    {
+      "from": "m1-spectra-transfer",
+      "to": "m1-plane-lem-mixture"
+    },
+    {
+      "from": "m1-prop-reflection-transfer",
+      "to": "m1-plane-lem-mixture"
+    },
+    {
+      "from": "m1-plane-lem-defect",
+      "to": "m1-plane-lem-subsequences"
+    },
+    {
+      "from": "m1-plane-lem-mixture",
+      "to": "m1-plane-lem-subsequences"
+    },
+    {
+      "from": "m1-lem-endcaps",
+      "to": "m1-plane-lem-subsequences"
+    },
+    {
+      "from": "m1-prop-plane-covariance",
+      "to": "m1-plane-lem-unique"
+    },
+    {
+      "from": "m1-lem-nondegeneracy",
+      "to": "m1-plane-lem-unique"
+    },
+    {
+      "from": "m1-prop-plane-covariance",
+      "to": "m1-prop-reflection-null"
+    },
+    {
+      "from": "m1-prop-plane-moments",
+      "to": "m1-prop-reflection-null"
+    },
+    {
+      "from": "m1-lem-boundary-walk",
+      "to": "m1-pins-label-count"
+    },
+    {
+      "from": "m1-lem-boundary-walk",
+      "to": "m1-pins-bracket-order"
+    },
+    {
+      "from": "m1-lem-spin-lift",
+      "to": "m1-pins-bracket-order"
+    },
+    {
+      "from": "m1-lem-height-order",
+      "to": "m1-pins-bracket-order"
+    },
+    {
+      "from": "m1-prop-smearing",
+      "to": "m1-pins-bracket-order"
+    },
+    {
+      "from": "m1-lem-boundary-walk",
+      "to": "m1-pins-marker-checks"
+    },
+    {
+      "from": "m1-lem-buffer-circuits",
+      "to": "m1-pins-marker-checks"
+    },
+    {
+      "from": "m1-pins-label-count",
+      "to": "m1-pins-marker-checks"
+    },
+    {
+      "from": "m1-thm-midpoint",
+      "to": "m1-prop-pin-moments"
+    },
+    {
+      "from": "m1-lem-buffer-circuits",
+      "to": "m1-prop-pin-moments"
+    },
+    {
+      "from": "m1-pins-marker-checks",
+      "to": "m1-prop-pin-moments"
+    },
+    {
+      "from": "m1-prop-smearing",
+      "to": "m1-prop-pin-moments"
+    },
+    {
+      "from": "m1-lem-collar-switch",
+      "to": "m1-prop-pin-moments"
+    },
+    {
+      "from": "m1-lem-midpoint-amplification",
+      "to": "m1-prop-pin-moments"
+    },
+    {
+      "from": "m1-prop-plane-moments",
+      "to": "m1-prop-pin-moments"
+    },
+    {
+      "from": "m1-prop-pin-moments",
+      "to": "m1-pins-side-norm"
+    },
+    {
+      "from": "m1-pins-side-norm",
+      "to": "m1-lem-analytic-translation"
+    },
+    {
+      "from": "m1-spectra-transfer",
+      "to": "m1-lem-analytic-translation"
+    },
+    {
+      "from": "m1-spectra-analytic",
+      "to": "m1-lem-analytic-translation"
+    },
+    {
+      "from": "m1-pins-side-norm",
+      "to": "m1-pins-three-moves"
+    },
+    {
+      "from": "m1-prop-reflection-null",
+      "to": "m1-pins-three-moves"
+    },
+    {
+      "from": "m1-lem-analytic-translation",
+      "to": "m1-pins-three-moves"
+    },
+    {
+      "from": "m1-lem-boundary-walk",
+      "to": "m1-pins-gap-closing"
+    },
+    {
+      "from": "m1-pins-marker-checks",
+      "to": "m1-pins-gap-closing"
+    },
+    {
+      "from": "m1-prop-history-order",
+      "to": "m1-pins-gap-closing"
+    },
+    {
+      "from": "m1-lem-cell-cut",
+      "to": "m1-pins-gap-closing"
+    },
+    {
+      "from": "m1-prop-smearing",
+      "to": "m1-pins-gap-closing"
+    },
+    {
+      "from": "m1-lem-midpoint-amplification",
+      "to": "m1-pins-gap-closing"
+    },
+    {
+      "from": "m1-prop-pin-moments",
+      "to": "m1-pins-gap-closing"
+    },
+    {
+      "from": "m1-pins-bracket-order",
+      "to": "m1-pins-gap-closing"
+    },
+    {
+      "from": "m1-lem-height-order",
+      "to": "m1-boundary-synthetic-trace"
+    },
+    {
+      "from": "m1-boundary-synthetic-trace",
+      "to": "m1-lem-boundary-attachment"
+    },
+    {
+      "from": "m1-lem-buffer-circuits",
+      "to": "m1-lem-boundary-attachment"
+    },
+    {
+      "from": "m1-lem-collar-switch",
+      "to": "m1-lem-boundary-attachment"
+    },
+    {
+      "from": "m1-lem-height-order",
+      "to": "m1-boundary-bulk-tubes"
+    },
+    {
+      "from": "m1-boundary-synthetic-trace",
+      "to": "m1-prop-boundary-arch"
+    },
+    {
+      "from": "m1-lem-buffer-circuits",
+      "to": "m1-prop-boundary-arch"
+    },
+    {
+      "from": "m1-boundary-extremal",
+      "to": "m1-prop-boundary-arch"
+    },
+    {
+      "from": "m1-lem-boundary-attachment",
+      "to": "m1-prop-boundary-arch"
+    },
+    {
+      "from": "m1-boundary-bulk-tubes",
+      "to": "m1-prop-boundary-arch"
+    },
+    {
+      "from": "m1-prop-boundary-arch",
+      "to": "m1-prop-bracket-collapse"
+    },
+    {
+      "from": "m1-prop-smearing",
+      "to": "m1-prop-bracket-collapse"
+    },
+    {
+      "from": "m1-prop-smearing",
+      "to": "m1-prop-boundary-moments"
+    },
+    {
+      "from": "m1-prop-boundary-arch",
+      "to": "m1-prop-boundary-moments"
+    },
+    {
+      "from": "m1-prop-smearing",
+      "to": "m1-prop-tightness"
+    },
+    {
+      "from": "m1-pins-bracket-order",
+      "to": "m1-limit-transfer"
+    },
+    {
+      "from": "m1-prop-tightness",
+      "to": "m1-limit-transfer"
+    },
+    {
+      "from": "m1-prop-bracket-collapse",
+      "to": "m1-limit-transfer"
+    },
+    {
+      "from": "m1-prop-bracket-insertion",
+      "to": "m1-limit-transfer"
+    },
+    {
+      "from": "m1-prop-boundary-moments",
+      "to": "m1-limit-references"
+    },
+    {
+      "from": "m1-pins-local-geometry",
+      "to": "m1-prop-harmonic-moments"
+    },
+    {
+      "from": "m1-prop-bracket-insertion",
+      "to": "m1-prop-harmonic-moments"
+    },
+    {
+      "from": "m1-limit-transfer",
+      "to": "m1-prop-harmonic-moments"
+    },
+    {
+      "from": "m1-limit-references",
+      "to": "m1-prop-harmonic-moments"
+    },
+    {
+      "from": "m1-prop-boundary-moments",
+      "to": "m1-lem-no-diagonal"
+    },
+    {
+      "from": "m1-prop-harmonic-moments",
+      "to": "m1-limit-puncture"
+    },
+    {
+      "from": "m1-lem-boundary-walk",
+      "to": "m1-prop-collision"
+    },
+    {
+      "from": "m1-lem-buffer-circuits",
+      "to": "m1-prop-collision"
+    },
+    {
+      "from": "m1-prop-local-mixing",
+      "to": "m1-prop-collision"
+    },
+    {
+      "from": "m1-lem-spin-lift",
+      "to": "m1-prop-collision"
+    },
+    {
+      "from": "m1-lem-cell-cut",
+      "to": "m1-prop-collision"
+    },
+    {
+      "from": "m1-cor-conditional-plane-matching",
+      "to": "m1-prop-collision"
+    },
+    {
+      "from": "m1-prop-plane-moments",
+      "to": "m1-prop-collision"
+    },
+    {
+      "from": "m1-prop-plane-covariance",
+      "to": "m1-prop-collision"
+    },
+    {
+      "from": "m1-limit-puncture",
+      "to": "m1-prop-collision"
+    },
+    {
+      "from": "m1-prop-collision",
+      "to": "m1-thm-wick"
+    },
+    {
+      "from": "m1-limit-puncture",
+      "to": "m1-thm-wick"
+    },
+    {
+      "from": "m1-lem-no-diagonal",
+      "to": "m1-thm-wick"
+    },
+    {
+      "from": "m1-prop-tightness",
+      "to": "m1-thm-wick"
+    },
+    {
+      "from": "m1-prop-plane-covariance",
+      "to": "m1-thm-wick"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-thm-wick"
+    },
+    {
+      "from": "m1-spectra-unitary",
+      "to": "m1-spectra-transfer"
+    },
+    {
+      "from": "m1-spectra-transfer",
+      "to": "m1-spectra-analytic"
+    },
+    {
+      "from": "m1-prop-history-order",
+      "to": "m1-annulus-ambient"
+    },
+    {
+      "from": "m1-lem-cell-cut",
+      "to": "m1-annulus-ambient"
+    },
+    {
+      "from": "m1-annulus-ambient",
+      "to": "m1-annulus-one-white"
+    },
+    {
+      "from": "m1-annulus-ambient",
+      "to": "m1-annulus-slide"
+    },
+    {
+      "from": "m1-annulus-one-white",
+      "to": "m1-annulus-slide"
+    },
+    {
+      "from": "m1-discrete-online",
+      "to": "m1-annulus-search"
+    },
+    {
+      "from": "m1-annulus-ambient",
+      "to": "m1-annulus-search"
+    },
+    {
+      "from": "m1-prop-history-order",
+      "to": "m1-annulus-plus-equalities"
+    },
+    {
+      "from": "m1-annulus-patch",
+      "to": "m1-annulus-straight-short"
+    },
+    {
+      "from": "m1-annulus-plus-equalities",
+      "to": "m1-annulus-straight-short"
+    },
+    {
+      "from": "m1-annulus-ports",
+      "to": "m1-annulus-straight-short"
+    },
+    {
+      "from": "m1-annulus-search",
+      "to": "m1-annulus-gluing"
+    },
+    {
+      "from": "m1-annulus-patch",
+      "to": "m1-annulus-gluing"
+    },
+    {
+      "from": "m1-annulus-ambient",
+      "to": "m1-annulus-gluing"
+    },
+    {
+      "from": "m1-annulus-ports",
+      "to": "m1-annulus-gluing"
+    },
+    {
+      "from": "m1-annulus-straight-short",
+      "to": "m1-annulus-gluing"
+    },
+    {
+      "from": "m1-annulus-duality",
+      "to": "m1-annulus-first-seed"
+    },
+    {
+      "from": "m1-annulus-slide",
+      "to": "m1-annulus-first-seed"
+    },
+    {
+      "from": "m1-annulus-search",
+      "to": "m1-annulus-first-seed"
+    },
+    {
+      "from": "m1-annulus-one-white",
+      "to": "m1-annulus-first-seed"
+    },
+    {
+      "from": "m1-annulus-gluing",
+      "to": "m1-annulus-winding"
+    },
+    {
+      "from": "m1-annulus-slide",
+      "to": "m1-annulus-winding"
+    },
+    {
+      "from": "m1-annulus-first-seed",
+      "to": "m1-annulus-seed"
+    },
+    {
+      "from": "m1-annulus-winding",
+      "to": "m1-annulus-seed"
+    },
+    {
+      "from": "m1-annulus-ambient",
+      "to": "m1-annulus-seed"
+    },
+    {
+      "from": "m1-annulus-slide",
+      "to": "m1-annulus-seed"
+    },
+    {
+      "from": "m1-thm-circuit-input",
+      "to": "m1-annulus-seed"
+    },
+    {
+      "from": "m1-lem-cell-cut",
+      "to": "m1-annulus-seed"
+    },
+    {
+      "from": "m2-lem-spin-fkg",
+      "to": "m2-lem-local-circuit"
+    },
+    {
+      "from": "m2-lem-worst-cut",
+      "to": "m2-lem-buffer-circuits"
+    },
+    {
+      "from": "m2-lem-buffer-circuits",
+      "to": "m2-prop-loop-estimates"
+    },
+    {
+      "from": "m2-lem-double-cut",
+      "to": "m2-prop-loop-estimates"
+    },
+    {
+      "from": "m2-lem-local-circuit",
+      "to": "m2-prop-loop-estimates"
+    }
+  ]
+}

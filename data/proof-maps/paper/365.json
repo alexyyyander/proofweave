@@ -1,0 +1,955 @@
+{
+  "familyNumber": "365",
+  "familyTitle": "Joint metric and connection recovery from one boundary patch",
+  "manuscripts": [
+    {
+      "id": "Determination-of-a-metric-and-a-unitary-connection-from-one-boundary-patch-October-5-2026",
+      "title": "Determination of a metric and a unitary connection from one boundary patch",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Determination-of-a-metric-and-a-unitary-connection-from-one-boundary-patch-October-5-2026/paper.pdf"
+    },
+    {
+      "id": "Smooth-Anisotropic-Uniqueness-in-the-Calderon-Problem-from-One-Boundary-Patch-September-24-2026",
+      "title": "Smooth anisotropic uniqueness in the Calderón problem from one boundary patch",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Smooth-Anisotropic-Uniqueness-in-the-Calderon-Problem-from-One-Boundary-Patch-September-24-2026/paper.pdf"
+    },
+    {
+      "id": "Nonuniqueness-for-Bounded-Measurable-Scalar-Conductivities-in-Three-Dimensions-September-23-2026",
+      "title": "Nonuniqueness for bounded measurable scalar conductivities in three dimensions",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Nonuniqueness-for-Bounded-Measurable-Scalar-Conductivities-in-Three-Dimensions-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Boundary data, exterior sources, and contact coordinates",
+    "Continuation of solutions in two variables",
+    "Shrinking spheres and harmonic transfer",
+    "Uniform estimates for the matrix transfer density",
+    "Matrix moments and extension across the contact point",
+    "Exact identification and the measured boundary",
+    "Boundary data and a common interior region",
+    "Local continuation and product solutions",
+    "Continuation to shrinking spheres",
+    "An estimate on the shrinking spheres",
+    "From harmonic differences to local metric extension",
+    "The global isometry and the measured boundary",
+    "Scalar conductivities on a fixed Euclidean domain",
+    "Exact scalarization of two Cauchy pairs",
+    "Constructing the branching block",
+    "From a branching block to identical boundary measurements"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Let M and be as above. For j=1,2 , let g_j be a smooth Riemannian metric on M…",
+      "statement": "Let M and be as above. For j=1,2 , let g_j be a smooth Riemannian metric on M and let A_j C^(M;T^*M u(2)) . If \\[ _ g_1,A_1, f,h =_ g_2,A_2, f,h for all f,h C_c^(;^2), \\] then there are a smooth…",
+      "section": "Introduction",
+      "manuscript": "Determination of a metric and a unitary connection from one boundary patch"
+    },
+    {
+      "id": "m1-bdy-jets",
+      "kind": "lemma",
+      "label": "Boundary jets",
+      "statement": "[Boundary jets] Suppose the local energy forms of \\((g_1,A_1)\\) and \\((g_2,A_2)\\) agree on \\(\\). In their respective boundary-normal coordinates, based on the same boundary coordinates, and in the…",
+      "section": "Boundary data, exterior sources, and contact coordinates",
+      "manuscript": "Determination of a metric and a unitary connection from one boundary patch"
+    },
+    {
+      "id": "m1-bdy-cap",
+      "kind": "proposition",
+      "label": "Common exterior sources",
+      "statement": "[Common exterior sources] There are compact connected smooth extensions \\(N_j\\) of the original manifold, with nonempty smooth boundary, and a common connected open exterior cap \\(E N_j^\\), attached…",
+      "section": "Boundary data, exterior sources, and contact coordinates",
+      "manuscript": "Determination of a metric and a unitary connection from one boundary patch"
+    },
+    {
+      "id": "m1-bdy-evaluations",
+      "kind": "lemma",
+      "label": "Values and harmonic two-jets",
+      "statement": "[Values and harmonic two-jets] Let \\(N\\) be a compact connected smooth manifold of dimension \\(n2\\) with nonempty boundary, let \\(L=d_A^ *g d_A\\), and let \\(U N^\\) be a nonempty open source set. At…",
+      "section": "Boundary data, exterior sources, and contact coordinates",
+      "manuscript": "Determination of a metric and a unitary connection from one boundary patch"
+    },
+    {
+      "id": "m1-bdy-matches",
+      "kind": "lemma",
+      "label": "The maximal match",
+      "statement": "[The maximal match] All matches agree on overlaps and are injective on base points. Their union is a unique maximal match \\((,J)\\) on a connected open set \\(W N_2^\\). On this set, G_1((p),(q))…",
+      "section": "Boundary data, exterior sources, and contact coordinates",
+      "manuscript": "Determination of a metric and a unitary connection from one boundary patch"
+    },
+    {
+      "id": "m1-bdy-contact",
+      "kind": "proposition",
+      "label": "Contact data",
+      "statement": "[Contact data] If the maximal domain \\(W\\) has an interior frontier, there are a point \\(p W N_2^\\), a point \\(q N_1^\\), and charts about \\(p,q\\), both with coordinate range a neighborhood of \\(0…",
+      "section": "Boundary data, exterior sources, and contact coordinates",
+      "manuscript": "Determination of a metric and a unitary connection from one boundary patch"
+    },
+    {
+      "id": "m1-cross-series",
+      "kind": "lemma",
+      "label": "Extension from a cross",
+      "statement": "[Extension from a cross] Let D_i be bounded connected coordinate domains, and let S_i D_i be nonempty open sets. Suppose a product solution F is given consistently on \\[ (D_1 S_2)(S_1 D_2), \\] with…",
+      "section": "Continuation of solutions in two variables",
+      "manuscript": "Determination of a metric and a unitary connection from one boundary patch"
+    },
+    {
+      "id": "m1-cross-criterion",
+      "kind": "proposition",
+      "label": "Product extension criterion",
+      "statement": "[Product extension criterion] Let be smooth near z_0=(x_0,y_0) , with (z_0)=0 and d_x,d_y0 . Put \\[ a_i= _i |_i|^2 , H=Hess. \\] Suppose that at z_0 H((a_1,-a_2),(a_1,-a_2)) +H((v_1,v_2),(v_1,v_2))>0…",
+      "section": "Continuation of solutions in two variables",
+      "manuscript": "Determination of a metric and a unitary connection from one boundary patch"
+    },
+    {
+      "id": "m1-cross-propagation",
+      "kind": "lemma",
+      "label": "Propagation through a compact cylinder",
+      "statement": "[Propagation through a compact cylinder] Suppose a region in a product patch has smooth coordinates (z,a) near B , where B is a compact base, possibly with boundary or corners. A single product…",
+      "section": "Continuation of solutions in two variables",
+      "manuscript": "Determination of a metric and a unitary connection from one boundary patch"
+    },
+    {
+      "id": "m1-cross-initial",
+      "kind": "proposition",
+      "label": "Fixed-separation initialization",
+      "statement": "[Fixed-separation initialization] In this setting, let n3 and fix B>0 , d>0 and >0 . For all sufficiently small , the data have a product-solution continuation to a neighborhood of \\[ \\ (x,y):|x|,|y|…",
+      "section": "Continuation of solutions in two variables",
+      "manuscript": "Determination of a metric and a unitary connection from one boundary patch"
+    },
+    {
+      "id": "m1-sph-profiles",
+      "kind": "lemma",
+      "label": "Uniform profile bounds",
+      "statement": "[Uniform profile bounds] For the geometry just fixed and all sufficiently small , the profiles~ satisfy cp_*, Hess_ f_*-c, |^j f_*| C_j^j(j1), uniformly in 0<1 . The constants c,C_j are independent…",
+      "section": "Shrinking spheres and harmonic transfer",
+      "manuscript": "Determination of a metric and a unitary connection from one boundary patch"
+    },
+    {
+      "id": "m1-sph-strict",
+      "kind": "lemma",
+      "label": "Strict sphere geometry",
+      "statement": "[Strict sphere geometry] Let r=r_ satisfy~ , , and~ . For p_* sufficiently large and sufficiently small, the hypersurface \\[ (x,y)=12(d_(x,y)^2-r(y)^2)=0 \\] satisfies the strict criterion of…",
+      "section": "Shrinking spheres and harmonic transfer",
+      "manuscript": "Determination of a metric and a unitary connection from one boundary patch"
+    },
+    {
+      "id": "m1-sph-continuation",
+      "kind": "proposition",
+      "label": "Continuation to the sphere family",
+      "statement": "[Continuation to the sphere family] Make the choices of Remark~ . For all sufficiently small and every 0<1 satisfying , the mixed Green matrix extends to a neighborhood of \\[ \\ (x,y):y Y,\\…",
+      "section": "Shrinking spheres and harmonic transfer",
+      "manuscript": "Determination of a metric and a unitary connection from one boundary patch"
+    },
+    {
+      "id": "m1-sph-transfer",
+      "kind": "proposition",
+      "label": "Matrix harmonic transfer",
+      "statement": "[Matrix harmonic transfer] Under the assumptions of Proposition~ , there is a smooth matrix function =_ on the unit sphere bundle over Y^ such that T_yv=_ S_y (y,) v(_y^(r(y)))\\,d_y(). For every y_0…",
+      "section": "Shrinking spheres and harmonic transfer",
+      "manuscript": "Determination of a metric and a unitary connection from one boundary patch"
+    },
+    {
+      "id": "m1-sph-cutoff-bounds",
+      "kind": "lemma",
+      "label": "Bounds where the cutoff varies",
+      "statement": "[Bounds where the cutoff varies] After the choices in Remark~ , for every fixed integer m the angular H^m norms of _ and its first base derivatives on supp(d) are bounded independently of admissible…",
+      "section": "Shrinking spheres and harmonic transfer",
+      "manuscript": "Determination of a metric and a unitary connection from one boundary patch"
+    },
+    {
+      "id": "m1-ang-trace",
+      "kind": "lemma",
+      "label": "Trace expansions",
+      "statement": "[Trace expansions] Under -- , C_ i,0 ^* =r^ -1 A_i^*+f_i B+E_i+F_i, E_i r^1, F_i^0. The normalized remainders r^ -1 E_i,F_i have the allowance C_j^j through six base derivatives. Moreover, on rows,…",
+      "section": "Uniform estimates for the matrix transfer density",
+      "manuscript": "Determination of a metric and a unitary connection from one boundary patch"
+    },
+    {
+      "id": "m1-ang-raising",
+      "kind": "lemma",
+      "label": "Weighted raising estimate",
+      "statement": "[Weighted raising estimate] Let n3 , and suppose holds on a fixed base region with uniformly bounded reference geometry. There are _0 and c>0 , depending only on that geometry and the constants in ,…",
+      "section": "Uniform estimates for the matrix transfer density",
+      "manuscript": "Determination of a metric and a unitary connection from one boundary patch"
+    },
+    {
+      "id": "m1-ang-scalar-coercivity",
+      "kind": "proposition",
+      "label": "Scalar coercivity",
+      "statement": "[Scalar coercivity] Fix uniform smooth bounds for the reference geometry and scalar comparison equations, and the constants in . Suppose P_0 is the scalar operator , with the scalar trace operators…",
+      "section": "Uniform estimates for the matrix transfer density",
+      "manuscript": "Determination of a metric and a unitary connection from one boundary patch"
+    },
+    {
+      "id": "m1-ang-system-coercivity",
+      "kind": "proposition",
+      "label": "System coercivity",
+      "statement": "[System coercivity] Fix uniform smooth bounds for the harmonic-frame systems and the reference geometry, and the constants in . There are _0 sufficiently large, _0>0 , and C , depending only on these…",
+      "section": "Uniform estimates for the matrix transfer density",
+      "manuscript": "Determination of a metric and a unitary connection from one boundary patch"
+    },
+    {
+      "id": "m1-ang-density",
+      "kind": "proposition",
+      "label": "Uniform transfer density",
+      "statement": "[Uniform transfer density] Choose the fixed geometry as in Section~ , then choose p_* sufficiently large, >0 sufficiently small, and the radius amplitude R_*>0 sufficiently small that r__^2 for 0<1 .…",
+      "section": "Uniform estimates for the matrix transfer density",
+      "manuscript": "Determination of a metric and a unitary connection from one boundary patch"
+    },
+    {
+      "id": "m1-mat-spanning",
+      "kind": "lemma",
+      "label": "Uniform spanning by the selected jets",
+      "statement": "[Uniform spanning by the selected jets] For all sufficiently small and every y Y , the vectors \\[ (_i v_ 1, (y), _i_j v_ 1, (y)), 1 N, \\] span, over C , the space of pairs (p,H) with p_i C^2 and H_…",
+      "section": "Matrix moments and extension across the contact point",
+      "manuscript": "Determination of a metric and a unitary connection from one boundary patch"
+    },
+    {
+      "id": "m1-mat-moments",
+      "kind": "lemma",
+      "label": "Weighted moment bounds",
+      "statement": "[Weighted moment bounds] Under , \\| D/r\\|_ L^2(Y) C, \\| R_/r^2\\|_ L^2(Y) C, 1 N. The constants are uniform in and small .",
+      "section": "Matrix moments and extension across the contact point",
+      "manuscript": "Determination of a metric and a unitary connection from one boundary patch"
+    },
+    {
+      "id": "m1-mat-interpolation",
+      "kind": "lemma",
+      "label": "Pointwise interpolation",
+      "statement": "[Pointwise interpolation] Choose \\[ d_*=10+ n2, =1 2d_* , p_*>2d_*, m10+3d_*. \\] There is a fixed _0>0 such that, if y K and r(y)<_0 , then _ ||10 |^ D(y)| Cr(y)^ 1/2 , _ ||10 |^ R_(y)| Cr(y)^ 3/2 .…",
+      "section": "Matrix moments and extension across the contact point",
+      "manuscript": "Determination of a metric and a unitary connection from one boundary patch"
+    },
+    {
+      "id": "m1-mat-projected-equation",
+      "kind": "lemma",
+      "label": "Projected displacement equation",
+      "statement": "[Projected displacement equation] There is a smooth matrix-valued symmetric tensor E such that h^ ij I+ (a^ li _lD^j+a^ lj _lD^i + B^ ij (D)) = E^ ij . For y K with r(y)<_0 , _ ||8 |^ E(y)| Cr(y)^…",
+      "section": "Matrix moments and extension across the contact point",
+      "manuscript": "Determination of a metric and a unitary connection from one boundary patch"
+    },
+    {
+      "id": "m1-mat-finite-type",
+      "kind": "lemma",
+      "label": "Prolongation of the conformal Killing principal part",
+      "statement": "[Prolongation of the conformal Killing principal part] Let n3 , let a=^ -1 be a smooth positive definite tensor on a coordinate domain, and let V be a finite-dimensional real vector space. Suppose…",
+      "section": "Matrix moments and extension across the contact point",
+      "manuscript": "Determination of a metric and a unitary connection from one boundary patch"
+    },
+    {
+      "id": "m1-mat-improvement",
+      "kind": "proposition",
+      "label": "Strict improvement of the principal tensors",
+      "statement": "[Strict improvement of the principal tensors] With the fixed choices in Lemma~ , there are constants C and _0>0 , uniform for sufficiently small , such that implies H_8(y) C r_(y)^ 3/2 if y K and…",
+      "section": "Matrix moments and extension across the contact point",
+      "manuscript": "Determination of a metric and a unitary connection from one boundary patch"
+    },
+    {
+      "id": "m1-mat-local",
+      "kind": "proposition",
+      "label": "Local equality of the normalized equations",
+      "statement": "[Local equality of the normalized equations] In the contact coordinates and harmonic frames of Proposition~ , there is a neighborhood of the origin on which the two metrics are smoothly conformal and…",
+      "section": "Matrix moments and extension across the contact point",
+      "manuscript": "Determination of a metric and a unitary connection from one boundary patch"
+    },
+    {
+      "id": "m1-glob-conformal",
+      "kind": "lemma",
+      "label": "Exact local identification",
+      "statement": "[Exact local identification] In the contact coordinates and unitary frames of Proposition~ , suppose that on a connected neighborhood \\(\\) of zero the metrics satisfy \\(g_2=e^ 2 g_1\\), and that the…",
+      "section": "Exact identification and the measured boundary",
+      "manuscript": "Determination of a metric and a unitary connection from one boundary patch"
+    },
+    {
+      "id": "m1-glob-interior",
+      "kind": "proposition",
+      "label": "Global interior identification",
+      "statement": "[Global interior identification] The maximal match of Lemma~ is defined on \\(N_2^\\), and its base map is an onto isometry \\(:N_2^ N_1^\\).",
+      "section": "Exact identification and the measured boundary",
+      "manuscript": "Determination of a metric and a unitary connection from one boundary patch"
+    },
+    {
+      "id": "m1-glob-boundary",
+      "kind": "proposition",
+      "label": "Completion and the measured patch",
+      "statement": "[Completion and the measured patch] The interior maps \\((,J)\\) extend smoothly to the extended manifolds, with \\(:N_2 N_1\\) a diffeomorphism and \\(J\\) a unitary bundle map intertwining the…",
+      "section": "Exact identification and the measured boundary",
+      "manuscript": "Determination of a metric and a unitary connection from one boundary patch"
+    },
+    {
+      "id": "m2-main-patch",
+      "kind": "theorem",
+      "label": "Smooth anisotropic uniqueness from one patch",
+      "statement": "[Smooth anisotropic uniqueness from one patch] Let n3 . Let M be a compact connected smooth n -manifold with nonempty smooth boundary, and let M be nonempty, proper, and relatively open. If two…",
+      "section": "Introduction",
+      "manuscript": "Smooth anisotropic uniqueness in the Calderón problem from one boundary patch"
+    },
+    {
+      "id": "m2-main-full",
+      "kind": "corollary",
+      "label": "Full-boundary uniqueness",
+      "statement": "[Full-boundary uniqueness] Let M,g_1,g_2 satisfy the geometric hypotheses of Theorem~ . If their Dirichlet energies agree for every pair of smooth boundary values, there is a smooth diffeomorphism…",
+      "section": "Introduction",
+      "manuscript": "Smooth anisotropic uniqueness in the Calderón problem from one boundary patch"
+    },
+    {
+      "id": "m2-main-scalar",
+      "kind": "corollary",
+      "label": "Smooth scalar uniqueness from one patch",
+      "statement": "[Smooth scalar uniqueness from one patch] Let n3 , and let and be as above. If two strictly positive conductivities _1,_2 C^() satisfy \\[ _ _1 ^ f=_ _2 ^ f for every f C_c^(), \\] then _1=_2 on .",
+      "section": "Introduction",
+      "manuscript": "Smooth anisotropic uniqueness in the Calderón problem from one boundary patch"
+    },
+    {
+      "id": "m2-data-jets",
+      "kind": "lemma",
+      "label": "Boundary jets",
+      "statement": "[Boundary jets] Let g_1,g_2 be smooth metrics on a compact connected smooth n -manifold M with nonempty boundary, where n3 . Suppose their energy maps agree for inputs and observations in a nonempty…",
+      "section": "Boundary data and a common interior region",
+      "manuscript": "Smooth anisotropic uniqueness in the Calderón problem from one boundary patch"
+    },
+    {
+      "id": "m2-data-cap",
+      "kind": "proposition",
+      "label": "Common cap and Green data",
+      "statement": "[Common cap and Green data] Under the hypotheses of Lemma~ , there are compact connected smooth extensions (M_j^e,g_j^e) of (M,g_j) and an identified connected open exterior cap E on which the…",
+      "section": "Boundary data and a common interior region",
+      "manuscript": "Smooth anisotropic uniqueness in the Calderón problem from one boundary patch"
+    },
+    {
+      "id": "m2-data-jet-family",
+      "kind": "lemma",
+      "label": "Separation and finite harmonic jets",
+      "statement": "[Separation and finite harmonic jets] Let (N,g) be a compact connected smooth manifold with nonempty boundary and dimension n2 . Let U N^ be nonempty and open, and let R=L_ g,D ^ -1 . Then: [label=(…",
+      "section": "Boundary data and a common interior region",
+      "manuscript": "Smooth anisotropic uniqueness in the Calderón problem from one boundary patch"
+    },
+    {
+      "id": "m2-local-extension",
+      "kind": "theorem",
+      "label": "Local metric extension",
+      "statement": "[Local metric extension] Let n3 . Let (N_1,g_1) and (N_2,g_2) be smooth compact connected Riemannian manifolds with nonempty smooth boundary, with Dirichlet Green functions G_1,G_2 . Identify two…",
+      "section": "Local continuation and product solutions",
+      "manuscript": "Smooth anisotropic uniqueness in the Calderón problem from one boundary patch"
+    },
+    {
+      "id": "m2-cross-series",
+      "kind": "lemma",
+      "label": "Extension from a cross",
+      "statement": "[Extension from a cross] Let D_i be bounded connected coordinate domains and S_i D_i nonempty open sets. Suppose a product solution F is given consistently on \\[ (D_1 S_2)(S_1 D_2), \\] with the sum…",
+      "section": "Local continuation and product solutions",
+      "manuscript": "Smooth anisotropic uniqueness in the Calderón problem from one boundary patch"
+    },
+    {
+      "id": "m2-cross-criterion",
+      "kind": "proposition",
+      "label": "Product extension criterion",
+      "statement": "[Product extension criterion] Let be smooth near z_0=(x_0,y_0) , with (z_0)=0 and _x,_y0 . Put \\[ a_i= _i |_i|^2 , H=Hess. \\] Suppose that at z_0 H((a_1,-a_2),(a_1,-a_2)) +H((v_1,v_2),(v_1,v_2))>0…",
+      "section": "Local continuation and product solutions",
+      "manuscript": "Smooth anisotropic uniqueness in the Calderón problem from one boundary patch"
+    },
+    {
+      "id": "m2-cross-propagation",
+      "kind": "lemma",
+      "label": "Propagation through a compact cylinder",
+      "statement": "[Propagation through a compact cylinder] Suppose a region in a product patch has smooth coordinates (z,a) near B , where B is a compact base, possibly with boundary or corners. A product solution is…",
+      "section": "Local continuation and product solutions",
+      "manuscript": "Smooth anisotropic uniqueness in the Calderón problem from one boundary patch"
+    },
+    {
+      "id": "m2-cross-initial",
+      "kind": "proposition",
+      "label": "Fixed-separation initialization",
+      "statement": "[Fixed-separation initialization] In this setting, let n3 and fix B>0 , d>0 and >0 . For all sufficiently small , the data have a product-solution continuation to a neighborhood of \\[ \\ (x,y):|x|,|y|…",
+      "section": "Local continuation and product solutions",
+      "manuscript": "Smooth anisotropic uniqueness in the Calderón problem from one boundary patch"
+    },
+    {
+      "id": "m2-balls-profiles",
+      "kind": "lemma",
+      "label": "Profile bounds",
+      "statement": "[Profile bounds] On Y , after the preceding choices of geometry, the following bounds hold uniformly for small , 0<1 , and p2 : _ c p, Hess_ f_-c_, |^j f_| C_j_^j (j1). The constants c,C_j do not…",
+      "section": "Continuation to shrinking spheres",
+      "manuscript": "Smooth anisotropic uniqueness in the Calderón problem from one boundary patch"
+    },
+    {
+      "id": "m2-balls-continuation",
+      "kind": "proposition",
+      "label": "Continuation to the sphere family",
+      "statement": "[Continuation to the sphere family] Choose p sufficiently large and then >0 sufficiently small in terms of the fixed background bounds. Choose R_*>0 small enough that all the balls lie in normal…",
+      "section": "Continuation to shrinking spheres",
+      "manuscript": "Smooth anisotropic uniqueness in the Calderón problem from one boundary patch"
+    },
+    {
+      "id": "m2-balls-functional",
+      "kind": "proposition",
+      "label": "The transfer density",
+      "statement": "[The transfer density] Under the assumptions of Proposition~ , there is a smooth function (y,) on the unit sphere bundle over Y^ such that T_yu=_ S_y (y,) u(_y^(r(y)))\\,d_y(). For every fixed center…",
+      "section": "Continuation to shrinking spheres",
+      "manuscript": "Smooth anisotropic uniqueness in the Calderón problem from one boundary patch"
+    },
+    {
+      "id": "m2-angular-trace",
+      "kind": "lemma",
+      "label": "Moving trace operators",
+      "statement": "[Moving trace operators] Suppose that the normal balls and the functional T_y of Proposition~ are defined, and that _ ||8 |_y^ h| r, r^2. If u is first-metric harmonic near one such ball, set \\[…",
+      "section": "An estimate on the shrinking spheres",
+      "manuscript": "Smooth anisotropic uniqueness in the Calderón problem from one boundary patch"
+    },
+    {
+      "id": "m2-angular-raising",
+      "kind": "lemma",
+      "label": "Weighted raising estimate",
+      "statement": "[Weighted raising estimate] Let n3 , and suppose holds on a fixed base region with uniformly bounded reference geometry. There are _0 and c>0 , depending only on that geometry and the constants in ,…",
+      "section": "An estimate on the shrinking spheres",
+      "manuscript": "Smooth anisotropic uniqueness in the Calderón problem from one boundary patch"
+    },
+    {
+      "id": "m2-angular-coercivity",
+      "kind": "proposition",
+      "label": "Coercivity for the moving trace equation",
+      "statement": "[Coercivity for the moving trace equation] Fix a base region with bounded reference geometry and the constants in . Suppose P is the operator , with the trace operators of Lemma~ . There exist _0…",
+      "section": "An estimate on the shrinking spheres",
+      "manuscript": "Smooth anisotropic uniqueness in the Calderón problem from one boundary patch"
+    },
+    {
+      "id": "m2-local-density",
+      "kind": "lemma",
+      "label": "Uniform transfer density",
+      "statement": "[Uniform transfer density] Fix the structural parameters so that Propositions and apply. There is a constant C independent of and of sufficiently small spatial dilations such that \\|\\|_ L^2(S_ Y) C…",
+      "section": "An estimate on the shrinking spheres",
+      "manuscript": "Smooth anisotropic uniqueness in the Calderón problem from one boundary patch"
+    },
+    {
+      "id": "m2-local-moment",
+      "kind": "lemma",
+      "label": "Two-power moment bound",
+      "statement": "[Two-power moment bound] Under the coefficient condition , the paired differences satisfy \\| V^a r_^2 \\|_ L^2(Y) C with a constant independent of and sufficiently small .",
+      "section": "From harmonic differences to local metric extension",
+      "manuscript": "Smooth anisotropic uniqueness in the Calderón problem from one boundary patch"
+    },
+    {
+      "id": "m2-local-interpolation",
+      "kind": "lemma",
+      "label": "Finite-order interpolation",
+      "statement": "[Finite-order interpolation] Let V be smooth on a neighborhood of B(y,s) R^n , with 0<s1 and \\|V\\|_ C^m A_m there. For every multi-index of length j<m , |^ V(y)| C_ m,n (s^ -j-n/2 \\|V\\|_ L^2(B(y,s))…",
+      "section": "From harmonic differences to local metric extension",
+      "manuscript": "Smooth anisotropic uniqueness in the Calderón problem from one boundary patch"
+    },
+    {
+      "id": "m2-local-improvement",
+      "kind": "lemma",
+      "label": "Superlinear improvement",
+      "statement": "[Superlinear improvement] After the choices in , there are C>0 and _0>0 , independent of and sufficiently small , such that the coefficient condition implies H_8(y) C r_(y)^ 3/2 for y K with r_(y)<_0.",
+      "section": "From harmonic differences to local metric extension",
+      "manuscript": "Smooth anisotropic uniqueness in the Calderón problem from one boundary patch"
+    },
+    {
+      "id": "m2-global-frontier",
+      "kind": "proposition",
+      "label": "No interior frontier",
+      "statement": "[No interior frontier] There is an isometry \\[ :(M_2^e)^(M_1^e)^ \\] onto the first interior satisfying Equation~ .",
+      "section": "The global isometry and the measured boundary",
+      "manuscript": "Smooth anisotropic uniqueness in the Calderón problem from one boundary patch"
+    },
+    {
+      "id": "m2-global-completion",
+      "kind": "proposition",
+      "label": "Smooth completion and the accessible gauge",
+      "statement": "[Smooth completion and the accessible gauge] The isometry of Proposition~ extends to a smooth diffeomorphism M_2^e M_1^e . It preserves the original copies of M , and its restriction satisfies \\[…",
+      "section": "The global isometry and the measured boundary",
+      "manuscript": "Smooth anisotropic uniqueness in the Calderón problem from one boundary patch"
+    },
+    {
+      "id": "m2-scalar-boundary-rigidity",
+      "kind": "lemma",
+      "label": "Conformal rigidity at a boundary patch",
+      "statement": "[Conformal rigidity at a boundary patch] Let R^n be a connected open set with smooth boundary, where n3 . Suppose F: is a smooth diffeomorphism through the boundary and \\[ F^*e=e^ 2b ein \\] for a…",
+      "section": "Scalar conductivities on a fixed Euclidean domain",
+      "manuscript": "Smooth anisotropic uniqueness in the Calderón problem from one boundary patch"
+    },
+    {
+      "id": "m3-thm-main",
+      "kind": "theorem",
+      "label": "There exist real scalar functions _0,_1 L^(B(0,3);) and constants 0<c<C< such…",
+      "statement": "There exist real scalar functions _0,_1 L^(B(0,3);) and constants 0<c<C< such that [label=( *),itemsep=2pt] c_j C almost everywhere, for j=0,1 ; both conductivities equal 1 in a neighborhood of the…",
+      "section": "Introduction",
+      "manuscript": "Nonuniqueness for bounded measurable scalar conductivities in three dimensions"
+    },
+    {
+      "id": "m3-cor-localized",
+      "kind": "corollary",
+      "label": "Localized nonuniqueness",
+      "statement": "[Localized nonuniqueness] Let c,C be the constants in Theorem~ . For every bounded connected Lipschitz domain ^3 and every finite family of pairwise disjoint balls B_1,,B_m , m1 , there are 2^m…",
+      "section": "Introduction",
+      "manuscript": "Nonuniqueness for bounded measurable scalar conductivities in three dimensions"
+    },
+    {
+      "id": "m3-thm-scalarization",
+      "kind": "theorem",
+      "label": "Exact finite-field scalarization",
+      "statement": "[Exact finite-field scalarization] Let U^3 be a bounded Lipschitz domain. Let A be a measurable symmetric matrix field satisfying \\[ c_0 A C_0almost everywhere in U, 0<c_0 C_0<. \\] Suppose the…",
+      "section": "Exact scalarization of two Cauchy pairs",
+      "manuscript": "Nonuniqueness for bounded measurable scalar conductivities in three dimensions"
+    },
+    {
+      "id": "m3-sc-open-class",
+      "kind": "lemma",
+      "label": "Openness and coverage",
+      "statement": "[Openness and coverage] The set G^ diag is open in ^3 , and G is open in Sym_3 . Every joining path in a representing tree lies in G . Given c_0,C_0 , the numbers a,b can be chosen so that every…",
+      "section": "Exact scalarization of two Cauchy pairs",
+      "manuscript": "Nonuniqueness for bounded measurable scalar conductivities in three dimensions"
+    },
+    {
+      "id": "m3-sc-polynomial-potential",
+      "kind": "lemma",
+      "label": "A polynomial potential",
+      "statement": "[A polynomial potential] For every 0 , D() is onto. There is a homogeneous polynomial map P():V_m V_m of degree 2m such that \\[ D()P()=0, imP()= D()(0). \\] Consequently every mean-zero smooth…",
+      "section": "Exact scalarization of two Cauchy pairs",
+      "manuscript": "Nonuniqueness for bounded measurable scalar conductivities in three dimensions"
+    },
+    {
+      "id": "m3-sc-symmetric-correction",
+      "kind": "lemma",
+      "label": "Symmetric algebraic correction",
+      "statement": "[Symmetric algebraic correction] Let E have independent columns and let R satisfy that E^tR is symmetric. With E^=(E^tE)^ -1 E^t , the matrix H=R E^+(E^)^tR^t -(E^)^t(E^tR)E^ is symmetric and…",
+      "section": "Exact scalarization of two Cauchy pairs",
+      "manuscript": "Nonuniqueness for bounded measurable scalar conductivities in three dimensions"
+    },
+    {
+      "id": "m3-sc-local-join",
+      "kind": "lemma",
+      "label": "Local realization of a coordinate join",
+      "statement": "[Local realization of a coordinate join] Let (A,E,F) , with potentials u_1,u_2 , be a subsolution. Let y_0 lie in one of its smooth patches from Definition~ , on which one fixed set of m\\ 1,2\\…",
+      "section": "Exact scalarization of two Cauchy pairs",
+      "manuscript": "Nonuniqueness for bounded measurable scalar conductivities in three dimensions"
+    },
+    {
+      "id": "m3-sc-weak-approximation",
+      "kind": "proposition",
+      "label": "Weak approximation by scalar-near matrices",
+      "statement": "[Weak approximation by scalar-near matrices] Given a subsolution, a weak L^2 neighborhood of its pair (E,F) , and >0 , there is a subsolution in that neighborhood whose matrix has distance less than…",
+      "section": "Exact scalarization of two Cauchy pairs",
+      "manuscript": "Nonuniqueness for bounded measurable scalar conductivities in three dimensions"
+    },
+    {
+      "id": "m3-sc-baire",
+      "kind": "lemma",
+      "label": "Weak-to-strong continuity points",
+      "statement": "[Weak-to-strong continuity points] The identity from Z with its weak topology to H with its norm topology has a dense set of continuity points.",
+      "section": "Exact scalarization of two Cauchy pairs",
+      "manuscript": "Nonuniqueness for bounded measurable scalar conductivities in three dimensions"
+    },
+    {
+      "id": "m3-prop-branching-block",
+      "kind": "proposition",
+      "label": "Branching block",
+      "statement": "[Branching block] Let B^3 be a bounded connected Lipschitz domain whose boundary has three components _0,_1,_2 . Suppose these components have disjoint product collars parametrized by ^2 , where…",
+      "section": "Constructing the branching block",
+      "manuscript": "Nonuniqueness for bounded measurable scalar conductivities in three dimensions"
+    },
+    {
+      "id": "m3-bl-end-matching",
+      "kind": "lemma",
+      "label": "Exact matching on one flat end",
+      "statement": "[Exact matching on one flat end] Fix one end after the preceding affine and angular normalizations, and write A_0=(1,S) in its coordinates (t,x,y) . Let u_ in ,v_ in be the two flat continuations in…",
+      "section": "Constructing the branching block",
+      "manuscript": "Nonuniqueness for bounded measurable scalar conductivities in three dimensions"
+    },
+    {
+      "id": "m3-bl-regular-correction",
+      "kind": "lemma",
+      "label": "Two symmetric divergence columns",
+      "statement": "[Two symmetric divergence columns] Suppose u,v are smooth with independent gradients on a connected open region. Let r^1,r^2 be smooth densities supported in a fixed compact subset of that region and…",
+      "section": "Constructing the branching block",
+      "manuscript": "Nonuniqueness for bounded measurable scalar conductivities in three dimensions"
+    },
+    {
+      "id": "m3-nu-geometry",
+      "kind": "lemma",
+      "label": "The three boundary components of \\(B\\) are disjoint Lipschitz tori. They have…",
+      "statement": "The three boundary components of \\(B\\) are disjoint Lipschitz tori. They have compatible piecewise smooth bi-Lipschitz product collars, whose removal leaves a connected Lipschitz central region.…",
+      "section": "From a branching block to identical boundary measurements",
+      "manuscript": "Nonuniqueness for bounded measurable scalar conductivities in three dimensions"
+    },
+    {
+      "id": "m3-nu-source-lemma",
+      "kind": "lemma",
+      "label": "There is a constant \\(K\\), independent of \\(\\), such that for every…",
+      "statement": "There is a constant \\(K\\), independent of \\(\\), such that for every \\(p=(p_0,p_-,p_+)\\) with \\(p_0+p_-+p_+=0\\), there exists \\(W_ ,p H^1_0() L^()\\), vanishing off \\(D_ \\) and constant on each child…",
+      "section": "From a branching block to identical boundary measurements",
+      "manuscript": "Nonuniqueness for bounded measurable scalar conductivities in three dimensions"
+    },
+    {
+      "id": "m3-nu-equal-averages",
+      "kind": "lemma",
+      "label": "If \\(u H^1()\\) is weakly \\(\\)-harmonic, then \\[ m_(u):=_ _ Tru\\,_ \\] has one…",
+      "statement": "If \\(u H^1()\\) is weakly \\(\\)-harmonic, then \\[ m_(u):=_ _ Tru\\,_ \\] has one common value \\(u_*\\) for all finite words \\(\\). If \\(u\\) is bounded, then \\(u_* u_\\).",
+      "section": "From a branching block to identical boundary measurements",
+      "manuscript": "Nonuniqueness for bounded measurable scalar conductivities in three dimensions"
+    },
+    {
+      "id": "m3-nu-potential",
+      "kind": "lemma",
+      "label": "The sequence \\(w^ (N) \\) converges in both \\(L^()\\) and \\(H^1()\\) to a nonzero…",
+      "statement": "The sequence \\(w^ (N) \\) converges in both \\(L^()\\) and \\(H^1()\\) to a nonzero \\(w H^1_0() L^()\\) that vanishes almost everywhere off \\( D\\).",
+      "section": "From a branching block to identical boundary measurements",
+      "manuscript": "Nonuniqueness for bounded measurable scalar conductivities in three dimensions"
+    },
+    {
+      "id": "m3-nu-weighted-identity",
+      "kind": "lemma",
+      "label": "Let \\(u\\) be a bounded weakly \\(\\)-harmonic function in \\(\\), and let \\(u_*\\)…",
+      "statement": "Let \\(u\\) be a bounded weakly \\(\\)-harmonic function in \\(\\), and let \\(u_*\\) be its common average from Lemma~ . Then, for every \\( C_c^()\\), _ ((u-u_*))=0.",
+      "section": "From a branching block to identical boundary measurements",
+      "manuscript": "Nonuniqueness for bounded measurable scalar conductivities in three dimensions"
+    },
+    {
+      "id": "m3-nu-identical-dn",
+      "kind": "proposition",
+      "label": "The full weak Dirichlet-to-Neumann operators of \\(\\) and \\(\\) on \\(\\) are equal.",
+      "statement": "The full weak Dirichlet-to-Neumann operators of \\(\\) and \\(\\) on \\(\\) are equal.",
+      "section": "From a branching block to identical boundary measurements",
+      "manuscript": "Nonuniqueness for bounded measurable scalar conductivities in three dimensions"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-bdy-jets",
+      "to": "m1-bdy-cap"
+    },
+    {
+      "from": "m1-bdy-evaluations",
+      "to": "m1-bdy-matches"
+    },
+    {
+      "from": "m1-bdy-evaluations",
+      "to": "m1-bdy-contact"
+    },
+    {
+      "from": "m1-cross-series",
+      "to": "m1-cross-criterion"
+    },
+    {
+      "from": "m1-cross-criterion",
+      "to": "m1-cross-propagation"
+    },
+    {
+      "from": "m1-cross-series",
+      "to": "m1-cross-initial"
+    },
+    {
+      "from": "m1-cross-propagation",
+      "to": "m1-cross-initial"
+    },
+    {
+      "from": "m1-cross-criterion",
+      "to": "m1-sph-strict"
+    },
+    {
+      "from": "m1-sph-strict",
+      "to": "m1-sph-continuation"
+    },
+    {
+      "from": "m1-cross-initial",
+      "to": "m1-sph-continuation"
+    },
+    {
+      "from": "m1-cross-propagation",
+      "to": "m1-sph-continuation"
+    },
+    {
+      "from": "m1-sph-transfer",
+      "to": "m1-sph-cutoff-bounds"
+    },
+    {
+      "from": "m1-cross-initial",
+      "to": "m1-sph-cutoff-bounds"
+    },
+    {
+      "from": "m1-ang-raising",
+      "to": "m1-ang-scalar-coercivity"
+    },
+    {
+      "from": "m1-ang-scalar-coercivity",
+      "to": "m1-ang-system-coercivity"
+    },
+    {
+      "from": "m1-sph-cutoff-bounds",
+      "to": "m1-ang-density"
+    },
+    {
+      "from": "m1-sph-profiles",
+      "to": "m1-mat-interpolation"
+    },
+    {
+      "from": "m1-mat-spanning",
+      "to": "m1-mat-projected-equation"
+    },
+    {
+      "from": "m1-mat-finite-type",
+      "to": "m1-mat-improvement"
+    },
+    {
+      "from": "m1-mat-interpolation",
+      "to": "m1-mat-local"
+    },
+    {
+      "from": "m1-ang-density",
+      "to": "m1-mat-local"
+    },
+    {
+      "from": "m1-mat-improvement",
+      "to": "m1-mat-local"
+    },
+    {
+      "from": "m1-mat-spanning",
+      "to": "m1-mat-local"
+    },
+    {
+      "from": "m1-bdy-evaluations",
+      "to": "m1-glob-conformal"
+    },
+    {
+      "from": "m1-bdy-contact",
+      "to": "m1-glob-interior"
+    },
+    {
+      "from": "m1-mat-local",
+      "to": "m1-glob-interior"
+    },
+    {
+      "from": "m1-glob-conformal",
+      "to": "m1-glob-interior"
+    },
+    {
+      "from": "m1-bdy-evaluations",
+      "to": "m1-glob-interior"
+    },
+    {
+      "from": "m1-bdy-matches",
+      "to": "m1-glob-interior"
+    },
+    {
+      "from": "m1-bdy-jets",
+      "to": "m1-glob-boundary"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-glob-boundary"
+    },
+    {
+      "from": "m1-bdy-cap",
+      "to": "m1-glob-boundary"
+    },
+    {
+      "from": "m1-bdy-evaluations",
+      "to": "m1-glob-boundary"
+    },
+    {
+      "from": "m1-bdy-matches",
+      "to": "m1-glob-boundary"
+    },
+    {
+      "from": "m1-bdy-contact",
+      "to": "m1-glob-boundary"
+    },
+    {
+      "from": "m1-mat-local",
+      "to": "m1-glob-boundary"
+    },
+    {
+      "from": "m1-glob-conformal",
+      "to": "m1-glob-boundary"
+    },
+    {
+      "from": "m1-glob-interior",
+      "to": "m1-glob-boundary"
+    },
+    {
+      "from": "m2-main-patch",
+      "to": "m2-main-full"
+    },
+    {
+      "from": "m2-data-jets",
+      "to": "m2-data-cap"
+    },
+    {
+      "from": "m2-cross-series",
+      "to": "m2-cross-criterion"
+    },
+    {
+      "from": "m2-cross-criterion",
+      "to": "m2-cross-propagation"
+    },
+    {
+      "from": "m2-cross-series",
+      "to": "m2-cross-initial"
+    },
+    {
+      "from": "m2-cross-propagation",
+      "to": "m2-cross-initial"
+    },
+    {
+      "from": "m2-cross-criterion",
+      "to": "m2-balls-continuation"
+    },
+    {
+      "from": "m2-balls-profiles",
+      "to": "m2-balls-continuation"
+    },
+    {
+      "from": "m2-cross-initial",
+      "to": "m2-balls-continuation"
+    },
+    {
+      "from": "m2-cross-propagation",
+      "to": "m2-balls-continuation"
+    },
+    {
+      "from": "m2-cross-initial",
+      "to": "m2-balls-functional"
+    },
+    {
+      "from": "m2-balls-functional",
+      "to": "m2-angular-trace"
+    },
+    {
+      "from": "m2-angular-raising",
+      "to": "m2-angular-coercivity"
+    },
+    {
+      "from": "m2-balls-functional",
+      "to": "m2-local-density"
+    },
+    {
+      "from": "m2-angular-coercivity",
+      "to": "m2-local-density"
+    },
+    {
+      "from": "m2-local-density",
+      "to": "m2-local-moment"
+    },
+    {
+      "from": "m2-balls-profiles",
+      "to": "m2-local-improvement"
+    },
+    {
+      "from": "m2-local-moment",
+      "to": "m2-local-improvement"
+    },
+    {
+      "from": "m2-local-interpolation",
+      "to": "m2-local-improvement"
+    },
+    {
+      "from": "m2-local-extension",
+      "to": "m2-local-improvement"
+    },
+    {
+      "from": "m2-cross-initial",
+      "to": "m2-local-improvement"
+    },
+    {
+      "from": "m2-balls-continuation",
+      "to": "m2-local-improvement"
+    },
+    {
+      "from": "m2-local-density",
+      "to": "m2-local-improvement"
+    },
+    {
+      "from": "m2-data-jet-family",
+      "to": "m2-global-frontier"
+    },
+    {
+      "from": "m2-local-extension",
+      "to": "m2-global-frontier"
+    },
+    {
+      "from": "m2-data-jets",
+      "to": "m2-global-completion"
+    },
+    {
+      "from": "m2-main-patch",
+      "to": "m2-global-completion"
+    },
+    {
+      "from": "m2-data-cap",
+      "to": "m2-global-completion"
+    },
+    {
+      "from": "m2-data-jet-family",
+      "to": "m2-global-completion"
+    },
+    {
+      "from": "m2-local-extension",
+      "to": "m2-global-completion"
+    },
+    {
+      "from": "m2-global-frontier",
+      "to": "m2-global-completion"
+    },
+    {
+      "from": "m2-main-scalar",
+      "to": "m2-scalar-boundary-rigidity"
+    },
+    {
+      "from": "m2-main-patch",
+      "to": "m2-scalar-boundary-rigidity"
+    },
+    {
+      "from": "m3-sc-symmetric-correction",
+      "to": "m3-sc-local-join"
+    },
+    {
+      "from": "m3-sc-open-class",
+      "to": "m3-sc-weak-approximation"
+    },
+    {
+      "from": "m3-sc-local-join",
+      "to": "m3-sc-weak-approximation"
+    },
+    {
+      "from": "m3-thm-scalarization",
+      "to": "m3-sc-baire"
+    },
+    {
+      "from": "m3-sc-weak-approximation",
+      "to": "m3-sc-baire"
+    },
+    {
+      "from": "m3-bl-end-matching",
+      "to": "m3-bl-regular-correction"
+    },
+    {
+      "from": "m3-thm-main",
+      "to": "m3-nu-identical-dn"
+    },
+    {
+      "from": "m3-nu-geometry",
+      "to": "m3-nu-identical-dn"
+    },
+    {
+      "from": "m3-prop-branching-block",
+      "to": "m3-nu-identical-dn"
+    },
+    {
+      "from": "m3-nu-source-lemma",
+      "to": "m3-nu-identical-dn"
+    },
+    {
+      "from": "m3-nu-potential",
+      "to": "m3-nu-identical-dn"
+    },
+    {
+      "from": "m3-cor-localized",
+      "to": "m3-nu-identical-dn"
+    }
+  ]
+}

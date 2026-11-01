@@ -1,0 +1,755 @@
+{
+  "familyNumber": "269",
+  "familyTitle": "Uniform Laughlin gap and stability under bounded scalar disorder",
+  "manuscripts": [
+    {
+      "id": "Uniform-Stability-of-the-Spherical-Laughlin-Gap-October-5-2026",
+      "title": "Uniform Stability of the Spherical Laughlin Gap",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Uniform-Stability-of-the-Spherical-Laughlin-Gap-October-5-2026/uniform-stability-spherical-laughlin-gap.pdf"
+    },
+    {
+      "id": "A-Fock-space-inequality-and-the-Laughlin-spectral-gap-September-24-2026",
+      "title": "A Fock-space inequality and the Laughlin spectral gap",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Fock-space-inequality-and-the-Laughlin-spectral-gap-September-24-2026/A-Fock-space-inequality-and-the-Laughlin-spectral-gap-September-24-2026.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Lowest Landau level and zero modes",
+    "A local calculus in the lowest Landau level",
+    "Pinning zeros and transporting weighted observables",
+    "Reading zero modes by orthogonal branches",
+    "Charge bounds and rotation averaging",
+    "Local removal of interaction energy",
+    "Relative bounds and stability",
+    "Retaining the unused four-body blocks",
+    "The gap and the model",
+    "Exterior algebra and the square of the interaction",
+    "Spin coefficients and their limits",
+    "A relative error bound for finite spheres",
+    "The tail estimate and the gap",
+    "A planar corollary"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Uniform scalar-disorder stability",
+      "statement": "[Uniform scalar-disorder stability] There are constants _*>0 , _*>0 , and N_*< such that, for every N N_* , every real bounded measurable on S_ 3(N-1) with \\|\\|_1 , and every real ||_* ,…",
+      "section": "Introduction",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-lem-zero-modes",
+      "kind": "lemma",
+      "label": "Polynomial description",
+      "statement": "[Polynomial description] For n1 , a vector lies in Z_ n,q if and only if its polynomial has the form _ i<j (z_ i0 z_ j1 -z_ i1 z_ j0 )^3\\,S(z_1,,z_n), where S is symmetric and homogeneous of degree…",
+      "section": "Lowest Landau level and zero modes",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-thm-unperturbed",
+      "kind": "theorem",
+      "label": "Uniform unperturbed gap",
+      "statement": "[Uniform unperturbed gap] Let _*=4616733319001/10^ 14 . For every 0<<_* there is q_ such that H_q^2 H_q(q q_) on all of F_q . In particular, for all sufficiently large N and q=3(N-1) , H_ N,q 1 25…",
+      "section": "Lowest Landau level and zero modes",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-locality-frame",
+      "kind": "lemma",
+      "label": "Uniform frame localization",
+      "statement": "[Uniform frame localization] For every D there is C_D such that | z_x,k_y| C_D(1+d(x,y))^ -D . For two frames constructed as above, possibly with different axes, their atoms satisfy the same bound…",
+      "section": "A local calculus in the lowest Landau level",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-locality-common-frames",
+      "kind": "lemma",
+      "label": "Common frames for nearby fluxes",
+      "statement": "[Common frames for nearby fluxes] For each fixed d_0 , frames at fluxes q and t with 0 q-t d_0 may be embedded in the same slots so that index identification i_ q,t :e_j^ (t) e_j^ (q) , j t ,…",
+      "section": "A local calculus in the lowest Landau level",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-locality-core-shells",
+      "kind": "lemma",
+      "label": "Shells outside a fixed core",
+      "statement": "[Shells outside a fixed core] If holds with r1 , there is a decomposition A=_ 0 A_ with A_ A(B_ C_*2^ +1 r (x)) and \\|A_\\| C_Da2^ - D for every D . Consequently, for each fixed B0 , _ 0 (C_*2^ +1…",
+      "section": "A local calculus in the lowest Landau level",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-locality-calculus",
+      "kind": "lemma",
+      "label": "Products, commutators, and weighted sums",
+      "statement": "[Products, commutators, and weighted sums] The following bounds are uniform over the slot systems above. (enumi) Products of operators rapidly local at the same center, and adjoints, preserve rapid…",
+      "section": "A local calculus in the lowest Landau level",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-locality-basic-interactions",
+      "kind": "corollary",
+      "label": "The physical interactions",
+      "statement": "[The physical interactions] The unperturbed Hamiltonian H_q and the Fock lift of any bounded real scalar symbol have physical, neutral, Hermitian rapid interactions of uniform sizes C_D and C_D\\|\\|_…",
+      "section": "A local calculus in the lowest Landau level",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-locality-dynamics",
+      "kind": "lemma",
+      "label": "Propagation of local observables",
+      "statement": "[Propagation of local observables] Let K be self-adjoint and even, with a rapidly local interaction of uniform size. Write _t^K(A)=e^ itK Ae^ -itK . For each D there are D' and M_D , independent of…",
+      "section": "A local calculus in the lowest Landau level",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-locality-filters",
+      "kind": "lemma",
+      "label": "Time filters",
+      "statement": "[Time filters] Suppose F L^1( R) and (1+|t|)^j|F(t)|\\,dt< for every j . Under the hypotheses of Lemma~ , T_ F,K (A)=_ R F(t)_t^K(A)\\,dt is rapidly local whenever A is, with uniform bounds. The same…",
+      "section": "A local calculus in the lowest Landau level",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-locality-difference",
+      "kind": "lemma",
+      "label": "Weighted differences",
+      "statement": "[Weighted differences] Let K,K' satisfy Lemma~ uniformly, and assume K-K' has a rapidly local interaction of tempered size a(z) . For a rapidly local A centered at x , \\|_t^K(A)-_t^ K' (A)\\|_ x,D…",
+      "section": "A local calculus in the lowest Landau level",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-locality-functional-calculus",
+      "kind": "lemma",
+      "label": "Compression, changes of frame, and smooth functions",
+      "statement": "[Compression, changes of frame, and smooth functions] The map , for the frames of Lemma~ , preserves rapid locality. An operator supported in B_r(x) remains localized about that ball, with polynomial…",
+      "section": "A local calculus in the lowest Landau level",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-locality-row-symbols",
+      "kind": "lemma",
+      "label": "Pair profiles and local row squares",
+      "statement": "[Pair profiles and local row squares] With m=b/2 and w=w_q(m) , the zero-extended coefficients satisfy |_i^r_b^s a_b(i)| C_ D,r,s w^ -1/2-r-s (1+|i-m| w )^ -D . There are pair annihilators L_ , ,…",
+      "section": "A local calculus in the lowest Landau level",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-locality-one-body-symbol",
+      "kind": "lemma",
+      "label": "Diagonal symbols",
+      "statement": "[Diagonal symbols] Suppose A(m)>0 is tempered with exponent and s_K(a;m) C_KA(m) for every integer K0 . Then D_q(a)=_j a(j)c_j^*c_j has a physical, neutral, Hermitian interaction of size A(m) . For…",
+      "section": "A local calculus in the lowest Landau level",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-pinning-uniform-gap",
+      "kind": "lemma",
+      "label": "Gap along the pinning path",
+      "statement": "[Gap along the pinning path] There exist q_ pin and _ pin >0 such that \\[ H_ q,d (s)_ pin (1-P_ q,d (s)) (q q_ pin ,\\ d\\ 1,3\\ ,\\ 0 s1) \\] on the entire Fock space F_ q-d .",
+      "section": "Pinning zeros and transporting weighted observables",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-pinning-generator",
+      "kind": "proposition",
+      "label": "Transport of the pinned spaces",
+      "statement": "[Transport of the pinned spaces] There is a number-preserving and axially invariant unitary path U_ q,d (s) on F_t , starting at the identity, such that \\[ U_ q,d (s) H_t= H_ q,d (s). \\] Writing _sU_…",
+      "section": "Pinning zeros and transporting weighted observables",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-pinning-northern-observable",
+      "kind": "corollary",
+      "label": "A fixed observable in the northern region",
+      "statement": "[A fixed observable in the northern region] Let O be a neutral operator of norm at most one supported on B_r(x) , where r2 and x has latitude index m . There are fixed constants b,C_* , and c=8 ,…",
+      "section": "Pinning zeros and transporting weighted observables",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-pinning-weighted-transport",
+      "kind": "proposition",
+      "label": "Change of a weighted number observable",
+      "statement": "[Change of a weighted number observable] The operator \\[ K_ q,d (f)=U_ q,d (1)^*D_t(f)U_ q,d (1)-D_t(f) \\] has a rapid interaction representation of size CA_q(m) . Its interaction difference under a…",
+      "section": "Pinning zeros and transporting weighted observables",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-pinning-one-sided",
+      "kind": "proposition",
+      "label": "One-sided change in a zero space",
+      "statement": "[One-sided change in a zero space] Writing P_0 for the zero projection of H_t , one has P_0K_ q,d (f)P_0 C(_0^tA_q(m) w(m) \\,dm)P_0.",
+      "section": "Pinning zeros and transporting weighted observables",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-pinning-calibration-cost",
+      "kind": "corollary",
+      "label": "Cost of changing a calibration state",
+      "statement": "[Cost of changing a calibration state] Let q^0=3 q/3 and r=q-q^0\\ 0,1,2\\ . Consider the interaction K_ q,3 (f) on F_ q-3 and its common-frame comparison with K_ q^0,3 (f) . Embed a unit vector Z_…",
+      "section": "Pinning zeros and transporting weighted observables",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-lem-flags-branch-algebra",
+      "kind": "lemma",
+      "label": "Two orthogonal branches",
+      "statement": "[Two orthogonal branches] For q>q_ stop , define \\[ F_ n,q =(c_q|_ Z_ n,q ), E_ n,q =Z_ n,q F_ n,q . \\] Then F_ n,q =Z_ n,q ^ (1) . Contraction by c_q maps E_ n,q bijectively onto Z_ n-1,q ^ (3) . If…",
+      "section": "Reading zero modes by orthogonal branches",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-lem-flags-polar",
+      "kind": "lemma",
+      "label": "Occupation gap and local representatives",
+      "statement": "[Occupation gap and local representatives] There is >0 , independent of q and of the number sector, such that P_q n_qP_q P_ E_q , E_q=_n E_ n,q . The polar map T_q and the projections onto the two…",
+      "section": "Reading zero modes by orthogonal branches",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-prop-flags-weighted-step",
+      "kind": "proposition",
+      "label": "Weighted observable at one branch",
+      "statement": "[Weighted observable at one branch] Fix p(0,2) , L2 , and f(j)=f_ L,p (j) . In the orthogonal coordinates , (J_ q,F J_ q,E )^*D_q(f)(J_ q,F J_ q,E ) = & D_ q-1 (f)+K_ q,1 (f)&0\\\\ 0&D_ q-3 (f)+f(q)+K_…",
+      "section": "Reading zero modes by orthogonal branches",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-lem-flags-northern-step",
+      "kind": "lemma",
+      "label": "Northern comparison",
+      "statement": "[Northern comparison] There are fixed c0 and b_01 with the following property. Let O=O^* be neutral, of norm at most one, supported on a slot ball of radius r2 centered at latitude index m , and put…",
+      "section": "Reading zero modes by orthogonal branches",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-lem-flags-reference-compatibility",
+      "kind": "lemma",
+      "label": "Compatibility of reference expectations",
+      "statement": "[Compatibility of reference expectations] Let two fluxes q,q' use common northern slots, and let s(q,q') . Embed a fixed vector of F_s into either system by the same orbital labels, with the…",
+      "section": "Reading zero modes by orthogonal branches",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-thm-flags-local-readout",
+      "kind": "theorem",
+      "label": "Local observables in history coordinates",
+      "statement": "[Local observables in history coordinates] For every fixed a(0,2) there are B,C< such that the following holds uniformly in n,q and in the allowed slot frames. Let O=O^* be a neutral slot observable…",
+      "section": "Reading zero modes by orthogonal branches",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-cor-flags-one-hole",
+      "kind": "corollary",
+      "label": "One-hole comparison",
+      "statement": "[One-hole comparison] Suppose h=1 , equivalently q=3n-2 . Let , be any two unit vectors in Z_ n,q . Let \\ O_x\\ be a measurable family of neutral self-adjoint observables of norm at most one,…",
+      "section": "Reading zero modes by orthogonal branches",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-prop-charge-pooled",
+      "kind": "proposition",
+      "label": "Pooled charge",
+      "statement": "[Pooled charge] For each of p=1/8 and p=3/2 there are fixed L2 and c>0 such that, for every flux and every nonzero zero-mode space Z_ n,q , R_ n,q (C_q(f)1-P_ n,q D_q(f)P_ n,q ) R_ n,q ^* \\ \\ c S_…",
+      "section": "Charge bounds and rotation averaging",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-lem-charge-scalars",
+      "kind": "lemma",
+      "label": "Scalar estimates",
+      "statement": "[Scalar estimates] Fix p(0,2) and a lower stopping flux q_ s 8 . There is a function _p(L)0 as L with the following properties, uniformly for q q_ s : |C_ q-1 (f)-C_q(f)+13f(q)| &_p(L)f(q), \\\\ _ q q_…",
+      "section": "Charge bounds and rotation averaging",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-lem-charge-sums",
+      "kind": "lemma",
+      "label": "Uniform error sums",
+      "statement": "[Uniform error sums] For either p=1/8 or p=3/2 , as L , _ q q_ s B_q f(q) =O(L^ -1 ), _ q q_ s (J_q f(q) +1 (L+q)^2 ) =O(1+ L L ). For p=1/8 there are, in addition, _ q q_ s _ 0 m q A_q(m) f(q) =O(L^…",
+      "section": "Charge bounds and rotation averaging",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-lem-charge-calibration",
+      "kind": "lemma",
+      "label": "Calibrated electron step",
+      "statement": "[Calibrated electron step] For q above the fixed stopping range, |_q+ K_q_ _q | C(J_q+|_q-_ q^0 | +f(q) (L+q)^2 ). For any collection of northern center terms of K_q , their expectation in _q may…",
+      "section": "Charge bounds and rotation averaging",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-cor-charge-weak-average",
+      "kind": "corollary",
+      "label": "First averaged comparison",
+      "statement": "[First averaged comparison] Let W be a neutral Hermitian interaction with bounded strength per unit area and fixed rapid locality bounds. For unit vectors Z_ n,q and Z_ n',q with hole numbers h,h' ,…",
+      "section": "Charge bounds and rotation averaging",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-thm-charge-local-linear",
+      "kind": "theorem",
+      "label": "Local expectations are linear in the number of holes",
+      "statement": "[Local expectations are linear in the number of holes] Let q=3(N-1) and let W be a neutral Hermitian interaction whose center density and rapid locality bounds are uniform in q . For every unit…",
+      "section": "Charge bounds and rotation averaging",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-thm-local-energy-descent",
+      "kind": "theorem",
+      "label": "Local energy descent",
+      "statement": "[Local energy descent] There are constants c>0 , L< , and q_0 such that, for every q q_0 , there is a measurable family of rapidly local physical operators J_y on F_q satisfying J_y^*J_y\\,d_q(y)=H_q,…",
+      "section": "Local removal of interaction energy",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-lem-evacuation-rows",
+      "kind": "lemma",
+      "label": "Pair energy after local loss",
+      "statement": "[Pair energy after local loss] There is a sequence _M0 such that, for every M2 and every q30M , _ b=1 ^ 2q-1 B_ b-1 ^* B_ b-1 _ b>M B_ b-1 ^*B_ b-1 +_MI on F_q.",
+      "section": "Local removal of interaction energy",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-lem-pair-spin-tail",
+      "kind": "lemma",
+      "label": "Vanishing weight on fixed deficits",
+      "statement": "[Vanishing weight on fixed deficits] For A_ q,M in , there are coefficients 0 a_ q,M, 1 such that \\[ A_ q,M =_ =0 ^ 2q-2 a_ q,M, P_ q, . \\] For every fixed 0 , _ M _ q a_ q,M, =0. Moreover, for each…",
+      "section": "Local removal of interaction energy",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-prop-grand-canonical-coercivity",
+      "kind": "proposition",
+      "label": "Control of particle number",
+      "statement": "[Control of particle number] There are constants C_ num < , >0 , a>0 , and C_G< , independent of sufficiently large q=3(N-1) , such that N-N C_ num H_q. The operator G_q=H_q+(N- N) satisfies G_q…",
+      "section": "Local removal of interaction energy",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-prop-relative-bound",
+      "kind": "proposition",
+      "label": "Relative form bound",
+      "statement": "[Relative form bound] For this fixed sufficiently large , there is a constant C independent of q such that -CG\\ \\ _x A_x\\ \\ CG whenever the A_x are physical, neutral, Hermitian operators satisfying…",
+      "section": "Relative bounds and stability",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-prop-retained-blocks",
+      "kind": "proposition",
+      "label": "Retained four-body blocks",
+      "statement": "[Retained four-body blocks] For every fixed 0<c_0<1/25 there exists q_0 such that, for every integer q q_0 , the following inequality holds on the entire Fock space F_q : H_q^2 c_0H_q+ L_4\\!(W_4R_q^…",
+      "section": "Retaining the unused four-body blocks",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-rb-lem-square",
+      "kind": "lemma",
+      "label": "Normal-ordered square",
+      "statement": "[Normal-ordered square] On F_q , H^2=H+ L_3\\!(W_3(W_3^ W_3-I)W_3^) + L_4(W_4W_4^).",
+      "section": "Retaining the unused four-body blocks",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-rb-lem-pair",
+      "kind": "lemma",
+      "label": "Pair coefficients",
+      "statement": "[Pair coefficients] The coefficient of e_i e_j in v_p , for i<j , vanishes unless i+j=p+1 , and otherwise equals v_p(i,j)=(i-j) (q)_i(q)_j\\,p! q(2q-2)_p\\,i!j! . For fixed p,i,j , its limit is…",
+      "section": "Retaining the unused four-body blocks",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-rb-lem-q",
+      "kind": "lemma",
+      "label": "Three-body Gram eigenvalues",
+      "statement": "[Three-body Gram eigenvalues] W_3^ W_3-I=_ z=0 ^q q_z(q)R_ 3,z , q_z(q)=(-1)^z(q)_z (2q-2)_z (3z-1-z(z+1)q). In particular W_3R_ 3,z =0 for z=0,1,3 whenever these indices are allowed. For fixed z ,…",
+      "section": "Retaining the unused four-body blocks",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-rb-lem-coupling",
+      "kind": "lemma",
+      "label": "Fixed-deficit coupling limit",
+      "statement": "[Fixed-deficit coupling limit] Suppose j_1,j_2 and j_2/(j_1+j_2) u^2 , where 0<u<1 . Put v=1-u^2 . For fixed integers 0 z T , the normalized coupled vector of spin j_1+j_2-z at total lowering deficit…",
+      "section": "Retaining the unused four-body blocks",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-rb-lem-compression",
+      "kind": "lemma",
+      "label": "Compression and annihilator bounds",
+      "statement": "[Compression and annihilator bounds] Let W be a linear map between finite-dimensional Hilbert spaces, G=W^ W , and let C be self-adjoint on the domain of W . Then \\[ GCG0 WCW^0. \\] On F_ loc , for…",
+      "section": "Retaining the unused four-body blocks",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-rb-lem-transfer",
+      "kind": "lemma",
+      "label": "Uniform transfer",
+      "statement": "[Uniform transfer] For q24 and 1 D23 , put \\[ C_D^q=(d_D/d_a)-E_D^q+ I, h_q=_ p=0 ^ 23 B_p^ B_p. \\] Assuming , there is a scalar _q0 , independent of D and tending to zero as q , such that _ r,s R_D…",
+      "section": "Retaining the unused four-body blocks",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-rb-prop-a4",
+      "kind": "proposition",
+      "label": "Four-body estimate",
+      "statement": "[Four-body estimate] For the coefficients in Subsection~ , A_4 L_4(W_4R_q^ lo W_4^)+(1222+o(1))H, q, uniformly on F_q .",
+      "section": "Retaining the unused four-body blocks",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m1-rb-lem-tail",
+      "kind": "lemma",
+      "label": "Three-body tail",
+      "statement": "[Three-body tail] For sufficiently large q , L_3(W_3_ z=16 ^q q_z(q)R_ 3,z W_3^) -_qH, where _q=_ 17 z q\\ odd d_ 3,z d_a |q_z(q)|(z+1), _q61 4096 .",
+      "section": "Retaining the unused four-body blocks",
+      "manuscript": "Uniform Stability of the Spherical Laughlin Gap"
+    },
+    {
+      "id": "m2-thm-fock",
+      "kind": "theorem",
+      "label": "For every \\(0<<_*\\), there is an integer \\(Q_\\) such that for every integer \\(Q…",
+      "statement": "For every \\(0<<_*\\), there is an integer \\(Q_\\) such that for every integer \\(Q Q_\\), H_Q^2 H_Qon _Q. The threshold \\(Q_\\) is independent of particle number.",
+      "section": "The gap and the model",
+      "manuscript": "A Fock-space inequality and the Laughlin spectral gap"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "corollary",
+      "label": "There is an integer \\(N_02\\) such that, for every \\(N N_0\\) and \\(Q=3(N-1)\\),…",
+      "statement": "There is an integer \\(N_02\\) such that, for every \\(N N_0\\) and \\(Q=3(N-1)\\), H_ N,Q 1 25 (I-P_ L,N ) on ^N U_Q, where \\(P_ L,N \\) projects onto the line spanned by \\[ _ L,N =_ i<j (u_iv_j-u_jv_i)^3.…",
+      "section": "The gap and the model",
+      "manuscript": "A Fock-space inequality and the Laughlin spectral gap"
+    },
+    {
+      "id": "m2-lem-square",
+      "kind": "lemma",
+      "label": "Normal-ordered square",
+      "statement": "[Normal-ordered square] On _Q , H^2=H+_3\\!(W_3(W_3^ W_3-I)W_3^) +_4(W_4W_4^).",
+      "section": "Exterior algebra and the square of the interaction",
+      "manuscript": "A Fock-space inequality and the Laughlin spectral gap"
+    },
+    {
+      "id": "m2-lem-pair",
+      "kind": "lemma",
+      "label": "Pair coefficients",
+      "statement": "[Pair coefficients] The coefficient of e_i e_j in v_p , for i<j , vanishes unless i+j=p+1 , and otherwise equals v_p(i,j)=(i-j) (Q)_i(Q)_j\\,p! Q(2Q-2)_p\\,i!j! . For fixed p,i,j , its limit is…",
+      "section": "Spin coefficients and their limits",
+      "manuscript": "A Fock-space inequality and the Laughlin spectral gap"
+    },
+    {
+      "id": "m2-lem-q",
+      "kind": "lemma",
+      "label": "Three-body Gram eigenvalues",
+      "statement": "[Three-body Gram eigenvalues] W_3^ W_3-I=_ z=0 ^Qq_z(Q)R_ 3,z , q_z(Q)=(-1)^z(Q)_z (2Q-2)_z (3z-1-z(z+1)Q). In particular W_3R_ 3,z =0 for z=0,1,3 whenever these indices are allowed. For fixed z ,…",
+      "section": "Spin coefficients and their limits",
+      "manuscript": "A Fock-space inequality and the Laughlin spectral gap"
+    },
+    {
+      "id": "m2-lem-coupling",
+      "kind": "lemma",
+      "label": "Fixed-deficit coupling limit",
+      "statement": "[Fixed-deficit coupling limit] Suppose j_1,j_2 and j_2/(j_1+j_2) u^2 , where 0<u<1 . Put v=1-u^2 . For fixed integers 0 z T , the normalized coupled vector of spin j_1+j_2-z at total lowering deficit…",
+      "section": "Spin coefficients and their limits",
+      "manuscript": "A Fock-space inequality and the Laughlin spectral gap"
+    },
+    {
+      "id": "m2-lem-compression",
+      "kind": "lemma",
+      "label": "Compression and annihilator bounds",
+      "statement": "[Compression and annihilator bounds] Let W be a linear map between finite-dimensional Hilbert spaces, G=W^ W , and let C be self-adjoint on the domain of W . Then \\[ GCG0 WCW^0. \\] On _ loc , for any…",
+      "section": "A relative error bound for finite spheres",
+      "manuscript": "A Fock-space inequality and the Laughlin spectral gap"
+    },
+    {
+      "id": "m2-lem-transfer",
+      "kind": "lemma",
+      "label": "Uniform transfer",
+      "statement": "[Uniform transfer] For Q24 and 1 D23 , put \\[ C_D^Q=(d_D/d_a)-E_D^Q+ I, h_Q=_ p=0 ^ 23 B_p^ B_p. \\] Assuming , there is a scalar _Q0 , independent of D and tending to zero as Q , such that _ r,s R_D…",
+      "section": "A relative error bound for finite spheres",
+      "manuscript": "A Fock-space inequality and the Laughlin spectral gap"
+    },
+    {
+      "id": "m2-prop-a4",
+      "kind": "proposition",
+      "label": "Four-body estimate",
+      "statement": "[Four-body estimate] For the coefficients in Appendix~ , A_4_4(W_4W_4^)+(1222+o(1))H, Q, uniformly on _Q .",
+      "section": "A relative error bound for finite spheres",
+      "manuscript": "A Fock-space inequality and the Laughlin spectral gap"
+    },
+    {
+      "id": "m2-lem-tail",
+      "kind": "lemma",
+      "label": "Three-body tail",
+      "statement": "[Three-body tail] For sufficiently large Q , _3(W_3_ z=16 ^Qq_z(Q)R_ 3,z W_3^) -_QH, where _Q=_ 17 z Q\\ odd d_ 3,z d_a |q_z(Q)|(z+1), _Q61 4096 .",
+      "section": "The tail estimate and the gap",
+      "manuscript": "A Fock-space inequality and the Laughlin spectral gap"
+    },
+    {
+      "id": "m2-lem-kernel",
+      "kind": "lemma",
+      "label": "Kernel at Laughlin flux",
+      "statement": "[Kernel at Laughlin flux] For N2 and Q=3(N-1) , the kernel of H_ N,Q is the line spanned by _ L,N .",
+      "section": "The tail estimate and the gap",
+      "manuscript": "A Fock-space inequality and the Laughlin spectral gap"
+    },
+    {
+      "id": "m2-cor-charge-neutral",
+      "kind": "corollary",
+      "label": "Charge versus neutral gap at fixed flux",
+      "statement": "[Charge versus neutral gap at fixed flux] For \\(N2\\), fix \\(Q_N=3(N-1)\\) and write \\(E_0(n;Q_N)=specH_ n,Q_N \\) for the coefficient-one interaction . Let \\(Gap_N\\) be the first positive eigenvalue of…",
+      "section": "The tail estimate and the gap",
+      "manuscript": "A Fock-space inequality and the Laughlin spectral gap"
+    },
+    {
+      "id": "m2-cor-plane",
+      "kind": "corollary",
+      "label": "Planar spectral gap",
+      "statement": "[Planar spectral gap] For every N2 , the untruncated planar Hamiltonian satisfies \\[ (H_N^ pl )^2_* H_N^ pl , \\] where _* is the constant in Theorem~ . Equivalently, if P_ 0,N ^ pl projects onto its…",
+      "section": "A planar corollary",
+      "manuscript": "A Fock-space inequality and the Laughlin spectral gap"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-locality-frame",
+      "to": "m1-locality-basic-interactions"
+    },
+    {
+      "from": "m1-locality-calculus",
+      "to": "m1-locality-basic-interactions"
+    },
+    {
+      "from": "m1-locality-dynamics",
+      "to": "m1-locality-difference"
+    },
+    {
+      "from": "m1-locality-calculus",
+      "to": "m1-locality-difference"
+    },
+    {
+      "from": "m1-locality-frame",
+      "to": "m1-locality-functional-calculus"
+    },
+    {
+      "from": "m1-locality-dynamics",
+      "to": "m1-locality-functional-calculus"
+    },
+    {
+      "from": "m1-locality-row-symbols",
+      "to": "m1-pinning-uniform-gap"
+    },
+    {
+      "from": "m1-locality-row-symbols",
+      "to": "m1-pinning-generator"
+    },
+    {
+      "from": "m1-locality-common-frames",
+      "to": "m1-pinning-generator"
+    },
+    {
+      "from": "m1-locality-filters",
+      "to": "m1-pinning-generator"
+    },
+    {
+      "from": "m1-locality-difference",
+      "to": "m1-pinning-generator"
+    },
+    {
+      "from": "m1-locality-difference",
+      "to": "m1-pinning-northern-observable"
+    },
+    {
+      "from": "m1-locality-one-body-symbol",
+      "to": "m1-pinning-weighted-transport"
+    },
+    {
+      "from": "m1-locality-difference",
+      "to": "m1-pinning-weighted-transport"
+    },
+    {
+      "from": "m1-pinning-weighted-transport",
+      "to": "m1-pinning-calibration-cost"
+    },
+    {
+      "from": "m1-pinning-uniform-gap",
+      "to": "m1-lem-flags-polar"
+    },
+    {
+      "from": "m1-lem-flags-polar",
+      "to": "m1-prop-flags-weighted-step"
+    },
+    {
+      "from": "m1-pinning-northern-observable",
+      "to": "m1-lem-flags-northern-step"
+    },
+    {
+      "from": "m1-lem-flags-northern-step",
+      "to": "m1-thm-flags-local-readout"
+    },
+    {
+      "from": "m1-lem-flags-reference-compatibility",
+      "to": "m1-thm-flags-local-readout"
+    },
+    {
+      "from": "m1-thm-flags-local-readout",
+      "to": "m1-cor-flags-one-hole"
+    },
+    {
+      "from": "m1-prop-flags-weighted-step",
+      "to": "m1-lem-charge-calibration"
+    },
+    {
+      "from": "m1-pinning-calibration-cost",
+      "to": "m1-lem-charge-calibration"
+    },
+    {
+      "from": "m1-thm-flags-local-readout",
+      "to": "m1-lem-charge-calibration"
+    },
+    {
+      "from": "m1-prop-charge-pooled",
+      "to": "m1-lem-charge-calibration"
+    },
+    {
+      "from": "m1-lem-charge-sums",
+      "to": "m1-lem-charge-calibration"
+    },
+    {
+      "from": "m1-cor-flags-one-hole",
+      "to": "m1-lem-charge-calibration"
+    },
+    {
+      "from": "m1-lem-charge-scalars",
+      "to": "m1-lem-charge-calibration"
+    },
+    {
+      "from": "m1-pinning-one-sided",
+      "to": "m1-lem-charge-calibration"
+    },
+    {
+      "from": "m1-thm-flags-local-readout",
+      "to": "m1-cor-charge-weak-average"
+    },
+    {
+      "from": "m1-prop-charge-pooled",
+      "to": "m1-cor-charge-weak-average"
+    },
+    {
+      "from": "m1-lem-charge-calibration",
+      "to": "m1-cor-charge-weak-average"
+    },
+    {
+      "from": "m1-prop-charge-pooled",
+      "to": "m1-thm-charge-local-linear"
+    },
+    {
+      "from": "m1-cor-charge-weak-average",
+      "to": "m1-thm-charge-local-linear"
+    },
+    {
+      "from": "m1-thm-local-energy-descent",
+      "to": "m1-lem-pair-spin-tail"
+    },
+    {
+      "from": "m1-lem-evacuation-rows",
+      "to": "m1-lem-pair-spin-tail"
+    },
+    {
+      "from": "m1-locality-frame",
+      "to": "m1-lem-pair-spin-tail"
+    },
+    {
+      "from": "m1-locality-calculus",
+      "to": "m1-lem-pair-spin-tail"
+    },
+    {
+      "from": "m1-thm-local-energy-descent",
+      "to": "m1-prop-grand-canonical-coercivity"
+    },
+    {
+      "from": "m1-lem-zero-modes",
+      "to": "m1-prop-grand-canonical-coercivity"
+    },
+    {
+      "from": "m1-thm-unperturbed",
+      "to": "m1-prop-grand-canonical-coercivity"
+    },
+    {
+      "from": "m1-thm-local-energy-descent",
+      "to": "m1-prop-relative-bound"
+    },
+    {
+      "from": "m1-locality-calculus",
+      "to": "m1-prop-relative-bound"
+    },
+    {
+      "from": "m1-lem-zero-modes",
+      "to": "m1-prop-relative-bound"
+    },
+    {
+      "from": "m1-rb-lem-coupling",
+      "to": "m1-rb-lem-transfer"
+    },
+    {
+      "from": "m1-rb-lem-compression",
+      "to": "m1-rb-lem-transfer"
+    },
+    {
+      "from": "m1-rb-lem-transfer",
+      "to": "m1-rb-prop-a4"
+    },
+    {
+      "from": "m1-prop-retained-blocks",
+      "to": "m1-rb-lem-tail"
+    },
+    {
+      "from": "m2-lem-coupling",
+      "to": "m2-lem-transfer"
+    },
+    {
+      "from": "m2-lem-compression",
+      "to": "m2-lem-transfer"
+    },
+    {
+      "from": "m2-lem-transfer",
+      "to": "m2-prop-a4"
+    },
+    {
+      "from": "m2-thm-fock",
+      "to": "m2-lem-tail"
+    },
+    {
+      "from": "m2-lem-square",
+      "to": "m2-lem-tail"
+    },
+    {
+      "from": "m2-prop-a4",
+      "to": "m2-lem-tail"
+    },
+    {
+      "from": "m2-thm-main",
+      "to": "m2-lem-kernel"
+    },
+    {
+      "from": "m2-thm-fock",
+      "to": "m2-lem-kernel"
+    },
+    {
+      "from": "m2-lem-kernel",
+      "to": "m2-cor-charge-neutral"
+    },
+    {
+      "from": "m2-thm-main",
+      "to": "m2-cor-charge-neutral"
+    },
+    {
+      "from": "m2-thm-fock",
+      "to": "m2-cor-plane"
+    }
+  ]
+}

@@ -1,0 +1,663 @@
+{
+  "familyNumber": "059",
+  "familyTitle": "Counterexamples to Zariski’s multiplicity conjecture",
+  "manuscripts": [
+    {
+      "id": "Ambiently-homeomorphic-isolated-hypersurfaces-of-multiplicities-two-and-three-September-24-2026",
+      "title": "Ambiently homeomorphic isolated hypersurfaces of multiplicities two and three",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Ambiently-homeomorphic-isolated-hypersurfaces-of-multiplicities-two-and-three-September-24-2026/paper.pdf"
+    },
+    {
+      "id": "Ambiently-homeomorphic-isolated-hypersurface-germs-in-C4-with-multiplicities-four-and-five-September-27-2026",
+      "title": "Ambiently homeomorphic isolated hypersurface germs in ℂ⁴ with multiplicities four and five",
+      "date": "2026-09-27",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Ambiently-homeomorphic-isolated-hypersurface-germs-in-C4-with-multiplicities-four-and-five-September-27-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "The multiplicity problem",
+    "Classical inputs and conventions",
+    "Two seeds with different orders",
+    "Local and rational isometries of tensor squares",
+    "From local isometries to an integral isometry",
+    "From the integral forms to the ambient germs",
+    "Introduction",
+    "Plane curves and the finite maps",
+    "Smooth ambient germs and their ordinary orders",
+    "The cone tube and integral gluing",
+    "Boundary geometry and the Milnor representative",
+    "Circle collapse and integral homology",
+    "The mod-four Bockstein and the exact lattice",
+    "The two filling summands",
+    "From the integral lattice to an embedded link"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "There is a finite integer N>3 , divisible by eight, and there are reduced…",
+      "statement": "There is a finite integer N>3 , divisible by eight, and there are reduced polynomials f_1,f_2 , weighted homogeneous for positive rational weights, such that: [label=( *)] each f_j has an isolated…",
+      "section": "The multiplicity problem",
+      "manuscript": "Ambiently homeomorphic isolated hypersurfaces of multiplicities two and three"
+    },
+    {
+      "id": "m1-bg-milnor",
+      "kind": "theorem",
+      "label": "Milnor",
+      "statement": "[Milnor] Let s2 , and let f:( C^s,0)( C,0) be a holomorphic germ with an isolated critical point at 0 , with f(0)=0 . For sufficiently small >0 , the link K_f=f^ -1 (0) S^ 2s-1 _ is a smooth closed…",
+      "section": "Classical inputs and conventions",
+      "manuscript": "Ambiently homeomorphic isolated hypersurfaces of multiplicities two and three"
+    },
+    {
+      "id": "m1-bg-ts",
+      "kind": "theorem",
+      "label": "Thom--Sebastiani--Sakamoto",
+      "statement": "[Thom--Sebastiani--Sakamoto] Suppose f and g have isolated critical points in a and b variables, respectively. There is an isomorphism of integral lattices \\[ L_ f+g L_f_ Z L_g \\] under which \\[ M_…",
+      "section": "Classical inputs and conventions",
+      "manuscript": "Ambiently homeomorphic isolated hypersurfaces of multiplicities two and three"
+    },
+    {
+      "id": "m1-bg-spectrum",
+      "kind": "theorem",
+      "label": "Weighted homogeneous spectrum",
+      "statement": "[Weighted homogeneous spectrum] If f is weighted homogeneous of normalized degree 1 and has an isolated critical point, its spectral polynomial is P_f(t)=_ Sp^ + (f) t^ =_ j=1 ^s t^ w_j -t 1-t^ w_j .…",
+      "section": "Classical inputs and conventions",
+      "manuscript": "Ambiently homeomorphic isolated hypersurfaces of multiplicities two and three"
+    },
+    {
+      "id": "m1-bg-real",
+      "kind": "theorem",
+      "label": "Real Seifert forms from the spectrum",
+      "statement": "[Real Seifert forms from the spectrum] Let f and g be isolated weighted homogeneous singularities in the same number of variables. If their multisets of positive spectral exponents agree modulo 2 Z ,…",
+      "section": "Classical inputs and conventions",
+      "manuscript": "Ambiently homeomorphic isolated hypersurfaces of multiplicities two and three"
+    },
+    {
+      "id": "m1-bg-orlik",
+      "kind": "theorem",
+      "label": "Hertling--Mase",
+      "statement": "[Hertling--Mase] Suppose f is a sum of chains \\[ x_1^ a_1 x_2++x_ r-1 ^ a_ r-1 x_r+x_r^ a_r , a_i2, \\] including chains with r=1 . Write the characteristic polynomial of M_f as _d_d(t)^ c_d , where…",
+      "section": "Classical inputs and conventions",
+      "manuscript": "Ambiently homeomorphic isolated hypersurfaces of multiplicities two and three"
+    },
+    {
+      "id": "m1-bg-hasse",
+      "kind": "theorem",
+      "label": "Hasse--Minkowski",
+      "statement": "[Hasse--Minkowski] Two nondegenerate quadratic forms over a number field F are isometric over F if and only if they are isometric over F_v for every place v , including the archimedean places.",
+      "section": "Classical inputs and conventions",
+      "manuscript": "Ambiently homeomorphic isolated hypersurfaces of multiplicities two and three"
+    },
+    {
+      "id": "m1-bg-approximation",
+      "kind": "theorem",
+      "label": "Strong approximation",
+      "statement": "[Strong approximation] Let G be a connected, simply connected, absolutely almost simple algebraic group over a number field F . If _ v G(F_v) is noncompact, then G(F) is dense in G( A_ F,f ) , the…",
+      "section": "Classical inputs and conventions",
+      "manuscript": "Ambiently homeomorphic isolated hypersurfaces of multiplicities two and three"
+    },
+    {
+      "id": "m1-bg-classification",
+      "kind": "theorem",
+      "label": "Smale and Levine",
+      "statement": "[Smale and Levine] A smooth closed manifold of dimension d5 that is homotopy equivalent to S^d is homeomorphic to S^d . Let q3 , and let K_1,K_2 S^ 2q+1 be smooth oriented submanifolds homeomorphic…",
+      "section": "Classical inputs and conventions",
+      "manuscript": "Ambiently homeomorphic isolated hypersurfaces of multiplicities two and three"
+    },
+    {
+      "id": "m1-seed-product",
+      "kind": "lemma",
+      "label": "Finite product relation",
+      "statement": "[Finite product relation] Set d=3^ 11 and \\[ B=\\ b:0<b<d/2,\\ 3 b\\ , A_b=d-b b , R_b=(2d+b)(2d-b) (3d-b)(d+b) . \\] There are integers e_b , b B , such that E:=_ b B e_b>0, _ b B A_b^ e_b =_ b B R_b^…",
+      "section": "Two seeds with different orders",
+      "manuscript": "Ambiently homeomorphic isolated hypersurfaces of multiplicities two and three"
+    },
+    {
+      "id": "m1-seed-chain",
+      "kind": "lemma",
+      "label": "Completing one weight to a chain",
+      "statement": "[Completing one weight to a chain] Let D be a positive odd integer and let c satisfy 0<c<D/2 . There is a chain polynomial F_c=x_1^ a_1 x_2++x_ -1 ^ a_ -1 x_ +x_^ a_ of weighted degree 1 , whose…",
+      "section": "Two seeds with different orders",
+      "manuscript": "Ambiently homeomorphic isolated hypersurfaces of multiplicities two and three"
+    },
+    {
+      "id": "m1-seed-seeds",
+      "kind": "proposition",
+      "label": "The seeds",
+      "statement": "[The seeds] There are real-coefficient weighted homogeneous polynomials p_1,p_2 , each in an even number s_0 of variables, such that: both are sums, in disjoint variables, of chains with exponents at…",
+      "section": "Two seeds with different orders",
+      "manuscript": "Ambiently homeomorphic isolated hypersurfaces of multiplicities two and three"
+    },
+    {
+      "id": "m1-seed-prepared",
+      "kind": "corollary",
+      "label": "Removing eigenvalue one",
+      "statement": "[Removing eigenvalue one] In two new variables on each side, put q_j=p_j+x^5+y^7, j=1,2, s=s_0+2. These are real-coefficient isolated sums of chains in the same even number s of variables, with…",
+      "section": "Two seeds with different orders",
+      "manuscript": "Ambiently homeomorphic isolated hypersurfaces of multiplicities two and three"
+    },
+    {
+      "id": "m1-local-symmetrize",
+      "kind": "lemma",
+      "label": "Symmetrization",
+      "statement": "[Symmetrization] Each B_j is an integral unimodular symmetric form preserved by T_j . The pair (B_j,T_j) recovers S_j by S_j=B_jT_j^ -r . The real Seifert isometry is an equivariant real isometry of…",
+      "section": "Local and rational isometries of tensor squares",
+      "manuscript": "Ambiently homeomorphic isolated hypersurfaces of multiplicities two and three"
+    },
+    {
+      "id": "m1-local-lifting",
+      "kind": "lemma",
+      "label": "Lifting in a finite operator algebra",
+      "statement": "[Lifting in a finite operator algebra] Let be an odd prime and let A be a commutative _ -algebra that is finite as a _ -module. Write J for its Jacobson radical. Then A/J is a product of finite…",
+      "section": "Local and rational isometries of tensor squares",
+      "manuscript": "Ambiently homeomorphic isolated hypersurfaces of multiplicities two and three"
+    },
+    {
+      "id": "m1-local-odd-primes",
+      "kind": "proposition",
+      "label": "Odd-prime tensor squares",
+      "statement": "[Odd-prime tensor squares] Let L be a finite free _ -module, with odd, and let T be an automorphism of L . If B_1,B_2 are unimodular symmetric forms preserved by T , then \\[ (L L,T T,B_1 B_1) (L L,T…",
+      "section": "Local and rational isometries of tensor squares",
+      "manuscript": "Ambiently homeomorphic isolated hypersurfaces of multiplicities two and three"
+    },
+    {
+      "id": "m1-local-dyadic",
+      "kind": "proposition",
+      "label": "Dyadic uniqueness",
+      "statement": "[Dyadic uniqueness] Let L be a finite free _2 -module, and let T satisfy T^m=1 for an odd m . Suppose 1 is not an eigenvalue of T on L_2 . Any two T -invariant unimodular symmetric forms on L are…",
+      "section": "Local and rational isometries of tensor squares",
+      "manuscript": "Ambiently homeomorphic isolated hypersurfaces of multiplicities two and three"
+    },
+    {
+      "id": "m1-local-hermitian-lengths",
+      "kind": "lemma",
+      "label": "Hermitian forms from their lengths",
+      "statement": "[Hermitian forms from their lengths] Let E/F be a quadratic field extension with charF2 , and let h_1,h_2 be nonsingular hermitian forms. If the quadratic forms \\[ Q_ h_j (x)=h_j(x,x) \\] on the…",
+      "section": "Local and rational isometries of tensor squares",
+      "manuscript": "Ambiently homeomorphic isolated hypersurfaces of multiplicities two and three"
+    },
+    {
+      "id": "m1-local-hasse-descent",
+      "kind": "lemma",
+      "label": "Equivariant rational local--global principle",
+      "statement": "[Equivariant rational local--global principle] Let (V_j,U_j,_j) be rational vector spaces with nonsingular symmetric forms preserved by operators of finite odd order. If they are equivariantly…",
+      "section": "Local and rational isometries of tensor squares",
+      "manuscript": "Ambiently homeomorphic isolated hypersurfaces of multiplicities two and three"
+    },
+    {
+      "id": "m1-local-rational",
+      "kind": "proposition",
+      "label": "Local and rational square isometries",
+      "statement": "[Local and rational square isometries] Set \\[ A_j=(L_j,T_j,B_j)^ 2 . \\] There are an equivariant rational isometry R:A_1 A_2 and, for every prime , an equivariant isometry D_:A_1_ A_2_ . These can be…",
+      "section": "Local and rational isometries of tensor squares",
+      "manuscript": "Ambiently homeomorphic isolated hypersurfaces of multiplicities two and three"
+    },
+    {
+      "id": "m1-local-reverser",
+      "kind": "lemma",
+      "label": "Integral reversers",
+      "statement": "[Integral reversers] There is an integral involution C_j of L_j such that \\[ C_j^ -1 T_jC_j=T_j^ -1 , C_j^ t B_jC_j=B_j. \\]",
+      "section": "From local isometries to an integral isometry",
+      "manuscript": "Ambiently homeomorphic isolated hypersurfaces of multiplicities two and three"
+    },
+    {
+      "id": "m1-global-determinants",
+      "kind": "lemma",
+      "label": "Eigenspace determinant cancellation",
+      "statement": "[Eigenspace determinant cancellation] For every prime , the ratio R^ -1 D_ has determinant 1 on every eigenspace of _1_1 over _ . This remains true after tensoring both maps with identity maps on any…",
+      "section": "From local isometries to an integral isometry",
+      "manuscript": "Ambiently homeomorphic isolated hypersurfaces of multiplicities two and three"
+    },
+    {
+      "id": "m1-global-indefinite",
+      "kind": "lemma",
+      "label": "Spectral properties of the added factors",
+      "statement": "[Spectral properties of the added factors] Every eigenvalue of _j has odd order divisible by both 11 and 13 . On every complex eigenspace, the hermitian form \\[ (x,y)_j(x, y) \\] is nondegenerate and…",
+      "section": "From local isometries to an integral isometry",
+      "manuscript": "Ambiently homeomorphic isolated hypersurfaces of multiplicities two and three"
+    },
+    {
+      "id": "m1-global-integral",
+      "kind": "proposition",
+      "label": "Integral equivariant isometry",
+      "statement": "[Integral equivariant isometry] The triples H_1 and H_2 in are isometric over : there is a lattice isomorphism U:_1_2 satisfying \\[ U_1=_2U, U^ t _2U=_1. \\]",
+      "section": "From local isometries to an integral isometry",
+      "manuscript": "Ambiently homeomorphic isolated hypersurfaces of multiplicities two and three"
+    },
+    {
+      "id": "m1-topo-analytic",
+      "kind": "lemma",
+      "label": "The polynomials f_1,f_2 have isolated critical points at the origin, are…",
+      "statement": "The polynomials f_1,f_2 have isolated critical points at the origin, are reduced both as polynomials and as analytic germs, and satisfy \\ _0(f_1),_0(f_2)\\ =\\ 2,3\\ .",
+      "section": "From the integral forms to the ambient germs",
+      "manuscript": "Ambiently homeomorphic isolated hypersurfaces of multiplicities two and three"
+    },
+    {
+      "id": "m1-topo-sphere",
+      "kind": "lemma",
+      "label": "Each K_j is a homotopy sphere, and each embedding K_j S^ 2n+1 _ is a simple…",
+      "statement": "Each K_j is a homotopy sphere, and each embedding K_j S^ 2n+1 _ is a simple knot.",
+      "section": "From the integral forms to the ambient germs",
+      "manuscript": "Ambiently homeomorphic isolated hypersurfaces of multiplicities two and three"
+    },
+    {
+      "id": "m1-topo-arnold-corank",
+      "kind": "corollary",
+      "label": "Negative answer to Arnold's corank problem",
+      "statement": "[Negative answer to Arnold's corank problem] In the finite ambient dimension N>3 divisible by eight in~ , the polynomials f_1,f_2 in~ have different Hessian coranks, although their reduced complex…",
+      "section": "From the integral forms to the ambient germs",
+      "manuscript": "Ambiently homeomorphic isolated hypersurfaces of multiplicities two and three"
+    },
+    {
+      "id": "m1-topo-right-equivalence",
+      "kind": "corollary",
+      "label": "Right-topological multiplicity and parity counterexamples",
+      "statement": "[Right-topological multiplicity and parity counterexamples] For the same polynomials f_1,f_2 and the single finite ambient dimension N>3 divisible by eight in Theorem~ , there is a homeomorphism germ…",
+      "section": "From the integral forms to the ambient germs",
+      "manuscript": "Ambiently homeomorphic isolated hypersurfaces of multiplicities two and three"
+    },
+    {
+      "id": "m1-topo-tangent-milnor",
+      "kind": "corollary",
+      "label": "Initial-form Milnor-fibre counterexamples",
+      "statement": "[Initial-form Milnor-fibre counterexamples] In the single ambient dimension N+1 , put \\[ f_j(z,t)=f_j(z)+t^2, j=1,2. \\] The germs f_1, f_2:(^ N+1 ,0)(,0) are topologically right equivalent and have…",
+      "section": "From the integral forms to the ambient germs",
+      "manuscript": "Ambiently homeomorphic isolated hypersurfaces of multiplicities two and three"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "There are reduced convergent holomorphic function germs \\(f_4,f_5( C^4,0)(…",
+      "statement": "There are reduced convergent holomorphic function germs \\(f_4,f_5( C^4,0)( C,0)\\), each with an isolated critical point at the origin, such that \\[ ord_0f_4=4, ord_0f_5=5, \\] and a homeomorphism germ…",
+      "section": "Introduction",
+      "manuscript": "Ambiently homeomorphic isolated hypersurface germs in ℂ⁴ with multiplicities four and five"
+    },
+    {
+      "id": "m2-lem-plane-data",
+      "kind": "lemma",
+      "label": "Plane data",
+      "statement": "[Plane data] Each \\(_i\\) is a finite map germ of degree four. The curves \\(d_i=0\\) are reduced, have isolated singularities at the origin, and have the same six-branch embedded type. Their integral…",
+      "section": "Plane curves and the finite maps",
+      "manuscript": "Ambiently homeomorphic isolated hypersurface germs in ℂ⁴ with multiplicities four and five"
+    },
+    {
+      "id": "m2-lem-cover-adjunction",
+      "kind": "lemma",
+      "label": "Finite-cover adjunction",
+      "statement": "[Finite-cover adjunction] For \\(i=0,1\\), the page maps induce \\(_ i* :D_i H\\) and a full-preimage transfer \\(_i^!:H D_i\\) satisfying \\[ _ i* _i^!=4\\,id_H . \\] If \\(s_h,s_ d_i \\) are the Seifert forms…",
+      "section": "Plane curves and the finite maps",
+      "manuscript": "Ambiently homeomorphic isolated hypersurface germs in ℂ⁴ with multiplicities four and five"
+    },
+    {
+      "id": "m2-lem-simultaneous-parameters",
+      "kind": "lemma",
+      "label": "One common parameter choice",
+      "statement": "[One common parameter choice] For every sufficiently large integer \\(r\\), choose an integer \\(n_0\\) such that \\[ n_012^r, n_025, n_0>52^r, \\] and define n_1&=n_0+52^r,& a&=(n_0^2-1)/4,&…",
+      "section": "Smooth ambient germs and their ordinary orders",
+      "manuscript": "Ambiently homeomorphic isolated hypersurface germs in ℂ⁴ with multiplicities four and five"
+    },
+    {
+      "id": "m2-prop-ambient-orders",
+      "kind": "proposition",
+      "label": "Analytic germs and their orders",
+      "statement": "[Analytic germs and their orders] For the parameters of Lemma~ and every sufficiently small \\(s>0\\), each \\(C_ i,s \\) is a smooth complex fourfold near the origin, and \\(f_ i,s \\) has an isolated…",
+      "section": "Smooth ambient germs and their ordinary orders",
+      "manuscript": "Ambiently homeomorphic isolated hypersurface germs in ℂ⁴ with multiplicities four and five"
+    },
+    {
+      "id": "m2-thm-tube",
+      "kind": "theorem",
+      "label": "Tube, lattice, and pairing",
+      "statement": "[Tube, lattice, and pairing] For sufficiently large \\(a,b\\) satisfying \\[ (a-2) k >L_0, (b-2) k >L_0, \\] where \\(L_0=4\\) is the gradient exponent in , and for sufficiently small \\(s>0\\), the germ…",
+      "section": "The cone tube and integral gluing",
+      "manuscript": "Ambiently homeomorphic isolated hypersurface germs in ℂ⁴ with multiplicities four and five"
+    },
+    {
+      "id": "m2-lem-boundary",
+      "kind": "lemma",
+      "label": "Outer boundary regularity",
+      "statement": "[Outer boundary regularity] For every sufficiently small fixed \\(s>0\\), the map \\(f_s\\) on the compact outer lateral boundary of \\(X_s\\) over \\(\\ |v|\\ \\) is proper, and its restriction to every…",
+      "section": "Boundary geometry and the Milnor representative",
+      "manuscript": "Ambiently homeomorphic isolated hypersurface germs in ℂ⁴ with multiplicities four and five"
+    },
+    {
+      "id": "m2-lem-continuations",
+      "kind": "lemma",
+      "label": "Compatible continuations",
+      "statement": "[Compatible continuations] For sufficiently small \\(s>0\\), the exterior total/page pairs continue to \\(s=0\\). On the inner part, the sublevel totals and horizontal-boundary fibrations continue from…",
+      "section": "Boundary geometry and the Milnor representative",
+      "manuscript": "Ambiently homeomorphic isolated hypersurface germs in ℂ⁴ with multiplicities four and five"
+    },
+    {
+      "id": "m2-lem-isolation",
+      "kind": "lemma",
+      "label": "Uniform critical-point isolation",
+      "statement": "[Uniform critical-point isolation] For sufficiently large \\(a,b\\) as in Theorem~ , the only critical point of \\(f_s\\) in for all sufficiently small \\(s>0\\) is the origin.",
+      "section": "Boundary geometry and the Milnor representative",
+      "manuscript": "Ambiently homeomorphic isolated hypersurface germs in ℂ⁴ with multiplicities four and five"
+    },
+    {
+      "id": "m2-lem-acyclic",
+      "kind": "lemma",
+      "label": "inner homology and acyclic total",
+      "statement": "[inner homology and acyclic total] There are natural identifications H_3(W)=K, H_2(W)=H/_*D, :H_3(W;/k) D/kD. The large total \\(_s\\) is acyclic.",
+      "section": "Circle collapse and integral homology",
+      "manuscript": "Ambiently homeomorphic isolated hypersurface germs in ℂ⁴ with multiplicities four and five"
+    },
+    {
+      "id": "m2-lem-local",
+      "kind": "lemma",
+      "label": "The large tube computes the local page",
+      "statement": "[The large tube computes the local page] The middle homology and filling pairing of the page of are naturally those of a sufficiently small ordinary Milnor representative of \\(f_s\\).",
+      "section": "Circle collapse and integral homology",
+      "manuscript": "Ambiently homeomorphic isolated hypersurface germs in ℂ⁴ with multiplicities four and five"
+    },
+    {
+      "id": "m2-lem-mv",
+      "kind": "lemma",
+      "label": "Mayer--Vietoris boundary",
+      "statement": "[Mayer--Vietoris boundary] The full page has an exact sequence 0 K H_3(_s) H E 1 H/_*D. The image of the exterior page in \\(H_3(_s)\\) maps isomorphically under \\(\\) to \\(H\\).",
+      "section": "Circle collapse and integral homology",
+      "manuscript": "Ambiently homeomorphic isolated hypersurface germs in ℂ⁴ with multiplicities four and five"
+    },
+    {
+      "id": "m2-lem-bock",
+      "kind": "lemma",
+      "label": "Bockstein equals finite-map transfer",
+      "statement": "[Bockstein equals finite-map transfer] For \\(b H/kH=H_2(J)\\), and any \\( H_3(J;/k)\\) with \\(_ Bock =b\\), (i_*)=^!bkD, with the orientation of \\(\\) fixed after .",
+      "section": "The mod-four Bockstein and the exact lattice",
+      "manuscript": "Ambiently homeomorphic isolated hypersurface germs in ℂ⁴ with multiplicities four and five"
+    },
+    {
+      "id": "m2-lem-lattice",
+      "kind": "lemma",
+      "label": "integral extension",
+      "statement": "[integral extension] In these rational coordinates, the image of \\(H_3(_s)\\) is exactly the lattice \\[ _= \\ ( l,z): l D,\\ z H E, _*l kH=(1)z\\ K_(H E)_ \\] from , where \\( l=l-k^ -1 ^!_*l\\).",
+      "section": "The mod-four Bockstein and the exact lattice",
+      "manuscript": "Ambiently homeomorphic isolated hypersurface germs in ℂ⁴ with multiplicities four and five"
+    },
+    {
+      "id": "m2-lem-exterior",
+      "kind": "lemma",
+      "label": "orthogonality and exterior form",
+      "statement": "[orthogonality and exterior form] The \\(K_\\) and \\((H E)_\\) summands are orthogonal for the tube filling form. The second summand has form \\(s_h e\\).",
+      "section": "The two filling summands",
+      "manuscript": "Ambiently homeomorphic isolated hypersurface germs in ℂ⁴ with multiplicities four and five"
+    },
+    {
+      "id": "m2-lem-inner",
+      "kind": "lemma",
+      "label": "the inner negative sign",
+      "statement": "[the inner negative sign] The restriction of the filling form to \\(K\\) is \\(-s_d|_K\\).",
+      "section": "The two filling summands",
+      "manuscript": "Ambiently homeomorphic isolated hypersurface germs in ℂ⁴ with multiplicities four and five"
+    },
+    {
+      "id": "m2-lem-parameter-indices",
+      "kind": "lemma",
+      "label": "Divisibility and positive indices",
+      "statement": "[Divisibility and positive indices] For the parameters fixed in Lemma~ , put \\[ g=(a,b), m=4ab+a+b. \\] Then \\(a,b25\\), \\(5 g\\), and \\(g 2^ r-1 >5\\). For each \\(q\\ 1,4\\ \\), there are positive integers…",
+      "section": "From the integral lattice to an embedded link",
+      "manuscript": "Ambiently homeomorphic isolated hypersurface germs in ℂ⁴ with multiplicities four and five"
+    },
+    {
+      "id": "m2-lem-arith-boundary",
+      "kind": "lemma",
+      "label": "Boundary pairings",
+      "statement": "[Boundary pairings] The classes b_0,b_1 are fixed by the page monodromy, and e(b_j,b_j)&=-n_j^2 4 ,& e(b_0,b_1)&=-14,\\\\ 4e(b_j,x)&-(x)4&&(x E).",
+      "section": "From the integral lattice to an embedded link",
+      "manuscript": "Ambiently homeomorphic isolated hypersurface germs in ℂ⁴ with multiplicities four and five"
+    },
+    {
+      "id": "m2-lem-arith-local-splitting",
+      "kind": "lemma",
+      "label": "Local splitting",
+      "statement": "[Local splitting] For every rational prime n_j , the lattice E_ Z_ has the following Z_ -module splitting, orthogonal for the Q_ -valued form e : \\[ E_ Z_ = Z_ v_j U_ j, , U_ j, (_ Z_ ). \\] For =0,1…",
+      "section": "From the integral lattice to an embedded link",
+      "manuscript": "Ambiently homeomorphic isolated hypersurface germs in ℂ⁴ with multiplicities four and five"
+    },
+    {
+      "id": "m2-lem-arith-discrepancy",
+      "kind": "lemma",
+      "label": "The discrepancy lifts",
+      "statement": "[The discrepancy lifts] The rational Seifert isometry =J_0^ -1 J_1 acts as the identity outside F_ 0,1 F_ 0,5 . Its restriction to F_ 0,1 lifts to the rational points of the spin group of B_0|F_ 0,1…",
+      "section": "From the integral lattice to an embedded link",
+      "manuscript": "Ambiently homeomorphic isolated hypersurface germs in ℂ⁴ with multiplicities four and five"
+    },
+    {
+      "id": "m2-lem-arith-real-signs",
+      "kind": "lemma",
+      "label": "Real signs",
+      "statement": "[Real signs] The quadratic form B_|F_ ,1 is indefinite and has dimension at least five. The Hermitian form on F_ ,5 has dimension at least two over L and is indefinite at the real place of L^+…",
+      "section": "From the integral lattice to an embedded link",
+      "manuscript": "Ambiently homeomorphic isolated hypersurface germs in ℂ⁴ with multiplicities four and five"
+    },
+    {
+      "id": "m2-prop-arith-integral-congruence",
+      "kind": "proposition",
+      "label": "Integral Seifert congruence",
+      "statement": "[Integral Seifert congruence] For the two germs constructed above, the two integral Milnor Seifert forms (_0,s_0) and (_1,s_1) are isometric.",
+      "section": "From the integral lattice to an embedded link",
+      "manuscript": "Ambiently homeomorphic isolated hypersurface germs in ℂ⁴ with multiplicities four and five"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-seed-product",
+      "to": "m1-seed-seeds"
+    },
+    {
+      "from": "m1-seed-chain",
+      "to": "m1-seed-seeds"
+    },
+    {
+      "from": "m1-bg-spectrum",
+      "to": "m1-seed-seeds"
+    },
+    {
+      "from": "m1-bg-real",
+      "to": "m1-seed-seeds"
+    },
+    {
+      "from": "m1-bg-orlik",
+      "to": "m1-seed-seeds"
+    },
+    {
+      "from": "m1-bg-real",
+      "to": "m1-seed-prepared"
+    },
+    {
+      "from": "m1-bg-orlik",
+      "to": "m1-seed-prepared"
+    },
+    {
+      "from": "m1-local-lifting",
+      "to": "m1-local-odd-primes"
+    },
+    {
+      "from": "m1-bg-hasse",
+      "to": "m1-local-hasse-descent"
+    },
+    {
+      "from": "m1-local-hermitian-lengths",
+      "to": "m1-local-hasse-descent"
+    },
+    {
+      "from": "m1-seed-prepared",
+      "to": "m1-local-rational"
+    },
+    {
+      "from": "m1-local-odd-primes",
+      "to": "m1-local-rational"
+    },
+    {
+      "from": "m1-local-dyadic",
+      "to": "m1-local-rational"
+    },
+    {
+      "from": "m1-local-symmetrize",
+      "to": "m1-local-rational"
+    },
+    {
+      "from": "m1-local-hasse-descent",
+      "to": "m1-local-rational"
+    },
+    {
+      "from": "m1-bg-ts",
+      "to": "m1-global-indefinite"
+    },
+    {
+      "from": "m1-global-indefinite",
+      "to": "m1-global-integral"
+    },
+    {
+      "from": "m1-bg-approximation",
+      "to": "m1-global-integral"
+    },
+    {
+      "from": "m1-global-determinants",
+      "to": "m1-global-integral"
+    },
+    {
+      "from": "m1-seed-chain",
+      "to": "m1-topo-analytic"
+    },
+    {
+      "from": "m1-bg-classification",
+      "to": "m1-topo-sphere"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-topo-arnold-corank"
+    },
+    {
+      "from": "m1-topo-analytic",
+      "to": "m1-topo-arnold-corank"
+    },
+    {
+      "from": "m1-seed-product",
+      "to": "m1-topo-arnold-corank"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-topo-right-equivalence"
+    },
+    {
+      "from": "m1-topo-right-equivalence",
+      "to": "m1-topo-tangent-milnor"
+    },
+    {
+      "from": "m1-topo-analytic",
+      "to": "m1-topo-tangent-milnor"
+    },
+    {
+      "from": "m2-lem-plane-data",
+      "to": "m2-prop-ambient-orders"
+    },
+    {
+      "from": "m2-lem-isolation",
+      "to": "m2-prop-ambient-orders"
+    },
+    {
+      "from": "m2-lem-simultaneous-parameters",
+      "to": "m2-prop-ambient-orders"
+    },
+    {
+      "from": "m2-lem-isolation",
+      "to": "m2-lem-boundary"
+    },
+    {
+      "from": "m2-thm-tube",
+      "to": "m2-lem-isolation"
+    },
+    {
+      "from": "m2-lem-continuations",
+      "to": "m2-lem-acyclic"
+    },
+    {
+      "from": "m2-thm-tube",
+      "to": "m2-lem-acyclic"
+    },
+    {
+      "from": "m2-lem-boundary",
+      "to": "m2-lem-local"
+    },
+    {
+      "from": "m2-lem-isolation",
+      "to": "m2-lem-local"
+    },
+    {
+      "from": "m2-lem-acyclic",
+      "to": "m2-lem-local"
+    },
+    {
+      "from": "m2-lem-continuations",
+      "to": "m2-lem-mv"
+    },
+    {
+      "from": "m2-lem-boundary",
+      "to": "m2-lem-mv"
+    },
+    {
+      "from": "m2-lem-mv",
+      "to": "m2-lem-bock"
+    },
+    {
+      "from": "m2-lem-continuations",
+      "to": "m2-lem-bock"
+    },
+    {
+      "from": "m2-lem-bock",
+      "to": "m2-lem-lattice"
+    },
+    {
+      "from": "m2-lem-acyclic",
+      "to": "m2-lem-exterior"
+    },
+    {
+      "from": "m2-lem-continuations",
+      "to": "m2-lem-inner"
+    },
+    {
+      "from": "m2-lem-acyclic",
+      "to": "m2-lem-inner"
+    },
+    {
+      "from": "m2-lem-plane-data",
+      "to": "m2-lem-arith-real-signs"
+    },
+    {
+      "from": "m2-lem-parameter-indices",
+      "to": "m2-lem-arith-real-signs"
+    },
+    {
+      "from": "m2-lem-arith-real-signs",
+      "to": "m2-prop-arith-integral-congruence"
+    },
+    {
+      "from": "m2-lem-arith-discrepancy",
+      "to": "m2-prop-arith-integral-congruence"
+    },
+    {
+      "from": "m2-lem-arith-local-splitting",
+      "to": "m2-prop-arith-integral-congruence"
+    },
+    {
+      "from": "m2-thm-main",
+      "to": "m2-prop-arith-integral-congruence"
+    },
+    {
+      "from": "m2-prop-ambient-orders",
+      "to": "m2-prop-arith-integral-congruence"
+    },
+    {
+      "from": "m2-lem-isolation",
+      "to": "m2-prop-arith-integral-congruence"
+    },
+    {
+      "from": "m2-thm-tube",
+      "to": "m2-prop-arith-integral-congruence"
+    }
+  ]
+}

@@ -1,0 +1,216 @@
+{
+  "familyNumber": "097",
+  "familyTitle": "The Euclidean Steinitz–Bergström bound",
+  "manuscripts": [
+    {
+      "id": "The-Euclidean-Steinitz-Bergstrom-theorem-September-24-2026",
+      "title": "The Euclidean Steinitz–Bergström theorem",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Euclidean-Steinitz-Bergstrom-theorem-September-24-2026/The-Euclidean-Steinitz-Bergstrom-theorem-September-24-2026.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Constructing the signed walk",
+    "From low energy to shifted signs",
+    "Matrix variation along the filter",
+    "Uniform Gaussian survival",
+    "Further consequences"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-signing",
+      "kind": "theorem",
+      "label": "Prescribed-order signed prefixes",
+      "statement": "[Prescribed-order signed prefixes] There is an absolute constant C such that, for all integers d,N1 and every sequence v_1,,v_N^d with v_i_21 , there are signs _1,,_N\\ -1,1\\ for which \\[ _ 0 k N _…",
+      "section": "Introduction",
+      "manuscript": "The Euclidean Steinitz–Bergström theorem"
+    },
+    {
+      "id": "m1-thm-steinitz",
+      "kind": "theorem",
+      "label": "Euclidean Steinitz--Bergstr\\\"om bound",
+      "statement": "[Euclidean Steinitz--Bergstr\\\"om bound] There is an absolute constant C such that, for all integers d,N1 and every indexed family v_1,,v_N^d satisfying v_i_21 and _ i=1 ^N v_i=0 , some permutation…",
+      "section": "Introduction",
+      "manuscript": "The Euclidean Steinitz–Bergström theorem"
+    },
+    {
+      "id": "m1-prop-adaptive",
+      "kind": "proposition",
+      "label": "Signs with adaptive shifts",
+      "statement": "[Signs with adaptive shifts] Let K^m be nonempty, bounded, open, convex and centrally symmetric. Suppose that _Q(K)^2 Q for every positive definite diagonal Q. Let j_1,,j_s be distinct elements of \\…",
+      "section": "Constructing the signed walk",
+      "manuscript": "The Euclidean Steinitz–Bergström theorem"
+    },
+    {
+      "id": "m1-prop-filtered",
+      "kind": "proposition",
+      "label": "Energy of a filtered path body",
+      "statement": "[Energy of a filtered path body] There are positive absolute constants A_0,B_0,H_0 with the following property. Let d1 and n0 be integers and put m=d+n . For 1 t n , let C_t be an invertible real d d…",
+      "section": "Constructing the signed walk",
+      "manuscript": "The Euclidean Steinitz–Bergström theorem"
+    },
+    {
+      "id": "m1-lem-slab-energy",
+      "kind": "lemma",
+      "label": "Adding slabs",
+      "statement": "[Adding slabs] Let D^m be bounded, nonempty, open, convex and centrally symmetric. Let D_*>0 , >0 , and let m_1,,m_n be real rows of length m . Set \\[ K=(2D_*D)_ i=1 ^n\\ x:|m_i x|<\\ . \\] For every…",
+      "section": "Constructing the signed walk",
+      "manuscript": "The Euclidean Steinitz–Bergström theorem"
+    },
+    {
+      "id": "m1-lem-simultaneous-density",
+      "kind": "lemma",
+      "label": "Let K^m be a nonempty bounded open convex set symmetric about zero. If \\[…",
+      "statement": "Let K^m be a nonempty bounded open convex set symmetric about zero. If \\[ _Q(K)^2 Q for every positive definite diagonal Q, \\] then there is a nonnegative f H^1(^m) , vanishing almost everywhere…",
+      "section": "From low energy to shifted signs",
+      "manuscript": "The Euclidean Steinitz–Bergström theorem"
+    },
+    {
+      "id": "m1-lem-minkowski",
+      "kind": "lemma",
+      "label": "Let D_0,D_1^m be nonempty bounded open convex sets symmetric about zero, and…",
+      "statement": "Let D_0,D_1^m be nonempty bounded open convex sets symmetric about zero, and let Q be positive definite diagonal. For 01 , \\[ _Q((1-)D_0+ D_1) (1-)_Q(D_0)+_Q(D_1). \\]",
+      "section": "From low energy to shifted signs",
+      "manuscript": "The Euclidean Steinitz–Bergström theorem"
+    },
+    {
+      "id": "m1-lem-shift-section",
+      "kind": "lemma",
+      "label": "Let K^m be a nonempty bounded open convex set symmetric about zero and…",
+      "statement": "Let K^m be a nonempty bounded open convex set symmetric about zero and satisfying _Q(K)^2 Q for every positive definite diagonal Q . For every coordinate vector e , there is another domain T_e(K)…",
+      "section": "From low energy to shifted signs",
+      "manuscript": "The Euclidean Steinitz–Bergström theorem"
+    },
+    {
+      "id": "m1-lem-increment",
+      "kind": "lemma",
+      "label": "Weighted increment estimate",
+      "statement": "[Weighted increment estimate] There are absolute constants e_0>0 and C< with the following property. For every recursion in Proposition~ , every positive definite diagonal Q , every dyadic , and 0 s…",
+      "section": "Matrix variation along the filter",
+      "manuscript": "The Euclidean Steinitz–Bergström theorem"
+    },
+    {
+      "id": "m1-lem-scalar-comparison",
+      "kind": "lemma",
+      "label": "There is an absolute c>0 such that, for all x,y>0 , J(x,y)&…",
+      "statement": "There is an absolute c>0 such that, for all x,y>0 , J(x,y)& c(1+y)|f_0(x)-f_0(y)|^2,\\\\ yx J(y,x)& c(1+y)|f_0(x)-f_0(y)|^2.",
+      "section": "Matrix variation along the filter",
+      "manuscript": "The Euclidean Steinitz–Bergström theorem"
+    },
+    {
+      "id": "m1-lem-endpoint-comparison",
+      "kind": "lemma",
+      "label": "Endpoint comparison",
+      "statement": "[Endpoint comparison] With the preceding notation, (F_t-F_s)(I_m+Q/)^ 1/2 _ ^2 C\\ (p(Y)-p(Z)) +(p(X)-p(Z)) \\ .",
+      "section": "Matrix variation along the filter",
+      "manuscript": "The Euclidean Steinitz–Bergström theorem"
+    },
+    {
+      "id": "m1-lem-direct-gain",
+      "kind": "lemma",
+      "label": "For the matrices X,Y,Z,V above, suppose E=E_(s,t) e_0 , where \\[ c_a=a2^a,…",
+      "statement": "For the matrices X,Y,Z,V above, suppose E=E_(s,t) e_0 , where \\[ c_a=a2^a, e_0=1 16c_a , a=32. \\] If q=(c_aE)^ 1/a , then q<1/4 and V q(I_d+X), (p(X)-p(Z)) Cq(X).",
+      "section": "Matrix variation along the filter",
+      "manuscript": "The Euclidean Steinitz–Bergström theorem"
+    },
+    {
+      "id": "m1-lem-ou-energy",
+      "kind": "lemma",
+      "label": "Let D^m be bounded, nonempty, open and convex. Define \\[ _Q^ OU (D) =_ 0 h…",
+      "statement": "Let D^m be bounded, nonempty, open and convex. Define \\[ _Q^ OU (D) =_ 0 h H_0^1(D) _D Q h, h \\,d _m _D h^2\\,d_m . \\] For every T>0 , P\\ U([0,T]) D\\ e^ -T_Q^ OU (D) , _Q(D)_Q^ OU (D)+12 Q.",
+      "section": "Uniform Gaussian survival",
+      "manuscript": "The Euclidean Steinitz–Bergström theorem"
+    },
+    {
+      "id": "m1-lem-epoch-prob",
+      "kind": "lemma",
+      "label": "There is an absolute c_1 with the following property. Let I\\ 0,,n\\ be an index…",
+      "statement": "There is an absolute c_1 with the following property. Let I\\ 0,,n\\ be an index set whose values h_t lie in an interval of length at most e_0 , where e_0 is the constant in Lemma~ . For every u0 , P\\…",
+      "section": "Uniform Gaussian survival",
+      "manuscript": "The Euclidean Steinitz–Bergström theorem"
+    },
+    {
+      "id": "m1-cor-lp-steinitz",
+      "kind": "corollary",
+      "label": "Finite-dimensional _p bounds",
+      "statement": "[Finite-dimensional _p bounds] Let 1 p , with 1/=0 , and let d,N1 be integers. Every sequence v_1,,v_N^d with v_i_p1 admits signs _i\\ -1,1\\ such that \\[ _ 0 k N _ i=1 ^k_i v_i_p C d^ \\ 1/p,\\,1-1/p\\ .…",
+      "section": "Further consequences",
+      "manuscript": "The Euclidean Steinitz–Bergström theorem"
+    },
+    {
+      "id": "m1-cor-colorful-steinitz",
+      "kind": "corollary",
+      "label": "Euclidean colorful Steinitz bound",
+      "statement": "[Euclidean colorful Steinitz bound] Let d,k,n1 be integers and let a_i^j^d , for 1 j k and 1 i n , satisfy \\[ a_i^j_21, _ j=1 ^k_ i=1 ^n a_i^j=0. \\] There is one tuple of permutations (_1,,_k) S_n^k…",
+      "section": "Further consequences",
+      "manuscript": "The Euclidean Steinitz–Bergström theorem"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-thm-signing",
+      "to": "m1-thm-steinitz"
+    },
+    {
+      "from": "m1-thm-signing",
+      "to": "m1-lem-slab-energy"
+    },
+    {
+      "from": "m1-prop-filtered",
+      "to": "m1-lem-slab-energy"
+    },
+    {
+      "from": "m1-prop-adaptive",
+      "to": "m1-lem-slab-energy"
+    },
+    {
+      "from": "m1-lem-simultaneous-density",
+      "to": "m1-lem-shift-section"
+    },
+    {
+      "from": "m1-lem-minkowski",
+      "to": "m1-lem-shift-section"
+    },
+    {
+      "from": "m1-prop-adaptive",
+      "to": "m1-lem-shift-section"
+    },
+    {
+      "from": "m1-lem-scalar-comparison",
+      "to": "m1-lem-endpoint-comparison"
+    },
+    {
+      "from": "m1-lem-increment",
+      "to": "m1-lem-direct-gain"
+    },
+    {
+      "from": "m1-lem-endpoint-comparison",
+      "to": "m1-lem-direct-gain"
+    },
+    {
+      "from": "m1-lem-increment",
+      "to": "m1-lem-epoch-prob"
+    },
+    {
+      "from": "m1-prop-filtered",
+      "to": "m1-lem-epoch-prob"
+    },
+    {
+      "from": "m1-lem-ou-energy",
+      "to": "m1-lem-epoch-prob"
+    },
+    {
+      "from": "m1-thm-signing",
+      "to": "m1-cor-lp-steinitz"
+    },
+    {
+      "from": "m1-thm-steinitz",
+      "to": "m1-cor-lp-steinitz"
+    },
+    {
+      "from": "m1-thm-signing",
+      "to": "m1-cor-colorful-steinitz"
+    }
+  ]
+}

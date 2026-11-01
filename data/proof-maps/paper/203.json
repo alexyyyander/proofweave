@@ -1,0 +1,1092 @@
+{
+  "familyNumber": "203",
+  "familyTitle": "Donovan's conjecture over fields and complete mixed-characteristic DVRs",
+  "manuscripts": [
+    {
+      "id": "Donovans-Conjecture-over-Algebraic-Closures-of-Prime-Fields-September-24-2026",
+      "title": "Donovan's Conjecture over Algebraically Closed Fields",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Donovans-Conjecture-over-Algebraic-Closures-of-Prime-Fields-September-24-2026/main.pdf"
+    },
+    {
+      "id": "Integral-Donovan-Finiteness-over-Witt-Vectors-September-25-2026",
+      "title": "Integral Donovan Finiteness over Witt Vectors",
+      "date": "2026-09-25",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Integral-Donovan-Finiteness-over-Witt-Vectors-September-25-2026/main.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Block-theoretic bounds and transfer",
+    "A Cartan bound for fixed root data",
+    "Cartan bounds for quasisimple groups",
+    "Ordinary labels, single cycles, and block cores",
+    "Runner reductions and projective cones",
+    "The cuspidal triangle endpoint",
+    "Extensions and field Morita finiteness",
+    "Sylow-equivariant Frobenius comparison",
+    "Integral orders and the imported block constructions",
+    "Integral orbits and gradings of a fixed order",
+    "Teichm\\\"uller overlaps and integral Sylow comparison"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-donovan",
+      "kind": "theorem",
+      "label": "Donovan's conjecture",
+      "statement": "[Donovan's conjecture] Fix a prime \\(p\\), an algebraically closed field \\(K\\) of characteristic \\(p\\), and a positive integer \\(M\\). As \\(G\\) ranges over finite groups and \\(b\\) over block…",
+      "section": "Introduction",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-lem-central-transfer",
+      "kind": "lemma",
+      "label": "Central transfer",
+      "statement": "[Central transfer] Let \\(Z Z(G)\\) be a \\(p\\)-subgroup. Blocks of \\(G\\) correspond to blocks of \\(G/Z\\), every defect group contains \\(Z\\), and corresponding defect orders differ by \\(|Z|\\). Their…",
+      "section": "Block-theoretic bounds and transfer",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-lem-row-projection",
+      "kind": "lemma",
+      "label": "Bounded inverse projection",
+      "statement": "[Bounded inverse projection] For blocks of defect order at most \\(M\\), including unions of a bounded number of such blocks, let \\(V\\) be the rational span of their PIM columns in ordinary-character…",
+      "section": "Block-theoretic bounds and transfer",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-lem-abelian-transfer",
+      "kind": "lemma",
+      "label": "Transfer across an abelian quotient",
+      "statement": "[Transfer across an abelian quotient] Suppose \\(N G\\) and \\(G/N\\) is abelian. Among blocks \\(B\\) of \\(G\\) of defect order at most \\(M\\), uniform Cartan bounds for their covered blocks of \\(N\\) imply…",
+      "section": "Block-theoretic bounds and transfer",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-lem-restriction-rows",
+      "kind": "lemma",
+      "label": "Restriction of rows",
+      "statement": "[Restriction of rows] Let \\(N G\\), and fix a block \\(b\\) of \\(N\\). Suppose that every block of \\(G\\) covering \\(b\\) has at most \\(L\\) simple modules and decomposition numbers at most \\(c\\). Suppose…",
+      "section": "Block-theoretic bounds and transfer",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-thm-geometric-cartan",
+      "kind": "theorem",
+      "label": "Fixed-root Cartan bound",
+      "statement": "[Fixed-root Cartan bound] Fix a finite collection \\( R\\) of root data and a finite collection of the usual pinned diagram automorphisms and exceptional diagram isogenies on these data. There is a…",
+      "section": "A Cartan bound for fixed root data",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-geom-flat-costalk",
+      "kind": "lemma",
+      "label": "Let \\(R\\) be a finite-dimensional commutative local algebra over a finite field…",
+      "statement": "Let \\(R\\) be a finite-dimensional commutative local algebra over a finite field of characteristic \\(p\\), with residue field \\(k_0\\). Let \\(Y\\) be a variety over an algebraically closed field of…",
+      "section": "A Cartan bound for fixed root data",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-geom-cross-perfect",
+      "kind": "lemma",
+      "label": "For all \\(v,x W\\) and \\(\\), the complex \\(j_v^!_ x, \\) is perfect over…",
+      "statement": "For all \\(v,x W\\) and \\(\\), the complex \\(j_v^!_ x, \\) is perfect over \\(kA_v\\). This remains true when the calculation is performed in an invariant open containing the two strata.",
+      "section": "A Cartan bound for fixed root data",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-geom-kummer-stalk",
+      "kind": "lemma",
+      "label": "Fix the root datum and \\(v,x W\\). Let \\(V_v G/ B\\) be the translated opposite…",
+      "statement": "Fix the root datum and \\(v,x W\\). Let \\(V_v G/ B\\) be the translated opposite big cell through \\( v B\\), with its natural section \\(s:V_v G\\), and put \\(f=r_x s\\) on \\(C_x V_v\\). For every rank-one…",
+      "section": "A Cartan bound for fixed root data",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-geom-summed-ext",
+      "kind": "proposition",
+      "label": "For every integer \\(J0\\), there is a constant \\(D_J\\), depending only on the…",
+      "statement": "For every integer \\(J0\\), there is a constant \\(D_J\\), depending only on the fixed root data and \\(J\\), such that for all \\(v,x,\\) and \\(0 j J\\), _ (A_v,k^) _k^j_ X (j_ v,! L_ v, ,j_ x,! E_ x, ) D_J.…",
+      "section": "A Cartan bound for fixed root data",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-geom-bounded-tiltings",
+      "kind": "proposition",
+      "label": "There is a constant \\(L\\), depending only on the fixed root data, such that for…",
+      "statement": "There is a constant \\(L\\), depending only on the fixed root data, such that for every \\((x,)\\) there is an object \\( T_ x, \\) with both a standard and a costandard flag. A specified standard flag has…",
+      "section": "A Cartan bound for fixed root data",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-geom-affineness",
+      "kind": "lemma",
+      "label": "For all sufficiently large \\(Q\\), uniformly over the specified root data, maps…",
+      "statement": "For all sufficiently large \\(Q\\), uniformly over the specified root data, maps \\(\\), and \\(x W\\), the Deligne--Lusztig variety \\[ X(x)=\\ g B:g^ -1 F(g) G_x\\ \\] is smooth affine of dimension \\((x)\\).",
+      "section": "A Cartan bound for fixed root data",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-geom-projective-images",
+      "kind": "proposition",
+      "label": "The modules \\(P_ x, \\) are projective. Let \\( A_x\\) be the ordinary linear…",
+      "statement": "The modules \\(P_ x, \\) are projective. Let \\( A_x\\) be the ordinary linear characters of \\(A_x\\), with \\(\\) their modular reductions, and set _ x, =(-1)^ (x) _ A_x\\\\ = R_ T_x ^ G (). If \\(n_ x,;y, \\)…",
+      "section": "A Cartan bound for fixed root data",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-geom-projected-norm",
+      "kind": "lemma",
+      "label": "Let \\( I\\) be any set of at most \\(K\\) ordinary irreducible characters of \\(\\),…",
+      "statement": "Let \\( I\\) be any set of at most \\(K\\) ordinary irreducible characters of \\(\\), and let \\(pr_ I \\) be their orthogonal coordinate projection. Then \\[ \\|pr_ I _ x, \\|^2 K|W|^3, \\|pr_ I _ P_ x, \\|^2…",
+      "section": "A Cartan bound for fixed root data",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-thm-quasisimple-cartan",
+      "kind": "theorem",
+      "label": "Quasisimple Cartan bound",
+      "statement": "[Quasisimple Cartan bound] For every prime \\(p\\) and positive integer \\(M\\), there is a constant \\(C_ qs (p,M)\\) such that every Cartan entry of every block of \\(kS\\), where \\(S\\) is quasisimple and…",
+      "section": "Cartan bounds for quasisimple groups",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-fam-restriction",
+      "kind": "corollary",
+      "label": "Let \\(N H\\) with cyclic quotient, and let \\(b\\) be a block of \\(N\\). Suppose…",
+      "statement": "Let \\(N H\\) with cyclic quotient, and let \\(b\\) be a block of \\(N\\). Suppose that every block of \\(H\\) covering \\(b\\) has one simple module and all its decomposition numbers are one. Then every…",
+      "section": "Cartan bounds for quasisimple groups",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-fam-br-central",
+      "kind": "lemma",
+      "label": "Central quotients in the Levi equivalence",
+      "statement": "[Central quotients in the Levi equivalence] Let \\(s J^ *F \\) be a semisimple \\(p'\\)-element, and let \\( L^*\\) be an \\(F\\)-stable Levi subgroup containing the full algebraic centralizer \\(C_ J^*…",
+      "section": "Cartan bounds for quasisimple groups",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-fam-type-a",
+      "kind": "proposition",
+      "label": "Fix \\(p\\) and \\(M\\). To bound Cartan entries for blocks of defect order at most…",
+      "statement": "Fix \\(p\\) and \\(M\\). To bound Cartan entries for blocks of defect order at most \\(M\\) of all central quotients of \\(_n^(q)\\), with \\(r p\\), it suffices to bound Cartan entries for unipotent blocks of…",
+      "section": "Cartan bounds for quasisimple groups",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-fam-regular-datum",
+      "kind": "lemma",
+      "label": "For simply connected groups of types~B, C, and D there are regular embeddings…",
+      "statement": "For simply connected groups of types~B, C, and D there are regular embeddings \\( S=[ J, J] J\\) with central torus rank at most three with the following properties. The groups \\( J\\), its dual, and…",
+      "section": "Cartan bounds for quasisimple groups",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-fam-central-classical",
+      "kind": "proposition",
+      "label": "To prove Theorem~ for the cross-characteristic families of types~B, C, and D,…",
+      "statement": "To prove Theorem~ for the cross-characteristic families of types~B, C, and D, it suffices to prove the following assertion, together with the type~A bounds: for the groups of Lemma~ , blocks of…",
+      "section": "Cartan bounds for quasisimple groups",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-fam-two",
+      "kind": "proposition",
+      "label": "At \\(p=2\\), the blocks in the special assertion of Proposition~ have bounded…",
+      "statement": "At \\(p=2\\), the blocks in the special assertion of Proposition~ have bounded ambient semisimple rank. They consequently have bounded Cartan entries.",
+      "section": "Cartan bounds for quasisimple groups",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-fam-packets",
+      "kind": "lemma",
+      "label": "Suppose that \\(p\\) is odd and the normalized spectrum of the \\(p'\\)-parameter…",
+      "statement": "Suppose that \\(p\\) is odd and the normalized spectrum of the \\(p'\\)-parameter \\(s\\) is contained in \\(\\ 1,-1\\ \\), in a regular group of Lemma~ . Apart from the ambient central torus, its connected…",
+      "section": "Cartan bounds for quasisimple groups",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-fam-central-order",
+      "kind": "lemma",
+      "label": "For odd \\(p\\), the original central subgroup and every inherited residual…",
+      "statement": "For odd \\(p\\), the original central subgroup and every inherited residual central torus satisfy \\[ |Z_p|,\\ | T_R^F|_p ((q-1)_p(q+1)_p)^3. \\] The full residual connected center satisfies the analogous…",
+      "section": "Cartan bounds for quasisimple groups",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-prop-label-degrees",
+      "kind": "proposition",
+      "label": "Labels and ordinary branching",
+      "statement": "[Labels and ordinary branching] The following conventions and formulas apply to the unipotent factors of the ordinary Jordan labels in the groups just specified. For _n^(q) , where =1 or -1 ,…",
+      "section": "Ordinary labels, single cycles, and block cores",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-lab-fingerprints",
+      "kind": "lemma",
+      "label": "Separation by uniform tests",
+      "statement": "[Separation by uniform tests] The uniform pairing vectors of two ordinary unipotent labels in these groups are proportional only when the labels coincide. Consequently ordinary Jordan labels are…",
+      "section": "Ordinary labels, single cycles, and block cores",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-lab-slice",
+      "kind": "lemma",
+      "label": "The separated slice",
+      "statement": "[The separated slice] Fix a nondegenerate Fourier rectangle and two positions P=\\ x,y\\ . Suppose an integral vector v on its rows has two nonzero entries, both of absolute value one, at the distinct…",
+      "section": "Ordinary labels, single cycles, and block cores",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-lab-sparse",
+      "kind": "lemma",
+      "label": "Sparse single-cycle rows",
+      "statement": "[Sparse single-cycle rows] Fix a target unipotent label and a source family for one of the single-cycle inductions of Proposition~ . The list of coefficients on that family is zero, one signed unit…",
+      "section": "Ordinary labels, single cycles, and block cores",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-prop-single-cycle",
+      "kind": "proposition",
+      "label": "Single-cycle Jordan transport",
+      "statement": "[Single-cycle Jordan transport] With the fixed markings in , the matrix of R^ H _ M on E( M^F,s) , in ordinary Jordan labels, is A= B, B=_ unip , = _ H _ M _ C _ C_M . For the split hyperbolic…",
+      "section": "Ordinary labels, single cycles, and block cores",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-lab-projected-hc",
+      "kind": "corollary",
+      "label": "Projected split induction",
+      "statement": "[Projected split induction] Let s be a p' -parameter and fix its rational class in a split Levi M as above. On characters in E_p( M^F,s) , the coordinates in E( H^F,s) after split induction depend…",
+      "section": "Ordinary labels, single cycles, and block cores",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-lab-packed-pair",
+      "kind": "lemma",
+      "label": "The packed inducing pair",
+      "statement": "[The packed inducing pair] Fix target Jordan labels on the active classical packets, and let be their collection of packed cores. Take the signed cycles removed in packing these labels to ; their…",
+      "section": "Ordinary labels, single cycles, and block cores",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-prop-core-blocks",
+      "kind": "proposition",
+      "label": "Core block projections",
+      "statement": "[Core block projections] In each remaining type- A unipotent target, and in each regular classical target with fixed p' -parameter s , the following holds. Partition the basic rows in E( H^F,s) by…",
+      "section": "Ordinary labels, single cycles, and block cores",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-prop-runner-reduction",
+      "kind": "proposition",
+      "label": "Fix \\(p\\) and a defect-order bound \\(M\\). Consider either a unipotent block of…",
+      "statement": "Fix \\(p\\) and a defect-order bound \\(M\\). Consider either a unipotent block of \\(_n(q)\\) or \\(_n(q)\\) of defect order at most \\(M\\), or a block in a sign-parameter series of an original regular…",
+      "section": "Runner reductions and projective cones",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-run-localization",
+      "kind": "lemma",
+      "label": "If \\(w(B) W\\), then \\(B\\) agrees with \\(B(c(B))\\) outside \\([c(B)-W,c(B)+W)\\).…",
+      "statement": "If \\(w(B) W\\), then \\(B\\) agrees with \\(B(c(B))\\) outside \\([c(B)-W,c(B)+W)\\). For charged sets \\(B,B'\\) of total weight at most \\(W\\), put \\(m=c(B)-c(B')\\). If \\(m>2W\\), then \\(B' B\\) and \\(|B…",
+      "section": "Runner reductions and projective cones",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-run-defect-bounds",
+      "kind": "lemma",
+      "label": "For the starting blocks in Proposition~ , the cycle weights are bounded in…",
+      "statement": "For the starting blocks in Proposition~ , the cycle weights are bounded in terms of \\(p,M\\). If all weights vanish, the block is of defect zero after the indicated central quotient. Otherwise the…",
+      "section": "Runner reductions and projective cones",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-run-ordered-swap",
+      "kind": "lemma",
+      "label": "Suppose the ordered core convention is allowed at both ends. The projection of…",
+      "statement": "Suppose the ordered core convention is allowed at both ends. The projection of \\(m\\) successive rank-one extractions onto the swapped core has matrix \\(m!P\\), where \\(P\\) is the bijection…",
+      "section": "Runner reductions and projective cones",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-run-folding",
+      "kind": "lemma",
+      "label": "In a type \\(D\\) ordinary Harish--Chandra series with equal row lengths, folding…",
+      "statement": "In a type \\(D\\) ordinary Harish--Chandra series with equal row lengths, folding ordered bipartitions sends a nonsymmetric bipartition to its unordered character and an equal bipartition to the sum of…",
+      "section": "Runner reductions and projective cones",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-run-nonsymmetric",
+      "kind": "lemma",
+      "label": "Suppose \\(d>1\\), and let \\(j^*\\) be the edge paired with \\(j\\) by row exchange.…",
+      "statement": "Suppose \\(d>1\\), and let \\(j^*\\) be the edge paired with \\(j\\) by row exchange. They are disjoint. A sufficiently large swap from a nonsymmetric core to a nonsymmetric core has exactly the matrix of…",
+      "section": "Runner reductions and projective cones",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-run-symmetric",
+      "kind": "lemma",
+      "label": "For a symmetric core and \\(d>1\\), simultaneous swaps on two opposite large…",
+      "statement": "For a symmetric core and \\(d>1\\), simultaneous swaps on two opposite large edges have coefficient \\((2m)!\\) on ordered labels. The output bijection commutes with row exchange and preserves equal-row…",
+      "section": "Runner reductions and projective cones",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-run-d-one",
+      "kind": "lemma",
+      "label": "For cohook \\(d=1\\) and sufficiently large positive difference \\(m\\), both…",
+      "statement": "For cohook \\(d=1\\) and sufficiently large positive difference \\(m\\), both endpoints of the swap are nonsymmetric. After division by \\(m!\\), its unordered matrix is \\(P+E_m\\), where \\(P\\) is the…",
+      "section": "Runner reductions and projective cones",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-run-d-two",
+      "kind": "lemma",
+      "label": "In cohook \\(d=2\\), suppose a large swap from a nonsymmetric core would give a…",
+      "statement": "In cohook \\(d=2\\), suppose a large swap from a nonsymmetric core would give a symmetric core. Number its thresholds as \\[ [C_0,C_1,C_2,C_3]=[L,H,H-1,L-1], m=H-L. \\] There is a projected extraction of…",
+      "section": "Runner reductions and projective cones",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-run-condition",
+      "kind": "lemma",
+      "label": "The normalized ordinary-coordinate induction from the endpoint of the…",
+      "statement": "The normalized ordinary-coordinate induction from the endpoint of the full-space stage to its starting point is invertible, with uniformly bounded condition number.",
+      "section": "Runner reductions and projective cones",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-run-cone-transfer",
+      "kind": "lemma",
+      "label": "Let \\(V_-,V_+\\) be nonnegative integral square invertible matrices of bounded…",
+      "statement": "Let \\(V_-,V_+\\) be nonnegative integral square invertible matrices of bounded size, with \\(| V_+|\\), and suppose the entries of \\(V_-\\) are bounded. If an invertible map \\(T\\) of bounded condition…",
+      "section": "Runner reductions and projective cones",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-run-triangle-endpoint",
+      "kind": "lemma",
+      "label": "At these two-cycle endpoints the number \\(m_i\\) of ordinary split…",
+      "statement": "At these two-cycle endpoints the number \\(m_i\\) of ordinary split Harish--Chandra rank-one steps above the triangle in each packet is uniformly bounded. The complete collection at this triangle and…",
+      "section": "Runner reductions and projective cones",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-prop-triangle-cartan",
+      "kind": "proposition",
+      "label": "Triangle Cartan bound",
+      "statement": "[Triangle Cartan bound] In the endpoint situation of Proposition~ , the Cartan entries of the blocks whose basic rows belong to T are bounded in terms of p and the original defect-order bound M .…",
+      "section": "The cuspidal triangle endpoint",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-end-residual",
+      "kind": "lemma",
+      "label": "The residual module",
+      "statement": "[The residual module] Let _0(H_0) have parameter s and the indicated cuspidal unipotent Jordan labels. It is ordinary Harish--Chandra cuspidal. It is trivial on Z_0=O_p(Z(H_0)) , and its character of…",
+      "section": "The cuspidal triangle endpoint",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-end-linear-cuspidals",
+      "kind": "lemma",
+      "label": "Cuspidal modules on the chunks",
+      "statement": "[Cuspidal modules on the chunks] For every b B_i there is a simple cuspidal module Y_ i,b on the corresponding actual general linear factor with the following properties. It is the reduction of an…",
+      "section": "The cuspidal triangle endpoint",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-end-inertia",
+      "kind": "lemma",
+      "label": "Inertia",
+      "statement": "[Inertia] The stabilizer quotient W_=N_G( L,)/L is the relative rational Weyl group of C_L in C . On a packet outside the even-sign case its factor is _b W(B_ r_ i,b ) . On an even-sign packet it is…",
+      "section": "The cuspidal triangle endpoint",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-end-head",
+      "kind": "lemma",
+      "label": "The head of cuspidal induction",
+      "statement": "[The head of cuspidal induction] Let be a cuspidal simple L -module and put V=R_L^G , H=V/ V . Under the cuspidal Mackey formula~ , the map \\[ _G(V)_G(H) \\] is surjective with nilpotent kernel. Its…",
+      "section": "The cuspidal triangle endpoint",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-end-averaging",
+      "kind": "lemma",
+      "label": "Averaging relations",
+      "statement": "[Averaging relations] Normalized changes along a minimal full gallery compose to the direct map~ . At an adjacent wall the reverse composition is invertible. If no inertial reflection fixes that wall…",
+      "section": "The cuspidal triangle endpoint",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-end-presentation",
+      "kind": "lemma",
+      "label": "The presentation with strict transports",
+      "statement": "[The presentation with strict transports] Suppose the inducing simple module extends to its inertia group. Then _G(R_L^G) , or its opposite according to the action convention, has the Hecke…",
+      "section": "The cuspidal triangle endpoint",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-end-extension",
+      "kind": "lemma",
+      "label": "Extension of the inducing module",
+      "statement": "[Extension of the inducing module] Every module in~ extends to N_G( L,) .",
+      "section": "The cuspidal triangle endpoint",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-end-parameters",
+      "kind": "lemma",
+      "label": "The necessary parameters",
+      "statement": "[The necessary parameters] After coherent rescaling of generators, the long parameter on chunks of size b in packet i is v_ i,b =Q_i^b k^ . On a type B factor the two roots z_1,z_2 of the…",
+      "section": "The cuspidal triangle endpoint",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-end-even-algebra",
+      "kind": "lemma",
+      "label": "Counting the even subalgebra",
+      "statement": "[Counting the even subalgebra] For one even-sign packet with at least one chunk, the simple modules of its endomorphism algebra are indexed by the following rule. For every size b choose an ordered…",
+      "section": "The cuspidal triangle endpoint",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-end-count",
+      "kind": "lemma",
+      "label": "Exact total count",
+      "statement": "[Exact total count] Sum the numbers of simple endomorphism-algebra types over all size choices~ . The result is | T| .",
+      "section": "The cuspidal triangle endpoint",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-end-exhaustion",
+      "kind": "corollary",
+      "label": "Exhaustion of the endpoint simples",
+      "statement": "[Exhaustion of the endpoint simples] Every simple module in the block union of T is a quotient of R_L^G for one of the pairs constructed in~ .",
+      "section": "The cuspidal triangle endpoint",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-lem-ext-reduced-structure",
+      "kind": "lemma",
+      "label": "Structure of a reduced pair",
+      "statement": "[Structure of a reduced pair] Every block of a finite group with defect order at most M is k -linearly Morita equivalent to a block B of a finite group H with the following properties. Every block of…",
+      "section": "Extensions and field Morita finiteness",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-lem-ext-partial-extension",
+      "kind": "lemma",
+      "label": "Compatible partial regular extensions",
+      "statement": "[Compatible partial regular extensions] In the notation of Lemma~ , there is an extension N N with abelian p' -quotient A= N/N having the following properties. Choose h_1=1 and representatives h_x…",
+      "section": "Extensions and field Morita finiteness",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-lem-ext-dual-recovery",
+      "kind": "lemma",
+      "label": "Recovery by a dual action",
+      "statement": "[Recovery by a dual action] Let =(A,k^) and Y= X . There is an integral crossed algebra with identity component N and grading group Y such that H is a full idempotent corner. After taking the summand…",
+      "section": "Extensions and field Morita finiteness",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-lem-ext-integral-bases",
+      "kind": "lemma",
+      "label": "Finite integral bases and finite Picard images",
+      "statement": "[Finite integral bases and finite Picard images] Assume the comparison property for the trivial subgroup. The integral basic orders of all the blocks B above belong to a finite list R_1,, R_t . Each…",
+      "section": "Extensions and field Morita finiteness",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-lem-ext-based-sylow",
+      "kind": "lemma",
+      "label": "Based Frobenius descent on p -subgroups",
+      "statement": "[Based Frobenius descent on p -subgroups] Assume the comparison property of Definition~ . For each fixed integral basic order R_i and each group of bounded p -power order, the restrictions of the…",
+      "section": "Extensions and field Morita finiteness",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-lem-ext-kernel-removal",
+      "kind": "lemma",
+      "label": "Removing a large p' -kernel",
+      "statement": "[Removing a large p' -kernel] Fix an indecomposable finite-dimensional basic k -algebra R and a finite subgroup F_k(R) . Consider crossed algebras on R by groups T such that [T:O_ p' (T)] is bounded;…",
+      "section": "Extensions and field Morita finiteness",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-thm-extension-finiteness",
+      "kind": "theorem",
+      "label": "The conditional extension criterion",
+      "statement": "[The conditional extension criterion] Fix p and M . Suppose that the comparison property of Definition~ holds uniformly for the data constructed from all reduced blocks of defect order at most M .…",
+      "section": "Extensions and field Morita finiteness",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-prop-sylow-comparison",
+      "kind": "proposition",
+      "label": "Sylow comparison",
+      "statement": "[Sylow comparison] Fix the coefficient prime p and the defect-order bound M . For the comparison data of Definition~ , let S Y_0 be a p -subgroup contained in the pure X -actions. There is a positive…",
+      "section": "Sylow-equivariant Frobenius comparison",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-per-algebraic-action",
+      "kind": "lemma",
+      "label": "Algebraic realization",
+      "statement": "[Algebraic realization] On each S -orbit of cross-characteristic Lie components there is a connected reductive group J with simply connected derived group and a Steinberg endomorphism F , together…",
+      "section": "Sylow-equivariant Frobenius comparison",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-per-fixed-torus",
+      "kind": "lemma",
+      "label": "The fixed central torus",
+      "statement": "[The fixed central torus] There exist an F -stable torus V Z^( C) , a dual Levi subgroup \\[ L^*=C_ J^* ( V), \\] and a bounded positive integer m_0 such that \\[ C L^*, z_m=s^ p^m-1 V whenever m_0 m.…",
+      "section": "Sylow-equivariant Frobenius comparison",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-per-parabolic",
+      "kind": "lemma",
+      "label": "Common parabolic representatives",
+      "statement": "[Common parabolic representatives] The primal Levi L can be placed in a parabolic Q such that, for the subgroup A_1 of I preserving Q , L , the rational s -series in L , and _m , one has I=(J)A_1,…",
+      "section": "Sylow-equivariant Frobenius comparison",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-per-br",
+      "kind": "lemma",
+      "label": "Equivariant integral Levi equivalence",
+      "statement": "[Equivariant integral Levi equivalence] There is an A_1 -stable block b_L of L and an integral Morita bimodule U between Jb' and Lb_L with a strict A_1 -action. For L , the operator of ad() A_1 on U…",
+      "section": "Sylow-equivariant Frobenius comparison",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-per-row-return",
+      "kind": "lemma",
+      "label": "Returning the Levi block",
+      "statement": "[Returning the Levi block] After replacing m_0 by a bounded multiple m , one has ^m(b_L)=_m b_L, in the convention that multiplication of ordinary characters by _m gives the block on the right. The…",
+      "section": "Sylow-equivariant Frobenius comparison",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-per-scalar-overlap",
+      "kind": "lemma",
+      "label": "Projective extension of the transports",
+      "statement": "[Projective extension of the transports] For the Lie-component orbit above there is an integral Morita bimodule M_J between ^m(b') and b' on which I has covariance transports defined up to scalars in…",
+      "section": "Sylow-equivariant Frobenius comparison",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-per-scalar-cocycle",
+      "kind": "lemma",
+      "label": "Removing the scalar defect",
+      "statement": "[Removing the scalar defect] Let S be a finite p -group acting on two block algebras by crossed systems with the same group labels and respective factors a_ xy ,a'_ xy . Suppose that a nonzero Morita…",
+      "section": "Sylow-equivariant Frobenius comparison",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m1-lem-coefficient-extension",
+      "kind": "lemma",
+      "label": "Coefficient extension",
+      "statement": "[Coefficient extension] Let k= _p , let K be an algebraically closed field of characteristic p , and choose an embedding k K . For every finite group G , the map kG KG induces a bijection on block…",
+      "section": "Sylow-equivariant Frobenius comparison",
+      "manuscript": "Donovan's Conjecture over Algebraically Closed Fields"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "Let p be a prime, let =W( _p) , and let M1 be an integer. As G ranges over all…",
+      "statement": "Let p be a prime, let =W( _p) , and let M1 be an integer. As G ranges over all finite groups and b ranges over all blocks of G whose defect groups have order at most M , the algebras G b belong to…",
+      "section": "Introduction",
+      "manuscript": "Integral Donovan Finiteness over Witt Vectors"
+    },
+    {
+      "id": "m2-cor-complete-dvr",
+      "kind": "corollary",
+      "label": "Fixed complete coefficient rings",
+      "statement": "[Fixed complete coefficient rings] Let p be a prime, let R be a fixed complete discrete valuation ring of characteristic zero whose residue field is algebraically closed of characteristic p , and let…",
+      "section": "Introduction",
+      "manuscript": "Integral Donovan Finiteness over Witt Vectors"
+    },
+    {
+      "id": "m2-prop-criteria",
+      "kind": "proposition",
+      "label": "Cartan and integral finiteness inputs",
+      "statement": "[Cartan and integral finiteness inputs] The following assertions will be used. For every p and M , the Cartan sums of all finite-group blocks over with defect order at most M are bounded by a…",
+      "section": "Integral orders and the imported block constructions",
+      "manuscript": "Integral Donovan Finiteness over Witt Vectors"
+    },
+    {
+      "id": "m2-prop-structure",
+      "kind": "proposition",
+      "label": "Controlled integral extensions",
+      "statement": "[Controlled integral extensions] Let (H,B) be a reduced pair with defect order at most M . Put N=F^*(H) , X=H/N , and let b be the block of N covered by B . Then the following constructions and…",
+      "section": "Integral orders and the imported block constructions",
+      "manuscript": "Integral Donovan Finiteness over Witt Vectors"
+    },
+    {
+      "id": "m2-lem-orbit",
+      "kind": "lemma",
+      "label": "Integral orbit finiteness",
+      "statement": "[Integral orbit finiteness] Let J be a smooth affine group scheme of finite type over , acting on an affine scheme V of finite type over . For x V() let T_xV denote the integral tangent module along…",
+      "section": "Integral orbits and gradings of a fixed order",
+      "manuscript": "Integral Donovan Finiteness over Witt Vectors"
+    },
+    {
+      "id": "m2-lem-hh",
+      "kind": "lemma",
+      "label": "Hochschild rigidity and outer automorphisms",
+      "statement": "[Hochschild rigidity and outer automorphisms] Let A be an -order Morita equivalent to a finite direct sum of finite-group block orders. Then ^1_ (A)=0 , and _ (A) is finite.",
+      "section": "Integral orbits and gradings of a fixed order",
+      "manuscript": "Integral Donovan Finiteness over Witt Vectors"
+    },
+    {
+      "id": "m2-thm-gradings",
+      "kind": "theorem",
+      "label": "Gradings of a fixed integral order",
+      "statement": "[Gradings of a fixed integral order] Let A be an -order with ^1_ (A)=0 , and let H be any fixed finite group. There are only finitely many H -labelled gradings of A up to -algebra automorphism. In…",
+      "section": "Integral orbits and gradings of a fixed order",
+      "manuscript": "Integral Donovan Finiteness over Witt Vectors"
+    },
+    {
+      "id": "m2-prop-marked",
+      "kind": "proposition",
+      "label": "Retaining the identity marking",
+      "statement": "[Retaining the identity marking] Fix a basic block order R and a finite group H . Let A be a collection of H -crossed orders on R , each Morita equivalent to a finite-group block. If the total orders…",
+      "section": "Integral orbits and gradings of a fixed order",
+      "manuscript": "Integral Donovan Finiteness over Witt Vectors"
+    },
+    {
+      "id": "m2-lem-teich-cohomology",
+      "kind": "lemma",
+      "label": "If S is a finite p -group acting trivially on , then H^i(S,)=0 for every i>0 .",
+      "statement": "If S is a finite p -group acting trivially on , then H^i(S,)=0 for every i>0 .",
+      "section": "Teichm\\\"uller overlaps and integral Sylow comparison",
+      "manuscript": "Integral Donovan Finiteness over Witt Vectors"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-geom-flat-costalk",
+      "to": "m1-geom-cross-perfect"
+    },
+    {
+      "from": "m1-geom-kummer-stalk",
+      "to": "m1-geom-summed-ext"
+    },
+    {
+      "from": "m1-geom-cross-perfect",
+      "to": "m1-geom-bounded-tiltings"
+    },
+    {
+      "from": "m1-geom-summed-ext",
+      "to": "m1-geom-bounded-tiltings"
+    },
+    {
+      "from": "m1-geom-bounded-tiltings",
+      "to": "m1-geom-projective-images"
+    },
+    {
+      "from": "m1-thm-geometric-cartan",
+      "to": "m1-geom-projected-norm"
+    },
+    {
+      "from": "m1-geom-projective-images",
+      "to": "m1-geom-projected-norm"
+    },
+    {
+      "from": "m1-lem-restriction-rows",
+      "to": "m1-fam-restriction"
+    },
+    {
+      "from": "m1-fam-br-central",
+      "to": "m1-fam-type-a"
+    },
+    {
+      "from": "m1-fam-restriction",
+      "to": "m1-fam-type-a"
+    },
+    {
+      "from": "m1-thm-geometric-cartan",
+      "to": "m1-fam-type-a"
+    },
+    {
+      "from": "m1-lem-central-transfer",
+      "to": "m1-fam-central-classical"
+    },
+    {
+      "from": "m1-fam-regular-datum",
+      "to": "m1-fam-central-classical"
+    },
+    {
+      "from": "m1-lem-restriction-rows",
+      "to": "m1-fam-central-classical"
+    },
+    {
+      "from": "m1-fam-br-central",
+      "to": "m1-fam-central-classical"
+    },
+    {
+      "from": "m1-lem-abelian-transfer",
+      "to": "m1-fam-central-classical"
+    },
+    {
+      "from": "m1-fam-regular-datum",
+      "to": "m1-fam-two"
+    },
+    {
+      "from": "m1-thm-geometric-cartan",
+      "to": "m1-fam-two"
+    },
+    {
+      "from": "m1-fam-regular-datum",
+      "to": "m1-fam-packets"
+    },
+    {
+      "from": "m1-thm-quasisimple-cartan",
+      "to": "m1-fam-central-order"
+    },
+    {
+      "from": "m1-lem-restriction-rows",
+      "to": "m1-fam-central-order"
+    },
+    {
+      "from": "m1-thm-geometric-cartan",
+      "to": "m1-fam-central-order"
+    },
+    {
+      "from": "m1-fam-type-a",
+      "to": "m1-fam-central-order"
+    },
+    {
+      "from": "m1-fam-central-classical",
+      "to": "m1-fam-central-order"
+    },
+    {
+      "from": "m1-fam-two",
+      "to": "m1-fam-central-order"
+    },
+    {
+      "from": "m1-prop-runner-reduction",
+      "to": "m1-fam-central-order"
+    },
+    {
+      "from": "m1-prop-triangle-cartan",
+      "to": "m1-fam-central-order"
+    },
+    {
+      "from": "m1-lab-sparse",
+      "to": "m1-prop-label-degrees"
+    },
+    {
+      "from": "m1-lab-fingerprints",
+      "to": "m1-lab-slice"
+    },
+    {
+      "from": "m1-lab-fingerprints",
+      "to": "m1-lab-sparse"
+    },
+    {
+      "from": "m1-lab-slice",
+      "to": "m1-lab-sparse"
+    },
+    {
+      "from": "m1-lab-sparse",
+      "to": "m1-prop-single-cycle"
+    },
+    {
+      "from": "m1-lab-fingerprints",
+      "to": "m1-prop-single-cycle"
+    },
+    {
+      "from": "m1-prop-single-cycle",
+      "to": "m1-lab-projected-hc"
+    },
+    {
+      "from": "m1-prop-label-degrees",
+      "to": "m1-lab-packed-pair"
+    },
+    {
+      "from": "m1-lab-packed-pair",
+      "to": "m1-prop-core-blocks"
+    },
+    {
+      "from": "m1-prop-single-cycle",
+      "to": "m1-prop-core-blocks"
+    },
+    {
+      "from": "m1-lab-fingerprints",
+      "to": "m1-prop-core-blocks"
+    },
+    {
+      "from": "m1-prop-label-degrees",
+      "to": "m1-run-defect-bounds"
+    },
+    {
+      "from": "m1-lem-row-projection",
+      "to": "m1-run-defect-bounds"
+    },
+    {
+      "from": "m1-fam-central-order",
+      "to": "m1-run-defect-bounds"
+    },
+    {
+      "from": "m1-run-localization",
+      "to": "m1-run-defect-bounds"
+    },
+    {
+      "from": "m1-run-localization",
+      "to": "m1-run-ordered-swap"
+    },
+    {
+      "from": "m1-run-ordered-swap",
+      "to": "m1-run-symmetric"
+    },
+    {
+      "from": "m1-run-folding",
+      "to": "m1-run-symmetric"
+    },
+    {
+      "from": "m1-run-defect-bounds",
+      "to": "m1-run-d-one"
+    },
+    {
+      "from": "m1-run-localization",
+      "to": "m1-run-triangle-endpoint"
+    },
+    {
+      "from": "m1-run-defect-bounds",
+      "to": "m1-run-triangle-endpoint"
+    },
+    {
+      "from": "m1-prop-runner-reduction",
+      "to": "m1-run-triangle-endpoint"
+    },
+    {
+      "from": "m1-prop-core-blocks",
+      "to": "m1-run-triangle-endpoint"
+    },
+    {
+      "from": "m1-run-cone-transfer",
+      "to": "m1-run-triangle-endpoint"
+    },
+    {
+      "from": "m1-thm-geometric-cartan",
+      "to": "m1-run-triangle-endpoint"
+    },
+    {
+      "from": "m1-prop-triangle-cartan",
+      "to": "m1-run-triangle-endpoint"
+    },
+    {
+      "from": "m1-lem-row-projection",
+      "to": "m1-run-triangle-endpoint"
+    },
+    {
+      "from": "m1-lem-central-transfer",
+      "to": "m1-run-triangle-endpoint"
+    },
+    {
+      "from": "m1-prop-single-cycle",
+      "to": "m1-end-residual"
+    },
+    {
+      "from": "m1-prop-label-degrees",
+      "to": "m1-end-residual"
+    },
+    {
+      "from": "m1-lem-central-transfer",
+      "to": "m1-end-residual"
+    },
+    {
+      "from": "m1-prop-single-cycle",
+      "to": "m1-end-inertia"
+    },
+    {
+      "from": "m1-end-averaging",
+      "to": "m1-end-presentation"
+    },
+    {
+      "from": "m1-prop-single-cycle",
+      "to": "m1-end-extension"
+    },
+    {
+      "from": "m1-end-averaging",
+      "to": "m1-end-extension"
+    },
+    {
+      "from": "m1-end-linear-cuspidals",
+      "to": "m1-end-extension"
+    },
+    {
+      "from": "m1-prop-label-degrees",
+      "to": "m1-end-parameters"
+    },
+    {
+      "from": "m1-end-presentation",
+      "to": "m1-end-parameters"
+    },
+    {
+      "from": "m1-end-parameters",
+      "to": "m1-end-even-algebra"
+    },
+    {
+      "from": "m1-end-even-algebra",
+      "to": "m1-end-count"
+    },
+    {
+      "from": "m1-prop-single-cycle",
+      "to": "m1-end-exhaustion"
+    },
+    {
+      "from": "m1-end-presentation",
+      "to": "m1-end-exhaustion"
+    },
+    {
+      "from": "m1-end-count",
+      "to": "m1-end-exhaustion"
+    },
+    {
+      "from": "m1-end-head",
+      "to": "m1-end-exhaustion"
+    },
+    {
+      "from": "m1-end-inertia",
+      "to": "m1-end-exhaustion"
+    },
+    {
+      "from": "m1-prop-triangle-cartan",
+      "to": "m1-end-exhaustion"
+    },
+    {
+      "from": "m1-thm-geometric-cartan",
+      "to": "m1-end-exhaustion"
+    },
+    {
+      "from": "m1-end-residual",
+      "to": "m1-end-exhaustion"
+    },
+    {
+      "from": "m1-prop-runner-reduction",
+      "to": "m1-end-exhaustion"
+    },
+    {
+      "from": "m1-lem-row-projection",
+      "to": "m1-end-exhaustion"
+    },
+    {
+      "from": "m1-thm-quasisimple-cartan",
+      "to": "m1-lem-ext-reduced-structure"
+    },
+    {
+      "from": "m1-lem-central-transfer",
+      "to": "m1-lem-ext-reduced-structure"
+    },
+    {
+      "from": "m1-lem-abelian-transfer",
+      "to": "m1-lem-ext-partial-extension"
+    },
+    {
+      "from": "m1-lem-ext-partial-extension",
+      "to": "m1-lem-ext-dual-recovery"
+    },
+    {
+      "from": "m1-lem-ext-reduced-structure",
+      "to": "m1-lem-ext-dual-recovery"
+    },
+    {
+      "from": "m1-lem-ext-dual-recovery",
+      "to": "m1-thm-extension-finiteness"
+    },
+    {
+      "from": "m1-lem-ext-integral-bases",
+      "to": "m1-thm-extension-finiteness"
+    },
+    {
+      "from": "m1-lem-ext-reduced-structure",
+      "to": "m1-thm-extension-finiteness"
+    },
+    {
+      "from": "m1-lem-ext-based-sylow",
+      "to": "m1-thm-extension-finiteness"
+    },
+    {
+      "from": "m1-lem-ext-kernel-removal",
+      "to": "m1-thm-extension-finiteness"
+    },
+    {
+      "from": "m1-lab-fingerprints",
+      "to": "m1-per-row-return"
+    },
+    {
+      "from": "m1-per-fixed-torus",
+      "to": "m1-per-row-return"
+    },
+    {
+      "from": "m1-per-row-return",
+      "to": "m1-per-scalar-overlap"
+    },
+    {
+      "from": "m1-per-br",
+      "to": "m1-per-scalar-overlap"
+    },
+    {
+      "from": "m1-per-parabolic",
+      "to": "m1-per-scalar-overlap"
+    },
+    {
+      "from": "m1-prop-sylow-comparison",
+      "to": "m1-per-scalar-cocycle"
+    },
+    {
+      "from": "m1-per-scalar-overlap",
+      "to": "m1-per-scalar-cocycle"
+    },
+    {
+      "from": "m1-per-row-return",
+      "to": "m1-per-scalar-cocycle"
+    },
+    {
+      "from": "m1-per-algebraic-action",
+      "to": "m1-per-scalar-cocycle"
+    },
+    {
+      "from": "m1-thm-donovan",
+      "to": "m1-lem-coefficient-extension"
+    },
+    {
+      "from": "m1-prop-sylow-comparison",
+      "to": "m1-lem-coefficient-extension"
+    },
+    {
+      "from": "m1-thm-extension-finiteness",
+      "to": "m1-lem-coefficient-extension"
+    },
+    {
+      "from": "m1-thm-quasisimple-cartan",
+      "to": "m1-lem-coefficient-extension"
+    },
+    {
+      "from": "m2-lem-orbit",
+      "to": "m2-lem-hh"
+    },
+    {
+      "from": "m2-lem-orbit",
+      "to": "m2-thm-gradings"
+    },
+    {
+      "from": "m2-lem-hh",
+      "to": "m2-prop-marked"
+    },
+    {
+      "from": "m2-thm-gradings",
+      "to": "m2-prop-marked"
+    }
+  ]
+}

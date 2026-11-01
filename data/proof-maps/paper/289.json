@@ -1,0 +1,866 @@
+{
+  "familyNumber": "289",
+  "familyTitle": "Strong Kadison–Kastler stability and its spatial boundaries",
+  "manuscripts": [
+    {
+      "id": "Universal-strong-Kadison-Kastler-stability-September-23-2026",
+      "title": "Universal strong Kadison–Kastler stability",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Universal-strong-Kadison-Kastler-stability-September-23-2026/paper.pdf"
+    },
+    {
+      "id": "Near-Inclusions-of-von-Neumann-Algebras-Without-Small-Spatial-Embeddings-October-5-2026",
+      "title": "Near Inclusions of von Neumann Algebras Without Small Spatial Embeddings",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Near-Inclusions-of-von-Neumann-Algebras-Without-Small-Spatial-Embeddings-October-5-2026/near-inclusions.pdf"
+    },
+    {
+      "id": "Close-Separable-Cstar-Algebras-Without-Spatial-Conjugacy-October-5-2026",
+      "title": "Close Separable C*-Algebras Without Spatial Conjugacy",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Close-Separable-Cstar-Algebras-Without-Spatial-Conjugacy-October-5-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Perturbation tools and a completely positive criterion",
+    "Uniform amplification of commutators",
+    "Boundary averaging and measurable correction",
+    "Finite factors in their original representations",
+    "Preparing infinite factors and comparing modular graphs",
+    "Aligning the modular action",
+    "Common crossed products and descent to factors",
+    "Centers and arbitrary Hilbert spaces",
+    "Uniformity and commutator estimates",
+    "A circle family with uniform Fourier bounds",
+    "From a unitary pair to a near inclusion",
+    "Recovering the matrix obstruction",
+    "A convergent-sequence obstruction",
+    "A uniformly small free-group deformation",
+    "Close inclusions distinguished by a tensor norm"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Strong Kadison--Kastler stability",
+      "statement": "[Strong Kadison--Kastler stability] For every >0 there is =()>0 such that the following holds. If H is any complex Hilbert space and M,N(H) are unital von Neumann algebras with identity I_H and…",
+      "section": "Introduction",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-thm-amenable",
+      "kind": "theorem",
+      "label": "Amenable near inclusions",
+      "statement": "[Amenable near inclusions] Let R,Q(H) be von Neumann algebras with identity I , with R amenable. If R_ Q and <1/100 , there is a unitary v(R Q)'' such that \\[ vRv^* Q, v-I150. \\] If also Q_ R and…",
+      "section": "Perturbation tools and a completely positive criterion",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-commutant-cb",
+      "kind": "lemma",
+      "label": "For every unital von Neumann algebra A(H) and h(H) , (h,A') _h|_A_ .…",
+      "statement": "For every unital von Neumann algebra A(H) and h(H) , (h,A') _h|_A_ . Consequently (A,B) implies d(A',B')4 .",
+      "section": "Perturbation tools and a completely positive criterion",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-paired",
+      "kind": "lemma",
+      "label": "Close representations",
+      "statement": "[Close representations] Let ,:P(H) be normal unital * -representations of a von Neumann algebra. If - _ e<1/4 , there is a unitary u(H) with \\[ u(x)u^*=(x)(x P), u-I4e. \\]",
+      "section": "Perturbation tools and a completely positive criterion",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-prop-ucp",
+      "kind": "proposition",
+      "label": "UCP criterion",
+      "statement": "[UCP criterion] Let P,Q be von Neumann algebras, let :P(H) be a faithful normal unital representation, and let Q(H) have the same identity. Suppose that F:P Q is UCP and \\[ F- _ e<10^ -3 , _ y Q_1…",
+      "section": "Perturbation tools and a completely positive criterion",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-tensor-gap",
+      "kind": "lemma",
+      "label": "Let A,B(H) be unital von Neumann algebras with (A,B) . If K is separable, then…",
+      "statement": "Let A,B(H) be unital von Neumann algebras with (A,B) . If K is separable, then \\[ (A(K),B(K)). \\] If D(K) is a von Neumann algebra whose commutant is the strong closure of increasing…",
+      "section": "Perturbation tools and a completely positive criterion",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-invariant-mean",
+      "kind": "lemma",
+      "label": "Invariant operator means",
+      "statement": "[Invariant operator means] Let G be a discrete amenable group and m a left invariant mean on ^(G) : thus m is a positive unital linear functional with m(f(h^ -1 \\,))=m(f) for every h G . For a…",
+      "section": "Perturbation tools and a completely positive criterion",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-thm-amplification",
+      "kind": "theorem",
+      "label": "Uniform amplification",
+      "statement": "[Uniform amplification] There is an absolute constant \\(C_ amp \\) such that, for every type \\(_1\\) factor \\(M(H)\\) on a separable Hilbert space and every selfadjoint \\(h(H)\\), \\[ _h|_M_ C_ amp _h|_M.…",
+      "section": "Uniform amplification of commutators",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-column-commutator",
+      "kind": "lemma",
+      "label": "Column estimate",
+      "statement": "[Column estimate] Let \\(A(H)\\) be a unital \\(C^*\\)-algebra, let \\(h(H)\\), and put \\(= _h|_A\\). Then \\[ ([h,a_i])_i_ col 8\\,(a_i)_i_ col (a_1,,a_l A). \\]",
+      "section": "Uniform amplification of commutators",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-trace-transfer",
+      "kind": "lemma",
+      "label": "Transfer from the trace to a normal representation",
+      "statement": "[Transfer from the trace to a normal representation] Let \\(P(K)\\) be a finite von Neumann algebra with faithful normal trace \\(\\). [label=( *)] If \\((x_j)\\) is bounded and \\(_ j x_j_2=0\\), then \\(_ j…",
+      "section": "Uniform amplification of commutators",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-free-words",
+      "kind": "lemma",
+      "label": "Free projection words",
+      "statement": "[Free projection words] For every integer r 1 there are constants C_r>0 and an integer d_r r with the following property. Let d d_r , and let ( A,) be a von Neumann algebra with a faithful normal…",
+      "section": "Uniform amplification of commutators",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-cor-through-label",
+      "kind": "corollary",
+      "label": "Sum of squared word bounds through one label",
+      "statement": "[Sum of squared word bounds through one label] For every integer N1 there is an integer d_0(N) such that, whenever d d_0(N) , the constants satisfy _ 1 a d _ W a multiset from \\ 1,,d\\ \\\\ |W|=r,\\ a W…",
+      "section": "Uniform amplification of commutators",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-free-lifts",
+      "kind": "lemma",
+      "label": "Free Haar unitaries with matrix-algebra lifts",
+      "statement": "[Free Haar unitaries with matrix-algebra lifts] Let M(H) be a separably acting _1 factor, let n1 , and put P=M_n(M) . For every free ultrafilter there is a Haar unitary s P^ such that W^*(s) and the…",
+      "section": "Uniform amplification of commutators",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-haar-twist",
+      "kind": "lemma",
+      "label": "Unitary twists of a free Haar unitary",
+      "statement": "[Unitary twists of a free Haar unitary] Let (F,) be a finite tracial von Neumann algebra, let P F be a unital von Neumann subalgebra, and let s F be Haar and scalar free from P . For every U(P) ,…",
+      "section": "Uniform amplification of commutators",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-boundary-mean",
+      "kind": "lemma",
+      "label": "Equivariant boundary means",
+      "statement": "[Equivariant boundary means] For every countable group G there are a standard probability space (D,) with a nonsingular G -action and a positive unital contraction \\[ m:L^(G D) L^(D) \\] satisfying…",
+      "section": "Boundary averaging and measurable correction",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-boundary-correction",
+      "kind": "lemma",
+      "label": "Correction of a measurable unitary cocycle",
+      "statement": "[Correction of a measurable unitary cocycle] Let D and m be as in , and let A(K) be a von Neumann algebra on a separable Hilbert space. Suppose V_g L^(D,(A)) , g G , and \\[ e=_ g,h G V_g_g(V_h)-V_ gh…",
+      "section": "Boundary averaging and measurable correction",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-boundary-intertwiner",
+      "kind": "lemma",
+      "label": "Averaged intertwiner",
+      "statement": "[Averaged intertwiner] Take either (,Z)=(G,D) or (,Z)=(G^2,D^2) , with its mean from . Let U:(K) be a unitary representation on a separable Hilbert space, and let _s L^(Z,(K)) be an exact cocycle for…",
+      "section": "Boundary averaging and measurable correction",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-boundary-diagonal-unitary",
+      "kind": "lemma",
+      "label": "Diagonal comparison in a finite algebra",
+      "statement": "[Diagonal comparison in a finite algebra] Let A be a finite von Neumann algebra with faithful normal tracial state and separable trace Hilbert space L^2(A,) . Let W_g L^(D,(A)) be an exact cocycle.…",
+      "section": "Boundary averaging and measurable correction",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-double-ergodicity",
+      "kind": "lemma",
+      "label": "Double ergodicity with unitary coefficients",
+      "statement": "[Double ergodicity with unitary coefficients] For the space D constructed in , let :G(K) be a unitary representation on a separable Hilbert space. If a bounded measurable map f_0:D^2 K satisfies \\[…",
+      "section": "Boundary averaging and measurable correction",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-thm-finite",
+      "kind": "theorem",
+      "label": "Uniform stability of finite factors",
+      "statement": "[Uniform stability of finite factors] There are a number t_ fin >0 and a nondecreasing function _ fin :(0,t_ fin )(0,) , with _ fin (t)0 as t0 , having the following property. Let H be a separable…",
+      "section": "Finite factors in their original representations",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-finite-neighbor",
+      "kind": "lemma",
+      "label": "If M(H) is a unital finite factor and N(H) is a von Neumann algebra with…",
+      "statement": "If M(H) is a unital finite factor and N(H) is a von Neumann algebra with d(M,N)<1/10 , then N is a finite factor.",
+      "section": "Finite factors in their original representations",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-irreducible-hyperfinite",
+      "kind": "lemma",
+      "label": "Increasing matrix algebras with scalar relative commutant",
+      "statement": "[Increasing matrix algebras with scalar relative commutant] Every separable-predual _1 factor M contains an irreducible unital hyperfinite _1 subfactor R . One can write R=(_j Q_j)'' , where Q_j are…",
+      "section": "Finite factors in their original representations",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-prop-finite-common-position",
+      "kind": "proposition",
+      "label": "Common-position theorem",
+      "statement": "[Common-position theorem] Let M,N be separable-predual _1 factors acting nondegenerately on one Hilbert space, with mutual strict g -near inclusions, where 0<g<1.7410^ -13 . Suppose that an amenable…",
+      "section": "Finite factors in their original representations",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-finite-right-action",
+      "kind": "lemma",
+      "label": "The common right action",
+      "statement": "[The common right action] In the setting of , the right actions of R agree elementwise: \\[ J_M rJ_M=J_N rJ_N(r R). \\] In particular T=J_NJ_M-I commutes with the left and right actions of R .",
+      "section": "Finite factors in their original representations",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-finite-ball-tests",
+      "kind": "lemma",
+      "label": "Testing a bimodular operator on bounded algebra elements",
+      "statement": "[Testing a bimodular operator on bounded algebra elements] Let M be a _1 factor and let R=(_jQ_j)'' M be as in . If a bounded operator V on L^2(M,) commutes with left and right multiplication by R ,…",
+      "section": "Finite factors in their original representations",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-tracial-conjugations",
+      "kind": "lemma",
+      "label": "Norm control of tracial conjugations",
+      "statement": "[Norm control of tracial conjugations] Let M,N(K) be _1 factors in common standard tracial position with vector . Suppose that R M N is an irreducible hyperfinite subfactor of M , presented by…",
+      "section": "Finite factors in their original representations",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-jordan-orientation",
+      "kind": "lemma",
+      "label": "The orientation of a Jordan map into a factor",
+      "statement": "[The orientation of a Jordan map into a factor] A surjective linear Jordan homomorphism between unital complex algebras, whose target is a factor von Neumann algebra, is either a homomorphism or an…",
+      "section": "Finite factors in their original representations",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-prop-finite-standard-isomorphism",
+      "kind": "proposition",
+      "label": "There are absolute constants b_0>0 and C_ st >0 such that the following holds.…",
+      "statement": "There are absolute constants b_0>0 and C_ st >0 such that the following holds. Let M,N(K) be type _1 factors on a separable Hilbert space in common standard tracial position with vector . Suppose…",
+      "section": "Finite factors in their original representations",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-common-infinite-amplification",
+      "kind": "lemma",
+      "label": "Amplification by common isometries",
+      "statement": "[Amplification by common isometries] Let M,N(H) contain the same unital copy of (^2) . Then (M,N)=d(M,N) .",
+      "section": "Preparing infinite factors and comparing modular graphs",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-fixed-tensor-factor",
+      "kind": "lemma",
+      "label": "The fixed tensor factor",
+      "statement": "[The fixed tensor factor] One has D_' D=1 . If A is any factor with separable predual, then A D is a type _1 factor and \\[ A D(A D) R_, \\] where R_ is the Powers factor obtained using only (M_2(),_)…",
+      "section": "Preparing infinite factors and comparing modular graphs",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-prop-prepared-pair",
+      "kind": "proposition",
+      "label": "Preparing an infinite pair",
+      "statement": "[Preparing an infinite pair] There are absolute constants c,C>0 with the following property. Suppose M_0,N_0(H) are factors on a separable Hilbert space, M_0 is infinite, and d(M_0,N_0)<t<c . For the…",
+      "section": "Preparing infinite factors and comparing modular graphs",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-prop-modular-graphs",
+      "kind": "proposition",
+      "label": "Uniform graph comparison",
+      "statement": "[Uniform graph comparison] There is an absolute constant C such that every prepared pair with (M,N) satisfies \\[ _ c>0 E_c^M-E_c^N C. \\]",
+      "section": "Preparing infinite factors and comparing modular graphs",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-cor-modular-cuts",
+      "kind": "corollary",
+      "label": "Logarithmic modular cuts",
+      "statement": "[Logarithmic modular cuts] For a prepared pair with (M,N) , put L_P=_P , P=M,N . There is an absolute constant C such that, for every a , \\[ 1_ (-,a-1/2] (L_N) 1_ [a+1/2,) (L_M) C. \\] The same…",
+      "section": "Preparing infinite factors and comparing modular graphs",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-prop-modular-alignment",
+      "kind": "proposition",
+      "label": "A common modular action",
+      "statement": "[A common modular action] There are absolute constants c_ mod ,C_ mod >0 with the following property. Let (M,N,,R) be a prepared pair as in , acting on the same separable Hilbert space H , and…",
+      "section": "Aligning the modular action",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-infinite-commutant-bound",
+      "kind": "lemma",
+      "label": "For a separably acting properly infinite von Neumann algebra P(H) and h=h^*(H)…",
+      "statement": "For a separably acting properly infinite von Neumann algebra P(H) and h=h^*(H) , \\[ (h,P')4 _h|_P. \\]",
+      "section": "Aligning the modular action",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-local-normalizer-linear",
+      "kind": "lemma",
+      "label": "Uniform infinitesimal estimate",
+      "statement": "[Uniform infinitesimal estimate] There is an absolute K< such that every separably acting type factor P(H) and every self-adjoint h(H) satisfy (h,P+P') K_ x P_1 ([h,x],P). The sum P+P' here is a…",
+      "section": "Aligning the modular action",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-local-normalizer-path",
+      "kind": "lemma",
+      "label": "A path of approximate normalizers",
+      "statement": "[A path of approximate normalizers] There are absolute constants e_0,C_ path >0 such that the following holds. Let P(H) be a separably acting type factor, let I be an interval containing 0 , and let…",
+      "section": "Aligning the modular action",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-analytic-multiplier",
+      "kind": "lemma",
+      "label": "Analytic extension of a frequency-preserving multiplier",
+      "statement": "[Analytic extension of a frequency-preserving multiplier] Suppose multiplication by a bounded field B(t) on L^2(,H) preserves P_0 K . Then it is the boundary field of a bounded, operator-norm…",
+      "section": "Aligning the modular action",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-modular-near-normalizers",
+      "kind": "lemma",
+      "label": "From modular cuts to near normalizers",
+      "statement": "[From modular cuts to near normalizers] Let M,N(H) be a prepared pair on a separable Hilbert space, with M of type and (M,N) . Write \\[ U_P(t)=e^ itL_P , L_P=_P(P=M,N), W(t)=U_N(t)U_M(t)^*. \\] Assume…",
+      "section": "Aligning the modular action",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-small-exact-normalizer",
+      "kind": "lemma",
+      "label": "Small exact normalizers",
+      "statement": "[Small exact normalizers] There are absolute r_0,C_0>0 such that, if P is a separably acting type factor, v N_P , and v-I<r_0 , then \\[ v=ab', a(P), b'(P'), a-I+b'-I C_0v-I. \\]",
+      "section": "Aligning the modular action",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-normalizer-representation-correction",
+      "kind": "lemma",
+      "label": "Correction of normalizer representations",
+      "statement": "[Correction of normalizer representations] There are absolute e_1,C_1>0 such that the following holds. Let P(H) be a separably acting type factor. For any family v_t N_P , t , with \\[ e:=_ t,s…",
+      "section": "Aligning the modular action",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-core-fixed-points",
+      "kind": "lemma",
+      "label": "Common-action fixed points",
+      "statement": "[Common-action fixed points] With this notation, C(P,U)= (P(L^2()))^, _s=(U_s_s). For (Q_a)(t)=e^ iat (t) , character conjugation _a=(Q_a) preserves C(P,U) , and C(P,U)^=(P).",
+      "section": "Common crossed products and descent to factors",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-core-gap",
+      "kind": "lemma",
+      "label": "Completely bounded gap of common crossed products",
+      "statement": "[Completely bounded gap of common crossed products] Let P,Q(H) be normalized by the same group U . If (P,Q)< , then \\[ (C(P,U),C(Q,U)). \\] The conclusion holds with any strict upper bound in place of…",
+      "section": "Common crossed products and descent to factors",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-prop-core-descent",
+      "kind": "proposition",
+      "label": "Conjugacy through a common crossed product",
+      "statement": "[Conjugacy through a common crossed product] There are an absolute _0>0 and a nondecreasing function :(0,_0)(0,) , with ()0 as 0 , with the following property. Suppose P,Q(H) are unital von Neumann…",
+      "section": "Common crossed products and descent to factors",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-thm-factors",
+      "kind": "theorem",
+      "label": "Uniform stability of separably acting factors",
+      "statement": "[Uniform stability of separably acting factors] There are an absolute t_ fac >0 and a nondecreasing function _ fac :(0,t_ fac )(0,) with _ fac (t)0 as t0 such that the following holds. For every…",
+      "section": "Common crossed products and descent to factors",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-centers-close",
+      "kind": "lemma",
+      "label": "For unital von Neumann algebras M,N(H) , \\[ d(Z(M),Z(N)) 3d(M,N). \\]…",
+      "statement": "For unital von Neumann algebras M,N(H) , \\[ d(Z(M),Z(N)) 3d(M,N). \\] Consequently, whenever d(M,N)<g<1/303 , there is a unitary w(H) such that \\[ wZ(M)w^*=Z(N), w-I450g. \\] For N_0=w^*Nw one then has…",
+      "section": "Centers and arbitrary Hilbert spaces",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-fiber-gap",
+      "kind": "lemma",
+      "label": "Let M,N(H) act on a separable Hilbert space and have the same center. In their…",
+      "statement": "Let M,N(H) act on a separable Hilbert space and have the same center. In their common central decomposition, \\[ d(M_t,N_t) d(M,N) for almost every t. \\]",
+      "section": "Centers and arbitrary Hilbert spaces",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-measurable-implementers",
+      "kind": "lemma",
+      "label": "In the setting of , suppose that for some a>0 and almost every t there is a…",
+      "statement": "In the setting of , suppose that for some a>0 and almost every t there is a unitary v_t(H_t) satisfying \\[ v_t M_t v_t^*=N_t,v_t-I<a. \\] Then there is a unitary v(H) such that vMv^*=N and v-I a .",
+      "section": "Centers and arbitrary Hilbert spaces",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-thm-separable-algebras",
+      "kind": "theorem",
+      "label": "For every a>0 there is _ sep (a)>0 such that whenever M,N are unital von…",
+      "statement": "For every a>0 there is _ sep (a)>0 such that whenever M,N are unital von Neumann algebras on a separable Hilbert space and d(M,N)<_ sep (a) , there is a unitary u with \\[ uMu^*=N, u-I<a. \\] The…",
+      "section": "Centers and arbitrary Hilbert spaces",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-lem-separable-tests",
+      "kind": "lemma",
+      "label": "Let M,N(H) be unital von Neumann algebras, and let g>d(M,N) . Given finite sets…",
+      "statement": "Let M,N(H) be unital von Neumann algebras, and let g>d(M,N) . Given finite sets E M , F N , and V H with V containing a nonzero vector, there are separable unital C^* -subalgebras A M , B N and a…",
+      "section": "Centers and arbitrary Hilbert spaces",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m1-cor-uniform-matrix-commutant",
+      "kind": "corollary",
+      "label": "For every >0 there is >0 , independent of the algebras, their representations,…",
+      "statement": "For every >0 there is >0 , independent of the algebras, their representations, and their Hilbert spaces, such that unital von Neumann algebras M,N(H) with the same identity and d(M,N)< satisfy \\[…",
+      "section": "Uniformity and commutator estimates",
+      "manuscript": "Universal strong Kadison–Kastler stability"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "There exist _0>0 , separable complex Hilbert spaces H_n , and von Neumann…",
+      "statement": "There exist _0>0 , separable complex Hilbert spaces H_n , and von Neumann algebras M_n,N_n B(H_n) with common identity I_ H_n such that \\[ (M_n,N_n) 0, \\] but, for all sufficiently large n , every…",
+      "section": "Introduction",
+      "manuscript": "Near Inclusions of von Neumann Algebras Without Small Spatial Embeddings"
+    },
+    {
+      "id": "m2-prop-circle",
+      "kind": "proposition",
+      "label": "There are unitary representations _z:F(K) , indexed by z T , and operators…",
+      "statement": "There are unitary representations _z:F(K) , indexed by z T , and operators A_k(g)(K) , indexed by k Z and g F , such that _z(g)&=_ k Z z^kA_k(g), &_ g F \\|A_k(g)\\|& c_k, &c_k&= 1_ \\ k=0\\ + 2t^ |k|…",
+      "section": "A circle family with uniform Fourier bounds",
+      "manuscript": "Near Inclusions of von Neumann Algebras Without Small Spatial Embeddings"
+    },
+    {
+      "id": "m2-prop-near",
+      "kind": "proposition",
+      "label": "For the algebras in , (M,N) C\\|UV-VU\\|, C:=_ k,m,p,h Z c_kc_mc_pc_h|m-p|\\,|h|<.…",
+      "statement": "For the algebras in , (M,N) C\\|UV-VU\\|, C:=_ k,m,p,h Z c_kc_mc_pc_h|m-p|\\,|h|<. Moreover, for every g G , \\|W((g) I_L)W^* -(g) f(g)\\| C\\|UV-VU\\|. The constant is independent of D,U,V .",
+      "section": "From a unitary pair to a near inclusion",
+      "manuscript": "Near Inclusions of von Neumann Algebras Without Small Spatial Embeddings"
+    },
+    {
+      "id": "m2-lem-clock",
+      "kind": "lemma",
+      "label": "For n3 , let U_n,V_n be the unitaries on C^n given by U_ne_j=_n^je_j, V_ne_j=e_…",
+      "statement": "For n3 , let U_n,V_n be the unitaries on C^n given by U_ne_j=_n^je_j, V_ne_j=e_ j+1 n , _n=e^ 2 i/n (0 j<n). Then _n:=\\|U_nV_n-V_nU_n\\|=|_n-1|0 . There is no infinite subsequence along which…",
+      "section": "Recovering the matrix obstruction",
+      "manuscript": "Near Inclusions of von Neumann Algebras Without Small Spatial Embeddings"
+    },
+    {
+      "id": "m2-lem-corner",
+      "kind": "lemma",
+      "label": "For each n , let E_ 1n ,E_ 2n be commuting projections on a complex Hilbert…",
+      "statement": "For each n , let E_ 1n ,E_ 2n be commuting projections on a complex Hilbert space H_n , with D_n=E_nH_n nonzero and finite-dimensional, where E_n=E_ 1n E_ 2n . Let R_ 1n , R_ 2n be unitaries…",
+      "section": "Recovering the matrix obstruction",
+      "manuscript": "Near Inclusions of von Neumann Algebras Without Small Spatial Embeddings"
+    },
+    {
+      "id": "m3-thm-main",
+      "kind": "theorem",
+      "label": "For every >0 there are a separable complex Hilbert space H and unital,…",
+      "statement": "For every >0 there are a separable complex Hilbert space H and unital, norm-separable C^* -algebras A,B(H) with common identity _H such that \\[ (A,B)<, A''=B'', \\] but no unitary u(H) satisfies…",
+      "section": "Introduction",
+      "manuscript": "Close Separable C*-Algebras Without Spatial Conjugacy"
+    },
+    {
+      "id": "m3-prop-sequences",
+      "kind": "proposition",
+      "label": "Let L be a nonzero separable Hilbert space, let D(L) be a unital norm-separable…",
+      "statement": "Let L be a nonzero separable Hilbert space, let D(L) be a unital norm-separable C^* -algebra with Z(D)=_L , and let P,Q D be unital C^* -subalgebras containing _L . On H=_ n1 L , define _D(P)=\\…",
+      "section": "A convergent-sequence obstruction",
+      "manuscript": "Close Separable C*-Algebras Without Spatial Conjugacy"
+    },
+    {
+      "id": "m3-lem-invariant",
+      "kind": "lemma",
+      "label": "Let P,Q D(L) be unital C^* -algebras. The identity in Definition~ is preserved…",
+      "statement": "Let P,Q D(L) be unital C^* -algebras. The identity in Definition~ is preserved by conjugating P with any unitary normalizing D . If (U_n) is a sequence of unitaries in (L) satisfying U_nDU_n^*=D and…",
+      "section": "A convergent-sequence obstruction",
+      "manuscript": "Close Separable C*-Algebras Without Spatial Conjugacy"
+    },
+    {
+      "id": "m3-cor-obstruction",
+      "kind": "corollary",
+      "label": "Under the hypotheses of Proposition~ , suppose that P has the spatial…",
+      "statement": "Under the hypotheses of Proposition~ , suppose that P has the spatial tensor-norm identity relative to D , whereas Q does not. Then _D(P) and _D(Q) are not spatially conjugate. If W(L) is unitary and…",
+      "section": "A convergent-sequence obstruction",
+      "manuscript": "Close Separable C*-Algebras Without Spatial Conjugacy"
+    },
+    {
+      "id": "m3-lem-tree",
+      "kind": "lemma",
+      "label": "For every 0<t<1 , there is a unitary representation _t:G(K) such that, with…",
+      "statement": "For every 0<t<1 , there is a unitary representation _t:G(K) such that, with r=1-t^2 , _t(s_i) _e _e &=t(i1), \\\\ _ g G _t(g)- (g)& c(t), c(t)=2(1-r)+t 1-t +t. In particular, c(t)0 as t0 .",
+      "section": "A uniformly small free-group deformation",
+      "manuscript": "Close Separable C*-Algebras Without Spatial Conjugacy"
+    },
+    {
+      "id": "m3-lem-absorption",
+      "kind": "lemma",
+      "label": "Absorption",
+      "statement": "[Absorption] Let be a unitary representation of G on a nonzero Hilbert space J . The operator \\[ W_(_x v)=_x(x)v (x G,\\ v J) \\] is unitary on K J and satisfies W_((g)_J)W_^* =(g)(g)(g G).",
+      "section": "Close inclusions distinguished by a tensor norm",
+      "manuscript": "Close Separable C*-Algebras Without Spatial Conjugacy"
+    },
+    {
+      "id": "m3-lem-ambient",
+      "kind": "lemma",
+      "label": "The algebra D in has scalar center, and D'=\\ Y_K:Y(G)'\\ . There is a unitary…",
+      "statement": "The algebra D in has scalar center, and D'=\\ Y_K:Y(G)'\\ . There is a unitary W(L) such that WP_0W^*=P_t, W- _L c(t).",
+      "section": "Close inclusions distinguished by a tensor norm",
+      "manuscript": "Close Separable C*-Algebras Without Spatial Conjugacy"
+    },
+    {
+      "id": "m3-lem-good-inclusion",
+      "kind": "lemma",
+      "label": "The inclusion P_0 D has the spatial tensor-norm identity.",
+      "statement": "The inclusion P_0 D has the spatial tensor-norm identity.",
+      "section": "Close inclusions distinguished by a tensor norm",
+      "manuscript": "Close Separable C*-Algebras Without Spatial Conjugacy"
+    },
+    {
+      "id": "m3-lem-free-norm",
+      "kind": "lemma",
+      "label": "For every positive integer m , _ i=1 ^m(s_i) 2 m.",
+      "statement": "For every positive integer m , _ i=1 ^m(s_i) 2 m.",
+      "section": "Close inclusions distinguished by a tensor norm",
+      "manuscript": "Close Separable C*-Algebras Without Spatial Conjugacy"
+    },
+    {
+      "id": "m3-lem-bad-inclusion",
+      "kind": "lemma",
+      "label": "For every 0<t<1 , the inclusion P_t D fails the spatial tensor-norm identity.",
+      "statement": "For every 0<t<1 , the inclusion P_t D fails the spatial tensor-norm identity.",
+      "section": "Close inclusions distinguished by a tensor norm",
+      "manuscript": "Close Separable C*-Algebras Without Spatial Conjugacy"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-commutant-cb",
+      "to": "m1-lem-paired"
+    },
+    {
+      "from": "m1-lem-paired",
+      "to": "m1-prop-ucp"
+    },
+    {
+      "from": "m1-lem-finite-ball-tests",
+      "to": "m1-lem-tracial-conjugations"
+    },
+    {
+      "from": "m1-lem-boundary-correction",
+      "to": "m1-prop-finite-standard-isomorphism"
+    },
+    {
+      "from": "m1-lem-boundary-mean",
+      "to": "m1-prop-finite-standard-isomorphism"
+    },
+    {
+      "from": "m1-lem-tracial-conjugations",
+      "to": "m1-prop-finite-standard-isomorphism"
+    },
+    {
+      "from": "m1-lem-boundary-intertwiner",
+      "to": "m1-prop-finite-standard-isomorphism"
+    },
+    {
+      "from": "m1-lem-boundary-diagonal-unitary",
+      "to": "m1-prop-finite-standard-isomorphism"
+    },
+    {
+      "from": "m1-lem-double-ergodicity",
+      "to": "m1-prop-finite-standard-isomorphism"
+    },
+    {
+      "from": "m1-lem-jordan-orientation",
+      "to": "m1-prop-finite-standard-isomorphism"
+    },
+    {
+      "from": "m1-thm-finite",
+      "to": "m1-prop-finite-standard-isomorphism"
+    },
+    {
+      "from": "m1-lem-finite-neighbor",
+      "to": "m1-prop-finite-standard-isomorphism"
+    },
+    {
+      "from": "m1-thm-amenable",
+      "to": "m1-prop-finite-standard-isomorphism"
+    },
+    {
+      "from": "m1-lem-irreducible-hyperfinite",
+      "to": "m1-prop-finite-standard-isomorphism"
+    },
+    {
+      "from": "m1-prop-finite-common-position",
+      "to": "m1-prop-finite-standard-isomorphism"
+    },
+    {
+      "from": "m1-lem-finite-right-action",
+      "to": "m1-prop-finite-standard-isomorphism"
+    },
+    {
+      "from": "m1-thm-amplification",
+      "to": "m1-prop-finite-standard-isomorphism"
+    },
+    {
+      "from": "m1-lem-paired",
+      "to": "m1-prop-finite-standard-isomorphism"
+    },
+    {
+      "from": "m1-thm-amenable",
+      "to": "m1-prop-prepared-pair"
+    },
+    {
+      "from": "m1-lem-common-infinite-amplification",
+      "to": "m1-prop-prepared-pair"
+    },
+    {
+      "from": "m1-lem-tensor-gap",
+      "to": "m1-prop-prepared-pair"
+    },
+    {
+      "from": "m1-lem-fixed-tensor-factor",
+      "to": "m1-prop-prepared-pair"
+    },
+    {
+      "from": "m1-lem-commutant-cb",
+      "to": "m1-prop-prepared-pair"
+    },
+    {
+      "from": "m1-prop-modular-graphs",
+      "to": "m1-cor-modular-cuts"
+    },
+    {
+      "from": "m1-lem-commutant-cb",
+      "to": "m1-lem-infinite-commutant-bound"
+    },
+    {
+      "from": "m1-lem-infinite-commutant-bound",
+      "to": "m1-lem-local-normalizer-linear"
+    },
+    {
+      "from": "m1-lem-local-normalizer-linear",
+      "to": "m1-lem-local-normalizer-path"
+    },
+    {
+      "from": "m1-cor-modular-cuts",
+      "to": "m1-lem-modular-near-normalizers"
+    },
+    {
+      "from": "m1-lem-invariant-mean",
+      "to": "m1-lem-modular-near-normalizers"
+    },
+    {
+      "from": "m1-lem-analytic-multiplier",
+      "to": "m1-lem-modular-near-normalizers"
+    },
+    {
+      "from": "m1-lem-local-normalizer-path",
+      "to": "m1-lem-modular-near-normalizers"
+    },
+    {
+      "from": "m1-prop-ucp",
+      "to": "m1-lem-modular-near-normalizers"
+    },
+    {
+      "from": "m1-lem-local-normalizer-linear",
+      "to": "m1-lem-small-exact-normalizer"
+    },
+    {
+      "from": "m1-lem-small-exact-normalizer",
+      "to": "m1-lem-normalizer-representation-correction"
+    },
+    {
+      "from": "m1-prop-modular-alignment",
+      "to": "m1-lem-normalizer-representation-correction"
+    },
+    {
+      "from": "m1-lem-modular-near-normalizers",
+      "to": "m1-lem-normalizer-representation-correction"
+    },
+    {
+      "from": "m1-lem-tensor-gap",
+      "to": "m1-lem-core-gap"
+    },
+    {
+      "from": "m1-lem-invariant-mean",
+      "to": "m1-lem-core-gap"
+    },
+    {
+      "from": "m1-lem-core-fixed-points",
+      "to": "m1-lem-core-gap"
+    },
+    {
+      "from": "m1-lem-core-gap",
+      "to": "m1-prop-core-descent"
+    },
+    {
+      "from": "m1-thm-amenable",
+      "to": "m1-prop-core-descent"
+    },
+    {
+      "from": "m1-lem-finite-neighbor",
+      "to": "m1-prop-core-descent"
+    },
+    {
+      "from": "m1-thm-finite",
+      "to": "m1-prop-core-descent"
+    },
+    {
+      "from": "m1-lem-invariant-mean",
+      "to": "m1-prop-core-descent"
+    },
+    {
+      "from": "m1-lem-core-fixed-points",
+      "to": "m1-prop-core-descent"
+    },
+    {
+      "from": "m1-prop-ucp",
+      "to": "m1-prop-core-descent"
+    },
+    {
+      "from": "m1-thm-finite",
+      "to": "m1-thm-factors"
+    },
+    {
+      "from": "m1-prop-prepared-pair",
+      "to": "m1-thm-factors"
+    },
+    {
+      "from": "m1-prop-modular-alignment",
+      "to": "m1-thm-factors"
+    },
+    {
+      "from": "m1-prop-core-descent",
+      "to": "m1-thm-factors"
+    },
+    {
+      "from": "m1-prop-ucp",
+      "to": "m1-thm-factors"
+    },
+    {
+      "from": "m1-thm-amenable",
+      "to": "m1-lem-centers-close"
+    },
+    {
+      "from": "m1-thm-factors",
+      "to": "m1-thm-separable-algebras"
+    },
+    {
+      "from": "m1-lem-centers-close",
+      "to": "m1-thm-separable-algebras"
+    },
+    {
+      "from": "m1-lem-fiber-gap",
+      "to": "m1-thm-separable-algebras"
+    },
+    {
+      "from": "m1-lem-measurable-implementers",
+      "to": "m1-thm-separable-algebras"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-lem-separable-tests"
+    },
+    {
+      "from": "m1-prop-ucp",
+      "to": "m1-lem-separable-tests"
+    },
+    {
+      "from": "m1-thm-separable-algebras",
+      "to": "m1-lem-separable-tests"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-cor-uniform-matrix-commutant"
+    },
+    {
+      "from": "m2-thm-main",
+      "to": "m2-lem-corner"
+    },
+    {
+      "from": "m2-prop-near",
+      "to": "m2-lem-corner"
+    },
+    {
+      "from": "m2-lem-clock",
+      "to": "m2-lem-corner"
+    },
+    {
+      "from": "m3-prop-sequences",
+      "to": "m3-cor-obstruction"
+    },
+    {
+      "from": "m3-lem-invariant",
+      "to": "m3-cor-obstruction"
+    },
+    {
+      "from": "m3-lem-absorption",
+      "to": "m3-lem-ambient"
+    },
+    {
+      "from": "m3-lem-absorption",
+      "to": "m3-lem-bad-inclusion"
+    },
+    {
+      "from": "m3-lem-free-norm",
+      "to": "m3-lem-bad-inclusion"
+    },
+    {
+      "from": "m3-thm-main",
+      "to": "m3-lem-bad-inclusion"
+    },
+    {
+      "from": "m3-lem-ambient",
+      "to": "m3-lem-bad-inclusion"
+    },
+    {
+      "from": "m3-prop-sequences",
+      "to": "m3-lem-bad-inclusion"
+    },
+    {
+      "from": "m3-cor-obstruction",
+      "to": "m3-lem-bad-inclusion"
+    },
+    {
+      "from": "m3-lem-good-inclusion",
+      "to": "m3-lem-bad-inclusion"
+    }
+  ]
+}

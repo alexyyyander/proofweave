@@ -1,0 +1,717 @@
+{
+  "familyNumber": "360",
+  "familyTitle": "Weak MTW curvature gives convexity and regular optimal transport",
+  "manuscripts": [
+    {
+      "id": "Global-Support-and-Convex-Injectivity-Domains-under-Weak-MTW-September-25-2026",
+      "title": "Global Support and Convex Injectivity Domains under Weak MTW",
+      "date": "2026-09-25",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Global-Support-and-Convex-Injectivity-Domains-under-Weak-MTW-September-25-2026/paper.pdf"
+    },
+    {
+      "id": "Uniform-Bi-Holder-Transport-from-Weak-MTW-September-25-2026",
+      "title": "Uniform Bi-Holder Transport from Weak MTW",
+      "date": "2026-09-25",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Uniform-Bi-Holder-Transport-from-Weak-MTW-September-25-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Minimizing velocities and the branch Hessian",
+    "Excluding conjugacy in minimizing convex hulls",
+    "Global supports and intermediate transport",
+    "An alternative globalization by positive degree",
+    "The density-free foundation",
+    "Jacobi fields and uniform comparison of exponential Jacobians",
+    "Sections, scales, and a quantitative separation",
+    "Lower jets and the determinant contradiction"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Convexity of injectivity domains",
+      "statement": "[Convexity of injectivity domains] If (M,g) satisfies , then I(x) is convex for every x M . More precisely, for every v_0,v_1 I(x) and , \\[ (1-)v_0+ v_1 I(x). \\]",
+      "section": "Introduction",
+      "manuscript": "Global Support and Convex Injectivity Domains under Weak MTW"
+    },
+    {
+      "id": "m1-thm-foundation",
+      "kind": "theorem",
+      "label": "Global support and intermediate geometry",
+      "statement": "[Global support and intermediate geometry] Under , every potential u , with its dual potential v , has the following properties. [label=( *)] Every p u(x) belongs to G_x and satisfies \\[ u(x')…",
+      "section": "Introduction",
+      "manuscript": "Global Support and Convex Injectivity Domains under Weak MTW"
+    },
+    {
+      "id": "m1-lem-interior-characterization",
+      "kind": "lemma",
+      "label": "Interior characterization",
+      "statement": "[Interior characterization] For every x M , I(x) G_x, rG_x I(x)(0 r<1). A velocity w T_xM belongs to I(x) if and only if it is the unique minimizing velocity from x to _x w and is nonconjugate. The…",
+      "section": "Minimizing velocities and the branch Hessian",
+      "manuscript": "Global Support and Convex Injectivity Domains under Weak MTW"
+    },
+    {
+      "id": "m1-lem-hessian-index",
+      "kind": "lemma",
+      "label": "Index-form representation",
+      "statement": "[Index-form representation] If w G_x is nonconjugate, then, along _ x,w ()=_x( w) on [0,1] , A_x(w)(,) =_ X(0)= \\ (1)=0 Q_ _ x,w (X,X). The minimum is attained uniquely by the Jacobi field with these…",
+      "section": "Minimizing velocities and the branch Hessian",
+      "manuscript": "Global Support and Convex Injectivity Domains under Weak MTW"
+    },
+    {
+      "id": "m1-lem-radial-comparison",
+      "kind": "lemma",
+      "label": "Strict radial comparison",
+      "statement": "[Strict radial comparison] For every a G_x and 0<s<s'<1 , A_x(sa)>s s' A_x(s'a) as quadratic forms; that is, the difference is positive on every nonzero vector.",
+      "section": "Minimizing velocities and the branch Hessian",
+      "manuscript": "Global Support and Convex Injectivity Domains under Weak MTW"
+    },
+    {
+      "id": "m1-lem-transverse-concavity",
+      "kind": "lemma",
+      "label": "Transverse concavity",
+      "statement": "[Transverse concavity] Let b_t=b_0+t be an affine velocity line in T_xM , and let . On every interval on which b_t I(x) , d^2 dt^2 A_x(b_t)(,) =-23 S_ (x,b_t) (,)0. Consequently, if b=_ i=1 ^m_i b_i…",
+      "section": "Minimizing velocities and the branch Hessian",
+      "manuscript": "Global Support and Convex Injectivity Domains under Weak MTW"
+    },
+    {
+      "id": "m1-prop-segment-nonconjugacy",
+      "kind": "proposition",
+      "label": "Suppose that [b_0,b_1] G_x and that b_0,b_1 are nonconjugate. Then every…",
+      "statement": "Suppose that [b_0,b_1] G_x and that b_0,b_1 are nonconjugate. Then every velocity in [b_0,b_1] is nonconjugate.",
+      "section": "Excluding conjugacy in minimizing convex hulls",
+      "manuscript": "Global Support and Convex Injectivity Domains under Weak MTW"
+    },
+    {
+      "id": "m1-geo-first-cut",
+      "kind": "corollary",
+      "label": "Nonconjugacy of a minimizing convex hull",
+      "statement": "[Nonconjugacy of a minimizing convex hull] Let a_1,,a_m T_xM be nonconjugate velocities, with m1 , and suppose \\[ K=co\\ a_1,,a_m\\ G_x. \\] Then every velocity in K is nonconjugate.",
+      "section": "Excluding conjugacy in minimizing convex hulls",
+      "manuscript": "Global Support and Convex Injectivity Domains under Weak MTW"
+    },
+    {
+      "id": "m1-geo-prelim",
+      "kind": "lemma",
+      "label": "Uniform supports and active logs",
+      "statement": "[Uniform supports and active logs] There is a geometric constant C_g such that c(,y) and c(x,) are uniformly semiconcave, with constant C_g , including at cut points. Every potential is D -Lipschitz…",
+      "section": "Global supports and intermediate transport",
+      "manuscript": "Global Support and Convex Injectivity Domains under Weak MTW"
+    },
+    {
+      "id": "m1-geo-radial-index",
+      "kind": "lemma",
+      "label": "Radial divided-action identity",
+      "statement": "[Radial divided-action identity] Let p G_x , and let 0<t<s<1 . Along (r)=_x(rp) , let S_p(r) be the Jacobi tensor with S_p(0)=0 and D_rS_p(0)= , using parallel orthonormal frames. Then d dr…",
+      "section": "Global supports and intermediate transport",
+      "manuscript": "Global Support and Convex Injectivity Domains under Weak MTW"
+    },
+    {
+      "id": "m1-geo-slack",
+      "kind": "lemma",
+      "label": "Transverse slack",
+      "statement": "[Transverse slack] Let p_i G_x , m_i>0 , _i m_i=1 , and \\[ p=_i m_ip_i, E=\\ p_i-p\\ . \\] Suppose tconv\\ p_i\\ I(x) and 0<t<s<1 . Then |_ E^ _g(s-t). The same conclusion holds at a limiting time t if…",
+      "section": "Global supports and intermediate transport",
+      "manuscript": "Global Support and Convex Injectivity Domains under Weak MTW"
+    },
+    {
+      "id": "m1-geo-short-time",
+      "kind": "lemma",
+      "label": "Short time for a semiconvex datum",
+      "statement": "[Short time for a semiconvex datum] Let f be Lipschitz and semiconvex. For sufficiently small t>0 , depending only on its Lipschitz and semiconvexity bounds and on the manifold, the map \\[ F_t:_f M,…",
+      "section": "Global supports and intermediate transport",
+      "manuscript": "Global Support and Convex Injectivity Domains under Weak MTW"
+    },
+    {
+      "id": "m1-geo-minimizer-capture",
+      "kind": "lemma",
+      "label": "Capture of every minimizing velocity",
+      "statement": "[Capture of every minimizing velocity] Let u be a potential, let t>0 , and let z M . If x is a global minimizer of u+c_t(,z) , then \\[ wt u(x)for every w L_x(z). \\] Consequently, F_t:_u M is…",
+      "section": "Global supports and intermediate transport",
+      "manuscript": "Global Support and Convex Injectivity Domains under Weak MTW"
+    },
+    {
+      "id": "m1-geo-local-injectivity",
+      "kind": "lemma",
+      "label": "Local injectivity of the projection",
+      "statement": "[Local injectivity of the projection] Let u be a potential and 0<t<1 . Suppose that \\[ rp I(x)for every (x,p)_u and 0<r<t, \\] and that every vector tp , (x,p)_u , is nonconjugate. Then F_t:_u M is…",
+      "section": "Global supports and intermediate transport",
+      "manuscript": "Global Support and Convex Injectivity Domains under Weak MTW"
+    },
+    {
+      "id": "m1-lem-covering-homeomorphism",
+      "kind": "lemma",
+      "label": "A covering homotopic to a homeomorphism",
+      "statement": "[A covering homotopic to a homeomorphism] Let X and N be nonempty connected compact topological n -manifolds without boundary. A continuous locally injective map f:X N that is homotopic to a…",
+      "section": "Global supports and intermediate transport",
+      "manuscript": "Global Support and Convex Injectivity Domains under Weak MTW"
+    },
+    {
+      "id": "m1-geo-support",
+      "kind": "theorem",
+      "label": "Global supporting property",
+      "statement": "[Global supporting property] For every potential u , every x M , and every p u(x) , one has p G_x and u(x') u(x)+c(x,_xp)-c(x',_xp) for all x' M. For each 0<t<1 , the projection F_t:_u M is a…",
+      "section": "Global supports and intermediate transport",
+      "manuscript": "Global Support and Convex Injectivity Domains under Weak MTW"
+    },
+    {
+      "id": "m1-geo-convexity",
+      "kind": "corollary",
+      "label": "Convex injectivity domains",
+      "statement": "[Convex injectivity domains] For every x , both G_x and I(x) are convex.",
+      "section": "Global supports and intermediate transport",
+      "manuscript": "Global Support and Convex Injectivity Domains under Weak MTW"
+    },
+    {
+      "id": "m1-geo-sections",
+      "kind": "corollary",
+      "label": "Convex lifted gap sections",
+      "statement": "[Convex lifted gap sections] Let (u,v) be a dual pair and define \\[ S_x(r)=\\ p G_x: u(x)+|p|^2 2 +v(_xp) r\\ . \\] Every such set is compact and convex, including its ordinary and conjugate cut…",
+      "section": "Global supports and intermediate transport",
+      "manuscript": "Global Support and Convex Injectivity Domains under Weak MTW"
+    },
+    {
+      "id": "m1-geo-intermediate",
+      "kind": "proposition",
+      "label": "Intermediate regularity and pole control",
+      "statement": "[Intermediate regularity and pole control] Let (u,v) be a dual pair and 0<t<1 . Then Q_tu=-Q_ 1-t v C^ 1,1 (M). The C^ 1,1 seminorm is bounded solely in terms of M,g,t . If (x_t(z),p_t(z))=F_t^ -1…",
+      "section": "Global supports and intermediate transport",
+      "manuscript": "Global Support and Convex Injectivity Domains under Weak MTW"
+    },
+    {
+      "id": "m1-geo-local-growth",
+      "kind": "lemma",
+      "label": "Local quadratic growth",
+      "statement": "[Local quadratic growth] Let u be a potential and 0<t<1 . Suppose that, for every (x,p)_u , one has rp I(x) for 0<r<t and tp is nonconjugate. Put z=_x(tp) and let c be the smooth action branch…",
+      "section": "An alternative globalization by positive degree",
+      "manuscript": "Global Support and Convex Injectivity Domains under Weak MTW"
+    },
+    {
+      "id": "m1-geo-degree",
+      "kind": "lemma",
+      "label": "Positive projection degree",
+      "statement": "[Positive projection degree] Let u be a potential and 0<t<1 . Assume that every rp , with (x,p)_u and 0<r t , is nonconjugate. At each (x,p) , put z=_x(tp) and let c be the smooth action branch…",
+      "section": "An alternative globalization by positive degree",
+      "manuscript": "Global Support and Convex Injectivity Domains under Weak MTW"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "Uniform bi-H\\\"older transport",
+      "statement": "[Uniform bi-H\\\"older transport] Fix (M,g) as above and 0<< for which the following density class is nonempty. There are (0,1] and C< , depending only on (M,g),, , such that the following holds for…",
+      "section": "Introduction",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-geo-prelim",
+      "kind": "lemma",
+      "label": "Uniform supports and active logs",
+      "statement": "[Uniform supports and active logs] There is a geometric constant C_g such that the cost is uniformly semiconcave in either variable, including at cut points. Every potential is D_g -Lipschitz and…",
+      "section": "The density-free foundation",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-geo-radial-index",
+      "kind": "lemma",
+      "label": "Radial divided action",
+      "statement": "[Radial divided action] Let p G_x , and let S_p(r) be the Jacobi tensor along _x(rp) with S_p(0)=0 , D_rS_p(0)= , in parallel orthonormal frames. For 0<t<s<1 , \\[ d dr H_r(p)=-S_p(r)^ -1 S_p(r)^ -T ,…",
+      "section": "The density-free foundation",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-geo-slack",
+      "kind": "lemma",
+      "label": "Transverse slack",
+      "statement": "[Transverse slack] Let p_i G_x , m_i>0 , _i m_i=1 , and set p=_i m_ip_i , E=\\ p_i-p\\ . If tconv\\ p_i\\ I(x) and 0<t<s<1 , then \\[ |_ E^ _g(s-t). \\] The conclusion also holds at a limiting time t if…",
+      "section": "The density-free foundation",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-geo-short-time",
+      "kind": "lemma",
+      "label": "Short time for a semiconvex datum",
+      "statement": "[Short time for a semiconvex datum] Let f be Lipschitz and semiconvex. For sufficiently small t>0 , depending only on these two bounds and the manifold, \\[ F_t:_f M, _f=\\ (x,p):p f(x)\\ ,…",
+      "section": "The density-free foundation",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-geo-support",
+      "kind": "theorem",
+      "label": "Global supporting property",
+      "statement": "[Global supporting property] For every potential u , every x M , and every p u(x) , one has p G_x and \\[ u(x') u(x)+c(x,_xp)-c(x',_xp) (x' M). \\] For each 0<t<1 , F_t:_u M is a homeomorphism, tp I(x)…",
+      "section": "The density-free foundation",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-geo-convexity",
+      "kind": "corollary",
+      "label": "Convex injectivity domains",
+      "statement": "[Convex injectivity domains] Both G_x and I(x) are convex for every x M .",
+      "section": "The density-free foundation",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-geo-sections",
+      "kind": "corollary",
+      "label": "Convex lifted gap sections",
+      "statement": "[Convex lifted gap sections] For a dual pair (u,v) , each set \\[ S_x(r)=\\ p G_x: u(x)+|p|^2 2 +v(_xp) r\\ \\] is compact and convex, including ordinary and conjugate cut endpoints. If it is nonempty…",
+      "section": "The density-free foundation",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-geo-intermediate",
+      "kind": "proposition",
+      "label": "Intermediate regularity and pole control",
+      "statement": "[Intermediate regularity and pole control] Let (u,v) be a dual pair and 0<t<1 . Then Q_tu=-Q_ 1-t v C^ 1,1 (M) , with almost-everywhere bounds \\[ -C_g 1-t g Q_tuC_g t g. \\] If (x_t(z),p_t(z))=F_t^ -1…",
+      "section": "The density-free foundation",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-spec-identities",
+      "kind": "lemma",
+      "label": "Jacobi matrices and reversal",
+      "statement": "[Jacobi matrices and reversal] Let (s)=_x(sv) be a geodesic and identify its tangent spaces by parallel transport. Put R(s)w=R(w,(s))(s) and let C,J solve \\[ U''+ R U=0, C(0)=, C'(0)=0, J(0)=0,…",
+      "section": "Jacobi fields and uniform comparison of exponential Jacobians",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-spec-radial",
+      "kind": "lemma",
+      "label": "Uniform radial transversality",
+      "statement": "[Uniform radial transversality] There are constants c_ r >0 and C_ r < , depending only on (M,g) , such that for x M , v G_x , 0<1/2 , and 1 j n , c_ r (s_j(x,v)+) s_j(x,(1-)v) C_ r (s_j(x,v)+).…",
+      "section": "Jacobi fields and uniform comparison of exponential Jacobians",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-spec-radial-determinants",
+      "kind": "corollary",
+      "label": "Radial comparison of exponential determinants",
+      "statement": "[Radial comparison of exponential determinants] With a constant depending only on (M,g) , if v G_x and 1/21 , then _x( v) c_x(v). Suppose y=_xp , p G_x , and p=-P_ x y p . If l , then _y( p/l_+)…",
+      "section": "Jacobi fields and uniform comparison of exponential Jacobians",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-spec-pullback",
+      "kind": "lemma",
+      "label": "Isotropic gain after pullback",
+      "statement": "[Isotropic gain after pullback] There is c_ p >0 , depending only on (M,g) , with the following property. Let y M , r T_yM , and 1<T_*2 satisfy T_*r G_y . Put \\[ (s)=_y(sr), x=(1), p=-P_ y x r,…",
+      "section": "Jacobi fields and uniform comparison of exponential Jacobians",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-spec-comparison",
+      "kind": "lemma",
+      "label": "Uniform comparison along an extended segment",
+      "statement": "[Uniform comparison along an extended segment] Assume weak MTW. Fix a_0>0 and B< . There is c_ s >0 , depending only on (M,g),a_0,B , such that the following holds. Let x M , p,q T_xM , q0 , satisfy…",
+      "section": "Jacobi fields and uniform comparison of exponential Jacobians",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-spec-outward",
+      "kind": "corollary",
+      "label": "Barycentric configurations",
+      "statement": "[Barycentric configurations] Assume weak MTW and the convexity of G_x established in Corollary~ . Fix (0,1) and positive constants ,L_0 . Suppose \\[ p=_ i=1 ^N m_i p_i, p_i G_x, m_i>0,_i m_i=1, \\]…",
+      "section": "Jacobi fields and uniform comparison of exponential Jacobians",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-sc-power",
+      "kind": "lemma",
+      "label": "The power reduction",
+      "statement": "[The power reduction] If there are >0 , C_0< , and r_0>0 such that F(r) C_0r^ for 0<r<r_0 , then all the optimal maps in the fixed density class have homeomorphic representatives with a common…",
+      "section": "Sections, scales, and a quantitative separation",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-sc-plateau",
+      "kind": "lemma",
+      "label": "Logarithmic plateaus",
+      "statement": "[Logarithmic plateaus] Suppose that F has no power upper bound near zero. There are r_j<R_j0 , pairs (u_j,v_j) C , poles x_j , and numbers a_j,D_j with D_j>0 such that _ S_ r_j (x_j;u_j,v_j) v_j=a_j,…",
+      "section": "Sections, scales, and a quantitative separation",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-sc-templates",
+      "kind": "lemma",
+      "label": "Smooth templates",
+      "statement": "[Smooth templates] There is a fixed smooth function B_c:(-1,1) with bounded derivatives such that \\[ B_c'<0 on , B_c(s)1-_0(s1/2), B_c(s)<0(s3/4). \\] Given a cap M_02 and K1 , there are 0<1/128 and a…",
+      "section": "Sections, scales, and a quantitative separation",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-sc-switch",
+      "kind": "lemma",
+      "label": "First switch with absolute level control",
+      "statement": "[First switch with absolute level control] For all sufficiently small selected scales, uniformly for b , there is b 32D _b8bD such that, at x_b=_ x_0 (_b p_0) , the function g_b has active endpoints…",
+      "section": "Sections, scales, and a quantitative separation",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-sc-excess",
+      "kind": "lemma",
+      "label": "Uniform positive excess",
+      "statement": "[Uniform positive excess] For all sufficiently small selected scales and all b , c_0b E(b) b, with the constant in , independently of K .",
+      "section": "Sections, scales, and a quantitative separation",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-sc-maximum",
+      "kind": "lemma",
+      "label": "Regularized interior maxima",
+      "statement": "[Regularized interior maxima] Fix a sufficiently small selected scale. For every t<1 sufficiently close to one, the continuous function \\[ _t(b,z)=Q_tg_b(z)+Q_ 1-t w_ c,b (z)-(b), (b,z) M, \\] has a…",
+      "section": "Sections, scales, and a quantitative separation",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-sc-parameter",
+      "kind": "lemma",
+      "label": "The parameter derivative",
+      "statement": "[The parameter derivative] At any maximum in Lemma~ , let \\[ p=_ i=1 ^N m_i p_i, m_i>0,_i m_i=1, \\] be any finite representation by minimizing logs active for the displayed representation g_b=w_ o,b…",
+      "section": "Sections, scales, and a quantitative separation",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-sc-levels",
+      "kind": "lemma",
+      "label": "Levels at a regularized maximum",
+      "statement": "[Levels at a regularized maximum] At a maximum in Lemma~ , the center and all active endpoints belong to S_ (H_o+2)b (x;u,v) . For every active log p_i , v(y_i)-v(y)=|p|^2-|p_i|^2 2 +b\\…",
+      "section": "Sections, scales, and a quantitative separation",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-sc-outward",
+      "kind": "lemma",
+      "label": "Weight, cap, and norm increment",
+      "statement": "[Weight, cap, and norm increment] Suppose p=_ i=1 ^N m_ip_i in an n -dimensional Euclidean space, with N n+1 , m_i>0 , and _i m_i=1 . Suppose E=\\ p_i-p\\ = e , where |e|=1 , and q=p e>0 . Assume the…",
+      "section": "Sections, scales, and a quantitative separation",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-jet-contact-volume",
+      "kind": "lemma",
+      "label": "Contact-volume comparison",
+      "statement": "[Contact-volume comparison] Let u,v be the dual potentials for an admissible pair of densities, and let \\[ C=\\ (x,y):u(x)+c(x,y)+v(y)=0\\ . \\] For a Borel set A on either side, its contact image…",
+      "section": "Lower jets and the determinant contradiction",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-jet-viscosity",
+      "kind": "lemma",
+      "label": "Upper determinant bound for a lower test",
+      "statement": "[Upper determinant bound for a lower test] Let v be one of the original dual potentials. Suppose a C^2 function touches v from below at y , its gradient r=(y) belongs to I(y) , and \\[ W=(y)+A_y(r)>0.…",
+      "section": "Lower jets and the determinant contradiction",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-jet-transfer",
+      "kind": "lemma",
+      "label": "The pole matrix and endpoint lower jets",
+      "statement": "[The pole matrix and endpoint lower jets] Suppose z_0 is a point where F has a second-order expansion and x(z) is differentiable. Write x=x(z_0) , z_0=_x(tp) , and choose active logs \\[ p=_ j=1…",
+      "section": "Lower jets and the determinant contradiction",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-jet-semibound",
+      "kind": "lemma",
+      "label": "A lower semibound before the center Jacobian",
+      "statement": "[A lower semibound before the center Jacobian] Fix one set of scales, one original potential v , and the two templates. Let t_j1 and b_j . Put \\[ F_j=Q_ t_j g_ b_j , G_j=Q_ 1-t_j w_ c,b_j . \\] Let…",
+      "section": "Lower jets and the determinant contradiction",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-jet-outer-conjugacy",
+      "kind": "lemma",
+      "label": "Conjugacy is excluded by an active increasing modification",
+      "statement": "[Conjugacy is excluded by an active increasing modification] Fix b>0 and an active outer pair \\[ g_b(x)+c(x,y)+_o(v(y))=0. \\] Choose any minimizing reverse log r from y to x . Suppose \\[…",
+      "section": "Lower jets and the determinant contradiction",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-jet-outer-test",
+      "kind": "lemma",
+      "label": "Undoing the outer modification",
+      "statement": "[Undoing the outer modification] At a pair as in Lemma~ , let p=_xy be the corresponding forward log, B=(d_x)_p , and let H_o0 be a lower Taylor Hessian, with zero linear part, of d…",
+      "section": "Lower jets and the determinant contradiction",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-jet-subgradient-differential",
+      "kind": "lemma",
+      "label": "Subgradients at an Alexandrov point",
+      "statement": "[Subgradients at an Alexandrov point] If f is semiconvex near 0 and has the Alexandrov expansion \\[ f(h)=f(0)+p h+12 A(h,h)+o(|h|^2), \\] then every nearby subgradient satisfies \\[ =p+Ah+o(|h|), f(h),…",
+      "section": "Lower jets and the determinant contradiction",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-jet-determinants",
+      "kind": "proposition",
+      "label": "The limiting matrix configuration",
+      "statement": "[The limiting matrix configuration] Fix the center template and the constants of Lemmas~ , , , and . Choose K , then an outer template with curvature less than -K in the prescribed capped region. For…",
+      "section": "Lower jets and the determinant contradiction",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-jet-matrix",
+      "kind": "lemma",
+      "label": "Oblique projection and the missing direction",
+      "statement": "[Oblique projection and the missing direction] Suppose the matrices and vectors satisfy -- . Then V_i cK V, where c>0 depends on the fixed center-template constants, the dimension, and m_* , and is…",
+      "section": "Lower jets and the determinant contradiction",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    },
+    {
+      "id": "m2-jet-contradiction",
+      "kind": "proposition",
+      "label": "Contradiction to a non-power oscillation",
+      "statement": "[Contradiction to a non-power oscillation] The section-oscillation function of Lemma~ has a positive power upper bound at zero.",
+      "section": "Lower jets and the determinant contradiction",
+      "manuscript": "Uniform Bi-Holder Transport from Weak MTW"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-interior-characterization",
+      "to": "m1-lem-radial-comparison"
+    },
+    {
+      "from": "m1-lem-hessian-index",
+      "to": "m1-lem-radial-comparison"
+    },
+    {
+      "from": "m1-lem-hessian-index",
+      "to": "m1-prop-segment-nonconjugacy"
+    },
+    {
+      "from": "m1-lem-transverse-concavity",
+      "to": "m1-prop-segment-nonconjugacy"
+    },
+    {
+      "from": "m1-prop-segment-nonconjugacy",
+      "to": "m1-geo-first-cut"
+    },
+    {
+      "from": "m1-geo-radial-index",
+      "to": "m1-geo-slack"
+    },
+    {
+      "from": "m1-geo-slack",
+      "to": "m1-geo-local-injectivity"
+    },
+    {
+      "from": "m1-geo-first-cut",
+      "to": "m1-geo-support"
+    },
+    {
+      "from": "m1-geo-local-injectivity",
+      "to": "m1-geo-support"
+    },
+    {
+      "from": "m1-geo-short-time",
+      "to": "m1-geo-support"
+    },
+    {
+      "from": "m1-lem-covering-homeomorphism",
+      "to": "m1-geo-support"
+    },
+    {
+      "from": "m1-geo-minimizer-capture",
+      "to": "m1-geo-support"
+    },
+    {
+      "from": "m1-lem-interior-characterization",
+      "to": "m1-geo-support"
+    },
+    {
+      "from": "m1-geo-support",
+      "to": "m1-geo-convexity"
+    },
+    {
+      "from": "m1-geo-support",
+      "to": "m1-geo-sections"
+    },
+    {
+      "from": "m1-geo-support",
+      "to": "m1-geo-intermediate"
+    },
+    {
+      "from": "m1-geo-slack",
+      "to": "m1-geo-local-growth"
+    },
+    {
+      "from": "m1-geo-short-time",
+      "to": "m1-geo-degree"
+    },
+    {
+      "from": "m1-geo-minimizer-capture",
+      "to": "m1-geo-degree"
+    },
+    {
+      "from": "m1-lem-interior-characterization",
+      "to": "m1-geo-degree"
+    },
+    {
+      "from": "m2-spec-identities",
+      "to": "m2-spec-radial"
+    },
+    {
+      "from": "m2-spec-radial",
+      "to": "m2-spec-pullback"
+    },
+    {
+      "from": "m2-spec-identities",
+      "to": "m2-spec-pullback"
+    },
+    {
+      "from": "m2-spec-radial",
+      "to": "m2-spec-comparison"
+    },
+    {
+      "from": "m2-spec-comparison",
+      "to": "m2-spec-outward"
+    },
+    {
+      "from": "m2-geo-sections",
+      "to": "m2-sc-power"
+    },
+    {
+      "from": "m2-sc-switch",
+      "to": "m2-sc-excess"
+    },
+    {
+      "from": "m2-geo-support",
+      "to": "m2-sc-excess"
+    },
+    {
+      "from": "m2-geo-intermediate",
+      "to": "m2-sc-maximum"
+    },
+    {
+      "from": "m2-geo-support",
+      "to": "m2-sc-maximum"
+    },
+    {
+      "from": "m2-geo-intermediate",
+      "to": "m2-sc-parameter"
+    },
+    {
+      "from": "m2-geo-slack",
+      "to": "m2-sc-parameter"
+    },
+    {
+      "from": "m2-sc-levels",
+      "to": "m2-sc-outward"
+    },
+    {
+      "from": "m2-geo-support",
+      "to": "m2-jet-viscosity"
+    },
+    {
+      "from": "m2-jet-contact-volume",
+      "to": "m2-jet-viscosity"
+    },
+    {
+      "from": "m2-geo-support",
+      "to": "m2-jet-transfer"
+    },
+    {
+      "from": "m2-geo-slack",
+      "to": "m2-jet-transfer"
+    },
+    {
+      "from": "m2-geo-support",
+      "to": "m2-jet-semibound"
+    },
+    {
+      "from": "m2-spec-pullback",
+      "to": "m2-jet-semibound"
+    },
+    {
+      "from": "m2-geo-support",
+      "to": "m2-jet-outer-conjugacy"
+    },
+    {
+      "from": "m2-spec-radial",
+      "to": "m2-jet-outer-conjugacy"
+    },
+    {
+      "from": "m2-jet-viscosity",
+      "to": "m2-jet-outer-conjugacy"
+    },
+    {
+      "from": "m2-jet-outer-conjugacy",
+      "to": "m2-jet-outer-test"
+    },
+    {
+      "from": "m2-jet-viscosity",
+      "to": "m2-jet-outer-test"
+    },
+    {
+      "from": "m2-sc-maximum",
+      "to": "m2-jet-determinants"
+    },
+    {
+      "from": "m2-geo-intermediate",
+      "to": "m2-jet-determinants"
+    },
+    {
+      "from": "m2-geo-short-time",
+      "to": "m2-jet-determinants"
+    },
+    {
+      "from": "m2-sc-parameter",
+      "to": "m2-jet-determinants"
+    },
+    {
+      "from": "m2-sc-levels",
+      "to": "m2-jet-determinants"
+    },
+    {
+      "from": "m2-jet-transfer",
+      "to": "m2-jet-determinants"
+    },
+    {
+      "from": "m2-jet-semibound",
+      "to": "m2-jet-determinants"
+    },
+    {
+      "from": "m2-sc-outward",
+      "to": "m2-jet-determinants"
+    },
+    {
+      "from": "m2-jet-outer-conjugacy",
+      "to": "m2-jet-determinants"
+    },
+    {
+      "from": "m2-jet-outer-test",
+      "to": "m2-jet-determinants"
+    },
+    {
+      "from": "m2-jet-subgradient-differential",
+      "to": "m2-jet-determinants"
+    },
+    {
+      "from": "m2-spec-pullback",
+      "to": "m2-jet-determinants"
+    },
+    {
+      "from": "m2-jet-determinants",
+      "to": "m2-jet-contradiction"
+    },
+    {
+      "from": "m2-jet-matrix",
+      "to": "m2-jet-contradiction"
+    },
+    {
+      "from": "m2-spec-radial-determinants",
+      "to": "m2-jet-contradiction"
+    },
+    {
+      "from": "m2-sc-outward",
+      "to": "m2-jet-contradiction"
+    },
+    {
+      "from": "m2-spec-outward",
+      "to": "m2-jet-contradiction"
+    }
+  ]
+}

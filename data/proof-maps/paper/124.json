@@ -1,0 +1,334 @@
+{
+  "familyNumber": "124",
+  "familyTitle": "Polynomial-time scheduling on three identical machines",
+  "manuscripts": [
+    {
+      "id": "A-polynomial-time-algorithm-for-three-machine-unit-job-scheduling-September-24-2026",
+      "title": "A Polynomial-Time Algorithm for Three-Machine Unit-Job Scheduling",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-polynomial-time-algorithm-for-three-machine-unit-job-scheduling-September-24-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Full schedules, frames, and descriptions",
+    "The algorithm and its structural certificate",
+    "Separators with a shared cutoff",
+    "The interval construction and its invariants",
+    "Short global lists and changes of direction",
+    "Preserving the global boundary invariants",
+    "Global interval predicates and completion"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Let an explicitly listed finite directed acyclic graph specify the precedence…",
+      "statement": "Let an explicitly listed finite directed acyclic graph specify the precedence constraints on \\(n1\\) nonpreemptive unit-length jobs on three identical machines. There is a uniform deterministic…",
+      "section": "Introduction",
+      "manuscript": "A Polynomial-Time Algorithm for Three-Machine Unit-Job Scheduling"
+    },
+    {
+      "id": "m1-lem-padding",
+      "kind": "lemma",
+      "label": "The original deadline is feasible if and only if \\(J\\) has a full schedule. The…",
+      "statement": "The original deadline is feasible if and only if \\(J\\) has a full schedule. The padded instance has polynomial size in the stated input encoding.",
+      "section": "Full schedules, frames, and descriptions",
+      "manuscript": "A Polynomial-Time Algorithm for Three-Machine Unit-Job Scheduling"
+    },
+    {
+      "id": "m1-lem-reorder",
+      "kind": "lemma",
+      "label": "Replacing the schedule inside an open interval by any full schedule of its job…",
+      "statement": "Replacing the schedule inside an open interval by any full schedule of its job set preserves feasibility of the complete schedule.",
+      "section": "Full schedules, frames, and descriptions",
+      "manuscript": "A Polynomial-Time Algorithm for Three-Machine Unit-Job Scheduling"
+    },
+    {
+      "id": "m1-lem-family",
+      "kind": "lemma",
+      "label": "The family \\(\\) can be generated deterministically in polynomial time and…",
+      "statement": "The family \\(\\) can be generated deterministically in polynomial time and represented by \\(N\\)-bit vectors.",
+      "section": "Full schedules, frames, and descriptions",
+      "manuscript": "A Polynomial-Time Algorithm for Three-Machine Unit-Job Scheduling"
+    },
+    {
+      "id": "m1-prop-algorithm",
+      "kind": "proposition",
+      "label": "This is a uniform deterministic polynomial-time algorithm. Every set it accepts…",
+      "statement": "This is a uniform deterministic polynomial-time algorithm. Every set it accepts has a full schedule, which the algorithm can explicitly return. With \\(K=10000\\), its deadline decision and schedule…",
+      "section": "The algorithm and its structural certificate",
+      "manuscript": "A Polynomial-Time Algorithm for Three-Machine Unit-Job Scheduling"
+    },
+    {
+      "id": "m1-lem-hierarchy-dp",
+      "kind": "lemma",
+      "label": "If a feasible \\(J\\) has a bounded-description hierarchy, the algorithm accepts…",
+      "statement": "If a feasible \\(J\\) has a bounded-description hierarchy, the algorithm accepts \\(J\\).",
+      "section": "The algorithm and its structural certificate",
+      "manuscript": "A Polynomial-Time Algorithm for Three-Machine Unit-Job Scheduling"
+    },
+    {
+      "id": "m1-thm-structure",
+      "kind": "theorem",
+      "label": "Every feasible full three-machine schedule has a bounded-description hierarchy.…",
+      "statement": "Every feasible full three-machine schedule has a bounded-description hierarchy. In fact, the global node predicates and relative split predicates needed in the hierarchy have fewer than \\(500\\)…",
+      "section": "The algorithm and its structural certificate",
+      "manuscript": "A Polynomial-Time Algorithm for Three-Machine Unit-Job Scheduling"
+    },
+    {
+      "id": "m1-lem-separator-description",
+      "kind": "lemma",
+      "label": "If \\(z\\) is an actual separator for a domain \\(U\\) at cutoff \\(S\\), and \\(H…",
+      "statement": "If \\(z\\) is an actual separator for a domain \\(U\\) at cutoff \\(S\\), and \\(H U=S\\), then \\(B_z(H) U\\) is exactly the set of domain jobs strictly earlier than \\(z\\). Reversing order and time, and…",
+      "section": "Separators with a shared cutoff",
+      "manuscript": "A Polynomial-Time Algorithm for Three-Machine Unit-Job Scheduling"
+    },
+    {
+      "id": "m1-lem-lex-prefix",
+      "kind": "lemma",
+      "label": "In a normalized schedule, a feasible exchange that puts a better-priority job…",
+      "statement": "In a normalized schedule, a feasible exchange that puts a better-priority job into an earlier slot is impossible. More generally, fix a slot \\(r\\). After any feasible reordering confined strictly…",
+      "section": "Separators with a shared cutoff",
+      "manuscript": "A Polynomial-Time Algorithm for Three-Machine Unit-Job Scheduling"
+    },
+    {
+      "id": "m1-lem-shared",
+      "kind": "lemma",
+      "label": "Shared-cutoff walk",
+      "statement": "[Shared-cutoff walk] Fix a normalized full schedule of a domain and let \\(S\\) and \\(S^+\\) be consecutive priority prefixes, differing by the promotion of one job from high to low. Suppose \\(s\\) is a…",
+      "section": "Separators with a shared cutoff",
+      "manuscript": "A Polynomial-Time Algorithm for Three-Machine Unit-Job Scheduling"
+    },
+    {
+      "id": "m1-cor-any-ideal",
+      "kind": "corollary",
+      "label": "Every ideal of a nonempty set with a full schedule has an actual separator in…",
+      "statement": "Every ideal of a nonempty set with a full schedule has an actual separator in some full schedule of that set.",
+      "section": "Separators with a shared cutoff",
+      "manuscript": "A Polynomial-Time Algorithm for Three-Machine Unit-Job Scheduling"
+    },
+    {
+      "id": "m1-lem-edge-labels",
+      "kind": "lemma",
+      "label": "At every child edge, \\(b'\\) is an actual triple in \\(W\\), while \\(a'\\) is…",
+      "statement": "At every child edge, \\(b'\\) is an actual triple in \\(W\\), while \\(a'\\) is either \\(a\\) or an actual triple of \\(E\\). On its child, W' S D_ a' P_b, W' S P_ b' . Every child excludes the center and is…",
+      "section": "The interval construction and its invariants",
+      "manuscript": "A Polynomial-Time Algorithm for Three-Machine Unit-Job Scheduling"
+    },
+    {
+      "id": "m1-lem-carry",
+      "kind": "lemma",
+      "label": "Suffix carry",
+      "statement": "[Suffix carry] For a global upset list \\(=(K_1,,K_)\\), fix \\(1 d\\) and an integer \\(0 r N+1\\), and form carry_ d,r () =(K_d\\ r\\ ,K_ d+1 ,,K_). Its qualifier set consists exactly of the old global…",
+      "section": "Short global lists and changes of direction",
+      "manuscript": "A Polynomial-Time Algorithm for Three-Machine Unit-Job Scheduling"
+    },
+    {
+      "id": "m1-lem-prune",
+      "kind": "lemma",
+      "label": "The comparison preserved by pruning",
+      "statement": "[The comparison preserved by pruning] Let a list be pruned on \\(W'\\). Suppose \\(x W'\\) qualifies and \\(y\\) is any global qualifier of the pruned list. If the pruned key of \\(x\\) is smaller than the…",
+      "section": "Short global lists and changes of direction",
+      "manuscript": "A Polynomial-Time Algorithm for Three-Machine Unit-Job Scheduling"
+    },
+    {
+      "id": "m1-lem-update-labels",
+      "kind": "lemma",
+      "label": "For either update, assuming in the switch case, the pre-pruning qualifier union…",
+      "statement": "For either update, assuming in the switch case, the pre-pruning qualifier union on \\(W\\) is exactly \\(W S\\). On these high jobs the pre-pruning key order agrees with the side's priority order. After…",
+      "section": "Short global lists and changes of direction",
+      "manuscript": "A Polynomial-Time Algorithm for Three-Machine Unit-Job Scheduling"
+    },
+    {
+      "id": "m1-lem-list-length",
+      "kind": "lemma",
+      "label": "Every pruned list produced by this construction has at most five entries. At…",
+      "statement": "Every pruned list produced by this construction has at most five entries. At most three of them are injections from its current run.",
+      "section": "Short global lists and changes of direction",
+      "manuscript": "A Polynomial-Time Algorithm for Three-Machine Unit-Job Scheduling"
+    },
+    {
+      "id": "m1-lem-flatten",
+      "kind": "lemma",
+      "label": "Local flattening",
+      "statement": "[Local flattening] Suppose a run began with a switch out of a node \\(Q_0\\), using left boundary \\(a_0\\) in the resulting run frame, and entries \\[ G_0\\ h_0\\ , D_ a_0 , Q_0 D_ a_0 G_0 . \\] Let \\(U…",
+      "section": "Short global lists and changes of direction",
+      "manuscript": "A Polynomial-Time Algorithm for Three-Machine Unit-Job Scheduling"
+    },
+    {
+      "id": "m1-lem-old-low",
+      "kind": "lemma",
+      "label": "A short extension of an earlier low set",
+      "statement": "[A short extension of an earlier low set] Consider an already constructed edge from a parent \\(U\\) to a child \\(W\\), in its old working frame. Its low cutoff \\(H_- U\\) has a global downset extension…",
+      "section": "Short global lists and changes of direction",
+      "manuscript": "A Polynomial-Time Algorithm for Three-Machine Unit-Job Scheduling"
+    },
+    {
+      "id": "m1-lem-g",
+      "kind": "lemma",
+      "label": "The set \\(G\\) in is a global upset satisfying both properties in .",
+      "statement": "The set \\(G\\) in is a global upset satisfying both properties in .",
+      "section": "Short global lists and changes of direction",
+      "manuscript": "A Polynomial-Time Algorithm for Three-Machine Unit-Job Scheduling"
+    },
+    {
+      "id": "m1-lem-entry-size",
+      "kind": "lemma",
+      "label": "Every entry constructed above has fewer than \\(40\\) leaves. This bound persists…",
+      "statement": "Every entry constructed above has fewer than \\(40\\) leaves. This bound persists through any number of same-direction updates.",
+      "section": "Short global lists and changes of direction",
+      "manuscript": "A Polynomial-Time Algorithm for Three-Machine Unit-Job Scheduling"
+    },
+    {
+      "id": "m1-lem-past",
+      "kind": "lemma",
+      "label": "The updated child list satisfies Invariant~ .",
+      "statement": "The updated child list satisfies Invariant~ .",
+      "section": "Preserving the global boundary invariants",
+      "manuscript": "A Polynomial-Time Algorithm for Three-Machine Unit-Job Scheduling"
+    },
+    {
+      "id": "m1-lem-swap",
+      "kind": "lemma",
+      "label": "The pruned child list satisfies Invariant~ , with its quantifier over all…",
+      "statement": "The pruned child list satisfies Invariant~ , with its quantifier over all feasible reorderings of \\(W'\\).",
+      "section": "Preserving the global boundary invariants",
+      "manuscript": "A Polynomial-Time Algorithm for Three-Machine Unit-Job Scheduling"
+    },
+    {
+      "id": "m1-prop-construction-valid",
+      "kind": "proposition",
+      "label": "Starting from any feasible full schedule, the marking and list construction is…",
+      "statement": "Starting from any feasible full schedule, the marking and list construction is defined at every node. Its pruned lists are global upset lists of length at most five, with fewer than \\(40\\) leaves per…",
+      "section": "Preserving the global boundary invariants",
+      "manuscript": "A Polynomial-Time Algorithm for Three-Machine Unit-Job Scheduling"
+    },
+    {
+      "id": "m1-lem-global-child",
+      "kind": "lemma",
+      "label": "In the valid construction of , let \\(W'=(a',b')\\) be a child of \\(W=(a,b)\\),…",
+      "statement": "In the valid construction of , let \\(W'=(a',b')\\) be a child of \\(W=(a,b)\\), with parent center \\(v\\), edge cutoff \\(S\\), new pruned list \\('\\), and cutoff predicate \\( S\\) satisfying . In the edge's…",
+      "section": "Global interval predicates and completion",
+      "manuscript": "A Polynomial-Time Algorithm for Three-Machine Unit-Job Scheduling"
+    },
+    {
+      "id": "m1-lem-relative-splits",
+      "kind": "lemma",
+      "label": "Every marked slot \\(z\\) in a node \\(W\\) has a bounded relative description of…",
+      "statement": "Every marked slot \\(z\\) in a node \\(W\\) has a bounded relative description of its earlier jobs in either the working direction that produced it or the original direction. The formulas use the stated…",
+      "section": "Global interval predicates and completion",
+      "manuscript": "A Polynomial-Time Algorithm for Three-Machine Unit-Job Scheduling"
+    },
+    {
+      "id": "m1-lem-final-count",
+      "kind": "lemma",
+      "label": "The predicates in have fewer than \\(500\\) leaves.",
+      "statement": "The predicates in have fewer than \\(500\\) leaves.",
+      "section": "Global interval predicates and completion",
+      "manuscript": "A Polynomial-Time Algorithm for Three-Machine Unit-Job Scheduling"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-thm-main",
+      "to": "m1-thm-structure"
+    },
+    {
+      "from": "m1-prop-algorithm",
+      "to": "m1-thm-structure"
+    },
+    {
+      "from": "m1-lem-lex-prefix",
+      "to": "m1-lem-shared"
+    },
+    {
+      "from": "m1-lem-shared",
+      "to": "m1-cor-any-ideal"
+    },
+    {
+      "from": "m1-lem-carry",
+      "to": "m1-lem-update-labels"
+    },
+    {
+      "from": "m1-lem-edge-labels",
+      "to": "m1-lem-update-labels"
+    },
+    {
+      "from": "m1-lem-update-labels",
+      "to": "m1-lem-list-length"
+    },
+    {
+      "from": "m1-lem-list-length",
+      "to": "m1-lem-old-low"
+    },
+    {
+      "from": "m1-lem-edge-labels",
+      "to": "m1-lem-g"
+    },
+    {
+      "from": "m1-lem-old-low",
+      "to": "m1-lem-entry-size"
+    },
+    {
+      "from": "m1-lem-update-labels",
+      "to": "m1-lem-past"
+    },
+    {
+      "from": "m1-lem-g",
+      "to": "m1-lem-past"
+    },
+    {
+      "from": "m1-lem-carry",
+      "to": "m1-lem-past"
+    },
+    {
+      "from": "m1-lem-shared",
+      "to": "m1-lem-past"
+    },
+    {
+      "from": "m1-lem-update-labels",
+      "to": "m1-lem-swap"
+    },
+    {
+      "from": "m1-lem-prune",
+      "to": "m1-lem-swap"
+    },
+    {
+      "from": "m1-lem-lex-prefix",
+      "to": "m1-lem-swap"
+    },
+    {
+      "from": "m1-lem-carry",
+      "to": "m1-lem-swap"
+    },
+    {
+      "from": "m1-lem-edge-labels",
+      "to": "m1-prop-construction-valid"
+    },
+    {
+      "from": "m1-lem-edge-labels",
+      "to": "m1-lem-global-child"
+    },
+    {
+      "from": "m1-lem-separator-description",
+      "to": "m1-lem-relative-splits"
+    },
+    {
+      "from": "m1-thm-structure",
+      "to": "m1-lem-final-count"
+    },
+    {
+      "from": "m1-prop-construction-valid",
+      "to": "m1-lem-final-count"
+    },
+    {
+      "from": "m1-lem-global-child",
+      "to": "m1-lem-final-count"
+    },
+    {
+      "from": "m1-lem-relative-splits",
+      "to": "m1-lem-final-count"
+    }
+  ]
+}

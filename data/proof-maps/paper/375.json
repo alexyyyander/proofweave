@@ -1,0 +1,542 @@
+{
+  "familyNumber": "375",
+  "familyTitle": "De Giorgi's conjecture in dimension eight",
+  "manuscripts": [
+    {
+      "id": "De-Giorgis-conjecture-in-dimension-eight-September-26-2026",
+      "title": "A positive resolution of De Giorgi's conjecture in dimension eight",
+      "date": "2026-09-26",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/De-Giorgis-conjecture-in-dimension-eight-September-26-2026/article.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "From stable end profiles to the monotone theorem",
+    "Diffuse fields and a sharp mean-curvature comparison",
+    "Rigidity under a finite density bound",
+    "Penalized reach and isolated interfaces",
+    "Interface stability and exact interactions",
+    "A fourth-order growth estimate",
+    "A radial threshold and automatic bounded density"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-monotone",
+      "kind": "theorem",
+      "label": "Monotone rigidity in dimension eight",
+      "statement": "[Monotone rigidity in dimension eight] Let u C^2(^8,(-1,1)) satisfy \\[ u=u^3-u, _8u>0in ^8. \\] Then there are e S^7 with e_8>0 and c such that \\[ u(x)=\\!(e x-c 2 ) for every x^8. \\]",
+      "section": "Introduction",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-thm-stable",
+      "kind": "theorem",
+      "label": "Stable rigidity in dimension seven",
+      "statement": "[Stable rigidity in dimension seven] Let v C^2(^7,[-1,1]) be a stable solution of v=v^3-v . Then either v1 , v-1 , or \\[ v(x)=\\!(a x-b 2 ) for some a S^6,\\ b. \\] No energy-growth assumption is…",
+      "section": "Introduction",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-thm-finite",
+      "kind": "theorem",
+      "label": "Finite-density stable rigidity",
+      "statement": "[Finite-density stable rigidity] Let 4 n7 . Suppose v C^2(^n,[-1,1]) solves v=v^3-v and satisfies \\[ _ ^n (||^2+(3v^2-1)^2) x 0 for every C_c^1(^n). \\] If M_< , then v1 , v-1 , or v(x)=g(a x-b) for…",
+      "section": "Introduction",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-monotone-ends",
+      "kind": "lemma",
+      "label": "End profiles",
+      "statement": "[End profiles] Let u C^2(^8,(-1,1)) solve u=u^3-u and satisfy u_8>0 . There are smooth stable solutions v_-,v_+:^7 such that u(x',t+s) v_(x') in C^k_ loc (^8) as s, k0. They satisfy…",
+      "section": "From stable end profiles to the monotone theorem",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-monotone-minimizer",
+      "kind": "lemma",
+      "label": "Minimizing barriers and compact sliding",
+      "statement": "[Minimizing barriers and compact sliding] Let N2 , and suppose a bounded solution u:^ N-1 (-1,1) of u=W'(u) is strictly increasing in the last coordinate. Suppose its vertical limits a_(x') ,…",
+      "section": "From stable end profiles to the monotone theorem",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-prop-monotone-exact-limit",
+      "kind": "proposition",
+      "label": "Exact perimeter limit",
+      "statement": "[Exact perimeter limit] Let u:^N be an entire global minimizer with E(u;B_R) CR^ N-1 for R2 . Given R_j , set _j=R_j^ -1 and u_j(x)=u(R_jx) . After taking a subsequence there is a locally…",
+      "section": "From stable end profiles to the monotone theorem",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-monotone-flat-cone",
+      "kind": "lemma",
+      "label": "Flatness of the directed cone",
+      "statement": "[Flatness of the directed cone] Let E^8 be locally perimeter minimizing. Suppose its nonempty boundary support C is a cone with vertex 0 and _81_E0 . Then C is a hyperplane, with perimeter…",
+      "section": "From stable end profiles to the monotone theorem",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-diffuse-local",
+      "kind": "lemma",
+      "label": "Uniform defect estimates",
+      "statement": "[Uniform defect estimates] There is a constant C=C(n) , and for each >0 a constant C_=C(n,) , such that every solution with D>0 satisfies |T(x)|^2 CD(x), | D(x)| CD(x), D(y) C_ e^ (22+)|y-z| D(z)…",
+      "section": "Diffuse fields and a sharp mean-curvature comparison",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-diffuse-phase",
+      "kind": "lemma",
+      "label": "Clearing inside a phase",
+      "statement": "[Clearing inside a phase] A solution with |v|<1 has a nonempty zero set =\\ v=0\\ . For every 0<<2 there is C_=C(n,) such that q(x) C_ e^ -(2-)(x,) . More generally the same estimate, with (x,) in…",
+      "section": "Diffuse fields and a sharp mean-curvature comparison",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-diffuse-compactness",
+      "kind": "lemma",
+      "label": "Small-defect limits",
+      "statement": "[Small-defect limits] Let v_j be entire solutions in the fixed dimension, and let z_j be zeros with _j=D_j(z_j)>0 and _j0 . Translate and rotate so that z_j=0 and _j(0)=e_n , and write x=(x',s)^ n-1…",
+      "section": "Diffuse fields and a sharp mean-curvature comparison",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-diffuse-positive",
+      "kind": "lemma",
+      "label": "Positive decomposition and normal derivative",
+      "statement": "[Positive decomposition and normal derivative] Let F0 be a smooth entire function on ^ n-1 and suppose L_0 F=S , where S0 is smooth and S(x',s)=S(x',-s) . There is a decomposition F=E+h, E0, h0, L_0…",
+      "section": "Diffuse fields and a sharp mean-curvature comparison",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-diffuse-mean",
+      "kind": "lemma",
+      "label": "Mean curvature controlled by normal defect mass",
+      "statement": "[Mean curvature controlled by normal defect mass] For every c>1/(22) there exist P=P(c)< and =(n,c)(0,1/2] such that every entire solution and every zero z with 0<D(z)< satisfy |H(z)| c _ -P ^P…",
+      "section": "Diffuse fields and a sharp mean-curvature comparison",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-finite-critical",
+      "kind": "lemma",
+      "label": "Critical solution and its good regions",
+      "statement": "[Critical solution and its good regions] If Theorem~ fails in a fixed dimension \\(4 n7\\), there is a nonplanar entire stable solution with finite integer density \\(M_=K2\\), and a nonempty closed set…",
+      "section": "Rigidity under a finite density bound",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-finite-measures",
+      "kind": "lemma",
+      "label": "Tube, mass and Hardy estimates",
+      "statement": "[Tube, mass and Hardy estimates] For any prescribed finite \\(P\\), increasing \\(S\\) makes \\[ (z,t)=z+t(z), z_ S/2 , |t| P, \\] injective, with Jacobian \\(1+_S\\) and \\(q((z,t))=G(t)+o_S(1)\\), uniformly.…",
+      "section": "Rigidity under a finite density bound",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-finite-gap",
+      "kind": "lemma",
+      "label": "Nearest feet and multiplicity",
+      "statement": "[Nearest feet and multiplicity] On \\(_S\\), for \\(S\\) sufficiently large, let \\(l(z)\\) be the shortest Euclidean distance to a distinct sheet in the local good chart. This definition is independent of…",
+      "section": "Rigidity under a finite density bound",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-finite-green",
+      "kind": "lemma",
+      "label": "Green inequality with cap-independent collar errors",
+      "statement": "[Green inequality with cap-independent collar errors] Suppose that holds, with \\(L2\\), and that \\((l)\\) is bounded uniformly on each fixed range \\(S<s<A\\). For fixed sufficiently large \\(S\\) and…",
+      "section": "Rigidity under a finite density bound",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-finite-rough",
+      "kind": "lemma",
+      "label": "Rough gap bound",
+      "statement": "[Rough gap bound] There is \\(C<\\) such that, at all sufficiently distant good zeros, l(z) C(( s(z))^2+s(z)^ 1/10 ).",
+      "section": "Rigidity under a finite density bound",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-cor-finite-subcritical",
+      "kind": "corollary",
+      "label": "Uniform regularity from any finite density bound",
+      "statement": "[Uniform regularity from any finite density bound] Fix \\(4 n7\\) and \\(0<K_f<\\). There are \\(c>0,C<,r_0<\\), depending only on \\(n,K_f\\), such that every entire stable parameter-one solution with…",
+      "section": "Rigidity under a finite density bound",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-reach-small-defect",
+      "kind": "lemma",
+      "label": "Elementary chord bounds",
+      "statement": "[Elementary chord bounds] The function d is finite and positive on _ reg . At every such point, writing _i for the eigenvalues of A , d_i|_i|2, |(y-z)(z)| C_ |y-z|^2/d(z) (y). For each J< there is a…",
+      "section": "Penalized reach and isolated interfaces",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-reach-density-window",
+      "kind": "lemma",
+      "label": "A fixed density bound near the reach scale",
+      "statement": "[A fixed density bound near the reach scale] There are fixed C,c>0 and a fixed density bound K_0< such that, if d=d(z) is sufficiently large, then h=d\\ -C (K(d)+1)\\ , M_h(z) K_0. The constant C can…",
+      "section": "Penalized reach and isolated interfaces",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-reach-half-line-barrier",
+      "kind": "lemma",
+      "label": "Positive half-line barrier",
+      "statement": "[Positive half-line barrier] Let g(t)=(t/2) and V_g(t)=3g(t)^2-1 . For each fixed a_0 , the function v_ a_0 (t)=g'(t), t a_0, satisfies \\[ (-_t^2+V_g)v_ a_0 =1, 0<c_ a_0 v_ a_0 C_ a_0 . \\] Every…",
+      "section": "Penalized reach and isolated interfaces",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-reach-isolation",
+      "kind": "lemma",
+      "label": "An isolated graph and mean-curvature derivatives",
+      "statement": "[An isolated graph and mean-curvature derivatives] There are uniform c,c',C,>0 such that, for sufficiently large d(z) and h in , the zero set in B_ ch (z) is a single graph over T_z , extending over…",
+      "section": "Penalized reach and isolated interfaces",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-reach-phase-ball",
+      "kind": "lemma",
+      "label": "One-sided improvement at a tangent phase ball",
+      "statement": "[One-sided improvement at a tangent phase ball] There are uniform r_0,C,>0 with the following property. If an open ball of radius r r_0 is disjoint from and its boundary contains x , and N is its…",
+      "section": "Penalized reach and isolated interfaces",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-prop-reach-calculus",
+      "kind": "proposition",
+      "label": "Weak reach inequality and positive-foot transfer",
+      "statement": "[Weak reach inequality and positive-foot transfer] Given _0>0 , the penalty parameters can be chosen, in the order specified above, so that the following holds for all sufficiently large d . The…",
+      "section": "Penalized reach and isolated interfaces",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-cor-reach-base-defect",
+      "kind": "corollary",
+      "label": "Reach bounds near bad zeros",
+      "statement": "[Reach bounds near bad zeros] For sufficiently large d(z) , D(z)+a(z) C_/d(z) . If X=\\ z:D(z)\\ with fixed >0 , then for every fixed L_0 there is a finite uniform upper bound for d(z) at all good…",
+      "section": "Penalized reach and isolated interfaces",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-interface-sharp-means",
+      "kind": "lemma",
+      "label": "Sharp means",
+      "statement": "[Sharp means] For each >0 there exist P_< and, for each fixed P P_ , a number _ ,P >0 such that every zero with 0<D(z)<_ ,P is regular and satisfies cD(z) I_P(z) C_P D(z), I_P(z)(1-)|A(z)|^2,…",
+      "section": "Interface stability and exact interactions",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-interface-mean-gradient",
+      "kind": "lemma",
+      "label": "Averaged mean derivative",
+      "statement": "[Averaged mean derivative] For every >0 there are S10 and >0 such that, if z and D(z)< , all zeros in B_ 4S (z) belong to one regular graph converging smoothly to the tangent plane as the threshold…",
+      "section": "Interface stability and exact interactions",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-interface-immersed-test",
+      "kind": "lemma",
+      "label": "Pushing a lifted test to space",
+      "statement": "[Pushing a lifted test to space] Let _ reg be open and (z,s)=z+s(z) . Fix 0<<1/4 and an even smooth function (z,s)=_0(sa(z)) , equal to 1 for |s|a/2 and supported in |s|a< . For a compactly supported…",
+      "section": "Interface stability and exact interactions",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-prop-interface-strengthened-stability",
+      "kind": "proposition",
+      "label": "Strengthened surface stability",
+      "statement": "[Strengthened surface stability] For each >0 , choose P sufficiently large as in Lemma~ . There exists >0 such that every compactly supported Lipschitz function on \\ z: D(z)<\\ satisfies (1-)_a^2+I_P…",
+      "section": "Interface stability and exact interactions",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-prop-interface-exact-comparison",
+      "kind": "proposition",
+      "label": "Exact exponential comparison",
+      "statement": "[Exact exponential comparison] There exist >0 and C< , depending on the fixed penalty and dimension but independent of (0,1/4] , such that D(z) C(J_0(z)+E(z)), E(z) C(J_0(z)+D(z)), z X, J_0(z)=_ y e^…",
+      "section": "Interface stability and exact interactions",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-interface-halfspace-inverse",
+      "kind": "lemma",
+      "label": "A half-space inverse",
+      "statement": "[A half-space inverse] Let p_0>n , V_g=3g^2-1 , and L_g=-_y-_t^2+V_g(t) on ^m(0,) , with zero Dirichlet trace. For some b_0>0 , uniformly in 0 b b_0 , its inverse maps the norm \\[ _ (y,t) e^ -b|y|…",
+      "section": "Interface stability and exact interactions",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-interface-good-area",
+      "kind": "lemma",
+      "label": "Uniform area on good pieces",
+      "statement": "[Uniform area on good pieces] For 0<1/4 , the area of X in any unit ball is bounded by a dimensional constant, independently of . Consequently its area in an ambient ball of radius r1 is at most…",
+      "section": "Interface stability and exact interactions",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-interface-integral",
+      "kind": "lemma",
+      "label": "Weighted integral comparison",
+      "statement": "[Weighted integral comparison] Let X be a maximal unit-separated subset of X , with X= when X= . For an arbitrary center x_c , set _R(x)=(-1+|x-x_c|^2/R) . There are C_D,R_D< , independent of 0<1/4…",
+      "section": "Interface stability and exact interactions",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-interface-log-windows",
+      "kind": "lemma",
+      "label": "Uniform geometry on clean windows",
+      "statement": "[Uniform geometry on clean windows] Fix >0 , C_0< , and a fractional margin 0<_0<1 . Suppose that z_0 and \\[ D(w) N^ - (w B_ N^ (z_0)), N. \\] The following conclusions hold uniformly for bases z B_…",
+      "section": "Interface stability and exact interactions",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-prop-interface-sharp-gaps",
+      "kind": "proposition",
+      "label": "Sharp interaction and middle-phase tail",
+      "statement": "[Sharp interaction and middle-phase tail] Under the hypotheses of Lemma~ , for each >0 there is P_< such that every fixed P P_ has the following properties when N is sufficiently large. If a…",
+      "section": "Interface stability and exact interactions",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-prop-growth-fourth-order",
+      "kind": "proposition",
+      "label": "Fourth-order growth",
+      "statement": "[Fourth-order growth] In the seven-dimensional stable setting above, fix the penalty sufficiently close to the choices specified in Section~ , with _0<10^ -4 and G_1-1,(1-_2)^ -1 -1<10^ -3 ,…",
+      "section": "A fourth-order growth estimate",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-growth-curvature",
+      "kind": "lemma",
+      "label": "Curvature controlled by a small defect cost",
+      "statement": "[Curvature controlled by a small defect cost] For each _2>0 there are choices of the interface tolerances and >0 such that, uniformly for all centers and sufficiently large R , A_4:=_ _g ^2a^4 _2_ _g…",
+      "section": "A fourth-order growth estimate",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-growth-gluing",
+      "kind": "lemma",
+      "label": "Uniform gluing",
+      "statement": "[Uniform gluing] Fix 0< .001 among the interface tolerances, before the final choice of , and choose the preceding data with this tolerance. There exist L_0,t_*,c_0>0 and R_1,C< with the following…",
+      "section": "A fourth-order growth estimate",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-growth-multiplier",
+      "kind": "lemma",
+      "label": "A weight and its reach multiplier",
+      "statement": "[A weight and its reach multiplier] Let _0=.01 and k=1.53 . Increase t_ , before fixing , so that (C/( t_ ^ ))<1.001 , where C, dominate the errors in . For every finite t_* t_ , every _3>0 , and…",
+      "section": "A fourth-order growth estimate",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-radial-weight",
+      "kind": "lemma",
+      "label": "Weight identities",
+      "statement": "[Weight identities] Uniformly for R and t t_ , where t_ >0 is any fixed lower bound for the reach on the good set, F_ &=(1+o_R(1))\\,cW_* (t c b(t) )^,\\\\ F_ + F W_* & C(L+), F W_* 1 q_*+/t_ ,\\\\ F&…",
+      "section": "A radial threshold and automatic bounded density",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-radial-errors",
+      "kind": "lemma",
+      "label": "Summable errors",
+      "statement": "[Summable errors] Write s_j=2^jR , j0 ; a shell s_j may be enlarged by any fixed factor. The good surface area and ambient volume within C s_j^ _0 of Z on this shell are bounded by C K(s_j)s_j^…",
+      "section": "A radial threshold and automatic bounded density",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-radial-reach-budget",
+      "kind": "lemma",
+      "label": "Radial reach budget",
+      "statement": "[Radial reach budget] With the fixed parameter choices above, for large R and B , &_ m_c^2W_* S\\\\ &2em .73 L+o_R( A)+o_ B;R (1).",
+      "section": "A radial threshold and automatic bounded density",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-radial-clean-geometry",
+      "kind": "lemma",
+      "label": "Geometry of the radial interpolation regions",
+      "statement": "[Geometry of the radial interpolation regions] Fix C_0< . For all sufficiently large R , the common graph and projection conclusions of Lemma~ apply within distance C_0(z) of every zero satisfying…",
+      "section": "A radial threshold and automatic bounded density",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-radial-switch-cost",
+      "kind": "lemma",
+      "label": "Normal switching cost",
+      "statement": "[Normal switching cost] With the preceding fixed parameter choices, for sufficiently large R and uniformly in the subsequent outer radius B , .895 L1.005_|_|^2 S +o_R( A)+o_ B;R (1). The constructed…",
+      "section": "A radial threshold and automatic bounded density",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    },
+    {
+      "id": "m1-lem-radial-area",
+      "kind": "lemma",
+      "label": "Area at small reach",
+      "statement": "[Area at small reach] For all sufficiently large R , the set \\[ \\ z B_ 2R :m_H(z)=1,\\ d(z) L/2\\ \\] has area at least c K(R)R^m , with c>0 independent of R and of the selected center.",
+      "section": "A radial threshold and automatic bounded density",
+      "manuscript": "A positive resolution of De Giorgi's conjecture in dimension eight"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-thm-stable",
+      "to": "m1-lem-monotone-ends"
+    },
+    {
+      "from": "m1-lem-diffuse-local",
+      "to": "m1-lem-diffuse-compactness"
+    },
+    {
+      "from": "m1-lem-diffuse-positive",
+      "to": "m1-lem-diffuse-mean"
+    },
+    {
+      "from": "m1-lem-diffuse-compactness",
+      "to": "m1-lem-diffuse-mean"
+    },
+    {
+      "from": "m1-lem-finite-critical",
+      "to": "m1-lem-finite-measures"
+    },
+    {
+      "from": "m1-lem-finite-critical",
+      "to": "m1-lem-finite-rough"
+    },
+    {
+      "from": "m1-thm-finite",
+      "to": "m1-lem-finite-rough"
+    },
+    {
+      "from": "m1-lem-finite-green",
+      "to": "m1-lem-finite-rough"
+    },
+    {
+      "from": "m1-lem-diffuse-mean",
+      "to": "m1-lem-finite-rough"
+    },
+    {
+      "from": "m1-lem-finite-gap",
+      "to": "m1-lem-finite-rough"
+    },
+    {
+      "from": "m1-thm-finite",
+      "to": "m1-cor-finite-subcritical"
+    },
+    {
+      "from": "m1-lem-reach-density-window",
+      "to": "m1-lem-reach-isolation"
+    },
+    {
+      "from": "m1-thm-finite",
+      "to": "m1-lem-reach-isolation"
+    },
+    {
+      "from": "m1-cor-finite-subcritical",
+      "to": "m1-lem-reach-isolation"
+    },
+    {
+      "from": "m1-lem-reach-half-line-barrier",
+      "to": "m1-lem-reach-isolation"
+    },
+    {
+      "from": "m1-lem-reach-phase-ball",
+      "to": "m1-prop-reach-calculus"
+    },
+    {
+      "from": "m1-lem-reach-isolation",
+      "to": "m1-prop-reach-calculus"
+    },
+    {
+      "from": "m1-lem-reach-small-defect",
+      "to": "m1-cor-reach-base-defect"
+    },
+    {
+      "from": "m1-lem-reach-phase-ball",
+      "to": "m1-cor-reach-base-defect"
+    },
+    {
+      "from": "m1-prop-reach-calculus",
+      "to": "m1-cor-reach-base-defect"
+    },
+    {
+      "from": "m1-lem-diffuse-mean",
+      "to": "m1-lem-interface-sharp-means"
+    },
+    {
+      "from": "m1-lem-diffuse-compactness",
+      "to": "m1-lem-interface-sharp-means"
+    },
+    {
+      "from": "m1-lem-diffuse-positive",
+      "to": "m1-lem-interface-sharp-means"
+    },
+    {
+      "from": "m1-lem-diffuse-positive",
+      "to": "m1-lem-interface-mean-gradient"
+    },
+    {
+      "from": "m1-lem-interface-immersed-test",
+      "to": "m1-prop-interface-strengthened-stability"
+    },
+    {
+      "from": "m1-lem-reach-half-line-barrier",
+      "to": "m1-lem-interface-halfspace-inverse"
+    },
+    {
+      "from": "m1-prop-interface-exact-comparison",
+      "to": "m1-lem-interface-halfspace-inverse"
+    },
+    {
+      "from": "m1-lem-reach-small-defect",
+      "to": "m1-lem-interface-halfspace-inverse"
+    },
+    {
+      "from": "m1-lem-reach-phase-ball",
+      "to": "m1-lem-interface-halfspace-inverse"
+    },
+    {
+      "from": "m1-lem-diffuse-local",
+      "to": "m1-lem-interface-good-area"
+    },
+    {
+      "from": "m1-lem-interface-good-area",
+      "to": "m1-lem-interface-integral"
+    },
+    {
+      "from": "m1-lem-interface-log-windows",
+      "to": "m1-prop-interface-sharp-gaps"
+    },
+    {
+      "from": "m1-cor-reach-base-defect",
+      "to": "m1-lem-growth-gluing"
+    },
+    {
+      "from": "m1-lem-interface-immersed-test",
+      "to": "m1-lem-growth-gluing"
+    },
+    {
+      "from": "m1-lem-interface-log-windows",
+      "to": "m1-lem-radial-clean-geometry"
+    },
+    {
+      "from": "m1-lem-radial-clean-geometry",
+      "to": "m1-lem-radial-switch-cost"
+    },
+    {
+      "from": "m1-lem-radial-errors",
+      "to": "m1-lem-radial-switch-cost"
+    },
+    {
+      "from": "m1-thm-stable",
+      "to": "m1-lem-radial-area"
+    },
+    {
+      "from": "m1-thm-finite",
+      "to": "m1-lem-radial-area"
+    }
+  ]
+}

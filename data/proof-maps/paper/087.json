@@ -1,0 +1,707 @@
+{
+  "familyNumber": "087",
+  "familyTitle": "The Mahler conjectures, functional inequalities and polar-product symplectic width",
+  "manuscripts": [
+    {
+      "id": "The-symmetric-Mahler-conjecture-and-its-equality-cases-September-22-2026",
+      "title": "The symmetric Mahler conjecture and its equality cases",
+      "date": "2026-09-22",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-symmetric-Mahler-conjecture-and-its-equality-cases-September-22-2026/paper.pdf"
+    },
+    {
+      "id": "The-Mahler-Conjecture-for-General-Convex-Bodies-September-22-2026",
+      "title": "The Mahler Conjecture for General Convex Bodies",
+      "date": "2026-09-22",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Mahler-Conjecture-for-General-Convex-Bodies-September-22-2026/paper.pdf"
+    },
+    {
+      "id": "Symplectic-Balls-in-Symmetric-Polar-Products-September-22-2026",
+      "title": "Symplectic Balls in Symmetric Polar Products",
+      "date": "2026-09-22",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Symplectic-Balls-in-Symmetric-Polar-Products-September-22-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Polarity, norm sums, and Hanner polytopes",
+    "A conformal lens with a uniform boundary coordinate",
+    "Mass at an isolated holomorphic zero",
+    "Feasible bases",
+    "The real simplex identity",
+    "Equality and a common feasibility witness",
+    "From endpoint costs to metric medians",
+    "Polarity, cone reduction, and the scalar input",
+    "Biased projections and simultaneous normalization",
+    "The entropy inequality",
+    "Quadratic identities",
+    "Controlling the layer errors",
+    "The linear-field bound and simplex rigidity",
+    "Functional and entropy--transport consequences",
+    "Quantitative one-variable estimates",
+    "A strict segment inequality",
+    "Balls from holomorphic vanishing",
+    "A planar coordinate and a uniform slice estimate",
+    "Realization in a polar product",
+    "Arbitrary convex bodies and consequences"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For every integer n1 and every origin-symmetric convex body K^n , |K|\\,|K^|4^n…",
+      "statement": "For every integer n1 and every origin-symmetric convex body K^n , |K|\\,|K^|4^n n! . Equality holds if and only if K is a linear Hanner body.",
+      "section": "Introduction",
+      "manuscript": "The symmetric Mahler conjecture and its equality cases"
+    },
+    {
+      "id": "m1-cor-functional-mahler",
+      "kind": "corollary",
+      "label": "Even functional Mahler inequality",
+      "statement": "[Even functional Mahler inequality] For every integer n1 and every even proper lower-semicontinuous convex function :^n\\ +\\ such that 0<_ ^n e^ -(x) \\,dx< , \\[ (_ ^n e^ -(x) \\,dx) (_ ^n e^ -^*(y)…",
+      "section": "Introduction",
+      "manuscript": "The symmetric Mahler conjecture and its equality cases"
+    },
+    {
+      "id": "m1-cor-entropy-transport",
+      "kind": "corollary",
+      "label": "Symmetric entropy--transport inequality",
+      "statement": "[Symmetric entropy--transport inequality] For every integer n1 , let _i(dx)=e^ -V_i(x) \\,dx , i=1,2 , be full-dimensional log-concave probability measures, both symmetric about the origin, with…",
+      "section": "Introduction",
+      "manuscript": "The symmetric Mahler conjecture and its equality cases"
+    },
+    {
+      "id": "m1-lem-sums",
+      "kind": "lemma",
+      "label": "Polars and volumes of the two sums",
+      "statement": "[Polars and volumes of the two sums] For origin-symmetric convex bodies of dimensions k,l1 , (A_1 A')^=A^_(A')^, (A_ A')^=A^_1(A')^. Moreover, |A_ A'|=|A|\\,|A'|, |A_1 A'|=k!\\,l! (k+l)! |A|\\,|A'|.…",
+      "section": "Polarity, norm sums, and Hanner polytopes",
+      "manuscript": "The symmetric Mahler conjecture and its equality cases"
+    },
+    {
+      "id": "m1-lem-hanner",
+      "kind": "lemma",
+      "label": "The Hanner volume product",
+      "statement": "[The Hanner volume product] Every d -dimensional linear Hanner body H satisfies \\[ P(H)=4^d d! . \\] The polar of a linear Hanner body is again a linear Hanner body.",
+      "section": "Polarity, norm sums, and Hanner polytopes",
+      "manuscript": "The symmetric Mahler conjecture and its equality cases"
+    },
+    {
+      "id": "m1-lem-planar-lens",
+      "kind": "lemma",
+      "label": "The planar lens",
+      "statement": "[The planar lens] The function F is a biholomorphism from D onto a bounded convex domain D , with inverse g , and F'(0)=8/^2 . There is a continuous even function :[-1,1] and is an independent…",
+      "section": "A conformal lens with a uniform boundary coordinate",
+      "manuscript": "The symmetric Mahler conjecture and its equality cases"
+    },
+    {
+      "id": "m1-lem-lens-endpoint",
+      "kind": "lemma",
+      "label": "Endpoint scaling",
+      "statement": "[Endpoint scaling] As 0 , (1-)=21+O(). For every 0<a b< , _ a c b | (1- c) (1-) -c| 0(0).",
+      "section": "A conformal lens with a uniform boundary coordinate",
+      "manuscript": "The symmetric Mahler conjecture and its equality cases"
+    },
+    {
+      "id": "m1-lem-holomorphic-mass",
+      "kind": "lemma",
+      "label": "Holomorphic mass",
+      "statement": "[Holomorphic mass] Let d1 , N d , and let U C^d be open and contain 0 . Suppose that f=(f_1,,f_N): U C^N is holomorphic and has the following properties: f^ -1 (0)=\\ 0\\ ; for an integer k1 , \\[…",
+      "section": "Mass at an isolated holomorphic zero",
+      "manuscript": "The symmetric Mahler conjecture and its equality cases"
+    },
+    {
+      "id": "m1-lem-holomorphic-feasibility",
+      "kind": "lemma",
+      "label": "Boundary feasibility",
+      "statement": "[Boundary feasibility] Let d1 and let b_1,,b_m be nonzero real rows spanning (^d)^* . Let F: D D be a biholomorphism onto a bounded planar domain, continuous on D , with F(0)=0 . Then the sum S in…",
+      "section": "Feasible bases",
+      "manuscript": "The symmetric Mahler conjecture and its equality cases"
+    },
+    {
+      "id": "m1-lem-boundary-ties",
+      "kind": "lemma",
+      "label": "Additional boundary equalities have probability zero",
+      "statement": "[Additional boundary equalities have probability zero] Let F: D D be the lens map of Lemma~ . Assume that the nonzero spanning rows b_1,,b_m are pairwise nonproportional. For every I B and j I , \\[…",
+      "section": "Feasible bases",
+      "manuscript": "The symmetric Mahler conjecture and its equality cases"
+    },
+    {
+      "id": "m1-prop-simplex-integral",
+      "kind": "proposition",
+      "label": "Feasible-simplex identity",
+      "statement": "[Feasible-simplex identity] Let b_1,,b_m be nonzero, pairwise nonproportional real rows spanning (^d)^* , and let F,D, be as in Lemma~ . With A , S , and _X defined in , , and , respectively, 1 S =d!…",
+      "section": "The real simplex identity",
+      "manuscript": "The symmetric Mahler conjecture and its equality cases"
+    },
+    {
+      "id": "m1-cor-symmetric-inequality",
+      "kind": "corollary",
+      "label": "The symmetric volume-product inequality",
+      "statement": "[The symmetric volume-product inequality] For every origin-symmetric convex body K^d , d1 , \\[ |K|\\,|K^|4^d d! . \\]",
+      "section": "The real simplex identity",
+      "manuscript": "The symmetric Mahler conjecture and its equality cases"
+    },
+    {
+      "id": "m1-prop-optimal-representation",
+      "kind": "proposition",
+      "label": "A representation minimizing the lens cost",
+      "statement": "[A representation minimizing the lens cost] Let K R^n , n1 , be an origin-symmetric convex body with P(K)=4^n/n! . Put Q=K^ , d=n+1 , and define the lifted bodies B,C by . For every XintB and every…",
+      "section": "Equality and a common feasibility witness",
+      "manuscript": "The symmetric Mahler conjecture and its equality cases"
+    },
+    {
+      "id": "m1-prop-metric-median",
+      "kind": "proposition",
+      "label": "Medians of an equality body",
+      "statement": "[Medians of an equality body] Let K^n , n1 , be an origin-symmetric convex body with P(K)=4^n/n! , and put Q=K^ . Every triple of points in (^n,p_Q) has a metric median.",
+      "section": "From endpoint costs to metric medians",
+      "manuscript": "The symmetric Mahler conjecture and its equality cases"
+    },
+    {
+      "id": "m1-lem-three-balls",
+      "kind": "lemma",
+      "label": "From medians to three balls",
+      "statement": "[From medians to three balls] Suppose every triple of points in a real normed space has a metric median. Then the space has the three-ball intersection property, including balls of radius zero.",
+      "section": "From endpoint costs to metric medians",
+      "manuscript": "The symmetric Mahler conjecture and its equality cases"
+    },
+    {
+      "id": "m1-thm-hansen-lima",
+      "kind": "theorem",
+      "label": "Hansen--Lima",
+      "statement": "[Hansen--Lima] A nonzero finite-dimensional real Banach space with the 3.2 intersection property is linearly isometric to a space obtained from the real line by finitely many _1 and _ direct sums.",
+      "section": "From endpoint costs to metric medians",
+      "manuscript": "The symmetric Mahler conjecture and its equality cases"
+    },
+    {
+      "id": "m1-prop-equality-classification",
+      "kind": "proposition",
+      "label": "Classification of equality",
+      "statement": "[Classification of equality] If an origin-symmetric convex body K^n , n1 , satisfies P(K)=4^n/n! , then it is a linear Hanner body.",
+      "section": "From endpoint costs to metric medians",
+      "manuscript": "The symmetric Mahler conjecture and its equality cases"
+    },
+    {
+      "id": "m2-thm-mahler",
+      "kind": "theorem",
+      "label": "General Mahler conjecture",
+      "statement": "[General Mahler conjecture] For every integer n1 and every convex body K R^n , \\[ P(K) (n+1)^ n+1 (n!)^2 . \\] Equality holds if and only if K is a simplex.",
+      "section": "Introduction",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-cor-functional-mahler",
+      "kind": "corollary",
+      "label": "Functional Mahler inequality",
+      "statement": "[Functional Mahler inequality] For every integer n1 and every proper lower-semicontinuous convex function :^n\\ +\\ such that 0<_ ^n e^ -(x) \\,dx< , \\[ (_ ^n e^ -(x) \\,dx) (_ ^n e^ -^*(y) \\,dy) e^n. \\]…",
+      "section": "Introduction",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-lem-cone-reduction",
+      "kind": "lemma",
+      "label": "Cone reduction",
+      "statement": "[Cone reduction] For \\(U=(0,m)\\) and \\(V=(0,1)\\), \\[ _C(V)_D(U)=(n!)^2 m^m |K|\\,|(K-z_0)^|. \\] For any closed convex solid pointed cone and any interior pair \\(U C\\), \\(V C^*\\), the two Laplace…",
+      "section": "Polarity, cone reduction, and the scalar input",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-lem-profile-identities",
+      "kind": "lemma",
+      "label": "Profile identities",
+      "statement": "[Profile identities] The functions just defined satisfy \\[ ( N+2)g=d, d'=2xd-v'-2g', N d-v''=-( N+2)(d+g''). \\]",
+      "section": "Polarity, cone reduction, and the scalar input",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-prop-scalar-input",
+      "kind": "proposition",
+      "label": "Scalar inequalities",
+      "statement": "[Scalar inequalities] The profiles and exact parameters above have the following properties. \\(b-r^2-d>0,\\ |v'-x| .319,\\ C-.341,\\ S_q>0\\), and \\[ t_-^2+t_- C+ K>0, t_+^2+t_+ C+ K<0, 2(-.37)…",
+      "section": "Polarity, cone reduction, and the scalar input",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-lem-biased-projections",
+      "kind": "lemma",
+      "label": "Biased projections",
+      "statement": "[Biased projections] For every \\(z R\\) there is a unique vector \\(_z\\) such that \\[ X_z=_C(Z+_z), Y_z=_D(-Z-_z), EX_z=a(z)U. \\] The map \\(z_z\\) is smooth. The a.e. derivative \\(P_z=D_C(Z+_z)\\) is a…",
+      "section": "Biased projections and simultaneous normalization",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-lem-projection-tails",
+      "kind": "lemma",
+      "label": "Gaussian layer tails",
+      "statement": "[Gaussian layer tails] For every finite \\(r1\\), there are \\(c_r,C_r>0\\) such that \\[ \\|P_z\\|_ L^r +\\|X_z\\|_ L^r & C_re^ -c_rz^2 && (z0),\\\\ \\|I-P_z\\|_ L^r +\\|Y_z\\|_ L^r & C_re^ -c_rz^2 && (z0). \\]…",
+      "section": "Biased projections and simultaneous normalization",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-lem-projection-sobolev",
+      "kind": "lemma",
+      "label": "The Gaussian Sobolev interface",
+      "statement": "[The Gaussian Sobolev interface] For every smooth \\(f\\) with polynomially bounded derivatives, the centered vector field \\[ W_f=_ R (p(z)Z-X_z+ EX_z)f'(z)\\,dz \\] converges in Gaussian \\(W^ 1,2 \\),…",
+      "section": "Biased projections and simultaneous normalization",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-prop-normalization",
+      "kind": "proposition",
+      "label": "Simultaneous normalization",
+      "statement": "[Simultaneous normalization] A linear transformation of the cone data and a symmetric \\(T\\) in the prescribed spectral box can be chosen so that \\[ EA=0, T^2+ C T+ K=0, H:=- C-2 T m_*I,\\\\ C= E C(L),…",
+      "section": "Biased projections and simultaneous normalization",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-lem-log-jacobian",
+      "kind": "lemma",
+      "label": "Log-Jacobian gain",
+      "statement": "[Log-Jacobian gain] The matrices \\( J_X, J_Y\\) are positive definite almost surely, their log determinants are integrable, and \\[ ( J_X+ J_Y) - v- H_v+18N. \\]",
+      "section": "The entropy inequality",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-lem-cone-entropy-maps",
+      "kind": "lemma",
+      "label": "Entropy from the projection maps",
+      "statement": "[Entropy from the projection maps] With \\(C_Y= W_YB= c_Yr_1\\), \\[ 1m(_C(V)_D(U)) (2 e)+ +( J_X+ J_Y)-1-C_Y. \\]",
+      "section": "The entropy inequality",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-prop-entropy",
+      "kind": "proposition",
+      "label": "Entropy inequality",
+      "statement": "[Entropy inequality] For the cone data and the fixed projection field constructed in Section~ , \\[ 1m(_C(V)_D(U)) (-T)+_T H_v-+18N. \\]",
+      "section": "The entropy inequality",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-lem-gaussian-covariance",
+      "kind": "lemma",
+      "label": "Gaussian covariance formula",
+      "statement": "[Gaussian covariance formula] Let \\( X, Y\\) be centered elements of the Gaussian Sobolev space \\(W^ 1,2 ( R^m; R^m)\\). Then \\[ E( X Y) = E_ i=1 ^m (_ G_i X) K_G(_ G_i Y). \\] Moreover, for every…",
+      "section": "Quadratic identities",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-lem-layer-covariance",
+      "kind": "lemma",
+      "label": "Covariance of the layer integrals",
+      "statement": "[Covariance of the layer integrals] For smooth scalar tests \\(f,j\\) with \\( f= j=0\\), H_f, K_G H_j_ = Q[f,j]+Ct(f,j).",
+      "section": "Quadratic identities",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-lem-kernel-variation",
+      "kind": "lemma",
+      "label": "Reference inversion and variation",
+      "statement": "[Reference inversion and variation] Let \\(h_f^*,h_j^*\\) be smooth scalar tests, and set \\(f=(1+ N)h_f^*\\), \\(j=(1+ N)h_j^*\\). Then Q_0[f,j]&=,\\\\ ( Q-s_0 Q_0)[f,j] &=_ w+,& w'&=f'h_j^*+j'h_f^* . The…",
+      "section": "Quadratic identities",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-lem-threshold-defect",
+      "kind": "lemma",
+      "label": "Quadratic threshold defect",
+      "statement": "[Quadratic threshold defect] For every such \\(B_*,f,\\), M_f^ B_* ,M_f^ B_* _ =2e_^ B_* (f,f)-Nt_(f,f).",
+      "section": "Quadratic identities",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-lem-layer-spectral",
+      "kind": "lemma",
+      "label": "Layer-to-spectral comparison",
+      "statement": "[Layer-to-spectral comparison] For smooth scalar tests \\(f,j\\), with \\( f=0\\) in the last identity, _ H_j &=_ j+ R,j'(L)_ +e_(,j'),\\\\ _ H_j&=_ j,\\\\ H_f,j(L)_ &=+(_-_)w-e_(f,j), w'=fj'.",
+      "section": "Quadratic identities",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-lem-profile-quadratics",
+      "kind": "lemma",
+      "label": "Profile identities",
+      "statement": "[Profile identities] For every smooth scalar test \\(l\\), &=__l+_(l) -2e_(,h_l)-e_(f_l,) -2Ct(,f_l),\\\\ D_(l)^2+J_(l) &=-__ l^2 +2e_(f_l,h_l)+Ct(f_l,f_l).",
+      "section": "Quadratic identities",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-prop-quadratic-decomposition",
+      "kind": "proposition",
+      "label": "Decomposition of the entropy term",
+      "statement": "[Decomposition of the entropy term] With the fixed profiles \\(F=d+|u|^2=c+2kq\\), one has -_T H_v &_ p +_(F) -D_(u)^2-J_(u)- R,v'(L)_T\\\\ &- L_I[H]- L_T[H+v''(x)],\\\\ _ p = &_I_d+_T(_d-v).",
+      "section": "Quadratic identities",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-lem-layers-gaussian",
+      "kind": "lemma",
+      "label": "Control of the Gaussian remainder",
+      "statement": "[Control of the Gaussian remainder] With the notation of Section~ , _(F)-D_(u)^2 (b+)_ R^2-_ R_o^2 +b_m\\|M_ f_q ^L\\|_2^2. Moreover, \\[ \\|M_ f_q ^L\\|_2^2 2 L_I[S_q(z)S_q(x)]. \\]",
+      "section": "Controlling the layer errors",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-lem-layers-diagonal",
+      "kind": "lemma",
+      "label": "Positive blocks and weighted diagonal bounds",
+      "statement": "[Positive blocks and weighted diagonal bounds] Let \\(B_*\\) be a real symmetric matrix, let \\(0 P I\\), and fix \\(z\\) outside the spectrum of \\(B_*\\). In an orthonormal eigenbasis of \\(B_*\\), write \\[…",
+      "section": "Controlling the layer errors",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-lem-layers-constant",
+      "kind": "lemma",
+      "label": "The weighted constant layer",
+      "statement": "[The weighted constant layer] The weighted non-nesting term satisfies N_T=2e_T^A(,) t_-N-c_gN/2\\,\\|[A,T]\\|_2, c_g=22-13.",
+      "section": "Controlling the layer errors",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-lem-layers-variable",
+      "kind": "lemma",
+      "label": "The variable layer bound",
+      "statement": "[The variable layer bound] The last two terms of Equation~ satisfy - L_I[H-P_0]- L_T[H_0] ( 2+.25)4\\,\\|[L,T]\\|_2^2 -(W-W_0)\\,d.",
+      "section": "Controlling the layer errors",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-lem-linear-spectral-identity",
+      "kind": "lemma",
+      "label": "Gaussian spectral identity",
+      "statement": "[Gaussian spectral identity] Let \\(F_*\\) be a smooth scalar function whose derivatives have polynomial growth, and put \\(f=F_*''\\). Then \\[ E[( N F_*)(L)] =( S-I) E f(L)+ R(f). \\]",
+      "section": "The linear-field bound and simplex rigidity",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-prop-linear-field-bound",
+      "kind": "proposition",
+      "label": "Linear-field bound",
+      "statement": "[Linear-field bound] For the normalized field satisfying~ , with \\(t_-I T t_+I\\), and the fixed profiles satisfying -- and \\( C-.341\\), \\[ _ p -J_(u)+.80\\|[L,T]\\|_2^2 -1.94 T^2. \\] Consequently, with…",
+      "section": "The linear-field bound and simplex rigidity",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-cor-entropy-transport",
+      "kind": "corollary",
+      "label": "Entropy--transport inequality",
+      "statement": "[Entropy--transport inequality] For every integer n1 , let _i(dx)=e^ -V_i(x) \\,dx , i=1,2 , be full-dimensional log-concave probability measures, with proper lower-semicontinuous convex potentials…",
+      "section": "Functional and entropy--transport consequences",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-lem-scalar-ranges",
+      "kind": "lemma",
+      "label": "Real profile bounds",
+      "statement": "[Real profile bounds] For every real \\(x\\), one has \\(>0\\). Bounds on values, and absolute bounds on derivatives, are as follows (a dash means no bound asserted): \\[ c|cc|ccc &\\ &\\ & | F|& | F| &…",
+      "section": "Quantitative one-variable estimates",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-lem-scalar-layer",
+      "kind": "lemma",
+      "label": "Pointwise layer inequalities",
+      "statement": "[Pointwise layer inequalities] We have \\(.113 S_q .514,\\ 1.104\\). For any \\(z,x\\), put \\[ H=4c+4kq(x)+2(k-q(x))S_q(z)-2S_(z)(x), J=H+v''(x)-2, b_m=(1+t_+)(b-3 ) 3(3(b+)-4c) . \\] Thus J is the profile…",
+      "section": "Quantitative one-variable estimates",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-lem-scalar-certificates",
+      "kind": "lemma",
+      "label": "Finite certificates",
+      "statement": "[Finite certificates] The following sample bounds hold with exact rational endpoints. \\[ c|c|c|c &value & |^2| &||\\\\ d&[.3862,.5]&.000260&-\\\\ d&.1338&.00092&.01037\\\\ d&.415&.00421&.03670\\\\…",
+      "section": "Quantitative one-variable estimates",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-lem-scalar-strip",
+      "kind": "lemma",
+      "label": "A common analytic strip",
+      "statement": "[A common analytic strip] As functions of \\(t\\), the profiles \\(d, K, C,R_v,V_2\\) are analytic in a neighborhood of \\(\\ t:| t| .45\\ \\). On this strip, the first three have modulus at most \\(1300\\),…",
+      "section": "Quantitative one-variable estimates",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-lem-scalar-interpolation",
+      "kind": "lemma",
+      "label": "Interpolation from second differences",
+      "statement": "[Interpolation from second differences] Put \\( R(M)=.536M+.00001\\). For any of \\[ F, F, F,n_F(F=d, K, C), R_v,V_2, \\] the error from its central chord, the affine interpolant through the two…",
+      "section": "Quantitative one-variable estimates",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-lem-scalar-tail",
+      "kind": "lemma",
+      "label": "Tail derivative bounds",
+      "statement": "[Tail derivative bounds] For \\(x64\\), set \\(D=x_x\\), \\(=x^ -2 \\), and \\(L= x+12(2)-12\\). For each row function \\(F\\), the entries are upper bounds for \\(|D^jF|/\\), uniformly on this range: \\[ c|ccc…",
+      "section": "Quantitative one-variable estimates",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-prop-segment-estimate",
+      "kind": "proposition",
+      "label": "Strict segment inequality",
+      "statement": "[Strict segment inequality] Put u=(,q) . For every pair x_-<x_+ , define e_K and as below. Then \\[ e_K&++ _ \\ -,+\\ ( C- C_ - -|u-u_ |^2)^2 8 +t_+\\,12_ \\ -,+\\ | u-u_|^2 < |u|^2-| u|^2,\\\\ e_K&= K-(…",
+      "section": "A strict segment inequality",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-lem-segment-chord",
+      "kind": "lemma",
+      "label": "Chord kernel",
+      "statement": "[Chord kernel] For every twice continuously differentiable profile F on the segment, let t=m+h and \\[ = t- (m-h) 2 m h , S= h h , g_h=34S(1+ h). \\] Then \\[ F-(F_-+F_+)/2 =-h^2 3 _ -1 ^1…",
+      "section": "A strict segment inequality",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m2-lem-segment-auxiliary",
+      "kind": "lemma",
+      "label": "Concentration and primitive bounds",
+      "statement": "[Concentration and primitive bounds] The following bounds hold in the bounded region just specified. For a set in \\([0,3.6]\\) of length \\(2H\\), \\(0<H T_0\\), the mean of \\((A_j)_+\\) on the set is at…",
+      "section": "A strict segment inequality",
+      "manuscript": "The Mahler Conjecture for General Convex Bodies"
+    },
+    {
+      "id": "m3-thm-main",
+      "kind": "theorem",
+      "label": "For every integer n2 and every origin-symmetric convex body K^n , \\[…",
+      "statement": "For every integer n2 and every origin-symmetric convex body K^n , \\[ c_G(U_K)=4. \\] More precisely, for every 0<c<4 there is a smooth symplectic embedding B^ 2n (c) U_K .",
+      "section": "Introduction",
+      "manuscript": "Symplectic Balls in Symmetric Polar Products"
+    },
+    {
+      "id": "m3-thm-holomorphic-ball",
+      "kind": "theorem",
+      "label": "A ball from a holomorphic zero",
+      "statement": "[A ball from a holomorphic zero] Let n,m1 , let ^n be an open set containing 0 , and let f=(f_1,,f_m):^m be holomorphic. Suppose that, for some integer k1 , [label=( *)] f^ -1 (0)=\\ 0\\ and…",
+      "section": "Balls from holomorphic vanishing",
+      "manuscript": "Symplectic Balls in Symmetric Polar Products"
+    },
+    {
+      "id": "m3-lem-planar-map",
+      "kind": "lemma",
+      "label": "The holomorphic function F(w)=8 ^2 _ =0 ^ (-1)^ w^ 2+1 (2+1)^2 , w, is a…",
+      "statement": "The holomorphic function F(w)=8 ^2 _ =0 ^ (-1)^ w^ 2+1 (2+1)^2 , w, is a biholomorphism from \\(\\) onto a bounded domain \\(D\\). It is odd, commutes with conjugation, and satisfies \\(F(0)=0\\). The…",
+      "section": "A planar coordinate and a uniform slice estimate",
+      "manuscript": "Symplectic Balls in Symmetric Polar Products"
+    },
+    {
+      "id": "m3-prop-uniform-slice",
+      "kind": "proposition",
+      "label": "Each \\(J_k\\) is smooth on \\(D\\), is odd in \\(v\\), and satisfies _v J_k(v,t)…",
+      "statement": "Each \\(J_k\\) is smooth on \\(D\\), is odd in \\(v\\), and satisfies _v J_k(v,t) =k^2|g(v+it)|^ 2k-2 |g'(v+it)|^20. There is a sequence \\(_k0\\), depending only on \\(F\\), with \\(_k0\\) such that,…",
+      "section": "A planar coordinate and a uniform slice estimate",
+      "manuscript": "Symplectic Balls in Symmetric Polar Products"
+    },
+    {
+      "id": "m3-prop-finite-strips",
+      "kind": "proposition",
+      "label": "Let n2 be an integer, let b_1,,b_m^n span ^n , and set \\[ K=\\ x^n: |b_j x| 1, 1…",
+      "statement": "Let n2 be an integer, let b_1,,b_m^n span ^n , and set \\[ K=\\ x^n: |b_j x| 1, 1 j m\\ . \\] For every 0<c<4 there is a smooth symplectic embedding \\[ B^ 2n (c) (K)(K^). \\]",
+      "section": "Realization in a polar product",
+      "manuscript": "Symplectic Balls in Symmetric Polar Products"
+    },
+    {
+      "id": "m3-lem-polar-approximation",
+      "kind": "lemma",
+      "label": "Finite polar approximation",
+      "statement": "[Finite polar approximation] Let K^n be an origin-symmetric convex body. For every >0 , there are finitely many vectors b_1,,b_m^n spanning ^n such that \\[ K'=\\ x^n:|b_j x |1, 1 j m\\ \\] satisfies K…",
+      "section": "Arbitrary convex bodies and consequences",
+      "manuscript": "Symplectic Balls in Symmetric Polar Products"
+    },
+    {
+      "id": "m3-cor-mahler",
+      "kind": "corollary",
+      "label": "Symmetric Mahler inequality",
+      "statement": "[Symmetric Mahler inequality] For every integer n1 and every origin-symmetric convex body K^n , \\[ _n(K)\\,_n(K^)4^n n! . \\]",
+      "section": "Arbitrary convex bodies and consequences",
+      "manuscript": "Symplectic Balls in Symmetric Polar Products"
+    },
+    {
+      "id": "m3-cor-polar-packings",
+      "kind": "corollary",
+      "label": "A sufficient packing criterion",
+      "statement": "[A sufficient packing criterion] Let n3 and k1 be integers, and let K^n be an origin-symmetric convex body. Suppose that R_1,,R_k>0 satisfy \\[ _ i=1 ^k R_i^n<4^n, R_i+R_j<4(1 i<j k). \\] Then there…",
+      "section": "Arbitrary convex bodies and consequences",
+      "manuscript": "Symplectic Balls in Symmetric Polar Products"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-thm-main",
+      "to": "m1-cor-functional-mahler"
+    },
+    {
+      "from": "m1-cor-functional-mahler",
+      "to": "m1-cor-entropy-transport"
+    },
+    {
+      "from": "m1-lem-holomorphic-mass",
+      "to": "m1-lem-holomorphic-feasibility"
+    },
+    {
+      "from": "m1-lem-planar-lens",
+      "to": "m1-lem-boundary-ties"
+    },
+    {
+      "from": "m1-lem-boundary-ties",
+      "to": "m1-prop-simplex-integral"
+    },
+    {
+      "from": "m1-lem-holomorphic-feasibility",
+      "to": "m1-prop-simplex-integral"
+    },
+    {
+      "from": "m1-prop-simplex-integral",
+      "to": "m1-cor-symmetric-inequality"
+    },
+    {
+      "from": "m1-prop-optimal-representation",
+      "to": "m1-prop-metric-median"
+    },
+    {
+      "from": "m1-lem-lens-endpoint",
+      "to": "m1-prop-metric-median"
+    },
+    {
+      "from": "m1-prop-metric-median",
+      "to": "m1-prop-equality-classification"
+    },
+    {
+      "from": "m1-lem-three-balls",
+      "to": "m1-prop-equality-classification"
+    },
+    {
+      "from": "m1-thm-hansen-lima",
+      "to": "m1-prop-equality-classification"
+    },
+    {
+      "from": "m1-lem-hanner",
+      "to": "m1-prop-equality-classification"
+    },
+    {
+      "from": "m1-cor-symmetric-inequality",
+      "to": "m1-prop-equality-classification"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-prop-equality-classification"
+    },
+    {
+      "from": "m2-prop-scalar-input",
+      "to": "m2-prop-normalization"
+    },
+    {
+      "from": "m2-lem-cone-reduction",
+      "to": "m2-prop-normalization"
+    },
+    {
+      "from": "m2-lem-biased-projections",
+      "to": "m2-prop-normalization"
+    },
+    {
+      "from": "m2-lem-projection-tails",
+      "to": "m2-prop-normalization"
+    },
+    {
+      "from": "m2-lem-log-jacobian",
+      "to": "m2-lem-cone-entropy-maps"
+    },
+    {
+      "from": "m2-lem-projection-tails",
+      "to": "m2-prop-entropy"
+    },
+    {
+      "from": "m2-lem-projection-sobolev",
+      "to": "m2-lem-layer-covariance"
+    },
+    {
+      "from": "m2-lem-gaussian-covariance",
+      "to": "m2-lem-layer-covariance"
+    },
+    {
+      "from": "m2-lem-layers-diagonal",
+      "to": "m2-lem-layers-constant"
+    },
+    {
+      "from": "m2-lem-layers-diagonal",
+      "to": "m2-lem-layers-variable"
+    },
+    {
+      "from": "m2-lem-layers-constant",
+      "to": "m2-lem-layers-variable"
+    },
+    {
+      "from": "m2-lem-linear-spectral-identity",
+      "to": "m2-prop-linear-field-bound"
+    },
+    {
+      "from": "m2-thm-mahler",
+      "to": "m2-prop-linear-field-bound"
+    },
+    {
+      "from": "m2-cor-functional-mahler",
+      "to": "m2-prop-linear-field-bound"
+    },
+    {
+      "from": "m2-cor-functional-mahler",
+      "to": "m2-cor-entropy-transport"
+    },
+    {
+      "from": "m2-lem-scalar-strip",
+      "to": "m2-lem-scalar-interpolation"
+    },
+    {
+      "from": "m2-lem-scalar-ranges",
+      "to": "m2-lem-scalar-tail"
+    },
+    {
+      "from": "m2-lem-scalar-layer",
+      "to": "m2-lem-scalar-tail"
+    },
+    {
+      "from": "m2-lem-scalar-certificates",
+      "to": "m2-lem-scalar-tail"
+    },
+    {
+      "from": "m2-lem-scalar-certificates",
+      "to": "m2-lem-segment-auxiliary"
+    },
+    {
+      "from": "m2-lem-scalar-interpolation",
+      "to": "m2-lem-segment-auxiliary"
+    },
+    {
+      "from": "m2-lem-scalar-layer",
+      "to": "m2-lem-segment-auxiliary"
+    },
+    {
+      "from": "m3-lem-planar-map",
+      "to": "m3-prop-finite-strips"
+    },
+    {
+      "from": "m3-thm-holomorphic-ball",
+      "to": "m3-prop-finite-strips"
+    },
+    {
+      "from": "m3-prop-uniform-slice",
+      "to": "m3-prop-finite-strips"
+    },
+    {
+      "from": "m3-thm-main",
+      "to": "m3-lem-polar-approximation"
+    },
+    {
+      "from": "m3-prop-finite-strips",
+      "to": "m3-lem-polar-approximation"
+    },
+    {
+      "from": "m3-thm-main",
+      "to": "m3-cor-mahler"
+    },
+    {
+      "from": "m3-thm-main",
+      "to": "m3-cor-polar-packings"
+    }
+  ]
+}

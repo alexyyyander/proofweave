@@ -1,0 +1,492 @@
+{
+  "familyNumber": "057",
+  "familyTitle": "Fundamental groups of special complex varieties and root orbifolds",
+  "manuscripts": [
+    {
+      "id": "The-abelianity-conjecture-for-special-compact-Kahler-manifolds-September-23-2026",
+      "title": "The abelianity conjecture for special compact Kähler manifolds",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-abelianity-conjecture-for-special-compact-Kahler-manifolds-September-23-2026/paper.pdf"
+    },
+    {
+      "id": "Two-step-monodromy-of-special-quasi-projective-varieties-September-24-2026",
+      "title": "Two-step monodromy of special quasi-projective varieties",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Two-step-monodromy-of-special-quasi-projective-varieties-September-24-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Geometric and group-theoretic preliminaries",
+    "Zero in the Dolbeault spectrum",
+    "Hilbert tensors and minimal quotients",
+    "Inertia and descent over a torus",
+    "Albanese fibre groups and completion of the proof",
+    "From completion to complex linear monodromy",
+    "The quasi-Albanese and the ordinary fundamental group"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-abelianity",
+      "kind": "theorem",
+      "label": "Let \\(X\\) be a connected smooth compact K\\\"ahler manifold of arbitrary complex…",
+      "statement": "Let \\(X\\) be a connected smooth compact K\\\"ahler manifold of arbitrary complex dimension. If \\(X\\) is special, then \\(_1(X)\\) has an abelian subgroup of finite index. Equivalently, \\(X\\) has a…",
+      "section": "Introduction",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-cor-kappa-zero-abelianity",
+      "kind": "corollary",
+      "label": "Fundamental groups in Kodaira dimension zero",
+      "statement": "[Fundamental groups in Kodaira dimension zero] Let \\(X\\) be a smooth compact connected K\\\"ahler manifold with \\((X)=(X,K_X)=0\\). Then its ordinary topological fundamental group \\(_1(X)\\) is virtually…",
+      "section": "Introduction",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-cor-conjecture-s-iitaka",
+      "kind": "corollary",
+      "label": "Conjecture S and bimeromorphic Iitaka uniformization",
+      "statement": "[Conjecture S and bimeromorphic Iitaka uniformization] Let \\(X\\) be a connected compact K\\\"ahler manifold of complex dimension \\(n\\). Suppose that at least one of the following holds: [label=( *)]…",
+      "section": "Introduction",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-cor-special-shafarevich",
+      "kind": "corollary",
+      "label": "Holomorphic convexity for special manifolds",
+      "statement": "[Holomorphic convexity for special manifolds] Let \\(X\\) be a connected smooth compact K\\\"ahler manifold. If \\(X\\) is special, then its ordinary universal cover is holomorphically convex.",
+      "section": "Introduction",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-cor-compactifiable-covers",
+      "kind": "corollary",
+      "label": "Analytically compactifiable covers",
+      "statement": "[Analytically compactifiable covers] [label=( *)] Let \\(X\\) be a connected normal compact K\\\"ahler space and \\(p:V X\\) a connected infinite \\'etale Galois covering of complex spaces, with deck group…",
+      "section": "Introduction",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-thm-specialness-inputs",
+      "kind": "theorem",
+      "label": "Bogomolov--Campana",
+      "statement": "[Bogomolov--Campana] For smooth compact K\\\"ahler manifolds, specialness in the definition of Section~ is bimeromorphically invariant and is preserved by connected finite \\'etale covers. The Albanese…",
+      "section": "Geometric and group-theoretic preliminaries",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-lem-torus-divisor",
+      "kind": "lemma",
+      "label": "Effective divisors on a torus",
+      "statement": "[Effective divisors on a torus] Let \\(D0\\) be an effective rational divisor on a compact complex torus \\(A\\). There are a quotient homomorphism \\(p:A B\\) with connected fibres, where \\(B\\) is a…",
+      "section": "Geometric and group-theoretic preliminaries",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-thm-gamma-reduction",
+      "kind": "theorem",
+      "label": "Meromorphic \\(\\)-reduction",
+      "statement": "[Meromorphic \\(\\)-reduction] Let \\(M\\) be a smooth compact K\\\"ahler manifold and let \\(:_1(M) P\\) be a homomorphism. There is a fibration \\(_:M B_\\) whose general fibre has finite fundamental-group…",
+      "section": "Geometric and group-theoretic preliminaries",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-thm-linear-general-type",
+      "kind": "theorem",
+      "label": "Linear general-type criterion",
+      "statement": "[Linear general-type criterion] Suppose a compact K\\\"ahler manifold has a generically large complex linear representation with torsion-free image and connected simple semisimple Zariski closure. Then…",
+      "section": "Geometric and group-theoretic preliminaries",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-thm-wang-torus",
+      "kind": "theorem",
+      "label": "Klt K\\\"ahler results over tori",
+      "statement": "[Klt K\\\"ahler results over tori] Let \\(Z\\) be a smooth compact K\\\"ahler manifold, let \\(D\\) be an effective rational divisor such that \\((Z,D)\\) is klt, and let \\(g:Z A\\) be a fibration onto a…",
+      "section": "Geometric and group-theoretic preliminaries",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-lem-finite-by-abelian",
+      "kind": "lemma",
+      "label": "Let \\(E\\) be a finitely generated group in an exact sequence \\[ 1 F E^r 1 \\]…",
+      "statement": "Let \\(E\\) be a finitely generated group in an exact sequence \\[ 1 F E^r 1 \\] with \\(F\\) finite. Then \\(E\\) is virtually abelian and residually finite. In particular it has a finite-index subgroup…",
+      "section": "Geometric and group-theoretic preliminaries",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-lem-realize-finite-index",
+      "kind": "lemma",
+      "label": "Suppose \\(G\\) has a finitely generated normal subgroup \\(N\\) with \\(G/N^r\\).…",
+      "statement": "Suppose \\(G\\) has a finitely generated normal subgroup \\(N\\) with \\(G/N^r\\). For every finite-index subgroup \\(N_0 N\\), there is a finite-index subgroup \\(G_0 G\\) satisfying \\(G_0 N N_0\\).",
+      "section": "Geometric and group-theoretic preliminaries",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-thm-zero-spectrum",
+      "kind": "theorem",
+      "label": "Let (M,) be a connected compact K\\\"ahler orbifold of complex dimension n , and…",
+      "statement": "Let (M,) be a connected compact K\\\"ahler orbifold of complex dimension n , and let U M be a connected normal orbifold covering with infinite deck group P . For some p\\ 0,,n\\ , zero belongs to the…",
+      "section": "Zero in the Dolbeault spectrum",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-sp-potential-lemma",
+      "kind": "lemma",
+      "label": "Under , there are smooth functions u_N on U , for all sufficiently large…",
+      "statement": "Under , there are smooth functions u_N on U , for all sufficiently large integers N , such that u_N0, u_N-, \\|u_N\\|_2 C N^n. For every compact set K U , there are c_K>0 and N_K with _Ku_N-c_KN(N…",
+      "section": "Zero in the Dolbeault spectrum",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-sp-cell-lemma",
+      "kind": "lemma",
+      "label": "There are C,>0 , independent of N,a,g , such that \\#\\ g P:A_a(g)1\\ C N^ 2n ,…",
+      "statement": "There are C,>0 , independent of N,a,g , such that \\#\\ g P:A_a(g)1\\ C N^ 2n , and _ gL \\!( - u_N(a^ -1 x) A_a(g)+1 )^n C. For each R< there is C_R such that C_R^ -1 (A_a(g)+1) A_a(h)+1 C_R(A_a(g)+1)…",
+      "section": "Zero in the Dolbeault spectrum",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-sp-weighted-inverse",
+      "kind": "lemma",
+      "label": "Suppose a smooth positive multiplier h on E^* satisfies 1 h e^b, _ E^*,h…",
+      "statement": "Suppose a smooth positive multiplier h on E^* satisfies 1 h e^b, _ E^*,h -C_0t_S, b,t0. Then the complete complex of E -valued (0,*) -forms with multiplier k=h^ -1 is exact with closed ranges. Every…",
+      "section": "Zero in the Dolbeault spectrum",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-sp-smoothing-lemma",
+      "kind": "lemma",
+      "label": "There is a smoothing operator K on the complete Dolbeault complex of E -valued…",
+      "statement": "There is a smoothing operator K on the complete Dolbeault complex of E -valued (0,*) -forms on D with the following properties: [label=( *)] K commutes with and preserves separately the…",
+      "section": "Zero in the Dolbeault spectrum",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-sp-one-step",
+      "kind": "lemma",
+      "label": "Let F be a smooth compactly supported closed E -valued (0,n) -form supported in…",
+      "statement": "Let F be a smooth compactly supported closed E -valued (0,n) -form supported in D_j . There is a smooth compactly supported closed form F_ new of the same type whose traced cohomology class is that…",
+      "section": "Zero in the Dolbeault spectrum",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-thm-hilbert-positivity",
+      "kind": "theorem",
+      "label": "Let \\(Y\\) be a connected smooth compact K\\\"ahler manifold of dimension \\(>0\\),…",
+      "statement": "Let \\(Y\\) be a connected smooth compact K\\\"ahler manifold of dimension \\(>0\\), and let \\[ =_i(1-m_i^ -1 )D_i, m_i, m_i2, \\] have simple normal crossing support. Denote its root orbifold by \\(\\).…",
+      "section": "Hilbert tensors and minimal quotients",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-hi-finite-images",
+      "kind": "lemma",
+      "label": "Every finite-index subgroup \\(Q_0\\) of \\(Q\\) has only finite finite-dimensional…",
+      "statement": "Every finite-index subgroup \\(Q_0\\) of \\(Q\\) has only finite finite-dimensional complex linear images. In particular, \\(H^1(Q_0,)=0\\).",
+      "section": "Hilbert tensors and minimal quotients",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-hi-coefficients",
+      "kind": "proposition",
+      "label": "There exist an integer \\(p>0\\), a separable unitary representation \\(:Q U( H)\\)…",
+      "statement": "There exist an integer \\(p>0\\), a separable unitary representation \\(:Q U( H)\\) with no nonzero finite-dimensional invariant subspace, and a nonzero holomorphic section \\[ H^0(,_ ^p H_). \\]",
+      "section": "Hilbert tensors and minimal quotients",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-hi-plucker",
+      "kind": "lemma",
+      "label": "There is a line tensor whose coefficient lines have infinite-dimensional closed…",
+      "statement": "There is a line tensor whose coefficient lines have infinite-dimensional closed span.",
+      "section": "Hilbert tensors and minimal quotients",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-hi-saturated-line",
+      "kind": "lemma",
+      "label": "A line tensor determines a saturated orbifold line subsheaf \\[ (_ _0 ^1)^ m \\]…",
+      "statement": "A line tensor determines a saturated orbifold line subsheaf \\[ (_ _0 ^1)^ m \\] and a positive curvature current on \\(\\). On the regular locus this current is the pullback of the Fubini--Study form of…",
+      "section": "Hilbert tensors and minimal quotients",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-hi-discrete-monodromy",
+      "kind": "proposition",
+      "label": "After replacing \\(\\) by a finite-index subgroup, the action on the regular…",
+      "statement": "After replacing \\(\\) by a finite-index subgroup, the action on the regular image germs of \\(F\\) has infinite discrete image in a Lie group acting properly on a connected complex manifold of dimension…",
+      "section": "Hilbert tensors and minimal quotients",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-hi-compact-fibres",
+      "kind": "lemma",
+      "label": "Let \\(V\\) be a connected smooth compact K\\\"ahler manifold of dimension \\(d\\),…",
+      "statement": "Let \\(V\\) be a connected smooth compact K\\\"ahler manifold of dimension \\(d\\), and let \\(V^\\) be the complement of a proper analytic subset. Let a discrete group \\(I\\) act properly and effectively by…",
+      "section": "Hilbert tensors and minimal quotients",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-de-inertia-divisibility",
+      "kind": "lemma",
+      "label": "Inertia over a smooth intermediate map",
+      "statement": "[Inertia over a smooth intermediate map] Let \\(f:X Z\\) be a dominant holomorphic map of connected smooth complex manifolds. Suppose that a homomorphism \\(:_1(X) R\\) is compatible, over a dense…",
+      "section": "Inertia and descent over a torus",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-de-small-boundary",
+      "kind": "lemma",
+      "label": "A small ample boundary on a torus",
+      "statement": "[A small ample boundary on a torus] Let \\(u:X B\\) be a surjective holomorphic map from a smooth compact K\\\"ahler manifold to a positive-dimensional complex torus. Let \\(=_D(1-m_D^ -1 )D\\) be an ample…",
+      "section": "Inertia and descent over a torus",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-de-neat-pullback",
+      "kind": "lemma",
+      "label": "Pullback on a neat model",
+      "statement": "[Pullback on a neat model] Let \\(u: X W\\) and \\(: X X\\) be as above, with \\(X\\) smooth compact K\\\"ahler and \\(W\\) smooth of dimension \\(r>0\\). Let \\(_W=_D(1-m_D^ -1 )D\\), with \\(m_D2\\). Suppose that…",
+      "section": "Inertia and descent over a torus",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-de-birational-pushdown",
+      "kind": "lemma",
+      "label": "Let \\(:Z' Z\\) be a modification between smooth base models of the same…",
+      "statement": "Let \\(:Z' Z\\) be a modification between smooth base models of the same fibration and quotient. For sufficiently divisible \\(m\\), there is a natural injection \\[ H^0(Z',m(K_ Z' +_ Z' ))…",
+      "section": "Inertia and descent over a torus",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-de-common-fibres",
+      "kind": "lemma",
+      "label": "Restriction to common general fibres",
+      "statement": "[Restriction to common general fibres] Let \\(g:Z A\\) and \\(h:Z W\\) be surjective holomorphic maps with connected general fibres between compact complex manifolds, with \\(Z\\) smooth. Let \\(L\\) be a…",
+      "section": "Inertia and descent over a torus",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-thm-torus-descent",
+      "kind": "theorem",
+      "label": "Descent over a torus",
+      "statement": "[Descent over a torus] Let \\(M\\) be a special smooth compact K\\\"ahler manifold, and let \\(:M A\\) be a surjective map to a complex torus with connected fibres. Suppose that \\[ M Zg A \\] is a…",
+      "section": "Inertia and descent over a torus",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-lem-albanese-exactness",
+      "kind": "lemma",
+      "label": "The natural sequence is exact: \\[ 1 N G _*_1(A)1. \\]",
+      "statement": "The natural sequence is exact: \\[ 1 N G _*_1(A)1. \\]",
+      "section": "Albanese fibre groups and completion of the proof",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-prop-fibre-fab",
+      "kind": "proposition",
+      "label": "The group \\(N\\) is FAb.",
+      "statement": "The group \\(N\\) is FAb.",
+      "section": "Albanese fibre groups and completion of the proof",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m1-prop-minimal-base",
+      "kind": "proposition",
+      "label": "After a further connected finite \\'etale cover, there is a fibration \\(c:X Z\\)…",
+      "statement": "After a further connected finite \\'etale cover, there is a fibration \\(c:X Z\\) over the Albanese torus \\(A\\), with connected general fibres and relative base dimension \\(\\). If \\(B_0\\) is the actual…",
+      "section": "Albanese fibre groups and completion of the proof",
+      "manuscript": "The abelianity conjecture for special compact Kähler manifolds"
+    },
+    {
+      "id": "m2-thm-linear",
+      "kind": "theorem",
+      "label": "Two-step linear monodromy",
+      "statement": "[Two-step linear monodromy] Let V be a connected smooth special complex quasi-projective variety. For every positive integer d and every representation :_1(V)_d() , the image (_1(V)) has a subgroup…",
+      "section": "Introduction",
+      "manuscript": "Two-step monodromy of special quasi-projective varieties"
+    },
+    {
+      "id": "m2-thm-completion",
+      "kind": "theorem",
+      "label": "Completion under quasi-Albanese exactness",
+      "statement": "[Completion under quasi-Albanese exactness] Let V be a connected smooth complex quasi-projective variety and let a:V A=(V) be its algebraic quasi-Albanese map. Suppose a is dominant, choose a smooth…",
+      "section": "Introduction",
+      "manuscript": "Two-step monodromy of special quasi-projective varieties"
+    },
+    {
+      "id": "m2-thm-example",
+      "kind": "theorem",
+      "label": "Let E be a complex elliptic curve, let q_1,,q_n be distinct points of ^1 ,…",
+      "statement": "Let E be a complex elliptic curve, let q_1,,q_n be distinct points of ^1 , where n3 , and choose points e_1,,e_n of E . Let \\[ b:Y=_ \\ (e_i,q_i)\\ _ i=1 ^n (E^1) E^1. \\] Write D_i for the strict…",
+      "section": "Introduction",
+      "manuscript": "Two-step monodromy of special quasi-projective varieties"
+    },
+    {
+      "id": "m2-cor-log-kodaira-zero",
+      "kind": "corollary",
+      "label": "Log-Kodaira-zero monodromy",
+      "statement": "[Log-Kodaira-zero monodromy] Let V be a connected smooth complex quasi-projective variety with logarithmic Kodaira dimension (V)=0 , and put =_1(V) . For every positive integer d and every…",
+      "section": "From completion to complex linear monodromy",
+      "manuscript": "Two-step monodromy of special quasi-projective varieties"
+    },
+    {
+      "id": "m2-lem-units",
+      "kind": "lemma",
+      "label": "Every invertible regular function on X is constant.",
+      "statement": "Every invertible regular function on X is constant.",
+      "section": "The quasi-Albanese and the ordinary fundamental group",
+      "manuscript": "Two-step monodromy of special quasi-projective varieties"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-thm-abelianity",
+      "to": "m1-cor-kappa-zero-abelianity"
+    },
+    {
+      "from": "m1-thm-abelianity",
+      "to": "m1-cor-conjecture-s-iitaka"
+    },
+    {
+      "from": "m1-thm-specialness-inputs",
+      "to": "m1-cor-conjecture-s-iitaka"
+    },
+    {
+      "from": "m1-thm-abelianity",
+      "to": "m1-cor-special-shafarevich"
+    },
+    {
+      "from": "m1-thm-abelianity",
+      "to": "m1-cor-compactifiable-covers"
+    },
+    {
+      "from": "m1-lem-finite-by-abelian",
+      "to": "m1-lem-realize-finite-index"
+    },
+    {
+      "from": "m1-sp-weighted-inverse",
+      "to": "m1-sp-one-step"
+    },
+    {
+      "from": "m1-sp-smoothing-lemma",
+      "to": "m1-sp-one-step"
+    },
+    {
+      "from": "m1-thm-zero-spectrum",
+      "to": "m1-sp-one-step"
+    },
+    {
+      "from": "m1-thm-zero-spectrum",
+      "to": "m1-hi-coefficients"
+    },
+    {
+      "from": "m1-hi-finite-images",
+      "to": "m1-hi-coefficients"
+    },
+    {
+      "from": "m1-hi-coefficients",
+      "to": "m1-hi-plucker"
+    },
+    {
+      "from": "m1-hi-finite-images",
+      "to": "m1-hi-discrete-monodromy"
+    },
+    {
+      "from": "m1-thm-gamma-reduction",
+      "to": "m1-hi-compact-fibres"
+    },
+    {
+      "from": "m1-thm-hilbert-positivity",
+      "to": "m1-hi-compact-fibres"
+    },
+    {
+      "from": "m1-hi-discrete-monodromy",
+      "to": "m1-hi-compact-fibres"
+    },
+    {
+      "from": "m1-hi-saturated-line",
+      "to": "m1-hi-compact-fibres"
+    },
+    {
+      "from": "m1-thm-specialness-inputs",
+      "to": "m1-de-small-boundary"
+    },
+    {
+      "from": "m1-thm-specialness-inputs",
+      "to": "m1-de-neat-pullback"
+    },
+    {
+      "from": "m1-thm-wang-torus",
+      "to": "m1-thm-torus-descent"
+    },
+    {
+      "from": "m1-de-common-fibres",
+      "to": "m1-thm-torus-descent"
+    },
+    {
+      "from": "m1-lem-torus-divisor",
+      "to": "m1-thm-torus-descent"
+    },
+    {
+      "from": "m1-de-birational-pushdown",
+      "to": "m1-thm-torus-descent"
+    },
+    {
+      "from": "m1-de-neat-pullback",
+      "to": "m1-thm-torus-descent"
+    },
+    {
+      "from": "m1-de-inertia-divisibility",
+      "to": "m1-thm-torus-descent"
+    },
+    {
+      "from": "m1-thm-specialness-inputs",
+      "to": "m1-thm-torus-descent"
+    },
+    {
+      "from": "m1-lem-torus-divisor",
+      "to": "m1-lem-albanese-exactness"
+    },
+    {
+      "from": "m1-de-inertia-divisibility",
+      "to": "m1-lem-albanese-exactness"
+    },
+    {
+      "from": "m1-de-small-boundary",
+      "to": "m1-lem-albanese-exactness"
+    },
+    {
+      "from": "m1-thm-specialness-inputs",
+      "to": "m1-lem-albanese-exactness"
+    },
+    {
+      "from": "m1-lem-realize-finite-index",
+      "to": "m1-prop-fibre-fab"
+    },
+    {
+      "from": "m1-thm-gamma-reduction",
+      "to": "m1-prop-minimal-base"
+    },
+    {
+      "from": "m1-lem-realize-finite-index",
+      "to": "m1-prop-minimal-base"
+    },
+    {
+      "from": "m2-thm-linear",
+      "to": "m2-thm-example"
+    },
+    {
+      "from": "m2-thm-completion",
+      "to": "m2-thm-example"
+    },
+    {
+      "from": "m2-thm-linear",
+      "to": "m2-cor-log-kodaira-zero"
+    },
+    {
+      "from": "m2-thm-completion",
+      "to": "m2-cor-log-kodaira-zero"
+    }
+  ]
+}

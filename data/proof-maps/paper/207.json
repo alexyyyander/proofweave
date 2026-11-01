@@ -1,0 +1,526 @@
+{
+  "familyNumber": "207",
+  "familyTitle": "The ℓ¹-Bass conjecture for all discrete groups",
+  "manuscripts": [
+    {
+      "id": "The-l1-Bass-Conjecture-for-Discrete-Groups-October-5-2026",
+      "title": "The ℓ¹-Bass Conjecture for Discrete Groups",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-l1-Bass-Conjecture-for-Discrete-Groups-October-5-2026/l1-bass-conjecture.pdf"
+    },
+    {
+      "id": "The-Bass-trace-conjecture-for-complex-group-rings-September-24-2026",
+      "title": "The Bass trace conjecture and the characteristic-zero Kaplansky idempotent conjecture",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Bass-trace-conjecture-for-complex-group-rings-September-24-2026/The-Bass-trace-conjecture-for-complex-group-rings-September-24-2026.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Reduction to exponential decay",
+    "Cyclic simplex formulas for the trace",
+    "Smooth summaries at a spatial scale",
+    "A connection from successive time averages",
+    "Curvature estimates and the Pfaffian bound",
+    "A vanishing theorem for sparse simplicial cycles",
+    "A metric and volume bound for connected supports",
+    "Equivariant separating filtrations",
+    "Local replacement and the number of zero strata",
+    "From separating filtrations to finite chains",
+    "Cycles from an idempotent",
+    "A Pfaffian cocycle detecting the trace coefficient",
+    "Completion of the trace theorem"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Let G be a discrete group, let q1 , and let e M_q(^1(G)) be idempotent. There…",
+      "statement": "Let G be a discrete group, let q1 , and let e M_q(^1(G)) be idempotent. There is a finite set F C_ fin (G) such that _C(e)=0 for every C F . Equivalently, \\[ HS^1(K_0(^1(G))) _ C C_ fin (G) . \\]",
+      "section": "Introduction",
+      "manuscript": "The ℓ¹-Bass Conjecture for Discrete Groups"
+    },
+    {
+      "id": "m1-red-trace",
+      "kind": "lemma",
+      "label": "Traciality",
+      "statement": "[Traciality] For every conjugacy class C of a discrete group G , the functional \\[ T_C(a)=_ h C a(h), a M_q(^1(G)), \\] is continuous and satisfies T_C(ab)=T_C(ba) . It is therefore invariant under…",
+      "section": "Reduction to exponential decay",
+      "manuscript": "The ℓ¹-Bass Conjecture for Discrete Groups"
+    },
+    {
+      "id": "m1-red-reduction",
+      "kind": "proposition",
+      "label": "Exponentially decaying representative",
+      "statement": "[Exponentially decaying representative] Let e M_q(^1(G)) satisfy e^2=e . There are a finitely generated subgroup G , a word length || on , a number c>0 , and an idempotent p M_q(^1()) such that _ h…",
+      "section": "Reduction to exponential decay",
+      "manuscript": "The ℓ¹-Bass Conjecture for Discrete Groups"
+    },
+    {
+      "id": "m1-cy-weights-lemma",
+      "kind": "lemma",
+      "label": "Weight identities",
+      "statement": "[Weight identities] The following properties hold. [label=( *)] The weights have total sum _ [g] (p) , in every dimension. Twisted rotation (h_0,,h_k)(h_1,,h_k,gh_0) preserves the weights. For k1 ,…",
+      "section": "Cyclic simplex formulas for the trace",
+      "manuscript": "The ℓ¹-Bass Conjecture for Discrete Groups"
+    },
+    {
+      "id": "m1-cy-trace-identity",
+      "kind": "proposition",
+      "label": "Trace as a curvature average",
+      "statement": "[Trace as a curvature average] Let n=2m>0 and let be a compatible connection family through dimension n . Write A_h for the matrix of d_h on the section t_0=0 . If E_ _n denotes uniform probability…",
+      "section": "Cyclic simplex formulas for the trace",
+      "manuscript": "The ℓ¹-Bass Conjecture for Discrete Groups"
+    },
+    {
+      "id": "m1-ch-summary",
+      "kind": "proposition",
+      "label": "Spatial summary channels",
+      "statement": "[Spatial summary channels] Fix r1 and 0<10^ -3 . There are channels A,L and a cross kernel with either of the following two choices of radius: the early version has r'=6r , and the later version has…",
+      "section": "Smooth summaries at a spatial scale",
+      "manuscript": "The ℓ¹-Bass Conjecture for Discrete Groups"
+    },
+    {
+      "id": "m1-ch-center-geometry",
+      "kind": "lemma",
+      "label": "For P P_f(G) , the set \\ y:E_r(P,y)>1/2\\ has diameter at most 4r and…",
+      "statement": "For P P_f(G) , the set \\ y:E_r(P,y)>1/2\\ has diameter at most 4r and cardinality at most ( r) , where depends only on the word metric.",
+      "section": "Smooth summaries at a spatial scale",
+      "manuscript": "The ℓ¹-Bass Conjecture for Discrete Groups"
+    },
+    {
+      "id": "m1-ch-selector-estimates",
+      "kind": "lemma",
+      "label": "Selector estimates",
+      "statement": "[Selector estimates] The formulas define smooth equivariant channels. They satisfy _y A(P)_y(E_r(P,y)-a_*)_r(P)-3. Whenever q_r(P)>0.70 , _zD(P)_z1-, _zD(P)_zE_r(P,z) q_r(P)-2. Both channels have…",
+      "section": "Smooth summaries at a spatial scale",
+      "manuscript": "The ℓ¹-Bass Conjecture for Discrete Groups"
+    },
+    {
+      "id": "m1-ch-terminal",
+      "kind": "lemma",
+      "label": "Terminal channel",
+      "statement": "[Terminal channel] For each r1 and 0<10^ -3 , the channel D in is smooth, left equivariant, and has total mass at most one. Its nonempty support has diameter at most 4r and cardinality at most e^ r ,…",
+      "section": "Smooth summaries at a spatial scale",
+      "manuscript": "The ℓ¹-Bass Conjecture for Discrete Groups"
+    },
+    {
+      "id": "m1-ch-accurate-string",
+      "kind": "lemma",
+      "label": "There is a constant C , depending only on the word metric, and an integer b…",
+      "statement": "There is a constant C , depending only on the word metric, and an integer b depending only on r, , with 1 b Cr^ -4 , such that for every P and z some w A_z^b satisfies (P;z,w) .",
+      "section": "Smooth summaries at a spatial scale",
+      "manuscript": "The ℓ¹-Bass Conjecture for Discrete Groups"
+    },
+    {
+      "id": "m1-ch-string-estimates",
+      "kind": "lemma",
+      "label": "For M_2 sufficiently large, uniformly in P,z,y , _w_z(P)_w(P;z,w)&5, \\\\…",
+      "statement": "For M_2 sufficiently large, uniformly in P,z,y , _w_z(P)_w(P;z,w)&5, \\\\ |_w_z(P)_wH_y(w)-E_r(P^z,y)| &5. The transfer derivatives satisfy (_w| _z(P)_w|^2 _z(P)_w )^ 1/2 C N_1d(h,h') r .",
+      "section": "Smooth summaries at a spatial scale",
+      "manuscript": "The ℓ¹-Bass Conjecture for Discrete Groups"
+    },
+    {
+      "id": "m1-co-regularity",
+      "kind": "lemma",
+      "label": "The forms in are well defined, independent of the period cut, and smooth up to…",
+      "statement": "The forms in are well defined, independent of the period cut, and smooth up to every simplex face by one-sided extension. They are invariant under simultaneous translation of all times, under the…",
+      "section": "A connection from successive time averages",
+      "manuscript": "The ℓ¹-Bass Conjecture for Discrete Groups"
+    },
+    {
+      "id": "m1-co-contraction-lemma",
+      "kind": "lemma",
+      "label": "For every stage 0 j b_* , C_j:=B_j(V) =_ per ( K_j(Y_j(u),Y_j(u)) -_…",
+      "statement": "For every stage 0 j b_* , C_j:=B_j(V) =_ per ( K_j(Y_j(u),Y_j(u)) -_ K_j(Y_j(u),Y_j(u+s))\\,d_j(s))du. For j<b_* , the second integrated pairing is also _ per K_j((_ j+1 *Y_j)(u),(_ j+1 *Y_j)(u))\\,du.",
+      "section": "A connection from successive time averages",
+      "manuscript": "The ℓ¹-Bass Conjecture for Discrete Groups"
+    },
+    {
+      "id": "m1-co-positivity",
+      "kind": "lemma",
+      "label": "Under , the scalar function C_ nor :=B(V)=_ j=0 ^ b_*-1 C_j+WC_ b_* satisfies…",
+      "statement": "Under , the scalar function C_ nor :=B(V)=_ j=0 ^ b_*-1 C_j+WC_ b_* satisfies C_ nor c_0 , where c_0=1/10 is independent of all tuples, n , R , and g .",
+      "section": "A connection from successive time averages",
+      "manuscript": "The ℓ¹-Bass Conjecture for Discrete Groups"
+    },
+    {
+      "id": "m1-co-connection",
+      "kind": "proposition",
+      "label": "Let R be sufficiently large, choose the parameters in and , and let n>10_ b_*…",
+      "statement": "Let R be sufficiently large, choose the parameters in and , and let n>10_ b_* be even, with time scales . Suppose that g satisfies . The forms B_j and B in , constructed in all dimensions 0 k n with…",
+      "section": "A connection from successive time averages",
+      "manuscript": "The ℓ¹-Bass Conjecture for Discrete Groups"
+    },
+    {
+      "id": "m1-pf-bound",
+      "kind": "theorem",
+      "label": "Averaged curvature bound",
+      "statement": "[Averaged curvature bound] Fix a sufficiently large R , and set S=b_*+2 . Let n be an even integer with n>10_ b_* . Suppose either that g has infinite order, or that g has finite order and \\[ _ h G…",
+      "section": "Curvature estimates and the Pfaffian bound",
+      "manuscript": "The ℓ¹-Bass Conjecture for Discrete Groups"
+    },
+    {
+      "id": "m1-pf-order-kernel",
+      "kind": "lemma",
+      "label": "Approximation of order kernels",
+      "statement": "[Approximation of order kernels] Let , be finite nonatomic positive measures on , and set M=()+() . Let A:L^2() L^2() have any one of the kernels \\[ sign(s-t), 1_ s<t , 1_ s>t , \\] where t is the…",
+      "section": "Curvature estimates and the Pfaffian bound",
+      "manuscript": "The ℓ¹-Bass Conjecture for Discrete Groups"
+    },
+    {
+      "id": "m1-pf-terminal-singular",
+      "kind": "lemma",
+      "label": "Singular values at the last stage",
+      "statement": "[Singular values at the last stage] For the operator T_ b_* , every finite-dimensional orthogonal compression has singular values satisfying s_ C, 1. The constant is independent of n,R,g , and the…",
+      "section": "Curvature estimates and the Pfaffian bound",
+      "manuscript": "The ℓ¹-Bass Conjecture for Discrete Groups"
+    },
+    {
+      "id": "m1-pf-occupancy",
+      "kind": "lemma",
+      "label": "Average of the neighbor counts",
+      "statement": "[Average of the neighbor counts] Let R1 , n8R , and 0 k n . Choose (t_1,,t_n) with uniform probability on _n , and independently choose I uniformly among the k -element subsets of \\ 1,,n\\ . Then E_…",
+      "section": "Curvature estimates and the Pfaffian bound",
+      "manuscript": "The ℓ¹-Bass Conjecture for Discrete Groups"
+    },
+    {
+      "id": "m2-thm-bass",
+      "kind": "theorem",
+      "label": "Let G be any discrete group. For every x K_0( G) and every infinite-order…",
+      "statement": "Let G be any discrete group. For every x K_0( G) and every infinite-order element g G , \\[ _G(x)([g]_G)=0. \\] Equivalently, if _ fin (G) denotes the conjugacy classes of finite-order elements, then…",
+      "section": "Introduction",
+      "manuscript": "The Bass trace conjecture and the characteristic-zero Kaplansky idempotent conjecture"
+    },
+    {
+      "id": "m2-cor-torsion-free",
+      "kind": "corollary",
+      "label": "Let G be any torsion-free discrete group. [label=( *)] For every q1 and every…",
+      "statement": "Let G be any torsion-free discrete group. [label=( *)] For every q1 and every idempotent e M_q( G) , \\[ _ G,q (e)=rank_ (_ G,q (e)). \\] Consequently _ G,* =rk_ , with viewed as a subgroup of , and \\[…",
+      "section": "Introduction",
+      "manuscript": "The Bass trace conjecture and the characteristic-zero Kaplansky idempotent conjecture"
+    },
+    {
+      "id": "m2-thm-sparse",
+      "kind": "theorem",
+      "label": "Sparse-chain vanishing",
+      "statement": "[Sparse-chain vanishing] For each integer D2 there is an integer n_0(D) with the following property. Let Y be the vertex set of a countable connected simple graph of degree at most D , and let a…",
+      "section": "A vanishing theorem for sparse simplicial cycles",
+      "manuscript": "The Bass trace conjecture and the characteristic-zero Kaplansky idempotent conjecture"
+    },
+    {
+      "id": "m2-lem-proper",
+      "kind": "lemma",
+      "label": "Every closed \\(\\)-ball meets only finitely many simplices of \\(K\\). The complex…",
+      "statement": "Every closed \\(\\)-ball meets only finitely many simplices of \\(K\\). The complex \\(K\\) is locally finite, and \\(\\) gives its usual realization topology and is proper. For each \\(c|K|\\), \\(s0\\), and…",
+      "section": "A metric and volume bound for connected supports",
+      "manuscript": "The Bass trace conjecture and the characteristic-zero Kaplansky idempotent conjecture"
+    },
+    {
+      "id": "m2-lem-tree",
+      "kind": "lemma",
+      "label": "In every tree Euclidean structure on a top simplex \\(\\), its \\(n\\)-volume is…",
+      "statement": "In every tree Euclidean structure on a top simplex \\(\\), its \\(n\\)-volume is \\(1/n!\\). Every affine branch of \\(f_c|_\\) has gradient of norm at most one, for every \\(c|K|\\). The same gradient bound…",
+      "section": "A metric and volume bound for connected supports",
+      "manuscript": "The Bass trace conjecture and the characteristic-zero Kaplansky idempotent conjecture"
+    },
+    {
+      "id": "m2-lem-free-parameter",
+      "kind": "lemma",
+      "label": "Every countable group H admits a continuous free action on a compact metrizable…",
+      "statement": "Every countable group H admits a continuous free action on a compact metrizable zero-dimensional space X , preserving a Borel probability measure .",
+      "section": "Equivariant separating filtrations",
+      "manuscript": "The Bass trace conjecture and the characteristic-zero Kaplansky idempotent conjecture"
+    },
+    {
+      "id": "m2-lem-refinement",
+      "kind": "lemma",
+      "label": "Compatible cuts",
+      "statement": "[Compatible cuts] Fix locally constant equivariant triangulation families T and S , where S refines T , and subcomplex families P T and Z S with Z P . Let \\ (c_,B_)\\ _ A be a countable equivariant…",
+      "section": "Equivariant separating filtrations",
+      "manuscript": "The Bass trace conjecture and the characteristic-zero Kaplansky idempotent conjecture"
+    },
+    {
+      "id": "m2-lem-filtration-exists",
+      "kind": "lemma",
+      "label": "For any allowed choices through stage d , an allowed choice of (T_ d-1 ,Z_ d-1…",
+      "statement": "For any allowed choices through stage d , an allowed choice of (T_ d-1 ,Z_ d-1 ) exists. Hence a filtration can be continued to Z_0 .",
+      "section": "Equivariant separating filtrations",
+      "manuscript": "The Bass trace conjecture and the characteristic-zero Kaplansky idempotent conjecture"
+    },
+    {
+      "id": "m2-lem-carrier",
+      "kind": "lemma",
+      "label": "Carriers of the zero-dimensional stratum",
+      "statement": "[Carriers of the zero-dimensional stratum] Let (T_i,Z_i)_ i=0 ^n be an allowed filtration and let z Z_0(x) . For every i , there is a unique i -simplex of T_i(x) contained in Z_i(x) and containing z…",
+      "section": "Equivariant separating filtrations",
+      "manuscript": "The Bass trace conjecture and the characteristic-zero Kaplansky idempotent conjecture"
+    },
+    {
+      "id": "m2-prop-zero-strata",
+      "kind": "proposition",
+      "label": "For every >0 there is an admissible equivariant locally constant filtration…",
+      "statement": "For every >0 there is an admissible equivariant locally constant filtration (Z_j,T_j)_ j=0 ^n such that, for every original top simplex of K , _X\\#(Z_0(x))\\,d(x) C_. Here C_ depends on the fixed…",
+      "section": "Local replacement and the number of zero strata",
+      "manuscript": "The Bass trace conjecture and the characteristic-zero Kaplansky idempotent conjecture"
+    },
+    {
+      "id": "m2-lem-finite-component-labels",
+      "kind": "lemma",
+      "label": "For every original simplex of K , there is a finite set W_ Y , independent of…",
+      "statement": "For every original simplex of K , there is a finite set W_ Y , independent of and x , such that J_ U_F W_ whenever b_F . The triangulation over , together with all its assigned vectors u_ U_F , is…",
+      "section": "From separating filtrations to finite chains",
+      "manuscript": "The Bass trace conjecture and the characteristic-zero Kaplansky idempotent conjecture"
+    },
+    {
+      "id": "m2-lem-surviving-flags",
+      "kind": "lemma",
+      "label": "For every original top simplex and every x , at most \\[ 2^n\\#(Z_0(x)) \\] terms…",
+      "statement": "For every original top simplex and every x , at most \\[ 2^n\\#(Z_0(x)) \\] terms in its fundamental barycentric subdivision chain have nonzero images under the exterior replacement map.",
+      "section": "From separating filtrations to finite chains",
+      "manuscript": "The Bass trace conjecture and the characteristic-zero Kaplansky idempotent conjecture"
+    },
+    {
+      "id": "m2-lem-equivariant-homotopy",
+      "kind": "lemma",
+      "label": "Let K be a simplicial complex with an H -action and finite setwise simplex…",
+      "statement": "Let K be a simplicial complex with an H -action and finite setwise simplex stabilizers. Let E_* be the augmented exterior chain complex on a nonempty H -set. Any two H -equivariant augmented chain…",
+      "section": "From separating filtrations to finite chains",
+      "manuscript": "The Bass trace conjecture and the characteristic-zero Kaplansky idempotent conjecture"
+    },
+    {
+      "id": "m2-lem-locality",
+      "kind": "lemma",
+      "label": "Subgroup locality",
+      "statement": "[Subgroup locality] Let i:L G be an inclusion of discrete groups. Extension of scalars defines i_*:K_0( L) K_0( G) , and for every y K_0( L) and C(G) , _G(i_*y)(C) =_ B (L)\\\\ B L C _L(y)(B). Only…",
+      "section": "Cycles from an idempotent",
+      "manuscript": "The Bass trace conjecture and the characteristic-zero Kaplansky idempotent conjecture"
+    },
+    {
+      "id": "m2-lem-path-identities",
+      "kind": "lemma",
+      "label": "Path identities",
+      "statement": "[Path identities] For the path sums associated to e and g , the twisted cyclic shift \\[ T(h_0,,h_ k-1 )=(h_1,,h_ k-1 ,gh_0) \\] preserves v_k . For k2 , deletion of any entry induces a map d_i:Q_k Q_…",
+      "section": "Cycles from an idempotent",
+      "manuscript": "The Bass trace conjecture and the characteristic-zero Kaplansky idempotent conjecture"
+    },
+    {
+      "id": "m2-prop-path-cycle",
+      "kind": "proposition",
+      "label": "For every positive even integer n , the chain z_n is a cycle. Moreover, either…",
+      "statement": "For every positive even integer n , the chain z_n is a cycle. Moreover, either its defining sum has no nonzero distinct-vertex terms, so z_n=0 , or it is the image of a cycle in C_n(K)_H for an H…",
+      "section": "Cycles from an idempotent",
+      "manuscript": "The Bass trace conjecture and the characteristic-zero Kaplansky idempotent conjecture"
+    },
+    {
+      "id": "m2-lem-beta",
+      "kind": "lemma",
+      "label": "There is a J -invariant function :G G such that (h',h)=-(h,h'), (g^r h,g^s…",
+      "statement": "There is a J -invariant function :G G such that (h',h)=-(h,h'), (g^r h,g^s h')=(h,h')+s-r (r,s).",
+      "section": "A Pfaffian cocycle detecting the trace coefficient",
+      "manuscript": "The Bass trace conjecture and the characteristic-zero Kaplansky idempotent conjecture"
+    },
+    {
+      "id": "m2-lem-pfaffian-recurrence",
+      "kind": "lemma",
+      "label": "For every m1 , one has q_m=12q_ m-1 and hence q_m=2^ -m .",
+      "statement": "For every m1 , one has q_m=12q_ m-1 and hence q_m=2^ -m .",
+      "section": "A Pfaffian cocycle detecting the trace coefficient",
+      "manuscript": "The Bass trace conjecture and the characteristic-zero Kaplansky idempotent conjecture"
+    },
+    {
+      "id": "m2-prop-detector",
+      "kind": "proposition",
+      "label": "For every integer m1 , the formula _m(y_0,,y_ 2m ) =_ i=0 ^ 2m (-1)^i…",
+      "statement": "For every integer m1 , the formula _m(y_0,,y_ 2m ) =_ i=0 ^ 2m (-1)^i p_m(h_0,,h_i,,h_ 2m ), where h_i G is any lift of y_i Y , defines an H -invariant linear functional _m:E_ 2m satisfying \\[ _m=0,…",
+      "section": "A Pfaffian cocycle detecting the trace coefficient",
+      "manuscript": "The Bass trace conjecture and the characteristic-zero Kaplansky idempotent conjecture"
+    },
+    {
+      "id": "m2-cor-integral",
+      "kind": "corollary",
+      "label": "For every discrete group G , the Hattori--Stallings trace of every class in…",
+      "statement": "For every discrete group G , the Hattori--Stallings trace of every class in K_0( G) is supported on [1]_G .",
+      "section": "Completion of the trace theorem",
+      "manuscript": "The Bass trace conjecture and the characteristic-zero Kaplansky idempotent conjecture"
+    },
+    {
+      "id": "m2-cor-homotopy-idempotents",
+      "kind": "corollary",
+      "label": "Berrick--Chatterji--Mislin consequences",
+      "statement": "[Berrick--Chatterji--Mislin consequences] Let M be a connected closed smooth oriented manifold. [label=( *)] If M>2 and f:M M satisfies f f f by free homotopy, then some self-map freely homotopic to…",
+      "section": "Completion of the trace theorem",
+      "manuscript": "The Bass trace conjecture and the characteristic-zero Kaplansky idempotent conjecture"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-red-trace",
+      "to": "m1-red-reduction"
+    },
+    {
+      "from": "m1-cy-weights-lemma",
+      "to": "m1-cy-trace-identity"
+    },
+    {
+      "from": "m1-ch-center-geometry",
+      "to": "m1-ch-selector-estimates"
+    },
+    {
+      "from": "m1-ch-center-geometry",
+      "to": "m1-ch-terminal"
+    },
+    {
+      "from": "m1-ch-selector-estimates",
+      "to": "m1-ch-terminal"
+    },
+    {
+      "from": "m1-ch-accurate-string",
+      "to": "m1-ch-string-estimates"
+    },
+    {
+      "from": "m1-ch-summary",
+      "to": "m1-ch-string-estimates"
+    },
+    {
+      "from": "m1-co-regularity",
+      "to": "m1-co-contraction-lemma"
+    },
+    {
+      "from": "m1-ch-summary",
+      "to": "m1-co-positivity"
+    },
+    {
+      "from": "m1-ch-terminal",
+      "to": "m1-co-positivity"
+    },
+    {
+      "from": "m1-ch-summary",
+      "to": "m1-co-connection"
+    },
+    {
+      "from": "m1-ch-terminal",
+      "to": "m1-co-connection"
+    },
+    {
+      "from": "m1-co-regularity",
+      "to": "m1-co-connection"
+    },
+    {
+      "from": "m1-co-positivity",
+      "to": "m1-co-connection"
+    },
+    {
+      "from": "m1-pf-order-kernel",
+      "to": "m1-pf-terminal-singular"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-pf-occupancy"
+    },
+    {
+      "from": "m1-red-reduction",
+      "to": "m1-pf-occupancy"
+    },
+    {
+      "from": "m1-cy-weights-lemma",
+      "to": "m1-pf-occupancy"
+    },
+    {
+      "from": "m1-co-connection",
+      "to": "m1-pf-occupancy"
+    },
+    {
+      "from": "m1-cy-trace-identity",
+      "to": "m1-pf-occupancy"
+    },
+    {
+      "from": "m1-pf-bound",
+      "to": "m1-pf-occupancy"
+    },
+    {
+      "from": "m2-lem-proper",
+      "to": "m2-lem-refinement"
+    },
+    {
+      "from": "m2-lem-proper",
+      "to": "m2-lem-filtration-exists"
+    },
+    {
+      "from": "m2-lem-refinement",
+      "to": "m2-lem-filtration-exists"
+    },
+    {
+      "from": "m2-lem-filtration-exists",
+      "to": "m2-prop-zero-strata"
+    },
+    {
+      "from": "m2-lem-refinement",
+      "to": "m2-prop-zero-strata"
+    },
+    {
+      "from": "m2-lem-tree",
+      "to": "m2-prop-zero-strata"
+    },
+    {
+      "from": "m2-lem-proper",
+      "to": "m2-lem-finite-component-labels"
+    },
+    {
+      "from": "m2-lem-carrier",
+      "to": "m2-lem-surviving-flags"
+    },
+    {
+      "from": "m2-thm-sparse",
+      "to": "m2-lem-equivariant-homotopy"
+    },
+    {
+      "from": "m2-lem-proper",
+      "to": "m2-lem-equivariant-homotopy"
+    },
+    {
+      "from": "m2-lem-path-identities",
+      "to": "m2-lem-pfaffian-recurrence"
+    },
+    {
+      "from": "m2-lem-path-identities",
+      "to": "m2-prop-detector"
+    },
+    {
+      "from": "m2-lem-pfaffian-recurrence",
+      "to": "m2-prop-detector"
+    },
+    {
+      "from": "m2-thm-bass",
+      "to": "m2-prop-detector"
+    },
+    {
+      "from": "m2-prop-path-cycle",
+      "to": "m2-prop-detector"
+    },
+    {
+      "from": "m2-thm-sparse",
+      "to": "m2-prop-detector"
+    },
+    {
+      "from": "m2-lem-locality",
+      "to": "m2-prop-detector"
+    },
+    {
+      "from": "m2-thm-bass",
+      "to": "m2-cor-integral"
+    },
+    {
+      "from": "m2-cor-integral",
+      "to": "m2-cor-homotopy-idempotents"
+    },
+    {
+      "from": "m2-cor-torsion-free",
+      "to": "m2-cor-homotopy-idempotents"
+    },
+    {
+      "from": "m2-thm-bass",
+      "to": "m2-cor-homotopy-idempotents"
+    }
+  ]
+}

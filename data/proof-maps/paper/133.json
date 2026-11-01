@@ -1,0 +1,598 @@
+{
+  "familyNumber": "133",
+  "familyTitle": "The computational complexity of Weisfeiler–Leman refinement",
+  "manuscripts": [
+    {
+      "id": "Parity-lifts-and-bounded-treewidth-witnesses-for-Weisfeiler-Leman-equivalence-September-25-2026",
+      "title": "Parity lifts and bounded-treewidth witnesses for Weisfeiler–Leman equivalence",
+      "date": "2026-09-25",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Parity-lifts-and-bounded-treewidth-witnesses-for-Weisfeiler-Leman-equivalence-September-25-2026/paper.pdf"
+    },
+    {
+      "id": "The-complexity-of-identifying-a-graph-by-Weisfeiler-Leman-refinement-September-25-2026",
+      "title": "The complexity of identifying a graph by Weisfeiler–Leman refinement",
+      "date": "2026-09-25",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-complexity-of-identifying-a-graph-by-Weisfeiler-Leman-refinement-September-25-2026/paper.pdf"
+    },
+    {
+      "id": "Unconditional-time-lower-bounds-for-Weisfeiler-Leman-equivalence-September-25-2026",
+      "title": "Unconditional time lower bounds for Weisfeiler–Leman equivalence",
+      "date": "2026-09-25",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Unconditional-time-lower-bounds-for-Weisfeiler-Leman-equivalence-September-25-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "WL refinement and homomorphism tests",
+    "Choices and parity lifts",
+    "Extracting a choice from a bounded-bag witness",
+    "The ETH lower bound",
+    "Weisfeiler--Leman refinement and the bijective game",
+    "Encoding comparisons by locally reconstructible graphs",
+    "Wire comparisons and global offsets",
+    "Exact projection and a local game strategy",
+    "A computation described by product schemas",
+    "From acceptance to identification",
+    "Weisfeiler--Leman conventions and the bijective game",
+    "A compressed graph representation of arc consistency",
+    "Encoding computations by short consistency instances",
+    "A language hard at every sufficiently large length",
+    "Quantitative transfer and the time lower bound"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-choice-reduction",
+      "kind": "theorem",
+      "label": "Parity reduction",
+      "statement": "[Parity reduction] Fix \\(k4\\), either refinement convention, and the corresponding \\(t\\) in . From every choice system on \\(t\\) domains one can explicitly construct two uncolored simple graphs…",
+      "section": "Introduction",
+      "manuscript": "Parity lifts and bounded-treewidth witnesses for Weisfeiler–Leman equivalence"
+    },
+    {
+      "id": "m1-thm-eth",
+      "kind": "theorem",
+      "label": "Fixed-dimension ETH consequence",
+      "statement": "[Fixed-dimension ETH consequence] Assume positive exponential-rate ETH. There are constants \\(c>0\\) and \\(K4\\) such that, for every fixed integer \\(k K\\), no deterministic algorithm decides \\(k\\)-WL…",
+      "section": "Introduction",
+      "manuscript": "Parity lifts and bounded-treewidth witnesses for Weisfeiler–Leman equivalence"
+    },
+    {
+      "id": "m1-lem-hom-implies-wl",
+      "kind": "lemma",
+      "label": "If \\((F,X_0)=(F,X_1)\\) for every graph \\(F\\) of bag size at most \\(t\\), then…",
+      "statement": "If \\((F,X_0)=(F,X_1)\\) for every graph \\(F\\) of bag size at most \\(t\\), then \\(X_0,X_1\\) are \\(k\\)-WL equivalent in the corresponding convention. This also holds for the disjoint-union implementation.",
+      "section": "WL refinement and homomorphism tests",
+      "manuscript": "Parity lifts and bounded-treewidth witnesses for Weisfeiler–Leman equivalence"
+    },
+    {
+      "id": "m1-lem-test-detected",
+      "kind": "lemma",
+      "label": "The round-two color histogram in joint \\(k\\)-WL determines \\((T_ k+1 ,X)\\). The…",
+      "statement": "The round-two color histogram in joint \\(k\\)-WL determines \\((T_ k+1 ,X)\\). The round-one histogram in separate \\(k\\)-WL determines \\((T_k,X)\\). The same statements hold for pure-tuple histograms…",
+      "section": "WL refinement and homomorphism tests",
+      "manuscript": "Parity lifts and bounded-treewidth witnesses for Weisfeiler–Leman equivalence"
+    },
+    {
+      "id": "m1-lem-lift-duality",
+      "kind": "lemma",
+      "label": "Lift counts and their dual obstruction",
+      "statement": "[Lift counts and their dual obstruction] For every finite simple graph \\(F\\), \\((F,X_0)(F,X_)\\). The inequality is strict if and only if there are a homomorphism \\(:F G\\), vertex weights \\(s:V(F)\\),…",
+      "section": "Choices and parity lifts",
+      "manuscript": "Parity lifts and bounded-treewidth witnesses for Weisfeiler–Leman equivalence"
+    },
+    {
+      "id": "m1-lem-choice-witness",
+      "kind": "lemma",
+      "label": "A choice supplies a witness",
+      "statement": "[A choice supplies a witness] A successful choice gives \\((T,X_0)>(T,X_)\\), and hence \\(X_0,X_\\) are not \\(k\\)-WL equivalent.",
+      "section": "Choices and parity lifts",
+      "manuscript": "Parity lifts and bounded-treewidth witnesses for Weisfeiler–Leman equivalence"
+    },
+    {
+      "id": "m1-lem-extract-choice",
+      "kind": "lemma",
+      "label": "Choice extraction",
+      "statement": "[Choice extraction] Let \\(F\\) have a tree decomposition with bags of size at most \\(t\\). Suppose that a homomorphism \\(:F G\\) and weights \\(s:V(F)\\) and \\(r:E(F)\\) satisfy , where \\(a=\\). Then the…",
+      "section": "Extracting a choice from a bounded-bag witness",
+      "manuscript": "Parity lifts and bounded-treewidth witnesses for Weisfeiler–Leman equivalence"
+    },
+    {
+      "id": "m1-lem-sparsification",
+      "kind": "lemma",
+      "label": "Sparsification",
+      "statement": "[Sparsification] For every \\(>0\\) there are a constant \\(C_1\\) and a deterministic algorithm that expresses any \\(3\\)-CNF \\(F\\) on \\(N1\\) variables as a disjunction of at most \\(2^ N \\) \\(3\\)-CNFs on…",
+      "section": "The ETH lower bound",
+      "manuscript": "Parity lifts and bounded-treewidth witnesses for Weisfeiler–Leman equivalence"
+    },
+    {
+      "id": "m1-lem-sat-choice",
+      "kind": "lemma",
+      "label": "Grouping sparse clauses",
+      "statement": "[Grouping sparse clauses] A \\(3\\)-CNF with \\(m\\) clauses yields a simultaneous-choice instance with \\(t\\) domains, each domain and pair-label set having size at most \\[ A=2^ 3 m/t . \\] A simultaneous…",
+      "section": "The ETH lower bound",
+      "manuscript": "Parity lifts and bounded-treewidth witnesses for Weisfeiler–Leman equivalence"
+    },
+    {
+      "id": "m1-prop-uniform",
+      "kind": "proposition",
+      "label": "Uniform lower bound",
+      "statement": "[Uniform lower bound] If no deterministic \\(3\\)-SAT algorithm has running time \\(2^ o(N) poly(|F|)\\), there is no uniform deterministic algorithm for \\(k\\)-WL equivalence with running time \\(f(k)n^…",
+      "section": "The ETH lower bound",
+      "manuscript": "Parity lifts and bounded-treewidth witnesses for Weisfeiler–Leman equivalence"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "The following problem is EXPTIME-complete under deterministic polynomial-time…",
+      "statement": "The following problem is EXPTIME-complete under deterministic polynomial-time many-one reductions: given a nonempty finite simple undirected uncolored graph G by its adjacency matrix and a positive…",
+      "section": "Introduction",
+      "manuscript": "The complexity of identifying a graph by Weisfeiler–Leman refinement"
+    },
+    {
+      "id": "m2-lem-wl-game",
+      "kind": "lemma",
+      "label": "Let G,H have equal positive order, and let k 2 . Then G_k H if and only if…",
+      "statement": "Let G,H have equal positive order, and let k 2 . Then G_k H if and only if Duplicator has a winning strategy from the empty position in the bijective game with k+1 pair slots. Moreover, a winning…",
+      "section": "Weisfeiler--Leman refinement and the bijective game",
+      "manuscript": "The complexity of identifying a graph by Weisfeiler–Leman refinement"
+    },
+    {
+      "id": "m2-lem-monotonicity",
+      "kind": "lemma",
+      "label": "For positive integers j k , the relation G_k H implies G_j H . Consequently, a…",
+      "statement": "For positive integers j k , the relation G_k H implies G_j H . Consequently, a graph has Weisfeiler--Leman dimension at most k if and only if k -WL identifies it.",
+      "section": "Weisfeiler--Leman refinement and the bijective game",
+      "manuscript": "The complexity of identifying a graph by Weisfeiler–Leman refinement"
+    },
+    {
+      "id": "m2-lem-degree",
+      "kind": "lemma",
+      "label": "In every history following a winning strategy with at least two pair slots,…",
+      "statement": "In every history following a winning strategy with at least two pair slots, matched vertices have equal degrees. Every vertex bijection announced by that strategy therefore preserves degrees for all…",
+      "section": "Weisfeiler--Leman refinement and the bijective game",
+      "manuscript": "The complexity of identifying a graph by Weisfeiler–Leman refinement"
+    },
+    {
+      "id": "m2-prop-upper",
+      "kind": "proposition",
+      "label": "For a nonempty graph given by its binary adjacency matrix and a positive…",
+      "statement": "For a nonempty graph given by its binary adjacency matrix and a positive integer k in binary, deciding whether its Weisfeiler--Leman dimension is at most k belongs to EXPTIME.",
+      "section": "Weisfeiler--Leman refinement and the bijective game",
+      "manuscript": "The complexity of identifying a graph by Weisfeiler–Leman refinement"
+    },
+    {
+      "id": "m2-prop-mate",
+      "kind": "proposition",
+      "label": "Reconstruction of an arbitrary mate",
+      "statement": "[Reconstruction of an arbitrary mate] For any comparison data just described, with r 32 , every graph H satisfying H_r G(0) is isomorphic to G() for some choice of one bit _B per square block.",
+      "section": "Encoding comparisons by locally reconstructible graphs",
+      "manuscript": "The complexity of identifying a graph by Weisfeiler–Leman refinement"
+    },
+    {
+      "id": "m2-prop-isomorphism",
+      "kind": "proposition",
+      "label": "Isomorphisms and global offsets",
+      "statement": "[Isomorphisms and global offsets] For every choice of square bits , the graphs G(0) and G() are isomorphic if and only if there is a global offset assignment solving all shifted square constraints.",
+      "section": "Encoding comparisons by locally reconstructible graphs",
+      "manuscript": "The complexity of identifying a graph by Weisfeiler–Leman refinement"
+    },
+    {
+      "id": "m2-prop-image-consistency",
+      "kind": "proposition",
+      "label": "Image consistency",
+      "statement": "[Image consistency] For the construction of Section~ , suppose G(0)_r G() . There are nonempty sets Q_ P,a ^ d_P for every real type P and every a\\ 0,1\\ ^r such that, for every comparison e:P R , _…",
+      "section": "Wire comparisons and global offsets",
+      "manuscript": "The complexity of identifying a graph by Weisfeiler–Leman refinement"
+    },
+    {
+      "id": "m2-lem-cycle-lifting",
+      "kind": "lemma",
+      "label": "Cycle lifting",
+      "statement": "[Cycle lifting] Let r3 , let each A_i be nonempty, and let g_i:A_i A_ i+1 . If _ i=1 ^r g_i(a_i,a_ i+1 )=0 for all a_i A_i, then there are functions Y_i:A_i with g_i(u,v)=Y_i(u)+Y_ i+1 (v) for every…",
+      "section": "Wire comparisons and global offsets",
+      "manuscript": "The complexity of identifying a graph by Weisfeiler–Leman refinement"
+    },
+    {
+      "id": "m2-prop-global-offsets",
+      "kind": "proposition",
+      "label": "Global offsets",
+      "statement": "[Global offsets] For any right-hand sides in the construction of Section~ , all square equations admit a simultaneous assignment to the readout names if and only if there are row-sum functions h_P:\\…",
+      "section": "Wire comparisons and global offsets",
+      "manuscript": "The complexity of identifying a graph by Weisfeiler–Leman refinement"
+    },
+    {
+      "id": "m2-thm-special-twist",
+      "kind": "theorem",
+      "label": "Special-twist sufficiency",
+      "statement": "[Special-twist sufficiency] Consider the graph construction with r32 and K=r+1 . Let be given by Equation~ . Suppose that, for every real type P and every a\\ 0,1\\ ^r , there is a nonempty set Q_ P,a…",
+      "section": "Exact projection and a local game strategy",
+      "manuscript": "The complexity of identifying a graph by Weisfeiler–Leman refinement"
+    },
+    {
+      "id": "m2-lem-small-type-support",
+      "kind": "lemma",
+      "label": "If |U| K , every component of _U has a type support that is a tree with at most…",
+      "statement": "If |U| K , every component of _U has a type support that is a tree with at most one real type. A support containing no real type lies in a single wire interior. A support containing a real type…",
+      "section": "Exact projection and a local game strategy",
+      "manuscript": "The complexity of identifying a graph by Weisfeiler–Leman refinement"
+    },
+    {
+      "id": "m2-lem-wrapping-address",
+      "kind": "lemma",
+      "label": "Wrapping addresses",
+      "statement": "[Wrapping addresses] Let |U| r+1 . Every wrapping subcollection of U has at least r blocks. A wrapping collection of exactly r blocks has one block in each row, lies in one component, and determines…",
+      "section": "Exact projection and a local game strategy",
+      "manuscript": "The complexity of identifying a graph by Weisfeiler–Leman refinement"
+    },
+    {
+      "id": "m2-prop-exact-projection",
+      "kind": "proposition",
+      "label": "Exact projection",
+      "statement": "[Exact projection] For V U with |U| r+1 , restriction to the readout names occurring in V maps H_U onto H_V .",
+      "section": "Exact projection and a local game strategy",
+      "manuscript": "The complexity of identifying a graph by Weisfeiler–Leman refinement"
+    },
+    {
+      "id": "m2-prop-computation",
+      "kind": "proposition",
+      "label": "For the fixed machine \\(M\\) and each input \\(w\\), with parameters , one can…",
+      "statement": "For the fixed machine \\(M\\) and each input \\(w\\), with parameters , one can construct in time polynomial in \\(r+m\\) an acyclic monotone circuit description with \\(O_M(1)\\) gate types and…",
+      "section": "A computation described by product schemas",
+      "manuscript": "The complexity of identifying a graph by Weisfeiler–Leman refinement"
+    },
+    {
+      "id": "m2-prop-acceptance",
+      "kind": "proposition",
+      "label": "If \\(M\\) accepts \\(w\\), then every finite simple uncolored graph \\(H_r G(0)\\)…",
+      "statement": "If \\(M\\) accepts \\(w\\), then every finite simple uncolored graph \\(H_r G(0)\\) is isomorphic to \\(G(0)\\).",
+      "section": "From acceptance to identification",
+      "manuscript": "The complexity of identifying a graph by Weisfeiler–Leman refinement"
+    },
+    {
+      "id": "m2-prop-rejection",
+      "kind": "proposition",
+      "label": "If \\(M\\) does not accept \\(w\\), then there is a choice of square bits \\(\\) such…",
+      "statement": "If \\(M\\) does not accept \\(w\\), then there is a choice of square bits \\(\\) such that \\(G()_r G(0)\\) but \\(G() G(0)\\).",
+      "section": "From acceptance to identification",
+      "manuscript": "The complexity of identifying a graph by Weisfeiler–Leman refinement"
+    },
+    {
+      "id": "m2-cor-unary",
+      "kind": "corollary",
+      "label": "The identification problem of Theorem~ remains EXPTIME-complete when the…",
+      "statement": "The identification problem of Theorem~ remains EXPTIME-complete when the positive dimension is encoded in unary.",
+      "section": "From acceptance to identification",
+      "manuscript": "The complexity of identifying a graph by Weisfeiler–Leman refinement"
+    },
+    {
+      "id": "m3-thm-main",
+      "kind": "theorem",
+      "label": "There are absolute constants c>0 and k_0 with the following property. For every…",
+      "statement": "There are absolute constants c>0 and k_0 with the following property. For every fixed integer k k_0 and every correct deterministic decider A for k -Weisfeiler--Leman equivalence, there is an integer…",
+      "section": "Introduction",
+      "manuscript": "Unconditional time lower bounds for Weisfeiler–Leman equivalence"
+    },
+    {
+      "id": "m3-game-wl",
+      "kind": "lemma",
+      "label": "Exact stable equivalence",
+      "statement": "[Exact stable equivalence] For the joint convention put K=k+1 , and for the separate convention put K=k . For graphs of equal positive order the following hold. Two k -tuples have the same stable…",
+      "section": "Weisfeiler--Leman conventions and the bijective game",
+      "manuscript": "Unconditional time lower bounds for Weisfeiler–Leman equivalence"
+    },
+    {
+      "id": "m3-game-union",
+      "kind": "lemma",
+      "label": "Pure tuples in a disjoint union",
+      "statement": "[Pure tuples in a disjoint union] Suppose k3 and G,H are connected graphs of diameter at most two. Run either convention on D=G H , including mixed tuples. The stable color histograms restricted to…",
+      "section": "Weisfeiler--Leman conventions and the bijective game",
+      "manuscript": "Unconditional time lower bounds for Weisfeiler–Leman equivalence"
+    },
+    {
+      "id": "m3-comp-reduction",
+      "kind": "theorem",
+      "label": "Compressed consistency reduction",
+      "statement": "[Compressed consistency reduction] For fixed r and fixed description shape, an instance as above determines two equally large simple uncolored connected graphs G^0,G^1 , of diameter at most two and…",
+      "section": "A compressed graph representation of arc consistency",
+      "manuscript": "Unconditional time lower bounds for Weisfeiler–Leman equivalence"
+    },
+    {
+      "id": "m3-comp-necessity",
+      "kind": "lemma",
+      "label": "A block-preserving winning strategy with r+1 pairs implies individual-edge arc…",
+      "statement": "A block-preserving winning strategy with r+1 pairs implies individual-edge arc consistency.",
+      "section": "A compressed graph representation of arc consistency",
+      "manuscript": "Unconditional time lower bounds for Weisfeiler–Leman equivalence"
+    },
+    {
+      "id": "m3-comp-support",
+      "kind": "lemma",
+      "label": "If |U| r+1 , every component's type support is a tree containing at most one…",
+      "statement": "If |U| r+1 , every component's type support is a tree containing at most one real type. With no real type it lies in the interior of one wire; with a real type it consists of that type and short arms…",
+      "section": "A compressed graph representation of arc consistency",
+      "manuscript": "Unconditional time lower bounds for Weisfeiler–Leman equivalence"
+    },
+    {
+      "id": "m3-comp-wrapping",
+      "kind": "lemma",
+      "label": "Address recovery",
+      "statement": "[Address recovery] For block sets contained in a set U of size at most r+1 : Every wrapping collection has at least r blocks. A wrapping collection of size r has one block in every row, all in one…",
+      "section": "A compressed graph representation of arc consistency",
+      "manuscript": "Unconditional time lower bounds for Weisfeiler–Leman equivalence"
+    },
+    {
+      "id": "m3-comp-projection",
+      "kind": "lemma",
+      "label": "Exact projection",
+      "statement": "[Exact projection] For V U with |U| r+1 , H_U|_V= H_V.",
+      "section": "A compressed graph representation of arc consistency",
+      "manuscript": "Unconditional time lower bounds for Weisfeiler–Leman equivalence"
+    },
+    {
+      "id": "m3-comp-sufficiency",
+      "kind": "lemma",
+      "label": "Individual-edge arc consistency implies a block-preserving winning strategy…",
+      "statement": "Individual-edge arc consistency implies a block-preserving winning strategy with r+1 pairs on the valuation graphs.",
+      "section": "A compressed graph representation of arc consistency",
+      "manuscript": "Unconditional time lower bounds for Weisfeiler–Leman equivalence"
+    },
+    {
+      "id": "m3-circ-simulation",
+      "kind": "proposition",
+      "label": "Circuit simulation",
+      "statement": "[Circuit simulation] To such a circuit one can associate an individual-edge arc-consistency instance over _2 , with vector dimensions at most two, that has nonempty arc-consistent sets if and only if…",
+      "section": "Encoding computations by short consistency instances",
+      "manuscript": "Unconditional time lower bounds for Weisfeiler–Leman equivalence"
+    },
+    {
+      "id": "m3-circ-construction",
+      "kind": "lemma",
+      "label": "Constructing padded graphs",
+      "statement": "[Constructing padded graphs] Fix r3 and a short consistency template with bounded numbers of types and schemas and bounded vector dimensions. Suppose its one-coordinate domains and maps are supplied…",
+      "section": "Encoding computations by short consistency instances",
+      "manuscript": "Unconditional time lower bounds for Weisfeiler–Leman equivalence"
+    },
+    {
+      "id": "m3-circ-computation",
+      "kind": "theorem",
+      "label": "Computation reduction",
+      "statement": "[Computation reduction] Fix such a machine M and an integer r3 , and put d= r/3 . There is a single effective construction, depending only on M and r , with the following property. For each m2 for…",
+      "section": "Encoding computations by short consistency instances",
+      "manuscript": "Unconditional time lower bounds for Weisfeiler–Leman equivalence"
+    },
+    {
+      "id": "m3-diag-simulation",
+      "kind": "lemma",
+      "label": "Quadratic simulation",
+      "statement": "[Quadratic simulation] For every fixed deterministic multitape machine A there is a fixed deterministic one-tape machine A with the same decisions such that, if A halts after T steps on an input of…",
+      "section": "A language hard at every sufficiently large length",
+      "manuscript": "Unconditional time lower bounds for Weisfeiler–Leman equivalence"
+    },
+    {
+      "id": "m3-diag-language",
+      "kind": "theorem",
+      "label": "A diagonal language",
+      "statement": "[A diagonal language] For every integer s 1 there is a binary language H_s with the following properties. There is a fixed deterministic one-tape decider M_s and a constant C_s such that, on every…",
+      "section": "A language hard at every sufficiently large length",
+      "manuscript": "Unconditional time lower bounds for Weisfeiler–Leman equivalence"
+    },
+    {
+      "id": "m3-trans-instances",
+      "kind": "lemma",
+      "label": "For every sufficiently large fixed r , there is an integer m_0(r) with the…",
+      "statement": "For every sufficiently large fixed r , there is an integer m_0(r) with the following property. Given a word w of length m m_0(r) and any n I_m , one can construct two simple uncolored n -vertex…",
+      "section": "Quantitative transfer and the time lower bound",
+      "manuscript": "Unconditional time lower bounds for Weisfeiler–Leman equivalence"
+    },
+    {
+      "id": "m3-trans-cutoff",
+      "kind": "lemma",
+      "label": "There is an absolute constant D with the following property. Fix a sufficiently…",
+      "statement": "There is an absolute constant D with the following property. Fix a sufficiently large r , with s,p as in , and a correct deterministic equivalence decider A in either stated model. There is a correct…",
+      "section": "Quantitative transfer and the time lower bound",
+      "manuscript": "Unconditional time lower bounds for Weisfeiler–Leman equivalence"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-lift-duality",
+      "to": "m1-lem-choice-witness"
+    },
+    {
+      "from": "m1-lem-test-detected",
+      "to": "m1-lem-choice-witness"
+    },
+    {
+      "from": "m1-thm-choice-reduction",
+      "to": "m1-lem-extract-choice"
+    },
+    {
+      "from": "m1-lem-choice-witness",
+      "to": "m1-lem-extract-choice"
+    },
+    {
+      "from": "m1-lem-test-detected",
+      "to": "m1-lem-extract-choice"
+    },
+    {
+      "from": "m1-lem-lift-duality",
+      "to": "m1-lem-extract-choice"
+    },
+    {
+      "from": "m1-lem-hom-implies-wl",
+      "to": "m1-lem-extract-choice"
+    },
+    {
+      "from": "m1-thm-eth",
+      "to": "m1-lem-sat-choice"
+    },
+    {
+      "from": "m1-lem-sparsification",
+      "to": "m1-lem-sat-choice"
+    },
+    {
+      "from": "m1-thm-choice-reduction",
+      "to": "m1-lem-sat-choice"
+    },
+    {
+      "from": "m2-lem-wl-game",
+      "to": "m2-lem-monotonicity"
+    },
+    {
+      "from": "m2-lem-monotonicity",
+      "to": "m2-prop-upper"
+    },
+    {
+      "from": "m2-lem-wl-game",
+      "to": "m2-prop-mate"
+    },
+    {
+      "from": "m2-lem-degree",
+      "to": "m2-prop-mate"
+    },
+    {
+      "from": "m2-lem-wl-game",
+      "to": "m2-prop-image-consistency"
+    },
+    {
+      "from": "m2-lem-degree",
+      "to": "m2-prop-image-consistency"
+    },
+    {
+      "from": "m2-lem-cycle-lifting",
+      "to": "m2-prop-global-offsets"
+    },
+    {
+      "from": "m2-prop-isomorphism",
+      "to": "m2-prop-global-offsets"
+    },
+    {
+      "from": "m2-lem-wrapping-address",
+      "to": "m2-prop-exact-projection"
+    },
+    {
+      "from": "m2-thm-special-twist",
+      "to": "m2-prop-exact-projection"
+    },
+    {
+      "from": "m2-prop-mate",
+      "to": "m2-prop-acceptance"
+    },
+    {
+      "from": "m2-prop-image-consistency",
+      "to": "m2-prop-acceptance"
+    },
+    {
+      "from": "m2-thm-special-twist",
+      "to": "m2-prop-acceptance"
+    },
+    {
+      "from": "m2-prop-computation",
+      "to": "m2-prop-acceptance"
+    },
+    {
+      "from": "m2-prop-global-offsets",
+      "to": "m2-prop-acceptance"
+    },
+    {
+      "from": "m2-prop-isomorphism",
+      "to": "m2-prop-acceptance"
+    },
+    {
+      "from": "m2-thm-special-twist",
+      "to": "m2-prop-rejection"
+    },
+    {
+      "from": "m2-prop-global-offsets",
+      "to": "m2-prop-rejection"
+    },
+    {
+      "from": "m2-prop-isomorphism",
+      "to": "m2-prop-rejection"
+    },
+    {
+      "from": "m2-thm-main",
+      "to": "m2-prop-rejection"
+    },
+    {
+      "from": "m2-prop-upper",
+      "to": "m2-prop-rejection"
+    },
+    {
+      "from": "m2-prop-acceptance",
+      "to": "m2-prop-rejection"
+    },
+    {
+      "from": "m2-prop-upper",
+      "to": "m2-cor-unary"
+    },
+    {
+      "from": "m3-game-wl",
+      "to": "m3-game-union"
+    },
+    {
+      "from": "m3-comp-wrapping",
+      "to": "m3-comp-projection"
+    },
+    {
+      "from": "m3-comp-projection",
+      "to": "m3-comp-sufficiency"
+    },
+    {
+      "from": "m3-comp-reduction",
+      "to": "m3-circ-construction"
+    },
+    {
+      "from": "m3-circ-simulation",
+      "to": "m3-circ-computation"
+    },
+    {
+      "from": "m3-comp-reduction",
+      "to": "m3-circ-computation"
+    },
+    {
+      "from": "m3-circ-construction",
+      "to": "m3-circ-computation"
+    },
+    {
+      "from": "m3-diag-simulation",
+      "to": "m3-diag-language"
+    },
+    {
+      "from": "m3-diag-language",
+      "to": "m3-trans-instances"
+    },
+    {
+      "from": "m3-circ-computation",
+      "to": "m3-trans-instances"
+    },
+    {
+      "from": "m3-comp-reduction",
+      "to": "m3-trans-instances"
+    },
+    {
+      "from": "m3-game-wl",
+      "to": "m3-trans-instances"
+    },
+    {
+      "from": "m3-circ-construction",
+      "to": "m3-trans-instances"
+    },
+    {
+      "from": "m3-diag-simulation",
+      "to": "m3-trans-cutoff"
+    },
+    {
+      "from": "m3-thm-main",
+      "to": "m3-trans-cutoff"
+    },
+    {
+      "from": "m3-trans-instances",
+      "to": "m3-trans-cutoff"
+    },
+    {
+      "from": "m3-diag-language",
+      "to": "m3-trans-cutoff"
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "familyNumber": "135",
+  "familyTitle": "Homogeneous depth-five lower bounds for iterated matrix multiplication",
+  "manuscripts": [
+    {
+      "id": "Homogeneous-depth-five-lower-bounds-for-iterated-matrix-multiplication-September-25-2026",
+      "title": "Homogeneous depth-five lower bounds for iterated matrix multiplication",
+      "date": "2026-09-25",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Homogeneous-depth-five-lower-bounds-for-iterated-matrix-multiplication-September-25-2026/Homogeneous-depth-five-lower-bounds-for-iterated-matrix-multiplication-September-25-2026.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "A rank measure from differentiation and multiplication",
+    "The rank of a homogeneous depth-five circuit",
+    "Trace moments for iterated matrix multiplication",
+    "Bounding the path-type sum",
+    "Completion and consequences"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "There exist absolute constants c>0 and n_0 such that, for every integer n n_0 ,…",
+      "statement": "There exist absolute constants c>0 and n_0 such that, for every integer n n_0 , every syntactically homogeneous circuit over computing _ n,n has size at least \\[ n^ c n . \\] One may take c=1/400 .",
+      "section": "Introduction",
+      "manuscript": "Homogeneous depth-five lower bounds for iterated matrix multiplication"
+    },
+    {
+      "id": "m1-lem-parameters",
+      "kind": "lemma",
+      "label": "For all sufficiently large n , the parameters in~ satisfy n 2 s n, 38, 0<<1,…",
+      "statement": "For all sufficiently large n , the parameters in~ satisfy n 2 s n, 38, 0<<1, v,u=(n^3), a,b=(n^ 5/2 ),\\\\ a k, 2n12(a,b), n^ -1/2 =n^ -1/2 (O(1/a)), ^ -1 n,\\\\ ^^(C/b), 2 n ,\\\\ q=n^ -1/2 (O(s…",
+      "section": "A rank measure from differentiation and multiplication",
+      "manuscript": "Homogeneous depth-five lower bounds for iterated matrix multiplication"
+    },
+    {
+      "id": "m1-prop-circuit",
+      "kind": "proposition",
+      "label": "There are absolute constants C>0 and n_0 with the following property. For n n_0…",
+      "statement": "There are absolute constants C>0 and n_0 with the following property. For n n_0 , use the parameters in~ and any partition of the matrix layers with k layers in V and m layers in U . Let K be a…",
+      "section": "The rank of a homogeneous depth-five circuit",
+      "manuscript": "Homogeneous depth-five lower bounds for iterated matrix multiplication"
+    },
+    {
+      "id": "m1-lem-product-rank",
+      "kind": "lemma",
+      "label": "Let K be a field, and let Q_1,,Q_r K[V,U] be homogeneous of respective positive…",
+      "statement": "Let K be a field, and let Q_1,,Q_r K[V,U] be homogeneous of respective positive degrees e_1,,e_r , with _ j=1 ^r e_j=n . Then \\[ R(_ j=1 ^r Q_j) 2D_ j=1 ^r H_ e_j . \\]",
+      "section": "The rank of a homogeneous depth-five circuit",
+      "manuscript": "Homogeneous depth-five lower bounds for iterated matrix multiplication"
+    },
+    {
+      "id": "m1-lem-degree-estimates",
+      "kind": "lemma",
+      "label": "For every integer e1 , H_e q^ d_e (1+4q^ 1-2d_e )5. If 1 e<t_0 , then d_e=…",
+      "statement": "For every integer e1 , H_e q^ d_e (1+4q^ 1-2d_e )5. If 1 e<t_0 , then d_e= se/(2n),&e even,\\\\ 1/2-se/(2n),&e odd, d_ese 2n . In this range, odd degrees satisfy H_e q^ d_e/2 , whereas even degrees…",
+      "section": "The rank of a homogeneous depth-five circuit",
+      "manuscript": "Homogeneous depth-five lower bounds for iterated matrix multiplication"
+    },
+    {
+      "id": "m1-prop-imm",
+      "kind": "proposition",
+      "label": "Over , for the partition~ , there is an absolute constant C such that, for all…",
+      "statement": "Over , for the partition~ , there is an absolute constant C such that, for all sufficiently large n , \\[ R(_ n,n ) D(-C n). \\]",
+      "section": "Trace moments for iterated matrix multiplication",
+      "manuscript": "Homogeneous depth-five lower bounds for iterated matrix multiplication"
+    },
+    {
+      "id": "m1-lem-occupation-moments",
+      "kind": "lemma",
+      "label": "Let M=(M_1,,M_r) be uniform among the weak compositions of an integer t0 into…",
+      "statement": "Let M=(M_1,,M_r) be uniform among the weak compositions of an integer t0 into r1 parts. For integers d_i0 and H=_i d_i , E_i(M_i)_ d_i =(t)_H r^ H _i d_i!. The right side is zero when H>t . Let…",
+      "section": "Trace moments for iterated matrix multiplication",
+      "manuscript": "Homogeneous depth-five lower bounds for iterated matrix multiplication"
+    },
+    {
+      "id": "m1-lem-word-sum",
+      "kind": "lemma",
+      "label": "For all sufficiently large n , use the layer schedule and the parameters ,, of…",
+      "statement": "For all sufficiently large n , use the layer schedule and the parameters ,, of . For a word \\ N, D\\ ^n , let w() be its number of switches, let d_V(),d_U() count its D positions in the respective…",
+      "section": "Bounding the path-type sum",
+      "manuscript": "Homogeneous depth-five lower bounds for iterated matrix multiplication"
+    },
+    {
+      "id": "m1-cor-characteristic-zero",
+      "kind": "corollary",
+      "label": "There is an absolute integer n_0 such that, for every field K of characteristic…",
+      "statement": "There is an absolute integer n_0 such that, for every field K of characteristic zero and every n n_0 , every syntactically homogeneous circuit over K computing _ n,n has at least n^ n/400 gates.…",
+      "section": "Completion and consequences",
+      "manuscript": "Homogeneous depth-five lower bounds for iterated matrix multiplication"
+    },
+    {
+      "id": "m1-prop-upper",
+      "kind": "proposition",
+      "label": "Let K be any field and n2 . Put \\[ t= n, r= nt. \\] There is a syntactically…",
+      "statement": "Let K be any field and n2 . Put \\[ t= n, r= nt. \\] There is a syntactically homogeneous circuit over K computing _ n,n whose number of gates, including leaves, is at most 2n^3+rn^2+rn^ t+1 +n^ r-1 +1…",
+      "section": "Completion and consequences",
+      "manuscript": "Homogeneous depth-five lower bounds for iterated matrix multiplication"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-parameters",
+      "to": "m1-lem-degree-estimates"
+    },
+    {
+      "from": "m1-prop-circuit",
+      "to": "m1-lem-degree-estimates"
+    },
+    {
+      "from": "m1-lem-product-rank",
+      "to": "m1-lem-degree-estimates"
+    },
+    {
+      "from": "m1-lem-parameters",
+      "to": "m1-lem-word-sum"
+    },
+    {
+      "from": "m1-prop-imm",
+      "to": "m1-lem-word-sum"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-lem-word-sum"
+    },
+    {
+      "from": "m1-prop-circuit",
+      "to": "m1-lem-word-sum"
+    },
+    {
+      "from": "m1-prop-imm",
+      "to": "m1-cor-characteristic-zero"
+    },
+    {
+      "from": "m1-prop-circuit",
+      "to": "m1-cor-characteristic-zero"
+    }
+  ]
+}

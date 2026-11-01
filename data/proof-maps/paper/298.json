@@ -1,0 +1,128 @@
+{
+  "familyNumber": "298",
+  "familyTitle": "Two notions of free entropy differ even when both are finite",
+  "manuscripts": [
+    {
+      "id": "A-finite-entropy-separation-of-microstates-and-nonmicrostates-free-entropy-September-25-2026",
+      "title": "A finite-entropy separation of microstates and nonmicrostates free entropy",
+      "date": "2026-09-25",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-finite-entropy-separation-of-microstates-and-nonmicrostates-free-entropy-September-25-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Conventions and preliminary facts",
+    "A cumulant bound for the Fisher deficit",
+    "The signal and its two noise scales",
+    "Entropy production for specified matrix ensembles",
+    "A persistent block-structure entropy deficit"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "There exist an integer n2 and a bounded self-adjoint tuple X=(X_1,,X_n) in a…",
+      "statement": "There exist an integer n2 and a bounded self-adjoint tuple X=(X_1,,X_n) in a von Neumann algebra with faithful normal tracial state such that \\[ -<(X)^*(X)-12<. \\] Here is the original microstates…",
+      "section": "Introduction",
+      "manuscript": "A finite-entropy separation of microstates and nonmicrostates free entropy"
+    },
+    {
+      "id": "m1-lem-variational",
+      "kind": "lemma",
+      "label": "Polynomial variational formula",
+      "statement": "[Polynomial variational formula] If a bounded self-adjoint tuple Z has conjugate variables, then ^*(Z)=_ P_1=P_1^*,,P_n=P_n^* _ i=1 ^n, where the supremum is over self-adjoint noncommutative…",
+      "section": "Conventions and preliminary facts",
+      "manuscript": "A finite-entropy separation of microstates and nonmicrostates free entropy"
+    },
+    {
+      "id": "m1-lem-matrix-convergence",
+      "kind": "lemma",
+      "label": "Bounded matrix inputs",
+      "statement": "[Bounded matrix inputs] Let K_d be sets of self-adjoint matrix tuples with a common coordinate operator-norm bound. Suppose their normalized trace moments converge uniformly over K_d to the moments…",
+      "section": "Conventions and preliminary facts",
+      "manuscript": "A finite-entropy separation of microstates and nonmicrostates free entropy"
+    },
+    {
+      "id": "m1-lem-wick",
+      "kind": "lemma",
+      "label": "Wick testing",
+      "statement": "[Wick testing] Let C be a centered bounded self-adjoint n -tuple, let S be a standard semicircular family free from C , and put Z=C+ u S , where u>0 . For a multi-index j=(j_1,,j_r) , r1 , and a…",
+      "section": "A cumulant bound for the Fisher deficit",
+      "manuscript": "A finite-entropy separation of microstates and nonmicrostates free entropy"
+    },
+    {
+      "id": "m1-prop-fisher",
+      "kind": "proposition",
+      "label": "Squared-cumulant Fisher bound",
+      "statement": "[Squared-cumulant Fisher bound] Let C be a centered bounded self-adjoint n -tuple with diagonal covariance (C_iC_j)=_ ij c_i , where c_i0 , and let S be a standard semicircular family free from C .…",
+      "section": "A cumulant bound for the Fisher deficit",
+      "manuscript": "A finite-entropy separation of microstates and nonmicrostates free entropy"
+    },
+    {
+      "id": "m1-lem-cumulants",
+      "kind": "lemma",
+      "label": "For K=128 and every m1 , \\[ \\|_m(C)\\|_2 K^m p^ m/4 . \\]",
+      "statement": "For K=128 and every m1 , \\[ \\|_m(C)\\|_2 K^m p^ m/4 . \\]",
+      "section": "The signal and its two noise scales",
+      "manuscript": "A finite-entropy separation of microstates and nonmicrostates free entropy"
+    },
+    {
+      "id": "m1-lem-finitechi",
+      "kind": "lemma",
+      "label": "The tuple X has (X)>- .",
+      "statement": "The tuple X has (X)>- .",
+      "section": "The signal and its two noise scales",
+      "manuscript": "A finite-entropy separation of microstates and nonmicrostates free entropy"
+    },
+    {
+      "id": "m1-lem-flow",
+      "kind": "lemma",
+      "label": "For the fixed tuple X=V_h , fix a cutoff R>0 with _R(X)>- . There are…",
+      "statement": "For the fixed tuple X=V_h , fix a cutoff R>0 with _R(X)>- . There are dimensions tending to infinity and random tuples A^ (d) , uniform on increasingly accurate positive-volume microstate sets at…",
+      "section": "Entropy production for specified matrix ensembles",
+      "manuscript": "A finite-entropy separation of microstates and nonmicrostates free entropy"
+    },
+    {
+      "id": "m1-lem-eventprob",
+      "kind": "lemma",
+      "label": "Let _d be the law of A^ (d) + t G^ (d) , and let _d be the law of independent…",
+      "statement": "Let _d be the law of A^ (d) + t G^ (d) , and let _d be the law of independent centered GUE coordinates of variances v_i(h+t)=h+t+c_i . For all sufficiently large d , \\[ _d( E_d)12, _d( E_d) e^ -4d^2…",
+      "section": "A persistent block-structure entropy deficit",
+      "manuscript": "A finite-entropy separation of microstates and nonmicrostates free entropy"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-wick",
+      "to": "m1-prop-fisher"
+    },
+    {
+      "from": "m1-lem-matrix-convergence",
+      "to": "m1-lem-finitechi"
+    },
+    {
+      "from": "m1-lem-matrix-convergence",
+      "to": "m1-lem-flow"
+    },
+    {
+      "from": "m1-lem-wick",
+      "to": "m1-lem-flow"
+    },
+    {
+      "from": "m1-lem-variational",
+      "to": "m1-lem-flow"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-lem-eventprob"
+    },
+    {
+      "from": "m1-lem-flow",
+      "to": "m1-lem-eventprob"
+    },
+    {
+      "from": "m1-lem-finitechi",
+      "to": "m1-lem-eventprob"
+    }
+  ]
+}

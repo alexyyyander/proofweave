@@ -1,0 +1,1020 @@
+{
+  "familyNumber": "223",
+  "familyTitle": "Random-cluster interfaces: critical, disordered, thermal, and natural-time scaling",
+  "manuscripts": [
+    {
+      "id": "Square-lattice-FK-interfaces-and-nested-loops-for-1-leq-q-lt-4-September-23-2026",
+      "title": "Square-lattice FK interfaces and nested loops for 1 <= q < 4",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Square-lattice-FK-interfaces-and-nested-loops-for-1-leq-q-lt-4-September-23-2026/paper.pdf"
+    },
+    {
+      "id": "Self-dual-random-cluster-interfaces-below-one-September-23-2026",
+      "title": "Self-dual random-cluster interfaces below one",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Self-dual-random-cluster-interfaces-below-one-September-23-2026/paper.pdf"
+    },
+    {
+      "id": "Quenched-SLE-Universality-for-Weakly-Disordered-FK-Ising-Interfaces-October-5-2026",
+      "title": "Quenched SLE Universality for Weakly Disordered FK–Ising Interfaces",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Quenched-SLE-Universality-for-Weakly-Disordered-FK-Ising-Interfaces-October-5-2026/quenched-fk-ising.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction and precise statements",
+    "Tiles, positive laws, and localization",
+    "Logarithmic short-distance comparisons",
+    "Angular transfer and its two leading modes",
+    "Local path calculus for the current",
+    "The four-change observable and its boundary values",
+    "Paired walls and distant charges",
+    "Closing finitely many wall gaps",
+    "Holomorphicity from reflection and extraction",
+    "Transfer to marked Jordan quadrilaterals",
+    "Alternating tests after exploration",
+    "Identification of the Dobrushin strand",
+    "Peeling along monochromatic walls",
+    "Identification of the joint angular tree",
+    "Recovery of the nested loop collection",
+    "Introduction",
+    "Finite laws and geometric conventions",
+    "Site pressure and boundary gluing"
+  ],
+  "nodes": [
+    {
+      "id": "m1-intro-main",
+      "kind": "theorem",
+      "label": "Interfaces and all nested loops",
+      "statement": "[Interfaces and all nested loops] For every fixed real 1 q<4 , the following assertions hold. [label=( *)] For every bounded Jordan domain D with distinct boundary marks a,b , and every approximation…",
+      "section": "Introduction and precise statements",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-intro-cardy",
+      "kind": "theorem",
+      "label": "Cardy's formula for square-lattice bond percolation",
+      "statement": "[Cardy's formula for square-lattice bond percolation] Let :D send a,c,d to 0,1, , and put x=(b)(0,1) . Under the boundary and approximation conventions above, _ n P(C_n) = _0^x[t(1-t)]^ -2/3 \\, t…",
+      "section": "Introduction and precise statements",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-intro-bond-exponents",
+      "kind": "corollary",
+      "label": "Square-bond arm and thermodynamic exponents",
+      "statement": "[Square-bond arm and thermodynamic exponents] For every fixed k1 and every sufficiently large fixed r , _1(R)=R^ -5/48+o(1) , _ 2k (r,R)=R^ -(4k^2-1)/12+o(1) (R). Moreover, (p)&=(p-12)^ 5/36+o(1)…",
+      "section": "Introduction and precise statements",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-prelim-loop-law",
+      "kind": "lemma",
+      "label": "The positive loop law",
+      "statement": "[The positive loop law] On a genus-zero tile surface with positive cap completions, the switch weight d^ , where counts completed medial loops, is proportional to the critical FK weight with the…",
+      "section": "Tiles, positive laws, and localization",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-prelim-finite-loops",
+      "kind": "lemma",
+      "label": "Finiteness in the plane",
+      "statement": "[Finiteness in the plane] For every fixed 1 q<4 , all medial strands of the specified free infinite-volume square FK law are almost surely finite loops. Finite deterministic surgeries admit positive…",
+      "section": "Tiles, positive laws, and localization",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-prelim-collar",
+      "kind": "lemma",
+      "label": "Bounded densities across a collar",
+      "statement": "[Bounded densities across a collar] Suppose two positive laws have the same graph in a collar between radii r and 16r . In this collar the graph is a full annulus, or a bounded number of sectors…",
+      "section": "Tiles, positive laws, and localization",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-prelim-relative-collar",
+      "kind": "lemma",
+      "label": "Relative comparison",
+      "statement": "[Relative comparison] Under the hypotheses of Lemma~ , suppose successive collars have one of the following geometries: [label=()] a full annulus, or one sector whose through wires are precisely…",
+      "section": "Tiles, positive laws, and localization",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-prelim-passages",
+      "kind": "lemma",
+      "label": "Exponential passage moments",
+      "statement": "[Exponential passage moments] In any fixed buffered annulus or sector of the preceding types, a raw passage count X satisfies E[(BX)exterior] C_B (0 B<), uniformly in scale and in exterior states…",
+      "section": "Tiles, positive laws, and localization",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-prelim-tilts",
+      "kind": "lemma",
+      "label": "Local tilt bounds",
+      "statement": "[Local tilt bounds] For fixed b>0 , put \\[ F_j= E b^ N_j , d_j=F_j^ -1 b^ N_j \\,d P. \\] The ratios F_j/F_ j-1 are bounded above and below uniformly. Under _j , the shell counts X_i at and beyond the…",
+      "section": "Tiles, positive laws, and localization",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-prelim-absorb",
+      "kind": "lemma",
+      "label": "Absorbing macroscopic errors",
+      "statement": "[Absorbing macroscopic errors] Suppose Y_n0 , E Y_n n^ -A /C , and E Y_n^2 Cn^A , whereas X_n0 has uniformly bounded exponential moments at every fixed rate. For fixed C_01 and every >0 , \\[ C_^ -1…",
+      "section": "Tiles, positive laws, and localization",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-prelim-surface",
+      "kind": "lemma",
+      "label": "Surface partition comparison",
+      "statement": "[Surface partition comparison] Let finitely many straight finite wall segments have fixed macroscopic shapes and positive mutual separation. Complete each as a positive isolated boundary slit. Let…",
+      "section": "Tiles, positive laws, and localization",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-exp-local-costs",
+      "kind": "lemma",
+      "label": "Local conventions and strict arm decay",
+      "statement": "[Local conventions and strict arm decay] Changing a cutoff radius by a fixed factor, changing the fixed compatible exterior completion, applying a tile-lattice symmetry to the experiment, or…",
+      "section": "Logarithmic short-distance comparisons",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-exp-comparisons",
+      "kind": "proposition",
+      "label": "Three logarithmic comparisons",
+      "statement": "[Three logarithmic comparisons] With the definitions above, 2P+2D_*+4(C_0+C_1)& o( n), \\\\ C_0+C_1+L_0+L_1& o( n), \\\\ P+_jF_-(a_j) F_+(a_j) & o( n), where the finite list of fixed charges in the last…",
+      "section": "Logarithmic short-distance comparisons",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-exp-cap-elimination",
+      "kind": "lemma",
+      "label": "Local cap elimination",
+      "statement": "[Local cap elimination] For disk arcs whose boundary intervals contain at most one wire flip, their positive cap-loop factors are d for a zero-flip high starting port and 1 for a zero-flip low…",
+      "section": "Logarithmic short-distance comparisons",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-exp-polygon-budget",
+      "kind": "corollary",
+      "label": "Balanced corner parities",
+      "statement": "[Balanced corner parities] Let a fixed simple rectilinear polygon have m concave and m+4 convex true corners, with wire changes in side interiors. It has tile approximants differing by O(1) mesh…",
+      "section": "Logarithmic short-distance comparisons",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-bulk-angular-estimate",
+      "kind": "theorem",
+      "label": "Angular transfer estimate",
+      "statement": "[Angular transfer estimate] Fix a compact interval I(-v,v) . Let B_ in be a product of P_ rows and B_ out a product of P_ rows, at real angles in [-v,v] . Suppose each product contains at least n1…",
+      "section": "Angular transfer and its two leading modes",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-bulk-plane-kernels",
+      "kind": "lemma",
+      "label": "Plane kernels",
+      "statement": "[Plane kernels] Finite words of homogeneous normalized strict-angle rows have limiting Gram matrices as N . Their quotient and completion give a separable Hilbert space H with unit vector and bounded…",
+      "section": "Angular transfer and its two leading modes",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-bulk-boost",
+      "kind": "lemma",
+      "label": "Angle generator",
+      "statement": "[Angle generator] There is a self-adjoint operator B on H such that V_th=e^ tB h locally for each word h . Ordinary strict-angle words form a graph core for B . Each family A^D extends to a bounded…",
+      "section": "Angular transfer and its two leading modes",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-bulk-edge-band",
+      "kind": "lemma",
+      "label": "Scalar continuation in a fixed band",
+      "statement": "[Scalar continuation in a fixed band] Almost every spectral function f extends analytically and without zeros to bands of one fixed positive width about the lines Rez= v . It has modulus one on those…",
+      "section": "Angular transfer and its two leading modes",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-cur-deformation",
+      "kind": "lemma",
+      "label": "Local deformation",
+      "statement": "[Local deformation] In the positive winding expansion, the primitive is invariant, pairing by pairing, under simple-path isotopies that continue its initial lift, keep its endpoints in their regions,…",
+      "section": "Local path calculus for the current",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-cur-tree-weights",
+      "kind": "lemma",
+      "label": "Tree evaluation",
+      "statement": "[Tree evaluation] For an arc e:i j bounding its child interval, put m=h_i-h_j and w_e&= ((m- 12) ) ,& k_e&=- ((m+ 12) ) ,\\\\ a_e&=e^ -i(h_i+h_j) ,& c_*&= e^ -i 2 . For each fixed pairing, the…",
+      "section": "Local path calculus for the current",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-cur-slab-estimate",
+      "kind": "proposition",
+      "label": "Extraction in a clear slab",
+      "statement": "[Extraction in a clear slab] Suppose a diagonal-time slab of macroscopic thickness about a low or high stencil contains no other non-diagonal tensors or endpoints. Diagonal chains may cross the slab.…",
+      "section": "Local path calculus for the current",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-four-tree",
+      "kind": "lemma",
+      "label": "Tree normalization and connection alternatives",
+      "statement": "[Tree normalization and connection alternatives] The number of loops closed by the local boundary caps is I=\\#\\ unwired tree vertices\\ . Exactly one of E_ A ,E_ B occurs. Completing the four open…",
+      "section": "The four-change observable and its boundary values",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-four-marked",
+      "kind": "lemma",
+      "label": "Marked values and corrected observable",
+      "statement": "[Marked values and corrected observable] Call the tree typical when all four terminal legs have positive length. On a typical tree, D_p=D_b=D_ d_0 =0, H_b P_0G = 1&E_ A ,\\&E_ B , H_ d_0 P_0G =y d&E_…",
+      "section": "The four-change observable and its boundary values",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-four-compactness",
+      "kind": "lemma",
+      "label": "Compactness and boundary shielding",
+      "statement": "[Compactness and boundary shielding] For every fixed positive power, the moments of |H_ V(z) |+|D_ V(z) | are bounded by a power of (1,|z-c|)^ -1 , uniformly when z is farther than a mesh-scale…",
+      "section": "The four-change observable and its boundary values",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-four-residual",
+      "kind": "lemma",
+      "label": "Diagonal residual cancellation",
+      "statement": "[Diagonal residual cancellation] For every bounded function of the two colors and every boundary point u distinct from the four marks, _ z u _ n | E_ open [(col(V(z)))D_ V(z) ]|=0. Here z in the…",
+      "section": "The four-change observable and its boundary values",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-four-conditional-map",
+      "kind": "proposition",
+      "label": "Identification of a holomorphic subsequential limit",
+      "statement": "[Identification of a holomorphic subsequential limit] Suppose an interior subsequential limit h of h_n is holomorphic in the ordinary complex coordinate, and pass simultaneously to a limit r of P_ A…",
+      "section": "The four-change observable and its boundary values",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-wall-distant",
+      "kind": "lemma",
+      "label": "Distant normalization",
+      "statement": "[Distant normalization] For sufficiently large fixed L , under the exterior positive tilt _U U , E_ _U (Y/U) c_L>0, E_ _U |Y/U|^p C_ p,L for every fixed p>0 , uniformly for large R_0 and fine mesh.",
+      "section": "Paired walls and distant charges",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-wall-factorization",
+      "kind": "proposition",
+      "label": "Complete-wall factorization",
+      "statement": "[Complete-wall factorization] For the complete wall, there are probe-independent complex numbers a_n(R_0,L) , bounded above and away from zero in modulus for the fixed large L , such that H_ full…",
+      "section": "Paired walls and distant charges",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-gap-closure",
+      "kind": "proposition",
+      "label": "Gap closure",
+      "statement": "[Gap closure] Keep the distant charges and their locations fixed. Let g denote the gapped wall and f the wall obtained by closing the specified h -gaps, retaining any other gaps and tip factors.…",
+      "section": "Closing finitely many wall gaps",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-hol-templates",
+      "kind": "lemma",
+      "label": "Finite reflection templates",
+      "statement": "[Finite reflection templates] For fixed primary gap widths and every >0 , one can choose finitely many reflection and extraction steps and finitely many secondary gaps so that the expected extracted…",
+      "section": "Holomorphicity from reflection and extraction",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-hol-mixed-bound",
+      "kind": "proposition",
+      "label": "Mixed derivative saving",
+      "statement": "[Mixed derivative saving] For fixed primary gaps and sufficiently small fixed secondary gaps chosen as in Lemma~ , there is c>0 such that | (_ 1,z ^ (2) +i_ 2,z ^ (2) ) _ j,u ^ (2) H_g(z,u)| =O(n^…",
+      "section": "Holomorphicity from reflection and extraction",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-hol-disk",
+      "kind": "theorem",
+      "label": "Holomorphic disk limit",
+      "statement": "[Holomorphic disk limit] For every rational orthogonal polygon with the four flat marks and balanced approximations specified above, every locally continuous subsequential limit of h_n is…",
+      "section": "Holomorphicity from reflection and extraction",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-jordan-transfer",
+      "kind": "proposition",
+      "label": "Jordan-quad transfer",
+      "statement": "[Jordan-quad transfer] Consider the marked, uniformly convergent square lattice polygon approximations (D_n;a_n,b_n,c_n,d_n) to a bounded Jordan quadrilateral (D;a,b,c,d) in the four-mark sense of…",
+      "section": "Transfer to marked Jordan quadrilaterals",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-jordan-cardy",
+      "kind": "corollary",
+      "label": "The prescribed bond-percolation crossing",
+      "statement": "[The prescribed bond-percolation crossing] At q=1 , with every edge, including every boundary edge, sampled independently with probability 1/2 and with no wiring, the probability of the event C_n…",
+      "section": "Transfer to marked Jordan quadrilaterals",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-moving-drawing",
+      "kind": "lemma",
+      "label": "A compatible simple drawing",
+      "statement": "[A compatible simple drawing] The prescribed polygon graph and its Dobrushin strand admit a tile and collar representation in a Jordan polygon V_n such that: [label=()] V_n has the same marked…",
+      "section": "Alternating tests after exploration",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-moving-asymptotic",
+      "kind": "lemma",
+      "label": "Small-interval behavior",
+      "statement": "[Small-interval behavior] For f in , \\[ f(1-)=1-f(), f()=c_q^h(1+o(1))(0), c_q>0. \\]",
+      "section": "Alternating tests after exploration",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-moving-slit",
+      "kind": "theorem",
+      "label": "Moving four-change test",
+      "statement": "[Moving four-change test] Let a four-change strand in V_n be stopped before completing its strand, revealing only the switches it has encountered. Let U_n be its remaining simple slit disk, with the…",
+      "section": "Alternating tests after exploration",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-moving-chart-modulus",
+      "kind": "lemma",
+      "label": "Physical paths and chart oscillation",
+      "statement": "[Physical paths and chart oscillation] Let u_n be the rectangle abscissa just defined. Under the localization in Theorem~ , there is a common modulus tending to zero for the oscillation of u_n on a…",
+      "section": "Alternating tests after exploration",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-moving-deletion",
+      "kind": "lemma",
+      "label": "Deletion and protected-ball costs",
+      "statement": "[Deletion and protected-ball costs] Fix a history and use separate deterministic primal closure. Deleting a set of still random edges changes the actual crossing probability by at most the…",
+      "section": "Alternating tests after exploration",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-moving-flags",
+      "kind": "lemma",
+      "label": "Flagged cells and their cost",
+      "statement": "[Flagged cells and their cost] In a fixed bulk block let be a simple known primal bank path. Choose fixed scales R_1 , away from its endpoints and the original boundary. Flag a deterministic grid…",
+      "section": "Alternating tests after exploration",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-moving-obstacle",
+      "kind": "lemma",
+      "label": "Directed obstacle",
+      "statement": "[Directed obstacle] After removing histories of arbitrarily small probability and allowing an arbitrarily small conditional deletion cost, there is a Jordan polygon H containing the basepoint,…",
+      "section": "Alternating tests after exploration",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-chordal-tests",
+      "kind": "lemma",
+      "label": "Bounded martingale tests",
+      "statement": "[Bounded martingale tests] For every x>2R+1 , put M_t(x)=(xg_t'(x) g_t(x)-W_t )^h. These processes and their reciprocals are bounded on the stopped range, uniformly in the mesh. For arbitrary…",
+      "section": "Identification of the Dobrushin strand",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-chordal-driver",
+      "kind": "proposition",
+      "label": "Driving convergence",
+      "statement": "[Driving convergence] On every compact capacity interval, the Dobrushin driving functions converge in law, uniformly, to B_t , where B is standard Brownian motion and =8 1+h =4 (- q/2) .",
+      "section": "Identification of the Dobrushin strand",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-chordal-territories",
+      "kind": "lemma",
+      "label": "Territorial arm counting",
+      "statement": "[Territorial arm counting] In a buffered bulk annulus, m disjoint radial medial sublegs force at least m alternating actual primal/dual arms in a further cropped annulus. If only one color is…",
+      "section": "Identification of the Dobrushin strand",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-chordal-compactness",
+      "kind": "lemma",
+      "label": "Curve compactness and no triple visits",
+      "statement": "[Curve compactness and no triple visits] The physical Dobrushin strands are tight in the uniform Euclidean curve topology modulo increasing reparametrization. Every subsequential limit has no…",
+      "section": "Identification of the Dobrushin strand",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-chordal-avoidability",
+      "kind": "lemma",
+      "label": "Macroscopic avoidability",
+      "statement": "[Macroscopic avoidability] At a switch-revealing stop of the Dobrushin exploration, call a component of U_n A(z;r,R) avoidable if it does not separate the tip access from the target access inside U_n…",
+      "section": "Identification of the Dobrushin strand",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-chordal-target",
+      "kind": "corollary",
+      "label": "No return from a small target cap",
+      "statement": "[No return from a small target cap] After the strand first enters a shrinking initial conformal cap around its target, the probability of a subsequent displacement of fixed positive physical size…",
+      "section": "Identification of the Dobrushin strand",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-chordal-dense-doubles",
+      "kind": "lemma",
+      "label": "Interior double visits in every time interval",
+      "statement": "[Interior double visits in every time interval] For ordinary chordal SLE_ , 4<<8 , almost surely every nonempty open capacity interval contains both visits to some interior self-double point.",
+      "section": "Identification of the Dobrushin strand",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-chordal-gates",
+      "kind": "lemma",
+      "label": "Small gates exclude swallowed excursions",
+      "statement": "[Small gates exclude swallowed excursions] In a joint subsequential limit of the physical strand and its Loewner driving function, the physical curve cannot enter an open component of a Loewner hull…",
+      "section": "Identification of the Dobrushin strand",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-chordal-trace",
+      "kind": "theorem",
+      "label": "Dobrushin convergence for 1 q<4",
+      "statement": "[Dobrushin convergence for 1 q<4 ] For every bounded marked Jordan domain and every marked uniform polygon approximation satisfying Equation~ with the boundary conventions of Subsection~ , the…",
+      "section": "Identification of the Dobrushin strand",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-peel-factorization",
+      "kind": "lemma",
+      "label": "Exact pocket law",
+      "statement": "[Exact pocket law] Conditionally on any finite exploration history, the unqueried switches in its remaining components have the positive cap laws described by their boundaries. Distinct components…",
+      "section": "Peeling along monochromatic walls",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-peel-wall-rsw",
+      "kind": "lemma",
+      "label": "Wall crossings and screening",
+      "statement": "[Wall crossings and screening] Fix a buffered corridor of bounded aspect in a normalized disk chart. Its terminal wall intervals lie strictly inside designated homogeneous arcs; one terminal interval…",
+      "section": "Peeling along monochromatic walls",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-peel-passages",
+      "kind": "lemma",
+      "label": "Disjoint passages and reference walls",
+      "statement": "[Disjoint passages and reference walls] The number of edge-disjoint actual monochromatic cycles surrounding a fixed macroscopic ball in the initial square, and using no deterministic initial wall…",
+      "section": "Peeling along monochromatic walls",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-peel-martingales",
+      "kind": "proposition",
+      "label": "Tests away from coincidence",
+      "statement": "[Tests away from coincidence] For x>0 beyond these localization bounds, the quantities M_t(x)=(xg_t'(x) g_t(x)-W_t^ H )^h satisfy the approximate martingale identities between arbitrary causal stops…",
+      "section": "Peeling along monochromatic walls",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-tree-interior",
+      "kind": "lemma",
+      "label": "Interior characteristics",
+      "statement": "[Interior characteristics] Away from \\ 0,2\\ , every limiting branch has the local characteristics dW_t&=\\,dB_t+ 6- 2 (_t/2)\\,dt,\\\\ dO_t&=(_t/2)\\,dt, _t=O_t-W_t. Here t is that branch's radial clock;…",
+      "section": "Identification of the joint angular tree",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-tree-bar",
+      "kind": "lemma",
+      "label": "Fast motion near coincidence",
+      "statement": "[Fast motion near coincidence] There are positive constants c,C with the following property. Start at a causal stop with <r/16 , where r>0 is small. For 0<u r^2 , the probability that W advances…",
+      "section": "Identification of the joint angular tree",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-tree-reflection",
+      "kind": "proposition",
+      "label": "The endpoint convention is determined",
+      "statement": "[The endpoint convention is determined] In its own radial clock, the limiting gap is the unique instantaneous reflected diffusion on [0,2] with interior generator A f()=2 f''() + -4 2 (/2)f'(). The…",
+      "section": "Identification of the joint angular tree",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-tree-joint-law",
+      "kind": "proposition",
+      "label": "Joint target tree",
+      "statement": "[Joint target tree] For every finite family of deterministic interior targets, the peeling converges in its joint radial driving data to the target-invariant branching radial SLE_(-6) tree. Branches…",
+      "section": "Identification of the joint angular tree",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-loop-geometry",
+      "kind": "lemma",
+      "label": "Positive-law loop geometry",
+      "statement": "[Positive-law loop geometry] The closed loop collections in the fixed square are tight for matching uniform curves modulo reparametrization and orientation. Constant limit curves may be removed.…",
+      "section": "Recovery of the nested loop collection",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-loop-continuation",
+      "kind": "lemma",
+      "label": "Default continuation and local double visits",
+      "statement": "[Default continuation and local double visits] At an interior-angle time s(a_k,b_k) , the remaining traversal of L_z^k is the default strand from W_s to O_s in the current domain. In a chart sending…",
+      "section": "Recovery of the nested loop collection",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-loop-episode-order",
+      "kind": "lemma",
+      "label": "Discrete winding order",
+      "statement": "[Discrete winding order] As long as the target is macroscopically separated from a consumed tile or star, an episode is successful exactly when its terminal switch changes wall polarity. These…",
+      "section": "Recovery of the nested loop collection",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-loop-no-skip",
+      "kind": "lemma",
+      "label": "Endpoint resets cannot be skipped",
+      "statement": "[Endpoint resets cannot be skipped] At a bounded-clock completed state with approaching 0 , the probability of returning to a fixed positive angle before a primal-pocket reset tends to zero, with the…",
+      "section": "Recovery of the nested loop collection",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-loop-ordered",
+      "kind": "lemma",
+      "label": "The canonical traversal is contained in order",
+      "statement": "[The canonical traversal is contained in order] For each z Z and k1 , the entire traversal of L_z^k occurs in cyclic order in L_z^k , possibly with extra traversal portions inserted. Its order…",
+      "section": "Recovery of the nested loop collection",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-loop-label-equivalence",
+      "kind": "lemma",
+      "label": "The converse label identification",
+      "statement": "[The converse label identification] With equality understood as equality of collection elements, almost surely and simultaneously for all z,w Z and k,j1 , L_z^k=L_w^j L_z^k= L_w^j.",
+      "section": "Recovery of the nested loop collection",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-loop-identification",
+      "kind": "proposition",
+      "label": "Identification away from the square wall",
+      "statement": "[Identification away from the square wall] Every positive lattice-limit loop with an interior point has a canonical label. Matched elements have the same winding indicators on Z . If either matched…",
+      "section": "Recovery of the nested loop collection",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m1-loop-plane",
+      "kind": "theorem",
+      "label": "Nested full-plane convergence for q<4",
+      "statement": "[Nested full-plane convergence for q<4 ] For every fixed 1 q<4 , the loop collection of the free infinite-volume critical square-lattice FK law converges, through the full mesh sequence, to the…",
+      "section": "Recovery of the nested loop collection",
+      "manuscript": "Square-lattice FK interfaces and nested loops for 1 <= q < 4"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "Below-one interface convergence",
+      "statement": "[Below-one interface convergence] For every fixed q(0,1) and every marked domain approximation just specified, the laws of _ converge as 0 in the metric to chordal _(D;a,b) , where \\[ =4 (- q/2) . \\]…",
+      "section": "Introduction",
+      "manuscript": "Self-dual random-cluster interfaces below one"
+    },
+    {
+      "id": "m2-cor-full-fk-range",
+      "kind": "corollary",
+      "label": "Combined finite-law parameter range",
+      "statement": "[Combined finite-law parameter range] For this statement, fix q(0,4) and put \\[ p(q)= q 1+ q , (q)=4 (- q/2) . \\] Let D be a bounded Jordan domain with smooth simple boundary and distinct boundary…",
+      "section": "Introduction",
+      "manuscript": "Self-dual random-cluster interfaces below one"
+    },
+    {
+      "id": "m2-lem-finite-conditioning",
+      "kind": "lemma",
+      "label": "Finite conditioning and bounded local changes",
+      "statement": "[Finite conditioning and bounded local changes] Conditioning on any set of edge states gives the random-cluster law on the remaining graph with the identifications induced by the open conditioned…",
+      "section": "Finite laws and geometric conventions",
+      "manuscript": "Self-dual random-cluster interfaces below one"
+    },
+    {
+      "id": "m2-lem-loop-law",
+      "kind": "lemma",
+      "label": "Positive loop law",
+      "statement": "[Positive loop law] For any fixed planar cap completion, the weight of a switch state in the homogeneous medium is proportional to d^ , where is its number of completed loops and d= q . The…",
+      "section": "Finite laws and geometric conventions",
+      "manuscript": "Self-dual random-cluster interfaces below one"
+    },
+    {
+      "id": "m2-lem-finite-duality",
+      "kind": "lemma",
+      "label": "Finite planar duality",
+      "statement": "[Finite planar duality] Complementary dual-open edges have odds q/v_e . In particular the homogeneous square medium with odds d= q is self-dual. Complementary boundary caps are understood on the same…",
+      "section": "Finite laws and geometric conventions",
+      "manuscript": "Self-dual random-cluster interfaces below one"
+    },
+    {
+      "id": "m2-thm-pressure",
+      "kind": "theorem",
+      "label": "Positive site pressure",
+      "statement": "[Positive site pressure] There are coefficients c_m0 , indexed by the nonzero multiindices m_ 0 ^ V , such that - F_H(x)=_ m0 c_m x^m, x^m=_ i V x_i^ m_i . The series converges absolutely on a…",
+      "section": "Site pressure and boundary gluing",
+      "manuscript": "Self-dual random-cluster interfaces below one"
+    },
+    {
+      "id": "m2-pressure-coefficient-locality",
+      "kind": "lemma",
+      "label": "Locality and identification of zero sites",
+      "statement": "[Locality and identification of zero sites] For a simple graph and a fixed multiindex m , write c_m=(_i_i^ m_i )b_m. Then b_m0 depends only on the induced graph on (m) and its odds, and is…",
+      "section": "Site pressure and boundary gluing",
+      "manuscript": "Self-dual random-cluster interfaces below one"
+    },
+    {
+      "id": "m2-lem-adjacent-rayleigh",
+      "kind": "lemma",
+      "label": "Adjacent and cofacial Rayleigh inequalities",
+      "statement": "[Adjacent and cofacial Rayleigh inequalities] In every finite FK graph with 0<q<1 , two distinct edges incident to a common vertex have nonpositive covariance of their opening indicators. In a plane…",
+      "section": "Site pressure and boundary gluing",
+      "manuscript": "Self-dual random-cluster interfaces below one"
+    },
+    {
+      "id": "m2-pressure-network-monotonicity",
+      "kind": "lemma",
+      "label": "Monotonicity of tested network connections",
+      "statement": "[Monotonicity of tested network connections] Let a,o be vertices in a finite graph. Adding or strengthening an edge incident to o does not decrease (a o) . The same holds in a plane graph if the…",
+      "section": "Site pressure and boundary gluing",
+      "manuscript": "Self-dual random-cluster interfaces below one"
+    },
+    {
+      "id": "m2-lem-rooted",
+      "kind": "lemma",
+      "label": "Rooted coverage representation",
+      "statement": "[Rooted coverage representation] For a V , the numbers _H^a(m)= q u m_a c_m define a probability law on finite nonempty vertex multisets with connected support containing a . In the graph with hub…",
+      "section": "Site pressure and boundary gluing",
+      "manuscript": "Self-dual random-cluster interfaces below one"
+    },
+    {
+      "id": "m2-pressure-general-no-hit",
+      "kind": "lemma",
+      "label": "Wiring an unwired target",
+      "statement": "[Wiring an unwired target] Let a be a vertex and S a nonempty vertex set in any finite graph H . The probability that the open component of a meets S is at least its probability after all vertices of…",
+      "section": "Site pressure and boundary gluing",
+      "manuscript": "Self-dual random-cluster interfaces below one"
+    },
+    {
+      "id": "m2-pressure-cofacial-gain",
+      "kind": "lemma",
+      "label": "Cofacial gain and exposed erasure",
+      "statement": "[Cofacial gain and exposed erasure] Let X be a finite collection of auxiliary edges between vertices of a plane graph K , and let h be an original edge. Suppose that, in the drawing containing all…",
+      "section": "Site pressure and boundary gluing",
+      "manuscript": "Self-dual random-cluster interfaces below one"
+    },
+    {
+      "id": "m2-lem-interlacing",
+      "kind": "lemma",
+      "label": "Interlacing gluing",
+      "statement": "[Interlacing gluing] Suppose four electrodes occur in cyclic order A,C,B,D on the boundary of one disk. With g_H defined by , g_H(A,C) g_H(A,B)\\,g_H(C,D). The edge odds may be arbitrary nonnegative…",
+      "section": "Site pressure and boundary gluing",
+      "manuscript": "Self-dual random-cluster interfaces below one"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-prelim-loop-law",
+      "to": "m1-prelim-finite-loops"
+    },
+    {
+      "from": "m1-prelim-collar",
+      "to": "m1-prelim-relative-collar"
+    },
+    {
+      "from": "m1-prelim-passages",
+      "to": "m1-prelim-tilts"
+    },
+    {
+      "from": "m1-prelim-passages",
+      "to": "m1-prelim-surface"
+    },
+    {
+      "from": "m1-prelim-collar",
+      "to": "m1-prelim-surface"
+    },
+    {
+      "from": "m1-prelim-collar",
+      "to": "m1-exp-local-costs"
+    },
+    {
+      "from": "m1-prelim-tilts",
+      "to": "m1-exp-local-costs"
+    },
+    {
+      "from": "m1-prelim-passages",
+      "to": "m1-exp-cap-elimination"
+    },
+    {
+      "from": "m1-prelim-collar",
+      "to": "m1-exp-cap-elimination"
+    },
+    {
+      "from": "m1-exp-local-costs",
+      "to": "m1-exp-cap-elimination"
+    },
+    {
+      "from": "m1-prelim-absorb",
+      "to": "m1-exp-cap-elimination"
+    },
+    {
+      "from": "m1-prelim-tilts",
+      "to": "m1-exp-cap-elimination"
+    },
+    {
+      "from": "m1-prelim-loop-law",
+      "to": "m1-bulk-plane-kernels"
+    },
+    {
+      "from": "m1-prelim-passages",
+      "to": "m1-bulk-plane-kernels"
+    },
+    {
+      "from": "m1-cur-deformation",
+      "to": "m1-cur-tree-weights"
+    },
+    {
+      "from": "m1-cur-deformation",
+      "to": "m1-cur-slab-estimate"
+    },
+    {
+      "from": "m1-bulk-angular-estimate",
+      "to": "m1-cur-slab-estimate"
+    },
+    {
+      "from": "m1-cur-tree-weights",
+      "to": "m1-four-tree"
+    },
+    {
+      "from": "m1-prelim-passages",
+      "to": "m1-four-compactness"
+    },
+    {
+      "from": "m1-prelim-tilts",
+      "to": "m1-four-compactness"
+    },
+    {
+      "from": "m1-prelim-relative-collar",
+      "to": "m1-four-residual"
+    },
+    {
+      "from": "m1-four-residual",
+      "to": "m1-four-conditional-map"
+    },
+    {
+      "from": "m1-four-marked",
+      "to": "m1-four-conditional-map"
+    },
+    {
+      "from": "m1-four-tree",
+      "to": "m1-four-conditional-map"
+    },
+    {
+      "from": "m1-wall-distant",
+      "to": "m1-wall-factorization"
+    },
+    {
+      "from": "m1-prelim-relative-collar",
+      "to": "m1-gap-closure"
+    },
+    {
+      "from": "m1-hol-templates",
+      "to": "m1-hol-mixed-bound"
+    },
+    {
+      "from": "m1-gap-closure",
+      "to": "m1-hol-disk"
+    },
+    {
+      "from": "m1-wall-factorization",
+      "to": "m1-hol-disk"
+    },
+    {
+      "from": "m1-four-conditional-map",
+      "to": "m1-hol-disk"
+    },
+    {
+      "from": "m1-jordan-transfer",
+      "to": "m1-jordan-cardy"
+    },
+    {
+      "from": "m1-moving-drawing",
+      "to": "m1-moving-chart-modulus"
+    },
+    {
+      "from": "m1-moving-drawing",
+      "to": "m1-moving-deletion"
+    },
+    {
+      "from": "m1-moving-chart-modulus",
+      "to": "m1-moving-deletion"
+    },
+    {
+      "from": "m1-moving-chart-modulus",
+      "to": "m1-moving-flags"
+    },
+    {
+      "from": "m1-moving-deletion",
+      "to": "m1-moving-obstacle"
+    },
+    {
+      "from": "m1-moving-chart-modulus",
+      "to": "m1-moving-obstacle"
+    },
+    {
+      "from": "m1-moving-flags",
+      "to": "m1-moving-obstacle"
+    },
+    {
+      "from": "m1-moving-slit",
+      "to": "m1-moving-obstacle"
+    },
+    {
+      "from": "m1-jordan-transfer",
+      "to": "m1-moving-obstacle"
+    },
+    {
+      "from": "m1-moving-slit",
+      "to": "m1-chordal-tests"
+    },
+    {
+      "from": "m1-moving-asymptotic",
+      "to": "m1-chordal-tests"
+    },
+    {
+      "from": "m1-chordal-territories",
+      "to": "m1-chordal-compactness"
+    },
+    {
+      "from": "m1-chordal-avoidability",
+      "to": "m1-chordal-target"
+    },
+    {
+      "from": "m1-chordal-avoidability",
+      "to": "m1-chordal-gates"
+    },
+    {
+      "from": "m1-chordal-driver",
+      "to": "m1-chordal-trace"
+    },
+    {
+      "from": "m1-chordal-compactness",
+      "to": "m1-chordal-trace"
+    },
+    {
+      "from": "m1-chordal-gates",
+      "to": "m1-chordal-trace"
+    },
+    {
+      "from": "m1-chordal-dense-doubles",
+      "to": "m1-chordal-trace"
+    },
+    {
+      "from": "m1-chordal-target",
+      "to": "m1-chordal-trace"
+    },
+    {
+      "from": "m1-moving-drawing",
+      "to": "m1-chordal-trace"
+    },
+    {
+      "from": "m1-peel-wall-rsw",
+      "to": "m1-peel-passages"
+    },
+    {
+      "from": "m1-peel-factorization",
+      "to": "m1-peel-martingales"
+    },
+    {
+      "from": "m1-peel-wall-rsw",
+      "to": "m1-peel-martingales"
+    },
+    {
+      "from": "m1-peel-passages",
+      "to": "m1-peel-martingales"
+    },
+    {
+      "from": "m1-peel-martingales",
+      "to": "m1-tree-interior"
+    },
+    {
+      "from": "m1-chordal-driver",
+      "to": "m1-tree-interior"
+    },
+    {
+      "from": "m1-peel-wall-rsw",
+      "to": "m1-tree-bar"
+    },
+    {
+      "from": "m1-tree-bar",
+      "to": "m1-tree-reflection"
+    },
+    {
+      "from": "m1-peel-factorization",
+      "to": "m1-tree-joint-law"
+    },
+    {
+      "from": "m1-tree-reflection",
+      "to": "m1-tree-joint-law"
+    },
+    {
+      "from": "m1-peel-passages",
+      "to": "m1-loop-geometry"
+    },
+    {
+      "from": "m1-peel-wall-rsw",
+      "to": "m1-loop-no-skip"
+    },
+    {
+      "from": "m1-loop-continuation",
+      "to": "m1-loop-ordered"
+    },
+    {
+      "from": "m1-loop-geometry",
+      "to": "m1-loop-ordered"
+    },
+    {
+      "from": "m1-peel-wall-rsw",
+      "to": "m1-loop-label-equivalence"
+    },
+    {
+      "from": "m1-loop-no-skip",
+      "to": "m1-loop-label-equivalence"
+    },
+    {
+      "from": "m1-loop-geometry",
+      "to": "m1-loop-identification"
+    },
+    {
+      "from": "m1-loop-label-equivalence",
+      "to": "m1-loop-identification"
+    },
+    {
+      "from": "m1-loop-ordered",
+      "to": "m1-loop-identification"
+    },
+    {
+      "from": "m1-loop-continuation",
+      "to": "m1-loop-identification"
+    },
+    {
+      "from": "m1-loop-identification",
+      "to": "m1-loop-plane"
+    },
+    {
+      "from": "m1-intro-main",
+      "to": "m1-loop-plane"
+    },
+    {
+      "from": "m1-intro-bond-exponents",
+      "to": "m1-loop-plane"
+    },
+    {
+      "from": "m2-thm-main",
+      "to": "m2-cor-full-fk-range"
+    },
+    {
+      "from": "m2-thm-pressure",
+      "to": "m2-lem-adjacent-rayleigh"
+    },
+    {
+      "from": "m2-lem-adjacent-rayleigh",
+      "to": "m2-pressure-network-monotonicity"
+    },
+    {
+      "from": "m2-thm-pressure",
+      "to": "m2-lem-rooted"
+    },
+    {
+      "from": "m2-lem-adjacent-rayleigh",
+      "to": "m2-pressure-general-no-hit"
+    },
+    {
+      "from": "m2-pressure-network-monotonicity",
+      "to": "m2-pressure-general-no-hit"
+    },
+    {
+      "from": "m2-lem-adjacent-rayleigh",
+      "to": "m2-pressure-cofacial-gain"
+    },
+    {
+      "from": "m2-pressure-general-no-hit",
+      "to": "m2-lem-interlacing"
+    },
+    {
+      "from": "m2-pressure-network-monotonicity",
+      "to": "m2-lem-interlacing"
+    }
+  ]
+}

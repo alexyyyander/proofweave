@@ -1,0 +1,256 @@
+{
+  "familyNumber": "085",
+  "familyTitle": "Endpoint Sobolev regularity of centered disk averages",
+  "manuscripts": [
+    {
+      "id": "An-Endpoint-Gradient-Bound-for-the-Centered-Disk-Maximal-Operator-September-26-2026",
+      "title": "An Endpoint Gradient Bound for the Centered Disk Maximal Operator",
+      "date": "2026-09-26",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-Endpoint-Gradient-Bound-for-the-Centered-Disk-Maximal-Operator-September-26-2026/article.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Cancellation at disks and three local bounds",
+    "Dyadic vector masses and common prices",
+    "Directions that change slowly in scale and position",
+    "Sobolev input and absolute continuity",
+    "Analytic facts used in the limiting argument"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "There is an absolute constant C< such that, for every real-valued f W^ 1,1 (^2)…",
+      "statement": "There is an absolute constant C< such that, for every real-valued f W^ 1,1 (^2) , the function Mf is locally integrable, belongs to W^ 1,1 _ loc (^2) , and satisfies _ ^2 | Mf|\\, x C_ ^2 | f|\\, x. In…",
+      "section": "Introduction",
+      "manuscript": "An Endpoint Gradient Bound for the Centered Disk Maximal Operator"
+    },
+    {
+      "id": "m1-prop-finite-band",
+      "kind": "proposition",
+      "label": "Signed finite-band estimate",
+      "statement": "[Signed finite-band estimate] There is an absolute constant C such that, for every real g C_c^(^2) and 0<a b with b/a a power of two, including one, _ ^2 | S_ a,b g|\\, x C_ ^2 | g|\\, x. The constant…",
+      "section": "Introduction",
+      "manuscript": "An Endpoint Gradient Bound for the Centered Disk Maximal Operator"
+    },
+    {
+      "id": "m1-lem-local",
+      "kind": "lemma",
+      "label": "Local estimates",
+      "statement": "[Local estimates] Let Q be a square of side length one and let =\\ y:(y,Q)<10\\ . Suppose that, on , h=_i v_i_i+, =_d_d. The sums are finite. The measures in the sums are finite, defined on ^2 , and…",
+      "section": "Cancellation at disks and three local bounds",
+      "manuscript": "An Endpoint Gradient Bound for the Centered Disk Maximal Operator"
+    },
+    {
+      "id": "m1-lem-local-balanced",
+      "kind": "lemma",
+      "label": "Balanced kernels",
+      "statement": "[Balanced kernels] Suppose that r and 0<1/4 , and that \\[ u_r(x) u_ r- (x), u_r(x) u_ r+ (x). \\] There is a probability density k supported on [r-,r+] , bounded by C/ , such that \\[ K(y)= k(t)1_…",
+      "section": "Cancellation at disks and three local bounds",
+      "manuscript": "An Endpoint Gradient Bound for the Centered Disk Maximal Operator"
+    },
+    {
+      "id": "m1-lem-local-affine",
+      "kind": "lemma",
+      "label": "Affine cancellation",
+      "statement": "[Affine cancellation] Let x^2 , r , 0<1/4 , and \\[ D=\\ y:||y-x|-r|\\ . \\] Let h be a complex measure whose variation is finite on B(x,3) . Suppose that K_0,K_1:^2 are Borel functions supported in…",
+      "section": "Cancellation at disks and three local bounds",
+      "manuscript": "An Endpoint Gradient Bound for the Centered Disk Maximal Operator"
+    },
+    {
+      "id": "m1-lem-shell-concentration",
+      "kind": "lemma",
+      "label": "Concentration in a thin shell",
+      "statement": "[Concentration in a thin shell] Let S and be finite positive Borel measures on ^2 , let U>0 and T0 , and suppose that \\[ 0<1, 0< ^2 1600 . \\] Write \\[ D(x,r,)=\\ y:||y-x|-r|\\ . \\] There is a Borel set…",
+      "section": "Cancellation at disks and three local bounds",
+      "manuscript": "An Endpoint Gradient Bound for the Centered Disk Maximal Operator"
+    },
+    {
+      "id": "m1-lem-prices-remove",
+      "kind": "lemma",
+      "label": "Removing equal masses",
+      "statement": "[Removing equal masses] Let U,V be finite nonnegative measures, of masses P,N . There are nonnegative submeasures _+ U , _- V , both of mass d=(P,N) , such that \\[ U-V=+_+-_-, (^2)=P-N, ||(^2)=|P-N|.…",
+      "section": "Dyadic vector masses and common prices",
+      "manuscript": "An Endpoint Gradient Bound for the Centered Disk Maximal Operator"
+    },
+    {
+      "id": "m1-lem-prices-scalar-pairing",
+      "kind": "lemma",
+      "label": "Exact scalar pairing",
+      "statement": "[Exact scalar pairing] For every c C there are measures _s^c,_ s,+ ^c,_ s,- ^c at all vertices s V_l , 1 l m , supported in _s and absolutely continuous, with _s^c of constant sign and _ s, ^c…",
+      "section": "Dyadic vector masses and common prices",
+      "manuscript": "An Endpoint Gradient Bound for the Centered Disk Maximal Operator"
+    },
+    {
+      "id": "m1-prop-prices",
+      "kind": "proposition",
+      "label": "Common discounted prices",
+      "statement": "[Common discounted prices] For p V_k , 1 k m , define D_ Q_p =_ c C _ q R(Q_p) _ l=k ^m2^ -(l-k) _ s V_l _ qs d_s^c, =1 100 . These nonnegative prices satisfy _ k=1 ^m_ p V_k D_ Q_p 41^2 2(1-2^ - ) _…",
+      "section": "Dyadic vector masses and common prices",
+      "manuscript": "An Endpoint Gradient Bound for the Centered Disk Maximal Operator"
+    },
+    {
+      "id": "m1-lem-labels-neighbors",
+      "kind": "lemma",
+      "label": "Neighboring direction budget",
+      "statement": "[Neighboring direction budget] There is an absolute constant C such that _ k=1 ^m_ q V_k a_q E_k(q) C V.",
+      "section": "Directions that change slowly in scale and position",
+      "manuscript": "An Endpoint Gradient Bound for the Centered Disk Maximal Operator"
+    },
+    {
+      "id": "m1-lem-good-label",
+      "kind": "lemma",
+      "label": "Good labels near a controlled vertex",
+      "statement": "[Good labels near a controlled vertex] Set c_*=(/10)^2 . Suppose q V_k , E_k(q) c_* , and |x-q|_ 50r_k . Then (q,n_k) is good with _x -probability one.",
+      "section": "Directions that change slowly in scale and position",
+      "manuscript": "An Endpoint Gradient Bound for the Centered Disk Maximal Operator"
+    },
+    {
+      "id": "m1-prop-label-packing",
+      "kind": "proposition",
+      "label": "Packing of switch and derivative costs",
+      "statement": "[Packing of switch and derivative costs] For every real g C_c^(^2) and every m1 , the quantities constructed above satisfy _ l=1 ^m_ q V_l a_q C V. The constant is absolute and independent of m .",
+      "section": "Directions that change slowly in scale and position",
+      "manuscript": "An Endpoint Gradient Bound for the Centered Disk Maximal Operator"
+    },
+    {
+      "id": "m1-lem-labels-particles",
+      "kind": "lemma",
+      "label": "A finite particle measure",
+      "statement": "[A finite particle measure] There is a finite positive measure on pairs consisting of a terminal path (q_1,,q_m) and a birth level B\\ 1,,m\\ such that, for every node at level k , \\ B k,\\ (q_1,,q_k)=\\…",
+      "section": "Directions that change slowly in scale and position",
+      "manuscript": "An Endpoint Gradient Bound for the Centered Disk Maximal Operator"
+    },
+    {
+      "id": "m1-lem-labels-switch-packing",
+      "kind": "lemma",
+      "label": "Intrinsic marks and expected switches",
+      "statement": "[Intrinsic marks and expected switches] The particle measure satisfies _ intrinsically marked M_& C V, \\\\ _ s=B ^m E_s(q_s)\\,& C V, \\\\ _ s=B ^m R_s(y)\\,& C V.",
+      "section": "Directions that change slowly in scale and position",
+      "manuscript": "An Endpoint Gradient Bound for the Centered Disk Maximal Operator"
+    },
+    {
+      "id": "m1-lem-labels-spatial-comparison",
+      "kind": "lemma",
+      "label": "Spatial comparison",
+      "statement": "[Spatial comparison] Fix a particle, a level 1 l m , and x D(q_l) . Set \\[ c_s=R_s(y)+E_s(q_s), 1 s m. \\] For 1 k(l+1,m) , R_k(x)+T_k(x) C_ s=1 ^k2^ s-k c_s. The assertion for R_k holds at every x in…",
+      "section": "Directions that change slowly in scale and position",
+      "manuscript": "An Endpoint Gradient Bound for the Centered Disk Maximal Operator"
+    },
+    {
+      "id": "m1-lem-sobolev-band",
+      "kind": "lemma",
+      "label": "Sobolev finite bands",
+      "statement": "[Sobolev finite bands] For every real g W^ 1,1 (^2) and 0<a b< , S_ a,b g is globally Lipschitz and (S_ a,b g)\\| g\\|_1 a^2 . If b/a is a nonnegative integer power of two, then _ ^2 | S_ a,b g|\\, x…",
+      "section": "Sobolev input and absolute continuity",
+      "manuscript": "An Endpoint Gradient Bound for the Centered Disk Maximal Operator"
+    },
+    {
+      "id": "m1-cor-bv-input",
+      "kind": "corollary",
+      "label": "Bounded-variation inputs",
+      "statement": "[Bounded-variation inputs] Let BV(^2) denote the globally integrable functions whose distributional derivatives have finite total variation. For every real f BV(^2) , \\[ Mf L^2(^2) BV_ loc (^2),…",
+      "section": "Sobolev input and absolute continuity",
+      "manuscript": "An Endpoint Gradient Bound for the Centered Disk Maximal Operator"
+    },
+    {
+      "id": "m1-lem-appendix-sobolev-calculus",
+      "kind": "lemma",
+      "label": "For real u W^ 1,1 (^2) there are real u_j C_c^(^2) converging to u in W^ 1,1 ,…",
+      "statement": "For real u W^ 1,1 (^2) there are real u_j C_c^(^2) converging to u in W^ 1,1 , and \\|u(+z)-u\\|_1 |z|\\,\\| u\\|_1 (z^2). Moreover |u| W^ 1,1 (^2) with ||u||| u| almost everywhere. If is smooth and…",
+      "section": "Analytic facts used in the limiting argument",
+      "manuscript": "An Endpoint Gradient Bound for the Centered Disk Maximal Operator"
+    },
+    {
+      "id": "m1-lem-appendix-planar-embedding",
+      "kind": "lemma",
+      "label": "Planar Sobolev embedding",
+      "statement": "[Planar Sobolev embedding] For every real u W^ 1,1 (^2) , \\[ \\|u\\|_2^2\\|_1u\\|_1\\|_2u\\|_1, in particular \\|u\\|_2\\| u\\|_1. \\]",
+      "section": "Analytic facts used in the limiting argument",
+      "manuscript": "An Endpoint Gradient Bound for the Centered Disk Maximal Operator"
+    },
+    {
+      "id": "m1-lem-appendix-square",
+      "kind": "lemma",
+      "label": "For a square Q of side length t>0 and u W^ 1,1 (^2) , write u_Q=|Q|^ -1 _Qu .…",
+      "statement": "For a square Q of side length t>0 and u W^ 1,1 (^2) , write u_Q=|Q|^ -1 _Qu . Then _Q|u-u_Q| Ct_Q| u|. For every grid square Q of side t , there is a smooth cutoff _Q equal to one on the closed…",
+      "section": "Analytic facts used in the limiting argument",
+      "manuscript": "An Endpoint Gradient Bound for the Centered Disk Maximal Operator"
+    },
+    {
+      "id": "m1-lem-appendix-vector-measure",
+      "kind": "lemma",
+      "label": "Suppose u_j W^ 1,1 _ loc (^2) converge locally in L^1 to u , and _j_ ^2 | u_j|…",
+      "statement": "Suppose u_j W^ 1,1 _ loc (^2) converge locally in L^1 to u , and _j_ ^2 | u_j| M< . Then the distributional gradient of u is a finite vector Radon measure H , with |H|(^2) M, |H|(O)= V(u;O) _j_O|…",
+      "section": "Analytic facts used in the limiting argument",
+      "manuscript": "An Endpoint Gradient Bound for the Centered Disk Maximal Operator"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-prices-remove",
+      "to": "m1-lem-prices-scalar-pairing"
+    },
+    {
+      "from": "m1-lem-local",
+      "to": "m1-prop-prices"
+    },
+    {
+      "from": "m1-prop-label-packing",
+      "to": "m1-lem-labels-spatial-comparison"
+    },
+    {
+      "from": "m1-prop-finite-band",
+      "to": "m1-lem-labels-spatial-comparison"
+    },
+    {
+      "from": "m1-lem-good-label",
+      "to": "m1-lem-labels-spatial-comparison"
+    },
+    {
+      "from": "m1-prop-prices",
+      "to": "m1-lem-labels-spatial-comparison"
+    },
+    {
+      "from": "m1-lem-appendix-sobolev-calculus",
+      "to": "m1-lem-sobolev-band"
+    },
+    {
+      "from": "m1-prop-finite-band",
+      "to": "m1-lem-sobolev-band"
+    },
+    {
+      "from": "m1-lem-appendix-vector-measure",
+      "to": "m1-lem-sobolev-band"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-lem-sobolev-band"
+    },
+    {
+      "from": "m1-lem-appendix-planar-embedding",
+      "to": "m1-lem-sobolev-band"
+    },
+    {
+      "from": "m1-lem-appendix-square",
+      "to": "m1-lem-sobolev-band"
+    },
+    {
+      "from": "m1-lem-appendix-planar-embedding",
+      "to": "m1-cor-bv-input"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-cor-bv-input"
+    },
+    {
+      "from": "m1-lem-appendix-vector-measure",
+      "to": "m1-cor-bv-input"
+    },
+    {
+      "from": "m1-lem-appendix-sobolev-calculus",
+      "to": "m1-lem-appendix-planar-embedding"
+    }
+  ]
+}

@@ -1,0 +1,896 @@
+{
+  "familyNumber": "239",
+  "familyTitle": "Sharp singularity rates for symmetric random sign matrices",
+  "manuscripts": [
+    {
+      "id": "The-sharp-exponential-rate-of-singularity-for-symmetric-Bernoulli-matrices-October-3-2026",
+      "title": "The sharp exponential rate of singularity for symmetric Bernoulli matrices",
+      "date": "2026-10-03",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-sharp-exponential-rate-of-singularity-for-symmetric-Bernoulli-matrices-October-3-2026/symmetric-bernoulli-singularity.pdf"
+    },
+    {
+      "id": "The-sharp-singularity-rate-for-biased-symmetric-sign-matrices-October-4-2026",
+      "title": "The sharp singularity rate for biased symmetric sign matrices",
+      "date": "2026-10-04",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-sharp-singularity-rate-for-biased-symmetric-sign-matrices-October-4-2026/biased-symmetric-sign-singularity.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "The binary model and the proof framework",
+    "Lattice tools and robust subsets",
+    "A finite cover for subspaces of controlled height",
+    "Typical rank and spectral properties",
+    "The discriminant pairing and admissible columns",
+    "Algebra of principal-minor extensions",
+    "Simultaneous concentration in lattice quotients",
+    "Pricing retained layers by certificates",
+    "Paying for an increase of potential",
+    "Paths of principal minors",
+    "From kernel vectors to possible columns",
+    "Lattice tools and a prime-corank bound",
+    "A simultaneous bound for lattice intersections",
+    "Discriminant pairings and the number of admissible columns",
+    "Two column constraints along a path of principal minors"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For the symmetric Bernoulli matrix \\(A_n\\), \\[ ( A_n=0)=(12+o(1))^n =2^ -n+o(n)…",
+      "statement": "For the symmetric Bernoulli matrix \\(A_n\\), \\[ ( A_n=0)=(12+o(1))^n =2^ -n+o(n) as n. \\]",
+      "section": "Introduction",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-lem-sign-bit",
+      "kind": "lemma",
+      "label": "For \\(n2\\), \\[ ( A_n=0)=( B_ n-1 =0). \\]",
+      "statement": "For \\(n2\\), \\[ ( A_n=0)=( B_ n-1 =0). \\]",
+      "section": "The binary model and the proof framework",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-lem-principal-rank",
+      "kind": "lemma",
+      "label": "Principal rank",
+      "statement": "[Principal rank] Let \\(M\\) be a symmetric matrix over a field, of rank \\(r\\). Then \\(M\\) has a nonsingular principal submatrix of size \\(r\\).",
+      "section": "The binary model and the proof framework",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-lem-corank-tail",
+      "kind": "lemma",
+      "label": "Corank tail",
+      "statement": "[Corank tail] Let \\( K\\) be any field, and regard the bits of \\( B_m\\) as elements of \\( K\\). For \\(1 k m\\), \\[ (_ K B_m k) _ j=k ^ m mj\\,2^ -j(j+1)/2 . \\] Consequently, uniformly for \\(m I_N\\), \\[…",
+      "section": "The binary model and the proof framework",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-lem-corank-reduction",
+      "kind": "lemma",
+      "label": "Reduction to corank one",
+      "statement": "[Reduction to corank one] For the binary model in dimension \\(N\\), \\[ ( B_N=0) 2^ o(N) ( B_N=1) +2^ -(N^ 6/5 ) . \\]",
+      "section": "The binary model and the proof framework",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-lem-column-reduction",
+      "kind": "lemma",
+      "label": "One has \\[ ( B_N=1) N\\,2^ -N \\,| S( B_ N-1 )|. \\]",
+      "statement": "One has \\[ ( B_N=1) N\\,2^ -N \\,| S( B_ N-1 )|. \\]",
+      "section": "The binary model and the proof framework",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-prop-admissible-potential",
+      "kind": "proposition",
+      "label": "Admissible-column estimate",
+      "statement": "[Admissible-column estimate] For every fixed \\(A>0\\), typically for nonsingular binary matrices \\(B\\) of size \\(m I_N\\), \\[ | S(B)| 2^ N((B)+^ -A ) . \\]",
+      "section": "The binary model and the proof framework",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-prop-path-potential",
+      "kind": "proposition",
+      "label": "Potential moment",
+      "statement": "[Potential moment] For a binary matrix of size \\(N-1\\), \\[ \\! 2^ o(N) . \\]",
+      "section": "The binary model and the proof framework",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-lem-lattice-quotient",
+      "kind": "lemma",
+      "label": "Orthogonal lattice quotients",
+      "statement": "[Orthogonal lattice quotients] Let \\(L\\) have rank \\(r\\) and span \\(E\\), and let \\(K L\\) be a primitive sublattice of rank \\(k\\), with \\(F= K\\). Write \\(_ F^ \\) for orthogonal projection from \\(E\\)…",
+      "section": "Lattice tools and robust subsets",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-lem-height-submodularity",
+      "kind": "lemma",
+      "label": "Height submodularity",
+      "statement": "[Height submodularity] For rational subspaces \\(U,V^m\\), \\[ H(U+V)H(U V) H(U)H(V). \\] Consequently \\(h(U+V)+h(U V) h(U)+h(V)\\). Every rational subspace has height at least one, and, for fixed \\(m\\)…",
+      "section": "Lattice tools and robust subsets",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-lem-normal-height",
+      "kind": "lemma",
+      "label": "Normal lattices and height",
+      "statement": "[Normal lattices and height] Let \\(V U^m\\) be rational subspaces, and put \\(=_U^*\\). The primitive normal lattice \\[ N_U(V)= V^ \\] has rank \\( U- V\\), and \\[ _V()=_V^*, N_U(V)=H(V) H(U) . \\] More…",
+      "section": "Lattice tools and robust subsets",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-thm-reverse-minkowski",
+      "kind": "theorem",
+      "label": "Reverse Minkowski Theorem",
+      "statement": "[Reverse Minkowski Theorem] Let \\(L\\) be a lattice of rank \\(j1\\), and let \\(T>0\\). Suppose that \\[ M T^ M for every sublattice M L. \\] With \\(_j=10( j+2)\\), one has \\[ _ T/_j (L)32. \\] For a…",
+      "section": "Lattice tools and robust subsets",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-lem-gaussian-count",
+      "kind": "lemma",
+      "label": "Gaussian point counts",
+      "statement": "[Gaussian point counts] Let \\(L\\) be a rank-\\(j\\) lattice. For \\(R0\\) and \\(s>0\\), \\[ \\#\\ x L:\\|x\\| R\\ ( R^2/s^2)_s(L). \\] For \\(s' s>0\\), \\[ _ s' (L) (s'/s)^j_s(L). \\] In particular, under the…",
+      "section": "Lattice tools and robust subsets",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-lem-det-minimizer",
+      "kind": "lemma",
+      "label": "Determinant-minimizing sublattice",
+      "statement": "[Determinant-minimizing sublattice] Let \\(L\\) be a lattice and let \\(T>0\\). The quantity \\[ M T^ M , M L a sublattice, \\] has a minimum, attained by a primitive sublattice \\(L_0\\). It satisfies \\[…",
+      "section": "Lattice tools and robust subsets",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-lem-robust-extraction",
+      "kind": "lemma",
+      "label": "Robust cube extraction",
+      "statement": "[Robust cube extraction] Let \\( A^m\\), let \\(>0\\), and put \\(d= A\\). There is an affine restriction \\( A_0= A F\\), with \\(F= A_0\\) of dimension \\(r\\), such that \\( A_0\\) is \\(\\)-robust and \\[ _2|…",
+      "section": "Lattice tools and robust subsets",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-lem-robust-height",
+      "kind": "lemma",
+      "label": "Determinant of a robust image lattice",
+      "statement": "[Determinant of a robust image lattice] Fix \\(D>0\\) and \\(C_0>0\\). For all sufficiently large \\(N\\), put \\(=^ -D \\). Let \\(m N\\), let \\( A^m\\) be \\(\\)-robust on its affine span \\(F\\) of dimension…",
+      "section": "Lattice tools and robust subsets",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-thm-low-height-cover",
+      "kind": "theorem",
+      "label": "Low-height cover",
+      "statement": "[Low-height cover] Fix \\(D,A>0\\). For all sufficiently large \\(N\\), and every integer \\(0 m N\\), there is a list \\( C_ m,N \\) of rational subspaces of \\(^m\\), depending also on \\(D,A\\), such that \\[…",
+      "section": "A finite cover for subspaces of controlled height",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-prop-typical-ranks",
+      "kind": "proposition",
+      "label": "Uniform low-height rank tests",
+      "statement": "[Uniform low-height rank tests] For every pair of fixed constants \\(D,A>0\\), there is a function \\(f_ D,A (N)\\) such that the following holds for every \\(m I_N\\) and all sufficiently large \\(N\\),…",
+      "section": "Typical rank and spectral properties",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-cor-inverse-rank",
+      "kind": "corollary",
+      "label": "Inverse restriction rank",
+      "statement": "[Inverse restriction rank] For every pair of fixed constants \\(D,A>0\\), typically for nonsingular binary matrices \\(B\\) of size \\(m I_N\\), simultaneously for every rational \\(W^m\\) with…",
+      "section": "Typical rank and spectral properties",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-prop-prime-corank",
+      "kind": "proposition",
+      "label": "Uniform prime corank",
+      "statement": "[Uniform prime corank] Typically for nonsingular binary matrices \\(B\\) of size \\(m I_N\\), one has, simultaneously for every prime \\(p\\), \\[ _ _p (B p) N^ 3/5 . \\] More precisely, uniformly for \\(m…",
+      "section": "Typical rank and spectral properties",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-prop-typical-spectrum",
+      "kind": "proposition",
+      "label": "Typical small-spectrum bound",
+      "statement": "[Typical small-spectrum bound] For every fixed \\(A>0\\), there is a fixed \\(C_A>0\\) and a function \\(f_A(N)\\) such that, for every \\(m I_N\\) and all sufficiently large \\(N\\), with probability at least…",
+      "section": "Typical rank and spectral properties",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-lem-discriminant-blocks",
+      "kind": "lemma",
+      "label": "Orthogonal block decomposition",
+      "statement": "[Orthogonal block decomposition] Let \\(G\\) be a finite abelian \\(p\\)-group with a perfect symmetric pairing \\(:G G Q/\\). It is an orthogonal direct sum of blocks of the following forms: a cyclic…",
+      "section": "The discriminant pairing and admissible columns",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-lem-primary-coloring",
+      "kind": "lemma",
+      "label": "Primary coloring",
+      "statement": "[Primary coloring] In the setting of Lemma~ , put \\(h=b_3\\), with zero exponents appended as necessary. In an orthogonal block decomposition, let \\(U\\) be the sum of the blocks of exponent strictly…",
+      "section": "The discriminant pairing and admissible columns",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-lem-colored-image-order",
+      "kind": "lemma",
+      "label": "Pairing image on differences",
+      "statement": "[Pairing image on differences] Let \\(X\\) be a set of isotropic elements of \\(G_B\\) in a single overall color, and let \\[ H= x-y:x,y X G_B. \\] For the restricted pairing map \\[ _H:H(H, Q/),…",
+      "section": "The discriminant pairing and admissible columns",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-lem-pairing-determinant",
+      "kind": "lemma",
+      "label": "Pairing index and determinant",
+      "statement": "[Pairing index and determinant] Let \\(L\\) be a lattice, let \\(V= L\\), and let \\(q\\) be a symmetric bilinear form on \\(V\\) such that \\(q(L,L) Q\\). Write \\[ K=Lradq, S=V(radq)^, L=proj_S L. \\] Then…",
+      "section": "The discriminant pairing and admissible columns",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-lem-gated-deletion",
+      "kind": "lemma",
+      "label": "Gated deletion",
+      "statement": "[Gated deletion] Let \\(B\\) be a nonsingular symmetric \\(r r\\) matrix with entries in \\(\\), where \\(r1\\). Either a principal submatrix obtained by deleting one coordinate is nonsingular, or there are…",
+      "section": "Algebra of principal-minor extensions",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-prop-potential-step",
+      "kind": "proposition",
+      "label": "Potential step",
+      "statement": "[Potential step] For every fixed \\(A>0\\), the following holds typically for nonsingular binary matrices \\(C\\) of size \\(m I_N\\). For each \\(h\\ 1,2\\ \\) with \\(m+h I_N\\), the random extension in…",
+      "section": "Algebra of principal-minor extensions",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-lem-layer-quotient",
+      "kind": "lemma",
+      "label": "Layers under a one-element quotient",
+      "statement": "[Layers under a one-element quotient] Let \\(G\\) be a finite abelian group, let \\(v G\\), and put \\(H=G/ v\\). Fix a prime \\(p\\), and define \\(u_t\\) by \\[ p^ u_t =| v+p^tG|in G/p^tG (t0). \\] Then…",
+      "section": "Algebra of principal-minor extensions",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-lem-retention-lattice",
+      "kind": "lemma",
+      "label": "Retention lattice",
+      "statement": "[Retention lattice] Let \\(C\\) be a nonsingular binary matrix of size \\(m\\), and let \\(:^m H\\) be a quotient map to a finite abelian group such that \\(C^m\\). Let \\(E\\) be any set of positive layers of…",
+      "section": "Algebra of principal-minor extensions",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-lem-layer-inequality",
+      "kind": "lemma",
+      "label": "Symmetric kernel inequality",
+      "statement": "[Symmetric kernel inequality] For a nonsingular extension \\(B\\) of a nonsingular \\(C\\) of width \\(h\\ 1,2\\ \\), at every prime \\(p\\) and every integer \\(t0\\), F_B(p,t) F_C(p,t)+ht-2U_t.",
+      "section": "Algebra of principal-minor extensions",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-prop-cube-concentration",
+      "kind": "proposition",
+      "label": "Cube concentration",
+      "statement": "[Cube concentration] For every fixed \\(A>0\\), typically for nonsingular binary matrices \\(B\\) of size \\(m I_N\\), one has simultaneously for every lattice \\(B^m K^m\\) M_K 2^ N(1-c(q_K)+^ -A ) . The…",
+      "section": "Simultaneous concentration in lattice quotients",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-lem-exact-basis-count",
+      "kind": "lemma",
+      "label": "Exact-basis count",
+      "statement": "[Exact-basis count] Fix \\(C,C'>0\\). Uniformly for \\(m I_N\\) and \\(0 j m\\), the number of ordered tuples \\[ (y,y_1,,y_j)(^m)^ j+1 \\] for which \\(y_1-y,,y_j-y\\) are independent and their span \\(W\\)…",
+      "section": "Simultaneous concentration in lattice quotients",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-prop-witness-pricing",
+      "kind": "proposition",
+      "label": "Witness pricing",
+      "statement": "[Witness pricing] Fix \\(D_0>0\\), and put \\(=^ -D_0 \\) and \\(=^3\\). Typically for nonsingular binary matrices \\(B\\) of size \\(m I_N\\), the following assertion holds simultaneously for every \\(B^m…",
+      "section": "Simultaneous concentration in lattice quotients",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-prop-certificate-pricing",
+      "kind": "proposition",
+      "label": "Certificate pricing",
+      "statement": "[Certificate pricing] Fix \\(A>0\\) and at most two positive constants \\(w_i\\). Typically for nonsingular binary matrices \\(C\\) of size \\(m I_N\\), the following assertion holds. The typical set is…",
+      "section": "Pricing retained layers by certificates",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-prop-retention-cost",
+      "kind": "proposition",
+      "label": "Retained-layer cost",
+      "statement": "[Retained-layer cost] Typically for nonsingular binary matrices \\(C\\) of size \\(m I_N\\), the following estimate holds. Let \\(h\\ 1,2\\ \\) and let \\(v_1,,v_h\\) be independent uniform columns in \\(^m\\),…",
+      "section": "Pricing retained layers by certificates",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-lem-budget-optimization",
+      "kind": "lemma",
+      "label": "Budget optimization",
+      "statement": "[Budget optimization] Let \\(c\\) and \\( E\\) be defined by Equations~ and , and let \\(=7/5\\). If \\(g,v_0,a_0,u0\\) satisfy \\[ 2g+3a_0+u12, g+v_0+2a_0+2u12, \\] then there are \\(x\\) and \\(y\\) for which…",
+      "section": "Paying for an increase of potential",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-lem-tail-recursion",
+      "kind": "lemma",
+      "label": "Tail recursion",
+      "statement": "[Tail recursion] Let \\(C B\\) be a transition of width \\(h\\ 1,2\\ \\) between nonsingular matrices. In the \\(i\\)-th successive quotient of \\(G_C\\), write \\(k_ i-1 (p,e)\\) for the height before that…",
+      "section": "Paths of principal minors",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m1-lem-heavy-retention-cost",
+      "kind": "lemma",
+      "label": "Cost of heavy retained layers",
+      "statement": "[Cost of heavy retained layers] Let \\( F\\) denote exposed information which fixes a nonsingular binary matrix \\(C\\) of size \\(m I_N\\) and a quotient map \\(:^m H\\) with \\(C^m\\). Suppose that,…",
+      "section": "Paths of principal minors",
+      "manuscript": "The sharp exponential rate of singularity for symmetric Bernoulli matrices"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "For every fixed p(0,1)\\ 1/2\\ , \\[ _ n ( A_n^ (p) =0)^ 1/n =p^2+(1-p)^2. \\]",
+      "statement": "For every fixed p(0,1)\\ 1/2\\ , \\[ _ n ( A_n^ (p) =0)^ 1/n =p^2+(1-p)^2. \\]",
+      "section": "Introduction",
+      "manuscript": "The sharp singularity rate for biased symmetric sign matrices"
+    },
+    {
+      "id": "m2-lem-corank-reduction",
+      "kind": "lemma",
+      "label": "For the symmetric sign matrix \\(A=A_n^ (p) \\), \\[ ( A=0) 2^ o(n) ( A=n-1)+2^…",
+      "statement": "For the symmetric sign matrix \\(A=A_n^ (p) \\), \\[ ( A=0) 2^ o(n) ( A=n-1)+2^ -_p(n^ 6/5 ) . \\]",
+      "section": "From kernel vectors to possible columns",
+      "manuscript": "The sharp singularity rate for biased symmetric sign matrices"
+    },
+    {
+      "id": "m2-lem-compressible",
+      "kind": "lemma",
+      "label": "Tails close to sparse vectors",
+      "statement": "[Tails close to sparse vectors] For every \\(>0\\), there are fixed \\(,(0,1/4)\\) such that, for all sufficiently large \\(n\\), the following event has probability at most \\(2^ (-d_*+)n \\): the matrix…",
+      "section": "From kernel vectors to possible columns",
+      "manuscript": "The sharp singularity rate for biased symmetric sign matrices"
+    },
+    {
+      "id": "m2-lem-anchor-congruence",
+      "kind": "lemma",
+      "label": "Fix an index \\(a_0\\) and condition on its entire row in \\(A_n^ (p) \\). There is…",
+      "statement": "Fix an index \\(a_0\\) and condition on its entire row in \\(A_n^ (p) \\). There is a symmetric bit matrix \\(M\\) of size \\(N=n-1\\) with the following properties: [label=( *)] the entries on and above its…",
+      "section": "From kernel vectors to possible columns",
+      "manuscript": "The sharp singularity rate for biased symmetric sign matrices"
+    },
+    {
+      "id": "m2-prop-column-bound",
+      "kind": "proposition",
+      "label": "Column estimate",
+      "statement": "[Column estimate] For every fixed \\(L_01\\) and every sufficiently small fixed \\(e_0>0\\), a matrix \\(B\\) in the bit model of size \\(m=N-1\\) satisfies, for all sufficiently large \\(N\\), \\[ ( B is…",
+      "section": "From kernel vectors to possible columns",
+      "manuscript": "The sharp singularity rate for biased symmetric sign matrices"
+    },
+    {
+      "id": "m2-lem-row-counts",
+      "kind": "lemma",
+      "label": "Row counts",
+      "statement": "[Row counts] For every fixed \\(,w>0\\), with probability \\(1-(-_ ,w (n^2))\\), fewer than \\( n\\) rows of \\(A_n^ (p) \\) have a number of positive entries outside \\([pn-wn,pn+wn]\\).",
+      "section": "From kernel vectors to possible columns",
+      "manuscript": "The sharp singularity rate for biased symmetric sign matrices"
+    },
+    {
+      "id": "m2-lem-prime-corank",
+      "kind": "lemma",
+      "label": "Uniform prime corank",
+      "statement": "[Uniform prime corank] Typically, every nonsingular bit matrix \\(B\\) of size \\(m I_N\\) satisfies \\[ corank_ F_q (B q) N^ 3/5 for every prime q. \\] Consequently, its finite abelian group \\[ G_B=^m/B^m…",
+      "section": "Lattice tools and a prime-corank bound",
+      "manuscript": "The sharp singularity rate for biased symmetric sign matrices"
+    },
+    {
+      "id": "m2-thm-height-cover",
+      "kind": "theorem",
+      "label": "Low-height cover, [Theorem~4.1",
+      "statement": "[Low-height cover, ] Fix \\(D,P>0\\). For all sufficiently large \\(N\\) and every integer \\(0 m N\\), there is a list \\( C_ m,N \\) of rational subspaces of \\(^m\\), depending only on \\(m,N,D,P\\), such…",
+      "section": "Lattice tools and a prime-corank bound",
+      "manuscript": "The sharp singularity rate for biased symmetric sign matrices"
+    },
+    {
+      "id": "m2-lem-minimizer",
+      "kind": "lemma",
+      "label": "Determinant minimizer, [Lemma~3.6",
+      "statement": "[Determinant minimizer, ] For every lattice \\(L\\) and \\(T>0\\), the quantity \\[ M T^ M , M L a sublattice, \\] attains its minimum at a saturated sublattice \\(L_ \\). It satisfies \\[ L_ T^ L_ , M T^ M…",
+      "section": "Lattice tools and a prime-corank bound",
+      "manuscript": "The sharp singularity rate for biased symmetric sign matrices"
+    },
+    {
+      "id": "m2-lem-projected-count",
+      "kind": "lemma",
+      "label": "Projected point count",
+      "statement": "[Projected point count] Let \\(T>0\\). Suppose a lattice \\(\\) of rank \\(j1\\) satisfies \\( M T^ M \\) for every sublattice \\(M\\). Then, with \\(s_0=T/(10( j+2))\\), \\[ \\#\\ x: x_2 R\\ 32( R^2/s_0^2), R0. \\]…",
+      "section": "Lattice tools and a prime-corank bound",
+      "manuscript": "The sharp singularity rate for biased symmetric sign matrices"
+    },
+    {
+      "id": "m2-thm-small-intersection",
+      "kind": "theorem",
+      "label": "Simultaneous lattice intersections",
+      "statement": "[Simultaneous lattice intersections] Fix D>0 and 0<<1 , and put =^ -D . Typically, a nonsingular bit matrix B of size m I_N has the following property. For every lattice K with \\[ B^m K^m, [^m:K] N^…",
+      "section": "A simultaneous bound for lattice intersections",
+      "manuscript": "The sharp singularity rate for biased symmetric sign matrices"
+    },
+    {
+      "id": "m2-lem-separated-subsets",
+      "kind": "lemma",
+      "label": "For each integer u with 1 |u| N^C , there is a set I_u , of size at least c_1 N…",
+      "statement": "For each integer u with 1 |u| N^C , there is a set I_u , of size at least c_1 N , such that the subset sums of \\[ \\ uS_E e_i:i I_u\\ \\] have pairwise distance greater than R_0 N modulo S . The…",
+      "section": "A simultaneous bound for lattice intersections",
+      "manuscript": "The sharp singularity rate for biased symmetric sign matrices"
+    },
+    {
+      "id": "m2-lem-dual-fourier-average",
+      "kind": "lemma",
+      "label": "There is a fixed c_3>0 such that, for every integer 1|u| N^C and every…",
+      "statement": "There is a fixed c_3>0 such that, for every integer 1|u| N^C and every collection of real numbers (s_i)_ i J , _y_ i J |(uy_i+s_i)|^2 e^ -c_3 N .",
+      "section": "A simultaneous bound for lattice intersections",
+      "manuscript": "The sharp singularity rate for biased symmetric sign matrices"
+    },
+    {
+      "id": "m2-prop-static-column",
+      "kind": "proposition",
+      "label": "Static column estimate",
+      "statement": "[Static column estimate] For every fixed \\(L_01\\) and \\(e_0>0\\), there is a fixed \\(>0\\) such that, typically for nonsingular bit matrices \\(B\\) of size \\(m I_N\\), \\[ W_2(B) | S_ L_0 (B)|2^ e_0N . \\]",
+      "section": "Discriminant pairings and the number of admissible columns",
+      "manuscript": "The sharp singularity rate for biased symmetric sign matrices"
+    },
+    {
+      "id": "m2-lem-pairing-colors",
+      "kind": "lemma",
+      "label": "Coloring input",
+      "statement": "[Coloring input] Let \\(B\\) be a nonsingular symmetric integer matrix. For each prime \\(l\\), put \\(f_l=b_ l,3 \\). The perfect pairing on \\(G_ B,l \\) admits an orthogonal decomposition \\[ G_ B,l =U_l…",
+      "section": "Discriminant pairings and the number of admissible columns",
+      "manuscript": "The sharp singularity rate for biased symmetric sign matrices"
+    },
+    {
+      "id": "m2-lem-color-subgroup",
+      "kind": "lemma",
+      "label": "A subgroup containing each color",
+      "statement": "[A subgroup containing each color] For every prime \\(l\\), each primary color in Lemma~ is contained in a subgroup of \\(G_ B,l \\) whose index is at least \\(l^ b_ l,2 -b_ l,3 \\).",
+      "section": "Discriminant pairings and the number of admissible columns",
+      "manuscript": "The sharp singularity rate for biased symmetric sign matrices"
+    },
+    {
+      "id": "m2-lem-color-cost",
+      "kind": "lemma",
+      "label": "Cost of specifying colors",
+      "statement": "[Cost of specifying colors] Uniformly over nonsingular symmetric bit matrices of size at most \\(N\\), the following hold as \\(N\\). [label=( *)] If \\(T_2(B)\\), there is a set of primes \\( P\\) such that…",
+      "section": "Discriminant pairings and the number of admissible columns",
+      "manuscript": "The sharp singularity rate for biased symmetric sign matrices"
+    },
+    {
+      "id": "m2-lem-robust-extraction",
+      "kind": "lemma",
+      "label": "Robust extraction",
+      "statement": "[Robust extraction] If \\( A^m\\) and \\(>0\\), there is an affine subspace \\(E\\) for which the nonempty set \\( V= A E\\) is \\(\\)-robust on its affine span and satisfies \\[ _2| V|_2| A|- m. \\]",
+      "section": "Discriminant pairings and the number of admissible columns",
+      "manuscript": "The sharp singularity rate for biased symmetric sign matrices"
+    },
+    {
+      "id": "m2-lem-robust-image",
+      "kind": "lemma",
+      "label": "Determinant of a robust image lattice",
+      "statement": "[Determinant of a robust image lattice] Fix \\(D,C_0>0\\) and put \\(=^ -D \\). Let \\( V^m\\), \\(m N\\), be \\(\\)-robust on its affine span \\(F\\), of dimension \\(r\\). Let \\(:F^d\\) be an injective rational…",
+      "section": "Discriminant pairings and the number of admissible columns",
+      "manuscript": "The sharp singularity rate for biased symmetric sign matrices"
+    },
+    {
+      "id": "m2-lem-pairing-determinant",
+      "kind": "lemma",
+      "label": "Pairing image and determinant",
+      "statement": "[Pairing image and determinant] Let \\(L\\) be a lattice spanning a Euclidean space \\(V\\), and let \\(q\\) be a symmetric bilinear form with \\(q(L,L)\\). Set \\[ K=L q, S=V( q)^. \\] If the image of…",
+      "section": "Discriminant pairings and the number of admissible columns",
+      "manuscript": "The sharp singularity rate for biased symmetric sign matrices"
+    },
+    {
+      "id": "m2-lem-graph-comparison",
+      "kind": "lemma",
+      "label": "The graph comparison",
+      "statement": "[The graph comparison] Fix \\(L_01\\) and \\(,w>0\\). Suppose that \\(B\\) is a nonsingular symmetric bit matrix of size \\(m I_N\\), with \\(T_2(B)<\\), and that the following hold: [label=( *)] for every…",
+      "section": "Discriminant pairings and the number of admissible columns",
+      "manuscript": "The sharp singularity rate for biased symmetric sign matrices"
+    },
+    {
+      "id": "m2-prop-inverse-rank",
+      "kind": "proposition",
+      "label": "Uniform inverse restriction rank",
+      "statement": "[Uniform inverse restriction rank] For every fixed \\(D>0\\) and \\(>0\\), typically every nonsingular bit matrix \\(B\\) satisfies, simultaneously for all rational subspaces \\(F^m\\) with \\(H(F)(N^D)\\), \\[…",
+      "section": "Discriminant pairings and the number of admissible columns",
+      "manuscript": "The sharp singularity rate for biased symmetric sign matrices"
+    },
+    {
+      "id": "m2-prop-small-spectrum",
+      "kind": "proposition",
+      "label": "Small-spectrum bound",
+      "statement": "[Small-spectrum bound] For every fixed \\(>0\\), there is \\(w_>0\\), depending also on \\(p\\), such that typically a bit matrix \\(B\\) has at most \\( N\\) eigenvalues, counted with multiplicity, in \\[ [-w_…",
+      "section": "Discriminant pairings and the number of admissible columns",
+      "manuscript": "The sharp singularity rate for biased symmetric sign matrices"
+    },
+    {
+      "id": "m2-lem-path-deletion",
+      "kind": "lemma",
+      "label": "Gated deletion, [Lemma 7.1",
+      "statement": "[Gated deletion, ] Let \\(B\\) be a nonsingular symmetric bit matrix of positive size. The empty principal minor has determinant one, and its admissible column set consists of the unique empty column.…",
+      "section": "Two column constraints along a path of principal minors",
+      "manuscript": "The sharp singularity rate for biased symmetric sign matrices"
+    },
+    {
+      "id": "m2-lem-path-algebra",
+      "kind": "lemma",
+      "label": "Retention lattices and tail recursion",
+      "statement": "[Retention lattices and tail recursion] Let \\(C\\) be a nonsingular symmetric bit matrix of size \\(m N\\). [label=( *)] Let \\(:^m G\\) be a quotient map with \\(C^m\\). For any set \\( D\\) of positive…",
+      "section": "Two column constraints along a path of principal minors",
+      "manuscript": "The sharp singularity rate for biased symmetric sign matrices"
+    },
+    {
+      "id": "m2-lem-path-retention-cost",
+      "kind": "lemma",
+      "label": "Almost full cost of retention",
+      "statement": "[Almost full cost of retention] Typically for nonsingular \\(C\\) with size in \\( I_N\\), conditional on \\(C\\), the probability that an independent principal extension of either width is costly is at…",
+      "section": "Two column constraints along a path of principal minors",
+      "manuscript": "The sharp singularity rate for biased symmetric sign matrices"
+    },
+    {
+      "id": "m2-lem-path-dissociation",
+      "kind": "lemma",
+      "label": "Dissociation and a lattice constraint",
+      "statement": "[Dissociation and a lattice constraint] Let \\(C\\) be a nonsingular bit matrix of size \\(m N\\), and let \\(C^m K^m\\) have index \\(N^ qN \\). If \\(v\\) has independent bit coordinates, each with maximum…",
+      "section": "Two column constraints along a path of principal minors",
+      "manuscript": "The sharp singularity rate for biased symmetric sign matrices"
+    },
+    {
+      "id": "m2-lem-path-heavy-cost",
+      "kind": "lemma",
+      "label": "Cost of heavy retained layers",
+      "statement": "[Cost of heavy retained layers] Fix \\(0<<1\\), and put \\(q_ =/(100 N)\\). There is a constant \\(c_p>0\\) such that, uniformly for \\(q_ q1/2\\), (Q_ hi [q,2q)previous exposure) 2^ -c_pqN . This holds…",
+      "section": "Two column constraints along a path of principal minors",
+      "manuscript": "The sharp singularity rate for biased symmetric sign matrices"
+    },
+    {
+      "id": "m2-lem-path-high-tail",
+      "kind": "lemma",
+      "label": "Small high-layer tails on the window",
+      "statement": "[Small high-layer tails on the window] For every fixed \\(0<<1\\), each fixed path satisfies \\!( A, _ H_0-5R t H_0 W_R(B_t)>) 2^ -_ p, (NR) .",
+      "section": "Two column constraints along a path of principal minors",
+      "manuscript": "The sharp singularity rate for biased symmetric sign matrices"
+    },
+    {
+      "id": "m2-lem-path-window",
+      "kind": "lemma",
+      "label": "The terminal-window alternative",
+      "statement": "[The terminal-window alternative] Consider \\(5R\\) consecutive nonsingular principal extensions of widths one or two, satisfying their gates. Suppose all their nodes have \\(W_R\\) and the terminal node…",
+      "section": "Two column constraints along a path of principal minors",
+      "manuscript": "The sharp singularity rate for biased symmetric sign matrices"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-principal-rank",
+      "to": "m1-lem-corank-tail"
+    },
+    {
+      "from": "m1-lem-corank-tail",
+      "to": "m1-lem-corank-reduction"
+    },
+    {
+      "from": "m1-lem-lattice-quotient",
+      "to": "m1-lem-height-submodularity"
+    },
+    {
+      "from": "m1-lem-lattice-quotient",
+      "to": "m1-lem-normal-height"
+    },
+    {
+      "from": "m1-thm-reverse-minkowski",
+      "to": "m1-lem-gaussian-count"
+    },
+    {
+      "from": "m1-lem-lattice-quotient",
+      "to": "m1-lem-det-minimizer"
+    },
+    {
+      "from": "m1-lem-det-minimizer",
+      "to": "m1-lem-robust-height"
+    },
+    {
+      "from": "m1-lem-gaussian-count",
+      "to": "m1-lem-robust-height"
+    },
+    {
+      "from": "m1-lem-height-submodularity",
+      "to": "m1-thm-low-height-cover"
+    },
+    {
+      "from": "m1-lem-normal-height",
+      "to": "m1-thm-low-height-cover"
+    },
+    {
+      "from": "m1-lem-lattice-quotient",
+      "to": "m1-thm-low-height-cover"
+    },
+    {
+      "from": "m1-lem-det-minimizer",
+      "to": "m1-thm-low-height-cover"
+    },
+    {
+      "from": "m1-lem-gaussian-count",
+      "to": "m1-thm-low-height-cover"
+    },
+    {
+      "from": "m1-thm-low-height-cover",
+      "to": "m1-prop-typical-ranks"
+    },
+    {
+      "from": "m1-prop-typical-ranks",
+      "to": "m1-cor-inverse-rank"
+    },
+    {
+      "from": "m1-lem-corank-tail",
+      "to": "m1-prop-prime-corank"
+    },
+    {
+      "from": "m1-lem-primary-coloring",
+      "to": "m1-lem-colored-image-order"
+    },
+    {
+      "from": "m1-prop-admissible-potential",
+      "to": "m1-lem-pairing-determinant"
+    },
+    {
+      "from": "m1-cor-inverse-rank",
+      "to": "m1-lem-pairing-determinant"
+    },
+    {
+      "from": "m1-prop-typical-spectrum",
+      "to": "m1-lem-pairing-determinant"
+    },
+    {
+      "from": "m1-lem-robust-extraction",
+      "to": "m1-lem-pairing-determinant"
+    },
+    {
+      "from": "m1-lem-robust-height",
+      "to": "m1-lem-pairing-determinant"
+    },
+    {
+      "from": "m1-lem-colored-image-order",
+      "to": "m1-lem-pairing-determinant"
+    },
+    {
+      "from": "m1-lem-layer-quotient",
+      "to": "m1-lem-retention-lattice"
+    },
+    {
+      "from": "m1-lem-normal-height",
+      "to": "m1-lem-exact-basis-count"
+    },
+    {
+      "from": "m1-lem-det-minimizer",
+      "to": "m1-lem-exact-basis-count"
+    },
+    {
+      "from": "m1-lem-gaussian-count",
+      "to": "m1-lem-exact-basis-count"
+    },
+    {
+      "from": "m1-lem-robust-height",
+      "to": "m1-prop-witness-pricing"
+    },
+    {
+      "from": "m1-prop-typical-ranks",
+      "to": "m1-prop-witness-pricing"
+    },
+    {
+      "from": "m1-prop-prime-corank",
+      "to": "m1-prop-witness-pricing"
+    },
+    {
+      "from": "m1-lem-exact-basis-count",
+      "to": "m1-prop-witness-pricing"
+    },
+    {
+      "from": "m1-prop-cube-concentration",
+      "to": "m1-prop-witness-pricing"
+    },
+    {
+      "from": "m1-lem-det-minimizer",
+      "to": "m1-prop-witness-pricing"
+    },
+    {
+      "from": "m1-lem-gaussian-count",
+      "to": "m1-prop-witness-pricing"
+    },
+    {
+      "from": "m1-lem-robust-extraction",
+      "to": "m1-prop-witness-pricing"
+    },
+    {
+      "from": "m1-prop-certificate-pricing",
+      "to": "m1-prop-retention-cost"
+    },
+    {
+      "from": "m1-lem-layer-quotient",
+      "to": "m1-prop-retention-cost"
+    },
+    {
+      "from": "m1-prop-potential-step",
+      "to": "m1-lem-budget-optimization"
+    },
+    {
+      "from": "m1-prop-certificate-pricing",
+      "to": "m1-lem-budget-optimization"
+    },
+    {
+      "from": "m1-prop-admissible-potential",
+      "to": "m1-lem-budget-optimization"
+    },
+    {
+      "from": "m1-lem-layer-inequality",
+      "to": "m1-lem-tail-recursion"
+    },
+    {
+      "from": "m1-lem-retention-lattice",
+      "to": "m1-lem-heavy-retention-cost"
+    },
+    {
+      "from": "m1-prop-path-potential",
+      "to": "m1-lem-heavy-retention-cost"
+    },
+    {
+      "from": "m1-prop-prime-corank",
+      "to": "m1-lem-heavy-retention-cost"
+    },
+    {
+      "from": "m1-prop-retention-cost",
+      "to": "m1-lem-heavy-retention-cost"
+    },
+    {
+      "from": "m1-prop-admissible-potential",
+      "to": "m1-lem-heavy-retention-cost"
+    },
+    {
+      "from": "m1-prop-potential-step",
+      "to": "m1-lem-heavy-retention-cost"
+    },
+    {
+      "from": "m1-lem-gated-deletion",
+      "to": "m1-lem-heavy-retention-cost"
+    },
+    {
+      "from": "m1-lem-tail-recursion",
+      "to": "m1-lem-heavy-retention-cost"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-lem-heavy-retention-cost"
+    },
+    {
+      "from": "m1-lem-corank-reduction",
+      "to": "m1-lem-heavy-retention-cost"
+    },
+    {
+      "from": "m1-lem-column-reduction",
+      "to": "m1-lem-heavy-retention-cost"
+    },
+    {
+      "from": "m1-lem-sign-bit",
+      "to": "m1-lem-heavy-retention-cost"
+    },
+    {
+      "from": "m2-thm-main",
+      "to": "m2-lem-row-counts"
+    },
+    {
+      "from": "m2-prop-column-bound",
+      "to": "m2-lem-row-counts"
+    },
+    {
+      "from": "m2-lem-compressible",
+      "to": "m2-lem-row-counts"
+    },
+    {
+      "from": "m2-lem-corank-reduction",
+      "to": "m2-lem-row-counts"
+    },
+    {
+      "from": "m2-lem-anchor-congruence",
+      "to": "m2-lem-row-counts"
+    },
+    {
+      "from": "m2-lem-separated-subsets",
+      "to": "m2-lem-dual-fourier-average"
+    },
+    {
+      "from": "m2-lem-robust-extraction",
+      "to": "m2-lem-graph-comparison"
+    },
+    {
+      "from": "m2-lem-color-cost",
+      "to": "m2-lem-graph-comparison"
+    },
+    {
+      "from": "m2-lem-robust-image",
+      "to": "m2-lem-graph-comparison"
+    },
+    {
+      "from": "m2-lem-pairing-colors",
+      "to": "m2-lem-graph-comparison"
+    },
+    {
+      "from": "m2-lem-pairing-determinant",
+      "to": "m2-lem-graph-comparison"
+    },
+    {
+      "from": "m2-thm-height-cover",
+      "to": "m2-prop-inverse-rank"
+    },
+    {
+      "from": "m2-prop-static-column",
+      "to": "m2-prop-small-spectrum"
+    },
+    {
+      "from": "m2-prop-inverse-rank",
+      "to": "m2-prop-small-spectrum"
+    },
+    {
+      "from": "m2-lem-graph-comparison",
+      "to": "m2-prop-small-spectrum"
+    },
+    {
+      "from": "m2-thm-small-intersection",
+      "to": "m2-lem-path-retention-cost"
+    },
+    {
+      "from": "m2-prop-static-column",
+      "to": "m2-lem-path-retention-cost"
+    },
+    {
+      "from": "m2-lem-path-dissociation",
+      "to": "m2-lem-path-heavy-cost"
+    },
+    {
+      "from": "m2-lem-path-heavy-cost",
+      "to": "m2-lem-path-high-tail"
+    },
+    {
+      "from": "m2-lem-prime-corank",
+      "to": "m2-lem-path-high-tail"
+    },
+    {
+      "from": "m2-lem-path-algebra",
+      "to": "m2-lem-path-window"
+    },
+    {
+      "from": "m2-prop-column-bound",
+      "to": "m2-lem-path-window"
+    },
+    {
+      "from": "m2-lem-path-high-tail",
+      "to": "m2-lem-path-window"
+    },
+    {
+      "from": "m2-lem-path-retention-cost",
+      "to": "m2-lem-path-window"
+    },
+    {
+      "from": "m2-prop-static-column",
+      "to": "m2-lem-path-window"
+    }
+  ]
+}

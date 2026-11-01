@@ -1,0 +1,639 @@
+{
+  "familyNumber": "199",
+  "familyTitle": "Counterexamples to Auslander–Reiten, Tachikawa and related homological conjectures",
+  "manuscripts": [
+    {
+      "id": "An-explicit-counterexample-to-the-Auslander-Reiten-conjecture-September-23-2026",
+      "title": "An explicit counterexample to the Auslander-Reiten conjecture",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-explicit-counterexample-to-the-Auslander-Reiten-conjecture-September-23-2026/paper.pdf"
+    },
+    {
+      "id": "A-counterexample-to-Tachikawas-second-conjecture-September-23-2026",
+      "title": "A counterexample to Tachikawa's second conjecture",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-counterexample-to-Tachikawas-second-conjecture-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "From two stable actions to a finite module",
+    "A symmetric algebra and a degree-three class",
+    "A simple module with polynomial self-extensions",
+    "Two cones with two surviving Hom groups",
+    "Twisted bimodules and a lift to the two cones",
+    "Two twists and a finite bimodule fiber",
+    "The radical and extension of scalars",
+    "Homological preliminaries",
+    "Passing to a symmetric algebra",
+    "The ten-dimensional algebra",
+    "Polynomial stable endomorphisms and twists",
+    "Derived induction and the trace obstruction",
+    "The triangular module and the counterexample",
+    "The endomorphism algebra and homological consequences"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Let = F_2(q,H_1,H_2) , where q,H_1,H_2 are algebraically independent. There…",
+      "statement": "Let = F_2(q,H_1,H_2) , where q,H_1,H_2 are algebraically independent. There exist a finite-dimensional -algebra and a finite-dimensional nonprojective left -module Z such that \\[ ^i_(Z,Z)=0=^i_(Z,)…",
+      "section": "Introduction",
+      "manuscript": "An explicit counterexample to the Auslander-Reiten conjecture"
+    },
+    {
+      "id": "m1-conv-proposition",
+      "kind": "proposition",
+      "label": "Triangular conversion",
+      "statement": "[Triangular conversion] Let A be a finite-dimensional symmetric algebra over a field of characteristic two, let F be a finite A -bimodule projective on both sides, and let X be a finite left A…",
+      "section": "From two stable actions to a finite module",
+      "manuscript": "An explicit counterexample to the Auslander-Reiten conjecture"
+    },
+    {
+      "id": "m1-conv-comparison",
+      "kind": "lemma",
+      "label": "Complete-resolution comparison",
+      "statement": "[Complete-resolution comparison] Let R be a finite-dimensional algebra over a field of characteristic two. Let P_ be a totally acyclic complex of finite projective left R -modules, and let Q_ be an…",
+      "section": "From two stable actions to a finite module",
+      "manuscript": "An explicit counterexample to the Auslander-Reiten conjecture"
+    },
+    {
+      "id": "m1-alg-c",
+      "kind": "lemma",
+      "label": "The rules -- define an associative unital algebra of dimension ten. Its radical…",
+      "statement": "The rules -- define an associative unital algebra of dimension ten. Its radical is the span of the eight non-idempotent basis vectors, and \\[ ( C)^5=0, utut=q(1+q)z0. \\]",
+      "section": "A symmetric algebra and a degree-three class",
+      "manuscript": "An explicit counterexample to the Auslander-Reiten conjecture"
+    },
+    {
+      "id": "m1-alg-t",
+      "kind": "lemma",
+      "label": "The algebra T is symmetric of dimension twenty. A symmetrizing trace is \\[…",
+      "statement": "The algebra T is symmetric of dimension twenty. A symmetrizing trace is \\[ (a,)=(1), \\] and the trace-dual of each basis letter is its starred letter. Its radical r is the span of all basis letters…",
+      "section": "A symmetric algebra and a degree-three class",
+      "manuscript": "An explicit counterexample to the Auslander-Reiten conjecture"
+    },
+    {
+      "id": "m1-coc-data",
+      "kind": "lemma",
+      "label": "The cochain p has weight -1 and is a Hochschild cocycle. Its associated class…",
+      "statement": "The cochain p has weight -1 and is a Hochschild cocycle. Its associated class evaluated on s is nonzero in _T^3(s,s) . For any H^ , let h=h_H be the automorphism of T fixing C and multiplying L by H…",
+      "section": "A symmetric algebra and a degree-three class",
+      "manuscript": "An explicit counterexample to the Auslander-Reiten conjecture"
+    },
+    {
+      "id": "m1-res-base",
+      "kind": "lemma",
+      "label": "A projective resolution R s over C has terms \\[ R_0=Cf, R_i=Ce(i1), \\] and…",
+      "statement": "A projective resolution R s over C has terms \\[ R_0=Cf, R_i=Ce(i1), \\] and differentials given by right multiplication: \\[ Ce \\, _1\\,Ce \\, _0\\,Ce \\, u\\,Cf s0. \\] More precisely, d_ i+2 is right…",
+      "section": "A simple module with polynomial self-extensions",
+      "manuscript": "An explicit counterexample to the Auslander-Reiten conjecture"
+    },
+    {
+      "id": "m1-res-polynomial",
+      "kind": "lemma",
+      "label": "For the algebra T=C DC and its left f -simple s , \\[ _T^*(s,s)=, ||=3, \\] as a…",
+      "statement": "For the algebra T=C DC and its left f -simple s , \\[ _T^*(s,s)=, ||=3, \\] as a graded algebra, where =p(s) is the evaluation of the cocycle from Lemma~ .",
+      "section": "A simple module with polynomial self-extensions",
+      "manuscript": "An explicit counterexample to the Auslander-Reiten conjecture"
+    },
+    {
+      "id": "m1-res-tensor",
+      "kind": "lemma",
+      "label": "The simple left A -module X is nonprojective, and \\[ _ a0 A X X[a] =,…",
+      "statement": "The simple left A -module X is nonprojective, and \\[ _ a0 A X X[a] =, |_1|=|_2|=3. \\] The multiplication is composition with shifts, and its positive-degree part agrees with the ordinary Ext algebra.",
+      "section": "A simple module with polynomial self-extensions",
+      "manuscript": "An explicit counterexample to the Auslander-Reiten conjecture"
+    },
+    {
+      "id": "m1-cone-finite",
+      "kind": "lemma",
+      "label": "Let P be the bimodule bar resolution of T and let p:P P[3] be the selected…",
+      "statement": "Let P be the bimodule bar resolution of T and let p:P P[3] be the selected comparison map. Form the ordinary complex \\[ K=Cone(p:P[-3] P) _ Cone(p:P[-3] P). \\] Then K has finite projective R -terms…",
+      "section": "Two cones with two surviving Hom groups",
+      "manuscript": "An explicit counterexample to the Auslander-Reiten conjecture"
+    },
+    {
+      "id": "m1-cone-profile",
+      "kind": "proposition",
+      "label": "For the finite side-projective bimodule C of Lemma~ , put \\[ W^a=A X ( C_A…",
+      "statement": "For the finite side-projective bimodule C of Lemma~ , put \\[ W^a=A X ( C_A X)[a] . \\] For every integer a , \\[ W^a= ,&a=0 or 3,\\\\0,&a\\ 0,3\\ . \\] Moreover the projection to the top cell induces an…",
+      "section": "Two cones with two surviving Hom groups",
+      "manuscript": "An explicit counterexample to the Auslander-Reiten conjecture"
+    },
+    {
+      "id": "m1-lift-main",
+      "kind": "proposition",
+      "label": "For each H^ , there is a stable bimodule map \\[ f_H:U_H C[3] \\] whose composite…",
+      "statement": "For each H^ , there is a stable bimodule map \\[ f_H:U_H C[3] \\] whose composite with the top-cell projection C[3] A[-1] is represented by the bimodule map _H:U_H A P_0 P_0 determined by \\[ _H(1)=(_w…",
+      "section": "Twisted bimodules and a lift to the two cones",
+      "manuscript": "An explicit counterexample to the Auslander-Reiten conjecture"
+    },
+    {
+      "id": "m1-lift-b",
+      "kind": "lemma",
+      "label": "On the nonnegative resolutions, with B_ -1 =0 , one has \\[ dB+Bd=D_b. \\]",
+      "statement": "On the nonnegative resolutions, with B_ -1 =0 , one has \\[ dB+Bd=D_b. \\]",
+      "section": "Twisted bimodules and a lift to the two cones",
+      "manuscript": "An explicit counterexample to the Auslander-Reiten conjecture"
+    },
+    {
+      "id": "m1-lift-g",
+      "kind": "lemma",
+      "label": "There are bimodule maps G_i:Q_i P_ i-1 for all i0 such that \\[ pB=dG+Gd. \\]",
+      "statement": "There are bimodule maps G_i:Q_i P_ i-1 for all i0 such that \\[ pB=dG+Gd. \\]",
+      "section": "Twisted bimodules and a lift to the two cones",
+      "manuscript": "An explicit counterexample to the Auslander-Reiten conjecture"
+    },
+    {
+      "id": "m1-lift-evaluation",
+      "kind": "lemma",
+      "label": "Under U_H_A X X , the evaluated map _H X sends 1 to H^2(f^* f^*) in X A(f f) .…",
+      "statement": "Under U_H_A X X , the evaluated map _H X sends 1 to H^2(f^* f^*) in X A(f f) . It does not factor through a projective A -module.",
+      "section": "Twisted bimodules and a lift to the two cones",
+      "manuscript": "An explicit counterexample to the Auslander-Reiten conjecture"
+    },
+    {
+      "id": "m1-branch-profile",
+      "kind": "lemma",
+      "label": "Put V^a=A X FX[a] for each integer a . There is a unique v V^0 whose two…",
+      "statement": "Put V^a=A X FX[a] for each integer a . There is a unique v V^0 whose two projections are _X . It spans V^0 . For every integer a>0 , projection induces an isomorphism (_1[a],_2[a]):V^a (H^a)^2, H^a=A…",
+      "section": "Two twists and a finite bimodule fiber",
+      "manuscript": "An explicit counterexample to the Auslander-Reiten conjecture"
+    },
+    {
+      "id": "m1-branch-twist",
+      "kind": "lemma",
+      "label": "For H\\ H_1,H_2\\ , tensoring with U_H=A_ h_H h_H , under its canonical…",
+      "statement": "For H\\ H_1,H_2\\ , tensoring with U_H=A_ h_H h_H , under its canonical identification on X , acts on the whole space H^ 3m as multiplication by H^ -m for every integer m0 .",
+      "section": "Two twists and a finite bimodule fiber",
+      "manuscript": "An explicit counterexample to the Auslander-Reiten conjecture"
+    },
+    {
+      "id": "m1-branch-comparison",
+      "kind": "proposition",
+      "label": "The finite bimodule F in is projective on both A -sides, and the map v of…",
+      "statement": "The finite bimodule F in is projective on both A -sides, and the map v of Lemma~ satisfies the following conditions. For every integer a0 , define ^a:H^a H^a V^a, (g,j) F(g)v+v[a]j. Then ^0 is…",
+      "section": "Two twists and a finite bimodule fiber",
+      "manuscript": "An explicit counterexample to the Auslander-Reiten conjecture"
+    },
+    {
+      "id": "m1-prop-radical",
+      "kind": "proposition",
+      "label": "The algebra is noncommutative, satisfies /^8 , and has ()^40 .",
+      "statement": "The algebra is noncommutative, satisfies /^8 , and has ()^40 .",
+      "section": "The radical and extension of scalars",
+      "manuscript": "An explicit counterexample to the Auslander-Reiten conjecture"
+    },
+    {
+      "id": "m1-prop-basechange",
+      "kind": "proposition",
+      "label": "For every field extension K/ , the algebra _K=K_ and module Z_K=K_ Z satisfy…",
+      "statement": "For every field extension K/ , the algebra _K=K_ and module Z_K=K_ Z satisfy all conclusions of Theorem~ over K .",
+      "section": "The radical and extension of scalars",
+      "manuscript": "An explicit counterexample to the Auslander-Reiten conjecture"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "Let \\[ k= F_2(q,H_1,H_2), \\] where q,H_1,H_2 are algebraically independent.…",
+      "statement": "Let \\[ k= F_2(q,H_1,H_2), \\] where q,H_1,H_2 are algebraically independent. There exist a finite-dimensional associative unital symmetric k -algebra A and a finite-dimensional unital left A -module M…",
+      "section": "Introduction",
+      "manuscript": "A counterexample to Tachikawa's second conjecture"
+    },
+    {
+      "id": "m2-cor-homological",
+      "kind": "corollary",
+      "label": "Homological conjectures",
+      "statement": "[Homological conjectures] Let A,M be as in Theorem~ . For every field extension K/k , put A_K=K_k A , M_K=K_k M , and \\[ _K=_ A_K (A_K M_K)^ op . \\] Then _K is a finite-dimensional K -algebra with…",
+      "section": "Introduction",
+      "manuscript": "A counterexample to Tachikawa's second conjecture"
+    },
+    {
+      "id": "m2-cor-finitistic",
+      "kind": "corollary",
+      "label": "Finitistic dimensions",
+      "statement": "[Finitistic dimensions] Let k be the field in Theorem~ , let K/k be any field extension, and let _K be the algebra in Corollary~ . For every integer n1 , there is a finite-dimensional left _K -module…",
+      "section": "Introduction",
+      "manuscript": "A counterexample to Tachikawa's second conjecture"
+    },
+    {
+      "id": "m2-h-comparison",
+      "kind": "lemma",
+      "label": "Complete-resolution comparison",
+      "statement": "[Complete-resolution comparison] Let P be totally acyclic and let Q be an exact complex of projectives. For every integer a there are natural isomorphisms H^a_G^(P,Q) _G(c_aP,c_0Q) H^a_G(P,c_0Q). The…",
+      "section": "Homological preliminaries",
+      "manuscript": "A counterexample to Tachikawa's second conjecture"
+    },
+    {
+      "id": "m2-h-duality",
+      "kind": "lemma",
+      "label": "Symmetric stable duality",
+      "statement": "[Symmetric stable duality] For a symmetric algebra G there are natural isomorphisms D_G(M,N)_G(N,M[-1]). There is a linear functional _M:_G(M,M[-1]) k for which the perfect pairing is (f,g)_M(gf) .…",
+      "section": "Homological preliminaries",
+      "manuscript": "A counterexample to Tachikawa's second conjecture"
+    },
+    {
+      "id": "m2-h-derived-models",
+      "kind": "lemma",
+      "label": "Derived maps and two-cell models",
+      "statement": "[Derived maps and two-cell models] A bounded-below complex P of projectives computes derived maps out of it by chain maps modulo homotopy. Every bounded complex of finite modules has such a…",
+      "section": "Homological preliminaries",
+      "manuscript": "A counterexample to Tachikawa's second conjecture"
+    },
+    {
+      "id": "m2-h-stable-image",
+      "kind": "lemma",
+      "label": "Stable images",
+      "statement": "[Stable images] Let G be symmetric and let P be bounded below with projective terms and bounded homology. For n sufficiently large the formula P=(c_nP)[n] defines a stable module, independent of n up…",
+      "section": "Homological preliminaries",
+      "manuscript": "A counterexample to Tachikawa's second conjecture"
+    },
+    {
+      "id": "m2-h-perfect-factor",
+      "kind": "lemma",
+      "label": "Vanishing stable image and perfect factorization",
+      "statement": "[Vanishing stable image and perfect factorization] Over a symmetric algebra, a derived map between bounded derived objects whose stable image is zero factors in the derived category through a perfect…",
+      "section": "Homological preliminaries",
+      "manuscript": "A counterexample to Tachikawa's second conjecture"
+    },
+    {
+      "id": "m2-h-evaluation",
+      "kind": "lemma",
+      "label": "Finite shifts and evaluation",
+      "statement": "[Finite shifts and evaluation] Every stable shift of a finite side-projective bimodule has a finite side-projective representative. Evaluation at a finite E -module X sends stable maps between these…",
+      "section": "Homological preliminaries",
+      "manuscript": "A counterexample to Tachikawa's second conjecture"
+    },
+    {
+      "id": "m2-tr-trivial-symmetric",
+      "kind": "lemma",
+      "label": "The trivial extension R DR is a finite-dimensional symmetric algebra. In…",
+      "statement": "The trivial extension R DR is a finite-dimensional symmetric algebra. In particular, its left and right regular modules are injective in the categories of all unital modules.",
+      "section": "Passing to a symmetric algebra",
+      "manuscript": "A counterexample to Tachikawa's second conjecture"
+    },
+    {
+      "id": "m2-tr-transfer",
+      "kind": "proposition",
+      "label": "Transfer through the trivial extension",
+      "statement": "[Transfer through the trivial extension] Let P be a totally acyclic complex of finite projective left R -modules, and put Z=c_0P . Suppose that Z is nonprojective and H^a_R(P,Z)=0 for a>0 and for a…",
+      "section": "Passing to a symmetric algebra",
+      "manuscript": "A counterexample to Tachikawa's second conjecture"
+    },
+    {
+      "id": "m2-a-table",
+      "kind": "lemma",
+      "label": "The table defines an associative unital algebra of dimension ten. Its radical…",
+      "statement": "The table defines an associative unital algebra of dimension ten. Its radical is the span of the eight basis vectors other than \\(e,f\\), and \\(( C)^5=0\\).",
+      "section": "The ten-dimensional algebra",
+      "manuscript": "A counterexample to Tachikawa's second conjecture"
+    },
+    {
+      "id": "m2-a-dual-dimensions",
+      "kind": "proposition",
+      "label": "The dual regular module \\(DC\\) has projective dimension at most two on both…",
+      "statement": "The dual regular module \\(DC\\) has projective dimension at most two on both sides. More precisely, \\[ D(eC) Ce, D(Ce) eC, \\] and there are exact sequences 0 Cf _tCe _ _ -2 Ce e j^*D(fC)0, \\\\ 0 fC…",
+      "section": "The ten-dimensional algebra",
+      "manuscript": "A counterexample to Tachikawa's second conjecture"
+    },
+    {
+      "id": "m2-a-resolution",
+      "kind": "proposition",
+      "label": "The augmentation \\(Cf s\\) extends to a projective resolution \\(R s\\) with…",
+      "statement": "The augmentation \\(Cf s\\) extends to a projective resolution \\(R s\\) with R_0=Cf, R_i=Ce\\ (i1), d_1=_u, d_ i+2 =_ _i \\ (i0). It satisfies H^a_C(R,s)= k&a=0,\\\\0&a0, H^a_C(R,C)= Ds&a=2,\\\\0&a2, where…",
+      "section": "The ten-dimensional algebra",
+      "manuscript": "A counterexample to Tachikawa's second conjecture"
+    },
+    {
+      "id": "m2-e-polynomial",
+      "kind": "proposition",
+      "label": "Put \\( J=T_C R\\), where \\(R\\) is the resolution in . There is a triangle in the…",
+      "statement": "Put \\( J=T_C R\\), where \\(R\\) is the resolution in . There is a triangle in the derived category of \\(T\\)-modules s[2] J s [3], and the connecting class generates the Yoneda algebra: _T^*(s,s)=k[],…",
+      "section": "Polynomial stable endomorphisms and twists",
+      "manuscript": "A counterexample to Tachikawa's second conjecture"
+    },
+    {
+      "id": "m2-e-all-degrees",
+      "kind": "proposition",
+      "label": "The module \\(X\\) is nonprojective and ^ 0 =k[_1,_2], |_1|=|_2|=3. In every…",
+      "statement": "The module \\(X\\) is nonprojective and ^ 0 =k[_1,_2], |_1|=|_2|=3. In every integer degree, the only nonzero groups are ^ 3m = P_m, ^ -3m-1 =D P_m(m0). Under these identifications, postcomposition by…",
+      "section": "Polynomial stable endomorphisms and twists",
+      "manuscript": "A counterexample to Tachikawa's second conjecture"
+    },
+    {
+      "id": "m2-e-socle",
+      "kind": "lemma",
+      "label": "Put \\[ p_f=f f, =f^* f^* E p_f. \\] For every \\(a,b E\\), \\(a b=(a)(b)\\). The map…",
+      "statement": "Put \\[ p_f=f f, =f^* f^* E p_f. \\] For every \\(a,b E\\), \\(a b=(a)(b)\\). The map \\(i_X:X Ep_f\\), \\(i_X(1)=\\), is an embedding with image in \\(( E)p_f= X\\). Regarded as a map \\(X X\\), it is nonzero…",
+      "section": "Polynomial stable endomorphisms and twists",
+      "manuscript": "A counterexample to Tachikawa's second conjecture"
+    },
+    {
+      "id": "m2-e-twists",
+      "kind": "proposition",
+      "label": "For every \\(H k^\\) and every \\(m0\\), the action of \\(U_H(-)\\) on the groups in…",
+      "statement": "For every \\(H k^\\) and every \\(m0\\), the action of \\(U_H(-)\\) on the groups in is .U_H|_ ^ 3m =H^ -m \\,1_ P_m , .U_H|_ ^ -3m-1 =H^ m+2 \\,1_ D P_m . In particular, the negative action is the stated…",
+      "section": "Polynomial stable endomorphisms and twists",
+      "manuscript": "A counterexample to Tachikawa's second conjecture"
+    },
+    {
+      "id": "m2-b-bimodule",
+      "kind": "proposition",
+      "label": "There is a finite \\(E\\)-bimodule \\(Y\\), projective separately as a left and as…",
+      "statement": "There is a finite \\(E\\)-bimodule \\(Y\\), projective separately as a left and as a right \\(E\\)-module, such that W^a:=_E(X,(YX)[a]) k,&a=-3,0,\\\\ 0,&a\\ -3,0\\ . For every \\(H k^\\), there is an ordinary…",
+      "section": "Derived induction and the trace obstruction",
+      "manuscript": "A counterexample to Tachikawa's second conjecture"
+    },
+    {
+      "id": "m2-b-bar-model",
+      "kind": "lemma",
+      "label": "The complex \\(K\\) represents \\(E_B^ L E\\), has finite projective \\(E^e\\)-terms…",
+      "statement": "The complex \\(K\\) represents \\(E_B^ L E\\), has finite projective \\(E^e\\)-terms and has homology only in degrees \\(0,,4\\). The bimodule \\(c_5K\\) is projective on both sides. Consequently its stable…",
+      "section": "Derived induction and the trace obstruction",
+      "manuscript": "A counterexample to Tachikawa's second conjecture"
+    },
+    {
+      "id": "m2-b-profile",
+      "kind": "lemma",
+      "label": "The bimodule \\(Y\\) of Lemma~ satisfies .",
+      "statement": "The bimodule \\(Y\\) of Lemma~ satisfies .",
+      "section": "Derived induction and the trace obstruction",
+      "manuscript": "A counterexample to Tachikawa's second conjecture"
+    },
+    {
+      "id": "m2-b-ordinary-factorization",
+      "kind": "lemma",
+      "label": "If a bimodule map \\(v:B DB\\) factors in the derived category through a perfect…",
+      "statement": "If a bimodule map \\(v:B DB\\) factors in the derived category through a perfect \\(B^e\\)-complex, then it factors by ordinary bimodule maps through an object of \\((DB B)\\), where the tensor product has…",
+      "section": "Derived induction and the trace obstruction",
+      "manuscript": "A counterexample to Tachikawa's second conjecture"
+    },
+    {
+      "id": "m2-b-trace-obstruction",
+      "kind": "lemma",
+      "label": "The bimodule map :B DB, (a)=_B(a)_B, does not factor in the derived category…",
+      "statement": "The bimodule map :B DB, (a)=_B(a)_B, does not factor in the derived category through a perfect \\(B^e\\)-complex.",
+      "section": "Derived induction and the trace obstruction",
+      "manuscript": "A counterexample to Tachikawa's second conjecture"
+    },
+    {
+      "id": "m2-b-stable-adjunction",
+      "kind": "lemma",
+      "label": "For every finite side-projective bimodule \\(L\\), ordinary tensor--Hom…",
+      "statement": "For every finite side-projective bimodule \\(L\\), ordinary tensor--Hom adjunction induces a natural isomorphism \\[ _ E^e (L,S)\\ \\ _E(LX,X). \\] This assertion does not require \\(S\\) to be…",
+      "section": "Derived induction and the trace obstruction",
+      "manuscript": "A counterexample to Tachikawa's second conjecture"
+    },
+    {
+      "id": "m2-b-evaluated-lift",
+      "kind": "lemma",
+      "label": "For every \\(H k^\\), there is a stable bimodule map \\(U_H[1]\\) with nonzero…",
+      "statement": "For every \\(H k^\\), there is a stable bimodule map \\(U_H[1]\\) with nonzero evaluated stable map \\(X[1] X\\).",
+      "section": "Derived induction and the trace obstruction",
+      "manuscript": "A counterexample to Tachikawa's second conjecture"
+    },
+    {
+      "id": "m2-t-comparison-maps",
+      "kind": "lemma",
+      "label": "The map ^0 is surjective. For every a>0 and every a-3 , ^a is an isomorphism,…",
+      "statement": "The map ^0 is surjective. For every a>0 and every a-3 , ^a is an isomorphism, and ^ -2 is injective.",
+      "section": "The triangular module and the counterexample",
+      "manuscript": "A counterexample to Tachikawa's second conjecture"
+    },
+    {
+      "id": "m2-t-finite-module",
+      "kind": "lemma",
+      "label": "The complex P_Z is totally acyclic. Its degree-zero cokernel Z is…",
+      "statement": "The complex P_Z is totally acyclic. Its degree-zero cokernel Z is finite-dimensional and nonprojective.",
+      "section": "The triangular module and the counterexample",
+      "manuscript": "A counterexample to Tachikawa's second conjecture"
+    },
+    {
+      "id": "m2-t-vanishing",
+      "kind": "proposition",
+      "label": "The module and resolution in satisfy \\[ H^a_(P_Z,Z)=0 (a>0\\ or\\ a-2). \\]",
+      "statement": "The module and resolution in satisfy \\[ H^a_(P_Z,Z)=0 (a>0\\ or\\ a-2). \\]",
+      "section": "The triangular module and the counterexample",
+      "manuscript": "A counterexample to Tachikawa's second conjecture"
+    },
+    {
+      "id": "m2-prop-endomorphism",
+      "kind": "proposition",
+      "label": "Let B be a finite-dimensional symmetric algebra over a field and let N be a…",
+      "statement": "Let B be a finite-dimensional symmetric algebra over a field and let N be a finite-dimensional nonprojective left B -module satisfying _B^i(N,N)=0 for all i>0 . Put \\[ G=B N, =_B(G)^ op , \\] where…",
+      "section": "The endomorphism algebra and homological consequences",
+      "manuscript": "A counterexample to Tachikawa's second conjecture"
+    },
+    {
+      "id": "m2-cor-tilting-complements",
+      "kind": "corollary",
+      "label": "Infinitely many tilting complements",
+      "statement": "[Infinitely many tilting complements] For every field extension K/k , let _K be the algebra in Corollary~ . There is a finite-dimensional projective almost complete tilting left _K^ op -module P_K…",
+      "section": "The endomorphism algebra and homological consequences",
+      "manuscript": "A counterexample to Tachikawa's second conjecture"
+    },
+    {
+      "id": "m2-cor-stratifying",
+      "kind": "corollary",
+      "label": "Idempotent stratifications",
+      "statement": "[Idempotent stratifications] For every field extension K/k and every integer L1 , there is an auxiliary finite-dimensional indecomposable symmetric K -algebra T_L admitting an idempotent…",
+      "section": "The endomorphism algebra and homological consequences",
+      "manuscript": "A counterexample to Tachikawa's second conjecture"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-conv-proposition",
+      "to": "m1-conv-comparison"
+    },
+    {
+      "from": "m1-res-base",
+      "to": "m1-res-polynomial"
+    },
+    {
+      "from": "m1-coc-data",
+      "to": "m1-res-polynomial"
+    },
+    {
+      "from": "m1-res-polynomial",
+      "to": "m1-res-tensor"
+    },
+    {
+      "from": "m1-coc-data",
+      "to": "m1-lift-g"
+    },
+    {
+      "from": "m1-cone-profile",
+      "to": "m1-branch-profile"
+    },
+    {
+      "from": "m1-branch-twist",
+      "to": "m1-branch-comparison"
+    },
+    {
+      "from": "m1-branch-profile",
+      "to": "m1-branch-comparison"
+    },
+    {
+      "from": "m1-prop-radical",
+      "to": "m1-prop-basechange"
+    },
+    {
+      "from": "m2-h-derived-models",
+      "to": "m2-h-stable-image"
+    },
+    {
+      "from": "m2-h-derived-models",
+      "to": "m2-h-perfect-factor"
+    },
+    {
+      "from": "m2-h-stable-image",
+      "to": "m2-h-evaluation"
+    },
+    {
+      "from": "m2-h-comparison",
+      "to": "m2-tr-transfer"
+    },
+    {
+      "from": "m2-tr-trivial-symmetric",
+      "to": "m2-tr-transfer"
+    },
+    {
+      "from": "m2-e-polynomial",
+      "to": "m2-e-all-degrees"
+    },
+    {
+      "from": "m2-h-duality",
+      "to": "m2-e-all-degrees"
+    },
+    {
+      "from": "m2-e-all-degrees",
+      "to": "m2-e-socle"
+    },
+    {
+      "from": "m2-e-socle",
+      "to": "m2-e-twists"
+    },
+    {
+      "from": "m2-a-dual-dimensions",
+      "to": "m2-b-bar-model"
+    },
+    {
+      "from": "m2-h-stable-image",
+      "to": "m2-b-bar-model"
+    },
+    {
+      "from": "m2-h-evaluation",
+      "to": "m2-b-bar-model"
+    },
+    {
+      "from": "m2-h-evaluation",
+      "to": "m2-b-profile"
+    },
+    {
+      "from": "m2-h-derived-models",
+      "to": "m2-b-profile"
+    },
+    {
+      "from": "m2-h-stable-image",
+      "to": "m2-b-profile"
+    },
+    {
+      "from": "m2-e-all-degrees",
+      "to": "m2-b-profile"
+    },
+    {
+      "from": "m2-a-dual-dimensions",
+      "to": "m2-b-ordinary-factorization"
+    },
+    {
+      "from": "m2-b-ordinary-factorization",
+      "to": "m2-b-trace-obstruction"
+    },
+    {
+      "from": "m2-h-evaluation",
+      "to": "m2-b-evaluated-lift"
+    },
+    {
+      "from": "m2-h-duality",
+      "to": "m2-b-evaluated-lift"
+    },
+    {
+      "from": "m2-e-socle",
+      "to": "m2-b-evaluated-lift"
+    },
+    {
+      "from": "m2-h-perfect-factor",
+      "to": "m2-b-evaluated-lift"
+    },
+    {
+      "from": "m2-a-dual-dimensions",
+      "to": "m2-b-evaluated-lift"
+    },
+    {
+      "from": "m2-b-trace-obstruction",
+      "to": "m2-b-evaluated-lift"
+    },
+    {
+      "from": "m2-b-stable-adjunction",
+      "to": "m2-b-evaluated-lift"
+    },
+    {
+      "from": "m2-b-bimodule",
+      "to": "m2-b-evaluated-lift"
+    },
+    {
+      "from": "m2-b-bar-model",
+      "to": "m2-b-evaluated-lift"
+    },
+    {
+      "from": "m2-b-profile",
+      "to": "m2-b-evaluated-lift"
+    },
+    {
+      "from": "m2-e-twists",
+      "to": "m2-t-comparison-maps"
+    },
+    {
+      "from": "m2-e-all-degrees",
+      "to": "m2-t-comparison-maps"
+    },
+    {
+      "from": "m2-e-all-degrees",
+      "to": "m2-t-finite-module"
+    },
+    {
+      "from": "m2-h-comparison",
+      "to": "m2-t-vanishing"
+    },
+    {
+      "from": "m2-t-comparison-maps",
+      "to": "m2-t-vanishing"
+    },
+    {
+      "from": "m2-thm-main",
+      "to": "m2-t-vanishing"
+    },
+    {
+      "from": "m2-t-finite-module",
+      "to": "m2-t-vanishing"
+    },
+    {
+      "from": "m2-tr-transfer",
+      "to": "m2-t-vanishing"
+    },
+    {
+      "from": "m2-cor-homological",
+      "to": "m2-prop-endomorphism"
+    },
+    {
+      "from": "m2-cor-finitistic",
+      "to": "m2-prop-endomorphism"
+    },
+    {
+      "from": "m2-cor-homological",
+      "to": "m2-cor-tilting-complements"
+    }
+  ]
+}

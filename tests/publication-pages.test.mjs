@@ -103,9 +103,10 @@ test("the proof-map index, scaffold, deep maps, and API render with explicit sta
   assert.ok(indexHtml.includes("Every result gets a structure"));
   assert.ok(indexHtml.includes("372"));
   assert.ok(indexHtml.includes("Deep argument map"));
+  assert.ok(indexHtml.includes("Paper-derived structure"));
   assert.ok(indexHtml.includes("Metadata scaffold"));
 
-  const scaffold = await fetchPage("/proof-evolution/openai-math/001");
+  const scaffold = await fetchPage("/proof-evolution/openai-math/068");
   assert.equal(scaffold.status, 200);
   const scaffoldHtml = await scaffold.text();
   assert.ok(scaffoldHtml.includes("Metadata scaffold"));
@@ -115,10 +116,17 @@ test("the proof-map index, scaffold, deep maps, and API render with explicit sta
   const derived = await fetchPage("/proof-evolution/openai-math/005");
   assert.equal(derived.status, 200);
   const derivedHtml = await derived.text();
-  assert.ok(derivedHtml.includes("Lean-derived structure"));
-  assert.ok(derivedHtml.includes("What the pinned Lean closure records for this family."));
-  assert.ok(derivedHtml.includes("Formal target"));
+  assert.ok(derivedHtml.includes("Paper-derived structure"));
+  assert.ok(derivedHtml.includes("What the paper's statements and proofs reference."));
+  assert.ok(derivedHtml.includes("Cites"));
   assert.ok(!visibleText(derivedHtml).includes("Theorem dependencies · deep map"));
+
+  const leanDerived = await fetchPage("/proof-evolution/openai-math/024");
+  assert.equal(leanDerived.status, 200);
+  const leanDerivedHtml = await leanDerived.text();
+  assert.ok(leanDerivedHtml.includes("Lean-derived structure"));
+  assert.ok(leanDerivedHtml.includes("What the pinned Lean closure records for this family."));
+  assert.ok(leanDerivedHtml.includes("Formal target"));
 
   const deep = await fetchPage("/proof-evolution/openai-math/032");
   assert.equal(deep.status, 200);
@@ -139,8 +147,10 @@ test("the proof-map index, scaffold, deep maps, and API render with explicit sta
   assert.equal(payload.entries.length, 372);
   assert.equal(payload.summary.deep, 4);
   assert.equal(payload.summary.draft, 0);
-  assert.equal(payload.summary.lean, 238);
-  assert.equal(payload.summary.scaffold, 130);
+  assert.equal(payload.summary.paper, 343);
+  assert.equal(payload.summary.paperStatements, 13629);
+  assert.equal(payload.summary.lean, 18);
+  assert.equal(payload.summary.scaffold, 7);
 });
 
 

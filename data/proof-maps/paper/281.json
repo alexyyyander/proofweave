@@ -1,0 +1,757 @@
+{
+  "familyNumber": "281",
+  "familyTitle": "QAOA attains the SK optimum in the thermodynamic-first limit",
+  "manuscripts": [
+    {
+      "id": "QAOA-attains-the-SK-ground-state-energy-in-the-thermodynamic-first-limit-September-25-2026",
+      "title": "QAOA attains the SK ground-state energy in the thermodynamic-first limit",
+      "date": "2026-09-25",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/QAOA-attains-the-SK-ground-state-energy-in-the-thermodynamic-first-limit-September-25-2026/QAOA-attains-the-SK-ground-state-energy-in-the-thermodynamic-first-limit-September-25-2026.pdf"
+    },
+    {
+      "id": "Full-support-of-the-zero-temperature-Sherrington-Kirkpatrick-order-parameter-September-27-2026",
+      "title": "Full support of the zero-temperature Sherrington-Kirkpatrick order parameter",
+      "date": "2026-09-27",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Full-support-of-the-zero-temperature-Sherrington-Kirkpatrick-order-parameter-September-27-2026/main.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction and statement of the result",
+    "The fixed-word tree calculus",
+    "A near-optimal bounded classical formula",
+    "Compiling classical formulas with seeded controls",
+    "Removing the longitudinal seed controls",
+    "The independent positive-temperature construction",
+    "Introduction",
+    "Integrable coefficients and the controlled diffusion",
+    "Shape inequalities for finite step functions",
+    "An exact coercive identity",
+    "Strict curvature on constant intervals",
+    "Full support and regularity",
+    "Martingale representation and optimization consequences"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For the zero-field SK model~ , _ p Q_p=. Equivalently, for every >0 there exist…",
+      "statement": "For the zero-field SK model~ , _ p Q_p=. Equivalently, for every >0 there exist a finite integer p and deterministic real vectors ,^p , independent of n and J , such that v_p(,)- .",
+      "section": "Introduction and statement of the result",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m1-cor-regular-maxcut",
+      "kind": "corollary",
+      "label": "Regular MaxCut in successive limits",
+      "statement": "[Regular MaxCut in successive limits] For every >0 there are an integer p1 , deterministic normalized angles ,^p , and an integer D_02 such that, for every integer D D_0 and every finite simple…",
+      "section": "Introduction and statement of the result",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m1-prop-tree-transfer",
+      "kind": "proposition",
+      "label": "Fixed-word transfer",
+      "statement": "[Fixed-word transfer] Let W be an ordinary QAOA word, and apply the same word to the (D+1) -regular tree with cost C_D=D^ -1/2 _ \\ i,j\\ E Z_iZ_j , with each unordered edge counted once. Its…",
+      "section": "The fixed-word tree calculus",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m1-prop-energy",
+      "kind": "proposition",
+      "label": "Energy as a root shift",
+      "statement": "[Energy as a root shift] Let f_D be centered, root-invariant, finite-radius vectors on the (D+1) -regular tree. Root invariance means that the vector itself is fixed by every rooted permutation of…",
+      "section": "The fixed-word tree calculus",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m1-lem-weyl-bounds",
+      "kind": "lemma",
+      "label": "Weyl estimates",
+      "statement": "[Weyl estimates] Let N be the particle number on _s(H^) . For every integer m0 there is C_m such that \\|(1+N)^m W(d)\\| & C_m(1+\\|d\\|)^ 2m \\|(1+N)^m\\|, \\\\ \\|( W(d)-1)\\| &2\\|d\\|\\|(N+1)^ 1/2 \\|. For the…",
+      "section": "The fixed-word tree calculus",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m1-lem-centered-sums",
+      "kind": "lemma",
+      "label": "Sums",
+      "statement": "[Sums] Let T_D and T_D^* have uniform smooth bounds on one-copy spaces, and suppose their smooth limits exist. If T_D =0 , then under the occupation embeddings D^ -1/2 _ j=1 ^D T_D^ (j) a^*(T)+a(T^*)…",
+      "section": "The fixed-word tree calculus",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m1-lem-unitary-clt",
+      "kind": "lemma",
+      "label": "Products of small unitaries",
+      "statement": "[Products of small unitaries] Let K_D(x) , x^b , be unitary, satisfy K_D(0)=1 , and have uniform smooth bounds for all jets and adjoint jets. Suppose these jets converge smoothly and _ K_D(0) =0 for…",
+      "section": "The fixed-word tree calculus",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m1-lem-ordinary-updates",
+      "kind": "lemma",
+      "label": "Ordinary root updates",
+      "statement": "[Ordinary root updates] Ordinary finite words have smooth root limits and smooth adjoint limits at every sufficient finite height. Starting at u=1 , the limiting left updates for a mixer of angle and…",
+      "section": "The fixed-word tree calculus",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m1-lem-commuting-substitution",
+      "kind": "lemma",
+      "label": "Smooth commuting substitution",
+      "statement": "[Smooth commuting substitution] Let S_D=(S_ D,1 ,,S_ D,b ) be a fixed finite list of strongly commuting self-adjoint operators. Suppose their polynomials converge smoothly and their joint…",
+      "section": "The fixed-word tree calculus",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m1-thm-gate-calculus",
+      "kind": "theorem",
+      "label": "Smooth gate calculus",
+      "statement": "[Smooth gate calculus] Fix a finite sequence of exclusion gates, ordinary mixers and costs, and local seed gates. Its root interaction-picture maps, their adjoints, and their root insertion vectors…",
+      "section": "The fixed-word tree calculus",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m1-cor-additive-response",
+      "kind": "corollary",
+      "label": "Additive cut responses",
+      "statement": "[Additive cut responses] Fix a preceding finite sequence as in Theorem~ . Suppose a temporary Hamiltonian is diagonal in a common collection of site axes, with coefficients given by an exclusion…",
+      "section": "The fixed-word tree calculus",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m1-lem-gaussian-rooted-realization",
+      "kind": "lemma",
+      "label": "A finite Gaussian formula and its rooted energy",
+      "statement": "[A finite Gaussian formula and its rooted energy] Fix T,N and the scalar data in -- , with all c_j finite and positive. There is a real odd finite descendant formula F_N of height at most N+1 in the…",
+      "section": "A near-optimal bounded classical formula",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m1-lem-classical-trigonometric-density",
+      "kind": "lemma",
+      "label": "Bounded trigonometric approximation",
+      "statement": "[Bounded trigonometric approximation] Let m^*=(z) , where z is a finite descendant formula with Gaussian leaf seeds. Assume that every transmitted child column is odd, and that each local map…",
+      "section": "A near-optimal bounded classical formula",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m1-lem-classical-color-exclusion",
+      "kind": "lemma",
+      "label": "Type exclusion at small cost",
+      "statement": "[Type exclusion at small cost] Fix a descendant formula in which every transmitted column and the output are given by jointly odd bounded smooth functions of the local odd seed and the odd aggregate…",
+      "section": "A near-optimal bounded classical formula",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m1-prop-classical-near-optimum",
+      "kind": "proposition",
+      "label": "Classical near-optimality in synthesis form",
+      "statement": "[Classical near-optimality in synthesis form] For every >0 and every _H>0 , there are a finite color partition with helper probability 0<p_H<_H , a finite number of helper types, and finite bounded…",
+      "section": "A near-optimal bounded classical formula",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m1-thm-classical-synthesis",
+      "kind": "theorem",
+      "label": "Classical synthesis",
+      "statement": "[Classical synthesis] For every finite collection of bounded smooth odd seed-only exclusion formulas of Definition~ , with disjoint positive-probability helper masks, one for each positive…",
+      "section": "Compiling classical formulas with seeded controls",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m1-prop-helper-contraction",
+      "kind": "proposition",
+      "label": "Simultaneous helper contraction",
+      "statement": "[Simultaneous helper contraction] Consider a fixed finite sequence in the parity-preserving, root-seed-commuting gate-calculus class, containing finitely many propagations , possibly with different…",
+      "section": "Compiling classical formulas with seeded controls",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m1-lem-fixed-field-exponentials",
+      "kind": "lemma",
+      "label": "A fixed number of commuting fields",
+      "statement": "[A fixed number of commuting fields] Let \\(Q_j=q(d_j)\\), \\(1 j k\\), commute, where \\(k\\) is fixed and \\(d_j_a C_a\\) for every \\(a\\). Let \\(F_s:^k\\) have polynomial bounds on every derivative,…",
+      "section": "Compiling classical formulas with seeded controls",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m1-lem-orthogonal-quadratics",
+      "kind": "lemma",
+      "label": "Quadratics with many orthogonal columns",
+      "statement": "[Quadratics with many orthogonal columns] Let \\(R_l\\) be finitely many pairwise disjoint root masks, with \\(p_l=(R_l)\\). Suppose \\(d_l,e_l\\) are supported on \\(R_l\\) and are real-commuting, meaning…",
+      "section": "Compiling classical formulas with seeded controls",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m1-thm-seed-simulation",
+      "kind": "theorem",
+      "label": "Removal of seed controls",
+      "statement": "[Removal of seed controls] For every finite seeded word and every \\(>0\\), there is a finite ordinary cost--mixer word whose limiting tree energy differs from that of the seeded word by less than…",
+      "section": "Removing the longitudinal seed controls",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m1-lem-seed-packet-estimates",
+      "kind": "lemma",
+      "label": "Packet estimates",
+      "statement": "[Packet estimates] The following estimates are uniform for bounded families of tails. Displacements with bounded directions preserve all the seminorms \\(_k\\), with bounds depending only on the…",
+      "section": "Removing the longitudinal seed controls",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m1-lem-seed-high-directions",
+      "kind": "lemma",
+      "label": "The initial high directions",
+      "statement": "[The initial high directions] The vectors \\(_r,w_r\\) are centered, have norm one, and satisfy \\[ _r w_r 0, \\1_ N M _r + \\1_ N M w_r 0 for every fixed M. \\] They consequently have vanishing inner…",
+      "section": "Removing the longitudinal seed controls",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m1-lem-seed-ensemble-control",
+      "kind": "lemma",
+      "label": "Selective rotations with zero clocks",
+      "statement": "[Selective rotations with zero clocks] Let \\(h_1,,h_m\\) be a finite list of nonzero vectors in \\(^2\\). There are two perpendicular axes \\(P_1,P_2\\) in the \\(ZY\\)-plane with the following property.…",
+      "section": "Removing the longitudinal seed controls",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m1-lem-seed-selective-accuracy",
+      "kind": "lemma",
+      "label": "Accuracy of selective probes",
+      "statement": "[Accuracy of selective probes] Consider a stage whose vacuum state \\(u_r\\) has a finite packet expansion, with norm-\\(o(r)\\) remainders and uniformly bounded scaled centers. Suppose the ordinary…",
+      "section": "Removing the longitudinal seed controls",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m1-lem-seed-low-insertions",
+      "kind": "lemma",
+      "label": "Insertion approximation from forward action",
+      "statement": "[Insertion approximation from forward action] If~ and hold uniformly on bounded input families, then u_r^*Pu_r -A_r^*PA_r =O(r) (P=Y,Z). In particular the actual insertion directions have bounded…",
+      "section": "Removing the longitudinal seed controls",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m1-lem-seed-one-echo",
+      "kind": "lemma",
+      "label": "One echo",
+      "statement": "[One echo] Under the invariant and the visibility conditions, the echo preserves the invariant. Up to a scalar of modulus one its low update is A_r W_Z(g_r)A_r, g_r=t r (v'_r-v_r)=-2t w_r+o(1), where…",
+      "section": "Removing the longitudinal seed controls",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m1-lem-seed-gram-induction",
+      "kind": "lemma",
+      "label": "Finite Gram induction",
+      "statement": "[Finite Gram induction] Suppose the required selective probe lists have been constructed through a given standard stage. The joint Gram matrix of \\(e\\), all actual standard-stage insertion vectors…",
+      "section": "Removing the longitudinal seed controls",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m1-lem-seed-huge-transverse",
+      "kind": "lemma",
+      "label": "The huge-stage transverse projection",
+      "statement": "[The huge-stage transverse projection] Immediately after a forward cost with fixed \\(t0\\), the actual \\(Y\\)-insertion has vanishing pairing with every bounded family in \\( S\\). In particular, its…",
+      "section": "Removing the longitudinal seed controls",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m1-lem-positive-temperature-bound",
+      "kind": "lemma",
+      "label": "A positive-temperature value bound",
+      "statement": "[A positive-temperature value bound] For every _0>1 and 0<T<q , _0^T a(t,X_t)\\, t P_* -1/4+ 2 _0 -(q-T). Moreover, a(t,X_t)^2=1(0 t q), 1-q_0^ -1 .",
+      "section": "The independent positive-temperature construction",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m1-lem-eams-finite-step",
+      "kind": "lemma",
+      "label": "Finite-step limit",
+      "statement": "[Finite-step limit] For the preceding construction, as D at fixed ,L , c_ D,r & c_ ,r , 0 r L, \\\\ (u^0_i,,u^L_i)&(U_0,,U_L), z_i^L Z^_L, \\\\ _ D D+1 2 D z_o^Lz_v^L &=_ r=1 ^ L-1 c_ ,r a(t_r,X^_r), o…",
+      "section": "The independent positive-temperature construction",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m1-lem-eams-positive-continuum",
+      "kind": "lemma",
+      "label": "The continuum limit at fixed temperature",
+      "statement": "[The continuum limit at fixed temperature] Fix _0>1 and 0<T<q , and let L= T/ . There is a coupling with the diffusion and a constant C=C(_0,T) such that, for all sufficiently small , _ r T |X^_r-X_…",
+      "section": "The independent positive-temperature construction",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m1-lem-classical-strong-limit",
+      "kind": "lemma",
+      "label": "The symmetric-power realization",
+      "statement": "[The symmetric-power realization] Consider a fixed finite descendant formula whose pointwise functions are smooth with all derivatives of polynomial growth. Assume its leaf seeds have moments of…",
+      "section": "The independent positive-temperature construction",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m1-prop-classical-near-optimum-positive-temperature",
+      "kind": "proposition",
+      "label": "The independent positive-temperature construction",
+      "statement": "[The independent positive-temperature construction] For every >0 and every _H>0 , there are a finite color partition with helper probability 0<p_H<_H , a finite number of helper types, and finite…",
+      "section": "The independent positive-temperature construction",
+      "manuscript": "QAOA attains the SK ground-state energy in the thermodynamic-first limit"
+    },
+    {
+      "id": "m2-thm-full-support",
+      "kind": "theorem",
+      "label": "Full support at zero temperature",
+      "statement": "[Full support at zero temperature] If U minimizes P , then \\[ _=[0,1). \\] In particular (b)>(a) whenever 0 a<b<1 . For the solution of~ , =t, =1, 0 t<1.",
+      "section": "Introduction",
+      "manuscript": "Full support of the zero-temperature Sherrington-Kirkpatrick order parameter"
+    },
+    {
+      "id": "m2-lem-regularity",
+      "kind": "lemma",
+      "label": "Compact-strip regularity and stability",
+      "statement": "[Compact-strip regularity and stability] For every U , the function _ is even, convex, and one-Lipschitz in its spatial variable. It satisfies |x|_(t,x) |x|+ 2(1-t) +12_t^1(s)\\, s. For each integer…",
+      "section": "Integrable coefficients and the controlled diffusion",
+      "manuscript": "Full support of the zero-temperature Sherrington-Kirkpatrick order parameter"
+    },
+    {
+      "id": "m2-lem-diffusion",
+      "kind": "lemma",
+      "label": "Diffusion and square-martingale identity",
+      "statement": "[Diffusion and square-martingale identity] For U , the equation X_t=(t)u_(t,X_t)\\, t+ B_t, X_0=0, has a unique strong solution on [0,1] . On every strip [0,T] with T<1 , u_(t,X_t)=_0^t _ ,xx…",
+      "section": "Integrable coefficients and the controlled diffusion",
+      "manuscript": "Full support of the zero-temperature Sherrington-Kirkpatrick order parameter"
+    },
+    {
+      "id": "m2-lem-constant-transfer",
+      "kind": "lemma",
+      "label": "Transfer on a constant interval",
+      "statement": "[Transfer on a constant interval] Suppose =c on an open interval I(0,1) . If c>0 , every point of I has a neighborhood on which one may choose positive, bounded, nondecreasing finite step…",
+      "section": "Integrable coefficients and the controlled diffusion",
+      "manuscript": "Full support of the zero-temperature Sherrington-Kirkpatrick order parameter"
+    },
+    {
+      "id": "m2-tail-class",
+      "kind": "lemma",
+      "label": "Differentiated tails",
+      "statement": "[Differentiated tails] On each closed backward step, uniformly in its time coordinate, l(t,x)=cx+C(t)+O(e^ - x )(x+) with differentiated exponential error. The functions are even, so the negative…",
+      "section": "Shape inequalities for finite step functions",
+      "manuscript": "Full support of the zero-temperature Sherrington-Kirkpatrick order parameter"
+    },
+    {
+      "id": "m2-shape-backward",
+      "kind": "lemma",
+      "label": "Backward shapes",
+      "statement": "[Backward shapes] For the fixed step data above, r is odd and v>0 . On x>0 , w0, H:=r_ r =w 2r +v0, H_x0. The quotient defining H extends smoothly and evenly at zero.",
+      "section": "Shape inequalities for finite step functions",
+      "manuscript": "Full support of the zero-temperature Sherrington-Kirkpatrick order parameter"
+    },
+    {
+      "id": "m2-shape-forward",
+      "kind": "lemma",
+      "label": "Forward score and ratio",
+      "statement": "[Forward score and ratio] For every t>0 , s is odd and, with a=s_x , a1t>0, s_ xx 0(x>0), j:=a- sr v=r_x(s/r)0(x R). The ratios and j extend smoothly at zero. At every forward step boundary, j is…",
+      "section": "Shape inequalities for finite step functions",
+      "manuscript": "Full support of the zero-temperature Sherrington-Kirkpatrick order parameter"
+    },
+    {
+      "id": "m2-shape-ibp",
+      "kind": "lemma",
+      "label": "Certificate signs and integration by parts",
+      "statement": "[Certificate signs and integration by parts] At a fixed positive time in a constant step, the functions R,K,v,b,j,L,B,S defined above are even and extend smoothly across zero. They satisfy \\[…",
+      "section": "Shape inequalities for finite step functions",
+      "manuscript": "Full support of the zero-temperature Sherrington-Kirkpatrick order parameter"
+    },
+    {
+      "id": "m2-cert-identity-lemma",
+      "kind": "lemma",
+      "label": "Rational polynomial identity",
+      "statement": "[Rational polynomial identity] With these definitions, B=b-2v , and S=z+bv-2Rb , one has the polynomial identity over Q z^2-12Rvb^2+6v^4 = &(z+Q)^2+ST+_ i=0 ^4p_iP_i+ W(F_2)\\\\ &+L(x_0v^2+hbv)+P_ rem .",
+      "section": "An exact coercive identity",
+      "manuscript": "Full support of the zero-temperature Sherrington-Kirkpatrick order parameter"
+    },
+    {
+      "id": "m2-cert-coercivity",
+      "kind": "proposition",
+      "label": "Integrated coercivity",
+      "statement": "[Integrated coercivity] Suppose r,v,w,z,s and the variables R,K,b,j,L,B,S are related as in Lemma~ , with the derivative rules~ and signs~ . Assume their quotients extend across zero. Let f be a…",
+      "section": "An exact coercive identity",
+      "manuscript": "Full support of the zero-temperature Sherrington-Kirkpatrick order parameter"
+    },
+    {
+      "id": "m2-prop-gap-curvature",
+      "kind": "proposition",
+      "label": "Constant-interval curvature",
+      "statement": "[Constant-interval curvature] Let U and suppose =c on an open interval I(0,1) . For its controlled diffusion, put q(t)=_ ,x (t,X_t)^2 . If c>0 , then q' is strictly convex on I ; more precisely, with…",
+      "section": "Strict curvature on constant intervals",
+      "manuscript": "Full support of the zero-temperature Sherrington-Kirkpatrick order parameter"
+    },
+    {
+      "id": "m2-lem-first-variation",
+      "kind": "lemma",
+      "label": "First variation in every admissible integrable direction",
+      "statement": "[First variation in every admissible integrable direction] Let U , and suppose that L^1(0,1) has the property that + U for 0_0 , where _0>0 . With X and q from Lemma~ , . |_ =0+ P(+)…",
+      "section": "Full support and regularity",
+      "manuscript": "Full support of the zero-temperature Sherrington-Kirkpatrick order parameter"
+    },
+    {
+      "id": "m2-lem-contact",
+      "kind": "lemma",
+      "label": "Contact conditions",
+      "statement": "[Contact conditions] Let minimize P over U , and let be its locally finite Stieltjes measure on [0,1) , with the convention (\\ 0\\ )=(0) . Thus (t)=([0,t]) . Define G(s)=_s^1(q(t)-t)\\, t, S=supp[0,1).…",
+      "section": "Full support and regularity",
+      "manuscript": "Full support of the zero-temperature Sherrington-Kirkpatrick order parameter"
+    },
+    {
+      "id": "m2-lem-no-terminal-plateau",
+      "kind": "lemma",
+      "label": "No terminal plateau",
+      "statement": "[No terminal plateau] For a minimizer , there is no a<1 and finite c0 such that =c on (a,1) .",
+      "section": "Full support and regularity",
+      "manuscript": "Full support of the zero-temperature Sherrington-Kirkpatrick order parameter"
+    },
+    {
+      "id": "m2-cor-smooth-measure",
+      "kind": "corollary",
+      "label": "Smooth positive density of the minimizing measure",
+      "statement": "[Smooth positive density of the minimizing measure] Let U minimize P , and let X be its controlled diffusion. Then (0)=0 and is smooth on [0,1) , with derivatives at zero understood from the right.…",
+      "section": "Full support and regularity",
+      "manuscript": "Full support of the zero-temperature Sherrington-Kirkpatrick order parameter"
+    },
+    {
+      "id": "m2-cor-value",
+      "kind": "corollary",
+      "label": "Martingale representation of the value",
+      "statement": "[Martingale representation of the value] Let be a minimizer, let X be its diffusion, and write u=_ ,x and a=_ ,xx . There is a bounded martingale terminal value U_1 such that u(t,X_t) U_1 almost…",
+      "section": "Martingale representation and optimization consequences",
+      "manuscript": "Full support of the zero-temperature Sherrington-Kirkpatrick order parameter"
+    },
+    {
+      "id": "m2-prop-gaussian",
+      "kind": "proposition",
+      "label": "Finite Gaussian coefficients",
+      "statement": "[Finite Gaussian coefficients] Fix 0<T<1 , a minimizer , and u,a as above. For an integer N1 put =T/N and t_j=j . On independent standard normal variables Z_1,,Z_ N+1 , define Y_0&=0, Y_j=Y_ j-1 +…",
+      "section": "Martingale representation and optimization consequences",
+      "manuscript": "Full support of the zero-temperature Sherrington-Kirkpatrick order parameter"
+    },
+    {
+      "id": "m2-cor-algorithm",
+      "kind": "corollary",
+      "label": "Asymptotically optimal SK optimization",
+      "statement": "[Asymptotically optimal SK optimization] For every fixed >0 , there is a randomized algorithm with operation count at most C()n^2 in the model just described, where C() is independent of n , that…",
+      "section": "Martingale representation and optimization consequences",
+      "manuscript": "Full support of the zero-temperature Sherrington-Kirkpatrick order parameter"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-weyl-bounds",
+      "to": "m1-lem-centered-sums"
+    },
+    {
+      "from": "m1-lem-centered-sums",
+      "to": "m1-lem-unitary-clt"
+    },
+    {
+      "from": "m1-lem-unitary-clt",
+      "to": "m1-lem-ordinary-updates"
+    },
+    {
+      "from": "m1-lem-weyl-bounds",
+      "to": "m1-lem-ordinary-updates"
+    },
+    {
+      "from": "m1-prop-energy",
+      "to": "m1-lem-ordinary-updates"
+    },
+    {
+      "from": "m1-prop-tree-transfer",
+      "to": "m1-lem-ordinary-updates"
+    },
+    {
+      "from": "m1-lem-unitary-clt",
+      "to": "m1-thm-gate-calculus"
+    },
+    {
+      "from": "m1-lem-centered-sums",
+      "to": "m1-thm-gate-calculus"
+    },
+    {
+      "from": "m1-lem-commuting-substitution",
+      "to": "m1-thm-gate-calculus"
+    },
+    {
+      "from": "m1-lem-ordinary-updates",
+      "to": "m1-thm-gate-calculus"
+    },
+    {
+      "from": "m1-prop-energy",
+      "to": "m1-thm-gate-calculus"
+    },
+    {
+      "from": "m1-thm-gate-calculus",
+      "to": "m1-cor-additive-response"
+    },
+    {
+      "from": "m1-lem-unitary-clt",
+      "to": "m1-cor-additive-response"
+    },
+    {
+      "from": "m1-lem-commuting-substitution",
+      "to": "m1-cor-additive-response"
+    },
+    {
+      "from": "m1-thm-gate-calculus",
+      "to": "m1-lem-classical-color-exclusion"
+    },
+    {
+      "from": "m1-lem-classical-trigonometric-density",
+      "to": "m1-prop-classical-near-optimum"
+    },
+    {
+      "from": "m1-lem-classical-color-exclusion",
+      "to": "m1-prop-classical-near-optimum"
+    },
+    {
+      "from": "m1-lem-weyl-bounds",
+      "to": "m1-lem-fixed-field-exponentials"
+    },
+    {
+      "from": "m1-lem-fixed-field-exponentials",
+      "to": "m1-lem-orthogonal-quadratics"
+    },
+    {
+      "from": "m1-prop-helper-contraction",
+      "to": "m1-lem-orthogonal-quadratics"
+    },
+    {
+      "from": "m1-thm-gate-calculus",
+      "to": "m1-lem-orthogonal-quadratics"
+    },
+    {
+      "from": "m1-cor-additive-response",
+      "to": "m1-lem-orthogonal-quadratics"
+    },
+    {
+      "from": "m1-thm-classical-synthesis",
+      "to": "m1-lem-orthogonal-quadratics"
+    },
+    {
+      "from": "m1-prop-energy",
+      "to": "m1-lem-orthogonal-quadratics"
+    },
+    {
+      "from": "m1-lem-weyl-bounds",
+      "to": "m1-lem-seed-packet-estimates"
+    },
+    {
+      "from": "m1-lem-seed-packet-estimates",
+      "to": "m1-lem-seed-high-directions"
+    },
+    {
+      "from": "m1-lem-seed-packet-estimates",
+      "to": "m1-lem-seed-selective-accuracy"
+    },
+    {
+      "from": "m1-lem-seed-selective-accuracy",
+      "to": "m1-lem-seed-one-echo"
+    },
+    {
+      "from": "m1-lem-seed-low-insertions",
+      "to": "m1-lem-seed-one-echo"
+    },
+    {
+      "from": "m1-lem-seed-packet-estimates",
+      "to": "m1-lem-seed-gram-induction"
+    },
+    {
+      "from": "m1-lem-seed-low-insertions",
+      "to": "m1-lem-seed-gram-induction"
+    },
+    {
+      "from": "m1-lem-seed-high-directions",
+      "to": "m1-lem-seed-gram-induction"
+    },
+    {
+      "from": "m1-thm-seed-simulation",
+      "to": "m1-lem-seed-huge-transverse"
+    },
+    {
+      "from": "m1-lem-seed-gram-induction",
+      "to": "m1-lem-seed-huge-transverse"
+    },
+    {
+      "from": "m1-prop-tree-transfer",
+      "to": "m1-lem-seed-huge-transverse"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-lem-seed-huge-transverse"
+    },
+    {
+      "from": "m1-prop-classical-near-optimum",
+      "to": "m1-lem-seed-huge-transverse"
+    },
+    {
+      "from": "m1-thm-classical-synthesis",
+      "to": "m1-lem-seed-huge-transverse"
+    },
+    {
+      "from": "m1-cor-regular-maxcut",
+      "to": "m1-lem-seed-huge-transverse"
+    },
+    {
+      "from": "m1-lem-eams-finite-step",
+      "to": "m1-lem-classical-strong-limit"
+    },
+    {
+      "from": "m1-prop-energy",
+      "to": "m1-lem-classical-strong-limit"
+    },
+    {
+      "from": "m1-lem-classical-strong-limit",
+      "to": "m1-prop-classical-near-optimum-positive-temperature"
+    },
+    {
+      "from": "m1-lem-classical-trigonometric-density",
+      "to": "m1-prop-classical-near-optimum-positive-temperature"
+    },
+    {
+      "from": "m1-lem-classical-color-exclusion",
+      "to": "m1-prop-classical-near-optimum-positive-temperature"
+    },
+    {
+      "from": "m1-prop-classical-near-optimum",
+      "to": "m1-prop-classical-near-optimum-positive-temperature"
+    },
+    {
+      "from": "m2-lem-regularity",
+      "to": "m2-lem-diffusion"
+    },
+    {
+      "from": "m2-lem-regularity",
+      "to": "m2-lem-constant-transfer"
+    },
+    {
+      "from": "m2-lem-diffusion",
+      "to": "m2-lem-constant-transfer"
+    },
+    {
+      "from": "m2-tail-class",
+      "to": "m2-shape-backward"
+    },
+    {
+      "from": "m2-shape-backward",
+      "to": "m2-shape-forward"
+    },
+    {
+      "from": "m2-tail-class",
+      "to": "m2-shape-forward"
+    },
+    {
+      "from": "m2-shape-backward",
+      "to": "m2-shape-ibp"
+    },
+    {
+      "from": "m2-shape-forward",
+      "to": "m2-shape-ibp"
+    },
+    {
+      "from": "m2-lem-constant-transfer",
+      "to": "m2-prop-gap-curvature"
+    },
+    {
+      "from": "m2-shape-backward",
+      "to": "m2-prop-gap-curvature"
+    },
+    {
+      "from": "m2-shape-forward",
+      "to": "m2-prop-gap-curvature"
+    },
+    {
+      "from": "m2-shape-ibp",
+      "to": "m2-prop-gap-curvature"
+    },
+    {
+      "from": "m2-cert-coercivity",
+      "to": "m2-prop-gap-curvature"
+    },
+    {
+      "from": "m2-lem-regularity",
+      "to": "m2-prop-gap-curvature"
+    },
+    {
+      "from": "m2-lem-regularity",
+      "to": "m2-lem-first-variation"
+    },
+    {
+      "from": "m2-lem-diffusion",
+      "to": "m2-lem-first-variation"
+    },
+    {
+      "from": "m2-lem-first-variation",
+      "to": "m2-lem-contact"
+    },
+    {
+      "from": "m2-lem-diffusion",
+      "to": "m2-lem-contact"
+    },
+    {
+      "from": "m2-lem-contact",
+      "to": "m2-lem-no-terminal-plateau"
+    },
+    {
+      "from": "m2-thm-full-support",
+      "to": "m2-lem-no-terminal-plateau"
+    },
+    {
+      "from": "m2-prop-gap-curvature",
+      "to": "m2-lem-no-terminal-plateau"
+    },
+    {
+      "from": "m2-lem-diffusion",
+      "to": "m2-lem-no-terminal-plateau"
+    },
+    {
+      "from": "m2-lem-regularity",
+      "to": "m2-cor-smooth-measure"
+    },
+    {
+      "from": "m2-lem-diffusion",
+      "to": "m2-cor-smooth-measure"
+    },
+    {
+      "from": "m2-thm-full-support",
+      "to": "m2-cor-smooth-measure"
+    },
+    {
+      "from": "m2-cert-coercivity",
+      "to": "m2-cor-smooth-measure"
+    },
+    {
+      "from": "m2-shape-backward",
+      "to": "m2-cor-smooth-measure"
+    },
+    {
+      "from": "m2-shape-ibp",
+      "to": "m2-cor-smooth-measure"
+    },
+    {
+      "from": "m2-lem-diffusion",
+      "to": "m2-cor-value"
+    },
+    {
+      "from": "m2-thm-full-support",
+      "to": "m2-cor-value"
+    },
+    {
+      "from": "m2-lem-regularity",
+      "to": "m2-prop-gaussian"
+    },
+    {
+      "from": "m2-cor-value",
+      "to": "m2-prop-gaussian"
+    },
+    {
+      "from": "m2-thm-full-support",
+      "to": "m2-cor-algorithm"
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "familyNumber": "104",
+  "familyTitle": "Quasipolynomial algorithms for mean-payoff, stochastic and parity games",
+  "manuscripts": [
+    {
+      "id": "Mean-payoff-parity-games-in-quasipolynomial-time-October-5-2026",
+      "title": "Mean-payoff parity games in quasipolynomial time",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Mean-payoff-parity-games-in-quasipolynomial-time-October-5-2026/mean-payoff-parity.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Mean-payoff input and arena restrictions",
+    "Combining strategies and extracting dominions",
+    "Recursion with bounded-dominion guarantees",
+    "Complexity in the full binary input length"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "A uniform deterministic algorithm returns exactly all vertices from which Max…",
+      "statement": "A uniform deterministic algorithm returns exactly all vertices from which Max can force~ against every Min strategy. For an absolute constant C>0 , it uses at most \\[ 2^ C(_2(L+2))^2 \\] bit…",
+      "section": "Introduction",
+      "manuscript": "Mean-payoff parity games in quasipolynomial time"
+    },
+    {
+      "id": "m1-prop-mp-interface",
+      "kind": "proposition",
+      "label": "Mean-payoff input",
+      "statement": "[Mean-payoff input] For a finite nonempty total arena H with signed binary integer weights, its ordinary mean-payoff winning set \\[ U_ mp (H)= \\ v:Max can force liminf mean payoff at least 0\\ \\] is…",
+      "section": "Mean-payoff input and arena restrictions",
+      "manuscript": "Mean-payoff parity games in quasipolynomial time"
+    },
+    {
+      "id": "m1-lem-mp-prefix",
+      "kind": "lemma",
+      "label": "Uniform prefix bound",
+      "statement": "[Uniform prefix bound] If Max wins ordinary mean payoff from every vertex of a nonempty arena H of size N , then a single positional strategy guarantees \\[ () -(N-1)W_H \\] for every finite consistent…",
+      "section": "Mean-payoff input and arena restrictions",
+      "manuscript": "Mean-payoff parity games in quasipolynomial time"
+    },
+    {
+      "id": "m1-lem-arena-facts",
+      "kind": "lemma",
+      "label": "Restriction facts",
+      "statement": "[Restriction facts] Let P,Q be opposite players in an arena H . (enumi) If D is a P -dominion in H and R is a restriction closed at P 's vertices, then D R is a P -dominion in R . If R is closed at P…",
+      "section": "Mean-payoff input and arena restrictions",
+      "manuscript": "Mean-payoff parity games in quasipolynomial time"
+    },
+    {
+      "id": "m1-lem-combine",
+      "kind": "lemma",
+      "label": "Strategy combination",
+      "statement": "[Strategy combination] Let H be a nonempty arena, and let d0 be an integer such that p(v) d for every v H . Define P= ,&d even,\\\\,&d odd, S=\\ v H:p(v)=d\\ ,\\\\ A=_P^H(S), R=H A. The set S is allowed to…",
+      "section": "Combining strategies and extracting dominions",
+      "manuscript": "Mean-payoff parity games in quasipolynomial time"
+    },
+    {
+      "id": "m1-thm-determinacy",
+      "kind": "theorem",
+      "label": "In every finite arena, each vertex is winning for exactly one of \\ and . From…",
+      "statement": "In every finite arena, each vertex is winning for exactly one of \\ and . From each vertex winning for , there is a conjunction-winning strategy satisfying .",
+      "section": "Combining strategies and extracting dominions",
+      "manuscript": "Mean-payoff parity games in quasipolynomial time"
+    },
+    {
+      "id": "m1-lem-extract",
+      "kind": "lemma",
+      "label": "Dominion extraction",
+      "statement": "[Dominion extraction] Let H be a nonempty arena and d0 an integer such that p(v) d for all v H . Let P= if d is even and P= if d is odd, and let Q be the other player. Put \\[ S=\\ v H:p(v)=d\\ ,…",
+      "section": "Combining strategies and extracting dominions",
+      "manuscript": "Mean-payoff parity games in quasipolynomial time"
+    },
+    {
+      "id": "m1-thm-labels",
+      "kind": "theorem",
+      "label": "Bounded-dominion guarantee",
+      "statement": "[Bounded-dominion guarantee] For every subarena H of the original game and every b\\ 0,,n\\ ^2 , the procedure (H, b) terminates and returns a partition satisfying for both players.",
+      "section": "Recursion with bounded-dominion guarantees",
+      "manuscript": "Mean-payoff parity games in quasipolynomial time"
+    },
+    {
+      "id": "m1-prop-reduction-cost",
+      "kind": "proposition",
+      "label": "Cost of the reduction",
+      "statement": "[Cost of the reduction] For an arena with n1 vertices and complete binary input length L , the call (G,(n,n)) makes \\[ 2^ O((_2(n+2))^2) \\] calls to the ordinary mean-payoff winning-set subroutine.…",
+      "section": "Complexity in the full binary input length",
+      "manuscript": "Mean-payoff parity games in quasipolynomial time"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-prop-mp-interface",
+      "to": "m1-lem-mp-prefix"
+    },
+    {
+      "from": "m1-lem-mp-prefix",
+      "to": "m1-lem-combine"
+    },
+    {
+      "from": "m1-prop-mp-interface",
+      "to": "m1-thm-determinacy"
+    },
+    {
+      "from": "m1-lem-combine",
+      "to": "m1-thm-determinacy"
+    },
+    {
+      "from": "m1-thm-determinacy",
+      "to": "m1-lem-extract"
+    },
+    {
+      "from": "m1-lem-combine",
+      "to": "m1-lem-extract"
+    },
+    {
+      "from": "m1-lem-arena-facts",
+      "to": "m1-lem-extract"
+    },
+    {
+      "from": "m1-lem-arena-facts",
+      "to": "m1-thm-labels"
+    },
+    {
+      "from": "m1-lem-extract",
+      "to": "m1-thm-labels"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-prop-reduction-cost"
+    },
+    {
+      "from": "m1-thm-labels",
+      "to": "m1-prop-reduction-cost"
+    },
+    {
+      "from": "m1-prop-mp-interface",
+      "to": "m1-prop-reduction-cost"
+    }
+  ]
+}

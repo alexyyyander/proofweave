@@ -1,0 +1,181 @@
+{
+  "familyNumber": "242",
+  "familyTitle": "Single-fold Diophantine representations and undecidability under an at-most-one-solution promise",
+  "manuscripts": [
+    {
+      "id": "Single-fold-Diophantine-representations-September-24-2026",
+      "title": "Single-fold Diophantine representations",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Single-fold-Diophantine-representations-September-24-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Polynomial constructions with unique witnesses",
+    "A rank-one curve with unique arithmetic codes",
+    "A uniquely represented function with intermediate growth",
+    "A power graph from a growth function",
+    "Testing containment of binary digits",
+    "One witness for a halting computation"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For every integer n1 and every recursively enumerable set S^n , there are an…",
+      "statement": "For every integer n1 and every recursively enumerable set S^n , there are an integer m1 and a polynomial P such that, for every a^n , \\[ \\#\\ w^m:P(a,w)=0\\ = 1,&a S,\\\\0,&a S. \\]",
+      "section": "Introduction",
+      "manuscript": "Single-fold Diophantine representations"
+    },
+    {
+      "id": "m1-cor-unique-h10",
+      "kind": "corollary",
+      "label": "Undecidability with an at-most-one-solution promise",
+      "statement": "[Undecidability with an at-most-one-solution promise] There exist integers m,D1 for which no algorithm has the following property: on every input polynomial F of total degree at most D satisfying the…",
+      "section": "Introduction",
+      "manuscript": "Single-fold Diophantine representations"
+    },
+    {
+      "id": "m1-lem-composition",
+      "kind": "lemma",
+      "label": "Composition and disjoint cases",
+      "statement": "[Composition and disjoint cases] Finite conjunctions of single-fold polynomial systems, using separate auxiliary tuples for distinct calls, preserve uniqueness for fixed values of all their displayed…",
+      "section": "Polynomial constructions with unique witnesses",
+      "manuscript": "Single-fold Diophantine representations"
+    },
+    {
+      "id": "m1-prop-rank-one",
+      "kind": "proposition",
+      "label": "The group \\(E()\\) has rank one and torsion subgroup \\[ T=\\…",
+      "statement": "The group \\(E()\\) has rank one and torsion subgroup \\[ T=\\ O,(0,0),(5,0),(-5,0)\\ . \\] Consequently there exists \\(P E()\\) such that every rational point has a unique expression \\(nP+t\\), with \\(n\\)…",
+      "section": "A rank-one curve with unique arithmetic codes",
+      "manuscript": "Single-fold Diophantine representations"
+    },
+    {
+      "id": "m1-lem-rational-codes",
+      "kind": "lemma",
+      "label": "Every rational number has exactly one code satisfying . Any fixed finite…",
+      "statement": "Every rational number has exactly one code satisfying . Any fixed finite sequence of rational additions, subtractions, multiplications, divisions by nonzero divisors, and comparisons on valid codes…",
+      "section": "A rank-one curve with unique arithmetic codes",
+      "manuscript": "Single-fold Diophantine representations"
+    },
+    {
+      "id": "m1-lem-point-arithmetic",
+      "kind": "lemma",
+      "label": "Given valid codes for \\(Q_1,Q_2 E()\\), addition has a polynomial implementation…",
+      "statement": "Given valid codes for \\(Q_1,Q_2 E()\\), addition has a polynomial implementation with a unique output code for \\(Q_1+Q_2\\) and a unique complete tuple of auxiliary coordinates. The same is true of any…",
+      "section": "A rank-one curve with unique arithmetic codes",
+      "manuscript": "Single-fold Diophantine representations"
+    },
+    {
+      "id": "m1-lem-representatives",
+      "kind": "lemma",
+      "label": "For each integer \\(j1\\), exactly one point in \\((jP+ T)(-jP+ T)\\) satisfies .…",
+      "statement": "For each integer \\(j1\\), exactly one point in \\((jP+ T)(-jP+ T)\\) satisfies . These are all the representatives.",
+      "section": "A uniquely represented function with intermediate growth",
+      "manuscript": "Single-fold Diophantine representations"
+    },
+    {
+      "id": "m1-prop-growth",
+      "kind": "proposition",
+      "label": "There are a total function \\(g:\\), a real constant \\(>0\\), and an integer…",
+      "statement": "There are a total function \\(g:\\), a real constant \\(>0\\), and an integer \\(u_04\\) such that the graph of \\(g\\) has a single-fold Diophantine representation, including uniqueness of its output and…",
+      "section": "A uniquely represented function with intermediate growth",
+      "manuscript": "Single-fold Diophantine representations"
+    },
+    {
+      "id": "m1-lem-pell-sequences",
+      "kind": "lemma",
+      "label": "For an integer a2 , put D=a^2-1 and define integers x_i(a),y_i(a) by \\[ (a+…",
+      "statement": "For an integer a2 , put D=a^2-1 and define integers x_i(a),y_i(a) by \\[ (a+ D)^i=x_i(a)+y_i(a) D(i0). \\] Every solution in positive integers of x^2-Dy^2=1 is (x_i(a),y_i(a)) for exactly one i1 .…",
+      "section": "A power graph from a growth function",
+      "manuscript": "Single-fold Diophantine representations"
+    },
+    {
+      "id": "m1-prop-power",
+      "kind": "proposition",
+      "label": "Suppose that g: has a complete single-fold graph and that there are fixed…",
+      "statement": "Suppose that g: has a complete single-fold graph and that there are fixed constants >0 and u_0 , with u_04 , such that ( u)^2< g(u)<u u (u u_0). Then the relation \\[ (b,n,c) b2\\ and \\ c=b^n (b,n,c)…",
+      "section": "A power graph from a growth function",
+      "manuscript": "Single-fold Diophantine representations"
+    },
+    {
+      "id": "m1-prop-subset",
+      "kind": "proposition",
+      "label": "The relation x y on ^2 has a complete single-fold Diophantine representation.",
+      "statement": "The relation x y on ^2 has a complete single-fold Diophantine representation.",
+      "section": "Testing containment of binary digits",
+      "manuscript": "Single-fold Diophantine representations"
+    },
+    {
+      "id": "m1-lem-counter-universality",
+      "kind": "lemma",
+      "label": "Let n 1 and let S^n be recursively enumerable. There is a counter machine that,…",
+      "statement": "Let n 1 and let S^n be recursively enumerable. There is a counter machine that, when its first n counters are initialized to a_1,,a_n and its remaining counters to zero, reaches its halt state if and…",
+      "section": "One witness for a halting computation",
+      "manuscript": "Single-fold Diophantine representations"
+    },
+    {
+      "id": "m1-prop-machine-compiler",
+      "kind": "proposition",
+      "label": "Fix n1 and a deterministic counter machine with finitely many states and…",
+      "statement": "Fix n1 and a deterministic counter machine with finitely many states and counters, instructions INC and TESTDEC , and one halt state. Initialize each counter by a fixed choice of an input coordinate…",
+      "section": "One witness for a halting computation",
+      "manuscript": "Single-fold Diophantine representations"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-rational-codes",
+      "to": "m1-lem-point-arithmetic"
+    },
+    {
+      "from": "m1-prop-rank-one",
+      "to": "m1-lem-representatives"
+    },
+    {
+      "from": "m1-lem-representatives",
+      "to": "m1-prop-growth"
+    },
+    {
+      "from": "m1-lem-rational-codes",
+      "to": "m1-prop-growth"
+    },
+    {
+      "from": "m1-lem-point-arithmetic",
+      "to": "m1-prop-growth"
+    },
+    {
+      "from": "m1-lem-pell-sequences",
+      "to": "m1-prop-power"
+    },
+    {
+      "from": "m1-prop-power",
+      "to": "m1-prop-subset"
+    },
+    {
+      "from": "m1-prop-power",
+      "to": "m1-prop-machine-compiler"
+    },
+    {
+      "from": "m1-prop-subset",
+      "to": "m1-prop-machine-compiler"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-prop-machine-compiler"
+    },
+    {
+      "from": "m1-lem-counter-universality",
+      "to": "m1-prop-machine-compiler"
+    },
+    {
+      "from": "m1-cor-unique-h10",
+      "to": "m1-prop-machine-compiler"
+    },
+    {
+      "from": "m1-prop-rank-one",
+      "to": "m1-prop-machine-compiler"
+    }
+  ]
+}

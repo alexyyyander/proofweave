@@ -1,0 +1,526 @@
+{
+  "familyNumber": "029",
+  "familyTitle": "Primitive roots for every admissible integer base",
+  "manuscripts": [
+    {
+      "id": "Primitive-roots-for-every-admissible-integer-base-October-4-2026",
+      "title": "Primitive roots for every admissible integer base",
+      "date": "2026-10-04",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Primitive-roots-for-every-admissible-integer-base-October-4-2026/primitive-roots-all-integer-bases.pdf"
+    },
+    {
+      "id": "Simultaneous-primitive-roots-a-conditional-lower-bound-for-prime-bases-October-4-2026",
+      "title": "Simultaneous primitive roots: a conditional lower bound for prime bases",
+      "date": "2026-10-04",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Simultaneous-primitive-roots-a-conditional-lower-bound-for-prime-bases-October-4-2026/simultaneous-primitive-roots-conditional-lower-bound-prime-bases.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Reduction to controlled predecessors and complete splitting",
+    "S-integers, residue symbols, and Gauss sums",
+    "The coefficient family and analytic comparison",
+    "The normalized cubic theta input and its radial profiles",
+    "Reflection and the quadratic large sieve",
+    "The Poisson probe and its Euler product",
+    "Zero detection and Mellin continuation",
+    "A uniform estimate for complete splitting",
+    "Marked Type II estimates and rough factors",
+    "Two elementary sieve facts",
+    "Primes with a controlled predecessor in a fixed progression",
+    "Reduction to two estimates",
+    "A marked family in a fixed progression"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-primitive-root",
+      "kind": "theorem",
+      "label": "For every admissible integer a , there are constants c_a>0 and x_a2 such that,…",
+      "statement": "For every admissible integer a , there are constants c_a>0 and x_a2 such that, for every real x x_a , \\[ \\#\\ p prime:x<p<2x,\\ p a,\\ _p(a)=p-1\\ c_ax ( x)^2 . \\]",
+      "section": "Introduction",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-thm-hecke-zero-free",
+      "kind": "theorem",
+      "label": "Let F be a cyclotomic number field containing _ 12 . For every finite-order…",
+      "statement": "Let F be a cyclotomic number field containing _ 12 . For every finite-order Hecke character of F , the meromorphic continuation of L_F(s,) has no zeros in \\[ s>1-10^ -6 . \\]",
+      "section": "Introduction",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-prop-controlled",
+      "kind": "proposition",
+      "label": "Primes with controlled predecessors",
+      "statement": "[Primes with controlled predecessors] Let M be a fixed positive multiple of 8 , let c\\ 2,4\\ , and let u be an integer satisfying (u,M)=1, c u-1, (u-1 c , Mc)=1. For every sufficiently large real x ,…",
+      "section": "Reduction to controlled predecessors and complete splitting",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-prop-splitting",
+      "kind": "proposition",
+      "label": "Uniform bound for complete splitting",
+      "statement": "[Uniform bound for complete splitting] Fix an integer a with |a|>1 , and put _0=10^ -6 . For all sufficiently large real x and all primes q sufficiently large in terms of a , with q(L^ 0.3 ) , one…",
+      "section": "Reduction to controlled predecessors and complete splitting",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-alg-splitting-test",
+      "kind": "lemma",
+      "label": "Splitting test",
+      "statement": "[Splitting test] Let a0 be an integer, and let p,q be primes with p aq . Then p splits completely in K_q if and only if p1 q, a^ (p-1)/q 1 p.",
+      "section": "Reduction to controlled predecessors and complete splitting",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-alg-quadratic-progression",
+      "kind": "lemma",
+      "label": "A progression of quadratic nonresidues",
+      "statement": "[A progression of quadratic nonresidues] Let a be neither -1 nor an integer square, and set \\[ M=8_ a\\\\ odd prime . \\] There are c\\ 2,4\\ and an integer u satisfying such that every prime p u M…",
+      "section": "Reduction to controlled predecessors and complete splitting",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-lem-s-lattice",
+      "kind": "lemma",
+      "label": "The S-integer lattice",
+      "statement": "[The S-integer lattice] The diagonal copy of \\(R\\) is a discrete cocompact subgroup of \\(F_S\\), is its own annihilator for the pairing \\((xy)\\), and has covolume \\(1\\). For every Bruhat--Schwartz…",
+      "section": "S-integers, residue symbols, and Gauss sums",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-lem-balanced-generators",
+      "kind": "lemma",
+      "label": "Generators with fixed power classes",
+      "statement": "[Generators with fixed power classes] The pairing \\(H_S\\) on \\( V\\) is nondegenerate and alternating. The map \\(U_S/U_S^6 V\\) is injective, its image \\(E\\) satisfies \\(E^=E\\), and there is an…",
+      "section": "S-integers, residue symbols, and Gauss sums",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-lem-kummer-characters",
+      "kind": "lemma",
+      "label": "Kummer and class characters",
+      "statement": "[Kummer and class characters] For \\(u R\\ 0\\ \\), the ideal function \\[ _(u)( a)=_ a (u) \\] is induced away from \\(S\\) and the prime divisors of \\((u)R\\) by a finite-order Hecke character. Its values…",
+      "section": "S-integers, residue symbols, and Gauss sums",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-lem-gauss-characters",
+      "kind": "lemma",
+      "label": "The Gauss correction characters",
+      "statement": "[The Gauss correction characters] There are a unitary Hecke character \\(\\), unramified outside \\(S\\), and a finite-order Hecke character \\(G\\), unramified outside \\(S\\), such that for every exterior…",
+      "section": "S-integers, residue symbols, and Gauss sums",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-prop-reflection",
+      "kind": "proposition",
+      "label": "Reflected second moment",
+      "statement": "[Reflected second moment] Let \\(F\\) be a fixed cyclotomic field containing \\(_ 12 \\), let \\(S\\) and the arithmetic data be as above, and fix a compact subset \\( K F_S^\\). For every \\(>0\\), every…",
+      "section": "The coefficient family and analytic comparison",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-prop-theta-input",
+      "kind": "proposition",
+      "label": "Cubic theta input",
+      "statement": "[Cubic theta input] For the fixed field \\(F\\), there is a threefold central cover \\[ 1_3 _2(_F) _2(_F)1 \\] which splits over \\(_2(F)\\), and an irreducible genuine automorphic representation…",
+      "section": "The normalized cubic theta input and its radial profiles",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-cor-theta-exterior-coefficient",
+      "kind": "corollary",
+      "label": "The exterior theta coefficient",
+      "statement": "[The exterior theta coefficient] At every exterior prime use an allowed prime generator as the uniformizer in . Let \\(A R\\ 0\\ \\) be an allowed generator of an integral exterior ideal \\( A\\). Then _ p…",
+      "section": "The normalized cubic theta input and its radial profiles",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-lem-finite-whittaker-cutoff",
+      "kind": "lemma",
+      "label": "Finite torus cutoff",
+      "statement": "[Finite torus cutoff] Let \\(S_f\\) be a finite set of nonarchimedean places and let \\(_f0\\) be a Whittaker functional with character \\(_ v S_f _v\\) on a smooth representation of the product of the…",
+      "section": "The normalized cubic theta input and its radial profiles",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-lem-sheet-profile",
+      "kind": "lemma",
+      "label": "Norm-sheet profiles",
+      "statement": "[Norm-sheet profiles] Let \\( I\\) be a finite index set. For every \\( I\\), let \\(f_\\) be a finite sum of products \\[ f_(y)=_ =1 ^ L_ _ v S f_ ,,v (y_v), y F_S^. \\] Assume that for one \\(>0\\) all these…",
+      "section": "The normalized cubic theta input and its radial profiles",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-lem-gaussian-smoothing",
+      "kind": "lemma",
+      "label": "Exact Gaussian smoothing",
+      "statement": "[Exact Gaussian smoothing] For \\(V\\) in , there are constants \\(C_0>0\\) and \\(A_0>0\\) such that V(s) =C_0 A_0^s ^r ( s>-5/6). There is a smooth function \\( K:(0,)\\) such that, for every \\(N>0\\) and…",
+      "section": "The normalized cubic theta input and its radial profiles",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-lem-reflection-theta-representation",
+      "kind": "lemma",
+      "label": "Theta representation of the smoothed sum",
+      "statement": "[Theta representation of the smoothed sum] Let \\(V\\) and \\( K\\) be the common unrotated profile and Gaussian averaging weight from . For \\(l,Z>0\\), T_m(l) &=_ c\\ squarefree\\\\ n _2( c) q_ c ^ 1/2 q_ n…",
+      "section": "Reflection and the quadratic large sieve",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-lem-reflection-local-weyl",
+      "kind": "lemma",
+      "label": "Local effect of reflection",
+      "statement": "[Local effect of reflection] Let \\( p\\) be an exterior prime and put \\(W_e=W_ p (a(p^e))\\). For \\(j\\ 0,,5\\ \\), a unit \\(t\\), and an integer \\(e\\), define \\[ R_ p,j,e (t) =_ v k_ p ^ _ p,j (v) W_ p…",
+      "section": "Reflection and the quadratic large sieve",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-lem-reflection-quadratic-pairing",
+      "kind": "lemma",
+      "label": "The reflected expansion",
+      "statement": "[The reflected expansion] For every nonzero \\(m R\\) and \\(Z>0\\), let \\((m)_S= h d\\) and \\(=_m\\). Then B_m(Z) = &_ f F( h) _ a'_ f A( f)\\\\ n'\\\\( n', f)=1 _ u U_6\\ _d,s_c B _ , t q_ n' \\\\ & _ , t,s_d (…",
+      "section": "Reflection and the quadratic large sieve",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-lem-reflection-quadratic-sieve",
+      "kind": "lemma",
+      "label": "Quadratic large sieve for the exterior symbols",
+      "statement": "[Quadratic large sieve for the exterior symbols] For C,D1 and complex coefficients z_ c supported on squarefree exterior ideals with q_ c C , one has, for every >0 , _ d\\ squarefree\\_ d D |_ c\\…",
+      "section": "Reflection and the quadratic large sieve",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-lem-additive-sieve",
+      "kind": "lemma",
+      "label": "Separated additive fractions",
+      "statement": "[Separated additive fractions] Let \\(K\\) be a fixed compact subset of \\(F_S\\), and let \\(N,V2\\). Choose balanced generators \\(s\\) for the exterior ideals with \\(q_ s V\\). Let \\( P\\) be any subset of…",
+      "section": "The Poisson probe and its Euler product",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-prop-probe-low",
+      "kind": "proposition",
+      "label": "For the weights above, for every \\(>0\\) and \\(Z2\\), I(Z^a,Z^b,Z)_ F,S,,W_0,W_1,…",
+      "statement": "For the weights above, for every \\(>0\\) and \\(Z2\\), I(Z^a,Z^b,Z)_ F,S,,W_0,W_1, Z^ (2M_0-1-b)/2+ =Z^ 933/2000+ .",
+      "section": "The Poisson probe and its Euler product",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-prop-euler-product",
+      "kind": "proposition",
+      "label": "For every \\(u U\\), the series in has the Euler factorization F_u(,w,z)=…",
+      "statement": "For every \\(u U\\), the series in has the Euler factorization F_u(,w,z)= _F^S(6z)L^S(w, _ (u)) L^S(, _ (u)) H_u(,w,z) initially in absolute convergence. The correction \\( H_u\\) is holomorphic in open…",
+      "section": "The Poisson probe and its Euler product",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-lem-conductor-sieve",
+      "kind": "lemma",
+      "label": "Primitive conductor large sieve",
+      "statement": "[Primitive conductor large sieve] Fix \\(C_0>0\\) and a finite set \\( L_S\\) of possible local components at \\(S\\). Let \\( X(U)\\) be any family of distinct primitive finite-order Hecke characters of…",
+      "section": "Zero detection and Mellin continuation",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-prop-zero-density",
+      "kind": "proposition",
+      "label": "For the fixed \\(F,S,\\) there are \\(>0\\) and \\(U_0\\) with the following…",
+      "statement": "For the fixed \\(F,S,\\) there are \\(>0\\) and \\(U_0\\) with the following property. For every \\(U U_0\\), there is a set \\( E(U)\\ u U:U q_u<2U\\ \\) of cardinality \\[ | E(U)|_ F,S, U^ 1/2 \\] which contains…",
+      "section": "Zero detection and Mellin continuation",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-spl-field-bounds",
+      "kind": "lemma",
+      "label": "Fix an integer a with |a|>1 . For every sufficiently large prime q , the degree…",
+      "statement": "Fix an integer a with |a|>1 . For every sufficiently large prime q , the degree n_q=[K_q:] and absolute discriminant D_q satisfy n_q=q(q-1), D_q q^ q(q-2) (q^q|a|^ q-1 )^ q-1 , D_q+n_q_a n_q(2q).…",
+      "section": "A uniform estimate for complete splitting",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-spl-smooth-estimate",
+      "kind": "lemma",
+      "label": "Fix 0<<1/2 and a nonnegative function f C_c^((0,)) . Let K be a number field of…",
+      "statement": "Fix 0<<1/2 and a nonnegative function f C_c^((0,)) . Let K be a number field of degree n and absolute discriminant D whose Dedekind zeta function has no zero in Res>1- . For every real x2 , _ K,f (x)…",
+      "section": "A uniform estimate for complete splitting",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-thm-marked-type-ii",
+      "kind": "theorem",
+      "label": "One-sided marked Type II estimate",
+      "statement": "[One-sided marked Type II estimate] Fix \\(,C,D_*>0\\) and \\(q(0,1)\\). Suppose \\(H_m,H_n x^\\) and \\(X=H_mH_n x\\). Let \\(F\\) satisfy \\(|F(h)|1\\) and \\(F(ph)=F(h)\\) for every prime in the groups defined…",
+      "section": "Marked Type II estimates and rough factors",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-lem-marked-coefficient-transfer",
+      "kind": "lemma",
+      "label": "Coefficient criterion for the marked estimate",
+      "statement": "[Coefficient criterion for the marked estimate] Fix \\(,C,D_*>0\\) and \\(q(0,1)\\). Retain the marked data and the hypotheses on \\(F,H_m,H_n\\) in , with fixed comparison constants in \\(X=H_mH_n x\\). Let…",
+      "section": "Marked Type II estimates and rough factors",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-prop-rough-type-ii",
+      "kind": "proposition",
+      "label": "A rough-factor Type II estimate",
+      "statement": "[A rough-factor Type II estimate] Retain the marked data and all the hypotheses on \\(F,,H_m,H_n\\) of . Fix real numbers \\(0<<w_-<w_+<1\\), and suppose \\[ [ H_m/L,(2H_m)/L]. \\] On an arbitrary interval…",
+      "section": "Marked Type II estimates and rough factors",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-lem-block",
+      "kind": "lemma",
+      "label": "Block sieve",
+      "statement": "[Block sieve] Let A be a finite set with nonnegative weights, and let P be a set of primes at most z , where z2 . For each p P , specify a bad condition on A . Suppose that, for every squarefree…",
+      "section": "Two elementary sieve facts",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-lem-density",
+      "kind": "lemma",
+      "label": "Rough-number density",
+      "statement": "[Rough-number density] For 0<b<1/2 , _b^ 1/2 D_t(1-t)\\,dt t =D_b(1)-1, where the integrand at 1/2 is interpreted by its left limit. There are absolute constants b_0,c_d,C_d>0 such that, for 0<b<b_0 ,…",
+      "section": "Two elementary sieve facts",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-con-type-ii",
+      "kind": "lemma",
+      "label": "Type~II estimate in the progression",
+      "statement": "[Type~II estimate in the progression] Fix >0 and 0<<s_-<s_+<1 . Let H_m,H_n x^ , with X=H_mH_n x and fixed comparison constants, and let I be an interval. Suppose [ H_m/L,(2H_m)/L]. Let \\(|b_n|1\\) be…",
+      "section": "Primes with a controlled predecessor in a fixed progression",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-con-harmonic",
+      "kind": "lemma",
+      "label": "Harmonic mass",
+      "statement": "[Harmonic mass] For each group put \\[ E_i(t)=_ p P_i (1+t p-1 ). \\] The harmonic mass has the exact Euler-product expression J_0&=_ i=1 ^KE_i'(1/2) V_i \\\\ &=_ i=1 ^K\\ E_i(1/2) V_i _ p P_i 1 p-1+1/2 \\…",
+      "section": "Primes with a controlled predecessor in a fixed progression",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-con-distribution",
+      "kind": "lemma",
+      "label": "Distribution of the weighted family",
+      "statement": "[Distribution of the weighted family] For every fixed \\(A>0\\), _ r x^ W(r) _ D\\\\ odd squarefree |E_r()| xJ_0L^ -A . Moreover, writing \\(A_=_1^2(y)\\,dy\\), we have X_0xJ_0A_ c(M/c)L (x), with all…",
+      "section": "Primes with a controlled predecessor in a fixed progression",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-con-bin-mass",
+      "kind": "lemma",
+      "label": "Mass conditioned on a divisor",
+      "statement": "[Mass conditioned on a divisor] For any fixed \\(b<'1/2-\\), _ x^<n x^ ' \\ prime _ n d\\ ^-(d)>W w(d) = S_M X_0 V(W) ( '+o(1)).",
+      "section": "Primes with a controlled predecessor in a fixed progression",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m1-con-rough-pairs",
+      "kind": "lemma",
+      "label": "An upper bound for rough pairs",
+      "statement": "[An upper bound for rough pairs] Let \\( B=[M_1,2M_1)[M_2,2M_2)\\) be any dyadic box such that x/4 M_1M_22x, x^ 0.46 /2 M_i2x^ 0.54 (i=1,2). Then _ (m,n) B\\ ^-(m)>W,\\ P^-(n)>W w(mn) C_1X_0V(W)^2, where…",
+      "section": "Primes with a controlled predecessor in a fixed progression",
+      "manuscript": "Primitive roots for every admissible integer base"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "Assume Inputs~ , , , and~ . Let \\(k1\\) and let \\(q_1,,q_k\\) be distinct…",
+      "statement": "Assume Inputs~ , , , and~ . Let \\(k1\\) and let \\(q_1,,q_k\\) be distinct positive primes. There are constants \\(c_ q >0\\) and \\(x_ q >1\\) such that, for every real \\(x x_ q \\), at least \\[ c_ q x (…",
+      "section": "Introduction",
+      "manuscript": "Simultaneous primitive roots: a conditional lower bound for prime bases"
+    },
+    {
+      "id": "m2-prop-reservoir",
+      "kind": "proposition",
+      "label": "A prime reservoir in a fixed progression",
+      "statement": "[A prime reservoir in a fixed progression] Assume Inputs~ , , and~ . Let \\(M1\\) be odd and squarefree, and let \\(a\\) be a residue class modulo \\(M\\) with \\((a(a-1),M)=1\\). There are constants \\(c_…",
+      "section": "Reduction to two estimates",
+      "manuscript": "Simultaneous primitive roots: a conditional lower bound for prime bases"
+    },
+    {
+      "id": "m2-prop-splitting",
+      "kind": "proposition",
+      "label": "A uniform bound for order obstructions",
+      "statement": "[A uniform bound for order obstructions] Assume Input~ . For each fixed positive prime \\(q\\), for all sufficiently large real \\(x\\), and uniformly over primes \\(\\) with \\((L^ 0.1 )<<(L^ 0.3 )\\), one…",
+      "section": "Reduction to two estimates",
+      "manuscript": "Simultaneous primitive roots: a conditional lower bound for prime bases"
+    },
+    {
+      "id": "m2-lem-twisted-rough-type-ii",
+      "kind": "lemma",
+      "label": "A rough Type II estimate in a fixed progression",
+      "statement": "[A rough Type II estimate in a fixed progression] Fix \\(,C,D_*>0\\) and \\(0<<w_-<w_+<1\\). Let \\(F,H_m,H_n,X\\) satisfy the hypotheses of Input~ , including . Let \\(_0\\) be any Dirichlet character…",
+      "section": "A marked family in a fixed progression",
+      "manuscript": "Simultaneous primitive roots: a conditional lower bound for prime bases"
+    },
+    {
+      "id": "m2-lem-marked-mass",
+      "kind": "lemma",
+      "label": "Mass of the marked family",
+      "statement": "[Mass of the marked family] For every fixed \\(>0\\), 1 J_0_K1, _ r G\\ >x^ W(r)r _K(- L^ 1-a_K ). For \\(r G\\) with \\(r x^ 0.05 \\), put \\[ I_r=x 4r _1^2 (u) ((xu-1)/(4r)) u. \\] For every fixed \\(A>0\\),…",
+      "section": "A marked family in a fixed progression",
+      "manuscript": "Simultaneous primitive roots: a conditional lower bound for prime bases"
+    },
+    {
+      "id": "m2-lem-averaged-distribution",
+      "kind": "lemma",
+      "label": "Average distribution in the sieve moduli",
+      "statement": "[Average distribution in the sieve moduli] For every fixed \\(A>0\\), _ r G\\ x^ W(r) _ D_0 odd and squarefree\\\\ (,M)=1 |R_r()| xJ_0L^ -A . The constant and threshold may depend on the fixed parameters.",
+      "section": "A marked family in a fixed progression",
+      "manuscript": "Simultaneous primitive roots: a conditional lower bound for prime bases"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-thm-primitive-root",
+      "to": "m1-alg-quadratic-progression"
+    },
+    {
+      "from": "m1-prop-controlled",
+      "to": "m1-alg-quadratic-progression"
+    },
+    {
+      "from": "m1-prop-splitting",
+      "to": "m1-alg-quadratic-progression"
+    },
+    {
+      "from": "m1-alg-splitting-test",
+      "to": "m1-alg-quadratic-progression"
+    },
+    {
+      "from": "m1-lem-s-lattice",
+      "to": "m1-lem-balanced-generators"
+    },
+    {
+      "from": "m1-lem-kummer-characters",
+      "to": "m1-lem-gauss-characters"
+    },
+    {
+      "from": "m1-lem-sheet-profile",
+      "to": "m1-lem-gaussian-smoothing"
+    },
+    {
+      "from": "m1-cor-theta-exterior-coefficient",
+      "to": "m1-lem-reflection-theta-representation"
+    },
+    {
+      "from": "m1-lem-gaussian-smoothing",
+      "to": "m1-lem-reflection-theta-representation"
+    },
+    {
+      "from": "m1-lem-sheet-profile",
+      "to": "m1-lem-reflection-quadratic-pairing"
+    },
+    {
+      "from": "m1-lem-reflection-local-weyl",
+      "to": "m1-lem-reflection-quadratic-pairing"
+    },
+    {
+      "from": "m1-prop-reflection",
+      "to": "m1-lem-reflection-quadratic-sieve"
+    },
+    {
+      "from": "m1-lem-s-lattice",
+      "to": "m1-lem-additive-sieve"
+    },
+    {
+      "from": "m1-lem-additive-sieve",
+      "to": "m1-prop-probe-low"
+    },
+    {
+      "from": "m1-prop-reflection",
+      "to": "m1-prop-probe-low"
+    },
+    {
+      "from": "m1-lem-s-lattice",
+      "to": "m1-lem-conductor-sieve"
+    },
+    {
+      "from": "m1-lem-balanced-generators",
+      "to": "m1-lem-conductor-sieve"
+    },
+    {
+      "from": "m1-lem-additive-sieve",
+      "to": "m1-lem-conductor-sieve"
+    },
+    {
+      "from": "m1-lem-conductor-sieve",
+      "to": "m1-prop-zero-density"
+    },
+    {
+      "from": "m1-thm-hecke-zero-free",
+      "to": "m1-spl-field-bounds"
+    },
+    {
+      "from": "m1-prop-splitting",
+      "to": "m1-spl-smooth-estimate"
+    },
+    {
+      "from": "m1-spl-field-bounds",
+      "to": "m1-spl-smooth-estimate"
+    },
+    {
+      "from": "m1-lem-marked-coefficient-transfer",
+      "to": "m1-prop-rough-type-ii"
+    },
+    {
+      "from": "m1-lem-block",
+      "to": "m1-lem-density"
+    },
+    {
+      "from": "m1-prop-rough-type-ii",
+      "to": "m1-con-type-ii"
+    },
+    {
+      "from": "m1-lem-marked-coefficient-transfer",
+      "to": "m1-con-type-ii"
+    },
+    {
+      "from": "m1-con-harmonic",
+      "to": "m1-con-distribution"
+    },
+    {
+      "from": "m1-lem-block",
+      "to": "m1-con-bin-mass"
+    },
+    {
+      "from": "m1-con-harmonic",
+      "to": "m1-con-bin-mass"
+    },
+    {
+      "from": "m1-lem-block",
+      "to": "m1-con-rough-pairs"
+    },
+    {
+      "from": "m1-prop-controlled",
+      "to": "m1-con-rough-pairs"
+    },
+    {
+      "from": "m1-lem-marked-coefficient-transfer",
+      "to": "m1-con-rough-pairs"
+    },
+    {
+      "from": "m1-prop-rough-type-ii",
+      "to": "m1-con-rough-pairs"
+    },
+    {
+      "from": "m1-con-type-ii",
+      "to": "m1-con-rough-pairs"
+    },
+    {
+      "from": "m2-thm-main",
+      "to": "m2-prop-splitting"
+    },
+    {
+      "from": "m2-prop-reservoir",
+      "to": "m2-prop-splitting"
+    }
+  ]
+}

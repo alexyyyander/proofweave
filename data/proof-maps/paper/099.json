@@ -1,0 +1,515 @@
+{
+  "familyNumber": "099",
+  "familyTitle": "The sharp exponential scale of edit-distance distortion",
+  "manuscripts": [
+    {
+      "id": "Edit-Distance-in-l1-Matching-Bounds-up-to-Constants-in-the-Exponent-September-27-2026",
+      "title": "Edit Distance in l1: Matching Bounds up to Constants in the Exponent",
+      "date": "2026-09-27",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Edit-Distance-in-l1-Matching-Bounds-up-to-Constants-in-the-Exponent-September-27-2026/paper.pdf"
+    },
+    {
+      "id": "Finite-Circle-Obstructions-Binary-Codes-and-Histogram-Embeddings-for-Edit-Distance-September-27-2026",
+      "title": "Finite-Circle Obstructions, Binary Codes, and Histogram Embeddings for Edit Distance",
+      "date": "2026-09-27",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Finite-Circle-Obstructions-Binary-Codes-and-Histogram-Embeddings-for-Edit-Distance-September-27-2026/paper.pdf"
+    },
+    {
+      "id": "Tree-Constructions-for-the-l1-Distortion-of-Binary-Edit-Distance-September-27-2026",
+      "title": "Tree Constructions for the l1 Distortion of Binary Edit Distance",
+      "date": "2026-09-27",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Tree-Constructions-for-the-l1-Distortion-of-Binary-Edit-Distance-September-27-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Alignments and a displacement inequality",
+    "Recursive words with incompatible displacements",
+    "Binary encoding and the lower bound",
+    "An upper bound uniform over finite alphabets",
+    "Alignments and tagged rows",
+    "A circle construction with denominator resets",
+    "Two logarithmic-width binary substitutions",
+    "Excluded-coordinate translations on a finite circle",
+    "Every length cap and every finite alphabet",
+    "An alphabet-uniform embedding by substring histograms",
+    "Edit deficits, ordered rows and binary transfer",
+    "A finite tree with nested periods",
+    "A tree of circle phases",
+    "Torus displacements, Fourier detection and binary transfer",
+    "The uniform two-sided bound",
+    "A constant-distortion code for one prescribed length"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "There are absolute constants c,C>0 and an integer d_0 such that, for every…",
+      "statement": "There are absolute constants c,C>0 and an integer d_0 such that, for every integer d d_0 and every finite alphabet with ||2 , \\!(c d\\, d) E_(d) \\!(C d\\, d). The lower bound is witnessed by a subset…",
+      "section": "Introduction",
+      "manuscript": "Edit Distance in l1: Matching Bounds up to Constants in the Exponent"
+    },
+    {
+      "id": "m1-lem-alignments",
+      "kind": "lemma",
+      "label": "For arbitrary finite strings, including the empty string, (x,y)(x,y)2(x,y),…",
+      "statement": "For arbitrary finite strings, including the empty string, (x,y)(x,y)2(x,y), (x,y)=|x|+|y|-2(x,y). For two strings of the same length n , define their one-sided deficit by \\[ r_n(x,y)=n-(x,y)=12(x,y).…",
+      "section": "Alignments and a displacement inequality",
+      "manuscript": "Edit Distance in l1: Matching Bounds up to Constants in the Exponent"
+    },
+    {
+      "id": "m1-prop-displacement",
+      "kind": "proposition",
+      "label": "Prime-product displacement inequality",
+      "statement": "[Prime-product displacement inequality] Let b,h1 be integers, let P1 , and let G_1,,G_b be finite abelian groups. Suppose v_j G_j has order p_j , where p_1,,p_b are distinct primes in [P,2P] . In G=_…",
+      "section": "Alignments and a displacement inequality",
+      "manuscript": "Edit Distance in l1: Matching Bounds up to Constants in the Exponent"
+    },
+    {
+      "id": "m1-lem-cuts",
+      "kind": "lemma",
+      "label": "Finite cut decomposition",
+      "statement": "[Finite cut decomposition] Let X be finite and H:X_1 . There are finite numbers c_A0 , indexed by the nonempty proper subsets of X , such that H(x)-H(y) =_ A X c_A|1_A(x)-1_A(y)| (x,y X). Moreover,…",
+      "section": "Alignments and a displacement inequality",
+      "manuscript": "Edit Distance in l1: Matching Bounds up to Constants in the Exponent"
+    },
+    {
+      "id": "m1-lem-fourier",
+      "kind": "lemma",
+      "label": "Finite Fourier displacement identity",
+      "statement": "[Finite Fourier displacement identity] Let T=_ j=1 ^b/p_j , where the integers p_j are at least two. For T , set \\[ _(t)= \\!(2 i_ j=1 ^b _jt_j p_j ), F()=_ t T F(t) _ (t). \\] For every F:T C and l T…",
+      "section": "Alignments and a displacement inequality",
+      "manuscript": "Edit Distance in l1: Matching Bounds up to Constants in the Exponent"
+    },
+    {
+      "id": "m1-prop-family",
+      "kind": "proposition",
+      "label": "Recursive properties",
+      "statement": "[Recursive properties] The families can be chosen with \\[ n_s=(2(2b-1)L)^s, | A_ s,p | A_s, A_0=2P, A_s=1+(2b-1)A_ s-1 , \\] so that the following assertions hold. Every listed step is cheap at every…",
+      "section": "Recursive words with incompatible displacements",
+      "manuscript": "Edit Distance in l1: Matching Bounds up to Constants in the Exponent"
+    },
+    {
+      "id": "m1-lem-marked",
+      "kind": "lemma",
+      "label": "Marked payloads",
+      "statement": "[Marked payloads] Let T,p,q1 be integers, let be an alphabet, and let \\# . For U_a,V_b^p with 1 a,b T , put \\[ X=U_1\\#^q U_T\\#^q, Y=V_1\\#^q V_T\\#^q, N=T(p+q). \\] If d0 and r_p(U_a,V_b) d for every…",
+      "section": "Recursive words with incompatible displacements",
+      "manuscript": "Edit Distance in l1: Matching Bounds up to Constants in the Exponent"
+    },
+    {
+      "id": "m1-lem-binary-code",
+      "kind": "lemma",
+      "label": "Binary delimiter code",
+      "statement": "[Binary delimiter code] Let A have size A2 , let t=_2A , and put w=2t+3 . Assign distinct labels (a_1,,a_t)\\ 0,1\\ ^t to its letters. Let c(a) be the prefix 110 followed, in order, by the two-bit…",
+      "section": "Binary encoding and the lower bound",
+      "manuscript": "Edit Distance in l1: Matching Bounds up to Constants in the Exponent"
+    },
+    {
+      "id": "m1-prop-binary-lower",
+      "kind": "proposition",
+      "label": "For all sufficiently large k , every _1 embedding of \\[ W_k=\\ (W_ k,p (z)):z G_…",
+      "statement": "For all sufficiently large k , every _1 embedding of \\[ W_k=\\ (W_ k,p (z)):z G_ k,p \\ \\ 0,1\\ ^ N_k \\] has distortion at least (h/24)^k 16w (c_0k k) for an absolute constant c_0>0 .",
+      "section": "Binary encoding and the lower bound",
+      "manuscript": "Edit Distance in l1: Matching Bounds up to Constants in the Exponent"
+    },
+    {
+      "id": "m1-thm-or",
+      "kind": "theorem",
+      "label": "Ostrovsky--Rabani, normalized form",
+      "statement": "[Ostrovsky--Rabani, normalized form] There is an absolute constant C_0 such that, for every integer m3 , there is a map g_m:\\ 0,1\\ ^m_1 satisfying (u,v)g_m(u)-g_m(v) D_m(u,v), D_m=\\!(C_0 m\\, m). Here…",
+      "section": "An upper bound uniform over finite alphabets",
+      "manuscript": "Edit Distance in l1: Matching Bounds up to Constants in the Exponent"
+    },
+    {
+      "id": "m1-prop-uniform-upper",
+      "kind": "proposition",
+      "label": "Uniform alphabet bound",
+      "statement": "[Uniform alphabet bound] There is an absolute constant C such that, for every finite alphabet with ||2 , E_(d) \\!(C d\\, d) (d3). Moreover, E_(1)=1 and 1 E_(2)2 .",
+      "section": "An upper bound uniform over finite alphabets",
+      "manuscript": "Edit Distance in l1: Matching Bounds up to Constants in the Exponent"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "There are absolute constants c,C>0 and an integer d_0 such that, for every…",
+      "statement": "There are absolute constants c,C>0 and an integer d_0 such that, for every integer d d_0 and every finite alphabet with ||2 , \\!(c d\\, d) E_(d) \\!(C d\\, d). Each of our two lower constructions…",
+      "section": "Introduction",
+      "manuscript": "Finite-Circle Obstructions, Binary Codes, and Histogram Embeddings for Edit Distance"
+    },
+    {
+      "id": "m2-pre-metric",
+      "kind": "lemma",
+      "label": "Metric comparisons",
+      "statement": "[Metric comparisons] For all finite words x,y , \\[ q(x,y)(x,y)2q(x,y), (x,y) |x|+|y|-2(x,y)2(x,y). \\] The middle expression in the second comparison is the insertion--deletion distance. In…",
+      "section": "Alignments and tagged rows",
+      "manuscript": "Finite-Circle Obstructions, Binary Codes, and Histogram Embeddings for Edit Distance"
+    },
+    {
+      "id": "m2-pre-tagged-rows",
+      "kind": "lemma",
+      "label": "Charging split tagged rows",
+      "statement": "[Charging split tagged rows] Let R,L1 and t2 be integers, and let _1,,_t be pairwise disjoint alphabets. Each of two words consists of R rows, each containing in order a block in _i^L for i=1,,t .…",
+      "section": "Alignments and tagged rows",
+      "manuscript": "Finite-Circle Obstructions, Binary Codes, and Histogram Embeddings for Edit Distance"
+    },
+    {
+      "id": "m2-mask-cheap",
+      "kind": "lemma",
+      "label": "Cheap translations",
+      "statement": "[Cheap translations] For every 0 h , every v G^ r_ , and every c C_ , (S_(v),S_(v+c))2 L_ R . At the top level, for every leaf i and 1 a M/2 , (S_h(v),S_h(v+e_i(a/M)))2aL_h Mr_h . Both estimates hold…",
+      "section": "A circle construction with denominator resets",
+      "manuscript": "Finite-Circle Obstructions, Binary Codes, and Histogram Embeddings for Edit Distance"
+    },
+    {
+      "id": "m2-mask-separation",
+      "kind": "lemma",
+      "label": "Word separation",
+      "statement": "[Word separation] For every 0 h , v G^ r_ , and G , r_ L_ (S_(v),S_(v+1)) 2^ - 4L_ D_().",
+      "section": "A circle construction with denominator resets",
+      "manuscript": "Finite-Circle Obstructions, Binary Codes, and Histogram Embeddings for Edit Distance"
+    },
+    {
+      "id": "m2-mask-reset",
+      "kind": "lemma",
+      "label": "Denominator resets",
+      "statement": "[Denominator resets] For all sufficiently large h , D_h(1/2)4^ -h h^ -h/2-O( h)-4h/100 , with an absolute implicit constant.",
+      "section": "A circle construction with denominator resets",
+      "manuscript": "Finite-Circle Obstructions, Binary Codes, and Histogram Embeddings for Edit Distance"
+    },
+    {
+      "id": "m2-mask-branching",
+      "kind": "lemma",
+      "label": "Frequency branching",
+      "statement": "[Frequency branching] If _|_ C_h =1 and _(w)1 , then _ i=1 ^r|_i| B.",
+      "section": "A circle construction with denominator resets",
+      "manuscript": "Finite-Circle Obstructions, Binary Codes, and Histogram Embeddings for Edit Distance"
+    },
+    {
+      "id": "m2-code-two-proofs",
+      "kind": "theorem",
+      "label": "Two binary substitutions",
+      "statement": "[Two binary substitutions] Let A be a finite alphabet with A2 letters. Each of the two constructions below gives an integer width w1 with w=O((2A)) , an absolute constant a>0 , and a map c: A\\ 0,1\\…",
+      "section": "Two logarithmic-width binary substitutions",
+      "manuscript": "Finite-Circle Obstructions, Binary Codes, and Histogram Embeddings for Edit Distance"
+    },
+    {
+      "id": "m2-lem-exc-small-cost",
+      "kind": "lemma",
+      "label": "Small-order phases remain costly",
+      "statement": "[Small-order phases remain costly] For 0 h , put \\[ F_=m^ -/4-100m^ 3/4 . \\] For all sufficiently large m , the following holds for every 0 h . If z T is nonzero, has finite order q m^ 10 , and…",
+      "section": "Excluded-coordinate translations on a finite circle",
+      "manuscript": "Finite-Circle Obstructions, Binary Codes, and Histogram Embeddings for Edit Distance"
+    },
+    {
+      "id": "m2-lem-exc-alignment",
+      "kind": "lemma",
+      "label": "Separation under arbitrary alignments",
+      "statement": "[Separation under arbitrary alignments] For every node a at height 0 h , every v G , and every ,z L^ -1 Z/ Z , r_ N_ (W_a(v,),W_a(v,+z)) N_ 3^ - _(z).",
+      "section": "Excluded-coordinate translations on a finite circle",
+      "manuscript": "Finite-Circle Obstructions, Binary Codes, and Histogram Embeddings for Edit Distance"
+    },
+    {
+      "id": "m2-lem-exc-annihilator",
+      "kind": "lemma",
+      "label": "Annihilating frequencies that detect the half-turn",
+      "statement": "[Annihilating frequencies that detect the half-turn] If H^ and _(w_*)1 , then T() K, K=m^ 3h/4 .",
+      "section": "Excluded-coordinate translations on a finite circle",
+      "manuscript": "Finite-Circle Obstructions, Binary Codes, and Histogram Embeddings for Edit Distance"
+    },
+    {
+      "id": "m2-assembly-inversion",
+      "kind": "lemma",
+      "label": "All-length inversion",
+      "statement": "[All-length inversion] Let c_0,C_0>0 be fixed. Suppose that for every sufficiently large integer k there is an integer n_k1 and a finite subset of \\ 0,1\\ ^ n_k whose least _1 distortion is at least…",
+      "section": "Every length cap and every finite alphabet",
+      "manuscript": "Finite-Circle Obstructions, Binary Codes, and Histogram Embeddings for Edit Distance"
+    },
+    {
+      "id": "m2-upper-uniform",
+      "kind": "theorem",
+      "label": "Uniform upper bound",
+      "statement": "[Uniform upper bound] There are absolute constants C>0 and d_03 such that, for every finite alphabet with ||2 and every integer d d_0 , there are an integer M1 and a deterministic map F:^ d _1^M…",
+      "section": "An alphabet-uniform embedding by substring histograms",
+      "manuscript": "Finite-Circle Obstructions, Binary Codes, and Histogram Embeddings for Edit Distance"
+    },
+    {
+      "id": "m2-upper-metric",
+      "kind": "lemma",
+      "label": "Metric comparisons",
+      "statement": "[Metric comparisons] Let (x,y) be the minimum number of insertions and deletions when substitutions are forbidden. For all finite words, \\[ (x,y)=|x|+|y|-2LCS(x,y), ED(x,y)(x,y)2ED(x,y), \\] and…",
+      "section": "An alphabet-uniform embedding by substring histograms",
+      "manuscript": "Finite-Circle Obstructions, Binary Codes, and Histogram Embeddings for Edit Distance"
+    },
+    {
+      "id": "m2-upper-move",
+      "kind": "lemma",
+      "label": "Moves and their restrictions",
+      "statement": "[Moves and their restrictions] Two words of length n0 can be joined by exactly r_n(x,y) moves, each deleting one symbol and inserting one symbol while preserving length n . For a single move,…",
+      "section": "An alphabet-uniform embedding by substring histograms",
+      "manuscript": "Finite-Circle Obstructions, Binary Codes, and Histogram Embeddings for Edit Distance"
+    },
+    {
+      "id": "m2-upper-padding",
+      "kind": "lemma",
+      "label": "Common and fresh suffixes",
+      "statement": "[Common and fresh suffixes] For equal-length words u,v of length m and any common suffix z , r_ m+|z| (uz,vz)=r_m(u,v). If occurs in neither x nor y , and N(|x|,|y|) , then, writing x=x^ N-|x| and…",
+      "section": "An alphabet-uniform embedding by substring histograms",
+      "manuscript": "Finite-Circle Obstructions, Binary Codes, and Histogram Embeddings for Edit Distance"
+    },
+    {
+      "id": "m2-upper-partitions",
+      "kind": "lemma",
+      "label": "Finite random partitions",
+      "statement": "[Finite random partitions] Let X be finite and (u,v)=\\|f(u)-f(v)\\|_1 for a map f:X_1 into real sequence space. For every >0 there is a probability distribution with finite support on partitions of X…",
+      "section": "An alphabet-uniform embedding by substring histograms",
+      "manuscript": "Finite-Circle Obstructions, Binary Codes, and Histogram Embeddings for Edit Distance"
+    },
+    {
+      "id": "m2-upper-histogram",
+      "kind": "lemma",
+      "label": "Histogram estimates",
+      "statement": "[Histogram estimates] Let s1 be an integer and let L,L' be lists of size s in the set of Lemma~ , and set T= E\\|H_L^-H_ L' ^\\|_1 . If every cross-pair has -distance at least a , then T2s(1-s^2e^ - a…",
+      "section": "An alphabet-uniform embedding by substring histograms",
+      "manuscript": "Finite-Circle Obstructions, Binary Codes, and Histogram Embeddings for Edit Distance"
+    },
+    {
+      "id": "m3-thm-binary",
+      "kind": "theorem",
+      "label": "Binary lower bound",
+      "statement": "[Binary lower bound] There are an absolute constant c>0 and an integer d_0 such that, for every integer d d_0 , there exist an integer 1 n d and a finite set W\\ 0,1\\ ^n with | W|2 satisfying \\[ c_1(…",
+      "section": "Introduction",
+      "manuscript": "Tree Constructions for the l1 Distortion of Binary Edit Distance"
+    },
+    {
+      "id": "m3-lem-tagged",
+      "kind": "lemma",
+      "label": "Rows with ordered tags",
+      "statement": "[Rows with ordered tags] Let T,B1 and m2 be integers, and let _1,,_m be pairwise disjoint alphabets. For 1 a,b T and 1 i m , take X_ a,i ,Y_ b,i _i^B , and define \\[ X=_ a=1 ^T(X_ a,1 X_ a,m ), Y=_…",
+      "section": "Edit deficits, ordered rows and binary transfer",
+      "manuscript": "Tree Constructions for the l1 Distortion of Binary Edit Distance"
+    },
+    {
+      "id": "m3-lem-cuts",
+      "kind": "lemma",
+      "label": "Finite cut representation",
+      "statement": "[Finite cut representation] Let S be finite and f:S . There are nonnegative finite weights a_C , indexed by nonempty proper subsets C S , such that \\[ \\|f(x)-f(y)\\|_1 =_ C S a_C|_C(x)-_C(y)|. \\]…",
+      "section": "Edit deficits, ordered rows and binary transfer",
+      "manuscript": "Tree Constructions for the l1 Distortion of Binary Edit Distance"
+    },
+    {
+      "id": "m3-lem-primes",
+      "kind": "lemma",
+      "label": "Prime supply",
+      "statement": "[Prime supply] There is an absolute c>0 such that (x) cx/ x for all sufficiently large real x . Consequently, for all sufficiently large integers k , the interval [k^4,k^5] contains at least 20k^2…",
+      "section": "Edit deficits, ordered rows and binary transfer",
+      "manuscript": "Tree Constructions for the l1 Distortion of Binary Edit Distance"
+    },
+    {
+      "id": "m3-lem-delimiter",
+      "kind": "lemma",
+      "label": "Delimiter transfer",
+      "statement": "[Delimiter transfer] Let be a finite alphabet of size A2 , let t_2A be an integer, and put B=2t+3 . Give the symbols of distinct labels (a_1,,a_t)\\ 0,1\\ ^t . Let c(a) be the prefix 110 followed, in…",
+      "section": "Edit deficits, ordered rows and binary transfer",
+      "manuscript": "Tree Constructions for the l1 Distortion of Binary Edit Distance"
+    },
+    {
+      "id": "m3-lem-orders",
+      "kind": "lemma",
+      "label": "Orders of the node vectors",
+      "statement": "[Orders of the node vectors] For every node v , (w_v)=Q_v . At every internal node, \\[ (u_v)=Q_vR_v, (Q_v,R_v)=1. \\]",
+      "section": "A finite tree with nested periods",
+      "manuscript": "Tree Constructions for the l1 Distortion of Binary Edit Distance"
+    },
+    {
+      "id": "m3-lem-finite-cost",
+      "kind": "lemma",
+      "label": "Inexpensive finite translations",
+      "statement": "[Inexpensive finite translations] For every leaf u , every x A and every integer t , \\[ (G(x),G(x+t e_u)) M/m^k. \\] If v is internal at depth j , then for every x A and integer 1 s T , (G(x),G(x+s…",
+      "section": "A finite tree with nested periods",
+      "manuscript": "Tree Constructions for the l1 Distortion of Binary Edit Distance"
+    },
+    {
+      "id": "m3-prop-finite-separation",
+      "kind": "proposition",
+      "label": "Separation in the finite tree",
+      "statement": "[Separation in the finite tree] For every node v of height h , every x A , and every integer t with Q_v t , r_ L_v (G_v(x),G_v(x+t w_v))4^ -h L_v.",
+      "section": "A finite tree with nested periods",
+      "manuscript": "Tree Constructions for the l1 Distortion of Binary Edit Distance"
+    },
+    {
+      "id": "m3-lem-finite-fourier",
+      "kind": "lemma",
+      "label": "Finite-group displacement",
+      "statement": "[Finite-group displacement] If F:A is any map on a finite abelian group, then there are weights H()0 such that, for every z A , _x\\|F(x+z)-F(x)\\|_1 =_ A |1-(z)|^2H(). The map F need not be injective.",
+      "section": "A finite tree with nested periods",
+      "manuscript": "Tree Constructions for the l1 Distortion of Binary Edit Distance"
+    },
+    {
+      "id": "m3-prop-finite-lower",
+      "kind": "proposition",
+      "label": "Finite obstruction",
+      "statement": "[Finite obstruction] For all sufficiently large k , the word image \\ G(x):x A\\ , with ordinary edit distance, has distortion at least C_1^ -1 (k/4)^k , for an absolute constant C_1 .",
+      "section": "A finite tree with nested periods",
+      "manuscript": "Tree Constructions for the l1 Distortion of Binary Edit Distance"
+    },
+    {
+      "id": "m3-lem-torus-good-separation",
+      "kind": "lemma",
+      "label": "Conditional separation",
+      "statement": "[Conditional separation] Fix the construction data. If a shift t is good at a node v of height h , then for every phase vector on its subtree, \\[ r_ (mT)^h (X_v(),X_v(+t)) ^h(mT)^h. \\]",
+      "section": "A tree of circle phases",
+      "manuscript": "Tree Constructions for the l1 Distortion of Binary Edit Distance"
+    },
+    {
+      "id": "m3-prop-good-probability",
+      "kind": "proposition",
+      "label": "Goodness of a fixed shift",
+      "statement": "[Goodness of a fixed shift] For all sufficiently large k , every node v and every fixed t with |t|_ satisfy \\[ 9/10, \\] where probability is over the construction in the subtree below v .…",
+      "section": "A tree of circle phases",
+      "manuscript": "Tree Constructions for the l1 Distortion of Binary Edit Distance"
+    },
+    {
+      "id": "m3-lem-torus-costs",
+      "kind": "lemma",
+      "label": "Inexpensive torus translations",
+      "statement": "[Inexpensive torus translations] For the realization fixed after Proposition~ , the following estimates hold, with q denoting the depth of v in the first two statements. [label=()] If v is internal…",
+      "section": "Torus displacements, Fourier detection and binary transfer",
+      "manuscript": "Tree Constructions for the l1 Distortion of Binary Edit Distance"
+    },
+    {
+      "id": "m3-lem-torus-fourier",
+      "kind": "lemma",
+      "label": "Torus displacement",
+      "statement": "[Torus displacement] Let n1 be an integer and let F:^n be a measurable map with finite range. Set \\[ L_F(h)=_w\\|F(w+h)-F(w)\\|_1 (h^n), \\] using normalized Haar measure. There are summable…",
+      "section": "Torus displacements, Fourier detection and binary transfer",
+      "manuscript": "Tree Constructions for the l1 Distortion of Binary Edit Distance"
+    },
+    {
+      "id": "m3-lem-detection",
+      "kind": "lemma",
+      "label": "Torus detection inequality",
+      "statement": "[Torus detection inequality] For the fixed construction and its shifts h_v(a) , every measurable finite-range F:^ m^k satisfies L_F(e_o/2)& 4_ v all nodes _ L_F( e_v) +2_ v internal _ a/P_v…",
+      "section": "Torus displacements, Fourier detection and binary transfer",
+      "manuscript": "Tree Constructions for the l1 Distortion of Binary Edit Distance"
+    },
+    {
+      "id": "m3-thm-companion-upper",
+      "kind": "theorem",
+      "label": "Uniform upper embedding, companion theorem",
+      "statement": "[Uniform upper embedding, companion theorem] There are absolute constants C>0 and d_03 such that, for every finite alphabet with ||2 and every integer d d_0 , there are an integer M1 and one…",
+      "section": "The uniform two-sided bound",
+      "manuscript": "Tree Constructions for the l1 Distortion of Binary Edit Distance"
+    },
+    {
+      "id": "m3-cor-matching",
+      "kind": "corollary",
+      "label": "There are absolute c,C>0 and an integer d_2 such that for every integer d d_2…",
+      "statement": "There are absolute c,C>0 and an integer d_2 such that for every integer d d_2 and every finite alphabet with ||2 , \\!(c d\\, d) E_(d) \\!(C d\\, d). The same bounds hold for _ :\\,2||< E_(d) .",
+      "section": "The uniform two-sided bound",
+      "manuscript": "Tree Constructions for the l1 Distortion of Binary Edit Distance"
+    },
+    {
+      "id": "m3-thm-804",
+      "kind": "theorem",
+      "label": "Fixed-length binary conversion",
+      "statement": "[Fixed-length binary conversion] There is an absolute integer M_0 such that, for every integer M M_0 and every alphabet with 1 K=|| M , there exists a map c:\\ 0,1\\ ^ P with P=M^2 whose concatenation…",
+      "section": "A constant-distortion code for one prescribed length",
+      "manuscript": "Tree Constructions for the l1 Distortion of Binary Edit Distance"
+    },
+    {
+      "id": "m3-lem-random-segments",
+      "kind": "lemma",
+      "label": "Separation of unequal-label segments",
+      "statement": "[Separation of unequal-label segments] For sufficiently large integers M and integers 1 K M , there are K binary words of length P=M^2 such that any two length- a segments of distinct codewords…",
+      "section": "A constant-distortion code for one prescribed length",
+      "manuscript": "Tree Constructions for the l1 Distortion of Binary Edit Distance"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-prop-displacement",
+      "to": "m1-lem-fourier"
+    },
+    {
+      "from": "m1-lem-cuts",
+      "to": "m1-lem-fourier"
+    },
+    {
+      "from": "m1-lem-alignments",
+      "to": "m1-lem-binary-code"
+    },
+    {
+      "from": "m1-prop-family",
+      "to": "m1-prop-binary-lower"
+    },
+    {
+      "from": "m1-thm-or",
+      "to": "m1-prop-uniform-upper"
+    },
+    {
+      "from": "m2-pre-tagged-rows",
+      "to": "m2-mask-separation"
+    },
+    {
+      "from": "m2-pre-tagged-rows",
+      "to": "m2-lem-exc-alignment"
+    },
+    {
+      "from": "m2-upper-uniform",
+      "to": "m2-upper-histogram"
+    },
+    {
+      "from": "m2-upper-partitions",
+      "to": "m2-upper-histogram"
+    },
+    {
+      "from": "m2-upper-move",
+      "to": "m2-upper-histogram"
+    },
+    {
+      "from": "m3-lem-tagged",
+      "to": "m3-prop-finite-separation"
+    },
+    {
+      "from": "m3-lem-cuts",
+      "to": "m3-lem-finite-fourier"
+    },
+    {
+      "from": "m3-lem-finite-fourier",
+      "to": "m3-prop-finite-lower"
+    },
+    {
+      "from": "m3-lem-finite-cost",
+      "to": "m3-prop-finite-lower"
+    },
+    {
+      "from": "m3-prop-finite-separation",
+      "to": "m3-prop-finite-lower"
+    },
+    {
+      "from": "m3-lem-tagged",
+      "to": "m3-lem-torus-good-separation"
+    },
+    {
+      "from": "m3-lem-torus-good-separation",
+      "to": "m3-prop-good-probability"
+    },
+    {
+      "from": "m3-lem-cuts",
+      "to": "m3-lem-torus-fourier"
+    },
+    {
+      "from": "m3-thm-binary",
+      "to": "m3-cor-matching"
+    },
+    {
+      "from": "m3-thm-companion-upper",
+      "to": "m3-cor-matching"
+    },
+    {
+      "from": "m3-thm-804",
+      "to": "m3-lem-random-segments"
+    }
+  ]
+}

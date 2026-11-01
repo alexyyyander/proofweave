@@ -1,0 +1,744 @@
+{
+  "familyNumber": "016",
+  "familyTitle": "Zilber–Pink in abelian varieties and the Siegel threefold",
+  "manuscripts": [
+    {
+      "id": "The-Abelian-Zilber-Pink-Conjecture-September-24-2026",
+      "title": "The abelian Zilber–Pink conjecture",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Abelian-Zilber-Pink-Conjecture-September-24-2026/paper.pdf"
+    },
+    {
+      "id": "The-E-times-CM-Component-of-Zilber-Pink-for-Curves-in-A2-September-24-2026",
+      "title": "The E×CM component of Zilber–Pink for curves in A2",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-E-times-CM-Component-of-Zilber-Pink-for-Curves-in-A2-September-24-2026/paper.pdf"
+    },
+    {
+      "id": "Quaternionic-Division-Points-on-Curves-in-the-Siegel-Threefold-September-24-2026",
+      "title": "Quaternionic division points on curves in the Siegel threefold",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Quaternionic-Division-Points-on-Curves-in-the-Siegel-Threefold-September-24-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Height scales and an auxiliary sequence theorem",
+    "Projection and tangent positivity",
+    "When every height scale diverges",
+    "Auxiliary subvarieties over fields of bounded degree",
+    "Arithmetic positivity at the bounded scale",
+    "A uniform local index",
+    "The product cut and bounded-degree descent",
+    "From non-density to maximal atypical finiteness",
+    "Heights, periods, and CM elliptic curves",
+    "Canonical gluing and boundary lengths",
+    "A uniform height estimate on a curve",
+    "An essential period on a threefold",
+    "The quadratic variation and its isogeny exceptions",
+    "Interpolation with two arguments",
+    "Arithmetic coordinates and common local relations",
+    "Auxiliary markings and the height bound",
+    "From heights to finiteness"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For every number field K , every abelian variety A/K , and every irreducible…",
+      "statement": "For every number field K , every abelian variety A/K , and every irreducible subvariety X A_ K , there are only finitely many maximal atypical subvarieties of X in S= X_ sp . Equivalently, there are…",
+      "section": "Introduction",
+      "manuscript": "The abelian Zilber–Pink conjecture"
+    },
+    {
+      "id": "m1-thm-nondensity",
+      "kind": "theorem",
+      "label": "Let A be an abelian variety over , and let X A be an irreducible subvariety…",
+      "statement": "Let A be an abelian variety over , and let X A be an irreducible subvariety contained in no proper torsion coset. Then X A^ [ X+1] is not Zariski dense in X .",
+      "section": "Introduction",
+      "manuscript": "The abelian Zilber–Pink conjecture"
+    },
+    {
+      "id": "m1-cor-finite-rank-translates",
+      "kind": "corollary",
+      "label": "Finite-rank translated intersections",
+      "statement": "[Finite-rank translated intersections] Let A be an abelian variety over , let A() be a subgroup satisfying \\[ _ Q (_ Z Q)<, \\] and let X A be an irreducible closed subvariety of dimension d contained…",
+      "section": "Introduction",
+      "manuscript": "The abelian Zilber–Pink conjecture"
+    },
+    {
+      "id": "m1-lemma-real-calculus",
+      "kind": "lemma",
+      "label": "Real homomorphism calculus",
+      "statement": "[Real homomorphism calculus] Let G,G' be abelian varieties over with the preceding choices. Every element of (G,G')_ R =(G,G')_ Z R acts on both (G) and H(G) . The Lie action is faithful. Convergence…",
+      "section": "Height scales and an auxiliary sequence theorem",
+      "manuscript": "The abelian Zilber–Pink conjecture"
+    },
+    {
+      "id": "m1-thm-sequence",
+      "kind": "theorem",
+      "label": "Auxiliary sequence theorem",
+      "statement": "[Auxiliary sequence theorem] For sequence data as in Definition~ , let V(W) be the image of an idempotent in ()_ R . Let be the orthogonal projector with kernel V , and put \\[ q_i=(y_ i / H_ i )_ I…",
+      "section": "Height scales and an auxiliary sequence theorem",
+      "manuscript": "The abelian Zilber–Pink conjecture"
+    },
+    {
+      "id": "m1-lemma-height-decomposition",
+      "kind": "lemma",
+      "label": "Height decomposition",
+      "statement": "[Height decomposition] Let A be a nonzero abelian variety and x_i A() . After passing to a subsequence, there is an isogeny \\[ :A_ I W_ \\] with nonzero factors, and scales H_ i 1 , such that the…",
+      "section": "Height scales and an auxiliary sequence theorem",
+      "manuscript": "The abelian Zilber–Pink conjecture"
+    },
+    {
+      "id": "m1-prop-sequence-implies-nondensity",
+      "kind": "proposition",
+      "label": "The auxiliary sequence theorem implies Theorem~ for every abelian variety over .",
+      "statement": "The auxiliary sequence theorem implies Theorem~ for every abelian variety over .",
+      "section": "Height scales and an auxiliary sequence theorem",
+      "manuscript": "The abelian Zilber–Pink conjecture"
+    },
+    {
+      "id": "m1-lemma-projection",
+      "kind": "lemma",
+      "label": "Projection exclusion",
+      "statement": "[Projection exclusion] Suppose that sequence data as in Definition~ , together with V and as in Theorem~ , satisfy and have least among counterexamples with the same presence or absence of a low…",
+      "section": "Projection and tangent positivity",
+      "manuscript": "The abelian Zilber–Pink conjecture"
+    },
+    {
+      "id": "m1-lem-ax-product",
+      "kind": "lemma",
+      "label": "Product tangent obstruction",
+      "statement": "[Product tangent obstruction] Let A_ , I , be complex abelian varieties, let Z_ A_ be subvarieties, and put Z=_ I Z_ and A=_ I A_ . Let g(A) E be a complex linear map to a Hermitian vector space. If…",
+      "section": "Projection and tangent positivity",
+      "manuscript": "The abelian Zilber–Pink conjecture"
+    },
+    {
+      "id": "m1-lem-finite-directions",
+      "kind": "lemma",
+      "label": "Finite directions for local rank inequalities",
+      "statement": "[Finite directions for local rank inequalities] Fix subvarieties Y_ A_ of complex abelian varieties. For each , there is a finite set H_ of abelian subvarieties of A_ with the following property.…",
+      "section": "Projection and tangent positivity",
+      "manuscript": "The abelian Zilber–Pink conjecture"
+    },
+    {
+      "id": "m1-prop-tangent",
+      "kind": "proposition",
+      "label": "Uniform tangent positivity",
+      "statement": "[Uniform tangent positivity] Consider fixed sequence data as in Definition~ , and let V and be as in Theorem~ . Suppose that the conclusion of Lemma~ excludes every fixed nonzero product C=_ C_ for…",
+      "section": "Projection and tangent positivity",
+      "manuscript": "The abelian Zilber–Pink conjecture"
+    },
+    {
+      "id": "m1-lemma-intersection-lower-bound",
+      "kind": "lemma",
+      "label": "Let B be a fixed closed box with rational endpoints in the coordinates of an…",
+      "statement": "Let B be a fixed closed box with rational endpoints in the coordinates of an integral basis of () . There are positive integers ,_1 , depending only on the fixed ambients, polarizations, and box,…",
+      "section": "When every height scale diverges",
+      "manuscript": "The abelian Zilber–Pink conjecture"
+    },
+    {
+      "id": "m1-thm-dill-form",
+      "kind": "theorem",
+      "label": "Dill",
+      "statement": "[Dill] Let X_1,,X_s be fixed irreducible positive-dimensional projective varieties over , with s2 , and fix embeddings X_ P^ N_ given by very ample bundles L_ . For positive integral weights a_ , put…",
+      "section": "When every height scale diverges",
+      "manuscript": "The abelian Zilber–Pink conjecture"
+    },
+    {
+      "id": "m1-thm-all-high",
+      "kind": "theorem",
+      "label": "Theorem~ holds for all-high sequence data.",
+      "statement": "Theorem~ holds for all-high sequence data.",
+      "section": "When every height scale diverges",
+      "manuscript": "The abelian Zilber–Pink conjecture"
+    },
+    {
+      "id": "m1-lemma-height-kernel",
+      "kind": "lemma",
+      "label": "Fix integers N,D 1 . Let F be a number field and let S be a set of points in…",
+      "statement": "Fix integers N,D 1 . Let F be a number field and let S be a set of points in P^N() of height at most T , where T1 . Suppose the vector space of homogeneous degree- D polynomials vanishing on S is…",
+      "section": "Auxiliary subvarieties over fields of bounded degree",
+      "manuscript": "The abelian Zilber–Pink conjecture"
+    },
+    {
+      "id": "m1-lemma-bounded-conormal",
+      "kind": "lemma",
+      "label": "Let Z P^N be an irreducible projective variety of degree D over an…",
+      "statement": "Let Z P^N be an irreducible projective variety of degree D over an algebraically closed field of characteristic zero. At every smooth point of Z , the differentials of homogeneous equations of Z of…",
+      "section": "Auxiliary subvarieties over fields of bounded degree",
+      "manuscript": "The abelian Zilber–Pink conjecture"
+    },
+    {
+      "id": "m1-prop-minimal-products",
+      "kind": "proposition",
+      "label": "For a minimal admissible choice, the following assertions hold after discarding…",
+      "statement": "For a minimal admissible choice, the following assertions hold after discarding finitely many indices and passing to a subsequence. For every pair of positive integers D,B , there is an index…",
+      "section": "Auxiliary subvarieties over fields of bounded degree",
+      "manuscript": "The abelian Zilber–Pink conjecture"
+    },
+    {
+      "id": "m1-lemma-fixed-low-point",
+      "kind": "lemma",
+      "label": "In a minimal admissible product for the putative low-factor counterexample,…",
+      "statement": "In a minimal admissible product for the putative low-factor counterexample, d_0>0 .",
+      "section": "Auxiliary subvarieties over fields of bounded degree",
+      "manuscript": "The abelian Zilber–Pink conjecture"
+    },
+    {
+      "id": "m1-prop-arithmetic-positive",
+      "kind": "proposition",
+      "label": "Let \\(Z_i=_ =0 ^s Z_ i \\) be the bounded-degree, bounded-field-degree…",
+      "statement": "Let \\(Z_i=_ =0 ^s Z_ i \\) be the bounded-degree, bounded-field-degree subproducts above, with fixed positive-dimensional low factor \\(Z_0\\), dense factorwise height bounds \\(h_ L_ =O(H_ i )\\), and…",
+      "section": "Arithmetic positivity at the bounded scale",
+      "manuscript": "The abelian Zilber–Pink conjecture"
+    },
+    {
+      "id": "m1-lemma-small-sections",
+      "kind": "lemma",
+      "label": "For the products \\(Z_i\\), bundles \\( E_i\\), and scalings above, there is a…",
+      "statement": "For the products \\(Z_i\\), bundles \\( E_i\\), and scalings above, there is a constant \\(c>0\\) such that, for all sufficiently large \\(i\\), a projective resolution \\(_i: Z_i Z_i\\) over \\(k_i\\) carries a…",
+      "section": "Arithmetic positivity at the bounded scale",
+      "manuscript": "The abelian Zilber–Pink conjecture"
+    },
+    {
+      "id": "m1-prop-index",
+      "kind": "proposition",
+      "label": "Fix projective embeddings of abelian varieties A_ by symmetric very ample…",
+      "statement": "Fix projective embeddings of abelian varieties A_ by symmetric very ample bundles L_ , a symmetric very ample canonically metrized bundle L on =_ A_ , and integral bases of the homomorphism groups…",
+      "section": "A uniform local index",
+      "manuscript": "The abelian Zilber–Pink conjecture"
+    },
+    {
+      "id": "m1-lemma-conjugate-product-degree",
+      "kind": "lemma",
+      "label": "Suppose that G is defined over a number field k , and that a proper geometric…",
+      "statement": "Suppose that G is defined over a number field k , and that a proper geometric component J=_ =1 ^mJ_ is common to I_ and I_ + , where >0 and 0<1 , and neither level is a rational derivative weight. If…",
+      "section": "The product cut and bounded-degree descent",
+      "manuscript": "The abelian Zilber–Pink conjecture"
+    },
+    {
+      "id": "m1-prop-product-cut",
+      "kind": "proposition",
+      "label": "For the minimal products of Proposition~ with d_0>0 , the small sections of…",
+      "statement": "For the minimal products of Proposition~ with d_0>0 , the small sections of Lemma~ cannot satisfy the positive index conclusion of Proposition~ along an infinite subsequence.",
+      "section": "The product cut and bounded-degree descent",
+      "manuscript": "The abelian Zilber–Pink conjecture"
+    },
+    {
+      "id": "m1-prop-optimal-finite",
+      "kind": "proposition",
+      "label": "Every irreducible subvariety of every abelian variety over contains only…",
+      "statement": "Every irreducible subvariety of every abelian variety over contains only finitely many optimal subvarieties.",
+      "section": "From non-density to maximal atypical finiteness",
+      "manuscript": "The abelian Zilber–Pink conjecture"
+    },
+    {
+      "id": "m1-lem-maximal-optimal",
+      "kind": "lemma",
+      "label": "Let X be an irreducible subvariety of an abelian variety and S= X_ sp . Every…",
+      "statement": "Let X be an irreducible subvariety of an abelian variety and S= X_ sp . Every maximal atypical subvariety of X in S is optimal in X .",
+      "section": "From non-density to maximal atypical finiteness",
+      "manuscript": "The abelian Zilber–Pink conjecture"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "Let \\(C_2\\) be a reduced, irreducible, closed algebraic curve defined over…",
+      "statement": "Let \\(C_2\\) be a reduced, irreducible, closed algebraic curve defined over \\(\\). Suppose that \\(C\\) is Hodge generic, meaning that it is contained in no proper special subvariety of \\(_2\\). Then the…",
+      "section": "Introduction",
+      "manuscript": "The E×CM component of Zilber–Pink for curves in A2"
+    },
+    {
+      "id": "m2-thm-orbits",
+      "kind": "theorem",
+      "label": "Let \\(C\\) be as in Theorem~ , and let \\(K\\) be a number field over which it is…",
+      "statement": "Let \\(C\\) be as in Theorem~ , and let \\(K\\) be a number field over which it is defined. There is a constant \\(c>0\\), depending on \\(C\\) and \\(K\\), such that every mixed point \\(s C()\\) satisfies \\[…",
+      "section": "Introduction",
+      "manuscript": "The E×CM component of Zilber–Pink for curves in A2"
+    },
+    {
+      "id": "m2-lem-family-height",
+      "kind": "lemma",
+      "label": "Let \\( X S\\) be a fixed principally polarized abelian scheme over a smooth…",
+      "statement": "Let \\( X S\\) be a fixed principally polarized abelian scheme over a smooth curve defined over a number field, and let \\( S\\) be its smooth projective completion. If \\(H\\) is an ample divisor on \\(…",
+      "section": "Heights, periods, and CM elliptic curves",
+      "manuscript": "The E×CM component of Zilber–Pink for curves in A2"
+    },
+    {
+      "id": "m2-lem-cm",
+      "kind": "lemma",
+      "label": "Let \\(k\\) be a number field and \\(F/k\\) a CM elliptic curve. Set \\( O=_ (F)\\),…",
+      "statement": "Let \\(k\\) be a number field and \\(F/k\\) a CM elliptic curve. Set \\( O=_ (F)\\), \\(D=| O|\\), and \\(d=[k:]\\). Then D d^4, h(j_F)1+ D. At any complex embedding, choose a reduced period basis \\(f,f_F\\)…",
+      "section": "Heights, periods, and CM elliptic curves",
+      "manuscript": "The E×CM component of Zilber–Pink for curves in A2"
+    },
+    {
+      "id": "m2-lem-gluing",
+      "kind": "lemma",
+      "label": "Let \\((A,)\\) be a principally polarized abelian surface over a field of…",
+      "statement": "Let \\((A,)\\) be a principally polarized abelian surface over a field of characteristic zero, and suppose that \\(A\\) is isogenous geometrically to the product of a non-CM and a CM elliptic curve.…",
+      "section": "Canonical gluing and boundary lengths",
+      "manuscript": "The E×CM component of Zilber–Pink for curves in A2"
+    },
+    {
+      "id": "m2-lem-length",
+      "kind": "lemma",
+      "label": "In the situation of Lemma~ over a number field, let \\(v\\) be a finite place. If…",
+      "statement": "In the situation of Lemma~ over a number field, let \\(v\\) be a finite place. If \\(E\\) has potential good reduction, so does \\(A\\). Otherwise, after an extension giving split semiabelian reduction,…",
+      "section": "Canonical gluing and boundary lengths",
+      "manuscript": "The E×CM component of Zilber–Pink for curves in A2"
+    },
+    {
+      "id": "m2-lem-boundary-comparison",
+      "kind": "lemma",
+      "label": "Integral boundary comparison",
+      "statement": "[Integral boundary comparison] Fix the level \\(m\\) and compactification above. There are constants \\(c_m,C_m>0\\), depending only on these choices, with the following property. Let \\(k_v/_p\\) be a…",
+      "section": "Canonical gluing and boundary lengths",
+      "manuscript": "The E×CM component of Zilber–Pink for curves in A2"
+    },
+    {
+      "id": "m2-prop-height",
+      "kind": "proposition",
+      "label": "There are constants \\(c,n_0>0\\), depending only on this fixed family, such that…",
+      "statement": "There are constants \\(c,n_0>0\\), depending only on this fixed family, such that at every mixed point \\(t S()\\), with the notation of Lemma~ and \\(D=|(F)|\\), \\[ n n_0 h(j_E) c\\,n(1+ D). \\]",
+      "section": "A uniform height estimate on a curve",
+      "manuscript": "The E×CM component of Zilber–Pink for curves in A2"
+    },
+    {
+      "id": "m2-lem-arch-boundary",
+      "kind": "lemma",
+      "label": "If \\(\\), then at each archimedean place of \\(K_0\\), \\[ _(t) 1+(A_t)^ -2 . \\]",
+      "statement": "If \\(\\), then at each archimedean place of \\(K_0\\), \\[ _(t) 1+(A_t)^ -2 . \\]",
+      "section": "A uniform height estimate on a curve",
+      "manuscript": "The E×CM component of Zilber–Pink for curves in A2"
+    },
+    {
+      "id": "m2-lem-rho",
+      "kind": "lemma",
+      "label": "At a mixed point, choose reduced elliptic periods at a complex embedding and…",
+      "statement": "At a mixed point, choose reduced elliptic periods at a complex embedding and write \\(y_E=_E\\), \\(y_F=_F\\). Then \\[ (A)^ -2 ny_F+y_E n , (A)^2 n y_E . \\]",
+      "section": "A uniform height estimate on a curve",
+      "manuscript": "The E×CM component of Zilber–Pink for curves in A2"
+    },
+    {
+      "id": "m2-prop-threefold",
+      "kind": "proposition",
+      "label": "There is a polarized abelian threefold \\((B,L)/k\\), isogenous to \\(E^2 F\\),…",
+      "statement": "There is a polarized abelian threefold \\((B,L)/k\\), isogenous to \\(E^2 F\\), such that n^ 4/3 (b^2+1)d\\,\\ 1,(B),_L B\\ , and (B)2(E)+(F)+ n, _LB=6n^4uv, u=y^2, v= y.",
+      "section": "An essential period on a threefold",
+      "manuscript": "The E×CM component of Zilber–Pink for curves in A2"
+    },
+    {
+      "id": "m3-thm-main",
+      "kind": "theorem",
+      "label": "Let \\(C_ 2, \\) be a reduced irreducible closed Hodge-generic algebraic curve.…",
+      "statement": "Let \\(C_ 2, \\) be a reduced irreducible closed Hodge-generic algebraic curve. Then \\[ _ QM (C)= \\ s C(): ^0(A_s) is an indefinite quaternion division algebra over \\ \\] is finite.",
+      "section": "Introduction",
+      "manuscript": "Quaternionic division points on curves in the Siegel threefold"
+    },
+    {
+      "id": "m3-lem-finite-covers",
+      "kind": "lemma",
+      "label": "Passage to fixed covers",
+      "statement": "[Passage to fixed covers] Let C_2 be a reduced irreducible closed curve over . There is a finite surjective map :S C from a smooth geometrically connected curve over a number field, together with a…",
+      "section": "The quadratic variation and its isogeny exceptions",
+      "manuscript": "Quaternionic division points on curves in the Siegel threefold"
+    },
+    {
+      "id": "m3-lem-qm-plane",
+      "kind": "lemma",
+      "label": "The quadratic model and the quaternionic plane",
+      "statement": "[The quadratic model and the quaternionic plane] The local system V has rank five, a nondegenerate form of real signature (3,2) , and Hodge numbers (1,3,1) in types (1,-1),(0,0),(-1,1) . It is the…",
+      "section": "The quadratic variation and its isogeny exceptions",
+      "manuscript": "Quaternionic division points on curves in the Siegel threefold"
+    },
+    {
+      "id": "m3-prop-monodromy",
+      "kind": "proposition",
+      "label": "Single and product monodromy",
+      "statement": "[Single and product monodromy] For the family over any fixed smooth finite cover of a Hodge-generic curve in _2 , the connected algebraic monodromy on H is _4 , and that on V is (V,q) . The same…",
+      "section": "The quadratic variation and its isogeny exceptions",
+      "manuscript": "Quaternionic division points on curves in the Siegel threefold"
+    },
+    {
+      "id": "m3-prop-finite-correspondences",
+      "kind": "proposition",
+      "label": "Finitely many isogeny exceptions",
+      "statement": "[Finitely many isogeny exceptions] Fix finitely many closed irreducible Hodge-generic curves in _2() . For every ordered pair of these curves there are finitely many rational positive projective…",
+      "section": "The quadratic variation and its isogeny exceptions",
+      "manuscript": "Quaternionic division points on curves in the Siegel threefold"
+    },
+    {
+      "id": "m3-thm-interpolation",
+      "kind": "theorem",
+      "label": "Common-relation interpolation",
+      "statement": "[Common-relation interpolation] Fix the analytic data just described, a fixed affine ambient space with coordinates (a,U) , and an algebraic ambient locus X in that space. Let h,d2 , let (h)=1+( h)^c…",
+      "section": "Interpolation with two arguments",
+      "manuscript": "Quaternionic division points on curves in the Siegel threefold"
+    },
+    {
+      "id": "m3-lem-zero-estimate",
+      "kind": "lemma",
+      "label": "Uniform ordinary-point order bound",
+      "statement": "[Uniform ordinary-point order bound] For the fixed analytic data of there is a polynomial M(D) with the following property. Let W be an irreducible affine variety of degree at most D on which a is…",
+      "section": "Interpolation with two arguments",
+      "manuscript": "Quaternionic division points on curves in the Siegel threefold"
+    },
+    {
+      "id": "m3-lem-graph-fiber",
+      "kind": "lemma",
+      "label": "Dimension of the constrained graph fibre",
+      "statement": "[Dimension of the constrained graph fibre] Let W be an irreducible affine variety of dimension k1 with coordinate a nonconstant, let f be regular on W , and let m1 be an integer. Suppose \\[ ord_ p f…",
+      "section": "Interpolation with two arguments",
+      "manuscript": "Quaternionic division points on curves in the Siegel threefold"
+    },
+    {
+      "id": "m3-lem-layer-interpolation",
+      "kind": "lemma",
+      "label": "Interpolation through successive layers",
+      "statement": "[Interpolation through successive layers] Let W' A^M be irreducible of dimension k1 , with coordinates including a,U,q . Let b=(G_1,,G_t) have controlled generators and V( b)=W' . Suppose \\[ V(…",
+      "section": "Interpolation with two arguments",
+      "manuscript": "Quaternionic division points on curves in the Siegel threefold"
+    },
+    {
+      "id": "m3-lem-potential-good",
+      "kind": "lemma",
+      "label": "Potential good reduction",
+      "statement": "[Potential good reduction] An abelian surface whose geometric endomorphism algebra is a quaternion division algebra over has potentially good reduction at every finite place.",
+      "section": "Arithmetic coordinates and common local relations",
+      "manuscript": "Quaternionic division points on curves in the Siegel threefold"
+    },
+    {
+      "id": "m3-prop-small-vectors",
+      "kind": "proposition",
+      "label": "Small labeled integral vectors",
+      "statement": "[Small labeled integral vectors] There are constants c,C>0 with the following property. For every target t , an extension L/K(t) of degree at most C defines all geometric endomorphisms of A_t . There…",
+      "section": "Arithmetic coordinates and common local relations",
+      "manuscript": "Quaternionic division points on curves in the Siegel threefold"
+    },
+    {
+      "id": "m3-prop-dr-size",
+      "kind": "proposition",
+      "label": "Coordinate heights and local norms",
+      "statement": "[Coordinate heights and local norms] Choose the vectors of . Their affine coordinates in the fixed frame satisfy z(t),a,P C(h+ d). There are center neighborhoods at every place, with a single…",
+      "section": "Arithmetic coordinates and common local relations",
+      "manuscript": "Quaternionic division points on curves in the Siegel threefold"
+    },
+    {
+      "id": "m3-prop-good-comparison",
+      "kind": "proposition",
+      "label": "Functorial good-reduction comparison",
+      "statement": "[Functorial good-reduction comparison] At a finite place, suppose a point t is on a sufficiently small actual center branch. After coefficient extension the two polarized abelian schemes have a…",
+      "section": "Arithmetic coordinates and common local relations",
+      "manuscript": "Quaternionic division points on curves in the Siegel threefold"
+    },
+    {
+      "id": "m3-lem-proximity",
+      "kind": "lemma",
+      "label": "Proximity and the factorial cutoff",
+      "statement": "[Proximity and the factorial cutoff] Use the fixed center disks of , and at every remaining prime impose . Let V_0(t) be all weighted embeddings at which t belongs to these actual branches. Then _ v…",
+      "section": "Arithmetic coordinates and common local relations",
+      "manuscript": "Quaternionic division points on curves in the Siegel threefold"
+    },
+    {
+      "id": "m3-prop-common-relations",
+      "kind": "proposition",
+      "label": "Common relations with controlled coefficients",
+      "statement": "[Common relations with controlled coefficients] Suppose h Q_0(d) , increasing Q_0 if necessary. The proximity embeddings can be partitioned into at most Q_1(d) groups, and one group V has S_ small =…",
+      "section": "Arithmetic coordinates and common local relations",
+      "manuscript": "Quaternionic division points on curves in the Siegel threefold"
+    },
+    {
+      "id": "m3-lem-finite-field-incidence",
+      "kind": "lemma",
+      "label": "Let k be a finite field of odd characteristic, let (V,q) be a nondegenerate…",
+      "statement": "Let k be a finite field of odd characteristic, let (V,q) be a nondegenerate quadratic space of dimension five, let A V be a nondegenerate 2 -plane, and let T V be any 2 -plane. There is an element \\[…",
+      "section": "Auxiliary markings and the height bound",
+      "manuscript": "Quaternionic division points on curves in the Siegel threefold"
+    },
+    {
+      "id": "m3-prop-marking",
+      "kind": "proposition",
+      "label": "There is a fixed odd prime and a fixed geometrically connected finite \\' e tale…",
+      "statement": "There is a fixed odd prime and a fixed geometrically connected finite \\' e tale cover S S_* parameterizing symplectic markings at level , with a fixed lift t_0 of t_ 0,* , such that every…",
+      "section": "Auxiliary markings and the height bound",
+      "manuscript": "Quaternionic division points on curves in the Siegel threefold"
+    },
+    {
+      "id": "m3-lem-fixed-isogeny-reduction",
+      "kind": "lemma",
+      "label": "Fix finitely many pairs of principally polarized abelian surfaces over a number…",
+      "statement": "Fix finitely many pairs of principally polarized abelian surfaces over a number field and finitely many positive integers m . Outside a fixed finite set of rational primes, every polarized isogeny of…",
+      "section": "Auxiliary markings and the height bound",
+      "manuscript": "Quaternionic division points on curves in the Siegel threefold"
+    },
+    {
+      "id": "m3-prop-nonidentity",
+      "kind": "proposition",
+      "label": "For a selected marked target as in , each applicable list above, formed from a…",
+      "statement": "For a selected marked target as in , each applicable list above, formed from a nonempty selected group of places, satisfies the all-branch nonidentity hypothesis of . More precisely, let W be any…",
+      "section": "Auxiliary markings and the height bound",
+      "manuscript": "Quaternionic division points on curves in the Siegel threefold"
+    },
+    {
+      "id": "m3-thm-height",
+      "kind": "theorem",
+      "label": "Fix a reduced irreducible closed Hodge-generic curve C_2 over , and let C^ be…",
+      "statement": "Fix a reduced irreducible closed Hodge-generic curve C_2 over , and let C^ be its normalization. For a fixed nonnegative ample logarithmic height h on the smooth projective completion of C^ and a…",
+      "section": "Auxiliary markings and the height bound",
+      "manuscript": "Quaternionic division points on curves in the Siegel threefold"
+    },
+    {
+      "id": "m3-lem-flat-coordinate-bound",
+      "kind": "lemma",
+      "label": "Flat-coordinate bound",
+      "statement": "[Flat-coordinate bound] There is a finite collection of simply connected complex charts covering S() , each equipped with an integral flat basis of V_ , whose period maps are definable in _ an, .…",
+      "section": "From heights to finiteness",
+      "manuscript": "Quaternionic division points on curves in the Siegel threefold"
+    },
+    {
+      "id": "m3-prop-counting-finiteness",
+      "kind": "proposition",
+      "label": "For fixed A,>0 , the set of QM points t S() satisfying h(t) A d(t)^ is finite.",
+      "statement": "For fixed A,>0 , the set of QM points t S() satisfying h(t) A d(t)^ is finite.",
+      "section": "From heights to finiteness",
+      "manuscript": "Quaternionic division points on curves in the Siegel threefold"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lemma-height-decomposition",
+      "to": "m1-prop-sequence-implies-nondensity"
+    },
+    {
+      "from": "m1-lemma-real-calculus",
+      "to": "m1-prop-sequence-implies-nondensity"
+    },
+    {
+      "from": "m1-thm-sequence",
+      "to": "m1-prop-sequence-implies-nondensity"
+    },
+    {
+      "from": "m1-lemma-real-calculus",
+      "to": "m1-lemma-projection"
+    },
+    {
+      "from": "m1-lem-ax-product",
+      "to": "m1-prop-tangent"
+    },
+    {
+      "from": "m1-lem-finite-directions",
+      "to": "m1-prop-tangent"
+    },
+    {
+      "from": "m1-thm-sequence",
+      "to": "m1-thm-all-high"
+    },
+    {
+      "from": "m1-prop-tangent",
+      "to": "m1-thm-all-high"
+    },
+    {
+      "from": "m1-lemma-intersection-lower-bound",
+      "to": "m1-thm-all-high"
+    },
+    {
+      "from": "m1-thm-dill-form",
+      "to": "m1-thm-all-high"
+    },
+    {
+      "from": "m1-lemma-height-kernel",
+      "to": "m1-prop-minimal-products"
+    },
+    {
+      "from": "m1-lemma-bounded-conormal",
+      "to": "m1-prop-minimal-products"
+    },
+    {
+      "from": "m1-lemma-real-calculus",
+      "to": "m1-lemma-fixed-low-point"
+    },
+    {
+      "from": "m1-thm-all-high",
+      "to": "m1-lemma-fixed-low-point"
+    },
+    {
+      "from": "m1-prop-arithmetic-positive",
+      "to": "m1-lemma-small-sections"
+    },
+    {
+      "from": "m1-lemma-conjugate-product-degree",
+      "to": "m1-prop-product-cut"
+    },
+    {
+      "from": "m1-prop-minimal-products",
+      "to": "m1-prop-product-cut"
+    },
+    {
+      "from": "m1-thm-sequence",
+      "to": "m1-prop-product-cut"
+    },
+    {
+      "from": "m1-thm-all-high",
+      "to": "m1-prop-product-cut"
+    },
+    {
+      "from": "m1-lemma-fixed-low-point",
+      "to": "m1-prop-product-cut"
+    },
+    {
+      "from": "m1-prop-arithmetic-positive",
+      "to": "m1-prop-product-cut"
+    },
+    {
+      "from": "m1-lemma-small-sections",
+      "to": "m1-prop-product-cut"
+    },
+    {
+      "from": "m1-prop-index",
+      "to": "m1-prop-product-cut"
+    },
+    {
+      "from": "m1-thm-nondensity",
+      "to": "m1-prop-optimal-finite"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-lem-maximal-optimal"
+    },
+    {
+      "from": "m1-prop-optimal-finite",
+      "to": "m1-lem-maximal-optimal"
+    },
+    {
+      "from": "m1-cor-finite-rank-translates",
+      "to": "m1-lem-maximal-optimal"
+    },
+    {
+      "from": "m1-thm-nondensity",
+      "to": "m1-lem-maximal-optimal"
+    },
+    {
+      "from": "m3-prop-monodromy",
+      "to": "m3-prop-finite-correspondences"
+    },
+    {
+      "from": "m3-thm-interpolation",
+      "to": "m3-lem-layer-interpolation"
+    },
+    {
+      "from": "m3-lem-zero-estimate",
+      "to": "m3-lem-layer-interpolation"
+    },
+    {
+      "from": "m3-lem-graph-fiber",
+      "to": "m3-lem-layer-interpolation"
+    },
+    {
+      "from": "m3-lem-qm-plane",
+      "to": "m3-prop-small-vectors"
+    },
+    {
+      "from": "m3-lem-potential-good",
+      "to": "m3-prop-dr-size"
+    },
+    {
+      "from": "m3-lem-potential-good",
+      "to": "m3-prop-good-comparison"
+    },
+    {
+      "from": "m3-prop-small-vectors",
+      "to": "m3-prop-common-relations"
+    },
+    {
+      "from": "m3-prop-good-comparison",
+      "to": "m3-prop-common-relations"
+    },
+    {
+      "from": "m3-lem-proximity",
+      "to": "m3-prop-common-relations"
+    },
+    {
+      "from": "m3-prop-dr-size",
+      "to": "m3-prop-common-relations"
+    },
+    {
+      "from": "m3-prop-monodromy",
+      "to": "m3-prop-marking"
+    },
+    {
+      "from": "m3-lem-finite-field-incidence",
+      "to": "m3-prop-marking"
+    },
+    {
+      "from": "m3-prop-monodromy",
+      "to": "m3-prop-nonidentity"
+    },
+    {
+      "from": "m3-prop-finite-correspondences",
+      "to": "m3-prop-nonidentity"
+    },
+    {
+      "from": "m3-lem-qm-plane",
+      "to": "m3-prop-nonidentity"
+    },
+    {
+      "from": "m3-prop-marking",
+      "to": "m3-prop-nonidentity"
+    },
+    {
+      "from": "m3-prop-marking",
+      "to": "m3-thm-height"
+    },
+    {
+      "from": "m3-prop-common-relations",
+      "to": "m3-thm-height"
+    },
+    {
+      "from": "m3-thm-interpolation",
+      "to": "m3-thm-height"
+    },
+    {
+      "from": "m3-prop-dr-size",
+      "to": "m3-thm-height"
+    },
+    {
+      "from": "m3-prop-nonidentity",
+      "to": "m3-thm-height"
+    },
+    {
+      "from": "m3-lem-finite-covers",
+      "to": "m3-thm-height"
+    },
+    {
+      "from": "m3-prop-small-vectors",
+      "to": "m3-lem-flat-coordinate-bound"
+    },
+    {
+      "from": "m3-lem-flat-coordinate-bound",
+      "to": "m3-prop-counting-finiteness"
+    },
+    {
+      "from": "m3-prop-monodromy",
+      "to": "m3-prop-counting-finiteness"
+    },
+    {
+      "from": "m3-thm-main",
+      "to": "m3-prop-counting-finiteness"
+    },
+    {
+      "from": "m3-lem-finite-covers",
+      "to": "m3-prop-counting-finiteness"
+    },
+    {
+      "from": "m3-prop-marking",
+      "to": "m3-prop-counting-finiteness"
+    },
+    {
+      "from": "m3-thm-height",
+      "to": "m3-prop-counting-finiteness"
+    }
+  ]
+}

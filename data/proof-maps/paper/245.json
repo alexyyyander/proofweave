@@ -1,0 +1,660 @@
+{
+  "familyNumber": "245",
+  "familyTitle": "Weak normalization implies strong normalization in pure type systems",
+  "manuscripts": [
+    {
+      "id": "Weak-and-strong-normalization-in-pure-type-systems-September-25-2026",
+      "title": "Weak and strong normalization in pure type systems",
+      "date": "2026-09-25",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Weak-and-strong-normalization-in-pure-type-systems-September-25-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Structural properties",
+    "Sort profiles and normalization candidates",
+    "Two component constructions",
+    "Observation spaces and substitution-stable candidates",
+    "A typed calculus for the forbidden configuration",
+    "Typed data channels",
+    "Relational coding of the diagonal argument",
+    "The guarded diagonal argument",
+    "Exclusion and completion of the proof"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "The -Barendregt--Geuvers--Klop conjecture",
+      "statement": "[The -Barendregt--Geuvers--Klop conjecture] Let P=( S, A, R) be any pure type system. If every legal expression of P , in every valid context, is weakly -normalizing, then every such expression is…",
+      "section": "Introduction",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-pts-validity",
+      "kind": "lemma",
+      "label": "Validity and scope",
+      "statement": "[Validity and scope] If M:A , then is valid, and FV(M)FV(A)dom() . For each declaration of , its sorting judgment in the preceding prefix occurs as a subderivation of the given derivation.",
+      "section": "Structural properties",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-pts-thinning",
+      "kind": "lemma",
+      "label": "Thinning by insertion",
+      "statement": "[Thinning by insertion] Suppose M:A , and suppose that is a valid context containing the declarations of unchanged and in their original order. Then M:A .",
+      "section": "Structural properties",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-pts-substitution",
+      "kind": "lemma",
+      "label": "Typed substitution",
+      "statement": "[Typed substitution] Let =(x_1:A_1,,x_n:A_n) and let be valid. Suppose a simultaneous substitution satisfies \\[ (x_i):A_i[|_ \\ x_1,,x_ i-1 \\ ] (1 i n). \\] Then M:A implies M:A . In particular, if \\[…",
+      "section": "Structural properties",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-pts-context-conversion",
+      "kind": "lemma",
+      "label": "Conversion of a declaration",
+      "statement": "[Conversion of a declaration] Suppose D:s , D':s' , and D=_ D' . Replacing x:D by x:D' in any valid context ,x:D, preserves validity and every derivable judgment, with the subject, expected type, and…",
+      "section": "Structural properties",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-pts-generation",
+      "kind": "lemma",
+      "label": "Generation",
+      "statement": "[Generation] For derivable judgments in an arbitrary pure type system: If x:T , then x:D occurs in and T=_ D . If s:T , then (s,u) A and T=_ u for some sort u . If x:D.E:T , then for some (a,b,c) R ,…",
+      "section": "Structural properties",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-pts-correctness",
+      "kind": "lemma",
+      "label": "Correctness of types",
+      "statement": "[Correctness of types] If M:A , then either A is a literal sort or A:s for some sort s . Moreover, every type assigned to an application is sorted, including an assigned type that is itself a literal…",
+      "section": "Structural properties",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-pts-confluence",
+      "kind": "lemma",
+      "label": "Confluence and product compatibility",
+      "statement": "[Confluence and product compatibility] Full beta reduction on raw expressions is confluent. Therefore distinct sorts are not convertible, no product is convertible to a sort, and \\[ x:D.E=_ x:D'.E'…",
+      "section": "Structural properties",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-pts-subject-reduction",
+      "kind": "lemma",
+      "label": "Subject reduction",
+      "statement": "[Subject reduction] If M:A and M_^*M' , then M':A , with the exact original expected type.",
+      "section": "Structural properties",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-pts-neutral-uniqueness",
+      "kind": "lemma",
+      "label": "Uniqueness for neutral expressions",
+      "statement": "[Uniqueness for neutral expressions] If H is neutral and H:A and H:B , then A=_ B . If H:s for a literal sort s , then s itself is sorted in . Every normal typable application is neutral.",
+      "section": "Structural properties",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-pts-normalizing-judgments",
+      "kind": "lemma",
+      "label": "Normalizing judgments",
+      "statement": "[Normalizing judgments] Assume that every legal expression is weakly normalizing. Write M^\\# for its normal form, uniquely determined up to alpha equivalence. If M:A , then \\[ M^\\#:A and M^\\#:A^\\#.…",
+      "section": "Structural properties",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-pts-finite-restriction",
+      "kind": "lemma",
+      "label": "Finite restriction",
+      "statement": "[Finite restriction] Let P=( S, A, R) be a pure type system. An expression is called legal if it occurs as the subject or the expected type of a derivable judgment. If every legal expression of P is…",
+      "section": "Structural properties",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-pts-saturated-context",
+      "kind": "lemma",
+      "label": "A saturated context",
+      "statement": "[A saturated context] Suppose that the sort set S is at most countable, and that the variable set is countably infinite. There is a possibly empty countable sequence of declarations with the…",
+      "section": "Structural properties",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-lem-normal-profiles",
+      "kind": "lemma",
+      "label": "Normal profiles",
+      "statement": "[Normal profiles] A sorted normal expression is a sort, a neutral expression, or a product. Its profile is determined as follows: a literal sort s has profile Ax(s) ; a neutral expression has a…",
+      "section": "Sort profiles and normalization candidates",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-lem-feasible-profiles",
+      "kind": "lemma",
+      "label": "Feasible profiles",
+      "statement": "[Feasible profiles] The feasible profiles form the smallest family containing \\[ Ax(s)and\\ s\\ (Ax(s)) \\] and closed under nonempty values of Out .",
+      "section": "Sort profiles and normalization candidates",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-lem-test-properties",
+      "kind": "lemma",
+      "label": "Elementary properties of the tests",
+      "statement": "[Elementary properties of the tests] For every actual type T , G_T_T . If T is a literal sort, equality holds. Every variable typed at T belongs to G_T . If T= x:D.E , h G_T , and n_D , then h\\,n G_…",
+      "section": "Sort profiles and normalization candidates",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-lem-sn-head-expansion",
+      "kind": "lemma",
+      "label": "Head expansion for strong normalization",
+      "statement": "[Head expansion for strong normalization] Suppose that D,P,n,m_1,,m_k are strongly normalizing and that \\[ P[x:=n]m_1 m_k \\] is strongly normalizing. Then ( x:D.P)n m_1 m_k is strongly normalizing.",
+      "section": "Sort profiles and normalization candidates",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-lem-candidate-lattice",
+      "kind": "lemma",
+      "label": "Candidate lattice and product tests",
+      "statement": "[Candidate lattice and product tests] The inclusion-ordered set C(T) is a complete lattice with largest element _T . Write _T for its least element. For an actual product T= x:D.E , choose a set A_D…",
+      "section": "Sort profiles and normalization candidates",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-lem-sn-fundamental",
+      "kind": "lemma",
+      "label": "Transport of strongly normalizing terms",
+      "statement": "[Transport of strongly normalizing terms] Assume and an implementation of the three interface requirements in Section~ for S . If M:A , the expression M is strongly normalizing, and (,) is…",
+      "section": "Sort profiles and normalization candidates",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-prop-advance-component",
+      "kind": "proposition",
+      "label": "Advancing one component",
+      "statement": "[Advancing one component] Under the hypotheses of Lemma~ , also holds for every actual type with profile in S .",
+      "section": "Sort profiles and normalization candidates",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-prop-interfaces-imply-sn",
+      "kind": "proposition",
+      "label": "Completion of the interface argument",
+      "statement": "[Completion of the interface argument] If the interface can be implemented at every strongly connected component, then every legal expression of the PTS is strongly normalizing.",
+      "section": "Sort profiles and normalization candidates",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-prop-signed-component",
+      "kind": "proposition",
+      "label": "The signed fixed-point construction",
+      "statement": "[The signed fixed-point construction] If S has no odd closed walk, it admits the candidate interface.",
+      "section": "Two component constructions",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-lem-support-dependence",
+      "kind": "lemma",
+      "label": "Dependence on support",
+      "statement": "[Dependence on support] For fixed typed actual images, the candidate of an S type depends on the bits of its starting context only through its support, if any. Valid thinning and context conversion…",
+      "section": "Two component constructions",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-lem-support-substitution",
+      "kind": "lemma",
+      "label": "Comparison after generic substitution",
+      "statement": "[Comparison after generic substitution] Let ,y:B, be valid, let N:B , and let T be a normal type of profile in S in that context. Put \\[ '=,, T'=(T[y:=N])^\\#. \\] Take typed substitutions of the two…",
+      "section": "Two component constructions",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-prop-one-child-component",
+      "kind": "proposition",
+      "label": "The one-child construction",
+      "statement": "[The one-child construction] If no profile triple has all three vertices in S , then the bit-parametrized candidates above implement the candidate interface.",
+      "section": "Two component constructions",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-obs-graph-lemma",
+      "kind": "lemma",
+      "label": "Signs and dependencies",
+      "statement": "[Signs and dependencies] An active predecessor of a plain vertex is plain. Along an edge between free vertices, the sign is preserved on a positive edge and reversed on a negative edge. Let T= x:D.E…",
+      "section": "Observation spaces and substitution-stable candidates",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-obs-plain-construction",
+      "kind": "lemma",
+      "label": "Construction of plain spaces",
+      "statement": "[Construction of plain spaces] Under , the plain spaces admit . They also admit distinguished values whose bases are t and whose next values are distinguished values.",
+      "section": "Observation spaces and substitution-stable candidates",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-obs-structural-invariance",
+      "kind": "lemma",
+      "label": "Structural invariance",
+      "statement": "[Structural invariance] Compatible environments give identical Val and Read outputs. Valid thinning and context conversion, with transported trees and compatible old environments, preserve both…",
+      "section": "Observation spaces and substitution-stable candidates",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-obs-goodness-basic",
+      "kind": "lemma",
+      "label": "Basic goodness facts",
+      "statement": "[Basic goodness facts] Goodness has the structural invariances of Lemma~ . If the actual expression profile and \\ s\\ are in S and Ax(s) is active, then Read (M:s) is always the base projection , at…",
+      "section": "Observation spaces and substitution-stable candidates",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-obs-substitution",
+      "kind": "lemma",
+      "label": "Substitution of a good value",
+      "statement": "[Substitution of a good value] Let a tree over ,x:D, be given, and let u be a tree of N:D . Substitute u capture-avoidably at occurrences of x , transporting the context, expectations, and generation…",
+      "section": "Observation spaces and substitution-stable candidates",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-obs-reduction-transport",
+      "kind": "lemma",
+      "label": "Reduction transport",
+      "statement": "[Reduction transport] A one-step full beta reduction of a typed expression transports its tree to a tree of the reduct at the same expected type. For every environment, good Val and Read evaluations…",
+      "section": "Observation spaces and substitution-stable candidates",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-obs-normal-independence",
+      "kind": "lemma",
+      "label": "Independence on normal syntax",
+      "statement": "[Independence on normal syntax] On a fixed normal expression in a fixed generic context, Val is independent of its stored tree whenever the root expectations are convertible. Read is independent of…",
+      "section": "Observation spaces and substitution-stable candidates",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-obs-interface-theorem",
+      "kind": "proposition",
+      "label": "Observation interpretation",
+      "statement": "[Observation interpretation] Assume system-wide weak normalization and . Then gives candidates with the required weakening and context-conversion invariance and nonempty parameter extensions. It has…",
+      "section": "Observation spaces and substitution-stable candidates",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-lem-enc-labelled-metatheory",
+      "kind": "lemma",
+      "label": "Labelled metatheory and reduction lifting",
+      "statement": "[Labelled metatheory and reduction lifting] The labelled typing rules have context validity, correctness of types, weakening, typed substitution by terms of the declared modes, context conversion,…",
+      "section": "A typed calculus for the forbidden configuration",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-lem-enc-terminal-converters",
+      "kind": "lemma",
+      "label": "Terminal transformations",
+      "statement": "[Terminal transformations] There is a finite valid extension =_ d , _ p and, for every pair of terminals F,F' , a proof term _ F,F' (p):F' in ,p:F . Every declaration of _ p has the form \\[ c:^ p, p…",
+      "section": "A typed calculus for the forbidden configuration",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-lem-enc-propositional",
+      "kind": "lemma",
+      "label": "Finite propositional derivations",
+      "statement": "[Finite propositional derivations] If formulas P_1,,P_m propositionally entail a formula R , there is a specified finite term pl_R(p_1,,p_m):R under p_i:P_i . Here has truth value false; specified…",
+      "section": "A typed calculus for the forbidden configuration",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-lem-enc-data-cancellation",
+      "kind": "lemma",
+      "label": "Exact data cancellation",
+      "statement": "[Exact data cancellation] For an even data path there is a proof of \\[ use_(pack_(t);x.) , \\] and for an odd data path there is a proof of \\[ mk_(x.),t_ . \\] These are uniform term constructors in…",
+      "section": "A typed calculus for the forbidden configuration",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-chan-paths",
+      "kind": "lemma",
+      "label": "Choice of paths",
+      "statement": "[Choice of paths] There is a retained negative edge associated to a triple (p,n,g) , with p,g C , and there are fixed secondary paths \\[ :k podd, :p kodd, :g Jeven, \\] all inside C . There are also…",
+      "section": "Typed data channels",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-chan-rounding",
+      "kind": "lemma",
+      "label": "Rounding and predicate evaluation",
+      "statement": "[Rounding and predicate evaluation] There are proof builders, for y:L and t:B(A) , of Round(y),t_L y,t_L. For every formula under x:L and every w:L , there is a proof of pred(x.)@w .",
+      "section": "Typed data channels",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-chan-double-laws",
+      "kind": "lemma",
+      "label": "Canonical bit and recovery proofs",
+      "statement": "[Canonical bit and recovery proofs] For \\ 0,1\\ there are proofs of the signed bit \\[ bit(emb_1(t)),&=1,\\\\ bit(emb_0(t)),&=0, \\] and a proof of \\[ rec(emb_ (t);u.) . \\]",
+      "section": "Typed data channels",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-chan-marker-laws",
+      "kind": "lemma",
+      "label": "Marker and decoder laws",
+      "statement": "[Marker and decoder laws] For P: P_L and t,u T there are proofs of \\[ Mark_t(Enc_t(P)), Mark_u(Enc_t(P))(u t). \\] For every c:L_c there is a proof of \\[ Dec(Enc_t(P)),c_ P_L P,c_ P_L , \\] and…",
+      "section": "Typed data channels",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-chan-point-laws",
+      "kind": "lemma",
+      "label": "Dummy and point laws",
+      "statement": "[Dummy and point laws] There are proofs of \\[ D(dummy), Mark_t(bp_)(t T), D(point(y)), \\] and there is a proof, for P: P_L , of qry_ pt (point(y),P) P@y.",
+      "section": "Typed data channels",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-chan-access",
+      "kind": "lemma",
+      "label": "Access",
+      "statement": "[Access] Under A:s , m:M(A) , y:L(A) and the proof input d_m: D(m) , there is a proof of Access(Bundle(m,y);o,x.) (m,Round(y)). The definitions of Bundle and Access themselves do not use d_m .",
+      "section": "Typed data channels",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-rel-equivalence",
+      "kind": "lemma",
+      "label": "Equivalence and rounding",
+      "statement": "[Equivalence and rounding] The relation \\(\\) has reflexivity, symmetry, and transitivity builders. There is a builder \\(RoundRel(y):yRoundy\\). For \\(e:a a'\\) and \\(f:c c'\\) there is a builder \\[…",
+      "section": "Relational coding of the diagonal argument",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-rel-pair-congruence",
+      "kind": "lemma",
+      "label": "Congruence of the relational predicates",
+      "statement": "[Congruence of the relational predicates] There are unrounded evaluation proofs \\[ c_y@w(w y), u_ yz @w((w y)(w z)). \\] Equivalent parameters give \\(c_y c_ y' \\) and \\(u_ yz u_ y'z' \\). Under…",
+      "section": "Relational coding of the diagonal argument",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-rel-lift-properties",
+      "kind": "lemma",
+      "label": "Evaluation, validity, and response",
+      "statement": "[Evaluation, validity, and response] The relation \\(\\) is an equivalence relation, with the congruence builder of Lemma~ , and \\[ RoundRel_X(x):xRound_Xx. \\] Data cancellation supplies \\[ LP(i,a):…",
+      "section": "Relational coding of the diagonal argument",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-rel-tags",
+      "kind": "lemma",
+      "label": "Tagged observations",
+      "statement": "[Tagged observations] For \\(t=0,,r\\) there are proofs of the signed bits \\(H_a(x^t)\\) if \\(b_a(t)=1\\), and \\( H_a(x^t)\\) if \\(b_a(t)=0\\), and proofs \\[ O_i(x^t) le(i,x). \\] Each \\(H_a\\) and \\(O_i\\)…",
+      "section": "Relational coding of the diagonal argument",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-rel-query-realization",
+      "kind": "lemma",
+      "label": "Respect and admissibility",
+      "statement": "[Respect and admissibility] For \\(d:i i'\\) there is a builder \\[ ExtC(d): Ext(i)Ext(i'). \\] For \\(e:P P'\\), every structural \\(t\\) has a builder \\( P_t(P) P_t(P')\\). Consequently there are proofs \\[…",
+      "section": "Relational coding of the diagonal argument",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-rel-observation-equivalence",
+      "kind": "lemma",
+      "label": "The coded equivalence is the observation equivalence",
+      "statement": "[The coded equivalence is the observation equivalence] There are proofs \\[ GA(P): Good(P) P_G(P), SA(y,z): (y z)Ae(y,z). \\] For each \\(t\\), there are builders \\[ Tag_t(e):x^t x'^ \\,t (e:x x'),…",
+      "section": "Relational coding of the diagonal argument",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-rel-witnesses",
+      "kind": "lemma",
+      "label": "Class and edge witnesses",
+      "statement": "[Class and edge witnesses] For \\(t=0,,r\\) there is a proof \\[ Is_t(y) x.\\,(y x^t). \\] For \\(t=,r\\) there is a proof \\[ T_t(y,z) x.\\,((y x^0)(z x^t)). \\]",
+      "section": "Relational coding of the diagonal argument",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-rel-pair-laws",
+      "kind": "lemma",
+      "label": "The two pairing laws",
+      "statement": "[The two pairing laws] Under \\(h:Resp(v)\\), let \\(P_x=Pair(Part(v),x^0)\\). For every \\(x':X\\) there are proofs P_x@(x'^ \\, )& v_m(x'^ \\,0 ), \\\\ P_x@(x'^ \\,r )& x x'.",
+      "section": "Relational coding of the diagonal argument",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-rel-response-predicate",
+      "kind": "lemma",
+      "label": "The predicate represented by a response",
+      "statement": "[The predicate represented by a response] For every data parameter v:V , define \\[ i_v=pred_X(x'.\\,v_m(x'^ \\,0 )) : P_X. \\] This data definition requires no proof hypothesis. Given h:Resp(v) , there…",
+      "section": "The guarded diagonal argument",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-rel-shift",
+      "kind": "lemma",
+      "label": "The shift and its predecessor comparison",
+      "statement": "[The shift and its predecessor comparison] Define the data operations \\[ x=lift_m(x^0):X, Si=pred_X(x.\\,i@ x): P_X. \\] For every x:X there is a proof V_(x):Valid( x) , and for e:x x' there is a proof…",
+      "section": "The guarded diagonal argument",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-rel-ind-congruence",
+      "kind": "lemma",
+      "label": "Induction respects predicate equivalence",
+      "statement": "[Induction respects predicate equivalence] For d:i i' there is a builder \\[ IndC(d): Ind(i)Ind(i'). \\] This builder needs no extensionality hypothesis on either predicate.",
+      "section": "The guarded diagonal argument",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-rel-wf",
+      "kind": "lemma",
+      "label": "A valid induction object",
+      "statement": "[A valid induction object] Define, without proof hypotheses, \\[ WF=mk_X(v.\\,Ind(i_v)):X. \\] There is a proof V_ WF : Valid(WF) . For ex:Ext(i) there is a builder w_ ex :le(i,WF) Ind(Si). Finally,…",
+      "section": "The guarded diagonal argument",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-rel-contradiction",
+      "kind": "proposition",
+      "label": "The diagonal contradiction",
+      "statement": "[The diagonal contradiction] The specialized relational construction yields a proof of =F_b in the ambient labelled context.",
+      "section": "The guarded diagonal argument",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-lem-enc-no-normal-proof",
+      "kind": "lemma",
+      "label": "No normal erasure at a terminal",
+      "statement": "[No normal erasure at a terminal] In the ambient context above, or in any legal extension by data declarations, there is no proof-mode term P with beta-normal erasure and a judgment P:T for any T T .",
+      "section": "Exclusion and completion of the proof",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    },
+    {
+      "id": "m1-prop-enc-exclusion",
+      "kind": "proposition",
+      "label": "Exclusion by system-wide weak normalization",
+      "statement": "[Exclusion by system-wide weak normalization] Assume that every legal expression of the given pure type system is weakly beta-normalizing. For every primary component containing an odd closed walk…",
+      "section": "Exclusion and completion of the proof",
+      "manuscript": "Weak and strong normalization in pure type systems"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-pts-validity",
+      "to": "m1-pts-thinning"
+    },
+    {
+      "from": "m1-pts-substitution",
+      "to": "m1-pts-context-conversion"
+    },
+    {
+      "from": "m1-pts-context-conversion",
+      "to": "m1-pts-subject-reduction"
+    },
+    {
+      "from": "m1-pts-correctness",
+      "to": "m1-pts-subject-reduction"
+    },
+    {
+      "from": "m1-pts-correctness",
+      "to": "m1-pts-neutral-uniqueness"
+    },
+    {
+      "from": "m1-pts-neutral-uniqueness",
+      "to": "m1-pts-normalizing-judgments"
+    },
+    {
+      "from": "m1-lem-normal-profiles",
+      "to": "m1-lem-feasible-profiles"
+    },
+    {
+      "from": "m1-lem-sn-head-expansion",
+      "to": "m1-lem-candidate-lattice"
+    },
+    {
+      "from": "m1-lem-test-properties",
+      "to": "m1-lem-candidate-lattice"
+    },
+    {
+      "from": "m1-lem-test-properties",
+      "to": "m1-lem-sn-fundamental"
+    },
+    {
+      "from": "m1-lem-sn-head-expansion",
+      "to": "m1-lem-sn-fundamental"
+    },
+    {
+      "from": "m1-lem-sn-fundamental",
+      "to": "m1-prop-advance-component"
+    },
+    {
+      "from": "m1-lem-test-properties",
+      "to": "m1-prop-advance-component"
+    },
+    {
+      "from": "m1-prop-advance-component",
+      "to": "m1-prop-interfaces-imply-sn"
+    },
+    {
+      "from": "m1-lem-test-properties",
+      "to": "m1-prop-interfaces-imply-sn"
+    },
+    {
+      "from": "m1-lem-candidate-lattice",
+      "to": "m1-prop-signed-component"
+    },
+    {
+      "from": "m1-lem-support-dependence",
+      "to": "m1-prop-one-child-component"
+    },
+    {
+      "from": "m1-lem-support-substitution",
+      "to": "m1-prop-one-child-component"
+    },
+    {
+      "from": "m1-obs-graph-lemma",
+      "to": "m1-obs-plain-construction"
+    },
+    {
+      "from": "m1-obs-goodness-basic",
+      "to": "m1-obs-substitution"
+    },
+    {
+      "from": "m1-obs-graph-lemma",
+      "to": "m1-obs-reduction-transport"
+    },
+    {
+      "from": "m1-obs-substitution",
+      "to": "m1-obs-reduction-transport"
+    },
+    {
+      "from": "m1-obs-graph-lemma",
+      "to": "m1-obs-interface-theorem"
+    },
+    {
+      "from": "m1-obs-substitution",
+      "to": "m1-obs-interface-theorem"
+    },
+    {
+      "from": "m1-obs-reduction-transport",
+      "to": "m1-obs-interface-theorem"
+    },
+    {
+      "from": "m1-lem-enc-propositional",
+      "to": "m1-chan-double-laws"
+    },
+    {
+      "from": "m1-chan-point-laws",
+      "to": "m1-chan-access"
+    },
+    {
+      "from": "m1-rel-equivalence",
+      "to": "m1-rel-lift-properties"
+    },
+    {
+      "from": "m1-rel-equivalence",
+      "to": "m1-rel-tags"
+    },
+    {
+      "from": "m1-rel-tags",
+      "to": "m1-rel-observation-equivalence"
+    },
+    {
+      "from": "m1-rel-witnesses",
+      "to": "m1-rel-pair-laws"
+    },
+    {
+      "from": "m1-rel-ind-congruence",
+      "to": "m1-rel-wf"
+    },
+    {
+      "from": "m1-rel-contradiction",
+      "to": "m1-prop-enc-exclusion"
+    },
+    {
+      "from": "m1-lem-enc-labelled-metatheory",
+      "to": "m1-prop-enc-exclusion"
+    },
+    {
+      "from": "m1-lem-enc-no-normal-proof",
+      "to": "m1-prop-enc-exclusion"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-prop-enc-exclusion"
+    },
+    {
+      "from": "m1-pts-finite-restriction",
+      "to": "m1-prop-enc-exclusion"
+    },
+    {
+      "from": "m1-prop-signed-component",
+      "to": "m1-prop-enc-exclusion"
+    },
+    {
+      "from": "m1-prop-one-child-component",
+      "to": "m1-prop-enc-exclusion"
+    },
+    {
+      "from": "m1-obs-interface-theorem",
+      "to": "m1-prop-enc-exclusion"
+    },
+    {
+      "from": "m1-prop-advance-component",
+      "to": "m1-prop-enc-exclusion"
+    },
+    {
+      "from": "m1-prop-interfaces-imply-sn",
+      "to": "m1-prop-enc-exclusion"
+    }
+  ]
+}

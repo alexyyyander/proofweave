@@ -1,0 +1,1000 @@
+{
+  "familyNumber": "080",
+  "familyTitle": "The exact Sobolev endpoint for Schrödinger convergence",
+  "manuscripts": [
+    {
+      "id": "Endpoint-convergence-for-the-planar-Schrodinger-equation-September-24-2026",
+      "title": "Endpoint convergence for the planar Schrodinger equation",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Endpoint-convergence-for-the-planar-Schrodinger-equation-September-24-2026/paper.pdf"
+    },
+    {
+      "id": "Endpoint-pointwise-convergence-for-the-Schrodinger-equation-in-higher-dimensions-September-24-2026",
+      "title": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Endpoint-pointwise-convergence-for-the-Schrodinger-equation-in-higher-dimensions-September-24-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Packets, localization, and fractal estimates",
+    "A power saving for transverse inputs",
+    "A sparse estimate for packet arrays",
+    "A bilinear frame estimate without a scale loss",
+    "Flat frequency arrays",
+    "Rich tubes lie in a short list of plates",
+    "The dyadic distribution estimate",
+    "Endpoint square summation and the order of limits",
+    "Packet estimates and a near-Cauchy bound",
+    "The transverse frame estimate",
+    "Fractal norms, compact arrays, and norm transport"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Planar endpoint convergence",
+      "statement": "[Planar endpoint convergence] For every f H^ 1/3 (^2) there is a set E_f^2 of full Lebesgue measure such that, for each x E_f , the finite limit \\[ u_f(x,t)=_ a0 U_af(x,t) \\] exists for every real…",
+      "section": "Introduction",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-packets",
+      "kind": "lemma",
+      "label": "Exact packet localization",
+      "statement": "[Exact packet localization] Let s1 , let v have frequency support in a fixed bounded set, and consider |t| Cs^2 . There is a decomposition v=_ ,n a_ ,n v_ ,n , with s^ -1 Z^2 in a fixed bounded…",
+      "section": "Packets, localization, and fractal estimates",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-fractal",
+      "kind": "lemma",
+      "label": "Refined fractal estimate",
+      "statement": "[Refined fractal estimate] Let S1 . Let Q be a collection of distinct unit lattice cubes in a ball of radius CS in ^3 . Suppose that \\#\\ Q Q:Q B(z,r)\\ r^2(1 r CS), \\#\\ Q Q:Q B(z, S)\\ _0 for all…",
+      "section": "Packets, localization, and fractal estimates",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-prelim-weighted",
+      "kind": "lemma",
+      "label": "Weighted refined estimate",
+      "statement": "[Weighted refined estimate] Let be supported in a ball of radius CS , S1 , and suppose (B(z,r)) mr^2(r1), (B(z, S)) mSd (z), where m,d>0 . For bounded frequency support, |Ev|^2\\,d C_ S^ mS^ 2/3 d^…",
+      "section": "Packets, localization, and fractal estimates",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-cap",
+      "kind": "lemma",
+      "label": "Weighted cap estimate",
+      "statement": "[Weighted cap estimate] Fix _0<1/2 . Suppose that S1 , that is supported in a ball of radius CS and satisfies (B(z,r)) mr^2 for r1 , and that v is supported in a frequency ball B(v_0,q) , with v_0 in…",
+      "section": "Packets, localization, and fractal estimates",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-prop-transverse",
+      "kind": "proposition",
+      "label": "Transverse power saving",
+      "statement": "[Transverse power saving] Fix a bounded frequency region. There are c>0 and L_0< , depending only on that region, for which the following configuration cannot exist when L L_0 . Let Q be unit lattice…",
+      "section": "A power saving for transverse inputs",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-transverse-product",
+      "kind": "lemma",
+      "label": "Multilinear estimates with subpower transversality",
+      "statement": "[Multilinear estimates with subpower transversality] Suppose three exact extension inputs have bounded frequency supports, and every triple of their unit directions has determinant at least , where…",
+      "section": "A power saving for transverse inputs",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-transverse-tubes",
+      "kind": "lemma",
+      "label": "Reduction to weighted incident tubes",
+      "statement": "[Reduction to weighted incident tubes] A countersequence to Proposition~ yields a set P in a fixed bounded region and three weighted tube families satisfying |P|=L^ 2+o(1) , |P B(z,r)| L^ 2+o(1) r^2…",
+      "section": "A power saving for transverse inputs",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-transverse-information",
+      "kind": "lemma",
+      "label": "Limiting information calculus",
+      "statement": "[Limiting information calculus] After a subsequence, all the countably many information variables used below have a common limiting joint law. For spatial, coordinate, and direction partitions with…",
+      "section": "A power saving for transverse inputs",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-transverse-profiles",
+      "kind": "lemma",
+      "label": "The spatial profiles",
+      "statement": "[The spatial profiles] In the limiting law set \\[ F(s)=I(X_s), G_i(s)=I(X_s T_i), G_i'(s)=I(X_s T_i'). \\] These functions extend from rational scales to nondecreasing Lipschitz functions on [0,1] ,…",
+      "section": "A power saving for transverse inputs",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-transverse-costs",
+      "kind": "lemma",
+      "label": "Block comparison and telescoping costs",
+      "statement": "[Block comparison and telescoping costs] Write J=F(s+t)-F(s) and J_i=G_i(s+t)-G_i(s) for the chosen reference tubes. Define \\[ =I(X_ s+t C)-I(X_ s+t C,D), _i=I(X_ s+t C,T_i)-I(X_ s+t C,T_i,D). \\] All…",
+      "section": "A power saving for transverse inputs",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-transverse-additivity",
+      "kind": "lemma",
+      "label": "Additivity and replacement invariance",
+      "statement": "[Additivity and replacement invariance] Almost surely, simultaneously for every choice of one of the two tubes in each family, \\[ F=G_1+G_2+G_3, G_i'=G_i, G_i(1)=23. \\] In any block above, including…",
+      "section": "A power saving for transverse inputs",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-transverse-common-profile",
+      "kind": "lemma",
+      "label": "One common profile",
+      "statement": "[One common profile] Almost surely, G_1=G_2=G_3=:G, F=3G. In particular 0 G1 , G(1)=2/3 , and 3G(s)2s .",
+      "section": "A power saving for transverse inputs",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-transverse-projection",
+      "kind": "lemma",
+      "label": "Robust planar discretized projection",
+      "statement": "[Robust planar discretized projection] Fix 0<d<1 and _0>0 . There are _ pr >0 and _ pr >0 with the following property for all sufficiently small . Suppose A B(0,1)^2 , with N_ denoting covering…",
+      "section": "A power saving for transverse inputs",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-transverse-angular-information",
+      "kind": "lemma",
+      "label": "Angular marginal information",
+      "statement": "[Angular marginal information] The functions h_2,h_3 are nonnegative and nondecreasing on their rational domains, and almost surely h_2(u)+h_3(u) u(0<u<u_0,\\ u Q). Their values agree with those of…",
+      "section": "A power saving for transverse inputs",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-transverse-block-test",
+      "kind": "lemma",
+      "label": "The projection block test",
+      "statement": "[The projection block test] Fix 0<d<1 , d_0>0 , and _0>0 . There is >0 , depending only on these parameters, for which the following conditions cannot hold on an event of positive limiting…",
+      "section": "A power saving for transverse inputs",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-transverse-angular-choice",
+      "kind": "lemma",
+      "label": "Finite angular alternatives",
+      "statement": "[Finite angular alternatives] Fix 0<d<1 and d_0>0 . There is a fixed finite list of positive rational ratios, with minimum c_*>0 , such that for every sufficiently small rational b_0 , almost every…",
+      "section": "A power saving for transverse inputs",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-transverse-binary",
+      "kind": "lemma",
+      "label": "Binary derivative",
+      "statement": "[Binary derivative] For almost every path, G(s)\\ 0,1\\ for almost every s .",
+      "section": "A power saving for transverse inputs",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-transverse-hills",
+      "kind": "lemma",
+      "label": "Balanced subintervals inside a hill",
+      "statement": "[Balanced subintervals inside a hill] Let G be Lipschitz with derivative 1_E , and let a<b be respectively a density point of E and of its complement. There is a positive number b_ hill such that,…",
+      "section": "A power saving for transverse inputs",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-transverse-finite-jumps",
+      "kind": "lemma",
+      "label": "Finite alternation and a full-to-empty jump",
+      "statement": "[Finite alternation and a full-to-empty jump] Almost surely E agrees modulo null sets with a finite union of intervals and has an interior transition from an interval of full measure to an interval…",
+      "section": "A power saving for transverse inputs",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-transverse-no-jump",
+      "kind": "lemma",
+      "label": "No full-to-empty block",
+      "statement": "[No full-to-empty block] For sufficiently small fixed >0 , the positive-probability configuration in is impossible.",
+      "section": "A power saving for transverse inputs",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-prop-sparse",
+      "kind": "proposition",
+      "label": "Sparse packet estimate",
+      "statement": "[Sparse packet estimate] There is an absolute constant c_s>0 with the following property. Fix _0>0 , and let L^ _0 D L . Let U be a finite packet array of the form , with coefficient vector c , and…",
+      "section": "A sparse estimate for packet arrays",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-sparse-layers",
+      "kind": "lemma",
+      "label": "Exact Fourier layers",
+      "statement": "[Exact Fourier layers] Fix a bounded native time interval || C_ nat , any finite number of profile seminorms on that interval, and any prescribed finite spatial decay orders there. After requiring…",
+      "section": "A sparse estimate for packet arrays",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-sparse-broad",
+      "kind": "lemma",
+      "label": "Broad saving",
+      "statement": "[Broad saving] There is an absolute c_b>0 such that, whenever K s^ c_b , the broad part of the functional in a ball of radius O(s^2) satisfies _ Q broad (Q)^ 2/3 \\|V\\|_ L^6(Q) ^2 s^ -c_b m_0^ 2/3 s^…",
+      "section": "A sparse estimate for packet arrays",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-thm-frame",
+      "kind": "theorem",
+      "label": "Bilinear frame estimate",
+      "statement": "[Bilinear frame estimate] Fix bounded frequency and profile boxes, a bound on phase-space multiplicity, and a sufficiently large envelope exponent P . There is a fixed finite number of profile…",
+      "section": "A bilinear frame estimate without a scale loss",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-frame-initial",
+      "kind": "lemma",
+      "label": "Frequency layers and initial normalization",
+      "statement": "[Frequency layers and initial normalization] It suffices to prove for packets whose spatial frequencies are supported in caps of width O(h^ -1 ) about their assigned centers, whose spatial profiles…",
+      "section": "A bilinear frame estimate without a scale loss",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-frame-masks",
+      "kind": "lemma",
+      "label": "Masks, persistence, and loss bounds",
+      "statement": "[Masks, persistence, and loss bounds] The masks can be chosen so that |b_a|, \\| L P_ab_a\\|_ C_1^2, where C_1 is independent of the large fixed K . For every required fixed derivative order,…",
+      "section": "A bilinear frame estimate without a scale loss",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-frame-flux",
+      "kind": "lemma",
+      "label": "Low-frequency flux",
+      "statement": "[Low-frequency flux] For a smooth spatial projection Proj_r to || r , where r_j , \\|Proj_rW_j_j\\|_2^2 C_K^2(r/_j)l_j.",
+      "section": "A bilinear frame estimate without a scale loss",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-frame-quartic",
+      "kind": "lemma",
+      "label": "Quartic control of the growth bands",
+      "statement": "[Quartic control of the growth bands] Let G_j(u)=(-cu^2/_j^2) , for a fixed c>0 . Then _ j=1 ^n_ ^2 (G_j-G_ j-1 )(u) | |g_ j-1 |^2 (u,)|^2\\,du\\,d _K^2D.",
+      "section": "A bilinear frame estimate without a scale loss",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-frame-maximal",
+      "kind": "lemma",
+      "label": "Maximal recovery of the error fields",
+      "statement": "[Maximal recovery of the error fields] The partial errors obey . If M is the spacetime Hardy--Littlewood maximal operator, then also |Y_k(z')| (1+_k|z-z'|)^C M(_j|Y_j|)(z)+C_K^2.",
+      "section": "A bilinear frame estimate without a scale loss",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-frame-local-bilinear",
+      "kind": "lemma",
+      "label": "A local bilinear sampling bound",
+      "statement": "[A local bilinear sampling bound] Consider the two states from the preceding construction with 0<_i1 . Let Q be a square of side _k^ -1 and let Z_Q Q contain at most one designated point from each…",
+      "section": "A bilinear frame estimate without a scale loss",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-prop-oned",
+      "kind": "proposition",
+      "label": "One-dimensional flat estimate",
+      "statement": "[One-dimensional flat estimate] Let be a nonnegative measure supported in a spatial interval of length O(L^2) and in |t| L^2 . Suppose that, for every t_0,b , every v I , and every 1 r L^2 , \\ (x,t):…",
+      "section": "Flat frequency arrays",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-prop-strip",
+      "kind": "proposition",
+      "label": "Thin-strip estimate",
+      "statement": "[Thin-strip estimate] Let U be a finite two-dimensional packet array of the form , with the fixed profile and phase-space bounds stated there. Suppose all frequency labels lie within distance C/L of…",
+      "section": "Flat frequency arrays",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-prop-rich",
+      "kind": "proposition",
+      "label": "Rich-tube geometry",
+      "statement": "[Rich-tube geometry] Fix bounded velocity, domain, ball, and neighborhood constants, a richness constant c_ r >0 , an angular constant C_ a >0 , exponents A_ r ,A_ a 0 , and >0 . There are constants…",
+      "section": "Rich tubes lie in a short list of plates",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-geometry-energy",
+      "kind": "lemma",
+      "label": "A truncated parameter energy",
+      "statement": "[A truncated parameter energy] Let H1 and let be a finite measure on ^2 of mass m , satisfying \\[ (B(z,r)) A r^ 1+ (z^2,\\ r H^ -1 ), A>0. \\] Set =/(1+) . Then \\ H,|z-z'|^ -1 \\ \\,d(z')\\,d(z) C_ A^…",
+      "section": "Rich tubes lie in a short list of plates",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-thm-distribution",
+      "kind": "theorem",
+      "label": "Dyadic distribution bound",
+      "statement": "[Dyadic distribution bound] There are fixed p>2 and >0 with the following property. Let U be a finite sum of the atoms in , of packet size L1 , with _|c_|^21 . Suppose that is supported in a spatial…",
+      "section": "The dyadic distribution estimate",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-dyadic-cap-gain",
+      "kind": "lemma",
+      "label": "Cap gain",
+      "statement": "[Cap gain] For any subarray in a frequency square of side comparable to r , where L^ -1 r_0 , outer induction gives \\ |U_ C | r^\\ C_ cap C_ ind mL^4g^ -p r^ 1-p/3-p (_ C |c_|^2)^ p/2 . The estimate…",
+      "section": "The dyadic distribution estimate",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-dyadic-prefix",
+      "kind": "lemma",
+      "label": "Energy truncation",
+      "statement": "[Energy truncation] Let a finite coefficient array be ordered, with total energy E , and let each output point select a prefix ending between whole coefficients. Suppose the distribution estimate for…",
+      "section": "The dyadic distribution estimate",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-dyadic-flow",
+      "kind": "lemma",
+      "label": "The angular test cannot fail elsewhere",
+      "statement": "[The angular test cannot fail elsewhere] Outside the exceptions in and , an original point cannot exit in an angular deletion. On a surviving such point, |U_ R | c for an absolute c>0 .",
+      "section": "The dyadic distribution estimate",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-dyadic-flattening",
+      "kind": "lemma",
+      "label": "Flattened energy estimates",
+      "statement": "[Flattened energy estimates] For a time interval J of length h^2 , let T(J) denote the boundedly many native time-cell layers that can contribute on J . Summing over the disjoint fine arrays, and…",
+      "section": "The dyadic distribution estimate",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-dyadic-tuple",
+      "kind": "lemma",
+      "label": "Frame estimate for one tuple",
+      "statement": "[Frame estimate for one tuple] For every tuple remaining after , M_0 _0^ -C mh B_1^2B_2^2 A_ _1 ^2A_ _2 ^2 (h^3E_1 A_ _1 ^2 +h^3E_2 A_ _2 ^2 ). In particular, ^6M_0^3 _0^ -C (1+_1+_2)^C m^3h^ 10…",
+      "section": "The dyadic distribution estimate",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-prop-shortmax",
+      "kind": "proposition",
+      "label": "Short-time maximal estimate",
+      "statement": "[Short-time maximal estimate] Let p>2 be the exponent in Theorem~ . Fix 0<c_0<C_0< . If N1 is dyadic and \\[ f_N \\ ^2:c_0N || C_0N\\ , \\] then, on every unit ball B^2 , \\|_ 0<t<1/N |S(t)f_N|\\|_ L^ p,…",
+      "section": "Endpoint square summation and the order of limits",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-endpoint-time-separation",
+      "kind": "lemma",
+      "label": "Separation in time",
+      "statement": "[Separation in time] Let D_j be the dyadic partition of [0,1) into intervals of length 2^ -j =1/N . Then e_j([0,1)) C_ I D_j e_j(I)+CN^ -2 .",
+      "section": "Endpoint square summation and the order of limits",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-endpoint-localized-dual",
+      "kind": "lemma",
+      "label": "Mass and spatial localization",
+      "statement": "[Mass and spatial localization] If I D_j and J I is a dyadic descendant at relative depth k , where 0 k j , set r=2^ -k . Then e_j(J)& C m_J^ 2-2/p , \\\\ e_j(J)& C r^ 2/3 m_J. Consequently, with \\[…",
+      "section": "Endpoint square summation and the order of limits",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-endpoint-square-sum",
+      "kind": "lemma",
+      "label": "Summation on the common time tree",
+      "statement": "[Summation on the common time tree] For every graph and phase choice in , _ j1 2^ -2j/3 \\|G_ 2^j ([0,1))\\|_2^2 C. The constant is independent of t , w , and the center of .",
+      "section": "Endpoint square summation and the order of limits",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-thm-maximal",
+      "kind": "theorem",
+      "label": "Local strong maximal estimate",
+      "statement": "[Local strong maximal estimate] There is a constant C such that, for every f H^ 1/3 (^2) whose Fourier transform has compact support and every x_0^2 , _ B(x_0,1) _ 0 t<1 |S(t)f(x)|\\,dx C\\|f\\|_ H^ 1/3…",
+      "section": "Endpoint square summation and the order of limits",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m1-lem-endpoint-heat-envelope",
+      "kind": "lemma",
+      "label": "Gaussian approximation with uniform local mass",
+      "statement": "[Gaussian approximation with uniform local mass] Let h0 be locally integrable on ^2 and suppose \\[ A=_ z^2 _ B(z,1) h(y)\\,dy<. \\] For a>0 let \\[ K_a(z)=1 4 a e^ -|z|^2/(4a) . \\] Then (K_a*h)(x) is…",
+      "section": "Endpoint square summation and the order of limits",
+      "manuscript": "Endpoint convergence for the planar Schrodinger equation"
+    },
+    {
+      "id": "m2-m-main",
+      "kind": "theorem",
+      "label": "Endpoint convergence",
+      "statement": "[Endpoint convergence] For every fixed integer n3 and every complex-valued f H^ s_n (^n) , there is a full-measure set E_f of Lebesgue points of f and a function v(x,t) , x E_f , 0 t<1 , such that…",
+      "section": "Introduction",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    },
+    {
+      "id": "m2-p-kakeya",
+      "kind": "proposition",
+      "label": "Weighted endpoint multilinear Kakeya",
+      "statement": "[Weighted endpoint multilinear Kakeya] Let d2 . For j=1,,d , let T_j be a family of infinite cylinders of radius h in ^d , with unit direction vectors e(T) . Suppose \\[ |(e(T_1),,e(T_d))|>0 (T_j…",
+      "section": "Packet estimates and a near-Cauchy bound",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    },
+    {
+      "id": "m2-p-projection",
+      "kind": "proposition",
+      "label": "Robust hyperplane projection input",
+      "statement": "[Robust hyperplane projection input] Fix d2 , 0<<d , and >0 . There are positive constants _0, and _0 with the following consequence. If 0<_0 , 0<<_0 , A lies in a fixed unit ball, \\[ ^ -+ N_(A) ^ --…",
+      "section": "Packet estimates and a near-Cauchy bound",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    },
+    {
+      "id": "m2-p-reproduction",
+      "kind": "lemma",
+      "label": "Reproduction, tails, and unit suprema",
+      "statement": "[Reproduction, tails, and unit suprema] For the band-limited class in , the following operations are uniform in the size of the packet family. A polynomially decaying packet is an absolutely…",
+      "section": "Packet estimates and a near-Cauchy bound",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    },
+    {
+      "id": "m2-p-buffered-refined",
+      "kind": "lemma",
+      "label": "Buffered refined decoupling",
+      "statement": "[Buffered refined decoupling] Put d=k+1 , R2 , and 2 p q_k . For every >0 there is _0=_0(d,p,)>0 such that the following holds for 0<_0 and =R^ , with a constant allowed to depend on (d,p,,) . Work…",
+      "section": "Packet estimates and a near-Cauchy bound",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    },
+    {
+      "id": "m2-p-weighted",
+      "kind": "proposition",
+      "label": "Arbitrary auxiliary weights",
+      "statement": "[Arbitrary auxiliary weights] Let 2<p q_k , and let f_T be band-limited packets of scale N . For b_T0 , require f_T=0 if b_T=0 , and set B_b(z)^2=_Tb_T^2w_T(z) . Then, for every >0 , B_b(z)^ 2-p…",
+      "section": "Packet estimates and a near-Cauchy bound",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    },
+    {
+      "id": "m2-p-local-linear",
+      "kind": "proposition",
+      "label": "Local linear estimate",
+      "statement": "[Local linear estimate] Let V=_Tf_T be either a band-limited or a smooth packet field of scale N , and let B^2=_Ts_T^2w_T . For a ball D of radius N and any z_0 D , \\|V\\|_ L^ q_k (D) C N^ k/2 B(z_0).…",
+      "section": "Packet estimates and a near-Cauchy bound",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    },
+    {
+      "id": "m2-p-local-multilinear",
+      "kind": "proposition",
+      "label": "Local multilinear estimate",
+      "statement": "[Local multilinear estimate] Let V_j and B_j be as in , with frequency labels in sets satisfying . For fixed p>p_k , a ball D of radius N , and arbitrary points z_j D , \\|_ j=1 ^ k+1 |V_j|^ 1/(k+1)…",
+      "section": "Packet estimates and a near-Cauchy bound",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    },
+    {
+      "id": "m2-p-convolution",
+      "kind": "lemma",
+      "label": "Sampling preserves the envelope exponent",
+      "statement": "[Sampling preserves the envelope exponent] Let K' K1 , let a K' -cap lie in a K -cap, and let T' be a child cell of scale K' . If G_K is the parent grid in that cap, then, for P>k+2 sufficiently…",
+      "section": "Packet estimates and a near-Cauchy bound",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    },
+    {
+      "id": "m2-p-hierarchy",
+      "kind": "proposition",
+      "label": "Weighted transport through a hierarchy",
+      "statement": "[Weighted transport through a hierarchy] Take nested frequency grids at scales K<K' , rounded within fixed factors. Assemble all child fields in each parent cap, and localize them on its parent…",
+      "section": "Packet estimates and a near-Cauchy bound",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    },
+    {
+      "id": "m2-p-near-cauchy",
+      "kind": "theorem",
+      "label": "Near-Cauchy large values",
+      "statement": "[Near-Cauchy large values] Let V=_Tf_T be a band-limited field of scale N , and let B^2=_Ts_T^2w_T . Suppose a finite set Y of unit cubes has witnesses z_Q Q such that \\[ B(z_Q)1, |V(z_Q)| N^ k/2 /R,…",
+      "section": "Packet estimates and a near-Cauchy bound",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    },
+    {
+      "id": "m2-p-polynomial-start",
+      "kind": "lemma",
+      "label": "A polynomial starting bound",
+      "statement": "[A polynomial starting bound] Under the hypotheses of , there is a fixed finite M_k such that |Y| C(2+R)^ M_k _Ts_T^2.",
+      "section": "Packet estimates and a near-Cauchy bound",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    },
+    {
+      "id": "m2-f-frame",
+      "kind": "theorem",
+      "label": "Frame estimate",
+      "statement": "[Frame estimate] Fix k2 , c>0 , and fixed packet bounds C_0 . There is a finite integer P_0 such that, for every fixed P P_0 , there are a finite integer J_0 and a constant C , depending only on…",
+      "section": "The transverse frame estimate",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    },
+    {
+      "id": "m2-f-exact",
+      "kind": "lemma",
+      "label": "Reduction to exact packets",
+      "statement": "[Reduction to exact packets] It suffices to prove Theorem~ for translated exact paraboloid extensions, with smooth data supported in bounded native frequency boxes, multiplied by a common Schwartz…",
+      "section": "The transverse frame estimate",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    },
+    {
+      "id": "m2-f-smoothing",
+      "kind": "lemma",
+      "label": "Clipped smoothing",
+      "statement": "[Clipped smoothing] Fix C_3 sufficiently large. There is a fixed L such that, with K_0=HS^L h , each cap field V_b admits a scale- K_0 packet representation with integrated square energy at most CD…",
+      "section": "The transverse frame estimate",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    },
+    {
+      "id": "m2-f-selection",
+      "kind": "lemma",
+      "label": "Finite-grid selection and discard",
+      "statement": "[Finite-grid selection and discard] On a fixed finite grid one can select ratios r_ i,s , retain a subpower fraction of the high cubes, and retain packet masks with the following properties. Put M_…",
+      "section": "The transverse frame estimate",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    },
+    {
+      "id": "m2-f-profiles",
+      "kind": "lemma",
+      "label": "Profiles",
+      "statement": "[Profiles] After taking subsequences and finer finite rational grids there are nonnegative, nonincreasing, k/2 -Lipschitz functions f_i such that \\[ r_ i,s =^ f_i(s)+o(1) , f_i(e_i)=0. \\] In the…",
+      "section": "The transverse frame estimate",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    },
+    {
+      "id": "m2-f-paths",
+      "kind": "lemma",
+      "label": "Restricted path law",
+      "statement": "[Restricted path law] For the selected tree, and for each of the directional restrictions constructed below, one can draw a uniform root point Z from a subpower fraction of Y and then a path to a…",
+      "section": "The transverse frame estimate",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    },
+    {
+      "id": "m2-f-conditioning",
+      "kind": "lemma",
+      "label": "Conditioning directions",
+      "statement": "[Conditioning directions] Inside a fixed cap _l , let C be a physical cell over which every descendant velocity has drift at most the endpoint width, and whose time range is at most the endpoint…",
+      "section": "The transverse frame estimate",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    },
+    {
+      "id": "m2-f-angular",
+      "kind": "lemma",
+      "label": "Angular test and original broad witnesses",
+      "statement": "[Angular test and original broad witnesses] Fix one field, a cap parameter l away from the endpoints and the transition seam, and a finite mesh of 0<v u with l+Cu<e_i . Suppose that \\[…",
+      "section": "The transverse frame estimate",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    },
+    {
+      "id": "m2-f-inflation",
+      "kind": "lemma",
+      "label": "Ball inflation in a cap",
+      "statement": "[Ball inflation in a cap] Work inside a cap _l of the preceding lemma, and suppose f(l+v)-f(l)=-xv+O( u) on the required finite mesh in [0,2u] . Put d_0=1-2x/k . For the isotropic cell Q_v of radius…",
+      "section": "The transverse frame estimate",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    },
+    {
+      "id": "m2-f-binary",
+      "kind": "proposition",
+      "label": "Binary slope rigidity",
+      "statement": "[Binary slope rigidity] Every profile satisfies f_i'(s)\\ 0,-k/2\\ for almost every s.",
+      "section": "The transverse frame estimate",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    },
+    {
+      "id": "m2-f-midpoint",
+      "kind": "lemma",
+      "label": "Midpoint closure",
+      "statement": "[Midpoint closure] For almost every pair l<a of full-slope points in one field, (l+a)/2 is a full-slope point. Consequently each field's full-slope set is an interval modulo null sets. In the power…",
+      "section": "The transverse frame estimate",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    },
+    {
+      "id": "m2-f-cross-field-inflation",
+      "kind": "lemma",
+      "label": "Cross-field one-step inflation",
+      "statement": "[Cross-field one-step inflation] Let K R K^2 be two inverse widths in a fixed finite packet tree. At scale K , let W_j , 1 j m=k+1 , be the original selected packet fields testing the root high set,…",
+      "section": "The transverse frame estimate",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    },
+    {
+      "id": "m2-f-left-limit",
+      "kind": "lemma",
+      "label": "Vanishing left limit",
+      "statement": "[Vanishing left limit] In the subpower case, _ s- d_i(s)=0 for every i. Consequently f_i(0)=0 , including when e_i=0 .",
+      "section": "The transverse frame estimate",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    },
+    {
+      "id": "m2-d-dz-input",
+      "kind": "theorem",
+      "label": "Du--Zhang input in squared form",
+      "statement": "[Du--Zhang input in squared form] Let Q be a collection of distinct unit lattice cubes in a ball of radius S1 . Suppose their counting function in every ball of radius r1 is at most r^n , and their…",
+      "section": "Fractal norms, compact arrays, and norm transport",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    },
+    {
+      "id": "m2-d-fractal",
+      "kind": "proposition",
+      "label": "Weighted fractal norm and occupancy gain",
+      "statement": "[Weighted fractal norm and occupancy gain] Suppose is supported in a ball of radius CS , satisfies , and, in addition, (B(z, S)) d\\,m S^ n/2 , S^ -A_0 d1. Then _q(q)^_q| E g|^2 C_ ,A_0 \\,m^ S^…",
+      "section": "Fractal norms, compact arrays, and norm transport",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    },
+    {
+      "id": "m2-d-layers",
+      "kind": "lemma",
+      "label": "Exact Fourier layers of compact profiles",
+      "statement": "[Exact Fourier layers of compact profiles] For every prescribed finite collection of derivative and native spatial decay orders, a sufficiently high finite profile regularity in gives a…",
+      "section": "Fractal norms, compact arrays, and norm transport",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    },
+    {
+      "id": "m2-d-packet-expansion",
+      "kind": "lemma",
+      "label": "Exact packet localization on a time slab",
+      "statement": "[Exact packet localization on a time slab] Let T1 and let g have bounded frequency support. On a time interval of length O(T) , an exact extension can be localized to spatial boxes of side T with…",
+      "section": "Fractal norms, compact arrays, and norm transport",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    },
+    {
+      "id": "m2-d-power-loss",
+      "kind": "corollary",
+      "label": "Power-loss norm for compact arrays",
+      "statement": "[Power-loss norm for compact arrays] Let U be a compact array of scale L , and let satisfy in a spacetime box of side O(L^2) . For every >0 , with sufficiently many fixed profile derivatives,…",
+      "section": "Fractal norms, compact arrays, and norm transport",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    },
+    {
+      "id": "m2-d-strip-decoupling",
+      "kind": "lemma",
+      "label": "Decoupling inside a strip",
+      "statement": "[Decoupling inside a strip] Group a field V=_ V_ by frequency-label bins of side K^ -1 . Suppose the field supports lie in fixed enlargements of these bins and within vertical Fourier distance O(K^…",
+      "section": "Fractal norms, compact arrays, and norm transport",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    },
+    {
+      "id": "m2-d-transport",
+      "kind": "lemma",
+      "label": "Coarse norm transport",
+      "statement": "[Coarse norm transport] Let F=X_ K,v with bounded v , and suppose V(z)=K^ -n/2 e^ i(z) V'(Fz) with |e^ i |=1 . For a fixed a^ n+1 , _Q(Q)^bV_ L^P(Q+K^2a) ^2 C K^ 2-(n+2)b _ r,s R T_b(V',_ a,r,s ),…",
+      "section": "Fractal norms, compact arrays, and norm transport",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    },
+    {
+      "id": "m2-d-strip",
+      "kind": "proposition",
+      "label": "Codimension-two strip saving",
+      "statement": "[Codimension-two strip saving] Fix 0<<1/8 . Suppose g has bounded frequency support contained in an O(S^ - ) neighborhood of an affine (n-2) -plane, and Q is a collection of unit cubes in a ball of…",
+      "section": "Fractal norms, compact arrays, and norm transport",
+      "manuscript": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-fractal",
+      "to": "m1-lem-prelim-weighted"
+    },
+    {
+      "from": "m1-lem-packets",
+      "to": "m1-lem-cap"
+    },
+    {
+      "from": "m1-lem-prelim-weighted",
+      "to": "m1-lem-cap"
+    },
+    {
+      "from": "m1-lem-fractal",
+      "to": "m1-lem-transverse-tubes"
+    },
+    {
+      "from": "m1-lem-packets",
+      "to": "m1-lem-transverse-tubes"
+    },
+    {
+      "from": "m1-lem-transverse-product",
+      "to": "m1-lem-transverse-tubes"
+    },
+    {
+      "from": "m1-lem-cap",
+      "to": "m1-lem-transverse-tubes"
+    },
+    {
+      "from": "m1-lem-transverse-information",
+      "to": "m1-lem-transverse-costs"
+    },
+    {
+      "from": "m1-lem-transverse-costs",
+      "to": "m1-lem-transverse-common-profile"
+    },
+    {
+      "from": "m1-lem-transverse-projection",
+      "to": "m1-lem-transverse-block-test"
+    },
+    {
+      "from": "m1-lem-transverse-angular-choice",
+      "to": "m1-lem-transverse-binary"
+    },
+    {
+      "from": "m1-lem-transverse-costs",
+      "to": "m1-lem-transverse-binary"
+    },
+    {
+      "from": "m1-lem-transverse-block-test",
+      "to": "m1-lem-transverse-binary"
+    },
+    {
+      "from": "m1-lem-transverse-hills",
+      "to": "m1-lem-transverse-finite-jumps"
+    },
+    {
+      "from": "m1-lem-transverse-block-test",
+      "to": "m1-lem-transverse-finite-jumps"
+    },
+    {
+      "from": "m1-prop-transverse",
+      "to": "m1-lem-transverse-no-jump"
+    },
+    {
+      "from": "m1-lem-transverse-tubes",
+      "to": "m1-lem-transverse-no-jump"
+    },
+    {
+      "from": "m1-lem-transverse-binary",
+      "to": "m1-lem-transverse-no-jump"
+    },
+    {
+      "from": "m1-lem-transverse-finite-jumps",
+      "to": "m1-lem-transverse-no-jump"
+    },
+    {
+      "from": "m1-lem-transverse-product",
+      "to": "m1-lem-sparse-broad"
+    },
+    {
+      "from": "m1-prop-transverse",
+      "to": "m1-lem-sparse-broad"
+    },
+    {
+      "from": "m1-prop-sparse",
+      "to": "m1-lem-sparse-broad"
+    },
+    {
+      "from": "m1-lem-packets",
+      "to": "m1-lem-sparse-broad"
+    },
+    {
+      "from": "m1-lem-fractal",
+      "to": "m1-lem-sparse-broad"
+    },
+    {
+      "from": "m1-lem-sparse-layers",
+      "to": "m1-lem-sparse-broad"
+    },
+    {
+      "from": "m1-lem-frame-flux",
+      "to": "m1-lem-frame-maximal"
+    },
+    {
+      "from": "m1-lem-frame-maximal",
+      "to": "m1-lem-frame-local-bilinear"
+    },
+    {
+      "from": "m1-thm-frame",
+      "to": "m1-lem-frame-local-bilinear"
+    },
+    {
+      "from": "m1-lem-frame-initial",
+      "to": "m1-lem-frame-local-bilinear"
+    },
+    {
+      "from": "m1-lem-frame-masks",
+      "to": "m1-lem-frame-local-bilinear"
+    },
+    {
+      "from": "m1-thm-frame",
+      "to": "m1-prop-oned"
+    },
+    {
+      "from": "m1-prop-oned",
+      "to": "m1-prop-strip"
+    },
+    {
+      "from": "m1-prop-rich",
+      "to": "m1-lem-geometry-energy"
+    },
+    {
+      "from": "m1-prop-sparse",
+      "to": "m1-lem-dyadic-flattening"
+    },
+    {
+      "from": "m1-thm-frame",
+      "to": "m1-lem-dyadic-tuple"
+    },
+    {
+      "from": "m1-thm-distribution",
+      "to": "m1-lem-dyadic-tuple"
+    },
+    {
+      "from": "m1-thm-distribution",
+      "to": "m1-prop-shortmax"
+    },
+    {
+      "from": "m1-lem-packets",
+      "to": "m1-prop-shortmax"
+    },
+    {
+      "from": "m1-prop-shortmax",
+      "to": "m1-lem-endpoint-localized-dual"
+    },
+    {
+      "from": "m1-lem-endpoint-time-separation",
+      "to": "m1-lem-endpoint-square-sum"
+    },
+    {
+      "from": "m1-lem-endpoint-square-sum",
+      "to": "m1-thm-maximal"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-lem-endpoint-heat-envelope"
+    },
+    {
+      "from": "m1-thm-maximal",
+      "to": "m1-lem-endpoint-heat-envelope"
+    },
+    {
+      "from": "m2-p-buffered-refined",
+      "to": "m2-p-weighted"
+    },
+    {
+      "from": "m2-p-reproduction",
+      "to": "m2-p-weighted"
+    },
+    {
+      "from": "m2-p-weighted",
+      "to": "m2-p-hierarchy"
+    },
+    {
+      "from": "m2-p-convolution",
+      "to": "m2-p-hierarchy"
+    },
+    {
+      "from": "m2-p-reproduction",
+      "to": "m2-p-hierarchy"
+    },
+    {
+      "from": "m2-p-weighted",
+      "to": "m2-p-polynomial-start"
+    },
+    {
+      "from": "m2-p-local-linear",
+      "to": "m2-p-polynomial-start"
+    },
+    {
+      "from": "m2-p-near-cauchy",
+      "to": "m2-p-polynomial-start"
+    },
+    {
+      "from": "m2-p-hierarchy",
+      "to": "m2-p-polynomial-start"
+    },
+    {
+      "from": "m2-p-convolution",
+      "to": "m2-p-polynomial-start"
+    },
+    {
+      "from": "m2-p-reproduction",
+      "to": "m2-p-polynomial-start"
+    },
+    {
+      "from": "m2-f-exact",
+      "to": "m2-f-smoothing"
+    },
+    {
+      "from": "m2-p-weighted",
+      "to": "m2-f-selection"
+    },
+    {
+      "from": "m2-p-hierarchy",
+      "to": "m2-f-selection"
+    },
+    {
+      "from": "m2-p-near-cauchy",
+      "to": "m2-f-selection"
+    },
+    {
+      "from": "m2-f-selection",
+      "to": "m2-f-paths"
+    },
+    {
+      "from": "m2-p-weighted",
+      "to": "m2-f-angular"
+    },
+    {
+      "from": "m2-f-selection",
+      "to": "m2-f-angular"
+    },
+    {
+      "from": "m2-p-hierarchy",
+      "to": "m2-f-angular"
+    },
+    {
+      "from": "m2-f-paths",
+      "to": "m2-f-angular"
+    },
+    {
+      "from": "m2-f-angular",
+      "to": "m2-f-inflation"
+    },
+    {
+      "from": "m2-p-kakeya",
+      "to": "m2-f-inflation"
+    },
+    {
+      "from": "m2-p-hierarchy",
+      "to": "m2-f-inflation"
+    },
+    {
+      "from": "m2-f-paths",
+      "to": "m2-f-binary"
+    },
+    {
+      "from": "m2-f-conditioning",
+      "to": "m2-f-binary"
+    },
+    {
+      "from": "m2-f-inflation",
+      "to": "m2-f-binary"
+    },
+    {
+      "from": "m2-p-projection",
+      "to": "m2-f-binary"
+    },
+    {
+      "from": "m2-f-conditioning",
+      "to": "m2-f-midpoint"
+    },
+    {
+      "from": "m2-p-local-multilinear",
+      "to": "m2-f-cross-field-inflation"
+    },
+    {
+      "from": "m2-p-kakeya",
+      "to": "m2-f-cross-field-inflation"
+    },
+    {
+      "from": "m2-p-hierarchy",
+      "to": "m2-f-left-limit"
+    },
+    {
+      "from": "m2-f-cross-field-inflation",
+      "to": "m2-f-left-limit"
+    },
+    {
+      "from": "m2-d-dz-input",
+      "to": "m2-d-fractal"
+    },
+    {
+      "from": "m2-d-layers",
+      "to": "m2-d-packet-expansion"
+    },
+    {
+      "from": "m2-d-layers",
+      "to": "m2-d-power-loss"
+    },
+    {
+      "from": "m2-d-fractal",
+      "to": "m2-d-power-loss"
+    },
+    {
+      "from": "m2-d-packet-expansion",
+      "to": "m2-d-strip"
+    },
+    {
+      "from": "m2-d-fractal",
+      "to": "m2-d-strip"
+    }
+  ]
+}

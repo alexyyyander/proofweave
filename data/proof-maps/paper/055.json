@@ -1,0 +1,659 @@
+{
+  "familyNumber": "055",
+  "familyTitle": "Gepner symmetry and large-volume stability on threefolds",
+  "manuscripts": [
+    {
+      "id": "A-Gepner-stability-condition-on-every-smooth-quintic-threefold-September-24-2026",
+      "title": "A Gepner stability condition on every smooth quintic threefold",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Gepner-stability-condition-on-every-smooth-quintic-threefold-September-24-2026/paper.pdf"
+    },
+    {
+      "id": "Prescribed-large-volume-charges-on-threefolds-with-trivial-canonical-bundle-September-24-2026",
+      "title": "Prescribed large-volume charges on threefolds with trivial canonical bundle",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Prescribed-large-volume-charges-on-threefolds-with-trivial-canonical-bundle-September-24-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Periodicity and the numerical central charge",
+    "A uniform family of double-tilt aisles",
+    "From uniform aisle inclusions to a slicing",
+    "Prescribed charges on the full numerical lattice",
+    "The ordinary double tilt throughout the real sector",
+    "Tilt stability and numerical transport",
+    "Restriction and cohomology bounds",
+    "A uniform estimate at one volume",
+    "From one apex to uniform inequalities",
+    "Comparison with the known counterexamples"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Every smooth complex quintic threefold admits a numerical Bridgeland stability…",
+      "statement": "Every smooth complex quintic threefold admits a numerical Bridgeland stability condition =(Z, P) with the support property on (X)_ such that, for every E and , \\[ Z( E)=e^ 2 i/5 Z(E), ( P())=…",
+      "section": "Introduction",
+      "manuscript": "A Gepner stability condition on every smooth quintic threefold"
+    },
+    {
+      "id": "m1-lem-periodicity",
+      "kind": "lemma",
+      "label": "Let =T_ _X (-_X(1)) . There is a natural isomorphism of exact functors ^5.…",
+      "statement": "Let =T_ _X (-_X(1)) . There is a natural isomorphism of exact functors ^5. Consequently is an autoequivalence, with inverse ^4[-2] .",
+      "section": "Periodicity and the numerical central charge",
+      "manuscript": "A Gepner stability condition on every smooth quintic threefold"
+    },
+    {
+      "id": "m1-lem-numerical",
+      "kind": "lemma",
+      "label": "The map v identifies (X)_ with ^4 . Under this identification, (X) is a full…",
+      "statement": "The map v identifies (X)_ with ^4 . Under this identification, (X) is a full discrete lattice contained in 1 10 1 30 . For v=(r,c,d,e) and w=(r',c',d',e') , the Euler form is (v,w)=5(re'-cd'+dc'-er'…",
+      "section": "Periodicity and the numerical central charge",
+      "manuscript": "A Gepner stability condition on every smooth quintic threefold"
+    },
+    {
+      "id": "m1-prop-central-charge",
+      "kind": "proposition",
+      "label": "There is a unique numerical homomorphism Z(X) such that Z= Z and Z(_x)=-1 for…",
+      "statement": "There is a unique numerical homomorphism Z(X) such that Z= Z and Z(_x)=-1 for closed points x X . It is Z(r,c,d,e)5 = -1 5 r +(t_0^2-56+i t_0 2 )c +(-12+i t_0)d-e. In particular, Z(r,c,d,e) 5t_0…",
+      "section": "Periodicity and the numerical central charge",
+      "manuscript": "A Gepner stability condition on every smooth quintic threefold"
+    },
+    {
+      "id": "m1-lem-slope-input",
+      "kind": "lemma",
+      "label": "Slope input",
+      "statement": "[Slope input] Put \\[ f(x)=\\ -3x 25 ,\\ x 2 -7 25 ,\\ 28x 25 -31 50 \\ (0 x1). \\] Every torsion-free slope-semistable sheaf F on X with |(F)|1 satisfies d(F) r(F) f(|(F)|). The estimate extends under…",
+      "section": "A uniform family of double-tilt aisles",
+      "manuscript": "A Gepner stability condition on every smooth quintic threefold"
+    },
+    {
+      "id": "m1-lem-first-tilt-noetherian",
+      "kind": "lemma",
+      "label": "The abelian categories B_ -1/2 and B_ 1/2 are noetherian.",
+      "statement": "The abelian categories B_ -1/2 and B_ 1/2 are noetherian.",
+      "section": "A uniform family of double-tilt aisles",
+      "manuscript": "A Gepner stability condition on every smooth quintic threefold"
+    },
+    {
+      "id": "m1-lem-second-tilt",
+      "kind": "lemma",
+      "label": "The second tilt",
+      "statement": "[The second tilt] For every b=1/2 and B_ , the pair ( T_b^, F_b^) is a torsion pair. Its tilt has bounded heart and aisle \\[ A_b^= F_b^, T_b^, U_b^ =\\ E W_b:H^0_ B_b (E) T_b^\\ . \\] On A_b^ one has…",
+      "section": "A uniform family of double-tilt aisles",
+      "manuscript": "A Gepner stability condition on every smooth quintic threefold"
+    },
+    {
+      "id": "m1-lem-compare-slope-cuts",
+      "kind": "lemma",
+      "label": "For every , B_ , \\[ U_+^ U_-^. \\]",
+      "statement": "For every , B_ , \\[ U_+^ U_-^. \\]",
+      "section": "A uniform family of double-tilt aisles",
+      "manuscript": "A Gepner stability condition on every smooth quintic threefold"
+    },
+    {
+      "id": "m1-lem-twist-aisle",
+      "kind": "lemma",
+      "label": "For all , B_ , \\[ _X A_-^, _X[2] A_+^, T_ _X ( U_+^) U_-^. \\]",
+      "statement": "For all , B_ , \\[ _X A_-^, _X[2] A_+^, T_ _X ( U_+^) U_-^. \\]",
+      "section": "A uniform family of double-tilt aisles",
+      "manuscript": "A Gepner stability condition on every smooth quintic threefold"
+    },
+    {
+      "id": "m1-prop-uniform-aisle",
+      "kind": "proposition",
+      "label": "Uniform independent-parameter inclusion",
+      "statement": "[Uniform independent-parameter inclusion] There is a fixed open square =\\ =(_0,_1):|_0|,|_1|<510^ -6 \\ and bounded aisles U_= U_-^ , with hearts A_=U_(U_)^ , such that U_ U_ (,). Moreover…",
+      "section": "A uniform family of double-tilt aisles",
+      "manuscript": "A Gepner stability condition on every smooth quintic threefold"
+    },
+    {
+      "id": "m1-prop-fine-grid",
+      "kind": "proposition",
+      "label": "Uniform refinement of the grid",
+      "statement": "[Uniform refinement of the grid] There is an open square _1 about zero, contained in , such that D_3^ D_0^ (,_1). For k and _1 , define V_k^=^mU_, k=2m+5j. This is independent of the integers m,j…",
+      "section": "From uniform aisle inclusions to a slicing",
+      "manuscript": "A Gepner stability condition on every smooth quintic threefold"
+    },
+    {
+      "id": "m1-lem-block-filtrations",
+      "kind": "lemma",
+      "label": "Block filtrations",
+      "statement": "[Block filtrations] The blocks are extension closed, and ( S_j, S_k)=0 whenever j>k . Every object has a finite triangle filtration with nonzero factors in blocks of strictly decreasing indices. In…",
+      "section": "From uniform aisle inclusions to a slicing",
+      "manuscript": "A Gepner stability condition on every smooth quintic threefold"
+    },
+    {
+      "id": "m1-prop-block-support",
+      "kind": "proposition",
+      "label": "For the fixed Euclidean norm on (X)_ , there is a constant C>0 such that, for…",
+      "statement": "For the fixed Euclidean norm on (X)_ , there is a constant C>0 such that, for every k and every nonzero E S_k , Z(E)\\ t e^ i :t>0,\\ k/5(k+1)/5\\ ,\\\\ [E] C|Z(E)|.",
+      "section": "From uniform aisle inclusions to a slicing",
+      "manuscript": "A Gepner stability condition on every smooth quintic threefold"
+    },
+    {
+      "id": "m1-lem-block-hn",
+      "kind": "lemma",
+      "label": "Finite block refinement",
+      "statement": "[Finite block refinement] Every nonzero object of S_k has a finite filtration by short exact sequences in H_k , with all intermediate quotients in S_k , whose nonzero factors are block-semistable…",
+      "section": "From uniform aisle inclusions to a slicing",
+      "manuscript": "A Gepner stability condition on every smooth quintic threefold"
+    },
+    {
+      "id": "m1-lem-block-hom",
+      "kind": "lemma",
+      "label": "The unsaturated test and Hom vanishing",
+      "statement": "[The unsaturated test and Hom vanishing] If E S_k is block-semistable, then every nonzero subobject G E in H_k satisfies _k(G)_k(E) , without a saturation assumption. Consequently, for…",
+      "section": "From uniform aisle inclusions to a slicing",
+      "manuscript": "A Gepner stability condition on every smooth quintic threefold"
+    },
+    {
+      "id": "m1-prop-slicing",
+      "kind": "proposition",
+      "label": "The categories P() form a slicing of with finite Harder--Narasimhan…",
+      "statement": "The categories P() form a slicing of with finite Harder--Narasimhan filtrations. They satisfy P(+1)= P()[1], P()= P(+2/5) (), and every nonzero E P() satisfies Z(E)_ >0 e^ i , [E] C|Z(E)|.",
+      "section": "From uniform aisle inclusions to a slicing",
+      "manuscript": "A Gepner stability condition on every smooth quintic threefold"
+    },
+    {
+      "id": "m1-lem-phase-cuts",
+      "kind": "lemma",
+      "label": "Direct construction of the phase cuts",
+      "statement": "[Direct construction of the phase cuts] For every real c , both pairs ( P((c,)), P((-,c])), ( P([c,)), P((-,c))) are an aisle and its right orthogonal for a bounded t-structure. Their hearts are…",
+      "section": "From uniform aisle inclusions to a slicing",
+      "manuscript": "A Gepner stability condition on every smooth quintic threefold"
+    },
+    {
+      "id": "m1-lem-interval-quasiabelian",
+      "kind": "lemma",
+      "label": "The exact structure on a short phase interval",
+      "statement": "[The exact structure on a short phase interval] For every interval I of width less than one, with any choices of open or closed endpoints, P(I) is quasi-abelian. Its strict exact sequences are…",
+      "section": "From uniform aisle inclusions to a slicing",
+      "manuscript": "A Gepner stability condition on every smooth quintic threefold"
+    },
+    {
+      "id": "m1-prop-local-finiteness",
+      "kind": "proposition",
+      "label": "Local finiteness",
+      "statement": "[Local finiteness] Every phase interval of width less than one generates a finite-length quasi-abelian category. Hence the slicing in Proposition~ is locally finite.",
+      "section": "From uniform aisle inclusions to a slicing",
+      "manuscript": "A Gepner stability condition on every smooth quintic threefold"
+    },
+    {
+      "id": "m2-thm-geometric-sector",
+      "kind": "theorem",
+      "label": "Exact large-volume charges on a real sector",
+      "statement": "[Exact large-volume charges on a real sector] Let X be a smooth projective complex threefold with K_X_X . For any B_* N^1(X)_ and H_*Amp(X) there are open neighborhoods V of B_* and W of H_* and one…",
+      "section": "Introduction",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-thm-uniform-inequality",
+      "kind": "theorem",
+      "label": "Uniform strong inequality",
+      "statement": "[Uniform strong inequality] Let X be a smooth projective complex threefold, H an ample integral divisor, and B_0 N^1(X)_ . There are constants k_ 0 and R_*>0 , depending only on (X,H,B_0) , such that…",
+      "section": "Introduction",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-cor-quadratic-tail",
+      "kind": "corollary",
+      "label": "A parabolic region with trivial correction",
+      "statement": "[A parabolic region with trivial correction] For every polarized smooth projective threefold (X,H) there is R_*>0 such that, if \\[ >f():= ^2+R_*^2 2 , \\] then Q_ , (v_H(E))0 for every nonzero…",
+      "section": "Introduction",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-lem-full-numerical-embedding",
+      "kind": "lemma",
+      "label": "Let X be a smooth projective threefold. Rational Chern characters identify its…",
+      "statement": "Let X be a smooth projective threefold. Rational Chern characters identify its numerical Grothendieck group with (X)_ N^1(X)_ N_1(X)_. Products of numerical divisor classes span this space. Given a…",
+      "section": "Prescribed charges on the full numerical lattice",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-lem-elliptic-scaled-support",
+      "kind": "lemma",
+      "label": "Scaled support on an elliptic product",
+      "statement": "[Scaled support on an elliptic product] Let C be an elliptic curve, let n1 , and fix positive rational numbers _1,,_n . For rational R1 , put w_r=R_r and let H_r be the point-divisor class from the r…",
+      "section": "Prescribed charges on the full numerical lattice",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-prop-weighted-ambient",
+      "kind": "proposition",
+      "label": "Let Y=_ h=1 ^q P^ d_h , put _h=c_1(_h(1)) , and fix s_h>0 . There is a…",
+      "statement": "Let Y=_ h=1 ^q P^ d_h , put _h=c_1(_h(1)) , and fix s_h>0 . There is a continuous family of numerical stability conditions (U_R, R_R) for R1 with \\[ U_R(u)=-_Ye^ -iR_hs_h_h (u). \\] All point sheaves…",
+      "section": "Prescribed charges on the full numerical lattice",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-lem-geometric-range",
+      "kind": "lemma",
+      "label": "Cohomological bounds from points",
+      "statement": "[Cohomological bounds from points] Let V be a smooth projective variety of dimension n2 , and let R be a locally finite slicing in which every point sheaf is stable of phase 1 . Then R(0,1]& D^…",
+      "section": "Prescribed charges on the full numerical lattice",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-lem-primitive-point",
+      "kind": "lemma",
+      "label": "Stability from an open set of charges",
+      "statement": "[Stability from an open set of charges] Let a stability condition have support on a finite-rank lattice . Suppose that an object E has primitive class in and remains semistable throughout a…",
+      "section": "Prescribed charges on the full numerical lattice",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-lem-uniform-ambient-deformation",
+      "kind": "lemma",
+      "label": "For every 0<<1/8 , there are open neighborhoods V B_* and W H_* in the real…",
+      "statement": "For every 0<<1/8 , there are open neighborhoods V B_* and W H_* in the real divisor and ample spaces, and T1 , such that for all B V , H W , and t T , the charge lifts to a stability condition with…",
+      "section": "Prescribed charges on the full numerical lattice",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-prop-geometric-prescribed-charges",
+      "kind": "proposition",
+      "label": "For either factor in , the choices in Lemma~ can be made so that every B V,H…",
+      "statement": "For either factor in , the choices in Lemma~ can be made so that every B V,H W,t T gives a locally finite geometric stability condition on X , with charge and full numerical support. Every point…",
+      "section": "Prescribed charges on the full numerical lattice",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-lem-surface-geometric-heart",
+      "kind": "lemma",
+      "label": "Let S be a smooth projective surface and (Z, R) a locally finite geometric…",
+      "statement": "Let S be a smooth projective surface and (Z, R) a locally finite geometric stability condition, normalized so that point sheaves have phase 1 . Suppose \\[ Z(G)=(c_1(G)-(G)), \\] where is a real ample…",
+      "section": "The ordinary double tilt throughout the real sector",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-lem-heart-cohomology-slopes",
+      "kind": "lemma",
+      "label": "Every E C has cohomology in degrees [-2,0] , its sheaf H^ -2 (E) is…",
+      "statement": "Every E C has cohomology in degrees [-2,0] , its sheaf H^ -2 (E) is torsion-free, and m^+_ H,B ( H^ -2 (E))-c, m^-_ H,B ( H^0(E))>c. A bound for a zero sheaf is vacuous.",
+      "section": "The ordinary double tilt throughout the real sector",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-lem-first-tilt-phase-range",
+      "kind": "lemma",
+      "label": "We have B P(-1,1]. Consequently \\[ T_0= B P(0,1], F_0= B P(-1,0] \\] is a…",
+      "statement": "We have B P(-1,1]. Consequently \\[ T_0= B P(0,1], F_0= B P(-1,0] \\] is a torsion pair in B , and C= F_0[1], T_0 .",
+      "section": "The ordinary double tilt throughout the real sector",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-lem-phase-one-first-tilt",
+      "kind": "lemma",
+      "label": "An object of B P(1) is a zero-dimensional sheaf.",
+      "statement": "An object of B P(1) is a zero-dimensional sheaf.",
+      "section": "The ordinary double tilt throughout the real sector",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-lem-physical-zero-denominator",
+      "kind": "lemma",
+      "label": "For E B the denominator in is nonnegative. If it vanishes, then Z_ B,tH (E)0 ,…",
+      "statement": "For E B the denominator in is nonnegative. If it vanishes, then Z_ B,tH (E)0 , with equality only for a zero-dimensional sheaf.",
+      "section": "The ordinary double tilt throughout the real sector",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-prop-exact-double-tilt-heart",
+      "kind": "proposition",
+      "label": "For the factor =1 throughout the real sector of Proposition~ , \\[ P(0,1]= A_…",
+      "statement": "For the factor =1 throughout the real sector of Proposition~ , \\[ P(0,1]= A_ B,tH . \\]",
+      "section": "The ordinary double tilt throughout the real sector",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-lem-tilt-zero-denominator",
+      "kind": "lemma",
+      "label": "An object E B_ H,B has d_B(E)0 . Write n=w_B-a^2r/2 . If d_B(E)=0 , then n(E)0…",
+      "statement": "An object E B_ H,B has d_B(E)0 . Write n=w_B-a^2r/2 . If d_B(E)=0 , then n(E)0 , with equality exactly when E is a zero-dimensional sheaf, including the zero object. For a finite-slope object E ,…",
+      "section": "Tilt stability and numerical transport",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-lem-tilt-support-bound",
+      "kind": "lemma",
+      "label": "For fixed a>0 there is a constant C_a , depending only on a,X,H , such that…",
+      "statement": "For fixed a>0 there is a constant C_a , depending only on a,X,H , such that every tilt-semistable object, at any real twist B , satisfies |r|+|w_B|+\\|c_B\\| C_a(d_B+|n|), n=w_B-a^2r/2. The constants…",
+      "section": "Tilt stability and numerical transport",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-lem-finite-tilt-factors",
+      "kind": "lemma",
+      "label": "Every nonzero finite-slope tilt-semistable object has a finite filtration in B_…",
+      "statement": "Every nonzero finite-slope tilt-semistable object has a finite filtration in B_ H,B whose factors are tilt-stable of the same finite slope. Extensions of finite-slope semistable objects of the same…",
+      "section": "Tilt stability and numerical transport",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-lem-tilt-semicircle",
+      "kind": "lemma",
+      "label": "Suppose E is tilt-semistable of finite slope u at (a,b) . Put c=b+u and…",
+      "statement": "Suppose E is tilt-semistable of finite slope u at (a,b) . Put c=b+u and R=a^2+u^2 . Then E is tilt-semistable at every point b'=c+x, a'=R^2-x^2, -R<x<R, and its slope there is -x . In particular it…",
+      "section": "Tilt stability and numerical transport",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-lem-tilt-duality",
+      "kind": "lemma",
+      "label": "Let a>0 , let B be real, and let E B_ H,B be tilt-semistable of finite slope u…",
+      "statement": "Let a>0 , let B be real, and let E B_ H,B be tilt-semistable of finite slope u . There are a zero-dimensional sheaf T_0 and a distinguished triangle E D(E) T_0[-1] E[1], where E B_ H,-B is…",
+      "section": "Tilt stability and numerical transport",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-lem-restriction-variance",
+      "kind": "lemma",
+      "label": "Restriction variance",
+      "statement": "[Restriction variance] Let G be a slope-semistable torsion-free sheaf of rank r>0 on X . For a very general smooth S|H| , restrict G and refine its slope Harder--Narasimhan filtration into…",
+      "section": "Restriction and cohomology bounds",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-lem-uniform-sections",
+      "kind": "lemma",
+      "label": "Uniform smooth sections",
+      "statement": "[Uniform smooth sections] There is an integer m>0 , depending only on X,H , such that every smooth S|H| satisfies h^0(S,_S(mH))=(_S(mH)), (K_S)-m-1, and H^0(X,_X(mH)) H^0(S,_S(mH)) is surjective. One…",
+      "section": "Restriction and cohomology bounds",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-lem-uniform-heat",
+      "kind": "lemma",
+      "label": "Uniform heat estimates",
+      "statement": "[Uniform heat estimates] Let Y range over the compact families of curves or surfaces in Lemma~ , with real dimension n . Write _ sc for the nonnegative scalar Laplacian. Its heat kernel satisfies \\[…",
+      "section": "Restriction and cohomology bounds",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-lem-subsheaf-sections",
+      "kind": "lemma",
+      "label": "Sections of a subsheaf",
+      "statement": "[Sections of a subsheaf] Let Y be one of the curves or surfaces in Lemma~ , let G be a slope-stable torsion-free sheaf on Y , and let J G have rank q . Then h^0(Y,J) Cq(1+(G)_+)^ Y , x_+=\\ x,0\\ ,…",
+      "section": "Restriction and cohomology bounds",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-lem-matrix-spectral",
+      "kind": "lemma",
+      "label": "Spectral dimension bound",
+      "statement": "[Spectral dimension bound] Let S be one of the surfaces in Lemma~ . Let V be a Hermitian vector bundle with metric connection, L=^*+1 , and let P be a bounded measurable nonnegative selfadjoint…",
+      "section": "Restriction and cohomology bounds",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-prop-negative-surface-cohomology",
+      "kind": "proposition",
+      "label": "Surface first cohomology",
+      "statement": "[Surface first cohomology] Fix a real number M . There is a number A_0 , depending only on X,H,B_0,M and the chosen smooth neighborhoods, with the following property. For A A_0 and a finite set I\\…",
+      "section": "Restriction and cohomology bounds",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-prop-apex",
+      "kind": "proposition",
+      "label": "Let X be a smooth projective complex threefold, let H be very ample, and let…",
+      "statement": "Let X be a smooth projective complex threefold, let H be very ample, and let B_0 be a rational divisor class with H^2B_0=0 . There are constants A>0 and C0 , depending only on X,H,B_0 , such that,…",
+      "section": "A uniform estimate at one volume",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-lem-frobenius-presentation",
+      "kind": "lemma",
+      "label": "There are positive integers j,j_2 and a constant C_0 , determined by X,H,D ,…",
+      "statement": "There are positive integers j,j_2 and a constant C_0 , determined by X,H,D , with the following property. After choosing and shrinking a model of this fixed geometry over a finitely generated…",
+      "section": "A uniform estimate at one volume",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-cor-frobenius-section-transfer",
+      "kind": "corollary",
+      "label": "From fixed twists to Frobenius sections",
+      "statement": "[From fixed twists to Frobenius sections] On a smooth geometric fiber in the preceding lemma, let P_1 be a perfect complex with ordinary cohomology in degrees [-1,0] . If \\[ H^0( H^ -1 (P_1)(j_2))=0,…",
+      "section": "A uniform estimate at one volume",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-lem-restriction-image",
+      "kind": "lemma",
+      "label": "Let E B_ H,B_0+bH be finite-slope _ A,b -semistable with _ A,b (E)=0 and |b|1 .…",
+      "statement": "Let E B_ H,B_0+bH be finite-slope _ A,b -semistable with _ A,b (E)=0 and |b|1 . Put B=B_0+bH and e=d_B(E)-A|r(E)| . Let P be the residual term in when r(E)0 , or in when r(E)0 . Let W(_X(-tH),P) be…",
+      "section": "A uniform estimate at one volume",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-cor-residual-sections",
+      "kind": "corollary",
+      "label": "Let E B_ H,B_0+bH be finite-slope _ A,b -semistable with _ A,b (E)=0 and |b|1 .…",
+      "statement": "Let E B_ H,B_0+bH be finite-slope _ A,b -semistable with _ A,b (E)=0 and |b|1 . Put B=B_0+bH and e=d_B(E)-A|r(E)| . For r(E)0 , take P from and put V_P= H^ -1 (P) . For r(E)0 , use the decomposition…",
+      "section": "A uniform estimate at one volume",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-lem-fixed-sheaf-spreading",
+      "kind": "lemma",
+      "label": "Let G be a slope-semistable torsion-free sheaf on a smooth projective complex…",
+      "statement": "Let G be a slope-semistable torsion-free sheaf on a smooth projective complex variety Y with a fixed very ample class. There is a model and a localization on which the geometric fibers of G are…",
+      "section": "A uniform estimate at one volume",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-lem-frobenius-slope-gap",
+      "kind": "lemma",
+      "label": "On a smooth projective geometric fiber in characteristic p , let G be a…",
+      "statement": "On a smooth projective geometric fiber in characteristic p , let G be a slope-semistable torsion-free sheaf of rank r . For a constant c_Y fixed by the chosen model of Y and its polarization, _…",
+      "section": "A uniform estimate at one volume",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-prop-apex-transport",
+      "kind": "proposition",
+      "label": "Transport from a fixed apex",
+      "statement": "[Transport from a fixed apex] Fix a smooth projective complex threefold X , an integral ample class H , and B_0 N^1(X)_ . Suppose that there are A>0 and C0 such that every finite-slope…",
+      "section": "From one apex to uniform inequalities",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    },
+    {
+      "id": "m2-lem-exceptional-surface-bound",
+      "kind": "lemma",
+      "label": "Let \\(X\\) be a smooth projective complex threefold, let \\(H\\) be an ample…",
+      "statement": "Let \\(X\\) be a smooth projective complex threefold, let \\(H\\) be an ample integral divisor, and let \\(i:D X\\) be a smooth integral divisor such that \\(H|_D=-D|_D\\). Fix \\(B_0 N^1(X)_ \\), and set…",
+      "section": "Comparison with the known counterexamples",
+      "manuscript": "Prescribed large-volume charges on threefolds with trivial canonical bundle"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-first-tilt-noetherian",
+      "to": "m1-lem-second-tilt"
+    },
+    {
+      "from": "m1-lem-slope-input",
+      "to": "m1-lem-compare-slope-cuts"
+    },
+    {
+      "from": "m1-lem-compare-slope-cuts",
+      "to": "m1-lem-twist-aisle"
+    },
+    {
+      "from": "m1-lem-twist-aisle",
+      "to": "m1-prop-uniform-aisle"
+    },
+    {
+      "from": "m1-lem-second-tilt",
+      "to": "m1-prop-uniform-aisle"
+    },
+    {
+      "from": "m1-lem-periodicity",
+      "to": "m1-prop-uniform-aisle"
+    },
+    {
+      "from": "m1-lem-second-tilt",
+      "to": "m1-prop-block-support"
+    },
+    {
+      "from": "m1-lem-numerical",
+      "to": "m1-lem-block-hn"
+    },
+    {
+      "from": "m1-prop-block-support",
+      "to": "m1-lem-block-hn"
+    },
+    {
+      "from": "m1-lem-block-filtrations",
+      "to": "m1-prop-slicing"
+    },
+    {
+      "from": "m1-lem-block-hom",
+      "to": "m1-prop-slicing"
+    },
+    {
+      "from": "m1-lem-block-hn",
+      "to": "m1-prop-slicing"
+    },
+    {
+      "from": "m1-lem-block-hn",
+      "to": "m1-prop-local-finiteness"
+    },
+    {
+      "from": "m1-lem-interval-quasiabelian",
+      "to": "m1-prop-local-finiteness"
+    },
+    {
+      "from": "m1-lem-periodicity",
+      "to": "m1-prop-local-finiteness"
+    },
+    {
+      "from": "m2-lem-elliptic-scaled-support",
+      "to": "m2-prop-weighted-ambient"
+    },
+    {
+      "from": "m2-lem-uniform-ambient-deformation",
+      "to": "m2-prop-geometric-prescribed-charges"
+    },
+    {
+      "from": "m2-lem-primitive-point",
+      "to": "m2-prop-geometric-prescribed-charges"
+    },
+    {
+      "from": "m2-lem-geometric-range",
+      "to": "m2-prop-geometric-prescribed-charges"
+    },
+    {
+      "from": "m2-lem-full-numerical-embedding",
+      "to": "m2-prop-geometric-prescribed-charges"
+    },
+    {
+      "from": "m2-lem-geometric-range",
+      "to": "m2-lem-surface-geometric-heart"
+    },
+    {
+      "from": "m2-lem-geometric-range",
+      "to": "m2-lem-heart-cohomology-slopes"
+    },
+    {
+      "from": "m2-lem-geometric-range",
+      "to": "m2-lem-first-tilt-phase-range"
+    },
+    {
+      "from": "m2-lem-geometric-range",
+      "to": "m2-lem-phase-one-first-tilt"
+    },
+    {
+      "from": "m2-lem-first-tilt-phase-range",
+      "to": "m2-prop-exact-double-tilt-heart"
+    },
+    {
+      "from": "m2-lem-physical-zero-denominator",
+      "to": "m2-prop-exact-double-tilt-heart"
+    },
+    {
+      "from": "m2-lem-phase-one-first-tilt",
+      "to": "m2-prop-exact-double-tilt-heart"
+    },
+    {
+      "from": "m2-lem-tilt-zero-denominator",
+      "to": "m2-lem-finite-tilt-factors"
+    },
+    {
+      "from": "m2-lem-tilt-support-bound",
+      "to": "m2-lem-finite-tilt-factors"
+    },
+    {
+      "from": "m2-lem-finite-tilt-factors",
+      "to": "m2-lem-tilt-semicircle"
+    },
+    {
+      "from": "m2-lem-finite-tilt-factors",
+      "to": "m2-lem-tilt-duality"
+    },
+    {
+      "from": "m2-lem-tilt-zero-denominator",
+      "to": "m2-lem-tilt-duality"
+    },
+    {
+      "from": "m2-lem-uniform-heat",
+      "to": "m2-lem-subsheaf-sections"
+    },
+    {
+      "from": "m2-lem-uniform-heat",
+      "to": "m2-lem-matrix-spectral"
+    },
+    {
+      "from": "m2-lem-subsheaf-sections",
+      "to": "m2-prop-negative-surface-cohomology"
+    },
+    {
+      "from": "m2-lem-matrix-spectral",
+      "to": "m2-prop-negative-surface-cohomology"
+    },
+    {
+      "from": "m2-lem-tilt-support-bound",
+      "to": "m2-lem-restriction-image"
+    },
+    {
+      "from": "m2-lem-uniform-sections",
+      "to": "m2-lem-restriction-image"
+    },
+    {
+      "from": "m2-lem-restriction-variance",
+      "to": "m2-lem-restriction-image"
+    },
+    {
+      "from": "m2-lem-subsheaf-sections",
+      "to": "m2-lem-restriction-image"
+    },
+    {
+      "from": "m2-lem-restriction-image",
+      "to": "m2-cor-residual-sections"
+    },
+    {
+      "from": "m2-lem-finite-tilt-factors",
+      "to": "m2-prop-apex-transport"
+    },
+    {
+      "from": "m2-thm-uniform-inequality",
+      "to": "m2-prop-apex-transport"
+    },
+    {
+      "from": "m2-prop-apex",
+      "to": "m2-prop-apex-transport"
+    },
+    {
+      "from": "m2-cor-quadratic-tail",
+      "to": "m2-prop-apex-transport"
+    },
+    {
+      "from": "m2-lem-tilt-semicircle",
+      "to": "m2-prop-apex-transport"
+    }
+  ]
+}

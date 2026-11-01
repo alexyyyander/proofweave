@@ -1,0 +1,315 @@
+{
+  "familyNumber": "193",
+  "familyTitle": "Serre’s intersection-multiplicity conjecture",
+  "manuscripts": [
+    {
+      "id": "Positivity-of-Serres-Intersection-Multiplicity-September-23-2026",
+      "title": "Positivity of Serre's Intersection Multiplicity",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Positivity-of-Serres-Intersection-Multiplicity-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Residue fields and normalized length",
+    "Rational descent with closed supports",
+    "Supported asymptotic complexes",
+    "Proof of strict positivity"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Let (R,) be a commutative Noetherian regular local ring of dimension d , and…",
+      "statement": "Let (R,) be a commutative Noetherian regular local ring of dimension d , and let M,N be nonzero finitely generated R -modules. If _R(M_R N)< and _R M+_R N=d , then \\[ ^R(M,N)>0. \\]",
+      "section": "Introduction",
+      "manuscript": "Positivity of Serre's Intersection Multiplicity"
+    },
+    {
+      "id": "m1-cor-tangent-cone",
+      "kind": "corollary",
+      "label": "Finite strict-transform intersection",
+      "statement": "[Finite strict-transform intersection] Let (A,) be a commutative Noetherian regular local ring with residue field k , and let P,Q be prime ideals such that A/(P+Q) has finite length and (A/P)+(A/Q)=…",
+      "section": "Introduction",
+      "manuscript": "Positivity of Serre's Intersection Multiplicity"
+    },
+    {
+      "id": "m1-len-residue-extension",
+      "kind": "lemma",
+      "label": "Residue-field extension",
+      "statement": "[Residue-field extension] Let (B, b,k) be a complete Noetherian local ring, and let k be an algebraic closure of k . There is a complete Noetherian local ring (B', b',k) and a flat local map B B'…",
+      "section": "Residue fields and normalized length",
+      "manuscript": "Positivity of Serre's Intersection Multiplicity"
+    },
+    {
+      "id": "m1-len-normalization",
+      "kind": "lemma",
+      "label": "Regular normalization bases",
+      "statement": "[Regular normalization bases] Let (D, d,k) be a complete Noetherian local domain of dimension h>0 , where k is perfect of characteristic p>0 . There is a finite, generically separable inclusion A D ,…",
+      "section": "Residue fields and normalized length",
+      "manuscript": "Positivity of Serre's Intersection Multiplicity"
+    },
+    {
+      "id": "m1-len-tower",
+      "kind": "lemma",
+      "label": "The tower and its length",
+      "statement": "[The tower and its length] Each A_n is a complete regular local ring with residue field k . For b a , the map A_a A_b is finite free of rank p^ (b-a)h ; in particular A A_n has rank p^ nh . On the…",
+      "section": "Residue fields and normalized length",
+      "manuscript": "Positivity of Serre's Intersection Multiplicity"
+    },
+    {
+      "id": "m1-len-zero-length-limits",
+      "kind": "lemma",
+      "label": "Zero-length limits",
+      "statement": "[Zero-length limits] Suppose all modules under consideration are killed by one fixed power of m_A . Sums, direct sums, and directed colimits of zero-length modules have length zero. For an increasing…",
+      "section": "Residue fields and normalized length",
+      "manuscript": "Positivity of Serre's Intersection Multiplicity"
+    },
+    {
+      "id": "m1-len-input",
+      "kind": "theorem",
+      "label": "Normalized-length input",
+      "statement": "[Normalized-length input] Let (D, d,k) and a chosen finite generically separable base A D be as in Lemma~ , and let be the tower . There is a D -algebra C_D , carrying a compatible -action, such that…",
+      "section": "Residue fields and normalized length",
+      "manuscript": "Positivity of Serre's Intersection Multiplicity"
+    },
+    {
+      "id": "m1-len-finite-length-base-change",
+      "kind": "corollary",
+      "label": "Finite-length base change",
+      "statement": "[Finite-length base change] In Theorem~ , put r=_A D . For every finite-length A -module V , \\[ _D_i^A(V,C_D)=0(i>0), _D(V_A C_D)=r_A(V). \\] Moreover _D(C_D/ d C_D)>0 .",
+      "section": "Residue fields and normalized length",
+      "manuscript": "Positivity of Serre's Intersection Multiplicity"
+    },
+    {
+      "id": "m1-ds-descent",
+      "kind": "theorem",
+      "label": "Supported rational descent",
+      "statement": "[Supported rational descent] Let A be a commutative Noetherian _ (p) -algebra of finite Krull dimension, let J A be an ideal containing p , and let H be a connective associative A -algebra with…",
+      "section": "Rational descent with closed supports",
+      "manuscript": "Positivity of Serre's Intersection Multiplicity"
+    },
+    {
+      "id": "m1-ds-finite-flat",
+      "kind": "lemma",
+      "label": "The functor satisfies ordinary Cech descent for finite faithfully flat covers,…",
+      "statement": "The functor satisfies ordinary Cech descent for finite faithfully flat covers, universally under base change.",
+      "section": "Rational descent with closed supports",
+      "manuscript": "Positivity of Serre's Intersection Multiplicity"
+    },
+    {
+      "id": "m1-ds-finite-surjection",
+      "kind": "lemma",
+      "label": "The functor satisfies ordinary Cech descent for every finite surjection of…",
+      "statement": "The functor satisfies ordinary Cech descent for every finite surjection of finite-type A -schemes.",
+      "section": "Rational descent with closed supports",
+      "manuscript": "Positivity of Serre's Intersection Multiplicity"
+    },
+    {
+      "id": "m1-ds-finite-length-basechange",
+      "kind": "lemma",
+      "label": "For every finite-length A -module V , _i^A(V,C)=0(i>0), (V_A C)=r_A(V). All…",
+      "statement": "For every finite-length A -module V , _i^A(V,C)=0(i>0), (V_A C)=r_A(V). All these lengths are finite.",
+      "section": "Rational descent with closed supports",
+      "manuscript": "Positivity of Serre's Intersection Multiplicity"
+    },
+    {
+      "id": "m1-ds-ordinary-norm",
+      "kind": "lemma",
+      "label": "Ordinary norm comparison",
+      "statement": "[Ordinary norm comparison] Assume, in addition, that a finite group G acts on T over A and is transitive on every geometric fiber of T A . For a perfect T -complex P supported on V(_A T) , the…",
+      "section": "Rational descent with closed supports",
+      "manuscript": "Positivity of Serre's Intersection Multiplicity"
+    },
+    {
+      "id": "m1-as-supported-quotient",
+      "kind": "lemma",
+      "label": "The natural exact functor \\[ S_S/( S_S N_S) D_S/ N_S \\] is fully faithful. Its…",
+      "statement": "The natural exact functor \\[ S_S/( S_S N_S) D_S/ N_S \\] is fully faithful. Its idempotent completion is P_S^J .",
+      "section": "Supported asymptotic complexes",
+      "manuscript": "Positivity of Serre's Intersection Multiplicity"
+    },
+    {
+      "id": "m1-as-evaluations",
+      "kind": "proposition",
+      "label": "There are homological functors \\[ H_i^ ord : P_T^J A_T, H_i^C: P_T^J A_C \\]…",
+      "statement": "There are homological functors \\[ H_i^ ord : P_T^J A_T, H_i^C: P_T^J A_C \\] whose values on a uniformly supported lift are its ordinary homology sequence and its homology sequence after tensoring…",
+      "section": "Supported asymptotic complexes",
+      "manuscript": "Positivity of Serre's Intersection Multiplicity"
+    },
+    {
+      "id": "m1-as-finite-tor",
+      "kind": "lemma",
+      "label": "For every finite-length A -module V , \\[ _j^A(V,C)=0(j>0), (V_A C)=r_A V. \\]…",
+      "statement": "For every finite-length A -module V , \\[ _j^A(V,C)=0(j>0), (V_A C)=r_A V. \\] All these modules are annihilated by a power of J .",
+      "section": "Supported asymptotic complexes",
+      "manuscript": "Positivity of Serre's Intersection Multiplicity"
+    },
+    {
+      "id": "m1-as-base-equality",
+      "kind": "proposition",
+      "label": "For every X P_A^J , \\[ _ ord (X_A^ L T) =r_A(X) =_C(X_A^ L T). \\] These…",
+      "statement": "For every X P_A^J , \\[ _ ord (X_A^ L T) =r_A(X) =_C(X_A^ L T). \\] These equalities hold for summands defined by idempotents in the Verdier quotient, without assuming that the idempotents lift to…",
+      "section": "Supported asymptotic complexes",
+      "manuscript": "Positivity of Serre's Intersection Multiplicity"
+    },
+    {
+      "id": "m1-as-connective",
+      "kind": "lemma",
+      "label": "Connective coefficients",
+      "statement": "[Connective coefficients] There is a connective associative derived A -algebra H and compatible equivalences \\[ P_A(H), P_T(H_A^ L T). \\] The equivalences respect central localization by elements of…",
+      "section": "Supported asymptotic complexes",
+      "manuscript": "Positivity of Serre's Intersection Multiplicity"
+    },
+    {
+      "id": "m1-as-norm",
+      "kind": "theorem",
+      "label": "Asymptotic norm comparison",
+      "statement": "[Asymptotic norm comparison] Let A,J,T,C, satisfy the setup of this section and . Suppose a finite group G acts on T over A , the map T A is surjective, and G is transitive on every geometric fiber.…",
+      "section": "Supported asymptotic complexes",
+      "manuscript": "Positivity of Serre's Intersection Multiplicity"
+    },
+    {
+      "id": "m1-pos-reduction",
+      "kind": "lemma",
+      "label": "To prove Theorem~ , it suffices to prove the assertion for \\[ D=R/P, E=R/Q, h=…",
+      "statement": "To prove Theorem~ , it suffices to prove the assertion for \\[ D=R/P, E=R/Q, h= D>0, l= E>0, h+l=d, \\] where R is complete with algebraically closed residue field k of characteristic p>0 , P,Q are…",
+      "section": "Proof of strict positivity",
+      "manuscript": "Positivity of Serre's Intersection Multiplicity"
+    },
+    {
+      "id": "m1-pos-first-average",
+      "kind": "lemma",
+      "label": "The lengths in Equation~ are finite, and |G_D|a_Da_E\\,^R(D,E)=_ G_D c_.",
+      "statement": "The lengths in Equation~ are finite, and |G_D|a_Da_E\\,^R(D,E)=_ G_D c_.",
+      "section": "Proof of strict positivity",
+      "manuscript": "Positivity of Serre's Intersection Multiplicity"
+    },
+    {
+      "id": "m1-pos-tor-bound",
+      "kind": "lemma",
+      "label": "For every finite B -module L , all the following lengths are finite, and…",
+      "statement": "For every finite B -module L , all the following lengths are finite, and _i(L):=(_i^B(U,L)) =(_i^R(C,L)), _i(L)=0(i>l).",
+      "section": "Proof of strict positivity",
+      "manuscript": "Positivity of Serre's Intersection Multiplicity"
+    },
+    {
+      "id": "m1-pos-approximation",
+      "kind": "lemma",
+      "label": "There are finite-length B -modules M_n and positive integers s_n , with…",
+      "statement": "There are finite-length B -modules M_n and positive integers s_n , with _B^aM_n=0 , such that _B(M_n) s_n &(U), \\\\ _B _i^B(M_n,L) s_n &_i(L) (L=k,E',\\ i0). Writing _0(M_n)=_k(M_n/_BM_n) , we also…",
+      "section": "Proof of strict positivity",
+      "manuscript": "Positivity of Serre's Intersection Multiplicity"
+    },
+    {
+      "id": "m1-pos-supported-truncation",
+      "kind": "lemma",
+      "label": "The sequence (F_ n, ')_n is supported at the closed point in that category. Its…",
+      "statement": "The sequence (F_ n, ')_n is supported at the closed point in that category. Its ordinary Euler evaluation is c_ for every G_E .",
+      "section": "Proof of strict positivity",
+      "manuscript": "Positivity of Serre's Intersection Multiplicity"
+    },
+    {
+      "id": "m1-pos-positive-evaluation",
+      "kind": "lemma",
+      "label": "The _E Euler evaluation of (F_ n, ')_n is a number b_ , satisfying b_ , __E…",
+      "statement": "The _E Euler evaluation of (F_ n, ')_n is a number b_ , satisfying b_ , __E _D(U) _B(B/_B^a) r_E t_E >0.",
+      "section": "Proof of strict positivity",
+      "manuscript": "Positivity of Serre's Intersection Multiplicity"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-thm-main",
+      "to": "m1-cor-tangent-cone"
+    },
+    {
+      "from": "m1-len-zero-length-limits",
+      "to": "m1-len-input"
+    },
+    {
+      "from": "m1-len-tower",
+      "to": "m1-len-input"
+    },
+    {
+      "from": "m1-ds-finite-flat",
+      "to": "m1-ds-finite-surjection"
+    },
+    {
+      "from": "m1-ds-descent",
+      "to": "m1-ds-finite-surjection"
+    },
+    {
+      "from": "m1-ds-finite-length-basechange",
+      "to": "m1-ds-ordinary-norm"
+    },
+    {
+      "from": "m1-ds-descent",
+      "to": "m1-ds-ordinary-norm"
+    },
+    {
+      "from": "m1-as-supported-quotient",
+      "to": "m1-as-evaluations"
+    },
+    {
+      "from": "m1-ds-finite-length-basechange",
+      "to": "m1-as-finite-tor"
+    },
+    {
+      "from": "m1-as-supported-quotient",
+      "to": "m1-as-base-equality"
+    },
+    {
+      "from": "m1-as-finite-tor",
+      "to": "m1-as-base-equality"
+    },
+    {
+      "from": "m1-as-connective",
+      "to": "m1-as-norm"
+    },
+    {
+      "from": "m1-ds-descent",
+      "to": "m1-as-norm"
+    },
+    {
+      "from": "m1-as-base-equality",
+      "to": "m1-as-norm"
+    },
+    {
+      "from": "m1-len-residue-extension",
+      "to": "m1-pos-reduction"
+    },
+    {
+      "from": "m1-ds-ordinary-norm",
+      "to": "m1-pos-first-average"
+    },
+    {
+      "from": "m1-len-input",
+      "to": "m1-pos-approximation"
+    },
+    {
+      "from": "m1-len-input",
+      "to": "m1-pos-positive-evaluation"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-pos-positive-evaluation"
+    },
+    {
+      "from": "m1-pos-reduction",
+      "to": "m1-pos-positive-evaluation"
+    },
+    {
+      "from": "m1-as-norm",
+      "to": "m1-pos-positive-evaluation"
+    },
+    {
+      "from": "m1-pos-supported-truncation",
+      "to": "m1-pos-positive-evaluation"
+    },
+    {
+      "from": "m1-pos-first-average",
+      "to": "m1-pos-positive-evaluation"
+    }
+  ]
+}

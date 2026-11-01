@@ -1,0 +1,801 @@
+{
+  "familyNumber": "113",
+  "familyTitle": "Approximate counting and entropy of perfect matchings",
+  "manuscripts": [
+    {
+      "id": "A-Fully-Polynomial-Randomized-Approximation-Scheme-for-Perfect-Matchings-in-General-Graphs-September-23-2026",
+      "title": "A Fully Polynomial Randomized Approximation Scheme for Perfect Matchings in General Graphs",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Fully-Polynomial-Randomized-Approximation-Scheme-for-Perfect-Matchings-in-General-Graphs-September-23-2026/main.pdf"
+    },
+    {
+      "id": "Entropy-and-Face-Dimension-of-the-Perfect-Matching-Polytope-September-23-2026",
+      "title": "Entropy and Face Dimension of the Perfect-Matching Polytope",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Entropy-and-Face-Dimension-of-the-Perfect-Matching-Polytope-September-23-2026/main.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Controlling the cost of unmatched vertices",
+    "A subdivision with controlled holes",
+    "A quadrangulation adapted to the labels",
+    "A two-coordinate energy inequality",
+    "A sampler from replicated adjacent tiers",
+    "From samples to the number of perfect matchings",
+    "A bounded-bit implementation",
+    "Prescribed-degree subgraphs and fixed-cardinality matchings",
+    "Faces and tight cuts of the perfect matching polytope",
+    "Entropy and the covariance trace",
+    "Entropy and counting consequences",
+    "Triangle expansions and sharp face codimension",
+    "Weighted partition functions",
+    "A rational objective for counting matchings",
+    "Optimization by an exact penalty",
+    "Computing an active odd-cut constraint",
+    "The algorithm and its guarantee",
+    "Alternative geometric and entropy arguments",
+    "A normalized-covariance proof of the nonlinear entropy bound",
+    "A convention allowing singleton loops"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "There is a uniform classical randomized algorithm which, given G and rational…",
+      "statement": "There is a uniform classical randomized algorithm which, given G and rational parameters 0<<1 and 0<<1/2 , returns a nonnegative rational number Z such that \\[ 1-. \\] If Z(G)=0 , the output is zero…",
+      "section": "Introduction",
+      "manuscript": "A Fully Polynomial Randomized Approximation Scheme for Perfect Matchings in General Graphs"
+    },
+    {
+      "id": "m1-thm-logical-hole-bound",
+      "kind": "theorem",
+      "label": "Logical hole bound",
+      "statement": "[Logical hole bound] Let be balanced, let B be its bottleneck similarity, and set \\[ D_0=10^8(n+1)^4. \\] For every even set U V , g_(U)_B(U) 2D_0^ |U|/2 .",
+      "section": "Controlling the cost of unmatched vertices",
+      "manuscript": "A Fully Polynomial Randomized Approximation Scheme for Perfect Matchings in General Graphs"
+    },
+    {
+      "id": "m1-lem-four-holes",
+      "kind": "lemma",
+      "label": "Four-hole inequality",
+      "statement": "[Four-hole inequality] For any positive activities and four distinct vertices a,b,c,d , \\[ g_(abcd) g_(ab)g_(cd)+g_(ac)g_(bd) +g_(ad)g_(bc). \\] Consequently, if every row maximum is at most 4 , then…",
+      "section": "Controlling the cost of unmatched vertices",
+      "manuscript": "A Fully Polynomial Randomized Approximation Scheme for Perfect Matchings in General Graphs"
+    },
+    {
+      "id": "m1-lem-hole-relocation",
+      "kind": "lemma",
+      "label": "Relocating a hole along a strong path",
+      "statement": "[Relocating a hole along a strong path] Let B be defined by , and suppose that _e_e for every edge and \\[ 18 r_i()4(i V). \\] If |U|\\ 2,4\\ and i,j U are distinct, then g_(U)10^5n B_ ij .",
+      "section": "Controlling the cost of unmatched vertices",
+      "manuscript": "A Fully Polynomial Randomized Approximation Scheme for Perfect Matchings in General Graphs"
+    },
+    {
+      "id": "m1-lem-subdivision",
+      "kind": "lemma",
+      "label": "The real graph has N vertices. Its perfect matchings are in bijection with…",
+      "statement": "The real graph has N vertices. Its perfect matchings are in bijection with logical perfect matchings, and Z'=C_0 Z_, C_0=_e_ 1 j4p+1\\ even t_j^e. On a noncentral real edge, its effective strength B'…",
+      "section": "A subdivision with controlled holes",
+      "manuscript": "A Fully Polynomial Randomized Approximation Scheme for Perfect Matchings in General Graphs"
+    },
+    {
+      "id": "m1-prop-marked-laws",
+      "kind": "proposition",
+      "label": "Marked matching laws",
+      "statement": "[Marked matching laws] For arbitrary positive logical activities, sample from the bag matching law and reveal the edge portions as above. The all-real event has probability 1/I ; conditional on this…",
+      "section": "A subdivision with controlled holes",
+      "manuscript": "A Fully Polynomial Randomized Approximation Scheme for Perfect Matchings in General Graphs"
+    },
+    {
+      "id": "m1-prop-bag-inflation",
+      "kind": "proposition",
+      "label": "Bounded inflation",
+      "statement": "[Bounded inflation] If the logical activities are balanced, then 1 I2.",
+      "section": "A subdivision with controlled holes",
+      "manuscript": "A Fully Polynomial Randomized Approximation Scheme for Perfect Matchings in General Graphs"
+    },
+    {
+      "id": "m1-lem-deletion-accounting",
+      "kind": "lemma",
+      "label": "If an even hole set U has a real completion, then R is even, |R||U| , and…",
+      "statement": "If an even hole set U has a real completion, then R is even, |R||U| , and Z'(-U) =C_0 F(U) Z_(-R;E_ br (U) forbidden). In particular, g'(U) F(U)g_(R) .",
+      "section": "A subdivision with controlled holes",
+      "manuscript": "A Fully Polynomial Randomized Approximation Scheme for Perfect Matchings in General Graphs"
+    },
+    {
+      "id": "m1-lem-ultrametric-pairing",
+      "kind": "lemma",
+      "label": "Pairings in a hierarchy",
+      "statement": "[Pairings in a hierarchy] Let B1 be a symmetric similarity on a finite vertex set X , satisfying B_ ij \\ B_ ik ,B_ kj \\ . Let C_t be the equivalence classes of B t , including singletons. For every…",
+      "section": "A subdivision with controlled holes",
+      "manuscript": "A Fully Polynomial Randomized Approximation Scheme for Perfect Matchings in General Graphs"
+    },
+    {
+      "id": "m1-lem-lifted-hole-bound",
+      "kind": "lemma",
+      "label": "If the logical activities are balanced, then for every even set U of enlarged…",
+      "statement": "If the logical activities are balanced, then for every even set U of enlarged vertices, \\[ g'(U)_ B' (U)2D_0^ |U|/2 . \\] More precisely, for every U with a real completion, the deterministic…",
+      "section": "A subdivision with controlled holes",
+      "manuscript": "A Fully Polynomial Randomized Approximation Scheme for Perfect Matchings in General Graphs"
+    },
+    {
+      "id": "m1-lem-quadrangulation",
+      "kind": "lemma",
+      "label": "Label-adapted quadrangulation",
+      "statement": "[Label-adapted quadrangulation] The polygon of C has a quadrangulation such that every cell side represents an admissible odd arc and the following hold in every cell: [label=( *)] some opposite pair…",
+      "section": "A quadrangulation adapted to the labels",
+      "manuscript": "A Fully Polynomial Randomized Approximation Scheme for Perfect Matchings in General Graphs"
+    },
+    {
+      "id": "m1-lem-cell-comparability",
+      "kind": "lemma",
+      "label": "Comparability within a cell",
+      "statement": "[Comparability within a cell] Consider the four colored side chords of a cell, the first and last cycle edges of each of its four arcs, and one leaf repair for each good long arc. The labels of any…",
+      "section": "A quadrangulation adapted to the labels",
+      "manuscript": "A Fully Polynomial Randomized Approximation Scheme for Perfect Matchings in General Graphs"
+    },
+    {
+      "id": "m1-thm-pair-energy",
+      "kind": "theorem",
+      "label": "Pair energy inequality",
+      "statement": "[Pair energy inequality] For every two real functions f_1,f_2 on , _ f_1 L\\, ((A,B) f_1(A)+f_2(B)). The same constant works for every common-interval clamp of the reference activities.",
+      "section": "A two-coordinate energy inequality",
+      "manuscript": "A Fully Polynomial Randomized Approximation Scheme for Perfect Matchings in General Graphs"
+    },
+    {
+      "id": "m1-lem-elementary-pair-energy",
+      "kind": "lemma",
+      "label": "Elementary energy bounds",
+      "statement": "[Elementary energy bounds] With the notation above, _A(A)_ A' S(A) (f_1(A)-f_1(A'))^2 &60N^2A_0^2 E, \\\\ _A(A)_ A' K(A) (f_1(A)-f_1(A'))^2 &12NA_0 E, \\\\ _ A,B (A)(B)_ C C(A,B) (F(A,B)-F((A,B)^C))^2…",
+      "section": "A two-coordinate energy inequality",
+      "manuscript": "A Fully Polynomial Randomized Approximation Scheme for Perfect Matchings in General Graphs"
+    },
+    {
+      "id": "m1-lem-cell-identity",
+      "kind": "lemma",
+      "label": "Cell identity and cancellation",
+      "statement": "[Cell identity and cancellation] The quantities just defined satisfy D_C=+_ J P g_J-_ J Q g_J+E_P-E_Q for each cell. Consequently, D_C=_ cells of C (+E_P-E_Q).",
+      "section": "A two-coordinate energy inequality",
+      "manuscript": "A Fully Polynomial Randomized Approximation Scheme for Perfect Matchings in General Graphs"
+    },
+    {
+      "id": "m1-lem-encoding",
+      "kind": "lemma",
+      "label": "Encodings with a bounded number of preimages",
+      "statement": "[Encodings with a bounded number of preimages] Every switch demand has an encoding (A_P,B) by two perfect matchings, and every error demand has encodings (A^ (j) ,B^ (j) ) for j=0,1 , with the…",
+      "section": "A two-coordinate energy inequality",
+      "manuscript": "A Fully Polynomial Randomized Approximation Scheme for Perfect Matchings in General Graphs"
+    },
+    {
+      "id": "m1-lem-swap-sum",
+      "kind": "lemma",
+      "label": "Swap sum",
+      "statement": "[Swap sum] The sum in satisfies _ swap 12N^2E .",
+      "section": "A two-coordinate energy inequality",
+      "manuscript": "A Fully Polynomial Randomized Approximation Scheme for Perfect Matchings in General Graphs"
+    },
+    {
+      "id": "m1-lem-base-refresh",
+      "kind": "lemma",
+      "label": "The unit-activity partition function is computable by a dynamic program on the…",
+      "statement": "The unit-activity partition function is computable by a dynamic program on the label tree. With exact rational categorical choices, its tables also produce an exact sample. The tables can be computed…",
+      "section": "A sampler from replicated adjacent tiers",
+      "manuscript": "A Fully Polynomial Randomized Approximation Scheme for Perfect Matchings in General Graphs"
+    },
+    {
+      "id": "m1-lem-replica-gap",
+      "kind": "lemma",
+      "label": "The lazy product chain has spectral gap at least 3/(8M) , and hence at least…",
+      "statement": "The lazy product chain has spectral gap at least 3/(8M) , and hence at least 1/(20LM) . The dependence on L in the stronger bound is carried by q=32L , and hence by M .",
+      "section": "A sampler from replicated adjacent tiers",
+      "manuscript": "A Fully Polynomial Randomized Approximation Scheme for Perfect Matchings in General Graphs"
+    },
+    {
+      "id": "m1-thm-bag-sampler",
+      "kind": "theorem",
+      "label": "Define T,q,M by , and put &=10Nq(T+1) (K+_2(ND+2)+1), \\\\ s()&=20LM (+_2(1/)+1)…",
+      "statement": "Define T,q,M by , and put &=10Nq(T+1) (K+_2(ND+2)+1), \\\\ s()&=20LM (+_2(1/)+1) (0<<1). Initialize all slots to any one colored perfect matching and run the exact chain for s() steps. The resulting…",
+      "section": "A sampler from replicated adjacent tiers",
+      "manuscript": "A Fully Polynomial Randomized Approximation Scheme for Perfect Matchings in General Graphs"
+    },
+    {
+      "id": "m1-lem-one-pass-scaling",
+      "kind": "lemma",
+      "label": "Suppose G is symmetric and G_ ij 3 for i j . Initialize v_i=2 for every vertex…",
+      "statement": "Suppose G is symmetric and G_ ij 3 for i j . Initialize v_i=2 for every vertex and visit the vertices in their fixed order, setting v_i_ j i G_ ij v_j . Every coordinate only decreases, all final…",
+      "section": "From samples to the number of perfect matchings",
+      "manuscript": "A Fully Polynomial Randomized Approximation Scheme for Perfect Matchings in General Graphs"
+    },
+    {
+      "id": "m1-lem-successful-stage",
+      "kind": "lemma",
+      "label": "Suppose the current logical activities are balanced and every empirical mean is…",
+      "statement": "Suppose the current logical activities are balanced and every empirical mean is within of its exact mean. Then the next scaled activities are balanced and | R R -1| 10100K.",
+      "section": "From samples to the number of perfect matchings",
+      "manuscript": "A Fully Polynomial Randomized Approximation Scheme for Perfect Matchings in General Graphs"
+    },
+    {
+      "id": "m1-lem-finite-random-choice",
+      "kind": "lemma",
+      "label": "Let p_1,,p_r be nonnegative rational numbers summing to one. Choose a uniform…",
+      "statement": "Let p_1,,p_r be nonnegative rational numbers summing to one. Choose a uniform integer J\\ 0,,2^k-1\\ using exactly k fair bits, and return the least index i such that J/2^k<_ j i p_j . The output law…",
+      "section": "A bounded-bit implementation",
+      "manuscript": "A Fully Polynomial Randomized Approximation Scheme for Perfect Matchings in General Graphs"
+    },
+    {
+      "id": "m1-cor-prescribed-degree",
+      "kind": "corollary",
+      "label": "For either family A= F(G,f) or A= M_k(G) , there are uniform classical…",
+      "statement": "For either family A= F(G,f) or A= M_k(G) , there are uniform classical randomized algorithms with the following guarantees. [label=()] Given rational 0<<1 and 0<<1/2 , the counting algorithm returns…",
+      "section": "Prescribed-degree subgraphs and fixed-cardinality matchings",
+      "manuscript": "A Fully Polynomial Randomized Approximation Scheme for Perfect Matchings in General Graphs"
+    },
+    {
+      "id": "m1-lem-deletion-sampler",
+      "kind": "lemma",
+      "label": "Given a finite simple undirected unweighted graph H_0 whose vertices and edges…",
+      "statement": "Given a finite simple undirected unweighted graph H_0 whose vertices and edges are explicitly listed, and a rational 0<<1 , there is a uniform classical randomized algorithm that reports…",
+      "section": "Prescribed-degree subgraphs and fixed-cardinality matchings",
+      "manuscript": "A Fully Polynomial Randomized Approximation Scheme for Perfect Matchings in General Graphs"
+    },
+    {
+      "id": "m2-ent-main",
+      "kind": "theorem",
+      "label": "Pointwise entropy bounds",
+      "statement": "[Pointwise entropy bounds] Let G be a loopless multigraph on 2m2 vertices with at least one perfect matching. For every x P(G) , F(x)-(2-2m)B(x) H(x) F(x).",
+      "section": "Introduction",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "Deterministic approximate counting",
+      "statement": "[Deterministic approximate counting] There is one uniform deterministic algorithm which, on a graph on n vertices with nonnegative binary integer pair multiplicities, returns an integer A0 satisfying…",
+      "section": "Introduction",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-geom-lem-gluing",
+      "kind": "lemma",
+      "label": "Gluing across an odd cut",
+      "statement": "[Gluing across an odd cut] Suppose y_i P(G_i) , for i=1,2 , and their coordinates agree on C . There is a point y P(G) with the internal coordinates of the two y_i and their common crossing…",
+      "section": "Faces and tight cuts of the perfect matching polytope",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-geom-thm-polytope",
+      "kind": "theorem",
+      "label": "Perfect matching polytope",
+      "statement": "[Perfect matching polytope] For every graph \\(G\\) as above, P(G)=\\ x R^E: x_e&0 &&(e E),\\\\ x((v))&=1 &&(v V),\\\\ x((S))&1 &&(S V,\\ |S| odd) \\ .",
+      "section": "Faces and tight cuts of the perfect matching polytope",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-geom-lem-face",
+      "kind": "lemma",
+      "label": "Minimal face and its directions",
+      "statement": "[Minimal face and its directions] For every \\(x P(G)\\), the space \\(T(x)\\) consists exactly of the vectors satisfying h_e&=0 &&if x_e=0,\\\\ h((v))&=0 &&(v V),\\\\ h((S))&=0 &&if |S| is odd and x((S))=1.…",
+      "section": "Faces and tight cuts of the perfect matching polytope",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-geom-prop-rank",
+      "kind": "proposition",
+      "label": "Codimension on positive coordinates",
+      "statement": "[Codimension on positive coordinates] Let |V|=2m2 , and suppose x P(G) has x_e>0 for every edge. Then |E|-d(x)3m-2.",
+      "section": "Faces and tight cuts of the perfect matching polytope",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-geom-lem-reduction",
+      "kind": "lemma",
+      "label": "Fractional coordinates and the minimal face",
+      "statement": "[Fractional coordinates and the minimal face] Let \\(x P(G)\\). The number of vertices in \\(V_f(x)\\) is even; write \\(|V_f(x)|=2m_f\\). Let \\(G_f=(V_f(x),E_f(x))\\) and \\( x=x|_ E_f(x) \\). The coordinate…",
+      "section": "Faces and tight cuts of the perfect matching polytope",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-ent-continuity",
+      "kind": "lemma",
+      "label": "Continuity at the boundary",
+      "statement": "[Continuity at the boundary] For a nonempty perfect-matching polytope P(G) , the maximum mean entropy H is attained, nonnegative, concave and continuous on the whole polytope.",
+      "section": "Entropy and the covariance trace",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-ent-exponential",
+      "kind": "lemma",
+      "label": "Exponential laws on the minimal face",
+      "statement": "[Exponential laws on the minimal face] Every law with mean x P(G) is supported on A_x . Its entropy maximizer is positive on every atom of A_x and has the form p_a= e^ a _ b A_x e^ b (a A_x) for a…",
+      "section": "Entropy and the covariance trace",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-ent-trace",
+      "kind": "lemma",
+      "label": "Second variation at a fractional maximum",
+      "statement": "[Second variation at a fractional maximum] Let G have 2m2 vertices, and suppose that x P(G) has 0<x_e<1 for every edge. If J_c-H has a local maximum at x , then, with d= F_x and s=|E| , 0 d-s+(c+1)m.",
+      "section": "Entropy and the covariance trace",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-ent-components",
+      "kind": "corollary",
+      "label": "Fractional components",
+      "statement": "[Fractional components] For x P(G) , remove its zero edges and the endpoints of its value-one edges. Let the nonempty connected components of the remaining graph have 2m_i vertices, and let B_i…",
+      "section": "Entropy and the covariance trace",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-cons-defect",
+      "kind": "corollary",
+      "label": "Entropy-dependent defect",
+      "statement": "[Entropy-dependent defect] For every \\(x P\\), 0 F(x)-H(x) \\ F(x),\\,2m-2\\ .",
+      "section": "Entropy and counting consequences",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-cons-entropy-count",
+      "kind": "corollary",
+      "label": "Separable estimates of the matching count",
+      "statement": "[Separable estimates of the matching count] One has N&_ x P F(x) N+2m-2, \\\\ N&_ x P H_ bin (x) N+3m-2.",
+      "section": "Entropy and counting consequences",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-cons-structural",
+      "kind": "theorem",
+      "label": "Many edge-disjoint perfect matchings",
+      "statement": "[Many edge-disjoint perfect matchings] Let \\(G\\) be a finite loopless multigraph on \\(2m>0\\) vertices that contains \\(k1\\) pairwise edge-disjoint perfect matchings. If \\(k=1\\), then \\(N(G)1\\). If…",
+      "section": "Entropy and counting consequences",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-cons-regular",
+      "kind": "corollary",
+      "label": "Regular graphs with large odd cuts",
+      "statement": "[Regular graphs with large odd cuts] Let \\(G\\) be a finite loopless \\(k\\)-regular multigraph on \\(2m>0\\) vertices, where \\(k1\\). Suppose \\((S) k\\) for every odd vertex set \\(S\\). Then the conclusions…",
+      "section": "Entropy and counting consequences",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-ex-lem-expansion-face",
+      "kind": "lemma",
+      "label": "The face of a triangle expansion",
+      "statement": "[The face of a triangle expansion] The set \\[ Q_T=\\ y P(G'):y((T))=1\\ \\] is a face of \\(P(G')\\) affinely isomorphic to \\(P(G)\\). Under this isomorphism an old edge keeps its coordinate and \\[ y_ f_i…",
+      "section": "Triangle expansions and sharp face codimension",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-ex-prop-klee-face",
+      "kind": "proposition",
+      "label": "Sharp codimension and prescribed-marginal entropy",
+      "statement": "[Sharp codimension and prescribed-marginal entropy] For every integer \\(m1\\), the graph \\(G_m\\) and the point \\(x^ (m) \\) above satisfy \\[ F_ x^ (m) = conv\\ a(M_1),a(M_2),a(M_3)\\ , d(x^ (m) )=2. \\]…",
+      "section": "Triangle expansions and sharp face codimension",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-ex-cor-coefficient",
+      "kind": "corollary",
+      "label": "Restriction on a universal entropy coefficient",
+      "statement": "[Restriction on a universal entropy coefficient] If a constant \\(c\\) satisfies \\[ H(x) F(x)-cB(x) \\] for every finite loopless multigraph \\(G\\) and every \\(x P(G)\\), then \\[ c 3 2(3/2) . \\] The same…",
+      "section": "Triangle expansions and sharp face codimension",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-cons-weighted",
+      "kind": "corollary",
+      "label": "Weighted counting estimate",
+      "statement": "[Weighted counting estimate] For every finite real vector \\(\\), q^*-2m-2 2 _2 Z_ q^*.",
+      "section": "Weighted partition functions",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-d-coarse-weighted",
+      "kind": "corollary",
+      "label": "Conservative weighted bracket",
+      "statement": "[Conservative weighted bracket] For every finite loopless labelled multigraph on an even number \\(n2\\) of vertices with at least one perfect matching, and every finite real vector \\( R^E\\), q^*-4n_2…",
+      "section": "Weighted partition functions",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-d-lem-penalized-count",
+      "kind": "lemma",
+      "label": "Weighted completion",
+      "statement": "[Weighted completion] The contribution of matchings using an absent pair satisfies \\[ 0 Z_ bad 2^ -20n . \\] Moreover, N=0& _2 Z_-20n,\\\\ N>0& \\ 1,2^ -n/2 N\\ Z_2N.",
+      "section": "A rational objective for counting matchings",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-d-lem-dyadic-entropy",
+      "kind": "lemma",
+      "label": "Dyadic entropy approximation",
+      "statement": "[Dyadic entropy approximation] The function \\(\\) is concave, with integer slopes of absolute value at most \\(K\\). For every \\(x P\\), 0 h_2(x)-_e(x_e) n2+1 n.",
+      "section": "A rational objective for counting matchings",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-d-lem-feasibility-repair",
+      "kind": "lemma",
+      "label": "Feasibility repair",
+      "statement": "[Feasibility repair] Set \\(A_0=10n^2\\). For every \\(x^p\\), there is \\(y P\\) such that \\[ \\|y-x\\|_ (2+A_0)w(x). \\]",
+      "section": "Optimization by an exact penalty",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-d-lem-exact-penalty",
+      "kind": "lemma",
+      "label": "Exact penalty and integral supergradients",
+      "statement": "[Exact penalty and integral supergradients] The function \\(\\) is concave on \\([0,1]^p\\), and \\[ _ x^p (x)=f^*. \\] At every point of the box, \\(\\) has an integral supergradient \\(g\\) satisfying…",
+      "section": "Optimization by an exact penalty",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-d-lem-projected-ascent",
+      "kind": "lemma",
+      "label": "Finite projected ascent",
+      "statement": "[Finite projected ascent] Let \\(N_ it =pD_0\\), set \\(x^ (0) =0\\), and for \\(j=0,,N_ it -1\\) choose a supergradient \\(g^ (j) \\) as in Lemma~ and set x^ (j+1) =_ [0,1]^p (x^ (j) + g^ (j) D_0 ), where…",
+      "section": "Optimization by an exact penalty",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-d-lem-unit-mincut",
+      "kind": "lemma",
+      "label": "An integral two-terminal minimum cut",
+      "statement": "[An integral two-terminal minimum cut] For distinct \\(a,b W\\), a minimum cut separating \\(a\\) from \\(b\\) can be found deterministically using at most \\(C\\) unit augmentations and \\(O(v^2(C+1))\\)…",
+      "section": "Computing an active odd-cut constraint",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-d-lem-odd-cut-oracle",
+      "kind": "lemma",
+      "label": "Minimum odd-terminal cut",
+      "statement": "[Minimum odd-terminal cut] Let \\(U W\\) have positive even cardinality. One can deterministically find a set \\(S W\\) minimizing \\(c(S)\\) subject to \\(|S U|\\) being odd. The algorithm returns the set…",
+      "section": "Computing an active odd-cut constraint",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-d-prop-bit-complexity",
+      "kind": "proposition",
+      "label": "Bit complexity",
+      "statement": "[Bit complexity] The algorithm above is uniform and deterministic, and its running time and output length are polynomial in the input bit length.",
+      "section": "The algorithm and its guarantee",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-geom-lem-laminar",
+      "kind": "lemma",
+      "label": "Laminar spanning family",
+      "statement": "[Laminar spanning family] Suppose \\(x P(G)\\) and \\(x_e>0\\) for every edge. There is a laminar family \\( L S_x\\) whose cut vectors are linearly independent and span all the cut vectors \\(_S\\), \\(S…",
+      "section": "Alternative geometric and entropy arguments",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-a-prop-supported-codimension",
+      "kind": "proposition",
+      "label": "Supported face codimension",
+      "statement": "[Supported face codimension] For a loopless labelled multigraph on \\(n=2m2\\) vertices and \\(x P(G)\\), put \\(A=\\ e:x_e>0\\ \\) and \\(s_A=|A|\\). Then \\(s_A-d(x)3m-2\\). In particular, s_A-d(x) 2(n-2)(n4),…",
+      "section": "Alternative geometric and entropy arguments",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-a-cor-fractional-dimension",
+      "kind": "corollary",
+      "label": "Fractional coordinates",
+      "statement": "[Fractional coordinates] For every \\(x P(G)\\), the integer \\(s_f\\) is even, and d(x) |E_f(x)|-2(s_f-2),&s_f4,\\\\ |E_f(x)|-1,&s_f=2,\\\\ 0,&s_f=0, _ e E_f(x) x_e=s_f 2 .",
+      "section": "Alternative geometric and entropy arguments",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-a-thm-separable",
+      "kind": "theorem",
+      "label": "Separable entropy bounds by covariance",
+      "statement": "[Separable entropy bounds by covariance] Let \\(G\\) be a finite loopless labelled multigraph of even order \\(n=2m\\), with a nonempty perfect-matching family. With natural logarithms and continuous…",
+      "section": "Alternative geometric and entropy arguments",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-cons-legacy-defect",
+      "kind": "corollary",
+      "label": "Separable and nonlinear consequences",
+      "statement": "[Separable and nonlinear consequences] For every x P(G) with |V(G)|=n=2m>0 , F(x)-4B(x)& F(x)-3B(x) H(x) F(x)+B(x), \\\\ F(x)-H(x)&\\ F(x),3m\\ 8m(1-e^ -F(x)/m ). Furthermore, N(G)_ x P(G) [F(x)+B(x)]…",
+      "section": "Alternative geometric and entropy arguments",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-cons-legacy-counts",
+      "kind": "corollary",
+      "label": "Coefficient-three and nonlinear counts",
+      "statement": "[Coefficient-three and nonlinear counts] A loopless labelled multigraph G on 2m>0 vertices containing k1 pairwise edge-disjoint perfect matchings satisfies N(G)& b_k^m(e^ -3 k)^m, \\\\ N(G)&^m (e^ -8…",
+      "section": "Alternative geometric and entropy arguments",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-cons-legacy-partition",
+      "kind": "corollary",
+      "label": "An exact partition of the ambient edges",
+      "statement": "[An exact partition of the ambient edges] If the entire edge set of a loopless labelled graph on 2m>0 vertices is partitioned by k1 perfect matchings, then \\[ N(G)^m(e^ -8 k)^m. \\] When k=1 the count…",
+      "section": "Alternative geometric and entropy arguments",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-b-thm-nonlinear",
+      "kind": "theorem",
+      "label": "Nonlinear entropy bound",
+      "statement": "[Nonlinear entropy bound] For every \\(y P(G)\\), F(y)-H(y) 8m(1-e^ -F(y)/m ).",
+      "section": "A normalized-covariance proof of the nonlinear entropy bound",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    },
+    {
+      "id": "m2-c-prop-loops",
+      "kind": "proposition",
+      "label": "There is one deterministic algorithm which, given a graph on \\(n\\) vertices…",
+      "statement": "There is one deterministic algorithm which, given a graph on \\(n\\) vertices with nonnegative binary integer pair and singleton-loop multiplicities, returns a nonnegative rational number \\(A_ loop \\)…",
+      "section": "A convention allowing singleton loops",
+      "manuscript": "Entropy and Face Dimension of the Perfect-Matching Polytope"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-thm-logical-hole-bound",
+      "to": "m1-lem-hole-relocation"
+    },
+    {
+      "from": "m1-lem-subdivision",
+      "to": "m1-prop-marked-laws"
+    },
+    {
+      "from": "m1-lem-subdivision",
+      "to": "m1-lem-lifted-hole-bound"
+    },
+    {
+      "from": "m1-lem-deletion-accounting",
+      "to": "m1-lem-lifted-hole-bound"
+    },
+    {
+      "from": "m1-lem-ultrametric-pairing",
+      "to": "m1-lem-lifted-hole-bound"
+    },
+    {
+      "from": "m1-prop-bag-inflation",
+      "to": "m1-lem-lifted-hole-bound"
+    },
+    {
+      "from": "m1-lem-quadrangulation",
+      "to": "m1-lem-encoding"
+    },
+    {
+      "from": "m1-lem-cell-comparability",
+      "to": "m1-lem-encoding"
+    },
+    {
+      "from": "m1-thm-pair-energy",
+      "to": "m1-lem-swap-sum"
+    },
+    {
+      "from": "m1-lem-cell-comparability",
+      "to": "m1-lem-swap-sum"
+    },
+    {
+      "from": "m1-lem-replica-gap",
+      "to": "m1-thm-bag-sampler"
+    },
+    {
+      "from": "m1-lem-base-refresh",
+      "to": "m1-thm-bag-sampler"
+    },
+    {
+      "from": "m1-lem-finite-random-choice",
+      "to": "m1-thm-bag-sampler"
+    },
+    {
+      "from": "m1-prop-bag-inflation",
+      "to": "m1-lem-successful-stage"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-cor-prescribed-degree"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-lem-deletion-sampler"
+    },
+    {
+      "from": "m1-cor-prescribed-degree",
+      "to": "m1-lem-deletion-sampler"
+    },
+    {
+      "from": "m2-geom-lem-gluing",
+      "to": "m2-geom-thm-polytope"
+    },
+    {
+      "from": "m2-geom-lem-face",
+      "to": "m2-geom-prop-rank"
+    },
+    {
+      "from": "m2-geom-thm-polytope",
+      "to": "m2-geom-prop-rank"
+    },
+    {
+      "from": "m2-geom-lem-gluing",
+      "to": "m2-geom-prop-rank"
+    },
+    {
+      "from": "m2-geom-lem-face",
+      "to": "m2-geom-lem-reduction"
+    },
+    {
+      "from": "m2-geom-prop-rank",
+      "to": "m2-geom-lem-reduction"
+    },
+    {
+      "from": "m2-ent-exponential",
+      "to": "m2-ent-trace"
+    },
+    {
+      "from": "m2-ent-main",
+      "to": "m2-ent-trace"
+    },
+    {
+      "from": "m2-ent-continuity",
+      "to": "m2-ent-trace"
+    },
+    {
+      "from": "m2-geom-lem-reduction",
+      "to": "m2-ent-trace"
+    },
+    {
+      "from": "m2-ent-main",
+      "to": "m2-ent-components"
+    },
+    {
+      "from": "m2-cons-defect",
+      "to": "m2-cons-entropy-count"
+    },
+    {
+      "from": "m2-ent-main",
+      "to": "m2-cons-structural"
+    },
+    {
+      "from": "m2-geom-thm-polytope",
+      "to": "m2-cons-regular"
+    },
+    {
+      "from": "m2-ex-lem-expansion-face",
+      "to": "m2-ex-prop-klee-face"
+    },
+    {
+      "from": "m2-cons-defect",
+      "to": "m2-cons-weighted"
+    },
+    {
+      "from": "m2-cons-weighted",
+      "to": "m2-d-coarse-weighted"
+    },
+    {
+      "from": "m2-geom-thm-polytope",
+      "to": "m2-d-lem-feasibility-repair"
+    },
+    {
+      "from": "m2-d-lem-dyadic-entropy",
+      "to": "m2-d-lem-exact-penalty"
+    },
+    {
+      "from": "m2-d-lem-feasibility-repair",
+      "to": "m2-d-lem-exact-penalty"
+    },
+    {
+      "from": "m2-d-lem-exact-penalty",
+      "to": "m2-d-lem-projected-ascent"
+    },
+    {
+      "from": "m2-d-lem-unit-mincut",
+      "to": "m2-d-lem-odd-cut-oracle"
+    },
+    {
+      "from": "m2-d-lem-projected-ascent",
+      "to": "m2-d-lem-odd-cut-oracle"
+    },
+    {
+      "from": "m2-d-lem-dyadic-entropy",
+      "to": "m2-d-lem-odd-cut-oracle"
+    },
+    {
+      "from": "m2-d-coarse-weighted",
+      "to": "m2-d-lem-odd-cut-oracle"
+    },
+    {
+      "from": "m2-d-lem-penalized-count",
+      "to": "m2-d-lem-odd-cut-oracle"
+    },
+    {
+      "from": "m2-d-lem-unit-mincut",
+      "to": "m2-d-prop-bit-complexity"
+    },
+    {
+      "from": "m2-d-lem-odd-cut-oracle",
+      "to": "m2-d-prop-bit-complexity"
+    },
+    {
+      "from": "m2-d-lem-projected-ascent",
+      "to": "m2-d-prop-bit-complexity"
+    },
+    {
+      "from": "m2-geom-prop-rank",
+      "to": "m2-geom-lem-laminar"
+    },
+    {
+      "from": "m2-geom-thm-polytope",
+      "to": "m2-a-prop-supported-codimension"
+    },
+    {
+      "from": "m2-geom-lem-gluing",
+      "to": "m2-a-prop-supported-codimension"
+    },
+    {
+      "from": "m2-a-prop-supported-codimension",
+      "to": "m2-a-cor-fractional-dimension"
+    },
+    {
+      "from": "m2-ent-continuity",
+      "to": "m2-a-thm-separable"
+    },
+    {
+      "from": "m2-ent-exponential",
+      "to": "m2-a-thm-separable"
+    },
+    {
+      "from": "m2-a-cor-fractional-dimension",
+      "to": "m2-a-thm-separable"
+    },
+    {
+      "from": "m2-a-thm-separable",
+      "to": "m2-cons-legacy-defect"
+    },
+    {
+      "from": "m2-b-thm-nonlinear",
+      "to": "m2-cons-legacy-defect"
+    },
+    {
+      "from": "m2-cons-entropy-count",
+      "to": "m2-cons-legacy-defect"
+    },
+    {
+      "from": "m2-cons-structural",
+      "to": "m2-cons-legacy-counts"
+    },
+    {
+      "from": "m2-cons-legacy-defect",
+      "to": "m2-cons-legacy-counts"
+    },
+    {
+      "from": "m2-cons-regular",
+      "to": "m2-cons-legacy-counts"
+    },
+    {
+      "from": "m2-cons-legacy-counts",
+      "to": "m2-cons-legacy-partition"
+    },
+    {
+      "from": "m2-ent-continuity",
+      "to": "m2-b-thm-nonlinear"
+    },
+    {
+      "from": "m2-a-prop-supported-codimension",
+      "to": "m2-b-thm-nonlinear"
+    },
+    {
+      "from": "m2-geom-lem-face",
+      "to": "m2-b-thm-nonlinear"
+    },
+    {
+      "from": "m2-ent-exponential",
+      "to": "m2-b-thm-nonlinear"
+    },
+    {
+      "from": "m2-d-prop-bit-complexity",
+      "to": "m2-c-prop-loops"
+    }
+  ]
+}

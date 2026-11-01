@@ -1,0 +1,671 @@
+{
+  "familyNumber": "355",
+  "familyTitle": "Unique tangent flows at the first surface singularity",
+  "manuscripts": [
+    {
+      "id": "Tangent-flow-uniqueness-2026-09-24",
+      "title": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Tangent-flow-uniqueness-2026-09-24/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Geometric input and normalization",
+    "A normalized family and its formal Gaussian action",
+    "Two lateral stationary actions",
+    "The collapsing end and its action jump",
+    "Mean jets and the phase of the end contributions",
+    "The finite-jet obstruction",
+    "A localized gradient inequality",
+    "Propagation and convergence of the rescaled flow"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Let M_0^3 be a smooth compact connected embedded surface without boundary, and…",
+      "statement": "Let M_0^3 be a smooth compact connected embedded surface without boundary, and let (M_t)_ 0 t<T be its maximal smooth mean curvature flow. At every singular point (x_0,T) at its first singular time…",
+      "section": "Introduction",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-geo-representative",
+      "kind": "lemma",
+      "label": "Equality of all-endpoint Brakke representatives",
+      "statement": "[Equality of all-endpoint Brakke representatives] Let I(-,0) be an open interval, let S be a smooth properly embedded self-shrinker without boundary, and put _s= H^2\\!(-s\\,S) . Let (_s)_ s I be a…",
+      "section": "Geometric input and normalization",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-geo-tangent",
+      "kind": "proposition",
+      "label": "Tangent section and ends",
+      "statement": "[Tangent section and ends] A backward tangent flow of the flow in has multiplicity one and is the homothetic motion -s\\,S , s<0 , of a smooth properly embedded self-shrinking surface. Its time slices…",
+      "section": "Geometric input and normalization",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-lin-gaussian",
+      "kind": "lemma",
+      "label": "Gaussian realization",
+      "statement": "[Gaussian realization] Let H^2_G be the completion of C_c^(S) for \\[ \\|u\\|_ H^2_G =_ i=0 ^2\\|^iu\\|_ L^2_G . \\] The self-adjoint realization of L has domain H^2_G , compact resolvent, and \\|u\\|_ H^2_G…",
+      "section": "A normalized family and its formal Gaussian action",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-lin-observations",
+      "kind": "lemma",
+      "label": "Symmetric enlargement",
+      "statement": "[Symmetric enlargement] There is a finite list of compact observations for which A(u,) =(Lu+P^*,Pu): H^2_G R^m L^2_G R^m is an isomorphism. Moreover, let u_1,,u_a H^2_G have smooth compactly…",
+      "section": "A normalized family and its formal Gaussian action",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-lin-strip",
+      "kind": "lemma",
+      "label": "Strip and boundary estimates",
+      "statement": "[Strip and boundary estimates] Consider L v=v_t-a(t)v_ tt -2b(t)v_ t -c(t)v_ +d_1(t)v_t+d_2(t)v_+d_0(t)v on an interval of real t coordinates. Suppose \\[ Rea c_*E, |a| C_*E, Rec c_*, |c| C_*, |b|_*…",
+      "section": "A normalized family and its formal Gaussian action",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-gauge-radial",
+      "kind": "lemma",
+      "label": "Radial coefficient estimates",
+      "statement": "[Radial coefficient estimates] In the cylindrical radius variable, the normalized stationary operator is analytic from a sufficiently small strip graph neighborhood, with the norm and traces , to…",
+      "section": "A normalized family and its formal Gaussian action",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-lin-rates",
+      "kind": "lemma",
+      "label": "Separated cylindrical rates",
+      "statement": "[Separated cylindrical rates] For , and for perturbations satisfying the normalized decay condition below, a weight e^ t with \\ 2-j^2:j Z\\ gives separated end estimates. Slow data of rate below are…",
+      "section": "A normalized family and its formal Gaussian action",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-lin-conical",
+      "kind": "lemma",
+      "label": "Conical energy, traces, and exhaustion",
+      "statement": "[Conical energy, traces, and exhaustion] Let Cv=v_t-^2 (a v_ tt +2b v_ t +c v_ +d v_t+qv_+ev). Assume the real symmetric matrix ( a&b\\&c ) is at least c_*I , and the coefficients and their required…",
+      "section": "A normalized family and its formal Gaussian action",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-lin-gaussian-conical",
+      "kind": "lemma",
+      "label": "Gaussian solutions on a conical tail",
+      "statement": "[Gaussian solutions on a conical tail] Let J H^2_G(S) solve LJ=f_c with f_c L^2_G compactly supported. On a conical tail outside that support, its link displacement belongs to X^ con _h for every…",
+      "section": "A normalized family and its formal Gaussian action",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-gauge-fiber-atlas",
+      "kind": "lemma",
+      "label": "One graph chart across compact overlaps",
+      "statement": "[One graph chart across compact overlaps] Let denote the finite end-rotation parameters. After fixing real coordinate identifications on the compact overlaps, the core and prescribed end graphs can…",
+      "section": "A normalized family and its formal Gaussian action",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-gauge-compact",
+      "kind": "lemma",
+      "label": "Conical and compact coefficient maps",
+      "statement": "[Conical and compact coefficient maps] The normalized conical stationary operator is analytic from a sufficiently small link-graph ball in X^ con _h to Y^ con _h . On a sufficiently small…",
+      "section": "A normalized family and its formal Gaussian action",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-lin-family",
+      "kind": "proposition",
+      "label": "Normalized family and polynomial jets",
+      "statement": "[Normalized family and polynomial jets] Let be the number of cylindrical ends. The observations can be chosen so that their values are q= P(p) in analytic reduced coordinates p=(b,x) R^ m- R^ , with…",
+      "section": "A normalized family and its formal Gaussian action",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-lin-shifted-gaussian",
+      "kind": "corollary",
+      "label": "Uniform shifted Gaussian comparison",
+      "statement": "[Uniform shifted Gaussian comparison] Let L_b^ norm denote the derivative of about S_b , including derivatives of its compact multiplier terms. For real b sufficiently small and real || sufficiently…",
+      "section": "A normalized family and its formal Gaussian action",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-ref-finite-taylor",
+      "kind": "lemma",
+      "label": "Finite Taylor graphs",
+      "statement": "[Finite Taylor graphs] For every fixed M1 , let v^ (M) (b,x) be the coefficientwise real normal-height polynomial through degree M in the opening variables, let _M be the multiplier polynomial, and…",
+      "section": "A normalized family and its formal Gaussian action",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-ref-real-comparison",
+      "kind": "lemma",
+      "label": "Localized comparison of real normalized graphs",
+      "statement": "[Localized comparison of real normalized graphs] Fix M , an admissible weight a , and 0<<1 , and take real (b,x) in the stated neighborhood with |x| sufficiently small. Let R be large enough that the…",
+      "section": "A normalized family and its formal Gaussian action",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-arr-contours",
+      "kind": "lemma",
+      "label": "Admissible contour families",
+      "statement": "[Admissible contour families] Fix the finite list of nonzero leading opening coefficients. For every sufficiently large fixed \\(D\\), there are upper and lower families of contours on sectors of the…",
+      "section": "Two lateral stationary actions",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-gauge-mixed",
+      "kind": "lemma",
+      "label": "Mixed prescribed gauges",
+      "statement": "[Mixed prescribed gauges] Let B1 and, on a bounded interval, prescribe smooth circular reference functions and transverse coefficients X(t,)=(B(t,),R(t,)e_r()), =_0+c_1u, R=R_0+c_2u. Assume that R_0…",
+      "section": "Two lateral stationary actions",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-gauge-height",
+      "kind": "lemma",
+      "label": "Long polar height charts",
+      "statement": "[Long polar height charts] Prescribe the polar height chart \\[ X=(Zg(r,),r e_r()) \\] on real parameters along a fixed complex r contour. Let |Z| B , t=- r , and assume a uniformly bounded circular…",
+      "section": "Two lateral stationary actions",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-lin-global",
+      "kind": "proposition",
+      "label": "Weighted normalized inverse",
+      "statement": "[Weighted normalized inverse] Fix an angular order h , a finite geometric parameter D , a cylindrical weight rate _ cyl >2.1 , and the compact observations from Lemma~ . Consider surfaces of…",
+      "section": "Two lateral stationary actions",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-lin-shielding",
+      "kind": "lemma",
+      "label": "Exponential backward shielding",
+      "statement": "[Exponential backward shielding] On a fixed log-length overlap suppose the hypotheses of Lemma~ hold with E B^ -2 . A solution of the homogeneous difference equation with zero entrance value and…",
+      "section": "Two lateral stationary actions",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-arr-preliminary-solves",
+      "kind": "proposition",
+      "label": "Preliminary normalized arrays",
+      "statement": "[Preliminary normalized arrays] Fix \\(D\\), the bounded scaled portions of the contour families of Lemma~ , and a fixed lower radius \\(r_*>0\\). Let \\(p_0(s)\\) be a sufficiently high polynomial…",
+      "section": "Two lateral stationary actions",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-arr-first-variation",
+      "kind": "lemma",
+      "label": "Endpoint first variation",
+      "statement": "[Endpoint first variation] At fixed compact observation values, a differentiable family of the preceding exact normalized solves satisfies \\[ dG d =_ exits boundary position and momentum terms. \\]…",
+      "section": "Two lateral stationary actions",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-arr-real-stops",
+      "kind": "lemma",
+      "label": "Real stopped polydiscs",
+      "statement": "[Real stopped polydiscs] There are a fixed small complex b -neighborhood, d_0>0 , and H_0 with the following property. For every independent stop length H H_0 , stop each cylindrical end on its real…",
+      "section": "Two lateral stationary actions",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-arr-gevrey",
+      "kind": "lemma",
+      "label": "Geometric telescoping",
+      "statement": "[Geometric telescoping] For any sufficiently high real-coefficient polynomial path \\(p_0(s)\\) with the specified opening jet and any sufficiently large fixed \\(\\), the arrays \\(G_(s,p_0(s)+s^ h)\\),…",
+      "section": "Two lateral stationary actions",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-arr-division",
+      "kind": "lemma",
+      "label": "Fixed divisions and regular implicit operations",
+      "statement": "[Fixed divisions and regular implicit operations] The class of arrays in Lemma~ , with their full-disk exponentially telescoping approximants, is stable under finite sums, products, analytic…",
+      "section": "Two lateral stationary actions",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-arr-formal-replacement",
+      "kind": "lemma",
+      "label": "Maximal rank and adic substitution",
+      "statement": "[Maximal rank and adic substitution] Let \\(f_0= F- F(0)\\) and \\(f_i=_ p_i F\\). There are finitely many expressions \\(g_1,,g_r\\), each obtained from these formal series and coordinates by finitely…",
+      "section": "Two lateral stationary actions",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-arr-regular-implicit",
+      "kind": "proposition",
+      "label": "A regular implicit solve in each array",
+      "statement": "[A regular implicit solve in each array] For the \\(g_i\\) selected above, form actual expressions \\(g_ ,i (s,p)\\) by applying the same finite differentiations and polynomial operations to \\[ G_(s,p)-…",
+      "section": "Two lateral stationary actions",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-arr-flatness-upgrade",
+      "kind": "lemma",
+      "label": "Almost-holomorphic exponential improvement",
+      "statement": "[Almost-holomorphic exponential improvement] Suppose an error \\(e(w)\\) on an exterior sector \\[ |w|>R, | w|</2+ \\] satisfies \\[ |e(w)| C_D e^ -c_2(D)|w| , |_we(w)| C_D(1+|w|)^M e^ -D|w|/6 , c_2(D)>0.…",
+      "section": "Two lateral stationary actions",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-arr-action-upper",
+      "kind": "proposition",
+      "label": "The common-parameter action upper bound",
+      "statement": "[The common-parameter action upper bound] The formal critical arc implies that there are common parameters \\(p(s)\\), having a formal expansion with real coefficients, such that…",
+      "section": "Two lateral stationary actions",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-jump-jump",
+      "kind": "proposition",
+      "label": "Universal action jump",
+      "statement": "[Universal action jump] Let G_+ and G_- be the two array actions at a common parameter p in the inner parameter ball, and hence at common compact observation values, for a nonempty finite adverse end…",
+      "section": "The collapsing end and its action jump",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-jump-height-inverse",
+      "kind": "lemma",
+      "label": "Finite height inverse",
+      "statement": "[Finite height inverse] On the real parameter interval [0,T] , let L_0 be the circular operator with , the normalized derivative bounds just stated, T T_ , and E E_* sufficiently small. For entrance…",
+      "section": "The collapsing end and its action jump",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-jump-compatibility",
+      "kind": "proposition",
+      "label": "Compatibility of the normalized height families",
+      "statement": "[Compatibility of the normalized height families] Fix the common parameter p on the inner parameter ball and the matched numbers Z,Z_* on each adverse end. Choose the fixed constants in the…",
+      "section": "The collapsing end and its action jump",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-jump-moving-exit",
+      "kind": "lemma",
+      "label": "Variation of a logarithmic exit",
+      "statement": "[Variation of a logarithmic exit] Keep p,Z,Z_* fixed and use the canonical prescription _s(g-g_c)=0 at the moving exit. Put = Y . For the normalized family obtained above, its physical boundary…",
+      "section": "The collapsing end and its action jump",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-jump-endpoints",
+      "kind": "lemma",
+      "label": "Moving exits and the exterior limit",
+      "statement": "[Moving exits and the exterior limit] For the common parameter p , first make the high-stop synchronization , then shorten all adverse turns from fixed scaled size to |y| Y_0 . At each fixed…",
+      "section": "The collapsing end and its action jump",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-jump-stokes",
+      "kind": "lemma",
+      "label": "A nonzero lateral difference",
+      "statement": "[A nonzero lateral difference] Equation has two exterior lateral slope solutions selected by l/y1 on sectors reaching (y^2)=2/3 . On their common positive ray, l_+(y)-l_-(y)=c_0y^3e^ -y^2/2 (1+O(y^…",
+      "section": "The collapsing end and its action jump",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-phase-jets",
+      "kind": "lemma",
+      "label": "Mean jets and their improved growth",
+      "statement": "[Mean jets and their improved growth] Let w_ [n] denote the term homogeneous of degree n in x in the stationary jet, with b retained as an analytic parameter. For each fixed n and every sufficiently…",
+      "section": "Mean jets and the phase of the end contributions",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-phase-inner-evaluation",
+      "kind": "lemma",
+      "label": "Evaluation of the inner mean",
+      "statement": "[Evaluation of the inner mean] Fix a sufficiently small _1>0 , and put z_1=B^ 1-_1 on the real incoming portion of an adverse end. For the preliminary normalized solution at the common parameters,…",
+      "section": "Mean jets and the phase of the end contributions",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-phase-primitive",
+      "kind": "lemma",
+      "label": "The integrated averaged equation",
+      "statement": "[The integrated averaged equation] Continue the preliminary solution from z_1 to its fixed real-radius height section r_0(0,2) . In prescribed transition gauges, use the circular averages of the…",
+      "section": "Mean jets and the phase of the end contributions",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-phase-expansion",
+      "kind": "proposition",
+      "label": "The phase to constant order",
+      "statement": "[The phase to constant order] For an adverse end set Z_0=(-)^ -1/2 on the branch continued from positive values, and define Z by its mean height at the common section as in Proposition~ . Let \\[…",
+      "section": "Mean jets and the phase of the end contributions",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-phase-no-arc",
+      "kind": "theorem",
+      "label": "Exclusion of a critical opening arc",
+      "statement": "[Exclusion of a critical opening arc] Every real formal arc (b(s),x(s)) through the origin satisfying F(b(s),x(s))=0 , where F is the formal Gaussian action of , has x0 .",
+      "section": "Mean jets and the phase of the end contributions",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-jet-finite-power",
+      "kind": "lemma",
+      "label": "Finite-power estimate",
+      "statement": "[Finite-power estimate] There is an integer m1 such that, for every sufficiently large fixed N , there are a neighborhood of (0,0) and a constant C_N for which |x|^m C_N(| f_N(b,x)|+|x|^ N-1 ) for…",
+      "section": "The finite-jet obstruction",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-flow-localized",
+      "kind": "proposition",
+      "label": "Localized gradient and opening estimates",
+      "statement": "[Localized gradient and opening estimates] There are (0,1/2) and >0 with the following property. For every sufficiently small >0 there are a neighborhood of S on the observation core, a weak normal…",
+      "section": "A localized gradient inequality",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-flow-improvement",
+      "kind": "lemma",
+      "label": "Improvement on a smaller ball",
+      "statement": "[Improvement on a smaller ball] Fix a spatial loss (0,1) . Suppose the hypotheses of Proposition~ hold to radius R , and d C_0e^ -R^2/8 . Suppose also that, on each fixed interior fraction of the…",
+      "section": "Propagation and convergence of the rescaled flow",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-flow-propagation",
+      "kind": "lemma",
+      "label": "Uniform finite comparison",
+      "statement": "[Uniform finite comparison] Fix the closed small parameter neighborhood above, an area-ratio bound, 0<U<1 , a spatial loss 0<<1 , and a target weak C^1 normal graph tolerance _1>0 . There are R_0<…",
+      "section": "Propagation and convergence of the rescaled flow",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-flow-radius-induction",
+      "kind": "lemma",
+      "label": "Graphical radius induction",
+      "statement": "[Graphical radius induction] On every complete bootstrap interval, the hypotheses of Proposition~ and of Lemma~ hold at _j to radius R_j , with the harmless outer margins specified above.",
+      "section": "Propagation and convergence of the rescaled flow",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-flow-finite-length",
+      "kind": "lemma",
+      "label": "Uniform finite-prefix length estimate",
+      "statement": "[Uniform finite-prefix length estimate] Put \\[ p= -c 1-c (0,1/2), =1- 1-c >1, q=Q^2, h=/8. \\] For E(0) sufficiently small, every available finite prefix satisfies _ j=0 ^ n a_j 2(C E(0)^p+B(R_ in )),…",
+      "section": "Propagation and convergence of the rescaled flow",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    },
+    {
+      "id": "m1-flow-uniqueness",
+      "kind": "proposition",
+      "label": "Fixed-frame convergence and uniqueness",
+      "statement": "[Fixed-frame convergence and uniqueness] The rescaled flow converges smoothly on every fixed compact set, at all rescaled times, to S in the original ambient coordinates. For the smooth closed…",
+      "section": "Propagation and convergence of the rescaled flow",
+      "manuscript": "Uniqueness of tangent flows at the first singular time of embedded surface mean-curvature flow"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-geo-representative",
+      "to": "m1-geo-tangent"
+    },
+    {
+      "from": "m1-gauge-radial",
+      "to": "m1-lin-rates"
+    },
+    {
+      "from": "m1-lin-conical",
+      "to": "m1-lin-gaussian-conical"
+    },
+    {
+      "from": "m1-lin-rates",
+      "to": "m1-lin-gaussian-conical"
+    },
+    {
+      "from": "m1-gauge-radial",
+      "to": "m1-gauge-compact"
+    },
+    {
+      "from": "m1-lin-rates",
+      "to": "m1-lin-family"
+    },
+    {
+      "from": "m1-lin-observations",
+      "to": "m1-lin-family"
+    },
+    {
+      "from": "m1-lin-gaussian-conical",
+      "to": "m1-lin-family"
+    },
+    {
+      "from": "m1-lin-gaussian",
+      "to": "m1-lin-family"
+    },
+    {
+      "from": "m1-lin-conical",
+      "to": "m1-lin-family"
+    },
+    {
+      "from": "m1-lin-family",
+      "to": "m1-ref-finite-taylor"
+    },
+    {
+      "from": "m1-ref-finite-taylor",
+      "to": "m1-ref-real-comparison"
+    },
+    {
+      "from": "m1-gauge-mixed",
+      "to": "m1-lin-global"
+    },
+    {
+      "from": "m1-lin-conical",
+      "to": "m1-lin-global"
+    },
+    {
+      "from": "m1-gauge-mixed",
+      "to": "m1-lin-shielding"
+    },
+    {
+      "from": "m1-gauge-radial",
+      "to": "m1-lin-shielding"
+    },
+    {
+      "from": "m1-lin-global",
+      "to": "m1-arr-preliminary-solves"
+    },
+    {
+      "from": "m1-arr-contours",
+      "to": "m1-arr-preliminary-solves"
+    },
+    {
+      "from": "m1-lin-conical",
+      "to": "m1-arr-preliminary-solves"
+    },
+    {
+      "from": "m1-jump-compatibility",
+      "to": "m1-arr-preliminary-solves"
+    },
+    {
+      "from": "m1-arr-preliminary-solves",
+      "to": "m1-arr-first-variation"
+    },
+    {
+      "from": "m1-jump-endpoints",
+      "to": "m1-arr-first-variation"
+    },
+    {
+      "from": "m1-arr-preliminary-solves",
+      "to": "m1-arr-real-stops"
+    },
+    {
+      "from": "m1-arr-real-stops",
+      "to": "m1-arr-gevrey"
+    },
+    {
+      "from": "m1-arr-division",
+      "to": "m1-arr-gevrey"
+    },
+    {
+      "from": "m1-arr-gevrey",
+      "to": "m1-arr-division"
+    },
+    {
+      "from": "m1-arr-gevrey",
+      "to": "m1-arr-regular-implicit"
+    },
+    {
+      "from": "m1-arr-division",
+      "to": "m1-arr-regular-implicit"
+    },
+    {
+      "from": "m1-arr-formal-replacement",
+      "to": "m1-arr-regular-implicit"
+    },
+    {
+      "from": "m1-arr-flatness-upgrade",
+      "to": "m1-arr-action-upper"
+    },
+    {
+      "from": "m1-lin-strip",
+      "to": "m1-jump-height-inverse"
+    },
+    {
+      "from": "m1-arr-preliminary-solves",
+      "to": "m1-jump-compatibility"
+    },
+    {
+      "from": "m1-jump-height-inverse",
+      "to": "m1-jump-compatibility"
+    },
+    {
+      "from": "m1-jump-height-inverse",
+      "to": "m1-jump-moving-exit"
+    },
+    {
+      "from": "m1-lin-shielding",
+      "to": "m1-jump-moving-exit"
+    },
+    {
+      "from": "m1-jump-compatibility",
+      "to": "m1-jump-endpoints"
+    },
+    {
+      "from": "m1-gauge-height",
+      "to": "m1-jump-endpoints"
+    },
+    {
+      "from": "m1-jump-jump",
+      "to": "m1-jump-stokes"
+    },
+    {
+      "from": "m1-jump-endpoints",
+      "to": "m1-jump-stokes"
+    },
+    {
+      "from": "m1-lin-family",
+      "to": "m1-phase-jets"
+    },
+    {
+      "from": "m1-lin-rates",
+      "to": "m1-phase-jets"
+    },
+    {
+      "from": "m1-lin-global",
+      "to": "m1-phase-inner-evaluation"
+    },
+    {
+      "from": "m1-arr-preliminary-solves",
+      "to": "m1-phase-inner-evaluation"
+    },
+    {
+      "from": "m1-phase-jets",
+      "to": "m1-phase-inner-evaluation"
+    },
+    {
+      "from": "m1-gauge-mixed",
+      "to": "m1-phase-inner-evaluation"
+    },
+    {
+      "from": "m1-lin-shielding",
+      "to": "m1-phase-inner-evaluation"
+    },
+    {
+      "from": "m1-arr-preliminary-solves",
+      "to": "m1-phase-primitive"
+    },
+    {
+      "from": "m1-gauge-mixed",
+      "to": "m1-phase-primitive"
+    },
+    {
+      "from": "m1-phase-inner-evaluation",
+      "to": "m1-phase-primitive"
+    },
+    {
+      "from": "m1-phase-primitive",
+      "to": "m1-phase-expansion"
+    },
+    {
+      "from": "m1-arr-contours",
+      "to": "m1-phase-no-arc"
+    },
+    {
+      "from": "m1-arr-action-upper",
+      "to": "m1-phase-no-arc"
+    },
+    {
+      "from": "m1-jump-jump",
+      "to": "m1-phase-no-arc"
+    },
+    {
+      "from": "m1-phase-no-arc",
+      "to": "m1-jet-finite-power"
+    },
+    {
+      "from": "m1-jet-finite-power",
+      "to": "m1-flow-localized"
+    },
+    {
+      "from": "m1-ref-finite-taylor",
+      "to": "m1-flow-localized"
+    },
+    {
+      "from": "m1-ref-real-comparison",
+      "to": "m1-flow-localized"
+    },
+    {
+      "from": "m1-flow-localized",
+      "to": "m1-flow-improvement"
+    },
+    {
+      "from": "m1-flow-improvement",
+      "to": "m1-flow-radius-induction"
+    },
+    {
+      "from": "m1-flow-propagation",
+      "to": "m1-flow-radius-induction"
+    },
+    {
+      "from": "m1-flow-propagation",
+      "to": "m1-flow-uniqueness"
+    },
+    {
+      "from": "m1-flow-finite-length",
+      "to": "m1-flow-uniqueness"
+    },
+    {
+      "from": "m1-geo-representative",
+      "to": "m1-flow-uniqueness"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-flow-uniqueness"
+    },
+    {
+      "from": "m1-geo-tangent",
+      "to": "m1-flow-uniqueness"
+    }
+  ]
+}

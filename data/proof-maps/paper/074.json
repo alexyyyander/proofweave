@@ -1,0 +1,1122 @@
+{
+  "familyNumber": "074",
+  "familyTitle": "Kakeya in three and four dimensions",
+  "manuscripts": [
+    {
+      "id": "The-Kakeya-maximal-conjecture-in-three-dimensions-September-23-2026",
+      "title": "The Kakeya maximal conjecture in three dimensions",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Kakeya-maximal-conjecture-in-three-dimensions-September-23-2026/paper.pdf"
+    },
+    {
+      "id": "Every-four-dimensional-Kakeya-set-has-full-Hausdorff-dimension-September-24-2026",
+      "title": "Every four-dimensional Kakeya set has full Hausdorff dimension",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Every-four-dimensional-Kakeya-set-has-full-Hausdorff-dimension-September-24-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Weighted configurations and critical exponents",
+    "Geometric inputs and their weighted forms",
+    "Local bounds, planar filling, and positive temporal deficit",
+    "Construction of a stationary equality",
+    "Two estimates for the stationary configuration",
+    "Entropy increments in moving frames",
+    "Projection constraints from two frames",
+    "Planar projection and product-pinning proofs",
+    "Closing the contradiction and the maximal estimate",
+    "Nikodym and curved Kakeya consequences",
+    "Weighted models and the reduction from arbitrary Kakeya sets",
+    "Comparison of algebraic sheets and extension of terminal time",
+    "Critical paths and actual improvements"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For every \\(>0\\) there exists a finite constant \\(C_\\) such that, for every…",
+      "statement": "For every \\(>0\\) there exists a finite constant \\(C_\\) such that, for every \\(0<<1\\) and every \\(f L^3(^3)\\), \\[ \\|K_ f\\|_ L^3(S^2) C_^ - \\|f\\|_ L^3(^3) . \\]",
+      "section": "Introduction",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-lem-critical-existence",
+      "kind": "lemma",
+      "label": "Existence and elementary comparisons",
+      "statement": "[Existence and elementary comparisons] Definition~ is well-defined. Its admissible candidates form a closed upper interval in [0,d-1] , and h(p,-1)=0 . For every 0 A_1 A_2 d-1 , N^ -(A_2-A_1) _ A_1 _…",
+      "section": "Weighted configurations and critical exponents",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-lem-finite-cleaning",
+      "kind": "lemma",
+      "label": "Finite cleaning",
+      "statement": "[Finite cleaning] Let be a finite set with positive measure , let A satisfy (A)() , and let P_1,, P_L be partitions of . If 0<_0</L , there is A' A with \\[ (A')(-L_0)() \\] such that every cell C of a…",
+      "section": "Weighted configurations and critical exponents",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-lem-regularization",
+      "kind": "lemma",
+      "label": "Regularization and inherited branching",
+      "statement": "[Regularization and inherited branching] The following assertions hold. [label=()] Every sequence of indexed configurations has, after passage to a subsequence, an extensive refinement with a uniform…",
+      "section": "Weighted configurations and critical exponents",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-cor-active-weight-cleaning",
+      "kind": "corollary",
+      "label": "Active weight after cleaning",
+      "statement": "[Active weight after cleaning] Let A be a finite collection of pairs (i,I) , where I is a dyadic temporal block and the blocks assigned to each index i are disjoint. Let C be a partition of A . For a…",
+      "section": "Weighted configurations and critical exponents",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-lem-profile-cost",
+      "kind": "lemma",
+      "label": "Cost properties",
+      "statement": "[Cost properties] The cost _F is additive across logarithmic scale intervals and is zero on flat intervals. In addition to , it has the following properties. [label=()] If F_j F uniformly, then…",
+      "section": "Weighted configurations and critical exponents",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-lem-critical-point",
+      "kind": "lemma",
+      "label": "Critical parameter point",
+      "statement": "[Critical parameter point] The function h(p,z)-z is separately nonincreasing in p and z . It is totally differentiable almost everywhere in the interior of its parameter domain. If I is an open…",
+      "section": "Weighted configurations and critical exponents",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-lem-hybrid-equality",
+      "kind": "lemma",
+      "label": "Hybrid equality sequences",
+      "statement": "[Hybrid equality sequences] Fix p,z, with h=h(p,z)>0 , and let 0 h_0<h . There is a sharp number H with \\[ h_0<H h \\] such that every sequence with uniform profile F satisfies m _ h_0 N^ H+_F(1) .…",
+      "section": "Weighted configurations and critical exponents",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-thm-set-input",
+      "kind": "theorem",
+      "label": "Kakeya set estimate",
+      "statement": "[Kakeya set estimate] For every >0 there are _ in >0 and _0>0 such that, if 0<<_0 , \\[ _ ( T)^ -_ in , ( T,Y)^ _ in , \\] then |_ T T Y(T)| ^_ T T |T|.",
+      "section": "Geometric inputs and their weighted forms",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-lem-weighted-convex-set",
+      "kind": "lemma",
+      "label": "Weighted convex clustering",
+      "statement": "[Weighted convex clustering] Fix R1 . For every >0 there are _ in >0 and C< with the following property. Let (T_i)_i be finitely many -tubes in B(0,R) , where 0<<1 , with repetitions allowed. Let…",
+      "section": "Geometric inputs and their weighted forms",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-lem-weighted-set",
+      "kind": "lemma",
+      "label": "Weighted set estimate in a line chart",
+      "statement": "[Weighted set estimate in a line chart] Fix a bounded line chart and a fixed bound for the permitted enlargement of mesh cells. For every >0 there are _ in >0 and C< as follows. Suppose the indices…",
+      "section": "Geometric inputs and their weighted forms",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-thm-furstenberg-input",
+      "kind": "theorem",
+      "label": "Quantitative planar Furstenberg estimate",
+      "statement": "[Quantitative planar Furstenberg estimate] Fix 0<s1 , 0<t2 , and a bounded line chart. For every >0 there are _ in >0 , c>0 , and _0>0 with the following property. Let L be a finite -separated family…",
+      "section": "Geometric inputs and their weighted forms",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-cor-weighted-furstenberg",
+      "kind": "corollary",
+      "label": "Weighted planar families",
+      "statement": "[Weighted planar families] Fix 0<s1 , 0<t2 , and a bounded line chart. For every >0 there are _ in >0 , c>0 , and _0>0 as follows. Let 0<<_0 and let finitely many, possibly repeated, line indices i…",
+      "section": "Geometric inputs and their weighted forms",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-thm-multilinear-input",
+      "kind": "theorem",
+      "label": "Endpoint multilinear Kakeya",
+      "statement": "[Endpoint multilinear Kakeya] For j=1,2,3 , let T_ j,a be finitely many infinite cylinders of radius one in ^3 , with unit axial directions v_ j,a . Suppose \\[ |(v_ 1,a_1 ,v_ 2,a_2 ,v_ 3,a_3 )|>0 for…",
+      "section": "Geometric inputs and their weighted forms",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-cor-multilinear-cubes",
+      "kind": "corollary",
+      "label": "Cube counts and small caps",
+      "statement": "[Cube counts and small caps] For unit mesh cubes Q , let m_j(Q)=_ a:T_ j,a Q _ j,a . Under the hypotheses of Theorem~ , _Q(m_1(Q)m_2(Q)m_3(Q))^ 1/2 C^ -1/2 (M_1M_2M_3)^ 1/2 . If the directions lie in…",
+      "section": "Geometric inputs and their weighted forms",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-prop-local-bound",
+      "kind": "proposition",
+      "label": "Local bound",
+      "statement": "[Local bound] After an extensive regular restriction, the mass of active original indices contained in any plank of widths 1 a b K over a dyadic temporal block of K=N^ bins satisfies n_ I,W T(,a,b),…",
+      "section": "Local bounds, planar filling, and positive temporal deficit",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-loc-slack-caps",
+      "kind": "lemma",
+      "label": "Slack and cap mass",
+      "statement": "[Slack and cap mass] Every equality under consideration satisfies N^ H+(p-2) k^2m n . At a fine incidence, the raw mass of active lines whose directions lie in any cap of radius C/L , 1 L N , is at…",
+      "section": "Local bounds, planar filling, and positive temporal deficit",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-loc-short-block-plane",
+      "kind": "lemma",
+      "label": "Common short-block plane",
+      "statement": "[Common short-block plane] There is _ ml >0 , depending only on the positive slack in and the multilinear input, with the following property. For each fixed 0<<_ ml , put K=N^ . On an extensive…",
+      "section": "Local bounds, planar filling, and positive temporal deficit",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-lem-plate-nikodym",
+      "kind": "lemma",
+      "label": "Plate Nikodym bound",
+      "statement": "[Plate Nikodym bound] For K2 , let N_K be the maximal averaging operator over rectangular plates of dimensions 1 K K , with arbitrary orientations and translations, whose averaging plate contains the…",
+      "section": "Local bounds, planar filling, and positive temporal deficit",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-lem-prefix-extension",
+      "kind": "lemma",
+      "label": "Planar-prefix extension",
+      "statement": "[Planar-prefix extension] Let 0<<_ ml be fixed as in Lemma~ , and put K=N^ . Suppose there are constants s(0,1] and 0 such that F()-F(u)(1-s)(-u), F(u) u (0 u). Set a_ ang =H+p_*, t=s+a_ ang , =\\…",
+      "section": "Local bounds, planar filling, and positive temporal deficit",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-lem-flat-delay",
+      "kind": "lemma",
+      "label": "Positive flat delay",
+      "statement": "[Positive flat delay] Every hybrid or exact equality with H>0 has a profile that is identically zero on an interval [0,] with >0 .",
+      "section": "Local bounds, planar filling, and positive temporal deficit",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-loc-flat-saturation",
+      "kind": "lemma",
+      "label": "Saturated plates on a flat scale",
+      "statement": "[Saturated plates on a flat scale] At every fixed positive scale exponent with F|_ [0,] =0 , an extensive regular restriction admits disjoint indexed-block assignments to plates with widths 1,K , up…",
+      "section": "Local bounds, planar filling, and positive temporal deficit",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-lem-anisotropic",
+      "kind": "lemma",
+      "label": "Anisotropic normalization",
+      "statement": "[Anisotropic normalization] Suppose that on an extensive regular graph, over larger blocks of K_1=N^ _1 bins, there are disjoint indexed-block assignments to saturated plates on a flat scale K=N^ K_1…",
+      "section": "Local bounds, planar filling, and positive temporal deficit",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-lem-positive-deficit",
+      "kind": "lemma",
+      "label": "Positive-deficit equality",
+      "statement": "[Positive-deficit equality] For h_0 h>0 , the total deficits =F(1) of hybrid equalities are bounded below by a positive constant, uniformly once h_0 is sufficiently close to h . Consequently there is…",
+      "section": "Local bounds, planar filling, and positive temporal deficit",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-lem-derivative-capture",
+      "kind": "lemma",
+      "label": "Derivative capture",
+      "statement": "[Derivative capture] Every equality profile has deficit v=-h_p . In particular, v>0 . Fix an equality, a prefix >0 , and a perturbation direction ( p, z) . On an extensive refinement there are…",
+      "section": "Construction of a stationary equality",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-lem-nested-cuts",
+      "kind": "lemma",
+      "label": "Compatible finite cuts",
+      "statement": "[Compatible finite cuts] Fix a nontrivial equality and a finite increasing mesh =_0<_1<<_J<1 . There is an extensive refinement with simultaneous saturated assignments at these physical prefixes.…",
+      "section": "Construction of a stationary equality",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-lem-angle-packing",
+      "kind": "lemma",
+      "label": "Packing and inner equality",
+      "statement": "[Packing and inner equality] For a nontrivial equality with delay , fix <<1 and set D_*()=_ s (s-F(s)/v). Then 0 D_*() . On an extensive refinement, the normals of the assigned initial plates used by…",
+      "section": "Construction of a stationary equality",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-prop-canonical",
+      "kind": "proposition",
+      "label": "Canonical equality profile",
+      "statement": "[Canonical equality profile] There is an exact equality whose profile is F()=(-)_+, 0<<1, =1-, =v/1. Its deficit is v , and is the least initial delay among all equalities with deficit v .",
+      "section": "Construction of a stationary equality",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-lem-stationary-shape",
+      "kind": "lemma",
+      "label": "Canonical shape tracking",
+      "statement": "[Canonical shape tracking] For the canonical profile there are compatible finite chains, and slow mesh limits of them, with cumulative shape parameters =+ b', =b', a=wb', w=h_z+ D_q(q,)(0,1], 0 b'<1.…",
+      "section": "Construction of a stationary equality",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-prop-stationary-data",
+      "kind": "proposition",
+      "label": "Stationary data",
+      "statement": "[Stationary data] There is a realizing sequence of canonical equalities and compatible packet assignments for which the preceding collapsed law, event labels, and matrix forms have the following…",
+      "section": "Construction of a stationary equality",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-lem-estimate-cleaning",
+      "kind": "lemma",
+      "label": "Cleaning registered events",
+      "statement": "[Cleaning registered events] Let a finite weighted event graph have total weight W , and let a restriction retain weight at least N^ -E+o(1) W . Fix finitely many partitions of the graph. The cells…",
+      "section": "Two estimates for the stationary configuration",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-lem-angular-frostman",
+      "kind": "lemma",
+      "label": "Angular Frostman bound",
+      "statement": "[Angular Frostman bound] There is >0 , depending only on the fixed stationary parameters, with the following property. For every fixed 0<c<b1 , outside a set of index-- I_c fibers of event…",
+      "section": "Two estimates for the stationary configuration",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-lem-conditional-x",
+      "kind": "lemma",
+      "label": "Conditional X estimate",
+      "statement": "[Conditional X estimate] Fix 0<c<1 , 0<a<w(1-c) , and >0 with c+1 . For all sufficiently small fixed >0 , _ N H_N([X_ e_ c+ ]_ c,a+ Q(c,a),e_ c+ ) x. For example it suffices to take 0<<14\\ a,\\…",
+      "section": "Two estimates for the stationary configuration",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-lem-gap-density",
+      "kind": "lemma",
+      "label": "Uniform differentiation of a superadditive gap kernel",
+      "statement": "[Uniform differentiation of a superadditive gap kernel] Let K(s,t) , s<t in an interval, be a nonnegative kernel satisfying \\[ K(s,u) K(s,t)+K(t,u), 0 K(s,t) C(t-s). \\] There is a measurable , 0 C ,…",
+      "section": "Entropy increments in moving frames",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-lem-remove-label",
+      "kind": "lemma",
+      "label": "Local removal of label conditioning",
+      "statement": "[Local removal of label conditioning] Let 0 through a fixed countable sequence of extra label depths. For almost every (c,a) , all the rates _S^(c,a) converge to rates _S(c,a) . The rectangular…",
+      "section": "Entropy increments in moving frames",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-cor-normal-position-rate",
+      "kind": "corollary",
+      "label": "Normal-position rate",
+      "statement": "[Normal-position rate] For almost every (c,a) with 0<c<1 and 0<a<w(1-c) , a_1(c,a) x=d-1-h<1.",
+      "section": "Entropy increments in moving frames",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-prop-entropy-demand",
+      "kind": "proposition",
+      "label": "Entropy demand",
+      "statement": "[Entropy demand] At almost every point of U , _c H(c,a) s_0+wg- M.",
+      "section": "Entropy increments in moving frames",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-lem-velocity-trace",
+      "kind": "lemma",
+      "label": "Velocity rate along a fixed threshold",
+      "statement": "[Velocity rate along a fixed threshold] The function v_1(c,a) has an essentially nonincreasing version as c increases on lines where \\[ =+(w-1)c+a \\] is fixed. If w<1 , it has strong one-sided traces…",
+      "section": "Entropy increments in moving frames",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-lem-stripe-demand",
+      "kind": "lemma",
+      "label": "Stripe limits of the demand",
+      "statement": "[Stripe limits of the demand] Fix J(0,1) . For sufficiently small >0 , the right stripe averages of g are at least d almost everywhere on J : 1_0^ g(c,a)\\,da d. If w<1 , the left stripe averages…",
+      "section": "Entropy increments in moving frames",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-prop-projection-rates",
+      "kind": "proposition",
+      "label": "Projection constraints",
+      "statement": "[Projection constraints] At almost every interior point (c,a) where the full-cell thresholds lie in the permitted range, the following assertions hold. In every case write a_1=j_X and v_1=j_V . If ,…",
+      "section": "Projection constraints from two frames",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-lem-pr-relative-frame",
+      "kind": "lemma",
+      "label": "Change of frame in relative units",
+      "statement": "[Change of frame in relative units] If two frame labels in E_0 have differences t and , measured respectively in units R_ c+b and _ c+b , their centered relative coordinates are related by (X,Y,U,V)…",
+      "section": "Projection constraints from two frames",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-lem-blowup-counts",
+      "kind": "lemma",
+      "label": "Local counts and conditional Frostman laws",
+      "statement": "[Local counts and conditional Frostman laws] There is a triangular choice b_n0 , N_n , with D_n=N_n^ b_n , and uniform refinements of the single-event graphs, chosen independently of the queried…",
+      "section": "Projection constraints from two frames",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-lem-pinning",
+      "kind": "lemma",
+      "label": "Pinning with controlled marginals",
+      "statement": "[Pinning with controlled marginals] Let 0<s1 , '>0 , and 0<_ 1 be fixed. For each D , let I have a finite probability distribution _D , and let _i be finitely supported probabilities on a fixed…",
+      "section": "Projection constraints from two frames",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-lem-pair-information",
+      "kind": "lemma",
+      "label": "Pair information on the refinement gap",
+      "statement": "[Pair information on the refinement gap] Let K=1+_ , and let J_f be the full observation in the E_0 -frame obtained by increasing every threshold of J_0 by Kb . Along a triangular subsequence as in…",
+      "section": "Projection constraints from two frames",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-lem-robust-projection",
+      "kind": "lemma",
+      "label": "Robust planar projections",
+      "statement": "[Robust planar projections] Fix \\[ 0<s1, 0<t2, 0 u<h_ pr :=\\ t,(s+t)/2,1\\ . \\] There is _0=_0(s,t,u)>0 with the following property. For every R,C_01 and 0<_0 , there is _0>0 such that the following…",
+      "section": "Projection constraints from two frames",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-lem-pr-projection-transfer",
+      "kind": "lemma",
+      "label": "Transfer of a projection bound to rates",
+      "statement": "[Transfer of a projection bound to rates] Fix the original single-event law and one of the same-index pair laws above, with the conditional marginal domination already established. Suppose that after…",
+      "section": "Projection constraints from two frames",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-lem-pr-ray-improvement",
+      "kind": "lemma",
+      "label": "Improving ray sections",
+      "statement": "[Improving ray sections] Let 0<s1 and 0 . For each , let be a finitely supported probability on a bounded square such that every occupied square in a fixed nested dyadic grid of side comparable to ^u…",
+      "section": "Planar projection and product-pinning proofs",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-prop-critical-vanishing",
+      "kind": "proposition",
+      "label": "Vanishing at the maximal endpoint",
+      "statement": "[Vanishing at the maximal endpoint] There are values \\(p>2\\) arbitrarily close to \\(2\\) for which \\(h(p,0)=0\\).",
+      "section": "Closing the contradiction and the maximal estimate",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-prop-maximal-reduction",
+      "kind": "proposition",
+      "label": "Maximal reduction",
+      "statement": "[Maximal reduction] Let \\(p>2\\) be in the parameter range of Definition~ , and suppose that \\(h(p,0)=0\\). For every \\(>0\\) there is a finite constant \\(C_ p, \\) such that, for all \\(0<<1\\) and all…",
+      "section": "Closing the contradiction and the maximal estimate",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-cor-nikodym-space-forms",
+      "kind": "corollary",
+      "label": "Nikodym maximal estimates in dimension three",
+      "statement": "[Nikodym maximal estimates in dimension three] For every \\(1 p3\\) and \\(>0\\), set \\(q=2p'\\), with \\(q=\\) at \\(p=1\\). Then, for \\(0<<1\\), \\[ \\|N_^ Euc f\\|_ L^q(^3) C_ p, ^ 1-3/p- \\|f\\|_ L^p(^3) . \\]…",
+      "section": "Nikodym and curved Kakeya consequences",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m1-cor-curved-kakeya-local",
+      "kind": "corollary",
+      "label": "A local curved Kakeya maximal estimate",
+      "statement": "[A local curved Kakeya maximal estimate] For the phase and chart fixed above, there is \\(0<_ curv \\) such that, for every \\(1 p3\\) and \\(>0\\), there is a finite constant \\(C_ p,,,,Y \\) for which \\[…",
+      "section": "Nikodym and curved Kakeya consequences",
+      "manuscript": "The Kakeya maximal conjecture in three dimensions"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "Let \\(K^4\\). Suppose that for every \\(e S^3\\) there is a point \\(a_e^4\\) such…",
+      "statement": "Let \\(K^4\\). Suppose that for every \\(e S^3\\) there is a point \\(a_e^4\\) such that \\[ \\ a_e+te:0 t1\\ K. \\] Then \\(_H K=4\\).",
+      "section": "Introduction",
+      "manuscript": "Every four-dimensional Kakeya set has full Hausdorff dimension"
+    },
+    {
+      "id": "m2-a01-density-operations",
+      "kind": "lemma",
+      "label": "Restriction, refinement, and caps",
+      "statement": "[Restriction, refinement, and caps] Let \\(g\\) be the unnormalized density of an observation and \\(g'\\) the density after restriction. For \\(0<<1\\), _ \\ g'< g\\ g' g. If an observation is refined by a…",
+      "section": "Weighted models and the reduction from arbitrary Kakeya sets",
+      "manuscript": "Every four-dimensional Kakeya set has full Hausdorff dimension"
+    },
+    {
+      "id": "m2-a01-flattening",
+      "kind": "lemma",
+      "label": "Joint base flattening",
+      "statement": "[Joint base flattening] Fix tempered discrete labels and predicates of polynomial total count. Given a fixed \\(T>0\\), there is a fixed finite \\(D\\) such that uniformly redistributing the base…",
+      "section": "Weighted models and the reduction from arbitrary Kakeya sets",
+      "manuscript": "Every four-dimensional Kakeya set has full Hausdorff dimension"
+    },
+    {
+      "id": "m2-a01-homogenization",
+      "kind": "lemma",
+      "label": "Homogenization",
+      "statement": "[Homogenization] After a tempered further selection of inverse-subpower mass and a subsequence, an exact problem has a homogeneous profile \\(f(r)\\) on every prescribed compact depth interval. It is…",
+      "section": "Weighted models and the reduction from arbitrary Kakeya sets",
+      "manuscript": "Every four-dimensional Kakeya set has full Hausdorff dimension"
+    },
+    {
+      "id": "m2-a01-angular-coarsening",
+      "kind": "lemma",
+      "label": "Angular caps under coarsening",
+      "statement": "[Angular caps under coarsening] Suppose holds. For \\(0 b<L\\) and \\(0<u L\\), the conditional probability \\[ \\ [V]_ a_u =v p_b\\ , v=[V]_ a_u , \\] under the selected incidence law has typical upper…",
+      "section": "Weighted models and the reduction from arbitrary Kakeya sets",
+      "manuscript": "Every four-dimensional Kakeya set has full Hausdorff dimension"
+    },
+    {
+      "id": "m2-lem-quadratic-sublevel",
+      "kind": "lemma",
+      "label": "Quadratic sublevel sets",
+      "statement": "[Quadratic sublevel sets] Let \\(Q\\) be a real polynomial of degree at most two, and let \\(,b,>0\\). The set \\[ \\ w:|Q(w)|, \\ |Q'(w)| b\\ \\] has total length at most \\(4/b\\) and meets at most…",
+      "section": "Weighted models and the reduction from arbitrary Kakeya sets",
+      "manuscript": "Every four-dimensional Kakeya set has full Hausdorff dimension"
+    },
+    {
+      "id": "m2-a01-saturation",
+      "kind": "lemma",
+      "label": "Saturation and label knowledge",
+      "statement": "[Saturation and label knowledge] A true system may be restricted, retaining inverse-subpower total mass and enlarging subpower slacks, so that every used chart satisfies m_c q _ _c_ n(r)J_c, and its…",
+      "section": "Weighted models and the reduction from arbitrary Kakeya sets",
+      "manuscript": "Every four-dimensional Kakeya set has full Hausdorff dimension"
+    },
+    {
+      "id": "m2-a01-witness-budgets",
+      "kind": "lemma",
+      "label": "Restoring current floors and charging witnesses",
+      "statement": "[Restoring current floors and charging witnesses] Fix a chart layer with the assignment budget . Suppose a later selected measure has inverse-subpower mass in the same normalization. For each chart…",
+      "section": "Weighted models and the reduction from arbitrary Kakeya sets",
+      "manuscript": "Every four-dimensional Kakeya set has full Hausdorff dimension"
+    },
+    {
+      "id": "m2-a01-largest-axis",
+      "kind": "lemma",
+      "label": "Fullness of the largest spatial scale",
+      "statement": "[Fullness of the largest spatial scale] In a cap-class problem, a chart system known by \\(p_L\\), whether true or not, has \\[ \\|D_c\\|_ q \\] on an inverse-subpower selection, after homogenizing the…",
+      "section": "Weighted models and the reduction from arbitrary Kakeya sets",
+      "manuscript": "Every four-dimensional Kakeya set has full Hausdorff dimension"
+    },
+    {
+      "id": "m2-lem-normalization",
+      "kind": "lemma",
+      "label": "Chart normalization and lifting",
+      "statement": "[Chart normalization and lifting] Let a homogeneous exact problem of length \\(L\\) have a terminal-known atlas at depth \\(0 r<L\\). After discarding extremely light charts and homogenizing their…",
+      "section": "Weighted models and the reduction from arbitrary Kakeya sets",
+      "manuscript": "Every four-dimensional Kakeya set has full Hausdorff dimension"
+    },
+    {
+      "id": "m2-lem-weighted-planks",
+      "kind": "lemma",
+      "label": "Weighted full-time plank estimate",
+      "statement": "[Weighted full-time plank estimate] Fix a bounded affine-line chart in \\(^2\\), and a fixed permitted enlargement of mesh cells. For every \\(>0\\), there are \\(_>0\\) and \\(C_<\\) with the following…",
+      "section": "Weighted models and the reduction from arbitrary Kakeya sets",
+      "manuscript": "Every four-dimensional Kakeya set has full Hausdorff dimension"
+    },
+    {
+      "id": "m2-a01-horizon-bound",
+      "kind": "proposition",
+      "label": "Initial horizon bound",
+      "statement": "[Initial horizon bound] Every homogeneous exact problem satisfies \\(H(E) L\\).",
+      "section": "Weighted models and the reduction from arbitrary Kakeya sets",
+      "manuscript": "Every four-dimensional Kakeya set has full Hausdorff dimension"
+    },
+    {
+      "id": "m2-thm-model-reduction",
+      "kind": "theorem",
+      "label": "Reduction to a bad weighted problem",
+      "statement": "[Reduction to a bad weighted problem] If a set \\(K^4\\), with no measurability or compactness assumption, contains a unit segment in every direction and satisfies \\(_ H K<4\\), then there are…",
+      "section": "Weighted models and the reduction from arbitrary Kakeya sets",
+      "manuscript": "Every four-dimensional Kakeya set has full Hausdorff dimension"
+    },
+    {
+      "id": "m2-lem-algebraic-norm",
+      "kind": "lemma",
+      "label": "Algebraic analytic norm comparison",
+      "statement": "[Algebraic analytic norm comparison] Let \\(^n\\) be a fixed ball or polydisc, and let \\(B^n\\) be a fixed closed ball with nonempty interior. Fix a compact set \\(K\\). For algebraic sheets of degree at…",
+      "section": "Comparison of algebraic sheets and extension of terminal time",
+      "manuscript": "Every four-dimensional Kakeya set has full Hausdorff dimension"
+    },
+    {
+      "id": "m2-a02-algebraic-path",
+      "kind": "lemma",
+      "label": "Polynomial cost of continuation",
+      "statement": "[Polynomial cost of continuation] Fix the base dimension, polynomial degrees, number of sheets, and a bound on the number of pieces of a broken straight path. Work in a fixed bounded complex base…",
+      "section": "Comparison of algebraic sheets and extension of terminal time",
+      "manuscript": "Every four-dimensional Kakeya set has full Hausdorff dimension"
+    },
+    {
+      "id": "m2-lem-two-color-matching",
+      "kind": "lemma",
+      "label": "Two-color matching",
+      "statement": "[Two-color matching] Fix \\(D1\\), an integer \\(J>D\\), and \\(d_0<1\\). There is no sequence \\(N\\) with the following properties. There are two indexed lists of real \\(C^ J+1 \\) functions on a unit…",
+      "section": "Comparison of algebraic sheets and extension of terminal time",
+      "manuscript": "Every four-dimensional Kakeya set has full Hausdorff dimension"
+    },
+    {
+      "id": "m2-a02-local-graph-matching",
+      "kind": "corollary",
+      "label": "Local matching of scalar graphs",
+      "statement": "[Local matching of scalar graphs] Fix the base dimension, algebraic degrees, real comparison balls with fixed holomorphic margins, and \\(d_0<1\\). There is \\(_*>0\\) with the following property. Let…",
+      "section": "Comparison of algebraic sheets and extension of terminal time",
+      "manuscript": "Every four-dimensional Kakeya set has full Hausdorff dimension"
+    },
+    {
+      "id": "m2-lem-terminal-extension",
+      "kind": "lemma",
+      "label": "Terminal time extension",
+      "statement": "[Terminal time extension] Fix \\(d_0<1\\) and angular parameters \\(S,>0\\). There are constants \\(C<\\) and \\(c>0\\), depending only on these fixed parameters and the fixed model dimensions and test…",
+      "section": "Comparison of algebraic sheets and extension of terminal time",
+      "manuscript": "Every four-dimensional Kakeya set has full Hausdorff dimension"
+    },
+    {
+      "id": "m2-a03-composition",
+      "kind": "lemma",
+      "label": "Composition of horizon costs",
+      "statement": "[Composition of horizon costs] Let \\(E C(d)\\) have length \\(L\\). If a known atlas at depth \\(r<L\\) has horizon exponent \\(h\\), and \\(F\\) is a homogeneous remaining problem in the original exponent…",
+      "section": "Critical paths and actual improvements",
+      "manuscript": "Every four-dimensional Kakeya set has full Hausdorff dimension"
+    },
+    {
+      "id": "m2-a03-positive-rate",
+      "kind": "lemma",
+      "label": "A positive critical time rate",
+      "statement": "[A positive critical time rate] The rates in satisfy \\(0<k1\\).",
+      "section": "Critical paths and actual improvements",
+      "manuscript": "Every four-dimensional Kakeya set has full Hausdorff dimension"
+    },
+    {
+      "id": "m2-prop-critical-path",
+      "kind": "proposition",
+      "label": "Critical paths",
+      "statement": "[Critical paths] Fix the model version and its parameters \\(j,S,\\), and suppose bad problems exist. With \\(d_*,k,\\) as above, the following conclusions hold. Every maximizing sequence of length-one…",
+      "section": "Critical paths and actual improvements",
+      "manuscript": "Every four-dimensional Kakeya set has full Hausdorff dimension"
+    },
+    {
+      "id": "m2-a03-zero-depth",
+      "kind": "corollary",
+      "label": "Depth-zero normalization and vanishing-depth nodes",
+      "statement": "[Depth-zero normalization and vanishing-depth nodes] A sequence of depth-zero, horizon-zero known normalizations of a maximizing sequence is again maximizing, provided the normalizations have the…",
+      "section": "Critical paths and actual improvements",
+      "manuscript": "Every four-dimensional Kakeya set has full Hausdorff dimension"
+    },
+    {
+      "id": "m2-a03-excluded-improvements",
+      "kind": "lemma",
+      "label": "Excluded improvements",
+      "statement": "[Excluded improvements] There are two forbidden outputs of known atlases at an interior path node (including the parent where a short piece starts) as \\(i\\) on the chosen sequence and fixed grid.…",
+      "section": "Critical paths and actual improvements",
+      "manuscript": "Every four-dimensional Kakeya set has full Hausdorff dimension"
+    },
+    {
+      "id": "m2-a03-finite-guard",
+      "kind": "lemma",
+      "label": "The finite-sample exclusion",
+      "statement": "[The finite-sample exclusion] Fix this \\(n,i\\), exact path subsequence, and any finite original-coordinate complexity exponent \\(M^\\#\\). For all sufficiently late \\(N_0\\) there is no output known…",
+      "section": "Critical paths and actual improvements",
+      "manuscript": "Every four-dimensional Kakeya set has full Hausdorff dimension"
+    },
+    {
+      "id": "m2-prop-tangent-palette",
+      "kind": "proposition",
+      "label": "Prepared tangent data",
+      "statement": "[Prepared tangent data] Assume \\(<\\), and use the guarded diagonal constructed above. One can retain all but \\(o(1)\\) of the relative mass of the original final path and choose an interior parent…",
+      "section": "Critical paths and actual improvements",
+      "manuscript": "Every four-dimensional Kakeya set has full Hausdorff dimension"
+    },
+    {
+      "id": "m2-a03-finite-state-conditioning",
+      "kind": "lemma",
+      "label": "Likelihood truncation and finite-state conditioning",
+      "statement": "[Likelihood truncation and finite-state conditioning] As \\(N\\), let \\(p_A0\\), \\(_Ap_A=1\\), be mixture weights and let \\(_A^0\\) be probability laws carrying two finite labels \\(E,b\\). Write \\[…",
+      "section": "Critical paths and actual improvements",
+      "manuscript": "Every four-dimensional Kakeya set has full Hausdorff dimension"
+    },
+    {
+      "id": "m2-a03-time-slice",
+      "kind": "lemma",
+      "label": "Retained duration and fixed-time prior caps",
+      "statement": "[Retained duration and fixed-time prior caps] Let \\(\\) be a trajectory probability and \\(d(l,t)=G(l,t)\\,d(l)\\,dt\\), where \\(0 G K\\) on \\([0,1]\\). Fix \\(K_21\\), partition time into dyadic intervals…",
+      "section": "Critical paths and actual improvements",
+      "manuscript": "Every four-dimensional Kakeya set has full Hausdorff dimension"
+    },
+    {
+      "id": "m2-prop-candidate-upgrade",
+      "kind": "proposition",
+      "label": "Conversion of candidates to actual improvements",
+      "statement": "[Conversion of candidates to actual improvements] Consider the guarded tangent diagonal of . Suppose that, on a further subsequence of every subsequence carrying any substantial residual of the…",
+      "section": "Critical paths and actual improvements",
+      "manuscript": "Every four-dimensional Kakeya set has full Hausdorff dimension"
+    },
+    {
+      "id": "m2-a03-actual-lists",
+      "kind": "lemma",
+      "label": "Original-law recovery of finite lists",
+      "statement": "[Original-law recovery of finite lists] Let \\(\\) be an original unnormalized tempered path measure, and let \\(\\) be an arbitrary measurable submeasure. Fix a finite geometric output-label map \\(A\\),…",
+      "section": "Critical paths and actual improvements",
+      "manuscript": "Every four-dimensional Kakeya set has full Hausdorff dimension"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-finite-cleaning",
+      "to": "m1-lem-regularization"
+    },
+    {
+      "from": "m1-lem-regularization",
+      "to": "m1-lem-hybrid-equality"
+    },
+    {
+      "from": "m1-thm-set-input",
+      "to": "m1-lem-weighted-convex-set"
+    },
+    {
+      "from": "m1-lem-weighted-convex-set",
+      "to": "m1-lem-weighted-set"
+    },
+    {
+      "from": "m1-thm-furstenberg-input",
+      "to": "m1-cor-weighted-furstenberg"
+    },
+    {
+      "from": "m1-thm-multilinear-input",
+      "to": "m1-cor-multilinear-cubes"
+    },
+    {
+      "from": "m1-lem-regularization",
+      "to": "m1-prop-local-bound"
+    },
+    {
+      "from": "m1-cor-active-weight-cleaning",
+      "to": "m1-prop-local-bound"
+    },
+    {
+      "from": "m1-thm-multilinear-input",
+      "to": "m1-loc-short-block-plane"
+    },
+    {
+      "from": "m1-loc-short-block-plane",
+      "to": "m1-lem-prefix-extension"
+    },
+    {
+      "from": "m1-cor-weighted-furstenberg",
+      "to": "m1-lem-prefix-extension"
+    },
+    {
+      "from": "m1-lem-plate-nikodym",
+      "to": "m1-lem-prefix-extension"
+    },
+    {
+      "from": "m1-lem-prefix-extension",
+      "to": "m1-lem-flat-delay"
+    },
+    {
+      "from": "m1-lem-weighted-set",
+      "to": "m1-loc-flat-saturation"
+    },
+    {
+      "from": "m1-prop-local-bound",
+      "to": "m1-loc-flat-saturation"
+    },
+    {
+      "from": "m1-cor-active-weight-cleaning",
+      "to": "m1-lem-anisotropic"
+    },
+    {
+      "from": "m1-lem-regularization",
+      "to": "m1-lem-anisotropic"
+    },
+    {
+      "from": "m1-lem-weighted-set",
+      "to": "m1-lem-positive-deficit"
+    },
+    {
+      "from": "m1-lem-flat-delay",
+      "to": "m1-lem-positive-deficit"
+    },
+    {
+      "from": "m1-loc-flat-saturation",
+      "to": "m1-lem-positive-deficit"
+    },
+    {
+      "from": "m1-lem-anisotropic",
+      "to": "m1-lem-positive-deficit"
+    },
+    {
+      "from": "m1-lem-hybrid-equality",
+      "to": "m1-lem-positive-deficit"
+    },
+    {
+      "from": "m1-lem-regularization",
+      "to": "m1-lem-derivative-capture"
+    },
+    {
+      "from": "m1-lem-derivative-capture",
+      "to": "m1-lem-nested-cuts"
+    },
+    {
+      "from": "m1-prop-local-bound",
+      "to": "m1-lem-nested-cuts"
+    },
+    {
+      "from": "m1-lem-regularization",
+      "to": "m1-lem-nested-cuts"
+    },
+    {
+      "from": "m1-lem-nested-cuts",
+      "to": "m1-lem-angle-packing"
+    },
+    {
+      "from": "m1-lem-derivative-capture",
+      "to": "m1-lem-angle-packing"
+    },
+    {
+      "from": "m1-lem-anisotropic",
+      "to": "m1-lem-angle-packing"
+    },
+    {
+      "from": "m1-lem-angle-packing",
+      "to": "m1-prop-canonical"
+    },
+    {
+      "from": "m1-lem-flat-delay",
+      "to": "m1-prop-canonical"
+    },
+    {
+      "from": "m1-lem-hybrid-equality",
+      "to": "m1-prop-canonical"
+    },
+    {
+      "from": "m1-lem-prefix-extension",
+      "to": "m1-prop-canonical"
+    },
+    {
+      "from": "m1-lem-derivative-capture",
+      "to": "m1-prop-canonical"
+    },
+    {
+      "from": "m1-lem-nested-cuts",
+      "to": "m1-lem-stationary-shape"
+    },
+    {
+      "from": "m1-lem-stationary-shape",
+      "to": "m1-prop-stationary-data"
+    },
+    {
+      "from": "m1-lem-angle-packing",
+      "to": "m1-prop-stationary-data"
+    },
+    {
+      "from": "m1-lem-nested-cuts",
+      "to": "m1-prop-stationary-data"
+    },
+    {
+      "from": "m1-lem-regularization",
+      "to": "m1-lem-estimate-cleaning"
+    },
+    {
+      "from": "m1-lem-nested-cuts",
+      "to": "m1-lem-angular-frostman"
+    },
+    {
+      "from": "m1-prop-local-bound",
+      "to": "m1-lem-angular-frostman"
+    },
+    {
+      "from": "m1-lem-estimate-cleaning",
+      "to": "m1-lem-angular-frostman"
+    },
+    {
+      "from": "m1-lem-anisotropic",
+      "to": "m1-lem-angular-frostman"
+    },
+    {
+      "from": "m1-lem-estimate-cleaning",
+      "to": "m1-lem-conditional-x"
+    },
+    {
+      "from": "m1-prop-stationary-data",
+      "to": "m1-lem-conditional-x"
+    },
+    {
+      "from": "m1-lem-gap-density",
+      "to": "m1-lem-remove-label"
+    },
+    {
+      "from": "m1-lem-conditional-x",
+      "to": "m1-cor-normal-position-rate"
+    },
+    {
+      "from": "m1-lem-remove-label",
+      "to": "m1-cor-normal-position-rate"
+    },
+    {
+      "from": "m1-lem-remove-label",
+      "to": "m1-prop-entropy-demand"
+    },
+    {
+      "from": "m1-lem-remove-label",
+      "to": "m1-lem-velocity-trace"
+    },
+    {
+      "from": "m1-prop-entropy-demand",
+      "to": "m1-lem-stripe-demand"
+    },
+    {
+      "from": "m1-lem-pr-relative-frame",
+      "to": "m1-lem-blowup-counts"
+    },
+    {
+      "from": "m1-lem-gap-density",
+      "to": "m1-lem-blowup-counts"
+    },
+    {
+      "from": "m1-lem-remove-label",
+      "to": "m1-lem-blowup-counts"
+    },
+    {
+      "from": "m1-lem-regularization",
+      "to": "m1-lem-blowup-counts"
+    },
+    {
+      "from": "m1-lem-angular-frostman",
+      "to": "m1-lem-blowup-counts"
+    },
+    {
+      "from": "m1-lem-blowup-counts",
+      "to": "m1-lem-pair-information"
+    },
+    {
+      "from": "m1-lem-robust-projection",
+      "to": "m1-lem-pr-projection-transfer"
+    },
+    {
+      "from": "m1-lem-blowup-counts",
+      "to": "m1-lem-pr-projection-transfer"
+    },
+    {
+      "from": "m1-lem-pair-information",
+      "to": "m1-lem-pr-projection-transfer"
+    },
+    {
+      "from": "m1-prop-projection-rates",
+      "to": "m1-lem-pr-projection-transfer"
+    },
+    {
+      "from": "m1-lem-pinning",
+      "to": "m1-lem-pr-projection-transfer"
+    },
+    {
+      "from": "m1-lem-robust-projection",
+      "to": "m1-lem-pr-ray-improvement"
+    },
+    {
+      "from": "m1-lem-pinning",
+      "to": "m1-lem-pr-ray-improvement"
+    },
+    {
+      "from": "m1-lem-critical-point",
+      "to": "m1-prop-critical-vanishing"
+    },
+    {
+      "from": "m1-prop-canonical",
+      "to": "m1-prop-critical-vanishing"
+    },
+    {
+      "from": "m1-prop-stationary-data",
+      "to": "m1-prop-critical-vanishing"
+    },
+    {
+      "from": "m1-lem-angular-frostman",
+      "to": "m1-prop-critical-vanishing"
+    },
+    {
+      "from": "m1-prop-entropy-demand",
+      "to": "m1-prop-critical-vanishing"
+    },
+    {
+      "from": "m1-lem-stripe-demand",
+      "to": "m1-prop-critical-vanishing"
+    },
+    {
+      "from": "m1-lem-velocity-trace",
+      "to": "m1-prop-critical-vanishing"
+    },
+    {
+      "from": "m1-cor-normal-position-rate",
+      "to": "m1-prop-critical-vanishing"
+    },
+    {
+      "from": "m1-prop-projection-rates",
+      "to": "m1-prop-critical-vanishing"
+    },
+    {
+      "from": "m1-lem-regularization",
+      "to": "m1-prop-maximal-reduction"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-prop-maximal-reduction"
+    },
+    {
+      "from": "m1-prop-critical-vanishing",
+      "to": "m1-prop-maximal-reduction"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-cor-nikodym-space-forms"
+    },
+    {
+      "from": "m2-a01-flattening",
+      "to": "m2-a01-homogenization"
+    },
+    {
+      "from": "m2-a01-density-operations",
+      "to": "m2-a01-homogenization"
+    },
+    {
+      "from": "m2-a01-density-operations",
+      "to": "m2-a01-angular-coarsening"
+    },
+    {
+      "from": "m2-a01-flattening",
+      "to": "m2-a01-angular-coarsening"
+    },
+    {
+      "from": "m2-lem-quadratic-sublevel",
+      "to": "m2-a01-saturation"
+    },
+    {
+      "from": "m2-a01-density-operations",
+      "to": "m2-lem-normalization"
+    },
+    {
+      "from": "m2-lem-weighted-planks",
+      "to": "m2-a01-horizon-bound"
+    },
+    {
+      "from": "m2-lem-weighted-planks",
+      "to": "m2-thm-model-reduction"
+    },
+    {
+      "from": "m2-a01-density-operations",
+      "to": "m2-thm-model-reduction"
+    },
+    {
+      "from": "m2-lem-quadratic-sublevel",
+      "to": "m2-thm-model-reduction"
+    },
+    {
+      "from": "m2-lem-algebraic-norm",
+      "to": "m2-a02-algebraic-path"
+    },
+    {
+      "from": "m2-lem-algebraic-norm",
+      "to": "m2-a02-local-graph-matching"
+    },
+    {
+      "from": "m2-lem-two-color-matching",
+      "to": "m2-a02-local-graph-matching"
+    },
+    {
+      "from": "m2-a01-saturation",
+      "to": "m2-lem-terminal-extension"
+    },
+    {
+      "from": "m2-lem-quadratic-sublevel",
+      "to": "m2-lem-terminal-extension"
+    },
+    {
+      "from": "m2-lem-algebraic-norm",
+      "to": "m2-lem-terminal-extension"
+    },
+    {
+      "from": "m2-a02-local-graph-matching",
+      "to": "m2-lem-terminal-extension"
+    },
+    {
+      "from": "m2-a02-algebraic-path",
+      "to": "m2-lem-terminal-extension"
+    },
+    {
+      "from": "m2-lem-normalization",
+      "to": "m2-a03-composition"
+    },
+    {
+      "from": "m2-a01-angular-coarsening",
+      "to": "m2-a03-composition"
+    },
+    {
+      "from": "m2-a01-horizon-bound",
+      "to": "m2-a03-positive-rate"
+    },
+    {
+      "from": "m2-lem-terminal-extension",
+      "to": "m2-a03-positive-rate"
+    },
+    {
+      "from": "m2-lem-terminal-extension",
+      "to": "m2-prop-critical-path"
+    },
+    {
+      "from": "m2-lem-normalization",
+      "to": "m2-prop-critical-path"
+    },
+    {
+      "from": "m2-prop-critical-path",
+      "to": "m2-a03-zero-depth"
+    },
+    {
+      "from": "m2-a03-excluded-improvements",
+      "to": "m2-a03-finite-guard"
+    },
+    {
+      "from": "m2-lem-normalization",
+      "to": "m2-prop-tangent-palette"
+    },
+    {
+      "from": "m2-a01-largest-axis",
+      "to": "m2-prop-tangent-palette"
+    },
+    {
+      "from": "m2-lem-algebraic-norm",
+      "to": "m2-prop-tangent-palette"
+    },
+    {
+      "from": "m2-prop-candidate-upgrade",
+      "to": "m2-a03-actual-lists"
+    },
+    {
+      "from": "m2-a02-local-graph-matching",
+      "to": "m2-a03-actual-lists"
+    },
+    {
+      "from": "m2-lem-algebraic-norm",
+      "to": "m2-a03-actual-lists"
+    },
+    {
+      "from": "m2-lem-normalization",
+      "to": "m2-a03-actual-lists"
+    },
+    {
+      "from": "m2-a03-finite-guard",
+      "to": "m2-a03-actual-lists"
+    }
+  ]
+}

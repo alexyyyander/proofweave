@@ -1,0 +1,597 @@
+{
+  "familyNumber": "130",
+  "familyTitle": "Exact Fourier transforms below `n n`",
+  "manuscripts": [
+    {
+      "id": "An-explicit-power-saving-for-the-exact-discrete-Fourier-transform-September-25-2026",
+      "title": "An explicit power saving for the exact discrete Fourier transform",
+      "date": "2026-09-25",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-explicit-power-saving-for-the-exact-discrete-Fourier-transform-September-25-2026/main.pdf"
+    },
+    {
+      "id": "Finite-tensor-savings-and-exact-Fourier-circuits-September-25-2026",
+      "title": "Finite tensor savings and exact Fourier circuits",
+      "date": "2026-09-25",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Finite-tensor-savings-and-exact-Fourier-circuits-September-25-2026/main.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "An explicit saving for a fixed two-coordinate transform",
+    "Compiling a Fourier transform on its own coordinates",
+    "Synchronizing tensor factors in linear array work",
+    "Working lengths and the transform at every length",
+    "Effective synthesis and uniform compilation",
+    "Positive words and tensor amplification",
+    "From a finite win to exact Fourier circuits",
+    "Packing finite comparisons into global prices",
+    "Triangular matrices and invertible corners",
+    "Changing the coefficient boundary and specializing prices",
+    "Pivoting and the price of a dense pair",
+    "Signed matrices and the reflection contradiction"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "There is a single deterministic algorithm which, for every positive integer n…",
+      "statement": "There is a single deterministic algorithm which, for every positive integer n and every x^n , computes F_nx exactly. In the model above, including scalar preparation, schedule construction, and index…",
+      "section": "Introduction",
+      "manuscript": "An explicit power saving for the exact discrete Fourier transform"
+    },
+    {
+      "id": "m1-cor-decimal",
+      "kind": "corollary",
+      "label": "In the same model, the transform is computable at every length in \\[ O\\!(n( n)^…",
+      "statement": "In the same model, the transform is computable at every length in \\[ O\\!(n( n)^ 1-10^ -13 )=o(n n) \\] time.",
+      "section": "Introduction",
+      "manuscript": "An explicit power saving for the exact discrete Fourier transform"
+    },
+    {
+      "id": "m1-cor-polynomial-multiplication",
+      "kind": "corollary",
+      "label": "Exact convolution and polynomial multiplication",
+      "statement": "[Exact convolution and polynomial multiplication] There is a single deterministic algorithm which, for every positive integer n and every a,b^n , computes the linear convolution \\[ c_k=_ 0 r,s<n\\…",
+      "section": "Introduction",
+      "manuscript": "An explicit power saving for the exact discrete Fourier transform"
+    },
+    {
+      "id": "m1-net-scalar",
+      "kind": "lemma",
+      "label": "For arbitrary initial auxiliary values, the forward invocation sends (x,y,A,c)…",
+      "statement": "For arbitrary initial auxiliary values, the forward invocation sends (x,y,A,c) to (x,y+x,A,c) . Forward invocations from X to Y at stages 1 and 3 , and the inverse forward invocation from Y to X at…",
+      "section": "An explicit saving for a fixed two-coordinate transform",
+      "manuscript": "An explicit power saving for the exact discrete Fourier transform"
+    },
+    {
+      "id": "m1-net-edge",
+      "kind": "lemma",
+      "label": "Let U,V D be nested nondegenerate subspaces. Call the orthogonal complement of…",
+      "statement": "Let U,V D be nested nondegenerate subspaces. Call the orthogonal complement of the smaller subspace inside the larger their residual. Suppose it has an orthonormal binary basis of size . Then _V_U^…",
+      "section": "An explicit saving for a fixed two-coordinate transform",
+      "manuscript": "An explicit power saving for the exact discrete Fourier transform"
+    },
+    {
+      "id": "m1-net-residuals",
+      "kind": "lemma",
+      "label": "Every edge has nested nondegenerate endpoint labels. Each nonzero orthogonal…",
+      "statement": "Every edge has nested nondegenerate endpoint labels. Each nonzero orthogonal residual, meaning the complement of the smaller label inside the larger, has an orthonormal binary basis. If s is the sum…",
+      "section": "An explicit saving for a fixed two-coordinate transform",
+      "manuscript": "An explicit power saving for the exact discrete Fourier transform"
+    },
+    {
+      "id": "m1-net-finite-interface",
+      "kind": "proposition",
+      "label": "Finite network interface",
+      "statement": "[Finite network interface] For every integer f1 , the explicit network applies C^ mf to each of W arbitrary arrays indexed by ^ mf . It uses s directional steps, each on one physical array and…",
+      "section": "An explicit saving for a fixed two-coordinate transform",
+      "manuscript": "An explicit power saving for the exact discrete Fourier transform"
+    },
+    {
+      "id": "m1-net-indexing",
+      "kind": "lemma",
+      "label": "Let k=mf+r with 0 r<m , and fix an invertible binary map on an m -bit column.…",
+      "statement": "Let k=mf+r with 0 r<m , and fix an invertible binary map on an m -bit column. Applying it in all f columns, translating columns by prescribed fixed vectors, and collecting one chosen output bit from…",
+      "section": "An explicit saving for a fixed two-coordinate transform",
+      "manuscript": "An explicit power saving for the exact discrete Fourier transform"
+    },
+    {
+      "id": "m1-net-tensor-bound",
+      "kind": "theorem",
+      "label": "There is a deterministic exact algorithm applying C^ k to an arbitrary complex…",
+      "statement": "There is a deterministic exact algorithm applying C^ k to an arbitrary complex array of length 2^k in \\[ O(2^k(k+1)^) \\] time, for every integer k0 . The bound includes fixed-table construction, all…",
+      "section": "An explicit saving for a fixed two-coordinate transform",
+      "manuscript": "An explicit power saving for the exact discrete Fourier transform"
+    },
+    {
+      "id": "m1-loc-compiler",
+      "kind": "proposition",
+      "label": "Uniform local compiler",
+      "statement": "[Uniform local compiler] Let r1 and let u be any primitive r th root of unity. The matrix F_r(u)=(u^ ij )_ 0 i,j<r has a word on exactly r coordinates with O(1+^4r) slots, each of which is either a…",
+      "section": "Compiling a Fourier transform on its own coordinates",
+      "manuscript": "An explicit power saving for the exact discrete Fourier transform"
+    },
+    {
+      "id": "m1-loc-newton-reduction",
+      "kind": "lemma",
+      "label": "Newton reduction",
+      "statement": "[Newton reduction] For every primitive r th root u , with r1 , there is an invertible lower triangular matrix N such that \\[ F_r(u)=N D_N^ -1 N^ T , D_N=(N_ 00 ,,N_ r-1,r-1 ). \\] The matrix N is a…",
+      "section": "Compiling a Fourier transform on its own coordinates",
+      "manuscript": "An explicit power saving for the exact discrete Fourier transform"
+    },
+    {
+      "id": "m1-loc-replay",
+      "kind": "lemma",
+      "label": "Replay with arbitrary borrowed coordinates",
+      "statement": "[Replay with arbitrary borrowed coordinates] Suppose M:^e^a has a linear DAG with g gates, depth H , fan-in at most two, and fan-out at most , including output uses. Each output is a source or gate…",
+      "section": "Compiling a Fourier transform on its own coordinates",
+      "manuscript": "An explicit power saving for the exact discrete Fourier transform"
+    },
+    {
+      "id": "m1-loc-toeplitz",
+      "kind": "lemma",
+      "label": "Effective exact-width Toeplitz layers",
+      "statement": "[Effective exact-width Toeplitz layers] An invertible lower triangular Toeplitz matrix of width r has a word on exactly r coordinates in O(1+^4r) mixed rounds. A fixed algorithm prepares the word and…",
+      "section": "Compiling a Fourier transform on its own coordinates",
+      "manuscript": "An explicit power saving for the exact discrete Fourier transform"
+    },
+    {
+      "id": "m1-loc-fourier",
+      "kind": "lemma",
+      "label": "Fourier layers at every primitive root",
+      "statement": "[Fourier layers at every primitive root] For every primitive r th root u , the matrix F_r(u) has a polynomially preparable exact-width word in O(1+^4r) monomial and shear layers. Its coefficients are…",
+      "section": "Compiling a Fourier transform on its own coordinates",
+      "manuscript": "An explicit power saving for the exact discrete Fourier transform"
+    },
+    {
+      "id": "m1-lem-sector-address",
+      "kind": "lemma",
+      "label": "The start of the selected sector in the packed array is S=_ j=1 ^ (_ i<j…",
+      "statement": "The start of the selected sector in the packed array is S=_ j=1 ^ (_ i<j q_i)p_j_j. The packing permutation, its inverse, and the list of sector starts, widths, and pair counts can all be generated…",
+      "section": "Synchronizing tensor factors in linear array work",
+      "manuscript": "An explicit power saving for the exact discrete Fourier transform"
+    },
+    {
+      "id": "m1-prop-tensor-fourier",
+      "kind": "proposition",
+      "label": "Let 1 and r_1,,r_2 be integers, and suppose the required specified roots are…",
+      "statement": "Let 1 and r_1,,r_2 be integers, and suppose the required specified roots are given. Put R=_jr_j and r_ =_jr_j . The map _jF_ r_j is computable in O\\!(R(+1)^(1+ r_ )^4) +(,r_ ,(R+2)) operations,…",
+      "section": "Synchronizing tensor factors in linear array work",
+      "manuscript": "An explicit power saving for the exact discrete Fourier transform"
+    },
+    {
+      "id": "m1-lem-prime-lengths",
+      "kind": "lemma",
+      "label": "One has r_j=O((j+1)^2) and \\[ R_=((+2)). \\] For the largest with R_2n , as n ,…",
+      "statement": "One has r_j=O((j+1)^2) and \\[ R_=((+2)). \\] For the largest with R_2n , as n , =\\!( n n ), =( n). The primes and this value of can be found with a number of operations polynomial in (n+2) , using…",
+      "section": "Working lengths and the transform at every length",
+      "manuscript": "An explicit power saving for the exact discrete Fourier transform"
+    },
+    {
+      "id": "m1-syn-local-certificate",
+      "kind": "lemma",
+      "label": "A local certificate for the symbolic search",
+      "statement": "[A local certificate for the symbolic search] For the invertible nonmonomial matrix C in , there are integers b2 and g0 and a word on exactly 2^b coordinates which implements C^ b using g<b2^ b-1…",
+      "section": "Effective synthesis and uniform compilation",
+      "manuscript": "An explicit power saving for the exact discrete Fourier transform"
+    },
+    {
+      "id": "m1-syn-extraction",
+      "kind": "lemma",
+      "label": "Effective finite algebra extraction",
+      "statement": "[Effective finite algebra extraction] Given finitely many polynomials f_i in a variables over , a deterministic rational algorithm either certifies that (f_i) is the unit ideal or produces a nonzero…",
+      "section": "Effective synthesis and uniform compilation",
+      "manuscript": "An explicit power saving for the exact discrete Fourier transform"
+    },
+    {
+      "id": "m1-syn-printer",
+      "kind": "theorem",
+      "label": "Bounded-printer uniformization",
+      "statement": "[Bounded-printer uniformization] Suppose a fixed bit machine prints a sequence of complete records (m_t,C_t) with strictly increasing m_t , where C_t computes F_ m_t by s_t=o(m_t m_t) scalar linear…",
+      "section": "Effective synthesis and uniform compilation",
+      "manuscript": "An explicit power saving for the exact discrete Fourier transform"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "In this model, \\[ _ n L(n) n_2 n =0. \\] Equivalently, for every c>0 and every…",
+      "statement": "In this model, \\[ _ n L(n) n_2 n =0. \\] Equivalently, for every c>0 and every integer N_02 , there is an integer n N_0 and an exact circuit for F_n with fewer than c n_2 n gates.",
+      "section": "Introduction",
+      "manuscript": "Finite tensor savings and exact Fourier circuits"
+    },
+    {
+      "id": "m2-lem-generation",
+      "kind": "lemma",
+      "label": "Positive generation",
+      "statement": "[Positive generation] Let A_q() be nonmonomial. There is an integer h>0 such that every H_q() admits a factorization H=M_0 A M_1 A A M_h, with exactly h occurrences of A and monomial matrices M_i .…",
+      "section": "Positive words and tensor amplification",
+      "manuscript": "Finite tensor savings and exact Fourier circuits"
+    },
+    {
+      "id": "m2-lem-amplification",
+      "kind": "lemma",
+      "label": "Tensor amplification",
+      "statement": "[Tensor amplification] If (A,b,g) and a specified winning word form a finite win, then there are constants C< and 0<<1 such that A^ k has an exact scalar linear circuit with at most Cq^k(k+1)^ gates…",
+      "section": "Positive words and tensor amplification",
+      "manuscript": "Finite tensor savings and exact Fourier circuits"
+    },
+    {
+      "id": "m2-fft-dirty-layers",
+      "kind": "lemma",
+      "label": "Dirty-coordinate replay",
+      "statement": "[Dirty-coordinate replay] Let M:^e^a have a linear DAG with gates and depth H . Suppose every variable input and gate has fan-out at most , counting designated output uses. On disjoint source…",
+      "section": "From a finite win to exact Fourier circuits",
+      "manuscript": "Finite tensor savings and exact Fourier circuits"
+    },
+    {
+      "id": "m2-fft-toeplitz-layers",
+      "kind": "lemma",
+      "label": "Triangular Toeplitz layers",
+      "statement": "[Triangular Toeplitz layers] Every invertible lower triangular Toeplitz matrix of width r has a factorization on exactly r coordinates into O(1+^4 r) monomial and pair layers. The implied constant is…",
+      "section": "From a finite win to exact Fourier circuits",
+      "manuscript": "Finite tensor savings and exact Fourier circuits"
+    },
+    {
+      "id": "m2-lem-fourier-layers",
+      "kind": "lemma",
+      "label": "Exact-width Fourier layers",
+      "statement": "[Exact-width Fourier layers] For every integer r1 , the unnormalized Fourier matrix F_r has a factorization on exactly r coordinates into O(1+^4r) monomial and pair layers, with an absolute implied…",
+      "section": "From a finite win to exact Fourier circuits",
+      "manuscript": "Finite tensor savings and exact Fourier circuits"
+    },
+    {
+      "id": "m2-prop-win-to-fourier",
+      "kind": "proposition",
+      "label": "Transfer of a finite win",
+      "statement": "[Transfer of a finite win] If a finite win exists, there are integers n_m and exact linear circuits for F_ n_m whose scalar gate counts satisfy \\[ L(n_m)=o(n_m_2n_m). \\] In particular the conclusion…",
+      "section": "From a finite win to exact Fourier circuits",
+      "manuscript": "Finite tensor savings and exact Fourier circuits"
+    },
+    {
+      "id": "m2-thm-prices",
+      "kind": "theorem",
+      "label": "Global prices under the no-win assumption",
+      "statement": "[Global prices under the no-win assumption] There is a function \\[ p:_ n1 _n() which vanishes exactly on the monomial matrices and has the following properties. For invertible matrices of the…",
+      "section": "Packing finite comparisons into global prices",
+      "manuscript": "Finite tensor savings and exact Fourier circuits"
+    },
+    {
+      "id": "m2-price-packing",
+      "kind": "lemma",
+      "label": "Packing comparisons",
+      "statement": "[Packing comparisons] Let \\(^ (1) ,,^ (R) ^m\\) be any finite family of comparison vectors, with \\(m1\\) and the type list containing all their nonmonomial factors and calls. Under the no-win…",
+      "section": "Packing finite comparisons into global prices",
+      "manuscript": "Finite tensor savings and exact Fourier circuits"
+    },
+    {
+      "id": "m2-price-word-bounds",
+      "kind": "corollary",
+      "label": "Shears, pairs, and embedded words",
+      "statement": "[Shears, pairs, and embedded words] Every nontrivial elementary coordinate shear has price one, including with any number of untouched coordinates. Every invertible \\(22\\) matrix has price at most…",
+      "section": "Packing finite comparisons into global prices",
+      "manuscript": "Finite tensor savings and exact Fourier circuits"
+    },
+    {
+      "id": "m2-thm-corner",
+      "kind": "theorem",
+      "label": "Invertible corners",
+      "statement": "[Invertible corners] If an invertible matrix K has an invertible square submatrix M , then p(M) p(K) .",
+      "section": "Triangular matrices and invertible corners",
+      "manuscript": "Finite tensor savings and exact Fourier circuits"
+    },
+    {
+      "id": "m2-lem-shear-dag",
+      "kind": "lemma",
+      "label": "A rectangular shear from a linear DAG",
+      "statement": "[A rectangular shear from a linear DAG] Suppose a permitted linear DAG with l scalar gates computes Gx , with a designated output coordinates. Then s(G) 8l+2a. If only a_0 rows of G are nonzero, a…",
+      "section": "Triangular matrices and invertible corners",
+      "manuscript": "Finite tensor savings and exact Fourier circuits"
+    },
+    {
+      "id": "m2-lem-scalar-convolution",
+      "kind": "lemma",
+      "label": "Scalar convolution",
+      "statement": "[Scalar convolution] For every scalar formal series f with f(0)0 and every t1 , \\[ p( T_t(f))=O(t(2t)), \\] with an absolute implied constant, independent of the coefficients of f and of their…",
+      "section": "Triangular matrices and invertible corners",
+      "manuscript": "Finite tensor savings and exact Fourier circuits"
+    },
+    {
+      "id": "m2-lem-triangular",
+      "kind": "lemma",
+      "label": "Triangular monotonicity",
+      "statement": "[Triangular monotonicity] If M_n() , D_r() and C_ n r () , then p( M&C\\\\0&D ) p(M)+p(D). The same conclusion holds for the lower triangular orientation, and the price of any invertible block…",
+      "section": "Triangular matrices and invertible corners",
+      "manuscript": "Finite tensor savings and exact Fourier circuits"
+    },
+    {
+      "id": "m2-corner-lem-cascade",
+      "kind": "lemma",
+      "label": "Uniform cascade estimate",
+      "statement": "[Uniform cascade estimate] For each fixed cell K as in , there is a constant C_K such that, for every k,t1 and N=n^k , p( T_t(H^ k )) tk n^ k-1 p(K) +C_K(Nt(2t)+(k+1)^3N). The constant is independent…",
+      "section": "Triangular matrices and invertible corners",
+      "manuscript": "Finite tensor savings and exact Fourier circuits"
+    },
+    {
+      "id": "m2-cor-dag-price",
+      "kind": "corollary",
+      "label": "A universal one-way DAG price bound",
+      "statement": "[A universal one-way DAG price bound] If G_m() has a permitted linear DAG with l scalar gates, then \\[ p(G) s(G) 8l+2m. \\] The bound holds with the same constants for all dimensions and all matrix…",
+      "section": "Triangular matrices and invertible corners",
+      "manuscript": "Finite tensor savings and exact Fourier circuits"
+    },
+    {
+      "id": "m2-lem-boundary-comparison",
+      "kind": "lemma",
+      "label": "Coefficient-boundary comparison",
+      "statement": "[Coefficient-boundary comparison] Fix G(z)_n() with G(0) invertible. There is a constant C_G with the following property. Let k1 , put N=n^k and d=k G , and let t>d be an integer. Suppose (z) is…",
+      "section": "Changing the coefficient boundary and specializing prices",
+      "manuscript": "Finite tensor savings and exact Fourier circuits"
+    },
+    {
+      "id": "m2-thm-feedback",
+      "kind": "theorem",
+      "label": "Feedback law",
+      "statement": "[Feedback law] Let \\[ K= M&C\\&D _ n+r (), M_n(), H(z)=M+zC(I_r-zD)^ -1 B. \\] If s_0 satisfies \\[ (I_r-s_0D)0, H(s_0)0, \\] then p(H(s_0)) p(K). No invertibility of D is required.",
+      "section": "Changing the coefficient boundary and specializing prices",
+      "manuscript": "Finite tensor savings and exact Fourier circuits"
+    },
+    {
+      "id": "m2-thm-specialization",
+      "kind": "theorem",
+      "label": "Algebraic specialization",
+      "statement": "[Algebraic specialization] Let X(z)_n((z)) be regular at z_0 , and assume X(z_0) is invertible. Suppose there are a finite set E and a real constant C_0 such that, for every s E , the matrix X(s) is…",
+      "section": "Changing the coefficient boundary and specializing prices",
+      "manuscript": "Finite tensor savings and exact Fourier circuits"
+    },
+    {
+      "id": "m2-lem-pivot-bound",
+      "kind": "lemma",
+      "label": "Pivot inequality",
+      "statement": "[Pivot inequality] Let \\[ K= A&C\\\\ B&D _ n+r (), A_n(), D_r(). \\] Write the action of K as (x,z_ in )(x',z_ out ) . The map (x,z_ out )(x',z_ in ) is the invertible matrix K= A-CD^ -1 B&CD^ -1 \\\\ -D^…",
+      "section": "Pivoting and the price of a dense pair",
+      "manuscript": "Finite tensor savings and exact Fourier circuits"
+    },
+    {
+      "id": "m2-pivot-lem-one-port",
+      "kind": "lemma",
+      "label": "One-coordinate intersection",
+      "statement": "[One-coordinate intersection] Suppose a call to Y_1_a() is followed by a call to Y_2_b() , and their ordered coordinate sets intersect in exactly one coordinate. If P is their product on the union of…",
+      "section": "Pivoting and the price of a dense pair",
+      "manuscript": "Finite tensor savings and exact Fourier circuits"
+    },
+    {
+      "id": "m2-lem-scalar-pivot",
+      "kind": "lemma",
+      "label": "Scalar pivot invariance",
+      "statement": "[Scalar pivot invariance] Under the hypotheses of , if r=1 , then p( K)=p(K) .",
+      "section": "Pivoting and the price of a dense pair",
+      "manuscript": "Finite tensor savings and exact Fourier circuits"
+    },
+    {
+      "id": "m2-pivot-cor-basis-exchange",
+      "kind": "corollary",
+      "label": "Exchange of two basis members",
+      "statement": "[Exchange of two basis members] Let U=(u_1,,u_n,u_*) and V=(v_1,,v_n,v_*) be ordered bases of the same space of linear forms, viewing each list as a column vector of its forms, and let \\[ V=KU, K=…",
+      "section": "Pivoting and the price of a dense pair",
+      "manuscript": "Finite tensor savings and exact Fourier circuits"
+    },
+    {
+      "id": "m2-lem-pair-price",
+      "kind": "lemma",
+      "label": "Price of a dense pair",
+      "statement": "[Price of a dense pair] Every invertible 22 matrix all of whose entries are nonzero has price at most 3/2 . In particular, p( 1&1\\\\1&u ) 32 (u\\ 0,1\\ ).",
+      "section": "Pivoting and the price of a dense pair",
+      "manuscript": "Finite tensor savings and exact Fourier circuits"
+    },
+    {
+      "id": "m2-reflect-triangular-price",
+      "kind": "lemma",
+      "label": "For every integer m1 , \\[ p(T_m)=m2^ m-1 . \\]",
+      "statement": "For every integer m1 , \\[ p(T_m)=m2^ m-1 . \\]",
+      "section": "Signed matrices and the reflection contradiction",
+      "manuscript": "Finite tensor savings and exact Fourier circuits"
+    },
+    {
+      "id": "m2-reflect-sparse-reflection",
+      "kind": "lemma",
+      "label": "Let A be a real symmetric w w matrix with h supported unordered off-diagonal…",
+      "statement": "Let A be a real symmetric w w matrix with h supported unordered off-diagonal pairs. Let R act as +I on A and as -I on ( A)^ . Then \\[ p(R) 32h+2w. \\]",
+      "section": "Signed matrices and the reflection contradiction",
+      "manuscript": "Finite tensor savings and exact Fourier circuits"
+    },
+    {
+      "id": "m2-thm-finite-win",
+      "kind": "theorem",
+      "label": "Existence of a finite win",
+      "statement": "[Existence of a finite win] There exist an invertible nonmonomial matrix A of a finite width q , an integer b2 , and a word on exactly q^b coordinates implementing A^ b with monomials and fewer than…",
+      "section": "Signed matrices and the reflection contradiction",
+      "manuscript": "Finite tensor savings and exact Fourier circuits"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-net-edge",
+      "to": "m1-net-finite-interface"
+    },
+    {
+      "from": "m1-net-finite-interface",
+      "to": "m1-net-tensor-bound"
+    },
+    {
+      "from": "m1-net-indexing",
+      "to": "m1-net-tensor-bound"
+    },
+    {
+      "from": "m1-loc-replay",
+      "to": "m1-loc-toeplitz"
+    },
+    {
+      "from": "m1-loc-toeplitz",
+      "to": "m1-loc-fourier"
+    },
+    {
+      "from": "m1-loc-newton-reduction",
+      "to": "m1-loc-fourier"
+    },
+    {
+      "from": "m1-loc-compiler",
+      "to": "m1-prop-tensor-fourier"
+    },
+    {
+      "from": "m1-lem-sector-address",
+      "to": "m1-prop-tensor-fourier"
+    },
+    {
+      "from": "m1-net-tensor-bound",
+      "to": "m1-prop-tensor-fourier"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-lem-prime-lengths"
+    },
+    {
+      "from": "m1-cor-decimal",
+      "to": "m1-lem-prime-lengths"
+    },
+    {
+      "from": "m1-net-tensor-bound",
+      "to": "m1-lem-prime-lengths"
+    },
+    {
+      "from": "m1-lem-sector-address",
+      "to": "m1-lem-prime-lengths"
+    },
+    {
+      "from": "m1-cor-polynomial-multiplication",
+      "to": "m1-lem-prime-lengths"
+    },
+    {
+      "from": "m1-net-finite-interface",
+      "to": "m1-syn-local-certificate"
+    },
+    {
+      "from": "m2-fft-dirty-layers",
+      "to": "m2-fft-toeplitz-layers"
+    },
+    {
+      "from": "m2-fft-toeplitz-layers",
+      "to": "m2-lem-fourier-layers"
+    },
+    {
+      "from": "m2-lem-amplification",
+      "to": "m2-prop-win-to-fourier"
+    },
+    {
+      "from": "m2-lem-fourier-layers",
+      "to": "m2-prop-win-to-fourier"
+    },
+    {
+      "from": "m2-lem-generation",
+      "to": "m2-prop-win-to-fourier"
+    },
+    {
+      "from": "m2-lem-generation",
+      "to": "m2-price-packing"
+    },
+    {
+      "from": "m2-fft-dirty-layers",
+      "to": "m2-lem-shear-dag"
+    },
+    {
+      "from": "m2-price-word-bounds",
+      "to": "m2-lem-shear-dag"
+    },
+    {
+      "from": "m2-lem-shear-dag",
+      "to": "m2-corner-lem-cascade"
+    },
+    {
+      "from": "m2-lem-triangular",
+      "to": "m2-corner-lem-cascade"
+    },
+    {
+      "from": "m2-lem-scalar-convolution",
+      "to": "m2-corner-lem-cascade"
+    },
+    {
+      "from": "m2-thm-corner",
+      "to": "m2-corner-lem-cascade"
+    },
+    {
+      "from": "m2-thm-corner",
+      "to": "m2-cor-dag-price"
+    },
+    {
+      "from": "m2-lem-shear-dag",
+      "to": "m2-cor-dag-price"
+    },
+    {
+      "from": "m2-cor-dag-price",
+      "to": "m2-lem-boundary-comparison"
+    },
+    {
+      "from": "m2-lem-scalar-convolution",
+      "to": "m2-lem-boundary-comparison"
+    },
+    {
+      "from": "m2-thm-corner",
+      "to": "m2-thm-feedback"
+    },
+    {
+      "from": "m2-lem-boundary-comparison",
+      "to": "m2-thm-feedback"
+    },
+    {
+      "from": "m2-lem-scalar-convolution",
+      "to": "m2-thm-feedback"
+    },
+    {
+      "from": "m2-lem-triangular",
+      "to": "m2-thm-feedback"
+    },
+    {
+      "from": "m2-lem-boundary-comparison",
+      "to": "m2-thm-specialization"
+    },
+    {
+      "from": "m2-thm-feedback",
+      "to": "m2-lem-pivot-bound"
+    },
+    {
+      "from": "m2-pivot-lem-one-port",
+      "to": "m2-lem-scalar-pivot"
+    },
+    {
+      "from": "m2-lem-pivot-bound",
+      "to": "m2-lem-scalar-pivot"
+    },
+    {
+      "from": "m2-lem-scalar-pivot",
+      "to": "m2-pivot-cor-basis-exchange"
+    },
+    {
+      "from": "m2-thm-feedback",
+      "to": "m2-lem-pair-price"
+    },
+    {
+      "from": "m2-pivot-cor-basis-exchange",
+      "to": "m2-lem-pair-price"
+    },
+    {
+      "from": "m2-lem-scalar-pivot",
+      "to": "m2-reflect-triangular-price"
+    },
+    {
+      "from": "m2-lem-pair-price",
+      "to": "m2-reflect-sparse-reflection"
+    },
+    {
+      "from": "m2-thm-feedback",
+      "to": "m2-reflect-sparse-reflection"
+    },
+    {
+      "from": "m2-thm-specialization",
+      "to": "m2-reflect-sparse-reflection"
+    }
+  ]
+}

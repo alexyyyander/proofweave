@@ -1,0 +1,997 @@
+{
+  "familyNumber": "222",
+  "familyTitle": "Perceptron free energies and microscopic jamming exponents",
+  "manuscripts": [
+    {
+      "id": "The-free-energy-of-the-Ising-random-perceptron-September-24-2026",
+      "title": "The free energy of the Ising random perceptron",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-free-energy-of-the-Ising-random-perceptron-September-24-2026/The-free-energy-of-the-Ising-random-perceptron-September-24-2026.pdf"
+    },
+    {
+      "id": "Microscopic-jamming-in-the-negative-spherical-perceptron-September-24-2026",
+      "title": "Microscopic jamming in the negative spherical perceptron",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Microscopic-jamming-in-the-negative-spherical-perceptron-September-24-2026/Microscopic-jamming-in-the-negative-spherical-perceptron-September-24-2026.pdf"
+    },
+    {
+      "id": "The-spherical-perceptron-with-bi-orthogonally-invariant-disorder-September-24-2026",
+      "title": "The spherical perceptron with bi-orthogonally invariant disorder",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-spherical-perceptron-with-bi-orthogonally-invariant-disorder-September-24-2026/The-spherical-perceptron-with-bi-orthogonally-invariant-disorder-September-24-2026.pdf"
+    }
+  ],
+  "sections": [
+    "The model and the variational formula",
+    "Variations, order, and the Ising entropy",
+    "Overlap arrays and probability cascades",
+    "The upper bound by enriched affine comparison",
+    "The perturbed bulk and restoration of two patterns",
+    "Cavity increments and attainment of the entropy dual",
+    "General activations and random-sign patterns",
+    "The problem and the proof architecture",
+    "Hierarchical Gaussian functionals and spherical entropy",
+    "Concavity and stability of the row functional",
+    "The Gaussian pressure",
+    "Universality at fixed temperature",
+    "Ground energy and the sharp satisfiability threshold",
+    "Zero temperature and mechanical bounds",
+    "A convex critical problem and the limiting microscopic laws"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Gaussian Ising perceptron",
+      "statement": "[Gaussian Ising perceptron] For every >0 and every bounded Borel f: R R , _ N E p_N(f) = P_f() :=_ q Q \\ V_f(q)+S_ I (q)\\ . Moreover, p_N(f) converges to P_f() in probability. The variational value…",
+      "section": "The model and the variational formula",
+      "manuscript": "The free energy of the Ising random perceptron"
+    },
+    {
+      "id": "m1-var-variation",
+      "kind": "lemma",
+      "label": "First variations",
+      "statement": "[First variations] On a fixed partition with w_i=_ i+1 -_i , the first variations along every feasible line segment of step paths are d da V_f(q+a q) &=-12_ i=0 ^ k-1 w_i q_i\\, E[U_i'(Z_i)^2],\\\\ d da…",
+      "section": "Variations, order, and the Ising entropy",
+      "manuscript": "The free energy of the Ising random perceptron"
+    },
+    {
+      "id": "m1-var-continuity-order",
+      "kind": "proposition",
+      "label": "Continuity and tail order",
+      "statement": "[Continuity and tail order] For step paths on arbitrary partitions, |V_f(p)-V_f(q)|&12\\|f'\\|_^2\\|p-q\\|_ L^1 ,\\\\ |(h')-(h)|&12\\|h'-h\\|_ L^1 . Thus V_f extends uniquely and continuously to all…",
+      "section": "Variations, order, and the Ising entropy",
+      "manuscript": "The free energy of the Ising random perceptron"
+    },
+    {
+      "id": "m1-var-step-reduction",
+      "kind": "corollary",
+      "label": "Finite variational value and reduction to finite trials",
+      "statement": "[Finite variational value and reduction to finite trials] The entropy in Definition~ is nonnegative, nondecreasing in pointwise path order, and satisfies S_ I (0)=0 . The variational infimum is…",
+      "section": "Variations, order, and the Ising entropy",
+      "manuscript": "The free energy of the Ising random perceptron"
+    },
+    {
+      "id": "m1-var-folded-kernel",
+      "kind": "lemma",
+      "label": "Order preservation by a folded transition",
+      "statement": "[Order preservation by a folded transition] Suppose U: R R is even and convex. Let K be its tilted Gaussian kernel with variance s0 and coefficient d0 , and assume its normalizer E e^ dU(x+ sG) is…",
+      "section": "Variations, order, and the Ising entropy",
+      "manuscript": "The free energy of the Ising random perceptron"
+    },
+    {
+      "id": "m1-var-concavity",
+      "kind": "theorem",
+      "label": "Concavity and a supporting field",
+      "statement": "[Concavity and a supporting field] The functional is concave on nonnegative nondecreasing step paths. For any two such paths, represented on a common partition, (h')(h) -12_0^1(h'(u)-h(u))_h(u)\\,du.…",
+      "section": "Variations, order, and the Ising entropy",
+      "manuscript": "The free energy of the Ising random perceptron"
+    },
+    {
+      "id": "m1-arr-ultrametric",
+      "kind": "theorem",
+      "label": "Positivity and ultrametricity",
+      "statement": "[Positivity and ultrametricity] Suppose B is a bounded, symmetric, weakly exchangeable Gram array with constant diagonal D and the Ghirlanda--Guerra property. Then, almost surely, for distinct…",
+      "section": "Overlap arrays and probability cascades",
+      "manuscript": "The free energy of the Ising random perceptron"
+    },
+    {
+      "id": "m1-arr-cascade",
+      "kind": "lemma",
+      "label": "Cascade law and finite-level uniqueness",
+      "statement": "[Cascade law and finite-level uniqueness] The total T in is almost surely finite and positive, with E[( T)^2]< . For replicas sampled from (v_) , the common-level array satisfies the…",
+      "section": "Overlap arrays and probability cascades",
+      "manuscript": "The free energy of the Ising random perceptron"
+    },
+    {
+      "id": "m1-arr-quantization",
+      "kind": "lemma",
+      "label": "Ordered quantization with the original diagonal",
+      "statement": "[Ordered quantization with the original diagonal] Let B be nonnegative and ultrametric off the diagonal, with constant diagonal D and entries at most D . Applying any nonnegative nondecreasing…",
+      "section": "Overlap arrays and probability cascades",
+      "manuscript": "The free energy of the Ising random perceptron"
+    },
+    {
+      "id": "m1-arr-law-continuity",
+      "kind": "lemma",
+      "label": "Uniqueness and bounded-Lipschitz continuity",
+      "statement": "[Uniqueness and bounded-Lipschitz continuity] For fixed diagonal D , the law of a nonnegative ultrametric Ghirlanda--Guerra array with values in [0,D] is determined by its two-replica marginal. Such…",
+      "section": "Overlap arrays and probability cascades",
+      "manuscript": "The free energy of the Ising random perceptron"
+    },
+    {
+      "id": "m1-arr-tilt",
+      "kind": "lemma",
+      "label": "Marked cascade transformation",
+      "statement": "[Marked cascade transformation] Let X_ k-1 be a terminal log factor depending on the marked path. For i1 , let E_i integrate the original level- i child-mark kernel, conditional on the marked…",
+      "section": "Overlap arrays and probability cascades",
+      "manuscript": "The free energy of the Ising random perceptron"
+    },
+    {
+      "id": "m1-arr-limit",
+      "kind": "lemma",
+      "label": "Bounded reweighting of convergent arrays",
+      "statement": "[Bounded reweighting of convergent arrays] Let a sequence of random base probabilities have jointly convergent arrays of bounded observables and of the conditional covariances of finitely many fresh…",
+      "section": "Overlap arrays and probability cascades",
+      "manuscript": "The free energy of the Ising random perceptron"
+    },
+    {
+      "id": "m1-arr-fresh-pattern",
+      "kind": "lemma",
+      "label": "Evaluation of one fresh pattern",
+      "statement": "[Evaluation of one fresh pattern] Suppose that the limiting spin-overlap array of a sequence of base Gibbs probabilities has diagonal one, is Gram, and satisfies the Ghirlanda--Guerra property. Let p…",
+      "section": "Overlap arrays and probability cascades",
+      "manuscript": "The free energy of the Ising random perceptron"
+    },
+    {
+      "id": "m1-arr-calculus",
+      "kind": "lemma",
+      "label": "Gaussian differentiation",
+      "statement": "[Gaussian differentiation] Let P be a probability reference measure, possibly random but independent of the Gaussian fields under consideration. For independent centered Gaussian energies with…",
+      "section": "Overlap arrays and probability cascades",
+      "manuscript": "The free energy of the Ising random perceptron"
+    },
+    {
+      "id": "m1-arr-variance",
+      "kind": "lemma",
+      "label": "Elementary variance estimates",
+      "statement": "[Elementary variance estimates] A function of finite standard Gaussian data with Euclidean Lipschitz constant A has variance at most A^2 . A function of independent inputs whose value changes by at…",
+      "section": "Overlap arrays and probability cascades",
+      "manuscript": "The free energy of the Ising random perceptron"
+    },
+    {
+      "id": "m1-upper-bound",
+      "kind": "proposition",
+      "label": "Upper bound",
+      "statement": "[Upper bound] For every nondecreasing [0,1] -valued path q , _ N E p_N V_f(q)+S_ I (q). Consequently the limit superior is bounded above by the variational infimum in Theorem~ .",
+      "section": "The upper bound by enriched affine comparison",
+      "manuscript": "The free energy of the Ising random perceptron"
+    },
+    {
+      "id": "m1-upper-concentration",
+      "kind": "lemma",
+      "label": "Uniform concentration on a field cap",
+      "statement": "[Uniform concentration on a field cap] For each fixed H< there is a constant C_H , also depending on the fixed partition, , and f , such that Var(P_N(t,h,u))C_H N whenever 0 t , 0 h_0 h_ k-1 H , and…",
+      "section": "The upper bound by enriched affine comparison",
+      "manuscript": "The free energy of the Ising random perceptron"
+    },
+    {
+      "id": "m1-upper-derivatives",
+      "kind": "lemma",
+      "label": "Derivatives of the comparison function",
+      "statement": "[Derivatives of the comparison function] The function F_N is continuous on the parameter region above. For every nonnegative nondecreasing direction on the fixed partition, its right directional…",
+      "section": "The upper bound by enriched affine comparison",
+      "manuscript": "The free energy of the Ising random perceptron"
+    },
+    {
+      "id": "m1-upper-coercive",
+      "kind": "lemma",
+      "label": "The field cap is coercive",
+      "statement": "[The field cap is coercive] For the fixed partition, (h) ( E|G|)h_0+C_ -12_ i=0 ^ k-1 w_ih_i. For sufficiently large fixed H , every sufficiently large dimension in the violating sequence has a…",
+      "section": "The upper bound by enriched affine comparison",
+      "manuscript": "The free energy of the Ising random perceptron"
+    },
+    {
+      "id": "m1-upper-gg",
+      "kind": "lemma",
+      "label": "Joint identities at deterministic minimizers",
+      "statement": "[Joint identities at deterministic minimizers] Every subsequential limit of the sampled joint arrays (R,T) at these deterministic minimizing triples satisfies the joint Ghirlanda--Guerra identities…",
+      "section": "The upper bound by enriched affine comparison",
+      "manuscript": "The free energy of the Ising random perceptron"
+    },
+    {
+      "id": "m1-upper-synchronization",
+      "kind": "lemma",
+      "label": "Ordered coupling of the spin and tree overlaps",
+      "statement": "[Ordered coupling of the spin and tree overlaps] In any joint array limit from Lemma~ , the two-replica law of (R_ 12 ,T_ 12 ) is supported on a set ordered in both coordinates. If p is the quantile…",
+      "section": "The upper bound by enriched affine comparison",
+      "manuscript": "The free energy of the Ising random perceptron"
+    },
+    {
+      "id": "m1-bulk-good-parameters",
+      "kind": "lemma",
+      "label": "Overlap identities on uniform good parameter sets",
+      "statement": "[Overlap identities on uniform good parameter sets] There are measurable sets G_N^ N with ( G_N)1 such that the following holds. For every deterministic sequence v(N) G_N , every subsequential limit…",
+      "section": "The perturbed bulk and restoration of two patterns",
+      "manuscript": "The free energy of the Ising random perceptron"
+    },
+    {
+      "id": "m1-bulk-restoration",
+      "kind": "proposition",
+      "label": "Deterministic covariance and cavity correction",
+      "statement": "[Deterministic covariance and cavity correction] Start with any deterministic good parameter sequence, on any subsequence of dimensions. Pass to a further subsequence on which the omitted overlap…",
+      "section": "The perturbed bulk and restoration of two patterns",
+      "manuscript": "The free energy of the Ising random perceptron"
+    },
+    {
+      "id": "m1-cav-finite-comparison",
+      "kind": "lemma",
+      "label": "Cavity comparison for increments and replica laws",
+      "statement": "[Cavity comparison for increments and replica laws] Let G_0=G_N^v_L be the size- N bulk Gibbs probability times the independent cavity-spin prior, before multiplication by W . There is a…",
+      "section": "Cavity increments and attainment of the entropy dual",
+      "manuscript": "The free energy of the Ising random perceptron"
+    },
+    {
+      "id": "m1-cav-dual-attainment",
+      "kind": "proposition",
+      "label": "The cavity field attains the entropy dual",
+      "statement": "[The cavity field attains the entropy dual] For every subsequential pair (p,h) just constructed, S_ I (p)=(h)+12_0^1p(u)h(u)\\,du. The right side uses the continuous extension of to bounded…",
+      "section": "Cavity increments and attainment of the entropy dual",
+      "manuscript": "The free energy of the Ising random perceptron"
+    },
+    {
+      "id": "m1-cav-lower-bound",
+      "kind": "proposition",
+      "label": "For f C_c^( R) , \\[ _ N E p_N _q\\ S_ I (q)+ V_f(q)\\ . \\]",
+      "statement": "For f C_c^( R) , \\[ _ N E p_N _q\\ S_ I (q)+ V_f(q)\\ . \\]",
+      "section": "Cavity increments and attainment of the entropy dual",
+      "manuscript": "The free energy of the Ising random perceptron"
+    },
+    {
+      "id": "m1-ext-path-approx",
+      "kind": "lemma",
+      "label": "Uniform approximation of the pattern functional",
+      "statement": "[Uniform approximation of the pattern functional] If f,g are bounded Borel functions with |f|,|g| K , then | E p_N(f)- E p_N(g)| & e^ 2K \\|f-g\\|_ L^1() , \\\\ _ q step |V_f(q)-V_g(q)| & e^ 2K \\|f-g\\|_…",
+      "section": "General activations and random-sign patterns",
+      "manuscript": "The free energy of the Ising random perceptron"
+    },
+    {
+      "id": "m1-ext-bounded",
+      "kind": "proposition",
+      "label": "Completion of the bounded case",
+      "statement": "[Completion of the bounded case] Theorem~ holds for every bounded Borel activation.",
+      "section": "General activations and random-sign patterns",
+      "manuscript": "The free energy of the Ising random perceptron"
+    },
+    {
+      "id": "m1-ext-integrable",
+      "kind": "theorem",
+      "label": "Integrable activations",
+      "statement": "[Integrable activations] Suppose f: R R is Borel and E|f(G)|+ E e^ f(G) <. For J,K>0 , let f_ J,K =\\ K,\\ -J,f\\ \\ . The uniform limit V_f=_ J _ K V_ f_ J,K on Q exists and is continuous in L^1 . With…",
+      "section": "General activations and random-sign patterns",
+      "manuscript": "The free energy of the Ising random perceptron"
+    },
+    {
+      "id": "m1-ext-sign",
+      "kind": "theorem",
+      "label": "Random-sign patterns",
+      "statement": "[Random-sign patterns] Replace the Gaussian pattern entries by independent uniform signs in \\ -1,1\\ . If f is bounded Borel and its discontinuity set has Gaussian measure zero, then its expected…",
+      "section": "General activations and random-sign patterns",
+      "manuscript": "The free energy of the Ising random perceptron"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "Microscopic criticality and mixture universality",
+      "statement": "[Microscopic criticality and mixture universality] There exist _c(0,) and _0(0,1) with the following properties for every fixed The SAT probability tends to one at every fixed <_c and to zero at…",
+      "section": "The problem and the proof architecture",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-lem-hier-cascade-tilt",
+      "kind": "lemma",
+      "label": "Stable sums and the cascade change of measure",
+      "statement": "[Stable sums and the cascade change of measure] For a fixed finite cascade, 0<T< almost surely and | T|^2< . Attach marks to its vertices, independently of the Poisson processes, with conditionally…",
+      "section": "Hierarchical Gaussian functionals and spherical entropy",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-lem-hier-rank-array",
+      "kind": "lemma",
+      "label": "Sampling a cascade and the continuous rank array",
+      "statement": "[Sampling a cascade and the continuous rank array] For two independent samples from a depth- k cascade, the probability that their leaves share exactly j edges is w_j , 0 j k ; sharing k edges…",
+      "section": "Hierarchical Gaussian functionals and spherical entropy",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-lem-hier-array-continuity",
+      "kind": "lemma",
+      "label": "Replica-array continuity under a Gaussian tilt",
+      "statement": "[Replica-array continuity under a Gaussian tilt] Let G_n be random probability measures. Suppose that the jointly sampled arrays of a finite list of uniformly bounded positive-semidefinite kernels,…",
+      "section": "Hierarchical Gaussian functionals and spherical entropy",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-lem-hier-row-interpolation",
+      "kind": "lemma",
+      "label": "Derivative profile and Gaussian interpolation",
+      "statement": "[Derivative profile and Gaussian interpolation] For a step profile define D_q(s)= A_j^2 on [m_ j-1 ,m_j) . This is nonnegative and nondecreasing, satisfies D_q\\|u'\\|_^2 , and is constant across…",
+      "section": "Hierarchical Gaussian functionals and spherical entropy",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-prop-hier-spherical-limit",
+      "kind": "proposition",
+      "label": "Explicit spherical entropy",
+      "statement": "[Explicit spherical entropy] The limit S(p)=_ N S_N(p) exists and is uniform over all nonnegative nondecreasing profiles bounded by any fixed constant. For a finite-step profile without residual…",
+      "section": "Hierarchical Gaussian functionals and spherical entropy",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-prop-hier-spin-concavity",
+      "kind": "proposition",
+      "label": "Concavity and supergradients",
+      "statement": "[Concavity and supergradients] The functional S is concave on bounded nonnegative nondecreasing profiles. At a finite-step profile its differential is S(p)=-12_ j=0 ^k w_jr_j\\, p_j, r_j=p_0 _0^2 +_…",
+      "section": "Hierarchical Gaussian functionals and spherical entropy",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-prop-hier-entropy-conjugacy",
+      "kind": "proposition",
+      "label": "Entropy conjugacy",
+      "statement": "[Entropy conjugacy] Let q be nonnegative and nondecreasing with q_*<1 , and use _q defined above. Then the following supremum is attained: E(q)&:=_ p0 bounded\\ nondecreasing \\ S(p)+12_0^1q(s)p(s)\\,…",
+      "section": "Hierarchical Gaussian functionals and spherical entropy",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-lem-conc-regularity",
+      "kind": "lemma",
+      "label": "Parabolic bounds and differentiability",
+      "statement": "[Parabolic bounds and differentiability] Equation has a unique solution of at most quadratic growth with a spatial derivative of at most linear growth. For continuous m:[0,Q] , the solution is…",
+      "section": "Concavity and stability of the row functional",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-lem-conc-hessian",
+      "kind": "lemma",
+      "label": "Hessian identity",
+      "statement": "[Hessian identity] Set v=v+ U/2 and l= v_z . Then w(0,0)&=_0^1 ( q s l^2-2 a l-12^2b^2) s,\\\\ Dl&= a b- q s b l, l(1,)=0.",
+      "section": "Concavity and stability of the row functional",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-prop-conc-concavity",
+      "kind": "proposition",
+      "label": "Concavity",
+      "statement": "[Concavity] For every concave terminal in the class , q_u(q;Q) is concave on smooth strictly increasing profiles. For every concave globally Lipschitz terminal, which need not be smooth or bounded…",
+      "section": "Concavity and stability of the row functional",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-lem-conc-density",
+      "kind": "lemma",
+      "label": "Diffusion density bounds",
+      "statement": "[Diffusion density bounds] Let X solve X_t= B_t+A(t,X_t) t , with |_zA| K and |A(t,0)| K . Over an interval of length T>0 , its transition density is bounded above by e^ KT /2 T . Moreover, when…",
+      "section": "Concavity and stability of the row functional",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-prop-conc-stability",
+      "kind": "proposition",
+      "label": "Uniform strictness and stability",
+      "statement": "[Uniform strictness and stability] There is c_>0 such that, for every Q , every regularized base terminal just described, every smooth strictly increasing profile, and every smooth endpoint-zero…",
+      "section": "Concavity and stability of the row functional",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-cor-conc-hinge-stability",
+      "kind": "corollary",
+      "label": "The uncapped row functional",
+      "statement": "[The uncapped row functional] Fix >0 and C_c^() . There are constants c_>0 and d_0=d_0(,)>0 such that, for u_d=- V+d , |d| d_0 , Q , and all q,r Q_Q , _ u_d ((1-t)q+tr;Q) (1-t)_ u_d (q;Q)+t_ u_d…",
+      "section": "Concavity and stability of the row functional",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-cor-conc-convex-loss",
+      "kind": "corollary",
+      "label": "Convex perturbations of the loss",
+      "statement": "[Convex perturbations of the loss] Let \\[ W(z)=cV(z)+(z), c>0, C_c^((-,-1)), \\] and suppose that W0 , W'0 , and W''0 distributionally. For every fixed >0 , the terminal u=- W has a concave row…",
+      "section": "Concavity and stability of the row functional",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-lem-press-gg",
+      "kind": "lemma",
+      "label": "A vanishing perturbation",
+      "statement": "[A vanishing perturbation] Fix (1/4,1/2) and put s_N=N^ . There is an independent centered Gaussian perturbation H_N^ pert with the following properties. [label=()] Its addition changes the expected…",
+      "section": "The Gaussian pressure",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-lem-press-sync",
+      "kind": "lemma",
+      "label": "Synchronization and identification",
+      "statement": "[Synchronization and identification] Suppose the joint array (R,Q) is a subsequential limit from Lemma~ . Then R0 off the diagonal. There are nonnegative nondecreasing profiles r,q , on a common…",
+      "section": "The Gaussian pressure",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-lem-press-row-insertion",
+      "kind": "lemma",
+      "label": "Deleting and reinserting finitely many rows",
+      "statement": "[Deleting and reinserting finitely many rows] Consider any convergent deleted-row overlap-array subsequence satisfying the preceding lemmas. Reinsert finitely many independent Gaussian rows, with…",
+      "section": "The Gaussian pressure",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-lem-press-empirical",
+      "kind": "lemma",
+      "label": "Empirical cavity coefficients",
+      "statement": "[Empirical cavity coefficients] Take a subsequence on which the base overlap array converges to profile q and the GG errors for the base, one-row-deleted, and two-row-deleted systems vanish. In every…",
+      "section": "The Gaussian pressure",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-prop-press-formula",
+      "kind": "proposition",
+      "label": "Entropy form of the pressure",
+      "statement": "[Entropy form of the pressure] For Gaussian rows, u=- V , and >0 , P(u)=_ q:\\,q_*<1 \\ _u(q)+E(q)\\ , q_*:= q. Every minimizer of P_u has q_*<1 and satisfies the spin inverse relations of Section~ with…",
+      "section": "The Gaussian pressure",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-cor-press-convex-loss-upper",
+      "kind": "corollary",
+      "label": "Upper bound for convex loss perturbations",
+      "statement": "[Upper bound for convex loss perturbations] Let C_c^(( -,0)) . There is w_0>0 , independent of , such that for both signs of w with |w|<w_0 the loss L_w(z)=V(z)+w(1+z) is nonnegative, convex, and…",
+      "section": "The Gaussian pressure",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-thm-univ-pressure",
+      "kind": "theorem",
+      "label": "Pressure and upper supports",
+      "statement": "[Pressure and upper supports] There is _0(B_0)>0 , independent of >0 , with the following property. If 0< B_0 and 0<_0(B_0) , then \\[ _ N P_ N, (u)=P(u). \\] If q is any Gaussian minimizer in and…",
+      "section": "Universality at fixed temperature",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-lem-univ-residual-variance",
+      "kind": "lemma",
+      "label": "Residual moments under a decrease of variance",
+      "statement": "[Residual moments under a decrease of variance] Let q be a nonnegative nondecreasing profile with diagonal 1 , and let u(z)=-(-1-z)_+^2/2 , >0 . Put a_0=f_z(0,0) for its row solution before the root…",
+      "section": "Universality at fixed temperature",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-prop-univ-observables",
+      "kind": "proposition",
+      "label": "Empirical row law and force normalization",
+      "statement": "[Empirical row law and force normalization] For either the Gaussian law or any mixture in Theorem~ , at fixed >0 and 0< B_0 , L_N converges weakly in probability to _ , . This measure is atomless,…",
+      "section": "Universality at fixed temperature",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-thresh-pressure-energy",
+      "kind": "lemma",
+      "label": "Uniform approximation by the pressure",
+      "statement": "[Uniform approximation by the pressure] For every finite B_0 there is a constant C=C(B_0) such that, for N2 , 0 M B_0N , 01/2 , >0 , and 0<<1/2 , 0 - P_ N, ^ _ () -1N_ \\|y\\|=1 H_A(y) C+1 C.…",
+      "section": "Ground energy and the sharp satisfiability threshold",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-thresh-large-density",
+      "kind": "lemma",
+      "label": "Positive energy at a finite density",
+      "statement": "[Positive energy at a finite density] There is an absolute finite B>1 such that the Gaussian ground energy satisfies e(B)>0 . The same finite-dimensional lower bound used to prove this assertion…",
+      "section": "Ground energy and the sharp satisfiability threshold",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-thresh-uniform-geometry",
+      "kind": "lemma",
+      "label": "Uniform row estimates",
+      "statement": "[Uniform row estimates] Fix B_0< and 0<<1/8 . There are constants K< , c>0 , u_0>0 , a>0 , and C< , depending only on (B_0,) , such that, for all sufficiently large N , all M B_0N , and every 01/2 ,…",
+      "section": "Ground energy and the sharp satisfiability threshold",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-thresh-slab-direction",
+      "kind": "lemma",
+      "label": "A direction inside finitely many slabs",
+      "statement": "[A direction inside finitely many slabs] Let W be a D -dimensional Euclidean space, D1 , and L:W^m a linear map. There exists a unit v W such that \\|Lv\\|_\\|L\\| D .",
+      "section": "Ground energy and the sharp satisfiability threshold",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-thresh-repair",
+      "kind": "lemma",
+      "label": "Deterministic repair",
+      "statement": "[Deterministic repair] Fix K,c,u_0>0 and 0<<1/8 . There exists d_*=d_*(K,c,u_0,)>0 such that the following holds for all sufficiently large N . Suppose A satisfies the first two assertions of Lemma~…",
+      "section": "Ground energy and the sharp satisfiability threshold",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-thresh-deletion",
+      "kind": "proposition",
+      "label": "Subextensive parent energy implies satisfiability",
+      "statement": "[Subextensive parent energy implies satisfiability] Let 0<<' B_0 , and let the entries have any one of the laws _ , 01/2 . If \\[ 1N H_ 'N N 0, \\] then a matrix with N rows is satisfiable with…",
+      "section": "Ground energy and the sharp satisfiability threshold",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-thresh-sharp",
+      "kind": "theorem",
+      "label": "Sharp common satisfiability threshold",
+      "statement": "[Sharp common satisfiability threshold] For Gaussian entries and, with the choice of B_0 above, for every fixed 0<_0(B_0) , the number _J in satisfies 1_J< and \\[ _ N (SAT)= 1,&0<<_J,\\\\ 0,&>_J. \\] In…",
+      "section": "Ground energy and the sharp satisfiability threshold",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-thresh-ordered-limits",
+      "kind": "corollary",
+      "label": "Transfer of the remaining ordered limits",
+      "statement": "[Transfer of the remaining ordered limits] Fix 0<_0(B_0) . On a full interval above the common threshold, the thermodynamic gap and normalized-force observables at every fixed positive temperature…",
+      "section": "Ground energy and the sharp satisfiability threshold",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-zero-compactness",
+      "kind": "lemma",
+      "label": "UNSAT compactness bounds",
+      "statement": "[UNSAT compactness bounds] For all sufficiently large \\(\\), 0<c_(0) C_e, 0<c_e(1-q_ ,* ) C_e. Consequently every sequence \\(\\) has a subsequence for which \\[ _(t)\\, t\\ \\ (t)\\, t+_1, (t)=+_t^1(v)\\, v,…",
+      "section": "Zero temperature and mechanical bounds",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-zero-variational",
+      "kind": "proposition",
+      "label": "Zero-temperature variational principle",
+      "statement": "[Zero-temperature variational principle] For every subsequential limit in Lemma~ , let \\(g\\) be the solution of \\[ g_t=-12(g_ zz +(t)g_z^2), g(1,z)=-V(z) 1+ . \\] It satisfies E_(,) := g(0,0)+12_0^1 t…",
+      "section": "Zero temperature and mechanical bounds",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-zero-endpoint",
+      "kind": "proposition",
+      "label": "Subsequential endpoint law",
+      "statement": "[Subsequential endpoint law] Let \\(Z_0=0\\) and \\( Z_t=(t)g_z(t,Z_t)\\, t+ B_t\\), and put \\(H=1+Z_1\\). Along the subsequence defining \\((,)\\), the tilted row gap converges in distribution to h^*=…",
+      "section": "Zero temperature and mechanical bounds",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-zero-negative-law",
+      "kind": "proposition",
+      "label": "Identification of negative gaps",
+      "statement": "[Identification of negative gaps] For every subsequential endpoint law in Proposition~ , the restriction of the law of h^* to (-,0) is the same. For C_c^((-,0)) , uniformly over Gaussian ground…",
+      "section": "Zero temperature and mechanical bounds",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-zero-stability",
+      "kind": "lemma",
+      "label": "Endpoint stability",
+      "statement": "[Endpoint stability] For every subsequential zero-temperature optimizer, the contact density parameter \\(z_c=(H<0)\\) satisfies z_c(1+1/)^2.",
+      "section": "Zero temperature and mechanical bounds",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-zero-mechanical",
+      "kind": "lemma",
+      "label": "Mechanical contact count",
+      "statement": "[Mechanical contact count] Almost surely, every positive-energy Gaussian ground minimizer has no zero gap outside its active set \\(C=\\ i:r_i>0\\ \\), and \\(k=|C| N\\). At such a minimizer,…",
+      "section": "Zero temperature and mechanical bounds",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-zero-negative-cutoffs",
+      "kind": "lemma",
+      "label": "Negative cutoffs",
+      "statement": "[Negative cutoffs] There are constants c,C>0 , independent of the density, such that c e , where =(h^*)_- . At each fixed UNSAT density, uniformly over Gaussian ground minimizers, \\[ k N z_cin…",
+      "section": "Zero temperature and mechanical bounds",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-zero-spectral",
+      "kind": "lemma",
+      "label": "Spectral and susceptibility bounds",
+      "statement": "[Spectral and susceptibility bounds] For every \\(>0\\), with probability tending to one, simultaneously for all row subsets \\(C\\) with \\(N|C| B_0N\\), at least two singular values of \\(A_C/ N\\) are at…",
+      "section": "Zero temperature and mechanical bounds",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-zero-normalized-force-cutoff",
+      "kind": "corollary",
+      "label": "Cutoffs after susceptibility normalization",
+      "statement": "[Cutoffs after susceptibility normalization] For every subsequential endpoint law, put \\(R=L(h^*)_-\\) and \\(p=(h^*<0)\\). There are constants \\(c,C,u_0>0\\), independent of the density, such that…",
+      "section": "Zero temperature and mechanical bounds",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-zero-positive-cutoffs",
+      "kind": "proposition",
+      "label": "Positive-gap cutoffs",
+      "statement": "[Positive-gap cutoffs] Constants \\(c,C,u_0>0\\), independent of the density, exist such that, for \\(0<<u<1\\), \\(G_ N,, (,u) c(u-)\\). For every fixed UNSAT density in the interval under consideration…",
+      "section": "Zero temperature and mechanical bounds",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-zero-threshold-characterization",
+      "kind": "corollary",
+      "label": "With \\(g\\) and \\(\\) as in Proposition~ , _J=_ 0\\ nondecreasing,\\ L^1\\\\ >0…",
+      "statement": "With \\(g\\) and \\(\\) as in Proposition~ , _J=_ 0\\ nondecreasing,\\ L^1\\\\ >0 _0^1(t)^ -1 \\, t -2g(0,0) . Equivalently one may impose \\((0)=1\\) and replace the terminal condition by \\(g(1,z)=-V(z)/\\).",
+      "section": "Zero temperature and mechanical bounds",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-crit-duality",
+      "kind": "proposition",
+      "label": "Joint martingale formulation",
+      "statement": "[Joint martingale formulation] For an original susceptibility with >0 , the functional in equals the minimum over R0 in L^2( F_1) of J_ ,1 (R,s) = +2 +12_0^1s(t)\\, t . This minimizer is unique for…",
+      "section": "A convex critical problem and the limiting microscopic laws",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-crit-convexity",
+      "kind": "lemma",
+      "label": "Convexity and its equality cases",
+      "statement": "[Convexity and its equality cases] The set of admissible s is convex, as is its normalized part s(0)=1 . The functional J_ , is jointly convex in (R,s) . If two pairs attain equality in this…",
+      "section": "A convex critical problem and the limiting microscopic laws",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-crit-unsat-unique",
+      "kind": "corollary",
+      "label": "Uniqueness in the UNSAT phase",
+      "statement": "[Uniqueness in the UNSAT phase] At each fixed >_c the minimizing physical susceptibility in is unique. Thus the entire zero-temperature endpoint law in , including its restriction to positive gaps,…",
+      "section": "A convex critical problem and the limiting microscopic laws",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-crit-compactness",
+      "kind": "proposition",
+      "label": "Existence of a normalized critical pair",
+      "statement": "[Existence of a normalized critical pair] The functional J_ _c,0 is nonnegative on the whole admissible class, without a normalization constraint. Every sequence of normalized physical pairs with…",
+      "section": "A convex critical problem and the limiting microscopic laws",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-crit-pde",
+      "kind": "lemma",
+      "label": "Interior limits and strict curvature",
+      "statement": "[Interior limits and strict curvature] For each subsequence in Proposition~ , f_n and a_n converge locally uniformly on [0,1) to functions f and a=f_h determined by . They satisfy with _n+_n replaced…",
+      "section": "A convex critical problem and the limiting microscopic laws",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-crit-unique-critical",
+      "kind": "proposition",
+      "label": "Uniqueness of the normalized critical limit",
+      "statement": "[Uniqueness of the normalized critical limit] Any two subsequential limits supplied by Proposition~ coincide on the common Wiener space. In particular the normalized susceptibility and the law of…",
+      "section": "A convex critical problem and the limiting microscopic laws",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    },
+    {
+      "id": "m2-crit-kkt",
+      "kind": "lemma",
+      "label": "Complete first-order conditions",
+      "statement": "[Complete first-order conditions] The critical pair satisfies H_1+ R0, R(H_1+ R)=0 almost surely, \\\\ K(t)0(0 t1), _0^1(t)J(t)\\, t=_ [0,1) K(t)\\,( t)=0. The profile vanishes on an initial interval. At…",
+      "section": "A convex critical problem and the limiting microscopic laws",
+      "manuscript": "Microscopic jamming in the negative spherical perceptron"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-var-variation",
+      "to": "m1-var-continuity-order"
+    },
+    {
+      "from": "m1-var-folded-kernel",
+      "to": "m1-var-concavity"
+    },
+    {
+      "from": "m1-var-variation",
+      "to": "m1-var-concavity"
+    },
+    {
+      "from": "m1-var-continuity-order",
+      "to": "m1-var-concavity"
+    },
+    {
+      "from": "m1-arr-cascade",
+      "to": "m1-arr-quantization"
+    },
+    {
+      "from": "m1-arr-cascade",
+      "to": "m1-arr-law-continuity"
+    },
+    {
+      "from": "m1-arr-cascade",
+      "to": "m1-arr-tilt"
+    },
+    {
+      "from": "m1-arr-quantization",
+      "to": "m1-arr-limit"
+    },
+    {
+      "from": "m1-arr-cascade",
+      "to": "m1-arr-limit"
+    },
+    {
+      "from": "m1-arr-tilt",
+      "to": "m1-arr-limit"
+    },
+    {
+      "from": "m1-arr-ultrametric",
+      "to": "m1-arr-fresh-pattern"
+    },
+    {
+      "from": "m1-arr-limit",
+      "to": "m1-arr-fresh-pattern"
+    },
+    {
+      "from": "m1-arr-tilt",
+      "to": "m1-arr-fresh-pattern"
+    },
+    {
+      "from": "m1-arr-law-continuity",
+      "to": "m1-arr-fresh-pattern"
+    },
+    {
+      "from": "m1-arr-tilt",
+      "to": "m1-upper-concentration"
+    },
+    {
+      "from": "m1-arr-variance",
+      "to": "m1-upper-concentration"
+    },
+    {
+      "from": "m1-arr-calculus",
+      "to": "m1-upper-derivatives"
+    },
+    {
+      "from": "m1-upper-concentration",
+      "to": "m1-upper-gg"
+    },
+    {
+      "from": "m1-arr-calculus",
+      "to": "m1-upper-gg"
+    },
+    {
+      "from": "m1-arr-ultrametric",
+      "to": "m1-upper-synchronization"
+    },
+    {
+      "from": "m1-upper-bound",
+      "to": "m1-upper-synchronization"
+    },
+    {
+      "from": "m1-var-continuity-order",
+      "to": "m1-upper-synchronization"
+    },
+    {
+      "from": "m1-arr-fresh-pattern",
+      "to": "m1-upper-synchronization"
+    },
+    {
+      "from": "m1-var-step-reduction",
+      "to": "m1-upper-synchronization"
+    },
+    {
+      "from": "m1-arr-variance",
+      "to": "m1-bulk-good-parameters"
+    },
+    {
+      "from": "m1-bulk-good-parameters",
+      "to": "m1-bulk-restoration"
+    },
+    {
+      "from": "m1-arr-ultrametric",
+      "to": "m1-bulk-restoration"
+    },
+    {
+      "from": "m1-arr-limit",
+      "to": "m1-bulk-restoration"
+    },
+    {
+      "from": "m1-arr-quantization",
+      "to": "m1-bulk-restoration"
+    },
+    {
+      "from": "m1-arr-cascade",
+      "to": "m1-bulk-restoration"
+    },
+    {
+      "from": "m1-arr-tilt",
+      "to": "m1-bulk-restoration"
+    },
+    {
+      "from": "m1-cav-finite-comparison",
+      "to": "m1-cav-dual-attainment"
+    },
+    {
+      "from": "m1-arr-tilt",
+      "to": "m1-cav-dual-attainment"
+    },
+    {
+      "from": "m1-cav-dual-attainment",
+      "to": "m1-cav-lower-bound"
+    },
+    {
+      "from": "m1-cav-finite-comparison",
+      "to": "m1-cav-lower-bound"
+    },
+    {
+      "from": "m1-var-continuity-order",
+      "to": "m1-ext-path-approx"
+    },
+    {
+      "from": "m1-ext-path-approx",
+      "to": "m1-ext-bounded"
+    },
+    {
+      "from": "m1-arr-variance",
+      "to": "m1-ext-bounded"
+    },
+    {
+      "from": "m1-arr-fresh-pattern",
+      "to": "m1-ext-integrable"
+    },
+    {
+      "from": "m1-arr-tilt",
+      "to": "m1-ext-integrable"
+    },
+    {
+      "from": "m1-ext-bounded",
+      "to": "m1-ext-integrable"
+    },
+    {
+      "from": "m1-ext-path-approx",
+      "to": "m1-ext-sign"
+    },
+    {
+      "from": "m2-lem-hier-cascade-tilt",
+      "to": "m2-lem-hier-row-interpolation"
+    },
+    {
+      "from": "m2-lem-hier-rank-array",
+      "to": "m2-lem-hier-row-interpolation"
+    },
+    {
+      "from": "m2-lem-hier-array-continuity",
+      "to": "m2-lem-hier-row-interpolation"
+    },
+    {
+      "from": "m2-lem-hier-cascade-tilt",
+      "to": "m2-prop-hier-spherical-limit"
+    },
+    {
+      "from": "m2-prop-hier-spherical-limit",
+      "to": "m2-prop-hier-spin-concavity"
+    },
+    {
+      "from": "m2-prop-hier-spin-concavity",
+      "to": "m2-prop-hier-entropy-conjugacy"
+    },
+    {
+      "from": "m2-lem-conc-regularity",
+      "to": "m2-prop-conc-concavity"
+    },
+    {
+      "from": "m2-lem-conc-regularity",
+      "to": "m2-prop-conc-stability"
+    },
+    {
+      "from": "m2-lem-conc-density",
+      "to": "m2-prop-conc-stability"
+    },
+    {
+      "from": "m2-prop-conc-concavity",
+      "to": "m2-cor-conc-convex-loss"
+    },
+    {
+      "from": "m2-lem-hier-cascade-tilt",
+      "to": "m2-lem-press-gg"
+    },
+    {
+      "from": "m2-lem-hier-rank-array",
+      "to": "m2-lem-press-sync"
+    },
+    {
+      "from": "m2-lem-hier-cascade-tilt",
+      "to": "m2-lem-press-sync"
+    },
+    {
+      "from": "m2-lem-hier-array-continuity",
+      "to": "m2-lem-press-row-insertion"
+    },
+    {
+      "from": "m2-lem-hier-cascade-tilt",
+      "to": "m2-lem-press-row-insertion"
+    },
+    {
+      "from": "m2-lem-press-row-insertion",
+      "to": "m2-lem-press-empirical"
+    },
+    {
+      "from": "m2-prop-hier-spin-concavity",
+      "to": "m2-prop-press-formula"
+    },
+    {
+      "from": "m2-thm-univ-pressure",
+      "to": "m2-prop-univ-observables"
+    },
+    {
+      "from": "m2-thresh-slab-direction",
+      "to": "m2-thresh-repair"
+    },
+    {
+      "from": "m2-thresh-repair",
+      "to": "m2-thresh-deletion"
+    },
+    {
+      "from": "m2-thresh-uniform-geometry",
+      "to": "m2-thresh-deletion"
+    },
+    {
+      "from": "m2-thresh-pressure-energy",
+      "to": "m2-thresh-sharp"
+    },
+    {
+      "from": "m2-thresh-deletion",
+      "to": "m2-thresh-sharp"
+    },
+    {
+      "from": "m2-cor-press-convex-loss-upper",
+      "to": "m2-zero-negative-law"
+    },
+    {
+      "from": "m2-cor-conc-convex-loss",
+      "to": "m2-zero-negative-law"
+    },
+    {
+      "from": "m2-zero-variational",
+      "to": "m2-zero-negative-law"
+    },
+    {
+      "from": "m2-thresh-uniform-geometry",
+      "to": "m2-zero-negative-cutoffs"
+    },
+    {
+      "from": "m2-zero-mechanical",
+      "to": "m2-zero-negative-cutoffs"
+    },
+    {
+      "from": "m2-zero-negative-cutoffs",
+      "to": "m2-zero-spectral"
+    },
+    {
+      "from": "m2-zero-negative-cutoffs",
+      "to": "m2-zero-normalized-force-cutoff"
+    },
+    {
+      "from": "m2-thresh-slab-direction",
+      "to": "m2-zero-positive-cutoffs"
+    },
+    {
+      "from": "m2-zero-endpoint",
+      "to": "m2-zero-positive-cutoffs"
+    },
+    {
+      "from": "m2-zero-variational",
+      "to": "m2-zero-threshold-characterization"
+    },
+    {
+      "from": "m2-crit-duality",
+      "to": "m2-crit-compactness"
+    },
+    {
+      "from": "m2-crit-convexity",
+      "to": "m2-crit-unique-critical"
+    },
+    {
+      "from": "m2-crit-pde",
+      "to": "m2-crit-unique-critical"
+    }
+  ]
+}

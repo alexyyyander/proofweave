@@ -1,0 +1,540 @@
+{
+  "familyNumber": "335",
+  "familyTitle": "Gromov’s integral scalar-curvature bound for simplicial volume",
+  "manuscripts": [
+    {
+      "id": "An-integral-scalar-curvature-bound-for-real-simplicial-volume-October-5-2026",
+      "title": "An integral scalar curvature bound for real simplicial volume",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-integral-scalar-curvature-bound-for-real-simplicial-volume-October-5-2026/v126-proof.pdf"
+    },
+    {
+      "id": "Positive-scalar-curvature-forces-rational-inessentiality-September-23-2026",
+      "title": "Positive scalar curvature forces rational inessentiality",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Positive-scalar-curvature-forces-rational-inessentiality-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Reduction and the bounded cohomology detector",
+    "Weighted graph deformations and a sweep",
+    "Entropy metrics with controlled labels",
+    "A measured degree estimate",
+    "From bounded cohomology to comparison degree",
+    "Conventions and the nonnegative scalar-curvature reduction",
+    "Compact pairings and comparison coordinates",
+    "A scalar-curvature identity for graph stabilization",
+    "Solving the graph equation on a cover",
+    "Shortening all comparison coordinates",
+    "The stabilized obstruction from the torical theorem"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For every integer \\(n3\\), there is a constant \\(a_n>0\\), depending only on…",
+      "statement": "For every integer \\(n3\\), there is a constant \\(a_n>0\\), depending only on \\(n\\), such that every closed connected oriented smooth \\(n\\)-manifold \\(M\\) and every smooth Riemannian metric \\(g\\) on…",
+      "section": "Introduction",
+      "manuscript": "An integral scalar curvature bound for real simplicial volume"
+    },
+    {
+      "id": "m1-thm-vanishing-input",
+      "kind": "theorem",
+      "label": "OpenAI, Corollary 1.5 of",
+      "statement": "[OpenAI, Corollary 1.5 of ] Let \\(M\\) be a closed connected oriented smooth manifold of positive dimension. If \\(M\\) admits a smooth Riemannian metric with nonnegative scalar curvature, then its real…",
+      "section": "Reduction and the bounded cohomology detector",
+      "manuscript": "An integral scalar curvature bound for real simplicial volume"
+    },
+    {
+      "id": "m1-prop-yamabe-reduction",
+      "kind": "proposition",
+      "label": "Fix \\(n3\\). Suppose that a constant \\(C_n<\\) has the following property: every…",
+      "statement": "Fix \\(n3\\). Suppose that a constant \\(C_n<\\) has the following property: every closed connected oriented \\(n\\)-manifold with a smooth metric \\(h\\) of constant scalar curvature \\(-1\\) satisfies \\|M\\|…",
+      "section": "Reduction and the bounded cohomology detector",
+      "manuscript": "An integral scalar curvature bound for real simplicial volume"
+    },
+    {
+      "id": "m1-prop-detector",
+      "kind": "proposition",
+      "label": "The form \\(\\) is closed on every finite-dimensional face of \\(_ L \\). There is…",
+      "statement": "The form \\(\\) is closed on every finite-dimensional face of \\(_ L \\). There is a smooth \\(\\)-equivariant map \\[ F: M^2( L), F_0, _ F_^2=1, \\] with finitely many label orbits and locally finite…",
+      "section": "Reduction and the bounded cohomology detector",
+      "manuscript": "An integral scalar curvature bound for real simplicial volume"
+    },
+    {
+      "id": "m1-lem-graph-identity",
+      "kind": "lemma",
+      "label": "Weighted graph identity",
+      "statement": "[Weighted graph identity] Let \\((X,h)\\) be a smooth Riemannian manifold, let \\(,f\\) be smooth real functions, and let \\(N>0\\). Set \\[ L=(1+N^2|df|_h^2)^ 1/2 , v=L^ -1 , U=N _h f L , h'=h+N^2df df,…",
+      "section": "Weighted graph deformations and a sweep",
+      "manuscript": "An integral scalar curvature bound for real simplicial volume"
+    },
+    {
+      "id": "m1-lem-graph-prescription",
+      "kind": "lemma",
+      "label": "Prescribed graphs on a complete manifold",
+      "statement": "[Prescribed graphs on a complete manifold] Let \\((X,h)\\) be a complete smooth Riemannian manifold without boundary, with bounded geometry as above, and suppose the positive-order derivatives of \\(\\)…",
+      "section": "Weighted graph deformations and a sweep",
+      "manuscript": "An integral scalar curvature bound for real simplicial volume"
+    },
+    {
+      "id": "m1-lem-graph-localization",
+      "kind": "lemma",
+      "label": "Localization of the positive graph",
+      "statement": "[Localization of the positive graph] Let \\(X,h,\\) satisfy the hypotheses of Lemma~ , with \\(X\\) connected, and let \\(h_ ref h\\) be a complete second metric. Require the coefficients of \\(h_ ref \\),…",
+      "section": "Weighted graph deformations and a sweep",
+      "manuscript": "An integral scalar curvature bound for real simplicial volume"
+    },
+    {
+      "id": "m1-prop-sweep",
+      "kind": "proposition",
+      "label": "One sweep",
+      "statement": "[One sweep] There is a numerical \\(c>0\\) with the following property. For a sweep without boost, set \\(=0\\). For a boosted sweep, given \\(_*>0\\), there are constants \\(>0\\), \\(c_*>0\\), and \\(C_*<\\),…",
+      "section": "Weighted graph deformations and a sweep",
+      "manuscript": "An integral scalar curvature bound for real simplicial volume"
+    },
+    {
+      "id": "m1-thm-entropy",
+      "kind": "theorem",
+      "label": "Entropy metrics",
+      "statement": "[Entropy metrics] Let \\((M^n,g)\\) be a closed connected Riemannian manifold, where \\(n3\\) and \\(_g=-1\\), and put \\(=_1(M)\\). Let \\((_0,_0)\\) be a standard Borel probability space with a…",
+      "section": "Entropy metrics with controlled labels",
+      "manuscript": "An integral scalar curvature bound for real simplicial volume"
+    },
+    {
+      "id": "m1-lem-entropy-bootstrap",
+      "kind": "lemma",
+      "label": "Conformal bootstrap",
+      "statement": "[Conformal bootstrap] There are constants \\(_*>0\\) and \\(C_ boot <4\\), depending only on \\(n\\), with the following property. Starting with the input of Theorem~ , finitely many sweeps without boost,…",
+      "section": "Entropy metrics with controlled labels",
+      "manuscript": "An integral scalar curvature bound for real simplicial volume"
+    },
+    {
+      "id": "m1-lem-entropy-increment",
+      "kind": "lemma",
+      "label": "Entropy increment",
+      "statement": "[Entropy increment] There are dimensional constants \\(m_0>0\\), \\(D_*1\\), \\(l_0>0\\), \\(_n>0\\), and \\(C_n<\\) with the following property. For \\(_*\\), take a boosted sweep with \\[ 0<l l_0, =D_*l1 16 ,…",
+      "section": "Entropy metrics with controlled labels",
+      "manuscript": "An integral scalar curvature bound for real simplicial volume"
+    },
+    {
+      "id": "m1-lem-entropy-surplus",
+      "kind": "lemma",
+      "label": "Bounds supplied by the surplus",
+      "statement": "[Bounds supplied by the surplus] For every sweep of Lemma~ , W_p C_n^ 1/4 (+P_p)^ 3/4 . There is also a dimensional \\(_ exit \\) such that, if \\(_ exit \\) and \\(r1/4\\), then P_p& c_n lr (1+m^2 ^2 ),\\\\…",
+      "section": "Entropy metrics with controlled labels",
+      "manuscript": "An integral scalar curvature bound for real simplicial volume"
+    },
+    {
+      "id": "m1-lem-entropy-accumulation",
+      "kind": "lemma",
+      "label": "Accumulation of entropy passes",
+      "statement": "[Accumulation of entropy passes] Suppose at parameter \\(_ in _*\\) that \\[ (h,)-C+2W-n_ in +_ in e_h(F)+P_ in , W=(dV_h/)0, P_ in 0. \\] Successive sweeps of Lemma~ , with \\(_ new =(1+l())\\), preserve…",
+      "section": "Entropy metrics with controlled labels",
+      "manuscript": "An integral scalar curvature bound for real simplicial volume"
+    },
+    {
+      "id": "m1-lem-entropy-phase-exit",
+      "kind": "lemma",
+      "label": "Exit from a phase",
+      "statement": "[Exit from a phase] Consider a phase starting with root map \\(Y^0\\) and metric \\(h^0\\), and let \\(K_0\\) be a finite uniform bound for \\(e_ h^0 (Y^0)^ 1/2 \\). Suppose its last sweep has input…",
+      "section": "Entropy metrics with controlled labels",
+      "manuscript": "An integral scalar curvature bound for real simplicial volume"
+    },
+    {
+      "id": "m1-thm-degree",
+      "kind": "theorem",
+      "label": "Measured degree estimate",
+      "statement": "[Measured degree estimate] There are absolute constants C_0,C_1>0 with the following property. Let q2 , let d be an integer with 0 d q , and let >0 . For 0 r d set T_r=2+r q , b_r=(1+1 2q + r 4q^2 ).…",
+      "section": "A measured degree estimate",
+      "manuscript": "An integral scalar curvature bound for real simplicial volume"
+    },
+    {
+      "id": "m1-lem-degree-descent",
+      "kind": "lemma",
+      "label": "One step of measured descent",
+      "statement": "[One step of measured descent] Assume the hypotheses of Theorem~ with d1 , put p=d-1 , and put \\[ =( -(h,)+_ i=1 ^dH_i(G) 2). \\] There is a Borel family of oriented regular hypersurface portions _s…",
+      "section": "A measured degree estimate",
+      "manuscript": "An integral scalar curvature bound for real simplicial volume"
+    },
+    {
+      "id": "m1-thm-scalar-volume",
+      "kind": "theorem",
+      "label": "For every integer \\(n 3\\), there is a finite constant \\(C_n>0\\) such that every…",
+      "statement": "For every integer \\(n 3\\), there is a finite constant \\(C_n>0\\) such that every closed connected oriented smooth \\(n\\)-manifold \\(M\\) and every smooth Riemannian metric \\(g\\) with \\(_g-1\\) satisfy \\[…",
+      "section": "From bounded cohomology to comparison degree",
+      "manuscript": "An integral scalar curvature bound for real simplicial volume"
+    },
+    {
+      "id": "m1-lem-transfer-flat",
+      "kind": "lemma",
+      "label": "Flat sheet neighborhood",
+      "statement": "[Flat sheet neighborhood] Put \\(=(1000 q)^ -1 \\). There is an oriented flat smooth \\(q\\)-manifold \\( U_\\) with a local isometry \\(z: U_ R^q\\), and an inclusion of \\(K_\\) into it, such that the image…",
+      "section": "From bounded cohomology to comparison degree",
+      "manuscript": "An integral scalar curvature bound for real simplicial volume"
+    },
+    {
+      "id": "m1-lem-transfer-rounding",
+      "kind": "lemma",
+      "label": "Finite-type unbiased rounding",
+      "statement": "[Finite-type unbiased rounding] There is an integer \\(D_01\\), bounded by an elementary function of \\(q\\) and constant in \\(V,s,\\), and a Borel equivariant random choice of coefficients \\(u'_C D_0^ -1…",
+      "section": "From bounded cohomology to comparison degree",
+      "manuscript": "An integral scalar curvature bound for real simplicial volume"
+    },
+    {
+      "id": "m1-lem-transfer-resolution",
+      "kind": "lemma",
+      "label": "Measured resolution",
+      "statement": "[Measured resolution] For the diagram \\( P\\) there is a standard Borel measured family \\( A\\) of oriented smooth \\(m\\)-manifolds and a smooth map \\(X: A U_\\), equivariant and Borel in all the data.…",
+      "section": "From bounded cohomology to comparison degree",
+      "manuscript": "An integral scalar curvature bound for real simplicial volume"
+    },
+    {
+      "id": "m1-lem-transfer-degree",
+      "kind": "lemma",
+      "label": "Comparison degree",
+      "statement": "[Comparison degree] The band in satisfies the chart and integration control assumptions of Theorem~ , for each fixed instance, the product metric \\(h+L^2k\\) with any fixed \\(L>0\\), and the pullback…",
+      "section": "From bounded cohomology to comparison degree",
+      "manuscript": "An integral scalar curvature bound for real simplicial volume"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "Rational inessentiality",
+      "statement": "[Rational inessentiality] Let M^n be a closed connected oriented smooth manifold of dimension n2 . If M admits a Riemannian metric of strictly positive scalar curvature, then \\[ (c_M)_*[M]=0in…",
+      "section": "Introduction",
+      "manuscript": "Positive scalar curvature forces rational inessentiality"
+    },
+    {
+      "id": "m2-cor-aspherical",
+      "kind": "corollary",
+      "label": "The Gromov--Lawson aspherical conjecture",
+      "statement": "[The Gromov--Lawson aspherical conjecture] No closed smooth aspherical manifold, whether orientable or not, admits a Riemannian metric of strictly positive scalar curvature.",
+      "section": "Introduction",
+      "manuscript": "Positive scalar curvature forces rational inessentiality"
+    },
+    {
+      "id": "m2-cor-aspherical-flat",
+      "kind": "corollary",
+      "label": "Aspherical nonnegative-scalar-curvature rigidity",
+      "statement": "[Aspherical nonnegative-scalar-curvature rigidity] Let g be a Riemannian metric of nonnegative scalar curvature on a closed smooth aspherical manifold M , not necessarily oriented. Then g is flat.",
+      "section": "Introduction",
+      "manuscript": "Positive scalar curvature forces rational inessentiality"
+    },
+    {
+      "id": "m2-cor-degree-aspherical",
+      "kind": "corollary",
+      "label": "Oriented target-map obstruction",
+      "statement": "[Oriented target-map obstruction] Let M^n and N^n be closed connected oriented smooth manifolds of dimension n2 , with N aspherical. If a continuous map f:M N has nonzero ordinary oriented degree d\\…",
+      "section": "Introduction",
+      "manuscript": "Positive scalar curvature forces rational inessentiality"
+    },
+    {
+      "id": "m2-cor-simplicial",
+      "kind": "corollary",
+      "label": "Simplicial-volume vanishing",
+      "statement": "[Simplicial-volume vanishing] Every closed oriented smooth manifold of positive dimension admitting a Riemannian metric of nonnegative scalar curvature has zero real simplicial volume.",
+      "section": "Introduction",
+      "manuscript": "Positive scalar curvature forces rational inessentiality"
+    },
+    {
+      "id": "m2-lem-essentiality",
+      "kind": "lemma",
+      "label": "Simplicial volume detects rational essentiality",
+      "statement": "[Simplicial volume detects rational essentiality] If a closed connected oriented manifold M^n has positive real simplicial volume, then (c_M)_*[M]0 in H_n(B;) .",
+      "section": "Conventions and the nonnegative scalar-curvature reduction",
+      "manuscript": "Positive scalar curvature forces rational inessentiality"
+    },
+    {
+      "id": "m2-lem-scalar-reduction",
+      "kind": "lemma",
+      "label": "Positive scalar curvature or Ricci flatness",
+      "statement": "[Positive scalar curvature or Ricci flatness] Let M be closed and connected, not necessarily oriented, and suppose that g has nonnegative scalar curvature. Either M admits a metric of strictly…",
+      "section": "Conventions and the nonnegative scalar-curvature reduction",
+      "manuscript": "Positive scalar curvature forces rational inessentiality"
+    },
+    {
+      "id": "m2-thm-comparison-data",
+      "kind": "theorem",
+      "label": "Comparison data from rational essentiality",
+      "statement": "[Comparison data from rational essentiality] Let (M^n,g_M) be a closed connected oriented Riemannian manifold, n2 , let =_1(M) , and suppose that its classifying map c_M:M B satisfies \\[…",
+      "section": "Compact pairings and comparison coordinates",
+      "manuscript": "Positive scalar curvature forces rational inessentiality"
+    },
+    {
+      "id": "m2-lem-probability-map",
+      "kind": "lemma",
+      "label": "A proper probability map",
+      "statement": "[A proper probability map] There are s1 , H< , a smooth equivariant probability map h: M K_s , and an equivariant simplicial map h_0: M K_s such that the coordinate functions of h are smooth and…",
+      "section": "Compact pairings and comparison coordinates",
+      "manuscript": "Positive scalar curvature forces rational inessentiality"
+    },
+    {
+      "id": "m2-lem-parameter-thickening",
+      "kind": "lemma",
+      "label": "A parameter thickening",
+      "statement": "[A parameter thickening] Put v_0= O_L . There are a closed oriented smooth d -manifold C , with d2v_0+2 , a principal left -cover C C , and equivariant maps \\[ O_Li C r K_L, r i=. \\] Moreover v_0B_…",
+      "section": "Compact pairings and comparison coordinates",
+      "manuscript": "Positive scalar curvature forces rational inessentiality"
+    },
+    {
+      "id": "m2-lem-dual-carrier",
+      "kind": "lemma",
+      "label": "A controlled map to dual chains",
+      "statement": "[A controlled map to dual chains] One can triangulate C so finely that the lifted triangulation has the following properties: the union of the supports of r(o) over any closed primal simplex has…",
+      "section": "Compact pairings and comparison coordinates",
+      "manuscript": "Positive scalar curvature forces rational inessentiality"
+    },
+    {
+      "id": "m2-lem-controlled-cap",
+      "kind": "lemma",
+      "label": "A controlled cap operation",
+      "statement": "[A controlled cap operation] There are equivariant linear maps with finite output T_j:C_j( K_L;) C_ j-n ^ dual ( C;), j0,\\\\ T_j=(-1)^nT_ j-1 , j1, where chain groups in negative degrees are zero. For…",
+      "section": "Compact pairings and comparison coordinates",
+      "manuscript": "Positive scalar curvature forces rational inessentiality"
+    },
+    {
+      "id": "m2-prop-compact-pairing",
+      "kind": "proposition",
+      "label": "Compact diagonal pairing",
+      "statement": "[Compact diagonal pairing] There are a compact set K_* D_L and a class \\[ u H^ n+d (D_L,D_L K_*;) \\] such that if [t,o] K_* , every label of t is within 7L of every label of r(o) ; the compactly…",
+      "section": "Compact pairings and comparison coordinates",
+      "manuscript": "Positive scalar curvature forces rational inessentiality"
+    },
+    {
+      "id": "m2-lem-distance-profiles",
+      "kind": "lemma",
+      "label": "Profile estimates",
+      "statement": "[Profile estimates] The map V:D_L^q has the following properties. It is continuous and proper, and V_ p_R 24L on K_* . If t,t' K_s satisfy \\[ \\ V_o(t)_,V_o(t')_\\ 110L, V_o(t)-V_o(t')_14R, \\] then the…",
+      "section": "Compact pairings and comparison coordinates",
+      "manuscript": "Positive scalar curvature forces rational inessentiality"
+    },
+    {
+      "id": "m2-lem-relative-degree",
+      "kind": "lemma",
+      "label": "A transverse parameter cycle",
+      "statement": "[A transverse parameter cycle] There is a compact oriented smooth (q-n) -manifold A_+ with boundary, together with a smooth map \\[ (o_0,y_0):A_+ C^q, \\] such that y_0_ p_R <T_0 everywhere,…",
+      "section": "Compact pairings and comparison coordinates",
+      "manuscript": "Positive scalar curvature forces rational inessentiality"
+    },
+    {
+      "id": "m2-prop-scalar-update",
+      "kind": "proposition",
+      "label": "Exact scalar-curvature identity",
+      "statement": "[Exact scalar-curvature identity] At a point where t>0 , choose a g -orthonormal frame e_1= f/t,e_2,,e_ B , and put \\[ p=tN'(t) N(t) , A=d t, C_ jk =t^ -1 _g f(e_j,e_k)(j,k>1). \\] Then _ g^+ -_g =…",
+      "section": "A scalar-curvature identity for graph stabilization",
+      "manuscript": "Positive scalar curvature forces rational inessentiality"
+    },
+    {
+      "id": "m2-lem-uniform-linear",
+      "kind": "lemma",
+      "label": "A uniform linear inverse",
+      "statement": "[A uniform linear inverse] Suppose that, in the reference charts, a scalar operator has the form \\[ L=-a^ ij _i_j+b^i_i+c, \\] with uniformly C^ 0, coefficients, uniformly bounded drift, uniformly…",
+      "section": "Solving the graph equation on a cover",
+      "manuscript": "Positive scalar curvature forces rational inessentiality"
+    },
+    {
+      "id": "m2-thm-uniform-graph",
+      "kind": "theorem",
+      "label": "Uniform graph solvability",
+      "statement": "[Uniform graph solvability] Let (B,g) be uniformly controlled as above, and let C_b^(B) . Fix ,w,B_0,s>0 and 0<1 . Suppose N is smooth, positive, nondecreasing, constant near zero, and equal to 1 for…",
+      "section": "Solving the graph equation on a cover",
+      "manuscript": "Positive scalar curvature forces rational inessentiality"
+    },
+    {
+      "id": "m2-lem-one-pass",
+      "kind": "lemma",
+      "label": "One pass",
+      "statement": "[One pass] Let q2 and L,w>0 . On a uniformly controlled metric of the form , suppose smooth bounded torus-invariant functions _1,,_q have bounded derivatives of every order. For a smooth family over…",
+      "section": "Shortening all comparison coordinates",
+      "manuscript": "Positive scalar curvature forces rational inessentiality"
+    },
+    {
+      "id": "m2-lem-parameter-scaling",
+      "kind": "lemma",
+      "label": "Magnifying the parameter metric",
+      "statement": "[Magnifying the parameter metric] Fix a finite-stage smooth family of metrics of the form , equivariant under the flat transition maps over the closed manifold A , with all mixed derivatives bounded…",
+      "section": "Shortening all comparison coordinates",
+      "manuscript": "Positive scalar curvature forces rational inessentiality"
+    },
+    {
+      "id": "m2-thm-shortening",
+      "kind": "theorem",
+      "label": "Logarithmic shortening",
+      "statement": "[Logarithmic shortening] Suppose _M>0 . On the above bundle Z , let G:Z^q be smooth and bounded with all mixed derivatives bounded, and suppose L_0>0 and \\[ _ 1 i q d_ M G_i L_0, q2. \\] There is a…",
+      "section": "Shortening all comparison coordinates",
+      "manuscript": "Positive scalar curvature forces rational inessentiality"
+    },
+    {
+      "id": "m2-cor-stabilized-contraction",
+      "kind": "corollary",
+      "label": "Stabilized contraction at a fixed scale",
+      "statement": "[Stabilized contraction at a fixed scale] Assume _M>0 and take the comparison data of at scale R , so that \\[ L_0=J/R, q JR. \\] For all sufficiently large R , fix these data once and for all. Then…",
+      "section": "Shortening all comparison coordinates",
+      "manuscript": "Positive scalar curvature forces rational inessentiality"
+    },
+    {
+      "id": "m2-thm-torical-obstruction",
+      "kind": "theorem",
+      "label": "Stabilized torical obstruction",
+      "statement": "[Stabilized torical obstruction] For every integer d2 and every >0 there is a number (d,)>0 for which the following data do not exist: a smooth oriented d -manifold Y without boundary, possibly…",
+      "section": "The stabilized obstruction from the torical theorem",
+      "manuscript": "Positive scalar curvature forces rational inessentiality"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-thm-vanishing-input",
+      "to": "m1-prop-yamabe-reduction"
+    },
+    {
+      "from": "m1-lem-graph-prescription",
+      "to": "m1-lem-graph-localization"
+    },
+    {
+      "from": "m1-lem-graph-localization",
+      "to": "m1-prop-sweep"
+    },
+    {
+      "from": "m1-prop-sweep",
+      "to": "m1-lem-entropy-bootstrap"
+    },
+    {
+      "from": "m1-lem-entropy-surplus",
+      "to": "m1-lem-entropy-accumulation"
+    },
+    {
+      "from": "m1-thm-entropy",
+      "to": "m1-lem-entropy-phase-exit"
+    },
+    {
+      "from": "m1-lem-entropy-bootstrap",
+      "to": "m1-lem-entropy-phase-exit"
+    },
+    {
+      "from": "m1-prop-sweep",
+      "to": "m1-lem-entropy-phase-exit"
+    },
+    {
+      "from": "m1-lem-entropy-accumulation",
+      "to": "m1-lem-entropy-phase-exit"
+    },
+    {
+      "from": "m1-thm-degree",
+      "to": "m1-lem-degree-descent"
+    },
+    {
+      "from": "m1-prop-detector",
+      "to": "m1-lem-transfer-flat"
+    },
+    {
+      "from": "m1-lem-transfer-flat",
+      "to": "m1-lem-transfer-rounding"
+    },
+    {
+      "from": "m1-thm-degree",
+      "to": "m1-lem-transfer-resolution"
+    },
+    {
+      "from": "m1-thm-entropy",
+      "to": "m1-lem-transfer-degree"
+    },
+    {
+      "from": "m1-thm-degree",
+      "to": "m1-lem-transfer-degree"
+    },
+    {
+      "from": "m1-lem-transfer-resolution",
+      "to": "m1-lem-transfer-degree"
+    },
+    {
+      "from": "m1-thm-scalar-volume",
+      "to": "m1-lem-transfer-degree"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-lem-transfer-degree"
+    },
+    {
+      "from": "m1-prop-yamabe-reduction",
+      "to": "m1-lem-transfer-degree"
+    },
+    {
+      "from": "m2-lem-essentiality",
+      "to": "m2-lem-scalar-reduction"
+    },
+    {
+      "from": "m2-lem-dual-carrier",
+      "to": "m2-lem-controlled-cap"
+    },
+    {
+      "from": "m2-lem-controlled-cap",
+      "to": "m2-prop-compact-pairing"
+    },
+    {
+      "from": "m2-lem-probability-map",
+      "to": "m2-prop-compact-pairing"
+    },
+    {
+      "from": "m2-thm-comparison-data",
+      "to": "m2-lem-relative-degree"
+    },
+    {
+      "from": "m2-lem-uniform-linear",
+      "to": "m2-thm-uniform-graph"
+    },
+    {
+      "from": "m2-thm-uniform-graph",
+      "to": "m2-lem-one-pass"
+    },
+    {
+      "from": "m2-lem-one-pass",
+      "to": "m2-thm-shortening"
+    },
+    {
+      "from": "m2-lem-parameter-scaling",
+      "to": "m2-thm-shortening"
+    },
+    {
+      "from": "m2-thm-shortening",
+      "to": "m2-cor-stabilized-contraction"
+    },
+    {
+      "from": "m2-thm-main",
+      "to": "m2-thm-torical-obstruction"
+    },
+    {
+      "from": "m2-thm-comparison-data",
+      "to": "m2-thm-torical-obstruction"
+    },
+    {
+      "from": "m2-cor-stabilized-contraction",
+      "to": "m2-thm-torical-obstruction"
+    },
+    {
+      "from": "m2-cor-aspherical",
+      "to": "m2-thm-torical-obstruction"
+    },
+    {
+      "from": "m2-cor-aspherical-flat",
+      "to": "m2-thm-torical-obstruction"
+    },
+    {
+      "from": "m2-lem-scalar-reduction",
+      "to": "m2-thm-torical-obstruction"
+    },
+    {
+      "from": "m2-cor-degree-aspherical",
+      "to": "m2-thm-torical-obstruction"
+    },
+    {
+      "from": "m2-cor-simplicial",
+      "to": "m2-thm-torical-obstruction"
+    },
+    {
+      "from": "m2-lem-essentiality",
+      "to": "m2-thm-torical-obstruction"
+    }
+  ]
+}

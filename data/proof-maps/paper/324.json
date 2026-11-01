@@ -1,0 +1,411 @@
+{
+  "familyNumber": "324",
+  "familyTitle": "Lipschitz equivalent Banach spaces need not be linearly isomorphic",
+  "manuscripts": [
+    {
+      "id": "Lipschitz-Equivalent-Separable-Banach-Spaces-Need-Not-Be-Linearly-Isomorphic-September-24-2026",
+      "title": "Lipschitz Equivalent Separable Banach Spaces Need Not Be Linearly Isomorphic",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Lipschitz-Equivalent-Separable-Banach-Spaces-Need-Not-Be-Linearly-Isomorphic-September-24-2026/paper.pdf"
+    },
+    {
+      "id": "Bi-Lipschitz-Absorption-of-c0-Without-a-Linear-Copy-of-c0-September-26-2026",
+      "title": "Bi-Lipschitz Absorption of c0 Without a Linear Copy of c0",
+      "date": "2026-09-26",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Bi-Lipschitz-Absorption-of-c0-Without-a-Linear-Copy-of-c0-September-26-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Free spaces and the graph-space obstruction",
+    "A triangular change of variables",
+    "Local orthogonality forces complete continuity",
+    "A localized change of variables in Hilbert space",
+    "The absorption criterion",
+    "Coordinate weights and localized corrections",
+    "The state-dependent shift is onto",
+    "Selected tests and their supports",
+    "Molecules and the lifted correction",
+    "Assembly and same-space consequences"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "There are separable real Banach spaces \\(X,Y\\) and a bijection \\(:X Y\\) such…",
+      "statement": "There are separable real Banach spaces \\(X,Y\\) and a bijection \\(:X Y\\) such that, for every \\(s,t X\\), 4 21 \\|s-t\\|_X \\|(s)-(t)\\|_Y 76 25 \\|s-t\\|_X. The space \\(X\\) contains a linearly isometric…",
+      "section": "Introduction",
+      "manuscript": "Lipschitz Equivalent Separable Banach Spaces Need Not Be Linearly Isomorphic"
+    },
+    {
+      "id": "m1-thm-compact-reduction",
+      "kind": "theorem",
+      "label": "Compact reduction for a weakly null sequence",
+      "statement": "[Compact reduction for a weakly null sequence] Let \\((M,d,0)\\) be a complete pointed metric space, and let \\(_i0\\) weakly in \\((M)\\). For every \\(>0\\), there is a compact \\(K M\\), with \\(0 K\\), such…",
+      "section": "Free spaces and the graph-space obstruction",
+      "manuscript": "Lipschitz Equivalent Separable Banach Spaces Need Not Be Linearly Isomorphic"
+    },
+    {
+      "id": "m1-thm-free-wsc",
+      "kind": "theorem",
+      "label": "Weak sequential completeness of a free space",
+      "statement": "[Weak sequential completeness of a free space] If \\(M\\) is a superreflexive real Banach space, then \\((M)\\) is weakly sequentially complete. In particular, this applies to every real Hilbert space…",
+      "section": "Free spaces and the graph-space obstruction",
+      "manuscript": "Lipschitz Equivalent Separable Banach Spaces Need Not Be Linearly Isomorphic"
+    },
+    {
+      "id": "m1-lemma-4",
+      "kind": "lemma",
+      "label": "lem:graph-banach \\(Z_Q\\) is a Banach space, and it is separable if \\(A,H\\) are…",
+      "statement": "lem:graph-banach \\(Z_Q\\) is a Banach space, and it is separable if \\(A,H\\) are separable. The coordinate map \\(p_i:Z_Q A\\), \\(p_i(s)=s_i\\), has norm at most \\(2^i\\), and \\[ J_Q:Z_Q c_0(H),…",
+      "section": "Free spaces and the graph-space obstruction",
+      "manuscript": "Lipschitz Equivalent Separable Banach Spaces Need Not Be Linearly Isomorphic"
+    },
+    {
+      "id": "m1-lemma-5",
+      "kind": "lemma",
+      "label": "lem:no-c0-sum If \\(E\\) is a weakly sequentially complete real Banach space,…",
+      "statement": "lem:no-c0-sum If \\(E\\) is a weakly sequentially complete real Banach space, then \\(_1(E)\\) contains no closed subspace linearly isomorphic to ordinary \\(c_0\\).",
+      "section": "Free spaces and the graph-space obstruction",
+      "manuscript": "Lipschitz Equivalent Separable Banach Spaces Need Not Be Linearly Isomorphic"
+    },
+    {
+      "id": "m1-lemma-6",
+      "kind": "lemma",
+      "label": "lem:graph-obstruction Let \\(E,U\\) be real Banach spaces, with \\(E\\) weakly…",
+      "statement": "lem:graph-obstruction Let \\(E,U\\) be real Banach spaces, with \\(E\\) weakly sequentially complete, and let \\(q:E U\\) be a completely continuous bounded linear operator. Then \\(Z_q\\) contains no closed…",
+      "section": "Free spaces and the graph-space obstruction",
+      "manuscript": "Lipschitz Equivalent Separable Banach Spaces Need Not Be Linearly Isomorphic"
+    },
+    {
+      "id": "m1-eq-criterion-bounds",
+      "kind": "proposition",
+      "label": "Weighted graph criterion",
+      "statement": "[Weighted graph criterion] prop:criterion Let \\(U\\) be a separable real Hilbert space, \\(V=_2\\), and \\(M=U_2V\\), with projections \\(_U,_V\\). Suppose \\(h:M U\\) is a bijection with \\(h(0)=0\\) and, for…",
+      "section": "A triangular change of variables",
+      "manuscript": "Lipschitz Equivalent Separable Banach Spaces Need Not Be Linearly Isomorphic"
+    },
+    {
+      "id": "m1-thm-localized-linearization",
+      "kind": "theorem",
+      "label": "Localized linearization",
+      "statement": "[Localized linearization] Let \\((M,,0)\\) be a complete separable pointed metric space, and let \\[ U=(_ n1 U_n)_2 \\] be a real Hilbert space with finite-dimensional blocks. Fix an orthonormal basis in…",
+      "section": "Local orthogonality forces complete continuity",
+      "manuscript": "Lipschitz Equivalent Separable Banach Spaces Need Not Be Linearly Isomorphic"
+    },
+    {
+      "id": "m1-lemma-9",
+      "kind": "lemma",
+      "label": "Tests in shrinking balls",
+      "statement": "[Tests in shrinking balls] lem:shrinking-tests Let \\((M,,0)\\) be a pointed metric space, let \\(z M\\), and let \\(_i0\\) weakly in \\((M)\\). Suppose \\(r_i>0\\), \\(r_i0\\), and \\(f_i:M\\) satisfy \\[…",
+      "section": "Local orthogonality forces complete continuity",
+      "manuscript": "Lipschitz Equivalent Separable Banach Spaces Need Not Be Linearly Isomorphic"
+    },
+    {
+      "id": "m1-thm-hilbert-map",
+      "kind": "theorem",
+      "label": "There are finite-dimensional Euclidean coordinate spaces U_n , U=(_ n1 U_n)_2 ,…",
+      "statement": "There are finite-dimensional Euclidean coordinate spaces U_n , U=(_ n1 U_n)_2 , and a bijection h:U_2_2 U fixing zero, such that 24 25 \\|x-x'\\| \\|h(x)-h(x')\\| 26 25 \\|x-x'\\|. Moreover, D=h-_U has…",
+      "section": "A localized change of variables in Hilbert space",
+      "manuscript": "Lipschitz Equivalent Separable Banach Spaces Need Not Be Linearly Isomorphic"
+    },
+    {
+      "id": "m1-eq-frozen-inverse",
+      "kind": "lemma",
+      "label": "lem:frozen-inverse \\(L_:M U\\) is an onto linear isometry. If \\(y=(y_n) U\\) and…",
+      "statement": "lem:frozen-inverse \\(L_:M U\\) is an onto linear isometry. If \\(y=(y_n) U\\) and \\(_n=_n,y_n\\), its inverse is (L_^ -1 y)_ U_m =y_m-_m_m+_ 2m _m, (L_^ -1 y)_ V_m =_ 2m-1 .",
+      "section": "A localized change of variables in Hilbert space",
+      "manuscript": "Lipschitz Equivalent Separable Banach Spaces Need Not Be Linearly Isomorphic"
+    },
+    {
+      "id": "m1-lemma-12",
+      "kind": "lemma",
+      "label": "lem:slot-locality For every finite family of distinct points of M there are…",
+      "statement": "lem:slot-locality For every finite family of distinct points of M there are neighborhoods O_j and an integer l such that the coordinate supports of \\ w_n(x):x O_j,\\ n l\\ are disjoint for different j .",
+      "section": "A localized change of variables in Hilbert space",
+      "manuscript": "Lipschitz Equivalent Separable Banach Spaces Need Not Be Linearly Isomorphic"
+    },
+    {
+      "id": "m1-eq-hn-bounds",
+      "kind": "lemma",
+      "label": "lem:approximant-inverse Each h_N:M U is a continuously differentiable bijection…",
+      "statement": "lem:approximant-inverse Each h_N:M U is a continuously differentiable bijection with continuously differentiable inverse, and (1-4c)\\|x-x'\\|\\|h_N(x)-h_N(x')\\| (1+4c)\\|x-x'\\|.",
+      "section": "A localized change of variables in Hilbert space",
+      "manuscript": "Lipschitz Equivalent Separable Banach Spaces Need Not Be Linearly Isomorphic"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "There is a separable real Banach space \\(Z\\) containing no closed linear…",
+      "statement": "There is a separable real Banach space \\(Z\\) containing no closed linear subspace isomorphic to \\(c_0\\), and an onto bi-Lipschitz map \\[ F:Z_ c_0 Z. \\]",
+      "section": "Introduction",
+      "manuscript": "Bi-Lipschitz Absorption of c0 Without a Linear Copy of c0"
+    },
+    {
+      "id": "m2-lem-absorption",
+      "kind": "lemma",
+      "label": "Absorption from a lifted correction",
+      "statement": "[Absorption from a lifted correction] Let \\(E,U,Z\\) be real Banach spaces, let \\(D=E_ U\\), and let \\(P(t,u)=u\\). Suppose \\(Q:Z U\\) is bounded linear, \\(g:D U\\) is a bi-Lipschitz bijection, and \\(K:D…",
+      "section": "The absorption criterion",
+      "manuscript": "Bi-Lipschitz Absorption of c0 Without a Linear Copy of c0"
+    },
+    {
+      "id": "m2-lem-coordinate-weights",
+      "kind": "lemma",
+      "label": "Weights at one level",
+      "statement": "[Weights at one level] Let =10^ -3 . There are continuous maps \\[ v^:B R^ _ , w^:B( R^ _ )^* \\] depending on finitely many coordinates of their argument, such that \\|v^(s)\\|_1, \\|w^(s)\\|_12,…",
+      "section": "Coordinate weights and localized corrections",
+      "manuscript": "Bi-Lipschitz Absorption of c0 Without a Linear Copy of c0"
+    },
+    {
+      "id": "m2-lem-weight-support",
+      "kind": "lemma",
+      "label": "Finite dependence and local support",
+      "statement": "[Finite dependence and local support] For every =(,j,) , the function f_ is continuous, vanishes at 0 , and depends on a nonempty finite set I_ of coordinates of D . The sets can be chosen to include…",
+      "section": "Coordinate weights and localized corrections",
+      "manuscript": "Bi-Lipschitz Absorption of c0 Without a Linear Copy of c0"
+    },
+    {
+      "id": "m2-lem-frozen",
+      "kind": "lemma",
+      "label": "Frozen shift",
+      "statement": "[Frozen shift] Choose for every \\((i,n)\\) a pair \\(v^ i,n ,w^ i,n \\) satisfying (W1), independently between blocks. Define \\(S:D U\\) by a_ i,0 =t_i, a_ i,n =w^ i,n x^ i,n , (Sx)^ i,n =x^ i,n +v^ i,n…",
+      "section": "The state-dependent shift is onto",
+      "manuscript": "Bi-Lipschitz Absorption of c0 Without a Linear Copy of c0"
+    },
+    {
+      "id": "m2-prop-global",
+      "kind": "proposition",
+      "label": "Global distance bounds",
+      "statement": "[Global distance bounds] For every \\(x,x' D\\), (15-24)\\|x-x'\\|_D \\|g(x)-g(x')\\|_U (5+24)\\|x-x'\\|_D. In particular, \\(g\\) is injective and continuous.",
+      "section": "The state-dependent shift is onto",
+      "manuscript": "Bi-Lipschitz Absorption of c0 Without a Linear Copy of c0"
+    },
+    {
+      "id": "m2-prop-onto",
+      "kind": "proposition",
+      "label": "Onto-ness of the nonlinear shift",
+      "statement": "[Onto-ness of the nonlinear shift] The map \\(g:D U\\) in is onto. Together with Proposition~ , it is a bi-Lipschitz bijection.",
+      "section": "The state-dependent shift is onto",
+      "manuscript": "Bi-Lipschitz Absorption of c0 Without a Linear Copy of c0"
+    },
+    {
+      "id": "m2-lem-operations",
+      "kind": "lemma",
+      "label": "Bounds and geometric support",
+      "statement": "[Bounds and geometric support] For every such \\(u,q,\\), \\|R_ q, u\\|_ &(u),& (R_ q, u)&3(u),& (G_ q, u)&4(u), \\\\ \\|G_ q, u\\|_ &\\|u\\|_,& \\|R_ q, u\\|_&2\\|u\\|_. Let \\[ K_I(u)= \\ s|_I:s B,\\ u(s)0\\ ^…",
+      "section": "Selected tests and their supports",
+      "manuscript": "Bi-Lipschitz Absorption of c0 Without a Linear Copy of c0"
+    },
+    {
+      "id": "m2-lem-support",
+      "kind": "lemma",
+      "label": "Propagation of the correction support",
+      "statement": "[Propagation of the correction support] Suppose \\(u T_h\\) has a representation based at \\(=(,j,)\\) with total scale \\(e=_ k=1 ^m_k\\). On \\(_B u\\), \\|_j s-\\|_2d_j+e,&j1,\\\\ r_(s)_j-e,&j<J_. In…",
+      "section": "Selected tests and their supports",
+      "manuscript": "Bi-Lipschitz Absorption of c0 Without a Linear Copy of c0"
+    },
+    {
+      "id": "m2-lem-class-bounds",
+      "kind": "lemma",
+      "label": "Bounds in each fixed class",
+      "statement": "[Bounds in each fixed class] With \\(A,L_0\\) from , the following bounds are uniform over all tests of the indicated class: c|cc &\\|u\\|_&(u)\\\\ u T_h&2^hA&4^hL_0\\\\ u V_h&2^hA&4^hL_0+h4^hA.",
+      "section": "Selected tests and their supports",
+      "manuscript": "Bi-Lipschitz Absorption of c0 Without a Linear Copy of c0"
+    },
+    {
+      "id": "m2-lem-completion",
+      "kind": "lemma",
+      "label": "Exact completed norm",
+      "statement": "[Exact completed norm] Formula is a finite seminorm on \\( M_0(B)\\). Let \\(N\\) be its kernel, and let \\(Z\\) be the Banach completion of \\( M_0(B)/N\\) with the induced norm. Then \\(Z\\) is separable,…",
+      "section": "Molecules and the lifted correction",
+      "manuscript": "Bi-Lipschitz Absorption of c0 Without a Linear Copy of c0"
+    },
+    {
+      "id": "m2-lem-duality",
+      "kind": "lemma",
+      "label": "Dual tests and pointwise limits",
+      "statement": "[Dual tests and pointwise limits] Every test in \\( T_h\\) or \\( V_h\\) defines a bounded linear functional on \\(Z\\) by its molecule pairing. For each fixed class \\( L\\), there is a finite common bound…",
+      "section": "Molecules and the lifted correction",
+      "manuscript": "Bi-Lipschitz Absorption of c0 Without a Linear Copy of c0"
+    },
+    {
+      "id": "m2-lem-q",
+      "kind": "lemma",
+      "label": "The \\(c_0\\)-valued correction map",
+      "statement": "[The \\(c_0\\)-valued correction map] There is a bounded linear map \\(Q:Z U\\) such that Q(s)=h(s)=(S_s-P)s (s B).",
+      "section": "Molecules and the lifted correction",
+      "manuscript": "Bi-Lipschitz Absorption of c0 Without a Linear Copy of c0"
+    },
+    {
+      "id": "m2-lem-k",
+      "kind": "lemma",
+      "label": "Lipschitz lift",
+      "statement": "[Lipschitz lift] Define K(0)=0, K(x)=\\|x\\|_D\\,\\!(x \\|x\\|_D ) (x0). Then \\(K:D Z\\) is positively homogeneous and \\((K)3\\). It satisfies the exact identity QK=g-P.",
+      "section": "Molecules and the lifted correction",
+      "manuscript": "Bi-Lipschitz Absorption of c0 Without a Linear Copy of c0"
+    },
+    {
+      "id": "m2-lem-detectors",
+      "kind": "lemma",
+      "label": "One class detects a subsequence",
+      "statement": "[One class detects a subsequence] Suppose \\((m_i) Z\\) satisfies, for some \\(r,M>0\\), \\|m_i\\|_Z r, \\|_ i H _i m_i\\|_Z M for all finite \\(H\\) and all signs \\( _i\\). Then \\(u(m_i)0\\) for every \\(u…",
+      "section": "Molecules and the lifted correction",
+      "manuscript": "Bi-Lipschitz Absorption of c0 Without a Linear Copy of c0"
+    },
+    {
+      "id": "m2-lem-detector-growth",
+      "kind": "lemma",
+      "label": "Growth from compatible detectors",
+      "statement": "[Growth from compatible detectors] Let \\((m_i) Z\\), and let \\(F_i\\) belong to one listed class \\( L\\). Suppose there are \\(>0\\) and an integer \\(C1\\) such that \\[ | F_i,m_i|, \\!(_ i H _iF_i) C \\] for…",
+      "section": "Molecules and the lifted correction",
+      "manuscript": "Bi-Lipschitz Absorption of c0 Without a Linear Copy of c0"
+    },
+    {
+      "id": "m2-lem-compatible",
+      "kind": "lemma",
+      "label": "Compatible supports",
+      "statement": "[Compatible supports] Let \\(B\\) be a convex subset of a normed space. Let \\(u_i,b_i\\) be continuous real functions on \\(B\\), with \\(b_i\\) Lipschitz, and put \\(F_i=u_i b_i\\). Suppose \\((F_i) L\\) for…",
+      "section": "Molecules and the lifted correction",
+      "manuscript": "Bi-Lipschitz Absorption of c0 Without a Linear Copy of c0"
+    },
+    {
+      "id": "m2-lem-tail-separation",
+      "kind": "lemma",
+      "label": "Tail separation",
+      "statement": "[Tail separation] Suppose \\(F_i\\) belong to one listed class and have representations with bounded band indices. Suppose \\(m_i Z\\) and | F_i,m_i|>0, _B F_i\\ _ M_i c_*\\ , M_i, M_i, c_*>0. Then a…",
+      "section": "Molecules and the lifted correction",
+      "manuscript": "Bi-Lipschitz Absorption of c0 Without a Linear Copy of c0"
+    },
+    {
+      "id": "m2-prop-compatible-detectors",
+      "kind": "proposition",
+      "label": "Selection of compatible detectors",
+      "statement": "[Selection of compatible detectors] Let \\((m_i) Z\\) be weakly null, meaning \\(u(m_i)0\\) for every \\(u Z^*\\). Suppose \\(F_i\\) belong to one listed class \\( L\\) and | F_i,m_i|>0 (i1). There are a…",
+      "section": "Molecules and the lifted correction",
+      "manuscript": "Bi-Lipschitz Absorption of c0 Without a Linear Copy of c0"
+    },
+    {
+      "id": "m2-prop-no-c0",
+      "kind": "proposition",
+      "label": "The Banach space \\(Z\\) contains no linearly isomorphic copy of \\(c_0\\).",
+      "statement": "The Banach space \\(Z\\) contains no linearly isomorphic copy of \\(c_0\\).",
+      "section": "Molecules and the lifted correction",
+      "manuscript": "Bi-Lipschitz Absorption of c0 Without a Linear Copy of c0"
+    },
+    {
+      "id": "m2-cor-same-space",
+      "kind": "corollary",
+      "label": "For this same separable real Banach space \\(Z\\): \\(Z_ c_0\\) and \\(Z\\) are…",
+      "statement": "For this same separable real Banach space \\(Z\\): \\(Z_ c_0\\) and \\(Z\\) are bi-Lipschitz equivalent but not linearly isomorphic. \\(c_0\\) embeds bi-Lipschitzly into \\(Z\\), although \\(Z\\) contains no…",
+      "section": "Assembly and same-space consequences",
+      "manuscript": "Bi-Lipschitz Absorption of c0 Without a Linear Copy of c0"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-thm-free-wsc",
+      "to": "m1-eq-criterion-bounds"
+    },
+    {
+      "from": "m1-thm-localized-linearization",
+      "to": "m1-lemma-9"
+    },
+    {
+      "from": "m1-thm-compact-reduction",
+      "to": "m1-lemma-9"
+    },
+    {
+      "from": "m1-thm-hilbert-map",
+      "to": "m1-eq-hn-bounds"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-eq-hn-bounds"
+    },
+    {
+      "from": "m1-thm-localized-linearization",
+      "to": "m1-eq-hn-bounds"
+    },
+    {
+      "from": "m2-lem-frozen",
+      "to": "m2-prop-global"
+    },
+    {
+      "from": "m2-lem-operations",
+      "to": "m2-lem-support"
+    },
+    {
+      "from": "m2-lem-class-bounds",
+      "to": "m2-lem-duality"
+    },
+    {
+      "from": "m2-lem-duality",
+      "to": "m2-lem-detector-growth"
+    },
+    {
+      "from": "m2-lem-duality",
+      "to": "m2-lem-tail-separation"
+    },
+    {
+      "from": "m2-lem-duality",
+      "to": "m2-prop-compatible-detectors"
+    },
+    {
+      "from": "m2-lem-tail-separation",
+      "to": "m2-prop-compatible-detectors"
+    },
+    {
+      "from": "m2-lem-compatible",
+      "to": "m2-prop-compatible-detectors"
+    },
+    {
+      "from": "m2-lem-operations",
+      "to": "m2-prop-compatible-detectors"
+    },
+    {
+      "from": "m2-lem-detectors",
+      "to": "m2-prop-no-c0"
+    },
+    {
+      "from": "m2-prop-compatible-detectors",
+      "to": "m2-prop-no-c0"
+    },
+    {
+      "from": "m2-lem-detector-growth",
+      "to": "m2-prop-no-c0"
+    },
+    {
+      "from": "m2-thm-main",
+      "to": "m2-prop-no-c0"
+    },
+    {
+      "from": "m2-lem-completion",
+      "to": "m2-prop-no-c0"
+    },
+    {
+      "from": "m2-prop-global",
+      "to": "m2-prop-no-c0"
+    },
+    {
+      "from": "m2-prop-onto",
+      "to": "m2-prop-no-c0"
+    },
+    {
+      "from": "m2-lem-q",
+      "to": "m2-prop-no-c0"
+    },
+    {
+      "from": "m2-lem-k",
+      "to": "m2-prop-no-c0"
+    },
+    {
+      "from": "m2-lem-absorption",
+      "to": "m2-prop-no-c0"
+    },
+    {
+      "from": "m2-prop-no-c0",
+      "to": "m2-cor-same-space"
+    }
+  ]
+}

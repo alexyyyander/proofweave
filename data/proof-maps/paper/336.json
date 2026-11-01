@@ -1,0 +1,1152 @@
+{
+  "familyNumber": "336",
+  "familyTitle": "Spectral scalar curvature, Urysohn width, and macroscopic dimension",
+  "manuscripts": [
+    {
+      "id": "Spectral-scalar-curvature-and-uniform-Urysohn-width-October-5-2026",
+      "title": "Spectral scalar curvature and uniform Urysohn width",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Spectral-scalar-curvature-and-uniform-Urysohn-width-October-5-2026/main.pdf"
+    },
+    {
+      "id": "Spectral-scalar-curvature-and-Urysohn-width-in-dimension-three-October-5-2026",
+      "title": "Spectral scalar curvature and Urysohn width in dimension three",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Spectral-scalar-curvature-and-Urysohn-width-in-dimension-three-October-5-2026/spectral-urysohn-three-manifolds.pdf"
+    },
+    {
+      "id": "Positive-scalar-curvature-and-uniform-codimension-two-width-September-23-2026",
+      "title": "Positive scalar curvature and uniform codimension-two width",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Positive-scalar-curvature-and-uniform-codimension-two-width-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "A partition theorem for stretched data",
+    "From spectral positivity to a quadratic reserve",
+    "A pressure law for a signed drift",
+    "Local stretching with a signed drift",
+    "Stretching rounds and the width bound",
+    "Weighted curvature and stable surfaces",
+    "Cutting to obtain separation",
+    "Doubling and separating interfaces",
+    "Bounded components of distance slabs",
+    "A pressure law with a quadratic budget",
+    "A compactly supported stretching step",
+    "Wide separations at a fixed original scale",
+    "Finite cuts with compatible ends",
+    "Countably many compatible partitions",
+    "Reconstruction and the map to a complex",
+    "Universal covers and the uniform simplex metric",
+    "Packets, finite horizons, and the induction invariant",
+    "Weighted minimizing cuts and the forms on retained sides",
+    "Local shielding of singular sets",
+    "Global shielding and extension to cofaces",
+    "Regularization and restoration of the curvature invariant"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For every integer n4 there is a finite constant C_n with the following…",
+      "statement": "For every integer n4 there is a finite constant C_n with the following property. Every connected complete smooth Riemannian n -manifold (M,g) without boundary satisfying admits a continuous map f:M K…",
+      "section": "Introduction",
+      "manuscript": "Spectral scalar curvature and uniform Urysohn width"
+    },
+    {
+      "id": "m1-interface-width",
+      "kind": "theorem",
+      "label": "Partition theorem for stretched data",
+      "statement": "[Partition theorem for stretched data ] For each integer n4 , there is a finite number D_ nat (n)>0 with the following property. Let (M^n,g) be a connected complete smooth Riemannian manifold without…",
+      "section": "A partition theorem for stretched data",
+      "manuscript": "Spectral scalar curvature and uniform Urysohn width"
+    },
+    {
+      "id": "m1-pre-supersolution",
+      "kind": "lemma",
+      "label": "Positive supersolution",
+      "statement": "[Positive supersolution] Let (M,g) be a connected complete smooth manifold without boundary satisfying the normalized spectral bound in Theorem~ . There is a smooth positive function v on M such that…",
+      "section": "From spectral positivity to a quadratic reserve",
+      "manuscript": "Spectral scalar curvature and uniform Urysohn width"
+    },
+    {
+      "id": "m1-pre-reserve",
+      "kind": "proposition",
+      "label": "Quadratic reserve",
+      "statement": "[Quadratic reserve] For every integer n4 there is a constant C(n)< with the following property. If h is a complete smooth metric on a connected boundaryless n -manifold M and w C^(M) , there are a…",
+      "section": "From spectral positivity to a quadratic reserve",
+      "manuscript": "Spectral scalar curvature and uniform Urysohn width"
+    },
+    {
+      "id": "m1-pre-angle",
+      "kind": "lemma",
+      "label": "Graph angle equation",
+      "statement": "[Graph angle equation] Let u be smooth on an open subset of a Riemannian manifold (M,h) . On its graph in (M,h) , with vertical coordinate z , put \\[ =(1+| u|_h^2)^ -1/2 , =(_hu,-), Z=-_z. \\] Let t…",
+      "section": "From spectral positivity to a quadratic reserve",
+      "manuscript": "Spectral scalar curvature and uniform Urysohn width"
+    },
+    {
+      "id": "m1-pre-global-graph",
+      "kind": "lemma",
+      "label": "Global prescribed graph",
+      "statement": "[Global prescribed graph] Let h be a complete smooth metric on a connected manifold M without boundary, and let w C^(M) . With c=10 , there is a smooth function u on M satisfying _ h,w ( _hu 1+|…",
+      "section": "From spectral positivity to a quadratic reserve",
+      "manuscript": "Spectral scalar curvature and uniform Urysohn width"
+    },
+    {
+      "id": "m1-pre-graph-comparison",
+      "kind": "lemma",
+      "label": "Scalar graph comparison",
+      "statement": "[Scalar graph comparison] Let h be a smooth metric on an n -manifold, let t,u be smooth functions, and work on an open set where s=| u|_h>0 . Let =(s) be a smooth function with 0<<1 , and put \\[ l=1-…",
+      "section": "From spectral positivity to a quadratic reserve",
+      "manuscript": "Spectral scalar curvature and uniform Urysohn width"
+    },
+    {
+      "id": "m1-pressure-law",
+      "kind": "proposition",
+      "label": "Signed pressure law",
+      "statement": "[Signed pressure law] For every \\(A_0,P_0,,b_0>0\\), there are constants \\(S_0(0,1]\\), \\(T10\\), and a smooth function \\[ F:(-S_0,S_0) \\] that is odd in its first variable and has the following…",
+      "section": "A pressure law for a signed drift",
+      "manuscript": "Spectral scalar curvature and uniform Urysohn width"
+    },
+    {
+      "id": "m1-stretch-local",
+      "kind": "lemma",
+      "label": "Local stretching",
+      "statement": "[Local stretching] Let n4 and 0<<1/10 . There are constants W1 and T10 , depending only on n, , with the following property. Let M be a connected smooth n -manifold without boundary, let h_0 be a…",
+      "section": "Local stretching with a signed drift",
+      "manuscript": "Spectral scalar curvature and uniform Urysohn width"
+    },
+    {
+      "id": "m1-assembly-round",
+      "kind": "lemma",
+      "label": "One round of separations",
+      "statement": "[One round of separations] Let n4 , let 0<<\\ 1/10,1/(n+1)\\ , and let W,T be supplied by Lemma~ . Put V(t)=t^2+T^2 and L_*=1.004 . Let h_0 be a complete smooth metric on a connected smooth n -manifold…",
+      "section": "Stretching rounds and the width bound",
+      "manuscript": "Spectral scalar curvature and uniform Urysohn width"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "Let (M^3,g) be a connected complete smooth Riemannian three-manifold without…",
+      "statement": "Let (M^3,g) be a connected complete smooth Riemannian three-manifold without boundary. Suppose that >0 and _M(4|_g|_g^2+_g^2)\\,d_g _M^2\\,d_g ( C_c^(M;)). Then there exist a simplicial complex K of…",
+      "section": "Introduction",
+      "manuscript": "Spectral scalar curvature and Urysohn width in dimension three"
+    },
+    {
+      "id": "m2-lem-positive-weight",
+      "kind": "lemma",
+      "label": "Positive weight",
+      "statement": "[Positive weight] Let (M,g) be a connected smooth Riemannian manifold without boundary. Suppose that \\[ _M(4|d|_g^2+_g^2)\\,d_g _M^2\\,d_g ( C_c^(M;)). \\] There is a smooth function t:M such that…",
+      "section": "Weighted curvature and stable surfaces",
+      "manuscript": "Spectral scalar curvature and Urysohn width in dimension three"
+    },
+    {
+      "id": "m2-lem-weighted-stability",
+      "kind": "lemma",
+      "label": "Curvature transferred to a stable surface",
+      "statement": "[Curvature transferred to a stable surface] Suppose that a smooth two-sided surface satisfies and is stable in the sense of . Let be either the whole surface, if it is closed and connected, or a…",
+      "section": "Weighted curvature and stable surfaces",
+      "manuscript": "Spectral scalar curvature and Urysohn width in dimension three"
+    },
+    {
+      "id": "m2-lem-conformal-length",
+      "kind": "lemma",
+      "label": "Conformal index estimate",
+      "statement": "[Conformal index estimate] Let (S,k) be a smooth surface, let U C^(S) , and suppose that D(k,U) c>0 . Let be a finite geodesic segment for k=e^ -2U k whose index form is nonnegative for normal…",
+      "section": "Weighted curvature and stable surfaces",
+      "manuscript": "Spectral scalar curvature and Urysohn width in dimension three"
+    },
+    {
+      "id": "m2-prop-stable-surface",
+      "kind": "proposition",
+      "label": "Closed stable surfaces",
+      "statement": "[Closed stable surfaces] Let be a smooth closed connected two-sided surface in a Riemannian three-manifold (X,h) . Let T, be smooth ambient functions. Suppose that satisfies H- T= , is stable for…",
+      "section": "Weighted curvature and stable surfaces",
+      "manuscript": "Spectral scalar curvature and Urysohn width in dimension three"
+    },
+    {
+      "id": "m2-lem-stable-exit",
+      "kind": "lemma",
+      "label": "Local exit estimate",
+      "statement": "[Local exit estimate] Let be a smooth two-sided stable surface satisfying H- T= in a Riemannian three-manifold (X,h) . Suppose that holds on . Let _0,_1 be connected smooth domains with compact…",
+      "section": "Weighted curvature and stable surfaces",
+      "manuscript": "Spectral scalar curvature and Urysohn width in dimension three"
+    },
+    {
+      "id": "m2-prop-separating-cut",
+      "kind": "proposition",
+      "label": "There is a locally finite family S of pairwise disjoint closed connected…",
+      "statement": "There is a locally finite family S of pairwise disjoint closed connected embedded two-sided stable weighted minimal surfaces in M such that the following statements hold. Let N be the manifold…",
+      "section": "Cutting to obtain separation",
+      "manuscript": "Spectral scalar curvature and Urysohn width in dimension three"
+    },
+    {
+      "id": "m2-lem-closed-separation",
+      "kind": "lemma",
+      "label": "Every closed connected embedded two-sided hypersurface in intP separates P .",
+      "statement": "Every closed connected embedded two-sided hypersurface in intP separates P .",
+      "section": "Cutting to obtain separation",
+      "manuscript": "Spectral scalar curvature and Urysohn width in dimension three"
+    },
+    {
+      "id": "m2-lem-double-smoothing",
+      "kind": "lemma",
+      "label": "Weighted doubling",
+      "statement": "[Weighted doubling] There are smooth -invariant data (h,T) on Z such that D(h,T)12, 14g h4g on each copy of P. The data can be left unchanged outside disjoint, locally finite collars of the boundary…",
+      "section": "Doubling and separating interfaces",
+      "manuscript": "Spectral scalar curvature and Urysohn width in dimension three"
+    },
+    {
+      "id": "m2-prop-separating-interfaces",
+      "kind": "proposition",
+      "label": "Separating interfaces",
+      "statement": "[Separating interfaces] Let 100 , and suppose that \\ r>\\ is nonempty. There are finitely many disjoint smooth compact connected two-sided neat hypersurfaces F_1,,F_m in P such that F_i\\ -91<r<-18\\ ,…",
+      "section": "Doubling and separating interfaces",
+      "manuscript": "Spectral scalar curvature and Urysohn width in dimension three"
+    },
+    {
+      "id": "m2-lem-region-tree",
+      "kind": "lemma",
+      "label": "The complementary-region tree",
+      "statement": "[The complementary-region tree] Let P be a connected smooth manifold, possibly with boundary. Let F_1,,F_m be disjoint compact connected two-sided neatly embedded hypersurfaces, each of which…",
+      "section": "Bounded components of distance slabs",
+      "manuscript": "Spectral scalar curvature and Urysohn width in dimension three"
+    },
+    {
+      "id": "m2-prop-slab-diameter",
+      "kind": "proposition",
+      "label": "Slab diameter bound",
+      "statement": "[Slab diameter bound] For <u+2 , every connected component C of \\[ \\ x P:<r(x)<u\\ \\] has d -diameter at most 220 .",
+      "section": "Bounded components of distance slabs",
+      "manuscript": "Spectral scalar curvature and Urysohn width in dimension three"
+    },
+    {
+      "id": "m3-thm-main",
+      "kind": "theorem",
+      "label": "For every integer \\(n4\\), there is a finite constant \\(C_n\\) such that every…",
+      "statement": "For every integer \\(n4\\), there is a finite constant \\(C_n\\) such that every connected complete smooth Riemannian \\(n\\)-manifold \\((M,g)\\), without boundary and with \\(_g1\\), admits a continuous map…",
+      "section": "Introduction",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-cor-filling-radius",
+      "kind": "corollary",
+      "label": "Closed-manifold filling-radius bound",
+      "statement": "[Closed-manifold filling-radius bound] Let \\((M,g)\\) be a closed connected smooth Riemannian \\(n\\)-manifold with \\(n4\\) and \\(_g^2\\) for some \\(>0\\). Then \\[ FillRad(M,g) C_n 2 , \\] where \\(C_n\\) is…",
+      "section": "Introduction",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-cover-main",
+      "kind": "corollary",
+      "label": "Continuous macroscopic dimension of universal covers",
+      "statement": "[Continuous macroscopic dimension of universal covers] Let (M,h) be a closed connected smooth Riemannian manifold of dimension n2 with positive scalar curvature. Its universal cover, with the lifted…",
+      "section": "Introduction",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-cor-aspherical",
+      "kind": "corollary",
+      "label": "Aspherical obstruction",
+      "statement": "[Aspherical obstruction] No closed smooth aspherical manifold of dimension \\(n4\\) admits a Riemannian metric of strictly positive scalar curvature.",
+      "section": "Introduction",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-pressure-law",
+      "kind": "theorem",
+      "label": "Pressure law",
+      "statement": "[Pressure law] For every A_0,P_0,,b_0>0 there exist 0<S_01 , T1 , and a smooth function \\[ F:(-S_0,S_0) which is odd in x , has F_x>0 , and satisfies F_x A_0t, |F_t||F|, FF_t F_x,\\\\ F_x b_0t^2or…",
+      "section": "A pressure law with a quadratic budget",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-step-main",
+      "kind": "theorem",
+      "label": "Local stretching",
+      "statement": "[Local stretching] Fix n2 and 0<<1/10 , and put L_*=1.004 . There are constants W,T1 , depending only on n, , with the following property. Let h_0 be a complete smooth metric on a manifold M^n…",
+      "section": "A compactly supported stretching step",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-step-existence",
+      "kind": "lemma",
+      "label": "Height and gradient bounds",
+      "statement": "[Height and gradient bounds] For each fixed a>0 as above and every 0<r1/2 , at =1 has a smooth solution u on N . There are S_1<S_0 and G< , independent of r and of , such that every solution along…",
+      "section": "A compactly supported stretching step",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-step-locality",
+      "kind": "lemma",
+      "label": "Locality",
+      "statement": "[Locality] Let u_r be the solutions from at =1 . On any compact subset of the fixed open region where =0 and _1=0 , the functions u_r tend to zero in every C^k norm as r0 .",
+      "section": "A compactly supported stretching step",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-step-raw-estimate",
+      "kind": "lemma",
+      "label": "Raw scalar estimate",
+      "statement": "[Raw scalar estimate] On this original neighborhood, the raw output satisfies D(h_u,t_u) D(h,t)+(t_u^2-t^2) -(_hh_0-_ h_u h_0)t_u^2- d2t^2.",
+      "section": "A compactly supported stretching step",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-rounds-round",
+      "kind": "lemma",
+      "label": "A complete round",
+      "statement": "[A complete round] Suppose that \\(h_0\\) is a complete metric, \\(t_0 T\\) is smooth, and \\[ D(h_0,t_0) c+t_0^2 \\] for a constant \\(c\\). Let \\((A_i,B_i)\\) be a finite or countable family of nonempty…",
+      "section": "Wide separations at a fixed original scale",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-rounds-warp-identity",
+      "kind": "lemma",
+      "label": "Scalar curvature of diagonal circle warps",
+      "statement": "[Scalar curvature of diagonal circle warps] For smooth functions \\(p_1,,p_k\\) on \\((M,h)\\), the metric \\( h=h+_ =1 ^k e^ 2p_ _^2\\) on \\(M^k\\) has scalar curvature \\[ _ h =_h-2_h P-| P|_h^2 -_ =1 ^k|…",
+      "section": "Wide separations at a fixed original scale",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-rounds-wide",
+      "kind": "theorem",
+      "label": "Prescribed widths for a locally finite family",
+      "statement": "[Prescribed widths for a locally finite family] Let \\((M,g)\\) be complete, connected and smooth, with \\(_g1\\). There is a countable set of centers \\((x_i)\\) such that \\[ A_i= B_g(x_i,D), B_i=M…",
+      "section": "Wide separations at a fixed original scale",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-packet-counts",
+      "kind": "lemma",
+      "label": "The two count inclusions",
+      "statement": "[The two count inclusions] If B is a d -fold further face of E , the product projection sends D_E in that tail into D_B . At a split of label j_0 on a parent of dimension m , suppose the remaining…",
+      "section": "Finite cuts with compatible ends",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-packet-initialization",
+      "kind": "lemma",
+      "label": "Initialization and radial confinement",
+      "statement": "[Initialization and radial confinement] Let the stage-zero stabilized scalar curvature be at least .4 , and suppose that every color pair has separation \\[ _h(A_i,B_i)>T_0+4, T_0=22/ _0. \\] Then the…",
+      "section": "Finite cuts with compatible ends",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-finite-cut",
+      "kind": "theorem",
+      "label": "Finite compatible cutting",
+      "statement": "[Finite compatible cutting] Fix a finite number N_* of labels and the stage constants in . Suppose a stage- r packet diagram is obtained by the regular splitting construction of , with compatible…",
+      "section": "Finite cuts with compatible ends",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-countable-initial",
+      "kind": "lemma",
+      "label": "Initial profiles and radial blocks",
+      "statement": "[Initial profiles and radial blocks] The data in -- exist at stage zero with _i=p_i^* . The radial forced signs can be chosen so that every regular radial split preserving them has locally finite…",
+      "section": "Countably many compatible partitions",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-countable-locality",
+      "kind": "lemma",
+      "label": "Consequences and directed dependencies",
+      "statement": "[Consequences and directed dependencies] Suppose the packet geometry and hold at a finite stage. Then the following assertions hold. [label=(),leftmargin=*] The sum of potentials on a whole packet is…",
+      "section": "Countably many compatible partitions",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-countable-step",
+      "kind": "proposition",
+      "label": "Preservation of the invariant",
+      "statement": "[Preservation of the invariant] Suppose that all nonempty parents at stage r have base dimension at least two and satisfy -- . At r=0 use the compact radial blocks of ; at r1 suppose also that the…",
+      "section": "Countably many compatible partitions",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-countable-dimension-one",
+      "kind": "lemma",
+      "label": "The one-dimensional obstruction",
+      "statement": "[The one-dimensional obstruction] No nonempty one-dimensional packet can satisfy the invariant at a finite stage of the construction.",
+      "section": "Countably many compatible partitions",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-countable-construction",
+      "kind": "proposition",
+      "label": "The countable compatible construction",
+      "statement": "[The countable compatible construction] All labels can be processed successively. At every finite stage the packet diagram has the invariant above and no nonempty packet of dimension at most one.…",
+      "section": "Countably many compatible partitions",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-topology-partitions",
+      "kind": "proposition",
+      "label": "Reconstructed partitions",
+      "statement": "[Reconstructed partitions] The compatible cuts of give a continuous proper map q:M M , and for every color i closed sets P_i,N_i,W_i such that &d_0(q(x),x)<1, \\\\ &P_i N_i=M, P_i N_i=W_i, W_i q^ -1…",
+      "section": "Reconstruction and the map to a complex",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-topology-thicken",
+      "kind": "lemma",
+      "label": "Simultaneous wall neighborhoods",
+      "statement": "[Simultaneous wall neighborhoods] There are locally finite open sets T_i W_i such that T_i q^ -1 (B_0(x_i,2D)) q^ -1 (A_i B_i), \\#\\ i:x T_i\\ k(x M).",
+      "section": "Reconstruction and the map to a complex",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-cover-uniform",
+      "kind": "lemma",
+      "label": "Changing the simplex metric without changing fibers",
+      "statement": "[Changing the simplex metric without changing fibers] Let k0 be an integer. Suppose continuous functions t_i:Y have locally finite supports, at least one equals 1 at each point, and at most k are…",
+      "section": "Universal covers and the uniform simplex metric",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-cover-reeb",
+      "kind": "lemma",
+      "label": "Level components of a proper Morse function",
+      "statement": "[Level components of a proper Morse function] Let u:N be a proper Morse function on a connected smooth manifold without boundary. There is a locally finite simplicial graph K and a continuous map q:N…",
+      "section": "Universal covers and the uniform simplex metric",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-packet-split",
+      "kind": "lemma",
+      "label": "Compatible splitting and finite truncations",
+      "statement": "[Compatible splitting and finite truncations] Suppose a packet diagram after the radial stage has the properties in . On every packet let g_E be a smooth compatible function, with 0 a regular value,…",
+      "section": "Packets, finite horizons, and the induction invariant",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-packet-geometry",
+      "kind": "lemma",
+      "label": "Metric geometry of a packet",
+      "statement": "[Metric geometry of a packet] Equip a packet diagram after the radial stage with compatible smooth base metrics and finitely many compatible smooth positive warp functions. Each connected packet E ,…",
+      "section": "Packets, finite horizons, and the induction invariant",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-packet-escape",
+      "kind": "lemma",
+      "label": "Escaping sequences and product windows",
+      "statement": "[Escaping sequences and product windows] If a sequence escapes all compact sets of a fixed packet E , a subsequence has coordinates (x_,t_ 1, ,,t_ d, ) in one further-face product, where d1 , x_…",
+      "section": "Packets, finite horizons, and the induction invariant",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-packet-approximation",
+      "kind": "lemma",
+      "label": "Compatible choices and finite tolerance allocation",
+      "statement": "[Compatible choices and finite tolerance allocation] On a packet diagram after the radial stage, choices of smooth cutoffs and approximations can be made from deeper faces to cofaces, retaining exact…",
+      "section": "Packets, finite horizons, and the induction invariant",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-packet-reconstruction",
+      "kind": "proposition",
+      "label": "Finite-horizon reconstruction",
+      "statement": "[Finite-horizon reconstruction] Starting with X , perform finitely many compatible regular splits as in . For the first split require locally finite compact radial wall and side components. At the…",
+      "section": "Packets, finite horizons, and the induction invariant",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-cut-pressure",
+      "kind": "lemma",
+      "label": "Realizing the processed profile",
+      "statement": "[Realizing the processed profile] There is a smooth finite compatible function p_0 and a number c_*>0 such that every p=p_0+c , |c|<c_* , satisfies 2| p| .67p^2+1.02_ j_0 . There are compatible…",
+      "section": "Weighted minimizing cuts and the forms on retained sides",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-cut-bv-compactness",
+      "kind": "lemma",
+      "label": "Existence and strict local compactness",
+      "statement": "[Existence and strict local compactness] Every smooth positive weight and smooth locally bounded pressure on a smooth manifold admit a local absolute minimizer. Suppose on exhausting coordinate…",
+      "section": "Weighted minimizing cuts and the forms on retained sides",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-cut-barriers",
+      "kind": "lemma",
+      "label": "Barriers hold for every minimizer",
+      "statement": "[Barriers hold for every minimizer] Every local absolute minimizer for a pressure of contains D^+ and excludes D^- . Its boundary support consequently misses a neighborhood of each current core…",
+      "section": "Weighted minimizing cuts and the forms on retained sides",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-cut-generic-uniqueness",
+      "kind": "proposition",
+      "label": "Generic uniqueness on all required products",
+      "statement": "[Generic uniqueness on all required products] After the radial split one common shift c , with |c|<c_* , can be chosen such that there is exactly one local absolute minimizer, modulo null sets, on…",
+      "section": "Weighted minimizing cuts and the forms on retained sides",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-cut-gmt",
+      "kind": "theorem",
+      "label": "Local GMT properties used here",
+      "statement": "[Local GMT properties used here] Let A satisfy on a smooth m -manifold, m2 , with smooth positive and smooth p . Put S=|D_A| . Then S=S_ reg , where S_ reg is a smooth embedded hypersurface, is…",
+      "section": "Weighted minimizing cuts and the forms on retained sides",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-cut-end-convergence",
+      "kind": "corollary",
+      "label": "True cuts converge at packet ends",
+      "statement": "[True cuts converge at packet ends] For the common generic shift, let A_E be the true phase on each packet and let A_B be that on a face. On translated windows escaping in a product collar over a…",
+      "section": "Weighted minimizing cuts and the forms on retained sides",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-cut-wall-stability",
+      "kind": "lemma",
+      "label": "The wall stability form",
+      "statement": "[The wall stability form] For every compactly supported smooth invariant test v on S , _S(2| v|^2+R_Sv^2)\\,_S _S(R+p^2+|B|^2+2_ p)v^2\\,_S. In particular its right side is at least _S(R-1.02_ j_0…",
+      "section": "Weighted minimizing cuts and the forms on retained sides",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-cut-side-estimate",
+      "kind": "lemma",
+      "label": "Deletion and the seam estimate",
+      "statement": "[Deletion and the seam estimate] Every nonnegative compactly supported smooth function f on the closed regular side, with support avoiding the singular set, satisfies _S f\\,_S _(| f|+p_sf)\\,. For…",
+      "section": "Weighted minimizing cuts and the forms on retained sides",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-cut-raw-domination",
+      "kind": "proposition",
+      "label": "Raw scalar domination",
+      "statement": "[Raw scalar domination] Let V=R-1.02_ j_0 , restricted to the wall and pulled back to the cylinder when necessary. Then Q_S(v)&_S Vv^2\\,_S +1.99_S| v|^2\\,_S,\\\\ Q_(v)&_ Vv_b^2\\, +_0^\\!_S Vv_c^2\\,_S\\,…",
+      "section": "Weighted minimizing cuts and the forms on retained sides",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-local-anchors",
+      "kind": "lemma",
+      "label": "Choice of anchors",
+      "statement": "[Choice of anchors] There are compatible smooth functions h_j , for the remaining labels, within .1 of (-1,(1,_j)) , and common numbers t_j(-.3,.3) such that, on the singular set in each parent of…",
+      "section": "Local shielding of singular sets",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-local-flat-pieces",
+      "kind": "lemma",
+      "label": "Compact pieces with one-sided flatness",
+      "statement": "[Compact pieces with one-sided flatness] Let O be an open subset of a parent packet and let >0 . The set O is covered by countably many compact sets F O , each contained in a buffered coordinate…",
+      "section": "Local shielding of singular sets",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-local-shell",
+      "kind": "lemma",
+      "label": "A shell forcing profile",
+      "statement": "[A shell forcing profile] Let F be a compact subset of \\ h_j>t_j\\ . For every sufficiently small >0 there is an extended-real profile u_ , equal to + for and - for R_ , where \\[ (x)=(x,F), R_=e^ 5 ,…",
+      "section": "Local shielding of singular sets",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-local-rough",
+      "kind": "lemma",
+      "label": "Uniform rough Hardy coefficient",
+      "statement": "[Uniform rough Hardy coefficient] For each m8 there are numbers _0>0 and c_0>0 with the following property. Suppose F satisfies with _0 in a sufficiently accurate buffered chart. There are d_F>0 and…",
+      "section": "Local shielding of singular sets",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-local-sharp",
+      "kind": "proposition",
+      "label": "The local shielding estimate",
+      "statement": "[The local shielding estimate] There is a sufficiently small flatness number >0 , depending only on m and the fixed numerical coefficients, with the following property. Let F be any piece from for…",
+      "section": "Local shielding of singular sets",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-shield-compactness",
+      "kind": "lemma",
+      "label": "Compactness on joined windows",
+      "statement": "[Compactness on joined windows] Assume m8 . On any fixed compact window, a bounded sequence in H_Z has a strongly convergent L^2 subsequence. The following moving version also holds. Work in fixed…",
+      "section": "Global shielding and extension to cofaces",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-shield-maximum",
+      "kind": "lemma",
+      "label": "Maximum of successive form costs",
+      "statement": "[Maximum of successive form costs] Fix a packet and its true pieces. Let V0 be a fixed bounded potential, pulled back to cylinders, satisfying _Z Vv^2 h_Z(v) on its wall and both joined sides. Let F…",
+      "section": "Global shielding and extension to cofaces",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-shield-extension",
+      "kind": "lemma",
+      "label": "Extension with late fronts",
+      "statement": "[Extension with late fronts] Let B be a packet, let D0 be a fixed smooth compactly supported potential addition on B , and let V denote the old cumulative potential on every packet. Suppose these old…",
+      "section": "Global shielding and extension to cofaces",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-shield-caps",
+      "kind": "lemma",
+      "label": "Compatible caps and cores",
+      "statement": "[Compatible caps and cores] A compact forcing update from extends to all its cofaces so as to satisfy , preserve the profile gradient inequality with coefficient a_r , and enlarge only the designated…",
+      "section": "Global shielding and extension to cofaces",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-shield-global",
+      "kind": "proposition",
+      "label": "The global shielding output",
+      "statement": "[The global shielding output] At a fixed stage r , let j_0 be the current label and keep its true minimizers fixed. There are updates of every remaining profile and core, and compatible smooth…",
+      "section": "Global shielding and extension to cofaces",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-regular-guards",
+      "kind": "lemma",
+      "label": "Uniform control on the guarded region",
+      "statement": "[Uniform control on the guarded region] Fix a finite integer J4 . On each parent packet E , let _E be signed distance to the true boundary support, truncated at 1 , positive in the plus phase. If the…",
+      "section": "Regularization and restoration of the curvature invariant",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-regular-partition",
+      "kind": "lemma",
+      "label": "Compatible smooth partitions",
+      "statement": "[Compatible smooth partitions] There are compatible smooth defining functions g_E with 0 a regular value, positive and negative on the respective current forced core closures, and with L_E=g_E^ -1…",
+      "section": "Regularization and restoration of the curvature invariant",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-regular-transfer",
+      "kind": "lemma",
+      "label": "Counts and transfer of the raw form",
+      "statement": "[Counts and transfer of the raw form] The defining-function accuracies can be chosen so that on a uniform neighborhood of D_A in each new packet the raw scalar form controls _ r+1 +(1+3_r)b_ r+1 _ j…",
+      "section": "Regularization and restoration of the curvature invariant",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-regular-seam",
+      "kind": "lemma",
+      "label": "Smoothing a seam with variable width",
+      "statement": "[Smoothing a seam with variable width] The raw joined metrics admit smooth compatible metrics with arbitrarily small C^0 error, and their scalar forms converge to the raw forms in the following…",
+      "section": "Regularization and restoration of the curvature invariant",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-regular-constant-preservation",
+      "kind": "lemma",
+      "label": "Approximation that reproduces constants",
+      "statement": "[Approximation that reproduces constants] A continuous scalar function on a packet can be approximated by smooth functions, with any prescribed positive value error, by operators that reproduce…",
+      "section": "Regularization and restoration of the curvature invariant",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-regular-profiles",
+      "kind": "lemma",
+      "label": "Restricted profiles and smooth potentials",
+      "statement": "[Restricted profiles and smooth potentials] After the seam smoothing the pulled-back profiles and cores satisfy the stage r+1 profile conditions with smooth compatible potentials _j^ new chosen so…",
+      "section": "Regularization and restoration of the curvature invariant",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-regular-correction",
+      "kind": "lemma",
+      "label": "A compatible correction with a global gap",
+      "statement": "[A compatible correction with a global gap] There are smooth nonnegative bounded compatible potentials K_A , with all derivatives bounded packetwise, such that K_A=0 in a positive uniform…",
+      "section": "Regularization and restoration of the curvature invariant",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-regular-resolvent",
+      "kind": "lemma",
+      "label": "The bounded gapped resolvent",
+      "statement": "[The bounded gapped resolvent] Let A be one of the resulting complete packets, with its weighted base measure. Suppose W is smooth and bounded with bounded derivatives, and L=-C_+W has form gap g>0 .…",
+      "section": "Regularization and restoration of the curvature invariant",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-regular-solutions",
+      "kind": "lemma",
+      "label": "Exact solutions and compatible approximations",
+      "statement": "[Exact solutions and compatible approximations] Fix all the corrections of and let s_A denote the exact bounded solution L_As_A=1 . There exist positive smooth compatible functions v_A with L_Av_A12…",
+      "section": "Regularization and restoration of the curvature invariant",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    },
+    {
+      "id": "m3-regular-step",
+      "kind": "proposition",
+      "label": "The full invariant step",
+      "statement": "[The full invariant step] Assume the stage r invariant and the conclusion of . For every nonempty parent packet of base dimension at least two, processing j_0 produces the compatible smooth split…",
+      "section": "Regularization and restoration of the curvature invariant",
+      "manuscript": "Positive scalar curvature and uniform codimension-two width"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-pre-angle",
+      "to": "m1-pre-global-graph"
+    },
+    {
+      "from": "m1-pre-reserve",
+      "to": "m1-pre-graph-comparison"
+    },
+    {
+      "from": "m1-pre-global-graph",
+      "to": "m1-pre-graph-comparison"
+    },
+    {
+      "from": "m1-stretch-local",
+      "to": "m1-assembly-round"
+    },
+    {
+      "from": "m1-pre-reserve",
+      "to": "m1-assembly-round"
+    },
+    {
+      "from": "m1-pre-supersolution",
+      "to": "m1-assembly-round"
+    },
+    {
+      "from": "m1-interface-width",
+      "to": "m1-assembly-round"
+    },
+    {
+      "from": "m2-lem-weighted-stability",
+      "to": "m2-prop-stable-surface"
+    },
+    {
+      "from": "m2-lem-conformal-length",
+      "to": "m2-prop-stable-surface"
+    },
+    {
+      "from": "m2-lem-weighted-stability",
+      "to": "m2-lem-stable-exit"
+    },
+    {
+      "from": "m2-lem-conformal-length",
+      "to": "m2-lem-stable-exit"
+    },
+    {
+      "from": "m2-lem-stable-exit",
+      "to": "m2-lem-closed-separation"
+    },
+    {
+      "from": "m2-prop-stable-surface",
+      "to": "m2-prop-separating-interfaces"
+    },
+    {
+      "from": "m2-prop-separating-cut",
+      "to": "m2-prop-separating-interfaces"
+    },
+    {
+      "from": "m2-prop-separating-interfaces",
+      "to": "m2-prop-slab-diameter"
+    },
+    {
+      "from": "m2-lem-region-tree",
+      "to": "m2-prop-slab-diameter"
+    },
+    {
+      "from": "m2-thm-main",
+      "to": "m2-prop-slab-diameter"
+    },
+    {
+      "from": "m3-thm-main",
+      "to": "m3-cor-filling-radius"
+    },
+    {
+      "from": "m3-thm-main",
+      "to": "m3-cor-aspherical"
+    },
+    {
+      "from": "m3-step-main",
+      "to": "m3-rounds-round"
+    },
+    {
+      "from": "m3-rounds-round",
+      "to": "m3-rounds-wide"
+    },
+    {
+      "from": "m3-rounds-warp-identity",
+      "to": "m3-rounds-wide"
+    },
+    {
+      "from": "m3-cut-barriers",
+      "to": "m3-finite-cut"
+    },
+    {
+      "from": "m3-cut-gmt",
+      "to": "m3-finite-cut"
+    },
+    {
+      "from": "m3-cut-generic-uniqueness",
+      "to": "m3-finite-cut"
+    },
+    {
+      "from": "m3-cut-end-convergence",
+      "to": "m3-finite-cut"
+    },
+    {
+      "from": "m3-cut-raw-domination",
+      "to": "m3-finite-cut"
+    },
+    {
+      "from": "m3-shield-compactness",
+      "to": "m3-finite-cut"
+    },
+    {
+      "from": "m3-shield-global",
+      "to": "m3-finite-cut"
+    },
+    {
+      "from": "m3-regular-partition",
+      "to": "m3-finite-cut"
+    },
+    {
+      "from": "m3-regular-seam",
+      "to": "m3-finite-cut"
+    },
+    {
+      "from": "m3-regular-step",
+      "to": "m3-finite-cut"
+    },
+    {
+      "from": "m3-packet-counts",
+      "to": "m3-finite-cut"
+    },
+    {
+      "from": "m3-packet-initialization",
+      "to": "m3-finite-cut"
+    },
+    {
+      "from": "m3-packet-geometry",
+      "to": "m3-countable-locality"
+    },
+    {
+      "from": "m3-cut-gmt",
+      "to": "m3-countable-locality"
+    },
+    {
+      "from": "m3-cut-pressure",
+      "to": "m3-countable-step"
+    },
+    {
+      "from": "m3-countable-locality",
+      "to": "m3-countable-step"
+    },
+    {
+      "from": "m3-cut-generic-uniqueness",
+      "to": "m3-countable-step"
+    },
+    {
+      "from": "m3-cut-end-convergence",
+      "to": "m3-countable-step"
+    },
+    {
+      "from": "m3-cut-bv-compactness",
+      "to": "m3-countable-step"
+    },
+    {
+      "from": "m3-cut-raw-domination",
+      "to": "m3-countable-step"
+    },
+    {
+      "from": "m3-local-anchors",
+      "to": "m3-countable-step"
+    },
+    {
+      "from": "m3-packet-escape",
+      "to": "m3-countable-step"
+    },
+    {
+      "from": "m3-shield-maximum",
+      "to": "m3-countable-step"
+    },
+    {
+      "from": "m3-shield-extension",
+      "to": "m3-countable-step"
+    },
+    {
+      "from": "m3-shield-caps",
+      "to": "m3-countable-step"
+    },
+    {
+      "from": "m3-packet-counts",
+      "to": "m3-countable-step"
+    },
+    {
+      "from": "m3-regular-transfer",
+      "to": "m3-countable-step"
+    },
+    {
+      "from": "m3-regular-profiles",
+      "to": "m3-countable-step"
+    },
+    {
+      "from": "m3-regular-correction",
+      "to": "m3-countable-step"
+    },
+    {
+      "from": "m3-regular-step",
+      "to": "m3-countable-step"
+    },
+    {
+      "from": "m3-packet-split",
+      "to": "m3-countable-step"
+    },
+    {
+      "from": "m3-packet-geometry",
+      "to": "m3-countable-step"
+    },
+    {
+      "from": "m3-packet-geometry",
+      "to": "m3-countable-dimension-one"
+    },
+    {
+      "from": "m3-countable-initial",
+      "to": "m3-countable-construction"
+    },
+    {
+      "from": "m3-countable-step",
+      "to": "m3-countable-construction"
+    },
+    {
+      "from": "m3-countable-dimension-one",
+      "to": "m3-countable-construction"
+    },
+    {
+      "from": "m3-packet-reconstruction",
+      "to": "m3-countable-construction"
+    },
+    {
+      "from": "m3-packet-reconstruction",
+      "to": "m3-topology-partitions"
+    },
+    {
+      "from": "m3-countable-construction",
+      "to": "m3-topology-partitions"
+    },
+    {
+      "from": "m3-topology-partitions",
+      "to": "m3-topology-thicken"
+    },
+    {
+      "from": "m3-cover-main",
+      "to": "m3-cover-reeb"
+    },
+    {
+      "from": "m3-thm-main",
+      "to": "m3-cover-reeb"
+    },
+    {
+      "from": "m3-cover-uniform",
+      "to": "m3-cover-reeb"
+    },
+    {
+      "from": "m3-packet-split",
+      "to": "m3-packet-geometry"
+    },
+    {
+      "from": "m3-packet-escape",
+      "to": "m3-packet-geometry"
+    },
+    {
+      "from": "m3-packet-geometry",
+      "to": "m3-packet-escape"
+    },
+    {
+      "from": "m3-packet-escape",
+      "to": "m3-packet-approximation"
+    },
+    {
+      "from": "m3-packet-split",
+      "to": "m3-packet-reconstruction"
+    },
+    {
+      "from": "m3-packet-initialization",
+      "to": "m3-packet-reconstruction"
+    },
+    {
+      "from": "m3-rounds-wide",
+      "to": "m3-packet-reconstruction"
+    },
+    {
+      "from": "m3-packet-approximation",
+      "to": "m3-cut-pressure"
+    },
+    {
+      "from": "m3-packet-geometry",
+      "to": "m3-cut-barriers"
+    },
+    {
+      "from": "m3-cut-bv-compactness",
+      "to": "m3-cut-generic-uniqueness"
+    },
+    {
+      "from": "m3-cut-bv-compactness",
+      "to": "m3-cut-gmt"
+    },
+    {
+      "from": "m3-cut-bv-compactness",
+      "to": "m3-cut-end-convergence"
+    },
+    {
+      "from": "m3-cut-generic-uniqueness",
+      "to": "m3-cut-end-convergence"
+    },
+    {
+      "from": "m3-cut-gmt",
+      "to": "m3-cut-end-convergence"
+    },
+    {
+      "from": "m3-packet-escape",
+      "to": "m3-cut-end-convergence"
+    },
+    {
+      "from": "m3-cut-wall-stability",
+      "to": "m3-cut-raw-domination"
+    },
+    {
+      "from": "m3-cut-side-estimate",
+      "to": "m3-cut-raw-domination"
+    },
+    {
+      "from": "m3-packet-approximation",
+      "to": "m3-local-anchors"
+    },
+    {
+      "from": "m3-cut-gmt",
+      "to": "m3-local-flat-pieces"
+    },
+    {
+      "from": "m3-local-anchors",
+      "to": "m3-local-shell"
+    },
+    {
+      "from": "m3-cut-gmt",
+      "to": "m3-local-rough"
+    },
+    {
+      "from": "m3-local-rough",
+      "to": "m3-local-sharp"
+    },
+    {
+      "from": "m3-cut-gmt",
+      "to": "m3-shield-compactness"
+    },
+    {
+      "from": "m3-shield-compactness",
+      "to": "m3-shield-maximum"
+    },
+    {
+      "from": "m3-shield-maximum",
+      "to": "m3-shield-extension"
+    },
+    {
+      "from": "m3-shield-compactness",
+      "to": "m3-shield-extension"
+    },
+    {
+      "from": "m3-shield-extension",
+      "to": "m3-shield-caps"
+    },
+    {
+      "from": "m3-local-anchors",
+      "to": "m3-shield-caps"
+    },
+    {
+      "from": "m3-local-anchors",
+      "to": "m3-shield-global"
+    },
+    {
+      "from": "m3-shield-maximum",
+      "to": "m3-shield-global"
+    },
+    {
+      "from": "m3-shield-extension",
+      "to": "m3-shield-global"
+    },
+    {
+      "from": "m3-packet-escape",
+      "to": "m3-shield-global"
+    },
+    {
+      "from": "m3-cut-end-convergence",
+      "to": "m3-shield-global"
+    },
+    {
+      "from": "m3-local-flat-pieces",
+      "to": "m3-shield-global"
+    },
+    {
+      "from": "m3-packet-escape",
+      "to": "m3-regular-guards"
+    },
+    {
+      "from": "m3-cut-end-convergence",
+      "to": "m3-regular-guards"
+    },
+    {
+      "from": "m3-regular-guards",
+      "to": "m3-regular-partition"
+    },
+    {
+      "from": "m3-packet-approximation",
+      "to": "m3-regular-partition"
+    },
+    {
+      "from": "m3-shield-global",
+      "to": "m3-regular-transfer"
+    },
+    {
+      "from": "m3-regular-partition",
+      "to": "m3-regular-transfer"
+    },
+    {
+      "from": "m3-cut-side-estimate",
+      "to": "m3-regular-seam"
+    },
+    {
+      "from": "m3-packet-approximation",
+      "to": "m3-regular-constant-preservation"
+    },
+    {
+      "from": "m3-regular-partition",
+      "to": "m3-regular-constant-preservation"
+    },
+    {
+      "from": "m3-regular-constant-preservation",
+      "to": "m3-regular-profiles"
+    },
+    {
+      "from": "m3-regular-transfer",
+      "to": "m3-regular-profiles"
+    },
+    {
+      "from": "m3-packet-geometry",
+      "to": "m3-regular-resolvent"
+    },
+    {
+      "from": "m3-regular-resolvent",
+      "to": "m3-regular-solutions"
+    },
+    {
+      "from": "m3-regular-partition",
+      "to": "m3-regular-solutions"
+    },
+    {
+      "from": "m3-regular-constant-preservation",
+      "to": "m3-regular-step"
+    },
+    {
+      "from": "m3-regular-partition",
+      "to": "m3-regular-step"
+    }
+  ]
+}

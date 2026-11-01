@@ -1,0 +1,706 @@
+{
+  "familyNumber": "220",
+  "familyTitle": "Directional zero–one laws beyond iid environments and iid ballisticity",
+  "manuscripts": [
+    {
+      "id": "A-directional-zero-one-law-under-strict-ellipticity-September-23-2026",
+      "title": "A directional zero–one law under strict ellipticity",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-directional-zero-one-law-under-strict-ellipticity-September-23-2026/paper.pdf"
+    },
+    {
+      "id": "Directional-transience-implies-ballisticity-September-23-2026",
+      "title": "Directional transience implies ballisticity",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Directional-transience-implies-ballisticity-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Regeneration in a real direction",
+    "Finite spatial radii under coexistence",
+    "Rays and a common renewal arrangement",
+    "An entropy upper bound for contacts",
+    "Contacts with a path anchored at a random endpoint",
+    "Many contact scales and the contradiction",
+    "Geometric and speed reductions",
+    "Two-walk scales and preliminary comparisons",
+    "Gaussian scales",
+    "Clipping paths on arbitrary scales",
+    "Kernel tools",
+    "Separated stages and episode bounds",
+    "Stationary profiles and the contradiction"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Let d3 , let be an independent and identically distributed law of…",
+      "statement": "Let d3 , let be an independent and identically distributed law of nearest-neighbor transition rows on ^d satisfying , and let ^d\\ 0\\ . Then \\[ P_0(A_)\\ 0,1\\ . \\]",
+      "section": "Introduction",
+      "manuscript": "A directional zero–one law under strict ellipticity"
+    },
+    {
+      "id": "m1-lem-departure-transfer",
+      "kind": "lemma",
+      "label": "Transfer through unused departure rows",
+      "statement": "[Transfer through unused departure rows] Let =(x_0,,x_m) be a finite nearest-neighbor word and let f() be a nonnegative measurable function of the rows outside Dep() . Then \\! =W(). In particular,…",
+      "section": "Regeneration in a real direction",
+      "manuscript": "A directional zero–one law under strict ellipticity"
+    },
+    {
+      "id": "m1-lem-finite-supremum",
+      "kind": "lemma",
+      "label": "Finite height supremum",
+      "statement": "[Finite height supremum] For this fixed real direction, almost surely under P_0 , \\[ _ n0 h(X_n)< h(X_n)-. \\] In particular, a finite height interval cannot contain the path forever. The…",
+      "section": "Regeneration in a real direction",
+      "manuscript": "A directional zero–one law under strict ellipticity"
+    },
+    {
+      "id": "m1-lem-positive-nonbacktracking",
+      "kind": "lemma",
+      "label": "If P_0(A_v)>0 , then p_v>0 .",
+      "statement": "If P_0(A_v)>0 , then p_v>0 .",
+      "section": "Regeneration in a real direction",
+      "manuscript": "A directional zero–one law under strict ellipticity"
+    },
+    {
+      "id": "m1-lem-slabs",
+      "kind": "lemma",
+      "label": "Regeneration words",
+      "statement": "[Regeneration words] Suppose p_v>0 . Under P_v , there are almost surely infinitely many true cuts 0=_0<_1<_2< , with time zero included as an initial boundary. The relative words between consecutive…",
+      "section": "Regeneration in a real direction",
+      "manuscript": "A directional zero–one law under strict ellipticity"
+    },
+    {
+      "id": "m1-lem-mean-width",
+      "kind": "lemma",
+      "label": "Finite mean width",
+      "statement": "[Finite mean width] Suppose p_v>0 and \\|v\\|_=1 . If S is the number of ordinary strict records after the initial boundary of a slab with law _v , including its terminal record, then \\[ 0< E_ _v L E_…",
+      "section": "Regeneration in a real direction",
+      "manuscript": "A directional zero–one law under strict ellipticity"
+    },
+    {
+      "id": "m1-lem-sign-union",
+      "kind": "lemma",
+      "label": "The two directional signs",
+      "statement": "[The two directional signs] For every fixed nonzero real direction v , if P_0(A_v)>0 , then \\[ P_0(A_v A_ -v )=1. \\] More precisely, up to null sets, infinite height supremum implies A_v and finite…",
+      "section": "Regeneration in a real direction",
+      "manuscript": "A directional zero–one law under strict ellipticity"
+    },
+    {
+      "id": "m1-prop-radius",
+      "kind": "proposition",
+      "label": "Spatial radius under coexistence",
+      "statement": "[Spatial radius under coexistence] Let the environment consist of iid strictly positive transition rows, and let \\(v^d\\ 0\\ \\). Suppose \\(P_0(A_v)>0\\) and \\(P_0(A_ -v )>0\\). For each sign \\(\\ +,-\\ \\),…",
+      "section": "Finite spatial radii under coexistence",
+      "manuscript": "A directional zero–one law under strict ellipticity"
+    },
+    {
+      "id": "m1-lem-initial-averages",
+      "kind": "lemma",
+      "label": "Initial averages",
+      "statement": "[Initial averages] Let \\((Z_j)_ j1 \\) be a stationary sequence of nonnegative integrable random variables. For every \\(a>0\\) and positive integer \\(n\\), \\[ P(_ 1 k n 1k_ j=1 ^kZ_j>a) EZ_1 a . \\]",
+      "section": "Finite spatial radii under coexistence",
+      "manuscript": "A directional zero–one law under strict ellipticity"
+    },
+    {
+      "id": "m1-prop-coordinate-reduction",
+      "kind": "proposition",
+      "label": "Suppose that the annealed walk satisfies 0<P_0(A_v)<1 for some v^d\\ 0\\ . There…",
+      "statement": "Suppose that the annealed walk satisfies 0<P_0(A_v)<1 for some v^d\\ 0\\ . There is a coordinate i for which \\[ P_0(A_ e_i )>0and P_0(A_ -e_i )>0. \\]",
+      "section": "Rays and a common renewal arrangement",
+      "manuscript": "A directional zero–one law under strict ellipticity"
+    },
+    {
+      "id": "m1-lem-exact-bridge",
+      "kind": "lemma",
+      "label": "Exact-cut bridges",
+      "statement": "[Exact-cut bridges] For either sign, the probability under P_ of a slab cut at height H0 is u_H . The numbers u_H satisfy \\[ u_0=1, 1 u_H u_ H+1 p_. \\] Conditional on a cut at H , the list of slabs…",
+      "section": "Rays and a common renewal arrangement",
+      "manuscript": "A directional zero–one law under strict ellipticity"
+    },
+    {
+      "id": "m1-lem-renewal-tail",
+      "kind": "lemma",
+      "label": "Renewal-tail comparison",
+      "statement": "[Renewal-tail comparison] For either sign and all integers n' n0 , 0 u_n-u_ n' (n'-n)F(n). Moreover, _ l0 2^lF(2^l)<.",
+      "section": "Rays and a common renewal arrangement",
+      "manuscript": "A directional zero–one law under strict ellipticity"
+    },
+    {
+      "id": "m1-lem-common-blocks",
+      "kind": "lemma",
+      "label": "Common blocks",
+      "statement": "[Common blocks] The paired lists in successive common blocks are iid. If K is the total width of one block, then E K1 p_+p_- <. Let V_+ and V_- be the sums of the actual chronological lateral…",
+      "section": "Rays and a common renewal arrangement",
+      "manuscript": "A directional zero–one law under strict ellipticity"
+    },
+    {
+      "id": "m1-prop-entropy-upper",
+      "kind": "proposition",
+      "label": "Suppose that both coordinate signs have positive directional-transience…",
+      "statement": "Suppose that both coordinate signs have positive directional-transience probability. In the opposed arrangement of Section~ , let m(J) be the expected number of dyadic common-block index intervals…",
+      "section": "An entropy upper bound for contacts",
+      "manuscript": "A directional zero–one law under strict ellipticity"
+    },
+    {
+      "id": "m1-lem-entropy-comparison",
+      "kind": "lemma",
+      "label": "There is a constant C , independent of n , such that \\[ D(P_n Q_n) C+h_ 14n…",
+      "statement": "There is a constant C , independent of n , such that \\[ D(P_n Q_n) C+h_ 14n -h_n. \\]",
+      "section": "An entropy upper bound for contacts",
+      "manuscript": "A directional zero–one law under strict ellipticity"
+    },
+    {
+      "id": "m1-lem-reference-contact",
+      "kind": "lemma",
+      "label": "For the reference experiment just defined, \\[ Q_n(E_ mid ) _n:=\\…",
+      "statement": "For the reference experiment just defined, \\[ Q_n(E_ mid ) _n:=\\ 1,Cn(F_+(n)+F_-(n))\\ . \\]",
+      "section": "An entropy upper bound for contacts",
+      "manuscript": "A directional zero–one law under strict ellipticity"
+    },
+    {
+      "id": "m1-lem-posterior-maxima",
+      "kind": "lemma",
+      "label": "Posterior maxima",
+      "statement": "[Posterior maxima] Let m1 , and let (w_i(e))_ i0 , 1 e m , be nonnegative martingales for a filtration ( F_i) , with _ e=1 ^m w_i(e)1 almost surely. Define \\[ A_i(e)=_ 0 j i w_j(e), A_i=_ e=1 ^m…",
+      "section": "Contacts with a path anchored at a random endpoint",
+      "manuscript": "A directional zero–one law under strict ellipticity"
+    },
+    {
+      "id": "m1-prop-contact-bound",
+      "kind": "proposition",
+      "label": "First contact after a prescribed height",
+      "statement": "[First contact after a prescribed height] In the preceding experiment, let 0<k<r<N be integers and define \\[ =\\ i T_k:i<T_N,\\ Y_i\\ _j:j0\\ \\ , =u^+_ r-k -u^+_ N-k . \\] An empty infimum is + . Then…",
+      "section": "Contacts with a path anchored at a random endpoint",
+      "manuscript": "A directional zero–one law under strict ellipticity"
+    },
+    {
+      "id": "m1-prop-contact-lower",
+      "kind": "proposition",
+      "label": "Suppose that both coordinate signs have positive directional-transience…",
+      "statement": "Suppose that both coordinate signs have positive directional-transience probability. In the opposed arrangement of Section~ , let m(J) be the expected number of dyadic common-block index intervals…",
+      "section": "Many contact scales and the contradiction",
+      "manuscript": "A directional zero–one law under strict ellipticity"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "Directional transience implies ballisticity",
+      "statement": "[Directional transience implies ballisticity] Let d2 and let P=^ Z^d be an iid law of nearest-neighbor transition rows satisfying uniform ellipticity. If S^ d-1 and P_0(A_)=1 , then there exists a…",
+      "section": "Introduction",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-cor-positive-transience",
+      "kind": "corollary",
+      "label": "Positive-probability transience and the velocity hemisphere",
+      "statement": "[Positive-probability transience and the velocity hemisphere] Let d3 and let P=^ Z^d be an iid law of nearest-neighbor transition rows satisfying uniform ellipticity. For a fixed R^d\\ 0\\ , set A_=\\…",
+      "section": "Introduction",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-geom-words",
+      "kind": "lemma",
+      "label": "True words and their widths",
+      "statement": "[True words and their widths] We have \\(p_h>0\\). Under \\(P_0(\\, D_h)\\), include time zero as a true boundary. The relative finite path words between consecutive true boundaries are iid. The raw path…",
+      "section": "Geometric and speed reductions",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-geom-radius",
+      "kind": "proposition",
+      "label": "Integrable spatial radius",
+      "statement": "[Integrable spatial radius] Under the conditioned word law, \\[ E R<. \\] No moment of the word duration is assumed.",
+      "section": "Geometric and speed reductions",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-geom-ray",
+      "kind": "corollary",
+      "label": "Deterministic limiting ray",
+      "statement": "[Deterministic limiting ray] There is a deterministic unit vector \\(r\\) with \\(h(r)>0\\) such that \\(X_n/\\|X_n\\| r\\) almost surely. After a deterministic signed permutation of the coordinate axes,…",
+      "section": "Geometric and speed reductions",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-geom-inverse",
+      "kind": "lemma",
+      "label": "A small inverse moment",
+      "statement": "[A small inverse moment] For every site \\(x\\), \\(a_H(x) q(x)>0\\) for almost every environment. Moreover, for some \\(>0\\), \\[ E\\,q(0)^ - <. \\]",
+      "section": "Geometric and speed reductions",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-geom-speed",
+      "kind": "proposition",
+      "label": "From crossing probabilities to speed",
+      "statement": "[From crossing probabilities to speed] If holds, then \\( E_ s <\\), and the walk has an almost-sure deterministic velocity with strictly positive projection on the original direction \\(\\).",
+      "section": "Geometric and speed reductions",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-fluct-common-words",
+      "kind": "lemma",
+      "label": "Common words and their continuation laws",
+      "statement": "[Common words and their continuation laws] Under either conditioned pair law, common true levels occur infinitely often. At each such level the translated pair continuation is fresh: under…",
+      "section": "Two-walk scales and preliminary comparisons",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-fluct-local-tightness",
+      "kind": "lemma",
+      "label": "Common-word moments and local tightness",
+      "statement": "[Common-word moments and local tightness] The independent common-word variables satisfy \\[ 1 L:= E L p^ -2 , E|S|<, (S0)>0. \\] For a single conditioned walk, and for either marginal of a shared…",
+      "section": "Two-walk scales and preliminary comparisons",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-fluct-scales",
+      "kind": "lemma",
+      "label": "Scale and maximal estimates",
+      "statement": "[Scale and maximal estimates] The function \\(n\\) is continuous and nondecreasing, tends to infinity, and is strictly increasing for all sufficiently large \\(r\\). Write \\(r_s\\) for its inverse on…",
+      "section": "Two-walk scales and preliminary comparisons",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-fluct-exact-comparison",
+      "kind": "lemma",
+      "label": "Exact-level comparison",
+      "statement": "[Exact-level comparison] For every integer \\(H0\\) and \\(z>0\\), \\[ P_0^+(W_H>z) C(M_H^S>z). \\] No moment of the maximal decoration inside a common word is needed.",
+      "section": "Two-walk scales and preliminary comparisons",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-fluct-median-linearization",
+      "kind": "lemma",
+      "label": "Median linearization on short blocks",
+      "statement": "[Median linearization on short blocks] For sufficiently small \\(t>0\\), uniformly in \\(1 H tn(r)\\), \\[ _ j H |b_j-jb_H/H| C t\\,r. \\]",
+      "section": "Two-walk scales and preliminary comparisons",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-fluct-conditioning-transfer",
+      "kind": "lemma",
+      "label": "Transfer between conditioned laws",
+      "statement": "[Transfer between conditioned laws] Along any sequences of integers \\(H0\\) and real numbers \\(z\\), \\[ P_0(W_H>z) C P_0^+(W_H>z/C) \\] with a fixed constant \\(C\\). If also \\(H\\), the same bound holds…",
+      "section": "Two-walk scales and preliminary comparisons",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-fluct-short-block",
+      "kind": "proposition",
+      "label": "Short-block survival",
+      "statement": "[Short-block survival] For every \\(v_0>0\\) there are constants \\(C_ v_0 <\\) and \\(t_ v_0 >0\\) such that, for each fixed \\(0<t t_ v_0 \\), some \\(>0\\) satisfies, for all sufficiently large \\(r\\), every…",
+      "section": "Two-walk scales and preliminary comparisons",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-fluct-endpoint-spread",
+      "kind": "lemma",
+      "label": "Spread at the truncated-variance scale",
+      "statement": "[Spread at the truncated-variance scale] Under the independent conditioned pair law, there is a constant \\(c>0\\) such that \\[ &(|_ n(r) |>cr) c (r\\ large),\\\\ &(|_ tn(r) |>lr/4) c_ l, t if r,…",
+      "section": "Two-walk scales and preliminary comparisons",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-gauss-independent",
+      "kind": "lemma",
+      "label": "Independent first-hit fluctuations",
+      "statement": "[Independent first-hit fluctuations] For two independent conditioned paths, \\(_h/r\\) converges functionally to Brownian motion of variance parameter \\(1/ L\\). For a single \\(P_0^+\\) path,…",
+      "section": "Gaussian scales",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-gauss-medians",
+      "kind": "lemma",
+      "label": "Linearization of the medians",
+      "statement": "[Linearization of the medians] Uniformly for \\(k+j T n(r)\\), for each fixed \\(T\\), \\[ b_ k+j -b_k-b_j=o(r). \\] Writing \\(N_r= n(r)\\) and \\(_r=b_ N_r /N_r\\), we have \\[ _ h Tn(r) |b_h-h_r|=o(r),…",
+      "section": "Gaussian scales",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-gauss-shared-marginals",
+      "kind": "lemma",
+      "label": "Shared marginal limits",
+      "statement": "[Shared marginal limits] Under \\(P_ x,y ^ ++ \\), each marginal process \\[ B_i^r(h/n(r))=(Y_h^ (i) -h_r)/r \\] converges functionally to Brownian motion of variance parameter \\(_*^2\\), uniformly over…",
+      "section": "Gaussian scales",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-gauss-off-diagonal",
+      "kind": "lemma",
+      "label": "Off-diagonal comparison",
+      "statement": "[Off-diagonal comparison] Fix \\(a,t>0\\). Uniformly over same-layer starts with \\(|y_2-x_2| ar\\), the total variation distance between the pair path-prefix laws through level \\(k= tn(r)\\), under \\(P_…",
+      "section": "Gaussian scales",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-gauss-diagonal",
+      "kind": "proposition",
+      "label": "Vanishing diagonal occupation",
+      "statement": "[Vanishing diagonal occupation] Along every Gaussian sequence, under \\(P_ 0,0 ^ ++ \\), for each fixed finite \\(T\\), \\[ _ 0 _ r 1 n(r) E_ 0,0 ^ ++ _ 0 h Tn(r) 1_ \\ |Z_h| r\\ =0. \\]",
+      "section": "Gaussian scales",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-gauss-joint",
+      "kind": "proposition",
+      "label": "Independent joint limit for shared paths",
+      "statement": "[Independent joint limit for shared paths] Under \\(P_ 0,0 ^ ++ \\), the pair of processes in converges functionally to two independent Brownian motions, each with variance parameter \\(_*^2\\).",
+      "section": "Gaussian scales",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-gauss-quenched",
+      "kind": "corollary",
+      "label": "Quenched Gaussian mass",
+      "statement": "[Quenched Gaussian mass] Along Gaussian sequences, the quenched path under \\(D\\)-conditioning from a fixed start has the Brownian limit of in \\(P\\)-probability, in the sense of bounded continuous…",
+      "section": "Gaussian scales",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-clip-clipping",
+      "kind": "proposition",
+      "label": "Clipping at arbitrary scales",
+      "statement": "[Clipping at arbitrary scales] For any fixed \\(0<T<,\\ >0,\\ p_ err >0\\) there is \\(d_0>0\\) such that, for every sufficiently large \\(r\\), some deterministic slope \\(s_r\\) satisfies, with \\(H_ tot = T…",
+      "section": "Clipping paths on arbitrary scales",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-clip-moment-transfer",
+      "kind": "lemma",
+      "label": "Truncated-moment transfer",
+      "statement": "[Truncated-moment transfer] Write \\( Q_h=E[K_h(0,)/a_h]\\). For any \\(h,\\ z\\), put \\(X=W_h/z\\) under \\( Q_h\\), and let \\(V=M_h^S/z\\) have the iid sum law of . For fixed \\(0<A<L<\\), with a constant…",
+      "section": "Clipping paths on arbitrary scales",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-kernel-initial-clipping",
+      "kind": "lemma",
+      "label": "Clipping from an initial distribution",
+      "statement": "[Clipping from an initial distribution] For fixed \\(k,T,,p'>0\\), with integer \\(k2\\), there is a positive constant \\(d\\) such that, for every sufficiently large \\(r\\), every \\(H Tn(r)\\), and every…",
+      "section": "Kernel tools",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-kernel-seeds",
+      "kind": "proposition",
+      "label": "Separated seeds",
+      "statement": "[Separated seeds] For each fixed \\(k2,\\ p'>0\\), there are constants \\(C_*,c_0,g_0>0\\) such that for all sufficiently large integer \\(H\\), putting \\(r=r_ H/C_* \\), \\[ P(_H^\\ sep (endpoints) c_0 r\\…",
+      "section": "Kernel tools",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-kernel-inverse-moment",
+      "kind": "lemma",
+      "label": "A separated inverse-moment bound",
+      "statement": "[A separated inverse-moment bound] For each fixed positive \\(B_*<\\) and integer \\(k\\), if initial separation on the support of \\(\\) is sufficiently large, depending on \\(B_*,k\\), then \\[ P(q_<2s) e^…",
+      "section": "Kernel tools",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-kernel-rapid-loss",
+      "kind": "proposition",
+      "label": "Rapid loss is unlikely",
+      "statement": "[Rapid loss is unlikely] Suppose \\(\\) starts with \\( sep G\\) and \\(0<d' G/2\\), with \\(G-d'\\) sufficiently large for . For any positive integer \\(L'\\) and \\(kL'(1/) x B_*\\), the loss \\(Z=-_H^(…",
+      "section": "Kernel tools",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-kernel-outward-order",
+      "kind": "proposition",
+      "label": "Outward order at polynomial cost",
+      "statement": "[Outward order at polynomial cost] There are fixed \\(A_ ,c>0\\) and a nonnegative random function \\( Z(x,y)\\) of the upper environment such that, simultaneously in integer \\(H1\\), \\[ - p_H^(x,y) A_…",
+      "section": "Kernel tools",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-stage-prop",
+      "kind": "proposition",
+      "label": "Separated stages",
+      "statement": "[Separated stages] There are fixed constants \\(f,g,,K>0\\) and an integer \\(k2\\) with \\[ 1g< 64 , (1+f/g)D_0 K < 64 , \\] having the following property. For every sufficiently large fixed \\(b\\), put…",
+      "section": "Separated stages and episode bounds",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-stage-episodes",
+      "kind": "lemma",
+      "label": "Episode bounds",
+      "statement": "[Episode bounds] For sufficiently large fixed \\(b\\), the episode construction satisfies \\(M J+1\\) and \\[ 0 c_i B_0/k+2bJ_i, (1+h_i) C(1+J_i). \\] For large \\(N\\), \\[ J N gb +(1+f/g)F+1. \\] Under…",
+      "section": "Separated stages and episode bounds",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-profile-stationary",
+      "kind": "lemma",
+      "label": "Stationary episode limit",
+      "statement": "[Stationary episode limit] Along a subsequence, \\( L_N\\) converges weakly to a shift-invariant law \\( L\\). Under this law, simultaneously for every \\(i\\), \\[ 1 h_i<, J_i,c_i<,\\\\ E_ L (c_i+(1+h_i))<,…",
+      "section": "Stationary profiles and the contradiction",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-profile-entropy",
+      "kind": "lemma",
+      "label": "Finite-window entropy",
+      "statement": "[Finite-window entropy] There is a constant \\(C_E<\\) such that, for every fixed \\(i\\) and \\(m1\\), the \\( L\\)-law of \\(( A_i,(^ i,m,a )_a)\\) has relative entropy at most \\(C_E m\\) with respect to its…",
+      "section": "Stationary profiles and the contradiction",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-profile-sampling",
+      "kind": "lemma",
+      "label": "Sampling identities",
+      "statement": "[Sampling identities] Under \\( L\\), simultaneously for all indices and horizontal \\(z\\), \\[ 2^ -n _ b2^n 1_ \\ O_ ia,jb =z\\ w_j^ ia (z)a.s. \\] A distinct label \\((j,b)(i,a)\\) cannot have finite offset…",
+      "section": "Stationary profiles and the contradiction",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-profile-updates",
+      "kind": "lemma",
+      "label": "Profile updates and averaged survival",
+      "statement": "[Profile updates and averaged survival] For every \\(i,m,a\\), write \\(H=H_ i,m \\), \\(C=C_ i,m \\), and \\(=^ i,m,a \\). Coordinatewise, \\[ w_ i+m ^ ia \\ \\ e^C\\, w_i^ ia K_H^ . \\] Here the kernel maps…",
+      "section": "Stationary profiles and the contradiction",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-profile-classes",
+      "kind": "proposition",
+      "label": "Finitely many persistent profiles",
+      "statement": "[Finitely many persistent profiles] On \\( E\\), there is no dust. The proper classes form the same finite nonempty set at every time, and the profile of each class has full support on horizontal space.",
+      "section": "Stationary profiles and the contradiction",
+      "manuscript": "Directional transience implies ballisticity"
+    },
+    {
+      "id": "m2-profile-no-growth",
+      "kind": "proposition",
+      "label": "No positive stationary normalization rate",
+      "statement": "[No positive stationary normalization rate] Suppose a stationary marked profile law has full-support subprobability profiles and nonnegative marks c_i , positive integer marks h_i , with \\[…",
+      "section": "Stationary profiles and the contradiction",
+      "manuscript": "Directional transience implies ballisticity"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-finite-supremum",
+      "to": "m1-lem-slabs"
+    },
+    {
+      "from": "m1-lem-slabs",
+      "to": "m1-lem-mean-width"
+    },
+    {
+      "from": "m1-lem-positive-nonbacktracking",
+      "to": "m1-lem-sign-union"
+    },
+    {
+      "from": "m1-lem-slabs",
+      "to": "m1-lem-sign-union"
+    },
+    {
+      "from": "m1-lem-mean-width",
+      "to": "m1-lem-sign-union"
+    },
+    {
+      "from": "m1-lem-finite-supremum",
+      "to": "m1-lem-sign-union"
+    },
+    {
+      "from": "m1-prop-radius",
+      "to": "m1-lem-initial-averages"
+    },
+    {
+      "from": "m1-lem-mean-width",
+      "to": "m1-lem-initial-averages"
+    },
+    {
+      "from": "m1-lem-departure-transfer",
+      "to": "m1-lem-initial-averages"
+    },
+    {
+      "from": "m1-lem-sign-union",
+      "to": "m1-prop-coordinate-reduction"
+    },
+    {
+      "from": "m1-prop-radius",
+      "to": "m1-prop-coordinate-reduction"
+    },
+    {
+      "from": "m1-lem-slabs",
+      "to": "m1-prop-coordinate-reduction"
+    },
+    {
+      "from": "m1-lem-slabs",
+      "to": "m1-lem-exact-bridge"
+    },
+    {
+      "from": "m1-lem-exact-bridge",
+      "to": "m1-lem-reference-contact"
+    },
+    {
+      "from": "m1-lem-departure-transfer",
+      "to": "m1-lem-reference-contact"
+    },
+    {
+      "from": "m1-lem-renewal-tail",
+      "to": "m1-lem-reference-contact"
+    },
+    {
+      "from": "m1-prop-entropy-upper",
+      "to": "m1-lem-reference-contact"
+    },
+    {
+      "from": "m1-lem-entropy-comparison",
+      "to": "m1-lem-reference-contact"
+    },
+    {
+      "from": "m1-lem-departure-transfer",
+      "to": "m1-prop-contact-bound"
+    },
+    {
+      "from": "m1-lem-finite-supremum",
+      "to": "m1-prop-contact-bound"
+    },
+    {
+      "from": "m1-lem-posterior-maxima",
+      "to": "m1-prop-contact-bound"
+    },
+    {
+      "from": "m1-lem-exact-bridge",
+      "to": "m1-prop-contact-lower"
+    },
+    {
+      "from": "m1-prop-radius",
+      "to": "m1-prop-contact-lower"
+    },
+    {
+      "from": "m1-prop-contact-bound",
+      "to": "m1-prop-contact-lower"
+    },
+    {
+      "from": "m1-lem-renewal-tail",
+      "to": "m1-prop-contact-lower"
+    },
+    {
+      "from": "m1-lem-common-blocks",
+      "to": "m1-prop-contact-lower"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-prop-contact-lower"
+    },
+    {
+      "from": "m1-lem-sign-union",
+      "to": "m1-prop-contact-lower"
+    },
+    {
+      "from": "m1-prop-coordinate-reduction",
+      "to": "m1-prop-contact-lower"
+    },
+    {
+      "from": "m1-prop-entropy-upper",
+      "to": "m1-prop-contact-lower"
+    },
+    {
+      "from": "m2-thm-main",
+      "to": "m2-cor-positive-transience"
+    },
+    {
+      "from": "m2-geom-radius",
+      "to": "m2-geom-ray"
+    },
+    {
+      "from": "m2-geom-words",
+      "to": "m2-geom-ray"
+    },
+    {
+      "from": "m2-geom-ray",
+      "to": "m2-geom-speed"
+    },
+    {
+      "from": "m2-geom-words",
+      "to": "m2-geom-speed"
+    },
+    {
+      "from": "m2-geom-radius",
+      "to": "m2-geom-speed"
+    },
+    {
+      "from": "m2-fluct-common-words",
+      "to": "m2-fluct-local-tightness"
+    },
+    {
+      "from": "m2-fluct-local-tightness",
+      "to": "m2-fluct-conditioning-transfer"
+    },
+    {
+      "from": "m2-fluct-local-tightness",
+      "to": "m2-fluct-endpoint-spread"
+    },
+    {
+      "from": "m2-fluct-local-tightness",
+      "to": "m2-gauss-independent"
+    },
+    {
+      "from": "m2-gauss-independent",
+      "to": "m2-gauss-medians"
+    },
+    {
+      "from": "m2-gauss-shared-marginals",
+      "to": "m2-gauss-off-diagonal"
+    },
+    {
+      "from": "m2-gauss-medians",
+      "to": "m2-gauss-joint"
+    },
+    {
+      "from": "m2-gauss-shared-marginals",
+      "to": "m2-gauss-joint"
+    },
+    {
+      "from": "m2-gauss-joint",
+      "to": "m2-gauss-quenched"
+    },
+    {
+      "from": "m2-gauss-medians",
+      "to": "m2-gauss-quenched"
+    },
+    {
+      "from": "m2-clip-clipping",
+      "to": "m2-clip-moment-transfer"
+    },
+    {
+      "from": "m2-kernel-initial-clipping",
+      "to": "m2-kernel-seeds"
+    },
+    {
+      "from": "m2-kernel-inverse-moment",
+      "to": "m2-kernel-rapid-loss"
+    },
+    {
+      "from": "m2-kernel-initial-clipping",
+      "to": "m2-stage-prop"
+    },
+    {
+      "from": "m2-profile-sampling",
+      "to": "m2-profile-classes"
+    },
+    {
+      "from": "m2-profile-entropy",
+      "to": "m2-profile-classes"
+    },
+    {
+      "from": "m2-thm-main",
+      "to": "m2-profile-no-growth"
+    },
+    {
+      "from": "m2-geom-speed",
+      "to": "m2-profile-no-growth"
+    },
+    {
+      "from": "m2-geom-ray",
+      "to": "m2-profile-no-growth"
+    }
+  ]
+}

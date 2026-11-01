@@ -1,0 +1,291 @@
+{
+  "familyNumber": "109",
+  "familyTitle": "Integer multiplication below `n n`",
+  "manuscripts": [
+    {
+      "id": "Integer-multiplication-below-n-log-n-September-23-2026",
+      "title": "Integer multiplication below n log n",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Integer-multiplication-below-n-log-n-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "The machine model and elementary streams",
+    "Two finite networks with a rank saving",
+    "Faster interchange of address chunks",
+    "Fast simultaneous synthetic butterfly layers",
+    "Synthetic transforms and their tape layout",
+    "Exact normalized polynomial products",
+    "Resampling with the permutations left in the transform",
+    "Packed additions on grouped rectangles"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "There is one deterministic Turing machine A , with a fixed finite alphabet and…",
+      "statement": "There is one deterministic Turing machine A , with a fixed finite alphabet and a fixed finite number of one-dimensional tapes, that computes this exact product for every n1 and every pair of n -bit…",
+      "section": "Introduction",
+      "manuscript": "Integer multiplication below n log n"
+    },
+    {
+      "id": "m1-cor-exact-arithmetic",
+      "kind": "corollary",
+      "label": "Exact division and integer square root",
+      "statement": "[Exact division and integer square root] There are deterministic machines with fixed finite alphabets and fixed finite numbers of one-dimensional tapes performing the following tasks in O(n( n)^ 1- )…",
+      "section": "Introduction",
+      "manuscript": "Integer multiplication below n log n"
+    },
+    {
+      "id": "m1-lem-elementary-streams",
+      "kind": "lemma",
+      "label": "Elementary stream operations",
+      "statement": "[Elementary stream operations] Fix a radix q2 . Each of the following operations on an array of volume V takes O(V) steps on a fixed number of one-dimensional tapes: any fixed permutation of the pair…",
+      "section": "The machine model and elementary streams",
+      "manuscript": "Integer multiplication below n log n"
+    },
+    {
+      "id": "m1-lem-ordered-affine-streams",
+      "kind": "lemma",
+      "label": "Controlled shifts and fixed rational scalings",
+      "statement": "[Controlled shifts and fixed rational scalings] Fix a prime q , a fixed number of control fields, and finitely many rational coefficients whose denominators are prime to q . Whenever a coefficient is…",
+      "section": "The machine model and elementary streams",
+      "manuscript": "Integer multiplication below n log n"
+    },
+    {
+      "id": "m1-lem-scalar-motifs",
+      "kind": "lemma",
+      "label": "For arbitrary initial values of its auxiliary wires, a forward invocation…",
+      "statement": "For arbitrary initial values of its auxiliary wires, a forward invocation changes y_S to y_S+x_S and leaves every other value unchanged. Performing a forward invocation from X to Y at stage 1, the…",
+      "section": "Two finite networks with a rank saving",
+      "manuscript": "Integer multiplication below n log n"
+    },
+    {
+      "id": "m1-lem-motif-residuals",
+      "kind": "lemma",
+      "label": "Every edge joins comparable nondegenerate labels. The only decreasing edges are…",
+      "statement": "Every edge joins comparable nondegenerate labels. The only decreasing edges are the central-wire edges from time 3 to time 4; their dimension loss is h . Consequently, if c is the number of central…",
+      "section": "Two finite networks with a rank saving",
+      "manuscript": "Integer multiplication below n log n"
+    },
+    {
+      "id": "m1-prop-bit-motif-interface",
+      "kind": "proposition",
+      "label": "The bit network has W_ b wires, uses only pointwise XOR gates, and sends its…",
+      "statement": "The bit network has W_ b wires, uses only pointwise XOR gates, and sends its input vector to the permutation of that vector. Its rational matrices are common to all incidences of a gate and obey \\[…",
+      "section": "Two finite networks with a rank saving",
+      "manuscript": "Integer multiplication below n log n"
+    },
+    {
+      "id": "m1-prop-complex-motif-interface",
+      "kind": "proposition",
+      "label": "For each edge of the complex network, write U,V for its tail and head labels.…",
+      "statement": "For each edge of the complex network, write U,V for its tail and head labels. Its phase-frame difference C_V C_U^ -1 is a product of one translation kernel aI+bX_v , or its inverse, per vector in an…",
+      "section": "Two finite networks with a rank saving",
+      "manuscript": "Integer multiplication below n log n"
+    },
+    {
+      "id": "m1-lem-lower-lower",
+      "kind": "lemma",
+      "label": "Lower triangular factorization",
+      "statement": "[Lower triangular factorization] Every rational m m matrix A of rank a has a factorization \\[ A=E_1 E_2, \\] where E_1,E_2 are invertible lower triangular rational matrices and has exactly a entries…",
+      "section": "Faster interchange of address chunks",
+      "manuscript": "Integer multiplication below n log n"
+    },
+    {
+      "id": "m1-lem-matrix-shear",
+      "kind": "lemma",
+      "label": "The cost of a rational matrix shear",
+      "statement": "[The cost of a rational matrix shear] Let A be a fixed finite collection of rational m m matrices. There is a fixed odd prime q such that the following holds. Let H=(H_1,,H_m) and D=(D_1,,D_m) be two…",
+      "section": "Faster interchange of address chunks",
+      "manuscript": "Integer multiplication below n log n"
+    },
+    {
+      "id": "m1-prop-power-interchange",
+      "kind": "proposition",
+      "label": "Power-width interchange with rows",
+      "statement": "[Power-width interchange with rows] Assume the fixed circuit data satisfy , and let q be a prime as in Lemma~ for its edge matrices, also avoiding the denominators of every assigned terminal and gate…",
+      "section": "Faster interchange of address chunks",
+      "manuscript": "Integer multiplication below n log n"
+    },
+    {
+      "id": "m1-lem-chunk-swap",
+      "kind": "lemma",
+      "label": "Arbitrary-width interchange",
+      "statement": "[Arbitrary-width interchange] There exist fixed 0<<1 and one fixed finite-alphabet multitape procedure with the following property. For positive integers P,G,B and u1 , it transforms an arbitrary bit…",
+      "section": "Faster interchange of address chunks",
+      "manuscript": "Integer multiplication below n log n"
+    },
+    {
+      "id": "m1-lem-packed-selected-bit-rectangle",
+      "kind": "lemma",
+      "label": "Packed selected-bit addition on one rectangle",
+      "statement": "[Packed selected-bit addition on one rectangle] Let R1 , K6 , f1 , L=fK , and 0<K . Let N_0,N_1,N_2,N_3 be positive integers, and let (_1,_2,_3) be a permutation of (x,y,z) . Consider R -bit records…",
+      "section": "Fast simultaneous synthetic butterfly layers",
+      "manuscript": "Integer multiplication below n log n"
+    },
+    {
+      "id": "m1-prop-simultaneous-layer",
+      "kind": "proposition",
+      "label": "Simultaneous normalized butterfly layer",
+      "statement": "[Simultaneous normalized butterfly layer] Fix \\[ ==1-2^ -50 , =12, C_1=20. \\] Let c,,,' be fixed positive rational numbers satisfying \\[ \\ ,\\ <<1, (1+c/)<, \\ ,+(1-)\\ <'<1, C_1<1. \\] Fix positive…",
+      "section": "Fast simultaneous synthetic butterfly layers",
+      "manuscript": "Integer multiplication below n log n"
+    },
+    {
+      "id": "m1-lem-synthetic-characters",
+      "kind": "lemma",
+      "label": "Synthetic character cancellation",
+      "statement": "[Synthetic character cancellation] If j is an integer, then \\[ _ k=0 ^ t-1 _t^ jk = t,&t j,\\\\0,&t j. F_t^+F_t^-=t^ -1 I. \\]",
+      "section": "Synthetic transforms and their tape layout",
+      "manuscript": "Integer multiplication below n log n"
+    },
+    {
+      "id": "m1-lem-synthetic-transform-cost",
+      "kind": "lemma",
+      "label": "Transform layout and cost",
+      "statement": "[Transform layout and cost] Fix the rational parameters and positive comparison constants a_d b_d , a_r b_r of Proposition~ . Fix constants C_>0 and C_w>1 , and choose the layer constants once as \\[…",
+      "section": "Synthetic transforms and their tape layout",
+      "manuscript": "Integer multiplication below n log n"
+    },
+    {
+      "id": "m1-lem-signed-ring-product",
+      "kind": "lemma",
+      "label": "Signed packing and normalized ring multiplication",
+      "statement": "[Signed packing and normalized ring multiplication] Let r=2^<2^p with integers 1 and p2 , and fix C_w>1 . Let w be an integer with p+2 w C_wp . The input supplies (p)(r)(w) and two disk grid…",
+      "section": "Exact normalized polynomial products",
+      "manuscript": "Integer multiplication below n log n"
+    },
+    {
+      "id": "m1-prop-synthetic-convolution",
+      "kind": "proposition",
+      "label": "Convolution from the retained transform layout",
+      "statement": "[Convolution from the retained transform layout] Under the hypotheses of Lemma~ , M_r on disk grid operands has an approximation with error less than 2\\,M(3+1)2^ -p and cost \\[ O(Tp). \\] Put m_M=_2M…",
+      "section": "Exact normalized polynomial products",
+      "manuscript": "Integer multiplication below n log n"
+    },
+    {
+      "id": "m1-lem-no-sort-resampling",
+      "kind": "lemma",
+      "label": "Resampling without executing the two permutations",
+      "statement": "[Resampling without executing the two permutations] Fix 0<<1/8 . Let p>100 , 2 s<t<2^p and 2< p be integers, with (s,t)=1 and \\[ :=t/s-1>p/^4. \\] Define coordinate permutations by \\[ (P_su)_j=u_ tj ,…",
+      "section": "Resampling with the permutations left in the transform",
+      "manuscript": "Integer multiplication below n log n"
+    },
+    {
+      "id": "m1-lem-tensor-resampling",
+      "kind": "lemma",
+      "label": "Tensor interface",
+      "statement": "[Tensor interface] Suppose every pair (s_i,t_i) , 1 i d , satisfies Lemma~ with the same p,, . Put T=_i t_i , =2d^2 , and \\[ R=_iP_ s_i , Q=_iP_ t_i , A=_i A_i, B_0=_i B_ 0,i . \\] Then RF_ s =2^…",
+      "section": "Resampling with the permutations left in the transform",
+      "manuscript": "Integer multiplication below n log n"
+    },
+    {
+      "id": "m1-lem-chirp-permutation",
+      "kind": "lemma",
+      "label": "Chirp and permutation cancellation",
+      "statement": "[Chirp and permutation cancellation] With R,Q,s_i,t_i as in Lemma~ , assume every t_i is even. For j Z^d , define \\[ a_ j =(- i_ i=1 ^ds_i j_i^2 t_i ). \\] Then a has period t_i in coordinate i , and…",
+      "section": "Resampling with the permutations left in the transform",
+      "manuscript": "Integer multiplication below n log n"
+    },
+    {
+      "id": "m1-lem-packed-selected-bit-addition",
+      "kind": "lemma",
+      "label": "Packed selected-bit addition for grouped rectangles",
+      "statement": "[Packed selected-bit addition for grouped rectangles] Let a valid grouped packed stream of Definition~ be supplied, and let A2 bound the actual total bit length of its descriptor D , including the…",
+      "section": "Packed additions on grouped rectangles",
+      "manuscript": "Integer multiplication below n log n"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-elementary-streams",
+      "to": "m1-lem-ordered-affine-streams"
+    },
+    {
+      "from": "m1-lem-scalar-motifs",
+      "to": "m1-prop-bit-motif-interface"
+    },
+    {
+      "from": "m1-lem-motif-residuals",
+      "to": "m1-prop-bit-motif-interface"
+    },
+    {
+      "from": "m1-lem-motif-residuals",
+      "to": "m1-prop-complex-motif-interface"
+    },
+    {
+      "from": "m1-lem-scalar-motifs",
+      "to": "m1-prop-complex-motif-interface"
+    },
+    {
+      "from": "m1-lem-lower-lower",
+      "to": "m1-lem-matrix-shear"
+    },
+    {
+      "from": "m1-lem-ordered-affine-streams",
+      "to": "m1-lem-matrix-shear"
+    },
+    {
+      "from": "m1-lem-elementary-streams",
+      "to": "m1-prop-power-interchange"
+    },
+    {
+      "from": "m1-lem-matrix-shear",
+      "to": "m1-prop-power-interchange"
+    },
+    {
+      "from": "m1-lem-elementary-streams",
+      "to": "m1-lem-chunk-swap"
+    },
+    {
+      "from": "m1-prop-power-interchange",
+      "to": "m1-lem-chunk-swap"
+    },
+    {
+      "from": "m1-lem-chunk-swap",
+      "to": "m1-lem-packed-selected-bit-rectangle"
+    },
+    {
+      "from": "m1-lem-ordered-affine-streams",
+      "to": "m1-lem-packed-selected-bit-rectangle"
+    },
+    {
+      "from": "m1-lem-elementary-streams",
+      "to": "m1-lem-packed-selected-bit-rectangle"
+    },
+    {
+      "from": "m1-lem-packed-selected-bit-rectangle",
+      "to": "m1-prop-simultaneous-layer"
+    },
+    {
+      "from": "m1-prop-simultaneous-layer",
+      "to": "m1-lem-synthetic-transform-cost"
+    },
+    {
+      "from": "m1-lem-signed-ring-product",
+      "to": "m1-prop-synthetic-convolution"
+    },
+    {
+      "from": "m1-lem-chunk-swap",
+      "to": "m1-lem-tensor-resampling"
+    },
+    {
+      "from": "m1-lem-elementary-streams",
+      "to": "m1-lem-tensor-resampling"
+    },
+    {
+      "from": "m1-cor-exact-arithmetic",
+      "to": "m1-lem-chirp-permutation"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-lem-chirp-permutation"
+    },
+    {
+      "from": "m1-lem-packed-selected-bit-rectangle",
+      "to": "m1-lem-packed-selected-bit-addition"
+    }
+  ]
+}

@@ -1,0 +1,1134 @@
+{
+  "familyNumber": "211",
+  "familyTitle": "The geometric phase diagram, diffusion, and spectra of random planar maps",
+  "manuscripts": [
+    {
+      "id": "Random-Walks-on-Critical-FK-Ising-Maps-and-Liouville-Brownian-Motion-October-5-2026",
+      "title": "Random Walks on Critical FK–Ising Maps and Liouville Brownian Motion",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Random-Walks-on-Critical-FK-Ising-Maps-and-Liouville-Brownian-Motion-October-5-2026/fk-ising-walk-limit.pdf"
+    },
+    {
+      "id": "Spectral-convergence-for-critical-FK-Ising-planar-maps-October-5-2026",
+      "title": "Spectral convergence for critical FK–Ising planar maps",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Spectral-convergence-for-critical-FK-Ising-planar-maps-October-5-2026/spectral-convergence-critical-fk-ising-planar-maps.pdf"
+    },
+    {
+      "id": "A-Linear-Clock-for-Random-Walk-on-Tree-Weighted-Planar-Maps-October-5-2026",
+      "title": "A Linear Clock for Random Walk on Tree-Weighted Planar Maps",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Linear-Clock-for-Random-Walk-on-Tree-Weighted-Planar-Maps-October-5-2026/linear-clock-random-walk-tree-weighted-planar-maps.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Energy normalization and the common coupling",
+    "Operators and finite-dimensional laws",
+    "From energy recovery to path tightness",
+    "Cable paths and the joint limit",
+    "The discrete energy and the common geometric limit",
+    "Local observations of the electrical network",
+    "Electrical control in fixed regions",
+    "Identification of the electrical energy",
+    "Four-point potentials",
+    "An approximation estimate at every smaller scale",
+    "The continuum form and its Green operator",
+    "From voltage limits to the joint spectral limit",
+    "Sewing and local electrical observations",
+    "Nondegeneration of the electrical networks",
+    "The limiting electrical energy"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Let (M_n,A_n) have law , and let a_n>0 be any deterministic sequence with a_n0…",
+      "statement": "Let (M_n,A_n) have law , and let a_n>0 be any deterministic sequence with a_n0 such that (V_n,a_nd_n,_n)\\ \\ (S,D_h,_h) in Gromov--Hausdorff--Prokhorov law. Given the map, start r independent simple…",
+      "section": "Introduction",
+      "manuscript": "Random Walks on Critical FK–Ising Maps and Liouville Brownian Motion"
+    },
+    {
+      "id": "m1-lem-graph-energy",
+      "kind": "lemma",
+      "label": "Graph energy",
+      "statement": "[Graph energy] For all real vertex functions \\(u,v\\), _n(u,v)=12_ e E(M_n) d_eu\\,d_ev. Every parallel edge is a separate summand, every loop has zero summand, and the kernel of \\(G_n\\) consists of…",
+      "section": "Energy normalization and the common coupling",
+      "manuscript": "Random Walks on Critical FK–Ising Maps and Liouville Brownian Motion"
+    },
+    {
+      "id": "m1-lem-space-normalization",
+      "kind": "lemma",
+      "label": "Comparison of spatial normalizations",
+      "statement": "[Comparison of spatial normalizations] Under the metric-measure convergence assumption of the theorem, \\( a_n/a_n1\\).",
+      "section": "Energy normalization and the common coupling",
+      "manuscript": "Random Walks on Critical FK–Ising Maps and Liouville Brownian Motion"
+    },
+    {
+      "id": "m1-prop-inputs",
+      "kind": "proposition",
+      "label": "Inputs from the spectral companion",
+      "statement": "[Inputs from the spectral companion] From every subsequence of sizes tending to infinity there is a further subsequence and a representation coupling on which the following properties hold almost…",
+      "section": "Energy normalization and the common coupling",
+      "manuscript": "Random Walks on Critical FK–Ising Maps and Liouville Brownian Motion"
+    },
+    {
+      "id": "m1-prop-operators",
+      "kind": "proposition",
+      "label": "For every s>0 and >0 , the following limits hold in operator norm on H : J_n e^…",
+      "statement": "For every s>0 and >0 , the following limits hold in operator norm on H : J_n e^ -sG_n J_n^*& J e^ -sG J^*, \\\\ J_n(+G_n)^ -1 J_n^* & J(+G)^ -1 J^*. Consequently the finite-dimensional laws of ^n…",
+      "section": "Operators and finite-dimensional laws",
+      "manuscript": "Random Walks on Critical FK–Ising Maps and Liouville Brownian Motion"
+    },
+    {
+      "id": "m1-lem-uniform-recovery",
+      "kind": "lemma",
+      "label": "Uniform cutoff recovery",
+      "statement": "[Uniform cutoff recovery] Let : be smooth, and put f=1- . Suppose supp V W U for buffered conformal chart regions to which the local recovery statement of Proposition~ applies. There are real vertex…",
+      "section": "From energy recovery to path tightness",
+      "manuscript": "Random Walks on Critical FK–Ising Maps and Liouville Brownian Motion"
+    },
+    {
+      "id": "m1-lem-stationary-maximal",
+      "kind": "lemma",
+      "label": "Stationary maximal inequality",
+      "statement": "[Stationary maximal inequality] Let Y be a continuous-time Markov chain on a finite state space, with generator -A and reversible probability measure , started from . For every real function v on…",
+      "section": "From energy recovery to path tightness",
+      "manuscript": "Random Walks on Critical FK–Ising Maps and Liouville Brownian Motion"
+    },
+    {
+      "id": "m1-lem-resolvent-approximation",
+      "kind": "lemma",
+      "label": "For a cutoff f=1- as in Lemma~ , write g_n=f z_n and define u_ n, and u_ by .…",
+      "statement": "For a cutoff f=1- as in Lemma~ , write g_n=f z_n and define u_ n, and u_ by . For every T>0 , _ _n _ 0 t T u_ n, (Y^n_t)-g_n(Y^n_t) =0. For every n and >0 , moreover, 0 u_ n, 1, G_nu_ n, _.",
+      "section": "From energy recovery to path tightness",
+      "manuscript": "Random Walks on Critical FK–Ising Maps and Liouville Brownian Motion"
+    },
+    {
+      "id": "m1-prop-path-limit",
+      "kind": "proposition",
+      "label": "On every fixed realization supplied by Proposition~ , and for every T>0 , \\[…",
+      "statement": "On every fixed realization supplied by Proposition~ , and for every T>0 , \\[ (^n_t)_ 0 t T \\ \\ (B^h_t)_ 0 t T in D([0,T],) \\] for the Skorokhod J_1 topology associated with the round metric . Every…",
+      "section": "From energy recovery to path tightness",
+      "manuscript": "Random Walks on Critical FK–Ising Maps and Liouville Brownian Motion"
+    },
+    {
+      "id": "m1-lem-ambient-space",
+      "kind": "lemma",
+      "label": "A compact ambient space",
+      "statement": "[A compact ambient space] Let C_n be finite connected cable graphs, with vertex sets V_n and all edge lengths equal to a_n>0 , where a_n0 . Write d_ C_n for their path metrics. Let (S,d) be a compact…",
+      "section": "Cable paths and the joint limit",
+      "manuscript": "Random Walks on Critical FK–Ising Maps and Liouville Brownian Motion"
+    },
+    {
+      "id": "m1-lem-clock",
+      "kind": "lemma",
+      "label": "The attempt clock",
+      "statement": "[The attempt clock] Fix a realization supplied by Proposition~ , for which holds. Let X^n be the stationary discrete walk on M_n , including its selected half-edges, and let X^n be its cable…",
+      "section": "Cable paths and the joint limit",
+      "manuscript": "Random Walks on Critical FK–Ising Maps and Liouville Brownian Motion"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "Joint Liouville spectral limit",
+      "statement": "[Joint Liouville spectral limit] The form is closable on \\(L^2(_h)\\). Its closure has compact resolvent, has the constants as its one-dimensional kernel, and satisfies \\(H_h(t)<\\) for every \\(t>0\\).…",
+      "section": "Introduction",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-lem-normalization",
+      "kind": "lemma",
+      "label": "Energy normalization",
+      "statement": "[Energy normalization] Let \\(Q_n\\) be the unit-conductance graph Laplacian of \\(M_n\\), with loop terms equal to zero, and set \\(B_n=-2nL_n\\). On \\(L^2(_n)\\), \\[ B_n=diag(_n)^ -1 Q_n, f B_ng _ L^2(_n)…",
+      "section": "The discrete energy and the common geometric limit",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-lem-dual-geometry",
+      "kind": "lemma",
+      "label": "Duality in the flag surface",
+      "statement": "[Duality in the flag surface] The map \\((M,A)(M^*,A^*)\\), with a consistent directed dual-root convention, is a bijection of the \\(n\\)-edge rooted decorated maps and preserves their FK-Ising…",
+      "section": "The discrete energy and the common geometric limit",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-lem-space-normalization",
+      "kind": "lemma",
+      "label": "Continuity of the diameter normalization",
+      "statement": "[Continuity of the diameter normalization] The center \\( m\\) is well defined, satisfies \\( m(Y+c)= m(Y)+c\\), and is continuous under convergence in distribution of finite real random variables. If…",
+      "section": "The discrete energy and the common geometric limit",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-prop-geometry",
+      "kind": "proposition",
+      "label": "Common geometric extraction",
+      "statement": "[Common geometric extraction] From every sequence \\(n\\), one may pass to a further subsequence and a representation coupling with the following almost-sure properties. The limiting coordinate sphere…",
+      "section": "The discrete energy and the common geometric limit",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-prop-readout-extension",
+      "kind": "proposition",
+      "label": "Extension to numerical incidence observations",
+      "statement": "[Extension to numerical incidence observations] Fix either companion's chart protocol, a countable collection of its intrinsic instructions, and observations . Assume the following for every…",
+      "section": "Local observations of the electrical network",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-prop-sphere-support",
+      "kind": "proposition",
+      "label": "Probability-one support on ordinary sphere patches",
+      "statement": "[Probability-one support on ordinary sphere patches] Fix \\(T>0\\), a joint extraction of ordinary empty-word excursions of duration \\(T\\), and matching bilateral or ordinary-field reference…",
+      "section": "Local observations of the electrical network",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-lem-record-null-transfer",
+      "kind": "lemma",
+      "label": "Null tests in protected selected slots",
+      "statement": "[Null tests in protected selected slots] Take a finite chronologically ordered list of disjoint slots as in , each with a left safety band of positive limiting duration. Conditional on the incoming…",
+      "section": "Local observations of the electrical network",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-lem-deterministic-germs",
+      "kind": "lemma",
+      "label": "Deterministic local germs",
+      "statement": "[Deterministic local germs] Let \\(Y(z)\\) be a germ with values in a separable metric space, formed from the arrays of Proposition~ in an ordinary field chart. Assume its description is intrinsic…",
+      "section": "Local observations of the electrical network",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-lem-finite-el",
+      "kind": "lemma",
+      "label": "Finite variational identities",
+      "statement": "[Finite variational identities] For a nonempty family of finite walks, _ G ( F) =_ T_ G (), where finite-support probability laws on \\( F\\) suffice for the infimum. General probability laws with…",
+      "section": "Electrical control in fixed regions",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-thm-network-bounds",
+      "kind": "theorem",
+      "label": "Electrical bounds for fixed tests",
+      "statement": "[Electrical bounds for fixed tests] Consider either the primal or the dual network. Fix a countable collection of intrinsic instructions from Proposition~ . Suppose their activated spatial…",
+      "section": "Electrical control in fixed regions",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-lem-edge-density-budget",
+      "kind": "lemma",
+      "label": "Edge density budget",
+      "statement": "[Edge density budget] In the record-low extraction , let \\(U\\) be a finite union of rational boxes compactly in an ordinary reference chart, and write \\(U^ + \\) for its Euclidean \\(\\)-neighborhood.…",
+      "section": "Electrical control in fixed regions",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-lem-edge-flow-compactness",
+      "kind": "lemma",
+      "label": "Compactness of edge-path laws",
+      "statement": "[Compactness of edge-path laws] Fix a sample on which the budgets of Lemma~ hold for all sufficiently large members of a deterministic sequence of \\(N\\)'s and the countable box library. Suppose…",
+      "section": "Electrical control in fixed regions",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-prop-edge-quantiles",
+      "kind": "proposition",
+      "label": "Positive raw crossing quantiles",
+      "statement": "[Positive raw crossing quantiles] For either choice of network in the power-scale construction, \\[ _ j _j>0. \\] The lower bound is deterministic.",
+      "section": "Electrical control in fixed regions",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-lem-uniform-relaxation",
+      "kind": "lemma",
+      "label": "Cell sandwich and recovery",
+      "statement": "[Cell sandwich and recovery] After a further joint extraction of countably many cell-constrained infima, \\( R^-= R^+\\) for every continuous \\(f\\) and every relatively compact open \\(U D\\),…",
+      "section": "Identification of the electrical energy",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-thm-conductivity",
+      "kind": "theorem",
+      "label": "Unit conductivity",
+      "statement": "[Unit conductivity] From every joint geometric extraction one can further extract the local numerical outputs so that the following holds almost surely. For the primal and the unit dual network, for…",
+      "section": "Identification of the electrical energy",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-lem-energy-measures",
+      "kind": "lemma",
+      "label": "Gluing and energy measures",
+      "statement": "[Gluing and energy measures] Suppose \\(f C(U)\\) and \\( R(f,V)<\\) for every \\(V U\\). The values \\(V R(f,V)\\) are the open-set values of a Radon measure \\(_f\\) on \\(U\\). These measures are local: if…",
+      "section": "Identification of the electrical energy",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-lem-energy-bounds",
+      "kind": "lemma",
+      "label": "Local Sobolev comparison",
+      "statement": "[Local Sobolev comparison] For every \\(D_0 D\\) there are deterministic constants \\(0<c_ D_0 C_ D_0 <\\) such that, for every open \\(U D_0\\), c_ D_0 _U f^2 x R(f,U) C_ D_0 _U f^2 x. For a continuous…",
+      "section": "Identification of the electrical energy",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-lem-energy-tensor",
+      "kind": "lemma",
+      "label": "Tensor representation and scalar form",
+      "statement": "[Tensor representation and scalar form] For each network, in each joint extraction there is a deterministic constant \\(k>0\\), possibly depending on the extraction and on the choice of primal or dual,…",
+      "section": "Identification of the electrical energy",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-lem-mixed-duality",
+      "kind": "lemma",
+      "label": "Complementary boundary conductances",
+      "statement": "[Complementary boundary conductances] Let \\(G\\) be a finite connected planar multigraph in a closed disk whose boundary is a simple cycle. Split that cycle into four nonempty edge paths…",
+      "section": "Identification of the electrical energy",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-lem-harmonic-compactness",
+      "kind": "lemma",
+      "label": "Local harmonic compactness",
+      "statement": "[Local harmonic compactness] Let \\(O\\) be an open coordinate region in the extracted networks. Suppose \\(w_m\\) is harmonic at every vertex with full star in \\(O\\), and for every \\(V O\\), \\(_m…",
+      "section": "Identification of the electrical energy",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-lem-square-conductance",
+      "kind": "lemma",
+      "label": "Conductance of an approximating square",
+      "statement": "[Conductance of an approximating square] Let \\(Q=(0,1)^2\\) have closure in an ordinary canonical chart. There are simple primal boundary circuits approaching \\( Q\\), with four ordered side arcs, for…",
+      "section": "Identification of the electrical energy",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-thm-four-point",
+      "kind": "theorem",
+      "label": "Four-point voltage convergence",
+      "statement": "[Four-point voltage convergence] Fix a joint extraction on which Proposition~ , Theorem~ , and Theorem~ hold. Let \\( a_n, b_n, c_n, d_n\\) be vertex sequences whose canonical positions converge…",
+      "section": "Four-point potentials",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-lem-voltage-bounds",
+      "kind": "lemma",
+      "label": "Local bounds for point-source voltages",
+      "statement": "[Local bounds for point-source voltages] Under the assumptions of Theorem~ , let \\(O=\\ x,y\\ \\). For every compact \\(K O\\) there are finite sample-dependent constants \\(M_K,M_K'\\) such that,…",
+      "section": "Four-point potentials",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-lem-no-energy-defect",
+      "kind": "lemma",
+      "label": "No local energy defect",
+      "statement": "[No local energy defect] On this extraction, \\(u H^1_ loc (O)\\), \\(u\\) is harmonic on \\(O\\), and = u^2 x in every conformal chart of \\(O\\). Hence the edge energies converge on every relatively…",
+      "section": "Four-point potentials",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-thm-block-approximation",
+      "kind": "theorem",
+      "label": "All-level block approximation",
+      "statement": "[All-level block approximation] From an arbitrary sequence of finite spheres, take a further joint representation extraction as in Proposition~ and Proposition~ , retaining the interval readouts…",
+      "section": "An approximation estimate at every smaller scale",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-prop-address-input",
+      "kind": "proposition",
+      "label": "Address input from the companion",
+      "statement": "[Address input from the companion] For the marker systems just described, with fixed \\(b,R,K\\), the following statements hold. [label=()] If \\(c_k\\) is the number of components of the union of the…",
+      "section": "An approximation estimate at every smaller scale",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-lem-truncated-packing",
+      "kind": "lemma",
+      "label": "Truncated packing at a typical level",
+      "statement": "[Truncated packing at a typical level] Use the selected protocol above with a fixed number of bases. Let \\( I_N\\), with fixed \\(a_->1\\), be a deterministic log interval of length at least \\(cN>0\\),…",
+      "section": "An approximation estimate at every smaller scale",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-lem-reachable-packing",
+      "kind": "lemma",
+      "label": "Few separated times at bounded reach",
+      "statement": "[Few separated times at bounded reach] Fix \\(a_0>1\\), \\(c_0,C_0,>0\\), and a finite integer \\(d\\). Under the selected protocol with \\(r_m(a_0N)\\), there is no sequence of selected laws supported on…",
+      "section": "An approximation estimate at every smaller scale",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-lem-one-base-credit",
+      "kind": "lemma",
+      "label": "One-base rank credit on a wide range",
+      "statement": "[One-base rank credit on a wide range] There is a fixed \\(B>2\\) with the following property. Use a sparse address system from Proposition~ with one base, upper range \\(BN\\), and selected law~ . Fix…",
+      "section": "An approximation estimate at every smaller scale",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-lem-finite-view-input",
+      "kind": "lemma",
+      "label": "Retained data in an acyclic finite view",
+      "statement": "[Retained data in an acyclic finite view] Use the selected protocol, the packing bound , and the sparse all-seed cutoffs of Proposition~ . Fix \\(1<a_0<a<b\\). Select and label the bases \\(1,,h_ b \\),…",
+      "section": "An approximation estimate at every smaller scale",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-prop-flow-availability",
+      "kind": "proposition",
+      "label": "Flow availability under selected laws",
+      "statement": "[Flow availability under selected laws] Fix \\(>0\\), a tested chronological window, and an open planar confinement \\(U\\) with the preceding fixed-window and positive-clearance cutoffs. In the…",
+      "section": "An approximation estimate at every smaller scale",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-lem-energy-overlap",
+      "kind": "lemma",
+      "label": "Overlap of the energy sets",
+      "statement": "[Overlap of the energy sets] At every such level with uniformly diverging view units, the common event above can be chosen so that, for every family of disjoint blocks and every vertex function, _I…",
+      "section": "An approximation estimate at every smaller scale",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-lem-segment-cover",
+      "kind": "lemma",
+      "label": "Covering and joining a chronological segment",
+      "statement": "[Covering and joining a chronological segment] Let \\(d1\\), \\(4d\\), and \\(h_ b 1\\) be integers. An integer \\(t\\) is called good if it has a simple circuit in \\(U\\) with \\(var_f(C) L\\), whose open…",
+      "section": "An approximation estimate at every smaller scale",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-lem-quantum-ball-bounds",
+      "kind": "lemma",
+      "label": "Uniform small-ball bounds",
+      "statement": "[Uniform small-ball bounds] Almost surely there are finite random constants C>0 , c>0 , and r_*>0 such that, simultaneously for every z and 0<r r_* , c r^ 8 _h(B_ d_0 (z,r)) C r^ 1/56 . The constants…",
+      "section": "The continuum form and its Green operator",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-lem-trace-green",
+      "kind": "lemma",
+      "label": "Sobolev trace and Green potentials",
+      "statement": "[Sobolev trace and Green potentials] Let be a Borel probability measure on the round sphere. Suppose that, for constants a>0 , b< , c,C>0 , and r_*>0 , c r^b(B_ d_0 (x,r)) C r^a (x, 0<r r_*). Smooth…",
+      "section": "The continuum form and its Green operator",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-prop-continuum-form",
+      "kind": "proposition",
+      "label": "Continuum form and inverse",
+      "statement": "[Continuum form and inverse] Almost surely, the closure in L^2(_h) of the smooth form 12 E^0 has domain D_h=R_ _h (H^1(,vol_0)), E_h(R_ _h f,R_ _h g)=12 E^0(f,g). It is a densely defined closed…",
+      "section": "The continuum form and its Green operator",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-lem-tour-order",
+      "kind": "lemma",
+      "label": "Matching the two corner orders",
+      "statement": "[Matching the two corner orders] There is a measurable, measure-preserving map \\(:[0,1]\\), defined up to a null set, such that \\[ _n(t)(t), _2((t))=_1(t) for almost every t. \\] If intervals \\(J_n\\)…",
+      "section": "From voltage limits to the joint spectral limit",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-lem-energy-compactness",
+      "kind": "lemma",
+      "label": "Finite-rank approximation and energy compactness",
+      "statement": "[Finite-rank approximation and energy compactness] On the present extraction there are constants \\(C_0,C_1<\\) and linear maps \\(Q_ n,j : H_n H\\), for \\(n n_0\\) and \\(j J\\), with Q_ n,j C_0 2^j, F-Q_…",
+      "section": "From voltage limits to the joint spectral limit",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m2-lem-inverse-kernel-compactness",
+      "kind": "lemma",
+      "label": "A compactness criterion for inverse kernels",
+      "statement": "[A compactness criterion for inverse kernels] Let \\(H=L^2([0,1])\\), and let \\( H_n H\\) be finite-dimensional subspaces containing the constants. Let \\(B_n\\) be nonnegative self-adjoint operators on…",
+      "section": "From voltage limits to the joint spectral limit",
+      "manuscript": "Spectral convergence for critical FK–Ising planar maps"
+    },
+    {
+      "id": "m3-thm-main",
+      "kind": "theorem",
+      "label": "Linear clock and conditional laws",
+      "statement": "[Linear clock and conditional laws] For every finite T>0 , define \\[ Q_n^T=((X^n_ nt )_ 0 t T M_n,T_n), Q_h^T=((B^h_t)_ 0 t T h). \\] With the spatial normalization , \\[ (V_n,a_nd_n,_n,Q_n^T) \\ d\\…",
+      "section": "Introduction",
+      "manuscript": "A Linear Clock for Random Walk on Tree-Weighted Planar Maps"
+    },
+    {
+      "id": "m3-inp-sewing",
+      "kind": "proposition",
+      "label": "Sewing and continuum background",
+      "statement": "[Sewing and continuum background] The following couplings and normalizations will be used. A uniform rooted map--spanning-tree pair with n edges is encoded by the axial walk conditioned to remain in…",
+      "section": "Sewing and local electrical observations",
+      "manuscript": "A Linear Clock for Random Walk on Tree-Weighted Planar Maps"
+    },
+    {
+      "id": "m3-inp-topology",
+      "kind": "proposition",
+      "label": "Topological comparison",
+      "statement": "[Topological comparison] In the contour coupling, the projections _m may be chosen so that the following conclusions hold on the sphere and on every buffered compact part of the plane. Each…",
+      "section": "Sewing and local electrical observations",
+      "manuscript": "A Linear Clock for Random Walk on Tree-Weighted Planar Maps"
+    },
+    {
+      "id": "m3-inp-complete-core",
+      "kind": "lemma",
+      "label": "Complete graph pieces in a buffer",
+      "statement": "[Complete graph pieces in a buffer] Fix K U in a coordinate chart. Almost surely, there is a finite prescription, selectable from the local cells in U and their frontier data, with the following…",
+      "section": "Sewing and local electrical observations",
+      "manuscript": "A Linear Clock for Random Walk on Tree-Weighted Planar Maps"
+    },
+    {
+      "id": "m3-inp-sandwich",
+      "kind": "lemma",
+      "label": "Spatial and value selectors",
+      "statement": "[Spatial and value selectors] In the setting of Lemma~ , suppose K O with K compact, O open, and O U . There is an interval selector on a complete prescription which, eventually, includes every…",
+      "section": "Sewing and local electrical observations",
+      "manuscript": "A Linear Clock for Random Walk on Tree-Weighted Planar Maps"
+    },
+    {
+      "id": "m3-inp-kernel-transfer",
+      "kind": "lemma",
+      "label": "Conditional transfer for numerical outputs",
+      "statement": "[Conditional transfer for numerical outputs] Consider finitely many packages as in Definition~ . Different packages use disjoint master blocks and disjoint offset forests. Sample their Poissonized…",
+      "section": "Sewing and local electrical observations",
+      "manuscript": "A Linear Clock for Random Walk on Tree-Weighted Planar Maps"
+    },
+    {
+      "id": "m3-inp-local-kernels",
+      "kind": "proposition",
+      "label": "Local numerical-array kernels",
+      "statement": "[Local numerical-array kernels] On each open coordinate domain, take the limits of the numerical tests on complete buffered prescriptions, with relative labels localized to their cells. Conditional…",
+      "section": "Sewing and local electrical observations",
+      "manuscript": "A Linear Clock for Random Walk on Tree-Weighted Planar Maps"
+    },
+    {
+      "id": "m3-inp-transport",
+      "kind": "proposition",
+      "label": "Coordinate and unit transport",
+      "statement": "[Coordinate and unit transport] The kernels in Proposition~ can be retained jointly with the following transformations. For a fixed conformal coordinate map , pull back the fields by \\[ g g+Q|'|, g…",
+      "section": "Sewing and local electrical observations",
+      "manuscript": "A Linear Clock for Random Walk on Tree-Weighted Planar Maps"
+    },
+    {
+      "id": "m3-inp-gaussian",
+      "kind": "lemma",
+      "label": "Ordinary Gaussian reference patches",
+      "statement": "[Ordinary Gaussian reference patches] On a buffered patch compactly inside the cone's normalization disk and away from its marked point, the actual real and imaginary fields are locally equivalent to…",
+      "section": "Sewing and local electrical observations",
+      "manuscript": "A Linear Clock for Random Walk on Tree-Weighted Planar Maps"
+    },
+    {
+      "id": "m3-inp-reflection",
+      "kind": "lemma",
+      "label": "Primal--dual reflection",
+      "statement": "[Primal--dual reflection] The joint local-array laws are invariant under exchanging the primal and dual graphs and reflecting their coordinate tests. They are also covariant under fixed rigid…",
+      "section": "Sewing and local electrical observations",
+      "manuscript": "A Linear Clock for Random Walk on Tree-Weighted Planar Maps"
+    },
+    {
+      "id": "m3-inp-array-interface",
+      "kind": "proposition",
+      "label": "Local-array interface",
+      "statement": "[Local-array interface] From every sequence of resolutions tending to infinity one can extract, jointly with the continuum peanosphere background, all compactified numerical tests described above, on…",
+      "section": "Sewing and local electrical observations",
+      "manuscript": "A Linear Clock for Random Walk on Tree-Weighted Planar Maps"
+    },
+    {
+      "id": "m3-nd-el-traffic",
+      "kind": "lemma",
+      "label": "Densities and traffic",
+      "statement": "[Densities and traffic] For a finite family of simple paths, ( P)=_ _e j_(e)^2. If P consists of all paths between two disjoint wired sets in a finite subgraph, then ( P) is the reciprocal of the…",
+      "section": "Nondegeneration of the electrical networks",
+      "manuscript": "A Linear Clock for Random Walk on Tree-Weighted Planar Maps"
+    },
+    {
+      "id": "m3-nd-germs",
+      "kind": "lemma",
+      "label": "Determinism of point germs",
+      "statement": "[Determinism of point germs] In an ordinary field chart, every bounded real point-germ readout of the extracted local arrays is, almost surely, equal at Lebesgue-almost every point to a deterministic…",
+      "section": "Nondegeneration of the electrical networks",
+      "manuscript": "A Linear Clock for Random Walk on Tree-Weighted Planar Maps"
+    },
+    {
+      "id": "m3-nd-coverage",
+      "kind": "lemma",
+      "label": "Aligned annular barriers",
+      "statement": "[Aligned annular barriers] Fix an ordinary chart and a compact subset of its interior. Suppose that, at every fixed backward index i , a local unit-annulus event has probability at least 1-_* in the…",
+      "section": "Nondegeneration of the electrical networks",
+      "manuscript": "A Linear Clock for Random Walk on Tree-Weighted Planar Maps"
+    },
+    {
+      "id": "m3-nd-densities",
+      "kind": "lemma",
+      "label": "Densities controlling displacement",
+      "statement": "[Densities controlling displacement] Under the hypotheses of Lemma~ , let U be a finite union of open boxes compactly in a fixed ordinary chart. For all sufficiently large N , and then all…",
+      "section": "Nondegeneration of the electrical networks",
+      "manuscript": "A Linear Clock for Random Walk on Tree-Weighted Planar Maps"
+    },
+    {
+      "id": "m3-nd-nondegeneration",
+      "kind": "proposition",
+      "label": "Nondegeneration",
+      "statement": "[Nondegeneration] For the quantiles in , with chosen as in Lemma~ , _ m q_m>0. The conclusion holds along all rates in the chosen countable set.",
+      "section": "Nondegeneration of the electrical networks",
+      "manuscript": "A Linear Clock for Random Walk on Tree-Weighted Planar Maps"
+    },
+    {
+      "id": "m3-nd-cutoffs",
+      "kind": "proposition",
+      "label": "Ring cutoffs",
+      "statement": "[Ring cutoffs] Fix a compact subpatch of an ordinary chart and an aspect ratio >1 . Along a coupled further extraction from any rate sequence, there is a constant C , depending only on the chart and…",
+      "section": "Nondegeneration of the electrical networks",
+      "manuscript": "A Linear Clock for Random Walk on Tree-Weighted Planar Maps"
+    },
+    {
+      "id": "m3-en-circuit",
+      "kind": "lemma",
+      "label": "A separating circuit",
+      "statement": "[A separating circuit] Fix concentric disks with radii 0<r<R and with a neighborhood of the closed larger disk inside an ordinary chart. Given a primal function v_m , there is a simple primal circuit…",
+      "section": "The limiting electrical energy",
+      "manuscript": "A Linear Clock for Random Walk on Tree-Weighted Planar Maps"
+    },
+    {
+      "id": "m3-en-harmonic-compactness",
+      "kind": "lemma",
+      "label": "Harmonic compactness",
+      "statement": "[Harmonic compactness] Let U be a connected open subset of an ordinary chart. Suppose that v_m is graph-harmonic at every vertex whose star projects into U , and that its energies are bounded on…",
+      "section": "The limiting electrical energy",
+      "manuscript": "A Linear Clock for Random Walk on Tree-Weighted Planar Maps"
+    },
+    {
+      "id": "m3-en-envelope",
+      "kind": "lemma",
+      "label": "Uniform variational limits",
+      "statement": "[Uniform variational limits] The value in is unchanged if is replaced by . It is lower semicontinuous for locally uniform convergence and inner regular in U . Moreover: [label=( *)] Every locally…",
+      "section": "The limiting electrical energy",
+      "manuscript": "A Linear Clock for Random Walk on Tree-Weighted Planar Maps"
+    },
+    {
+      "id": "m3-en-fundamental",
+      "kind": "lemma",
+      "label": "Gluing estimate",
+      "statement": "[Gluing estimate] Let v_m,w_m converge uniformly to the same continuous function on a fixed transition region. Suppose 0 b_m1 has bounded energy, is supported where v_m is defined, and equals one…",
+      "section": "The limiting electrical energy",
+      "manuscript": "A Linear Clock for Random Walk on Tree-Weighted Planar Maps"
+    },
+    {
+      "id": "m3-en-measure",
+      "kind": "proposition",
+      "label": "Quadratic energy measures",
+      "statement": "[Quadratic energy measures] For each open U , the functional F(,U) is quadratic on its finite-energy space and vanishes on constants. If u has locally finite relaxed energy, then \\[ U F(u,U) \\] is…",
+      "section": "The limiting electrical energy",
+      "manuscript": "A Linear Clock for Random Walk on Tree-Weighted Planar Maps"
+    },
+    {
+      "id": "m3-en-representation",
+      "kind": "proposition",
+      "label": "Integral representation",
+      "statement": "[Integral representation] In every ordinary chart there is a measurable symmetric matrix field A , locally bounded and uniformly positive definite on smaller charts, such that, for every open U and…",
+      "section": "The limiting electrical energy",
+      "manuscript": "A Linear Clock for Random Walk on Tree-Weighted Planar Maps"
+    },
+    {
+      "id": "m3-en-scalar",
+      "kind": "lemma",
+      "label": "The deterministic scalar",
+      "statement": "[The deterministic scalar] In each coupled extraction there is a deterministic (0,) such that A=A^*= I almost everywhere in all ordinary charts. At this stage may depend on the extracted rate…",
+      "section": "The limiting electrical energy",
+      "manuscript": "A Linear Clock for Random Walk on Tree-Weighted Planar Maps"
+    },
+    {
+      "id": "m3-en-condenser",
+      "kind": "lemma",
+      "label": "Condenser convergence",
+      "statement": "[Condenser convergence] Prescribe u_m=0 on every primal vertex over |z| r and u_m=1 on every vertex over |z| R , using a protected cap outside the chart. Let C_m be the minimum primal energy. Then…",
+      "section": "The limiting electrical energy",
+      "manuscript": "A Linear Clock for Random Walk on Tree-Weighted Planar Maps"
+    },
+    {
+      "id": "m3-en-current-period",
+      "kind": "lemma",
+      "label": "Rotation of a current",
+      "statement": "[Rotation of a current] Rotate the primal current u_m from Lemma~ to the dual edges, with one consistent crossing orientation. In the annulus this is a closed dual cochain with harmonic local…",
+      "section": "The limiting electrical energy",
+      "manuscript": "A Linear Clock for Random Walk on Tree-Weighted Planar Maps"
+    },
+    {
+      "id": "m3-en-recovery-measures",
+      "kind": "lemma",
+      "label": "Energy measures of recovery sequences",
+      "statement": "[Energy measures of recovery sequences] Let V be a bounded patch and let p be smooth on a neighborhood of its closure. Choose a recovery sequence on compact sets exhausting V whose total energy tends…",
+      "section": "The limiting electrical energy",
+      "manuscript": "A Linear Clock for Random Walk on Tree-Weighted Planar Maps"
+    },
+    {
+      "id": "m3-en-angular-recovery",
+      "kind": "lemma",
+      "label": "Recovery with exact unit period",
+      "statement": "[Recovery with exact unit period] For every sufficiently small >0 , let A_=A(r-,R+) . On the dual edges in a neighborhood of the closed annulus there are closed cochains _m with exact period one and…",
+      "section": "The limiting electrical energy",
+      "manuscript": "A Linear Clock for Random Walk on Tree-Weighted Planar Maps"
+    },
+    {
+      "id": "m3-en-reciprocity",
+      "kind": "proposition",
+      "label": "Exact conductance normalization",
+      "statement": "[Exact conductance normalization] The scalar in Lemma~ equals one.",
+      "section": "The limiting electrical energy",
+      "manuscript": "A Linear Clock for Random Walk on Tree-Weighted Planar Maps"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-graph-energy",
+      "to": "m1-prop-inputs"
+    },
+    {
+      "from": "m1-lem-space-normalization",
+      "to": "m1-prop-inputs"
+    },
+    {
+      "from": "m1-prop-inputs",
+      "to": "m1-prop-operators"
+    },
+    {
+      "from": "m1-lem-uniform-recovery",
+      "to": "m1-lem-resolvent-approximation"
+    },
+    {
+      "from": "m1-lem-stationary-maximal",
+      "to": "m1-lem-resolvent-approximation"
+    },
+    {
+      "from": "m1-lem-uniform-recovery",
+      "to": "m1-prop-path-limit"
+    },
+    {
+      "from": "m1-lem-resolvent-approximation",
+      "to": "m1-prop-path-limit"
+    },
+    {
+      "from": "m1-prop-inputs",
+      "to": "m1-prop-path-limit"
+    },
+    {
+      "from": "m1-prop-operators",
+      "to": "m1-prop-path-limit"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-lem-clock"
+    },
+    {
+      "from": "m1-prop-inputs",
+      "to": "m1-lem-clock"
+    },
+    {
+      "from": "m1-lem-ambient-space",
+      "to": "m1-lem-clock"
+    },
+    {
+      "from": "m2-lem-space-normalization",
+      "to": "m2-prop-geometry"
+    },
+    {
+      "from": "m2-prop-readout-extension",
+      "to": "m2-prop-sphere-support"
+    },
+    {
+      "from": "m2-prop-readout-extension",
+      "to": "m2-lem-record-null-transfer"
+    },
+    {
+      "from": "m2-prop-readout-extension",
+      "to": "m2-lem-deterministic-germs"
+    },
+    {
+      "from": "m2-prop-readout-extension",
+      "to": "m2-prop-edge-quantiles"
+    },
+    {
+      "from": "m2-prop-sphere-support",
+      "to": "m2-prop-edge-quantiles"
+    },
+    {
+      "from": "m2-lem-dual-geometry",
+      "to": "m2-prop-edge-quantiles"
+    },
+    {
+      "from": "m2-lem-finite-el",
+      "to": "m2-prop-edge-quantiles"
+    },
+    {
+      "from": "m2-lem-edge-density-budget",
+      "to": "m2-prop-edge-quantiles"
+    },
+    {
+      "from": "m2-lem-edge-flow-compactness",
+      "to": "m2-prop-edge-quantiles"
+    },
+    {
+      "from": "m2-lem-deterministic-germs",
+      "to": "m2-prop-edge-quantiles"
+    },
+    {
+      "from": "m2-prop-geometry",
+      "to": "m2-prop-edge-quantiles"
+    },
+    {
+      "from": "m2-thm-network-bounds",
+      "to": "m2-prop-edge-quantiles"
+    },
+    {
+      "from": "m2-prop-readout-extension",
+      "to": "m2-lem-uniform-relaxation"
+    },
+    {
+      "from": "m2-thm-network-bounds",
+      "to": "m2-lem-energy-measures"
+    },
+    {
+      "from": "m2-lem-uniform-relaxation",
+      "to": "m2-lem-energy-measures"
+    },
+    {
+      "from": "m2-lem-energy-measures",
+      "to": "m2-lem-energy-bounds"
+    },
+    {
+      "from": "m2-lem-uniform-relaxation",
+      "to": "m2-lem-energy-bounds"
+    },
+    {
+      "from": "m2-lem-energy-bounds",
+      "to": "m2-lem-energy-tensor"
+    },
+    {
+      "from": "m2-lem-uniform-relaxation",
+      "to": "m2-lem-energy-tensor"
+    },
+    {
+      "from": "m2-prop-readout-extension",
+      "to": "m2-lem-energy-tensor"
+    },
+    {
+      "from": "m2-lem-deterministic-germs",
+      "to": "m2-lem-energy-tensor"
+    },
+    {
+      "from": "m2-prop-sphere-support",
+      "to": "m2-lem-energy-tensor"
+    },
+    {
+      "from": "m2-prop-geometry",
+      "to": "m2-lem-square-conductance"
+    },
+    {
+      "from": "m2-lem-mixed-duality",
+      "to": "m2-lem-square-conductance"
+    },
+    {
+      "from": "m2-lem-uniform-relaxation",
+      "to": "m2-lem-square-conductance"
+    },
+    {
+      "from": "m2-lem-energy-measures",
+      "to": "m2-lem-square-conductance"
+    },
+    {
+      "from": "m2-lem-harmonic-compactness",
+      "to": "m2-lem-square-conductance"
+    },
+    {
+      "from": "m2-thm-conductivity",
+      "to": "m2-lem-square-conductance"
+    },
+    {
+      "from": "m2-lem-energy-tensor",
+      "to": "m2-lem-square-conductance"
+    },
+    {
+      "from": "m2-lem-energy-bounds",
+      "to": "m2-lem-square-conductance"
+    },
+    {
+      "from": "m2-prop-sphere-support",
+      "to": "m2-lem-square-conductance"
+    },
+    {
+      "from": "m2-thm-network-bounds",
+      "to": "m2-lem-voltage-bounds"
+    },
+    {
+      "from": "m2-prop-geometry",
+      "to": "m2-lem-voltage-bounds"
+    },
+    {
+      "from": "m2-lem-harmonic-compactness",
+      "to": "m2-lem-voltage-bounds"
+    },
+    {
+      "from": "m2-lem-uniform-relaxation",
+      "to": "m2-lem-no-energy-defect"
+    },
+    {
+      "from": "m2-lem-energy-bounds",
+      "to": "m2-lem-no-energy-defect"
+    },
+    {
+      "from": "m2-thm-conductivity",
+      "to": "m2-lem-no-energy-defect"
+    },
+    {
+      "from": "m2-thm-four-point",
+      "to": "m2-lem-no-energy-defect"
+    },
+    {
+      "from": "m2-lem-voltage-bounds",
+      "to": "m2-lem-no-energy-defect"
+    },
+    {
+      "from": "m2-prop-address-input",
+      "to": "m2-lem-truncated-packing"
+    },
+    {
+      "from": "m2-lem-truncated-packing",
+      "to": "m2-lem-reachable-packing"
+    },
+    {
+      "from": "m2-prop-address-input",
+      "to": "m2-lem-one-base-credit"
+    },
+    {
+      "from": "m2-lem-truncated-packing",
+      "to": "m2-lem-one-base-credit"
+    },
+    {
+      "from": "m2-lem-finite-view-input",
+      "to": "m2-prop-flow-availability"
+    },
+    {
+      "from": "m2-prop-readout-extension",
+      "to": "m2-prop-flow-availability"
+    },
+    {
+      "from": "m2-thm-network-bounds",
+      "to": "m2-prop-flow-availability"
+    },
+    {
+      "from": "m2-lem-record-null-transfer",
+      "to": "m2-prop-flow-availability"
+    },
+    {
+      "from": "m2-lem-finite-el",
+      "to": "m2-prop-flow-availability"
+    },
+    {
+      "from": "m2-lem-one-base-credit",
+      "to": "m2-prop-flow-availability"
+    },
+    {
+      "from": "m2-lem-reachable-packing",
+      "to": "m2-lem-energy-overlap"
+    },
+    {
+      "from": "m2-prop-geometry",
+      "to": "m2-lem-quantum-ball-bounds"
+    },
+    {
+      "from": "m2-lem-trace-green",
+      "to": "m2-prop-continuum-form"
+    },
+    {
+      "from": "m2-lem-quantum-ball-bounds",
+      "to": "m2-prop-continuum-form"
+    },
+    {
+      "from": "m2-prop-geometry",
+      "to": "m2-lem-tour-order"
+    },
+    {
+      "from": "m2-lem-tour-order",
+      "to": "m2-lem-energy-compactness"
+    },
+    {
+      "from": "m2-thm-main",
+      "to": "m2-lem-inverse-kernel-compactness"
+    },
+    {
+      "from": "m2-prop-continuum-form",
+      "to": "m2-lem-inverse-kernel-compactness"
+    },
+    {
+      "from": "m2-lem-normalization",
+      "to": "m2-lem-inverse-kernel-compactness"
+    },
+    {
+      "from": "m2-prop-geometry",
+      "to": "m2-lem-inverse-kernel-compactness"
+    },
+    {
+      "from": "m2-lem-space-normalization",
+      "to": "m2-lem-inverse-kernel-compactness"
+    },
+    {
+      "from": "m3-inp-complete-core",
+      "to": "m3-inp-sandwich"
+    },
+    {
+      "from": "m3-inp-complete-core",
+      "to": "m3-inp-local-kernels"
+    },
+    {
+      "from": "m3-inp-kernel-transfer",
+      "to": "m3-inp-local-kernels"
+    },
+    {
+      "from": "m3-inp-sandwich",
+      "to": "m3-inp-local-kernels"
+    },
+    {
+      "from": "m3-inp-kernel-transfer",
+      "to": "m3-inp-transport"
+    },
+    {
+      "from": "m3-inp-local-kernels",
+      "to": "m3-nd-germs"
+    },
+    {
+      "from": "m3-inp-gaussian",
+      "to": "m3-nd-germs"
+    },
+    {
+      "from": "m3-inp-local-kernels",
+      "to": "m3-nd-coverage"
+    },
+    {
+      "from": "m3-inp-transport",
+      "to": "m3-nd-coverage"
+    },
+    {
+      "from": "m3-inp-array-interface",
+      "to": "m3-nd-coverage"
+    },
+    {
+      "from": "m3-nd-el-traffic",
+      "to": "m3-nd-coverage"
+    },
+    {
+      "from": "m3-nd-coverage",
+      "to": "m3-nd-nondegeneration"
+    },
+    {
+      "from": "m3-nd-densities",
+      "to": "m3-nd-nondegeneration"
+    },
+    {
+      "from": "m3-nd-el-traffic",
+      "to": "m3-nd-nondegeneration"
+    },
+    {
+      "from": "m3-inp-sandwich",
+      "to": "m3-nd-nondegeneration"
+    },
+    {
+      "from": "m3-nd-germs",
+      "to": "m3-nd-nondegeneration"
+    },
+    {
+      "from": "m3-inp-topology",
+      "to": "m3-nd-nondegeneration"
+    },
+    {
+      "from": "m3-nd-nondegeneration",
+      "to": "m3-nd-cutoffs"
+    },
+    {
+      "from": "m3-nd-densities",
+      "to": "m3-nd-cutoffs"
+    },
+    {
+      "from": "m3-nd-el-traffic",
+      "to": "m3-nd-cutoffs"
+    },
+    {
+      "from": "m3-inp-topology",
+      "to": "m3-en-circuit"
+    },
+    {
+      "from": "m3-en-circuit",
+      "to": "m3-en-harmonic-compactness"
+    },
+    {
+      "from": "m3-inp-sandwich",
+      "to": "m3-en-envelope"
+    },
+    {
+      "from": "m3-nd-cutoffs",
+      "to": "m3-en-fundamental"
+    },
+    {
+      "from": "m3-en-fundamental",
+      "to": "m3-en-measure"
+    },
+    {
+      "from": "m3-en-measure",
+      "to": "m3-en-representation"
+    },
+    {
+      "from": "m3-en-circuit",
+      "to": "m3-en-representation"
+    },
+    {
+      "from": "m3-nd-germs",
+      "to": "m3-en-scalar"
+    },
+    {
+      "from": "m3-inp-reflection",
+      "to": "m3-en-scalar"
+    },
+    {
+      "from": "m3-en-fundamental",
+      "to": "m3-en-condenser"
+    },
+    {
+      "from": "m3-en-scalar",
+      "to": "m3-en-condenser"
+    },
+    {
+      "from": "m3-en-harmonic-compactness",
+      "to": "m3-en-condenser"
+    },
+    {
+      "from": "m3-inp-topology",
+      "to": "m3-en-condenser"
+    },
+    {
+      "from": "m3-inp-topology",
+      "to": "m3-en-current-period"
+    },
+    {
+      "from": "m3-en-harmonic-compactness",
+      "to": "m3-en-current-period"
+    },
+    {
+      "from": "m3-en-envelope",
+      "to": "m3-en-recovery-measures"
+    },
+    {
+      "from": "m3-en-recovery-measures",
+      "to": "m3-en-angular-recovery"
+    },
+    {
+      "from": "m3-en-angular-recovery",
+      "to": "m3-en-reciprocity"
+    },
+    {
+      "from": "m3-inp-topology",
+      "to": "m3-en-reciprocity"
+    }
+  ]
+}

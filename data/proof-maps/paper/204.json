@@ -1,0 +1,456 @@
+{
+  "familyNumber": "204",
+  "familyTitle": "Tensor saturation for even spin groups",
+  "manuscripts": [
+    {
+      "id": "Tensor-Saturation-for-Even-Spin-Groups-September-24-2026",
+      "title": "Tensor saturation for even spin groups",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Tensor-Saturation-for-Even-Spin-Groups-September-24-2026/Tensor-Saturation-for-Even-Spin-Groups-September-24-2026.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Real moments and schedules",
+    "Lattices and continuation of schedules",
+    "A strict comparison count and simultaneous switches",
+    "From integral schedules to tensor intertwiners",
+    "Removing a zero tail and completing the proof"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Type- D saturation",
+      "statement": "[Type- D saturation] Let G=(2n) , n2 , and let ,, be dominant integral weights such that ++ Q(D_n) . Then, for every positive integer N , \\[ (V() V() V())^G0 (V(N) V(N) V(N))^G0. \\]",
+      "section": "Introduction",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-prop-basic-schedule",
+      "kind": "proposition",
+      "label": "Basic real schedule",
+      "statement": "[Basic real schedule] Let the root system be of type D or a permutation system, possibly with an orthogonal central space. If (,,) has a real moment solution, then every shape ending at admits a…",
+      "section": "Real moments and schedules",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-lem-coefficient",
+      "kind": "lemma",
+      "label": "Highest-to-highest coefficients",
+      "statement": "[Highest-to-highest coefficients] Let h,h', be dominant integral weights. The linear forms obtained by taking the highest-output coordinate of \\[ T(v_h ), T:V(h) V() V(h'), \\] are exactly the forms…",
+      "section": "Real moments and schedules",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-lem-flag-composition",
+      "kind": "lemma",
+      "label": "Flag composition",
+      "statement": "[Flag composition] Suppose that h_0,,h_s and _1,,_s are dominant integral weights and that there are intertwiners \\[ T_j:V(h_ j-1 ) V(_j) V(h_j). \\] Assume their highest-to-highest coefficients are…",
+      "section": "Real moments and schedules",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-lem-invariant-moment",
+      "kind": "lemma",
+      "label": "Invariants give moments",
+      "statement": "[Invariants give moments] A nonzero invariant in V() V() V(^*) gives a real moment solution for (,,) . The same conclusion follows from an invariant for simultaneous positive integer multiples of the…",
+      "section": "Real moments and schedules",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-lem-schedule-moment",
+      "kind": "lemma",
+      "label": "Schedules give moments",
+      "statement": "[Schedules give moments] A real schedule for (,,) gives a real moment solution for (,,) , where =(1) . No lattice condition is required. The statement also holds for root subsystems with arbitrary…",
+      "section": "Real moments and schedules",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-real-strict-approximation",
+      "kind": "lemma",
+      "label": "Strict approximation",
+      "statement": "[Strict approximation] Every real moment triple can be approximated by triples of regular labels admitting strict flags. Such strict label triples form an open set. In particular, after choosing a…",
+      "section": "Real moments and schedules",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-real-triangles",
+      "kind": "lemma",
+      "label": "Symmetric-space triangles",
+      "statement": "[Symmetric-space triangles] If (,,^*) admits strict flags, then for every R>0 there is a triangle in G/K with successive dominant side vectors R,R,R^* .",
+      "section": "Real moments and schedules",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-real-decreasing-paths",
+      "kind": "lemma",
+      "label": "Decreasing radial paths",
+      "statement": "[Decreasing radial paths] For generic strict labels and a generic regular polygonal shape ending at , there is a dominant path from to whose velocities are Weyl translates of the shape velocities, in…",
+      "section": "Real moments and schedules",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-real-variation",
+      "kind": "lemma",
+      "label": "Area variation",
+      "statement": "[Area variation] For an area-maximizing path with regular shape, the velocity differences at its nonzero unfolded jumps away from shape breaks are linearly independent. Here all differences are…",
+      "section": "Real moments and schedules",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-real-exposure",
+      "kind": "lemma",
+      "label": "Strict exposure",
+      "statement": "[Strict exposure] For such a generic area maximum, let u v be a nonzero jump in local chamber coordinates. [label=( *)] If the site is not a shape break and the slope is d , there is a linear…",
+      "section": "Real moments and schedules",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-real-polytope",
+      "kind": "lemma",
+      "label": "Flag orbit polytopes",
+      "statement": "[Flag orbit polytopes] Choose a flag b U^+u U^-v , with u v . The torus-fixed points of its torus-orbit closure lie in [v,u] and include u,v . For a regular dominant real weight d , take the convex…",
+      "section": "Real moments and schedules",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-real-covers",
+      "kind": "lemma",
+      "label": "Exposed jumps are covers",
+      "statement": "[Exposed jumps are covers] The generic area maximum has no nonzero jump at a shape break. Every other nonzero unfolded jump is a reflection and is a Bruhat cover in its local chamber frame.",
+      "section": "Real moments and schedules",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-real-blocker",
+      "kind": "corollary",
+      "label": "No strict third-axis obstruction",
+      "statement": "[No strict third-axis obstruction] At a switch of the limiting schedule in Proposition~ , suppose the two exchanged signed labels have strict opposite position and moving-value orders. No signed…",
+      "section": "Real moments and schedules",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-thm-integral-schedule",
+      "kind": "theorem",
+      "label": "Integral schedules",
+      "statement": "[Integral schedules] Let the three labels have integral root pairings and satisfy \\(+- Q\\), and let \\(\\) be any polygonal shape with dominant increments and endpoint \\(\\). A real moment solution…",
+      "section": "Lattices and continuation of schedules",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-lem-block-reduction",
+      "kind": "lemma",
+      "label": "Combining blocks",
+      "statement": "[Combining blocks] Suppose a moment solution splits into commuting coordinate blocks of permutation type and orthogonal type. Assign the initial, moving, and final coordinates using this splitting.…",
+      "section": "Lattices and continuation of schedules",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-lem-hard-case",
+      "kind": "lemma",
+      "label": "The exceptional case",
+      "statement": "[The exceptional case] If no integral schedule exists, any real schedule with at most \\(l\\) switches has exactly \\(l\\) independent switch roots, and its graph has exactly two connected components,…",
+      "section": "Lattices and continuation of schedules",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-int-closedness",
+      "kind": "lemma",
+      "label": "Closedness and generic shapes",
+      "statement": "[Closedness and generic shapes] For fixed labels, the existence of an integral schedule is closed under uniform convergence of shapes with dominant increments. It suffices to prove Theorem~ for…",
+      "section": "Lattices and continuation of schedules",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-int-half-kernel",
+      "kind": "lemma",
+      "label": "Half-kernel bounds and potential",
+      "statement": "[Half-kernel bounds and potential] Suppose the \\(l+1\\) roots generate \\(Q(D_l)\\), and their exact base coefficients \\(m^0\\) are half-integral. If \\(m^0\\) is not already integral, either orientation…",
+      "section": "Lattices and continuation of schedules",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-prop-continuation",
+      "kind": "proposition",
+      "label": "Continuation",
+      "statement": "[Continuation] Under the standing assumption of no integral schedule, a local link cannot exist.",
+      "section": "Lattices and continuation of schedules",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-lem-direct-links",
+      "kind": "lemma",
+      "label": "Direct links",
+      "statement": "[Direct links] In the exceptional schedule with components \\(P,Q\\), each of the following produces a forbidden local link: [label=( *)] a signed cross-component pair with strict concordant position…",
+      "section": "Lattices and continuation of schedules",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-knot-profile-rigidity",
+      "kind": "lemma",
+      "label": "Profile rigidity",
+      "statement": "[Profile rigidity] Suppose two irreducible Hermitian zero-sum triples have proportional profiles \\(m,m'\\), of sizes \\(r,h\\), respectively, and \\[ \\|m\\|^2=r^2, \\|m'\\|^2=h^2. \\] Then \\(r=h\\) and…",
+      "section": "A strict comparison count and simultaneous switches",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-prop-strict-count",
+      "kind": "proposition",
+      "label": "Strict comparison count",
+      "statement": "[Strict comparison count] In the standing exceptional configuration, C:=R-p_-p_-p_>0.",
+      "section": "A strict comparison count and simultaneous switches",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-lem-plateau",
+      "kind": "lemma",
+      "label": "Plateaus",
+      "statement": "[Plateaus] Suppose cross labels \\(a,c\\) have equal position and equal assigned moving value on an open interval between switch times. Then (p_a,p_c)=(0,0)or(1,1).",
+      "section": "A strict comparison count and simultaneous switches",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-prop-knot-count",
+      "kind": "proposition",
+      "label": "Monotonicity at knots",
+      "statement": "[Monotonicity at knots] Under the standing no-integral-schedule assumption, the function \\(J\\) is nondecreasing at every knot, and hence on the whole interval in the one-sided sense used above.",
+      "section": "A strict comparison count and simultaneous switches",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-knot-matching",
+      "kind": "lemma",
+      "label": "Matching at a knot",
+      "statement": "[Matching at a knot] Within each two-value class at a knot, the transfers of the high value form disjoint matching pairs inside each component, together with unused single labels. In an opposite…",
+      "section": "A strict comparison count and simultaneous switches",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-prop-columns",
+      "kind": "proposition",
+      "label": "Column intertwiners",
+      "statement": "[Column intertwiners] Let ,, be dominant integral weights of type D_n , n2 . Choose a shape obtained by concatenating straight segments whose increments are fundamental weights and whose sum is . If…",
+      "section": "From integral schedules to tensor intertwiners",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-col-folding",
+      "kind": "lemma",
+      "label": "An integral schedule can be folded into a dominant path with Weyl direction…",
+      "statement": "An integral schedule can be folded into a dominant path with Weyl direction states in decreasing Bruhat order. Its changes of state can be expressed as an ordered sequence of downward reflections,…",
+      "section": "From integral schedules to tensor intertwiners",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-col-common-walls",
+      "kind": "lemma",
+      "label": "Let J be the set of simple roots _i with x_0_i=x_1_i=0 . A functional supported…",
+      "statement": "Let J be the set of simple roots _i with x_0_i=x_1_i=0 . A functional supported on the weight space of weight in ^k E , invariant under the semisimple group generated by J , is an allowed…",
+      "section": "From integral schedules to tensor intertwiners",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-prop-zero-tail",
+      "kind": "proposition",
+      "label": "Removal of a zero tail",
+      "statement": "[Removal of a zero tail] Suppose \\(,,\\) are dominant integral \\(D_n\\)-weights, all supported in coordinates \\(1,,r\\), where \\(1 r n-2\\). If \\(V()\\) occurs in \\(V() V()\\), then \\[ V(2)\\ occurs in\\…",
+      "section": "Removing a zero tail and completing the proof",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-prop-preprojective",
+      "kind": "proposition",
+      "label": "Tensor criterion",
+      "statement": "[Tensor criterion] Let \\(,,\\) be dominant integral weights for \\( D\\), and suppose \\(+-=_i d_i_i\\) with \\(d_i_ 0 \\). Put \\(_i=_i\\) and \\(_i=_i\\). Then &(V() V(),V())0\\\\ & M(d): top_i M_i, soc_i…",
+      "section": "Removing a zero tail and completing the proof",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-tail-threshold-bounds",
+      "kind": "lemma",
+      "label": "Threshold bounds",
+      "statement": "[Threshold bounds] For every \\(1 r p\\) and \\(b1\\), K_r^T(b) L_r+q_r(b)2, K_r^S(b) M_r+q_r(b)2 .",
+      "section": "Removing a zero tail and completing the proof",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-lem-filtered-intersection",
+      "kind": "lemma",
+      "label": "Generic filtered intersection",
+      "statement": "[Generic filtered intersection] Let \\[ H=F_1 F_2 F_ s+1 =0 \\] be a filtration of a finite-dimensional complex vector space, and let \\(P(H)\\) be its stabilizer. For subspaces \\(A,C\\) write \\(a_b=(A…",
+      "section": "Removing a zero tail and completing the proof",
+      "manuscript": "Tensor saturation for even spin groups"
+    },
+    {
+      "id": "m1-tail-centralizer",
+      "kind": "lemma",
+      "label": "Centralizer on the socle",
+      "statement": "[Centralizer on the socle] Let \\(t\\) be nilpotent on a complex vector space \\(V\\), and put \\[ F_b(t)= t t^ b-1 (b1). \\] The group \\[ C(t)=\\ g(V):gt=tg\\ \\] induces the full stabilizer of this…",
+      "section": "Removing a zero tail and completing the proof",
+      "manuscript": "Tensor saturation for even spin groups"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-coefficient",
+      "to": "m1-lem-schedule-moment"
+    },
+    {
+      "from": "m1-lem-flag-composition",
+      "to": "m1-lem-schedule-moment"
+    },
+    {
+      "from": "m1-lem-invariant-moment",
+      "to": "m1-lem-schedule-moment"
+    },
+    {
+      "from": "m1-real-triangles",
+      "to": "m1-real-decreasing-paths"
+    },
+    {
+      "from": "m1-real-variation",
+      "to": "m1-real-exposure"
+    },
+    {
+      "from": "m1-real-polytope",
+      "to": "m1-real-covers"
+    },
+    {
+      "from": "m1-real-exposure",
+      "to": "m1-real-covers"
+    },
+    {
+      "from": "m1-prop-basic-schedule",
+      "to": "m1-real-covers"
+    },
+    {
+      "from": "m1-real-decreasing-paths",
+      "to": "m1-real-covers"
+    },
+    {
+      "from": "m1-real-variation",
+      "to": "m1-real-covers"
+    },
+    {
+      "from": "m1-real-strict-approximation",
+      "to": "m1-real-covers"
+    },
+    {
+      "from": "m1-lem-schedule-moment",
+      "to": "m1-lem-block-reduction"
+    },
+    {
+      "from": "m1-lem-block-reduction",
+      "to": "m1-lem-hard-case"
+    },
+    {
+      "from": "m1-lem-hard-case",
+      "to": "m1-prop-continuation"
+    },
+    {
+      "from": "m1-int-half-kernel",
+      "to": "m1-prop-continuation"
+    },
+    {
+      "from": "m1-prop-continuation",
+      "to": "m1-lem-direct-links"
+    },
+    {
+      "from": "m1-lem-schedule-moment",
+      "to": "m1-prop-strict-count"
+    },
+    {
+      "from": "m1-lem-block-reduction",
+      "to": "m1-prop-strict-count"
+    },
+    {
+      "from": "m1-knot-profile-rigidity",
+      "to": "m1-prop-strict-count"
+    },
+    {
+      "from": "m1-lem-hard-case",
+      "to": "m1-lem-plateau"
+    },
+    {
+      "from": "m1-lem-hard-case",
+      "to": "m1-knot-matching"
+    },
+    {
+      "from": "m1-prop-knot-count",
+      "to": "m1-knot-matching"
+    },
+    {
+      "from": "m1-prop-continuation",
+      "to": "m1-knot-matching"
+    },
+    {
+      "from": "m1-thm-integral-schedule",
+      "to": "m1-knot-matching"
+    },
+    {
+      "from": "m1-prop-strict-count",
+      "to": "m1-knot-matching"
+    },
+    {
+      "from": "m1-int-closedness",
+      "to": "m1-knot-matching"
+    },
+    {
+      "from": "m1-lem-schedule-moment",
+      "to": "m1-col-folding"
+    },
+    {
+      "from": "m1-lem-coefficient",
+      "to": "m1-col-common-walls"
+    },
+    {
+      "from": "m1-prop-columns",
+      "to": "m1-col-common-walls"
+    },
+    {
+      "from": "m1-col-folding",
+      "to": "m1-col-common-walls"
+    },
+    {
+      "from": "m1-lem-flag-composition",
+      "to": "m1-col-common-walls"
+    },
+    {
+      "from": "m1-lem-coefficient",
+      "to": "m1-prop-preprojective"
+    },
+    {
+      "from": "m1-prop-zero-tail",
+      "to": "m1-tail-centralizer"
+    },
+    {
+      "from": "m1-prop-preprojective",
+      "to": "m1-tail-centralizer"
+    },
+    {
+      "from": "m1-lem-filtered-intersection",
+      "to": "m1-tail-centralizer"
+    },
+    {
+      "from": "m1-tail-threshold-bounds",
+      "to": "m1-tail-centralizer"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-tail-centralizer"
+    },
+    {
+      "from": "m1-lem-invariant-moment",
+      "to": "m1-tail-centralizer"
+    },
+    {
+      "from": "m1-thm-integral-schedule",
+      "to": "m1-tail-centralizer"
+    },
+    {
+      "from": "m1-prop-columns",
+      "to": "m1-tail-centralizer"
+    }
+  ]
+}

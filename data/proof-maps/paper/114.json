@@ -1,0 +1,440 @@
+{
+  "familyNumber": "114",
+  "familyTitle": "Approximate counting of common integer polymatroid bases",
+  "manuscripts": [
+    {
+      "id": "An-FPRAS-for-Common-Integer-Polymatroid-Bases-with-Binary-Capacities-October-5-2026",
+      "title": "An FPRAS for Common Integer Polymatroid Bases with Binary Capacities",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-FPRAS-for-Common-Integer-Polymatroid-Bases-with-Binary-Capacities-October-5-2026/polymatroid-fpras.pdf"
+    },
+    {
+      "id": "Approximate-counting-of-common-bases-of-two-matroids-September-23-2026",
+      "title": "Approximate counting of common bases of two matroids",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Approximate-counting-of-common-bases-of-two-matroids-September-23-2026/main.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Polyhedral tools and a feasible center",
+    "Integer signatures and difference counts",
+    "Partitions, shift averages, and controlled expansion",
+    "Polynomial port ranges and positive weights",
+    "Evaluating the weights with bounded rational computation",
+    "Counting the balanced port profiles",
+    "Quadratic signature inequalities",
+    "A transport inequality",
+    "A chain and its observable Poincar\\'e bound",
+    "Two consequences for simulation",
+    "Counting and sampling common independent sets"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "There is a single uniform randomized algorithm which, for every input described…",
+      "statement": "There is a single uniform randomized algorithm which, for every input described above, outputs a nonnegative rational Z satisfying \\[ ((1-)Z Z(1+)Z) 1-. \\] If Z=0 , the algorithm outputs zero on…",
+      "section": "Introduction",
+      "manuscript": "An FPRAS for Common Integer Polymatroid Bases with Binary Capacities"
+    },
+    {
+      "id": "m1-prop-oracle-tools",
+      "kind": "proposition",
+      "label": "Oracle algorithms",
+      "statement": "[Oracle algorithms] The following operations have deterministic oracle and bit complexity bounded by fixed polynomials in the indicated input sizes. An integer-valued submodular function on a finite…",
+      "section": "Polyhedral tools and a feasible center",
+      "manuscript": "An FPRAS for Common Integer Polymatroid Bases with Binary Capacities"
+    },
+    {
+      "id": "m1-lem-base-calculus",
+      "kind": "lemma",
+      "label": "Base-polytope identities",
+      "statement": "[Base-polytope identities] Let f,g:2^E R be normalized submodular functions and let v R^E . If w_ (1) w_ (n) and A_k=\\ (1),,(k)\\ , the vector \\[ b_ (k) =f(A_k)-f(A_ k-1 ) \\] belongs to B(f) and…",
+      "section": "Polyhedral tools and a feasible center",
+      "manuscript": "An FPRAS for Common Integer Polymatroid Bases with Binary Capacities"
+    },
+    {
+      "id": "m1-lem-expansion-matroid",
+      "kind": "lemma",
+      "label": "The expansion matroid",
+      "statement": "[The expansion matroid] Let r:2^E Z_ 0 be normalized, nondecreasing, and submodular. Replace each j E by any finite number of labelled copies. Declare a set of copies independent when its occupancy…",
+      "section": "Polyhedral tools and a feasible center",
+      "manuscript": "An FPRAS for Common Integer Polymatroid Bases with Binary Capacities"
+    },
+    {
+      "id": "m1-lem-polyhedral-controls",
+      "kind": "lemma",
+      "label": "Polyhedral controls",
+      "statement": "[Polyhedral controls] Let Q R^E be nonempty and be defined either by B(f_1) B(f_2) or by B(f) together with equations x(D)=a_D for the parts D of a partition of E . The functions are normalized and…",
+      "section": "Polyhedral tools and a feasible center",
+      "manuscript": "An FPRAS for Common Integer Polymatroid Bases with Binary Capacities"
+    },
+    {
+      "id": "m1-lem-center",
+      "kind": "lemma",
+      "label": "A center for affine slacks",
+      "statement": "[A center for affine slacks] Let Q R^n be a nonempty bounded rational polytope satisfying the hypotheses of Proposition~ . One can find a rational c Q , with polynomial encoding length, such that…",
+      "section": "Polyhedral tools and a feasible center",
+      "manuscript": "An FPRAS for Common Integer Polymatroid Bases with Binary Capacities"
+    },
+    {
+      "id": "m1-lem-balanced-summation",
+      "kind": "lemma",
+      "label": "Balanced summation",
+      "statement": "[Balanced summation] Let F>0 on the entire slice B(m,r) and suppose it has the removal signature. Choose disjoint coordinate pairs \\ a_t,b_t\\ with m_ a_t =m_ b_t =M_t1 . Their balanced sum \\[ (z)=_ 0…",
+      "section": "Integer signatures and difference counts",
+      "manuscript": "An FPRAS for Common Integer Polymatroid Bases with Binary Capacities"
+    },
+    {
+      "id": "m1-lem-rank-signatures",
+      "kind": "lemma",
+      "label": "Rank-factor signatures",
+      "statement": "[Rank-factor signatures] Partition a set of count coordinates I into groups indexed by E , allowing empty groups, and let b_ 0 ^E . For either of the two consistent orientations \\[ v_e=b_e+_ i in…",
+      "section": "Integer signatures and difference counts",
+      "manuscript": "An FPRAS for Common Integer Polymatroid Bases with Binary Capacities"
+    },
+    {
+      "id": "m1-prop-shift-logconcavity",
+      "kind": "proposition",
+      "label": "Root-direction log-concavity",
+      "statement": "[Root-direction log-concavity] Let f_1,f_2 be integral normalized submodular functions on E , not necessarily nondecreasing, and define \\[ Y(d)=\\#\\ (x_1,x_2)(B(f_1)^E) (B(f_2)^E):x_1-x_2=d\\ . \\] For…",
+      "section": "Integer signatures and difference counts",
+      "manuscript": "An FPRAS for Common Integer Polymatroid Bases with Binary Capacities"
+    },
+    {
+      "id": "m1-lem-generator-prefixes",
+      "kind": "lemma",
+      "label": "Prefixes and part totals",
+      "statement": "[Prefixes and part totals] Let \\( A=(A_1,,A_m)\\) be a family of subsets of \\(E\\). Its atoms admit an order such that every prefix is a union of at most \\(n\\) intersections of members of \\( A\\),…",
+      "section": "Partitions, shift averages, and controlled expansion",
+      "manuscript": "An FPRAS for Common Integer Polymatroid Bases with Binary Capacities"
+    },
+    {
+      "id": "m1-lem-partitions",
+      "kind": "lemma",
+      "label": "Computable partitions and compatible orders",
+      "statement": "[Computable partitions and compatible orders] Each part of \\( D_i\\) is contained in a superblock. The three partitions can be found with polynomially many oracle calls and bit operations. Each has a…",
+      "section": "Partitions, shift averages, and controlled expansion",
+      "manuscript": "An FPRAS for Common Integer Polymatroid Bases with Binary Capacities"
+    },
+    {
+      "id": "m1-lem-shift-average",
+      "kind": "lemma",
+      "label": "Shift averages",
+      "statement": "[Shift averages] For \\(F=Y\\) and for \\(F=Y^+\\), every integral full or restricted star shift with \\(|l_j| S/N^ 25 \\) satisfies e^ -N^ -8 F(d(l)) F(0) e^ N^ -8 . For \\((,A_)=(,A_)\\) or \\((,J)\\), on…",
+      "section": "Partitions, shift averages, and controlled expansion",
+      "manuscript": "An FPRAS for Common Integer Polymatroid Bases with Binary Capacities"
+    },
+    {
+      "id": "m1-lem-refinement-witnesses",
+      "kind": "lemma",
+      "label": "Refinement witnesses",
+      "statement": "[Refinement witnesses] Fix integer \\(w\\) for which both \\(Q_i(w)\\) are nonempty. For each system separately, its lattice points and those of its expanded slice can be partitioned by fixing integer…",
+      "section": "Partitions, shift averages, and controlled expansion",
+      "manuscript": "An FPRAS for Common Integer Polymatroid Bases with Binary Capacities"
+    },
+    {
+      "id": "m1-prop-expansion",
+      "kind": "proposition",
+      "label": "Expansion costs little",
+      "statement": "[Expansion costs little] The expanded common-base count satisfies Z Z^+ e^ 20N^ -8 Z.",
+      "section": "Partitions, shift averages, and controlled expansion",
+      "manuscript": "An FPRAS for Common Integer Polymatroid Bases with Binary Capacities"
+    },
+    {
+      "id": "m1-lem-tree-coordinates",
+      "kind": "lemma",
+      "label": "Integral tree coordinates",
+      "statement": "[Integral tree coordinates] There is a unique pair X_i(u,z) with these properties and X_ 1e =z_e on nontree edges. Its coordinates are integral linear functions of (u,z) , with coefficients of…",
+      "section": "Polynomial port ranges and positive weights",
+      "manuscript": "An FPRAS for Common Integer Polymatroid Bases with Binary Capacities"
+    },
+    {
+      "id": "m1-lem-port-penalties",
+      "kind": "lemma",
+      "label": "What the penalties enforce",
+      "statement": "[What the penalties enforce] An original base pair with a representative shift satisfies and _GV_G N^7S . Conversely, if~ holds, then \\[ X_i(A)-r_i(A)_G V_G(A E, i=1,2). \\] If in addition _GV_G T ,…",
+      "section": "Polynomial port ranges and positive weights",
+      "manuscript": "An FPRAS for Common Integer Polymatroid Bases with Binary Capacities"
+    },
+    {
+      "id": "m1-lem-smooth-derivatives",
+      "kind": "lemma",
+      "label": "Derivatives after smoothing",
+      "statement": "[Derivatives after smoothing] In block count coordinates, g= I_G is C^3 , is concave, and satisfies, everywhere, |g''_ ij | A_2=N^ 800 /W^2, |g'''_ ijk | A_3=N^ 1250 /W^3.",
+      "section": "Polynomial port ranges and positive weights",
+      "manuscript": "An FPRAS for Common Integer Polymatroid Bases with Binary Capacities"
+    },
+    {
+      "id": "m1-lem-block-signatures",
+      "kind": "lemma",
+      "label": "Block signatures at every power",
+      "statement": "[Block signatures at every power] For 0 s1 , every block factor F_G^s has both normalized positive-semidefinite tests of~ : ^ T -Q0 , for additions and removals.",
+      "section": "Polynomial port ranges and positive weights",
+      "manuscript": "An FPRAS for Common Integer Polymatroid Bases with Binary Capacities"
+    },
+    {
+      "id": "m1-prop-port-model",
+      "kind": "proposition",
+      "label": "The positive port model",
+      "statement": "[The positive port model] For every nonempty input after the deterministic feasibility test, the preceding construction gives at most 2n paired ports of lengths d_ iD N^ 21 W , with p= d_ iD…",
+      "section": "Polynomial port ranges and positive weights",
+      "manuscript": "An FPRAS for Common Integer Polymatroid Bases with Binary Capacities"
+    },
+    {
+      "id": "m1-lem-weight-bounds",
+      "kind": "lemma",
+      "label": "Integral and point-weight bounds",
+      "statement": "[Integral and point-weight bounds] For every block and every port argument in its box, e^ -N^ 50000 I_G(u) e^K. For the weight h on the full paired slice of Proposition~ , | h(a,b)| N^ 60000 . All…",
+      "section": "Evaluating the weights with bounded rational computation",
+      "manuscript": "An FPRAS for Common Integer Polymatroid Bases with Binary Capacities"
+    },
+    {
+      "id": "m1-lem-volume-lift",
+      "kind": "lemma",
+      "label": "Accuracy and guarantees for the volume lift",
+      "statement": "[Accuracy and guarantees for the volume lift] The polytope~ has dimension f+6m+d_0 , a polynomial facet-encoding bound, and an exact polynomial-time strong separation oracle. It contains a known…",
+      "section": "Evaluating the weights with bounded rational computation",
+      "manuscript": "An FPRAS for Common Integer Polymatroid Bases with Binary Capacities"
+    },
+    {
+      "id": "m1-prop-weight-evaluator",
+      "kind": "proposition",
+      "label": "A bounded weight evaluator",
+      "statement": "[A bounded weight evaluator] Given a profile in the entire slice S , rational 0<,<1 , and a rational power s with denominator q_s , there is an evaluator using fresh random bits and returning a…",
+      "section": "Evaluating the weights with bounded rational computation",
+      "manuscript": "An FPRAS for Common Integer Polymatroid Bases with Binary Capacities"
+    },
+    {
+      "id": "m1-lem-counting-lifts",
+      "kind": "lemma",
+      "label": "If k has both integer signatures of Definition~ , then f has the omission…",
+      "statement": "If k has both integer signatures of Definition~ , then f has the omission property and f has the addition property. Both properties persist under fixing included or excluded elements and summing…",
+      "section": "Counting the balanced port profiles",
+      "manuscript": "An FPRAS for Common Integer Polymatroid Bases with Binary Capacities"
+    },
+    {
+      "id": "m1-prop-counting-transport",
+      "kind": "proposition",
+      "label": "Companion transport and simulation input",
+      "statement": "[Companion transport and simulation input] Suppose f is positive on all p -subsets and has the omission property, f is positive on that domain and has the addition property, the weights agree on A ,…",
+      "section": "Counting the balanced port profiles",
+      "manuscript": "An FPRAS for Common Integer Polymatroid Bases with Binary Capacities"
+    },
+    {
+      "id": "m1-lem-counting-initialization",
+      "kind": "lemma",
+      "label": "Initialization and adjacent phases",
+      "statement": "[Initialization and adjacent phases] For every p -subset and 0 j<H_o , 12 f_ j+1 (S) f_j(S) 1. Thus C_j/c_ il (j) changes by a factor in [1/2,2] between consecutive phases, and _j=f_j/C_j on A…",
+      "section": "Counting the balanced port profiles",
+      "manuscript": "An FPRAS for Common Integer Polymatroid Bases with Binary Capacities"
+    },
+    {
+      "id": "m1-prop-counting-reference",
+      "kind": "proposition",
+      "label": "With probability at least 1-1/50 , this experiment does not abort, every stored…",
+      "statement": "With probability at least 1-1/50 , this experiment does not abort, every stored multiplier collection is good at its own phase, and | Y_ ref C_ H_o |4H_o.",
+      "section": "Counting the balanced port profiles",
+      "manuscript": "An FPRAS for Common Integer Polymatroid Bases with Binary Capacities"
+    },
+    {
+      "id": "m1-lem-counting-bits",
+      "kind": "lemma",
+      "label": "The implemented experiment has deterministic polynomial bounds on oracle calls,…",
+      "statement": "The implemented experiment has deterministic polynomial bounds on oracle calls, bit operations, and output length, on every execution. It can be coupled to the capped reference experiment so that,…",
+      "section": "Counting the balanced port profiles",
+      "manuscript": "An FPRAS for Common Integer Polymatroid Bases with Binary Capacities"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "There is a single randomized oracle algorithm with the following guarantee.…",
+      "statement": "There is a single randomized oracle algorithm with the following guarantee. Given independence oracles for arbitrary rank- r matroids M_1,M_2 on [n] , and rational ,(0,1) , it outputs a nonnegative…",
+      "section": "Introduction",
+      "manuscript": "Approximate counting of common bases of two matroids"
+    },
+    {
+      "id": "m2-thm-bh",
+      "kind": "theorem",
+      "label": "Br\\\"and\\'en--Huh",
+      "statement": "[Br\\\"and\\'en--Huh] For a matroid N on a ground set E and 0<q1 , the polynomial \\[ T_ q,N (z_0,z)=_ A E q^ -_N(A) z_0^ |E|-|A| _ a A z_a \\] is Lorentzian. Lorentzian polynomials are closed under…",
+      "section": "Quadratic signature inequalities",
+      "manuscript": "Approximate counting of common bases of two matroids"
+    },
+    {
+      "id": "m2-lem-coefficient",
+      "kind": "lemma",
+      "label": "For distinct unassigned indices i,j , 4c^ _ ij c^ _ ji z_ ^2. For distinct…",
+      "statement": "For distinct unassigned indices i,j , 4c^ _ ij c^ _ ji z_ ^2. For distinct unassigned indices i,j,k , c^ _ ij c^ _ jk z_ c^ _ ik .",
+      "section": "Quadratic signature inequalities",
+      "manuscript": "Approximate counting of common bases of two matroids"
+    },
+    {
+      "id": "m2-lem-transport",
+      "kind": "lemma",
+      "label": "Transport",
+      "statement": "[Transport] With the notation above, ( H_p- H_d)^2 (1 s_pW_p +1 s_dW_d +2 s_ps_d _ t=1 ^mv_t W_t ) D_ X (H).",
+      "section": "A transport inequality",
+      "manuscript": "Approximate counting of common bases of two matroids"
+    },
+    {
+      "id": "m2-lem-transversalvariance",
+      "kind": "lemma",
+      "label": "For good multipliers and every H: , _ H C_ p D(H) c_0 , C_ p =n(1+8n).",
+      "statement": "For good multipliers and every H: , _ H C_ p D(H) c_0 , C_ p =n(1+8n).",
+      "section": "A chain and its observable Poincar\\'e bound",
+      "manuscript": "Approximate counting of common bases of two matroids"
+    },
+    {
+      "id": "m2-lem-defecttransfer",
+      "kind": "lemma",
+      "label": "Assume the multipliers are good, and let H: . For each defect type ij there is…",
+      "statement": "Assume the multipliers are good, and let H: . For each defect type ij there is an event A_0 obtained by prescribing the selected elements in pairs i,j , with ( A)1/4 . Its conditional mean H'=_…",
+      "section": "A chain and its observable Poincar\\'e bound",
+      "manuscript": "Approximate counting of common bases of two matroids"
+    },
+    {
+      "id": "m2-prop-observable",
+      "kind": "proposition",
+      "label": "Observable Poincar\\'e inequality",
+      "statement": "[Observable Poincar\\'e inequality] For good multipliers and every H: , _( H) K_ obs (H), K_ obs =2000n^6.",
+      "section": "A chain and its observable Poincar\\'e bound",
+      "manuscript": "Approximate counting of common bases of two matroids"
+    },
+    {
+      "id": "m2-lem-timeaverages",
+      "kind": "lemma",
+      "label": "Suppose the multipliers are good. If G= G and a trajectory (X_t) of P starts…",
+      "statement": "Suppose the multipliers are good. If G= G and a trajectory (X_t) of P starts with law U , then for every integer N1 , _ 2UK_ obs _ G N .",
+      "section": "Two consequences for simulation",
+      "manuscript": "Approximate counting of common bases of two matroids"
+    },
+    {
+      "id": "m2-lem-trace",
+      "kind": "lemma",
+      "label": "With good multipliers, P_A is reversible with stationary law , irreducible, and…",
+      "statement": "With good multipliers, P_A is reversible with stationary law , irreducible, and lazy. Its inverse spectral gap is at most 18n^4 . In particular, for every integer s0 , |P_A^s(x,y) (y) -1|…",
+      "section": "Two consequences for simulation",
+      "manuscript": "Approximate counting of common bases of two matroids"
+    },
+    {
+      "id": "m2-cor-intersection",
+      "kind": "corollary",
+      "label": "Common independent sets",
+      "statement": "[Common independent sets] Let M_1,M_2 be arbitrary matroids on an explicitly enumerated ground set [n] , supplied by fixed exact independence oracles with n -bit subset queries. Their ranks may…",
+      "section": "Counting and sampling common independent sets",
+      "manuscript": "Approximate counting of common bases of two matroids"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-base-calculus",
+      "to": "m1-lem-rank-signatures"
+    },
+    {
+      "from": "m1-lem-rank-signatures",
+      "to": "m1-prop-shift-logconcavity"
+    },
+    {
+      "from": "m1-lem-balanced-summation",
+      "to": "m1-prop-shift-logconcavity"
+    },
+    {
+      "from": "m1-lem-generator-prefixes",
+      "to": "m1-lem-partitions"
+    },
+    {
+      "from": "m1-lem-polyhedral-controls",
+      "to": "m1-lem-shift-average"
+    },
+    {
+      "from": "m1-prop-shift-logconcavity",
+      "to": "m1-lem-shift-average"
+    },
+    {
+      "from": "m1-lem-generator-prefixes",
+      "to": "m1-lem-refinement-witnesses"
+    },
+    {
+      "from": "m1-lem-polyhedral-controls",
+      "to": "m1-lem-refinement-witnesses"
+    },
+    {
+      "from": "m1-lem-center",
+      "to": "m1-lem-refinement-witnesses"
+    },
+    {
+      "from": "m1-lem-refinement-witnesses",
+      "to": "m1-prop-expansion"
+    },
+    {
+      "from": "m1-lem-shift-average",
+      "to": "m1-prop-expansion"
+    },
+    {
+      "from": "m1-lem-rank-signatures",
+      "to": "m1-prop-port-model"
+    },
+    {
+      "from": "m1-lem-block-signatures",
+      "to": "m1-prop-port-model"
+    },
+    {
+      "from": "m1-lem-port-penalties",
+      "to": "m1-lem-weight-bounds"
+    },
+    {
+      "from": "m1-prop-oracle-tools",
+      "to": "m1-lem-weight-bounds"
+    },
+    {
+      "from": "m1-lem-weight-bounds",
+      "to": "m1-lem-volume-lift"
+    },
+    {
+      "from": "m1-lem-volume-lift",
+      "to": "m1-prop-weight-evaluator"
+    },
+    {
+      "from": "m1-lem-weight-bounds",
+      "to": "m1-prop-weight-evaluator"
+    },
+    {
+      "from": "m1-prop-weight-evaluator",
+      "to": "m1-lem-counting-bits"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-lem-counting-bits"
+    },
+    {
+      "from": "m1-prop-counting-reference",
+      "to": "m1-lem-counting-bits"
+    },
+    {
+      "from": "m2-lem-coefficient",
+      "to": "m2-lem-transversalvariance"
+    },
+    {
+      "from": "m2-lem-transport",
+      "to": "m2-lem-transversalvariance"
+    },
+    {
+      "from": "m2-lem-transport",
+      "to": "m2-lem-defecttransfer"
+    },
+    {
+      "from": "m2-lem-coefficient",
+      "to": "m2-lem-defecttransfer"
+    },
+    {
+      "from": "m2-lem-transversalvariance",
+      "to": "m2-lem-trace"
+    },
+    {
+      "from": "m2-thm-main",
+      "to": "m2-cor-intersection"
+    }
+  ]
+}

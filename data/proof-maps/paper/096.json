@@ -1,0 +1,163 @@
+{
+  "familyNumber": "096",
+  "familyTitle": "The Gaussian propeller conjecture in every dimension",
+  "manuscripts": [
+    {
+      "id": "The-Gaussian-Propeller-Bound-in-Every-Dimension-September-24-2026",
+      "title": "The Gaussian propeller bound in every dimension",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Gaussian-Propeller-Bound-in-Every-Dimension-September-24-2026/main.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Extremal partitions and their centroids",
+    "Probability bounds for the cells",
+    "Competition with two other cells",
+    "A kernel-clustering application"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For all positive integers d and k , every measurable partition (A_1,,A_k) of…",
+      "statement": "For all positive integers d and k , every measurable partition (A_1,,A_k) of R^d satisfies \\[ _ i=1 ^k\\|_ A_i x\\,d_d(x)\\|^2 9 8 . \\] Empty cells are allowed. The constant is sharp whenever d2 and k3…",
+      "section": "Introduction",
+      "manuscript": "The Gaussian propeller bound in every dimension"
+    },
+    {
+      "id": "m1-cor-gaussian-maxima",
+      "kind": "corollary",
+      "label": "Gaussian maxima",
+      "statement": "[Gaussian maxima] Let d,k be positive integers, let g be standard Gaussian in R^d , and let v_1,,v_k R^d , with v=k^ -1 _ i=1 ^k v_i . Then \\[ E_ 1 i k v_i,g 3 22 (_ i=1 ^k\\|v_i- v\\|^2)^ 1/2 . \\] The…",
+      "section": "Introduction",
+      "manuscript": "The Gaussian propeller bound in every dimension"
+    },
+    {
+      "id": "m1-ext-duality",
+      "kind": "lemma",
+      "label": "If g is a standard Gaussian vector in R^n , then C= _ _ i=1 ^N\\|v_i\\|^2=1 E_ 1…",
+      "statement": "If g is a standard Gaussian vector in R^n , then C= _ _ i=1 ^N\\|v_i\\|^2=1 E_ 1 i N v_i,g. The supremum defining C is attained. Moreover, for every 1 k N and every list v_1,,v_k R^n , E_ 1 i k v_i,g…",
+      "section": "Extremal partitions and their centroids",
+      "manuscript": "The Gaussian propeller bound in every dimension"
+    },
+    {
+      "id": "m1-ext-structure",
+      "kind": "lemma",
+      "label": "The centroids satisfy z_i,z_j<0 for i j . Their span V has dimension m-1 ,…",
+      "statement": "The centroids satisfy z_i,z_j<0 for i j . Their span V has dimension m-1 , every proper subset of the centroids is linearly independent, and, for each fixed i , the m-1 vectors z_i-z_j , j i , form a…",
+      "section": "Extremal partitions and their centroids",
+      "manuscript": "The Gaussian propeller bound in every dimension"
+    },
+    {
+      "id": "m1-sc-bounds",
+      "kind": "lemma",
+      "label": "Set \\[ A= 0.929,&m=5,\\\\0.884,&m6. \\] For every \\(i\\), r_i23, P_i Ar_i^2,…",
+      "statement": "Set \\[ A= 0.929,&m=5,\\\\0.884,&m6. \\] For every \\(i\\), r_i23, P_i Ar_i^2, P_i0.415r_i+0.15r_i^2.",
+      "section": "Probability bounds for the cells",
+      "manuscript": "The Gaussian propeller bound in every dimension"
+    },
+    {
+      "id": "m1-sc-truncated-variance",
+      "kind": "lemma",
+      "label": "The function \\(G\\) is nonincreasing and satisfies \\(0<G(q)<1\\). Moreover, \\[ P…",
+      "statement": "The function \\(G\\) is nonincreasing and satisfies \\(0<G(q)<1\\). Moreover, \\[ P P^2G(^ -1 (P)) \\] is increasing on \\((0,1/2]\\).",
+      "section": "Probability bounds for the cells",
+      "manuscript": "The Gaussian propeller bound in every dimension"
+    },
+    {
+      "id": "m1-geo-pair",
+      "kind": "lemma",
+      "label": "Two competing scores",
+      "statement": "[Two competing scores] For every pair of distinct indices j,k<m , D_ jk 3\\,t(1+a_j)(1+a_k).",
+      "section": "Competition with two other cells",
+      "manuscript": "The Gaussian propeller bound in every dimension"
+    },
+    {
+      "id": "m1-geo-constraints",
+      "kind": "corollary",
+      "label": "Constraints on the three largest radii",
+      "statement": "[Constraints on the three largest radii] The quantities L,c,t satisfy (c-t^2)(L-c-2t^2) &8(3)^2t^2, \\\\ 32(c-t^2)^2 &10(3)^2t^2.",
+      "section": "Competition with two other cells",
+      "manuscript": "The Gaussian propeller bound in every dimension"
+    },
+    {
+      "id": "m1-kc-main",
+      "kind": "theorem",
+      "label": "Kernel-clustering hardness",
+      "statement": "[Kernel-clustering hardness] For each fixed \\(k3\\) and every fixed \\(1<_k\\), it is NP-hard, given a rational symmetric matrix \\(A0\\) with \\(A=0\\) and the identity-target objective , to find \\(:[N]\\)…",
+      "section": "A kernel-clustering application",
+      "manuscript": "The Gaussian propeller bound in every dimension"
+    },
+    {
+      "id": "m1-kc-kn-input",
+      "kind": "theorem",
+      "label": "Khot--Naor low-influence bound",
+      "statement": "[Khot--Naor low-influence bound] For fixed \\(k\\) and every \\(>0\\), there exists \\(0<_0<1/2\\), independent of \\(r\\), such that every \\(r\\) and every \\(f:^r_k\\) satisfying \\[ _j^ (1/_0) (f_i)_0 (i,\\ j)…",
+      "section": "A kernel-clustering application",
+      "manuscript": "The Gaussian propeller bound in every dimension"
+    },
+    {
+      "id": "m1-kc-ug-input",
+      "kind": "theorem",
+      "label": "Unique Games input",
+      "statement": "[Unique Games input] For every fixed \\(,(0,1/2)\\), there are an integer \\(s1\\) and a deterministic polynomial-time reduction from \\(3SAT\\) to explicit unweighted simple bipartite Unique Games…",
+      "section": "A kernel-clustering application",
+      "manuscript": "The Gaussian propeller bound in every dimension"
+    },
+    {
+      "id": "m1-kc-matrix",
+      "kind": "lemma",
+      "label": "For fixed \\(k,r\\), one can construct in deterministic polynomial time a…",
+      "statement": "For fixed \\(k,r\\), one can construct in deterministic polynomial time a rational symmetric matrix \\(A\\), indexed by \\(W^r\\), such that \\[ h^ T Ah=Q(h), A0, A=0 . \\] For every \\(:W^r\\), if…",
+      "section": "A kernel-clustering application",
+      "manuscript": "The Gaussian propeller bound in every dimension"
+    },
+    {
+      "id": "m1-kc-completeness",
+      "kind": "lemma",
+      "label": "Completeness",
+      "statement": "[Completeness] If a labeling of \\(G\\) satisfies at least \\(1-\\) of its edges, then the matrix of Lemma~ satisfies \\[ (A I_k) (1-1k)(1-)^2. \\]",
+      "section": "A kernel-clustering application",
+      "manuscript": "The Gaussian propeller bound in every dimension"
+    },
+    {
+      "id": "m1-kc-soundness",
+      "kind": "lemma",
+      "label": "Soundness",
+      "statement": "[Soundness] Fix \\(>0\\) with \\(C_k+2<1\\), and choose \\(,D\\) as in for this \\(\\). If every labeling of \\(G\\) satisfies at most \\(\\) of its edges, where 0<< ^2 4kD , then \\((A I_k) C_k+2\\).",
+      "section": "A kernel-clustering application",
+      "manuscript": "The Gaussian propeller bound in every dimension"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-thm-main",
+      "to": "m1-cor-gaussian-maxima"
+    },
+    {
+      "from": "m1-geo-pair",
+      "to": "m1-geo-constraints"
+    },
+    {
+      "from": "m1-kc-matrix",
+      "to": "m1-kc-soundness"
+    },
+    {
+      "from": "m1-kc-main",
+      "to": "m1-kc-soundness"
+    },
+    {
+      "from": "m1-kc-kn-input",
+      "to": "m1-kc-soundness"
+    },
+    {
+      "from": "m1-kc-ug-input",
+      "to": "m1-kc-soundness"
+    },
+    {
+      "from": "m1-kc-completeness",
+      "to": "m1-kc-soundness"
+    }
+  ]
+}

@@ -1,0 +1,364 @@
+{
+  "familyNumber": "142",
+  "familyTitle": "Deterministic polynomial factorization over prime fields",
+  "manuscripts": [
+    {
+      "id": "Deterministic-Polynomial-Factorization-over-Prime-Fields-October-4-2026",
+      "title": "Deterministic Polynomial Factorization over Prime Fields",
+      "date": "2026-10-04",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Deterministic-Polynomial-Factorization-over-Prime-Fields-October-4-2026/Deterministic-Polynomial-Factorization-over-Prime-Fields.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Finite-field computations without known roots",
+    "Auxiliary primes and primary generators",
+    "Divisions on a cyclic cover",
+    "Divisor arithmetic without factoring supports",
+    "Solving the promised norm equations",
+    "Splitting an odd number of roots",
+    "From a splitting procedure to complete factorization",
+    "Uniform bit complexity",
+    "Small auxiliary primes from a uniform zero-free strip"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-factorization",
+      "kind": "theorem",
+      "label": "There is a uniform deterministic algorithm that, given a prime p in binary and…",
+      "statement": "There is a uniform deterministic algorithm that, given a prime p in binary and a nonzero dense polynomial f of degree n , outputs its leading coefficient and its distinct monic irreducible factors…",
+      "section": "Introduction",
+      "manuscript": "Deterministic Polynomial Factorization over Prime Fields"
+    },
+    {
+      "id": "m1-thm-reduction",
+      "kind": "theorem",
+      "label": "There is a uniform deterministic algorithm with the following guarantee. Its…",
+      "statement": "There is a uniform deterministic algorithm with the following guarantee. Its input is a prime p and a nonzero dense polynomial f . If p>B^ 200000 and n2 , its input also includes one auxiliary prime…",
+      "section": "Introduction",
+      "manuscript": "Deterministic Polynomial Factorization over Prime Fields"
+    },
+    {
+      "id": "m1-ff-simultaneous",
+      "kind": "lemma",
+      "label": "Simultaneous execution",
+      "statement": "[Simultaneous execution] Suppose a deterministic field procedure uses arithmetic, zero tests, and integer control, and its scalar input at component i is obtained by specializing given elements of A…",
+      "section": "Finite-field computations without known roots",
+      "manuscript": "Deterministic Polynomial Factorization over Prime Fields"
+    },
+    {
+      "id": "m1-ff-unitroot",
+      "kind": "lemma",
+      "label": "Root extraction from a primary generator",
+      "statement": "[Root extraction from a primary generator] Let k be an explicit finite field of cardinality Q and characteristic p . Let q be an odd prime dividing Q-1 , let k have order q , and let k generate the…",
+      "section": "Finite-field computations without known roots",
+      "manuscript": "Deterministic Polynomial Factorization over Prime Fields"
+    },
+    {
+      "id": "m1-ff-even-split",
+      "kind": "proposition",
+      "label": "Even-degree splitting",
+      "statement": "[Even-degree splitting] Let p be odd, and let F F_p[T] be monic, square-free, and totally split of even degree N2 , with p>N . Given a generator u of the full 2 -primary subgroup of F_p^* , one can…",
+      "section": "Finite-field computations without known roots",
+      "manuscript": "Deterministic Polynomial Factorization over Prime Fields"
+    },
+    {
+      "id": "m1-table-degreeq",
+      "kind": "lemma",
+      "label": "The algebra U_q is a field of degree q over F_p .",
+      "statement": "The algebra U_q is a field of degree q over F_p .",
+      "section": "Auxiliary primes and primary generators",
+      "manuscript": "Deterministic Polynomial Factorization over Prime Fields"
+    },
+    {
+      "id": "m1-table-construction",
+      "kind": "proposition",
+      "label": "Table construction",
+      "statement": "[Table construction] Suppose the auxiliary primes are supplied, and suppose a deterministic procedure has the following uniform contract: for every integer 1 b<n , it factors every monic polynomial…",
+      "section": "Auxiliary primes and primary generators",
+      "manuscript": "Deterministic Polynomial Factorization over Prime Fields"
+    },
+    {
+      "id": "m1-geom-filtration",
+      "kind": "lemma",
+      "label": "The module T_t is killed by ^t . The map \\[ T_t T_ t+1 , (d,W)(d, W) \\] is…",
+      "statement": "The module T_t is killed by ^t . The map \\[ T_t T_ t+1 , (d,W)(d, W) \\] is injective, and its image is T_ t+1 [^t] . Consequently, inside any T_m the successive modules are precisely T_j=T_m[^j] for…",
+      "section": "Divisions on a cyclic cover",
+      "manuscript": "Deterministic Polynomial Factorization over Prime Fields"
+    },
+    {
+      "id": "m1-geom-ramification",
+      "kind": "lemma",
+      "label": "Ramification generators and labels",
+      "statement": "[Ramification generators and labels] In the setup of Section~ , the elements \\[ _i=([P_i-_0],e) (1 i N) \\] generate T_1 over F_q , and _ i=1 ^N_i=0. More explicitly, let D be a geometric degree-zero…",
+      "section": "Divisions on a cyclic cover",
+      "manuscript": "Deterministic Polynomial Factorization over Prime Fields"
+    },
+    {
+      "id": "m1-geom-frobenius",
+      "kind": "lemma",
+      "label": "For the curve and modules above, let r0 , set m=1+(q-1)r , and let k/K be the…",
+      "statement": "For the curve and modules above, let r0 , set m=1+(q-1)r , and let k/K be the extension of degree q^r . Then ^ q^r fixes T_m pointwise. If 1 t m and d J , W satisfy ^t d=[W] , then d itself is fixed…",
+      "section": "Divisions on a cyclic cover",
+      "manuscript": "Deterministic Polynomial Factorization over Prime Fields"
+    },
+    {
+      "id": "m1-geom-descent",
+      "kind": "lemma",
+      "label": "Finite-field descent",
+      "statement": "[Finite-field descent] Let C be a smooth projective geometrically integral curve over a finite field k . A k -rational divisor that is geometrically principal is the divisor of a function in k(C)^* .…",
+      "section": "Divisions on a cyclic cover",
+      "manuscript": "Deterministic Polynomial Factorization over Prime Fields"
+    },
+    {
+      "id": "m1-geom-lifts",
+      "kind": "corollary",
+      "label": "In the setup of Section~ , let r0 , m=1+(q-1)r , and [k:K]=q^r . For every i…",
+      "statement": "In the setup of Section~ , let r0 , m=1+(q-1)r , and [k:K]=q^r . For every i there exist classes d_ i,1 ,,d_ i,m , all represented by degree-zero divisors over k , such that d_ i,1 &=[P_i-_0],\\\\ d_…",
+      "section": "Divisions on a cyclic cover",
+      "manuscript": "Deterministic Polynomial Factorization over Prime Fields"
+    },
+    {
+      "id": "m1-geom-separation",
+      "kind": "proposition",
+      "label": "Forced separation",
+      "statement": "[Forced separation] In the setup of Section~ , put r=v_q(N) and m=1+(q-1)r , and let k/K have degree q^r . Let d_m J have a degree-zero divisor representative over k and satisfy ^m d_m=[Ne] . For 1 t…",
+      "section": "Divisions on a cyclic cover",
+      "manuscript": "Deterministic Polynomial Factorization over Prime Fields"
+    },
+    {
+      "id": "m1-div-arithmetic",
+      "kind": "proposition",
+      "label": "Effective divisor arithmetic",
+      "statement": "[Effective divisor arithmetic] On the curve C above, the following operations are deterministic and use a number of field operations polynomial in q,N , the degrees occurring in the input…",
+      "section": "Divisor arithmetic without factoring supports",
+      "manuscript": "Deterministic Polynomial Factorization over Prime Fields"
+    },
+    {
+      "id": "m1-div-compression",
+      "kind": "lemma",
+      "label": "Compression and pushforward",
+      "statement": "[Compression and pushforward] From the representation of I=I(D) one can compute monic polynomials h^+,h^- k[X] satisfying \\[ h^+=_ P finite (v_P(D),0)[k(P):k], h^-=_ P finite (-v_P(D),0)[k(P):k]. \\]…",
+      "section": "Divisor arithmetic without factoring supports",
+      "manuscript": "Deterministic Polynomial Factorization over Prime Fields"
+    },
+    {
+      "id": "m1-div-trace",
+      "kind": "lemma",
+      "label": "Simultaneous divisor sum",
+      "statement": "[Simultaneous divisor sum] Suppose A k^s is an explicitly represented split algebra. Let I_1,,I_s be fractional ideals of O supplied together over A , with monic bounds H_i and a common number b of…",
+      "section": "Divisor arithmetic without factoring supports",
+      "manuscript": "Deterministic Polynomial Factorization over Prime Fields"
+    },
+    {
+      "id": "m1-div-circuits",
+      "kind": "lemma",
+      "label": "Principal functions with large infinity coefficients",
+      "statement": "[Principal functions with large infinity coefficients] Let D be a represented degree-zero divisor of bounded absolute degree, and let W=_jw_j_j have degree zero, with integer coefficients given in…",
+      "section": "Divisor arithmetic without factoring supports",
+      "manuscript": "Deterministic Polynomial Factorization over Prime Fields"
+    },
+    {
+      "id": "m1-norm-solve",
+      "kind": "theorem",
+      "label": "Promised norm solver",
+      "statement": "[Promised norm solver] Let k be an explicitly represented finite field of characteristic p , let q be an odd prime, and suppose that a primitive q th root of unity k and a generator of the full q…",
+      "section": "Solving the promised norm equations",
+      "manuscript": "Deterministic Polynomial Factorization over Prime Fields"
+    },
+    {
+      "id": "m1-norm-idempotent-to-norm",
+      "kind": "lemma",
+      "label": "Given a rank-one idempotent e E , linear algebra over K_0 constructs a norm…",
+      "statement": "Given a rank-one idempotent e E , linear algebra over K_0 constructs a norm solution h L .",
+      "section": "Solving the promised norm equations",
+      "manuscript": "Deterministic Polynomial Factorization over Prime Fields"
+    },
+    {
+      "id": "m1-norm-bundle-split",
+      "kind": "lemma",
+      "label": "Splitting on the projective line",
+      "statement": "[Splitting on the projective line] Every vector bundle on P^1_k is a direct sum of line bundles O(d) , with integer degrees d .",
+      "section": "Solving the promised norm equations",
+      "manuscript": "Deterministic Polynomial Factorization over Prime Fields"
+    },
+    {
+      "id": "m1-norm-fiber-idempotent",
+      "kind": "lemma",
+      "label": "Extracting a rank-one fiber idempotent",
+      "statement": "[Extracting a rank-one fiber idempotent] Given a basis of a subalgebra B M_q(k) that is conjugate to a full block upper triangular algebra, linear algebra over k constructs a rank-one idempotent in B…",
+      "section": "Solving the promised norm equations",
+      "manuscript": "Deterministic Polynomial Factorization over Prime Fields"
+    },
+    {
+      "id": "m1-norm-local-bounds",
+      "kind": "lemma",
+      "label": "Bounds for the local models",
+      "statement": "[Bounds for the local models] At a place with one of the matrix models above, every nonzero entry of the matrices of W_ ab and W_ ab ^ -1 has valuation between -M and M . At a place with the…",
+      "section": "Solving the promised norm equations",
+      "manuscript": "Deterministic Polynomial Factorization over Prime Fields"
+    },
+    {
+      "id": "m1-div-divide",
+      "kind": "proposition",
+      "label": "Class division",
+      "statement": "[Class division] Let k , q , F , C , and be as in Proposition~ , and suppose the auxiliary primary-group data required by Theorem~ are available. Let P=(x,0) be a specified k -rational ramification…",
+      "section": "Solving the promised norm equations",
+      "manuscript": "Deterministic Polynomial Factorization over Prime Fields"
+    },
+    {
+      "id": "m1-odd-split",
+      "kind": "proposition",
+      "label": "Odd-degree splitting",
+      "statement": "[Odd-degree splitting] Let p be prime, L=_2p , and B=20+(n+1)(L+1) . Suppose that p>B^ 200000 and that F F_p[X] is monic, square-free, totally split, and of odd degree 3 N n . Choose an odd prime q N…",
+      "section": "Splitting an odd number of roots",
+      "manuscript": "Deterministic Polynomial Factorization over Prime Fields"
+    },
+    {
+      "id": "m1-driver-separator",
+      "kind": "lemma",
+      "label": "A separating element",
+      "statement": "[A separating element] Let h F_p[X] be monic and square-free of degree d , let r= B_h2 , and suppose p>r^3 . From any ordered basis b_0,,b_ r-1 of B_h , one can find an integer t\\ 0,,r^3\\ such that…",
+      "section": "From a splitting procedure to complete factorization",
+      "manuscript": "Deterministic Polynomial Factorization over Prime Fields"
+    },
+    {
+      "id": "m1-driver-correctness",
+      "kind": "proposition",
+      "label": "Correctness and the table contract",
+      "statement": "[Correctness and the table contract] Fix n , p , and B as in Equation~ . For every monic h F_p[X] of degree b n , Factor(h) terminates and returns its complete irreducible factorization. In the…",
+      "section": "From a splitting procedure to complete factorization",
+      "manuscript": "Deterministic Polynomial Factorization over Prime Fields"
+    },
+    {
+      "id": "m1-complexity-bound",
+      "kind": "proposition",
+      "label": "Let E be the largest supplied auxiliary prime, or 2 when none is needed, as in…",
+      "statement": "Let E be the largest supplied auxiliary prime, or 2 when none is needed, as in Theorem~ . The complete algorithm uses O(B^ 500000 +B^ 100 E^ 20 ) bit operations. The same bound applies if the…",
+      "section": "Uniform bit complexity",
+      "manuscript": "Deterministic Polynomial Factorization over Prime Fields"
+    },
+    {
+      "id": "m1-analytic-hecke",
+      "kind": "theorem",
+      "label": ", Theorem~1.2",
+      "statement": "[ , Theorem~1.2] For every cyclotomic number field K containing the twelfth roots of unity, and every finite-order Hecke character of K , the Hecke L -function L_K(s,) has no zero in \\[ s>1-, =10^ -6…",
+      "section": "Small auxiliary primes from a uniform zero-free strip",
+      "manuscript": "Deterministic Polynomial Factorization over Prime Fields"
+    },
+    {
+      "id": "m1-analytic-explicit",
+      "kind": "lemma",
+      "label": "If the Dedekind zeta function _M(s) has no zero in s>1- , for the fixed in…",
+      "statement": "If the Dedekind zeta function _M(s) has no zero in s>1- , for the fixed in Theorem~ , then, uniformly for x2 , _M(x)=x(1)+ O_(x^ 1- ( D_M+d_M)). The implied constant is independent of M .",
+      "section": "Small auxiliary primes from a uniform zero-free strip",
+      "manuscript": "Deterministic Polynomial Factorization over Prime Fields"
+    },
+    {
+      "id": "m1-analytic-auxiliary",
+      "kind": "proposition",
+      "label": "There is an absolute constant c_0 such that, for every prime p>B^ 200000 and…",
+      "statement": "There is an absolute constant c_0 such that, for every prime p>B^ 200000 and every prime q n , an auxiliary prime for (p,q) exists with \\[ c_0B^ 20000000 . \\]",
+      "section": "Small auxiliary primes from a uniform zero-free strip",
+      "manuscript": "Deterministic Polynomial Factorization over Prime Fields"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-geom-filtration",
+      "to": "m1-geom-frobenius"
+    },
+    {
+      "from": "m1-geom-frobenius",
+      "to": "m1-geom-lifts"
+    },
+    {
+      "from": "m1-geom-descent",
+      "to": "m1-geom-lifts"
+    },
+    {
+      "from": "m1-geom-descent",
+      "to": "m1-geom-separation"
+    },
+    {
+      "from": "m1-geom-ramification",
+      "to": "m1-geom-separation"
+    },
+    {
+      "from": "m1-div-compression",
+      "to": "m1-div-divide"
+    },
+    {
+      "from": "m1-geom-descent",
+      "to": "m1-div-divide"
+    },
+    {
+      "from": "m1-norm-solve",
+      "to": "m1-div-divide"
+    },
+    {
+      "from": "m1-div-arithmetic",
+      "to": "m1-div-divide"
+    },
+    {
+      "from": "m1-norm-solve",
+      "to": "m1-odd-split"
+    },
+    {
+      "from": "m1-div-compression",
+      "to": "m1-odd-split"
+    },
+    {
+      "from": "m1-geom-lifts",
+      "to": "m1-odd-split"
+    },
+    {
+      "from": "m1-div-trace",
+      "to": "m1-odd-split"
+    },
+    {
+      "from": "m1-geom-separation",
+      "to": "m1-odd-split"
+    },
+    {
+      "from": "m1-div-circuits",
+      "to": "m1-odd-split"
+    },
+    {
+      "from": "m1-ff-unitroot",
+      "to": "m1-odd-split"
+    },
+    {
+      "from": "m1-driver-separator",
+      "to": "m1-driver-correctness"
+    },
+    {
+      "from": "m1-ff-simultaneous",
+      "to": "m1-complexity-bound"
+    },
+    {
+      "from": "m1-norm-solve",
+      "to": "m1-complexity-bound"
+    },
+    {
+      "from": "m1-ff-unitroot",
+      "to": "m1-complexity-bound"
+    },
+    {
+      "from": "m1-analytic-hecke",
+      "to": "m1-analytic-auxiliary"
+    },
+    {
+      "from": "m1-analytic-explicit",
+      "to": "m1-analytic-auxiliary"
+    },
+    {
+      "from": "m1-thm-factorization",
+      "to": "m1-analytic-auxiliary"
+    },
+    {
+      "from": "m1-thm-reduction",
+      "to": "m1-analytic-auxiliary"
+    }
+  ]
+}

@@ -1,0 +1,1007 @@
+{
+  "familyNumber": "308",
+  "familyTitle": "Finite Smith–Toda complexes at every height",
+  "manuscripts": [
+    {
+      "id": "Finite-Smith-Toda-Complexes-at-Varying-Primes-September-23-2026",
+      "title": "Finite Smith–Toda Complexes at Varying Primes",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Finite-Smith-Toda-Complexes-at-Varying-Primes-September-23-2026/paper.pdf"
+    },
+    {
+      "id": "A-finite-Smith-Toda-complex-V4-at-the-prime-1009-September-23-2026",
+      "title": "A finite Smith–Toda complex V(4) at the prime 1009",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-finite-Smith-Toda-complex-V4-at-the-prime-1009-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Ultraproducts, gradings, and finite cells",
+    "Uniform localization of permutation powers",
+    "The Euler layer and ordinary reduction",
+    "Universal coefficients for successive cycles",
+    "Connectivity at weights growing with the prime",
+    "Normalization and successive attaching classes",
+    "The cobordism calculation",
+    "Hurewicz detection and finite realization",
+    "Brown--Peterson coordinates and the Adams--Novikov resolution",
+    "Filtered cobar preliminaries",
+    "The unital complexes through height three",
+    "The height-four obstruction calculation",
+    "Eliminating two obstruction degrees by Frobenius",
+    "The final obstruction and the finite cofiber"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For every integer n0 , there exist a prime p and a finite p -local spectrum X…",
+      "statement": "For every integer n0 , there exist a prime p and a finite p -local spectrum X such that \\[ _*X_*/(p,v_1,,v_n) \\] as graded _* -comodules, with the canonical quotient coaction and generator in degree…",
+      "section": "Introduction",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-found-ultraproduct",
+      "kind": "proposition",
+      "label": "The category is stable and symmetric monoidal, with finite stable constructions…",
+      "statement": "The category is stable and symmetric monoidal, with finite stable constructions and tensor products computed primewise. If X=[(X_p)] and Y=[(Y_p)] , then _ (X,Y) _ U _ p U _ _ (p) (X_p,Y_p). Every…",
+      "section": "Ultraproducts, gradings, and finite cells",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-found-rectification",
+      "kind": "lemma",
+      "label": "Let R be a discrete commutative ring containing , and let be a discrete abelian…",
+      "statement": "Let R be a discrete commutative ring containing , and let be a discrete abelian group. Commutative algebras in -graded HR -module spectra admit strict commutative differential graded R -algebra…",
+      "section": "Ultraproducts, gradings, and finite cells",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-found-free-null",
+      "kind": "lemma",
+      "label": "Let B be a -graded commutative differential graded algebra over a discrete ring…",
+      "statement": "Let B be a -graded commutative differential graded algebra over a discrete ring R , and let x B_ be a cycle of chain degree r . The free extension \\[ B//x:=B[z], |z|_ chain =r+1, (z)=, z=x \\] models…",
+      "section": "Ultraproducts, gradings, and finite cells",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-found-picard-grading",
+      "kind": "lemma",
+      "label": "Let D be a stable symmetric monoidal category with rational mapping spectra,…",
+      "statement": "Let D be a stable symmetric monoidal category with rational mapping spectra, and let be a finite free abelian group with a chosen basis. Suppose the desired invertible object for each basis element…",
+      "section": "Ultraproducts, gradings, and finite cells",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-found-mapping-pairings",
+      "kind": "lemma",
+      "label": "The constructions h_ are exact componentwise and possess coherent lax symmetric…",
+      "statement": "The constructions h_ are exact componentwise and possess coherent lax symmetric monoidal pairings. On algebraic inputs they give graded D -algebras and their modules. The pairings are balanced over D…",
+      "section": "Ultraproducts, gradings, and finite cells",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-found-finite-cell-morita",
+      "kind": "proposition",
+      "label": "The functor h_ induces a symmetric monoidal equivalence between _ cell and the…",
+      "statement": "The functor h_ induces a symmetric monoidal equivalence between _ cell and the category of finite-cell graded A -modules. For X,Y , the natural comparison h_(X)_A h_(Y) h_(X Y) is an equivalence…",
+      "section": "Ultraproducts, gradings, and finite cells",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-found-koszul-realization",
+      "kind": "proposition",
+      "label": "Fix 0 r n . Suppose cycles b_h of chain degree zero and weight w_h , for 0 h r…",
+      "statement": "Fix 0 r n . Suppose cycles b_h of chain degree zero and weight w_h , for 0 h r , have been chosen successively in the strict algebras A[e_0,,e_ j-1 ], |e_h|_ chain =1, (e_h)=w_h,\\\\ e_h=b_h A[e_0,,e_…",
+      "section": "Ultraproducts, gradings, and finite cells",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-power-localizations",
+      "kind": "lemma",
+      "label": "The two localizations",
+      "statement": "[The two localizations] Let be the symmetric monoidal stable localization of () by the localizing tensor ideal generated by G_+ X , for all X . For b1 , put \\[ E_b=G^ *b , E_b=(E_ b+ ). \\] The image…",
+      "section": "Uniform localization of permutation powers",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-power-prime-to-p",
+      "kind": "lemma",
+      "label": "Prime-to- p actions",
+      "statement": "[Prime-to- p actions] If a finite group H has order prime to p , every naive H -spectrum in _ (p) is a retract of the induction of its underlying spectrum. In particular, homotopy fixed points…",
+      "section": "Uniform localization of permutation powers",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-power-exactness",
+      "kind": "lemma",
+      "label": "A single Euler map makes the power exact",
+      "statement": "[A single Euler map makes the power exact] The composite N: is exact. More precisely, for a map f:A_0 A_1 , form the canonical comparison in \\[ _f:(NA_0 NA_1) N( f). \\] Its fiber is annihilated by…",
+      "section": "Uniform localization of permutation powers",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-power-graded-localization",
+      "kind": "lemma",
+      "label": "Euler inversion and ordinary scalars",
+      "statement": "[Euler inversion and ordinary scalars] Replacing by in Equation~ gives the algebra B(X)[t^ -1 ] . At =m=0 , trivial action gives a natural algebra map on the -grading \\[ h_(X) B(X)_ 0,*,0 . \\] We…",
+      "section": "Uniform localization of permutation powers",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-power-operation",
+      "kind": "proposition",
+      "label": "The unnormalized power",
+      "statement": "[The unnormalized power] For a sequence of actual primewise -graded commutative algebras, there is a natural map of graded commutative algebras over rational spectra P_X:h_(X) B(X)[t^ -1 ]_ *,0,0 .…",
+      "section": "Uniform localization of permutation powers",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-layer-acyclic-sphere",
+      "kind": "lemma",
+      "label": "Acyclicity of the Borel sphere",
+      "statement": "[Acyclicity of the Borel sphere] For every odd prime p , the space Z_p^ orb =S(V)_ hG_p has the p -local homology of a point. Its stabilized augmentation to the p -local sphere is an equivalence.",
+      "section": "The Euler layer and ordinary reduction",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-layer-even-trivializations",
+      "kind": "lemma",
+      "label": "Even spherical trivializations",
+      "statement": "[Even spherical trivializations] For every even integer r , including negative integers, the local p -local sphere of rV over Z_p^ orb is trivializable with fiber degree r(p-1) . Consequently there…",
+      "section": "The Euler layer and ordinary reduction",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-layer-norm-model",
+      "kind": "lemma",
+      "label": "The partial and full norm model",
+      "statement": "[The partial and full norm model] There is a natural cofiber sequence Part(U) Full(U) _ (,U). The first map is projection from a join stage followed by the norm. The norm is an equivalence on induced…",
+      "section": "The Euler layer and ordinary reduction",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-layer-partial-thom",
+      "kind": "lemma",
+      "label": "Partial Thom spectra with arbitrary coefficients",
+      "statement": "[Partial Thom spectra with arbitrary coefficients] Let Z=(Z_p)_p be any sequence of p -local spectra, without connectivity or boundedness assumptions. Let r=(r_p)_p be a sequence of integers of fixed…",
+      "section": "The Euler layer and ordinary reduction",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-layer-coefficient-algebra",
+      "kind": "lemma",
+      "label": "The coefficient algebra of the layer",
+      "statement": "[The coefficient algebra of the layer] For every ordinary sequence Z , external multiplication is an equivalence _ (,J^)_D H(Z) _ (,J^ Z). The unit-input algebra is equivalent, as a commutative D…",
+      "section": "The Euler layer and ordinary reduction",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-layer-odd-vanishing",
+      "kind": "lemma",
+      "label": "Odd twists vanish in the layer",
+      "statement": "[Odd twists vanish in the layer] For every ordinary sequence Z and every sequence of odd integers r=(r_p)_p , \\[ _ (,T^rJ^ Z)=0. \\]",
+      "section": "The Euler layer and ordinary reduction",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-layer-comparison",
+      "kind": "proposition",
+      "label": "The multiplicative Euler layer",
+      "statement": "[The multiplicative Euler layer] For every sequence of graded commutative algebras X , there are natural product-compatible equivalences B(X)//t (X) (X)_D(D//). The right-hand comparison applies to…",
+      "section": "The Euler layer and ordinary reduction",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-layer-first-koszul",
+      "kind": "corollary",
+      "label": "The first Koszul layer",
+      "statement": "[The first Koszul layer] For constant input , the comparison identifies \\[ B()//t F^*h_(Y_1) \\] as graded algebras. For M=(_ (p) )_p there is a compatible identification \\[ B(M)//t F^*h_(M Y_1). \\]…",
+      "section": "The Euler layer and ordinary reduction",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-layer-completion",
+      "kind": "lemma",
+      "label": "Derived Euler completion",
+      "statement": "[Derived Euler completion] For a rational graded commutative algebra C with a homogeneous chain-degree-zero polynomial class t , define \\[ C=_ s1 C//t^s, \\] using the natural derived polynomial…",
+      "section": "The Euler layer and ordinary reduction",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-universal-triangular",
+      "kind": "lemma",
+      "label": "Definition~ determines dg algebras R^a , K_-^a , and K^a . The differential of…",
+      "statement": "Definition~ determines dg algebras R^a , K_-^a , and K^a . The differential of each z_ j,S is decomposable and uses only earlier generators when the generators are ordered by increasing j and, for a…",
+      "section": "Universal coefficients for successive cycles",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-universal-filtered-cells",
+      "kind": "lemma",
+      "label": "The length filtrations are dg filtrations. The associated graded algebra R^a…",
+      "statement": "The length filtrations are dg filtrations. The associated graded algebra R^a has zero differential, and in K^a one has \\[ e_j=z_ j, . \\] As a filtered R^a -module, K^a is built by finitely many free…",
+      "section": "Universal coefficients for successive cycles",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-universal-associated-graded",
+      "kind": "lemma",
+      "label": "On filtered spectra, the functor \\[ ( F)_s =( F_ s+1 F_s) \\] preserves colimits…",
+      "statement": "On filtered spectra, the functor \\[ ( F)_s =( F_ s+1 F_s) \\] preserves colimits and is symmetric monoidal. It therefore preserves free commutative algebras and algebra pushouts. The comparison \\[ h_(…",
+      "section": "Universal coefficients for successive cycles",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-universal-primewise-models",
+      "kind": "proposition",
+      "label": "For the chosen cycles through b_a , there exist the following data as germs…",
+      "statement": "For the chosen cycles through b_a , there exist the following data as germs along : Filtered -graded commutative ring spectra R_p^a , with an equivalence R^a h_(R_p^a) at every filtration order,…",
+      "section": "Universal coefficients for successive cycles",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-universal-whole-module",
+      "kind": "proposition",
+      "label": "On one -large set of primes there is an equivalence of whole (weight,order)…",
+      "statement": "On one -large set of primes there is an equivalence of whole (weight,order) -graded R_p^a -modules K_p^a _ j a ^ R_p^a (multiplication by z_ j, on R_p^a). Each multiplication map has source the free…",
+      "section": "Universal coefficients for successive cycles",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-conn-stable-elements",
+      "kind": "lemma",
+      "label": "Let p be odd, let 0 k<p^2 , and write k=lp+b with 0 b<p . Let H=(C_p)^l_k act…",
+      "statement": "Let p be odd, let 0 k<p^2 , and write k=lp+b with 0 b<p . Let H=(C_p)^l_k act by translations on l disjoint blocks of p letters, and let N be its normalizer. For either the trivial or the sign module…",
+      "section": "Connectivity at weights growing with the prime",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-conn-symmetric",
+      "kind": "proposition",
+      "label": "Fix a positive integer C . For every odd prime p>C , every 0 k Cp , and every…",
+      "statement": "Fix a positive integer C . For every odd prime p>C , every 0 k Cp , and every integer d , one has \\[ ^k(S^d)_ kd . \\] If d is odd, there is the additional bound ^k(S^d)_ kd+k-(2C+1) . If d is even,…",
+      "section": "Connectivity at weights growing with the prime",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-conn-estimate",
+      "kind": "proposition",
+      "label": "Fix 0 a<n and , , and set C=\\ 0,()\\ +|()|+1, N_a=2^ a+1 -1, E=N_a(5C+1). On a…",
+      "statement": "Fix 0 a<n and , , and set C=\\ 0,()\\ +|()|+1, N_a=2^ a+1 -1, E=N_a(5C+1). On a set of primes in , and for all its sufficiently large members, the underlying unfiltered module satisfies K_p^a(p+) _…",
+      "section": "Connectivity at weights growing with the prime",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-conn-degree-gap",
+      "kind": "lemma",
+      "label": "For every fixed i=(,,m) with m>-() , one has \\[ Q(K_p^a)_i=0, (K_p^a)_i=0. \\]…",
+      "statement": "For every fixed i=(,,m) with m>-() , one has \\[ Q(K_p^a)_i=0, (K_p^a)_i=0. \\] Here Q and are applied to the primewise underlying graded modules, as allowed by the arbitrary-object part of the layer…",
+      "section": "Connectivity at weights growing with the prime",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-conn-k-test",
+      "kind": "proposition",
+      "label": "For every and every integer m>-() , there is a vanishing of -graded modules…",
+      "statement": "For every and every integer m>-() , there is a vanishing of -graded modules K^a_ R^a (B(R_p^a)/t)_ ,*,m =0. The tensor product uses the R^a -action in the -grading. The notation /t denotes the…",
+      "section": "Connectivity at weights growing with the prime",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-norm-amitsur",
+      "kind": "lemma",
+      "label": "Perfect algebra completion",
+      "statement": "[Perfect algebra completion] Let R be a commutative graded rational algebra, and let K be a commutative R -algebra whose underlying R -module is perfect. Define \\[ T(U)= (K^ _R(+1) _R U), c_U:U T(U),…",
+      "section": "Normalization and successive attaching classes",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-norm-target-locality",
+      "kind": "lemma",
+      "label": "Locality of the completed target",
+      "statement": "[Locality of the completed target] Every (,m) row of L_a is K^a -local for the evaluated R^a -action. Thus the coaugmentation c_ L_a :L_a T_a L_a is an equivalence of I -graded algebras.",
+      "section": "Normalization and successive attaching classes",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-norm-normalization",
+      "kind": "lemma",
+      "label": "The boundary row",
+      "statement": "[The boundary row] For B=B(R_p^a) , the map \\[ s_ T_a B : ( T_a B)^\\# (( T_a B)[t^ -1 ])^ \\] is an equivalence of -graded rational algebras.",
+      "section": "Normalization and successive attaching classes",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-norm-naturality",
+      "kind": "lemma",
+      "label": "Recovery and naturality",
+      "statement": "[Recovery and naturality] The normalized map recovers the evaluated power after inversion: s_ L_a P^a (v[t^ -1 ])^ P_ R_p^a . For a>0 , its restriction to R^ a-1 agrees, as a rational algebra map,…",
+      "section": "Normalization and successive attaching classes",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-norm-attachment",
+      "kind": "lemma",
+      "label": "Compatibility of the new attachment",
+      "statement": "[Compatibility of the new attachment] The preceding choices extend Equation~ to stage a+1 , with its unit, initial-layer, and tower compatibilities. Both new algebras are derived t -complete.",
+      "section": "Normalization and successive attaching classes",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-norm-construction",
+      "kind": "proposition",
+      "label": "The compatible towers",
+      "statement": "[The compatible towers] There exist cycles b_0,,b_n and their realizations Y_0,,Y_ n+1 , together with the algebras L_a,L_a^M for 0 a n , satisfying Equation~ and its sphere-to- M , initial-layer,…",
+      "section": "Normalization and successive attaching classes",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-norm-recovery",
+      "kind": "proposition",
+      "label": "Recovery on the preceding Koszul object",
+      "statement": "[Recovery on the preceding Koszul object] For 0 a<n there is a map of -graded rational algebras h_(M Y_a) h_(M)_ R^a K_-^a (L_a^M[t^ -1 ])^. On h_(M) it is the unnormalized power P_M followed by the…",
+      "section": "Normalization and successive attaching classes",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-cob-regularity",
+      "kind": "lemma",
+      "label": "The sequence x_0,x_1, is regular in (M_p)_* . Under the multiplicative…",
+      "statement": "The sequence x_0,x_1, is regular in (M_p)_* . Under the multiplicative projection to _* , the ideal I_h has image (p,v_1,,v_ h-1 ) for h 1 , and the image of x_h modulo this ideal is a scalar unit…",
+      "section": "The cobordism calculation",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-cob-cohomology",
+      "kind": "lemma",
+      "label": "For the Euler coordinate x of a faithful complex character of C_p , restriction…",
+      "statement": "For the Euler coordinate x of a faithful complex character of C_p , restriction gives H_ C_p ^*=(M_p)^*(pt)[[x]]/([p](x)), H_G^*\\ \\ (H_ C_p ^*)^ _p^ . The projective-space formulas are \\[ M_p^*(BK…",
+      "section": "The cobordism calculation",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-cob-euler-divisibility",
+      "kind": "lemma",
+      "label": "If a homogeneous class y H_G^* restricts to an element of (x^p) H_ C_p ^* ,…",
+      "statement": "If a homogeneous class y H_G^* restricts to an element of (x^p) H_ C_p ^* , then y is divisible by ^2 in H_G^* .",
+      "section": "The cobordism calculation",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-cob-power-rules",
+      "kind": "lemma",
+      "label": "The operation _p is natural in X . For homogeneous even-degree classes f and g…",
+      "statement": "The operation _p is natural in X . For homogeneous even-degree classes f and g , its product rule has the form \\[ _p(fg)=\\,_p(f)_p(g), (H_G^0)^, \\] where depends on their degrees and the Thom choices…",
+      "section": "The cobordism calculation",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-cob-euler-power",
+      "kind": "lemma",
+      "label": "There is a unit U(Z) M_p^0(BG CP^)^ such that h(Z)=U(Z)\\,e_ M_p (P (_ R C)). In…",
+      "statement": "There is a unit U(Z) M_p^0(BG CP^)^ such that h(Z)=U(Z)\\,e_ M_p (P (_ R C)). In particular, h(Z) has no constant term and [Z]h(Z)=U(0), h(Z)|_ C_p =U(Z)|_ C_p _ =0 ^ p-1 (Z+_ [](x)).",
+      "section": "The cobordism calculation",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-cob-coefficient-relation",
+      "kind": "proposition",
+      "label": "For each integer a 0 there are homogeneous coefficients in H_G^* and units…",
+      "statement": "For each integer a 0 there are homogeneous coefficients in H_G^* and units C,C'(H_G^0)^ such that C_p(x_a)= &C' x_ a+1 +^2D_* +_ 0 j,k a D_ jk x_jx_k\\\\ &+_ 0 j<a H_j_p(x_j)+T_*, T_* t_G. All terms…",
+      "section": "The cobordism calculation",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-real-cofiber-quotient",
+      "kind": "lemma",
+      "label": "Let \\(E\\) be a ring spectrum whose coefficient ring \\(R=_*E\\) is graded…",
+      "statement": "Let \\(E\\) be a ring spectrum whose coefficient ring \\(R=_*E\\) is graded commutative and concentrated in even degrees. Let \\(J\\) be a homogeneous ideal of \\(R\\), and let \\(u:S Y\\) induce the quotient…",
+      "section": "Hurewicz detection and finite realization",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-real-t-injectivity",
+      "kind": "lemma",
+      "label": "Suppose that, on a \\(\\)-large set of primes, \\[ (M_p)_*Y_ a+1,p (M_p)_*/I_ a+1…",
+      "statement": "Suppose that, on a \\(\\)-large set of primes, \\[ (M_p)_*Y_ a+1,p (M_p)_*/I_ a+1 \\] via the unit. Then multiplication by \\(t\\) is injective on \\(_0L_a^M\\) at every index. In particular, \\[ _0(L_a^M)_i…",
+      "section": "Hurewicz detection and finite realization",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-real-raw-powers",
+      "kind": "lemma",
+      "label": "Assume the hypothesis of Lemma~ . Suppose also that \\((M_p)_*Y_ a,p…",
+      "statement": "Assume the hypothesis of Lemma~ . Suppose also that \\((M_p)_*Y_ a,p (M_p)_*/I_a\\) via the unit on a \\(\\)-large set, and that the \\(M\\)-Hurewicz image of \\(b_a\\) equals \\(u x_a\\) for some \\(u D^\\).…",
+      "section": "Hurewicz detection and finite realization",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-real-thom-comparisons",
+      "kind": "lemma",
+      "label": "Fix \\(0 a<n\\), and suppose that \\((M_p)_*Y_ a+1,p (M_p)_*/I_ a+1 \\) via the…",
+      "statement": "Fix \\(0 a<n\\), and suppose that \\((M_p)_*Y_ a+1,p (M_p)_*/I_ a+1 \\) via the unit on a \\(\\)-large set. The maps in Equation~ have the following properties. The image \\(_()\\) is a unit at index zero…",
+      "section": "Hurewicz detection and finite realization",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-real-hurewicz",
+      "kind": "proposition",
+      "label": "There is a \\(\\)-large set of primes on which the unit maps induce,…",
+      "statement": "There is a \\(\\)-large set of primes on which the unit maps induce, simultaneously for \\(0 j n+1\\), (M_p)_*Y_ j,p (M_p)_*/I_j, _*Y_ j,p _*/ I_j. For every \\(0 j n\\), there is a scalar \\(u^ (j) D^\\)…",
+      "section": "Hurewicz detection and finite realization",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m1-real-finite-descent",
+      "kind": "lemma",
+      "label": "The \\(p\\)-localizations of finite CW spectra are closed under the finite…",
+      "statement": "The \\(p\\)-localizations of finite CW spectra are closed under the finite suspensions and cofibers in Equation~ .",
+      "section": "Hurewicz detection and finite realization",
+      "manuscript": "Finite Smith–Toda Complexes at Varying Primes"
+    },
+    {
+      "id": "m2-intro-main",
+      "kind": "theorem",
+      "label": "At p=1009 there is a finite p -local spectrum X and an isomorphism \\[ BP_*X\\ \\…",
+      "statement": "At p=1009 there is a finite p -local spectrum X and an isomorphism \\[ BP_*X\\ \\ BP_*/(p,v_1,v_2,v_3,v_4) \\] of graded BP_*BP -comodules, with the canonical quotient comodule on the right and its…",
+      "section": "Introduction",
+      "manuscript": "A finite Smith–Toda complex V(4) at the prime 1009"
+    },
+    {
+      "id": "m2-fw-coordinates",
+      "kind": "lemma",
+      "label": "Leading coefficients and low cooperations",
+      "statement": "[Leading coefficients and low cooperations] For each m 1 , I_m is an invariant ideal and v_m is primitive modulo I_m . Modulo I_m , the coproducts of t_i , i m , are the additive-composition…",
+      "section": "Brown--Peterson coordinates and the Adams--Novikov resolution",
+      "manuscript": "A finite Smith–Toda complex V(4) at the prime 1009"
+    },
+    {
+      "id": "m2-fw-v5-relation",
+      "kind": "lemma",
+      "label": "The relation supplied by v_5",
+      "statement": "[The relation supplied by v_5 ] In the cobar cohomology with coefficients R/I_4 , there is a scalar e F_p such that v_4(h_ 1,4 +e v_4^ p-1 h_ 1,0 )=0, where h_ 1,j is represented by the primitive…",
+      "section": "Brown--Peterson coordinates and the Adams--Novikov resolution",
+      "manuscript": "A finite Smith–Toda complex V(4) at the prime 1009"
+    },
+    {
+      "id": "m2-fw-normalized-bound",
+      "kind": "lemma",
+      "label": "Normalized positivity",
+      "statement": "[Normalized positivity] If the coefficient comodule has no negative weights, then C^ s,w 0 w s.",
+      "section": "Brown--Peterson coordinates and the Adams--Novikov resolution",
+      "manuscript": "A finite Smith–Toda complex V(4) at the prime 1009"
+    },
+    {
+      "id": "m2-fw-range-comparison",
+      "kind": "lemma",
+      "label": "A comparison in three cochain degrees",
+      "statement": "[A comparison in three cochain degrees] Suppose s1 , w<u_ m+1 , and w-u_m<s-1 . Additive specialization identifies the normalized cobar complexes for R/I_m and P , in weight w , in all three degrees…",
+      "section": "Brown--Peterson coordinates and the Adams--Novikov resolution",
+      "manuscript": "A finite Smith–Toda complex V(4) at the prime 1009"
+    },
+    {
+      "id": "m2-fw-anss",
+      "kind": "proposition",
+      "label": "The bounded-below Adams--Novikov resolution",
+      "statement": "[The bounded-below Adams--Novikov resolution] For every bounded-below p -local spectrum Z , the sphere-source Adams--Novikov spectral sequence has \\[ E_2^ s,t (Z)=H^ s,t (C^_(BP_*Z)) _ t-s Z. \\] It…",
+      "section": "Brown--Peterson coordinates and the Adams--Novikov resolution",
+      "manuscript": "A finite Smith–Toda complex V(4) at the prime 1009"
+    },
+    {
+      "id": "m2-fw-anss-pairing",
+      "kind": "proposition",
+      "label": "Binary pairings of the resolution",
+      "statement": "[Binary pairings of the resolution] For bounded-below p -local spectra Z_1,Z_2,Z_3 , an actual map f:Z_1 Z_2 Z_3 induces pairings of the Adams--Novikov spectral sequences, with the Leibniz rule on…",
+      "section": "Brown--Peterson coordinates and the Adams--Novikov resolution",
+      "manuscript": "A finite Smith–Toda complex V(4) at the prime 1009"
+    },
+    {
+      "id": "m2-fw-sparsity",
+      "kind": "corollary",
+      "label": "Sparsity",
+      "statement": "[Sparsity] If BP_*Z is concentrated in internal degrees divisible by q , then all pages of its Adams--Novikov spectral sequence have that same internal sparsity. Every possibly nonzero positive…",
+      "section": "Brown--Peterson coordinates and the Adams--Novikov resolution",
+      "manuscript": "A finite Smith–Toda complex V(4) at the prime 1009"
+    },
+    {
+      "id": "m2-fw-additive-comparison",
+      "kind": "lemma",
+      "label": "The additive comparison for the v_4 targets",
+      "statement": "[The additive comparison for the v_4 targets] Let s=qk+1 , w=u_4+k , k1 . A nonzero normalized cobar group in degree (s,w) with coefficients R/I_4 requires (q-1)k u_4-1, wqu_4-1 q-1 <2u_4<p^4<u_5.…",
+      "section": "Brown--Peterson coordinates and the Adams--Novikov resolution",
+      "manuscript": "A finite Smith–Toda complex V(4) at the prime 1009"
+    },
+    {
+      "id": "m2-may-page",
+      "kind": "lemma",
+      "label": "The filtered cobar calculation",
+      "statement": "[The filtered cobar calculation] For every integer M0 , the cobar cohomology of P admits a multiplicative, degreewise finite spectral sequence whose initial cohomology page is (h_ i,j :i1,j0) F_p[b_…",
+      "section": "Filtered cobar preliminaries",
+      "manuscript": "A finite Smith–Toda complex V(4) at the prime 1009"
+    },
+    {
+      "id": "m2-low-algebraic-vanishing",
+      "kind": "lemma",
+      "label": "Lower obstruction groups",
+      "statement": "[Lower obstruction groups] The following cobar cohomology groups vanish. For 1 n3 and k1 , the group with coefficients R/I_n in bidegree \\[ (s,w)=(qk+1,u_n+k). \\] For 0 n3 , choose e_i\\ 0,1,2\\ for 0…",
+      "section": "The unital complexes through height three",
+      "manuscript": "A finite Smith–Toda complex V(4) at the prime 1009"
+    },
+    {
+      "id": "m2-low-finite-localization",
+      "kind": "lemma",
+      "label": "Finite local cell attachments",
+      "statement": "[Finite local cell attachments] A spectrum obtained from finitely many p -local sphere cells is the p -localization of a finite CW spectrum.",
+      "section": "The unital complexes through height three",
+      "manuscript": "A finite Smith–Toda complex V(4) at the prime 1009"
+    },
+    {
+      "id": "m2-low-v3",
+      "kind": "proposition",
+      "label": "Construction through V(3)",
+      "statement": "[Construction through V(3) ] For 0 n3 there is a finite p -local cell spectrum V(n) with a bottom-cell unit _n:S_ (p) V(n) and a binary multiplication \\[ _n:V(n) V(n) V(n) \\] whose two unit…",
+      "section": "The unital complexes through height three",
+      "manuscript": "A finite Smith–Toda complex V(4) at the prime 1009"
+    },
+    {
+      "id": "m2-low-p-null",
+      "kind": "corollary",
+      "label": "The action of p on Y",
+      "statement": "[The action of p on Y ] For the spectrum Y of Proposition~ , _0Y= F_p and pid_Y is nullhomotopic.",
+      "section": "The unital complexes through height three",
+      "manuscript": "A finite Smith–Toda complex V(4) at the prime 1009"
+    },
+    {
+      "id": "m2-may-target-bound",
+      "kind": "lemma",
+      "label": "Explicit cutoffs",
+      "statement": "[Explicit cutoffs] The groups in are identified with H^ s,w (P) . Their May page has only positions 0,1,2,3 , and it is zero unless k p+2 . For k2 , only positions 0,1,2 can occur.",
+      "section": "The height-four obstruction calculation",
+      "manuscript": "A finite Smith–Toda complex V(4) at the prime 1009"
+    },
+    {
+      "id": "m2-may-first-list",
+      "kind": "lemma",
+      "label": "The first target and all incoming-source intervals",
+      "statement": "[The first target and all incoming-source intervals] In bidegree (s,w)=(q+1,u_4+1) the complete initial May page consists of acb B^ p-2 , acybz B^ p-3 . The first is not a splitting cycle and the…",
+      "section": "The height-four obstruction calculation",
+      "manuscript": "A finite Smith–Toda complex V(4) at the prime 1009"
+    },
+    {
+      "id": "m2-may-injectivity",
+      "kind": "proposition",
+      "label": "An injective multiplication",
+      "statement": "[An injective multiplication] Multiplication by the primitive class h_ 1,4 is injective on actual cobar cohomology in bidegree (q+1,u_4+1) : \\[ H^ q+1,u_4+1 (P) \\ h_ 1,4 \\ H^ q+2,u_5+1 (P). \\]",
+      "section": "The height-four obstruction calculation",
+      "manuscript": "A finite Smith–Toda complex V(4) at the prime 1009"
+    },
+    {
+      "id": "m2-may-first-differential",
+      "kind": "proposition",
+      "label": "The first Adams--Novikov differential",
+      "statement": "[The first Adams--Novikov differential] In the Adams--Novikov spectral sequence for Y , one has d_ q+1 (v_4)=0 .",
+      "section": "The height-four obstruction calculation",
+      "manuscript": "A finite Smith–Toda complex V(4) at the prime 1009"
+    },
+    {
+      "id": "m2-may-remaining-list",
+      "kind": "proposition",
+      "label": "All later obstruction candidates",
+      "statement": "[All later obstruction candidates] For k2 the complete initial May page in is Table~ ; all other values of k give an empty page. Put N_0=(p-1)^2 and N=p(p-1)-2 . [htbp] c l k & Initial May…",
+      "section": "The height-four obstruction calculation",
+      "manuscript": "A finite Smith–Toda complex V(4) at the prime 1009"
+    },
+    {
+      "id": "m2-may-comparison",
+      "kind": "lemma",
+      "label": "Two comparison surjections",
+      "statement": "[Two comparison surjections] The following initial-page tests give surjections on actual cobar cohomology. If every monomial of in bidegree (s,w) uses only generators with i r , then H^ s,w (P_r) H^…",
+      "section": "The height-four obstruction calculation",
+      "manuscript": "A finite Smith–Toda complex V(4) at the prime 1009"
+    },
+    {
+      "id": "m2-frob-extension",
+      "kind": "lemma",
+      "label": "The Frobenius extension",
+      "statement": "[The Frobenius extension] There is a finite faithfully flat exact sequence of affine group schemes 1 K_r=(_p)^r G_r F Q_r1, O(Q_r)= F_p[t_1^p,,t_r^p]. Its derived invariants give a first-quadrant…",
+      "section": "Eliminating two obstruction degrees by Frobenius",
+      "manuscript": "A finite Smith–Toda complex V(4) at the prime 1009"
+    },
+    {
+      "id": "m2-frob-action",
+      "kind": "lemma",
+      "label": "Conjugation on kernel cohomology",
+      "statement": "[Conjugation on kernel cohomology] For r=3 there is an isomorphism of bigraded algebras H^*(K_3; F_p) =(x,a,c) F_p[A,B,E]. The exterior generators have cohomological degree one and weights 1,u_2,u_3…",
+      "section": "Eliminating two obstruction degrees by Frobenius",
+      "manuscript": "A finite Smith–Toda complex V(4) at the prime 1009"
+    },
+    {
+      "id": "m2-frob-coefficients",
+      "kind": "lemma",
+      "label": "The coefficient-weight filtration",
+      "statement": "[The coefficient-weight filtration] Fix an exterior degree and a polynomial degree in , obtaining an invariant Q_r -submodule M . At each total weight w , increasing coefficient weight filters the…",
+      "section": "Eliminating two obstruction degrees by Frobenius",
+      "manuscript": "A finite Smith–Toda complex V(4) at the prime 1009"
+    },
+    {
+      "id": "m2-frob-quotient-groups",
+      "kind": "lemma",
+      "label": "The small quotient groups",
+      "statement": "[The small quotient groups] For Q_2 or Q_3 , at any positive rescaled weight w<p^2 all available May letters are y,b,z,C . Their monomials and bidegrees are C^j y^e z^f b^g, j0, e,f,g\\ 0,1\\ ,…",
+      "section": "Eliminating two obstruction degrees by Frobenius",
+      "manuscript": "A finite Smith–Toda complex V(4) at the prime 1009"
+    },
+    {
+      "id": "m2-frob-k2",
+      "kind": "proposition",
+      "label": "The row k=2",
+      "statement": "[The row k=2 ] At s=4p-3 and w=u_4+2 , the cobar cohomology group in Table~ is zero.",
+      "section": "Eliminating two obstruction degrees by Frobenius",
+      "manuscript": "A finite Smith–Toda complex V(4) at the prime 1009"
+    },
+    {
+      "id": "m2-frob-kpminus1",
+      "kind": "proposition",
+      "label": "The row k=p-1",
+      "statement": "[The row k=p-1 ] Put N_0=(p-1)^2 . At s=2N_0+1 and w=u_4+p-1 , the cobar cohomology group in Table~ is zero.",
+      "section": "Eliminating two obstruction degrees by Frobenius",
+      "manuscript": "A finite Smith–Toda complex V(4) at the prime 1009"
+    },
+    {
+      "id": "m2-frob-vanishing",
+      "kind": "corollary",
+      "label": "The obstruction groups in bidegrees \\[ (s,w)=(2q+1,u_4+2),…",
+      "statement": "The obstruction groups in bidegrees \\[ (s,w)=(2q+1,u_4+2), (s,w)=(q(p-1)+1,u_4+p-1) \\] vanish in the additive cobar calculation of Table~ . Among its rows with k2 , only the row k=p remains to be…",
+      "section": "Eliminating two obstruction degrees by Frobenius",
+      "manuscript": "A finite Smith–Toda complex V(4) at the prime 1009"
+    },
+    {
+      "id": "m2-top-small-stems",
+      "kind": "lemma",
+      "label": "Small-stem lifts",
+      "statement": "[Small-stem lifts] Every class of E_2^ 5,W (Y) survives to homotopy. Moreover, _ q(W+1)-6 Y=0.",
+      "section": "The final obstruction and the finite cofiber",
+      "manuscript": "A finite Smith–Toda complex V(4) at the prime 1009"
+    },
+    {
+      "id": "m2-top-sphere-classes",
+      "kind": "lemma",
+      "label": "The sphere classes",
+      "statement": "[The sphere classes] There are sphere classes \\[ _ q-1 S^0_ (p) , _ pq-2 S^0_ (p) \\] detected respectively by [t_1] and the divided coproduct b_ 1,0 . The former generates a cyclic group of order p ,…",
+      "section": "The final obstruction and the finite cofiber",
+      "manuscript": "A finite Smith–Toda complex V(4) at the prime 1009"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-found-mapping-pairings",
+      "to": "m1-found-finite-cell-morita"
+    },
+    {
+      "from": "m1-found-finite-cell-morita",
+      "to": "m1-found-koszul-realization"
+    },
+    {
+      "from": "m1-found-free-null",
+      "to": "m1-found-koszul-realization"
+    },
+    {
+      "from": "m1-found-picard-grading",
+      "to": "m1-power-localizations"
+    },
+    {
+      "from": "m1-power-prime-to-p",
+      "to": "m1-power-exactness"
+    },
+    {
+      "from": "m1-power-localizations",
+      "to": "m1-power-graded-localization"
+    },
+    {
+      "from": "m1-power-exactness",
+      "to": "m1-power-operation"
+    },
+    {
+      "from": "m1-layer-acyclic-sphere",
+      "to": "m1-layer-even-trivializations"
+    },
+    {
+      "from": "m1-found-picard-grading",
+      "to": "m1-layer-even-trivializations"
+    },
+    {
+      "from": "m1-layer-acyclic-sphere",
+      "to": "m1-layer-partial-thom"
+    },
+    {
+      "from": "m1-layer-partial-thom",
+      "to": "m1-layer-coefficient-algebra"
+    },
+    {
+      "from": "m1-layer-acyclic-sphere",
+      "to": "m1-layer-coefficient-algebra"
+    },
+    {
+      "from": "m1-layer-norm-model",
+      "to": "m1-layer-coefficient-algebra"
+    },
+    {
+      "from": "m1-power-prime-to-p",
+      "to": "m1-layer-odd-vanishing"
+    },
+    {
+      "from": "m1-layer-even-trivializations",
+      "to": "m1-layer-odd-vanishing"
+    },
+    {
+      "from": "m1-layer-acyclic-sphere",
+      "to": "m1-layer-odd-vanishing"
+    },
+    {
+      "from": "m1-layer-partial-thom",
+      "to": "m1-layer-odd-vanishing"
+    },
+    {
+      "from": "m1-layer-even-trivializations",
+      "to": "m1-layer-comparison"
+    },
+    {
+      "from": "m1-found-free-null",
+      "to": "m1-layer-comparison"
+    },
+    {
+      "from": "m1-layer-odd-vanishing",
+      "to": "m1-layer-comparison"
+    },
+    {
+      "from": "m1-found-finite-cell-morita",
+      "to": "m1-layer-first-koszul"
+    },
+    {
+      "from": "m1-layer-comparison",
+      "to": "m1-layer-first-koszul"
+    },
+    {
+      "from": "m1-universal-triangular",
+      "to": "m1-universal-filtered-cells"
+    },
+    {
+      "from": "m1-universal-triangular",
+      "to": "m1-universal-primewise-models"
+    },
+    {
+      "from": "m1-universal-associated-graded",
+      "to": "m1-universal-primewise-models"
+    },
+    {
+      "from": "m1-universal-filtered-cells",
+      "to": "m1-universal-primewise-models"
+    },
+    {
+      "from": "m1-universal-filtered-cells",
+      "to": "m1-universal-whole-module"
+    },
+    {
+      "from": "m1-conn-stable-elements",
+      "to": "m1-conn-symmetric"
+    },
+    {
+      "from": "m1-conn-symmetric",
+      "to": "m1-conn-estimate"
+    },
+    {
+      "from": "m1-conn-estimate",
+      "to": "m1-conn-degree-gap"
+    },
+    {
+      "from": "m1-conn-degree-gap",
+      "to": "m1-conn-k-test"
+    },
+    {
+      "from": "m1-norm-amitsur",
+      "to": "m1-norm-target-locality"
+    },
+    {
+      "from": "m1-found-free-null",
+      "to": "m1-norm-attachment"
+    },
+    {
+      "from": "m1-layer-completion",
+      "to": "m1-norm-attachment"
+    },
+    {
+      "from": "m1-universal-primewise-models",
+      "to": "m1-norm-construction"
+    },
+    {
+      "from": "m1-conn-k-test",
+      "to": "m1-norm-construction"
+    },
+    {
+      "from": "m1-norm-target-locality",
+      "to": "m1-norm-construction"
+    },
+    {
+      "from": "m1-norm-normalization",
+      "to": "m1-norm-construction"
+    },
+    {
+      "from": "m1-norm-naturality",
+      "to": "m1-norm-construction"
+    },
+    {
+      "from": "m1-norm-attachment",
+      "to": "m1-norm-construction"
+    },
+    {
+      "from": "m1-found-finite-cell-morita",
+      "to": "m1-norm-recovery"
+    },
+    {
+      "from": "m1-cob-cohomology",
+      "to": "m1-cob-euler-divisibility"
+    },
+    {
+      "from": "m1-cob-cohomology",
+      "to": "m1-cob-power-rules"
+    },
+    {
+      "from": "m1-cob-power-rules",
+      "to": "m1-cob-coefficient-relation"
+    },
+    {
+      "from": "m1-cob-cohomology",
+      "to": "m1-cob-coefficient-relation"
+    },
+    {
+      "from": "m1-cob-euler-divisibility",
+      "to": "m1-cob-coefficient-relation"
+    },
+    {
+      "from": "m1-cob-regularity",
+      "to": "m1-cob-coefficient-relation"
+    },
+    {
+      "from": "m1-norm-recovery",
+      "to": "m1-real-raw-powers"
+    },
+    {
+      "from": "m1-real-t-injectivity",
+      "to": "m1-real-raw-powers"
+    },
+    {
+      "from": "m1-cob-regularity",
+      "to": "m1-real-hurewicz"
+    },
+    {
+      "from": "m1-real-cofiber-quotient",
+      "to": "m1-real-hurewicz"
+    },
+    {
+      "from": "m1-real-t-injectivity",
+      "to": "m1-real-hurewicz"
+    },
+    {
+      "from": "m1-real-raw-powers",
+      "to": "m1-real-hurewicz"
+    },
+    {
+      "from": "m1-cob-coefficient-relation",
+      "to": "m1-real-hurewicz"
+    },
+    {
+      "from": "m1-real-thom-comparisons",
+      "to": "m1-real-hurewicz"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-real-finite-descent"
+    },
+    {
+      "from": "m1-real-hurewicz",
+      "to": "m1-real-finite-descent"
+    },
+    {
+      "from": "m1-cob-regularity",
+      "to": "m1-real-finite-descent"
+    },
+    {
+      "from": "m2-fw-coordinates",
+      "to": "m2-fw-range-comparison"
+    },
+    {
+      "from": "m2-fw-coordinates",
+      "to": "m2-fw-additive-comparison"
+    },
+    {
+      "from": "m2-fw-range-comparison",
+      "to": "m2-fw-additive-comparison"
+    },
+    {
+      "from": "m2-fw-normalized-bound",
+      "to": "m2-low-algebraic-vanishing"
+    },
+    {
+      "from": "m2-fw-range-comparison",
+      "to": "m2-low-algebraic-vanishing"
+    },
+    {
+      "from": "m2-low-algebraic-vanishing",
+      "to": "m2-low-v3"
+    },
+    {
+      "from": "m2-fw-anss",
+      "to": "m2-low-v3"
+    },
+    {
+      "from": "m2-fw-coordinates",
+      "to": "m2-low-v3"
+    },
+    {
+      "from": "m2-low-finite-localization",
+      "to": "m2-low-v3"
+    },
+    {
+      "from": "m2-fw-normalized-bound",
+      "to": "m2-may-target-bound"
+    },
+    {
+      "from": "m2-fw-additive-comparison",
+      "to": "m2-may-target-bound"
+    },
+    {
+      "from": "m2-may-page",
+      "to": "m2-may-injectivity"
+    },
+    {
+      "from": "m2-may-first-list",
+      "to": "m2-may-injectivity"
+    },
+    {
+      "from": "m2-may-injectivity",
+      "to": "m2-may-first-differential"
+    },
+    {
+      "from": "m2-may-target-bound",
+      "to": "m2-may-first-differential"
+    },
+    {
+      "from": "m2-may-target-bound",
+      "to": "m2-may-remaining-list"
+    },
+    {
+      "from": "m2-may-page",
+      "to": "m2-frob-quotient-groups"
+    },
+    {
+      "from": "m2-frob-quotient-groups",
+      "to": "m2-frob-k2"
+    },
+    {
+      "from": "m2-frob-quotient-groups",
+      "to": "m2-frob-kpminus1"
+    },
+    {
+      "from": "m2-frob-k2",
+      "to": "m2-frob-vanishing"
+    },
+    {
+      "from": "m2-frob-kpminus1",
+      "to": "m2-frob-vanishing"
+    },
+    {
+      "from": "m2-fw-normalized-bound",
+      "to": "m2-top-small-stems"
+    },
+    {
+      "from": "m2-fw-range-comparison",
+      "to": "m2-top-small-stems"
+    },
+    {
+      "from": "m2-fw-anss-pairing",
+      "to": "m2-top-sphere-classes"
+    }
+  ]
+}

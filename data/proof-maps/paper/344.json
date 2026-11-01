@@ -1,0 +1,360 @@
+{
+  "familyNumber": "344",
+  "familyTitle": "The metric Blaschke conjecture",
+  "manuscripts": [
+    {
+      "id": "The-metric-Blaschke-theorem-September-23-2026",
+      "title": "The metric Blaschke theorem",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-metric-Blaschke-theorem-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Blaschke geometry and model normalization",
+    "A Lagrangian comparison along a closed geodesic",
+    "Weighted comparison along a closed geodesic",
+    "Global comparison and the equality case",
+    "Incidence and the quaternionic Pontryagin class",
+    "The signature determines the incidence coefficient",
+    "The geodesic space and its integral classes",
+    "The sharp quaternionic volume bound",
+    "Completion of the metric classification"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-blaschke",
+      "kind": "theorem",
+      "label": "The metric Blaschke theorem",
+      "statement": "[The metric Blaschke theorem] Let (M,g) be a connected closed smooth Riemannian manifold of positive dimension. If (M,g)=(M,g) , then (M,g) is isometric, up to multiplication of the metric by a…",
+      "section": "Introduction",
+      "manuscript": "The metric Blaschke theorem"
+    },
+    {
+      "id": "m1-thm-comparison",
+      "kind": "theorem",
+      "label": "Sharp volume comparison",
+      "statement": "[Sharp volume comparison] Every Blaschke manifold and its model at the same diameter satisfy \\[ (M,g)(M_0,g_0). \\] Equality holds if and only if (M,g) is isometric to (M_0,g_0) .",
+      "section": "Introduction",
+      "manuscript": "The metric Blaschke theorem"
+    },
+    {
+      "id": "m1-thm-volume-reduction",
+      "kind": "corollary",
+      "label": "Reduction to an upper volume bound",
+      "statement": "[Reduction to an upper volume bound] If a Blaschke manifold has volume at most that of its model at the same diameter, then it is isometric to that model.",
+      "section": "Introduction",
+      "manuscript": "The metric Blaschke theorem"
+    },
+    {
+      "id": "m1-geom-cut-time",
+      "kind": "lemma",
+      "label": "Let D=(M,g)=(M,g) . Every unit-speed geodesic segment of length at most D is…",
+      "statement": "Let D=(M,g)=(M,g) . Every unit-speed geodesic segment of length at most D is minimizing. A segment of length less than D is the unique minimizing segment between its endpoints, and no segment of…",
+      "section": "Blaschke geometry and model normalization",
+      "manuscript": "The metric Blaschke theorem"
+    },
+    {
+      "id": "m1-geom-structure",
+      "kind": "proposition",
+      "label": "Classical Blaschke structure",
+      "statement": "[Classical Blaschke structure] Every unit-speed geodesic is simply closed with period 2D . For each p M , the map v_p(Dv) from S_pM onto the cut locus is a smooth sphere fibration whose fibers are…",
+      "section": "Blaschke geometry and model normalization",
+      "manuscript": "The metric Blaschke theorem"
+    },
+    {
+      "id": "m1-lag-determinant",
+      "kind": "proposition",
+      "label": "Jacobi determinant normalization",
+      "statement": "[Jacobi determinant normalization] Choose G_x - and G_y -orthonormal frames Z_x=(Z_ x,1 ,,Z_ x,d ) and Z_y=(Z_ y,1 ,,Z_ y,d ) of L_x and L_y . Then f(x,y)=|((Z_ x,a ,Z_ y,b ))_ a,b=1 ^d| is…",
+      "section": "A Lagrangian comparison along a closed geodesic",
+      "manuscript": "The metric Blaschke theorem"
+    },
+    {
+      "id": "m1-lag-poles",
+      "kind": "lemma",
+      "label": "Pole expansions",
+      "statement": "[Pole expansions] There is a positive definite k k matrix B such that the graph matrix has the expansions A(t)&=-1 t-D B&0\\\\0&0 +R_D(t), &&near D, \\\\ A(t)&=-1 t-t_0 _d+R_ t_0 (t), &&near t_0=0,T,…",
+      "section": "A Lagrangian comparison along a closed geodesic",
+      "manuscript": "The metric Blaschke theorem"
+    },
+    {
+      "id": "m1-lag-profiles",
+      "kind": "proposition",
+      "label": "Scalar profiles",
+      "statement": "[Scalar profiles] Define h(t)&=(H'(t))^ 1/m &&(0<t<T),\\\\ s(t)&=(S(t))^ 1/k &&(t I),\\\\ s_i(t)&=s(t+iD) &&(0<t<D,\\ i=0,1). The function h is smooth and positive across D . There are positive constants…",
+      "section": "A Lagrangian comparison along a closed geodesic",
+      "manuscript": "The metric Blaschke theorem"
+    },
+    {
+      "id": "m1-lag-schur",
+      "kind": "proposition",
+      "label": "Two Schur-complement bounds",
+      "statement": "[Two Schur-complement bounds] The matrix Q(x,y) is symmetric and satisfies ( A)=( H) Q(x,y), Q(y,x)=-Q(x,y). It extends continuously by zero to y=x I , and Q(u,u+D)=Q(u+D,u)=0(0<u<D). Whenever its…",
+      "section": "A Lagrangian comparison along a closed geodesic",
+      "manuscript": "The metric Blaschke theorem"
+    },
+    {
+      "id": "m1-lag-block-bounds",
+      "kind": "proposition",
+      "label": "Scalar block bounds",
+      "statement": "[Scalar block bounds] With the profiles of Proposition~ , every pair of distinct chart endpoints satisfies f_H(x,y)^ 1/m | _x^y h(t)\\,dt | h(x)h(y) . For 0<u<v<D and i,j\\ 0,1\\ one has f_K(u+iD,v+jD)^…",
+      "section": "A Lagrangian comparison along a closed geodesic",
+      "manuscript": "The metric Blaschke theorem"
+    },
+    {
+      "id": "m1-weighted-scalar",
+      "kind": "lemma",
+      "label": "Weighted scalar identity",
+      "statement": "[Weighted scalar identity] Let b>0 , =/b , and \\[ p_0(t)= ^2 ^2( t) , 0<t<b. \\] Let p:(0,b)(0,) be continuous and suppose that g=(p/p_0) is bounded. Let W be nonnegative and measurable on (0,b) ,…",
+      "section": "Weighted comparison along a closed geodesic",
+      "manuscript": "The metric Blaschke theorem"
+    },
+    {
+      "id": "m1-weighted-geodesic",
+      "kind": "theorem",
+      "label": "Comparison on each geodesic",
+      "statement": "[Comparison on each geodesic] In the normalized intermediate case of Proposition~ , let f(x,y) be the Jacobi determinant of any fixed unit-speed geodesic, as in Proposition~ . Put \\[ R=(0,T)^2,…",
+      "section": "Weighted comparison along a closed geodesic",
+      "manuscript": "The metric Blaschke theorem"
+    },
+    {
+      "id": "m1-rig-polar",
+      "kind": "lemma",
+      "label": "Polar integration over a full period",
+      "statement": "[Polar integration over a full period] For every p M , \\[ _ S_pM _0^D J(,t)\\,dt\\,d_p()=V, _ S_pM _0^T J(,t)\\,dt\\,d_p()=2V. \\]",
+      "section": "Global comparison and the equality case",
+      "manuscript": "The metric Blaschke theorem"
+    },
+    {
+      "id": "m1-inc-normal",
+      "kind": "proposition",
+      "label": "The cut incidence \\[ F=\\ (p,q) M M:q C_p\\ \\] is a smooth embedded submanifold.…",
+      "statement": "The cut incidence \\[ F=\\ (p,q) M M:q C_p\\ \\] is a smooth embedded submanifold. Both projections are smooth fiber bundles with fiber a cut locus. If u_1,u_2 are the two pullbacks of u , its rank-four…",
+      "section": "Incidence and the quaternionic Pontryagin class",
+      "manuscript": "The metric Blaschke theorem"
+    },
+    {
+      "id": "m1-inc-pontryagin",
+      "kind": "theorem",
+      "label": "The total Pontryagin class of M is p(TM)= (1+2su+u^2)^ r+1 1+4su in H^*(M; Q).…",
+      "statement": "The total Pontryagin class of M is p(TM)= (1+2su+u^2)^ r+1 1+4su in H^*(M; Q). The quotient means its power-series expansion truncated by u^ r+1 =0 .",
+      "section": "Incidence and the quaternionic Pontryagin class",
+      "manuscript": "The metric Blaschke theorem"
+    },
+    {
+      "id": "m1-sig-coefficient",
+      "kind": "theorem",
+      "label": "In Proposition~ , |s|=1 . In particular, the actual tautological four-plane…",
+      "statement": "In Proposition~ , |s|=1 . In particular, the actual tautological four-plane bundle of every tangent great-sphere fibration at a point of M satisfies p_1=2e .",
+      "section": "The signature determines the incidence coefficient",
+      "manuscript": "The metric Blaschke theorem"
+    },
+    {
+      "id": "m1-geo-contact",
+      "kind": "proposition",
+      "label": "Contact volume",
+      "statement": "[Contact volume] With this orientation and Euler class, N:=_B e^ 4r-1 = (4r-1)!\\,|S^ 4r-1 |\\,(M) T^ 4r >0. For the standard quaternionic model at the same diameter, this number is N_0=1 2r+1 4r 2r .",
+      "section": "The geodesic space and its integral classes",
+      "manuscript": "The metric Blaschke theorem"
+    },
+    {
+      "id": "m1-geo-gysin",
+      "kind": "lemma",
+      "label": "Integral Gysin information",
+      "statement": "[Integral Gysin information] The manifolds U and B are simply connected. There is an integral class v H^4(B;) with ^*v=z . For 2j<n , the following is an integral basis: H^ 2j (B;): e^ j-2a v^a, 0 a…",
+      "section": "The geodesic space and its integral classes",
+      "manuscript": "The metric Blaschke theorem"
+    },
+    {
+      "id": "m1-geo-attachment",
+      "kind": "proposition",
+      "label": "The first attachment and its coefficient",
+      "statement": "[The first attachment and its coefficient] There is an oriented rank-three vector bundle E B and an attaching map \\[ f:S(E) M. \\] Let p:S(E) B and put x=f^*u H^4(S(E);) . The following properties…",
+      "section": "The geodesic space and its integral classes",
+      "manuscript": "The metric Blaschke theorem"
+    },
+    {
+      "id": "m1-geo-parameters",
+      "kind": "proposition",
+      "label": "Arithmetic parameters",
+      "statement": "[Arithmetic parameters] Let p:S(E) B and x be as in Proposition~ , and let \\[ =12e(T_ vert S(E)) H^2(S(E); Q), X=e^2 H^4(B;). \\] There is a class Y H^4(B; Q) such that, with pullbacks by p…",
+      "section": "The geodesic space and its integral classes",
+      "manuscript": "The metric Blaschke theorem"
+    },
+    {
+      "id": "m1-alg-relations",
+      "kind": "lemma",
+      "label": "The classes Q(X,Y) and R(X,Y) vanish in H^*(B; Q) . Moreover 0 , and…",
+      "statement": "The classes Q(X,Y) and R(X,Y) vanish in H^*(B; Q) . Moreover 0 , and consequently |4|1 .",
+      "section": "The sharp quaternionic volume bound",
+      "manuscript": "The metric Blaschke theorem"
+    },
+    {
+      "id": "m1-alg-complete-intersection",
+      "kind": "lemma",
+      "label": "For 0 , the polynomials Q,R have no common nonzero zero over . The algebra \\[…",
+      "statement": "For 0 , the polynomials Q,R have no common nonzero zero over . The algebra \\[ A=/(Q,R) \\] has Hilbert series (1-t^r)(1-t^ r+1 ) (1-t)^2 =(1+t++t^ r-1 )(1+t++t^r). In particular its top degree is 2r-1…",
+      "section": "The sharp quaternionic volume bound",
+      "manuscript": "The metric Blaschke theorem"
+    },
+    {
+      "id": "m1-alg-determinant",
+      "kind": "lemma",
+      "label": "The functional _ , descends to the top degree of A and is nonzero. If \\[ J_j=_…",
+      "statement": "The functional _ , descends to the top degree of A and is nonzero. If \\[ J_j=_ , (X^ 2r-1-j Y^j), \\] then for every 0 and every , (J_ i+j )_ 0 i,j<r =(-1)^ r(r+1)/2 (r+1)(4)^ -r(r-1)/2 . For the…",
+      "section": "The sharp quaternionic volume bound",
+      "manuscript": "The metric Blaschke theorem"
+    },
+    {
+      "id": "m1-alg-upper",
+      "kind": "theorem",
+      "label": "For a quaternionic-type Blaschke manifold of dimension 4r , r2 , the contact…",
+      "statement": "For a quaternionic-type Blaschke manifold of dimension 4r , r2 , the contact characteristic number of Proposition~ satisfies N=_ B e^ 4r-1 1 2r+1 4r 2r .",
+      "section": "The sharp quaternionic volume bound",
+      "manuscript": "The metric Blaschke theorem"
+    },
+    {
+      "id": "m1-rig-complex",
+      "kind": "corollary",
+      "label": "Complex-projective type",
+      "statement": "[Complex-projective type] A Blaschke manifold of complex-projective type is isometric to its equally scaled standard complex projective model.",
+      "section": "Completion of the metric classification",
+      "manuscript": "The metric Blaschke theorem"
+    },
+    {
+      "id": "m1-rig-planes",
+      "kind": "corollary",
+      "label": "Quaternionic and Cayley planes",
+      "statement": "[Quaternionic and Cayley planes] A Blaschke manifold with model ^2 or ^2 is isometric to that model at the same diameter.",
+      "section": "Completion of the metric classification",
+      "manuscript": "The metric Blaschke theorem"
+    },
+    {
+      "id": "m1-rig-quaternionic",
+      "kind": "corollary",
+      "label": "Quaternionic type",
+      "statement": "[Quaternionic type] A Blaschke manifold of quaternionic type is isometric to its standard quaternionic model at the same diameter.",
+      "section": "Completion of the metric classification",
+      "manuscript": "The metric Blaschke theorem"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lag-poles",
+      "to": "m1-lag-profiles"
+    },
+    {
+      "from": "m1-lag-schur",
+      "to": "m1-lag-block-bounds"
+    },
+    {
+      "from": "m1-lag-block-bounds",
+      "to": "m1-weighted-geodesic"
+    },
+    {
+      "from": "m1-lag-profiles",
+      "to": "m1-weighted-geodesic"
+    },
+    {
+      "from": "m1-weighted-scalar",
+      "to": "m1-weighted-geodesic"
+    },
+    {
+      "from": "m1-thm-comparison",
+      "to": "m1-rig-polar"
+    },
+    {
+      "from": "m1-weighted-geodesic",
+      "to": "m1-rig-polar"
+    },
+    {
+      "from": "m1-geom-structure",
+      "to": "m1-rig-polar"
+    },
+    {
+      "from": "m1-thm-volume-reduction",
+      "to": "m1-rig-polar"
+    },
+    {
+      "from": "m1-geom-structure",
+      "to": "m1-inc-normal"
+    },
+    {
+      "from": "m1-inc-normal",
+      "to": "m1-inc-pontryagin"
+    },
+    {
+      "from": "m1-inc-pontryagin",
+      "to": "m1-sig-coefficient"
+    },
+    {
+      "from": "m1-inc-normal",
+      "to": "m1-sig-coefficient"
+    },
+    {
+      "from": "m1-inc-normal",
+      "to": "m1-geo-attachment"
+    },
+    {
+      "from": "m1-geo-attachment",
+      "to": "m1-geo-parameters"
+    },
+    {
+      "from": "m1-geo-gysin",
+      "to": "m1-geo-parameters"
+    },
+    {
+      "from": "m1-geo-gysin",
+      "to": "m1-alg-relations"
+    },
+    {
+      "from": "m1-geo-gysin",
+      "to": "m1-alg-complete-intersection"
+    },
+    {
+      "from": "m1-alg-relations",
+      "to": "m1-alg-upper"
+    },
+    {
+      "from": "m1-alg-determinant",
+      "to": "m1-alg-upper"
+    },
+    {
+      "from": "m1-thm-volume-reduction",
+      "to": "m1-rig-complex"
+    },
+    {
+      "from": "m1-thm-volume-reduction",
+      "to": "m1-rig-planes"
+    },
+    {
+      "from": "m1-alg-upper",
+      "to": "m1-rig-quaternionic"
+    },
+    {
+      "from": "m1-geo-contact",
+      "to": "m1-rig-quaternionic"
+    },
+    {
+      "from": "m1-thm-volume-reduction",
+      "to": "m1-rig-quaternionic"
+    },
+    {
+      "from": "m1-thm-blaschke",
+      "to": "m1-rig-quaternionic"
+    },
+    {
+      "from": "m1-geom-cut-time",
+      "to": "m1-rig-quaternionic"
+    },
+    {
+      "from": "m1-rig-complex",
+      "to": "m1-rig-quaternionic"
+    },
+    {
+      "from": "m1-rig-planes",
+      "to": "m1-rig-quaternionic"
+    }
+  ]
+}

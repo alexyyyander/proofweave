@@ -1,0 +1,228 @@
+{
+  "familyNumber": "128",
+  "familyTitle": "A factor-two approximation for shortest common superstring",
+  "manuscripts": [
+    {
+      "id": "A-Polynomial-Time-2-Approximation-for-Shortest-Common-Superstring-September-24-2026",
+      "title": "A Polynomial-Time 2-Approximation for Shortest Common Superstring",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Polynomial-Time-2-Approximation-for-Shortest-Common-Superstring-September-24-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Forced occurrence counts",
+    "Periodic layers",
+    "Connection operations",
+    "Processing the period groups",
+    "Opening cycles of planned links"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "There is a deterministic algorithm, polynomial in the total encoded input size,…",
+      "statement": "There is a deterministic algorithm, polynomial in the total encoded input size, that on every finite collection S of explicitly represented ordinary strings outputs a common superstring T satisfying…",
+      "section": "Introduction",
+      "manuscript": "A Polynomial-Time 2-Approximation for Shortest Common Superstring"
+    },
+    {
+      "id": "m1-lem-counts",
+      "kind": "lemma",
+      "label": "Occurrence lower bound",
+      "statement": "[Occurrence lower bound] For every common superstring T and every nonempty s V , \\[ m(s) N_T(s). \\] Consequently, for W=_ c m(c), we have W( S) and m(s) L .",
+      "section": "Forced occurrence counts",
+      "manuscript": "A Polynomial-Time 2-Approximation for Shortest Common Superstring"
+    },
+    {
+      "id": "m1-lem-base",
+      "kind": "lemma",
+      "label": "The graph G is balanced, contains every required string as a used vertex, and…",
+      "statement": "The graph G is balanced, contains every required string as a used vertex, and has W up edges and W down edges, counted with multiplicity.",
+      "section": "Forced occurrence counts",
+      "manuscript": "A Polynomial-Time 2-Approximation for Shortest Common Superstring"
+    },
+    {
+      "id": "m1-lem-recorded",
+      "kind": "lemma",
+      "label": "The total number of recorded occurrences of s on all the closed walks is m(s) .",
+      "statement": "The total number of recorded occurrences of s on all the closed walks is m(s) .",
+      "section": "Periodic layers",
+      "manuscript": "A Polynomial-Time 2-Approximation for Shortest Common Superstring"
+    },
+    {
+      "id": "m1-lem-layers",
+      "kind": "lemma",
+      "label": "Ordered layers",
+      "statement": "[Ordered layers] The walks of a group can be rearranged, without changing the multiset of their graph edges, into one-turn layers of period p . Each layer has an integer function z: such that z(x-1)…",
+      "section": "Periodic layers",
+      "manuscript": "A Polynomial-Time 2-Approximation for Shortest Common Superstring"
+    },
+    {
+      "id": "m1-lem-matching-window",
+      "kind": "lemma",
+      "label": "Matching window",
+      "statement": "[Matching window] Over all layers, the number of blocked occurrences of s relative to A is B_A(s;m) . Every unblocked occurrence is contained in an actual layer window that agrees with A throughout.",
+      "section": "Periodic layers",
+      "manuscript": "A Polynomial-Time 2-Approximation for Shortest Common Superstring"
+    },
+    {
+      "id": "m1-lem-agreement",
+      "kind": "lemma",
+      "label": "Agreement bounds",
+      "statement": "[Agreement bounds] Two distinct aligned periodic texts of periods p,q agree on fewer than p+q consecutive letters. If both have period p , they agree on fewer than p consecutive letters.",
+      "section": "Periodic layers",
+      "manuscript": "A Polynomial-Time 2-Approximation for Shortest Common Superstring"
+    },
+    {
+      "id": "m1-lem-max-rotation",
+      "kind": "lemma",
+      "label": "Maximal rotation",
+      "statement": "[Maximal rotation] Let A have least period p , and let t be distinguished. Let D be a distinct aligned periodic text of period q , all of whose forward rotations are lexicographically at most the…",
+      "section": "Periodic layers",
+      "manuscript": "A Polynomial-Time 2-Approximation for Shortest Common Superstring"
+    },
+    {
+      "id": "m1-lem-ordered-windows",
+      "kind": "lemma",
+      "label": "Ordered windows",
+      "statement": "[Ordered windows] Let [a,b) and [c,d) be windows in a common text over , each spelling a word in V . If a c and b d , there is a hierarchical-graph walk from the first word to the second of cost d-b…",
+      "section": "Connection operations",
+      "manuscript": "A Polynomial-Time 2-Approximation for Shortest Common Superstring"
+    },
+    {
+      "id": "m1-lem-band",
+      "kind": "lemma",
+      "label": "Joining an ordered band",
+      "statement": "[Joining an ordered band] Consider k ordered layers from one primitive-text group of period p . At a start t , let H be the top layer's first end and E the bottom layer's last end. If h is a…",
+      "section": "Connection operations",
+      "manuscript": "A Polynomial-Time 2-Approximation for Shortest Common Superstring"
+    },
+    {
+      "id": "m1-lem-collective",
+      "kind": "lemma",
+      "label": "Collective link",
+      "statement": "[Collective link] Consider k ordered layers with a common period- p text A , and put K=kp . Let R=[a,b) spell a word in V agreeing with A . Let r_H=f_H(a) be the top layer's first end and r_L=l_L(a)…",
+      "section": "Connection operations",
+      "manuscript": "A Polynomial-Time 2-Approximation for Shortest Common Superstring"
+    },
+    {
+      "id": "m1-lem-host",
+      "kind": "lemma",
+      "label": "Host requests",
+      "statement": "[Host requests] Let a host layer have period q . On that layer choose actual windows R_i=[a_i,b_i) , indexed by a nonempty collection of distinct child groups. The text of child group i has period…",
+      "section": "Connection operations",
+      "manuscript": "A Polynomial-Time 2-Approximation for Shortest Common Superstring"
+    },
+    {
+      "id": "m1-lem-choose-k",
+      "kind": "lemma",
+      "label": "This procedure stops with 1 k n . If L_* is the lowest of the top k layers,…",
+      "statement": "This procedure stops with 1 k n . If L_* is the lowest of the top k layers, then l_ L_* (t)& H-(k-1)p, \\\\ f_H(x)-l_ L_* (x)& K(x). At most k recorded occurrences of w=A[t:H-K) have a full-text…",
+      "section": "Processing the period groups",
+      "manuscript": "A Polynomial-Time 2-Approximation for Shortest Common Superstring"
+    },
+    {
+      "id": "m1-prop-partition",
+      "kind": "proposition",
+      "label": "After all groups have been processed, every layer is either marked rooted or…",
+      "statement": "After all groups have been processed, every layer is either marked rooted or belongs to exactly one outgoing block. These two classes are disjoint. Each block consists of layers from one…",
+      "section": "Processing the period groups",
+      "manuscript": "A Polynomial-Time 2-Approximation for Shortest Common Superstring"
+    },
+    {
+      "id": "m1-lem-free-period",
+      "kind": "lemma",
+      "label": "One free period",
+      "statement": "[One free period] A block of k layers and period p can be joined internally, in place of its outgoing link, for cost at most (k-1)p . Thus this replacement leaves at least p of its total budget…",
+      "section": "Opening cycles of planned links",
+      "manuscript": "A Polynomial-Time 2-Approximation for Shortest Common Superstring"
+    },
+    {
+      "id": "m1-lem-cycle-contact",
+      "kind": "lemma",
+      "label": "A short contact on a maximal link",
+      "statement": "[A short contact on a maximal link] On a directed cycle of blocks, choose a block whose group's distinguished forward rotation is lexicographically greatest. If its target layer has period q , its…",
+      "section": "Opening cycles of planned links",
+      "manuscript": "A Polynomial-Time 2-Approximation for Shortest Common Superstring"
+    },
+    {
+      "id": "m1-thm-connection",
+      "kind": "theorem",
+      "label": "Connecting the base graph",
+      "statement": "[Connecting the base graph] The base graph can be connected to by adding closed walks of total up cost at most W .",
+      "section": "Opening cycles of planned links",
+      "manuscript": "A Polynomial-Time 2-Approximation for Shortest Common Superstring"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-recorded",
+      "to": "m1-lem-matching-window"
+    },
+    {
+      "from": "m1-lem-ordered-windows",
+      "to": "m1-lem-band"
+    },
+    {
+      "from": "m1-lem-ordered-windows",
+      "to": "m1-lem-collective"
+    },
+    {
+      "from": "m1-lem-agreement",
+      "to": "m1-lem-host"
+    },
+    {
+      "from": "m1-lem-ordered-windows",
+      "to": "m1-lem-host"
+    },
+    {
+      "from": "m1-lem-band",
+      "to": "m1-lem-free-period"
+    },
+    {
+      "from": "m1-lem-max-rotation",
+      "to": "m1-lem-cycle-contact"
+    },
+    {
+      "from": "m1-lem-ordered-windows",
+      "to": "m1-lem-cycle-contact"
+    },
+    {
+      "from": "m1-lem-free-period",
+      "to": "m1-thm-connection"
+    },
+    {
+      "from": "m1-lem-cycle-contact",
+      "to": "m1-thm-connection"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-thm-connection"
+    },
+    {
+      "from": "m1-lem-counts",
+      "to": "m1-thm-connection"
+    },
+    {
+      "from": "m1-lem-base",
+      "to": "m1-thm-connection"
+    },
+    {
+      "from": "m1-lem-agreement",
+      "to": "m1-thm-connection"
+    },
+    {
+      "from": "m1-lem-host",
+      "to": "m1-thm-connection"
+    },
+    {
+      "from": "m1-lem-ordered-windows",
+      "to": "m1-thm-connection"
+    },
+    {
+      "from": "m1-lem-collective",
+      "to": "m1-thm-connection"
+    }
+  ]
+}

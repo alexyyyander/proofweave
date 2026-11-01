@@ -1,0 +1,434 @@
+{
+  "familyNumber": "105",
+  "familyTitle": "Perfect completeness for 2-to-1 games",
+  "manuscripts": [
+    {
+      "id": "Perfect-completeness-for-2-to-1-games-September-23-2026",
+      "title": "Perfect completeness for 2-to-1 games",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Perfect-completeness-for-2-to-1-games-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Source games and inverse matrix structure",
+    "The tree of function spaces and the one-bit test",
+    "Changing the sampling law without revealing the path",
+    "Two successful levels and upper decoding",
+    "From tested rank to full rank",
+    "Clean children and independent repetition",
+    "Choosing the parameters and completing the reduction"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For every fixed rational (0,1) there are an integer q=q()2 and a deterministic…",
+      "statement": "For every fixed rational (0,1) there are an integer q=q()2 and a deterministic polynomial-time reduction from 3 -SAT to 2-to-1 games with alphabets [2q] and [q] such that: [label=( *)] a satisfiable…",
+      "section": "Introduction",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-cor-max-k-colorable",
+      "kind": "corollary",
+      "label": "Maximum k -colorable subgraph",
+      "statement": "[Maximum k -colorable subgraph] There are absolute constants C>0 and an integer k_03 such that, for every fixed integer k k_0 , it is NP-hard to distinguish the following cases for a finite…",
+      "section": "Introduction",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-cor-not-two-pcp",
+      "kind": "corollary",
+      "label": "Satisfiable Not-Two and three-query PCPs",
+      "statement": "[Satisfiable Not-Two and three-query PCPs] Let NTW(a,b,c) be the Boolean predicate accepting exactly zero, one, or three true inputs. For every fixed 0<<3/8 , it is NP-hard to distinguish a…",
+      "section": "Introduction",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-thm-pcp",
+      "kind": "theorem",
+      "label": "Perfect-completeness PCP gap",
+      "statement": "[Perfect-completeness PCP gap] There is a constant _0>0 and a deterministic polynomial-time map taking any Boolean 3 -CNF formula to a nonempty 3 -CNF formula such that every clause of uses three…",
+      "section": "Source games and inverse matrix structure",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-thm-repetition",
+      "kind": "theorem",
+      "label": "Weighted projection-game repetition",
+      "statement": "[Weighted projection-game repetition] Let G be any finite projection game with the conventions above. For 0<g<1 and every integer k1 , (G)1-g (G^ k )(1-g^2/16)^k. The bound is uniform in the question…",
+      "section": "Source games and inverse matrix structure",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-thm-prelim-grassmann",
+      "kind": "theorem",
+      "label": "Grassmann expansion consequence",
+      "statement": "[Grassmann expansion consequence] For each 0<<1 , there are >0 , an integer r1 , and _0 such that, for every _0 and then every sufficiently large N , the following holds. Every nonempty set of…",
+      "section": "Source games and inverse matrix structure",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-lem-prelim-matrix-set",
+      "kind": "lemma",
+      "label": "Matrix set extraction in large dimension",
+      "statement": "[Matrix set extraction in large dimension] For every 0<<1 there are >0 , r1 , and _0 , depending only on , such that for each _0 and all sufficiently large m the following holds. If a nonempty set S_…",
+      "section": "Source games and inverse matrix structure",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-lem-padding",
+      "kind": "lemma",
+      "label": "Eliminating dummy columns",
+      "statement": "[Eliminating dummy columns] Let H,D,K be finite binary vector spaces, and write a matrix on H D as (X,Y) , with X(H^*,K) and Y(D^*,K) . Suppose the nonempty affine slice S= \\ (X,Y):AX=U_H,\\ AY=U_D,\\…",
+      "section": "Source games and inverse matrix structure",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-thm-inverse",
+      "kind": "theorem",
+      "label": "Inverse theorem for a finite-range partial table",
+      "statement": "[Inverse theorem for a finite-range partial table] For every 0<<1 , there are >0 , integers r1 and _0 , depending only on , with the following property. For every _0 , every finite binary vector…",
+      "section": "Source games and inverse matrix structure",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-lem-many-fibers",
+      "kind": "lemma",
+      "label": "Many good row fibers",
+      "statement": "[Many good row fibers] Fix 0<<1 , and let ,r,_0 be constants from Theorem~ with threshold /2 . Suppose _0 and a partial table on K H has defined-equality probability at least . For each linear map…",
+      "section": "Source games and inverse matrix structure",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-lem-construction-space-properties",
+      "kind": "lemma",
+      "label": "The spaces in Definition~ contain 1 and satisfy H_C(Q) H_C(Q)^2 . For every…",
+      "statement": "The spaces in Definition~ contain 1 and satisfy H_C(Q) H_C(Q)^2 . For every proper descendant C of D , H_C(Q)^2 H_D(Q). Moreover, pullback by _D injectively identifies H_D(O) with a subspace of…",
+      "section": "The tree of function spaces and the one-bit test",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-lem-canonical-support",
+      "kind": "lemma",
+      "label": "If a used clause slot is reducible to a position, that position is unique. The…",
+      "statement": "If a used clause slot is reducible to a position, that position is unique. The following reductions can be performed simultaneously: discard unused slots; replace each used reducible clause slot by…",
+      "section": "The tree of function spaces and the one-bit test",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-lem-canonical-sharing",
+      "kind": "lemma",
+      "label": "Sharing across projected domains",
+      "statement": "[Sharing across projected domains] Let O be obtained from E by the specified source projections, let :(E)(O) be their product, and let f:(O) Y be any function. For either side tag, the keys of f and…",
+      "section": "The tree of function spaces and the one-bit test",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-lem-construction-two-fibers",
+      "kind": "lemma",
+      "label": "Every map is a well-defined surjection between nonempty legal label sets and…",
+      "statement": "Every map is a well-defined surjection between nonempty legal label sets and has at most two preimages per right label. For a fixed labeling, acceptance of the edge is exactly equality of its…",
+      "section": "The tree of function spaces and the one-bit test",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-prop-completeness",
+      "kind": "proposition",
+      "label": "Perfect completeness",
+      "statement": "[Perfect completeness] If the source clause instance has a satisfying assignment, every constraint just defined is satisfied by one common legal labeling, for every choice of the positive integer…",
+      "section": "The tree of function spaces and the one-bit test",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-lem-folding",
+      "kind": "lemma",
+      "label": "Joint folding",
+      "statement": "[Joint folding] Fix a full array question on (Q) and a nonleaf node D . For each row index h of M_D , choose b_h=c_h1+ _ C,u,v _ h,C,u,v (M_C)_u(M_C)_v, c_h,_ h,C,u,v , where C ranges over any…",
+      "section": "The tree of function spaces and the one-bit test",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-lem-joint-evaluation",
+      "kind": "lemma",
+      "label": "Joint evaluation of product generators",
+      "statement": "[Joint evaluation of product generators] Fix a legal response to a full array question and a node D . For any collection C of proper nonleaf descendants of D , let \\[ B=(\\ 1\\ \\ (M_C)_u(M_C)_v:C C,\\ 1…",
+      "section": "The tree of function spaces and the one-bit test",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-lem-stopped-calls",
+      "kind": "lemma",
+      "label": "Stopped-call representation",
+      "statement": "[Stopped-call representation] Fix E and the path from the root through D_p , including D_p but no choice of its child. The original sampling can be generated as follows. First generate an exterior…",
+      "section": "Changing the sampling law without revealing the path",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-lem-cut-tv",
+      "kind": "lemma",
+      "label": "One hidden child",
+      "statement": "[One hidden child] In the original experiment, expose E , the path through D_p , and the exterior record of Lemma~ . Forget the entire continuation of the path below D_p . Retain any fixed family of…",
+      "section": "Changing the sampling law without revealing the path",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-lem-sparse-tv",
+      "kind": "lemma",
+      "label": "Sparse projection comparison",
+      "statement": "[Sparse projection comparison] Fix E , the path through D_i and an exterior record generated without the projections. Compare M_i and U_i as laws of lifted functions on E , forgetting the marks, the…",
+      "section": "Changing the sampling law without revealing the path",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-lem-posterior",
+      "kind": "lemma",
+      "label": "Posterior bound for adaptive witnesses",
+      "statement": "[Posterior bound for adaptive witnesses] In M_i , condition on E , the path through D_i and a permissible exterior record. Let X=(X_C)_C consist of all lifted raw child blocks, including any fixed…",
+      "section": "Changing the sampling law without revealing the path",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-lem-bias",
+      "kind": "lemma",
+      "label": "Scalar bias and independent hidden buckets",
+      "statement": "[Scalar bias and independent hidden buckets] There is an absolute integer R_ such that the following holds if R_p R_ at every nonleaf level. Fix the domains and the full path in the original sampler,…",
+      "section": "Changing the sampling law without revealing the path",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-lem-useful-equality",
+      "kind": "lemma",
+      "label": "Defined equality from a two-response fiber",
+      "statement": "[Defined equality from a two-response fiber] Under , resampling the level- j bucket indexed by its omitted direction gives two matrices M,M' such that \\[ _i( f_P( M) = f_P( M')) c^2/8. \\] If the cut…",
+      "section": "Two successful levels and upper decoding",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-lem-positive-difference",
+      "kind": "lemma",
+      "label": "Predicting the upper response",
+      "statement": "[Predicting the upper response] Let R_j^ (i) K be the restored upper response of the level- i right table in the modified experiment. Suppose the total-variation comparison between _i and _j^0 , for…",
+      "section": "Two successful levels and upper decoding",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-lem-heavy-list",
+      "kind": "lemma",
+      "label": "One heavy list for all affine-slice witnesses",
+      "statement": "[One heavy list for all affine-slice witnesses] Let K=^ , let W K have codimension at most r , and let H' be a finite vector space. Let be a probability law on V=W H' with |__| for every nonzero V^*…",
+      "section": "Two successful levels and upper decoding",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-prop-upper",
+      "kind": "proposition",
+      "label": "Upper decoding with a lower rank test",
+      "statement": "[Upper decoding with a lower rank test] Suppose a legal labeling has acceptance at least , d4 , and the cut comparisons have the errors required in , Lemma~ , and Lemma~ . Choose upper inverse…",
+      "section": "Two successful levels and upper decoding",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-lem-resampling",
+      "kind": "lemma",
+      "label": "Resampling and transfer to full equality",
+      "statement": "[Resampling and transfer to full equality] Fix complete local tapes and the left erasure just described. Suppose the nonerased left form agrees with the right form on H_i' H_i' with probability h in…",
+      "section": "From tested rank to full rank",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-lem-rank-slice",
+      "kind": "lemma",
+      "label": "Fixed forms on affine row/column slices",
+      "statement": "[Fixed forms on affine row/column slices] Let H be a finite-dimensional vector space over , let F be a bilinear form on H , and let ,r',m be nonnegative integers with m1 and 2m+r' . Let A H^ be a…",
+      "section": "From tested rank to full rank",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-prop-low-rank",
+      "kind": "proposition",
+      "label": "Low-rank agreement",
+      "statement": "[Low-rank agreement] Fix a pair i<j for which Proposition~ supplies agreement at least =_j>0 . Apply Theorem~ , including Lemma~ , at the equality threshold \\[ _ low =^2/8, \\] and let '>0 , r' and…",
+      "section": "From tested rank to full rank",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-lem-parity-game",
+      "kind": "lemma",
+      "label": "Odd-list projection and extraction",
+      "statement": "[Odd-list projection and extraction] Every map in Equation~ sends O_s() into O_s() . In particular, G_ odd,s is a total projection game, and (G_ odd,s ) s^2(G_ src ). Suppose a bilinear form F on H_i…",
+      "section": "Clean children and independent repetition",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-lem-clean-law",
+      "kind": "lemma",
+      "label": "Exact clean probability and conditional source law",
+      "statement": "[Exact clean probability and conditional source law] Conditional on any exterior datum = of positive probability, the clean indicators are independent. In the padded construction above each has…",
+      "section": "Clean children and independent repetition",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-lem-reconstruction",
+      "kind": "lemma",
+      "label": "Local reconstruction on clean children",
+      "statement": "[Local reconstruction on clean children] Fix D_ pub =d_0 of positive probability as in Lemma~ . From d_0 and its own designated source questions in C , each player can reconstruct its input to the…",
+      "section": "Clean children and independent repetition",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-prop-clean-bound",
+      "kind": "proposition",
+      "label": "Clean repetition bound",
+      "statement": "[Clean repetition bound] Assume (G_ src )<1/(2s^2) . Let L_ i,j,s be the event in the modified experiment that the two original decoder outputs agree on H_i' , while the left output is a normalized…",
+      "section": "Clean children and independent repetition",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    },
+    {
+      "id": "m1-prop-preliminary-soundness",
+      "kind": "proposition",
+      "label": "With these fixed parameters, the preliminary legal-answer game has perfect…",
+      "statement": "With these fixed parameters, the preliminary legal-answer game has perfect completeness, fibers of size at most two, and value less than on every unsatisfiable source instance.",
+      "section": "Choosing the parameters and completing the reduction",
+      "manuscript": "Perfect completeness for 2-to-1 games"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-thm-main",
+      "to": "m1-cor-max-k-colorable"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-cor-not-two-pcp"
+    },
+    {
+      "from": "m1-thm-prelim-grassmann",
+      "to": "m1-lem-prelim-matrix-set"
+    },
+    {
+      "from": "m1-lem-prelim-matrix-set",
+      "to": "m1-thm-inverse"
+    },
+    {
+      "from": "m1-lem-padding",
+      "to": "m1-thm-inverse"
+    },
+    {
+      "from": "m1-thm-inverse",
+      "to": "m1-lem-many-fibers"
+    },
+    {
+      "from": "m1-lem-canonical-support",
+      "to": "m1-lem-canonical-sharing"
+    },
+    {
+      "from": "m1-lem-construction-two-fibers",
+      "to": "m1-prop-completeness"
+    },
+    {
+      "from": "m1-lem-construction-space-properties",
+      "to": "m1-lem-folding"
+    },
+    {
+      "from": "m1-lem-canonical-support",
+      "to": "m1-lem-folding"
+    },
+    {
+      "from": "m1-lem-cut-tv",
+      "to": "m1-lem-sparse-tv"
+    },
+    {
+      "from": "m1-lem-stopped-calls",
+      "to": "m1-lem-bias"
+    },
+    {
+      "from": "m1-lem-cut-tv",
+      "to": "m1-lem-useful-equality"
+    },
+    {
+      "from": "m1-lem-sparse-tv",
+      "to": "m1-lem-useful-equality"
+    },
+    {
+      "from": "m1-lem-heavy-list",
+      "to": "m1-prop-upper"
+    },
+    {
+      "from": "m1-lem-padding",
+      "to": "m1-prop-upper"
+    },
+    {
+      "from": "m1-lem-posterior",
+      "to": "m1-lem-resampling"
+    },
+    {
+      "from": "m1-lem-sparse-tv",
+      "to": "m1-lem-resampling"
+    },
+    {
+      "from": "m1-lem-resampling",
+      "to": "m1-prop-low-rank"
+    },
+    {
+      "from": "m1-thm-inverse",
+      "to": "m1-prop-low-rank"
+    },
+    {
+      "from": "m1-lem-rank-slice",
+      "to": "m1-prop-low-rank"
+    },
+    {
+      "from": "m1-lem-sparse-tv",
+      "to": "m1-prop-low-rank"
+    },
+    {
+      "from": "m1-lem-posterior",
+      "to": "m1-prop-low-rank"
+    },
+    {
+      "from": "m1-lem-parity-game",
+      "to": "m1-lem-reconstruction"
+    },
+    {
+      "from": "m1-lem-parity-game",
+      "to": "m1-prop-clean-bound"
+    },
+    {
+      "from": "m1-lem-clean-law",
+      "to": "m1-prop-clean-bound"
+    },
+    {
+      "from": "m1-lem-reconstruction",
+      "to": "m1-prop-clean-bound"
+    },
+    {
+      "from": "m1-thm-repetition",
+      "to": "m1-prop-clean-bound"
+    },
+    {
+      "from": "m1-lem-construction-two-fibers",
+      "to": "m1-prop-preliminary-soundness"
+    },
+    {
+      "from": "m1-prop-completeness",
+      "to": "m1-prop-preliminary-soundness"
+    },
+    {
+      "from": "m1-prop-upper",
+      "to": "m1-prop-preliminary-soundness"
+    },
+    {
+      "from": "m1-prop-low-rank",
+      "to": "m1-prop-preliminary-soundness"
+    },
+    {
+      "from": "m1-lem-parity-game",
+      "to": "m1-prop-preliminary-soundness"
+    },
+    {
+      "from": "m1-prop-clean-bound",
+      "to": "m1-prop-preliminary-soundness"
+    }
+  ]
+}

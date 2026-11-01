@@ -36,6 +36,11 @@
       "description": "A draft explanation records proof steps and Lean annotations. It is unreviewed and may be reading order rather than a verified dependency DAG."
     },
     {
+      "id": "paper",
+      "label": "Paper-derived structure",
+      "description": "A machine-extracted structure from the pinned paper LaTeX: theorem-like statements as nodes and explicit references inside proofs as edges. A reference is not a verified dependency, and the structure is unreviewed."
+    },
+    {
       "id": "lean",
       "label": "Lean-derived structure",
       "description": "A machine-extracted structure from the pinned Lean comparator and solution module: the formal target, the named proving theorems, and the permitted axioms. It is not a curated theorem-level dependency graph and remains unreviewed."

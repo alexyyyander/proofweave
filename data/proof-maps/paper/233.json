@@ -1,0 +1,954 @@
+{
+  "familyNumber": "233",
+  "familyTitle": "The joint critical Ashkin–Teller current limit",
+  "manuscripts": [
+    {
+      "id": "The-joint-scaling-limit-of-critical-Ashkin-Teller-currents-October-6-2026",
+      "title": "The joint scaling limit of critical Ashkin-Teller currents",
+      "date": "2026-10-06",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-joint-scaling-limit-of-critical-Ashkin-Teller-currents-October-6-2026/main.pdf"
+    }
+  ],
+  "sections": [
+    "The model and the limiting objects",
+    "Cuts, comparison, and spatial estimates",
+    "Reflection positivity and the plane covariance",
+    "Screening a Laplace insertion",
+    "Flat-domain Gaussian limits",
+    "Stopped local sets and canonical clusters",
+    "Local cable tests and the no-crossing principle",
+    "Identification of the complete cluster collections"
+  ],
+  "nodes": [
+    {
+      "id": "m1-lem-matching-topology",
+      "kind": "lemma",
+      "label": "Matching topology and compact containment",
+      "statement": "[Matching topology and compact containment] As relations on locally finite collections, \\[ \\ d_ match /2\\ R_ \\ d_ match \\ . \\] Let \\( X\\) be the compact space of closed subsets \\(F H\\) containing…",
+      "section": "The model and the limiting objects",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Joint critical-line limit",
+      "statement": "[Joint critical-line limit] For every fixed pair J>0 , U J with (2J)=e^ -2U , every bounded Jordan domain D , and every admissible polygonal approximation as defined in , \\[ (H_,_^ w ,_^ f , C_ , ) \\…",
+      "section": "The model and the limiting objects",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-finite-cuts",
+      "kind": "lemma",
+      "label": "Finite cuts and colors",
+      "statement": "[Finite cuts and colors] For every finite domain with either of the model's flat boundary conditions, the joint weight of (s,W,d) is a product of the following factors, one for each mutually dual…",
+      "section": "Cuts, comparison, and spatial estimates",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-prop-comparison",
+      "kind": "proposition",
+      "label": "Comparison with pins and wires",
+      "statement": "[Comparison with pins and wires] The finite (s,W) law is positively associated in , as is every conditional law obtained by fixing vertex spins and compatible edge states with both endpoints fixed.…",
+      "section": "Cuts, comparison, and spatial estimates",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-prop-circuits",
+      "kind": "proposition",
+      "label": "Buffered circuits and attached-wall bounds",
+      "statement": "[Buffered circuits and attached-wall bounds] Fix positive aspect and buffer ratios. There are p>0 and a fixed lattice cutoff c_*>0 with the following properties, uniformly for every physical test…",
+      "section": "Cuts, comparison, and spatial estimates",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-collar",
+      "kind": "lemma",
+      "label": "Uniform collar exclusion",
+      "statement": "[Uniform collar exclusion] Fix a finite family of such windows and traversal tests. Let F_ be a prescribed matching cell region of color , anchored in each test. Use one of the following conditional…",
+      "section": "Cuts, comparison, and spatial estimates",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-prop-cluster-counts",
+      "kind": "proposition",
+      "label": "Cluster and transmission counts",
+      "statement": "[Cluster and transmission counts] The following bounds hold in fixed buffered boxes, uniformly in the mesh and in allowed conditional histories. A joint count of actual clusters across chambers in…",
+      "section": "Cuts, comparison, and spatial estimates",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-cor-global-cluster-counts",
+      "kind": "corollary",
+      "label": "Counts in an enclosing box",
+      "statement": "[Counts in an enclosing box] Fix a bounded box L and b>0 . Suppose the finite lattice domain and the supports under consideration lie in L , and place L in a fixed larger regular ambient box. For one…",
+      "section": "Cuts, comparison, and spatial estimates",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-chamber-rim-distance",
+      "kind": "lemma",
+      "label": "Distance to a chamber-side rim",
+      "statement": "[Distance to a chamber-side rim] Let U_ be a resolved residual chamber of an exact cut exploration, let S_ be the revealed support including the initial boundary and seed as needed, and let _ be its…",
+      "section": "Cuts, comparison, and spatial estimates",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-cor-indexed-no-shadowing",
+      "kind": "corollary",
+      "label": "No shadowing at recorded stops",
+      "statement": "[No shadowing at recorded stops] Fix a buffered box Q and b>0 . At a stop of an exterior-attached seed exploration, let F_ be its frozen connected cell region, including the initial walls, all…",
+      "section": "Cuts, comparison, and spatial estimates",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-prop-pattern-comparison",
+      "kind": "proposition",
+      "label": "Pattern comparison",
+      "statement": "[Pattern comparison] Fix regular compact sets Q_i and filled buffered neighborhoods B_i , 1 i m , with the B_i pairwise disjoint and a fixed positive separation between Q_i and B_i . Assume each B_i…",
+      "section": "Cuts, comparison, and spatial estimates",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-buffered-witnesses",
+      "kind": "lemma",
+      "label": "Buffered separation witnesses",
+      "statement": "[Buffered separation witnesses] Fix p>0 and an integer k . Conditional on any complete pattern in Q' with at most k terminals, suppose a specified terminal assignment has compatibility probability at…",
+      "section": "Cuts, comparison, and spatial estimates",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-prop-full-contiguity",
+      "kind": "proposition",
+      "label": "Full-spin contiguity",
+      "statement": "[Full-spin contiguity] Fix compactly nested regular boxes Q B in the interior of a W -flat domain, with fixed positive buffer ratios. Thus the complementary N components are free. Let _ be its law…",
+      "section": "Cuts, comparison, and spatial estimates",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-positive-transfer",
+      "kind": "lemma",
+      "label": "Positive normal transfer",
+      "statement": "[Positive normal transfer] The plane law is reflection positive across a row of corner-grid sites in each of the directions 0,/4,/2,3/4 . In its reflection Hilbert space, translation by two…",
+      "section": "Reflection positivity and the plane covariance",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-increment-spectral",
+      "kind": "lemma",
+      "label": "Increment spectral measure",
+      "statement": "[Increment spectral measure] There is a nonnegative measure C , locally finite on the punctured reciprocal torus of the corner grid, such that every finitely supported real array of zero sum…",
+      "section": "Reflection positivity and the plane covariance",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-cauchy-mixture",
+      "kind": "lemma",
+      "label": "Positive Cauchy mixture",
+      "statement": "[Positive Cauchy mixture] For k0 there is a nonnegative mixing measure such that C'( k, l)=_ [0,] Q_s( l)\\,( k, s). It is finite on horizontal bands away from zero and satisfies _ 0<|k|< |k|\\,( k,…",
+      "section": "Reflection positivity and the plane covariance",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-prop-dispersion-defect",
+      "kind": "proposition",
+      "label": "Summable dispersion defect",
+      "statement": "[Summable dispersion defect] In each of the four reflection frames, _ 0<|k|< D(k,s)\\,( k, s)<, \\ r|k|2r\\ C_1. The second bound holds for every r>0 .",
+      "section": "Reflection positivity and the plane covariance",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-spectral-endcap",
+      "kind": "lemma",
+      "label": "Spectral endcaps",
+      "statement": "[Spectral endcaps] For every frame, sufficiently small r , and 0<<r/10 , \\[ C\\ r<|p|<2r,\\ |k|\\ C_3/r. \\] In particular the punctured small disk has no mass on a frame's line k=0 .",
+      "section": "Reflection positivity and the plane covariance",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-prop-plane-green",
+      "kind": "proposition",
+      "label": "Subsequential plane Green covariance",
+      "statement": "[Subsequential plane Green covariance] Every mesh sequence has a subsequence and a finite positive number such that, for all neutral smooth compactly supported tests, L(f,g). The possible values of…",
+      "section": "Reflection positivity and the plane covariance",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-cor-reflection-null",
+      "kind": "corollary",
+      "label": "Reflection-null Laplace insertion",
+      "statement": "[Reflection-null Laplace insertion] Let C_c^(^2) be supported a positive distance to one side of a line in any of the four reflection frames. For site rows converging to that line, the reflection…",
+      "section": "Reflection positivity and the plane covariance",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-prop-screened-orthogonality",
+      "kind": "proposition",
+      "label": "Exterior orthogonality",
+      "statement": "[Exterior orthogonality] Let Q be a square and let B be a concentric disk whose radius is less than one thousandth of the side length of Q . For C_c^(B) , let E_(Q) be the sigma-field generated by…",
+      "section": "Screening a Laplace insertion",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-screen-pattern-moments",
+      "kind": "lemma",
+      "label": "Neutral insertion moments under patterns",
+      "statement": "[Neutral insertion moments under patterns] Suppose a smooth neutral insertion Y_=K_(f) has a filled pin-free neighborhood with positive clearance from finitely many pattern neighborhoods. For every…",
+      "section": "Screening a Laplace insertion",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-screen-reflection-bound",
+      "kind": "lemma",
+      "label": "Normalized reflection bound",
+      "statement": "[Normalized reflection bound] Suppose all the pattern neighborhoods and the support of A lie strictly on the positive side of a reflection row. Assume that A is bounded by one, or is a bounded factor…",
+      "section": "Screening a Laplace insertion",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-screen-analytic-translation",
+      "kind": "lemma",
+      "label": "Analytic translation",
+      "statement": "[Analytic translation] Partition finitely many local factors and pattern neighborhoods into two groups separated by a strict projection gap along one of the four reflection normals. There is at most…",
+      "section": "Screening a Laplace insertion",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-screen-gapped-identity",
+      "kind": "lemma",
+      "label": "Gapped pattern identity",
+      "statement": "[Gapped pattern identity] For this fixed arrangement, for arbitrary patterns P_i in the blocks and arbitrary factors F_i of absolute value at most one supported in their respective blocks, e_:= _…",
+      "section": "Screening a Laplace insertion",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-screen-core-colors",
+      "kind": "lemma",
+      "label": "Adding core colors",
+      "statement": "[Adding core colors] Let S_ be the complete patterns in the blocks, and observe the d spins on arbitrary pattern-measurable subsets of their compact cores. Write C_ for those observations and…",
+      "section": "Screening a Laplace insertion",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-screen-shielding",
+      "kind": "lemma",
+      "label": "Selected-arm shielding",
+      "statement": "[Selected-arm shielding] For fixed q , each trial has conditional two-arm success probability at least p(q)>0 , given all earlier trial data. If the first successful trial is selected, the…",
+      "section": "Screening a Laplace insertion",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-screen-bridge-coupling",
+      "kind": "lemma",
+      "label": "Bridge coupling and exact separation",
+      "statement": "[Bridge coupling and exact separation] The laws _ and Q_ can be coupled with their block patterns identical. Except on probability at most 4(q) , their insertion, full exterior data, and all d colors…",
+      "section": "Screening a Laplace insertion",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-thm-flat-gff",
+      "kind": "theorem",
+      "label": "Flat-domain limit",
+      "statement": "[Flat-domain limit] Let \\(U_\\) be a single deterministic flat chamber, or a finite mesh-dependent union of independent chambers with pairwise disjoint interiors, as above. Suppose \\(F_\\) converges in…",
+      "section": "Flat-domain Gaussian limits",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-flat-green-geometry",
+      "kind": "lemma",
+      "label": "Connected complements and Green convergence",
+      "statement": "[Connected complements and Green convergence] Let \\(F_n\\) be connected compact subsets of \\( B_0\\) containing \\( B_0\\), and suppose \\(F_n F\\) in Hausdorff distance. Put \\(V_n=B_0 F_n\\) and \\(V=B_0…",
+      "section": "Flat-domain Gaussian limits",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-prop-log-moments",
+      "kind": "proposition",
+      "label": "Logarithmic moments",
+      "statement": "[Logarithmic moments] Let z_1,,z_ 2m be corner-grid sites in a flat chamber of diameter at most R_0/2 . They may lie on either parity. Then |_ i=1 ^ 2m K(z_i)| C_m_ P _ \\ i,j\\ P (1+^+R_0 |z_i-z_j| ),…",
+      "section": "Flat-domain Gaussian limits",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-prop-boundary-decay",
+      "kind": "proposition",
+      "label": "Boundary decay",
+      "statement": "[Boundary decay] Consider deterministic flat chambers in a fixed bounded region, with connected accessible walls, and a Hausdorff limit of their complements. For any limiting open component, moment…",
+      "section": "Flat-domain Gaussian limits",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-parity-interpolation",
+      "kind": "lemma",
+      "label": "Parity and interpolation",
+      "statement": "[Parity and interpolation] On compact subsets with positive clearance from the wall, the two parity smearings of K , and their smooth nodal interpolation, have the same subsequential distributional…",
+      "section": "Flat-domain Gaussian limits",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-flat-tightness",
+      "kind": "lemma",
+      "label": "Tightness and absence of collision measures",
+      "statement": "[Tightness and absence of collision measures] Centered flat heights are tight in H^s_ loc , for every s<-1 , uniformly over the chambers above. Every finite joint test moment converges along…",
+      "section": "Flat-domain Gaussian limits",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-small-set-remainders",
+      "kind": "lemma",
+      "label": "Centered remainders on small revealed sets",
+      "statement": "[Centered remainders on small revealed sets] Conditional on a stopped exploration using , let R_ be its centered flat remainders, set to zero on exposed sites. Let E_ be a set of sites measurable in…",
+      "section": "Flat-domain Gaussian limits",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-log-singularity",
+      "kind": "lemma",
+      "label": "Uniform logarithmic expansion",
+      "statement": "[Uniform logarithmic expansion] If (y, z) is a collision-free list of interior points, then, near x=y , T_j(x,y, z) =L_j(y, z)1 |x-y| +R_j(x;y, z), where R_j extends harmonically in x across y . The…",
+      "section": "Flat-domain Gaussian limits",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-neutral-pair-mixing",
+      "kind": "lemma",
+      "label": "A neutral pair and distant observations",
+      "statement": "[A neutral pair and distant observations] Fix an interior disk B(y_0,4R) and a finite family of spectator tests supported outside it. Let Y_ be a product of the corresponding flat height averages, or…",
+      "section": "Flat-domain Gaussian limits",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-prop-collision-coefficient",
+      "kind": "proposition",
+      "label": "Collision coefficient",
+      "statement": "[Collision coefficient] For j2 and distinct (y, z) in U , L_j(y, z)= T_ j-2 ( z).",
+      "section": "Flat-domain Gaussian limits",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-prop-gaussian-moments",
+      "kind": "proposition",
+      "label": "Gaussian moment recursion",
+      "statement": "[Gaussian moment recursion] For every j2 and distinct points in U , T_j(x_1,,x_j) =_ i=2 ^j G_U(x_1,x_i) T_ j-2 (x_2,,x_i,,x_j). Consequently the limiting centered field in U is a Gaussian field with…",
+      "section": "Flat-domain Gaussian limits",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-plane-collision-coefficient",
+      "kind": "lemma",
+      "label": "Signed plane collision coefficients",
+      "statement": "[Signed plane collision coefficients] Fix \\(m2\\), and keep all endpoints other than \\(x_1\\) distinct. For \\(i2\\), the coefficient of \\((1/|x_1-z|)\\) in \\(Q_m\\) is \\[ Q_ m-2 (d_2,,d_i,,d_m),&z=x_i,\\\\…",
+      "section": "Flat-domain Gaussian limits",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-prop-plane-gaussian-moments",
+      "kind": "proposition",
+      "label": "Plane Gaussian correlations",
+      "statement": "[Plane Gaussian correlations] Along the chosen subsequence, all plane increment correlation functions satisfy Wick's rule with covariance \\(C_\\). More precisely, \\(_ m, Q_m\\) uniformly on compact…",
+      "section": "Flat-domain Gaussian limits",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-prop-plane-normalization",
+      "kind": "proposition",
+      "label": "Plane normalization",
+      "statement": "[Plane normalization] For every subsequence considered above, =1 2(c/2) =1 a^2 .",
+      "section": "Flat-domain Gaussian limits",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-prop-conditional-flat-gff",
+      "kind": "proposition",
+      "label": "Conditional flat remainders",
+      "statement": "[Conditional flat remainders] Suppose a stopping exploration uses the cuts in , so that, conditional on its revealed data E_ , the unexplored chambers have independent flat laws with pairwise…",
+      "section": "Flat-domain Gaussian limits",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-cut-neighborhoods",
+      "kind": "lemma",
+      "label": "Negligible cut neighborhoods",
+      "statement": "[Negligible cut neighborhoods] Let \\(Q\\) be a compact subset of the initial domain and fix \\(>0\\). Consider a seed stop just described, a carpet of fixed odd depth, or the first wired layer. For the…",
+      "section": "Stopped local sets and canonical clusters",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-stopped-full-field",
+      "kind": "lemma",
+      "label": "Full conditional field at a stopped cut",
+      "statement": "[Full conditional field at a stopped cut] In , let \\(Q D\\) be compact. On the stopped-measurable event \\(_Q=\\ (Q,F_0 S)>0\\ \\), the set \\(A Q\\) has zero area, \\(M\\) is the distribution given on \\(Q\\)…",
+      "section": "Stopped local sets and canonical clusters",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-prop-stopped-tvs",
+      "kind": "proposition",
+      "label": "Convergence of stopped carpets",
+      "statement": "[Convergence of stopped carpets] The wired boundary cluster converges jointly with \\(h_\\), with its labels, to \\(a a (h)\\). In a free flat parent, after subtracting its label and writing \\(f\\) for…",
+      "section": "Stopped local sets and canonical clusters",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-prop-exploration-thin",
+      "kind": "proposition",
+      "label": "Conditional fields at a cluster stop",
+      "statement": "[Conditional fields at a cluster stop] Consider a seed stop in an initial free parent of label \\(b_0\\), or the composite wired stop defined above. Let \\(A,S,W_0, E\\) be its limiting explored set,…",
+      "section": "Stopped local sets and canonical clusters",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-nested-completion",
+      "kind": "lemma",
+      "label": "Completion between fixed labels",
+      "statement": "[Completion between fixed labels] Let \\(f\\) be a zero-boundary GFF in a bounded simply connected parent \\(P\\). Let \\(E\\) be a field-measurable boundary-connected bounded thin local set whose value…",
+      "section": "Stopped local sets and canonical clusters",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-canonical-geometry",
+      "kind": "lemma",
+      "label": "Canonical cluster geometry",
+      "statement": "[Canonical cluster geometry] In the free procedure of the retained sets form a countable family of pairwise disjoint connected compact sets, each strictly inside its parent domain. They and all their…",
+      "section": "Stopped local sets and canonical clusters",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-reverse-buffer",
+      "kind": "lemma",
+      "label": "Reverse buffer estimate",
+      "statement": "[Reverse buffer estimate] Let \\(K B D\\), with \\(B\\) a regular polygon, and let \\(_n\\) be zero-boundary cable GFFs in the admissible approximations of \\(D\\). Suppose the full extended Green forms…",
+      "section": "Local cable tests and the no-crossing principle",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-local-kernel",
+      "kind": "lemma",
+      "label": "Common local kernel",
+      "statement": "[Common local kernel] Fix \\(K B P\\) as above and a sequence of \\([0,1]\\)-valued cable tests \\(T_n\\) supported in \\(C_ K,n \\). There are a subsequence and a measurable \\(k\\), with \\(0 k1\\), on…",
+      "section": "Local cable tests and the no-crossing principle",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-kernel-exhaustion",
+      "kind": "lemma",
+      "label": "Interior exhaustion",
+      "statement": "[Interior exhaustion] Let \\(D_r D\\) be regular inner domains and \\(B D_1\\). The laws of the zero-boundary continuum GFFs restricted to \\(B\\) converge in total variation to the restriction of the GFF…",
+      "section": "Local cable tests and the no-crossing principle",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-killed-graph-transfer",
+      "kind": "lemma",
+      "label": "The source killed graphs and the common kernel",
+      "statement": "[The source killed graphs and the common kernel] The conclusions of , with the same reference kernel \\(k\\), also hold for the following auxiliary approximations of a bounded simply connected domain…",
+      "section": "Local cable tests and the no-crossing principle",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-soup-forcing",
+      "kind": "lemma",
+      "label": "One-sided forcing by an outermost excursion",
+      "statement": "[One-sided forcing by an outermost excursion] Let \\(_n\\) be the completed-grid whole-cable extensions of zero-boundary GFFs on these graphs. Fix a collar \\(Q V K B P D\\). In every joint subsequential…",
+      "section": "Local cable tests and the no-crossing principle",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-prop-no-crossing",
+      "kind": "proposition",
+      "label": "No crossing",
+      "statement": "[No crossing] Let \\(O\\) be a component of a stopped exploration from , with retained sigma-field \\( E\\). Suppose \\(O\\) lies in an initial free parent \\(P_0\\) of label \\(b_0 a\\), or in one pointed…",
+      "section": "Local cable tests and the no-crossing principle",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-recover-flat-label",
+      "kind": "lemma",
+      "label": "The restricted field determines its flat label",
+      "statement": "[The restricted field determines its flat label] Let \\(O\\) be a random bounded simply connected domain with a marked point \\(q O\\), and let \\(f\\) be a distribution on \\(O\\). Suppose \\(O,q,m\\) are…",
+      "section": "Identification of the complete cluster collections",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-prop-partition",
+      "kind": "proposition",
+      "label": "The visible partition",
+      "statement": "[The visible partition] Almost surely, \\(i_*j\\) if and only if \\(i j\\), simultaneously for every pair of marked addresses in either current family. Their relative signs also agree. Each retained…",
+      "section": "Identification of the complete cluster collections",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-cor-canonical-local-finiteness",
+      "kind": "corollary",
+      "label": "All-generation local finiteness",
+      "statement": "[All-generation local finiteness] Almost surely, the entire canonical free cluster family has only finitely many members of diameter greater than any given >0 . The same holds for the wired family,…",
+      "section": "Identification of the complete cluster collections",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-flat-patch",
+      "kind": "lemma",
+      "label": "Flat patches",
+      "statement": "[Flat patches] Let h be a zero-boundary GFF in a bounded simply connected domain O . Suppose an exploration with information _A describes a boundary-connected closed set A and a _A -measurable…",
+      "section": "Identification of the complete cluster collections",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-lem-hole-witnesses",
+      "kind": "lemma",
+      "label": "Open witnesses for hole contributions",
+      "statement": "[Open witnesses for hole contributions] Let \\(O\\) be open. Suppose compact sets \\(C_n X\\) converge in Hausdorff distance to \\(C\\), and \\(C O\\) has zero area. Let \\(U_n O\\) be open, with actual…",
+      "section": "Identification of the complete cluster collections",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-prop-discovered-mean",
+      "kind": "proposition",
+      "label": "The discovered mean",
+      "statement": "[The discovered mean] Let \\(\\) be one of the fixed stopped sweeps above, with limiting explored set \\(A_\\), and write \\(M_=\\) as a distribution on tests. On each connected compact localization…",
+      "section": "Identification of the complete cluster collections",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    },
+    {
+      "id": "m1-prop-complete-matching",
+      "kind": "proposition",
+      "label": "Matching of all positive-diameter clusters",
+      "statement": "[Matching of all positive-diameter clusters] Every positive-diameter Hausdorff limit of lattice free-current clusters is one retained canonical cluster, and every retained canonical cluster is the…",
+      "section": "Identification of the complete cluster collections",
+      "manuscript": "The joint scaling limit of critical Ashkin-Teller currents"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-finite-cuts",
+      "to": "m1-prop-comparison"
+    },
+    {
+      "from": "m1-prop-comparison",
+      "to": "m1-prop-circuits"
+    },
+    {
+      "from": "m1-lem-finite-cuts",
+      "to": "m1-prop-circuits"
+    },
+    {
+      "from": "m1-prop-circuits",
+      "to": "m1-lem-collar"
+    },
+    {
+      "from": "m1-lem-finite-cuts",
+      "to": "m1-prop-cluster-counts"
+    },
+    {
+      "from": "m1-lem-collar",
+      "to": "m1-prop-cluster-counts"
+    },
+    {
+      "from": "m1-prop-comparison",
+      "to": "m1-prop-cluster-counts"
+    },
+    {
+      "from": "m1-prop-circuits",
+      "to": "m1-prop-cluster-counts"
+    },
+    {
+      "from": "m1-prop-circuits",
+      "to": "m1-cor-global-cluster-counts"
+    },
+    {
+      "from": "m1-prop-cluster-counts",
+      "to": "m1-cor-global-cluster-counts"
+    },
+    {
+      "from": "m1-lem-finite-cuts",
+      "to": "m1-cor-global-cluster-counts"
+    },
+    {
+      "from": "m1-lem-collar",
+      "to": "m1-cor-indexed-no-shadowing"
+    },
+    {
+      "from": "m1-prop-comparison",
+      "to": "m1-prop-pattern-comparison"
+    },
+    {
+      "from": "m1-lem-finite-cuts",
+      "to": "m1-prop-pattern-comparison"
+    },
+    {
+      "from": "m1-prop-comparison",
+      "to": "m1-lem-buffered-witnesses"
+    },
+    {
+      "from": "m1-prop-circuits",
+      "to": "m1-lem-buffered-witnesses"
+    },
+    {
+      "from": "m1-lem-collar",
+      "to": "m1-lem-buffered-witnesses"
+    },
+    {
+      "from": "m1-lem-buffered-witnesses",
+      "to": "m1-prop-full-contiguity"
+    },
+    {
+      "from": "m1-prop-cluster-counts",
+      "to": "m1-prop-full-contiguity"
+    },
+    {
+      "from": "m1-lem-finite-cuts",
+      "to": "m1-prop-full-contiguity"
+    },
+    {
+      "from": "m1-prop-pattern-comparison",
+      "to": "m1-prop-full-contiguity"
+    },
+    {
+      "from": "m1-lem-cauchy-mixture",
+      "to": "m1-prop-dispersion-defect"
+    },
+    {
+      "from": "m1-prop-circuits",
+      "to": "m1-prop-plane-green"
+    },
+    {
+      "from": "m1-lem-finite-cuts",
+      "to": "m1-prop-plane-green"
+    },
+    {
+      "from": "m1-prop-plane-green",
+      "to": "m1-cor-reflection-null"
+    },
+    {
+      "from": "m1-prop-cluster-counts",
+      "to": "m1-lem-screen-pattern-moments"
+    },
+    {
+      "from": "m1-prop-pattern-comparison",
+      "to": "m1-lem-screen-pattern-moments"
+    },
+    {
+      "from": "m1-prop-pattern-comparison",
+      "to": "m1-lem-screen-reflection-bound"
+    },
+    {
+      "from": "m1-lem-screen-pattern-moments",
+      "to": "m1-lem-screen-reflection-bound"
+    },
+    {
+      "from": "m1-lem-positive-transfer",
+      "to": "m1-lem-screen-analytic-translation"
+    },
+    {
+      "from": "m1-lem-screen-reflection-bound",
+      "to": "m1-lem-screen-analytic-translation"
+    },
+    {
+      "from": "m1-cor-reflection-null",
+      "to": "m1-lem-screen-gapped-identity"
+    },
+    {
+      "from": "m1-lem-screen-analytic-translation",
+      "to": "m1-lem-screen-gapped-identity"
+    },
+    {
+      "from": "m1-prop-cluster-counts",
+      "to": "m1-lem-screen-core-colors"
+    },
+    {
+      "from": "m1-lem-screen-gapped-identity",
+      "to": "m1-lem-screen-core-colors"
+    },
+    {
+      "from": "m1-lem-screen-pattern-moments",
+      "to": "m1-lem-screen-core-colors"
+    },
+    {
+      "from": "m1-prop-circuits",
+      "to": "m1-lem-screen-shielding"
+    },
+    {
+      "from": "m1-prop-comparison",
+      "to": "m1-lem-screen-bridge-coupling"
+    },
+    {
+      "from": "m1-lem-finite-cuts",
+      "to": "m1-lem-screen-bridge-coupling"
+    },
+    {
+      "from": "m1-prop-pattern-comparison",
+      "to": "m1-lem-screen-bridge-coupling"
+    },
+    {
+      "from": "m1-lem-screen-shielding",
+      "to": "m1-lem-screen-bridge-coupling"
+    },
+    {
+      "from": "m1-prop-screened-orthogonality",
+      "to": "m1-lem-screen-bridge-coupling"
+    },
+    {
+      "from": "m1-lem-screen-core-colors",
+      "to": "m1-lem-screen-bridge-coupling"
+    },
+    {
+      "from": "m1-prop-full-contiguity",
+      "to": "m1-lem-screen-bridge-coupling"
+    },
+    {
+      "from": "m1-lem-screen-pattern-moments",
+      "to": "m1-lem-screen-bridge-coupling"
+    },
+    {
+      "from": "m1-lem-finite-cuts",
+      "to": "m1-prop-log-moments"
+    },
+    {
+      "from": "m1-prop-cluster-counts",
+      "to": "m1-prop-log-moments"
+    },
+    {
+      "from": "m1-prop-circuits",
+      "to": "m1-prop-boundary-decay"
+    },
+    {
+      "from": "m1-prop-cluster-counts",
+      "to": "m1-prop-boundary-decay"
+    },
+    {
+      "from": "m1-prop-log-moments",
+      "to": "m1-lem-small-set-remainders"
+    },
+    {
+      "from": "m1-lem-finite-cuts",
+      "to": "m1-lem-neutral-pair-mixing"
+    },
+    {
+      "from": "m1-lem-neutral-pair-mixing",
+      "to": "m1-prop-collision-coefficient"
+    },
+    {
+      "from": "m1-lem-log-singularity",
+      "to": "m1-prop-collision-coefficient"
+    },
+    {
+      "from": "m1-prop-collision-coefficient",
+      "to": "m1-prop-gaussian-moments"
+    },
+    {
+      "from": "m1-lem-log-singularity",
+      "to": "m1-prop-gaussian-moments"
+    },
+    {
+      "from": "m1-prop-boundary-decay",
+      "to": "m1-prop-gaussian-moments"
+    },
+    {
+      "from": "m1-lem-flat-green-geometry",
+      "to": "m1-prop-gaussian-moments"
+    },
+    {
+      "from": "m1-lem-flat-tightness",
+      "to": "m1-prop-gaussian-moments"
+    },
+    {
+      "from": "m1-prop-collision-coefficient",
+      "to": "m1-lem-plane-collision-coefficient"
+    },
+    {
+      "from": "m1-lem-neutral-pair-mixing",
+      "to": "m1-lem-plane-collision-coefficient"
+    },
+    {
+      "from": "m1-lem-plane-collision-coefficient",
+      "to": "m1-prop-plane-gaussian-moments"
+    },
+    {
+      "from": "m1-prop-plane-green",
+      "to": "m1-prop-plane-normalization"
+    },
+    {
+      "from": "m1-thm-flat-gff",
+      "to": "m1-prop-plane-normalization"
+    },
+    {
+      "from": "m1-lem-flat-green-geometry",
+      "to": "m1-prop-plane-normalization"
+    },
+    {
+      "from": "m1-lem-flat-tightness",
+      "to": "m1-prop-plane-normalization"
+    },
+    {
+      "from": "m1-prop-boundary-decay",
+      "to": "m1-prop-plane-normalization"
+    },
+    {
+      "from": "m1-lem-parity-interpolation",
+      "to": "m1-prop-plane-normalization"
+    },
+    {
+      "from": "m1-lem-flat-green-geometry",
+      "to": "m1-prop-conditional-flat-gff"
+    },
+    {
+      "from": "m1-lem-finite-cuts",
+      "to": "m1-prop-conditional-flat-gff"
+    },
+    {
+      "from": "m1-prop-circuits",
+      "to": "m1-lem-cut-neighborhoods"
+    },
+    {
+      "from": "m1-lem-finite-cuts",
+      "to": "m1-lem-cut-neighborhoods"
+    },
+    {
+      "from": "m1-lem-flat-green-geometry",
+      "to": "m1-lem-stopped-full-field"
+    },
+    {
+      "from": "m1-cor-global-cluster-counts",
+      "to": "m1-lem-stopped-full-field"
+    },
+    {
+      "from": "m1-lem-stopped-full-field",
+      "to": "m1-prop-stopped-tvs"
+    },
+    {
+      "from": "m1-lem-finite-cuts",
+      "to": "m1-prop-exploration-thin"
+    },
+    {
+      "from": "m1-lem-cut-neighborhoods",
+      "to": "m1-prop-exploration-thin"
+    },
+    {
+      "from": "m1-lem-stopped-full-field",
+      "to": "m1-prop-exploration-thin"
+    },
+    {
+      "from": "m1-lem-nested-completion",
+      "to": "m1-lem-canonical-geometry"
+    },
+    {
+      "from": "m1-lem-soup-forcing",
+      "to": "m1-lem-canonical-geometry"
+    },
+    {
+      "from": "m1-lem-reverse-buffer",
+      "to": "m1-lem-local-kernel"
+    },
+    {
+      "from": "m1-lem-reverse-buffer",
+      "to": "m1-lem-killed-graph-transfer"
+    },
+    {
+      "from": "m1-lem-local-kernel",
+      "to": "m1-lem-killed-graph-transfer"
+    },
+    {
+      "from": "m1-lem-killed-graph-transfer",
+      "to": "m1-lem-soup-forcing"
+    },
+    {
+      "from": "m1-lem-canonical-geometry",
+      "to": "m1-prop-no-crossing"
+    },
+    {
+      "from": "m1-lem-soup-forcing",
+      "to": "m1-prop-no-crossing"
+    },
+    {
+      "from": "m1-lem-local-kernel",
+      "to": "m1-prop-no-crossing"
+    },
+    {
+      "from": "m1-prop-exploration-thin",
+      "to": "m1-prop-partition"
+    },
+    {
+      "from": "m1-prop-no-crossing",
+      "to": "m1-prop-partition"
+    },
+    {
+      "from": "m1-lem-recover-flat-label",
+      "to": "m1-prop-partition"
+    },
+    {
+      "from": "m1-lem-finite-cuts",
+      "to": "m1-prop-partition"
+    },
+    {
+      "from": "m1-lem-canonical-geometry",
+      "to": "m1-prop-partition"
+    },
+    {
+      "from": "m1-prop-partition",
+      "to": "m1-cor-canonical-local-finiteness"
+    },
+    {
+      "from": "m1-cor-global-cluster-counts",
+      "to": "m1-cor-canonical-local-finiteness"
+    },
+    {
+      "from": "m1-prop-exploration-thin",
+      "to": "m1-prop-discovered-mean"
+    },
+    {
+      "from": "m1-prop-partition",
+      "to": "m1-prop-discovered-mean"
+    },
+    {
+      "from": "m1-lem-hole-witnesses",
+      "to": "m1-prop-discovered-mean"
+    },
+    {
+      "from": "m1-prop-log-moments",
+      "to": "m1-prop-discovered-mean"
+    },
+    {
+      "from": "m1-prop-discovered-mean",
+      "to": "m1-prop-complete-matching"
+    },
+    {
+      "from": "m1-lem-flat-patch",
+      "to": "m1-prop-complete-matching"
+    },
+    {
+      "from": "m1-lem-canonical-geometry",
+      "to": "m1-prop-complete-matching"
+    },
+    {
+      "from": "m1-lem-chamber-rim-distance",
+      "to": "m1-prop-complete-matching"
+    },
+    {
+      "from": "m1-cor-indexed-no-shadowing",
+      "to": "m1-prop-complete-matching"
+    },
+    {
+      "from": "m1-prop-partition",
+      "to": "m1-prop-complete-matching"
+    },
+    {
+      "from": "m1-lem-matching-topology",
+      "to": "m1-prop-complete-matching"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-prop-complete-matching"
+    },
+    {
+      "from": "m1-thm-flat-gff",
+      "to": "m1-prop-complete-matching"
+    },
+    {
+      "from": "m1-prop-stopped-tvs",
+      "to": "m1-prop-complete-matching"
+    },
+    {
+      "from": "m1-cor-canonical-local-finiteness",
+      "to": "m1-prop-complete-matching"
+    }
+  ]
+}

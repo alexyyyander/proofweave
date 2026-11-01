@@ -1,0 +1,424 @@
+{
+  "familyNumber": "076",
+  "familyTitle": "Real ultraflat Littlewood polynomials and unbounded binary merit factors",
+  "manuscripts": [
+    {
+      "id": "Ultraflat-real-Littlewood-polynomials-October-5-2026",
+      "title": "Ultraflat real Littlewood polynomials",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Ultraflat-real-Littlewood-polynomials-October-5-2026/ultraflat-real-littlewood-polynomials.pdf"
+    },
+    {
+      "id": "Nearly-minimal-maxima-and-positive-minima-of-Littlewood-polynomials-October-5-2026",
+      "title": "Nearly minimal maxima and positive minima of Littlewood polynomials",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Nearly-minimal-maxima-and-positive-minima-of-Littlewood-polynomials-October-5-2026/littlewood-lower-envelope.pdf"
+    },
+    {
+      "id": "Asymptotically-minimal-maxima-of-real-Littlewood-polynomials-September-23-2026",
+      "title": "Asymptotically minimal maxima of real Littlewood polynomials",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Asymptotically-minimal-maxima-of-real-Littlewood-polynomials-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Oscillatory integral estimates",
+    "Rounding with a small defect",
+    "A real auxiliary function with balanced coefficients",
+    "Waves of nearly constant modulus",
+    "Spreading Fourier coefficients",
+    "Packing signed intervals",
+    "Sampling and the geometry of the small values",
+    "A correction with small Fourier coefficients",
+    "Rounding with a small defect mass",
+    "Reduction to approximation and rounding",
+    "Sampling the auxiliary polynomial",
+    "Flatness for every finite exponent",
+    "Binary merit factors and Morse shifts"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For every (0,1) there is an integer N_0 such that, for every integer N N_0 ,…",
+      "statement": "For every (0,1) there is an integer N_0 such that, for every integer N N_0 , there are signs _0,,_ N-1 for which \\[ (1-) N |_ k=0 ^ N-1 _k z^k| (1+) N for every |z|=1. \\]",
+      "section": "Introduction",
+      "manuscript": "Ultraflat real Littlewood polynomials"
+    },
+    {
+      "id": "m1-lem-quadratic",
+      "kind": "lemma",
+      "label": "Uniform quadratic formula",
+      "statement": "[Uniform quadratic formula] Let g C_c^() and \\ 0\\ . As T , uniformly for all u , _ g(y)(T y^2/2-uy)\\,dy = ( ( )/8-u^2/(2T )) T| | .",
+      "section": "Oscillatory integral estimates",
+      "manuscript": "Ultraflat real Littlewood polynomials"
+    },
+    {
+      "id": "m1-lem-stationary-phase",
+      "kind": "lemma",
+      "label": "Uniform stationary phase",
+      "statement": "[Uniform stationary phase] Let I be a compact interval, let be smooth on a neighborhood of I with '' nowhere zero there, and let f C_c^(intI) . Uniformly for x , N_I f(t)(N((t)-xt))\\,dt =f(t_x) |…",
+      "section": "Oscillatory integral estimates",
+      "manuscript": "Ultraflat real Littlewood polynomials"
+    },
+    {
+      "id": "m1-lem-oscillatory-bounds",
+      "kind": "lemma",
+      "label": "Bounds with endpoint amplitudes",
+      "statement": "[Bounds with endpoint amplitudes] Let I be a compact interval, f C^1(I) , and be real and smooth. If ''=0 on I , then for all real k , |_I f(t)(N(t)-kt)\\,dt| C N| | ( f_+_I|f'(t)|\\,dt). If N'-k is…",
+      "section": "Oscillatory integral estimates",
+      "manuscript": "Ultraflat real Littlewood polynomials"
+    },
+    {
+      "id": "m1-lem-matrix-discrepancy",
+      "kind": "lemma",
+      "label": "Real matrix discrepancy",
+      "statement": "[Real matrix discrepancy] There is an absolute constant C such that, for integers 1 s R and every A^ R s , there is a vector \\ -1,1\\ ^s satisfying \\[ A _ Cs (2R/s). \\]",
+      "section": "Rounding with a small defect",
+      "manuscript": "Ultraflat real Littlewood polynomials"
+    },
+    {
+      "id": "m1-lem-complex-rounding",
+      "kind": "lemma",
+      "label": "Rounding with prescribed phases",
+      "statement": "[Rounding with prescribed phases] Let n1 be an integer and Z_0,,Z_ n-1 satisfy |Z_j|1 . Write Z_j=d_j|Z_j| , where |d_j|=1 , choosing d_j=1 when Z_j=0 , and put \\[ =12_ j=0 ^ n-1 (1-|Z_j|). \\] There…",
+      "section": "Rounding with a small defect",
+      "manuscript": "Ultraflat real Littlewood polynomials"
+    },
+    {
+      "id": "m1-prop-balanced",
+      "kind": "proposition",
+      "label": "For every 0<<1/100 , there are an integer m2 , a real trigonometric polynomial…",
+      "statement": "For every 0<<1/100 , there are an integer m2 , a real trigonometric polynomial F on ^m , and v^m with the following properties. Its Fourier support A^m\\ 0\\ consists of at least two pairs \\ a,-a\\ ,…",
+      "section": "A real auxiliary function with balanced coefficients",
+      "manuscript": "Ultraflat real Littlewood polynomials"
+    },
+    {
+      "id": "m1-lem-equal-modulus-spreading",
+      "kind": "lemma",
+      "label": "Spreading with equal coefficient magnitudes",
+      "statement": "[Spreading with equal coefficient magnitudes] Let B\\ 0\\ be finite and invariant under negation. For every >0 , there is a real g C_c^((-1/2,1/2)) , with 0 g1 , such that for every sufficiently large…",
+      "section": "A real auxiliary function with balanced coefficients",
+      "manuscript": "Ultraflat real Littlewood polynomials"
+    },
+    {
+      "id": "m1-prop-waves",
+      "kind": "proposition",
+      "label": "There are absolute constants C>0 and _0>0 with the following property. For…",
+      "statement": "There are absolute constants C>0 and _0>0 with the following property. For every 0<<_0 , there are N_0() and K_< such that, for every integer N N_0() , there is a continuous function B_N: satisfying…",
+      "section": "Waves of nearly constant modulus",
+      "manuscript": "Ultraflat real Littlewood polynomials"
+    },
+    {
+      "id": "m1-lem-signed-packing",
+      "kind": "lemma",
+      "label": "Signed interval packing, [Lemma~3.1",
+      "statement": "[Signed interval packing, ] Let a_1,,a_r^m\\ 0\\ be pairwise nonparallel, with r2 , and let w_1,,w_r>0 satisfy 2_iw_i<1 . There are an integer H1 and points _1,,_H^m such that the closed arcs centered…",
+      "section": "Waves of nearly constant modulus",
+      "manuscript": "Ultraflat real Littlewood polynomials"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "For every >0 there is an integer N_0=N_0() such that, for every integer N N_0 ,…",
+      "statement": "For every >0 there is an integer N_0=N_0() such that, for every integer N N_0 , there exist real signs _0,,_ N-1 for which \\[ 1 16 N |_ k=0 ^ N-1 _kz^k| (1+) N (|z|=1). \\]",
+      "section": "Introduction",
+      "manuscript": "Nearly minimal maxima and positive minima of Littlewood polynomials"
+    },
+    {
+      "id": "m2-prop-auxiliary",
+      "kind": "proposition",
+      "label": "An auxiliary polynomial with controlled widths",
+      "statement": "[An auxiliary polynomial with controlled widths] For every 0<<1/20 , there exist integers m1 and r2 , nonzero vectors a_1,,a_r^m , a real-valued trigonometric polynomial F on ^m , and a vector v^m…",
+      "section": "Spreading Fourier coefficients",
+      "manuscript": "Nearly minimal maxima and positive minima of Littlewood polynomials"
+    },
+    {
+      "id": "m2-lem-quadratic",
+      "kind": "lemma",
+      "label": "Uniform quadratic integration",
+      "statement": "[Uniform quadratic integration] Let g C_c^() and let \\ 0\\ be fixed. As T through positive real values, _ g(x)(T x^2/2-ux)\\,dx = & (sgn()/8-u^2/(2T)) T| | \\\\ &(g(u T ) +O_ g, (T^ -1 )), uniformly for…",
+      "section": "Spreading Fourier coefficients",
+      "manuscript": "Nearly minimal maxima and positive minima of Littlewood polynomials"
+    },
+    {
+      "id": "m2-lem-signed-packing",
+      "kind": "lemma",
+      "label": "Signed interval packing",
+      "statement": "[Signed interval packing] Let m1 and r2 be integers, and let a_1,,a_r^m\\ 0\\ be pairwise nonparallel. If w_1,,w_r>0 and 2_ i=1 ^r w_i<1 , there are an integer H1 and points _1,,_H^m for which the 2rH…",
+      "section": "Packing signed intervals",
+      "manuscript": "Nearly minimal maxima and positive minima of Littlewood polynomials"
+    },
+    {
+      "id": "m2-thm-packing-edge-coloring",
+      "kind": "theorem",
+      "label": "Pippenger--Spencer",
+      "statement": "[Pippenger--Spencer] For each integer r2 and each >0 , there is >0 such that the following holds. If an r -uniform hypergraph satisfies, for some D>0 , \\[ (1-)D<d(v)<(1+)Dfor every vertex v, d(u,v)<…",
+      "section": "Packing signed intervals",
+      "manuscript": "Nearly minimal maxima and positive minima of Littlewood polynomials"
+    },
+    {
+      "id": "m2-prop-starting",
+      "kind": "proposition",
+      "label": "A structured starting construction",
+      "statement": "[A structured starting construction] Let 0<<1/100 , and put \\[ K_= (1+ )^3 1- , b=18. \\] There are a smooth even function B: and, for every positive integer N , real numbers Y_ N,k (0 k<N) and a…",
+      "section": "Sampling and the geometry of the small values",
+      "manuscript": "Nearly minimal maxima and positive minima of Littlewood polynomials"
+    },
+    {
+      "id": "m2-lem-sampling-poisson",
+      "kind": "lemma",
+      "label": "Quadratic sampling",
+      "statement": "[Quadratic sampling] Let C_c^() , let x_* and \\ 0\\ , and let J be compact. For J and , put \\[ x_ , =x_*+ - , _ , =(-)x_* -( - )^2 2 . \\] As N tends to infinity through positive integers, uniformly…",
+      "section": "Sampling and the geometry of the small values",
+      "manuscript": "Nearly minimal maxima and positive minima of Littlewood polynomials"
+    },
+    {
+      "id": "m2-prop-correction",
+      "kind": "proposition",
+      "label": "Correction on short gaps",
+      "statement": "[Correction on short gaps] Fix 0<<1/100 , and put \\[ b=18, K_= (1+ )^3 1- . \\] Suppose that B_N C^(;) , N , satisfy B_N(-t)=B_N(t) , and that their common modulus B=|B_N| C^() has the following…",
+      "section": "A correction with small Fourier coefficients",
+      "manuscript": "Nearly minimal maxima and positive minima of Littlewood polynomials"
+    },
+    {
+      "id": "m2-lem-rounding",
+      "kind": "lemma",
+      "label": "Rounding with a small defect",
+      "statement": "[Rounding with a small defect] There is an absolute constant C with the following property. Let N1 be an integer and let X=(X_0,,X_ N-1 )^N . Put \\[ (X)=12_ k=0 ^ N-1 (1-|X_k|). \\] Then there are…",
+      "section": "Rounding with a small defect mass",
+      "manuscript": "Nearly minimal maxima and positive minima of Littlewood polynomials"
+    },
+    {
+      "id": "m2-lem-rounding-matrix",
+      "kind": "lemma",
+      "label": "There is an absolute constant C_0 such that, for integers 1 s R and a real…",
+      "statement": "There is an absolute constant C_0 such that, for integers 1 s R and a real matrix B^ R s , there is a vector \\ -1,1\\ ^s satisfying \\[ B _ C_0s (2R/s). \\]",
+      "section": "Rounding with a small defect mass",
+      "manuscript": "Nearly minimal maxima and positive minima of Littlewood polynomials"
+    },
+    {
+      "id": "m3-thm-main",
+      "kind": "theorem",
+      "label": "For Littlewood polynomials with real coefficients, \\[ _ N m_N=1. \\]…",
+      "statement": "For Littlewood polynomials with real coefficients, \\[ _ N m_N=1. \\] Equivalently, for every >0 there is N_0 such that for every integer N N_0 there are signs _0,,_ N-1 with \\[ _ |z|=1 |_ k=0 ^ N-1…",
+      "section": "Introduction",
+      "manuscript": "Asymptotically minimal maxima of real Littlewood polynomials"
+    },
+    {
+      "id": "m3-prop-almost-signs",
+      "kind": "proposition",
+      "label": "Almost-sign approximation",
+      "statement": "[Almost-sign approximation] For every 0<<1/20 , there are vectors X_N=(X_ N,0 ,,X_ N,N-1 )^N , one for each integer N1 , such that _ N Q_ X_N _ N & K_, &K_&= (1+ )^3 1- , \\\\ _ N 1N_ k=0 ^ N-1 X_ N,k…",
+      "section": "Reduction to approximation and rounding",
+      "manuscript": "Asymptotically minimal maxima of real Littlewood polynomials"
+    },
+    {
+      "id": "m3-lem-rounding",
+      "kind": "lemma",
+      "label": "Rounding with a small defect",
+      "statement": "[Rounding with a small defect] There is an absolute constant C such that for every N1 and every X^N , some signs _0,,_ N-1 satisfy _ t |_ k=0 ^ N-1 (_k-X_k)(kt)| C(1+ (X)80N (X) ). The square-root…",
+      "section": "Reduction to approximation and rounding",
+      "manuscript": "Asymptotically minimal maxima of real Littlewood polynomials"
+    },
+    {
+      "id": "m3-lem-signed-packing",
+      "kind": "lemma",
+      "label": "Signed interval packing",
+      "statement": "[Signed interval packing] Let m1 and r2 be integers, and let a_1,,a_r^m\\ 0\\ be pairwise nonparallel. If w_1,,w_r>0 satisfy 2_iw_i<1 , there exist an integer H1 and points _1,,_H^m such that the 2rH…",
+      "section": "Packing signed intervals",
+      "manuscript": "Asymptotically minimal maxima of real Littlewood polynomials"
+    },
+    {
+      "id": "m3-thm-packing-edge-coloring",
+      "kind": "theorem",
+      "label": "Pippenger--Spencer",
+      "statement": "[Pippenger--Spencer] For each integer r2 and each >0 , there exists >0 with the following property. If an r -uniform hypergraph satisfies, for some t>0 , \\[ (1-)t<d(v)<(1+)tfor every vertex v,…",
+      "section": "Packing signed intervals",
+      "manuscript": "Asymptotically minimal maxima of real Littlewood polynomials"
+    },
+    {
+      "id": "m3-prop-auxiliary",
+      "kind": "proposition",
+      "label": "An auxiliary polynomial with controlled widths",
+      "statement": "[An auxiliary polynomial with controlled widths] For every 0<<1/20 , there exist integers m1 and r2 , nonzero vectors a_1,,a_r^m , a real-valued trigonometric polynomial F on ^m , and a vector v^m…",
+      "section": "Spreading Fourier coefficients",
+      "manuscript": "Asymptotically minimal maxima of real Littlewood polynomials"
+    },
+    {
+      "id": "m3-lem-quadratic",
+      "kind": "lemma",
+      "label": "Uniform quadratic integration",
+      "statement": "[Uniform quadratic integration] Let g C_c^() and let \\ 0\\ be fixed. As T through positive real values, _ g(x)(T x^2/2-ux)\\,dx = & (sgn()/8-u^2/(2T)) T| | \\\\ &(g(u T ) +O_ g, (T^ -1 )), uniformly for…",
+      "section": "Spreading Fourier coefficients",
+      "manuscript": "Asymptotically minimal maxima of real Littlewood polynomials"
+    },
+    {
+      "id": "m3-lem-sampling-poisson",
+      "kind": "lemma",
+      "label": "Let C_c^() , let x_* and \\ 0\\ , and let J be compact. For b J and , put \\[ x_…",
+      "statement": "Let C_c^() , let x_* and \\ 0\\ , and let J be compact. For b J and , put \\[ x_ b, =x_*+ -b , _ b, =(b-)x_* -(b- )^2 2 . \\] As N tends to infinity through positive integers, uniformly for b J , &1 N _…",
+      "section": "Sampling the auxiliary polynomial",
+      "manuscript": "Asymptotically minimal maxima of real Littlewood polynomials"
+    },
+    {
+      "id": "m3-lem-rounding-matrix",
+      "kind": "lemma",
+      "label": "There is an absolute constant C_0 such that, for integers 1 s R and a real…",
+      "statement": "There is an absolute constant C_0 such that, for integers 1 s R and a real matrix B^ R s , there is a vector \\ -1,1\\ ^s satisfying \\[ B _ C_0s (2R/s). \\]",
+      "section": "Rounding with a small defect mass",
+      "manuscript": "Asymptotically minimal maxima of real Littlewood polynomials"
+    },
+    {
+      "id": "m3-cor-finite-flatness",
+      "kind": "corollary",
+      "label": "There are Littlewood polynomials P_N of every length N such that, for each…",
+      "statement": "There are Littlewood polynomials P_N of every length N such that, for each fixed 0<p< , \\[ _ ||P_N( (t))| N -1|^p\\,dt 0. \\]",
+      "section": "Flatness for every finite exponent",
+      "manuscript": "Asymptotically minimal maxima of real Littlewood polynomials"
+    },
+    {
+      "id": "m3-cor-merit",
+      "kind": "corollary",
+      "label": "All-length unbounded binary merit factors",
+      "statement": "[All-length unbounded binary merit factors] For N2 , let \\[ F_N=_ A\\ -1,1\\ ^N F(A). \\] Then \\[ _ N F_N=+, \\] where the limit runs through all integer lengths. Equivalently, one can choose a word A_N\\…",
+      "section": "Binary merit factors and Morse shifts",
+      "manuscript": "Asymptotically minimal maxima of real Littlewood polynomials"
+    },
+    {
+      "id": "m3-cor-morse",
+      "kind": "corollary",
+      "label": "Binary Morse spectral consequence",
+      "statement": "[Binary Morse spectral consequence] There is a binary Morse shift (X,S) with a unique S -invariant Borel probability measure for which the Koopman operator U_Sg=g S on L^2(X,) has simple spectrum.…",
+      "section": "Binary merit factors and Morse shifts",
+      "manuscript": "Asymptotically minimal maxima of real Littlewood polynomials"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-quadratic",
+      "to": "m1-lem-stationary-phase"
+    },
+    {
+      "from": "m1-lem-matrix-discrepancy",
+      "to": "m1-lem-complex-rounding"
+    },
+    {
+      "from": "m1-lem-quadratic",
+      "to": "m1-lem-equal-modulus-spreading"
+    },
+    {
+      "from": "m1-lem-complex-rounding",
+      "to": "m1-lem-equal-modulus-spreading"
+    },
+    {
+      "from": "m1-prop-balanced",
+      "to": "m1-lem-equal-modulus-spreading"
+    },
+    {
+      "from": "m1-prop-waves",
+      "to": "m1-lem-signed-packing"
+    },
+    {
+      "from": "m1-prop-balanced",
+      "to": "m1-lem-signed-packing"
+    },
+    {
+      "from": "m1-lem-oscillatory-bounds",
+      "to": "m1-lem-signed-packing"
+    },
+    {
+      "from": "m1-lem-stationary-phase",
+      "to": "m1-lem-signed-packing"
+    },
+    {
+      "from": "m2-prop-auxiliary",
+      "to": "m2-lem-quadratic"
+    },
+    {
+      "from": "m2-lem-signed-packing",
+      "to": "m2-thm-packing-edge-coloring"
+    },
+    {
+      "from": "m2-lem-quadratic",
+      "to": "m2-lem-sampling-poisson"
+    },
+    {
+      "from": "m2-prop-starting",
+      "to": "m2-lem-sampling-poisson"
+    },
+    {
+      "from": "m2-prop-auxiliary",
+      "to": "m2-lem-sampling-poisson"
+    },
+    {
+      "from": "m2-lem-signed-packing",
+      "to": "m2-lem-sampling-poisson"
+    },
+    {
+      "from": "m2-lem-rounding",
+      "to": "m2-lem-rounding-matrix"
+    },
+    {
+      "from": "m2-thm-main",
+      "to": "m2-lem-rounding-matrix"
+    },
+    {
+      "from": "m2-prop-correction",
+      "to": "m2-lem-rounding-matrix"
+    },
+    {
+      "from": "m2-prop-starting",
+      "to": "m2-lem-rounding-matrix"
+    },
+    {
+      "from": "m3-thm-main",
+      "to": "m3-lem-rounding"
+    },
+    {
+      "from": "m3-prop-almost-signs",
+      "to": "m3-lem-rounding"
+    },
+    {
+      "from": "m3-lem-signed-packing",
+      "to": "m3-thm-packing-edge-coloring"
+    },
+    {
+      "from": "m3-prop-auxiliary",
+      "to": "m3-lem-quadratic"
+    },
+    {
+      "from": "m3-lem-quadratic",
+      "to": "m3-lem-sampling-poisson"
+    },
+    {
+      "from": "m3-prop-almost-signs",
+      "to": "m3-lem-sampling-poisson"
+    },
+    {
+      "from": "m3-prop-auxiliary",
+      "to": "m3-lem-sampling-poisson"
+    },
+    {
+      "from": "m3-lem-signed-packing",
+      "to": "m3-lem-sampling-poisson"
+    },
+    {
+      "from": "m3-lem-rounding",
+      "to": "m3-lem-rounding-matrix"
+    },
+    {
+      "from": "m3-thm-main",
+      "to": "m3-cor-finite-flatness"
+    },
+    {
+      "from": "m3-thm-main",
+      "to": "m3-cor-merit"
+    },
+    {
+      "from": "m3-cor-merit",
+      "to": "m3-cor-morse"
+    }
+  ]
+}

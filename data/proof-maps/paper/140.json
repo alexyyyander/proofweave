@@ -1,0 +1,1090 @@
+{
+  "familyNumber": "140",
+  "familyTitle": "Memory–sample lower bounds for noiseless Gaussian regression",
+  "manuscripts": [
+    {
+      "id": "Memory-and-precision-in-noiseless-Gaussian-regression-September-27-2026",
+      "title": "Memory and precision in noiseless Gaussian regression",
+      "date": "2026-09-27",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Memory-and-precision-in-noiseless-Gaussian-regression-September-27-2026/paper.pdf"
+    },
+    {
+      "id": "Posterior-replicas-and-conditional-information-in-Gaussian-regression-September-27-2026",
+      "title": "Posterior replicas and conditional information in Gaussian regression",
+      "date": "2026-09-27",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Posterior-replicas-and-conditional-information-in-Gaussian-regression-September-27-2026/paper.pdf"
+    },
+    {
+      "id": "Localization-costs-and-information-growth-for-exact-Gaussian-observations-September-27-2026",
+      "title": "Localization costs and information growth for exact Gaussian observations",
+      "date": "2026-09-27",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Localization-costs-and-information-growth-for-exact-Gaussian-observations-September-27-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Exact observations and finite memory",
+    "Local mass of terminal success",
+    "Exact Gaussian projection",
+    "One block of arbitrary computation",
+    "From one block to a finite stream",
+    "Constant accuracy and the main lower bound",
+    "Selection on a common data domain",
+    "A paired-coordinate cube application",
+    "Other exact-label interfaces",
+    "Coefficient recurrences and support alternatives",
+    "A sharper full-data residual bound",
+    "Introduction",
+    "Finite states and the information required at the endpoint",
+    "Posterior replicas and exact equal-label measures",
+    "A Gaussian test that cancels the affine volume",
+    "Shared data and distance-bin comparisons",
+    "Current-state recurrences and the streaming bound",
+    "Haar projections and posterior replica information",
+    "Synthetic Gaussian projections",
+    "Stiefel incidence and conditional block information"
+  ],
+  "nodes": [
+    {
+      "id": "m1-h-main",
+      "kind": "theorem",
+      "label": "Memory and precision",
+      "statement": "[Memory and precision] For every fixed finite \\(A>0\\), there are constants \\(c_A>0\\) and \\(d_A\\) such that the following holds. Let \\(d d_A\\), let \\(0 M Ad^2\\) be an integer, and let \\(0<1/10\\). For…",
+      "section": "Exact observations and finite memory",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-subquadratic",
+      "kind": "corollary",
+      "label": "Subquadratic memory",
+      "statement": "[Subquadratic memory] Let \\(M(d)0\\) be integer-valued with \\(M(d)=o(d^2)\\), and let \\(0<(d)1/10\\) be any accuracy sequence. A family of learners in Definition~ with uniform-sphere average success at…",
+      "section": "Exact observations and finite memory",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-worst-signal",
+      "kind": "corollary",
+      "label": "A guarantee for every signal",
+      "statement": "[A guarantee for every signal] The conclusions of Theorem~ and Corollary~ also hold when their average-success assumption is replaced by \\[ \\ s s \\ 23 for every s S^ d-1 , \\] where this probability…",
+      "section": "Exact observations and finite memory",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-local-caps",
+      "kind": "lemma",
+      "label": "Spherical balls and terminal outputs",
+      "statement": "[Spherical balls and terminal outputs] For \\(d2\\), \\(z S^ d-1 \\), and \\(r>0\\), _d(B(z,r)) r^ d-1 . Consequently, if \\(Q\\) is any probability law on \\(S^ d-1 \\) independent of the signal and \\[…",
+      "section": "Local mass of terminal success",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-dv-finite-density",
+      "kind": "theorem",
+      "label": "Exact projection density from an ambient ball bound",
+      "statement": "[Exact projection density from an ambient ball bound] Let \\(d,m1\\) and \\(p2\\) be integers, and let \\(>m+p-2\\), \\(H,R>0\\), and \\(z R^d\\). Suppose that \\(\\) is a finite nonnegative Borel measure…",
+      "section": "Exact Gaussian projection",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-dv-ambient-gram",
+      "kind": "proposition",
+      "label": "Affine-distance and Gram bounds",
+      "statement": "[Affine-distance and Gram bounds] Under the assumptions of Theorem~ , use the factors \\(J_j\\) defined there. If \\(L\\) is an affine \\(j\\)-plane with \\(0 j p-2\\), then, for \\(0<t R\\), \\ s:dist(s,L) t\\…",
+      "section": "Exact Gaussian projection",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-proj-gaussian",
+      "kind": "lemma",
+      "label": "Gaussian difference identity",
+      "statement": "[Gaussian difference identity] Let \\(d,m1\\) and \\(k2\\) be integers, let \\(>0\\), and let \\(t_1,,t_k^d\\). Put \\(D=[t_2-t_1,,t_k-t_1]\\). If \\(A\\) has law \\(_m\\), then _A_ ^m _ i=1 ^k_(y-At_i)\\,dy =…",
+      "section": "Exact Gaussian projection",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-dv-gaussian-moment",
+      "kind": "lemma",
+      "label": "Gaussian smoothing with the full mass factor",
+      "statement": "[Gaussian smoothing with the full mass factor] Under the assumptions of Theorem~ , use the scale \\( B\\) from . Let \\(_\\) be the \\(N(0,^2I_m)\\) density and put \\[ F_(A,y)=_(y-As)\\,d(s), >0. \\] Then…",
+      "section": "Exact Gaussian projection",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-proj-density-by-tests",
+      "kind": "lemma",
+      "label": "A density from compactly supported tests",
+      "statement": "[A density from compactly supported tests] Let \\(E\\) be a Euclidean space, let \\(\\) be a locally finite, sigma-finite Borel measure on \\(E\\), and let \\(\\) be a finite nonnegative Borel measure on…",
+      "section": "Exact Gaussian projection",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-proj-normalized",
+      "kind": "corollary",
+      "label": "Normalized exact projection",
+      "statement": "[Normalized exact projection] Use the parameters in , and let \\(1 m q\\). Let \\(\\) be a finite nonnegative Borel measure of mass at most one, supported on the unit ball in \\( R^d\\), such that…",
+      "section": "Exact Gaussian projection",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-ev-ellipsoid",
+      "kind": "lemma",
+      "label": "Exact projected volume, including short blocks",
+      "statement": "[Exact projected volume, including short blocks] Let \\(1 m d\\), \\(z R^d\\), and \\(R>0\\). Use the Borel set \\( E_ z,R \\) from . There is an absolute \\(C_ E 1\\) such that, for a standard Gaussian…",
+      "section": "Exact Gaussian projection",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-block-bound",
+      "kind": "lemma",
+      "label": "Backward block bound",
+      "statement": "[Backward block bound] Let \\(1 m q\\) and \\(N1\\). Suppose the measurable functions \\(h_1,,h_N:S^ d-1 \\) have local mass at a common scale \\(R>0\\), as in . Let \\(g_j:^ m d ^m\\) be Borel routing…",
+      "section": "One block of arbitrary computation",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-stream-categories",
+      "kind": "lemma",
+      "label": "The destinations of a block",
+      "statement": "[The destinations of a block] For a fixed-seed Borel learner with the state sets, output laws, and phase convention just specified, and the Borel terminal score , let 0 t<T , u Q_t , and 1 m T-t .…",
+      "section": "From one block to a finite stream",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-stream-borel",
+      "kind": "lemma",
+      "label": "Borel versions under a dominated sample law",
+      "statement": "[Borel versions under a dominated sample law] Let d2 , let be a Borel probability measure on S^ d-1 , and let X_1=N(0,I_d) be independent of S . Suppose that L(X, X,S) , (dx,dy)=_1(dx)\\,dy on R^d R .…",
+      "section": "From one block to a finite stream",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-stream-success",
+      "kind": "proposition",
+      "label": "Success after a bounded number of samples",
+      "statement": "[Success after a bounded number of samples] There are absolute constants C,d_0>0 with the following property. For d d_0 , every learner in the stated finite-state model with M0 bits and an integer…",
+      "section": "From one block to a finite stream",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-ev-reflection",
+      "kind": "lemma",
+      "label": "Reflection with full data",
+      "statement": "[Reflection with full data] Let \\(d1\\) be an integer and \\(T0\\). Let \\(S\\) be uniform on \\(S^ d-1 \\). Let a matrix \\(A\\) with \\(d\\) columns, independent of \\(S\\), have row span \\(U\\) of dimension at…",
+      "section": "Constant accuracy and the main lower bound",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-alt-selection",
+      "kind": "lemma",
+      "label": "Selection on a common data domain",
+      "statement": "[Selection on a common data domain] Let \\((E, E,)\\) be a measure space, let \\( D E\\) have finite measure, let \\(p>1\\), let \\(U0\\), and let \\(N1\\) be an integer. Suppose finite nonnegative measures…",
+      "section": "Selection on a common data domain",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-cube-density",
+      "kind": "lemma",
+      "label": "Exact density and a common projected ellipsoid",
+      "statement": "[Exact density and a common projected ellipsoid] Let \\(k\\) be an integer with \\(1 k p\\), and let a Borel function \\(f:Q\\) satisfy with \\(L0\\). For \\(z R^n\\) and \\(r>0\\), define the finite joint…",
+      "section": "A paired-coordinate cube application",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-cube-block",
+      "kind": "corollary",
+      "label": "A block on the paired-coordinate prior",
+      "statement": "[A block on the paired-coordinate prior] Let \\(k,N\\) be integers with \\(1 k p\\) and \\(N1\\), and let Borel \\(f_1,,f_N:Q\\) satisfy with the same \\(L0\\). Suppose Borel functions \\(g_v: R^ k d R^k…",
+      "section": "A paired-coordinate cube application",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-cube-success",
+      "kind": "proposition",
+      "label": "Precision bound for the cube prior",
+      "statement": "[Precision bound for the cube prior] There are universal constants \\(D e\\), \\(d_016\\), and \\(c>0\\) with the following property. Let \\(d d_0\\), \\(M0\\), and \\(T0\\) be integers, with \\(M d^2\\) and…",
+      "section": "A paired-coordinate cube application",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-cube-inverse",
+      "kind": "lemma",
+      "label": "Affine inverse moments",
+      "statement": "[Affine inverse moments] Let \\(f:Q\\) be Borel and satisfy with \\(L0\\). Let \\(k\\) be an integer with \\(1 k p\\), and let \\(V R^n\\) be a nonempty affine subspace of dimension \\(j p-2\\). There is a…",
+      "section": "A paired-coordinate cube application",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-dv-measurable-test",
+      "kind": "proposition",
+      "label": "A direct inequality for measurable tests",
+      "statement": "[A direct inequality for measurable tests] Under the assumptions of Proposition~ , the exact image measure satisfies _(E) B\\,_m(E)^ 1-1/p for every Borel set \\(E\\) of finite \\(_m\\)-measure. In…",
+      "section": "Other exact-label interfaces",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-dv-gaussian-ac",
+      "kind": "lemma",
+      "label": "Absolute continuity of spherical projections",
+      "statement": "[Absolute continuity of spherical projections] Let \\(d2\\) and \\(1 m<d\\). If \\(A: R^d R^m\\) has full row rank, then \\(A_\\#_d\\) is absolutely continuous with respect to Lebesgue measure. The same holds…",
+      "section": "Other exact-label interfaces",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-dv-joint-density",
+      "kind": "lemma",
+      "label": "A joint density and its fibers",
+      "statement": "[A joint density and its fibers] Let \\(d2\\), \\(1 m<d\\), and let \\(\\) be a finite nonnegative Borel measure with \\(_d\\). Then \\(_\\) has a nonnegative jointly Borel density \\(F(A,y)\\) with respect to…",
+      "section": "Other exact-label interfaces",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-dv-joint-l1",
+      "kind": "proposition",
+      "label": "Joint \\(L^1\\) convergence",
+      "statement": "[Joint \\(L^1\\) convergence] In addition to the assumptions of Proposition~ , suppose that \\(d2\\), \\(1 m<d\\), and \\(_d\\). Let \\(F\\) be the joint density from Lemma~ , and let \\(F_\\) be the Gaussian…",
+      "section": "Other exact-label interfaces",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-dv-pointwise-density",
+      "kind": "proposition",
+      "label": "A pointwise joint density version",
+      "statement": "[A pointwise joint density version] Assume the same hypotheses as in Proposition~ . For the Gaussian density \\(_\\), define w_(r) =v_m r^mr ^2 _(r e_1), r>0, where \\(e_1\\) is a unit coordinate vector.…",
+      "section": "Other exact-label interfaces",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-dv-parameters",
+      "kind": "corollary",
+      "label": "The dimension-scale parameter regime",
+      "statement": "[The dimension-scale parameter regime] Under the hypotheses of Proposition~ , suppose that d16, p= d/8, 1 m p, d-1 2 d2, Then, for every \\(0 j p-2\\), -j-md-1 2 -2p+2 d4+32, J_j C^d, where \\(C1\\) is…",
+      "section": "Coefficient recurrences and support alternatives",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-ev-density",
+      "kind": "lemma",
+      "label": "Exact projection density from an ambient ball bound",
+      "statement": "[Exact projection density from an ambient ball bound] Assume , and let \\(H,R>0\\) and \\(z R^d\\). Let \\(f:S^ d-1 \\) be Borel measurable, let \\(=f\\), and suppose \\((B(x,r)) H r^\\) for every \\(x R^d\\)…",
+      "section": "Coefficient recurrences and support alternatives",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-proj-volume",
+      "kind": "lemma",
+      "label": "Projected support volume",
+      "statement": "[Projected support volume] For a standard Gaussian \\(m\\)-by-\\(d\\) matrix \\(A\\), where \\(1 m d\\), \\,_m B(0,\\|A\\|_ )(Cd).",
+      "section": "Coefficient recurrences and support alternatives",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-dv-hemisphere-cap",
+      "kind": "lemma",
+      "label": "An ambient ball bound from a hemisphere",
+      "statement": "[An ambient ball bound from a hemisphere] Let \\(d2\\), \\(n=d-1\\), and let \\(_d\\) be uniform probability on \\(S^ d-1 \\). Then _d(B(z,r))(4r)^n (z R^d,\\ r>0). Let \\(>0\\), let \\(\\) be any probability law…",
+      "section": "Coefficient recurrences and support alternatives",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-ev-polar-cap",
+      "kind": "lemma",
+      "label": "Polar cap estimates",
+      "statement": "[Polar cap estimates] Let \\(d2\\), \\(n=d-1\\), and let \\(\\) be uniform on \\(S^ d-1 \\). There is an absolute \\(C_01\\) such that \\((B(z,R)) C_0^dR^n\\) for every ambient center \\(z\\) and every \\(R>0\\).…",
+      "section": "Coefficient recurrences and support alternatives",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-ev-coefficient-step",
+      "kind": "proposition",
+      "label": "Backward coefficient step",
+      "statement": "[Backward coefficient step] Assume . Let \\(H>0\\) and let \\(N1\\) be an integer. Let \\(h_1,,h_N:S^ d-1 \\) be Borel functions satisfying \\[ _ B(x,r) h_w\\,d H r^ (x R^d,\\ r>0,\\ 1 w N). \\] Let…",
+      "section": "Coefficient recurrences and support alternatives",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-ev-coefficient-success",
+      "kind": "proposition",
+      "label": "A common finite success bound",
+      "statement": "[A common finite success bound] Assume \\(d16\\), set \\(n=d-1\\), \\(p= d/8\\), and let \\(n/2 d/2\\). Let \\(M,T0\\) be integers, \\(0<1/10\\), and consider a learner in Definition~ . Under the uniform-sphere…",
+      "section": "Coefficient recurrences and support alternatives",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-ev-success",
+      "kind": "corollary",
+      "label": "Finite success bounds for the two coefficients",
+      "statement": "[Finite success bounds for the two coefficients] Assume \\(d16\\) and \\(p= d/8\\). Let \\(M,T0\\) be integers, let \\(0<1/10\\), and consider a learner in Definition~ with these parameters. Draw \\(S\\)…",
+      "section": "Coefficient recurrences and support alternatives",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m1-h-end-linear",
+      "kind": "lemma",
+      "label": "A memory-independent constant-accuracy bound",
+      "statement": "[A memory-independent constant-accuracy bound] For all sufficiently large d , let 0 T d/4 be an integer. Let S be uniform on S^ d-1 , let X be an independent T -by- d standard Gaussian matrix, and…",
+      "section": "A sharper full-data residual bound",
+      "manuscript": "Memory and precision in noiseless Gaussian regression"
+    },
+    {
+      "id": "m2-thm-gaussian-block",
+      "kind": "theorem",
+      "label": "Gaussian replica block bound",
+      "statement": "[Gaussian replica block bound] For all sufficiently large d , set \\[ k=2 d/16, m=k, t=m+1, =4k. \\] Suppose p=f_d is a probability with 0 f L< . In the block experiment above, let A have k rows and…",
+      "section": "Introduction",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-thm-streaming",
+      "kind": "theorem",
+      "label": "Uniform-prior sample lower bound",
+      "statement": "[Uniform-prior sample lower bound] Let M(d)=o(d^2) be nonnegative integer-valued, and let 0<(d)1/10 . Suppose a family of learners in Definition~ satisfies \\[ \\ S,S(d)\\ 23 when S_d, \\] where the…",
+      "section": "Introduction",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-lem-spherical-ball",
+      "kind": "lemma",
+      "label": "Spherical balls",
+      "statement": "[Spherical balls] Let _q be uniform probability on S^ q-1 , where q2 . For every z S^ q-1 and r>0 , _q\\ u:u-z r\\ r^ q-1 . In particular an angular cap of radius 0< has mass at most ^ q-1 .",
+      "section": "Finite states and the information required at the endpoint",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-lem-residual-sphere",
+      "kind": "lemma",
+      "label": "Residual sphere and radius bounds",
+      "statement": "[Residual sphere and radius bounds] Let S_d and let G be independent of S , with b rows, where 0 b d-2 . For b1 , let G be either a standard Gaussian matrix or a uniform Haar frame of b orthonormal…",
+      "section": "Finite states and the information required at the endpoint",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-lem-residual-information",
+      "kind": "lemma",
+      "label": "Information on a residual sphere",
+      "statement": "[Information on a residual sphere] Let S_d , let V be a random variable with values in a standard Borel space, jointly distributed with S , and let G be independent of (S,V) , with 0 b d-2 rows. For…",
+      "section": "Finite states and the information required at the endpoint",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-cor-replica-endpoints",
+      "kind": "corollary",
+      "label": "Three endpoint substitutions",
+      "statement": "[Three endpoint substitutions] Assume 0<1/10 in Lemma~ . For sufficiently large d the following bounds hold. [label=()] If G is Gaussian, p3/5 , and 0 b d/2 , the beta-variance bound (with the…",
+      "section": "Finite states and the information required at the endpoint",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-lem-borel-rules",
+      "kind": "lemma",
+      "label": "Borel versions for the averaged experiment",
+      "statement": "[Borel versions for the averaged experiment] Fix d2 , a finite horizon T , and finite state sets. For fixed data-independent rule parameters, suppose each transition and stopping coordinate is…",
+      "section": "Finite states and the information required at the endpoint",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-lem-padding",
+      "kind": "lemma",
+      "label": "Fixing randomness and padding the clock",
+      "statement": "[Fixing randomness and padding the clock] Consider a learner in Definition~ under the uniform prior. If its average success is at least p , some fixed shared-seed conditional experiment has success…",
+      "section": "Finite states and the information required at the endpoint",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-lem-conditional-priors",
+      "kind": "lemma",
+      "label": "Conditional priors at finite events",
+      "statement": "[Conditional priors at finite events] Let S_d and let H be a finite-valued random variable jointly distributed with S . Every positive-probability value h gives a conditional signal density bounded…",
+      "section": "Finite states and the information required at the endpoint",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-lem-early-clock",
+      "kind": "lemma",
+      "label": "Output capacity and the early clock bound",
+      "statement": "[Output capacity and the early clock bound] Consider a family of learners indexed by d , with uniform-prior success at least a fixed p_0>0 , and set =(1/) for 0<1/10 . At each dimension, the terminal…",
+      "section": "Finite states and the information required at the endpoint",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-lem-raw-sample-bound",
+      "kind": "lemma",
+      "label": "A raw-sample endpoint",
+      "statement": "[A raw-sample endpoint] Let 0<1/10 , and let an estimator use all exact measurements (G,GS) from b d/2 independent Gaussian rows, together with independent randomness, when S_d . Its angular success…",
+      "section": "Finite states and the information required at the endpoint",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-lem-replica-information",
+      "kind": "lemma",
+      "label": "Replica information inequality",
+      "statement": "[Replica information inequality] Let t1 and suppose K< . Let W be finite-valued and suppose that every pair (S_i,W) has the same law as (S_1,W) . In the conclusion write S=S_1 . If B is independent…",
+      "section": "Posterior replicas and exact equal-label measures",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-lem-projection-fibers",
+      "kind": "lemma",
+      "label": "Projection fibers and inverse affine volumes",
+      "statement": "[Projection fibers and inverse affine volumes] Let 1 k d-2 and let P^0 be either _d or standard Gaussian probability on ^d . Every full-row-rank k d matrix A projects P^0 to a Lebesgue density p_A^0…",
+      "section": "Posterior replicas and exact equal-label measures",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-thm-equal-label-measure",
+      "kind": "theorem",
+      "label": "Finite measure for equal Gaussian labels",
+      "statement": "[Finite measure for equal Gaussian labels] Let k,m1 , t=m+1 , and k+m d-2 . Let P^0 be either uniform probability on S^ d-1 or standard Gaussian probability on ^d , and let =fP^0 for a bounded…",
+      "section": "Posterior replicas and exact equal-label measures",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-cor-replica-likelihood",
+      "kind": "corollary",
+      "label": "Posterior replica likelihood",
+      "statement": "[Posterior replica likelihood] Under the hypotheses of Theorem~ , suppose p=fP^0 is a probability. Draw A_ k,d independently of S p , put Y=AS , and conditionally on (A,Y) draw t independent replicas…",
+      "section": "Posterior replicas and exact equal-label measures",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-lem-replica-logs",
+      "kind": "lemma",
+      "label": "Logarithmic integrability for spherical replicas",
+      "statement": "[Logarithmic integrability for spherical replicas] In Corollary~ , let p=f_d with 0 f L< . Under the replica law Q , both p_A(Y) and J(S_1,,S_t) are absolutely integrable. Consequently the tuple…",
+      "section": "Posterior replicas and exact equal-label measures",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-lem-gaussian-test",
+      "kind": "lemma",
+      "label": "Projected likelihood test",
+      "statement": "[Projected likelihood test] Let G be an m standard Gaussian matrix and set \\[ Z_ k,m =(G^ T G)^ -k/2 . \\] This constant is finite and positive. The nonnegative function (B,U_1,,U_t) =c Z_ k,m ((BD)^…",
+      "section": "A Gaussian test that cancels the affine volume",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-lem-gaussian-density",
+      "kind": "lemma",
+      "label": "Dyadic density comparison",
+      "statement": "[Dyadic density comparison] In the replica experiment with the independent side matrix and A=C_0B defined above, \\! Ck+C(2+ L).",
+      "section": "A Gaussian test that cancels the affine volume",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-thm-distance-block",
+      "kind": "theorem",
+      "label": "Information from shared exact data",
+      "statement": "[Information from shared exact data] Let P=f_d be a probability with a nonnegative Borel density f e^b , where b0 . Let S P , let A be an independent k d standard Gaussian matrix, and put Y=AS . Let…",
+      "section": "Shared data and distance-bin comparisons",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-lem-distance-heights",
+      "kind": "lemma",
+      "label": "Logarithmic cost of a height",
+      "statement": "[Logarithmic cost of a height] The heights are positive almost surely and obey _i2, ^-_i C(1+ bd), ^-x:=\\ 0,- x\\ .",
+      "section": "Shared data and distance-bin comparisons",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-prop-gaussian-streaming",
+      "kind": "proposition",
+      "label": "Current-state iteration of Gaussian replicas",
+      "statement": "[Current-state iteration of Gaussian replicas] Let M(d)=o(d^2) be nonnegative and integer-valued, and let 0<(d)1/10 . A learner in Definition~ whose uniform-prior angular success is at least 3/5…",
+      "section": "Current-state recurrences and the streaming bound",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-prop-distance-streaming",
+      "kind": "proposition",
+      "label": "Current-state iteration of distance bins",
+      "statement": "[Current-state iteration of distance bins] Under the hypotheses of Theorem~ , the distance-bin block estimate also gives T(d) c\\,d(1/(d)) for an absolute c>0 and all sufficiently large d .",
+      "section": "Current-state recurrences and the streaming bound",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-haar-coarea",
+      "kind": "lemma",
+      "label": "Haar simplex-height identity",
+      "statement": "[Haar simplex-height identity] For the dimensions in and every probability P=g with 0 g K< , the following finite measures on the frame and the whole tuple are equal: dA_ R^k p_A(y)^m\\, dy _ i=0 ^r…",
+      "section": "Haar projections and posterior replica information",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-haar-upper-correlation",
+      "kind": "lemma",
+      "label": "Finite upper correlation",
+      "statement": "[Finite upper correlation] The correlations satisfy 0 J_Z J_S U< , where U&=_ i=1 ^r, \\\\ 0 U& Crd( K+ d). Here E_ A,S P draws the Haar frame independently of a vector with law P . Every logarithm in…",
+      "section": "Haar projections and posterior replica information",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-haar-maximal",
+      "kind": "lemma",
+      "label": "Logarithmic maximal estimate",
+      "statement": "[Logarithmic maximal estimate] Suppose f is a probability density supported in the unit ball of R^k and f K_ d,k . Then f(u) M f(u) f(u) \\, du Cd+(1+Cd+ K). Both logarithms are integrable under f(u)…",
+      "section": "Haar projections and posterior replica information",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-haar-lower-correlation",
+      "kind": "lemma",
+      "label": "Lower projected correlation",
+      "statement": "[Lower projected correlation] For the replica law above and every 0<a<1 , J_Z a_ i=1 ^r +r(1-a), where C_1 is an absolute constant, independent of P,K,d,a .",
+      "section": "Haar projections and posterior replica information",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-haar-block",
+      "kind": "proposition",
+      "label": "Haar block information bound",
+      "statement": "[Haar block information bound] Let S , let V be a finite-valued state, and let a block consist of k= d/16 fresh independent standard Gaussian designs, independent of (S,V) and the past, with their…",
+      "section": "Haar projections and posterior replica information",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-haar-terminal",
+      "kind": "lemma",
+      "label": "The terminal Haar fiber",
+      "statement": "[The terminal Haar fiber] Let S , let V_f be finite-valued, and let the unit-valued output S be generated from V_f by a measurable kernel using fresh randomness, conditionally independently of S .…",
+      "section": "Haar projections and posterior replica information",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-haar-streaming",
+      "kind": "proposition",
+      "label": "Streaming consequence",
+      "statement": "[Streaming consequence] For each dimension d , let S and consider a learner in Definition~ , with deterministic horizon T=T(d) and nonnegative integer memory M=M(d) . If M(d)=o(d^2) , 0<(d)1/10 , and…",
+      "section": "Haar projections and posterior replica information",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-syn-block",
+      "kind": "proposition",
+      "label": "Information beyond an independent Gaussian projection",
+      "statement": "[Information beyond an independent Gaussian projection] Let \\(P=f_d\\) be a probability, where \\(f\\) is a nonnegative Borel function satisfying \\(f<\\), with \\(1\\). Draw \\(X P\\) and \\(A_ k,d \\)…",
+      "section": "Synthetic Gaussian projections",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-syn-synthetic",
+      "kind": "lemma",
+      "label": "Synthetic likelihood and critical kernel",
+      "statement": "[Synthetic likelihood and critical kernel] Let \\(P=f_d\\) be as in Proposition~ . Fix a tuple \\( x(S^ d-1 )^\\) of affine rank \\(u\\), and put \\[ x=x_1, L=L_ x , (s)=(s-x,L). \\] Draw \\(B_ m,d \\). Given…",
+      "section": "Synthetic Gaussian projections",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-syn-logs",
+      "kind": "lemma",
+      "label": "Integrability of the projected comparison",
+      "statement": "[Integrability of the projected comparison] In the replica experiment \\(Q\\), enlarged by the independent \\(B\\) and the conditional \\(F\\) above, \\[ | w( Y)|+|| +| R_B( Y)|<. \\] If \\(G\\) is a standard…",
+      "section": "Synthetic Gaussian projections",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-syn-streaming",
+      "kind": "proposition",
+      "label": "The synthetic route to the sample bound",
+      "statement": "[The synthetic route to the sample bound] For every nonnegative integer-valued \\(M(d)=o(d^2)\\) and every sequence \\(0<(d)1/10\\), consider learners in Definition~ with deterministic horizon \\(T(d)\\)…",
+      "section": "Synthetic Gaussian projections",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-inc-block",
+      "kind": "proposition",
+      "label": "Information in one block",
+      "statement": "[Information in one block] Let \\(=f\\) be a probability measure with a Borel density \\(0 f F<\\), where \\(F1\\). Draw \\(S\\) and standard Gaussian matrices \\(A R^ n d \\) and \\(B R^ p d \\), all…",
+      "section": "Stiefel incidence and conditional block information",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-inc-product",
+      "kind": "lemma",
+      "label": "Product conditioning",
+      "statement": "[Product conditioning] Put \\(Z_i=Bs_i\\). After \\(A,C\\) are discarded under \\(R\\), L_R( s B,Z_1,,Z_k,J) =_ i=1 ^k_ B,Z_i . Consequently, KL(Q\\|R) kI_(S;J B,BS).",
+      "section": "Stiefel incidence and conditional block information",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-inc-projection",
+      "kind": "lemma",
+      "label": "Spherical projection measure",
+      "statement": "[Spherical projection measure] Suppose \\(L R^ q d \\) has full row rank and \\(1 q d-2\\). In the interior \\[ E_L=\\ t:t^ T (LL^ T )^ -1 t<1\\ \\] define a finite measure on \\(\\ s S^ d-1 :Ls=t\\ \\) by _ L,t…",
+      "section": "Stiefel incidence and conditional block information",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-inc-swap",
+      "kind": "lemma",
+      "label": "Interchange on a regular incidence set",
+      "statement": "[Interchange on a regular incidence set] Let \\(X,Z\\) be second-countable Riemannian manifolds, and let \\(G:X Z R^a\\) be smooth. On a relatively open subset \\(\\) of \\(G^ -1 (0)\\), suppose both partial…",
+      "section": "Stiefel incidence and conditional block information",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-inc-densities",
+      "kind": "lemma",
+      "label": "Exact undivided identities and probability densities",
+      "statement": "[Exact undivided identities and probability densities] Define the following marginal probability measures of \\( H\\): \\[ H_A(d s,dA) &=^ k (d s)\\,_U(dA),\\\\ H_C(d s,dB,dC) &=^ k (d s)\\,_ p,d (dB)\\,_ BU…",
+      "section": "Stiefel incidence and conditional block information",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-inc-stiefel",
+      "kind": "lemma",
+      "label": "The induced Stiefel volume",
+      "statement": "[The induced Stiefel volume] For \\(1 n h\\), with the induced Euclidean matrix metric, | V_ n,h |= 2^ n(n-1)/4 _ j=1 ^n| S^ h-j |. Consequently, for , =^ -n/2 _ j=1 ^n ((p-j+1)/2) ((p-j+1-)/2) (p-n+1-…",
+      "section": "Stiefel incidence and conditional block information",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-inc-kernel",
+      "kind": "lemma",
+      "label": "Two-scale inverse kernel",
+      "statement": "[Two-scale inverse kernel] Under \\(Q\\), define \\[ K&= dist(z-s_1,colU)^ -n \\,d(z),\\\\ p_A^*(t)&=_ >0 \\ z:\\|Az-t\\|<\\ v_n^n , K_0=v_n\\|A\\|_ op ^n p_A^*(As_1). \\] Then \\(K_02^ -n \\), and K K_0L_F,…",
+      "section": "Stiefel incidence and conditional block information",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-inc-maximal",
+      "kind": "lemma",
+      "label": "Maximal average at an actual label",
+      "statement": "[Maximal average at an actual label] For every full-rank \\(A\\), p_A^*(As) p_A(As) \\,d(s) Cd+C(1+ F). The integrand is nonnegative almost surely.",
+      "section": "Stiefel incidence and conditional block information",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-inc-precision",
+      "kind": "theorem",
+      "label": "Average-prior precision bound",
+      "statement": "[Average-prior precision bound] There is a universal \\(c>0\\) with the following property. Let \\(M=M(d)\\) be a nonnegative integer with \\(M(d)=o(d^2)\\). For all sufficiently large \\(d\\), with the…",
+      "section": "Stiefel incidence and conditional block information",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-inc-short",
+      "kind": "lemma",
+      "label": "Short-horizon reduction",
+      "statement": "[Short-horizon reduction] Put \\(L_=(1/)\\). Pad stopping to \\(T\\) by retaining the stopped state and its stopping index. At most w=(T+2)2^M padded states suffice. Under the hypotheses of Theorem~ , if…",
+      "section": "Stiefel incidence and conditional block information",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-inc-history",
+      "kind": "lemma",
+      "label": "Information accumulated over histories",
+      "statement": "[Information accumulated over histories] In the short-horizon case of Lemma~ , put \\(b= T/n\\) and pad with fresh unused samples to \\(bn\\) observations. Let \\(V_i\\) be the transcript of the first…",
+      "section": "Stiefel incidence and conditional block information",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    },
+    {
+      "id": "m2-inc-fiber-precision",
+      "kind": "lemma",
+      "label": "Precision inside an independent fiber",
+      "statement": "[Precision inside an independent fiber] Let \\(S\\), and let a unit-vector output \\( S\\) have angular error at most \\(1/10\\) with probability at least \\(2/3\\). Let \\(B_ p,d \\), \\(p= d/4\\), be…",
+      "section": "Stiefel incidence and conditional block information",
+      "manuscript": "Posterior replicas and conditional information in Gaussian regression"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-h-dv-ambient-gram",
+      "to": "m1-h-dv-gaussian-moment"
+    },
+    {
+      "from": "m1-h-dv-finite-density",
+      "to": "m1-h-proj-density-by-tests"
+    },
+    {
+      "from": "m1-h-dv-gaussian-moment",
+      "to": "m1-h-proj-density-by-tests"
+    },
+    {
+      "from": "m1-h-dv-finite-density",
+      "to": "m1-h-proj-normalized"
+    },
+    {
+      "from": "m1-h-dv-finite-density",
+      "to": "m1-h-block-bound"
+    },
+    {
+      "from": "m1-h-ev-ellipsoid",
+      "to": "m1-h-block-bound"
+    },
+    {
+      "from": "m1-h-stream-categories",
+      "to": "m1-h-stream-success"
+    },
+    {
+      "from": "m1-h-local-caps",
+      "to": "m1-h-stream-success"
+    },
+    {
+      "from": "m1-h-block-bound",
+      "to": "m1-h-stream-success"
+    },
+    {
+      "from": "m1-h-main",
+      "to": "m1-h-ev-reflection"
+    },
+    {
+      "from": "m1-h-stream-success",
+      "to": "m1-h-ev-reflection"
+    },
+    {
+      "from": "m1-h-subquadratic",
+      "to": "m1-h-ev-reflection"
+    },
+    {
+      "from": "m1-h-worst-signal",
+      "to": "m1-h-ev-reflection"
+    },
+    {
+      "from": "m1-h-stream-borel",
+      "to": "m1-h-ev-reflection"
+    },
+    {
+      "from": "m1-h-dv-finite-density",
+      "to": "m1-h-cube-density"
+    },
+    {
+      "from": "m1-h-ev-ellipsoid",
+      "to": "m1-h-cube-density"
+    },
+    {
+      "from": "m1-h-cube-density",
+      "to": "m1-h-cube-block"
+    },
+    {
+      "from": "m1-h-alt-selection",
+      "to": "m1-h-cube-block"
+    },
+    {
+      "from": "m1-h-stream-categories",
+      "to": "m1-h-cube-success"
+    },
+    {
+      "from": "m1-h-cube-block",
+      "to": "m1-h-cube-success"
+    },
+    {
+      "from": "m1-h-dv-ambient-gram",
+      "to": "m1-h-cube-inverse"
+    },
+    {
+      "from": "m1-h-dv-gaussian-ac",
+      "to": "m1-h-dv-joint-density"
+    },
+    {
+      "from": "m1-h-dv-joint-density",
+      "to": "m1-h-dv-joint-l1"
+    },
+    {
+      "from": "m1-h-dv-gaussian-ac",
+      "to": "m1-h-dv-pointwise-density"
+    },
+    {
+      "from": "m1-h-dv-finite-density",
+      "to": "m1-h-ev-density"
+    },
+    {
+      "from": "m1-h-dv-joint-density",
+      "to": "m1-h-ev-density"
+    },
+    {
+      "from": "m1-h-ev-density",
+      "to": "m1-h-ev-coefficient-step"
+    },
+    {
+      "from": "m1-h-ev-ellipsoid",
+      "to": "m1-h-ev-coefficient-step"
+    },
+    {
+      "from": "m1-h-alt-selection",
+      "to": "m1-h-ev-coefficient-step"
+    },
+    {
+      "from": "m1-h-stream-categories",
+      "to": "m1-h-ev-coefficient-success"
+    },
+    {
+      "from": "m1-h-ev-coefficient-step",
+      "to": "m1-h-ev-coefficient-success"
+    },
+    {
+      "from": "m1-h-ev-coefficient-success",
+      "to": "m1-h-ev-success"
+    },
+    {
+      "from": "m1-h-local-caps",
+      "to": "m1-h-end-linear"
+    },
+    {
+      "from": "m2-lem-spherical-ball",
+      "to": "m2-lem-residual-information"
+    },
+    {
+      "from": "m2-lem-borel-rules",
+      "to": "m2-lem-padding"
+    },
+    {
+      "from": "m2-lem-spherical-ball",
+      "to": "m2-lem-early-clock"
+    },
+    {
+      "from": "m2-lem-residual-sphere",
+      "to": "m2-lem-raw-sample-bound"
+    },
+    {
+      "from": "m2-lem-residual-information",
+      "to": "m2-lem-raw-sample-bound"
+    },
+    {
+      "from": "m2-lem-spherical-ball",
+      "to": "m2-lem-projection-fibers"
+    },
+    {
+      "from": "m2-lem-projection-fibers",
+      "to": "m2-thm-equal-label-measure"
+    },
+    {
+      "from": "m2-thm-equal-label-measure",
+      "to": "m2-lem-gaussian-test"
+    },
+    {
+      "from": "m2-cor-replica-likelihood",
+      "to": "m2-lem-gaussian-test"
+    },
+    {
+      "from": "m2-lem-replica-logs",
+      "to": "m2-lem-gaussian-test"
+    },
+    {
+      "from": "m2-lem-gaussian-test",
+      "to": "m2-lem-gaussian-density"
+    },
+    {
+      "from": "m2-thm-gaussian-block",
+      "to": "m2-lem-gaussian-density"
+    },
+    {
+      "from": "m2-lem-replica-information",
+      "to": "m2-lem-gaussian-density"
+    },
+    {
+      "from": "m2-thm-distance-block",
+      "to": "m2-lem-distance-heights"
+    },
+    {
+      "from": "m2-lem-replica-information",
+      "to": "m2-lem-distance-heights"
+    },
+    {
+      "from": "m2-lem-padding",
+      "to": "m2-prop-gaussian-streaming"
+    },
+    {
+      "from": "m2-lem-early-clock",
+      "to": "m2-prop-gaussian-streaming"
+    },
+    {
+      "from": "m2-lem-conditional-priors",
+      "to": "m2-prop-gaussian-streaming"
+    },
+    {
+      "from": "m2-thm-gaussian-block",
+      "to": "m2-prop-gaussian-streaming"
+    },
+    {
+      "from": "m2-lem-raw-sample-bound",
+      "to": "m2-prop-gaussian-streaming"
+    },
+    {
+      "from": "m2-lem-padding",
+      "to": "m2-prop-distance-streaming"
+    },
+    {
+      "from": "m2-lem-conditional-priors",
+      "to": "m2-prop-distance-streaming"
+    },
+    {
+      "from": "m2-thm-distance-block",
+      "to": "m2-prop-distance-streaming"
+    },
+    {
+      "from": "m2-lem-raw-sample-bound",
+      "to": "m2-prop-distance-streaming"
+    },
+    {
+      "from": "m2-thm-streaming",
+      "to": "m2-prop-distance-streaming"
+    },
+    {
+      "from": "m2-prop-gaussian-streaming",
+      "to": "m2-prop-distance-streaming"
+    },
+    {
+      "from": "m2-haar-streaming",
+      "to": "m2-prop-distance-streaming"
+    },
+    {
+      "from": "m2-syn-streaming",
+      "to": "m2-prop-distance-streaming"
+    },
+    {
+      "from": "m2-inc-precision",
+      "to": "m2-prop-distance-streaming"
+    },
+    {
+      "from": "m2-haar-upper-correlation",
+      "to": "m2-haar-maximal"
+    },
+    {
+      "from": "m2-haar-upper-correlation",
+      "to": "m2-haar-lower-correlation"
+    },
+    {
+      "from": "m2-haar-maximal",
+      "to": "m2-haar-lower-correlation"
+    },
+    {
+      "from": "m2-haar-upper-correlation",
+      "to": "m2-haar-block"
+    },
+    {
+      "from": "m2-lem-replica-information",
+      "to": "m2-haar-block"
+    },
+    {
+      "from": "m2-lem-residual-information",
+      "to": "m2-haar-terminal"
+    },
+    {
+      "from": "m2-lem-padding",
+      "to": "m2-haar-streaming"
+    },
+    {
+      "from": "m2-haar-terminal",
+      "to": "m2-haar-streaming"
+    },
+    {
+      "from": "m2-lem-residual-sphere",
+      "to": "m2-haar-streaming"
+    },
+    {
+      "from": "m2-lem-raw-sample-bound",
+      "to": "m2-haar-streaming"
+    },
+    {
+      "from": "m2-lem-early-clock",
+      "to": "m2-haar-streaming"
+    },
+    {
+      "from": "m2-haar-block",
+      "to": "m2-haar-streaming"
+    },
+    {
+      "from": "m2-lem-replica-logs",
+      "to": "m2-syn-logs"
+    },
+    {
+      "from": "m2-syn-synthetic",
+      "to": "m2-syn-logs"
+    },
+    {
+      "from": "m2-syn-block",
+      "to": "m2-syn-logs"
+    },
+    {
+      "from": "m2-lem-replica-information",
+      "to": "m2-syn-logs"
+    },
+    {
+      "from": "m2-lem-padding",
+      "to": "m2-syn-streaming"
+    },
+    {
+      "from": "m2-lem-early-clock",
+      "to": "m2-syn-streaming"
+    },
+    {
+      "from": "m2-lem-raw-sample-bound",
+      "to": "m2-syn-streaming"
+    },
+    {
+      "from": "m2-lem-conditional-priors",
+      "to": "m2-syn-streaming"
+    },
+    {
+      "from": "m2-syn-block",
+      "to": "m2-syn-streaming"
+    },
+    {
+      "from": "m2-lem-residual-information",
+      "to": "m2-syn-streaming"
+    },
+    {
+      "from": "m2-inc-swap",
+      "to": "m2-inc-densities"
+    },
+    {
+      "from": "m2-inc-densities",
+      "to": "m2-inc-kernel"
+    },
+    {
+      "from": "m2-inc-projection",
+      "to": "m2-inc-kernel"
+    },
+    {
+      "from": "m2-inc-block",
+      "to": "m2-inc-maximal"
+    },
+    {
+      "from": "m2-inc-densities",
+      "to": "m2-inc-maximal"
+    },
+    {
+      "from": "m2-inc-kernel",
+      "to": "m2-inc-maximal"
+    },
+    {
+      "from": "m2-lem-padding",
+      "to": "m2-inc-short"
+    },
+    {
+      "from": "m2-lem-early-clock",
+      "to": "m2-inc-short"
+    },
+    {
+      "from": "m2-lem-conditional-priors",
+      "to": "m2-inc-history"
+    },
+    {
+      "from": "m2-inc-block",
+      "to": "m2-inc-history"
+    },
+    {
+      "from": "m2-lem-residual-information",
+      "to": "m2-inc-fiber-precision"
+    },
+    {
+      "from": "m2-lem-residual-sphere",
+      "to": "m2-inc-fiber-precision"
+    },
+    {
+      "from": "m2-lem-raw-sample-bound",
+      "to": "m2-inc-fiber-precision"
+    },
+    {
+      "from": "m2-inc-precision",
+      "to": "m2-inc-fiber-precision"
+    },
+    {
+      "from": "m2-inc-short",
+      "to": "m2-inc-fiber-precision"
+    },
+    {
+      "from": "m2-inc-history",
+      "to": "m2-inc-fiber-precision"
+    }
+  ]
+}

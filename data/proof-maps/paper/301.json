@@ -1,0 +1,662 @@
+{
+  "familyNumber": "301",
+  "familyTitle": "Trace cones and Razak–Jacelon stabilization",
+  "manuscripts": [
+    {
+      "id": "The-trace-cone-classifies-Razak-Jacelon-stabilizations-September-25-2026",
+      "title": "The trace cone classifies Razak–Jacelon stabilizations",
+      "date": "2026-09-25",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-trace-cone-classifies-Razak-Jacelon-stabilizations-September-25-2026/The-trace-cone-classifies-Razak-Jacelon-stabilizations-September-25-2026.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "The invariant, its ideals, and matrix conventions",
+    "Sequence models and local error ideals",
+    "Small stabilizers",
+    "Norm uniqueness of sequence models",
+    "Tracial approximation on a cone",
+    "Correction of the cone models",
+    "Point models and approximate intertwining"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Let \\(A\\) and \\(B\\) be separable nuclear complex \\(C^*\\)-algebras. If \\(T(A)\\)…",
+      "statement": "Let \\(A\\) and \\(B\\) be separable nuclear complex \\(C^*\\)-algebras. If \\(T(A)\\) and \\(T(B)\\) are isomorphic as topological cones, then \\[ A\\ \\ B, \\] where \\(=(^2())\\) and all tensor products are…",
+      "section": "Introduction",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-st-realification",
+      "kind": "theorem",
+      "label": "Trace realification",
+      "statement": "[Trace realification] For every \\(C^*\\)-algebra \\(C\\), the trace cone with topology is compact Hausdorff, and it is second countable when \\(C\\) is separable. If \\(C\\) is exact, the assignment \\( d_\\)…",
+      "section": "The invariant, its ideals, and matrix conventions",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-st-ideals",
+      "kind": "proposition",
+      "label": "Transport of ideals",
+      "statement": "[Transport of ideals] The maps \\(F,G\\) identify the complete ideal lattices of \\(P\\) and \\(Q\\), and these identifications agree. They identify the finite and zero ideals of corresponding weights. The…",
+      "section": "The invariant, its ideals, and matrix conventions",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-st-controllers",
+      "kind": "lemma",
+      "label": "Countable supports and common controllers",
+      "statement": "[Countable supports and common controllers] The open-set lattice of \\(X\\) has a countable basis closed under finite unions such that every open \\(U\\) is the union of basis opens \\(V U\\). If \\(V U\\),…",
+      "section": "The invariant, its ideals, and matrix conventions",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-st-folding",
+      "kind": "lemma",
+      "label": "Trace-preserving folding",
+      "statement": "[Trace-preserving folding] Finite matrix amplifications, including amplifications whose sizes vary with the coordinate, may be folded into \\(Q\\) so as to preserve all trace and rank calculations with…",
+      "section": "The invariant, its ideals, and matrix conventions",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-seq-regularized",
+      "kind": "proposition",
+      "label": "Regularized limits",
+      "statement": "[Regularized limits] Let \\(\\) be a free ultrafilter on \\(\\), and let \\(_n T(Q)\\) be arbitrary. For a bounded positive sequence \\((x_n)\\), the formula ([(x_n)])= _ >0 _ n _n((x_n-)_+) defines a…",
+      "section": "Sequence models and local error ideals",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-seq-elementary-tests",
+      "kind": "lemma",
+      "label": "Elementary determination",
+      "statement": "[Elementary determination] A trace \\( T(S_Y)\\) equals \\(m\\) if its ranks on the preceding countable test collection satisfy . In particular, checking those ranks for every regularized limit suffices…",
+      "section": "Sequence models and local error ideals",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-seq-uniform-witness",
+      "kind": "lemma",
+      "label": "Bounded witnesses into a fixed cut",
+      "statement": "[Bounded witnesses into a fixed cut] Let \\(a,b\\) be positive elements in a matrix algebra over any \\(C^*\\)-algebra, and suppose that \\(a(b-)_+\\), where \\(>0\\). For every \\(>0\\) there is a comparison…",
+      "section": "Sequence models and local error ideals",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-seq-strict-comparison",
+      "kind": "lemma",
+      "label": "Strict comparison from regularized limits",
+      "statement": "[Strict comparison from regularized limits] Let \\(x,y D_+\\). If there is \\(0<<1\\) such that d_(x) d_(y) for every regularized limit , then \\(x y\\). The same assertion holds after finite matrix…",
+      "section": "Sequence models and local error ideals",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-seq-sandwich",
+      "kind": "proposition",
+      "label": "Sandwich comparisons",
+      "statement": "[Sandwich comparisons] Let \\(p:S_Y D\\) be a model, let \\(s=f a0\\), and suppose that \\(0<m_0:=m(f>0)<\\). For \\(r>0\\), choose \\(c_r Q_+\\) representing \\(rG[a]\\). Then c_r p(s)(0<r<m_0), p(s)…",
+      "section": "Sequence models and local error ideals",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-seq-all-traces",
+      "kind": "corollary",
+      "label": "Constant ideals and all traces",
+      "statement": "[Constant ideals and all traces] For a model \\(p\\) and every \\(s S\\), _D(p(s))=_D(Q(U_s)). Given countably many models \\(p_i:S D\\), there is a separable subalgebra \\(D_0 D\\) containing their ranges…",
+      "section": "Sequence models and local error ideals",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-seq-smallideal-properties",
+      "kind": "proposition",
+      "label": "Properties of the local error ideals",
+      "statement": "[Properties of the local error ideals] The definition of \\(J(U)\\) is independent of representatives and makes it a closed two-sided ideal of \\(D\\). The assignment is order preserving, and…",
+      "section": "Sequence models and local error ideals",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-seq-diagonal",
+      "kind": "lemma",
+      "label": "Local diagonalization",
+      "statement": "[Local diagonalization] Let \\( A\\) be a countable dense \\( Q+i Q\\) \\(*\\)-subalgebra of \\(S=S_Y\\), containing the localized dense sets to be tested. For each \\(j\\), let \\(L_j: A D\\) be a map, and…",
+      "section": "Sequence models and local error ideals",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-sm-stabilizers",
+      "kind": "theorem",
+      "label": "Small stabilizers",
+      "statement": "[Small stabilizers] Let \\(S=C_0(Y) P\\), and prescribe countably many pairs \\[ x_l S_+, e_l J(U_ x_l ), l. \\] There is a homomorphism \\(:S D\\) satisfying (S(U)) J(U), e_l_D((x_l)) (U X open,\\ l), in…",
+      "section": "Small stabilizers",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-sm-cone-stage",
+      "kind": "lemma",
+      "label": "A finite cone stage",
+      "statement": "[A finite cone stage] Let \\(S=C_0((0,1]) P\\). Fix finitely many upper tests , finitely many lower requests , and a finite multiplicativity test set. For each lower request one can fix a number…",
+      "section": "Small stabilizers",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-sm-coefficient-domination",
+      "kind": "corollary",
+      "label": "Simultaneous coefficient domination",
+      "statement": "[Simultaneous coefficient domination] Suppose that one of the hypotheses of holds. Let \\(E_j\\) be countably many bounded multilinear maps \\[ E_j:S Z_ j,1 Z_ j,r_j D, \\] where the parameter spaces are…",
+      "section": "Small stabilizers",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-un-uniqueness",
+      "kind": "theorem",
+      "label": "Norm uniqueness",
+      "statement": "[Norm uniqueness] Let p,q:S_Y Q_ be models for the same data. For any c.p.c. lifts p_n,q_n:S_Y Q , there are u_n U( M(Q)) such that \\[ _ n \\|u_np_n(a)u_n^*-q_n(a)\\|=0, a S_Y. \\]",
+      "section": "Norm uniqueness of sequence models",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-un-trace-cap",
+      "kind": "lemma",
+      "label": "Controlled trace evaluations",
+      "statement": "[Controlled trace evaluations] Let C be a C^* -algebra and b(C)_+ . The set \\[ K_b=\\ T(C):d_(b)1\\ \\] is compact and convex. If x(C)_+ satisfies _ K_b d_(x) L< , then (x) is finite, continuous, and…",
+      "section": "Norm uniqueness of sequence models",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-un-barycenter",
+      "kind": "lemma",
+      "label": "Barycenters on a trace cap",
+      "statement": "[Barycenters on a trace cap] Let K_b be as in . For every probability measure on K_b there is K_b such that v()=_ K_b v\\,d for every finite continuous affine real function v on K_b . For a positive…",
+      "section": "Norm uniqueness of sequence models",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-un-finite-traces",
+      "kind": "lemma",
+      "label": "Alignment for finitely many weights",
+      "statement": "[Alignment for finitely many weights] Let C be separable, let S be separable and nuclear, and let p,q:S C be homomorphisms with equal pullbacks on T(C) . For a finite list of pairs (s_i,_i) , where…",
+      "section": "Norm uniqueness of sequence models",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-un-alignment",
+      "kind": "lemma",
+      "label": "Tracial alignment",
+      "statement": "[Tracial alignment] If p,q:S D are models with the same data, then rational diagonal averaging, coordinate multiplier conjugacy, and the foldings of give models p, q:S D with ( p- q)(S(U)) J(U) (U X…",
+      "section": "Norm uniqueness of sequence models",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-un-absorption",
+      "kind": "theorem",
+      "label": "Ideal-related absorption",
+      "statement": "[Ideal-related absorption] Let S be separable, exact, and lower semicontinuous over X , and let H be sigma-unital. Suppose :S H is a nuclear X -full homomorphism, meaning \\[ _ H ((a))=H(U_a) (a S_+).…",
+      "section": "Norm uniqueness of sequence models",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-un-stable-uniqueness",
+      "kind": "proposition",
+      "label": "Multiplier stable uniqueness",
+      "statement": "[Multiplier stable uniqueness] Suppose S is separable, nuclear, and lower semicontinuous over X , H is sigma-unital, and :S H is an X -full homomorphism. Let ,:S L(E_H) be weakly equivariant…",
+      "section": "Norm uniqueness of sequence models",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-un-kk-nullity",
+      "kind": "lemma",
+      "label": "The trivially labeled factor",
+      "statement": "[The trivially labeled factor] For the coarse X -structure on S=C_0(Y) P and every sigma-unital coefficient X -algebra H , \\[ (X;S,H)=0. \\] In particular every weakly equivariant multiplier pair with…",
+      "section": "Norm uniqueness of sequence models",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-un-hereditary-support",
+      "kind": "lemma",
+      "label": "Hereditary support and local multiplication",
+      "statement": "[Hereditary support and local multiplication] Let I C be a separable C^* -subalgebra with strictly positive element e , and let k C_+ . Set \\[ H=_ M_2(C) (e k). \\] Then H is sigma-unital, with no…",
+      "section": "Norm uniqueness of sequence models",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-un-finite-truncation",
+      "kind": "lemma",
+      "label": "Finite truncation of a proper conjugacy",
+      "statement": "[Finite truncation of a proper conjugacy] Let H be sigma-unital and let p,q:S M(H) be representations with difference in H . Let :S H be a homomorphism, compact-valued on the module H , and form the…",
+      "section": "Norm uniqueness of sequence models",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-un-spare",
+      "kind": "proposition",
+      "label": "Uniqueness with a spare model",
+      "statement": "[Uniqueness with a spare model] Let p,q:S D be equal-data models satisfying (p-q)(S(U)) J(U) for every open U . Let be a model for a strictly positive multiple of the same data. Then p and q are…",
+      "section": "Norm uniqueness of sequence models",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-tc-rough-model",
+      "kind": "theorem",
+      "label": "There is a completely positive contraction h:S D=Q_ with the following…",
+      "statement": "There is a completely positive contraction h:S D=Q_ with the following properties. For every open U X , s S(U) , and z S , h(sz)-h(s)h(z), h(zs)-h(z)h(s)\\ J(U). If s=f a E is controlled inside U ,…",
+      "section": "Tracial approximation on a cone",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-tc-semifinite-embedding",
+      "kind": "lemma",
+      "label": "Trace-preserving semifinite embedding",
+      "statement": "[Trace-preserving semifinite embedding] Let N be a hyperfinite von Neumann algebra with separable predual and a faithful normal semifinite trace T . There is a normal injective homomorphism from N…",
+      "section": "Tracial approximation on a cone",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-tc-factor-realization",
+      "kind": "lemma",
+      "label": "Realization in a factor",
+      "statement": "[Realization in a factor] Let :Q M be a nondegenerate representation with weakly dense range in a separably acting factor. There is a homomorphism l:S M with the following rank data. If M is…",
+      "section": "Tracial approximation on a cone",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-tc-measurable-realization",
+      "kind": "lemma",
+      "label": "Measurable realization",
+      "statement": "[Measurable realization] Let be a nondegenerate separably acting representation of Q , and put M=(Q)'' . There is a homomorphism l:S M whose factorwise ranks are those in , on any prescribed…",
+      "section": "Tracial approximation on a cone",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-tc-finite-trace-realization",
+      "kind": "lemma",
+      "label": "Realization for finitely many weights",
+      "statement": "[Realization for finitely many weights] Fix finitely many controlled tests s_i=f_i a_i and finitely many traces for each i , each satisfying d_(b_i)< . Take a separably acting representation…",
+      "section": "Tracial approximation on a cone",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-tc-finite-convexity",
+      "kind": "proposition",
+      "label": "Simultaneous finite approximation",
+      "statement": "[Simultaneous finite approximation] The target vector ((t_i^ (1) ,t_i^ (2) ,t_i^ (2) )_i;(y_j^2)_j) belongs to the closed convex hull of the candidate vectors.",
+      "section": "Tracial approximation on a cone",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-tc-rank-average",
+      "kind": "lemma",
+      "label": "A lower rank bound preserved by averaging",
+      "statement": "[A lower rank bound preserved by averaging] Fix lower data y,g, as in -- . If a finite rational average satisfies \\[ \\|__ yv_^*g(H_(s))v_ y-y^2\\| <^2/2, \\] then for every extended trace on Q ,…",
+      "section": "Tracial approximation on a cone",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-cc-defect-support",
+      "kind": "lemma",
+      "label": "A hereditary support for the defects",
+      "statement": "[A hereditary support for the defects] Let h:S D be and suppose that, for every open U X , h(sz)-h(s)h(z), h(zs)-h(z)h(s) J(U) (s S(U),\\ z S). Let E=C^*(h(S)) and let I E be the ideal generated by…",
+      "section": "Correction of the cone models",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-cc-scaled-dilation",
+      "kind": "lemma",
+      "label": "A dilation compatible with fine ideal labels",
+      "statement": "[A dilation compatible with fine ideal labels] Let d:S L_H(H)=M(H) be the multiplier map induced by h in . There is a countably generated Hilbert H -module E' and a representation :S L_H(H E'), (a)=…",
+      "section": "Correction of the cone models",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-cc-finite-correction",
+      "kind": "lemma",
+      "label": "A finite correction retaining the original corner",
+      "statement": "[A finite correction retaining the original corner] Under the hypotheses of , let F be a finite subset of the unit ball of S and let >0 . There are an integer N , a bounded linear * -preserving map…",
+      "section": "Correction of the cone models",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-cc-correction",
+      "kind": "proposition",
+      "label": "Cone correction",
+      "statement": "[Cone correction] Suppose h:S D is and satisfies . After trace-preserving coordinate corner padding, there is a homomorphism :S D such that (-h^ pad )(S(U)) J(U) (U X open). The padding can be chosen…",
+      "section": "Correction of the cone models",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-cc-finite-trace-determination",
+      "kind": "lemma",
+      "label": "Determination on a finite ideal",
+      "statement": "[Determination on a finite ideal] Let V X be open. Suppose two lower-semicontinuous traces on S(V) agree on all positive even integer powers of the rich elementary positive test supply of , and these…",
+      "section": "Correction of the cone models",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-cc-cone-existence",
+      "kind": "theorem",
+      "label": "Existence of cone models",
+      "statement": "[Existence of cone models] Let m be a finite full-support Radon measure on (0,1] . There is a homomorphism p:S D such that, for every regularized limit trace with =|_Q , p=m F(). This includes…",
+      "section": "Correction of the cone models",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-pt-suspension",
+      "kind": "proposition",
+      "label": "A covariant line model",
+      "statement": "[A covariant line model] There is a model \\[ :C_0() P D \\] for Lebesgue measure and \\(F\\). Let \\((f)(t)=f(t-1)\\), acting trivially on \\(P\\). For c.p.c. coordinate lifts \\(_n\\), there are unitaries…",
+      "section": "Point models and approximate intertwining",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-pt-corner",
+      "kind": "lemma",
+      "label": "The corner projection",
+      "statement": "[The corner projection] There are \\( C_c()_+\\) and a projection \\(p E\\) such that \\[ _ n (t-n)^2=1, _(t)^2\\,dt=1, \\] and, for any \\(C^*\\)-algebra \\(R_0\\), any extended trace \\(\\) on \\(E R_0\\), and…",
+      "section": "Point models and approximate intertwining",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-pt-point-model",
+      "kind": "corollary",
+      "label": "Existence of point models",
+      "statement": "[Existence of point models] There is a homomorphism \\(:P Q_\\) such that \\[ =F(|_Q) \\] for every regularized limit \\(\\).",
+      "section": "Point models and approximate intertwining",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-pt-actual-map",
+      "kind": "proposition",
+      "label": "An actual homomorphism",
+      "statement": "[An actual homomorphism] There is a homomorphism \\(:P Q\\) satisfying \\[ =F()( T(Q)), ()=G. \\] It is injective, and its constant sequence is a point model.",
+      "section": "Point models and approximate intertwining",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    },
+    {
+      "id": "m1-pt-intertwining",
+      "kind": "theorem",
+      "label": "Trace-cone classification",
+      "statement": "[Trace-cone classification] There is an isomorphism \\(:P Q\\) such that \\[ =F()( T(Q)), ()=G. \\] Consequently holds.",
+      "section": "Point models and approximate intertwining",
+      "manuscript": "The trace cone classifies Razak–Jacelon stabilizations"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-seq-uniform-witness",
+      "to": "m1-seq-strict-comparison"
+    },
+    {
+      "from": "m1-st-folding",
+      "to": "m1-seq-strict-comparison"
+    },
+    {
+      "from": "m1-seq-strict-comparison",
+      "to": "m1-seq-sandwich"
+    },
+    {
+      "from": "m1-seq-elementary-tests",
+      "to": "m1-seq-sandwich"
+    },
+    {
+      "from": "m1-seq-sandwich",
+      "to": "m1-seq-all-traces"
+    },
+    {
+      "from": "m1-seq-elementary-tests",
+      "to": "m1-seq-all-traces"
+    },
+    {
+      "from": "m1-seq-uniform-witness",
+      "to": "m1-seq-smallideal-properties"
+    },
+    {
+      "from": "m1-st-folding",
+      "to": "m1-seq-smallideal-properties"
+    },
+    {
+      "from": "m1-st-controllers",
+      "to": "m1-seq-diagonal"
+    },
+    {
+      "from": "m1-seq-uniform-witness",
+      "to": "m1-seq-diagonal"
+    },
+    {
+      "from": "m1-seq-sandwich",
+      "to": "m1-seq-diagonal"
+    },
+    {
+      "from": "m1-seq-all-traces",
+      "to": "m1-sm-stabilizers"
+    },
+    {
+      "from": "m1-sm-stabilizers",
+      "to": "m1-sm-cone-stage"
+    },
+    {
+      "from": "m1-st-folding",
+      "to": "m1-sm-cone-stage"
+    },
+    {
+      "from": "m1-sm-stabilizers",
+      "to": "m1-sm-coefficient-domination"
+    },
+    {
+      "from": "m1-seq-all-traces",
+      "to": "m1-un-alignment"
+    },
+    {
+      "from": "m1-seq-diagonal",
+      "to": "m1-un-alignment"
+    },
+    {
+      "from": "m1-un-trace-cap",
+      "to": "m1-un-alignment"
+    },
+    {
+      "from": "m1-un-barycenter",
+      "to": "m1-un-alignment"
+    },
+    {
+      "from": "m1-un-finite-traces",
+      "to": "m1-un-alignment"
+    },
+    {
+      "from": "m1-st-folding",
+      "to": "m1-un-alignment"
+    },
+    {
+      "from": "m1-seq-regularized",
+      "to": "m1-un-alignment"
+    },
+    {
+      "from": "m1-un-absorption",
+      "to": "m1-un-stable-uniqueness"
+    },
+    {
+      "from": "m1-st-ideals",
+      "to": "m1-un-kk-nullity"
+    },
+    {
+      "from": "m1-sm-stabilizers",
+      "to": "m1-un-spare"
+    },
+    {
+      "from": "m1-sm-coefficient-domination",
+      "to": "m1-un-spare"
+    },
+    {
+      "from": "m1-un-hereditary-support",
+      "to": "m1-un-spare"
+    },
+    {
+      "from": "m1-un-kk-nullity",
+      "to": "m1-un-spare"
+    },
+    {
+      "from": "m1-un-stable-uniqueness",
+      "to": "m1-un-spare"
+    },
+    {
+      "from": "m1-un-finite-truncation",
+      "to": "m1-un-spare"
+    },
+    {
+      "from": "m1-st-folding",
+      "to": "m1-un-spare"
+    },
+    {
+      "from": "m1-un-uniqueness",
+      "to": "m1-un-spare"
+    },
+    {
+      "from": "m1-un-alignment",
+      "to": "m1-un-spare"
+    },
+    {
+      "from": "m1-tc-semifinite-embedding",
+      "to": "m1-tc-factor-realization"
+    },
+    {
+      "from": "m1-tc-factor-realization",
+      "to": "m1-tc-measurable-realization"
+    },
+    {
+      "from": "m1-un-barycenter",
+      "to": "m1-tc-finite-convexity"
+    },
+    {
+      "from": "m1-tc-rough-model",
+      "to": "m1-tc-rank-average"
+    },
+    {
+      "from": "m1-tc-finite-convexity",
+      "to": "m1-tc-rank-average"
+    },
+    {
+      "from": "m1-seq-diagonal",
+      "to": "m1-tc-rank-average"
+    },
+    {
+      "from": "m1-seq-regularized",
+      "to": "m1-tc-rank-average"
+    },
+    {
+      "from": "m1-un-trace-cap",
+      "to": "m1-tc-rank-average"
+    },
+    {
+      "from": "m1-st-realification",
+      "to": "m1-tc-rank-average"
+    },
+    {
+      "from": "m1-seq-uniform-witness",
+      "to": "m1-tc-rank-average"
+    },
+    {
+      "from": "m1-sm-coefficient-domination",
+      "to": "m1-cc-defect-support"
+    },
+    {
+      "from": "m1-un-hereditary-support",
+      "to": "m1-cc-defect-support"
+    },
+    {
+      "from": "m1-un-absorption",
+      "to": "m1-cc-scaled-dilation"
+    },
+    {
+      "from": "m1-un-absorption",
+      "to": "m1-cc-finite-correction"
+    },
+    {
+      "from": "m1-cc-scaled-dilation",
+      "to": "m1-cc-finite-correction"
+    },
+    {
+      "from": "m1-cc-finite-correction",
+      "to": "m1-cc-correction"
+    },
+    {
+      "from": "m1-seq-diagonal",
+      "to": "m1-cc-correction"
+    },
+    {
+      "from": "m1-st-folding",
+      "to": "m1-cc-correction"
+    },
+    {
+      "from": "m1-tc-rough-model",
+      "to": "m1-cc-cone-existence"
+    },
+    {
+      "from": "m1-cc-correction",
+      "to": "m1-cc-cone-existence"
+    },
+    {
+      "from": "m1-sm-stabilizers",
+      "to": "m1-cc-cone-existence"
+    },
+    {
+      "from": "m1-st-ideals",
+      "to": "m1-cc-cone-existence"
+    },
+    {
+      "from": "m1-seq-smallideal-properties",
+      "to": "m1-cc-cone-existence"
+    },
+    {
+      "from": "m1-cc-finite-trace-determination",
+      "to": "m1-cc-cone-existence"
+    },
+    {
+      "from": "m1-cc-cone-existence",
+      "to": "m1-pt-suspension"
+    },
+    {
+      "from": "m1-seq-diagonal",
+      "to": "m1-pt-suspension"
+    },
+    {
+      "from": "m1-seq-elementary-tests",
+      "to": "m1-pt-suspension"
+    },
+    {
+      "from": "m1-seq-uniform-witness",
+      "to": "m1-pt-suspension"
+    },
+    {
+      "from": "m1-un-uniqueness",
+      "to": "m1-pt-suspension"
+    },
+    {
+      "from": "m1-pt-corner",
+      "to": "m1-pt-point-model"
+    },
+    {
+      "from": "m1-pt-point-model",
+      "to": "m1-pt-actual-map"
+    },
+    {
+      "from": "m1-un-uniqueness",
+      "to": "m1-pt-actual-map"
+    },
+    {
+      "from": "m1-seq-regularized",
+      "to": "m1-pt-actual-map"
+    },
+    {
+      "from": "m1-pt-actual-map",
+      "to": "m1-pt-intertwining"
+    },
+    {
+      "from": "m1-un-uniqueness",
+      "to": "m1-pt-intertwining"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-pt-intertwining"
+    }
+  ]
+}

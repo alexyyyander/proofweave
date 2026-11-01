@@ -1,0 +1,692 @@
+{
+  "familyNumber": "022",
+  "familyTitle": "The weak inhomogeneous Duffin–Schaeffer conjecture",
+  "manuscripts": [
+    {
+      "id": "The-weak-inhomogeneous-Duffin-Schaeffer-conjecture-September-25-2026",
+      "title": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture",
+      "date": "2026-09-25",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-weak-inhomogeneous-Duffin-Schaeffer-conjecture-September-25-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Finite blocks and elementary conventions",
+    "Centres, density, and prime heights",
+    "Masks and initial numerator prescriptions",
+    "Projected tables and the second-moment reduction",
+    "Arithmetic estimates for close pairs",
+    "Direct comparisons at simultaneous births",
+    "Alignments in sparse prime steps",
+    "Construction of the operational partitions",
+    "First joins of previously constructed tables"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Weak inhomogeneous Duffin--Schaeffer",
+      "statement": "[Weak inhomogeneous Duffin--Schaeffer] Let R be fixed, and let : N holds for infinitely many positive integers q .",
+      "section": "Introduction",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-cor-hausdorff",
+      "kind": "corollary",
+      "label": "Hausdorff-measure divergence",
+      "statement": "[Hausdorff-measure divergence] Fix R and a finite-valued : N If \\[ _ q=1 ^ (q)f\\!( (q)q)=, \\] then, for every bounded interval I , \\[ H^f(I W_())= H^f(I), \\] where H^f denotes Hausdorff f -measure.",
+      "section": "Introduction",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-pre-large-widths",
+      "kind": "lemma",
+      "label": "If v r(v) does not tend to zero, then _v E_v has full measure.",
+      "statement": "If v r(v) does not tend to zero, then _v E_v has full measure.",
+      "section": "Finite blocks and elementary conventions",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-pre-blocks",
+      "kind": "lemma",
+      "label": "For every fixed 0<w1/2 there are arbitrarily late, pairwise disjoint finite…",
+      "statement": "For every fixed 0<w1/2 there are arbitrarily late, pairwise disjoint finite sets B of positive-width rows such that w W:=_ v B (v)r(v)2w. Their least denominator tends to infinity, and all their…",
+      "section": "Finite blocks and elementary conventions",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-pre-elementary-prime-bounds",
+      "kind": "lemma",
+      "label": "Uniformly for z2 , b a2 , and integers n1 , _ p z p& z, &_ p z p p &(2z), \\\\ _…",
+      "statement": "Uniformly for z2 , b a2 , and integers n1 , _ p z p& z, &_ p z p p &(2z), \\\\ _ a p b 1p & 1 a + b a , &_ p z R_p^ -1 &_ 1 m z 1m. For every fixed C,>0 , (n)^C+R(n)^ -C _ C, n^.",
+      "section": "Finite blocks and elementary conventions",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-ar-pivot",
+      "kind": "lemma",
+      "label": "One-coordinate concentration",
+      "statement": "[One-coordinate concentration] Fix 1/2<u<1 and A1 . For probability vectors , and 0<q<1/2 , put \\[ T_q(,)=_ i,j q^ |i-j| A^ 1_ i j (_i_j)^u. \\] Then \\[ T_q(,) 1+O_ u,A (q^ 1/(1-u) ). \\] Moreover, if…",
+      "section": "Finite blocks and elementary conventions",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-ar-tensor",
+      "kind": "lemma",
+      "label": "Tensor kernel",
+      "statement": "[Tensor kernel] For 1/2<u<1 , s>1-u , and nonnegative sequences (x_L),(y_M) on the positive integers, \\[ _ L,M1 (x_Ly_M)^u (L/(L,M) M/(L,M))^s _ u,s (_Lx_L_My_M)^u. \\]",
+      "section": "Finite blocks and elementary conventions",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-ar-cycle",
+      "kind": "lemma",
+      "label": "Residue averages on determinant cycles",
+      "statement": "[Residue averages on determinant cycles] Fix divisors D_1 v , D_2 w and a nonnegative function of z D_1,z' D_2 . At every integer determinant there are g solutions per unit first-point translate; let…",
+      "section": "Finite blocks and elementary conventions",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-cen-density",
+      "kind": "lemma",
+      "label": "Density above original hosts",
+      "statement": "[Density above original hosts] Let V be a subfamily of rows of a common width r , all dividing an integer L . Suppose that L is at least the original host of every nonraw row in V ; raw rows are…",
+      "section": "Centres, density, and prime heights",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-cen-kernel",
+      "kind": "lemma",
+      "label": "Centre-kernel summation",
+      "statement": "[Centre-kernel summation] Consider centre families satisfying Lemma~ , with at most one family for each pair (L,r) and total mass at most W1 . For every fixed >1/2 and sufficiently small fixed >0 ,…",
+      "section": "Centres, density, and prime heights",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-cen-raw",
+      "kind": "lemma",
+      "label": "Raw rows suffice when they carry mass",
+      "statement": "[Raw rows suffice when they carry mass] If raw rows have mass at least w/4 on arbitrarily late blocks, the positive-measure avoided set fixed in Section~ cannot exist.",
+      "section": "Centres, density, and prime heights",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-cen-adjusted",
+      "kind": "lemma",
+      "label": "Scale and number of adjusted centres",
+      "statement": "[Scale and number of adjusted centres] Every adjusted centre satisfies Lemma~ and \\[ | k_ L_i | B_i^*+1, k_ L_i .1(B_i^*+1). \\] The number of original popular centres at a fixed width r and with…",
+      "section": "Centres, density, and prime heights",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-cen-exterior",
+      "kind": "lemma",
+      "label": "Separation of different bands",
+      "statement": "[Separation of different bands] If B_i/B_j is sufficiently small, then every row v assigned to j satisfies at least one of v (v,L_i) r_j r_ >e^ .015B_j^* , (r_i/r_j)>.7B_j^*.",
+      "section": "Centres, density, and prime heights",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-cen-decay-kernels",
+      "kind": "lemma",
+      "label": "Width and height gains",
+      "statement": "[Width and height gains] Under , the following kernels are summable with a positive power of total mass beyond linear. First, restrict to pairs with sufficiently small B_i/B_j and (r_i/r_j)>.65B_j^*…",
+      "section": "Centres, density, and prime heights",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-pre-mask-purge",
+      "kind": "lemma",
+      "label": "Negligible mask deletion",
+      "statement": "[Negligible mask deletion] With the order of choices in Section~ , deleting all assigned masks that are not good loses o(W) as k_00 . Uniformly for each retained centre, its unrestricted failure…",
+      "section": "Masks and initial numerator prescriptions",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-pre-model-uniqueness",
+      "kind": "lemma",
+      "label": "Uniqueness and separation of models",
+      "statement": "[Uniqueness and separation of models] Each tier recognizes at most one rational. The same statement holds across rows with a fixed and the same tier parameters: a fixed B on medium type, or a fixed…",
+      "section": "Masks and initial numerator prescriptions",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-pre-hard-mean",
+      "kind": "lemma",
+      "label": "Hard first-mass bounds",
+      "statement": "[Hard first-mass bounds] There is c_ hard >0 , independent of k_0 once it is sufficiently small, such that the mean hard birth weight on a row's projected numerator grid lies in \\[ [c_ hard…",
+      "section": "Masks and initial numerator prescriptions",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-pre-soft-loss",
+      "kind": "lemma",
+      "label": "Relative cost of the soft tests",
+      "statement": "[Relative cost of the soft tests] Under the probability measure obtained by normalizing a row's hard birth weights, the probability that at least one of the tests fails is O(_s/h_s) , with an…",
+      "section": "Masks and initial numerator prescriptions",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-tab-prime-update",
+      "kind": "lemma",
+      "label": "One-prime mass and cap preservation",
+      "statement": "[One-prime mass and cap preservation] The matching rule preserves the cap on raw cell load per after-prime mask. On averaging over pre-core p -translations, each transported label's weighted mass…",
+      "section": "Projected tables and the second-moment reduction",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-tab-first-join-input",
+      "kind": "proposition",
+      "label": "First-sharing comparison input",
+      "statement": "[First-sharing comparison input] For the selected finite blocks, there is a static additional birth test, depending only on the row data and squarefree low numerator moduli and not on the running…",
+      "section": "Projected tables and the second-moment reduction",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-tab-sparse-input",
+      "kind": "proposition",
+      "label": "Sparse-alignment input",
+      "statement": "[Sparse-alignment input] For each sparse-prime step in bin Y , there is an equivariant selection of exceptional same-width successful plus pairs at distance at most \\[ r_i(-12(_gY)). \\] Coarsen…",
+      "section": "Projected tables and the second-moment reduction",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-tab-partition-input",
+      "kind": "proposition",
+      "label": "Chronological partition input",
+      "statement": "[Chronological partition input] The cells and accounting classes described above can be constructed chronologically for every finite block. The construction preserves current-core equivariance, the…",
+      "section": "Projected tables and the second-moment reduction",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-tab-variance-budget",
+      "kind": "lemma",
+      "label": "Variance budget",
+      "statement": "[Variance budget] Let J_p be the increment of on old classes during a sparse-prime update, before coarsening, and let K_p'0 be the increment from the subsequent coarsening. Then \\[ J_p0, _p(J_p+K_p')…",
+      "section": "Projected tables and the second-moment reduction",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-tab-energy-bound",
+      "kind": "proposition",
+      "label": "Broad-energy bound",
+      "statement": "[Broad-energy bound] Assuming Propositions~ -- , the final broad energy is bounded uniformly down the finite-block tail. The bound may depend on the fixed cap N_0 and preceding hierarchy parameters,…",
+      "section": "Projected tables and the second-moment reduction",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-tab-virtual-marginals",
+      "kind": "proposition",
+      "label": "Virtual product marginals",
+      "statement": "[Virtual product marginals] For each retained good row, there is a nonnegative virtual weight on its true numerator grid with the following properties. It dominates the actual final weight, and its…",
+      "section": "Projected tables and the second-moment reduction",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-tab-intermediate-fields",
+      "kind": "corollary",
+      "label": "Upper fields on an intermediate projection",
+      "statement": "[Upper fields on an intermediate projection] Fix an admissible realized table history and a row whose current projected grid is (z+a)/(L_i/d) , where I is the remaining prime-power part and a I . On…",
+      "section": "Projected tables and the second-moment reduction",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-tab-equidistribution",
+      "kind": "lemma",
+      "label": "Equidistribution of virtual first mass",
+      "statement": "[Equidistribution of virtual first mass] On every fixed nondegenerate spatial interval, the virtual weighted mass is the interval's length times the total virtual row mass, with relative error…",
+      "section": "Projected tables and the second-moment reduction",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-tab-conditional-reduction",
+      "kind": "proposition",
+      "label": "Finite-block reduction",
+      "statement": "[Finite-block reduction] Assume the selections and birth prescriptions of Sections~ and~ , and Propositions~ -- . Then no measurable set of positive measure can avoid the original approximation…",
+      "section": "Projected tables and the second-moment reduction",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-ar-sieve",
+      "kind": "lemma",
+      "label": "Small-prime exclusions",
+      "statement": "[Small-prime exclusions] For every fixed C>0 there is an absolute sufficiently small >0 with the following property. Suppose =[v,w](r_1,r_2)2 . At any chosen primes p^ , impose one forbidden…",
+      "section": "Arithmetic estimates for close pairs",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-ar-rotation",
+      "kind": "lemma",
+      "label": "Rotation alternative",
+      "statement": "[Rotation alternative] There are absolute constants C_1 C_21 such that, for all sufficiently large u , the following holds. Let ,y R , 0 e^ -C_1u and N e^ C_1u . Either lies within e^ C_2u /N of a…",
+      "section": "Arithmetic estimates for close pairs",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-ar-lcm",
+      "kind": "proposition",
+      "label": "Lcm bound",
+      "statement": "[Lcm bound] Suppose f(v)(v) , g(w)(w) , and \\[ e(v,w) f(v)g(w) h(v/(v,w))h(w/(v,w)). \\] If every positive edge satisfies [v,w] Z , then, for each fixed 1/2<u<1 , E Z^ 2(1-u) (FG)^u. More generally,…",
+      "section": "Arithmetic estimates for close pairs",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-ar-extraction",
+      "kind": "proposition",
+      "label": "Small-scale extraction",
+      "statement": "[Small-scale extraction] Fix positive constants c_-,c_+ . Suppose F,G1 and every positive edge satisfies \\[ c_-/r_+' c_+/r_+', 0<<1. \\] Given any sufficiently small fixed >0 , there are u(1/2,1) , >0…",
+      "section": "Arithmetic estimates for close pairs",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-ar-box-sampling",
+      "kind": "corollary",
+      "label": "Negligible subsets of a saturated box",
+      "statement": "[Negligible subsets of a saturated box] Use a box given by Proposition~ . Suppose that each vertex weight is obtained by integrating a nonnegative density bounded by its normalized totient weight…",
+      "section": "Arithmetic estimates for close pairs",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-dir-birth-comparisons",
+      "kind": "proposition",
+      "label": "Direct birth bounds",
+      "statement": "[Direct birth bounds] Use the retained centres of one type and colour, the good masks, and the birth prescriptions of Sections~ and~ , with the hierarchy fixed in Section~ . Let the finite block have…",
+      "section": "Direct comparisons at simultaneous births",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-dir-ultra-switch",
+      "kind": "lemma",
+      "label": "Ultra switching",
+      "statement": "[Ultra switching] For ultra comparisons, discard an exceptional count of total size O_ k_0 (W^ 1+c ) , for some c>0 . On the remaining pairs, apply all divisor switches \\[ h(d_i,_0), e^ C_1D'X_0 h e^…",
+      "section": "Direct comparisons at simultaneous births",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-dir-tag-fold",
+      "kind": "lemma",
+      "label": "Tag arrangements and folding",
+      "statement": "[Tag arrangements and folding] Apart from the exceptions of Lemma~ , tag masks in each bin may be restricted to the following arrangements: they are identical, or they are disjoint. There are only…",
+      "section": "Direct comparisons at simultaneous births",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-dir-exact-equalities",
+      "kind": "lemma",
+      "label": "Exact equality bound",
+      "statement": "[Exact equality bound] The total folded comparison count with exact modeled equality, using all recognized tiers and either the broad or narrow outer-mask law, is O(W) .",
+      "section": "Direct comparisons at simultaneous births",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-dir-ultra-count",
+      "kind": "lemma",
+      "label": "Completion of ultra comparisons",
+      "statement": "[Completion of ultra comparisons] All ultra comparisons in Proposition~ have total cost O(W)+O_ k_0 (W^ 1+c ) .",
+      "section": "Direct comparisons at simultaneous births",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-dir-row-kernel",
+      "kind": "lemma",
+      "label": "Nonexact row kernel",
+      "statement": "[Nonexact row kernel] At fixed masks, the weighted folded count of the remaining broad determinants is at most a constant times (r_i'(V))(r_j'(W')) (1,1/_1) _ p st\\>_1^ c_1 R_p^ -C , where c_1>0 is a…",
+      "section": "Direct comparisons at simultaneous births",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-dir-holes",
+      "kind": "lemma",
+      "label": "Cost of low rational holes",
+      "statement": "[Cost of low rational holes] For every fixed >0 , Construction~ loses at most W in total birth first mass when _0 is sufficiently large. The choice is uniform over all groups and widths. The rule…",
+      "section": "Direct comparisons at simultaneous births",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-dir-high-box",
+      "kind": "lemma",
+      "label": "High-type boxes",
+      "statement": "[High-type boxes] No saturated configuration occurs on high type among the remaining non-ultra comparisons.",
+      "section": "Direct comparisons at simultaneous births",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-dir-shallow-box",
+      "kind": "lemma",
+      "label": "Shallow medium boxes",
+      "statement": "[Shallow medium boxes] No saturated configuration occurs on medium type with <_ sh B after Construction~ .",
+      "section": "Direct comparisons at simultaneous births",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-dir-deep-box",
+      "kind": "lemma",
+      "label": "Deeper medium boxes",
+      "statement": "[Deeper medium boxes] For medium type with _ sh B Q_0B+O(1) , an additional nonexact comparison count of size O(W) may be charged directly. No saturated configuration remains after that charge.",
+      "section": "Direct comparisons at simultaneous births",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-sp-sparse-estimates",
+      "kind": "proposition",
+      "label": "Sparse-step estimates",
+      "statement": "[Sparse-step estimates] Consider any finite table history up to a sparse-prime update that satisfies the centre and good-mask prescriptions and the preceding chronological core-equivariance rules.…",
+      "section": "Alignments in sparse prime steps",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-part-target-grid",
+      "kind": "lemma",
+      "label": "A target grid against a source train",
+      "statement": "[A target grid against a source train] For every sufficiently small fixed >0 , every fixed constant C_0 , and 0<R C_0 , one has 1 W' _ z W' w_z _ n Z 1_ \\ |x_z-(n+y_0)/V'| C_0rR\\ _ ,C_0 R_ done…",
+      "section": "Construction of the operational partitions",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-part-mask-sums",
+      "kind": "lemma",
+      "label": "Source masks and target deficit currency",
+      "statement": "[Source masks and target deficit currency] For the source masks of bin Y' , \\[ _d1d e^ CY' . \\] At every fixed target mask c , put \\[ E_ ext = W' (W',L) =T (T,c) . \\] Then _d1m E_ ext ^ -1 (U)(c_ Y'…",
+      "section": "Construction of the operational partitions",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-part-history-test-cost",
+      "kind": "lemma",
+      "label": "Cost of a history test",
+      "statement": "[Cost of a history test] For either kind of test, the first mass discarded from the tested target array on M=L_j by one source centre-bin pair (i,Y') is at most e^ -cY' m_M . Here c>0 can be taken…",
+      "section": "Construction of the operational partitions",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-part-inherited-hulls",
+      "kind": "lemma",
+      "label": "Location of inherited class hulls",
+      "statement": "[Location of inherited class hulls] Every positive-length inherited class hull lies in the union of the danger intervals belonging to its old child. It lies in its old cell, and the hull operation…",
+      "section": "Construction of the operational partitions",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-join-remaining-first-joins",
+      "kind": "proposition",
+      "label": "Remaining first-join comparisons",
+      "statement": "[Remaining first-join comparisons] Consider a finite block and the retained centres, masks, and table operations of Sections~ -- , with the stated parameter hierarchy. At each first sharing of a…",
+      "section": "First joins of previously constructed tables",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-join-classification",
+      "kind": "lemma",
+      "label": "Classification of the remaining pairs",
+      "statement": "[Classification of the remaining pairs] Suppose centres i,j first share a component at height Y , and their comparison is not a simultaneous-birth comparison treated in Section~ . Either (UT)> Y/2,…",
+      "section": "First joins of previously constructed tables",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-join-backward-decomposition",
+      "kind": "lemma",
+      "label": "Backward decomposition",
+      "statement": "[Backward decomposition] Read in decreasing order every prime divisor of either centre above P_0 whose size lies in the union of the two adaptive ranges. For the fixed current grids, masks, and…",
+      "section": "First joins of previously constructed tables",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-join-endpoint-count",
+      "kind": "lemma",
+      "label": "Remaining-field count",
+      "statement": "[Remaining-field count] The retained fields through P_0 on the two projected grids have periods dividing those denominators, of sizes at most (O(P_0)) , and their separate product means are the…",
+      "section": "First joins of previously constructed tables",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-join-later-omissions",
+      "kind": "lemma",
+      "label": "Averaging later omissions",
+      "statement": "[Averaging later omissions] For each mapped side, write \\[ d=d_ <p b_i^+, \\] where b_i^+ is the processed portion of its actual mask above p and below the join bin. In the linked comparison,…",
+      "section": "First joins of previously constructed tables",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    },
+    {
+      "id": "m1-join-capacity",
+      "kind": "lemma",
+      "label": "Capacity and uniqueness of the charge",
+      "statement": "[Capacity and uniqueness of the charge] After the averaging of Lemma~ , summing all originating full-factor labels charges at most the weight of each successful image plus entry. With two mapped…",
+      "section": "First joins of previously constructed tables",
+      "manuscript": "The Weak Inhomogeneous Duffin–Schaeffer Conjecture"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-ar-pivot",
+      "to": "m1-ar-tensor"
+    },
+    {
+      "from": "m1-ar-tensor",
+      "to": "m1-cen-kernel"
+    },
+    {
+      "from": "m1-ar-cycle",
+      "to": "m1-cen-raw"
+    },
+    {
+      "from": "m1-cen-density",
+      "to": "m1-cen-raw"
+    },
+    {
+      "from": "m1-cen-kernel",
+      "to": "m1-cen-raw"
+    },
+    {
+      "from": "m1-ar-tensor",
+      "to": "m1-cen-adjusted"
+    },
+    {
+      "from": "m1-pre-model-uniqueness",
+      "to": "m1-pre-hard-mean"
+    },
+    {
+      "from": "m1-tab-prime-update",
+      "to": "m1-tab-variance-budget"
+    },
+    {
+      "from": "m1-tab-sparse-input",
+      "to": "m1-tab-energy-bound"
+    },
+    {
+      "from": "m1-tab-variance-budget",
+      "to": "m1-tab-energy-bound"
+    },
+    {
+      "from": "m1-tab-first-join-input",
+      "to": "m1-tab-energy-bound"
+    },
+    {
+      "from": "m1-tab-virtual-marginals",
+      "to": "m1-tab-intermediate-fields"
+    },
+    {
+      "from": "m1-tab-virtual-marginals",
+      "to": "m1-tab-equidistribution"
+    },
+    {
+      "from": "m1-tab-virtual-marginals",
+      "to": "m1-tab-conditional-reduction"
+    },
+    {
+      "from": "m1-pre-soft-loss",
+      "to": "m1-tab-conditional-reduction"
+    },
+    {
+      "from": "m1-tab-first-join-input",
+      "to": "m1-tab-conditional-reduction"
+    },
+    {
+      "from": "m1-tab-partition-input",
+      "to": "m1-tab-conditional-reduction"
+    },
+    {
+      "from": "m1-tab-energy-bound",
+      "to": "m1-tab-conditional-reduction"
+    },
+    {
+      "from": "m1-tab-equidistribution",
+      "to": "m1-tab-conditional-reduction"
+    },
+    {
+      "from": "m1-ar-cycle",
+      "to": "m1-ar-sieve"
+    },
+    {
+      "from": "m1-ar-sieve",
+      "to": "m1-ar-rotation"
+    },
+    {
+      "from": "m1-ar-pivot",
+      "to": "m1-ar-lcm"
+    },
+    {
+      "from": "m1-ar-lcm",
+      "to": "m1-ar-extraction"
+    },
+    {
+      "from": "m1-ar-pivot",
+      "to": "m1-ar-extraction"
+    },
+    {
+      "from": "m1-ar-lcm",
+      "to": "m1-ar-box-sampling"
+    },
+    {
+      "from": "m1-ar-rotation",
+      "to": "m1-dir-ultra-switch"
+    },
+    {
+      "from": "m1-dir-ultra-switch",
+      "to": "m1-dir-tag-fold"
+    },
+    {
+      "from": "m1-dir-tag-fold",
+      "to": "m1-dir-exact-equalities"
+    },
+    {
+      "from": "m1-pre-model-uniqueness",
+      "to": "m1-dir-exact-equalities"
+    },
+    {
+      "from": "m1-dir-ultra-switch",
+      "to": "m1-dir-ultra-count"
+    },
+    {
+      "from": "m1-dir-exact-equalities",
+      "to": "m1-dir-ultra-count"
+    },
+    {
+      "from": "m1-ar-sieve",
+      "to": "m1-dir-row-kernel"
+    },
+    {
+      "from": "m1-ar-tensor",
+      "to": "m1-dir-holes"
+    },
+    {
+      "from": "m1-ar-rotation",
+      "to": "m1-dir-high-box"
+    },
+    {
+      "from": "m1-dir-tag-fold",
+      "to": "m1-dir-high-box"
+    },
+    {
+      "from": "m1-ar-rotation",
+      "to": "m1-dir-shallow-box"
+    },
+    {
+      "from": "m1-ar-box-sampling",
+      "to": "m1-dir-shallow-box"
+    },
+    {
+      "from": "m1-dir-birth-comparisons",
+      "to": "m1-dir-deep-box"
+    },
+    {
+      "from": "m1-dir-holes",
+      "to": "m1-dir-deep-box"
+    },
+    {
+      "from": "m1-dir-ultra-count",
+      "to": "m1-dir-deep-box"
+    },
+    {
+      "from": "m1-dir-exact-equalities",
+      "to": "m1-dir-deep-box"
+    },
+    {
+      "from": "m1-dir-row-kernel",
+      "to": "m1-dir-deep-box"
+    },
+    {
+      "from": "m1-dir-high-box",
+      "to": "m1-dir-deep-box"
+    },
+    {
+      "from": "m1-dir-shallow-box",
+      "to": "m1-dir-deep-box"
+    },
+    {
+      "from": "m1-tab-intermediate-fields",
+      "to": "m1-part-target-grid"
+    },
+    {
+      "from": "m1-part-mask-sums",
+      "to": "m1-part-history-test-cost"
+    },
+    {
+      "from": "m1-tab-virtual-marginals",
+      "to": "m1-join-backward-decomposition"
+    },
+    {
+      "from": "m1-tab-intermediate-fields",
+      "to": "m1-join-endpoint-count"
+    },
+    {
+      "from": "m1-ar-cycle",
+      "to": "m1-join-endpoint-count"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-join-capacity"
+    },
+    {
+      "from": "m1-tab-first-join-input",
+      "to": "m1-join-capacity"
+    },
+    {
+      "from": "m1-tab-partition-input",
+      "to": "m1-join-capacity"
+    },
+    {
+      "from": "m1-join-remaining-first-joins",
+      "to": "m1-join-capacity"
+    },
+    {
+      "from": "m1-tab-sparse-input",
+      "to": "m1-join-capacity"
+    },
+    {
+      "from": "m1-tab-conditional-reduction",
+      "to": "m1-join-capacity"
+    },
+    {
+      "from": "m1-tab-energy-bound",
+      "to": "m1-join-capacity"
+    },
+    {
+      "from": "m1-tab-virtual-marginals",
+      "to": "m1-join-capacity"
+    },
+    {
+      "from": "m1-cor-hausdorff",
+      "to": "m1-join-capacity"
+    }
+  ]
+}

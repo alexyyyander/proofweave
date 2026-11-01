@@ -1,0 +1,1076 @@
+{
+  "familyNumber": "004",
+  "familyTitle": "Hilbert’s tenth problem over ℚ",
+  "manuscripts": [
+    {
+      "id": "Hilberts-tenth-problem-over-the-rational-numbers-October-6-2026",
+      "title": "Hilbert’s tenth problem over the rational numbers",
+      "date": "2026-10-06",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Hilberts-tenth-problem-over-the-rational-numbers-October-6-2026/main.pdf"
+    },
+    {
+      "id": "A-pointwise-2-converse-for-elliptic-curves-with-rational-two-torsion-October-7-2026",
+      "title": "A pointwise 2-converse for elliptic curves with rational two-torsion",
+      "date": "2026-10-07",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-pointwise-2-converse-for-elliptic-curves-with-rational-two-torsion-October-7-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Finite rational tests for integer solvability",
+    "An existential condition excluding odd poles",
+    "A height bound from odd contact with five points",
+    "Prime patterns for the two conjugate local tests",
+    "Turing degree and a quartic normal form",
+    "Selmer coranks and fixed local data",
+    "Cyclotomic interpolation for extensions of trivial residual modules",
+    "Ring-class interpolation and integral deformations",
+    "Ring-class switches, determinant lattices, and transfer",
+    "Auxiliary twists with prescribed local behavior",
+    "Coefficient systems and their contraction identities"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "There is no algorithm which, given a polynomial f , with n part of the input,…",
+      "statement": "There is no algorithm which, given a polynomial f , with n part of the input, decides whether f has a zero in ^n .",
+      "section": "Introduction",
+      "manuscript": "Hilbert’s tenth problem over the rational numbers"
+    },
+    {
+      "id": "m1-ell-rank",
+      "kind": "proposition",
+      "label": "The group E(F) has rank one. Consequently there exist a positive integer m and…",
+      "statement": "The group E(F) has rank one. Consequently there exist a positive integer m and a nontorsion point P E(F) such that \\[ mE(F)= P. \\] We fix such m and P once and for all.",
+      "section": "Finite rational tests for integer solvability",
+      "manuscript": "Hilbert’s tenth problem over the rational numbers"
+    },
+    {
+      "id": "m1-ell-formal",
+      "kind": "proposition",
+      "label": "There is a fixed finite set of rational primes S_E with the following…",
+      "statement": "There is a fixed finite set of rational primes S_E with the following properties. Let p S_E , let v be any place of F above p , normalized by v(p)=1 , and let n,n' , with n'0 . Assume nP,n'P reduce…",
+      "section": "Finite rational tests for integer solvability",
+      "manuscript": "Hilbert’s tenth problem over the rational numbers"
+    },
+    {
+      "id": "m1-red-local-comparison",
+      "kind": "lemma",
+      "label": "Local comparison",
+      "statement": "[Local comparison] Let \\(K1\\) be an ordinary integer. Let \\(q\\) be a prime of the ambient integer sort \\( ^*\\), possibly nonordinary, with \\(q S_E\\) and \\(q>K+1\\), and let \\(v_*\\) be a place of \\(…",
+      "section": "Finite rational tests for integer solvability",
+      "manuscript": "Hilbert’s tenth problem over the rational numbers"
+    },
+    {
+      "id": "m1-hei-height",
+      "kind": "theorem",
+      "label": "Five-point height estimate",
+      "statement": "[Five-point height estimate] There exist five distinct points C P^1() , including , a finite set S of rational primes, and constants H,c>0 with the following property. For each b C , choose a…",
+      "section": "Finite rational tests for integer solvability",
+      "manuscript": "Hilbert’s tenth problem over the rational numbers"
+    },
+    {
+      "id": "m1-hei-enlarge-exceptions",
+      "kind": "corollary",
+      "label": "If S' S is any fixed finite set of primes, then \\[ (s) H(_ q S' S q)^c M_ S'…",
+      "statement": "If S' S is any fixed finite set of primes, then \\[ (s) H(_ q S' S q)^c M_ S' (s)^c (s P^1() C). \\] In particular enlarging the exceptional set changes the constant but leaves the exponent unchanged.",
+      "section": "Finite rational tests for integer solvability",
+      "manuscript": "Hilbert’s tenth problem over the rational numbers"
+    },
+    {
+      "id": "m1-pri-integer-coverage",
+      "kind": "corollary",
+      "label": "Ordinary contact representations",
+      "statement": "[Ordinary contact representations] Let \\( K_ >0 \\) be the finite multiplier set supplied by Lemma~ in Section~ . It has the following property. For every integer \\(K1\\), every \\(A\\), and every real…",
+      "section": "Finite rational tests for integer solvability",
+      "manuscript": "Hilbert’s tenth problem over the rational numbers"
+    },
+    {
+      "id": "m1-red-standard-model",
+      "kind": "lemma",
+      "label": "The theory \\( T\\) is recursive and has a model whose ring is \\(\\). In this…",
+      "statement": "The theory \\( T\\) is recursive and has a model whose ring is \\(\\). In this model \\(T_a=aP\\) for every integer \\(a\\).",
+      "section": "Finite rational tests for integer solvability",
+      "manuscript": "Hilbert’s tenth problem over the rational numbers"
+    },
+    {
+      "id": "m1-par-pole-parity",
+      "kind": "proposition",
+      "label": "There are a positive existential formula (b) in the language of rings, with…",
+      "statement": "There are a positive existential formula (b) in the language of rings, with fixed rational coefficients, and a finite set S_1 of rational primes such that: (b) for every b ; if b^ and (b) , then, for…",
+      "section": "Finite rational tests for integer solvability",
+      "manuscript": "Hilbert’s tenth problem over the rational numbers"
+    },
+    {
+      "id": "m1-red-compactness",
+      "kind": "lemma",
+      "label": "If every finite rational test succeeds, there exist an ambient elementary…",
+      "statement": "If every finite rational test succeeds, there exist an ambient elementary extension of the many-sorted structure specified in , a model \\(R\\) of \\( T\\), a tuple \\( a R^n\\) with \\(f( a)=0\\), and an…",
+      "section": "Finite rational tests for integer solvability",
+      "manuscript": "Hilbert’s tenth problem over the rational numbers"
+    },
+    {
+      "id": "m1-red-coarsening",
+      "kind": "lemma",
+      "label": "For the prime q and element r in , there is a branch p\\ p_+, p_-\\ of that…",
+      "statement": "For the prime q and element r in , there is a branch p\\ p_+, p_-\\ of that representation axiom and an ambient place v_* of ^*F over q such that, for every ordinary integer l1 and every D' F_R , D'…",
+      "section": "Finite rational tests for integer solvability",
+      "manuscript": "Hilbert’s tenth problem over the rational numbers"
+    },
+    {
+      "id": "m1-red-index-congruence",
+      "kind": "proposition",
+      "label": "Fix an ordinary \\(K1\\) and use the exceptional set \\(S_K\\) above. Choose a…",
+      "statement": "Fix an ordinary \\(K1\\) and use the exceptional set \\(S_K\\) above. Choose a representation supplied at precision \\(K\\) for an arbitrary \\(A R\\), and put \\( s_i=( u_i: v)\\). For every prime \\(q\\) of \\(…",
+      "section": "Finite rational tests for integer solvability",
+      "manuscript": "Hilbert’s tenth problem over the rational numbers"
+    },
+    {
+      "id": "m1-red-finite-test-success",
+      "kind": "proposition",
+      "label": "Let f be nonconstant. If every finite system of rational constraints…",
+      "statement": "Let f be nonconstant. If every finite system of rational constraints constructed in for f is solvable, then f has a zero in ^n .",
+      "section": "Finite rational tests for integer solvability",
+      "manuscript": "Hilbert’s tenth problem over the rational numbers"
+    },
+    {
+      "id": "m1-par-soundness",
+      "kind": "lemma",
+      "label": "For any finite lists as above, if b^ satisfies (b) and q S_1 , then v_q(b)<0…",
+      "statement": "For any finite lists as above, if b^ satisfies (b) and q S_1 , then v_q(b)<0 implies v_q(b)2 .",
+      "section": "An existential condition excluding odd poles",
+      "manuscript": "Hilbert’s tenth problem over the rational numbers"
+    },
+    {
+      "id": "m1-par-cross-squares",
+      "kind": "lemma",
+      "label": "The sets B,J are disjoint and avoid 2,3 . Moreover, _q^ 2 (q B), _q^ 2 (q J).…",
+      "statement": "The sets B,J are disjoint and avoid 2,3 . Moreover, _q^ 2 (q B), _q^ 2 (q J). Both and are squares in _2^ ; at 3 , is a square and is a unit nonsquare. In particular B .",
+      "section": "An existential condition excluding odd poles",
+      "manuscript": "Hilbert’s tenth problem over the rational numbers"
+    },
+    {
+      "id": "m1-par-descent",
+      "kind": "lemma",
+      "label": "Let l>0 be squarefree, prime to 6 , with l34 and l23 . Suppose that its support…",
+      "statement": "Let l>0 be squarefree, prime to 6 , with l34 and l23 . Suppose that its support Q contains the nonempty set B of Lemma~ and a prime outside B , and suppose that K=1,1_B, imK. Then \\[ _ _2 _2(E_l/)=3,…",
+      "section": "An existential condition excluding odd poles",
+      "manuscript": "Hilbert’s tenth problem over the rational numbers"
+    },
+    {
+      "id": "m1-par-global-point",
+      "kind": "lemma",
+      "label": "Under the hypotheses of Lemma~ , the curve E_l has a rational point with…",
+      "statement": "Under the hypotheses of Lemma~ , the curve E_l has a rational point with nonzero x -coordinate in ^ 2 .",
+      "section": "An existential condition excluding odd poles",
+      "manuscript": "Hilbert’s tenth problem over the rational numbers"
+    },
+    {
+      "id": "m1-par-simultaneous-matrices",
+      "kind": "lemma",
+      "label": "For ,,B,J as in Lemma~ , there is a positive squarefree integer n , prime to 6…",
+      "statement": "For ,,B,J as in Lemma~ , there is a positive squarefree integer n , prime to 6 , whose support P contains B and at least one auxiliary prime outside B , such that the following statements hold for…",
+      "section": "An existential condition excluding odd poles",
+      "manuscript": "Hilbert’s tenth problem over the rational numbers"
+    },
+    {
+      "id": "m1-hei-fiber-field",
+      "kind": "lemma",
+      "label": "For s P^1() C , put M=M_S(s) . There is a Galois extension K_0/ of uniformly…",
+      "statement": "For s P^1() C , put M=M_S(s) . There is a Galois extension K_0/ of uniformly bounded degree splitting the fiber ^ -1 (s) , unramified outside S\\ q:q M\\ . Every fiber A= A_y above s is defined over…",
+      "section": "A height bound from odd contact with five points",
+      "manuscript": "Hilbert’s tenth problem over the rational numbers"
+    },
+    {
+      "id": "m1-hei-base-height",
+      "kind": "lemma",
+      "label": "For every y Y() one has ((y)) C(1+\\ 0,h_ F ( A_y)\\ ), with a constant…",
+      "statement": "For every y Y() one has ((y)) C(1+\\ 0,h_ F ( A_y)\\ ), with a constant independent of y and its field of definition.",
+      "section": "A height bound from odd contact with five points",
+      "manuscript": "Hilbert’s tenth problem over the rational numbers"
+    },
+    {
+      "id": "m1-hei-hom-field",
+      "kind": "lemma",
+      "label": "There is a Galois extension L/ containing K_0 , of uniformly bounded degree,…",
+      "statement": "There is a Galois extension L/ containing K_0 , of uniformly bounded degree, over which all geometric homomorphisms between all Galois conjugates of A are defined. It is unramified outside T .",
+      "section": "A height bound from odd contact with five points",
+      "manuscript": "Hilbert’s tenth problem over the rational numbers"
+    },
+    {
+      "id": "m1-hei-sign-splitting",
+      "kind": "lemma",
+      "label": "Controlled splitting of the sign obstruction",
+      "statement": "[Controlled splitting of the sign obstruction] There is a finite Dirichlet character of order m C M , unramified outside T , and a continuous cochain :G__ 2m such that ^2=, (g) (h) (gh) =(g,h). The…",
+      "section": "A height bound from odd contact with five points",
+      "manuscript": "Hilbert’s tenth problem over the rational numbers"
+    },
+    {
+      "id": "m1-hei-compatibility",
+      "kind": "lemma",
+      "label": "The representation r_3 is the 3 -adic representation of the same algebraic…",
+      "statement": "The representation r_3 is the 3 -adic representation of the same algebraic conjugate of f that realizes r_2 .",
+      "section": "A height bound from odd contact with five points",
+      "manuscript": "Hilbert’s tenth problem over the rational numbers"
+    },
+    {
+      "id": "m1-hei-level-bound",
+      "kind": "lemma",
+      "label": "There are fixed constants C,a>0 such that N C M^a.",
+      "statement": "There are fixed constants C,a>0 such that N C M^a.",
+      "section": "A height bound from odd contact with five points",
+      "manuscript": "Hilbert’s tenth problem over the rational numbers"
+    },
+    {
+      "id": "m1-hei-modular-factor",
+      "kind": "lemma",
+      "label": "There is an abelian variety D_0/L' such that \\[ J_ L' A D_0. \\]",
+      "statement": "There is an abelian variety D_0/L' such that \\[ J_ L' A D_0. \\]",
+      "section": "A height bound from odd contact with five points",
+      "manuscript": "Hilbert’s tenth problem over the rational numbers"
+    },
+    {
+      "id": "m1-pri-pattern",
+      "kind": "lemma",
+      "label": "Prime patterns",
+      "statement": "[Prime patterns] There is a finite set K_ >0 such that, for every A and every real B>0 , there exist integers u_1,u_2,v , with v0 , for which, on setting u_3=Av-u_1-u_2 , each of the thirteen numbers…",
+      "section": "Prime patterns for the two conjugate local tests",
+      "manuscript": "Hilbert’s tenth problem over the rational numbers"
+    },
+    {
+      "id": "m1-pri-integer-tests",
+      "kind": "corollary",
+      "label": "Simultaneous integer tests",
+      "statement": "[Simultaneous integer tests] Fix an integer K1 and a prime r supplied by Lemma~ , large enough for Proposition~ at precision K . At each of the two places v above r there are nonzero integers h,j_0 ,…",
+      "section": "Prime patterns for the two conjugate local tests",
+      "manuscript": "Hilbert’s tenth problem over the rational numbers"
+    },
+    {
+      "id": "m1-pri-upper-sieve",
+      "kind": "lemma",
+      "label": "The number of points in this square avoiding every _p is at most n^2 G(Z)…",
+      "statement": "The number of points in this square avoiding every _p is at most n^2 G(Z) +O(nZ^6+Z^8), G(Z)=_ e Z squarefree\\ e p P_Z _ p e g(p) 1-g(p) . The error constant is absolute.",
+      "section": "Prime patterns for the two conjugate local tests",
+      "manuscript": "Hilbert’s tenth problem over the rational numbers"
+    },
+    {
+      "id": "m1-thm-degree-normal-form",
+      "kind": "corollary",
+      "label": "With the usual effective coding, let \\(H10()\\) be the set of integral…",
+      "statement": "With the usual effective coding, let \\(H10()\\) be the set of integral polynomials having a rational zero, with the number of variables part of the input. Then \\(H10()\\) has Turing degree \\(0'\\), the…",
+      "section": "Turing degree and a quartic normal form",
+      "manuscript": "Hilbert’s tenth problem over the rational numbers"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "The rational-two-torsion 2 -converse",
+      "statement": "[The rational-two-torsion 2 -converse] Let E/ be an elliptic curve with E()[2]0 and s_2(E)\\ 0,1\\ . Then \\[ _ s=1 L(E,s)=_ E()=s_2(E), (E/) is finite. \\]",
+      "section": "Introduction",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-pr-ranks",
+      "kind": "lemma",
+      "label": "The three ranks",
+      "statement": "[The three ranks] There is an exact sequence \\[ 0 A()_2/_2 _ 2^ (A/) (A/)[2^]0. \\] Consequently \\[ s_2(A)=r(A)+_ _2 (A/)[2^]. \\] If a(A)\\ 0,1\\ , then r(A)=a(A) and the whole group (A/) is finite. In…",
+      "section": "Selmer coranks and fixed local data",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-pr-invariance",
+      "kind": "lemma",
+      "label": "Parity and change of curve",
+      "statement": "[Parity and change of curve] For every elliptic curve A/ , \\[ (-1)^ s_2(A) =(A). \\] A rational isogeny preserves a , r , and s_2 . If K=(k) is quadratic, then \\[ s_2(A/K)=s_2(A/)+s_2(A^ (k) /). \\]",
+      "section": "Selmer coranks and fixed local data",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-cy-lower-bound",
+      "kind": "theorem",
+      "label": "Cyclotomic lower bound",
+      "statement": "[Cyclotomic lower bound] There is a constant C_E such that, for every allowed h with L(E^ (h) ,1)0 , \\[ v_2( L(h))\\ \\ 2w(h)+s(h)-C_E. \\] The constant is independent of the number and sizes of the…",
+      "section": "Cyclotomic interpolation for extensions of trivial residual modules",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-cy-missing-vertex",
+      "kind": "theorem",
+      "label": "Transfer to the missing vertex",
+      "statement": "[Transfer to the missing vertex] Let h_0 be an allowed discriminant with s_2(E^ (h_0) )=0 . Suppose that for arbitrarily large b there are a finite set Q of distinct primes q 2Nh_0 and linear forms…",
+      "section": "Cyclotomic interpolation for extensions of trivial residual modules",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-cy-fourier",
+      "kind": "lemma",
+      "label": "Integral Fourier intersection",
+      "statement": "[Integral Fourier intersection] Suppose u O[1/2][G] , all u_x belong to , and 2^C u O[G] . Then 2^C u .",
+      "section": "Cyclotomic interpolation for extensions of trivial residual modules",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-cy-binary",
+      "kind": "lemma",
+      "label": "Binary congruences",
+      "statement": "[Binary congruences] Let z_1,,z_r Z _2[G] . Given M1 , if b>r(2^M-1) , there is an x0 such that \\[ (z_j)_x(z_j)_0 2^M (1 j r). \\] The bound depends on the number of tests and their precision, and not…",
+      "section": "Cyclotomic interpolation for extensions of trivial residual modules",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-cy-perfect",
+      "kind": "lemma",
+      "label": "Perfection and the real-place class",
+      "statement": "[Perfection and the real-place class] The complex is perfect over R and computes derived coefficient specializations. There is a class a H^1(C_S^+( T)) whose rational span is the real-place summand.…",
+      "section": "Cyclotomic interpolation for extensions of trivial residual modules",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-cy-residual",
+      "kind": "lemma",
+      "label": "Residual concentration",
+      "statement": "[Residual concentration] There is an isomorphism in the derived category \\[ C_S^+( T)_R O[G] O[G]^2[-1]. \\]",
+      "section": "Cyclotomic interpolation for extensions of trivial residual modules",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-cy-central",
+      "kind": "proposition",
+      "label": "Central determinant formula",
+      "statement": "[Central determinant formula] There is a constant C_ loc , depending only on the fixed curve and local classes, with the following property. If s_2(E^ (h_x) )=0 , then u_x(0)=0 when L(E^ (h_x) ,1)=0…",
+      "section": "Cyclotomic interpolation for extensions of trivial residual modules",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-rd-ring-lower",
+      "kind": "corollary",
+      "label": "Ring-class lower bound",
+      "statement": "[Ring-class lower bound] Every simple-zero ring instance in the stated data satisfies 2j_h 4w(h)+s(h)+s(hk)-C(E,A), (k) A.",
+      "section": "Ring-class interpolation and integral deformations",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-rd-missing-vertex",
+      "kind": "theorem",
+      "label": "The fixed-\\(K\\) missing-vertex implication",
+      "statement": "[The fixed-\\(K\\) missing-vertex implication] Fix the ring data \\(E,K\\), with corank_ Z_2 Sel_ 2^ (E/K)=1. Suppose binary families exist for arbitrarily large \\(b\\), and for every nonzero \\(x\\) the…",
+      "section": "Ring-class interpolation and integral deformations",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-rl-finite-model",
+      "kind": "lemma",
+      "label": "Finite Artin models",
+      "statement": "[Finite Artin models] Let (A, m,k) be an Artin local ring, and let D be a complex of flat A -modules. Suppose H^*(D_A k) is finite dimensional and supported in [a,b] . There is a bounded finite free…",
+      "section": "Ring-class interpolation and integral deformations",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-rl-finite-limits",
+      "kind": "lemma",
+      "label": "Limits of specified diagrams",
+      "statement": "[Limits of specified diagrams] Suppose diagrams over A_i , or over A_i[G] , have uniformly bounded cohomological amplitudes and graded free ranks, and include the chain homotopies and inverses for…",
+      "section": "Ring-class interpolation and integral deformations",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-rl-kummer",
+      "kind": "lemma",
+      "label": "Integral Kummer local condition",
+      "statement": "[Integral Kummer local condition] Let F be a finite extension of a nonarchimedean local field of characteristic zero, and let B/F be any elliptic curve. Put M_F=B(F)^_2=_n B(F)/2^nB(F) . There is a…",
+      "section": "Ring-class interpolation and integral deformations",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-rl-characters",
+      "kind": "proposition",
+      "label": "Finite-precision ring-class characters",
+      "statement": "[Finite-precision ring-class characters] Fix finitely many split primes of K above odd rational primes, outside 2N , and orient one prime in each conjugate pair. There are distinct split rational…",
+      "section": "Ring-class interpolation and integral deformations",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-rl-local-acyclic",
+      "kind": "lemma",
+      "label": "Local height-one tests",
+      "statement": "[Local height-one tests] For the individual coefficient system T_h , use full local conditions at the moving prime r and the active primes dividing h , without adding primes from a larger binary…",
+      "section": "Ring-class interpolation and integral deformations",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-rl-residual-bound",
+      "kind": "lemma",
+      "label": "Uniform residual sizes",
+      "statement": "[Uniform residual sizes] Suppose (discK) A , the local twisting classes at 2N belong to a fixed finite list, and all active conductor primes are split with odd exponent. After localization and…",
+      "section": "Ring-class interpolation and integral deformations",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-rl-evaluation",
+      "kind": "lemma",
+      "label": "All-sequence evaluation",
+      "statement": "[All-sequence evaluation] Fix K and a sequence of the finite cochain constructions above. Keep the contraction maps into the original global cochains. Let _K=_i G_K and =_K_iG_ Q , with simultaneous…",
+      "section": "Ring-class interpolation and integral deformations",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-rl-kernel",
+      "kind": "lemma",
+      "label": "The exact common kernel",
+      "statement": "[The exact common kernel] In the notation of Lemma~ , let H be the group of sequences each of whose entries acts trivially on the full Tate module, on all ring-class fields of K , and on the…",
+      "section": "Ring-class interpolation and integral deformations",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-rl-outer-evaluation",
+      "kind": "proposition",
+      "label": "Integral evaluation through the outer limit",
+      "statement": "[Integral evaluation through the outer limit] Let C_j be any family of the preceding limiting complexes, completed over O_j= _ (2) , possibly for different quadratic fields K_j . Suppose their…",
+      "section": "Ring-class interpolation and integral deformations",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-rl-irreducibility",
+      "kind": "lemma",
+      "label": "Irreducibility on the characteristic-zero tests",
+      "statement": "[Irreducibility on the characteristic-zero tests] On an inner or outer characteristic-zero test where ^21 , the four-dimensional representation induced from T is absolutely irreducible. If ^2=1 on an…",
+      "section": "Ring-class interpolation and integral deformations",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-rl-chebotarev-evaluation",
+      "kind": "lemma",
+      "label": "Simultaneous finite Chebotarev realization",
+      "statement": "[Simultaneous finite Chebotarev realization] For any element u of an exact kernel in Lemma~ , derivative primes can be chosen, at increasing finite precision, whose rational Frobenius is u on all…",
+      "section": "Ring-class interpolation and integral deformations",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-rl-limit-evaluation-package",
+      "kind": "theorem",
+      "label": "The limit and evaluation interface",
+      "statement": "[The limit and evaluation interface] For the ring data fixed at the start of this section, retain the finite target-side arithmetic diagrams with their maps to original cochains, homotopies, and…",
+      "section": "Ring-class interpolation and integral deformations",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-rd-local-model",
+      "kind": "lemma",
+      "label": "The split local model",
+      "statement": "[The split local model] Let a sequence of inert good primes \\(\\) have rational Frobenius lifts tending on \\(T\\) to a fixed complex conjugation \\(J\\). At the unique prime of \\(K\\) above \\(\\), the…",
+      "section": "Ring-class switches, determinant lattices, and transfer",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-rd-derivative",
+      "kind": "lemma",
+      "label": "Descent and the switch at \\(2\\)",
+      "statement": "[Descent and the switch at \\(2\\)] Perform each finite ring-class construction and its weighted transfer before retaining its target-side data by the construction following Lemma~ . There is one…",
+      "section": "Ring-class switches, determinant lattices, and transfer",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-rd-det-switch",
+      "kind": "lemma",
+      "label": "Exact determinant switch over a DVR",
+      "statement": "[Exact determinant switch over a DVR] Let \\(O\\) be a DVR with fraction field \\(F_O\\). Suppose that integral perfect complexes \\(C_ str ,C_F,C_S,C_ rel \\), their localization triangles, and their…",
+      "section": "Ring-class switches, determinant lattices, and transfer",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-rd-rank-two",
+      "kind": "lemma",
+      "label": "Selecting a rank-two evaluation",
+      "statement": "[Selecting a rank-two evaluation] Let \\( G\\) be a group, \\(H\\) a normal subgroup acting trivially on an absolutely irreducible representation \\(W\\) over a field \\(F_O\\), and suppose that restriction…",
+      "section": "Ring-class switches, determinant lattices, and transfer",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-rd-away-two",
+      "kind": "proposition",
+      "label": "Nonnegative valuations away from \\((2)\\)",
+      "statement": "[Nonnegative valuations away from \\((2)\\)] Assume the simultaneous diagrams, derivative classes, and exact-kernel evaluation maps of Lemmas~ , , , and . For a primitive constituent whose generic…",
+      "section": "Ring-class switches, determinant lattices, and transfer",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-rd-minor",
+      "kind": "lemma",
+      "label": "The terminal minor estimate",
+      "statement": "[The terminal minor estimate] Let \\[ C_i=[\\,O_i^nD_iO_i^n\\,] \\] be based complexes over DVRs with uniformizer \\(2\\), with generic rank-one kernel. Let \\(z_i D_i\\) be integral, and let \\(_i 2^ -a…",
+      "section": "Ring-class switches, determinant lattices, and transfer",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-rd-outer-bound",
+      "kind": "proposition",
+      "label": "Uniform residual valuation from outer rank reduction",
+      "statement": "[Uniform residual valuation from outer rank reduction] Assume all of the following properties of a collection of primitive ring instances: after any fixed number of switches, minimal \\( O\\)-models…",
+      "section": "Ring-class switches, determinant lattices, and transfer",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-rd-derived-specialization",
+      "kind": "lemma",
+      "label": "Derived specialization at constant rational rank",
+      "statement": "[Derived specialization at constant rational rank] Let \\(C\\) be a perfect \\(\\)-complex and put \\(C_0=C_^ L Z_2\\), where \\(t=0\\). Suppose its generic rational cohomology and its central rational…",
+      "section": "Ring-class switches, determinant lattices, and transfer",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-rd-active-local",
+      "kind": "lemma",
+      "label": "A ramified good odd place",
+      "statement": "[A ramified good odd place] Let \\(F_v/ Q_p\\) be unramified, \\(p2\\), and let \\(T'=T_2(E)\\), where \\(E\\) has good reduction and \\(\\) is ramified quadratic. Then H^0(F_v,T')=0, H^1(F_v,T')=E^(F_v)^ _2,…",
+      "section": "Ring-class switches, determinant lattices, and transfer",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-rd-central-formula",
+      "kind": "proposition",
+      "label": "The central determinant formula",
+      "statement": "[The central determinant formula] Suppose the product \\[ L(E^ (h) ,s)L(E^ (hk) ,s) \\] has a simple zero at \\(s=1\\). Use the primitive Heegner sum \\(P_h\\) and its free-line index \\(j_h\\) defined at…",
+      "section": "Ring-class switches, determinant lattices, and transfer",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-rd-unused",
+      "kind": "lemma",
+      "label": "Removing unused primes in the group ring",
+      "statement": "[Removing unused primes in the group ring] Suppose the universal relaxed trace class and its duality diagram have been constructed over \\(R\\). There is \\( O[G]\\) such that \\( u_ rel \\) has each…",
+      "section": "Ring-class switches, determinant lattices, and transfer",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-rd-schur",
+      "kind": "lemma",
+      "label": "Laurent expansion and simultaneous elimination",
+      "statement": "[Laurent expansion and simultaneous elimination] There is a natural identification O/2^M O =( Z/2^M Z)((t)). Suppose \\(A=diag(A_1,,A_m)\\) has entries in \\(\\), each residual determinant is nonzero,…",
+      "section": "Ring-class switches, determinant lattices, and transfer",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-rd-clearing",
+      "kind": "lemma",
+      "label": "Clearing a bounded complex",
+      "statement": "[Clearing a bounded complex] Let \\(D\\) be a based complex of finite free \\( O[G]\\)-modules of total graded rank at most \\(r_0\\), with \\(D_0\\) defined over \\(\\). Suppose \\(D_0_^ L Z_2\\) has rational…",
+      "section": "Ring-class switches, determinant lattices, and transfer",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-rd-family-clearing",
+      "kind": "proposition",
+      "label": "The bounded clearing factor for the family",
+      "statement": "[The bounded clearing factor for the family] Assume the compatible universal Selmer and Heegner diagrams and their primitive specializations. Suppose every character constituent of the universal…",
+      "section": "Ring-class switches, determinant lattices, and transfer",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-rd-assembly",
+      "kind": "proposition",
+      "label": "Assembly of the arithmetic diagrams",
+      "statement": "[Assembly of the arithmetic diagrams] For the ring data stated at the start of this section, the actual finite Heegner and Selmer constructions satisfy the simultaneous diagram hypotheses of…",
+      "section": "Ring-class switches, determinant lattices, and transfer",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-rd-bits",
+      "kind": "lemma",
+      "label": "A nonzero address with prescribed coefficient bits",
+      "statement": "[A nonzero address with prescribed coefficient bits] Let \\(A_1(x),,A_q(x)\\) be specified Laurent coefficients of sign evaluations of elements of \\( O[G]\\). For \\(M1\\), if b>q(2^M-1), there is \\(x0\\)…",
+      "section": "Ring-class switches, determinant lattices, and transfer",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-rd-binary-transfer",
+      "kind": "lemma",
+      "label": "Transfer through the bounded factor",
+      "statement": "[Transfer through the bounded factor] Suppose \\(f,d O[G]\\), \\(u_x\\), and \\(f_xu_x=d_x\\) for every character. Suppose \\(f_0\\) and \\(c=v(f_0(0))<\\). If every \\(f_x2^M\\) has no powers below \\(-L(M)\\),…",
+      "section": "Ring-class switches, determinant lattices, and transfer",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-nv-local-witness",
+      "kind": "proposition",
+      "label": "Local witnesses",
+      "statement": "[Local witnesses] Fix an elliptic curve A/ and a nonempty filter of fundamental discriminants prime to 2N_A , with specified real sign and unit squareclasses at finitely many primes. If the root…",
+      "section": "Auxiliary twists with prescribed local behavior",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-nv-rough",
+      "kind": "proposition",
+      "label": "Bounded-factor completion",
+      "statement": "[Bounded-factor completion] There is an absolute integer A_0 with the following property. In the positive-root-number case of Proposition~ , one can require (d) A_0 and require every prime divisor of…",
+      "section": "Auxiliary twists with prescribed local behavior",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-nv-moment",
+      "kind": "lemma",
+      "label": "A fixed-progression moment",
+      "statement": "[A fixed-progression moment] There are absolute constants >0 and B>0 such that the following assertions hold. For squarefree b prime to H , put \\[ S_ j,b (X)= _ n>0\\ squarefree \\\\ n a\\ (H)\\ n L^ (j)…",
+      "section": "Auxiliary twists with prescribed local behavior",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-co-even",
+      "kind": "proposition",
+      "label": "Even coefficient system",
+      "statement": "[Even coefficient system] Fix an even-sign filter and a nonvanishing index D_0 in it. There is a holomorphic cuspidal form g=_ n1 a(n)q^n of weight 3/2 , orthogonal to unary theta series, of level…",
+      "section": "Coefficient systems and their contraction identities",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-co-kummer",
+      "kind": "lemma",
+      "label": "Kummer detection, including CM",
+      "statement": "[Kummer detection, including CM] Let C act on T=T_2E as complex conjugation, and choose a nonzero integral row b:T Z_2 with bC=b . For a fixed positive simple-zero witness D_w , there are arbitrarily…",
+      "section": "Coefficient systems and their contraction identities",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-co-theta-bridge",
+      "kind": "lemma",
+      "label": "Explicit weighted theta construction",
+      "statement": "[Explicit weighted theta construction] For as in Lemma~ , the reduced modular parametrization followed by _M admits an integral weighted ternary theta lift. After extraction of the coefficients at…",
+      "section": "Coefficient systems and their contraction identities",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-co-odd",
+      "kind": "proposition",
+      "label": "Odd coefficient detection",
+      "statement": "[Odd coefficient detection] The forms in Lemma~ , after a fixed adjustment of precision, satisfy \\[ v(a_M(D))\\ M,j(P_D)-C\\ , v(a_M(D))<M\\ \\ j(P_D) v(a_M(D))+C. \\] A visible coefficient detects a(E^…",
+      "section": "Coefficient systems and their contraction identities",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-co-minimum",
+      "kind": "lemma",
+      "label": "Stabilized minimum depth",
+      "statement": "[Stabilized minimum depth] Assume the uniform arithmetic lower bounds just stated. Each coefficient source defines a binary symbol A(D)= 1,&v(a(D))=+w(D),\\\\ 0,&v(a(D))>+w(D) or D is off the filter,…",
+      "section": "Coefficient systems and their contraction identities",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-co-operators",
+      "kind": "lemma",
+      "label": "Coefficient bounds and unary removal",
+      "statement": "[Coefficient bounds and unary removal] For the even source let U be arbitrary. For the odd source, fix an integer R1 and a weight bound W ; all assertions below are made at a sufficiently advanced…",
+      "section": "Coefficient systems and their contraction identities",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    },
+    {
+      "id": "m2-co-traces",
+      "kind": "lemma",
+      "label": "Integral traces",
+      "statement": "[Integral traces] The module M is an integral Fourier lattice preserved by the trace and determinant operators. On the coefficientwise reduced trace orbit of the indicated vector, d(u)t(v)=t(v),…",
+      "section": "Coefficient systems and their contraction identities",
+      "manuscript": "A pointwise 2-converse for elliptic curves with rational two-torsion"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-ell-formal",
+      "to": "m1-red-local-comparison"
+    },
+    {
+      "from": "m1-hei-height",
+      "to": "m1-hei-enlarge-exceptions"
+    },
+    {
+      "from": "m1-pri-integer-coverage",
+      "to": "m1-red-standard-model"
+    },
+    {
+      "from": "m1-par-pole-parity",
+      "to": "m1-red-coarsening"
+    },
+    {
+      "from": "m1-red-coarsening",
+      "to": "m1-red-index-congruence"
+    },
+    {
+      "from": "m1-red-local-comparison",
+      "to": "m1-red-index-congruence"
+    },
+    {
+      "from": "m1-red-compactness",
+      "to": "m1-red-finite-test-success"
+    },
+    {
+      "from": "m1-red-index-congruence",
+      "to": "m1-red-finite-test-success"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-red-finite-test-success"
+    },
+    {
+      "from": "m1-par-soundness",
+      "to": "m1-par-cross-squares"
+    },
+    {
+      "from": "m1-par-descent",
+      "to": "m1-par-global-point"
+    },
+    {
+      "from": "m1-par-pole-parity",
+      "to": "m1-par-simultaneous-matrices"
+    },
+    {
+      "from": "m1-par-cross-squares",
+      "to": "m1-par-simultaneous-matrices"
+    },
+    {
+      "from": "m1-par-global-point",
+      "to": "m1-par-simultaneous-matrices"
+    },
+    {
+      "from": "m1-par-soundness",
+      "to": "m1-par-simultaneous-matrices"
+    },
+    {
+      "from": "m1-hei-compatibility",
+      "to": "m1-hei-level-bound"
+    },
+    {
+      "from": "m1-hei-sign-splitting",
+      "to": "m1-hei-level-bound"
+    },
+    {
+      "from": "m1-hei-height",
+      "to": "m1-hei-modular-factor"
+    },
+    {
+      "from": "m1-hei-base-height",
+      "to": "m1-hei-modular-factor"
+    },
+    {
+      "from": "m1-ell-rank",
+      "to": "m1-hei-modular-factor"
+    },
+    {
+      "from": "m1-ell-formal",
+      "to": "m1-hei-modular-factor"
+    },
+    {
+      "from": "m1-ell-formal",
+      "to": "m1-pri-integer-tests"
+    },
+    {
+      "from": "m1-pri-integer-coverage",
+      "to": "m1-pri-integer-tests"
+    },
+    {
+      "from": "m1-pri-pattern",
+      "to": "m1-pri-integer-tests"
+    },
+    {
+      "from": "m1-red-local-comparison",
+      "to": "m1-pri-integer-tests"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-thm-degree-normal-form"
+    },
+    {
+      "from": "m2-cy-perfect",
+      "to": "m2-cy-residual"
+    },
+    {
+      "from": "m2-cy-lower-bound",
+      "to": "m2-cy-central"
+    },
+    {
+      "from": "m2-cy-missing-vertex",
+      "to": "m2-cy-central"
+    },
+    {
+      "from": "m2-cy-binary",
+      "to": "m2-cy-central"
+    },
+    {
+      "from": "m2-rl-evaluation",
+      "to": "m2-rl-local-acyclic"
+    },
+    {
+      "from": "m2-rl-local-acyclic",
+      "to": "m2-rl-residual-bound"
+    },
+    {
+      "from": "m2-rl-finite-model",
+      "to": "m2-rl-residual-bound"
+    },
+    {
+      "from": "m2-rl-evaluation",
+      "to": "m2-rl-outer-evaluation"
+    },
+    {
+      "from": "m2-rl-kernel",
+      "to": "m2-rl-outer-evaluation"
+    },
+    {
+      "from": "m2-rl-outer-evaluation",
+      "to": "m2-rl-chebotarev-evaluation"
+    },
+    {
+      "from": "m2-rl-finite-model",
+      "to": "m2-rl-limit-evaluation-package"
+    },
+    {
+      "from": "m2-rl-finite-limits",
+      "to": "m2-rl-limit-evaluation-package"
+    },
+    {
+      "from": "m2-rl-kummer",
+      "to": "m2-rl-limit-evaluation-package"
+    },
+    {
+      "from": "m2-rl-characters",
+      "to": "m2-rl-limit-evaluation-package"
+    },
+    {
+      "from": "m2-rl-local-acyclic",
+      "to": "m2-rl-limit-evaluation-package"
+    },
+    {
+      "from": "m2-rl-residual-bound",
+      "to": "m2-rl-limit-evaluation-package"
+    },
+    {
+      "from": "m2-rl-evaluation",
+      "to": "m2-rl-limit-evaluation-package"
+    },
+    {
+      "from": "m2-rl-kernel",
+      "to": "m2-rl-limit-evaluation-package"
+    },
+    {
+      "from": "m2-rl-outer-evaluation",
+      "to": "m2-rl-limit-evaluation-package"
+    },
+    {
+      "from": "m2-rl-chebotarev-evaluation",
+      "to": "m2-rl-limit-evaluation-package"
+    },
+    {
+      "from": "m2-rl-finite-limits",
+      "to": "m2-rd-local-model"
+    },
+    {
+      "from": "m2-rd-local-model",
+      "to": "m2-rd-derivative"
+    },
+    {
+      "from": "m2-rl-kernel",
+      "to": "m2-rd-derivative"
+    },
+    {
+      "from": "m2-rl-finite-limits",
+      "to": "m2-rd-derivative"
+    },
+    {
+      "from": "m2-rl-local-acyclic",
+      "to": "m2-rd-away-two"
+    },
+    {
+      "from": "m2-rd-rank-two",
+      "to": "m2-rd-away-two"
+    },
+    {
+      "from": "m2-rl-chebotarev-evaluation",
+      "to": "m2-rd-away-two"
+    },
+    {
+      "from": "m2-rd-derivative",
+      "to": "m2-rd-away-two"
+    },
+    {
+      "from": "m2-rd-det-switch",
+      "to": "m2-rd-away-two"
+    },
+    {
+      "from": "m2-rl-residual-bound",
+      "to": "m2-rd-outer-bound"
+    },
+    {
+      "from": "m2-rl-outer-evaluation",
+      "to": "m2-rd-outer-bound"
+    },
+    {
+      "from": "m2-rl-irreducibility",
+      "to": "m2-rd-outer-bound"
+    },
+    {
+      "from": "m2-rd-rank-two",
+      "to": "m2-rd-outer-bound"
+    },
+    {
+      "from": "m2-rd-det-switch",
+      "to": "m2-rd-outer-bound"
+    },
+    {
+      "from": "m2-rd-away-two",
+      "to": "m2-rd-outer-bound"
+    },
+    {
+      "from": "m2-rd-minor",
+      "to": "m2-rd-outer-bound"
+    },
+    {
+      "from": "m2-rl-kummer",
+      "to": "m2-rd-active-local"
+    },
+    {
+      "from": "m2-rl-finite-limits",
+      "to": "m2-rd-central-formula"
+    },
+    {
+      "from": "m2-rd-active-local",
+      "to": "m2-rd-central-formula"
+    },
+    {
+      "from": "m2-rd-derived-specialization",
+      "to": "m2-rd-central-formula"
+    },
+    {
+      "from": "m2-rd-ring-lower",
+      "to": "m2-rd-central-formula"
+    },
+    {
+      "from": "m2-rd-derivative",
+      "to": "m2-rd-central-formula"
+    },
+    {
+      "from": "m2-rl-residual-bound",
+      "to": "m2-rd-central-formula"
+    },
+    {
+      "from": "m2-rd-away-two",
+      "to": "m2-rd-central-formula"
+    },
+    {
+      "from": "m2-rd-outer-bound",
+      "to": "m2-rd-central-formula"
+    },
+    {
+      "from": "m2-rd-clearing",
+      "to": "m2-rd-family-clearing"
+    },
+    {
+      "from": "m2-rd-schur",
+      "to": "m2-rd-family-clearing"
+    },
+    {
+      "from": "m2-rd-outer-bound",
+      "to": "m2-rd-family-clearing"
+    },
+    {
+      "from": "m2-rd-derivative",
+      "to": "m2-rd-assembly"
+    },
+    {
+      "from": "m2-rl-limit-evaluation-package",
+      "to": "m2-rd-assembly"
+    },
+    {
+      "from": "m2-rd-outer-bound",
+      "to": "m2-rd-assembly"
+    },
+    {
+      "from": "m2-rl-residual-bound",
+      "to": "m2-rd-assembly"
+    },
+    {
+      "from": "m2-rd-away-two",
+      "to": "m2-rd-assembly"
+    },
+    {
+      "from": "m2-rd-active-local",
+      "to": "m2-rd-assembly"
+    },
+    {
+      "from": "m2-rd-central-formula",
+      "to": "m2-rd-assembly"
+    },
+    {
+      "from": "m2-rd-unused",
+      "to": "m2-rd-assembly"
+    },
+    {
+      "from": "m2-rd-family-clearing",
+      "to": "m2-rd-assembly"
+    },
+    {
+      "from": "m2-rd-clearing",
+      "to": "m2-rd-assembly"
+    },
+    {
+      "from": "m2-rd-schur",
+      "to": "m2-rd-bits"
+    },
+    {
+      "from": "m2-cy-binary",
+      "to": "m2-rd-bits"
+    },
+    {
+      "from": "m2-rd-bits",
+      "to": "m2-rd-binary-transfer"
+    },
+    {
+      "from": "m2-rd-schur",
+      "to": "m2-rd-binary-transfer"
+    },
+    {
+      "from": "m2-rd-missing-vertex",
+      "to": "m2-rd-binary-transfer"
+    },
+    {
+      "from": "m2-rd-family-clearing",
+      "to": "m2-rd-binary-transfer"
+    },
+    {
+      "from": "m2-rd-assembly",
+      "to": "m2-rd-binary-transfer"
+    },
+    {
+      "from": "m2-rd-away-two",
+      "to": "m2-rd-binary-transfer"
+    },
+    {
+      "from": "m2-rd-unused",
+      "to": "m2-rd-binary-transfer"
+    },
+    {
+      "from": "m2-rd-central-formula",
+      "to": "m2-rd-binary-transfer"
+    },
+    {
+      "from": "m2-rd-derived-specialization",
+      "to": "m2-rd-binary-transfer"
+    },
+    {
+      "from": "m2-nv-local-witness",
+      "to": "m2-nv-moment"
+    },
+    {
+      "from": "m2-nv-rough",
+      "to": "m2-nv-moment"
+    },
+    {
+      "from": "m2-co-kummer",
+      "to": "m2-co-odd"
+    },
+    {
+      "from": "m2-co-even",
+      "to": "m2-co-minimum"
+    },
+    {
+      "from": "m2-co-minimum",
+      "to": "m2-co-operators"
+    }
+  ]
+}

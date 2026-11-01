@@ -1,0 +1,288 @@
+{
+  "familyNumber": "213",
+  "familyTitle": "Critical percolation on every quasi-transitive graph",
+  "manuscripts": [
+    {
+      "id": "No-percolation-at-criticality-on-quasi-transitive-graphs-September-24-2026",
+      "title": "No percolation at criticality on quasi-transitive graphs",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/No-percolation-at-criticality-on-quasi-transitive-graphs-September-24-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Uniformity and the growth alternatives",
+    "Two clusters, depth-first search, and entropy",
+    "Finite interpolation",
+    "Subexponential growth faster than every power",
+    "A joint gluing inequality",
+    "Nilpotent quotients and bounded projections",
+    "Two approximate coordinate moves",
+    "Fresh corridors and a subcritical infinite cluster",
+    "Completion and the lattice consequence"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Let G be an infinite connected locally finite quasi-transitive undirected…",
+      "statement": "Let G be an infinite connected locally finite quasi-transitive undirected graph. If (G)<1 , then \\[ _ (G) (there is an infinite open cluster)=0. \\] Equivalently, _ (G) (|C_x|=)=0 for every vertex x .",
+      "section": "Introduction",
+      "manuscript": "No percolation at criticality on quasi-transitive graphs"
+    },
+    {
+      "id": "m1-lem-orbit-growth",
+      "kind": "lemma",
+      "label": "There is an integer C_0 such that every vertex orbit meets every ball of radius…",
+      "statement": "There is an integer C_0 such that every vertex orbit meets every ball of radius C_0 . Moreover, for nonnegative integer radii, V_+(r) V_-(r+C_0), V_+(r+s) V_+(r)V_+(s). The limit =_ r V_+(r)^ 1/r…",
+      "section": "Uniformity and the growth alternatives",
+      "manuscript": "No percolation at criticality on quasi-transitive graphs"
+    },
+    {
+      "id": "m1-thm-exponential",
+      "kind": "theorem",
+      "label": "Hutchcroft [Theorem~1.2",
+      "statement": "[Hutchcroft ] If a connected locally finite quasi-transitive graph satisfies _ r |B(x,r)|^ 1/r >1 , then it has almost surely no infinite Bernoulli bond cluster at its critical probability.",
+      "section": "Uniformity and the growth alternatives",
+      "manuscript": "No percolation at criticality on quasi-transitive graphs"
+    },
+    {
+      "id": "m1-prop-two-cluster",
+      "kind": "proposition",
+      "label": "Let G be an infinite connected locally finite quasi-transitive graph of…",
+      "statement": "Let G be an infinite connected locally finite quasi-transitive graph of subexponential growth. For every p_*>0 there is C< such that \\[ _p(H_s(e)) C s^ -1/2 (e E(G),\\ s1,\\ p_* p<1). \\] The constant…",
+      "section": "Two clusters, depth-first search, and entropy",
+      "manuscript": "No percolation at criticality on quasi-transitive graphs"
+    },
+    {
+      "id": "m1-lem-avoidance",
+      "kind": "lemma",
+      "label": "Avoidance correlation",
+      "statement": "[Avoidance correlation] Let G be a finite undirected graph with independent edge probabilities strictly between zero and one. Let A,B be disjoint nonempty vertex sets. Conditional on A B , each of…",
+      "section": "Two clusters, depth-first search, and entropy",
+      "manuscript": "No percolation at criticality on quasi-transitive graphs"
+    },
+    {
+      "id": "m1-lem-dfs",
+      "kind": "lemma",
+      "label": "For the preceding search, let \\[ W=_ e queried actual open pivot q d_e. \\] Then…",
+      "statement": "For the preceding search, let \\[ W=_ e queried actual open pivot q d_e. \\] Then _ W1 and _ W^23 .",
+      "section": "Two clusters, depth-first search, and entropy",
+      "manuscript": "No percolation at criticality on quasi-transitive graphs"
+    },
+    {
+      "id": "m1-lem-entropy",
+      "kind": "lemma",
+      "label": "Let be the Bernoulli product law of parameter 0<p<1 on a finite set of bits,…",
+      "statement": "Let be the Bernoulli product law of parameter 0<p<1 on a finite set of bits, and let Q be any probability law on those bits. Consider finitely many terminating deterministic adaptive query…",
+      "section": "Two clusters, depth-first search, and entropy",
+      "manuscript": "No percolation at criticality on quasi-transitive graphs"
+    },
+    {
+      "id": "m1-prop-interpolation",
+      "kind": "proposition",
+      "label": "Interpolation along a path",
+      "statement": "[Interpolation along a path] Let be Bernoulli bond percolation with parameter p(0,1) on a finite undirected graph, and put q=1-p . Let x_0,x_1,,x_d be a simple path, with d2 . Suppose that \\[ (x_j…",
+      "section": "Finite interpolation",
+      "manuscript": "No percolation at criticality on quasi-transitive graphs"
+    },
+    {
+      "id": "m1-thm-superpoly",
+      "kind": "theorem",
+      "label": "Let G be an infinite connected locally finite quasi-transitive graph with <1 .…",
+      "statement": "Let G be an infinite connected locally finite quasi-transitive graph with <1 . Suppose that \\[ V_+(r)=o(r), V_-(r) r . \\] Then critical Bernoulli bond percolation on G has almost surely no infinite…",
+      "section": "Subexponential growth faster than every power",
+      "manuscript": "No percolation at criticality on quasi-transitive graphs"
+    },
+    {
+      "id": "m1-thm-joint-gluing",
+      "kind": "theorem",
+      "label": "Joint gluing",
+      "statement": "[Joint gluing] Let G have countably many vertices and edges, with independent edge-open probabilities in [0,1] . For a vertex o , a nonempty set A of vertices, and any set T of vertices, P(o A,\\ o T)…",
+      "section": "A joint gluing inequality",
+      "manuscript": "No percolation at criticality on quasi-transitive graphs"
+    },
+    {
+      "id": "m1-lem-deleted-residual",
+      "kind": "lemma",
+      "label": "Deleted-set residual",
+      "statement": "[Deleted-set residual] Fix a finite product graph G , a vertex s , a vertex set S not containing s , and an increasing function F on sets that contain s and avoid S . For w S with s w , define \\[…",
+      "section": "A joint gluing inequality",
+      "manuscript": "No percolation at criticality on quasi-transitive graphs"
+    },
+    {
+      "id": "m1-lem-cluster-column",
+      "kind": "lemma",
+      "label": "Cluster-column positivity",
+      "statement": "[Cluster-column positivity] For every nonnegative increasing F on D_k , v_k^F-( E_ _k F)h_k \\ _ l>k a_lh_l:a_l0\\ . In particular H^ -1 v_k^F has nonnegative coordinates.",
+      "section": "A joint gluing inequality",
+      "manuscript": "No percolation at criticality on quasi-transitive graphs"
+    },
+    {
+      "id": "m1-cor-gluing-failure",
+      "kind": "corollary",
+      "label": "Failure after reaching a relay",
+      "statement": "[Failure after reaching a relay] In the setting of Theorem~ , let 01 . If P(a T)1- for every a A , then \\[ P(o A,\\ o T) \\, P(o A). \\] The same conclusion holds for A= .",
+      "section": "A joint gluing inequality",
+      "manuscript": "No percolation at criticality on quasi-transitive graphs"
+    },
+    {
+      "id": "m1-thm-structured",
+      "kind": "theorem",
+      "label": "Criticality with a nilpotent quotient action",
+      "statement": "[Criticality with a nilpotent quotient action] Let G be an infinite connected locally finite graph of subexponential growth. Suppose a group acts by automorphisms on G with finitely many vertex…",
+      "section": "Nilpotent quotients and bounded projections",
+      "manuscript": "No percolation at criticality on quasi-transitive graphs"
+    },
+    {
+      "id": "m1-prop-nilpotent-model",
+      "kind": "proposition",
+      "label": "The action supplied by a polynomial scale",
+      "statement": "[The action supplied by a polynomial scale] Let G be an infinite connected locally finite quasi-transitive graph. Suppose that for some d< there are radii R_j such that V_-(R_j) R_j^d . Then there…",
+      "section": "Nilpotent quotients and bounded projections",
+      "manuscript": "No percolation at criticality on quasi-transitive graphs"
+    },
+    {
+      "id": "m1-lem-rank",
+      "kind": "lemma",
+      "label": "Cyclic series and their subgroups",
+      "statement": "[Cyclic series and their subgroups] Every finitely generated nilpotent group N has a cyclic series. If such a series has h infinite factors, then every subgroup J N is finitely generated and inherits…",
+      "section": "Nilpotent quotients and bounded projections",
+      "manuscript": "No percolation at criticality on quasi-transitive graphs"
+    },
+    {
+      "id": "m1-lem-bounded-projection",
+      "kind": "lemma",
+      "label": "Exclusion of bounded projections",
+      "statement": "[Exclusion of bounded projections] Let (G,,,N) satisfy the hypotheses of Theorem~ , with (G)<1 . Fix a cyclic series for N with h infinite factors and an epimorphism :N Z^2 . Let be given by . Assume…",
+      "section": "Nilpotent quotients and bounded projections",
+      "manuscript": "No percolation at criticality on quasi-transitive graphs"
+    },
+    {
+      "id": "m1-prop-moves",
+      "kind": "proposition",
+      "label": "Approximate moves",
+      "statement": "[Approximate moves] Let G be an infinite connected locally finite graph and let a group act on it by automorphisms with finitely many vertex orbits. Let :V(G) Z^2 be onto, with edge increments…",
+      "section": "Two approximate coordinate moves",
+      "manuscript": "No percolation at criticality on quasi-transitive graphs"
+    },
+    {
+      "id": "m1-lem-uniqueness",
+      "kind": "lemma",
+      "label": "Uniqueness under subexponential growth",
+      "statement": "[Uniqueness under subexponential growth] Let G be infinite, connected, locally finite and quasi-transitive, with V_+(r)=o(r) . If p(0,1) and Bernoulli bond percolation at p has an infinite cluster…",
+      "section": "Two approximate coordinate moves",
+      "manuscript": "No percolation at criticality on quasi-transitive graphs"
+    },
+    {
+      "id": "m1-lem-corridors",
+      "kind": "lemma",
+      "label": "Corridor separation",
+      "statement": "[Corridor separation] Distinct Q_v are disjoint. Two distinct corridors with no common endpoint have disjoint vertex sets; corridors sharing an endpoint v intersect only in Q_v . A corridor misses…",
+      "section": "Fresh corridors and a subcritical infinite cluster",
+      "manuscript": "No percolation at criticality on quasi-transitive graphs"
+    },
+    {
+      "id": "m1-prop-transfer",
+      "kind": "proposition",
+      "label": "Fresh-collar transfer",
+      "statement": "[Fresh-collar transfer] Let G and the parameters m,k,R,K,_0,,,p' satisfy the choices in Subsection~ . Consider a countable product graph whose edges are original edges of G , together with a…",
+      "section": "Fresh corridors and a subcritical infinite cluster",
+      "manuscript": "No percolation at criticality on quasi-transitive graphs"
+    },
+    {
+      "id": "m1-prop-exploration",
+      "kind": "proposition",
+      "label": "Subcritical exploration",
+      "statement": "[Subcritical exploration] Suppose the coordinates and seed radius satisfy Proposition~ , the corridor layout satisfies Lemma~ , and every relay in satisfies Proposition~ . If \\[ 2(_0+L)<, +2(L+1)/, _…",
+      "section": "Fresh corridors and a subcritical infinite cluster",
+      "manuscript": "No percolation at criticality on quasi-transitive graphs"
+    },
+    {
+      "id": "m1-cor-lattices",
+      "kind": "corollary",
+      "label": "For nearest-neighbor Bernoulli bond percolation on ^d , for every d2 , there is…",
+      "statement": "For nearest-neighbor Bernoulli bond percolation on ^d , for every d2 , there is almost surely no infinite cluster at the critical probability. In particular this holds on ^3 .",
+      "section": "Completion and the lattice consequence",
+      "manuscript": "No percolation at criticality on quasi-transitive graphs"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-avoidance",
+      "to": "m1-lem-dfs"
+    },
+    {
+      "from": "m1-prop-two-cluster",
+      "to": "m1-thm-superpoly"
+    },
+    {
+      "from": "m1-prop-interpolation",
+      "to": "m1-thm-superpoly"
+    },
+    {
+      "from": "m1-lem-deleted-residual",
+      "to": "m1-lem-cluster-column"
+    },
+    {
+      "from": "m1-thm-joint-gluing",
+      "to": "m1-lem-cluster-column"
+    },
+    {
+      "from": "m1-lem-rank",
+      "to": "m1-lem-bounded-projection"
+    },
+    {
+      "from": "m1-thm-structured",
+      "to": "m1-lem-bounded-projection"
+    },
+    {
+      "from": "m1-prop-two-cluster",
+      "to": "m1-lem-uniqueness"
+    },
+    {
+      "from": "m1-prop-moves",
+      "to": "m1-lem-uniqueness"
+    },
+    {
+      "from": "m1-cor-gluing-failure",
+      "to": "m1-prop-transfer"
+    },
+    {
+      "from": "m1-prop-transfer",
+      "to": "m1-prop-exploration"
+    },
+    {
+      "from": "m1-lem-corridors",
+      "to": "m1-prop-exploration"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-prop-exploration"
+    },
+    {
+      "from": "m1-lem-orbit-growth",
+      "to": "m1-prop-exploration"
+    },
+    {
+      "from": "m1-thm-exponential",
+      "to": "m1-prop-exploration"
+    },
+    {
+      "from": "m1-thm-superpoly",
+      "to": "m1-prop-exploration"
+    },
+    {
+      "from": "m1-prop-nilpotent-model",
+      "to": "m1-prop-exploration"
+    },
+    {
+      "from": "m1-thm-structured",
+      "to": "m1-prop-exploration"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-cor-lattices"
+    }
+  ]
+}

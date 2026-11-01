@@ -1,0 +1,122 @@
+{
+  "familyNumber": "334",
+  "familyTitle": "A smooth surface metric with no local isometric immersion in ℝ<sup>3</sup>",
+  "manuscripts": [
+    {
+      "id": "A-Smooth-Metric-with-No-Local-Isometric-Immersion-into-Three-Space-September-24-2026",
+      "title": "A Smooth Metric with No Local Isometric Immersion into Three-Space",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Smooth-Metric-with-No-Local-Isometric-Immersion-into-Three-Space-September-24-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "The model patch and the height equation",
+    "Uniform regularity on caps",
+    "The oscillatory pulse and the patch obstruction",
+    "Assembly of a smooth metric germ"
+  ],
+  "nodes": [
+    {
+      "id": "m1-lem-height",
+      "kind": "lemma",
+      "label": "Height equation",
+      "statement": "[Height equation] Let \\(F\\) be a smooth isometric immersion of a surface into \\(^3\\), let \\(e\\) be a fixed ambient unit vector, and set \\(z= F,e\\). Then \\[ (_g^2z)=K(g)(1-dz_g^2). \\] If \\(e\\) is…",
+      "section": "The model patch and the height equation",
+      "manuscript": "A Smooth Metric with No Local Isometric Immersion into Three-Space"
+    },
+    {
+      "id": "m1-prop-patch",
+      "kind": "proposition",
+      "label": "Patch obstruction",
+      "statement": "[Patch obstruction] The metrics in \\( U\\) admitting no admissible height form a residual subset of \\( U\\). In particular, for every \\(C^\\) neighborhood of \\(g_0\\) in \\( U\\), there is a metric in that…",
+      "section": "The model patch and the height equation",
+      "manuscript": "A Smooth Metric with No Local Isometric Immersion into Three-Space"
+    },
+    {
+      "id": "m1-prop-cap",
+      "kind": "proposition",
+      "label": "Cap regularity",
+      "statement": "[Cap regularity] Fix \\(-1/4<b_*0\\), and assume . Suppose that, for every compact rectangle \\[ R(-2,2)(-2,b_*), \\] the ordinary coordinate derivatives of \\(g\\) of every order have uniform bounds on…",
+      "section": "Uniform regularity on caps",
+      "manuscript": "A Smooth Metric with No Local Isometric Immersion into Three-Space"
+    },
+    {
+      "id": "m1-lem-drift",
+      "kind": "lemma",
+      "label": "Curvature drift",
+      "statement": "[Curvature drift] The quantities in satisfy Dq-P_ z_x q-P_ z_y =K_yG+O(K).",
+      "section": "Uniform regularity on caps",
+      "manuscript": "A Smooth Metric with No Local Isometric Immersion into Three-Space"
+    },
+    {
+      "id": "m1-lem-high-equation",
+      "kind": "lemma",
+      "label": "High derivative equation",
+      "statement": "[High derivative equation] Let \\(l8\\). Suppose that the ordinary derivatives of \\(z\\) through order \\(l\\) have uniform \\(L^2\\) bounds on images of compact rectangles in the lower cap, and that the…",
+      "section": "Uniform regularity on caps",
+      "manuscript": "A Smooth Metric with No Local Isometric Immersion into Three-Space"
+    },
+    {
+      "id": "m1-lem-gradient",
+      "kind": "lemma",
+      "label": "The free cap edge",
+      "statement": "[The free cap edge] Retain the model geometry and flow coordinates fixed above. Let \\(l8\\), and let the coefficients satisfy with the uniform bounds in . For every \\(R_0(-2,2)(-2,b_*)\\), there is a…",
+      "section": "Uniform regularity on caps",
+      "manuscript": "A Smooth Metric with No Local Isometric Immersion into Three-Space"
+    },
+    {
+      "id": "m1-lem-propagation",
+      "kind": "lemma",
+      "label": "Propagation to the pulse",
+      "statement": "[Propagation to the pulse] At \\(=/\\), on \\( Lr/2\\), the functions \\(z,z_\\) have uniform bounds for every tangential derivative.",
+      "section": "The oscillatory pulse and the patch obstruction",
+      "manuscript": "A Smooth Metric with No Local Isometric Immersion into Three-Space"
+    },
+    {
+      "id": "m1-lem-prescribe",
+      "kind": "lemma",
+      "label": "Prescribing small curvature",
+      "statement": "[Prescribing small curvature] Let \\(K_0 C^((-1,1)^2)\\) with \\(K_0_10^ -3 \\). There is a smooth positive metric \\[ g= X^2+f(X,Y)^2 Y^2 \\] whose curvature is \\(K_0\\). Its eigenvalues have positive…",
+      "section": "Assembly of a smooth metric germ",
+      "manuscript": "A Smooth Metric with No Local Isometric Immersion into Three-Space"
+    },
+    {
+      "id": "m1-lem-disk",
+      "kind": "lemma",
+      "label": "A negatively curved disk",
+      "statement": "[A negatively curved disk] Suppose a smooth metric on a neighborhood of a closed disk has negative curvature in the disk and zero curvature on its boundary. If an isometric immersion of this…",
+      "section": "Assembly of a smooth metric germ",
+      "manuscript": "A Smooth Metric with No Local Isometric Immersion into Three-Space"
+    },
+    {
+      "id": "m1-cor-flat-jet",
+      "kind": "corollary",
+      "label": "Euclidean Taylor jet",
+      "statement": "[Euclidean Taylor jet] The metric in Theorem~A can be chosen so that, in the coordinates \\(X,Y\\), \\[ ^(g_ ij -_ ij )(0)=0 for every multi-index N_0^2 and i,j\\ 1,2\\ . \\] Thus smooth local isometric…",
+      "section": "Assembly of a smooth metric germ",
+      "manuscript": "A Smooth Metric with No Local Isometric Immersion into Three-Space"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-drift",
+      "to": "m1-lem-high-equation"
+    },
+    {
+      "from": "m1-prop-cap",
+      "to": "m1-lem-gradient"
+    },
+    {
+      "from": "m1-lem-high-equation",
+      "to": "m1-lem-gradient"
+    },
+    {
+      "from": "m1-lem-height",
+      "to": "m1-lem-disk"
+    },
+    {
+      "from": "m1-prop-patch",
+      "to": "m1-lem-disk"
+    }
+  ]
+}

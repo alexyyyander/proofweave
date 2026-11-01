@@ -12,6 +12,7 @@ const PER_PAGE = 48;
 const statusKeys: Record<ProofMapStatus, TranslationKey> = {
   deep: "proofMaps.index.statusDeep",
   draft: "proofMaps.index.statusDraft",
+  paper: "proofMaps.index.statusPaper",
   lean: "proofMaps.index.statusLean",
   scaffold: "proofMaps.index.statusScaffold",
 };
@@ -80,6 +81,7 @@ export function ProofMapIndexView({ entries, subjects, summary }: {
           <option value="all">{t("proofMaps.browser.allStatuses")}</option>
           <option value="deep">{t("proofMaps.browser.statusDeep", { count: summary.deep })}</option>
           <option value="draft">{t("proofMaps.browser.statusDraft", { count: summary.draft })}</option>
+          <option value="paper">{t("proofMaps.browser.statusPaper", { count: summary.paper })}</option>
           <option value="lean">{t("proofMaps.browser.statusLean", { count: summary.lean })}</option>
           <option value="scaffold">{t("proofMaps.browser.statusScaffold", { count: summary.scaffold })}</option>
         </select>

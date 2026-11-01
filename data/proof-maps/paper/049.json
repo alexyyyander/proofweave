@@ -1,0 +1,52 @@
+{
+  "familyNumber": "049",
+  "familyTitle": "A stable-coordinate counterexample in four variables",
+  "manuscripts": [
+    {
+      "id": "An-explicit-noncoordinate-polynomial-with-affine-three-space-zero-fibre-September-24-2026",
+      "title": "An explicit noncoordinate polynomial with affine three-space zero fibre",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-explicit-noncoordinate-polynomial-with-affine-three-space-zero-fibre-September-24-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction and statement",
+    "An elementary lifting lemma"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "The polynomial F defined in -- satisfies \\[ R/(F)^ [3] , F(2,0,-1/2,1/2)=0. \\]…",
+      "statement": "The polynomial F defined in -- satisfies \\[ R/(F)^ [3] , F(2,0,-1/2,1/2)=0. \\] Consequently F is not a coordinate of R .",
+      "section": "Introduction and statement",
+      "manuscript": "An explicit noncoordinate polynomial with affine three-space zero fibre"
+    },
+    {
+      "id": "m1-cor-dimension",
+      "kind": "corollary",
+      "label": "For every integer n4 , there is a polynomial f such that /(f)^ [n-1] and f is…",
+      "statement": "For every integer n4 , there is a polynomial f such that /(f)^ [n-1] and f is not a coordinate.",
+      "section": "Introduction and statement",
+      "manuscript": "An explicit noncoordinate polynomial with affine three-space zero fibre"
+    },
+    {
+      "id": "m1-lem-lift",
+      "kind": "lemma",
+      "label": "Let B be a ring and let h,x,y,s B satisfy x^2+y^3=hs, (h,y)=B. Then the B…",
+      "statement": "Let B be a ring and let h,x,y,s B satisfy x^2+y^3=hs, (h,y)=B. Then the B -algebra \\[ C=B[U,V,W]/(U^3+hV-x,\\,-U^2+hW-y,\\, S(h,U,V,W)-s) \\] is isomorphic to B[T] , where T is an indeterminate.",
+      "section": "An elementary lifting lemma",
+      "manuscript": "An explicit noncoordinate polynomial with affine three-space zero fibre"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-thm-main",
+      "to": "m1-lem-lift"
+    },
+    {
+      "from": "m1-cor-dimension",
+      "to": "m1-lem-lift"
+    }
+  ]
+}

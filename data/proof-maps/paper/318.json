@@ -1,0 +1,1161 @@
+{
+  "familyNumber": "318",
+  "familyTitle": "Chromatic splitting: filtrations and counterexamples",
+  "manuscripts": [
+    {
+      "id": "Filtered-chromatic-splitting-at-generic-primes-September-25-2026",
+      "title": "Filtered chromatic splitting at generic primes",
+      "date": "2026-09-25",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Filtered-chromatic-splitting-at-generic-primes-September-25-2026/paper.pdf"
+    },
+    {
+      "id": "The-height-three-chromatic-overlap-an-explicit-filtration-and-its-attachments-September-27-2026",
+      "title": "The height-three chromatic overlap: an explicit filtration and its attachments",
+      "date": "2026-09-27",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-height-three-chromatic-overlap-an-explicit-filtration-and-its-attachments-September-27-2026/paper.pdf"
+    },
+    {
+      "id": "A-rational-obstruction-to-strong-chromatic-splitting-at-height-three-September-25-2026",
+      "title": "A rational obstruction to strong chromatic splitting at height three",
+      "date": "2026-09-25",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-rational-obstruction-to-strong-chromatic-splitting-at-height-three-September-25-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "A criterion for the filtration",
+    "Finite frame rings and Cartier transfers",
+    "Coefficient scope, norm lines, and stable lattices",
+    "The frame quotient and compact supports",
+    "Compact finiteness from stable transfer images",
+    "Removing the pole bound",
+    "Full frames and completion of the coefficient induction",
+    "Constant cochains, modification, and stable transport",
+    "Integral primitive classes and stable representatives",
+    "The specified constant-cochain module",
+    "Simultaneous chromatic bases and the filtration",
+    "A finite fracture construction",
+    "Coefficients, stabilizers, and comparison inputs",
+    "Tate coordinates and integral frames"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Filtration and unit.",
+      "statement": "Let \\(n1\\) and let \\(p>n+1\\) be prime. There exist an enumeration \\(I_1,,I_ 2^n \\) of the subsets of \\(\\ 1,,n\\ \\), a filtration \\(F_\\), and a family of classes \\(y_i_ 1-2i D\\), \\(1 i n\\), with the…",
+      "section": "Introduction",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-prop-assembly",
+      "kind": "proposition",
+      "label": "Filtration criterion",
+      "statement": "[Filtration criterion] Let \\(n1\\), let \\(p\\) be odd, and let \\(D\\) be an \\(S\\)-module with a specified map \\(u:S D\\). Suppose that maps \\[ z_I:^ -d(I) S D, I\\ 1,,n-1\\ , z_=u, \\] have the following…",
+      "section": "A criterion for the filtration",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-prop-finite-rings",
+      "kind": "proposition",
+      "label": "Finite labeled rings",
+      "statement": "[Finite labeled rings] There are compatible identifications C_l=k[[w_ 1,l ,,w_ m,l ]], C_l=k[[z_ 1,l ,,z_ m,l ]], w_ i,l =z_ i,l ^ p^ tl . Both rings are finite free over A . On the exact-height…",
+      "section": "Finite frame rings and Cartier transfers",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-rings-full-sections-presentation",
+      "kind": "lemma",
+      "label": "An integral full-section presentation",
+      "statement": "[An integral full-section presentation] Let H be the quotient of G_A[p] by its relative p^t -Frobenius kernel. The ring C_1 represents full labeled section tuples ^m H , including over nilpotent test…",
+      "section": "Finite frame rings and Cartier transfers",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-rings-boundary-labels",
+      "kind": "corollary",
+      "label": "Vanishing labels and higher starting height",
+      "statement": "[Vanishing labels and higher starting height] At level one, for each nonzero label v^m there is a coordinate w_v such that x=a unit_ 0 v^m w_v. Each ideal (w_v) is P_n -stable. Its conormal is a…",
+      "section": "Finite frame rings and Cartier transfers",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-prop-frame-torsor",
+      "kind": "proposition",
+      "label": "Frame and lift torsors",
+      "statement": "[Frame and lift torsors] The rings B_U form a tower of finite \\'etale B -algebras. After passing to normal open levels, the maps in the tower are finite \\'etale torsors for the indicated finite deck…",
+      "section": "Finite frame rings and Cartier transfers",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-rings-dual-distribution",
+      "kind": "lemma",
+      "label": "Divisible Frobenius levels",
+      "statement": "[Divisible Frobenius levels] There is a positive integer r_0 , divisible by t-1 , such that for r=ar_0 , a1 , the two numbers Q=p^ tr , q=p^ tr/(t-1) are Frobenius powers fixing k . At this level \\[…",
+      "section": "Finite frame rings and Cartier transfers",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-rings-coinduction",
+      "kind": "lemma",
+      "label": "Powering on associated diagrams",
+      "statement": "[Powering on associated diagrams] Let r be one of the chosen levels and put H=[p]^rT . Transport a finite T -representation M to H using [p]^r:T H , and then coinduce it to T . This is an exact…",
+      "section": "Finite frame rings and Cartier transfers",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-lem-cartier-transfer",
+      "kind": "lemma",
+      "label": "Cartier transfer and its transpose",
+      "statement": "[Cartier transfer and its transpose] Fix one sufficiently divisible step with function-root exponent Q , and use the volume just constructed. The quotient transfers of the lift torsors can be…",
+      "section": "Finite frame rings and Cartier transfers",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-thm-coefficient-finiteness",
+      "kind": "theorem",
+      "label": "Coefficient finiteness",
+      "statement": "[Coefficient finiteness] Suppose 1 t<n<p-1 . The following assertions hold. Every admissible compact coefficient on A or C_1 has finite total continuous P_n -cohomology. This includes the stable…",
+      "section": "Coefficient scope, norm lines, and stable lattices",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-lem-compact-norm-line",
+      "kind": "lemma",
+      "label": "The norm line on the deformation disc",
+      "statement": "[The norm line on the deformation disc] Let G be the algebraic height- s , dimension-one Barsotti--Tate group obtained from the universal formal deformation, and let R_s be its characteristic- p…",
+      "section": "Coefficient scope, norm lines, and stable lattices",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-cor-compact-norm-filtration",
+      "kind": "corollary",
+      "label": "Coefficients with a norm-character filtration",
+      "statement": "[Coefficients with a norm-character filtration] Let E be an admissible compact coefficient for a pair (s,t) , and let Q be a finite-dimensional smooth P_s -representation with a finite P_s -stable…",
+      "section": "Coefficient scope, norm lines, and stable lattices",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-lem-compact-stable-lattices",
+      "kind": "lemma",
+      "label": "Lattices compatible with transfer",
+      "statement": "[Lattices compatible with transfer] At a sufficiently deep finite joint frame level, the finite free coefficient B_U and the associated coefficients of any fixed finite translation diagram admit P_n…",
+      "section": "Coefficient scope, norm lines, and stable lattices",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-lem-compact-duality",
+      "kind": "lemma",
+      "label": "Compact and residue duality",
+      "statement": "[Compact and residue duality] Let L be a stable finite free lattice over a formal r -disc C , and let m_C be its closed-point ideal. Put L^*=_C(L,C) and _C=^r^1_ C/k , using continuous differentials.…",
+      "section": "Coefficient scope, norm lines, and stable lattices",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-support-tate-ball",
+      "kind": "lemma",
+      "label": "After scalar extension to E , the completed perfection of the full etale-basis…",
+      "statement": "After scalar extension to E , the completed perfection of the full etale-basis tower, including its boundary, is the product of m open Honda balls. The exact-height locus is the open locus on which…",
+      "section": "The frame quotient and compact supports",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-thm-geometric-quotient",
+      "kind": "theorem",
+      "label": "Let X be the full perfected joint frame space over E . There is a P_n U_0…",
+      "statement": "Let X be the full perfected joint frame space over E . There is a P_n U_0 -equivariant description of X as the space of exact sequences 0^m V_n V_t0 whose determinant comparison is a ^ -multiple of a…",
+      "section": "The frame quotient and compact supports",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-lem-solid-rows",
+      "kind": "lemma",
+      "label": "Finite projective calculation of solid rows",
+      "statement": "[Finite projective calculation of solid rows] Let K be a compact p -adic analytic group without p -torsion, and put R_K=] . Let V be a solid -module with continuous condensed K -action. Choose a…",
+      "section": "The frame quotient and compact supports",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-support-parameters",
+      "kind": "lemma",
+      "label": "These localization and support computations are compatible with compact…",
+      "statement": "These localization and support computations are compatible with compact profinite parameters and compact frame torsors. They apply to the rational-rank loci in N_t^m and to their flag incidences. On…",
+      "section": "The frame quotient and compact supports",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-support-affine",
+      "kind": "lemma",
+      "label": "For the diamond of the untilted affine space one has \\[ _c( A_C^ j, , A)…",
+      "statement": "For the diamond of the untilted affine space one has \\[ _c( A_C^ j, , A) R(-j)[-2j]. \\] Translations and invertible linear changes act trivially on this line, apart from its displayed arithmetic Tate…",
+      "section": "The frame quotient and compact supports",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-support-translation-quotient",
+      "kind": "lemma",
+      "label": "For j0 , _c(N_t^j, A) R(-j)or_ F^j ^ -1 [-(t+2)j]. Here or_ F^j ^ -1 is the top…",
+      "statement": "For j0 , _c(N_t^j, A) R(-j)or_ F^j ^ -1 [-(t+2)j]. Here or_ F^j ^ -1 is the top continuous cohomology orientation of a lattice in the -space F^j . On _j() its character is ()^ -t , reduced to the…",
+      "section": "The frame quotient and compact supports",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-support-flag-complex",
+      "kind": "lemma",
+      "label": "The complex has cohomology only in degree s , where it is St(Q;M) . The…",
+      "statement": "The complex has cohomology only in degree s , where it is St(Q;M) . The assertion is natural under linear isomorphisms and for locally constant families over compact rational Grassmannians.",
+      "section": "The frame quotient and compact supports",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-prop-compact-support",
+      "kind": "proposition",
+      "label": "The compactly supported cohomology of Z is \\[ H_c^a(Z, A)= V_j,&a=(t+2)j+(m-j),…",
+      "statement": "The compactly supported cohomology of Z is \\[ H_c^a(Z, A)= V_j,&a=(t+2)j+(m-j), 0 j<m,\\\\ V_m,&a=(t+2)m,\\\\ 0,&otherwise. \\] The map to _c(N_t^m, A) identifies the last cohomology group with the…",
+      "section": "The frame quotient and compact supports",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-support-finite-invariants",
+      "kind": "corollary",
+      "label": "For a compact open U U_0 and a fixed finite character twist, the groups \\[…",
+      "statement": "For a compact open U U_0 and a fixed finite character twist, the groups \\[ H^a(U,_c(Z, A)) \\] vanish outside a finite range and have bounded almost length over R . In particular, if such a group is…",
+      "section": "The frame quotient and compact supports",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-support-principal-parts",
+      "kind": "lemma",
+      "label": "On the perfected open m -disc, compact supports of the free integral lattice…",
+      "statement": "On the perfected open m -disc, compact supports of the free integral lattice coefficient are computed by principal parts in degree m . For the root system of M , the resulting comparison is _ F H^m_…",
+      "section": "The frame quotient and compact supports",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-support-positive-extension",
+      "kind": "lemma",
+      "label": "There is a natural almost equivalence on the ambient perfected labelled disc _r…",
+      "statement": "There is a natural almost equivalence on the ambient perfected labelled disc _r M_r j_!_* A_ X/U , j: D^ D^ m,perf . It respects finite-cover trace, changes of frame level, the P_n -action, and the…",
+      "section": "The frame quotient and compact supports",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-prop-transpose-comparison",
+      "kind": "proposition",
+      "label": "For the stable lattice P and sufficiently deep finite frame level U specified…",
+      "statement": "For the stable lattice P and sufficiently deep finite frame level U specified above, there is a natural equivalence (_ S^ (P_n,P)^)_kR (U,_c(Z, A) )[m+n^2]. The dual of a compact cochain complex is…",
+      "section": "The frame quotient and compact supports",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-support-finite-stable-image",
+      "kind": "corollary",
+      "label": "For every i , the stable transfer image \\[ _ r0 S^rH^i(P_n,P) \\] is finite…",
+      "statement": "For every i , the stable transfer image \\[ _ r0 S^rH^i(P_n,P) \\] is finite dimensional over k .",
+      "section": "The frame quotient and compact supports",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-lem-compact-operator",
+      "kind": "lemma",
+      "label": "Let M be a compact k -vector space and S a continuous k -linear endomorphism.…",
+      "statement": "Let M be a compact k -vector space and S a continuous k -linear endomorphism. Suppose M/SM and I=_ a0 S^aM are finite. Then S(I)=I , S is invertible on I , and M/I is a finitely generated k[[z]]…",
+      "section": "Compact finiteness from stable transfer images",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-lem-compact-pro-constant",
+      "kind": "lemma",
+      "label": "For each i , the pro object T^i() is constant and its augmentation to T^i(k) is…",
+      "statement": "For each i , the pro object T^i() is constant and its augmentation to T^i(k) is monic. Its -action factors through k .",
+      "section": "Compact finiteness from stable transfer images",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-lem-compact-koszul-edge",
+      "kind": "lemma",
+      "label": "A fixed Koszul edge",
+      "statement": "[A fixed Koszul edge] For one sufficiently large allowed exponent s , a generator e_s^d_(N_s,k) induces an epimorphism \\[ T^ b_0-d (N_s) T^ b_0 (k) \\] in G .",
+      "section": "Compact finiteness from stable transfer images",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-lem-uniform-ext",
+      "kind": "lemma",
+      "label": "Uniform restriction for fixed endpoints",
+      "statement": "[Uniform restriction for fixed endpoints] Choose finite extension diagrams for e_s as above and for a nonzero e^d_(k,k) . They are equivariant for some compact open frame group U . For every allowed…",
+      "section": "Compact finiteness from stable transfer images",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-prop-compact-finiteness",
+      "kind": "proposition",
+      "label": "Compact coefficient finiteness",
+      "statement": "[Compact coefficient finiteness] The first assertion of Theorem~ holds at (n,t) under the earlier compact assertions in . In addition, all finite-frame localized coefficients, and the localizations…",
+      "section": "Compact finiteness from stable transfer images",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-prop-pole-removal",
+      "kind": "proposition",
+      "label": "Removal of the pole bound",
+      "statement": "[Removal of the pole bound] Let 1 t<n<p-1 , and retain the notation A , x=x_t , and C_1 of Proposition~ . The bounded-pole continuous cohomology \\[ H^*(P_n,C_1[1/x]^e), e, \\] has finite total…",
+      "section": "Removing the pole bound",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-lem-artin-splitting",
+      "kind": "lemma",
+      "label": "Relative Artin splitting",
+      "statement": "[Relative Artin splitting] Set R_N=R'/ m'^ N . The marked height- s nilpotent neighborhoods above are flat over R_N . After adjoining compatible lifts of the surviving \\'etale basis, let E_N be their…",
+      "section": "Removing the pole bound",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-lem-full-sections",
+      "kind": "lemma",
+      "label": "Full sections on a split kernel",
+      "statement": "[Full sections on a split kernel] After the lift ascent of Lemma~ , the pullback of C_1 is a finite disjoint union of coefficients pulled back from R' of the form M=C_1^ (s,t) _ R' O(H_c)^ e_s . An…",
+      "section": "Removing the pole bound",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-boundary-translation-descent",
+      "kind": "lemma",
+      "label": "Scalar conjugation and relative translation cohomology",
+      "statement": "[Scalar conjugation and relative translation cohomology] On the cohomology rows in , some subgroup T'_h=[p]^hT' acts trivially. Over an Artin parameter neighborhood, write \\[ _N=R_N[[D_1,,D_]],…",
+      "section": "Removing the pole bound",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-boundary-row-finiteness",
+      "kind": "lemma",
+      "label": "Let V be a torsion-free pro- p compact p -adic analytic group, and let C be a…",
+      "statement": "Let V be a torsion-free pro- p compact p -adic analytic group, and let C be a bounded complex of smooth k[V] -modules. If R(V,C) has finite-dimensional cohomology in each degree, then \\[…",
+      "section": "Removing the pole bound",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-full-stable-cutoff",
+      "kind": "lemma",
+      "label": "Finite stable images",
+      "statement": "[Finite stable images] At a sufficiently deep fixed frame level, let P=x^ -b L be a transfer-stable compact lattice as in Proposition~ . The map \\[ H^i(P_n,P) H^i(P_n,B_U) \\] identifies the stable…",
+      "section": "Full frames and completion of the coefficient induction",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-full-trace-descent",
+      "kind": "lemma",
+      "label": "Trace descent for the dual complex",
+      "statement": "[Trace descent for the dual complex] Let U=K V . There is a natural equivalence (U,(T_h,)) C^(P_n,B_ K,V ^ (h) )^*, where B_ K,V ^ (h) denotes the corresponding lift/root coefficient. Taking h=0…",
+      "section": "Full frames and completion of the coefficient induction",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-prop-full-frame-comparison",
+      "kind": "proposition",
+      "label": "Full-frame support comparison",
+      "statement": "[Full-frame support comparison] Let R=(_E/)^a , with =p^ , and let Z=(N_t^m)_ ind be the independent extension locus of Theorem~ . Use the geometric coefficient A=(^ ,+ /)^a of Section~ . There is an…",
+      "section": "Full frames and completion of the coefficient induction",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-full-scalar-translation",
+      "kind": "lemma",
+      "label": "Homotheties and deep translations",
+      "statement": "[Homotheties and deep translations] Let M be a rational T -representation with a compatible action of a scalar a1+p , a1 , conjugating T by multiplication by a or a^ -1 . If a acts as the identity on…",
+      "section": "Full frames and completion of the coefficient induction",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-full-corestriction",
+      "kind": "lemma",
+      "label": "Corestriction to full connected level",
+      "statement": "[Corestriction to full connected level] Let M be a finite-dimensional smooth k -representation of P_t . For a cofinal sequence of sufficiently small compact open subgroups K P_t , inverse limit with…",
+      "section": "Full frames and completion of the coefficient induction",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-full-joint-completion",
+      "kind": "proposition",
+      "label": "Completion of the joint induction",
+      "statement": "[Completion of the joint induction] For every compact open V G , the graded vector space \\[ H^*(P_n,B_ conn,V ) \\] has finite total dimension. There is an integer e , depending on (n,t) , such that…",
+      "section": "Full frames and completion of the coefficient induction",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-full-root-corestriction",
+      "kind": "lemma",
+      "label": "Root inclusions and translation corestriction",
+      "statement": "[Root inclusions and translation corestriction] In the equivalence of Lemma~ , the transpose of the inclusion B_ K,V ^ (h) B_ K,V ^ (h') for h'>h is finite-Hopf corestriction \\[ (T_ h' ,)(T_h,). \\]…",
+      "section": "Full frames and completion of the coefficient induction",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-full-perfected-connected-calculation",
+      "kind": "lemma",
+      "label": "The perfected connected-frame calculation",
+      "statement": "[The perfected connected-frame calculation] Choose h_0 so that T_ h_0 acts trivially on H^*() , and set A_h=(V,(T_h,)) . For every compact open V G , there are natural P_s -equivariant…",
+      "section": "Full frames and completion of the coefficient induction",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-full-perfected-support-characters",
+      "kind": "lemma",
+      "label": "The remaining tame characters",
+      "statement": "[The remaining tame characters] The P_s -action on H^i(P_n,B_ conn,V ^ perf ) has only norm characters on _s , for every i and every compact open V G .",
+      "section": "Full frames and completion of the coefficient induction",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-full-perfected-row-characters",
+      "kind": "proposition",
+      "label": "Norm characters on the perfected individual rows",
+      "statement": "[Norm characters on the perfected individual rows] At the current induction pair (n,s) , for every compact open V_ n-s () and all a,i , the vector space \\[ Q=H^a\\!(V, H^i(P_n,B_ full ^ perf )) \\] is…",
+      "section": "Full frames and completion of the coefficient induction",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-thm-constant-cohomology",
+      "kind": "theorem",
+      "label": "Constant cohomology",
+      "statement": "[Constant cohomology] For G=K_a,I_a , or P_a , the groups H^q(G,) are finite free -modules, vanish for q>a^2 , and have Poincar\\'e polynomial _qrank_ H^q(G,)z^q =_ i=1 ^a(1+z^ 2i-1 ). There are…",
+      "section": "Constant cochains, modification, and stable transport",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-lem-const-building",
+      "kind": "lemma",
+      "label": "Building restriction",
+      "statement": "[Building restriction] Restriction along K_a J_a induces an equivalence \\[ C^*_ cts (J_a;E)\\ \\ \\ C^*_ cts (K_a;E) \\] for every finite Postnikov p -primary constant coefficient spectrum E . It also…",
+      "section": "Constant cochains, modification, and stable transport",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-lem-const-modification-stack",
+      "kind": "lemma",
+      "label": "Modification presentations",
+      "statement": "[Modification presentations] There is a common modification stack, with its determinant lattice, M_n . The two presentations commute with the arithmetic action over K . In particular, arithmetic acts…",
+      "section": "Constant cochains, modification, and stable transport",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-prop-modification-transport",
+      "kind": "proposition",
+      "label": "Transport of constants",
+      "statement": "[Transport of constants] The structural maps from identify H^*(P_n,)\\ \\ \\ H^*( M_n,)_ (1) \\ \\ H^*(J_n,), where (1) denotes generalized eigenvalue one for . These are identifications by the actual…",
+      "section": "Constant cochains, modification, and stable transport",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-thm-stable-generators",
+      "kind": "theorem",
+      "label": "Stable primitive generators",
+      "statement": "[Stable primitive generators] Let 1 N p-2 . There are classes \\[ c_ a,i _ 1-2i C^*_ cts (G_a;S), 1 i a N, \\] with leading integral classes \\[ _ a,i H^ 2i-1 _ cts (G_a,), \\] having the following…",
+      "section": "Integral primitive classes and stable representatives",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-gen-k-continuity",
+      "kind": "lemma",
+      "label": "Continuous evaluation of the standard representation",
+      "statement": "[Continuous evaluation of the standard representation] The classes _ a,r define a continuous additive class \\[ _a _0 C^*_ cts (G_a;K()^_p). \\] If f:K()^_p E is a map to a complete connective spectrum…",
+      "section": "Integral primitive classes and stable representatives",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-gen-local-k-coordinates",
+      "kind": "lemma",
+      "label": "Local K-theory coordinates",
+      "statement": "[Local K-theory coordinates] For 2 i p-2 , there are spectrum maps \\[ f_i:K()^_p^ 2i-1 _p \\] which induce a generator coordinate on the free group in degree 2i-1 . Via the integral etale edge and…",
+      "section": "Integral primitive classes and stable representatives",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-gen-rational-components",
+      "kind": "lemma",
+      "label": "Rational components of the additive class",
+      "statement": "[Rational components of the additive class] For a p-2 and i a , the only possibly nonzero rational ordinary-cohomology component of z_ a,i is its component in degree 2i-1 . Moreover _ a,i is a scalar…",
+      "section": "Integral primitive classes and stable representatives",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-gen-sphere-representatives",
+      "kind": "lemma",
+      "label": "Sphere representatives",
+      "statement": "[Sphere representatives] For 1 i a p-2 , the class _ a,i has a representative in _ 1-2i C^*_ cts (G_a;S) . For i2 its image in _p is z_ a,i . For i=1 one can take the pullback of the divided…",
+      "section": "Integral primitive classes and stable representatives",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-gen-soule-coordinate",
+      "kind": "lemma",
+      "label": "Integral Soul\\'e coordinate",
+      "statement": "[Integral Soul\\'e coordinate] Let 2 i p-2 , d=2i-1 , and X=K()^_p . There is a -linear isomorphism \\[ c_i^ S :_dX ^1(,(i)) \\] whose value on the completion of x K_d() rationalizes to the Soul\\'e…",
+      "section": "Integral primitive classes and stable representatives",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-gen-exponential-lattice",
+      "kind": "lemma",
+      "label": "The integral exponential lattice",
+      "statement": "[The integral exponential lattice] For 2 i p-2 , use the standard period basis to identify D_ dR ((i)) with . Then \\[ _ BK ^ -1 H^1(,(i))=p^i. \\]",
+      "section": "Integral primitive classes and stable representatives",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-gen-detected-regulator",
+      "kind": "lemma",
+      "label": "A detected discrete regulator class",
+      "statement": "[A detected discrete regulator class] For 2 i p-2 , the Soul\\'e regulator \\[ r_p:K_ 2i-1 ()_ H^1(,(i)) \\] is nonzero.",
+      "section": "Integral primitive classes and stable representatives",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-lem-regulator-lattice",
+      "kind": "lemma",
+      "label": "Normalization of the selected primitives",
+      "statement": "[Normalization of the selected primitives] With the choices of Lemma~ , there are units _i^ , independent of the matrix rank, such that _ a,i =_i p^ -i b_i (2 i a p-2). The same formula holds for i=1…",
+      "section": "Integral primitive classes and stable representatives",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-lem-top-volume",
+      "kind": "lemma",
+      "label": "The top integral lattice",
+      "statement": "[The top integral lattice] Assume a p-2 . In rational Lie algebra cohomology, \\[ b_1 b_a=u_a_a, u_a_ (p) ^. \\] For all sufficiently large integers r , the integral top cohomology lattice of…",
+      "section": "Integral primitive classes and stable representatives",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-lem-weight-vanishing",
+      "kind": "lemma",
+      "label": "Weight vanishing",
+      "statement": "[Weight vanishing] For every a,q,b one has H^a(G,H_c^q(Z; A) E_h^b)=0 unless q=(t+2)m and b=d . For b=d , extension to the ambient space induces an equivalence &(G,_c(Z; A) E_h^d)\\\\ &\\ \\ (G,_c(N_t^m;…",
+      "section": "The specified constant-cochain module",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-full-top-edge",
+      "kind": "lemma",
+      "label": "Equivariant top-edge insertion",
+      "statement": "[Equivariant top-edge insertion] There is a natural U_0 -equivariant map _k E_h^d[-d](T_h,). On a trivially acted-on cohomology row, it is insertion into translation degree d . The map is linear for…",
+      "section": "The specified constant-cochain module",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-full-surviving-module",
+      "kind": "proposition",
+      "label": "The surviving constant action",
+      "statement": "[The surviving constant action] After tensoring with R and choosing the one-dimensional orientation factors, there are graded identifications _k(M_t^i,k)_kR A_G^ m^2-i _kR. If a constant class on P_n…",
+      "section": "The specified constant-cochain module",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-prop-constant-module",
+      "kind": "proposition",
+      "label": "The actual constant-cochain module",
+      "statement": "[The actual constant-cochain module] For 1 t<n<p-1 , put m=n-t . The cup map _k(e_1,,e_m) H^*(P_n,B_ conn,G ), e_i _i1, |e_i|=2i-1, is an isomorphism of graded k -algebras. In particular, for I\\…",
+      "section": "The specified constant-cochain module",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-spec-exact-descent",
+      "kind": "proposition",
+      "label": "Exact tests of completed descent",
+      "statement": "[Exact tests of completed descent] The augmentation \\(DTot A^\\) is an equivalence. Moreover, if \\(F\\) is an exact functor from spectra to a stable \\(\\)-category admitting countable limits, then…",
+      "section": "Simultaneous chromatic bases and the filtration",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-spec-global-classes",
+      "kind": "proposition",
+      "label": "Simultaneous representatives",
+      "statement": "[Simultaneous representatives] There are classes \\[ y_i_ 1-2i D, 1 i n, \\] represented by constant sphere-cochain classes whose integral Hurewicz images on \\(P_n\\) are \\(^P_ n,i \\). For \\(I=\\…",
+      "section": "Simultaneous chromatic bases and the filtration",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-spec-flat-functions",
+      "kind": "lemma",
+      "label": "Flat continuous function modules",
+      "statement": "[Flat continuous function modules] Let \\(R=W(k)[[x_1,,x_ n-1 ]]\\), with maximal ideal \\( m\\), and let \\(Q\\) be a profinite set. The module \\(N_Q=C_ cts (Q,R)\\) is \\( m\\)-adically complete and flat…",
+      "section": "Simultaneous chromatic bases and the filtration",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-lem-ordinary-residue",
+      "kind": "lemma",
+      "label": "Ordinary residue of the completed cobar",
+      "statement": "[Ordinary residue of the completed cobar] For the completed terms \\( A^\\) in , followed by ordinary smash with \\(_t\\), there is a natural quasi-isomorphism of cochain complexes N^*_r(_t A^) _ t,r _k…",
+      "section": "Simultaneous chromatic bases and the filtration",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-thm-height-bases",
+      "kind": "theorem",
+      "label": "Simultaneous height bases",
+      "statement": "[Simultaneous height bases] The common classes of Proposition~ satisfy, for every \\(1 t<n\\), L_ K(t) ( _ I\\ 1,,n-t\\ ^ -d(I) S(y_I)D ) is an equivalence, where \\(d(I)=_ i I (2i-1)\\), and the empty…",
+      "section": "Simultaneous chromatic bases and the filtration",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m1-thm-rational-sphere",
+      "kind": "theorem",
+      "label": "Barthel--Schlank--Stapleton--Weinstein",
+      "statement": "[Barthel--Schlank--Stapleton--Weinstein] For every prime \\(p\\) and height \\(n1\\), the rational homotopy of the \\(K(n)\\)-local sphere is the exterior \\(\\)-algebra \\[ _*L_ K(n) S_ _ (_1,,_n),…",
+      "section": "Simultaneous chromatic bases and the filtration",
+      "manuscript": "Filtered chromatic splitting at generic primes"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "Explicit height-three filtration",
+      "statement": "[Explicit height-three filtration] For every prime \\(p5\\), there are \\(E(2)\\)-local \\(S\\)-modules and maps \\[ 0=F_0 F_1 F_8, e:F_8 , \\] whose successive cofibers \\(C_i=(F_ i-1 F_i)\\), in order, are…",
+      "section": "Introduction",
+      "manuscript": "The height-three chromatic overlap: an explicit filtration and its attachments"
+    },
+    {
+      "id": "m2-lem-boundary",
+      "kind": "lemma",
+      "label": "Boundary of a localization comparison",
+      "statement": "[Boundary of a localization comparison] Let \\(a:A B\\) be a map in a stable category, and let \\(L\\) be an exact localization for which \\(La\\) is an equivalence. Choose an inverse of \\(La\\) and its…",
+      "section": "A finite fracture construction",
+      "manuscript": "The height-three chromatic overlap: an explicit filtration and its attachments"
+    },
+    {
+      "id": "m2-prop-fracture",
+      "kind": "proposition",
+      "label": "Ordered fracture filtration",
+      "statement": "[Ordered fracture filtration] Let \\(X\\) be an \\(E(2)\\)-local \\(S\\)-module. Suppose the following module maps and homotopies are given. [label=( *)] A map \\(w:W X\\) for which \\(L_ K(2) w\\) is an…",
+      "section": "A finite fracture construction",
+      "manuscript": "The height-three chromatic overlap: an explicit filtration and its attachments"
+    },
+    {
+      "id": "m2-thm-attachment-identification",
+      "kind": "theorem",
+      "label": "Attachment identification for the ordered fracture filtration",
+      "statement": "[Attachment identification for the ordered fracture filtration] Fix the data \\(w,,r,b\\) and the compatibility homotopy of . Choose coherent inverse data for \\(L_ K(2) w\\), and carry out that…",
+      "section": "A finite fracture construction",
+      "manuscript": "The height-three chromatic overlap: an explicit filtration and its attachments"
+    },
+    {
+      "id": "m2-h3-lem-framework-groups",
+      "kind": "lemma",
+      "label": "The compact groups \\(P_3,H,P_2,P_1,_2(_p)\\) and \\(_2(_p)\\) have no elements of…",
+      "statement": "The compact groups \\(P_3,H,P_2,P_1,_2(_p)\\) and \\(_2(_p)\\) have no elements of order \\(p\\). Their \\(p\\)-cohomological dimensions are respectively \\(9,8,4,1,4,3\\). Their adjoint orientation characters…",
+      "section": "Coefficients, stabilizers, and comparison inputs",
+      "manuscript": "The height-three chromatic overlap: an explicit filtration and its attachments"
+    },
+    {
+      "id": "m2-h3-lem-framework-semilinear",
+      "kind": "lemma",
+      "label": "Let \\(k'/k\\) be a finite extension of finite fields with Galois group \\(\\). On…",
+      "statement": "Let \\(k'/k\\) be a finite extension of finite fields with Galois group \\(\\). On \\(W(k')\\)-modules carrying a semilinear \\(\\)-action, the invariants functor is exact. The same assertion holds for…",
+      "section": "Coefficients, stabilizers, and comparison inputs",
+      "manuscript": "The height-three chromatic overlap: an explicit filtration and its attachments"
+    },
+    {
+      "id": "m2-h3-geom-regular-levels",
+      "kind": "lemma",
+      "label": "For l1 , form the reduced closure of the locus of r points of G[p^l] whose…",
+      "statement": "For l1 , form the reduced closure of the locus of r points of G[p^l] whose images are a basis of the \\'etale quotient at the generic point of A_m . Its coordinate algebra B_l is finite over A_m , and…",
+      "section": "Tate coordinates and integral frames",
+      "manuscript": "The height-three chromatic overlap: an explicit filtration and its attachments"
+    },
+    {
+      "id": "m2-h3-geom-universal-cover",
+      "kind": "lemma",
+      "label": "Let (R,R^+) be an affinoid perfectoid k -algebra and specialize the parameters…",
+      "statement": "Let (R,R^+) be an affinoid perfectoid k -algebra and specialize the parameters of A_m to R^ . For the resulting formal law G_a , there is a natural additive isomorphism \\[ H_3(R)\\ \\ _a\\ \\ _ [p]…",
+      "section": "Tate coordinates and integral frames",
+      "manuscript": "The height-three chromatic overlap: an explicit filtration and its attachments"
+    },
+    {
+      "id": "m2-h3-thm-coordinate-comparison",
+      "kind": "theorem",
+      "label": "Coordinate comparison",
+      "statement": "[Coordinate comparison] There is a natural P_3_r(_p) -equivariant isomorphism \\[ T_m\\ \\ (H_3^r)_ ind . \\] The map takes a compatible basis of generator lifts to z_i=_l t_ i,l ^ p^ 3l . It identifies…",
+      "section": "Tate coordinates and integral frames",
+      "manuscript": "The height-three chromatic overlap: an explicit filtration and its attachments"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-rings-full-sections-presentation",
+      "to": "m1-rings-boundary-labels"
+    },
+    {
+      "from": "m1-prop-finite-rings",
+      "to": "m1-rings-boundary-labels"
+    },
+    {
+      "from": "m1-prop-finite-rings",
+      "to": "m1-prop-frame-torsor"
+    },
+    {
+      "from": "m1-rings-dual-distribution",
+      "to": "m1-lem-cartier-transfer"
+    },
+    {
+      "from": "m1-rings-coinduction",
+      "to": "m1-lem-cartier-transfer"
+    },
+    {
+      "from": "m1-lem-compact-norm-line",
+      "to": "m1-cor-compact-norm-filtration"
+    },
+    {
+      "from": "m1-prop-compact-finiteness",
+      "to": "m1-cor-compact-norm-filtration"
+    },
+    {
+      "from": "m1-rings-boundary-labels",
+      "to": "m1-lem-compact-stable-lattices"
+    },
+    {
+      "from": "m1-lem-cartier-transfer",
+      "to": "m1-lem-compact-stable-lattices"
+    },
+    {
+      "from": "m1-prop-finite-rings",
+      "to": "m1-support-tate-ball"
+    },
+    {
+      "from": "m1-support-tate-ball",
+      "to": "m1-thm-geometric-quotient"
+    },
+    {
+      "from": "m1-prop-finite-rings",
+      "to": "m1-thm-geometric-quotient"
+    },
+    {
+      "from": "m1-lem-solid-rows",
+      "to": "m1-support-parameters"
+    },
+    {
+      "from": "m1-support-parameters",
+      "to": "m1-support-affine"
+    },
+    {
+      "from": "m1-support-affine",
+      "to": "m1-support-translation-quotient"
+    },
+    {
+      "from": "m1-support-parameters",
+      "to": "m1-prop-compact-support"
+    },
+    {
+      "from": "m1-support-translation-quotient",
+      "to": "m1-prop-compact-support"
+    },
+    {
+      "from": "m1-support-flag-complex",
+      "to": "m1-prop-compact-support"
+    },
+    {
+      "from": "m1-lem-cartier-transfer",
+      "to": "m1-support-positive-extension"
+    },
+    {
+      "from": "m1-lem-compact-duality",
+      "to": "m1-prop-transpose-comparison"
+    },
+    {
+      "from": "m1-support-principal-parts",
+      "to": "m1-prop-transpose-comparison"
+    },
+    {
+      "from": "m1-support-positive-extension",
+      "to": "m1-prop-transpose-comparison"
+    },
+    {
+      "from": "m1-thm-geometric-quotient",
+      "to": "m1-prop-transpose-comparison"
+    },
+    {
+      "from": "m1-support-parameters",
+      "to": "m1-prop-transpose-comparison"
+    },
+    {
+      "from": "m1-support-finite-invariants",
+      "to": "m1-support-finite-stable-image"
+    },
+    {
+      "from": "m1-lem-compact-operator",
+      "to": "m1-lem-compact-pro-constant"
+    },
+    {
+      "from": "m1-rings-dual-distribution",
+      "to": "m1-lem-compact-koszul-edge"
+    },
+    {
+      "from": "m1-lem-compact-pro-constant",
+      "to": "m1-lem-compact-koszul-edge"
+    },
+    {
+      "from": "m1-lem-compact-koszul-edge",
+      "to": "m1-lem-uniform-ext"
+    },
+    {
+      "from": "m1-prop-frame-torsor",
+      "to": "m1-prop-compact-finiteness"
+    },
+    {
+      "from": "m1-lem-compact-duality",
+      "to": "m1-prop-compact-finiteness"
+    },
+    {
+      "from": "m1-prop-pole-removal",
+      "to": "m1-prop-compact-finiteness"
+    },
+    {
+      "from": "m1-prop-frame-torsor",
+      "to": "m1-lem-artin-splitting"
+    },
+    {
+      "from": "m1-prop-finite-rings",
+      "to": "m1-lem-artin-splitting"
+    },
+    {
+      "from": "m1-rings-full-sections-presentation",
+      "to": "m1-lem-full-sections"
+    },
+    {
+      "from": "m1-prop-pole-removal",
+      "to": "m1-boundary-row-finiteness"
+    },
+    {
+      "from": "m1-lem-artin-splitting",
+      "to": "m1-boundary-row-finiteness"
+    },
+    {
+      "from": "m1-lem-full-sections",
+      "to": "m1-boundary-row-finiteness"
+    },
+    {
+      "from": "m1-boundary-translation-descent",
+      "to": "m1-boundary-row-finiteness"
+    },
+    {
+      "from": "m1-lem-compact-norm-line",
+      "to": "m1-boundary-row-finiteness"
+    },
+    {
+      "from": "m1-cor-compact-norm-filtration",
+      "to": "m1-boundary-row-finiteness"
+    },
+    {
+      "from": "m1-full-perfected-row-characters",
+      "to": "m1-boundary-row-finiteness"
+    },
+    {
+      "from": "m1-prop-compact-finiteness",
+      "to": "m1-full-stable-cutoff"
+    },
+    {
+      "from": "m1-prop-pole-removal",
+      "to": "m1-full-stable-cutoff"
+    },
+    {
+      "from": "m1-lem-cartier-transfer",
+      "to": "m1-full-stable-cutoff"
+    },
+    {
+      "from": "m1-prop-transpose-comparison",
+      "to": "m1-full-stable-cutoff"
+    },
+    {
+      "from": "m1-lem-cartier-transfer",
+      "to": "m1-full-trace-descent"
+    },
+    {
+      "from": "m1-prop-transpose-comparison",
+      "to": "m1-prop-full-frame-comparison"
+    },
+    {
+      "from": "m1-full-stable-cutoff",
+      "to": "m1-prop-full-frame-comparison"
+    },
+    {
+      "from": "m1-full-trace-descent",
+      "to": "m1-prop-full-frame-comparison"
+    },
+    {
+      "from": "m1-prop-compact-support",
+      "to": "m1-full-joint-completion"
+    },
+    {
+      "from": "m1-prop-full-frame-comparison",
+      "to": "m1-full-joint-completion"
+    },
+    {
+      "from": "m1-full-scalar-translation",
+      "to": "m1-full-joint-completion"
+    },
+    {
+      "from": "m1-support-finite-invariants",
+      "to": "m1-full-joint-completion"
+    },
+    {
+      "from": "m1-full-corestriction",
+      "to": "m1-full-joint-completion"
+    },
+    {
+      "from": "m1-full-trace-descent",
+      "to": "m1-full-joint-completion"
+    },
+    {
+      "from": "m1-lem-cartier-transfer",
+      "to": "m1-full-root-corestriction"
+    },
+    {
+      "from": "m1-prop-frame-torsor",
+      "to": "m1-full-root-corestriction"
+    },
+    {
+      "from": "m1-full-joint-completion",
+      "to": "m1-full-perfected-connected-calculation"
+    },
+    {
+      "from": "m1-support-finite-invariants",
+      "to": "m1-full-perfected-connected-calculation"
+    },
+    {
+      "from": "m1-full-trace-descent",
+      "to": "m1-full-perfected-connected-calculation"
+    },
+    {
+      "from": "m1-full-corestriction",
+      "to": "m1-full-perfected-connected-calculation"
+    },
+    {
+      "from": "m1-full-root-corestriction",
+      "to": "m1-full-perfected-connected-calculation"
+    },
+    {
+      "from": "m1-support-translation-quotient",
+      "to": "m1-full-perfected-support-characters"
+    },
+    {
+      "from": "m1-prop-full-frame-comparison",
+      "to": "m1-full-perfected-support-characters"
+    },
+    {
+      "from": "m1-full-perfected-connected-calculation",
+      "to": "m1-full-perfected-support-characters"
+    },
+    {
+      "from": "m1-full-perfected-support-characters",
+      "to": "m1-full-perfected-row-characters"
+    },
+    {
+      "from": "m1-boundary-row-finiteness",
+      "to": "m1-full-perfected-row-characters"
+    },
+    {
+      "from": "m1-full-perfected-connected-calculation",
+      "to": "m1-full-perfected-row-characters"
+    },
+    {
+      "from": "m1-thm-constant-cohomology",
+      "to": "m1-lem-const-building"
+    },
+    {
+      "from": "m1-lem-solid-rows",
+      "to": "m1-prop-modification-transport"
+    },
+    {
+      "from": "m1-lem-const-building",
+      "to": "m1-prop-modification-transport"
+    },
+    {
+      "from": "m1-lem-const-modification-stack",
+      "to": "m1-prop-modification-transport"
+    },
+    {
+      "from": "m1-gen-soule-coordinate",
+      "to": "m1-gen-local-k-coordinates"
+    },
+    {
+      "from": "m1-gen-k-continuity",
+      "to": "m1-gen-rational-components"
+    },
+    {
+      "from": "m1-thm-constant-cohomology",
+      "to": "m1-gen-sphere-representatives"
+    },
+    {
+      "from": "m1-gen-rational-components",
+      "to": "m1-gen-sphere-representatives"
+    },
+    {
+      "from": "m1-gen-local-k-coordinates",
+      "to": "m1-gen-soule-coordinate"
+    },
+    {
+      "from": "m1-gen-exponential-lattice",
+      "to": "m1-lem-regulator-lattice"
+    },
+    {
+      "from": "m1-gen-soule-coordinate",
+      "to": "m1-lem-regulator-lattice"
+    },
+    {
+      "from": "m1-gen-k-continuity",
+      "to": "m1-lem-regulator-lattice"
+    },
+    {
+      "from": "m1-gen-detected-regulator",
+      "to": "m1-lem-regulator-lattice"
+    },
+    {
+      "from": "m1-gen-rational-components",
+      "to": "m1-lem-regulator-lattice"
+    },
+    {
+      "from": "m1-gen-sphere-representatives",
+      "to": "m1-lem-regulator-lattice"
+    },
+    {
+      "from": "m1-thm-stable-generators",
+      "to": "m1-lem-top-volume"
+    },
+    {
+      "from": "m1-lem-regulator-lattice",
+      "to": "m1-lem-top-volume"
+    },
+    {
+      "from": "m1-thm-constant-cohomology",
+      "to": "m1-lem-top-volume"
+    },
+    {
+      "from": "m1-gen-sphere-representatives",
+      "to": "m1-lem-top-volume"
+    },
+    {
+      "from": "m1-prop-modification-transport",
+      "to": "m1-lem-top-volume"
+    },
+    {
+      "from": "m1-prop-compact-support",
+      "to": "m1-lem-weight-vanishing"
+    },
+    {
+      "from": "m1-prop-full-frame-comparison",
+      "to": "m1-full-top-edge"
+    },
+    {
+      "from": "m1-lem-weight-vanishing",
+      "to": "m1-full-top-edge"
+    },
+    {
+      "from": "m1-full-trace-descent",
+      "to": "m1-full-surviving-module"
+    },
+    {
+      "from": "m1-full-joint-completion",
+      "to": "m1-full-surviving-module"
+    },
+    {
+      "from": "m1-full-top-edge",
+      "to": "m1-full-surviving-module"
+    },
+    {
+      "from": "m1-prop-full-frame-comparison",
+      "to": "m1-full-surviving-module"
+    },
+    {
+      "from": "m1-support-translation-quotient",
+      "to": "m1-full-surviving-module"
+    },
+    {
+      "from": "m1-lem-weight-vanishing",
+      "to": "m1-full-surviving-module"
+    },
+    {
+      "from": "m1-prop-modification-transport",
+      "to": "m1-full-surviving-module"
+    },
+    {
+      "from": "m1-thm-constant-cohomology",
+      "to": "m1-prop-constant-module"
+    },
+    {
+      "from": "m1-thm-stable-generators",
+      "to": "m1-prop-constant-module"
+    },
+    {
+      "from": "m1-full-surviving-module",
+      "to": "m1-prop-constant-module"
+    },
+    {
+      "from": "m1-full-joint-completion",
+      "to": "m1-prop-constant-module"
+    },
+    {
+      "from": "m1-thm-stable-generators",
+      "to": "m1-spec-global-classes"
+    },
+    {
+      "from": "m1-prop-modification-transport",
+      "to": "m1-spec-global-classes"
+    },
+    {
+      "from": "m1-spec-exact-descent",
+      "to": "m1-spec-global-classes"
+    },
+    {
+      "from": "m1-spec-flat-functions",
+      "to": "m1-lem-ordinary-residue"
+    },
+    {
+      "from": "m1-prop-frame-torsor",
+      "to": "m1-lem-ordinary-residue"
+    },
+    {
+      "from": "m1-spec-exact-descent",
+      "to": "m1-thm-height-bases"
+    },
+    {
+      "from": "m1-lem-ordinary-residue",
+      "to": "m1-thm-height-bases"
+    },
+    {
+      "from": "m1-prop-constant-module",
+      "to": "m1-thm-height-bases"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-thm-rational-sphere"
+    },
+    {
+      "from": "m1-spec-global-classes",
+      "to": "m1-thm-rational-sphere"
+    },
+    {
+      "from": "m1-thm-height-bases",
+      "to": "m1-thm-rational-sphere"
+    },
+    {
+      "from": "m1-prop-assembly",
+      "to": "m1-thm-rational-sphere"
+    },
+    {
+      "from": "m2-lem-boundary",
+      "to": "m2-prop-fracture"
+    },
+    {
+      "from": "m2-prop-fracture",
+      "to": "m2-thm-attachment-identification"
+    },
+    {
+      "from": "m2-h3-geom-regular-levels",
+      "to": "m2-h3-thm-coordinate-comparison"
+    },
+    {
+      "from": "m2-h3-geom-universal-cover",
+      "to": "m2-h3-thm-coordinate-comparison"
+    }
+  ]
+}

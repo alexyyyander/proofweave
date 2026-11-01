@@ -1,0 +1,437 @@
+{
+  "familyNumber": "012",
+  "familyTitle": "Independent largest prime factors of consecutive integers",
+  "manuscripts": [
+    {
+      "id": "The-joint-Dickman-law-for-consecutive-integers-September-24-2026",
+      "title": "The joint Dickman law for consecutive integers",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-joint-Dickman-law-for-consecutive-integers-September-24-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Large-prime labels and their short averages",
+    "Arithmetic preliminaries at an auxiliary log scale",
+    "Amplifying a mixed correlation",
+    "From mixed amplification to an independent-site kernel",
+    "A second moment for the latent rows",
+    "Smoothing channels on logarithmic and residue space",
+    "Integral approximation by endpoint features",
+    "Sampling the integral cut comparison",
+    "Vanishing of the main energy",
+    "Marginals, the joint law, and the ordering corollary"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Joint Dickman law",
+      "statement": "[Joint Dickman law] For every fixed a,b(0,1) , \\[ _ X 1X \\#\\ 2 n X:(n) n^a, \\ (n+1) n^b\\ =(1/a)(1/b). \\] Here the limit is taken over all real X , with ordinary, unweighted counting.",
+      "section": "Introduction",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-cor-comparison",
+      "kind": "corollary",
+      "label": "One has \\[ _ X 1X \\#\\ 2 n X:(n)<(n+1)\\ =12. \\] The reverse ordering has the…",
+      "statement": "One has \\[ _ X 1X \\#\\ 2 n X:(n)<(n+1)\\ =12. \\] The reverse ordering has the same natural density.",
+      "section": "Introduction",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-lem-labels-marginal",
+      "kind": "lemma",
+      "label": "One-variable distribution",
+      "statement": "[One-variable distribution] For every fixed 0<<< , positive integer q , and residue class a q , the distribution of \\[ (_ B_ k,x (n))_ 1 k<J \\] among the integers x<n x , n a q , normalized to have…",
+      "section": "Large-prime labels and their short averages",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-prop-mixed",
+      "kind": "proposition",
+      "label": "Mixed decorrelation",
+      "statement": "[Mixed decorrelation] For every fixed integer J2 and every pair of fixed phase vectors (_k)_ k=1 ^ J-1 and (_k)_ k=1 ^ J-1 of absolute value one, the corresponding labels satisfy _ x 1x_ 1 n<x…",
+      "section": "Large-prime labels and their short averages",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-lem-labels-short",
+      "kind": "lemma",
+      "label": "Weighted short averages of the centered labels",
+      "statement": "[Weighted short averages of the centered labels] Let T=T(B) , let L_B be positive integers tending to infinity, and let a_B be any integer for each B . Fix 0<s_0<s_1< , a positive integer D , a…",
+      "section": "Large-prime labels and their short averages",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-thm-labels-real-mr",
+      "kind": "theorem",
+      "label": "Real short-interval comparison",
+      "statement": "[Real short-interval comparison] There is a function r(H) tending to zero as H such that, for every real multiplicative function g: and 2 H X , 1X_X^ 2X | A_Hg(z)- L_Xg|^2\\,dz r(H).",
+      "section": "Large-prime labels and their short averages",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-thm-labels-complex-mrt",
+      "kind": "theorem",
+      "label": "Complex short averages",
+      "statement": "[Complex short averages] For every multiplicative function g: with |g|1 and X H10 , 1X_X^ 2X | A_Hg(z)|^2\\,dz (1+M(g;X))e^ -M(g;X) +( H H )^2 +( X)^ -1/50 , with an absolute implied constant.",
+      "section": "Large-prime labels and their short averages",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-lem-labels-character-distance",
+      "kind": "lemma",
+      "label": "Fixed nonprincipal characters",
+      "statement": "[Fixed nonprincipal characters] Fix J2 , positive constants c,C , a nonprincipal Dirichlet character of modulus q_ , and a finite set E of primes. Suppose that, for each x , h_x is a 1-bounded…",
+      "section": "Large-prime labels and their short averages",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-lem-arith-classical-sd",
+      "kind": "lemma",
+      "label": "Classical estimates used in roughness removal",
+      "statement": "[Classical estimates used in roughness removal] For each fixed nonnegative integer H and either of the above values of z , there are real constants c_j(z) such that, for Y3 , \\[ _ n Y g_z(n) =Y_ j=0…",
+      "section": "Arithmetic preliminaries at an auxiliary log scale",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-lem-arith-rough-sd",
+      "kind": "lemma",
+      "label": "The moving roughness cutoff",
+      "statement": "[The moving roughness cutoff] Fix D>0 . There is a fixed integer H=H(D) and real coefficients C_ j,z (P_0) , 0 j H , such that uniformly for B^ 0.89 Y4B , \\[ _ n Y g_ z,P_0 (n) =Y_ j=0 ^ H C_ j,z…",
+      "section": "Arithmetic preliminaries at an auxiliary log scale",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-prop-arith-local-laws",
+      "kind": "proposition",
+      "label": "Local coefficient and product laws",
+      "statement": "[Local coefficient and product laws] Let w_3 be smooth and supported in a fixed compact subinterval of (0,) . Uniformly for 0.9B X2.2B , q B^ 15 , (u,q)=1 , and real with || B^ 14 , _c…",
+      "section": "Arithmetic preliminaries at an auxiliary log scale",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-lem-arith-weighted-sieve",
+      "kind": "lemma",
+      "label": "Interval, rectangle, and random-root sieves",
+      "statement": "[Interval, rectangle, and random-root sieves] There is a sufficiently small c_k>0 , depending only on fixed k , with the following properties for Z2 . In an interval of length N1 , at most k…",
+      "section": "Arithmetic preliminaries at an auxiliary log scale",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-lem-arith-coefficient-moments",
+      "kind": "lemma",
+      "label": "First and second coefficient moments",
+      "statement": "[First and second coefficient moments] On these intervals, X^ -1 _ n X A_0(n)1, X^ -1 _ n X A_0(n)^2 B^ 1/4+o(1) .",
+      "section": "Arithmetic preliminaries at an auxiliary log scale",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-lem-arith-form-bounds",
+      "kind": "lemma",
+      "label": "Two- and three-form coefficient bounds",
+      "statement": "[Two- and three-form coefficient bounds] Uniformly for 0<|j| T and squarefree rough b TX , _ c X\\ +jc TX,\\ b+jc>0 A_0(c)A_0(b+jc) X(j). On the same fixed log-size ranges, _ b TX,\\ c X\\ =b+jc TX,\\ a>0…",
+      "section": "Arithmetic preliminaries at an auxiliary log scale",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-lem-arith-regularity-loss",
+      "kind": "lemma",
+      "label": "Loss from imposing regularity",
+      "statement": "[Loss from imposing regularity] There is an absolute c_3>0 such that, for each fixed choice of the grid, tolerance, and compact log-size ranges above, there are C>0 and a function _B0 such that the…",
+      "section": "Arithmetic preliminaries at an auxiliary log scale",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-lem-amp-divisor-moments",
+      "kind": "lemma",
+      "label": "Moments of the divisor weight",
+      "statement": "[Moments of the divisor weight] There exist C_0>0 and d_0>0 such that, for each fixed C_* C_0 and all sufficiently large B , \\|D_B\\|_ L^2() _ C_* 1, _ D_B(w)\\,dw d_0. The constant d_0 is independent…",
+      "section": "Amplifying a mixed correlation",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-lem-amp-site-model",
+      "kind": "lemma",
+      "label": "Reduction to independent fair splits",
+      "statement": "[Reduction to independent fair splits] For each fixed C_*0 , as B , \\[ _ D_B(w)^r\\,dw= D_B^r+o(1) (r=1,2). \\]",
+      "section": "Amplifying a mixed correlation",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-lem-amp-small-ball",
+      "kind": "lemma",
+      "label": "Addition-product concentration",
+      "statement": "[Addition-product concentration] Fix H>0 . Write L= P_0 . For sufficiently large B , let L Y8B , put U=(Y,4B) , and form a random product Q_Y by including each prime P_0<p e^U independently with…",
+      "section": "Amplifying a mixed correlation",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-lem-preservation",
+      "kind": "lemma",
+      "label": "Preservation of the profinite profile",
+      "statement": "[Preservation of the profinite profile] For each fixed C_* C_0 , put H(t,w)=(t)W(t,w) . Then H(t,w)D_B(w)\\,dt\\,dw -( H\\,dt\\,dw)( D_B\\,dw) 0(B).",
+      "section": "Amplifying a mixed correlation",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-prop-amp-energy",
+      "kind": "proposition",
+      "label": "There is c_5>0 , independent of all sufficiently large fixed C_* , for which…",
+      "statement": "There is c_5>0 , independent of all sufficiently large fixed C_* , for which the nonnegative energy below satisfies the displayed lower bound: I_ 2,x = 1x_ c1 _0( c/B)A(c) _ m1 K(m) | _ a 1\\ am+1…",
+      "section": "Amplifying a mixed correlation",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-lem-graph-edge-mass",
+      "kind": "lemma",
+      "label": "Mean edge mass",
+      "statement": "[Mean edge mass] Uniformly for 0<|j| T and s S , _ u K_j(u,s) (j)T. The implied constant can be independent of the regularity parameter C_* .",
+      "section": "From mixed amplification to an independent-site kernel",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-lem-graph-row-mean",
+      "kind": "lemma",
+      "label": "Uniform conditional means",
+      "statement": "[Uniform conditional means] For every possible endpoint type S_i , not merely almost every typical type, and every allowed lag j=k-i , _ S_k L_ ik (S_i,S_k;s) (j)T. In particular, every conditional…",
+      "section": "From mixed amplification to an independent-site kernel",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-prop-graph-root-comparison",
+      "kind": "proposition",
+      "label": "Independent-root comparison",
+      "statement": "[Independent-root comparison] Let M_ ik (S_i,S_k;s) be a symmetric real kernel, zero on nonpairs, with total absolute mass O(B^ 10 ) uniformly in its arguments. Then &_u\\| ( K_ k-i (u+i,s) - M_ ik…",
+      "section": "From mixed amplification to an independent-site kernel",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-prop-moments-rows",
+      "kind": "proposition",
+      "label": "Integrated row moments",
+      "statement": "[Integrated row moments] For a sufficiently fine fixed regularity grid and then a sufficiently small fixed tolerance, the independent-site latent kernel satisfies _ k i \\, L_ ik ^ 2 B^ -.21 (1 i M).…",
+      "section": "A second moment for the latent rows",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-lem-moments-multiplicity",
+      "kind": "lemma",
+      "label": "Weighted representation multiplicity",
+      "statement": "[Weighted representation multiplicity] The grid and tolerance can be chosen so that, uniformly for (a,b,c) C_j and T |j| T , \\[ ^ tilt _ a,b B^ .009 . \\]",
+      "section": "A second moment for the latent rows",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-prop-channels-operators",
+      "kind": "proposition",
+      "label": "Uniform channel bounds",
+      "statement": "[Uniform channel bounds] For every fixed coarse partition, uniformly for \\(1 d B\\), \\|U_d\\| 1, \\|(1-P_ av )U_d\\| B^ -c_7 , c_7=1 200 . Moreover, for every \\(_1>0\\), one can choose \\(m_1\\) such that _…",
+      "section": "Smoothing channels on logarithmic and residue space",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-lem-channels-two-splits",
+      "kind": "lemma",
+      "label": "Independent common and exclusive products",
+      "statement": "[Independent common and exclusive products] Let \\(b_1,b_2\\) be two conditionally independent fair splits of the same site. Their joint law can be coupled, with failure probability \\(O(P_0^ -1 )\\), to…",
+      "section": "Smoothing channels on logarithmic and residue space",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-lem-channels-low-exclusive",
+      "kind": "lemma",
+      "label": "Two-sided Schur estimate for small exclusives",
+      "statement": "[Two-sided Schur estimate for small exclusives] For \\(0<1/10\\), the contribution to \\(K_d^ ind \\) from \\(_B(E_i)\\), for either \\(i=1\\) or \\(i=2\\), has operator norm \\[ (+1/R)^ 1/4 +B^ -70 +B^5/P_0,…",
+      "section": "Smoothing channels on logarithmic and residue space",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-cor-channels-features",
+      "kind": "corollary",
+      "label": "Coarse site features",
+      "statement": "[Coarse site features] For the chosen coarse partition, define \\[ V_l(S)=1 |I_l| _ split (x_b I_l S). \\] Then \\(0 V_l |I_l|^ -1 \\), and for every \\(g L^2(_B)\\) the coarse value of \\(P_ m_1 u_g\\) on…",
+      "section": "Smoothing channels on logarithmic and residue space",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-lem-kernel-cutoffs",
+      "kind": "lemma",
+      "label": "Uniform removal of cutoffs",
+      "statement": "[Uniform removal of cutoffs] Let \\(k=i+j\\) be an allowed pair with \\(j>0\\), and let \\( g, h1\\). Replacing the coefficient and remaining-site regularity restrictions in \\(\\) by no restrictions, while…",
+      "section": "Integral approximation by endpoint features",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-prop-kernel-comparison",
+      "kind": "proposition",
+      "label": "Integral comparison",
+      "statement": "[Integral comparison] For the matrix \\( M\\) in , put \\( E_ ik = L_ ik - M_ ik \\), with all three matrices zero on nonpairs. Given \\(_1>0\\), choose the coarse partition as in . Then _ g_i,h_k:_B\\\\…",
+      "section": "Integral approximation by endpoint features",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-prop-sampling-comparison",
+      "kind": "proposition",
+      "label": "Sampling the type-kernel comparison",
+      "statement": "[Sampling the type-kernel comparison] For every fixed _2>0 , \\|( E_ ik (S_i,S_k;s))\\|_ E_0+_2+o(1), uniformly for s in the fixed compact range.",
+      "section": "Sampling the integral cut comparison",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-lem-sampling-good",
+      "kind": "lemma",
+      "label": "A common degree event and uniform integrability",
+      "statement": "[A common degree event and uniform integrability] There is a fixed K>0 such that, on an event G_B of probability 1-O(B^ -0.01 )-O(B^ -0.03 ) , 1M_ i,k E_ ik ^2 B^ -0.20 , _i_k| E_ ik | K B^ 0.07 .…",
+      "section": "Sampling the integral cut comparison",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-lem-sampling-skeleton",
+      "kind": "lemma",
+      "label": "Approximation by a small set of columns",
+      "statement": "[Approximation by a small set of columns] Put m_2= M B^ -0.18 . On G_B there are a subset J'\\ 1,,M\\ of size m_2 and signs (_j)_ j J' such that, with \\[ g_i =(_ j J' E_ ij _j), R' =\\ 1,,M\\ J', \\] and…",
+      "section": "Sampling the integral cut comparison",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-lem-sampling-conditional-mean",
+      "kind": "lemma",
+      "label": "Uniform mean after fixing a column set",
+      "statement": "[Uniform mean after fixing a column set] Fix a deterministic subset J' of size m_2 and a deterministic assignment \\ -1,1\\ ^ J' . Condition on its site types S_ J' = t . For i R' , define the fixed…",
+      "section": "Sampling the integral cut comparison",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-lem-conclusion-features",
+      "kind": "lemma",
+      "label": "Approximation of the site features",
+      "statement": "[Approximation of the site features] Fix the coarse partition I=_ l=1 ^ m_1 I_l used in . For every >0 there are real polynomials \\[ p_l(t)=_ v=0 ^ d_l _ l,v t^v, 1 l m_1, \\] independent of B , such…",
+      "section": "Vanishing of the main energy",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-lem-conclusion-periodic",
+      "kind": "lemma",
+      "label": "Periodic approximation of the lag factor",
+      "statement": "[Periodic approximation of the lag factor] For a fixed prime cutoff P_12 , define on all integers j \\[ S_ P_1 (j) =_ p P_1\\ j (1-1/p)^ -1 _ p P_1\\ j (1-1 (p-1)^2 ). \\] This is a bounded nonnegative…",
+      "section": "Vanishing of the main energy",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-prop-conclusion-main-vanishes",
+      "kind": "proposition",
+      "label": "Vanishing of the main energy",
+      "statement": "[Vanishing of the main energy] With C_* , , C_6 , and the coarse partition fixed as above, \\[ _ B \\ _ x | Q^ main _ B,x |=0. \\]",
+      "section": "Vanishing of the main energy",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    },
+    {
+      "id": "m1-lem-distribution-dickman",
+      "kind": "lemma",
+      "label": "Dickman marginal",
+      "statement": "[Dickman marginal] For every fixed c(0,1) , _ x 1x \\#\\ 1 m x:(m) x^c\\ =(1/c). The limit is through all real x .",
+      "section": "Marginals, the joint law, and the ordering corollary",
+      "manuscript": "The joint Dickman law for consecutive integers"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-labels-short",
+      "to": "m1-lem-labels-character-distance"
+    },
+    {
+      "from": "m1-thm-labels-real-mr",
+      "to": "m1-lem-labels-character-distance"
+    },
+    {
+      "from": "m1-lem-labels-marginal",
+      "to": "m1-lem-labels-character-distance"
+    },
+    {
+      "from": "m1-thm-labels-complex-mrt",
+      "to": "m1-lem-labels-character-distance"
+    },
+    {
+      "from": "m1-lem-arith-classical-sd",
+      "to": "m1-lem-arith-rough-sd"
+    },
+    {
+      "from": "m1-lem-arith-rough-sd",
+      "to": "m1-prop-arith-local-laws"
+    },
+    {
+      "from": "m1-lem-arith-weighted-sieve",
+      "to": "m1-lem-arith-coefficient-moments"
+    },
+    {
+      "from": "m1-lem-arith-weighted-sieve",
+      "to": "m1-lem-arith-form-bounds"
+    },
+    {
+      "from": "m1-lem-arith-coefficient-moments",
+      "to": "m1-lem-arith-regularity-loss"
+    },
+    {
+      "from": "m1-lem-arith-form-bounds",
+      "to": "m1-lem-arith-regularity-loss"
+    },
+    {
+      "from": "m1-lem-amp-divisor-moments",
+      "to": "m1-lem-amp-small-ball"
+    },
+    {
+      "from": "m1-lem-amp-site-model",
+      "to": "m1-lem-amp-small-ball"
+    },
+    {
+      "from": "m1-lem-amp-divisor-moments",
+      "to": "m1-prop-amp-energy"
+    },
+    {
+      "from": "m1-lem-graph-row-mean",
+      "to": "m1-prop-graph-root-comparison"
+    },
+    {
+      "from": "m1-prop-moments-rows",
+      "to": "m1-lem-moments-multiplicity"
+    },
+    {
+      "from": "m1-prop-sampling-comparison",
+      "to": "m1-lem-sampling-conditional-mean"
+    },
+    {
+      "from": "m1-lem-sampling-good",
+      "to": "m1-lem-sampling-conditional-mean"
+    },
+    {
+      "from": "m1-lem-sampling-skeleton",
+      "to": "m1-lem-sampling-conditional-mean"
+    },
+    {
+      "from": "m1-lem-conclusion-features",
+      "to": "m1-prop-conclusion-main-vanishes"
+    },
+    {
+      "from": "m1-lem-conclusion-periodic",
+      "to": "m1-prop-conclusion-main-vanishes"
+    },
+    {
+      "from": "m1-lem-labels-short",
+      "to": "m1-prop-conclusion-main-vanishes"
+    },
+    {
+      "from": "m1-prop-mixed",
+      "to": "m1-prop-conclusion-main-vanishes"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-lem-distribution-dickman"
+    },
+    {
+      "from": "m1-cor-comparison",
+      "to": "m1-lem-distribution-dickman"
+    }
+  ]
+}

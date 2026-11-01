@@ -1,0 +1,115 @@
+{
+  "familyNumber": "294",
+  "familyTitle": "Kaplansky's quasitrace conjecture and failure of tensor-product stable finiteness",
+  "manuscripts": [
+    {
+      "id": "A-counterexample-to-Kaplanskys-quasitrace-conjecture-September-23-2026",
+      "title": "A counterexample to Kaplansky's quasitrace conjecture and failure of tensor-product stable finiteness",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-counterexample-to-Kaplanskys-quasitrace-conjecture-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Quasitraces and proper infiniteness",
+    "Two bundle-map lemmas",
+    "Bundle tests of bounded degree",
+    "The algebra and a uniform additivity defect"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "There exist a separable unital complex \\(C^*\\)-algebra \\(A\\), admitting a…",
+      "statement": "There exist a separable unital complex \\(C^*\\)-algebra \\(A\\), admitting a normalized \\(2\\)-quasitrace, and positive contractions \\(a,b A\\) such that every normalized \\(2\\)-quasitrace \\(\\) on \\(A\\)…",
+      "section": "Introduction",
+      "manuscript": "A counterexample to Kaplansky's quasitrace conjecture and failure of tensor-product stable finiteness"
+    },
+    {
+      "id": "m1-cor-stable-finiteness",
+      "kind": "corollary",
+      "label": "Tensor products and stable finiteness",
+      "statement": "[Tensor products and stable finiteness] [label=( *)] There are two unital simple stably finite complex \\(C^*\\)-algebras whose minimal tensor product is properly infinite. One factor can be taken to…",
+      "section": "Introduction",
+      "manuscript": "A counterexample to Kaplansky's quasitrace conjecture and failure of tensor-product stable finiteness"
+    },
+    {
+      "id": "m1-thm-existence",
+      "kind": "theorem",
+      "label": "Quasitrace existence",
+      "statement": "[Quasitrace existence] A unital \\(C^*\\)-algebra \\(C\\) admits a normalized \\(2\\)-quasitrace if and only if \\(M_m(C)\\) is not properly infinite for every positive integer \\(m\\).",
+      "section": "Quasitraces and proper infiniteness",
+      "manuscript": "A counterexample to Kaplansky's quasitrace conjecture and failure of tensor-product stable finiteness"
+    },
+    {
+      "id": "m1-lem-incidence",
+      "kind": "lemma",
+      "label": "Avoiding small collective images",
+      "statement": "[Avoiding small collective images] Let E,F be smooth Hermitian complex vector bundles of ranks d,r over a compact smooth manifold Y of real dimension 2h , and let q1 . Let A be a finite set of…",
+      "section": "Two bundle-map lemmas",
+      "manuscript": "A counterexample to Kaplansky's quasitrace conjecture and failure of tensor-product stable finiteness"
+    },
+    {
+      "id": "m1-lem-scaling",
+      "kind": "lemma",
+      "label": "Continuous normalization",
+      "statement": "[Continuous normalization] Let E,F be Hermitian complex vector bundles of positive ranks over a compact manifold Y . Suppose that continuous bundle maps T_1,,T_n:E F satisfy _ C _ i=1 ^n T_i(y)S 2_ C…",
+      "section": "Two bundle-map lemmas",
+      "manuscript": "A counterexample to Kaplansky's quasitrace conjecture and failure of tensor-product stable finiteness"
+    },
+    {
+      "id": "m1-prop-bundle-test",
+      "kind": "proposition",
+      "label": "For every pair of integers m,R 1 , set d_0=64m4^R, d_j=4^j d_0(0 j R). There…",
+      "statement": "For every pair of integers m,R 1 , set d_0=64m4^R, d_j=4^j d_0(0 j R). There are a compact smooth manifold Y , Hermitian complex vector bundles E_j Y for all j0 , and continuous bundle maps X_i^ (j)…",
+      "section": "Bundle tests of bounded degree",
+      "manuscript": "A counterexample to Kaplansky's quasitrace conjecture and failure of tensor-product stable finiteness"
+    },
+    {
+      "id": "m1-thm-construction",
+      "kind": "theorem",
+      "label": "There is a separable unital complex C^* -algebra B=C^*(1,x_1,,x_ 24 ) such that…",
+      "statement": "There is a separable unital complex C^* -algebra B=C^*(1,x_1,,x_ 24 ) such that _ i=1 ^ 24 x_i^*x_i=1, _ i=1 ^ 24 x_ix_i^*23\\,1, and M_m(B) is not properly infinite for every integer m1 .",
+      "section": "The algebra and a uniform additivity defect",
+      "manuscript": "A counterexample to Kaplansky's quasitrace conjecture and failure of tensor-product stable finiteness"
+    },
+    {
+      "id": "m1-lem-defect",
+      "kind": "lemma",
+      "label": "Let B be a unital complex C^* -algebra, let N1 , and suppose x_1,,x_N B satisfy…",
+      "statement": "Let B be a unital complex C^* -algebra, let N1 , and suppose x_1,,x_N B satisfy \\[ _ i=1 ^N x_i^*x_i=1, _ i=1 ^N x_ix_i^* c1 for some 0 c<1. \\] There are positive contractions a,b M_ 2N (B) ,…",
+      "section": "The algebra and a uniform additivity defect",
+      "manuscript": "A counterexample to Kaplansky's quasitrace conjecture and failure of tensor-product stable finiteness"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-incidence",
+      "to": "m1-prop-bundle-test"
+    },
+    {
+      "from": "m1-lem-scaling",
+      "to": "m1-prop-bundle-test"
+    },
+    {
+      "from": "m1-prop-bundle-test",
+      "to": "m1-thm-construction"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-lem-defect"
+    },
+    {
+      "from": "m1-thm-construction",
+      "to": "m1-lem-defect"
+    },
+    {
+      "from": "m1-thm-existence",
+      "to": "m1-lem-defect"
+    },
+    {
+      "from": "m1-cor-stable-finiteness",
+      "to": "m1-lem-defect"
+    }
+  ]
+}

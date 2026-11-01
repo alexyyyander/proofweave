@@ -1,0 +1,997 @@
+{
+  "familyNumber": "136",
+  "familyTitle": "A quasilinear PCP theorem for PPAD",
+  "manuscripts": [
+    {
+      "id": "The-PCP-for-PPAD-conjecture-a-quasilinear-reduction-September-25-2026",
+      "title": "The PCP-for-PPAD conjecture: a quasilinear reduction",
+      "date": "2026-09-25",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-PCP-for-PPAD-conjecture-a-quasilinear-reduction-September-25-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction and the exact search relation",
+    "A sparse macrograph for End-of-Line",
+    "Outer index groups and systematic square codes",
+    "Certified programs and persistent tape equations",
+    "A locally evolving outer representation",
+    "Binary composition and the robust outer circuit",
+    "The inner path and its algebraic representation",
+    "Binary testing and average correction at a fixed radius",
+    "The fixed port and its robust decision gadget",
+    "Encoded paths and finite local displacement procedures",
+    "Consequences for games and markets"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Quasilinear PCP for PPAD",
+      "statement": "[Quasilinear PCP for PPAD] There are fixed rational constants \\[ 0<<1 10 , 0<<1, \\] a fixed positive integer A , a fixed nonnegative integer b , a fixed polynomial p with nonnegative integer…",
+      "section": "Introduction and the exact search relation",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-macro-prefix-uniqueness",
+      "kind": "lemma",
+      "label": "Unique prefixes and their first obstruction",
+      "statement": "[Unique prefixes and their first obstruction] For a fixed y , the valid forward prefixes exist uniquely for an initial interval of lengths 0 k k_ f (y) and equal pref_ _ f ,k (U_y) . The valid…",
+      "section": "A sparse macrograph for End-of-Line",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-macro-boundaries",
+      "kind": "lemma",
+      "label": "Boundary agreement",
+      "statement": "[Boundary agreement] The two validity descriptions agree at each of h,2h,3h , and 4h=0 .",
+      "section": "A sparse macrograph for End-of-Line",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-macro-local-edges",
+      "kind": "lemma",
+      "label": "Reciprocity and local existence tests",
+      "statement": "[Reciprocity and local existence tests] Whenever b V_c and b' V_ c+1 , b'=F_c(b) b=R_c(b'). For a valid input to either proposal, validity of its output is determined by a bounded number of bits at…",
+      "section": "A sparse macrograph for End-of-Line",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-lem-macrograph",
+      "kind": "lemma",
+      "label": "Macrograph interface",
+      "statement": "[Macrograph interface] From every promised End-of-Line instance of explicit length N , one can deterministically construct, in time polynomial in N , the above tape specification with h=2^=O(N) , the…",
+      "section": "A sparse macrograph for End-of-Line",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-oc-expansion",
+      "kind": "lemma",
+      "label": "Uniform expansion",
+      "statement": "[Uniform expansion] For every fixed 0<<1 , the groups in admit symmetric labelled Cayley multisets of a fixed degree whose averaging operator has norm at most on mean-zero functions. The same…",
+      "section": "Outer index groups and systematic square codes",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-oc-local-agreement",
+      "kind": "lemma",
+      "label": "Local distance and tensor agreement",
+      "statement": "[Local distance and tensor agreement] Set _1=_0(_0-_0)>0. Every nonzero word of any of the four local codes, over any finite-dimensional J -space U , has at least _1d nonzero coordinates. There is a…",
+      "section": "Outer index groups and systematic square codes",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-oc-systematic",
+      "kind": "lemma",
+      "label": "Simultaneous systematic encoders",
+      "statement": "[Simultaneous systematic encoders] One can choose the eight scalar check matrices over J so that all their maximal minors are nonzero and every A and B one-axis system of the thirteen types above is…",
+      "section": "Outer index groups and systematic square codes",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-oc-full-proximity",
+      "kind": "lemma",
+      "label": "Full-code proximity",
+      "statement": "[Full-code proximity] There are fixed _*>0 and K_*< such that the following holds for every finite tuple of allowed full types and every received word. Check local validity and all A and B agreements…",
+      "section": "Outer index groups and systematic square codes",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-oc-one-axis",
+      "kind": "lemma",
+      "label": "One-axis distance and exact comparisons",
+      "statement": "[One-axis distance and exact comparisons] Let _A=(_1-)/4>0 . Every nonzero A-only or B-only word with the specified local constraints and invertible twists has relative vertex support at least _A on…",
+      "section": "Outer index groups and systematic square codes",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-oc-near-code",
+      "kind": "lemma",
+      "label": "One-axis near-code estimate",
+      "statement": "[One-axis near-code estimate] Let W and V_0 be locally A-valid joint tuples on V , and suppose V_0 has exact A agreement with the same twists as W . Let p=_V(W,V_0) and let z_A be the A-edge conflict…",
+      "section": "Outer index groups and systematic square codes",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-thm-outer-codes",
+      "kind": "theorem",
+      "label": "Outer-code interface",
+      "statement": "[Outer-code interface] There exist fixed constants d , _1>0 , C_0< , >0 , _ out >0 , and K_ out < , with \\ (8C_0)^ -1 ,_1/16\\ , having the following uniform properties for every input length N and…",
+      "section": "Outer index groups and systematic square codes",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-lem-outer-uncertainty",
+      "kind": "lemma",
+      "label": "Outer uncertainty shrinkage",
+      "statement": "[Outer uncertainty shrinkage] Fix the data in Theorem~ , and any finite tuple of full or A-only slots with their allowed A twists. Optionally include a control tuple constant over and canonical…",
+      "section": "Outer index groups and systematic square codes",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-op-scalar-programs",
+      "kind": "lemma",
+      "label": "Scalar program library",
+      "statement": "[Scalar program library] On scalar tables indexed by x F_2^r , the full operations above give homogeneous linear programs of (r) stages for: bit-conjunction and interval masks; controlled bit flips…",
+      "section": "Certified programs and persistent tape equations",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-op-scratch-restoration",
+      "kind": "lemma",
+      "label": "Simultaneous scratch restoration",
+      "statement": "[Simultaneous scratch restoration] Suppose all scratch recurrences at a legal repeated clock are triangular and their references, on arbitrary exact duplicated full parents, satisfy their assigned A…",
+      "section": "Certified programs and persistent tape equations",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-lem-outer-fill",
+      "kind": "lemma",
+      "label": "Local reversible filling",
+      "statement": "[Local reversible filling] For every full operation in Definition~ , there is a canonical reversible schedule from zero target and zero temporary scratch to its required full target and zero…",
+      "section": "Certified programs and persistent tape equations",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-lem-outer-wiring",
+      "kind": "lemma",
+      "label": "Persistent wiring and certification",
+      "statement": "[Persistent wiring and certification] There are (r) persistent full slots P(b) , with polynomial canonical payload formulas in b J^ 4h , and packed local tests using , with the following properties.…",
+      "section": "Certified programs and persistent tape equations",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-oe-derivative-closure",
+      "kind": "lemma",
+      "label": "Closure under finite differences",
+      "statement": "[Closure under finite differences] For every positive-degree persistent full slot D and every , one can allocate a finite certified full program whose output, in the same encoder type as D , is the…",
+      "section": "A locally evolving outer representation",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-oe-preparation",
+      "kind": "lemma",
+      "label": "Preparation and local evolution",
+      "statement": "[Preparation and local evolution] There is an integer J_ 1 and a canonical preparation indexed by j=0,,J_ with the following properties. [label=( *)] At j=0 all frame-dependent full and A-only…",
+      "section": "A locally evolving outer representation",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-oe-valid-testing",
+      "kind": "lemma",
+      "label": "Soundness of the valid-word tester",
+      "statement": "[Soundness of the valid-word tester] There are fixed constants C_ rep < and g_ rep >0 such that, if rej(W)<g_ rep , some valid extended label v satisfies \\[ (W,R_v) C_ rep rej(W). \\] The tester has…",
+      "section": "A locally evolving outer representation",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-thm-outer-representation",
+      "kind": "theorem",
+      "label": "Outer representation interface",
+      "statement": "[Outer representation interface] There are fixed positive constants _ raw ,_ raw , fixed integers C_L,c_ raw , and uniform deterministic algorithms with the following properties for every End-of-Line…",
+      "section": "A locally evolving outer representation",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-thm-port-gadget",
+      "kind": "theorem",
+      "label": "Standardized ports and robust decisions",
+      "statement": "[Standardized ports and robust decisions] For every fixed positive integer exponent allowance c_ allow , there are a cutoff L_ port and a uniform family of injective binary encodings, for L L_ port ,…",
+      "section": "Binary composition and the robust outer circuit",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-out-flags",
+      "kind": "lemma",
+      "label": "Protecting functional inputs",
+      "statement": "[Protecting functional inputs] There are constants 0<a_1<a_2<_B , fixed before the arity of any functional invocation, with the following property. A bounded Boolean flag routine on an arbitrary…",
+      "section": "Binary composition and the robust outer circuit",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-out-validation",
+      "kind": "lemma",
+      "label": "Binary validation",
+      "statement": "[Binary validation] There are fixed 0<_ comp <_ acc , with _ acc smaller than the uniqueness radius of , and a finite ideal Boolean validation procedure such that, with arbitrarily high fixed…",
+      "section": "Binary composition and the robust outer circuit",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-out-average-correction",
+      "kind": "lemma",
+      "label": "Average correction of every relevant word role",
+      "statement": "[Average correction of every relevant word role] After fixing the high-level mesh and statistical call counts, boundedly many raw correction rounds suffice to supply every required incident flag and…",
+      "section": "Binary composition and the robust outer circuit",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-out-walk",
+      "kind": "lemma",
+      "label": "Averaged expander sampling",
+      "statement": "[Averaged expander sampling] The statistics needed above can be sampled with polynomial-in- L random support per output coordinate, with any desired fixed confidence in the average over output…",
+      "section": "Binary composition and the robust outer circuit",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-out-tapes",
+      "kind": "lemma",
+      "label": "Rational tapes and their read loads",
+      "statement": "[Rational tapes and their read loads] The true tape law can be replaced deterministically, at each output coordinate, by a list of a common square length T_ tap =(L) , with total variation at most…",
+      "section": "Binary composition and the robust outer circuit",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-out-routing",
+      "kind": "lemma",
+      "label": "Bounded physical read multiplicity",
+      "statement": "[Bounded physical read multiplicity] Every physical replica can be made the input of at most a fixed number of comparison occurrences, counting all outer and inner hypothetical branches. The…",
+      "section": "Binary composition and the robust outer circuit",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-out-direct-cone",
+      "kind": "lemma",
+      "label": "Coarse and fine direct-cone bounds",
+      "statement": "[Coarse and fine direct-cone bounds] There is a fixed C_ ar , determined by the finite direct-cone shape before is filled in, such that every entirely -satisfied direct cone obeys |X_ ir -(A_ rep X)_…",
+      "section": "Binary composition and the robust outer circuit",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-out-charges",
+      "kind": "lemma",
+      "label": "Deterministic charges for arbitrary assignments",
+      "statement": "[Deterministic charges for arbitrary assignments] There are fixed counting constants with the following properties. For an assignment with at most |T| failed gates: [label=( *)] At most a C_ tot…",
+      "section": "Binary composition and the robust outer circuit",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-out-coarse-sync",
+      "kind": "lemma",
+      "label": "Coarse synchronization",
+      "statement": "[Coarse synchronization] Every assignment satisfying all but |T| gates has X- X_ rep <d_ sync , without any assumption that its functional decisions are correct.",
+      "section": "Binary composition and the robust outer circuit",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-out-fine-residual",
+      "kind": "lemma",
+      "label": "Fine residual",
+      "statement": "[Fine residual] If an assignment meets the gate-failure budget and ( X, E)>10 , then E_ res := X-_ B (A_ rep X+ v( X)) _ rep < c_*/2. Here clipping is componentwise on the replicas, and v( X) is…",
+      "section": "Binary composition and the robust outer circuit",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-out-clip-mean",
+      "kind": "lemma",
+      "label": "Clipping and replica means",
+      "statement": "[Clipping and replica means] Let A be a stochastic replica operator satisfying , and let c be constant across the replicas of each component. Put F=_ B (AX+c) and E=X-F_ rep . Then \\[ X-JX_ rep E/,…",
+      "section": "Binary composition and the robust outer circuit",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-out-totality",
+      "kind": "lemma",
+      "label": "A fixed rational mesh satisfies every gate",
+      "statement": "[A fixed rational mesh satisfies every gate] For every fixed rational 0<<1/10 , every generalized circuit in Definition~ has a rational assignment satisfying all its gates, each coordinate having…",
+      "section": "Binary composition and the robust outer circuit",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-ia-validity",
+      "kind": "lemma",
+      "label": "Validity and a constant edit alphabet",
+      "statement": "[Validity and a constant edit alphabet] The union of the stage-valid tapes is described by polynomially many Boolean equations of degree at most d=3 . For fixed k , every macro step and its inverse…",
+      "section": "The inner path and its algebraic representation",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-ia-path-endpoints",
+      "kind": "lemma",
+      "label": "Endpoints and output",
+      "statement": "[Endpoints and output] For each s , the extended labels with that read-only tuple form a single directed path, without isolated vertices or self edges. Its unique source and immediate successor are…",
+      "section": "The inner path and its algebraic representation",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-ia-cyclic-lift",
+      "kind": "lemma",
+      "label": "Cyclic lift, including descent at zero",
+      "statement": "[Cyclic lift, including descent at zero] For 0 j<M , write j=_ t=0 ^ -1 j_t h^t and define j=_ b=0 ^ -1 j_ vb q^b. Replacing Z^j by Z^ j in interpolation on C gives a linear extension to K , of…",
+      "section": "The inner path and its algebraic representation",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-ia-linear-tool",
+      "kind": "lemma",
+      "label": "Smooth linear verification",
+      "statement": "[Smooth linear verification] Let a fixed finite list of primary native charts, each scalar or with one O() slot axis, be subject to an explicit F_q -linear condition S on their full evaluation…",
+      "section": "The inner path and its algebraic representation",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-ia-clock-formula",
+      "kind": "lemma",
+      "label": "Clock-indexed linear formulas",
+      "statement": "[Clock-indexed linear formulas] Suppose for each y C that L_y is an explicitly given F_q -linear map from selected monomial evaluation arrays of logical degree at most k_0 to the full native array of…",
+      "section": "The inner path and its algebraic representation",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-ia-derivative-closure",
+      "kind": "lemma",
+      "label": "Derivative closure for all persistent families",
+      "statement": "[Derivative closure for all persistent families] The persistent system can be closed under every required fixed-frame Boolean edit, including edits to verification auxiliaries, with a fixed number of…",
+      "section": "The inner path and its algebraic representation",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-ia-port-ancestry",
+      "kind": "lemma",
+      "label": "Literal positive-port ancestry",
+      "statement": "[Literal positive-port ancestry] There are deterministic local call and ancestry conventions such that the entire tag- i construction in an actual k -port graph is identical, after renaming s_i to s…",
+      "section": "The inner path and its algebraic representation",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-ia-placements",
+      "kind": "lemma",
+      "label": "A common dimension and inherited full labels",
+      "statement": "[A common dimension and inherited full labels] The common point domain K^u and all per-chart dimension bounds can be fixed before k . Persistent charts can be placed in it so that every derivative…",
+      "section": "The inner path and its algebraic representation",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-ia-projection",
+      "kind": "lemma",
+      "label": "Projection by full-label dilations",
+      "statement": "[Projection by full-label dilations] If the coordinate degree in label is below q-1 , then _ r=0 ^ q-2 D_^r F =F|_ Z_=1 , where the right side ignores that label. Dilations on distinct full labels…",
+      "section": "The inner path and its algebraic representation",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-ia-stacks",
+      "kind": "lemma",
+      "label": "Canonical stacks and bounded radix probes",
+      "statement": "[Canonical stacks and bounded radix probes] For a legal marker, the stacks are uniquely characterized by a fixed number of types of bounded-probe polynomial identities. These tests are perfectly…",
+      "section": "The inner path and its algebraic representation",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-ia-exact-validator",
+      "kind": "lemma",
+      "label": "Exact algebraic validity",
+      "statement": "[Exact algebraic validity] For each fixed k there is a fixed finite mixture of bounded-probe tests with perfect completeness on canonical extended labels and a uniform constant gap on genuine…",
+      "section": "The inner path and its algebraic representation",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-ia-evolution",
+      "kind": "lemma",
+      "label": "All neighbor coordinates evolve by bounded affine pulls",
+      "statement": "[All neighbor coordinates evolve by bounded affine pulls] For canonical valid data, edge existence and the transition branch in either direction are determined using only mode, empty/full marker…",
+      "section": "The inner path and its algebraic representation",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-ia-source-data",
+      "kind": "lemma",
+      "label": "Source data, original indices, and Boolean degree",
+      "statement": "[Source data, original indices, and Boolean degree] At each of the two labels in , every tag- 0 chart and stack is publicly computable. Every tag- i chart and stack has exactly the value of its…",
+      "section": "The inner path and its algebraic representation",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-lem-inner-algebra-interface",
+      "kind": "lemma",
+      "label": "Inner algebra interface",
+      "statement": "[Inner algebra interface] Fix c_ allow . The field and grid parameters -- , the common domain K^u , and the one-port positive family templates can be chosen before the port count and the function.…",
+      "section": "The inner path and its algebraic representation",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-ib-affine-expansion",
+      "kind": "lemma",
+      "label": "Uniform affine-group expansion",
+      "statement": "[Uniform affine-group expansion] There is a fixed symmetric labelled multiset \\(u_1,,u_ d_e \\) in each \\( H\\), with \\(d_e8\\), whose averaging operator has norm at most \\(1/64\\) on mean-zero…",
+      "section": "Binary testing and average correction at a fixed radius",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-ib-row-extension",
+      "kind": "lemma",
+      "label": "Systematic row extension",
+      "statement": "[Systematic row extension] There is a polynomial-size extension field \\(J/_q\\) and two \\(c_e\\)-by-\\(d_e\\) matrices \\(H_L,H_R\\) over \\(J\\) whose every \\(c_e\\)-column minor is nonzero, such that the…",
+      "section": "Binary testing and average correction at a fixed radius",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-ib-vector-ld",
+      "kind": "lemma",
+      "label": "Vector and deleted-domain low-degree replacement",
+      "statement": "[Vector and deleted-domain low-degree replacement] Let \\(V\\) be any finite-dimensional \\(_q\\)-space. In the preceding field regime, line--point disagreement tending to zero for \\(V\\)-valued point…",
+      "section": "Binary testing and average correction at a fixed radius",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-ib-axis-replacement",
+      "kind": "lemma",
+      "label": "Axis replacement",
+      "statement": "[Axis replacement] For elementary binary vector groups, the addition test has a dimension-independent high-agreement replacement by an additive map, also with a vector-group alphabet. For…",
+      "section": "Binary testing and average correction at a fixed radius",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-ib-tester",
+      "kind": "proposition",
+      "label": "Smooth tester and distance",
+      "statement": "[Smooth tester and distance] For each fixed template, the canonical encodings of valid extended labels have constant relative distance. They admit a perfectly complete bounded-bit tester with the…",
+      "section": "Binary testing and average correction at a fixed radius",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-ib-one-axis-support",
+      "kind": "lemma",
+      "label": "One-axis support contraction",
+      "statement": "[One-axis support contraction] For the row code above, set \\[ t_* = c_e/2+1, =t_*/d_e1/8, _*=1/256. \\] Starting with an uncertain edge set of density \\(_*\\), a constant number of alternating local…",
+      "section": "Binary testing and average correction at a fixed radius",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-ib-two-axis-support",
+      "kind": "lemma",
+      "label": "Two-axis support contraction and cone consistency",
+      "statement": "[Two-axis support contraction and cone consistency] Consider an array on two edge axes whose reference obeys the row code in each slice, with possibly different \\(J\\)-space structures on the same…",
+      "section": "Binary testing and average correction at a fixed radius",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-ib-inner-table-prediction",
+      "kind": "lemma",
+      "label": "Inner-table flags and arbitrary-form prediction",
+      "statement": "[Inner-table flags and arbitrary-form prediction] There are constants \\(0<_1<_2<1/64\\), independent of the number of row rounds, with the following properties. For a table of bits, including its…",
+      "section": "Binary testing and average correction at a fixed radius",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-ib-bit-simulation",
+      "kind": "lemma",
+      "label": "Consistent bit simulation",
+      "statement": "[Consistent bit simulation] Fix a finite cone of one- or two-axis row decoding, a reference satisfying the corresponding row constraints, and a requested bit of the output symbol. For analysis,…",
+      "section": "Binary testing and average correction at a fixed radius",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-ib-average-correction",
+      "kind": "proposition",
+      "label": "Average correction from one fixed radius",
+      "statement": "[Average correction from one fixed radius] For every fixed template there is \\(>0\\) such that the following holds for all sufficiently large sizes. Let a received balanced word \\(w\\) satisfy \\((w,…",
+      "section": "Binary testing and average correction at a fixed radius",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-ib-all-branch-density",
+      "kind": "lemma",
+      "label": "All hypothetical read slots are smooth",
+      "statement": "[All hypothetical read slots are smooth] For the tester, the corrector of Proposition~ , and the finite linear compositions used below, use their stated bounded outer-index request laws, with joint…",
+      "section": "Binary testing and average correction at a fixed radius",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-ib-neighbors",
+      "kind": "proposition",
+      "label": "Local flags and encoded neighbors",
+      "statement": "[Local flags and encoded neighbors] Within a sufficiently small fixed radius of a valid canonical word, one can decide its incident-edge flags with arbitrarily high fixed reliability, and supply its…",
+      "section": "Binary testing and average correction at a fixed radius",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-ib-global-recovery",
+      "kind": "proposition",
+      "label": "Deterministic global read-port recovery",
+      "statement": "[Deterministic global read-port recovery] At a sufficiently small fixed balanced distance from a canonical word, every order-one logical read port can be recovered exactly in deterministic polynomial…",
+      "section": "Binary testing and average correction at a fixed radius",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-lem-inner-binary-interface",
+      "kind": "lemma",
+      "label": "Inner binary interface",
+      "statement": "[Inner binary interface] For the inner algebraic families of Lemma~ , there is a deterministic polynomial-time binary encoding with the following properties, uniform over the circuits in each fixed…",
+      "section": "Binary testing and average correction at a fixed radius",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-prop-dummy-port",
+      "kind": "proposition",
+      "label": "Fixed dummy port",
+      "statement": "[Fixed dummy port] The map in~ has polynomial length, constant relative Hamming distance d_ D >0 , and the following properties. [label=( *)] Every output bit is a multilinear polynomial in s over _2…",
+      "section": "The fixed port and its robust decision gadget",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-ig-virtual-source",
+      "kind": "lemma",
+      "label": "Source correspondence and virtual access",
+      "statement": "[Source correspondence and virtual access] For either w_*(s) or w_*^+(s) , every tag- i point or line Y operand agrees with its dummy counterpart for s_i at the same original indices, after renaming…",
+      "section": "The fixed port and its robust decision gadget",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-ig-validation",
+      "kind": "lemma",
+      "label": "Validation at the fixed external tuple",
+      "statement": "[Validation at the fixed external tuple] There are fixed _ in ,_ in,comp >0 and bounded-read validation routines for an internal binary seed z\\ 0,1\\ ^m such that, with arbitrarily small prescribed…",
+      "section": "The fixed port and its robust decision gadget",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-thm-geometry",
+      "kind": "theorem",
+      "label": "Encoded-path geometry",
+      "statement": "[Encoded-path geometry] Under these hypotheses, there is a union L B of directed, rounded paths and cycles, with desired endpoint set E , having the following properties. For every sufficiently small…",
+      "section": "Encoded paths and finite local displacement procedures",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-geo-separation",
+      "kind": "lemma",
+      "label": "Separation of original segments",
+      "statement": "[Separation of original segments] There is d_ sep >0 , depending only on d_* , such that distinct nonconsecutive original segments are at distance at least d_ sep . Their adjacency graph, with…",
+      "section": "Encoded paths and finite local displacement procedures",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-geo-projection",
+      "kind": "lemma",
+      "label": "Local chains and strong excess",
+      "statement": "[Local chains and strong excess] There is _ loc >0 , depending only on d_*,a_0 , such that two points Z,Z' L with Z-Z'<_ loc are joined along one local straight or single-corner chain. Its length…",
+      "section": "Encoded paths and finite local displacement procedures",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-geo-interface",
+      "kind": "lemma",
+      "label": "Agreement at the mean interface",
+      "statement": "[Agreement at the mean interface] In 2/5<<3/5 , the inside prescription extended to this slab equals (X;Z_,- e) . The outside extension, using h_=\\ 0,\\ 1,2(-1/2)\\ \\ , differs from it in norm by at…",
+      "section": "Encoded paths and finite local displacement procedures",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-lem-geometric-procedures",
+      "kind": "lemma",
+      "label": "Geometric procedures",
+      "statement": "[Geometric procedures] Fix the geometric constants of Theorem~ and an oracle access implementation satisfying parts (a)--(c) and the operational condition of Definition~ . For every fixed a>0 there…",
+      "section": "Encoded paths and finite local displacement procedures",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-geo-coverage",
+      "kind": "lemma",
+      "label": "Two-seed coverage",
+      "statement": "[Two-seed coverage] Every non-special piece has either its first or its second block fixed to an encoding of a vertex whose seed generates it. Consequently, on the strong-completeness and flag good…",
+      "section": "Encoded paths and finite local displacement procedures",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-geo-stability",
+      "kind": "lemma",
+      "label": "Uniform component stability",
+      "statement": "[Uniform component stability] Fix a positive desired component error e . Mesh resolution, quantization width, scalar tolerances, and precision of public constants can be chosen so that, whenever all…",
+      "section": "Encoded paths and finite local displacement procedures",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-lem-application-circuits",
+      "kind": "lemma",
+      "label": "Common circuit interfaces",
+      "statement": "[Common circuit interfaces] There are fixed positive rational constants ,,,_2 and deterministic polynomial-time constructions which, from any End-of-Line instance I , produce circuits G_ nb and G_2…",
+      "section": "Consequences for games and markets",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-cor-weak-nash",
+      "kind": "corollary",
+      "label": "Fixed-gap weak approximate Nash hardness",
+      "statement": "[Fixed-gap weak approximate Nash hardness] There are fixed positive rational constants _ w ,_ w and a fixed polynomial p_ w for which the following search problem is PPAD-hard under deterministic…",
+      "section": "Consequences for games and markets",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-cor-relative-nash",
+      "kind": "corollary",
+      "label": "Relative approximate Nash hardness",
+      "statement": "[Relative approximate Nash hardness] There are a fixed rational 0<_ r <1 and a fixed polynomial p_ r such that the following search problem is PPAD-complete under deterministic polynomial-time…",
+      "section": "Consequences for games and markets",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-cor-course-allocation",
+      "kind": "corollary",
+      "label": "Low-Gini course-allocation hardness",
+      "statement": "[Low-Gini course-allocation hardness] There are a fixed rational 0<_ c <1/2 and a fixed polynomial p_ c such that the following search problem is PPAD-complete under deterministic polynomial-time…",
+      "section": "Consequences for games and markets",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-lem-application-pure-circuit",
+      "kind": "lemma",
+      "label": "The input-once Pure-Circuit interface",
+      "statement": "[The input-once Pure-Circuit interface] There are a fixed positive rational _F and a deterministic polynomial-time reduction from End-of-Line to NAND/PURIFY circuits of the form just defined. Every…",
+      "section": "Consequences for games and markets",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-cor-market-hardness",
+      "kind": "corollary",
+      "label": "Approximate market equilibrium hardness",
+      "statement": "[Approximate market equilibrium hardness] For every fixed 0<_ m <1/9 , there is a fixed rational 0<_ m <1 such that finding an (_ m ,_ m ) -approximate equilibrium in the simple Fisher markets above…",
+      "section": "Consequences for games and markets",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-cor-stationary-game-hardness",
+      "kind": "corollary",
+      "label": "Stationary stochastic-game hardness",
+      "statement": "[Stationary stochastic-game hardness] For some fixed rational _ s >0 , finding an _ s -stationary Markov CCE is PPAD-hard under deterministic polynomial-time many-one search reductions, even for…",
+      "section": "Consequences for games and markets",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    },
+    {
+      "id": "m1-cor-triangle-stationary-hardness",
+      "kind": "corollary",
+      "label": "Triangular zero-sum stationary-game hardness",
+      "statement": "[Triangular zero-sum stationary-game hardness] For some fixed rational _ >0 , finding an _ -stationary Markov CCE is PPAD-hard under deterministic polynomial-time many-one search reductions even for…",
+      "section": "Consequences for games and markets",
+      "manuscript": "The PCP-for-PPAD conjecture: a quasilinear reduction"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-macro-prefix-uniqueness",
+      "to": "m1-lem-macrograph"
+    },
+    {
+      "from": "m1-macro-local-edges",
+      "to": "m1-lem-macrograph"
+    },
+    {
+      "from": "m1-oc-local-agreement",
+      "to": "m1-oc-full-proximity"
+    },
+    {
+      "from": "m1-oc-expansion",
+      "to": "m1-thm-outer-codes"
+    },
+    {
+      "from": "m1-oc-systematic",
+      "to": "m1-thm-outer-codes"
+    },
+    {
+      "from": "m1-oc-local-agreement",
+      "to": "m1-thm-outer-codes"
+    },
+    {
+      "from": "m1-oc-full-proximity",
+      "to": "m1-thm-outer-codes"
+    },
+    {
+      "from": "m1-oc-one-axis",
+      "to": "m1-thm-outer-codes"
+    },
+    {
+      "from": "m1-oc-near-code",
+      "to": "m1-thm-outer-codes"
+    },
+    {
+      "from": "m1-oc-local-agreement",
+      "to": "m1-lem-outer-uncertainty"
+    },
+    {
+      "from": "m1-oc-full-proximity",
+      "to": "m1-lem-outer-uncertainty"
+    },
+    {
+      "from": "m1-thm-outer-codes",
+      "to": "m1-op-scratch-restoration"
+    },
+    {
+      "from": "m1-op-scratch-restoration",
+      "to": "m1-lem-outer-fill"
+    },
+    {
+      "from": "m1-lem-macrograph",
+      "to": "m1-lem-outer-wiring"
+    },
+    {
+      "from": "m1-op-scalar-programs",
+      "to": "m1-lem-outer-wiring"
+    },
+    {
+      "from": "m1-lem-outer-fill",
+      "to": "m1-oe-derivative-closure"
+    },
+    {
+      "from": "m1-oe-derivative-closure",
+      "to": "m1-oe-preparation"
+    },
+    {
+      "from": "m1-thm-outer-codes",
+      "to": "m1-oe-valid-testing"
+    },
+    {
+      "from": "m1-op-scratch-restoration",
+      "to": "m1-oe-valid-testing"
+    },
+    {
+      "from": "m1-lem-outer-wiring",
+      "to": "m1-oe-valid-testing"
+    },
+    {
+      "from": "m1-lem-outer-fill",
+      "to": "m1-oe-valid-testing"
+    },
+    {
+      "from": "m1-oe-preparation",
+      "to": "m1-thm-outer-representation"
+    },
+    {
+      "from": "m1-oe-valid-testing",
+      "to": "m1-thm-outer-representation"
+    },
+    {
+      "from": "m1-lem-outer-uncertainty",
+      "to": "m1-thm-outer-representation"
+    },
+    {
+      "from": "m1-thm-outer-representation",
+      "to": "m1-out-validation"
+    },
+    {
+      "from": "m1-out-tapes",
+      "to": "m1-out-routing"
+    },
+    {
+      "from": "m1-out-routing",
+      "to": "m1-out-charges"
+    },
+    {
+      "from": "m1-out-charges",
+      "to": "m1-out-coarse-sync"
+    },
+    {
+      "from": "m1-thm-port-gadget",
+      "to": "m1-out-fine-residual"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-out-totality"
+    },
+    {
+      "from": "m1-thm-port-gadget",
+      "to": "m1-out-totality"
+    },
+    {
+      "from": "m1-lem-geometric-procedures",
+      "to": "m1-out-totality"
+    },
+    {
+      "from": "m1-ia-linear-tool",
+      "to": "m1-ia-clock-formula"
+    },
+    {
+      "from": "m1-ia-clock-formula",
+      "to": "m1-ia-derivative-closure"
+    },
+    {
+      "from": "m1-ia-linear-tool",
+      "to": "m1-ia-derivative-closure"
+    },
+    {
+      "from": "m1-ia-validity",
+      "to": "m1-ia-evolution"
+    },
+    {
+      "from": "m1-ia-derivative-closure",
+      "to": "m1-ia-evolution"
+    },
+    {
+      "from": "m1-ia-port-ancestry",
+      "to": "m1-ia-source-data"
+    },
+    {
+      "from": "m1-ia-placements",
+      "to": "m1-ia-source-data"
+    },
+    {
+      "from": "m1-ia-validity",
+      "to": "m1-lem-inner-algebra-interface"
+    },
+    {
+      "from": "m1-ia-path-endpoints",
+      "to": "m1-lem-inner-algebra-interface"
+    },
+    {
+      "from": "m1-ia-stacks",
+      "to": "m1-lem-inner-algebra-interface"
+    },
+    {
+      "from": "m1-ia-exact-validator",
+      "to": "m1-lem-inner-algebra-interface"
+    },
+    {
+      "from": "m1-ia-evolution",
+      "to": "m1-lem-inner-algebra-interface"
+    },
+    {
+      "from": "m1-ia-port-ancestry",
+      "to": "m1-lem-inner-algebra-interface"
+    },
+    {
+      "from": "m1-ia-placements",
+      "to": "m1-lem-inner-algebra-interface"
+    },
+    {
+      "from": "m1-ia-source-data",
+      "to": "m1-lem-inner-algebra-interface"
+    },
+    {
+      "from": "m1-ib-axis-replacement",
+      "to": "m1-ib-tester"
+    },
+    {
+      "from": "m1-ib-vector-ld",
+      "to": "m1-ib-tester"
+    },
+    {
+      "from": "m1-ib-row-extension",
+      "to": "m1-ib-tester"
+    },
+    {
+      "from": "m1-lem-inner-algebra-interface",
+      "to": "m1-ib-tester"
+    },
+    {
+      "from": "m1-ib-one-axis-support",
+      "to": "m1-ib-two-axis-support"
+    },
+    {
+      "from": "m1-ib-axis-replacement",
+      "to": "m1-ib-inner-table-prediction"
+    },
+    {
+      "from": "m1-ib-inner-table-prediction",
+      "to": "m1-ib-bit-simulation"
+    },
+    {
+      "from": "m1-ib-one-axis-support",
+      "to": "m1-ib-bit-simulation"
+    },
+    {
+      "from": "m1-ib-two-axis-support",
+      "to": "m1-ib-bit-simulation"
+    },
+    {
+      "from": "m1-ib-bit-simulation",
+      "to": "m1-ib-average-correction"
+    },
+    {
+      "from": "m1-ib-bit-simulation",
+      "to": "m1-ib-all-branch-density"
+    },
+    {
+      "from": "m1-ib-tester",
+      "to": "m1-ib-neighbors"
+    },
+    {
+      "from": "m1-lem-inner-algebra-interface",
+      "to": "m1-ib-neighbors"
+    },
+    {
+      "from": "m1-ib-average-correction",
+      "to": "m1-ib-neighbors"
+    },
+    {
+      "from": "m1-ib-all-branch-density",
+      "to": "m1-ib-neighbors"
+    },
+    {
+      "from": "m1-lem-inner-algebra-interface",
+      "to": "m1-lem-inner-binary-interface"
+    },
+    {
+      "from": "m1-lem-inner-binary-interface",
+      "to": "m1-prop-dummy-port"
+    },
+    {
+      "from": "m1-ia-source-data",
+      "to": "m1-ig-virtual-source"
+    },
+    {
+      "from": "m1-ia-port-ancestry",
+      "to": "m1-ig-virtual-source"
+    },
+    {
+      "from": "m1-prop-dummy-port",
+      "to": "m1-ig-virtual-source"
+    },
+    {
+      "from": "m1-lem-inner-binary-interface",
+      "to": "m1-ig-validation"
+    },
+    {
+      "from": "m1-geo-separation",
+      "to": "m1-geo-projection"
+    },
+    {
+      "from": "m1-thm-geometry",
+      "to": "m1-geo-interface"
+    },
+    {
+      "from": "m1-geo-coverage",
+      "to": "m1-geo-stability"
+    },
+    {
+      "from": "m1-geo-interface",
+      "to": "m1-geo-stability"
+    },
+    {
+      "from": "m1-lem-geometric-procedures",
+      "to": "m1-geo-stability"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-lem-application-circuits"
+    },
+    {
+      "from": "m1-lem-application-circuits",
+      "to": "m1-cor-weak-nash"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-cor-relative-nash"
+    },
+    {
+      "from": "m1-lem-application-circuits",
+      "to": "m1-cor-relative-nash"
+    },
+    {
+      "from": "m1-lem-application-circuits",
+      "to": "m1-cor-course-allocation"
+    },
+    {
+      "from": "m1-lem-application-circuits",
+      "to": "m1-lem-application-pure-circuit"
+    },
+    {
+      "from": "m1-lem-application-pure-circuit",
+      "to": "m1-cor-market-hardness"
+    },
+    {
+      "from": "m1-lem-application-circuits",
+      "to": "m1-cor-stationary-game-hardness"
+    },
+    {
+      "from": "m1-cor-stationary-game-hardness",
+      "to": "m1-cor-triangle-stationary-hardness"
+    }
+  ]
+}

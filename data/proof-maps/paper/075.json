@@ -1,0 +1,394 @@
+{
+  "familyNumber": "075",
+  "familyTitle": "The `L L` Fourier-convergence conjecture",
+  "manuscripts": [
+    {
+      "id": "Almost-everywhere-Fourier-convergence-in-L-log-L-September-23-2026",
+      "title": "Almost-everywhere Fourier convergence in L log L",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Almost-everywhere-Fourier-convergence-in-L-log-L-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Entropy foundations for compression",
+    "Refinement and common phase volume",
+    "Thermal labels and the spectral update",
+    "The finite dyadic procedure and its budgets",
+    "Capture, edge charges, and snapshots",
+    "Delayed transforms along a plateau path",
+    "Fourier sums and the endpoint summation"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Almost-everywhere convergence in L L",
+      "statement": "[Almost-everywhere convergence in L L ] For every complex-valued f L L( T) , there is a measurable set N_f of measure zero such that \\[ _ N S_Nf(x)=f(x) (x T N_f). \\] The limit is along the full…",
+      "section": "Introduction",
+      "manuscript": "Almost-everywhere Fourier convergence in L log L"
+    },
+    {
+      "id": "m1-lemma-compression",
+      "kind": "lemma",
+      "label": "Entropy compression",
+      "statement": "[Entropy compression] Fix D_0,P_01 . Let q be a strictly positive probability mass function on Z . Suppose that, for a positive integer g and a probability measure on R/ Z , H_q(x):=q(x) q(0) =_ gx…",
+      "section": "Entropy foundations for compression",
+      "manuscript": "Almost-everywhere Fourier convergence in L log L"
+    },
+    {
+      "id": "m1-entropy-foundations-variational",
+      "kind": "lemma",
+      "label": "A noisy sum with prescribed marginals",
+      "statement": "[A noisy sum with prescribed marginals] Under the hypotheses of , there is a law of X^T=(X_1,,X_T) and TS-TS such that every X_i has law U_S , the joint law is invariant under permutations of the…",
+      "section": "Entropy foundations for compression",
+      "manuscript": "Almost-everywhere Fourier convergence in L log L"
+    },
+    {
+      "id": "m1-entropy-foundations-cost-rules",
+      "kind": "lemma",
+      "label": "Projection and conditioning rules",
+      "statement": "[Projection and conditioning rules] Let the letters and error in be finite-valued, with p positive on every coordinate support. The following operations apply to that cost. [label=( *),leftmargin=*]…",
+      "section": "Entropy foundations for compression",
+      "manuscript": "Almost-everywhere Fourier convergence in L log L"
+    },
+    {
+      "id": "m1-entropy-foundations-exchangeable",
+      "kind": "lemma",
+      "label": "Selection of a conditional marginal",
+      "statement": "[Selection of a conditional marginal] Under the hypotheses of , there is a probability law on S and a joint law of an exchangeable T_0 -tuple with common marginal and an error TS-TS such that,…",
+      "section": "Entropy foundations for compression",
+      "manuscript": "Almost-everywhere Fourier convergence in L log L"
+    },
+    {
+      "id": "m1-entropy-foundations-context-bounds",
+      "kind": "lemma",
+      "label": "Monotonicities and uniform entropy bounds",
+      "statement": "[Monotonicities and uniform entropy bounds] Let , be as in , and define G_s,I_r by . There is a constant C'_0(D_0) such that, with D_*=C'_0(D_0)d, every finite refinement of the initial constant…",
+      "section": "Entropy foundations for compression",
+      "manuscript": "Almost-everywhere Fourier convergence in L log L"
+    },
+    {
+      "id": "m1-entropy-foundations-block-cost",
+      "kind": "lemma",
+      "label": "Lifting block sums and refining contexts",
+      "statement": "[Lifting block sums and refining contexts] Let m,r be positive integers and W a finite context of X . The value of is unchanged if each row sum Y_ m,a is replaced in both entropy terms by its entire…",
+      "section": "Entropy foundations for compression",
+      "manuscript": "Almost-everywhere Fourier convergence in L log L"
+    },
+    {
+      "id": "m1-entropy-foundations-thinning",
+      "kind": "lemma",
+      "label": "The low-end noisy cost",
+      "statement": "[The low-end noisy cost] Under the hypotheses of , fix the law from . Let m,r be positive integers satisfying \\[ m m_*, 2mr T_0, r 12 T e^ -w^2 . \\] For the constant context and for every finite…",
+      "section": "Entropy foundations for compression",
+      "manuscript": "Almost-everywhere Fourier convergence in L log L"
+    },
+    {
+      "id": "m1-entropy-refinement-gluing",
+      "kind": "lemma",
+      "label": "A block observation pays a noisy-cost difference",
+      "statement": "[A block observation pays a noisy-cost difference] Fix a current finite-valued context W , integers m2 and r1 , and an independent block of m current pairs (X_i,W_i) . Refine the context of X_1 by…",
+      "section": "Refinement and common phase volume",
+      "manuscript": "Almost-everywhere Fourier convergence in L log L"
+    },
+    {
+      "id": "m1-entropy-refinement-search",
+      "kind": "proposition",
+      "label": "Finite refinement search",
+      "statement": "[Finite refinement search] Under the hypotheses of , there is a finite sequence of context refinements from empty context to W , and an index j , such that G_1()-G_1(W)&CD_*^2 Eh^2 ,\\\\ K_ m_ j,1…",
+      "section": "Refinement and common phase volume",
+      "manuscript": "Almost-everywhere Fourier convergence in L log L"
+    },
+    {
+      "id": "m1-lemma-thermal-monotonicity",
+      "kind": "lemma",
+      "label": "Thermal positivity and monotonicity",
+      "statement": "[Thermal positivity and monotonicity] For every thermal form, q_A is a nonnegative, even probability mass function on Z . The coefficients _uK_A=q_A(u)/q_A(0) are real and nonnegative. For all…",
+      "section": "Thermal labels and the spectral update",
+      "manuscript": "Almost-everywhere Fourier convergence in L log L"
+    },
+    {
+      "id": "m1-lemma-spectral-update",
+      "kind": "lemma",
+      "label": "Spectral update",
+      "statement": "[Spectral update] Fix C_0,C_*1 . Let the current form A arise from the initial form zero by fewer than C_0h additions of spatial and metric forms, each metric satisfying . Let p p_* , where p_* is…",
+      "section": "Thermal labels and the spectral update",
+      "manuscript": "Almost-everywhere Fourier convergence in L log L"
+    },
+    {
+      "id": "m1-prop-thermal-evidence",
+      "kind": "proposition",
+      "label": "Regular evidence",
+      "statement": "[Regular evidence] Consider any finite procedure starting with the type-zero label, making at most C_0h successful main additions and using the updates of with its hypotheses at every attempt.…",
+      "section": "Thermal labels and the spectral update",
+      "manuscript": "Almost-everywhere Fourier convergence in L log L"
+    },
+    {
+      "id": "m1-prop-dyadic",
+      "kind": "proposition",
+      "label": "Modulated delayed Haar estimate",
+      "statement": "[Modulated delayed Haar estimate] There are absolute constants C and d_0 with the following property. Let d d_0 , put h= d , and let I be a half-open interval with 1/2 |I|1 . Let :I Give I its…",
+      "section": "The finite dyadic procedure and its budgets",
+      "manuscript": "Almost-everywhere Fourier convergence in L log L"
+    },
+    {
+      "id": "m1-prop-live-budgets",
+      "kind": "proposition",
+      "label": "Live budgets",
+      "statement": "[Live budgets] There are fixed absolute choices of the constants in the procedure and in such that, for all sufficiently large d , the procedure is finite in every finite spatial tree and preserves…",
+      "section": "The finite dyadic procedure and its budgets",
+      "manuscript": "Almost-everywhere Fourier convergence in L log L"
+    },
+    {
+      "id": "m1-lemma-07-local-budget",
+      "kind": "lemma",
+      "label": "Local entropy and Fisher budgets",
+      "statement": "[Local entropy and Fisher budgets] On the plateau just described, the expected sum of spatial bit relative entropies to a fair bit is O(d_1) , with or without the fixed side label. This includes…",
+      "section": "Capture, edge charges, and snapshots",
+      "manuscript": "Almost-everywhere Fourier convergence in L log L"
+    },
+    {
+      "id": "m1-prop-capture",
+      "kind": "proposition",
+      "label": "Capture on a plateau",
+      "statement": "[Capture on a plateau] In the finite procedure, for every plateau, allowed level, and criterion above, there is a cumulative finite list D of integers, initially empty, whose appends are prescribed…",
+      "section": "Capture, edge charges, and snapshots",
+      "manuscript": "Almost-everywhere Fourier convergence in L log L"
+    },
+    {
+      "id": "m1-lemma-07-edge-charges",
+      "kind": "lemma",
+      "label": "Edge charges",
+      "statement": "[Edge charges] With the bad-jump convention , the following bounds hold. [label=( *)] Across all live jumping pieces, the sum of U(p)_e e_ p,b 1_ bad is at most Cd if a single scalar level b is…",
+      "section": "Capture, edge charges, and snapshots",
+      "manuscript": "Almost-everywhere Fourier convergence in L log L"
+    },
+    {
+      "id": "m1-lemma-07-snapshots",
+      "kind": "lemma",
+      "label": "Snapshot covers and birth count",
+      "statement": "[Snapshot covers and birth count] The main and scalar snapshot lists have respectively the cardinality bounds in . While a snapshot is current, it covers every v that is high at threshold 0.9b at a…",
+      "section": "Capture, edge charges, and snapshots",
+      "manuscript": "Almost-everywhere Fourier convergence in L log L"
+    },
+    {
+      "id": "m1-lemma-07-activation",
+      "kind": "lemma",
+      "label": "Activation and localization before activation",
+      "statement": "[Activation and localization before activation] On a capped scheme, declare a high u activated at a jump p if there is v such that |u-v||p| in the main case, or |u-v||p| c_8b^4 in the scalar case. A…",
+      "section": "Capture, edge charges, and snapshots",
+      "manuscript": "Almost-everywhere Fourier convergence in L log L"
+    },
+    {
+      "id": "m1-lemma-paths-sign",
+      "kind": "lemma",
+      "label": "Predictable signs",
+      "statement": "[Predictable signs] Let (r_ i+1 ) be fair signs in a filtration ( F_i) , and let c_i be real F_i -measurable coefficients. For every >0 and t0 , outside an event of probability at most e^ -t , \\[ _…",
+      "section": "Delayed transforms along a plateau path",
+      "manuscript": "Almost-everywhere Fourier convergence in L log L"
+    },
+    {
+      "id": "m1-prop-scalar-path",
+      "kind": "proposition",
+      "label": "Scalar plateau paths",
+      "statement": "[Scalar plateau paths] Let 0<b1 be a scalar level, and let s be a representative selected at a predictable snapshot birth on a live or static plateau. At a jumping post state put \\[ f_p= E_p[a _s] ,…",
+      "section": "Delayed transforms along a plateau path",
+      "manuscript": "Almost-everywhere Fourier convergence in L log L"
+    },
+    {
+      "id": "m1-lemma-paths-innovation",
+      "kind": "lemma",
+      "label": "Energy drift and innovations",
+      "statement": "[Energy drift and innovations] Put \\[ g_z=12(M_+|v_+-v|^2+M_-|v_--v|^2), g= g_z\\,dz, U_p=G_+-G_-2. \\] Then &g_z=M_+|v_+|^2+M_-|v_-|^2 2 -M|v|^20, &| a-vD|^2& M g_z, \\\\ &G_ actual\\ pre =G+g+r_ j+1…",
+      "section": "Delayed transforms along a plateau path",
+      "manuscript": "Almost-everywhere Fourier convergence in L log L"
+    },
+    {
+      "id": "m1-lemma-paths-run-drift",
+      "kind": "lemma",
+      "label": "Drift on a run",
+      "statement": "[Drift on a run] Start predictably at an outer-valid jump, and stop before the first outer-invalid jump or at plateau end. For t0 , outside conditional probability e^ -t , every prefix P of this run…",
+      "section": "Delayed transforms along a plateau path",
+      "manuscript": "Almost-everywhere Fourier convergence in L log L"
+    },
+    {
+      "id": "m1-lemma-paths-run-norm",
+      "kind": "lemma",
+      "label": "Delayed norm estimate on a run",
+      "statement": "[Delayed norm estimate on a run] Under the hypotheses of , set =b^ 1/2 and W_P(z)=_ p P a_p(z)_ j(p) r_ j(p)+2 . With conditional failure probability at most Ce^ -t , simultaneously for every run…",
+      "section": "Delayed transforms along a plateau path",
+      "manuscript": "Almost-everywhere Fourier convergence in L log L"
+    },
+    {
+      "id": "m1-prop-vector-path",
+      "kind": "proposition",
+      "label": "Vector estimates on arbitrary inner-valid intervals",
+      "statement": "[Vector estimates on arbitrary inner-valid intervals] Fix a live plateau, a main level b , and a representative s at its snapshot birth. There is a family of predictable estimate origins, containing…",
+      "section": "Delayed transforms along a plateau path",
+      "manuscript": "Almost-everywhere Fourier convergence in L log L"
+    },
+    {
+      "id": "m1-lemma-paths-simultaneous",
+      "kind": "lemma",
+      "label": "Parameters for all representatives at a level",
+      "statement": "[Parameters for all representatives at a level] On each plateau and at each permitted level there are nonnegative random parameters t_b,H_b , independent of the actual frequency later being…",
+      "section": "Delayed transforms along a plateau path",
+      "manuscript": "Almost-everywhere Fourier convergence in L log L"
+    },
+    {
+      "id": "m1-thm-good-set",
+      "kind": "theorem",
+      "label": "Truncated integral estimate",
+      "statement": "[Truncated integral estimate] There are absolute constants C and d_* such that, whenever d d_* and is a nonnegative periodic function with _0^1=1 and e^d almost everywhere, _ G_ _ N0 |S_N(x)|\\,dx Cd.",
+      "section": "Fourier sums and the endpoint summation",
+      "manuscript": "Almost-everywhere Fourier convergence in L log L"
+    },
+    {
+      "id": "m1-prop-fourier-bounded",
+      "kind": "proposition",
+      "label": "Every bounded complex-valued periodic function has almost-everywhere…",
+      "statement": "Every bounded complex-valued periodic function has almost-everywhere convergence of its symmetric Fourier partial sums along the full sequence.",
+      "section": "Fourier sums and the endpoint summation",
+      "manuscript": "Almost-everywhere Fourier convergence in L log L"
+    },
+    {
+      "id": "m1-cor-fourier-weak-l1",
+      "kind": "corollary",
+      "label": "Weak- L^1 maximal bound",
+      "statement": "[Weak- L^1 maximal bound] On T= R/(2 Z) with d=dx/(2) , set (t)=t(2+t) and define the Luxemburg norm by \\[ \\|f\\|_ =\\ b>0:_ T (|f|/b)\\,d1\\ . \\] For the ordinary symmetric partial sums of , put S^*f=_…",
+      "section": "Fourier sums and the endpoint summation",
+      "manuscript": "Almost-everywhere Fourier convergence in L log L"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-entropy-foundations-variational",
+      "to": "m1-entropy-foundations-exchangeable"
+    },
+    {
+      "from": "m1-entropy-foundations-cost-rules",
+      "to": "m1-entropy-foundations-exchangeable"
+    },
+    {
+      "from": "m1-entropy-foundations-cost-rules",
+      "to": "m1-entropy-foundations-context-bounds"
+    },
+    {
+      "from": "m1-entropy-foundations-block-cost",
+      "to": "m1-entropy-foundations-thinning"
+    },
+    {
+      "from": "m1-entropy-foundations-cost-rules",
+      "to": "m1-entropy-foundations-thinning"
+    },
+    {
+      "from": "m1-entropy-refinement-gluing",
+      "to": "m1-entropy-refinement-search"
+    },
+    {
+      "from": "m1-lemma-compression",
+      "to": "m1-entropy-refinement-search"
+    },
+    {
+      "from": "m1-lemma-compression",
+      "to": "m1-lemma-spectral-update"
+    },
+    {
+      "from": "m1-lemma-spectral-update",
+      "to": "m1-prop-live-budgets"
+    },
+    {
+      "from": "m1-prop-thermal-evidence",
+      "to": "m1-prop-live-budgets"
+    },
+    {
+      "from": "m1-prop-live-budgets",
+      "to": "m1-lemma-07-edge-charges"
+    },
+    {
+      "from": "m1-lemma-07-local-budget",
+      "to": "m1-lemma-07-edge-charges"
+    },
+    {
+      "from": "m1-lemma-07-local-budget",
+      "to": "m1-lemma-07-snapshots"
+    },
+    {
+      "from": "m1-lemma-07-snapshots",
+      "to": "m1-lemma-07-activation"
+    },
+    {
+      "from": "m1-prop-capture",
+      "to": "m1-lemma-07-activation"
+    },
+    {
+      "from": "m1-lemma-paths-sign",
+      "to": "m1-prop-scalar-path"
+    },
+    {
+      "from": "m1-lemma-07-local-budget",
+      "to": "m1-lemma-paths-innovation"
+    },
+    {
+      "from": "m1-lemma-paths-sign",
+      "to": "m1-lemma-paths-run-drift"
+    },
+    {
+      "from": "m1-lemma-paths-sign",
+      "to": "m1-lemma-paths-run-norm"
+    },
+    {
+      "from": "m1-lemma-07-edge-charges",
+      "to": "m1-prop-vector-path"
+    },
+    {
+      "from": "m1-lemma-paths-run-norm",
+      "to": "m1-prop-vector-path"
+    },
+    {
+      "from": "m1-lemma-07-snapshots",
+      "to": "m1-lemma-paths-simultaneous"
+    },
+    {
+      "from": "m1-prop-vector-path",
+      "to": "m1-lemma-paths-simultaneous"
+    },
+    {
+      "from": "m1-lemma-07-activation",
+      "to": "m1-lemma-paths-simultaneous"
+    },
+    {
+      "from": "m1-prop-dyadic",
+      "to": "m1-lemma-paths-simultaneous"
+    },
+    {
+      "from": "m1-prop-capture",
+      "to": "m1-lemma-paths-simultaneous"
+    },
+    {
+      "from": "m1-prop-scalar-path",
+      "to": "m1-lemma-paths-simultaneous"
+    },
+    {
+      "from": "m1-prop-live-budgets",
+      "to": "m1-lemma-paths-simultaneous"
+    },
+    {
+      "from": "m1-prop-dyadic",
+      "to": "m1-thm-good-set"
+    },
+    {
+      "from": "m1-thm-good-set",
+      "to": "m1-prop-fourier-bounded"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-prop-fourier-bounded"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-cor-fourier-weak-l1"
+    }
+  ]
+}

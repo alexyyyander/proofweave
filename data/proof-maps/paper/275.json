@@ -1,0 +1,418 @@
+{
+  "familyNumber": "275",
+  "familyTitle": "QMA-hardness of continuum Coulomb energy",
+  "manuscripts": [
+    {
+      "id": "Continuum-Coulomb-hardness-with-binary-nuclear-charges-September-24-2026",
+      "title": "Continuum Coulomb hardness with binary nuclear charges",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Continuum-Coulomb-hardness-with-binary-nuclear-charges-September-24-2026/Continuum-Coulomb-hardness-with-binary-nuclear-charges-September-24-2026.pdf"
+    },
+    {
+      "id": "QMA-hardness-of-continuum-Coulomb-energy-with-unit-nuclear-charges-September-24-2026",
+      "title": "QMA-hardness of continuum Coulomb energy with unit nuclear charges",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/QMA-hardness-of-continuum-Coulomb-energy-with-unit-nuclear-charges-September-24-2026/QMA-hardness-of-continuum-Coulomb-energy-with-unit-nuclear-charges-September-24-2026.pdf"
+    }
+  ],
+  "sections": [
+    "The problem and the result",
+    "Finite models and a controllable contact geometry",
+    "Isolated wells and deterministic energy tuning",
+    "Relative tails and computable hopping calibration",
+    "Excluding lower-energy continuum states",
+    "Introduction",
+    "Positive spin model",
+    "Synthesis by a nonnegative charge density",
+    "Replacing the density by unit nuclei",
+    "Many-electron continuum estimate"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "The promise problem above is QMA-hard under deterministic classical…",
+      "statement": "The promise problem above is QMA-hard under deterministic classical polynomial-time many-one reductions for c=1 . The reduction can produce instances with b-a1 .",
+      "section": "The problem and the result",
+      "manuscript": "Continuum Coulomb hardness with binary nuclear charges"
+    },
+    {
+      "id": "m1-thm-source",
+      "kind": "theorem",
+      "label": "Source problem",
+      "statement": "[Source problem] There is a QMA-complete promise problem whose Hamiltonians are \\[ H_ in =_ e=LR J_e h^s_ LR \\] on finite, nonwrapping subgraphs of the square lattice, with no one-qubit terms. The…",
+      "section": "Finite models and a controllable contact geometry",
+      "manuscript": "Continuum Coulomb hardness with binary nuclear charges"
+    },
+    {
+      "id": "m1-lem-second-order",
+      "kind": "lemma",
+      "label": "Second-order bottom-energy estimate",
+      "statement": "[Second-order bottom-energy estimate] Let A0 be a finite-dimensional self-adjoint operator, let P0 project onto its kernel, and put Q=I-P . Suppose A gQ for some g>0 . Let B=B^* satisfy PBP=0 and B g…",
+      "section": "Finite models and a controllable contact geometry",
+      "manuscript": "Continuum Coulomb hardness with binary nuclear charges"
+    },
+    {
+      "id": "m1-prop-positive-spin",
+      "kind": "proposition",
+      "label": "Positive-spin reduction",
+      "statement": "[Positive-spin reduction] If >3V , then |E(H_+)-E(H_ in )+C_0| 27V^3 . In particular, a polynomially large integer makes this error an arbitrarily small prescribed inverse polynomial.",
+      "section": "Finite models and a controllable contact geometry",
+      "manuscript": "Continuum Coulomb hardness with binary nuclear charges"
+    },
+    {
+      "id": "m1-lem-contact-layout",
+      "kind": "lemma",
+      "label": "Contact classification",
+      "statement": "[Contact classification] All the sites p_i are distinct. Every pair is either at distance one or at distance at least 2 . The complete set C of unit-distance pairs consists of: L A_e , A_e R , and…",
+      "section": "Finite models and a controllable contact geometry",
+      "manuscript": "Continuum Coulomb hardness with binary nuclear charges"
+    },
+    {
+      "id": "m1-lem-displacement",
+      "kind": "lemma",
+      "label": "A bounded right inverse for contact lengths",
+      "statement": "[A bounded right inverse for contact lengths] For every real assignment (d_ ij )_ \\ i,j\\ C there are displacements s_i R^3 such that u_ ij (s_j-s_i)=d_ ij , _i|s_i|6m_ C |d_ ij |. For an empty…",
+      "section": "Finite models and a controllable contact geometry",
+      "manuscript": "Continuum Coulomb hardness with binary nuclear charges"
+    },
+    {
+      "id": "m1-prop-hubbard",
+      "kind": "proposition",
+      "label": "Hubbard reduction with rational hoppings",
+      "statement": "[Hubbard reduction with rational hoppings] The construction above is deterministic and polynomial time. With C_s=C_0+_ \\ i,j\\ C K_ ij =3k+32_e v_e^2 +_ \\ i,j\\ C K_ ij , it satisfies |E(H_ Hub (t))…",
+      "section": "Finite models and a controllable contact geometry",
+      "manuscript": "Continuum Coulomb hardness with binary nuclear charges"
+    },
+    {
+      "id": "m1-prop-isolated-well",
+      "kind": "proposition",
+      "label": "Uniform isolated-well estimates",
+      "statement": "[Uniform isolated-well estimates] The operators \\(h_i\\) are self-adjoint on \\(H^2(^3)\\), with form domain \\(H^1(^3)\\). Each has a simple ground eigenvalue \\(_i\\) and a real, positive, normalized…",
+      "section": "Isolated wells and deterministic energy tuning",
+      "manuscript": "Continuum Coulomb hardness with binary nuclear charges"
+    },
+    {
+      "id": "m1-lem-wells-secants",
+      "kind": "lemma",
+      "label": "Bracketing and uniform secant bounds",
+      "statement": "[Bracketing and uniform secant bounds] With centers and rounded charges fixed, for every choice of the other parameters, \\(_i(_i=1)<-1/2<_i(_i=4)\\). For \\(1 a<b4\\), holding the other parameters…",
+      "section": "Isolated wells and deterministic energy tuning",
+      "manuscript": "Continuum Coulomb hardness with binary nuclear charges"
+    },
+    {
+      "id": "m1-lem-well-tail",
+      "kind": "lemma",
+      "label": "Crude tails before tuning",
+      "statement": "[Crude tails before tuning] Uniformly for all \\(^m\\), |_i(y)| C, and, for sufficiently large \\(D\\), \\|_i\\|_ H^1(\\ r_i>.65D\\ ) e^ -.61D .",
+      "section": "Isolated wells and deterministic energy tuning",
+      "manuscript": "Continuum Coulomb hardness with binary nuclear charges"
+    },
+    {
+      "id": "m1-lem-wells-analytic",
+      "kind": "lemma",
+      "label": "Uniform analytic patches",
+      "statement": "[Uniform analytic patches] Suppose \\(u\\) is bounded on the unit ball in \\(^3\\) and satisfies \\( u=Fu\\) there, where \\|^ F\\|_ A^ ||+1 ||! for every multi-index . There is a constant \\(A_1\\), depending…",
+      "section": "Isolated wells and deterministic energy tuning",
+      "manuscript": "Continuum Coulomb hardness with binary nuclear charges"
+    },
+    {
+      "id": "m1-lem-wells-ritz-approximation",
+      "kind": "lemma",
+      "label": "Exponentially accurate Ritz approximation",
+      "statement": "[Exponentially accurate Ritz approximation] For each \\(i\\), each rational choice of centers and secondary parameters, and each sufficiently large \\(D\\), one can explicitly construct a space \\( V_i…",
+      "section": "Isolated wells and deterministic energy tuning",
+      "manuscript": "Continuum Coulomb hardness with binary nuclear charges"
+    },
+    {
+      "id": "m1-prop-ritz-oracle",
+      "kind": "proposition",
+      "label": "Uniform single-well eigenvalue oracle",
+      "statement": "[Uniform single-well eigenvalue oracle] Suppose the centers and the parameters in \\([1,4]^m\\) are rational, and all their numerators and denominators, as well as those of \\(q,q'\\), have at most \\(B\\)…",
+      "section": "Isolated wells and deterministic energy tuning",
+      "manuscript": "Continuum Coulomb hardness with binary nuclear charges"
+    },
+    {
+      "id": "m1-prop-tuning",
+      "kind": "proposition",
+      "label": "Tuning with fixed rounded charges",
+      "statement": "[Tuning with fixed rounded charges] At any fixed rational centers satisfying the hypotheses of this section, and with the integer charges in already fixed, one can compute rational \\(_1,,_m\\) such…",
+      "section": "Isolated wells and deterministic energy tuning",
+      "manuscript": "Continuum Coulomb hardness with binary nuclear charges"
+    },
+    {
+      "id": "m1-prop-relative-tail",
+      "kind": "proposition",
+      "label": "Uniform relative tail",
+      "statement": "[Uniform relative tail] Suppose the actual rounded charges and the parameters _i obey the conclusions of Proposition~ , in particular |_i+1/2| e^ -1.01D . Uniformly for r_i2D , _i(y)=^ -1/2 e^…",
+      "section": "Relative tails and computable hopping calibration",
+      "manuscript": "Continuum Coulomb hardness with binary nuclear charges"
+    },
+    {
+      "id": "m1-lem-surrogate",
+      "kind": "lemma",
+      "label": "Uniform capped kernels and surrogate replacement",
+      "statement": "[Uniform capped kernels and surrogate replacement] The zero-extended kernels \\[ G_D(z)= (|z|/D) |z| , J_ D, (z)= (|z|/D) |z- e_z| \\] are globally C^2 , uniformly for 14 . For every multi-index with…",
+      "section": "Relative tails and computable hopping calibration",
+      "manuscript": "Continuum Coulomb hardness with binary nuclear charges"
+    },
+    {
+      "id": "m1-lem-positive-hopping",
+      "kind": "lemma",
+      "label": "Comparison with the uncapped attraction",
+      "statement": "[Comparison with the uncapped attraction] For tuned wells and every contact, B_ ij =T_ ij (X) (1+O(_ rel )). The constants are uniform in _j .",
+      "section": "Relative tails and computable hopping calibration",
+      "manuscript": "Continuum Coulomb hardness with binary nuclear charges"
+    },
+    {
+      "id": "m1-lem-reference-hopping",
+      "kind": "lemma",
+      "label": "Size of the reference integrals",
+      "statement": "[Size of the reference integrals] Let X^0=(Dp_i)_i . For every contact, c e^ -D T_ ij (X^0) C D^2 e^ -D+Cm .",
+      "section": "Relative tails and computable hopping calibration",
+      "manuscript": "Continuum Coulomb hardness with binary nuclear charges"
+    },
+    {
+      "id": "m1-lem-hopping-displacement",
+      "kind": "lemma",
+      "label": "Uniform displacement law",
+      "statement": "[Uniform displacement law] Let X_i=Dp_i+s_i with |s_i| S . There is a constant c_1>0 such that, uniformly on all contacts, T_ ij (X) T_ ij (X^0) &=e^ -u_ ij (s_j-s_i) (1+O(_ disp )), \\\\ _ disp &=mS D…",
+      "section": "Relative tails and computable hopping calibration",
+      "manuscript": "Continuum Coulomb hardness with binary nuclear charges"
+    },
+    {
+      "id": "m1-lem-hopping-quadrature",
+      "kind": "lemma",
+      "label": "Computing the positive reference integrals",
+      "statement": "[Computing the positive reference integrals] For 0<<1/10 , one can compute a positive rational I_ ij satisfying | I_ ij e^D T_ ij (X^0) | by a deterministic algorithm polynomial in D , m , the bit…",
+      "section": "Relative tails and computable hopping calibration",
+      "manuscript": "Continuum Coulomb hardness with binary nuclear charges"
+    },
+    {
+      "id": "m1-lem-hopping-orientation",
+      "kind": "lemma",
+      "label": "Orientation identity",
+      "statement": "[Orientation identity] For distinct sites, B_ ij -B_ ji =(_i-_j)_j,_i. For tuned wells and large D under the stated separation bounds, |_j,_i| e^ -0.85D , |B_ ij -B_ ji |2e^ -1.86D .",
+      "section": "Relative tails and computable hopping calibration",
+      "manuscript": "Continuum Coulomb hardness with binary nuclear charges"
+    },
+    {
+      "id": "m1-prop-calibration",
+      "kind": "proposition",
+      "label": "Deterministic hopping calibration",
+      "statement": "[Deterministic hopping calibration] Let the contact layout be as in Lemma~ , choose one orientation per contact, and let the prescribed rational hoppings satisfy 0<t_ t_ ij 1 , where t_ is an inverse…",
+      "section": "Relative tails and computable hopping calibration",
+      "manuscript": "Continuum Coulomb hardness with binary nuclear charges"
+    },
+    {
+      "id": "m1-lem-one-body-matrix",
+      "kind": "lemma",
+      "label": "Residuals and the orthonormalized matrix",
+      "statement": "[Residuals and the orthonormalized matrix] For the preceding parameters and sufficiently large \\(D\\), \\|A_i\\|_2 e^ -.75D , \\|G-I\\| e^ -.85D . In particular \\(G\\) is positive definite. The isometry \\(…",
+      "section": "Excluding lower-energy continuum states",
+      "manuscript": "Continuum Coulomb hardness with binary nuclear charges"
+    },
+    {
+      "id": "m1-prop-complement-gap",
+      "kind": "proposition",
+      "label": "Continuum complement gap",
+      "statement": "[Continuum complement gap] There is a constant \\(g>0\\) such that, for all sufficiently large \\(D\\), \\[ (I-P)A(I-P) g(I-P). \\] The inequality holds on the full one-particle form domain, including…",
+      "section": "Excluding lower-energy continuum states",
+      "manuscript": "Continuum Coulomb hardness with binary nuclear charges"
+    },
+    {
+      "id": "m1-lem-fermion-hardy",
+      "kind": "lemma",
+      "label": "A dimension-independent fermionic Hardy bound",
+      "statement": "[A dimension-independent fermionic Hardy bound] Uniformly over all normalized \\(uRan\\), _ =1 ^m\\|_ y_ u\\|_2^2 Cm, \\|W_ ee \\| Cm^2. The constants do not depend on the dimension \\(2m m \\) of \\(Ran\\).",
+      "section": "Excluding lower-energy continuum states",
+      "manuscript": "Continuum Coulomb hardness with binary nuclear charges"
+    },
+    {
+      "id": "m1-lem-continuum-elimination",
+      "kind": "lemma",
+      "label": "Eliminating the many-particle complement",
+      "statement": "[Eliminating the many-particle complement] For sufficiently large \\(D\\), let \\(E_=Spec ( H|_ Ran )\\). Then 0 E_-Spec H e^ -1.2D . More explicitly, the upper bound can be taken to be \\[ C(m^ 3/2 e^…",
+      "section": "Excluding lower-energy continuum states",
+      "manuscript": "Continuum Coulomb hardness with binary nuclear charges"
+    },
+    {
+      "id": "m1-lem-continuum-coulomb-compression",
+      "kind": "lemma",
+      "label": "Coulomb coefficients in the site modes",
+      "statement": "[Coulomb coefficients in the site modes] For sufficiently large \\(D\\), \\|W_ eff -U_ i=1 ^m n_ i n_ i \\| Cm^5 D , U=58 .",
+      "section": "Excluding lower-energy continuum states",
+      "manuscript": "Continuum Coulomb hardness with binary nuclear charges"
+    },
+    {
+      "id": "m1-prop-continuum-simulation",
+      "kind": "proposition",
+      "label": "Simulation of the Hubbard spectral minimum",
+      "statement": "[Simulation of the Hubbard spectral minimum] Let \\(E_0=SpecH\\) for the physical molecular Hamiltonian and let \\(E_ Hub (t)\\) be the minimum of the half-filled Hubbard Hamiltonian in Proposition~ .…",
+      "section": "Excluding lower-energy continuum states",
+      "manuscript": "Continuum Coulomb hardness with binary nuclear charges"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "Unit-charge Coulomb hardness",
+      "statement": "[Unit-charge Coulomb hardness] The electronic promise problem for~ on H_N , with distinct rational nuclear positions, all nuclear charges equal to one, unary electron number, and rational thresholds…",
+      "section": "Introduction",
+      "manuscript": "QMA-hardness of continuum Coulomb energy with unit nuclear charges"
+    },
+    {
+      "id": "m2-lem-perturbation",
+      "kind": "lemma",
+      "label": "Second-order bottom-energy estimate",
+      "statement": "[Second-order bottom-energy estimate] Let \\(A,B\\) be self-adjoint operators on a finite-dimensional Hilbert space. Suppose \\(A\\) has kernel projection \\(P0\\), \\(A gQ\\), where \\(Q=I-P\\) and \\(g>0\\),…",
+      "section": "Positive spin model",
+      "manuscript": "QMA-hardness of continuum Coulomb energy with unit nuclear charges"
+    },
+    {
+      "id": "m2-prop-continuous-control",
+      "kind": "proposition",
+      "label": "Continuous one-particle control",
+      "statement": "[Continuous one-particle control] For the density and separated centers constructed above, with the polynomial scale chosen sufficiently large, there are fixed constants \\(c>0,C<\\) such that \\[…",
+      "section": "Synthesis by a nonnegative charge density",
+      "manuscript": "QMA-hardness of continuum Coulomb energy with unit nuclear charges"
+    },
+    {
+      "id": "m2-prop-nuclear-replacement",
+      "kind": "proposition",
+      "label": "Unit-nucleus replacement",
+      "statement": "[Unit-nucleus replacement] For the transported degree-three cubature and rational rounding just specified, with _R(1+H)^ -3 (1+S)^ -2 ^ -3 , the shifted continuous and point-nucleus operators L_c,L_p…",
+      "section": "Replacing the density by unit nuclei",
+      "manuscript": "QMA-hardness of continuum Coulomb energy with unit nuclear charges"
+    },
+    {
+      "id": "m2-prop-complement",
+      "kind": "proposition",
+      "label": "Eliminating the continuum complement",
+      "statement": "[Eliminating the continuum complement] For the unit-nucleus construction above with N=m , and sufficiently large polynomial scale , the full antisymmetric m -electron operator in dilated and shifted…",
+      "section": "Many-electron continuum estimate",
+      "manuscript": "QMA-hardness of continuum Coulomb energy with unit nuclear charges"
+    },
+    {
+      "id": "m2-prop-energy-comparison",
+      "kind": "proposition",
+      "label": "Continuum-to-fermion energy comparison",
+      "statement": "[Continuum-to-fermion energy comparison] For the constructed unit nuclei with N=m , let H be the dilated and shifted continuum operator above and let H_d be the finite fermion Hamiltonian~ . At…",
+      "section": "Many-electron continuum estimate",
+      "manuscript": "QMA-hardness of continuum Coulomb energy with unit nuclear charges"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-second-order",
+      "to": "m1-prop-positive-spin"
+    },
+    {
+      "from": "m1-lem-contact-layout",
+      "to": "m1-lem-displacement"
+    },
+    {
+      "from": "m1-lem-second-order",
+      "to": "m1-prop-hubbard"
+    },
+    {
+      "from": "m1-prop-positive-spin",
+      "to": "m1-prop-hubbard"
+    },
+    {
+      "from": "m1-prop-isolated-well",
+      "to": "m1-lem-wells-ritz-approximation"
+    },
+    {
+      "from": "m1-lem-wells-analytic",
+      "to": "m1-lem-wells-ritz-approximation"
+    },
+    {
+      "from": "m1-lem-wells-ritz-approximation",
+      "to": "m1-prop-ritz-oracle"
+    },
+    {
+      "from": "m1-lem-wells-secants",
+      "to": "m1-prop-tuning"
+    },
+    {
+      "from": "m1-prop-ritz-oracle",
+      "to": "m1-prop-tuning"
+    },
+    {
+      "from": "m1-prop-isolated-well",
+      "to": "m1-prop-relative-tail"
+    },
+    {
+      "from": "m1-lem-well-tail",
+      "to": "m1-prop-relative-tail"
+    },
+    {
+      "from": "m1-prop-relative-tail",
+      "to": "m1-lem-surrogate"
+    },
+    {
+      "from": "m1-prop-relative-tail",
+      "to": "m1-lem-positive-hopping"
+    },
+    {
+      "from": "m1-lem-surrogate",
+      "to": "m1-lem-positive-hopping"
+    },
+    {
+      "from": "m1-prop-isolated-well",
+      "to": "m1-lem-hopping-orientation"
+    },
+    {
+      "from": "m1-lem-well-tail",
+      "to": "m1-lem-hopping-orientation"
+    },
+    {
+      "from": "m1-lem-hopping-quadrature",
+      "to": "m1-prop-calibration"
+    },
+    {
+      "from": "m1-lem-displacement",
+      "to": "m1-prop-calibration"
+    },
+    {
+      "from": "m1-lem-hopping-displacement",
+      "to": "m1-prop-calibration"
+    },
+    {
+      "from": "m1-lem-positive-hopping",
+      "to": "m1-prop-calibration"
+    },
+    {
+      "from": "m1-prop-tuning",
+      "to": "m1-prop-calibration"
+    },
+    {
+      "from": "m1-lem-hopping-orientation",
+      "to": "m1-prop-calibration"
+    },
+    {
+      "from": "m1-prop-complement-gap",
+      "to": "m1-lem-continuum-elimination"
+    },
+    {
+      "from": "m1-lem-fermion-hardy",
+      "to": "m1-lem-continuum-elimination"
+    },
+    {
+      "from": "m1-lem-one-body-matrix",
+      "to": "m1-prop-continuum-simulation"
+    },
+    {
+      "from": "m1-lem-continuum-coulomb-compression",
+      "to": "m1-prop-continuum-simulation"
+    },
+    {
+      "from": "m1-lem-continuum-elimination",
+      "to": "m1-prop-continuum-simulation"
+    },
+    {
+      "from": "m1-prop-calibration",
+      "to": "m1-prop-continuum-simulation"
+    }
+  ]
+}

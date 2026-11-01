@@ -1,0 +1,194 @@
+{
+  "familyNumber": "028",
+  "familyTitle": "Uniformly bounded components of Gaussian-prime graphs",
+  "manuscripts": [
+    {
+      "id": "Bounded-Step-Walks-on-Gaussian-Primes-September-26-2026",
+      "title": "Bounded-Step Walks on Gaussian Primes",
+      "date": "2026-09-26",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Bounded-Step-Walks-on-Gaussian-Primes-September-26-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "The Gaussian moat problem",
+    "Periodicity and the uniform bound",
+    "Arithmetic, walks, and entropy",
+    "Entropy enrichment from a forward segment",
+    "Coverage from shared continuation data",
+    "A common sampling schedule",
+    "Zero avoidance costs information",
+    "The common-law entropy budget"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Uniform component bound",
+      "statement": "[Uniform component bound] For every finite real D there is a finite B_D such that every connected component of G_D has at most B_D vertices. The bound is independent of the starting prime and…",
+      "section": "The Gaussian moat problem",
+      "manuscript": "Bounded-Step Walks on Gaussian Primes"
+    },
+    {
+      "id": "m1-thm-sieve",
+      "kind": "theorem",
+      "label": "Finite sieve obstruction",
+      "statement": "[Finite sieve obstruction] For every D1 there is a finite set P_D of rational primes congruent to 1 modulo 4 such that A( P_D) contains no infinite sequence of distinct points with successive…",
+      "section": "The Gaussian moat problem",
+      "manuscript": "Bounded-Step Walks on Gaussian Primes"
+    },
+    {
+      "id": "m1-prop-periodic",
+      "kind": "proposition",
+      "label": "From a periodic obstruction to a uniform bound",
+      "statement": "[From a periodic obstruction to a uniform bound] Fix D1 and a finite set P of rational primes congruent to 1 modulo 4 . Suppose that A( P) contains no infinite self-avoiding walk with steps at most D…",
+      "section": "Periodicity and the uniform bound",
+      "manuscript": "Bounded-Step Walks on Gaussian Primes"
+    },
+    {
+      "id": "m1-lem-displacement",
+      "kind": "lemma",
+      "label": "Displacement entropy",
+      "statement": "[Displacement entropy] If \\(T_0,T_1\\) are jointly distributed finite random times and \\(|T_1-T_0| n\\) almost surely, then \\[ H(z_ T_1 -z_ T_0 )2(n+1)+O_D(1). \\] The same bound holds conditionally on…",
+      "section": "Arithmetic, walks, and entropy",
+      "manuscript": "Bounded-Step Walks on Gaussian Primes"
+    },
+    {
+      "id": "m1-lem-continuity",
+      "kind": "lemma",
+      "label": "Continuity",
+      "statement": "[Continuity] If two laws of \\((X,Y)\\), on the same finite product alphabet, have total variation at most \\(1/2\\), and the product alphabet has at most \\(a\\) elements, then \\[ |H(X Y)-H( X Y)| 2h()+2…",
+      "section": "Arithmetic, walks, and entropy",
+      "manuscript": "Bounded-Step Walks on Gaussian Primes"
+    },
+    {
+      "id": "m1-lem-list",
+      "kind": "lemma",
+      "label": "A short-list entropy bound",
+      "statement": "[A short-list entropy bound] Let \\(X\\) have at most \\(a\\) values, let \\(Y\\) be finite data, and let \\( L(Y)\\) be a list of possible values of \\(X\\). If \\[ \\ X L(Y),\\ | L(Y)| b\\ =, 1 b a, \\] then \\[…",
+      "section": "Arithmetic, walks, and entropy",
+      "manuscript": "Bounded-Step Walks on Gaussian Primes"
+    },
+    {
+      "id": "m1-lem-differences",
+      "kind": "lemma",
+      "label": "Many differences",
+      "statement": "[Many differences] Let \\(E\\) consist of the points of a segment of \\(n1\\) steps of the walk. Let \\(R\\) be its diameter, choose a line through two points realizing that diameter, and let \\(W\\) be the…",
+      "section": "Entropy enrichment from a forward segment",
+      "manuscript": "Bounded-Step Walks on Gaussian Primes"
+    },
+    {
+      "id": "m1-lem-rectangle",
+      "kind": "lemma",
+      "label": "A randomly signed product avoids a thin rectangle",
+      "statement": "[A randomly signed product avoids a thin rectangle] Let \\(p_1,,p_r\\) be distinct rational primes congruent to \\(1\\) modulo \\(4\\), all in \\([T,2T]\\), where \\(T5\\), and put \\(P=_i p_i\\). Let \\(Q\\) be…",
+      "section": "Entropy enrichment from a forward segment",
+      "manuscript": "Bounded-Step Walks on Gaussian Primes"
+    },
+    {
+      "id": "m1-lem-enrichment",
+      "kind": "lemma",
+      "label": "Entropy enrichment",
+      "statement": "[Entropy enrichment] Let \\(Z=z_\\) and \\(V\\) be the starting point and sampled endpoint in the preceding transition for a fixed self-avoiding \\(D\\)-step walk. Set \\[ q= U/L_*, b= g^2U/L_*. \\] Consider…",
+      "section": "Entropy enrichment from a forward segment",
+      "manuscript": "Bounded-Step Walks on Gaussian Primes"
+    },
+    {
+      "id": "m1-lem-conditioning",
+      "kind": "lemma",
+      "label": "One shared conditioning cost",
+      "statement": "[One shared conditioning cost] Let (Y,) be any pair of finite variables, with Y taking values in , and let S be selected independently as above. If \\[ _S H(F_S(Y))(1-)s L, H() s L, \\] then _c[…",
+      "section": "Coverage from shared continuation data",
+      "manuscript": "Bounded-Step Walks on Gaussian Primes"
+    },
+    {
+      "id": "m1-thm-transfer",
+      "kind": "theorem",
+      "label": "One-step coverage transfer",
+      "statement": "[One-step coverage transfer] Use the signed coordinates and the experiment just defined, with integers 1 s k and n1 . Let \\[ 0<3/8, 0<1/64, '=+4, 0<'<1, 0<1, 0'1. \\] Suppose that at every a in the…",
+      "section": "Coverage from shared continuation data",
+      "manuscript": "Bounded-Step Walks on Gaussian Primes"
+    },
+    {
+      "id": "m1-lem-future-shift",
+      "kind": "lemma",
+      "label": "Future shifts and smoothing",
+      "statement": "[Future shifts and smoothing] Let \\(V\\) be a scheduled scale in a band with parameter \\(g\\). For all sufficiently large \\(M\\), the maximum total forward time shift from the checkpoint before \\(V\\) to…",
+      "section": "A common sampling schedule",
+      "manuscript": "Bounded-Step Walks on Gaussian Primes"
+    },
+    {
+      "id": "m1-prop-coverage",
+      "kind": "proposition",
+      "label": "Terminal residue coverage",
+      "statement": "[Terminal residue coverage] For all sufficiently large \\(M\\), uniformly over the batches, \\(0 i J\\), and all exact start times \\(a0\\) at \\(A_i\\), all but a fraction at most \\(_i\\) of the signed…",
+      "section": "A common sampling schedule",
+      "manuscript": "Bounded-Step Walks on Gaussian Primes"
+    },
+    {
+      "id": "m1-prop-information-rate",
+      "kind": "proposition",
+      "label": "Information cost of one batch",
+      "statement": "[Information cost of one batch] There is a constant \\(c_1>0\\), depending only on the fixed schedule parameters, such that for all sufficiently large \\(M\\) and every batch in , 1 L_T \\, _ C I(X'_T;W_…",
+      "section": "Zero avoidance costs information",
+      "manuscript": "Bounded-Step Walks on Gaussian Primes"
+    },
+    {
+      "id": "m1-lem-telescope",
+      "kind": "lemma",
+      "label": "A common-law entropy telescope",
+      "statement": "[A common-law entropy telescope] For every fixed collection \\( C\\) of prime choices, _T I(X'_T;W_ L_T (t_*) O'_T) L_T K_D+o(1), where the error tends to zero uniformly over the choices and the walks…",
+      "section": "The common-law entropy budget",
+      "manuscript": "Bounded-Step Walks on Gaussian Primes"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-differences",
+      "to": "m1-lem-enrichment"
+    },
+    {
+      "from": "m1-lem-rectangle",
+      "to": "m1-lem-enrichment"
+    },
+    {
+      "from": "m1-lem-displacement",
+      "to": "m1-lem-enrichment"
+    },
+    {
+      "from": "m1-lem-list",
+      "to": "m1-thm-transfer"
+    },
+    {
+      "from": "m1-lem-conditioning",
+      "to": "m1-thm-transfer"
+    },
+    {
+      "from": "m1-lem-displacement",
+      "to": "m1-lem-future-shift"
+    },
+    {
+      "from": "m1-thm-transfer",
+      "to": "m1-prop-coverage"
+    },
+    {
+      "from": "m1-lem-conditioning",
+      "to": "m1-prop-coverage"
+    },
+    {
+      "from": "m1-prop-coverage",
+      "to": "m1-prop-information-rate"
+    },
+    {
+      "from": "m1-lem-continuity",
+      "to": "m1-lem-telescope"
+    },
+    {
+      "from": "m1-thm-sieve",
+      "to": "m1-lem-telescope"
+    },
+    {
+      "from": "m1-prop-information-rate",
+      "to": "m1-lem-telescope"
+    }
+  ]
+}

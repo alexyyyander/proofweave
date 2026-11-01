@@ -1,0 +1,400 @@
+{
+  "familyNumber": "297",
+  "familyTitle": "A ZFC counterexample to Naimark's problem",
+  "manuscripts": [
+    {
+      "id": "A-counterexample-to-Naimarks-problem-in-ZFC-September-24-2026",
+      "title": "A counterexample to Naimark's problem in ZFC",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-counterexample-to-Naimarks-problem-in-ZFC-September-24-2026/naimark-counterexample-zfc.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Pure states, excision, and peaking projections",
+    "Reduced HNN adjunctions",
+    "Joining two classes while preserving unique extensions",
+    "Closed subiterations and countable determination",
+    "The construction in ZFC"
+  ],
+  "nodes": [
+    {
+      "id": "m1-na-main",
+      "kind": "theorem",
+      "label": "There exists a unital infinite-dimensional simple complex C^* -algebra A with a…",
+      "statement": "There exists a unital infinite-dimensional simple complex C^* -algebra A with a faithful tracial state such that all its nonzero irreducible representations are unitarily equivalent. In particular, A…",
+      "section": "Introduction",
+      "manuscript": "A counterexample to Naimark's problem in ZFC"
+    },
+    {
+      "id": "m1-na-unique-lift",
+      "kind": "lemma",
+      "label": "If a pure state h of B has a unique state extension h to C B , then h is pure.",
+      "statement": "If a pure state h of B has a unique state extension h to C B , then h is pure.",
+      "section": "Pure states, excision, and peaking projections",
+      "manuscript": "A counterexample to Naimark's problem in ZFC"
+    },
+    {
+      "id": "m1-na-unitary-states",
+      "kind": "lemma",
+      "label": "Equivalent pure states of a unital C^* -algebra B are conjugate by a unitary of…",
+      "statement": "Equivalent pure states of a unital C^* -algebra B are conjugate by a unitary of B . Consequently, if they each have a unique state extension to an algebra C B , their extensions are equivalent.",
+      "section": "Pure states, excision, and peaking projections",
+      "manuscript": "A counterexample to Naimark's problem in ZFC"
+    },
+    {
+      "id": "m1-na-peaking-restriction",
+      "kind": "lemma",
+      "label": "Peaking under restriction",
+      "statement": "[Peaking under restriction] Let B C be a unital inclusion and let (P_n) be a decreasing sequence of projections in B that peaks to a state H of C . Then (P_n) peaks to h=H|_B in B , and H is the…",
+      "section": "Pure states, excision, and peaking projections",
+      "manuscript": "A counterexample to Naimark's problem in ZFC"
+    },
+    {
+      "id": "m1-na-excision",
+      "kind": "lemma",
+      "label": "Decreasing excision",
+      "statement": "[Decreasing excision] Let h be a pure state of a unital C^* -algebra B . There is a decreasing net of positive contractions x_ B such that h(x_)=1 , x_ decreases strongly to the minimal projection…",
+      "section": "Pure states, excision, and peaking projections",
+      "manuscript": "A counterexample to Naimark's problem in ZFC"
+    },
+    {
+      "id": "m1-na-projection-excision",
+      "kind": "lemma",
+      "label": "Projection excision",
+      "statement": "[Projection excision] If decreasing projections (P_n) in B peak to h , then P_n r_h strongly and \\[ \\|P_n(a-h(a)1)P_n\\|0(a B). \\] In particular, if h(a)=0 , then \\|P_n a P_t\\|0 on the product index…",
+      "section": "Pure states, excision, and peaking projections",
+      "manuscript": "A counterexample to Naimark's problem in ZFC"
+    },
+    {
+      "id": "m1-na-cross-excision",
+      "kind": "lemma",
+      "label": "Cross-excision",
+      "statement": "[Cross-excision] Let h k be pure states of B , and let (x_) and (y_) be decreasing nets as in Lemma~ , for h and k respectively. Then, for every a B , \\|x_ a y_\\|0 on the product directed set. Either…",
+      "section": "Pure states, excision, and peaking projections",
+      "manuscript": "A counterexample to Naimark's problem in ZFC"
+    },
+    {
+      "id": "m1-na-trace-null",
+      "kind": "lemma",
+      "label": "Trace-null supports",
+      "statement": "[Trace-null supports] If B has no finite-dimensional irreducible representations and is a tracial state on B , then (r_h)=0 for every pure state h .",
+      "section": "Pure states, excision, and peaking projections",
+      "manuscript": "A counterexample to Naimark's problem in ZFC"
+    },
+    {
+      "id": "m1-na-trace-expectation",
+      "kind": "lemma",
+      "label": "For a unital subalgebra B of a faithfully tracial algebra (C,) , there is at…",
+      "statement": "For a unital subalgebra B of a faithfully tracial algebra (C,) , there is at most one trace-preserving conditional expectation C B . If one exists, it is faithful.",
+      "section": "Pure states, excision, and peaking projections",
+      "manuscript": "A counterexample to Naimark's problem in ZFC"
+    },
+    {
+      "id": "m1-na-peaking-expectation",
+      "kind": "lemma",
+      "label": "Let (B,) be faithfully tracial. Suppose decreasing projections (p_n)_ n0 peak…",
+      "statement": "Let (B,) be faithfully tracial. Suppose decreasing projections (p_n)_ n0 peak to h , with p_0=1 and trace values strictly decreasing to zero. Then D=C^*(p_n:n0) is isomorphic to C( N_0\\ \\ ) , and…",
+      "section": "Pure states, excision, and peaking projections",
+      "manuscript": "A counterexample to Naimark's problem in ZFC"
+    },
+    {
+      "id": "m1-na-simple-extension",
+      "kind": "lemma",
+      "label": "Suppose B C satisfies , B is simple, and there is a faithful conditional…",
+      "statement": "Suppose B C satisfies , B is simple, and there is a faithful conditional expectation E:C B . Then C is simple.",
+      "section": "Pure states, excision, and peaking projections",
+      "manuscript": "A counterexample to Naimark's problem in ZFC"
+    },
+    {
+      "id": "m1-na-hnn",
+      "kind": "proposition",
+      "label": "Let (A,) be a unital C^* -algebra with faithful tracial state, let D_1,D_2 A be…",
+      "statement": "Let (A,) be a unital C^* -algebra with faithful tracial state, let D_1,D_2 A be unital subalgebras with trace-preserving conditional expectations E_i:A D_i , and let :D_1 D_2 be a trace-preserving…",
+      "section": "Reduced HNN adjunctions",
+      "manuscript": "A counterexample to Naimark's problem in ZFC"
+    },
+    {
+      "id": "m1-na-free-product",
+      "kind": "lemma",
+      "label": "Let F and G be unital C^* -algebras with faithful tracial states, containing a…",
+      "statement": "Let F and G be unital C^* -algebras with faithful tracial states, containing a common unital subalgebra D on which the traces agree. Suppose that E_D^F:F D and E_D^G:G D are trace-preserving…",
+      "section": "Reduced HNN adjunctions",
+      "manuscript": "A counterexample to Naimark's problem in ZFC"
+    },
+    {
+      "id": "m1-na-hnn-restriction",
+      "kind": "corollary",
+      "label": "With the hypotheses of Proposition~ , let A' A be a unital subalgebra…",
+      "statement": "With the hypotheses of Proposition~ , let A' A be a unital subalgebra containing D_1 and D_2 . Then C^*(A',v) H(A) is the reduced adjunction H(A') formed with the restricted trace and expectations…",
+      "section": "Reduced HNN adjunctions",
+      "manuscript": "A counterexample to Naimark's problem in ZFC"
+    },
+    {
+      "id": "m1-na-reorder",
+      "kind": "proposition",
+      "label": "Let O be a unital faithfully tracial C^* -algebra. For each t\\ j,k\\ , let…",
+      "statement": "Let O be a unital faithfully tracial C^* -algebra. For each t\\ j,k\\ , let D_1^t,D_2^t O , E_i^t:O D_i^t and _t:D_1^t D_2^t satisfy the hypotheses of Proposition~ . When forming an adjunction over…",
+      "section": "Reduced HNN adjunctions",
+      "manuscript": "A counterexample to Naimark's problem in ZFC"
+    },
+    {
+      "id": "m1-na-hnn-limit",
+      "kind": "lemma",
+      "label": "Let be a nonzero limit ordinal, and let (O_)_ < be an increasing family of…",
+      "statement": "Let be a nonzero limit ordinal, and let (O_)_ < be an increasing family of unital C^* -algebras with compatible faithful tracial states. Suppose that fixed subalgebras D_1,D_2 lie in every O_ , with…",
+      "section": "Reduced HNN adjunctions",
+      "manuscript": "A counterexample to Naimark's problem in ZFC"
+    },
+    {
+      "id": "m1-na-bridge",
+      "kind": "theorem",
+      "label": "The bridge",
+      "statement": "[The bridge] Let A be a unital C^* -algebra with a faithful tracial state and no finite-dimensional irreducible representations. For i=1,2 , let (p_n^i)_ n0 be a decreasing sequence of projections,…",
+      "section": "Joining two classes while preserving unique extensions",
+      "manuscript": "A counterexample to Naimark's problem in ZFC"
+    },
+    {
+      "id": "m1-na-unique-chain",
+      "kind": "lemma",
+      "label": "Let (B_)_ be a continuous chain whose successor inclusions have property (U).…",
+      "statement": "Let (B_)_ be a continuous chain whose successor inclusions have property (U). Then every inclusion B_ B_ , for , has (U). The unique lifts of equivalent pure states are equivalent.",
+      "section": "Closed subiterations and countable determination",
+      "manuscript": "A counterexample to Naimark's problem in ZFC"
+    },
+    {
+      "id": "m1-na-inequivalent-limit",
+      "kind": "lemma",
+      "label": "Let (B_)_ be continuous, with a nonzero limit ordinal. Suppose pure states h,k…",
+      "statement": "Let (B_)_ be continuous, with a nonzero limit ordinal. Suppose pure states h,k of B_ restrict to inequivalent pure states of B_ for all in some tail below . Then h k .",
+      "section": "Closed subiterations and countable determination",
+      "manuscript": "A counterexample to Naimark's problem in ZFC"
+    },
+    {
+      "id": "m1-na-base-peak",
+      "kind": "lemma",
+      "label": "The algebra A_0 is separable, simple and infinite-dimensional, its trace is…",
+      "statement": "The algebra A_0 is separable, simple and infinite-dimensional, its trace is faithful, and (p_n) peaks to a pure state f_0 . Moreover, (p_n)=2^ -n . Every unital C^* -algebra containing A_0 has no…",
+      "section": "Closed subiterations and countable determination",
+      "manuscript": "A counterexample to Naimark's problem in ZFC"
+    },
+    {
+      "id": "m1-na-inherited",
+      "kind": "lemma",
+      "label": "For every dependency-closed T , the algebras A[T] , , form a continuous bridge…",
+      "statement": "For every dependency-closed T , the algebras A[T] , , form a continuous bridge iteration in the inherited order, with identity steps at indices outside T . In particular, A[T] is simple and has a…",
+      "section": "Closed subiterations and countable determination",
+      "manuscript": "A counterexample to Naimark's problem in ZFC"
+    },
+    {
+      "id": "m1-na-closed-extension",
+      "kind": "theorem",
+      "label": "For every dependency-closed S , the inclusion A[S] X_ has property (U).",
+      "statement": "For every dependency-closed S , the inclusion A[S] X_ has property (U).",
+      "section": "Closed subiterations and countable determination",
+      "manuscript": "A counterexample to Naimark's problem in ZFC"
+    },
+    {
+      "id": "m1-na-countable-determination",
+      "kind": "lemma",
+      "label": "For every pure state h of X_ , there is a countable dependency-closed S such…",
+      "statement": "For every pure state h of X_ , there is a countable dependency-closed S such that h|_ A[S] is pure and h is its unique state extension to X_ .",
+      "section": "Closed subiterations and countable determination",
+      "manuscript": "A counterexample to Naimark's problem in ZFC"
+    },
+    {
+      "id": "m1-na-state-count",
+      "kind": "corollary",
+      "label": "Put c=2^ _0 . If || c , then X_ has at most c pure states.",
+      "statement": "Put c=2^ _0 . If || c , then X_ has at most c pure states.",
+      "section": "Closed subiterations and countable determination",
+      "manuscript": "A counterexample to Naimark's problem in ZFC"
+    },
+    {
+      "id": "m1-na-homogeneity",
+      "kind": "theorem",
+      "label": "Kishimoto--Ozawa--Sakai",
+      "statement": "[Kishimoto--Ozawa--Sakai] Let B be a separable C^* -algebra. If pure states h,k of B have GNS representations with the same kernel, there is an automorphism of B such that h=k . In particular, this…",
+      "section": "The construction in ZFC",
+      "manuscript": "A counterexample to Naimark's problem in ZFC"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-na-projection-excision",
+      "to": "m1-na-cross-excision"
+    },
+    {
+      "from": "m1-na-unitary-states",
+      "to": "m1-na-trace-null"
+    },
+    {
+      "from": "m1-na-projection-excision",
+      "to": "m1-na-peaking-expectation"
+    },
+    {
+      "from": "m1-na-hnn",
+      "to": "m1-na-free-product"
+    },
+    {
+      "from": "m1-na-hnn",
+      "to": "m1-na-hnn-restriction"
+    },
+    {
+      "from": "m1-na-hnn-restriction",
+      "to": "m1-na-reorder"
+    },
+    {
+      "from": "m1-na-hnn",
+      "to": "m1-na-hnn-limit"
+    },
+    {
+      "from": "m1-na-peaking-expectation",
+      "to": "m1-na-bridge"
+    },
+    {
+      "from": "m1-na-free-product",
+      "to": "m1-na-bridge"
+    },
+    {
+      "from": "m1-na-hnn",
+      "to": "m1-na-bridge"
+    },
+    {
+      "from": "m1-na-unitary-states",
+      "to": "m1-na-bridge"
+    },
+    {
+      "from": "m1-na-excision",
+      "to": "m1-na-bridge"
+    },
+    {
+      "from": "m1-na-projection-excision",
+      "to": "m1-na-bridge"
+    },
+    {
+      "from": "m1-na-trace-null",
+      "to": "m1-na-bridge"
+    },
+    {
+      "from": "m1-na-cross-excision",
+      "to": "m1-na-bridge"
+    },
+    {
+      "from": "m1-na-unique-lift",
+      "to": "m1-na-bridge"
+    },
+    {
+      "from": "m1-na-simple-extension",
+      "to": "m1-na-bridge"
+    },
+    {
+      "from": "m1-na-unique-lift",
+      "to": "m1-na-unique-chain"
+    },
+    {
+      "from": "m1-na-unitary-states",
+      "to": "m1-na-unique-chain"
+    },
+    {
+      "from": "m1-na-hnn-restriction",
+      "to": "m1-na-inherited"
+    },
+    {
+      "from": "m1-na-peaking-restriction",
+      "to": "m1-na-inherited"
+    },
+    {
+      "from": "m1-na-unitary-states",
+      "to": "m1-na-inherited"
+    },
+    {
+      "from": "m1-na-base-peak",
+      "to": "m1-na-inherited"
+    },
+    {
+      "from": "m1-na-bridge",
+      "to": "m1-na-inherited"
+    },
+    {
+      "from": "m1-na-simple-extension",
+      "to": "m1-na-inherited"
+    },
+    {
+      "from": "m1-na-peaking-restriction",
+      "to": "m1-na-closed-extension"
+    },
+    {
+      "from": "m1-na-bridge",
+      "to": "m1-na-closed-extension"
+    },
+    {
+      "from": "m1-na-inequivalent-limit",
+      "to": "m1-na-closed-extension"
+    },
+    {
+      "from": "m1-na-trace-expectation",
+      "to": "m1-na-closed-extension"
+    },
+    {
+      "from": "m1-na-reorder",
+      "to": "m1-na-closed-extension"
+    },
+    {
+      "from": "m1-na-hnn-limit",
+      "to": "m1-na-closed-extension"
+    },
+    {
+      "from": "m1-na-unique-chain",
+      "to": "m1-na-closed-extension"
+    },
+    {
+      "from": "m1-na-excision",
+      "to": "m1-na-countable-determination"
+    },
+    {
+      "from": "m1-na-closed-extension",
+      "to": "m1-na-countable-determination"
+    },
+    {
+      "from": "m1-na-countable-determination",
+      "to": "m1-na-state-count"
+    },
+    {
+      "from": "m1-na-main",
+      "to": "m1-na-homogeneity"
+    },
+    {
+      "from": "m1-na-base-peak",
+      "to": "m1-na-homogeneity"
+    },
+    {
+      "from": "m1-na-state-count",
+      "to": "m1-na-homogeneity"
+    },
+    {
+      "from": "m1-na-countable-determination",
+      "to": "m1-na-homogeneity"
+    },
+    {
+      "from": "m1-na-peaking-restriction",
+      "to": "m1-na-homogeneity"
+    },
+    {
+      "from": "m1-na-inherited",
+      "to": "m1-na-homogeneity"
+    },
+    {
+      "from": "m1-na-closed-extension",
+      "to": "m1-na-homogeneity"
+    },
+    {
+      "from": "m1-na-bridge",
+      "to": "m1-na-homogeneity"
+    },
+    {
+      "from": "m1-na-unique-chain",
+      "to": "m1-na-homogeneity"
+    }
+  ]
+}

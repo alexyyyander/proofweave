@@ -1,0 +1,657 @@
+{
+  "familyNumber": "039",
+  "familyTitle": "Nagata’s conjecture and maximal Seshadri constants",
+  "manuscripts": [
+    {
+      "id": "Nagatas-Conjecture-for-Plane-Curves-September-23-2026",
+      "title": "Nagata's conjecture for plane curves",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Nagatas-Conjecture-for-Plane-Curves-September-23-2026/main.pdf"
+    },
+    {
+      "id": "Maximal-Seshadri-Constants-on-Arbitrary-Polarized-Surfaces-September-23-2026",
+      "title": "Maximal Seshadri constants on arbitrary polarized surfaces",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Maximal-Seshadri-Constants-on-Arbitrary-Polarized-Surfaces-September-23-2026/main.pdf"
+    },
+    {
+      "id": "Maximal-Multipoint-Seshadri-Constants-in-Higher-Dimensions-October-5-2026",
+      "title": "Maximal Multipoint Seshadri Constants in Higher Dimensions",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Maximal-Multipoint-Seshadri-Constants-in-Higher-Dimensions-October-5-2026/main.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "From plane curves to normal polynomials",
+    "Polynomial sections on an elliptic curve",
+    "Colliding points and degenerating sections",
+    "Interpolation on the exponent set",
+    "Fields and multipoint positivity",
+    "Finite jet tests and initial monomials",
+    "A nodal divisor and its exponent diagram",
+    "Finite subgroups as jet tests",
+    "From homogeneous jets to nefness",
+    "Monomial spaces and finite jets",
+    "A simplex from a complete-intersection flag",
+    "Reshaping two intercepts",
+    "Interior lattice points and interpolation",
+    "Proof of the main theorem"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For every integer r10 , there is a countable union E_r of proper Zariski-closed…",
+      "statement": "For every integer r10 , there is a countable union E_r of proper Zariski-closed subsets of U_r , with nonempty complement, such that the following holds for every tuple (p_1,,p_r) E_r . If C is a…",
+      "section": "Introduction",
+      "manuscript": "Nagata's conjecture for plane curves"
+    },
+    {
+      "id": "m1-lem-universal",
+      "kind": "lemma",
+      "label": "Reduction to universal systems",
+      "statement": "[Reduction to universal systems] For each r10 there is a countable union E_r of proper Zariski-closed subsets of U_r , all defined over Q , with U_r E_r , having the following property. If a tuple…",
+      "section": "From plane curves to normal polynomials",
+      "manuscript": "Nagata's conjecture for plane curves"
+    },
+    {
+      "id": "m1-prop-normal-polynomial",
+      "kind": "proposition",
+      "label": "A necessary normal polynomial",
+      "statement": "[A necessary normal polynomial] Suppose that U_r(d,m) holds. For every choice of distinct points a_1,,a_r B and arbitrary vectors c_i M_ a_i , there is a nonzero polynomial F(w)=_ j=0 ^ d/k f_jw^j,…",
+      "section": "From plane curves to normal polynomials",
+      "manuscript": "Nagata's conjecture for plane curves"
+    },
+    {
+      "id": "m1-prop-squares",
+      "kind": "proposition",
+      "label": "Strict inequality for square r",
+      "statement": "[Strict inequality for square r ] Let r=k^2 with k4 . There are no positive integers d,m such that d km and U_r(d,m) holds.",
+      "section": "From plane curves to normal polynomials",
+      "manuscript": "Nagata's conjecture for plane curves"
+    },
+    {
+      "id": "m1-lem-cubic-low-degree",
+      "kind": "lemma",
+      "label": "Excluding degree at most 3m",
+      "statement": "[Excluding degree at most 3m ] If r10 and U_r(d,m) holds for positive integers d,m , then d>3m .",
+      "section": "From plane curves to normal polynomials",
+      "manuscript": "Nagata's conjecture for plane curves"
+    },
+    {
+      "id": "m1-prop-necessary-w",
+      "kind": "proposition",
+      "label": "Suppose r10 , d>3m , and U_r(d,m) holds. Choose B,P,A and as above, and fix a…",
+      "statement": "Suppose r10 , d>3m , and U_r(d,m) holds. Choose B,P,A and as above, and fix a holomorphic frame of A on a coordinate disk in B P . For every choice of q=r-9 distinct points b_1,,b_q in this disk,…",
+      "section": "Polynomial sections on an elliptic curve",
+      "manuscript": "Nagata's conjecture for plane curves"
+    },
+    {
+      "id": "m1-lem-torus-sections",
+      "kind": "lemma",
+      "label": "For n>0 and ^* , the space H^0(X_,D(n,)) has dimension n . The Laurent…",
+      "statement": "For n>0 and ^* , the space H^0(X_,D(n,)) has dimension n . The Laurent coefficients of a section f(z)=_ K c_Kz^K satisfy c_ K+n &=^ -1 ^Kc_K,\\\\ c_ K+np &=c_K^ -p ^ pK+np(p-1)/2 (p). One coefficient…",
+      "section": "Polynomial sections on an elliptic curve",
+      "manuscript": "Nagata's conjecture for plane curves"
+    },
+    {
+      "id": "m1-lem-cubic-embedding",
+      "kind": "lemma",
+      "label": "For every ^* , the complete space of sections of D(3,) embeds X_ into ^2 as a…",
+      "statement": "For every ^* , the complete space of sections of D(3,) embeds X_ into ^2 as a smooth irreducible plane cubic, with O_ ^2 (1) pulling back to D(3,) .",
+      "section": "Polynomial sections on an elliptic curve",
+      "manuscript": "Nagata's conjecture for plane curves"
+    },
+    {
+      "id": "m1-lem-collision",
+      "kind": "lemma",
+      "label": "Collision of the further points",
+      "statement": "[Collision of the further points] If U_r(d,m) holds, then J_\\ 0\\ for every fixed (0,1) .",
+      "section": "Colliding points and degenerating sections",
+      "manuscript": "Nagata's conjecture for plane curves"
+    },
+    {
+      "id": "m1-lem-theta-limit",
+      "kind": "lemma",
+      "label": "Normalized theta sections",
+      "statement": "[Normalized theta sections] Fix an integer n>0 , a real number , and a complex number with ||=1 . Put U=-x_0n and assume U . For each integer K with U<K<U+n , there is a section s_ K, of D(n,^)…",
+      "section": "Colliding points and degenerating sections",
+      "manuscript": "Nagata's conjecture for plane curves"
+    },
+    {
+      "id": "m1-prop-matrix-limit",
+      "kind": "proposition",
+      "label": "Choose fixed orderings of I and S , and represent J_ in the basis E_ j,K, by…",
+      "statement": "Choose fixed orderings of I and S , and represent J_ in the basis E_ j,K, by the matrix B_ . These matrices have one fixed size and converge entrywise as 0^+ to the matrix B_0=(K^ j^b)_ ( ,b)…",
+      "section": "Colliding points and degenerating sections",
+      "manuscript": "Nagata's conjecture for plane curves"
+    },
+    {
+      "id": "m1-lem-interpolation",
+      "kind": "lemma",
+      "label": "Interpolation by horizontal rows",
+      "statement": "[Interpolation by horizontal rows] Let q,m be positive integers and S^2 a finite set, with coordinates (j,K) . For each represented height K , let N_K be its row size. Suppose \\[ N_K m, \\#\\ K:N_K t\\…",
+      "section": "Interpolation on the exponent set",
+      "manuscript": "Nagata's conjecture for plane curves"
+    },
+    {
+      "id": "m1-lem-exponent-enclosure",
+      "kind": "lemma",
+      "label": "Every pair (j,K) S satisfies 0& X1+/9,\\\\ -aX+(X-1)_+ & Y-aX++(-9)(X-1)_+. The…",
+      "statement": "Every pair (j,K) S satisfies 0& X1+/9,\\\\ -aX+(X-1)_+ & Y-aX++(-9)(X-1)_+. The region in~ is contained in D_ . Consequently, S m D_+(0,U_0) .",
+      "section": "Interpolation on the exponent set",
+      "manuscript": "Nagata's conjecture for plane curves"
+    },
+    {
+      "id": "m1-lem-slice-profile",
+      "kind": "lemma",
+      "label": "Horizontal slice profile",
+      "statement": "[Horizontal slice profile] We have D_= D_1 . The nonempty horizontal slices of D_1 have lengths \\[ w(Y)= 1-Y/a,&0 Y a,\\\\[1mm] 1+Y/(a(1+a/9)), &-a(1+a/9) Y0. \\] Their maximum length is one. For 0 s m…",
+      "section": "Interpolation on the exponent set",
+      "manuscript": "Nagata's conjecture for plane curves"
+    },
+    {
+      "id": "m1-lem-integer-rows",
+      "kind": "lemma",
+      "label": "Integer row counts",
+      "statement": "[Integer row counts] If q(1-)m1 , then the exponent set satisfies N_K& m &&(K),\\\\ \\#\\ K:N_K t\\ & q(m-t+1) &&(1 t m,\\ t).",
+      "section": "Interpolation on the exponent set",
+      "manuscript": "Nagata's conjecture for plane curves"
+    },
+    {
+      "id": "m1-prop-full-rank",
+      "kind": "proposition",
+      "label": "If q(1-)m1 , then the limiting matrix B_0 of~ has full column rank.…",
+      "statement": "If q(1-)m1 , then the limiting matrix B_0 of~ has full column rank. Consequently, J_ is injective for all sufficiently small positive .",
+      "section": "Interpolation on the exponent set",
+      "manuscript": "Nagata's conjecture for plane curves"
+    },
+    {
+      "id": "m1-cor-fields",
+      "kind": "corollary",
+      "label": "Let k be an uncountable algebraically closed field of characteristic zero, and…",
+      "statement": "Let k be an uncountable algebraically closed field of characteristic zero, and let r10 . There is a countable union of proper Zariski-closed subsets of the space of distinct ordered r -tuples in ^2_k…",
+      "section": "Fields and multipoint positivity",
+      "manuscript": "Nagata's conjecture for plane curves"
+    },
+    {
+      "id": "m1-cor-sesha",
+      "kind": "corollary",
+      "label": "The class N_r= r\\,H-_iE_i is strictly nef and satisfies N_r^2=0 . In…",
+      "statement": "The class N_r= r\\,H-_iE_i is strictly nef and satisfies N_r^2=0 . In particular, \\[ ( O(1);p_1,,p_r)=1 r . \\]",
+      "section": "Fields and multipoint positivity",
+      "manuscript": "Nagata's conjecture for plane curves"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "For every smooth integral complex projective surface S and every ample line…",
+      "statement": "For every smooth integral complex projective surface S and every ample line bundle L on S , there is an integer r_0=r_0(S,L) with the following property. For each integer r r_0 , there is a countable…",
+      "section": "Introduction",
+      "manuscript": "Maximal Seshadri constants on arbitrary polarized surfaces"
+    },
+    {
+      "id": "m2-lem-rank-persistence",
+      "kind": "lemma",
+      "label": "Persistence of a finite jet test",
+      "statement": "[Persistence of a finite jet test] Let m,r,N be positive integers and let q_1,,q_r be distinct points of an open subset U^2 . For 1 i N and 0 s<s_0 , let f_ i,s be holomorphic on U . Suppose that, as…",
+      "section": "Finite jet tests and initial monomials",
+      "manuscript": "Maximal Seshadri constants on arbitrary polarized surfaces"
+    },
+    {
+      "id": "m2-prop-initial-transfer",
+      "kind": "proposition",
+      "label": "Transfer from initial monomials",
+      "statement": "[Transfer from initial monomials] Let F\\ x,z\\ be a finite-dimensional complex vector space of convergent holomorphic germs, and let t>0 . The set E_t(F) has exactly F elements, and F admits a basis…",
+      "section": "Finite jet tests and initial monomials",
+      "manuscript": "Maximal Seshadri constants on arbitrary polarized surfaces"
+    },
+    {
+      "id": "m2-lem-node",
+      "kind": "lemma",
+      "label": "A nodal ample divisor",
+      "statement": "[A nodal ample divisor] Let S be a smooth integral complex projective surface and let L be an ample line bundle. There exist a positive integer d , an integral divisor V|dL| , and a point p V such…",
+      "section": "A nodal divisor and its exponent diagram",
+      "manuscript": "Maximal Seshadri constants on arbitrary polarized surfaces"
+    },
+    {
+      "id": "m2-prop-quadrilateral",
+      "kind": "proposition",
+      "label": "The quadrilateral bound",
+      "statement": "[The quadrilateral bound] For the surface, line bundle, nodal divisor, coordinates and frame fixed above, every integer k1 , every t>T , and every nonzero s H^0(S,kL) satisfy \\[ _t(s) kQ_t. \\]…",
+      "section": "A nodal divisor and its exponent diagram",
+      "manuscript": "Maximal Seshadri constants on arbitrary polarized surfaces"
+    },
+    {
+      "id": "m2-lem-slices",
+      "kind": "lemma",
+      "label": "Diagonal slices",
+      "statement": "[Diagonal slices] For -b q a , the slice of Q_t on the line -=q has length in the coordinate equal to \\[ _t(q)= c(1+q/b),&-b q0,\\\\[2pt] c(1-q/a),&0 q a. \\] There are no slices outside this interval,…",
+      "section": "A nodal divisor and its exponent diagram",
+      "manuscript": "Maximal Seshadri constants on arbitrary polarized surfaces"
+    },
+    {
+      "id": "m2-prop-compression",
+      "kind": "proposition",
+      "label": "Diagonal compression",
+      "statement": "[Diagonal compression] Let k,m,r be positive integers. If M(kP_t) has injective order- m jets at some r distinct points of , then M(kQ_t) has injective order- m jets at some r distinct points of .",
+      "section": "A nodal divisor and its exponent diagram",
+      "manuscript": "Maximal Seshadri constants on arbitrary polarized surfaces"
+    },
+    {
+      "id": "m2-cor-surface-transfer",
+      "kind": "corollary",
+      "label": "From the triangle to the surface",
+      "statement": "[From the triangle to the surface] Let k,m,r be positive integers. If M(kP_t) has injective order- m jets at some r distinct torus points, then H^0(S,kL) has injective order- m jets at some r…",
+      "section": "A nodal divisor and its exponent diagram",
+      "manuscript": "Maximal Seshadri constants on arbitrary polarized surfaces"
+    },
+    {
+      "id": "m2-lem-triangle-multiplicity",
+      "kind": "lemma",
+      "label": "Let >0 , and let ^2 be a triangle of area ^2/2 and vertical range . Every…",
+      "statement": "Let >0 , and let ^2 be a triangle of area ^2/2 and vertical range . Every nonzero Laurent polynomial F whose exponent support is contained in satisfies \\[ _ (1,1) F. \\]",
+      "section": "Finite subgroups as jet tests",
+      "manuscript": "Maximal Seshadri constants on arbitrary polarized surfaces"
+    },
+    {
+      "id": "m2-prop-subgroup-test",
+      "kind": "proposition",
+      "label": "Let H>0 , let r be a positive integer, and let P^2 be a triangle of area H/2 .…",
+      "statement": "Let H>0 , let r be a positive integer, and let P^2 be a triangle of area H/2 . Suppose there is a primitive vector u^2 such that \\[ _ P (u,) -_ P (u,)=rH. \\] Then there is a subgroup G of exactly r…",
+      "section": "Finite subgroups as jet tests",
+      "manuscript": "Maximal Seshadri constants on arbitrary polarized surfaces"
+    },
+    {
+      "id": "m2-lem-direction",
+      "kind": "lemma",
+      "label": "Fix d,H>0 and T>1 , and define P_t as above for t>T . For every sufficiently…",
+      "statement": "Fix d,H>0 and T>1 , and define P_t as above for t>T . For every sufficiently large integer r there are t>T and a primitive vector u^2 such that the range of (u,) on P_t has length rH . The threshold…",
+      "section": "Finite subgroups as jet tests",
+      "manuscript": "Maximal Seshadri constants on arbitrary polarized surfaces"
+    },
+    {
+      "id": "m2-cor-torus-test",
+      "kind": "corollary",
+      "label": "For the fixed parameters d,H,T of Section~ , there is an integer r_0 such that…",
+      "statement": "For the fixed parameters d,H,T of Section~ , there is an integer r_0 such that for every integer r r_0 one can choose a single t>T and a subgroup G of r distinct points for which the following holds:…",
+      "section": "Finite subgroups as jet tests",
+      "manuscript": "Maximal Seshadri constants on arbitrary polarized surfaces"
+    },
+    {
+      "id": "m2-lem-jet-open",
+      "kind": "lemma",
+      "label": "The open locus of an injective jet test",
+      "statement": "[The open locus of an injective jet test] Let S be a smooth integral complex projective surface, let L be a line bundle, and let r,k,m be positive integers. In the configuration space \\[ U_r=\\…",
+      "section": "From homogeneous jets to nefness",
+      "manuscript": "Maximal Seshadri constants on arbitrary polarized surfaces"
+    },
+    {
+      "id": "m2-lem-positive-square",
+      "kind": "lemma",
+      "label": "Effective multiples of a positive-square divisor",
+      "statement": "[Effective multiples of a positive-square divisor] Let Y be a smooth integral complex projective surface, let A be a nef real divisor class, and let D be a rational Cartier divisor. If D^2>0 and A…",
+      "section": "From homogeneous jets to nefness",
+      "manuscript": "Maximal Seshadri constants on arbitrary polarized surfaces"
+    },
+    {
+      "id": "m2-prop-homogeneous-nef",
+      "kind": "proposition",
+      "label": "Homogeneous tests imply nefness",
+      "statement": "[Homogeneous tests imply nefness] Let S be a smooth integral complex projective surface, let L be ample, and let p_1,,p_r be distinct points. Put H=L^2 and w=H/r . Suppose that, for all positive…",
+      "section": "From homogeneous jets to nefness",
+      "manuscript": "Maximal Seshadri constants on arbitrary polarized surfaces"
+    },
+    {
+      "id": "m2-lem-sesha-upper",
+      "kind": "lemma",
+      "label": "The square upper bound",
+      "statement": "[The square upper bound] For every ample line bundle L on a smooth integral complex projective surface S and every tuple of r distinct points, \\[ (S,L;p_1,,p_r)L^2/r. \\]",
+      "section": "From homogeneous jets to nefness",
+      "manuscript": "Maximal Seshadri constants on arbitrary polarized surfaces"
+    },
+    {
+      "id": "m2-cor-fields",
+      "kind": "corollary",
+      "label": "Let K be an uncountable algebraically closed field of characteristic zero, let…",
+      "statement": "Let K be an uncountable algebraically closed field of characteristic zero, let S be a smooth integral projective surface over K , and let L be an ample line bundle on S . There is an integer…",
+      "section": "From homogeneous jets to nefness",
+      "manuscript": "Maximal Seshadri constants on arbitrary polarized surfaces"
+    },
+    {
+      "id": "m3-thm-main",
+      "kind": "theorem",
+      "label": "Let X be a smooth integral complex projective variety of dimension n3 , and let…",
+      "statement": "Let X be a smooth integral complex projective variety of dimension n3 , and let L be an ample line bundle on X . There is an integer r_0=r_0(X,L)1 such that for every integer r r_0 there is a…",
+      "section": "Introduction",
+      "manuscript": "Maximal Multipoint Seshadri Constants in Higher Dimensions"
+    },
+    {
+      "id": "m3-lem-least-terms",
+      "kind": "lemma",
+      "label": "Least-term bases",
+      "statement": "[Least-term bases] Let W be a finite-dimensional space of convergent power series in q variables, and fix a monomial order. The set \\[ (W\\ 0\\ ) \\] has cardinality W . There is a basis of W whose…",
+      "section": "Monomial spaces and finite jets",
+      "manuscript": "Maximal Multipoint Seshadri Constants in Higher Dimensions"
+    },
+    {
+      "id": "m3-lem-row-valuation",
+      "kind": "lemma",
+      "label": "Least terms in labeled spaces",
+      "statement": "[Least terms in labeled spaces] Fix integers 1 q n and a monomial order in q variables. For k1 and ^ n-q , let W_ k, be finite-dimensional spaces of convergent power series in those variables, with…",
+      "section": "Monomial spaces and finite jets",
+      "manuscript": "Maximal Multipoint Seshadri Constants in Higher Dimensions"
+    },
+    {
+      "id": "m3-lem-weighted-limit",
+      "kind": "lemma",
+      "label": "Weighted limits with unchanged variables",
+      "statement": "[Weighted limits with unchanged variables] Let 1 q n , and let f_1,,f_N be convergent power series near 0^q . Suppose that a vector _ >0 ^q makes a specified exponent e_j the unique minimum of on the…",
+      "section": "Monomial spaces and finite jets",
+      "manuscript": "Maximal Multipoint Seshadri Constants in Higher Dimensions"
+    },
+    {
+      "id": "m3-lem-rank-transfer",
+      "kind": "lemma",
+      "label": "Persistence of jet separation",
+      "statement": "[Persistence of jet separation] Fix a finite tuple of distinct points in a complex manifold and a jet order m . Suppose that finitely many holomorphic functions, depending on a positive parameter s ,…",
+      "section": "Monomial spaces and finite jets",
+      "manuscript": "Maximal Multipoint Seshadri Constants in Higher Dimensions"
+    },
+    {
+      "id": "m3-lem-unimodular",
+      "kind": "lemma",
+      "label": "Unimodular changes",
+      "statement": "[Unimodular changes] Let BGL_n() . Replacing S_k by BS_k preserves cardinality and the graded support property. It preserves, in both directions, the existence of a distinct torus tuple at which the…",
+      "section": "Monomial spaces and finite jets",
+      "manuscript": "Maximal Multipoint Seshadri Constants in Higher Dimensions"
+    },
+    {
+      "id": "m3-lem-compression",
+      "kind": "lemma",
+      "label": "Coordinate compression",
+      "statement": "[Coordinate compression] Coordinate compression preserves the cardinalities and the graded support property of a family (S_k) . It transfers jet separation backward. In a nonempty row with smallest…",
+      "section": "Monomial spaces and finite jets",
+      "manuscript": "Maximal Multipoint Seshadri Constants in Higher Dimensions"
+    },
+    {
+      "id": "m3-prop-flag-simplex",
+      "kind": "proposition",
+      "label": "The initial simplex",
+      "statement": "[The initial simplex] Let X be a smooth integral complex projective variety of dimension n3 , let L be ample, and put V=L^n . Choose a positive integer D such that DL is very ample. There is a graded…",
+      "section": "A simplex from a complete-intersection flag",
+      "manuscript": "Maximal Multipoint Seshadri Constants in Higher Dimensions"
+    },
+    {
+      "id": "m3-prop-reshape",
+      "kind": "proposition",
+      "label": "Two-intercept reshaping",
+      "statement": "[Two-intercept reshaping] Let n2 , let A,B,a_3,,a_n be positive real numbers, and let (S_k)_ k1 be finite exponent sets satisfying \\[ S_k k(A,B,a_3,,a_n)^n, S_k+S_l S_ k+l (k,l1). \\] Set H=AB and…",
+      "section": "Reshaping two intercepts",
+      "manuscript": "Maximal Multipoint Seshadri Constants in Higher Dimensions"
+    },
+    {
+      "id": "m3-lem-interior-saturation",
+      "kind": "lemma",
+      "label": "Interior saturation",
+      "statement": "[Interior saturation] Let n1 be an integer, let P^n be a compact convex set with nonempty interior, and let F_k kP^n for every integer k1 . Suppose that \\[ F_k+F_l F_ k+l (k,l1), \\#F_k=(P)k^n+o(k^n).…",
+      "section": "Interior lattice points and interpolation",
+      "manuscript": "Maximal Multipoint Seshadri Constants in Higher Dimensions"
+    },
+    {
+      "id": "m3-lem-simplex-interpolation",
+      "kind": "lemma",
+      "label": "Interpolation in an elongated simplex",
+      "statement": "[Interpolation in an elongated simplex] Let n2 , r1 , and m0 be integers, and let c_1,,c_r^* be distinct. Put \\[ E_ r,m = \\ (,b)_ 0 ^ n-1 _ 0 : ||+ br<m+1\\ . \\] Then (E_ r,m ) surjects onto jets…",
+      "section": "Interior lattice points and interpolation",
+      "manuscript": "Maximal Multipoint Seshadri Constants in Higher Dimensions"
+    },
+    {
+      "id": "m3-prop-asymptotic-jets",
+      "kind": "proposition",
+      "label": "Jets from full-volume supports",
+      "statement": "[Jets from full-volume supports] Let n2 and r1 be integers, let w>0 , and set \\[ P=(w,,w,rw). \\] Suppose that finite sets F_k kP^n , indexed by all integers k1 , satisfy \\[ F_k+F_l F_ k+l ,…",
+      "section": "Interior lattice points and interpolation",
+      "manuscript": "Maximal Multipoint Seshadri Constants in Higher Dimensions"
+    },
+    {
+      "id": "m3-lem-jets-curves",
+      "kind": "lemma",
+      "label": "Jets bound curve intersections",
+      "statement": "[Jets bound curve intersections] Let X be a smooth complex projective variety, let A be a line bundle on X , and let p_1,,p_r be distinct points. Suppose that, for an integer m1 , the map \\[…",
+      "section": "Proof of the main theorem",
+      "manuscript": "Maximal Multipoint Seshadri Constants in Higher Dimensions"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-prop-normal-polynomial",
+      "to": "m1-prop-squares"
+    },
+    {
+      "from": "m1-prop-normal-polynomial",
+      "to": "m1-lem-cubic-low-degree"
+    },
+    {
+      "from": "m1-prop-normal-polynomial",
+      "to": "m1-prop-necessary-w"
+    },
+    {
+      "from": "m1-lem-torus-sections",
+      "to": "m1-lem-cubic-embedding"
+    },
+    {
+      "from": "m1-prop-necessary-w",
+      "to": "m1-lem-collision"
+    },
+    {
+      "from": "m1-lem-torus-sections",
+      "to": "m1-lem-theta-limit"
+    },
+    {
+      "from": "m1-lem-exponent-enclosure",
+      "to": "m1-lem-integer-rows"
+    },
+    {
+      "from": "m1-lem-slice-profile",
+      "to": "m1-lem-integer-rows"
+    },
+    {
+      "from": "m1-lem-interpolation",
+      "to": "m1-prop-full-rank"
+    },
+    {
+      "from": "m1-lem-integer-rows",
+      "to": "m1-prop-full-rank"
+    },
+    {
+      "from": "m1-prop-matrix-limit",
+      "to": "m1-prop-full-rank"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-prop-full-rank"
+    },
+    {
+      "from": "m1-lem-universal",
+      "to": "m1-prop-full-rank"
+    },
+    {
+      "from": "m1-prop-squares",
+      "to": "m1-prop-full-rank"
+    },
+    {
+      "from": "m1-lem-cubic-low-degree",
+      "to": "m1-prop-full-rank"
+    },
+    {
+      "from": "m1-prop-necessary-w",
+      "to": "m1-prop-full-rank"
+    },
+    {
+      "from": "m1-lem-collision",
+      "to": "m1-prop-full-rank"
+    },
+    {
+      "from": "m1-lem-universal",
+      "to": "m1-cor-fields"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-cor-fields"
+    },
+    {
+      "from": "m2-lem-rank-persistence",
+      "to": "m2-prop-initial-transfer"
+    },
+    {
+      "from": "m2-prop-initial-transfer",
+      "to": "m2-prop-quadrilateral"
+    },
+    {
+      "from": "m2-lem-slices",
+      "to": "m2-prop-compression"
+    },
+    {
+      "from": "m2-lem-rank-persistence",
+      "to": "m2-prop-compression"
+    },
+    {
+      "from": "m2-prop-compression",
+      "to": "m2-cor-surface-transfer"
+    },
+    {
+      "from": "m2-prop-quadrilateral",
+      "to": "m2-cor-surface-transfer"
+    },
+    {
+      "from": "m2-prop-initial-transfer",
+      "to": "m2-cor-surface-transfer"
+    },
+    {
+      "from": "m2-lem-triangle-multiplicity",
+      "to": "m2-prop-subgroup-test"
+    },
+    {
+      "from": "m2-lem-direction",
+      "to": "m2-cor-torus-test"
+    },
+    {
+      "from": "m2-prop-subgroup-test",
+      "to": "m2-cor-torus-test"
+    },
+    {
+      "from": "m2-lem-positive-square",
+      "to": "m2-prop-homogeneous-nef"
+    },
+    {
+      "from": "m2-lem-positive-square",
+      "to": "m2-lem-sesha-upper"
+    },
+    {
+      "from": "m2-thm-main",
+      "to": "m2-lem-sesha-upper"
+    },
+    {
+      "from": "m2-cor-torus-test",
+      "to": "m2-lem-sesha-upper"
+    },
+    {
+      "from": "m2-cor-surface-transfer",
+      "to": "m2-lem-sesha-upper"
+    },
+    {
+      "from": "m2-lem-jet-open",
+      "to": "m2-lem-sesha-upper"
+    },
+    {
+      "from": "m2-prop-homogeneous-nef",
+      "to": "m2-lem-sesha-upper"
+    },
+    {
+      "from": "m2-thm-main",
+      "to": "m2-cor-fields"
+    },
+    {
+      "from": "m2-lem-jet-open",
+      "to": "m2-cor-fields"
+    },
+    {
+      "from": "m2-lem-positive-square",
+      "to": "m2-cor-fields"
+    },
+    {
+      "from": "m2-prop-homogeneous-nef",
+      "to": "m2-cor-fields"
+    },
+    {
+      "from": "m2-lem-sesha-upper",
+      "to": "m2-cor-fields"
+    },
+    {
+      "from": "m3-lem-least-terms",
+      "to": "m3-lem-row-valuation"
+    },
+    {
+      "from": "m3-lem-least-terms",
+      "to": "m3-lem-compression"
+    },
+    {
+      "from": "m3-lem-row-valuation",
+      "to": "m3-lem-compression"
+    },
+    {
+      "from": "m3-lem-weighted-limit",
+      "to": "m3-lem-compression"
+    },
+    {
+      "from": "m3-lem-rank-transfer",
+      "to": "m3-lem-compression"
+    },
+    {
+      "from": "m3-lem-least-terms",
+      "to": "m3-prop-flag-simplex"
+    },
+    {
+      "from": "m3-lem-weighted-limit",
+      "to": "m3-prop-flag-simplex"
+    },
+    {
+      "from": "m3-lem-rank-transfer",
+      "to": "m3-prop-flag-simplex"
+    },
+    {
+      "from": "m3-lem-least-terms",
+      "to": "m3-prop-reshape"
+    },
+    {
+      "from": "m3-lem-row-valuation",
+      "to": "m3-prop-reshape"
+    },
+    {
+      "from": "m3-lem-weighted-limit",
+      "to": "m3-prop-reshape"
+    },
+    {
+      "from": "m3-lem-rank-transfer",
+      "to": "m3-prop-reshape"
+    },
+    {
+      "from": "m3-lem-unimodular",
+      "to": "m3-prop-reshape"
+    },
+    {
+      "from": "m3-lem-compression",
+      "to": "m3-prop-reshape"
+    },
+    {
+      "from": "m3-lem-interior-saturation",
+      "to": "m3-prop-asymptotic-jets"
+    },
+    {
+      "from": "m3-lem-simplex-interpolation",
+      "to": "m3-prop-asymptotic-jets"
+    }
+  ]
+}

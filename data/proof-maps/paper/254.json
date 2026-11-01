@@ -1,0 +1,1031 @@
+{
+  "familyNumber": "254",
+  "familyTitle": "Classifying spaces and geometric obstructions for Artin groups",
+  "manuscripts": [
+    {
+      "id": "Harmonic-heights-and-the-Artin-K-pi-1-conjecture-September-23-2026",
+      "title": "Harmonic heights and the Artin K(pi,1) conjecture",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Harmonic-heights-and-the-Artin-K-pi-1-conjecture-September-23-2026/paper.pdf"
+    },
+    {
+      "id": "An-Artin-group-with-no-geometric-CAT-0-action-September-23-2026",
+      "title": "An Artin group with no geometric CAT(0) action",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-Artin-group-with-no-geometric-CAT-0-action-September-23-2026/paper.pdf"
+    },
+    {
+      "id": "Parabolic-intersections-in-Artin-groups-September-23-2026",
+      "title": "Parabolic intersections in Artin groups",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Parabolic-intersections-in-Artin-groups-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "The Salvetti complex and spherical parabolic cosets",
+    "A framed category and its Artin action",
+    "Layers and cohomological tests",
+    "Weighted height data and convex subobjects",
+    "A two-point estimate on spherical cosets",
+    "The isolated harmonic-layer obstruction",
+    "Sublevels in spherical residues",
+    "The global harmonic filtration",
+    "Structural consequences and homological stability",
+    "Stable lengths and centralizer characters",
+    "A quantitative constraint from braid groups",
+    "Six asymptotic sectors",
+    "Labelled triangular diagrams",
+    "A local winding count",
+    "The finite Artin matrix and the final contradiction",
+    "The relative categorical family"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For every Coxeter matrix on a finite set \\(S\\), the universal cover of…",
+      "statement": "For every Coxeter matrix on a finite set \\(S\\), the universal cover of \\(X(W,S)\\) is contractible. Equivalently, \\[ _n(X(W,S))=0(n2). \\] The conclusion allows arbitrary finite labels, infinite…",
+      "section": "Introduction",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-thm-topology-parabolic-embedding",
+      "kind": "theorem",
+      "label": "Standard parabolic embedding",
+      "statement": "[Standard parabolic embedding] For every T S , the homomorphism from the Artin group defined by the submatrix on T to A , sending its standard generators to the corresponding _t , is injective. Its…",
+      "section": "The Salvetti complex and spherical parabolic cosets",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-thm-topology-finite-monoid",
+      "kind": "theorem",
+      "label": "Finite-type positive monoids",
+      "statement": "[Finite-type positive monoids] Suppose that T is spherical, and let A_T^+ be its positive Artin monoid. Then the following statements hold. [label=( *)] The natural map A_T^+ A_T is injective. In…",
+      "section": "The Salvetti complex and spherical parabolic cosets",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-thm-topology-spherical-asphericity",
+      "kind": "theorem",
+      "label": "Spherical asphericity",
+      "statement": "[Spherical asphericity] If T is spherical, the universal cover of the CW complex X(W_T,T) with the preceding permutahedral attaching maps is contractible.",
+      "section": "The Salvetti complex and spherical parabolic cosets",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-salvetti-comparison",
+      "kind": "lemma",
+      "label": "Salvetti--coset comparison",
+      "statement": "[Salvetti--coset comparison] There is a homotopy equivalence \\[ X(W,S)| D|. \\] Consequently, contractibility of | D| implies the conclusion of Theorem~ .",
+      "section": "The Salvetti complex and spherical parabolic cosets",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-cartan-positive-null",
+      "kind": "lemma",
+      "label": "For a spherical subset T S , the inverse C_T^ -1 is entrywise nonnegative, and…",
+      "statement": "For a spherical subset T S , the inverse C_T^ -1 is entrywise nonnegative, and is strictly positive within each connected diagonal block. Prescribing the coordinates of p outside T therefore…",
+      "section": "A framed category and its Artin action",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-prop-fusion-construction",
+      "kind": "proposition",
+      "label": "There is a finite semisimple spherical -linear tensor category C with strictly…",
+      "statement": "There is a finite semisimple spherical -linear tensor category C with strictly positive real dimensions, and, for every ordered edge (s,t) of S , an object D^1_ st of dimension b_ st , with D^1_ ts…",
+      "section": "A framed category and its Artin action",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-category-frobenius",
+      "kind": "lemma",
+      "label": "The functional :Z defined by \\[ (t_ s,L )=w_L, (Z^0 Z^1)=0 \\] is a symmetric…",
+      "statement": "The functional :Z defined by \\[ (t_ s,L )=w_L, (Z^0 Z^1)=0 \\] is a symmetric Frobenius trace of degree -2 . Thus _=t_/w_L has trace one. The radical of Z is Z^ >0 , and the socle of each…",
+      "section": "A framed category and its Artin action",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-finite-unfolding",
+      "kind": "lemma",
+      "label": "If J S is spherical, then C_ J is positive definite and simply laced, and…",
+      "statement": "If J S is spherical, then C_ J is positive definite and simply laced, and defines a finite Coxeter system. Replacing each original letter s_i , i J , by the product of the commuting reflections in…",
+      "section": "A framed category and its Artin action",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-category-twist-inverse",
+      "kind": "lemma",
+      "label": "There are bigraded bimodule chain homotopy equivalences \\[ B__ZD_ Z D__ZB_. \\]",
+      "statement": "There are bigraded bimodule chain homotopy equivalences \\[ B__ZD_ Z D__ZB_. \\]",
+      "section": "A framed category and its Artin action",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-category-local-braid",
+      "kind": "lemma",
+      "label": "If there is no arrow between distinct unfolded vertices , , then B_ B_ B_ B_ .…",
+      "statement": "If there is no arrow between distinct unfolded vertices , , then B_ B_ B_ B_ . If there is exactly one arrow in each direction, then \\[ B_ B_ B_ B_ B_ B_. \\] Products here and below denote tensor…",
+      "section": "A framed category and its Artin action",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-prop-twist-action",
+      "kind": "proposition",
+      "label": "For each original color i , let \\[ B_i=_ \\ i\\ B_, D_i=_ \\ i\\ D_. \\] These…",
+      "statement": "For each original color i , let \\[ B_i=_ \\ i\\ B_, D_i=_ \\ i\\ D_. \\] These products are independent of their order up to bimodule homotopy. The assignments _i B_i and _i^ -1 D_i define an action of…",
+      "section": "A framed category and its Artin action",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-layer-structure",
+      "kind": "lemma",
+      "label": "Layer structure",
+      "statement": "[Layer structure] The full subcategories defined by minimal generator levels d0 and d0 form a bounded t -structure. Its truncation _ k E is represented by the subcomplex of a minimal model on levels…",
+      "section": "Layers and cohomological tests",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-layers-amplitude-extension",
+      "kind": "lemma",
+      "label": "Adjacent-layer exact sequences",
+      "statement": "[Adjacent-layer exact sequences] Suppose that an exact functor F has layer amplitude [0,1] . For any E and any d , there is a short exact sequence 0 Y^d(F(Y^ d-1 (E))) Y^d(FE) Y^d(F(Y^d(E))) 0, where…",
+      "section": "Layers and cohomological tests",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-layers-bottom-composition",
+      "kind": "lemma",
+      "label": "Composition at the bottom",
+      "statement": "[Composition at the bottom] Suppose that each of F_1,,F_r is exact and has no negative change of layer level. Starting from a pure layer at d , the level- d part of F_r F_1 is obtained by retaining…",
+      "section": "Layers and cohomological tests",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-layers-extremal-tests",
+      "kind": "lemma",
+      "label": "Extremal cohomological tests",
+      "statement": "[Extremal cohomological tests] For a pure layer M at level d , H^d(e_ M)soc_ M, H^ d+2 (e_ M) (top_ M)2, as graded multiplicity spaces, with their corresponding placements. The shift on the top is…",
+      "section": "Layers and cohomological tests",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-positive-layer",
+      "kind": "lemma",
+      "label": "Positive layers",
+      "statement": "[Positive layers] Each F_i has layer amplitude [0,1] . Its upper piece on a pure layer M at d is supported on the fiber of i , has no arrows, and has multiplicity top_ M at a vertex of that fiber.…",
+      "section": "Layers and cohomological tests",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-layers-inverse-amplitude",
+      "kind": "lemma",
+      "label": "Inverse amplitude",
+      "statement": "[Inverse amplitude] If an exact equivalence F has layer amplitude [0,1] , its inverse has amplitude [-1,0] . In particular each F_i^ -1 has that amplitude and satisfies e_ F_i^ -1 E (e_ E)-2 ( of…",
+      "section": "Layers and cohomological tests",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-layers-height-change",
+      "kind": "lemma",
+      "label": "Change of test height",
+      "statement": "[Change of test height] For a positive unfolded letter , if h_J(X) is finite, \\[ h_J(X) h_J(B_ X) h_J(X)+1. \\] An increase occurs exactly when is an old highest-test vertex; in that case it is the…",
+      "section": "Layers and cohomological tests",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-top-divisor",
+      "kind": "lemma",
+      "label": "Top-divisor test",
+      "statement": "[Top-divisor test] Let b be a positive word in the unfolded finite-type Artin generators. If \\[ h_J(B_bX)>h_J(X), \\] then every unfolded vertex attaining the highest test cohomology of B_bX is a left…",
+      "section": "Layers and cohomological tests",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-cor-reduced-amplitude",
+      "kind": "corollary",
+      "label": "Reduced-word amplitude",
+      "statement": "[Reduced-word amplitude] For spherical J , a positive lift of any reduced expression in W_J has layer amplitude [0,1] . A negative lift of a reduced expression has amplitude [-1,0] .",
+      "section": "Layers and cohomological tests",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-height-data-tensor-truncation",
+      "kind": "lemma",
+      "label": "Tensoring and canonical truncations",
+      "statement": "[Tensoring and canonical truncations] For H C , right tensoring of all projective labels by H defines a t -exact functor T_H for the layer t -structure. It commutes naturally with its truncations,…",
+      "section": "Weighted height data and convex subobjects",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-family-proportionality",
+      "kind": "lemma",
+      "label": "Proportionality of the frame family",
+      "statement": "[Proportionality of the frame family] There are nonnegative vectors m^d(x)^ S such that the weighted generator dimension vector of the layer family is _L w_L Y_L^d(x)= m^d(x). The weighted top and…",
+      "section": "Weighted height data and convex subobjects",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-height-data-capped-layer",
+      "kind": "lemma",
+      "label": "A layer under a capped negative operation",
+      "statement": "[A layer under a capped negative operation] Let E be a bounded minimal projective complex with no generators above q on J J . If G is a word of negative twists in J , then Y^q(GE) Y^q(G(Y^q(E))).…",
+      "section": "Weighted height data and convex subobjects",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-cap-accessibility",
+      "kind": "lemma",
+      "label": "Cap accessibility",
+      "statement": "[Cap accessibility] Let J S be spherical, let q , and suppose the data at x are capped at q on J . There exists z A_Jx whose data are capped at q on J J . Every negative generator in J preserves an…",
+      "section": "Weighted height data and convex subobjects",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-prop-convex-subobjects",
+      "kind": "proposition",
+      "label": "Convex subobjects",
+      "statement": "[Convex subobjects] Let J S be spherical, and suppose that at x the data are capped at q on J J . Let p agree with m^q(x) outside J and be harmonic on J , and put e=m^q(x)-p , which is supported on J…",
+      "section": "Weighted height data and convex subobjects",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-prop-candidate-uniqueness",
+      "kind": "proposition",
+      "label": "There is at most one candidate in \\(A_Tx_0\\).",
+      "statement": "There is at most one candidate in \\(A_Tx_0\\).",
+      "section": "A two-point estimate on spherical cosets",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-right-duality",
+      "kind": "lemma",
+      "label": "For every \\(h A_T\\), every \\(, T\\), and every integer \\(r\\), K^r_ (h) =K^ -2-r…",
+      "statement": "For every \\(h A_T\\), every \\(, T\\), and every integer \\(r\\), K^r_ (h) =K^ -2-r _ (h^ -1 ). If \\(J,J' T\\), the rows with indices outside \\( J'\\) are unchanged by left multiplication of \\(h\\) by \\(A_…",
+      "section": "A two-point estimate on spherical cosets",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-two-point-negative-bound",
+      "kind": "lemma",
+      "label": "Let \\(R\\) be a minimal complex with a single simple \\(U_\\) at \\((0,0)\\) and…",
+      "statement": "Let \\(R\\) be a minimal complex with a single simple \\(U_\\) at \\((0,0)\\) and shifted right projectives, and let \\(r-1\\) bound its normalized levels. Applying a right inverse twist, and then…",
+      "section": "A two-point estimate on spherical cosets",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-two-point-tensor-filtration",
+      "kind": "lemma",
+      "label": "With these definitions, H_2(N,M)=0, H_1(N,M) survives in actual total degree…",
+      "statement": "With these definitions, H_2(N,M)=0, H_1(N,M) survives in actual total degree r+q+1. Moreover, at every unfolded projective vertex \\(\\), the length-two cokernel surjects onto the tensor product of the…",
+      "section": "A two-point estimate on spherical cosets",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-two-point-remove-tops",
+      "kind": "lemma",
+      "label": "By replacing \\(z\\) within \\(A_Jz\\), preserving the cap on \\(T\\), one can…",
+      "statement": "By replacing \\(z\\) within \\(A_Jz\\), preserving the cap on \\(T\\), one can arrange that the highest normalized right layer has no right top at any vertex of \\( J\\).",
+      "section": "A two-point estimate on spherical cosets",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-two-point-subrepresentation-tensor",
+      "kind": "lemma",
+      "label": "For every family \\( S M\\) in , H_2(N, S)=0, H_0(N, S) H_0(N,M).",
+      "statement": "For every family \\( S M\\) in , H_2(N, S)=0, H_0(N, S) H_0(N,M).",
+      "section": "A two-point estimate on spherical cosets",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-two-point-euler-estimate",
+      "kind": "lemma",
+      "label": "At the representative with no highest right tops on \\(J\\), 1 D_0 _ wt H_1(N,M)…",
+      "statement": "At the representative with no highest right tops on \\(J\\), 1 D_0 _ wt H_1(N,M) n_T^ t a +1_ \\ r=-1\\ (a')^ t p_T.",
+      "section": "A two-point estimate on spherical cosets",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-two-point-greedy",
+      "kind": "lemma",
+      "label": "For nonidentity simple elements \\(d_1,,d_k\\), the factorization \\(d_1 d_k\\) is…",
+      "statement": "For nonidentity simple elements \\(d_1,,d_k\\), the factorization \\(d_1 d_k\\) is obtained by repeatedly extracting the greatest simple suffix if and only if D_R(d_i) D_L(d_ i+1 )(1 i<k). Here the…",
+      "section": "A two-point estimate on spherical cosets",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-parabolic-detection",
+      "kind": "lemma",
+      "label": "Let \\(h A_T\\) and \\( V T\\). If K^r_ (h)=0 (r,\\ , V), then \\(h A_ T V \\).",
+      "statement": "Let \\(h A_T\\) and \\( V T\\). If K^r_ (h)=0 (r,\\ , V), then \\(h A_ T V \\).",
+      "section": "A two-point estimate on spherical cosets",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-prop-isolated-layer",
+      "kind": "proposition",
+      "label": "Isolated harmonic layer",
+      "statement": "[Isolated harmonic layer] Let I S be nonempty and connected. Let c_I be a strictly positive vector with C_Ic_I=0 , and extend c by zero on S I . Let J I be spherical, possibly empty, let q>0 be an…",
+      "section": "The isolated harmonic-layer obstruction",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-rigidity-hom-filtration",
+      "kind": "lemma",
+      "label": "Hom pairing and middle vanishing",
+      "statement": "[Hom pairing and middle vanishing] For pure projective layers P,Y , including those formed from graded subrepresentations, there are perfect pairings \\[ H_i^ n,v (P,Y)\\ \\ H_ 2-i ^ -n,\\,2-v (Y,P). \\]…",
+      "section": "The isolated harmonic-layer obstruction",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-rigidity-secondary-injection",
+      "kind": "lemma",
+      "label": "The capped secondary injection",
+      "statement": "[The capped secondary injection] Let I S , and suppose the family E_L is capped at q on I . For every L , let M_L be a direct summand of the pure layer Y_L^q supported on I . If d<q , then for every…",
+      "section": "The isolated harmonic-layer obstruction",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-rigidity-separation",
+      "kind": "lemma",
+      "label": "Separation from the boundary",
+      "statement": "[Separation from the boundary] Let I S be nonempty and connected, and let c be zero off I and strictly positive on I , with C_Ic_I=0 . Let J I . Suppose M=(M_L)_L is a family of direct summands of…",
+      "section": "The isolated harmonic-layer obstruction",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-filtration-principle",
+      "kind": "lemma",
+      "label": "Vertex filtration",
+      "statement": "[Vertex filtration] Let P be a set-sized poset, and well-order its elements by . For v P , define the earlier lower and upper posets \\[ L_v=\\ w P:w<v,\\ w v\\ , U_v=\\ w P:v<w,\\ w v\\ . \\] The link along…",
+      "section": "Sublevels in spherical residues",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-prop-residue-sublevels",
+      "kind": "proposition",
+      "label": "Spherical-residue sublevels",
+      "statement": "[Spherical-residue sublevels] For every nonempty spherical T and the data just specified: [label=()] R_ < (T,A_Tx;q) is empty or contractible; whenever the additional exterior hypotheses hold, R_…",
+      "section": "Sublevels in spherical residues",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-global-well-order",
+      "kind": "lemma",
+      "label": "Definition~ gives a well-order of the vertices of D . Distinct comparable…",
+      "statement": "Definition~ gives a well-order of the vertices of D . Distinct comparable cosets have different block sequences, so the final tie refinement does not affect either of their earlier links.",
+      "section": "The global harmonic filtration",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-global-upper-comparison",
+      "kind": "lemma",
+      "label": "Every earlier upper extension of P adds an active color. Every spherical upper…",
+      "statement": "Every earlier upper extension of P adds an active color. Every spherical upper extension adding a nonempty set of active colors and no other colors is earlier than P .",
+      "section": "The global harmonic filtration",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-global-active-spherical",
+      "kind": "lemma",
+      "label": "The subset TAct(P) is spherical.",
+      "statement": "The subset TAct(P) is spherical.",
+      "section": "The global harmonic filtration",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-prop-global-upper-link",
+      "kind": "proposition",
+      "label": "The earlier strict upper part of P is empty or contractible.",
+      "statement": "The earlier strict upper part of P is empty or contractible.",
+      "section": "The global harmonic filtration",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-global-lower-comparison",
+      "kind": "lemma",
+      "label": "Every earlier lower coset has an eligible open color. A lower coset all of…",
+      "statement": "Every earlier lower coset has an eligible open color. A lower coset all of whose open colors are eligible is earlier than P . The earlier lower part retracts by an order map pointwise above the…",
+      "section": "The global harmonic filtration",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-global-residue-blocks",
+      "kind": "lemma",
+      "label": "The all-eligible lower poset at P=A_Tx is a product of the residue sublevel…",
+      "statement": "The all-eligible lower poset at P=A_Tx is a product of the residue sublevel posets of Proposition~ , each with a largest element adjoined, with the all-largest tuple deleted. More precisely, its…",
+      "section": "The global harmonic filtration",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-lem-global-product-minus-top",
+      "kind": "lemma",
+      "label": "Let E_1,, E_r be posets whose realizations are each empty or contractible, and…",
+      "statement": "Let E_1,, E_r be posets whose realizations are each empty or contractible, and let E_a^+ denote the result of adjoining a largest element. Then \\[ (_ a=1 ^r E_a^+) \\ (,,)\\ \\] is empty if every E_a is…",
+      "section": "The global harmonic filtration",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-prop-global-lower-link",
+      "kind": "proposition",
+      "label": "The earlier strict lower part of every P D is empty or contractible.",
+      "statement": "The earlier strict lower part of every P D is empty or contractible.",
+      "section": "The global harmonic filtration",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-thm-deligne-contractible",
+      "kind": "theorem",
+      "label": "For every Coxeter matrix on a finite set S , the order complex of the…",
+      "statement": "For every Coxeter matrix on a finite set S , the order complex of the spherical-coset poset D is contractible.",
+      "section": "The global harmonic filtration",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-cor-artin-structural",
+      "kind": "corollary",
+      "label": "Torsion, center, and monoid consequences",
+      "statement": "[Torsion, center, and monoid consequences] Let \\(A=A(W,S)\\) be an Artin group with \\(S\\) finite, let \\(A^+\\) be its positive Artin monoid, and let \\(k\\) be the number of irreducible spherical…",
+      "section": "Structural consequences and homological stability",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m1-cor-boyd-stability",
+      "kind": "corollary",
+      "label": "Boyd stability for fixed-core braid-tail families",
+      "statement": "[Boyd stability for fixed-core braid-tail families] Let \\(A_1\\) be the Artin group of a Coxeter matrix \\(m_1\\) on a finite set \\(_1\\), and choose a vertex \\(_1_1\\). For each \\(n2\\), adjoin new…",
+      "section": "Structural consequences and homological stability",
+      "manuscript": "Harmonic heights and the Artin K(pi,1) conjecture"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "There is an Artin matrix \\(M\\) on 116 generators, with every off-diagonal label…",
+      "statement": "There is an Artin matrix \\(M\\) on 116 generators, with every off-diagonal label in \\(\\ 2,3,\\ \\), such that \\(A_M\\) admits no geometric action. One explicit matrix is given in Definition~ .",
+      "section": "Introduction",
+      "manuscript": "An Artin group with no geometric CAT(0) action"
+    },
+    {
+      "id": "m2-lem-comparison",
+      "kind": "lemma",
+      "label": "In a CAT(0) space, geodesic segments are unique and depend continuously on…",
+      "statement": "In a CAT(0) space, geodesic segments are unique and depend continuously on their endpoints. If ,:[0,1] X are geodesics parametrized proportionally to length, then d((t),(t)) (1-t)d((0),(0))+t…",
+      "section": "Stable lengths and centralizer characters",
+      "manuscript": "An Artin group with no geometric CAT(0) action"
+    },
+    {
+      "id": "m2-lem-semisimple",
+      "kind": "lemma",
+      "label": "Suppose G acts geometrically on X . Every g G attains its minimum displacement,…",
+      "statement": "Suppose G acts geometrically on X . Every g G attains its minimum displacement, and \\[ (g)=_ x X d(x,gx). \\] If this number is positive, g preserves a geodesic line and translates along it by (g) .…",
+      "section": "Stable lengths and centralizer characters",
+      "manuscript": "An Artin group with no geometric CAT(0) action"
+    },
+    {
+      "id": "m2-lem-commuting-form",
+      "kind": "lemma",
+      "label": "For pairwise commuting isometries g_1,,g_k of a CAT(0) space, the function \\[ v…",
+      "statement": "For pairwise commuting isometries g_1,,g_k of a CAT(0) space, the function \\[ v (g^v), g^v=g_1^ v_1 g_k^ v_k , v Z^k, \\] extends uniquely to a continuous seminorm on R^k whose square is a positive…",
+      "section": "Stable lengths and centralizer characters",
+      "manuscript": "An Artin group with no geometric CAT(0) action"
+    },
+    {
+      "id": "m2-lem-centralizer-character",
+      "kind": "lemma",
+      "label": "For a geometric action and a fixed g G , the function \\[ C_G(g) R, h g,h \\] is…",
+      "statement": "For a geometric action and a fixed g G , the function \\[ C_G(g) R, h g,h \\] is a group homomorphism. Thus g,h_1h_2= g,h_1+ g,h_2 whenever both h_1 and h_2 commute with g .",
+      "section": "Stable lengths and centralizer characters",
+      "manuscript": "An Artin group with no geometric CAT(0) action"
+    },
+    {
+      "id": "m2-prop-braid-angle",
+      "kind": "proposition",
+      "label": "Suppose a group acting geometrically on a CAT(0) space contains elements…",
+      "statement": "Suppose a group acting geometrically on a CAT(0) space contains elements s_1,,s_ 39 satisfying the B_ 40 relations, with (s_1^2)>0 . Then ( ((s_1s_2)^3) 3(s_1^2) )^2 143 513 >14, and in particular \\[…",
+      "section": "A quantitative constraint from braid groups",
+      "manuscript": "An Artin group with no geometric CAT(0) action"
+    },
+    {
+      "id": "m2-lem-braid-centers",
+      "kind": "lemma",
+      "label": "The element L_j commutes with s_i for i j-2 , and Z_r commutes with every s_i…",
+      "statement": "The element L_j commutes with s_i for i j-2 , and Z_r commutes with every s_i for i<r . In particular, \\[ Z_2=s_1^2, Z_3=(s_1s_2)^3. \\] The element =s_1 s_ l-1 satisfies s_i^ -1 =s_ i+1 (1 i l-2). In…",
+      "section": "A quantitative constraint from braid groups",
+      "manuscript": "An Artin group with no geometric CAT(0) action"
+    },
+    {
+      "id": "m2-prop-triangle-obstruction",
+      "kind": "proposition",
+      "label": "There is no geometric action of \\(T\\) such that, for every \\((u,v) E\\), (z_ uv…",
+      "statement": "There is no geometric action of \\(T\\) such that, for every \\((u,v) E\\), (z_ uv ) 3(u^2) = (z_ uv ) 3(v^2) >12.",
+      "section": "Six asymptotic sectors",
+      "manuscript": "An Artin group with no geometric CAT(0) action"
+    },
+    {
+      "id": "m2-lem-orbit-control",
+      "kind": "lemma",
+      "label": "For a geometric action of \\(T\\) and any base point \\(y\\), there are constants…",
+      "statement": "For a geometric action of \\(T\\) and any base point \\(y\\), there are constants \\(R,C<\\) such that \\(Ty\\) is \\(R\\)-dense and d_T(s,t) C(1+d_Y(sy,ty))(s,t T).",
+      "section": "Six asymptotic sectors",
+      "manuscript": "An Artin group with no geometric CAT(0) action"
+    },
+    {
+      "id": "m2-lem-mirror-action",
+      "kind": "lemma",
+      "label": "The formulas \\[ u=e_ D_u +r_u(u=a,b,c) \\] define an affine isometric action of…",
+      "statement": "The formulas \\[ u=e_ D_u +r_u(u=a,b,c) \\] define an affine isometric action of \\(T\\) on \\(E\\). If \\(V(t)=t0\\), then \\|V(t)-V(s)\\|_1 d_T(s,t). For each \\((u,v) E\\), the elements \\(u^2,z_ uv \\) act by…",
+      "section": "Six asymptotic sectors",
+      "manuscript": "An Artin group with no geometric CAT(0) action"
+    },
+    {
+      "id": "m2-lem-sector-data",
+      "kind": "lemma",
+      "label": "Each of these six seminorms is positive definite. Each sector angle \\(\\)…",
+      "statement": "Each of these six seminorms is positive definite. Each sector angle \\(\\) satisfies \\(0<</3\\). The sectors glue isometrically along their shared rays, in the cyclic order a^2,\\ z_ ab ,\\ b^2,\\ z_ bc ,\\…",
+      "section": "Six asymptotic sectors",
+      "manuscript": "An Artin group with no geometric CAT(0) action"
+    },
+    {
+      "id": "m2-lem-sector-maps",
+      "kind": "lemma",
+      "label": "There are continuous maps \\(f_n:P Y\\), with \\(f_n(0)=y\\), and a constant…",
+      "statement": "There are continuous maps \\(f_n:P Y\\), with \\(f_n(0)=y\\), and a constant \\(C_0\\) independent of \\(n,p\\), such that d_Y(f_n(p),t_n(p)y) C_0. For two points in any one sector, d_Y(f_n(p),f_n(p')) n…",
+      "section": "Six asymptotic sectors",
+      "manuscript": "An Artin group with no geometric CAT(0) action"
+    },
+    {
+      "id": "m2-lem-outer-cap",
+      "kind": "lemma",
+      "label": "There is \\(>0\\) such that, for all sufficiently large \\(n\\), the map \\(f_n|_ P…",
+      "statement": "There is \\(>0\\) such that, for all sufficiently large \\(n\\), the map \\(f_n|_ P \\) extends to a second parameter disk whose entire image lies outside \\(B_Y(y, n)\\). Gluing the two parameter disks…",
+      "section": "Six asymptotic sectors",
+      "manuscript": "An Artin group with no geometric CAT(0) action"
+    },
+    {
+      "id": "m2-lem-triangular-presentation",
+      "kind": "lemma",
+      "label": "For each (u,v) E , introduce two private generators x_ uv and h_ uv . Write…",
+      "statement": "For each (u,v) E , introduce two private generators x_ uv and h_ uv . Write (x_1,x_2,x_3,h)=(u,v,x_ uv ,h_ uv ) within this block. A presentation of T is given by the three relations x_i x_ i+1 =h…",
+      "section": "Labelled triangular diagrams",
+      "manuscript": "An Artin group with no geometric CAT(0) action"
+    },
+    {
+      "id": "m2-lem-link-girth",
+      "kind": "lemma",
+      "label": "The link at every vertex of K has no circuit of length less than six, including…",
+      "statement": "The link at every vertex of K has no circuit of length less than six, including circuits formed by parallel edges.",
+      "section": "Labelled triangular diagrams",
+      "manuscript": "An Artin group with no geometric CAT(0) action"
+    },
+    {
+      "id": "m2-prop-sphere-counts",
+      "kind": "proposition",
+      "label": "For every combinatorial map from a finite triangulated oriented two-sphere to K…",
+      "statement": "For every combinatorial map from a finite triangulated oriented two-sphere to K , and every individual target triangle , the sum of the signs of all occurrences of is zero. Collapsed triangles are…",
+      "section": "Labelled triangular diagrams",
+      "manuscript": "An Artin group with no geometric CAT(0) action"
+    },
+    {
+      "id": "m2-lem-controlled-diagrams",
+      "kind": "lemma",
+      "label": "Suppose that T acts geometrically on Y and fix y Y . There is a constant C_1 ,…",
+      "statement": "Suppose that T acts geometrically on Y and fix y Y . There is a constant C_1 , depending only on this action, y , and the fixed presentation, with the following property. Let be a triangulated…",
+      "section": "Labelled triangular diagrams",
+      "manuscript": "An Artin group with no geometric CAT(0) action"
+    },
+    {
+      "id": "m2-lem-projected-approximation",
+      "kind": "lemma",
+      "label": "On \\(B\\), the maps \\(q_n\\) converge uniformly to \\(\\).",
+      "statement": "On \\(B\\), the maps \\(q_n\\) converge uniformly to \\(\\).",
+      "section": "A local winding count",
+      "manuscript": "An Artin group with no geometric CAT(0) action"
+    },
+    {
+      "id": "m2-lem-localized-degree",
+      "kind": "lemma",
+      "label": "For all sufficiently large \\(n\\), every occurrence in the sphere diagram of a…",
+      "statement": "For all sufficiently large \\(n\\), every occurrence in the sphere diagram of a target triangle contributing to the winding count on \\(B\\) lies entirely in \\(intB\\).",
+      "section": "A local winding count",
+      "manuscript": "An Artin group with no geometric CAT(0) action"
+    },
+    {
+      "id": "m2-lem-pair-embeddings",
+      "kind": "lemma",
+      "label": "For every (u,v) E , the homomorphism \\[ B_3= t_1,t_2 t_1t_2t_1=t_2t_1t_2 T, t_1…",
+      "statement": "For every (u,v) E , the homomorphism \\[ B_3= t_1,t_2 t_1t_2t_1=t_2t_1t_2 T, t_1 u, t_2 v, \\] is injective. For every l3 , the homomorphism B_3 B_l given by t_1 s_1 and t_2 s_2 is also injective.",
+      "section": "The finite Artin matrix and the final contradiction",
+      "manuscript": "An Artin group with no geometric CAT(0) action"
+    },
+    {
+      "id": "m2-lem-amalgam-normal-form",
+      "kind": "lemma",
+      "label": "Let H_1,H_2 be groups with a common embedded subgroup E , and let H_1*_E H_2 be…",
+      "statement": "Let H_1,H_2 be groups with a common embedded subgroup E , and let H_1*_E H_2 be the group obtained by identifying the two copies of E in their free product. Each factor embeds in this group, and…",
+      "section": "The finite Artin matrix and the final contradiction",
+      "manuscript": "An Artin group with no geometric CAT(0) action"
+    },
+    {
+      "id": "m2-lem-common-centralizer",
+      "kind": "lemma",
+      "label": "For the elements d,e of G , \\[ C_G(d) C_G(e)=T. \\]",
+      "statement": "For the elements d,e of G , \\[ C_G(d) C_G(e)=T. \\]",
+      "section": "The finite Artin matrix and the final contradiction",
+      "manuscript": "An Artin group with no geometric CAT(0) action"
+    },
+    {
+      "id": "m2-lem-geometric-centralizer",
+      "kind": "lemma",
+      "label": "Suppose a group H acts geometrically on a nonempty proper CAT(0) space X . For…",
+      "statement": "Suppose a group H acts geometrically on a nonempty proper CAT(0) space X . For finitely many elements q_1,,q_m H , m1 , set \\[ C=_ j=1 ^m C_H(q_j). \\] If A0 is finite and the set \\[ Y_A=\\ x…",
+      "section": "The finite Artin matrix and the final contradiction",
+      "manuscript": "An Artin group with no geometric CAT(0) action"
+    },
+    {
+      "id": "m3-thm-main",
+      "kind": "theorem",
+      "label": "Parabolic intersections",
+      "statement": "[Parabolic intersections] For every Coxeter matrix M on a finite set S , subsets X,Y S , and g,h A_M , there are Z S and k A_M such that \\[ gA_Xg^ -1 hA_Yh^ -1 =kA_Zk^ -1 . \\]",
+      "section": "Introduction",
+      "manuscript": "Parabolic intersections in Artin groups"
+    },
+    {
+      "id": "m3-cor-arbitrary-intersections",
+      "kind": "corollary",
+      "label": "Arbitrary intersections and parabolic closure",
+      "statement": "[Arbitrary intersections and parabolic closure] For every family F of parabolic subgroups of A , there is a subfamily F_0 F with | F_0| |S| such that \\[ _ P F P=_ P F_0 P. \\] Here the intersection of…",
+      "section": "Introduction",
+      "manuscript": "Parabolic intersections in Artin groups"
+    },
+    {
+      "id": "m3-cor-membership",
+      "kind": "corollary",
+      "label": "Word and parabolic membership problems",
+      "statement": "[Word and parabolic membership problems] There is an algorithm which, given a finite Coxeter matrix M , a subset X S , and words u,v in the standard generators of A_M and their inverses, decides…",
+      "section": "Introduction",
+      "manuscript": "Parabolic intersections in Artin groups"
+    },
+    {
+      "id": "m3-cor-nonclique-dynamics",
+      "kind": "corollary",
+      "label": "Non-clique Artin-group dynamics",
+      "statement": "[Non-clique Artin-group dynamics] Suppose M is irreducible, meaning that there is no nontrivial partition S=S_1 S_2 with m_ st =2 for every s S_1 , t S_2 , and suppose m_ st = for some pair. Then A…",
+      "section": "Introduction",
+      "manuscript": "Parabolic intersections in Artin groups"
+    },
+    {
+      "id": "m3-cat-classical",
+      "kind": "theorem",
+      "label": "Classical Artin and Coxeter inputs",
+      "statement": "[Classical Artin and Coxeter inputs] The group defined by the Artin presentation on T S embeds in A , with image A_T . No sphericity hypothesis is needed here. For a spherical T , the positive Artin…",
+      "section": "The relative categorical family",
+      "manuscript": "Parabolic intersections in Artin groups"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-thm-topology-parabolic-embedding",
+      "to": "m1-lem-salvetti-comparison"
+    },
+    {
+      "from": "m1-thm-topology-spherical-asphericity",
+      "to": "m1-lem-salvetti-comparison"
+    },
+    {
+      "from": "m1-prop-fusion-construction",
+      "to": "m1-lem-finite-unfolding"
+    },
+    {
+      "from": "m1-lem-category-local-braid",
+      "to": "m1-prop-twist-action"
+    },
+    {
+      "from": "m1-lem-category-twist-inverse",
+      "to": "m1-prop-twist-action"
+    },
+    {
+      "from": "m1-lem-finite-unfolding",
+      "to": "m1-prop-twist-action"
+    },
+    {
+      "from": "m1-lem-layers-extremal-tests",
+      "to": "m1-lem-positive-layer"
+    },
+    {
+      "from": "m1-lem-top-divisor",
+      "to": "m1-cor-reduced-amplitude"
+    },
+    {
+      "from": "m1-lem-layers-extremal-tests",
+      "to": "m1-cor-reduced-amplitude"
+    },
+    {
+      "from": "m1-lem-finite-unfolding",
+      "to": "m1-cor-reduced-amplitude"
+    },
+    {
+      "from": "m1-lem-layers-inverse-amplitude",
+      "to": "m1-cor-reduced-amplitude"
+    },
+    {
+      "from": "m1-prop-twist-action",
+      "to": "m1-lem-height-data-tensor-truncation"
+    },
+    {
+      "from": "m1-lem-layer-structure",
+      "to": "m1-lem-height-data-tensor-truncation"
+    },
+    {
+      "from": "m1-lem-layers-extremal-tests",
+      "to": "m1-lem-family-proportionality"
+    },
+    {
+      "from": "m1-lem-layers-inverse-amplitude",
+      "to": "m1-lem-family-proportionality"
+    },
+    {
+      "from": "m1-lem-positive-layer",
+      "to": "m1-lem-family-proportionality"
+    },
+    {
+      "from": "m1-lem-height-data-capped-layer",
+      "to": "m1-lem-cap-accessibility"
+    },
+    {
+      "from": "m1-lem-positive-layer",
+      "to": "m1-lem-cap-accessibility"
+    },
+    {
+      "from": "m1-lem-layers-extremal-tests",
+      "to": "m1-lem-cap-accessibility"
+    },
+    {
+      "from": "m1-cor-reduced-amplitude",
+      "to": "m1-prop-convex-subobjects"
+    },
+    {
+      "from": "m1-lem-layer-structure",
+      "to": "m1-prop-convex-subobjects"
+    },
+    {
+      "from": "m1-lem-height-data-tensor-truncation",
+      "to": "m1-prop-convex-subobjects"
+    },
+    {
+      "from": "m1-lem-height-data-capped-layer",
+      "to": "m1-prop-convex-subobjects"
+    },
+    {
+      "from": "m1-lem-cap-accessibility",
+      "to": "m1-prop-convex-subobjects"
+    },
+    {
+      "from": "m1-lem-category-frobenius",
+      "to": "m1-lem-right-duality"
+    },
+    {
+      "from": "m1-prop-twist-action",
+      "to": "m1-lem-right-duality"
+    },
+    {
+      "from": "m1-lem-positive-layer",
+      "to": "m1-lem-two-point-negative-bound"
+    },
+    {
+      "from": "m1-lem-family-proportionality",
+      "to": "m1-lem-two-point-tensor-filtration"
+    },
+    {
+      "from": "m1-lem-two-point-tensor-filtration",
+      "to": "m1-lem-two-point-remove-tops"
+    },
+    {
+      "from": "m1-lem-cap-accessibility",
+      "to": "m1-lem-two-point-remove-tops"
+    },
+    {
+      "from": "m1-lem-two-point-negative-bound",
+      "to": "m1-lem-two-point-remove-tops"
+    },
+    {
+      "from": "m1-lem-two-point-subrepresentation-tensor",
+      "to": "m1-lem-two-point-euler-estimate"
+    },
+    {
+      "from": "m1-lem-two-point-tensor-filtration",
+      "to": "m1-lem-two-point-euler-estimate"
+    },
+    {
+      "from": "m1-lem-finite-unfolding",
+      "to": "m1-lem-two-point-greedy"
+    },
+    {
+      "from": "m1-lem-top-divisor",
+      "to": "m1-lem-parabolic-detection"
+    },
+    {
+      "from": "m1-lem-two-point-greedy",
+      "to": "m1-lem-parabolic-detection"
+    },
+    {
+      "from": "m1-prop-candidate-uniqueness",
+      "to": "m1-lem-parabolic-detection"
+    },
+    {
+      "from": "m1-lem-right-duality",
+      "to": "m1-lem-parabolic-detection"
+    },
+    {
+      "from": "m1-prop-twist-action",
+      "to": "m1-lem-rigidity-hom-filtration"
+    },
+    {
+      "from": "m1-lem-rigidity-hom-filtration",
+      "to": "m1-lem-rigidity-secondary-injection"
+    },
+    {
+      "from": "m1-lem-rigidity-hom-filtration",
+      "to": "m1-lem-rigidity-separation"
+    },
+    {
+      "from": "m1-prop-isolated-layer",
+      "to": "m1-lem-rigidity-separation"
+    },
+    {
+      "from": "m1-lem-cap-accessibility",
+      "to": "m1-lem-rigidity-separation"
+    },
+    {
+      "from": "m1-lem-family-proportionality",
+      "to": "m1-lem-rigidity-separation"
+    },
+    {
+      "from": "m1-prop-convex-subobjects",
+      "to": "m1-lem-rigidity-separation"
+    },
+    {
+      "from": "m1-lem-rigidity-secondary-injection",
+      "to": "m1-lem-rigidity-separation"
+    },
+    {
+      "from": "m1-lem-layers-amplitude-extension",
+      "to": "m1-lem-rigidity-separation"
+    },
+    {
+      "from": "m1-lem-positive-layer",
+      "to": "m1-lem-rigidity-separation"
+    },
+    {
+      "from": "m1-lem-layers-bottom-composition",
+      "to": "m1-lem-rigidity-separation"
+    },
+    {
+      "from": "m1-prop-isolated-layer",
+      "to": "m1-prop-residue-sublevels"
+    },
+    {
+      "from": "m1-lem-cap-accessibility",
+      "to": "m1-prop-residue-sublevels"
+    },
+    {
+      "from": "m1-lem-filtration-principle",
+      "to": "m1-prop-residue-sublevels"
+    },
+    {
+      "from": "m1-prop-candidate-uniqueness",
+      "to": "m1-prop-residue-sublevels"
+    },
+    {
+      "from": "m1-lem-cartan-positive-null",
+      "to": "m1-lem-global-active-spherical"
+    },
+    {
+      "from": "m1-lem-global-upper-comparison",
+      "to": "m1-prop-global-upper-link"
+    },
+    {
+      "from": "m1-lem-global-active-spherical",
+      "to": "m1-prop-global-upper-link"
+    },
+    {
+      "from": "m1-prop-residue-sublevels",
+      "to": "m1-lem-global-residue-blocks"
+    },
+    {
+      "from": "m1-lem-global-lower-comparison",
+      "to": "m1-prop-global-lower-link"
+    },
+    {
+      "from": "m1-lem-global-residue-blocks",
+      "to": "m1-prop-global-lower-link"
+    },
+    {
+      "from": "m1-lem-global-product-minus-top",
+      "to": "m1-prop-global-lower-link"
+    },
+    {
+      "from": "m1-lem-global-well-order",
+      "to": "m1-thm-deligne-contractible"
+    },
+    {
+      "from": "m1-prop-global-upper-link",
+      "to": "m1-thm-deligne-contractible"
+    },
+    {
+      "from": "m1-prop-global-lower-link",
+      "to": "m1-thm-deligne-contractible"
+    },
+    {
+      "from": "m1-lem-filtration-principle",
+      "to": "m1-thm-deligne-contractible"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-thm-deligne-contractible"
+    },
+    {
+      "from": "m1-lem-salvetti-comparison",
+      "to": "m1-thm-deligne-contractible"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-cor-artin-structural"
+    },
+    {
+      "from": "m1-thm-main",
+      "to": "m1-cor-boyd-stability"
+    },
+    {
+      "from": "m2-lem-commuting-form",
+      "to": "m2-lem-centralizer-character"
+    },
+    {
+      "from": "m2-lem-semisimple",
+      "to": "m2-lem-centralizer-character"
+    },
+    {
+      "from": "m2-lem-centralizer-character",
+      "to": "m2-lem-braid-centers"
+    },
+    {
+      "from": "m2-prop-braid-angle",
+      "to": "m2-lem-braid-centers"
+    },
+    {
+      "from": "m2-lem-commuting-form",
+      "to": "m2-lem-braid-centers"
+    },
+    {
+      "from": "m2-lem-link-girth",
+      "to": "m2-prop-sphere-counts"
+    },
+    {
+      "from": "m2-lem-orbit-control",
+      "to": "m2-lem-controlled-diagrams"
+    },
+    {
+      "from": "m2-lem-triangular-presentation",
+      "to": "m2-lem-controlled-diagrams"
+    },
+    {
+      "from": "m2-lem-outer-cap",
+      "to": "m2-lem-localized-degree"
+    },
+    {
+      "from": "m2-prop-triangle-obstruction",
+      "to": "m2-lem-localized-degree"
+    },
+    {
+      "from": "m2-prop-sphere-counts",
+      "to": "m2-lem-localized-degree"
+    },
+    {
+      "from": "m2-lem-amalgam-normal-form",
+      "to": "m2-lem-common-centralizer"
+    },
+    {
+      "from": "m2-lem-comparison",
+      "to": "m2-lem-geometric-centralizer"
+    },
+    {
+      "from": "m2-thm-main",
+      "to": "m2-lem-geometric-centralizer"
+    },
+    {
+      "from": "m2-lem-common-centralizer",
+      "to": "m2-lem-geometric-centralizer"
+    },
+    {
+      "from": "m2-lem-semisimple",
+      "to": "m2-lem-geometric-centralizer"
+    },
+    {
+      "from": "m2-prop-braid-angle",
+      "to": "m2-lem-geometric-centralizer"
+    },
+    {
+      "from": "m2-prop-triangle-obstruction",
+      "to": "m2-lem-geometric-centralizer"
+    }
+  ]
+}
