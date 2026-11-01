@@ -3914,7 +3914,7 @@ export const en = {
   "proofMaps.family.actionLeanMap": "Open the Lean-derived map",
   "proofMaps.derived.eyebrow": "Lean-derived structure · machine-extracted",
   "proofMaps.derived.title": "What the pinned Lean closure records for this family.",
-  "proofMaps.derived.meta": "{comparators} comparators · {theorems} theorem names",
+  "proofMaps.derived.meta": "{comparators} · {theorems}",
   "proofMaps.derived.comparatorOne": "{count} comparator",
   "proofMaps.derived.comparatorOther": "{count} comparators",
   "proofMaps.derived.theoremOne": "{count} theorem name",

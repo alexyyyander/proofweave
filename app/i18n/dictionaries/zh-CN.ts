@@ -3888,7 +3888,7 @@ export const zhCN: Dictionary = {
   "proofMaps.family.actionLeanMap": "打开 Lean 派生结构",
   "proofMaps.derived.eyebrow": "Lean 派生结构 · 机器抽取",
   "proofMaps.derived.title": "固定提交的 Lean 闭包记录了哪些结构。",
-  "proofMaps.derived.meta": "{comparators} 个 comparator · {theorems} 个定理名",
+  "proofMaps.derived.meta": "{comparators} · {theorems}",
   "proofMaps.derived.comparatorOne": "{count} 个 comparator",
   "proofMaps.derived.comparatorOther": "{count} 个 comparator",
   "proofMaps.derived.theoremOne": "{count} 个定理名",
