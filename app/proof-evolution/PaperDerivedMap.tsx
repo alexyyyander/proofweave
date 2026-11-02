@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Badge, Surface } from "@/app/components/ui";
 import type { PaperStructure, ProofMapIndexEntry } from "@/app/lib/proof-map";
 import type { Translator } from "@/app/i18n/translate";
+import { PaperGraphView } from "./PaperGraphView";
 
 /**
  * A paper-derived structure: the paper's own theorem-like statements as nodes,
@@ -61,6 +62,17 @@ export function PaperDerivedMap({ structure, entry, t }: {
       <span>{t("proofMaps.paper.sourcesLabel")}</span>
       <div>{structure.manuscripts.map((manuscript) => <a href={manuscript.pdfUrl} target="_blank" rel="noreferrer" key={manuscript.id}>{manuscript.title} ↗</a>)}</div>
     </div>
+
+    <section className="paper-derived-graph" aria-labelledby="paper-graph-title">
+      <div className="proof-map-family-section-heading">
+        <div>
+          <p className="eyebrow">{t("proofMaps.paper.graphEyebrow")}</p>
+          <h3 className="paper-derived-graph-title" id="paper-graph-title">{t("proofMaps.paper.graphTitle")}</h3>
+        </div>
+      </div>
+      <p className="paper-derived-intro">{t("proofMaps.paper.graphBody")}</p>
+      <PaperGraphView structure={structure} claim={entry.claimSnippet} />
+    </section>
 
     <ol className="paper-derived-manuscripts">
       {manuscriptGroups.map((group) => <li key={group.title ?? "family"}>

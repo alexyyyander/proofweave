@@ -131,7 +131,8 @@ npm run proof:maps:lean:build
 - 节点是 `theorem` / `lemma` / `proposition` / `corollary` 环境，保留 label、标题、陈述摘要与所在 section；
 - 边是 `proof` 环境里的 `\ref` 引用，方向为“被引用陈述 → 引用它的陈述”；
 - 当前覆盖 347 个族、548 篇论文、13,629 个陈述、14,401 条引用边；25 个族没有可解析的 LaTeX；
-- 抽取是纯文本解析，不运行 Lean、不验证引用是否真的是证明前提。
+- 抽取是纯文本解析，不运行 Lean、不验证引用是否真的是证明前提；
+- family 页提供与 deep 相同的 Matrix / Network 交互视图：列是论文章节、行是论文、边是证明内引用；Lean 派生族也使用同一视图（行是 comparator、列是目标/定理/公理）。
 
 生成命令：
 

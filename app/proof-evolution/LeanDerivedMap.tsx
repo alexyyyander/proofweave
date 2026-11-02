@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Badge, Surface } from "@/app/components/ui";
 import type { LeanCoverageFamily, ProofMapIndexEntry } from "@/app/lib/proof-map";
 import type { Translator } from "@/app/i18n/translate";
+import { LeanGraphView } from "./LeanGraphView";
 
 /**
  * A machine-extracted structure for families without a curated proof spine.
@@ -9,10 +10,11 @@ import type { Translator } from "@/app/i18n/translate";
  * target, the named proving theorems, and the permitted axioms. The component
  * deliberately does not draw lemma-level dependency edges it cannot source.
  */
-export function LeanDerivedMap({ family, entry, t }: {
+export function LeanDerivedMap({ family, entry, t, date }: {
   family: LeanCoverageFamily;
   entry: ProofMapIndexEntry;
   t: Translator;
+  date: string;
 }) {
   return <section id="lean-derived-map" className="lean-derived-map" aria-labelledby="lean-derived-map-title">
     <div className="proof-map-family-section-heading">
@@ -32,6 +34,17 @@ export function LeanDerivedMap({ family, entry, t }: {
       <p>{entry.claimSnippet}</p>
       <Link href={entry.publicationRoute}>{t("proofMaps.derived.claimSource")}</Link>
     </Surface>
+
+    <section className="paper-derived-graph" aria-labelledby="lean-graph-title">
+      <div className="proof-map-family-section-heading">
+        <div>
+          <p className="eyebrow">{t("proofMaps.derived.graphEyebrow")}</p>
+          <h3 className="paper-derived-graph-title" id="lean-graph-title">{t("proofMaps.derived.graphTitle")}</h3>
+        </div>
+      </div>
+      <p className="lean-derived-intro">{t("proofMaps.derived.graphBody")}</p>
+      <LeanGraphView family={family} claim={entry.claimSnippet} date={date} />
+    </section>
 
     <div className="lean-derived-comparators">
       {family.comparators.map((comparator, index) => <Surface tone="card" className="lean-derived-comparator" key={comparator.label}>

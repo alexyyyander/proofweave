@@ -84,6 +84,10 @@ type Model = {
   crossEdges: MapEdge[];
 };
 
+function pagesLabel(pages: number) {
+  return pages > 0 ? `${pages} pp` : "—";
+}
+
 function shortLabel(value: string) {
   const compact = value.replace(/\s*·\s*/g, " · ");
   return compact.length > 26 ? `${compact.slice(0, 24)}…` : compact;
@@ -248,7 +252,7 @@ export function ArgumentMapView({ data, argumentMap, lean }: { data: ProofEvolut
         id: `strategy:${strategy.strategy.versionId}`,
         type: "strategy",
         label: strategy.version.label,
-        sublabel: `${strategy.version.pages} pp`,
+        sublabel: pagesLabel(strategy.version.pages),
         color: strategy.color,
         role: "strategy",
         meta: { nodeId: resultNode?.id, strategyId: strategy.strategy.versionId },
@@ -352,16 +356,16 @@ export function ArgumentMapView({ data, argumentMap, lean }: { data: ProofEvolut
         {stronger.length > 0 && <label className="argument-map-toggle"><input type="checkbox" checked={showStronger} onChange={(event) => setShowStronger(event.target.checked)} /> {t("proofMaps.argument.strongerTrack")}</label>}
         {model.crossEdges.length > 0 && <label className="argument-map-toggle"><input type="checkbox" checked={showCrossLinks} onChange={(event) => setShowCrossLinks(event.target.checked)} /> {t("proofMaps.argument.crossLinks")}</label>}
       </> : <>
-        <label className="argument-map-select">A<select value={compareA} onChange={(event) => setCompareA(event.target.value)}>{model.strategies.map((strategy) => <option key={strategy.strategy.versionId} value={strategy.strategy.versionId}>{strategy.version.label} · {strategy.version.pages} pp</option>)}</select></label>
-        <label className="argument-map-select">B<select value={compareBEffective} onChange={(event) => setCompareB(event.target.value)}>{model.strategies.filter((strategy) => strategy.strategy.versionId !== compareA).map((strategy) => <option key={strategy.strategy.versionId} value={strategy.strategy.versionId}>{strategy.version.label} · {strategy.version.pages} pp</option>)}</select></label>
+        <label className="argument-map-select">A<select value={compareA} onChange={(event) => setCompareA(event.target.value)}>{model.strategies.map((strategy) => <option key={strategy.strategy.versionId} value={strategy.strategy.versionId}>{strategy.version.label} · {pagesLabel(strategy.version.pages)}</option>)}</select></label>
+        <label className="argument-map-select">B<select value={compareBEffective} onChange={(event) => setCompareB(event.target.value)}>{model.strategies.filter((strategy) => strategy.strategy.versionId !== compareA).map((strategy) => <option key={strategy.strategy.versionId} value={strategy.strategy.versionId}>{strategy.version.label} · {pagesLabel(strategy.version.pages)}</option>)}</select></label>
       </>}
     </div>
 
     {(mode === "all" || !canCompare) && <div className="argument-map-summary">
       {visibleStrategies.length > 1 ? <>
-        <span><Badge tone="positive">{t("proofMaps.argument.shortest")}</Badge> {shortest?.version.label} · {shortest?.version.pages} pages · {shortest?.nodes.length} nodes</span>
-        <span><Badge>{t("proofMaps.argument.longest")}</Badge> {longest?.version.label} · {longest?.version.pages} pages · {longest?.nodes.length} nodes</span>
-      </> : visibleStrategies[0] ? <span><Badge>{t("proofMaps.argument.strategy")}</Badge> {visibleStrategies[0].version.label} · {visibleStrategies[0].version.pages} pages · {visibleStrategies[0].nodes.length} nodes</span> : null}
+        <span><Badge tone="positive">{t("proofMaps.argument.shortest")}</Badge> {shortest?.version.label} · {shortest && (shortest.version.pages > 0 ? `${shortest.version.pages} pages` : t("proofMaps.paper.pagesUnknown"))} · {shortest?.nodes.length} nodes</span>
+        <span><Badge>{t("proofMaps.argument.longest")}</Badge> {longest?.version.label} · {longest && (longest.version.pages > 0 ? `${longest.version.pages} pages` : t("proofMaps.paper.pagesUnknown"))} · {longest?.nodes.length} nodes</span>
+      </> : visibleStrategies[0] ? <span><Badge>{t("proofMaps.argument.strategy")}</Badge> {visibleStrategies[0].version.label} · {visibleStrategies[0].version.pages > 0 ? `${visibleStrategies[0].version.pages} pages` : t("proofMaps.paper.pagesUnknown")} · {visibleStrategies[0].nodes.length} nodes</span> : null}
       <span className="argument-map-summary-note">{argumentMap.summaryNote ?? t("proofMaps.argument.summaryDefault")}</span>
       {showStronger && <span className="argument-map-summary-note">{t("proofMaps.argument.strongerNote")}</span>}
     </div>}
@@ -395,7 +399,7 @@ export function ArgumentMapView({ data, argumentMap, lean }: { data: ProofEvolut
         >
           <span className="argument-strategy-dot" style={{ background: strategy.color }} aria-hidden="true" />
           <strong>{strategy.version.label}</strong>
-          <small>{strategy.version.pages} pp · {strategy.nodes.length} nodes</small>
+          <small>{pagesLabel(strategy.version.pages)} · {strategy.nodes.length} nodes</small>
           <em>{strategy.strategy.track === "stronger-theorem" ? t("proofMaps.evolution.strongerTheorem") : strategy.strategy.note}</em>
         </button>)}
       </div>
@@ -605,7 +609,7 @@ function NodeDrawer({ node, argumentMap, model, lean, onClose, onSelectNode, t }
         <h3>{node.fullLabel}</h3>
         <div className="argument-drawer-badges">
           <Badge>{kindKeys[node.kind as ProofStepKind] ? t(kindKeys[node.kind as ProofStepKind]) : node.kind}</Badge>
-          {strategy && <Badge>{t("proofMaps.evolution.pagesBadge", { count: strategy.version.pages })}</Badge>}
+          {strategy && strategy.version.pages > 0 && <Badge>{t("proofMaps.evolution.pagesBadge", { count: strategy.version.pages })}</Badge>}
           {isSharedResult && <Badge tone="positive">{t("proofMaps.argument.allConverge")}</Badge>}
         </div>
       </div>

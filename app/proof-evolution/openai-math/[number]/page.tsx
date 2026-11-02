@@ -143,7 +143,7 @@ export default async function ProofMapFamilyPage({ params }: Params) {
     <div className="proof-map-family-content">
       <StatusBanner entry={entry} isDraft={isDraft} isDeep={isDeep} isPaper={isPaper} isLean={isLean} t={t} />
 
-      {deep ? <DeepProofMapView deep={deep} subject={family.subject} revision={openaiMathCollection.source.revision} /> : explanation ? <DraftChain familyNumber={family.number} explanation={explanation} family={family} t={t} locale={locale} /> : isPaper && paperStructure ? <PaperDerivedMap structure={paperStructure} entry={entry} t={t} /> : isLean && leanFamily ? <LeanDerivedMap family={leanFamily} entry={entry} t={t} /> : <ScaffoldMap entry={entry} t={t} />}
+      {deep ? <DeepProofMapView deep={deep} subject={family.subject} revision={openaiMathCollection.source.revision} /> : explanation ? <DraftChain familyNumber={family.number} explanation={explanation} family={family} t={t} locale={locale} /> : isPaper && paperStructure ? <PaperDerivedMap structure={paperStructure} entry={entry} t={t} /> : isLean && leanFamily ? <LeanDerivedMap family={leanFamily} entry={entry} t={t} date={openaiMathCollection.releaseDate} /> : <ScaffoldMap entry={entry} t={t} />}
 
       <div className="proof-map-family-grid">
         <ManuscriptSection family={family} t={t} />
