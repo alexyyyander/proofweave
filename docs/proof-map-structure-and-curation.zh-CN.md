@@ -152,4 +152,6 @@ npm run proof:maps:promote -- --dry-run
 npm run proof:maps:promote -- --family 005
 ```
 
+抽样校准（2026-11-02）：从 26 个族抽取 200 条引用逐条判读，约 193 条是明确的依赖使用（Apply/use/by/gives/identifies/follows from 等），5 条是识别/提及（“the case is Lemma X”“the remaining assertions are Lemma X”），2 条是背景对照（“as in the preceding corollary”“recalled in …”）。全库中“we state / the statement of / is stated”等窄提及模式只有 14 条命中，其中多数仍是真的使用。因此默认保留的规则在抽样上精度约 96%，没有再做额外剔除；剩余的识别/提及边属于弱依赖，评审时可单独核对。
+
 升级规则：证明环境中的 `\\ref` 引用若不含背景措辞（cf.、recall、as in、analogous、similarly 等）即视为依赖边；DFS 破除环；每族生成 section 级 roles 与一个 strategy/论文。每一张生成的 deep 图都在 caveats 中声明“由论文结构机器升级、引用不是审计过的依赖、未经评审”，`reviewStatus` 保持 `unreviewed`。不满足 `validateDeepProofMap` 的族留在 `paper`。
